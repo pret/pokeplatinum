@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000482_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! The fog is gone and, with it, all\ndoubt in my heart!\rThis is my thanks.\nDon’t be shy! Take it!\r</language>
+	</row>
+	<row id="pl_msg_00000482_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Fantina...\nIt’s hard to tell what she’s thinking.\rBut she has a compassionate heart.\nYou know, she’s a regular visitor.</language>
+	</row>
+	<row id="pl_msg_00000482_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can’t see!\nThis fog obscures everything!\rI wish this fog could be blown away like\nthe doubt in my heart!</language>
+	</row>
+	<row id="pl_msg_00000482_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let me make your journey out of this\nplace less frightening. Take this.\r</language>
+	</row>
+	<row id="pl_msg_00000482_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Lost Tower is where the spirits\nof departed Pokémon are put to rest.\rThose that enjoyed long lives...\nThose whose times were short...\rAll the departed Pokémon shall find\nsolace here...</language>
+	</row>
+	<row id="pl_msg_00000482_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can’t see!\nThis fog obscures everything!\rI wish this fog could be blown away like\nthe doubt in my heart!</language>
+	</row>
+</body>

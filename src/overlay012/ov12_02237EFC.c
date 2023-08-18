@@ -8,7 +8,7 @@
 #include "overlay012/struct_ov12_02237EFC.h"
 #include "overlay012/struct_ov12_02237F38.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_0200D9E8.h"
 #include "unk_02014000.h"

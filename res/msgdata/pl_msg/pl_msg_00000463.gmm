@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000463_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POFFIN CASE</language>
+	</row>
+	<row id="pl_msg_00000463_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GIVE</language>
+	</row>
+	<row id="pl_msg_00000463_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TRASH</language>
+	</row>
+	<row id="pl_msg_00000463_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BACK</language>
+	</row>
+	<row id="pl_msg_00000463_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SMOOTH / {STRVAR_1 51, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000463_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000463_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLOSE</language>
+	</row>
+	<row id="pl_msg_00000463_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Discard this\n{STRVAR_1 9, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000463_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 9, 0, 0} was\nthrown out.</language>
+	</row>
+	<row id="pl_msg_00000463_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000463_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000463_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SPICY</language>
+	</row>
+	<row id="pl_msg_00000463_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DRY</language>
+	</row>
+	<row id="pl_msg_00000463_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SWEET</language>
+	</row>
+	<row id="pl_msg_00000463_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BITTER</language>
+	</row>
+	<row id="pl_msg_00000463_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SOUR</language>
+	</row>
+	<row id="pl_msg_00000463_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ALL</language>
+	</row>
+	<row id="pl_msg_00000463_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Raises coolness.</language>
+	</row>
+	<row id="pl_msg_00000463_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Raises beauty.</language>
+	</row>
+	<row id="pl_msg_00000463_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Raises cuteness.</language>
+	</row>
+	<row id="pl_msg_00000463_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Raises smartness.</language>
+	</row>
+	<row id="pl_msg_00000463_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Raises toughness.</language>
+	</row>
+	<row id="pl_msg_00000463_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 9, 0, 0}{CURSOR_X 138}Lv. {STRVAR_1 51, 1, 0}</language>
+	</row>
+</body>

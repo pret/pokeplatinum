@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000596_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve traveled a long way to make my\nbeloved Pokémon even more beautiful.\rThat will make it love me even more.\nGiggle!</language>
+	</row>
+	<row id="pl_msg_00000596_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Nothing is too good for my Pokémon.\nThere’s no mountain too high to climb.\fThat’s how I look at it.</language>
+	</row>
+	<row id="pl_msg_00000596_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, how I long to become a member of\nthe Ribbon Syndicate.\rMy dearest Pokémon will be treated to\ndreamy experiences!</language>
+	</row>
+	<row id="pl_msg_00000596_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A member of the Ribbon Syndicate?\nYou are? Really?\rHow did you manage to collect so many\nPokémon Ribbons?</language>
+	</row>
+	<row id="pl_msg_00000596_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know how you can dig up cool\nstuff in the Underground?\rPeople are saying they’re digging up\nnew, different stuff.</language>
+	</row>
+	<row id="pl_msg_00000596_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Nobody believes me, but something\nlurks in the Resort Area.\rIt’s the hidden ruler of the area!\nYou have to believe me!\rIf you believe me, whip out your\nSuper Rod and go fishing.\rWho knows, you may just catch the\nmind-blowing ruler!</language>
+	</row>
+	<row id="pl_msg_00000596_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Psst, hey, traveler! Yes, you!\nI want you to have this Villa!\rOh, wait, no, no, no!\nIt’s not what you’re thinking!\rThis is no scam, see.\nIn fact, you’ll be doing me a favor!\rSee, I was given this Villa. But, to\nbe honest, I don’t need it, either.\rSo don’t say a word.\nJust nod and this Villa is yours!</language>
+	</row>
+	<row id="pl_msg_00000596_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whew, that’s a load off my mind.\rThe original owner was from Hoenn,\nsee?\rThe owner collected up all the rare\nstones of Sinnoh and went back home.\rI somehow got saddled with this place\nas if it were some gift.\rThere’s no figuring what rich folks\nwill think of next.\rStill, I thank you for helping me out.\nCome with me, will you?\r</language>
+	</row>
+	<row id="pl_msg_00000596_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What, I still strike you as shady?\nI daresay I can’t blame you, though.\rAn offer to get a Villa for free...\nThat does throw up red flags, I agree.\r</language>
+	</row>
+	<row id="pl_msg_00000596_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">None too shabby, you have to agree.\nStep inside for a look-see.\r</language>
+	</row>
+	<row id="pl_msg_00000596_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm! I happened to be in the\narea on a small errand.\fI’d like to take a rest if you’d allow it.</language>
+	</row>
+	<row id="pl_msg_00000596_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm!\nI appreciate your hospitality.\r</language>
+	</row>
+	<row id="pl_msg_00000596_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hmm...\nDo you have something to hide?</language>
+	</row>
+	<row id="pl_msg_00000596_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Hi! Could I take a peek inside\nyour Villa?</language>
+	</row>
+	<row id="pl_msg_00000596_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Thanks!\r</language>
+	</row>
+	<row id="pl_msg_00000596_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: ...Oh, sorry.\nAm I intruding on something?</language>
+	</row>
+	<row id="pl_msg_00000596_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Listen, listen!\nI came for a visit! Can I go in?</language>
+	</row>
+	<row id="pl_msg_00000596_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Yes!\nNo time to waste!\r</language>
+	</row>
+	<row id="pl_msg_00000596_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Oh, right.\nYou must have plans already.</language>
+	</row>
+	<row id="pl_msg_00000596_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: ...Um, your Villa...\nWould it be OK if I took a look around?</language>
+	</row>
+	<row id="pl_msg_00000596_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Oh, thank you.\r</language>
+	</row>
+	<row id="pl_msg_00000596_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Oh...\nIt makes me a little sad...</language>
+	</row>
+	<row id="pl_msg_00000596_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Guhahahaha!\rHow’s your Villa?\nCan you give me a tour?</language>
+	</row>
+	<row id="pl_msg_00000596_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: All right!\nLet’s have a look, then!\r</language>
+	</row>
+	<row id="pl_msg_00000596_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Well!\nHow cold can you be?</language>
+	</row>
+	<row id="pl_msg_00000596_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Resort Area\nRelax &amp; Play!</language>
+	</row>
+	<row id="pl_msg_00000596_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Ribbon Syndicate\nMembers Only</language>
+	</row>
+	<row id="pl_msg_00000596_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Somewhat Impressive Villa</language>
+	</row>
+</body>

@@ -8,7 +8,7 @@
 
 #include "struct_defs/struct_02008A90.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_0200762C.h"
 #include "unk_0201378C.h"

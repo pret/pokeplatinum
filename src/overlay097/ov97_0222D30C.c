@@ -183,7 +183,7 @@ UnkStruct_ov97_0223E5B8 Unk_ov97_0223E568[] = {
     {0x13, (u32)ov97_0222D75C}
 };
 
-UnkStruct_ov97_0223E5B8 dummy[] = {
+UnkStruct_ov97_0223E5B8 dummy_UnkStruct_ov97_0223E5B8[] = {
     {0x12, (u32)ov97_0222D4D8},
     {0x13, (u32)NULL}
 };

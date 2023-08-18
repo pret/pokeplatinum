@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000231_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Observe, if you will, that hole.\rThere was once a cave painting that had\nblocked the way to the summit.\rBut the wall, it is no longer there.\nIt lies in pieces. Do you see?\rEver since the three Pokémon of the\nlakes have been captured...\rSomething terrible is happening,\nbut what exactly, I do not know.\r</language>
+	</row>
+	<row id="pl_msg_00000231_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is but one cause!\nTeam Galactic’s Cyrus!\rAnd now, we are all caught up.\nNow, to the next step.\rAre you Trainer enough to advance?\nShow me, if you will!\r</language>
+	</row>
+	<row id="pl_msg_00000231_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\n...\rHahaha!\nYou can relax now.\rYou see, I understand.\nYou are far superior to me.\rAs are the Commanders.\nCyrus, too, naturally.\fTeam Galactic is beyond my reach...\rPlease, you must stop them!\nFor only you are able!\rAll I can do now is give you this.\rIt is a little something I obtained in\nan investigation long ago.\r</language>
+	</row>
+	<row id="pl_msg_00000231_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Please!\nYou must stop Team Galactic!</language>
+	</row>
+	<row id="pl_msg_00000231_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Bag, it is full?\nAre you prepared for every occasion?</language>
+	</row>
+	<row id="pl_msg_00000231_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Please, stop Team Galactic!\nFor only you are able!\rAll I can do now is give you this.\rIt is a little something I obtained in\nan investigation long ago.\r</language>
+	</row>
+	<row id="pl_msg_00000231_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There appears to be a cave painting\nfrom an ancient time...</language>
+	</row>
+	<row id="pl_msg_00000231_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shards are all that remain of the\nancient cave painting...</language>
+	</row>
+</body>

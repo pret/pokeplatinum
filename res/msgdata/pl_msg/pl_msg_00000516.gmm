@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000516_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...I saw it!\nToday’s number is {STRVAR_1 51, 0, 0}!\rShow me a Pokémon that’s Lv. {STRVAR_1 51, 0, 0}.\nIf you can, I’ll reward you.</language>
+	</row>
+	<row id="pl_msg_00000516_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...I saw it!\nToday’s number is {STRVAR_1 51, 0, 0}!\rShow me a Pokémon that’s Lv. {STRVAR_1 51, 0, 0}.\nIf you can, I’ll reward you.\r...Oh, now, hunh?!\rYour {STRVAR_1 0, 1, 0} is Lv. {STRVAR_1 51, 0, 0}.\nWell, I’ll be! How remarkable!\rI’ll thank you for that visual treat\nwith this {STRVAR_1 8, 2, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000516_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? You’ve no room in your Bag.\nI’ll hold it, so come back later.</language>
+	</row>
+	<row id="pl_msg_00000516_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll thank you for that visual treat\nwith this {STRVAR_1 8, 2, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000516_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">High-level Pokémon were once of low\nlevel.\rLow-level Pokémon will not remain so,\nfor they can only grow.\rThat’s how it goes, youngster.\nCome again tomorrow.</language>
+	</row>
+	<row id="pl_msg_00000516_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Win Items from Me!\rBlack Belt: Powers up Fighting-type\nmoves.\rExpert Belt: Powers up moves if they\nare super effective.\rFocus Sash: The bearer avoids\na one-hit KO if its HP is full.</language>
+	</row>
+</body>

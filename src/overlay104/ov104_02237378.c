@@ -23,7 +23,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 #include "overlay104/struct_ov104_0223C634.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02002F38.h"
 #include "unk_0200B358.h"

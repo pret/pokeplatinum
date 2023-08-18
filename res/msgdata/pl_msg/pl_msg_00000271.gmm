@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000271_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a statue of a Pokémon.\nIt seems to exude power...\r{STRVAR_1 3, 0, 0} read the engraved\nwriting...\rA body of rock.\rA body of ice.\rA body of steel.\rWhen gathers the three Pokémon,\nthe king shall appear.</language>
+	</row>
+	<row id="pl_msg_00000271_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a statue of a Pokémon.\nIt seems to exude power...\r{STRVAR_1 3, 0, 0} read the engraved\nwriting...\rA body of rock.\rA body of ice.\rA body of steel.\rWhen gathers the three Pokémon,\nthe king shall appear.\r...\n...\r</language>
+	</row>
+	<row id="pl_msg_00000271_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Zut zutt!\r</language>
+	</row>
+	<row id="pl_msg_00000271_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">REGIGIGAS disappeared from view...</language>
+	</row>
+</body>

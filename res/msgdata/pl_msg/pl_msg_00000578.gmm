@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000578_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you a fan of the Day-Care\nCouple like me?\rI got hold of something quite useful.\rIt’s the latest Pokétch app from\nthe Pokétch Company.\rWhat’s more, they developed it in\ncollaboration with the Day Care.\rSince you’re a fellow fan of the Day\nCare, I’m compelled to share this!\r</language>
+	</row>
+	<row id="pl_msg_00000578_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">With that Day-Care Checker, you can\ncheck on the Pokémon that you’ve\fleft with the Day-Care Couple.\rBut I haven’t been able to leave\nmy Pokémon... So here I stay...</language>
+	</row>
+	<row id="pl_msg_00000578_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">As you travel, your Pokémon grows\nwith you...\rBe always bonded in friendship.\nPokémon Day Care</language>
+	</row>
+</body>

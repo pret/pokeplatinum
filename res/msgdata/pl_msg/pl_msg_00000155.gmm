@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000155_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Hmm...\nA key is necessary for us to go on.\rFor the time being, we cannot give\nchase to those who run away.\r</language>
+	</row>
+	<row id="pl_msg_00000155_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Ah, this Hidden Machine...\nIt is of the hidden move Fly.\r{STRVAR_1 3, 0, 0}, this, you should be\nkeeping.\rIt will not do to leave this item here\nto be used by the Team Galactic.\r</language>
+	</row>
+	<row id="pl_msg_00000155_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: So, we did not learn very much\nfrom this exercise... No matter.\rWhat concerns me is what I have\noverheard in the Game Corner.\rThe Team Galactic has transported \nsomething to Pastoria City.\rWhat they are up to, I do not know, but\nI have bad feelings about it.</language>
+	</row>
+	<row id="pl_msg_00000155_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: I am concerned over what I\nhave overheard in the Game Corner.\rThe Team Galactic has transported\nsomething to Pastoria City.\rWhat they are up to, I do not know, but\nI have bad feelings about it.</language>
+	</row>
+	<row id="pl_msg_00000155_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Ah, hello!\nI have kept you waiting.\r</language>
+	</row>
+	<row id="pl_msg_00000155_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: I will use this Storage Key I\nhave obtained from the Team Galactic...\r...Ker-chunk!\rYes!\nIt is opened!\r</language>
+	</row>
+	<row id="pl_msg_00000155_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I will go on ahead, my friend.\nDo not expose yourself to danger!\r</language>
+	</row>
+	<row id="pl_msg_00000155_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The rust-encrusted door is locked.\nIt appears to take a special key.\n</language>
+	</row>
+	<row id="pl_msg_00000155_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The rust-encrusted door is locked.\nIt appears to take a special key.\rUse the Storage Key?</language>
+	</row>
+	<row id="pl_msg_00000155_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} inserted and turned the\nStorage Key.\rThe rusty door creaked open!\rThe Storage Key snapped off inside\nthe keyhole...</language>
+	</row>
+</body>

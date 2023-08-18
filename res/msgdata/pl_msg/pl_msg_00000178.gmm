@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000178_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You want to challenge Candice?\rSure thing!\nI was waiting for someone tough!\rBut I should tell you, I’m tough\nbecause I know how to focus.\rPokémon, fashion, romance...\nIt’s all about focus!\rI’ll show you just what I mean.\nGet ready to lose!\r</language>
+	</row>
+	<row id="pl_msg_00000178_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow! You’re great!\nYou’ve earned my respect!\rI think your focus and will bowled\nus over totally.\rOh, that’s right!\nI’m supposed to give you this!\r</language>
+	</row>
+	<row id="pl_msg_00000178_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe Icicle Badge from Candice.</language>
+	</row>
+	<row id="pl_msg_00000178_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Icicle Badge I just gave you?\rBecause you have it, you can use the\nhidden move Rock Climb anytime, even\fwhen you’re not in a battle.\rOh, and take this, too.\r</language>
+	</row>
+	<row id="pl_msg_00000178_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 8, 0, 0} contains the move\n{STRVAR_1 6, 1, 0}.\rIf the user takes damage, the move’s\npower is doubled!\rCan you imagine what sort of focus\nyou’d need to pull it off?</language>
+	</row>
+	<row id="pl_msg_00000178_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you think I should try to act\nmore like an Ice-type Gym Leader?\rLike, do you think I should be more\ncool and distant?\rThat sort of thing I have trouble\nwith.</language>
+	</row>
+	<row id="pl_msg_00000178_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nHow’s it going, Champ-to-be?\rDo you see the big snowballs placed\nhere and there?\rYou need to slide on the ice with\nenough momentum to crush them.\rThe Gym Leader is a user of\nIce-type Pokémon.\rMelt her defenses with scorching-\nhot Fire-type moves!\rIt’s all about focus with this Gym.\nBear down and focus!</language>
+	</row>
+	<row id="pl_msg_00000178_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! {STRVAR_1 3, 0, 0}!\nYou’ve beaten the Gym Leader!\rYou were more focused than her,\nand your Pokémon picked up on it!</language>
+	</row>
+	<row id="pl_msg_00000178_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Snowpoint City Pokémon Gym\nLeader: Candice\rCertified Trainers:\n{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000178_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Snowpoint City Pokémon Gym\nLeader: Candice\rCertified Trainers:\n{STRVAR_1 3, 0, 0}\f{STRVAR_1 3, 1, 0}</language>
+	</row>
+</body>

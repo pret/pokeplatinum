@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000138_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve been hiking all around the\nSinnoh region.\rI love planting Berries wherever\nI go.\rI’ll give you a Berry, too.\nPlease plant it somewhere.\r</language>
+	</row>
+	<row id="pl_msg_00000138_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Planting Berries is good for Pokémon.\rIt provides them with more things to\neat in the wild.</language>
+	</row>
+	<row id="pl_msg_00000138_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My sister gathers Berries every day!\nPlease come visit again!\rWe cook the Berries, too!\nWe mix them up! They’re yummy!</language>
+	</row>
+</body>

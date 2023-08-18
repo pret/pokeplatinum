@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000180_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I love how my girl has so much\nvivacity and charm.</language>
+	</row>
+	<row id="pl_msg_00000180_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks to you, my girl’s been in\na really happy mood.</language>
+	</row>
+	<row id="pl_msg_00000180_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">By any chance, do you have a Pokémon\ncalled MEDICHAM?\rIf you do, would you like to trade\nyour MEDICHAM for my HAUNTER?</language>
+	</row>
+	<row id="pl_msg_00000180_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Haha! Did my HAUNTER turn into\nsomething else? Just kidding!\rI made it hold something that\nprevents it from evolving.\rPlease treat my HAUNTER nicely!\nI’ll be good to your MEDICHAM, too!</language>
+	</row>
+	<row id="pl_msg_00000180_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What I asked for was a MEDICHAM...?</language>
+	</row>
+	<row id="pl_msg_00000180_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s OK if you don’t want to.\rBut if you change your mind, let’s\ntrade Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000180_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks to Pokémon, we got to be\nfriends, didn’t we?</language>
+	</row>
+</body>

@@ -129,7 +129,7 @@ int ov73_021D3250(UnkStruct_020067E8 * param0, int * param1);
 int ov73_021D3280(UnkStruct_020067E8 * param0, int * param1);
 int ov73_021D3404(UnkStruct_020067E8 * param0, int * param1);
 
-const UnkStruct_0208BE5C dummy = {
+const UnkStruct_0208BE5C dummy_UnkStruct_0208BE5C = {
     ov73_021D0D80,
     ov73_021D0E20,
     ov73_021D0F7C,

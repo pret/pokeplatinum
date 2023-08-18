@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000601_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, thank you for visiting us\ntoday.\rTo which floor may I take you?</language>
+	</row>
+	<row id="pl_msg_00000601_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Certainly.\nElevator going up.\r</language>
+	</row>
+	<row id="pl_msg_00000601_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Certainly.\nElevator going down.\r</language>
+	</row>
+	<row id="pl_msg_00000601_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Uh... We are already on that floor?</language>
+	</row>
+	<row id="pl_msg_00000601_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here we are!</language>
+	</row>
+</body>

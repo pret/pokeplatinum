@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000168_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Oh, hello.\nYou’re quite the nifty Trainer.\rMy husband is a Sailor, and he’s off\nworking somewhere far away.\rI long for the day he comes back\nto me.\rAll that waiting gets to be very\nboring every day, though...\rI know! How about you visit me and\ntell me stories every so often?</language>
+	</row>
+	<row id="pl_msg_00000168_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Starting tomorrow, please visit and\ntell me stories about your travels.</language>
+	</row>
+	<row id="pl_msg_00000168_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Today is Monday!\rIt’s time to get going on a brand-new\nweek.\rIs there a story that might help\nme perk up?\rMaybe a story about getting splashed\nwith water...</language>
+	</row>
+	<row id="pl_msg_00000168_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 28, 0, 0} splashed with water...\n...\rThat sounds refreshing!\nIt’s made me feel awake!\r</language>
+	</row>
+	<row id="pl_msg_00000168_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you!\nPlease give this to your Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000168_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 2, 0} received\nthe {STRVAR_1 39, 3, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000168_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 2, 0} put\nthe {STRVAR_1 39, 3, 0}\fon {STRVAR_1 0, 1, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000168_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Please tell me another story\ntomorrow.</language>
+	</row>
+	<row id="pl_msg_00000168_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Hello!\rOh, this is the {STRVAR_1 0, 1, 0} I gave\na Ribbon to before.\rI’ve got lots of Ribbons--you should\nbring other Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000168_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Oh...\nYou couldn’t think up anything?</language>
+	</row>
+	<row id="pl_msg_00000168_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Today is Tuesday!\rThe first date I went on with my\nhusband was on Tuesday, too.\rI remember my heart thumping like\nI was scared, and I guess I was.\rDo you know any story that would\nscare me like that?\rLike something that jumps out\nfrom hiding?</language>
+	</row>
+	<row id="pl_msg_00000168_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">One mean {STRVAR_1 28, 0, 0} that bursts\nout from a closet?\f...\rYikes!\nThat would be scary!\r</language>
+	</row>
+	<row id="pl_msg_00000168_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Sigh...\nI gained a little weight...\rThis dress that my husband bought\nfor me is too tight now...\rThis makes me feel sad...\rMisery does love company.\nSomething that would make me cry?</language>
+	</row>
+	<row id="pl_msg_00000168_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A tearful {STRVAR_1 28, 0, 0}...\n...\rSniffle... That is so sad...\nI feel desolate, even!\r</language>
+	</row>
+	<row id="pl_msg_00000168_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: It’s Thursday already?\nI lost track of time!\rMy favorite magazine comes out today.\nI’d better go buy it quick!\rDo you know a story about being\nabsentminded?\rLike getting your shoes backward?</language>
+	</row>
+	<row id="pl_msg_00000168_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 28, 0, 0} had shoes\non the wrong feet?\r...\nAhahaha! That is so silly!\rHow is it possible to be that\nabsentminded?\r</language>
+	</row>
+	<row id="pl_msg_00000168_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Today is Friday!\rMy meager cooking repertoire is\nabout to run out!\rDo you know a story that would\nhelp me get my thoughts in order?\rLike a story about numbers adding\nup perfectly?</language>
+	</row>
+	<row id="pl_msg_00000168_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You went {STRVAR_1 28, 0, 0}\nshopping and paid $777 including tax?\rThat is a nice number to ring up.\nIt just has a good look to it.\rIt’s sure helped me clear my head!\r</language>
+	</row>
+	<row id="pl_msg_00000168_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Yawn...\nToday’s Saturday...\fI’m feeling lazy and sleepy...\rI wish I had a pillow...\nBut what kind of a pillow?</language>
+	</row>
+	<row id="pl_msg_00000168_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 28, 0, 0} snuggle pillow...\n...\rIt... It surprisingly may give me\na good night’s sleep!\rI wonder if I can buy one somewhere.\r</language>
+	</row>
+	<row id="pl_msg_00000168_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia: Oh, hello! You’re on your\nadventure even though it’s Sunday!\rWhen I was younger, I remember that\nevery day was like an adventure.\rIt was always fun. I loved the people\naround me... I was happy.\rOh, but I’m happy now, too.\nI love my life with my husband.\fIt’s just a different kind of happy.\rSo, what makes you happy?</language>
+	</row>
+	<row id="pl_msg_00000168_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You love {STRVAR_1 28, 0, 0}?\n...\rUfufu... That says something about\nyou. It puts a smile on my face!\r</language>
+	</row>
+</body>

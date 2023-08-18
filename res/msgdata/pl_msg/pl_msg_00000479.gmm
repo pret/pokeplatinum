@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000479_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone seems to call me the Berry\nMaster.\rI hand out Berries daily because\nI want people to learn how wonderful\fthey are.\rYou’re deserving of one!\r</language>
+	</row>
+	<row id="pl_msg_00000479_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Berries are gifts of nature.\rI encourage you to feed Berries to\nPokémon.\rThat will make Pokémon happy.\rSeeing that, people will be motivated\nto plant more Berries.\rAnd that will make Sinnoh a greener,\nmore natural place.</language>
+	</row>
+	<row id="pl_msg_00000479_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you the forgetful type who\nforgets where Berries are planted?</language>
+	</row>
+	<row id="pl_msg_00000479_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes, yes, I thought so!\nI’m the same way!\rI feel a sort of kinship with you!\nYou can have this Pokétch app!\r</language>
+	</row>
+	<row id="pl_msg_00000479_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, is that so.\rThen you’re OK even if I don’t give\nyou this nice thing.</language>
+	</row>
+	<row id="pl_msg_00000479_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 24, 0, 0} shows you\nwhere there are ripe Berries\fthat are ready to be picked.</language>
+	</row>
+	<row id="pl_msg_00000479_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Certain kinds of Berries need lots\nand lots of water.</language>
+	</row>
+	<row id="pl_msg_00000479_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Um... Would you like some Mulch?\rIf you’re going to grow Berries,\nMulch is a good fertilizer.</language>
+	</row>
+	<row id="pl_msg_00000479_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 8, 0, 0}...\rI made it by mixing high-grade soil\nwith Pokémon...um...you know...\rIt will promote healthy Berry growth.</language>
+	</row>
+	<row id="pl_msg_00000479_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Um...\nPlease come again.</language>
+	</row>
+	<row id="pl_msg_00000479_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You bought some {STRVAR_1 8, 0, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000479_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m so sorry...\nYour Bag appears to be full...</language>
+	</row>
+	<row id="pl_msg_00000479_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Um... You don’t appear to have\nenough money...</language>
+	</row>
+	<row id="pl_msg_00000479_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a book titled “Much Ado About\nMulch: A Berry-Grower’s Guide.”\r</language>
+	</row>
+	<row id="pl_msg_00000479_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which kind of Mulch would\nyou like to read about?</language>
+	</row>
+	<row id="pl_msg_00000479_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Growth Mulch promotes faster\ngrowth of Berries.\rHowever, it also causes the soil to dry\nfaster as well.\rMore frequent watering is recommended.\r</language>
+	</row>
+	<row id="pl_msg_00000479_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Damp Mulch slows the drying of soil.\rHowever, it also slows the growth of\nBerries.\r</language>
+	</row>
+	<row id="pl_msg_00000479_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Stable Mulch extends the time\nBerries remain on their plants.\rSome growers use it in hard-to-reach\nlocations that may be overlooked for\fharvesting.\r</language>
+	</row>
+	<row id="pl_msg_00000479_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Gooey Mulch increases the growth\ncycles of Berries.\rThis means the number of times new\nplants grow from where mature plants\fhave withered is increased.\r</language>
+	</row>
+	<row id="pl_msg_00000479_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GROWTH MULCH</language>
+	</row>
+	<row id="pl_msg_00000479_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DAMP MULCH</language>
+	</row>
+	<row id="pl_msg_00000479_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">STABLE MULCH</language>
+	</row>
+	<row id="pl_msg_00000479_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GOOEY MULCH</language>
+	</row>
+	<row id="pl_msg_00000479_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+</body>

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "library/crypto.h"
+#include "crypto.h"
 #include "assert.h"
 
 #include "struct_decls/struct_0200112C_decl.h"

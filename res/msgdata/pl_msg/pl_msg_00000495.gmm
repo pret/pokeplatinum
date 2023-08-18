@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000495_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We needed the energy from the\nValley Windworks to make this...\rIt would take a scientific genius to\nmake something like this...\rTherefore, our boss, who made this,\nis a scientific mechanical genius!\r</language>
+	</row>
+	<row id="pl_msg_00000495_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Graw! You were eavesdropping!\nI was just thinking out loud!\rBut I’m not going to waste my energy\nknocking you around...\r</language>
+	</row>
+	<row id="pl_msg_00000495_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But, boy, this Galactic Bomb packs\na pretty big wallop.\rWith this baby here there’s not much\nwe can’t blow up.\rI wonder what they have planned for\nthis?\r</language>
+	</row>
+	<row id="pl_msg_00000495_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Graw! You were eavesdropping!\nI was just thinking out loud!\rYou’re a persistent pest...\nI’m getting tired of running away...\rBut I’m not going to waste my energy\nknocking you around...\r</language>
+	</row>
+	<row id="pl_msg_00000495_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Hello, my friend!\rThe cargo that the Team Galactic\nbrought is worrisome, so I have come.\r...You say the cargo, it was a bomb?\nAnd there was an explosion?\fThe explosion was at the Great Marsh?\rFurthermore, you are pursuing a man...\nA man with funny bowl-cut hair.\fIn an outfit that is very strange?\rIn other words, that is the Team\nGalactic!\r</language>
+	</row>
+	<row id="pl_msg_00000495_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, no, no, no!\nHow did I miss it?\rAh, Looker, this time you have made a\nmistake of the ages!\rThe man, who I have seen running away,\nhe was the bearer of the bomb!\r</language>
+	</row>
+	<row id="pl_msg_00000495_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ach! This will not do!\nWait! Wait, I say!\r</language>
+	</row>
+	<row id="pl_msg_00000495_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s a fancy hotel in a fancy\nplace with a fancy restaurant.\rThe fancy restaurant’s filled with\nfancy people who think of themselves\fas being too fancy to battle alone.</language>
+	</row>
+	<row id="pl_msg_00000495_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’d rather be in a pool than the sea.\rThe salty tang of the sea tastes like\nmy tears after a hard day at work...</language>
+	</row>
+	<row id="pl_msg_00000495_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s something on top of this\nbig cliff here!\rMy instincts tell me that, but how\nam I supposed to climb up?</language>
+	</row>
+	<row id="pl_msg_00000495_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 213\nPastoria City</language>
+	</row>
+	<row id="pl_msg_00000495_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hotel Grand Lake\nAnother World on Lake Valor</language>
+	</row>
+	<row id="pl_msg_00000495_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep’s House\nFootprints Reveal All</language>
+	</row>
+</body>

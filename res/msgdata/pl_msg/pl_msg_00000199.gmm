@@ -1,0 +1,388 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000199_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 53, 0, 0} CP</language>
+	</row>
+	<row id="pl_msg_00000199_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 53, 0, 0} CP</language>
+	</row>
+	<row id="pl_msg_00000199_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 53, 0, 0} CP</language>
+	</row>
+	<row id="pl_msg_00000199_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please choose your Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000199_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000199_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000199_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} chose to exit.</language>
+	</row>
+	<row id="pl_msg_00000199_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">HEAL</language>
+	</row>
+	<row id="pl_msg_00000199_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RENTAL</language>
+	</row>
+	<row id="pl_msg_00000199_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SUMMARY</language>
+	</row>
+	<row id="pl_msg_00000199_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MOVES</language>
+	</row>
+	<row id="pl_msg_00000199_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000199_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Restore HP and/or PP.</language>
+	</row>
+	<row id="pl_msg_00000199_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may rent a Berry or\nan item.</language>
+	</row>
+	<row id="pl_msg_00000199_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Check stats, including\nability and nature.</language>
+	</row>
+	<row id="pl_msg_00000199_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Check moves and their\nPP.</language>
+	</row>
+	<row id="pl_msg_00000199_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Go back to the Pokémon-\nselection page.</language>
+	</row>
+	<row id="pl_msg_00000199_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RESTORE HP</language>
+	</row>
+	<row id="pl_msg_00000199_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RESTORE PP</language>
+	</row>
+	<row id="pl_msg_00000199_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RESTORE ALL</language>
+	</row>
+	<row id="pl_msg_00000199_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RANK UP</language>
+	</row>
+	<row id="pl_msg_00000199_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000199_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which would you like to use?</language>
+	</row>
+	<row id="pl_msg_00000199_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You will be able to restore PP by going\nup in rank.</language>
+	</row>
+	<row id="pl_msg_00000199_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You will be able to restore both HP and\nPP by going up in rank.</language>
+	</row>
+	<row id="pl_msg_00000199_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your rank cannot be raised any higher.</language>
+	</row>
+	<row id="pl_msg_00000199_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Return to previous selections.</language>
+	</row>
+	<row id="pl_msg_00000199_00029" index="29">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000199_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000199_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000199_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t have enough CP.</language>
+	</row>
+	<row id="pl_msg_00000199_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You are too low in healing rank to use\nthis menu item.</language>
+	</row>
+	<row id="pl_msg_00000199_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0}’s HP will be restored.</language>
+	</row>
+	<row id="pl_msg_00000199_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0}’s PP will be restored.</language>
+	</row>
+	<row id="pl_msg_00000199_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0}’s HP and PP will be\nrestored.</language>
+	</row>
+	<row id="pl_msg_00000199_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is no benefit to using that\ncommand.</language>
+	</row>
+	<row id="pl_msg_00000199_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to up your rank\nfor {STRVAR_1 52, 0, 0} CP?</language>
+	</row>
+	<row id="pl_msg_00000199_00039" index="39">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000199_00040" index="40">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000199_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t have enough CP.</language>
+	</row>
+	<row id="pl_msg_00000199_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 5, 0} gained the ability to\nrestore PP!</language>
+	</row>
+	<row id="pl_msg_00000199_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 5, 0} gained the ability to\nrestore both HP and PP!</language>
+	</row>
+	<row id="pl_msg_00000199_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BERRIES</language>
+	</row>
+	<row id="pl_msg_00000199_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ITEMS</language>
+	</row>
+	<row id="pl_msg_00000199_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RANK UP</language>
+	</row>
+	<row id="pl_msg_00000199_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000199_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may rent a Berry for this Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000199_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may rent an item for this Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000199_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You will be able to rent an item for\nyour Pokémon by going up in rank.</language>
+	</row>
+	<row id="pl_msg_00000199_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your choices of items and Berries will\nbe expanded by going up in rank.</language>
+	</row>
+	<row id="pl_msg_00000199_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your rank cannot be raised any higher.</language>
+	</row>
+	<row id="pl_msg_00000199_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Return to previous selections.</language>
+	</row>
+	<row id="pl_msg_00000199_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You are too low in rental rank to use\nCP.</language>
+	</row>
+	<row id="pl_msg_00000199_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It will cost {STRVAR_1 51, 0, 0} CP.\nIs that OK?</language>
+	</row>
+	<row id="pl_msg_00000199_00056" index="56">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000199_00057" index="57">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000199_00058" index="58">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000199_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} was given the\n{STRVAR_1 8, 1, 0} to hold.</language>
+	</row>
+	<row id="pl_msg_00000199_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} is already holding\n{STRVAR_1 8, 1, 0}.</language>
+	</row>
+	<row id="pl_msg_00000199_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to switch the\ntwo items?</language>
+	</row>
+	<row id="pl_msg_00000199_00062" index="62">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000199_00063" index="63">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000199_00064" index="64">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000199_00065" index="65">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000199_00066" index="66">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000199_00067" index="67">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000199_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 5, 0} gained the ability to\nrent items!</language>
+	</row>
+	<row id="pl_msg_00000199_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 5, 0} expanded the variety of\nrentable Berries and items!</language>
+	</row>
+	<row id="pl_msg_00000199_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Item</language>
+	</row>
+	<row id="pl_msg_00000199_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 8, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Nature</language>
+	</row>
+	<row id="pl_msg_00000199_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 7, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ability</language>
+	</row>
+	<row id="pl_msg_00000199_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 5, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Attack</language>
+	</row>
+	<row id="pl_msg_00000199_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defense</language>
+	</row>
+	<row id="pl_msg_00000199_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sp. Atk</language>
+	</row>
+	<row id="pl_msg_00000199_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sp. Def</language>
+	</row>
+	<row id="pl_msg_00000199_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Speed</language>
+	</row>
+	<row id="pl_msg_00000199_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 52, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">♂</language>
+	</row>
+	<row id="pl_msg_00000199_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">♀</language>
+	</row>
+	<row id="pl_msg_00000199_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 6, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 6, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 6, 2, 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 6, 3, 0}</language>
+	</row>
+	<row id="pl_msg_00000199_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}{STRVAR_1 51, 4, 0}{COLOR 0}/{COLOR 2}{STRVAR_1 51, 5, 0}{COLOR 0}</language>
+	</row>
+</body>

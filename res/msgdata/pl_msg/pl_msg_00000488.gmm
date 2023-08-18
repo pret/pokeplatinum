@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000488_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m strong!\nI’m strong!\fI’m strong!\fI’m strong!\fI’m strong!\fI’m strong!\fI’m strong!\fI’m strong!\f...Am I really?\fNo, I am strong!\fI’m strong!\fOK! I’m all good to go!\r</language>
+	</row>
+	<row id="pl_msg_00000488_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wah!\nYou startled me good!\rI think you’ll understand what I was\ndoing when you see this TM.\r</language>
+	</row>
+	<row id="pl_msg_00000488_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let me explain how that move works\nwithout getting too technical.\rLet’s say your opponent raises its\nDefense using Harden.\rYour Pokémon can use Psych Up to get\nthe same Defense boost as its foe.\rBasically, your Pokémon gets the same\nstatus boosts as its target.</language>
+	</row>
+	<row id="pl_msg_00000488_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 211\nMt. Coronet</language>
+	</row>
+	<row id="pl_msg_00000488_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips\rEven Veterans can get lost inside of\nMt. Coronet.\rTrainers should check their supply\nof medicine and items before trying\fto venture through.</language>
+	</row>
+	<row id="pl_msg_00000488_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 211\nCelestic Town</language>
+	</row>
+</body>

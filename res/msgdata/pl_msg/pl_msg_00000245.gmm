@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000245_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I picked this up during a Safari Game.\rI don’t collect Shards, so you can\nhave it. Take it away, even.\r</language>
+	</row>
+	<row id="pl_msg_00000245_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do those Shards turn into something\ngood if you collect them?\rI’ll try finding more tomorrow.</language>
+	</row>
+	<row id="pl_msg_00000245_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Great Marsh Area 6</language>
+	</row>
+</body>

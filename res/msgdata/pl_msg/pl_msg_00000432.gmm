@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000432_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello!\rHere you may cook Berries and\nturn them into Poffins.\r</language>
+	</row>
+	<row id="pl_msg_00000432_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to cook alone or with\nother people?</language>
+	</row>
+	<row id="pl_msg_00000432_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DS Wireless Communications will\nbe launched.</language>
+	</row>
+	<row id="pl_msg_00000432_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000432_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000432_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There isn’t a Berry to cook!\r</language>
+	</row>
+	<row id="pl_msg_00000432_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Poffin Case is full.\r</language>
+	</row>
+	<row id="pl_msg_00000432_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry, you must have a Poffin Case\nif you want to cook some Berries.</language>
+	</row>
+	<row id="pl_msg_00000432_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ALONE</language>
+	</row>
+	<row id="pl_msg_00000432_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">IN A GROUP</language>
+	</row>
+	<row id="pl_msg_00000432_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">INFO</language>
+	</row>
+	<row id="pl_msg_00000432_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000432_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">One person in the group needs to\nchoose “BECOME LEADER.”\rEveryone else must choose\n“JOIN GROUP.”</language>
+	</row>
+	<row id="pl_msg_00000432_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00015" index="15">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00016" index="16">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000432_00017" index="17">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00018" index="18">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00019" index="19">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000432_00020" index="20">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000432_00021" index="21">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00022" index="22">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000432_00023" index="23">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000432_00024" index="24">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00025" index="25">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000432_00026" index="26">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000432_00027" index="27">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00028" index="28">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00029" index="29">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00030" index="30">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00031" index="31">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Throw the Berry into the pot and\nget stirring!\rWatch for an arrow to show you which\ndirection to stir.\rBe quick! If you stir too slowly,\nyou’ll burn the batter.\rBut not too quick! If you stir too fast,\nthe batter will overflow.\rIf you do well, you’ll cook up a\ndelicious Poffin!\rYou may cook alone or in a group\nof up to four people.\rWith more cooks stirring, everyone will\nget more Poffins!</language>
+	</row>
+	<row id="pl_msg_00000432_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please visit again whenever you get\nthe urge to cook!</language>
+	</row>
+	<row id="pl_msg_00000432_00034" index="34">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXX</language>
+	</row>
+	<row id="pl_msg_00000432_00035" index="35">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+</body>

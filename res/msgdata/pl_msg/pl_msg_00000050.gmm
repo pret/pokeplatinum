@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000050_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I got my PIKACHU through a trade from\nsomeone somewhere in the world.\rIt grows quickly, so its level goes up\nquickly, too.\rBut it doesn’t always listen to me...\rThat’s because I only have one\nGym Badge.\rWe don’t always have an easy time,\nbut it’s still my irreplaceable partner!</language>
+	</row>
+	<row id="pl_msg_00000050_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Pikapikapikaaah!</language>
+	</row>
+	<row id="pl_msg_00000050_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If everyone around the world had\nPokémon...\rThen everyone around the world could\ncommunicate!</language>
+	</row>
+</body>

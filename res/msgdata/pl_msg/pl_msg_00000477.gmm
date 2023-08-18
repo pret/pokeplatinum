@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000477_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hi, {STRVAR_1 3, 0, 0}!\nHow’s your Pokédex coming along?\rMe? I’m somewhere between fantastic\nand, uh, hopeless...\rBut this isn’t about me!\nI’ve got something nice for you.\r{STRVAR_1 3, 0, 0}, choose which hand\nyou want.</language>
+	</row>
+	<row id="pl_msg_00000477_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: I see...\nYou want the Vs. Seeker.\rI’m impressed, {STRVAR_1 3, 0, 0}.\nYou know what’s important.\r</language>
+	</row>
+	<row id="pl_msg_00000477_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Using that Vs. Seeker, you can\nfind Trainers who want a rematch\fwith you.\rOh, {STRVAR_1 3, 0, 0}, do you also have\na Pokétch?\rYup, you do.\nYou can have this too, then.\rYou deserve it for all your hard\nwork, {STRVAR_1 3, 0, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000477_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: The {STRVAR_1 24, 1, 0} is\nsomething you should touch often.\rIt will tell you if there is an item\non the ground that you can’t see.\rI think there’s something here, even.\nYou should try it out.\rOK, let’s keep working on our\nPokédexes.\rProfessor Rowan is counting on us!\r</language>
+	</row>
+	<row id="pl_msg_00000477_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey, {STRVAR_1 3, 0, 0}!\nHow’s your Pokédex coming along?\rMe? I’m always doing great!\n...I wish...\rBut that’s not important.\rLately, I’ve been experimenting with\na couple of neat tools.\r{STRVAR_1 3, 0, 0}, I’ll share with you.\nChoose a hand!</language>
+	</row>
+	<row id="pl_msg_00000477_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Oh yeah.\nYou want the Vs. Seeker.\rYup, {STRVAR_1 3, 0, 0}, you know what’s\nimportant.\r</language>
+	</row>
+	<row id="pl_msg_00000477_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Using that Vs. Seeker, you can\nfind Trainers who want to battle with\fyou again.\r{STRVAR_1 3, 0, 0}, what about a Pokétch?\nDo you have one?\rYup, you do.\nYou can have this too, then.\rYou deserve it for all of your\neffort, {STRVAR_1 3, 0, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000477_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: The {STRVAR_1 24, 1, 0} is...\nJust try touching it.\rIt’ll alert you if there is an\nunseeable item on the ground.\rTry it out now.\nI think there’s something here.\rOK, keep working on your Pokédex.\nProfessor Rowan is counting on us!\r</language>
+	</row>
+	<row id="pl_msg_00000477_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000477_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That slope’s too slippery.\nYou’ll need a Bike to get up.\rYou don’t have a Bicycle?\nThere’s a Cycle Shop in Eterna City.</language>
+	</row>
+	<row id="pl_msg_00000477_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Change to the 4th gear and take a run.\nThat’ll shoot you right up that slope.</language>
+	</row>
+	<row id="pl_msg_00000477_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 207\nMt. Coronet</language>
+	</row>
+	<row id="pl_msg_00000477_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 207\nOreburgh City</language>
+	</row>
+	<row id="pl_msg_00000477_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips\rPokémon may become immobilized if\nthey are asleep or paralyzed.\rIf it happens to your Pokémon,\nit could be disastrous.\rIf your opponent’s Pokémon can’t\nmove, it’s a big opportunity!</language>
+	</row>
+</body>

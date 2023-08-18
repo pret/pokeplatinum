@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000569_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Aren’t we Team Galactic?\nAnd we’re assigned here?\rStanding around among flowers...\nThis doesn’t seem all that cool.\r</language>
+	</row>
+	<row id="pl_msg_00000569_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: Hey now! Don’t complain.\nThis is a pretty decent assignment.\rBut Bug- and Grass-type Pokémon so\ncreep me out...\rI don’t like being here either.</language>
+	</row>
+	<row id="pl_msg_00000569_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I wanted to get some flowers from\nthe Floaroma Meadow...\rBut some Team Galactic guys in snazzy\noutfits came along...\r</language>
+	</row>
+	<row id="pl_msg_00000569_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Those Galactic guys went to the\nmeadow past these flowers here...</language>
+	</row>
+	<row id="pl_msg_00000569_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Being surrounded by flowers puts me\nin an oddly pleasant mood.</language>
+	</row>
+	<row id="pl_msg_00000569_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I simply love it here...\nThe atmosphere is so uplifting.\rYou came to get emotionally healed\ntoo, didn’t you?</language>
+	</row>
+	<row id="pl_msg_00000569_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to Floaroma, the town of\nflowers, flowers, and more flowers!\rYou should plant some flowers of\nyour own, too. Yay for flowers!</language>
+	</row>
+	<row id="pl_msg_00000569_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Berries you pick can be used as\nfood for Pokémon.\rYou can also trade them in at the\nflorist’s.\rThey’ll exchange Berries for\nAccessories to dress up your Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000569_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I got drawn here by the sweet scent\nof Honey...\rSeriously, what’s that? What am I?\nA Pokémon or something? Mmm... Honey.</language>
+	</row>
+	<row id="pl_msg_00000569_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, a SHAYMIN?\rIf you have that Pokémon, then you\nalso should have some Gracidea flowers.\rI’ve got a whole bunch, so you can have\nsome.\r</language>
+	</row>
+	<row id="pl_msg_00000569_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gracidea flowers have been around a\nlong time in this region.\rThey’re given as bouquets to express\nfeelings of gratitude.\rIsn’t that charming?\rWith these Gracidea flowers you don’t\nneed to say thanks with words.\rYou can, instead, demonstrate your\ngratitude with a bouquet. How nice!</language>
+	</row>
+	<row id="pl_msg_00000569_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you know about Gracidea flowers?\rThey’re given as bouquets to express\nfeelings of gratitude.\rIt’s an enduring tradition around these\nparts.</language>
+	</row>
+	<row id="pl_msg_00000569_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Floaroma Town\nVivid &amp; Scented</language>
+	</row>
+	<row id="pl_msg_00000569_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pick a Peck of Colors Flower Shop\nFree Berries Available</language>
+	</row>
+	<row id="pl_msg_00000569_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Floaroma Meadow Ahead\nHoney Available</language>
+	</row>
+</body>

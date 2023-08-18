@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000555_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}’s mom: Oh, hi,\n{STRVAR_1 3, 0, 0}.\rAre you looking for {STRVAR_1 3, 1, 0}?\rHe was gone for a second, but then\nhe came running right back home.\rHe just can’t sit still, that boy.\nI wonder who he takes after?</language>
+	</row>
+	<row id="pl_msg_00000555_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}’s mom: Oh, hi,\n{STRVAR_1 3, 0, 0}.\rDid you come calling on {STRVAR_1 3, 1, 0}?\rHe was gone for a second, but then\nhe came running right back home.\rHe just can’t sit still, that boy.\nI wonder who he takes after?</language>
+	</row>
+	<row id="pl_msg_00000555_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}’s mom: That kid rocketed\noff again like usual.\rI’d guess he would be out on\nRoute 201 by now?\rHe just can’t sit still, that boy.\nI wonder who he takes after?</language>
+	</row>
+	<row id="pl_msg_00000555_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}’s mom: My {STRVAR_1 3, 1, 0}\nshould be out on Route 201 by now.\rHe just can’t sit still, that boy.\nI wonder who he takes after?</language>
+	</row>
+	<row id="pl_msg_00000555_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}’s mom: Oh, you’ve\nbecome friends with a Pokémon, too.</language>
+	</row>
+	<row id="pl_msg_00000555_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}’s mom: My {STRVAR_1 3, 1, 0}\ntook off like a rocket as usual.\rHe was shouting something about\nbecoming the greatest Trainer ever...\rHe just can’t sit still, that boy.\nI wonder who he takes after?</language>
+	</row>
+</body>

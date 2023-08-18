@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000395_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ITEMS</language>
+	</row>
+	<row id="pl_msg_00000395_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MEDICINE</language>
+	</row>
+	<row id="pl_msg_00000395_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKé BALLS</language>
+	</row>
+	<row id="pl_msg_00000395_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TMs &amp; HMs</language>
+	</row>
+	<row id="pl_msg_00000395_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BERRIES</language>
+	</row>
+	<row id="pl_msg_00000395_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MAIL</language>
+	</row>
+	<row id="pl_msg_00000395_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BATTLE ITEMS</language>
+	</row>
+	<row id="pl_msg_00000395_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">KEY ITEMS</language>
+	</row>
+</body>

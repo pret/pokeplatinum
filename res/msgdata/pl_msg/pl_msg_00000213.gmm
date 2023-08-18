@@ -1,0 +1,544 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000213_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, and welcome to\nthe Pokémon Center.\rWe restore your tired Pokémon\nto full health.\rWould you like to rest your Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000213_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, I’ll take your Pokémon for a few\nseconds.</language>
+	</row>
+	<row id="pl_msg_00000213_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for waiting.\rWe’ve restored your Pokémon to full\nhealth.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We hope to see you again!</language>
+	</row>
+	<row id="pl_msg_00000213_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, and welcome to\nthe Pokémon Center.\rWe restore your tired Pokémon\nto full health.\rWould you like to...\r</language>
+	</row>
+	<row id="pl_msg_00000213_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Th-that Trainer Card!\rThat sparkling color!\nAnd all those stars!\rI’ve seen several Trainers with Silver\nTrainer Cards up to now...\rBut you’re the first to top them\nwith that Trainer Card.\rPlease, {STRVAR_1 3, 0, 0}, may I have\nthe honor of healing your Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000213_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s great to see you, {STRVAR_1 3, 0, 0}!\nYou want the usual, am I right?</language>
+	</row>
+	<row id="pl_msg_00000213_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I will be pleased to take your\nPokémon for a few seconds.</language>
+	</row>
+	<row id="pl_msg_00000213_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for waiting.</language>
+	</row>
+	<row id="pl_msg_00000213_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We hope to see you again!</language>
+	</row>
+	<row id="pl_msg_00000213_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon may be infected with\nthe Pokérus.\rLittle is known about the Pokérus\nexcept that they are microscopic\flife-forms that attach to Pokémon.\rWhile infected, Pokémon are said to\ngrow exceptionally well.</language>
+	</row>
+	<row id="pl_msg_00000213_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} is out of battle-ready\nPokémon!\r{STRVAR_1 3, 0, 0}’s vision dimmed!</language>
+	</row>
+	<row id="pl_msg_00000213_00012" index="12">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to save the game?</language>
+	</row>
+	<row id="pl_msg_00000213_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is already a saved file.\nIs it OK to overwrite it?</language>
+	</row>
+	<row id="pl_msg_00000213_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saving...\nDon’t turn off the power.</language>
+	</row>
+	<row id="pl_msg_00000213_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} saved the game.</language>
+	</row>
+	<row id="pl_msg_00000213_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Warning!\nThere is already a saved game file.\rIf you save now, the other file’s\nadventure, including items and\fPokémon, will be entirely lost.\rAre you sure you want to save now\nand overwrite the other save file?</language>
+	</row>
+	<row id="pl_msg_00000213_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Save error.</language>
+	</row>
+	<row id="pl_msg_00000213_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saving...\nDon’t turn off the power.</language>
+	</row>
+	<row id="pl_msg_00000213_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is already a saved game file.\nIt is impossible to save.\rPlease refer to the Instruction\nBooklet for details.\rPress Up + SELECT + B Button on\nthe title screen if you want to erase\fthe current saved game file.</language>
+	</row>
+	<row id="pl_msg_00000213_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saving a lot of data...\nDon’t turn off the power.</language>
+	</row>
+	<row id="pl_msg_00000213_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Want to give a nickname to the\n{STRVAR_1 0, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000213_00023" index="23">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} obtained the Pokétch\napp {STRVAR_1 24, 1, 0}.</language>
+	</row>
+	<row id="pl_msg_00000213_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Obtained the {STRVAR_1 8, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000213_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} installed the app on\nthe Pokétch.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Too bad!\nThe Bag is full...</language>
+	</row>
+	<row id="pl_msg_00000213_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} obtained\nthe {COLOR 2}{STRVAR_1 8, 1, 0}{COLOR 0}!</language>
+	</row>
+	<row id="pl_msg_00000213_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} obtained\nthe {COLOR 1}{STRVAR_1 8, 1, 0}{COLOR 0}!</language>
+	</row>
+	<row id="pl_msg_00000213_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\nin the {COLOR 2}{STRVAR_1 31, 2, 0}{COLOR 0} Pocket.</language>
+	</row>
+	<row id="pl_msg_00000213_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put away the\n{STRVAR_1 31, 1, 0} in the Fashion Case.</language>
+	</row>
+	<row id="pl_msg_00000213_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} booted up the PC.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which PC should be accessed?</language>
+	</row>
+	<row id="pl_msg_00000213_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon Storage System\nwas accessed.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Accessed {STRVAR_1 3, 0, 0}’s PC.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan’s words echoed...\n{STRVAR_1 3, 0, 0}! There’s a time and\fplace for everything! But not now.</language>
+	</row>
+	<row id="pl_msg_00000213_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome!\nWhat do you need?</language>
+	</row>
+	<row id="pl_msg_00000213_00038" index="38">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There! All happy and healthy!\nGood luck and take care!</language>
+	</row>
+	<row id="pl_msg_00000213_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: {STRVAR_1 3, 0, 0}!\nWelcome home.\rIt sounds like you had quite the\nexperience out there.\rMaybe you should take a quick\nrest so you can relax.\r...\n...</language>
+	</row>
+	<row id="pl_msg_00000213_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: Oh, good! You and your\nPokémon are looking great.\rOh, yes, I heard from Professor\nRowan.\rHe said that a Pokémon’s energy is\nmeasured in HP (Hit Points).\rIf your Pokémon lose their HP,\nyou can restore it at any\fPokémon Center.\rIf you’re going to travel far away,\nthe smart Trainer stocks up on\fPotions at the Pokémon Mart.\rMake me proud, honey!\nTake care!</language>
+	</row>
+	<row id="pl_msg_00000213_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: Oh, good! You and your\nPokémon are looking great.\rOh yes, {STRVAR_1 3, 0, 0}, your Pokémon\nwill faint if it runs out of HP.\rIf your Pokémon loses its HP, come\nhome before it faints.\rIt will be healed to full health by\ntaking a rest.\rWell, honey, make me proud!\nTake care!</language>
+	</row>
+	<row id="pl_msg_00000213_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">First, let’s restore your Pokémon\nto full health.</language>
+	</row>
+	<row id="pl_msg_00000213_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon have been healed\nto perfect health.</language>
+	</row>
+	<row id="pl_msg_00000213_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please visit a Pokémon Center when\nyour Pokémon’s HP goes down.\rIf you’re planning to travel any\ndistance, you should stock up on\fPotions at a Pokémon Mart.\rGood luck, Trainer!</language>
+	</row>
+	<row id="pl_msg_00000213_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a sweet scent in the air...</language>
+	</row>
+	<row id="pl_msg_00000213_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a sweet scent in the air...\r</language>
+	</row>
+	<row id="pl_msg_00000213_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The bark is slathered with Honey...</language>
+	</row>
+	<row id="pl_msg_00000213_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The bark is slathered with Honey...\r</language>
+	</row>
+	<row id="pl_msg_00000213_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Slather the bark with Honey?</language>
+	</row>
+	<row id="pl_msg_00000213_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The bark was slathered with Honey.</language>
+	</row>
+	<row id="pl_msg_00000213_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s no Mail in the Mailbox.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Mail’s content will be lost.\nTake it back anyway?</language>
+	</row>
+	<row id="pl_msg_00000213_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Not even a nibble...</language>
+	</row>
+	<row id="pl_msg_00000213_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon got away...</language>
+	</row>
+	<row id="pl_msg_00000213_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reeled it in too quickly...</language>
+	</row>
+	<row id="pl_msg_00000213_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Landed a Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000213_00058" index="58">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00059" index="59">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00060" index="60">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00061" index="61">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00062" index="62">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00063" index="63">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00064" index="64">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00065" index="65">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} survived the poisoning.\nThe poison faded away!\r</language>
+	</row>
+	<row id="pl_msg_00000213_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s an air vent that exchanges\nthe underground tunnels’ air.</language>
+	</row>
+	<row id="pl_msg_00000213_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">♂</language>
+	</row>
+	<row id="pl_msg_00000213_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">♀</language>
+	</row>
+	<row id="pl_msg_00000213_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There appears to be nothing here...</language>
+	</row>
+	<row id="pl_msg_00000213_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The sweet scent faded for some\nreason...</language>
+	</row>
+	<row id="pl_msg_00000213_00072" index="72">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ride your Bike?</language>
+	</row>
+	<row id="pl_msg_00000213_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Get off your Bike?</language>
+	</row>
+	<row id="pl_msg_00000213_00075" index="75">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000213_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh?</language>
+	</row>
+	<row id="pl_msg_00000213_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} hatched from the Egg!</language>
+	</row>
+	<row id="pl_msg_00000213_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to nickname the newly\nhatched {STRVAR_1 0, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000213_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Repel’s effect wore off...</language>
+	</row>
+	<row id="pl_msg_00000213_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Obtained the {STRVAR_1 8, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000213_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Obtained the {STRVAR_1 8, 0, 0} {STRVAR_1 51, 1, 0}!</language>
+	</row>
+	<row id="pl_msg_00000213_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m very sorry.\rWe are working underground right now.\nIt’s off-limits to the public.\rPlease try later on.</language>
+	</row>
+	<row id="pl_msg_00000213_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Digital Watch{COLOR 0} app displays\nthe current time.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Calculator{COLOR 0} app can handle\ncalculations up to ten digits.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Memo Pad{COLOR 0} app can be used for\njotting down quick notes.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Pedometer{COLOR 0} app counts the number\nof steps you’ve walked.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Pokémon List{COLOR 0} app lets you\ncheck on the status of your team.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Friendship Checker{COLOR 0} app identifies\nthe Pokémon that like you.</language>
+	</row>
+	<row id="pl_msg_00000213_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Dowsing Machine{COLOR 0} app locates\nunseeable items.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Berry Searcher{COLOR 0} app indicates\nthe locations of ripe Berries.</language>
+	</row>
+	<row id="pl_msg_00000213_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Day-Care Checker{COLOR 0} app shows\nthe Pokémon left with the Day Care.</language>
+	</row>
+	<row id="pl_msg_00000213_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Pokémon History{COLOR 0} app shows\nthe most recently obtained Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000213_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Counter{COLOR 0} app can be used\nto count up to 9,999.</language>
+	</row>
+	<row id="pl_msg_00000213_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Analog Watch{COLOR 0} app displays\nthe current time.</language>
+	</row>
+	<row id="pl_msg_00000213_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Marking Map{COLOR 0} app allows the\nplacement of markers.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Link Searcher{COLOR 0} app determines\nthe availability of wireless hot spots.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Coin Toss{COLOR 0} app can be used\nto make fair decisions.</language>
+	</row>
+	<row id="pl_msg_00000213_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Move Tester{COLOR 0} app is used to check\nhow moves match up.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Calendar{COLOR 0} app is a monthly\ncalendar with date reminders.</language>
+	</row>
+	<row id="pl_msg_00000213_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Dot Artist{COLOR 0} app gives players\nfree reign to their creativity.</language>
+	</row>
+	<row id="pl_msg_00000213_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Roulette{COLOR 0} app can be customized\nto make an original roulette.</language>
+	</row>
+	<row id="pl_msg_00000213_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Trainer Counter{COLOR 0} app tracks\nthe Pokémon Radar’s rankings.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Kitchen Timer{COLOR 0} app is a 99-minute\ntimer.</language>
+	</row>
+	<row id="pl_msg_00000213_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Color Changer{COLOR 0} app can change\nthe Pokétch display color.</language>
+	</row>
+	<row id="pl_msg_00000213_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Matchup Checker{COLOR 0} app shows the\naffinity of Pokémon to each other.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Stopwatch{COLOR 0} app keeps precise\ntime.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {COLOR 2}Alarm Clock{COLOR 0} app operates\non a 24-hour system.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Obtained {STRVAR_1 25, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000213_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 25, 0, 0} was sent to\nthe underground PC.</language>
+	</row>
+	<row id="pl_msg_00000213_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is text engraved in the back\nof the obtained Plate...\r“When the universe was created,\nits shards became this Plate.”\r</language>
+	</row>
+	<row id="pl_msg_00000213_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is text engraved in the back\nof the obtained Plate...\r“The power of defeated giants\ninfuses this Plate.”\r</language>
+	</row>
+	<row id="pl_msg_00000213_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is text engraved in the back\nof the obtained Plate...\r“Two beings of time and space set\nfree from the Original One.”\r</language>
+	</row>
+	<row id="pl_msg_00000213_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is text engraved in the back\nof the obtained Plate...\r“Three beings were born to bind\ntime and space.”\r</language>
+	</row>
+	<row id="pl_msg_00000213_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is text engraved in the back\nof the obtained Plate...\r“Two make matter, and three make\nspirit, shaping the world.”\r</language>
+	</row>
+	<row id="pl_msg_00000213_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is text engraved in the back\nof the obtained Plate...\r“The Original One breathed alone\nbefore the universe came.”\r</language>
+	</row>
+	<row id="pl_msg_00000213_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is text engraved in the back\nof the obtained Plate...\r“The powers of Plates are shared\namong Pokémon.”\r</language>
+	</row>
+	<row id="pl_msg_00000213_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is text engraved in the back\nof the obtained Plate...\r“The rightful bearer of a Plate\ndraws from the Plate it holds.”\r</language>
+	</row>
+	<row id="pl_msg_00000213_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ball Capsules can’t be used because\nyou don’t have any Seals.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saving the game again...\nDon’t turn off the power.</language>
+	</row>
+	<row id="pl_msg_00000213_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Good morning!\nWelcome to the Pokémon Center.\rWe restore your tired Pokémon\nto full health.\rWould you like to rest your Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000213_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, and welcome to\nthe Pokémon Center.\rWe restore your tired Pokémon\nto full health.\rWould you like to rest your Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000213_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}’s Azure Flute is making\na sound!\rWould you like to blow into the\nAzure Flute?</language>
+	</row>
+	<row id="pl_msg_00000213_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} blew the Azure Flute.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A glowing stairway appeared!</language>
+	</row>
+	<row id="pl_msg_00000213_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Azure Flute echoed hollowly...\rIt appears to be meaningless using\nthe Azure Flute here...</language>
+	</row>
+	<row id="pl_msg_00000213_00126" index="126">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put the {STRVAR_1 8, 1, 0}\nin the {COLOR 2}{STRVAR_1 27, 2, 0}{COLOR 0} Pocket.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} put away the\n{STRVAR_1 31, 1, 0} in the Fashion Case.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00128" index="128">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 25, 0, 0} was sent to\nthe underground PC.\r</language>
+	</row>
+	<row id="pl_msg_00000213_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Check the move you want taught to\nsee what Shards are needed.</language>
+	</row>
+	<row id="pl_msg_00000213_00130" index="130">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Bag is full.\rThe Griseous Orb could not be removed,\nso you cannot enter.</language>
+	</row>
+	<row id="pl_msg_00000213_00131" index="131">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Hall of Fame data is corrupted.\rIt will be fixed if you enter the\nHall of Fame again.\r</language>
+	</row>
+</body>

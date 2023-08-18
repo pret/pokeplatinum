@@ -1,0 +1,4 @@
+[wrap-git]
+url = https://github.com/red031000/nitrogfx.git
+revision = head
+depth = 1

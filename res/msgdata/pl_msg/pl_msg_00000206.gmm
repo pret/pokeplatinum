@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000206_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">JUMP</language>
+	</row>
+	<row id="pl_msg_00000206_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">UP</language>
+	</row>
+	<row id="pl_msg_00000206_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">FRONT</language>
+	</row>
+	<row id="pl_msg_00000206_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LEFT</language>
+	</row>
+	<row id="pl_msg_00000206_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RIGHT</language>
+	</row>
+	<row id="pl_msg_00000206_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Excellent!</language>
+	</row>
+	<row id="pl_msg_00000206_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Good!</language>
+	</row>
+	<row id="pl_msg_00000206_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Miss!</language>
+	</row>
+	<row id="pl_msg_00000206_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Dance Competition is ready to\nget under way!\rCan the backup dancers flawlessly\nfollow the main dancer’s steps?!\rOK! Everybody, let’s dance!\nStart the music!\r</language>
+	</row>
+	<row id="pl_msg_00000206_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}Perform {STRVAR_1 50, 0, 0} steps as the main dancer!{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000206_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Copy the Pokémon before you!{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000206_00011" index="11">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000206_00012" index="12">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000206_00013" index="13">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000206_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000206_00015" index="15">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000206_00016" index="16">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000206_00017" index="17">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000206_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s it for the Dance Competition!\rLeading in points right now is\n{STRVAR_1 3, 0, 0}!\rCan anyone turn things around in the\nActing Competition?\r</language>
+	</row>
+	<row id="pl_msg_00000206_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome! Thanks for joining our\npractice Contest!\rFeel free to practice all you want\nand train for the big show!\rI’ll be taking part to practice up\non being an MC!\r</language>
+	</row>
+	<row id="pl_msg_00000206_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looks like everyone’s here, so let’s\nget on with our dance practice!\r{STRVAR_1 1, 0, 0}, you need to dance just\nlike the main dancer.\rAfter dancing twice, the main dancer\nswitches with a backup dancer.\rYou get to be the main dancer last.\nDo a dance that no one can imitate!\rOK! Start it up!\r</language>
+	</row>
+</body>

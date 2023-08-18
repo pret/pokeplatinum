@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000320_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Giygogagogwoh!</language>
+	</row>
+	<row id="pl_msg_00000320_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GIRATINA is quietly eyeing\n{STRVAR_1 3, 0, 0}...</language>
+	</row>
+	<row id="pl_msg_00000320_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Giygogagohgwooh!\r</language>
+	</row>
+	<row id="pl_msg_00000320_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: GIRATINA seems to have\nunderstood us!\r</language>
+	</row>
+	<row id="pl_msg_00000320_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: That Pokémon...\rThat shadowy Pokémon was defeated?!\r</language>
+	</row>
+	<row id="pl_msg_00000320_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: That Pokémon...\rThat shadowy Pokémon was captured?!\r</language>
+	</row>
+	<row id="pl_msg_00000320_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: That shadowy Pokémon...\rYou quelled its rage by refusing to\nbattle it?!\r</language>
+	</row>
+	<row id="pl_msg_00000320_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your doing so means this irrational\nworld will remain in existence!\rDoes that make it impossible for me to\ncreate a new world?\rEven if I made new Red Chains, the new\nworld can’t be made!\rWhy?! What compels you to protect\nthe two worlds?\rIs spirit, a vague and incomplete\nthing, so important to you?!\r</language>
+	</row>
+	<row id="pl_msg_00000320_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: ...The places we are born.\rThe time we spend living...\rThe languages we speak...\rWe are all different.\nBut the presence of Pokémon unites us.\rWe share our lives with our Pokémon,\nand our happiness grows as we all\fbecome greater than we were alone.\rThat is why we can battle and trade\nwith anyone we choose...\r</language>
+	</row>
+	<row id="pl_msg_00000320_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Silence!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000320_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: Enough of your blathering!\rThat’s how you justify spirit as\nsomething worthwhile?!\rThat is merely humans hoping,\ndeluding themselves that they are\fhappy and safe!\rThe emotions roiling inside me...\nRage, hatred, frustration...\rThese ugly emotions arise because of\nmy own incomplete spirit!\r...Enough.\nWe will never see eye to eye.\rThis, I promise you.\nI will break the secrets of the world.\rWith that knowledge, I will create my\ncomplete and perfect world.\rOne day, you will awaken to a world of\nmy creation.\rA world without spirit.\r</language>
+	</row>
+	<row id="pl_msg_00000320_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: ...\n...\rSince there is sadness, we can\nfeel joy.\rWhen there is anger, compassion\nis born...\r</language>
+	</row>
+	<row id="pl_msg_00000320_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s go back home.\rThe portal where GIRATINA was should\nlead back to our world.\rGIRATINA was written in legend as\nbeing on the other side of our world.\rIt stands to reason that it has a link\nto the other side.</language>
+	</row>
+	<row id="pl_msg_00000320_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a portal where GIRATINA was.\nWill you leap into the portal?</language>
+	</row>
+	<row id="pl_msg_00000320_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} leapt into the portal.\r</language>
+	</row>
+</body>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000562_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If a Pokémon loses all its HP,\nit can’t battle anymore.\rI’m buying lots of Potions to avoid\nhaving that happen!</language>
+	</row>
+	<row id="pl_msg_00000562_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you come across a Pokémon you’ve\njust gotta have, toss a Poké Ball!\rNever leave home without one!</language>
+	</row>
+</body>

@@ -1,9 +1,0 @@
-.public malloc
-.public free
-.public sub_020E3EA8
-.public sub_020E3EE8
-.public sub_020E3EEC
-.public sub_020E3F50
-.public sub_020E3F94
-.public __throw
-.public Unk_021019C8

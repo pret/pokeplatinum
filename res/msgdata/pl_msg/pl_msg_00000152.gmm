@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000152_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve had enough of shopping for\na while.\rI’ll grab a drink and unwind a bit.</language>
+	</row>
+	<row id="pl_msg_00000152_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve shopped here loyally for years.\nNow they consider me a regular! Ha!</language>
+	</row>
+	<row id="pl_msg_00000152_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, young Pokémon Trainer...\rAs your senior in life, let me make\na gift of this Sticky Barb!\r</language>
+	</row>
+	<row id="pl_msg_00000152_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Sticky Barb is a hold item.\nIf the Pokémon holding it is hit...\rThe Sticky Barb sticks to the foe\nand inflicts damage!</language>
+	</row>
+	<row id="pl_msg_00000152_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Two buff guys standing side by side.\nThat’s all. What? What’s the problem?</language>
+	</row>
+	<row id="pl_msg_00000152_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">B1F: Food &amp; Produce\r1F: Trainers’ Zone\r2F: Battle Collection\r3F: TM Corner\r4F: Poké Dolls &amp; Goods\r5F: Rooftop Plaza</language>
+	</row>
+	<row id="pl_msg_00000152_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a Vending Machine.\nWhich drink would you like?</language>
+	</row>
+	<row id="pl_msg_00000152_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Clang!\rA can of {STRVAR_1 8, 0, 0} dropped\ndown.\r</language>
+	</row>
+	<row id="pl_msg_00000152_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Clang!\rBonus! Another can of {STRVAR_1 8, 0, 0}\ndropped down.\r</language>
+	</row>
+	<row id="pl_msg_00000152_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Not enough money...</language>
+	</row>
+	<row id="pl_msg_00000152_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Decided not to buy a drink.</language>
+	</row>
+</body>

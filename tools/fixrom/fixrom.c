@@ -95,7 +95,7 @@ static uint16_t Calc_CRC16(uint8_t * data, size_t length, uint16_t crc)
         crc >>= 4;
         crc ^= y;
         y = CrcTable[(x >> bit) & 15];
-        crc ^= y;
+	  crc ^= y;
         bit += 4;
         if (bit == 16)
         {

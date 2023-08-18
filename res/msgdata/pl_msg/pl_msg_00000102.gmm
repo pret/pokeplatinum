@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000102_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Herb Shop, home of\neffective yet inexpensive medicine.</language>
+	</row>
+	<row id="pl_msg_00000102_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Herbal meds work most impressively.\nBut your Pokémon won’t like them.\fThey’re horribly bitter and smelly!</language>
+	</row>
+	<row id="pl_msg_00000102_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Someone ought to invent herbal\nmedicine that isn’t bitter.\rThat would be a medical breakthrough!</language>
+	</row>
+</body>

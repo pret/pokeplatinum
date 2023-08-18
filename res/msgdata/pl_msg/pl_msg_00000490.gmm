@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000490_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Backlot is the master of this\nmansion. This is his office.</language>
+	</row>
+	<row id="pl_msg_00000490_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is the way out to the trophy\ngarden.\rThe garden is open for all visitors\nto enjoy.\rHowever, please beware--wild Pokémon\nmay appear in the garden.</language>
+	</row>
+	<row id="pl_msg_00000490_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome.\rHere, you may challenge the mansion’s\npride--the five Trainer maids.\rThe challenge is to beat all five of us\nin a row without a break.\rIn addition to beating us, if you can\nbeat us in a specific number of turns,\fthere will be a special gift.\rIncidentally, a turn refers to the time\nit takes for a Trainer and the opponent\fto each make an action.\rIn this case, action refers to making a\nPokémon use a move, using an item, or\fswitching a Pokémon.\rAnd now...\r</language>
+	</row>
+	<row id="pl_msg_00000490_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The 5-Maid Knockout Exact-Turn Attack\nChallenge!\rToday’s targeted number of turns is\n{STRVAR_1 52, 0, 0}! Would you like to try?</language>
+	</row>
+	<row id="pl_msg_00000490_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, how disappointing...\nPlease take the challenge sometime.</language>
+	</row>
+	<row id="pl_msg_00000490_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Very well!\nOur first maid, please!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Congratulations!\nYou have defeated four maids so far.\rYou have taken {STRVAR_1 52, 1, 0} turns up to now.\nThe target is {STRVAR_1 52, 0, 0} turns.\r</language>
+	</row>
+	<row id="pl_msg_00000490_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Congratulations for your sweep.\nThe targeted number of turns was {STRVAR_1 52, 0, 0}.\rThe number of turns you needed to\ndefeat the maids was {STRVAR_1 52, 1, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000490_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How splendid of you!\nYou hit the target!\rFor making the sweep in the targeted\nnumber of turns, a special gift!\rThe chance to battle our very own\nprodigy, Master Liam!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How splendid of you!\nYou hit the target!\rFor making the sweep in the targeted\nnumber of turns, a special gift!\rThe chance to battle our very own\nprodigy, Lady Celeste!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your splendor is authentic!\rSweeping the floor with the five maids\nwasn’t enough for you, oh no!\rWhy, to think you would triumph over\neven our Master Liam!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your splendor is authentic!\rSweeping the floor with the five maids\nwasn’t enough for you, oh no!\rWhy, to think you would triumph over\neven our Lady Celeste!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ooh...\nHow disappointing for you.\rThat said, you swept the five maids.\nThat’s plenty to be proud of!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please visit again tomorrow.</language>
+	</row>
+	<row id="pl_msg_00000490_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m so sorry. Everything beyond this\npoint is strictly off-limits.\rPlease, you really mustn’t.\nMr. Backlot will be so cross with me!</language>
+	</row>
+	<row id="pl_msg_00000490_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">First up! My favorite color is blue!\nI will open the proceedings!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The next person up is quite strong,\nreally.\r</language>
+	</row>
+	<row id="pl_msg_00000490_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m pleased to meet you in battle.\nMy best color is green!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I was no. 2, and a little bit tough!\nThe next maid is even tougher!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My lucky color is yellow!\nThe sunshine girl! That’s me!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The next maid is a wee bit stronger\nthan I am.\r</language>
+	</row>
+	<row id="pl_msg_00000490_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pink is the color I can’t do without!\nI’m the fourth in line!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Th-the next maid up is really strong!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My symbolic color is red!\nPrepare for no. 5!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You knocked out the five of us!\nYou have to be splendid!\r</language>
+	</row>
+	<row id="pl_msg_00000490_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trainer would come here and pull me\ninto a battle...?\rI never expected this, but I may as\nwell enjoy it, don’t you think?\r</language>
+	</row>
+	<row id="pl_msg_00000490_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wonderful!\nYou’re a marvel of a Trainer!\rOh, I’ll ask you not to pry into what\nI’m doing in the back of the mansion.\rThis knowing wink is all you’ll get out\nof me.\r</language>
+	</row>
+	<row id="pl_msg_00000490_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, my... You must show me how good\nyou are for the ladies to call me out.\r</language>
+	</row>
+	<row id="pl_msg_00000490_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, my! My, my, my!\nYour technique was most enchanting.\rI will take my leave now.\nGiggle...\r</language>
+	</row>
+	<row id="pl_msg_00000490_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The expensive-looking book Mr. Backlot\nhas... It tugs at my attention.</language>
+	</row>
+</body>

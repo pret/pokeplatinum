@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000419_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rThe rare, oddly colored Pokémon\neluded detection.\rThe rumored red GYARADOS failed to\nappear to the dispirited team...\rThat concludes our special report,\n“Search for the Red GYARADOS!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>
+	</row>
+	<row id="pl_msg_00000419_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rThere were no signs to be found of a\nfour-winged ZUBAT.\rRumors of this bloodsucker attacking\nworkers remain cloaked in mystery...\rThat concludes our special report,\n“Terror of the Vampire ZUBAT!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>
+	</row>
+	<row id="pl_msg_00000419_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rAll their work resulted only in a vague,\nshadowy image.\rThat was all they captured of a Pokémon\nsaid to drift in the skies...\rThat concludes our special report,\n“The Mysterious Flying Pokémon!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>
+	</row>
+	<row id="pl_msg_00000419_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rThe presence of ghostly Pokémon could\nnot be confirmed in the Old Chateau.\rThe team failed to capture any of the\nrumored Pokémon on camera...\rThat concludes our special report,\n“Eterna’s Chateau of Terror!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>
+	</row>
+	<row id="pl_msg_00000419_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rTheir search of the ruins in Amity\nSquare came up almost empty-handed.\rAll they found were some feathers and\nsigns of a hurried takeoff...\rThat concludes our special report,\n“The Pokémon with Shining Feathers!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>
+	</row>
+	<row id="pl_msg_00000419_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rThe silver-winged Pokémon that sleeps\nat the bottom of the sea eluded us.\rAll we got was a recording of a cry\nthought to be that of the Pokémon...\rThat concludes our special report,\n“The Hiding Pokémon of the Seafloor!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>
+	</row>
+	<row id="pl_msg_00000419_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rThe Pokémon said to be from space\neluded detection entirely.\rThe dispirited team failed to find even\na trace of its nest...\rThat concludes our special report,\n“The Extraterrestrial Pokémon!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>
+	</row>
+	<row id="pl_msg_00000419_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rRumors of a giant 100-foot-tall\nBELLSPROUT could not be confirmed.\rThe team failed to get even a glimpse of\nthis gargantuan Pokémon...\rThat concludes our special report,\n“Secret of the Giant BELLSPROUT!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>
+	</row>
+	<row id="pl_msg_00000419_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sportscaster: Sinnoh Sports!\nWe bring you Crasher Wake’s hot bout!\rYow! Crasher Wake’s taken the enemy’s\nfinishing blow! He’s down! Crasher!\r...No, wait! He’s up on his feet!\nCrasher’s shrugging it off!\rHe’s coming back with his full weight,\nno, his whole being, behind this move!\r{STRVAR_1 0, 0, 0} Push!\nKapow!\rCrasher Wake has the foe pinned!\nOne! Two! And three!\rCrasher Wake’s done it again!\nThe legend of invincibility grows again!\rThat’s all from Sinnoh Sports!</language>
+	</row>
+	<row id="pl_msg_00000419_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sportscaster: Sinnoh Sports!\nWe bring you Crasher Wake’s hot bout!\rThis match has been {STRVAR_1 51, 1, 0} minutes\nof sweaty, meaty action!\rBut our man’s still going strong!\nTruly, a man of infinite stamina!\rKing Crasher Wake rears back!\nHis spirit is on full display!\rLet the waves roar and the sea rage!\nMaximum {STRVAR_1 0, 0, 0} Hammer!\rThe victim can’t move!\nThe three-count’s a formality!\rCrasher Wake’s done it again!\nHe’s the man of a thousand moves!\rThat’s all from Sinnoh Sports!</language>
+	</row>
+	<row id="pl_msg_00000419_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sportscaster: Sinnoh Sports!\nWe bring you Crasher Wake’s hot bout!\rThere! Crasher Wake’s got the foe\nlocked in a tight embrace!\rLike surging and ebbing waves, Crasher\nis working the enemy’s joints savagely!\rIt’s the inexorable nightmare of the\n{STRVAR_1 0, 0, 0} Hold!\rThe foe can’t take it!\nHe’s signaling uncle!\rCrasher Wake’s done it again!\nHe’s waving to his army of child fans!\rThat’s all from Sinnoh Sports!</language>
+	</row>
+	<row id="pl_msg_00000419_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Narrator: A multipart TV-drama series,\n“At the Surf’s Edge,” part 3:\f“At a Loss for Water Pokémon.”\rHoward: Mother! I told you so!\nWe’ve finally made it here!\rWe overcame everything we faced just\nto get this far... It was so hard...\r...But we’re doomed without a water\nPokémon!\rDovina: No, Howard.\nSee what I have?\rHoward: M-Mother...?!\nTh-this... It...\rDovina: Yes, dear.\nYour grandfather had kept it for y...\rPoliceman: Oy!\nWhat’s going on here, then?\rYou there with your mother, both of you\nhold it right there!\rMusic: Ja-jaaaaan!\nBababa-duuuuuuun!\rNarrator: A multipart TV-drama series,\n“At the Surf’s Edge.”\fDon’t miss the next exciting episode!</language>
+	</row>
+	<row id="pl_msg_00000419_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Narrator: A multipart TV-drama series,\n“At the Surf’s Edge,” part 5:\f“The Deserted Pokémon Center.”\rDovina: You mean...\nMy son, my Howard...\rHe already knew?\nHe knew back then?\rOld man: Of course.\nYou failed to realize even that?\rOr even why you were summoned here in\nthe first place?\rHave you no idea why a deserted\nPokémon Center would be built here?\rLook!\nLook closely at the sign.\rDovina: ...Oh! Oh, oh!\nThe Pokémon Center sign!\rThere! Beside the Poké Ball logo...\nOh, my goodness! ...Sob...\rOld man: Finally, comprehension has\ndawned on you.\rIt’s time to reveal all to you.\nDovina, I am...\rMusic: Ja-jaaaaan!\nBababa-duuuuuuun!\rNarrator: A multipart TV-drama series,\n“At the Surf’s Edge.”\fDon’t miss the next exciting episode!</language>
+	</row>
+	<row id="pl_msg_00000419_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Narrator: A multipart TV-drama series,\n“At the Surf’s Edge,” part 9:\f“The Rusted League Badges.”\rHoward: I came alone like you wanted!\nLet my mother go at once, scoundrel!\rDovina: ...Howard...\rHoward: Mother!\rDovina: Howard, you must listen.\nYou’ve made a dreadful mistake.\rI want you to take out your League\nBadges and turn them over.\rHoward: M-Mother...?\nWh-what are you saying?\rBadges? What about these Badges?\rOh! Th-they fit together when they’re\nflipped over.\rWhat is this...\nThere’s a message here!\rDovina: Yes, Howard. \nYou see, this town was...\rHoward: It’s no good, Mother!\nThese Badges are too rusted to read!\rDovina: It must be the sea breeze.\nThe salt must have got them.\rHoward: Mother!\nWhat am I to do?!\rMusic: Ja-jaaaaan!\nBababa-duuuuuuun!\rNarrator: A multipart TV-drama series,\n“At the Surf’s Edge.”\fDon’t miss the exciting conclusion next!</language>
+	</row>
+	<row id="pl_msg_00000419_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s never a problem!\rThe child prodigy and Pokétch Detective\nKetch Appy is here!\rI drew the suspect’s likeness on the\nMemo Pad just for this situation!\r...Uh... Uh-oh!\nThe Memo Pad with the drawing...\fIt’s blank! The page is blank!\rOh, right! If you use a different app,\nthe Memo Pad is cleared!\rWhat will you do, Pokétch Detective?\nWhat’s next, Pokétch Detective?\rNext, Case File #111: “The Pokétch\nIs Invincible!” Don’t miss it!</language>
+	</row>
+	<row id="pl_msg_00000419_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s never a problem!\rThe child prodigy and Pokétch Detective\nKetch Appy is here!\rI’ll find clues for tracking down the\nsuspect.\rMy Dowsing Machine will find any evidence\nleft behind!\rOh, no! I’ve touched everywhere, but\nthere are no hidden items here!\rWhat will you do, Pokétch Detective?\nWhat’s next, Pokétch Detective?\rNext, Case File #218: “The Pokétch\nIs Intelligent!” Don’t miss it!</language>
+	</row>
+	<row id="pl_msg_00000419_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s never a problem!\rThe child prodigy and Pokétch Detective\nKetch Appy is here!\rI’ll use my Pokétch to tell me which way\nthe suspect ran.\rThe Coin Toss app will show me the way!\rHeads, the perpetrator ran right;\ntails, the other way.\rKeep running, you crook!\nEven forks in the road won’t faze me!\rWhat will you do, Pokétch Detective?\nWhat’s next, Pokétch Detective?\rNext, Case File #999: “The Pokétch\nIs Nice!” Don’t miss it!</language>
+	</row>
+	<row id="pl_msg_00000419_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DJ: Sinnoh Hot Hit Tunes!\rThis week’s no. 3!\n“My Girl, My {STRVAR_1 0, 0, 0}!”\rThe week’s no. 2 single is “The Guilty\n{STRVAR_1 31, 1, 0}!”\rAnd this week’s no. 1 with a bullet!\r“{STRVAR_1 0, 2, 0}’s Love. Our Summer of\n{STRVAR_1 6, 3, 0}!”</language>
+	</row>
+	<row id="pl_msg_00000419_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jubilife TV!\nDramatic cinema hour!\r“The Professor Evolves Eight Times.”\rHe’s back. The dandy and dapper gent\nwho is a professor of Pokémon by day.\r...And a crime-busting crusader by\nnight with his Pokémon sidekicks!\rThe daredevil doctor returns with his\ntrademark line, “You evolve, too.”\rJoin the professor in his accelerating\ndrive to stamp out Poké crime!\rComing soon to your television!</language>
+	</row>
+	<row id="pl_msg_00000419_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello! It’s time for We Love the GTS!\nThe show for fans of the GTS!\rExcuse me! Did you just make a trade?\nCan we get a word, please?\r...Huh? Me?\nAre you talking to me?\rUm, it makes me happy knowing I can\nalways trade for what I want here.\rBut there is something that does\nbother me sometimes.\rIt’s about the moves some traded\nPokémon know.\rI mean, this one’s moves are Explosion,\nCut, Double-Edge, and Reversal.\rLike, what a weird set.\nIs there any meaning behind this?\rWell, isn’t that a neat story!\nIt must mean something to someone!\rThat’s all until next week!</language>
+	</row>
+	<row id="pl_msg_00000419_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I was just your average girl until I was\nliterally stricken by a ThunderShock.\rIt was love at first sight, baby!\nAnd my target, a Gym Leader!\rI didn’t have any Pokémon then, but\nnot a problem for a resourceful gal!\rThe answer was simple!\nAnd we all know simple is best!\rI just had to become a Trainer.\nThat’s all it took for me!\r“The Diary of a Poké Romantic” will soon\nmake its debut!\rThe pilot episode: “Love at First\nSight! The Rules of the Move Attract!”\rBy the way, how did everyone get their\nfirst Pokémon anyway?</language>
+	</row>
+	<row id="pl_msg_00000419_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">After some fits and starts, a childhood\nfriend gave me my first Pokémon!\r...But it was a KRICKETOT.\nWhen I don’t like the legs of bugs...\rI bet he gave me this because I picked\non him when he was little...\rBut though the road has been long and\nhard, I’m finally at the starting line!\rNext week: “The Diary of a Poké\nRomantic,” episode 2!\r“The Maiden in Love and the KRICKETOT.\nThe Magic of Romance Never Ends!”\rOh, this KRICKETOT is a female.\nMaybe we can be friends.</language>
+	</row>
+	<row id="pl_msg_00000419_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I checked out my KRICKETOT and learned\nabout its moves.\r...It only knows Growl and Bide.\nThat’s worse than just challenging!\rI was about to say that, when my\nchildhood friend stopped me.\r“Let it hold an Oran Berry so that\nit can survive while using Bide.”\rHey, that’s smart!\nThat’s from a former Bug Catcher!\rWhile we’re at it, can I have an Oran\nBerry, too?\rNext week: “The Diary of a Poké\nRomantic,” episode 3!\r“Love Conquers All. Covering Weakness\nwith Ideas!”\rWe’re a Trainer and Pokémon now!\nWe’ll get stronger together!</language>
+	</row>
+	<row id="pl_msg_00000419_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I had my first ever Pokémon battle,\nand it ended badly...\rMy childhood friend, a former\nBug Catcher, had this to say.\r“Pokémon get tougher by battling.\nThe key to victory is type matchups.”\rType matchups?\nTypes affect battles?\rThe only type matchup I care about is\nwith that Gym Leader!\rNext week: “The Diary of a Poké\nRomantic,” episode 4!\r“Type Matchups Settle Battles!\nMoves That Exploit Weak Points!”\rFire, Flying, and Rock...\nKRICKETOT has some disadvantages!</language>
+	</row>
+	<row id="pl_msg_00000419_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’d win a battle, and lose one.\nLose one, then win one.\rThough it was discouraging, I had to\nkeep battling to toughen us up.\rWith me and KRICKETOT, it was always\nthree steps forward, two steps back.\rBut we were getting stronger. Then one\nday, KRICKETOT started to shine!\rNext week: “The Diary of a Poké\nRomantic,” episode 5!\r“KRICKETOT Becomes KRICKETUNE! Watch\nMe! I’ll Change, Too!”\rAnd, to cancel evolution, press the\nB Button... Tell me that first!</language>
+	</row>
+	<row id="pl_msg_00000419_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">After KRICKETOT evolved, she became\nstronger as KRICKETUNE.\rWe also got other Pokémon, so we could\ngo farther and farther from home.\rBut where is my beloved Gym Leader?\nWhere is that city he said he’s from?\rI do have the Town Map, but maps baffle\nme.\rIt doesn’t matter, though.\nIf we keep moving, we’ll get somewhere.\rNext week: “The Diary of a Poké\nRomantic,” episode 6!\r“How Is This Possible? Pokémon Gyms\nCan’t Be Found Everywhere!”\rThe more lost you are, the less useful\na map becomes! You know it’s true!</language>
+	</row>
+	<row id="pl_msg_00000419_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Our journey was long, and it was hard.\nBut no one wants to hear that!\rSo, I finally found my Gym Leader.\nBut, he has an incurable disease!\rHe begged me, out of the blue, with his\nlast wish.\rHe asked for my Pokémon!\nBut my KRICKETUNE’s my partner!\rNext week: “The Diary of a Poké\nRomantic,” episode 7!\r“My Trail of Footprints Shortened\nthe Distance Between Us!”\rEvery time I see KRICKETUNE’s face, I\nget reminded of our time together...</language>
+	</row>
+	<row id="pl_msg_00000419_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My beloved Gym Leader, whom I\nfought so hard to meet, was a fraud!\rHow dare he con this pure maiden!\nHow dare he toy with my emotions!\rBut whose fault was it?\nWas it mine to be taken in?\rAll I know is that my tears overflow,\nand despair is my world...\rNext week: “The Diary of a Poké\nRomantic,” episode 8!\r“KRICKETUNE and I! Our Bond Is True!”\rThat Gym Leader’s eating a Giga Impact\nfor playing me for a fool!</language>
+	</row>
+	<row id="pl_msg_00000419_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Having defeated the fake Gym Leader,\nKRICKETUNE and I stood in a daze.\rWe were spent. Drained by a romance\nthat ended as a nightmare.\rIt was then my childhood friend, the\nformer Bug Catcher, arrived.\rHe did more than that.\nHe confessed his love to me!\r“I wanted to become an Elite Four\nmember so I quit as a Gym Leader.\r“But, then, that faker appeared.\nYou took care of him, though!”\rWait, ex-Bug Catcher! What?\nWhat are you saying?!\rNext week: “The Diary of a Poké\nRomantic,” final episode!\r“Do it, KRICKETUNE! Silver Wind over\nSinnoh Skies!”\rYou were laughing at me for falling for\nthat fraud, weren’t you?</language>
+	</row>
+</body>

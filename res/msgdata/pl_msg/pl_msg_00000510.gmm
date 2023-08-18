@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000510_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s right, CLEFAIRY!\nCuter, now!</language>
+	</row>
+	<row id="pl_msg_00000510_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Pippiih!</language>
+	</row>
+	<row id="pl_msg_00000510_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Pippippiih!</language>
+	</row>
+	<row id="pl_msg_00000510_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Puhppikaah!</language>
+	</row>
+	<row id="pl_msg_00000510_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU! Try to keep up!\nYou need to dazzle!</language>
+	</row>
+	<row id="pl_msg_00000510_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 218\nCanalave City</language>
+	</row>
+	<row id="pl_msg_00000510_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 218\nJubilife City</language>
+	</row>
+</body>

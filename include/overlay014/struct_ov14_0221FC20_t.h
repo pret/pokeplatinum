@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV14_0221FC20_T_H
 
 #include "struct_defs/struct_020790C4.h"
-#include "struct_decls/struct_0207D3B0_decl.h"
+#include "struct_decls/struct_itemdata_decl.h"
 
 struct UnkStruct_ov14_0221FC20_t {
     u8 unk_00;
@@ -31,7 +31,7 @@ struct UnkStruct_ov14_0221FC20_t {
     u16 unk_82[2];
     u8 unk_86[4];
     MoveTable unk_8A[468];
-    UnkStruct_0207D3B0 * unk_1DCC;
+    ItemData * unk_1DCC;
     u16 unk_1DD0[4];
     u16 unk_1DD8[4];
 };

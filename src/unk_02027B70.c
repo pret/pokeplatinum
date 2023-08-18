@@ -2,14 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/narc.h"
-#include "struct_decls/struct_020973A8_decl.h"
+#include "struct_decls/struct_berry_data_decl.h"
 
 #include "struct_defs/struct_02027854.h"
 #include "struct_defs/struct_02027BF4.h"
 
 #include "heap.h"
 #include "unk_02027B70.h"
-#include "unk_0209739C.h"
+#include "berry_data.h"
 
 static void sub_02027C50(UnkStruct_02027854 * param0);
 static int sub_02027C7C(const UnkStruct_02027BF4 * param0, int param1, int param2);
@@ -48,23 +48,23 @@ UnkStruct_02027BF4 * sub_02027BF4 (int param0)
 {
     int v0;
     UnkStruct_02027BF4 * v1;
-    UnkStruct_020973A8 * v2;
+    BerryData * v2;
     NARC * v3;
 
-    v3 = sub_0209739C(param0);
+    v3 = BerryData_NARC_ctor(param0);
     v1 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02027BF4) * 64);
 
     for (v0 = 0; v0 < 64; v0++) {
         v2 = sub_020973A8(v3, v0, param0);
 
-        v1[v0].unk_00 = sub_020973D4(v2, 3);
-        v1[v0].unk_01 = sub_020973D4(v2, 4);
-        v1[v0].unk_02 = sub_020973D4(v2, 2);
+        v1[v0].unk_00 = BerryData_GetAttribute(v2, 3);
+        v1[v0].unk_01 = BerryData_GetAttribute(v2, 4);
+        v1[v0].unk_02 = BerryData_GetAttribute(v2, 2);
 
         Heap_FreeToHeap(v2);
     }
 
-    sub_020973B0(v3);
+    BerryData_NARC_dtor(v3);
     return v1;
 }
 

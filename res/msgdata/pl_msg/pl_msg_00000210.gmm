@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000210_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Perform first</language>
+	</row>
+	<row id="pl_msg_00000210_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">next turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Perform last</language>
+	</row>
+	<row id="pl_msg_00000210_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">next turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Each doubled</language>
+	</row>
+	<row id="pl_msg_00000210_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Judge: +2</language>
+	</row>
+	<row id="pl_msg_00000210_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If the Voltage</language>
+	</row>
+	<row id="pl_msg_00000210_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">goes up: +2</language>
+	</row>
+	<row id="pl_msg_00000210_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A basic act.</language>
+	</row>
+	<row id="pl_msg_00000210_00009" index="9">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">X</language>
+	</row>
+	<row id="pl_msg_00000210_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If Judges are</language>
+	</row>
+	<row id="pl_msg_00000210_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">not doubled: +3</language>
+	</row>
+	<row id="pl_msg_00000210_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Performable two</language>
+	</row>
+	<row id="pl_msg_00000210_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">turns in a row.</language>
+	</row>
+	<row id="pl_msg_00000210_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Voltage pts.</language>
+	</row>
+	<row id="pl_msg_00000210_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">are added.</language>
+	</row>
+	<row id="pl_msg_00000210_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If all choose</language>
+	</row>
+	<row id="pl_msg_00000210_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">same Judge: +15</language>
+	</row>
+	<row id="pl_msg_00000210_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lowers Voltage</language>
+	</row>
+	<row id="pl_msg_00000210_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">of Judges by 1.</language>
+	</row>
+	<row id="pl_msg_00000210_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Double score in</language>
+	</row>
+	<row id="pl_msg_00000210_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">next turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Get Voltage</language>
+	</row>
+	<row id="pl_msg_00000210_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">from one ahead.</language>
+	</row>
+	<row id="pl_msg_00000210_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No Voltage up</language>
+	</row>
+	<row id="pl_msg_00000210_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">this turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Random order</language>
+	</row>
+	<row id="pl_msg_00000210_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">next turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Double score</language>
+	</row>
+	<row id="pl_msg_00000210_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">for final act.</language>
+	</row>
+	<row id="pl_msg_00000210_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">High score for</language>
+	</row>
+	<row id="pl_msg_00000210_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">low Voltage.</language>
+	</row>
+	<row id="pl_msg_00000210_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If first</language>
+	</row>
+	<row id="pl_msg_00000210_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">performance: +2</language>
+	</row>
+	<row id="pl_msg_00000210_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If final</language>
+	</row>
+	<row id="pl_msg_00000210_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">performance: +2</language>
+	</row>
+	<row id="pl_msg_00000210_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No Voltage down</language>
+	</row>
+	<row id="pl_msg_00000210_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">this turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If Voltage goes</language>
+	</row>
+	<row id="pl_msg_00000210_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">up in a row: +3</language>
+	</row>
+	<row id="pl_msg_00000210_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">High score for</language>
+	</row>
+	<row id="pl_msg_00000210_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">a later turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">After Voltage</language>
+	</row>
+	<row id="pl_msg_00000210_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">hits max: +3</language>
+	</row>
+	<row id="pl_msg_00000210_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If rated the</language>
+	</row>
+	<row id="pl_msg_00000210_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">worst: +3</language>
+	</row>
+	<row id="pl_msg_00000210_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Enables the user to\nperform first in the\nnext turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Enables the user to\nperform last in the\nnext turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +2 for each\ntime the same Judge\nis chosen.</language>
+	</row>
+	<row id="pl_msg_00000210_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +2 if the\nJudge’s Voltage goes\nup.</language>
+	</row>
+	<row id="pl_msg_00000210_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A basic performance\nusing a move known\nby the Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000210_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +3 if no other\nPokémon has chosen\nthe same Judge.</language>
+	</row>
+	<row id="pl_msg_00000210_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Allows performance\nof the same move\ntwice in a row.</language>
+	</row>
+	<row id="pl_msg_00000210_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Increased Voltage is\nadded to the\nperformance score.</language>
+	</row>
+	<row id="pl_msg_00000210_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +15 if all the\nPokémon choose the\nsame Judge.</language>
+	</row>
+	<row id="pl_msg_00000210_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lowers the Voltage\nof all Judges by one\neach.</language>
+	</row>
+	<row id="pl_msg_00000210_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn double the\nscore in the next\nturn.</language>
+	</row>
+	<row id="pl_msg_00000210_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Steals the Voltage\nof the Pokémon that\njust went.</language>
+	</row>
+	<row id="pl_msg_00000210_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Prevents the Voltage\nfrom going up in the\nsame turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Makes the order of\ncontestants random\nin the next turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earns double the\nscore on the final\nperformance.</language>
+	</row>
+	<row id="pl_msg_00000210_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Raises the score if\nthe Voltage is low.</language>
+	</row>
+	<row id="pl_msg_00000210_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +2 if the\nPokémon performs\nfirst in the turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +2 if the\nPokémon performs\nlast in the turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Prevents the Voltage\nfrom going down in\nthe same turn.</language>
+	</row>
+	<row id="pl_msg_00000210_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +3 if two\nPokémon raise the\nVoltage in a row.</language>
+	</row>
+	<row id="pl_msg_00000210_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn a higher score\nthe later the\nPokémon performs.</language>
+	</row>
+	<row id="pl_msg_00000210_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +3 if the\nPokémon that just\nwent hit max Voltage.</language>
+	</row>
+	<row id="pl_msg_00000210_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earn +3 if the\nPokémon gets the\nlowest score.</language>
+	</row>
+</body>

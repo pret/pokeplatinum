@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000530_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Badge...\nIt’s from Sunyshore’s Gym?\rYou’ve been to that port town, then...\rWould... Would you lend an ear to this\nold man’s tale?</language>
+	</row>
+	<row id="pl_msg_00000530_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No...\nI shouldn’t burden you with this.\rMy grandson grew up in that city by\nthe sea.\rWorn down by trying to live up to his\nparents’ expectations, he found refuge\fin tinkering with machines.\rI wonder even now if I should have\ntaken him in and raised him myself.\rThough I’m not certain if that would\nhave been a good choice or not...\rI don’t think anyone could say.\rI’m sorry, I shouldn’t have said any\nof this to you...</language>
+	</row>
+	<row id="pl_msg_00000530_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah...\nPay me no heed, then.\rI only hoped to unburden myself of\nsome guilt...</language>
+	</row>
+	<row id="pl_msg_00000530_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are many old and difficult-looking\nbooks here.\r“Space and the Galaxies”\n“The Beginning of Space”...</language>
+	</row>
+	<row id="pl_msg_00000530_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are many old and difficult-looking\nbooks here.\r“Beyond Time and Space”\n“What Is the Space-Time Continuum?”...</language>
+	</row>
+	<row id="pl_msg_00000530_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are many old and difficult-looking\nbooks here.\r“Mind and Matter”\n“The Presence of Spirit”...</language>
+	</row>
+	<row id="pl_msg_00000530_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are many old and difficult-looking\nbooks here.\r“Machines and Their Construction”\n“The Mechanism of Perfection”...</language>
+	</row>
+</body>

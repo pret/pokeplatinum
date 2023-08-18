@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000238_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">On the other side of the rift...\nIn a fantastically bizarre place...\fIt’s PALKIA!\rWill you challenge PALKIA?</language>
+	</row>
+	<row id="pl_msg_00000238_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PALKIA: Gagyagyaah!\r</language>
+	</row>
+	<row id="pl_msg_00000238_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An overwhelming feeling of space\npowerfully emanates from this rift...\rWhere does it lead to?</language>
+	</row>
+	<row id="pl_msg_00000238_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000238_00004" index="4">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+</body>

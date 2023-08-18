@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000141_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the Great Marsh, Quick Trams on\nrails are used for transportation.\rThey prevent damage to the Great\nMarsh’s ecosystem.</language>
+	</row>
+	<row id="pl_msg_00000141_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PSYDUCK: Gwah?!</language>
+	</row>
+	<row id="pl_msg_00000141_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Though the name says “Quick,” their\nmovements are anything but!\rThey’re the Quick Trams that traverse\nthe Great Marsh.</language>
+	</row>
+</body>

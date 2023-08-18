@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000108_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nHow’s it going, Champ-to-be?\rThis Gym is some kind of wicked!\nWhat’s wicked about it?\rI’ll tell you!\nFirst, it’s pitch-black!\rOh, no worries, though!\nI have a flashlight right here for you.\rAlso, there are the usual Gym Trainers.\nThey have flashlights, too.\rIf you cast a light on one, or they\ncatch you in the light, the battle’s on!\rOK, now this is really important!\nIt’s about the tiles on the floor.\rFirst, find the one {COLOR 2}blue{COLOR 0} tile in the\nroom, and memorize the mark on it.\rNext, head for the {COLOR 1}red{COLOR 0} door with the\nsame mark on it.\rAdvance through the correct red doors\nto reach the Gym Leader.\rIf you choose a wrong red door, you\nget sent back here, though.\rThat’s how this place is.\nGo get ’em, Champ-to-be!\r</language>
+	</row>
+	<row id="pl_msg_00000108_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nHow’s it going, Champ-to-be?\rYou must really like hearing me talk.\rIf you want to hear my long spiel again,\njust say, “Yes!”</language>
+	</row>
+	<row id="pl_msg_00000108_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there! Hello, Champ-to-be!\nLet me tell you how this Gym is wicked!\rI’ll tell you!\nFirst, it’s pitch-black!\rAlso, there are the usual Gym Trainers.\nThey have flashlights, too.\rIf you cast a light on one, or they\ncatch you in the light, the battle’s on!\rOK, now this is really important!\nIt’s about the tiles on the floor.\rFirst, find the one {COLOR 2}blue{COLOR 0} tile in the\nroom, and memorize the mark on it.\rNext, head for the {COLOR 1}red{COLOR 0} door with the\nsame mark on it.\rAdvance through the correct red doors\nto reach the Gym Leader.\rIf you choose a wrong red door, you\nget sent back here, though.\rOops! How silly of me!\nI forgot to tell you something vital!\rThe Gym Leader here is a user of\nGhost-type Pokémon.\rBeware, Normal-type moves have no\neffect at all on ghosts!\rIt’s as if they weren’t there!\nBut you’ll have to see for yourself.\rGo get ’em, challenger!\nI believe in you!</language>
+	</row>
+	<row id="pl_msg_00000108_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, go get ’em!</language>
+	</row>
+	<row id="pl_msg_00000108_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! {STRVAR_1 3, 0, 0}!\nYou’ve beaten the Gym Leader!\rThere seems to be no end to how\ntough you are getting!\rAt least that’s how I see it!\r...You do realize I say that to\neveryone, right?</language>
+	</row>
+	<row id="pl_msg_00000108_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hearthome City Pokémon Gym\nLeader: Fantina\rCertified Trainers:\n{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000108_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hearthome City Pokémon Gym\nLeader: Fantina\rCertified Trainers:\n{STRVAR_1 3, 0, 0}\f{STRVAR_1 3, 1, 0}</language>
+	</row>
+</body>

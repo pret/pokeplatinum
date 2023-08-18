@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000591_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A word of advice from a grizzled\nmountain man!\rStark Mountain is a harsh, harsh place\nthat’s rife with Fire-type Pokémon.\rWater-type Pokémon and moves should\ntake the edge off.\rThat’s my advice.\nYou’d best heed it, no joke!</language>
+	</row>
+	<row id="pl_msg_00000591_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I was on a 54-win streak...\nIf only I used that move when...</language>
+	</row>
+</body>

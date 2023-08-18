@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000622_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good morning!\nIs everyone raising Pokémon?\rIt’s time for the Battling Trainers!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good day!\nIs everyone raising Pokémon?\rIt’s time for the Battling Trainers!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good evening!\nIs everyone raising Pokémon?\rIt’s time for the Battling Trainers!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, let’s get with it and check in\non our Trainers!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: All righty!\nWhat’s next on Battling Trainers?\r</language>
+	</row>
+	<row id="pl_msg_00000622_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: I hope you enjoyed this\nshowing of Battling Trainers.\rUntil the next broadcast...\nGood-bye, and good battling!</language>
+	</row>
+	<row id="pl_msg_00000622_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: On Battling Trainers, we’re\nalways on the hunt for news.\rOur interviewers have scattered\nthroughout Sinnoh.\rWe look forward to hearing about\nyou, Trainers!\rThat’s all the time we have today!\nGood-bye, and good battling!</language>
+	</row>
+	<row id="pl_msg_00000622_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good morning.\nIt’s time for Trainer Research.\rWe examine the latest Pokémon trends\nby going directly to the Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good day.\nIt’s time for Trainer Research.\rWe examine the latest Pokémon trends\nby going directly to the Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good evening.\nIt’s time for Trainer Research.\rWe examine the latest Pokémon trends\nby going directly to the Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, let’s take a look at the first\npiece of research we conducted.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Next up is this piece of\nresearch.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: We hope you enjoyed this edition\nof Trainer Research.\rWho knows, you may be the subject\nof our research next time.\rThat’s it for this show today.\nFarewell!</language>
+	</row>
+	<row id="pl_msg_00000622_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: On Trainer Research, we always\nseek Trainers willing to be interviewed\ffor the show.\rIf you spot an interviewer anywhere,\nplease stop by to say hello and grant\fus an interview.\rThat’s all today. Farewell.</language>
+	</row>
+	<row id="pl_msg_00000622_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Pokémon! Battle! Watch!\rGood morning!\nEveryone keeping up the good battle?\rIt’s time for Pokémon Battle Watch,\nwhere we do in-depth analyses of\fhot-blooded battling Trainers!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Pokémon! Battle! Watch!\rGood day!\nEveryone keeping up the good battle?\rIt’s time for Pokémon Battle Watch,\nwhere we do in-depth analyses of\fhot-blooded battling Trainers!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Pokémon! Battle! Watch!\rGood evening!\nEveryone keeping up the good battle?\rIt’s time for Pokémon Battle Watch,\nwhere we do in-depth analyses of\fhot-blooded battling Trainers!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s get on with the show!\nBattle! Watch!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Let’s move to the next segment!\nBattle! Watch!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Oops, looks like we’re all out\nof time!\rLet’s meet again here!\nBattle! Watch!</language>
+	</row>
+	<row id="pl_msg_00000622_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Pokémon Battle Watch needs\nyour help!\rWe’re always after news about your\nhot Pokémon battles.\rWe’d also love it if you’d mix records\nwith friends in a Union Room.\rThat way, we can get battle news\nabout your friends, too.\rLet’s meet again here!\nBattle! Watch!</language>
+	</row>
+	<row id="pl_msg_00000622_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: A Trainer’s Day!\rThis program offers unique looks into\nthe daily lives of Trainers.\rWe cover a variety of topics that\naffect and concern Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: A Trainer’s Day!\rThis program offers unique looks into\nthe daily lives of Trainers.\rWe cover a variety of topics that\naffect and concern Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: A Trainer’s Day!\rThis program offers unique looks into\nthe daily lives of Trainers.\rWe cover a variety of topics that\naffect and concern Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s examine one aspect of\na Trainer’s day.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Let’s take a look at a Trainer’s\nday from another perspective.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: This brings us to the conclusion\nof today’s A Trainer’s Day.\rWe hope you found it informative\nand entertaining.\rIn even seemingly ordinary daily\nroutines, there is so much drama.\rWe’ll keep bringing you more looks\ninto the days of Trainers.\rGood-bye, but just for now!</language>
+	</row>
+	<row id="pl_msg_00000622_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: We seek tips on Trainer-related\nnews for coverage on the show.\rPlease also consider mixing records\nwith friends in a Union Room.\rThat will allow us to check the\nroutines of your friends, too.\rPlease tune in again next time.\nGood-bye, but just for now!</language>
+	</row>
+	<row id="pl_msg_00000622_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sinnoh News Net.\rGood morning.\nThis is Sinnoh News Net.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sinnoh News Net.\rHello.\nThis is Sinnoh News Net.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sinnoh News Net.\rGood evening.\nThis is Sinnoh News Net.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is today’s lead story.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We now bring you this news story.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: That’s all the news today.\nThank you for watching.</language>
+	</row>
+	<row id="pl_msg_00000622_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sinnoh News Net has crews\ngathering news all over Sinnoh.\rHelp our news-gathering efforts by\nmixing records at any Union Room.\rThat will allow us to get news that\nconcerns your friends, too.\rPlease join us for the next showing\nof the Sinnoh News Net.\rThank you for watching.</language>
+	</row>
+	<row id="pl_msg_00000622_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good morning!\rIt’s now time for Rack ’Em Up\nRecords!\rLike always, we look at a variety\nof cool records set by Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Hello!\rIt’s now time for Rack ’Em Up\nRecords!\rLike always, we look at a variety\nof cool records set by Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good evening!\rIt’s now time for Rack ’Em Up\nRecords!\rLike always, we look at a variety\nof cool records set by Trainers.\r</language>
+	</row>
+	<row id="pl_msg_00000622_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right, let’s have our experts\nSerge and Tanya take over.\rHere’s hoping they have some\ninteresting records to cover!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Let’s have our experts examine\nanother eyebrow-raising record!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: We hope you enjoyed today’s\nRack ’Em Up Records as we did.\rThat’s all for today!\nBye-bye!</language>
+	</row>
+	<row id="pl_msg_00000622_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Rack ’Em Up Records wants to\nhear from you!\rDon’t be shy about telling us if you\nset any new records.\rPlease also mix records with friends\nat any Union Room.\rThat will let us examine the records\nof your friends as well as yours.\rWe hope to catch the record-setting\nmoments of you, our loyal viewers!\rThat’s all for today!\nBye-bye!</language>
+	</row>
+	<row id="pl_msg_00000622_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sinnoh! Now!\rThis is it!\nThe one you’ve all been waiting for!\rIt’s time for Sinnoh Now, your portal\nto what’s hip and happening in Sinnoh!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sinnoh! Now!\rThis is it!\nThe one you’ve all been waiting for!\rIt’s time for Sinnoh Now, your portal\nto what’s hip and happening in Sinnoh!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sinnoh! Now!\rThis is it!\nThe one you’ve all been waiting for!\rIt’s time for Sinnoh Now, your portal\nto what’s hip and happening in Sinnoh!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here’s the first story on the cutting\nedge of Sinnoh trends!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Here’s another story on the\ncutting edge!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Did you enjoy this edition of\nSinnoh Now?\rYou can always count on us to keep\nbringing you the information you want!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000622_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sinnoh Now goes the extra\ndistance to bring you news.\rWe promise to do our best to keep\nyou informed with the news you want!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000622_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good morning!\rTune in to this show and you’ll always\nbe on the cutting edge of fashion!\rYou guessed it!\nIt’s the Trend Tracker Show!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Hello!\rTune in to this show and you’ll always\nbe on the cutting edge of fashion!\rYou guessed it!\nIt’s the Trend Tracker Show!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good evening!\rTune in to this show and you’ll always\nbe on the cutting edge of fashion!\rYou guessed it!\nIt’s the Trend Tracker Show!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s go to our latest trendy news\nstory. Take it away!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Don’t go away, we have another\ntrendy news story next!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: We do hope you found the Trend\nTracker Show informative.\rPlease tune in on our next\nbroadcast!\rOver and out!</language>
+	</row>
+	<row id="pl_msg_00000622_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: We do hope you found the Trend\nTracker Show informative.\rWe’ll be sure to keep you informed\nabout what’s in and not out!\rPlease tune in on our next\nbroadcast!\rOver and out!</language>
+	</row>
+	<row id="pl_msg_00000622_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good morning, everyone!\nFeeling groovy like GROVYLE?\fThe Pokémon Variety Hour’s here!\rLet’s spend an exciting, dreamy time\ntogether!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Hey there, everyone!\nEveryone feel happy like HAPPINY?\fThe Pokémon Variety Hour’s here!\rLet’s spend an exciting, dreamy time\ntogether!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Good evening, everyone!\nReady to buzz through like ELECTABUZZ?\fThe Pokémon Variety Hour’s here!\rLet’s spend an exciting, dreamy time\ntogether!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So, what do our hosts have in store\nfor you today?\rLet’s get to it and see!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: No time to waste!\nHere’s the next show!\r</language>
+	</row>
+	<row id="pl_msg_00000622_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: OK, everyone! Hope you enjoyed\nthe Pokémon Variety Hour!\rSee you again!\nCan you DIGLETT?</language>
+	</row>
+	<row id="pl_msg_00000622_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: The Pokémon Variety Hour will bring\nyou all sorts of hot programs!\rBe sure to tune in and check us out\nas often as you can!\rSee you LATIAS, amigos!\nKeep it mellow like SWELLOW!</language>
+	</row>
+</body>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000604_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All I need to be happy is my TV.\nThat’s all I need.\rI learn so much just sitting here.\nI absorb knowledge!\rI learned about the Pokétch app\nMarking Map, for instance.\rThey say the Marking Map can track\nPokémon that travel around.\r...I’ve never met any traveling\nPokémon, but I’ve heard about them.</language>
+	</row>
+	<row id="pl_msg_00000604_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s big trouble!\nThey’re saying the volcano’ll erupt!\rI might even have to leave here!</language>
+	</row>
+	<row id="pl_msg_00000604_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The best Trainers from all over\ncongregate at the Battle Frontier.\rIt’s not limited to Sinnoh, no.\rIt must be a happy achievement to\nbe able to win there with your favorite\fPokémon you’ve caught yourself.</language>
+	</row>
+	<row id="pl_msg_00000604_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve seen every Pokémon in Sinnoh!\nThat is so cool!\rI’m going to travel with Pokémon when\nI get bigger!</language>
+	</row>
+	<row id="pl_msg_00000604_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve seen every Pokémon in Sinnoh!\nThat is so cool!\rI’m going to travel with Pokémon when\nI get bigger!</language>
+	</row>
+</body>

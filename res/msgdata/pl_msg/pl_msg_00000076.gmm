@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000076_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">During the daytime, everyone goes off\nto the mine.\rAt night, everyone’s at home\ngetting some well-deserved rest.</language>
+	</row>
+	<row id="pl_msg_00000076_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’ll keep digging coal.\nThe world needs energy!</language>
+	</row>
+	<row id="pl_msg_00000076_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone, including lots of Pokémon,\ndug the big underground maze!</language>
+	</row>
+</body>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000070_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are eight Gym Leaders in the\nSinnoh region.\rThe objective for Trainers is to get\nGym Badges from them all.\rThat means you have to defeat all of\nthem in battles at their Gyms!</language>
+	</row>
+	<row id="pl_msg_00000070_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Gym Leader isn’t like just any Trainer\nyou meet.\rObviously, they’re a lot tougher.\nA lot.\rI’d take as many Pokémon as possible\nif I were you.</language>
+	</row>
+	<row id="pl_msg_00000070_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark lets us train our Pokémon in\nthe mine.</language>
+	</row>
+</body>

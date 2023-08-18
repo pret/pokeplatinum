@@ -1,0 +1,587 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000593_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? So, you are?!\nYou’re Buck’s friend, yes!\rI’ve heard about you from both Buck\nand Wake.\rWell, my young friend, you’re always\nwelcome here from now on!\rThis is a private club for only Sinnoh’s\nGym Leaders, or those vouched for by\fthose selfsame Gym Leaders.\rIt’s a place where the best seek to\nbetter themselves.\rWelcome to the Battleground!</language>
+	</row>
+	<row id="pl_msg_00000593_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What should we talk about today?\n...Ah, I know.\rLet me tell you about the volcano named\nStark Mountain.\rThat volcano dates to when Sinnoh was\nmade by the melding of time and space.\rFiery lava spilled out and pooled, and\nthen it became a Pokémon.\rIt’s said the Magma Stone was used\nto keep the Pokémon pinned down.\rIt kept the Pokémon from rampaging\nand the volcano from erupting.</language>
+	</row>
+	<row id="pl_msg_00000593_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Battleground!\nMake yourself at home like always.</language>
+	</row>
+	<row id="pl_msg_00000593_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000593_00004" index="4">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000593_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: My place is open only to the\ntoughest Trainers--I’m serious.\rYou’re supposed to be introduced by\na Gym Leader, but you’re special.\rWell, I’m off to the Battle Frontier.\rI feel like seeing how far I can go up\nthe Tower.\r</language>
+	</row>
+	<row id="pl_msg_00000593_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000593_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000593_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000593_00009" index="9">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000593_00010" index="10">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000593_00011" index="11">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000593_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: I went down to the Underground\nevery day.\rI toughened up my Pokémon by digging\nup Fossils nonstop.\rCould I show you how tough I made them\nin a battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Here goes! These are my rocking\nPokémon, my pride and joy!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: This is another topic, but you\nknow those Spheres you can dig up?\rYes, those Spheres.\nThe ones in the Underground.\rWhy do you suppose Spheres grow if\nyou leave them buried?\rIt’s not a huge issue or anything, but\ndoesn’t it strike you as odd?</language>
+	</row>
+	<row id="pl_msg_00000593_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Look, can I have some time?\rI feel lucky to have run into you here,\nso can I challenge you to a battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: ...We lost control there.\rNext time, I’d like to challenge you to\na Fossil-digging race underground.</language>
+	</row>
+	<row id="pl_msg_00000593_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Would you like to battle?\rYou’ll get to see a different me than\nyou saw at my Gym.</language>
+	</row>
+	<row id="pl_msg_00000593_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: I’ve got a TYRANITAR I’m going\nto send out.\rIt’s tougher than even my dad’s\nAGGRON!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Hmm...\nThat’s a heartbreaking answer.</language>
+	</row>
+	<row id="pl_msg_00000593_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Oh, you do want to battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: Pokémon from ancient\ntimes...\rFossils that are yet to be\ndiscovered...\rI wonder if I can find new Fossils if\nI dig all over Sinnoh?</language>
+	</row>
+	<row id="pl_msg_00000593_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: When I became a Gym Leader,\nI finally realized how great my dad is.\rNot that I’d ever admit that to him,\nof course.</language>
+	</row>
+	<row id="pl_msg_00000593_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Hi, have you been keeping\nwell?\rLet’s cut to the good stuff!\nLet’s get down to battle!</language>
+	</row>
+	<row id="pl_msg_00000593_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Yes, that’s right!\rA battle will tell you if someone you\nhaven’t seen’s been keeping well!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: You won’t battle?\nYou’re not in the mood, huh?\rWell, why not polish your Badges, then?\nThat might put a shine on your day, too.</language>
+	</row>
+	<row id="pl_msg_00000593_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Oh?\nYou do want a battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Out of the Gym, a Gym Leader\nis just another Trainer.\rBut wherever I go, I still try to be as\ntough as I can.\rIt’s not fair to my Pokémon if we were\nto lose because of me.</language>
+	</row>
+	<row id="pl_msg_00000593_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: My Grass-type Pokémon are\ngrowing good and strong.\rI’m kind of interested in what Pokémon\nyou have, too.\rWant to battle?\nA real quick one?</language>
+	</row>
+	<row id="pl_msg_00000593_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: I can’t deny that Grass-type\nPokémon have many weak points.\rBut I’ll show you that’s not the only\nfactor in deciding who wins!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Aww, really?\rMy grass Pokémon are growing good\nand strong, too...</language>
+	</row>
+	<row id="pl_msg_00000593_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: My Grass-type Pokémon are\ngrowing good and strong.\rCome on, let’s battle!\nA real quick one, OK?</language>
+	</row>
+	<row id="pl_msg_00000593_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: By the way...\nHave you been to the Old Chateau?\rMe? Uh, well, you know, I have my Gym\nLeader job and all, so...\rWell, actually, I’m here training...\n...I’m here just for fun...\rAhahaha!\nDon’t mind me!</language>
+	</row>
+	<row id="pl_msg_00000593_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: Finally, you have arrived!\rSo, you shall challenge me.\nAnd I shall win.\rYou will be startled by how much\nstronger I have become!</language>
+	</row>
+	<row id="pl_msg_00000593_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Ohohoho!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000593_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: You... You disappoint me.\nIt is very sad.\rBut, realize, you have not beaten me\nif you refuse.</language>
+	</row>
+	<row id="pl_msg_00000593_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: This time, you shall challenge\nme, yes?\rBut I shall win.\rYou will be startled by how much\nstronger I have become!</language>
+	</row>
+	<row id="pl_msg_00000593_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: You are an amazing person!\nTrès fantastique!\rI am delighted--for now I have a\npurpose!\rMy purpose, it is to defeat you!\nIt is a gift from you to me!</language>
+	</row>
+	<row id="pl_msg_00000593_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: Oh? It is you?\nAre you not taking part in Contests?\rSince you are involving yourself in\nContests, you should challenge me.</language>
+	</row>
+	<row id="pl_msg_00000593_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: Pokémon battles, they are fun,\nalways without fail.\rWhy, you ask? Because, in those\nmoments, we are at our most serious.\r</language>
+	</row>
+	<row id="pl_msg_00000593_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: No?\nWell, that is OK, also.\rJust seeing your face, it has made me\nhappy.</language>
+	</row>
+	<row id="pl_msg_00000593_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: Yes, what is it?\nI accept your challenge if you give it!</language>
+	</row>
+	<row id="pl_msg_00000593_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: I wish to battle as if I were\ndancing.</language>
+	</row>
+	<row id="pl_msg_00000593_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: I think it’s OK if I were to\nkeep losing to the same Trainer.\rBattling that person tells me how much\nmy Pokémon and I have changed.\rThat’s why I would like to challenge\nyou for a rematch now, {STRVAR_1 3, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000593_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: OK! Rei!\nOh, that’s my bow before a match.\r{STRVAR_1 3, 0, 0}, I’m throwing everything\nI have at you!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Sigh...\rI braced myself for a battle.\nThis is a little deflating...</language>
+	</row>
+	<row id="pl_msg_00000593_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Yes, what is it, {STRVAR_1 3, 0, 0}?\nWould you maybe like a battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: I love visiting here.\rBuck’s grandpa cooks for us, and it’s\nall delicious.\rThat’s not all! We can eat all we want.\nIsn’t that amazing, {STRVAR_1 3, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000593_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Being together with Pokémon\ngave me the strength to keep going.\rPlease, {STRVAR_1 3, 0, 0}, accept my\nchallenge!</language>
+	</row>
+	<row id="pl_msg_00000593_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: OK, here we come,\n{STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: OK! Got it!\rWe’ll train much harder so we can\nbattle with you, {STRVAR_1 3, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000593_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: {STRVAR_1 3, 0, 0}!\nI know I’m being a pest, but please,\faccept our challenge!</language>
+	</row>
+	<row id="pl_msg_00000593_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Hello, {STRVAR_1 3, 0, 0}!\rI’ve heard that it’s more healthy to\ngo barefoot.\rCome to think of it, the Pokémon are\nall barefooted.</language>
+	</row>
+	<row id="pl_msg_00000593_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: What’s there to do for Trainers\nhere?\rSeems to me there’s nothing to do but\nbattle!</language>
+	</row>
+	<row id="pl_msg_00000593_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: My Pokémon have new Water-type\nmoves under their belts!\rLet’s see how you bear up under them!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: Then, you get my song instead!\nEr-hem!\rThe ring is my roiling sea. ♫\nThe towering waves shaped me.\rCrash! Crash! Crasher Wake!\nCrash! Crash! Crasher Wake!\rI’m the tidal wave of power to wash\nyou away!\rPut out the fire, Crasher Wake!\nRun from electricity, Crasher Wake!\rAh, ah, aaaah!\nThe ring is my sea. ♫</language>
+	</row>
+	<row id="pl_msg_00000593_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: Words aren’t needed.\rWe understand each other through\nbattle!\rThat’s what makes us Trainers!</language>
+	</row>
+	<row id="pl_msg_00000593_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: Battles that end with both sides\nenjoying the experience without caring\fabout the winner or loser...\rThat’s what I strive for.\rOne of these days, I hope to battle\neveryone in the world...\rIsn’t that right, {STRVAR_1 3, 0, 0}?!</language>
+	</row>
+	<row id="pl_msg_00000593_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: All right!\nHow’s it going?\rMy Pokémon were toughened up by\nstormy white waters!\rThey’ll take everything you can throw\nat them and then pull you under!\rVictory will be ours!\nCome on, let’s get it done!</language>
+	</row>
+	<row id="pl_msg_00000593_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: That’s the spirit!\nBring it on!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: Whoops!\rYou’re giving me the slip?\nYou’re a slick one, {STRVAR_1 3, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000593_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: So, what’s the story?\nAre we gonna battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: For all the training I do, there\nare still plenty tougher than me.\rThe stronger I get, the farther away\nthe goal seems to be.\rThe road is harsh and long.\nThere’s no end to it.\rBut beside me always are my Pokémon.\nEvery inch of the way!</language>
+	</row>
+	<row id="pl_msg_00000593_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: I’ve faced many a challenger at\nmy Gym.\rI trained on Iron Island while\ncontemplating my worth for days...\rI have the confidence now to batter\ndown your defenses.\rCould I ask you for a rematch?</language>
+	</row>
+	<row id="pl_msg_00000593_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: We are tempered and honed by\nbattling the strong.\rHere’s to our showdown!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: When you came to the Gym, you\nhad a glint that’s dulled now.</language>
+	</row>
+	<row id="pl_msg_00000593_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: I have the confidence now to\nbatter down your defenses.\rCould I ask you for a rematch?</language>
+	</row>
+	<row id="pl_msg_00000593_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: I trained by pummeling steel\ncontinuously on Iron Island alongside\fPokémon...\rGwahahahaha!\nI could still use more toughening up!</language>
+	</row>
+	<row id="pl_msg_00000593_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Since we last lost to you, we’ve\nbeen in training.\rI think we’ve addressed our\nshortcomings.\rCould I ask you for another rematch?</language>
+	</row>
+	<row id="pl_msg_00000593_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Thank you!\rLike me, my Pokémon were longing for\nanother chance to battle with you!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Gwahahaha!\nThat’s disappointing, but all right!\rThere’s a lot to be learned by battling\nyou. We had our hopes up.</language>
+	</row>
+	<row id="pl_msg_00000593_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Could I ask you for another\nrematch?</language>
+	</row>
+	<row id="pl_msg_00000593_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Argh...\nCame up short again...\rDo I talk to my son Roark to train\ntogether...?\rNo, that’s too embarrassing...\nHmm... This is a dilemma...</language>
+	</row>
+	<row id="pl_msg_00000593_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: ...That Roark thinks he can show\nup his old man?\rMy act needs polishing still, I fear...\rAh, it’s you!\nDon’t mind me. Make yourself at home.</language>
+	</row>
+	<row id="pl_msg_00000593_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Hiya!\nWhat’s up?\rI bet you can’t tell what I’m thinking!\rI’ll give the answer away.\nI want to battle with you!</language>
+	</row>
+	<row id="pl_msg_00000593_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: This time, Candice is going to\npush through on willpower!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Oh...\nDid my willpower intimidate you?</language>
+	</row>
+	<row id="pl_msg_00000593_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Listen, listen.\nYou’ll battle Candice, won’t you?</language>
+	</row>
+	<row id="pl_msg_00000593_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Oh, wow, your scarf is totally\nin fashion.\rI wish I had one like that.</language>
+	</row>
+	<row id="pl_msg_00000593_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Candice is on fire!\rI’m blazing hot!\rHot enough to melt Ice-type Pokémon!\rI need a battle to cool me down!</language>
+	</row>
+	<row id="pl_msg_00000593_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: OK! I’ll show you how good\nCandice...\rI mean, how good my Pokémon can be!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Awww!</language>
+	</row>
+	<row id="pl_msg_00000593_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: You really want to battle\nwith me, don’t you?</language>
+	</row>
+	<row id="pl_msg_00000593_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Awww!\nThat’s it!\rI’m going to train so I can throw a\nFocus Punch myself!</language>
+	</row>
+	<row id="pl_msg_00000593_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Your Pokémon...\nI can feel their power!\rOf course, you can sense the power of\nmy Pokémon, can’t you?\rLet us battle with you!</language>
+	</row>
+	<row id="pl_msg_00000593_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Yeah! It’s electric, this\nfeeling of anticipation!\rLet’s do it!\nWe’re going to make some sparks fly!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Aww, come on now.\nDon’t disappoint me...</language>
+	</row>
+	<row id="pl_msg_00000593_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Hm? What’s up?\nYou do want to battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Winning makes me happy, and\nlosing leaves me angry...\rThat’s no great revelation, but it’s\nwhat makes me stronger.</language>
+	</row>
+	<row id="pl_msg_00000593_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: My ELECTIVIRE demands tough\nopponents.\rI’m willing to beg.\nLet’s battle!</language>
+	</row>
+	<row id="pl_msg_00000593_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: You! And me!\nLet’s make some sparks fly!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Well, yeah, an ELECTIVIRE is\nintimidating. I hear you...</language>
+	</row>
+	<row id="pl_msg_00000593_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Hm? What’s up?\nYou’re willing to face my ELECTIVIRE?\fAnd help toughen up my Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000593_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Some Trainers have Pokémon\nthey just have to have in their party.\rFor me, ELECTIVIRE is that Pokémon...</language>
+	</row>
+	<row id="pl_msg_00000593_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: Oh, hello, {STRVAR_1 3, 0, 0}.\nYou’re my opponent of the day?</language>
+	</row>
+	<row id="pl_msg_00000593_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: My Pokémon have been itching\nfor a battle.\r</language>
+	</row>
+	<row id="pl_msg_00000593_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: Oh, but my Pokémon were itching\nfor a battle...</language>
+	</row>
+	<row id="pl_msg_00000593_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: {STRVAR_1 3, 0, 0}, may I ask you for\na battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: Thank you, {STRVAR_1 3, 0, 0}!\rThanks to you, my adorable Pokémon\nbecame a little tougher.</language>
+	</row>
+	<row id="pl_msg_00000593_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: It’s been a long time...\nHasn’t it?\rWould you care to have a battle with\nme?</language>
+	</row>
+	<row id="pl_msg_00000593_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: I should warn you, my Pokémon\ncan be quite rambunctious.\r</language>
+	</row>
+	<row id="pl_msg_00000593_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: Giggle...\rPokémon would get worn out if we\nbattled all the time, wouldn’t they?</language>
+	</row>
+	<row id="pl_msg_00000593_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: ...Yes?\nWould you like to battle after all?</language>
+	</row>
+	<row id="pl_msg_00000593_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: Being a Trainer isn’t easy.\rThe more you battle, the more you\ndiscover.\rBut, you know?\nI love Pokémon for that, too!</language>
+	</row>
+	<row id="pl_msg_00000593_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: {STRVAR_1 3, 0, 0}!\nPlease teach Mira about Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000593_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: {STRVAR_1 3, 0, 0}!\rMira will show you that Mira doesn’t get\nlost anymore, {STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: Mira is a little sad...\nMira’s Pokémon are stronger now.</language>
+	</row>
+	<row id="pl_msg_00000593_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: {STRVAR_1 3, 0, 0}, please?\nPlease teach Mira about Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000593_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: {STRVAR_1 3, 0, 0}, please teach Mira\nabout Pokémon again!\rMira wants to get a lot, lot stronger,\nlike {STRVAR_1 3, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000593_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: {STRVAR_1 3, 0, 0}!\nMira is stronger now!\fPlease! Battle with Mira!</language>
+	</row>
+	<row id="pl_msg_00000593_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: {STRVAR_1 3, 0, 0} will be shocked by\nMira!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: Mira really did get stronger.\nMira wanted {STRVAR_1 3, 0, 0} to see.</language>
+	</row>
+	<row id="pl_msg_00000593_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: You will battle Mira?</language>
+	</row>
+	<row id="pl_msg_00000593_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: {STRVAR_1 3, 0, 0}, you are always with\nyour Pokémon.\rThat’s how you got to be so strong.\nMira is beginning to understand!</language>
+	</row>
+	<row id="pl_msg_00000593_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: You and I, we’re both Trainers.\rLet’s forego the small talk and proceed\nright to battle.\rThat’s my style!</language>
+	</row>
+	<row id="pl_msg_00000593_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Battling is our way of greeting!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: All right, then.\nSo, what’ve you got to tell me?</language>
+	</row>
+	<row id="pl_msg_00000593_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: See? It just doesn’t feel right\nif we don’t battle, does it?</language>
+	</row>
+	<row id="pl_msg_00000593_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Know your enemy.\rIf you know your opponent’s Pokémon\nand what moves they use...\rIf you have intelligence like that, your\nchances of winning are much improved.</language>
+	</row>
+	<row id="pl_msg_00000593_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Hi. Long time, no see.\rIf it’s all right with you, I’d like to\nchallenge you to a battle right now.</language>
+	</row>
+	<row id="pl_msg_00000593_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: We’re pulling out all the stops\nto put your Pokémon down.\r</language>
+	</row>
+	<row id="pl_msg_00000593_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Oh, all right.\nThen we’ll wait till you’re ready.</language>
+	</row>
+	<row id="pl_msg_00000593_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: That look you have...\nI take it you’re ready for our battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: If I weren’t on Iron Island\nthen...\rIf you hadn’t arrived on Iron Island\nthen...\rPerhaps we would have never met.\nOr, would we have met elsewhere?</language>
+	</row>
+	<row id="pl_msg_00000593_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: I...\nIs it OK to battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...OK.\nI’ll do my best.\r</language>
+	</row>
+	<row id="pl_msg_00000593_00126" index="126">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...Oh?\n...You can be that mean?</language>
+	</row>
+	<row id="pl_msg_00000593_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...So?\nAre we battling?</language>
+	</row>
+	<row id="pl_msg_00000593_00128" index="128">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...You’re so strong.\nIt makes me feel happy.\r...I don’t know why.\nThis is a strange feeling...</language>
+	</row>
+	<row id="pl_msg_00000593_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...Oh?\nA battle? With me?</language>
+	</row>
+	<row id="pl_msg_00000593_00130" index="130">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...OK.\nI...won’t lose...!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00131" index="131">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...Oh, you.\nI’m getting to dislike you a little.</language>
+	</row>
+	<row id="pl_msg_00000593_00132" index="132">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...If you won’t battle, I might\nnot come back...</language>
+	</row>
+	<row id="pl_msg_00000593_00133" index="133">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley: ...I might like battling with\nyou.\r...Just a little.\nOnly a little tiny bit.</language>
+	</row>
+	<row id="pl_msg_00000593_00134" index="134">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Ehehehe! You’re here at last!\nLet’s not waste time! Let’s do this!</language>
+	</row>
+	<row id="pl_msg_00000593_00135" index="135">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: ...I’m telling you right now.\nI’m seriously tough. Act surprised!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00136" index="136">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Huh, what?\nThat takes the wind out of my sails.\rWell, since you’re here, kick back,\nmake yourself at home, and all that.</language>
+	</row>
+	<row id="pl_msg_00000593_00137" index="137">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: What? What?!\nSo we are going to battle?</language>
+	</row>
+	<row id="pl_msg_00000593_00138" index="138">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Fweh! Too much!\rI guess I’ll better my team\nat the Battle Tower.</language>
+	</row>
+	<row id="pl_msg_00000593_00139" index="139">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: One, there’s no shortcuts in\nthe way of Pokémon!\rTwo...\nNever mind that, let’s do this!</language>
+	</row>
+	<row id="pl_msg_00000593_00140" index="140">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: I can feel my Pokémon shivering\ninside their Poké Balls!\rIt’s out of anticipation, not fear!\r</language>
+	</row>
+	<row id="pl_msg_00000593_00141" index="141">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Hey! This place! It’s named\nthe Battleground for a reason!</language>
+	</row>
+	<row id="pl_msg_00000593_00142" index="142">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: So?\nDo you feel like battling now?</language>
+	</row>
+	<row id="pl_msg_00000593_00143" index="143">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Fweh! Too much!\rI guess I’ll better my team on\nStark Mountain!</language>
+	</row>
+</body>

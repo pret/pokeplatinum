@@ -37,7 +37,7 @@
 #include "overlay022/struct_ov22_0225AF8C.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02002F38.h"
 #include "unk_02005474.h"

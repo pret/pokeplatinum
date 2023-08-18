@@ -1,0 +1,523 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000615_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fly to where?</language>
+	</row>
+	<row id="pl_msg_00000615_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GUIDE MAP</language>
+	</row>
+	<row id="pl_msg_00000615_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small path through a lush, green,\nwooded area. The densely grown trees\ngive off a thick aroma.</language>
+	</row>
+	<row id="pl_msg_00000615_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A winding path that twists through\ngrassy fields. Young Trainers like to\ntest their battle skills here.</language>
+	</row>
+	<row id="pl_msg_00000615_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Despite being so close to a big town,\nthis path retains its relaxed, natural\natmosphere.</language>
+	</row>
+	<row id="pl_msg_00000615_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Once one gets through the tunnel,\nthe city of Oreburgh is just a stone’s\nthrow away.</language>
+	</row>
+	<row id="pl_msg_00000615_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A charmingly natural path that wanders\npast many ponds and groves of trees.</language>
+	</row>
+	<row id="pl_msg_00000615_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Ravaged Path was hewn through\na rocky outcropping. It is a shortcut\nthat leads straight to Floaroma Town.</language>
+	</row>
+	<row id="pl_msg_00000615_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A wide, wooden walkway spans a large\npond. Fishermen idle their time away\ndangling lines from the walkway.</language>
+	</row>
+	<row id="pl_msg_00000615_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A quietly flowing stream and hilly\nterrain with one-way ledges make this\na fun area for adventure.</language>
+	</row>
+	<row id="pl_msg_00000615_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Near the entrance of Eterna Forest\nis a cabin whose keepers offer rest\nto weary travelers that stop by.</language>
+	</row>
+	<row id="pl_msg_00000615_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Smoothly paved in asphalt, the Cycling\nRoad is heavenly for bicycle lovers.</language>
+	</row>
+	<row id="pl_msg_00000615_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Below the Cycling Road, one can see\nthe entrance to Wayward Cave.</language>
+	</row>
+	<row id="pl_msg_00000615_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Located at the foot of Mt. Coronet,\nthis road is carved into the rugged,\nrocky terrain.</language>
+	</row>
+	<row id="pl_msg_00000615_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A lush field of grass spreads from\nMt. Coronet’s sheer rock face,\ncreating a vista of contrasts.</language>
+	</row>
+	<row id="pl_msg_00000615_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Berry Master, an old man who loves\nnature, Pokémon, and Berries, makes\nhis home here.</language>
+	</row>
+	<row id="pl_msg_00000615_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The streams forded by this path wind\npast copses and grassy patches in\na serene and soothing manner.</language>
+	</row>
+	<row id="pl_msg_00000615_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Lost Tower is where Pokémon are\nlaid to rest when their lives come\nto an end.</language>
+	</row>
+	<row id="pl_msg_00000615_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A canyon covered in untamed nature.\nIt is always shrouded by a dense fog.</language>
+	</row>
+	<row id="pl_msg_00000615_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grandma Wilma’s house stands alone in an\nisolated spot deep among mountains.</language>
+	</row>
+	<row id="pl_msg_00000615_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This narrow route is lined with deep,\ntall grass that tickles the noses of\npeople straying off the path.</language>
+	</row>
+	<row id="pl_msg_00000615_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Café Cabin stands in a wood.\nThe house special is freshly milked\nMoomoo Milk.</language>
+	</row>
+	<row id="pl_msg_00000615_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A mountain path that tunnels through\nMt. Coronet, one of the tallest\nmountains in Sinnoh.</language>
+	</row>
+	<row id="pl_msg_00000615_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A tall, sturdy wall surrounds an\nexpansive estate that takes up nearly\nhalf of the road space.</language>
+	</row>
+	<row id="pl_msg_00000615_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beyond the wall, one can see the\nstately Pokémon Mansion and the\nowner’s prized garden behind it.\n</language>
+	</row>
+	<row id="pl_msg_00000615_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This path weaves among deep puddles\nmade by the unending rainfall. It is\nwet and miserable for Trainers.</language>
+	</row>
+	<row id="pl_msg_00000615_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a house here whose residents\noffer to trade TMs for Red, Blue,\nYellow, or Green Shards.</language>
+	</row>
+	<row id="pl_msg_00000615_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Offshore boulders form a jetty that\nbecalms waves reaching the beach.\nA resort hotel overlooks the water.</language>
+	</row>
+	<row id="pl_msg_00000615_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In a small house on the beach lives\na single man who refers to himself as\nDr. Footstep.</language>
+	</row>
+	<row id="pl_msg_00000615_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The road joining Veilstone City and a\nlake is described as either “wildly\nnatural” or simply “a mess.”</language>
+	</row>
+	<row id="pl_msg_00000615_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a cave hewn into the sheer\nrock wall at the roadside. The hole\nwas made by a Ruin Maniac.</language>
+	</row>
+	<row id="pl_msg_00000615_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This area is always inundated by heavy\nrainfall. Only hardy Trainers that can\ntake the rain gather here.</language>
+	</row>
+	<row id="pl_msg_00000615_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This mountainous road leads from Mt.\nCoronet. Its constant snowfall and\ndeep snowdrifts impede travelers.</language>
+	</row>
+	<row id="pl_msg_00000615_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Snow blows down from Mt. Coronet and\ngrows into a harsh, ceaseless blizzard.\nBe prepared for the worst.</language>
+	</row>
+	<row id="pl_msg_00000615_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Despite its shortness, this road is\nrevered by fishing enthusiasts as a\ngreat, yet little known, fishing spot.</language>
+	</row>
+	<row id="pl_msg_00000615_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A beautiful white-sand beach only five\nseconds on foot from Sandgem Town.\nA pleasant breeze blows from the sea.</language>
+	</row>
+	<row id="pl_msg_00000615_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The sea here is perfect for swimming,\nwith gentle winds and tides. There are\nsandbars for resting, too.</language>
+	</row>
+	<row id="pl_msg_00000615_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A straight path hemmed by green grass\nand sparse stands of trees.</language>
+	</row>
+	<row id="pl_msg_00000615_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At the end of the path stands the\ngateway to Pal Park.</language>
+	</row>
+	<row id="pl_msg_00000615_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A sandy beach extends from the road.\nThe beach is busy with avid Fishermen\nhappily casting at the water’s edge.</language>
+	</row>
+	<row id="pl_msg_00000615_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A man who loves fishing lives near\nhere. There is also a man who will\ncompare sizes of caught fish.</language>
+	</row>
+	<row id="pl_msg_00000615_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A marine route that requires travelers\nto navigate around jutting rocks and\nsandbars.</language>
+	</row>
+	<row id="pl_msg_00000615_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">With grass fields, rocky outcroppings,\nthe sea, and sandbars, this area is\nlike a miniature of the Sinnoh region.</language>
+	</row>
+	<row id="pl_msg_00000615_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The path makes its way up and down\namong rocky outcroppings. It is\nphysically challenging.</language>
+	</row>
+	<row id="pl_msg_00000615_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A path that winds precariously along\nsheer cliffs that go right to the edge\nof the sea’s pounding waves.</language>
+	</row>
+	<row id="pl_msg_00000615_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a small island in the bay.\nAn odd man who speaks foreign\nlanguages lives there.</language>
+	</row>
+	<row id="pl_msg_00000615_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rugged and steep mountain path\nwhere vision is limited by steadily\nfalling volcanic ash.</language>
+	</row>
+	<row id="pl_msg_00000615_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This rough path is harshly raked by\na horizontally blowing sandstorm\ndriven by strong winds off the sea.</language>
+	</row>
+	<row id="pl_msg_00000615_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A seaside path that makes its way\nthrough wildly growing trees and\nplants.</language>
+	</row>
+	<row id="pl_msg_00000615_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A sea route that stretches from west\nto east. There is an island that is\nrich with plant life along the way.</language>
+	</row>
+	<row id="pl_msg_00000615_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A straight path bounded by the sea on\nboth sides. It leads to the Flower\nParadise.</language>
+	</row>
+	<row id="pl_msg_00000615_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small town with the fresh scent\nof new leaves in the air. It feels\nlike a place where adventures start.</language>
+	</row>
+	<row id="pl_msg_00000615_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your own home and your best friend’s\nhouse are located here.</language>
+	</row>
+	<row id="pl_msg_00000615_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A sandy town that is located right\nnext to a beach. It is redolent with\nthe salty scent of the sea.</language>
+	</row>
+	<row id="pl_msg_00000615_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Prof. Rowan’s lab is the town’s\nlandmark. He conducts his\nstudies on Pokémon here.</language>
+	</row>
+	<row id="pl_msg_00000615_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A town of flower lovers, Floaroma Town\nis always perfumed with the sweet\nscent of flowers.</language>
+	</row>
+	<row id="pl_msg_00000615_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A short, floral pathway opens up to\na sprawling sea of flowers in bloom.</language>
+	</row>
+	<row id="pl_msg_00000615_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the center of town is the flower\nshop called Pick a Peck of Colors.</language>
+	</row>
+	<row id="pl_msg_00000615_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The temperate climate makes this town\na relaxed and casual place for people\nand Pokémon to live in.</language>
+	</row>
+	<row id="pl_msg_00000615_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a Pokémon Day Care and\na Pokémon Center here.</language>
+	</row>
+	<row id="pl_msg_00000615_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beyond a path hemmed by stands of\ntrees, one can find the entrance\nto the Solaceon Ruins.</language>
+	</row>
+	<row id="pl_msg_00000615_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A tiny town that preserves the history\nof Sinnoh and the old ways of life.</language>
+	</row>
+	<row id="pl_msg_00000615_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the center of the town is a small\nshrine that dates to ancient times.</language>
+	</row>
+	<row id="pl_msg_00000615_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A town where hot-blooded Trainers\ngather to work out and hone their\nbattling skills.</language>
+	</row>
+	<row id="pl_msg_00000615_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A town that attracts Trainers who\nknow there are other ways of enjoying\nPokémon than battling.</language>
+	</row>
+	<row id="pl_msg_00000615_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The most modernized city in the Sinnoh\nregion. It is bustling with people on\nthe go.</language>
+	</row>
+	<row id="pl_msg_00000615_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokétch Company, the developer\nand manufacturer of the Pokétch, is\nlocated here.</language>
+	</row>
+	<row id="pl_msg_00000615_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jubilife TV, Sinnoh’s TV network, is\nlocated here. It is an entertaining\nplace to visit.</language>
+	</row>
+	<row id="pl_msg_00000615_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Global Terminal is located here.\nIt is your connection to the entire\nworld.</language>
+	</row>
+	<row id="pl_msg_00000615_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Located here is the Trainers’ School.\nDrop in to study up on the basics of\nPokémon.</language>
+	</row>
+	<row id="pl_msg_00000615_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A port city that is bisected by a\ncanal. It has a distinctly exotic air\nof foreign culture.</language>
+	</row>
+	<row id="pl_msg_00000615_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Head to the library if you want a\nworkout for the mind. Head to the Gym\nif you just want to work out.</language>
+	</row>
+	<row id="pl_msg_00000615_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Large ships can always be seen\nmoored at the town’s piers.</language>
+	</row>
+	<row id="pl_msg_00000615_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A vibrant and energetic mining town\nthat is blessed with a precious natural\nresource.</language>
+	</row>
+	<row id="pl_msg_00000615_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a Gym where mine workers\ntake breaks in between their\nexhausting work shifts.</language>
+	</row>
+	<row id="pl_msg_00000615_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a museum that specializes in\nexhibits related to the town’s coal\nmine.</language>
+	</row>
+	<row id="pl_msg_00000615_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Huge deposits of coal still sleep\nunderneath the ground. The entrance\nto the Oreburgh Mine is here.</language>
+	</row>
+	<row id="pl_msg_00000615_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An old city that shows fading and\nalmost-forgotten vestiges of ancient\nhistory.</language>
+	</row>
+	<row id="pl_msg_00000615_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Cycle Shop is located here.\nThere is also a big building with\na slightly sinister atmosphere.</language>
+	</row>
+	<row id="pl_msg_00000615_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A statue of an ancient Pokémon is\nprominently and reverentially displayed.</language>
+	</row>
+	<row id="pl_msg_00000615_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Gym is indispensable in any town that\nhas many people coming and going.\nThis city is no exception.</language>
+	</row>
+	<row id="pl_msg_00000615_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This friendly city started as a place\nwhere people and Pokémon gathered,\nthen grew into a center of commerce.</language>
+	</row>
+	<row id="pl_msg_00000615_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The entrance to Amity Square is here.\nThe square is a place where Trainers\ncan stroll peacefully with Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000615_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you care about the looks of your\nPokémon, head for the Contest Hall.\nFor toughness, go to the Gym.</language>
+	</row>
+	<row id="pl_msg_00000615_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a building here that is\nsymbolic of the city’s status as a\nplace where different cultures meet.</language>
+	</row>
+	<row id="pl_msg_00000615_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A nice fountain with benches, as well\nas the Pokémon Fan Club, are among\nthe city’s amenities.</language>
+	</row>
+	<row id="pl_msg_00000615_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This city was originally founded to\nprotect the Great Marsh. It has grown\nnaturally over the years.</language>
+	</row>
+	<row id="pl_msg_00000615_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Gym is a good example of the\nabundant water resources available to\nthe city.</language>
+	</row>
+	<row id="pl_msg_00000615_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a lookout that affords views\nof the Great Marsh. The gates to\nthe Safari Zone are also here.</language>
+	</row>
+	<row id="pl_msg_00000615_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This city was made by carving out\nsteep, rocky mountains. Its isolation\nlimits its contact with other cities.</language>
+	</row>
+	<row id="pl_msg_00000615_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are warehouses for storing a\nvariety of goods. There is also a\nmajor department store.</language>
+	</row>
+	<row id="pl_msg_00000615_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At the highest point in the city is\nTeam Galactic’s headquarters.</language>
+	</row>
+	<row id="pl_msg_00000615_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The city puts effort into providing\nentertainment. Naturally, one can find\na Gym here.</language>
+	</row>
+	<row id="pl_msg_00000615_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Conveniently located right next door\nto the Game Corner is the Prize\nExchange.</language>
+	</row>
+	<row id="pl_msg_00000615_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A port city that was built around the\nbay portion of the cape. It is criss-\ncrossed by elevated walkways.</language>
+	</row>
+	<row id="pl_msg_00000615_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Gym is located atop a rocky\noutcropping. Down on the beach is\na festive bazaar.</language>
+	</row>
+	<row id="pl_msg_00000615_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Vista Lighthouse’s bright beacon\nilluminates the Sinnoh region.</language>
+	</row>
+	<row id="pl_msg_00000615_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A winter wonderland of a city where\nstout trees and buildings are blanketed\nin thick snow.</language>
+	</row>
+	<row id="pl_msg_00000615_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Gym is at the heart of the city.\nTo the north is the Snowpoint Temple.</language>
+	</row>
+	<row id="pl_msg_00000615_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainers seeking to become the best\narrive here after enduring a long and\ngrueling journey.</language>
+	</row>
+	<row id="pl_msg_00000615_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon League reception counter\nis located here. Only those who have\nbeaten all the Gyms may enter.</language>
+	</row>
+	<row id="pl_msg_00000615_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Victory Road is the last and toughest\nof the challenges leading up to the\nPokémon League.</language>
+	</row>
+	<row id="pl_msg_00000615_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A tiny port city where Trainers who\nlove battling more than eating gather.</language>
+	</row>
+	<row id="pl_msg_00000615_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Moored at the pier is the ferry to\nSnowpoint City.</language>
+	</row>
+	<row id="pl_msg_00000615_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The gateway to the Battle Frontier is\nlocated here.</language>
+	</row>
+	<row id="pl_msg_00000615_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">One of the lakes that is symbolic of\nthe water-rich Sinnoh region. There is\nan odd legend associated with it.</language>
+	</row>
+	<row id="pl_msg_00000615_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It is possible to enter the cave\nunderneath the lake from the\nisland in the middle.</language>
+	</row>
+	<row id="pl_msg_00000615_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">One of the lakes that is symbolic of\nthe water-rich Sinnoh region. There is\nan odd legend associated with it.</language>
+	</row>
+	<row id="pl_msg_00000615_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It is possible to enter the cave\nunderneath the lake from the\nisland in the middle.</language>
+	</row>
+	<row id="pl_msg_00000615_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A high-class restaurant is located\non a hill overlooking the lake.</language>
+	</row>
+	<row id="pl_msg_00000615_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">One of the lakes that is symbolic of\nthe water-rich Sinnoh region. There is\nan odd legend associated with it.</language>
+	</row>
+	<row id="pl_msg_00000615_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It is possible to enter the cave\nunderneath the lake from the\nisland in the middle.</language>
+	</row>
+	<row id="pl_msg_00000615_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The fourth lake of Sinnoh that was\nkept secret.</language>
+	</row>
+	<row id="pl_msg_00000615_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beneath the lake’s surface is a cave\nwhere dimensions are distorted.</language>
+	</row>
+	<row id="pl_msg_00000615_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Numerous wind turbines stand in the\nvicinity of the Valley Windworks.</language>
+	</row>
+	<row id="pl_msg_00000615_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Winds blowing through the canyon feed\nthe wind turbines to generate clean\nelectricity.</language>
+	</row>
+	<row id="pl_msg_00000615_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A forest enveloped in chilly air.\nThick stands of trees turn the forest\ninto a natural maze.</language>
+	</row>
+	<row id="pl_msg_00000615_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Deep in the forest is the Old Chateau.\nIt is falling into disrepair after\nbeing abandoned by its owner.</language>
+	</row>
+	<row id="pl_msg_00000615_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The sprawling ironworks is located\nwith the forest at its back.</language>
+	</row>
+	<row id="pl_msg_00000615_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The ironworks refines iron ore mined\nfrom Mt. Coronet to make iron and\nto manufacture mechanical parts.</language>
+	</row>
+	<row id="pl_msg_00000615_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A sacred mountain that is capped the\nyear round with snow. A gigantic maze\nsprawls inside it.</language>
+	</row>
+	<row id="pl_msg_00000615_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is an ancient ruin named the\nSpear Pillar located here.</language>
+	</row>
+	<row id="pl_msg_00000615_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small, crescent-shaped pond that\nlies inside a closed-off forest.</language>
+	</row>
+	<row id="pl_msg_00000615_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A rugged, seemingly indestructible rock\nmountain that is thickly blanketed by\nthe volcanic ash it spews.</language>
+	</row>
+	<row id="pl_msg_00000615_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Inside the mountain, fissures in spilled\nand hardened lava form enormous\ncaverns.</language>
+	</row>
+	<row id="pl_msg_00000615_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A speck of an island far from any\ncivilization. It is covered in an\nabundance of flowers.</language>
+	</row>
+	<row id="pl_msg_00000615_00126" index="126">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small, ore-rich island that is\noff the coast of Eterna City.</language>
+	</row>
+	<row id="pl_msg_00000615_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Inside the island are remnants of an\niron ore mining operation from the\npast.</language>
+	</row>
+	<row id="pl_msg_00000615_00128" index="128">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small, round pond that lies\ninside a closed-off forest.</language>
+	</row>
+	<row id="pl_msg_00000615_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Frontier--where the best of\nthe best Trainers gather to test\ntheir skill--is located here.</language>
+	</row>
+</body>

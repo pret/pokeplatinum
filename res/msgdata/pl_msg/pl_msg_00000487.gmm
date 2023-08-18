@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000487_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000487_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 211\nMt. Coronet</language>
+	</row>
+	<row id="pl_msg_00000487_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 211\nEterna City</language>
+	</row>
+</body>

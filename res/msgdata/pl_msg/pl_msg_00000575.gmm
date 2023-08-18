@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000575_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yahoo!\r</language>
+	</row>
+	<row id="pl_msg_00000575_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\rI got something cool.\nI’ll show you as a special favor!\r</language>
+	</row>
+	<row id="pl_msg_00000575_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Huh?\nWhat the...\rWhat’s this all about?\r...I got some Seals, but I forgot to\nput them on.\rOh, right.\nIt’s because I was at the ruins.\rThe ruins here are cool.\nYou have to check it out.\rI even found a Hidden Machine.\nIt was Defog!\rAnyway, I’ll battle you another time.\nSee ya!\r</language>
+	</row>
+	<row id="pl_msg_00000575_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Breathing in this refreshing air...\nIt perks up Pokémon, don’t you think?</language>
+	</row>
+	<row id="pl_msg_00000575_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy, traveling Trainer.\nTake it easy, slow, and casual.</language>
+	</row>
+	<row id="pl_msg_00000575_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy, traveling Trainer.\nThere’s nothing here.\rWell, nothing but plenty of time to\nthink, anyway.\rOh, right. We have the ruins here.\nWhy not take a tour through that?</language>
+	</row>
+	<row id="pl_msg_00000575_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m too little, so I don’t know\nhow to battle very good.\rThe nice Day-Care Lady is raising\nmy Pokémon for me.</language>
+	</row>
+	<row id="pl_msg_00000575_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Every Sunday, I visit the Lost\nTower...</language>
+	</row>
+	<row id="pl_msg_00000575_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There used to be nothing here but\na road that went straight through.\rOver time, Pokémon and people just\ngathered, and the town came to be.</language>
+	</row>
+	<row id="pl_msg_00000575_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A traveling Trainer, huh?\rTell me, how many kinds of Pokémon\nhave you met so far?\rIf you’re a competent Trainer, I’d\nthink you’d’ve met at least fifty.\rIf you haven’t, go farther abroad and\nsearch wider, youngster.</language>
+	</row>
+	<row id="pl_msg_00000575_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your encounters with Pokémon can\nbe considered your shared history.\rThis here’s a Pokétch app called\nPokémon History.\rUse it to see your history of\nPokémon catches.\r</language>
+	</row>
+	<row id="pl_msg_00000575_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You have your history, and each\nPokémon has its own history.\rWhen the two collide, new drama\nis born.</language>
+	</row>
+	<row id="pl_msg_00000575_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Solaceon Town\nFree of Worry!</language>
+	</row>
+	<row id="pl_msg_00000575_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Day Care\nLet Us Raise Your Pokémon</language>
+	</row>
+	<row id="pl_msg_00000575_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon News Press\nWanted: Pro Pokémon Catcher!</language>
+	</row>
+</body>

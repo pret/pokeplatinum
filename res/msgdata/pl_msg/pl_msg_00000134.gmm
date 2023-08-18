@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000134_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Great Marsh is vast!\nHow vast is it, you ask?\rTake a look from the Observatory\nand you can see for yourself!</language>
+	</row>
+	<row id="pl_msg_00000134_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pastoria’s Great Marsh was once\na part of the sea.\rThe seawater drained slowly away over\ntime, leaving the huge marshland.\rThat’s why they say there are rare\nPokémon that you can only see here.</language>
+	</row>
+	<row id="pl_msg_00000134_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to battle with me?\nAs a memento of your visit to Pastoria?</language>
+	</row>
+	<row id="pl_msg_00000134_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll let you join my fan club if you can\nbeat me!\r</language>
+	</row>
+	<row id="pl_msg_00000134_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re not interested in Idols?\n...I think I’m going to cry.</language>
+	</row>
+	<row id="pl_msg_00000134_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, that’s me and my Pokémon!\nI hope you’ll support us!\rJust so you know, our latest single is\ntitled “Jigglin’ Pokémon Wub”!</language>
+	</row>
+	<row id="pl_msg_00000134_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are we all ready to have some fun?\nOur battle will be fun! OK?!</language>
+	</row>
+	<row id="pl_msg_00000134_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, how shall we do this?\nShall we do something fantastical?\r</language>
+	</row>
+	<row id="pl_msg_00000134_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, how shall I say this...?\nIt makes me all lonely, I say...</language>
+	</row>
+	<row id="pl_msg_00000134_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, let’s see!\nWhich town will we go to next?</language>
+	</row>
+	<row id="pl_msg_00000134_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Come on, let’s show off our Pokémon!\nLet’s do battle, kiddo!</language>
+	</row>
+	<row id="pl_msg_00000134_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your spirit’s vibes...\nYou’ve got rock in your veins!\r</language>
+	</row>
+	<row id="pl_msg_00000134_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My guitar...\nIt lies broken and weeping...</language>
+	</row>
+	<row id="pl_msg_00000134_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rock is about your spirit!\nBattling is about spirit, too!\fThat’s why a battle is rock!</language>
+	</row>
+</body>

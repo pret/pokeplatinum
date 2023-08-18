@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_defs/struct_0207C894.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 typedef struct {
     UnkStruct_0207C894 unk_00;

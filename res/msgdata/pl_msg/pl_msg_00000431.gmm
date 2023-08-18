@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000431_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It will forget the saying it now\nknows. Is that OK?</language>
+	</row>
+	<row id="pl_msg_00000431_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Press the A or B Button, then speak\ninto the microphone.\r</language>
+	</row>
+	<row id="pl_msg_00000431_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} learned a new saying!\r</language>
+	</row>
+	<row id="pl_msg_00000431_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} failed to learn a new\nsaying.\r</language>
+	</row>
+	<row id="pl_msg_00000431_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to try again?</language>
+	</row>
+	<row id="pl_msg_00000431_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It seems to be distracted and\nunable to concentrate...</language>
+	</row>
+	<row id="pl_msg_00000431_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes</language>
+	</row>
+	<row id="pl_msg_00000431_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No</language>
+	</row>
+</body>

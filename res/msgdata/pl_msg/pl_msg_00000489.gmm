@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000489_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Backlot in the Pokémon Mansion \nlooks forward to seeing visitors.\rHe must be able to wait around because\nhe wants to brag about something.</language>
+	</row>
+	<row id="pl_msg_00000489_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are good trees that you can\nsmear with Honey, and some you can’t.\rIf you want to lure rare Pokémon,\nyou have to find an attractive tree.</language>
+	</row>
+	<row id="pl_msg_00000489_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Why, hello there!\rIt’s nice to have an average citizen\nsay hi to us Policemen!</language>
+	</row>
+	<row id="pl_msg_00000489_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Patrols day and night...\nI’m feeling drowsy... Yawn...</language>
+	</row>
+	<row id="pl_msg_00000489_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yo!\nWorking hard at it, Trainer?</language>
+	</row>
+	<row id="pl_msg_00000489_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Just between you and me...\nI think we’re on patrol too much.</language>
+	</row>
+	<row id="pl_msg_00000489_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 212\nHearthome City</language>
+	</row>
+	<row id="pl_msg_00000489_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Mansion\nPlease Visit for Pokémon Viewings</language>
+	</row>
+	<row id="pl_msg_00000489_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips\rThe items in the Bag can be\nreorganized by pressing SELECT.</language>
+	</row>
+</body>

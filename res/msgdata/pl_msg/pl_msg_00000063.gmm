@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000063_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Welcome...\r...\n...Kekeke...\rWe’ve had a reservation for you.\nWe’ve held it a long time...\r</language>
+	</row>
+	<row id="pl_msg_00000063_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} lay down on the bed as if\nbidden there...\r</language>
+	</row>
+	<row id="pl_msg_00000063_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} awakened!</language>
+	</row>
+	<row id="pl_msg_00000063_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000063_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Though fading out of consciousness,\nthese words were heard...\r???: DARKRAI...\nYour power is strong.\rThough you do not wish it, you cause\npeople and Pokémon around you to see\fdeeply disturbing dreams...\rThere is a place right for you.\rNewmoon Island...\nYou will be alone there.\rThere is no one there to see the\ndreadful dreams you bring.\rIf someone does, Fullmoon Island is\nnearby...\r...\r</language>
+	</row>
+	<row id="pl_msg_00000063_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+</body>

@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000330_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hearthome Gym</language>
+	</row>
+	<row id="pl_msg_00000330_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fog: Red</language>
+	</row>
+	<row id="pl_msg_00000330_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fog: Green</language>
+	</row>
+	<row id="pl_msg_00000330_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fog: Blue</language>
+	</row>
+	<row id="pl_msg_00000330_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fog: Alpha</language>
+	</row>
+	<row id="pl_msg_00000330_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fog: thickness</language>
+	</row>
+	<row id="pl_msg_00000330_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Camera</language>
+	</row>
+	<row id="pl_msg_00000330_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Camera: revolution</language>
+	</row>
+	<row id="pl_msg_00000330_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Camera: rotation</language>
+	</row>
+	<row id="pl_msg_00000330_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Camera: Zoom</language>
+	</row>
+	<row id="pl_msg_00000330_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Camera: Distance</language>
+	</row>
+	<row id="pl_msg_00000330_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Move target</language>
+	</row>
+	<row id="pl_msg_00000330_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Change angles</language>
+	</row>
+	<row id="pl_msg_00000330_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reset Camera Settings</language>
+	</row>
+	<row id="pl_msg_00000330_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Distortion World</language>
+	</row>
+	<row id="pl_msg_00000330_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Walk along the wall: left</language>
+	</row>
+	<row id="pl_msg_00000330_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helical Movement</language>
+	</row>
+	<row id="pl_msg_00000330_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Up-side down</language>
+	</row>
+	<row id="pl_msg_00000330_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Walk along the wall: right</language>
+	</row>
+	<row id="pl_msg_00000330_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">じきかいてん</language>
+	</row>
+	<row id="pl_msg_00000330_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">じきリセット</language>
+	</row>
+	<row id="pl_msg_00000330_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ロングクリップ</language>
+	</row>
+	<row id="pl_msg_00000330_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All Furniture</language>
+	</row>
+	<row id="pl_msg_00000330_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Surf</language>
+	</row>
+	<row id="pl_msg_00000330_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Strength Flag ON</language>
+	</row>
+	<row id="pl_msg_00000330_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dist. World:Giratina Event</language>
+	</row>
+	<row id="pl_msg_00000330_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dist. World:Battle w/ Cyrus</language>
+	</row>
+	<row id="pl_msg_00000330_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dist. World:boulders ON/OFF</language>
+	</row>
+	<row id="pl_msg_00000330_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">やぶくもポ－ズ</language>
+	</row>
+	<row id="pl_msg_00000330_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dist. World:Background</language>
+	</row>
+	<row id="pl_msg_00000330_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ジムライト</language>
+	</row>
+</body>

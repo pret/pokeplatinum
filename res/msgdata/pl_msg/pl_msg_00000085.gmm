@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000085_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Thud!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000085_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\rYou came to see the Pokémon statue,\nright? I’ll take you there!\r</language>
+	</row>
+	<row id="pl_msg_00000085_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What the...\r</language>
+	</row>
+	<row id="pl_msg_00000085_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: ...So, this is Eterna’s Pokémon\nstatue...\rShaping our world are time and space\nin an intertwining spiral.\rRevered in Sinnoh are the Pokémon of\ntime and space...\rSinnoh’s myth...\nIts truth needs investigation...\r</language>
+	</row>
+	<row id="pl_msg_00000085_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Pardon me.\nStand aside.\r</language>
+	</row>
+	<row id="pl_msg_00000085_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Oh, hey!\rWhen we smacked together, a brilliant\nflash of inspiration came to me!\rAn easy way to become a great Trainer!\nYeah, that!\rAll right.\nListen close...\rMake certain all your attacks hit!\nAvoid enemy attacks for sure!\rYou do that, you’d never lose!\nYou’d be the invincible Trainer!\rAnyway, go check out the Pokémon\nstatue. See you around!\r</language>
+	</row>
+	<row id="pl_msg_00000085_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, that device you have...\rIt is a Pokédex?\nWow, it brings back some memories.\rPardon me, but what’s your name?\r...\rOK, hello, {STRVAR_1 3, 0, 0}.\nI’ll be sure to remember that name!\rMy name is Cynthia.\nI’m a Trainer just like you.\rI’ve been studying Pokémon mythology\nlately, just out of curiosity.\r</language>
+	</row>
+	<row id="pl_msg_00000085_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here in Eterna City, there is a statue\nof an ancient Pokémon.\rHave you seen it already?\rAccording to myth, it was an extremely\npowerful Pokémon.\rWho knows? You may encounter something\nlike it while you’re traveling with your\fPokédex.\rOh, I know! Try using this.\nIt should be helpful.\r</language>
+	</row>
+	<row id="pl_msg_00000085_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Remember, the hidden move\nCut can be used in the field.\rIt will let you go places that were\npreviously inaccessible to you.\rThat’s important for filling up your\nPokédex, right?\rThen luck be with you, young Trainer!\rOh, there’s one last thing!\nPlease give my regards to Prof. Rowan.\r</language>
+	</row>
+	<row id="pl_msg_00000085_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Oh, there you are!\rI was looking for you.\nI’ve got something nice.\rI wanted you to have this Pokémon Egg.\nWill you accept it?</language>
+	</row>
+	<row id="pl_msg_00000085_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: That’s wonderful!\rThe Pokémon inside the Egg is\nhappy, too. I’m sure of it!\r</language>
+	</row>
+	<row id="pl_msg_00000085_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Oh?\nYou have six Pokémon with you already.\fYou don’t have room for this Egg.\rYou’ll have to store a Pokémon in a\nPC Box at the Pokémon Center first.\rI’ll give you this Egg when you’ve made\nroom for it.\rI’ll be waiting right here.</language>
+	</row>
+	<row id="pl_msg_00000085_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Oh...?\nYou don’t need to feel obligated.\rIt’s hard filling the pages of the\nPokédex, isn’t it?\rI only want to lend you a little hand,\nthat’s all.</language>
+	</row>
+	<row id="pl_msg_00000085_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Oh, wait!\rDon’t leave without this Pokémon Egg.\nPlease? I want you to have it.\r</language>
+	</row>
+	<row id="pl_msg_00000085_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Well?\nWill you accept this Pokémon Egg?</language>
+	</row>
+	<row id="pl_msg_00000085_00015" index="15">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000085_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Keep that Egg with you in your\nparty of Pokémon.\rA Pokémon will hatch from it while you\nare traveling.\rI would be happy to know that it will\nhelp fill another page of your Pokédex.\rSee you again!\r</language>
+	</row>
+	<row id="pl_msg_00000085_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi! I’m Gardenia!\nI’m this town’s Gym Leader!\rMy last challenger was this awfully\nspeedy young guy.\r...Actually, his name was {STRVAR_1 3, 0, 0}.\nHe told me about you.\rHe said that another challenger’s on\nthe way, so that made me antsy!\rAt my Gym, no one gets to battle with\nthe Gym Leader, me, until the end.\rThe challenger has to beat all the\nother Gym Trainers first.\rI’ll be waiting for you in the back,\nTrainer. Don’t disappoint me!\r</language>
+	</row>
+	<row id="pl_msg_00000085_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey! You there, kid!\nStay away from that Pokémon statue!\rTeam Galactic is conducting an\nofficial investigation here!</language>
+	</row>
+	<row id="pl_msg_00000085_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, you! Yeah, you, Trainer!\rErrr...\nIt’s OK. Never mind. You look tough.\rI won’t take... Um, I’ll just let you\nkeep your Pokémon. Carry on!</language>
+	</row>
+	<row id="pl_msg_00000085_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you seen our building?\rTeam Galactic is so stinking rich\nthat we can have one built instantly!</language>
+	</row>
+	<row id="pl_msg_00000085_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Since that Team Galactic building went\nup, the city’s atmosphere has gotten\fall creepy and tense.\rI don’t know what those people are\ndoing up in that place...</language>
+	</row>
+	<row id="pl_msg_00000085_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">With Team Galactic gone, what’s going\nto happen to their building?</language>
+	</row>
+	<row id="pl_msg_00000085_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My friend said Team Galactic took his\nfavorite Pokémon away.\rI don’t think he’s telling the truth.\nTeam Galactic looks so cool.\fThey don’t look like common thugs.</language>
+	</row>
+	<row id="pl_msg_00000085_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you use your Bike’s kickstand?\rIt looks cool to hop off your Bike and\nthen snap it into place in one motion!</language>
+	</row>
+	<row id="pl_msg_00000085_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you’re visiting Eterna, you need to\nget yourself a Bicycle and take a\fride down the Cycling Road.</language>
+	</row>
+	<row id="pl_msg_00000085_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, your Pokémon are rather fetching.\rWhy, they look ready for Contests in\nHearthome City!</language>
+	</row>
+	<row id="pl_msg_00000085_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They say this is an old city.\rIt doesn’t look it, though.\nNot with all these tall buildings.</language>
+	</row>
+	<row id="pl_msg_00000085_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eterna City’s not anything like it\nwas before, way back in the day.</language>
+	</row>
+	<row id="pl_msg_00000085_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They say this is an awesome Pokémon\nthat people saw long ago.</language>
+	</row>
+	<row id="pl_msg_00000085_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, don’t tell me you don’t have\nan Explorer Kit?\rYou should have a word with the man\nnext door to the Pokémon Center.\r</language>
+	</row>
+	<row id="pl_msg_00000085_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, don’t tell me you don’t have\nan Explorer Kit?\rYou should have a word with the man\nnext door to the Pokémon Center.</language>
+	</row>
+	<row id="pl_msg_00000085_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Going underground with the Explorer\nKit is a blast, isn’t it?</language>
+	</row>
+	<row id="pl_msg_00000085_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, wow!\nYou got a Bicycle!\rYou can ride down Cycling Road\nand end up in Hearthome City.\rIt’s a fast and fun ride.\nYou should check it out!\r</language>
+	</row>
+	<row id="pl_msg_00000085_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, wow!\nYou got a Bicycle!\rYou can ride down Cycling Road\nand end up in Hearthome City.\rIt’s a fast and fun ride.\nYou should check it out!</language>
+	</row>
+	<row id="pl_msg_00000085_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It feels great riding a Bike with the\nwind in your face, doesn’t it?</language>
+	</row>
+	<row id="pl_msg_00000085_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eterna City\nHistory Living</language>
+	</row>
+	<row id="pl_msg_00000085_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eterna City Pokémon Gym\nLeader: Gardenia\fMaster of Vivid Plant Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000085_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rad Rickshaw’s Cycle Shop\nGet On and Ride!</language>
+	</row>
+	<row id="pl_msg_00000085_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic Eterna Building\nWe Want Your Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000085_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Underground Man’s House\nGoin’ Down for Adventure!</language>
+	</row>
+	<row id="pl_msg_00000085_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eterna Condominiums\nName-Rating Services Available</language>
+	</row>
+	<row id="pl_msg_00000085_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s Eterna City’s Pokémon statue.\rThere seems to have been a descriptive\nplate, but it appears it was torn off.</language>
+	</row>
+</body>

@@ -7,7 +7,7 @@
 
 #include "overlay115/struct_ov115_0226527C.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02014000.h"
 #include "unk_02020020.h"

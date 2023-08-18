@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000032_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The room closest to the stairs is the\nGroup Ranking Room.\r</language>
+	</row>
+	<row id="pl_msg_00000032_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The room on the opposite side\nis the Global Ranking Room.</language>
+	</row>
+	<row id="pl_msg_00000032_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I just realized something awesome!\nI should be trading Pokémon more!\rThe more trades I make, the better my\nodds of winning the Pokémon Lottery!\rWhy? Because the ID No. of a Pokémon\nis different from Trainer to Trainer!</language>
+	</row>
+	<row id="pl_msg_00000032_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Records are fine things.\nThey tell you the history of stuff.\rYou can really sense the dramatic\nstories behind all those numbers!</language>
+	</row>
+	<row id="pl_msg_00000032_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nHow’s it going?\rI’m a TV producer here.\nAre you watching TV?\rSo, let me ask you.\nWill you tell me your opinion on TV?</language>
+	</row>
+	<row id="pl_msg_00000032_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, yeah?\nThat’s interesting.\rMoving right along, what feedback\ncan you give me about TV?\r</language>
+	</row>
+	<row id="pl_msg_00000032_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, yeah?\nThat’s interesting.\rThanks for answering my questions.\nI’ll file it away for reference.\rKeep your channel tuned to\nJubilife TV!</language>
+	</row>
+	<row id="pl_msg_00000032_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, all right.\rI can understand how busy it must\nget for you.\rIt’d be cool if you could answer my\nquestions when you’ve got time.\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000032_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Oh?\rThe fact that you know that phrase\ntells me you’re someone in the know.\rYou’re a Trainer, right?\nI’ll pull some strings for you.\rI think I can swing a deal to get you\na new wallpaper for your PC Boxes.\rMake sure you keep your channel\ntuned to Jubilife TV.</language>
+	</row>
+	<row id="pl_msg_00000032_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Oh?\rThe fact that you know that phrase\ntells me you’re someone in the know.\rYou’re a Trainer, right?\nI’ll pull some strings for you.\rI think I can swing a deal so you\ncan receive a Mystery Gift.\rMake sure you keep your channel\ntuned to Jubilife TV.</language>
+	</row>
+</body>

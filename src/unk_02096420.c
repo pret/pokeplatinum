@@ -3,7 +3,7 @@
 
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207D3B0_decl.h"
+#include "struct_decls/struct_itemdata_decl.h"
 
 #include "heap.h"
 #include "unk_02073C2C.h"
@@ -18,11 +18,11 @@ static u8 sub_02097004(Pokemon * param0, u32 param1, u32 param2);
 static void sub_020970AC(Pokemon * param0, u32 param1, u32 param2, u32 param3);
 static s32 sub_020970EC(s32 param0, s32 param1, s32 param2);
 static u8 sub_020971D0(Pokemon * param0, s32 param1, s32 param2, u16 param3, u32 param4);
-static u8 sub_02097144(Pokemon * param0, UnkStruct_0207D3B0 * param1);
+static u8 sub_02097144(Pokemon * param0, ItemData * param1);
 
 u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207D3B0 * v0;
+    ItemData * v0;
     s32 v1[8];
 
     v0 = Item_LoadDataOrGFX(param1, 0, param3);
@@ -268,7 +268,7 @@ u8 sub_0209693C (Party * param0, u16 param1, u8 param2, u8 param3, u32 param4)
 
 u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param4)
 {
-    UnkStruct_0207D3B0 * v0;
+    ItemData * v0;
     s32 v1[8];
     u8 v2;
     u8 v3;
@@ -674,7 +674,7 @@ static s32 sub_020970EC (s32 param0, s32 param1, s32 param2)
     return param0;
 }
 
-static u8 sub_02097144 (Pokemon * param0, UnkStruct_0207D3B0 * param1)
+static u8 sub_02097144 (Pokemon * param0, ItemData * param1)
 {
     s32 v0;
     s32 v1;

@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000418_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: Hello! The time for\nDiscovering Groups is upon us.\rToday, we dropped in to check up on\nthe Trainer {STRVAR_1 3, 0, 0}.\rThe Trainer is a member of the group\n{STRVAR_1 5, 1, 0}.\rOh, that must be {STRVAR_1 3, 0, 0} over\nthere.\rThe Trainer is obviously enjoying\nbeing a member of the group.\rIt’s like the Trainer has found\na second home!\rIf I had to describe this group, in my\nuninformed, subjective view,\fit would be the {STRVAR_1 15, 2, 0} type?\rPlease look forward to the next\nshow!</language>
+	</row>
+	<row id="pl_msg_00000418_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\r{STRVAR_1 4, 0, 0} is blessed with\ncloudless skies!\rI would like to take this opportunity\nto do my piled-up laundry!\rIt will be nice to dry them under\nthe sun here!\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\r{STRVAR_1 4, 0, 0} is under clear skies!\rIt’s the perfect sort of day to go\ncycling.\rIf you were to crash into a stream,\nyou’d dry off quickly today!\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\rIt’s nothing but blue skies over\n{STRVAR_1 4, 0, 0}!\rIt would be a shame to spend a day\nlike this cooped up indoors.\rWhy not step outside and bask under\nthe sun?\rWhy not amuse yourself with a solo\nwhistling performance?\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\rThere isn’t a cloud in the sky above\n{STRVAR_1 4, 0, 0}!\rIt’s the sort of day that’s ideal\nfor having your picture taken.\rEveryone looks prettier under\nthe smiling sun!\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\r{STRVAR_1 4, 0, 0} is under gloomy\nclouds.\rBut watch out!\nDon’t be fooled by the sun’s absence.\rIt’s days like this that you can get\nsunburned!\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\r{STRVAR_1 4, 0, 0} is getting doused\nby rain.\rIt’s the sort of weather that’s right\nfor enjoying music at home.\rMaybe have some tea and gaze at\nthe rain-covered plants.\rPerhaps you can giggle at people\nrunning to avoid the downpour.\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\rA steady downpour continues to\nfall on {STRVAR_1 4, 0, 0}!\rThis is your chance to shout your\nloved one’s name to the skies!\rForget about an umbrella!\nThink of the dramatic possibilities!\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\rIt’s cold!\nSnow is falling on {STRVAR_1 4, 0, 0}!\rI would like to not act my age and\ntry to charm you with my cuteness...\rBut it’s too cold for me to be\nfrolicking!\rI’m heading home right after this\nto curl up with my CLEFAIRY.\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\r{STRVAR_1 4, 0, 0} is taking cover\nin a blizzard!\rSome of you may brave the weather\nin hopes of finding rare Pokémon\funder these extreme conditions.\rBe sure to dress extra warm, and\ndon’t fall asleep!\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\rA-as y-you c-can see...\r{STRVAR_1 4, 0, 0} is besieged by \na howling blizzard!\rMy hair, even in my nostrils,\nis caked with ice!\rI’m grateful for having the sense to\nbuy a new coat with my bonus!\rBut even under these brutal\nconditions, there are Trainers about!\rI think they are foolish, and yet\nI can’t help but respect them.\r...May I please go inside now?\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weath...\rGiyaaaah!\nThunder!\rThere is a thunderstorm over\n{STRVAR_1 4, 0, 0}!\rIt’s...\nGiyaaaaaah!\rThat camera’s like a lightning rod!\nLet’s finish this now!\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helena: This is Helena bringing you\non-the-spot weather!\rToday, we bring you a sight you\nvery rarely get to see.\rDiamond dust is visible in the sky\nabove {STRVAR_1 4, 0, 0}.\rThe glittery cloud of ice is\nfantastically beautiful.\rYoung Couples should step out for a\ntruly magical and romantic experience.\rEvery girl can be a princess\non a day like this.\rGuys, there’s no better setting\nto propose to your girl!\rThat’s the weather brought to you\nby Helena!</language>
+	</row>
+	<row id="pl_msg_00000418_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, we turn our focus on Twinleaf\nTown’s best three features.\rFirst, no. 3!\nThe guy blown away by technology!\rNext, no. 2!\n...Oh, hold on a second!\rWe have a tie!\nThere isn’t a no. 2, just two no. 1s!\rSo, what are they?\nOne at a time now!\rEverybody’s favorite: a two-story\nhouse!\rThat’s {STRVAR_1 3, 0, 0}’s house!\rAlso coming in first...\nOh, another two-story house!\rIt’s {STRVAR_1 3, 1, 0}’s house!\nThe kind of place people aspire to own!\rWell? Did you guess any of the top\nthree features correctly?\rDrop into Twinleaf Town and scope out\nwhat makes it special!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, we examine Sandgem Town’s best\nthree features.\rFirst, no. 3!\n{STRVAR_1 3, 1, 0}’s house!\rNext, no. 2!\n...Oh, this is unexpected!\fThe Pokémon Lab is no. 2!\rSo, what grabbed the glory of no. 1?\nThe town’s Pokémon Center! Believe it!\rAccording to our survey, it came out\non top for one very good reason.\rIt’s the only one around in the area!\n...That is a good reason!\rWell? Did you guess any of the top\nthree features correctly?\rSlide into Sandgem Town and check out\nwhat makes it unique!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, we’ll count down Floaroma\nTown’s best three features.\rFirst, no. 3!\nThe town gate!\rNext, no. 2!\nPick a Peck of Colors Flower Shop!\fIt’s a place to take your Berries!\rAnd the honor of the no. 1 spot goes\nto...\rThe floral meadow of Floaroma!\nIt’s a jungle of flowers!\rWell? Did you guess any of the top\nthree features correctly?\rMake a visit to Floaroma Town and\nexperience its charms!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, we’ll turn our eyes to Solaceon\nTown’s best three features.\rFirst, no. 3!\nThe Pokémon News Press!\fThe place for aspiring journalists!\rNext, no. 2!\nThe caves on the outskirts of town!\rSo, what gets the honor of the town’s\nbest feature?\rThe Pokémon Day Care! \nWhere Eggs come to the lucky!\rWell? Did you guess any of the top\nthree features correctly?\rCome on down to Solaceon Town and\nsee what it has to offer!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, all our attention is on Celestic\nTown’s best three features.\rFirst, no. 3!\nThe bright red shrine in the square!\rNext, no. 2!\nThe very history of the town!\rThe romance of the ages! Folklore!\nThe traditionally built manor!\rAgainst all that, what is the town’s\nbest feature?\rThe cave with the primitive art!\nThe exotic mystery of it all!\rWell? Did you guess any of the top\nthree features correctly?\rBe sure to visit Celestic Town and take\nin its appealing nature!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, let’s list off Jubilife City’s\nbest three features.\rFirst, no. 3!\nThe Pokétch Company!\fWe love our Pokétches! We sure do!\rNext, no. 2!\nJubilife TV!\rYou can find it under the massive\nmonitor screen of thrills and chills!\rSo, what’s going to grab the glory of\nno. 1 in Jubilife?\rThe Global Terminal!\nWho knew that warping could be so fun?\rWell? Did you guess any of the top\nthree features correctly?\rIf you find yourself in Jubilife, you owe\nit to yourself to check it out!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, we’ll introduce you to Canalave\nCity’s best three features.\rFirst, no. 3!\nCanalave Library!\fAn oasis of literature!\rNext, no. 2!\nThe drawbridge!\rThe town’s centerpiece opens every\nso often, cutting the city in half!\rAnd, the honor of Canalave’s best\nfeature goes to...\rCanalave’s pier!\nTake me out to sea, matey!\rWell? Did you guess any of the top\nthree features correctly?\rIf you set foot in Canalave, be sure\nto explore every nook and cranny!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, we delve into Oreburgh City and\nits best three features.\rFirst, no. 3!\nA mechanical river of coal!\fThe mine’s conveyor-belt system!\rNext, no. 2!\nThe Mining Museum!\fLet’s dig up some Fossils and go!\rSo, what gets the glory of being\nOreburgh’s best feature?\rThe Oreburgh Mine!\nThe sweat of the working man fuels the\fmine’s operation!\rWell? Did you guess any of the top\nthree features correctly?\rOn a visit to Oreburgh, be sure to take\nin its many sights!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, the spotlight is on Eterna City\nand its best three features.\rFirst, no. 3!\nThe Name Rater!\rWill changing your name change the\nquality of your life?\rNext, no. 2!\nThe Underground Man’s house!\rAll roads to the Underground go\nthrough here!\rThe honor of Eterna’s best feature\ngoes to...\rThe Team Galactic Eterna Building!\nThe imposing structure bristling with\fspinning, heavy metal spikes!\rWell? Did you guess any of the top\nthree features correctly?\rPay a visit to Eterna and scope out\nwhat it has to offer!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, we’ll have a gander at Hearthome\nCity’s best three features.\rFirst, no. 3!\nThe Poffin House!\rSwirl and knead your way to culinary\necstasy!\rNext, no. 2!\nAmity Square!\rA place for bonding and for finding\ngoodies on the ground!\rSo, what’s no. 1 in Hearthome?\nWhat deserves the glory?\rThe Contest Hall!\nWill you be tomorrow’s Pokémon idol?\rWell? Did you guess any of the top\nthree features correctly?\rCruise by Hearthome City and get a feel\nfor all its entertaining delights!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, Pastoria City’s best three\nfeatures go under our microscope.\rFirst, no. 3!\nPastoria Observatory’s telescope!\fNothing can escape its probing eye!\rNext, no. 2!\nThe Pastoria Great Marsh with the\fnot-so-quick Quick Trams!\rThe honor of Pastoria’s best feature\ngoes to...\rCROAGUNK, Pastoria’s official mascot\nPokémon!\rWell? Did you guess any of the top\nthree features correctly?\rCheck out Pastoria City and do a tour\nof all its sights and sounds!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, it’s all about Veilstone City and\nits best three features.\rFirst, no. 3!\nThe Veilstone Department Store!\rA place that fills you with happiness\nwhile emptying your wallet!\rNext, no. 2!\nThe Veilstone Game Corner!\rIt’ll suck you in like the Great Marsh\nof Pastoria!\rSo, what’s the best thing Veilstone has\nto offer?\rThe Galactic Veilstone Building!\nThe place with the sinister antennas!\rWell? Did you guess any of the top\nthree features correctly?\rCome out to Veilstone and get in on its\ncharm!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rToday, let’s cruise on out to Sunyshore\nCity for its best three features.\rFirst, no. 3!\nThe Vista Lighthouse!\rNext, no. 2!\nThe Pokémon Rock!\fWhat does it look like to you?\rThe city’s best feature?\rThe honor goes to the Sunyshore\nMarket!\rWhere the discerning Trainer comes to\nshop!\rWell? Did you guess any of the top\nthree features correctly?\rDo visit Sunyshore and check out all\nof its appeal!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rOn tap today, the best three features\nof Snowpoint City!\rFirst, no. 3!\nThe ferry service to who knows where!\rNext, no. 2!\nThe Snowpoint Temple!\fWhich is filled with who knows what!\rSo, what gets the glory as the city’s\nno. 1 feature?\rIt’s the brilliant diamond dust that can\nbe seen who knows when!\rWell? Did you guess any of the top\nthree features correctly?\rIf you’re in Snowpoint’s vicinities,\nyou owe it to yourself to check it out!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s time!\nYour Town’s Best Three!\rWhere will we go next? To that town?\nTo this city?\rWherever you go, be like us and check\nit out from stem to stern!\rSee you around, folks!</language>
+	</row>
+	<row id="pl_msg_00000418_00028" index="28">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Newscaster: We bring you this\nnews flash.\rWe’ve just received word that hordes\nof {STRVAR_1 0, 1, 0} have been spotted in\fthe vicinity of {STRVAR_1 4, 0, 0}.\rIf you’ve ever had the desire to be\nsurrounded by {STRVAR_1 0, 1, 0}...\rOr wished to make a team full of\n{STRVAR_1 0, 1, 0}...\rOr wanted to wear them on your\nhead...\rIf you’re a true viva {STRVAR_1 0, 1, 0}\nsort of Trainer...\rThen make your way to\n{STRVAR_1 4, 0, 0} right now!\rThat concludes this news flash.</language>
+	</row>
+	<row id="pl_msg_00000418_00030" index="30">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ace Trainer: Hey, how are y’all doing,\nPoké fans?\rThanks for tuning in to the Matchup\nChannel!\rHey, fans, you’ve all used\n{STRVAR_1 15, 0, 0}-type moves, right?\rThey’re super effective against\n{STRVAR_1 15, 1, 0}-type Pokémon!\rI’m telling you, the effect is like\nseeing me in person!\rThat’s all for today, but don’t\nforget to send me fan mail!\rGive it to your bird Pokémon, then\nset them free into the skies!\rA chance encounter with greatness--\nthat’s me--is always possible!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000418_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ace Trainer: Hey, how are y’all doing,\nPoké fans?\rThanks for tuning in to the Matchup\nChannel!\rHey, fans, you’ve all used\n{STRVAR_1 15, 0, 0}-type moves, right?\rThey’re, like, not much better than\nOK against {STRVAR_1 15, 1, 0}-type Pokémon!\rThey’re plain, like other Ace\nTrainers are plain next to me.\rThat’s all for today, but don’t\nforget to send me fan mail!\rGive it to your bird Pokémon, then\nset them free into the skies!\rA chance encounter with greatness--\nthat’s me--is always possible!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000418_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ace Trainer: Hey, how are y’all doing,\nPoké fans?\rThanks for tuning in to the Matchup\nChannel!\rHey, fans, you’ve all used\n{STRVAR_1 15, 0, 0}-type moves, right?\rThey’re not very effective against\n{STRVAR_1 15, 1, 0}-type Pokémon!\rIn fact, they’re wimpy like the many\nwannabe Trainers that copy me!\rThat’s all for today, but don’t\nforget to send me fan mail!\rGive it to your bird Pokémon, then\nset them free into the skies!\rA chance encounter with greatness--\nthat’s me--is always possible!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000418_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ace Trainer: Hey, how are y’all doing,\nPoké fans?\rThanks for tuning in to the Matchup\nChannel!\rHey, fans, you’ve all used\n{STRVAR_1 15, 0, 0}-type moves, right?\rThey’re absolutely hopeless against\n{STRVAR_1 15, 1, 0}-type Pokémon!\rIt’s a totally wasted effort, like the\nway other Trainers try to mess\fwith me out of jealousy!\rThat’s all for today, but don’t\nforget to send me fan mail!\rGive it to your bird Pokémon, then\nset them free into the skies!\rA chance encounter with greatness--\nthat’s me--is always possible!\rSee you again!</language>
+	</row>
+	<row id="pl_msg_00000418_00035" index="35">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Berry Prof: Say hey, hey, how are\nyour Berries growing today?\rSay hey, Berry fans, how goes\nit today? OK?\rEnough fooling about, let me roll it\nright out, today’s Berry Lookout!\r{STRVAR_1 4, 0, 0} is where I went,\nhoping to find Berries by scent!\rAnd there I found them!\rMy journey was rewarded!\rMy heart raced!\nI felt enfevered!\rBut there I left them.\nAs gifts for you!\rSay hey! Check your Berries today!\nThanks, everyone!</language>
+	</row>
+	<row id="pl_msg_00000418_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Berry Prof: Say hey, hey, how do\nyour Berries grow today?\rSay hey, Berry fans, how goes\nit today? OK?\rEnough fooling around, let me lay it\nright out, today’s Berry Lookout!\r{STRVAR_1 4, 0, 0} is where I went,\nhoping to find Berries by scent!\rBut!\nNo Berries there were...\rStill, there is hope!\nFor flowers were in bloom.\rThe aroma tickled and danced in\nmy nose!\rFlowers bloomed in the cockles of\nmy heart!\rI grew heartened, for the Berries\nthey will come, they will come!\rSay hey! Check your Berries today!\nThanks, everyone!</language>
+	</row>
+	<row id="pl_msg_00000418_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Berry Prof: Say hey, hey, how do\nyour Berries grow today?\rSay hey, Berry fans, how goes\nit today? OK?\rEnough fooling around, let me lay it\nright out, today’s Berry Lookout!\r{STRVAR_1 4, 0, 0} is where I went,\nhoping to find Berries by scent!\rBut!\nNo Berries there were...\rStill, all is not lost!\rThe plant’s stem grows thick, and\nwith it my hope!\rI surely look forward to seeing\nits flowers in bloom!\rSay hey! Check your Berries today!\nThanks, everyone!</language>
+	</row>
+	<row id="pl_msg_00000418_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Berry Prof: Say hey, hey, how do\nyour Berries grow today?\rSay hey, Berry fans, how goes\nit today? OK?\rEnough fooling around, let me lay it\nright out, today’s Berry Lookout!\r{STRVAR_1 4, 0, 0} is where I went,\nhoping to find Berries by scent!\rBut!\nNo Berries there were...\rStill, all is not lost!\rThe plant’s sprout has burst up!\nIt’s a celebration of life!\rAll of you watching, don’t trample\nit under!\rSay hey! Check your Berries today!\nThanks, everyone!</language>
+	</row>
+	<row id="pl_msg_00000418_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Berry Prof: Say hey, hey, how do\nyour Berries grow today?\rSay hey, Berry fans, how goes\nit today? OK?\rEnough fooling around, let me lay it\nright out, today’s Berry Lookout!\r{STRVAR_1 4, 0, 0} is where I went,\nhoping to find Berries by scent!\rBut!\nNo Berries there were...\rMy time had been wasted!\nI had traveled in vain!\rMy excitement shriveled and withered\naway...\rBut it must mean someone’s happy\nfor having picked Berries!\rSay hey! Plant your Berries today!\nThanks, everyone!</language>
+	</row>
+	<row id="pl_msg_00000418_00041" index="41">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00042" index="42">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Scientist: It’s the Pokémon\nResearch Corner!\rToday, we’ll examine a wild Pokémon\nlive in the field.\rAh, here we go, a wild {STRVAR_1 0, 0, 0}\nconveniently just came along...\rOh? It’s holding something!\nLet’s roll on up and take a look!\rHi, there!\nCan I take a look...\rYow! Ouch!\nIt scratched my finger!\rBut OK, we now know that wild\n{STRVAR_1 0, 0, 0} have the possibility\fof holding the item {STRVAR_1 8, 1, 0}.\rThank you, {STRVAR_1 0, 0, 0}, here’s your\n{STRVAR_1 8, 1, 0} back...\rAiyaaah! Ow, ow, ow!\nScratched me again!\rAs usual, I got a Pokémon riled up\nat me!\rIt’s time for me to go!\nSo long!</language>
+	</row>
+	<row id="pl_msg_00000418_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rich Boy: My daddy’s a big shot at the\nTV station, so I get to be on TV.\rI’ll tell you about the nature of\nPokémon.\rA Pokémon with the {STRVAR_1 7, 0, 0} nature\nwill be awesome for its {STRVAR_1 13, 1, 0} stat.\rI’m not lying!\rI raised a hundred Pokémon with the\n{STRVAR_1 7, 0, 0} nature and confirmed it!\rAlso, I think I have a cheerful nature.\nSee ya.</language>
+	</row>
+	<row id="pl_msg_00000418_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rich Boy: My daddy’s a big shot at the\nTV station, so I get to be on TV.\rI’ll tell you about the nature of\nPokémon.\rA Pokémon with the {STRVAR_1 7, 0, 0} nature\nlikes {STRVAR_1 16, 2, 0} Poffins.\rI’m not lying!\rI bought a hundred {STRVAR_1 16, 2, 0}\nPoffins and tested it myself.\rAlso, I like hot milk.\nSee ya.</language>
+	</row>
+	<row id="pl_msg_00000418_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rich Boy: My daddy’s a big shot at the\nTV station, so I get to be on TV.\rI’ll tell you about the nature of\nPokémon.\rA Pokémon with the {STRVAR_1 7, 0, 0} nature\ndoesn’t have any likes or dislikes about\fPoffin flavors.\rI’m not lying!\rI bought a hundred Poffins and tested\nit myself.\rAlso, I like hot milk.\nSee ya.</language>
+	</row>
+	<row id="pl_msg_00000418_00047" index="47">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00048" index="48">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Newscaster: We bring you this\nnews flash.\rWe’ve just received word that\n{STRVAR_1 0, 1, 0} has been spotted in the\fvicinity of {STRVAR_1 4, 0, 0}.\rIf you’ve ever had the desire to see\n{STRVAR_1 0, 1, 0}...\rOr befriend {STRVAR_1 0, 1, 0}...\rIf you’re willing to forego bathing\njust for the chance of seeing one...\rIf even a handshake with {STRVAR_1 0, 1, 0}\nwill do...\rThen hurry! Make your way to\n{STRVAR_1 4, 0, 0} right now!\rThat concludes this news flash.</language>
+	</row>
+	<row id="pl_msg_00000418_00050" index="50">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00051" index="51">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: I’m bringing you this report\nfrom the second floor of Jubilife TV.\rI’m here to examine a recently added\nphoto titled “{STRVAR_1 28, 1, 0},”\fwhich belongs to {STRVAR_1 3, 0, 0}.\rOh, is this it here?\nLet’s see...\rThe title “{STRVAR_1 28, 1, 0}” does\nsound fitting for this photo...\rBut one can’t help but think perhaps\na better title could have been found.\rAll controversy aside, it’s certainly\nworth seeing. Please do visit!</language>
+	</row>
+	<row id="pl_msg_00000418_00053" index="53">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00054" index="54">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000418_00055" index="55">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+</body>

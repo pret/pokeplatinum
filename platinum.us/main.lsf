@@ -1,0 +1,1726 @@
+############################################################
+###       Linker spec file for Pokemon Platinum US       ###
+###      Pass this to the SDK's makelcf.exe utility      ###
+###           along with the ARM9-TS template.           ###
+###                        WIP                           ###
+############################################################
+
+Static main
+{
+	Address 0x02000000
+	StackSize 0 2048
+	Library libdwcaccount.a (.version)
+	Library libcard.a (.version)
+	Library libvct.a (.version)
+	Library libsoc.a (.version)
+	Library libcps.a (.version)
+	Library libssl.a (.version)
+	Object main.nef.p/src_main.c.o
+	Object main.nef.p/src_unk_0200112C.c.o
+	Object main.nef.p/src_game_version.c.o
+	Object main.nef.p/src_unk_02001AF4.c.o
+	Object main.nef.p/src_unk_020021B0.c.o
+	Object main.nef.p/src_unk_02002328.c.o
+	Object main.nef.p/src_unk_02002B7C.c.o
+	Object main.nef.p/src_unk_02002F38.c.o
+	Object main.nef.p/src_unk_02003B60.c.o
+	Object main.nef.p/src_unk_020041CC.c.o
+	Object main.nef.p/src_unk_02005474.c.o
+	Object main.nef.p/src_unk_02006224.c.o
+	Object main.nef.p/src_game_overlay.c.o
+	Object main.nef.p/src_unk_0200679C.c.o
+	Object main.nef.p/src_unk_020067E8.c.o
+	Object main.nef.p/src_narc.c.o
+	Object main.nef.p/src_unk_02006E3C.c.o
+	Object main.nef.p/src_unk_0200762C.c.o
+	Object main.nef.p/src_unk_020093B4.c.o
+	Object main.nef.p/src_unk_02009714.c.o
+	Object main.nef.p/src_unk_0200A328.c.o
+	Object main.nef.p/src_unk_0200A784.c.o
+	Object main.nef.p/src_unk_0200A9DC.c.o
+	Object main.nef.p/src_unk_0200AC5C.c.o
+	Object main.nef.p/src_unk_0200B29C.c.o
+	Object main.nef.p/src_unk_0200B358.c.o
+	Object main.nef.p/src_unk_0200C440.c.o
+	Object main.nef.p/src_unk_0200C6E4.c.o
+	Object main.nef.p/src_unk_0200D9E8.c.o
+	Object main.nef.p/src_unk_0200DA60.c.o
+	Object main.nef.p/src_unk_0200F174.c.o
+	Object main.nef.p/src_unk_0200F85C.c.o
+	Object main.nef.p/src_unk_02012480.c.o
+	Object main.nef.p/src_unk_02012744.c.o
+	Object main.nef.p/src_unk_020131EC.c.o
+	Object main.nef.p/src_unk_0201378C.c.o
+	Object main.nef.p/src_unk_02013A04.c.o
+	Object main.nef.p/src_unk_02013B10.c.o
+	Object main.nef.p/src_unk_02014000.c.o
+	Object main.nef.p/src_unk_020149F0.c.o
+	Object main.nef.p/src_unk_02014A84.c.o
+	Object main.nef.p/src_unk_02014D38.c.o
+	Object main.nef.p/src_unk_02015064.c.o
+	Object main.nef.p/src_unk_0201567C.c.o
+	Object main.nef.p/src_unk_020158A8.c.o
+	Object main.nef.p/src_unk_02015920.c.o
+	Object main.nef.p/src_unk_02015F84.c.o
+	Object main.nef.p/src_unk_02017038.c.o
+	Object main.nef.p/src_unk_020170BC.c.o
+	Object main.nef.p/src_unk_02017428.c.o
+	Object main.nef.p/src_unk_02017498.c.o
+	Object main.nef.p/src_unk_02017728.c.o
+	Object main.nef.p/src_heap.c.o
+	Object main.nef.p/src_unk_02018340.c.o
+	Object main.nef.p/src_unk_0201C970.c.o
+	Object main.nef.p/src_unk_0201CCF0.c.o
+	Object main.nef.p/src_unk_0201CED8.c.o
+	Object main.nef.p/src_unk_0201D0C8.c.o
+	Object main.nef.p/src_unk_0201D15C.c.o
+	Object main.nef.p/src_unk_0201D670.c.o
+	Object main.nef.p/src_unk_0201DBEC.c.o
+	Object main.nef.p/src_unk_0201DD00.c.o
+	Object main.nef.p/src_unk_0201E010.c.o
+	Object main.nef.p/src_unk_0201E0A4.c.o
+	Object main.nef.p/src_unk_0201E190.c.o
+	Object main.nef.p/src_unk_0201E3BC.c.o
+	Object main.nef.p/src_unk_0201E3D8.c.o
+	Object main.nef.p/src_unk_0201E86C.c.o
+	Object main.nef.p/src_unk_0201F834.c.o
+	Object main.nef.p/src_gx_layers.c.o
+	Object main.nef.p/src_unk_02020020.c.o
+	Object main.nef.p/src_unk_02020AEC.c.o
+	Object main.nef.p/src_unk_020218BC.c.o
+	Object main.nef.p/src_unk_02022594.c.o
+	Object main.nef.p/src_unk_02022844.c.o
+	Object main.nef.p/src_error_handling.c.o
+	Object main.nef.p/src_unk_0202298C.c.o
+	Object main.nef.p/src_unk_0202309C.c.o
+	Object main.nef.p/src_unk_020232E0.c.o
+	Object main.nef.p/src_strbuf.c.o
+	Object main.nef.p/src_unk_02023FCC.c.o
+	Object main.nef.p/src_unk_0202414C.c.o
+	Object main.nef.p/src_unk_0202419C.c.o
+	Object main.nef.p/src_unk_020241F0.c.o
+	Object main.nef.p/src_unk_02024220.c.o
+	Object main.nef.p/src_unk_02024358.c.o
+	Object main.nef.p/src_unk_0202440C.c.o
+	Object main.nef.p/src_unk_020244AC.c.o
+	Object main.nef.p/src_unk_02025CB0.c.o
+	Object main.nef.p/src_unk_02025E08.c.o
+	Object main.nef.p/src_unk_02025E68.c.o
+	Object main.nef.p/src_unk_0202602C.c.o
+	Object main.nef.p/src_unk_02026150.c.o
+	Object main.nef.p/src_unk_020261E4.c.o
+	Object main.nef.p/src_unk_0202631C.c.o
+	Object main.nef.p/src_unk_020277A4.c.o
+	Object main.nef.p/src_unk_020279FC.c.o
+	Object main.nef.p/src_unk_02027B70.c.o
+	Object main.nef.p/src_unk_02027F50.c.o
+	Object main.nef.p/src_unk_02027F84.c.o
+	Object main.nef.p/src_unk_02028124.c.o
+	Object main.nef.p/src_unk_0202854C.c.o
+	Object main.nef.p/src_unk_020298BC.c.o
+	Object main.nef.p/src_poffin.c.o
+	Object main.nef.p/src_unk_0202ACE0.c.o
+	Object main.nef.p/src_unk_0202B37C.c.o
+	Object main.nef.p/src_coins.c.o
+	Object main.nef.p/src_unk_0202B604.c.o
+	Object main.nef.p/src_unk_0202C7FC.c.o
+	Object main.nef.p/src_unk_0202C858.c.o
+	Object main.nef.p/src_unk_0202C9F4.c.o
+	Object main.nef.p/src_unk_0202CBE4.c.o
+	Object main.nef.p/src_unk_0202CC64.c.o
+	Object main.nef.p/src_unk_0202CD50.c.o
+	Object main.nef.p/src_unk_0202D05C.c.o
+	Object main.nef.p/src_unk_0202D778.c.o
+	Object main.nef.p/src_unk_0202D7A8.c.o
+	Object main.nef.p/src_unk_0202DA40.c.o
+	Object main.nef.p/src_unk_0202DAB4.c.o
+	Object main.nef.p/src_unk_0202DF8C.c.o
+	Object main.nef.p/src_unk_0202E2CC.c.o
+	Object main.nef.p/src_unk_0202E840.c.o
+	Object main.nef.p/src_unk_0202EEC0.c.o
+	Object main.nef.p/src_unk_0202F108.c.o
+	Object main.nef.p/src_unk_0202F180.c.o
+	Object main.nef.p/src_unk_0202F1D4.c.o
+	Object main.nef.p/src_unk_0202FF4C.c.o
+	Object main.nef.p/src_unk_02030108.c.o
+	Object main.nef.p/src_unk_020302D0.c.o
+	Object main.nef.p/src_unk_02030494.c.o
+	Object main.nef.p/src_unk_0203061C.c.o
+	Object main.nef.p/src_unk_02030880.c.o
+	Object main.nef.p/src_unk_02030A80.c.o
+	Object main.nef.p/src_unk_02030CE8.c.o
+	Object main.nef.p/src_unk_02030EA4.c.o
+	Object main.nef.p/src_unk_02030EE0.c.o
+	Object main.nef.p/src_unk_02032188.c.o
+	Object main.nef.p/src_unk_020322D8.c.o
+	Object main.nef.p/src_unk_0203266C.c.o
+	Object main.nef.p/src_unk_02032798.c.o
+	Object main.nef.p/src_unk_020329E0.c.o
+	Object main.nef.p/src_unk_02033200.c.o
+	Object main.nef.p/src_unk_02034198.c.o
+	Object main.nef.p/src_unk_020363E8.c.o
+	Object main.nef.p/src_unk_020366A0.c.o
+	Object main.nef.p/src_unk_02038ED4.c.o
+	Object main.nef.p/src_unk_02038F8C.c.o
+	Object main.nef.p/src_unk_02038FFC.c.o
+	Object main.nef.p/src_unk_0203909C.c.o
+	Object main.nef.p/src_unk_020393C8.c.o
+	Object main.nef.p/src_unk_02039814.c.o
+	Object main.nef.p/src_unk_02039A58.c.o
+	Object main.nef.p/src_unk_02039A64.c.o
+	Object main.nef.p/src_unk_02039C80.c.o
+	Object main.nef.p/src_map_header.c.o
+	Object main.nef.p/src_unk_0203A378.c.o
+	Object main.nef.p/src_unk_0203A6DC.c.o
+	Object main.nef.p/src_unk_0203A7D8.c.o
+	Object main.nef.p/src_unk_0203A944.c.o
+	Object main.nef.p/src_unk_0203A9C8.c.o
+	Object main.nef.p/src_unk_0203C954.c.o
+	Object main.nef.p/src_unk_0203CC84.c.o
+	Object main.nef.p/src_unk_0203D178.c.o
+	Object main.nef.p/src_unk_0203D1B8.c.o
+	Object main.nef.p/src_unk_0203E724.c.o
+	Object main.nef.p/src_unk_0203E880.c.o
+	Object main.nef.p/src_unk_0203F6C4.c.o
+	Object main.nef.p/src_unk_02046AD4.c.o
+	Object main.nef.p/src_unk_02046C7C.c.o
+	Object main.nef.p/src_unk_020474B8.c.o
+	Object main.nef.p/src_unk_020480A8.c.o
+	Object main.nef.p/src_unk_020482D4.c.o
+	Object main.nef.p/src_unk_02048614.c.o
+	Object main.nef.p/src_unk_02048BD0.c.o
+	Object main.nef.p/src_unk_02048DD8.c.o
+	Object main.nef.p/src_unk_020494DC.c.o
+	Object main.nef.p/src_unk_02049D08.c.o
+	Object main.nef.p/src_unk_0204AEE8.c.o
+	Object main.nef.p/src_unk_0204B64C.c.o
+	Object main.nef.p/src_unk_0204B830.c.o
+	Object main.nef.p/src_unk_0204C500.c.o
+	Object main.nef.p/src_unk_0204C6C8.c.o
+	Object main.nef.p/src_unk_0204C8F0.c.o
+	Object main.nef.p/src_unk_0204CA84.c.o
+	Object main.nef.p/src_unk_0204CDDC.c.o
+	Object main.nef.p/src_unk_0204CFFC.c.o
+	Object main.nef.p/src_unk_0204E240.c.o
+	Object main.nef.p/src_unk_0204E378.c.o
+	Object main.nef.p/src_unk_0204E3CC.c.o
+	Object main.nef.p/src_unk_0204E75C.c.o
+	Object main.nef.p/src_unk_0204E974.c.o
+	Object main.nef.p/src_unk_0204EDA4.c.o
+	Object main.nef.p/src_unk_0204F02C.c.o
+	Object main.nef.p/src_unk_0204F04C.c.o
+	Object main.nef.p/src_unk_0204F13C.c.o
+	Object main.nef.p/src_unk_0204FA34.c.o
+	Object main.nef.p/src_unk_0204FAB4.c.o
+	Object main.nef.p/src_unk_0205001C.c.o
+	Object main.nef.p/src_unk_0205003C.c.o
+	Object main.nef.p/src_unk_02050548.c.o
+	Object main.nef.p/src_unk_02050568.c.o
+	Object main.nef.p/src_unk_020507CC.c.o
+	Object main.nef.p/src_unk_020508D4.c.o
+	Object main.nef.p/src_unk_02050A74.c.o
+	Object main.nef.p/src_enc_effects.c.o
+	Object main.nef.p/src_unk_02051D8C.c.o
+	Object main.nef.p/src_unk_020528D0.c.o
+	Object main.nef.p/src_unk_02052C6C.c.o
+	Object main.nef.p/src_unk_020530C8.c.o
+	Object main.nef.p/src_unk_02054884.c.o
+	Object main.nef.p/src_unk_02054BD0.c.o
+	Object main.nef.p/src_unk_02054D00.c.o
+	Object main.nef.p/src_unk_020553DC.c.o
+	Object main.nef.p/src_unk_020556C4.c.o
+	Object main.nef.p/src_unk_0205578C.c.o
+	Object main.nef.p/src_unk_02055808.c.o
+	Object main.nef.p/src_unk_020559DC.c.o
+	Object main.nef.p/src_unk_02055C50.c.o
+	Object main.nef.p/src_unk_020562F8.c.o
+	Object main.nef.p/src_unk_02056720.c.o
+	Object main.nef.p/src_unk_02056B30.c.o
+	Object main.nef.p/src_unk_020573FC.c.o
+	Object main.nef.p/src_unk_0205749C.c.o
+	Object main.nef.p/src_unk_02057518.c.o
+	Object main.nef.p/src_unk_0205964C.c.o
+	Object main.nef.p/src_unk_0205A0D8.c.o
+	Object main.nef.p/src_unk_0205B33C.c.o
+	Object main.nef.p/src_unk_0205C22C.c.o
+	Object main.nef.p/src_unk_0205C980.c.o
+	Object main.nef.p/src_unk_0205CA94.c.o
+	Object main.nef.p/src_unk_0205D8CC.c.o
+	Object main.nef.p/src_unk_0205DAC8.c.o
+	Object main.nef.p/src_unk_0205DFC4.c.o
+	Object main.nef.p/src_unk_0205E7D0.c.o
+	Object main.nef.p/src_unk_0205F180.c.o
+	Object main.nef.p/src_unk_02061804.c.o
+	Object main.nef.p/src_unk_020EDBAC.c.o
+	Object main.nef.p/src_unk_02063400.c.o
+	Object main.nef.p/src_unk_0206450C.c.o
+	Object main.nef.p/src_unk_020655F4.c.o
+	Object main.nef.p/src_unk_020673B8.c.o
+	Object main.nef.p/src_unk_020677F4.c.o
+	Object main.nef.p/src_unk_02067A84.c.o
+	Object main.nef.p/src_unk_02068344.c.o
+	Object main.nef.p/src_unk_020683F4.c.o
+	Object main.nef.p/src_unk_0206940C.c.o
+	Object main.nef.p/src_unk_02069BE0.c.o
+	Object main.nef.p/src_unk_0206A780.c.o
+	Object main.nef.p/src_unk_0206A8DC.c.o
+	Object main.nef.p/src_unk_0206AFE0.c.o
+	Object main.nef.p/src_unk_0206B70C.c.o
+	Object main.nef.p/src_unk_0206B9D8.c.o
+	Object main.nef.p/src_unk_0206C0E8.c.o
+	Object main.nef.p/src_unk_0206C2D0.c.o
+	Object main.nef.p/src_roaming_pokemon.c.o
+	Object main.nef.p/src_unk_0206C660.c.o
+	Object main.nef.p/src_unk_0206C784.c.o
+	Object main.nef.p/src_unk_0206CCB0.c.o
+	Object main.nef.p/src_unk_0206F314.c.o
+	Object main.nef.p/src_unk_02070428.c.o
+	Object main.nef.p/src_unk_0207064C.c.o
+	Object main.nef.p/src_unk_0207070C.c.o
+	Object main.nef.p/src_unk_020711C8.c.o
+	Object main.nef.p/src_unk_020711EC.c.o
+	Object main.nef.p/src_unk_0207160C.c.o
+	Object main.nef.p/src_unk_02071B10.c.o
+	Object main.nef.p/src_unk_02071CD0.c.o
+	Object main.nef.p/src_unk_02071CFC.c.o
+	Object main.nef.p/src_unk_02071D40.c.o
+	Object main.nef.p/src_unk_020722AC.c.o
+	Object main.nef.p/src_unk_02073700.c.o
+	Object main.nef.p/src_unk_02073838.c.o
+	Object main.nef.p/src_unk_02073C2C.c.o
+	Object main.nef.p/src_move_table.c.o
+	Object main.nef.p/src_unk_02079170.c.o
+	Object main.nef.p/src_unk_020797C8.c.o
+	Object main.nef.p/src_unk_02079D40.c.o
+	Object main.nef.p/src_party.c.o
+	Object main.nef.p/src_unk_0207A274.c.o
+	Object main.nef.p/src_unk_0207A2A8.c.o
+	Object main.nef.p/src_unk_0207A6DC.c.o
+	Object main.nef.p/src_unk_0207AE68.c.o
+	Object main.nef.p/src_unk_0207C63C.c.o
+	Object main.nef.p/src_unk_0207C908.c.o
+	Object main.nef.p/src_unk_0207CB08.c.o
+	Object main.nef.p/src_item.c.o
+	Object main.nef.p/src_unk_0207D3B8.c.o
+	Object main.nef.p/src_unk_0207DA28.c.o
+	Object main.nef.p/src_unk_0207DFAC.c.o
+	Object main.nef.p/src_unk_0207E060.c.o
+	Object main.nef.p/src_unk_0207E0B8.c.o
+	Object main.nef.p/src_unk_020819DC.c.o
+	Object main.nef.p/src_unk_02082C2C.c.o
+	Object main.nef.p/src_unk_02083370.c.o
+	Object main.nef.p/src_unk_02084B70.c.o
+	Object main.nef.p/src_unk_0208694C.c.o
+	Object main.nef.p/src_unk_020890F4.c.o
+	Object main.nef.p/src_unk_02089604.c.o
+	Object main.nef.p/src_unk_0208A3F4.c.o
+	Object main.nef.p/src_unk_0208B284.c.o
+	Object main.nef.p/src_unk_0208BA78.c.o
+	Object main.nef.p/src_unk_0208BEBC.c.o
+	Object main.nef.p/src_unk_0208C010.c.o
+	Object main.nef.p/src_unk_0208C098.c.o
+	Object main.nef.p/src_unk_0208C324.c.o
+	Object main.nef.p/src_unk_0208EA44.c.o
+	Object main.nef.p/src_unk_0208FCF8.c.o
+	Object main.nef.p/src_unk_020916B4.c.o
+	Object main.nef.p/src_unk_020920C0.c.o
+	Object main.nef.p/src_unk_020923C0.c.o
+	Object main.nef.p/src_unk_02092494.c.o
+	Object main.nef.p/src_unk_020933F8.c.o
+	Object main.nef.p/src_unk_02094EDC.c.o
+	Object main.nef.p/src_unk_02095AF0.c.o
+	Object main.nef.p/src_unk_02095CD4.c.o
+	Object main.nef.p/src_unk_02095E98.c.o
+	Object main.nef.p/src_unk_020961E8.c.o
+	Object main.nef.p/src_unk_02096420.c.o
+	Object main.nef.p/src_unk_020972FC.c.o
+	Object main.nef.p/src_berry_data.c.o
+	Object main.nef.p/src_unk_0209747C.c.o
+	Object main.nef.p/src_unk_02097624.c.o
+	Object main.nef.p/src_unk_02097B18.c.o
+	Object main.nef.p/src_unk_02098218.c.o
+	Object main.nef.p/src_unk_020985E4.c.o
+	Object main.nef.p/src_unk_020986CC.c.o
+	Object main.nef.p/src_unk_02098700.c.o
+	Object main.nef.p/src_unk_02098988.c.o
+	Object main.nef.p/src_unk_020F6824.c.o
+	Object main.nef.p/src_unk_020989DC.c.o
+	Object main.nef.p/src_unk_02098FFC.c.o
+	Object main.nef.p/src_unk_02099500.c.o
+	Object main.nef.p/src_unk_02099550.c.o
+	Object main.nef.p/src_unk_02099604.c.o
+	Object main.nef.p/src_unk_020996D0.c.o
+	Object main.nef.p/src_unk_020997B8.c.o
+	Object main.nef.p/src_unk_020998EC.c.o
+	Object main.nef.p/src_unk_02099D44.c.o
+	Object main.nef.p/src_unk_02099DFC.c.o
+	Object main.nef.p/src_unk_0209A2C4.c.o
+	Object main.nef.p/src_unk_0209A74C.c.o
+	Object main.nef.p/src_unk_0209AA74.c.o
+	Object main.nef.p/src_unk_0209AC14.c.o
+	Object main.nef.p/src_unk_0209ACBC.c.o
+	Object main.nef.p/src_unk_0209ACF4.c.o
+	Object main.nef.p/src_unk_0209B344.c.o
+	Object main.nef.p/src_error_message_reset.c.o
+	Object main.nef.p/src_unk_0209B6F8.c.o
+	Object main.nef.p/src_unk_0209BA18.c.o
+	Object main.nef.p/src_unk_0209BA80.c.o
+	Object main.nef.p/src_unk_0209BDF8.c.o
+	Object main.nef.p/src_unk_0209C194.c.o
+	Object main.nef.p/src_unk_0209C370.c.o
+	Object main.nef.p/src_unk_0209C390.c.o
+	Library libspl.a
+	Library libwvr.a
+	Library libdwcbm.a
+	Library libdwcaccount.a
+	Library libcrypto_static.a
+	Library libnnsfnd.a
+	Library libnnsgfd.a
+	Library libnnsg2d.a
+	Library libnnsg3d.a
+	Library libnnssnd.a
+	Library libfx.a
+	Library libgx.a
+	Library libos.a
+	Library libmi.a
+	Library libsnd.a
+	Library libpxi.a
+	Library libfs.a
+	Library libdgt.a
+	Library libcp.a
+	Library libspi.a
+	Library librtc.a
+	Library libcard.a
+	Library libwm.a
+	Library libctrdg.a
+	Library libmath.a
+	Library libstd.a
+	Library MSL_C_NITRO_Ai_LE.a
+	Library MSL_Extras_NITRO_Ai_LE.a
+	Library MSL_CPP_NITRO_Ai_LE.a
+	Library FP_fastI_v5t_LE.a
+	Library NITRO_Runtime_Ai_LE.a
+}
+
+Autoload ITCM
+{
+	Address 0x01FF8000
+	Library libos.a (.itcm)
+	Library libmi.a (.itcm)
+}
+
+Autoload DTCM
+{
+	Address 0x027E0000
+	Object main.nef.p/asm_dtcm.s.o (.dtcm)
+	Object main.nef.p/asm_dtcm.s.o (.bss)
+}
+
+Overlay overlay0
+{
+	After main
+	Object main.nef.p/src_overlay000_ov0_dummy.c.o
+}
+
+Overlay overlay1
+{
+	After main
+	Object main.nef.p/src_overlay001_ov1_021D0D80.c.o
+}
+
+Overlay overlay2
+{
+	After overlay1
+	Object main.nef.p/src_overlay002_ov2_dummy.c.o
+}
+
+Overlay overlay3
+{
+	After ITCM
+	Object main.nef.p/src_overlay003_ov3_dummy.c.o
+}
+
+Overlay overlay4
+{
+	After main
+	Object main.nef.p/src_overlay004_ov4_021D0D80.c.o
+	Object main.nef.p/src_overlay004_ov4_021D2808.c.o
+	Library	libdwcauth.a
+	Library libdwcbase.a
+	Library libdwcac.a
+	Library libdwcgscommon.a
+	Library libdwcgsgp.a
+	Library libdwcgsgstats.a
+	Library libdwcgsgt2.a
+	Library libdwcgsnatneg.a
+	Library libdwcgsqr2.a
+	Library libdwcgsserverbrowsing.a
+	Library libvct.a
+	Library libsoc.a
+	Library libcps.a
+	Library libssl.a
+	Library libwcm.a
+	Library libstubsmd5.a
+}
+
+Overlay overlay5
+{
+	After main
+	Object main.nef.p/src_overlay005_ov5_021D0D80.c.o
+	Object main.nef.p/src_overlay005_ov5_021D1A94.c.o
+	Object main.nef.p/src_overlay005_ov5_021D1C30.c.o
+	Object main.nef.p/src_overlay005_ov5_021D2F14.c.o
+	Object main.nef.p/src_overlay005_ov5_021D37AC.c.o
+	Object main.nef.p/src_overlay005_ov5_021D431C.c.o
+	Object main.nef.p/src_overlay005_ov5_021D521C.c.o
+	Object main.nef.p/src_overlay005_ov5_021D56BC.c.o
+	Object main.nef.p/src_overlay005_ov5_021D57BC.c.o
+	Object main.nef.p/src_overlay005_ov5_021D5878.c.o
+	Object main.nef.p/src_overlay005_ov5_021D5B40.c.o
+	Object main.nef.p/src_overlay005_ov5_021D5BC0.c.o
+	Object main.nef.p/src_overlay005_ov5_021D5CB0.c.o
+	Object main.nef.p/src_overlay005_ov5_021D5EB8.c.o
+	Object main.nef.p/src_overlay005_ov5_021DB888.c.o
+	Object main.nef.p/src_overlay005_ov5_021DC018.c.o
+	Object main.nef.p/src_overlay005_ov5_021DD42C.c.o
+	Object main.nef.p/src_overlay005_ov5_021DD6FC.c.o
+	Object main.nef.p/src_overlay005_ov5_021DDAE4.c.o
+	Object main.nef.p/src_overlay005_ov5_021DDBE8.c.o
+	Object main.nef.p/src_overlay005_ov5_021DF440.c.o
+	Object main.nef.p/src_overlay005_ov5_021DFB54.c.o
+	Object main.nef.p/src_overlay005_ov5_021E1154.c.o
+	Object main.nef.p/src_overlay005_ov5_021E135C.c.o
+	Object main.nef.p/src_overlay005_ov5_021E15F4.c.o
+	Object main.nef.p/src_overlay005_ov5_021E1B08.c.o
+	Object main.nef.p/src_overlay005_ov5_021E1D20.c.o
+	Object main.nef.p/src_overlay005_ov5_021E2098.c.o
+	Object main.nef.p/src_overlay005_ov5_021E22B0.c.o
+	Object main.nef.p/src_overlay005_ov5_021E2338.c.o
+	Object main.nef.p/src_overlay005_ov5_021E622C.c.o
+	Object main.nef.p/src_overlay005_ov5_021E779C.c.o
+	Object main.nef.p/src_overlay005_ov5_021EA714.c.o
+	Object main.nef.p/src_overlay005_ov5_021EA874.c.o
+	Object main.nef.p/src_overlay005_ov5_021EAFA4.c.o
+	Object main.nef.p/src_overlay005_ov5_021FAF40.c.o
+	Object main.nef.p/src_overlay005_ov5_021EB1A0.c.o
+	Object main.nef.p/src_overlay005_ov5_021ECA70.c.o
+	Object main.nef.p/src_overlay005_ov5_021ECC20.c.o
+	Object main.nef.p/src_overlay005_ov5_021ECE40.c.o
+	Object main.nef.p/src_overlay005_ov5_021EE75C.c.o
+	Object main.nef.p/src_overlay005_ov5_021EE7D4.c.o
+	Object main.nef.p/src_overlay005_ov5_021EEAC8.c.o
+	Object main.nef.p/src_overlay005_ov5_021EEC68.c.o
+	Object main.nef.p/src_overlay005_ov5_021EEF34.c.o
+	Object main.nef.p/src_overlay005_ov5_021EF250.c.o
+	Object main.nef.p/src_overlay005_ov5_021EF3A8.c.o
+	Object main.nef.p/src_overlay005_ov5_021EF4BC.c.o
+	Object main.nef.p/src_overlay005_ov5_021EF75C.c.o
+	Object main.nef.p/src_overlay005_ov5_021EFB0C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F007C.c.o
+	Object main.nef.p/src_overlay005_ov5_021FF6B8.c.o
+	Object main.nef.p/src_overlay005_ov5_021F067C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F0824.c.o
+	Object main.nef.p/src_overlay005_ov5_021F08CC.c.o
+	Object main.nef.p/src_overlay005_ov5_021F0E84.c.o
+	Object main.nef.p/src_overlay005_ov5_021F0EB0.c.o
+	Object main.nef.p/src_overlay005_ov5_021F101C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F10E8.c.o
+	Object main.nef.p/src_overlay005_ov5_021F134C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F17B8.c.o
+	Object main.nef.p/src_overlay005_ov5_021F1CC8.c.o
+	Object main.nef.p/src_overlay005_ov5_021F204C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F23D0.c.o
+	Object main.nef.p/src_overlay005_ov5_021F25C0.c.o
+	Object main.nef.p/src_overlay005_ov5_021F2850.c.o
+	Object main.nef.p/src_overlay005_ov5_021F2A7C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F2BD0.c.o
+	Object main.nef.p/src_overlay005_ov5_021F2D20.c.o
+	Object main.nef.p/src_overlay005_ov5_021F3284.c.o
+	Object main.nef.p/src_overlay005_ov5_021F348C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F37A8.c.o
+	Object main.nef.p/src_overlay005_ov5_021F3A50.c.o
+	Object main.nef.p/src_overlay005_ov5_021F3D00.c.o
+	Object main.nef.p/src_overlay005_ov5_021F3E74.c.o
+	Object main.nef.p/src_overlay005_ov5_021F4018.c.o
+	Object main.nef.p/src_overlay005_ov5_021F428C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F47B0.c.o
+	Object main.nef.p/src_overlay005_ov5_021F4DAC.c.o
+	Object main.nef.p/src_overlay005_ov5_021F4E08.c.o
+	Object main.nef.p/src_overlay005_ov5_021F5060.c.o
+	Object main.nef.p/src_overlay005_ov5_021F50BC.c.o
+	Object main.nef.p/src_overlay005_ov5_021F5284.c.o
+	Object main.nef.p/src_overlay005_ov5_021F5428.c.o
+	Object main.nef.p/src_overlay005_ov5_021F55CC.c.o
+	Object main.nef.p/src_overlay005_ov5_021F575C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F5894.c.o
+	Object main.nef.p/src_overlay005_ov5_021F5A10.c.o
+	Object main.nef.p/src_overlay005_ov5_021F600C.c.o
+	Object main.nef.p/src_overlay005_ov5_021F61BC.c.o
+	Object main.nef.p/src_overlay005_ov5_021F6454.c.o
+	Object main.nef.p/src_overlay005_ov5_021F77A8.c.o
+	Object main.nef.p/src_overlay005_ov5_021F8370.c.o
+	Object main.nef.p/src_overlay005_ov5_021F8560.c.o
+}
+
+Overlay overlay6
+{
+	After overlay5
+	Object main.nef.p/src_overlay006_ov6_0223E140.c.o
+	Object main.nef.p/src_overlay006_ov6_02240C9C.c.o
+	Object main.nef.p/src_overlay006_ov6_022426AC.c.o
+	Object main.nef.p/src_overlay006_ov6_02242984.c.o
+	Object main.nef.p/src_overlay006_ov6_02242AF0.c.o
+	Object main.nef.p/src_overlay006_ov6_02242F74.c.o
+	Object main.nef.p/src_overlay006_ov6_02243004.c.o
+	Object main.nef.p/src_overlay006_ov6_022430C4.c.o
+	Object main.nef.p/src_overlay006_ov6_02243218.c.o
+	Object main.nef.p/src_overlay006_ov6_02243258.c.o
+	Object main.nef.p/src_overlay006_ov6_02246034.c.o
+	Object main.nef.p/src_overlay006_ov6_02246184.c.o
+	Object main.nef.p/src_overlay006_ov6_02246444.c.o
+	Object main.nef.p/src_overlay006_ov6_022465FC.c.o
+	Object main.nef.p/src_overlay006_ov6_02246A30.c.o
+	Object main.nef.p/src_overlay006_ov6_02246B74.c.o
+	Object main.nef.p/src_overlay006_ov6_02246BF4.c.o
+	Object main.nef.p/src_overlay006_ov6_02246C24.c.o
+	Object main.nef.p/src_overlay006_ov6_02246F00.c.o
+	Object main.nef.p/src_overlay006_ov6_02247078.c.o
+	Object main.nef.p/src_overlay006_ov6_02247100.c.o
+	Object main.nef.p/src_overlay006_ov6_022475B0.c.o
+	Object main.nef.p/src_overlay006_ov6_02247660.c.o
+	Object main.nef.p/src_overlay006_ov6_022477B8.c.o
+	Object main.nef.p/src_overlay006_ov6_02247830.c.o
+	Object main.nef.p/src_overlay006_ov6_02247A0C.c.o
+	Object main.nef.p/src_overlay006_ov6_02247D30.c.o
+	Object main.nef.p/src_overlay006_ov6_02247F5C.c.o
+	Object main.nef.p/src_overlay006_ov6_02248050.c.o
+	Object main.nef.p/src_overlay006_ov6_02248948.c.o
+	Object main.nef.p/src_overlay006_ov6_022489E4.c.o
+}
+
+Overlay overlay7
+{
+	After overlay6
+	Object main.nef.p/src_overlay007_ov7_02249960.c.o
+	Object main.nef.p/src_overlay007_ov7_0224B4E8.c.o
+	Object main.nef.p/src_overlay007_ov7_0224BE9C.c.o
+	Object main.nef.p/src_overlay007_ov7_0224CD28.c.o
+}
+
+Overlay overlay8
+{
+	After overlay6
+	Object main.nef.p/src_overlay008_ov8_02249960.c.o
+}
+
+Overlay overlay9
+{
+	After overlay6
+	Object main.nef.p/src_overlay009_ov9_02249960.c.o
+}
+
+Overlay overlay10
+{
+	After overlay4
+	Object main.nef.p/src_overlay010_ov10_0221F800.c.o
+}
+
+Overlay overlay11
+{
+	After overlay4
+	Object main.nef.p/src_overlay011_ov11_0221F800.c.o
+	Object main.nef.p/src_overlay011_ov11_0221F840.c.o
+}
+
+Overlay overlay12
+{
+	After overlay11
+	Object main.nef.p/src_overlay012_ov12_0221FC20.c.o
+	Object main.nef.p/src_overlay012_ov12_022237EC.c.o
+	Object main.nef.p/src_overlay012_ov12_0222389C.c.o
+	Object main.nef.p/src_overlay012_ov12_0222421C.c.o
+	Object main.nef.p/src_overlay012_ov12_02225104.c.o
+	Object main.nef.p/src_overlay012_ov12_02225640.c.o
+	Object main.nef.p/src_overlay012_ov12_02225864.c.o
+	Object main.nef.p/src_overlay012_ov12_02226998.c.o
+	Object main.nef.p/src_overlay012_ov12_022269C0.c.o
+	Object main.nef.p/src_overlay012_ov12_02226B84.c.o
+	Object main.nef.p/src_overlay012_ov12_0222AC70.c.o
+	Object main.nef.p/src_overlay012_ov12_0222D6B0.c.o
+	Object main.nef.p/src_overlay012_ov12_0222E784.c.o
+	Object main.nef.p/src_overlay012_ov12_0222E91C.c.o
+	Object main.nef.p/src_overlay012_ov12_0222F700.c.o
+	Object main.nef.p/src_overlay012_ov12_022346A4.c.o
+	Object main.nef.p/src_overlay012_ov12_02234E44.c.o
+	Object main.nef.p/src_overlay012_ov12_02235254.c.o
+	Object main.nef.p/src_overlay012_ov12_02235E94.c.o
+	Object main.nef.p/src_overlay012_ov12_02237E54.c.o
+	Object main.nef.p/src_overlay012_ov12_02237EFC.c.o
+	Object main.nef.p/src_overlay012_ov12_022380BC.c.o
+	Object main.nef.p/src_overlay012_is_form_symmetrical.c.o
+}
+
+Overlay overlay13
+{
+	After overlay11
+	Object main.nef.p/src_overlay013_ov13_0221FC20.c.o
+	Object main.nef.p/src_overlay013_ov13_02221A88.c.o
+	Object main.nef.p/src_overlay013_ov13_02224500.c.o
+	Object main.nef.p/src_overlay013_ov13_02225710.c.o
+	Object main.nef.p/src_overlay013_ov13_022264F4.c.o
+	Object main.nef.p/src_overlay013_ov13_02227288.c.o
+	Object main.nef.p/src_overlay013_ov13_02227A4C.c.o
+	Object main.nef.p/src_overlay013_ov13_02227BDC.c.o
+	Object main.nef.p/src_overlay013_ov13_02228128.c.o
+	Object main.nef.p/src_overlay013_ov13_02228A38.c.o
+}
+
+Overlay overlay14
+{
+	After overlay11
+	Object main.nef.p/src_overlay014_ov14_0221FC20.c.o
+	Object main.nef.p/overlay014/asm_overlay014_ov14_022248A4.s.o
+}
+
+Overlay overlay15
+{
+	After main
+	Object main.nef.p/src_overlay015_ov15_dummy.c.o
+}
+
+Overlay overlay16
+{
+	After overlay12
+	Object main.nef.p/src_overlay016_ov16_0223B140.c.o
+	Object main.nef.p/src_overlay016_ov16_0223DF00.c.o
+	Object main.nef.p/src_overlay016_ov16_022405FC.c.o
+	Object main.nef.p/src_overlay016_ov16_0224B940.c.o
+	Object main.nef.p/src_overlay016_ov16_0225177C.c.o
+	Object main.nef.p/src_overlay016_ov16_0225BFFC.c.o
+	Object main.nef.p/src_overlay016_ov16_0225CBB8.c.o
+	Object main.nef.p/src_overlay016_ov16_02264798.c.o
+	Object main.nef.p/src_overlay016_ov16_0226485C.c.o
+	Object main.nef.p/src_overlay016_ov16_02266F1C.c.o
+	Object main.nef.p/src_overlay016_ov16_02268520.c.o
+	Object main.nef.p/src_overlay016_ov16_0226871C.c.o
+	Object main.nef.p/src_overlay016_ov16_0226D094.c.o
+	Object main.nef.p/src_overlay016_ov16_0226DB7C.c.o
+	Object main.nef.p/src_overlay016_ov16_0226DE44.c.o
+	Object main.nef.p/src_overlay016_ov16_0226E148.c.o
+}
+
+Overlay overlay17
+{
+	After overlay12
+	Object main.nef.p/src_overlay017_ov17_0223B140.c.o
+	Object main.nef.p/src_overlay017_ov17_0223CB1C.c.o
+	Object main.nef.p/src_overlay017_ov17_0223DAD0.c.o
+	Object main.nef.p/src_overlay017_ov17_0223F118.c.o
+	Object main.nef.p/src_overlay017_ov17_0223F7E4.c.o
+	Object main.nef.p/src_overlay017_ov17_02241270.c.o
+	Object main.nef.p/src_overlay017_ov17_022413D8.c.o
+	Object main.nef.p/src_overlay017_ov17_02243AC4.c.o
+	Object main.nef.p/src_overlay017_ov17_02243C28.c.o
+	Object main.nef.p/src_overlay017_ov17_02245F14.c.o
+	Object main.nef.p/src_overlay017_ov17_02246ECC.c.o
+	Object main.nef.p/src_overlay017_ov17_022476F8.c.o
+	Object main.nef.p/src_overlay017_ov17_02247A48.c.o
+	Object main.nef.p/src_overlay017_ov17_022492DC.c.o
+	Object main.nef.p/src_overlay017_ov17_0224A0FC.c.o
+	Object main.nef.p/src_overlay017_ov17_0224CFB8.c.o
+	Object main.nef.p/src_overlay017_ov17_0224E930.c.o
+	Object main.nef.p/src_overlay017_ov17_0224F080.c.o
+	Object main.nef.p/src_overlay017_ov17_0224F18C.c.o
+	Object main.nef.p/src_overlay017_ov17_0224F4D4.c.o
+	Object main.nef.p/src_overlay017_ov17_02250744.c.o
+	Object main.nef.p/src_overlay017_ov17_02251D6C.c.o
+	Object main.nef.p/src_overlay017_ov17_02252A70.c.o
+	Object main.nef.p/src_overlay017_ov17_02252AB0.c.o
+	Object main.nef.p/src_overlay017_ov17_02252CEC.c.o
+}
+
+Overlay overlay18
+{
+	After overlay4
+	Object main.nef.p/src_overlay018_ov18_0221F800.c.o
+	Library	libmb.a
+	Library libdwcutil.a
+}
+
+Overlay overlay19
+{
+	After main
+	Object main.nef.p/src_overlay019_ov19_021D0D80.c.o
+	Object main.nef.p/src_overlay019_ov19_021D603C.c.o
+	Object main.nef.p/src_overlay019_ov19_021D61B0.c.o
+	Object main.nef.p/src_overlay019_ov19_021D79F8.c.o
+	Object main.nef.p/src_overlay019_ov19_021D8B54.c.o
+	Object main.nef.p/src_overlay019_ov19_021DA270.c.o
+	Object main.nef.p/src_overlay019_ov19_021DA814.c.o
+	Object main.nef.p/src_overlay019_ov19_021DA92C.c.o
+	Object main.nef.p/src_overlay019_ov19_021DB2FC.c.o
+	Object main.nef.p/src_overlay019_ov19_021DB8E4.c.o
+	Object main.nef.p/src_overlay019_ov19_021DC5F0.c.o
+	Object main.nef.p/src_overlay019_ov19_021DCF88.c.o
+	Object main.nef.p/src_overlay019_ov19_021DE3E8.c.o
+	Object main.nef.p/src_overlay019_ov19_021DEC04.c.o
+	Object main.nef.p/src_overlay019_ov19_021DF964.c.o
+}
+
+Overlay overlay20
+{
+	After main
+	Object main.nef.p/src_overlay020_ov20_021D0D80.c.o
+	Object main.nef.p/src_overlay020_ov20_021D2098.c.o
+	Object main.nef.p/src_overlay020_ov20_021D2EA4.c.o
+	Object main.nef.p/src_overlay020_ov20_021D3864.c.o
+	Object main.nef.p/src_overlay020_ov20_021D3A54.c.o
+	Object main.nef.p/src_overlay020_ov20_021D40E8.c.o
+	Object main.nef.p/src_overlay020_ov20_021D4728.c.o
+	Object main.nef.p/src_overlay020_ov20_021D4E38.c.o
+	Object main.nef.p/src_overlay020_ov20_021D5044.c.o
+}
+
+Overlay overlay21
+{
+	After main
+	Object main.nef.p/src_overlay021_ov21_021D0D80.c.o
+	Object main.nef.p/src_overlay021_ov21_021D1F90.c.o
+	Object main.nef.p/src_overlay021_ov21_021D1FA4.c.o
+	Object main.nef.p/src_overlay021_ov21_021D3208.c.o
+	Object main.nef.p/src_overlay021_ov21_021D3FE0.c.o
+	Object main.nef.p/src_overlay021_ov21_021D423C.c.o
+	Object main.nef.p/src_overlay021_ov21_021D4340.c.o
+	Object main.nef.p/src_overlay021_ov21_021D4C0C.c.o
+	Object main.nef.p/src_overlay021_ov21_021D4EE4.c.o
+	Object main.nef.p/src_overlay021_ov21_021D517C.c.o
+	Object main.nef.p/src_overlay021_ov21_021D5600.c.o
+	Object main.nef.p/src_overlay021_ov21_021D57B4.c.o
+	Object main.nef.p/src_overlay021_ov21_021D5AEC.c.o
+	Object main.nef.p/src_overlay021_ov21_021D76B0.c.o
+	Object main.nef.p/src_overlay021_ov21_021D85B0.c.o
+	Object main.nef.p/src_overlay021_ov21_021D94BC.c.o
+	Object main.nef.p/src_overlay021_ov21_021DC9BC.c.o
+	Object main.nef.p/src_overlay021_ov21_021DDD2C.c.o
+	Object main.nef.p/src_overlay021_ov21_021DE668.c.o
+	Object main.nef.p/src_overlay021_ov21_021DF734.c.o
+	Object main.nef.p/src_overlay021_ov21_021E0C68.c.o
+	Object main.nef.p/src_overlay021_ov21_021E1924.c.o
+	Object main.nef.p/src_overlay021_ov21_021E29DC.c.o
+	Object main.nef.p/src_overlay021_ov21_021E3FFC.c.o
+	Object main.nef.p/src_overlay021_ov21_021E4CA4.c.o
+	Object main.nef.p/src_overlay021_ov21_021E6014.c.o
+	Object main.nef.p/src_overlay021_ov21_021E68F4.c.o
+	Object main.nef.p/src_overlay021_ov21_021E737C.c.o
+	Object main.nef.p/src_overlay021_ov21_021E8484.c.o
+	Object main.nef.p/src_overlay021_ov21_021E8D48.c.o
+}
+
+Overlay overlay22
+{
+	After overlay17
+	Object main.nef.p/src_overlay022_ov22_02254DE0.c.o
+	Object main.nef.p/src_overlay022_ov22_02255094.c.o
+	Object main.nef.p/src_overlay022_ov22_02255D44.c.o
+	Object main.nef.p/src_overlay022_ov22_022578F4.c.o
+	Object main.nef.p/src_overlay022_ov22_02257F50.c.o
+	Object main.nef.p/src_overlay022_ov22_022588F0.c.o
+	Object main.nef.p/src_overlay022_ov22_0225894C.c.o
+	Object main.nef.p/src_overlay022_ov22_022589E0.c.o
+	Object main.nef.p/src_overlay022_ov22_02259098.c.o
+	Object main.nef.p/src_overlay022_ov22_02259484.c.o
+	Object main.nef.p/src_overlay022_ov22_02259560.c.o
+	Object main.nef.p/src_overlay022_ov22_022597BC.c.o
+	Object main.nef.p/src_overlay022_ov22_02259C58.c.o
+	Object main.nef.p/src_overlay022_ov22_0225A428.c.o
+	Object main.nef.p/src_overlay022_ov22_0225AF44.c.o
+	Object main.nef.p/src_overlay022_ov22_0225AF8C.c.o
+	Object main.nef.p/src_overlay022_ov22_0225B660.c.o
+}
+
+Overlay overlay23
+{
+	After overlay5
+	Object main.nef.p/src_overlay023_ov23_0223E140.c.o
+	Object main.nef.p/src_overlay023_ov23_022416A8.c.o
+	Object main.nef.p/src_overlay023_ov23_02241F74.c.o
+	Object main.nef.p/src_overlay023_ov23_0224340C.c.o
+	Object main.nef.p/src_overlay023_ov23_02248C08.c.o
+	Object main.nef.p/src_overlay023_ov23_02248F1C.c.o
+	Object main.nef.p/src_overlay023_ov23_02249918.c.o
+	Object main.nef.p/src_overlay023_ov23_022499E4.c.o
+	Object main.nef.p/src_overlay023_ov23_0224A1D0.c.o
+	Object main.nef.p/src_overlay023_ov23_0224B05C.c.o
+	Object main.nef.p/src_overlay023_ov23_0224DC40.c.o
+	Object main.nef.p/src_overlay023_ov23_0224F294.c.o
+	Object main.nef.p/src_overlay023_ov23_0225128C.c.o
+	Object main.nef.p/src_overlay023_ov23_022521F0.c.o
+	Object main.nef.p/src_overlay023_ov23_02253598.c.o
+	Object main.nef.p/src_overlay023_ov23_02253D40.c.o
+	Object main.nef.p/src_overlay023_ov23_0225426C.c.o
+	Object main.nef.p/src_overlay023_ov23_0225429C.c.o
+	Object main.nef.p/src_overlay023_ov23_022542CC.c.o
+	Object main.nef.p/src_overlay023_ov23_02254A14.c.o
+}
+
+Overlay overlay24
+{
+	After overlay9
+	Object main.nef.p/src_overlay024_ov24_02253CE0.c.o
+}
+
+Overlay overlay25
+{
+	After overlay9
+	Object main.nef.p/src_overlay025_ov25_02253CE0.c.o
+	Object main.nef.p/src_overlay025_ov25_02254560.c.o
+	Object main.nef.p/src_overlay025_ov25_02255090.c.o
+	Object main.nef.p/src_overlay025_ov25_02255540.c.o
+	Object main.nef.p/src_overlay025_ov25_02255ACC.c.o
+	Object main.nef.p/src_overlay025_ov25_02255DBC.c.o
+}
+
+Overlay overlay26
+{
+	After overlay25
+	Object main.nef.p/src_overlay026_ov26_022561C0.c.o
+	Object main.nef.p/src_overlay026_ov26_02256404.c.o
+}
+
+Overlay overlay27
+{
+	After overlay25
+	Object main.nef.p/src_overlay027_ov27_022561C0.c.o
+	Object main.nef.p/src_overlay027_ov27_0225680C.c.o
+}
+
+Overlay overlay28
+{
+	After overlay25
+	Object main.nef.p/src_overlay028_ov28_022561C0.c.o
+	Object main.nef.p/src_overlay028_ov28_0225697C.c.o
+	Object main.nef.p/src_overlay028_ov28_02256E9C.c.o
+}
+
+Overlay overlay29
+{
+	After overlay25
+	Object main.nef.p/src_overlay029_ov29_022561C0.c.o
+	Object main.nef.p/src_overlay029_ov29_022566C8.c.o
+}
+
+Overlay overlay30
+{
+	After overlay25
+	Object main.nef.p/src_overlay030_ov30_022561C0.c.o
+	Object main.nef.p/src_overlay030_ov30_022563EC.c.o
+}
+
+Overlay overlay31
+{
+	After overlay25
+	Object main.nef.p/src_overlay031_ov31_022561C0.c.o
+	Object main.nef.p/src_overlay031_ov31_02256554.c.o
+}
+
+Overlay overlay32
+{
+	After overlay25
+	Object main.nef.p/src_overlay032_ov32_022561C0.c.o
+	Object main.nef.p/src_overlay032_ov32_02256470.c.o
+}
+
+Overlay overlay33
+{
+	After overlay25
+	Object main.nef.p/src_overlay033_ov33_022561C0.c.o
+	Object main.nef.p/src_overlay033_ov33_02256474.c.o
+}
+
+Overlay overlay34
+{
+	After overlay25
+	Object main.nef.p/src_overlay034_ov34_022561C0.c.o
+	Object main.nef.p/src_overlay034_ov34_02256540.c.o
+}
+
+Overlay overlay35
+{
+	After overlay25
+	Object main.nef.p/src_overlay035_ov35_022561C0.c.o
+	Object main.nef.p/src_overlay035_ov35_02256410.c.o
+}
+
+Overlay overlay36
+{
+	After overlay25
+	Object main.nef.p/src_overlay036_ov36_022561C0.c.o
+	Object main.nef.p/src_overlay036_ov36_02256404.c.o
+}
+
+Overlay overlay37
+{
+	After overlay25
+	Object main.nef.p/src_overlay037_ov37_022561C0.c.o
+	Object main.nef.p/src_overlay037_ov37_022563D4.c.o
+}
+
+Overlay overlay38
+{
+	After overlay25
+	Object main.nef.p/src_overlay038_ov38_022561C0.c.o
+	Object main.nef.p/src_overlay038_ov38_0225632C.c.o
+}
+
+Overlay overlay39
+{
+	After overlay25
+	Object main.nef.p/src_overlay039_ov39_022561C0.c.o
+	Object main.nef.p/src_overlay039_ov39_022563DC.c.o
+}
+
+Overlay overlay40
+{
+	After overlay25
+	Object main.nef.p/src_overlay040_ov40_022561C0.c.o
+	Object main.nef.p/src_overlay040_ov40_0225645C.c.o
+}
+
+Overlay overlay41
+{
+	After overlay25
+	Object main.nef.p/src_overlay041_ov41_022561C0.c.o
+	Object main.nef.p/src_overlay041_ov41_022567B0.c.o
+}
+
+Overlay overlay42
+{
+	After overlay25
+	Object main.nef.p/src_overlay042_ov42_022561C0.c.o
+	Object main.nef.p/src_overlay042_ov42_022563D4.c.o
+}
+
+Overlay overlay43
+{
+	After overlay25
+	Object main.nef.p/src_overlay043_ov43_022561C0.c.o
+	Object main.nef.p/src_overlay043_ov43_02256544.c.o
+}
+
+Overlay overlay44
+{
+	After overlay25
+	Object main.nef.p/src_overlay044_ov44_022561C0.c.o
+	Object main.nef.p/src_overlay044_ov44_022565BC.c.o
+}
+
+Overlay overlay45
+{
+	After overlay25
+	Object main.nef.p/src_overlay045_ov45_022561C0.c.o
+	Object main.nef.p/src_overlay045_ov45_022566EC.c.o
+}
+
+Overlay overlay46
+{
+	After overlay25
+	Object main.nef.p/src_overlay046_ov46_022561C0.c.o
+	Object main.nef.p/src_overlay046_ov46_02256BCC.c.o
+}
+
+Overlay overlay47
+{
+	After overlay25
+	Object main.nef.p/src_overlay047_ov47_022561C0.c.o
+	Object main.nef.p/src_overlay047_ov47_02256634.c.o
+}
+
+Overlay overlay48
+{
+	After overlay25
+	Object main.nef.p/src_overlay048_ov48_022561C0.c.o
+	Object main.nef.p/src_overlay048_ov48_0225650C.c.o
+}
+
+Overlay overlay49
+{
+	After overlay25
+	Object main.nef.p/src_overlay049_ov49_022561C0.c.o
+	Object main.nef.p/src_overlay049_ov49_022563D4.c.o
+}
+
+Overlay overlay50
+{
+	After overlay25
+	Object main.nef.p/src_overlay050_ov50_022561C0.c.o
+	Object main.nef.p/src_overlay050_ov50_02256510.c.o
+}
+
+Overlay overlay51
+{
+	After overlay25
+	Object main.nef.p/src_overlay051_ov51_022561C0.c.o
+	Object main.nef.p/src_overlay051_ov51_0225632C.c.o
+}
+
+Overlay overlay52
+{
+	After overlay25
+	Object main.nef.p/src_overlay052_ov52_022561C0.c.o
+	Object main.nef.p/src_overlay052_ov52_02256694.c.o
+}
+
+Overlay overlay53
+{
+	After overlay25
+	Object main.nef.p/src_overlay053_ov53_022561C0.c.o
+	Object main.nef.p/src_overlay053_ov53_02256420.c.o
+}
+
+Overlay overlay54
+{
+	After overlay25
+	Object main.nef.p/src_overlay054_ov54_022561C0.c.o
+	Object main.nef.p/src_overlay054_ov54_0225642C.c.o
+}
+
+Overlay overlay55
+{
+	After overlay25
+	Object main.nef.p/src_overlay055_ov55_022561C0.c.o
+	Object main.nef.p/src_overlay055_ov55_0225632C.c.o
+}
+
+Overlay overlay56
+{
+	After overlay25
+	Object main.nef.p/src_overlay056_ov56_022561C0.c.o
+}
+
+Overlay overlay57
+{
+	After main
+	Object main.nef.p/src_overlay057_ov57_021D0D80.c.o
+	Object main.nef.p/src_overlay057_ov57_021D0F30.c.o
+}
+
+Overlay overlay58
+{
+	After main
+	Object main.nef.p/src_overlay058_ov58_021D0D80.c.o
+}
+
+Overlay overlay59
+{
+	After main
+	Object main.nef.p/src_overlay059_ov59_021D0D80.c.o
+	Object main.nef.p/src_overlay059_ov59_021D2A2C.c.o
+	Object main.nef.p/src_overlay059_ov59_021D2B44.c.o
+	Object main.nef.p/src_overlay059_ov59_021D2F88.c.o
+}
+
+Overlay overlay60
+{
+	After overlay4
+	Object main.nef.p/src_overlay060_ov60_0221F800.c.o
+	Object main.nef.p/src_overlay060_ov60_0221F968.c.o
+	Library	libdwcgsghttp.a
+	Library libdwcnd.a
+	Library libdwcnhttp.a
+}
+
+Overlay overlay61
+{
+	After overlay60
+	Object main.nef.p/src_overlay061_ov61_0222AE60.c.o
+	Object main.nef.p/src_overlay061_ov61_0222B008.c.o
+	Object main.nef.p/src_overlay061_ov61_0222BC4C.c.o
+	Object main.nef.p/src_overlay061_ov61_0222BF44.c.o
+	Library libgds.a
+}
+
+Overlay overlay62
+{
+	After overlay61
+	Object main.nef.p/src_overlay062_ov62_0222F2C0.c.o
+	Object main.nef.p/src_overlay062_ov62_022300D8.c.o
+	Object main.nef.p/src_overlay062_ov62_02231690.c.o
+	Object main.nef.p/src_overlay062_ov62_02234A10.c.o
+	Object main.nef.p/src_overlay062_ov62_02235278.c.o
+	Object main.nef.p/src_overlay062_ov62_02235E64.c.o
+	Object main.nef.p/src_overlay062_ov62_02236CBC.c.o
+	Object main.nef.p/src_overlay062_ov62_02237D24.c.o
+	Object main.nef.p/src_overlay062_ov62_02239D60.c.o
+	Object main.nef.p/src_overlay062_ov62_0223CAEC.c.o
+	Object main.nef.p/src_overlay062_ov62_0223DFA8.c.o
+	Object main.nef.p/src_overlay062_ov62_0224112C.c.o
+	Object main.nef.p/src_overlay062_ov62_02241204.c.o
+	Object main.nef.p/src_overlay062_ov62_02246B00.c.o
+	Object main.nef.p/src_overlay062_ov62_02247D74.c.o
+	Object main.nef.p/src_overlay062_ov62_02248408.c.o
+}
+
+Overlay overlay63
+{
+	After overlay60
+	Object main.nef.p/src_overlay063_ov63_0222AE60.c.o
+	Object main.nef.p/src_overlay063_ov63_0222BCE8.c.o
+	Object main.nef.p/src_overlay063_ov63_0222BE18.c.o
+	Object main.nef.p/src_overlay063_ov63_0222CA88.c.o
+	Object main.nef.p/src_overlay063_ov63_0222CCE4.c.o
+	Object main.nef.p/src_overlay063_ov63_0222D160.c.o
+	Object main.nef.p/src_overlay063_ov63_0222D1C0.c.o
+	Object main.nef.p/src_overlay063_ov63_0222D77C.c.o
+}
+
+Overlay overlay64
+{
+	After overlay63
+	Object main.nef.p/src_overlay064_ov64_0222DCE0.c.o
+}
+
+Overlay overlay65
+{
+	After overlay63
+	Object main.nef.p/src_overlay065_ov65_0222DCE0.c.o
+	Object main.nef.p/src_overlay065_ov65_02235060.c.o
+	Object main.nef.p/src_overlay065_ov65_02236474.c.o
+	Object main.nef.p/src_overlay065_ov65_0223648C.c.o
+}
+
+Overlay overlay66
+{
+	After overlay63
+	Object main.nef.p/src_overlay066_ov66_0222DCE0.c.o
+	Object main.nef.p/src_overlay066_ov66_0222DDF0.c.o
+	Object main.nef.p/src_overlay066_ov66_02230C44.c.o
+	Object main.nef.p/src_overlay066_ov66_02231428.c.o
+	Object main.nef.p/src_overlay066_ov66_0223177C.c.o
+	Object main.nef.p/src_overlay066_ov66_022324F0.c.o
+	Object main.nef.p/src_overlay066_ov66_022343A8.c.o
+	Object main.nef.p/src_overlay066_ov66_02234EA8.c.o
+	Library	libdwcbm.a
+	Library libdwcaccount.a
+	Library libdwcppwlobby.a
+	Library libdwcilobby.a
+	Library libdwcgschat.a
+	Library libdwcenc.a
+}
+
+Overlay overlay67
+{
+	After overlay66
+	Object main.nef.p/src_overlay067_ov67_0225C700.c.o
+}
+
+Overlay overlay68
+{
+	After overlay66
+	Object main.nef.p/src_overlay068_ov68_0225C700.c.o
+}
+
+Overlay overlay69
+{
+	After overlay66
+	Object main.nef.p/src_overlay069_ov69_0225C700.c.o
+}
+
+Overlay overlay70
+{
+	After overlay66
+	Object main.nef.p/src_overlay070_ov70_0225C700.c.o
+	Object main.nef.p/src_overlay070_ov70_0225C858.c.o
+	Object main.nef.p/src_overlay070_ov70_0225C9B4.c.o
+	Object main.nef.p/src_overlay070_ov70_0225D9A4.c.o
+	Object main.nef.p/src_overlay070_ov70_02260A70.c.o
+	Object main.nef.p/src_overlay070_ov70_02260B44.c.o
+	Object main.nef.p/src_overlay070_ov70_02261E10.c.o
+	Object main.nef.p/src_overlay070_ov70_02262DA8.c.o
+	Object main.nef.p/src_overlay070_ov70_022630A4.c.o
+	Object main.nef.p/src_overlay070_ov70_02265F38.c.o
+	Object main.nef.p/src_overlay070_ov70_02266E9C.c.o
+	Object main.nef.p/src_overlay070_ov70_02269190.c.o
+	Object main.nef.p/src_overlay070_ov70_0226C338.c.o
+	Object main.nef.p/src_overlay070_ov70_0226C60C.c.o
+	Object main.nef.p/src_overlay070_ov70_0226C8B4.c.o
+	Object main.nef.p/src_overlay070_ov70_0226CC74.c.o
+	Object main.nef.p/src_overlay070_ov70_0226CE54.c.o
+}
+
+Overlay overlay71
+{
+	After overlay12
+	Object main.nef.p/src_overlay071_ov71_0223B140.c.o
+	Object main.nef.p/src_overlay071_ov71_0223C69C.c.o
+	Object main.nef.p/src_overlay071_ov71_0223CF0C.c.o
+	Object main.nef.p/src_overlay071_ov71_0223D324.c.o
+}
+
+Overlay overlay72
+{
+	After overlay71
+	Object main.nef.p/src_overlay072_ov72_0223D7A0.c.o
+}
+
+Overlay overlay73
+{
+	After main
+	Object main.nef.p/src_overlay073_ov73_021D0D80.c.o
+	Object main.nef.p/src_overlay073_ov73_021D3250.c.o
+}
+
+Overlay overlay74
+{
+	After main
+	Object main.nef.p/src_overlay074_ov74_021D0D80.c.o
+}
+
+Overlay overlay75
+{
+	After main
+	Object main.nef.p/src_overlay075_ov75_021D0D80.c.o
+}
+
+Overlay overlay76
+{
+	After overlay12
+	Object main.nef.p/src_overlay076_ov76_0223B140.c.o
+	Object main.nef.p/src_overlay076_ov76_0223B870.c.o
+	Object main.nef.p/src_overlay076_ov76_0223D338.c.o
+}
+
+Overlay overlay77
+{
+	After main
+	Object main.nef.p/src_overlay077_ov77_021D0D80.c.o
+	Object main.nef.p/src_overlay077_ov77_021D25B0.c.o
+	Object main.nef.p/src_overlay077_ov77_021D54B0.c.o
+	Object main.nef.p/src_overlay077_ov77_021D6670.c.o
+	Object main.nef.p/src_overlay077_ov77_021D6C70.c.o
+}
+
+Overlay overlay78
+{
+	After main
+	Object main.nef.p/src_overlay078_ov78_021D0D80.c.o
+}
+
+Overlay overlay79
+{
+	After main
+	Object main.nef.p/src_overlay079_ov79_021D0D80.c.o
+	Object main.nef.p/src_overlay079_ov79_021D183C.c.o
+	Object main.nef.p/src_overlay079_ov79_021D20F4.c.o
+	Object main.nef.p/src_overlay079_ov79_021D2268.c.o
+	Object main.nef.p/src_overlay079_ov79_021D3768.c.o
+}
+
+Overlay overlay80
+{
+	After main
+	Object main.nef.p/src_overlay080_ov80_021D0D80.c.o
+	Object main.nef.p/src_overlay080_ov80_021D1458.c.o
+	Object main.nef.p/src_overlay080_ov80_021D2A08.c.o
+	Object main.nef.p/src_overlay080_ov80_021D2AF4.c.o
+}
+
+Overlay overlay81
+{
+	After main
+	Object main.nef.p/src_overlay081_ov81_021D0D80.c.o
+	Object main.nef.p/src_overlay081_ov81_021D1610.c.o
+}
+
+Overlay overlay82
+{
+	After overlay12
+	Object main.nef.p/src_overlay082_ov82_0223B140.c.o
+	Object main.nef.p/src_overlay082_ov82_0223B2E0.c.o
+}
+
+Overlay overlay83
+{
+	After overlay82
+	Object main.nef.p/src_overlay083_ov83_0223B5A0.c.o
+	Object main.nef.p/src_overlay083_ov83_0223C958.c.o
+	Object main.nef.p/src_overlay083_ov83_0223D144.c.o
+	Object main.nef.p/src_overlay083_ov83_0223D150.c.o
+	Object main.nef.p/src_overlay083_ov83_0223D4CC.c.o
+	Object main.nef.p/src_overlay083_ov83_0223D6A8.c.o
+	Object main.nef.p/src_overlay083_ov83_0223F7F4.c.o
+}
+
+Overlay overlay84
+{
+	After overlay82
+	Object main.nef.p/src_overlay084_ov84_0223B5A0.c.o
+	Object main.nef.p/src_overlay084_ov84_0223F040.c.o
+	Object main.nef.p/src_overlay084_ov84_022403F4.c.o
+}
+
+Overlay overlay85
+{
+	After overlay84
+	Object main.nef.p/src_overlay085_ov85_02241440.c.o
+}
+
+Overlay overlay86
+{
+	After overlay12
+	Object main.nef.p/src_overlay086_ov86_0223B140.c.o
+}
+
+Overlay overlay87
+{
+	After main
+	Object main.nef.p/src_overlay087_ov87_021D0D80.c.o
+	Object main.nef.p/src_overlay087_ov87_021D106C.c.o
+}
+
+Overlay overlay88
+{
+	After overlay12
+	Object main.nef.p/src_overlay088_ov88_0223B140.c.o
+	Object main.nef.p/src_overlay088_ov88_0223E9C4.c.o
+}
+
+Overlay overlay89
+{
+	After main
+	Object main.nef.p/src_overlay089_ov89_dummy.c.o
+}
+
+Overlay overlay90
+{
+	After main
+	Object main.nef.p/src_overlay090_ov90_021D0D80.c.o
+}
+
+Overlay overlay91
+{
+	After main
+	Object main.nef.p/src_overlay091_ov91_021D0D80.c.o
+}
+
+Overlay overlay92
+{
+	After main
+	Object main.nef.p/src_overlay092_ov92_021D0D80.c.o
+}
+
+Overlay overlay93
+{
+	After main
+	Object main.nef.p/src_overlay093_ov93_021D0D80.c.o
+	Object main.nef.p/src_overlay093_ov93_021D111C.c.o
+}
+
+Overlay overlay94
+{
+	After overlay12
+	Object main.nef.p/src_overlay094_ov94_0223B140.c.o
+	Object main.nef.p/src_overlay094_ov94_0223BCB0.c.o
+	Object main.nef.p/src_overlay094_ov94_0223C610.c.o
+	Object main.nef.p/src_overlay094_ov94_0223D0C4.c.o
+	Object main.nef.p/src_overlay094_ov94_0223DC04.c.o
+	Object main.nef.p/src_overlay094_ov94_0223E46C.c.o
+	Object main.nef.p/src_overlay094_ov94_0223FB48.c.o
+	Object main.nef.p/src_overlay094_ov94_022414B8.c.o
+	Object main.nef.p/src_overlay094_ov94_02242AD0.c.o
+	Object main.nef.p/src_overlay094_ov94_02243EF8.c.o
+	Object main.nef.p/src_overlay094_ov94_022443E0.c.o
+	Object main.nef.p/src_overlay094_ov94_022444C8.c.o
+	Object main.nef.p/src_overlay094_ov94_02244950.c.o
+}
+
+Overlay overlay95
+{
+	After overlay94
+	Object main.nef.p/src_overlay095_ov95_02246C20.c.o
+	Object main.nef.p/src_overlay095_ov95_022476F0.c.o
+	Object main.nef.p/src_overlay095_ov95_02247B6C.c.o
+	Object main.nef.p/src_overlay095_ov95_02248590.c.o
+	Object main.nef.p/src_overlay095_ov95_02249740.c.o
+	Object main.nef.p/src_overlay095_ov95_02249F90.c.o
+	Object main.nef.p/src_overlay095_ov95_0224A390.c.o
+	Object main.nef.p/src_overlay095_ov95_0224ABC0.c.o
+	Object main.nef.p/src_overlay095_ov95_0224B3D8.c.o
+}
+
+Overlay overlay96
+{
+	After overlay12
+	Object main.nef.p/src_overlay096_ov96_0223B140.c.o
+	Object main.nef.p/src_overlay096_ov96_0223B6A0.c.o
+	Object main.nef.p/src_overlay096_ov96_0223BCE0.c.o
+}
+
+Overlay overlay97
+{
+	After overlay60
+	Object main.nef.p/src_overlay097_ov97_0222AE60.c.o
+	Object main.nef.p/src_overlay097_ov97_0222C174.c.o
+	Object main.nef.p/src_overlay097_ov97_0222D04C.c.o
+	Object main.nef.p/src_overlay097_ov97_0222D2F8.c.o
+	Object main.nef.p/src_overlay097_ov97_0222D30C.c.o
+	Object main.nef.p/src_overlay097_ov97_02230410.c.o
+	Object main.nef.p/src_overlay097_ov97_02232054.c.o
+	Object main.nef.p/src_overlay097_ov97_02232200.c.o
+	Object main.nef.p/src_overlay097_ov97_02232DC8.c.o
+	Object main.nef.p/src_overlay097_ov97_02233408.c.o
+	Object main.nef.p/src_overlay097_ov97_022337FC.c.o
+	Object main.nef.p/src_overlay097_ov97_02233814.c.o
+	Object main.nef.p/src_overlay097_ov97_02233B18.c.o
+	Object main.nef.p/src_overlay097_ov97_02235D18.c.o
+	Object main.nef.p/src_overlay097_ov97_0223635C.c.o
+	Object main.nef.p/src_overlay097_ov97_02236380.c.o
+	Object main.nef.p/src_overlay097_ov97_02237520.c.o
+	Object main.nef.p/src_overlay097_ov97_02237694.c.o
+	Object main.nef.p/src_overlay097_ov97_02238534.c.o
+	Object main.nef.p/src_overlay097_ov97_02238D74.c.o
+	Object main.nef.p/src_overlay097_ov97_022392E4.c.o
+	Library libcrypto_ov97.a
+}
+
+Overlay overlay98
+{
+	After overlay94
+	Object main.nef.p/src_overlay098_ov98_02246C20.c.o
+	Object main.nef.p/src_overlay098_ov98_022471C8.c.o
+	Object main.nef.p/src_overlay098_ov98_022499C8.c.o
+}
+
+Overlay overlay99
+{
+	After main
+	Object main.nef.p/src_overlay099_ov99_021D0D80.c.o
+	Object main.nef.p/src_overlay099_ov99_021D1A54.c.o
+	Object main.nef.p/src_overlay099_ov99_021D2C08.c.o
+	Object main.nef.p/src_overlay099_ov99_021D2E28.c.o
+	Object main.nef.p/src_overlay099_ov99_021D340C.c.o
+	Object main.nef.p/src_overlay099_ov99_021D3A40.c.o
+	Object main.nef.p/src_overlay099_ov99_021D3C18.c.o
+	Object main.nef.p/src_overlay099_ov99_021D3DE0.c.o
+	Object main.nef.p/src_overlay099_ov99_021D3E78.c.o
+	Object main.nef.p/src_overlay099_ov99_021D4134.c.o
+}
+
+Overlay overlay100
+{
+	After main
+	Object main.nef.p/src_overlay100_ov100_021D0D80.c.o
+	Object main.nef.p/src_overlay100_ov100_021D13E4.c.o
+	Object main.nef.p/src_overlay100_ov100_021D1C44.c.o
+	Object main.nef.p/src_overlay100_ov100_021D2F0C.c.o
+	Object main.nef.p/src_overlay100_ov100_021D400C.c.o
+	Object main.nef.p/src_overlay100_ov100_021D44C0.c.o
+	Object main.nef.p/src_overlay100_ov100_021D46C8.c.o
+	Object main.nef.p/src_overlay100_ov100_021D4E04.c.o
+}
+
+Overlay overlay101
+{
+	After main
+	Object main.nef.p/src_overlay101_ov101_021D0D80.c.o
+	Object main.nef.p/src_overlay101_ov101_021D1A28.c.o
+	Object main.nef.p/src_overlay101_ov101_021D59AC.c.o
+	Object main.nef.p/src_overlay101_ov101_021D7E48.c.o
+	Object main.nef.p/src_overlay101_ov101_021D94D8.c.o
+}
+
+Overlay overlay102
+{
+	After main
+	Object main.nef.p/src_overlay102_ov102_021D0D80.c.o
+}
+
+Overlay overlay103
+{
+	After overlay63
+	Object main.nef.p/src_overlay103_ov103_dummy.c.o
+}
+
+Overlay overlay104
+{
+	After overlay63
+	Object main.nef.p/src_overlay104_ov104_0222DCE0.c.o
+	Object main.nef.p/src_overlay104_ov104_0222E63C.c.o
+	Object main.nef.p/src_overlay104_ov104_0222E930.c.o
+	Object main.nef.p/src_overlay104_ov104_0222EA90.c.o
+	Object main.nef.p/src_overlay104_ov104_0222ECE8.c.o
+	Object main.nef.p/src_overlay104_ov104_0222FBE4.c.o
+	Object main.nef.p/src_overlay104_ov104_02231F74.c.o
+	Object main.nef.p/src_overlay104_ov104_022332B4.c.o
+	Object main.nef.p/src_overlay104_ov104_022339B4.c.o
+	Object main.nef.p/src_overlay104_ov104_02234838.c.o
+	Object main.nef.p/src_overlay104_ov104_02234DB4.c.o
+	Object main.nef.p/src_overlay104_ov104_022358E8.c.o
+	Object main.nef.p/src_overlay104_ov104_022361B4.c.o
+	Object main.nef.p/src_overlay104_ov104_02237378.c.o
+	Object main.nef.p/src_overlay104_ov104_02237DD8.c.o
+	Object main.nef.p/src_overlay104_ov104_02239080.c.o
+	Object main.nef.p/src_overlay104_ov104_02239130.c.o
+	Object main.nef.p/src_overlay104_ov104_022394A4.c.o
+	Object main.nef.p/src_overlay104_ov104_022395F0.c.o
+	Object main.nef.p/src_overlay104_ov104_02239C58.c.o
+	Object main.nef.p/src_overlay104_ov104_0223A0C4.c.o
+	Object main.nef.p/src_overlay104_ov104_0223A7F4.c.o
+	Object main.nef.p/src_overlay104_ov104_0223AF58.c.o
+	Object main.nef.p/src_overlay104_ov104_0223B6F4.c.o
+	Object main.nef.p/src_overlay104_ov104_0223BCBC.c.o
+	Object main.nef.p/src_overlay104_ov104_0223C164.c.o
+	Object main.nef.p/src_overlay104_ov104_0223C2D4.c.o
+	Object main.nef.p/src_overlay104_ov104_0223D5D0.c.o
+	Object main.nef.p/src_overlay104_ov104_0223D768.c.o
+	Object main.nef.p/src_overlay104_ov104_0223D860.c.o
+	Object main.nef.p/src_overlay104_ov104_0223D9E4.c.o
+	Object main.nef.p/src_overlay104_ov104_0223DC7C.c.o
+	Object main.nef.p/src_overlay104_ov104_0223E894.c.o
+}
+
+Overlay overlay105
+{
+	After overlay104
+	Object main.nef.p/src_overlay105_ov105_02241AE0.c.o
+	Object main.nef.p/src_overlay105_ov105_02245AAC.c.o
+	Object main.nef.p/src_overlay105_ov105_02245CD0.c.o
+	Object main.nef.p/src_overlay105_ov105_02245DC4.c.o
+	Object main.nef.p/src_overlay105_ov105_02245E54.c.o
+	Object main.nef.p/src_overlay105_ov105_02245FB8.c.o
+	Object main.nef.p/src_overlay105_ov105_02246214.c.o
+}
+
+Overlay overlay106
+{
+	After overlay104
+	Object main.nef.p/src_overlay106_ov106_02241AE0.c.o
+	Object main.nef.p/src_overlay106_ov106_02243310.c.o
+	Object main.nef.p/src_overlay106_ov106_022435FC.c.o
+	Object main.nef.p/src_overlay106_ov106_022436E0.c.o
+}
+
+Overlay overlay107
+{
+	After overlay104
+	Object main.nef.p/src_overlay107_ov107_02241AE0.c.o
+	Object main.nef.p/src_overlay107_ov107_02245EB0.c.o
+	Object main.nef.p/src_overlay107_ov107_02249604.c.o
+	Object main.nef.p/src_overlay107_ov107_02249B1C.c.o
+	Object main.nef.p/src_overlay107_ov107_02249C98.c.o
+	Object main.nef.p/src_overlay107_ov107_02249D14.c.o
+}
+
+Overlay overlay108
+{
+	After overlay104
+	Object main.nef.p/src_overlay108_ov108_02241AE0.c.o
+	Object main.nef.p/src_overlay108_ov108_02243030.c.o
+	Object main.nef.p/src_overlay108_ov108_0224351C.c.o
+	Object main.nef.p/src_overlay108_ov108_02243630.c.o
+}
+
+Overlay overlay109
+{
+	After main
+	Object main.nef.p/src_overlay109_ov109_021D0D80.c.o
+	Object main.nef.p/src_overlay109_ov109_021D3D50.c.o
+}
+
+Overlay overlay110
+{
+	After main
+	Object main.nef.p/src_overlay110_ov110_021D0D80.c.o
+	Object main.nef.p/src_overlay110_ov110_021D2124.c.o
+}
+
+Overlay overlay111
+{
+	After main
+	Object main.nef.p/src_overlay111_ov111_021D0D80.c.o
+	Object main.nef.p/src_overlay111_ov111_021D2F80.c.o
+	Object main.nef.p/src_overlay111_ov111_021D33F4.c.o
+	Object main.nef.p/src_overlay111_ov111_021D3548.c.o
+}
+
+Overlay overlay112
+{
+	After overlay66
+	Object main.nef.p/src_overlay112_ov112_0225C700.c.o
+}
+
+Overlay overlay113
+{
+	After overlay66
+	Object main.nef.p/src_overlay113_ov113_0225C700.c.o
+	Object main.nef.p/src_overlay113_ov113_0225E368.c.o
+	Object main.nef.p/src_overlay113_ov113_02260620.c.o
+	Object main.nef.p/src_overlay113_ov113_022607D8.c.o
+}
+
+Overlay overlay114
+{
+	After overlay66
+	Object main.nef.p/src_overlay114_ov114_0225C700.c.o
+	Object main.nef.p/src_overlay114_ov114_02260038.c.o
+	Object main.nef.p/src_overlay114_ov114_02260044.c.o
+}
+
+Overlay overlay115
+{
+	After overlay114
+	Object main.nef.p/src_overlay115_ov115_02260440.c.o
+	Object main.nef.p/src_overlay115_ov115_02260BBC.c.o
+	Object main.nef.p/src_overlay115_ov115_02260CEC.c.o
+	Object main.nef.p/src_overlay115_ov115_02265A18.c.o
+	Object main.nef.p/src_overlay115_ov115_02265A24.c.o
+}
+
+Overlay overlay116
+{
+	After overlay114
+	Object main.nef.p/src_overlay116_ov116_02260440.c.o
+	Object main.nef.p/src_overlay116_ov116_022604C4.c.o
+	Object main.nef.p/src_overlay116_ov116_02261870.c.o
+	Object main.nef.p/src_overlay116_ov116_02262A44.c.o
+	Object main.nef.p/src_overlay116_ov116_02262A8C.c.o
+	Object main.nef.p/src_overlay116_ov116_0226432C.c.o
+	Object main.nef.p/src_overlay116_ov116_02266FEC.c.o
+}
+
+Overlay overlay117
+{
+	After overlay114
+	Object main.nef.p/src_overlay117_ov117_02260440.c.o
+	Object main.nef.p/src_overlay117_ov117_02260668.c.o
+	Object main.nef.p/src_overlay117_ov117_022626B0.c.o
+	Object main.nef.p/src_overlay117_ov117_02263AF0.c.o
+	Object main.nef.p/src_overlay117_ov117_02266498.c.o
+	Object main.nef.p/src_overlay117_ov117_022665FC.c.o
+	Object main.nef.p/src_overlay117_ov117_022666C0.c.o
+}
+
+Overlay overlay118
+{
+	After main
+	Object main.nef.p/src_overlay118_ov118_021D0D80.c.o
+}
+
+Overlay overlay119
+{
+	After main
+	Object main.nef.p/src_overlay119_ov119_021D0D80.c.o
+	Object main.nef.p/src_overlay119_ov119_021D191C.c.o
+}
+
+Overlay overlay120
+{
+	After main
+	Object main.nef.p/src_overlay120_ov120_021D0D80.c.o
+}
+
+Overlay overlay121
+{
+	After main
+	Object main.nef.p/src_overlay121_ov121_021D0D80.c.o
+}
+

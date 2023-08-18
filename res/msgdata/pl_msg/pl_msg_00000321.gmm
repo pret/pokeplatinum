@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000321_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is the portal leading back to\nthe Turnback Cave.\rLeap into the portal and return to\nthe Turnback Cave?</language>
+	</row>
+	<row id="pl_msg_00000321_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} leapt into the portal.\r</language>
+	</row>
+</body>

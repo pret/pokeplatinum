@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000520_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If I had to describe Sunyshore Gym\nin a word, it’d be...\rShockingly electric!\rWhoops, that’s two words!</language>
+	</row>
+	<row id="pl_msg_00000520_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunyshore’s Gym Leader Volkner’s been\nbored lately, I hear.\rWe need tough challengers to visit so\nhe doesn’t get bored.\rPeople get up to no good if they have\ntoo much time on their hands.</language>
+	</row>
+</body>

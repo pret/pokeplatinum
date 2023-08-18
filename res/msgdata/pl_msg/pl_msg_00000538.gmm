@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000538_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ding-dong! Time’s up!\nYour Safari Game is over.</language>
+	</row>
+	<row id="pl_msg_00000538_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ding-dong! You’ve run out of Safari\nBalls. Your Safari Game is over.</language>
+	</row>
+	<row id="pl_msg_00000538_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ding-dong!\nYou’re out of room for more Pokémon.\rYour Safari Game is over!</language>
+	</row>
+	<row id="pl_msg_00000538_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Where would you like to go?</language>
+	</row>
+	<row id="pl_msg_00000538_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} didn’t board\nthe Quick Tram.</language>
+	</row>
+	<row id="pl_msg_00000538_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to exit the Great Marsh\nright now?</language>
+	</row>
+</body>

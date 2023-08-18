@@ -4,7 +4,7 @@
 #include "struct_decls/narc.h"
 #include "struct_decls/struct_02014014_decl.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 UnkStruct_02014014 * ov12_022237F0(int param0, int param1, int param2);
 UnkStruct_02014014 * ov12_02223818(int param0, int param1, int param2, int param3);

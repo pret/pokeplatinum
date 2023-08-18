@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000242_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Throwing food at Pokémon makes them\nmore likely to bolt.\rBut when they’re eating, it makes them\neasier to catch.\rIf you throw mud at them, they get\nharder to catch...\rBut they also get less likely to bolt\nout of anger.\rUrgh, what to do...?</language>
+	</row>
+	<row id="pl_msg_00000242_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Great Marsh Area 3</language>
+	</row>
+</body>

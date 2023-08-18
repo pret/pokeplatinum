@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000244_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Quick, quick, out in the sticks.\nTo and fro we go, we’re quick~♫\rIf you’re thinking about going deep\ninto the marsh, I recommend you take\fthe Great Marsh Quick Trams.</language>
+	</row>
+	<row id="pl_msg_00000244_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Great Marsh Area 5</language>
+	</row>
+</body>

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000483_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The PSYDUCK are standing firm.\nThey aren’t inclined to move at all.</language>
+	</row>
+	<row id="pl_msg_00000483_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The PSYDUCK are standing firm.\nThey aren’t inclined to move.\rWould you like to use the SecretPotion?</language>
+	</row>
+	<row id="pl_msg_00000483_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} used the\nSecretPotion!\rThe PSYDUCK appear to be cured\nof their chronic headache!\r</language>
+	</row>
+	<row id="pl_msg_00000483_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Oh, good. You used the\nSecretPotion I gave you.\rPSYDUCK are known to suffer from\nchronic headaches.\rBut no one’s been able to figure out\nwhat triggers the headaches.\rOh, yes! Can I ask you a big favor?\rI want you to deliver this Old Charm\nto my grandma in Celestic Town.\rI know there are some rare Pokémon\nbetween here and Celestic Town, so\fit will be worth your while to go.</language>
+	</row>
+	<row id="pl_msg_00000483_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: My grandma has this sort of\nbossy atmosphere about her.\rI think you’ll recognize her right\naway.\rYes, I’m sure you will. She’s the\nelder of Celestic Town.\rAnd the location... Look on your Town\nMap. You can’t miss it.\rOK, I’m counting on you!\nSee you again down the road!\r</language>
+	</row>
+	<row id="pl_msg_00000483_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I know I’m asking a big favor\nof you.\rBut I really want you to do it.\nWill you go to Celestic Town for me?</language>
+	</row>
+	<row id="pl_msg_00000483_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000483_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m taking a rest. If I were a bird\nPokémon, it would be a roost. Haha!\rUh... You should rest up, too.\r</language>
+	</row>
+	<row id="pl_msg_00000483_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If they had to keep flying forever,\nbird Pokémon would eventually crash.</language>
+	</row>
+	<row id="pl_msg_00000483_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So long as there’s a road, we’ll\nkeep on running...</language>
+	</row>
+	<row id="pl_msg_00000483_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Café Cabin\nFreshly Squeezed Milk</language>
+	</row>
+	<row id="pl_msg_00000483_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 210\nSolaceon Town</language>
+	</row>
+</body>

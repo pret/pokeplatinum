@@ -5,11 +5,8 @@ if [[ "$GITHUB_REF" != "refs/heads/main" || "$GITHUB_EVENT_NAME" != "push" ]]; t
   exit 0
 fi
 
-build_name=$1
-url=$2
-build_subdir=${1//poke/}.us
-arm9name=${arm9name:-main.nef}
-map_file=$(dirname "$0")/../../build/${build_subdir}/${arm9name}.xMAP
+url="$1"
+map_file="$2"
 if [ ! -f $map_file ]; then
   echo "$map_file does not exist!"
   exit 1

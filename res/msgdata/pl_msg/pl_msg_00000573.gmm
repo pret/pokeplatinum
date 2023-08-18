@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000573_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Some kinds of Pokémon appear only\nif they’re attracted by the sweet\fscent of Honey.</language>
+	</row>
+	<row id="pl_msg_00000573_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon must have an acute sense\nof smell.\rThey can sense the aroma of Honey\nfrom very far away.</language>
+	</row>
+</body>

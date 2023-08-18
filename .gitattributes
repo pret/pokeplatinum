@@ -13,7 +13,6 @@
 *.rsf text eol=lf
 *.template text eol=lf
 tools/cw/license.dat text eol=lf
-
 meson.build text eol=lf
 
 .gitattributes text eol=lf

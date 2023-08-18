@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000263_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Hey, {STRVAR_1 3, 0, 0}, wait up!\nSo, what’s going on?\r...What?!\nTeam Galactic’s here?\rGotcha!\nLet’s team up and go together.\r</language>
+	</row>
+	<row id="pl_msg_00000263_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} decided to go with\nBuck!</language>
+	</row>
+	<row id="pl_msg_00000263_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: You won’t regret teaming up!\nI’ll keep your Pokémon healthy!</language>
+	</row>
+	<row id="pl_msg_00000263_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Team Galactic’s here, right?\nLet’s go together!\r</language>
+	</row>
+	<row id="pl_msg_00000263_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Whoa! Hold up!\rIf you go back, you’ll leave me all by\nmy lonesome here!\rWell, if you gotta go, you gotta go.\nI’ll stick around here for you.\r</language>
+	</row>
+	<row id="pl_msg_00000263_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Here we are!\nTeam Galactic’s inside, right?\fThis is it. No fooling around!\r</language>
+	</row>
+	<row id="pl_msg_00000263_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000263_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000263_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000263_00009" index="9">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000263_00010" index="10">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000263_00011" index="11">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+</body>

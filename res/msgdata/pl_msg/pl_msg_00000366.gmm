@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000366_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Started from {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 74, 0, 0} {STRVAR_1 51, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000366_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunday</language>
+	</row>
+	<row id="pl_msg_00000366_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Monday</language>
+	</row>
+	<row id="pl_msg_00000366_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tuesday</language>
+	</row>
+	<row id="pl_msg_00000366_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wednesday</language>
+	</row>
+	<row id="pl_msg_00000366_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thursday</language>
+	</row>
+	<row id="pl_msg_00000366_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Friday</language>
+	</row>
+	<row id="pl_msg_00000366_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Saturday</language>
+	</row>
+	<row id="pl_msg_00000366_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rested comfortably at home.</language>
+	</row>
+	<row id="pl_msg_00000366_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Left the Research Lab.</language>
+	</row>
+	<row id="pl_msg_00000366_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used a PC Box.</language>
+	</row>
+	<row id="pl_msg_00000366_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shopped at a Poké Mart.</language>
+	</row>
+	<row id="pl_msg_00000366_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did lots of shopping at a Poké Mart.</language>
+	</row>
+	<row id="pl_msg_00000366_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sold a little at a Poké Mart.</language>
+	</row>
+	<row id="pl_msg_00000366_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sold a lot at a Poké Mart.</language>
+	</row>
+	<row id="pl_msg_00000366_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did some business at a Poké Mart.</language>
+	</row>
+	<row id="pl_msg_00000366_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 32, 0, 0} was too tough...</language>
+	</row>
+	<row id="pl_msg_00000366_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 32, 0, 0}’s {STRVAR_1 67, 1, 0}!</language>
+	</row>
+	<row id="pl_msg_00000366_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat Elite 4 {STRVAR_1 67, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000366_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defeated the Champion, {STRVAR_1 67, 0, 0}!</language>
+	</row>
+	<row id="pl_msg_00000366_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Arrived in {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got through {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Departed from {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Exited from {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Tower.</language>
+	</row>
+	<row id="pl_msg_00000366_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Factory.</language>
+	</row>
+	<row id="pl_msg_00000366_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Castle.</language>
+	</row>
+	<row id="pl_msg_00000366_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Hall.</language>
+	</row>
+	<row id="pl_msg_00000366_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Battle Arcade.</language>
+	</row>
+	<row id="pl_msg_00000366_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Had fun at the Game Corner.</language>
+	</row>
+	<row id="pl_msg_00000366_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Went wild on the Safari Game.</language>
+	</row>
+	<row id="pl_msg_00000366_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dug for Treasure underground.</language>
+	</row>
+	<row id="pl_msg_00000366_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Built a Secret Base underground.</language>
+	</row>
+	<row id="pl_msg_00000366_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 66, 0, 0} was obtained.</language>
+	</row>
+	<row id="pl_msg_00000366_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Cut at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flew to {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Surf at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Strength at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Flash at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Rock Smash at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Waterfall at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Rock Climb at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Defog at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Used Dig at {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lured Pokémon with a sweet aroma.</language>
+	</row>
+	<row id="pl_msg_00000366_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Warped to {STRVAR_1 4, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shared HP using Softboiled.</language>
+	</row>
+	<row id="pl_msg_00000366_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shared HP using Milk Drink.</language>
+	</row>
+	<row id="pl_msg_00000366_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Caught {STRVAR_1 69, 0, 0} ({STRVAR_1 33, 1, 0}).</language>
+	</row>
+	<row id="pl_msg_00000366_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 69, 0, 0} was caught ({STRVAR_1 33, 1, 0}).</language>
+	</row>
+	<row id="pl_msg_00000366_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Caught a male {STRVAR_1 69, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Caught a female {STRVAR_1 69, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 69, 0, 0} was defeated ({STRVAR_1 33, 1, 0}).</language>
+	</row>
+	<row id="pl_msg_00000366_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defeated {STRVAR_1 69, 0, 0} ({STRVAR_1 33, 1, 0}).</language>
+	</row>
+	<row id="pl_msg_00000366_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defeated a male {STRVAR_1 69, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Defeated a female {STRVAR_1 69, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battled {STRVAR_1 67, 1, 0} at {STRVAR_1 70, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 67, 1, 0} at {STRVAR_1 71, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 67, 1, 0} at {STRVAR_1 72, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Met {STRVAR_1 73, 0, 0}’s {STRVAR_1 67, 1, 0}!</language>
+	</row>
+	<row id="pl_msg_00000366_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 67, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000366_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} (Single).</language>
+	</row>
+	<row id="pl_msg_00000366_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} (Single).</language>
+	</row>
+	<row id="pl_msg_00000366_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} (Single).</language>
+	</row>
+	<row id="pl_msg_00000366_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} (Double).</language>
+	</row>
+	<row id="pl_msg_00000366_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} (Double).</language>
+	</row>
+	<row id="pl_msg_00000366_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} (Double).</language>
+	</row>
+	<row id="pl_msg_00000366_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Multi).</language>
+	</row>
+	<row id="pl_msg_00000366_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Multi).</language>
+	</row>
+	<row id="pl_msg_00000366_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Multi).</language>
+	</row>
+	<row id="pl_msg_00000366_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} (Mix).</language>
+	</row>
+	<row id="pl_msg_00000366_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} (Mix).</language>
+	</row>
+	<row id="pl_msg_00000366_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} (Mix).</language>
+	</row>
+	<row id="pl_msg_00000366_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Mix).</language>
+	</row>
+	<row id="pl_msg_00000366_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Mix).</language>
+	</row>
+	<row id="pl_msg_00000366_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 75, 0, 0} &amp; {STRVAR_1 75, 1, 0} (Mix).</language>
+	</row>
+	<row id="pl_msg_00000366_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Greeted {STRVAR_1 67, 0, 0} in Union Room.</language>
+	</row>
+	<row id="pl_msg_00000366_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got {STRVAR_1 68, 1, 0} from {STRVAR_1 67, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Drew pictures with others.</language>
+	</row>
+	<row id="pl_msg_00000366_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got {STRVAR_1 68, 0, 0} in a friend trade.</language>
+	</row>
+	<row id="pl_msg_00000366_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chatted with others.</language>
+	</row>
+	<row id="pl_msg_00000366_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Beat {STRVAR_1 67, 0, 0} (Union).</language>
+	</row>
+	<row id="pl_msg_00000366_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lost to {STRVAR_1 67, 0, 0} (Union).</language>
+	</row>
+	<row id="pl_msg_00000366_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tied {STRVAR_1 67, 0, 0} (Union).</language>
+	</row>
+	<row id="pl_msg_00000366_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mixed records with friends.</language>
+	</row>
+	<row id="pl_msg_00000366_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Had a friendly Spin Trade session.</language>
+	</row>
+	<row id="pl_msg_00000366_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Placed no. {STRVAR_1 50, 0, 0} in a Contest.</language>
+	</row>
+	<row id="pl_msg_00000366_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Made Poffins in a group.</language>
+	</row>
+	<row id="pl_msg_00000366_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got {STRVAR_1 67, 0, 0}’s {STRVAR_1 68, 1, 0} (GTS).</language>
+	</row>
+	<row id="pl_msg_00000366_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Watched everyone’s Battle Videos.</language>
+	</row>
+	<row id="pl_msg_00000366_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Checked everyone’s rankings.</language>
+	</row>
+	<row id="pl_msg_00000366_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Checked everyone’s Dress-Up Data.</language>
+	</row>
+	<row id="pl_msg_00000366_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Checked everyone’s Box Data.</language>
+	</row>
+	<row id="pl_msg_00000366_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Won in the Wi-Fi Battle Room!</language>
+	</row>
+	<row id="pl_msg_00000366_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chatted with {STRVAR_1 3, 0, 0} in the Plaza.</language>
+	</row>
+	<row id="pl_msg_00000366_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Got a Tap Toy from {STRVAR_1 3, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played {STRVAR_6 0, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000366_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played with the Footprint Stamp.</language>
+	</row>
+	<row id="pl_msg_00000366_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Viewed the Plaza Visitor Profiles.</language>
+	</row>
+	<row id="pl_msg_00000366_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Read the Plaza News.</language>
+	</row>
+	<row id="pl_msg_00000366_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Joined a Parade.</language>
+	</row>
+	<row id="pl_msg_00000366_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Played at the Wi-Fi Club.</language>
+	</row>
+</body>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000119_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can take a cute Pokémon out for\na stroll in Amity Square.</language>
+	</row>
+	<row id="pl_msg_00000119_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m appalled!\nThey refused entry to my Pokémon!\rOh, my poor GYARADOS and STEELIX!\nThis is discrimination!</language>
+	</row>
+</body>

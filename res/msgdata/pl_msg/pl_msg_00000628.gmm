@@ -1,0 +1,491 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000628_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Prism Sphere</language>
+	</row>
+	<row id="pl_msg_00000628_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Prism Sphere</language>
+	</row>
+	<row id="pl_msg_00000628_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 4}Pale Sphere{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000628_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Red Sphere{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000628_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}Blue Sphere{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000628_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 3}Green Sphere{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000628_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Prism Sphere</language>
+	</row>
+	<row id="pl_msg_00000628_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 4}Pale Sphere{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000628_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Red Sphere{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000628_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}Blue Sphere{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000628_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 3}Green Sphere{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000628_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oval Stone</language>
+	</row>
+	<row id="pl_msg_00000628_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Odd Keystone</language>
+	</row>
+	<row id="pl_msg_00000628_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sun Stone</language>
+	</row>
+	<row id="pl_msg_00000628_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Star Piece</language>
+	</row>
+	<row id="pl_msg_00000628_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Moon Stone</language>
+	</row>
+	<row id="pl_msg_00000628_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hard Stone</language>
+	</row>
+	<row id="pl_msg_00000628_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thunderstone</language>
+	</row>
+	<row id="pl_msg_00000628_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everstone</language>
+	</row>
+	<row id="pl_msg_00000628_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fire Stone</language>
+	</row>
+	<row id="pl_msg_00000628_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Water Stone</language>
+	</row>
+	<row id="pl_msg_00000628_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Leaf Stone</language>
+	</row>
+	<row id="pl_msg_00000628_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Nugget</language>
+	</row>
+	<row id="pl_msg_00000628_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Helix Fossil</language>
+	</row>
+	<row id="pl_msg_00000628_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dome Fossil</language>
+	</row>
+	<row id="pl_msg_00000628_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Claw Fossil</language>
+	</row>
+	<row id="pl_msg_00000628_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Root Fossil</language>
+	</row>
+	<row id="pl_msg_00000628_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Old Amber</language>
+	</row>
+	<row id="pl_msg_00000628_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rare Bone</language>
+	</row>
+	<row id="pl_msg_00000628_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Revive</language>
+	</row>
+	<row id="pl_msg_00000628_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max Revive</language>
+	</row>
+	<row id="pl_msg_00000628_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Red Shard</language>
+	</row>
+	<row id="pl_msg_00000628_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Blue Shard</language>
+	</row>
+	<row id="pl_msg_00000628_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yellow Shard</language>
+	</row>
+	<row id="pl_msg_00000628_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Green Shard</language>
+	</row>
+	<row id="pl_msg_00000628_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Heart Scale</language>
+	</row>
+	<row id="pl_msg_00000628_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Armor Fossil</language>
+	</row>
+	<row id="pl_msg_00000628_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Skull Fossil</language>
+	</row>
+	<row id="pl_msg_00000628_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Light Clay</language>
+	</row>
+	<row id="pl_msg_00000628_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Iron Ball</language>
+	</row>
+	<row id="pl_msg_00000628_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Icy Rock</language>
+	</row>
+	<row id="pl_msg_00000628_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Smooth Rock</language>
+	</row>
+	<row id="pl_msg_00000628_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Heat Rock</language>
+	</row>
+	<row id="pl_msg_00000628_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Damp Rock</language>
+	</row>
+	<row id="pl_msg_00000628_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flame Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Splash Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Zap Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Meadow Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Icicle Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fist Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Toxic Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Earth Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sky Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mind Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Insect Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stone Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Spooky Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Draco Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dread Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Iron Plate</language>
+	</row>
+	<row id="pl_msg_00000628_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLOSE</language>
+	</row>
+	<row id="pl_msg_00000628_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Close the Bag.</language>
+	</row>
+	<row id="pl_msg_00000628_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A crystal clear, hard sphere.\nIt slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A crystal clear, hard sphere.\nIt slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A white sphere that glows in seven\ncolors. It slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A red sphere that glows like fire.\nIt slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A blue sphere that glistens like ice.\nIt slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A green sphere glowing like sunlight in\nleaves. It slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A crystal clear, hard sphere.\nIt slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A white sphere that glows in seven\ncolors. It slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A red sphere that glows like fire.\nIt slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A blue sphere that glistens like ice.\nIt slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A green sphere glowing like sunlight in\nleaves. It slowly grows when buried.</language>
+	</row>
+	<row id="pl_msg_00000628_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A pretty white stone that is shaped\nlike an egg.</language>
+	</row>
+	<row id="pl_msg_00000628_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A vital item that is needed to keep a\nstone tower from collapsing.</language>
+	</row>
+	<row id="pl_msg_00000628_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An odd stone needed for evolution.\nIt is as red as the sun.</language>
+	</row>
+	<row id="pl_msg_00000628_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A shard of a pretty, glowing gem.\nIt can be sold at a high price.</language>
+	</row>
+	<row id="pl_msg_00000628_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An odd stone needed for evolution.\nIt is as black as the night sky.</language>
+	</row>
+	<row id="pl_msg_00000628_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nRock-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An odd stone needed for evolution.\nIt has a thunderbolt pattern.</language>
+	</row>
+	<row id="pl_msg_00000628_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that prevents the\nholding Pokémon from evolving.</language>
+	</row>
+	<row id="pl_msg_00000628_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An odd stone needed for evolution.\nIt is colored orange.</language>
+	</row>
+	<row id="pl_msg_00000628_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An odd stone needed for evolution.\nIt is a clear light blue.</language>
+	</row>
+	<row id="pl_msg_00000628_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An odd stone needed for evolution.\nIt has a leaf pattern.</language>
+	</row>
+	<row id="pl_msg_00000628_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A nugget of pure, gleaming gold.\nIt can be sold for a high price.</language>
+	</row>
+	<row id="pl_msg_00000628_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A fossil of an ancient, seafloor-\ndwelling Pokémon’s seashell.</language>
+	</row>
+	<row id="pl_msg_00000628_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A fossil of an ancient, seafloor-\ndwelling Pokémon’s shell.</language>
+	</row>
+	<row id="pl_msg_00000628_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A fossil of an ancient, seafloor-\ndwelling Pokémon’s claw.</language>
+	</row>
+	<row id="pl_msg_00000628_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A fossil of an ancient, seafloor-\ndwelling Pokémon’s root.</language>
+	</row>
+	<row id="pl_msg_00000628_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A piece of amber that contains\nthe genes of an ancient Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000628_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An archaeologically important bone.\nIt can be sold for a high price.</language>
+	</row>
+	<row id="pl_msg_00000628_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A medicine that revives a fainted\nPokémon, restoring half its max HP.</language>
+	</row>
+	<row id="pl_msg_00000628_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A medicine that revives a fainted\nPokémon, restoring HP fully.</language>
+	</row>
+	<row id="pl_msg_00000628_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It appears to be from some sort of\na tool made long ago.</language>
+	</row>
+	<row id="pl_msg_00000628_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It appears to be from some sort of\na tool made long ago.</language>
+	</row>
+	<row id="pl_msg_00000628_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It appears to be from some sort of\na tool made long ago.</language>
+	</row>
+	<row id="pl_msg_00000628_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It appears to be from some sort of\na tool made long ago.</language>
+	</row>
+	<row id="pl_msg_00000628_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A pretty, heart-shaped scale that\nis extremely rare. </language>
+	</row>
+	<row id="pl_msg_00000628_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A fossil from a prehistoric Pokémon.\nIt appears to be part of a collar.</language>
+	</row>
+	<row id="pl_msg_00000628_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A fossil from a prehistoric Pokémon.\nIt appears to be part of a skull.</language>
+	</row>
+	<row id="pl_msg_00000628_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that extends the duration\nof Light Screen and Reflect.</language>
+	</row>
+	<row id="pl_msg_00000628_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A heavy hold item that cuts Speed.\nIt prevents flying and levitation.</language>
+	</row>
+	<row id="pl_msg_00000628_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that extends the duration\nof the holder’s Hail move.</language>
+	</row>
+	<row id="pl_msg_00000628_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that extends the duration\nof the holder’s Sandstorm move.</language>
+	</row>
+	<row id="pl_msg_00000628_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that extends the duration\nof the holder’s Sunny Day move.</language>
+	</row>
+	<row id="pl_msg_00000628_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that extends the duration\nof the holder’s Rain Dance move.</language>
+	</row>
+	<row id="pl_msg_00000628_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nFire-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nWater-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nElectric-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nGrass-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nIce-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nFighting-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nPoison-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nGround-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nFlying-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nPsychic-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nBug-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nRock-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nGhost-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nDragon-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nDark-type moves.</language>
+	</row>
+	<row id="pl_msg_00000628_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A hold item that raises the power of\nSteel-type moves.</language>
+	</row>
+</body>

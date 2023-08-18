@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000153_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, thank you for shopping\nwith us today.\rTo which floor may I take you?</language>
+	</row>
+	<row id="pl_msg_00000153_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I look forward to serving you again.</language>
+	</row>
+	<row id="pl_msg_00000153_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Certainly.\nElevator going up.\r</language>
+	</row>
+	<row id="pl_msg_00000153_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Certainly.\nElevator going down.\r</language>
+	</row>
+	<row id="pl_msg_00000153_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We are already on that floor?!</language>
+	</row>
+	<row id="pl_msg_00000153_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ground floor: Medicine and items for\nall your adventure needs.</language>
+	</row>
+	<row id="pl_msg_00000153_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Second floor: Useful items for all\nPokémon battles.</language>
+	</row>
+	<row id="pl_msg_00000153_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Third floor: Technical Machines for\npowering up Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000153_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fourth floor: Desirable decoration\ngoods and Pokémon Dolls.</language>
+	</row>
+	<row id="pl_msg_00000153_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fifth floor: The Rooftop Square for\na refreshing break from shopping.</language>
+	</row>
+	<row id="pl_msg_00000153_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Basement floor: Food and produce, with\nmany exclusives for you to enjoy.\n</language>
+	</row>
+</body>

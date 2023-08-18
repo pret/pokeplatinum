@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000512_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Boy...\nI sure am thirsty...</language>
+	</row>
+	<row id="pl_msg_00000512_00001" index="1">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000512_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, long time, no see!\rOh? You look puzzled.\nYou’re wondering who I am.\rI’m Professor Rowan’s assistant\nand {STRVAR_1 3, 1, 0}’s father.\rThe professor asked that I upgrade\nyour Pokédex, you see.\rSo I’d chosen this spot on a hunch\nthat you’d pass through.\r{STRVAR_1 3, 0, 0}, may I have your\nPokédex for a moment?\r</language>
+	</row>
+	<row id="pl_msg_00000512_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, long time, no see!\rOh? You look puzzled.\nYou’re wondering who I am.\rI’m Professor Rowan’s assistant\nand {STRVAR_1 3, 1, 0}’s father.\rThe professor asked that I upgrade\nyour Pokédex, you see.\rSo I’d chosen this spot on a hunch\nthat you’d pass through.\r{STRVAR_1 3, 0, 0}, may I have your\nPokédex for a moment?\r</language>
+	</row>
+	<row id="pl_msg_00000512_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s see... Was I supposed to put\nin the software here...?\rKa-chunk.\nKa-chunk!\rAll done!\nI’ve upgraded your Pokédex!\rI should explain how it’s been\nupgraded, shouldn’t I?\rIt can now display images of male\nand female Pokémon.\rOK, I’ll leave you to carry on with\nyour project for the professor...\r...May I also ask you to keep an\neye on Team Galactic?\rThe professor is concerned about\nwhat happened in Jubilife City...\rIt’s probably nothing to worry over!\nI’ll be on my way now.\r</language>
+	</row>
+</body>

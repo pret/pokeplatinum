@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000563_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Talk to that nice lady at the counter\nand hand her your Pokémon.\rShe’ll heal your Pokémon to perfect\nhealth in no time at all!</language>
+	</row>
+	<row id="pl_msg_00000563_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you see that PC over there?\nThat fancy blue one?\rIf you’ve got Pokémon with you,\nit’s free to use.</language>
+	</row>
+	<row id="pl_msg_00000563_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The top floor of any Pokémon Center\nis the Pokémon Communication Club.\rThere, you can have all sorts of fun\nwith your friends.</language>
+	</row>
+</body>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000583_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s an odd spaceman\nin front of the ruins.\rThere isn’t anything there, but that\nonly seemed to make him get angry.\rHe’s saying he will blow the town\nup with a bomb...\rThe nerve of it all...\rIf only I were younger, I’d punish\nthat spaceman with my Pokémon...</language>
+	</row>
+	<row id="pl_msg_00000583_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This town is insignificant!\nThere’s nothing of value here.\rIt doesn’t need to exist, so I’ll\nblow it up with a Galactic Bomb!\rIf you try to mess with me, I’ll shut\nyou down with a Pokémon battle.\rSo, what’s it going to be?\nAre you going to mess with me?</language>
+	</row>
+	<row id="pl_msg_00000583_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You dare to oppose Team Galactic?\rThat means you’re taking on the\nworld... No, the universe, even!\r</language>
+	</row>
+	<row id="pl_msg_00000583_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s right! Very smart!\nYou know what’s good for you!\rTeam Galactic has come out to the\nboonies like this for everyone’s sake.\rYour cooperation is appreciated.\nNow, where is my partner...?</language>
+	</row>
+	<row id="pl_msg_00000583_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Too much to handle...\nI can’t do anything here...\rThis place is nothing!\nI’ll be happily rid of this place!\r</language>
+	</row>
+	<row id="pl_msg_00000583_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you were magnificent!\nAren’t you quite the Trainer?\rAs the elder of Celestic Town, I give\nyou my thanks.\rOh? That Old Charm...\nMay I see that, dear?\r...\nWhat’s that?\rYou say Cynthia entrusted you with\nit to deliver to me?\rThat Cynthia...\nShe’s my granddaughter.\r</language>
+	</row>
+	<row id="pl_msg_00000583_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} handed over\nthe {STRVAR_1 8, 1, 0} to the elder.</language>
+	</row>
+	<row id="pl_msg_00000583_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Old Charm is something made in\nCelestic Town long, long ago.\rIt was made in honor of a mythical\ndeity said to have created Sinnoh.\rThese Old Charms are still discovered\nnow and again.\rSince you’re in Celestic Town, why not\nlook around inside the ruins?</language>
+	</row>
+	<row id="pl_msg_00000583_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve gone to the trouble of visiting\nCelestic Town.\rWhy not take a little more time to\nexamine the ruins?</language>
+	</row>
+	<row id="pl_msg_00000583_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Was everything all right here?\rYou saw those strange people with\na Galactic Bomb, didn’t you?\r</language>
+	</row>
+	<row id="pl_msg_00000583_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But those Team Galactic people...!\nI thought they were harmless.\rThe bizarre ways they dress, and all\ntheir wild claims about making a new\funiverse...\rI thought it was just silly talk.\nNothing to take seriously.\rBut they’re surprisingly more trouble\nthan expected.\rTrying to monopolize Pokémon just isn’t\nacceptable!\r</language>
+	</row>
+	<row id="pl_msg_00000583_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">By the way, were the ruins fun to\nexplore?\rIf you’re interested, there is a library\nin Canalave City.\rIt’s stocked with ancient books.\nYou can look up Sinnoh history there.\rIt might help you complete your\nPokédex, too.\rThe quickest way to Canalave City\nis to go west from Jubilife City.</language>
+	</row>
+	<row id="pl_msg_00000583_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy!\nStudying up on local history?</language>
+	</row>
+	<row id="pl_msg_00000583_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, do you know what they say?\rThey say a Pokémon created the\nSinnoh region.</language>
+	</row>
+	<row id="pl_msg_00000583_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s no Pokémon Mart in this\ntown...\rInstead, you can buy and sell items\nin this house here.</language>
+	</row>
+	<row id="pl_msg_00000583_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Celestic Town\nThe Past Lives</language>
+	</row>
+	<row id="pl_msg_00000583_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A giant etching of a Pokémon-like\ncreature covers the wall...\rThere is some fading text etched\nin as well...\rThe flow of time never stops...\nThe past, future, and present...</language>
+	</row>
+	<row id="pl_msg_00000583_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A giant etching of a Pokémon-like\ncreature covers the wall...\rThere is some fading text etched\nin as well...\rSpace is ever-expanding dimensions...\nOur spirits, too, are as space...</language>
+	</row>
+</body>

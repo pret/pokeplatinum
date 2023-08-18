@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000175_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That glaringly bright and cool thing\nyou have!\rIt’s undoubtedly a Pokétch!\nThey’re awesome, yeah?\rI got OK’d by the Pokétch Company\nto develop original Pokétch apps.\rHey, you’re a Trainer, right?\nCan you do me a favor?\rYou’ve got Pokémon with different\nnatures, right? May I see them?</language>
+	</row>
+	<row id="pl_msg_00000175_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What am I in the mood to see now...\rI’d like to see a Pokémon with\na Serious nature.</language>
+	</row>
+	<row id="pl_msg_00000175_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What am I in the mood to see now...\rI’d like to see a Pokémon with\na Naive nature.</language>
+	</row>
+	<row id="pl_msg_00000175_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What am I in the mood to see now...\rI’d like to see a Pokémon with\na Quirky nature.</language>
+	</row>
+	<row id="pl_msg_00000175_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow! Your {STRVAR_1 0, 0, 0} has\na Serious nature all right!\rThanks! I’ll give you this\nCalendar app for your Pokétch.</language>
+	</row>
+	<row id="pl_msg_00000175_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow! Your {STRVAR_1 0, 0, 0} has\na Naive nature all right!\rThanks! I’ll give you this\nDot Artist app for your Pokétch.</language>
+	</row>
+	<row id="pl_msg_00000175_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow! Your {STRVAR_1 0, 0, 0} has\na Quirky nature all right!\rThanks! I’ll give you this\nRoulette app for your Pokétch.</language>
+	</row>
+	<row id="pl_msg_00000175_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Some day, Pokétch apps may outnumber\nall the species of Pokémon.</language>
+	</row>
+</body>

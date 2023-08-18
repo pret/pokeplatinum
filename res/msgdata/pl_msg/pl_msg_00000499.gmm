@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<body language="English">
+	<row id="pl_msg_00000499_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is that right? You’re a traveler?\nYes, it’s good to see other places!\r</language>
+	</row>
+	<row id="pl_msg_00000499_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you know about Mt. Moon in\nthe Kanto region?\rCLEFAIRY dancing under the moon...\nIt’s something I must see in my life.</language>
+	</row>
+	<row id="pl_msg_00000499_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you heard of the Tin Tower\nin the Johto region?\rThe rainbow-colored Pokémon...\nI must see that during my lifetime.</language>
+	</row>
+	<row id="pl_msg_00000499_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you know about the Space Center\nin the Hoenn region?\rA rocket launching into space...\nI must see that during my lifetime.</language>
+	</row>
+	<row id="pl_msg_00000499_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you heard of the Whirl Islands\nin the Johto region?\rThe silver-colored Pokémon...\nI must see that during my lifetime.</language>
+	</row>
+</body>
