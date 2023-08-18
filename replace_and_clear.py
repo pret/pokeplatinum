@@ -30,7 +30,7 @@ import replacelib
 def main():
     files_multi_replacer = replacelib.FilesMultiReplacer("replacements.csv")
     code_filenames = replacelib.read_in_all_code_files("code_files_glob.txt")
-    files_multi_replacer.replace_multiple(code_filenames, False)
+    files_multi_replacer.rereplace(code_filenames)
     files_multi_replacer.clear_csv()
 
 if __name__ == "__main__":

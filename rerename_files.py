@@ -23,14 +23,22 @@
 # =============================================================================
 
 import argparse
-import re
-import csv
 import replacelib
+import pathlib
+import rename_file
+
 
 def main():
-    files_multi_replacer = replacelib.FilesMultiReplacer("replacements.csv")
     code_filenames = replacelib.read_in_all_code_files("code_files_glob.txt")
-    files_multi_replacer.rereplace(code_filenames)
+
+    files_multi_replacer = replacelib.FilesMultiReplacer("file_code_replacements.csv")
+    files_multi_replacer.rereplace(code_filenames, word_boundary_flag=True)
+
+    files_multi_replacer = replacelib.FilesMultiReplacer("lsf_renames.csv")
+    lsf_filename = rename_file.get_game_lsf()
+    files_multi_replacer.rereplace([lsf_filename])
+
+    replacelib.FileRenameData.rename_all_from_file("file_renames.csv", False)
 
 if __name__ == "__main__":
     main()
