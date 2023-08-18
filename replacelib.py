@@ -214,15 +214,26 @@ class FileRenameData:
         ReplacementData.validate_and_resolve(file_renames_data, print_errors=True, throw_error=True, throw_error_message_prefix=f"Renaming \"{cur_filename}\" to \"{new_filename}\" would have resulted in errors! Below would have been the resulting replacements file trimmed to remove errors.")
 
     @staticmethod
-    def validate_rename_file(cur_filename, new_filename):
+    def validate_rename_file(cur_filename, new_filename, throw_error=True):
         cur_filepath = pathlib.Path(cur_filename)
         new_filepath = pathlib.Path(new_filename)
+        error_occurred = False
 
         if not cur_filepath.is_file():
-            raise RuntimeError(f"{cur_filename} does not exist!")
+            if throw_error:
+                raise RuntimeError(f"{cur_filename} does not exist!")
+            else:
+               print(f"Warning: {cur_filename} does not exist.")
+               error_occurred = True
 
         if new_filepath.exists():
-            raise RuntimeError(f"Target filename {new_filename} already exists!")
+            if throw_error:
+                raise RuntimeError(f"Target filename {new_filename} already exists!")
+            else:
+                print(f"Warning: Target filename {new_filename} already exists!")
+                error_occurred = True
+    
+        return error_occurred
 
     @staticmethod
     def rename_file(cur_filename, new_filename):
@@ -245,8 +256,9 @@ class FileRenameData:
             resolved_file_renames_data = [(new_filename, cur_filename) for cur_filename, new_filename in resolved_file_renames_data]
 
         for cur_filename, new_filename in resolved_file_renames_data:
-            FileRenameData.validate_rename_file(cur_filename, new_filename)
-            FileRenameData.rename_file(cur_filename, new_filename)
+            errors_occurred = FileRenameData.validate_rename_file(cur_filename, new_filename, throw_error=False)
+            if not errors_occurred:
+                FileRenameData.rename_file(cur_filename, new_filename)
 
 class FilesSingleReplacer:
     @staticmethod

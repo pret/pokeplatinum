@@ -34,9 +34,16 @@ def main():
     files_multi_replacer = replacelib.FilesMultiReplacer("file_code_replacements.csv")
     files_multi_replacer.rereplace(code_filenames)
 
+    with open("repo_game.txt", "r") as f:
+        repo_game = f.read()
+
     files_multi_replacer = replacelib.FilesMultiReplacer("lsf_renames.csv")
-    lsf_filename = rename_file.get_game_lsf()
+    lsf_filename = rename_file.get_game_lsf(repo_game)
     files_multi_replacer.rereplace([lsf_filename])
+
+    if repo_game == "platinum":
+        files_multi_replacer = replacelib.FilesMultiReplacer("meson_renames.csv")
+        files_multi_replacer.rereplace(["src/meson.build"])
 
     replacelib.FileRenameData.rename_all_from_file("file_renames.csv", False)
 

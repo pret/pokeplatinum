@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_UNK_0200AC5C_H
 #define POKEPLATINUM_UNK_0200AC5C_H
 
-#include "struct_decls/unk_0200AC5C.h"
-#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
+#include "struct_decls/struct_0200AC5C_decl.h"
+#include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
 
 #include "strbuf.h"

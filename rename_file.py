@@ -122,6 +122,10 @@ def replace_filename_in_code_and_rename(cur_filename, new_filename):
         )
 
         replacelib.FilesSingleReplacer.replace_single([lsf_filename], lsf_replace_from, lsf_replace_to, "lsf_renames.csv")
+        if repo_game == "platinum":
+            meson_filename_from = cur_filename.replace("src/", "")
+            meson_filename_to = new_filename.replace("src/", "")
+            replacelib.FilesSingleReplacer.replace_single(["src/meson.build"], f"'{meson_filename_from}'", f"'{meson_filename_to}'", "meson_renames.csv")
 
     replacelib.FileRenameData.rename_file(cur_filename, new_filename)
     replacelib.FileRenameData.update_file_renames(cur_filename, new_filename, "file_renames.csv")
