@@ -28,23 +28,23 @@ import pathlib
 import rename_file
 
 def main():
-    code_filenames = replacelib.read_in_all_code_files("code_files_glob.txt")
+    code_filenames = replacelib.read_in_all_code_files("renames/code_files_glob.txt")
 
-    files_multi_replacer = replacelib.FilesMultiReplacer("file_code_replacements.csv")
+    files_multi_replacer = replacelib.FilesMultiReplacer("renames/file_code_replacements.csv")
     files_multi_replacer.unreplace(code_filenames)
 
-    with open("repo_game.txt", "r") as f:
+    with open("renames/repo_game.txt", "r") as f:
         repo_game = f.read()
 
-    files_multi_replacer = replacelib.FilesMultiReplacer("lsf_renames.csv")
+    files_multi_replacer = replacelib.FilesMultiReplacer("renames/lsf_renames.csv")
     lsf_filename = rename_file.get_game_lsf(repo_game)
     files_multi_replacer.unreplace([lsf_filename])
 
     if repo_game == "platinum":
-        files_multi_replacer = replacelib.FilesMultiReplacer("meson_renames.csv")
+        files_multi_replacer = replacelib.FilesMultiReplacer("renames/meson_renames.csv")
         files_multi_replacer.unreplace(["src/meson.build"])
 
-    replacelib.FileRenameData.rename_all_from_file("file_renames.csv", True)
+    replacelib.FileRenameData.rename_all_from_file("renames/file_renames.csv", True)
 
 if __name__ == "__main__":
     main()

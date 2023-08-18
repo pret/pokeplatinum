@@ -28,7 +28,7 @@ import pathlib
 
 def get_game_lsf(repo_game=None):
     if repo_game is None:
-        with open("repo_game.txt", "r") as f:
+        with open("renames/repo_game.txt", "r") as f:
             repo_game = f.read()
 
     if repo_game == "hgss":
@@ -39,12 +39,12 @@ def get_game_lsf(repo_game=None):
         raise RuntimeError(f"Unknown repo game {repo_game}!")
 
 def replace_filename_in_code_and_rename(cur_filename, new_filename):
-    replacelib.FileRenameData.validate_rename_file_and_data(cur_filename, new_filename, "file_renames.csv")
+    replacelib.FileRenameData.validate_rename_file_and_data(cur_filename, new_filename, "renames/file_renames.csv")
 
     cur_filepath = pathlib.Path(cur_filename)
     new_filepath = pathlib.Path(new_filename)
 
-    with open("repo_game.txt", "r") as f:
+    with open("renames/repo_game.txt", "r") as f:
         repo_game = f.read()
 
     found_replacement_args = False
@@ -109,11 +109,11 @@ def replace_filename_in_code_and_rename(cur_filename, new_filename):
         else:
             raise RuntimeError(f"Unknown repo game {repo_game}!")
 
-    code_filenames = replacelib.read_in_all_code_files("code_files_glob.txt")
+    code_filenames = replacelib.read_in_all_code_files("renames/code_files_glob.txt")
     if text_section_type is None:
-        replacelib.FilesSingleReplacer.replace_single(code_filenames, replace_from, replace_to, "file_code_replacements.csv")
+        replacelib.FilesSingleReplacer.replace_single(code_filenames, replace_from, replace_to, "renames/file_code_replacements.csv")
     else:
-        files_multi_replacer = replacelib.FilesMultiReplacer("file_code_replacements.csv")
+        files_multi_replacer = replacelib.FilesMultiReplacer("renames/file_code_replacements.csv")
         files_multi_replacer.add_replacements_and_replace_multiple(code_filenames,
             [
                 (replace_from, replace_to),
@@ -121,17 +121,17 @@ def replace_filename_in_code_and_rename(cur_filename, new_filename):
             ]
         )
 
-        replacelib.FilesSingleReplacer.replace_single([lsf_filename], lsf_replace_from, lsf_replace_to, "lsf_renames.csv")
+        replacelib.FilesSingleReplacer.replace_single([lsf_filename], lsf_replace_from, lsf_replace_to, "renames/lsf_renames.csv")
         if repo_game == "platinum":
             meson_filename_from = cur_filename.replace("src/", "")
             meson_filename_to = new_filename.replace("src/", "")
-            replacelib.FilesSingleReplacer.replace_single(["src/meson.build"], f"'{meson_filename_from}'", f"'{meson_filename_to}'", "meson_renames.csv")
+            replacelib.FilesSingleReplacer.replace_single(["src/meson.build"], f"'{meson_filename_from}'", f"'{meson_filename_to}'", "renames/meson_renames.csv")
 
     replacelib.FileRenameData.rename_file(cur_filename, new_filename)
-    replacelib.FileRenameData.update_file_renames(cur_filename, new_filename, "file_renames.csv")
+    replacelib.FileRenameData.update_file_renames(cur_filename, new_filename, "renames/file_renames.csv")
 
 def main():
-    ap = argparse.ArgumentParser(description="Rename a file and store the results to file_code_replacements.csv")
+    ap = argparse.ArgumentParser(description="Rename a file and store the results to CSV files")
     ap.add_argument("cur_filename", help="Current filename")
     ap.add_argument("new_filename", help="New filename")
 

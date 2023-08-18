@@ -148,7 +148,10 @@ class ReplacementData:
 
     @staticmethod
     def read_in(replacements_filename):
-        pathlib.Path(replacements_filename).touch()
+        replacements_filepath = pathlib.Path(replacements_filename)
+        replacements_filepath.parent.mkdir(exist_ok=True, parents=True)
+        if not replacements_filepath.is_file():
+            replacements_filepath.touch()
 
         with open_l(replacements_filename, "r") as f:
             replacements_reader = csv.reader(f)

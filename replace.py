@@ -26,14 +26,14 @@ import argparse
 import replacelib
 
 def main():
-    ap = argparse.ArgumentParser(description="Replace a string with another string and store the results to replacements.csv")
+    ap = argparse.ArgumentParser(description="Replace a string with another string and store the results to renames/replacements.csv")
     ap.add_argument("replace_from", help="String to find")
     ap.add_argument("replace_to", help="String to replace with")
 
     args = ap.parse_args()
 
-    code_filenames = replacelib.read_in_all_code_files("code_files_glob.txt")
-    replacelib.FilesSingleReplacer.replace_single(code_filenames, args.replace_from, args.replace_to, "replacements.csv")
+    code_filenames = replacelib.read_in_all_code_files("renames/code_files_glob.txt")
+    replacelib.FilesSingleReplacer.replace_single(code_filenames, args.replace_from, args.replace_to, "renames/replacements.csv")
 
 if __name__ == "__main__":
     main()
