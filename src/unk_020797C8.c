@@ -57,7 +57,7 @@ static void sub_020797DC (UnkStruct_020797DC * param0)
 
     if (v2) {
         for (v0 = 0; v0 < 18; v0++) {
-            MessageFormatter_LoadString(v2, 6 + v0, param0->unk_10E4[v0]);
+            sub_0200B240(v2, 6 + v0, param0->unk_10E4[v0]);
         }
 
         sub_0200B190(v2);

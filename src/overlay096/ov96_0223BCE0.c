@@ -1600,7 +1600,7 @@ static int ov96_0223D7E4 (UnkStruct_ov96_0223BF40 * param0)
 
 static void ov96_0223D814 (UnkStruct_ov96_0223BF40 * param0, UnkStruct_0200B144 * param1, int param2, int param3, u16 param4)
 {
-    MessageFormatter_LoadStrbuf(param1, param2, param0->unk_BDC);
+    sub_0200B1B8(param1, param2, param0->unk_BDC);
     sub_0201ADA4(&param0->unk_E38, 0xf0f);
     sub_0200E060(&param0->unk_E38, 0, 1, 14);
 
@@ -1676,7 +1676,7 @@ static void ov96_0223D9B8 (UnkStruct_ov96_0223BF40 * param0, int param1)
 {
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 68);
 
-    MessageFormatter_LoadStrbuf(param0->unk_BD8, param1, v0);
+    sub_0200B1B8(param0->unk_BD8, param1, v0);
     sub_0200C388(param0->unk_BCC, param0->unk_BEC, v0);
     sub_0201ADA4(&param0->unk_E78, 15);
     sub_0200DC48(&param0->unk_E78, 1, (1 + (18 + 12)), 11);

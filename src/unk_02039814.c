@@ -164,7 +164,7 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0200DC48(&v1, 0, (512 - 9), 2);
 
     sub_0200B60C(v5, 0, param2, 5, 2, 1);
-    MessageFormatter_LoadStrbuf(v2, v6, v4);
+    sub_0200B1B8(v2, v6, v4);
     sub_0200C388(v5, v3, v4);
 
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);

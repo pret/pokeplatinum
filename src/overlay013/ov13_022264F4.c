@@ -448,28 +448,28 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
                 return 9;
             }
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_10, 34, param0->unk_18);
+            sub_0200B1B8(param0->unk_10, 34, param0->unk_18);
             ov13_022279F4(param0);
             param0->unk_114B = 8;
             return 9;
         }
     } else if (param0->unk_114D == 2) {
         if (v0->unk_22 == 1) {
-            MessageFormatter_LoadStrbuf(param0->unk_10, 44, param0->unk_18);
+            sub_0200B1B8(param0->unk_10, 44, param0->unk_18);
             ov13_022279F4(param0);
             param0->unk_114B = 8;
             return 9;
         }
 
         if (v0->unk_23 == 1) {
-            MessageFormatter_LoadStrbuf(param0->unk_10, 47, param0->unk_18);
+            sub_0200B1B8(param0->unk_10, 47, param0->unk_18);
             ov13_022279F4(param0);
             param0->unk_114B = 8;
             return 9;
         }
 
         if (v0->unk_24 == 1) {
-            MessageFormatter_LoadStrbuf(param0->unk_10, 48, param0->unk_18);
+            sub_0200B1B8(param0->unk_10, 48, param0->unk_18);
             ov13_022279F4(param0);
             param0->unk_114B = 8;
             return 9;
@@ -480,7 +480,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             UnkStruct_020797DC * v8 = ov16_0223E228(v0->unk_00);
 
             if ((Party_GetCurrentCount(v7) == 6) && (sub_020799A0(v8) == 18)) {
-                MessageFormatter_LoadStrbuf(param0->unk_10, 45, param0->unk_18);
+                sub_0200B1B8(param0->unk_10, 45, param0->unk_18);
                 ov13_022279F4(param0);
                 param0->unk_114B = 8;
                 return 9;

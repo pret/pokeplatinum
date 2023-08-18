@@ -763,7 +763,7 @@ static void ov21_021E998C (UnkStruct_0205AA50 * param0, int param1)
     Strbuf* v0 = Strbuf_Init(64, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
-    MessageFormatter_LoadStrbuf(v1, 110, v0);
+    sub_0200B1B8(v1, 110, v0);
     sub_0201D78C(param0, 0, v0, 32, 0, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     Strbuf_Free(v0);

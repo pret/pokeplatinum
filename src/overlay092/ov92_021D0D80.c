@@ -991,7 +991,7 @@ static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
 
         sub_0201A8D4(param0->unk_B810, &param0->unk_B834, &Unk_ov92_021D2924);
         sub_0201AE78(&param0->unk_B834, 15, 0, 0, 27 * 8, 4 * 8);
-        MessageFormatter_LoadStrbuf(param0->unk_B860, 12, v0);
+        sub_0200B1B8(param0->unk_B860, 12, v0);
 
         {
             u32 v5;
@@ -1023,7 +1023,7 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
     case 0:
         sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = Strbuf_Init(0x400, param0->unk_00);
-        MessageFormatter_LoadStrbuf(param0->unk_B860, param1, param0->unk_B86C);
+        sub_0200B1B8(param0->unk_B860, param1, param0->unk_B86C);
         param0->unk_B868 = sub_0201D738(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, sub_02027AC0(param0->unk_08), NULL);
         param0->unk_B864 = 1;
         break;
@@ -1120,7 +1120,7 @@ static void ov92_021D1DEC (UnkStruct_ov92_021D1B24 * param0)
     sub_0200BDD0(param0->unk_B870, 0, param0->unk_BB14);
     sub_0200BE08(param0->unk_B870, 1, param0->unk_BB14, param0->unk_BB18);
 
-    MessageFormatter_LoadStrbuf(param0->unk_B860, 13, v1);
+    sub_0200B1B8(param0->unk_B860, 13, v1);
     sub_0200C388(param0->unk_B870, v0, v1);
 
     sub_0201D738(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
@@ -1165,7 +1165,7 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
             Strbuf* v0 = Strbuf_Init(0x400, param0->unk_00);
 
             sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
-            MessageFormatter_LoadStrbuf(param0->unk_B860, 14, v0);
+            sub_0200B1B8(param0->unk_B860, 14, v0);
             sub_0201D738(&param0->unk_B814, 1, v0, 0, 0, 0, NULL);
             Strbuf_Free(v0);
         }
@@ -1522,7 +1522,7 @@ BOOL ov92_021D27E8 (int param0, int param1, Strbuf *param2, Strbuf *param3, int 
 
     v0 = sub_0200B144(0, 26, 694, param4);
 
-    MessageFormatter_LoadStrbuf(v0, param0, param2);
+    sub_0200B1B8(v0, param0, param2);
     sub_0200B190(v0);
 
     if (v1 == 0) {
@@ -1535,7 +1535,7 @@ BOOL ov92_021D27E8 (int param0, int param1, Strbuf *param2, Strbuf *param3, int 
 
     v0 = sub_0200B144(0, 26, sub_0209972C(v1), param4);
 
-    MessageFormatter_LoadStrbuf(v0, param1, param3);
+    sub_0200B1B8(v0, param1, param3);
     sub_0200B190(v0);
 
     return v2;

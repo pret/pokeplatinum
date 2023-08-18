@@ -895,7 +895,7 @@ static BOOL ov66_022323A0 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
         return 0;
     }
 
-    MessageFormatter_LoadStrbuf(param3, 21, param4);
+    sub_0200B1B8(param3, 21, param4);
 
     return 1;
 }

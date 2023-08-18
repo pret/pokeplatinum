@@ -183,17 +183,17 @@ void sub_0207CD34 (void * param0, Strbuf *param1, u16 param2, u32 param3, u32 pa
     switch (param3) {
     case 1:
         v0 = sub_0200B144(1, 26, 7, param4);
-        MessageFormatter_LoadStrbuf(v0, 56, param1);
+        sub_0200B1B8(v0, 56, param1);
         sub_0200B190(v0);
         break;
     case 2:
         v0 = sub_0200B144(1, 26, 7, param4);
-        MessageFormatter_LoadStrbuf(v0, 111, param1);
+        sub_0200B1B8(v0, 111, param1);
         sub_0200B190(v0);
         break;
     case 3:
         v0 = sub_0200B144(1, 26, 7, param4);
-        MessageFormatter_LoadStrbuf(v0, 112, param1);
+        sub_0200B1B8(v0, 112, param1);
         sub_0200B190(v0);
         break;
     default:

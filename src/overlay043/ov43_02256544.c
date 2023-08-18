@@ -349,9 +349,9 @@ static void ov43_02256988 (UnkStruct_ov43_02256544 * param0, UnkStruct_0205AA50 
     sub_0201ADA4(param1, 4);
 
     if (param2 == 18) {
-        MessageFormatter_LoadStrbuf(param0->unk_B8, 6, param0->unk_BC);
+        sub_0200B1B8(param0->unk_B8, 6, param0->unk_BC);
     } else {
-        MessageFormatter_LoadStrbuf(param0->unk_B4, param2, param0->unk_BC);
+        sub_0200B1B8(param0->unk_B4, param2, param0->unk_BC);
     }
 
     v0 = sub_02002D7C(0, param0->unk_BC, 0);
@@ -363,7 +363,7 @@ static void ov43_02256988 (UnkStruct_ov43_02256544 * param0, UnkStruct_0205AA50 
 static void ov43_02256A00 (UnkStruct_ov43_02256544 * param0, UnkStruct_0205AA50 * param1, u32 param2)
 {
     sub_0201ADA4(param1, 4);
-    MessageFormatter_LoadStrbuf(param0->unk_B8, param2, param0->unk_BC);
+    sub_0200B1B8(param0->unk_B8, param2, param0->unk_BC);
     sub_0201D78C(param1, 0, param0->unk_BC, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     sub_0201ACCC(param1);
 }

@@ -119,7 +119,7 @@ void sub_0209A74C (int param0)
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
     sub_0201AE78(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     sub_0200DC48(&v1, 0, 512 - 9, 2);
-    MessageFormatter_LoadStrbuf(v2, v4, v3);
+    sub_0200B1B8(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
     GXLayers_TurnBothDispOn();
@@ -193,7 +193,7 @@ void sub_0209A8E0 (int param0)
     sub_0201A8D4(v0, &v1, &Unk_020F8AC4);
     sub_0201AE78(&v1, 15, 0, 0, 26 * 8, 18 * 8);
     sub_0200DC48(&v1, 0, (512 - 9), 2);
-    MessageFormatter_LoadStrbuf(v2, v4, v3);
+    sub_0200B1B8(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
     GXLayers_TurnBothDispOn();

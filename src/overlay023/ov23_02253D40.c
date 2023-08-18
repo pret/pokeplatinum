@@ -199,7 +199,7 @@ static int ov23_02253E90 (UnkStruct_ov23_02253E2C * param0, BOOL param1, UnkStru
 
 int ov23_02253F40 (UnkStruct_ov23_02253E2C * param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3)
 {
-    MessageFormatter_LoadStrbuf(param0->unk_24, param1, param0->unk_00);
+    sub_0200B1B8(param0->unk_24, param1, param0->unk_00);
     return ov23_02253E90(param0, param2, param3, 0);
 }
 
@@ -219,7 +219,7 @@ int ov23_02253F60 (UnkStruct_ov23_02253E2C * param0, int param1, BOOL param2, Un
 
 int ov23_02253F78 (UnkStruct_ov23_02253E2C * param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3, int param4)
 {
-    MessageFormatter_LoadStrbuf(param0->unk_24, param1, param0->unk_00);
+    sub_0200B1B8(param0->unk_24, param1, param0->unk_00);
     return ov23_02253E90(param0, param2, param3, param4);
 }
 

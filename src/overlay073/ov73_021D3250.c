@@ -387,7 +387,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     ldr r0, [r4, #8]
     add r1, r7, #0
     add r2, r5, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     add r1, r4, #0
     ldr r0, [r4, #4]
     ldr r2, = Unk_ov72_021D3A38

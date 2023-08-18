@@ -1272,7 +1272,7 @@ static void ov77_021D2214 (UnkStruct_02018340 * param0, int param1, UnkStruct_ov
 
         sub_0201A8D4(param0, &param2->unk_22C, &Unk_ov77_021D72D0);
         sub_0201AE78(&param2->unk_22C, 0, 0, 0, 28 * 8, 2 * 8);
-        MessageFormatter_LoadStrbuf(v4, 0, v5);
+        sub_0200B1B8(v4, 0, v5);
 
         v6 = sub_02002EEC(0, v5, 1, param2->unk_22C.unk_07 * 8);
 

@@ -349,10 +349,10 @@ static void sub_02084E58 (UnkStruct_0207F248 * param0, u16 param1, u32 param2)
         Strbuf_Free(v1);
         break;
     case 27:
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 69, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 69, param0->unk_6A4);
         break;
     default:
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 105, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 105, param0->unk_6A4);
     }
 }
 
@@ -580,7 +580,7 @@ int sub_02085804 (UnkStruct_0207F248 * param0)
         param0->unk_B11 = sub_020857C0(param0, 0);
 
         if (param0->unk_B11 == 0xff) {
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 105, param0->unk_6A4);
+            sub_0200B1B8(param0->unk_69C, 105, param0->unk_6A4);
             sub_02082708(param0, 0xffffffff, 1);
             param0->unk_B00 = sub_02085348;
             sub_0208327C(param0, 0, 1);
@@ -1240,7 +1240,7 @@ int sub_02086774 (UnkStruct_0207F248 * param0)
             sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
             sub_02005748(1516);
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 105, param0->unk_6A4);
+            sub_0200B1B8(param0->unk_69C, 105, param0->unk_6A4);
         }
 
         sub_02082708(param0, 0xffffffff, 1);
@@ -1259,10 +1259,10 @@ void sub_020868B0 (UnkStruct_0207F248 * param0)
     sub_0200E084(&param0->unk_04[32], 1);
 
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 127, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 127, param0->unk_6A4);
         sub_02083080(param0, param0->unk_B11);
     } else {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 128, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 128, param0->unk_6A4);
         param0->unk_B11 = 7;
     }
 

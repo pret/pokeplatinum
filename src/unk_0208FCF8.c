@@ -249,10 +249,10 @@ void sub_0208FEA4 (UnkStruct_0208D7BC * param0)
 
     if (param0->unk_250.unk_12_7 == 0) {
         if (param0->unk_250.unk_13_0 == 0) {
-            MessageFormatter_LoadStrbuf(param0->unk_688, 1, param0->unk_694);
+            sub_0200B1B8(param0->unk_688, 1, param0->unk_694);
             sub_020900D8(param0, v0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
         } else if (param0->unk_250.unk_13_0 == 1) {
-            MessageFormatter_LoadStrbuf(param0->unk_688, 2, param0->unk_694);
+            sub_0200B1B8(param0->unk_688, 2, param0->unk_694);
             sub_020900D8(param0, v0, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), 1);
         }
     }
@@ -295,7 +295,7 @@ void sub_0208FFE0 (UnkStruct_0208D7BC * param0)
         sub_0200C388(param0->unk_690, param0->unk_694, v0);
         Strbuf_Free(v0);
     } else {
-        MessageFormatter_LoadStrbuf(param0->unk_688, 6, param0->unk_694);
+        sub_0200B1B8(param0->unk_688, 6, param0->unk_694);
     }
 
     sub_020900D8(param0, &param0->unk_04[32], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
@@ -350,7 +350,7 @@ static void sub_02090158 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u
     u8 v1;
     u8 v2;
 
-    MessageFormatter_LoadStrbuf(param0->unk_688, param2, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, param2, param0->unk_694);
     sub_020900D8(param0, &param0->unk_04[param1], param3, param4);
 }
 
@@ -373,7 +373,7 @@ static void sub_020901D0 (UnkStruct_0208D7BC * param0, u32 param1, u32 param2, u
 
     v0 = &param0->unk_244[param1];
 
-    MessageFormatter_LoadStrbuf(param0->unk_688, param2, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, param2, param0->unk_694);
     v1 = sub_02002D7C(0, param0->unk_694, 0);
     v2 = param8 - v1 / 2;
     v3 = v2 + v1;
@@ -414,7 +414,7 @@ static void sub_020902B0 (UnkStruct_0208D7BC * param0)
     sub_02090158(param0, 22, 127, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
     {
-        MessageFormatter_LoadStrbuf(param0->unk_688, 146, param0->unk_694);
+        sub_0200B1B8(param0->unk_688, 146, param0->unk_694);
         sub_0201D78C(&param0->unk_04[24], 0, param0->unk_694, 0, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
@@ -485,7 +485,7 @@ static void sub_02090578 (UnkStruct_0208D7BC * param0)
         if (v0 != 0) {
             sub_02090184(param0, 9, v0, 3, 2);
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_688, 22, param0->unk_694);
+            sub_0200B1B8(param0->unk_688, 22, param0->unk_694);
         }
     }
 
@@ -637,7 +637,7 @@ static void sub_0209093C (UnkStruct_0208D7BC * param0)
         sub_020900D8(param0, &param0->unk_244[6], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
         v1 = sub_0200B144(1, 26, 612, 19);
-        MessageFormatter_LoadStrbuf(v1, param0->unk_250.unk_32, param0->unk_694);
+        sub_0200B1B8(v1, param0->unk_250.unk_32, param0->unk_694);
         sub_0200B190(v1);
         sub_020900D8(param0, &param0->unk_244[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     }
@@ -662,15 +662,15 @@ static void sub_02090BDC (UnkStruct_0208D7BC * param0)
     }
 
     sub_0201ADA4(&param0->unk_244[1], 0);
-    MessageFormatter_LoadStrbuf(param0->unk_688, 165, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, 165, param0->unk_694);
     sub_020900D8(param0, &param0->unk_244[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
-    MessageFormatter_LoadStrbuf(param0->unk_688, 166 + param0->unk_250.unk_4B, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, 166 + param0->unk_250.unk_4B, param0->unk_694);
     sub_0201D78C(&param0->unk_244[1], 0, param0->unk_694, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->unk_244[1]);
 
     if (param0->unk_24C->unk_12 == 3) {
         sub_0201ADA4(&param0->unk_244[0], 0);
-        MessageFormatter_LoadStrbuf(param0->unk_688, 163, param0->unk_694);
+        sub_0200B1B8(param0->unk_688, 163, param0->unk_694);
         sub_020900D8(param0, &param0->unk_244[0], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
         sub_0201A9A4(&param0->unk_244[0]);
         sub_0208F6DC(param0, &param0->unk_244[0]);
@@ -761,10 +761,10 @@ static void sub_02090EC8 (UnkStruct_0208D7BC * param0)
 
     sub_0201ADA4(&param0->unk_244[1], 0);
 
-    MessageFormatter_LoadStrbuf(param0->unk_688, 165, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, 165, param0->unk_694);
     sub_020900D8(param0, &param0->unk_244[1], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageFormatter_LoadStrbuf(param0->unk_688, 166 + param0->unk_250.unk_4B, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, 166 + param0->unk_250.unk_4B, param0->unk_694);
     sub_0201D78C(&param0->unk_244[1], 0, param0->unk_694, 0, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     sub_0201A9A4(&param0->unk_244[1]);
@@ -814,10 +814,10 @@ void sub_020910E4 (UnkStruct_0208D7BC * param0)
     sub_0201ADA4(&param0->unk_244[2], 0);
     sub_0201ADA4(&param0->unk_244[3], 0);
 
-    MessageFormatter_LoadStrbuf(param0->unk_68C, sub_020923C0(param0->unk_6B2, 3), param0->unk_694);
+    sub_0200B1B8(param0->unk_68C, sub_020923C0(param0->unk_6B2, 3), param0->unk_694);
     sub_020900D8(param0, &param0->unk_244[2], ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageFormatter_LoadStrbuf(param0->unk_68C, sub_02092424(param0->unk_24C->unk_20, param0->unk_6B2), param0->unk_694);
+    sub_0200B1B8(param0->unk_68C, sub_02092424(param0->unk_24C->unk_20, param0->unk_6B2), param0->unk_694);
     sub_020900D8(param0, &param0->unk_244[3], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
     sub_0201A9A4(&param0->unk_244[2]);
@@ -844,15 +844,15 @@ static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
         v5 = v4;
     }
 
-    MessageFormatter_LoadStrbuf(param0->unk_69C, v3, param0->unk_694);
+    sub_0200B1B8(param0->unk_69C, v3, param0->unk_694);
     sub_0201D78C(v0, 0, param0->unk_694, 1, 2, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     if (v3 != 0) {
-        MessageFormatter_LoadStrbuf(param0->unk_688, 135, param0->unk_694);
+        sub_0200B1B8(param0->unk_688, 135, param0->unk_694);
         sub_0201D78C(v0, 0, param0->unk_694, 16, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_020901D0(param0, 0 + param1, 117, 136 + param1, 141 + param1, v4, v5, 2, (40 + 20), 16);
     } else {
-        MessageFormatter_LoadStrbuf(param0->unk_688, 153, param0->unk_694);
+        sub_0200B1B8(param0->unk_688, 153, param0->unk_694);
         v2 = sub_02002D7C(0, param0->unk_694, 0);
         sub_0201D78C(v0, 0, param0->unk_694, (40 + 20) - v2 / 2, 16, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
@@ -875,7 +875,7 @@ void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
     v2 = MoveTable_GetMoveAttribute(param1, 2);
 
     if (v2 <= 1) {
-        MessageFormatter_LoadStrbuf(param0->unk_688, 154, param0->unk_694);
+        sub_0200B1B8(param0->unk_688, 154, param0->unk_694);
     } else {
         sub_02090184(param0, 150, v2, 3, 1);
     }
@@ -885,7 +885,7 @@ void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
     v2 = MoveTable_GetMoveAttribute(param1, 4);
 
     if (v2 == 0) {
-        MessageFormatter_LoadStrbuf(param0->unk_688, 154, param0->unk_694);
+        sub_0200B1B8(param0->unk_688, 154, param0->unk_694);
     } else {
         sub_02090184(param0, 151, v2, 3, 1);
     }
@@ -894,7 +894,7 @@ void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
 
     v0 = sub_0200B144(1, 26, 646, 19);
 
-    MessageFormatter_LoadStrbuf(v0, param1, param0->unk_694);
+    sub_0200B1B8(v0, param1, param0->unk_694);
     sub_020900D8(param0, &param0->unk_244[7], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     sub_0200B190(v0);
 
@@ -956,7 +956,7 @@ void sub_020914F8 (UnkStruct_0208D7BC * param0)
     }
 
     sub_0201ADA4(v0, 0);
-    MessageFormatter_LoadStrbuf(param0->unk_688, 156, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, 156, param0->unk_694);
     sub_020900D8(param0, v0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
     sub_0201A9A4(v0);
 }
@@ -973,7 +973,7 @@ void sub_02091570 (UnkStruct_0208D7BC * param0, u32 param1)
     v2 = sub_0209577C(v1);
     v0 = sub_0200B144(0, 26, 210, 19);
 
-    MessageFormatter_LoadStrbuf(v0, v2, param0->unk_694);
+    sub_0200B1B8(v0, v2, param0->unk_694);
     sub_0201D78C(&param0->unk_244[5], 0, param0->unk_694, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     sub_0200B190(v0);
@@ -1020,7 +1020,7 @@ void sub_02091610 (UnkStruct_0208D7BC * param0, u8 param1)
 
     sub_0200E060(v0, 1, (1024 - (18 + 12)), 13);
     sub_0201ADA4(v0, 15);
-    MessageFormatter_LoadStrbuf(param0->unk_688, v1, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, v1, param0->unk_694);
     sub_0201D78C(v0, 1, param0->unk_694, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(v0);
 }

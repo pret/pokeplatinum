@@ -415,7 +415,7 @@ static int ov95_0224B81C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
                 v3 = 3;
             }
 
-            MessageFormatter_LoadStrbuf(v0, v2, param0->unk_6C);
+            sub_0200B1B8(v0, v2, param0->unk_6C);
             sub_0200C388(v1, param0->unk_70, param0->unk_6C);
             sub_0201D738(&(param0->unk_5C), 1, param0->unk_70, 0, 0, 0xff, NULL);
 
@@ -433,7 +433,7 @@ static int ov95_0224B81C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
             UnkStruct_0200B144 * v4 = ov95_02247630(param0->unk_00);
             UnkStruct_0200B358 * v5 = ov95_0224762C(param0->unk_00);
 
-            MessageFormatter_LoadStrbuf(v4, 3, param0->unk_6C);
+            sub_0200B1B8(v4, 3, param0->unk_6C);
             sub_0200C388(v5, param0->unk_70, param0->unk_6C);
             sub_0201ADA4(&(param0->unk_5C), 0xf);
             sub_0201D738(&(param0->unk_5C), 1, param0->unk_70, 0, 0, 0xff, NULL);

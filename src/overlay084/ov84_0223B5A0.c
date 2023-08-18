@@ -876,12 +876,12 @@ u16 ov84_0223BE5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2)
 
 static void ov84_0223BE84 (UnkStruct_0200B144 * param0, Strbuf *param1, u16 param2, u32 param3)
 {
-    MessageFormatter_LoadStrbuf(param0, param2, param1);
+    sub_0200B1B8(param0, param2, param1);
 }
 
 static void ov84_0223BE94 (UnkStruct_0200B144 * param0, Strbuf *param1, u16 param2, u32 param3)
 {
-    MessageFormatter_LoadStrbuf(param0, GetMoveFromTMOrHMItemID(param2), param1);
+    sub_0200B1B8(param0, GetMoveFromTMOrHMItemID(param2), param1);
 }
 
 static void ov84_0223BEAC (UnkStruct_ov84_0223B5A0 * param0)
@@ -2200,9 +2200,9 @@ static int ov84_0223DA14 (UnkStruct_ov84_0223B5A0 * param0)
         sub_0200B630(param0->unk_118, 0, v0);
 
         if (Item_IsMoveHM(v0) == 1) {
-            MessageFormatter_LoadStrbuf(param0->unk_114, 59, param0->unk_3F8);
+            sub_0200B1B8(param0->unk_114, 59, param0->unk_3F8);
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_114, 58, param0->unk_3F8);
+            sub_0200B1B8(param0->unk_114, 58, param0->unk_3F8);
         }
     }
         sub_0201ADA4(&param0->unk_04[6], 15);

@@ -1532,7 +1532,7 @@ static void ov111_021D2380 (UnkStruct_ov111_021D0F7C * param0, u32 param1)
 static u8 ov111_021D23C4 (UnkStruct_ov111_021D0F7C * param0, UnkStruct_0205AA50 * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     sub_0201ADA4(param1, param8);
-    MessageFormatter_LoadStrbuf(param0->unk_38, param2, param0->unk_44);
+    sub_0200B1B8(param0->unk_38, param2, param0->unk_44);
     sub_0200C388(param0->unk_3C, param0->unk_40, param0->unk_44);
 
     return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
@@ -1553,7 +1553,7 @@ asm static u8 ov111_021D2424 (UnkStruct_ov111_021D0F7C * param0, UnkStruct_0205A
     ldr r0, [r5, #0x38]
     ldr r2, [r5, #0x44]
     add r1, r7, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     ldr r0, [r5, #0x3c]
     ldr r1, [r5, #0x40]
     ldr r2, [r5, #0x44]

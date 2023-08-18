@@ -1427,7 +1427,7 @@ asm void ov62_02232778 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * p
     ldr r0, [sp, #0x2c]
     mov r1, #0x66
     add r2, sp, #0x64
-    bl MessageFormatter_LoadSpeciesName
+    bl sub_0200B274
     ldr r0, [sp, #0x44]
     add r1, sp, #0x64
     bl Strbuf_CopyChars
@@ -1869,7 +1869,7 @@ asm int ov62_02232C78 (UnkStruct_ov62_02233310 * param0, UnkStruct_0208C06C * pa
     ldr r0, [sp, #0x2c]
     mov r1, #0x66
     add r2, sp, #0x6c
-    bl MessageFormatter_LoadSpeciesName
+    bl sub_0200B274
     ldr r0, [sp, #0x4c]
     add r1, sp, #0x6c
     bl Strbuf_CopyChars
@@ -3747,6 +3747,6 @@ static void ov62_022349E4 (Strbuf *param0, int param1)
     Strbuf_Clear(param0);
     v0 = sub_0200B144(1, 26, 10, param1);
 
-    MessageFormatter_LoadStrbuf(v0, 332, param0);
+    sub_0200B1B8(v0, 332, param0);
     sub_0200B190(v0);
 }

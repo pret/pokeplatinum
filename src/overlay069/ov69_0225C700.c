@@ -2960,18 +2960,18 @@ static void ov69_0225EF54 (UnkStruct_ov69_0225EF54 * param0)
 
 static Strbuf* ov69_0225EF74 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 {
-    MessageFormatter_LoadStrbuf(param0->unk_00, param1, param0->unk_08);
+    sub_0200B1B8(param0->unk_00, param1, param0->unk_08);
     return param0->unk_08;
 }
 
 static void ov69_0225EF84 (UnkStruct_ov69_0225EF54 * param0, u32 param1, Strbuf *param2)
 {
-    MessageFormatter_LoadStrbuf(param0->unk_00, param1, param2);
+    sub_0200B1B8(param0->unk_00, param1, param2);
 }
 
 static Strbuf* ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 {
-    MessageFormatter_LoadStrbuf(param0->unk_00, 3, param0->unk_0C);
+    sub_0200B1B8(param0->unk_00, 3, param0->unk_0C);
     sub_0200BDD0(param0->unk_04, 0, param1);
     sub_0200C388(param0->unk_04, param0->unk_08, param0->unk_0C);
 
@@ -2981,7 +2981,7 @@ static Strbuf* ov69_0225EF90 (UnkStruct_ov69_0225EF54 * param0, u32 param1)
 static Strbuf* ov69_0225EFB8 (UnkStruct_ov69_0225EF54 * param0, u32 param1, u32 param2)
 {
     sub_0200C41C(param0->unk_04);
-    MessageFormatter_LoadStrbuf(param0->unk_00, 3, param0->unk_0C);
+    sub_0200B1B8(param0->unk_00, 3, param0->unk_0C);
     sub_0200BE08(param0->unk_04, 0, param1, param2);
     sub_0200C388(param0->unk_04, param0->unk_08, param0->unk_0C);
 

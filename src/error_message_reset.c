@@ -156,7 +156,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0201A8D4(bgConfig, &window, &sErrorMessageWindowTemplate);
     sub_0201AE78(&window, 15, 0, 0, 26 * 8, 18 * 8);
     sub_0200DC48(&window, 0, (512 - 9), 2);
-    MessageFormatter_LoadStrbuf(errorMsgData, v4, errorString);
+    sub_0200B1B8(errorMsgData, v4, errorString);
     sub_0201D738(&window, 0, errorString, 0, 0, 0, NULL);
     Strbuf_Free(errorString);
 

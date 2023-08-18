@@ -187,7 +187,7 @@ static void ov104_02231FC4 (UnkStruct_ov104_022320B4 * param0)
 
 static void ov104_02232034 (UnkStruct_ov104_022320B4 * param0, const UnkStruct_0200B144 * param1, u32 param2)
 {
-    MessageFormatter_LoadStrbuf(param1, param2, param0->unk_4C);
+    sub_0200B1B8(param1, param2, param0->unk_4C);
     sub_0200C388(param0->unk_44, param0->unk_48, param0->unk_4C);
 }
 
@@ -427,7 +427,7 @@ static void ov104_02232390 (UnkStruct_ov104_02232B5C * param0, u32 param1, u32 p
     {
         Strbuf* v2 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
 
-        MessageFormatter_LoadStrbuf(param0->unk_8C, param1, v2);
+        sub_0200B1B8(param0->unk_8C, param1, v2);
         sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_B4[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
@@ -727,7 +727,7 @@ static void ov104_02232750 (UnkStruct_ov104_02232B5C * param0, u32 param1, u32 p
     {
         Strbuf* v2 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
 
-        MessageFormatter_LoadStrbuf(param0->unk_8C, param1, v2);
+        sub_0200B1B8(param0->unk_8C, param1, v2);
         sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_1BC[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
 
@@ -908,7 +908,7 @@ static void ov104_02232AC4 (UnkStruct_ov104_02232B5C * param0, u16 param1, u32 p
 
     sub_0201ADA4(param0->unk_18, 15);
 
-    MessageFormatter_LoadStrbuf(param0->unk_8C, param1, v0);
+    sub_0200B1B8(param0->unk_8C, param1, v0);
 
     sub_0200C388(param0->unk_90, v1, v0);
 

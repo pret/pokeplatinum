@@ -176,7 +176,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
 
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 81, param0->unk_6A8);
+        sub_0200B1B8(param0->unk_69C, 81, param0->unk_6A8);
         sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else if (sub_0207D570(param0->unk_5A4->unk_04, param0->unk_704[param0->unk_B11].unk_0C, 1, 12) == 1) {
@@ -196,7 +196,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
             }
         }
 
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 82, param0->unk_6A8);
+        sub_0200B1B8(param0->unk_69C, 82, param0->unk_6A8);
         sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
         sub_0200B70C(param0->unk_6A0, 1, param0->unk_704[param0->unk_B11].unk_0C);
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
@@ -205,7 +205,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
 
         sub_02083040(param0, param0->unk_B11, param0->unk_704[param0->unk_B11].unk_0C);
     } else {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 83, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 83, param0->unk_6A4);
     }
 
     sub_0200E060(&param0->unk_04[34], 1, (1 + 9), 15);
@@ -846,10 +846,10 @@ int sub_02084780 (UnkStruct_0207F248 * param0)
     Pokemon * v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
     if (GetMonData(v0, MON_DATA_162, NULL) == 0) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 129, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 129, param0->unk_6A4);
         sub_02021CAC(param0->unk_5B0[22 + param0->unk_B11], 1);
     } else {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 130, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 130, param0->unk_6A4);
         param0->unk_B11 = 7;
     }
 

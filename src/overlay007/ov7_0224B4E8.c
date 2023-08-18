@@ -101,7 +101,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
         sub_0205D988(&param0->unk_54);
     }
 
-    MessageFormatter_LoadStrbuf(param0->unk_68, param1, param0->unk_14);
+    sub_0200B1B8(param0->unk_68, param1, param0->unk_14);
     sub_0200C388(param0->unk_64, param0->unk_18, param0->unk_14);
 
     param0->unk_74 = sub_0205D994(&param0->unk_54, param0->unk_18, sub_02025E44(param0->unk_10->unk_0C), 1);
@@ -146,7 +146,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
         for (v4 = 0; v4 < v3; v4++) {
             ov7_0224B57C(param0, v4);
 
-            MessageFormatter_LoadStrbuf(param0->unk_68, 113, param0->unk_1C);
+            sub_0200B1B8(param0->unk_68, 113, param0->unk_1C);
             sub_0200C388(param0->unk_64, param0->unk_20, param0->unk_1C);
             sub_02013A6C(param0->unk_08, param0->unk_20, v4);
         }
@@ -345,12 +345,12 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 
     ov7_0224B57C(param0, param0->unk_78 - 1);
 
-    MessageFormatter_LoadStrbuf(v0, 95, v2);
+    sub_0200B1B8(v0, 95, v2);
     sub_0200C388(v1, v3, v2);
     sub_0201D738(v4, 0, v3, v10 + v12, 0, 0xff, NULL);
 
     for (v5 = 0; v5 < 9; v5++) {
-        MessageFormatter_LoadStrbuf(v0, 75 + v5, v2);
+        sub_0200B1B8(v0, 75 + v5, v2);
         sub_0201D738(v4, 0, v2, v10, v9 + v11 * v5, 0xff, NULL);
     }
 
@@ -406,7 +406,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
             break;
         }
 
-        MessageFormatter_LoadStrbuf(v0, v7, v2);
+        sub_0200B1B8(v0, v7, v2);
         sub_0200C388(v1, v3, v2);
         {
             int v14 = sub_02002D7C(0, v3, 0);

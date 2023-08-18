@@ -895,7 +895,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     }
 
     param1->unk_21 = v3;
-    MessageFormatter_LoadSpeciesName(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
+    sub_0200B274(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
 
     return v2;
 }

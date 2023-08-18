@@ -1370,7 +1370,7 @@ static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, Party * para
     if (!param4->unk_6F4[param1 * 6 + param3].unk_05) {
         v0 = Strbuf_Init(10, 26);
         sub_0201ADA4(&param0[28 + param1], 0);
-        MessageFormatter_LoadStrbuf(param4->unk_184, 41, v0);
+        sub_0200B1B8(param4->unk_184, 41, v0);
         ov88_0223EC78(&param0[28 + param1], v0, 9, 0xff, 6, 0);
 
         v3 = GetMonData(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_161, NULL);

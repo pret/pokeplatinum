@@ -22,7 +22,7 @@ UnkStruct_020158A8 * sub_020158A8 (int param0)
 
     for (v1 = 0; v1 < 29; v1++) {
         v0->unk_04[v1] = Strbuf_Init(22, param0);
-        MessageFormatter_LoadStrbuf(v0->unk_00, v1, v0->unk_04[v1]);
+        sub_0200B1B8(v0->unk_00, v1, v0->unk_04[v1]);
     }
 
     return v0;

@@ -406,7 +406,7 @@ static u8 ov13_0221FFDC (UnkStruct_ov13_022213F0 * param0)
         param0->unk_2078 = 0;
         return 22;
     } else {
-        MessageFormatter_LoadStrbuf(param0->unk_1FA4, 81, param0->unk_1FAC);
+        sub_0200B1B8(param0->unk_1FA4, 81, param0->unk_1FAC);
         ov13_022240E0(param0);
         param0->unk_00->unk_11 = 6;
         param0->unk_2075 = 25;
@@ -742,7 +742,7 @@ static u8 ov13_02220628 (UnkStruct_ov13_022213F0 * param0)
             param0->unk_2075 = 23;
             return 22;
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_1FA4, 81, param0->unk_1FAC);
+            sub_0200B1B8(param0->unk_1FA4, 81, param0->unk_1FAC);
             ov13_022240E0(param0);
             param0->unk_00->unk_11 = 6;
             param0->unk_2075 = 25;
@@ -1636,7 +1636,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
     }
 
     if (ov13_0222194C(param0) == 1) {
-        MessageFormatter_LoadStrbuf(param0->unk_1FA4, 79, param0->unk_1FAC);
+        sub_0200B1B8(param0->unk_1FA4, 79, param0->unk_1FAC);
         return 0;
     }
 

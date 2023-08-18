@@ -792,7 +792,7 @@ void Item_GetNameIntoString (Strbuf* dest, u16 itemID, u32 heapID)
 {
     UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 392, heapID);
 
-    MessageFormatter_LoadStrbuf(msgData, itemID, dest);
+    sub_0200B1B8(msgData, itemID, dest);
     sub_0200B190(msgData);
 }
 
@@ -800,7 +800,7 @@ void Item_GetDescriptionIntoString (Strbuf* dest, u16 itemID, u16 heapID)
 {
     UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 391, heapID);
 
-    MessageFormatter_LoadStrbuf(msgData, itemID, dest);
+    sub_0200B1B8(msgData, itemID, dest);
     sub_0200B190(msgData);
 }
 

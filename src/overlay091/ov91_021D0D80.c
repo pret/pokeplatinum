@@ -880,25 +880,25 @@ static void ov91_021D1664 (UnkStruct_ov91_021D0ED8 * param0)
 {
     u32 v0;
 
-    MessageFormatter_LoadStrbuf(param0->unk_F8, 26, param0->unk_100);
+    sub_0200B1B8(param0->unk_F8, 26, param0->unk_100);
     ov91_021D1580(param0, 0, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-    MessageFormatter_LoadStrbuf(param0->unk_F8, 28, param0->unk_100);
+    sub_0200B1B8(param0->unk_F8, 28, param0->unk_100);
     ov91_021D1580(param0, 1, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-    MessageFormatter_LoadStrbuf(param0->unk_F8, 22, param0->unk_100);
+    sub_0200B1B8(param0->unk_F8, 22, param0->unk_100);
     ov91_021D1580(param0, 2, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageFormatter_LoadStrbuf(param0->unk_F8, 23, param0->unk_100);
+    sub_0200B1B8(param0->unk_F8, 23, param0->unk_100);
     ov91_021D1580(param0, 3, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageFormatter_LoadStrbuf(param0->unk_F8, 24, param0->unk_100);
+    sub_0200B1B8(param0->unk_F8, 24, param0->unk_100);
     ov91_021D1580(param0, 4, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageFormatter_LoadStrbuf(param0->unk_F8, 25, param0->unk_100);
+    sub_0200B1B8(param0->unk_F8, 25, param0->unk_100);
     ov91_021D1580(param0, 5, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
 
-    MessageFormatter_LoadStrbuf(param0->unk_F8, 27, param0->unk_100);
+    sub_0200B1B8(param0->unk_F8, 27, param0->unk_100);
     ov91_021D1580(param0, 6, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 }
 
@@ -992,7 +992,7 @@ static void ov91_021D18C8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
         v1 = MoveTable_GetMoveAttribute(param1, 2);
 
         if (v1 <= 1) {
-            MessageFormatter_LoadStrbuf(param0->unk_F8, 33, param0->unk_100);
+            sub_0200B1B8(param0->unk_F8, 33, param0->unk_100);
         } else {
             ov91_021D1618(param0, 29, v1, 3, 1);
         }
@@ -1002,7 +1002,7 @@ static void ov91_021D18C8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
         v1 = MoveTable_GetMoveAttribute(param1, 4);
 
         if (v1 == 0) {
-            MessageFormatter_LoadStrbuf(param0->unk_F8, 33, param0->unk_100);
+            sub_0200B1B8(param0->unk_F8, 33, param0->unk_100);
         } else {
             ov91_021D1618(param0, 30, v1, 3, 1);
         }
@@ -1014,7 +1014,7 @@ static void ov91_021D18C8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
         ov91_021D1580(param0, 9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
         v0 = sub_0200B144(1, 26, 646, 67);
-        MessageFormatter_LoadStrbuf(v0, param1, param0->unk_100);
+        sub_0200B1B8(v0, param1, param0->unk_100);
         ov91_021D1580(param0, 10, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0);
         sub_0200B190(v0);
         ov91_021D24B4(param0, param1);
@@ -1049,7 +1049,7 @@ static void ov91_021D1A68 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
         v2 = sub_0209577C(v1);
         v0 = sub_0200B144(0, 26, 210, 67);
 
-        MessageFormatter_LoadStrbuf(v0, v2, param0->unk_100);
+        sub_0200B1B8(v0, v2, param0->unk_100);
         sub_0201D78C(&param0->unk_08[11], 0, param0->unk_100, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0200B190(v0);
         ov91_021D1BBC(param0, (u16)param1);

@@ -505,7 +505,7 @@ asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205A
     add r2, #0xc
     ldr r2, [r5, r2]
     add r1, r7, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     mov r2, #0x45
     lsl r2, r2, #2
     add r1, r2, #4

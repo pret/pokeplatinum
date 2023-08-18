@@ -147,7 +147,7 @@ static void ov5_021DD610 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * 
 
 static void ov5_021DD648 (UnkStruct_ov5_021DD648 * param0, const UnkStruct_0200B144 * param1, u32 param2)
 {
-    MessageFormatter_LoadStrbuf(param1, param2, param0->unk_04);
+    sub_0200B1B8(param1, param2, param0->unk_04);
     sub_0200C388(param0->unk_08, param0->unk_00, param0->unk_04);
 }
 

@@ -492,7 +492,7 @@ static void sub_0206CE74 (UnkStruct_0200B358 * param0, int param1, u16 param2, u
 {
     u16 v0[11];
 
-    MessageFormatter_LoadSpeciesName(param2, 4, v0);
+    sub_0200B274(param2, 4, v0);
     sub_0206CD94(param0, param1, v0, param3, param4, 1);
 }
 
@@ -500,7 +500,7 @@ static void sub_0206CEA4 (UnkStruct_0200B358 * param0, int param1, u16 param2)
 {
     u16 v0[11];
 
-    MessageFormatter_LoadSpeciesName(param2, 4, v0);
+    sub_0200B274(param2, 4, v0);
     sub_0206CD94(param0, param1, v0, 0, GAME_LANGUAGE, 1);
 }
 

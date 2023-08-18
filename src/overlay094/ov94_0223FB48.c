@@ -1190,7 +1190,7 @@ static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
             }
         }
 
-        MessageFormatter_LoadStrbuf(param0->unk_B90, 89, param0->unk_BA4);
+        sub_0200B1B8(param0->unk_B90, 89, param0->unk_BA4);
     }
 
     NARC_dtor(v6);

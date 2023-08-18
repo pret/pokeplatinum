@@ -1751,7 +1751,7 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
         v5 = sub_0200B144(1, 26, 368, 5);
         v6 = Strbuf_Init(0x100, 5);
 
-        MessageFormatter_LoadStrbuf(v5, 923, v6);
+        sub_0200B1B8(v5, 923, v6);
         sub_0201D738(v0->unk_08, 1, v6, 0, 0, NULL, NULL);
 
         Strbuf_Free(v6);

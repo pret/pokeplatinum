@@ -531,7 +531,7 @@ static void ov109_021D41F8 (UnkStruct_ov109_021D5140 * param0, NARC * param1)
     param0->unk_58 = Strbuf_Init((20 * 2), 95);
     param0->unk_3B8 = 0;
 
-    MessageFormatter_LoadStrbuf(param0->unk_38, 17, param0->unk_58);
+    sub_0200B1B8(param0->unk_38, 17, param0->unk_58);
     ov109_021D577C(param0, param1);
 
     param0->unk_41C = sub_0205CA4C(95);
@@ -1578,7 +1578,7 @@ static void ov109_021D55A8 (UnkStruct_ov109_021D5140 * param0, int param1, int p
 
     v0 = Strbuf_Init((90 * 2), 95);
 
-    MessageFormatter_LoadStrbuf(param0->unk_38, param1, v0);
+    sub_0200B1B8(param0->unk_38, param1, v0);
     sub_0200C388(param0->unk_34, param0->unk_54, v0);
     Strbuf_Free(v0);
     sub_0201ADA4(&param0->unk_35C, 0xf0f);

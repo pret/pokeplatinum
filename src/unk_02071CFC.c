@@ -15,7 +15,7 @@ u32 sub_02071CFC (UnkStruct_0200B144 * param0, const int param1, Strbuf *param2)
 {
     u32 v0;
 
-    MessageFormatter_LoadStrbuf(param0, param1, param2);
+    sub_0200B1B8(param0, param1, param2);
     v0 = sub_02002D7C(0, param2, 0);
 
     return v0;

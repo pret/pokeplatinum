@@ -418,7 +418,7 @@ static void ov71_0223B620 (UnkStruct_ov71_0223B620 * param0)
 
         v0 = sub_0200B144(0, 26, 616, 25);
 
-        MessageFormatter_LoadStrbuf(v0, 11, param0->unk_3370);
+        sub_0200B1B8(v0, 11, param0->unk_3370);
         sub_0200B190(v0);
     }
 }

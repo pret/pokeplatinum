@@ -692,7 +692,7 @@ static void ov62_02241954 (UnkStruct_0208C06C * param0, int param1)
         v2 = sub_0200B1EC(param0->unk_14.unk_34, 125);
     } else {
         v2 = Strbuf_Init(255, 102);
-        MessageFormatter_LoadSpeciesName(param1, 102, v3);
+        sub_0200B274(param1, 102, v3);
         Strbuf_CopyChars(v2, v3);
     }
 

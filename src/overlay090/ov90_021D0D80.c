@@ -693,15 +693,15 @@ static void ov90_021D15D0 (UnkStruct_ov90_021D0ECC * param0)
     int v0;
     u16 v1, v2;
 
-    MessageFormatter_LoadStrbuf(param0->unk_28.unk_00, 0 + param0->unk_0A, param0->unk_28.unk_08);
+    sub_0200B1B8(param0->unk_28.unk_00, 0 + param0->unk_0A, param0->unk_28.unk_08);
 
     v0 = sub_02002D7C(0, param0->unk_28.unk_08, 0);
     v0 = (24 * 8) - v0;
 
     sub_0201D78C(&param0->unk_6C[0], 0, param0->unk_28.unk_08, v0 / 2, 8, 0, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
-    MessageFormatter_LoadStrbuf(param0->unk_28.unk_00, 3 + param0->unk_0A, param0->unk_28.unk_08);
+    sub_0200B1B8(param0->unk_28.unk_00, 3 + param0->unk_0A, param0->unk_28.unk_08);
     sub_0201D78C(&param0->unk_6C[1], 0, param0->unk_28.unk_08, 0, 0, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
-    MessageFormatter_LoadStrbuf(param0->unk_28.unk_00, 6 + param0->unk_0A, param0->unk_28.unk_08);
+    sub_0200B1B8(param0->unk_28.unk_00, 6 + param0->unk_0A, param0->unk_28.unk_08);
     sub_0201D78C(&param0->unk_6C[2], 0, param0->unk_28.unk_08, 0, 3, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 
     switch (param0->unk_0A) {
@@ -714,7 +714,7 @@ static void ov90_021D15D0 (UnkStruct_ov90_021D0ECC * param0)
         ov90_021D14C8(param0, &param0->unk_6C[4], 3, 6, 3);
         break;
     case 2:
-        MessageFormatter_LoadStrbuf(param0->unk_28.unk_00, 12, param0->unk_28.unk_08);
+        sub_0200B1B8(param0->unk_28.unk_00, 12, param0->unk_28.unk_08);
         sub_0201D78C(&param0->unk_6C[3], 0, param0->unk_28.unk_08, 4, 10, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
         sub_0200B60C(param0->unk_28.unk_04, 0, sub_0202D2C0(param0->unk_20, 0), 2, 0, 1);
         sub_0200C388(param0->unk_28.unk_04, param0->unk_28.unk_08, param0->unk_28.unk_24[5]);
@@ -814,7 +814,7 @@ static void ov90_021D18BC (UnkStruct_ov90_021D0ECC * param0)
 
     v1 = 24 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0);
     sub_0201D78C(&param0->unk_6C[0], 0, param0->unk_28.unk_08, v1 / 2, 4, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
-    MessageFormatter_LoadStrbuf(param0->unk_28.unk_00, 16 + param0->unk_0A, param0->unk_28.unk_08);
+    sub_0200B1B8(param0->unk_28.unk_00, 16 + param0->unk_0A, param0->unk_28.unk_08);
 
     v1 = 24 * 8 - sub_02002D7C(0, param0->unk_28.unk_08, 0);
     sub_0201D78C(&param0->unk_6C[0], 0, param0->unk_28.unk_08, v1 / 2, 20, 0, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);

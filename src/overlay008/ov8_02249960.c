@@ -2938,7 +2938,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
             v2->unk_00++;
 
             sub_020057A4(1593, 0);
-            MessageFormatter_LoadStrbuf(v2->unk_48, 12, v2->unk_4C);
+            sub_0200B1B8(v2->unk_48, 12, v2->unk_4C);
             sub_0205D8F4(v1->unk_08, v2->unk_44, 3);
             sub_0200E084(v2->unk_44, 0);
             sub_0205D944(v2->unk_44, sub_02025E44(v1->unk_0C));

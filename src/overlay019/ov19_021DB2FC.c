@@ -114,7 +114,7 @@ void ov19_021DB448 (UnkStruct_ov19_021DB6F0 * param0, u32 param1)
     sub_0201A9F4(&param0->unk_18[0]);
     ov19_021DB4B4(param0->unk_00, param0->unk_18[0].unk_04, param0->unk_18[0].unk_05, param0->unk_18[0].unk_06, param0->unk_18[0].unk_07, param0->unk_18[0].unk_08);
     sub_0201ADA4(&param0->unk_18[0], 15);
-    MessageFormatter_LoadStrbuf(param0->unk_10, param1, param0->unk_30);
+    sub_0200B1B8(param0->unk_10, param1, param0->unk_30);
     sub_0200C388(param0->unk_2C, param0->unk_34, param0->unk_30);
     sub_0201D738(&(param0->unk_18[0]), 1, param0->unk_34, 0, 0, 0xff, NULL);
     sub_0201ACCC(&(param0->unk_18[0]));
@@ -182,7 +182,7 @@ void ov19_021DB57C (UnkStruct_ov19_021DB6F0 * param0, const UnkStruct_ov19_021DF
         if ((param1->unk_00[v2] >= UnkEnum_021DFB94_56) && (param1->unk_00[v2] <= UnkEnum_021DFB94_61)) {
             ov19_021DB638(param0, v0, param1->unk_22, param1->unk_00[v2] - UnkEnum_021DFB94_56);
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_14, 24 + param1->unk_00[v2], param0->unk_30);
+            sub_0200B1B8(param0->unk_14, 24 + param1->unk_00[v2], param0->unk_30);
             sub_0201D78C(v0, 0, param0->unk_30, 10, v1, 0xff, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         }
 

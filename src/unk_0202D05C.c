@@ -507,7 +507,7 @@ void sub_0202D63C (UnkStruct_0202D764 * param0, UnkStruct_ov104_0223A348 * param
     if (v2->unk_C8_val1_unk_00_0) {
         v3 = sub_0200B144(0, 26, 22, 11);
 
-        MessageFormatter_LoadString(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->unk_08);
+        sub_0200B240(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->unk_08);
         sub_0200B190(v3);
     } else {
         MI_CpuCopy8(v2->unk_A8, v0->unk_08, 16);

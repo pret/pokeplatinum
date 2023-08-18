@@ -414,8 +414,8 @@ static void ov72_0223DB98 (UnkStruct_ov72_0223DB98 * param0)
     param0->unk_437E = 0;
     param0->unk_370 = 1;
 
-    MessageFormatter_LoadStrbuf(param0->unk_14, 12, param0->unk_2C);
-    MessageFormatter_LoadStrbuf(param0->unk_14, 9, param0->unk_30);
+    sub_0200B1B8(param0->unk_14, 12, param0->unk_2C);
+    sub_0200B1B8(param0->unk_14, 9, param0->unk_30);
 
     param0->unk_5D00 = sub_02015920(39);
 
@@ -1103,7 +1103,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
 
     v0 = Strbuf_Init((40 * 2), 39);
 
-    MessageFormatter_LoadStrbuf(param0->unk_14, param1, v0);
+    sub_0200B1B8(param0->unk_14, param1, v0);
     sub_0200C388(param0->unk_10, param0->unk_34, v0);
     Strbuf_Free(v0);
     sub_0201ADA4(&param0->unk_338, 0xf0f);

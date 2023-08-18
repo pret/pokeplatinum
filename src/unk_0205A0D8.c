@@ -273,7 +273,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 1:
-        MessageFormatter_LoadStrbuf(v0->unk_2C, 1, v0->unk_0C);
+        sub_0200B1B8(v0->unk_2C, 1, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_34 = 2;
         break;
@@ -340,7 +340,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         break;
     case 11:
         sub_02059240();
-        MessageFormatter_LoadStrbuf(v0->unk_2C, 13, v0->unk_0C);
+        sub_0200B1B8(v0->unk_2C, 13, v0->unk_0C);
 
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_34 = 12;
@@ -432,7 +432,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         break;
     case 24:
         sub_02059240();
-        MessageFormatter_LoadStrbuf(v0->unk_2C, 19, v0->unk_0C);
+        sub_0200B1B8(v0->unk_2C, 19, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_34 = 25;
         break;
@@ -450,7 +450,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
                 sub_0205AC80(v0, v0->unk_82);
                 sub_020364F0(0);
                 sub_0200B498(v0->unk_28, 0, v0->unk_74);
-                MessageFormatter_LoadStrbuf(v0->unk_2C, 14, v0->unk_0C);
+                sub_0200B1B8(v0->unk_2C, 14, v0->unk_0C);
                 sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
                 v0->unk_34 = 27;
@@ -478,7 +478,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
             v0->unk_83 = sub_0205AD20(v0);
 
             if (v0->unk_82 && v0->unk_83) {
-                MessageFormatter_LoadStrbuf(v0->unk_2C, 20, v0->unk_0C);
+                sub_0200B1B8(v0->unk_2C, 20, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
                 v0->unk_34 = 30;
             } else {
@@ -489,7 +489,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
     case 30:
         if (sub_0205DA04(v0->unk_30)) {
             v0->unk_89 = 0;
-            MessageFormatter_LoadStrbuf(v0->unk_2C, 17, v0->unk_0C);
+            sub_0200B1B8(v0->unk_2C, 17, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
             v0->unk_84 = 0;
             v0->unk_34 = 31;
@@ -512,7 +512,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         case 2:
             sub_0205B0B4(v0);
             v0->unk_84 = 255;
-            MessageFormatter_LoadStrbuf(v0->unk_2C, 15, v0->unk_0C);
+            sub_0200B1B8(v0->unk_2C, 15, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
             sub_020364F0(2);
             v0->unk_34 = 39;
@@ -521,7 +521,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         break;
     case 36:
         sub_0200B538(v0->unk_28, 1, sub_02076B10(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
-        MessageFormatter_LoadStrbuf(v0->unk_2C, 18, v0->unk_0C);
+        sub_0200B1B8(v0->unk_2C, 18, v0->unk_0C);
         sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
         v0->unk_34 = 37;
@@ -536,14 +536,14 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         switch (sub_0205AFE4(v0)) {
         case 2:
             sub_0205B0B4(v0);
-            MessageFormatter_LoadStrbuf(v0->unk_2C, 17, v0->unk_0C);
+            sub_0200B1B8(v0->unk_2C, 17, v0->unk_0C);
             v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
             v0->unk_34 = 31;
             break;
         case 1:
             if (v0->unk_81 == 1) {
                 sub_0205B0B4(v0);
-                MessageFormatter_LoadStrbuf(v0->unk_2C, 14, v0->unk_0C);
+                sub_0200B1B8(v0->unk_2C, 14, v0->unk_0C);
                 sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
                 v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
                 sub_020364F0(2);
@@ -596,7 +596,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 42:
-        MessageFormatter_LoadStrbuf(v0->unk_2C, 15, v0->unk_0C);
+        sub_0200B1B8(v0->unk_2C, 15, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_0C);
         v0->unk_43 = 0;
         v0->unk_34 = 43;
@@ -889,11 +889,11 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
         for (v1 = 0; v1 < 3; v1++) {
             v2 = GetMonData((Pokemon *)(&param0->unk_48[v1 * v3]), MON_DATA_SPECIES, NULL);
 
-            MessageFormatter_LoadStrbuf(v4, v2, param0->unk_0C);
+            sub_0200B1B8(v4, v2, param0->unk_0C);
             sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
 
-        MessageFormatter_LoadStrbuf(param0->unk_2C, 21, param0->unk_0C);
+        sub_0200B1B8(param0->unk_2C, 21, param0->unk_0C);
         sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         sub_0200B190(v4);
     }
@@ -919,7 +919,7 @@ static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
         sub_0201ADA4(v0, 15);
 
         for (v1 = 0; v1 < 3; v1++) {
-            MessageFormatter_LoadStrbuf(param0->unk_2C, 22 + v1, param0->unk_0C);
+            sub_0200B1B8(param0->unk_2C, 22 + v1, param0->unk_0C);
             sub_0201D738(v0, 0, param0->unk_0C, 16, v1 * 16, 0xff, NULL);
         }
     }
@@ -1025,7 +1025,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
         v1->unk_00 = Strbuf_Init((100 * 2), 4);
         v1->unk_04 = Strbuf_Init((100 * 2), 4);
 
-        MessageFormatter_LoadStrbuf(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
+        sub_0200B1B8(v1->unk_1C, 2 + v2->unk_03, v1->unk_00);
         sub_0200B498(v1->unk_18, 0, sub_02032EE8(v1->unk_24));
         sub_0200C388(v1->unk_18, v1->unk_04, v1->unk_00);
         sub_0205D8F4(v0->unk_08, &v1->unk_08, 3);

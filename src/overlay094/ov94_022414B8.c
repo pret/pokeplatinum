@@ -1023,7 +1023,7 @@ static void ov94_022423FC (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * par
     v1 = sub_0200B29C(param1, param0, 102, 62);
 
     if (v4 != 3) {
-        MessageFormatter_LoadStrbuf(param0, Unk_ov94_02245FD8[v4], v3);
+        sub_0200B1B8(param0, Unk_ov94_02245FD8[v4], v3);
     }
 
     for (v6 = 0; v6 < 3; v6++) {

@@ -388,7 +388,7 @@ static void ov87_021D1590 (UnkStruct_ov87_021D106C * param0)
     sub_0200B60C(param0->unk_1F0, 1, v0->unk_04.year + 2000, 4, 0, 1);
     sub_0200C2E0(param0->unk_1F0, 2, v0->unk_04.month);
     sub_0200B60C(param0->unk_1F0, 3, v0->unk_04.day, 2, 0, 1);
-    MessageFormatter_LoadStrbuf(param0->unk_1E4, 0, param0->unk_1F4);
+    sub_0200B1B8(param0->unk_1E4, 0, param0->unk_1F4);
     sub_0200C388(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
     sub_0201ADA4(v1, 15);
     sub_0201D738(v1, 0, param0->unk_1F8, 0, 0, 0xff, NULL);
@@ -406,17 +406,17 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
     switch (v0->unk_1C) {
     case UnkEnum_ov87_021D12C0_0:
         sub_0201D738(v2, 0, v1->unk_00, 0, 0, 0xff, NULL);
-        MessageFormatter_LoadStrbuf(param0->unk_1E4, 5, param0->unk_1F4);
+        sub_0200B1B8(param0->unk_1E4, 5, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 72, 0, 0xff, NULL);
-        MessageFormatter_LoadStrbuf(param0->unk_1E8, v1->unk_10, param0->unk_1F4);
+        sub_0200B1B8(param0->unk_1E8, v1->unk_10, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 94, 0, 0xff, NULL);
 
         switch (sub_02075DAC(v1->unk_10, v1->unk_08)) {
         case 0:
-            MessageFormatter_LoadStrbuf(param0->unk_1E4, 3, param0->unk_1F4);
+            sub_0200B1B8(param0->unk_1E4, 3, param0->unk_1F4);
             break;
         case 1:
-            MessageFormatter_LoadStrbuf(param0->unk_1E4, 4, param0->unk_1F4);
+            sub_0200B1B8(param0->unk_1E4, 4, param0->unk_1F4);
             break;
         default:
             Strbuf_Clear(param0->unk_1F4);
@@ -424,11 +424,11 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
         }
 
         sub_0201D738(v2, 0, param0->unk_1F4, 174, 0, 0xff, NULL);
-        MessageFormatter_LoadStrbuf(param0->unk_1E4, 1, param0->unk_1F4);
+        sub_0200B1B8(param0->unk_1E4, 1, param0->unk_1F4);
         sub_0200B60C(param0->unk_1F0, 0, v1->unk_12, 4, 1, 1);
         sub_0200C388(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F8, 194, 0, 0xff, NULL);
-        MessageFormatter_LoadStrbuf(param0->unk_1E4, 2, param0->unk_1F4);
+        sub_0200B1B8(param0->unk_1E4, 2, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 0, 16, 0xff, NULL);
         sub_0201D738(v2, 0, v1->unk_04, sub_02002D7C(0, param0->unk_1F4, 0), 16, 0xff, NULL);
         break;
@@ -438,7 +438,7 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
 
         for (v3 = 0; v3 < 4; v3++) {
             if (v1->unk_14[v3]) {
-                MessageFormatter_LoadStrbuf(param0->unk_1EC, v1->unk_14[v3], param0->unk_1F4);
+                sub_0200B1B8(param0->unk_1EC, v1->unk_14[v3], param0->unk_1F4);
                 sub_0201D738(v2, 0, param0->unk_1F4, (v3 & 1) * 96, (v3 / 2) * 16, 0xff, NULL);
             } else {
                 break;

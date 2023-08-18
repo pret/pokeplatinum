@@ -2649,7 +2649,7 @@ static void ov98_02249900 (UnkStruct_ov98_02247704 * param0, int param1)
 {
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 109);
 
-    MessageFormatter_LoadStrbuf(param0->unk_30, param1, v0);
+    sub_0200B1B8(param0->unk_30, param1, v0);
     sub_0200C388(param0->unk_20, param0->unk_40, v0);
 
     sub_0201ADA4(&param0->unk_68, 15);

@@ -1610,7 +1610,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if ((Item_GetAttributeFromStruct(v2, 36) != 0) || (Item_GetAttributeFromStruct(v2, 37) != 0)) {
-        MessageFormatter_LoadStrbuf(param0->unk_1FA4, 87, param0->unk_1FAC);
+        sub_0200B1B8(param0->unk_1FA4, 87, param0->unk_1FAC);
     } else if (v5 == 0x1) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 92);
         sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));

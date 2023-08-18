@@ -560,7 +560,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
     v4 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((15 & 0xff) << 0)));
     v6 = Strbuf_Init(256, param0->unk_00);
 
-    MessageFormatter_LoadStrbuf(param0->unk_20, 0, v6);
+    sub_0200B1B8(param0->unk_20, 0, v6);
 
     v1 = 2;
     sub_0201D78C(&param0->unk_2C[0], 0, v6, v1, 2, 0, v5, NULL);
@@ -569,7 +569,7 @@ static void ov74_021D1668 (UnkStruct_ov74_021D0D80 * param0)
 
     for (v2 = 0; v2 < 7; v2++) {
         Strbuf_Clear(v6);
-        MessageFormatter_LoadStrbuf(param0->unk_20, v8[v2], v6);
+        sub_0200B1B8(param0->unk_20, v8[v2], v6);
         sub_0201D78C(&param0->unk_2C[1], 0, v6, v1, 16 * v2, 0xff, v3, NULL);
     }
 
@@ -683,7 +683,7 @@ static void ov74_021D1968 (UnkStruct_ov74_021D0D80 * param0, u16 param1, BOOL pa
     v0 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)));
     v1 = Strbuf_Init(256, param0->unk_00);
 
-    MessageFormatter_LoadStrbuf(param0->unk_20, param1, v1);
+    sub_0200B1B8(param0->unk_20, param1, v1);
 
     if (param2 == 0) {
         param0->unk_2AC = sub_0201D78C(&param0->unk_2C[2], 1, v1, 4, 0, v2, v0, NULL);

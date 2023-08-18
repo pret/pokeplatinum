@@ -436,7 +436,7 @@ static void ov21_021E10D0 (UnkStruct_ov21_021E0D7C * param0, const UnkStruct_ov2
 
     v3 = ov21_021E185C(param1->unk_18);
 
-    MessageFormatter_LoadStrbuf(v1, v3, v0);
+    sub_0200B1B8(v1, v3, v0);
 
     v4 = sub_02002D7C(0, v0, 0);
     v4 /= 2;

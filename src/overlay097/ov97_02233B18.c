@@ -1235,7 +1235,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     v5 = sub_0200B144(1, 26, 412, 78);
     v0 = ov97_02236DD0(GetGBABoxMonData(param1, 11, NULL));
 
-    MessageFormatter_LoadStrbuf(v5, v0, v8);
+    sub_0200B1B8(v5, v0, v8);
 
     v4.unk_3C = v8;
     v4.unk_34 = -1;

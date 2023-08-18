@@ -986,7 +986,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         break;
     case MON_DATA_117:
         if (param0->unk_04_2) {
-            MessageFormatter_LoadSpeciesName(495, 0, param2);
+            sub_0200B274(495, 0, param2);
         } else {
             {
                 u16 * v6 = param2;
@@ -1126,7 +1126,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         }
         break;
     case MON_DATA_179:
-        MessageFormatter_LoadSpeciesName(v2->species, 0, param2);
+        sub_0200B274(v2->species, 0, param2);
         break;
     }
 
@@ -1471,7 +1471,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
     {
         u16 v10[10 + 1];
 
-        MessageFormatter_LoadSpeciesName(v6->species, 0, &v10[0]);
+        sub_0200B274(v6->species, 0, &v10[0]);
         v7->unk_10_31 = sub_0200220C(v10, &v4[0]);
     }
     case MON_DATA_117:
@@ -1484,7 +1484,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         u16 v11[10 + 1];
         u16 v12[10 + 1];
 
-        MessageFormatter_LoadSpeciesName(v6->species, 0, &v11[0]);
+        sub_0200B274(v6->species, 0, &v11[0]);
         Strbuf_ToChars((Strbuf *)param2, &v12[0], NELEMS(v12));
 
         v7->unk_10_31 = sub_0200220C(v11, v12);

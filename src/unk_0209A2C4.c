@@ -315,7 +315,7 @@ static BOOL sub_0209A688 (UnkStruct_0209A3D0 * param0, u32 param1, int param2, i
         sub_0200E060(&param0->unk_20, 0, 512 - (18 + 12), 2);
 
         param0->unk_14 = Strbuf_Init(0x400, param0->unk_00);
-        MessageFormatter_LoadStrbuf(param0->unk_1C, param1, param0->unk_14);
+        sub_0200B1B8(param0->unk_1C, param1, param0->unk_14);
         param0->unk_10 = sub_0201D738(&param0->unk_20, 1, param0->unk_14, 0, 0, param3, NULL);
 
         if (param3 == 0) {

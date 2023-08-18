@@ -338,7 +338,7 @@ static void ov81_021D1AD4 (UnkStruct_ov81_021D1610 * param0, UnkStruct_0205AA50 
     {
         Strbuf* v3;
 
-        v3 = MessageData_AllocStrbufFromNARC(26, 433, sub_0203A138(v0.unk_02), 42);
+        v3 = sub_0200B010(26, 433, sub_0203A138(v0.unk_02), 42);
         v2 = Strbuf_Length(v3);
         Strbuf_Free(v3);
 
@@ -349,7 +349,7 @@ static void ov81_021D1AD4 (UnkStruct_ov81_021D1610 * param0, UnkStruct_0205AA50 
             v2 += Strbuf_Length(param0->unk_58);
             Strbuf_Free(v3);
         } else {
-            v3 = MessageData_AllocStrbufFromNARC(26, 618, v0.unk_00_1, 42);
+            v3 = sub_0200B010(26, 618, v0.unk_00_1, 42);
             v2 += Strbuf_Length(v3);
             Strbuf_Free(v3);
             sub_0200BA08(param0->unk_54, 1, v0.unk_00_1);

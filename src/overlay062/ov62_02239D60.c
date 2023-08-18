@@ -1061,7 +1061,7 @@ static void ov62_0223ADC0 (UnkStruct_0208C06C * param0, int param1)
         v4 = 494;
     }
 
-    MessageFormatter_LoadSpeciesName(v4, 102, v5);
+    sub_0200B274(v4, 102, v5);
     Strbuf_CopyChars(v2, v5);
 
     v3 = ov62_0223429C(v1, v2);

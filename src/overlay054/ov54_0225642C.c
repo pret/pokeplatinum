@@ -131,7 +131,7 @@ static void ov54_022564BC (UnkStruct_0201CD38 * param0, void * param1)
     sub_0201A9F4(&v4);
 
     {
-        Strbuf* v5 = MessageData_AllocStrbufFromNARC(26, 458, 0, 8);
+        Strbuf* v5 = sub_0200B010(26, 458, 0, 8);
 
         if (v5) {
             sub_0201D78C(&v4, 0, v5, (192 - sub_02002D7C(0, v5, 0)) / 2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);

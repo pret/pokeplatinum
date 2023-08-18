@@ -169,22 +169,22 @@ void sub_02081B90 (UnkStruct_0207F248 * param0)
 
 void sub_02081BC0 (UnkStruct_0207F248 * param0)
 {
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 145, param0->unk_6AC[0]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 146, param0->unk_6AC[1]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 147, param0->unk_6AC[2]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 160, param0->unk_6AC[3]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 161, param0->unk_6AC[4]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 148, param0->unk_6AC[5]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 149, param0->unk_6AC[6]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 150, param0->unk_6AC[7]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 151, param0->unk_6AC[8]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 152, param0->unk_6AC[9]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 153, param0->unk_6AC[10]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 154, param0->unk_6AC[11]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 155, param0->unk_6AC[12]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 154, param0->unk_6AC[13]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 166, param0->unk_6AC[14]);
-    MessageFormatter_LoadStrbuf(param0->unk_69C, 200, param0->unk_6AC[15]);
+    sub_0200B1B8(param0->unk_69C, 145, param0->unk_6AC[0]);
+    sub_0200B1B8(param0->unk_69C, 146, param0->unk_6AC[1]);
+    sub_0200B1B8(param0->unk_69C, 147, param0->unk_6AC[2]);
+    sub_0200B1B8(param0->unk_69C, 160, param0->unk_6AC[3]);
+    sub_0200B1B8(param0->unk_69C, 161, param0->unk_6AC[4]);
+    sub_0200B1B8(param0->unk_69C, 148, param0->unk_6AC[5]);
+    sub_0200B1B8(param0->unk_69C, 149, param0->unk_6AC[6]);
+    sub_0200B1B8(param0->unk_69C, 150, param0->unk_6AC[7]);
+    sub_0200B1B8(param0->unk_69C, 151, param0->unk_6AC[8]);
+    sub_0200B1B8(param0->unk_69C, 152, param0->unk_6AC[9]);
+    sub_0200B1B8(param0->unk_69C, 153, param0->unk_6AC[10]);
+    sub_0200B1B8(param0->unk_69C, 154, param0->unk_6AC[11]);
+    sub_0200B1B8(param0->unk_69C, 155, param0->unk_6AC[12]);
+    sub_0200B1B8(param0->unk_69C, 154, param0->unk_6AC[13]);
+    sub_0200B1B8(param0->unk_69C, 166, param0->unk_6AC[14]);
+    sub_0200B1B8(param0->unk_69C, 200, param0->unk_6AC[15]);
 }
 
 void sub_02081CAC (UnkStruct_0207F248 * param0, u16 param1, u8 param2)
@@ -242,9 +242,9 @@ void sub_02081E08 (UnkStruct_0207F248 * param0)
     Strbuf* v1;
 
     if (param0->unk_5A4->unk_20 == 15) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 42, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 42, param0->unk_6A4);
     } else if ((param0->unk_5A4->unk_20 == 21) && (param0->unk_704[param0->unk_B11].unk_10 == 1)) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 198, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, 198, param0->unk_6A4);
     } else {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         v1 = sub_0200B1EC(param0->unk_69C, 37);
@@ -296,11 +296,11 @@ void sub_02081F2C (UnkStruct_0207F248 * param0, u8 param1)
 
     if (param0->unk_704[param1].unk_0E_12 == 0) {
         if (param0->unk_704[param1].unk_0E_13 == 0) {
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 27, param0->unk_6A8);
+            sub_0200B1B8(param0->unk_69C, 27, param0->unk_6A8);
             sub_0201D78C(
                 v0, 0, param0->unk_6A8, (9 * 8 - 8), 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         } else if (param0->unk_704[param1].unk_0E_13 == 1) {
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 28, param0->unk_6A8);
+            sub_0200B1B8(param0->unk_69C, 28, param0->unk_6A8);
             sub_0201D78C(
                 v0, 0, param0->unk_6A8, (9 * 8 - 8), 0, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
@@ -558,14 +558,14 @@ void sub_020825B4 (UnkStruct_0207F248 * param0, u8 param1)
     sub_0201ADA4(&param0->unk_04[31], 0);
 
     if (param1 & 1) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 0, param0->unk_6A8);
+        sub_0200B1B8(param0->unk_69C, 0, param0->unk_6A8);
         v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[30].unk_07 * 8);
         sub_0201D78C(&param0->unk_04[30], 0, param0->unk_6A8, v0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(&param0->unk_04[30]);
     }
 
     if (param1 & 2) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 1, param0->unk_6A8);
+        sub_0200B1B8(param0->unk_69C, 1, param0->unk_6A8);
         v0 = sub_020825A4(0, param0->unk_6A8, param0->unk_04[31].unk_07 * 8);
         sub_0201D78C(&param0->unk_04[31], 0, param0->unk_6A8, v0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_0201A9A4(&param0->unk_04[31]);
@@ -581,7 +581,7 @@ static void sub_02082680 (UnkStruct_0207F248 * param0, UnkStruct_0205AA50 * para
     sub_0201ADA4(param1, 15);
 
     if (param2 != 0xffffffff) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, param2, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, param2, param0->unk_6A4);
     }
 
     sub_0201D738(param1, 1, param0->unk_6A4, 0, 0, 0xff, NULL);
@@ -609,7 +609,7 @@ void sub_02082708 (UnkStruct_0207F248 * param0, u32 param1, u8 param2)
     sub_0201ADA4(v0, 15);
 
     if (param1 != 0xffffffff) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, param1, param0->unk_6A4);
+        sub_0200B1B8(param0->unk_69C, param1, param0->unk_6A4);
     }
 
     sub_0208274C(param0);

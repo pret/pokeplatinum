@@ -724,7 +724,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
 
             param0->unk_5C = Strbuf_Init(0x400, param0->unk_00);
 
-            MessageFormatter_LoadStrbuf(param0->unk_4C, param1, v1);
+            sub_0200B1B8(param0->unk_4C, param1, v1);
             sub_0200B48C(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
             sub_0200B48C(param0->unk_64, 1, param0->unk_74->unk_18, 0, 1, GAME_LANGUAGE);
             sub_0200C388(param0->unk_64, param0->unk_5C, v1);
@@ -849,7 +849,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
     case 0:
         sub_02019120(0, 0);
         param0->unk_5C = Strbuf_Init(0x400, param0->unk_00);
-        MessageFormatter_LoadStrbuf(param0->unk_4C, param1, param0->unk_5C);
+        sub_0200B1B8(param0->unk_4C, param1, param0->unk_5C);
 
         if (param2 == 1) {
             v1 = Unk_ov72_021D37D4;

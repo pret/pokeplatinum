@@ -170,7 +170,7 @@ BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
     v2 = sub_0200B144(1, 26, 553, param0);
     v3 = Strbuf_Init(8, param0);
 
-    MessageFormatter_LoadStrbuf(v2, sub_02025F30(v0) ^ 1, v3);
+    sub_0200B1B8(v2, sub_02025F30(v0) ^ 1, v3);
     sub_02025EC0(v4->unk_D0[0], Strbuf_GetData(v3));
     Strbuf_Free(v3);
     sub_0200B190(v2);

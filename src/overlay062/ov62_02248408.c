@@ -103,7 +103,7 @@ static void ov62_0224856C (Strbuf *param0, int param1)
 
     v0 = sub_0200B144(1, 26, 10, param1);
 
-    MessageFormatter_LoadStrbuf(v0, 332, param0);
+    sub_0200B1B8(v0, 332, param0);
     sub_0200B190(v0);
 }
 

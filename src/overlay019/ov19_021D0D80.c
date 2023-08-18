@@ -4167,7 +4167,7 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     sub_02074570(param1, MON_DATA_119, v0->unk_14);
 
     if (v0->unk_0F == 0) {
-        MessageFormatter_LoadStrbuf(param2->unk_190, v0->unk_04, v0->unk_18);
+        sub_0200B1B8(param2->unk_190, v0->unk_04, v0->unk_18);
     } else {
         Strbuf_Copy(v0->unk_18, v0->unk_14);
         Strbuf_Clear(v0->unk_14);
@@ -4176,15 +4176,15 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     if (v0->unk_06 != 0) {
         Item_GetNameIntoString(v0->unk_1C, v0->unk_06, 9);
     } else {
-        MessageFormatter_LoadStrbuf(param2->unk_18C, 20, v0->unk_1C);
+        sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
     }
 
     {
         u32 v3 = sub_02075BD4(param1);
 
-        MessageFormatter_LoadStrbuf(param2->unk_194, v3, v0->unk_20);
+        sub_0200B1B8(param2->unk_194, v3, v0->unk_20);
         v3 = sub_02074570(param1, MON_DATA_10, NULL);
-        MessageFormatter_LoadStrbuf(param2->unk_198, v3, v0->unk_24);
+        sub_0200B1B8(param2->unk_198, v3, v0->unk_24);
     }
 
     sub_020759B8(v2);
@@ -4283,7 +4283,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
     if (v0->unk_06 != 0) {
         Item_GetNameIntoString(v0->unk_1C, v0->unk_06, 9);
     } else {
-        MessageFormatter_LoadStrbuf(param2->unk_18C, 20, v0->unk_1C);
+        sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
     }
 
     if ((ov19_021D5E10(param0) == 0) && (ov19_021D5E38(param0) == 1)) {
@@ -4305,7 +4305,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
 
             sub_02077A1C(v0->unk_00);
             v3 = sub_02074570(v0->unk_00, MON_DATA_10, NULL);
-            MessageFormatter_LoadStrbuf(param2->unk_198, v3, v0->unk_24);
+            sub_0200B1B8(param2->unk_198, v3, v0->unk_24);
         }
     }
 }
@@ -4355,7 +4355,7 @@ static void ov19_021D5D28 (UnkStruct_ov19_021D4DF0 * param0, UnkStruct_ov19_021D
 
     param0->unk_112 = v0->unk_06;
 
-    MessageFormatter_LoadStrbuf(param1->unk_18C, 20, v0->unk_1C);
+    sub_0200B1B8(param1->unk_18C, 20, v0->unk_1C);
     ov19_021D5BE8(param0, v1, param1);
 }
 

@@ -713,16 +713,16 @@ static void ov21_021E7CF8 (UnkStruct_ov21_021E747C * param0, int param1)
     Strbuf* v0 = Strbuf_Init(32, param1);
     UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
 
-    MessageFormatter_LoadStrbuf(v1, 44, v0);
+    sub_0200B1B8(v1, 44, v0);
 
     {
         u32 v2 = sub_02002EEC(0, v0, 0, 256);
         sub_0201D78C(&param0->unk_00->unk_04, 0, v0, v2, 24, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
-    MessageFormatter_LoadStrbuf(v1, 10, v0);
+    sub_0200B1B8(v1, 10, v0);
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 32, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    MessageFormatter_LoadStrbuf(v1, 10, v0);
+    sub_0200B1B8(v1, 10, v0);
     sub_0201D78C(&param0->unk_00->unk_04, 0, v0, 152, 168, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
     sub_0200B190(v1);
@@ -740,7 +740,7 @@ static void ov21_021E7DA8 (UnkStruct_ov21_021E747C * param0, const UnkStruct_ov2
     v1 = sub_0200B144(0, 26, v4, param2);
 
     sub_0201D78C(&param0->unk_00->unk_04, 0, v3, 26, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-    MessageFormatter_LoadStrbuf(v1, v2, v0);
+    sub_0200B1B8(v1, v2, v0);
 
     {
         u32 v5 = 32 + 78 - sub_02002D7C(0, v0, 0);
@@ -755,9 +755,9 @@ static void ov21_021E7DA8 (UnkStruct_ov21_021E747C * param0, const UnkStruct_ov2
     sub_0201D78C(&param0->unk_00->unk_04, 0, ov21_021D3914(param1->unk_00), 146, 152, 0, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     if (ov21_021D3920(param1->unk_00) == 0) {
-        MessageFormatter_LoadStrbuf(v1, 97, v0);
+        sub_0200B1B8(v1, 97, v0);
     } else {
-        MessageFormatter_LoadStrbuf(v1, 98, v0);
+        sub_0200B1B8(v1, 98, v0);
     }
 
     {

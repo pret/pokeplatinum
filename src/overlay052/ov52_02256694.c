@@ -327,12 +327,12 @@ static void ov52_02256A7C (UnkStruct_ov52_02256694 * param0)
     u32 v0;
 
     sub_0201ADA4(&param0->unk_20, 4);
-    MessageFormatter_LoadStrbuf(param0->unk_58, 0, param0->unk_5C);
+    sub_0200B1B8(param0->unk_58, 0, param0->unk_5C);
 
     v0 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
 
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v0, 8, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
-    MessageFormatter_LoadStrbuf(param0->unk_58, 10, param0->unk_5C);
+    sub_0200B1B8(param0->unk_58, 10, param0->unk_5C);
 
     v0 = ((24 * 8) - sub_02002EB4(0, param0->unk_5C, 0)) / 2;
 
@@ -349,7 +349,7 @@ static void ov52_02256A7C (UnkStruct_ov52_02256694 * param0)
 static void ov52_02256B10 (UnkStruct_ov52_02256694 * param0)
 {
     sub_0201ADA4(&param0->unk_20, 4);
-    MessageFormatter_LoadStrbuf(param0->unk_58, 1, param0->unk_5C);
+    sub_0200B1B8(param0->unk_58, 1, param0->unk_5C);
 
     {
         u32 v0 = (24 * 8 - sub_02002EB4(0, param0->unk_5C, 0)) / 2;
@@ -364,12 +364,12 @@ static void ov52_02256B64 (UnkStruct_ov52_02256694 * param0)
     u32 v0;
 
     sub_0201ADA4(&param0->unk_20, 4);
-    MessageFormatter_LoadStrbuf(param0->unk_58, 2, param0->unk_5C);
+    sub_0200B1B8(param0->unk_58, 2, param0->unk_5C);
 
     v0 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
 
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v0, 8, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
-    MessageFormatter_LoadStrbuf(param0->unk_58, 3, param0->unk_5C);
+    sub_0200B1B8(param0->unk_58, 3, param0->unk_5C);
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, 16, 24, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
     sub_0201ACCC(&param0->unk_20);
 }
@@ -385,7 +385,7 @@ asm static void ov52_02256BDC (UnkStruct_ov52_02256694 * param0)
     ldr r0, [r4, #0x58]
     ldr r2, [r4, #0x5c]
     mov r1, #2
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     mov r0, #0
     ldr r1, [r4, #0x5c]
     add r2, r0, #0
@@ -408,7 +408,7 @@ asm static void ov52_02256BDC (UnkStruct_ov52_02256694 * param0)
     ldr r0, [r4, #0x58]
     ldr r2, [r4, #0x5c]
     mov r1, #4
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     mov r0, #0
     ldr r1, [r4, #0x5c]
     add r2, r0, #0
@@ -445,13 +445,13 @@ static void ov52_02256C64 (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov5
     int v2;
 
     sub_0201ADA4(&param0->unk_20, 4);
-    MessageFormatter_LoadStrbuf(param0->unk_58, 5, param0->unk_5C);
+    sub_0200B1B8(param0->unk_58, 5, param0->unk_5C);
 
     v1 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
     sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, v1, 8, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
 
     for (v2 = 0; v2 < 4; v2++) {
-        MessageFormatter_LoadStrbuf(param0->unk_58, v0[v2], param0->unk_5C);
+        sub_0200B1B8(param0->unk_58, v0[v2], param0->unk_5C);
         sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, 8, 32 + 16 * v2, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
         Strbuf_FormatInt(param0->unk_5C, param1->unk_00[v2], 2, 2, 1);
         sub_0201D78C(&param0->unk_20, 0, param0->unk_5C, 160, 32 + 16 * v2, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);

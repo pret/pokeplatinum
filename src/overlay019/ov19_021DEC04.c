@@ -487,12 +487,12 @@ static void ov19_021DF2E0 (UnkStruct_ov19_021DEC04 * param0)
     switch (ov19_021D5FA4(param0->unk_08)) {
     case 0:
         for (v2 = 0; v2 < NELEMS(v0); v2++) {
-            MessageFormatter_LoadStrbuf(param0->unk_6C, v0[v2], param0->unk_74);
+            sub_0200B1B8(param0->unk_6C, v0[v2], param0->unk_74);
             sub_0201D78C(v1, 0, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0 + 16 * v2, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         }
         break;
     case 2:
-        MessageFormatter_LoadStrbuf(param0->unk_6C, 43, param0->unk_74);
+        sub_0200B1B8(param0->unk_6C, 43, param0->unk_74);
         sub_0201D78C(v1, 0, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         break;
     }
@@ -535,7 +535,7 @@ static void ov19_021DF3AC (UnkStruct_ov19_021DEC04 * param0, int param1)
                 sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), (1 + v5) * 16, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
             }
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_6C, 44, param0->unk_74);
+            sub_0200B1B8(param0->unk_6C, 44, param0->unk_74);
 
             for (v5 = 0; v5 < 8; v5++) {
                 sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), v5 * 16, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
@@ -566,12 +566,12 @@ static void ov19_021DF4D0 (UnkStruct_ov19_021DEC04 * param0, int param1)
         if (v1->unk_06 == 0) {
             for (v5 = 0; v5 < 4; v5++) {
                 if (v1->unk_20[v5]) {
-                    MessageFormatter_LoadStrbuf(param0->unk_70, v1->unk_20[v5], param0->unk_74);
+                    sub_0200B1B8(param0->unk_70, v1->unk_20[v5], param0->unk_74);
                     sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
                 }
             }
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_6C, 44, param0->unk_74);
+            sub_0200B1B8(param0->unk_6C, 44, param0->unk_74);
 
             for (v5 = 0; v5 < 4; v5++) {
                 sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);

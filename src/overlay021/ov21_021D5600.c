@@ -213,7 +213,7 @@ static Strbuf* ov21_021D5724 (int param0, int param1, int param2)
         Strbuf* v1 = Strbuf_Init(256, param2);
 
         if (v1) {
-            MessageFormatter_LoadStrbuf(v0, param1, v1);
+            sub_0200B1B8(v0, param1, v1);
         }
 
         sub_0200B190(v0);

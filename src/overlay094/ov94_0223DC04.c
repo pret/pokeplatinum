@@ -438,7 +438,7 @@ static void ov94_0223E300 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 {
     Strbuf* v0;
 
-    MessageFormatter_LoadStrbuf(param0->unk_B90, param1, param0->unk_BAC);
+    sub_0200B1B8(param0->unk_B90, param1, param0->unk_BAC);
     sub_0201ADA4(&param0->unk_F5C, 0xf0f);
     sub_0200E060(&param0->unk_F5C, 0, 1, 10);
 

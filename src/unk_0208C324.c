@@ -1032,15 +1032,15 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
 
     v0 = sub_02076B10(param1);
 
-    MessageFormatter_LoadStrbuf(param0->unk_688, 11, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, 11, param0->unk_694);
     sub_0200B538(param0->unk_690, 0, v0);
     sub_0200C388(param0->unk_690, param0->unk_250.unk_00, param0->unk_694);
 
-    MessageFormatter_LoadStrbuf(param0->unk_688, 0, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, 0, param0->unk_694);
     sub_0200B5CC(param0->unk_690, 0, v0);
     sub_0200C388(param0->unk_690, param0->unk_250.unk_04, param0->unk_694);
 
-    MessageFormatter_LoadStrbuf(param0->unk_688, 14, param0->unk_694);
+    sub_0200B1B8(param0->unk_688, 14, param0->unk_694);
     sub_0200B5EC(param0->unk_690, 0, v0);
     sub_0200C388(param0->unk_690, param0->unk_250.unk_08, param0->unk_694);
 

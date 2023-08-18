@@ -519,7 +519,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
     case 3:
         sub_0201ADA4(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
-        MessageFormatter_LoadStrbuf(v0->unk_30, 2, v0->unk_C4);
+        sub_0200B1B8(v0->unk_30, 2, v0->unk_C4);
         v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
         (*param1)++;
         break;
@@ -569,7 +569,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
     case 6:
         sub_0201ADA4(&v0->unk_B4, 0xf);
         sub_0200E060(&v0->unk_B4, 0, 1, 14);
-        MessageFormatter_LoadStrbuf(v0->unk_30, 3, v0->unk_C4);
+        sub_0200B1B8(v0->unk_30, 3, v0->unk_C4);
         v0->unk_C8 = sub_0201D738(&v0->unk_B4, 1, v0->unk_C4, 0, 0, sub_02027AC0(sub_02025E44(v0->unk_04)), NULL);
         (*param1)++;
         break;

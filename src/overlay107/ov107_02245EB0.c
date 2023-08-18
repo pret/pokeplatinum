@@ -1522,7 +1522,7 @@ asm static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205A
     ldr r0, [r5, #0x20]
     ldr r2, [r5, #0x2c]
     add r1, r7, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     ldr r0, [r5, #0x24]
     ldr r1, [r5, #0x28]
     ldr r2, [r5, #0x2c]
@@ -1617,7 +1617,7 @@ asm static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205A
     ldr r0, [r5, #0x20]
     ldr r2, [r5, #0x2c]
     add r4, r3, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     ldr r0, [r5, #0x24]
     ldr r1, [r5, #0x28]
     ldr r2, [r5, #0x2c]
@@ -2112,7 +2112,7 @@ static void ov107_02247D68 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
     int v0;
     void * v1;
 
-    MessageFormatter_LoadStrbuf(param0->unk_20, param3, param0->unk_30[param1]);
+    sub_0200B1B8(param0->unk_20, param3, param0->unk_30[param1]);
 
     param0->unk_120[param1].unk_00 = (const void *)param0->unk_30[param1];
     param0->unk_120[param1].unk_04 = param2;

@@ -218,7 +218,7 @@ static void ov5_021DC290 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
     {
         Strbuf* v2 = Strbuf_Init((40 * 2), 4);
 
-        MessageFormatter_LoadStrbuf(param0->unk_8C, param1, v2);
+        sub_0200B1B8(param0->unk_8C, param1, v2);
         sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_BC[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
@@ -442,7 +442,7 @@ static void ov5_021DC708 (UnkStruct_ov5_021DC1A4 * param0, u32 param1, u32 param
     {
         Strbuf* v2 = Strbuf_Init((40 * 2), 4);
 
-        MessageFormatter_LoadStrbuf(param0->unk_8C, param1, v2);
+        sub_0200B1B8(param0->unk_8C, param1, v2);
         sub_0200C388(param0->unk_90, param0->unk_1C[param0->unk_9B], v2);
         param0->unk_1C4[param0->unk_9B].unk_00 = (const void *)param0->unk_1C[param0->unk_9B];
         Strbuf_Free(v2);
@@ -613,7 +613,7 @@ static void ov5_021DCA90 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u32 param
     Strbuf* v1 = Strbuf_Init((40 * 2), 4);
 
     sub_0201ADA4(param0->unk_18, 15);
-    MessageFormatter_LoadStrbuf(param0->unk_8C, param1, v0);
+    sub_0200B1B8(param0->unk_8C, param1, v0);
     sub_0200C388(param0->unk_90, v1, v0);
     sub_0201D738(param0->unk_18, 1, v1, 0, 0, param2, NULL);
     Strbuf_Free(v0);
@@ -668,7 +668,7 @@ static void ov5_021DCC00 (UnkStruct_ov5_021DC1A4 * param0, u16 param1, u8 param2
     Strbuf* v0 = Strbuf_Init((40 * 2), 4);
     Strbuf* v1 = Strbuf_Init((40 * 2), 4);
 
-    MessageFormatter_LoadStrbuf(param0->unk_8C, param1, v0);
+    sub_0200B1B8(param0->unk_8C, param1, v0);
     sub_0200C388(param0->unk_90, v1, v0);
     sub_0201D738(&param0->unk_08, 0, v1, param2, param3, 0xff, NULL);
     Strbuf_Free(v0);

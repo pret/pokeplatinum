@@ -640,7 +640,7 @@ static int sub_0207E750 (UnkStruct_0207F248 * param0)
             sub_02082708(param0, 0xffffffff, 1);
             param0->unk_5A4->unk_23 = 0;
             param0->unk_B0E = 25;
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 105, param0->unk_6A4);
+            sub_0200B1B8(param0->unk_69C, 105, param0->unk_6A4);
             return 24;
         }
     } else if (v0 == 3) {
@@ -2656,14 +2656,14 @@ static int sub_02081224 (UnkStruct_0207F248 * param0)
 
     if (param0->unk_5A4->unk_24 == 112) {
         if (GetMonData(v0, MON_DATA_SPECIES, NULL) != 487) {
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 203, param0->unk_6A8);
+            sub_0200B1B8(param0->unk_69C, 203, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B744(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             v2 = 11;
         } else if (v4 != NULL) {
             if (v4->unk_1C->unk_00 == 466) {
-                MessageFormatter_LoadStrbuf(param0->unk_69C, 204, param0->unk_6A8);
+                sub_0200B1B8(param0->unk_69C, 204, param0->unk_6A8);
                 sub_0200B70C(param0->unk_6A0, 0, param0->unk_5A4->unk_24);
                 sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
                 v2 = 11;
@@ -2681,20 +2681,20 @@ static int sub_02081224 (UnkStruct_0207F248 * param0)
 
             v2 = sub_02081408(param0, v0, &v3);
 
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 118, param0->unk_6A8);
+            sub_0200B1B8(param0->unk_69C, 118, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B70C(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             break;
         case 1:
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 78, param0->unk_6A8);
+            sub_0200B1B8(param0->unk_69C, 78, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B744(param0->unk_6A0, 1, param0->unk_704[param0->unk_B11].unk_0C);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             v2 = 9;
             break;
         case 2:
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 77, param0->unk_6A4);
+            sub_0200B1B8(param0->unk_69C, 77, param0->unk_6A4);
             v2 = 11;
             break;
         }
@@ -2809,7 +2809,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
 
         if (sub_0207D570(param0->unk_5A4->unk_04, (u16)v5, 1, 12) == 0) {
             sub_020814A8(param0, v2, v4, v5);
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 83, param0->unk_6A4);
+            sub_0200B1B8(param0->unk_69C, 83, param0->unk_6A4);
             v0 = 11;
         } else {
             if (Item_IsMail(param0->unk_5A4->unk_24) == 1) {
@@ -2819,7 +2819,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
                 return 32;
             }
 
-            MessageFormatter_LoadStrbuf(param0->unk_69C, 84, param0->unk_6A8);
+            sub_0200B1B8(param0->unk_69C, 84, param0->unk_6A8);
             sub_0200B70C(param0->unk_6A0, 1, v5);
             sub_0200B70C(param0->unk_6A0, 2, v4);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
@@ -2875,13 +2875,13 @@ static int sub_02081760 (UnkStruct_0207F248 * param0)
     }
 
     if (v3 == 0) {
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 118, param0->unk_6A8);
+        sub_0200B1B8(param0->unk_69C, 118, param0->unk_6A8);
         sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
         sub_0200B70C(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else {
         sub_0207D570(param0->unk_5A4->unk_04, (u16)v3, 1, 12);
-        MessageFormatter_LoadStrbuf(param0->unk_69C, 84, param0->unk_6A8);
+        sub_0200B1B8(param0->unk_69C, 84, param0->unk_6A8);
         sub_0200B70C(param0->unk_6A0, 1, v3);
         sub_0200B70C(param0->unk_6A0, 2, v2);
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);

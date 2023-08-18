@@ -1447,7 +1447,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
 
     v0 = Strbuf_Init(128, param6);
 
-    MessageFormatter_LoadStrbuf(param1->unk_08, 0, v0);
+    sub_0200B1B8(param1->unk_08, 0, v0);
     sub_0201D78C(&param0->unk_0C, 0, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
     sub_020070E8(param5, 18, param1->unk_00, 2, 0, 0, 0, param6);

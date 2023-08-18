@@ -439,7 +439,7 @@ void ov20_021D3578 (UnkStruct_ov20_021D30F8 * param0, u32 param1)
         Strbuf* v1 = Strbuf_Init(300, 0);
 
         sub_0200B7B4(v0, 0, 0);
-        MessageFormatter_LoadStrbuf(param0->unk_48, 0 + ov20_021D1F88(param0->unk_04), param0->unk_4C);
+        sub_0200B1B8(param0->unk_48, 0 + ov20_021D1F88(param0->unk_04), param0->unk_4C);
         sub_0200C388(v0, v1, param0->unk_4C);
         sub_0201D78C(&param0->unk_1C, 1, v1, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((9 & 0xff) << 0)), NULL);
 
@@ -448,15 +448,15 @@ void ov20_021D3578 (UnkStruct_ov20_021D30F8 * param0, u32 param1)
     }
     break;
     case 2:
-        MessageFormatter_LoadStrbuf(param0->unk_48, 6, param0->unk_4C);
+        sub_0200B1B8(param0->unk_48, 6, param0->unk_4C);
         sub_0201D78C(&param0->unk_1C, 1, param0->unk_4C, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((9 & 0xff) << 0)), NULL);
         break;
     case 1:
-        MessageFormatter_LoadStrbuf(param0->unk_48, 7, param0->unk_4C);
+        sub_0200B1B8(param0->unk_48, 7, param0->unk_4C);
         sub_0201D78C(&param0->unk_1C, 1, param0->unk_4C, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((9 & 0xff) << 0)), NULL);
         break;
     case 3:
-        MessageFormatter_LoadStrbuf(param0->unk_48, 8, param0->unk_4C);
+        sub_0200B1B8(param0->unk_48, 8, param0->unk_4C);
         sub_0201D78C(&param0->unk_1C, 1, param0->unk_4C, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((9 & 0xff) << 0)), NULL);
         break;
     }
@@ -543,10 +543,10 @@ void ov20_021D3790 (UnkStruct_ov20_021D30F8 * param0, int param1)
 {
     sub_0201ADA4(&param0->unk_2C, 9);
 
-    MessageFormatter_LoadStrbuf(param0->unk_48, 9, param0->unk_4C);
+    sub_0200B1B8(param0->unk_48, 9, param0->unk_4C);
     sub_0201D78C(&param0->unk_2C, 0, param0->unk_4C, 14, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((9 & 0xff) << 0)), NULL);
 
-    MessageFormatter_LoadStrbuf(param0->unk_48, 10, param0->unk_4C);
+    sub_0200B1B8(param0->unk_48, 10, param0->unk_4C);
     sub_0201D78C(&param0->unk_2C, 0, param0->unk_4C, 14, 0 + 16, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((9 & 0xff) << 0)), NULL);
 
     sub_0200DC48(&param0->unk_2C, 0, param0->unk_60, 14);

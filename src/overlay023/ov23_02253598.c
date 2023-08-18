@@ -142,7 +142,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     ldr r0, [sp, #0xc]
     mov r1, #0
     add r2, r4, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     mov r0, #1
     str r0, [sp]
     mov r0, #0xff
@@ -156,7 +156,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     ldr r0, [sp, #0xc]
     mov r1, #1
     add r2, r4, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     mov r0, #0x11
     str r0, [sp]
     mov r0, #0xff
@@ -170,7 +170,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     ldr r0, [sp, #0xc]
     mov r1, #2
     add r2, r4, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     mov r0, #1
     str r0, [sp]
     mov r0, #0xff
@@ -195,7 +195,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     ldr r0, [sp, #0xc]
     mov r1, #5
     add r2, r4, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     ldr r0, [sp, #0x1c]
     ldr r1, [sp, #0x18]
     add r2, r4, #0
@@ -217,7 +217,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     ldr r0, [sp, #0xc]
     mov r1, #4
     add r2, r4, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     ldr r0, [sp, #0x1c]
     ldr r1, [sp, #0x18]
     add r2, r4, #0
@@ -238,7 +238,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     ldr r0, [sp, #0xc]
     add r1, #0x14
     add r2, r4, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     mov r0, #0x11
     str r0, [sp]
     mov r0, #0xff
@@ -255,7 +255,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     ldr r0, [sp, #0xc]
     add r1, r5, #6
     add r2, r4, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     str r6, [sp]
     mov r0, #0xff
     str r0, [sp, #4]
@@ -289,7 +289,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 *
     ldr r0, [sp, #0xc]
     mov r1, #0xd
     add r2, r4, #0
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     ldr r0, [sp, #0x1c]
     ldr r1, [sp, #0x18]
     add r2, r4, #0
@@ -494,19 +494,19 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * par
     v2 = Strbuf_Init(40, 4);
 
     sub_0200B498(v0, 1, param2);
-    MessageFormatter_LoadStrbuf(param1, 12, v1);
+    sub_0200B1B8(param1, 12, v1);
     sub_0200C388(v0, v2, v1);
     sub_0201D738(param0, 0, v2, v7, 1, 0xff, NULL);
 
-    MessageFormatter_LoadStrbuf(param1, 13, v1);
+    sub_0200B1B8(param1, 13, v1);
     sub_0201D738(param0, 0, v1, v7, 1 + v8, 0xff, NULL);
 
     sub_0200B60C(v0, 6, sub_020295B8(param3), 6, 1, 1);
-    MessageFormatter_LoadStrbuf(param1, 14, v1);
+    sub_0200B1B8(param1, 14, v1);
     sub_0200C388(v0, v2, v1);
     sub_0201D738(param0, 0, v2, v7 + 100, 1 + v8, 0xff, NULL);
 
-    MessageFormatter_LoadStrbuf(param1, 15, v1);
+    sub_0200B1B8(param1, 15, v1);
     sub_0201D738(param0, 0, v1, v7, 1 + v8 * 3, 0xff, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
@@ -514,20 +514,20 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, UnkStruct_0200B144 * par
 
         if (v13) {
             sub_0200B498(v0, 0, v13);
-            MessageFormatter_LoadStrbuf(param1, 16, v1);
+            sub_0200B1B8(param1, 16, v1);
             sub_0200C388(v0, v2, v1);
             sub_0201D738(param0, 0, v2, v7, 1 + v8 * (4 + v3), 0xff, NULL);
 
             sub_0200B60C(v0, 5, sub_02025F24(v13), 5, 2, 1);
-            MessageFormatter_LoadStrbuf(param1, 17, v1);
+            sub_0200B1B8(param1, 17, v1);
             sub_0200C388(v0, v2, v1);
 
             sub_0201D738(param0, 0, v2, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
             Heap_FreeToHeap(v13);
         } else {
-            MessageFormatter_LoadStrbuf(param1, 51, v1);
+            sub_0200B1B8(param1, 51, v1);
             sub_0201D738(param0, 0, v1, v7, 1 + v8 * (4 + v3), 0xff, NULL);
-            MessageFormatter_LoadStrbuf(param1, 52, v1);
+            sub_0200B1B8(param1, 52, v1);
             sub_0201D738(param0, 0, v1, v7 + v12, 1 + v8 * (4 + v3), 0xff, NULL);
         }
     }

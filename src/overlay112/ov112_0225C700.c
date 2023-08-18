@@ -1193,7 +1193,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r0, [sp, #0x38]
     ldr r1, [sp, #0x3c]
     ldr r2, [sp, #0x34]
-    bl MessageFormatter_LoadStrbuf
+    bl sub_0200B1B8
     ldr r0, [sp, #0x34]
     bl Strbuf_NumLines
     str r0, [sp, #0x30]

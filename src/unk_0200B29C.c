@@ -40,7 +40,7 @@ Strbuf* sub_0200B2EC (u32 param0, u32 param1)
         Strbuf* v1 = Strbuf_Init(16, param1);
 
         if (v1) {
-            MessageFormatter_LoadStrbuf(v0, param0, v1);
+            sub_0200B1B8(v0, param0, v1);
         }
 
         sub_0200B190(v0);

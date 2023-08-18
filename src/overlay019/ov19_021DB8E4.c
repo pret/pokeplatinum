@@ -595,7 +595,7 @@ void ov19_021DC29C (UnkStruct_ov19_021DBA9C * param0)
         sub_02019184(param0->unk_04, 1, 3, 0);
         sub_020198C0(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);
         sub_0201ADA4(&param0->unk_10[2], 4);
-        MessageFormatter_LoadStrbuf(param0->unk_4BF8, v1, param0->unk_4BFC);
+        sub_0200B1B8(param0->unk_4BF8, v1, param0->unk_4BFC);
         sub_0201D78C(&param0->unk_10[2], 0, param0->unk_4BFC, 0, 0, 0xff, (u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
         sub_0201A954(&param0->unk_10[2]);
 

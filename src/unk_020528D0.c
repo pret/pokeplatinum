@@ -193,7 +193,7 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
     Strbuf* v1 = Strbuf_Init(1024, 11);
 
     sub_0201ADA4(&param0->unk_0C, 0);
-    MessageFormatter_LoadStrbuf(param0->unk_1C, param1, v0);
+    sub_0200B1B8(param0->unk_1C, param1, v0);
     sub_0200C388(param0->unk_20, v1, v0);
 
     {

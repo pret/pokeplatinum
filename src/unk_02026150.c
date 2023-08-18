@@ -116,7 +116,7 @@ void sub_0202616C (UnkStruct_021C0794 * param0, int param1, Strbuf *param2, int 
 
     if (param1 < NELEMS(Unk_02100880)) {
         v0 = sub_0200B144(0, 26, 353, param3);
-        MessageFormatter_LoadStrbuf(v0, 70 + param1, param2);
+        sub_0200B1B8(v0, 70 + param1, param2);
         sub_0200B190(v0);
     } else {
         sub_0202604C(sub_0202610C(param0, 0), param2);

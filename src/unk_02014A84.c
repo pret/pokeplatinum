@@ -116,7 +116,7 @@ Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
 
 Strbuf* sub_02014BA0 (const UnkStruct_02014A84 * param0, u32 param1)
 {
-    return MessageData_AllocStrbufFromNARC(26, Unk_020E5498[param0->unk_00], param0->unk_02, param1);
+    return sub_0200B010(26, Unk_020E5498[param0->unk_00], param0->unk_02, param1);
 }
 
 BOOL sub_02014BBC (const UnkStruct_02014A84 * param0)
@@ -148,7 +148,7 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
     GF_ASSERT(param0 < 5);
     GF_ASSERT(param1 < sub_02014CD4(param0));
 
-    v0 = MessageData_AllocStrbufFromNARC(26, Unk_020E5498[param0], param1, 0);
+    v0 = sub_0200B010(26, Unk_020E5498[param0], param1, 0);
     v1 = Strbuf_GetData(v0);
     v2 = 0;
 

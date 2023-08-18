@@ -261,7 +261,7 @@ void sub_020792F8 (int param0, int param1, Strbuf *param2, int param3)
         NARC_ReadFromMember(v0, 0, v2, 4, &v3[0]);
 
         if ((v3[0] == param0) && (v3[1] == param1)) {
-            MessageData_GetStrbufFromNARC(26, 617, v2 / 4, param3, param2);
+            sub_0200AF20(26, 617, v2 / 4, param3, param2);
             break;
         }
 

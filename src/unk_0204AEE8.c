@@ -126,7 +126,7 @@ UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 
         v1 = sub_02078824(v0);
 
         if (sub_02026FE8(v4, v1)) {
-            MessageFormatter_LoadStrbuf(v6, v1, v2);
+            sub_0200B1B8(v6, v1, v2);
             sub_0200B48C(v5, (*param4) + 1, v2, param2, param3, GAME_LANGUAGE);
             (*param4)++;
         }
@@ -396,7 +396,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     }
 
     param1->unk_21 = v3;
-    MessageFormatter_LoadSpeciesName(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
+    sub_0200B274(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
 
     return v2;
 }

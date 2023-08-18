@@ -723,7 +723,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r0, [sp, #0x10]
     mov r1, #0x66
     add r2, sp, #0x2c
-    bl MessageFormatter_LoadSpeciesName
+    bl sub_0200B274
     ldr r0, [sp, #0x1c]
     add r1, sp, #0x2c
     bl Strbuf_CopyChars

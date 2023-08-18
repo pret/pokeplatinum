@@ -327,7 +327,7 @@ static void sub_02092878 (UnkStruct_02090800 * param0)
     }
 
     param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
-    MessageFormatter_LoadStrbuf(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
+    sub_0200B1B8(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
 static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
@@ -336,7 +336,7 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
 
-    MessageFormatter_LoadStrbuf(param0->unk_04, param1, v0);
+    sub_0200B1B8(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
     sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
     sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
@@ -356,7 +356,7 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
-    MessageFormatter_LoadStrbuf(param0->unk_04, param1, v0);
+    sub_0200B1B8(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
     sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
     sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
@@ -399,7 +399,7 @@ static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
 
-    MessageFormatter_LoadStrbuf(param0->unk_04, param1, v0);
+    sub_0200B1B8(param0->unk_04, param1, v0);
 
     if (param2 == 0) {
         sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
@@ -589,7 +589,7 @@ static void sub_02092C24 (UnkStruct_02090800 * param0)
     }
 
     v4 = Unk_020F5578[v1][(v2 % 5)];
-    MessageFormatter_LoadStrbuf(param0->unk_04, v4, param0->unk_24.unk_04);
+    sub_0200B1B8(param0->unk_04, v4, param0->unk_24.unk_04);
 }
 
 static const u16 Unk_020F556C[6] = {
@@ -615,7 +615,7 @@ static void sub_02092E10 (UnkStruct_02090800 * param0)
     }
 
     v2 = Unk_020F556C[v1];
-    MessageFormatter_LoadStrbuf(param0->unk_04, v2, param0->unk_2C.unk_04);
+    sub_0200B1B8(param0->unk_04, v2, param0->unk_2C.unk_04);
 }
 
 static void sub_02092E4C (UnkStruct_02090800 * param0)
@@ -635,7 +635,7 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
         v1 = 108;
     }
 
-    MessageFormatter_LoadStrbuf(param0->unk_04, v1, param0->unk_34.unk_04);
+    sub_0200B1B8(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
 static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)

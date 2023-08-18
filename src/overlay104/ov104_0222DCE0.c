@@ -248,7 +248,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     }
 
     param0->unk_21 = v3;
-    MessageFormatter_LoadSpeciesName(param0->unk_00_val1_0, param7, &(param0->unk_22[0]));
+    sub_0200B274(param0->unk_00_val1_0, param7, &(param0->unk_22[0]));
 
     return v2;
 }

@@ -560,7 +560,7 @@ static void ov58_021D12C4 (UnkStruct_02095EAC * param0)
         ov58_021D2CB0(param0, 4);
     }
 
-    MessageFormatter_LoadStrbuf(param0->unk_10, 7, param0->unk_28);
+    sub_0200B1B8(param0->unk_10, 7, param0->unk_28);
 
     param0->unk_442C = Heap_AllocFromHeap(39, 30 * 16 * 32);
     param0->unk_9454 = sub_02015920(39);
@@ -1717,7 +1717,7 @@ static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
 
     v0 = Strbuf_Init((40 * 2), 39);
 
-    MessageFormatter_LoadStrbuf(param0->unk_10, param1, v0);
+    sub_0200B1B8(param0->unk_10, param1, v0);
     sub_0200C388(param0->unk_0C, param0->unk_2C, v0);
     Strbuf_Free(v0);
 

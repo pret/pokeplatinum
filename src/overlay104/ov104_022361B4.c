@@ -807,13 +807,13 @@ static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA5
     v0 = sub_0200B144(0, 26, 199, 11);
 
     sub_0200B60C(param0->unk_44, 0, param3, 4, 1, 1);
-    MessageFormatter_LoadStrbuf(v0, 2, v1);
+    sub_0200B1B8(v0, 2, v1);
 
     sub_0200C388(param0->unk_44, v2, v1);
     sub_0201D738(param1, 0, v2, 16, 2 * 8, 0xff, NULL);
     sub_0200B498(param0->unk_44, 0, param2);
 
-    MessageFormatter_LoadStrbuf(v0, 0, v1);
+    sub_0200B1B8(v0, 0, v1);
 
     sub_0200C388(param0->unk_44, v2, v1);
     sub_0201D738(param1, 0, v2, 0, 0, 0, NULL);

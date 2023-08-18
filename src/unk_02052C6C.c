@@ -279,7 +279,7 @@ static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 {
     UnkStruct_020279FC * v0 = sub_02025E44(param0->unk_0C);
 
-    param1->unk_2C = MessageData_AllocStrbufFromNARC(26, 213, 15, 32);
+    param1->unk_2C = sub_0200B010(26, 213, 15, 32);
 
     sub_0205D8F4(param0->unk_08, &param1->unk_1C, 3);
     sub_0205D944(&param1->unk_1C, v0);

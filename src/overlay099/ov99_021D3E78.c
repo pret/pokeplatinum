@@ -337,7 +337,7 @@ BOOL ov99_021D3F6C (UnkStruct_ov99_021D3E78 * param0, int param1)
             if (v0 >= Unk_ov99_021D4CE4[param0->unk_0C].unk_02) {
                 int v1, v2;
 
-                MessageFormatter_LoadStrbuf(param0->unk_2C, Unk_ov99_021D4CE4[param0->unk_0C].unk_00, param0->unk_30);
+                sub_0200B1B8(param0->unk_2C, Unk_ov99_021D4CE4[param0->unk_0C].unk_00, param0->unk_30);
 
                 if (Unk_ov99_021D4CE4[param0->unk_0C].unk_04) {
                     v1 = (256 - sub_02002D7C(0, param0->unk_30, 0)) / 2;

@@ -489,7 +489,7 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
         break;
     case 1:
         ov10_022229D4(param0);
-        MessageFormatter_LoadStrbuf(param0->unk_BA0, 0, param0->unk_BA8);
+        sub_0200B1B8(param0->unk_BA0, 0, param0->unk_BA8);
         param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         sub_0201C3C0(param0->unk_0C, 0);
         param0->unk_BB0 = 2;
@@ -503,9 +503,9 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
         break;
     case 3:
         if (param0->unk_BC0 == 1) {
-            MessageFormatter_LoadStrbuf(param0->unk_BA0, 2, param0->unk_BA8);
+            sub_0200B1B8(param0->unk_BA0, 2, param0->unk_BA8);
         } else {
-            MessageFormatter_LoadStrbuf(param0->unk_BA0, 1, param0->unk_BA8);
+            sub_0200B1B8(param0->unk_BA0, 1, param0->unk_BA8);
         }
 
         sub_0201AE78(&param0->unk_B8C, 15, 0, 0, 27 * 8, 4 * 8);
@@ -535,7 +535,7 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
     break;
     case 5:
         ov10_022229D4(param0);
-        MessageFormatter_LoadStrbuf(param0->unk_BA0, 5, param0->unk_BA8);
+        sub_0200B1B8(param0->unk_BA0, 5, param0->unk_BA8);
         param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         sub_0201C3C0(param0->unk_0C, 0);
         param0->unk_BB0 = 6;
@@ -1031,7 +1031,7 @@ static u8 ov10_02220700 (UnkStruct_ov10_0221FB28 * param0)
     switch (param0->unk_B76) {
     case 0:
         ov10_022229D4(param0);
-        MessageFormatter_LoadStrbuf(param0->unk_BA0, 8, param0->unk_BA8);
+        sub_0200B1B8(param0->unk_BA0, 8, param0->unk_BA8);
         param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         ov10_02222A28(param0);
         param0->unk_B76++;
@@ -1043,10 +1043,10 @@ static u8 ov10_02220700 (UnkStruct_ov10_0221FB28 * param0)
         v0 = sub_0202F41C(param0->unk_00->unk_00->unk_198, param0->unk_00->unk_2C, 0, 0, &param0->unk_B78, &param0->unk_B7A);
 
         if (v0 == 2) {
-            MessageFormatter_LoadStrbuf(param0->unk_BA0, 6, param0->unk_BA8);
+            sub_0200B1B8(param0->unk_BA0, 6, param0->unk_BA8);
             sub_02005748(1563);
         } else if (v0 == 3) {
-            MessageFormatter_LoadStrbuf(param0->unk_BA0, 7, param0->unk_BA8);
+            sub_0200B1B8(param0->unk_BA0, 7, param0->unk_BA8);
         } else {
             break;
         }
@@ -1085,7 +1085,7 @@ static u8 ov10_022208B0 (UnkStruct_ov10_0221FB28 * param0)
     switch (param0->unk_B76) {
     case 0:
         ov10_022229D4(param0);
-        MessageFormatter_LoadStrbuf(param0->unk_BA0, 9, param0->unk_BA8);
+        sub_0200B1B8(param0->unk_BA0, 9, param0->unk_BA8);
         param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
         sub_020364F0(62);
 
@@ -2280,10 +2280,10 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_0200B144 
 
     if (param0->unk_214[param5].unk_0E == 0) {
         if (param0->unk_214[param5].unk_0D == 0) {
-            MessageFormatter_LoadStrbuf(param1, 27, param4);
+            sub_0200B1B8(param1, 27, param4);
             sub_0201D78C(v1, 0, param4, 64, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         } else if (param0->unk_214[param5].unk_0D == 1) {
-            MessageFormatter_LoadStrbuf(param1, 28, param4);
+            sub_0200B1B8(param1, 28, param4);
             sub_0201D78C(v1, 0, param4, 64, 0, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
     }
