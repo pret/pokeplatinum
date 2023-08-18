@@ -1,0 +1,7 @@
+include/unk_0200AC5C.h,include/message_data.h
+src/unk_0200AC5C.c,src/message_data.c
+include/struct_decls/struct_02006C24_decl.h,include/struct_decls/narc.h
+include/struct_decls/struct_02023790_decl.h,include/struct_decls/strbuf.h
+include/struct_defs/struct_party.h,include/struct_defs/party.h
+include/struct_decls/struct_0200B144_decl.h,include/struct_decls/message_formatter.h
+include/struct_decls/struct_0200AC5C_decl.h,include/struct_decls/message_data.h

@@ -1,0 +1,8 @@
+"""unk_0200AC5C.h""","""message_data.h"""
+unk_0200AC5C.c,message_data.c
+src/unk_0200AC5C.c,src/message_data.c
+"""struct_decls/struct_02006C24_decl.h""","""struct_decls/narc.h"""
+"""struct_decls/struct_02023790_decl.h""","""struct_decls/strbuf.h"""
+"""struct_defs/struct_party.h""","""struct_defs/party.h"""
+"""struct_decls/struct_0200B144_decl.h""","""struct_decls/message_formatter.h"""
+"""struct_decls/struct_0200AC5C_decl.h""","""struct_decls/message_data.h"""
