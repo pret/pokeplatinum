@@ -42,28 +42,53 @@ class StringContainer:
         self.value = value
         self.num_replacements = 0
 
+WORD_CHARACTERS = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_")
+
 class Replacer:
     @staticmethod
     def single_replace(input, replace_from, replace_to):
-        # lazy hack
-        if replace_from[0] == '"' and replace_from[-1] == '"':
-            pattern = re.compile(re.escape(replace_from))
+        if replace_from[0] in WORD_CHARACTERS:
+            pattern_start = "\\b"
         else:
-            pattern = re.compile(f"\\b{re.escape(replace_from)}\\b")
+            pattern_start = ""
+
+        if replace_from[-1] in WORD_CHARACTERS:
+            pattern_end = "\\b"
+        else:
+            pattern_end = ""
+
+        pattern = re.compile(f"{pattern_start}{re.escape(replace_from)}{pattern_end}")
 
         return pattern.subn(replace_to, input)
 
     @staticmethod
-    def multiple_replace(input, rep_dict, word_boundary_flag=True):
+    def create_multiple_replace_pattern(rep_dict):
+        sorted_rep_dict_values = sorted(rep_dict, key=len, reverse=True)
+        pattern_parts = []
+        for replace_from in sorted_rep_dict_values:
+            if replace_from[0] in WORD_CHARACTERS:
+                pattern_start = "\\b"
+            else:
+                pattern_start = ""
+
+            if replace_from[-1] in WORD_CHARACTERS:
+                pattern_end = "\\b"
+            else:
+                pattern_end = ""
+
+            pattern_parts.append(f"{pattern_start}{re.escape(replace_from)}{pattern_end}")
+
+        pattern_str = "|".join(pattern_parts)
+
+        pattern = re.compile(pattern_str, flags=re.DOTALL)
+        print(f"multiple_replace pattern_str: {pattern_str}")
+        return pattern
+
+    @staticmethod
+    def multiple_replace(input, pattern, rep_dict):
         if len(rep_dict) == 0:
             return input, 0
 
-        if word_boundary_flag:
-            word_boundary_str = "\\b"
-        else:
-            word_boundary_str = ""
-
-        pattern = re.compile(word_boundary_str + f"{word_boundary_str}|{word_boundary_str}".join([re.escape(k) for k in sorted(rep_dict, key=len, reverse=True)]) + word_boundary_str, flags=re.DOTALL)
         def multiple_replace_lambda(x):
             return rep_dict[x.group(0)]
 
@@ -101,16 +126,16 @@ class Replacer:
         return Replacer.single_replace(contents, replace_from, replace_to)
 
     @staticmethod
-    def multiple_replace_for_file(filename, rep_dict):
+    def multiple_replace_for_file(filename, pattern, rep_dict):
         with open_and_write(filename) as string_container:
-            string_container.value, string_container.num_replacements = Replacer.multiple_replace(string_container.value, rep_dict)
+            string_container.value, string_container.num_replacements = Replacer.multiple_replace(string_container.value, pattern, rep_dict)
 
     @staticmethod
-    def multiple_replace_for_file_result_only(filename, rep_dict, word_boundary_flag=True):
+    def multiple_replace_for_file_result_only(filename, pattern, rep_dict):
         with open_l(filename, "r") as f:
             contents = f.read()
 
-        return Replacer.multiple_replace(contents, rep_dict, word_boundary_flag)
+        return Replacer.multiple_replace(contents, pattern, rep_dict)
 
 class Replacement:
     __slots__ = ("replace_from", "replace_to")
@@ -270,14 +295,17 @@ class FilesMultiReplacer:
 
         return rep_dict
 
-    def replace_multiple(self, filenames, rep_dict, word_boundary_flag=True):
+    def replace_multiple(self, filenames, rep_dict):
         replace_results = {}
 
         print(f"Searching through files!")
+        multiple_replace_pattern = Replacer.create_multiple_replace_pattern(rep_dict)
+
         for filename in filenames:
             #print(f"filename: {filename}")
-            replace_result, num_replacements = Replacer.multiple_replace_for_file_result_only(filename, rep_dict, word_boundary_flag)
+            replace_result, num_replacements = Replacer.multiple_replace_for_file_result_only(filename, multiple_replace_pattern, rep_dict)
             if num_replacements != 0:
+                print(f"replaced in {filename}")
                 replace_results[filename] = replace_result
 
         print(f"Writing files, do not interrupt!")
@@ -285,13 +313,14 @@ class FilesMultiReplacer:
             with open_l(filename, "w+") as f:
                 f.write(replace_result)
 
-    def unreplace(self, filenames, word_boundary_flag=True):
+    def unreplace(self, filenames):
         rep_dict = self.create_rep_dict(self.resolved_data, True)
-        self.replace_multiple(filenames, rep_dict, word_boundary_flag)
+        print(f"unreplace rep_dict: {rep_dict}")
+        self.replace_multiple(filenames, rep_dict)
 
-    def rereplace(self, filenames, word_boundary_flag=True):
+    def rereplace(self, filenames):
         rep_dict = self.create_rep_dict(self.resolved_data, False)
-        self.replace_multiple(filenames, rep_dict, word_boundary_flag)
+        self.replace_multiple(filenames, rep_dict)
 
     def add_replacements_and_replace_multiple(self, filenames, data_to_add):
         new_data = self.data + data_to_add

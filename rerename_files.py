@@ -32,7 +32,7 @@ def main():
     code_filenames = replacelib.read_in_all_code_files("code_files_glob.txt")
 
     files_multi_replacer = replacelib.FilesMultiReplacer("file_code_replacements.csv")
-    files_multi_replacer.rereplace(code_filenames, word_boundary_flag=True)
+    files_multi_replacer.rereplace(code_filenames)
 
     files_multi_replacer = replacelib.FilesMultiReplacer("lsf_renames.csv")
     lsf_filename = rename_file.get_game_lsf()
