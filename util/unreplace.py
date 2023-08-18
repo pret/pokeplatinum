@@ -29,7 +29,7 @@ import replacelib
 import sys
 
 def main():
-    files_multi_replacer = replacelib.FilesMultiReplacer("replacements.csv")
+    files_multi_replacer = replacelib.FilesMultiReplacer("renames/replacements.csv")
     code_filenames = replacelib.read_in_all_code_files("renames/code_files_glob.txt")
     files_multi_replacer.unreplace(code_filenames, set(sys.argv[1:]))
 
