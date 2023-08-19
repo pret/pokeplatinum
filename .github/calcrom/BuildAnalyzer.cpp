@@ -11,9 +11,7 @@ string replace(string original, const string& pattern, const string& replacement
     size_t patlen = pattern.length(), repllen = replacement.length();
     while (pos <= original.length() - patlen && (pos = original.find(pattern, pos)) != string::npos) {
         original = original.replace(pos, patlen, replacement);
-        if (repllen > patlen) {
-            pos += repllen - patlen;
-        }
+        pos += repllen;
     }
     return original;
 }
