@@ -6,11 +6,22 @@
 
 string default_version;
 
+string replace(string original, const string& pattern, const string& replacement) {
+    size_t pos = 0;
+    size_t patlen = pattern.length(), repllen = replacement.length();
+    while (pos <= original.length() - patlen && (pos = original.find(pattern, pos)) != string::npos) {
+        original = original.replace(pos, patlen, replacement);
+        if (repllen > patlen) {
+            pos += repllen - patlen;
+        }
+    }
+    return original;
+}
+
 void BuildAnalyzer::AnalyzeObject(path fname_s) {
     string ext = fname_s.extension();
     SourceType sourceType = ext == ".s" ? SOURCE_ASM : SOURCE_C;
-    fname_s = builddir / relative(fname_s, srcbase);
-    fname_s = fname_s.replace_extension(".o");
+    fname_s = path{builddir} / "main.nef.p" / (replace(relative(fname_s, srcbase).string(), "/", "_") + ".o");
     if (!exists(fname_s)) {
         throw runtime_error("No such file: " + fname_s.string());
     }
