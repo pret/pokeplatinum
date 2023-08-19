@@ -30,5 +30,6 @@ Gen 4 decompilation projects:
 
 You can find us on:
 
-* [Discord (VoidMatrix, #decomp)](https://discord.gg/prUAgd5).
+* [Discord (VoidMatrix, #decomp)](https://discord.gg/prUAgd5)
 * [Discord (PRET, #pokediamond)](https://discord.gg/d5dubZ3)
+* [IRC](https://web.libera.chat/?#pret)
