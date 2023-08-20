@@ -200,4 +200,3 @@ using std::double_t;
 
 #endif
 #endif
-#endif
