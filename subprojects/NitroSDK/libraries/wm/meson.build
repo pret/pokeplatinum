@@ -1,5 +1,5 @@
 libwm_srcs = files(
-    'asm/wm_system.s',
+    'src/wm_system.c',
     'src/wm_sync.c',
     'src/wm_standard.c',
     'src/wm_mp.c',

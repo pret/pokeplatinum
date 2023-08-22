@@ -1,6 +1,6 @@
 libstd_srcs = files(
-    'asm/std_string.s',
-    'asm/std_sprintf.s'
+    'src/std_string.c',
+    'src/std_sprintf.c'
 )
 
 libstd = static_library('std',

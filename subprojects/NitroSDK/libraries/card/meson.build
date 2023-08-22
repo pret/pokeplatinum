@@ -4,7 +4,7 @@ libcard_srcs = files(
     'src/card_backup.c',
     'src/card_rom.c',
     'src/card_request.c',
-    'asm/card_pullout.s',
+    'src/card_pullout.c',
 )
 
 libcard_internal_includes = include_directories('src/include')
