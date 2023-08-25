@@ -424,7 +424,7 @@ static void ov23_0224944C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * par
     {
         NARC * v3;
 
-        v3 = NARC_ctor(28, 4);
+        v3 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, 4);
 
         sub_02007130(v3, 0, 4, 0, 0x20 * 2, 4);
         sub_020070E8(v3, 1, param0, 4, 0, 32 * 5 * 0x20, 0, 4);
@@ -453,7 +453,7 @@ static void ov23_02249584 (UnkStruct_ov23_0224942C * param0)
     {
         NARC * v1;
 
-        v1 = NARC_ctor(28, 4);
+        v1 = NARC_ctor(NARC_INDEX_DATA__UNDERG_RADAR, 4);
 
         param0->unk_35C[0] = sub_02009A4C(param0->unk_34C[0], v1, 4, 0, 1000, NNS_G2D_VRAM_TYPE_2DSUB, 4);
         param0->unk_35C[1] = sub_02009B04(param0->unk_34C[1], v1, 3, 0, 1000, NNS_G2D_VRAM_TYPE_2DSUB, 2, 4);

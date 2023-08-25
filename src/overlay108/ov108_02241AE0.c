@@ -822,7 +822,7 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
     UnkStruct_0205AA50 * v7;
     Pokemon * v8;
 
-    param0->unk_3D0 = NARC_ctor(150, 103);
+    param0->unk_3D0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 103);
 
     ov108_02242658(param0);
     ov108_022426B0(param0);

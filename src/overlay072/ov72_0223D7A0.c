@@ -137,7 +137,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov72_0223DB98), 39);
         memset(v0, 0, sizeof(UnkStruct_ov72_0223DB98));
         v0->unk_00 = sub_02018340(39);
-        v1 = NARC_ctor(95, 39);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, 39);
         v0->unk_10 = sub_0200B358(39);
         v0->unk_14 = sub_0200B144(0, 26, 425, 39);
 

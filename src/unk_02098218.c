@@ -78,7 +78,7 @@ static int sub_02098218 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_04.unk_10 = sub_02027B50(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = sub_0200762C(71);
-    v1->unk_04.unk_3C = NARC_ctor(147, 71);
+    v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
     v1->unk_04.unk_00 = sub_02018340(71);
 
     sub_0201DBEC(64, 71);

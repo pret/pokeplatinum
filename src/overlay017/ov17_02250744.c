@@ -283,7 +283,7 @@ void ov17_022509AC (UnkStruct_ov17_0224FCA0 * param0)
     int v0;
     NARC * v1;
 
-    v1 = NARC_ctor(45, 24);
+    v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
     sub_020070E8(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
@@ -321,7 +321,7 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
     int v0;
     NARC * v1;
 
-    v1 = NARC_ctor(45, 24);
+    v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
     sub_020070E8(v1, 27, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
@@ -378,7 +378,7 @@ void ov17_02250D28 (UnkStruct_ov17_0224FCA0 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(46, 24);
+    v0 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 24);
 
     sub_0200CDC4(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v0, 10, 0, 4, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
 
@@ -405,7 +405,7 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
     int v1, v2;
     NARC * v3;
 
-    v3 = NARC_ctor(19, 24);
+    v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 24);
 
     sub_0200CDC4(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33003);
     sub_0200CE24(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, sub_02079FDC(), 0, 33002);

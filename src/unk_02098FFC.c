@@ -204,7 +204,7 @@ static void sub_020993A8 (UnkStruct_0209903C * param0)
     UnkStruct_02009DC8 * v3;
     NARC * v4;
 
-    v4 = NARC_ctor(88, param0->unk_00);
+    v4 = NARC_ctor(NARC_INDEX_GRAPHIC__PORUACT, param0->unk_00);
 
     v2 = param0->unk_1B4[0];
     v2->unk_00[0] = sub_02009A4C(param0->unk_1A4[0], v4, 0, 0, 0xe000, param0->unk_0E, param0->unk_00);

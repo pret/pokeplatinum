@@ -133,7 +133,7 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201E450(4);
 
     v0->unk_20 = sub_0200B144(0, 26, 548, 75);
-    v0->unk_10F8 = NARC_ctor(127, 75);
+    v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, 75);
 
     ov99_021D1918(v0);
 

@@ -1271,7 +1271,7 @@ static BOOL ov104_022305DC (UnkStruct_ov104_0222E930 * param0)
     v3 = ov104_0222EA60(param0);
     v2 = param0->unk_1C;
     param0->unk_1C = (u8 *)(param0->unk_1C + v3);
-    v5 = NARC_ctor(151, v0->unk_34);
+    v5 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, v0->unk_34);
 
     while (TRUE) {
         v4 = ov104_0222FC00(param0);

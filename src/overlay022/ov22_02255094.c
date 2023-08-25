@@ -94,7 +94,7 @@ void ov22_022550D4 (UnkStruct_ov22_0225A0E4 * param0)
         718, 118, 19, 14
     };
 
-    param0->unk_5C = NARC_ctor(25, 14);
+    param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
 
     ov22_02255748(param0, &v0);
     ov22_02255C24(param0, 14, 0x2800, 0x20);
@@ -402,7 +402,7 @@ void ov22_0225553C (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, u1
 
 void ov22_022555D4 (UnkStruct_ov22_0225A0E4 * param0, int param1)
 {
-    param0->unk_5C = NARC_ctor(25, 14);
+    param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
     ov22_022559F8(param0);
     param0->unk_40 = sub_02018340(14);
     ov22_02255860(param0);

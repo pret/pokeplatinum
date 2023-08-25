@@ -302,7 +302,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
 
     Heap_Create(3, 26, 0x50000 + 0x20000 + 2000);
 
-    v1 = NARC_ctor(54, 26);
+    v1 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_02095E80), 26);
 
     MI_CpuClearFast(v0, sizeof(UnkStruct_02095E80));
@@ -381,7 +381,7 @@ static void ov88_0223B3C0 (UnkStruct_02095E80 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(54, 26);
+    v0 = NARC_ctor(NARC_INDEX_DATA__TRADELIST, 26);
 
     ov88_0223C15C();
     ov88_0223C17C(param0->unk_174);

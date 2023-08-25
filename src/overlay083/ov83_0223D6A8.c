@@ -401,7 +401,7 @@ void ov83_0223DB4C (UnkStruct_ov83_0223DB30 * param0, UnkStruct_ov83_0223DB4C * 
     int v1;
     NARC * v2;
 
-    v2 = NARC_ctor(53, param4);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, param4);
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {

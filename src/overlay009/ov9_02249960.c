@@ -1337,9 +1337,9 @@ static void ov9_02249C60 (UnkStruct_ov9_02249B04 * param0, u32 param1)
 
 static void ov9_02249C88 (UnkStruct_ov9_02249B04 * param0)
 {
-    param0->unk_08 = NARC_ctor(181, 4);
-    param0->unk_0C = NARC_ctor(182, 4);
-    param0->unk_10 = NARC_ctor(183, 4);
+    param0->unk_08 = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC, 4);
+    param0->unk_0C = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC_ATTR, 4);
+    param0->unk_10 = NARC_ctor(NARC_INDEX_DATA__TW_ARC_ETC, 4);
 }
 
 static void ov9_02249CAC (UnkStruct_ov9_02249B04 * param0)
@@ -9603,7 +9603,7 @@ BOOL ov9_02251044 (UnkStruct_0203CDB0 * param0, int param1, int param2, int para
 void ov9_02251094 (int param0, int * param1, int * param2, int * param3)
 {
     UnkStruct_ov9_0224BFE0 v0;
-    NARC * v1 = NARC_ctor(181, 4);
+    NARC * v1 = NARC_ctor(NARC_INDEX_FIELDDATA__TORNWORLD__TW_ARC, 4);
 
     ov9_0224BF8C(v1, &v0);
     ov9_0224C050(&v0, param0, param1, param2, param3);

@@ -274,7 +274,7 @@ void sub_0208B830 (UnkStruct_0208B878 * param0)
 
 BOOL sub_0208B878 (UnkStruct_0208B878 * param0, int param1)
 {
-    param0->unk_00.unk_00 = NARC_ctor(162, param0->unk_10.unk_04);
+    param0->unk_00.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, param0->unk_10.unk_04);
 
     sub_0208B6B0(param0, param1);
     sub_0208B7B4(param0);

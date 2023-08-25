@@ -886,7 +886,7 @@ UnkStruct_ov5_021D6594 * ov5_021D6364 (UnkStruct_0203CDB0 * param0)
 
     v0->unk_00 = Unk_ov5_02201D78;
     v0->unk_04 = Unk_ov5_021F8D90;
-    v0->unk_144 = NARC_ctor(65, 4);
+    v0->unk_144 = NARC_ctor(NARC_INDEX_DATA__WEATHER_SYS, 4);
 
     return v0;
 }

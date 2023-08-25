@@ -646,7 +646,7 @@ UnkStruct_ov70_02269204 * ov70_02269190 (UnkStruct_ov66_0222DFF8 * param0, UnkSt
     {
         NARC * v1;
 
-        v1 = NARC_ctor(186, param4);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param4);
 
         Heap_FndInitAllocatorForExpHeap(&v0->unk_1081C, param5, 4);
 

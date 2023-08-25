@@ -254,7 +254,7 @@ void ov5_021DDBE8 (int param0, UnkStruct_0203CDB0 * param1, BOOL * param2)
     v1 = sub_0201CED0(v0);
     v1->unk_10 = param1;
     v1->unk_14 = param2;
-    v1->unk_20 = NARC_ctor(112, 4);
+    v1->unk_20 = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 4);
 
     if (v1->unk_14 != NULL) {
         *(v1->unk_14) = 0;

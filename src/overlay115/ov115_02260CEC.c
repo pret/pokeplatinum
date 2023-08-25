@@ -2671,7 +2671,7 @@ static void ov115_02262FB4 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
 
     memset(param0, 0, sizeof(UnkStruct_ov115_02263130));
 
-    v0 = NARC_ctor(171, param2);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param2);
 
     {
         param0->unk_00[0] = sub_02009A4C(param1->unk_1AC[0], v0, 21, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, param2);
@@ -2915,7 +2915,7 @@ static void ov115_022633FC (UnkStruct_ov115_02260D78 * param0, u32 param1)
     ov115_02263990(&param0->unk_1AB4, param1);
     ov115_02263BCC(&param0->unk_1AB4, param1);
 
-    v0 = NARC_ctor(158, param1);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, param1);
 
     ov115_02263A74(&param0->unk_1AB4, v0, param1);
     ov115_02264E48(&param0->unk_1AB4.unk_204, &param0->unk_1AB4, v0, param0->unk_10, param0->unk_14, param1, &param0->unk_1AB4.unk_6BBC);

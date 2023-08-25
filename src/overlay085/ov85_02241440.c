@@ -238,7 +238,7 @@ int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
 
     sub_0208C120(0, 36);
 
-    v1 = NARC_ctor(53, 36);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, 36);
 
     ov85_02241614();
     ov85_02241634(v0->unk_00);
@@ -868,7 +868,7 @@ static void ov85_02241F0C (UnkStruct_ov85_022417E4 * param0)
     param0->unk_1FC = BerryData_LoadDataByNarcMemberIndex(param0->unk_1F8->unk_08, 36);
     ov85_02241CD0(param0);
 
-    v0 = NARC_ctor(53, 36);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, 36);
     ov85_02241E60(param0, v0);
     NARC_dtor(v0);
     ov85_02242578(param0);

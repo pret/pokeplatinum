@@ -64,7 +64,7 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    v0->unk_2C0.unk_00 = NARC_ctor(159, 101);
+    v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, 101);
     v0->unk_2C0.unk_0C = sub_02018340(101);
     v0->unk_2C0.unk_10 = sub_02002F38(101);
 

@@ -169,8 +169,8 @@ UnkStruct_ov5_021D3CAC * ov5_021D38B8 (void)
 
     Heap_FndInitAllocatorForExpHeap(&v1->unk_00, 4, 4);
 
-    v1->unk_2B0 = NARC_ctor(110, 4);
-    v1->unk_2B4 = NARC_ctor(111, 4);
+    v1->unk_2B0 = NARC_ctor(NARC_INDEX_ARC__BM_ANIME, 4);
+    v1->unk_2B4 = NARC_ctor(NARC_INDEX_ARC__BM_ANIME_LIST, 4);
 
     return v1;
 }

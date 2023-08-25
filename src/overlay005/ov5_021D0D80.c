@@ -958,7 +958,7 @@ static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)
     UnkStruct_ov5_021D1A68 * v2;
 
     v2 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021D1A68));
-    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(96, param1, param0);
+    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, param0);
 
     for (v0 = 0; v0 < 24; v0++) {
         v2->unk_02[v0] = 0xffff;

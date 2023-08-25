@@ -9,7 +9,7 @@
 static void LoadMoveEntry(int moveID, MoveTable * moveTable);
 
 void MoveTable_Load (void * dest) {
-    NARC_ReadFromMemberByIndexPair(dest, 9, 0, 0, sizeof(MoveTable) * (467 + 1));
+    NARC_ReadFromMemberByIndexPair(dest, NARC_INDEX_POKETOOL__WAZA__PL_WAZA_TBL, 0, 0, sizeof(MoveTable) * (467 + 1));
 }
 
 u32 MoveTable_GetMoveAttribute (int moveID, int attrno)
@@ -82,5 +82,5 @@ u32 MoveTable_GetAttribute (MoveTable * moveTable, int attribute)
 
 static void LoadMoveEntry (int moveID, MoveTable * moveTable)
 {
-    NARC_ReadWholeMemberByIndexPair(moveTable, 9, moveID);
+    NARC_ReadWholeMemberByIndexPair(moveTable, NARC_INDEX_POKETOOL__WAZA__PL_WAZA_TBL, moveID);
 }

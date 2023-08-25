@@ -1135,7 +1135,7 @@ static void ov13_02220D4C (UnkStruct_ov13_022213F0 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(72, param0->unk_00->unk_0C);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, param0->unk_00->unk_0C);
     sub_020070E8(v0, 22, param0->unk_1E0, 7, 0, 0, 0, param0->unk_00->unk_0C);
 
     {
@@ -1591,7 +1591,7 @@ static void ov13_02221738 (UnkStruct_ov13_022213F0 * param0, u8 param1)
     u32 v2;
 
     for (v2 = 0; v2 < 2; v2++) {
-        v1 = NARC_AllocAndReadWholeMemberByIndexPair(72, Unk_ov13_02228E50[param1][v2], param0->unk_00->unk_0C);
+        v1 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__GRAPHIC__PL_B_PLIST_GRA, Unk_ov13_02228E50[param1][v2], param0->unk_00->unk_0C);
         NNS_G2dGetUnpackedScreenData(v1, &v0);
         sub_020198C0(param0->unk_1E0, 6 + v2, (u16 *)v0->rawData, 0, 0, 32, 24);
         sub_0201C3C0(param0->unk_1E0, 6 + v2);

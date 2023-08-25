@@ -355,7 +355,7 @@ static void ov96_0223BF1C (UnkStruct_02018340 * param0)
 static void ov96_0223BF40 (UnkStruct_ov96_0223BF40 * param0)
 {
     UnkStruct_02018340 * v0 = param0->unk_04;
-    NARC * v1 = NARC_ctor(92, 68);
+    NARC * v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 68);
 
     sub_02007130(v1, 3, 0, 0, 0, 68);
     sub_02007130(v1, 3, 4, 0, 0, 68);

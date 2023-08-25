@@ -766,8 +766,8 @@ int ov116_0226126C (UnkStruct_020067E8 * param0, int * param1)
 
 static void ov116_022612CC (UnkStruct_ov116_0226139C * param0)
 {
-    param0->unk_48.unk_00 = NARC_ctor(164, 106);
-    param0->unk_48.unk_04 = NARC_ctor(158, 106);
+    param0->unk_48.unk_00 = NARC_ctor(NARC_INDEX_ARC__MANENE, 106);
+    param0->unk_48.unk_04 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, 106);
     param0->unk_48.unk_10 = sub_02018340(106);
     param0->unk_48.unk_14 = sub_02002F38(106);
     param0->unk_48.unk_18 = sub_02024220(106, 0, 1, 0, 4, NULL);

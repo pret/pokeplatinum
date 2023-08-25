@@ -25,7 +25,7 @@ typedef struct BerryData {
 
 NARC * BerryData_NARC_ctor (u32 heapID)
 {
-    return NARC_ctor(68, heapID);
+    return NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__NUTS_DATA, heapID);
 }
 
 BerryData * sub_020973A8 (NARC * param0, u32 param1, u32 param2)
@@ -40,7 +40,7 @@ void BerryData_NARC_dtor (NARC * narc)
 
 BerryData * BerryData_LoadDataByNarcMemberIndex (u32 index, u32 heapID)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(68, 0 + index, heapID);
+    return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__NUTS_DATA, 0 + index, heapID);
 }
 
 BerryData * BerryData_LoadDataByItemID (u32 itemID, u32 heapID)

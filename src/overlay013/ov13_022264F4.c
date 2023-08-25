@@ -734,7 +734,7 @@ static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(77, param0->unk_00->unk_0C);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__B_BAG_GRA, param0->unk_00->unk_0C);
 
     sub_020070E8(v0, 2, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);
     sub_0200710C(v0, 0, param0->unk_04, 6, 0, 0, 0, param0->unk_00->unk_0C);

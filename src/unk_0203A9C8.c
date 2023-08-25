@@ -777,7 +777,7 @@ static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, 
 
     ov5_021D3190(&param0->unk_38, &v0, (7 + 1), 11);
 
-    v2 = NARC_ctor(66, 11);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, 11);
 
     ov5_021D32E8(&param0->unk_38, v2, 5, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
     ov5_021D3374(&param0->unk_38, v2, 1, 0, 13528);

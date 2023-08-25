@@ -48,7 +48,7 @@ void ov83_0223C958 (UnkStruct_ov83_0223B784 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(122, param0->unk_00);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, param0->unk_00);
 
     ov83_0223CE9C(param0);
     ov83_0223CC30(&(param0->unk_20), param0->unk_00);

@@ -304,7 +304,7 @@ static void ov32_0225692C (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
 {
     NARC * v0;
 
-    v0 = NARC_ctor(19, 8);
+    v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 8);
 
     if (v0) {
         UnkStruct_ov25_02255810 v1;

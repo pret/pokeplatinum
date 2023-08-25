@@ -20,7 +20,7 @@ void ov6_02242F74 (const int param0, const BOOL param1, const int param2, int * 
         v1 = 10;
     }
 
-    v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, v1, 4);
+    v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, v1, 4);
     v2 = ((param0 >> (5 * v3)) & 0x1f);
     v2 %= 32;
 

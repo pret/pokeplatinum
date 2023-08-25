@@ -724,7 +724,7 @@ static void ov65_02236840 (UnkStruct_ov65_02236840 * param0, u32 param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 0);
 
-    v0 = NARC_ctor(92, param1);
+    v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, param1);
 
     sub_02007130(v0, 13, 0, 5 * 32, 1 * 32, param1);
     sub_020070E8(v0, 12, param0->unk_00, 2, 0 * 32, (24 * 2) * 32, 0, param1);

@@ -1334,7 +1334,7 @@ static void ov23_0223EE80 (UnkStruct_ov23_0223EE80 * param0)
     {
         NARC * v6;
 
-        v6 = NARC_ctor(52, 29);
+        v6 = NARC_ctor(NARC_INDEX_DATA__UG_FOSSIL, 29);
         sub_02007130(v6, 1, 0, 0, 32 * 3, 29);
 
         v0 = sub_020070E8(v6, 0, v1, 0, 0, 0, 0, 29);
@@ -1942,7 +1942,7 @@ static int ov23_0223FC9C (int param0, UnkStruct_02018340 * param1, int param2, U
     int v11 = param0;
     NARC * v12;
 
-    v12 = NARC_ctor(55, 29);
+    v12 = NARC_ctor(NARC_INDEX_DATA__UG_PARTS, 29);
 
     if (param0 >= param3->unk_0C) {
         v11 = 4;
@@ -2792,7 +2792,7 @@ static void ov23_02240E88 (void)
         Unk_ov23_02257740->unk_1B0[v0] = sub_02009714(2, v0, 29);
     }
 
-    v1 = NARC_ctor(64, 29);
+    v1 = NARC_ctor(NARC_INDEX_DATA__UG_ANIM, 29);
 
     ov23_02240E60(sub_02009A4C(Unk_ov23_02257740->unk_1B0[0], v1, 6, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 29));
     sub_0200A328(Unk_ov23_02257740->unk_1C0[Unk_ov23_02257740->unk_A2F - 1]);

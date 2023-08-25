@@ -717,7 +717,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
     void * v6;
     NARC * v7;
 
-    v7 = NARC_ctor(19, 78);
+    v7 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 78);
     v6 = Heap_AllocFromHeapAtEnd(78, 4096);
 
     for (v0 = 0; v0 < 30; v0++) {

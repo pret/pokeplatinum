@@ -648,7 +648,7 @@ static void ov98_02247704 (UnkStruct_ov98_02247704 * param0)
     UnkStruct_02018340 * v0 = param0->unk_04;
     NARC * v1;
 
-    v1 = NARC_ctor(92, 109);
+    v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 109);
 
     sub_02007130(v1, 3, 0, 0, 0, 109);
     sub_02007130(v1, 3, 4, 0, 0, 109);
@@ -669,7 +669,7 @@ static void ov98_02247704 (UnkStruct_ov98_02247704 * param0)
     NARC_dtor(v1);
 
     {
-        v1 = NARC_ctor(170, 109);
+        v1 = NARC_ctor(NARC_INDEX_ARC__EMAIL_GRA, 109);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG3, 0);
 

@@ -445,7 +445,7 @@ static void ov5_021E7BAC (NARC * param0, const int param1, UnkStruct_ov5_021E7BA
         NARC_ReadFromMember(param0, param1, 0, v2, v0);
     } else {
         GF_ASSERT(FALSE);
-        v0 = NARC_AllocAtEndAndReadFromMemberByIndexPair(67, param1, 4, 0, v2);
+        v0 = NARC_AllocAtEndAndReadFromMemberByIndexPair(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, param1, 4, 0, v2);
     }
 
     v1 = &((int *)(v0))[0];
@@ -1566,7 +1566,7 @@ UnkStruct_ov5_021E8F60 * ov5_021E9084 (UnkStruct_02039E30 * param0, UnkStruct_ov
 
     v0->unk_A4 = 0;
     v0->unk_A8 = 2;
-    v0->unk_EC = NARC_ctor(67, 4);
+    v0->unk_EC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, 4);
     v0->unk_F0 = NULL;
 
     return v0;
@@ -2010,7 +2010,7 @@ UnkStruct_ov5_021E8F60 * ov5_021E9830 (UnkStruct_02039E30 * param0, UnkStruct_ov
     v0->unk_EC = param2;
 
     if (param2 == NULL) {
-        v0->unk_EC = NARC_ctor(67, 4);
+        v0->unk_EC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, 4);
     }
 
     return v0;
@@ -2034,7 +2034,7 @@ void ov5_021E98C8 (UnkStruct_ov5_021E8F60 * param0, UnkStruct_02039E30 * param1,
     param0->unk_EC = param3;
 
     if (param3 == NULL) {
-        param0->unk_EC = NARC_ctor(67, 4);
+        param0->unk_EC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, 4);
     }
 }
 

@@ -66,7 +66,7 @@ UnkStruct_ov6_02242A8C * ov6_02242A10 (const int param0, UnkStruct_0203CDB0 * pa
         u8 v2;
         UnkStruct_ov6_02242A10 * v3;
 
-        v3 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 11, 4);
+        v3 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 11, 4);
 
         for (v0 = 0; v0 < 5; v0++) {
             v2 = inline_020564D0(36);

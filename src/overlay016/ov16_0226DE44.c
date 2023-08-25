@@ -56,7 +56,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270AD8 = {
 
 void ov16_0226DE44 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, UnkStruct_02002F38 * param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
-    NARC * v0 = NARC_ctor(82, param2);
+    NARC * v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
     sub_0200CDC4(param3, 3, param0, param1, v0, 11, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     sub_0200CC3C(param0, param1, v0, 10, 0, NNS_G2D_VRAM_TYPE_2DSUB, param4);

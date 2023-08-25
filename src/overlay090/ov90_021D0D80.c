@@ -550,7 +550,7 @@ static void ov90_021D12B0 (UnkStruct_ov90_021D0ECC * param0)
     int v0;
     NARC * v1;
 
-    v1 = NARC_ctor(123, param0->unk_00);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__BTOWER, param0->unk_00);
 
     sub_0208C210(param0->unk_10, param0->unk_00, v1, 123, 5, 1, 0, 0, 0);
     sub_0208C210(param0->unk_10, param0->unk_00, v1, 123, 4, 1, 2, 0x20 * 0x2, 0);

@@ -386,7 +386,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
     switch (*param1) {
     case 0:
         v0->unk_B860 = sub_0200B144(1, 26, 356, v0->unk_00);
-        v2 = NARC_ctor(129, v0->unk_00);
+        v2 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH, v0->unk_00);
 
         ov92_021D2150(v0, v2);
         ov92_021D1888(v0, v2);
@@ -754,7 +754,7 @@ static void ov92_021D1510 (void)
 
 static void ov92_021D1530 (UnkStruct_ov92_021D1B24 * param0)
 {
-    NARC * v0 = NARC_ctor(102, param0->unk_00);
+    NARC * v0 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH_PLACE, param0->unk_00);
 
     param0->unk_0C.unk_00 = 0;
 

@@ -290,7 +290,7 @@ static void ov20_021D2260 (UnkStruct_0201CD38 * param0, void * param1)
     GX_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_64K);
     GXS_SetOBJVRamModeChar(GX_OBJVRAMMODE_CHAR_1D_32K);
 
-    v1 = NARC_ctor(76, 35);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PMSI, 35);
 
     ov20_021D24EC(v0);
     ov20_021D2370(v0, v1);

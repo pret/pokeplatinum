@@ -167,7 +167,7 @@ UnkStruct_ov16_0225BFFC * ov16_0225BFFC (UnkStruct_0207ADB4 * param0, UnkStruct_
 
     v0->unk_190 = param1->unk_00;
     v0->unk_191 = param1->unk_01;
-    v0->unk_1A0 = NARC_ctor(147, 5);
+    v0->unk_1A0 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 5);
 
     return v0;
 }
@@ -760,8 +760,8 @@ static void ov16_0225C79C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
             NARC * v3;
             NARC * v4;
 
-            v3 = NARC_ctor(7, 5);
-            v4 = NARC_ctor(27, 5);
+            v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
+            v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
             v0 = ov16_0223E02C(param0);
 
             ov16_02268C04(v3, v4, v0, 0, 0, NULL);

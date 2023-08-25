@@ -734,7 +734,7 @@ static void ov7_0224CA34 (UnkStruct_ov7_0224C768 * param0)
 
 static void ov7_0224CA54 (UnkStruct_ov19_021DA864 * param0, UnkStruct_ov7_0224C768 * param1, u32 param2)
 {
-    NARC * v0 = NARC_ctor(62, param2);
+    NARC * v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
 
     param1->unk_148[0] = sub_02009A4C(param1->unk_138[0], v0, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
     param1->unk_148[1] = sub_02009B04(param1->unk_138[1], v0, 10, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);

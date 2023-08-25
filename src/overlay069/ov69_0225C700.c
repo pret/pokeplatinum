@@ -815,7 +815,7 @@ int ov69_0225C8FC (UnkStruct_020067E8 * param0, int * param1)
 
 static void ov69_0225C980 (UnkStruct_ov69_0225CA7C * param0, const UnkStruct_ov66_02231560 * param1, u32 param2)
 {
-    NARC * v0 = NARC_ctor(102, param2);
+    NARC * v0 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH_PLACE, param2);
 
     param0->unk_00.unk_00 = 0;
 
@@ -1393,7 +1393,7 @@ static void ov69_0225D2A8 (UnkStruct_ov69_0225CE64 * param0, const UnkStruct_ov6
 
 static void ov69_0225D318 (UnkStruct_ov69_0225D35C * param0, UnkStruct_020279FC * param1, u32 param2)
 {
-    param0->unk_1A8 = NARC_ctor(163, param2);
+    param0->unk_1A8 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTIMER, param2);
 
     sub_0201DBEC(64, param2);
     GXLayers_SetBanks(&Unk_ov69_0225F0C0);

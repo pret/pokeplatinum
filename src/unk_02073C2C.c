@@ -2188,7 +2188,7 @@ u32 sub_02075AD0 (int param0, int param1)
 void sub_02075AE4 (int param0, u32 * param1)
 {
     GF_ASSERT(param0 < 8);
-    NARC_ReadWholeMemberByIndexPair(param1, 3, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__PERSONAL__PL_GROWTBL, param0);
 }
 
 u32 sub_02075B00 (int param0, int param1)
@@ -3772,7 +3772,7 @@ u16 sub_020775A4 (u16 param0)
 {
     u16 v0;
 
-    NARC_ReadFromMemberByIndexPair(&v0, 109, 0, param0 * 2, 2);
+    NARC_ReadFromMemberByIndexPair(&v0, NARC_INDEX_POKETOOL__PL_POKEZUKAN, 0, param0 * 2, 2);
 
     return v0;
 }
@@ -3782,7 +3782,7 @@ u16 sub_020775C4 (u16 param0)
     u16 v0 = 0;
 
     if (param0 <= 210) {
-        NARC_ReadFromMemberByIndexPair(&v0, 145, 0, param0 * 2, 2);
+        NARC_ReadFromMemberByIndexPair(&v0, NARC_INDEX_POKETOOL__SHINZUKAN, 0, param0 * 2, 2);
     }
 
     return v0;
@@ -4324,7 +4324,7 @@ BOOL SetRotomForm (Pokemon * param0, int param1, int param2)
 void sub_02077D28 (int param0, int param1, u16 * param2)
 {
     param0 = sub_02078740(param0, param1);
-    NARC_ReadWholeMemberByIndexPair(param2, 33, param0);
+    NARC_ReadWholeMemberByIndexPair(param2, NARC_INDEX_POKETOOL__PERSONAL__WOTBL, param0);
 }
 
 void sub_02077D3C (UnkStruct_0202CC84 * param0, int param1, u16 param2, int param3, int param4, int param5, int param6, int param7)
@@ -4564,18 +4564,18 @@ void sub_020780C4 (Pokemon * param0, u32 param1)
 
 static void sub_020781F8 (int param0, UnkStruct_02075874 * param1)
 {
-    NARC_ReadWholeMemberByIndexPair(param1, 2, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, param0);
 }
 
 static void sub_02078208 (int param0, int param1, UnkStruct_02075874 * param2)
 {
     param0 = sub_02078740(param0, param1);
-    NARC_ReadWholeMemberByIndexPair(param2, 2, param0);
+    NARC_ReadWholeMemberByIndexPair(param2, NARC_INDEX_POKETOOL__PERSONAL__PL_PERSONAL, param0);
 }
 
 static void sub_0207821C (int param0, UnkStruct_0207821C * param1)
 {
-    NARC_ReadWholeMemberByIndexPair(param1, 34, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__PERSONAL__EVO, param0);
 }
 
 static void sub_0207822C (void * param0, u32 param1, u32 param2)
@@ -5387,7 +5387,7 @@ BOOL sub_02078AEC (int param0, Pokemon * param1, int param2)
         return 0;
     }
 
-    v3 = NARC_ctor(152, param2);
+    v3 = NARC_ctor(NARC_INDEX_APPLICATION__CUSTOM_BALL__EDIT__PL_CB_DATA, param2);
     v0 = v0 - 1;
     v1 = 1;
 

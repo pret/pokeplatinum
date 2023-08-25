@@ -1130,7 +1130,7 @@ static void ov107_02246EE4 (UnkStruct_ov107_02246170 * param0)
     int v13, v14, v15;
     UnkStruct_0205AA50 * v16;
 
-    param0->unk_3E0 = NARC_ctor(150, 100);
+    param0->unk_3E0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 100);
 
     ov107_02247220(param0);
     ov107_02247280(param0);

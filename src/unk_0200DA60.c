@@ -322,7 +322,7 @@ void sub_0200E2A4 (UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3
         void * v1;
         u16 * v2;
 
-        v1 = NARC_AllocAndReadWholeMemberByIndexPair(36, 1, param6);
+        v1 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__FIELD_BOARD, 1, param6);
         NNS_G2dGetUnpackedPaletteData(v1, &v0);
         v2 = (u16 *)v0->pRawData;
 

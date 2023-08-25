@@ -392,7 +392,7 @@ void ov117_02263AF0 (UnkStruct_02018340 * param0, int param1, int param2, UnkStr
 {
     NARC * v0;
 
-    v0 = NARC_ctor(173, 110);
+    v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
     sub_020070E8(v0, Unk_ov117_02266BEC[param2].unk_00, param0, 7, 0, 0, 0, 110);
     sub_0200710C(v0, Unk_ov117_02266BEC[param2].unk_02, param0, 7, 0, 0, 0, 110);

@@ -617,7 +617,7 @@ static void ov67_0225CE30 (UnkStruct_ov67_0225D154 * param0, u32 param1)
     {
         NARC * v3;
 
-        v3 = NARC_ctor(92, param1);
+        v3 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, param1);
 
         inline_ov61_0222C3B0(&param0->unk_D4, v3, 4, param1);
 

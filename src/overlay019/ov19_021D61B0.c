@@ -172,7 +172,7 @@ BOOL ov19_021D61B0 (UnkStruct_ov19_021D61B0 ** param0, const UnkStruct_ov19_021D
             BOOL v2 = 1;
             NARC * v3;
 
-            v3 = NARC_ctor(18, 10);
+            v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
 
             sub_02017798(NULL, NULL);
             sub_020177A4();
@@ -426,7 +426,7 @@ static void ov19_021D6694 (UnkStruct_0201CD38 * param0, void * param1)
     switch (v2->unk_06) {
     case 0:
     {
-        NARC * v3 = NARC_ctor(18, 10);
+        NARC * v3 = NARC_ctor(NARC_INDEX_GRAPHIC__BOX, 10);
 
         ov19_021D74B4(v0, v1);
         ov19_021D75CC(v0, v1, v3);

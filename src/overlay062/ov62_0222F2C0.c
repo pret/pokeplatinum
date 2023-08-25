@@ -60,7 +60,7 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
     GXS_SetVisiblePlane(0);
     sub_0201DBEC(4, 102);
 
-    param0->unk_14.unk_00 = NARC_ctor(162, 102);
+    param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, 102);
     param0->unk_14.unk_10 = sub_02018340(102);
     param0->unk_14.unk_14 = sub_02002F38(102);
     param0->unk_14.unk_4C = sub_02024220(102, 0, 1, 0, 4, NULL);

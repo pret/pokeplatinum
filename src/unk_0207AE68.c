@@ -116,7 +116,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_86 = GetMonData(param1, MON_DATA_FORM, NULL);
     v0->unk_62 = param2;
     v0->unk_5C = param11;
-    v0->unk_80 = NARC_ctor(147, param11);
+    v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param11);
 
     sub_02078A4C(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
     sub_02078A4C(v0->unk_80, &(v0->unk_85), v0->unk_62, 1);

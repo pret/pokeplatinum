@@ -129,7 +129,7 @@ void ov16_0226D094 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, Un
 {
     NARC * v0;
 
-    v0 = NARC_ctor(27, 5);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
     sub_0200CDC4(param2, 2, param0, param1, v0, 110, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20037);
     sub_0200CC3C(param0, param1, v0, 340, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20413);

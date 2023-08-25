@@ -186,8 +186,8 @@ UnkStruct_ov66_02234548 * ov66_022343A8 (u32 param0, u32 param1, u32 param2, u32
         void * v5;
         int v6;
 
-        v3 = NARC_ctor(81, param2);
-        v4 = NARC_ctor(186, param2);
+        v3 = NARC_ctor(NARC_INDEX_DATA__MMODEL__MMODEL, param2);
+        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
 
         {
             v5 = sub_0200723C(v4, 127, 0, param3, 0);

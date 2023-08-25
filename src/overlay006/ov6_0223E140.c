@@ -1057,7 +1057,7 @@ static void ov6_0223EA98 (UnkStruct_ov6_0223EA98 * param0)
         {10, 9}
     };
 
-    v2 = NARC_ctor(172, 4);
+    v2 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 4);
     v0 = v3[param0->unk_10][0];
     v1 = v3[param0->unk_10][1];
 
@@ -2140,7 +2140,7 @@ static void ov6_02240260 (UnkStruct_ov6_02240260 * param0, u32 param1, NNSFndAll
     int v0;
     NARC * v1;
 
-    v1 = NARC_ctor(172, param1);
+    v1 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, param1);
 
     ov6_0223FD60(&param0->unk_80, v1, 6, param1);
 
@@ -2596,7 +2596,7 @@ static UnkStruct_ov6_02240A00 * ov6_022408C8 (u32 param0, u32 param1)
     memset(v0, 0, sizeof(UnkStruct_ov6_02240A00));
 
     Heap_FndInitAllocatorForExpHeap(&v0->unk_C4, param0, 32);
-    v2 = NARC_ctor(98, param0);
+    v2 = NARC_ctor(NARC_INDEX_DATA__DEMO_CLIMAX, param0);
     ov6_0223FD60(&v0->unk_78, v2, param1, param0);
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -2799,7 +2799,7 @@ UnkStruct_ov6_02240C44 * ov6_02240B9C (u32 param0, UnkStruct_0203CDB0 * param1)
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov6_02240C44));
     memset(v0, 0, sizeof(UnkStruct_ov6_02240C44));
 
-    v2 = NARC_ctor(98, param0);
+    v2 = NARC_ctor(NARC_INDEX_DATA__DEMO_CLIMAX, param0);
     v0->unk_D8 = param1;
 
     Heap_FndInitAllocatorForExpHeap(&v0->unk_DC, param0, 32);

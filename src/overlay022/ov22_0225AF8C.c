@@ -297,7 +297,7 @@ static void ov22_0225B2D4 (UnkStruct_ov22_0225B1BC * param0, const UnkStruct_ov2
     UnkStruct_ov22_02255CB8 v0;
     UnkStruct_ov22_022550D4 v1;
 
-    param0->unk_00.unk_5C = NARC_ctor(25, param1->unk_68);
+    param0->unk_00.unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, param1->unk_68);
 
     v1.unk_00 = (700 + 18);
     v1.unk_04 = (100 + 18);

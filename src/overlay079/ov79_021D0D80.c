@@ -620,7 +620,7 @@ static void ov79_021D13C4 (UnkStruct_ov79_021D0E1C * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(83, param0->unk_00);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PORU_GRA, param0->unk_00);
 
     sub_0208C210(param0->unk_24, param0->unk_00, v0, 83, 2, 0, 0, 0, 0);
     sub_0208C210(param0->unk_24, param0->unk_00, v0, 83, 3, 5, 0, 0, 0);

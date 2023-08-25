@@ -468,7 +468,7 @@ static void ov91_021D0ED8 (UnkStruct_ov91_021D0ED8 * param0)
 
     sub_0208C120(0, 67);
 
-    v0 = NARC_ctor(113, 67);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WAZA_OSHIE_GRA, 67);
 
     ov91_021D0FC4();
     ov91_021D0FE4(param0->unk_04);

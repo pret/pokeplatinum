@@ -75,7 +75,7 @@ static void sub_02054C18 (UnkStruct_02039E30 * param0, UnkStruct_02054C18 * para
         }
     }
 
-    v10 = NARC_ctor(67, 11);
+    v10 = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, 11);
 
     for (v4 = 0; v4 < param2; v4++) {
         v1 = v8[v4];

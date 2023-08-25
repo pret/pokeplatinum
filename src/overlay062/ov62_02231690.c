@@ -2717,7 +2717,7 @@ NARC * ov62_02233A68 (int param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(19, 102);
+    v0 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 102);
     return v0;
 }
 

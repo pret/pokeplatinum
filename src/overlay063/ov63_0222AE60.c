@@ -312,8 +312,8 @@ UnkStruct_ov63_0222AE60 * ov63_0222AE60 (UnkStruct_020218BC * param0, UnkStruct_
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
-    v0->unk_2294[0] = NARC_ctor(146, param3);
-    v0->unk_2294[1] = NARC_ctor(153, param3);
+    v0->unk_2294[0] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI2DCHAR, param3);
+    v0->unk_2294[1] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_UNIONOBJ, param3);
 
     for (v1 = 0; v1 < 2; v1++) {
         v0->unk_2280[v1] = sub_02009714((151 + 1), v1, param3);

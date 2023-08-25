@@ -223,8 +223,8 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         NARC * v1;
         NARC * v2;
 
-        v1 = NARC_ctor(45, 21);
-        v2 = NARC_ctor(46, 21);
+        v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 21);
+        v2 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 21);
 
         ov17_0223BBA8(v0, v1);
         ov17_0223BCE0(v0, v1);

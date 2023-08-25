@@ -463,7 +463,7 @@ int ov109_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_CC = v1;
     v0->unk_D0 = v1->unk_34;
     v0->unk_24 = Party_GetFromSavedata(v0->unk_CC->unk_14.unk_08);
-    v0->unk_D80 = NARC_ctor(154, 95);
+    v0->unk_D80 = NARC_ctor(NARC_INDEX_DATA__GURU2, 95);
 
     sub_0201DBEC(8, 95);
     sub_0201E3D8();
@@ -1979,7 +1979,7 @@ static void ov109_021D2408 (UnkStruct_ov109_021D0F70 * param0)
     {
         NARC * v4;
 
-        v4 = NARC_ctor(122, 95);
+        v4 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, 95);
 
         sub_0200CC3C(v0, v1, v4, 14, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         sub_0200CDC4(v2, 2, v0, v1, v4, 8, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 5);

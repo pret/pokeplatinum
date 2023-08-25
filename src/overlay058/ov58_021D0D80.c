@@ -202,7 +202,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_08 = v2;
         }
 
-        v1 = NARC_ctor(78, 39);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__OEKAKI, 39);
 
         ov58_021D142C(v0, v1);
 

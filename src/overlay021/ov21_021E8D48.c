@@ -202,7 +202,7 @@ void ov21_021E8E04 (UnkStruct_ov21_021E8D48 * param0, BOOL param1)
 static void ov21_021E8E0C (UnkStruct_ov21_021E8D48 * param0, const UnkStruct_ov21_021E8E0C * param1)
 {
     UnkStruct_ov21_021D1FA4 v0;
-    NARC * v1 = NARC_ctor(69, param1->unk_0C);
+    NARC * v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1->unk_0C);
     int v2;
 
     param0->unk_220 = GetMonData(param1->unk_10, MON_DATA_SPECIES, NULL);

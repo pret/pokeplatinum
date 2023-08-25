@@ -406,7 +406,7 @@ static void ov117_02262A70 (UnkStruct_ov117_022626B0 * param0)
 
 static void ov117_02262B98 (UnkStruct_ov117_022626B0 * param0)
 {
-    param0->unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(173, 29, 110);
+    param0->unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 29, 110);
     param0->unk_04 = NNS_G3dGetTex(param0->unk_00);
 
     sub_0201CBCC(param0->unk_04);
@@ -918,7 +918,7 @@ static void ov117_022638D8 (UnkStruct_ov117_02261280 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(173, 110);
+    v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
     sub_0200CDC4(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
     sub_0200CC3C(param0->unk_24, param0->unk_28, v0, 55, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);

@@ -412,9 +412,9 @@ static void ov77_021D1208 (UnkStruct_ov77_021D1208 * param0, int param1, int par
 
     Heap_FndInitAllocatorForExpHeap(&param0->unk_70, param3, 4);
 
-    param0->unk_5C = NARC_AllocAndReadWholeMemberByIndexPair(48, param1, param3);
-    param0->unk_60 = NARC_AllocAndReadWholeMemberByIndexPair(48, param2, param3);
-    param0->unk_64 = NARC_AllocAndReadWholeMemberByIndexPair(48, 2, param3);
+    param0->unk_5C = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1, param3);
+    param0->unk_60 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param2, param3);
+    param0->unk_64 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 2, param3);
 
     sub_0201CA3C(&param0->unk_04, &param0->unk_58, &param0->unk_5C);
 
@@ -450,7 +450,7 @@ static void ov77_021D1300 (UnkStruct_ov77_021D1208 * param0, int param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(48, param1);
+    v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, param1);
 
     {
         sub_020170D8(&param0->unk_150, v0, 19, param1);

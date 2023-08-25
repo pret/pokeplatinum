@@ -466,7 +466,7 @@ static void ov74_021D1390 (UnkStruct_ov74_021D0D80 * param0)
     NNSG2dCharacterData * v4;
     NNSG2dPaletteData * v5;
 
-    v2 = NARC_ctor(73, param0->unk_00);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__CONFIG_GRA, param0->unk_00);
     v1 = NARC_GetMemberSize(v2, 1);
     v3 = Heap_AllocFromHeapAtEnd(param0->unk_00, v1);
 

@@ -93,7 +93,7 @@ static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
     u32 v1;
     NARC * v2;
 
-    v2 = NARC_ctor(16, param0->unk_00->unk_0C);
+    v2 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {

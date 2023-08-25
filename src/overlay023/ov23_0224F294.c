@@ -192,7 +192,7 @@ static void ov23_0224F294 (UnkStruct_ov23_02250CD4 * param0, u8 * param1, u32 pa
     u32 v1;
     NARC * v2;
 
-    v2 = NARC_ctor(66, 11);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, 11);
 
     ov5_021D3190(&param0->unk_74, &v0, (7 + 1), 11);
     ov5_021D32E8(&param0->unk_74, v2, 9, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 14528);

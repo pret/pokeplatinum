@@ -201,7 +201,7 @@ void ov104_0223DC7C (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C6E4
     v1->unk_20 = param5;
     v1->unk_28 = param6;
     v1->unk_2A = param7;
-    v1->unk_24 = NARC_ctor(112, 94);
+    v1->unk_24 = NARC_ctor(NARC_INDEX_GRAPHIC__FIELD_ENCOUNTEFFECT, 94);
 
     if (v1->unk_20 != NULL) {
         *(v1->unk_20) = 0;

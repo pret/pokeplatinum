@@ -342,7 +342,7 @@ void * sub_0200762C (int param0)
 
     v0->unk_333 = 0;
 
-    v7 = NARC_AllocAndReadWholeMemberByIndexPair(117, 251, v0->unk_2E8);
+    v7 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 251, v0->unk_2E8);
     NNS_G2dGetUnpackedCharacterData(v7, &v5);
 
     v0->unk_308.pixelFmt = v5->pixelFmt;
@@ -1376,7 +1376,7 @@ static void sub_02008FC8 (UnkStruct_02007768 * param0)
             Heap_FreeToHeap(v5);
 
             if (param0->unk_00[v1].unk_6C.unk_00_0) {
-                v5 = NARC_AllocAndReadWholeMemberByIndexPair(117, 252, param0->unk_2E8);
+                v5 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE, 252, param0->unk_2E8);
                 NNS_G2dGetUnpackedPaletteData(v5, &v0);
                 v4 = v0->pRawData;
 

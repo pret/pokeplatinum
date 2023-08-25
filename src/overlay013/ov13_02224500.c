@@ -252,7 +252,7 @@ static void ov13_02224588 (UnkStruct_ov13_022213F0 * param0)
     u32 v1;
     NARC * v2;
 
-    v2 = NARC_ctor(19, param0->unk_00->unk_0C);
+    v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     sub_0200CDC4(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
@@ -275,7 +275,7 @@ static void ov13_02224670 (UnkStruct_ov13_022213F0 * param0)
     UnkStruct_0200C6E4 * v0 = ov16_0223E010(param0->unk_00->unk_08);
     NARC * v1;
 
-    v1 = NARC_ctor(39, param0->unk_00->unk_0C);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_0C);
 
     sub_0200CDC4(param0->unk_1E4, 3, v0, param0->unk_1FB0, v1, sub_0208E9E4(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45064);
     sub_0200CE24(v0, param0->unk_1FB0, v1, sub_0208E9E8(), 0, 45064);
@@ -307,7 +307,7 @@ static void ov13_02224798 (UnkStruct_ov13_022213F0 * param0)
     u32 v1;
     NARC * v2;
 
-    v2 = NARC_ctor(20, param0->unk_00->unk_0C);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
     sub_0200CDC4(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, sub_02081934(), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 45066);

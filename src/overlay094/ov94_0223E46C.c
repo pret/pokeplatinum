@@ -280,7 +280,7 @@ static void ov94_0223E684 (UnkStruct_02018340 * param0)
 static void ov94_0223E6B8 (UnkStruct_ov94_0223FD4C * param0)
 {
     UnkStruct_02018340 * v0 = param0->unk_04;
-    NARC * v1 = NARC_ctor(104, 62);
+    NARC * v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
     sub_02007130(v1, 3, 0, 0, 16 * 3 * 2, 62);
     sub_02007130(v1, 5, 4, 0, 16 * 8 * 2, 62);

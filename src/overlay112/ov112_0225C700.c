@@ -478,7 +478,7 @@ static void ov112_0225C970 (UnkStruct_ov112_0225C970 * param0, const UnkStruct_o
 
 static void ov112_0225C9BC (UnkStruct_ov112_0225C9BC * param0, u32 param1)
 {
-    param0->unk_1A4 = NARC_ctor(169, param1);
+    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, param1);
 
     sub_0201DBEC(48, param1);
     GXLayers_SetBanks(&Unk_ov112_0225D858);

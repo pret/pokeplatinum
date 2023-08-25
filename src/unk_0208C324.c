@@ -162,7 +162,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     sub_02017DD4(4, 8);
     Heap_Create(3, 19, 0x40000);
 
-    v1 = NARC_ctor(39, 19);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, 19);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_0208D7BC), 19);
 
     memset(v0, 0, sizeof(UnkStruct_0208D7BC));
@@ -170,7 +170,7 @@ static int sub_0208C330 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_24C = sub_02006840(param0);
     v0->unk_00 = sub_02018340(19);
     v0->unk_2B4.unk_30 = sub_02015F84(19, 1, 1);
-    v0->unk_6A0 = NARC_ctor(147, 19);
+    v0->unk_6A0 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 19);
 
     sub_02002BEC(0, 19);
     sub_0201E3D8();
@@ -1350,7 +1350,7 @@ static void sub_0208D948 (UnkStruct_0208D7BC * param0)
             v2 = 3 + param0->unk_6A4;
         }
 
-        v1 = NARC_AllocAndReadWholeMemberByIndexPair(39, v2, 19);
+        v1 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__PL_PST_GRA, v2, 19);
         NNS_G2dGetUnpackedScreenData(v1, &v0);
 
         sub_020198C0(param0->unk_00, 3, v0->rawData, 0, 0, 32, 32);

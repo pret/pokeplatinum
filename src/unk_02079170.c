@@ -222,9 +222,9 @@ BOOL sub_02079280 (int param0, int param1, int param2)
 
     v4 = 0;
 
-    v1 = NARC_GetMemberSizeByIndexPair(59, 0);
-    NARC_ReadFromMemberByIndexPair(&v2, 137, 0, param0 * 2, 2);
-    v0 = NARC_ctor(59, param2);
+    v1 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_POKETOOL__TRMSG__TRTBL, 0);
+    NARC_ReadFromMemberByIndexPair(&v2, NARC_INDEX_POKETOOL__TRMSG__TRTBLOFS, 0, param0 * 2, 2);
+    v0 = NARC_ctor(NARC_INDEX_POKETOOL__TRMSG__TRTBL, param2);
 
     while (v2 != v1) {
         NARC_ReadFromMember(v0, 0, v2, 4, &v3[0]);
@@ -253,9 +253,9 @@ void sub_020792F8 (int param0, int param1, Strbuf *param2, int param3)
     u16 v2;
     u16 v3[2];
 
-    v1 = NARC_GetMemberSizeByIndexPair(59, 0);
-    NARC_ReadFromMemberByIndexPair(&v2, 137, 0, param0 * 2, 2);
-    v0 = NARC_ctor(59, param3);
+    v1 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_POKETOOL__TRMSG__TRTBL, 0);
+    NARC_ReadFromMemberByIndexPair(&v2, NARC_INDEX_POKETOOL__TRMSG__TRTBLOFS, 0, param0 * 2, 2);
+    v0 = NARC_ctor(NARC_INDEX_POKETOOL__TRMSG__TRTBL, param3);
 
     while (v2 != v1) {
         NARC_ReadFromMember(v0, 0, v2, 4, &v3[0]);
@@ -277,12 +277,12 @@ void sub_020792F8 (int param0, int param1, Strbuf *param2, int param3)
 
 void sub_0207938C (int param0, TrainerData * param1)
 {
-    NARC_ReadWholeMemberByIndexPair(param1, 57, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__TRAINER__TRDATA, param0);
 }
 
 void sub_0207939C (int param0, void * param1)
 {
-    NARC_ReadWholeMemberByIndexPair(param1, 58, param0);
+    NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__TRAINER__TRPOKE, param0);
 }
 
 u8 sub_020793AC (int param0)

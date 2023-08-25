@@ -1677,7 +1677,7 @@ static void ov70_0225EC20 (UnkStruct_ov70_0225EC20 * param0, UnkStruct_ov70_0225
     UnkStruct_ov19_021DA864 v0;
     UnkStruct_ov83_0223D9A8 v1;
     int v2;
-    NARC * v3 = NARC_ctor(62, param2);
+    NARC * v3 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, param2);
 
     param0->unk_40[0] = sub_02009A4C(param1->unk_194[0], v3, 4, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, param2);
     param0->unk_40[1] = sub_02009B04(param1->unk_194[1], v3, 10, 0, 5000, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param2);
@@ -2110,7 +2110,7 @@ static void ov70_0225F350 (UnkStruct_ov70_0225F350 * param0, const UnkStruct_ov7
 
     v0 = sub_02025F30(param3);
 
-    param0->unk_14C = NARC_ctor(186, param4);
+    param0->unk_14C = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param4);
 
     ov70_0225F9BC(param0, param2, param0->unk_14C, v0, param4);
     ov70_0225FA84(&param0->unk_08, param2, param0->unk_14C, param4);
@@ -2989,7 +2989,7 @@ static void ov70_022603CC (UnkStruct_ov70_0225FA84 * param0, UnkStruct_ov70_0225
         3, 105, 52, 56,
     };
 
-    v1 = NARC_ctor(192, param3);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__UNIONOBJ2D_ONLYFRONT, param3);
     v6 = ov66_0222E798(param5);
     v7 = ov66_0222E7C8(param5);
 

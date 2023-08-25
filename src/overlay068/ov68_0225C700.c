@@ -456,7 +456,7 @@ static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, UnkStruct_021C0794 
     UnkStruct_020279FC * v0;
 
     v0 = sub_02025E44(param1);
-    param0->unk_1A4 = NARC_ctor(186, param2);
+    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param2);
 
     sub_0201DBEC(32, param2);
     GXLayers_SetBanks(&Unk_ov68_0225DDC0);

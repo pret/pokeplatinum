@@ -200,7 +200,7 @@ void ov70_02260CE4 (UnkStruct_ov70_02260BB8 * param0, int param1, int param2, u3
     param0->unk_126 = param1;
 
     v1 = ov70_022613F4(param1, param2, param3);
-    v0 = NARC_ctor(175, param3);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY, param3);
 
     Heap_FndInitAllocatorForExpHeap(&param0->unk_494, param4, 4);
 

@@ -1440,7 +1440,7 @@ static void ov10_02220E70 (UnkStruct_ov10_0221FB28 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(108, param0->unk_00->unk_24);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->unk_00->unk_24);
 
     sub_020070E8(v0, 0, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
     sub_0200710C(v0, 4, param0->unk_0C, 1, 0, 0, 0, param0->unk_00->unk_24);
@@ -1507,7 +1507,7 @@ static void ov10_022210F4 (UnkStruct_ov10_0221FB28 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(27, param0->unk_00->unk_24);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_00->unk_24);
 
     sub_0200CC3C(param0->unk_190, param0->unk_194, v0, 208, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
     sub_0200CC9C(param0->unk_190, param0->unk_194, 108, 8, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47111);
@@ -1710,7 +1710,7 @@ static void ov10_0222166C (UnkStruct_ov10_0221FB28 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(108, param0->unk_00->unk_24);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__VS_DEMO_GRA, param0->unk_00->unk_24);
 
     sub_0200CC3C(param0->unk_190, param0->unk_194, v0, 5, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
     sub_0200CE24(param0->unk_190, param0->unk_194, v0, 6, 0, 47112);
@@ -1929,7 +1929,7 @@ static void ov10_02221A3C (UnkStruct_ov10_0221FB28 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(20, param0->unk_00->unk_24);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_24);
 
     sub_020070E8(v0, 15, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
     sub_0200710C(v0, 17, param0->unk_0C, 3, 0, 0, 0, param0->unk_00->unk_24);
@@ -2167,7 +2167,7 @@ static void ov10_022220B4 (UnkStruct_ov10_0221FB28 * param0)
     u32 v0;
     NARC * v1;
 
-    v1 = NARC_ctor(19, param0->unk_00->unk_24);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_24);
 
     sub_0200CD0C(param0->unk_190, param0->unk_194, v1, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
     sub_0200CE24(param0->unk_190, param0->unk_194, v1, sub_02079FD8(), 0, 47113);
@@ -2184,7 +2184,7 @@ static void ov10_0222216C (UnkStruct_ov10_0221FB28 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(20, param0->unk_00->unk_24);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_24);
 
     sub_0200CC3C(param0->unk_190, param0->unk_194, v0, 20, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47119);
     sub_0200CD0C(param0->unk_190, param0->unk_194, v0, 21, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47113);
@@ -2197,7 +2197,7 @@ static void ov10_02222208 (UnkStruct_ov10_0221FB28 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(39, param0->unk_00->unk_24);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PST_GRA, param0->unk_00->unk_24);
 
     sub_0200CC3C(param0->unk_190, param0->unk_194, v0, 64, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47120);
     sub_0200CD0C(param0->unk_190, param0->unk_194, v0, 65, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 47114);
@@ -2210,7 +2210,7 @@ static void ov10_022222A4 (UnkStruct_ov10_0221FB28 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(20, param0->unk_00->unk_24);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, param0->unk_00->unk_24);
 
     sub_0200CC3C(param0->unk_190, param0->unk_194, v0, 2, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47121);
     sub_0200CD0C(param0->unk_190, param0->unk_194, v0, 8, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 47115);

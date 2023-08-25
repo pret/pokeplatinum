@@ -189,7 +189,7 @@ int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
 
         Heap_Create(3, 95, 0x80000);
 
-        v1 = NARC_ctor(86, 95);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__RECORD, 95);
         GF_ASSERT(v1);
 
         v0 = sub_0200681C(param0, sizeof(UnkStruct_ov109_021D5140), 95);

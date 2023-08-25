@@ -212,7 +212,7 @@ static void ov6_02240D00 (UnkStruct_0203CDB0 * param0, const BOOL param1, int * 
         sub_0202DA10(param0->unk_0C, &v1, &v2);
 
         if (param1) {
-            v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 8, 4);
+            v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, 4);
 
             if (v1 != 0xffff) {
                 (*param2) = v0[v1];

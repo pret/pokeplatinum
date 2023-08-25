@@ -160,7 +160,7 @@ int ov71_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     sub_02017DD4(4, 8);
     Heap_Create(3, 25, 0x28000);
 
-    v1 = NARC_ctor(51, 25);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__TRAINER_CASE, 25);
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov71_0223B620), 25);
 
     memset(v0, 0, sizeof(UnkStruct_ov71_0223B620));

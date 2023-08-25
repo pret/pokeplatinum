@@ -909,7 +909,7 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
         v0 = sub_0200681C(param0, sizeof(UnkStruct_02087A10), 18);
         memset(v0, 0, sizeof(UnkStruct_02087A10));
         v0->unk_160 = sub_02018340(18);
-        v1 = NARC_ctor(31, 18);
+        v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, 18);
 
         v0->unk_168 = sub_0200B358(18);
         v0->unk_16C = sub_0200B144(0, 26, 422, 18);

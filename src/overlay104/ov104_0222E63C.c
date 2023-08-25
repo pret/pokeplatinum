@@ -168,7 +168,7 @@ static void ov104_0222E830 (u8 ** param0, UnkStruct_0200B144 ** param1, int para
     v0 = ov104_0222EA90(param2, 1);
     v1 = ov104_0222EA90(param2, 2);
 
-    *param0 = NARC_AllocAndReadWholeMemberByIndexPair(149, v0, param3);
+    *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, v0, param3);
     *param1 = sub_0200B144(1, 26, v1, param3);
 }
 

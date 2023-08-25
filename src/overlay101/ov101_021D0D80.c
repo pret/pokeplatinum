@@ -667,7 +667,7 @@ void * ov101_021D1998 (u32 param0)
 
 static void ov101_021D19BC (UnkStruct_ov101_021D13C8 * param0)
 {
-    param0->unk_438 = NARC_ctor(133, 79);
+    param0->unk_438 = NARC_ctor(NARC_INDEX_DATA__SLOT, 79);
 }
 
 static void ov101_021D19D4 (UnkStruct_ov101_021D13C8 * param0)

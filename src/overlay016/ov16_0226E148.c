@@ -61,8 +61,8 @@ static void ov16_0226E188 (UnkStruct_0201CD38 * param0, void * param1)
         {
             NARC * v2, * v3;
 
-            v2 = NARC_ctor(7, 5);
-            v3 = NARC_ctor(27, 5);
+            v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
+            v3 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
             ov16_02268C04(v2, v3, v1, 18, 0, NULL);
             NARC_dtor(v2);

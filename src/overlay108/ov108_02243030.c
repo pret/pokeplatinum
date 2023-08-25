@@ -170,7 +170,7 @@ static void ov108_022432B4 (UnkStruct_ov108_02243030 * param0)
     NARC * v0;
     u32 v1;
 
-    v0 = NARC_ctor(20, 103);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 103);
 
     param0->unk_1A0[2][0] = sub_02009A4C(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 103);
     param0->unk_1A0[2][1] = sub_020098B8(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
@@ -188,7 +188,7 @@ static void ov108_02243360 (UnkStruct_ov108_02243030 * param0, Party * param1, P
     NARC * v2;
     u32 v3;
 
-    v2 = NARC_ctor(19, 103);
+    v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 103);
 
     param0->unk_1A0[3][1] = sub_020098B8(param0->unk_190[1], 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 103);
     param0->unk_1A0[3][2] = sub_02009BC4(param0->unk_190[2], v2, sub_02079FD8(), 0, 3, 2, 103);

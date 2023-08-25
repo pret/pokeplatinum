@@ -488,7 +488,7 @@ static void ov7_0224D474 (UnkStruct_ov7_0224D008 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(62, 11);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__SHOP_GRA, 11);
 
     sub_020070E8(v0, 0, param0->unk_00, 1, 0, 0, 0, 11);
 

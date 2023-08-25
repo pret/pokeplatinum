@@ -129,7 +129,7 @@ static void sub_02056400 (u32 param0, u8 * param1)
     GF_ASSERT(0 < param0 && param0 <= 493);
     v0 = (param0 - 1) * 6;
 
-    NARC_ReadFromMemberByIndexPair(param1, 131, 0, v0, sizeof(u8) * 6);
+    NARC_ReadFromMemberByIndexPair(param1, NARC_INDEX_ARC__PPARK, 0, v0, sizeof(u8) * 6);
 }
 
 static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1)

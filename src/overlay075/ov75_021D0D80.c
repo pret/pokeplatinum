@@ -714,7 +714,7 @@ static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
     v6 = 12 + param0->unk_1C->unk_0F;
     v7 = 24 + param0->unk_1C->unk_0F;
     v8 = 0 + param0->unk_1C->unk_0F;
-    v5 = NARC_ctor(79, param0->unk_00);
+    v5 = NARC_ctor(NARC_INDEX_GRAPHIC__MAIL_GRA, param0->unk_00);
 
     sub_0200DAA4(param0->unk_18, 0, 1, UnkEnum_ov75_021D1598_05, 0, param0->unk_00);
     sub_0200DD0C(param0->unk_18, 0, 1 + 9, UnkEnum_ov75_021D1598_06, param0->unk_0A, param0->unk_00);

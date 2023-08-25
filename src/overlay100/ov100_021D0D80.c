@@ -224,7 +224,7 @@ static void ov100_021D1034 (UnkStruct_ov100_021D46C8 * param0)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    param0->unk_00 = NARC_ctor(172, 111);
+    param0->unk_00 = NARC_ctor(NARC_INDEX_ARC__DEMO_TENGAN_GRA, 111);
     param0->unk_0C = sub_02018340(111);
     param0->unk_10 = sub_02002F38(111);
     param0->unk_14 = sub_02024220(111, 0, 1, 0, 4, NULL);

@@ -635,7 +635,7 @@ void ov104_02238658 (void * param0, UnkStruct_ov104_0223C4CC * param1)
     v1 = (UnkStruct_ov104_0223BFFC *)param0;
 
     if (v1->unk_13 != 32) {
-        v0 = NARC_ctor(150, 94);
+        v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
         sub_020070E8(v0, Unk_ov104_0223FBBA[v1->unk_13][0], param1->unk_00, 2, 0, 0, 1, 94);
         sub_0200710C(v0, Unk_ov104_0223FBBA[v1->unk_13][1], param1->unk_00, 2, 0, 0, 1, 94);
@@ -670,7 +670,7 @@ void ov104_02238728 (void * param0, UnkStruct_ov104_0223C4CC * param1)
     UnkStruct_ov104_0223BFFC * v1;
 
     v1 = (UnkStruct_ov104_0223BFFC *)param0;
-    v0 = NARC_ctor(150, 94);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
     sub_0200710C(v0, 53, param1->unk_00, 3, 0, 0, 1, 94);
     sub_0201C3C0(param1->unk_00, 3);
@@ -900,7 +900,7 @@ void ov104_02238AB4 (u8 param0, u8 param1)
     v5 = Heap_AllocFromHeap(94, 0x1000 * 2);
     memset(v5, 0, 0x1000 * 2);
 
-    v4 = NARC_ctor(150, 94);
+    v4 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
     v3 = sub_020071EC(v4, v0, &v2, 94);
 
     sub_0200393C(v2->pRawData, v5, 0x1000, param0, 0x0);

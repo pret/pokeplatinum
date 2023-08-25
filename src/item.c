@@ -778,11 +778,11 @@ void * Item_LoadDataOrGFX (u16 itemID, u16 attributeID, u32 heapID)
 
     switch (attributeID) {
     case 0:
-        return NARC_AllocAndReadWholeMemberByIndexPair(15, sItemNarcIDs[itemID].dataArchiveID, heapID);
+        return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, sItemNarcIDs[itemID].dataArchiveID, heapID);
     case 1:
-        return NARC_AllocAndReadWholeMemberByIndexPair(16, sItemNarcIDs[itemID].imageArchiveID, heapID);
+        return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, sItemNarcIDs[itemID].imageArchiveID, heapID);
     case 2:
-        return NARC_AllocAndReadWholeMemberByIndexPair(16, sItemNarcIDs[itemID].palArchiveID, heapID);
+        return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, sItemNarcIDs[itemID].palArchiveID, heapID);
     }
 
     return NULL;
@@ -1067,7 +1067,7 @@ u8 Item_IsHerbalMedicine (u16 itemID)
 void * sub_0207D388 (int param0)
 {
     int v0 = sub_0207CE78(467, 0);
-    return NARC_AllocAndReadFromMemberByIndexPair(15, 0, param0, 0, 36 * v0);
+    return NARC_AllocAndReadFromMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, 0, param0, 0, 36 * v0);
 }
 
 ItemData * sub_0207D3B0 (ItemData * param0, u16 param1)

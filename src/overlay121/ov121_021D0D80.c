@@ -248,7 +248,7 @@ static void ov121_021D1074 (UnkStruct_ov121_021D0FF4 * param0)
 
     Heap_FndInitAllocatorForExpHeap(&param0->unk_D8, 30, 4);
 
-    v0 = NARC_ctor(48, 30);
+    v0 = NARC_ctor(NARC_INDEX_DEMO__TITLE__TITLEDEMO, 30);
 
     {
         sub_020170D8(&param0->unk_B4, v0, 16, 30);

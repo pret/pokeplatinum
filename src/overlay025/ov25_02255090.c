@@ -274,7 +274,7 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
     v2 = Heap_AllocFromHeap(8, v1[param3]);
 
     if (v2) {
-        NARC * v3 = NARC_ctor(19, 8);
+        NARC * v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 8);
 
         if (v3) {
             NNSG2dCharacterData * v4;

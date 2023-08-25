@@ -636,7 +636,7 @@ static void ov104_0223CC10 (UnkStruct_ov104_0223C4CC * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(150, 94);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
     sub_020070E8(v0, 125, param0->unk_00, 4, 0, 0, 1, 94);
     sub_0200710C(v0, 126, param0->unk_00, 4, 0, 0, 1, 94);
@@ -1100,7 +1100,7 @@ static void ov104_0223D498 (UnkStruct_ov104_0223C4CC * param0)
     UnkStruct_0200D0F4 * v3;
 
     v2 = sub_0209B9E0(param0->unk_08);
-    v1 = NARC_ctor(151, 94);
+    v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, 94);
 
     for (v0 = 0; v0 < 8; v0++) {
         if (v2->unk_00[v0] != 0xffff) {

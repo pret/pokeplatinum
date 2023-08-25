@@ -889,7 +889,7 @@ static void ov64_0222E1A4 (UnkStruct_ov64_0222E21C * param0, const UnkStruct_ov6
 {
     Unk_021BF67C.unk_65 = 0;
     GXLayers_SwapDisplay();
-    param0->unk_21C = NARC_ctor(89, param2);
+    param0->unk_21C = NARC_ctor(NARC_INDEX_GRAPHIC__PL_WIFINOTE, param2);
 
     ov64_0222E270();
     ov64_0222E290(param0, param2);

@@ -244,7 +244,7 @@ static void ov93_021D102C (UnkStruct_ov93_021D102C * param0)
     void * v2;
     NARC * v3;
 
-    v3 = NARC_ctor(120, 72);
+    v3 = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO, 72);
     Heap_FndInitAllocatorForExpHeap(&param0->unk_70, 72, 4);
 
     param0->unk_5C = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15A0[param0->unk_9C].unk_00, 72);

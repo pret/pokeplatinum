@@ -477,9 +477,9 @@ int ov5_021EFFE4 (UnkStruct_0203CDB0 * param0)
         v4 = sub_0202D84C(v0, v3);
 
         if ((GAME_VERSION == 10) || (GAME_VERSION == 12)) {
-            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, Unk_ov5_021FF5A8[v4->unk_05], 4);
+            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, Unk_ov5_021FF5A8[v4->unk_05], 4);
         } else {
-            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, dummy[v4->unk_05], 4);
+            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, dummy[v4->unk_05], 4);
         }
 
         v2 = v1[v4->unk_04];

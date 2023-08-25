@@ -398,7 +398,7 @@ static void ov12_022360A0 (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_90) {
     case 0:
-        v0->unk_8C = NARC_ctor(99, v0->unk_00);
+        v0->unk_8C = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTDATA__BALL_PARTICLE, v0->unk_00);
 
         for (v1 = 0; v1 < 2; v1++) {
             v5 = sub_0202CA64(&v0->unk_A0, v1);
@@ -2303,7 +2303,7 @@ static void ov12_02237C54 (UnkStruct_ov12_02237C54 * param0)
     {
         NARC * v6;
 
-        v6 = NARC_ctor(27, param0->unk_90.unk_04);
+        v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_90.unk_04);
 
         sub_0200CC3C(param0->unk_90.unk_1C, param0->unk_2C, v6, v0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_90.unk_0C + 6000);
         sub_0200CDC4(param0->unk_90.unk_20, 2, param0->unk_90.unk_1C, param0->unk_2C, v6, v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param0->unk_90.unk_0C + 6000);

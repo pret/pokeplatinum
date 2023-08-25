@@ -148,7 +148,7 @@ void * ov95_0224B3D8 (UnkStruct_ov95_02247628 * param0)
         v0->unk_7C = NULL;
         v0->unk_80 = NULL;
         v0->unk_74 = NULL;
-        v0->unk_84 = NARC_ctor(147, 58);
+        v0->unk_84 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 58);
     }
 
     return v0;

@@ -441,12 +441,12 @@ UnkStruct_ov12_0221FCDC * ov12_0221FCDC (int param0)
     v1->unk_00 = param0;
     v1->unk_08 = 0;
     v1->unk_BC = Heap_AllocFromHeap(v1->unk_00, sizeof(UnkStruct_ov12_02223178));
-    v1->unk_1A0[0] = NARC_ctor(7, param0);
-    v1->unk_1A0[1] = NARC_ctor(27, param0);
-    v1->unk_1A0[2] = NARC_ctor(21, param0);
-    v1->unk_1A0[3] = NARC_ctor(22, param0);
-    v1->unk_1A0[4] = NARC_ctor(23, param0);
-    v1->unk_1A0[5] = NARC_ctor(24, param0);
+    v1->unk_1A0[0] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, param0);
+    v1->unk_1A0[1] = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0);
+    v1->unk_1A0[2] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECHAR, param0);
+    v1->unk_1A0[3] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WEPLTT, param0);
+    v1->unk_1A0[4] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECELL, param0);
+    v1->unk_1A0[5] = NARC_ctor(NARC_INDEX_WAZAEFFECT__EFFECTCLACT__WECELLANM, param0);
 
     if (v1->unk_BC == NULL) {
         GF_ASSERT(v1->unk_BC != NULL);
@@ -4223,7 +4223,7 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (UnkStruct_0207ADB4 * param0, int param1
         int v3[6];
         NARC * v4;
 
-        v4 = NARC_ctor(27, param1);
+        v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param1);
 
         for (v0 = 0; v0 < 4; v0++) {
             if ((v0 != v2->unk_04) && (v2->unk_04 != 0xFF)) {

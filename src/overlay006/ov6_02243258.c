@@ -1011,7 +1011,7 @@ static int(*const * const Unk_ov6_02249110[])(UnkStruct_ov6_02249110 *) = {
 
 static NARC * ov6_02243F20 (void)
 {
-    return NARC_ctor(97, 4);
+    return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, 4);
 }
 
 static void ov6_02243F2C (void)
@@ -1727,7 +1727,7 @@ static void ov6_022448C8 (UnkStruct_ov6_02243FFC * param0)
 
 static NARC * ov6_0224491C (void)
 {
-    return NARC_ctor(97, 4);
+    return NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, 4);
 }
 
 static void ov6_02244928 (UnkStruct_ov6_02243FFC * param0, NARC * param1)

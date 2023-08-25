@@ -657,7 +657,7 @@ static void sub_0206FCC4 (UnkStruct_0206F7F8 * param0)
     {
         NARC * v3;
 
-        v3 = NARC_ctor(130, param0->unk_00);
+        v3 = NARC_ctor(NARC_INDEX_GRAPHIC__RANKING, param0->unk_00);
 
         ov5_021D32E8(&param0->unk_134, v3, 0, 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
         ov5_021D3374(&param0->unk_134, v3, 2, 0, 13528);

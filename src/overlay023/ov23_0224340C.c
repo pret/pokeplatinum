@@ -792,7 +792,7 @@ static void ov23_02243754 (void)
     {
         NARC * v1;
 
-        v1 = NARC_ctor(50, 4);
+        v1 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, 4);
 
         Unk_ov23_02257764->unk_1F4[1][0] = sub_02009A4C(Unk_ov23_02257764->unk_1D4[1][0], v1, 17, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 4);
         Unk_ov23_02257764->unk_1F4[1][1] = sub_02009B04(Unk_ov23_02257764->unk_1D4[1][1], v1, 18, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 7, 4);
@@ -4125,7 +4125,7 @@ static void ov23_022479F4 (UnkStruct_ov23_022471D8 * param0)
     {
         NARC * v2;
 
-        v2 = NARC_ctor(50, 4);
+        v2 = NARC_ctor(NARC_INDEX_DATA__UG_TRAP, 4);
 
         if (v1 < (7 - 1)) {
             param0->unk_F8[v1 + 1] = sub_02009A4C(Unk_ov23_02257764->unk_1D4[0][0], v2, v0[v1], 0, v1 + 1, NNS_G2D_VRAM_TYPE_2DMAIN, 4);

@@ -443,7 +443,7 @@ static void ov80_021D1158 (UnkStruct_ov80_021D2A08 * param0)
     NARC * v3;
 
     v2 = 17;
-    v3 = NARC_ctor(17, param0->unk_04);
+    v3 = NARC_ctor(NARC_INDEX_GRAPHIC__TMAP_GRA, param0->unk_04);
 
     sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 19, 1, 0, 0, 0);
     sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 20, 6, 0, 0, 0);

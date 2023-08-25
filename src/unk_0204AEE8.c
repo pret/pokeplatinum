@@ -539,10 +539,10 @@ static BOOL sub_0204B470 (UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * para
 
 static void * sub_0204B630 (u16 param0, int param1)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(178, param0, param1);
+    return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR, param0, param1);
 }
 
 static void sub_0204B640 (UnkStruct_0204B1E8 * param0, int param1)
 {
-    NARC_ReadWholeMemberByIndexPair(param0, 179, param1);
+    NARC_ReadWholeMemberByIndexPair(param0, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM, param1);
 }

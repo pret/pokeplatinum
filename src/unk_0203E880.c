@@ -680,7 +680,7 @@ static u16 sub_0203EB20 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * param
 
 static void sub_0203EF14 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * param1, int param2, u32 param3)
 {
-    u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(10, param2, 11);
+    u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, param2, 11);
 
     param1->unk_30 = (u8 *)v0;
     param1->unk_2C = sub_0200B144(1, 26, param3, 11);
@@ -853,7 +853,7 @@ static void sub_0203F0E4 (UnkStruct_0203E724 * param0, u16 param1)
 
 static void * sub_0203F0FC (int param0)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(10, MapHeader_GetScriptsArchiveID(param0), 11);
+    return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, MapHeader_GetScriptsArchiveID(param0), 11);
 }
 
 static u32 sub_0203F110 (int param0)

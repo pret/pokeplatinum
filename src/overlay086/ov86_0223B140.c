@@ -319,7 +319,7 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_1C48 = Strbuf_Init(500, 63);
     v0->unk_1C4C = Strbuf_Init(500, 63);
     v0->unk_1C44 = sub_0200B358(63);
-    v0->unk_1C54 = NARC_ctor(147, 63);
+    v0->unk_1C54 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 63);
 
     {
         int v1, v2;
@@ -707,7 +707,7 @@ static void ov86_0223B74C (UnkStruct_ov86_0223B3C8 * param0)
     sub_0201ACCC(&(param0->unk_14));
     sub_0201A9F4(&param0->unk_14);
 
-    v0 = NARC_ctor(105, 63);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__DENDOU_DEMO, 63);
 
     sub_020070E8(v0, 3, param0->unk_10, 3, 0, 0, 1, 63);
     sub_0200710C(v0, 0, param0->unk_10, 3, 0, 0, 1, 63);
@@ -793,7 +793,7 @@ static void ov86_0223BA44 (UnkStruct_ov86_0223B3C8 * param0)
     NNSG2dAnimBankData * v1;
     NARC * v2;
 
-    v2 = NARC_ctor(27, 63);
+    v2 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 63);
 
     NNS_G2dInitOamManagerModule();
     sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 63);

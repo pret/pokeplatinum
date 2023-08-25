@@ -634,7 +634,7 @@ void ov16_022672C4 (UnkStruct_ov16_022674C4 * param0)
     UnkStruct_02002F38 * v3;
     NARC * v4;
 
-    v4 = NARC_ctor(27, 5);
+    v4 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
     v1 = ov16_0223E010(param0->unk_0C);
     v2 = ov16_0223E018(param0->unk_0C);
     v3 = ov16_0223E064(param0->unk_0C);

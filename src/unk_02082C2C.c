@@ -115,7 +115,7 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
     v2 = GetMonData(v0, MON_DATA_SPECIES, NULL);
     v3 = GetMonData(v0, MON_DATA_FORM, NULL);
-    v1 = NARC_ctor(19, 12);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
     v4 = NNS_G2dGetImageLocation(sub_02021F98(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = sub_0200723C(v1, sub_02079D80(v0), 0, 12, 1);
     v7 = NNS_G2dGetUnpackedCharacterData(v5, &v6);

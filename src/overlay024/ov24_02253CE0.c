@@ -44,7 +44,7 @@ void ov24_02253CE0 (UnkStruct_02018340 * param0)
     {
         NARC * v1;
 
-        v1 = NARC_ctor(12, 8);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 8);
 
         sub_020070E8(v1, 10, param0, 4, 0, 0, 1, 8);
         sub_0200710C(v1, 11, param0, 4, 0, 0, 1, 8);

@@ -238,7 +238,7 @@ static u32 ov5_021DF584 (const UnkStruct_ov5_021DF47C * param0)
 
 static void ov5_021DF588 (UnkStruct_ov5_021DF47C * param0)
 {
-    param0->unk_18 = NARC_ctor(107, ov5_021DF584(param0));
+    param0->unk_18 = NARC_ctor(NARC_INDEX_DATA__MMODEL__FLDEFF, ov5_021DF584(param0));
 }
 
 static void ov5_021DF59C (UnkStruct_ov5_021DF47C * param0)

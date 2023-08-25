@@ -1117,7 +1117,7 @@ UnkStruct_ov114_0225CAD4 * ov114_0225CAD4 (UnkStruct_020218BC * param0, u32 para
     memset(v0, 0, sizeof(UnkStruct_ov114_0225CAD4));
 
     v0->unk_08 = param0;
-    v0->unk_0C = NARC_ctor(171, param1);
+    v0->unk_0C = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
 
     ov114_0225CCD0(&v0->unk_10, 1, param1);
 
@@ -1693,7 +1693,7 @@ static void ov114_0225D5BC (UnkStruct_ov114_0225D678 * param0, u32 param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(171, param1);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
 
     sub_02007130(v0, 4, 0, 0, 9 * 32, param1);
     sub_020070E8(v0, 6, param0->unk_30.unk_00, 1, 0, 0, 0, param1);
@@ -2564,7 +2564,7 @@ static void ov114_0225E744 (UnkStruct_ov114_0225E854 * param0, u32 param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(171, param1);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param1);
 
     sub_02007130(v0, 4, 0, 0, 9 * 32, param1);
     sub_02007130(v0, 4, 4, 0, 9 * 32, param1);

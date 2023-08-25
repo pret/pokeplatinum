@@ -283,7 +283,7 @@ static void ov94_0223C888 (UnkStruct_ov94_0223FD4C * param0)
     UnkStruct_02018340 * v0 = param0->unk_04;
     NARC * v1;
 
-    v1 = NARC_ctor(104, 62);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
     sub_02007130(v1, 4, 0, 0, 16 * 3 * 2, 62);
     sub_02002E98(0, 13 * 0x20, 62);

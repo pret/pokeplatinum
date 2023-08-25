@@ -221,7 +221,7 @@ void sub_02015FCC (UnkStruct_02015F84 * param0, UnkStruct_02007C7C * param1, con
         param0->unk_00[v0].unk_1C4 = 0;
     }
 
-    param0->unk_00[v0].unk_08 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(94, param0->unk_00[v0].unk_14, param0->unk_04);
+    param0->unk_00[v0].unk_08 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_POKEANIME__PL_POKE_ANM, param0->unk_00[v0].unk_14, param0->unk_04);
     param0->unk_00[v0].unk_0C = (u32 *)param0->unk_00[v0].unk_08;
     param0->unk_00[v0].unk_1C = 0;
     param0->unk_00[v0].unk_20 = 0;

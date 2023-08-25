@@ -269,7 +269,7 @@ static int sub_0207E0B8 (UnkStruct_020067E8 * param0, int * param1)
     sub_02017DD4(4, 8);
     Heap_Create(3, 12, 0x30000);
 
-    v1 = NARC_ctor(20, 12);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 12);
     v0 = sub_0207ECC0(param0);
 
     sub_0200F174(1, 3, 3, 0x0, 6, 1, 12);
@@ -1216,7 +1216,7 @@ static void sub_0207F388 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
     u8 v0;
     NARC * v1;
 
-    v1 = NARC_ctor(19, 12);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1248,7 +1248,7 @@ static void sub_0207F4AC (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
     u8 v0;
     NARC * v1;
 
-    v1 = NARC_ctor(19, 12);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1275,7 +1275,7 @@ static void sub_0207F5A0 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
     u8 v0;
     NARC * v1;
 
-    v1 = NARC_ctor(19, 12);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1302,7 +1302,7 @@ static void sub_0207F694 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
     u8 v0;
     NARC * v1;
 
-    v1 = NARC_ctor(19, 12);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -1329,7 +1329,7 @@ static void sub_0207F788 (UnkStruct_0207F248 * param0, const UnkStruct_020F1DF8 
     u8 v0;
     NARC * v1;
 
-    v1 = NARC_ctor(19, 12);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (sub_0207EF14(param0, v0) == 1) {
@@ -2949,7 +2949,7 @@ void sub_02081940 (u32 param0, u16 * param1, u16 * param2, u16 * param3)
     u16 * v2;
     u32 v3;
 
-    v1 = NARC_AllocAndReadWholeMemberByIndexPair(20, 22, param0);
+    v1 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 22, param0);
     NNS_G2dGetUnpackedScreenData(v1, &v0);
     v2 = (u16 *)v0->rawData;
 

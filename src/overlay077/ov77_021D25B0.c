@@ -1483,7 +1483,7 @@ static void ov77_021D37C0 (UnkStruct_ov77_021D37C0 * param0)
     u8 v0;
     NARC * v1;
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     {
         sub_02007148(v1, 96, 0, 0x20 * 0xc, 0x20 * 0xc, 0x20 * 2, 76);
@@ -1497,7 +1497,7 @@ static void ov77_021D37C0 (UnkStruct_ov77_021D37C0 * param0)
         {
             NARC * v2;
 
-            v2 = NARC_ctor(65, 76);
+            v2 = NARC_ctor(NARC_INDEX_DATA__WEATHER_SYS, 76);
 
             sub_020070E8(v2, 56, param0->unk_10, 1, 0, 0, 0, 76);
             sub_0200710C(v2, 57, param0->unk_10, 1, 0, 0, 0, 76);
@@ -1551,7 +1551,7 @@ static void ov77_021D3A10 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     G2_SetBG0Priority(0);
     sub_02019060(1, 3);
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     sub_02007130(v1, 68, 0, 0, 0, 76);
 
@@ -1582,7 +1582,7 @@ static void ov77_021D3B5C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
 
     ov77_021D2828(param0);
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     sub_02007130(v1, 72, 0, 0, 0, 76);
     sub_02007130(v1, 72, 4, 0, 0, 76);
@@ -1627,7 +1627,7 @@ static void ov77_021D3D4C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
 
     ov77_021D2900(param0);
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     sub_020070E8(v1, 79, param1->unk_10, 0, 0, 0, 0, 76);
     sub_0200710C(v1, 80, param1->unk_10, 0, 0, 0, 0, 76);
@@ -1674,7 +1674,7 @@ static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
 
 static void ov77_021D3EDC (UnkStruct_ov77_021D37C0 * param0, int param1)
 {
-    param0->unk_20.unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(128, Unk_ov77_021D7458[param1], 76);
+    param0->unk_20.unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__OP_DEMO, Unk_ov77_021D7458[param1], 76);
     param0->unk_20.unk_04 = NNS_G3dGetTex((NNSG3dResFileHeader *)param0->unk_20.unk_00);
 
     {
@@ -1709,7 +1709,7 @@ static void ov77_021D3F24 (UnkStruct_ov77_021D37C0 * param0, int param1, int par
         param3 = 6;
     }
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     for (v0 = param2; v0 < param3; v0++) {
         if (Unk_ov77_021D779C[param1][v0] == 0) {

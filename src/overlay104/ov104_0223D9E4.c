@@ -101,7 +101,7 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (UnkStruct_02018340 * param0)
         NNSG2dScreenData * v3;
         int v4;
 
-        v1 = NARC_ctor(150, 94);
+        v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
         for (v4 = 0; v4 < 2; v4++) {
             v2 = sub_020071D0(v1, Unk_ov104_022418B0[v4], 1, &v3, 94);
@@ -117,7 +117,7 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (UnkStruct_02018340 * param0)
         void * v6;
         NNSG2dCharacterData * v7;
 
-        v5 = NARC_ctor(150, 94);
+        v5 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 94);
 
         v6 = sub_020071B4(v5, 14, 1, &v7, 94);
         MI_CpuCopy32(v7->pRawData, v0->unk_2008[0], v7->szByte);

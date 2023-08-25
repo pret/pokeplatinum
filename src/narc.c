@@ -4,6 +4,9 @@
 #include "narc.h"
 #include "heap.h"
 
+/*
+ * NARC path table, make sure index enum in narc.h matches
+ */
 static const char * NarcPaths[] = {
 	{ "battle/skill/waza_seq.narc" },
 	{ "battle/skill/sub_seq.narc" },

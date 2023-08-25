@@ -560,7 +560,7 @@ static void ov21_021E7904 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     int v8;
     NARC * v9;
 
-    v9 = NARC_ctor(19, param3);
+    v9 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param3);
     v8 = ov21_021D33D4(param2->unk_00, v5);
     v1 = sub_02079D8C(v5, 0, v8);
     v2 = sub_02079FD0();

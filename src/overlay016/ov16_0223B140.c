@@ -350,8 +350,8 @@ void ov16_0223B430 (UnkStruct_0207ADB4 * param0)
     ov16_0223F314(param0, 0);
     MI_CpuFill16((void *)sub_02024200(), 0x0, sub_02024208());
 
-    v0 = NARC_ctor(7, 5);
-    v1 = NARC_ctor(27, 5);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
+    v1 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
     param0->unk_198 = ov16_022687C8(v0, v1, param0, ov16_0223E1B4(param0, ov16_0223F6E4(param0)), param0->unk_1BC);
 
     sub_02002BB8(2, 5);
@@ -568,8 +568,8 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     sub_0201DBEC(64, 5);
 
     {
-        NARC * v6 = NARC_ctor(7, 5);
-        NARC * v7 = NARC_ctor(27, 5);
+        NARC * v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
+        NARC * v7 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
         v0->unk_198 = ov16_022687C8(v6, v7, v0, ov16_0223E1B4(v0, ov16_0223F6E4(v0)), v0->unk_1BC);
 
@@ -601,8 +601,8 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
         NARC * v8;
         NARC * v9;
 
-        v8 = NARC_ctor(7, 5);
-        v9 = NARC_ctor(27, 5);
+        v8 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, 5);
+        v9 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
 
         ov16_02268C04(v8, v9, v0->unk_198, 0, 1, NULL);
         ov16_02268D40(v9, v0->unk_198);

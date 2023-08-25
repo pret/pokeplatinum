@@ -404,8 +404,8 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_2C = sub_0200B358(118);
     v0->unk_30 = sub_0200B144(0, 26, 650, 118);
     v0->unk_10 = sub_02012744(4, 118);
-    v0->unk_160 = NARC_ctor(187, 118);
-    v0->unk_164 = NARC_ctor(70, 118);
+    v0->unk_160 = NARC_ctor(NARC_INDEX_GRAPHIC__FOOTPRINT_BOARD, 118);
+    v0->unk_164 = NARC_ctor(NARC_INDEX_POKETOOL__POKEFOOT__POKEFOOT, 118);
 
     ov113_0225D160(v0, v0->unk_160);
     ov113_0225DAA8(v0, v0->unk_160);

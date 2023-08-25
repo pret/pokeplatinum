@@ -713,7 +713,7 @@ static void ov65_0222E01C (UnkStruct_ov65_0222EBE0 * param0)
 
     sub_02017DD4(4, 8);
 
-    v0 = NARC_ctor(92, 54);
+    v0 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 54);
 
     param0->unk_15C = sub_02018340(54);
     param0->unk_164 = sub_0200B358(54);
@@ -2078,7 +2078,7 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
         sub_02019EBC(param0->unk_15C, 3);
 
-        v1 = NARC_ctor(92, 54);
+        v1 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 54);
         ov65_0222ECA8(param0, v1);
         NARC_dtor(v1);
 
@@ -2411,7 +2411,7 @@ static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     inline_ov96_0223BDEC(&param0->unk_E2C, 0);
 
-    v3 = NARC_ctor(92, 54);
+    v3 = NARC_ctor(NARC_INDEX_DATA__WIFIP2PMATCH, 54);
 
     ov65_0222E90C(param0->unk_15C, &param0->unk_BD0, v3, 54);
     ov65_02232F30(param0);
