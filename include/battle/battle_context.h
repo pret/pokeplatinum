@@ -5,10 +5,10 @@
 #include "constants/pokemon.h"
 
 #include "battle/ai_context.h"
+#include "battle/battle_mon.h"
 
 #include "overlay016/struct_ov16_0224B7CC_decl.h"
-#include "overlay016/struct_ov16_02252060_decl.h"
-#include "overlay016/struct_ov16_02252060_t.h"
+
 #include "overlay016/struct_ov16_0225C300.h"
 
 typedef struct FieldConditions {
@@ -233,7 +233,7 @@ typedef struct BattleContext {
     u8 ioBuffer[MAX_BATTLERS][BATTLE_IO_BUFFER_SIZE];
     int battleScript[BATTLE_SCRIPT_SIZE_MAX];
 
-    UnkStruct_ov16_02252060 battleMons[MAX_BATTLERS];
+    BattleMon battleMons[MAX_BATTLERS];
 
     u32 moveNumTemp;
     u32 moveNumCurr;

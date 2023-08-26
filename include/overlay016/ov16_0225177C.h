@@ -4,7 +4,7 @@
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "battle/battle_context.h"
-#include "overlay016/struct_ov16_02252060_decl.h"
+#include "battle/battle_mon.h"
 #include "overlay016/struct_ov16_0225C300.h"
 
 void ov16_0225177C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
@@ -20,7 +20,7 @@ void ov16_02252040(BattleContext * param0, int param1);
 int ov16_02252060(BattleContext * param0, int param1, int param2, void * param3);
 void ov16_022523E8(BattleContext * param0, int param1, int param2, const void * param3);
 void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
-void ov16_02252A2C(UnkStruct_ov16_02252060 * param0, int param1, int param2);
+void ov16_02252A2C(BattleMon * param0, int param1, int param2);
 u8 ov16_02252EC8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4);
 void ov16_022535E0(BattleContext * param0, int param1);
 void ov16_022535F0(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
@@ -41,7 +41,7 @@ void ov16_02254744(UnkStruct_0207ADB4 * param0, BattleContext * param1, int para
 void ov16_02254990(UnkStruct_0207ADB4 * param0, BattleContext * param1);
 int ov16_02254A6C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4);
 BOOL ov16_02254CA8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, UnkStruct_ov16_0225C300 * param4);
-int ov16_02254EE0(UnkStruct_ov16_02252060 * param0, u16 param1);
+int ov16_02254EE0(BattleMon * param0, u16 param1);
 int ov16_02254FA8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
 void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
 BOOL ov16_02255498(BattleContext * param0, int param1);
