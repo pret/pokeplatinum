@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
-#include "overlay016/struct_ov16_0224B9DC_decl.h"
+#include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -966,7 +966,7 @@ static void ov16_0223C210 (UnkStruct_0207ADB4 * param0)
     int v0;
     int v1;
     int v2;
-    UnkStruct_ov16_0224B9DC * v3;
+    BattleContext * v3;
     Pokemon * v4;
 
     v0 = ov16_0223E22C(param0);

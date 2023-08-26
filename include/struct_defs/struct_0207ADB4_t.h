@@ -32,7 +32,7 @@
 #include "overlay010/struct_ov10_0221F800.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay016/struct_ov16_0223E0C8.h"
-#include "overlay016/struct_ov16_0224B9DC_decl.h"
+#include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 #include "overlay016/struct_ov16_02268520.h"
 #include "overlay016/struct_ov16_02268A14_decl.h"
@@ -53,7 +53,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_0201CD38 * unk_24;
     UnkStruct_02002F38 * unk_28;
     u32 unk_2C;
-    UnkStruct_ov16_0224B9DC * unk_30;
+    BattleContext * unk_30;
     UnkStruct_ov16_0225BFFC * unk_34[4];
     int unk_44;
     UnkStruct_02025E6C * unk_48[4];

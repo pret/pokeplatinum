@@ -19,7 +19,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "overlay016/struct_ov16_0224B9DC_decl.h"
+#include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 #include "overlay016/struct_ov16_02268A14_decl.h"
 #include "overlay016/struct_ov16_0226D160_decl.h"
@@ -3375,7 +3375,7 @@ static void ov16_02260C00 (UnkStruct_0201CD38 * param0, void * param1)
 static void ov16_02260DB0 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov16_0225D698 * v0 = (UnkStruct_ov16_0225D698 *)param1;
-    UnkStruct_ov16_0224B9DC * v1;
+    BattleContext * v1;
     int v2;
     u32 v3;
 
@@ -3563,7 +3563,7 @@ static void ov16_02260F14 (UnkStruct_0201CD38 * param0, void * param1)
 static void ov16_022610A8 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov16_0225D708 * v0 = (UnkStruct_ov16_0225D708 *)param1;
-    UnkStruct_ov16_0224B9DC * v1;
+    BattleContext * v1;
     int v2;
 
     v1 = ov16_0223DF10(v0->unk_00);

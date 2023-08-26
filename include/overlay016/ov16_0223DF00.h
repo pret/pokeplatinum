@@ -27,7 +27,7 @@
 #include "overlay006/battle_params.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay016/struct_ov16_0223E0C8.h"
-#include "overlay016/struct_ov16_0224B9DC_decl.h"
+#include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 #include "overlay016/struct_ov16_0225C300.h"
 #include "overlay016/struct_ov16_02268520.h"
@@ -39,7 +39,7 @@
 UnkStruct_02018340 * ov16_0223DF00(UnkStruct_0207ADB4 * param0);
 UnkStruct_0205AA50 * ov16_0223DF04(UnkStruct_0207ADB4 * param0, int param1);
 u32 ov16_0223DF0C(UnkStruct_0207ADB4 * param0);
-UnkStruct_ov16_0224B9DC * ov16_0223DF10(UnkStruct_0207ADB4 * param0);
+BattleContext * ov16_0223DF10(UnkStruct_0207ADB4 * param0);
 UnkStruct_ov16_0225BFFC * ov16_0223DF14(UnkStruct_0207ADB4 * param0, int param1);
 int ov16_0223DF1C(UnkStruct_0207ADB4 * param0);
 Party * ov16_0223DF20(UnkStruct_0207ADB4 * param0, int param1);
