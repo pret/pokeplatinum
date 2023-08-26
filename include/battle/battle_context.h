@@ -4,8 +4,8 @@
 #include "constants/battle.h"
 #include "constants/pokemon.h"
 
-#include "overlay014/struct_ov14_0221FC20_decl.h"
-#include "overlay014/struct_ov14_0221FC20_t.h"
+#include "battle/ai_context.h"
+
 #include "overlay016/struct_ov16_0224B7CC_decl.h"
 #include "overlay016/struct_ov16_02252060_decl.h"
 #include "overlay016/struct_ov16_02252060_t.h"
@@ -188,7 +188,7 @@ typedef struct BattleContext {
     SelfTurnFlags selfTurnFlags[MAX_BATTLERS];
     MoveFailFlags moveFailFlags[MAX_BATTLERS];
 
-    UnkStruct_ov14_0221FC20 aiData;         // has the move and item data tables
+    AIContext aiContext;         // has the move and item data tables
     u32 *aiScriptTemp;
     u32 aiScriptCursor;
 

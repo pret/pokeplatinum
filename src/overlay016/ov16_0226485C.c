@@ -1685,7 +1685,7 @@ void ov16_02266B78 (UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStru
         if (param1->movePower) {
             param2->unk_08 = param1->movePower;
         } else {
-            param2->unk_08 = param1->aiData.unk_8A[param7].unk_03;
+            param2->unk_08 = param1->aiContext.moveTable[param7].unk_03;
         }
 
         param2->unk_0C = param1->battleMons[param5].unk_35;

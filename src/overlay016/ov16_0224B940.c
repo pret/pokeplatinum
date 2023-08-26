@@ -9,12 +9,12 @@
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
-#include "overlay014/struct_ov14_0221FC20_decl.h"
+
 #include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 
 #include "struct_defs/trainer_data.h"
-#include "overlay014/struct_ov14_0221FC20_t.h"
+#include "battle/ai_context.h"
 #include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0224DDA8.h"
 #include "overlay016/struct_ov16_0225C300.h"
@@ -182,8 +182,8 @@ void * ov16_0224B940 (UnkStruct_0207ADB4 * param0)
     ov16_022542B8(param0, v0);
     ov16_02251604(param0, v0);
 
-    MoveTable_Load(&v0->aiData.unk_8A);
-    v0->aiData.unk_1DCC = sub_0207D388(5);
+    MoveTable_Load(&v0->aiContext.moveTable);
+    v0->aiContext.itemTable = sub_0207D388(5);
 
     return v0;
 }
@@ -207,7 +207,7 @@ int ov16_0224B990 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
 void ov16_0224B9DC (BattleContext * param0)
 {
-    Heap_FreeToHeap(param0->aiData.unk_1DCC);
+    Heap_FreeToHeap(param0->aiContext.itemTable);
     Heap_FreeToHeap(param0);
 }
 
@@ -1875,7 +1875,7 @@ static void ov16_0224DDA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v0 = (UnkStruct_ov16_0224DDA8 *)&param1->battlerActions[param1->battlerIdAttacker][2];
 
     if (ov16_0223E208(param0, param1->battlerIdAttacker)) {
-        switch (param1->aiData.unk_7D[param1->battlerIdAttacker >> 1]) {
+        switch (param1->aiContext.usedItemType[param1->battlerIdAttacker >> 1]) {
         case 0:
             v1 = (0 + 289);
             break;
@@ -1883,16 +1883,16 @@ static void ov16_0224DDA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             v1 = (0 + 267);
             break;
         case 2:
-            if ((param1->aiData.unk_7F[param1->battlerIdAttacker >> 1] & 1) && (param1->aiData.unk_7F[param1->battlerIdAttacker >> 1] & 0x3e)) {
+            if ((param1->aiContext.usedItemCondition[param1->battlerIdAttacker >> 1] & 1) && (param1->aiContext.usedItemCondition[param1->battlerIdAttacker >> 1] & 0x3e)) {
                 param1->msgTemp = 6;
             } else {
-                param1->msgTemp = sub_020787EC(param1->aiData.unk_7F[param1->battlerIdAttacker >> 1]);
+                param1->msgTemp = sub_020787EC(param1->aiContext.usedItemCondition[param1->battlerIdAttacker >> 1]);
             }
 
             v1 = (0 + 268);
             break;
         case 3:
-            param1->msgTemp = param1->aiData.unk_7F[param1->battlerIdAttacker >> 1];
+            param1->msgTemp = param1->aiContext.usedItemCondition[param1->battlerIdAttacker >> 1];
             v1 = (0 + 269);
             break;
         case 4:
@@ -1900,7 +1900,7 @@ static void ov16_0224DDA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             break;
         }
 
-        param1->msgItemNumTemp = param1->aiData.unk_82[param1->battlerIdAttacker >> 1];
+        param1->msgItemNumTemp = param1->aiContext.usedItemNums[param1->battlerIdAttacker >> 1];
     } else {
         switch (v0->unk_02) {
         case 1:
@@ -2188,7 +2188,7 @@ static BOOL ov16_0224E458 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         if (param1->moveNumTemp == 286) {
             v0 += ov16_022555A4(param0, param1, 3, param1->battlerIdAttacker, 46);
         } else {
-            switch (param1->aiData.unk_8A[param1->moveNumTemp].unk_08) {
+            switch (param1->aiContext.moveTable[param1->moveNumTemp].unk_08) {
             case 0x8:
             case 0x40:
                 v0 += ov16_022555A4(param0, param1, 9, param1->battlerIdAttacker, 46);
@@ -2250,7 +2250,7 @@ static BOOL ov16_0224E5F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         v0 = 1;
     }
 
-    if (((ov16_022555A4(param0, param1, 8, 0, 13) == 0) && (ov16_022555A4(param0, param1, 8, 0, 76) == 0) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_00 == 151) && (param1->fieldConditionsMask & 0x30))) {
+    if (((ov16_022555A4(param0, param1, 8, 0, 13) == 0) && (ov16_022555A4(param0, param1, 8, 0, 76) == 0) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_00 == 151) && (param1->fieldConditionsMask & 0x30))) {
         v1 = 1;
     }
 
@@ -2263,7 +2263,7 @@ static BOOL ov16_0224E5F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
 static BOOL ov16_0224E6F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
-    if (((param1->aiData.unk_8A[param1->moveNumCurr].unk_08 != 0x10) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_08 != 0x20) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_03) && ((param1->battleStatusMask & 0x8000) == 0) && ((param1->battleStatusMask & 0x20) == 0)) || (param1->moveNumCurr == 86)) {
+    if (((param1->aiContext.moveTable[param1->moveNumCurr].unk_08 != 0x10) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_08 != 0x20) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_03) && ((param1->battleStatusMask & 0x8000) == 0) && ((param1->battleStatusMask & 0x20) == 0)) || (param1->moveNumCurr == 86)) {
         param1->damage = ov16_02254FA8(param0, param1, param1->moveNumCurr, param1->moveType, param1->battlerIdAttacker, param1->battlerIdDefender, param1->damage, &param1->moveStatusFlags);
 
         if (param1->moveStatusFlags & 0x8) {
@@ -2279,7 +2279,7 @@ static BOOL ov16_0224E784 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     int v0;
     int v1;
 
-    v0 = param1->aiData.unk_8A[param1->moveNumCurr].unk_00;
+    v0 = param1->aiContext.moveTable[param1->moveNumCurr].unk_00;
     v1 = 0;
 
     do {
@@ -2410,7 +2410,7 @@ static BOOL ov16_0224E784 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             param1->statusCheckState++;
             break;
         case 7:
-            if ((param1->battleMons[param1->battlerIdAttacker].unk_88.unk_00_8) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_03 == 0)) {
+            if ((param1->battleMons[param1->battlerIdAttacker].unk_88.unk_00_8) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_03 == 0)) {
                 param1->moveFailFlags[param1->battlerIdAttacker].taunted = 1;
                 ov16_02251E1C(param1, 1, (0 + 133));
                 param1->command = 21;
@@ -2659,10 +2659,10 @@ static BOOL ov16_0224EF20 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     } else if (param1->moveType) {
         v6 = param1->moveType;
     } else {
-        v6 = param1->aiData.unk_8A[param4].unk_04;
+        v6 = param1->aiContext.moveTable[param4].unk_04;
     }
 
-    v7 = param1->aiData.unk_8A[param4].unk_02;
+    v7 = param1->aiContext.moveTable[param4].unk_02;
     v2 = param1->battleMons[param2].unk_18[0x6] - 6;
     v3 = 6 - param1->battleMons[param3].unk_18[0x7];
 
@@ -2696,7 +2696,7 @@ static BOOL ov16_0224EF20 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
         v1 = 12;
     }
 
-    v0 = param1->aiData.unk_8A[param4].unk_05;
+    v0 = param1->aiContext.moveTable[param4].unk_05;
 
     if (v0 == 0) {
         return 0;
@@ -2711,7 +2711,7 @@ static BOOL ov16_0224EF20 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     }
 
     if ((ov16_022555A4(param0, param1, 8, 0, 13) == 0) && (ov16_022555A4(param0, param1, 8, 0, 76) == 0)) {
-        if ((param1->fieldConditionsMask & 0x30) && (param1->aiData.unk_8A[param4].unk_00 == 152)) {
+        if ((param1->fieldConditionsMask & 0x30) && (param1->aiContext.moveTable[param4].unk_00 == 152)) {
             v0 = 50;
         }
     }
@@ -2789,7 +2789,7 @@ static BOOL ov16_0224F274 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
         return 0;
     }
 
-    if ((param1->turnFlags[param3].protecting) && (param1->aiData.unk_8A[param4].unk_0B & 0x2)) {
+    if ((param1->turnFlags[param3].protecting) && (param1->aiContext.moveTable[param4].unk_0B & 0x2)) {
         if ((param4 != 174) || (ov16_02255950(param1, param4, param2) == 1)) {
             if ((ov16_0225582C(param1, param4) == 0) || (param1->battleStatusMask & 0x200)) {
                 ov16_02253F20(param0, param1, param2);
@@ -2807,16 +2807,16 @@ static BOOL ov16_0224F274 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     }
 
     if ((ov16_022555A4(param0, param1, 8, 0, 13) == 0) && (ov16_022555A4(param0, param1, 8, 0, 76) == 0)) {
-        if ((param1->fieldConditionsMask & 0x3) && (param1->aiData.unk_8A[param4].unk_00 == 152)) {
+        if ((param1->fieldConditionsMask & 0x3) && (param1->aiContext.moveTable[param4].unk_00 == 152)) {
             param1->moveStatusFlags &= (0x1 ^ 0xffffffff);
         }
 
-        if ((param1->fieldConditionsMask & 0xc0) && (param1->aiData.unk_8A[param4].unk_00 == 260)) {
+        if ((param1->fieldConditionsMask & 0xc0) && (param1->aiContext.moveTable[param4].unk_00 == 260)) {
             param1->moveStatusFlags &= (0x1 ^ 0xffffffff);
         }
     }
 
-    if (((param1->moveStatusFlags & 0x400) == 0) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_08 != 0x80)) {
+    if (((param1->moveStatusFlags & 0x400) == 0) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_08 != 0x80)) {
         if ((((param1->battleStatusMask & 0x4) == 0) && (param1->battleMons[param3].unk_80 & 0x40)) || (((param1->battleStatusMask & 0x80000) == 0) && (param1->battleMons[param3].unk_80 & 0x20000000)) || (((param1->battleStatusMask & 0x8) == 0) && (param1->battleMons[param3].unk_80 & 0x80)) || (((param1->battleStatusMask & 0x10) == 0) && (param1->battleMons[param3].unk_80 & 0x40000))) {
             param1->moveStatusFlags |= 0x10000;
         }
@@ -2837,7 +2837,7 @@ static BOOL ov16_0224F460 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         return 0;
     }
 
-    if (((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && (param1->turnFlags[param1->battlerIdDefender].magicCoatActive) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_0B & 0x4)) {
+    if (((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && (param1->turnFlags[param1->battlerIdDefender].magicCoatActive) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_0B & 0x4)) {
         param1->turnFlags[param1->battlerIdDefender].magicCoatActive = 0;
         param1->moveNumProtect[param1->battlerIdAttacker] = 0;
         param1->moveNumPrevByBattler[param1->battlerIdAttacker] = param1->moveNumTemp;
@@ -2853,7 +2853,7 @@ static BOOL ov16_0224F460 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     for (v0 = 0; v0 < v2; v0++) {
         v1 = param1->monSpeedOrder[v0];
 
-        if (((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && (param1->turnFlags[v1].snatching) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_0B & 0x8)) {
+        if (((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && (param1->turnFlags[v1].snatching) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_0B & 0x8)) {
             param1->msgBattlerIdTemp = v1;
             param1->turnFlags[v1].snatching = 0;
 
@@ -3108,7 +3108,7 @@ static void ov16_0224F8EC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             param1->command = 21;
             param1->commandNext = 28;
         } else {
-            if (param1->aiData.unk_8A[param1->moveNumCurr].unk_00 == 101) {
+            if (param1->aiContext.moveTable[param1->moveNumCurr].unk_00 == 101) {
                 if ((param1->battleMons[param1->battlerIdDefender].unk_4C + param1->damage) <= 0) {
                     param1->damage = (param1->battleMons[param1->battlerIdDefender].unk_4C - 1) * -1;
                 }
@@ -3142,13 +3142,13 @@ static void ov16_0224F8EC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                 param1->battleMons[param1->battlerIdDefender].unk_7C++;
             }
 
-            if (param1->aiData.unk_8A[param1->moveNumCurr].unk_02 == 0) {
+            if (param1->aiContext.moveTable[param1->moveNumCurr].unk_02 == 0) {
                 param1->turnFlags[param1->battlerIdDefender].physicalDamageTakenByAttacker[param1->battlerIdAttacker] = param1->damage;
                 param1->turnFlags[param1->battlerIdDefender].physicalDamageLastAttacker = param1->battlerIdAttacker;
                 param1->turnFlags[param1->battlerIdDefender].physicalDamageAttackerMask |= sub_020787CC(param1->battlerIdAttacker);
                 param1->selfTurnFlags[param1->battlerIdDefender].physicalDamageTaken = param1->damage;
                 param1->selfTurnFlags[param1->battlerIdDefender].physicalDamageTakenLastAttacker = param1->battlerIdAttacker;
-            } else if (param1->aiData.unk_8A[param1->moveNumCurr].unk_02 == 1) {
+            } else if (param1->aiContext.moveTable[param1->moveNumCurr].unk_02 == 1) {
                 param1->turnFlags[param1->battlerIdDefender].specialDamageTakenByAttacker[param1->battlerIdAttacker] = param1->damage;
                 param1->turnFlags[param1->battlerIdDefender].specialDamageLastAttacker = param1->battlerIdAttacker;
                 param1->turnFlags[param1->battlerIdDefender].specialDamageAttackerMask |= sub_020787CC(param1->battlerIdAttacker);
@@ -3398,7 +3398,7 @@ static void ov16_0224FEE4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         } else if (param1->moveType) {
             v3 = param1->moveType;
         } else {
-            v3 = param1->aiData.unk_8A[param1->moveNumCurr].unk_04;
+            v3 = param1->aiContext.moveTable[param1->moveNumCurr].unk_04;
         }
 
         param1->afterMoveEffectState++;
@@ -3520,7 +3520,7 @@ static void ov16_02250298 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     ov16_02250FF4(param0, param1);
 
-    if ((param1->aiData.unk_8A[param1->moveNumCurr].unk_08 == 0x4) && ((param1->battleStatusMask & 0x2) == 0) && (param1->battlerIdCounter < ov16_0223DF1C(param0))) {
+    if ((param1->aiContext.moveTable[param1->moveNumCurr].unk_08 == 0x4) && ((param1->battleStatusMask & 0x2) == 0) && (param1->battlerIdCounter < ov16_0223DF1C(param0))) {
         param1->multiHitCheckFlags = (0x1 | 0x4 | 0x8);
         {
             int v0;
@@ -3544,7 +3544,7 @@ static void ov16_02250298 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             } while (param1->battlerIdCounter < ov16_0223DF1C(param0));
         }
         ov16_02266AA0(param0);
-    } else if ((param1->aiData.unk_8A[param1->moveNumCurr].unk_08 == 0x8) && ((param1->battleStatusMask & 0x2) == 0) && (param1->battlerIdCounter < ov16_0223DF1C(param0))) {
+    } else if ((param1->aiContext.moveTable[param1->moveNumCurr].unk_08 == 0x8) && ((param1->battleStatusMask & 0x2) == 0) && (param1->battlerIdCounter < ov16_0223DF1C(param0))) {
         param1->multiHitCheckFlags = (0x1 | 0x4 | 0x8);
         {
             int v4;
@@ -4042,7 +4042,7 @@ static BOOL ov16_02250DE4 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     if ((param1->battleMons[param2].unk_0C[param5] == 174) && (ov16_02255950(param1, param1->battleMons[param2].unk_0C[param5], param2) == 0)) {
         *param4 = 0x10;
     } else {
-        *param4 = param1->aiData.unk_8A[param1->battleMons[param2].unk_0C[param5]].unk_08;
+        *param4 = param1->aiContext.moveTable[param1->battleMons[param2].unk_0C[param5]].unk_08;
     }
 
     if (param3 & 0x2) {
@@ -4154,10 +4154,10 @@ static void ov16_02250FF4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     } else if (param1->moveType) {
         v1 = param1->moveType;
     } else {
-        v1 = param1->aiData.unk_8A[param1->moveNumCurr].unk_04;
+        v1 = param1->aiContext.moveTable[param1->moveNumCurr].unk_04;
     }
 
-    v0 = param1->aiData.unk_8A[param1->moveNumTemp].unk_0B;
+    v0 = param1->aiContext.moveTable[param1->moveNumTemp].unk_0B;
 
     if ((v0 & 0x10) && ((param1->battleStatusMask & 0x100000) == 0) && (param1->battlerIdDefender != 0xff) && (param1->battleStatusMask2 & 0x4)) {
         param1->moveNumCopied[param1->battlerIdDefender] = param1->moveNumTemp;
@@ -4187,7 +4187,7 @@ static void ov16_02250FF4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             }
 
             if ((param1->battleStatusMask2 & 0x40) && ((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0)) {
-                switch (param1->aiData.unk_8A[param1->moveNumCurr].unk_08) {
+                switch (param1->aiContext.moveTable[param1->moveNumCurr].unk_08) {
                 case 0x10:
                 case 0x20:
                 case 0x40:
@@ -4282,7 +4282,7 @@ static BOOL ov16_022512F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v2 = ov16_02258ACC(param1, param1->battlerIdAttacker, 0);
 
     if (param1->battlerIdDefender != 0xff) {
-        if ((v1 == 56) && ((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && ((param1->selfTurnFlags[param1->battlerIdDefender].physicalDamageTaken) || (param1->selfTurnFlags[param1->battlerIdDefender].specialDamageTaken)) && ((ov16_0223F4BC(param0) % 100) < v2) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_0B & 0x20) && (param1->battleMons[param1->battlerIdDefender].unk_4C)) {
+        if ((v1 == 56) && ((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && ((param1->selfTurnFlags[param1->battlerIdDefender].physicalDamageTaken) || (param1->selfTurnFlags[param1->battlerIdDefender].specialDamageTaken)) && ((ov16_0223F4BC(param0) % 100) < v2) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_0B & 0x20) && (param1->battleMons[param1->battlerIdDefender].unk_4C)) {
             param1->battlerIdAddlEffect = param1->battlerIdDefender;
             param1->addlEffectType = 2;
 
@@ -4369,7 +4369,7 @@ static BOOL ov16_0225143C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             param1->afterMoveHitCheckState++;
             break;
         case 2:
-            if ((v3 == 98) && (ov16_02255A4C(param1, param1->battlerIdAttacker) != 98) && ((param1->battleStatusMask2 & 0x10) == 0) && (param1->battleStatusMask & 0x2000) && (param1->aiData.unk_8A[param1->moveNumCurr].unk_02 != 2) && (param1->battleMons[param1->battlerIdAttacker].unk_4C)) {
+            if ((v3 == 98) && (ov16_02255A4C(param1, param1->battlerIdAttacker) != 98) && ((param1->battleStatusMask2 & 0x10) == 0) && (param1->battleStatusMask & 0x2000) && (param1->aiContext.moveTable[param1->moveNumCurr].unk_02 != 2) && (param1->battleMons[param1->battlerIdAttacker].unk_4C)) {
                 param1->hpCalcTemp = ov16_022563F8(param1->battleMons[param1->battlerIdAttacker].unk_50 * -1, 10);
                 param1->msgBattlerIdTemp = param1->battlerIdAttacker;
                 ov16_02251E1C(param1, 1, (0 + 214));
@@ -4398,7 +4398,7 @@ static void ov16_02251604 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     u32 v2 = ov16_0223DF0C(param0);
     u16 v3;
 
-    MI_CpuClear32(&param1->aiData, sizeof(UnkStruct_ov14_0221FC20));
+    MI_CpuClear32(&param1->aiContext, sizeof(AIContext));
 
     if ((v2 & 0x1) && ((v2 & (0x4 | 0x80 | 0x20 | 0x40 | 0x200)) == 0)) {
         for (v1 = 0; v1 < 4; v1++) {
@@ -4407,8 +4407,8 @@ static void ov16_02251604 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                     v3 = ov16_0223F700(param0, v1, v0);
 
                     if (v3 != 0) {
-                        param1->aiData.unk_48[v1 >> 1][param1->aiData.unk_79[v1 >> 1]] = v3;
-                        param1->aiData.unk_79[v1 >> 1]++;
+                        param1->aiContext.trainerItems[v1 >> 1][param1->aiContext.trainerItemCounts[v1 >> 1]] = v3;
+                        param1->aiContext.trainerItemCounts[v1 >> 1]++;
                     }
                 }
             }
