@@ -17,7 +17,7 @@
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0224DDA8.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -295,7 +295,7 @@ static void ov16_0224BB28 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     int v1;
     int v2;
     int v3;
-    UnkStruct_ov16_0225C300 v4;
+    BattleMessage v4;
 
     v1 = ov16_0223DF1C(param0);
     v2 = ov16_0223DF0C(param0);
@@ -431,8 +431,8 @@ static void ov16_0224BB28 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                         break;
                     case 2:
                         if (ov16_0223DF0C(param0) & (0x4 | 0x80)) {
-                            v4.unk_02 = 593;
-                            v4.unk_01 = 0;
+                            v4.id = 593;
+                            v4.tags = 0;
                             ov16_02266168(param0, v0, v4);
                             param1->battlerCommandState[v0] = 15;
                             param1->nextCommandState[v0] = 0;
@@ -572,8 +572,8 @@ static void ov16_0224BB28 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                     ov16_0223F720(param0, 1);
                     ov16_0225B444(param0, ov16_0223DF10(param0));
                 } else {
-                    v4.unk_01 = 0;
-                    v4.unk_02 = 793;
+                    v4.tags = 0;
+                    v4.id = 793;
                     ov16_02266168(param0, v0, v4);
                     param1->battlerCommandState[v0] = 15;
                     param1->nextCommandState[v0] = 0;
@@ -636,9 +636,9 @@ static void ov16_0224BB28 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             }
             break;
         case 16:
-            v4.unk_01 = 2;
-            v4.unk_02 = 608;
-            v4.unk_04[0] = ov16_02255560(param1, v0);
+            v4.tags = 2;
+            v4.id = 608;
+            v4.params[0] = ov16_02255560(param1, v0);
             ov16_02266168(param0, v0, v4);
             param1->battlerCommandState[v0] = 15;
             param1->nextCommandState[v0] = 13;
@@ -1046,9 +1046,9 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                     if (--param1->fieldConditions.wishTurns[v1] == 0) {
                         if (param1->battleMons[v1].curHP) {
                             param1->msgBattlerIdTemp = v1;
-                            param1->msgBuffer.unk_01 = 2;
-                            param1->msgBuffer.unk_02 = 533;
-                            param1->msgBuffer.unk_04[0] = v1 | (param1->fieldConditions.wishTarget[v1] << 8);
+                            param1->msgBuffer.tags = 2;
+                            param1->msgBuffer.id = 533;
+                            param1->msgBuffer.params[0] = v1 | (param1->fieldConditions.wishTarget[v1] << 8);
                             param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v1].maxHP, 2);
                             ov16_02251E1C(param1, 1, (0 + 136));
                             param1->commandNext = param1->command;
@@ -1073,8 +1073,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         case 7:
             if (param1->fieldConditionsMask & 0x3) {
                 if (param1->fieldConditionsMask & 0x2) {
-                    param1->msgBuffer.unk_02 = 801;
-                    param1->msgBuffer.unk_01 = 0;
+                    param1->msgBuffer.id = 801;
+                    param1->msgBuffer.tags = 0;
                     ov16_02251E1C(param1, 1, (0 + 104));
                     param1->commandNext = param1->command;
                     param1->command = 21;
@@ -1084,8 +1084,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                         param1->commandNext = param1->command;
                         param1->command = 21;
                     } else {
-                        param1->msgBuffer.unk_02 = 801;
-                        param1->msgBuffer.unk_01 = 0;
+                        param1->msgBuffer.id = 801;
+                        param1->msgBuffer.tags = 0;
                         ov16_02251E1C(param1, 1, (0 + 104));
                         param1->commandNext = param1->command;
                         param1->command = 21;
@@ -1101,8 +1101,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         case 8:
             if (param1->fieldConditionsMask & 0xc) {
                 if (param1->fieldConditionsMask & 0x8) {
-                    param1->msgBuffer.unk_02 = 805;
-                    param1->msgBuffer.unk_01 = 0;
+                    param1->msgBuffer.id = 805;
+                    param1->msgBuffer.tags = 0;
                     ov16_02251E1C(param1, 1, (0 + 104));
                     param1->commandNext = param1->command;
                     param1->command = 21;
@@ -1112,8 +1112,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                         param1->commandNext = param1->command;
                         param1->command = 21;
                     } else {
-                        param1->msgBuffer.unk_02 = 805;
-                        param1->msgBuffer.unk_01 = 0;
+                        param1->msgBuffer.id = 805;
+                        param1->msgBuffer.tags = 0;
                         ov16_02251E1C(param1, 1, (0 + 104));
                         param1->commandNext = param1->command;
                         param1->command = 21;
@@ -1129,8 +1129,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         case 9:
             if (param1->fieldConditionsMask & 0x30) {
                 if (param1->fieldConditionsMask & 0x20) {
-                    param1->msgBuffer.unk_02 = 808;
-                    param1->msgBuffer.unk_01 = 0;
+                    param1->msgBuffer.id = 808;
+                    param1->msgBuffer.tags = 0;
                     ov16_02251E1C(param1, 1, (0 + 104));
                     param1->commandNext = param1->command;
                     param1->command = 21;
@@ -1140,8 +1140,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                         param1->commandNext = param1->command;
                         param1->command = 21;
                     } else {
-                        param1->msgBuffer.unk_02 = 808;
-                        param1->msgBuffer.unk_01 = 0;
+                        param1->msgBuffer.id = 808;
+                        param1->msgBuffer.tags = 0;
                         ov16_02251E1C(param1, 1, (0 + 104));
                         param1->commandNext = param1->command;
                         param1->command = 21;
@@ -1157,8 +1157,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         case 10:
             if (param1->fieldConditionsMask & 0xc0) {
                 if (param1->fieldConditionsMask & 0x80) {
-                    param1->msgBuffer.unk_02 = 811;
-                    param1->msgBuffer.unk_01 = 0;
+                    param1->msgBuffer.id = 811;
+                    param1->msgBuffer.tags = 0;
                     ov16_02251E1C(param1, 1, (0 + 104));
                     param1->commandNext = param1->command;
                     param1->command = 21;
@@ -1168,8 +1168,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                         param1->commandNext = param1->command;
                         param1->command = 21;
                     } else {
-                        param1->msgBuffer.unk_02 = 811;
-                        param1->msgBuffer.unk_01 = 0;
+                        param1->msgBuffer.id = 811;
+                        param1->msgBuffer.tags = 0;
                         ov16_02251E1C(param1, 1, (0 + 104));
                         param1->commandNext = param1->command;
                         param1->command = 21;
@@ -1184,8 +1184,8 @@ static void ov16_0224C794 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             break;
         case 11:
             if (param1->fieldConditionsMask & 0x8000) {
-                param1->msgBuffer.unk_02 = 813;
-                param1->msgBuffer.unk_01 = 0;
+                param1->msgBuffer.id = 813;
+                param1->msgBuffer.tags = 0;
                 ov16_02251E1C(param1, 1, (0 + 104));
                 param1->commandNext = param1->command;
                 param1->command = 21;
@@ -1731,10 +1731,10 @@ static void ov16_0224D9C4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             if (param1->fieldConditions.futureSightTurns[v2]) {
                 if ((--param1->fieldConditions.futureSightTurns[v2] == 0) && (param1->battleMons[v2].curHP != 0)) {
                     param1->sideConditionsMask[ov16_0223E208(param0, v2)] &= (0x10 ^ 0xffffffff);
-                    param1->msgBuffer.unk_02 = 475;
-                    param1->msgBuffer.unk_01 = 10;
-                    param1->msgBuffer.unk_04[0] = ov16_02255560(param1, v2);
-                    param1->msgBuffer.unk_04[1] = param1->fieldConditions.futureSightMoveNum[v2];
+                    param1->msgBuffer.id = 475;
+                    param1->msgBuffer.tags = 10;
+                    param1->msgBuffer.params[0] = ov16_02255560(param1, v2);
+                    param1->msgBuffer.params[1] = param1->fieldConditions.futureSightMoveNum[v2];
                     param1->msgBattlerIdTemp = v2;
                     param1->msgBattlerIdAttacker = param1->fieldConditions.futureSightAttackerId[v2];
                     param1->msgMoveNumTemp = param1->fieldConditions.futureSightMoveNum[v2];

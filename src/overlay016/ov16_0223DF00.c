@@ -37,7 +37,7 @@
 #include "struct_defs/struct_0207ADB4_t.h"
 #include "overlay006/battle_params.h"
 #include "overlay016/struct_ov16_0223E0C8.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 #include "overlay016/struct_ov16_022674C4.h"
 #include "overlay016/struct_ov16_02268520.h"
 
@@ -204,11 +204,11 @@ void ov16_0223F9A0(UnkStruct_0207ADB4 * param0, int param1);
 BOOL ov16_0223F9E0(UnkStruct_0207ADB4 * param0, int param1);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3, int param4);
-u8 ov16_0223FB24(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, UnkStruct_ov16_0225C300 * param2, int param3);
-u8 ov16_0223FB78(UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, UnkStruct_ov16_0225C300 * param3, int param4, int param5, int param6, int param7, int param8);
-static void ov16_0223FBE8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 * param1);
-static void ov16_0223FDE4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 * param1);
-static void ov16_02240584(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, UnkStruct_ov16_0225C300 * param2);
+u8 ov16_0223FB24(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2, int param3);
+u8 ov16_0223FB78(UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
+static void ov16_0223FBE8(UnkStruct_0207ADB4 * param0, BattleMessage * param1);
+static void ov16_0223FDE4(UnkStruct_0207ADB4 * param0, BattleMessage * param1);
+static void ov16_02240584(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2);
 static BOOL ov16_022405A4(UnkStruct_0201D738 * param0, u16 param1);
 static void ov16_02240460(UnkStruct_0207ADB4 * param0, u32 param1, int param2);
 static void ov16_02240484(UnkStruct_0207ADB4 * param0, u32 param1, int param2);
@@ -1805,7 +1805,7 @@ u8 ov16_0223F9FC (UnkStruct_0207ADB4 * param0, int param1, int param2, int param
     return v1;
 }
 
-u8 ov16_0223FB24 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, UnkStruct_ov16_0225C300 * param2, int param3)
+u8 ov16_0223FB24 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2, int param3)
 {
     UnkStruct_0205AA50 * v0 = ov16_0223DF04(param0, 0);
 
@@ -1818,7 +1818,7 @@ u8 ov16_0223FB24 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, UnkS
     return sub_0201D738(v0, 1, param0->unk_18, 0, 0, param3, ov16_022405A4);
 }
 
-u8 ov16_0223FB78 (UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, UnkStruct_ov16_0225C300 * param3, int param4, int param5, int param6, int param7, int param8)
+u8 ov16_0223FB78 (UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8)
 {
     int v0;
 
@@ -1839,25 +1839,25 @@ u8 ov16_0223FB78 (UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkS
     return sub_0201D738(param1, 0, param0->unk_18, param4 + v0, param5, param8, ov16_022405A4);
 }
 
-static void ov16_0223FBE8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 * param1)
+static void ov16_0223FBE8 (UnkStruct_0207ADB4 * param0, BattleMessage * param1)
 {
     u32 v0;
 
     v0 = ov16_0223DF0C(param0);
 
-    if (param1->unk_01 & 0x80) {
+    if (param1->tags & 0x80) {
         return;
     }
 
-    if (param1->unk_01 & 0x40) {
-        if (ov16_0223E208(param0, param1->unk_20)) {
-            param1->unk_02++;
+    if (param1->tags & 0x40) {
+        if (ov16_0223E208(param0, param1->battlerId)) {
+            param1->id++;
         }
 
         return;
     }
 
-    switch (param1->unk_01 & 0x3f) {
+    switch (param1->tags & 0x3f) {
     case 0:
     case 3:
     case 4:
@@ -1883,8 +1883,8 @@ static void ov16_0223FBE8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 
     case 60:
         break;
     case 1:
-        if (ov16_0223E208(param0, param1->unk_04[0] & 0xff)) {
-            param1->unk_02++;
+        if (ov16_0223E208(param0, param1->params[0] & 0xff)) {
+            param1->id++;
         }
         break;
     case 2:
@@ -1910,27 +1910,27 @@ static void ov16_0223FBE8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 
     case 45:
     case 46:
     case 47:
-        if (ov16_0223E208(param0, param1->unk_04[0] & 0xff)) {
-            param1->unk_02++;
+        if (ov16_0223E208(param0, param1->params[0] & 0xff)) {
+            param1->id++;
 
             if (v0 & 0x1) {
-                param1->unk_02++;
+                param1->id++;
             }
         }
         break;
     case 20:
-        if (ov16_0223E208(param0, param1->unk_04[1] & 0xff)) {
-            param1->unk_02++;
+        if (ov16_0223E208(param0, param1->params[1] & 0xff)) {
+            param1->id++;
         }
         break;
     case 21:
     case 23:
     case 48:
-        if (ov16_0223E208(param0, param1->unk_04[1] & 0xff)) {
-            param1->unk_02++;
+        if (ov16_0223E208(param0, param1->params[1] & 0xff)) {
+            param1->id++;
 
             if (v0 & 0x1) {
-                param1->unk_02++;
+                param1->id++;
             }
         }
         break;
@@ -1938,22 +1938,22 @@ static void ov16_0223FBE8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 
     case 31:
     case 32:
     case 33:
-        if (ov16_0223E208(param0, param1->unk_04[0] & 0xff)) {
-            param1->unk_02 += 3;
+        if (ov16_0223E208(param0, param1->params[0] & 0xff)) {
+            param1->id += 3;
 
             if (v0 & 0x1) {
-                param1->unk_02 += 2;
+                param1->id += 2;
             }
 
-            if (ov16_0223E208(param0, param1->unk_04[1] & 0xff)) {
-                param1->unk_02++;
+            if (ov16_0223E208(param0, param1->params[1] & 0xff)) {
+                param1->id++;
             }
         } else {
-            if (ov16_0223E208(param0, param1->unk_04[1] & 0xff)) {
-                param1->unk_02++;
+            if (ov16_0223E208(param0, param1->params[1] & 0xff)) {
+                param1->id++;
 
                 if (v0 & 0x1) {
-                    param1->unk_02++;
+                    param1->id++;
                 }
             }
         }
@@ -1964,22 +1964,22 @@ static void ov16_0223FBE8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 
     case 53:
     case 54:
     case 55:
-        if (ov16_0223E208(param0, param1->unk_04[0] & 0xff)) {
-            param1->unk_02 += 3;
+        if (ov16_0223E208(param0, param1->params[0] & 0xff)) {
+            param1->id += 3;
 
             if (v0 & 0x1) {
-                param1->unk_02 += 2;
+                param1->id += 2;
             }
 
-            if (ov16_0223E208(param0, param1->unk_04[2] & 0xff)) {
-                param1->unk_02++;
+            if (ov16_0223E208(param0, param1->params[2] & 0xff)) {
+                param1->id++;
             }
         } else {
-            if (ov16_0223E208(param0, param1->unk_04[2] & 0xff)) {
-                param1->unk_02++;
+            if (ov16_0223E208(param0, param1->params[2] & 0xff)) {
+                param1->id++;
 
                 if (v0 & 0x1) {
-                    param1->unk_02++;
+                    param1->id++;
                 }
             }
         }
@@ -1990,278 +1990,278 @@ static void ov16_0223FBE8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 
     }
 }
 
-static void ov16_0223FDE4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225C300 * param1)
+static void ov16_0223FDE4 (UnkStruct_0207ADB4 * param0, BattleMessage * param1)
 {
-    switch (param1->unk_01 & 0x3f) {
+    switch (param1->tags & 0x3f) {
     case 0:
     case 1:
         break;
     case 2:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
+        ov16_02240460(param0, 0, param1->params[0]);
         break;
     case 3:
     case 20:
-        ov16_02240484(param0, 0, param1->unk_04[0]);
+        ov16_02240484(param0, 0, param1->params[0]);
         break;
     case 4:
-        ov16_022404F8(param0, 0, param1->unk_04[0]);
+        ov16_022404F8(param0, 0, param1->params[0]);
         break;
     case 5:
-        ov16_02240490(param0, 0, param1->unk_04[0]);
+        ov16_02240490(param0, 0, param1->params[0]);
         break;
     case 6:
-        ov16_0224049C(param0, 0, param1->unk_04[0]);
+        ov16_0224049C(param0, 0, param1->params[0]);
         break;
     case 7:
-        ov16_022404B4(param0, 0, param1->unk_04[0], param1->unk_1C);
+        ov16_022404B4(param0, 0, param1->params[0], param1->digits);
         break;
     case 8:
-        ov16_0224055C(param0, 0, param1->unk_04[0]);
+        ov16_0224055C(param0, 0, param1->params[0]);
         break;
     case 9:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
         break;
     case 10:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240484(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240484(param0, 1, param1->params[1]);
         break;
     case 11:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
         break;
     case 12:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404F8(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404F8(param0, 1, param1->params[1]);
         break;
     case 13:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404E0(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404E0(param0, 1, param1->params[1]);
         break;
     case 14:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240510(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240510(param0, 1, param1->params[1]);
         break;
     case 15:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240490(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240490(param0, 1, param1->params[1]);
         break;
     case 16:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240534(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240534(param0, 1, param1->params[1]);
         break;
     case 17:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_0224049C(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_0224049C(param0, 1, param1->params[1]);
         break;
     case 18:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
         break;
     case 19:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240574(param0, 1, param1->unk_04[1]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240574(param0, 1, param1->params[1]);
         break;
     case 21:
-        ov16_02240484(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
+        ov16_02240484(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
         break;
     case 22:
-        ov16_02240484(param0, 0, param1->unk_04[0]);
-        ov16_02240484(param0, 1, param1->unk_04[1]);
+        ov16_02240484(param0, 0, param1->params[0]);
+        ov16_02240484(param0, 1, param1->params[1]);
         break;
     case 23:
-        ov16_022404EC(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
+        ov16_022404EC(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
         break;
     case 24:
-        ov16_02240490(param0, 0, param1->unk_04[0]);
-        ov16_02240484(param0, 1, param1->unk_04[1]);
+        ov16_02240490(param0, 0, param1->params[0]);
+        ov16_02240484(param0, 1, param1->params[1]);
         break;
     case 25:
-        ov16_0224049C(param0, 0, param1->unk_04[0]);
-        ov16_0224049C(param0, 1, param1->unk_04[1]);
+        ov16_0224049C(param0, 0, param1->params[0]);
+        ov16_0224049C(param0, 1, param1->params[1]);
         break;
     case 26:
-        ov16_0224055C(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
+        ov16_0224055C(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
         break;
     case 27:
-        ov16_0224055C(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
+        ov16_0224055C(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
         break;
     case 28:
-        ov16_0224055C(param0, 0, param1->unk_04[0]);
-        ov16_02240490(param0, 1, param1->unk_04[1]);
+        ov16_0224055C(param0, 0, param1->params[0]);
+        ov16_02240490(param0, 1, param1->params[1]);
         break;
     case 29:
-        ov16_0224055C(param0, 0, param1->unk_04[0]);
-        ov16_0224049C(param0, 1, param1->unk_04[1]);
+        ov16_0224055C(param0, 0, param1->params[0]);
+        ov16_0224049C(param0, 1, param1->params[1]);
         break;
     case 30:
-        ov16_02240544(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
+        ov16_02240544(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
         break;
     case 31:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
-        ov16_02240484(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
+        ov16_02240484(param0, 2, param1->params[2]);
         break;
     case 32:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
-        ov16_022404EC(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
+        ov16_022404EC(param0, 2, param1->params[2]);
         break;
     case 33:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
-        ov16_02240490(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
+        ov16_02240490(param0, 2, param1->params[2]);
         break;
     case 34:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240484(param0, 1, param1->unk_04[1]);
-        ov16_02240484(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240484(param0, 1, param1->params[1]);
+        ov16_02240484(param0, 2, param1->params[2]);
         break;
     case 35:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240484(param0, 1, param1->unk_04[1]);
-        ov16_0224049C(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240484(param0, 1, param1->params[1]);
+        ov16_0224049C(param0, 2, param1->params[2]);
         break;
     case 36:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
         break;
     case 37:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_02240484(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_02240484(param0, 2, param1->params[2]);
         break;
     case 38:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_02240490(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_02240490(param0, 2, param1->params[2]);
         break;
     case 39:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_022404F8(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_022404F8(param0, 2, param1->params[2]);
         break;
     case 40:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_022404E0(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_022404E0(param0, 2, param1->params[2]);
         break;
     case 41:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_02240504(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_02240504(param0, 2, param1->params[2]);
         break;
     case 42:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_0224049C(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_0224049C(param0, 2, param1->params[2]);
         break;
     case 43:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240490(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240490(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
         break;
     case 44:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240490(param0, 1, param1->unk_04[1]);
-        ov16_02240484(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240490(param0, 1, param1->params[1]);
+        ov16_02240484(param0, 2, param1->params[2]);
         break;
     case 45:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240490(param0, 1, param1->unk_04[1]);
-        ov16_022404F8(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240490(param0, 1, param1->params[1]);
+        ov16_022404F8(param0, 2, param1->params[2]);
         break;
     case 46:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240490(param0, 1, param1->unk_04[1]);
-        ov16_02240504(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240490(param0, 1, param1->params[1]);
+        ov16_02240504(param0, 2, param1->params[2]);
         break;
     case 47:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240574(param0, 1, param1->unk_04[1]);
-        ov16_02240574(param0, 2, param1->unk_04[2]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240574(param0, 1, param1->params[1]);
+        ov16_02240574(param0, 2, param1->params[2]);
         break;
     case 48:
-        ov16_02240490(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
-        ov16_02240538(param0, 2, param1->unk_04[2]);
+        ov16_02240490(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
+        ov16_02240538(param0, 2, param1->params[2]);
         break;
     case 49:
-        ov16_0224055C(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
+        ov16_0224055C(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
         break;
     case 50:
-        ov16_02240544(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
+        ov16_02240544(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
         break;
     case 51:
-        ov16_02240544(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
-        ov16_02240490(param0, 2, param1->unk_04[2]);
+        ov16_02240544(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
+        ov16_02240490(param0, 2, param1->params[2]);
         break;
     case 52:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
-        ov16_02240484(param0, 3, param1->unk_04[3]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
+        ov16_02240484(param0, 3, param1->params[3]);
         break;
     case 53:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
-        ov16_022404EC(param0, 3, param1->unk_04[3]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
+        ov16_022404EC(param0, 3, param1->params[3]);
         break;
     case 54:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_022404EC(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
-        ov16_022404F8(param0, 3, param1->unk_04[3]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_022404EC(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
+        ov16_022404F8(param0, 3, param1->params[3]);
         break;
     case 55:
-        ov16_02240460(param0, 0, param1->unk_04[0]);
-        ov16_02240490(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
-        ov16_02240490(param0, 3, param1->unk_04[3]);
+        ov16_02240460(param0, 0, param1->params[0]);
+        ov16_02240490(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
+        ov16_02240490(param0, 3, param1->params[3]);
         break;
     case 56:
-        ov16_0224055C(param0, 0, param1->unk_04[0]);
-        ov16_02240460(param0, 1, param1->unk_04[1]);
-        ov16_0224055C(param0, 2, param1->unk_04[2]);
-        ov16_02240460(param0, 3, param1->unk_04[3]);
+        ov16_0224055C(param0, 0, param1->params[0]);
+        ov16_02240460(param0, 1, param1->params[1]);
+        ov16_0224055C(param0, 2, param1->params[2]);
+        ov16_02240460(param0, 3, param1->params[3]);
         break;
     case 57:
-        ov16_02240544(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
-        ov16_02240460(param0, 3, param1->unk_04[3]);
+        ov16_02240544(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
+        ov16_02240460(param0, 3, param1->params[3]);
         break;
     case 58:
-        ov16_02240544(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
-        ov16_0224055C(param0, 3, param1->unk_04[3]);
+        ov16_02240544(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
+        ov16_0224055C(param0, 3, param1->params[3]);
         break;
     case 59:
-        ov16_02240544(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
-        ov16_02240544(param0, 2, param1->unk_04[2]);
-        ov16_0224055C(param0, 3, param1->unk_04[3]);
+        ov16_02240544(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
+        ov16_02240544(param0, 2, param1->params[2]);
+        ov16_0224055C(param0, 3, param1->params[3]);
         break;
     case 60:
-        ov16_02240544(param0, 0, param1->unk_04[0]);
-        ov16_0224055C(param0, 1, param1->unk_04[1]);
-        ov16_02240460(param0, 2, param1->unk_04[2]);
-        ov16_02240544(param0, 3, param1->unk_04[3]);
-        ov16_0224055C(param0, 4, param1->unk_04[4]);
-        ov16_02240460(param0, 5, param1->unk_04[5]);
+        ov16_02240544(param0, 0, param1->params[0]);
+        ov16_0224055C(param0, 1, param1->params[1]);
+        ov16_02240460(param0, 2, param1->params[2]);
+        ov16_02240544(param0, 3, param1->params[3]);
+        ov16_0224055C(param0, 4, param1->params[4]);
+        ov16_02240460(param0, 5, param1->params[5]);
         break;
     default:
         GF_ASSERT(0);
@@ -2360,11 +2360,11 @@ static void ov16_02240574 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
     sub_0200BD40(param0->unk_14, param1, param0->unk_64, param2);
 }
 
-static void ov16_02240584 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, UnkStruct_ov16_0225C300 * param2)
+static void ov16_02240584 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2)
 {
     Strbuf* v0;
 
-    v0 = sub_0200B1EC(param1, param2->unk_02);
+    v0 = sub_0200B1EC(param1, param2->id);
 
     sub_0200C388(param0->unk_14, param0->unk_18, v0);
     Strbuf_Free(v0);

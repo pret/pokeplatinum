@@ -45,7 +45,7 @@
 #include "overlay016/struct_ov16_0224B7CC_t.h"
 #include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_t.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
@@ -323,7 +323,7 @@ static void ov16_02248B08(BattleContext * param0, int param1, int param2);
 static void * ov16_02248B10(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 static int ov16_0224A984(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 static void ov16_0224ABEC(BattleContext * param0, UnkStruct_ov16_02241584 * param1);
-static void ov16_0224ACB8(UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_02241584 * param2, UnkStruct_ov16_0225C300 * param3);
+static void ov16_0224ACB8(UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_02241584 * param2, BattleMessage * param3);
 static int ov16_0224B3B8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 static int ov16_0224B3E8(BattleContext * param0, int param1);
 static int ov16_0224B404(BattleContext * param0, int param1);
@@ -1416,7 +1416,7 @@ static BOOL ov16_02241544 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 static BOOL ov16_02241584 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     UnkStruct_ov16_02241584 v0;
-    UnkStruct_ov16_0225C300 v1;
+    BattleMessage v1;
 
     ov16_02248AF0(param1, 1);
     ov16_0224ABEC(param1, &v0);
@@ -1429,13 +1429,13 @@ static BOOL ov16_02241584 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 static BOOL ov16_022415B8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     UnkStruct_ov16_02241584 v0;
-    UnkStruct_ov16_0225C300 v1;
+    BattleMessage v1;
 
     ov16_02248AF0(param1, 1);
     ov16_0224ABEC(param1, &v0);
     ov16_0224ACB8(param0, param1, &v0, &v1);
 
-    v1.unk_01 |= 0x80;
+    v1.tags |= 0x80;
 
     ov16_02265BA0(param0, param1, &v1);
 
@@ -1464,7 +1464,7 @@ static BOOL ov16_02241618 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 static BOOL ov16_02241644 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     UnkStruct_ov16_02241584 v0;
-    UnkStruct_ov16_0225C300 v1;
+    BattleMessage v1;
     int v2;
     int v3;
 
@@ -1475,8 +1475,8 @@ static BOOL ov16_02241644 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov16_0224ABEC(param1, &v0);
     ov16_0224ACB8(param0, param1, &v0, &v1);
 
-    v1.unk_01 |= 0x40;
-    v1.unk_20 = ov16_0224A984(param0, param1, v2);
+    v1.tags |= 0x40;
+    v1.battlerId = ov16_0224A984(param0, param1, v2);
 
     ov16_02265BA0(param0, param1, &v1);
 
@@ -2321,31 +2321,31 @@ static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             if ((param1->addlEffectType == 2) || (param1->addlEffectType == 3)) {
                 ov16_02248AF0(param1, v1);
             } else {
-                param1->msgBuffer.unk_02 = 142;
-                param1->msgBuffer.unk_01 = 12;
-                param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                param1->msgBuffer.unk_04[1] = 0x1 + v3;
+                param1->msgBuffer.id = 142;
+                param1->msgBuffer.tags = 12;
+                param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                param1->msgBuffer.params[1] = 0x1 + v3;
 
                 ov16_02248AF0(param1, v0);
             }
         } else {
             if (param1->addlEffectType == 3) {
-                param1->msgBuffer.unk_02 = 622;
-                param1->msgBuffer.unk_01 = 39;
-                param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                param1->msgBuffer.unk_04[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
-                param1->msgBuffer.unk_04[2] = 0x1 + v3;
+                param1->msgBuffer.id = 622;
+                param1->msgBuffer.tags = 39;
+                param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                param1->msgBuffer.params[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
+                param1->msgBuffer.params[2] = 0x1 + v3;
             } else if (param1->addlEffectType == 5) {
-                param1->msgBuffer.unk_02 = 756;
-                param1->msgBuffer.unk_01 = 45;
-                param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                param1->msgBuffer.unk_04[1] = param1->msgItemNumTemp;
-                param1->msgBuffer.unk_04[2] = 0x1 + v3;
+                param1->msgBuffer.id = 756;
+                param1->msgBuffer.tags = 45;
+                param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                param1->msgBuffer.params[1] = param1->msgItemNumTemp;
+                param1->msgBuffer.params[2] = 0x1 + v3;
             } else {
-                param1->msgBuffer.unk_02 = (v4 == 1 ? 750 : 753);
-                param1->msgBuffer.unk_01 = 12;
-                param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                param1->msgBuffer.unk_04[1] = 0x1 + v3;
+                param1->msgBuffer.id = (v4 == 1 ? 750 : 753);
+                param1->msgBuffer.tags = 12;
+                param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                param1->msgBuffer.params[1] = 0x1 + v3;
             }
 
             v6->statBoosts[0x1 + v3] += v4;
@@ -2358,40 +2358,40 @@ static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         if ((param1->addlEffectFlags & 0x8000000) == 0) {
             if (param1->battlerIdAttacker != param1->battlerIdAddlEffect) {
                 if (param1->sideConditions[ov16_0223E208(param0, param1->battlerIdAddlEffect)].mistTurns) {
-                    param1->msgBuffer.unk_02 = 273;
-                    param1->msgBuffer.unk_01 = 2;
-                    param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                    param1->msgBuffer.id = 273;
+                    param1->msgBuffer.tags = 2;
+                    param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
                     v5 = 1;
                 } else if ((ov16_02255AB4(param1, param1->battlerIdAttacker, param1->battlerIdAddlEffect, 29) == 1) || (ov16_02255AB4(param1, param1->battlerIdAttacker, param1->battlerIdAddlEffect, 73) == 1)) {
                     if (param1->addlEffectType == 3) {
-                        param1->msgBuffer.unk_02 = 727;
-                        param1->msgBuffer.unk_01 = 53;
-                        param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                        param1->msgBuffer.unk_04[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
-                        param1->msgBuffer.unk_04[2] = ov16_02255560(param1, param1->battlerIdAttacker);
-                        param1->msgBuffer.unk_04[3] = param1->battleMons[param1->battlerIdAttacker].ability;
+                        param1->msgBuffer.id = 727;
+                        param1->msgBuffer.tags = 53;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                        param1->msgBuffer.params[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
+                        param1->msgBuffer.params[2] = ov16_02255560(param1, param1->battlerIdAttacker);
+                        param1->msgBuffer.params[3] = param1->battleMons[param1->battlerIdAttacker].ability;
                     } else {
-                        param1->msgBuffer.unk_02 = 669;
-                        param1->msgBuffer.unk_01 = 11;
-                        param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                        param1->msgBuffer.unk_04[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
+                        param1->msgBuffer.id = 669;
+                        param1->msgBuffer.tags = 11;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                        param1->msgBuffer.params[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
                     }
 
                     v5 = 1;
                 } else if (((ov16_02255AB4(param1, param1->battlerIdAttacker, param1->battlerIdAddlEffect, 51) == 1) && ((0x1 + v3) == 0x6)) || ((ov16_02255AB4(param1, param1->battlerIdAttacker, param1->battlerIdAddlEffect, 52) == 1) && ((0x1 + v3) == 0x1))) {
                     if (param1->addlEffectType == 3) {
-                        param1->msgBuffer.unk_02 = 727;
-                        param1->msgBuffer.unk_01 = 53;
-                        param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                        param1->msgBuffer.unk_04[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
-                        param1->msgBuffer.unk_04[2] = ov16_02255560(param1, param1->battlerIdAttacker);
-                        param1->msgBuffer.unk_04[3] = param1->battleMons[param1->battlerIdAttacker].ability;
+                        param1->msgBuffer.id = 727;
+                        param1->msgBuffer.tags = 53;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                        param1->msgBuffer.params[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
+                        param1->msgBuffer.params[2] = ov16_02255560(param1, param1->battlerIdAttacker);
+                        param1->msgBuffer.params[3] = param1->battleMons[param1->battlerIdAttacker].ability;
                     } else {
-                        param1->msgBuffer.unk_02 = 704;
-                        param1->msgBuffer.unk_01 = 39;
-                        param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                        param1->msgBuffer.unk_04[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
-                        param1->msgBuffer.unk_04[2] = 0x1 + v3;
+                        param1->msgBuffer.id = 704;
+                        param1->msgBuffer.tags = 39;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                        param1->msgBuffer.params[1] = param1->battleMons[param1->battlerIdAddlEffect].ability;
+                        param1->msgBuffer.params[2] = 0x1 + v3;
                     }
 
                     v5 = 1;
@@ -2402,10 +2402,10 @@ static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                         ov16_02248AF0(param1, v1);
                         return 0;
                     } else {
-                        param1->msgBuffer.unk_02 = 145;
-                        param1->msgBuffer.unk_01 = 12;
-                        param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                        param1->msgBuffer.unk_04[1] = 0x1 + v3;
+                        param1->msgBuffer.id = 145;
+                        param1->msgBuffer.tags = 12;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                        param1->msgBuffer.params[1] = 0x1 + v3;
                         ov16_02248AF0(param1, v0);
                         return 0;
                     }
@@ -2421,10 +2421,10 @@ static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                     ov16_02248AF0(param1, v1);
                     return 0;
                 } else {
-                    param1->msgBuffer.unk_02 = 145;
-                    param1->msgBuffer.unk_01 = 12;
-                    param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-                    param1->msgBuffer.unk_04[1] = 0x1 + v3;
+                    param1->msgBuffer.id = 145;
+                    param1->msgBuffer.tags = 12;
+                    param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+                    param1->msgBuffer.params[1] = 0x1 + v3;
                     ov16_02248AF0(param1, v0);
                     return 0;
                 }
@@ -2443,17 +2443,17 @@ static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         }
 
         if (param1->addlEffectType == 3) {
-            param1->msgBuffer.unk_02 = 662;
-            param1->msgBuffer.unk_01 = 54;
-            param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAttacker);
-            param1->msgBuffer.unk_04[1] = param1->battleMons[param1->battlerIdAttacker].ability;
-            param1->msgBuffer.unk_04[2] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-            param1->msgBuffer.unk_04[3] = 0x1 + v3;
+            param1->msgBuffer.id = 662;
+            param1->msgBuffer.tags = 54;
+            param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAttacker);
+            param1->msgBuffer.params[1] = param1->battleMons[param1->battlerIdAttacker].ability;
+            param1->msgBuffer.params[2] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+            param1->msgBuffer.params[3] = 0x1 + v3;
         } else {
-            param1->msgBuffer.unk_02 = ((v4 == -1) ? 762 : 765);
-            param1->msgBuffer.unk_01 = 12;
-            param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
-            param1->msgBuffer.unk_04[1] = 0x1 + v3;
+            param1->msgBuffer.id = ((v4 == -1) ? 762 : 765);
+            param1->msgBuffer.tags = 12;
+            param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAddlEffect);
+            param1->msgBuffer.params[1] = 0x1 + v3;
         }
 
         v6->statBoosts[0x1 + v3] += v4;
@@ -3562,14 +3562,14 @@ static BOOL ov16_022438F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             param1->sideConditions[v1].lightScreenTurns += ov16_02258ACC(param1, param1->battlerIdAttacker, 0);
         }
 
-        param1->msgBuffer.unk_01 = 20;
-        param1->msgBuffer.unk_04[0] = param1->moveNumCurr;
-        param1->msgBuffer.unk_04[1] = param1->battlerIdAttacker;
+        param1->msgBuffer.tags = 20;
+        param1->msgBuffer.params[0] = param1->moveNumCurr;
+        param1->msgBuffer.params[1] = param1->battlerIdAttacker;
 
         if (ov16_022554E0(param0, param1, 1, param1->battlerIdAttacker) == 2) {
-            param1->msgBuffer.unk_02 = 192;
+            param1->msgBuffer.id = 192;
         } else {
-            param1->msgBuffer.unk_02 = 190;
+            param1->msgBuffer.id = 190;
         }
     }
 
@@ -3598,14 +3598,14 @@ static BOOL ov16_022439D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             param1->sideConditions[v1].reflectTurns += ov16_02258ACC(param1, param1->battlerIdAttacker, 0);
         }
 
-        param1->msgBuffer.unk_01 = 20;
-        param1->msgBuffer.unk_04[0] = param1->moveNumCurr;
-        param1->msgBuffer.unk_04[1] = param1->battlerIdAttacker;
+        param1->msgBuffer.tags = 20;
+        param1->msgBuffer.params[0] = param1->moveNumCurr;
+        param1->msgBuffer.params[1] = param1->battlerIdAttacker;
 
         if (ov16_022554E0(param0, param1, 1, param1->battlerIdAttacker) == 2) {
-            param1->msgBuffer.unk_02 = 196;
+            param1->msgBuffer.id = 196;
         } else {
-            param1->msgBuffer.unk_02 = 194;
+            param1->msgBuffer.id = 194;
         }
     }
 
@@ -4246,16 +4246,16 @@ static BOOL ov16_02244A0C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     if ((Unk_ov16_0226E57C[param1->battleMons[param1->battlerIdAttacker].moveEffectsData.protectSuccessTurns] >= ov16_0223F4BC(param0)) && (v1)) {
         if (param1->aiContext.moveTable[param1->moveNumCurr].unk_00 == 111) {
             param1->turnFlags[param1->battlerIdAttacker].protecting = 1;
-            param1->msgBuffer.unk_02 = 282;
+            param1->msgBuffer.id = 282;
         }
 
         if (param1->aiContext.moveTable[param1->moveNumCurr].unk_00 == 116) {
             param1->turnFlags[param1->battlerIdAttacker].enduring = 1;
-            param1->msgBuffer.unk_02 = 442;
+            param1->msgBuffer.id = 442;
         }
 
-        param1->msgBuffer.unk_01 = 2;
-        param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAttacker);
+        param1->msgBuffer.tags = 2;
+        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAttacker);
 
         if (param1->battleMons[param1->battlerIdAttacker].moveEffectsData.protectSuccessTurns < NELEMS(Unk_ov16_0226E57C) - 1) {
             param1->battleMons[param1->battlerIdAttacker].moveEffectsData.protectSuccessTurns++;
@@ -4694,9 +4694,9 @@ static BOOL ov16_0224567C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         param1->sideConditionsMask[v1] |= 0x8;
         param1->sideConditions[v1].safeguardTurns = 5;
         param1->sideConditions[v1].safeguardBattlerId = param1->battlerIdAttacker;
-        param1->msgBuffer.unk_01 = 1;
-        param1->msgBuffer.unk_04[0] = param1->battlerIdAttacker;
-        param1->msgBuffer.unk_02 = 198;
+        param1->msgBuffer.tags = 1;
+        param1->msgBuffer.params[0] = param1->battlerIdAttacker;
+        param1->msgBuffer.id = 198;
     }
 
     return 0;
@@ -5006,9 +5006,9 @@ static BOOL ov16_02245D68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     param1->damage = ov16_0225AEB8(param0, param1, param1->damage);
     param1->damage *= -1;
-    param1->msgBuffer.unk_02 = 481;
-    param1->msgBuffer.unk_01 = 2;
-    param1->msgBuffer.unk_04[0] = (param1->battlerIdAttacker | (param1->beatUpCounter << 8));
+    param1->msgBuffer.id = 481;
+    param1->msgBuffer.tags = 2;
+    param1->msgBuffer.params[0] = (param1->battlerIdAttacker | (param1->beatUpCounter << 8));
     param1->beatUpCounter++;
     param1->multiHitCounter = 2;
 
@@ -5288,17 +5288,17 @@ static BOOL ov16_0224650C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v1 = ov16_0223E208(param0, param1->battlerIdDefender);
 
     if ((param1->battleMons[param1->battlerIdDefender].heldItem) && (ov16_02255AB4(param1, param1->battlerIdAttacker, param1->battlerIdDefender, 60) == 1)) {
-        param1->msgBuffer.unk_02 = 714;
-        param1->msgBuffer.unk_01 = 37;
-        param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdDefender);
-        param1->msgBuffer.unk_04[1] = param1->battleMons[param1->battlerIdDefender].ability;
-        param1->msgBuffer.unk_04[2] = param1->moveNumCurr;
+        param1->msgBuffer.id = 714;
+        param1->msgBuffer.tags = 37;
+        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdDefender);
+        param1->msgBuffer.params[1] = param1->battleMons[param1->battlerIdDefender].ability;
+        param1->msgBuffer.params[2] = param1->moveNumCurr;
     } else if (param1->battleMons[param1->battlerIdDefender].heldItem) {
-        param1->msgBuffer.unk_02 = 552;
-        param1->msgBuffer.unk_01 = 33;
-        param1->msgBuffer.unk_04[0] = ov16_02255560(param1, param1->battlerIdAttacker);
-        param1->msgBuffer.unk_04[1] = ov16_02255560(param1, param1->battlerIdDefender);
-        param1->msgBuffer.unk_04[2] = param1->battleMons[param1->battlerIdDefender].heldItem;
+        param1->msgBuffer.id = 552;
+        param1->msgBuffer.tags = 33;
+        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->battlerIdAttacker);
+        param1->msgBuffer.params[1] = ov16_02255560(param1, param1->battlerIdDefender);
+        param1->msgBuffer.params[2] = param1->battleMons[param1->battlerIdDefender].heldItem;
         param1->battleMons[param1->battlerIdDefender].heldItem = 0;
         param1->sideConditions[v1].knockedOffItemBattlers |= sub_020787CC(param1->selectedMonIndex[param1->battlerIdDefender]);
     } else {
@@ -7648,7 +7648,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     int v1;
     UnkStruct_ov16_0224B7CC * v2 = param1;
     Pokemon * v3;
-    UnkStruct_ov16_0225C300 v4;
+    BattleMessage v4;
     int v5;
     int v6;
     UnkStruct_0200B144 * v7;
@@ -7695,7 +7695,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         v11 = 0;
-        v4.unk_02 = 1;
+        v4.id = 1;
 
         if ((GetMonData(v3, MON_DATA_163, NULL)) && (GetMonData(v3, MON_DATA_161, NULL) != 100)) {
             if (v2->unk_04->monsGainingExp[v5] & sub_020787CC(v1)) {
@@ -7721,7 +7721,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
                     v11 = v11 * 150 / 100;
                 }
 
-                v4.unk_02 = 2;
+                v4.id = 2;
             }
 
             v12 = GetMonData(v3, MON_DATA_EXP, NULL);
@@ -7737,9 +7737,9 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         if (v11) {
-            v4.unk_01 = 17;
-            v4.unk_04[0] = v6 | (v1 << 8);
-            v4.unk_04[1] = v11;
+            v4.tags = 17;
+            v4.params[0] = v6 | (v1 << 8);
+            v4.params[1] = v11;
             v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
             v2->unk_30[1] = 30 / 4;
             v2->unk_28++;
@@ -7809,10 +7809,10 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
                 v2->unk_04->levelUpMons |= sub_020787CC(v1);
                 ov16_022661CC(v2->unk_00, v2->unk_04, v6);
 
-                v4.unk_02 = 3;
-                v4.unk_01 = 17;
-                v4.unk_04[0] = v6 | (v1 << 8);
-                v4.unk_04[1] = v13;
+                v4.id = 3;
+                v4.tags = 17;
+                v4.params[0] = v6 | (v1 << 8);
+                v4.params[1] = v13;
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
                 v2->unk_28 = 7;
             }
@@ -7868,16 +7868,16 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         v22 = (UnkStruct_ov16_02248E74 *)v2->unk_04->unk_17C;
 
         for (v0 = 0; v0 < 6; v0++) {
-            v4.unk_02 = 947;
-            v4.unk_01 = 4;
-            v4.unk_04[0] = v19[v0];
+            v4.id = 947;
+            v4.tags = 4;
+            v4.params[0] = v19[v0];
 
             ov16_0223FB78(v2->unk_00, v21, v7, &v4, 0, 16 * v0, 0, 0, 0);
 
-            v4.unk_02 = 948;
-            v4.unk_01 = 7;
-            v4.unk_04[0] = GetMonData(v3, v20[v0], NULL) - v22->unk_00[v0];
-            v4.unk_1C = 2;
+            v4.id = 948;
+            v4.tags = 7;
+            v4.params[0] = GetMonData(v3, v20[v0], NULL) - v22->unk_00[v0];
+            v4.digits = 2;
 
             ov16_0223FB78(v2->unk_00, v21, v7, &v4, 80, 16 * v0, 0x2, 28, 0);
         }
@@ -7898,10 +7898,10 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         sub_0201AE78(v25, 0xf, 80, 0, 36, 96);
 
         for (v0 = 0; v0 < 6; v0++) {
-            v4.unk_02 = 949;
-            v4.unk_01 = 7;
-            v4.unk_04[0] = GetMonData(v3, v24[v0], NULL);
-            v4.unk_1C = 3;
+            v4.id = 949;
+            v4.tags = 7;
+            v4.params[0] = GetMonData(v3, v24[v0], NULL);
+            v4.digits = 3;
 
             ov16_0223FB78(v2->unk_00, v25, v7, &v4, 72, 16 * v0, 0x2, 36, 0);
         }
@@ -7961,10 +7961,10 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
                 ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->selectedMonIndex[v6]);
             }
 
-            v4.unk_02 = 4;
-            v4.unk_01 = 10;
-            v4.unk_04[0] = v6 | (v1 << 8);
-            v4.unk_04[1] = v28;
+            v4.id = 4;
+            v4.tags = 10;
+            v4.params[0] = v6 | (v1 << 8);
+            v4.params[1] = v28;
             v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
             v2->unk_28 = 36;
             break;
@@ -7972,17 +7972,17 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     }
     break;
     case 16:
-        v4.unk_02 = 1178;
-        v4.unk_01 = 10;
-        v4.unk_04[0] = v6 | (v1 << 8);
-        v4.unk_04[1] = v2->unk_30[4];
+        v4.id = 1178;
+        v4.tags = 10;
+        v4.params[0] = v6 | (v1 << 8);
+        v4.params[1] = v2->unk_30[4];
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
     case 18:
-        v4.unk_02 = 1179;
-        v4.unk_01 = 2;
-        v4.unk_04[0] = v6 | (v1 << 8);
+        v4.id = 1179;
+        v4.tags = 2;
+        v4.params[0] = v6 | (v1 << 8);
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
@@ -8005,8 +8005,8 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
             if (ov16_02259AB4(v2->unk_04, v6) == 0xff) {
                 v2->unk_28 = 31;
             } else {
-                v4.unk_02 = 1183;
-                v4.unk_01 = 0;
+                v4.id = 1183;
+                v4.tags = 0;
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
                 v2->unk_28 = 22;
             }
@@ -8027,8 +8027,8 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 31:
-        v4.unk_02 = 1184;
-        v4.unk_01 = 0;
+        v4.id = 1184;
+        v4.tags = 0;
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
@@ -8041,10 +8041,10 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
             if (ov16_02259AB4(v2->unk_04, v6) == 0xff) {
                 v2->unk_28 = 16;
             } else {
-                v4.unk_02 = 1188;
-                v4.unk_01 = 10;
-                v4.unk_04[0] = v6 | (v1 << 8);
-                v4.unk_04[1] = v2->unk_30[4];
+                v4.id = 1188;
+                v4.tags = 10;
+                v4.params[0] = v6 | (v1 << 8);
+                v4.params[1] = v2->unk_30[4];
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
                 v2->unk_28 = 35;
             }
@@ -8056,30 +8056,30 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 24:
-        v4.unk_02 = 1189;
-        v4.unk_01 = 0;
+        v4.id = 1189;
+        v4.tags = 0;
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
     case 26:
-        v4.unk_02 = 1190;
-        v4.unk_01 = 10;
-        v4.unk_04[0] = v6 | (v1 << 8);
-        v4.unk_04[1] = GetMonData(v3, 54 + v2->unk_30[5], NULL);
+        v4.id = 1190;
+        v4.tags = 10;
+        v4.params[0] = v6 | (v1 << 8);
+        v4.params[1] = GetMonData(v3, 54 + v2->unk_30[5], NULL);
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
     case 28:
-        v4.unk_02 = 1191;
-        v4.unk_01 = 0;
+        v4.id = 1191;
+        v4.tags = 0;
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
     case 30:
-        v4.unk_02 = 1192;
-        v4.unk_01 = 10;
-        v4.unk_04[0] = v6 | (v1 << 8);
-        v4.unk_04[1] = v2->unk_30[4];
+        v4.id = 1192;
+        v4.tags = 10;
+        v4.params[0] = v6 | (v1 << 8);
+        v4.params[1] = v2->unk_30[4];
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v0 = 0;
 
@@ -8356,11 +8356,11 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     case 8:
         if (ov12_022368D0(v2->unk_08, 6) == 0) {
             {
-                UnkStruct_ov16_0225C300 v10;
+                BattleMessage v10;
 
-                v10.unk_02 = 867;
-                v10.unk_01 = 2 | 0x80;
-                v10.unk_04[0] = v1;
+                v10.id = 867;
+                v10.tags = 2 | 0x80;
+                v10.params[0] = v1;
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v10, ov16_0223EDF0(v2->unk_00));
                 v2->unk_30[1] = 30;
                 v2->unk_28 = 9;
@@ -8396,11 +8396,11 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                     v2->unk_28 = 16;
                 } else {
                     {
-                        UnkStruct_ov16_0225C300 v11;
+                        BattleMessage v11;
 
-                        v11.unk_02 = 871;
-                        v11.unk_01 = 2 | 0x80;
-                        v11.unk_04[0] = v1;
+                        v11.id = 871;
+                        v11.tags = 2 | 0x80;
+                        v11.params[0] = v1;
                         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v11, ov16_0223EDF0(v2->unk_00));
                         v2->unk_30[1] = 30;
                         v2->unk_28 = 11;
@@ -8603,7 +8603,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     case 23:
         if (sub_0200384C(v4) == 0) {
             {
-                UnkStruct_ov16_0225C300 v21;
+                BattleMessage v21;
                 Party * v22;
                 int v23;
 
@@ -8652,16 +8652,16 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
 
                         if (v2->unk_28 == 22) {
                             if (v25 == v26) {
-                                v21.unk_02 = 1174 + ov16_0223F240(v2->unk_00);
-                                v21.unk_01 = 19 | 0x80;
-                                v21.unk_04[0] = v1;
-                                v21.unk_04[1] = v25;
+                                v21.id = 1174 + ov16_0223F240(v2->unk_00);
+                                v21.tags = 19 | 0x80;
+                                v21.params[0] = v1;
+                                v21.params[1] = v25;
                             } else {
-                                v21.unk_02 = 1176 + ov16_0223F240(v2->unk_00);
-                                v21.unk_01 = 47 | 0x80;
-                                v21.unk_04[0] = v1;
-                                v21.unk_04[1] = v25;
-                                v21.unk_04[2] = v26;
+                                v21.id = 1176 + ov16_0223F240(v2->unk_00);
+                                v21.tags = 47 | 0x80;
+                                v21.params[0] = v1;
+                                v21.params[1] = v25;
+                                v21.params[2] = v26;
                             }
 
                             v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v21, ov16_0223EDF0(v2->unk_00));
@@ -8691,12 +8691,12 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     case 25:
         if (ov12_022368D0(v2->unk_08, 2) == 0) {
             {
-                UnkStruct_ov16_0225C300 v30;
+                BattleMessage v30;
 
                 ov12_0223783C(v2->unk_08);
 
-                v30.unk_02 = 859;
-                v30.unk_01 = 0;
+                v30.id = 859;
+                v30.tags = 0;
 
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v30, ov16_0223EDF0(v2->unk_00));
                 v2->unk_30[1] = 30;
@@ -8708,10 +8708,10 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         if (sub_0201D724(v2->unk_30[0]) == 0) {
             if (--v2->unk_30[1] == 0) {
                 {
-                    UnkStruct_ov16_0225C300 v31;
+                    BattleMessage v31;
 
-                    v31.unk_02 = 860;
-                    v31.unk_01 = 0;
+                    v31.id = 860;
+                    v31.tags = 0;
                     v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v31, ov16_0223EDF0(v2->unk_00));
                     v2->unk_30[1] = 30;
                     v2->unk_28 = 27;
@@ -8742,10 +8742,10 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     case 30:
         if (ov16_02251FC8(v2->unk_04)) {
             {
-                UnkStruct_ov16_0225C300 v32;
+                BattleMessage v32;
 
-                v32.unk_02 = 863 + v2->unk_30[2];
-                v32.unk_01 = 0;
+                v32.id = 863 + v2->unk_30[2];
+                v32.tags = 0;
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v32, ov16_0223EDF0(v2->unk_00));
                 v2->unk_30[1] = 30;
                 v2->unk_28 = 31;
@@ -9223,284 +9223,284 @@ static void ov16_0224ABEC (BattleContext * param0, UnkStruct_ov16_02241584 * par
     }
 }
 
-static void ov16_0224ACB8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_02241584 * param2, UnkStruct_ov16_0225C300 * param3)
+static void ov16_0224ACB8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_02241584 * param2, BattleMessage * param3)
 {
-    param3->unk_02 = param2->unk_00;
-    param3->unk_01 = param2->unk_04;
+    param3->id = param2->unk_00;
+    param3->tags = param2->unk_04;
 
-    switch (param3->unk_01) {
+    switch (param3->tags) {
     case 0:
         break;
     case 1:
-        param3->unk_04[0] = ov16_0224A984(param0, param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224A984(param0, param1, param2->unk_08[0]);
         break;
     case 2:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
         break;
     case 3:
-        param3->unk_04[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
         break;
     case 4:
-        param3->unk_04[0] = ov16_0224B4C8(param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B4C8(param1, param2->unk_08[0]);
         break;
     case 5:
-        param3->unk_04[0] = ov16_0224B404(param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
         break;
     case 6:
     case 7:
-        param3->unk_04[0] = ov16_0224B47C(param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B47C(param1, param2->unk_08[0]);
         break;
     case 8:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
         break;
     case 9:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
         break;
     case 10:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
         break;
     case 11:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
         break;
     case 12:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B4C8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B4C8(param1, param2->unk_08[1]);
         break;
     case 13:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B488(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B488(param1, param2->unk_08[1]);
         break;
     case 14:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B4E0(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B4E0(param0, param1, param2->unk_08[1]);
         break;
     case 15:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
         break;
     case 16:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B4F8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B4F8(param1, param2->unk_08[1]);
         break;
     case 17:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
         break;
     case 18:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
         break;
     case 19:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = param2->unk_08[1];
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = param2->unk_08[1];
         break;
     case 20:
-        param3->unk_04[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224A984(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224A984(param0, param1, param2->unk_08[1]);
         break;
     case 21:
-        param3->unk_04[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
         break;
     case 22:
-        param3->unk_04[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
         break;
     case 23:
-        param3->unk_04[0] = ov16_0224B494(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B494(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
         break;
     case 24:
-        param3->unk_04[0] = ov16_0224B404(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
         break;
     case 25:
-        param3->unk_04[0] = ov16_0224B47C(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B47C(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
         break;
     case 26:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
         break;
     case 27:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
         break;
     case 28:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
         break;
     case 29:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
         break;
     case 30:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
         break;
     case 31:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
         break;
     case 32:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B494(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B494(param0, param1, param2->unk_08[2]);
         break;
     case 33:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B404(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
         break;
     case 34:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
         break;
     case 35:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B47C(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B47C(param1, param2->unk_08[2]);
         break;
     case 36:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
         break;
     case 37:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
         break;
     case 38:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B404(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
         break;
     case 39:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
         break;
     case 40:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B488(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B488(param1, param2->unk_08[2]);
         break;
     case 41:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
         break;
     case 42:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B47C(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B47C(param1, param2->unk_08[2]);
         break;
     case 43:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
         break;
     case 44:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
         break;
     case 45:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
         break;
     case 46:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
         break;
     case 47:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = param2->unk_08[1];
-        param3->unk_04[2] = param2->unk_08[2];
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = param2->unk_08[1];
+        param3->params[2] = param2->unk_08[2];
         break;
     case 48:
-        param3->unk_04[0] = ov16_0224B404(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B504(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B504(param1, param2->unk_08[2]);
         break;
     case 49:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
         break;
     case 50:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
         break;
     case 51:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B404(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
         break;
     case 52:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B3E8(param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B3E8(param1, param2->unk_08[3]);
         break;
     case 53:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B494(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B494(param0, param1, param2->unk_08[3]);
         break;
     case 54:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B4C8(param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B4C8(param1, param2->unk_08[3]);
         break;
     case 55:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B404(param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B404(param1, param2->unk_08[3]);
         break;
     case 56:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B518(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B518(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
         break;
     case 57:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
         break;
     case 58:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
         break;
     case 59:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B510(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B510(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
         break;
     case 60:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B510(param0, param1, param2->unk_08[3]);
-        param3->unk_04[4] = ov16_0224B518(param0, param1, param2->unk_08[4]);
-        param3->unk_04[5] = ov16_0224B3B8(param0, param1, param2->unk_08[5]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B510(param0, param1, param2->unk_08[3]);
+        param3->params[4] = ov16_0224B518(param0, param1, param2->unk_08[4]);
+        param3->params[5] = ov16_0224B3B8(param0, param1, param2->unk_08[5]);
         break;
     default:
         GF_ASSERT("FALSE");

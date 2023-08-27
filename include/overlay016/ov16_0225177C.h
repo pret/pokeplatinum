@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "battle/battle_context.h"
 #include "battle/battle_mon.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 
 void ov16_0225177C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
 void ov16_02251C94(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
@@ -40,7 +40,7 @@ void ov16_0225433C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int para
 void ov16_02254744(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 void ov16_02254990(UnkStruct_0207ADB4 * param0, BattleContext * param1);
 int ov16_02254A6C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4);
-BOOL ov16_02254CA8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, UnkStruct_ov16_0225C300 * param4);
+BOOL ov16_02254CA8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, BattleMessage * param4);
 int ov16_02254EE0(BattleMon * param0, u16 param1);
 int ov16_02254FA8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
 void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
@@ -60,7 +60,7 @@ BOOL ov16_022559FC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
 u8 ov16_02255A4C(BattleContext * param0, int param1);
 BOOL ov16_02255AB4(BattleContext * param0, int param1, int param2, int param3);
 BOOL ov16_02255B10(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-BOOL ov16_02255C00(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, UnkStruct_ov16_0225C300 * param3);
+BOOL ov16_02255C00(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL ov16_02255DE8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 BOOL ov16_02255EC0(BattleContext * param0, int param1);
 BOOL ov16_02255EF4(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);

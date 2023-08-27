@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0224DDA8.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 #include "overlay016/struct_ov16_02265BBC.h"
 
 void ov16_02264988(UnkStruct_0207ADB4 * param0, int param1);
@@ -33,7 +33,7 @@ void ov16_02265A8C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int para
 void ov16_02265B10(UnkStruct_0207ADB4 * param0, int param1, int param2);
 void ov16_02265B2C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6);
 void ov16_02265B68(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-void ov16_02265BA0(UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_0225C300 * param2);
+void ov16_02265BA0(UnkStruct_0207ADB4 * param0, BattleContext * param1, BattleMessage * param2);
 void ov16_02265BBC(UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2);
 void ov16_02265BEC(UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2, int param3, int param4);
 void ov16_02265C1C(UnkStruct_0207ADB4 * param0, int param1, u32 param2);
@@ -52,7 +52,7 @@ void ov16_0226609C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int para
 void ov16_022660E8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 void ov16_02266100(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 void ov16_0226614C(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02266168(UnkStruct_0207ADB4 * param0, int param1, UnkStruct_ov16_0225C300 param2);
+void ov16_02266168(UnkStruct_0207ADB4 * param0, int param1, BattleMessage param2);
 void ov16_022661B0(UnkStruct_0207ADB4 * param0, int param1);
 void ov16_022661CC(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 void ov16_022662FC(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);

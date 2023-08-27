@@ -25,7 +25,7 @@
 #include "overlay016/struct_ov16_0225C2C4.h"
 #include "overlay016/struct_ov16_0225C2D8.h"
 #include "overlay016/struct_ov16_0225C2EC.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 #include "overlay016/struct_ov16_0225C35C.h"
 #include "overlay016/struct_ov16_0225C370.h"
 #include "overlay016/struct_ov16_0225C384.h"
@@ -462,7 +462,7 @@ static void ov16_0225C2EC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
 
 static void ov16_0225C300 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1)
 {
-    UnkStruct_ov16_0225C300 * v0 = (UnkStruct_ov16_0225C300 *)&param1->unk_90[0];
+    BattleMessage * v0 = (BattleMessage *)&param1->unk_90[0];
 
     ov16_0225D958(param0, param1, v0);
     ov16_0225CBB0(param1);

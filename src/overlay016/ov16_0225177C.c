@@ -15,7 +15,7 @@
 #include "battle/battle_context.h"
 #include "battle/battle_mon.h"
 
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 
 #include "unk_020021B0.h"
 #include "narc.h"
@@ -83,7 +83,7 @@ void ov16_0225433C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int para
 void ov16_02254744(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 void ov16_02254990(UnkStruct_0207ADB4 * param0, BattleContext * param1);
 int ov16_02254A6C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4);
-BOOL ov16_02254CA8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, UnkStruct_ov16_0225C300 * param4);
+BOOL ov16_02254CA8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, BattleMessage * param4);
 int ov16_02254EE0(BattleMon * param0, u16 param1);
 int ov16_02254FA8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
 void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
@@ -103,7 +103,7 @@ BOOL ov16_022559FC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
 u8 ov16_02255A4C(BattleContext * param0, int param1);
 BOOL ov16_02255AB4(BattleContext * param0, int param1, int param2, int param3);
 BOOL ov16_02255B10(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-BOOL ov16_02255C00(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, UnkStruct_ov16_0225C300 * param3);
+BOOL ov16_02255C00(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL ov16_02255DE8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 BOOL ov16_02255EC0(BattleContext * param0, int param1);
 BOOL ov16_02255EF4(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
@@ -2370,57 +2370,57 @@ int ov16_02254A6C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int para
     return param3;
 }
 
-BOOL ov16_02254CA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, UnkStruct_ov16_0225C300 * param4)
+BOOL ov16_02254CA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, BattleMessage * param4)
 {
     BOOL v0;
 
     v0 = 1;
 
     if (ov16_02254A6C(param0, param1, param2, 0, 0x4) & sub_020787CC(param3)) {
-        param4->unk_01 = 10;
-        param4->unk_02 = 609;
-        param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = param1->battleMons[param2].moves[param3];
+        param4->tags = 10;
+        param4->id = 609;
+        param4->params[0] = ov16_02255560(param1, param2);
+        param4->params[1] = param1->battleMons[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x8) & sub_020787CC(param3)) {
-        param4->unk_01 = 2;
-        param4->unk_02 = 612;
-        param4->unk_04[0] = ov16_02255560(param1, param2);
+        param4->tags = 2;
+        param4->id = 612;
+        param4->params[0] = ov16_02255560(param1, param2);
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x10) & sub_020787CC(param3)) {
-        param4->unk_01 = 10;
-        param4->unk_02 = 613;
-        param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = param1->battleMons[param2].moves[param3];
+        param4->tags = 10;
+        param4->id = 613;
+        param4->params[0] = ov16_02255560(param1, param2);
+        param4->params[1] = param1->battleMons[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x20) & sub_020787CC(param3)) {
-        param4->unk_01 = 10;
-        param4->unk_02 = 616;
-        param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = param1->battleMons[param2].moves[param3];
+        param4->tags = 10;
+        param4->id = 616;
+        param4->params[0] = ov16_02255560(param1, param2);
+        param4->params[1] = param1->battleMons[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x40) & sub_020787CC(param3)) {
-        param4->unk_01 = 10;
-        param4->unk_02 = 1001;
-        param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = param1->battleMons[param2].moves[param3];
+        param4->tags = 10;
+        param4->id = 1001;
+        param4->params[0] = ov16_02255560(param1, param2);
+        param4->params[1] = param1->battleMons[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x80) & sub_020787CC(param3)) {
-        param4->unk_01 = 34;
-        param4->unk_02 = 1057;
-        param4->unk_04[0] = ov16_02255560(param1, param2);
-        param4->unk_04[1] = 377;
-        param4->unk_04[2] = param1->battleMons[param2].moves[param3];
+        param4->tags = 34;
+        param4->id = 1057;
+        param4->params[0] = ov16_02255560(param1, param2);
+        param4->params[1] = 377;
+        param4->params[2] = param1->battleMons[param2].moves[param3];
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x200) & sub_020787CC(param3)) {
-        param4->unk_01 = 24;
-        param4->unk_02 = 911;
-        param4->unk_04[0] = param1->battleMons[param2].heldItem;
-        param4->unk_04[1] = param1->battleMons[param2].moveEffectsData.choiceLockedMove;
+        param4->tags = 24;
+        param4->id = 911;
+        param4->params[0] = param1->battleMons[param2].heldItem;
+        param4->params[1] = param1->battleMons[param2].moveEffectsData.choiceLockedMove;
         v0 = 0;
     } else if (ov16_02254A6C(param0, param1, param2, 0, 0x2) & sub_020787CC(param3)) {
-        param4->unk_01 = 0;
-        param4->unk_02 = 823;
+        param4->tags = 0;
+        param4->id = 823;
         v0 = 0;
     }
 
@@ -3154,7 +3154,7 @@ BOOL ov16_02255B10 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     return v0;
 }
 
-BOOL ov16_02255C00 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, UnkStruct_ov16_0225C300 * param3)
+BOOL ov16_02255C00 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, BattleMessage * param3)
 {
     int v0;
     int v1;
@@ -3177,10 +3177,10 @@ BOOL ov16_02255C00 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
             return 1;
         }
 
-        param3->unk_01 = 11;
-        param3->unk_02 = 39;
-        param3->unk_04[0] = ov16_02255560(param1, v0);
-        param3->unk_04[1] = 23;
+        param3->tags = 11;
+        param3->id = 39;
+        param3->params[0] = ov16_02255560(param1, v0);
+        param3->params[1] = 23;
         return 1;
     }
 
@@ -3191,10 +3191,10 @@ BOOL ov16_02255C00 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
                     return 1;
                 }
 
-                param3->unk_01 = 11;
-                param3->unk_02 = 39;
-                param3->unk_04[0] = ov16_02255560(param1, v0);
-                param3->unk_04[1] = 71;
+                param3->tags = 11;
+                param3->id = 39;
+                param3->params[0] = ov16_02255560(param1, v0);
+                param3->params[1] = 71;
                 return 1;
             }
         } else {
@@ -3202,10 +3202,10 @@ BOOL ov16_02255C00 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
                 return 1;
             }
 
-            param3->unk_01 = 11;
-            param3->unk_02 = 39;
-            param3->unk_04[0] = ov16_02255560(param1, v0);
-            param3->unk_04[1] = 71;
+            param3->tags = 11;
+            param3->id = 39;
+            param3->params[0] = ov16_02255560(param1, v0);
+            param3->params[1] = 71;
             return 1;
         }
     }
@@ -3215,10 +3215,10 @@ BOOL ov16_02255C00 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
             return 1;
         }
 
-        param3->unk_01 = 11;
-        param3->unk_02 = 39;
-        param3->unk_04[0] = ov16_02255560(param1, v0);
-        param3->unk_04[1] = 42;
+        param3->tags = 11;
+        param3->id = 39;
+        param3->params[0] = ov16_02255560(param1, v0);
+        param3->params[1] = 42;
         return 1;
     }
 
@@ -3227,8 +3227,8 @@ BOOL ov16_02255C00 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
             return 1;
         }
 
-        param3->unk_01 = 0;
-        param3->unk_02 = 794;
+        param3->tags = 0;
+        param3->id = 794;
         return 1;
     }
 

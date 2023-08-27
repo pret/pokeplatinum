@@ -5,11 +5,10 @@
 #include "constants/pokemon.h"
 
 #include "battle/ai_context.h"
+#include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 
 #include "overlay016/struct_ov16_0224B7CC_decl.h"
-
-#include "overlay016/struct_ov16_0225C300.h"
 
 typedef struct FieldConditions {
     u32 weatherTurns;
@@ -157,7 +156,7 @@ typedef struct BattleContext {
     int turnOrderCounter;
     int waitCounter;
 
-    UnkStruct_ov16_0225C300 msgBuffer;      // generic holding buffer for pre-processed message
+    BattleMessage msgBuffer;      // generic holding buffer for pre-processed message
     int msgBattlerIdTemp;
     int msgBattlerIdAttacker;
     int msgBattlerIdDefender;
