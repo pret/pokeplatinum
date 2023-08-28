@@ -1,11 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_NARC_H
 #define POKEPLATINUM_CONSTANTS_NARC_H
 
-
-
-/*
- * Indexes into the NARC path table, make sure these match the table in narc.c
- */
+// Indexes into the NARC path table, make sure these match the table in narc.c
 enum {
     NARC_INDEX_BATTLE__SKILL__WAZA_SEQ = 0,
     NARC_INDEX_BATTLE__SKILL__SUB_SEQ,
