@@ -48,9 +48,9 @@
 .public CPS_SocRead
 .public CPS_SocConsume
 .public CPS_SocWrite
-.public ov4_0220C770
-.public ov4_0220C7E0
+.public CPS_SocGetLength
+.public CPS_SocFlush
 .public CPS_Resolve
-.public ov4_0220DD60
-.public ov4_0220FE28
+.public CPS_SetRootCa
+.public CPS_SslAddRandomSeed
 .public CPS_SetSsl
