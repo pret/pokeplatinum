@@ -667,13 +667,13 @@ int ov16_02252060 (BattleContext * param0, int param1, int param2, void * param3
         return v0->moveEffectsData.quickClaw;
         break;
     case 87:
-        return v0->moveEffectsData.rechargeTurnCount;
+        return v0->moveEffectsData.rechargeTurnNumber;
         break;
     case 88:
-        return v0->moveEffectsData.fakeOutTurnCount;
+        return v0->moveEffectsData.fakeOutTurnNumber;
         break;
     case 89:
-        return v0->moveEffectsData.slowStartTurnCount;
+        return v0->moveEffectsData.slowStartTurnNumber;
         break;
     case 90:
         return v0->moveEffectsData.substituteHP;
@@ -957,13 +957,13 @@ void ov16_022523E8 (BattleContext * param0, int param1, int param2, const void *
         v6->moveEffectsData.quickClaw = v4[0];
         break;
     case 87:
-        v6->moveEffectsData.rechargeTurnCount = v1[0];
+        v6->moveEffectsData.rechargeTurnNumber = v1[0];
         break;
     case 88:
-        v6->moveEffectsData.fakeOutTurnCount = v1[0];
+        v6->moveEffectsData.fakeOutTurnNumber = v1[0];
         break;
     case 89:
-        v6->moveEffectsData.slowStartTurnCount = v1[0];
+        v6->moveEffectsData.slowStartTurnNumber = v1[0];
         break;
     case 90:
         v6->moveEffectsData.substituteHP = v1[0];
@@ -1161,13 +1161,13 @@ void ov16_02252A2C (BattleMon * param0, int param1, int param2)
         param0->moveEffectsData.healBlockTurns += param2;
         break;
     case 87:
-        param0->moveEffectsData.rechargeTurnCount += param2;
+        param0->moveEffectsData.rechargeTurnNumber += param2;
         break;
     case 88:
-        param0->moveEffectsData.fakeOutTurnCount += param2;
+        param0->moveEffectsData.fakeOutTurnNumber += param2;
         break;
     case 89:
-        param0->moveEffectsData.slowStartTurnCount += param2;
+        param0->moveEffectsData.slowStartTurnNumber += param2;
         break;
     case 90:
         param0->moveEffectsData.substituteHP += param2;
@@ -1301,7 +1301,7 @@ u8 ov16_02252EC8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param
         }
     }
 
-    if ((v19 == 112) && ((param1->totalTurns - param1->battleMons[param2].moveEffectsData.slowStartTurnCount) < 5)) {
+    if ((v19 == 112) && ((param1->totalTurns - param1->battleMons[param2].moveEffectsData.slowStartTurnNumber) < 5)) {
         v1 /= 2;
     }
 
@@ -1364,7 +1364,7 @@ u8 ov16_02252EC8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param
         }
     }
 
-    if ((v20 == 112) && ((param1->totalTurns - param1->battleMons[param3].moveEffectsData.slowStartTurnCount) < 5)) {
+    if ((v20 == 112) && ((param1->totalTurns - param1->battleMons[param3].moveEffectsData.slowStartTurnNumber) < 5)) {
         v2 /= 2;
     }
 
@@ -2169,8 +2169,8 @@ void ov16_0225433C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
         param1->battleMons[param2].moveEffectsData.healBlockTurns = v4.healBlockTurns;
     }
 
-    param1->battleMons[param2].moveEffectsData.fakeOutTurnCount = param1->totalTurns + 1;
-    param1->battleMons[param2].moveEffectsData.slowStartTurnCount = param1->totalTurns + 1;
+    param1->battleMons[param2].moveEffectsData.fakeOutTurnNumber = param1->totalTurns + 1;
+    param1->battleMons[param2].moveEffectsData.slowStartTurnNumber = param1->totalTurns + 1;
     param1->battleMons[param2].moveEffectsData.truant = (param1->totalTurns + 1) & 1;
     param1->moveProtect[param2] = 0;
     param1->moveHit[param2] = 0;
@@ -2250,8 +2250,8 @@ void ov16_02254744 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
         v2[v0] = 0;
     }
 
-    param1->battleMons[param2].moveEffectsData.fakeOutTurnCount = param1->totalTurns + 1;
-    param1->battleMons[param2].moveEffectsData.slowStartTurnCount = param1->totalTurns + 1;
+    param1->battleMons[param2].moveEffectsData.fakeOutTurnNumber = param1->totalTurns + 1;
+    param1->battleMons[param2].moveEffectsData.slowStartTurnNumber = param1->totalTurns + 1;
     param1->battleMons[param2].moveEffectsData.truant = (param1->totalTurns + 1) & 1;
     param1->moveProtect[param2] = 0;
     param1->moveHit[param2] = 0;
@@ -2295,7 +2295,7 @@ void ov16_02254990 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
         param1->battleMons[v0].statusVolatile &= (0x8 ^ 0xffffffff);
 
-        if (param1->battleMons[v0].moveEffectsData.rechargeTurnCount + 1 < param1->totalTurns) {
+        if (param1->battleMons[v0].moveEffectsData.rechargeTurnNumber + 1 < param1->totalTurns) {
             param1->battleMons[v0].statusVolatile &= (0x400000 ^ 0xffffffff);
         }
 
@@ -3555,7 +3555,7 @@ BOOL ov16_022562E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
 
     switch (ov16_02255A4C(param1, param2)) {
     case 3:
-        if ((param1->battleMons[param2].curHP) && (param1->battleMons[param2].statBoosts[0x3] < 12) && (param1->battleMons[param2].moveEffectsData.fakeOutTurnCount != param1->totalTurns + 1)) {
+        if ((param1->battleMons[param2].curHP) && (param1->battleMons[param2].statBoosts[0x3] < 12) && (param1->battleMons[param2].moveEffectsData.fakeOutTurnNumber != param1->totalTurns + 1)) {
             param1->sideEffectParam = 0x11;
             param1->sideEffectType = 3;
             param1->sideEffectMon = param2;
@@ -3989,7 +3989,7 @@ int ov16_02256414 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             for (v0 = 0; v0 < v5; v0++) {
                 v4 = param1->monSpeedOrder[v0];
 
-                if ((param1->battleMons[v4].slowStartAnnounced == 0) && (param1->battleMons[v4].curHP) && (ov16_02255A4C(param1, v4) == 112) && (param1->totalTurns <= param1->battleMons[v4].moveEffectsData.slowStartTurnCount)) {
+                if ((param1->battleMons[v4].slowStartAnnounced == 0) && (param1->battleMons[v4].curHP) && (ov16_02255A4C(param1, v4) == 112) && (param1->totalTurns <= param1->battleMons[v4].moveEffectsData.slowStartTurnNumber)) {
                     param1->battleMons[v4].slowStartAnnounced = 1;
                     param1->msgBattlerTemp = v4;
                     v2 = (0 + 196);
@@ -3997,7 +3997,7 @@ int ov16_02256414 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                     break;
                 }
 
-                if ((param1->battleMons[v4].slowStartFinished == 0) && (param1->battleMons[v4].curHP) && (ov16_02255A4C(param1, v4) == 112) && ((param1->totalTurns - param1->battleMons[v4].moveEffectsData.slowStartTurnCount) == 5)) {
+                if ((param1->battleMons[v4].slowStartFinished == 0) && (param1->battleMons[v4].curHP) && (ov16_02255A4C(param1, v4) == 112) && ((param1->totalTurns - param1->battleMons[v4].moveEffectsData.slowStartTurnNumber) == 5)) {
                     param1->battleMons[v4].slowStartFinished = 1;
                     param1->msgBattlerTemp = v4;
                     v2 = (0 + 197);

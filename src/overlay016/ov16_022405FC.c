@@ -1366,11 +1366,11 @@ static void ov16_02241374 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 
     if (param1->battleMons[param1->attacker].moveEffectsData.meFirst) {
-        if (param1->meFirstTurnOrder == param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnCount) {
-            param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnCount--;
+        if (param1->meFirstTurnOrder == param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber) {
+            param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber--;
         }
 
-        if ((param1->meFirstTurnOrder - param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnCount) < 2) {
+        if ((param1->meFirstTurnOrder - param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber) < 2) {
             param1->damage = param1->damage * 15 / 10;
         } else {
             param1->battleMons[param1->attacker].moveEffectsData.meFirst = 0;
@@ -3842,8 +3842,8 @@ static BOOL ov16_02244010 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v0 = ov16_0223E208(param0, param1->attacker);
     v1 = ov16_0223E208(param0, v2);
 
-    if ((param1->turnFlags[param1->attacker].physicalDamageTaken[v2]) && (v0 != v1) && (param1->battleMons[v2].curHP)) {
-        param1->damage = param1->turnFlags[param1->attacker].physicalDamageTaken[v2] * 2;
+    if ((param1->turnFlags[param1->attacker].physicalDamageTakenFrom[v2]) && (v0 != v1) && (param1->battleMons[v2].curHP)) {
+        param1->damage = param1->turnFlags[param1->attacker].physicalDamageTakenFrom[v2] * 2;
 
         if ((param1->sideConditions[v1].followMe) && (param1->battleMons[param1->sideConditions[v1].followMeUser].curHP)) {
             param1->defender = param1->sideConditions[v1].followMeUser;
@@ -3880,8 +3880,8 @@ static BOOL ov16_0224410C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v0 = ov16_0223E208(param0, param1->attacker);
     v1 = ov16_0223E208(param0, v2);
 
-    if ((param1->turnFlags[param1->attacker].specialDamageTaken[v2]) && (v0 != v1) && (param1->battleMons[v2].curHP)) {
-        param1->damage = param1->turnFlags[param1->attacker].specialDamageTaken[v2] * 2;
+    if ((param1->turnFlags[param1->attacker].specialDamageTakenFrom[v2]) && (v0 != v1) && (param1->battleMons[v2].curHP)) {
+        param1->damage = param1->turnFlags[param1->attacker].specialDamageTakenFrom[v2] * 2;
 
         if ((param1->sideConditions[v1].followMe) && (param1->battleMons[param1->sideConditions[v1].followMeUser].curHP)) {
             param1->defender = param1->sideConditions[v1].followMeUser;
@@ -4401,7 +4401,7 @@ static BOOL ov16_02244D60 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->battleMons[param1->attacker].moldBreakerAnnounced = 0;
     param1->battleMons[param1->attacker].pressureAnnounced = 0;
     param1->battleMons[param1->attacker].moveEffectsData.truant = param1->totalTurns & 1;
-    param1->battleMons[param1->attacker].moveEffectsData.slowStartTurnCount = param1->totalTurns + 1;
+    param1->battleMons[param1->attacker].moveEffectsData.slowStartTurnNumber = param1->totalTurns + 1;
     param1->battleMons[param1->attacker].slowStartAnnounced = 0;
     param1->battleMons[param1->attacker].slowStartFinished = 0;
 
@@ -5229,7 +5229,7 @@ static BOOL ov16_022463E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    if (((param1->turnFlags[param1->attacker].physicalDamageTaken[param1->defender]) && (param1->turnFlags[param1->attacker].physicalDamageAttackerMask & sub_020787CC(param1->defender))) || ((param1->turnFlags[param1->attacker].specialDamageTaken[param1->defender]) && (param1->turnFlags[param1->attacker].specialDamageAttackerMask & sub_020787CC(param1->defender)))) {
+    if (((param1->turnFlags[param1->attacker].physicalDamageTakenFrom[param1->defender]) && (param1->turnFlags[param1->attacker].physicalDamageAttackerMask & sub_020787CC(param1->defender))) || ((param1->turnFlags[param1->attacker].specialDamageTakenFrom[param1->defender]) && (param1->turnFlags[param1->attacker].specialDamageAttackerMask & sub_020787CC(param1->defender)))) {
         param1->powerMul = 20;
     } else {
         param1->powerMul = 10;
@@ -5789,7 +5789,7 @@ static BOOL ov16_02246FA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     if ((param1->battlerActions[param1->defender][0] != 39) && (param1->turnFlags[param1->defender].struggling == 0) && (ov16_0225B0C0(param1, v1) == 1) && (param1->aiContext.moveTable[v1].unk_03)) {
         param1->battleMons[param1->attacker].moveEffectsData.meFirst = 1;
-        param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnCount = param1->meFirstTurnOrder;
+        param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber = param1->meFirstTurnOrder;
         param1->msgMoveTemp = v1;
     } else {
         ov16_02248AF0(param1, v0);

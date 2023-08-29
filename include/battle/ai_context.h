@@ -39,9 +39,10 @@ typedef struct AIContext {
     u8 defender;
     u8 usedItemType[MAX_BATTLERS_PER_SIDE];
     u8 usedItemCondition[MAX_BATTLERS_PER_SIDE];
-
     u16 usedItem[MAX_BATTLERS_PER_SIDE];
+
     u8 selectedTarget[MAX_BATTLERS];
+
     MoveTable moveTable[NUM_MOVES + 1];
     ItemData *itemTable;
 

@@ -3143,13 +3143,13 @@ static void ov16_0224F8EC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             }
 
             if (param1->aiContext.moveTable[param1->moveCur].unk_02 == 0) {
-                param1->turnFlags[param1->defender].physicalDamageTaken[param1->attacker] = param1->damage;
+                param1->turnFlags[param1->defender].physicalDamageTakenFrom[param1->attacker] = param1->damage;
                 param1->turnFlags[param1->defender].physicalDamageLastAttacker = param1->attacker;
                 param1->turnFlags[param1->defender].physicalDamageAttackerMask |= sub_020787CC(param1->attacker);
                 param1->selfTurnFlags[param1->defender].physicalDamageTaken = param1->damage;
                 param1->selfTurnFlags[param1->defender].physicalDamageLastAttacker = param1->attacker;
             } else if (param1->aiContext.moveTable[param1->moveCur].unk_02 == 1) {
-                param1->turnFlags[param1->defender].specialDamageTaken[param1->attacker] = param1->damage;
+                param1->turnFlags[param1->defender].specialDamageTakenFrom[param1->attacker] = param1->damage;
                 param1->turnFlags[param1->defender].specialDamageLastAttacker = param1->attacker;
                 param1->turnFlags[param1->defender].specialDamageAttackerMask |= sub_020787CC(param1->attacker);
                 param1->selfTurnFlags[param1->defender].specialDamageTaken = param1->damage;

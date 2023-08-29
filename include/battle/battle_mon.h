@@ -36,10 +36,10 @@ typedef struct MoveEffectsData {
     u32 meFirst : 1;
     u32 padding0004_1F : 1;
 
-    int rechargeTurnCount;
-    int fakeOutTurnCount;
-    int slowStartTurnCount;
-    int meFirstTurnCount;
+    int rechargeTurnNumber;
+    int fakeOutTurnNumber;
+    int slowStartTurnNumber;
+    int meFirstTurnNumber;
     int substituteHP;
     u32 transformedPID;
 

@@ -2374,7 +2374,7 @@ static void ov14_02222090 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v1 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
 
-    param1->aiContext.calcTemp = param1->totalTurns - param1->battleMons[v0].moveEffectsData.fakeOutTurnCount;
+    param1->aiContext.calcTemp = param1->totalTurns - param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber;
 }
 
 static void ov14_022220CC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
@@ -2746,7 +2746,7 @@ static void ov14_0222287C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v1 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
 
-    if (param1->battleMons[v0].moveEffectsData.fakeOutTurnCount < param1->totalTurns) {
+    if (param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber < param1->totalTurns) {
         param1->aiContext.calcTemp = 0;
     } else {
         param1->aiContext.calcTemp = 1;
@@ -4053,7 +4053,7 @@ BOOL ov14_022244B0 (UnkStruct_0207ADB4 * param0, int param1)
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
-            } else if ((v8->battleMons[param1].moveEffectsData.fakeOutTurnCount - v8->totalTurns) >= 0) {
+            } else if ((v8->battleMons[param1].moveEffectsData.fakeOutTurnNumber - v8->totalTurns) >= 0) {
                 if (ov16_0225B0FC(v8, v2, 27)) {
                     v8->aiContext.usedItemCondition[param1 >> 1] = 0x1;
                     v8->aiContext.usedItemType[param1 >> 1] = 3;

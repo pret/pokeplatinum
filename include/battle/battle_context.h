@@ -51,11 +51,11 @@ typedef struct TurnFlags {
     u32 enduring : 1;
     u32 padding00_0A : 22;
 
-    int physicalDamageTaken[MAX_BATTLERS];
+    int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;
     int physicalDamageAttackerMask;
 
-    int specialDamageTaken[MAX_BATTLERS];
+    int specialDamageTakenFrom[MAX_BATTLERS];
     int specialDamageLastAttacker;
     int specialDamageAttackerMask;
 
