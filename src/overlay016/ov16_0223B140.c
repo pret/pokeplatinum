@@ -87,7 +87,7 @@
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0224B940.h"
+#include "battle/battle_controller.h"
 #include "overlay016/ov16_0225177C.h"
 #include "overlay016/ov16_0225BFFC.h"
 #include "overlay016/ov16_0225CBB8.h"
@@ -673,7 +673,7 @@ static int ov16_0223BBD0 (UnkStruct_020067E8 * param0)
 
     if ((v0->unk_2C & 0x4) && ((v0->unk_2408 & 0x10) == 0)) {
         if (v0->unk_23F8) {
-            ov16_0224B990(v0, v0->battleCtx);
+            BattleController_Main(v0, v0->battleCtx);
         }
 
         for (v1 = 0; v1 < v0->unk_44; v1++) {
@@ -681,7 +681,7 @@ static int ov16_0223BBD0 (UnkStruct_020067E8 * param0)
         }
     } else {
         if (v0->unk_23F8) {
-            v0->unk_23FA = ov16_0224B990(v0, v0->battleCtx);
+            v0->unk_23FA = BattleController_Main(v0, v0->battleCtx);
             ov16_02264988(v0, 1);
         }
 
@@ -692,7 +692,7 @@ static int ov16_0223BBD0 (UnkStruct_020067E8 * param0)
 
         if (v0->unk_23FA == 0) {
             if (v0->unk_23F8) {
-                v0->unk_23FA = ov16_0224B990(v0, v0->battleCtx);
+                v0->unk_23FA = BattleController_Main(v0, v0->battleCtx);
                 ov16_02264988(v0, 1);
             }
 
@@ -776,7 +776,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     sub_020141E4();
 
     ov12_0221FDF4(v0->unk_8C);
-    ov16_0224B9DC(v0->battleCtx);
+    BattleContext_Free(v0->battleCtx);
 
     for (v2 = 0; v2 < v0->unk_44; v2++) {
         ov16_0225C104(v0, v0->unk_34[v2], v0->unk_23F9);
@@ -1123,7 +1123,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
         param0->trainers[v0] = param1->trainerData[v0];
     }
 
-    param0->battleCtx = ov16_0224B940(param0);
+    param0->battleCtx = BattleContext_New(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->parties[v0] = sub_02079FF4(5);

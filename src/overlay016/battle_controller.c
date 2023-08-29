@@ -6,18 +6,18 @@
 #include "constants/trainer.h"
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
-
-#include "battle/battle_context.h"
-#include "overlay016/struct_ov16_0225BFFC_decl.h"
-
+#include "struct_defs/pokemon.h"
 #include "struct_defs/trainer_data.h"
+
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
-#include "overlay016/struct_ov16_0224DDA8.h"
+#include "battle/battle_controller.h"
 #include "battle/battle_message.h"
+
+#include "overlay016/struct_ov16_0225BFFC_decl.h"
+#include "overlay016/struct_ov16_0224DDA8.h"
 
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
@@ -32,7 +32,6 @@
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_022405FC.h"
-#include "overlay016/ov16_0224B940.h"
 #include "overlay016/ov16_0225177C.h"
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_0226485C.h"
@@ -42,12 +41,8 @@ typedef struct {
     u8 unk_01;
 } UnkStruct_ov16_0226EAD0;
 
-typedef void (* UnkFuncPtr_ov16_0226EAEC)(BattleSystem *, BattleContext *);
+typedef void (*BattleControlFunc)(BattleSystem*, BattleContext*);
 
-void * ov16_0224B940(BattleSystem * param0);
-int ov16_0224B990(BattleSystem * param0, BattleContext * param1);
-void ov16_0224B9DC(BattleContext * param0);
-void ov16_0224B9F4(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 static void ov16_0224BA1C(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224BA60(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224BA78(BattleSystem * param0, BattleContext * param1);
@@ -121,7 +116,7 @@ static void ov16_02251694(BattleSystem * param0, BattleContext * param1);
 
 extern u32 Unk_ov14_022248A4[];
 
-static const UnkFuncPtr_ov16_0226EAEC Unk_ov16_0226EAEC[] = {
+static const BattleControlFunc Unk_ov16_0226EAEC[] = {
     ov16_0224BA1C,
     ov16_0224BA60,
     ov16_0224BA78,
@@ -169,7 +164,7 @@ static const UnkFuncPtr_ov16_0226EAEC Unk_ov16_0226EAEC[] = {
     ov16_02250798
 };
 
-void * ov16_0224B940 (BattleSystem * param0)
+void * BattleContext_New (BattleSystem *battleSys)
 {
     BattleContext * v0;
     int v1;
@@ -179,8 +174,8 @@ void * ov16_0224B940 (BattleSystem * param0)
     MI_CpuClearFast(v0, sizeof(BattleContext));
 
     ov16_022541C4(v0);
-    ov16_022542B8(param0, v0);
-    ov16_02251604(param0, v0);
+    ov16_022542B8(battleSys, v0);
+    ov16_02251604(battleSys, v0);
 
     MoveTable_Load(&v0->aiContext.moveTable);
     v0->aiContext.itemTable = sub_0207D388(5);
@@ -188,7 +183,7 @@ void * ov16_0224B940 (BattleSystem * param0)
     return v0;
 }
 
-int ov16_0224B990 (BattleSystem * param0, BattleContext * param1)
+int BattleController_Main (BattleSystem * param0, BattleContext * param1)
 {
     if (param1->battleEndFlag == 0) {
         if ((ov16_0223F438(param0)) && ((ov16_0223F438(param0) & 0x40) == 0)) {
@@ -205,13 +200,13 @@ int ov16_0224B990 (BattleSystem * param0, BattleContext * param1)
     return 0;
 }
 
-void ov16_0224B9DC (BattleContext * param0)
+void BattleContext_Free (BattleContext * param0)
 {
     Heap_FreeToHeap(param0->aiContext.itemTable);
     Heap_FreeToHeap(param0);
 }
 
-void ov16_0224B9F4 (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
+void BattleSystem_CheckMoveHitEffect (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
 {
     ov16_0224EF20(param0, param1, param2, param3, param4);
     ov16_0224F274(param0, param1, param2, param3, param4);

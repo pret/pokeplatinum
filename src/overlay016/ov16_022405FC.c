@@ -83,7 +83,7 @@
 #include "overlay012/ov12_02235E94.h"
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_0224B940.h"
+#include "battle/battle_controller.h"
 #include "overlay016/ov16_0225177C.h"
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_0226485C.h"
@@ -4934,7 +4934,7 @@ static BOOL ov16_02245CB4 (BattleSystem * param0, BattleContext * param1)
     v5 = ov16_0224A984(param0, param1, v1);
     v6 = ov16_0224B3E8(param1, v2);
 
-    ov16_0224B9F4(param0, param1, v4, v5, v6);
+    BattleSystem_CheckMoveHitEffect(param0, param1, v4, v5, v6);
 
     if (param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) {
         ov16_02248AF0(param1, v3);
