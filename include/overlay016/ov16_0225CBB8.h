@@ -13,7 +13,7 @@
 #include "overlay016/struct_ov16_0225C2C4.h"
 #include "overlay016/struct_ov16_0225C2D8.h"
 #include "overlay016/struct_ov16_0225C2EC.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 #include "overlay016/struct_ov16_0225C35C.h"
 #include "overlay016/struct_ov16_0225C370.h"
 #include "overlay016/struct_ov16_0225C384.h"
@@ -61,7 +61,7 @@ void ov16_0225D794(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1
 void ov16_0225D840(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C2C4 * param2);
 void ov16_0225D8AC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C2D8 * param2);
 void ov16_0225D8F0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C2EC * param2);
-void ov16_0225D958(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2);
+void ov16_0225D958(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2);
 void ov16_0225D9A8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_02265BBC * param2);
 void ov16_0225DA44(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1);
 void ov16_0225DA74(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C35C * param2);

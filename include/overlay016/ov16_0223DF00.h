@@ -27,9 +27,9 @@
 #include "overlay006/battle_params.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay016/struct_ov16_0223E0C8.h"
-#include "overlay016/struct_ov16_0224B9DC_decl.h"
+#include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 #include "overlay016/struct_ov16_02268520.h"
 #include "overlay016/struct_ov16_02268A14_decl.h"
 #include "overlay016/struct_ov16_0226D160_decl.h"
@@ -39,7 +39,7 @@
 UnkStruct_02018340 * ov16_0223DF00(UnkStruct_0207ADB4 * param0);
 UnkStruct_0205AA50 * ov16_0223DF04(UnkStruct_0207ADB4 * param0, int param1);
 u32 ov16_0223DF0C(UnkStruct_0207ADB4 * param0);
-UnkStruct_ov16_0224B9DC * ov16_0223DF10(UnkStruct_0207ADB4 * param0);
+BattleContext * ov16_0223DF10(UnkStruct_0207ADB4 * param0);
 UnkStruct_ov16_0225BFFC * ov16_0223DF14(UnkStruct_0207ADB4 * param0, int param1);
 int ov16_0223DF1C(UnkStruct_0207ADB4 * param0);
 Party * ov16_0223DF20(UnkStruct_0207ADB4 * param0, int param1);
@@ -171,7 +171,7 @@ void ov16_0223F9A0(UnkStruct_0207ADB4 * param0, int param1);
 BOOL ov16_0223F9E0(UnkStruct_0207ADB4 * param0, int param1);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3, int param4);
-u8 ov16_0223FB24(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, UnkStruct_ov16_0225C300 * param2, int param3);
-u8 ov16_0223FB78(UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, UnkStruct_ov16_0225C300 * param3, int param4, int param5, int param6, int param7, int param8);
+u8 ov16_0223FB24(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2, int param3);
+u8 ov16_0223FB78(UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 
 #endif // POKEPLATINUM_OV16_0223DF00_H

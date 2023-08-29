@@ -23,6 +23,9 @@
 #define TYPE_DARK             17
 #define NUMBER_OF_MON_TYPES   18
 
+#define MAX_PARTY_SIZE  6
+#define NUM_BOOSTABLE_STATS 8
+
 enum {
     MON_DATA_PERSONALITY,
     MON_DATA_1,

@@ -19,7 +19,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
-#include "overlay016/struct_ov16_0224B9DC_decl.h"
+#include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 #include "overlay016/struct_ov16_02268A14_decl.h"
 #include "overlay016/struct_ov16_0226D160_decl.h"
@@ -51,7 +51,7 @@
 #include "overlay016/struct_ov16_0225C2C4.h"
 #include "overlay016/struct_ov16_0225C2D8.h"
 #include "overlay016/struct_ov16_0225C2EC.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 #include "overlay016/struct_ov16_0225C35C.h"
 #include "overlay016/struct_ov16_0225C370.h"
 #include "overlay016/struct_ov16_0225C384.h"
@@ -172,7 +172,7 @@ void ov16_0225D794(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1
 void ov16_0225D840(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C2C4 * param2);
 void ov16_0225D8AC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C2D8 * param2);
 void ov16_0225D8F0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C2EC * param2);
-void ov16_0225D958(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2);
+void ov16_0225D958(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2);
 void ov16_0225D9A8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_02265BBC * param2);
 void ov16_0225DA44(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1);
 void ov16_0225DA74(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C35C * param2);
@@ -270,13 +270,13 @@ UnkStruct_ov16_0226C378 * ov16_02263B0C(UnkStruct_ov16_0225BFFC * param0);
 void ov16_02263B10(UnkStruct_ov16_0225BFFC * param0);
 void ov16_02263B20(UnkStruct_ov16_0225BFFC * param0, int param1);
 static UnkStruct_02007C7C * ov16_02263B30(UnkStruct_0207ADB4 * param0, UnkStruct_02007768 * param1, UnkStruct_02008A90 * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9, int param10, UnkStruct_02007C10 * param11, UnkFuncPtr_02007C34 * param12);
-static void ov16_02263C1C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C3F8 * param2, UnkStruct_ov16_0225C300 * param3);
-static void ov16_02263CF0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C40C * param2, UnkStruct_ov16_0225C300 * param3);
-static void ov16_02263DD0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2);
-static void ov16_02263E7C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C430 * param2, UnkStruct_ov16_0225C300 * param3);
-static void ov16_022641B4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2);
-static void ov16_02264270(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C9F0 * param2, UnkStruct_ov16_0225C300 * param3);
-static void ov16_02264360(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2);
+static void ov16_02263C1C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C3F8 * param2, BattleMessage * param3);
+static void ov16_02263CF0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C40C * param2, BattleMessage * param3);
+static void ov16_02263DD0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2);
+static void ov16_02263E7C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C430 * param2, BattleMessage * param3);
+static void ov16_022641B4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2);
+static void ov16_02264270(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C9F0 * param2, BattleMessage * param3);
+static void ov16_02264360(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2);
 static UnkStruct_0200D0F4 * ov16_022643B8(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3, s16 param4, s16 param5);
 static void ov16_02264408(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov12_0221FCDC * param2, UnkStruct_ov16_02265BBC * param3);
 static void ov16_02264530(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_02265BBC * param1, UnkStruct_ov12_022380DC * param2, int param3);
@@ -911,7 +911,7 @@ void ov16_0225D8F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_ov16_0225C300 v2;
+    BattleMessage v2;
 
     v1 = ov16_0223E060(param0);
     v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
@@ -920,16 +920,16 @@ void ov16_0225D8F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
     v0->unk_04 = param2->unk_00;
     v0->unk_05 = param1->unk_190;
 
-    v2.unk_02 = 0 + param2->unk_02 * 3;
-    v2.unk_01 = 2;
-    v2.unk_04[0] = param1->unk_190 | (param2->unk_01 << 8);
+    v2.id = 0 + param2->unk_02 * 3;
+    v2.tags = 2;
+    v2.params[0] = param1->unk_190 | (param2->unk_01 << 8);
 
     v0->unk_06 = ov16_0223FB24(param0, v1, &v2, ov16_0223EDF0(param0));
 
     sub_0200D9E8(ov16_02262F7C, v0, 0);
 }
 
-void ov16_0225D958 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2)
+void ov16_0225D958 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
@@ -1159,7 +1159,7 @@ void ov16_0225DDD8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_ov16_0225C300 v2;
+    BattleMessage v2;
 
     ov16_02263C1C(param0, param1, param2, &v2);
 
@@ -1178,7 +1178,7 @@ void ov16_0225DE30 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_ov16_0225C300 v2;
+    BattleMessage v2;
 
     ov16_02263CF0(param0, param1, param2, &v2);
 
@@ -1197,7 +1197,7 @@ void ov16_0225DE88 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_ov16_0225C300 v2;
+    BattleMessage v2;
 
     ov16_02263DD0(param0, param1, &v2);
 
@@ -1216,7 +1216,7 @@ void ov16_0225DEDC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_ov16_0225C300 v2;
+    BattleMessage v2;
 
     ov16_02263E7C(param0, param1, param2, &v2);
 
@@ -1416,13 +1416,13 @@ void ov16_0225E200 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 void ov16_0225E23C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_0200B144 * v0;
-    UnkStruct_ov16_0225C300 v1;
+    BattleMessage v1;
 
     if (param1->unk_192 == 0x0) {
         v0 = ov16_0223E05C(param0);
 
-        v1.unk_02 = 923;
-        v1.unk_01 = 0;
+        v1.id = 923;
+        v1.tags = 0;
 
         ov16_0223FB24(param0, v0, &v1, NULL);
         ov16_0223F2A4(param0, sub_0200E7FC(ov16_0223DF04(param0, 0), 1));
@@ -1476,7 +1476,7 @@ void ov16_0225E338 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_ov16_0225C300 v2;
+    BattleMessage v2;
 
     ov16_022641B4(param0, param1, &v2);
 
@@ -1495,7 +1495,7 @@ void ov16_0225E38C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_ov16_0225C300 v2;
+    BattleMessage v2;
 
     ov16_02264270(param0, param1, param2, &v2);
 
@@ -1514,7 +1514,7 @@ void ov16_0225E3E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param
 {
     UnkStruct_ov16_0225D8F0 * v0;
     UnkStruct_0200B144 * v1;
-    UnkStruct_ov16_0225C300 v2;
+    BattleMessage v2;
 
     ov16_02264360(param0, param1, &v2);
 
@@ -2960,39 +2960,39 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
     case 1:
     {
         UnkStruct_0200B144 * v9;
-        UnkStruct_ov16_0225C300 v10;
+        BattleMessage v10;
 
         v9 = ov16_0223E05C(v0->unk_00);
 
         if (v4 & 0x400) {
             switch (ov16_0223F228(v0->unk_00)) {
             case 0:
-                v10.unk_01 = 2;
-                v10.unk_04[0] = v0->unk_09 | (v0->unk_23 << 8);
-                v10.unk_02 = 921;
+                v10.tags = 2;
+                v10.params[0] = v0->unk_09 | (v0->unk_23 << 8);
+                v10.id = 921;
                 ov16_0223FB24(v0->unk_00, v9, &v10, 0);
                 v0->unk_0A = 3;
                 break;
             case 1:
-                v10.unk_01 = 0;
-                v10.unk_02 = 1226 + ov16_0223E1B4(v0->unk_00, 0);
+                v10.tags = 0;
+                v10.id = 1226 + ov16_0223E1B4(v0->unk_00, 0);
                 v0->unk_35 = ov16_0223FB24(v0->unk_00, v9, &v10, ov16_0223EDF0(v0->unk_00));
                 v0->unk_0A = 2;
                 break;
             }
         } else {
             if (v4 & 0x20) {
-                v10.unk_01 = 8;
-                v10.unk_04[0] = ov16_0223E0D8(v0->unk_00, v0->unk_09);
-                v10.unk_02 = 922;
+                v10.tags = 8;
+                v10.params[0] = ov16_0223E0D8(v0->unk_00, v0->unk_09);
+                v10.id = 922;
             } else if (v4 & 0x200) {
-                v10.unk_01 = 8;
-                v10.unk_04[0] = ov16_0223E0D8(v0->unk_00, v0->unk_09);
-                v10.unk_02 = 1222;
+                v10.tags = 8;
+                v10.params[0] = ov16_0223E0D8(v0->unk_00, v0->unk_09);
+                v10.id = 1222;
             } else {
-                v10.unk_01 = 2;
-                v10.unk_04[0] = v0->unk_09 | (v0->unk_23 << 8);
-                v10.unk_02 = 921;
+                v10.tags = 2;
+                v10.params[0] = v0->unk_09 | (v0->unk_23 << 8);
+                v10.id = 921;
             }
 
             ov16_0223FB24(v0->unk_00, v9, &v10, 0);
@@ -3304,12 +3304,12 @@ static void ov16_02260C00 (UnkStruct_0201CD38 * param0, void * param1)
 
         {
             UnkStruct_0200B144 * v6;
-            UnkStruct_ov16_0225C300 v7;
+            BattleMessage v7;
 
             v6 = ov16_0223E05C(v0->unk_00);
-            v7.unk_01 = 2;
-            v7.unk_04[0] = v0->unk_1D | (v0->unk_1F << 8);
-            v7.unk_02 = 921;
+            v7.tags = 2;
+            v7.params[0] = v0->unk_1D | (v0->unk_1F << 8);
+            v7.id = 921;
 
             ov16_0223FB24(v0->unk_00, v6, &v7, 0);
         }
@@ -3375,7 +3375,7 @@ static void ov16_02260C00 (UnkStruct_0201CD38 * param0, void * param1)
 static void ov16_02260DB0 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov16_0225D698 * v0 = (UnkStruct_ov16_0225D698 *)param1;
-    UnkStruct_ov16_0224B9DC * v1;
+    BattleContext * v1;
     int v2;
     u32 v3;
 
@@ -3563,7 +3563,7 @@ static void ov16_02260F14 (UnkStruct_0201CD38 * param0, void * param1)
 static void ov16_022610A8 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov16_0225D708 * v0 = (UnkStruct_ov16_0225D708 *)param1;
-    UnkStruct_ov16_0224B9DC * v1;
+    BattleContext * v1;
     int v2;
 
     v1 = ov16_0223DF10(v0->unk_00);
@@ -3874,11 +3874,11 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     case 9:
     {
         UnkStruct_0200B144 * v8;
-        UnkStruct_ov16_0225C300 v9;
+        BattleMessage v9;
 
-        v9.unk_02 = 1206;
-        v9.unk_01 = 5;
-        v9.unk_04[0] = v0->unk_04->unk_1C;
+        v9.id = 1206;
+        v9.tags = 5;
+        v9.params[0] = v0->unk_04->unk_1C;
 
         v8 = ov16_0223E05C(v0->unk_00);
 
@@ -3936,38 +3936,38 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     case 15:
     {
         UnkStruct_0200B144 * v14;
-        UnkStruct_ov16_0225C300 v15;
+        BattleMessage v15;
 
-        v15.unk_02 = 1203;
-        v15.unk_01 = 12;
-        v15.unk_04[0] = v0->unk_0D | (v0->unk_08->unk_0C[v0->unk_0D] << 8);
+        v15.id = 1203;
+        v15.tags = 12;
+        v15.params[0] = v0->unk_0D | (v0->unk_08->unk_0C[v0->unk_0D] << 8);
 
         switch (v0->unk_04->unk_1C) {
         case 57:
-            v15.unk_04[1] = 0x1;
+            v15.params[1] = 0x1;
             break;
         case 58:
-            v15.unk_04[1] = 0x2;
+            v15.params[1] = 0x2;
             break;
         case 59:
-            v15.unk_04[1] = 0x3;
+            v15.params[1] = 0x3;
             break;
         case 60:
-            v15.unk_04[1] = 0x6;
+            v15.params[1] = 0x6;
             break;
         case 61:
-            v15.unk_04[1] = 0x4;
+            v15.params[1] = 0x4;
             break;
         case 62:
-            v15.unk_04[1] = 0x5;
+            v15.params[1] = 0x5;
             break;
         case 55:
-            v15.unk_02 = 1204;
-            v15.unk_01 = 0;
+            v15.id = 1204;
+            v15.tags = 0;
             break;
         case 56:
-            v15.unk_02 = 1205;
-            v15.unk_01 = 2;
+            v15.id = 1205;
+            v15.tags = 2;
             break;
         }
 
@@ -4033,21 +4033,21 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     case 23:
     {
         UnkStruct_0200B144 * v24;
-        UnkStruct_ov16_0225C300 v25;
+        BattleMessage v25;
         int v26;
 
         v24 = ov16_0223E05C(v0->unk_00);
         v26 = v0->unk_08->unk_04->unk_11 * 2;
 
         if (v0->unk_08->unk_04->unk_20) {
-            v25.unk_02 = 1214;
-            v25.unk_01 = 17;
-            v25.unk_04[0] = v26 | (v0->unk_08->unk_0C[v26] << 8);
-            v25.unk_04[1] = v0->unk_08->unk_04->unk_20;
+            v25.id = 1214;
+            v25.tags = 17;
+            v25.params[0] = v26 | (v0->unk_08->unk_0C[v26] << 8);
+            v25.params[1] = v0->unk_08->unk_04->unk_20;
         } else {
-            v25.unk_02 = 1250;
-            v25.unk_01 = 2;
-            v25.unk_04[0] = v26 | (v0->unk_08->unk_0C[v26] << 8);
+            v25.id = 1250;
+            v25.tags = 2;
+            v25.params[0] = v26 | (v0->unk_08->unk_0C[v26] << 8);
         }
 
         v0->unk_11 = ov16_0223FB24(v0->unk_00, v24, &v25, ov16_0223EDF0(v0->unk_00));
@@ -4061,7 +4061,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         UnkStruct_ov16_022674C4 * v27;
         int v28;
         UnkStruct_0200B144 * v29;
-        UnkStruct_ov16_0225C300 v30;
+        BattleMessage v30;
         int v31;
         int v32 = 0;
         Pokemon * v33;
@@ -4078,8 +4078,8 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
 
         ov16_02267084(v27, v27->unk_28, (1 << 8));
 
-        v30.unk_01 = 2;
-        v30.unk_04[0] = v28 | (v0->unk_08->unk_0C[v28] << 8);
+        v30.tags = 2;
+        v30.params[0] = v28 | (v0->unk_08->unk_0C[v28] << 8);
 
         if (Item_GetAttribute(v0->unk_04->unk_1C, 15, 5)) {
             v31 = 0;
@@ -4117,29 +4117,29 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         if (v32 != 1) {
-            v30.unk_02 = 1229;
+            v30.id = 1229;
         } else {
             switch (v31) {
             case 0:
-                v30.unk_02 = 1210;
+                v30.id = 1210;
                 break;
             case 1:
-                v30.unk_02 = 1207;
+                v30.id = 1207;
                 break;
             case 2:
-                v30.unk_02 = 1209;
+                v30.id = 1209;
                 break;
             case 3:
-                v30.unk_02 = 1211;
+                v30.id = 1211;
                 break;
             case 4:
-                v30.unk_02 = 1208;
+                v30.id = 1208;
                 break;
             case 5:
-                v30.unk_02 = 1212;
+                v30.id = 1212;
                 break;
             case 6:
-                v30.unk_02 = 1213;
+                v30.id = 1213;
                 break;
             }
         }
@@ -4521,18 +4521,18 @@ static void ov16_022623F0 (UnkStruct_0201CD38 * param0, void * param1)
             {
                 UnkStruct_0205AA50 * v6;
                 UnkStruct_0200B144 * v7;
-                UnkStruct_ov16_0225C300 v8;
+                BattleMessage v8;
 
                 v7 = ov16_0223E05C(v0->unk_00);
 
                 if (v0->unk_0F == 5) {
-                    v8.unk_01 = 2 | 0x80;
-                    v8.unk_04[0] = v0->unk_14;
+                    v8.tags = 2 | 0x80;
+                    v8.params[0] = v0->unk_14;
                 } else {
-                    v8.unk_01 = 0;
+                    v8.tags = 0;
                 }
 
-                v8.unk_02 = v0->unk_10;
+                v8.id = v0->unk_10;
                 v0->unk_1A = ov16_0223FB24(v0->unk_00, v7, &v8, ov16_0223EDF0(v0->unk_00));
             }
         }
@@ -5821,81 +5821,81 @@ static UnkStruct_02007C7C * ov16_02263B30 (UnkStruct_0207ADB4 * param0, UnkStruc
     return v0;
 }
 
-static void ov16_02263C1C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C3F8 * param2, UnkStruct_ov16_0225C300 * param3)
+static void ov16_02263C1C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C3F8 * param2, BattleMessage * param3)
 {
     if (param1->unk_191 & 0x1) {
         if (ov16_0223DF0C(param0) & 0x4) {
-            param3->unk_02 = 990;
-            param3->unk_01 = 27;
-            param3->unk_04[0] = param1->unk_190;
-            param3->unk_04[1] = param1->unk_190 | (param2->unk_01 << 8);
+            param3->id = 990;
+            param3->tags = 27;
+            param3->params[0] = param1->unk_190;
+            param3->params[1] = param1->unk_190 | (param2->unk_01 << 8);
         } else {
-            param3->unk_02 = 989;
-            param3->unk_01 = 50;
-            param3->unk_04[0] = param1->unk_190;
-            param3->unk_04[1] = param1->unk_190;
-            param3->unk_04[2] = param1->unk_190 | (param2->unk_01 << 8);
+            param3->id = 989;
+            param3->tags = 50;
+            param3->params[0] = param1->unk_190;
+            param3->params[1] = param1->unk_190;
+            param3->params[2] = param1->unk_190 | (param2->unk_01 << 8);
         }
     } else {
         if (((ov16_0223DF0C(param0) & 0x2) == 0) && ((ov16_0223DF0C(param0) & 0x4) == 0)) {
             if (param2->unk_02 == 0) {
-                param3->unk_02 = 984;
+                param3->id = 984;
             } else if (param2->unk_02 < 25) {
-                param3->unk_02 = 985;
+                param3->id = 985;
             } else if (param2->unk_02 < 50) {
-                param3->unk_02 = 988;
+                param3->id = 988;
             } else if (param2->unk_02 < 75) {
-                param3->unk_02 = 986;
+                param3->id = 986;
             } else {
-                param3->unk_02 = 987;
+                param3->id = 987;
             }
         } else {
-            param3->unk_02 = 985;
+            param3->id = 985;
         }
 
-        param3->unk_01 = 2;
-        param3->unk_04[0] = param1->unk_190 | (param2->unk_01 << 8);
+        param3->tags = 2;
+        param3->params[0] = param1->unk_190 | (param2->unk_01 << 8);
     }
 }
 
-static void ov16_02263CF0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C40C * param2, UnkStruct_ov16_0225C300 * param3)
+static void ov16_02263CF0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C40C * param2, BattleMessage * param3)
 {
     if (param1->unk_191 & 0x1) {
         if ((ov16_0223DF0C(param0) & 0x4) == 0) {
-            param3->unk_02 = 972;
-            param3->unk_01 = 50;
-            param3->unk_04[0] = param1->unk_190;
-            param3->unk_04[1] = param1->unk_190;
-            param3->unk_04[2] = param1->unk_190 | (param2->unk_01 << 8);
+            param3->id = 972;
+            param3->tags = 50;
+            param3->params[0] = param1->unk_190;
+            param3->params[1] = param1->unk_190;
+            param3->params[2] = param1->unk_190 | (param2->unk_01 << 8);
         } else {
-            param3->unk_02 = 974;
-            param3->unk_01 = 27;
-            param3->unk_04[0] = param1->unk_190;
-            param3->unk_04[1] = param1->unk_190 | (param2->unk_01 << 8);
+            param3->id = 974;
+            param3->tags = 27;
+            param3->params[0] = param1->unk_190;
+            param3->params[1] = param1->unk_190 | (param2->unk_01 << 8);
         }
     } else {
         if (((ov16_0223DF0C(param0) & 0x2) == 0) && ((ov16_0223DF0C(param0) & 0x4) == 0)) {
             if (param2->unk_02 < 100) {
-                param3->unk_02 = 982;
+                param3->id = 982;
             } else if (param2->unk_02 < 325) {
-                param3->unk_02 = 983;
+                param3->id = 983;
             } else if (param2->unk_02 < 550) {
-                param3->unk_02 = 981;
+                param3->id = 981;
             } else if (param2->unk_02 < 775) {
-                param3->unk_02 = 980;
+                param3->id = 980;
             } else {
-                param3->unk_02 = 979;
+                param3->id = 979;
             }
         } else {
-            param3->unk_02 = 979;
+            param3->id = 979;
         }
 
-        param3->unk_01 = 2;
-        param3->unk_04[0] = param1->unk_190 | (param2->unk_01 << 8);
+        param3->tags = 2;
+        param3->params[0] = param1->unk_190 | (param2->unk_01 << 8);
     }
 }
 
-static void ov16_02263DD0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2)
+static void ov16_02263DD0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2)
 {
     u32 v0;
     int v1;
@@ -5913,40 +5913,40 @@ static void ov16_02263DD0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
 
     if (v0 & 0x4) {
         if (v0 & 0x80) {
-            param2->unk_02 = 992;
-            param2->unk_01 = 59;
-            param2->unk_04[0] = v1;
-            param2->unk_04[1] = v1;
-            param2->unk_04[2] = v2;
-            param2->unk_04[3] = v2;
+            param2->id = 992;
+            param2->tags = 59;
+            param2->params[0] = v1;
+            param2->params[1] = v1;
+            param2->params[2] = v2;
+            param2->params[3] = v2;
         } else if (v0 & 0x8) {
-            param2->unk_02 = 971;
-            param2->unk_01 = 26;
-            param2->unk_04[0] = v1;
-            param2->unk_04[1] = v2;
+            param2->id = 971;
+            param2->tags = 26;
+            param2->params[0] = v1;
+            param2->params[1] = v2;
         } else {
-            param2->unk_02 = 970;
-            param2->unk_01 = 8;
-            param2->unk_04[0] = v1;
+            param2->id = 970;
+            param2->tags = 8;
+            param2->params[0] = v1;
         }
     } else {
         if ((v0 & 0x10) || (v0 & 0x8)) {
-            param2->unk_02 = 992;
-            param2->unk_01 = 59;
-            param2->unk_04[0] = v1;
-            param2->unk_04[1] = v1;
-            param2->unk_04[2] = v2;
-            param2->unk_04[3] = v2;
+            param2->id = 992;
+            param2->tags = 59;
+            param2->params[0] = v1;
+            param2->params[1] = v1;
+            param2->params[2] = v2;
+            param2->params[3] = v2;
         } else {
-            param2->unk_02 = 969;
-            param2->unk_01 = 30;
-            param2->unk_04[0] = v1;
-            param2->unk_04[1] = v1;
+            param2->id = 969;
+            param2->tags = 30;
+            param2->params[0] = v1;
+            param2->params[1] = v1;
         }
     }
 }
 
-static void ov16_02263E7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C430 * param2, UnkStruct_ov16_0225C300 * param3)
+static void ov16_02263E7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C430 * param2, BattleMessage * param3)
 {
     u32 v0;
     int v1;
@@ -5965,56 +5965,56 @@ static void ov16_02263E7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
 
         if (v0 & 0x4) {
             if (v0 & 0x80) {
-                param3->unk_02 = 991;
-                param3->unk_01 = 60;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1;
-                param3->unk_04[2] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[3] = v2;
-                param3->unk_04[4] = v2;
-                param3->unk_04[5] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 991;
+                param3->tags = 60;
+                param3->params[0] = v1;
+                param3->params[1] = v1;
+                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[3] = v2;
+                param3->params[4] = v2;
+                param3->params[5] = v2 | (param2->unk_04[v2] << 8);
             } else if (v0 & 0x8) {
-                param3->unk_02 = 976;
-                param3->unk_01 = 56;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[2] = v2;
-                param3->unk_04[3] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 976;
+                param3->tags = 56;
+                param3->params[0] = v1;
+                param3->params[1] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[2] = v2;
+                param3->params[3] = v2 | (param2->unk_04[v2] << 8);
             } else if (v0 & 0x2) {
-                param3->unk_02 = 975;
-                param3->unk_01 = 49;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[2] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 975;
+                param3->tags = 49;
+                param3->params[0] = v1;
+                param3->params[1] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[2] = v2 | (param2->unk_04[v2] << 8);
             } else {
-                param3->unk_02 = 974;
-                param3->unk_01 = 27;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1 | (param2->unk_04[v1] << 8);
+                param3->id = 974;
+                param3->tags = 27;
+                param3->params[0] = v1;
+                param3->params[1] = v1 | (param2->unk_04[v1] << 8);
             }
         } else {
             if ((v0 & 0x10) || (v0 & 0x8)) {
-                param3->unk_02 = 991;
-                param3->unk_01 = 60;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1;
-                param3->unk_04[2] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[3] = v2;
-                param3->unk_04[4] = v2;
-                param3->unk_04[5] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 991;
+                param3->tags = 60;
+                param3->params[0] = v1;
+                param3->params[1] = v1;
+                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[3] = v2;
+                param3->params[4] = v2;
+                param3->params[5] = v2 | (param2->unk_04[v2] << 8);
             } else if (v0 & 0x2) {
-                param3->unk_02 = 973;
-                param3->unk_01 = 57;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1;
-                param3->unk_04[2] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[3] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 973;
+                param3->tags = 57;
+                param3->params[0] = v1;
+                param3->params[1] = v1;
+                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[3] = v2 | (param2->unk_04[v2] << 8);
             } else {
-                param3->unk_02 = 972;
-                param3->unk_01 = 50;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1;
-                param3->unk_04[2] = v1 | (param2->unk_04[v1] << 8);
+                param3->id = 972;
+                param3->tags = 50;
+                param3->params[0] = v1;
+                param3->params[1] = v1;
+                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
             }
         }
     } else {
@@ -6056,44 +6056,44 @@ static void ov16_02263E7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
 
         if (v0 & 0x4) {
             if (v0 & 0x8) {
-                param3->unk_02 = 977;
-                param3->unk_01 = 49;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[2] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 977;
+                param3->tags = 49;
+                param3->params[0] = v1;
+                param3->params[1] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[2] = v2 | (param2->unk_04[v2] << 8);
             } else if (v0 & 0x2) {
-                param3->unk_02 = 978;
-                param3->unk_01 = 9;
-                param3->unk_04[0] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[1] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 978;
+                param3->tags = 9;
+                param3->params[0] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[1] = v2 | (param2->unk_04[v2] << 8);
             } else {
-                param3->unk_02 = 979;
-                param3->unk_01 = 2;
-                param3->unk_04[0] = v1 | (param2->unk_04[v1] << 8);
+                param3->id = 979;
+                param3->tags = 2;
+                param3->params[0] = v1 | (param2->unk_04[v1] << 8);
             }
         } else {
             if (v0 & 0x8) {
-                param3->unk_02 = 993;
-                param3->unk_01 = 57;
-                param3->unk_04[0] = v1;
-                param3->unk_04[1] = v1;
-                param3->unk_04[2] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[3] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 993;
+                param3->tags = 57;
+                param3->params[0] = v1;
+                param3->params[1] = v1;
+                param3->params[2] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[3] = v2 | (param2->unk_04[v2] << 8);
             } else if (v0 & 0x2) {
-                param3->unk_02 = 978;
-                param3->unk_01 = 9;
-                param3->unk_04[0] = v1 | (param2->unk_04[v1] << 8);
-                param3->unk_04[1] = v2 | (param2->unk_04[v2] << 8);
+                param3->id = 978;
+                param3->tags = 9;
+                param3->params[0] = v1 | (param2->unk_04[v1] << 8);
+                param3->params[1] = v2 | (param2->unk_04[v2] << 8);
             } else {
-                param3->unk_02 = 979;
-                param3->unk_01 = 2;
-                param3->unk_04[0] = v1 | (param2->unk_04[v1] << 8);
+                param3->id = 979;
+                param3->tags = 2;
+                param3->params[0] = v1 | (param2->unk_04[v1] << 8);
             }
         }
     }
 }
 
-static void ov16_022641B4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2)
+static void ov16_022641B4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2)
 {
     u32 v0;
     int v1;
@@ -6114,44 +6114,44 @@ static void ov16_022641B4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
     switch (v3) {
     case 0x1:
         if (v0 & 0x8) {
-            param2->unk_02 = 786;
-            param2->unk_01 = 26;
-            param2->unk_04[0] = v1;
-            param2->unk_04[1] = v2;
+            param2->id = 786;
+            param2->tags = 26;
+            param2->params[0] = v1;
+            param2->params[1] = v2;
         } else {
-            param2->unk_02 = 785;
-            param2->unk_01 = 8;
-            param2->unk_04[0] = v1;
+            param2->id = 785;
+            param2->tags = 8;
+            param2->params[0] = v1;
         }
         break;
     case 0x2:
         if (v0 & 0x8) {
-            param2->unk_02 = 788;
-            param2->unk_01 = 26;
-            param2->unk_04[0] = v1;
-            param2->unk_04[1] = v2;
+            param2->id = 788;
+            param2->tags = 26;
+            param2->params[0] = v1;
+            param2->params[1] = v2;
         } else {
-            param2->unk_02 = 787;
-            param2->unk_01 = 8;
-            param2->unk_04[0] = v1;
+            param2->id = 787;
+            param2->tags = 8;
+            param2->params[0] = v1;
         }
         break;
     case 0x3:
         if (v0 & 0x8) {
-            param2->unk_02 = 790;
-            param2->unk_01 = 26;
-            param2->unk_04[0] = v1;
-            param2->unk_04[1] = v2;
+            param2->id = 790;
+            param2->tags = 26;
+            param2->params[0] = v1;
+            param2->params[1] = v2;
         } else {
-            param2->unk_02 = 789;
-            param2->unk_01 = 8;
-            param2->unk_04[0] = v1;
+            param2->id = 789;
+            param2->tags = 8;
+            param2->params[0] = v1;
         }
         break;
     }
 }
 
-static void ov16_02264270 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C9F0 * param2, UnkStruct_ov16_0225C300 * param3)
+static void ov16_02264270 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C9F0 * param2, BattleMessage * param3)
 {
     int v0;
     int v1 = 0;
@@ -6168,46 +6168,46 @@ static void ov16_02264270 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC 
     }
 
     if ((v1) && (v2)) {
-        param3->unk_02 = 781;
-        param3->unk_01 = 0;
+        param3->id = 781;
+        param3->tags = 0;
         ov16_0223F444(param0, 0x3 | 0x80 | 0x40);
     } else if (v1) {
-        param3->unk_02 = 781;
-        param3->unk_01 = 0;
+        param3->id = 781;
+        param3->tags = 0;
         ov16_0223F444(param0, 0x2 | 0x80 | 0x40);
     } else {
         if (ov16_0223DF0C(param0) & 0x8) {
-            param3->unk_02 = 792;
-            param3->unk_01 = 26;
-            param3->unk_04[0] = ov16_0223E1C4(param0, 3);
-            param3->unk_04[1] = ov16_0223E1C4(param0, 5);
+            param3->id = 792;
+            param3->tags = 26;
+            param3->params[0] = ov16_0223E1C4(param0, 3);
+            param3->params[1] = ov16_0223E1C4(param0, 5);
         } else if (ov16_0223DF0C(param0) & 0x2) {
-            param3->unk_02 = 791;
-            param3->unk_01 = 8;
-            param3->unk_04[0] = ov16_0223E1C4(param0, 3);
+            param3->id = 791;
+            param3->tags = 8;
+            param3->params[0] = ov16_0223E1C4(param0, 3);
         } else {
-            param3->unk_02 = 791;
-            param3->unk_01 = 8;
-            param3->unk_04[0] = ov16_0223E1C4(param0, 1);
+            param3->id = 791;
+            param3->tags = 8;
+            param3->params[0] = ov16_0223E1C4(param0, 1);
         }
 
         ov16_0223F444(param0, 0x1 | 0x80 | 0x40);
     }
 }
 
-static void ov16_02264360 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C300 * param2)
+static void ov16_02264360 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2)
 {
-    param2->unk_02 = 956;
-    param2->unk_01 = 8;
+    param2->id = 956;
+    param2->tags = 8;
 
     if (ov16_0223DF0C(param0) & 0x4) {
         if (ov16_0223F6F0(param0, ov16_0223F6E4(param0))) {
-            param2->unk_04[0] = ov16_0223E1C4(param0, 4);
+            param2->params[0] = ov16_0223E1C4(param0, 4);
         } else {
-            param2->unk_04[0] = ov16_0223E1C4(param0, 2);
+            param2->params[0] = ov16_0223E1C4(param0, 2);
         }
     } else {
-        param2->unk_04[0] = param1->unk_190;
+        param2->params[0] = param1->unk_190;
     }
 
     ov16_0223F444(param0, 0x2 | 0x80 | 0x40);

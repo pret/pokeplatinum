@@ -18,9 +18,10 @@
 #include "struct_decls/struct_0207ADB4_decl.h"
 #include "overlay016/struct_ov16_02241584_decl.h"
 #include "overlay016/struct_ov16_0224B7CC_decl.h"
-#include "overlay016/struct_ov16_0224B9DC_decl.h"
-#include "overlay016/struct_ov16_02252060_decl.h"
+#include "battle/battle_mon.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
+
+#include "battle/battle_context.h"
 
 #include "constdata/const_020F2DAC.h"
 
@@ -42,10 +43,9 @@
 #include "overlay016/struct_ov16_022431BC_3.h"
 #include "overlay016/struct_ov16_02248E74.h"
 #include "overlay016/struct_ov16_0224B7CC_t.h"
-#include "overlay016/struct_ov16_0224B9DC_t.h"
-#include "overlay016/struct_ov16_02252060_t.h"
+#include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0225BFFC_t.h"
-#include "overlay016/struct_ov16_0225C300.h"
+#include "battle/battle_message.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
@@ -90,261 +90,261 @@
 #include "overlay016/ov16_02268520.h"
 #include "overlay021/ov21_021E8D48.h"
 
-typedef BOOL (* UnkFuncPtr_ov16_0226E72C)(UnkStruct_0207ADB4 *, UnkStruct_ov16_0224B9DC *);
+typedef BOOL (* UnkFuncPtr_ov16_0226E72C)(UnkStruct_0207ADB4 *, BattleContext *);
 
-BOOL ov16_022405FC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224064C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02240664(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022406E0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022408A0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02240A7C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02240B3C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02240B68(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02240C84(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02240D94(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02240F44(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022410DC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241108(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022411C0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241288(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241340(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022414E0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241518(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241544(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241584(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022415B8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022415F8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241618(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241644(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241698(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241714(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022417C0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022417F4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241894(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022418C0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241924(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241984(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241A20(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241A58(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241B08(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241BC0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241BDC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241BFC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241C28(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241CD0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241D34(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241EB0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241EF0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241F1C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02241F34(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224200C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242134(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022421D4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224221C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224226C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242298(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224230C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242400(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242A14(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242B38(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242B74(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242BAC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242C6C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242CA4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242DBC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242F1C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242F3C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242F5C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02242F8C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022430A4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022430F4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243120(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224314C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243184(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022432B4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243334(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243398(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243424(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243494(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022434CC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243504(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243530(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224355C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224358C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243708(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022437D4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022438A8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022438F8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022439D8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243AB8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243B38(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243D2C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243D64(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243DBC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243EF4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02243F54(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244010(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224410C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244208(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022442F0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022444B0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022445D4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022446A0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022446F4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244798(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022448E8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244A0C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244B48(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244BC4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244D60(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244F54(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02244FD8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224505C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224510C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245144(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245188(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224544C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245568(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022455F8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224567C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245710(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245784(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224582C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245890(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022459D8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245A7C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245B68(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245BC8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245CB4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245D34(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245D68(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02245FC4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246004(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022460A8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022461B0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022461F4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022462D8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246334(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022463E8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246458(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022464CC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224650C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246630(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246688(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022467A0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246848(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022468A4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246904(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022469C4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246B68(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246BB0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246CB4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246DAC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246DF0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246EE4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246F2C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246F70(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02246FA8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247064(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022470C0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247118(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247194(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247378(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022473A8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022473F4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247440(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022474C4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247570(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247698(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022476F8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224787C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022478A4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022478E4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247950(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224799C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022479E8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247A80(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247AB0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247AE0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247B28(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247BA4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247BD4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247C04(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247C64(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247C94(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247CE0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247D04(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247E10(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247E98(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247F44(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247F7C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247FBC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02247FE8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248000(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248040(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248084(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022480B0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022480DC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248108(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248134(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224814C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248164(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022481A4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022481D0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248204(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248294(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248324(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022484D0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248550(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224859C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022485E0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248614(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224862C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248648(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248660(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248708(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022487A4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248800(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248850(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248880(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022488B4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022488E0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_0224890C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248944(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248988(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_022489F4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248A34(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248A7C(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static BOOL ov16_02248AB4(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
-static int ov16_02248AD0(UnkStruct_ov16_0224B9DC * param0);
-static void ov16_02248AF0(UnkStruct_ov16_0224B9DC * param0, int param1);
-static void ov16_02248B00(UnkStruct_ov16_0224B9DC * param0, int param1, int param2);
-static void ov16_02248B08(UnkStruct_ov16_0224B9DC * param0, int param1, int param2);
-static void * ov16_02248B10(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static int ov16_0224A984(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static void ov16_0224ABEC(UnkStruct_ov16_0224B9DC * param0, UnkStruct_ov16_02241584 * param1);
-static void ov16_0224ACB8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, UnkStruct_ov16_02241584 * param2, UnkStruct_ov16_0225C300 * param3);
-static int ov16_0224B3B8(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static int ov16_0224B3E8(UnkStruct_ov16_0224B9DC * param0, int param1);
-static int ov16_0224B404(UnkStruct_ov16_0224B9DC * param0, int param1);
-static int ov16_0224B47C(UnkStruct_ov16_0224B9DC * param0, int param1);
-static int ov16_0224B488(UnkStruct_ov16_0224B9DC * param0, int param1);
-static int ov16_0224B494(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static int ov16_0224B4C8(UnkStruct_ov16_0224B9DC * param0, int param1);
-static int ov16_0224B4D4(UnkStruct_ov16_0224B9DC * param0, int param1);
-static int ov16_0224B4E0(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static int ov16_0224B4F8(UnkStruct_ov16_0224B9DC * param0, int param1);
-static int ov16_0224B504(UnkStruct_ov16_0224B9DC * param0, int param1);
-static int ov16_0224B510(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static int ov16_0224B518(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static u32 ov16_022431BC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
+BOOL ov16_022405FC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224064C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02240664(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022406E0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022408A0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02240A7C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02240B3C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02240B68(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02240C84(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02240D94(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02240F44(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022410DC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241108(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022411C0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241288(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241340(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022414E0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241518(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241544(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241584(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022415B8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022415F8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241618(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241644(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241698(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241714(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022417C0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022417F4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241894(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022418C0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241924(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241984(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241A20(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241A58(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241B08(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241BC0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241BDC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241BFC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241C28(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241CD0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241D34(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241EB0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241EF0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241F1C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02241F34(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224200C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242134(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022421D4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224221C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224226C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242298(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224230C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242400(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242A14(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242B38(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242B74(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242BAC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242C6C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242CA4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242DBC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242F1C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242F3C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242F5C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02242F8C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022430A4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022430F4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243120(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224314C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243184(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022432B4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243334(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243398(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243424(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243494(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022434CC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243504(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243530(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224355C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224358C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243708(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022437D4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022438A8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022438F8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022439D8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243AB8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243B38(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243D2C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243D64(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243DBC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243EF4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02243F54(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244010(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224410C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244208(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022442F0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022444B0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022445D4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022446A0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022446F4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244798(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022448E8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244A0C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244B48(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244BC4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244D60(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244F54(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02244FD8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224505C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224510C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245144(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245188(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224544C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245568(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022455F8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224567C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245710(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245784(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224582C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245890(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022459D8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245A7C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245B68(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245BC8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245CB4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245D34(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245D68(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02245FC4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246004(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022460A8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022461B0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022461F4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022462D8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246334(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022463E8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246458(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022464CC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224650C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246630(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246688(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022467A0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246848(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022468A4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246904(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022469C4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246B68(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246BB0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246CB4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246DAC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246DF0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246EE4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246F2C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246F70(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02246FA8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247064(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022470C0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247118(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247194(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247378(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022473A8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022473F4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247440(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022474C4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247570(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247698(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022476F8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224787C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022478A4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022478E4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247950(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224799C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022479E8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247A80(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247AB0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247AE0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247B28(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247BA4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247BD4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247C04(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247C64(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247C94(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247CE0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247D04(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247E10(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247E98(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247F44(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247F7C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247FBC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02247FE8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248000(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248040(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248084(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022480B0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022480DC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248108(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248134(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224814C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248164(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022481A4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022481D0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248204(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248294(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248324(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022484D0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248550(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224859C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022485E0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248614(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224862C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248648(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248660(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248708(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022487A4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248800(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248850(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248880(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022488B4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022488E0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_0224890C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248944(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248988(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_022489F4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248A34(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248A7C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static BOOL ov16_02248AB4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static int ov16_02248AD0(BattleContext * param0);
+static void ov16_02248AF0(BattleContext * param0, int param1);
+static void ov16_02248B00(BattleContext * param0, int param1, int param2);
+static void ov16_02248B08(BattleContext * param0, int param1, int param2);
+static void * ov16_02248B10(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
+static int ov16_0224A984(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
+static void ov16_0224ABEC(BattleContext * param0, UnkStruct_ov16_02241584 * param1);
+static void ov16_0224ACB8(UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_02241584 * param2, BattleMessage * param3);
+static int ov16_0224B3B8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
+static int ov16_0224B3E8(BattleContext * param0, int param1);
+static int ov16_0224B404(BattleContext * param0, int param1);
+static int ov16_0224B47C(BattleContext * param0, int param1);
+static int ov16_0224B488(BattleContext * param0, int param1);
+static int ov16_0224B494(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
+static int ov16_0224B4C8(BattleContext * param0, int param1);
+static int ov16_0224B4D4(BattleContext * param0, int param1);
+static int ov16_0224B4E0(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
+static int ov16_0224B4F8(BattleContext * param0, int param1);
+static int ov16_0224B504(BattleContext * param0, int param1);
+static int ov16_0224B510(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
+static int ov16_0224B518(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
+static u32 ov16_022431BC(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
 static void ov16_022499C0(Party * param0, int param1, int param2, int param3);
-static int ov16_0224A724(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1);
+static int ov16_0224A724(UnkStruct_0207ADB4 * param0, BattleContext * param1);
 static void ov16_0224B520(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC * param1, Pokemon * param2);
 static void ov16_0224B7CC(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC * param1);
-static void ov16_0224B850(UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2);
-static void ov16_0224B928(UnkStruct_ov16_0224B9DC * param0, u8 param1, u8 param2);
-static void ov16_0224B934(UnkStruct_ov16_0224B9DC * param0, u8 param1, u16 param2);
+static void ov16_0224B850(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
+static void ov16_0224B928(BattleContext * param0, u8 param1, u8 param2);
+static void ov16_0224B934(BattleContext * param0, u8 param1, u16 param2);
 static void ov16_02248E74(UnkStruct_0201CD38 * param0, void * param1);
 static void ov16_02249B80(UnkStruct_0201CD38 * param0, void * param1);
 
@@ -574,20 +574,20 @@ static const UnkFuncPtr_ov16_0226E72C Unk_ov16_0226E72C[] = {
     ov16_02248AB4
 };
 
-BOOL ov16_022405FC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+BOOL ov16_022405FC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     BOOL v0;
 
     do {
-        v0 = Unk_ov16_0226E72C[param1->unk_2700[param1->unk_B4]](param0, param1);
-    } while ((param1->unk_3154_0 == 0) && ((ov16_0223DF0C(param0) & 0x4) == 0));
+        v0 = Unk_ov16_0226E72C[param1->battleScript[param1->scriptCursor]](param0, param1);
+    } while ((param1->battleProgressFlag == 0) && ((ov16_0223DF0C(param0) & 0x4) == 0));
 
-    param1->unk_3154_0 = 0;
+    param1->battleProgressFlag = 0;
 
     return v0;
 }
 
-static BOOL ov16_0224064C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224064C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_02264A8C(param0, 0);
@@ -595,7 +595,7 @@ static BOOL ov16_0224064C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02240664 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02240664 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -634,7 +634,7 @@ static BOOL ov16_02240664 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022406E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022406E0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -678,53 +678,53 @@ static BOOL ov16_022406E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         }
         break;
     case 0x1:
-        v3 = ov16_0223DF14(param0, param1->unk_64);
+        v3 = ov16_0223DF14(param0, param1->attacker);
 
         if ((v3->unk_191 & 0x1) == 0) {
             ov16_022535F0(param0, param1, 1);
             ov16_022535F0(param0, param1, 3);
         } else {
-            ov16_022535E0(param1, param1->unk_64);
-            ov16_022535F0(param0, param1, param1->unk_64);
+            ov16_022535E0(param1, param1->attacker);
+            ov16_022535F0(param0, param1, param1->attacker);
         }
 
-        ov16_0223F938(param0, param1->unk_64);
-        ov16_02264BB4(param0, param1->unk_64);
+        ov16_0223F938(param0, param1->attacker);
+        ov16_02264BB4(param0, param1->attacker);
         break;
     case 0x2:
-        v3 = ov16_0223DF14(param0, param1->unk_6C);
+        v3 = ov16_0223DF14(param0, param1->defender);
 
         if ((v3->unk_191 & 0x1) == 0) {
             ov16_022535F0(param0, param1, 1);
             ov16_022535F0(param0, param1, 3);
         } else {
-            ov16_022535E0(param1, param1->unk_6C);
-            ov16_022535F0(param0, param1, param1->unk_6C);
+            ov16_022535E0(param1, param1->defender);
+            ov16_022535F0(param0, param1, param1->defender);
         }
 
-        ov16_0223F938(param0, param1->unk_6C);
-        ov16_02264BB4(param0, param1->unk_6C);
+        ov16_0223F938(param0, param1->defender);
+        ov16_02264BB4(param0, param1->defender);
         break;
     case 0x6:
-        v3 = ov16_0223DF14(param0, param1->unk_78);
+        v3 = ov16_0223DF14(param0, param1->switchedMon);
 
         if ((v3->unk_191 & 0x1) == 0) {
             ov16_022535F0(param0, param1, 1);
             ov16_022535F0(param0, param1, 3);
         } else {
-            ov16_022535E0(param1, param1->unk_78);
-            ov16_022535F0(param0, param1, param1->unk_78);
+            ov16_022535E0(param1, param1->switchedMon);
+            ov16_022535F0(param0, param1, param1->switchedMon);
         }
 
-        ov16_0223F938(param0, param1->unk_78);
-        ov16_02264BB4(param0, param1->unk_78);
+        ov16_0223F938(param0, param1->switchedMon);
+        ov16_02264BB4(param0, param1->switchedMon);
         break;
     }
 
     return 0;
 }
 
-static BOOL ov16_022408A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022408A0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -769,53 +769,53 @@ static BOOL ov16_022408A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         }
         break;
     case 0x1:
-        v3 = ov16_0223DF14(param0, param1->unk_64);
+        v3 = ov16_0223DF14(param0, param1->attacker);
 
         if ((v3->unk_191 & 0x1) == 0) {
             ov16_022535F0(param0, param1, 1);
             ov16_022535F0(param0, param1, 3);
         } else {
-            ov16_022535E0(param1, param1->unk_64);
-            ov16_022535F0(param0, param1, param1->unk_64);
+            ov16_022535E0(param1, param1->attacker);
+            ov16_022535F0(param0, param1, param1->attacker);
         }
 
-        ov16_0223F938(param0, param1->unk_64);
-        ov16_02264CE8(param0, param1->unk_64, NULL, 0);
+        ov16_0223F938(param0, param1->attacker);
+        ov16_02264CE8(param0, param1->attacker, NULL, 0);
         break;
     case 0x2:
-        v3 = ov16_0223DF14(param0, param1->unk_6C);
+        v3 = ov16_0223DF14(param0, param1->defender);
 
         if ((v3->unk_191 & 0x1) == 0) {
             ov16_022535F0(param0, param1, 1);
             ov16_022535F0(param0, param1, 3);
         } else {
-            ov16_022535E0(param1, param1->unk_6C);
-            ov16_022535F0(param0, param1, param1->unk_6C);
+            ov16_022535E0(param1, param1->defender);
+            ov16_022535F0(param0, param1, param1->defender);
         }
 
-        ov16_0223F938(param0, param1->unk_6C);
-        ov16_02264CE8(param0, param1->unk_6C, NULL, 0);
+        ov16_0223F938(param0, param1->defender);
+        ov16_02264CE8(param0, param1->defender, NULL, 0);
         break;
     case 0x6:
-        v3 = ov16_0223DF14(param0, param1->unk_78);
+        v3 = ov16_0223DF14(param0, param1->switchedMon);
 
         if ((v3->unk_191 & 0x1) == 0) {
             ov16_022535F0(param0, param1, 1);
             ov16_022535F0(param0, param1, 3);
         } else {
-            ov16_022535E0(param1, param1->unk_78);
-            ov16_022535F0(param0, param1, param1->unk_78);
+            ov16_022535E0(param1, param1->switchedMon);
+            ov16_022535F0(param0, param1, param1->switchedMon);
         }
 
-        ov16_0223F938(param0, param1->unk_78);
-        ov16_02264CE8(param0, param1->unk_78, NULL, 0);
+        ov16_0223F938(param0, param1->switchedMon);
+        ov16_02264CE8(param0, param1->switchedMon, NULL, 0);
         break;
     }
 
     return 0;
 }
 
-static BOOL ov16_02240A7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02240A7C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -844,7 +844,7 @@ static BOOL ov16_02240A7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         for (v0 = 0; v0 < v2; v0++) {
             v3 = ov16_0223DF14(param0, v0);
 
-            if ((v3->unk_191 & 0x1) && ((param1->unk_3108 & sub_020787CC(v0)) == 0)) {
+            if ((v3->unk_191 & 0x1) && ((param1->battlersSwitchingMask & sub_020787CC(v0)) == 0)) {
                 ov16_02264EF8(param0, param1, v0);
             }
         }
@@ -858,7 +858,7 @@ static BOOL ov16_02240A7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02240B3C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02240B3C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -873,7 +873,7 @@ static BOOL ov16_02240B3C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02240B68 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02240B68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -936,7 +936,7 @@ static BOOL ov16_02240B68 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02240C84 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02240C84 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -988,12 +988,12 @@ static BOOL ov16_02240C84 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         break;
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static BOOL ov16_02240D94 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02240D94 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1085,7 +1085,7 @@ static BOOL ov16_02240D94 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02240F44 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02240F44 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1180,7 +1180,7 @@ static BOOL ov16_02240F44 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022410DC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022410DC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1 = ov16_0223DF1C(param0);
@@ -1194,7 +1194,7 @@ static BOOL ov16_022410DC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241108 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241108 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1238,7 +1238,7 @@ static BOOL ov16_02241108 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022411C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022411C0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1286,7 +1286,7 @@ static BOOL ov16_022411C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241288 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241288 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1306,7 +1306,7 @@ static BOOL ov16_02241288 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         for (v0 = 0; v0 < v2; v0++) {
             v3 = ov16_0223DF14(param0, v0);
 
-            if (((v3->unk_191 & 0x1) == 0) && ((param1->unk_3108 & sub_020787CC(v0)) == 0)) {
+            if (((v3->unk_191 & 0x1) == 0) && ((param1->battlersSwitchingMask & sub_020787CC(v0)) == 0)) {
                 ov16_02265314(param0, v0);
             }
         }
@@ -1329,7 +1329,7 @@ static BOOL ov16_02241288 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241340 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241340 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     if (ov16_02251FC8(param1)) {
         ov16_02248AF0(param1, 1);
@@ -1337,86 +1337,86 @@ static BOOL ov16_02241340 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         ov16_0225201C(param1);
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static void ov16_02241374 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static void ov16_02241374 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
-    if (ov16_02255A4C(param1, param1->unk_64) == 96) {
+    if (ov16_02255A4C(param1, param1->attacker) == 96) {
         v0 = 0;
-    } else if (param1->unk_2160) {
-        v0 = param1->unk_2160;
+    } else if (param1->moveType) {
+        v0 = param1->moveType;
     } else {
-        v0 = param1->unk_354.unk_8A[param1->unk_3044].unk_04;
+        v0 = param1->aiContext.moveTable[param1->moveCur].unk_04;
     }
 
-    param1->unk_2144 = ov16_0225A280(param0, param1, param1->unk_3044, param1->unk_1BC[ov16_0223E208(param0, param1->unk_6C)], param1->unk_180, param1->unk_2154, v0, param1->unk_64, param1->unk_6C, param1->unk_2150);
-    param1->unk_2144 *= param1->unk_2150;
+    param1->damage = ov16_0225A280(param0, param1, param1->moveCur, param1->sideConditionsMask[ov16_0223E208(param0, param1->defender)], param1->fieldConditionsMask, param1->movePower, v0, param1->attacker, param1->defender, param1->criticalMul);
+    param1->damage *= param1->criticalMul;
 
-    if (ov16_02258AB8(param1, param1->unk_64) == 98) {
-        param1->unk_2144 = param1->unk_2144 * (100 + ov16_02258ACC(param1, param1->unk_64, 0)) / 100;
+    if (ov16_02258AB8(param1, param1->attacker) == 98) {
+        param1->damage = param1->damage * (100 + ov16_02258ACC(param1, param1->attacker, 0)) / 100;
     }
 
-    if (ov16_02258AB8(param1, param1->unk_64) == 105) {
-        param1->unk_2144 = param1->unk_2144 * (10 + param1->unk_2D40[param1->unk_64].unk_88.unk_04_23) / 10;
+    if (ov16_02258AB8(param1, param1->attacker) == 105) {
+        param1->damage = param1->damage * (10 + param1->battleMons[param1->attacker].moveEffectsData.metronomeTurns) / 10;
     }
 
-    if (param1->unk_2D40[param1->unk_64].unk_88.unk_04_30) {
-        if (param1->unk_174 == param1->unk_2D40[param1->unk_64].unk_88.unk_14) {
-            param1->unk_2D40[param1->unk_64].unk_88.unk_14--;
+    if (param1->battleMons[param1->attacker].moveEffectsData.meFirst) {
+        if (param1->meFirstTurnOrder == param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber) {
+            param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber--;
         }
 
-        if ((param1->unk_174 - param1->unk_2D40[param1->unk_64].unk_88.unk_14) < 2) {
-            param1->unk_2144 = param1->unk_2144 * 15 / 10;
+        if ((param1->meFirstTurnOrder - param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber) < 2) {
+            param1->damage = param1->damage * 15 / 10;
         } else {
-            param1->unk_2D40[param1->unk_64].unk_88.unk_04_30 = 0;
+            param1->battleMons[param1->attacker].moveEffectsData.meFirst = 0;
         }
     }
 }
 
-static BOOL ov16_022414E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022414E0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_02241374(param0, param1);
 
-    param1->unk_2144 = ov16_0225AEB8(param0, param1, param1->unk_2144);
-    param1->unk_2144 *= -1;
+    param1->damage = ov16_0225AEB8(param0, param1, param1->damage);
+    param1->damage *= -1;
 
     return 0;
 }
 
-static BOOL ov16_02241518 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241518 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_02241374(param0, param1);
 
-    param1->unk_2144 *= -1;
+    param1->damage *= -1;
 
     return 0;
 }
 
-static BOOL ov16_02241544 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241544 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    if ((param1->unk_213C & 0x1) == 0) {
+    if ((param1->battleStatusMask & 0x1) == 0) {
         ov16_02265B68(param0, param1);
     }
 
-    param1->unk_213C |= 0x1;
-    param1->unk_2140 |= 0x4;
+    param1->battleStatusMask |= 0x1;
+    param1->battleStatusMask2 |= 0x4;
 
     return 0;
 }
 
-static BOOL ov16_02241584 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241584 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     UnkStruct_ov16_02241584 v0;
-    UnkStruct_ov16_0225C300 v1;
+    BattleMessage v1;
 
     ov16_02248AF0(param1, 1);
     ov16_0224ABEC(param1, &v0);
@@ -1426,45 +1426,45 @@ static BOOL ov16_02241584 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022415B8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022415B8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     UnkStruct_ov16_02241584 v0;
-    UnkStruct_ov16_0225C300 v1;
+    BattleMessage v1;
 
     ov16_02248AF0(param1, 1);
     ov16_0224ABEC(param1, &v0);
     ov16_0224ACB8(param0, param1, &v0, &v1);
 
-    v1.unk_01 |= 0x80;
+    v1.tags |= 0x80;
 
     ov16_02265BA0(param0, param1, &v1);
 
     return 0;
 }
 
-static BOOL ov16_022415F8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022415F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
-    ov16_02265BA0(param0, param1, &param1->unk_F4);
+    ov16_02265BA0(param0, param1, &param1->msgBuffer);
 
     return 0;
 }
 
-static BOOL ov16_02241618 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241618 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     UnkStruct_ov16_02241584 v0;
 
     ov16_02248AF0(param1, 1);
     ov16_0224ABEC(param1, &v0);
-    ov16_0224ACB8(param0, param1, &v0, &param1->unk_F4);
+    ov16_0224ACB8(param0, param1, &v0, &param1->msgBuffer);
 
     return 0;
 }
 
-static BOOL ov16_02241644 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241644 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     UnkStruct_ov16_02241584 v0;
-    UnkStruct_ov16_0225C300 v1;
+    BattleMessage v1;
     int v2;
     int v3;
 
@@ -1475,15 +1475,15 @@ static BOOL ov16_02241644 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_0224ABEC(param1, &v0);
     ov16_0224ACB8(param0, param1, &v0, &v1);
 
-    v1.unk_01 |= 0x40;
-    v1.unk_20 = ov16_0224A984(param0, param1, v2);
+    v1.tags |= 0x40;
+    v1.battler = ov16_0224A984(param0, param1, v2);
 
     ov16_02265BA0(param0, param1, &v1);
 
     return 0;
 }
 
-static BOOL ov16_02241698 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241698 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u16 v1;
@@ -1493,13 +1493,13 @@ static BOOL ov16_02241698 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
 
     if (v0 == 0xff) {
-        v1 = param1->unk_124;
+        v1 = param1->msgMoveTemp;
     } else {
-        v1 = param1->unk_3044;
+        v1 = param1->moveCur;
     }
 
-    if ((((param1->unk_213C & 0x4000) == 0) && (ov16_0223EDAC(param0) == 1)) || (v1 == 144)) {
-        param1->unk_213C |= 0x4000;
+    if ((((param1->battleStatusMask & 0x4000) == 0) && (ov16_0223EDAC(param0) == 1)) || (v1 == 144)) {
+        param1->battleStatusMask |= 0x4000;
         ov16_02265BBC(param0, param1, v1);
     }
 
@@ -1510,7 +1510,7 @@ static BOOL ov16_02241698 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241714 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241714 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1526,16 +1526,16 @@ static BOOL ov16_02241714 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_02248AD0(param1);
 
     if (v0 == 0xff) {
-        v5 = param1->unk_124;
+        v5 = param1->msgMoveTemp;
     } else {
-        v5 = param1->unk_3044;
+        v5 = param1->moveCur;
     }
 
     v3 = ov16_0224A984(param0, param1, v1);
     v4 = ov16_0224A984(param0, param1, v2);
 
-    if ((((param1->unk_213C & 0x4000) == 0) && (ov16_0223EDAC(param0) == 1)) || (v5 == 144)) {
-        param1->unk_213C |= 0x4000;
+    if ((((param1->battleStatusMask & 0x4000) == 0) && (ov16_0223EDAC(param0) == 1)) || (v5 == 144)) {
+        param1->battleStatusMask |= 0x4000;
         ov16_02265BEC(param0, param1, v5, v3, v4);
     }
 
@@ -1546,7 +1546,7 @@ static BOOL ov16_02241714 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022417C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022417C0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1556,12 +1556,12 @@ static BOOL ov16_022417C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    ov16_02265C1C(param0, v1, param1->unk_216C);
+    ov16_02265C1C(param0, v1, param1->moveStatusFlags);
 
     return 0;
 }
 
-static BOOL ov16_022417F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022417F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
 
@@ -1570,22 +1570,22 @@ static BOOL ov16_022417F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    if ((param1->unk_2D40[v1].unk_4C + param1->unk_215C) <= 0) {
-        param1->unk_2148 = param1->unk_2D40[v1].unk_4C * -1;
+    if ((param1->battleMons[v1].curHP + param1->hpCalcTemp) <= 0) {
+        param1->hitDamage = param1->battleMons[v1].curHP * -1;
     } else {
-        param1->unk_2148 = param1->unk_215C;
+        param1->hitDamage = param1->hpCalcTemp;
     }
 
-    if (param1->unk_2148 < 0) {
-        param1->unk_164[v1] += (param1->unk_2148 * -1);
+    if (param1->hitDamage < 0) {
+        param1->totalDamage[v1] += (param1->hitDamage * -1);
     }
 
-    param1->unk_2D40[v1].unk_4C += param1->unk_215C;
+    param1->battleMons[v1].curHP += param1->hpCalcTemp;
 
-    if (param1->unk_2D40[v1].unk_4C < 0) {
-        param1->unk_2D40[v1].unk_4C = 0;
-    } else if (param1->unk_2D40[v1].unk_4C > param1->unk_2D40[v1].unk_50) {
-        param1->unk_2D40[v1].unk_4C = param1->unk_2D40[v1].unk_50;
+    if (param1->battleMons[v1].curHP < 0) {
+        param1->battleMons[v1].curHP = 0;
+    } else if (param1->battleMons[v1].curHP > param1->battleMons[v1].maxHP) {
+        param1->battleMons[v1].curHP = param1->battleMons[v1].maxHP;
     }
 
     ov16_02253EC0(param0, param1, v1);
@@ -1593,7 +1593,7 @@ static BOOL ov16_022417F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241894 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241894 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
 
@@ -1607,7 +1607,7 @@ static BOOL ov16_02241894 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022418C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022418C0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1, v2;
 
@@ -1616,10 +1616,10 @@ static BOOL ov16_022418C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    if (param1->unk_2D40[v1].unk_4C == 0) {
-        param1->unk_74 = v1;
-        param1->unk_213C |= (sub_020787CC(v1) << 24);
-        param1->unk_154[v1]++;
+    if (param1->battleMons[v1].curHP == 0) {
+        param1->faintedMon = v1;
+        param1->battleStatusMask |= (sub_020787CC(v1) << 24);
+        param1->totalFainted[v1]++;
 
         ov16_0224B850(param0, param1, v1);
     }
@@ -1627,21 +1627,21 @@ static BOOL ov16_022418C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241924 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241924 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
-    ov16_02265D98(param0, param1, param1->unk_74);
+    ov16_02265D98(param0, param1, param1->faintedMon);
 
-    param1->unk_213C &= (sub_020787CC(param1->unk_74) << 24) ^ 0xffffffff;
-    param1->unk_2140 |= sub_020787CC(param1->unk_74) << 28;
-    param1->unk_21A8[param1->unk_74][0] = 39;
+    param1->battleStatusMask &= (sub_020787CC(param1->faintedMon) << 24) ^ 0xffffffff;
+    param1->battleStatusMask2 |= sub_020787CC(param1->faintedMon) << 28;
+    param1->battlerActions[param1->faintedMon][0] = 39;
 
-    ov16_02254744(param0, param1, param1->unk_74);
+    ov16_02254744(param0, param1, param1->faintedMon);
 
     return 0;
 }
 
-static BOOL ov16_02241984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241984 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1651,7 +1651,7 @@ static BOOL ov16_02241984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     if ((ov16_0223DF0C(param0) & 0x4) == 0) {
         if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (sub_02022798())) {
-            param1->unk_F0 = v0;
+            param1->waitCounter = v0;
         }
     }
 
@@ -1661,19 +1661,19 @@ static BOOL ov16_02241984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v1 = 1;
     }
 
-    if (v0 > param1->unk_F0) {
+    if (v0 > param1->waitCounter) {
         ov16_02248AF0(param1, -2);
-        param1->unk_F0 += v1;
+        param1->waitCounter += v1;
     } else {
-        param1->unk_F0 = 0;
+        param1->waitCounter = 0;
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static BOOL ov16_02241A20 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241A20 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1690,7 +1690,7 @@ static BOOL ov16_02241A20 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241A58 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241A58 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1755,7 +1755,7 @@ static BOOL ov16_02241A58 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241B08 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241B08 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1823,7 +1823,7 @@ static BOOL ov16_02241B08 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241BC0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241BC0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_02265ECC(param0, param1);
@@ -1831,7 +1831,7 @@ static BOOL ov16_02241BC0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241BDC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241BDC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -1842,18 +1842,18 @@ static BOOL ov16_02241BDC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241BFC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241BFC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
     ov16_02248AF0(param1, 1);
-    v0 = param1->unk_354.unk_8A[param1->unk_3044].unk_00;
+    v0 = param1->aiContext.moveTable[param1->moveCur].unk_00;
     ov16_02248B00(param1, 30, v0);
 
     return 0;
 }
 
-static BOOL ov16_02241C28 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241C28 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -1861,44 +1861,44 @@ static BOOL ov16_02241C28 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    param1->unk_213C &= (0x1 ^ 0xffffffff);
-    param1->unk_213C &= (0x4000 ^ 0xffffffff);
-    param1->unk_3044 = param1->unk_124;
+    param1->battleStatusMask &= (0x1 ^ 0xffffffff);
+    param1->battleStatusMask &= (0x4000 ^ 0xffffffff);
+    param1->moveCur = param1->msgMoveTemp;
 
     if (v0 == 0) {
-        param1->unk_6C = ov16_02253954(param0, param1, param1->unk_64, param1->unk_124, 1, 0);
-        ov16_02253C98(param0, param1, param1->unk_64, param1->unk_124);
-        param1->unk_21A8[param1->unk_64][1] = param1->unk_6C;
+        param1->defender = ov16_02253954(param0, param1, param1->attacker, param1->msgMoveTemp, 1, 0);
+        ov16_02253C98(param0, param1, param1->attacker, param1->msgMoveTemp);
+        param1->battlerActions[param1->attacker][1] = param1->defender;
     }
 
-    if (param1->unk_6C == 0xff) {
-        param1->unk_0C = 38;
+    if (param1->defender == 0xff) {
+        param1->commandNext = 38;
         ov16_02248B00(param1, 1, (0 + 281));
     } else {
-        ov16_02248B00(param1, 0, param1->unk_3044);
+        ov16_02248B00(param1, 0, param1->moveCur);
     }
 
     return 0;
 }
 
-static BOOL ov16_02241CD0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241CD0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
     if ((ov16_0223DF0C(param0) & 0x400) || (ov16_0223EBEC(param0) & 0x1)) {
-        param1->unk_2150 = 1;
+        param1->criticalMul = 1;
     } else {
-        param1->unk_2150 = ov16_0225AEE4(param0, param1, param1->unk_64, param1->unk_6C, param1->unk_214C, ov16_0225B45C(param0, param1, 0, param1->unk_6C));
+        param1->criticalMul = ov16_0225AEE4(param0, param1, param1->attacker, param1->defender, param1->criticalBoosts, ov16_0225B45C(param0, param1, 0, param1->defender));
     }
 
     return 0;
 }
 
-static BOOL ov16_02241D34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241D34 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u32 v1 = ov16_0223DF0C(param0);
-    UnkStruct_ov16_0225BFFC * v2 = ov16_0223DF14(param0, param1->unk_74);
+    UnkStruct_ov16_0225BFFC * v2 = ov16_0223DF14(param0, param1->faintedMon);
 
     ov16_02248AF0(param1, 1);
     v0 = ov16_02248AD0(param1);
@@ -1918,7 +1918,7 @@ static BOOL ov16_02241D34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                 v10 = ov16_0223DFAC(param0, 0, v3);
 
                 if ((GetMonData(v10, MON_DATA_SPECIES, NULL)) && (GetMonData(v10, MON_DATA_163, NULL))) {
-                    if (param1->unk_A4[(param1->unk_74 >> 1) & 1] & sub_020787CC(v3)) {
+                    if (param1->monsGainingExp[(param1->faintedMon >> 1) & 1] & sub_020787CC(v3)) {
                         v5++;
                     }
 
@@ -1931,29 +1931,29 @@ static BOOL ov16_02241D34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                 }
             }
 
-            v8 = sub_020759F0(param1->unk_2D40[param1->unk_74].unk_00, 9);
-            v8 = (v8 * param1->unk_2D40[param1->unk_74].unk_34) / 7;
+            v8 = sub_020759F0(param1->battleMons[param1->faintedMon].species, 9);
+            v8 = (v8 * param1->battleMons[param1->faintedMon].level) / 7;
 
             if (v6) {
-                param1->unk_9C = (v8 / 2) / v5;
+                param1->gainedExp = (v8 / 2) / v5;
 
-                if (param1->unk_9C == 0) {
-                    param1->unk_9C = 1;
+                if (param1->gainedExp == 0) {
+                    param1->gainedExp = 1;
                 }
 
-                param1->unk_A0 = (v8 / 2) / v6;
+                param1->sharedExp = (v8 / 2) / v6;
 
-                if (param1->unk_A0 == 0) {
-                    param1->unk_A0 = 1;
+                if (param1->sharedExp == 0) {
+                    param1->sharedExp = 1;
                 }
             } else {
-                param1->unk_9C = v8 / v5;
+                param1->gainedExp = v8 / v5;
 
-                if (param1->unk_9C == 0) {
-                    param1->unk_9C = 1;
+                if (param1->gainedExp == 0) {
+                    param1->gainedExp = 1;
                 }
 
-                param1->unk_A0 = 0;
+                param1->sharedExp = 0;
             }
         }
     } else {
@@ -1963,7 +1963,7 @@ static BOOL ov16_02241D34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241EB0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241EB0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
@@ -1978,18 +1978,18 @@ static BOOL ov16_02241EB0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241EF0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241EF0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     if (param1->unk_178 == NULL) {
         ov16_02248AF0(param1, 1);
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static BOOL ov16_02241F1C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241F1C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2000,7 +2000,7 @@ static BOOL ov16_02241F1C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02241F34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02241F34 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2012,7 +2012,7 @@ static BOOL ov16_02241F34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = 0;
 
     for (v0 = 0; v0 < v3; v0++) {
-        if (param1->unk_13C[v0] & 0x1) {
+        if (param1->battlerStatusFlags[v0] & 0x1) {
             v2 |= sub_020787CC(v0);
             ov16_02265A8C(param0, param1, v0, 1, 0, 6);
         }
@@ -2034,8 +2034,8 @@ static BOOL ov16_02241F34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     }
 
     for (v0 = 0; v0 < v3; v0++) {
-        if (param1->unk_13C[v0] & 0x1) {
-            param1->unk_78 = v0;
+        if (param1->battlerStatusFlags[v0] & 0x1) {
+            param1->switchedMon = v0;
             break;
         }
     }
@@ -2043,7 +2043,7 @@ static BOOL ov16_02241F34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224200C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224200C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2053,18 +2053,18 @@ static BOOL ov16_0224200C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = 0;
 
     for (v0 = 0; v0 < v1; v0++) {
-        if (param1->unk_13C[v0] & 0x1) {
+        if (param1->battlerStatusFlags[v0] & 0x1) {
             v2++;
         }
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        if ((param1->unk_13C[v0] & 0x1) && (ov16_02259AB4(param1, v0))) {
-            param1->unk_21A0[v0] = param1->unk_2300[v0][0] - 1;
+        if ((param1->battlerStatusFlags[v0] & 0x1) && (ov16_02259AB4(param1, v0))) {
+            param1->switchedPartySlot[v0] = param1->ioBuffer[v0][0] - 1;
             v2--;
 
-            if ((param1->unk_2140 & (sub_020787CC(v0) << 24)) == 0) {
-                param1->unk_2140 |= (sub_020787CC(v0) << 24);
+            if ((param1->battleStatusMask2 & (sub_020787CC(v0) << 24)) == 0) {
+                param1->battleStatusMask2 |= (sub_020787CC(v0) << 24);
                 ov16_022666E0(param0, v0);
             }
         }
@@ -2072,21 +2072,21 @@ static BOOL ov16_0224200C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     if (v2 == 0) {
         for (v0 = 0; v0 < v1; v0++) {
-            if ((param1->unk_13C[v0] & 0x1) && (ov16_02259AB4(param1, v0))) {
-                ov16_0223F500(param0, v0, param1->unk_2300[v0][0]);
+            if ((param1->battlerStatusFlags[v0] & 0x1) && (ov16_02259AB4(param1, v0))) {
+                ov16_0223F500(param0, v0, param1->ioBuffer[v0][0]);
             }
         }
 
-        param1->unk_2140 &= (0xf000000 ^ 0xffffffff);
+        param1->battleStatusMask2 &= (0xf000000 ^ 0xffffffff);
         ov16_02248AF0(param1, 1);
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static BOOL ov16_02242134 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242134 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2098,32 +2098,32 @@ static BOOL ov16_02242134 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     default:
         break;
     case 0x1:
-        v0 = param1->unk_64;
+        v0 = param1->attacker;
         break;
     case 0x6:
-        v0 = param1->unk_78;
+        v0 = param1->switchedMon;
         break;
     case 0x12:
-        v0 = param1->unk_6C;
+        v0 = param1->defender;
         break;
     }
 
-    param1->unk_13C[v0] &= 0x1 ^ 0xffffffff;
-    param1->unk_3108 &= (sub_020787CC(v0) ^ 0xffffffff);
-    param1->unk_219C[v0] = param1->unk_21A0[v0];
-    param1->unk_21A0[v0] = 6;
+    param1->battlerStatusFlags[v0] &= 0x1 ^ 0xffffffff;
+    param1->battlersSwitchingMask &= (sub_020787CC(v0) ^ 0xffffffff);
+    param1->selectedPartySlot[v0] = param1->switchedPartySlot[v0];
+    param1->switchedPartySlot[v0] = 6;
 
-    ov16_0225177C(param0, param1, v0, param1->unk_219C[v0]);
-    ov16_0225A200(param0, param1, v0, param1->unk_219C[v0]);
+    ov16_0225177C(param0, param1, v0, param1->selectedPartySlot[v0]);
+    ov16_0225A200(param0, param1, v0, param1->selectedPartySlot[v0]);
 
-    param1->unk_3122 = param1->unk_2D40[1].unk_4C;
+    param1->hpTemp = param1->battleMons[1].curHP;
 
     ov16_0225433C(param0, param1, v0);
 
     return 0;
 }
 
-static BOOL ov16_022421D4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022421D4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1 = ov16_0223DF1C(param0);
@@ -2133,8 +2133,8 @@ static BOOL ov16_022421D4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_02248AD0(param1);
 
     for (v0 = 0; v0 < v1; v0++) {
-        if (param1->unk_13C[v0] & 0x1) {
-            param1->unk_78 = v0;
+        if (param1->battlerStatusFlags[v0] & 0x1) {
+            param1->switchedMon = v0;
             ov16_02248AF0(param1, v2);
             break;
         }
@@ -2143,7 +2143,7 @@ static BOOL ov16_022421D4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224221C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224221C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2156,25 +2156,25 @@ static BOOL ov16_0224221C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     param1->unk_178->unk_04 = param1;
     param1->unk_178->unk_28 = 0;
     param1->unk_178->unk_24 = v0;
-    param1->unk_178->unk_2C = param1->unk_128;
+    param1->unk_178->unk_2C = param1->msgItemTemp;
 
     sub_0200D9E8(ov16_02249B80, param1->unk_178, NULL);
 
     return 0;
 }
 
-static BOOL ov16_0224226C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224226C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     if (param1->unk_178 == NULL) {
         ov16_02248AF0(param1, 1);
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static BOOL ov16_02242298 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242298 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2184,9 +2184,9 @@ static BOOL ov16_02242298 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_02248AD0(param1);
 
-    if (param1->unk_217D == 0) {
+    if (param1->multiHitNumHits == 0) {
         if (v0 == 0) {
-            if (ov16_02255A4C(param1, param1->unk_64) == 92) {
+            if (ov16_02255A4C(param1, param1->attacker) == 92) {
                 v0 = 5;
             } else {
                 if ((v0 = ov16_0223F4BC(param0) & 3) < 2) {
@@ -2197,15 +2197,15 @@ static BOOL ov16_02242298 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             }
         }
 
-        param1->unk_217C = v0;
-        param1->unk_217D = v0;
-        param1->unk_2188 = v1;
+        param1->multiHitCounter = v0;
+        param1->multiHitNumHits = v0;
+        param1->multiHitAccuracyCheck = v1;
     }
 
     return 0;
 }
 
-static BOOL ov16_0224230C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224230C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2277,7 +2277,7 @@ static BOOL ov16_0224230C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2285,7 +2285,7 @@ static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     int v3;
     int v4;
     int v5;
-    UnkStruct_ov16_02252060 * v6 = &param1->unk_2D40[param1->unk_94];
+    BattleMon *v6 = &param1->battleMons[param1->sideEffectMon];
 
     ov16_02248AF0(param1, 1);
 
@@ -2294,146 +2294,146 @@ static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_02248AD0(param1);
     v5 = 0;
 
-    param1->unk_213C &= (0x20000 ^ 0xffffffff);
+    param1->battleStatusMask &= (0x20000 ^ 0xffffffff);
 
-    if (param1->unk_8C >= 0x2e) {
-        v3 = param1->unk_8C - 0x2e;
+    if (param1->sideEffectParam >= 0x2e) {
+        v3 = param1->sideEffectParam - 0x2e;
         v4 = -2;
-        param1->unk_138 = 13;
-    } else if (param1->unk_8C >= 0x27) {
-        v3 = param1->unk_8C - 0x27;
+        param1->scriptTemp = 13;
+    } else if (param1->sideEffectParam >= 0x27) {
+        v3 = param1->sideEffectParam - 0x27;
         v4 = 2;
-        param1->unk_138 = 12;
-    } else if (param1->unk_8C >= 0x16) {
-        v3 = param1->unk_8C - 0x16;
+        param1->scriptTemp = 12;
+    } else if (param1->sideEffectParam >= 0x16) {
+        v3 = param1->sideEffectParam - 0x16;
         v4 = -1;
-        param1->unk_138 = 13;
+        param1->scriptTemp = 13;
     } else {
-        v3 = param1->unk_8C - 0xf;
+        v3 = param1->sideEffectParam - 0xf;
         v4 = 1;
-        param1->unk_138 = 12;
+        param1->scriptTemp = 12;
     }
 
     if (v4 > 0) {
-        if (v6->unk_18[0x1 + v3] == 12) {
-            param1->unk_213C |= 0x20000;
+        if (v6->statBoosts[0x1 + v3] == 12) {
+            param1->battleStatusMask |= 0x20000;
 
-            if ((param1->unk_88 == 2) || (param1->unk_88 == 3)) {
+            if ((param1->sideEffectType == 2) || (param1->sideEffectType == 3)) {
                 ov16_02248AF0(param1, v1);
             } else {
-                param1->unk_F4.unk_02 = 142;
-                param1->unk_F4.unk_01 = 12;
-                param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                param1->unk_F4.unk_04[1] = 0x1 + v3;
+                param1->msgBuffer.id = 142;
+                param1->msgBuffer.tags = 12;
+                param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                param1->msgBuffer.params[1] = 0x1 + v3;
 
                 ov16_02248AF0(param1, v0);
             }
         } else {
-            if (param1->unk_88 == 3) {
-                param1->unk_F4.unk_02 = 622;
-                param1->unk_F4.unk_01 = 39;
-                param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                param1->unk_F4.unk_04[1] = param1->unk_2D40[param1->unk_94].unk_27;
-                param1->unk_F4.unk_04[2] = 0x1 + v3;
-            } else if (param1->unk_88 == 5) {
-                param1->unk_F4.unk_02 = 756;
-                param1->unk_F4.unk_01 = 45;
-                param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                param1->unk_F4.unk_04[1] = param1->unk_128;
-                param1->unk_F4.unk_04[2] = 0x1 + v3;
+            if (param1->sideEffectType == 3) {
+                param1->msgBuffer.id = 622;
+                param1->msgBuffer.tags = 39;
+                param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
+                param1->msgBuffer.params[2] = 0x1 + v3;
+            } else if (param1->sideEffectType == 5) {
+                param1->msgBuffer.id = 756;
+                param1->msgBuffer.tags = 45;
+                param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                param1->msgBuffer.params[1] = param1->msgItemTemp;
+                param1->msgBuffer.params[2] = 0x1 + v3;
             } else {
-                param1->unk_F4.unk_02 = (v4 == 1 ? 750 : 753);
-                param1->unk_F4.unk_01 = 12;
-                param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                param1->unk_F4.unk_04[1] = 0x1 + v3;
+                param1->msgBuffer.id = (v4 == 1 ? 750 : 753);
+                param1->msgBuffer.tags = 12;
+                param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                param1->msgBuffer.params[1] = 0x1 + v3;
             }
 
-            v6->unk_18[0x1 + v3] += v4;
+            v6->statBoosts[0x1 + v3] += v4;
 
-            if (v6->unk_18[0x1 + v3] > 12) {
-                v6->unk_18[0x1 + v3] = 12;
+            if (v6->statBoosts[0x1 + v3] > 12) {
+                v6->statBoosts[0x1 + v3] = 12;
             }
         }
     } else {
-        if ((param1->unk_90 & 0x8000000) == 0) {
-            if (param1->unk_64 != param1->unk_94) {
-                if (param1->unk_1C4[ov16_0223E208(param0, param1->unk_94)].unk_00_12) {
-                    param1->unk_F4.unk_02 = 273;
-                    param1->unk_F4.unk_01 = 2;
-                    param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
+        if ((param1->sideEffectFlags & 0x8000000) == 0) {
+            if (param1->attacker != param1->sideEffectMon) {
+                if (param1->sideConditions[ov16_0223E208(param0, param1->sideEffectMon)].mistTurns) {
+                    param1->msgBuffer.id = 273;
+                    param1->msgBuffer.tags = 2;
+                    param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
                     v5 = 1;
-                } else if ((ov16_02255AB4(param1, param1->unk_64, param1->unk_94, 29) == 1) || (ov16_02255AB4(param1, param1->unk_64, param1->unk_94, 73) == 1)) {
-                    if (param1->unk_88 == 3) {
-                        param1->unk_F4.unk_02 = 727;
-                        param1->unk_F4.unk_01 = 53;
-                        param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                        param1->unk_F4.unk_04[1] = param1->unk_2D40[param1->unk_94].unk_27;
-                        param1->unk_F4.unk_04[2] = ov16_02255560(param1, param1->unk_64);
-                        param1->unk_F4.unk_04[3] = param1->unk_2D40[param1->unk_64].unk_27;
+                } else if ((ov16_02255AB4(param1, param1->attacker, param1->sideEffectMon, 29) == 1) || (ov16_02255AB4(param1, param1->attacker, param1->sideEffectMon, 73) == 1)) {
+                    if (param1->sideEffectType == 3) {
+                        param1->msgBuffer.id = 727;
+                        param1->msgBuffer.tags = 53;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                        param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
+                        param1->msgBuffer.params[2] = ov16_02255560(param1, param1->attacker);
+                        param1->msgBuffer.params[3] = param1->battleMons[param1->attacker].ability;
                     } else {
-                        param1->unk_F4.unk_02 = 669;
-                        param1->unk_F4.unk_01 = 11;
-                        param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                        param1->unk_F4.unk_04[1] = param1->unk_2D40[param1->unk_94].unk_27;
+                        param1->msgBuffer.id = 669;
+                        param1->msgBuffer.tags = 11;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                        param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
                     }
 
                     v5 = 1;
-                } else if (((ov16_02255AB4(param1, param1->unk_64, param1->unk_94, 51) == 1) && ((0x1 + v3) == 0x6)) || ((ov16_02255AB4(param1, param1->unk_64, param1->unk_94, 52) == 1) && ((0x1 + v3) == 0x1))) {
-                    if (param1->unk_88 == 3) {
-                        param1->unk_F4.unk_02 = 727;
-                        param1->unk_F4.unk_01 = 53;
-                        param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                        param1->unk_F4.unk_04[1] = param1->unk_2D40[param1->unk_94].unk_27;
-                        param1->unk_F4.unk_04[2] = ov16_02255560(param1, param1->unk_64);
-                        param1->unk_F4.unk_04[3] = param1->unk_2D40[param1->unk_64].unk_27;
+                } else if (((ov16_02255AB4(param1, param1->attacker, param1->sideEffectMon, 51) == 1) && ((0x1 + v3) == 0x6)) || ((ov16_02255AB4(param1, param1->attacker, param1->sideEffectMon, 52) == 1) && ((0x1 + v3) == 0x1))) {
+                    if (param1->sideEffectType == 3) {
+                        param1->msgBuffer.id = 727;
+                        param1->msgBuffer.tags = 53;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                        param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
+                        param1->msgBuffer.params[2] = ov16_02255560(param1, param1->attacker);
+                        param1->msgBuffer.params[3] = param1->battleMons[param1->attacker].ability;
                     } else {
-                        param1->unk_F4.unk_02 = 704;
-                        param1->unk_F4.unk_01 = 39;
-                        param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                        param1->unk_F4.unk_04[1] = param1->unk_2D40[param1->unk_94].unk_27;
-                        param1->unk_F4.unk_04[2] = 0x1 + v3;
+                        param1->msgBuffer.id = 704;
+                        param1->msgBuffer.tags = 39;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                        param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
+                        param1->msgBuffer.params[2] = 0x1 + v3;
                     }
 
                     v5 = 1;
-                } else if (v6->unk_18[0x1 + v3] == 0) {
-                    param1->unk_213C |= 0x20000;
+                } else if (v6->statBoosts[0x1 + v3] == 0) {
+                    param1->battleStatusMask |= 0x20000;
 
-                    if ((param1->unk_88 == 2) || (param1->unk_88 == 3)) {
+                    if ((param1->sideEffectType == 2) || (param1->sideEffectType == 3)) {
                         ov16_02248AF0(param1, v1);
                         return 0;
                     } else {
-                        param1->unk_F4.unk_02 = 145;
-                        param1->unk_F4.unk_01 = 12;
-                        param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                        param1->unk_F4.unk_04[1] = 0x1 + v3;
+                        param1->msgBuffer.id = 145;
+                        param1->msgBuffer.tags = 12;
+                        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                        param1->msgBuffer.params[1] = 0x1 + v3;
                         ov16_02248AF0(param1, v0);
                         return 0;
                     }
-                } else if ((ov16_02255AB4(param1, param1->unk_64, param1->unk_94, 19) == 1) && (param1->unk_88 == 2)) {
+                } else if ((ov16_02255AB4(param1, param1->attacker, param1->sideEffectMon, 19) == 1) && (param1->sideEffectType == 2)) {
                     v5 = 1;
-                } else if (param1->unk_2D40[param1->unk_94].unk_70 & 0x1000000) {
+                } else if (param1->battleMons[param1->sideEffectMon].statusVolatile & 0x1000000) {
                     v5 = 2;
                 }
-            } else if (v6->unk_18[0x1 + v3] == 0) {
-                param1->unk_213C |= 0x20000;
+            } else if (v6->statBoosts[0x1 + v3] == 0) {
+                param1->battleStatusMask |= 0x20000;
 
-                if ((param1->unk_88 == 2) || (param1->unk_88 == 3)) {
+                if ((param1->sideEffectType == 2) || (param1->sideEffectType == 3)) {
                     ov16_02248AF0(param1, v1);
                     return 0;
                 } else {
-                    param1->unk_F4.unk_02 = 145;
-                    param1->unk_F4.unk_01 = 12;
-                    param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-                    param1->unk_F4.unk_04[1] = 0x1 + v3;
+                    param1->msgBuffer.id = 145;
+                    param1->msgBuffer.tags = 12;
+                    param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+                    param1->msgBuffer.params[1] = 0x1 + v3;
                     ov16_02248AF0(param1, v0);
                     return 0;
                 }
             }
 
-            if ((v5 == 2) && (param1->unk_88 == 1)) {
+            if ((v5 == 2) && (param1->sideEffectType == 1)) {
                 ov16_02248AF0(param1, v2);
                 return 0;
-            } else if ((v5) && (param1->unk_88 == 2)) {
+            } else if ((v5) && (param1->sideEffectType == 2)) {
                 ov16_02248AF0(param1, v1);
                 return 0;
             } else if (v5) {
@@ -2442,31 +2442,31 @@ static BOOL ov16_02242400 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             }
         }
 
-        if (param1->unk_88 == 3) {
-            param1->unk_F4.unk_02 = 662;
-            param1->unk_F4.unk_01 = 54;
-            param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_64);
-            param1->unk_F4.unk_04[1] = param1->unk_2D40[param1->unk_64].unk_27;
-            param1->unk_F4.unk_04[2] = ov16_02255560(param1, param1->unk_94);
-            param1->unk_F4.unk_04[3] = 0x1 + v3;
+        if (param1->sideEffectType == 3) {
+            param1->msgBuffer.id = 662;
+            param1->msgBuffer.tags = 54;
+            param1->msgBuffer.params[0] = ov16_02255560(param1, param1->attacker);
+            param1->msgBuffer.params[1] = param1->battleMons[param1->attacker].ability;
+            param1->msgBuffer.params[2] = ov16_02255560(param1, param1->sideEffectMon);
+            param1->msgBuffer.params[3] = 0x1 + v3;
         } else {
-            param1->unk_F4.unk_02 = ((v4 == -1) ? 762 : 765);
-            param1->unk_F4.unk_01 = 12;
-            param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_94);
-            param1->unk_F4.unk_04[1] = 0x1 + v3;
+            param1->msgBuffer.id = ((v4 == -1) ? 762 : 765);
+            param1->msgBuffer.tags = 12;
+            param1->msgBuffer.params[0] = ov16_02255560(param1, param1->sideEffectMon);
+            param1->msgBuffer.params[1] = 0x1 + v3;
         }
 
-        v6->unk_18[0x1 + v3] += v4;
+        v6->statBoosts[0x1 + v3] += v4;
 
-        if (v6->unk_18[0x1 + v3] < 0) {
-            v6->unk_18[0x1 + v3] = 0;
+        if (v6->statBoosts[0x1 + v3] < 0) {
+            v6->statBoosts[0x1 + v3] = 0;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_02242A14 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242A14 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2549,7 +2549,7 @@ static BOOL ov16_02242A14 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242B38 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242B38 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2561,12 +2561,12 @@ static BOOL ov16_02242B38 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_02248AD0(param1);
     v0 = ov16_0224A984(param0, param1, v1);
 
-    param1->unk_218C[v0] |= v2;
+    param1->clearVolatileStatus[v0] |= v2;
 
     return 0;
 }
 
-static BOOL ov16_02242B74 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242B74 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2583,7 +2583,7 @@ static BOOL ov16_02242B74 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242BAC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242BAC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2608,7 +2608,7 @@ static BOOL ov16_02242BAC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                 if (v0 == 0) {
                     if (ov16_02255A4C(param1, v4) == v2) {
                         ov16_02248AF0(param1, v3);
-                        param1->unk_80 = v4;
+                        param1->abilityMon = v4;
                         break;
                     }
                 } else {
@@ -2624,12 +2624,12 @@ static BOOL ov16_02242BAC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         if (v0 == 0) {
             if (ov16_02255A4C(param1, v4) == v2) {
                 ov16_02248AF0(param1, v3);
-                param1->unk_80 = v4;
+                param1->abilityMon = v4;
             }
         } else {
             if (ov16_02255A4C(param1, v4) != v2) {
                 ov16_02248AF0(param1, v3);
-                param1->unk_80 = v4;
+                param1->abilityMon = v4;
             }
         }
     }
@@ -2637,7 +2637,7 @@ static BOOL ov16_02242BAC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242C6C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242C6C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2648,12 +2648,12 @@ static BOOL ov16_02242C6C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 += 1;
     v1 = ov16_02248AD0(param1);
 
-    param1->unk_134 = (ov16_0223F4BC(param0) % v0) + v1;
+    param1->calcTemp = (ov16_0223F4BC(param0) % v0) + v1;
 
     return 0;
 }
 
-static BOOL ov16_02242CA4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242CA4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2727,7 +2727,7 @@ static BOOL ov16_02242CA4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242DBC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242DBC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2814,7 +2814,7 @@ static BOOL ov16_02242DBC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242F1C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242F1C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2825,7 +2825,7 @@ static BOOL ov16_02242F1C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242F3C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242F3C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2836,7 +2836,7 @@ static BOOL ov16_02242F3C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242F5C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242F5C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int * v1;
@@ -2851,7 +2851,7 @@ static BOOL ov16_02242F5C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02242F8C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02242F8C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2861,41 +2861,41 @@ static BOOL ov16_02242F8C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     ov16_02248AF0(param1, 1);
 
-    if (param1->unk_3084[param1->unk_64]) {
-        v1 = param1->unk_3084[param1->unk_64];
+    if (param1->moveCopied[param1->attacker]) {
+        v1 = param1->moveCopied[param1->attacker];
     } else {
         if (v0 & 0x2) {
-            v1 = param1->unk_308C[param1->unk_64][0] + param1->unk_308C[param1->unk_64][1] + param1->unk_308C[param1->unk_64][2] + param1->unk_308C[param1->unk_64][3];
+            v1 = param1->moveCopiedHit[param1->attacker][0] + param1->moveCopiedHit[param1->attacker][1] + param1->moveCopiedHit[param1->attacker][2] + param1->moveCopiedHit[param1->attacker][3];
 
             if (v1) {
                 do {
-                    v1 = param1->unk_308C[param1->unk_64][ov16_0223F4BC(param0) % 4];
+                    v1 = param1->moveCopiedHit[param1->attacker][ov16_0223F4BC(param0) % 4];
                 } while (v1 == 0);
             }
         }
     }
 
     if ((v1) && (ov16_0225B084(param1, v1) == 1)) {
-        param1->unk_213C &= (0x1 ^ 0xffffffff);
-        param1->unk_213C &= (0x4000 ^ 0xffffffff);
-        param1->unk_3044 = v1;
-        param1->unk_6C = ov16_02253954(param0, param1, param1->unk_64, v1, 1, 0);
+        param1->battleStatusMask &= (0x1 ^ 0xffffffff);
+        param1->battleStatusMask &= (0x4000 ^ 0xffffffff);
+        param1->moveCur = v1;
+        param1->defender = ov16_02253954(param0, param1, param1->attacker, v1, 1, 0);
 
-        if (param1->unk_6C == 0xff) {
-            param1->unk_0C = 38;
+        if (param1->defender == 0xff) {
+            param1->commandNext = 38;
             ov16_02248B00(param1, 1, (0 + 281));
         } else {
-            param1->unk_21A8[param1->unk_64][1] = param1->unk_6C;
+            param1->battlerActions[param1->attacker][1] = param1->defender;
             ov16_02248B00(param1, 0, v1);
         }
     } else {
-        param1->unk_2D4[param1->unk_64].unk_00_0 = 1;
+        param1->selfTurnFlags[param1->attacker].skipPressureCheck = 1;
     }
 
     return 0;
 }
 
-static BOOL ov16_022430A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022430A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2907,16 +2907,16 @@ static BOOL ov16_022430A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     for (v1 = 0; v1 < v2; v1++) {
         for (v0 = 0x0; v0 < 0x8; v0++) {
-            param1->unk_2D40[v1].unk_18[v0] = 6;
+            param1->battleMons[v1].statBoosts[v0] = 6;
         }
 
-        param1->unk_2D40[v1].unk_70 &= (0x100000 ^ 0xffffffff);
+        param1->battleMons[v1].statusVolatile &= (0x100000 ^ 0xffffffff);
     }
 
     return 0;
 }
 
-static BOOL ov16_022430F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022430F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2931,7 +2931,7 @@ static BOOL ov16_022430F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243120 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243120 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2946,7 +2946,7 @@ static BOOL ov16_02243120 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224314C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224314C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2963,7 +2963,7 @@ static BOOL ov16_0224314C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243184 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243184 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3088,7 +3088,7 @@ static u8 Unk_ov16_02270B20[] = {
     0x0
 };
 
-static u32 ov16_022431BC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static u32 ov16_022431BC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     int v0 = 0;
     void * v1;
@@ -3138,11 +3138,11 @@ static u32 ov16_022431BC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     }
 
     if ((param0->unk_2C & 0x10) || (param0->unk_2C == ((0x2 | 0x1) | 0x8 | 0x40))) {
-        v2 = v3 * 4 * param1->unk_2168 * Unk_ov16_02270B20[v4.class];
+        v2 = v3 * 4 * param1->prizeMoneyMul * Unk_ov16_02270B20[v4.class];
     } else if (param0->unk_2C & 0x2) {
-        v2 = v3 * 4 * param1->unk_2168 * 2 * Unk_ov16_02270B20[v4.class];
+        v2 = v3 * 4 * param1->prizeMoneyMul * 2 * Unk_ov16_02270B20[v4.class];
     } else {
-        v2 = v3 * 4 * param1->unk_2168 * Unk_ov16_02270B20[v4.class];
+        v2 = v3 * 4 * param1->prizeMoneyMul * Unk_ov16_02270B20[v4.class];
     }
 
     Heap_FreeToHeap(v1);
@@ -3150,7 +3150,7 @@ static u32 ov16_022431BC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     return v2;
 }
 
-static BOOL ov16_022432B4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022432B4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     u32 v0;
 
@@ -3170,15 +3170,15 @@ static BOOL ov16_022432B4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     }
 
     if (v0) {
-        param1->unk_130 = v0;
+        param1->msgTemp = v0;
     } else {
-        param1->unk_130 = 0;
+        param1->msgTemp = 0;
     }
 
     return 0;
 }
 
-static BOOL ov16_02243334 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243334 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3200,7 +3200,7 @@ static BOOL ov16_02243334 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243398 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243398 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2;
@@ -3225,7 +3225,7 @@ static BOOL ov16_02243398 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243424 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243424 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3248,7 +3248,7 @@ static BOOL ov16_02243424 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243494 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243494 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3258,12 +3258,12 @@ static BOOL ov16_02243494 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v1 = ov16_02248AD0(param1);
     v0 = ov16_0224A984(param0, param1, v1);
 
-    ov16_02266058(param0, param1, v0, param1->unk_219C[v0]);
+    ov16_02266058(param0, param1, v0, param1->selectedPartySlot[v0]);
 
     return 0;
 }
 
-static BOOL ov16_022434CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022434CC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3273,12 +3273,12 @@ static BOOL ov16_022434CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v1 = ov16_02248AD0(param1);
     v0 = ov16_0224A984(param0, param1, v1);
 
-    ov16_0226609C(param0, param1, v0, param1->unk_219C[v0]);
+    ov16_0226609C(param0, param1, v0, param1->selectedPartySlot[v0]);
 
     return 0;
 }
 
-static BOOL ov16_02243504 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243504 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3293,7 +3293,7 @@ static BOOL ov16_02243504 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243530 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243530 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3308,7 +3308,7 @@ static BOOL ov16_02243530 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224355C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224355C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3318,12 +3318,12 @@ static BOOL ov16_0224355C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    ov16_02265FD8(param0, v1, param1->unk_130);
+    ov16_02265FD8(param0, v1, param1->msgTemp);
 
     return 0;
 }
 
-static BOOL ov16_0224358C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224358C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2;
@@ -3333,30 +3333,30 @@ static BOOL ov16_0224358C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v2 = ov16_02248AD0(param1);
 
-    if (ov16_02255A4C(param1, param1->unk_64) == 121) {
+    if (ov16_02255A4C(param1, param1->attacker) == 121) {
         ov16_02248AF0(param1, v2);
         return 0;
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param1->unk_2D40[param1->unk_64].unk_0C[v0] == 0) {
+        if (param1->battleMons[param1->attacker].moves[v0] == 0) {
             break;
         }
     }
 
     for (v1 = 0; v1 < v0; v1++) {
-        if (param1->unk_2D40[param1->unk_64].unk_0C[v1] != 160) {
-            v3 = param1->unk_354.unk_8A[param1->unk_2D40[param1->unk_64].unk_0C[v1]].unk_04;
+        if (param1->battleMons[param1->attacker].moves[v1] != 160) {
+            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].unk_04;
 
             if (v3 == 9) {
-                if ((ov16_02252060(param1, param1->unk_64, 27, NULL) == 7) || (ov16_02252060(param1, param1->unk_64, 28, NULL) == 7)) {
+                if ((ov16_02252060(param1, param1->attacker, 27, NULL) == 7) || (ov16_02252060(param1, param1->attacker, 28, NULL) == 7)) {
                     v3 = 7;
                 } else {
                     v3 = 0;
                 }
             }
 
-            if ((v3 != ov16_02252060(param1, param1->unk_64, 27, NULL)) && (v3 != ov16_02252060(param1, param1->unk_64, 28, NULL))) {
+            if ((v3 != ov16_02252060(param1, param1->attacker, 27, NULL)) && (v3 != ov16_02252060(param1, param1->attacker, 28, NULL))) {
                 break;
             }
         }
@@ -3368,28 +3368,28 @@ static BOOL ov16_0224358C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         do {
             do {
                 v1 = ov16_0223F4BC(param0) % v0;
-            } while (param1->unk_2D40[param1->unk_64].unk_0C[v1] == 160);
+            } while (param1->battleMons[param1->attacker].moves[v1] == 160);
 
-            v3 = param1->unk_354.unk_8A[param1->unk_2D40[param1->unk_64].unk_0C[v1]].unk_04;
+            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].unk_04;
 
             if (v3 == 9) {
-                if ((ov16_02252060(param1, param1->unk_64, 27, NULL) == 7) || (ov16_02252060(param1, param1->unk_64, 28, NULL) == 7)) {
+                if ((ov16_02252060(param1, param1->attacker, 27, NULL) == 7) || (ov16_02252060(param1, param1->attacker, 28, NULL) == 7)) {
                     v3 = 7;
                 } else {
                     v3 = 0;
                 }
             }
-        } while ((v3 == ov16_02252060(param1, param1->unk_64, 27, NULL)) || (v3 == ov16_02252060(param1, param1->unk_64, 28, NULL)));
+        } while ((v3 == ov16_02252060(param1, param1->attacker, 27, NULL)) || (v3 == ov16_02252060(param1, param1->attacker, 28, NULL)));
 
-        param1->unk_2D40[param1->unk_64].unk_24 = v3;
-        param1->unk_2D40[param1->unk_64].unk_25 = v3;
-        param1->unk_130 = v3;
+        param1->battleMons[param1->attacker].type1 = v3;
+        param1->battleMons[param1->attacker].type2 = v3;
+        param1->msgTemp = v3;
     }
 
     return 0;
 }
 
-static BOOL ov16_02243708 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243708 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3455,7 +3455,7 @@ static BOOL ov16_02243708 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022437D4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022437D4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3525,22 +3525,22 @@ static BOOL ov16_022437D4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022438A8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022438A8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    param1->unk_130 = param1->unk_14C * param1->unk_2168;
+    param1->msgTemp = param1->payDayCount * param1->prizeMoneyMul;
 
-    if (param1->unk_130 > 0xffff) {
-        param1->unk_130 = 0xffff;
+    if (param1->msgTemp > 0xffff) {
+        param1->msgTemp = 0xffff;
     }
 
-    sub_02025F94(ov16_0223E16C(param0, 0), param1->unk_130);
+    sub_02025F94(ov16_0223E16C(param0, 0), param1->msgTemp);
 
     return 0;
 }
 
-static BOOL ov16_022438F8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022438F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3548,35 +3548,35 @@ static BOOL ov16_022438F8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_64);
+    v1 = ov16_0223E208(param0, param1->attacker);
 
-    if (param1->unk_1BC[v1] & 0x2) {
+    if (param1->sideConditionsMask[v1] & 0x2) {
         ov16_02248AF0(param1, v0);
-        param1->unk_216C |= 0x40;
+        param1->moveStatusFlags |= 0x40;
     } else {
-        param1->unk_1BC[v1] |= 0x2;
-        param1->unk_1C4[v1].unk_00_7 = 5;
-        param1->unk_1C4[v1].unk_00_5 = param1->unk_64;
+        param1->sideConditionsMask[v1] |= 0x2;
+        param1->sideConditions[v1].lightScreenTurns = 5;
+        param1->sideConditions[v1].lightScreenUser = param1->attacker;
 
-        if (ov16_02258AB8(param1, param1->unk_64) == 97) {
-            param1->unk_1C4[v1].unk_00_7 += ov16_02258ACC(param1, param1->unk_64, 0);
+        if (ov16_02258AB8(param1, param1->attacker) == 97) {
+            param1->sideConditions[v1].lightScreenTurns += ov16_02258ACC(param1, param1->attacker, 0);
         }
 
-        param1->unk_F4.unk_01 = 20;
-        param1->unk_F4.unk_04[0] = param1->unk_3044;
-        param1->unk_F4.unk_04[1] = param1->unk_64;
+        param1->msgBuffer.tags = 20;
+        param1->msgBuffer.params[0] = param1->moveCur;
+        param1->msgBuffer.params[1] = param1->attacker;
 
-        if (ov16_022554E0(param0, param1, 1, param1->unk_64) == 2) {
-            param1->unk_F4.unk_02 = 192;
+        if (ov16_022554E0(param0, param1, 1, param1->attacker) == 2) {
+            param1->msgBuffer.id = 192;
         } else {
-            param1->unk_F4.unk_02 = 190;
+            param1->msgBuffer.id = 190;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_022439D8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022439D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3584,35 +3584,35 @@ static BOOL ov16_022439D8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_64);
+    v1 = ov16_0223E208(param0, param1->attacker);
 
-    if (param1->unk_1BC[v1] & 0x1) {
+    if (param1->sideConditionsMask[v1] & 0x1) {
         ov16_02248AF0(param1, v0);
-        param1->unk_216C |= 0x40;
+        param1->moveStatusFlags |= 0x40;
     } else {
-        param1->unk_1BC[v1] |= 0x1;
-        param1->unk_1C4[v1].unk_00_2 = 5;
-        param1->unk_1C4[v1].unk_00_0 = param1->unk_64;
+        param1->sideConditionsMask[v1] |= 0x1;
+        param1->sideConditions[v1].reflectTurns = 5;
+        param1->sideConditions[v1].reflectUser = param1->attacker;
 
-        if (ov16_02258AB8(param1, param1->unk_64) == 97) {
-            param1->unk_1C4[v1].unk_00_2 += ov16_02258ACC(param1, param1->unk_64, 0);
+        if (ov16_02258AB8(param1, param1->attacker) == 97) {
+            param1->sideConditions[v1].reflectTurns += ov16_02258ACC(param1, param1->attacker, 0);
         }
 
-        param1->unk_F4.unk_01 = 20;
-        param1->unk_F4.unk_04[0] = param1->unk_3044;
-        param1->unk_F4.unk_04[1] = param1->unk_64;
+        param1->msgBuffer.tags = 20;
+        param1->msgBuffer.params[0] = param1->moveCur;
+        param1->msgBuffer.params[1] = param1->attacker;
 
-        if (ov16_022554E0(param0, param1, 1, param1->unk_64) == 2) {
-            param1->unk_F4.unk_02 = 196;
+        if (ov16_022554E0(param0, param1, 1, param1->attacker) == 2) {
+            param1->msgBuffer.id = 196;
         } else {
-            param1->unk_F4.unk_02 = 194;
+            param1->msgBuffer.id = 194;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_02243AB8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243AB8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3620,63 +3620,63 @@ static BOOL ov16_02243AB8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_64);
+    v1 = ov16_0223E208(param0, param1->attacker);
 
-    if (param1->unk_1BC[v1] & 0x40) {
+    if (param1->sideConditionsMask[v1] & 0x40) {
         ov16_02248AF0(param1, v0);
-        param1->unk_216C |= 0x40;
+        param1->moveStatusFlags |= 0x40;
     } else {
-        param1->unk_1BC[v1] |= 0x40;
-        param1->unk_1C4[v1].unk_00_12 = 5;
-        param1->unk_1C4[v1].unk_00_10 = param1->unk_64;
+        param1->sideConditionsMask[v1] |= 0x40;
+        param1->sideConditions[v1].mistTurns = 5;
+        param1->sideConditions[v1].mistUser = param1->attacker;
     }
 
     return 0;
 }
 
-static BOOL ov16_02243B38 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243B38 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     u16 v0;
 
     ov16_02248AF0(param1, 1);
 
-    param1->unk_213C |= 0x400;
+    param1->battleStatusMask |= 0x400;
 
-    if (ov16_02255AB4(param1, param1->unk_64, param1->unk_6C, 5) == 1) {
-        param1->unk_216C |= 0x80000;
+    if (ov16_02255AB4(param1, param1->attacker, param1->defender, 5) == 1) {
+        param1->moveStatusFlags |= 0x80000;
     } else {
-        if (((param1->unk_2D40[param1->unk_6C].unk_80 & 0x18) == 0) && (ov16_02255A4C(param1, param1->unk_64) != 99) && (ov16_02255A4C(param1, param1->unk_6C) != 99)) {
-            v0 = param1->unk_354.unk_8A[param1->unk_3044].unk_05 + (param1->unk_2D40[param1->unk_64].unk_34 - param1->unk_2D40[param1->unk_6C].unk_34);
+        if (((param1->battleMons[param1->defender].moveEffectsMask & 0x18) == 0) && (ov16_02255A4C(param1, param1->attacker) != 99) && (ov16_02255A4C(param1, param1->defender) != 99)) {
+            v0 = param1->aiContext.moveTable[param1->moveCur].unk_05 + (param1->battleMons[param1->attacker].level - param1->battleMons[param1->defender].level);
 
-            if (((ov16_0223F4BC(param0) % 100) < v0) && (param1->unk_2D40[param1->unk_64].unk_34 >= param1->unk_2D40[param1->unk_6C].unk_34)) {
+            if (((ov16_0223F4BC(param0) % 100) < v0) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
                 v0 = 1;
             } else {
                 v0 = 0;
             }
         } else {
-            if ((((param1->unk_2D40[param1->unk_6C].unk_88.unk_04_0 == param1->unk_64) && (param1->unk_2D40[param1->unk_6C].unk_80 & 0x18)) || (ov16_02255A4C(param1, param1->unk_64) == 99) || (ov16_02255A4C(param1, param1->unk_6C) == 99)) && (param1->unk_2D40[param1->unk_64].unk_34 >= param1->unk_2D40[param1->unk_6C].unk_34)) {
+            if ((((param1->battleMons[param1->defender].moveEffectsData.lockOnTarget == param1->attacker) && (param1->battleMons[param1->defender].moveEffectsMask & 0x18)) || (ov16_02255A4C(param1, param1->attacker) == 99) || (ov16_02255A4C(param1, param1->defender) == 99)) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
                 v0 = 1;
             } else {
-                v0 = param1->unk_354.unk_8A[param1->unk_3044].unk_05 + (param1->unk_2D40[param1->unk_64].unk_34 - param1->unk_2D40[param1->unk_6C].unk_34);
+                v0 = param1->aiContext.moveTable[param1->moveCur].unk_05 + (param1->battleMons[param1->attacker].level - param1->battleMons[param1->defender].level);
 
-                if (((ov16_0223F4BC(param0) % 100) < v0) && (param1->unk_2D40[param1->unk_64].unk_34 >= param1->unk_2D40[param1->unk_6C].unk_34)) {
+                if (((ov16_0223F4BC(param0) % 100) < v0) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
                     v0 = 1;
                 } else {
                     v0 = 0;
                 }
             }
 
-            param1->unk_216C |= 0x400;
+            param1->moveStatusFlags |= 0x400;
         }
 
         if (v0) {
-            param1->unk_2144 = param1->unk_2D40[param1->unk_6C].unk_4C * -1;
-            param1->unk_216C |= 0x20;
+            param1->damage = param1->battleMons[param1->defender].curHP * -1;
+            param1->moveStatusFlags |= 0x20;
         } else {
-            if (param1->unk_2D40[param1->unk_64].unk_34 >= param1->unk_2D40[param1->unk_6C].unk_34) {
-                param1->unk_216C |= 0x1;
+            if (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level) {
+                param1->moveStatusFlags |= 0x1;
             } else {
-                param1->unk_216C |= 0x1000;
+                param1->moveStatusFlags |= 0x1000;
             }
         }
     }
@@ -3684,7 +3684,7 @@ static BOOL ov16_02243B38 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243D2C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243D2C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3700,7 +3700,7 @@ static BOOL ov16_02243D2C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243D64 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243D64 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3730,7 +3730,7 @@ static BOOL ov16_02243D64 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243DBC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243DBC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -3738,7 +3738,7 @@ static BOOL ov16_02243DBC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if ((ov16_0225AFF4(param1->unk_307C[param1->unk_6C]) == 0) || (param1->unk_2D40[param1->unk_64].unk_70 & 0x200000) || (param1->unk_2D40[param1->unk_6C].unk_70 & 0x1000000) || (param1->unk_307C[param1->unk_6C] == 0)) {
+    if ((ov16_0225AFF4(param1->movePrevByBattler[param1->defender]) == 0) || (param1->battleMons[param1->attacker].statusVolatile & 0x200000) || (param1->battleMons[param1->defender].statusVolatile & 0x1000000) || (param1->movePrevByBattler[param1->defender] == 0)) {
         ov16_02248AF0(param1, v0);
     } else {
         {
@@ -3746,29 +3746,29 @@ static BOOL ov16_02243DBC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             int v2 = -1;
 
             for (v1 = 0; v1 < 4; v1++) {
-                if (param1->unk_2D40[param1->unk_64].unk_0C[v1] == param1->unk_307C[param1->unk_6C]) {
+                if (param1->battleMons[param1->attacker].moves[v1] == param1->movePrevByBattler[param1->defender]) {
                     break;
                 }
 
-                if ((param1->unk_2D40[param1->unk_64].unk_0C[v1] == 102) && (v2 == -1)) {
+                if ((param1->battleMons[param1->attacker].moves[v1] == 102) && (v2 == -1)) {
                     v2 = v1;
                 }
             }
 
             if (v1 == 4) {
-                param1->unk_124 = param1->unk_307C[param1->unk_6C];
-                param1->unk_2D40[param1->unk_64].unk_0C[v2] = param1->unk_124;
+                param1->msgMoveTemp = param1->movePrevByBattler[param1->defender];
+                param1->battleMons[param1->attacker].moves[v2] = param1->msgMoveTemp;
 
-                if (param1->unk_354.unk_8A[param1->unk_124].unk_06 < 5) {
-                    param1->unk_2D40[param1->unk_64].unk_2C[v2] = param1->unk_354.unk_8A[param1->unk_124].unk_06;
+                if (param1->aiContext.moveTable[param1->msgMoveTemp].unk_06 < 5) {
+                    param1->battleMons[param1->attacker].ppCur[v2] = param1->aiContext.moveTable[param1->msgMoveTemp].unk_06;
                 } else {
-                    param1->unk_2D40[param1->unk_64].unk_2C[v2] = 5;
+                    param1->battleMons[param1->attacker].ppCur[v2] = 5;
                 }
 
-                param1->unk_2D40[param1->unk_64].unk_88.unk_04_2 |= sub_020787CC(v2);
+                param1->battleMons[param1->attacker].moveEffectsData.mimickedMoveSlot |= sub_020787CC(v2);
 
-                if (param1->unk_124 == 387) {
-                    param1->unk_2D40[param1->unk_64].unk_88.unk_04_10 = 0;
+                if (param1->msgMoveTemp == 387) {
+                    param1->battleMons[param1->attacker].moveEffectsData.lastResortCount = 0;
                 }
             } else {
                 ov16_02248AF0(param1, v0);
@@ -3779,7 +3779,7 @@ static BOOL ov16_02243DBC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02243EF4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243EF4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u16 v1;
@@ -3790,7 +3790,7 @@ static BOOL ov16_02243EF4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v1 = (ov16_0223F4BC(param0) % 467) + 1;
 
         for (v0 = 0; v0 < 4; v0++) {
-            if (param1->unk_2D40[param1->unk_64].unk_0C[v0] == v1) {
+            if (param1->battleMons[param1->attacker].moves[v0] == v1) {
                 break;
             }
         }
@@ -3799,18 +3799,18 @@ static BOOL ov16_02243EF4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             continue;
         }
 
-        if (ov16_0225B02C(param0, param1, param1->unk_64, v1) == 0) {
+        if (ov16_0225B02C(param0, param1, param1->attacker, v1) == 0) {
             continue;
         }
 
-        param1->unk_124 = v1;
+        param1->msgMoveTemp = v1;
         break;
     }
 
     return 0;
 }
 
-static BOOL ov16_02243F54 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02243F54 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3818,12 +3818,12 @@ static BOOL ov16_02243F54 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_02254EE0(&param1->unk_2D40[param1->unk_6C], param1->unk_307C[param1->unk_6C]);
+    v1 = ov16_02254EE0(&param1->battleMons[param1->defender], param1->movePrevByBattler[param1->defender]);
 
-    if ((param1->unk_2D40[param1->unk_6C].unk_88.unk_20 == 0) && (v1 != 4) && (param1->unk_2D40[param1->unk_6C].unk_2C[v1]) && (param1->unk_307C[param1->unk_6C])) {
-        param1->unk_124 = param1->unk_307C[param1->unk_6C];
-        param1->unk_2D40[param1->unk_6C].unk_88.unk_20 = param1->unk_124;
-        param1->unk_2D40[param1->unk_6C].unk_88.unk_00_0 = ov16_0223F4BC(param0) % 4 + 3;
+    if ((param1->battleMons[param1->defender].moveEffectsData.disabledMove == 0) && (v1 != 4) && (param1->battleMons[param1->defender].ppCur[v1]) && (param1->movePrevByBattler[param1->defender])) {
+        param1->msgMoveTemp = param1->movePrevByBattler[param1->defender];
+        param1->battleMons[param1->defender].moveEffectsData.disabledMove = param1->msgMoveTemp;
+        param1->battleMons[param1->defender].moveEffectsData.disabledTurns = ov16_0223F4BC(param0) % 4 + 3;
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -3831,83 +3831,83 @@ static BOOL ov16_02243F54 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02244010 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244010 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2;
 
     ov16_02248AF0(param1, 1);
 
-    v2 = param1->unk_1D4[param1->unk_64].unk_14;
-    v0 = ov16_0223E208(param0, param1->unk_64);
+    v2 = param1->turnFlags[param1->attacker].physicalDamageLastAttacker;
+    v0 = ov16_0223E208(param0, param1->attacker);
     v1 = ov16_0223E208(param0, v2);
 
-    if ((param1->unk_1D4[param1->unk_64].unk_04[v2]) && (v0 != v1) && (param1->unk_2D40[v2].unk_4C)) {
-        param1->unk_2144 = param1->unk_1D4[param1->unk_64].unk_04[v2] * 2;
+    if ((param1->turnFlags[param1->attacker].physicalDamageTakenFrom[v2]) && (v0 != v1) && (param1->battleMons[v2].curHP)) {
+        param1->damage = param1->turnFlags[param1->attacker].physicalDamageTakenFrom[v2] * 2;
 
-        if ((param1->unk_1C4[v1].unk_00_20) && (param1->unk_2D40[param1->unk_1C4[v1].unk_00_21].unk_4C)) {
-            param1->unk_6C = param1->unk_1C4[v1].unk_00_21;
+        if ((param1->sideConditions[v1].followMe) && (param1->battleMons[param1->sideConditions[v1].followMeUser].curHP)) {
+            param1->defender = param1->sideConditions[v1].followMeUser;
         } else {
-            param1->unk_6C = v2;
+            param1->defender = v2;
         }
 
-        if (param1->unk_2D40[param1->unk_6C].unk_4C == 0) {
-            param1->unk_6C = ov16_02257028(param0, param1, param1->unk_64);
+        if (param1->battleMons[param1->defender].curHP == 0) {
+            param1->defender = ov16_02257028(param0, param1, param1->attacker);
 
-            if (param1->unk_2D40[param1->unk_6C].unk_4C == 0) {
-                param1->unk_0C = 38;
+            if (param1->battleMons[param1->defender].curHP == 0) {
+                param1->commandNext = 38;
                 ov16_02248B00(param1, 1, (0 + 281));
             }
         }
 
-        ov16_0225B408(param1, param1->unk_64, param1->unk_6C);
+        ov16_0225B408(param1, param1->attacker, param1->defender);
     } else {
-        param1->unk_2D4[param1->unk_64].unk_00_0 = 1;
-        param1->unk_216C |= 0x40;
+        param1->selfTurnFlags[param1->attacker].skipPressureCheck = 1;
+        param1->moveStatusFlags |= 0x40;
     }
 
     return 0;
 }
 
-static BOOL ov16_0224410C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224410C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2;
 
     ov16_02248AF0(param1, 1);
 
-    v2 = param1->unk_1D4[param1->unk_64].unk_2C;
-    v0 = ov16_0223E208(param0, param1->unk_64);
+    v2 = param1->turnFlags[param1->attacker].specialDamageLastAttacker;
+    v0 = ov16_0223E208(param0, param1->attacker);
     v1 = ov16_0223E208(param0, v2);
 
-    if ((param1->unk_1D4[param1->unk_64].unk_1C[v2]) && (v0 != v1) && (param1->unk_2D40[v2].unk_4C)) {
-        param1->unk_2144 = param1->unk_1D4[param1->unk_64].unk_1C[v2] * 2;
+    if ((param1->turnFlags[param1->attacker].specialDamageTakenFrom[v2]) && (v0 != v1) && (param1->battleMons[v2].curHP)) {
+        param1->damage = param1->turnFlags[param1->attacker].specialDamageTakenFrom[v2] * 2;
 
-        if ((param1->unk_1C4[v1].unk_00_20) && (param1->unk_2D40[param1->unk_1C4[v1].unk_00_21].unk_4C)) {
-            param1->unk_6C = param1->unk_1C4[v1].unk_00_21;
+        if ((param1->sideConditions[v1].followMe) && (param1->battleMons[param1->sideConditions[v1].followMeUser].curHP)) {
+            param1->defender = param1->sideConditions[v1].followMeUser;
         } else {
-            param1->unk_6C = v2;
+            param1->defender = v2;
         }
 
-        if (param1->unk_2D40[param1->unk_6C].unk_4C == 0) {
-            param1->unk_6C = ov16_02257028(param0, param1, param1->unk_64);
+        if (param1->battleMons[param1->defender].curHP == 0) {
+            param1->defender = ov16_02257028(param0, param1, param1->attacker);
 
-            if (param1->unk_2D40[param1->unk_6C].unk_4C == 0) {
-                param1->unk_0C = 38;
+            if (param1->battleMons[param1->defender].curHP == 0) {
+                param1->commandNext = 38;
                 ov16_02248B00(param1, 1, (0 + 281));
             }
         }
 
-        ov16_0225B408(param1, param1->unk_64, param1->unk_6C);
+        ov16_0225B408(param1, param1->attacker, param1->defender);
     } else {
-        param1->unk_2D4[param1->unk_64].unk_00_0 = 1;
-        param1->unk_216C |= 0x40;
+        param1->selfTurnFlags[param1->attacker].skipPressureCheck = 1;
+        param1->moveStatusFlags |= 0x40;
     }
 
     return 0;
 }
 
-static BOOL ov16_02244208 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244208 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -3915,27 +3915,27 @@ static BOOL ov16_02244208 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_02254EE0(&param1->unk_2D40[param1->unk_6C], param1->unk_307C[param1->unk_6C]);
+    v1 = ov16_02254EE0(&param1->battleMons[param1->defender], param1->movePrevByBattler[param1->defender]);
 
-    if (ov16_0225B084(param1, param1->unk_307C[param1->unk_6C]) == 0) {
+    if (ov16_0225B084(param1, param1->movePrevByBattler[param1->defender]) == 0) {
         v1 = 4;
     }
 
-    if ((param1->unk_2D40[param1->unk_6C].unk_88.unk_24 == 0) && (v1 != 4) && (param1->unk_2D40[param1->unk_6C].unk_2C[v1]) && (param1->unk_307C[param1->unk_6C])) {
-        param1->unk_124 = param1->unk_307C[param1->unk_6C];
-        param1->unk_2D40[param1->unk_6C].unk_88.unk_24 = param1->unk_124;
-        param1->unk_2D40[param1->unk_6C].unk_88.unk_26 = v1;
+    if ((param1->battleMons[param1->defender].moveEffectsData.encoredMove == 0) && (v1 != 4) && (param1->battleMons[param1->defender].ppCur[v1]) && (param1->movePrevByBattler[param1->defender])) {
+        param1->msgMoveTemp = param1->movePrevByBattler[param1->defender];
+        param1->battleMons[param1->defender].moveEffectsData.encoredMove = param1->msgMoveTemp;
+        param1->battleMons[param1->defender].moveEffectsData.encoredMoveSlot = v1;
 
-        param1->unk_2D40[param1->unk_6C].unk_88.unk_00_3 = ov16_0223F4BC(param0) % 5 + 3;
+        param1->battleMons[param1->defender].moveEffectsData.encoredTurns = ov16_0223F4BC(param0) % 5 + 3;
     } else {
-        param1->unk_216C |= 0x40;
+        param1->moveStatusFlags |= 0x40;
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_022442F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022442F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2;
@@ -3945,28 +3945,28 @@ static BOOL ov16_022442F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v2 = ov16_02248AD0(param1);
 
-    if (ov16_02255A4C(param1, param1->unk_64) == 121) {
+    if (ov16_02255A4C(param1, param1->attacker) == 121) {
         ov16_02248AF0(param1, v2);
         return 0;
     }
 
-    if ((param1->unk_30C4[param1->unk_64]) && (param1->unk_30CC[param1->unk_64] != 0xff)) {
-        if ((ov16_0225582C(param1, param1->unk_30C4[param1->unk_64])) && (param1->unk_2D40[param1->unk_30CC[param1->unk_64]].unk_70 & 0x1000)) {
+    if ((param1->conversion2Move[param1->attacker]) && (param1->conversion2Battler[param1->attacker] != 0xff)) {
+        if ((ov16_0225582C(param1, param1->conversion2Move[param1->attacker])) && (param1->battleMons[param1->conversion2Battler[param1->attacker]].statusVolatile & 0x1000)) {
             ov16_02248AF0(param1, v2);
             return 0;
         } else {
             {
                 u8 v4, v5, v6;
 
-                v3 = param1->unk_30D4[param1->unk_64];
+                v3 = param1->conversion2Type[param1->attacker];
 
                 for (v0 = 0; v0 < 1000; v0++) {
                     ov16_0225588C(param0, 0xffff, &v4, &v5, &v6);
 
-                    if ((v4 == v3) && (v6 <= 5) && (ov16_02252060(param1, param1->unk_64, 27, NULL) != v5) && (ov16_02252060(param1, param1->unk_64, 28, NULL) != v5)) {
-                        param1->unk_2D40[param1->unk_64].unk_24 = v5;
-                        param1->unk_2D40[param1->unk_64].unk_25 = v5;
-                        param1->unk_130 = v5;
+                    if ((v4 == v3) && (v6 <= 5) && (ov16_02252060(param1, param1->attacker, 27, NULL) != v5) && (ov16_02252060(param1, param1->attacker, 28, NULL) != v5)) {
+                        param1->battleMons[param1->attacker].type1 = v5;
+                        param1->battleMons[param1->attacker].type2 = v5;
+                        param1->msgTemp = v5;
                         return 0;
                     }
                 }
@@ -3974,10 +3974,10 @@ static BOOL ov16_022442F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                 v0 = 0;
 
                 while (ov16_0225588C(param0, v0, &v4, &v5, &v6) == 1) {
-                    if ((v4 == v3) && (v6 <= 5) && (ov16_02252060(param1, param1->unk_64, 27, NULL) != v5) && (ov16_02252060(param1, param1->unk_64, 28, NULL) != v5)) {
-                        param1->unk_2D40[param1->unk_64].unk_24 = v5;
-                        param1->unk_2D40[param1->unk_64].unk_25 = v5;
-                        param1->unk_130 = v5;
+                    if ((v4 == v3) && (v6 <= 5) && (ov16_02252060(param1, param1->attacker, 27, NULL) != v5) && (ov16_02252060(param1, param1->attacker, 28, NULL) != v5)) {
+                        param1->battleMons[param1->attacker].type1 = v5;
+                        param1->battleMons[param1->attacker].type2 = v5;
+                        param1->msgTemp = v5;
                         return 0;
                     }
 
@@ -3992,7 +3992,7 @@ static BOOL ov16_022442F0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022444B0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022444B0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1 = -1;
@@ -4002,27 +4002,27 @@ static BOOL ov16_022444B0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v2 = ov16_02248AD0(param1);
 
-    if ((param1->unk_2D40[param1->unk_64].unk_70 & 0x200000) || (param1->unk_30AC[param1->unk_6C] == 165) || (param1->unk_30AC[param1->unk_6C] == 166) || (param1->unk_30AC[param1->unk_6C] == 448) || (param1->unk_30AC[param1->unk_6C] == 0)) {
+    if ((param1->battleMons[param1->attacker].statusVolatile & 0x200000) || (param1->moveSketched[param1->defender] == 165) || (param1->moveSketched[param1->defender] == 166) || (param1->moveSketched[param1->defender] == 448) || (param1->moveSketched[param1->defender] == 0)) {
         ov16_02248AF0(param1, v2);
     } else {
         for (v0 = 0; v0 < 4; v0++) {
-            if ((param1->unk_2D40[param1->unk_64].unk_0C[v0] != 166) && (param1->unk_2D40[param1->unk_64].unk_0C[v0] == param1->unk_30AC[param1->unk_6C])) {
+            if ((param1->battleMons[param1->attacker].moves[v0] != 166) && (param1->battleMons[param1->attacker].moves[v0] == param1->moveSketched[param1->defender])) {
                 break;
             }
 
-            if ((param1->unk_2D40[param1->unk_64].unk_0C[v0] == 166) && (v1 == -1)) {
+            if ((param1->battleMons[param1->attacker].moves[v0] == 166) && (v1 == -1)) {
                 v1 = v0;
             }
         }
 
         if (v0 == 4) {
-            param1->unk_2D40[param1->unk_64].unk_0C[v1] = param1->unk_30AC[param1->unk_6C];
-            param1->unk_2D40[param1->unk_64].unk_2C[v1] = param1->unk_354.unk_8A[param1->unk_30AC[param1->unk_6C]].unk_06;
-            ov16_022662FC(param0, param1, param1->unk_64);
-            param1->unk_124 = param1->unk_30AC[param1->unk_6C];
+            param1->battleMons[param1->attacker].moves[v1] = param1->moveSketched[param1->defender];
+            param1->battleMons[param1->attacker].ppCur[v1] = param1->aiContext.moveTable[param1->moveSketched[param1->defender]].unk_06;
+            ov16_022662FC(param0, param1, param1->attacker);
+            param1->msgMoveTemp = param1->moveSketched[param1->defender];
 
-            if (param1->unk_124 == 387) {
-                param1->unk_2D40[param1->unk_64].unk_88.unk_04_10 = 0;
+            if (param1->msgMoveTemp == 387) {
+                param1->battleMons[param1->attacker].moveEffectsData.lastResortCount = 0;
             }
         } else {
             ov16_02248AF0(param1, v2);
@@ -4032,7 +4032,7 @@ static BOOL ov16_022444B0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022445D4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022445D4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4044,12 +4044,12 @@ static BOOL ov16_022445D4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v1 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if ((ov16_02255918(param1->unk_2D40[param1->unk_64].unk_0C[v0])) || (param1->unk_2D40[param1->unk_64].unk_0C[v0] == 264) || (param1->unk_2D40[param1->unk_64].unk_0C[v0] == 253) || (param1->unk_2D40[param1->unk_64].unk_0C[v0] == 448) || (ov16_0225582C(param1, param1->unk_2D40[param1->unk_64].unk_0C[v0]))) {
+        if ((ov16_02255918(param1->battleMons[param1->attacker].moves[v0])) || (param1->battleMons[param1->attacker].moves[v0] == 264) || (param1->battleMons[param1->attacker].moves[v0] == 253) || (param1->battleMons[param1->attacker].moves[v0] == 448) || (ov16_0225582C(param1, param1->battleMons[param1->attacker].moves[v0]))) {
             v1 |= sub_020787CC(v0);
         }
     }
 
-    v1 = ov16_02254A6C(param0, param1, param1->unk_64, v1, (0x2 ^ 0xffffffff));
+    v1 = ov16_02254A6C(param0, param1, param1->attacker, v1, (0x2 ^ 0xffffffff));
 
     if (v1 == 0xf) {
         ov16_02248AF0(param1, v2);
@@ -4058,7 +4058,7 @@ static BOOL ov16_022445D4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             v0 = ov16_0223F4BC(param0) % 4;
         } while ((v1 & sub_020787CC(v0)));
 
-        param1->unk_124 = param1->unk_2D40[param1->unk_64].unk_0C[v0];
+        param1->msgMoveTemp = param1->battleMons[param1->attacker].moves[v0];
     }
 
     return 0;
@@ -4073,13 +4073,13 @@ static const u8 Unk_ov16_0226E584[][2] = {
     {0x40, 0x14}
 };
 
-static BOOL ov16_022446A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022446A0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
 
     ov16_02248AF0(param1, 1);
-    v1 = sub_0208C0BC(param1->unk_2D40[param1->unk_64].unk_4C, param1->unk_2D40[param1->unk_64].unk_50, 64);
+    v1 = sub_0208C0BC(param1->battleMons[param1->attacker].curHP, param1->battleMons[param1->attacker].maxHP, 64);
 
     for (v0 = 0; v0 < NELEMS(Unk_ov16_0226E584); v0++) {
         if (v1 <= Unk_ov16_0226E584[v0][0]) {
@@ -4087,12 +4087,12 @@ static BOOL ov16_022446A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         }
     }
 
-    param1->unk_2154 = Unk_ov16_0226E584[v0][1];
+    param1->movePower = Unk_ov16_0226E584[v0][1];
 
     return 0;
 }
 
-static BOOL ov16_022446F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022446F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4101,23 +4101,23 @@ static BOOL ov16_022446F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
     v0 = ov16_02248AD0(param1);
 
-    if (param1->unk_307C[param1->unk_6C]) {
-        v1 = ov16_02254EE0(&param1->unk_2D40[param1->unk_6C], param1->unk_307C[param1->unk_6C]);
+    if (param1->movePrevByBattler[param1->defender]) {
+        v1 = ov16_02254EE0(&param1->battleMons[param1->defender], param1->movePrevByBattler[param1->defender]);
 
-        if ((v1 == 4) || (param1->unk_2D40[param1->unk_6C].unk_2C[v1] == 0)) {
+        if ((v1 == 4) || (param1->battleMons[param1->defender].ppCur[v1] == 0)) {
             ov16_02248AF0(param1, v0);
         } else {
             v2 = 4;
 
-            if (param1->unk_2D40[param1->unk_6C].unk_2C[v1] < v2) {
-                v2 = param1->unk_2D40[param1->unk_6C].unk_2C[v1];
+            if (param1->battleMons[param1->defender].ppCur[v1] < v2) {
+                v2 = param1->battleMons[param1->defender].ppCur[v1];
             }
 
-            param1->unk_124 = param1->unk_307C[param1->unk_6C];
-            param1->unk_130 = v2;
-            param1->unk_2D40[param1->unk_6C].unk_2C[v1] -= v2;
+            param1->msgMoveTemp = param1->movePrevByBattler[param1->defender];
+            param1->msgTemp = v2;
+            param1->battleMons[param1->defender].ppCur[v1] -= v2;
 
-            ov16_02253EC0(param0, param1, param1->unk_6C);
+            ov16_02253EC0(param0, param1, param1->defender);
         }
     } else {
         ov16_02248AF0(param1, v0);
@@ -4126,7 +4126,7 @@ static BOOL ov16_022446F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02244798 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244798 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     u32 v0;
     int v1;
@@ -4134,55 +4134,55 @@ static BOOL ov16_02244798 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_0223DF0C(param0);
     ov16_02248AF0(param1, 1);
 
-    param1->unk_134 = 0;
+    param1->calcTemp = 0;
 
-    if (param1->unk_3044 == 215) {
-        param1->unk_124 = param1->unk_3044;
+    if (param1->moveCur == 215) {
+        param1->msgMoveTemp = param1->moveCur;
 
-        if (ov16_02255A4C(param1, param1->unk_64) != 43) {
-            param1->unk_2D40[param1->unk_64].unk_6C = 0;
-            param1->unk_2D40[param1->unk_64].unk_70 &= (0x8000000 ^ 0xffffffff);
+        if (ov16_02255A4C(param1, param1->attacker) != 43) {
+            param1->battleMons[param1->attacker].status = 0;
+            param1->battleMons[param1->attacker].statusVolatile &= (0x8000000 ^ 0xffffffff);
         } else {
-            param1->unk_134 |= (1 | 4);
+            param1->calcTemp |= (1 | 4);
         }
 
         if (v0 & 0x2) {
             v1 = ov16_0224A984(param0, param1, 0x10);
 
-            if ((param1->unk_3108 & sub_020787CC(v1)) == 0) {
-                if (ov16_02255AB4(param1, param1->unk_64, v1, 43) == 0) {
-                    param1->unk_2D40[v1].unk_6C = 0;
-                    param1->unk_2D40[v1].unk_70 &= (0x8000000 ^ 0xffffffff);
+            if ((param1->battlersSwitchingMask & sub_020787CC(v1)) == 0) {
+                if (ov16_02255AB4(param1, param1->attacker, v1, 43) == 0) {
+                    param1->battleMons[v1].status = 0;
+                    param1->battleMons[v1].statusVolatile &= (0x8000000 ^ 0xffffffff);
                 } else {
-                    param1->unk_118 = v1;
-                    param1->unk_134 |= (2 | 8);
+                    param1->msgBattlerTemp = v1;
+                    param1->calcTemp |= (2 | 8);
                 }
             }
         } else {
-            param1->unk_134 |= 8;
+            param1->calcTemp |= 8;
         }
     } else {
-        param1->unk_2D40[param1->unk_64].unk_6C = 0;
-        param1->unk_2D40[param1->unk_64].unk_70 &= (0x8000000 ^ 0xffffffff);
+        param1->battleMons[param1->attacker].status = 0;
+        param1->battleMons[param1->attacker].statusVolatile &= (0x8000000 ^ 0xffffffff);
 
         if (v0 & 0x2) {
             v1 = ov16_0224A984(param0, param1, 0x10);
 
-            if ((param1->unk_3108 & sub_020787CC(v1)) == 0) {
-                param1->unk_2D40[v1].unk_6C = 0;
-                param1->unk_2D40[v1].unk_70 &= (0x8000000 ^ 0xffffffff);
+            if ((param1->battlersSwitchingMask & sub_020787CC(v1)) == 0) {
+                param1->battleMons[v1].status = 0;
+                param1->battleMons[v1].statusVolatile &= (0x8000000 ^ 0xffffffff);
             }
         } else {
-            param1->unk_134 |= 8;
+            param1->calcTemp |= 8;
         }
     }
 
-    ov16_02266498(param0, param1, param1->unk_64, param1->unk_3044);
+    ov16_02266498(param0, param1, param1->attacker, param1->moveCur);
 
     return 0;
 }
 
-static BOOL ov16_022448E8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022448E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4194,22 +4194,22 @@ static BOOL ov16_022448E8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_02248AD0(param1);
     v2 = ov16_0223DF0C(param0);
-    v3 = ov16_0223E208(param0, param1->unk_64);
+    v3 = ov16_0223E208(param0, param1->attacker);
 
-    if ((ov16_0223E208(param0, param1->unk_64)) && ((v2 & (0x4 | 0x80)) == 0)) {
+    if ((ov16_0223E208(param0, param1->attacker)) && ((v2 & (0x4 | 0x80)) == 0)) {
         ov16_02248AF0(param1, v0);
-    } else if (param1->unk_1C4[v3].unk_00_23 & sub_020787CC(param1->unk_219C[param1->unk_64])) {
+    } else if (param1->sideConditions[v3].knockedOffItemsMask & sub_020787CC(param1->selectedPartySlot[param1->attacker])) {
         ov16_02248AF0(param1, v0);
-    } else if ((ov16_02255A4C(param1, param1->unk_64) == 121) || (ov16_02255A4C(param1, param1->unk_6C) == 121)) {
+    } else if ((ov16_02255A4C(param1, param1->attacker) == 121) || (ov16_02255A4C(param1, param1->defender) == 121)) {
         ov16_02248AF0(param1, v0);
-    } else if (param1->unk_2D40[param1->unk_6C].unk_78 == 112) {
+    } else if (param1->battleMons[param1->defender].heldItem == 112) {
         ov16_02248AF0(param1, v0);
-    } else if ((param1->unk_2D40[param1->unk_6C].unk_88.unk_04_28) || (param1->unk_2D40[param1->unk_6C].unk_88.unk_04_29)) {
+    } else if ((param1->battleMons[param1->defender].moveEffectsData.custapBerry) || (param1->battleMons[param1->defender].moveEffectsData.quickClaw)) {
         ov16_02248AF0(param1, v0);
     } else {
-        if ((param1->unk_2D40[param1->unk_6C].unk_78) && (ov16_02255AB4(param1, param1->unk_64, param1->unk_6C, 60) == 1)) {
+        if ((param1->battleMons[param1->defender].heldItem) && (ov16_02255AB4(param1, param1->attacker, param1->defender, 60) == 1)) {
             ov16_02248AF0(param1, v1);
-        } else if ((param1->unk_2D40[param1->unk_64].unk_78) || (ov16_02255980(param0, param1, param1->unk_6C) == 0)) {
+        } else if ((param1->battleMons[param1->attacker].heldItem) || (ov16_02255980(param0, param1, param1->defender) == 0)) {
             ov16_02248AF0(param1, v0);
         }
     }
@@ -4224,7 +4224,7 @@ static const u16 Unk_ov16_0226E57C[] = {
     0x1FFF
 };
 
-static BOOL ov16_02244A0C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244A0C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4233,42 +4233,42 @@ static BOOL ov16_02244A0C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
     v2 = ov16_02248AD0(param1);
 
-    if ((param1->unk_305C[param1->unk_64] != 182) && (param1->unk_305C[param1->unk_64] != 197) && (param1->unk_305C[param1->unk_64] != 203)) {
-        param1->unk_2D40[param1->unk_64].unk_88.unk_00_11 = 0;
+    if ((param1->moveProtect[param1->attacker] != 182) && (param1->moveProtect[param1->attacker] != 197) && (param1->moveProtect[param1->attacker] != 203)) {
+        param1->battleMons[param1->attacker].moveEffectsData.protectSuccessTurns = 0;
     }
 
-    if (param1->unk_3150 == 1) {
+    if (param1->waitingBattlers == 1) {
         v1 = 0;
     } else {
         v1 = 1;
     }
 
-    if ((Unk_ov16_0226E57C[param1->unk_2D40[param1->unk_64].unk_88.unk_00_11] >= ov16_0223F4BC(param0)) && (v1)) {
-        if (param1->unk_354.unk_8A[param1->unk_3044].unk_00 == 111) {
-            param1->unk_1D4[param1->unk_64].unk_00_2 = 1;
-            param1->unk_F4.unk_02 = 282;
+    if ((Unk_ov16_0226E57C[param1->battleMons[param1->attacker].moveEffectsData.protectSuccessTurns] >= ov16_0223F4BC(param0)) && (v1)) {
+        if (param1->aiContext.moveTable[param1->moveCur].unk_00 == 111) {
+            param1->turnFlags[param1->attacker].protecting = 1;
+            param1->msgBuffer.id = 282;
         }
 
-        if (param1->unk_354.unk_8A[param1->unk_3044].unk_00 == 116) {
-            param1->unk_1D4[param1->unk_64].unk_00_9 = 1;
-            param1->unk_F4.unk_02 = 442;
+        if (param1->aiContext.moveTable[param1->moveCur].unk_00 == 116) {
+            param1->turnFlags[param1->attacker].enduring = 1;
+            param1->msgBuffer.id = 442;
         }
 
-        param1->unk_F4.unk_01 = 2;
-        param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_64);
+        param1->msgBuffer.tags = 2;
+        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->attacker);
 
-        if (param1->unk_2D40[param1->unk_64].unk_88.unk_00_11 < NELEMS(Unk_ov16_0226E57C) - 1) {
-            param1->unk_2D40[param1->unk_64].unk_88.unk_00_11++;
+        if (param1->battleMons[param1->attacker].moveEffectsData.protectSuccessTurns < NELEMS(Unk_ov16_0226E57C) - 1) {
+            param1->battleMons[param1->attacker].moveEffectsData.protectSuccessTurns++;
         }
     } else {
-        param1->unk_2D40[param1->unk_64].unk_88.unk_00_11 = 0;
+        param1->battleMons[param1->attacker].moveEffectsData.protectSuccessTurns = 0;
         ov16_02248AF0(param1, v2);
     }
 
     return 0;
 }
 
-static BOOL ov16_02244B48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244B48 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4276,20 +4276,20 @@ static BOOL ov16_02244B48 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_022563F8(param1->unk_2D40[param1->unk_64].unk_50, 4);
+    v1 = ov16_022563F8(param1->battleMons[param1->attacker].maxHP, 4);
 
-    if (param1->unk_2D40[param1->unk_64].unk_4C <= v1) {
+    if (param1->battleMons[param1->attacker].curHP <= v1) {
         ov16_02248AF0(param1, v0);
     } else {
-        param1->unk_215C = v1 * -1;
-        param1->unk_2D40[param1->unk_64].unk_88.unk_18 = v1;
-        param1->unk_2D40[param1->unk_64].unk_70 &= (0xe000 ^ 0xffffffff);
+        param1->hpCalcTemp = v1 * -1;
+        param1->battleMons[param1->attacker].moveEffectsData.substituteHP = v1;
+        param1->battleMons[param1->attacker].statusVolatile &= (0xe000 ^ 0xffffffff);
     }
 
     return 0;
 }
 
-static BOOL ov16_02244BC4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244BC4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u32 v1;
@@ -4307,30 +4307,30 @@ static BOOL ov16_02244BC4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             int v5 = 0, v6, v7, v8, v9, v10;
             int v11, v12;
 
-            v2 = ov16_0223DF20(param0, param1->unk_6C);
-            v4 = ov16_0223DF60(param0, param1->unk_6C);
+            v2 = ov16_0223DF20(param0, param1->defender);
+            v4 = ov16_0223DF60(param0, param1->defender);
 
-            if ((v1 & 0x8) || ((v1 & 0x10) && (ov16_0223E208(param0, param1->unk_6C)))) {
+            if ((v1 & 0x8) || ((v1 & 0x10) && (ov16_0223E208(param0, param1->defender)))) {
                 v8 = 0;
                 v9 = v4;
                 v10 = v4;
                 v6 = 1;
-                v11 = param1->unk_219C[param1->unk_6C];
-                v12 = param1->unk_219C[param1->unk_6C];
+                v11 = param1->selectedPartySlot[param1->defender];
+                v12 = param1->selectedPartySlot[param1->defender];
             } else if (v1 & 0x2) {
                 v8 = 0;
                 v9 = v4;
                 v10 = v4;
                 v6 = 2;
-                v11 = param1->unk_219C[param1->unk_6C];
-                v12 = param1->unk_219C[ov16_0223E258(param0, param1->unk_6C)];
+                v11 = param1->selectedPartySlot[param1->defender];
+                v12 = param1->selectedPartySlot[ov16_0223E258(param0, param1->defender)];
             } else {
                 v8 = 0;
                 v9 = v4;
                 v10 = v4;
                 v6 = 1;
-                v11 = param1->unk_219C[param1->unk_6C];
-                v12 = param1->unk_219C[param1->unk_6C];
+                v11 = param1->selectedPartySlot[param1->defender];
+                v12 = param1->selectedPartySlot[param1->defender];
             }
 
             for (v7 = v8; v7 < v9; v7++) {
@@ -4354,7 +4354,7 @@ static BOOL ov16_02244BC4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
                         v3 = Party_GetPokemonBySlotIndex(v2, v7);
                     } while ((GetMonData(v3, MON_DATA_SPECIES, NULL) == 0) || (GetMonData(v3, MON_DATA_IS_EGG, NULL) == 1) || (GetMonData(v3, MON_DATA_163, NULL) == 0));
 
-                    param1->unk_21A0[param1->unk_6C] = v7;
+                    param1->switchedPartySlot[param1->defender] = v7;
                 } else {
                     ov16_02248AF0(param1, v0);
                 }
@@ -4369,54 +4369,54 @@ static BOOL ov16_02244BC4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02244D60 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244D60 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u8 * v1, * v2;
 
     ov16_02248AF0(param1, 1);
 
-    param1->unk_2D40[param1->unk_64].unk_70 |= 0x200000;
-    param1->unk_2D40[param1->unk_64].unk_88.unk_20 = 0;
-    param1->unk_2D40[param1->unk_64].unk_88.unk_00_0 = 0;
-    param1->unk_2D40[param1->unk_64].unk_88.unk_1C = param1->unk_2D40[param1->unk_6C].unk_68;
-    param1->unk_2D40[param1->unk_64].unk_88.unk_32 = param1->unk_2D40[param1->unk_6C].unk_7E_0;
-    param1->unk_2D40[param1->unk_64].unk_88.unk_04_2 = 0;
-    param1->unk_2D40[param1->unk_64].unk_88.unk_04_10 = 0;
+    param1->battleMons[param1->attacker].statusVolatile |= 0x200000;
+    param1->battleMons[param1->attacker].moveEffectsData.disabledMove = 0;
+    param1->battleMons[param1->attacker].moveEffectsData.disabledTurns = 0;
+    param1->battleMons[param1->attacker].moveEffectsData.transformedPID = param1->battleMons[param1->defender].pid;
+    param1->battleMons[param1->attacker].moveEffectsData.transformedGender = param1->battleMons[param1->defender].gender;
+    param1->battleMons[param1->attacker].moveEffectsData.mimickedMoveSlot = 0;
+    param1->battleMons[param1->attacker].moveEffectsData.lastResortCount = 0;
 
-    v1 = (u8 *)&param1->unk_2D40[param1->unk_64];
-    v2 = (u8 *)&param1->unk_2D40[param1->unk_6C];
+    v1 = (u8 *)&param1->battleMons[param1->attacker];
+    v2 = (u8 *)&param1->battleMons[param1->defender];
 
-    for (v0 = 0; v0 < XtOffset(UnkStruct_ov16_02252060 *, unk_27) + 1; v0++) {
+    for (v0 = 0; v0 < XtOffset(BattleMon*, ability) + 1; v0++) {
         v1[v0] = v2[v0];
     }
 
-    param1->unk_2D40[param1->unk_64].unk_28_0 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_1 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_2 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_3 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_4 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_5 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_8 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_9 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_10 = 0;
-    param1->unk_2D40[param1->unk_64].unk_88.unk_00_30 = param1->unk_150 & 1;
-    param1->unk_2D40[param1->unk_64].unk_88.unk_10 = param1->unk_150 + 1;
-    param1->unk_2D40[param1->unk_64].unk_28_6 = 0;
-    param1->unk_2D40[param1->unk_64].unk_28_7 = 0;
+    param1->battleMons[param1->attacker].weatherAbilityAnnounced = 0;
+    param1->battleMons[param1->attacker].intimidateAnnounced = 0;
+    param1->battleMons[param1->attacker].traceAnnounced = 0;
+    param1->battleMons[param1->attacker].downloadAnnounced = 0;
+    param1->battleMons[param1->attacker].anticipationAnnounced = 0;
+    param1->battleMons[param1->attacker].forewarnAnnounced = 0;
+    param1->battleMons[param1->attacker].friskAnnounced = 0;
+    param1->battleMons[param1->attacker].moldBreakerAnnounced = 0;
+    param1->battleMons[param1->attacker].pressureAnnounced = 0;
+    param1->battleMons[param1->attacker].moveEffectsData.truant = param1->totalTurns & 1;
+    param1->battleMons[param1->attacker].moveEffectsData.slowStartTurnNumber = param1->totalTurns + 1;
+    param1->battleMons[param1->attacker].slowStartAnnounced = 0;
+    param1->battleMons[param1->attacker].slowStartFinished = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param1->unk_354.unk_8A[param1->unk_2D40[param1->unk_64].unk_0C[v0]].unk_06 < 5) {
-            param1->unk_2D40[param1->unk_64].unk_2C[v0] = param1->unk_354.unk_8A[param1->unk_2D40[param1->unk_64].unk_0C[v0]].unk_06;
+        if (param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v0]].unk_06 < 5) {
+            param1->battleMons[param1->attacker].ppCur[v0] = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v0]].unk_06;
         } else {
-            param1->unk_2D40[param1->unk_64].unk_2C[v0] = 5;
+            param1->battleMons[param1->attacker].ppCur[v0] = 5;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_02244F54 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244F54 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4424,20 +4424,20 @@ static BOOL ov16_02244F54 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_64) ^ 1;
+    v1 = ov16_0223E208(param0, param1->attacker) ^ 1;
 
-    if (param1->unk_1C4[v1].unk_04_0 == 3) {
-        param1->unk_2D4[param1->unk_64].unk_00_0 = 1;
+    if (param1->sideConditions[v1].spikesLayers == 3) {
+        param1->selfTurnFlags[param1->attacker].skipPressureCheck = 1;
         ov16_02248AF0(param1, v0);
     } else {
-        param1->unk_1BC[v1] |= 0x4;
-        param1->unk_1C4[v1].unk_04_0++;
+        param1->sideConditionsMask[v1] |= 0x4;
+        param1->sideConditions[v1].spikesLayers++;
     }
 
     return 0;
 }
 
-static BOOL ov16_02244FD8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02244FD8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4451,9 +4451,9 @@ static BOOL ov16_02244FD8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_0224A984(param0, param1, v0);
     v3 = ov16_0223E208(param0, v2);
 
-    if ((param1->unk_1C4[v3].unk_04_0) && (param1->unk_2D40[v2].unk_4C)) {
-        param1->unk_215C = (5 - param1->unk_1C4[v3].unk_04_0) * 2;
-        param1->unk_215C = ov16_022563F8(param1->unk_2D40[v2].unk_50 * -1, param1->unk_215C);
+    if ((param1->sideConditions[v3].spikesLayers) && (param1->battleMons[v2].curHP)) {
+        param1->hpCalcTemp = (5 - param1->sideConditions[v3].spikesLayers) * 2;
+        param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v2].maxHP * -1, param1->hpCalcTemp);
     } else {
         ov16_02248AF0(param1, v1);
     }
@@ -4461,7 +4461,7 @@ static BOOL ov16_02244FD8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224505C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224505C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4473,16 +4473,16 @@ static BOOL ov16_0224505C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v3 = ov16_0223DF1C(param0);
 
-    param1->unk_134 = v3;
+    param1->calcTemp = v3;
 
     v2 = 0;
 
     for (v1 = 0; v1 < v3; v1++) {
-        if ((param1->unk_2D40[v1].unk_80 & 0x20) || (param1->unk_2D40[v1].unk_4C == 0) || (ov16_02255AB4(param1, param1->unk_64, v1, 43) == 1)) {
+        if ((param1->battleMons[v1].moveEffectsMask & 0x20) || (param1->battleMons[v1].curHP == 0) || (ov16_02255AB4(param1, param1->attacker, v1, 43) == 1)) {
             v2++;
         } else {
-            param1->unk_2D40[v1].unk_80 |= 0x20;
-            param1->unk_2D40[v1].unk_88.unk_00_13 = 3;
+            param1->battleMons[v1].moveEffectsMask |= 0x20;
+            param1->battleMons[v1].moveEffectsData.perishSongTurns = 3;
         }
     }
 
@@ -4493,7 +4493,7 @@ static BOOL ov16_0224505C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224510C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224510C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u32 * v1;
@@ -4502,12 +4502,12 @@ static BOOL ov16_0224510C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_02248B10(param0, param1, v0);
-    v1[0] = param1->unk_21EC[param1->unk_3104];
+    v1[0] = param1->monSpeedOrder[param1->battlerSpeedTemp];
 
     return 0;
 }
 
-static BOOL ov16_02245144 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245144 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4528,7 +4528,7 @@ static BOOL ov16_02245144 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02245188 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245188 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4540,68 +4540,68 @@ static BOOL ov16_02245188 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    param1->unk_138 = 0;
-    param1->unk_215C = 0;
+    param1->scriptTemp = 0;
+    param1->hpCalcTemp = 0;
 
     v2 = ov16_02252060(param1, v1, 27, NULL);
     v3 = ov16_02252060(param1, v1, 28, NULL);
 
     if ((ov16_022555A4(param0, param1, 8, 0, 13) == 0) && (ov16_022555A4(param0, param1, 8, 0, 76) == 0)) {
-        if (param1->unk_180 & 0xc) {
-            if ((v2 != 5) && (v3 != 5) && (v2 != 8) && (v3 != 8) && (v2 != 4) && (v3 != 4) && (param1->unk_2D40[v1].unk_4C) && (ov16_02255A4C(param1, v1) != 8) && ((param1->unk_2D40[v1].unk_80 & (0x80 | 0x40000)) == 0)) {
-                param1->unk_124 = 201;
-                param1->unk_215C = ov16_022563F8(param1->unk_2D40[v1].unk_50 * -1, 16);
+        if (param1->fieldConditionsMask & 0xc) {
+            if ((v2 != 5) && (v3 != 5) && (v2 != 8) && (v3 != 8) && (v2 != 4) && (v3 != 4) && (param1->battleMons[v1].curHP) && (ov16_02255A4C(param1, v1) != 8) && ((param1->battleMons[v1].moveEffectsMask & (0x80 | 0x40000)) == 0)) {
+                param1->msgMoveTemp = 201;
+                param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v1].maxHP * -1, 16);
             }
         }
 
-        if (param1->unk_180 & 0x30) {
-            if ((param1->unk_2D40[v1].unk_4C) && ((param1->unk_2D40[v1].unk_80 & (0x80 | 0x40000)) == 0)) {
+        if (param1->fieldConditionsMask & 0x30) {
+            if ((param1->battleMons[v1].curHP) && ((param1->battleMons[v1].moveEffectsMask & (0x80 | 0x40000)) == 0)) {
                 if ((ov16_02255A4C(param1, v1) == 87) || (ov16_02255A4C(param1, v1) == 94)) {
-                    param1->unk_215C = ov16_022563F8(param1->unk_2D40[v1].unk_50 * -1, 8);
+                    param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v1].maxHP * -1, 8);
                 }
 
                 if (ov16_02255A4C(param1, v1) == 94) {
-                    param1->unk_138 = 2;
+                    param1->scriptTemp = 2;
                 }
             }
         }
 
-        if (param1->unk_180 & 0xc0) {
-            if ((param1->unk_2D40[v1].unk_4C) && ((param1->unk_2D40[v1].unk_80 & (0x80 | 0x40000)) == 0)) {
+        if (param1->fieldConditionsMask & 0xc0) {
+            if ((param1->battleMons[v1].curHP) && ((param1->battleMons[v1].moveEffectsMask & (0x80 | 0x40000)) == 0)) {
                 if (ov16_02255A4C(param1, v1) == 115) {
-                    if (param1->unk_2D40[v1].unk_4C < param1->unk_2D40[v1].unk_50) {
-                        param1->unk_215C = ov16_022563F8(param1->unk_2D40[v1].unk_50, 16);
+                    if (param1->battleMons[v1].curHP < param1->battleMons[v1].maxHP) {
+                        param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v1].maxHP, 16);
                     }
                 } else if ((v2 != 15) && (v3 != 15) && (ov16_02255A4C(param1, v1) != 81)) {
-                    param1->unk_124 = 258;
-                    param1->unk_215C = ov16_022563F8(param1->unk_2D40[v1].unk_50 * -1, 16);
+                    param1->msgMoveTemp = 258;
+                    param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v1].maxHP * -1, 16);
                 }
             }
         }
 
-        if (param1->unk_180 & 0x3) {
-            if ((param1->unk_2D40[v1].unk_4C) && (param1->unk_2D40[v1].unk_4C < param1->unk_2D40[v1].unk_50) && (ov16_02255A4C(param1, v1) == 44)) {
-                param1->unk_215C = ov16_022563F8(param1->unk_2D40[v1].unk_50, 16);
+        if (param1->fieldConditionsMask & 0x3) {
+            if ((param1->battleMons[v1].curHP) && (param1->battleMons[v1].curHP < param1->battleMons[v1].maxHP) && (ov16_02255A4C(param1, v1) == 44)) {
+                param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v1].maxHP, 16);
             }
 
-            if ((param1->unk_2D40[v1].unk_4C) && (param1->unk_2D40[v1].unk_4C < param1->unk_2D40[v1].unk_50) && (ov16_02255A4C(param1, v1) == 87)) {
-                param1->unk_215C = ov16_022563F8(param1->unk_2D40[v1].unk_50, 8);
+            if ((param1->battleMons[v1].curHP) && (param1->battleMons[v1].curHP < param1->battleMons[v1].maxHP) && (ov16_02255A4C(param1, v1) == 87)) {
+                param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v1].maxHP, 8);
             }
 
-            if ((param1->unk_2D40[v1].unk_4C) && (param1->unk_2D40[v1].unk_6C & 0xff) && (ov16_02255A4C(param1, v1) == 93)) {
-                if (param1->unk_2D40[v1].unk_6C & 0x7) {
-                    param1->unk_130 = 0;
-                } else if (param1->unk_2D40[v1].unk_6C & 0xf88) {
-                    param1->unk_130 = 1;
-                } else if (param1->unk_2D40[v1].unk_6C & 0x10) {
-                    param1->unk_130 = 2;
-                } else if (param1->unk_2D40[v1].unk_6C & 0x40) {
-                    param1->unk_130 = 3;
+            if ((param1->battleMons[v1].curHP) && (param1->battleMons[v1].status & 0xff) && (ov16_02255A4C(param1, v1) == 93)) {
+                if (param1->battleMons[v1].status & 0x7) {
+                    param1->msgTemp = 0;
+                } else if (param1->battleMons[v1].status & 0xf88) {
+                    param1->msgTemp = 1;
+                } else if (param1->battleMons[v1].status & 0x10) {
+                    param1->msgTemp = 2;
+                } else if (param1->battleMons[v1].status & 0x40) {
+                    param1->msgTemp = 3;
                 } else {
-                    param1->unk_130 = 4;
+                    param1->msgTemp = 4;
                 }
 
-                param1->unk_138 = 1;
+                param1->scriptTemp = 1;
             }
         }
     }
@@ -4609,58 +4609,58 @@ static BOOL ov16_02245188 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224544C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224544C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
 
     ov16_02248AF0(param1, 1);
 
-    param1->unk_2D4[param1->unk_64].unk_00_6 = param1->unk_2D40[param1->unk_64].unk_88.unk_00_15;
+    param1->selfTurnFlags[param1->attacker].repeatedMoveCount = param1->battleMons[param1->attacker].moveEffectsData.rolloutCount;
 
-    if ((param1->unk_2D40[param1->unk_64].unk_70 & 0x1000) == 0) {
-        ov16_02253EF0(param0, param1, param1->unk_64);
-        param1->unk_2D40[param1->unk_64].unk_88.unk_00_15 = 5;
+    if ((param1->battleMons[param1->attacker].statusVolatile & 0x1000) == 0) {
+        ov16_02253EF0(param0, param1, param1->attacker);
+        param1->battleMons[param1->attacker].moveEffectsData.rolloutCount = 5;
     }
 
-    if (--param1->unk_2D40[param1->unk_64].unk_88.unk_00_15 == 0) {
-        ov16_02253F20(param0, param1, param1->unk_64);
+    if (--param1->battleMons[param1->attacker].moveEffectsData.rolloutCount == 0) {
+        ov16_02253F20(param0, param1, param1->attacker);
     }
 
-    param1->unk_2154 = param1->unk_354.unk_8A[param1->unk_3044].unk_03;
+    param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03;
 
-    v1 = 5 - param1->unk_2D40[param1->unk_64].unk_88.unk_00_15;
+    v1 = 5 - param1->battleMons[param1->attacker].moveEffectsData.rolloutCount;
 
     for (v0 = 1; v0 < v1; v0++) {
-        param1->unk_2154 *= 2;
+        param1->movePower *= 2;
     }
 
-    if (param1->unk_2D40[param1->unk_64].unk_70 & 0x40000000) {
-        param1->unk_2154 *= 2;
+    if (param1->battleMons[param1->attacker].statusVolatile & 0x40000000) {
+        param1->movePower *= 2;
     }
 
     return 0;
 }
 
-static BOOL ov16_02245568 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245568 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
     ov16_02248AF0(param1, 1);
 
-    if (param1->unk_2D40[param1->unk_64].unk_88.unk_00_18 < 5) {
-        param1->unk_2D40[param1->unk_64].unk_88.unk_00_18++;
+    if (param1->battleMons[param1->attacker].moveEffectsData.furyCutterCount < 5) {
+        param1->battleMons[param1->attacker].moveEffectsData.furyCutterCount++;
     }
 
-    param1->unk_2154 = param1->unk_354.unk_8A[param1->unk_3044].unk_03;
+    param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03;
 
-    for (v0 = 1; v0 < param1->unk_2D40[param1->unk_64].unk_88.unk_00_18; v0++) {
-        param1->unk_2154 *= 2;
+    for (v0 = 1; v0 < param1->battleMons[param1->attacker].moveEffectsData.furyCutterCount; v0++) {
+        param1->movePower *= 2;
     }
 
     return 0;
 }
 
-static BOOL ov16_022455F8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022455F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -4668,16 +4668,16 @@ static BOOL ov16_022455F8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if ((param1->unk_2D40[param1->unk_118].unk_7E_0 == param1->unk_2D40[param1->unk_94].unk_7E_0) || (param1->unk_2D40[param1->unk_94].unk_70 & 0xf0000) || (param1->unk_2D40[param1->unk_118].unk_7E_0 == 2) || (param1->unk_2D40[param1->unk_94].unk_7E_0 == 2)) {
+    if ((param1->battleMons[param1->msgBattlerTemp].gender == param1->battleMons[param1->sideEffectMon].gender) || (param1->battleMons[param1->sideEffectMon].statusVolatile & 0xf0000) || (param1->battleMons[param1->msgBattlerTemp].gender == 2) || (param1->battleMons[param1->sideEffectMon].gender == 2)) {
         ov16_02248AF0(param1, v0);
     } else {
-        param1->unk_2D40[param1->unk_94].unk_70 |= sub_020787CC(param1->unk_118) << 16;
+        param1->battleMons[param1->sideEffectMon].statusVolatile |= sub_020787CC(param1->msgBattlerTemp) << 16;
     }
 
     return 0;
 }
 
-static BOOL ov16_0224567C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224567C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4685,24 +4685,24 @@ static BOOL ov16_0224567C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_64);
+    v1 = ov16_0223E208(param0, param1->attacker);
 
-    if (param1->unk_1BC[v1] & 0x8) {
+    if (param1->sideConditionsMask[v1] & 0x8) {
         ov16_02248AF0(param1, v0);
-        param1->unk_216C |= 0x40;
+        param1->moveStatusFlags |= 0x40;
     } else {
-        param1->unk_1BC[v1] |= 0x8;
-        param1->unk_1C4[v1].unk_00_17 = 5;
-        param1->unk_1C4[v1].unk_00_15 = param1->unk_64;
-        param1->unk_F4.unk_01 = 1;
-        param1->unk_F4.unk_04[0] = param1->unk_64;
-        param1->unk_F4.unk_02 = 198;
+        param1->sideConditionsMask[v1] |= 0x8;
+        param1->sideConditions[v1].safeguardTurns = 5;
+        param1->sideConditions[v1].safeguardUser = param1->attacker;
+        param1->msgBuffer.tags = 1;
+        param1->msgBuffer.params[0] = param1->attacker;
+        param1->msgBuffer.id = 198;
     }
 
     return 0;
 }
 
-static BOOL ov16_02245710 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245710 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4713,56 +4713,56 @@ static BOOL ov16_02245710 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v1 = ov16_0223F4BC(param0) & 0xff;
 
     if (v1 < (255 * 40 / 100)) {
-        param1->unk_2154 = 40;
+        param1->movePower = 40;
     } else if (v1 < (255 * 70 / 100)) {
-        param1->unk_2154 = 80;
+        param1->movePower = 80;
     } else if (v1 < (255 * 80 / 100)) {
-        param1->unk_2154 = 120;
+        param1->movePower = 120;
     } else {
-        param1->unk_215C = ov16_022563F8(param1->unk_2D40[param1->unk_6C].unk_50, 4);
+        param1->hpCalcTemp = ov16_022563F8(param1->battleMons[param1->defender].maxHP, 4);
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_02245784 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245784 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    if (param1->unk_3120 == 0) {
-        param1->unk_3120 = ov16_0223F4BC(param0) % 100;
+    if (param1->magnitude == 0) {
+        param1->magnitude = ov16_0223F4BC(param0) % 100;
 
-        if (param1->unk_3120 < 5) {
-            param1->unk_2154 = 10;
-            param1->unk_3120 = 4;
-        } else if (param1->unk_3120 < 15) {
-            param1->unk_2154 = 30;
-            param1->unk_3120 = 5;
-        } else if (param1->unk_3120 < 35) {
-            param1->unk_2154 = 50;
-            param1->unk_3120 = 6;
-        } else if (param1->unk_3120 < 65) {
-            param1->unk_2154 = 70;
-            param1->unk_3120 = 7;
-        } else if (param1->unk_3120 < 85) {
-            param1->unk_2154 = 90;
-            param1->unk_3120 = 8;
-        } else if (param1->unk_3120 < 95) {
-            param1->unk_2154 = 110;
-            param1->unk_3120 = 9;
+        if (param1->magnitude < 5) {
+            param1->movePower = 10;
+            param1->magnitude = 4;
+        } else if (param1->magnitude < 15) {
+            param1->movePower = 30;
+            param1->magnitude = 5;
+        } else if (param1->magnitude < 35) {
+            param1->movePower = 50;
+            param1->magnitude = 6;
+        } else if (param1->magnitude < 65) {
+            param1->movePower = 70;
+            param1->magnitude = 7;
+        } else if (param1->magnitude < 85) {
+            param1->movePower = 90;
+            param1->magnitude = 8;
+        } else if (param1->magnitude < 95) {
+            param1->movePower = 110;
+            param1->magnitude = 9;
         } else {
-            param1->unk_2154 = 150;
-            param1->unk_3120 = 10;
+            param1->movePower = 150;
+            param1->magnitude = 10;
         }
     }
 
-    param1->unk_130 = param1->unk_3120;
+    param1->msgTemp = param1->magnitude;
 
     return 0;
 }
 
-static BOOL ov16_0224582C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224582C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4780,56 +4780,56 @@ static BOOL ov16_0224582C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         ov16_02248AF0(param1, v2);
     } else {
         if (v1 == 1) {
-            param1->unk_13C[v3] |= 0x1;
+            param1->battlerStatusFlags[v3] |= 0x1;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_02245890 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245890 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
-    v0 = ov16_0223E208(param0, param1->unk_64);
+    v0 = ov16_0223E208(param0, param1->attacker);
 
-    if (param1->unk_2D40[param1->unk_64].unk_70 & 0xe000) {
-        param1->unk_2D40[param1->unk_64].unk_70 &= (0xe000 ^ 0xffffffff);
-        param1->unk_118 = param1->unk_2D40[param1->unk_64].unk_88.unk_04_6;
-        param1->unk_124 = param1->unk_2D40[param1->unk_64].unk_88.unk_22;
+    if (param1->battleMons[param1->attacker].statusVolatile & 0xe000) {
+        param1->battleMons[param1->attacker].statusVolatile &= (0xe000 ^ 0xffffffff);
+        param1->msgBattlerTemp = param1->battleMons[param1->attacker].moveEffectsData.bindTarget;
+        param1->msgMoveTemp = param1->battleMons[param1->attacker].moveEffectsData.bindingMove;
         ov16_02248B08(param1, 1, (0 + 116));
         return 0;
     }
 
-    if (param1->unk_2D40[param1->unk_64].unk_80 & 0x4) {
-        param1->unk_2D40[param1->unk_64].unk_80 &= (0x4 ^ 0xffffffff);
-        param1->unk_2D40[param1->unk_64].unk_80 &= (0x3 ^ 0xffffffff);
-        param1->unk_124 = 73;
+    if (param1->battleMons[param1->attacker].moveEffectsMask & 0x4) {
+        param1->battleMons[param1->attacker].moveEffectsMask &= (0x4 ^ 0xffffffff);
+        param1->battleMons[param1->attacker].moveEffectsMask &= (0x3 ^ 0xffffffff);
+        param1->msgMoveTemp = 73;
         ov16_02248B08(param1, 1, (0 + 117));
         return 0;
     }
 
-    if (param1->unk_1C4[v0].unk_04_0) {
-        param1->unk_1BC[v0] &= (0x4 ^ 0xffffffff);
-        param1->unk_1C4[v0].unk_04_0 = 0;
-        param1->unk_124 = 191;
+    if (param1->sideConditions[v0].spikesLayers) {
+        param1->sideConditionsMask[v0] &= (0x4 ^ 0xffffffff);
+        param1->sideConditions[v0].spikesLayers = 0;
+        param1->msgMoveTemp = 191;
         ov16_02248B08(param1, 1, (0 + 117));
         return 0;
     }
 
-    if (param1->unk_1C4[v0].unk_04_2) {
-        param1->unk_1BC[v0] &= (0x400 ^ 0xffffffff);
-        param1->unk_1C4[v0].unk_04_2 = 0;
+    if (param1->sideConditions[v0].toxicSpikesLayers) {
+        param1->sideConditionsMask[v0] &= (0x400 ^ 0xffffffff);
+        param1->sideConditions[v0].toxicSpikesLayers = 0;
 
-        param1->unk_124 = 390;
+        param1->msgMoveTemp = 390;
 
         ov16_02248B08(param1, 1, (0 + 117));
         return 0;
     }
 
-    if (param1->unk_1BC[v0] & 0x80) {
-        param1->unk_1BC[v0] &= (0x80 ^ 0xffffffff);
-        param1->unk_124 = 446;
+    if (param1->sideConditionsMask[v0] & 0x80) {
+        param1->sideConditionsMask[v0] &= (0x80 ^ 0xffffffff);
+        param1->msgMoveTemp = 446;
         ov16_02248B08(param1, 1, (0 + 117));
         return 0;
     }
@@ -4839,53 +4839,53 @@ static BOOL ov16_02245890 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022459D8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022459D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    if (((param1->unk_180 & (0x3 | 0xc | 0x30 | 0xc0 | 0x8000)) == 0) || (ov16_022555A4(param0, param1, 8, 0, 13)) || (ov16_022555A4(param0, param1, 8, 0, 76))) {
-        param1->unk_215C = param1->unk_2D40[param1->unk_64].unk_50 / 2;
-    } else if (param1->unk_180 & 0x30) {
-        param1->unk_215C = ov16_022563F8(param1->unk_2D40[param1->unk_64].unk_50 * 20, 30);
+    if (((param1->fieldConditionsMask & (0x3 | 0xc | 0x30 | 0xc0 | 0x8000)) == 0) || (ov16_022555A4(param0, param1, 8, 0, 13)) || (ov16_022555A4(param0, param1, 8, 0, 76))) {
+        param1->hpCalcTemp = param1->battleMons[param1->attacker].maxHP / 2;
+    } else if (param1->fieldConditionsMask & 0x30) {
+        param1->hpCalcTemp = ov16_022563F8(param1->battleMons[param1->attacker].maxHP * 20, 30);
     } else {
-        param1->unk_215C = ov16_022563F8(param1->unk_2D40[param1->unk_64].unk_50, 4);
+        param1->hpCalcTemp = ov16_022563F8(param1->battleMons[param1->attacker].maxHP, 4);
     }
 
     return 0;
 }
 
-static BOOL ov16_02245A7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245A7C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    param1->unk_2154 = ((param1->unk_2D40[param1->unk_64].unk_14_0 & 2) >> 1) | ((param1->unk_2D40[param1->unk_64].unk_14_5 & 2) >> 0) | ((param1->unk_2D40[param1->unk_64].unk_14_10 & 2) << 1) | ((param1->unk_2D40[param1->unk_64].unk_14_15 & 2) << 2) | ((param1->unk_2D40[param1->unk_64].unk_14_20 & 2) << 3) | ((param1->unk_2D40[param1->unk_64].unk_14_25 & 2) << 4);
-    param1->unk_2160 = ((param1->unk_2D40[param1->unk_64].unk_14_0 & 1) >> 0) | ((param1->unk_2D40[param1->unk_64].unk_14_5 & 1) << 1) | ((param1->unk_2D40[param1->unk_64].unk_14_10 & 1) << 2) | ((param1->unk_2D40[param1->unk_64].unk_14_15 & 1) << 3) | ((param1->unk_2D40[param1->unk_64].unk_14_20 & 1) << 4) | ((param1->unk_2D40[param1->unk_64].unk_14_25 & 1) << 5);
-    param1->unk_2154 = param1->unk_2154 * 40 / 63 + 30;
-    param1->unk_2160 = (param1->unk_2160 * 15 / 63) + 1;
+    param1->movePower = ((param1->battleMons[param1->attacker].hpIV & 2) >> 1) | ((param1->battleMons[param1->attacker].attackIV & 2) >> 0) | ((param1->battleMons[param1->attacker].defenseIV & 2) << 1) | ((param1->battleMons[param1->attacker].speedIV & 2) << 2) | ((param1->battleMons[param1->attacker].spAttackIV & 2) << 3) | ((param1->battleMons[param1->attacker].spDefenseIV & 2) << 4);
+    param1->moveType = ((param1->battleMons[param1->attacker].hpIV & 1) >> 0) | ((param1->battleMons[param1->attacker].attackIV & 1) << 1) | ((param1->battleMons[param1->attacker].defenseIV & 1) << 2) | ((param1->battleMons[param1->attacker].speedIV & 1) << 3) | ((param1->battleMons[param1->attacker].spAttackIV & 1) << 4) | ((param1->battleMons[param1->attacker].spDefenseIV & 1) << 5);
+    param1->movePower = param1->movePower * 40 / 63 + 30;
+    param1->moveType = (param1->moveType * 15 / 63) + 1;
 
-    if (param1->unk_2160 >= 9) {
-        param1->unk_2160++;
+    if (param1->moveType >= 9) {
+        param1->moveType++;
     }
 
     return 0;
 }
 
-static BOOL ov16_02245B68 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245B68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
     ov16_02248AF0(param1, 1);
 
     for (v0 = 0x0; v0 < 0x8; v0++) {
-        param1->unk_2D40[param1->unk_64].unk_18[v0] = param1->unk_2D40[param1->unk_6C].unk_18[v0];
+        param1->battleMons[param1->attacker].statBoosts[v0] = param1->battleMons[param1->defender].statBoosts[v0];
     }
 
-    param1->unk_2D40[param1->unk_64].unk_70 |= (param1->unk_2D40[param1->unk_6C].unk_70 & 0x100000);
+    param1->battleMons[param1->attacker].statusVolatile |= (param1->battleMons[param1->defender].statusVolatile & 0x100000);
 
     return 0;
 }
 
-static BOOL ov16_02245BC8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245BC8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4895,17 +4895,17 @@ static BOOL ov16_02245BC8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (param1->unk_184.unk_04[param1->unk_6C] == 0) {
-        v1 = ov16_0223E208(param0, param1->unk_6C);
-        param1->unk_1BC[v1] |= 0x10;
-        param1->unk_184.unk_04[param1->unk_6C] = 3;
-        param1->unk_184.unk_0C[param1->unk_6C] = param1->unk_3044;
-        param1->unk_184.unk_14[param1->unk_6C] = param1->unk_64;
-        v2 = ov16_0225A280(param0, param1, param1->unk_3044, param1->unk_1BC[v1], param1->unk_180, 0, 0, param1->unk_64, param1->unk_6C, 1) * -1;
-        param1->unk_184.unk_24[param1->unk_6C] = ov16_0225AEB8(param0, param1, v2);
+    if (param1->fieldConditions.futureSightTurns[param1->defender] == 0) {
+        v1 = ov16_0223E208(param0, param1->defender);
+        param1->sideConditionsMask[v1] |= 0x10;
+        param1->fieldConditions.futureSightTurns[param1->defender] = 3;
+        param1->fieldConditions.futureSightMove[param1->defender] = param1->moveCur;
+        param1->fieldConditions.futureSightAttacker[param1->defender] = param1->attacker;
+        v2 = ov16_0225A280(param0, param1, param1->moveCur, param1->sideConditionsMask[v1], param1->fieldConditionsMask, 0, 0, param1->attacker, param1->defender, 1) * -1;
+        param1->fieldConditions.futureSightDamage[param1->defender] = ov16_0225AEB8(param0, param1, v2);
 
-        if (param1->unk_1D4[param1->unk_64].unk_00_3) {
-            param1->unk_184.unk_24[param1->unk_6C] = param1->unk_184.unk_24[param1->unk_6C] * 15 / 10;
+        if (param1->turnFlags[param1->attacker].helpingHand) {
+            param1->fieldConditions.futureSightDamage[param1->defender] = param1->fieldConditions.futureSightDamage[param1->defender] * 15 / 10;
         }
     } else {
         ov16_02248AF0(param1, v0);
@@ -4914,7 +4914,7 @@ static BOOL ov16_02245BC8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02245CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245CB4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4936,14 +4936,14 @@ static BOOL ov16_02245CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     ov16_0224B9F4(param0, param1, v4, v5, v6);
 
-    if (param1->unk_216C & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) {
+    if (param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) {
         ov16_02248AF0(param1, v3);
     }
 
     return 0;
 }
 
-static BOOL ov16_02245D34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245D34 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -4951,14 +4951,14 @@ static BOOL ov16_02245D34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_02255C00(param0, param1, param1->unk_64, NULL)) {
+    if (ov16_02255C00(param0, param1, param1->attacker, NULL)) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_02245D68 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245D68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -4969,86 +4969,86 @@ static BOOL ov16_02245D68 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     ov16_02248AF0(param1, 1);
 
-    v1 = ov16_0223DF60(param0, param1->unk_64);
+    v1 = ov16_0223DF60(param0, param1->attacker);
 
-    if (param1->unk_217D == 0) {
-        param1->unk_217D = 2;
-        param1->unk_2188 = (1 | 4 | 8 | 16 | 32 | 64 | 128);
-        param1->unk_217F = 0;
+    if (param1->multiHitNumHits == 0) {
+        param1->multiHitNumHits = 2;
+        param1->multiHitAccuracyCheck = (1 | 4 | 8 | 16 | 32 | 64 | 128);
+        param1->beatUpCounter = 0;
 
         while (TRUE) {
-            v5 = ov16_0223DFAC(param0, param1->unk_64, param1->unk_217F);
+            v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
 
-            if ((param1->unk_217F == param1->unk_219C[param1->unk_64]) || ((GetMonData(v5, MON_DATA_163, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (GetMonData(v5, MON_DATA_160, NULL) == 0))) {
+            if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((GetMonData(v5, MON_DATA_163, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (GetMonData(v5, MON_DATA_160, NULL) == 0))) {
                 break;
             }
 
-            param1->unk_217F++;
+            param1->beatUpCounter++;
         }
     }
 
-    v5 = ov16_0223DFAC(param0, param1->unk_64, param1->unk_217F);
+    v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
     v2 = GetMonData(v5, MON_DATA_SPECIES, NULL);
     v3 = GetMonData(v5, MON_DATA_FORM, NULL);
     v4 = GetMonData(v5, MON_DATA_161, NULL);
 
-    param1->unk_2144 = sub_020759CC(v2, v3, 1);
-    param1->unk_2144 *= param1->unk_354.unk_8A[param1->unk_3044].unk_03;
-    param1->unk_2144 *= ((v4 * 2 / 5) + 2);
-    param1->unk_2144 /= sub_020759CC(param1->unk_2D40[param1->unk_6C].unk_00, param1->unk_2D40[param1->unk_6C].unk_26_0, 2);
-    param1->unk_2144 /= 50;
-    param1->unk_2144 += 2;
-    param1->unk_2144 *= param1->unk_2150;
+    param1->damage = sub_020759CC(v2, v3, 1);
+    param1->damage *= param1->aiContext.moveTable[param1->moveCur].unk_03;
+    param1->damage *= ((v4 * 2 / 5) + 2);
+    param1->damage /= sub_020759CC(param1->battleMons[param1->defender].species, param1->battleMons[param1->defender].formNum, 2);
+    param1->damage /= 50;
+    param1->damage += 2;
+    param1->damage *= param1->criticalMul;
 
-    if (param1->unk_1D4[param1->unk_64].unk_00_3) {
-        param1->unk_2144 = param1->unk_2144 * 15 / 10;
+    if (param1->turnFlags[param1->attacker].helpingHand) {
+        param1->damage = param1->damage * 15 / 10;
     }
 
-    param1->unk_2144 = ov16_0225AEB8(param0, param1, param1->unk_2144);
-    param1->unk_2144 *= -1;
-    param1->unk_F4.unk_02 = 481;
-    param1->unk_F4.unk_01 = 2;
-    param1->unk_F4.unk_04[0] = (param1->unk_64 | (param1->unk_217F << 8));
-    param1->unk_217F++;
-    param1->unk_217C = 2;
+    param1->damage = ov16_0225AEB8(param0, param1, param1->damage);
+    param1->damage *= -1;
+    param1->msgBuffer.id = 481;
+    param1->msgBuffer.tags = 2;
+    param1->msgBuffer.params[0] = (param1->attacker | (param1->beatUpCounter << 8));
+    param1->beatUpCounter++;
+    param1->multiHitCounter = 2;
 
-    if (param1->unk_217F < v1) {
+    if (param1->beatUpCounter < v1) {
         while (TRUE) {
-            v5 = ov16_0223DFAC(param0, param1->unk_64, param1->unk_217F);
+            v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
 
-            if ((param1->unk_217F == param1->unk_219C[param1->unk_64]) || ((GetMonData(v5, MON_DATA_163, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (GetMonData(v5, MON_DATA_160, NULL) == 0))) {
+            if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((GetMonData(v5, MON_DATA_163, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (GetMonData(v5, MON_DATA_160, NULL) == 0))) {
                 break;
             }
 
-            param1->unk_217F++;
+            param1->beatUpCounter++;
 
-            if (param1->unk_217F >= v1) {
-                param1->unk_217C = 1;
+            if (param1->beatUpCounter >= v1) {
+                param1->multiHitCounter = 1;
                 break;
             }
         }
     } else {
-        param1->unk_217C = 1;
+        param1->multiHitCounter = 1;
     }
 
     return 0;
 }
 
-static BOOL ov16_02245FC4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02245FC4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
     ov16_02248AF0(param1, 1);
 
-    v0 = ov16_0223E208(param0, param1->unk_64);
+    v0 = ov16_0223E208(param0, param1->attacker);
 
-    param1->unk_1C4[v0].unk_00_20 = 1;
-    param1->unk_1C4[v0].unk_00_21 = param1->unk_64;
+    param1->sideConditions[v0].followMe = 1;
+    param1->sideConditions[v0].followMeUser = param1->attacker;
 
     return 0;
 }
 
-static BOOL ov16_02246004 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246004 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5062,9 +5062,9 @@ static BOOL ov16_02246004 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     if (v2 & 0x2) {
         v1 = ov16_0224A984(param0, param1, 0x10);
 
-        if (((param1->unk_3108 & sub_020787CC(v1)) == 0) && (param1->unk_21A8[v1][0] != 39) && (param1->unk_2D40[v1].unk_4C) && (param1->unk_1D4[param1->unk_64].unk_00_3 == 0) && (param1->unk_1D4[v1].unk_00_3 == 0)) {
-            param1->unk_118 = v1;
-            param1->unk_1D4[v1].unk_00_3 = 1;
+        if (((param1->battlersSwitchingMask & sub_020787CC(v1)) == 0) && (param1->battlerActions[v1][0] != 39) && (param1->battleMons[v1].curHP) && (param1->turnFlags[param1->attacker].helpingHand == 0) && (param1->turnFlags[v1].helpingHand == 0)) {
+            param1->msgBattlerTemp = v1;
+            param1->turnFlags[v1].helpingHand = 1;
         } else {
             ov16_02248AF0(param1, v0);
         }
@@ -5075,7 +5075,7 @@ static BOOL ov16_02246004 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022460A8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022460A8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5088,17 +5088,17 @@ static BOOL ov16_022460A8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_02248AD0(param1);
     v2 = ov16_0223DF0C(param0);
-    v3 = ov16_0223E208(param0, param1->unk_64);
-    v4 = ov16_0223E208(param0, param1->unk_6C);
+    v3 = ov16_0223E208(param0, param1->attacker);
+    v4 = ov16_0223E208(param0, param1->defender);
 
-    if ((ov16_0223E208(param0, param1->unk_64)) && ((v2 & (0x4 | 0x80)) == 0)) {
+    if ((ov16_0223E208(param0, param1->attacker)) && ((v2 & (0x4 | 0x80)) == 0)) {
         ov16_02248AF0(param1, v0);
-    } else if ((param1->unk_1C4[v3].unk_00_23 & sub_020787CC(param1->unk_219C[param1->unk_64])) || (param1->unk_1C4[v4].unk_00_23 & sub_020787CC(param1->unk_219C[param1->unk_6C]))) {
+    } else if ((param1->sideConditions[v3].knockedOffItemsMask & sub_020787CC(param1->selectedPartySlot[param1->attacker])) || (param1->sideConditions[v4].knockedOffItemsMask & sub_020787CC(param1->selectedPartySlot[param1->defender]))) {
         ov16_02248AF0(param1, v0);
-    } else if (((param1->unk_2D40[param1->unk_64].unk_78 == 0) && (param1->unk_2D40[param1->unk_6C].unk_78 == 0)) || (ov16_022559DC(param1, param1->unk_64) == 0) || (ov16_022559DC(param1, param1->unk_6C) == 0)) {
+    } else if (((param1->battleMons[param1->attacker].heldItem == 0) && (param1->battleMons[param1->defender].heldItem == 0)) || (ov16_022559DC(param1, param1->attacker) == 0) || (ov16_022559DC(param1, param1->defender) == 0)) {
         ov16_02248AF0(param1, v0);
     } else {
-        if (ov16_02255AB4(param1, param1->unk_64, param1->unk_6C, 60) == 1) {
+        if (ov16_02255AB4(param1, param1->attacker, param1->defender, 60) == 1) {
             ov16_02248AF0(param1, v1);
         }
     }
@@ -5106,7 +5106,7 @@ static BOOL ov16_022460A8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022461B0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022461B0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u32 v1;
@@ -5115,17 +5115,17 @@ static BOOL ov16_022461B0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (param1->unk_184.unk_08[param1->unk_64]) {
+    if (param1->fieldConditions.wishTurns[param1->attacker]) {
         ov16_02248AF0(param1, v0);
     } else {
-        param1->unk_184.unk_08[param1->unk_64] = 2;
-        param1->unk_184.unk_34[param1->unk_64] = param1->unk_219C[param1->unk_64];
+        param1->fieldConditions.wishTurns[param1->attacker] = 2;
+        param1->fieldConditions.wishTarget[param1->attacker] = param1->selectedPartySlot[param1->attacker];
     }
 
     return 0;
 }
 
-static BOOL ov16_022461F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022461F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u16 v1[6 * 4];
@@ -5139,17 +5139,17 @@ static BOOL ov16_022461F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
     v6 = 0;
-    v5 = ov16_0223DF60(param0, param1->unk_64);
+    v5 = ov16_0223DF60(param0, param1->attacker);
 
     for (v3 = 0; v3 < v5; v3++) {
-        if (v3 != param1->unk_219C[param1->unk_64]) {
-            v7 = ov16_0223DFAC(param0, param1->unk_64, v3);
+        if (v3 != param1->selectedPartySlot[param1->attacker]) {
+            v7 = ov16_0223DFAC(param0, param1->attacker, v3);
 
             if ((GetMonData(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v7, MON_DATA_SPECIES_EGG, NULL) != 494)) {
                 for (v4 = 0; v4 < 4; v4++) {
                     v2 = GetMonData(v7, MON_DATA_MOVE1 + v4, NULL);
 
-                    if ((ov16_02255918(v2) == 0) && (ov16_0225B02C(param0, param1, param1->unk_64, v2) == 1)) {
+                    if ((ov16_02255918(v2) == 0) && (ov16_0225B02C(param0, param1, param1->attacker, v2) == 1)) {
                         v1[v6] = v2;
                         v6++;
                     }
@@ -5159,7 +5159,7 @@ static BOOL ov16_022461F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     }
 
     if (v6) {
-        param1->unk_124 = v1[ov16_0223F4BC(param0) % v6];
+        param1->msgMoveTemp = v1[ov16_0223F4BC(param0) % v6];
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -5167,7 +5167,7 @@ static BOOL ov16_022461F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022462D8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022462D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5179,66 +5179,66 @@ static BOOL ov16_022462D8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = 0;
 
     for (v0 = 0; v0 < ov16_0223DF1C(param0); v0++) {
-        if (param1->unk_2D40[v0].unk_4C) {
+        if (param1->battleMons[v0].curHP) {
             v2++;
         }
     }
 
-    if (param1->unk_3150 == 1) {
+    if (param1->waitingBattlers == 1) {
         ov16_02248AF0(param1, v1);
     } else {
-        param1->unk_1D4[param1->unk_64].unk_00_4 = 1;
+        param1->turnFlags[param1->attacker].magicCoat = 1;
     }
 
     return 0;
 }
 
-static BOOL ov16_02246334 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246334 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
 
     ov16_02248AF0(param1, 1);
 
-    v0 = ov16_0223E208(param0, param1->unk_64);
-    v1 = param1->unk_64;
+    v0 = ov16_0223E208(param0, param1->attacker);
+    v1 = param1->attacker;
 
-    param1->unk_84 = v1;
-    param1->unk_64 = param1->unk_6C;
+    param1->magicCoatMon = v1;
+    param1->attacker = param1->defender;
 
-    if ((param1->unk_1C4[v0].unk_00_20) && (param1->unk_2D40[param1->unk_1C4[v0].unk_00_21].unk_4C)) {
-        param1->unk_6C = param1->unk_1C4[v0].unk_00_21;
-    } else if ((param1->unk_354.unk_8A[param1->unk_3044].unk_08 == 0x4) || (param1->unk_354.unk_8A[param1->unk_3044].unk_08 == 0x8)) {
-        param1->unk_6C = v1;
+    if ((param1->sideConditions[v0].followMe) && (param1->battleMons[param1->sideConditions[v0].followMeUser].curHP)) {
+        param1->defender = param1->sideConditions[v0].followMeUser;
+    } else if ((param1->aiContext.moveTable[param1->moveCur].unk_08 == 0x4) || (param1->aiContext.moveTable[param1->moveCur].unk_08 == 0x8)) {
+        param1->defender = v1;
     } else {
-        v0 = ov16_02253954(param0, param1, param1->unk_64, param1->unk_3044, 1, 0);
+        v0 = ov16_02253954(param0, param1, param1->attacker, param1->moveCur, 1, 0);
 
-        if ((param1->unk_2D4[v0].unk_00_1) || (param1->unk_2D4[v0].unk_00_2)) {
-            param1->unk_6C = v0;
+        if ((param1->selfTurnFlags[v0].lightningRodActivated) || (param1->selfTurnFlags[v0].stormDrainActivated)) {
+            param1->defender = v0;
         } else {
-            param1->unk_6C = v1;
+            param1->defender = v1;
         }
     }
 
-    param1->unk_2140 |= 0x8;
+    param1->battleStatusMask2 |= 0x8;
 
     return 0;
 }
 
-static BOOL ov16_022463E8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022463E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    if (((param1->unk_1D4[param1->unk_64].unk_04[param1->unk_6C]) && (param1->unk_1D4[param1->unk_64].unk_18 & sub_020787CC(param1->unk_6C))) || ((param1->unk_1D4[param1->unk_64].unk_1C[param1->unk_6C]) && (param1->unk_1D4[param1->unk_64].unk_30 & sub_020787CC(param1->unk_6C)))) {
-        param1->unk_2158 = 20;
+    if (((param1->turnFlags[param1->attacker].physicalDamageTakenFrom[param1->defender]) && (param1->turnFlags[param1->attacker].physicalDamageAttackerMask & sub_020787CC(param1->defender))) || ((param1->turnFlags[param1->attacker].specialDamageTakenFrom[param1->defender]) && (param1->turnFlags[param1->attacker].specialDamageAttackerMask & sub_020787CC(param1->defender)))) {
+        param1->powerMul = 20;
     } else {
-        param1->unk_2158 = 10;
+        param1->powerMul = 10;
     }
 
     return 0;
 }
 
-static BOOL ov16_02246458 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246458 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5246,13 +5246,13 @@ static BOOL ov16_02246458 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_6C);
+    v1 = ov16_0223E208(param0, param1->defender);
 
-    if ((param1->unk_1BC[v1] & 0x1) || (param1->unk_1BC[v1] & 0x2)) {
-        param1->unk_1BC[v1] &= (0x1 ^ 0xffffffff);
-        param1->unk_1BC[v1] &= (0x2 ^ 0xffffffff);
-        param1->unk_1C4[v1].unk_00_2 = 0;
-        param1->unk_1C4[v1].unk_00_7 = 0;
+    if ((param1->sideConditionsMask[v1] & 0x1) || (param1->sideConditionsMask[v1] & 0x2)) {
+        param1->sideConditionsMask[v1] &= (0x1 ^ 0xffffffff);
+        param1->sideConditionsMask[v1] &= (0x2 ^ 0xffffffff);
+        param1->sideConditions[v1].reflectTurns = 0;
+        param1->sideConditions[v1].lightScreenTurns = 0;
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -5260,7 +5260,7 @@ static BOOL ov16_02246458 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022464CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022464CC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -5268,16 +5268,16 @@ static BOOL ov16_022464CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (param1->unk_2D40[param1->unk_6C].unk_80 & 0x1800) {
+    if (param1->battleMons[param1->defender].moveEffectsMask & 0x1800) {
         ov16_02248AF0(param1, v0);
     } else {
-        param1->unk_2D40[param1->unk_6C].unk_80 |= 0x800 << 1;
+        param1->battleMons[param1->defender].moveEffectsMask |= 0x800 << 1;
     }
 
     return 0;
 }
 
-static BOOL ov16_0224650C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224650C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5285,22 +5285,22 @@ static BOOL ov16_0224650C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_6C);
+    v1 = ov16_0223E208(param0, param1->defender);
 
-    if ((param1->unk_2D40[param1->unk_6C].unk_78) && (ov16_02255AB4(param1, param1->unk_64, param1->unk_6C, 60) == 1)) {
-        param1->unk_F4.unk_02 = 714;
-        param1->unk_F4.unk_01 = 37;
-        param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_6C);
-        param1->unk_F4.unk_04[1] = param1->unk_2D40[param1->unk_6C].unk_27;
-        param1->unk_F4.unk_04[2] = param1->unk_3044;
-    } else if (param1->unk_2D40[param1->unk_6C].unk_78) {
-        param1->unk_F4.unk_02 = 552;
-        param1->unk_F4.unk_01 = 33;
-        param1->unk_F4.unk_04[0] = ov16_02255560(param1, param1->unk_64);
-        param1->unk_F4.unk_04[1] = ov16_02255560(param1, param1->unk_6C);
-        param1->unk_F4.unk_04[2] = param1->unk_2D40[param1->unk_6C].unk_78;
-        param1->unk_2D40[param1->unk_6C].unk_78 = 0;
-        param1->unk_1C4[v1].unk_00_23 |= sub_020787CC(param1->unk_219C[param1->unk_6C]);
+    if ((param1->battleMons[param1->defender].heldItem) && (ov16_02255AB4(param1, param1->attacker, param1->defender, 60) == 1)) {
+        param1->msgBuffer.id = 714;
+        param1->msgBuffer.tags = 37;
+        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->defender);
+        param1->msgBuffer.params[1] = param1->battleMons[param1->defender].ability;
+        param1->msgBuffer.params[2] = param1->moveCur;
+    } else if (param1->battleMons[param1->defender].heldItem) {
+        param1->msgBuffer.id = 552;
+        param1->msgBuffer.tags = 33;
+        param1->msgBuffer.params[0] = ov16_02255560(param1, param1->attacker);
+        param1->msgBuffer.params[1] = ov16_02255560(param1, param1->defender);
+        param1->msgBuffer.params[2] = param1->battleMons[param1->defender].heldItem;
+        param1->battleMons[param1->defender].heldItem = 0;
+        param1->sideConditions[v1].knockedOffItemsMask |= sub_020787CC(param1->selectedPartySlot[param1->defender]);
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -5308,22 +5308,22 @@ static BOOL ov16_0224650C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02246630 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246630 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    if (param1->unk_2154 == 0) {
-        param1->unk_2154 = param1->unk_354.unk_8A[param1->unk_3044].unk_03 * param1->unk_2D40[param1->unk_64].unk_4C / param1->unk_2D40[param1->unk_64].unk_50;
+    if (param1->movePower == 0) {
+        param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03 * param1->battleMons[param1->attacker].curHP / param1->battleMons[param1->attacker].maxHP;
 
-        if (param1->unk_2154 == 0) {
-            param1->unk_2154 = 1;
+        if (param1->movePower == 0) {
+            param1->movePower = 1;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_02246688 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246688 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5337,23 +5337,23 @@ static BOOL ov16_02246688 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v6 = ov16_0223E2A4(param0, param1->unk_64, 0);
-    v7 = ov16_0223E2A4(param0, param1->unk_64, 2);
+    v6 = ov16_0223E2A4(param0, param1->attacker, 0);
+    v7 = ov16_0223E2A4(param0, param1->attacker, 2);
 
-    param1->unk_2D40[v6].unk_80 |= 0x40000000;
-    param1->unk_2D40[v7].unk_80 |= 0x40000000;
+    param1->battleMons[v6].moveEffectsMask |= 0x40000000;
+    param1->battleMons[v7].moveEffectsMask |= 0x40000000;
 
-    if (param1->unk_2D40[param1->unk_64].unk_80 & 0x2000) {
+    if (param1->battleMons[param1->attacker].moveEffectsMask & 0x2000) {
         ov16_02248AF0(param1, v0);
     } else {
-        v1 = ov16_0223E208(param0, param1->unk_64);
+        v1 = ov16_0223E208(param0, param1->attacker);
         v5 = ov16_0223DF1C(param0);
 
         for (v4 = 0; v4 < v5; v4++) {
             if (v1 != ov16_0223E208(param0, v4)) {
                 for (v2 = 0; v2 < 4; v2++) {
                     for (v3 = 0; v3 < 4; v3++) {
-                        if ((param1->unk_2D40[param1->unk_64].unk_0C[v2] == param1->unk_2D40[v4].unk_0C[v3]) && (param1->unk_2D40[param1->unk_64].unk_0C[v2]) && (param1->unk_2D40[v4].unk_0C[v3])) {
+                        if ((param1->battleMons[param1->attacker].moves[v2] == param1->battleMons[v4].moves[v3]) && (param1->battleMons[param1->attacker].moves[v2]) && (param1->battleMons[v4].moves[v3])) {
                             break;
                         }
                     }
@@ -5372,14 +5372,14 @@ static BOOL ov16_02246688 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         if (v4 == v5) {
             ov16_02248AF0(param1, v0);
         } else {
-            param1->unk_2D40[param1->unk_64].unk_80 |= 0x2000;
+            param1->battleMons[param1->attacker].moveEffectsMask |= 0x2000;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_022467A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022467A0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5388,14 +5388,14 @@ static BOOL ov16_022467A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_6C);
+    v1 = ov16_0223E208(param0, param1->defender);
 
-    if ((param1->unk_2D40[param1->unk_74].unk_80 & 0x4000) && (ov16_0223E208(param0, param1->unk_64) != ov16_0223E208(param0, param1->unk_74)) && (param1->unk_2D40[param1->unk_64].unk_4C) && (param1->unk_3040 != 165)) {
-        v2 = param1->unk_30BC[param1->unk_64];
-        param1->unk_2D40[param1->unk_64].unk_2C[v2] = 0;
-        param1->unk_124 = param1->unk_2D40[param1->unk_64].unk_0C[v2];
+    if ((param1->battleMons[param1->faintedMon].moveEffectsMask & 0x4000) && (ov16_0223E208(param0, param1->attacker) != ov16_0223E208(param0, param1->faintedMon)) && (param1->battleMons[param1->attacker].curHP) && (param1->moveTemp != 165)) {
+        v2 = param1->moveSlot[param1->attacker];
+        param1->battleMons[param1->attacker].ppCur[v2] = 0;
+        param1->msgMoveTemp = param1->battleMons[param1->attacker].moves[v2];
 
-        ov16_02253EC0(param0, param1, param1->unk_64);
+        ov16_02253EC0(param0, param1, param1->attacker);
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -5403,7 +5403,7 @@ static BOOL ov16_022467A0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02246848 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246848 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5415,15 +5415,15 @@ static BOOL ov16_02246848 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = 0;
 
     for (v0 = 0; v0 < ov16_0223DF1C(param0); v0++) {
-        if (param1->unk_2D40[v0].unk_4C) {
+        if (param1->battleMons[v0].curHP) {
             v2++;
         }
     }
 
-    if (param1->unk_3150 == 1) {
+    if (param1->waitingBattlers == 1) {
         ov16_02248AF0(param1, v1);
     } else {
-        param1->unk_1D4[param1->unk_64].unk_00_5 = 1;
+        param1->turnFlags[param1->attacker].snatching = 1;
     }
 
     return 0;
@@ -5438,7 +5438,7 @@ static const u16 Unk_ov16_0226E5F0[][2] = {
     {0xFFFF, 0xFFFF}
 };
 
-static BOOL ov16_022468A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022468A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5446,7 +5446,7 @@ static BOOL ov16_022468A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = 0;
-    v1 = param1->unk_2D40[param1->unk_6C].unk_20;
+    v1 = param1->battleMons[param1->defender].weight;
 
     while (Unk_ov16_0226E5F0[v0][0] != 0xffff) {
         if (Unk_ov16_0226E5F0[v0][0] >= v1) {
@@ -5457,46 +5457,46 @@ static BOOL ov16_022468A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     }
 
     if (Unk_ov16_0226E5F0[v0][0] != 0xffff) {
-        param1->unk_2154 = Unk_ov16_0226E5F0[v0][1];
+        param1->movePower = Unk_ov16_0226E5F0[v0][1];
     } else {
-        param1->unk_2154 = 120;
+        param1->movePower = 120;
     }
 
     return 0;
 }
 
-static BOOL ov16_02246904 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246904 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
     if ((ov16_022555A4(param0, param1, 8, 0, 13) == 0) && (ov16_022555A4(param0, param1, 8, 0, 76) == 0)) {
-        if (param1->unk_180 & (0x3 | 0xc | 0x30 | 0xc0 | 0x8000)) {
-            param1->unk_2154 = param1->unk_354.unk_8A[param1->unk_3044].unk_03 * 2;
+        if (param1->fieldConditionsMask & (0x3 | 0xc | 0x30 | 0xc0 | 0x8000)) {
+            param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03 * 2;
 
-            if (param1->unk_180 & 0x3) {
-                param1->unk_2160 = 11;
+            if (param1->fieldConditionsMask & 0x3) {
+                param1->moveType = 11;
             }
 
-            if (param1->unk_180 & 0xc) {
-                param1->unk_2160 = 5;
+            if (param1->fieldConditionsMask & 0xc) {
+                param1->moveType = 5;
             }
 
-            if (param1->unk_180 & 0x30) {
-                param1->unk_2160 = 10;
+            if (param1->fieldConditionsMask & 0x30) {
+                param1->moveType = 10;
             }
 
-            if (param1->unk_180 & 0xc0) {
-                param1->unk_2160 = 15;
+            if (param1->fieldConditionsMask & 0xc0) {
+                param1->moveType = 15;
             }
         } else {
-            param1->unk_2154 = param1->unk_354.unk_8A[param1->unk_3044].unk_03;
+            param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_022469C4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022469C4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5510,30 +5510,30 @@ static BOOL ov16_022469C4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_0223DF1C(param0);
 
     for (v1 = 0; v1 < v2; v1++) {
-        if ((param1->unk_21A8[v1][0] != 39) && (param1->unk_2D40[v1].unk_4C) && ((param1->unk_2D40[v1].unk_6C & (0x7 | 0x20)) == 0) && (ov16_02255EC0(param1, v1) == 0) && (ov16_0223E208(param0, v1) != ov16_0223E208(param0, param1->unk_78))) {
-            if ((param1->unk_2D40[v1].unk_88.unk_24) && (param1->unk_2D40[v1].unk_88.unk_24 == param1->unk_2D40[v1].unk_0C[param1->unk_2D40[v1].unk_88.unk_26])) {
-                v3 = param1->unk_2D40[v1].unk_88.unk_24;
+        if ((param1->battlerActions[v1][0] != 39) && (param1->battleMons[v1].curHP) && ((param1->battleMons[v1].status & (0x7 | 0x20)) == 0) && (ov16_02255EC0(param1, v1) == 0) && (ov16_0223E208(param0, v1) != ov16_0223E208(param0, param1->switchedMon))) {
+            if ((param1->battleMons[v1].moveEffectsData.encoredMove) && (param1->battleMons[v1].moveEffectsData.encoredMove == param1->battleMons[v1].moves[param1->battleMons[v1].moveEffectsData.encoredMoveSlot])) {
+                v3 = param1->battleMons[v1].moveEffectsData.encoredMove;
             } else {
                 v3 = ov16_02255570(param1, v1);
             }
 
             if (v3) {
-                v4 = ov16_02254EE0(&param1->unk_2D40[v1], v3);
+                v4 = ov16_02254EE0(&param1->battleMons[v1], v3);
 
-                if ((param1->unk_354.unk_8A[v3].unk_00 == 128) && (param1->unk_2D40[v1].unk_2C[v4])) {
-                    param1->unk_2D40[v1].unk_2C[v4]--;
+                if ((param1->aiContext.moveTable[v3].unk_00 == 128) && (param1->battleMons[v1].ppCur[v4])) {
+                    param1->battleMons[v1].ppCur[v4]--;
 
-                    if ((ov16_02255A4C(param1, param1->unk_78) == 46) && (param1->unk_2D40[v1].unk_2C[v4])) {
-                        param1->unk_2D40[v1].unk_2C[v4]--;
+                    if ((ov16_02255A4C(param1, param1->switchedMon) == 46) && (param1->battleMons[v1].ppCur[v4])) {
+                        param1->battleMons[v1].ppCur[v4]--;
                     }
 
                     ov16_02255F94(param0, param1);
-                    param1->unk_64 = v1;
-                    param1->unk_6C = param1->unk_78;
-                    param1->unk_2158 = 20;
-                    param1->unk_3044 = v3;
-                    param1->unk_307C[v1] = v3;
-                    param1->unk_21A8[v1][0] = 39;
+                    param1->attacker = v1;
+                    param1->defender = param1->switchedMon;
+                    param1->powerMul = 20;
+                    param1->moveCur = v3;
+                    param1->movePrevByBattler[v1] = v3;
+                    param1->battlerActions[v1][0] = 39;
                     ov16_02253EC0(param0, param1, v1);
                     break;
                 }
@@ -5548,11 +5548,11 @@ static BOOL ov16_022469C4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             int v5;
             int v6;
 
-            v5 = ov16_02258AB8(param1, param1->unk_64);
-            v6 = ov16_02258ACC(param1, param1->unk_64, 0);
+            v5 = ov16_02258AB8(param1, param1->attacker);
+            v6 = ov16_02258ACC(param1, param1->attacker, 0);
 
             if ((v5 == 55) || (v5 == 115) || (v5 == 125)) {
-                param1->unk_2D40[param1->unk_64].unk_88.unk_30 = v3;
+                param1->battleMons[param1->attacker].moveEffectsData.choiceLockedMove = v3;
             }
         }
     }
@@ -5560,16 +5560,16 @@ static BOOL ov16_022469C4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02246B68 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246B68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    param1->unk_2144 = ov16_02254FA8(param0, param1, param1->unk_3044, param1->unk_2160, param1->unk_64, param1->unk_6C, param1->unk_2144, &param1->unk_216C);
+    param1->damage = ov16_02254FA8(param0, param1, param1->moveCur, param1->moveType, param1->attacker, param1->defender, param1->damage, &param1->moveStatusFlags);
 
     return 0;
 }
 
-static BOOL ov16_02246BB0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246BB0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5588,37 +5588,37 @@ static BOOL ov16_02246BB0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     switch (v1) {
     case 0:
-        if (param1->unk_1D4[v4].unk_00_0 == v2) {
+        if (param1->turnFlags[v4].struggling == v2) {
             v5 = 1;
         }
         break;
     case 1:
-        if (param1->unk_1D4[v4].unk_00_1 == v2) {
+        if (param1->turnFlags[v4].ppDecremented == v2) {
             v5 = 1;
         }
         break;
     case 2:
-        if (param1->unk_1D4[v4].unk_00_2 == v2) {
+        if (param1->turnFlags[v4].protecting == v2) {
             v5 = 1;
         }
         break;
     case 3:
-        if (param1->unk_1D4[v4].unk_00_3 == v2) {
+        if (param1->turnFlags[v4].helpingHand == v2) {
             v5 = 1;
         }
         break;
     case 4:
-        if (param1->unk_1D4[v4].unk_00_4 == v2) {
+        if (param1->turnFlags[v4].magicCoat == v2) {
             v5 = 1;
         }
         break;
     case 5:
-        if (param1->unk_1D4[v4].unk_00_5 == v2) {
+        if (param1->turnFlags[v4].snatching == v2) {
             v5 = 1;
         }
         break;
     case 6:
-        if (param1->unk_1D4[v4].unk_00_6 == v2) {
+        if (param1->turnFlags[v4].roosting == v2) {
             v5 = 1;
         }
         break;
@@ -5631,7 +5631,7 @@ static BOOL ov16_02246BB0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02246CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246CB4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5647,45 +5647,45 @@ static BOOL ov16_02246CB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     switch (v1) {
     case 0:
-        param1->unk_1D4[v3].unk_00_0 = v2;
+        param1->turnFlags[v3].struggling = v2;
         break;
     case 1:
-        param1->unk_1D4[v3].unk_00_1 = v2;
+        param1->turnFlags[v3].ppDecremented = v2;
         break;
     case 2:
-        param1->unk_1D4[v3].unk_00_2 = v2;
+        param1->turnFlags[v3].protecting = v2;
         break;
     case 3:
-        param1->unk_1D4[v3].unk_00_3 = v2;
+        param1->turnFlags[v3].helpingHand = v2;
         break;
     case 4:
-        param1->unk_1D4[v3].unk_00_4 = v2;
+        param1->turnFlags[v3].magicCoat = v2;
         break;
     case 5:
-        param1->unk_1D4[v3].unk_00_5 = v2;
+        param1->turnFlags[v3].snatching = v2;
         break;
     case 6:
-        param1->unk_1D4[v3].unk_00_6 = v2;
+        param1->turnFlags[v3].roosting = v2;
         break;
     }
 
     return 0;
 }
 
-static BOOL ov16_02246DAC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246DAC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    param1->unk_2154 = 1 + 25 * param1->unk_21F0[param1->unk_6C] / param1->unk_21F0[param1->unk_64];
+    param1->movePower = 1 + 25 * param1->monSpeedValues[param1->defender] / param1->monSpeedValues[param1->attacker];
 
-    if (param1->unk_2154 > 150) {
-        param1->unk_2154 = 150;
+    if (param1->movePower > 150) {
+        param1->movePower = 150;
     }
 
     return 0;
 }
 
-static BOOL ov16_02246DF0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246DF0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5694,28 +5694,28 @@ static BOOL ov16_02246DF0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_64);
-    v2 = ov16_0223E208(param0, param1->unk_1D4[param1->unk_64].unk_38);
+    v1 = ov16_0223E208(param0, param1->attacker);
+    v2 = ov16_0223E208(param0, param1->turnFlags[param1->attacker].lastAttacker);
 
-    if ((param1->unk_1D4[param1->unk_64].unk_34) && (v1 != v2) && (param1->unk_2D40[param1->unk_1D4[param1->unk_64].unk_38].unk_4C)) {
-        param1->unk_2144 = param1->unk_1D4[param1->unk_64].unk_34 * 15 / 10;
+    if ((param1->turnFlags[param1->attacker].lastDamageTaken) && (v1 != v2) && (param1->battleMons[param1->turnFlags[param1->attacker].lastAttacker].curHP)) {
+        param1->damage = param1->turnFlags[param1->attacker].lastDamageTaken * 15 / 10;
 
-        if ((param1->unk_1C4[v2].unk_00_20) && (param1->unk_2D40[param1->unk_1C4[v2].unk_00_21].unk_4C)) {
-            param1->unk_6C = param1->unk_1C4[v2].unk_00_21;
+        if ((param1->sideConditions[v2].followMe) && (param1->battleMons[param1->sideConditions[v2].followMeUser].curHP)) {
+            param1->defender = param1->sideConditions[v2].followMeUser;
         } else {
-            param1->unk_6C = param1->unk_1D4[param1->unk_64].unk_38;
+            param1->defender = param1->turnFlags[param1->attacker].lastAttacker;
         }
 
-        if (param1->unk_2D40[param1->unk_6C].unk_4C == 0) {
-            param1->unk_6C = ov16_02257028(param0, param1, param1->unk_64);
+        if (param1->battleMons[param1->defender].curHP == 0) {
+            param1->defender = ov16_02257028(param0, param1, param1->attacker);
 
-            if (param1->unk_2D40[param1->unk_6C].unk_4C == 0) {
-                param1->unk_0C = 38;
+            if (param1->battleMons[param1->defender].curHP == 0) {
+                param1->commandNext = 38;
                 ov16_02248B00(param1, 1, (0 + 281));
             }
         }
 
-        ov16_0225B408(param1, param1->unk_64, param1->unk_6C);
+        ov16_0225B408(param1, param1->attacker, param1->defender);
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -5723,14 +5723,14 @@ static BOOL ov16_02246DF0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02246EE4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246EE4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    if (param1->unk_21A8[param1->unk_6C][0] == 39) {
-        param1->unk_2154 = param1->unk_354.unk_8A[param1->unk_3044].unk_03 * 2;
+    if (param1->battlerActions[param1->defender][0] == 39) {
+        param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03 * 2;
     } else {
-        param1->unk_2154 = param1->unk_354.unk_8A[param1->unk_3044].unk_03;
+        param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03;
     }
 
     return 0;
@@ -5744,35 +5744,35 @@ static const u8 Unk_ov16_0226E574[] = {
     0x28
 };
 
-static BOOL ov16_02246F2C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246F2C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     u8 v0;
 
     ov16_02248AF0(param1, 1);
 
-    v0 = param1->unk_2D40[param1->unk_64].unk_2C[param1->unk_30BC[param1->unk_64]];
+    v0 = param1->battleMons[param1->attacker].ppCur[param1->moveSlot[param1->attacker]];
 
     if (v0 > 4) {
         v0 = 4;
     }
 
-    param1->unk_2154 = Unk_ov16_0226E574[v0];
+    param1->movePower = Unk_ov16_0226E574[v0];
 
     return 0;
 }
 
-static BOOL ov16_02246F70 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246F70 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     u8 v0;
 
     ov16_02248AF0(param1, 1);
 
-    param1->unk_2154 = 1 + (120 * param1->unk_2D40[param1->unk_6C].unk_4C) / param1->unk_2D40[param1->unk_6C].unk_50;
+    param1->movePower = 1 + (120 * param1->battleMons[param1->defender].curHP) / param1->battleMons[param1->defender].maxHP;
 
     return 0;
 }
 
-static BOOL ov16_02246FA8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02246FA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u16 v1;
@@ -5781,16 +5781,16 @@ static BOOL ov16_02246FA8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if ((param1->unk_2D40[param1->unk_6C].unk_88.unk_24) && (param1->unk_2D40[param1->unk_6C].unk_88.unk_24 == param1->unk_2D40[param1->unk_6C].unk_0C[param1->unk_2D40[param1->unk_6C].unk_88.unk_26])) {
-        v1 = param1->unk_2D40[param1->unk_6C].unk_88.unk_24;
+    if ((param1->battleMons[param1->defender].moveEffectsData.encoredMove) && (param1->battleMons[param1->defender].moveEffectsData.encoredMove == param1->battleMons[param1->defender].moves[param1->battleMons[param1->defender].moveEffectsData.encoredMoveSlot])) {
+        v1 = param1->battleMons[param1->defender].moveEffectsData.encoredMove;
     } else {
-        v1 = ov16_02255570(param1, param1->unk_6C);
+        v1 = ov16_02255570(param1, param1->defender);
     }
 
-    if ((param1->unk_21A8[param1->unk_6C][0] != 39) && (param1->unk_1D4[param1->unk_6C].unk_00_0 == 0) && (ov16_0225B0C0(param1, v1) == 1) && (param1->unk_354.unk_8A[v1].unk_03)) {
-        param1->unk_2D40[param1->unk_64].unk_88.unk_04_30 = 1;
-        param1->unk_2D40[param1->unk_64].unk_88.unk_14 = param1->unk_174;
-        param1->unk_124 = v1;
+    if ((param1->battlerActions[param1->defender][0] != 39) && (param1->turnFlags[param1->defender].struggling == 0) && (ov16_0225B0C0(param1, v1) == 1) && (param1->aiContext.moveTable[v1].unk_03)) {
+        param1->battleMons[param1->attacker].moveEffectsData.meFirst = 1;
+        param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber = param1->meFirstTurnOrder;
+        param1->msgMoveTemp = v1;
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -5798,7 +5798,7 @@ static BOOL ov16_02246FA8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247064 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247064 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -5806,8 +5806,8 @@ static BOOL ov16_02247064 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if ((ov16_02255918(param1->unk_3048) == 0) && (param1->unk_3048) && (ov16_0225B02C(param0, param1, param1->unk_64, param1->unk_3048) == 1)) {
-        param1->unk_124 = param1->unk_3048;
+    if ((ov16_02255918(param1->movePrev) == 0) && (param1->movePrev) && (ov16_0225B02C(param0, param1, param1->attacker, param1->movePrev) == 1)) {
+        param1->msgMoveTemp = param1->movePrev;
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -5815,7 +5815,7 @@ static BOOL ov16_02247064 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022470C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022470C0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5825,21 +5825,21 @@ static BOOL ov16_022470C0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v1 = 0;
 
     for (v0 = 0x0; v0 < 0x8; v0++) {
-        if (param1->unk_2D40[param1->unk_6C].unk_18[v0] > 6) {
-            v1 += (param1->unk_2D40[param1->unk_6C].unk_18[v0] - 6);
+        if (param1->battleMons[param1->defender].statBoosts[v0] > 6) {
+            v1 += (param1->battleMons[param1->defender].statBoosts[v0] - 6);
         }
     }
 
-    param1->unk_2154 = 60 + 20 * v1;
+    param1->movePower = 60 + 20 * v1;
 
-    if (param1->unk_2154 > 200) {
-        param1->unk_2154 = 200;
+    if (param1->movePower > 200) {
+        param1->movePower = 200;
     }
 
     return 0;
 }
 
-static BOOL ov16_02247118 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247118 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5848,20 +5848,20 @@ static BOOL ov16_02247118 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if ((param1->unk_2D40[param1->unk_6C].unk_88.unk_24) && (param1->unk_2D40[param1->unk_6C].unk_88.unk_24 == param1->unk_2D40[param1->unk_6C].unk_0C[param1->unk_2D40[param1->unk_6C].unk_88.unk_26])) {
-        v1 = param1->unk_2D40[param1->unk_6C].unk_88.unk_24;
+    if ((param1->battleMons[param1->defender].moveEffectsData.encoredMove) && (param1->battleMons[param1->defender].moveEffectsData.encoredMove == param1->battleMons[param1->defender].moves[param1->battleMons[param1->defender].moveEffectsData.encoredMoveSlot])) {
+        v1 = param1->battleMons[param1->defender].moveEffectsData.encoredMove;
     } else {
-        v1 = ov16_02255570(param1, param1->unk_6C);
+        v1 = ov16_02255570(param1, param1->defender);
     }
 
-    if ((param1->unk_21A8[param1->unk_6C][0] == 39) || ((param1->unk_354.unk_8A[v1].unk_03 == 0) && (param1->unk_1D4[param1->unk_6C].unk_00_0 == 0))) {
+    if ((param1->battlerActions[param1->defender][0] == 39) || ((param1->aiContext.moveTable[v1].unk_03 == 0) && (param1->turnFlags[param1->defender].struggling == 0))) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_02247194 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247194 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5885,50 +5885,50 @@ static BOOL ov16_02247194 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     case 1:
         switch (v2) {
         case 0:
-            v6 = param1->unk_1C4[v5].unk_00_2;
+            v6 = param1->sideConditions[v5].reflectTurns;
             break;
         case 1:
-            v6 = param1->unk_1C4[v5].unk_00_7;
+            v6 = param1->sideConditions[v5].lightScreenTurns;
             break;
         case 2:
-            v6 = param1->unk_1C4[v5].unk_00_12;
+            v6 = param1->sideConditions[v5].mistTurns;
             break;
         case 3:
-            v6 = param1->unk_1C4[v5].unk_00_17;
+            v6 = param1->sideConditions[v5].safeguardTurns;
             break;
         case 4:
-            v6 = param1->unk_1C4[v5].unk_04_0;
+            v6 = param1->sideConditions[v5].spikesLayers;
             break;
         case 5:
-            v6 = param1->unk_1C4[v5].unk_04_2;
+            v6 = param1->sideConditions[v5].toxicSpikesLayers;
             break;
         }
         break;
     case 2:
         switch (v2) {
         case 0:
-            param1->unk_1C4[v5].unk_00_2 = 0;
-            param1->unk_1BC[v5] &= (0x1 ^ 0xffffffff);
+            param1->sideConditions[v5].reflectTurns = 0;
+            param1->sideConditionsMask[v5] &= (0x1 ^ 0xffffffff);
             break;
         case 1:
-            param1->unk_1C4[v5].unk_00_7 = 0;
-            param1->unk_1BC[v5] &= (0x2 ^ 0xffffffff);
+            param1->sideConditions[v5].lightScreenTurns = 0;
+            param1->sideConditionsMask[v5] &= (0x2 ^ 0xffffffff);
             break;
         case 2:
-            param1->unk_1C4[v5].unk_00_12 = 0;
-            param1->unk_1BC[v5] &= (0x40 ^ 0xffffffff);
+            param1->sideConditions[v5].mistTurns = 0;
+            param1->sideConditionsMask[v5] &= (0x40 ^ 0xffffffff);
             break;
         case 3:
-            param1->unk_1C4[v5].unk_00_17 = 0;
-            param1->unk_1BC[v5] &= (0x8 ^ 0xffffffff);
+            param1->sideConditions[v5].safeguardTurns = 0;
+            param1->sideConditionsMask[v5] &= (0x8 ^ 0xffffffff);
             break;
         case 4:
-            param1->unk_1C4[v5].unk_04_0 = 0;
-            param1->unk_1BC[v5] &= (0x4 ^ 0xffffffff);
+            param1->sideConditions[v5].spikesLayers = 0;
+            param1->sideConditionsMask[v5] &= (0x4 ^ 0xffffffff);
             break;
         case 5:
-            param1->unk_1C4[v5].unk_04_2 = 0;
-            param1->unk_1BC[v5] &= (0x400 ^ 0xffffffff);
+            param1->sideConditions[v5].toxicSpikesLayers = 0;
+            param1->sideConditionsMask[v5] &= (0x400 ^ 0xffffffff);
             break;
         }
         break;
@@ -5945,7 +5945,7 @@ static BOOL ov16_02247194 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247378 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247378 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5954,14 +5954,14 @@ static BOOL ov16_02247378 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (param1->unk_1D4[param1->unk_6C].unk_00_2 == 0) {
+    if (param1->turnFlags[param1->defender].protecting == 0) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_022473A8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022473A8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5970,14 +5970,14 @@ static BOOL ov16_022473A8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if ((param1->unk_2D40[param1->unk_6C].unk_6C) || (param1->unk_2D40[param1->unk_6C].unk_70 & 0x1000000) || (param1->unk_2D40[param1->unk_64].unk_6C == 0)) {
+    if ((param1->battleMons[param1->defender].status) || (param1->battleMons[param1->defender].statusVolatile & 0x1000000) || (param1->battleMons[param1->attacker].status == 0)) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_022473F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022473F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -5985,16 +5985,16 @@ static BOOL ov16_022473F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_02256128(param0, param1, param1->unk_64);
+    v1 = ov16_02256128(param0, param1, param1->attacker);
 
-    if ((param1->unk_2D40[param1->unk_64].unk_88.unk_04_10 < (v1 - 1)) || (v1 < 2)) {
+    if ((param1->battleMons[param1->attacker].moveEffectsData.lastResortCount < (v1 - 1)) || (v1 < 2)) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_02247440 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247440 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6002,20 +6002,20 @@ static BOOL ov16_02247440 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_0223E208(param0, param1->unk_64) ^ 1;
+    v1 = ov16_0223E208(param0, param1->attacker) ^ 1;
 
-    if (param1->unk_1C4[v1].unk_04_2 == 2) {
-        param1->unk_2D4[param1->unk_64].unk_00_0 = 1;
+    if (param1->sideConditions[v1].toxicSpikesLayers == 2) {
+        param1->selfTurnFlags[param1->attacker].skipPressureCheck = 1;
         ov16_02248AF0(param1, v0);
     } else {
-        param1->unk_1BC[v1] |= 0x400;
-        param1->unk_1C4[v1].unk_04_2++;
+        param1->sideConditionsMask[v1] |= 0x400;
+        param1->sideConditions[v1].toxicSpikesLayers++;
     }
 
     return 0;
 }
 
-static BOOL ov16_022474C4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022474C4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6029,15 +6029,15 @@ static BOOL ov16_022474C4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_0224A984(param0, param1, v0);
     v3 = ov16_0223E208(param0, v2);
 
-    if (param1->unk_1C4[v3].unk_04_2) {
-        param1->unk_134 = param1->unk_1C4[v3].unk_04_2;
-        param1->unk_88 = 6;
-        param1->unk_94 = v2;
+    if (param1->sideConditions[v3].toxicSpikesLayers) {
+        param1->calcTemp = param1->sideConditions[v3].toxicSpikesLayers;
+        param1->sideEffectType = 6;
+        param1->sideEffectMon = v2;
 
-        if ((ov16_02252060(param1, param1->unk_78, 27, NULL) == 3) || (ov16_02252060(param1, param1->unk_78, 28, NULL) == 3)) {
-            param1->unk_1BC[v3] &= (0x400 ^ 0xffffffff);
-            param1->unk_1C4[v3].unk_04_2 = 0;
-            param1->unk_134 = 0;
+        if ((ov16_02252060(param1, param1->switchedMon, 27, NULL) == 3) || (ov16_02252060(param1, param1->switchedMon, 28, NULL) == 3)) {
+            param1->sideConditionsMask[v3] &= (0x400 ^ 0xffffffff);
+            param1->sideConditions[v3].toxicSpikesLayers = 0;
+            param1->calcTemp = 0;
         }
     } else {
         ov16_02248AF0(param1, v1);
@@ -6046,7 +6046,7 @@ static BOOL ov16_022474C4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247570 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247570 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6069,18 +6069,18 @@ static BOOL ov16_02247570 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             v6 = ov16_0223DF1C(param0);
 
             for (v5 = 0; v5 < v6; v5++) {
-                v4 = param1->unk_21EC[v5];
+                v4 = param1->monSpeedOrder[v5];
 
                 if (v0 == 0) {
-                    if ((ov16_02255AB4(param1, param1->unk_64, v4, v2) == 1) && (param1->unk_2D40[v4].unk_4C)) {
+                    if ((ov16_02255AB4(param1, param1->attacker, v4, v2) == 1) && (param1->battleMons[v4].curHP)) {
                         ov16_02248AF0(param1, v3);
-                        param1->unk_80 = v4;
+                        param1->abilityMon = v4;
                         break;
                     }
                 } else {
-                    if ((ov16_02255AB4(param1, param1->unk_64, v4, v2) == 0) || (param1->unk_2D40[v4].unk_4C == 0)) {
+                    if ((ov16_02255AB4(param1, param1->attacker, v4, v2) == 0) || (param1->battleMons[v4].curHP == 0)) {
                         ov16_02248AF0(param1, v3);
-                        param1->unk_80 = v4;
+                        param1->abilityMon = v4;
                         break;
                     }
                 }
@@ -6090,14 +6090,14 @@ static BOOL ov16_02247570 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v4 = ov16_0224A984(param0, param1, v1);
 
         if (v0 == 0) {
-            if ((ov16_02255AB4(param1, param1->unk_64, v4, v2) == 1) && (param1->unk_2D40[v4].unk_4C)) {
+            if ((ov16_02255AB4(param1, param1->attacker, v4, v2) == 1) && (param1->battleMons[v4].curHP)) {
                 ov16_02248AF0(param1, v3);
-                param1->unk_80 = v4;
+                param1->abilityMon = v4;
             }
         } else {
-            if ((ov16_02255AB4(param1, param1->unk_64, v4, v2) == 0) || (param1->unk_2D40[v4].unk_4C == 0)) {
+            if ((ov16_02255AB4(param1, param1->attacker, v4, v2) == 0) || (param1->battleMons[v4].curHP == 0)) {
                 ov16_02248AF0(param1, v3);
-                param1->unk_80 = v4;
+                param1->abilityMon = v4;
             }
         }
     }
@@ -6105,7 +6105,7 @@ static BOOL ov16_02247570 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247698 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247698 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6188,7 +6188,7 @@ static const u8 Unk_ov16_0226EAB4[] = {
     0x32
 };
 
-static BOOL ov16_022476F8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022476F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1, v2, v3;
@@ -6247,16 +6247,16 @@ static BOOL ov16_022476F8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224787C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224787C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
-    param1->unk_2D4[param1->unk_64].unk_00_4 = 1;
+    param1->selfTurnFlags[param1->attacker].trickRoomActivated = 1;
 
     return 0;
 }
 
-static BOOL ov16_022478A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022478A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6275,7 +6275,7 @@ static BOOL ov16_022478A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022478E4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022478E4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6305,7 +6305,7 @@ static BOOL ov16_022478E4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247950 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247950 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6326,7 +6326,7 @@ static BOOL ov16_02247950 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224799C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224799C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6363,7 +6363,7 @@ static const u8 Unk_ov16_0226EAC0[] = {
     0x0
 };
 
-static BOOL ov16_022479E8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022479E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6373,7 +6373,7 @@ static BOOL ov16_022479E8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_02255A4C(param1, param1->unk_64) == 121) {
+    if (ov16_02255A4C(param1, param1->attacker) == 121) {
         ov16_02248AF0(param1, v0);
         return 0;
     }
@@ -6386,10 +6386,10 @@ static BOOL ov16_022479E8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v2 = Unk_ov16_0226EAC0[v1];
 
-    if ((ov16_02252060(param1, param1->unk_64, 27, NULL) != v2) && (ov16_02252060(param1, param1->unk_64, 28, NULL) != v2)) {
-        param1->unk_2D40[param1->unk_64].unk_24 = v2;
-        param1->unk_2D40[param1->unk_64].unk_25 = v2;
-        param1->unk_130 = v2;
+    if ((ov16_02252060(param1, param1->attacker, 27, NULL) != v2) && (ov16_02252060(param1, param1->attacker, 28, NULL) != v2)) {
+        param1->battleMons[param1->attacker].type1 = v2;
+        param1->battleMons[param1->attacker].type2 = v2;
+        param1->msgTemp = v2;
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -6413,7 +6413,7 @@ static const u16 Unk_ov16_0226E652[] = {
     0xA1
 };
 
-static BOOL ov16_02247A80 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247A80 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -6424,7 +6424,7 @@ static BOOL ov16_02247A80 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v0 = 12;
     }
 
-    param1->unk_124 = Unk_ov16_0226E652[v0];
+    param1->msgMoveTemp = Unk_ov16_0226E652[v0];
 
     return 0;
 }
@@ -6445,7 +6445,7 @@ static const u32 Unk_ov16_0226E690[] = {
     0x80000005
 };
 
-static BOOL ov16_02247AB0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247AB0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -6457,12 +6457,12 @@ static BOOL ov16_02247AB0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v0 = 12;
     }
 
-    param1->unk_2174 = Unk_ov16_0226E690[v0];
+    param1->sideEffectIndirectFlags = Unk_ov16_0226E690[v0];
 
     return 0;
 }
 
-static BOOL ov16_02247AE0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247AE0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6470,11 +6470,11 @@ static BOOL ov16_02247AE0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    v1 = ov16_02258B18(param1, param1->unk_64);
+    v1 = ov16_02258B18(param1, param1->attacker);
 
     if (v1) {
-        param1->unk_2154 = v1;
-        param1->unk_2160 = ov16_02258B2C(param1, param1->unk_64);
+        param1->movePower = v1;
+        param1->moveType = ov16_02258B2C(param1, param1->attacker);
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -6482,7 +6482,7 @@ static BOOL ov16_02247AE0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247B28 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247B28 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6492,16 +6492,16 @@ static BOOL ov16_02247B28 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_02248AD0(param1);
 
-    if ((param1->unk_2D40[param1->unk_6C].unk_78) && (ov16_02255AB4(param1, param1->unk_64, param1->unk_6C, 60) == 1)) {
+    if ((param1->battleMons[param1->defender].heldItem) && (ov16_02255AB4(param1, param1->attacker, param1->defender, 60) == 1)) {
         ov16_02248AF0(param1, v0);
-    } else if (((param1->unk_2D40[param1->unk_6C].unk_78) && (param1->unk_2D40[param1->unk_6C].unk_88.unk_04_28)) || (ov16_02258CB4(param0, param1, param1->unk_6C) != 1)) {
+    } else if (((param1->battleMons[param1->defender].heldItem) && (param1->battleMons[param1->defender].moveEffectsData.custapBerry)) || (ov16_02258CB4(param0, param1, param1->defender) != 1)) {
         ov16_02248AF0(param1, v1);
     }
 
     return 0;
 }
 
-static BOOL ov16_02247BA4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247BA4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -6509,14 +6509,14 @@ static BOOL ov16_02247BA4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_02259204(param0, param1, param1->unk_64) != 1) {
+    if (ov16_02259204(param0, param1, param1->attacker) != 1) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_02247BD4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247BD4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -6527,7 +6527,7 @@ static BOOL ov16_02247BD4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247C04 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247C04 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -6550,12 +6550,12 @@ static BOOL ov16_02247C04 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         ov16_0223F500(param0, 0, v0);
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static BOOL ov16_02247C64 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247C64 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1 = ov16_0223DF1C(param0);
@@ -6563,12 +6563,12 @@ static BOOL ov16_02247C64 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
     ov16_02265A8C(param0, param1, 0, 0, 0, 6);
 
-    param1->unk_78 = 0;
+    param1->switchedMon = 0;
 
     return 0;
 }
 
-static BOOL ov16_02247C94 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247C94 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -6583,16 +6583,16 @@ static BOOL ov16_02247C94 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         if (v0 == 0xff) {
             ov16_02248AF0(param1, v1);
         } else {
-            param1->unk_21A0[0] = v0 - 1;
+            param1->switchedPartySlot[0] = v0 - 1;
         }
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static BOOL ov16_02247CE0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247CE0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
 
@@ -6603,7 +6603,7 @@ static BOOL ov16_02247CE0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247D04 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247D04 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6621,22 +6621,22 @@ static BOOL ov16_02247D04 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v4 = ov16_02252060(param1, v2, 27, NULL);
     v5 = ov16_02252060(param1, v2, 28, NULL);
 
-    if ((param1->unk_1BC[v3] & 0x80) && (param1->unk_2D40[v2].unk_4C)) {
+    if ((param1->sideConditionsMask[v3] & 0x80) && (param1->battleMons[v2].curHP)) {
         switch (ov16_022558CC(5, v4, v5)) {
         case 160:
-            param1->unk_215C = 2;
+            param1->hpCalcTemp = 2;
             break;
         case 80:
-            param1->unk_215C = 4;
+            param1->hpCalcTemp = 4;
             break;
         case 40:
-            param1->unk_215C = 8;
+            param1->hpCalcTemp = 8;
             break;
         case 20:
-            param1->unk_215C = 16;
+            param1->hpCalcTemp = 16;
             break;
         case 10:
-            param1->unk_215C = 32;
+            param1->hpCalcTemp = 32;
             break;
         case 0:
             ov16_02248AF0(param1, v1);
@@ -6646,7 +6646,7 @@ static BOOL ov16_02247D04 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
             break;
         }
 
-        param1->unk_215C = ov16_022563F8(param1->unk_2D40[v2].unk_50 * -1, param1->unk_215C);
+        param1->hpCalcTemp = ov16_022563F8(param1->battleMons[v2].maxHP * -1, param1->hpCalcTemp);
     } else {
         ov16_02248AF0(param1, v1);
     }
@@ -6654,7 +6654,7 @@ static BOOL ov16_02247D04 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247E10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247E10 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u16 v1;
@@ -6662,15 +6662,15 @@ static BOOL ov16_02247E10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     ov16_02248AF0(param1, 1);
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_02255A4C(param1, param1->unk_64) == 32) {
-        v1 = param1->unk_354.unk_8A[param1->unk_3044].unk_07 * 2;
+    if (ov16_02255A4C(param1, param1->attacker) == 32) {
+        v1 = param1->aiContext.moveTable[param1->moveCur].unk_07 * 2;
     } else {
-        v1 = param1->unk_354.unk_8A[param1->unk_3044].unk_07;
+        v1 = param1->aiContext.moveTable[param1->moveCur].unk_07;
     }
 
     GF_ASSERT(v1 != 0);
 
-    if (((ov16_0223F4BC(param0) % 100) < v1) && (param1->unk_2D40[param1->unk_94].unk_4C)) {
+    if (((ov16_0223F4BC(param0) % 100) < v1) && (param1->battleMons[param1->sideEffectMon].curHP)) {
         return 0;
     }
 
@@ -6679,7 +6679,7 @@ static BOOL ov16_02247E10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247E98 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247E98 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u16 v1;
@@ -6691,11 +6691,11 @@ static BOOL ov16_02247E98 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     {
         int v2;
 
-        if ((param1->unk_2D40[param1->unk_64].unk_00 == 441) && (param1->unk_2D40[param1->unk_6C].unk_4C) && ((param1->unk_2D40[param1->unk_64].unk_70 & 0x200000) == 0)) {
+        if ((param1->battleMons[param1->attacker].species == 441) && (param1->battleMons[param1->defender].curHP) && ((param1->battleMons[param1->attacker].statusVolatile & 0x200000) == 0)) {
             if ((ov16_0223EBEC(param0) & 0x10) == 0) {
-                v2 = sub_02006494(ov16_0223EE30(param0, param1->unk_64));
+                v2 = sub_02006494(ov16_0223EE30(param0, param1->attacker));
             } else {
-                v2 = ov16_0223F810(param0, param1->unk_64);
+                v2 = ov16_0223F810(param0, param1->attacker);
             }
 
             switch (v2) {
@@ -6722,19 +6722,19 @@ static BOOL ov16_02247E98 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247F44 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247F44 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    param1->unk_134 = MoveTable_GetAttribute(&param1->unk_354.unk_8A[param1->unk_3044], v0);
+    param1->calcTemp = MoveTable_GetAttribute(&param1->aiContext.moveTable[param1->moveCur], v0);
 
     return 0;
 }
 
-static BOOL ov16_02247F7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247F7C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6753,7 +6753,7 @@ static BOOL ov16_02247F7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247FBC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247FBC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6768,7 +6768,7 @@ static BOOL ov16_02247FBC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02247FE8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02247FE8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_022665AC(param0, 0);
@@ -6776,7 +6776,7 @@ static BOOL ov16_02247FE8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248000 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248000 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6786,12 +6786,12 @@ static BOOL ov16_02248000 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    ov16_0223E30C(param0, v1, param1->unk_219C[v1], NULL, param1->unk_128);
+    ov16_0223E30C(param0, v1, param1->selectedPartySlot[v1], NULL, param1->msgItemTemp);
 
     return 0;
 }
 
-static BOOL ov16_02248040 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248040 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6810,7 +6810,7 @@ static BOOL ov16_02248040 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248084 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248084 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6825,7 +6825,7 @@ static BOOL ov16_02248084 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022480B0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022480B0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6840,7 +6840,7 @@ static BOOL ov16_022480B0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022480DC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022480DC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6855,7 +6855,7 @@ static BOOL ov16_022480DC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248108 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248108 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6870,7 +6870,7 @@ static BOOL ov16_02248108 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248134 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248134 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_02266684(param0);
@@ -6878,7 +6878,7 @@ static BOOL ov16_02248134 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224814C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224814C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_022666A0(param0);
@@ -6886,7 +6886,7 @@ static BOOL ov16_0224814C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248164 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248164 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6905,7 +6905,7 @@ static BOOL ov16_02248164 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022481A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022481A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6920,7 +6920,7 @@ static BOOL ov16_022481A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022481D0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022481D0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -6928,14 +6928,14 @@ static BOOL ov16_022481D0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_0225708C(param0, param1, &param1->unk_138) == 0) {
+    if (ov16_0225708C(param0, param1, &param1->scriptTemp) == 0) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_02248204 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248204 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -6974,7 +6974,7 @@ static BOOL ov16_02248204 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248294 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248294 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7013,7 +7013,7 @@ static BOOL ov16_02248294 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248324 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248324 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7088,7 +7088,7 @@ static BOOL ov16_02248324 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022484D0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022484D0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2[0x8];
@@ -7100,14 +7100,14 @@ static BOOL ov16_022484D0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v1 = 0;
 
     for (v0 = 0x1; v0 < 0x8; v0++) {
-        if (param1->unk_2D40[param1->unk_6C].unk_18[v0] < 12) {
+        if (param1->battleMons[param1->defender].statBoosts[v0] < 12) {
             v2[v1++] = v0 - 1;
         }
     }
 
     if (v1) {
-        param1->unk_2170 = 0x27 + v2[ov16_0223F4BC(param0) % v1];
-        param1->unk_2170 |= 0x80000000;
+        param1->sideEffectDirectFlags = 0x27 + v2[ov16_0223F4BC(param0) % v1];
+        param1->sideEffectDirectFlags |= 0x80000000;
     } else {
         ov16_02248AF0(param1, v3);
     }
@@ -7115,7 +7115,7 @@ static BOOL ov16_022484D0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248550 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248550 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7125,15 +7125,15 @@ static BOOL ov16_02248550 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    param1->unk_3124[v1] = param1->unk_2D40[v1].unk_78;
-    param1->unk_2D40[v1].unk_78 = 0;
+    param1->recycleItem[v1] = param1->battleMons[v1].heldItem;
+    param1->battleMons[v1].heldItem = 0;
 
     ov16_02253EC0(param0, param1, v1);
 
     return 0;
 }
 
-static BOOL ov16_0224859C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224859C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -7141,9 +7141,9 @@ static BOOL ov16_0224859C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (param1->unk_3124[param1->unk_64]) {
-        param1->unk_128 = param1->unk_3124[param1->unk_64];
-        param1->unk_3124[param1->unk_64] = 0;
+    if (param1->recycleItem[param1->attacker]) {
+        param1->msgItemTemp = param1->recycleItem[param1->attacker];
+        param1->recycleItem[param1->attacker] = 0;
     } else {
         ov16_02248AF0(param1, v0);
     }
@@ -7151,7 +7151,7 @@ static BOOL ov16_0224859C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022485E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022485E0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -7159,14 +7159,14 @@ static BOOL ov16_022485E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_022588BC(param0, param1, &param1->unk_138) == 0) {
+    if (ov16_022588BC(param0, param1, &param1->scriptTemp) == 0) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_02248614 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248614 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_02266820(param0);
@@ -7174,7 +7174,7 @@ static BOOL ov16_02248614 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224862C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224862C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_0226683C(param0, param1);
@@ -7182,7 +7182,7 @@ static BOOL ov16_0224862C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248648 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248648 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     ov16_02248AF0(param1, 1);
     ov16_022668D0(param0);
@@ -7190,7 +7190,7 @@ static BOOL ov16_02248648 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248660 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248660 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7209,21 +7209,21 @@ static BOOL ov16_02248660 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v4 = 1;
     }
 
-    if ((v2 == 103) && (param1->unk_2D40[v1].unk_4C == param1->unk_2D40[v1].unk_50)) {
+    if ((v2 == 103) && (param1->battleMons[v1].curHP == param1->battleMons[v1].maxHP)) {
         v4 = 1;
     }
 
     if (v4) {
-        if ((param1->unk_2D40[v1].unk_4C + param1->unk_215C) <= 0) {
-            param1->unk_215C = (param1->unk_2D40[v1].unk_4C - 1) * -1;
-            param1->unk_216C |= 0x100;
+        if ((param1->battleMons[v1].curHP + param1->hpCalcTemp) <= 0) {
+            param1->hpCalcTemp = (param1->battleMons[v1].curHP - 1) * -1;
+            param1->moveStatusFlags |= 0x100;
         }
     }
 
     return 0;
 }
 
-static BOOL ov16_02248708 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248708 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7238,12 +7238,12 @@ static BOOL ov16_02248708 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    if ((param1->unk_2D40[v1].unk_4C) && (param1->unk_219C[v1] != 6)) {
-        v3 = ov16_0223DFAC(param0, v1, param1->unk_219C[v1]);
+    if ((param1->battleMons[v1].curHP) && (param1->selectedPartySlot[v1] != 6)) {
+        v3 = ov16_0223DFAC(param0, v1, param1->selectedPartySlot[v1]);
         v4 = GetMonData(v3, MON_DATA_10, NULL);
         v5 = GetMonData(v3, MON_DATA_160, NULL);
 
-        if ((param1->unk_2D40[v1].unk_27 != 30) && (ov16_022577A4(param1, v4, v5) == 0)) {
+        if ((param1->battleMons[v1].ability != 30) && (ov16_022577A4(param1, v4, v5) == 0)) {
             ov16_02248AF0(param1, v2);
         }
     } else {
@@ -7253,7 +7253,7 @@ static BOOL ov16_02248708 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022487A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022487A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7265,14 +7265,14 @@ static BOOL ov16_022487A4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    if ((param1->unk_2D40[v1].unk_70 & 0x1000000) || (param1->unk_2D4[v1].unk_14 & 0x8)) {
+    if ((param1->battleMons[v1].statusVolatile & 0x1000000) || (param1->selfTurnFlags[v1].statusFlags & 0x8)) {
         ov16_02248AF0(param1, v2);
     }
 
     return 0;
 }
 
-static BOOL ov16_02248800 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248800 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7291,7 +7291,7 @@ static BOOL ov16_02248800 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248850 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248850 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7301,12 +7301,12 @@ static BOOL ov16_02248850 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    param1->unk_6C = ov16_02257028(param0, param1, v1);
+    param1->defender = ov16_02257028(param0, param1, v1);
 
     return 0;
 }
 
-static BOOL ov16_02248880 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248880 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -7314,14 +7314,14 @@ static BOOL ov16_02248880 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
 
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_0225B228(param0, param1, &param1->unk_138) == 0) {
+    if (ov16_0225B228(param0, param1, &param1->scriptTemp) == 0) {
         ov16_02248AF0(param1, v0);
     }
 
     return 0;
 }
 
-static BOOL ov16_022488B4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022488B4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7336,7 +7336,7 @@ static BOOL ov16_022488B4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_022488E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022488E0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7351,7 +7351,7 @@ static BOOL ov16_022488E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_0224890C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_0224890C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7368,7 +7368,7 @@ static BOOL ov16_0224890C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248944 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248944 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
 
@@ -7383,7 +7383,7 @@ static BOOL ov16_02248944 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     return 0;
 }
 
-static BOOL ov16_02248988 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248988 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7398,19 +7398,19 @@ static BOOL ov16_02248988 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v1 = 1;
     }
 
-    if (v0 > param1->unk_F0) {
+    if (v0 > param1->waitCounter) {
         ov16_02248AF0(param1, -2);
-        param1->unk_F0 += v1;
+        param1->waitCounter += v1;
     } else {
-        param1->unk_F0 = 0;
+        param1->waitCounter = 0;
     }
 
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
 
     return 0;
 }
 
-static BOOL ov16_022489F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_022489F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7420,14 +7420,14 @@ static BOOL ov16_022489F4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_02248AD0(param1);
 
-    if (param1->unk_354.unk_8A[param1->unk_3044].unk_04 == v0) {
+    if (param1->aiContext.moveTable[param1->moveCur].unk_04 == v0) {
         ov16_02248AF0(param1, v1);
     }
 
     return 0;
 }
 
-static BOOL ov16_02248A34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248A34 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7441,12 +7441,12 @@ static BOOL ov16_02248A34 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v2 = ov16_02248AD0(param1);
     v3 = ov16_02248B10(param0, param1, v1);
 
-    param1->unk_134 = sub_020759CC(v0, v3[0], v2);
+    param1->calcTemp = sub_020759CC(v0, v3[0], v2);
 
     return 0;
 }
 
-static BOOL ov16_02248A7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248A7C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -7456,187 +7456,187 @@ static BOOL ov16_02248A7C (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     v0 = ov16_02248AD0(param1);
     v1 = ov16_0224A984(param0, param1, v0);
 
-    ov16_02251C94(param0, param1, v1, param1->unk_219C[v1]);
+    ov16_02251C94(param0, param1, v1, param1->selectedPartySlot[v1]);
 
     return 0;
 }
 
-static BOOL ov16_02248AB4 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static BOOL ov16_02248AB4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
-    param1->unk_3154_0 = 1;
+    param1->battleProgressFlag = 1;
     return ov16_02251EF4(param1);
 }
 
-static int ov16_02248AD0 (UnkStruct_ov16_0224B9DC * param0)
+static int ov16_02248AD0 (BattleContext * param0)
 {
     int v0;
 
-    v0 = param0->unk_2700[param0->unk_B4];
-    param0->unk_B4++;
+    v0 = param0->battleScript[param0->scriptCursor];
+    param0->scriptCursor++;
 
     return v0;
 }
 
-static void ov16_02248AF0 (UnkStruct_ov16_0224B9DC * param0, int param1)
+static void ov16_02248AF0 (BattleContext * param0, int param1)
 {
-    param0->unk_B4 += param1;
+    param0->scriptCursor += param1;
 }
 
-static void ov16_02248B00 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2)
+static void ov16_02248B00 (BattleContext * param0, int param1, int param2)
 {
     ov16_02251E1C(param0, param1, param2);
 }
 
-static void ov16_02248B08 (UnkStruct_ov16_0224B9DC * param0, int param1, int param2)
+static void ov16_02248B08 (BattleContext * param0, int param1, int param2)
 {
     ov16_02251E5C(param0, param1, param2);
 }
 
-static void * ov16_02248B10 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static void * ov16_02248B10 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     switch (param2) {
     case 0:
         return &param0->unk_2C;
     case 1:
-        return &param1->unk_214C;
+        return &param1->criticalBoosts;
     case 2:
-        return &param1->unk_2170;
+        return &param1->sideEffectDirectFlags;
     case 3:
-        return &param1->unk_2174;
+        return &param1->sideEffectIndirectFlags;
     case 4:
-        return &param1->unk_2178;
+        return &param1->sideEffectAbilityFlags;
     case 5:
-        return &param1->unk_88;
+        return &param1->sideEffectType;
     case 6:
-        return &param1->unk_213C;
+        return &param1->battleStatusMask;
     case 7:
-        return &param1->unk_180;
+        return &param1->fieldConditionsMask;
     case 8:
-        return &param1->unk_2158;
+        return &param1->powerMul;
     case 9:
-        return &param1->unk_134;
+        return &param1->calcTemp;
     case 10:
-        return &param1->unk_216C;
+        return &param1->moveStatusFlags;
     case 11:
-        return &param1->unk_1BC[ov16_0223E208(param0, param1->unk_64)];
+        return &param1->sideConditionsMask[ov16_0223E208(param0, param1->attacker)];
     case 12:
-        return &param1->unk_1BC[ov16_0223E208(param0, param1->unk_6C)];
+        return &param1->sideConditionsMask[ov16_0223E208(param0, param1->defender)];
     case 13:
-        return &param1->unk_1BC[ov16_0223E208(param0, param1->unk_94)];
+        return &param1->sideConditionsMask[ov16_0223E208(param0, param1->sideEffectMon)];
     case 14:
-        return &param1->unk_2144;
+        return &param1->damage;
     case 15:
-        return &param1->unk_64;
+        return &param1->attacker;
     case 16:
-        return &param1->unk_6C;
+        return &param1->defender;
     case 17:
-        return &param1->unk_94;
+        return &param1->sideEffectMon;
     case 18:
-        return &param1->unk_74;
+        return &param1->faintedMon;
     case 19:
-        return &param1->unk_78;
+        return &param1->switchedMon;
     case 20:
-        return &param1->unk_118;
+        return &param1->msgBattlerTemp;
     case 21:
-        return &param1->unk_30E4[param1->unk_64];
+        return &param1->storedDamage[param1->attacker];
     case 22:
-        return &param1->unk_130;
+        return &param1->msgTemp;
     case 23:
-        return &param1->unk_14C;
+        return &param1->payDayCount;
     case 24:
-        return &param1->unk_3044;
+        return &param1->moveCur;
     case 25:
-        return &param1->unk_150;
+        return &param1->totalTurns;
     case 26:
-        return &param1->unk_11C;
+        return &param1->msgAttacker;
     case 27:
-        return &param1->unk_120;
+        return &param1->msgDefender;
     case 28:
-        return &param1->unk_3040;
+        return &param1->moveTemp;
     case 29:
-        return &param1->unk_98;
+        return &param1->lastBattlerId;
     case 30:
-        return &param1->unk_2154;
+        return &param1->movePower;
     case 31:
-        return &param1->unk_38;
+        return &param1->afterMoveMessageType;
     case 32:
-        return &param1->unk_215C;
+        return &param1->hpCalcTemp;
     case 33:
         return &param0->unk_241C;
     case 34:
-        return &param1->unk_8C;
+        return &param1->sideEffectParam;
     case 35:
-        return &param1->unk_124;
+        return &param1->msgMoveTemp;
     case 36:
-        return &param1->unk_128;
+        return &param1->msgItemTemp;
     case 37:
-        return &param1->unk_12C;
+        return &param1->msgAbilityTemp;
     case 38:
-        return &param1->unk_184.unk_00;
+        return &param1->fieldConditions.weatherTurns;
     case 39:
-        return &param1->unk_3104;
+        return &param1->battlerSpeedTemp;
     case 40:
-        return &param1->unk_2180;
+        return &param1->multiHitLoop;
     case 41:
-        return &param1->unk_1D4[param1->unk_64].unk_18;
+        return &param1->turnFlags[param1->attacker].physicalDamageAttackerMask;
     case 42:
-        return &param1->unk_1D4[param1->unk_64].unk_30;
+        return &param1->turnFlags[param1->attacker].specialDamageAttackerMask;
     case 43:
-        return &param1->unk_138;
+        return &param1->scriptTemp;
     case 44:
-        return &param1->unk_2150;
+        return &param1->criticalMul;
     case 45:
-        return &param1->unk_1D4[param1->unk_64].unk_34;
+        return &param1->turnFlags[param1->attacker].lastDamageTaken;
     case 46:
-        return &param1->unk_1D4[param1->unk_6C].unk_34;
+        return &param1->turnFlags[param1->defender].lastDamageTaken;
     case 47:
-        return &param1->unk_2D4[param1->unk_64].unk_14;
+        return &param1->selfTurnFlags[param1->attacker].statusFlags;
     case 48:
-        return &param1->unk_2D4[param1->unk_6C].unk_14;
+        return &param1->selfTurnFlags[param1->defender].statusFlags;
     case 49:
-        return &param1->unk_2D4[param1->unk_94].unk_14;
+        return &param1->selfTurnFlags[param1->sideEffectMon].statusFlags;
     case 50:
-        return &param1->unk_3114;
+        return &param1->flingTemp;
     case 51:
-        return &param1->unk_3118;
+        return &param1->flingScript;
     case 52:
         return &param0->unk_2408;
     case 53:
-        return &param1->unk_304C[param1->unk_64];
+        return &param1->moveLockedInto[param1->attacker];
     case 54:
-        return &param1->unk_2148;
+        return &param1->hitDamage;
     case 55:
         return &param0->unk_2410;
     case 56:
-        return &param1->unk_7C;
+        return &param1->switchedMonTemp;
     case 57:
-        return &param1->unk_2160;
+        return &param1->moveType;
     case 58:
-        return &param1->unk_2164;
+        return &param1->moveEffectChance;
     case 59:
         return &param0->unk_2418;
     case 60:
-        return &param1->unk_2140;
+        return &param1->battleStatusMask2;
     case 61:
-        return &param1->unk_EC;
+        return &param1->turnOrderCounter;
     case 62:
         return &param0->unk_44;
     case 63:
-        return &param1->unk_68;
+        return &param1->attackerTemp;
     case 64:
-        return &param1->unk_70;
+        return &param1->defenderTemp;
     case 65:
-        return &param1->unk_2D4[param1->unk_6C].unk_04;
+        return &param1->selfTurnFlags[param1->defender].physicalDamageTaken;
     case 66:
-        return &param1->unk_1D4[param1->unk_118].unk_3C;
+        return &param1->turnFlags[param1->msgBattlerTemp].assuranceDamageMask;
     case 67:
-        return &param1->unk_1D4[param1->unk_6C].unk_3C;
+        return &param1->turnFlags[param1->defender].assuranceDamageMask;
 
     case 68:
-        return &param1->unk_2D4[param1->unk_64].unk_18;
+        return &param1->selfTurnFlags[param1->attacker].shellBellDamageDealt;
 
     case 69:
-        return &param1->unk_3150;
+        return &param1->waitingBattlers;
     }
 
     return NULL;
@@ -7648,7 +7648,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     int v1;
     UnkStruct_ov16_0224B7CC * v2 = param1;
     Pokemon * v3;
-    UnkStruct_ov16_0225C300 v4;
+    BattleMessage v4;
     int v5;
     int v6;
     UnkStruct_0200B144 * v7;
@@ -7658,7 +7658,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
 
     v7 = ov16_0223E05C(v2->unk_00);
     v8 = ov16_0223DF0C(v2->unk_00);
-    v5 = (v2->unk_04->unk_74) >> 1 & 1;
+    v5 = (v2->unk_04->faintedMon) >> 1 & 1;
     v6 = 0;
 
     for (v1 = v2->unk_30[6]; v1 < ov16_0223DF60(v2->unk_00, v6); v1++) {
@@ -7666,7 +7666,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         v9 = GetMonData(v3, MON_DATA_HELD_ITEM, NULL);
         v10 = Item_GetAttribute(v9, 1, 5);
 
-        if ((v10 == 51) || (v2->unk_04->unk_A4[v5] & sub_020787CC(v1))) {
+        if ((v10 == 51) || (v2->unk_04->monsGainingExp[v5] & sub_020787CC(v1))) {
             break;
         }
     }
@@ -7674,7 +7674,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     if (v1 == ov16_0223DF60(v2->unk_00, v6)) {
         v2->unk_28 = 38;
     } else if ((v8 & 0x2) && ((v8 & 0x40) == 0)) {
-        if (v2->unk_04->unk_219C[2] == v1) {
+        if (v2->unk_04->selectedPartySlot[2] == v1) {
             v6 = 2;
         }
     }
@@ -7688,22 +7688,22 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         v9 = GetMonData(v3, MON_DATA_HELD_ITEM, NULL);
         v10 = Item_GetAttribute(v9, 1, 5);
 
-        if (((v8 & 0x1) == 0) && ((v2->unk_04->unk_2D40[1].unk_4C + v2->unk_04->unk_2D40[3].unk_4C) == 0) && (GetMonData(v3, MON_DATA_163, NULL)) && (v2->unk_04->unk_3144 == 0)) {
+        if (((v8 & 0x1) == 0) && ((v2->unk_04->battleMons[1].curHP + v2->unk_04->battleMons[3].curHP) == 0) && (GetMonData(v3, MON_DATA_163, NULL)) && (v2->unk_04->expJinglePlayed == 0)) {
             sub_0200549C(1127);
-            v2->unk_04->unk_3144 = 1;
+            v2->unk_04->expJinglePlayed = 1;
             ov16_0223F460(v2->unk_00, 2);
         }
 
         v11 = 0;
-        v4.unk_02 = 1;
+        v4.id = 1;
 
         if ((GetMonData(v3, MON_DATA_163, NULL)) && (GetMonData(v3, MON_DATA_161, NULL) != 100)) {
-            if (v2->unk_04->unk_A4[v5] & sub_020787CC(v1)) {
-                v11 = v2->unk_04->unk_9C;
+            if (v2->unk_04->monsGainingExp[v5] & sub_020787CC(v1)) {
+                v11 = v2->unk_04->gainedExp;
             }
 
             if (v10 == 51) {
-                v11 += v2->unk_04->unk_A0;
+                v11 += v2->unk_04->sharedExp;
             }
 
             if (v10 == 66) {
@@ -7721,25 +7721,25 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
                     v11 = v11 * 150 / 100;
                 }
 
-                v4.unk_02 = 2;
+                v4.id = 2;
             }
 
             v12 = GetMonData(v3, MON_DATA_EXP, NULL);
             v2->unk_30[3] = v12 - sub_02075AAC(v3);
             v12 += v11;
 
-            if (v1 == v2->unk_04->unk_219C[v6]) {
-                v2->unk_04->unk_2D40[v6].unk_64 = v12;
+            if (v1 == v2->unk_04->selectedPartySlot[v6]) {
+                v2->unk_04->battleMons[v6].exp = v12;
             }
 
             sub_02074B30(v3, 8, (u8 *)&v12);
-            ov16_022499C0(ov16_0223DF20(v2->unk_00, v6), v1, v2->unk_04->unk_2D40[v2->unk_04->unk_74].unk_00, v2->unk_04->unk_2D40[v2->unk_04->unk_74].unk_26_0);
+            ov16_022499C0(ov16_0223DF20(v2->unk_00, v6), v1, v2->unk_04->battleMons[v2->unk_04->faintedMon].species, v2->unk_04->battleMons[v2->unk_04->faintedMon].formNum);
         }
 
         if (v11) {
-            v4.unk_01 = 17;
-            v4.unk_04[0] = v6 | (v1 << 8);
-            v4.unk_04[1] = v11;
+            v4.tags = 17;
+            v4.params[0] = v6 | (v1 << 8);
+            v4.params[1] = v11;
             v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
             v2->unk_30[1] = 30 / 4;
             v2->unk_28++;
@@ -7759,7 +7759,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 3:
-        if (v1 == v2->unk_04->unk_219C[v6]) {
+        if (v1 == v2->unk_04->selectedPartySlot[v6]) {
             ov16_02265D14(v2->unk_00, v2->unk_04, v6, v2->unk_30[3]);
             v2->unk_30[3] = 0;
             v2->unk_28++;
@@ -7774,7 +7774,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 5:
         if (sub_02076B14(v3)) {
-            if (v2->unk_04->unk_219C[v6] == v1) {
+            if (v2->unk_04->selectedPartySlot[v6] == v1) {
                 ov16_02265FF8(v2->unk_00, v2->unk_04, v6, 8);
                 ov16_0226614C(v2->unk_00, v6);
             }
@@ -7802,17 +7802,17 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
                 sub_02075C74(v3, 0, ov16_0223E24C(v2->unk_00));
                 sub_020741B8(v3);
 
-                if (v2->unk_04->unk_219C[v6] == v1) {
-                    ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->unk_219C[v6]);
+                if (v2->unk_04->selectedPartySlot[v6] == v1) {
+                    ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->selectedPartySlot[v6]);
                 }
 
-                v2->unk_04->unk_3109 |= sub_020787CC(v1);
+                v2->unk_04->levelUpMons |= sub_020787CC(v1);
                 ov16_022661CC(v2->unk_00, v2->unk_04, v6);
 
-                v4.unk_02 = 3;
-                v4.unk_01 = 17;
-                v4.unk_04[0] = v6 | (v1 << 8);
-                v4.unk_04[1] = v13;
+                v4.id = 3;
+                v4.tags = 17;
+                v4.params[0] = v6 | (v1 << 8);
+                v4.params[1] = v13;
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
                 v2->unk_28 = 7;
             }
@@ -7825,7 +7825,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 8:
-        if (v2->unk_04->unk_219C[v6] != v1) {
+        if (v2->unk_04->selectedPartySlot[v6] != v1) {
             ov16_0224B520(v2->unk_00, v2, v3);
         }
 
@@ -7868,16 +7868,16 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         v22 = (UnkStruct_ov16_02248E74 *)v2->unk_04->unk_17C;
 
         for (v0 = 0; v0 < 6; v0++) {
-            v4.unk_02 = 947;
-            v4.unk_01 = 4;
-            v4.unk_04[0] = v19[v0];
+            v4.id = 947;
+            v4.tags = 4;
+            v4.params[0] = v19[v0];
 
             ov16_0223FB78(v2->unk_00, v21, v7, &v4, 0, 16 * v0, 0, 0, 0);
 
-            v4.unk_02 = 948;
-            v4.unk_01 = 7;
-            v4.unk_04[0] = GetMonData(v3, v20[v0], NULL) - v22->unk_00[v0];
-            v4.unk_1C = 2;
+            v4.id = 948;
+            v4.tags = 7;
+            v4.params[0] = GetMonData(v3, v20[v0], NULL) - v22->unk_00[v0];
+            v4.digits = 2;
 
             ov16_0223FB78(v2->unk_00, v21, v7, &v4, 80, 16 * v0, 0x2, 28, 0);
         }
@@ -7898,10 +7898,10 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         sub_0201AE78(v25, 0xf, 80, 0, 36, 96);
 
         for (v0 = 0; v0 < 6; v0++) {
-            v4.unk_02 = 949;
-            v4.unk_01 = 7;
-            v4.unk_04[0] = GetMonData(v3, v24[v0], NULL);
-            v4.unk_1C = 3;
+            v4.id = 949;
+            v4.tags = 7;
+            v4.params[0] = GetMonData(v3, v24[v0], NULL);
+            v4.digits = 3;
 
             ov16_0223FB78(v2->unk_00, v25, v7, &v4, 72, 16 * v0, 0x2, 36, 0);
         }
@@ -7932,7 +7932,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
 
         ov16_0223F8DC(v2->unk_00, 0);
 
-        if (v2->unk_04->unk_219C[v6] != v1) {
+        if (v2->unk_04->selectedPartySlot[v6] != v1) {
             ov16_0224B7CC(v2->unk_00, v2);
         }
 
@@ -7957,14 +7957,14 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
             v2->unk_28 = 16;
             break;
         default:
-            if (v2->unk_04->unk_219C[v6] == v1) {
-                ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->unk_219C[v6]);
+            if (v2->unk_04->selectedPartySlot[v6] == v1) {
+                ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->selectedPartySlot[v6]);
             }
 
-            v4.unk_02 = 4;
-            v4.unk_01 = 10;
-            v4.unk_04[0] = v6 | (v1 << 8);
-            v4.unk_04[1] = v28;
+            v4.id = 4;
+            v4.tags = 10;
+            v4.params[0] = v6 | (v1 << 8);
+            v4.params[1] = v28;
             v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
             v2->unk_28 = 36;
             break;
@@ -7972,17 +7972,17 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     }
     break;
     case 16:
-        v4.unk_02 = 1178;
-        v4.unk_01 = 10;
-        v4.unk_04[0] = v6 | (v1 << 8);
-        v4.unk_04[1] = v2->unk_30[4];
+        v4.id = 1178;
+        v4.tags = 10;
+        v4.params[0] = v6 | (v1 << 8);
+        v4.params[1] = v2->unk_30[4];
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
     case 18:
-        v4.unk_02 = 1179;
-        v4.unk_01 = 2;
-        v4.unk_04[0] = v6 | (v1 << 8);
+        v4.id = 1179;
+        v4.tags = 2;
+        v4.params[0] = v6 | (v1 << 8);
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
@@ -8005,8 +8005,8 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
             if (ov16_02259AB4(v2->unk_04, v6) == 0xff) {
                 v2->unk_28 = 31;
             } else {
-                v4.unk_02 = 1183;
-                v4.unk_01 = 0;
+                v4.id = 1183;
+                v4.tags = 0;
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
                 v2->unk_28 = 22;
             }
@@ -8022,13 +8022,13 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         if (ov16_02259AB4(v2->unk_04, v6) == 0xff) {
             v2->unk_28 = 31;
         } else if (ov16_02259AB4(v2->unk_04, v6)) {
-            v2->unk_30[5] = v2->unk_04->unk_2300[v6][0] - 1;
+            v2->unk_30[5] = v2->unk_04->ioBuffer[v6][0] - 1;
             v2->unk_28 = 24;
         }
         break;
     case 31:
-        v4.unk_02 = 1184;
-        v4.unk_01 = 0;
+        v4.id = 1184;
+        v4.tags = 0;
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
@@ -8041,10 +8041,10 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
             if (ov16_02259AB4(v2->unk_04, v6) == 0xff) {
                 v2->unk_28 = 16;
             } else {
-                v4.unk_02 = 1188;
-                v4.unk_01 = 10;
-                v4.unk_04[0] = v6 | (v1 << 8);
-                v4.unk_04[1] = v2->unk_30[4];
+                v4.id = 1188;
+                v4.tags = 10;
+                v4.params[0] = v6 | (v1 << 8);
+                v4.params[1] = v2->unk_30[4];
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
                 v2->unk_28 = 35;
             }
@@ -8056,38 +8056,38 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 24:
-        v4.unk_02 = 1189;
-        v4.unk_01 = 0;
+        v4.id = 1189;
+        v4.tags = 0;
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
     case 26:
-        v4.unk_02 = 1190;
-        v4.unk_01 = 10;
-        v4.unk_04[0] = v6 | (v1 << 8);
-        v4.unk_04[1] = GetMonData(v3, 54 + v2->unk_30[5], NULL);
+        v4.id = 1190;
+        v4.tags = 10;
+        v4.params[0] = v6 | (v1 << 8);
+        v4.params[1] = GetMonData(v3, 54 + v2->unk_30[5], NULL);
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
     case 28:
-        v4.unk_02 = 1191;
-        v4.unk_01 = 0;
+        v4.id = 1191;
+        v4.tags = 0;
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v2->unk_28++;
         break;
     case 30:
-        v4.unk_02 = 1192;
-        v4.unk_01 = 10;
-        v4.unk_04[0] = v6 | (v1 << 8);
-        v4.unk_04[1] = v2->unk_30[4];
+        v4.id = 1192;
+        v4.tags = 10;
+        v4.params[0] = v6 | (v1 << 8);
+        v4.params[1] = v2->unk_30[4];
         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
         v0 = 0;
 
         sub_02074B30(v3, 62 + v2->unk_30[5], &v0);
         sub_02077230(v3, v2->unk_30[4], v2->unk_30[5]);
 
-        if (v2->unk_04->unk_219C[v6] == v1) {
-            ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->unk_219C[v6]);
+        if (v2->unk_04->selectedPartySlot[v6] == v1) {
+            ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->selectedPartySlot[v6]);
         }
 
         v2->unk_28 = 36;
@@ -8098,7 +8098,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 37:
-        v2->unk_04->unk_A4[v5] &= (sub_020787CC(v1) ^ 0xffffffff);
+        v2->unk_04->monsGainingExp[v5] &= (sub_020787CC(v1) ^ 0xffffffff);
         v2->unk_30[6] = v1 + 1;
         v2->unk_28 = 0;
         break;
@@ -8223,7 +8223,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     v5 = ov16_0223E000(v2->unk_00);
     v1 = 1;
 
-    if (v2->unk_04->unk_3108 & sub_020787CC(v1)) {
+    if (v2->unk_04->battlersSwitchingMask & sub_020787CC(v1)) {
         v1 = 3;
     }
 
@@ -8356,11 +8356,11 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     case 8:
         if (ov12_022368D0(v2->unk_08, 6) == 0) {
             {
-                UnkStruct_ov16_0225C300 v10;
+                BattleMessage v10;
 
-                v10.unk_02 = 867;
-                v10.unk_01 = 2 | 0x80;
-                v10.unk_04[0] = v1;
+                v10.id = 867;
+                v10.tags = 2 | 0x80;
+                v10.params[0] = v1;
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v10, ov16_0223EDF0(v2->unk_00));
                 v2->unk_30[1] = 30;
                 v2->unk_28 = 9;
@@ -8380,10 +8380,10 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         if (ov12_022368D0(v2->unk_08, 7) == 0) {
             if (--v2->unk_30[1] == 0) {
                 ov16_0223F4B0(v2->unk_00, v1);
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->unk_219C[v1]);
+                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 if (ov16_0223DF0C(v2->unk_00) & (0x200 | 0x400)) {
-                    v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->unk_219C[v1]);
+                    v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                     ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
                     sub_02015738(ov16_0223E220(v2->unk_00), 1);
                     sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
@@ -8396,11 +8396,11 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                     v2->unk_28 = 16;
                 } else {
                     {
-                        UnkStruct_ov16_0225C300 v11;
+                        BattleMessage v11;
 
-                        v11.unk_02 = 871;
-                        v11.unk_01 = 2 | 0x80;
-                        v11.unk_04[0] = v1;
+                        v11.id = 871;
+                        v11.tags = 2 | 0x80;
+                        v11.params[0] = v1;
                         v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v11, ov16_0223EDF0(v2->unk_00));
                         v2->unk_30[1] = 30;
                         v2->unk_28 = 11;
@@ -8437,7 +8437,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 v12.unk_04 = ov16_0223E064(v2->unk_00);
                 v12.unk_08 = v5;
                 v12.unk_0C = 5;
-                v12.unk_10 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->unk_219C[v1]);
+                v12.unk_10 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                 v12.unk_14 = sub_0207A280(ov16_0223E068(v2->unk_00));
                 v2->unk_50[1] = sub_0201EE9C();
                 v2->unk_50[0] = ov21_021E8D48(&v12);
@@ -8485,7 +8485,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
             {
                 UnkStruct_02008A90 v14;
 
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->unk_219C[v1]);
+                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 ov12_0223783C(v2->unk_08);
                 sub_02007DD4(v5);
@@ -8515,7 +8515,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     {
         int v15;
 
-        v15 = v1 | (v2->unk_04->unk_219C[v1]);
+        v15 = v1 | (v2->unk_04->selectedPartySlot[v1]);
         ov16_02265B2C(v2->unk_00, v2->unk_04, 0, 868, 5, NULL, v15);
         v2->unk_28++;
     }
@@ -8540,7 +8540,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 sub_0200F344(0, 0x0);
                 sub_0200F344(1, 0x0);
 
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->unk_219C[v1]);
+                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                 v16 = sub_0208712C(5, 1, GetMonData(v3, MON_DATA_SPECIES, NULL), 10, ov16_0223EDA4(v2->unk_00));
                 v2->unk_50[1] = v16;
 
@@ -8584,7 +8584,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 int v20;
 
                 v19 = v2->unk_50[1];
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->unk_219C[v1]);
+                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 if (v19->unk_14 == 0) {
                     sub_02074B30(v3, 120, v19->unk_18);
@@ -8603,12 +8603,12 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     case 23:
         if (sub_0200384C(v4) == 0) {
             {
-                UnkStruct_ov16_0225C300 v21;
+                BattleMessage v21;
                 Party * v22;
                 int v23;
 
                 v22 = ov16_0223DF20(v2->unk_00, 0);
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->unk_219C[v1]);
+                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 ov16_0223F9A0(v2->unk_00, v1);
                 ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
@@ -8652,16 +8652,16 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
 
                         if (v2->unk_28 == 22) {
                             if (v25 == v26) {
-                                v21.unk_02 = 1174 + ov16_0223F240(v2->unk_00);
-                                v21.unk_01 = 19 | 0x80;
-                                v21.unk_04[0] = v1;
-                                v21.unk_04[1] = v25;
+                                v21.id = 1174 + ov16_0223F240(v2->unk_00);
+                                v21.tags = 19 | 0x80;
+                                v21.params[0] = v1;
+                                v21.params[1] = v25;
                             } else {
-                                v21.unk_02 = 1176 + ov16_0223F240(v2->unk_00);
-                                v21.unk_01 = 47 | 0x80;
-                                v21.unk_04[0] = v1;
-                                v21.unk_04[1] = v25;
-                                v21.unk_04[2] = v26;
+                                v21.id = 1176 + ov16_0223F240(v2->unk_00);
+                                v21.tags = 47 | 0x80;
+                                v21.params[0] = v1;
+                                v21.params[1] = v25;
+                                v21.params[2] = v26;
                             }
 
                             v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v21, ov16_0223EDF0(v2->unk_00));
@@ -8691,12 +8691,12 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     case 25:
         if (ov12_022368D0(v2->unk_08, 2) == 0) {
             {
-                UnkStruct_ov16_0225C300 v30;
+                BattleMessage v30;
 
                 ov12_0223783C(v2->unk_08);
 
-                v30.unk_02 = 859;
-                v30.unk_01 = 0;
+                v30.id = 859;
+                v30.tags = 0;
 
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v30, ov16_0223EDF0(v2->unk_00));
                 v2->unk_30[1] = 30;
@@ -8708,10 +8708,10 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         if (sub_0201D724(v2->unk_30[0]) == 0) {
             if (--v2->unk_30[1] == 0) {
                 {
-                    UnkStruct_ov16_0225C300 v31;
+                    BattleMessage v31;
 
-                    v31.unk_02 = 860;
-                    v31.unk_01 = 0;
+                    v31.id = 860;
+                    v31.tags = 0;
                     v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v31, ov16_0223EDF0(v2->unk_00));
                     v2->unk_30[1] = 30;
                     v2->unk_28 = 27;
@@ -8742,10 +8742,10 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     case 30:
         if (ov16_02251FC8(v2->unk_04)) {
             {
-                UnkStruct_ov16_0225C300 v32;
+                BattleMessage v32;
 
-                v32.unk_02 = 863 + v2->unk_30[2];
-                v32.unk_01 = 0;
+                v32.id = 863 + v2->unk_30[2];
+                v32.tags = 0;
                 v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v32, ov16_0223EDF0(v2->unk_00));
                 v2->unk_30[1] = 30;
                 v2->unk_28 = 31;
@@ -8801,7 +8801,7 @@ static const u8 Unk_ov16_0226E638[][2] = {
     {0x28, 0xA}
 };
 
-static int ov16_0224A724 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1)
+static int ov16_0224A724 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 {
     int v0;
     u32 v1;
@@ -8815,19 +8815,19 @@ static int ov16_0224A724 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
         return 4;
     }
 
-    if (param1->unk_128 == 5) {
-        v3 = sub_020759F0(param1->unk_2D40[param1->unk_6C].unk_00, 8);
-        v3 = v3 * Unk_ov16_0226E638[param1->unk_311C][0] / Unk_ov16_0226E638[param1->unk_311C][1];
+    if (param1->msgItemTemp == 5) {
+        v3 = sub_020759F0(param1->battleMons[param1->defender].species, 8);
+        v3 = v3 * Unk_ov16_0226E638[param1->safariCatchCount][0] / Unk_ov16_0226E638[param1->safariCatchCount][1];
     } else {
-        v3 = sub_020759F0(param1->unk_2D40[param1->unk_6C].unk_00, 8);
+        v3 = sub_020759F0(param1->battleMons[param1->defender].species, 8);
     }
 
     v4 = 10;
-    v5 = ov16_02252060(param1, param1->unk_6C, 27, NULL);
-    v6 = ov16_02252060(param1, param1->unk_6C, 28, NULL);
+    v5 = ov16_02252060(param1, param1->defender, 27, NULL);
+    v6 = ov16_02252060(param1, param1->defender, 28, NULL);
 
-    if (param1->unk_128 > 5) {
-        switch (param1->unk_128) {
+    if (param1->msgItemTemp > 5) {
+        switch (param1->msgItemTemp) {
         case 6:
             if ((v5 == 11) || (v6 == 11) || (v5 == 6) || (v6 == 6)) {
                 v4 = 30;
@@ -8839,8 +8839,8 @@ static int ov16_0224A724 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
             }
             break;
         case 8:
-            if (param1->unk_2D40[param1->unk_6C].unk_34 < 40) {
-                v4 = 40 - param1->unk_2D40[param1->unk_6C].unk_34;
+            if (param1->battleMons[param1->defender].level < 40) {
+                v4 = 40 - param1->battleMons[param1->defender].level;
 
                 if (v4 < 10) {
                     v4 = 10;
@@ -8848,12 +8848,12 @@ static int ov16_0224A724 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
             }
             break;
         case 9:
-            if (ov16_0223F9E0(param0, param1->unk_2D40[param1->unk_6C].unk_00) == 1) {
+            if (ov16_0223F9E0(param0, param1->battleMons[param1->defender].species) == 1) {
                 v4 = 30;
             }
             break;
         case 10:
-            v4 = 10 + param1->unk_150;
+            v4 = 10 + param1->totalTurns;
 
             if (v4 > 40) {
                 v4 = 40;
@@ -8865,22 +8865,22 @@ static int ov16_0224A724 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
             }
             break;
         case 15:
-            if (param1->unk_150 < 1) {
+            if (param1->totalTurns < 1) {
                 v4 = 40;
             }
             break;
         }
     } else {
-        v4 = Unk_ov16_0226E570[param1->unk_128 - 2];
+        v4 = Unk_ov16_0226E570[param1->msgItemTemp - 2];
     }
 
-    v1 = ((v3 * v4) / 10) * (param1->unk_2D40[param1->unk_6C].unk_50 * 3 - param1->unk_2D40[param1->unk_6C].unk_4C * 2) / (param1->unk_2D40[param1->unk_6C].unk_50 * 3);
+    v1 = ((v3 * v4) / 10) * (param1->battleMons[param1->defender].maxHP * 3 - param1->battleMons[param1->defender].curHP * 2) / (param1->battleMons[param1->defender].maxHP * 3);
 
-    if (param1->unk_2D40[param1->unk_6C].unk_6C & (0x7 | 0x20)) {
+    if (param1->battleMons[param1->defender].status & (0x7 | 0x20)) {
         v1 *= 2;
     }
 
-    if (param1->unk_2D40[param1->unk_6C].unk_6C & (0x8 | 0x40 | 0x10 | 0x80)) {
+    if (param1->battleMons[param1->defender].status & (0x8 | 0x40 | 0x10 | 0x80)) {
         v1 = v1 * 15 / 10;
     }
 
@@ -8906,7 +8906,7 @@ static int ov16_0224A724 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
             }
         }
 
-        if (param1->unk_128 == 1) {
+        if (param1->msgItemTemp == 1) {
             v0 = 4;
         }
     }
@@ -8914,30 +8914,30 @@ static int ov16_0224A724 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     return v0;
 }
 
-static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     int v0;
 
     switch (param2) {
     default:
     case 0x1:
-        v0 = param1->unk_64;
+        v0 = param1->attacker;
         break;
     case 0x2:
-        v0 = param1->unk_6C;
+        v0 = param1->defender;
         break;
     case 0x5:
-        v0 = param1->unk_74;
+        v0 = param1->faintedMon;
         break;
     case 0x6:
     case 0x16:
-        v0 = param1->unk_78;
+        v0 = param1->switchedMon;
         break;
     case 0x7:
-        v0 = param1->unk_94;
+        v0 = param1->sideEffectMon;
         break;
     case 0x8:
-        v0 = param1->unk_80;
+        v0 = param1->abilityMon;
         break;
     case 0x4:
     {
@@ -9050,10 +9050,10 @@ static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     }
     break;
     case 0xe:
-        v0 = param1->unk_11C;
+        v0 = param1->msgAttacker;
         break;
     case 0xf:
-        v0 = param1->unk_120;
+        v0 = param1->msgDefender;
         break;
     case 0x10:
     {
@@ -9062,7 +9062,7 @@ static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
         v15 = ov16_0223DF1C(param0);
 
         for (v0 = 0; v0 < v15; v0++) {
-            if ((v0 != param1->unk_64) && (ov16_0223E208(param0, v0) == ov16_0223E208(param0, param1->unk_64))) {
+            if ((v0 != param1->attacker) && (ov16_0223E208(param0, v0) == ov16_0223E208(param0, param1->attacker))) {
                 break;
             }
         }
@@ -9080,7 +9080,7 @@ static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
         v16 = ov16_0223DF1C(param0);
 
         for (v0 = 0; v0 < v16; v0++) {
-            if ((v0 != param1->unk_6C) && (ov16_0223E208(param0, v0) == ov16_0223E208(param0, param1->unk_6C))) {
+            if ((v0 != param1->defender) && (ov16_0223E208(param0, v0) == ov16_0223E208(param0, param1->defender))) {
                 break;
             }
         }
@@ -9097,7 +9097,7 @@ static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
         int v18;
 
         v17 = ov16_0223DF1C(param0);
-        v18 = ov16_0223E208(param0, param1->unk_64);
+        v18 = ov16_0223E208(param0, param1->attacker);
 
         for (v0 = 0; v0 < v17; v0++) {
             if (v18 != ov16_0223E208(param0, v0)) {
@@ -9112,7 +9112,7 @@ static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
         int v20;
 
         v19 = ov16_0223DF1C(param0);
-        v20 = ov16_0223E208(param0, param1->unk_6C);
+        v20 = ov16_0223E208(param0, param1->defender);
 
         for (v0 = 0; v0 < v19; v0++) {
             if (v20 != ov16_0223E208(param0, v0)) {
@@ -9123,7 +9123,7 @@ static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     break;
     case 0xff:
     case 0x15:
-        v0 = param1->unk_118;
+        v0 = param1->msgBattlerTemp;
         break;
     }
 
@@ -9132,7 +9132,7 @@ static int ov16_0224A984 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     return v0;
 }
 
-static void ov16_0224ABEC (UnkStruct_ov16_0224B9DC * param0, UnkStruct_ov16_02241584 * param1)
+static void ov16_0224ABEC (BattleContext * param0, UnkStruct_ov16_02241584 * param1)
 {
     int v0, v1 = 0;
 
@@ -9223,284 +9223,284 @@ static void ov16_0224ABEC (UnkStruct_ov16_0224B9DC * param0, UnkStruct_ov16_0224
     }
 }
 
-static void ov16_0224ACB8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, UnkStruct_ov16_02241584 * param2, UnkStruct_ov16_0225C300 * param3)
+static void ov16_0224ACB8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_02241584 * param2, BattleMessage * param3)
 {
-    param3->unk_02 = param2->unk_00;
-    param3->unk_01 = param2->unk_04;
+    param3->id = param2->unk_00;
+    param3->tags = param2->unk_04;
 
-    switch (param3->unk_01) {
+    switch (param3->tags) {
     case 0:
         break;
     case 1:
-        param3->unk_04[0] = ov16_0224A984(param0, param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224A984(param0, param1, param2->unk_08[0]);
         break;
     case 2:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
         break;
     case 3:
-        param3->unk_04[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
         break;
     case 4:
-        param3->unk_04[0] = ov16_0224B4C8(param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B4C8(param1, param2->unk_08[0]);
         break;
     case 5:
-        param3->unk_04[0] = ov16_0224B404(param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
         break;
     case 6:
     case 7:
-        param3->unk_04[0] = ov16_0224B47C(param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B47C(param1, param2->unk_08[0]);
         break;
     case 8:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
         break;
     case 9:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
         break;
     case 10:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
         break;
     case 11:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
         break;
     case 12:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B4C8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B4C8(param1, param2->unk_08[1]);
         break;
     case 13:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B488(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B488(param1, param2->unk_08[1]);
         break;
     case 14:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B4E0(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B4E0(param0, param1, param2->unk_08[1]);
         break;
     case 15:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
         break;
     case 16:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B4F8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B4F8(param1, param2->unk_08[1]);
         break;
     case 17:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
         break;
     case 18:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
         break;
     case 19:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = param2->unk_08[1];
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = param2->unk_08[1];
         break;
     case 20:
-        param3->unk_04[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224A984(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224A984(param0, param1, param2->unk_08[1]);
         break;
     case 21:
-        param3->unk_04[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
         break;
     case 22:
-        param3->unk_04[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
         break;
     case 23:
-        param3->unk_04[0] = ov16_0224B494(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B494(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
         break;
     case 24:
-        param3->unk_04[0] = ov16_0224B404(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
         break;
     case 25:
-        param3->unk_04[0] = ov16_0224B47C(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B47C(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
         break;
     case 26:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
         break;
     case 27:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
         break;
     case 28:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
         break;
     case 29:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
         break;
     case 30:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
         break;
     case 31:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
         break;
     case 32:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B494(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B494(param0, param1, param2->unk_08[2]);
         break;
     case 33:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B404(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
         break;
     case 34:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
         break;
     case 35:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B47C(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B47C(param1, param2->unk_08[2]);
         break;
     case 36:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
         break;
     case 37:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
         break;
     case 38:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B404(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
         break;
     case 39:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
         break;
     case 40:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B488(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B488(param1, param2->unk_08[2]);
         break;
     case 41:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
         break;
     case 42:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B47C(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B47C(param1, param2->unk_08[2]);
         break;
     case 43:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
         break;
     case 44:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
         break;
     case 45:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
         break;
     case 46:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
         break;
     case 47:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = param2->unk_08[1];
-        param3->unk_04[2] = param2->unk_08[2];
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = param2->unk_08[1];
+        param3->params[2] = param2->unk_08[2];
         break;
     case 48:
-        param3->unk_04[0] = ov16_0224B404(param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B504(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B504(param1, param2->unk_08[2]);
         break;
     case 49:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
         break;
     case 50:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
         break;
     case 51:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B404(param1, param2->unk_08[2]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
         break;
     case 52:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B3E8(param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B3E8(param1, param2->unk_08[3]);
         break;
     case 53:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B494(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B494(param0, param1, param2->unk_08[3]);
         break;
     case 54:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B4C8(param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B4C8(param1, param2->unk_08[3]);
         break;
     case 55:
-        param3->unk_04[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B404(param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B404(param1, param2->unk_08[3]);
         break;
     case 56:
-        param3->unk_04[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B518(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B518(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
         break;
     case 57:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
         break;
     case 58:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
         break;
     case 59:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B510(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B510(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
         break;
     case 60:
-        param3->unk_04[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->unk_04[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->unk_04[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->unk_04[3] = ov16_0224B510(param0, param1, param2->unk_08[3]);
-        param3->unk_04[4] = ov16_0224B518(param0, param1, param2->unk_08[4]);
-        param3->unk_04[5] = ov16_0224B3B8(param0, param1, param2->unk_08[5]);
+        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
+        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+        param3->params[3] = ov16_0224B510(param0, param1, param2->unk_08[3]);
+        param3->params[4] = ov16_0224B518(param0, param1, param2->unk_08[4]);
+        param3->params[5] = ov16_0224B3B8(param0, param1, param2->unk_08[5]);
         break;
     default:
         GF_ASSERT("FALSE");
@@ -9508,7 +9508,7 @@ static void ov16_0224ACB8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     }
 }
 
-static int ov16_0224B3B8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static int ov16_0224B3B8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     int v0;
     int v1;
@@ -9517,24 +9517,24 @@ static int ov16_0224B3B8 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     v0 = v1;
 
     if (param2 == 0x16) {
-        v0 |= param1->unk_21A0[v1] << 8;
+        v0 |= param1->switchedPartySlot[v1] << 8;
     } else {
-        v0 |= param1->unk_219C[v1] << 8;
+        v0 |= param1->selectedPartySlot[v1] << 8;
     }
 
     return v0;
 }
 
-static int ov16_0224B3E8 (UnkStruct_ov16_0224B9DC * param0, int param1)
+static int ov16_0224B3E8 (BattleContext * param0, int param1)
 {
     int v0;
 
     switch (param1) {
     case 0x1:
-        v0 = param0->unk_3044;
+        v0 = param0->moveCur;
         break;
     case 0xff:
-        v0 = param0->unk_124;
+        v0 = param0->msgMoveTemp;
         break;
     default:
         break;
@@ -9543,25 +9543,25 @@ static int ov16_0224B3E8 (UnkStruct_ov16_0224B9DC * param0, int param1)
     return v0;
 }
 
-static int ov16_0224B404 (UnkStruct_ov16_0224B9DC * param0, int param1)
+static int ov16_0224B404 (BattleContext * param0, int param1)
 {
     int v0;
 
     switch (param1) {
     case 0x1:
-        v0 = param0->unk_2D40[param0->unk_64].unk_78;
-        ov16_0224B934(param0, param0->unk_64, v0);
+        v0 = param0->battleMons[param0->attacker].heldItem;
+        ov16_0224B934(param0, param0->attacker, v0);
         break;
     case 0x2:
-        v0 = param0->unk_2D40[param0->unk_6C].unk_78;
-        ov16_0224B934(param0, param0->unk_6C, v0);
+        v0 = param0->battleMons[param0->defender].heldItem;
+        ov16_0224B934(param0, param0->defender, v0);
         break;
     case 0x15:
-        v0 = param0->unk_2D40[param0->unk_118].unk_78;
-        ov16_0224B934(param0, param0->unk_118, v0);
+        v0 = param0->battleMons[param0->msgBattlerTemp].heldItem;
+        ov16_0224B934(param0, param0->msgBattlerTemp, v0);
         break;
     case 0xff:
-        v0 = param0->unk_128;
+        v0 = param0->msgItemTemp;
         break;
     default:
         break;
@@ -9570,13 +9570,13 @@ static int ov16_0224B404 (UnkStruct_ov16_0224B9DC * param0, int param1)
     return v0;
 }
 
-static int ov16_0224B47C (UnkStruct_ov16_0224B9DC * param0, int param1)
+static int ov16_0224B47C (BattleContext * param0, int param1)
 {
     int v0;
 
     switch (param1) {
     case 0xff:
-        v0 = param0->unk_130;
+        v0 = param0->msgTemp;
         break;
     default:
         break;
@@ -9585,13 +9585,13 @@ static int ov16_0224B47C (UnkStruct_ov16_0224B9DC * param0, int param1)
     return v0;
 }
 
-static int ov16_0224B488 (UnkStruct_ov16_0224B9DC * param0, int param1)
+static int ov16_0224B488 (BattleContext * param0, int param1)
 {
     int v0;
 
     switch (param1) {
     case 0xff:
-        v0 = param0->unk_130;
+        v0 = param0->msgTemp;
         break;
     default:
         break;
@@ -9600,18 +9600,18 @@ static int ov16_0224B488 (UnkStruct_ov16_0224B9DC * param0, int param1)
     return v0;
 }
 
-static int ov16_0224B494 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static int ov16_0224B494 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     int v0;
     int v1;
 
     switch (param2) {
     case 0xff:
-        v0 = param1->unk_12C;
+        v0 = param1->msgAbilityTemp;
         break;
     default:
         v1 = ov16_0224A984(param0, param1, param2);
-        v0 = param1->unk_2D40[v1].unk_27;
+        v0 = param1->battleMons[v1].ability;
         ov16_0224B928(param1, v1, v0);
         break;
     }
@@ -9619,13 +9619,13 @@ static int ov16_0224B494 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC *
     return v0;
 }
 
-static int ov16_0224B4C8 (UnkStruct_ov16_0224B9DC * param0, int param1)
+static int ov16_0224B4C8 (BattleContext * param0, int param1)
 {
     int v0;
 
     switch (param1) {
     case 0xff:
-        v0 = param0->unk_130;
+        v0 = param0->msgTemp;
         break;
     default:
         break;
@@ -9634,13 +9634,13 @@ static int ov16_0224B4C8 (UnkStruct_ov16_0224B9DC * param0, int param1)
     return v0;
 }
 
-static int ov16_0224B4D4 (UnkStruct_ov16_0224B9DC * param0, int param1)
+static int ov16_0224B4D4 (BattleContext * param0, int param1)
 {
     int v0;
 
     switch (param1) {
     case 0xff:
-        v0 = param0->unk_130;
+        v0 = param0->msgTemp;
         break;
     default:
         break;
@@ -9649,25 +9649,25 @@ static int ov16_0224B4D4 (UnkStruct_ov16_0224B9DC * param0, int param1)
     return v0;
 }
 
-static int ov16_0224B4E0 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static int ov16_0224B4E0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     int v0;
     int v1;
 
     v1 = ov16_0224A984(param0, param1, param2);
     v0 = v1;
-    v0 |= param1->unk_219C[v1] << 8;
+    v0 |= param1->selectedPartySlot[v1] << 8;
 
     return v0;
 }
 
-static int ov16_0224B4F8 (UnkStruct_ov16_0224B9DC * param0, int param1)
+static int ov16_0224B4F8 (BattleContext * param0, int param1)
 {
     int v0;
 
     switch (param1) {
     case 0xff:
-        v0 = param0->unk_130;
+        v0 = param0->msgTemp;
         break;
     default:
         break;
@@ -9676,13 +9676,13 @@ static int ov16_0224B4F8 (UnkStruct_ov16_0224B9DC * param0, int param1)
     return v0;
 }
 
-static int ov16_0224B504 (UnkStruct_ov16_0224B9DC * param0, int param1)
+static int ov16_0224B504 (BattleContext * param0, int param1)
 {
     int v0;
 
     switch (param1) {
     case 0xff:
-        v0 = param0->unk_130;
+        v0 = param0->msgTemp;
         break;
     default:
         break;
@@ -9691,12 +9691,12 @@ static int ov16_0224B504 (UnkStruct_ov16_0224B9DC * param0, int param1)
     return v0;
 }
 
-static int ov16_0224B510 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static int ov16_0224B510 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     return ov16_0224A984(param0, param1, param2);
 }
 
-static int ov16_0224B518 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static int ov16_0224B518 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     return ov16_0224A984(param0, param1, param2);
 }
@@ -9837,7 +9837,7 @@ static void ov16_0224B7CC (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     sub_020127BC(param1->unk_50[0]);
 }
 
-static void ov16_0224B850 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC * param1, int param2)
+static void ov16_0224B850 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
 {
     Pokemon * v0;
     u8 v1, v2;
@@ -9850,17 +9850,17 @@ static void ov16_0224B850 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
         v1 = ov16_0223E1C4(param0, 3);
         v2 = ov16_0223E1C4(param0, 5);
 
-        if (param1->unk_2D40[v2].unk_34 > param1->unk_2D40[v1].unk_34) {
+        if (param1->battleMons[v2].level > param1->battleMons[v1].level) {
             v1 = v2;
         }
     } else {
         v1 = ov16_0223E1C4(param0, 1);
     }
 
-    v0 = ov16_0223DFAC(param0, param2, param1->unk_219C[param2]);
+    v0 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
 
-    if (param1->unk_2D40[v1].unk_34 > param1->unk_2D40[param2].unk_34) {
-        if (param1->unk_2D40[v1].unk_34 - param1->unk_2D40[param2].unk_34 >= 30) {
+    if (param1->battleMons[v1].level > param1->battleMons[param2].level) {
+        if (param1->battleMons[v1].level - param1->battleMons[param2].level >= 30) {
             sub_02075C74(v0, 8, ov16_0223E24C(param0));
         } else {
             sub_02075C74(v0, 6, ov16_0223E24C(param0));
@@ -9870,12 +9870,12 @@ static void ov16_0224B850 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B9DC 
     }
 }
 
-static void ov16_0224B928 (UnkStruct_ov16_0224B9DC * param0, u8 param1, u8 param2)
+static void ov16_0224B928 (BattleContext * param0, u8 param1, u8 param2)
 {
-    param0->unk_354.unk_3C[param1] = param2;
+    param0->aiContext.battlerAbilities[param1] = param2;
 }
 
-static void ov16_0224B934 (UnkStruct_ov16_0224B9DC * param0, u8 param1, u16 param2)
+static void ov16_0224B934 (BattleContext * param0, u8 param1, u16 param2)
 {
-    param0->unk_354.unk_40[param1] = param2;
+    param0->aiContext.battlerHeldItems[param1] = param2;
 }
