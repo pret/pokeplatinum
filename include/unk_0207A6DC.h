@@ -2,11 +2,11 @@
 #define POKEPLATINUM_UNK_0207A6DC_H
 
 #include "struct_defs/struct_0207A778.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 
 void sub_0207A6DC(void * param0);
 void sub_0207A744(void * param0);
-void sub_0207A81C(UnkStruct_0207ADB4 * param0, int param1, int param2, void * param3, u8 param4);
+void sub_0207A81C(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
 BOOL sub_0207A8F4(UnkStruct_0207A778 * param0, u32 param1);
 BOOL sub_0207A960(UnkStruct_0207A778 * param0);
 BOOL sub_0207A988(UnkStruct_0207A778 * param0);

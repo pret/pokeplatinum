@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_0207ADB4_T_H
-#define POKEPLATINUM_STRUCT_0207ADB4_T_H
+#ifndef POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
+#define POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
@@ -40,20 +40,20 @@
 
 #include <nnsys.h>
 
-struct UnkStruct_0207ADB4_t {
+struct BattleSystem {
     UnkStruct_0207C690 * unk_00;
     UnkStruct_02018340 * unk_04;
     UnkStruct_0205AA50 * unk_08;
     UnkStruct_0200B144 * unk_0C;
     UnkStruct_0200B144 * unk_10;
     UnkStruct_0200B358 * unk_14;
-    Strbuf* unk_18;
+    Strbuf *msgBuffer;
     UnkStruct_0201CD38 * unk_1C;
     UnkStruct_0201CD38 * unk_20;
     UnkStruct_0201CD38 * unk_24;
     UnkStruct_02002F38 * unk_28;
     u32 unk_2C;
-    BattleContext * unk_30;
+    BattleContext *battleCtx;
     UnkStruct_ov16_0225BFFC * unk_34[4];
     int unk_44;
     UnkStruct_02025E6C * unk_48[4];
@@ -61,7 +61,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_0207D99C * unk_5C;
     UnkStruct_02026324 * unk_60;
     UnkStruct_020797DC * unk_64;
-    Party * unk_68[4];
+    Party *parties[4];
     UnkStruct_0202CC84 * unk_78[4];
     UnkStruct_02007768 * unk_88;
     UnkStruct_ov12_0221FCDC * unk_8C;
@@ -71,7 +71,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_0206D140 * unk_9C;
     u16 unk_A0[4];
     u8 unk_A8[4];
-    TrainerData unk_AC[4];
+    TrainerData trainers[4];
     UnkStruct_ov16_02268520 unk_17C[2];
     UnkStruct_ov16_02268A14 * unk_198;
     UnkStruct_ov16_0226D160 * unk_19C[2];
@@ -84,7 +84,7 @@ struct UnkStruct_0207ADB4_t {
     UnkStruct_0209C370 * unk_1BC;
     UnkStruct_ov10_0221F800 * unk_1C0;
     UnkStruct_02015F84 * unk_1C4;
-    NNSG2dCellTransferState * unk_1C8;
+    NNSG2dCellTransferState *cellTransferState;
     UnkStruct_ov16_0223E0C8 unk_1CC[4];
     BattleParams_sub1 unk_20C;
     UnkStruct_0202CD88 * unk_218;
@@ -144,4 +144,4 @@ struct UnkStruct_0207ADB4_t {
     u8 unk_247C[4];
 };
 
-#endif // POKEPLATINUM_STRUCT_0207ADB4_T_H
+#endif // POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H

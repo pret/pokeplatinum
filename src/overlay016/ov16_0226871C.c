@@ -20,7 +20,7 @@
 #include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "overlay016/struct_ov16_0226DC24_decl.h"
 #include "overlay016/struct_ov16_0226DEEC_decl.h"
 
@@ -207,7 +207,7 @@ typedef struct {
 } UnkStruct_ov16_0226ABD4;
 
 typedef struct UnkStruct_ov16_02268A14_t {
-    UnkStruct_0207ADB4 * unk_00;
+    BattleSystem * unk_00;
     UnkStruct_0209C370 * unk_04;
     UnkStruct_0201CD38 * unk_08;
     UnkStruct_0201CD38 * unk_0C;
@@ -1061,7 +1061,7 @@ void ov16_022687A0 (UnkStruct_02018340 * param0)
     }
 }
 
-void * ov16_022687C8 (NARC * param0, NARC * param1, UnkStruct_0207ADB4 * param2, int param3, UnkStruct_0209C370 * param4)
+void * ov16_022687C8 (NARC * param0, NARC * param1, BattleSystem * param2, int param3, UnkStruct_0209C370 * param4)
 {
     UnkStruct_ov16_02268A14 * v0;
     UnkStruct_02002F38 * v1;

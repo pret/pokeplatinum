@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "overlay016/struct_ov16_02268A14_decl.h"
 
 #include "unk_02005474.h"
@@ -16,14 +16,14 @@
 #include "overlay016/ov16_0226E148.h"
 
 typedef struct {
-    UnkStruct_0207ADB4 * unk_00;
+    BattleSystem * unk_00;
     s16 unk_04;
     s16 unk_06;
 } UnkStruct_ov16_0226E148;
 
 static void ov16_0226E188(UnkStruct_0201CD38 * param0, void * param1);
 
-UnkStruct_0201CD38 * ov16_0226E148 (UnkStruct_0207ADB4 * param0)
+UnkStruct_0201CD38 * ov16_0226E148 (BattleSystem * param0)
 {
     UnkStruct_ov16_0226E148 * v0;
     UnkStruct_0201CD38 * v1;

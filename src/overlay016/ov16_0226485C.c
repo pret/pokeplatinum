@@ -4,12 +4,12 @@
 #include "constants/pokemon.h"
 
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "battle/battle_context.h"
 
 #include "struct_defs/pokemon.h"
 #include "struct_defs/struct_0207A81C.h"
-#include "struct_defs/struct_0207ADB4_t.h"
+#include "struct_defs/battle_system.h"
 #include "battle/battle_context.h"
 #include "overlay016/struct_ov16_0224DDA8.h"
 #include "overlay016/struct_ov16_0225BFFC_t.h"
@@ -68,89 +68,89 @@
 #include "overlay016/ov16_0225177C.h"
 #include "overlay016/ov16_0226485C.h"
 
-void ov16_02264A8C(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02264AB4(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02264BB4(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02264CE8(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3);
-void ov16_02264EF8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_02265050(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_02265108(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02265124(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02265154(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_0226518C(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_022651A8(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_022651DC(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_02265314(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02265330(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_022656D4(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_022656F0(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_02265790(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_022657AC(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_022658CC(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_022658E8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_02265A70(UnkStruct_0207ADB4 * param0, int param1, UnkStruct_ov16_0224DDA8 param2);
-void ov16_02265A8C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4, int param5);
-void ov16_02265B10(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_02265B2C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6);
-void ov16_02265B68(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-void ov16_02265BA0(UnkStruct_0207ADB4 * param0, BattleContext * param1, BattleMessage * param2);
-void ov16_02265BBC(UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2);
-void ov16_02265BEC(UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2, int param3, int param4);
-void ov16_02265C1C(UnkStruct_0207ADB4 * param0, int param1, u32 param2);
-void ov16_02265C38(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_02265D14(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_02265D98(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_02265EAC(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_02265ECC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-void ov16_02265EE8(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_02265FB8(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_02265FD8(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_02265FF8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_02266028(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4);
-void ov16_02266058(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_0226609C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_022660E8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_02266100(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_0226614C(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02266168(UnkStruct_0207ADB4 * param0, int param1, BattleMessage param2);
-void ov16_022661B0(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_022661CC(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_022662FC(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_02266460(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_0226647C(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02266498(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
-void ov16_022664C4(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3);
-void ov16_022664F8(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3);
-void ov16_0226651C(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_022665AC(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_022665C8(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_022665E4(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_0226660C(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02266634(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_0226665C(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02266684(UnkStruct_0207ADB4 * param0);
-void ov16_022666A0(UnkStruct_0207ADB4 * param0);
-void ov16_022666BC(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3);
-void ov16_022666E0(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_0226673C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_022667E8(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02266804(UnkStruct_0207ADB4 * param0, int param1);
-void ov16_02266820(UnkStruct_0207ADB4 * param0);
-void ov16_0226683C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-void ov16_022668D0(UnkStruct_0207ADB4 * param0);
-void ov16_0226692C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_022669D8(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-void ov16_02266A18(UnkStruct_0207ADB4 * param0, int param1, int param2);
-void ov16_02266A38(UnkStruct_0207ADB4 * param0);
-void ov16_02266ABC(UnkStruct_0207ADB4 * param0, int param1, int param2);
-BOOL ov16_02266AE4(UnkStruct_0207ADB4 * param0, void * param1);
-void ov16_02266B78(UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_02265BBC * param2, int param3, int param4, int param5, int param6, u16 param7);
-void ov16_02264988(UnkStruct_0207ADB4 * param0, int param1);
-static void ov16_0226485C(UnkStruct_0207ADB4 * param0, int param1, int param2, void * param3, u8 param4);
-static void ov16_02264A04(UnkStruct_0207ADB4 * param0, int param1, int param2, void * param3, u8 param4);
-static void ov16_02266CF0(UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_0225C840 * param2, int param3, int param4);
+void ov16_02264A8C(BattleSystem * param0, int param1);
+void ov16_02264AB4(BattleSystem * param0, int param1);
+void ov16_02264BB4(BattleSystem * param0, int param1);
+void ov16_02264CE8(BattleSystem * param0, int param1, int param2, int param3);
+void ov16_02264EF8(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_02265050(BattleSystem * param0, int param1, int param2);
+void ov16_02265108(BattleSystem * param0, int param1);
+void ov16_02265124(BattleSystem * param0, int param1);
+void ov16_02265154(BattleSystem * param0, int param1, int param2);
+void ov16_0226518C(BattleSystem * param0, int param1);
+void ov16_022651A8(BattleSystem * param0, int param1, int param2);
+void ov16_022651DC(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_02265314(BattleSystem * param0, int param1);
+void ov16_02265330(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_022656D4(BattleSystem * param0, int param1, int param2);
+void ov16_022656F0(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_02265790(BattleSystem * param0, int param1, int param2);
+void ov16_022657AC(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_022658CC(BattleSystem * param0, int param1, int param2);
+void ov16_022658E8(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_02265A70(BattleSystem * param0, int param1, UnkStruct_ov16_0224DDA8 param2);
+void ov16_02265A8C(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5);
+void ov16_02265B10(BattleSystem * param0, int param1, int param2);
+void ov16_02265B2C(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6);
+void ov16_02265B68(BattleSystem * param0, BattleContext * param1);
+void ov16_02265BA0(BattleSystem * param0, BattleContext * param1, BattleMessage * param2);
+void ov16_02265BBC(BattleSystem * param0, BattleContext * param1, u16 param2);
+void ov16_02265BEC(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
+void ov16_02265C1C(BattleSystem * param0, int param1, u32 param2);
+void ov16_02265C38(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_02265D14(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_02265D98(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_02265EAC(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_02265ECC(BattleSystem * param0, BattleContext * param1);
+void ov16_02265EE8(BattleSystem * param0, int param1, int param2);
+void ov16_02265FB8(BattleSystem * param0, int param1, int param2);
+void ov16_02265FD8(BattleSystem * param0, int param1, int param2);
+void ov16_02265FF8(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_02266028(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+void ov16_02266058(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_0226609C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_022660E8(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_02266100(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_0226614C(BattleSystem * param0, int param1);
+void ov16_02266168(BattleSystem * param0, int param1, BattleMessage param2);
+void ov16_022661B0(BattleSystem * param0, int param1);
+void ov16_022661CC(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_022662FC(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_02266460(BattleSystem * param0, int param1);
+void ov16_0226647C(BattleSystem * param0, int param1);
+void ov16_02266498(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void ov16_022664C4(BattleSystem * param0, int param1, int param2, int param3);
+void ov16_022664F8(BattleSystem * param0, int param1, int param2, int param3);
+void ov16_0226651C(BattleSystem * param0, int param1);
+void ov16_022665AC(BattleSystem * param0, int param1);
+void ov16_022665C8(BattleSystem * param0, int param1);
+void ov16_022665E4(BattleSystem * param0, int param1);
+void ov16_0226660C(BattleSystem * param0, int param1);
+void ov16_02266634(BattleSystem * param0, int param1);
+void ov16_0226665C(BattleSystem * param0, int param1);
+void ov16_02266684(BattleSystem * param0);
+void ov16_022666A0(BattleSystem * param0);
+void ov16_022666BC(BattleSystem * param0, int param1, int param2, int param3);
+void ov16_022666E0(BattleSystem * param0, int param1);
+void ov16_0226673C(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_022667E8(BattleSystem * param0, int param1);
+void ov16_02266804(BattleSystem * param0, int param1);
+void ov16_02266820(BattleSystem * param0);
+void ov16_0226683C(BattleSystem * param0, BattleContext * param1);
+void ov16_022668D0(BattleSystem * param0);
+void ov16_0226692C(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_022669D8(BattleSystem * param0, BattleContext * param1, int param2);
+void ov16_02266A18(BattleSystem * param0, int param1, int param2);
+void ov16_02266A38(BattleSystem * param0);
+void ov16_02266ABC(BattleSystem * param0, int param1, int param2);
+BOOL ov16_02266AE4(BattleSystem * param0, void * param1);
+void ov16_02266B78(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_02265BBC * param2, int param3, int param4, int param5, int param6, u16 param7);
+void ov16_02264988(BattleSystem * param0, int param1);
+static void ov16_0226485C(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
+static void ov16_02264A04(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
+static void ov16_02266CF0(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_0225C840 * param2, int param3, int param4);
 
-static void ov16_0226485C (UnkStruct_0207ADB4 * param0, int param1, int param2, void * param3, u8 param4)
+static void ov16_0226485C (BattleSystem * param0, int param1, int param2, void * param3, u8 param4)
 {
     int v0;
     UnkStruct_0207A81C v1;
@@ -193,7 +193,7 @@ static void ov16_0226485C (UnkStruct_0207ADB4 * param0, int param1, int param2, 
     }
 }
 
-static BOOL ov16_022648F4 (UnkStruct_0207ADB4 * param0, void * param1)
+static BOOL ov16_022648F4 (BattleSystem * param0, void * param1)
 {
     u8 * v0 = (u8 *)param1;
     u8 v1;
@@ -209,9 +209,9 @@ static BOOL ov16_022648F4 (UnkStruct_0207ADB4 * param0, void * param1)
     v0 += sizeof(UnkStruct_0207A81C);
 
     if (v1 == 0) {
-        if (param0->unk_30->ioBuffer[v2][0] == 0) {
+        if (param0->battleCtx->ioBuffer[v2][0] == 0) {
             for (v4 = 0; v4 < v3; v4++) {
-                param0->unk_30->ioBuffer[v2][v4] = v0[v4];
+                param0->battleCtx->ioBuffer[v2][v4] = v0[v4];
             }
 
             v5 = 1;
@@ -233,7 +233,7 @@ static BOOL ov16_022648F4 (UnkStruct_0207ADB4 * param0, void * param1)
             v7 = v0[1];
 
             if (ov16_0223ED60(param0)) {
-                ov16_02251F80(param0->unk_30, v7, v2, v6);
+                ov16_02251F80(param0->battleCtx, v7, v2, v6);
             }
         }
         v5 = 1;
@@ -244,7 +244,7 @@ static BOOL ov16_022648F4 (UnkStruct_0207ADB4 * param0, void * param1)
     return v5;
 }
 
-void ov16_02264988 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02264988 (BattleSystem * param0, int param1)
 {
     u8 * v0;
     u16 * v1;
@@ -279,7 +279,7 @@ void ov16_02264988 (UnkStruct_0207ADB4 * param0, int param1)
     }
 }
 
-static void ov16_02264A04 (UnkStruct_0207ADB4 * param0, int param1, int param2, void * param3, u8 param4)
+static void ov16_02264A04 (BattleSystem * param0, int param1, int param2, void * param3, u8 param4)
 {
     int v0;
     u8 * v1 = (u8 *)param3;
@@ -290,7 +290,7 @@ static void ov16_02264A04 (UnkStruct_0207ADB4 * param0, int param1, int param2, 
                 int v2;
 
                 for (v2 = 0; v2 < sub_02035E18(); v2++) {
-                    ov16_02251F44(param0->unk_30, v2, param2, v1[0]);
+                    ov16_02251F44(param0->battleCtx, v2, param2, v1[0]);
                 }
             }
         }
@@ -298,14 +298,14 @@ static void ov16_02264A04 (UnkStruct_0207ADB4 * param0, int param1, int param2, 
         sub_0207A81C(param0, param1, param2, param3, param4);
     } else {
         if (param1 == 1) {
-            ov16_02251F44(param0->unk_30, 0, param2, v1[0]);
+            ov16_02251F44(param0->battleCtx, 0, param2, v1[0]);
         }
 
         ov16_0226485C(param0, param1, param2, param3, param4);
     }
 }
 
-void ov16_02264A8C (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02264A8C (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_02264A8C v0;
 
@@ -315,115 +315,115 @@ void ov16_02264A8C (UnkStruct_0207ADB4 * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02264A8C));
 }
 
-void ov16_02264AB4 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02264AB4 (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C168 v0;
     int v1;
 
     v0.unk_00 = 2;
-    v0.unk_01_0 = param0->unk_30->battleMons[param1].gender;
-    v0.unk_01_2 = param0->unk_30->battleMons[param1].isShiny;
-    v0.unk_02 = param0->unk_30->battleMons[param1].species;
-    v0.unk_04 = param0->unk_30->battleMons[param1].pid;
-    v0.unk_08 = ov16_022599D0(param0->unk_30, param1, ov16_0223E1F8(param0, param1), 1);
-    v0.unk_01_3 = param0->unk_30->battleMons[param1].formNum;
+    v0.unk_01_0 = param0->battleCtx->battleMons[param1].gender;
+    v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
+    v0.unk_02 = param0->battleCtx->battleMons[param1].species;
+    v0.unk_04 = param0->battleCtx->battleMons[param1].pid;
+    v0.unk_08 = ov16_022599D0(param0->battleCtx, param1, ov16_0223E1F8(param0, param1), 1);
+    v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_0C[v1] = ov16_02252060(param0->unk_30, param1, 6 + v1, NULL);
-        v0.unk_14[v1] = ov16_02252060(param0->unk_30, param1, 31 + v1, NULL);
-        v0.unk_1C[v1] = ov16_02252060(param0->unk_30, param1, 39 + v1, NULL);
+        v0.unk_0C[v1] = ov16_02252060(param0->battleCtx, param1, 6 + v1, NULL);
+        v0.unk_14[v1] = ov16_02252060(param0->battleCtx, param1, 31 + v1, NULL);
+        v0.unk_1C[v1] = ov16_02252060(param0->battleCtx, param1, 39 + v1, NULL);
     }
 
-    ov16_02252060(param0->unk_30, param1, 45, &v0.unk_24);
+    ov16_02252060(param0->battleCtx, param1, 45, &v0.unk_24);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C168));
 }
 
-void ov16_02264BB4 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02264BB4 (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C17C v0;
     int v1;
 
     v0.unk_00 = 3;
-    v0.unk_01_0 = param0->unk_30->battleMons[param1].gender;
-    v0.unk_01_2 = param0->unk_30->battleMons[param1].isShiny;
-    v0.unk_02 = param0->unk_30->battleMons[param1].species;
-    v0.unk_04 = param0->unk_30->battleMons[param1].pid;
-    v0.unk_08 = ov16_022599D0(param0->unk_30, param1, ov16_0223E1F8(param0, param1), 1);
-    v0.unk_0C = param0->unk_30->selectedPartySlot[param1];
-    v0.unk_01_3 = param0->unk_30->battleMons[param1].formNum;
-    v0.unk_10 = param0->unk_30->battleMons[param1].capturedBall;
-    v0.unk_48 = param0->unk_30->selectedPartySlot[ov16_0223E258(param0, param1)];
+    v0.unk_01_0 = param0->battleCtx->battleMons[param1].gender;
+    v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
+    v0.unk_02 = param0->battleCtx->battleMons[param1].species;
+    v0.unk_04 = param0->battleCtx->battleMons[param1].pid;
+    v0.unk_08 = ov16_022599D0(param0->battleCtx, param1, ov16_0223E1F8(param0, param1), 1);
+    v0.unk_0C = param0->battleCtx->selectedPartySlot[param1];
+    v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
+    v0.unk_10 = param0->battleCtx->battleMons[param1].capturedBall;
+    v0.unk_48 = param0->battleCtx->selectedPartySlot[ov16_0223E258(param0, param1)];
 
     ov16_0223EF2C(param0, param1, v0.unk_0C);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_18[v1] = ov16_02252060(param0->unk_30, param1, 6 + v1, NULL);
-        v0.unk_20[v1] = ov16_02252060(param0->unk_30, param1, 31 + v1, NULL);
-        v0.unk_28[v1] = ov16_02252060(param0->unk_30, param1, 39 + v1, NULL);
+        v0.unk_18[v1] = ov16_02252060(param0->battleCtx, param1, 6 + v1, NULL);
+        v0.unk_20[v1] = ov16_02252060(param0->battleCtx, param1, 31 + v1, NULL);
+        v0.unk_28[v1] = ov16_02252060(param0->battleCtx, param1, 39 + v1, NULL);
     }
 
-    ov16_02252060(param0->unk_30, param1, 45, &v0.unk_30);
+    ov16_02252060(param0->battleCtx, param1, 45, &v0.unk_30);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
 }
 
-void ov16_02264CE8 (UnkStruct_0207ADB4 * param0, int param1, int param2, int param3)
+void ov16_02264CE8 (BattleSystem * param0, int param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C17C v0;
     int v1;
 
     v0.unk_00 = 4;
 
-    if (param0->unk_30->battleMons[param1].statusVolatile & 0x200000) {
-        v0.unk_01_0 = param0->unk_30->battleMons[param1].moveEffectsData.transformedGender;
-        v0.unk_04 = param0->unk_30->battleMons[param1].moveEffectsData.transformedPID;
+    if (param0->battleCtx->battleMons[param1].statusVolatile & 0x200000) {
+        v0.unk_01_0 = param0->battleCtx->battleMons[param1].moveEffectsData.transformedGender;
+        v0.unk_04 = param0->battleCtx->battleMons[param1].moveEffectsData.transformedPID;
     } else {
-        v0.unk_01_0 = param0->unk_30->battleMons[param1].gender;
-        v0.unk_04 = param0->unk_30->battleMons[param1].pid;
+        v0.unk_01_0 = param0->battleCtx->battleMons[param1].gender;
+        v0.unk_04 = param0->battleCtx->battleMons[param1].pid;
     }
 
-    v0.unk_01_2 = param0->unk_30->battleMons[param1].isShiny;
-    v0.unk_02 = param0->unk_30->battleMons[param1].species;
-    v0.unk_08 = ov16_022599D0(param0->unk_30, param1, ov16_0223E1F8(param0, param1), 0);
-    v0.unk_0C = param0->unk_30->selectedPartySlot[param1];
-    v0.unk_01_3 = param0->unk_30->battleMons[param1].formNum;
+    v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
+    v0.unk_02 = param0->battleCtx->battleMons[param1].species;
+    v0.unk_08 = ov16_022599D0(param0->battleCtx, param1, ov16_0223E1F8(param0, param1), 0);
+    v0.unk_0C = param0->battleCtx->selectedPartySlot[param1];
+    v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
 
     if (param2) {
         v0.unk_10 = param2;
     } else {
-        v0.unk_10 = param0->unk_30->battleMons[param1].capturedBall;
+        v0.unk_10 = param0->battleCtx->battleMons[param1].capturedBall;
     }
 
     v0.unk_14 = param3;
-    v0.unk_4C = ((param0->unk_30->battleMons[param1].statusVolatile & 0x1000000) != 0);
+    v0.unk_4C = ((param0->battleCtx->battleMons[param1].statusVolatile & 0x1000000) != 0);
 
     ov16_0223EF2C(param0, param1, v0.unk_0C);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_18[v1] = ov16_02252060(param0->unk_30, param1, 6 + v1, NULL);
-        v0.unk_20[v1] = ov16_02252060(param0->unk_30, param1, 31 + v1, NULL);
-        v0.unk_28[v1] = ov16_02252060(param0->unk_30, param1, 39 + v1, NULL);
+        v0.unk_18[v1] = ov16_02252060(param0->battleCtx, param1, 6 + v1, NULL);
+        v0.unk_20[v1] = ov16_02252060(param0->battleCtx, param1, 31 + v1, NULL);
+        v0.unk_28[v1] = ov16_02252060(param0->battleCtx, param1, 39 + v1, NULL);
     }
 
-    ov16_02252060(param0->unk_30, param1, 45, &v0.unk_30);
+    ov16_02252060(param0->battleCtx, param1, 45, &v0.unk_30);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_50[v1] = param0->unk_30->battleMons[v1].species;
-        v0.unk_5C[v1] = param0->unk_30->battleMons[v1].isShiny;
-        v0.unk_60[v1] = param0->unk_30->battleMons[v1].formNum;
+        v0.unk_50[v1] = param0->battleCtx->battleMons[v1].species;
+        v0.unk_5C[v1] = param0->battleCtx->battleMons[v1].isShiny;
+        v0.unk_60[v1] = param0->battleCtx->battleMons[v1].formNum;
 
-        if (param0->unk_30->battleMons[v1].statusVolatile & 0x200000) {
-            v0.unk_58[v1] = param0->unk_30->battleMons[v1].moveEffectsData.transformedGender;
-            v0.unk_64[v1] = param0->unk_30->battleMons[v1].moveEffectsData.transformedPID;
+        if (param0->battleCtx->battleMons[v1].statusVolatile & 0x200000) {
+            v0.unk_58[v1] = param0->battleCtx->battleMons[v1].moveEffectsData.transformedGender;
+            v0.unk_64[v1] = param0->battleCtx->battleMons[v1].moveEffectsData.transformedPID;
         } else {
-            v0.unk_58[v1] = param0->unk_30->battleMons[v1].gender;
-            v0.unk_64[v1] = param0->unk_30->battleMons[v1].pid;
+            v0.unk_58[v1] = param0->battleCtx->battleMons[v1].gender;
+            v0.unk_64[v1] = param0->battleCtx->battleMons[v1].pid;
         }
     }
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
 }
 
-void ov16_02264EF8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_02264EF8 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_02264EF8 v0;
     int v1;
@@ -436,17 +436,17 @@ void ov16_02264EF8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
         v1 = 0;
     }
 
-    v2 = param0->unk_30->battleMons[param2].formNum;
+    v2 = param0->battleCtx->battleMons[param2].formNum;
     v0.unk_00 = 5;
 
-    if (param0->unk_30->battleMons[param2].statusVolatile & 0x200000) {
-        v0.unk_01 = sub_02076648(param0->unk_30->battleMons[param2].species, param0->unk_30->battleMons[param2].moveEffectsData.transformedGender, v1, v2, param0->unk_30->battleMons[param2].moveEffectsData.transformedPID);
+    if (param0->battleCtx->battleMons[param2].statusVolatile & 0x200000) {
+        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, param0->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = sub_02076648(param0->unk_30->battleMons[param2].species, param0->unk_30->battleMons[param2].gender, v1, v2, param0->unk_30->battleMons[param2].pid);
+        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].gender, v1, v2, param0->battleCtx->battleMons[param2].pid);
     }
 
-    v0.unk_02 = param0->unk_30->battleMons[param2].capturedBall;
-    v0.unk_04 = ((param0->unk_30->battleMons[param2].statusVolatile & 0x1000000) != 0);
+    v0.unk_02 = param0->battleCtx->battleMons[param2].capturedBall;
+    v0.unk_04 = ((param0->battleCtx->battleMons[param2].statusVolatile & 0x1000000) != 0);
 
     for (v3 = 0; v3 < 4; v3++) {
         v0.unk_08[v3] = param1->battleMons[v3].species;
@@ -465,7 +465,7 @@ void ov16_02264EF8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02264EF8));
 }
 
-void ov16_02265050 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02265050 (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_02265050 v0;
     int v1;
@@ -477,67 +477,67 @@ void ov16_02265050 (UnkStruct_0207ADB4 * param0, int param1, int param2)
         v1 = 0;
     }
 
-    v2 = param0->unk_30->battleMons[param1].formNum;
+    v2 = param0->battleCtx->battleMons[param1].formNum;
     v0.unk_00 = 6;
 
-    if (param0->unk_30->battleMons[param1].statusVolatile & 0x200000) {
-        v0.unk_01 = sub_02076648(param0->unk_30->battleMons[param1].species, param0->unk_30->battleMons[param1].moveEffectsData.transformedGender, v1, v2, param0->unk_30->battleMons[param1].moveEffectsData.transformedPID);
+    if (param0->battleCtx->battleMons[param1].statusVolatile & 0x200000) {
+        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].moveEffectsData.transformedGender, v1, v2, param0->battleCtx->battleMons[param1].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = sub_02076648(param0->unk_30->battleMons[param1].species, param0->unk_30->battleMons[param1].gender, v1, v2, param0->unk_30->battleMons[param1].pid);
+        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].gender, v1, v2, param0->battleCtx->battleMons[param1].pid);
     }
 
     v0.unk_02 = param2;
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265050));
 }
 
-void ov16_02265108 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02265108 (BattleSystem * param0, int param1)
 {
     int v0 = 7;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02265124 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02265124 (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_02265124 v0;
 
     v0.unk_00 = 8;
-    v0.unk_02 = param0->unk_AC[param1].class;
+    v0.unk_02 = param0->trainers[param1].class;
     v0.unk_01 = param0->unk_A8[param1];
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265124));
 }
 
-void ov16_02265154 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02265154 (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_02265154 v0;
 
     v0.unk_00 = 9;
     v0.unk_01 = param2;
-    v0.unk_02 = param0->unk_30->selectedPartySlot[ov16_0223E258(param0, param1)];
+    v0.unk_02 = param0->battleCtx->selectedPartySlot[ov16_0223E258(param0, param1)];
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265154));
 }
 
-void ov16_0226518C (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_0226518C (BattleSystem * param0, int param1)
 {
     int v0 = 10;
 
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_022651A8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_022651A8 (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_022651A8 v0;
 
     v0.unk_00 = 11;
-    v0.unk_02 = param0->unk_AC[param1].class;
+    v0.unk_02 = param0->trainers[param1].class;
     v0.unk_01 = param0->unk_A8[param1];
     v0.unk_04 = param2;
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022651A8));
 }
 
-void ov16_022651DC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_022651DC (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C23C v0;
     Pokemon * v1;
@@ -570,13 +570,13 @@ void ov16_022651DC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C23C));
 }
 
-void ov16_02265314 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02265314 (BattleSystem * param0, int param1)
 {
     int v0 = 13;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02265330 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_02265330 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C260 v0;
     int v1;
@@ -743,12 +743,12 @@ void ov16_02265330 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C260));
 }
 
-void ov16_022656D4 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_022656D4 (BattleSystem * param0, int param1, int param2)
 {
     ov16_02264A04(param0, 0, param1, &param2, 4);
 }
 
-void ov16_022656F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_022656F0 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_022656F0 v0;
     int v1;
@@ -769,12 +769,12 @@ void ov16_022656F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_022656F0));
 }
 
-void ov16_02265790 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02265790 (BattleSystem * param0, int param1, int param2)
 {
     ov16_02264A04(param0, 0, param1, &param2, 4);
 }
 
-void ov16_022657AC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_022657AC (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C29C v0;
     int v1;
@@ -821,12 +821,12 @@ void ov16_022657AC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_0225C29C));
 }
 
-void ov16_022658CC (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_022658CC (BattleSystem * param0, int param1, int param2)
 {
     ov16_02264A04(param0, 0, param1, &param2, 4);
 }
 
-void ov16_022658E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_022658E8 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225C2B0 v0;
     int v1, v2;
@@ -899,12 +899,12 @@ void ov16_022658E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C2B0));
 }
 
-void ov16_02265A70 (UnkStruct_0207ADB4 * param0, int param1, UnkStruct_ov16_0224DDA8 param2)
+void ov16_02265A70 (BattleSystem * param0, int param1, UnkStruct_ov16_0224DDA8 param2)
 {
     ov16_02264A04(param0, 0, param1, &param2, sizeof(UnkStruct_ov16_0224DDA8));
 }
 
-void ov16_02265A8C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4, int param5)
+void ov16_02265A8C (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5)
 {
     UnkStruct_ov16_0225C2C4 v0;
     int v1, v2;
@@ -929,12 +929,12 @@ void ov16_02265A8C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C2C4));
 }
 
-void ov16_02265B10 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02265B10 (BattleSystem * param0, int param1, int param2)
 {
     ov16_02264A04(param0, 0, param1, &param2, 4);
 }
 
-void ov16_02265B2C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6)
+void ov16_02265B2C (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6)
 {
     UnkStruct_ov16_0225C2D8 v0;
 
@@ -949,7 +949,7 @@ void ov16_02265B2C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C2D8));
 }
 
-void ov16_02265B68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+void ov16_02265B68 (BattleSystem * param0, BattleContext * param1)
 {
     UnkStruct_ov16_0225C2EC v0;
 
@@ -960,13 +960,13 @@ void ov16_02265B68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov16_02264A04(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_0225C2EC));
 }
 
-void ov16_02265BA0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, BattleMessage * param2)
+void ov16_02265BA0 (BattleSystem * param0, BattleContext * param1, BattleMessage * param2)
 {
     param2->commandCode = 21;
     ov16_02264A04(param0, 1, param1->attacker, param2, sizeof(BattleMessage));
 }
 
-void ov16_02265BBC (UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2)
+void ov16_02265BBC (BattleSystem * param0, BattleContext * param1, u16 param2)
 {
     UnkStruct_ov16_02265BBC v0;
 
@@ -974,7 +974,7 @@ void ov16_02265BBC (UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 par
     ov16_02264A04(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_02265BEC (UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2, int param3, int param4)
+void ov16_02265BEC (BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4)
 {
     UnkStruct_ov16_02265BBC v0;
 
@@ -982,13 +982,13 @@ void ov16_02265BEC (UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 par
     ov16_02264A04(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_02265C1C (UnkStruct_0207ADB4 * param0, int param1, u32 param2)
+void ov16_02265C1C (BattleSystem * param0, int param1, u32 param2)
 {
     int v0 = 23;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02265C38 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_02265C38 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225C35C v0;
     Pokemon * v1;
@@ -1017,7 +1017,7 @@ void ov16_02265C38 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C35C));
 }
 
-void ov16_02265D14 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_02265D14 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C370 v0;
     Pokemon * v1;
@@ -1036,7 +1036,7 @@ void ov16_02265D14 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C370));
 }
 
-void ov16_02265D98 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_02265D98 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225C384 v0;
     int v1;
@@ -1072,7 +1072,7 @@ void ov16_02265D98 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C384));
 }
 
-void ov16_02265EAC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_02265EAC (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C398 v0;
 
@@ -1082,40 +1082,40 @@ void ov16_02265EAC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_0225C398));
 }
 
-void ov16_02265ECC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+void ov16_02265ECC (BattleSystem * param0, BattleContext * param1)
 {
     int v0 = 28;
 
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_02265EE8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02265EE8 (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_0225C3BC v0;
     int v1;
 
     v0.unk_00 = 29;
     v0.unk_01 = param2;
-    v0.unk_02 = ((param0->unk_30->battleMons[param1].statusVolatile & 0x1000000) != 0);
+    v0.unk_02 = ((param0->battleCtx->battleMons[param1].statusVolatile & 0x1000000) != 0);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_04[v1] = param0->unk_30->battleMons[v1].species;
-        v0.unk_10[v1] = param0->unk_30->battleMons[v1].isShiny;
-        v0.unk_14[v1] = param0->unk_30->battleMons[v1].formNum;
+        v0.unk_04[v1] = param0->battleCtx->battleMons[v1].species;
+        v0.unk_10[v1] = param0->battleCtx->battleMons[v1].isShiny;
+        v0.unk_14[v1] = param0->battleCtx->battleMons[v1].formNum;
 
-        if (param0->unk_30->battleMons[v1].statusVolatile & 0x200000) {
-            v0.unk_0C[v1] = param0->unk_30->battleMons[v1].moveEffectsData.transformedGender;
-            v0.unk_18[v1] = param0->unk_30->battleMons[v1].moveEffectsData.transformedPID;
+        if (param0->battleCtx->battleMons[v1].statusVolatile & 0x200000) {
+            v0.unk_0C[v1] = param0->battleCtx->battleMons[v1].moveEffectsData.transformedGender;
+            v0.unk_18[v1] = param0->battleCtx->battleMons[v1].moveEffectsData.transformedPID;
         } else {
-            v0.unk_0C[v1] = param0->unk_30->battleMons[v1].gender;
-            v0.unk_18[v1] = param0->unk_30->battleMons[v1].pid;
+            v0.unk_0C[v1] = param0->battleCtx->battleMons[v1].gender;
+            v0.unk_18[v1] = param0->battleCtx->battleMons[v1].pid;
         }
     }
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3BC));
 }
 
-void ov16_02265FB8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02265FB8 (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_0225C3D0 v0;
 
@@ -1125,7 +1125,7 @@ void ov16_02265FB8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3D0));
 }
 
-void ov16_02265FD8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02265FD8 (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_0225C3E4 v0;
 
@@ -1135,7 +1135,7 @@ void ov16_02265FD8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3E4));
 }
 
-void ov16_02265FF8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_02265FF8 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_02265BBC v0;
 
@@ -1143,7 +1143,7 @@ void ov16_02265FF8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_02266028 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3, int param4)
+void ov16_02266028 (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
 {
     UnkStruct_ov16_02265BBC v0;
 
@@ -1151,7 +1151,7 @@ void ov16_02266028 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_02266058 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_02266058 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C3F8 v0;
 
@@ -1162,7 +1162,7 @@ void ov16_02266058 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C3F8));
 }
 
-void ov16_0226609C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_0226609C (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C40C v0;
 
@@ -1178,14 +1178,14 @@ void ov16_0226609C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C40C));
 }
 
-void ov16_022660E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_022660E8 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0 = 34;
 
     ov16_02264A04(param0, 1, param2, &v0, 4);
 }
 
-void ov16_02266100 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_02266100 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225C430 v0;
     int v1;
@@ -1199,14 +1199,14 @@ void ov16_02266100 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C430));
 }
 
-void ov16_0226614C (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_0226614C (BattleSystem * param0, int param1)
 {
     int v0 = 36;
 
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02266168 (UnkStruct_0207ADB4 * param0, int param1, BattleMessage param2)
+void ov16_02266168 (BattleSystem * param0, int param1, BattleMessage param2)
 {
     UnkStruct_ov16_0225C454 v0;
 
@@ -1218,7 +1218,7 @@ void ov16_02266168 (UnkStruct_0207ADB4 * param0, int param1, BattleMessage param
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C454));
 }
 
-void ov16_022661B0 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_022661B0 (BattleSystem * param0, int param1)
 {
     int v0;
 
@@ -1226,7 +1226,7 @@ void ov16_022661B0 (UnkStruct_0207ADB4 * param0, int param1)
     ov16_02264A04(param0, 0, param1, &v0, 4);
 }
 
-void ov16_022661CC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_022661CC (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225C468 v0;
     Pokemon * v1;
@@ -1258,7 +1258,7 @@ void ov16_022661CC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C468));
 }
 
-void ov16_022662FC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_022662FC (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_022662FC v0;
     int v1;
@@ -1303,19 +1303,19 @@ void ov16_022662FC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_022662FC));
 }
 
-void ov16_02266460 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02266460 (BattleSystem * param0, int param1)
 {
     int v0 = 40;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_0226647C (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_0226647C (BattleSystem * param0, int param1)
 {
     int v0 = 41;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02266498 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+void ov16_02266498 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_02266498 v0;
 
@@ -1326,7 +1326,7 @@ void ov16_02266498 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02266498));
 }
 
-void ov16_022664C4 (UnkStruct_0207ADB4 * param0, int param1, int param2, int param3)
+void ov16_022664C4 (BattleSystem * param0, int param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C65C v0;
 
@@ -1339,7 +1339,7 @@ void ov16_022664C4 (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02266498));
 }
 
-void ov16_022664F8 (UnkStruct_0207ADB4 * param0, int param1, int param2, int param3)
+void ov16_022664F8 (BattleSystem * param0, int param1, int param2, int param3)
 {
     UnkStruct_ov16_022664F8 v0;
 
@@ -1350,84 +1350,84 @@ void ov16_022664F8 (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022664F8));
 }
 
-void ov16_0226651C (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_0226651C (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C684 v0;
 
     v0.unk_00 = 45;
-    v0.unk_02 = param0->unk_30->battleMons[param1].species;
-    v0.unk_05 = param0->unk_30->battleMons[param1].isShiny;
+    v0.unk_02 = param0->battleCtx->battleMons[param1].species;
+    v0.unk_05 = param0->battleCtx->battleMons[param1].isShiny;
 
-    if (param0->unk_30->battleMons[param1].statusVolatile & 0x200000) {
-        v0.unk_04 = param0->unk_30->battleMons[param1].moveEffectsData.transformedGender;
-        v0.unk_08 = param0->unk_30->battleMons[param1].moveEffectsData.transformedPID;
+    if (param0->battleCtx->battleMons[param1].statusVolatile & 0x200000) {
+        v0.unk_04 = param0->battleCtx->battleMons[param1].moveEffectsData.transformedGender;
+        v0.unk_08 = param0->battleCtx->battleMons[param1].moveEffectsData.transformedPID;
     } else {
-        v0.unk_04 = param0->unk_30->battleMons[param1].gender;
-        v0.unk_08 = param0->unk_30->battleMons[param1].pid;
+        v0.unk_04 = param0->battleCtx->battleMons[param1].gender;
+        v0.unk_08 = param0->battleCtx->battleMons[param1].pid;
     }
 
-    v0.unk_01 = param0->unk_30->battleMons[param1].formNum;
+    v0.unk_01 = param0->battleCtx->battleMons[param1].formNum;
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C684));
 }
 
-void ov16_022665AC (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_022665AC (BattleSystem * param0, int param1)
 {
     int v0 = 46;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_022665C8 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_022665C8 (BattleSystem * param0, int param1)
 {
     int v0 = 47;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_022665E4 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_022665E4 (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C840 v0;
 
-    ov16_02266CF0(param0, param0->unk_30, &v0, 48, param1);
+    ov16_02266CF0(param0, param0->battleCtx, &v0, 48, param1);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
 }
 
-void ov16_0226660C (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_0226660C (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C840 v0;
 
-    ov16_02266CF0(param0, param0->unk_30, &v0, 49, param1);
+    ov16_02266CF0(param0, param0->battleCtx, &v0, 49, param1);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
 }
 
-void ov16_02266634 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02266634 (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C840 v0;
 
-    ov16_02266CF0(param0, param0->unk_30, &v0, 50, param1);
+    ov16_02266CF0(param0, param0->battleCtx, &v0, 50, param1);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
 }
 
-void ov16_0226665C (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_0226665C (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C840 v0;
 
-    ov16_02266CF0(param0, param0->unk_30, &v0, 51, param1);
+    ov16_02266CF0(param0, param0->battleCtx, &v0, 51, param1);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
 }
 
-void ov16_02266684 (UnkStruct_0207ADB4 * param0)
+void ov16_02266684 (BattleSystem * param0)
 {
     int v0 = 52;
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_022666A0 (UnkStruct_0207ADB4 * param0)
+void ov16_022666A0 (BattleSystem * param0)
 {
     int v0 = 53;
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_022666BC (UnkStruct_0207ADB4 * param0, int param1, int param2, int param3)
+void ov16_022666BC (BattleSystem * param0, int param1, int param2, int param3)
 {
     UnkStruct_ov16_022666BC v0;
 
@@ -1438,7 +1438,7 @@ void ov16_022666BC (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022666BC));
 }
 
-void ov16_022666E0 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_022666E0 (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C988 v0;
     u32 v1 = ov16_0223DF0C(param0);
@@ -1453,7 +1453,7 @@ void ov16_022666E0 (UnkStruct_0207ADB4 * param0, int param1)
     }
 }
 
-void ov16_0226673C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_0226673C (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0;
     UnkStruct_ov16_02265BBC v1;
@@ -1477,25 +1477,25 @@ void ov16_0226673C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_022667E8 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_022667E8 (BattleSystem * param0, int param1)
 {
     int v0 = 57;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02266804 (UnkStruct_0207ADB4 * param0, int param1)
+void ov16_02266804 (BattleSystem * param0, int param1)
 {
     int v0 = 58;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02266820 (UnkStruct_0207ADB4 * param0)
+void ov16_02266820 (BattleSystem * param0)
 {
     int v0 = 59;
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_0226683C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+void ov16_0226683C (BattleSystem * param0, BattleContext * param1)
 {
     UnkStruct_ov16_0225C9F0 v0;
     int v1;
@@ -1519,7 +1519,7 @@ void ov16_0226683C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_0225C9F0));
 }
 
-void ov16_022668D0 (UnkStruct_0207ADB4 * param0)
+void ov16_022668D0 (BattleSystem * param0)
 {
     UnkStruct_ov16_0225CA14 v0;
     u32 v1 = ov16_0223DF0C(param0);
@@ -1535,7 +1535,7 @@ void ov16_022668D0 (UnkStruct_0207ADB4 * param0)
     ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_0225CA14));
 }
 
-void ov16_0226692C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_0226692C (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0;
     UnkStruct_ov16_02265BBC v1;
@@ -1559,7 +1559,7 @@ void ov16_0226692C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_022669D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+void ov16_022669D8 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225CA4C v0;
 
@@ -1576,7 +1576,7 @@ void ov16_022669D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225CA4C));
 }
 
-void ov16_02266A18 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02266A18 (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_0225CA60 v0;
 
@@ -1586,7 +1586,7 @@ void ov16_02266A18 (UnkStruct_0207ADB4 * param0, int param1, int param2)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225CA60));
 }
 
-void ov16_02266A38 (UnkStruct_0207ADB4 * param0)
+void ov16_02266A38 (BattleSystem * param0)
 {
     UnkStruct_ov16_02266A38 v0;
     u32 v1 = ov16_0223DF0C(param0);
@@ -1603,13 +1603,13 @@ void ov16_02266A38 (UnkStruct_0207ADB4 * param0)
     ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_02266A38));
 }
 
-void ov16_02266AA0 (UnkStruct_0207ADB4 * param0)
+void ov16_02266AA0 (BattleSystem * param0)
 {
     int v0 = 66;
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_02266ABC (UnkStruct_0207ADB4 * param0, int param1, int param2)
+void ov16_02266ABC (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_02266ABC v0;
 
@@ -1619,7 +1619,7 @@ void ov16_02266ABC (UnkStruct_0207ADB4 * param0, int param1, int param2)
     ov16_02264A04(param0, 2, param1, &v0, sizeof(UnkStruct_ov16_02266ABC));
 }
 
-BOOL ov16_02266AE4 (UnkStruct_0207ADB4 * param0, void * param1)
+BOOL ov16_02266AE4 (BattleSystem * param0, void * param1)
 {
     u8 * v0 = (u8 *)param1;
     u8 v1;
@@ -1636,7 +1636,7 @@ BOOL ov16_02266AE4 (UnkStruct_0207ADB4 * param0, void * param1)
 
     if (v1 == 0) {
         for (v4 = 0; v4 < v3; v4++) {
-            param0->unk_30->ioBuffer[v2][v4] = v0[v4];
+            param0->battleCtx->ioBuffer[v2][v4] = v0[v4];
         }
     } else if (v1 == 1) {
         if (param0->unk_34[v2]->unk_1A4 == 0) {
@@ -1657,7 +1657,7 @@ BOOL ov16_02266AE4 (UnkStruct_0207ADB4 * param0, void * param1)
             v7 = v0[1];
 
             if (ov16_0223ED60(param0)) {
-                ov16_02251F80(param0->unk_30, v7, v2, v6);
+                ov16_02251F80(param0->battleCtx, v7, v2, v6);
             }
         }
     } else {
@@ -1667,7 +1667,7 @@ BOOL ov16_02266AE4 (UnkStruct_0207ADB4 * param0, void * param1)
     return v5;
 }
 
-void ov16_02266B78 (UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_02265BBC * param2, int param3, int param4, int param5, int param6, u16 param7)
+void ov16_02266B78 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_02265BBC * param2, int param3, int param4, int param5, int param6, u16 param7)
 {
     int v0;
 
@@ -1717,7 +1717,7 @@ void ov16_02266B78 (UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStru
     }
 }
 
-static void ov16_02266CF0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStruct_ov16_0225C840 * param2, int param3, int param4)
+static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_0225C840 * param2, int param3, int param4)
 {
     int v0;
     int v1, v2;

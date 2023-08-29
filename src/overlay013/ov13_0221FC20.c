@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 #include "overlay013/struct_ov13_0221FC20.h"
@@ -102,7 +102,7 @@ static u8 ov13_022219DC(UnkStruct_ov13_022213F0 * param0);
 static void ov13_02221A04(UnkStruct_ov13_022213F0 * param0);
 static void ov13_02221A3C(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_0222194C(UnkStruct_ov13_022213F0 * param0);
-static void ov13_02221A54(UnkStruct_0207ADB4 * param0, u16 param1, u16 param2, u32 param3);
+static void ov13_02221A54(BattleSystem * param0, u16 param1, u16 param2, u32 param3);
 
 static const UnkUnion_02022594 Unk_ov13_02228DEC[] = {
     {0x0, 0x2F, 0x0, 0x7F},
@@ -1738,7 +1738,7 @@ static void ov13_02221A3C (UnkStruct_ov13_022213F0 * param0)
     sub_0201C3C0(param0->unk_1E0, 7);
 }
 
-static void ov13_02221A54 (UnkStruct_0207ADB4 * param0, u16 param1, u16 param2, u32 param3)
+static void ov13_02221A54 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
 {
     if ((param1 != 65) && (param1 != 67) && (param1 != 66)) {
         sub_0207D60C(ov16_0223E1AC(param0), param1, 1, param3);

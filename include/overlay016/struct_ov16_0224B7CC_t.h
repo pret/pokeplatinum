@@ -4,12 +4,12 @@
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_defs/struct_0201EE28.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_02237C54_decl.h"
 #include "battle/battle_context.h"
 
 struct UnkStruct_ov16_0224B7CC_t {
-    UnkStruct_0207ADB4 * unk_00;
+    BattleSystem * unk_00;
     BattleContext * unk_04;
     UnkStruct_ov12_02237C54 * unk_08;
     UnkStruct_0200D0F4 * unk_0C[2];

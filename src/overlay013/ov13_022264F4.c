@@ -11,7 +11,7 @@
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207D99C_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -78,7 +78,7 @@ static u8 ov13_02226A5C(UnkStruct_ov13_02227244 * param0);
 static void ov13_02227118(UnkStruct_ov13_02227244 * param0, u8 param1);
 static void ov13_022271D0(UnkStruct_ov13_02227244 * param0, u8 param1);
 static int ov13_02227238(UnkStruct_ov13_02227244 * param0, const UnkUnion_02022594 * param1);
-static void ov13_02227260(UnkStruct_0207ADB4 * param0, u16 param1, u16 param2, u32 param3);
+static void ov13_02227260(BattleSystem * param0, u16 param1, u16 param2, u32 param3);
 
 static const UnkUnion_02022594 Unk_ov13_02229A1C[] = {
     {0x8, 0x4F, 0x0, 0x7F},
@@ -841,7 +841,7 @@ int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
     return v0;
 }
 
-static void ov13_02227260 (UnkStruct_0207ADB4 * param0, u16 param1, u16 param2, u32 param3)
+static void ov13_02227260 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
 {
     sub_0207D60C(ov16_0223E1AC(param0), param1, 1, param3);
     sub_0207DA1C(ov16_0223E1B0(param0), param1, param2);

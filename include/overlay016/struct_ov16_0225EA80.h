@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV16_0225EA80_H
 
 #include "struct_defs/struct_02008A90.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ov12_02235FE0_decl.h"
@@ -11,7 +11,7 @@
 #include "overlay016/struct_ov16_02265BBC.h"
 
 typedef struct {
-    UnkStruct_0207ADB4 * unk_00;
+    BattleSystem * unk_00;
     UnkStruct_ov16_0225BFFC * unk_04;
     UnkStruct_ov12_02235FE0 * unk_08;
     UnkStruct_ov12_02237C54 * unk_0C;
