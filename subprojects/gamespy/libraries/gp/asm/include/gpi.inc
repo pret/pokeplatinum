@@ -10,7 +10,7 @@
 .public DWCi_GsRealloc
 .public DWCi_GsFree
 .public ov4_021EA364
-.public ov4_021EA840
+.public current_time
 .public ov4_021EA898
 .public ov4_021EA8A4
 .public ov4_021EBF14

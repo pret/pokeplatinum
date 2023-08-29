@@ -8,7 +8,7 @@
 .public ov4_021E9BC4
 .public ov4_021E9C2C
 .public ov4_021E9DB0
-.public ov4_021EA840
+.public current_time
 .public ov4_021EAB6C
 .public ov4_021EABBC
 .public ov4_021EAC48
@@ -17,7 +17,7 @@
 .public ov4_021EAE18
 .public ov4_021EAE5C
 .public ov4_021EAEF0
-.public ov4_021EAF1C
+.public inet_addr
 .public ov4_021FAE80
 .public ov4_021FAEE8
 .public ov4_021FAF18

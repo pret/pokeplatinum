@@ -21,7 +21,7 @@
 .public DWC_GetDateTime
 .public DWC_Base64Encode
 .public DWC_Base64Decode
-.public ov4_021EA840
+.public current_time
 .public ov66_02235058
 .public PPW_LobbyShutdownAsync
 .public ov66_02235B8C

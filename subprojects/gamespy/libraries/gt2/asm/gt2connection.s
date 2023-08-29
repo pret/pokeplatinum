@@ -153,7 +153,7 @@ ov4_021F8110: ; 0x021F8110
 	addeq sp, sp, #4
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, pc}
-	bl ov4_021EA840
+	bl current_time
 	str r0, [r4, #0x88]
 	mov r0, #1
 	add sp, sp, #4

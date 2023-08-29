@@ -29,7 +29,7 @@
 .public ov4_021EA44C
 .public ov4_021EA4F4
 .public ov4_021EA598
-.public ov4_021EA840
+.public current_time
 .public ov4_021EA8A4
 .public ov4_021EA8AC
 .public ov4_021EAB6C
@@ -39,7 +39,7 @@
 .public ov4_021EAE04
 .public ov4_021EAE18
 .public ov4_021EAE48
-.public ov4_021EAF1C
+.public inet_addr
 .public ov4_021FD5FC
 .public ov4_021FD790
 .public ov4_021FE0E0

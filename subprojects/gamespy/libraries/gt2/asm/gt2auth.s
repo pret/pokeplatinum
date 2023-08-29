@@ -64,7 +64,7 @@ ov4_021F71C4: ; 0x021F71C4
 	mov r3, #0x2b
 	bl __msl_assertion_failed
 _021F71E4:
-	bl ov4_021EA840
+	bl current_time
 	bl srand
 	bl rand
 	ldr r5, _021F72DC ; =0x2C0B02C1

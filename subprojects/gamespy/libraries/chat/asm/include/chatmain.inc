@@ -45,7 +45,7 @@
 .public ov66_02253830
 .public ov66_0225389C
 .public ov66_022539B8
-.public ov66_022543DC
+.public chatDisconnect
 .public ov66_02254FD0
 .public ov66_022553F0
 .public ov66_0225554C

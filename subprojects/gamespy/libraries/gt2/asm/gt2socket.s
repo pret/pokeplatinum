@@ -271,7 +271,7 @@ ov4_021FA678: ; 0x021FA678
 	strh r4, [r0, #4]
 	ldr r0, [sp]
 	str r7, [r0, #8]
-	bl ov4_021EA840
+	bl current_time
 	ldr r2, [sp]
 	mov r1, #0
 	str r0, [r2, #0x1c]
@@ -587,7 +587,7 @@ ov4_021FAB4C: ; 0x021FAB4C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	mov r4, r0
-	bl ov4_021EA840
+	bl current_time
 	str r0, [sp]
 	ldr r0, [r4, #0xc]
 	ldr r1, _021FAB84 ; =ov4_021FAAF4

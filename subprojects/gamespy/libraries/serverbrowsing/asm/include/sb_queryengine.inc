@@ -1,5 +1,5 @@
 .public strstr
-.public ov4_021EA840
+.public current_time
 .public ov4_021EA8A4
 .public ov4_021EAB6C
 .public ov4_021EACDC

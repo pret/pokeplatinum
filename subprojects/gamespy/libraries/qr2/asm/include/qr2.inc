@@ -9,14 +9,14 @@
 .public _s32_div_f
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EA840
+.public current_time
 .public ov4_021EA8A8
 .public ov4_021EAB6C
 .public ov4_021EABBC
 .public ov4_021EACF0
 .public ov4_021EAE18
 .public ov4_021EAE5C
-.public ov4_021EAF1C
+.public inet_addr
 .public ov4_021FBFD4
 .public ov4_021FC080
 .public qr2_buffer_add_int

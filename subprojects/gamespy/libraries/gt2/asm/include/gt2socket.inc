@@ -13,7 +13,7 @@
 .public ov4_021EA4F4
 .public ov4_021EA598
 .public ov4_021EA73C
-.public ov4_021EA840
+.public current_time
 .public ov4_021EA8A4
 .public ov4_021EA8A8
 .public ov4_021EAB94

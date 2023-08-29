@@ -909,7 +909,7 @@ _022540FC:
 	cmp r0, #0
 	bne _02254134
 	mov r0, r4
-	bl ov66_022543DC
+	bl chatDisconnect
 	mov r4, #0
 _02254134:
 	mov r0, r4
@@ -953,8 +953,8 @@ _022541C4: .word Unk_ov66_0225ACB8
 _022541C8: .word Unk_ov66_0225ACC8
 	arm_func_end ov66_022539B8
 
-	arm_func_start ov66_022541CC
-ov66_022541CC: ; 0x022541CC
+	arm_func_start chatConnectSecureA
+chatConnectSecureA: ; 0x022541CC
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x44
 	mov ip, r0
@@ -990,10 +990,10 @@ ov66_022541CC: ; 0x022541CC
 	bl ov66_022539B8
 	add sp, sp, #0x44
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov66_022541CC
+	arm_func_end chatConnectSecureA
 
-	arm_func_start ov66_02254258
-ov66_02254258: ; 0x02254258
+	arm_func_start chatRetryWithNickA
+chatRetryWithNickA: ; 0x02254258
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1048,10 +1048,10 @@ _02254310: .word Unk_ov66_0225AA94
 _02254314: .word Unk_ov66_0225A968
 _02254318: .word 0x00000385
 _0225431C: .word Unk_ov66_0225ACD0
-	arm_func_end ov66_02254258
+	arm_func_end chatRetryWithNickA
 
-	arm_func_start ov66_02254320
-ov66_02254320: ; 0x02254320
+	arm_func_start chatRegisterUniqueNickA
+chatRegisterUniqueNickA: ; 0x02254320
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -1102,10 +1102,10 @@ _022543CC: .word Unk_ov66_0225AA3C
 _022543D0: .word 0x000003BD
 _022543D4: .word Unk_ov66_0225AB2C
 _022543D8: .word Unk_ov66_0225ACDC
-	arm_func_end ov66_02254320
+	arm_func_end chatRegisterUniqueNickA
 
-	arm_func_start ov66_022543DC
-ov66_022543DC: ; 0x022543DC
+	arm_func_start chatDisconnect
+chatDisconnect: ; 0x022543DC
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _022543FC
@@ -1154,19 +1154,19 @@ _0225447C: .word Unk_ov66_0225A8E8
 _02254480: .word 0x000003EF
 _02254484: .word Unk_ov66_0225AB2C
 _02254488: .word Unk_ov66_0225ACF4
-	arm_func_end ov66_022543DC
+	arm_func_end chatDisconnect
 
-	arm_func_start ov66_0225448C
-ov66_0225448C: ; 0x0225448C
+	arm_func_start chatThink
+chatThink: ; 0x0225448C
 	ldr ip, _02254498 ; =ov66_0225366C
 	mov r1, #0
 	bx ip
 	; .align 2, 0
 _02254498: .word ov66_0225366C
-	arm_func_end ov66_0225448C
+	arm_func_end chatThink
 
-	arm_func_start ov66_0225449C
-ov66_0225449C: ; 0x0225449C
+	arm_func_start chatEnumChannelsA
+chatEnumChannelsA: ; 0x0225449C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r4, r0
 	mov r7, r1
@@ -1229,10 +1229,10 @@ _02254574: .word Unk_ov66_0225AD64
 _02254578: .word 0x00000591
 _0225457C: .word Unk_ov66_0225AB2C
 _02254580: .word Unk_ov66_0225AD94
-	arm_func_end ov66_0225449C
+	arm_func_end chatEnumChannelsA
 
-	arm_func_start ov66_02254584
-ov66_02254584: ; 0x02254584
+	arm_func_start chatEnterChannelA
+chatEnterChannelA: ; 0x02254584
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #8
 	movs r4, r0
@@ -1323,10 +1323,10 @@ _022546C4: .word Unk_ov66_0225AB48
 _022546C8: .word 0x000005B7
 _022546CC: .word Unk_ov66_0225AB2C
 _022546D0: .word Unk_ov66_0225ADC0
-	arm_func_end ov66_02254584
+	arm_func_end chatEnterChannelA
 
-	arm_func_start ov66_022546D4
-ov66_022546D4: ; 0x022546D4
+	arm_func_start chatLeaveChannelA
+chatLeaveChannelA: ; 0x022546D4
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r5, r1
@@ -1380,10 +1380,10 @@ _02254788: .word 0x000005DE
 _0225478C: .word Unk_ov66_0225ADAC
 _02254790: .word Unk_ov66_0225AB2C
 _02254794: .word Unk_ov66_0225ADCC
-	arm_func_end ov66_022546D4
+	arm_func_end chatLeaveChannelA
 
-	arm_func_start ov66_02254798
-ov66_02254798: ; 0x02254798
+	arm_func_start chatSendChannelMessageA
+chatSendChannelMessageA: ; 0x02254798
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x20
 	movs r7, r0
@@ -1515,10 +1515,10 @@ _0225496C: .word Unk_ov66_0225AE60
 _02254970: .word Unk_ov66_0225AE78
 _02254974: .word Unk_ov66_0225AE88
 _02254978: .word Unk_ov66_0225AE94
-	arm_func_end ov66_02254798
+	arm_func_end chatSendChannelMessageA
 
-	arm_func_start ov66_0225497C
-ov66_0225497C: ; 0x0225497C
+	arm_func_start chatSetChannelModeA
+chatSetChannelModeA: ; 0x0225497C
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x40
 	movs r6, r0
@@ -1654,10 +1654,10 @@ _02254B6C: .word 0x00000683
 _02254B70: .word Unk_ov66_0225AEC4
 _02254B74: .word Unk_ov66_0225AED8
 _02254B78: .word Unk_ov66_0225AEDC
-	arm_func_end ov66_0225497C
+	arm_func_end chatSetChannelModeA
 
-	arm_func_start ov66_02254B7C
-ov66_02254B7C: ; 0x02254B7C
+	arm_func_start chatGetChannelModeA
+chatGetChannelModeA: ; 0x02254B7C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x3c
 	movs r8, r0
@@ -1789,10 +1789,10 @@ _02254D58: .word Unk_ov66_0225ADAC
 _02254D5C: .word Unk_ov66_0225AEA0
 _02254D60: .word 0x000006C6
 _02254D64: .word Unk_ov66_0225AEE8
-	arm_func_end ov66_02254B7C
+	arm_func_end chatGetChannelModeA
 
-	arm_func_start ov66_02254D68
-ov66_02254D68: ; 0x02254D68
+	arm_func_start chatSetChannelLimitA
+chatSetChannelLimitA: ; 0x02254D68
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r5, r1
@@ -1859,10 +1859,10 @@ _02254E48: .word Unk_ov66_0225AEF0
 _02254E4C: .word 0x00000752
 _02254E50: .word Unk_ov66_0225AEFC
 _02254E54: .word Unk_ov66_0225AF0C
-	arm_func_end ov66_02254D68
+	arm_func_end chatSetChannelLimitA
 
-	arm_func_start ov66_02254E58
-ov66_02254E58: ; 0x02254E58
+	arm_func_start chatGetChannelNumUsersA
+chatGetChannelNumUsersA: ; 0x02254E58
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1917,10 +1917,10 @@ _02254F10: .word 0x000007D6
 _02254F14: .word Unk_ov66_0225AD9C
 _02254F18: .word 0x000007DA
 _02254F1C: .word Unk_ov66_0225ADAC
-	arm_func_end ov66_02254E58
+	arm_func_end chatGetChannelNumUsersA
 
-	arm_func_start ov66_02254F20
-ov66_02254F20: ; 0x02254F20
+	arm_func_start chatInChannelA
+chatInChannelA: ; 0x02254F20
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1969,7 +1969,7 @@ _02254FC0: .word 0x000007F4
 _02254FC4: .word Unk_ov66_0225AD9C
 _02254FC8: .word 0x000007F8
 _02254FCC: .word Unk_ov66_0225ADAC
-	arm_func_end ov66_02254F20
+	arm_func_end chatInChannelA
 
 	arm_func_start ov66_02254FD0
 ov66_02254FD0: ; 0x02254FD0
@@ -2059,8 +2059,8 @@ _022550FC: .word Unk_ov66_0225AF38
 _02255100: .word 0x0000082C
 	arm_func_end ov66_02254FD0
 
-	arm_func_start ov66_02255104
-ov66_02255104: ; 0x02255104
+	arm_func_start chatEnumUsersA
+chatEnumUsersA: ; 0x02255104
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #8
 	movs r4, r0
@@ -2148,10 +2148,10 @@ _0225523C: .word 0x0000084B
 _02255240: .word Unk_ov66_0225AB2C
 _02255244: .word ov66_02254FD0
 _02255248: .word Unk_ov66_0225AF50
-	arm_func_end ov66_02255104
+	arm_func_end chatEnumUsersA
 
-	arm_func_start ov66_0225524C
-ov66_0225524C: ; 0x0225524C
+	arm_func_start chatSendUserMessageA
+chatSendUserMessageA: ; 0x0225524C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -2267,7 +2267,7 @@ _022553E0: .word Unk_ov66_0225AE60
 _022553E4: .word Unk_ov66_0225AE78
 _022553E8: .word Unk_ov66_0225AE88
 _022553EC: .word Unk_ov66_0225AE94
-	arm_func_end ov66_0225524C
+	arm_func_end chatSendUserMessageA
 
 	arm_func_start ov66_022553F0
 ov66_022553F0: ; 0x022553F0
@@ -2298,8 +2298,8 @@ _02255448: .word Unk_ov66_0225AF9C
 _0225544C: .word 0x10624DD3
 	arm_func_end ov66_022553F0
 
-	arm_func_start ov66_02255450
-ov66_02255450: ; 0x02255450
+	arm_func_start chatSetChannelKeysA
+chatSetChannelKeysA: ; 0x02255450
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x200
 	movs sl, r0
@@ -2369,7 +2369,7 @@ _0225553C: .word Unk_ov66_0225AFC4
 _02255540: .word Unk_ov66_0225AFD4
 _02255544: .word Unk_ov66_0225AB2C
 _02255548: .word Unk_ov66_0225AF94
-	arm_func_end ov66_02255450
+	arm_func_end chatSetChannelKeysA
 
 	arm_func_start ov66_0225554C
 ov66_0225554C: ; 0x0225554C
@@ -2557,8 +2557,8 @@ _022557E4: .word Unk_ov66_0225B040
 _022557E8: .word Unk_ov66_0225AAC0
 	arm_func_end ov66_0225554C
 
-	arm_func_start ov66_022557EC
-ov66_022557EC: ; 0x022557EC
+	arm_func_start chatGetChannelKeysA
+chatGetChannelKeysA: ; 0x022557EC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x10
 	movs sb, r0
@@ -2669,7 +2669,7 @@ _02255978: .word 0x00000B72
 _0225597C: .word Unk_ov66_0225AFFC
 _02255980: .word 0x00000B73
 _02255984: .word Unk_ov66_0225AAC0
-	arm_func_end ov66_022557EC
+	arm_func_end chatGetChannelKeysA
 
 	arm_func_start ov66_02255988
 ov66_02255988: ; 0x02255988

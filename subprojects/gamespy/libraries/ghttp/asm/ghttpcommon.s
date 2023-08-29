@@ -119,7 +119,7 @@ ov60_0222097C: ; 0x0222097C
 	cmp r0, #0
 	sub r4, r2, #1
 	beq _022209D0
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, _02220B8C ; =0x0222911C
 	ldr r3, [r7, #0x138]
 	ldr r2, [r1, #0]

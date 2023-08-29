@@ -6,12 +6,12 @@
 .public ov4_021E963C
 .public ov4_021E96B0
 .public ov4_021E97F8
-.public ov4_021EA840
+.public current_time
 .public ov4_021EA8A4
 .public ov4_021EAB6C
 .public ov4_021EACDC
 .public ov4_021EACF0
 .public ov4_021EAE18
 .public ov4_021EAE5C
-.public ov4_021EAF1C
+.public inet_addr
 .public SOC_GetHostByName

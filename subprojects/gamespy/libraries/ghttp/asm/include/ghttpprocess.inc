@@ -11,7 +11,7 @@
 .public atoi
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EA840
+.public current_time
 .public ov4_021EA8A4
 .public ov4_021EA8AC
 .public ov4_021EA924
@@ -19,7 +19,7 @@
 .public ov4_021EAA74
 .public ov4_021EACDC
 .public ov4_021EAD78
-.public ov4_021EAF1C
+.public inet_addr
 .public GOAGetLastError
 .public SOC_GetHostByName
 .public ov60_02220130

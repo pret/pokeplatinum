@@ -4,6 +4,6 @@
 .public strlen
 .public strchr
 .public atoi
-.public ov4_021EAF1C
+.public inet_addr
 .public SOC_GetHostByName
 .public SOC_InetNtoA

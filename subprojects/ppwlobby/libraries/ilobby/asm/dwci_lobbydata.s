@@ -253,7 +253,7 @@ ov66_022468DC: ; 0x022468DC
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, _02246920 ; =0x10624DD3
 	mov r3, #0x3e8
 	umull r1, ip, r0, r1

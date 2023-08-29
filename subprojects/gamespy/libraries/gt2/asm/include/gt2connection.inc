@@ -6,7 +6,7 @@
 .public ov4_021E9BC4
 .public ov4_021E9C2C
 .public ov4_021EA4F4
-.public ov4_021EA840
+.public current_time
 .public ov4_021F71C4
 .public ov4_021F72E0
 .public ov4_021F77F4
