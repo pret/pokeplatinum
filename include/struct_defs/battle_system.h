@@ -118,7 +118,7 @@ struct BattleSystem {
     int unk_2410;
     u8 unk_2414[4];
     u32 unk_2418;
-    u8 unk_241C;
+    u8 resultMask;
     u8 unk_241D;
     u16 unk_241E;
     int unk_2420;

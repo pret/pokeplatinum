@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/pokemon.h"
+#include "constants/heap.h"
 #include "constants/sdat.h"
 #include "constants/trainer.h"
 
@@ -71,8 +72,8 @@ static BOOL ov16_0224E6F4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224E784(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224EE88(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224EF00(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224EF20(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
-static BOOL ov16_0224F274(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+static BOOL BattleSystem_CheckMoveHit(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+static BOOL BattleSystem_CheckMoveEffect(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 static BOOL ov16_0224F460(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F5CC(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F5E8(BattleSystem * param0, BattleContext * param1);
@@ -111,12 +112,12 @@ static BOOL ov16_02251218(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0225126C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022512F8(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022513B0(BattleSystem * param0, BattleContext * param1);
-static void ov16_02251604(BattleSystem * param0, BattleContext * param1);
+static void BattleController_InitAI(BattleSystem * param0, BattleContext * param1);
 static void ov16_02251694(BattleSystem * param0, BattleContext * param1);
 
 extern u32 Unk_ov14_022248A4[];
 
-static const BattleControlFunc Unk_ov16_0226EAEC[] = {
+static const BattleControlFunc BattleControlCommands[] = {
     ov16_0224BA1C,
     ov16_0224BA60,
     ov16_0224BA78,
@@ -166,50 +167,48 @@ static const BattleControlFunc Unk_ov16_0226EAEC[] = {
 
 void * BattleContext_New (BattleSystem *battleSys)
 {
-    BattleContext * v0;
-    int v1;
+    BattleContext *battleContext = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleContext));
 
-    v0 = Heap_AllocFromHeap(5, sizeof(BattleContext));
+    MI_CpuClearFast(battleContext, sizeof(BattleContext));
 
-    MI_CpuClearFast(v0, sizeof(BattleContext));
+    BattleContext_Init(battleContext);
+    BattleContext_InitCounters(battleSys, battleContext);
+    BattleController_InitAI(battleSys, battleContext);
 
-    ov16_022541C4(v0);
-    ov16_022542B8(battleSys, v0);
-    ov16_02251604(battleSys, v0);
+    MoveTable_Load(&battleContext->aiContext.moveTable);
+    battleContext->aiContext.itemTable = ItemData_LoadTable(HEAP_ID_BATTLE);
 
-    MoveTable_Load(&v0->aiContext.moveTable);
-    v0->aiContext.itemTable = sub_0207D388(5);
-
-    return v0;
+    return battleContext;
 }
 
-int BattleController_Main (BattleSystem * param0, BattleContext * param1)
+int BattleController_Main (BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->battleEndFlag == 0) {
-        if ((ov16_0223F438(param0)) && ((ov16_0223F438(param0) & 0x40) == 0)) {
-            param1->command = 41;
+    if (battleCtx->battleEndFlag == FALSE) {
+        if (BattleSystem_ResultMask(battleSys)
+                && (BattleSystem_ResultMask(battleSys) & BATTLE_RESULT_TRY_FLEE_WAIT) == FALSE) {
+            battleCtx->command = BATTLE_CONTROL_RESULT;
         }
     }
 
-    Unk_ov16_0226EAEC[param1->command](param0, param1);
+    BattleControlCommands[battleCtx->command](battleSys, battleCtx);
 
-    if (param1->command == 44) {
+    if (battleCtx->command == BATTLE_CONTROL_END_WAIT) {
         return 1;
     }
 
     return 0;
 }
 
-void BattleContext_Free (BattleContext * param0)
+void BattleContext_Free (BattleContext *battleCtx)
 {
-    Heap_FreeToHeap(param0->aiContext.itemTable);
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(battleCtx->aiContext.itemTable);
+    Heap_FreeToHeap(battleCtx);
 }
 
-void BattleSystem_CheckMoveHitEffect (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
+void BattleController_CheckMoveHitEffect (BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
-    ov16_0224EF20(param0, param1, param2, param3, param4);
-    ov16_0224F274(param0, param1, param2, param3, param4);
+    BattleSystem_CheckMoveHit(battleSys, battleCtx, attacker, defender, move);
+    BattleSystem_CheckMoveEffect(battleSys, battleCtx, attacker, defender, move);
 }
 
 static void ov16_0224BA1C (BattleSystem * param0, BattleContext * param1)
@@ -1817,7 +1816,7 @@ static void ov16_0224DC10 (BattleSystem * param0, BattleContext * param1)
     param1->totalTurns++;
     param1->meFirstTurnOrder++;
 
-    ov16_022541C4(param1);
+    BattleContext_Init(param1);
     ov16_02254990(param0, param1);
 
     param1->command = 2;
@@ -2635,7 +2634,7 @@ static const UnkStruct_ov16_0226EAD0 Unk_ov16_0226EAD0[] = {
     {0x3, 0x1}
 };
 
-static BOOL ov16_0224EF20 (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
+static BOOL BattleSystem_CheckMoveHit (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
 {
     u16 v0;
     s8 v1;
@@ -2778,7 +2777,7 @@ static BOOL ov16_0224EF20 (BattleSystem * param0, BattleContext * param1, int pa
     return 0;
 }
 
-static BOOL ov16_0224F274 (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
+static BOOL BattleSystem_CheckMoveEffect (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
 {
     if (param1->battleStatusMask & 0x20) {
         return 0;
@@ -2982,7 +2981,7 @@ static void ov16_0224F734 (BattleSystem * param0, BattleContext * param1)
         }
     case 2:
         if (((param1->multiHitCheckFlags & 0x20) == 0) && (param1->defender != 0xff)) {
-            if (ov16_0224EF20(param0, param1, param1->attacker, param1->defender, param1->moveCur) == 1) {
+            if (BattleSystem_CheckMoveHit(param0, param1, param1->attacker, param1->defender, param1->moveCur) == 1) {
                 return;
             }
         }
@@ -2990,7 +2989,7 @@ static void ov16_0224F734 (BattleSystem * param0, BattleContext * param1)
         param1->moveExecutionCheckState++;
     case 3:
         if (((param1->multiHitCheckFlags & 0x40) == 0) && (param1->defender != 0xff)) {
-            if (ov16_0224F274(param0, param1, param1->attacker, param1->defender, param1->moveCur) == 1) {
+            if (BattleSystem_CheckMoveEffect(param0, param1, param1->attacker, param1->defender, param1->moveCur) == 1) {
                 return;
             }
         }
@@ -3687,7 +3686,7 @@ static void ov16_022505C4 (BattleSystem * param0, BattleContext * param1)
         param1->turnOrderCounter++;
     }
 
-    ov16_022541C4(param1);
+    BattleContext_Init(param1);
 
     param1->command = 8;
 }
@@ -3705,20 +3704,20 @@ static void ov16_022506A4 (BattleSystem * param0, BattleContext * param1)
 
 static void ov16_022506C0 (BattleSystem * param0, BattleContext * param1)
 {
-    if (ov16_0223F438(param0) & 0x80) {
+    if (BattleSystem_ResultMask(param0) & 0x80) {
         param1->command = 43;
-    } else if ((ov16_0223F438(param0) == 0x2) || (ov16_0223F438(param0) == 0x3)) {
+    } else if ((BattleSystem_ResultMask(param0) == 0x2) || (BattleSystem_ResultMask(param0) == 0x3)) {
         ov16_02251E1C(param1, 1, (0 + 5));
         param1->command = 21;
         param1->commandNext = 43;
-    } else if (ov16_0223F438(param0) == 0x1) {
+    } else if (BattleSystem_ResultMask(param0) == 0x1) {
         ov16_02251E1C(param1, 1, (0 + 4));
         param1->command = 21;
         param1->commandNext = 43;
-    } else if (ov16_0223F438(param0) == 0x4) {
+    } else if (BattleSystem_ResultMask(param0) == 0x4) {
         param1->command = 21;
         param1->commandNext = 43;
-    } else if (ov16_0223F438(param0) == 0x5) {
+    } else if (BattleSystem_ResultMask(param0) == 0x5) {
         param1->command = 43;
     }
 
@@ -4386,7 +4385,7 @@ static BOOL ov16_0225143C (BattleSystem * param0, BattleContext * param1)
     return v0 == 1;
 }
 
-static void ov16_02251604 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_InitAI (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;

@@ -3156,7 +3156,7 @@ static BOOL ov16_022432B4 (BattleSystem * param0, BattleContext * param1)
 
     ov16_02248AF0(param1, 1);
 
-    if (param0->unk_241C == 0x1) {
+    if (param0->resultMask == 0x1) {
         v0 = ov16_022431BC(param0, param1, 1);
 
         if ((param0->unk_2C & 0x10) || (param0->unk_2C == ((0x2 | 0x1) | 0x8 | 0x40))) {
@@ -4934,7 +4934,7 @@ static BOOL ov16_02245CB4 (BattleSystem * param0, BattleContext * param1)
     v5 = ov16_0224A984(param0, param1, v1);
     v6 = ov16_0224B3E8(param1, v2);
 
-    BattleSystem_CheckMoveHitEffect(param0, param1, v4, v5, v6);
+    BattleController_CheckMoveHitEffect(param0, param1, v4, v5, v6);
 
     if (param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) {
         ov16_02248AF0(param1, v3);
@@ -7562,7 +7562,7 @@ static void * ov16_02248B10 (BattleSystem * param0, BattleContext * param1, int 
     case 32:
         return &param1->hpCalcTemp;
     case 33:
-        return &param0->unk_241C;
+        return &param0->resultMask;
     case 34:
         return &param1->sideEffectParam;
     case 35:
@@ -8768,7 +8768,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 sub_02007DD4(v5);
             }
 
-            v2->unk_00->unk_241C = 0x4;
+            v2->unk_00->resultMask = 0x4;
             v2->unk_04->unk_178 = NULL;
 
             Heap_FreeToHeap(param1);

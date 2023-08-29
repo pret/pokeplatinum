@@ -727,7 +727,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     sub_0200F344(1, 0x0);
     ov16_0223EE70(v0);
 
-    if (v0->unk_241C != 0x4) {
+    if (v0->resultMask != 0x4) {
         ov16_0223EF68(v0, Party_GetPokemonBySlotIndex(v0->parties[1], 0));
     }
 
@@ -750,7 +750,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     v1->unk_100 = v0->unk_98;
     v1->unk_10C = v0->unk_9C;
     v1->unk_168 = v0->unk_2410;
-    v1->unk_14 = v0->unk_241C & (0xc0 ^ 0xff);
+    v1->unk_14 = v0->resultMask & (0xc0 ^ 0xff);
     v1->unk_148 = v0->unk_2438;
     v1->unk_150 = ov16_0225B45C(v0, v0->battleCtx, 4, NULL);
     v1->unk_110.unk_00 += ov16_0225B45C(v0, v0->battleCtx, 3, NULL);

@@ -1592,7 +1592,7 @@ void ov16_02266A38 (BattleSystem * param0)
     u32 v1 = ov16_0223DF0C(param0);
 
     v0.unk_00 = 65;
-    v0.unk_04 = ov16_0223F438(param0);
+    v0.unk_04 = BattleSystem_ResultMask(param0);
     v0.unk_02 = 0;
 
     if ((v1 & 0x4) && (sub_0202F250() == 1) && ((param0->unk_2408 & 0x10) == 0)) {

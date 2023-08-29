@@ -6101,7 +6101,7 @@ static void ov16_022641B4 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
     int v3;
 
     v0 = ov16_0223DF0C(param0);
-    v3 = ov16_0223F438(param0);
+    v3 = BattleSystem_ResultMask(param0);
 
     if (v0 & 0x2) {
         v1 = ov16_0223E1C4(param0, 3);

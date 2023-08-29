@@ -172,7 +172,7 @@ void ov16_0223F36C(BattleSystem * param0);
 void ov16_0223F3BC(BattleSystem * param0);
 void ov16_0223F3EC(BattleSystem * param0);
 void ov16_0223F414(BattleSystem * param0);
-u8 ov16_0223F438(BattleSystem * param0);
+u8 BattleSystem_ResultMask(BattleSystem * param0);
 void ov16_0223F444(BattleSystem * param0, u8 param1);
 u8 ov16_0223F450(BattleSystem * param0);
 void ov16_0223F460(BattleSystem * param0, u8 param1);
@@ -1139,7 +1139,7 @@ void ov16_0223EF48 (BattleSystem * param0, Pokemon * param1)
 
 void ov16_0223EF68 (BattleSystem * param0, Pokemon * param1)
 {
-    sub_0206D160(param0->unk_9C, param1, param0->unk_241C, param0->unk_241E, 5);
+    sub_0206D160(param0->unk_9C, param1, param0->resultMask, param0->unk_241E, 5);
 }
 
 void ov16_0223EF8C (BattleSystem * param0)
@@ -1425,14 +1425,14 @@ void ov16_0223F414 (BattleSystem * param0)
     }
 }
 
-u8 ov16_0223F438 (BattleSystem * param0)
+u8 BattleSystem_ResultMask (BattleSystem * param0)
 {
-    return param0->unk_241C;
+    return param0->resultMask;
 }
 
 void ov16_0223F444 (BattleSystem * param0, u8 param1)
 {
-    param0->unk_241C = param1;
+    param0->resultMask = param1;
 }
 
 u8 ov16_0223F450 (BattleSystem * param0)

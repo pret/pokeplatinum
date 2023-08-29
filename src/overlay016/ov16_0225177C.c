@@ -77,8 +77,8 @@ void ov16_02253EF0(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02253F20(BattleSystem * param0, BattleContext * param1, int param2);
 int ov16_02253F7C(BattleContext * param0, int param1);
 BOOL ov16_02253FCC(BattleSystem * param0, BattleContext * param1);
-void ov16_022541C4(BattleContext * param0);
-void ov16_022542B8(BattleSystem * param0, BattleContext * param1);
+void BattleContext_Init(BattleContext * param0);
+void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
 void ov16_0225433C(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02254744(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02254990(BattleSystem * param0, BattleContext * param1);
@@ -2031,7 +2031,7 @@ BOOL ov16_02253FCC (BattleSystem * param0, BattleContext * param1)
     return 0;
 }
 
-void ov16_022541C4 (BattleContext * param0)
+void BattleContext_Init (BattleContext * param0)
 {
     int v0;
 
@@ -2078,7 +2078,7 @@ void ov16_022541C4 (BattleContext * param0)
     }
 }
 
-void ov16_022542B8 (BattleSystem * param0, BattleContext * param1)
+void BattleContext_InitCounters (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;

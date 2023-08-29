@@ -1064,7 +1064,7 @@ u8 Item_IsHerbalMedicine (u16 itemID)
     return FALSE;
 }
 
-void * sub_0207D388 (int param0)
+void * ItemData_LoadTable (int param0)
 {
     int v0 = sub_0207CE78(467, 0);
     return NARC_AllocAndReadFromMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, 0, param0, 0, 36 * v0);

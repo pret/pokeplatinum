@@ -96,7 +96,7 @@ u8 Item_IsBerry(u16 param0);
 u8 sub_0207D344(u16 param0);
 u16 sub_0207D354(u8 param0);
 u8 Item_IsHerbalMedicine(u16 param0);
-void * sub_0207D388(int param0);
+void * ItemData_LoadTable(int param0);
 ItemData * sub_0207D3B0(ItemData * param0, u16 param1);
 
 #endif // POKEPLATINUM_UNK_0207CDEC_H
