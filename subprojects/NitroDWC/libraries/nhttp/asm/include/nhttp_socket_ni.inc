@@ -7,6 +7,6 @@
 .public SOC_Shutdown
 .public SOC_Close
 .public SOCL_EnableSsl
-.public ov4_0220FE28
+.public CPS_SslAddRandomSeed
 .public ov60_02226EB0
 .public ov60_02226EBC

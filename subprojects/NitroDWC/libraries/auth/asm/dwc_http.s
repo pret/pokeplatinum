@@ -234,7 +234,7 @@ ov4_021D4744: ; 0x021D4744
 	add r0, r4, #0x1d4
 	add r0, r0, #0x1800
 	mov r1, #0x20
-	bl ov4_0220FE28
+	bl CPS_SslAddRandomSeed
 _021D4778:
 	add r0, r4, #0x3f8
 	add r0, r0, #0x1800
@@ -400,7 +400,7 @@ ov4_021D4910: ; 0x021D4910
 	str r1, [r5, #0x800]
 	mov r1, #0xc
 	str r5, [r4, #0xc]
-	bl ov4_0220DD60
+	bl CPS_SetRootCa
 	mov r0, #1
 	bl CPS_SetSsl
 _021D49C4:
@@ -434,7 +434,7 @@ _021D4A00:
 	str r1, [r0, #0x20]
 	b _021D4C00
 _021D4A34:
-	bl ov4_0220C7E0
+	bl CPS_SocFlush
 	mov r0, sl
 	bl ov4_021D4744
 	cmp r0, #0
@@ -467,7 +467,7 @@ _021D4A8C:
 	str r1, [r0, #0x20]
 	b _021D4C00
 _021D4AAC:
-	bl ov4_0220C770
+	bl CPS_SocGetLength
 	str r0, [sp, #0x10]
 	cmp r0, #0
 	blt _021D4BDC

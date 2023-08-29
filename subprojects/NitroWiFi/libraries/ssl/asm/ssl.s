@@ -280,8 +280,8 @@ ov4_0220DD3C: ; 0x0220DD3C
 _0220DD5C: .word OSi_ThreadInfo
 	arm_func_end ov4_0220DD3C
 
-	arm_func_start ov4_0220DD60
-ov4_0220DD60: ; 0x0220DD60
+	arm_func_start CPS_SetRootCa
+CPS_SetRootCa: ; 0x0220DD60
 	ldr r2, _0220DD84 ; =0x021CCC80
 	ldr r2, [r2, #4]
 	ldr r2, [r2, #0xa4]
@@ -293,7 +293,7 @@ ov4_0220DD60: ; 0x0220DD60
 	bx lr
 	; .align 2, 0
 _0220DD84: .word OSi_ThreadInfo
-	arm_func_end ov4_0220DD60
+	arm_func_end CPS_SetRootCa
 
 	arm_func_start ov4_0220DD88
 ov4_0220DD88: ; 0x0220DD88
@@ -2604,7 +2604,7 @@ ov4_0220FCF8: ; 0x0220FCF8
 	mov r1, #4
 	str r3, [r2, #4]
 	str r3, [sp]
-	bl ov4_0220FE28
+	bl CPS_SslAddRandomSeed
 _0220FD5C:
 	cmp sb, #0
 	mov r8, #0
@@ -2663,8 +2663,8 @@ _0220FE20: .word Unk_ov4_0221F798
 _0220FE24: .word 0x0221F7AB
 	arm_func_end ov4_0220FCF8
 
-	arm_func_start ov4_0220FE28
-ov4_0220FE28: ; 0x0220FE28
+	arm_func_start CPS_SslAddRandomSeed
+CPS_SslAddRandomSeed: ; 0x0220FE28
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x5c
 	mov r6, r0
@@ -2694,7 +2694,7 @@ ov4_0220FE28: ; 0x0220FE28
 	; .align 2, 0
 _0220FE90: .word Unk_ov4_0221F798
 _0220FE94: .word Unk_ov4_0221F620
-	arm_func_end ov4_0220FE28
+	arm_func_end CPS_SslAddRandomSeed
 
 	arm_func_start ov4_0220FE98
 ov4_0220FE98: ; 0x0220FE98

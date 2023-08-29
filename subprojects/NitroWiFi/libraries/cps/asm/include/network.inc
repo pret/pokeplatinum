@@ -92,7 +92,7 @@
 .public ov4_0220C3FC
 .public ov4_0220C604
 .public CPS_SocWrite
-.public ov4_0220C770
+.public CPS_SocGetLength
 .public ov4_0220C820
 .public ov4_0220C8C0
 .public ov4_0220CC30

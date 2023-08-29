@@ -20,7 +20,7 @@ ov60_02226EBC: ; 0x02226EBC
 	bl OS_GetLowEntropyData
 	ldr r0, _02226ED8 ; =0x0222A9F0
 	mov r1, #0x20
-	bl ov4_0220FE28
+	bl CPS_SslAddRandomSeed
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02226ED8: .word Unk_ov60_0222A9F0

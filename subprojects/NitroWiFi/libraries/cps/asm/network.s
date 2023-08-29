@@ -4371,8 +4371,8 @@ _0220C764:
 _0220C76C: .word OSi_ThreadInfo
 	arm_func_end CPS_SocWrite
 
-	arm_func_start ov4_0220C770
-ov4_0220C770: ; 0x0220C770
+	arm_func_start CPS_SocGetLength
+CPS_SocGetLength: ; 0x0220C770
 	stmfd sp!, {r3, lr}
 	ldr r0, _0220C7DC ; =0x021CCC80
 	ldr r0, [r0, #4]
@@ -4406,10 +4406,10 @@ _0220C7D4:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0220C7DC: .word OSi_ThreadInfo
-	arm_func_end ov4_0220C770
+	arm_func_end CPS_SocGetLength
 
-	arm_func_start ov4_0220C7E0
-ov4_0220C7E0: ; 0x0220C7E0
+	arm_func_start CPS_SocFlush
+CPS_SocFlush: ; 0x0220C7E0
 	stmfd sp!, {r4, lr}
 	ldr r0, _0220C81C ; =0x021CCC80
 	ldr r0, [r0, #4]
@@ -4427,7 +4427,7 @@ ov4_0220C7E0: ; 0x0220C7E0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0220C81C: .word OSi_ThreadInfo
-	arm_func_end ov4_0220C7E0
+	arm_func_end CPS_SocFlush
 
 	arm_func_start ov4_0220C820
 ov4_0220C820: ; 0x0220C820
@@ -4986,7 +4986,7 @@ ov4_0220CFBC: ; 0x0220CFBC
 	mov r5, #0
 	b _0220D2C4
 _0220CFE4:
-	bl ov4_0220C770
+	bl CPS_SocGetLength
 	cmp r0, #0
 	bne _0220CFF8
 	bl ov4_02208DF0
@@ -5437,7 +5437,7 @@ _0220D5C4:
 	orr r5, r5, r1, lsl #16
 	b _0220D75C
 _0220D610:
-	bl ov4_0220C770
+	bl CPS_SocGetLength
 	cmp r0, #0
 	bne _0220D624
 	bl ov4_02208DF0
