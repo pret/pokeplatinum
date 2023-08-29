@@ -2,6 +2,6 @@
 #define POKEPLATINUM_CONSTANTS_STRING_H
 
 #define MON_NAME_LEN    10
-#define PERSON_NAME_LEN 7
+#define TRAINER_NAME_LEN 7
 
 #endif

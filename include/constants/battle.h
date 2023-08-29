@@ -21,7 +21,7 @@
 
 #define MAX_LINK_BATTLERS       4
 #define MAX_BATTLERS            4
-#define MAX_BATTLE_SIDES        2
+#define NUM_BATTLE_SIDES        2
 #define MAX_BATTLERS_PER_SIDE   2
 
 #define BATTLE_IO_QUEUE_SIZE    16

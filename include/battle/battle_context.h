@@ -14,48 +14,48 @@ typedef struct FieldConditions {
     u32 weatherTurns;
     u8 futureSightTurns[MAX_BATTLERS];
     u8 wishTurns[MAX_BATTLERS];
-    u16 futureSightMoveNum[MAX_BATTLERS];
-    int futureSightAttackerId[MAX_BATTLERS];
+    u16 futureSightMove[MAX_BATTLERS];
+    int futureSightAttacker[MAX_BATTLERS];
     s32 futureSightDamage[MAX_BATTLERS];
     u8 wishTarget[MAX_BATTLERS];
 } FieldConditions;
 
 typedef struct SideConditions {
-    u32 reflectBattlerId        :2,
-        reflectTurns            :3,
-        lightScreenBattlerId    :2,
-        lightScreenTurns        :3,
-        mistBattlerId           :2,
-        mistTurns               :3,
-        safeguardBattlerId      :2,
-        safeguardTurns          :3,
-        followMeActive          :1,
-        followMeBattlerId       :2,
-        knockedOffItemBattlers  :6,
-        padding00_1D            :3;
+    u32 reflectUser : 2;
+    u32 reflectTurns : 3;
+    u32 lightScreenUser : 2;
+    u32 lightScreenTurns : 3;
+    u32 mistUser : 2;
+    u32 mistTurns : 3;
+    u32 safeguardUser : 2;
+    u32 safeguardTurns : 3;
+    u32 followMe : 1;
+    u32 followMeUser : 2;
+    u32 knockedOffItemsMask : 6;
+    u32 padding00_1D : 3;
 
-    u32 spikesLayers        :2,
-        toxicSpikesLayers   :2,
-        padding04_04        :28;
+    u32 spikesLayers : 2;
+    u32 toxicSpikesLayers : 2;
+    u32 padding04_04 : 28;
 } SideConditions;
 
 typedef struct TurnFlags {
-    u32 struggling          :1,
-        ppDecremented       :1,
-        protecting          :1,
-        helpingHandActive   :1,
-        magicCoatActive     :1,
-        snatching           :1,
-        roosting            :1,
-        fleeing             :2,
-        enduring            :1,
-        padding00_0A        :22;
+    u32 struggling : 1;
+    u32 ppDecremented : 1;
+    u32 protecting : 1;
+    u32 helpingHand : 1;
+    u32 magicCoat : 1;
+    u32 snatching : 1;
+    u32 roosting : 1;
+    u32 fleeing : 2;
+    u32 enduring : 1;
+    u32 padding00_0A : 22;
 
-    int physicalDamageTakenByAttacker[MAX_BATTLERS];
+    int physicalDamageTaken[MAX_BATTLERS];
     int physicalDamageLastAttacker;
     int physicalDamageAttackerMask;
 
-    int specialDamageTakenByAttacker[MAX_BATTLERS];
+    int specialDamageTaken[MAX_BATTLERS];
     int specialDamageLastAttacker;
     int specialDamageAttackerMask;
 
@@ -65,104 +65,105 @@ typedef struct TurnFlags {
 } TurnFlags;
 
 typedef struct SelfTurnFlags {
-    u32 skipPressureCheck       :1,
-        lightningRodRedirected  :1,
-        stormDrainRedirected    :1,
-        moldBreakerActivated    :1,
-        trickRoomActivated      :1,
-        focusItemActivated      :1,
-        repeatedMoveCount       :3,
-        padding00_09            :23;
+    u32 skipPressureCheck : 1;
+    u32 lightningRodActivated : 1;
+    u32 stormDrainActivated : 1;
+    u32 moldBreakerActivated : 1;
+    u32 trickRoomActivated : 1;
+    u32 focusItemActivated : 1;
+    u32 repeatedMoveCount : 3;
+    u32 padding00_09 : 23;
 
     int physicalDamageTaken;
-    int physicalDamageTakenLastAttacker;
+    int physicalDamageLastAttacker;
     int specialDamageTaken;
-    int specialDamageTakenLastAttacker;
+    int specialDamageLastAttacker;
     int statusFlags;
     int shellBellDamageDealt;
 } SelfTurnFlags;
 
 typedef struct MoveFailFlags {
-    u32 paralyzed       :1,
-        noEffect        :1,
-        imprisoned      :1,
-        infatuated      :1,
-        disabled        :1,
-        taunted         :1,
-        flinched        :1,
-        confused        :1,
-        gravityActive   :1,
-        healBlocked     :1,
-        padding00_0A    :22;
+    u32 paralyzed : 1;
+    u32 noEffect : 1;
+    u32 imprisoned : 1;
+    u32 infatuated : 1;
+    u32 disabled : 1;
+    u32 taunted : 1;
+    u32 flinched : 1;
+    u32 confused : 1;
+    u32 gravity : 1;
+    u32 healBlocked : 1;
+    u32 padding00_0A : 22;
 } MoveFailFlags;
 
 typedef struct BattleContext {
-    u8 battlerCommandState[MAX_BATTLERS];
+    u8 curCommandState[MAX_BATTLERS];
     u8 nextCommandState[MAX_BATTLERS];
 
     int command;
     int commandNext;
 
-    int fieldConditionCheckState;   // Screens, Weather, et al.
+    int fieldConditionCheckState;
     int fieldConditionCheckTemp;
-    int monConditionCheckState;     // Status (volatile or otherwise), abilities, held items, et al.
+    int monConditionCheckState;
     int monConditionCheckTemp;
-    int sideConditionCheckState;    // Future Sight, Perish Song, Trick Room (for some reason)
+    int sideConditionCheckState;
     int sideConditionCheckTemp;
-    int turnStartCheckState;        // Focus Punch windup, Rage flag check, Speed tiebreaks
+    int turnStartCheckState;
     int turnStartCheckTemp;
-    int afterMoveHitCheckState;     // Rage flag clearing, Shell Bell proc, Life Orb proc
+    int afterMoveHitCheckState;
     int afterMoveHitCheckTemp;
-    int afterMoveMessageType;       // designates whether we're caught in a multi-hit loop or not
-    int afterMoveMessageState;      // Critical hits, status afflictions, form change, Rage boost, abilities that proc on-hit, King's Rock proc
-    int afterMoveEffectState;       // Reappear from mid-air/underground, Synchronize check, berry procs, items that proc on-hit, thaw out when hit by a Fire-type move
+    int afterMoveMessageType;
+    int afterMoveMessageState;
+    int afterMoveEffectState;
+
     int afterMoveEffectTemp;
-    int beforeMoveCheckState;       // Quick Claw, status interruption, obedience check, PP check, target check, Magic Coat, Snatch
-    int moveExecutionCheckState;    // target change, hit check, secondary effect proc check, type checks, Soundproof
-    int statusCheckState;           // self-explanatory
-    int abilityCheckState;          // another round of Soundproof for some reason
-    int switchInCheckState;         // Trace, Intimidate, weather abilities, et al.
+    int beforeMoveCheckState;
+    int moveExecutionCheckState;
+    int statusCheckState;
+    int abilityCheckState;
+    int switchInCheckState;
     int vanishedCheckTemp;
 
-    int padding0060;                // never used
+    int padding0060;
 
-    int battlerIdAttacker;
-    int battlerIdAttackerTemp;
-    int battlerIdDefender;
-    int battlerIdDefenderTemp;
-    int battlerIdFainted;
-    int battlerIdSwitched;
-    int battlerIdSwitchedTemp;
-    int battlerIdAbility;
-    int battlerIdMagicCoat;
-    int addlEffectType;             // differing from pokeheartgold here for accuracy
-    int addlEffectParam;
-    int addlEffectFlags;
-    int battlerIdAddlEffect;
-    int backupBattlerId;            // not sure what else to name this tbh
+    int attacker;
+    int attackerTemp;
+    int defender;
+    int defenderTemp;
+    int faintedMon;
+    int switchedMon;
+    int switchedMonTemp;
+    int abilityMon;
+    int magicCoatMon;
+    int sideEffectType;
+    int sideEffectParam;
+    int sideEffectFlags;
+    int sideEffectMon;
+    int lastBattlerId;
     
     int gainedExp;
     int sharedExp;
     u32 monsGainingExp[2];
 
-    int scriptNarcId;
-    int scriptFileId;
+    int scriptNarc;
+    int scriptFile;
     int scriptCursor;
     int scriptStackPointer;
-    int scriptStackNarcId[BATTLE_SCRIPT_STACK_MAX];
-    int scriptStackFileId[BATTLE_SCRIPT_STACK_MAX];
+    int scriptStackNarc[BATTLE_SCRIPT_STACK_MAX];
+    int scriptStackFile[BATTLE_SCRIPT_STACK_MAX];
     int scriptStackCursor[BATTLE_SCRIPT_STACK_MAX];
 
     int turnOrderCounter;
     int waitCounter;
 
-    BattleMessage msgBuffer;      // generic holding buffer for pre-processed message
-    int msgBattlerIdTemp;
-    int msgBattlerIdAttacker;
-    int msgBattlerIdDefender;
-    int msgMoveNumTemp;
-    int msgItemNumTemp;
-    int msgAbilityNumTemp;
+    BattleMessage msgBuffer;
+    int msgBattlerTemp;
+    int msgAttacker;
+    int msgDefender;
+    int msgMoveTemp;
+    int msgItemTemp;
+    int msgAbilityTemp;
     int msgTemp;
     int calcTemp;
     int scriptTemp;
@@ -174,14 +175,14 @@ typedef struct BattleContext {
     int totalDamage[MAX_BATTLERS];
     int meFirstTurnOrder;
 
-    UnkStruct_ov16_0224B7CC *unk_178;       // task control stuff
+    UnkStruct_ov16_0224B7CC *unk_178; // used for task orchestration
     void *unk_17C;
     
     u32 fieldConditionsMask;
     FieldConditions fieldConditions;
 
-    u32 sideConditionsMask[MAX_BATTLE_SIDES];
-    SideConditions sideConditions[MAX_BATTLE_SIDES];
+    u32 sideConditionsMask[NUM_BATTLE_SIDES];
+    SideConditions sideConditions[NUM_BATTLE_SIDES];
     
     TurnFlags turnFlags[MAX_BATTLERS];
     SelfTurnFlags selfTurnFlags[MAX_BATTLERS];
@@ -197,20 +198,20 @@ typedef struct BattleContext {
     int damage;
     int hitDamage;
     int criticalBoosts;
-    int criticalMulti;
+    int criticalMul;
     int movePower;
-    int powerMulti;
+    int powerMul;
     int hpCalcTemp;
     int moveType;
     int moveEffectChance;
-    int prizeMoneyMulti;
+    int prizeMoneyMul;
     u32 moveStatusFlags;
-    u32 addlEffectDirectFlags;
-    u32 addlEffectIndirectFlags;
-    u32 addlEffectAbilityFlags;
+    u32 sideEffectDirectFlags;
+    u32 sideEffectIndirectFlags;
+    u32 sideEffectAbilityFlags;
     u8 multiHitCounter;
     u8 multiHitNumHits;
-    u8 battlerIdCounter;
+    u8 battlerCounter;
     u8 beatUpCounter;
 
     BOOL multiHitLoop;
@@ -219,9 +220,9 @@ typedef struct BattleContext {
 
     u32 clearVolatileStatus[MAX_BATTLERS];
 
-    u8 selectedMonIndex[MAX_BATTLERS];
-    u8 switchSelectedMonIndex[MAX_BATTLERS];
-    u8 aiSwitchSelectedMonIndex[MAX_BATTLERS];
+    u8 selectedPartySlot[MAX_BATTLERS];
+    u8 switchedPartySlot[MAX_BATTLERS];
+    u8 aiSwitchedPartySlot[MAX_BATTLERS];
     
     u32 battlerActions[MAX_BATTLERS][MAX_BATTLE_ACTIONS];
     u8 battlerActionOrder[MAX_BATTLERS];
@@ -234,31 +235,31 @@ typedef struct BattleContext {
 
     BattleMon battleMons[MAX_BATTLERS];
 
-    u32 moveNumTemp;
-    u32 moveNumCurr;
-    u32 moveNumPrev;
-    u32 moveNumLockedInto[MAX_BATTLERS];
-    u16 moveNumProtect[MAX_BATTLERS];
-    u16 moveNumHit[MAX_BATTLERS];
-    u16 moveNumHitBattler[MAX_BATTLERS];
-    u16 moveNumHitType[MAX_BATTLERS];
-    u16 moveNumPrevByBattler[MAX_BATTLERS];
-    u16 moveNumCopied[MAX_BATTLERS];
-    u16 moveNumCopiedHit[MAX_BATTLERS][MAX_BATTLERS];
-    u16 moveNumSketched[MAX_BATTLERS];
-    u16 moveNumSelected[MAX_BATTLERS];
+    u32 moveTemp;
+    u32 moveCur;
+    u32 movePrev;
+    u32 moveLockedInto[MAX_BATTLERS];
+    u16 moveProtect[MAX_BATTLERS];
+    u16 moveHit[MAX_BATTLERS];
+    u16 moveHitBattler[MAX_BATTLERS];
+    u16 moveHitType[MAX_BATTLERS];
+    u16 movePrevByBattler[MAX_BATTLERS];
+    u16 moveCopied[MAX_BATTLERS];
+    u16 moveCopiedHit[MAX_BATTLERS][MAX_BATTLERS];
+    u16 moveSketched[MAX_BATTLERS];
+    u16 moveSelected[MAX_BATTLERS];
     u16 moveSlot[MAX_BATTLERS];
     u16 conversion2Move[MAX_BATTLERS];
     u16 conversion2Battler[MAX_BATTLERS];
     u16 conversion2Type[MAX_BATTLERS];
-    u16 metronomeMoveNum[MAX_BATTLERS];
+    u16 metronomeMove[MAX_BATTLERS];
 
     int storedDamage[MAX_BATTLERS];
     int lastHitByBattler[MAX_BATTLERS];
-    int battlerIdSpeedTemp;
+    int battlerSpeedTemp;
     u8 battlersSwitchingMask;
     u8 levelUpMons;
-    u16 padding310A;    // not used?
+    u16 padding310A;
 
     u16 speedRand[MAX_BATTLERS];
     

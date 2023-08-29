@@ -7,7 +7,7 @@ typedef struct BattleMessage {
     u16 id;
     int params[6];
     int digits;
-    int battlerId;
+    int battler;
 } BattleMessage;
 
 #endif // POKEPLATINUM_BATTLE_MESSAGE_H

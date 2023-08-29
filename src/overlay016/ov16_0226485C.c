@@ -349,10 +349,10 @@ void ov16_02264BB4 (UnkStruct_0207ADB4 * param0, int param1)
     v0.unk_02 = param0->unk_30->battleMons[param1].species;
     v0.unk_04 = param0->unk_30->battleMons[param1].pid;
     v0.unk_08 = ov16_022599D0(param0->unk_30, param1, ov16_0223E1F8(param0, param1), 1);
-    v0.unk_0C = param0->unk_30->selectedMonIndex[param1];
+    v0.unk_0C = param0->unk_30->selectedPartySlot[param1];
     v0.unk_01_3 = param0->unk_30->battleMons[param1].formNum;
     v0.unk_10 = param0->unk_30->battleMons[param1].capturedBall;
-    v0.unk_48 = param0->unk_30->selectedMonIndex[ov16_0223E258(param0, param1)];
+    v0.unk_48 = param0->unk_30->selectedPartySlot[ov16_0223E258(param0, param1)];
 
     ov16_0223EF2C(param0, param1, v0.unk_0C);
 
@@ -384,7 +384,7 @@ void ov16_02264CE8 (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     v0.unk_01_2 = param0->unk_30->battleMons[param1].isShiny;
     v0.unk_02 = param0->unk_30->battleMons[param1].species;
     v0.unk_08 = ov16_022599D0(param0->unk_30, param1, ov16_0223E1F8(param0, param1), 0);
-    v0.unk_0C = param0->unk_30->selectedMonIndex[param1];
+    v0.unk_0C = param0->unk_30->selectedPartySlot[param1];
     v0.unk_01_3 = param0->unk_30->battleMons[param1].formNum;
 
     if (param2) {
@@ -513,7 +513,7 @@ void ov16_02265154 (UnkStruct_0207ADB4 * param0, int param1, int param2)
 
     v0.unk_00 = 9;
     v0.unk_01 = param2;
-    v0.unk_02 = param0->unk_30->selectedMonIndex[ov16_0223E258(param0, param1)];
+    v0.unk_02 = param0->unk_30->selectedPartySlot[ov16_0223E258(param0, param1)];
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265154));
 }
@@ -544,7 +544,7 @@ void ov16_022651DC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     int v2;
     int v3;
 
-    v1 = ov16_0223DFAC(param0, param2, param1->selectedMonIndex[param2]);
+    v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
     v2 = GetMonData(v1, MON_DATA_SPECIES, NULL);
     v3 = GetMonData(v1, MON_DATA_161, NULL);
 
@@ -552,7 +552,7 @@ void ov16_022651DC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     v0.unk_01 = param1->battleMons[param2].level;
     v0.unk_02 = param1->battleMons[param2].curHP;
     v0.unk_04 = param1->battleMons[param2].maxHP;
-    v0.unk_06 = param1->selectedMonIndex[param2];
+    v0.unk_06 = param1->selectedPartySlot[param2];
     v0.unk_07_0 = ov16_02253F7C(param1, param2);
 
     if (((param1->battleMons[param2].species == 29) || (param1->battleMons[param2].species == 32)) && (param1->battleMons[param2].hasNickname == 0)) {
@@ -756,7 +756,7 @@ void ov16_022656F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     ov16_02252040(ov16_0223DF10(param0), param2);
 
     v0.unk_00 = 15;
-    v0.unk_01 = param1->selectedMonIndex[param2];
+    v0.unk_01 = param1->selectedPartySlot[param2];
 
     for (v1 = 0; v1 < 4; v1++) {
         v0.unk_04[v1] = param1->battleMons[param2].moves[v1];
@@ -805,7 +805,7 @@ void ov16_022657AC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
                 v0.unk_04[v1].unk_01_0 = param1->battleMons[v1].gender;
             }
 
-            v0.unk_04[v1].unk_00 = param1->selectedMonIndex[v1];
+            v0.unk_04[v1].unk_00 = param1->selectedPartySlot[v1];
 
             if (param1->battleMons[v1].status) {
                 v0.unk_04[v1].unk_02 = 3;
@@ -836,7 +836,7 @@ void ov16_022658E8 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     v0.unk_00 = 17;
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_04[v1] = param1->selectedMonIndex[v1];
+        v0.unk_04[v1] = param1->selectedPartySlot[v1];
 
         for (v2 = 0; v2 < 6; v2++) {
             v0.unk_08[v1][v2] = param1->partyOrder[v1][v2];
@@ -919,7 +919,7 @@ void ov16_02265A8C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     v0.unk_24 = param1->battlersSwitchingMask;
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_04[v1] = param1->selectedMonIndex[v1];
+        v0.unk_04[v1] = param1->selectedPartySlot[v1];
 
         for (v2 = 0; v2 < 6; v2++) {
             v0.unk_08[v1][v2] = param1->partyOrder[v1][v2];
@@ -954,24 +954,24 @@ void ov16_02265B68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     UnkStruct_ov16_0225C2EC v0;
 
     v0.unk_00 = 20;
-    v0.unk_01 = param1->selectedMonIndex[param1->battlerIdAttacker];
-    v0.unk_02 = param1->moveNumCurr;
+    v0.unk_01 = param1->selectedPartySlot[param1->attacker];
+    v0.unk_02 = param1->moveCur;
 
-    ov16_02264A04(param0, 1, param1->battlerIdAttacker, &v0, sizeof(UnkStruct_ov16_0225C2EC));
+    ov16_02264A04(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_0225C2EC));
 }
 
 void ov16_02265BA0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, BattleMessage * param2)
 {
     param2->commandCode = 21;
-    ov16_02264A04(param0, 1, param1->battlerIdAttacker, param2, sizeof(BattleMessage));
+    ov16_02264A04(param0, 1, param1->attacker, param2, sizeof(BattleMessage));
 }
 
 void ov16_02265BBC (UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2)
 {
     UnkStruct_ov16_02265BBC v0;
 
-    ov16_02266B78(param0, param1, &v0, 0, NULL, param1->battlerIdAttacker, param1->battlerIdDefender, param2);
-    ov16_02264A04(param0, 1, param1->battlerIdAttacker, &v0, sizeof(UnkStruct_ov16_02265BBC));
+    ov16_02266B78(param0, param1, &v0, 0, NULL, param1->attacker, param1->defender, param2);
+    ov16_02264A04(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
 void ov16_02265BEC (UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2, int param3, int param4)
@@ -995,7 +995,7 @@ void ov16_02265C38 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     int v2;
     int v3;
 
-    v1 = ov16_0223DFAC(param0, param2, param1->selectedMonIndex[param2]);
+    v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
     v2 = GetMonData(v1, MON_DATA_SPECIES, NULL);
     v3 = GetMonData(v1, MON_DATA_161, NULL);
 
@@ -1024,7 +1024,7 @@ void ov16_02265D14 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     int v2;
     int v3;
 
-    v1 = ov16_0223DFAC(param0, param2, param1->selectedMonIndex[param2]);
+    v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
     v2 = GetMonData(v1, MON_DATA_SPECIES, NULL);
     v3 = GetMonData(v1, MON_DATA_161, NULL);
 
@@ -1193,7 +1193,7 @@ void ov16_02266100 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     v0.unk_00 = 35;
 
     for (v1 = 0; v1 < ov16_0223DF1C(param0); v1++) {
-        v0.unk_04[v1] = param1->selectedMonIndex[v1];
+        v0.unk_04[v1] = param1->selectedPartySlot[v1];
     }
 
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C430));
@@ -1233,7 +1233,7 @@ void ov16_022661CC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     int v2;
     int v3;
 
-    v1 = ov16_0223DFAC(param0, param2, param1->selectedMonIndex[param2]);
+    v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
     v2 = GetMonData(v1, MON_DATA_SPECIES, NULL);
     v3 = GetMonData(v1, MON_DATA_161, NULL);
 
@@ -1241,7 +1241,7 @@ void ov16_022661CC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     v0.unk_01 = param1->battleMons[param2].level;
     v0.unk_02 = param1->battleMons[param2].curHP;
     v0.unk_04 = param1->battleMons[param2].maxHP;
-    v0.unk_06 = param1->selectedMonIndex[param2];
+    v0.unk_06 = param1->selectedPartySlot[param2];
     v0.unk_07_0 = ov16_02253F7C(param1, param2);
 
     if (((param1->battleMons[param2].species == 29) || (param1->battleMons[param2].species == 32)) && (param1->battleMons[param2].hasNickname == 0)) {
@@ -1264,11 +1264,11 @@ void ov16_022662FC (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     int v1;
 
     v0.unk_00 = 39;
-    v0.unk_01_0 = param1->selectedMonIndex[param2];
+    v0.unk_01_0 = param1->selectedPartySlot[param2];
     v0.unk_01_4 = param1->battleMons[param2].moveEffectsData.mimickedMoveSlot;
     v0.unk_02 = param1->battleMons[param2].curHP;
     v0.unk_0C = param1->battleMons[param2].heldItem;
-    v0.unk_08 = param1->sideConditions[ov16_0223E208(param0, param2)].knockedOffItemBattlers;
+    v0.unk_08 = param1->sideConditions[ov16_0223E208(param0, param2)].knockedOffItemsMask;
     v0.unk_1C = param1->battleMons[param2].formNum;
     v0.unk_20 = param1->battleMons[param2].ability;
 

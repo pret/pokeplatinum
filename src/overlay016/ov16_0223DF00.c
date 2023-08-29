@@ -1850,7 +1850,7 @@ static void ov16_0223FBE8 (UnkStruct_0207ADB4 * param0, BattleMessage * param1)
     }
 
     if (param1->tags & 0x40) {
-        if (ov16_0223E208(param0, param1->battlerId)) {
+        if (ov16_0223E208(param0, param1->battler)) {
             param1->id++;
         }
 

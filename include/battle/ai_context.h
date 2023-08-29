@@ -10,9 +10,9 @@
 typedef struct AIContext {
     u8 scriptCursor;
     u8 moveSlot;
-    u16 moveNum;
+    u16 move;
 
-    s8 moveCurrPP[4];
+    s8 moveCurPP[4];
 
     int calcTemp;
     u32 thinkingMask;
@@ -21,7 +21,7 @@ typedef struct AIContext {
     u8 thinkingBitShift;
     u8 padding0012;
     u8 padding0013;
-    int padding0014;    // this does not match with a u32, weird
+    int padding0014; // this does not match with a u32, weird
 
     u8 moveDamageRolls[LEARNED_MOVES_MAX];
     
@@ -35,13 +35,12 @@ typedef struct AIContext {
     u8 scriptStackSize;
 
     u8 trainerItemCounts[MAX_BATTLERS_PER_SIDE];
-    u8 battlerIdAttacker;
-    u8 battlerIdDefender;
+    u8 attacker;
+    u8 defender;
     u8 usedItemType[MAX_BATTLERS_PER_SIDE];
     u8 usedItemCondition[MAX_BATTLERS_PER_SIDE];
-    u8 padding0082;     // originally implicit, declaring here as explicit
 
-    u16 usedItemNums[MAX_BATTLERS_PER_SIDE];
+    u16 usedItem[MAX_BATTLERS_PER_SIDE];
     u8 selectedTarget[MAX_BATTLERS];
     MoveTable moveTable[NUM_MOVES + 1];
     ItemData *itemTable;
