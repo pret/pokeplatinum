@@ -568,7 +568,7 @@ _021FF58C:
 	bl ov4_02200534
 	mov r0, #0
 	str r0, [r7, #0x5cc]
-	bl ov4_021EA840
+	bl current_time
 	bl srand
 	bl ov4_021EA8A4
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -691,7 +691,7 @@ _021FF760:
 	add r0, sp, #8
 	strb r2, [sp, #1]
 	strh r1, [sp, #2]
-	bl ov4_021EAF1C
+	bl inet_addr
 	mvn r1, #0
 	str r0, [sp, #4]
 	cmp r0, r1
@@ -2774,7 +2774,7 @@ _0220144C:
 	cmp r0, #0
 	bne _022013D0
 _0220145C:
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, [sl, #0x4b4]
 	sub r0, r0, r1
 	cmp r0, #0x7d0

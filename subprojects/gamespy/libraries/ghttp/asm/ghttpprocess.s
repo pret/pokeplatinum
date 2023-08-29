@@ -158,7 +158,7 @@ _022229EC:
 	ldreq r5, [r4, #0x18]
 _02222A08:
 	mov r0, r5
-	bl ov4_021EAF1C
+	bl inet_addr
 	mvn r1, #0
 	str r0, [r4, #0x1c]
 	cmp r0, r1
@@ -1508,7 +1508,7 @@ _02223CA4: .word Unk_ov60_02229B04
 ov60_02223CA8: ; 0x02223CA8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov sb, r0
-	bl ov4_021EA840
+	bl current_time
 	mov r7, r0
 	mov r0, #0x2000
 	mov r8, #0
@@ -1551,7 +1551,7 @@ _02223D38:
 	bl ov60_02223614
 	cmp r0, #0
 	beq _02223D70
-	bl ov4_021EA840
+	bl current_time
 	sub r8, r0, r7
 _02223D58:
 	ldr r0, [sb, #0xfc]

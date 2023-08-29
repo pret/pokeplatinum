@@ -93,7 +93,7 @@ _0224D6A8:
 	cmp r0, #0
 	bne _0224D6F0
 _0224D6D8:
-	bl ov4_021EA840
+	bl current_time
 	add r0, r0, #0xa60
 	add r1, r0, #0xe000
 	mov r0, r8
@@ -1081,7 +1081,7 @@ ov66_0224E474: ; 0x0224E474
 	ldr r3, _0224E4DC ; =0x0000031A
 	bl __msl_assertion_failed
 _0224E494:
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, [r6, #0x814]
 	mov r5, r0
 	cmp r1, #0
@@ -1223,7 +1223,7 @@ _0224E630:
 	mov r2, #0x28
 	bl memset
 	str r8, [r4]
-	bl ov4_021EA840
+	bl current_time
 	add r0, r0, #0xa60
 	add r0, r0, #0xe000
 	str r0, [r4, #4]
@@ -5203,7 +5203,7 @@ _02251DB4:
 	cmpne r1, #0
 	beq _02251E24
 	add r0, r0, #1
-	bl ov4_021EAF1C
+	bl inet_addr
 	mov r1, r0
 	ldr r3, [r4, #0x18]
 	ldr ip, [r4, #0x10]

@@ -4,5 +4,5 @@
 .public srand
 .public strlen
 .public _s32_div_f
-.public ov4_021EA840
+.public current_time
 .public ov4_021F7128

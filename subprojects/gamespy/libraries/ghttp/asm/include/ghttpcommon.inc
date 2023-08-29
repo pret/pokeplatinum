@@ -1,5 +1,5 @@
 .public memmove
-.public ov4_021EA840
+.public current_time
 .public ov4_021EAE04
 .public ov4_021EAE48
 .public GOAGetLastError

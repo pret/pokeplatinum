@@ -107,7 +107,7 @@ ov4_021FD8DC: ; 0x021FD8DC
 	mov r4, r1
 	add r0, r5, #8
 	bl ov4_021FD7CC
-	bl ov4_021EA840
+	bl current_time
 	str r0, [r4, #0x1c]
 	mov r0, #2
 	strb r0, [sp, #9]
@@ -396,7 +396,7 @@ _021FDCB4:
 	ldrb r0, [sb, #0x14]
 	and r0, r0, #0xf3
 	strb r0, [sb, #0x14]
-	bl ov4_021EA840
+	bl current_time
 	ldr r2, [sb, #0x1c]
 	mov r1, sb
 	sub r0, r0, r2
@@ -439,7 +439,7 @@ ov4_021FDCFC: ; 0x021FDCFC
 	ldrb r0, [r4, #0x14]
 	and r0, r0, #0xf3
 	strb r0, [r4, #0x14]
-	bl ov4_021EA840
+	bl current_time
 	ldr r2, [r4, #0x1c]
 	mov r1, r4
 	sub r0, r0, r2
@@ -582,7 +582,7 @@ _021FDF2C: .word 0x000007FF
 ov4_021FDF30: ; 0x021FDF30
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r6, r0
-	bl ov4_021EA840
+	bl current_time
 	ldr r3, [r6, #8]
 	mov r5, r0
 	cmp r3, #0

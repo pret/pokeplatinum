@@ -433,7 +433,7 @@ _021F8D3C:
 _021F8D78:
 	mov r0, #4
 	str r0, [r6, #0xc]
-	bl ov4_021EA840
+	bl current_time
 	ldr r2, [r6, #0x8c]
 	add r1, r5, #0x20
 	sub r0, r0, r2
@@ -822,7 +822,7 @@ ov4_021F928C: ; 0x021F928C
 	ldmneia sp!, {r4, pc}
 	mov r0, #1
 	str r0, [r4, #0x90]
-	bl ov4_021EA840
+	bl current_time
 	str r0, [r4, #0x94]
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021F928C
@@ -1042,7 +1042,7 @@ ov4_021F9534: ; 0x021F9534
 	ldrb r0, [r5, #7]
 	strb r1, [r2, #2]
 	strb r0, [r2, #3]
-	bl ov4_021EA840
+	bl current_time
 	mov r2, r0
 	ldr r1, [sp]
 	mov r0, r4
@@ -1360,7 +1360,7 @@ _021F99CC:
 	ldr r0, [r4, #0x20]
 	cmp r0, #0
 	beq _021F9A0C
-	bl ov4_021EA840
+	bl current_time
 	ldr r2, [r4, #0x1c]
 	ldr r1, [r4, #0x20]
 	sub r0, r0, r2
@@ -1496,7 +1496,7 @@ ov4_021F9B98: ; 0x021F9B98
 	str r0, [sp]
 	str r2, [sp, #4]
 	strh r1, [sp, #8]
-	bl ov4_021EA840
+	bl current_time
 	str r0, [sp, #0xc]
 	ldr r0, [r5, #0x60]
 	bl ov4_021E9BBC

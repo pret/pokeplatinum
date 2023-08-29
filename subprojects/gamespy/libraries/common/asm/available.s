@@ -19,7 +19,7 @@ ov4_021E963C: ; 0x021E963C
 	orr r1, r2, r1
 	mov r5, r0
 	strh r1, [r4, #2]
-	bl ov4_021EAF1C
+	bl inet_addr
 	mvn r1, #0
 	str r0, [r4, #4]
 	cmp r0, r1
@@ -52,7 +52,7 @@ ov4_021E96B0: ; 0x021E96B0
 	ldr r1, _021E96FC ; =0x0221AE60
 	mov r3, #0
 	bl ov4_021EAE5C
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, _021E96F8 ; =0x0221AE50
 	str r0, [r1, #0x54]
 	add sp, sp, #8
@@ -241,7 +241,7 @@ _021E9978:
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 _021E9988:
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, _021E99E8 ; =0x0221AE50
 	ldr r2, [r1, #0x54]
 	add r2, r2, #0x7d0

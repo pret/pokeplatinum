@@ -12,7 +12,7 @@ ov66_022462DC: ; 0x022462DC
 	ldr r0, _02246300 ; =0x0225B6E8
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
-	bl ov66_022543DC
+	bl chatDisconnect
 	ldr r0, _02246304 ; =0x0225B6E4
 	mov r1, #0
 	str r1, [r0, #0]

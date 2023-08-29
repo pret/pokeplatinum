@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021EA840
-ov4_021EA840: ; 0x021EA840
+	arm_func_start current_time
+current_time: ; 0x021EA840
 	stmfd sp!, {r3, lr}
 	bl OS_IsTickAvailable
 	cmp r0, #1
@@ -32,7 +32,7 @@ _021EA888: .word Unk_ov4_02217914
 _021EA88C: .word Unk_ov4_022178E4
 _021EA890: .word 0x00000109
 _021EA894: .word 0x000082EA
-	arm_func_end ov4_021EA840
+	arm_func_end current_time
 
 	arm_func_start ov4_021EA898
 ov4_021EA898: ; 0x021EA898
@@ -593,8 +593,8 @@ ov4_021EAEF0: ; 0x021EAEF0
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021EAEF0
 
-	arm_func_start ov4_021EAF1C
-ov4_021EAF1C: ; 0x021EAF1C
+	arm_func_start inet_addr
+inet_addr: ; 0x021EAF1C
 	stmfd sp!, {r3, lr}
 	add r1, sp, #0
 	bl SOC_InetAtoN
@@ -602,7 +602,7 @@ ov4_021EAF1C: ; 0x021EAF1C
 	mvneq r0, #0
 	ldrne r0, [sp]
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021EAF1C
+	arm_func_end inet_addr
 
 	arm_func_start GOAGetLastError
 GOAGetLastError: ; 0x021EAF38

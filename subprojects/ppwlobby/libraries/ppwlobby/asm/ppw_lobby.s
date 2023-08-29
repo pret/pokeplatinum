@@ -1827,7 +1827,7 @@ _02236860:
 	strb r0, [r3, #1]
 	add r3, r3, #2
 	bne _02236860
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, _022369F0 ; =0x10624DD3
 	mov r3, #0x3e8
 	umull r1, r2, r0, r1
@@ -3123,7 +3123,7 @@ ov66_02237A88: ; 0x02237A88
 	mov r5, r0
 	ldr r0, [r1, #0]
 	ldr r4, [r0, #0x4c]
-	bl ov4_021EA840
+	bl current_time
 	mov ip, r0
 	ldr r0, _02237AD4 ; =0x10624DD3
 	mov r1, #0x3e8

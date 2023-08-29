@@ -486,7 +486,7 @@ _02243264:
 	mov r1, r5
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
-	bl ov66_02254E58
+	bl chatGetChannelNumUsersA
 	cmp r0, r6
 	addgt sp, sp, #0xa8
 	ldmgtia sp!, {r3, r4, r5, r6, r7, pc}
@@ -1015,7 +1015,7 @@ _02243970:
 	addeq r1, sp, #0x49
 	ldrne r1, [sp, #0x50]
 	mov r0, r4
-	bl ov66_02254258
+	bl chatRetryWithNickA
 	add r0, sp, #0x48
 	bl ov66_0223BADC
 	add sp, sp, #0x60
@@ -1045,7 +1045,7 @@ _022439E4:
 	addeq r1, sp, #0x31
 	ldrne r1, [sp, #0x38]
 	mov r0, r4
-	bl ov66_02254258
+	bl chatRetryWithNickA
 	add r0, sp, #0x30
 	bl ov66_0223BADC
 	add sp, sp, #0x60
@@ -1078,7 +1078,7 @@ _02243A58:
 	ldrne r2, [sp, #0x20]
 	mov r0, r4
 	mov r1, #2
-	bl ov66_02254320
+	bl chatRegisterUniqueNickA
 	add r0, sp, #0x18
 	bl ov66_0223BADC
 	add sp, sp, #0x60
@@ -1112,7 +1112,7 @@ _02243AD8:
 	addeq r1, sp, #1
 	ldrne r1, [sp, #8]
 	mov r0, r4
-	bl ov66_02254258
+	bl chatRetryWithNickA
 	add r0, sp, #0
 	bl ov66_0223BADC
 	add sp, sp, #0x60
@@ -1590,7 +1590,7 @@ _02244174:
 	mov r1, r6
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
-	bl ov66_02254E58
+	bl chatGetChannelNumUsersA
 	mvn r1, #0
 	cmp r4, r1
 	moveq r5, #0
@@ -1610,7 +1610,7 @@ _022441F0:
 	ldr r0, [r0, #0]
 	mov r2, r4
 	ldr r0, [r0, #0]
-	bl ov66_02254D68
+	bl chatSetChannelLimitA
 _02244208:
 	cmp r5, #1
 	bne _02244274
@@ -1636,7 +1636,7 @@ _02244208:
 	ldr r3, [sp, #0x88]
 	mov r0, r8
 	mov r1, r6
-	bl ov66_02255104
+	bl chatEnumUsersA
 	add sp, sp, #0x6c
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 _02244274:
@@ -2011,7 +2011,7 @@ _022447B4:
 	ldr r0, [r1, #0]
 	cmp r0, #0
 	beq _022447C4
-	bl ov66_0225448C
+	bl chatThink
 _022447C4:
 	ldr r2, _0224495C ; =0x0225B6DC
 	add r0, sp, #0xc
@@ -2175,7 +2175,7 @@ ov66_02244988: ; 0x02244988
 	ldr r0, [r0, #0]
 	ldrne r1, [sp, #8]
 	ldr r0, [r0, #0]
-	bl ov66_02254F20
+	bl chatInChannelA
 	cmp r0, #1
 	moveq r4, #1
 	add r0, sp, #0
@@ -2355,7 +2355,7 @@ _02244B3C:
 	str r4, [sp, #0x18]
 	mov r4, #0
 	str r4, [sp, #0x1c]
-	bl ov66_022541CC
+	bl chatConnectSecureA
 	mov r4, r0
 	add r0, sp, #0x98
 	bl ov66_0223BADC
@@ -2524,7 +2524,7 @@ ov66_02244E98: ; 0x02244E98
 	cmp r1, #0
 	beq _02244F24
 	ldr r0, [r2, #0]
-	bl ov66_022543DC
+	bl chatDisconnect
 	ldr r0, _02244F40 ; =0x0225B6DC
 	ldr r4, [r0, #0]
 	cmp r4, #0
@@ -2548,7 +2548,7 @@ _02244F24:
 	str r1, [r2, #4]
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
-	bl ov66_022543DC
+	bl chatDisconnect
 _02244F38:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
@@ -2697,7 +2697,7 @@ _02245004:
 	mov r2, r7
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
-	bl ov66_02254584
+	bl chatEnterChannelA
 	add r0, sp, #0x1c
 	bl ov66_0223BADC
 	add r0, sp, #0x28
@@ -2774,7 +2774,7 @@ _02245228:
 	ldr r0, [r0, #0]
 	ldrne r1, [sp, #0x20]
 	ldr r0, [r0, #0]
-	bl ov66_022546D4
+	bl chatLeaveChannelA
 	add r0, sp, #0x18
 	bl ov66_0223BADC
 	add r0, sp, #0x24
@@ -2856,7 +2856,7 @@ _02245334:
 	ldrne r1, [sp, #8]
 	ldr r0, [r0, #0]
 	mov r3, #3
-	bl ov66_02254798
+	bl chatSendChannelMessageA
 	add r0, sp, #0
 	bl ov66_0223BADC
 	add r0, sp, #0xc
@@ -2932,7 +2932,7 @@ _02245480:
 	ldrne r1, [sp, #8]
 	ldr r0, [r0, #0]
 	mov r3, #3
-	bl ov66_0225524C
+	bl chatSendUserMessageA
 	add r0, sp, #0
 	bl ov66_0223BADC
 	mov r0, #0
@@ -3059,7 +3059,7 @@ _02245610:
 	mov r3, #1
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
-	bl ov66_02255450
+	bl chatSetChannelKeysA
 	add r0, sp, #8
 	bl ov66_0223BADC
 	add r0, sp, #0x14
@@ -3220,7 +3220,7 @@ _02245830:
 	mov r3, #1
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0]
-	bl ov66_022557EC
+	bl chatGetChannelKeysA
 	add r0, sp, #0x20
 	bl ov66_0223BADC
 	add r0, sp, #0x2c
@@ -3321,7 +3321,7 @@ _022459C0:
 	ldr r2, _02245A78 ; =ov66_02243D28
 	ldr r0, [r0, #0]
 	ldr r3, _02245A7C ; =ov66_02243B74
-	bl ov66_0225449C
+	bl chatEnumChannelsA
 	add r0, sp, #0x18
 	bl ov66_0223BADC
 	add r0, sp, #0x24
@@ -3384,7 +3384,7 @@ _02245AE8:
 	ldr r0, [r0, #0]
 	ldrne r1, [sp, #0x34]
 	ldr r0, [r0, #0]
-	bl ov66_02254F20
+	bl chatInChannelA
 	cmp r0, #0
 	moveq r4, #1
 	add r0, sp, #0x2c
@@ -3447,7 +3447,7 @@ _02245B9C:
 	ldr r2, _02245C50 ; =ov66_02243D30
 	ldr r0, [r0, #0]
 	mov r3, r4
-	bl ov66_02255104
+	bl chatEnumUsersA
 	add r0, sp, #0x14
 	bl ov66_0223BADC
 	add r0, sp, #0x20
@@ -3509,7 +3509,7 @@ _02245CB8:
 	ldr r0, [r0, #0]
 	ldrne r1, [sp, #8]
 	ldr r0, [r0, #0]
-	bl ov66_0225497C
+	bl chatSetChannelModeA
 	add r0, sp, #0
 	bl ov66_0223BADC
 	add r0, sp, #0xc
@@ -3600,7 +3600,7 @@ _02245DC4:
 	ldr r2, _02245E78 ; =ov66_02244620
 	ldr r0, [r0, #0]
 	mov r3, r4
-	bl ov66_02254B7C
+	bl chatGetChannelModeA
 	add r0, sp, #0x14
 	bl ov66_0223BADC
 	add r0, sp, #0x20

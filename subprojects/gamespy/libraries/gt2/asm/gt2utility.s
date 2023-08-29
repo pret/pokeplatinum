@@ -142,7 +142,7 @@ _021FADBC:
 	cmp r8, #0
 	beq _021FAE00
 	mov r0, r8
-	bl ov4_021EAF1C
+	bl inet_addr
 	mov r4, r0
 	mvn r0, #0
 	cmp r4, r0

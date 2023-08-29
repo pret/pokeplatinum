@@ -432,7 +432,7 @@ _0225607C:
 	mov r1, #0
 	mov r0, r5
 	strb r1, [r6, #0x106]
-	bl ov4_021EAF1C
+	bl inet_addr
 	mvn r1, #0
 	cmp r0, r1
 	bne _022560CC

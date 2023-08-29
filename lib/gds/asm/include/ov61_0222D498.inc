@@ -14,7 +14,7 @@
 .public DWC_Free
 .public DWC_SVLGetTokenAsync
 .public DWC_SVLProcess
-.public ov4_021EAF1C
+.public inet_addr
 .public SOC_Socket
 .public SOC_Connect
 .public SOC_Recv

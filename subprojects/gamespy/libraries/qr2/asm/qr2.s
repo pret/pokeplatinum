@@ -22,7 +22,7 @@ qr2_init_socketA: ; 0x021FBD94
 	mov r6, r0
 	str r0, [r5, #0]
 _021FBDC4:
-	bl ov4_021EA840
+	bl current_time
 	bl srand
 	mov r1, r7
 	add r0, r6, #4
@@ -238,7 +238,7 @@ _021FC07C: .word Unk_ov4_0221B650
 ov4_021FC080: ; 0x021FC080
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl ov4_021EA840
+	bl current_time
 	ldr r2, [r5, #0]
 	mvn r1, #0
 	mov r4, r0
@@ -322,7 +322,7 @@ qr2_send_statechanged: ; 0x021FC194
 	ldr r0, [r4, #0xbc]
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
-	bl ov4_021EA840
+	bl current_time
 	ldr r2, [r4, #0xac]
 	ldr r1, _021FC1EC ; =0x00002710
 	sub r0, r0, r2
@@ -496,7 +496,7 @@ ov4_021FC3A4: ; 0x021FC3A4
 	mov r5, r3
 	streq r4, [r6, #4]
 	beq _021FC3F0
-	bl ov4_021EAF1C
+	bl inet_addr
 	str r0, [r6, #4]
 _021FC3F0:
 	ldr r1, [r6, #4]
@@ -1567,7 +1567,7 @@ ov4_021FD274: ; 0x021FD274
 	add r1, sp, #8
 	mov r3, #0
 	bl ov4_021EAE5C
-	bl ov4_021EA840
+	bl current_time
 	str r0, [r4, #0xb0]
 	add sp, sp, #0xc
 	add sp, sp, #0x800
@@ -1693,7 +1693,7 @@ _021FD46C:
 	add r1, sp, #0x24
 	mov r3, #0
 	bl ov4_021EAE5C
-	bl ov4_021EA840
+	bl current_time
 	str r0, [sl, #0xac]
 	str r0, [sl, #0xb0]
 	cmp sb, #0

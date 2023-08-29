@@ -18,7 +18,7 @@
 .public ov4_021EAD78
 .public ov4_021EAE04
 .public ov4_021EAE48
-.public ov4_021EAF1C
+.public inet_addr
 .public SOC_GetHostByName
 .public ov66_0224D4D8
 .public ov66_02255ADC

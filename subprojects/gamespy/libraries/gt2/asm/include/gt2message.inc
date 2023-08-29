@@ -6,7 +6,7 @@
 .public ov4_021E9C2C
 .public ov4_021E9D30
 .public ov4_021E9E40
-.public ov4_021EA840
+.public current_time
 .public ov4_021EAB6C
 .public ov4_021EAE18
 .public GOAGetLastError

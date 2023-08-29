@@ -2,7 +2,7 @@
 .public printf
 .public atoi
 .public DWC_Free
-.public ov4_021EA840
+.public current_time
 .public ov66_02236A38
 .public ov66_02237908
 .public ov66_022379D0

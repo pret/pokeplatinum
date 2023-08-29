@@ -367,7 +367,7 @@ ServerBrowserSendMessageToServerA: ; 0x021FED44
 	mov r6, r2
 	mov r0, r1
 	mov r4, r3
-	bl ov4_021EAF1C
+	bl inet_addr
 	mov r3, r6, asr #8
 	mov r2, r6, lsl #8
 	ldr ip, [sp, #0x18]
@@ -392,7 +392,7 @@ ServerBrowserSendNatNegotiateCookieToServerA: ; 0x021FED9C
 	mov r6, r2
 	mov r0, r1
 	mov r4, r3
-	bl ov4_021EAF1C
+	bl inet_addr
 	mov r3, r6, asr #8
 	mov r2, r6, lsl #8
 	mov r1, r0

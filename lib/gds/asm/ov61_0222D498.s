@@ -250,7 +250,7 @@ _0222D720:
 	ldmia sp!, {r3, pc}
 _0222D74C:
 	add r0, sp, #0
-	bl ov4_021EAF1C
+	bl inet_addr
 	ldr r1, _0222D768 ; =0x0222E764
 	str r0, [r1, #0x264]
 	mov r0, #1

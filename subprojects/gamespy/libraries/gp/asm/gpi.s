@@ -85,7 +85,7 @@ _021EBE94:
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _021EBEF0:
 	bl ov4_021EA8A4
-	bl ov4_021EA840
+	bl current_time
 	bl srand
 	ldr r1, [sp]
 	mov r0, #0

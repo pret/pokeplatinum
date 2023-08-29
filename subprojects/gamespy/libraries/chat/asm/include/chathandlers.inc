@@ -12,9 +12,9 @@
 .public DWCi_GsMalloc
 .public DWCi_GsRealloc
 .public DWCi_GsFree
-.public ov4_021EA840
+.public current_time
 .public ov4_021EA8AC
-.public ov4_021EAF1C
+.public inet_addr
 .public ov66_02248C2C
 .public ov66_0224B9DC
 .public ov66_0224BA90

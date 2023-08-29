@@ -4,7 +4,7 @@
 .public DWCi_GsFree
 .public ov4_021E9BBC
 .public ov4_021EA898
-.public ov4_021EAF1C
+.public inet_addr
 .public ov4_021FDABC
 .public ov4_021FDB30
 .public ov4_021FDB38

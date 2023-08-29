@@ -378,7 +378,7 @@ _021FB2EC:
 	mov r3, r5
 	bl ov4_021FB068
 _021FB370:
-	bl ov4_021EA840
+	bl current_time
 	add r0, r0, #0x1f4
 	str r0, [r6, #0x28]
 	mov r0, #0x1e
@@ -454,7 +454,7 @@ ov4_021FB39C: ; 0x021FB39C
 	ldrh r2, [r4, #0x30]
 	ldr r1, [r4, #0x2c]
 	bl ov4_021FB068
-	bl ov4_021EA840
+	bl current_time
 	add r0, r0, #0x2bc
 	str r0, [r4, #0x28]
 	mov r0, #0xc
@@ -473,7 +473,7 @@ _021FB4B8: .word NNMagicData
 ov4_021FB4BC: ; 0x021FB4BC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_021EAF1C
+	bl inet_addr
 	mvn r1, #0
 	cmp r0, r1
 	ldmneia sp!, {r4, pc}
@@ -672,7 +672,7 @@ _021FB754:
 	cmp r0, #0
 	cmpne r0, #2
 	bne _021FB7CC
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, [sb, #0x28]
 	cmp r0, r1
 	bls _021FB7CC
@@ -704,7 +704,7 @@ _021FB7CC:
 	ldr r0, [sb, #0x10]
 	cmp r0, #3
 	bne _021FB84C
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, [sb, #0x28]
 	cmp r0, r1
 	bls _021FB84C
@@ -739,7 +739,7 @@ _021FB84C:
 	cmp r0, #1
 	addne sp, sp, #0x1c
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
-	bl ov4_021EA840
+	bl current_time
 	ldr r1, [sb, #0x28]
 	cmp r0, r1
 	addls sp, sp, #0x1c
@@ -926,7 +926,7 @@ _021FBAC0:
 _021FBADC:
 	mov r0, #3
 	str r0, [r5, #0x10]
-	bl ov4_021EA840
+	bl current_time
 	add r0, r0, #0x388
 	add r0, r0, #0x1000
 	str r0, [r5, #0x28]
@@ -990,7 +990,7 @@ _021FBB5C:
 _021FBBC0:
 	mov r0, #1
 	str r0, [r4, #0x10]
-	bl ov4_021EA840
+	bl current_time
 	add r0, r0, #0x710
 	add r0, r0, #0x2000
 	str r0, [r4, #0x28]
