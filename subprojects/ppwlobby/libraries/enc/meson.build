@@ -7,4 +7,4 @@ libdwcenc = static_library('dwcenc',
     pic: false
 )
 
-nitrodwc_libs += libdwcenc
+ppwlobby_libs += libdwcenc

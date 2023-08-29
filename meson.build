@@ -84,6 +84,7 @@ nitrowifi_dep   = dependency('NitroWiFi',   fallback : ['NitroWiFi', 'nitrowifi_
 nitrodwc_dep    = dependency('NitroDWC',    fallback : ['NitroDWC', 'nitrodwc_dep'])
 libcrypto_dep   = dependency('libcrypto',   fallback : ['libcrypto', 'libcrypto_dep'])
 libsyscall_dep  = dependency('libsyscall',  fallback : ['libsyscall', 'libsyscall_dep'])
+ppwlobby_dep    = dependency('ppwlobby',    fallback : ['ppwlobby', 'ppwlobby_dep'])
 
 
 ############################################################
@@ -124,7 +125,8 @@ main = executable('main',
         nitrowifi_dep,
         nitrodwc_dep,
         libsyscall_dep,
-        libcrypto_dep
+        libcrypto_dep,
+	    ppwlobby_dep
     ],
     link_with: [
         libgds,

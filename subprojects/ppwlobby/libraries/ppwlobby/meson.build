@@ -14,4 +14,4 @@ libdwcppwlobby = static_library('dwcppwlobby',
     pic: false
 )
 
-nitrodwc_libs += libdwcppwlobby
+ppwlobby_libs += libdwcppwlobby
