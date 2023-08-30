@@ -1,6 +1,7 @@
 # Native tools
 subdir('csv2bin')
 subdir('fixrom')
+subdir('jsonproc')
 subdir('knarc')
 subdir('msgenc')
 subdir('postconf')
