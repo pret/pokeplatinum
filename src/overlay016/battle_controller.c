@@ -3,8 +3,10 @@
 
 #include "constants/pokemon.h"
 #include "constants/heap.h"
+#include "constants/narc.h"
 #include "constants/sdat.h"
 #include "constants/trainer.h"
+#include "constants/narc_files/battle_skill_subseq.h"
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -44,12 +46,12 @@ typedef struct {
 
 typedef void (*BattleControlFunc)(BattleSystem*, BattleContext*);
 
-static void ov16_0224BA1C(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224BA60(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224BA78(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224BAA8(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224BADC(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224BB28(BattleSystem * param0, BattleContext * param1);
+static void BattleController_GetBattleMon(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_StartEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_InitCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_CommandSelectionInput(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224C448(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224C5C4(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224C718(BattleSystem * param0, BattleContext * param1);
@@ -72,8 +74,8 @@ static BOOL ov16_0224E6F4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224E784(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224EE88(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224EF00(BattleSystem * param0, BattleContext * param1);
-static BOOL BattleSystem_CheckMoveHit(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
-static BOOL BattleSystem_CheckMoveEffect(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+static BOOL BattleSystem_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
+static BOOL BattleSystem_CheckMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 static BOOL ov16_0224F460(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F5CC(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F5E8(BattleSystem * param0, BattleContext * param1);
@@ -118,12 +120,12 @@ static void ov16_02251694(BattleSystem * param0, BattleContext * param1);
 extern u32 Unk_ov14_022248A4[];
 
 static const BattleControlFunc BattleControlCommands[] = {
-    ov16_0224BA1C,
-    ov16_0224BA60,
-    ov16_0224BA78,
-    ov16_0224BAA8,
-    ov16_0224BADC,
-    ov16_0224BB28,
+    BattleController_GetBattleMon,
+    BattleController_StartEncounter,
+    BattleController_TrainerMessage,
+    BattleController_ShowBattleMon,
+    BattleController_InitCommandSelection,
+    BattleController_CommandSelectionInput,
     ov16_0224C448,
     ov16_0224C5C4,
     ov16_0224C718,
@@ -183,11 +185,10 @@ void * BattleContext_New (BattleSystem *battleSys)
 
 int BattleController_Main (BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (battleCtx->battleEndFlag == FALSE) {
-        if (BattleSystem_ResultMask(battleSys)
-                && (BattleSystem_ResultMask(battleSys) & BATTLE_RESULT_TRY_FLEE_WAIT) == FALSE) {
-            battleCtx->command = BATTLE_CONTROL_RESULT;
-        }
+    if (battleCtx->battleEndFlag == FALSE
+            && BattleSystem_ResultMask(battleSys)
+            && (BattleSystem_ResultMask(battleSys) & BATTLE_RESULT_TRY_FLEE_WAIT) == FALSE) {
+        battleCtx->command = BATTLE_CONTROL_RESULT;
     }
 
     BattleControlCommands[battleCtx->command](battleSys, battleCtx);
@@ -211,448 +212,531 @@ void BattleController_CheckMoveHitEffect (BattleSystem *battleSys, BattleContext
     BattleSystem_CheckMoveEffect(battleSys, battleCtx, attacker, defender, move);
 }
 
-static void ov16_0224BA1C (BattleSystem * param0, BattleContext * param1)
+static void BattleController_GetBattleMon (BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    int maxBattlers = ov16_0223DF1C(battleSys);
 
-    v1 = ov16_0223DF1C(param0);
-
-    for (v0 = 0; v0 < v1; v0++) {
-        ov16_0225177C(param0, param1, v0, param1->selectedPartySlot[v0]);
+    for (int i = 0; i < maxBattlers; i++) {
+        ov16_0225177C(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
     }
 
-    param1->hpTemp = param1->battleMons[1].curHP;
-    param1->command = 1;
+    battleCtx->hpTemp = battleCtx->battleMons[1].curHP;
+    battleCtx->command = BATTLE_CONTROL_START_ENCOUNTER;
 }
 
-static void ov16_0224BA60 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_StartEncounter (BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    ov16_02251E1C(param1, 1, (0 + 0));
+    ov16_02251E1C(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_START_ENCOUNTER);
 
-    param1->command = 21;
-    param1->commandNext = 2;
+    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+    battleCtx->commandNext = BATTLE_CONTROL_TRAINER_MESSAGE;
 }
 
-static void ov16_0224BA78 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_TrainerMessage (BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (ov16_02253FCC(param0, param1)) {
-        ov16_02251E1C(param1, 1, (0 + 41));
-        param1->command = 21;
-        param1->commandNext = 3;
+    if (ov16_02253FCC(battleSys, battleCtx)) {
+        ov16_02251E1C(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_TRAINER_MESSAGE);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_SHOW_BATTLE_MON;
     } else {
-        param1->command = 3;
+        battleCtx->command = BATTLE_CONTROL_SHOW_BATTLE_MON;
     }
 
-    ov16_02255FBC(param0, param1);
+    ov16_02255FBC(battleSys, battleCtx);
 }
 
-static void ov16_0224BAA8 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_ShowBattleMon (BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    int scriptToRun = ov16_02256414(battleSys, battleCtx);
 
-    v0 = ov16_02256414(param0, param1);
+    if (scriptToRun) {
+        ov16_02251E1C(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, scriptToRun);
 
-    if (v0) {
-        ov16_02251E1C(param1, 1, v0);
-        param1->commandNext = param1->command;
-        param1->command = 21;
+        // Come back to this one after finishing the interjecting script
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
     } else {
-        ov16_02255FBC(param0, param1);
-        ov16_0223F7E8(param0);
-        param1->command = 4;
+        ov16_02255FBC(battleSys, battleCtx);
+        ov16_0223F7E8(battleSys);
+        battleCtx->command = BATTLE_CONTROL_INIT_COMMAND_SELECTION;
     }
 }
 
-static void ov16_0224BADC (BattleSystem * param0, BattleContext * param1)
+static void BattleController_InitCommandSelection (BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    int i; // this has to be declared up here to match
+    int maxBattlers = ov16_0223DF1C(battleSys);
 
-    v1 = ov16_0223DF1C(param0);
-
-    for (v0 = 0; v0 < v1; v0++) {
-        param1->curCommandState[v0] = 0;
-        param1->battleMons[v0].moveEffectsTemp = param1->battleMons[v0].moveEffectsMask;
-        param1->recordedCommandFlags[v0] = 0;
+    for (i = 0; i < maxBattlers; i++) {
+        battleCtx->curCommandState[i] = 0;
+        battleCtx->battleMons[i].moveEffectsTemp = battleCtx->battleMons[i].moveEffectsMask;
+        battleCtx->recordedCommandFlags[i] = 0;
     }
 
-    ov16_0223F288(param0, 0);
-    ov16_0223B748(param0, 1);
+    ov16_0223F288(battleSys, 0);
+    ov16_0223B748(battleSys, 1);
 
-    param1->command = 5;
+    battleCtx->command = BATTLE_CONTROL_COMMAND_SELECTION_INPUT;
 }
 
-static void ov16_0224BB28 (BattleSystem * param0, BattleContext * param1)
+enum CommandSelectionState {
+    COMMAND_SELECTION_INIT = 0,
+    COMMAND_SELECTION_SELECT,
+    COMMAND_SELECTION_SELECT2,
+    COMMAND_SELECTION_MOVE_SELECT_INIT,
+    COMMAND_SELECTION_MOVE_SELECT,
+    COMMAND_SELECTION_TARGET_SELECT_INIT,
+    COMMAND_SELECTION_TARGET_SELECT,
+    COMMAND_SELECTION_ITEM_SELECT_INIT,
+    COMMAND_SELECTION_ITEM_SELECT,
+    COMMAND_SELECTION_PARTY_SELECT_INIT,
+    COMMAND_SELECTION_PARTY_SELECT,
+    COMMAND_SELECTION_RUN_SELECT_INIT,
+    COMMAND_SELECTION_RUN_SELECT,
+    COMMAND_SELECTION_WAIT,
+    COMMAND_SELECTION_END,
+    COMMAND_SELECTION_ALERT_MESSAGE_WAIT,
+    COMMAND_SELECTION_STRUGGLE_MESSAGE,
+    COMMAND_SELECTION_CLEAR_TOUCH_SCREEN,
+};
+
+enum PlayerInputCommand {
+    PLAYER_INPUT_FIGHT = 1,
+    PLAYER_INPUT_ITEM,
+    PLAYER_INPUT_PARTY,
+    PLAYER_INPUT_RUN,
+
+    PLAYER_INPUT_SAFARI_BALL = PLAYER_INPUT_FIGHT,
+    PLAYER_INPUT_SAFARI_BAIT = PLAYER_INPUT_ITEM,
+    PLAYER_INPUT_SAFARI_ROCK = PLAYER_INPUT_PARTY,
+    PLAYER_INPUT_SAFARI_RUN = PLAYER_INPUT_RUN,
+    PLAYER_INPUT_SAFARI_WAIT,
+
+    PLAYER_INPUT_PAL_PARK_BALL = PLAYER_INPUT_FIGHT,
+    PLAYER_INPUT_PAL_PARK_RUN = PLAYER_INPUT_RUN,
+
+    PLAYER_INPUT_MOVE_1 = 1,
+    PLAYER_INPUT_MOVE_2,
+    PLAYER_INPUT_MOVE_3,
+    PLAYER_INPUT_MOVE_4,
+
+    PLAYER_INPUT_PARTY_SLOT_1 = 1,
+    PLAYER_INPUT_PARTY_SLOT_2,
+    PLAYER_INPUT_PARTY_SLOT_3,
+    PLAYER_INPUT_PARTY_SLOT_4,
+    PLAYER_INPUT_PARTY_SLOT_5,
+    PLAYER_INPUT_PARTY_SLOT_6,
+
+    PLAYER_INPUT_TARGET_BATTLER_1 = 1,
+    PLAYER_INPUT_TARGET_BATTLER_2,
+    PLAYER_INPUT_TARGET_BATTLER_3,
+    PLAYER_INPUT_TARGET_BATTLER_4,
+
+    PLAYER_INPUT_CANCEL = 0xFF,
+};
+
+static inline BOOL SingleControllerForSide(BattleContext *battleCtx, int battler, int side)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    BattleMessage v4;
+    return (battler == side + 2 && battleCtx->curCommandState[side] != COMMAND_SELECTION_END);
+}
 
-    v1 = ov16_0223DF1C(param0);
-    v2 = ov16_0223DF0C(param0);
-    v3 = 0;
+static void BattleController_CommandSelectionInput (BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int maxBattlers = ov16_0223DF1C(battleSys);
+    int battleType = ov16_0223DF0C(battleSys);
+    int tmp = 0;
+    BattleMessage msg;
 
-    for (v0 = 0; v0 < v1; v0++) {
-        switch (param1->curCommandState[v0]) {
-        case 0:
-            if ((v2 & 0x2) && ((v2 & 0x8) == 0) && ((v0 == 2) && (param1->curCommandState[0] != 14) || (v0 == 3) && (param1->curCommandState[1] != 14))) {
+    for (int i = 0; i < maxBattlers; i++) {
+        switch (battleCtx->curCommandState[i]) {
+        case COMMAND_SELECTION_INIT:
+            // No need to reinitialize if the same controller acts for both battlers on a side.
+            if ((battleType & BATTLE_TYPE_DOUBLES)
+                    && (battleType & BATTLE_TYPE_2vs2) == 0
+                    && (SingleControllerForSide(battleCtx, i, BATTLE_SIDE_PLAYER)
+                        || SingleControllerForSide(battleCtx, i, BATTLE_SIDE_ENEMY))) {
                 break;
             }
 
-            if (param1->battlersSwitchingMask & sub_020787CC(v0)) {
-                param1->curCommandState[v0] = 13;
-                param1->battlerActions[v0][0] = 39;
+            if (battleCtx->battlersSwitchingMask & sub_020787CC(i)) {
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
+                battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_AFTER_MOVE;
                 break;
-            } else if (ov16_02259A28(param1, v0) == 0) {
-                param1->turnFlags[v0].ppDecremented = 1;
-                param1->curCommandState[v0] = 13;
-                param1->battlerActions[v0][0] = 13;
+            } else if (ov16_02259A28(battleCtx, i) == 0) {
+                battleCtx->turnFlags[i].ppDecremented = TRUE;
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
+                battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_FIGHT;
                 break;
             }
 
-            if ((ov16_02263AF0(ov16_0223DF14(param0, v0)) == 0x1) || (param1->totalTurns)) {
-                ov16_02265330(param0, param1, v0, param1->selectedPartySlot[v0]);
-                param1->curCommandState[v0] = 1;
+            if ((ov16_02263AF0(ov16_0223DF14(battleSys, i)) == 1) || (battleCtx->totalTurns)) {
+                ov16_02265330(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT;
             } else {
-                param1->curCommandState[v0] = 2;
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT2;
             }
+
             break;
-        case 2:
-        {
-            int v5;
 
-            for (v5 = 0; v5 < v1; v5++) {
-                if (v5 == v0) {
+        case COMMAND_SELECTION_SELECT2:
+            int j;
+            for (j = 0; j < maxBattlers; j++) {
+                if (j == i) {
                     continue;
                 }
 
-                if (ov16_02263AF0(ov16_0223DF14(param0, v5)) != 0x1) {
+                if (ov16_02263AF0(ov16_0223DF14(battleSys, j)) != 1) {
                     continue;
                 }
 
-                if (param1->curCommandState[v5] != 14) {
+                if (battleCtx->curCommandState[j] != COMMAND_SELECTION_END) {
                     break;
                 }
             }
 
-            if (v5 == v1) {
-                ov16_02265330(param0, param1, v0, param1->selectedPartySlot[v0]);
-                param1->curCommandState[v0] = 1;
+            if (j == maxBattlers) {
+                ov16_02265330(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_SELECT;
             } else {
                 break;
             }
-        }
-        case 1:
-            if (ov16_02259AB4(param1, v0)) {
-                param1->battlerActions[v0][3] = param1->ioBuffer[v0][0];
+            // fall-through
 
-                if (v2 & 0x200) {
-                    switch (ov16_02259AB4(param1, v0)) {
-                    case 1:
-                        param1->curCommandState[v0] = 17;
-                        param1->nextCommandState[v0] = 13;
-                        param1->battlerActions[v0][0] = 17;
+        case COMMAND_SELECTION_SELECT:
+            if (ov16_02259AB4(battleCtx, i)) {
+                battleCtx->battlerActions[i][BATTLE_ACTION_SELECTED_COMMAND] = battleCtx->ioBuffer[i][0];
+
+                if (battleType & BATTLE_TYPE_PAL_PARK) {
+                    switch (ov16_02259AB4(battleCtx, i)) {
+                    case PLAYER_INPUT_PAL_PARK_BALL:
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                        battleCtx->nextCommandState[i] = BATTLE_CONTROL_FIGHT;
+                        battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_SAFARI_BALL;
                         break;
-                    case 4:
-                        param1->curCommandState[v0] = 17;
-                        param1->nextCommandState[v0] = 13;
-                        param1->battlerActions[v0][0] = 16;
+
+                    case PLAYER_INPUT_PAL_PARK_RUN:
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                        battleCtx->nextCommandState[i] = BATTLE_CONTROL_FIGHT;
+                        battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_RUN;
                         break;
                     }
-                } else if (v2 & 0x20) {
-                    switch (ov16_02259AB4(param1, v0)) {
-                    case 1:
-                        param1->curCommandState[v0] = 17;
-                        param1->nextCommandState[v0] = 13;
-                        param1->battlerActions[v0][0] = 17;
+
+                    break;
+                } else if (battleType & BATTLE_TYPE_SAFARI) {
+                    switch (ov16_02259AB4(battleCtx, i)) {
+                    case PLAYER_INPUT_SAFARI_BALL:
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                        battleCtx->nextCommandState[i] = COMMAND_SELECTION_WAIT;
+                        battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_SAFARI_BALL;
                         break;
-                    case 2:
-                        param1->curCommandState[v0] = 17;
-                        param1->nextCommandState[v0] = 13;
-                        param1->battlerActions[v0][0] = 18;
+                        
+                    case PLAYER_INPUT_SAFARI_BAIT:
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                        battleCtx->nextCommandState[i] = COMMAND_SELECTION_WAIT;
+                        battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_SAFARI_BAIT;
                         break;
-                    case 3:
-                        param1->curCommandState[v0] = 17;
-                        param1->nextCommandState[v0] = 13;
-                        param1->battlerActions[v0][0] = 19;
+
+                    case PLAYER_INPUT_SAFARI_ROCK:
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                        battleCtx->nextCommandState[i] = COMMAND_SELECTION_WAIT;
+                        battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_SAFARI_ROCK;
                         break;
-                    case 4:
-                        param1->curCommandState[v0] = 17;
-                        param1->nextCommandState[v0] = 13;
-                        param1->battlerActions[v0][0] = 16;
+
+                    case PLAYER_INPUT_SAFARI_RUN:
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                        battleCtx->nextCommandState[i] = COMMAND_SELECTION_WAIT;
+                        battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_RUN;
                         break;
-                    case 5:
-                        param1->curCommandState[v0] = 17;
-                        param1->curCommandState[v0] = 13;
-                        param1->battlerActions[v0][0] = 20;
+
+                    case PLAYER_INPUT_SAFARI_WAIT:
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
+                        battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_SAFARI_WAIT;
                         break;
                     }
-                } else {
-                    if (ov16_02259AB4(param1, v0) != 0xff) {
-                        param1->recordedCommandFlags[v0] |= 0x1;
-                    }
 
-                    switch (ov16_02259AB4(param1, v0)) {
-                    case 1:
-                        if (ov16_02254A6C(param0, param1, v0, 0, 0xffffffff) == 0xf) {
-                            param1->turnFlags[v0].struggling = 1;
+                    break;
+                }
 
-                            if (ov16_0223EBEC(param0) & 0x10) {
-                                param1->curCommandState[v0] = 13;
-                            } else {
-                                param1->curCommandState[v0] = 17;
-                                param1->nextCommandState[v0] = 16;
-                            }
-                        } else if (param1->battleMons[v0].moveEffectsData.encoredMove) {
-                            param1->moveSlot[v0] = param1->battleMons[v0].moveEffectsData.encoredMoveSlot;
-                            param1->moveSelected[v0] = param1->battleMons[v0].moveEffectsData.encoredMove;
-                            param1->battlerActions[v0][2] = 0;
+                if (ov16_02259AB4(battleCtx, i) != PLAYER_INPUT_CANCEL) {
+                    battleCtx->recordedCommandFlags[i] |= 0x1; // TODO: Constant
+                }
 
-                            if (ov16_0223EBEC(param0) & 0x10) {
-                                param1->curCommandState[v0] = 13;
-                            } else {
-                                param1->curCommandState[v0] = 17;
-                                param1->nextCommandState[v0] = 13;
-                            }
+                switch (ov16_02259AB4(battleCtx, i)) {
+                case PLAYER_INPUT_FIGHT:
+                    if (ov16_02254A6C(battleSys, battleCtx, i, 0, 0xffffffff) == 0xf) {
+                        // Don't let the player select a move if they are out of PP on all moves
+                        battleCtx->turnFlags[i].struggling = 1;
+
+                        if (ov16_0223EBEC(battleSys) & BATTLE_STATUS_RECORDING) {
+                            battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
                         } else {
-                            param1->curCommandState[v0] = 3;
+                            battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                            battleCtx->nextCommandState[i] = COMMAND_SELECTION_STRUGGLE_MESSAGE;
                         }
+                    } else if (battleCtx->battleMons[i].moveEffectsData.encoredMove) {
+                        // Don't let the player select a move if they are under the effect of Encore
+                        battleCtx->moveSlot[i] = battleCtx->battleMons[i].moveEffectsData.encoredMoveSlot;
+                        battleCtx->moveSelected[i] = battleCtx->battleMons[i].moveEffectsData.encoredMove;
+                        battleCtx->battlerActions[i][BATTLE_ACTION_TEMP_VALUE] = 0;
 
-                        param1->battlerActions[v0][0] = 13;
-                        break;
-                    case 2:
-                        if (ov16_0223DF0C(param0) & (0x4 | 0x80)) {
-                            v4.id = 593;
-                            v4.tags = 0;
-                            ov16_02266168(param0, v0, v4);
-                            param1->curCommandState[v0] = 15;
-                            param1->nextCommandState[v0] = 0;
+                        if (ov16_0223EBEC(battleSys) & BATTLE_STATUS_RECORDING) {
+                            battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
                         } else {
-                            param1->battlerActions[v0][0] = 14;
-                            param1->curCommandState[v0] = 7;
+                            battleCtx->curCommandState[i] = COMMAND_SELECTION_CLEAR_TOUCH_SCREEN;
+                            battleCtx->nextCommandState[i] = COMMAND_SELECTION_WAIT;
                         }
-                        break;
-                    case 3:
-                        param1->battlerActions[v0][0] = 15;
-                        param1->curCommandState[v0] = 9;
-                        break;
-                    case 4:
-                        param1->battlerActions[v0][0] = 16;
-                        param1->curCommandState[v0] = 11;
-                        break;
-                    case 0xff:
-                        if (v2 & 0x4) {
-                            ov16_0226647C(param0, v0);
-                            param1->curCommandState[v0] = 0;
-                            param1->curCommandState[ov16_0223E258(param0, v0)] = 0;
-                        } else if ((v2 & 0x2) && (v0 == 2)) {
-                            ov16_0226647C(param0, v0);
-                            param1->curCommandState[0] = 0;
-                            param1->curCommandState[2] = 0;
-                        } else {
-                            (void)0;
-                        }
-                        break;
+                    } else {
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_MOVE_SELECT_INIT;
                     }
+
+                    battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_FIGHT;
+                    break;
+
+                case PLAYER_INPUT_ITEM:
+                    if (ov16_0223DF0C(battleSys) & BATTLE_TYPE_NO_ITEMS) {
+                        msg.id = 593;
+                        msg.tags = 0;
+                        ov16_02266168(battleSys, i, msg);
+
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
+                        battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
+                    } else {
+                        battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_ITEM;
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_ITEM_SELECT_INIT;
+                    }
+                    break;
+
+                case PLAYER_INPUT_PARTY:
+                    battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_PARTY;
+                    battleCtx->curCommandState[i] = COMMAND_SELECTION_PARTY_SELECT_INIT;
+                    break;
+
+                case PLAYER_INPUT_RUN:
+                    battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_RUN;
+                    battleCtx->curCommandState[i] = COMMAND_SELECTION_RUN_SELECT_INIT;
+                    break;
+
+                case PLAYER_INPUT_CANCEL:
+                    if (battleType & BATTLE_TYPE_LINK) {
+                        ov16_0226647C(battleSys, i);
+                        battleCtx->curCommandState[i] = BATTLE_CONTROL_GET_BATTLE_MON;
+                        battleCtx->curCommandState[ov16_0223E258(battleSys, i)] = 0;
+                    } else if ((battleType & BATTLE_TYPE_DOUBLES) && i == BATTLER_PLAYER_SLOT_2) {
+                        ov16_0226647C(battleSys, i);
+                        battleCtx->curCommandState[BATTLER_PLAYER_SLOT_1] = BATTLE_CONTROL_GET_BATTLE_MON;
+                        battleCtx->curCommandState[BATTLER_PLAYER_SLOT_2] = BATTLE_CONTROL_GET_BATTLE_MON;
+                    }
+
+                    break;
                 }
             }
             break;
-        case 3:
-            ov16_022656F0(param0, param1, v0);
-            param1->curCommandState[v0] = 4;
-        case 4:
-            if (ov16_02259AB4(param1, v0) == 0xff) {
-                param1->curCommandState[v0] = 0;
-            } else if (ov16_02259AB4(param1, v0)) {
-                if ((param1->ioBuffer[v0][0] - 1) == 4) {
-                    param1->battlerActions[v0][0] = 16;
-                    param1->curCommandState[v0] = 11;
+
+        case COMMAND_SELECTION_MOVE_SELECT_INIT:
+            ov16_022656F0(battleSys, battleCtx, i);
+            battleCtx->curCommandState[i] = COMMAND_SELECTION_MOVE_SELECT;
+            // fall-through
+
+        case COMMAND_SELECTION_MOVE_SELECT:
+            if (ov16_02259AB4(battleCtx, i) == PLAYER_INPUT_CANCEL) {
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_INIT;
+            } else if (ov16_02259AB4(battleCtx, i)) {
+                if ((battleCtx->ioBuffer[i][0] - 1) == 4) {
+                    battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_RUN;
+                    battleCtx->curCommandState[i] = COMMAND_SELECTION_RUN_SELECT_INIT;
                     break;
                 } else {
-                    if (ov16_02254CA8(param0, param1, v0, param1->ioBuffer[v0][0] - 1, &v4) == 0) {
-                        if (ov16_0223EBEC(param0) & 0x10) {
-                            ov16_0223F720(param0, 1);
-                            ov16_0225B444(param0, ov16_0223DF10(param0));
+                    if (ov16_02254CA8(battleSys, battleCtx, i, battleCtx->ioBuffer[i][0] - 1, &msg) == FALSE) {
+                        if (ov16_0223EBEC(battleSys) & BATTLE_STATUS_RECORDING) {
+                            ov16_0223F720(battleSys, 1);
+                            ov16_0225B444(battleSys, ov16_0223DF10(battleSys));
                         } else {
-                            ov16_02266168(param0, v0, v4);
-                            param1->curCommandState[v0] = 15;
-                            param1->nextCommandState[v0] = 3;
+                            ov16_02266168(battleSys, i, msg);
+                            battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
+                            battleCtx->nextCommandState[i] = COMMAND_SELECTION_MOVE_SELECT_INIT;
                         }
                     } else {
-                        param1->battlerActions[v0][2] = param1->ioBuffer[v0][0];
-                        param1->moveSlot[v0] = param1->ioBuffer[v0][0] - 1;
-                        param1->moveSelected[v0] = param1->battleMons[v0].moves[param1->moveSlot[v0]];
-                        param1->curCommandState[v0] = 5;
-                        param1->recordedCommandFlags[v0] |= 0x2;
+                        battleCtx->battlerActions[i][2] = battleCtx->ioBuffer[i][0];
+                        battleCtx->moveSlot[i] = battleCtx->ioBuffer[i][0] - 1;
+                        battleCtx->moveSelected[i] = battleCtx->battleMons[i].moves[battleCtx->moveSlot[i]];
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_TARGET_SELECT_INIT;
+                        battleCtx->recordedCommandFlags[i] |= 0x2;
                     }
                 }
             }
             break;
-        case 5:
-        {
-            int v6;
 
-            if (ov16_02250DE4(param0, param1, v0, v2, &v6, param1->moveSlot[v0], &param1->battlerActions[v0][1])) {
-                ov16_022657AC(param0, param1, v6, v0);
-                param1->curCommandState[v0] = 6;
+        case COMMAND_SELECTION_TARGET_SELECT_INIT:
+            int target;
+            if (ov16_02250DE4(battleSys, battleCtx, i, battleType, &target, battleCtx->moveSlot[i], &battleCtx->battlerActions[i][1])) {
+                ov16_022657AC(battleSys, battleCtx, target, i);
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_TARGET_SELECT;
             } else {
-                param1->curCommandState[v0] = 13;
-            }
-        }
-        break;
-        case 6:
-            if (ov16_02259AB4(param1, v0) == 0xff) {
-                param1->curCommandState[v0] = 3;
-            } else if (ov16_02259AB4(param1, v0)) {
-                param1->battlerActions[v0][1] = param1->ioBuffer[v0][0] - 1;
-                param1->curCommandState[v0] = 13;
-
-                param1->recordedCommandFlags[v0] |= 0x4;
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
             }
             break;
-        case 7:
-            ov16_022658E8(param0, param1, v0);
-            param1->curCommandState[v0] = 8;
-        case 8:
-            if (ov16_02259AB4(param1, v0) == 0xff) {
-                param1->curCommandState[v0] = 0;
-            } else if (ov16_02259AB4(param1, v0)) {
-                {
-                    u32 * v7;
+            
+        case COMMAND_SELECTION_TARGET_SELECT:
+            if (ov16_02259AB4(battleCtx, i) == PLAYER_INPUT_CANCEL) {
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_MOVE_SELECT_INIT;
+            } else if (ov16_02259AB4(battleCtx, i)) {
+                battleCtx->battlerActions[i][1] = battleCtx->ioBuffer[i][0] - 1;
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
 
-                    v7 = (u32 *)&param1->ioBuffer[v0][0];
-                    param1->battlerActions[v0][2] = v7[0];
-                    param1->curCommandState[v0] = 13;
+                battleCtx->recordedCommandFlags[i] |= 0x4;
+            }
+            break;
+
+        case COMMAND_SELECTION_ITEM_SELECT_INIT:
+            ov16_022658E8(battleSys, battleCtx, i);
+            battleCtx->curCommandState[i] = COMMAND_SELECTION_ITEM_SELECT;
+            // fall-through
+
+        case COMMAND_SELECTION_ITEM_SELECT:
+            if (ov16_02259AB4(battleCtx, i) == PLAYER_INPUT_CANCEL) {
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_INIT;
+            } else if (ov16_02259AB4(battleCtx, i)) {
+                u32 *data;
+
+                data = (u32 *)&battleCtx->ioBuffer[i][0];
+                battleCtx->battlerActions[i][BATTLE_ACTION_TEMP_VALUE] = *data;
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
+            }
+            break;
+
+        case COMMAND_SELECTION_PARTY_SELECT_INIT:
+            int doublesSelection = 6;
+            BOOL canSwitch = ov16_02258BA8(battleSys, battleCtx, i);
+
+            // Check the partner's selection in a double battle
+            if ((ov16_0223E1F8(battleSys, i) == BATTLER_DOUBLES_PLAYER_SLOT_2 || ov16_0223E1F8(battleSys, i) == BATTLER_DOUBLES_ENEMY_SLOT_2)
+                    && (battleType == BATTLE_TYPE_TRAINER_DOUBLES
+                        || battleType == BATTLE_TYPE_LINK_DOUBLES
+                        || battleType == BATTLE_TYPE_FRONTIER_DOUBLES
+                        || (battleType == BATTLE_TYPE_TAG_DOUBLES && ov16_0223E1F8(battleSys, i) == BATTLER_DOUBLES_PLAYER_SLOT_2))) {
+                int partner = ov16_0223E258(battleSys, i);
+
+                if (battleCtx->battlerActions[partner][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_PARTY) {
+                    doublesSelection = battleCtx->battlerActions[partner][2];
                 }
             }
-            break;
-        case 9:
-        {
-            int v8;
-            int v9 = 6;
-            int v10;
 
-            v8 = ov16_02258BA8(param0, param1, v0);
+            ov16_02265A8C(battleSys, battleCtx, i, 0, canSwitch, doublesSelection);
+            battleCtx->curCommandState[i] = COMMAND_SELECTION_PARTY_SELECT;
+            // fall-through
 
-            if (((ov16_0223E1F8(param0, v0) == 4) || (ov16_0223E1F8(param0, v0) == 5)) && ((v2 == (0x2 | 0x1)) || (v2 == ((0x4 | 0x1) | 0x2)) || (v2 == ((0x2 | 0x1) | 0x80)) || ((v2 == ((0x2 | 0x1) | 0x10)) && (ov16_0223E1F8(param0, v0) == 4)))) {
-                v10 = ov16_0223E258(param0, v0);
-
-                if (param1->battlerActions[v10][0] == 15) {
-                    v9 = param1->battlerActions[v10][2];
-                }
-            }
-
-            ov16_02265A8C(param0, param1, v0, 0, v8, v9);
-            param1->curCommandState[v0] = 10;
-        }
-        case 10:
-            if (ov16_02259AB4(param1, v0) == 0xff) {
-                param1->curCommandState[v0] = 0;
-            } else if (ov16_02259AB4(param1, v0)) {
-                param1->battlerActions[v0][2] = param1->ioBuffer[v0][0] - 1;
-                param1->switchedPartySlot[v0] = param1->ioBuffer[v0][0] - 1;
-                param1->curCommandState[v0] = 13;
+        case COMMAND_SELECTION_PARTY_SELECT:
+            if (ov16_02259AB4(battleCtx, i) == PLAYER_INPUT_CANCEL) {
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_INIT;
+            } else if (ov16_02259AB4(battleCtx, i)) {
+                battleCtx->battlerActions[i][BATTLE_ACTION_TEMP_VALUE] = battleCtx->ioBuffer[i][0] - 1;
+                battleCtx->switchedPartySlot[i] = battleCtx->ioBuffer[i][0] - 1;
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
             }
             break;
-        case 11:
-            if (v2 & 0x80) {
-                ov16_02265B2C(param0, param1, v0, 955, 0, NULL, NULL);
-                param1->curCommandState[v0] = 12;
-            } else if ((v2 & 0x1) && ((v2 & 0x4) == 0)) {
-                if (ov16_0223EBEC(param0) & 0x10) {
-                    ov16_0223F720(param0, 1);
-                    ov16_0225B444(param0, ov16_0223DF10(param0));
+
+        case COMMAND_SELECTION_RUN_SELECT_INIT:
+            if (battleType & BATTLE_TYPE_FRONTIER) {
+                ov16_02265B2C(battleSys, battleCtx, i, 955, 0, NULL, NULL);
+                battleCtx->curCommandState[i] = 12;
+            } else if ((battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_LINK) == FALSE) {
+                if (ov16_0223EBEC(battleSys) & BATTLE_STATUS_RECORDING) {
+                    ov16_0223F720(battleSys, 1);
+                    ov16_0225B444(battleSys, ov16_0223DF10(battleSys));
                 } else {
-                    v4.tags = 0;
-                    v4.id = 793;
-                    ov16_02266168(param0, v0, v4);
-                    param1->curCommandState[v0] = 15;
-                    param1->nextCommandState[v0] = 0;
+                    msg.tags = 0;
+                    msg.id = 793;
+                    ov16_02266168(battleSys, i, msg);
+
+                    battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
+                    battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
                 }
-            } else if (ov16_02255C00(param0, param1, v0, &v4)) {
-                if (ov16_0223EBEC(param0) & 0x10) {
-                    ov16_0223F720(param0, 1);
-                    ov16_0225B444(param0, ov16_0223DF10(param0));
+            } else if (ov16_02255C00(battleSys, battleCtx, i, &msg)) {
+                if (ov16_0223EBEC(battleSys) & BATTLE_STATUS_RECORDING) {
+                    ov16_0223F720(battleSys, 1);
+                    ov16_0225B444(battleSys, ov16_0223DF10(battleSys));
                 } else {
-                    ov16_02266168(param0, v0, v4);
-                    param1->curCommandState[v0] = 15;
-                    param1->nextCommandState[v0] = 0;
+                    ov16_02266168(battleSys, i, msg);
+                    battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
+                    battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
                 }
             } else {
-                param1->curCommandState[v0] = 12;
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_RUN_SELECT;
             }
             break;
-        case 12:
-            if (v2 & 0x80) {
-                if (ov16_02259AB4(param1, v0)) {
-                    if (ov16_02259AB4(param1, v0) == 0xff) {
-                        param1->curCommandState[v0] = 0;
+
+        case COMMAND_SELECTION_RUN_SELECT:
+            if (battleType & BATTLE_TYPE_FRONTIER) {
+                if (ov16_02259AB4(battleCtx, i)) {
+                    if (ov16_02259AB4(battleCtx, i) == PLAYER_INPUT_CANCEL) {
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_INIT;
                     } else {
-                        param1->curCommandState[v0] = 13;
+                        battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
                     }
                 }
             } else {
-                param1->curCommandState[v0] = 13;
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
             }
 
-            if ((v2 & 0x2) && ((v2 & 0x8) == 0) && (param1->curCommandState[v0] == 13)) {
-                param1->curCommandState[ov16_0223E258(param0, v0)] = 13;
+            if ((battleType & BATTLE_TYPE_DOUBLES)
+                    && (battleType & BATTLE_TYPE_2vs2) == FALSE
+                    && (battleCtx->curCommandState[i] == COMMAND_SELECTION_WAIT)) {
+                battleCtx->curCommandState[ov16_0223E258(battleSys, i)] = COMMAND_SELECTION_WAIT;
             }
             break;
-        case 13:
-            ov16_0226647C(param0, v0);
 
-            if (v2 == ((0x4 | 0x1) | 0x2)) {
-                {
-                    int v11;
+        case COMMAND_SELECTION_WAIT:
+            ov16_0226647C(battleSys, i);
 
-                    v11 = ov16_0223E258(param0, v0);
-
-                    if (param1->curCommandState[v11] == 14) {
-                        ov16_022666E0(param0, v0);
-                    }
+            if (battleType == BATTLE_TYPE_LINK_DOUBLES) {
+                if (battleCtx->curCommandState[ov16_0223E258(battleSys, i)] == COMMAND_SELECTION_END) {
+                    ov16_022666E0(battleSys, i);
                 }
             } else {
-                ov16_022666E0(param0, v0);
+                ov16_022666E0(battleSys, i);
             }
 
-            param1->curCommandState[v0] = 14;
-        case 14:
-            v3++;
+            battleCtx->curCommandState[i] = COMMAND_SELECTION_END;
+            // fall-through
+
+        case COMMAND_SELECTION_END:
+            tmp++;
             break;
-        case 15:
-            if (ov16_02259AB4(param1, v0)) {
-                ov16_02252040(param1, v0);
-                param1->curCommandState[v0] = param1->nextCommandState[v0];
+
+        case COMMAND_SELECTION_ALERT_MESSAGE_WAIT:
+            if (ov16_02259AB4(battleCtx, i)) {
+                ov16_02252040(battleCtx, i);
+                battleCtx->curCommandState[i] = battleCtx->nextCommandState[i];
             }
             break;
-        case 16:
-            v4.tags = 2;
-            v4.id = 608;
-            v4.params[0] = ov16_02255560(param1, v0);
-            ov16_02266168(param0, v0, v4);
-            param1->curCommandState[v0] = 15;
-            param1->nextCommandState[v0] = 13;
+
+        case COMMAND_SELECTION_STRUGGLE_MESSAGE:
+            msg.tags = 2;
+            msg.id = 608;
+            msg.params[0] = ov16_02255560(battleCtx, i);
+            ov16_02266168(battleSys, i, msg);
+            
+            battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
+            battleCtx->nextCommandState[i] = COMMAND_SELECTION_WAIT;
             break;
-        case 17:
-            ov16_022665C8(param0, v0);
-            param1->curCommandState[v0] = param1->nextCommandState[v0];
+
+        case COMMAND_SELECTION_CLEAR_TOUCH_SCREEN:
+            ov16_022665C8(battleSys, i);
+            battleCtx->curCommandState[i] = battleCtx->nextCommandState[i];
             break;
         }
     }
 
-    if (v3 == v1) {
-        ov16_02251694(param0, param1);
-        ov16_0223B748(param0, 0);
+    if (tmp == maxBattlers) {
+        ov16_02251694(battleSys, battleCtx);
+        ov16_0223B748(battleSys, 0);
 
-        param1->command = 6;
+        battleCtx->command = BATTLE_CONTROL_CALC_TURN_ORDER;
 
-        for (v0 = 0; v0 < v1; v0++) {
-            if (param1->battlerActions[v0][0] == 15) {
-                ov16_0225A200(param0, param1, v0, param1->switchedPartySlot[v0]);
+        for (int i = 0; i < maxBattlers; i++) {
+            if (battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_PARTY) {
+                ov16_0225A200(battleSys, battleCtx, i, battleCtx->switchedPartySlot[i]);
             }
         }
     }
