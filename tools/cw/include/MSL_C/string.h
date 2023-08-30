@@ -3,6 +3,7 @@
 
 #include <ansi_params.h>
 #include <size_t.h>
+#include <cstring>
 
 _MSL_BEGIN_NAMESPACE_STD
 _MSL_BEGIN_EXTERN_C
