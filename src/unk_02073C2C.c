@@ -241,7 +241,7 @@ static void sub_02078234(void * param0, u32 param1, u32 param2);
 static u16 sub_0207823C(void * param0, u32 param1);
 static void * sub_0207825C(BoxPokemon * param0, u32 param1, u8 param2);
 static int sub_02078740(int param0, int param1);
-u32 sub_020787CC(int param0);
+u32 FlagIndex(int flag);
 int sub_020787EC(u32 param0);
 BOOL sub_02078804(u16 param0);
 BOOL sub_02078838(Pokemon * param0);
@@ -2502,16 +2502,16 @@ u32 sub_02075E64 (u32 param0)
     v3 = sub_0201D2E8() & 0x7;
 
     for (v0 = 0; v0 < 13; v0++) {
-        if (param0 & sub_020787CC(v0)) {
+        if (param0 & FlagIndex(v0)) {
             if (sub_0201D2E8() & 1) {
-                v2 |= sub_020787CC(v0 + 3);
+                v2 |= FlagIndex(v0 + 3);
             } else {
-                v3 |= sub_020787CC(v0 + 3);
+                v3 |= FlagIndex(v0 + 3);
             }
         } else {
             if (sub_0201D2E8() & 1) {
-                v2 |= sub_020787CC(v0 + 3);
-                v3 |= sub_020787CC(v0 + 3);
+                v2 |= FlagIndex(v0 + 3);
+                v3 |= FlagIndex(v0 + 3);
             }
         }
     }
@@ -3865,7 +3865,7 @@ void sub_020776B0 (Party * param0)
             }
         } while (v4 == v3);
 
-        if (sub_02077758(param0, sub_020787CC(v4)) == 0) {
+        if (sub_02077758(param0, FlagIndex(v4)) == 0) {
             do {
                 v1 = sub_0201D2E8() & 0xff;
             } while ((v1 & 0x7) == 0);
@@ -5138,18 +5138,18 @@ static int sub_02078740 (int param0, int param1)
     return param0;
 }
 
-u32 sub_020787CC (int param0)
+u32 FlagIndex (int index)
 {
-    int v0;
-    u32 v1 = 1;
+    int i; // only matches when declared here
+    u32 flag = 1;
 
-    GF_ASSERT(param0 < 32);
+    GF_ASSERT(index < 32);
 
-    for (v0 = 0; v0 < param0; v0++) {
-        v1 <<= 1;
+    for (i = 0; i < index; i++) {
+        flag <<= 1;
     }
 
-    return v1;
+    return flag;
 }
 
 int sub_020787EC (u32 param0)

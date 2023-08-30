@@ -196,7 +196,7 @@ void ov13_0221FC20 (UnkStruct_ov13_0221FC20 * param0)
     v0->unk_2074 = 0;
     v0->unk_2072 = param0->unk_11;
     v0->unk_2073_4 = ov16_0223F1F8(param0->unk_08);
-    v0->unk_208B = ov16_0223E1F8(param0->unk_08, param0->unk_28);
+    v0->unk_208B = BattleSystem_BattlerSlot(param0->unk_08, param0->unk_28);
 }
 
 static void ov13_0221FCAC (UnkStruct_0201CD38 * param0, void * param1)
@@ -1611,7 +1611,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
         {
             int v2;
 
-            v2 = ov16_0223E258(param0->unk_00->unk_08, param0->unk_00->unk_28);
+            v2 = BattleSystem_Partner(param0->unk_00->unk_08, param0->unk_00->unk_28);
             sub_0200BA74(param0->unk_1FA8, 0, ov16_0223E120(param0->unk_00->unk_08, v2));
         }
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
@@ -1674,7 +1674,7 @@ static u8 ov13_0222194C (UnkStruct_ov13_022213F0 * param0)
 
 u8 ov13_0222196C (UnkStruct_ov13_022213F0 * param0)
 {
-    u32 v0 = ov16_0223DF0C(param0->unk_00->unk_08);
+    u32 v0 = BattleSystem_BattleType(param0->unk_00->unk_08);
 
     if ((v0 != (0x2 | 0x8 | 0x40)) && (v0 != ((0x2 | 0x1) | 0x8 | 0x40)) && (v0 & (0x2 | 0x10))) {
         return 1;
@@ -1685,7 +1685,7 @@ u8 ov13_0222196C (UnkStruct_ov13_022213F0 * param0)
 
 u8 ov13_0222198C (UnkStruct_ov13_022213F0 * param0)
 {
-    u32 v0 = ov16_0223DF0C(param0->unk_00->unk_08);
+    u32 v0 = BattleSystem_BattleType(param0->unk_00->unk_08);
 
     if ((v0 != (0x2 | 0x8 | 0x40)) && (v0 != ((0x2 | 0x1) | 0x8 | 0x40)) && (v0 & 0x8)) {
         return 1;

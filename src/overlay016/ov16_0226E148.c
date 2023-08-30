@@ -87,7 +87,7 @@ static void ov16_0226E188 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_06++;
 
         if (v0->unk_06 > 8) {
-            ov16_0223F720(v0->unk_00, 0);
+            BattleSystem_SetStopRecording(v0->unk_00, 0);
             v0->unk_04++;
         }
         break;

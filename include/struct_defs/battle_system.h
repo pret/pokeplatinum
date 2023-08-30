@@ -52,10 +52,10 @@ struct BattleSystem {
     UnkStruct_0201CD38 * unk_20;
     UnkStruct_0201CD38 * unk_24;
     UnkStruct_02002F38 * unk_28;
-    u32 unk_2C;
+    u32 battleType;
     BattleContext *battleCtx;
-    UnkStruct_ov16_0225BFFC * unk_34[4];
-    int unk_44;
+    UnkStruct_ov16_0225BFFC *battlers[MAX_BATTLERS];
+    int maxBattlers;
     UnkStruct_02025E6C * unk_48[4];
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
@@ -113,7 +113,7 @@ struct BattleSystem {
     int unk_23FC;
     int unk_2400;
     int unk_2404;
-    u32 unk_2408;
+    u32 battleStatusMask;
     int unk_240C;
     int unk_2410;
     u8 unk_2414[4];
@@ -128,9 +128,9 @@ struct BattleSystem {
     u32 unk_2430;
     int unk_2434;
     int unk_2438;
-    int unk_243C;
+    int commandSelectionFlags;
     u8 unk_2440;
-    u8 unk_2441;
+    u8 overlayFlags;
     u16 unk_2442;
     u32 unk_2444;
     u32 unk_2448;
@@ -140,7 +140,7 @@ struct BattleSystem {
     int unk_2464[4];
     u32 unk_2474_0 : 1;
     u32 unk_2474_1 : 31;
-    UnkStruct_0201CD38 * unk_2478;
+    UnkStruct_0201CD38 *playbackStopButton;
     u8 unk_247C[4];
 };
 

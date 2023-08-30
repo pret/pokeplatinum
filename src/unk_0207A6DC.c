@@ -102,7 +102,7 @@ void sub_0207A6DC (void * param0)
 
     v1 = (BattleSystem *)param0;
 
-    if (ov16_0223EBEC(v1) & 0x10) {
+    if (BattleSystem_BattleStatus(v1) & 0x10) {
         return;
     }
 

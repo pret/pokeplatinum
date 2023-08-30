@@ -151,7 +151,7 @@ BOOL sub_02077FE4(u16 param0, int param1, u8 param2);
 void sub_0207803C(Pokemon * param0);
 void sub_02078044(BoxPokemon * param0);
 void sub_020780C4(Pokemon * param0, u32 param1);
-u32 sub_020787CC(int param0);
+u32 FlagIndex(int flag);
 int sub_020787EC(u32 param0);
 BOOL sub_02078804(u16 param0);
 u16 sub_02078824(u8 param0);

@@ -84,6 +84,23 @@
 #define BATTLE_STATUS_GIRATINA      (1 << 6)
 #define BATTLE_STATUS_DISTORTION    (1 << 7)
 
+#define STRUGGLE_CHECK_NO_MOVES     (1 << 0)
+#define STRUGGLE_CHECK_NO_PP        (1 << 1)
+#define STRUGGLE_CHECK_DISABLED     (1 << 2)
+#define STRUGGLE_CHECK_TORMENTED    (1 << 3)
+#define STRUGGLE_CHECK_TAUNTED      (1 << 4)
+#define STRUGGLE_CHECK_IMPRISONED   (1 << 5)
+#define STRUGGLE_CHECK_GRAVITY      (1 << 6)
+#define STRUGGLE_CHECK_HEAL_BLOCKED (1 << 7)
+#define STRUGGLE_CHECK_CHOICED      (1 << 9)
+#define STRUGGLE_CHECK_ALL          ~0
+
+#define STRUGGLING_MOVE_1           (1 << 0)
+#define STRUGGLING_MOVE_2           (1 << 1)
+#define STRUGGLING_MOVE_3           (1 << 2)
+#define STRUGGLING_MOVE_4           (1 << 3)
+#define STRUGGLING_ALL              (STRUGGLING_MOVE_1 | STRUGGLING_MOVE_2 | STRUGGLING_MOVE_3 | STRUGGLING_MOVE_4)
+
 enum BattleActions {
     BATTLE_ACTION_PICK_COMMAND = 0,
     BATTLE_ACTION_CHOOSE_TARGET,
@@ -91,6 +108,12 @@ enum BattleActions {
     BATTLE_ACTION_SELECTED_COMMAND,
 
     MAX_BATTLE_ACTIONS
+};
+
+enum BattlerBootState {
+    BATTLER_BOOT_STATE_NORMAL = 0,
+    BATTLER_BOOT_STATE_AI,
+    BATTLER_BOOT_STATE_LINK,
 };
 
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_H

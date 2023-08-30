@@ -21,7 +21,7 @@ void ov16_02264798 (UnkStruct_ov16_0225BFFC * param0, BattleSystem * param1)
         return;
     }
 
-    if (ov16_0223DF0C(param1) & (0x20 | 0x200)) {
+    if (BattleSystem_BattleType(param1) & (0x20 | 0x200)) {
         return;
     }
 

@@ -137,7 +137,7 @@ void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
 
     ov13_02227A4C(v0);
 
-    if (ov16_0223DF0C(v0->unk_00->unk_00) & 0x400) {
+    if (BattleSystem_BattleType(v0->unk_00->unk_00) & 0x400) {
         v0->unk_00->unk_14 = 1;
     }
 }
@@ -430,7 +430,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
             return 13;
         } else if (v2 == 3) {
-            if (!(ov16_0223DF0C(v0->unk_00) & 0x1)) {
+            if (!(BattleSystem_BattleType(v0->unk_00) & 0x1)) {
                 ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
                 return 13;
             } else {
@@ -837,7 +837,7 @@ int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
 {
     int v0;
 
-    v0 = ov16_0225B45C(param0->unk_00->unk_00, ov16_0223DF10(param0->unk_00->unk_00), 2, param0->unk_00->unk_10);
+    v0 = ov16_0225B45C(param0->unk_00->unk_00, BattleSystem_Context(param0->unk_00->unk_00), 2, param0->unk_00->unk_10);
     return v0;
 }
 

@@ -177,11 +177,11 @@ void ov16_0225C038 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, int
     UnkStruct_ov12_02237728 v0;
     s16 v1, v2;
 
-    if (ov16_0223DF0C(param0) & (0x20 | 0x200)) {
+    if (BattleSystem_BattleType(param0) & (0x20 | 0x200)) {
         return;
     }
 
-    if ((param1->unk_191 & 0x1) && ((ov16_0223DF0C(param0) & 0x1) == 0)) {
+    if ((param1->unk_191 & 0x1) && ((BattleSystem_BattleType(param0) & 0x1) == 0)) {
         return;
     }
 
@@ -611,14 +611,14 @@ static void ov16_0225C47C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 
     if ((v0->unk_18 & 0x200000) == 0) {
         for (v1 = 0; v1 < 4; v1++) {
-            if ((v0->unk_01_4 & sub_020787CC(v1)) == 0) {
+            if ((v0->unk_01_4 & FlagIndex(v1)) == 0) {
                 sub_02074B30(v2, 54 + v1, (u8 *)&v0->unk_0E[v1]);
                 sub_02074B30(v2, 58 + v1, (u8 *)&v0->unk_12[v1]);
             }
         }
     }
 
-    if ((v0->unk_08 & sub_020787CC(v0->unk_01_0)) == 0) {
+    if ((v0->unk_08 & FlagIndex(v0->unk_01_0)) == 0) {
         sub_02074B30(v2, 6, (u8 *)&v0->unk_0C);
     }
 
@@ -643,10 +643,10 @@ static void ov16_0225C558 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
     u32 v0;
     UnkStruct_ov16_02268A14 * v1;
 
-    v0 = ov16_0223DF0C(param0);
+    v0 = BattleSystem_BattleType(param0);
     v1 = ov16_0223E02C(param0);
 
-    if (param1->unk_192 == 0x0) {
+    if (param1->bootState == 0x0) {
         if ((v0 & 0x8) || (((v0 & 0x8) == 0) && (param1->unk_191 != 4))) {
             ov16_0226947C(v1, -0xd00, 0);
         }
@@ -752,7 +752,7 @@ static void ov16_0225C77C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 
 static void ov16_0225C79C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 {
-    if (param1->unk_192 == 0x0) {
+    if (param1->bootState == 0x0) {
         {
             UnkStruct_ov16_02268A14 * v0;
             int v1;
@@ -770,7 +770,7 @@ static void ov16_0225C79C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
             NARC_dtor(v3);
             NARC_dtor(v4);
 
-            v1 = ov16_0223E258(param0, param1->unk_190);
+            v1 = BattleSystem_Partner(param0, param1->unk_190);
 
             if (v1 != param1->unk_190) {
                 v2 = ov16_0223F35C(param0, v1);
@@ -860,11 +860,11 @@ static void ov16_0225C940 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
     UnkStruct_ov16_022666BC * v0 = (UnkStruct_ov16_022666BC *)&param1->unk_90[0];
 
     if (v0->unk_01 == 0) {
-        if (param1->unk_192 == 0x0) {
+        if (param1->bootState == 0x0) {
             ov16_0223F24C(param0, v0->unk_02);
         }
     } else {
-        if (param1->unk_192 != 0x0) {
+        if (param1->bootState != 0x0) {
             ov16_0223F24C(param0, v0->unk_02);
         }
     }
@@ -963,10 +963,10 @@ static void ov16_0225CA74 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 
     ov16_0223F638(param0, v0->unk_02, v0->unk_08);
 
-    if (ov16_0223DF0C(param0) & 0x80) {
+    if (BattleSystem_BattleType(param0) & 0x80) {
         ov16_0223F444(param0, v0->unk_04);
     } else {
-        for (v4 = 0; v4 < ov16_0223DF1C(param0); v4++) {
+        for (v4 = 0; v4 < BattleSystem_MaxBattlers(param0); v4++) {
             v1 = ov16_0223DF20(param0, v4);
 
             for (v3 = 0; v3 < Party_GetCurrentCount(v1); v3++) {
