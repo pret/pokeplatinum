@@ -23,7 +23,7 @@ _021F6364:
 	ldr r0, _021F63A0 ; =0x02219358
 	mvn r1, #0
 	str r1, [r0, #0]
-	bl ov4_021F6C70
+	bl ClosePendingCallbacks
 	ldr r0, _021F63A4 ; =0x0221AF80
 	ldr r0, [r0, #0xc]
 	cmp r0, #0
@@ -67,7 +67,7 @@ PersistThink: ; 0x021F63C8
 	cmp r1, #5
 	movne r0, #0
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
-	bl ov4_021F664C
+	bl SocketReadable
 	cmp r0, #0
 	beq _021F64F4
 	mov r7, #0
@@ -116,7 +116,7 @@ _021F6494:
 	strb r6, [r0, r1]
 	ldr r0, [sl, #0xc]
 	ldr r1, [sl]
-	bl ov4_021F6AE4
+	bl ProcessInBuffer
 	ldr r1, [sl]
 	mov r5, r0
 	cmp r5, r1
@@ -131,7 +131,7 @@ _021F6494:
 	str r0, [sl]
 _021F64E4:
 	ldr r0, [sb]
-	bl ov4_021F664C
+	bl SocketReadable
 	cmp r0, #0
 	bne _021F641C
 _021F64F4:
@@ -147,8 +147,8 @@ _021F6510: .word Unk_ov4_02219358
 _021F6514: .word Unk_ov4_0221AF80
 	arm_func_end PersistThink
 
-	arm_func_start ov4_021F6518
-ov4_021F6518: ; 0x021F6518
+	arm_func_start xcode_buf
+xcode_buf: ; 0x021F6518
 	stmfd sp!, {r4, lr}
 	ldr r2, _021F655C ; =0x02219358
 	cmp r1, #0
@@ -169,10 +169,10 @@ _021F6530:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021F655C: .word Unk_ov4_02219358
-	arm_func_end ov4_021F6518
+	arm_func_end xcode_buf
 
-	arm_func_start ov4_021F6560
-ov4_021F6560: ; 0x021F6560
+	arm_func_start value_for_key
+value_for_key: ; 0x021F6560
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x100
 	ldr lr, _021F6624 ; =0x02215B27
@@ -230,29 +230,29 @@ _021F6624: .word Unk_ov4_02215B27
 _021F6628: .word Unk_ov4_0221AF80
 _021F662C: .word Unk_ov4_022193C8
 _021F6630: .word Unk_ov4_0221AFB0
-	arm_func_end ov4_021F6560
+	arm_func_end value_for_key
 
-	arm_func_start ov4_021F6634
-ov4_021F6634: ; 0x021F6634
+	arm_func_start value_for_key_safe
+value_for_key_safe: ; 0x021F6634
 	stmfd sp!, {r3, lr}
-	bl ov4_021F6560
+	bl value_for_key
 	cmp r0, #0
 	ldreq r0, _021F6648 ; =0x022193C4
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021F6648: .word Unk_ov4_022193C4
-	arm_func_end ov4_021F6634
+	arm_func_end value_for_key_safe
 
-	arm_func_start ov4_021F664C
-ov4_021F664C: ; 0x021F664C
+	arm_func_start SocketReadable
+SocketReadable: ; 0x021F664C
 	ldr ip, _021F6654 ; =CanReceiveOnSocket
 	bx ip
 	; .align 2, 0
 _021F6654: .word CanReceiveOnSocket
-	arm_func_end ov4_021F664C
+	arm_func_end SocketReadable
 
-	arm_func_start ov4_021F6658
-ov4_021F6658: ; 0x021F6658
+	arm_func_start FindFinal
+FindFinal: ; 0x021F6658
 	sub r3, r1, #6
 	mov r2, r0
 	cmp r3, #0
@@ -281,10 +281,10 @@ _021F6668:
 _021F66B8:
 	mov r0, #0
 	bx lr
-	arm_func_end ov4_021F6658
+	arm_func_end FindFinal
 
-	arm_func_start ov4_021F66C0
-ov4_021F66C0: ; 0x021F66C0
+	arm_func_start FindRequest
+FindRequest: ; 0x021F66C0
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r3, _021F6740 ; =0x0221AF80
 	mov r7, r0
@@ -321,30 +321,30 @@ _021F6738:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021F6740: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F66C0
+	arm_func_end FindRequest
 
-	arm_func_start ov4_021F6744
-ov4_021F6744: ; 0x021F6744
+	arm_func_start ProcessPlayerAuth
+ProcessPlayerAuth: ; 0x021F6744
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	ldr r1, _021F67E4 ; =0x022193CC
 	mov r6, r0
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r5, r0
 	ldr r1, _021F67E8 ; =0x022193D4
 	mov r0, r6
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r4, r0
 	ldr r1, _021F67EC ; =0x022193D8
 	mov r0, r6
-	bl ov4_021F6634
+	bl value_for_key_safe
 	mov r6, r0
 	mov r0, #0
 	mov r1, r4
 	mov r2, r0
-	bl ov4_021F66C0
+	bl FindRequest
 	mov r4, r0
 	mvn r0, #0
 	cmp r4, r0
@@ -362,7 +362,7 @@ ov4_021F6744: ; 0x021F6744
 	mov r0, r4
 	mov r3, r6
 	str r2, [sp]
-	bl ov4_021F6B6C
+	bl CallReqCallback
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -370,24 +370,24 @@ _021F67E4: .word Unk_ov4_022193CC
 _021F67E8: .word Unk_ov4_022193D4
 _021F67EC: .word Unk_ov4_022193D8
 _021F67F0: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F6744
+	arm_func_end ProcessPlayerAuth
 
-	arm_func_start ov4_021F67F4
-ov4_021F67F4: ; 0x021F67F4
+	arm_func_start ProcessGetPid
+ProcessGetPid: ; 0x021F67F4
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r1, _021F6874 ; =0x022193E0
 	mov r5, r0
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r4, r0
 	ldr r1, _021F6878 ; =0x022193D4
 	mov r0, r5
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r1, r0
 	mov r0, #3
 	mov r2, #0
-	bl ov4_021F66C0
+	bl FindRequest
 	mov r5, r0
 	mvn r0, #0
 	cmp r5, r0
@@ -404,42 +404,42 @@ ov4_021F67F4: ; 0x021F67F4
 	mov r0, r5
 	mov r3, r2
 	str r2, [sp]
-	bl ov4_021F6B6C
+	bl CallReqCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021F6874: .word Unk_ov4_022193E0
 _021F6878: .word Unk_ov4_022193D4
 _021F687C: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F67F4
+	arm_func_end ProcessGetPid
 
-	arm_func_start ov4_021F6880
-ov4_021F6880: ; 0x021F6880
+	arm_func_start ProcessGetData
+ProcessGetData: ; 0x021F6880
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #4
 	ldr r1, _021F6948 ; =0x022193E8
 	mov r4, r0
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r7, r0
 	ldr r1, _021F694C ; =0x022193D4
 	mov r0, r4
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r6, r0
 	ldr r1, _021F6950 ; =0x022193F0
 	mov r0, r4
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r5, r0
 	ldr r1, _021F6954 ; =0x022193F4
 	mov r0, r4
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r8, r0
 	mov r1, r6
 	mov r2, r5
 	mov r0, #1
-	bl ov4_021F66C0
+	bl FindRequest
 	mov r5, r0
 	mvn r0, #0
 	cmp r5, r0
@@ -447,7 +447,7 @@ ov4_021F6880: ; 0x021F6880
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	ldr r1, _021F6958 ; =0x022193F8
 	mov r0, r4
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r6, r0
 	ldr r1, _021F695C ; =0x02219400
@@ -461,7 +461,7 @@ ov4_021F6880: ; 0x021F6880
 	mov r1, r7
 	mov r2, r8
 	str r6, [sp]
-	bl ov4_021F6B6C
+	bl CallReqCallback
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
@@ -472,35 +472,35 @@ _021F6954: .word Unk_ov4_022193F4
 _021F6958: .word Unk_ov4_022193F8
 _021F695C: .word Unk_ov4_02219400
 _021F6960: .word Unk_ov4_022193C4
-	arm_func_end ov4_021F6880
+	arm_func_end ProcessGetData
 
-	arm_func_start ov4_021F6964
-ov4_021F6964: ; 0x021F6964
+	arm_func_start ProcessSetData
+ProcessSetData: ; 0x021F6964
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r1, _021F69EC ; =0x02219408
 	mov r7, r0
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r6, r0
 	ldr r1, _021F69F0 ; =0x022193F0
 	mov r0, r7
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r5, r0
 	ldr r1, _021F69F4 ; =0x022193D4
 	mov r0, r7
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r4, r0
 	ldr r1, _021F69F8 ; =0x022193F4
 	mov r0, r7
-	bl ov4_021F6634
+	bl value_for_key_safe
 	bl atoi
 	mov r1, r4
 	mov r4, r0
 	mov r2, r5
 	mov r0, #2
-	bl ov4_021F66C0
+	bl FindRequest
 	mvn r1, #0
 	cmp r0, r1
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -508,17 +508,17 @@ ov4_021F6964: ; 0x021F6964
 	mov r1, r6
 	mov r2, r4
 	str r3, [sp]
-	bl ov4_021F6B6C
+	bl CallReqCallback
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021F69EC: .word Unk_ov4_02219408
 _021F69F0: .word Unk_ov4_022193F0
 _021F69F4: .word Unk_ov4_022193D4
 _021F69F8: .word Unk_ov4_022193F4
-	arm_func_end ov4_021F6964
+	arm_func_end ProcessSetData
 
-	arm_func_start ov4_021F69FC
-ov4_021F69FC: ; 0x021F69FC
+	arm_func_start ProcessStatement
+ProcessStatement: ; 0x021F69FC
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r1
 	ldr r1, _021F6AD4 ; =0x02219410
@@ -531,7 +531,7 @@ ov4_021F69FC: ; 0x021F69FC
 	bne _021F6A34
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021F6744
+	bl ProcessPlayerAuth
 	ldmia sp!, {r3, r4, r5, pc}
 _021F6A34:
 	ldr r1, _021F6AD8 ; =0x0221941C
@@ -542,7 +542,7 @@ _021F6A34:
 	bne _021F6A5C
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021F67F4
+	bl ProcessGetPid
 	ldmia sp!, {r3, r4, r5, pc}
 _021F6A5C:
 	ldr r1, _021F6AD8 ; =0x0221941C
@@ -553,7 +553,7 @@ _021F6A5C:
 	bne _021F6A84
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021F67F4
+	bl ProcessGetPid
 	ldmia sp!, {r3, r4, r5, pc}
 _021F6A84:
 	ldr r1, _021F6ADC ; =0x02219428
@@ -564,7 +564,7 @@ _021F6A84:
 	bne _021F6AAC
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021F6880
+	bl ProcessGetData
 	ldmia sp!, {r3, r4, r5, pc}
 _021F6AAC:
 	ldr r1, _021F6AE0 ; =0x02219434
@@ -575,22 +575,22 @@ _021F6AAC:
 	ldmneia sp!, {r3, r4, r5, pc}
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021F6964
+	bl ProcessSetData
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021F6AD4: .word Unk_ov4_02219410
 _021F6AD8: .word Unk_ov4_0221941C
 _021F6ADC: .word Unk_ov4_02219428
 _021F6AE0: .word Unk_ov4_02219434
-	arm_func_end ov4_021F69FC
+	arm_func_end ProcessStatement
 
-	arm_func_start ov4_021F6AE4
-ov4_021F6AE4: ; 0x021F6AE4
+	arm_func_start ProcessInBuffer
+ProcessInBuffer: ; 0x021F6AE4
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov sb, r1
 	mov sl, r0
 	mov r7, sb
-	bl ov4_021F6658
+	bl FindFinal
 	mov r6, r0
 	ldr r5, _021F6B64 ; =0x022193A4
 	ldr r4, _021F6B68 ; =0x02219358
@@ -600,10 +600,10 @@ _021F6B08:
 	mov r0, sl
 	mov r1, r8
 	str r5, [r4, #8]
-	bl ov4_021F6518
+	bl xcode_buf
 	mov r0, sl
 	mov r1, r8
-	bl ov4_021F69FC
+	bl ProcessStatement
 	add r0, r8, #7
 	sub sb, sb, r0
 	cmp sb, #0
@@ -611,7 +611,7 @@ _021F6B08:
 	ble _021F6B4C
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021F6658
+	bl FindFinal
 	mov r6, r0
 _021F6B4C:
 	cmp sb, #0
@@ -624,10 +624,10 @@ _021F6B5C:
 	; .align 2, 0
 _021F6B64: .word Unk_ov4_022193A4
 _021F6B68: .word Unk_ov4_02219358
-	arm_func_end ov4_021F6AE4
+	arm_func_end ProcessInBuffer
 
-	arm_func_start ov4_021F6B6C
-ov4_021F6B6C: ; 0x021F6B6C
+	arm_func_start CallReqCallback
+CallReqCallback: ; 0x021F6B6C
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x14
 	movs r7, r0
@@ -700,10 +700,10 @@ _021F6C54:
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021F6C6C: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F6B6C
+	arm_func_end CallReqCallback
 
-	arm_func_start ov4_021F6C70
-ov4_021F6C70: ; 0x021F6C70
+	arm_func_start ClosePendingCallbacks
+ClosePendingCallbacks: ; 0x021F6C70
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x24
 	ldr r0, _021F6D54 ; =0x0221AF80
@@ -747,13 +747,13 @@ _021F6CE4:
 	mov r0, r8
 	mov r1, r7
 	str sb, [r5, #8]
-	bl ov4_021F6518
+	bl xcode_buf
 	mov r0, r4
 	mov r1, r6
 	mov r2, r6
 	mov r3, r8
 	str r6, [sp]
-	bl ov4_021F6B6C
+	bl CallReqCallback
 	subs r4, r4, #1
 	bpl _021F6CD8
 _021F6D34:
@@ -770,10 +770,10 @@ _021F6D54: .word Unk_ov4_0221AF80
 _021F6D58: .word Unk_ov4_022159A4
 _021F6D5C: .word Unk_ov4_022193B4
 _021F6D60: .word Unk_ov4_02219358
-	arm_func_end ov4_021F6C70
+	arm_func_end ClosePendingCallbacks
 
-	arm_func_start ov4_021F6D64
-ov4_021F6D64: ; 0x021F6D64
+	arm_func_start GetTeamIndex
+GetTeamIndex: ; 0x021F6D64
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldreq r0, _021F6D90 ; =0x0221AF80
@@ -787,10 +787,10 @@ ov4_021F6D64: ; 0x021F6D64
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021F6D90: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F6D64
+	arm_func_end GetTeamIndex
 
-	arm_func_start ov4_021F6D94
-ov4_021F6D94: ; 0x021F6D94
+	arm_func_start GetPlayerIndex
+GetPlayerIndex: ; 0x021F6D94
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldreq r0, _021F6DC0 ; =0x0221AF80
@@ -804,10 +804,10 @@ ov4_021F6D94: ; 0x021F6D94
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021F6DC0: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F6D94
+	arm_func_end GetPlayerIndex
 
-	arm_func_start ov4_021F6DC4
-ov4_021F6DC4: ; 0x021F6DC4
+	arm_func_start ServerOpInt
+ServerOpInt: ; 0x021F6DC4
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
@@ -828,7 +828,7 @@ ov4_021F6DC4: ; 0x021F6DC4
 	add r3, sp, #0x1c
 	mov r1, r4
 	mov r2, #0
-	bl ov4_021F5D7C
+	bl BucketNew
 _021F6E18:
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, r4, r5, lr}
@@ -836,10 +836,10 @@ _021F6E18:
 	bx lr
 	; .align 2, 0
 _021F6E28: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F6DC4
+	arm_func_end ServerOpInt
 
-	arm_func_start ov4_021F6E2C
-ov4_021F6E2C: ; 0x021F6E2C
+	arm_func_start ServerOpFloat
+ServerOpFloat: ; 0x021F6E2C
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
@@ -860,7 +860,7 @@ ov4_021F6E2C: ; 0x021F6E2C
 	add r3, sp, #0x1c
 	mov r1, r4
 	mov r2, #1
-	bl ov4_021F5D7C
+	bl BucketNew
 _021F6E80:
 	ldr r2, [r0, #0]
 	ldr r1, [r0, #4]
@@ -870,10 +870,10 @@ _021F6E80:
 	bx lr
 	; .align 2, 0
 _021F6E98: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F6E2C
+	arm_func_end ServerOpFloat
 
-	arm_func_start ov4_021F6E9C
-ov4_021F6E9C: ; 0x021F6E9C
+	arm_func_start ServerOpString
+ServerOpString: ; 0x021F6E9C
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	ldreq r0, _021F6EF4 ; =0x0221AF80
@@ -894,14 +894,14 @@ ov4_021F6E9C: ; 0x021F6E9C
 	mov r1, r5
 	mov r3, r4
 	mov r2, #2
-	bl ov4_021F5D7C
+	bl BucketNew
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021F6EF4: .word Unk_ov4_0221AF80
-	arm_func_end ov4_021F6E9C
+	arm_func_end ServerOpString
 
-	arm_func_start ov4_021F6EF8
-ov4_021F6EF8: ; 0x021F6EF8
+	arm_func_start TeamOpInt
+TeamOpInt: ; 0x021F6EF8
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x44
 	mov r6, r1
@@ -909,7 +909,7 @@ ov4_021F6EF8: ; 0x021F6EF8
 	mov r7, r0
 	mov r5, r2
 	mov r4, r3
-	bl ov4_021F6D64
+	bl GetTeamIndex
 	mov r3, r0
 	ldr r1, _021F6F50 ; =0x02219440
 	add r0, sp, #4
@@ -921,15 +921,15 @@ ov4_021F6EF8: ; 0x021F6EF8
 	mov r3, r4
 	add r1, sp, #4
 	str ip, [sp]
-	bl ov4_021F6DC4
+	bl ServerOpInt
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021F6F50: .word Unk_ov4_02219440
-	arm_func_end ov4_021F6EF8
+	arm_func_end TeamOpInt
 
-	arm_func_start ov4_021F6F54
-ov4_021F6F54: ; 0x021F6F54
+	arm_func_start TeamOpFloat
+TeamOpFloat: ; 0x021F6F54
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x48
 	mov r7, r1
@@ -938,7 +938,7 @@ ov4_021F6F54: ; 0x021F6F54
 	mov r6, r2
 	mov r5, r3
 	ldr r4, [sp, #0x60]
-	bl ov4_021F6D64
+	bl GetTeamIndex
 	mov r3, r0
 	ldr r1, _021F6FB0 ; =0x02219440
 	add r0, sp, #8
@@ -950,15 +950,15 @@ ov4_021F6F54: ; 0x021F6F54
 	mov r2, r6
 	add r1, sp, #8
 	stmia sp, {r4, ip}
-	bl ov4_021F6E2C
+	bl ServerOpFloat
 	add sp, sp, #0x48
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021F6FB0: .word Unk_ov4_02219440
-	arm_func_end ov4_021F6F54
+	arm_func_end TeamOpFloat
 
-	arm_func_start ov4_021F6FB4
-ov4_021F6FB4: ; 0x021F6FB4
+	arm_func_start TeamOpString
+TeamOpString: ; 0x021F6FB4
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x44
 	mov r6, r1
@@ -966,7 +966,7 @@ ov4_021F6FB4: ; 0x021F6FB4
 	mov r7, r0
 	mov r5, r2
 	mov r4, r3
-	bl ov4_021F6D64
+	bl GetTeamIndex
 	mov r3, r0
 	ldr r1, _021F700C ; =0x02219440
 	add r0, sp, #4
@@ -978,15 +978,15 @@ ov4_021F6FB4: ; 0x021F6FB4
 	mov r3, r4
 	add r1, sp, #4
 	str ip, [sp]
-	bl ov4_021F6E9C
+	bl ServerOpString
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021F700C: .word Unk_ov4_02219440
-	arm_func_end ov4_021F6FB4
+	arm_func_end TeamOpString
 
-	arm_func_start ov4_021F7010
-ov4_021F7010: ; 0x021F7010
+	arm_func_start PlayerOpInt
+PlayerOpInt: ; 0x021F7010
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x44
 	mov r6, r1
@@ -994,7 +994,7 @@ ov4_021F7010: ; 0x021F7010
 	mov r7, r0
 	mov r5, r2
 	mov r4, r3
-	bl ov4_021F6D94
+	bl GetPlayerIndex
 	mov r3, r0
 	ldr r1, _021F7068 ; =0x02219448
 	add r0, sp, #4
@@ -1006,15 +1006,15 @@ ov4_021F7010: ; 0x021F7010
 	mov r3, r4
 	add r1, sp, #4
 	str ip, [sp]
-	bl ov4_021F6DC4
+	bl ServerOpInt
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021F7068: .word Unk_ov4_02219448
-	arm_func_end ov4_021F7010
+	arm_func_end PlayerOpInt
 
-	arm_func_start ov4_021F706C
-ov4_021F706C: ; 0x021F706C
+	arm_func_start PlayerOpFloat
+PlayerOpFloat: ; 0x021F706C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x48
 	mov r7, r1
@@ -1023,7 +1023,7 @@ ov4_021F706C: ; 0x021F706C
 	mov r6, r2
 	mov r5, r3
 	ldr r4, [sp, #0x60]
-	bl ov4_021F6D94
+	bl GetPlayerIndex
 	mov r3, r0
 	ldr r1, _021F70C8 ; =0x02219448
 	add r0, sp, #8
@@ -1035,15 +1035,15 @@ ov4_021F706C: ; 0x021F706C
 	mov r2, r6
 	add r1, sp, #8
 	stmia sp, {r4, ip}
-	bl ov4_021F6E2C
+	bl ServerOpFloat
 	add sp, sp, #0x48
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021F70C8: .word Unk_ov4_02219448
-	arm_func_end ov4_021F706C
+	arm_func_end PlayerOpFloat
 
-	arm_func_start ov4_021F70CC
-ov4_021F70CC: ; 0x021F70CC
+	arm_func_start PlayerOpString
+PlayerOpString: ; 0x021F70CC
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x44
 	mov r6, r1
@@ -1051,7 +1051,7 @@ ov4_021F70CC: ; 0x021F70CC
 	mov r7, r0
 	mov r5, r2
 	mov r4, r3
-	bl ov4_021F6D94
+	bl GetPlayerIndex
 	mov r3, r0
 	ldr r1, _021F7124 ; =0x02219448
 	add r0, sp, #4
@@ -1063,12 +1063,12 @@ ov4_021F70CC: ; 0x021F70CC
 	mov r3, r4
 	add r1, sp, #4
 	str ip, [sp]
-	bl ov4_021F6E9C
+	bl ServerOpString
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021F7124: .word Unk_ov4_02219448
-	arm_func_end ov4_021F70CC
+	arm_func_end PlayerOpString
 
 	.rodata
 
@@ -1145,25 +1145,25 @@ Unk_ov4_02219360: ; 0x02219360
 
 	.global Unk_ov4_02219364
 Unk_ov4_02219364: ; 0x02219364
-	.word ov4_021F5E18
-	.word ov4_021F5E44
-	.word ov4_021F5ED8
-	.word ov4_021F5F5C
-	.word ov4_021F5FDC
-	.word ov4_021F6060
-	.word ov4_021F6104
+	.word BucketSet
+	.word BucketAdd
+	.word BucketSub
+	.word BucketMult
+	.word BucketDiv
+	.word BucketConcat
+	.word BucketAvg
 
 	.global Unk_ov4_02219380
 Unk_ov4_02219380: ; 0x02219380
-	.word ov4_021F6DC4
-	.word ov4_021F6E2C
-	.word ov4_021F6E9C
-	.word ov4_021F6EF8
-	.word ov4_021F6F54
-	.word ov4_021F6FB4
-	.word ov4_021F7010
-	.word ov4_021F706C
-	.word ov4_021F70CC
+	.word ServerOpInt
+	.word ServerOpFloat
+	.word ServerOpString
+	.word TeamOpInt
+	.word TeamOpFloat
+	.word TeamOpString
+	.word PlayerOpInt
+	.word PlayerOpFloat
+	.word PlayerOpString
 
 	.global Unk_ov4_022193A4
 Unk_ov4_022193A4: ; 0x022193A4

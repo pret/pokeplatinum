@@ -13,10 +13,10 @@
 .public TableEnter
 .public TableLookup
 .public goastrdup
-.public ov4_021F6060
-.public ov4_021F61D8
-.public ov4_021F61F0
-.public ov4_021F620C
-.public ov4_021F623C
-.public ov4_021F62B8
-.public ov4_021F62D8
+.public BucketConcat
+.public bint
+.public bfloat
+.public stripchars
+.public DoSet
+.public DoGet
+.public DoFind
