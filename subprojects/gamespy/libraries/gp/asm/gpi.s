@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021EBDCC
-ov4_021EBDCC: ; 0x021EBDCC
+	arm_func_start gpiInitialize
+gpiInitialize: ; 0x021EBDCC
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r6, r0
@@ -44,7 +44,7 @@ ov4_021EBDCC: ; 0x021EBDCC
 	str r5, [r1, #0x46c]
 	ldr r1, [sp]
 	str r4, [r1, #0x470]
-	bl ov4_021F300C
+	bl gpiInitProfiles
 	cmp r0, #0
 	bne _021EBE84
 	ldr r0, [sp]
@@ -73,13 +73,13 @@ _021EBE94:
 	ldr r1, _021EBF10 ; =0x02217A8C
 	add r0, sp, #0
 	str r3, [r2, #0x460]
-	bl ov4_021F5894
+	bl gpiDebug
 	add r0, sp, #0
-	bl ov4_021EBF70
+	bl gpiReset
 	movs r4, r0
 	beq _021EBEF0
 	add r0, sp, #0
-	bl ov4_021EBF14
+	bl gpiDestroy
 	add sp, sp, #4
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, pc}
@@ -94,15 +94,15 @@ _021EBEF0:
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _021EBF10: .word Unk_ov4_02217A8C
-	arm_func_end ov4_021EBDCC
+	arm_func_end gpiInitialize
 
-	arm_func_start ov4_021EBF14
-ov4_021EBF14: ; 0x021EBF14
+	arm_func_start gpiDestroy
+gpiDestroy: ; 0x021EBF14
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r4, [r5, #0]
 	mov r1, #1
-	bl ov4_021EF75C
+	bl gpiDisconnect
 	ldr r0, [r4, #0x460]
 	bl DWCi_GsFree
 	mov r0, #0
@@ -114,10 +114,10 @@ ov4_021EBF14: ; 0x021EBF14
 	mov r0, #0
 	str r0, [r5, #0]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021EBF14
+	arm_func_end gpiDestroy
 
-	arm_func_start ov4_021EBF54
-ov4_021EBF54: ; 0x021EBF54
+	arm_func_start gpiResetProfile
+gpiResetProfile: ; 0x021EBF54
 	mov r0, #0
 	str r0, [r1, #8]
 	str r0, [r1, #0x10]
@@ -125,10 +125,10 @@ ov4_021EBF54: ; 0x021EBF54
 	str r0, [r1, #0x18]
 	mov r0, #1
 	bx lr
-	arm_func_end ov4_021EBF54
+	arm_func_end gpiResetProfile
 
-	arm_func_start ov4_021EBF70
-ov4_021EBF70: ; 0x021EBF70
+	arm_func_start gpiReset
+gpiReset: ; 0x021EBF70
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r4, [r5, #0]
@@ -181,17 +181,17 @@ ov4_021EBF70: ; 0x021EBF70
 	beq _021EC04C
 _021EC038:
 	mov r0, r5
-	bl ov4_021F1BA8
+	bl gpiRemoveOperation
 	ldr r1, [r4, #0x424]
 	cmp r1, #0
 	bne _021EC038
 _021EC04C:
 	mov r2, #0
 	str r2, [r4, #0x424]
-	ldr r1, _021EC094 ; =ov4_021EBF54
+	ldr r1, _021EC094 ; =gpiResetProfile
 	mov r0, r5
 	str r2, [r4, #0x430]
-	bl ov4_021F33F4
+	bl gpiProfileMap
 	mov r0, #0
 	str r0, [r4, #0x19c]
 	str r0, [r4, #0x1a0]
@@ -205,11 +205,11 @@ _021EC04C:
 	strb r0, [r4, #0x318]
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021EC094: .word ov4_021EBF54
-	arm_func_end ov4_021EBF70
+_021EC094: .word gpiResetProfile
+	arm_func_end gpiReset
 
-	arm_func_start ov4_021EC098
-ov4_021EC098: ; 0x021EC098
+	arm_func_start gpiProcessConnectionManager
+gpiProcessConnectionManager: ; 0x021EC098
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x14
 	mov r1, #0
@@ -219,7 +219,7 @@ ov4_021EC098: ; 0x021EC098
 _021EC0B0:
 	mov r0, r4
 	add r1, sl, #0x1f4
-	bl ov4_021F053C
+	bl gpiAddLocalInfo
 	mov r1, #1
 	ldr r0, _021EC384 ; =0x02217AB0
 	str r1, [sp]
@@ -228,7 +228,7 @@ _021EC0B0:
 	add r3, sp, #8
 	mov r0, r4
 	add r2, sl, #0x1f4
-	bl ov4_021EDB54
+	bl gpiSendFromBuffer
 	cmp r0, #0
 	addne sp, sp, #0x14
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -240,7 +240,7 @@ _021EC0B0:
 	add r3, sp, #0xc
 	mov r0, r4
 	add r2, sl, #0x1dc
-	bl ov4_021ED92C
+	bl gpiRecvToBuffer
 	cmp r0, #0
 	beq _021EC150
 	cmp r0, #3
@@ -249,11 +249,11 @@ _021EC0B0:
 	ldr r2, _021EC388 ; =0x02217AB4
 	mov r0, r4
 	mov r1, #5
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r4
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x14
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -273,7 +273,7 @@ _021EC178:
 	mov r0, r4
 	mov r1, r8
 	ldr r2, [sl, #0x1dc]
-	bl ov4_021F5894
+	bl gpiDebug
 	ldr r0, [sl, #0x1dc]
 	sub r1, r5, r0
 	str r1, [sp, #0xc]
@@ -292,7 +292,7 @@ _021EC178:
 	bne _021EC1E4
 	ldr r1, _021EC398 ; =0x02217AF4
 	mov r0, r4
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x14
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -325,19 +325,19 @@ _021EC1E8:
 	mov r0, r4
 	mov r1, fp
 	mov r2, r5
-	bl ov4_021F1BF8
+	bl gpiFindOperationByID
 	cmp r0, #0
 	bne _021EC270
 	ldr r1, _021EC39C ; =0x02217B0C
 	mov r2, r5
 	mov r0, r4
-	bl ov4_021F5894
+	bl gpiDebug
 	b _021EC30C
 _021EC270:
 	mov r0, r4
 	ldr r1, [sp, #0x10]
 	ldr r2, [sl, #0x1ec]
-	bl ov4_021F1C80
+	bl gpiProcessOperation
 	cmp r0, #0
 	beq _021EC30C
 	add sp, sp, #0x14
@@ -346,7 +346,7 @@ _021EC290:
 	mov r1, r5
 	mov r0, r4
 	mov r2, #1
-	bl ov4_021F58A0
+	bl gpiCheckForError
 	cmp r0, #0
 	addne sp, sp, #0x14
 	movne r0, #4
@@ -360,7 +360,7 @@ _021EC290:
 	bne _021EC2E8
 	mov r1, r5
 	mov r0, r4
-	bl ov4_021EC60C
+	bl gpiProcessRecvBuddyMessage
 	cmp r0, #0
 	beq _021EC30C
 	add sp, sp, #0x14
@@ -374,7 +374,7 @@ _021EC2E8:
 	beq _021EC30C
 	ldr r1, _021EC3A8 ; =0x02217B44
 	mov r0, r4
-	bl ov4_021F5894
+	bl gpiDebug
 _021EC30C:
 	ldr r0, [sl, #0x1dc]
 	ldr r1, _021EC38C ; =0x02217AE0
@@ -388,17 +388,17 @@ _021EC320:
 	ldr r2, _021EC3AC ; =0x02217B74
 	mov r0, r4
 	mov r1, #7
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r4
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x14
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021EC358:
 	mov r0, r4
-	bl ov4_021F1C44
+	bl gpiOperationsAreBlocking
 	movs r5, r0
 	beq _021EC370
 	mov r0, #0xa
@@ -421,10 +421,10 @@ _021EC3A0: .word Unk_ov4_02217B34
 _021EC3A4: .word Unk_ov4_02217B3C
 _021EC3A8: .word Unk_ov4_02217B44
 _021EC3AC: .word Unk_ov4_02217B74
-	arm_func_end ov4_021EC098
+	arm_func_end gpiProcessConnectionManager
 
-	arm_func_start ov4_021EC3B0
-ov4_021EC3B0: ; 0x021EC3B0
+	arm_func_start gpiProcess
+gpiProcess: ; 0x021EC3B0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	ldr r6, [sl]
@@ -447,7 +447,7 @@ _021EC3E4:
 	mov fp, #0xa
 _021EC3FC:
 	mov r0, sl
-	bl ov4_021EF5F4
+	bl gpiCheckConnect
 	movs r7, r0
 	bne _021EC424
 	cmp sb, #0
@@ -471,7 +471,7 @@ _021EC438:
 	add r1, sp, #0
 	mov r0, sl
 	mov r2, #1
-	bl ov4_021F1BF8
+	bl gpiFindOperationByID
 	cmp r0, #0
 	beq _021EC470
 	ldr r0, [sp]
@@ -492,19 +492,19 @@ _021EC484:
 	cmp r7, #0
 	bne _021EC4A8
 	mov r0, sl
-	bl ov4_021EC098
+	bl gpiProcessConnectionManager
 	mov r7, r0
 _021EC4A8:
 	cmp r7, #0
 	bne _021EC4BC
 	mov r0, sl
-	bl ov4_021F28C0
+	bl gpiProcessPeers
 	mov r7, r0
 _021EC4BC:
 	cmp r7, #0
 	bne _021EC4D0
 	mov r0, sl
-	bl ov4_021F54A4
+	bl gpiProcessSearches
 	mov r7, r0
 _021EC4D0:
 	ldr r1, [r6, #0x424]
@@ -518,12 +518,12 @@ _021EC4E0:
 	streq r0, [sp]
 	beq _021EC510
 	mov r0, sl
-	bl ov4_021F1708
+	bl gpiFailedOpCallback
 	ldr r1, [sp]
 	mov r0, sl
 	ldr r2, [r1, #0x20]
 	str r2, [sp]
-	bl ov4_021F1BA8
+	bl gpiRemoveOperation
 _021EC510:
 	ldr r1, [sp]
 	cmp r1, #0
@@ -531,7 +531,7 @@ _021EC510:
 _021EC51C:
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021EE1F8
+	bl gpiProcessCallbacks
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	ldr r0, [r6, #0x41c]
@@ -539,7 +539,7 @@ _021EC51C:
 	beq _021EC548
 	mov r0, sl
 	mov r1, #0
-	bl ov4_021EF75C
+	bl gpiDisconnect
 _021EC548:
 	mov r0, r7
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -549,7 +549,7 @@ _021EC554: .word Unk_ov4_02217C94
 _021EC558: .word Unk_ov4_02217A80
 _021EC55C: .word 0x000001B6
 _021EC560: .word Unk_ov4_02217C9C
-	arm_func_end ov4_021EC3B0
+	arm_func_end gpiProcess
 
 	.data
 

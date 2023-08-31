@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021F571C
-ov4_021F571C: ; 0x021F571C
+	arm_func_start gpiProcessRegisterUniqueNick
+gpiProcessRegisterUniqueNick: ; 0x021F571C
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x10
 	mov r4, r2
@@ -15,7 +15,7 @@ ov4_021F571C: ; 0x021F571C
 	mov r1, r4
 	mov r2, #1
 	mov r6, r0
-	bl ov4_021F58A0
+	bl gpiCheckForError
 	cmp r0, #0
 	addne sp, sp, #0x10
 	movne r0, #4
@@ -29,11 +29,11 @@ ov4_021F571C: ; 0x021F571C
 	ldr r2, _021F5818 ; =0x0221917C
 	mov r0, r6
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r6
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x10
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
@@ -50,7 +50,7 @@ _021F5790:
 	bne _021F57D0
 	ldr r1, _021F581C ; =0x022191AC
 	mov r0, r6
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x10
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
@@ -62,14 +62,14 @@ _021F57D0:
 	str r2, [sp, #4]
 	mov r0, r6
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	addne sp, sp, #0x10
 	ldmneia sp!, {r4, r5, r6, pc}
 _021F57FC:
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021F1BA8
+	bl gpiRemoveOperation
 	mov r0, #0
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, pc}
@@ -77,7 +77,7 @@ _021F57FC:
 _021F5814: .word Unk_ov4_02219174
 _021F5818: .word Unk_ov4_0221917C
 _021F581C: .word Unk_ov4_022191AC
-	arm_func_end ov4_021F571C
+	arm_func_end gpiProcessRegisterUniqueNick
 
 	.data
 

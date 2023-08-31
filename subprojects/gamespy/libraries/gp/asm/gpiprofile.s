@@ -6,25 +6,25 @@
 	.text
 
 
-	arm_func_start ov4_021F2F6C
-ov4_021F2F6C: ; 0x021F2F6C
+	arm_func_start gpiProfilesTableHash
+gpiProfilesTableHash: ; 0x021F2F6C
 	stmfd sp!, {r3, lr}
 	ldr r0, [r0, #0]
 	bl _s32_div_f
 	mov r0, r1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021F2F6C
+	arm_func_end gpiProfilesTableHash
 
-	arm_func_start ov4_021F2F80
-ov4_021F2F80: ; 0x021F2F80
+	arm_func_start gpiProfilesTableCompare
+gpiProfilesTableCompare: ; 0x021F2F80
 	ldr r2, [r0, #0]
 	ldr r0, [r1, #0]
 	sub r0, r2, r0
 	bx lr
-	arm_func_end ov4_021F2F80
+	arm_func_end gpiProfilesTableCompare
 
-	arm_func_start ov4_021F2F90
-ov4_021F2F90: ; 0x021F2F90
+	arm_func_start gpiProfilesTableFree
+gpiProfilesTableFree: ; 0x021F2F90
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #8]
@@ -47,7 +47,7 @@ ov4_021F2F90: ; 0x021F2F90
 	str r0, [r4, #8]
 _021F2FE0:
 	mov r0, r4
-	bl ov4_021F163C
+	bl gpiFreeInfoCache
 	ldr r0, [r4, #0x10]
 	bl DWCi_GsFree
 	mov r0, #0
@@ -57,19 +57,19 @@ _021F2FE0:
 	mov r0, #0
 	str r0, [r4, #0x18]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F2F90
+	arm_func_end gpiProfilesTableFree
 
-	arm_func_start ov4_021F300C
-ov4_021F300C: ; 0x021F300C
+	arm_func_start gpiInitProfiles
+gpiInitProfiles: ; 0x021F300C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	ldr r4, [r0, #0]
 	mov r0, #0
 	str r0, [r4, #0x430]
 	str r0, [r4, #0x42c]
-	ldr ip, _021F3058 ; =ov4_021F2F90
-	ldr r2, _021F305C ; =ov4_021F2F6C
-	ldr r3, _021F3060 ; =ov4_021F2F80
+	ldr ip, _021F3058 ; =gpiProfilesTableFree
+	ldr r2, _021F305C ; =gpiProfilesTableHash
+	ldr r3, _021F3060 ; =gpiProfilesTableCompare
 	mov r0, #0x1c
 	mov r1, #4
 	str ip, [sp]
@@ -81,13 +81,13 @@ ov4_021F300C: ; 0x021F300C
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_021F3058: .word ov4_021F2F90
-_021F305C: .word ov4_021F2F6C
-_021F3060: .word ov4_021F2F80
-	arm_func_end ov4_021F300C
+_021F3058: .word gpiProfilesTableFree
+_021F305C: .word gpiProfilesTableHash
+_021F3060: .word gpiProfilesTableCompare
+	arm_func_end gpiInitProfiles
 
-	arm_func_start ov4_021F3064
-ov4_021F3064: ; 0x021F3064
+	arm_func_start gpiProcessNewProfile
+gpiProcessNewProfile: ; 0x021F3064
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x20
 	mov r6, r2
@@ -95,7 +95,7 @@ ov4_021F3064: ; 0x021F3064
 	mov r1, r6
 	mov r2, #1
 	mov r5, r0
-	bl ov4_021F58A0
+	bl gpiCheckForError
 	cmp r0, #0
 	addne sp, sp, #0x20
 	movne r0, #4
@@ -109,11 +109,11 @@ ov4_021F3064: ; 0x021F3064
 	ldr r2, _021F31B8 ; =0x02218CC4
 	mov r0, r5
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r5
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x20
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
@@ -122,17 +122,17 @@ _021F30D8:
 	add r2, sp, #0x10
 	mov r0, r6
 	mov r3, #0x10
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021F3120
 	ldr r2, _021F31B8 ; =0x02218CC4
 	mov r0, r5
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r5
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x20
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
@@ -152,7 +152,7 @@ _021F3120:
 	bne _021F316C
 	ldr r1, _021F31C0 ; =0x02218D00
 	mov r0, r5
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x20
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
@@ -165,14 +165,14 @@ _021F316C:
 	str r2, [sp, #4]
 	mov r0, r5
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	addne sp, sp, #0x20
 	ldmneia sp!, {r4, r5, r6, pc}
 _021F319C:
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021F1BA8
+	bl gpiRemoveOperation
 	mov r0, #0
 	add sp, sp, #0x20
 	ldmia sp!, {r4, r5, r6, pc}
@@ -181,10 +181,10 @@ _021F31B4: .word Unk_ov4_02218CBC
 _021F31B8: .word Unk_ov4_02218CC4
 _021F31BC: .word Unk_ov4_02218CF4
 _021F31C0: .word Unk_ov4_02218D00
-	arm_func_end ov4_021F3064
+	arm_func_end gpiProcessNewProfile
 
-	arm_func_start ov4_021F31C4
-ov4_021F31C4: ; 0x021F31C4
+	arm_func_start gpiProfileListAdd
+gpiProfileListAdd: ; 0x021F31C4
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x20
 	mov r6, r0
@@ -205,7 +205,7 @@ _021F31F4:
 	add r2, sp, #0
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	ldrne r0, [sp]
 	addne sp, sp, #0x20
@@ -233,7 +233,7 @@ _021F31F4:
 	mov r0, r6
 	mov r1, r5
 	str r3, [r4, #0x42c]
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	ldrne r0, [sp]
 	moveq r0, #0
@@ -244,10 +244,10 @@ _021F3298: .word Unk_ov4_02218D10
 _021F329C: .word Unk_ov4_02218D18
 _021F32A0: .word Unk_ov4_02218CA8
 _021F32A4: .word 0x000002B5
-	arm_func_end ov4_021F31C4
+	arm_func_end gpiProfileListAdd
 
-	arm_func_start ov4_021F32A8
-ov4_021F32A8: ; 0x021F32A8
+	arm_func_start gpiGetProfile
+gpiGetProfile: ; 0x021F32A8
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x1c
 	ldr r0, [r0, #0]
@@ -263,15 +263,15 @@ ov4_021F32A8: ; 0x021F32A8
 	moveq r0, #0
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021F32A8
+	arm_func_end gpiGetProfile
 
-	arm_func_start ov4_021F32E4
-ov4_021F32E4: ; 0x021F32E4
+	arm_func_start gpiRemoveProfileByID
+gpiRemoveProfileByID: ; 0x021F32E4
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	add r2, sp, #0
 	ldr r4, [r0, #0]
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	addeq sp, sp, #4
 	ldmeqia sp!, {r3, r4, pc}
@@ -280,20 +280,20 @@ ov4_021F32E4: ; 0x021F32E4
 	bl TableRemove
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021F32E4
+	arm_func_end gpiRemoveProfileByID
 
-	arm_func_start ov4_021F3318
-ov4_021F3318: ; 0x021F3318
+	arm_func_start gpiRemoveProfile
+gpiRemoveProfile: ; 0x021F3318
 	ldr r0, [r0, #0]
 	ldr ip, _021F3328 ; =TableRemove
 	ldr r0, [r0, #0x428]
 	bx ip
 	; .align 2, 0
 _021F3328: .word TableRemove
-	arm_func_end ov4_021F3318
+	arm_func_end gpiRemoveProfile
 
-	arm_func_start ov4_021F332C
-ov4_021F332C: ; 0x021F332C
+	arm_func_start gpiCheckProfileForUser
+gpiCheckProfileForUser: ; 0x021F332C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r1
 	ldr r4, [r6, #0xc]
@@ -319,21 +319,21 @@ ov4_021F332C: ; 0x021F332C
 _021F3384:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021F332C
+	arm_func_end gpiCheckProfileForUser
 
-	arm_func_start ov4_021F338C
-ov4_021F338C: ; 0x021F338C
+	arm_func_start gpiFindProfileByUser
+gpiFindProfileByUser: ; 0x021F338C
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x10
 	str r1, [sp]
 	mov ip, #0
 	str r2, [sp, #4]
 	mov r4, r3
-	ldr r1, _021F33D4 ; =ov4_021F332C
+	ldr r1, _021F33D4 ; =gpiCheckProfileForUser
 	add r2, sp, #0
 	str ip, [sp, #0xc]
 	str r4, [sp, #8]
-	bl ov4_021F33F4
+	bl gpiProfileMap
 	ldr r0, [sp, #0xc]
 	cmp r0, #0
 	moveq r0, #0
@@ -342,11 +342,11 @@ ov4_021F338C: ; 0x021F338C
 	add sp, sp, #0x10
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021F33D4: .word ov4_021F332C
-	arm_func_end ov4_021F338C
+_021F33D4: .word gpiCheckProfileForUser
+	arm_func_end gpiFindProfileByUser
 
-	arm_func_start ov4_021F33D8
-ov4_021F33D8: ; 0x021F33D8
+	arm_func_start gpiProfileMapCallback
+gpiProfileMapCallback: ; 0x021F33D8
 	stmfd sp!, {r3, lr}
 	mov ip, r0
 	ldr r2, [r1, #8]
@@ -354,10 +354,10 @@ ov4_021F33D8: ; 0x021F33D8
 	mov r1, ip
 	blx r3
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021F33D8
+	arm_func_end gpiProfileMapCallback
 
-	arm_func_start ov4_021F33F4
-ov4_021F33F4: ; 0x021F33F4
+	arm_func_start gpiProfileMap
+gpiProfileMap: ; 0x021F33F4
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	ldr r3, [r0, #0]
@@ -365,7 +365,7 @@ ov4_021F33F4: ; 0x021F33F4
 	str r2, [sp, #8]
 	str r0, [sp]
 	ldr r0, [r3, #0x428]
-	ldr r1, _021F3430 ; =ov4_021F33D8
+	ldr r1, _021F3430 ; =gpiProfileMapCallback
 	add r2, sp, #0
 	bl TableMapSafe2
 	cmp r0, #0
@@ -374,11 +374,11 @@ ov4_021F33F4: ; 0x021F33F4
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
 	; .align 2, 0
-_021F3430: .word ov4_021F33D8
-	arm_func_end ov4_021F33F4
+_021F3430: .word gpiProfileMapCallback
+	arm_func_end gpiProfileMap
 
-	arm_func_start ov4_021F3434
-ov4_021F3434: ; 0x021F3434
+	arm_func_start gpiCheckForBuddy
+gpiCheckForBuddy: ; 0x021F3434
 	ldr r0, [r1, #8]
 	cmp r0, #0
 	beq _021F3458
@@ -391,27 +391,27 @@ ov4_021F3434: ; 0x021F3434
 _021F3458:
 	mov r0, #1
 	bx lr
-	arm_func_end ov4_021F3434
+	arm_func_end gpiCheckForBuddy
 
-	arm_func_start ov4_021F3460
-ov4_021F3460: ; 0x021F3460
+	arm_func_start gpiFindBuddy
+gpiFindBuddy: ; 0x021F3460
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	str r1, [sp]
 	mov r3, #0
-	ldr r1, _021F348C ; =ov4_021F3434
+	ldr r1, _021F348C ; =gpiCheckForBuddy
 	add r2, sp, #0
 	str r3, [sp, #4]
-	bl ov4_021F33F4
+	bl gpiProfileMap
 	ldr r0, [sp, #4]
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021F348C: .word ov4_021F3434
-	arm_func_end ov4_021F3460
+_021F348C: .word gpiCheckForBuddy
+	arm_func_end gpiFindBuddy
 
-	arm_func_start ov4_021F3490
-ov4_021F3490: ; 0x021F3490
+	arm_func_start gpiCanFreeProfile
+gpiCanFreeProfile: ; 0x021F3490
 	cmp r0, #0
 	beq _021F34C0
 	ldr r1, [r0, #0xc]
@@ -427,7 +427,7 @@ ov4_021F3490: ; 0x021F3490
 _021F34C0:
 	mov r0, #0
 	bx lr
-	arm_func_end ov4_021F3490
+	arm_func_end gpiCanFreeProfile
 
 	.data
 

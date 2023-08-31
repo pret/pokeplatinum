@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021F5820
-ov4_021F5820: ; 0x021F5820
+	arm_func_start strzcpy
+strzcpy: ; 0x021F5820
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r5, r1
@@ -40,17 +40,17 @@ _021F5884: .word Unk_ov4_022191E8
 _021F5888: .word Unk_ov4_022191F8
 _021F588C: .word Unk_ov4_022191BC
 _021F5890: .word Unk_ov4_02219208
-	arm_func_end ov4_021F5820
+	arm_func_end strzcpy
 
-	arm_func_start ov4_021F5894
-ov4_021F5894: ; 0x021F5894
+	arm_func_start gpiDebug
+gpiDebug: ; 0x021F5894
 	stmfd sp!, {r0, r1, r2, r3}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end ov4_021F5894
+	arm_func_end gpiDebug
 
-	arm_func_start ov4_021F58A0
-ov4_021F58A0: ; 0x021F58A0
+	arm_func_start gpiCheckForError
+gpiCheckForError: ; 0x021F58A0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r6, r1
@@ -67,7 +67,7 @@ ov4_021F58A0: ; 0x021F58A0
 	add r2, sp, #0
 	mov r0, r6
 	mov r3, #0x10
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	beq _021F58F8
 	add r0, sp, #0
@@ -78,7 +78,7 @@ _021F58F8:
 	mov r0, r6
 	mov r2, r4
 	mov r3, #0x100
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streqb r0, [r4]
@@ -95,7 +95,7 @@ _021F58F8:
 	moveq r2, #0
 	mov r0, r7
 	mov r1, #4
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 _021F5950:
 	add sp, sp, #0x10
 	mov r0, #1
@@ -109,10 +109,10 @@ _021F5968: .word Unk_ov4_02219214
 _021F596C: .word Unk_ov4_0221921C
 _021F5970: .word Unk_ov4_02219224
 _021F5974: .word Unk_ov4_02219230
-	arm_func_end ov4_021F58A0
+	arm_func_end gpiCheckForError
 
-	arm_func_start ov4_021F5978
-ov4_021F5978: ; 0x021F5978
+	arm_func_start gpiValueForKey
+gpiValueForKey: ; 0x021F5978
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r5, r0
 	mov r8, r1
@@ -187,10 +187,10 @@ _021F5A70: .word 0x0000010E
 _021F5A74: .word Unk_ov4_02219254
 _021F5A78: .word 0x0000010F
 _021F5A7C: .word Unk_ov4_02219264
-	arm_func_end ov4_021F5978
+	arm_func_end gpiValueForKey
 
-	arm_func_start ov4_021F5A80
-ov4_021F5A80: ; 0x021F5A80
+	arm_func_start gpiCheckSocketConnect
+gpiCheckSocketConnect: ; 0x021F5A80
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	mov ip, #0
@@ -208,15 +208,15 @@ ov4_021F5A80: ; 0x021F5A80
 	bne _021F5AF4
 	ldr r1, _021F5B64 ; =0x0221926C
 	mov r0, r5
-	bl ov4_021F5894
+	bl gpiDebug
 	ldr r2, _021F5B68 ; =0x02219280
 	mov r0, r5
 	mov r1, #5
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r5
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #8
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, pc}
@@ -228,7 +228,7 @@ _021F5AF4:
 	beq _021F5B28
 	ldr r1, _021F5B6C ; =0x022192B8
 	mov r0, r5
-	bl ov4_021F5894
+	bl gpiDebug
 	mov r0, #4
 	str r0, [r4, #0]
 	add sp, sp, #8
@@ -240,7 +240,7 @@ _021F5B28:
 	beq _021F5B54
 	ldr r1, _021F5B70 ; =0x022192D0
 	mov r0, r5
-	bl ov4_021F5894
+	bl gpiDebug
 	mov r0, #3
 	str r0, [r4, #0]
 	add sp, sp, #8
@@ -256,10 +256,10 @@ _021F5B64: .word Unk_ov4_0221926C
 _021F5B68: .word Unk_ov4_02219280
 _021F5B6C: .word Unk_ov4_022192B8
 _021F5B70: .word Unk_ov4_022192D0
-	arm_func_end ov4_021F5A80
+	arm_func_end gpiCheckSocketConnect
 
-	arm_func_start ov4_021F5B74
-ov4_021F5B74: ; 0x021F5B74
+	arm_func_start gpiReadKeyAndValue
+gpiReadKeyAndValue: ; 0x021F5B74
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r7, r1
 	mov r8, r0
@@ -297,11 +297,11 @@ _021F5BDC:
 	ldr r2, _021F5D3C ; =0x022192F8
 	mov r0, r8
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r8
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021F5C18:
@@ -317,11 +317,11 @@ _021F5C30:
 	ldr r2, _021F5D3C ; =0x022192F8
 	mov r0, r8
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r8
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021F5C60:
@@ -330,11 +330,11 @@ _021F5C60:
 	ldr r2, _021F5D3C ; =0x022192F8
 	mov r0, r8
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r8
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021F5C90:
@@ -354,11 +354,11 @@ _021F5CB4:
 	ldr r2, _021F5D3C ; =0x022192F8
 	mov r0, r8
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r8
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021F5CE4:
@@ -388,30 +388,30 @@ _021F5D34: .word Unk_ov4_02219254
 _021F5D38: .word 0x0000019B
 _021F5D3C: .word Unk_ov4_022192F8
 _021F5D40: .word 0x000001FF
-	arm_func_end ov4_021F5B74
+	arm_func_end gpiReadKeyAndValue
 
-	arm_func_start ov4_021F5D44
-ov4_021F5D44: ; 0x021F5D44
+	arm_func_start gpiSetError
+gpiSetError: ; 0x021F5D44
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r4, [r0, #0]
 	mov r5, r1
 	mov r1, r2
 	mov r0, r4
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	str r5, [r4, #0x418]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021F5D44
+	arm_func_end gpiSetError
 
-	arm_func_start ov4_021F5D68
-ov4_021F5D68: ; 0x021F5D68
-	ldr ip, _021F5D78 ; =ov4_021F5820
+	arm_func_start gpiSetErrorString
+gpiSetErrorString: ; 0x021F5D68
+	ldr ip, _021F5D78 ; =strzcpy
 	ldr r0, [r0, #0]
 	mov r2, #0x100
 	bx ip
 	; .align 2, 0
-_021F5D78: .word ov4_021F5820
-	arm_func_end ov4_021F5D68
+_021F5D78: .word strzcpy
+	arm_func_end gpiSetErrorString
 
 	.data
 

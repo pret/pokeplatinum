@@ -6,43 +6,43 @@
 	.text
 
 
-	arm_func_start ov4_021EC564
-ov4_021EC564: ; 0x021EC564
+	arm_func_start gpiSendAuthBuddyRequest
+gpiSendAuthBuddyRequest: ; 0x021EC564
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r4, [r6, #0]
 	ldr r2, _021EC5F8 ; =0x02217CB0
 	mov r5, r1
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021EC5FC ; =0x02217CBC
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x198]
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021EC600 ; =0x02217CC8
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r6
 	add r1, r4, #0x1f4
 	ldr r2, [r5, #0]
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	mov r0, r6
 	add r1, r4, #0x1f4
 	ldr r2, _021EC604 ; =0x02217CD8
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r5, #0x10]
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r6
 	add r1, r4, #0x1f4
 	ldr r2, _021EC608 ; =0x02217CE0
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -51,10 +51,10 @@ _021EC5FC: .word Unk_ov4_02217CBC
 _021EC600: .word Unk_ov4_02217CC8
 _021EC604: .word Unk_ov4_02217CD8
 _021EC608: .word Unk_ov4_02217CE0
-	arm_func_end ov4_021EC564
+	arm_func_end gpiSendAuthBuddyRequest
 
-	arm_func_start ov4_021EC60C
-ov4_021EC60C: ; 0x021EC60C
+	arm_func_start gpiProcessRecvBuddyMessage
+gpiProcessRecvBuddyMessage: ; 0x021EC60C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x138
 	sub sp, sp, #0x1000
@@ -65,17 +65,17 @@ ov4_021EC60C: ; 0x021EC60C
 	mov r0, r7
 	mov r3, #0x1000
 	ldr r8, [sl]
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021EC670
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -88,17 +88,17 @@ _021EC670:
 	add r2, sp, #0x138
 	mov r0, r7
 	mov r3, #0x1000
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021EC6C8
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -111,7 +111,7 @@ _021EC6C8:
 	add r2, sp, #0x138
 	mov r0, r7
 	mov r3, #0x1000
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	beq _021EC6FC
 	add r0, sp, #0x138
@@ -155,7 +155,7 @@ _021EC754:
 	bne _021EC798
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -165,17 +165,17 @@ _021EC798:
 	add r2, sp, #0x138
 	mov r0, r7
 	mov r3, #0x1000
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021EC7E4
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -190,7 +190,7 @@ _021EC7E4:
 	bne _021EC81C
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -207,7 +207,7 @@ _021EC81C:
 	mov r0, sl
 	mov r3, r4
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	beq _021ECF70
 	add sp, sp, #0x138
@@ -216,12 +216,12 @@ _021EC81C:
 _021EC860:
 	mov r0, sl
 	mov r1, r6
-	bl ov4_021F31C4
+	bl gpiProfileListAdd
 	movs r5, r0
 	bne _021EC890
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -231,17 +231,17 @@ _021EC890:
 	add r2, sp, #0x138
 	mov r0, r7
 	mov r3, #0x1000
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021EC8DC
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -255,11 +255,11 @@ _021EC8DC:
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -274,11 +274,11 @@ _021EC920:
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -306,7 +306,7 @@ _021EC968:
 	bne _021EC9D4
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -315,7 +315,7 @@ _021EC9D4:
 	ldr r2, _021ECFA0 ; =0x00000401
 	add r1, sp, #0x138
 	add r0, r4, #8
-	bl ov4_021F5820
+	bl strzcpy
 	stmia r4, {r6, sb}
 	mov r2, #0
 	str r2, [sp]
@@ -325,7 +325,7 @@ _021EC9D4:
 	mov r0, sl
 	mov r3, r4
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	beq _021ECF70
 	add sp, sp, #0x138
@@ -334,12 +334,12 @@ _021EC9D4:
 _021ECA20:
 	mov r0, sl
 	mov r1, r6
-	bl ov4_021F31C4
+	bl gpiProfileListAdd
 	movs r4, r0
 	bne _021ECA50
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -355,7 +355,7 @@ _021ECA50:
 	bne _021ECA8C
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -382,17 +382,17 @@ _021ECAC4:
 	add r2, sp, #0x138
 	mov r3, #0x1000
 	ldr r7, [r4, #8]
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021ECB14
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -402,17 +402,17 @@ _021ECB14:
 	add r0, sp, #0x138
 	add r2, sp, #0x28
 	mov r3, #0x10
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021ECB60
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -429,7 +429,7 @@ _021ECB60:
 	add r0, sp, #0x138
 	add r2, sp, #0x38
 	mov r3, #0x100
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streqb r0, [sp, #0x38]
@@ -440,7 +440,7 @@ _021ECB60:
 	bne _021ECBCC
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -454,7 +454,7 @@ _021ECBCC:
 	add r2, sp, #0x38
 	mov r3, #0x100
 	str r4, [r7, #0xc]
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, r4
 	streqb r0, [sp, #0x38]
@@ -465,7 +465,7 @@ _021ECBCC:
 	bne _021ECC2C
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -475,7 +475,7 @@ _021ECC2C:
 	add r0, sp, #0x138
 	add r2, sp, #0x28
 	mov r3, #0x10
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	beq _021ECCA4
@@ -507,7 +507,7 @@ _021ECCA4:
 	add r0, sp, #0x138
 	add r2, sp, #0x28
 	mov r3, #0x10
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	beq _021ECCF4
@@ -536,7 +536,7 @@ _021ECCF4:
 	bne _021ECD3C
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -553,7 +553,7 @@ _021ECD3C:
 	str r2, [sp, #4]
 	mov r0, sl
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	beq _021ECF70
 	add sp, sp, #0x138
@@ -564,17 +564,17 @@ _021ECD80:
 	add r2, sp, #0x138
 	mov r0, r7
 	mov r3, #0x1000
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021ECDCC
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -588,11 +588,11 @@ _021ECDCC:
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -604,11 +604,11 @@ _021ECE10:
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -627,7 +627,7 @@ _021ECE4C:
 	add r0, sp, #0x38
 	add r1, r1, #3
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 _021ECE84:
 	ldr r1, [r8, #0x1c4]
 	ldr r0, [r8, #0x1c8]
@@ -641,7 +641,7 @@ _021ECE84:
 	bne _021ECEC8
 	ldr r1, _021ECF90 ; =0x02217D2C
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #1
@@ -659,7 +659,7 @@ _021ECEC8:
 	mov r0, sl
 	mov r3, r5
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	beq _021ECF70
 	add sp, sp, #0x138
@@ -670,17 +670,17 @@ _021ECF10:
 	add r2, sp, #0x138
 	mov r0, r7
 	mov r3, #0x1000
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021ECF5C
 	ldr r2, _021ECF84 ; =0x02217CF0
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x138
 	add sp, sp, #0x1000
 	mov r0, #3
@@ -690,7 +690,7 @@ _021ECF5C:
 	mov r0, sl
 	mov r1, r6
 	mov r2, #0x67
-	bl ov4_021ED09C
+	bl gpiSendBuddyMessage
 _021ECF70:
 	mov r0, #0
 	add sp, sp, #0x138
@@ -713,10 +713,10 @@ _021ECFB0: .word Unk_ov4_02217D64
 _021ECFB4: .word Unk_ov4_02217D6C
 _021ECFB8: .word Unk_ov4_02217D70
 _021ECFBC: .word Unk_ov4_02217D74
-	arm_func_end ov4_021EC60C
+	arm_func_end gpiProcessRecvBuddyMessage
 
-	arm_func_start ov4_021ECFC0
-ov4_021ECFC0: ; 0x021ECFC0
+	arm_func_start gpiSendServerBuddyMessage
+gpiSendServerBuddyMessage: ; 0x021ECFC0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0xdb0
 	mov r7, r0
@@ -726,43 +726,43 @@ ov4_021ECFC0: ; 0x021ECFC0
 	add r0, sp, #0
 	mov r1, r3
 	ldr r4, [r7, #0]
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r2, _021ED088 ; =0x02217CE8
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	mov r2, r5
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021ED08C ; =0x02217CBC
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x198]
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021ED090 ; =0x02217D78
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r2, r6
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021ED094 ; =0x02217D3C
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	add r1, r4, #0x1f4
 	add r2, sp, #0
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021ED098 ; =0x02217CE0
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0
 	add sp, sp, #0xdb0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -773,23 +773,23 @@ _021ED08C: .word Unk_ov4_02217CBC
 _021ED090: .word Unk_ov4_02217D78
 _021ED094: .word Unk_ov4_02217D3C
 _021ED098: .word Unk_ov4_02217CE0
-	arm_func_end ov4_021ECFC0
+	arm_func_end gpiSendServerBuddyMessage
 
-	arm_func_start ov4_021ED09C
-ov4_021ED09C: ; 0x021ED09C
+	arm_func_start gpiSendBuddyMessage
+gpiSendBuddyMessage: ; 0x021ED09C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #4
 	mov r7, r0
 	mov r6, r1
 	mov r5, r2
 	mov r4, r3
-	bl ov4_021F29B0
+	bl gpiGetConnectedPeer
 	movs r8, r0
 	bne _021ED160
 	add r2, sp, #0
 	mov r0, r7
 	mov r1, r6
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	ldrne r0, [sp]
 	ldrne r0, [r0, #8]
@@ -801,13 +801,13 @@ ov4_021ED09C: ; 0x021ED09C
 	mov r1, r6
 	mov r2, r5
 	mov r3, r4
-	bl ov4_021ECFC0
+	bl gpiSendServerBuddyMessage
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 _021ED108:
 	mov r1, r6
 	mov r2, #1
-	bl ov4_021F2A04
+	bl gpiAddPeer
 	movs r8, r0
 	addeq sp, sp, #4
 	moveq r0, #1
@@ -818,13 +818,13 @@ _021ED108:
 	cmp r0, #0
 	mov r0, r7
 	bne _021ED150
-	bl ov4_021F2A84
+	bl gpiPeerGetSig
 	cmp r0, #0
 	beq _021ED160
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 _021ED150:
-	bl ov4_021F2AE8
+	bl gpiPeerStartConnect
 	cmp r0, #0
 	addne sp, sp, #4
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, pc}
@@ -833,25 +833,25 @@ _021ED160:
 	mov r1, r8
 	mov r2, r5
 	mov r3, r4
-	bl ov4_021F2C74
+	bl gpiPeerAddMessage
 	cmp r0, #0
 	moveq r0, #0
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
-	arm_func_end ov4_021ED09C
+	arm_func_end gpiSendBuddyMessage
 
-	arm_func_start ov4_021ED184
-ov4_021ED184: ; 0x021ED184
+	arm_func_start gpiAuthBuddyRequest
+gpiAuthBuddyRequest: ; 0x021ED184
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
 	add r2, sp, #0
 	ldr r5, [r4, #0]
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	bne _021ED1B4
 	ldr r1, _021ED24C ; =0x02217D7C
 	mov r0, r4
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, pc}
 _021ED1B4:
@@ -861,12 +861,12 @@ _021ED1B4:
 	bne _021ED1D8
 	ldr r1, _021ED24C ; =0x02217D7C
 	mov r0, r4
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, pc}
 _021ED1D8:
 	mov r0, r4
-	bl ov4_021EC564
+	bl gpiSendAuthBuddyRequest
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	ldr r1, [sp]
@@ -886,21 +886,21 @@ _021ED1D8:
 	mov r1, #0
 	str r1, [r0, #0x10]
 	ldr r0, [sp]
-	bl ov4_021F3490
+	bl gpiCanFreeProfile
 	cmp r0, #0
 	beq _021ED244
 	ldr r1, [sp]
 	mov r0, r4
-	bl ov4_021F3318
+	bl gpiRemoveProfile
 _021ED244:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021ED24C: .word Unk_ov4_02217D7C
-	arm_func_end ov4_021ED184
+	arm_func_end gpiAuthBuddyRequest
 
-	arm_func_start ov4_021ED250
-ov4_021ED250: ; 0x021ED250
+	arm_func_start gpiFixBuddyIndices
+gpiFixBuddyIndices: ; 0x021ED250
 	ldr r1, [r1, #8]
 	cmp r1, #0
 	beq _021ED26C
@@ -911,21 +911,21 @@ ov4_021ED250: ; 0x021ED250
 _021ED26C:
 	mov r0, #1
 	bx lr
-	arm_func_end ov4_021ED250
+	arm_func_end gpiFixBuddyIndices
 
-	arm_func_start ov4_021ED274
-ov4_021ED274: ; 0x021ED274
+	arm_func_start gpiDeleteBuddy
+gpiDeleteBuddy: ; 0x021ED274
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r6, r0
 	add r2, sp, #0
 	ldr r4, [r6, #0]
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	bne _021ED2AC
 	ldr r1, _021ED3F4 ; =0x02217D7C
 	mov r0, r6
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #4
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, pc}
@@ -933,28 +933,28 @@ _021ED2AC:
 	ldr r2, _021ED3F8 ; =0x02217D90
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021ED3FC ; =0x02217CBC
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x198]
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021ED400 ; =0x02217D9C
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r6
 	add r1, r4, #0x1f4
 	ldr r2, [sp]
 	ldr r2, [r2, #0]
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	mov r0, r6
 	add r1, r4, #0x1f4
 	ldr r2, _021ED404 ; =0x02217CE0
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r0, [sp]
 	ldr r0, [r0, #8]
 	cmp r0, #0
@@ -991,12 +991,12 @@ _021ED340:
 	mov r1, #0
 	str r1, [r0, #8]
 	ldr r0, [sp]
-	bl ov4_021F3490
+	bl gpiCanFreeProfile
 	cmp r0, #0
 	beq _021ED3B4
 	ldr r1, [sp]
 	mov r0, r6
-	bl ov4_021F3318
+	bl gpiRemoveProfile
 _021ED3B4:
 	ldr r0, [r4, #0x430]
 	subs r0, r0, #1
@@ -1008,10 +1008,10 @@ _021ED3B4:
 	mov r3, #0x204
 	bl __msl_assertion_failed
 _021ED3D8:
-	ldr r1, _021ED41C ; =ov4_021ED250
+	ldr r1, _021ED41C ; =gpiFixBuddyIndices
 	mov r0, r6
 	mov r2, r5
-	bl ov4_021F33F4
+	bl gpiProfileMap
 _021ED3E8:
 	mov r0, #0
 	add sp, sp, #4
@@ -1027,8 +1027,8 @@ _021ED40C: .word Unk_ov4_02217DB8
 _021ED410: .word Unk_ov4_02217CA0
 _021ED414: .word 0x000001FD
 _021ED418: .word Unk_ov4_02217DC4
-_021ED41C: .word ov4_021ED250
-	arm_func_end ov4_021ED274
+_021ED41C: .word gpiFixBuddyIndices
+	arm_func_end gpiDeleteBuddy
 
 	.data
 
