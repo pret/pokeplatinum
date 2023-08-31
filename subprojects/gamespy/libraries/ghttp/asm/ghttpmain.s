@@ -8,8 +8,8 @@
 	.text
 
 
-	arm_func_start ov60_02221390
-ov60_02221390: ; 0x02221390
+	arm_func_start ghiHandleStatus
+ghiHandleStatus: ; 0x02221390
 	stmfd sp!, {r3, lr}
 	ldr lr, [r0, #0xec]
 	ldr r3, _02221448 ; =0x51EB851F
@@ -67,10 +67,10 @@ _0222143C:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _02221448: .word 0x51EB851F
-	arm_func_end ov60_02221390
+	arm_func_end ghiHandleStatus
 
-	arm_func_start ov60_0222144C
-ov60_0222144C: ; 0x0222144C
+	arm_func_start ghiProcessConnection
+ghiProcessConnection: ; 0x0222144C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	bne _0222146C
@@ -81,7 +81,7 @@ ov60_0222144C: ; 0x0222144C
 	bl __msl_assertion_failed
 _0222146C:
 	ldr r0, [r4, #4]
-	bl ov60_02221108
+	bl ghiRequestToConnection
 	cmp r0, r4
 	beq _02221490
 	ldr r0, _022215B0 ; =0x02229298
@@ -100,61 +100,61 @@ _02221490:
 	cmp r0, #0
 	bne _022214BC
 	mov r0, r4
-	bl ov60_022229B0
+	bl ghiDoHostLookup
 _022214BC:
 	ldr r0, [r4, #0x10]
 	cmp r0, #1
 	bne _022214D0
 	mov r0, r4
-	bl ov60_02222A74
+	bl ghiDoConnecting
 _022214D0:
 	ldr r0, [r4, #0x10]
 	cmp r0, #2
 	bne _022214E4
 	mov r0, r4
-	bl ov60_02222CC4
+	bl ghiDoSecuringSession
 _022214E4:
 	ldr r0, [r4, #0x10]
 	cmp r0, #3
 	bne _022214F8
 	mov r0, r4
-	bl ov60_02222E24
+	bl ghiDoSendingRequest
 _022214F8:
 	ldr r0, [r4, #0x10]
 	cmp r0, #4
 	bne _0222150C
 	mov r0, r4
-	bl ov60_02223098
+	bl ghiDoPosting
 _0222150C:
 	ldr r0, [r4, #0x10]
 	cmp r0, #5
 	bne _02221520
 	mov r0, r4
-	bl ov60_02223130
+	bl ghiDoWaiting
 _02221520:
 	ldr r0, [r4, #0x10]
 	cmp r0, #6
 	bne _02221534
 	mov r0, r4
-	bl ov60_022232FC
+	bl ghiDoReceivingStatus
 _02221534:
 	ldr r0, [r4, #0x10]
 	cmp r0, #7
 	bne _02221548
 	mov r0, r4
-	bl ov60_02223838
+	bl ghiDoReceivingHeaders
 _02221548:
 	ldr r0, [r4, #0x10]
 	cmp r0, #8
 	bne _0222155C
 	mov r0, r4
-	bl ov60_02223CA8
+	bl ghiDoReceivingFile
 _0222155C:
 	ldr r0, [r4, #0x108]
 	cmp r0, #0
 	beq _02221570
 	mov r0, r4
-	bl ov60_02221214
+	bl ghiRedirectConnection
 _02221570:
 	ldr r5, [r4, #0xfc]
 	cmp r5, #0
@@ -162,11 +162,11 @@ _02221570:
 	streq r0, [r4, #0x12c]
 	beq _0222159C
 	mov r0, r4
-	bl ov60_02221390
+	bl ghiHandleStatus
 	mov r0, r4
-	bl ov60_022206D4
+	bl ghiCallCompletedCallback
 	mov r0, r4
-	bl ov60_02220F24
+	bl ghiFreeConnection
 _0222159C:
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, pc}
@@ -175,19 +175,19 @@ _022215A4: .word Unk_ov60_02229280
 _022215A8: .word Unk_ov60_0222928C
 _022215AC: .word Unk_ov60_02229268
 _022215B0: .word Unk_ov60_02229298
-	arm_func_end ov60_0222144C
+	arm_func_end ghiProcessConnection
 
 	arm_func_start ghttpStartup
 ghttpStartup: ; 0x022215B4
 	stmfd sp!, {r3, lr}
-	bl ov60_0222084C
+	bl ghiLock
 	ldr r0, _022215FC ; =0x02229E3C
 	ldr r1, [r0, #0]
 	add r1, r1, #1
 	str r1, [r0, #0]
 	cmp r1, #1
 	bne _022215F4
-	bl ov60_02220844
+	bl ghiCreateLock
 	ldr r0, _02221600 ; =0x0222911C
 	mov r2, #0xfa
 	ldr r1, _02221604 ; =0x02229120
@@ -196,7 +196,7 @@ ghttpStartup: ; 0x022215B4
 	str r3, [r1, #0]
 	ldmia sp!, {r3, pc}
 _022215F4:
-	bl ov60_02220850
+	bl ghiUnlock
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022215FC: .word Unk_ov60_02229E3C
@@ -207,13 +207,13 @@ _02221604: .word Unk_ov60_02229120
 	arm_func_start ghttpCleanup
 ghttpCleanup: ; 0x02221608
 	stmfd sp!, {r3, lr}
-	bl ov60_0222084C
+	bl ghiLock
 	ldr r0, _0222165C ; =0x02229E3C
 	ldr r1, [r0, #0]
 	subs r1, r1, #1
 	str r1, [r0, #0]
 	bne _02221654
-	bl ov60_02221318
+	bl ghiCleanupConnections
 	ldr r0, _02221660 ; =0x02229E28
 	ldr r0, [r0, #0]
 	cmp r0, #0
@@ -223,11 +223,11 @@ ghttpCleanup: ; 0x02221608
 	mov r1, #0
 	str r1, [r0, #0]
 _02221648:
-	bl ov60_02220850
-	bl ov60_02220848
+	bl ghiUnlock
+	bl ghiFreeLock
 	ldmia sp!, {r3, pc}
 _02221654:
-	bl ov60_02220850
+	bl ghiUnlock
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _0222165C: .word Unk_ov60_02229E3C
@@ -307,7 +307,7 @@ _02221748:
 	bne _0222175C
 	bl ghttpStartup
 _0222175C:
-	bl ov60_02220D8C
+	bl ghiNewConnection
 	movs r4, r0
 	mvneq r0, #0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -319,7 +319,7 @@ _0222175C:
 	cmp r0, #0
 	bne _02221798
 	mov r0, r4
-	bl ov60_02220F24
+	bl ghiFreeConnection
 	mvn r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _02221798:
@@ -333,7 +333,7 @@ _02221798:
 	cmp r0, #0
 	bne _022217CC
 	mov r0, r4
-	bl ov60_02220F24
+	bl ghiFreeConnection
 	mvn r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _022217CC:
@@ -359,19 +359,19 @@ _022217CC:
 	mov r2, r6
 	mov r3, r5
 	add r1, r4, #0xbc
-	bl ov60_0221FFD4
+	bl ghiInitFixedBuffer
 	b _02221840
 _0222182C:
 	mov r2, #0x800
 	mov r0, r4
 	mov r3, r2
 	add r1, r4, #0xbc
-	bl ov60_0221FEB8
+	bl ghiInitBuffer
 _02221840:
 	cmp r0, #0
 	bne _02221858
 	mov r0, r4
-	bl ov60_02220F24
+	bl ghiFreeConnection
 	mvn r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _02221858:
@@ -379,11 +379,11 @@ _02221858:
 	cmp r0, #0
 	beq _02221884
 	mov r0, r4
-	bl ov60_02221D4C
+	bl ghiPostInitState
 	cmp r0, #0
 	bne _02221884
 	mov r0, r4
-	bl ov60_02220F24
+	bl ghiFreeConnection
 	mvn r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _02221884:
@@ -391,7 +391,7 @@ _02221884:
 	cmp r0, #0
 	beq _022218C4
 	mov r0, r4
-	bl ov60_0222144C
+	bl ghiProcessConnection
 	cmp r0, #0
 	bne _022218BC
 	mov r5, #0xa
@@ -399,7 +399,7 @@ _022218A4:
 	mov r0, r5
 	bl msleep
 	mov r0, r4
-	bl ov60_0222144C
+	bl ghiProcessConnection
 	cmp r0, #0
 	beq _022218A4
 _022218BC:
@@ -421,12 +421,12 @@ _022218E8: .word Unk_ov60_02229E3C
 
 	arm_func_start ghttpThink
 ghttpThink: ; 0x022218EC
-	ldr ip, _022218F8 ; =ov60_022211B0
-	ldr r0, _022218FC ; =ov60_0222144C
+	ldr ip, _022218F8 ; =ghiEnumConnections
+	ldr r0, _022218FC ; =ghiProcessConnection
 	bx ip
 	; .align 2, 0
-_022218F8: .word ov60_022211B0
-_022218FC: .word ov60_0222144C
+_022218F8: .word ghiEnumConnections
+_022218FC: .word ghiProcessConnection
 	arm_func_end ghttpThink
 
 	.data

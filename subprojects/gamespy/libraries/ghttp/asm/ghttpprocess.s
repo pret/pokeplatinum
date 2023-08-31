@@ -8,8 +8,8 @@
 	.text
 
 
-	arm_func_start ov60_022227F8
-ov60_022227F8: ; 0x022227F8
+	arm_func_start ghiParseURL
+ghiParseURL: ; 0x022227F8
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r5, r0
 	bne _02222818
@@ -129,18 +129,18 @@ _022229A0: .word Unk_ov60_0222999C
 _022229A4: .word Unk_ov60_022299A8
 _022229A8: .word 0x000001BB
 _022229AC: .word Unk_ov60_022299AC
-	arm_func_end ov60_022227F8
+	arm_func_end ghiParseURL
 
-	arm_func_start ov60_022229B0
-ov60_022229B0: ; 0x022229B0
+	arm_func_start ghiDoHostLookup
+ghiDoHostLookup: ; 0x022229B0
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r1, #0
 	mov r4, r0
 	mov r2, r1
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	bl SocketStartUp
 	mov r0, r4
-	bl ov60_022227F8
+	bl ghiParseURL
 	cmp r0, #0
 	bne _022229EC
 	mov r0, #1
@@ -183,14 +183,14 @@ _02222A54:
 	mov r0, r4
 	mov r2, r1
 	str r3, [r4, #0x10]
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02222A70: .word Unk_ov60_02229E28
-	arm_func_end ov60_022229B0
+	arm_func_end ghiDoHostLookup
 
-	arm_func_start ov60_02222A74
-ov60_02222A74: ; 0x02222A74
+	arm_func_start ghiDoConnecting
+ghiDoConnecting: ; 0x02222A74
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x10
 	mov r4, r0
@@ -342,17 +342,17 @@ _02222C88:
 	mov r0, r4
 	mov r2, r1
 	str r3, [r4, #0x10]
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	add sp, sp, #0x10
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02222CB8: .word Unk_ov60_02229120
 _02222CBC: .word Unk_ov60_02229E28
 _02222CC0: .word Unk_ov60_02229E24
-	arm_func_end ov60_02222A74
+	arm_func_end ghiDoConnecting
 
-	arm_func_start ov60_02222CC4
-ov60_02222CC4: ; 0x02222CC4
+	arm_func_start ghiDoSecuringSession
+ghiDoSecuringSession: ; 0x02222CC4
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	sub sp, sp, #0x400
@@ -379,7 +379,7 @@ _02222D14:
 	mov r0, r4
 	mov r2, r1
 	str r3, [r4, #0x10]
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	add sp, sp, #4
 	add sp, sp, #0x400
 	ldmia sp!, {r3, r4, pc}
@@ -391,7 +391,7 @@ _02222D38:
 	mov r3, #3
 	mov r2, r1
 	str r3, [r4, #0x10]
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	add sp, sp, #4
 	add sp, sp, #0x400
 	ldmia sp!, {r3, r4, pc}
@@ -418,7 +418,7 @@ _02222DA4:
 	cmp r1, r0
 	bge _02222DEC
 	mov r0, r4
-	bl ov60_02220548
+	bl ghiSendBufferedData
 	cmp r0, #0
 	addeq sp, sp, #4
 	addeq sp, sp, #0x400
@@ -430,14 +430,14 @@ _02222DA4:
 	addlt sp, sp, #0x400
 	ldmltia sp!, {r3, r4, pc}
 	add r0, r4, #0x50
-	bl ov60_02220504
+	bl ghiResetBuffer
 _02222DEC:
 	mov r3, #0x400
 	add r1, sp, #4
 	add r2, sp, #0
 	mov r0, r4
 	str r3, [sp]
-	bl ov60_0222097C
+	bl ghiDoReceive
 	add sp, sp, #4
 	add sp, sp, #0x400
 	ldmia sp!, {r3, r4, pc}
@@ -447,10 +447,10 @@ _02222E14: .word Unk_ov60_022299B0
 _02222E18: .word Unk_ov60_02229974
 _02222E1C: .word Unk_ov60_02229914
 _02222E20: .word 0x00000146
-	arm_func_end ov60_02222CC4
+	arm_func_end ghiDoSecuringSession
 
-	arm_func_start ov60_02222E24
-ov60_02222E24: ; 0x02222E24
+	arm_func_start ghiDoSendingRequest
+ghiDoSendingRequest: ; 0x02222E24
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x10
 	mov r5, r0
@@ -469,7 +469,7 @@ ov60_02222E24: ; 0x02222E24
 _02222E60:
 	mov r0, r4
 	mov r2, #0
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	ldr r0, [r5, #0x15c]
 	mov r2, #0
 	cmp r0, #0
@@ -479,44 +479,44 @@ _02222E60:
 	beq _02222E98
 	ldr r1, [r5, #0x14]
 	mov r0, r4
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	b _02222EA4
 _02222E98:
 	ldr r1, [r5, #0x24]
 	mov r0, r4
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 _02222EA4:
 	ldr r1, _02223068 ; =0x022299CC
 	mov r0, r4
 	mov r2, #0
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	ldrh r0, [r5, #0x20]
 	cmp r0, #0x50
 	bne _02222ED4
 	ldr r2, [r5, #0x18]
 	ldr r1, _0222306C ; =0x022299D8
 	mov r0, r4
-	bl ov60_022203EC
+	bl ghiAppendHeaderToBuffer
 	b _02222F1C
 _02222ED4:
 	ldr r1, _02223070 ; =0x022299E0
 	mov r0, r4
 	mov r2, #0
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	ldr r1, [r5, #0x18]
 	mov r0, r4
 	mov r2, #0
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	mov r0, r4
 	mov r1, #0x3a
-	bl ov60_0222046C
+	bl ghiAppendCharToBuffer
 	ldrh r1, [r5, #0x20]
 	mov r0, r4
-	bl ov60_022204CC
+	bl ghiAppendIntToBuffer
 	mov r0, r4
 	ldr r1, _02223074 ; =0x022299E8
 	mov r2, #2
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 _02222F1C:
 	ldr r0, [r5, #0x28]
 	cmp r0, #0
@@ -529,7 +529,7 @@ _02222F38:
 	ldr r1, _02223078 ; =0x022299EC
 	ldr r2, _0222307C ; =0x022299F8
 	mov r0, r4
-	bl ov60_022203EC
+	bl ghiAppendHeaderToBuffer
 _02222F48:
 	ldr r0, [r5, #0x34]
 	cmp r0, #0
@@ -537,13 +537,13 @@ _02222F48:
 	ldr r1, _02223080 ; =0x02229A08
 	ldr r2, _02223084 ; =0x02229A14
 	mov r0, r4
-	bl ov60_022203EC
+	bl ghiAppendHeaderToBuffer
 	b _02222F78
 _02222F68:
 	ldr r1, _02223080 ; =0x02229A08
 	ldr r2, _02223088 ; =0x02229A20
 	mov r0, r4
-	bl ov60_022203EC
+	bl ghiAppendHeaderToBuffer
 _02222F78:
 	ldr r0, [r5, #0x13c]
 	cmp r0, #0
@@ -555,34 +555,34 @@ _02222F78:
 	ldr r1, _02223090 ; =0x02229A2C
 	add r2, sp, #0
 	mov r0, r4
-	bl ov60_022203EC
+	bl ghiAppendHeaderToBuffer
 	mov r0, r5
-	bl ov60_02221924
+	bl ghiPostGetContentType
 	mov r2, r0
 	ldr r1, _02223094 ; =0x02229A3C
 	mov r0, r4
-	bl ov60_022203EC
+	bl ghiAppendHeaderToBuffer
 _02222FBC:
 	ldr r1, [r5, #0x28]
 	cmp r1, #0
 	beq _02222FD4
 	mov r0, r4
 	mov r2, #0
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 _02222FD4:
 	ldr r1, _02223074 ; =0x022299E8
 	mov r0, r4
 	mov r2, #2
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	add r0, r5, #0x50
 	cmp r4, r0
 	beq _02222FFC
 	ldr r1, [r4, #4]
 	ldr r2, [r4, #0xc]
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 _02222FFC:
 	mov r0, r5
-	bl ov60_02220548
+	bl ghiSendBufferedData
 	cmp r0, #0
 	addeq sp, sp, #0x10
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -592,7 +592,7 @@ _02222FFC:
 	addlt sp, sp, #0x10
 	ldmltia sp!, {r3, r4, r5, pc}
 	add r0, r5, #0x50
-	bl ov60_02220504
+	bl ghiResetBuffer
 	ldr r0, [r5, #0x13c]
 	mov r1, #0
 	cmp r0, #0
@@ -601,7 +601,7 @@ _02222FFC:
 	str r0, [r5, #0x10]
 	mov r0, r5
 	mov r2, r1
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -621,14 +621,14 @@ _02223088: .word Unk_ov60_02229A20
 _0222308C: .word Unk_ov60_02229A28
 _02223090: .word Unk_ov60_02229A2C
 _02223094: .word Unk_ov60_02229A3C
-	arm_func_end ov60_02222E24
+	arm_func_end ghiDoSendingRequest
 
-	arm_func_start ov60_02223098
-ov60_02223098: ; 0x02223098
+	arm_func_start ghiDoPosting
+ghiDoPosting: ; 0x02223098
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r5, [r6, #0x148]
-	bl ov60_02222578
+	bl ghiPostDoPosting
 	movs r4, r0
 	bne _022230E4
 	ldr r0, [r6, #0xfc]
@@ -643,34 +643,34 @@ ov60_02223098: ; 0x02223098
 	bl __msl_assertion_failed
 _022230D8:
 	mov r0, r6
-	bl ov60_02221EDC
+	bl ghiPostCleanupState
 	ldmia sp!, {r4, r5, r6, pc}
 _022230E4:
 	ldr r0, [r6, #0x148]
 	cmp r5, r0
 	beq _022230F8
 	mov r0, r6
-	bl ov60_022207D0
+	bl ghiCallPostCallback
 _022230F8:
 	cmp r4, #1
 	ldmneia sp!, {r4, r5, r6, pc}
 	mov r0, r6
-	bl ov60_02221EDC
+	bl ghiPostCleanupState
 	mov r1, #0
 	mov r3, #5
 	mov r0, r6
 	mov r2, r1
 	str r3, [r6, #0x10]
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _02223124: .word Unk_ov60_02229A4C
 _02223128: .word Unk_ov60_02229974
 _0222312C: .word Unk_ov60_022298E0
-	arm_func_end ov60_02223098
+	arm_func_end ghiDoPosting
 
-	arm_func_start ov60_02223130
-ov60_02223130: ; 0x02223130
+	arm_func_start ghiDoWaiting
+ghiDoWaiting: ; 0x02223130
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	mov r4, r0
@@ -701,13 +701,13 @@ _02223180:
 	mov r0, r4
 	mov r2, r1
 	str r3, [r4, #0x10]
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov60_02223130
+	arm_func_end ghiDoWaiting
 
-	arm_func_start ov60_022231B0
-ov60_022231B0: ; 0x022231B0
+	arm_func_start ghiParseStatus
+ghiParseStatus: ; 0x022231B0
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x18
 	movs r4, r0
@@ -800,10 +800,10 @@ _022232EC: .word Unk_ov60_02229A78
 _022232F0: .word 0x0000024F
 _022232F4: .word Unk_ov60_02229A98
 _022232F8: .word 0x020FE864
-	arm_func_end ov60_022231B0
+	arm_func_end ghiParseStatus
 
-	arm_func_start ov60_022232FC
-ov60_022232FC: ; 0x022232FC
+	arm_func_start ghiDoReceivingStatus
+ghiDoReceivingStatus: ; 0x022232FC
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #4
 	sub sp, sp, #0x400
@@ -812,7 +812,7 @@ ov60_022232FC: ; 0x022232FC
 	add r2, sp, #0
 	mov r4, r0
 	str r3, [sp]
-	bl ov60_0222097C
+	bl ghiDoReceive
 	mov r5, r0
 	cmp r5, #3
 	addeq sp, sp, #4
@@ -830,7 +830,7 @@ ov60_022232FC: ; 0x022232FC
 	ldr r2, [sp]
 	add r1, sp, #4
 	add r0, r4, #0x74
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	addeq sp, sp, #4
 	addeq sp, sp, #0x400
@@ -848,7 +848,7 @@ _02223378:
 	add r1, r5, #1
 	mov r0, r4
 	str r1, [r4, #0xf8]
-	bl ov60_022231B0
+	bl ghiParseStatus
 	cmp r0, #0
 	addeq sp, sp, #4
 	addeq sp, sp, #0x400
@@ -860,7 +860,7 @@ _02223378:
 	mov r0, r4
 	mov r2, r1
 	str r3, [r4, #0x10]
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	add sp, sp, #4
 	add sp, sp, #0x400
 	ldmia sp!, {r4, r5, pc}
@@ -881,10 +881,10 @@ _022233E8:
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
 _02223420: .word Unk_ov60_022299E8
-	arm_func_end ov60_022232FC
+	arm_func_end ghiDoReceivingStatus
 
-	arm_func_start ov60_02223424
-ov60_02223424: ; 0x02223424
+	arm_func_start ghiDeliverIncomingFileData
+ghiDeliverIncomingFileData: ; 0x02223424
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x100]
@@ -906,7 +906,7 @@ _02223460:
 	cmp r0, #0
 	bne _0222348C
 	add r0, r4, #0xbc
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
@@ -936,13 +936,13 @@ _022234CC:
 	mov r0, r4
 	mov r1, ip
 	mov r2, lr
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	mov r0, #1
 	ldmia sp!, {r4, pc}
-	arm_func_end ov60_02223424
+	arm_func_end ghiDeliverIncomingFileData
 
-	arm_func_start ov60_022234E4
-ov60_022234E4: ; 0x022234E4
+	arm_func_start ghiParseChunkSize
+ghiParseChunkSize: ; 0x022234E4
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	mov r4, r0
@@ -970,10 +970,10 @@ _02223538: .word Unk_ov60_02229974
 _0222353C: .word Unk_ov60_02229900
 _02223540: .word 0x00000321
 _02223544: .word Unk_ov60_02229AAC
-	arm_func_end ov60_022234E4
+	arm_func_end ghiParseChunkSize
 
-	arm_func_start ov60_02223548
-ov60_02223548: ; 0x02223548
+	arm_func_start ghiAppendToChunkHeaderBuffer
+ghiAppendToChunkHeaderBuffer: ; 0x02223548
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r4, r0
 	mov r7, r1
@@ -1029,10 +1029,10 @@ _02223604: .word 0x00000333
 _02223608: .word Unk_ov60_02229AB0
 _0222360C: .word Unk_ov60_02229AB8
 _02223610: .word 0x00000335
-	arm_func_end ov60_02223548
+	arm_func_end ghiAppendToChunkHeaderBuffer
 
-	arm_func_start ov60_02223614
-ov60_02223614: ; 0x02223614
+	arm_func_start ghiProcessIncomingFileData
+ghiProcessIncomingFileData: ; 0x02223614
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	movs r6, r0
 	mov r5, r1
@@ -1081,13 +1081,13 @@ _02223698:
 	mov r0, r6
 	mov r1, r5
 	sub r2, sl, r5
-	bl ov60_02223548
+	bl ghiAppendToChunkHeaderBuffer
 	add r1, sl, #1
 	sub r2, r1, r5
 	mov r0, r6
 	sub r4, r4, r2
 	mov r5, r1
-	bl ov60_022234E4
+	bl ghiParseChunkSize
 	str r0, [r6, #0x124]
 	cmp r0, r7
 	bne _02223704
@@ -1106,7 +1106,7 @@ _02223714:
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4
-	bl ov60_02223548
+	bl ghiAppendToChunkHeaderBuffer
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _0222372C:
@@ -1118,7 +1118,7 @@ _0222372C:
 	movge sl, r4
 	mov r1, r5
 	mov r2, sl
-	bl ov60_02223424
+	bl ghiDeliverIncomingFileData
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -1170,7 +1170,7 @@ _022237FC:
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4
-	bl ov60_02223424
+	bl ghiDeliverIncomingFileData
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _02223810: .word Unk_ov60_02229968
@@ -1183,10 +1183,10 @@ _02223828: .word Unk_ov60_02229AC4
 _0222382C: .word 0x0000035F
 _02223830: .word Unk_ov60_022299B0
 _02223834: .word 0x000003E3
-	arm_func_end ov60_02223614
+	arm_func_end ghiProcessIncomingFileData
 
-	arm_func_start ov60_02223838
-ov60_02223838: ; 0x02223838
+	arm_func_start ghiDoReceivingHeaders
+ghiDoReceivingHeaders: ; 0x02223838
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x18
 	mov sl, r0
@@ -1206,7 +1206,7 @@ _0222386C:
 	add r2, sp, #8
 	mov r0, sl
 	str r3, [sp, #8]
-	bl ov60_0222097C
+	bl ghiDoReceive
 	mov r6, r0
 	cmp r6, #3
 	beq _02223C74
@@ -1220,7 +1220,7 @@ _0222386C:
 	ldr r2, [sp, #8]
 	ldr r1, [sp, #4]
 	add r0, sl, #0x74
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	beq _02223C74
 _022238C4:
@@ -1271,14 +1271,14 @@ _022238F0:
 	b _0222397C
 _02223974:
 	add r0, sl, #0x74
-	bl ov60_02220504
+	bl ghiResetBuffer
 _0222397C:
 	mov r1, #0
 	mov r3, #6
 	mov r0, sl
 	mov r2, r1
 	str r3, [sl, #0x10]
-	bl ov60_02220754
+	bl ghiCallProgressCallback
 	b _02223C74
 _02223998:
 	cmp r8, #3
@@ -1475,7 +1475,7 @@ _02223C34:
 	mov r0, sl
 	mov r1, r6
 	mov r2, r7
-	bl ov60_02223614
+	bl ghiProcessIncomingFileData
 	b _02223C74
 _02223C50:
 	cmp r6, #2
@@ -1502,10 +1502,10 @@ _02223C98: .word Unk_ov60_02229AE4
 _02223C9C: .word Unk_ov60_02229AF4
 _02223CA0: .word Unk_ov60_02228C6C
 _02223CA4: .word Unk_ov60_02229B04
-	arm_func_end ov60_02223838
+	arm_func_end ghiDoReceivingHeaders
 
-	arm_func_start ov60_02223CA8
-ov60_02223CA8: ; 0x02223CA8
+	arm_func_start ghiDoReceivingFile
+ghiDoReceivingFile: ; 0x02223CA8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov sb, r0
 	bl current_time
@@ -1528,7 +1528,7 @@ _02223CE8:
 	mov r1, r6
 	mov r2, r4
 	str r5, [sp]
-	bl ov60_0222097C
+	bl ghiDoReceive
 	cmp r0, #3
 	cmpne r0, #1
 	beq _02223D70
@@ -1548,7 +1548,7 @@ _02223D38:
 	ldr r2, [sp]
 	mov r0, sb
 	mov r1, r6
-	bl ov60_02223614
+	bl ghiProcessIncomingFileData
 	cmp r0, #0
 	beq _02223D70
 	bl current_time
@@ -1564,7 +1564,7 @@ _02223D70:
 	mov r0, r6
 	bl DWCi_GsFree
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end ov60_02223CA8
+	arm_func_end ghiDoReceivingFile
 
 	.rodata
 

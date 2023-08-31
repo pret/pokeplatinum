@@ -7,6 +7,6 @@
 .public DWCi_GsFree
 .public GSISocketSelect
 .public GOAGetLastError
-.public ov60_0221FE2C
-.public ov60_02220130
-.public ov60_02220B90
+.public ghiResizeBuffer
+.public ghiAppendDataToBuffer
+.public ghiDoSend

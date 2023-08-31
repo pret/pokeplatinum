@@ -6,28 +6,28 @@
 	.text
 
 
-	arm_func_start ov60_02220844
-ov60_02220844: ; 0x02220844
+	arm_func_start ghiCreateLock
+ghiCreateLock: ; 0x02220844
 	bx lr
-	arm_func_end ov60_02220844
+	arm_func_end ghiCreateLock
 
-	arm_func_start ov60_02220848
-ov60_02220848: ; 0x02220848
+	arm_func_start ghiFreeLock
+ghiFreeLock: ; 0x02220848
 	bx lr
-	arm_func_end ov60_02220848
+	arm_func_end ghiFreeLock
 
-	arm_func_start ov60_0222084C
-ov60_0222084C: ; 0x0222084C
+	arm_func_start ghiLock
+ghiLock: ; 0x0222084C
 	bx lr
-	arm_func_end ov60_0222084C
+	arm_func_end ghiLock
 
-	arm_func_start ov60_02220850
-ov60_02220850: ; 0x02220850
+	arm_func_start ghiUnlock
+ghiUnlock: ; 0x02220850
 	bx lr
-	arm_func_end ov60_02220850
+	arm_func_end ghiUnlock
 
-	arm_func_start ov60_02220854
-ov60_02220854: ; 0x02220854
+	arm_func_start ghiDecryptReceivedData
+ghiDecryptReceivedData: ; 0x02220854
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r1, #0
@@ -60,7 +60,7 @@ _02220874:
 	bne _022208E4
 	ldr r1, [r7, #0x88]
 	add r0, r7, #0x74
-	bl ov60_0221FE2C
+	bl ghiResizeBuffer
 	cmp r0, #0
 	addeq sp, sp, #0x10
 	moveq r0, #0
@@ -85,7 +85,7 @@ _022208E4:
 	subs r4, r0, r1
 	bne _02220938
 	add r0, r7, #0x98
-	bl ov60_02220504
+	bl ghiResetBuffer
 	b _02220954
 _02220938:
 	ldr r0, [r7, #0x9c]
@@ -106,10 +106,10 @@ _02220954:
 	mov r0, #0
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov60_02220854
+	arm_func_end ghiDecryptReceivedData
 
-	arm_func_start ov60_0222097C
-ov60_0222097C: ; 0x0222097C
+	arm_func_start ghiDoReceive
+ghiDoReceive: ; 0x0222097C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r5, r2
@@ -139,7 +139,7 @@ _022209D0:
 	mov r1, r6
 	mov r2, r5
 	add r0, r7, #0x74
-	bl ov60_02220618
+	bl ghiReadDataFromBuffer
 	ldr r1, [r7, #0x84]
 	ldr r0, [r7, #0x80]
 	cmp r1, r0
@@ -193,12 +193,12 @@ _02220AA0:
 	beq _02220B6C
 	mov r1, r6
 	add r0, r7, #0x98
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	moveq r0, #3
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r7
-	bl ov60_02220854
+	bl ghiDecryptReceivedData
 	cmp r0, #0
 	bne _02220AEC
 	mov r0, #1
@@ -225,7 +225,7 @@ _02220B14:
 	mov r1, r6
 	add r0, r7, #0x74
 	str r3, [sp]
-	bl ov60_02220618
+	bl ghiReadDataFromBuffer
 	cmp r0, #0
 	moveq r0, #3
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -253,10 +253,10 @@ _02220B6C:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _02220B8C: .word Unk_ov60_0222911C
-	arm_func_end ov60_0222097C
+	arm_func_end ghiDoReceive
 
-	arm_func_start ov60_02220B90
-ov60_02220B90: ; 0x02220B90
+	arm_func_start ghiDoSend
+ghiDoSend: ; 0x02220B90
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x48]
@@ -289,10 +289,10 @@ _02220BF4:
 	addeq r1, r1, r0
 	streq r1, [r4, #0x148]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov60_02220B90
+	arm_func_end ghiDoSend
 
-	arm_func_start ov60_02220C0C
-ov60_02220C0C: ; 0x02220C0C
+	arm_func_start ghiTrySendThenBuffer
+ghiTrySendThenBuffer: ; 0x02220C0C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r3, [r6, #0x5c]
@@ -301,7 +301,7 @@ ov60_02220C0C: ; 0x02220C0C
 	cmp r3, #0
 	mov r3, #0
 	bne _02220C50
-	bl ov60_02220B90
+	bl ghiDoSend
 	mov r3, r0
 	mvn r0, #0
 	cmp r3, r0
@@ -314,12 +314,12 @@ _02220C50:
 	add r0, r6, #0x50
 	add r1, r5, r3
 	sub r2, r4, r3
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov60_02220C0C
+	arm_func_end ghiTrySendThenBuffer
 
 	.data
 

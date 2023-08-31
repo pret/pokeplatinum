@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov60_02220C70
-ov60_02220C70: ; 0x02220C70
+	arm_func_start ghiFindFreeSlot
+ghiFindFreeSlot: ; 0x02220C70
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	ldr r1, _02220D7C ; =0x02229E2C
 	mov r0, #0
@@ -88,18 +88,18 @@ _02220D7C: .word Unk_ov60_02229E2C
 _02220D80: .word Unk_ov60_02229178
 _02220D84: .word Unk_ov60_022291A0
 _02220D88: .word Unk_ov60_02229124
-	arm_func_end ov60_02220C70
+	arm_func_end ghiFindFreeSlot
 
-	arm_func_start ov60_02220D8C
-ov60_02220D8C: ; 0x02220D8C
+	arm_func_start ghiNewConnection
+ghiNewConnection: ; 0x02220D8C
 	stmfd sp!, {r3, r4, r5, lr}
-	bl ov60_0222084C
-	bl ov60_02220C70
+	bl ghiLock
+	bl ghiFindFreeSlot
 	mov r5, r0
 	mvn r0, #0
 	cmp r5, r0
 	bne _02220DB4
-	bl ov60_02220850
+	bl ghiUnlock
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _02220DB4:
@@ -165,14 +165,14 @@ _02220DB4:
 	mov r2, #0x800
 	mov r3, #0x1000
 	str ip, [r4, #0x164]
-	bl ov60_0221FEB8
+	bl ghiInitBuffer
 	cmp r0, #0
 	beq _02220ECC
 	mov r2, #0x800
 	mov r0, r4
 	mov r3, r2
 	add r1, r4, #0x74
-	bl ov60_0221FEB8
+	bl ghiInitBuffer
 _02220ECC:
 	cmp r0, #0
 	beq _02220EE8
@@ -180,13 +180,13 @@ _02220ECC:
 	add r1, r4, #0x98
 	mov r2, #0x800
 	mov r3, #0x400
-	bl ov60_0221FEB8
+	bl ghiInitBuffer
 _02220EE8:
 	cmp r0, #0
 	bne _02220F04
 	mov r0, r4
-	bl ov60_02220F24
-	bl ov60_02220850
+	bl ghiFreeConnection
+	bl ghiUnlock
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _02220F04:
@@ -194,15 +194,15 @@ _02220F04:
 	ldr r1, [r0, #0]
 	add r1, r1, #1
 	str r1, [r0, #0]
-	bl ov60_02220850
+	bl ghiUnlock
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02220F20: .word Unk_ov60_02229E2C
-	arm_func_end ov60_02220D8C
+	arm_func_end ghiNewConnection
 
-	arm_func_start ov60_02220F24
-ov60_02220F24: ; 0x02220F24
+	arm_func_start ghiFreeConnection
+ghiFreeConnection: ; 0x02220F24
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _02220F44
@@ -257,7 +257,7 @@ _02220FAC:
 	cmp r1, r0
 	movge r0, #0
 	ldmgeia sp!, {r4, pc}
-	bl ov60_0222084C
+	bl ghiLock
 	ldr r0, [r4, #0x14]
 	bl DWCi_GsFree
 	ldr r0, [r4, #0x18]
@@ -280,18 +280,18 @@ _02220FAC:
 	bl closesocket
 _02221040:
 	add r0, r4, #0x50
-	bl ov60_022200D0
+	bl ghiFreeBuffer
 	add r0, r4, #0x74
-	bl ov60_022200D0
+	bl ghiFreeBuffer
 	add r0, r4, #0x98
-	bl ov60_022200D0
+	bl ghiFreeBuffer
 	add r0, r4, #0xbc
-	bl ov60_022200D0
+	bl ghiFreeBuffer
 	ldr r0, [r4, #0x140]
 	cmp r0, #0
 	beq _02221074
 	mov r0, r4
-	bl ov60_02221EDC
+	bl ghiPostCleanupState
 _02221074:
 	ldr r0, [r4, #0x13c]
 	cmp r0, #0
@@ -300,7 +300,7 @@ _02221074:
 	cmp r0, #0
 	beq _0222109C
 	ldr r0, [r4, #0x13c]
-	bl ov60_02221908
+	bl ghiFreePost
 	mov r0, #0
 	str r0, [r4, #0x13c]
 _0222109C:
@@ -323,7 +323,7 @@ _022210C8:
 	ldr r1, [r0, #0]
 	sub r1, r1, #1
 	str r1, [r0, #0]
-	bl ov60_02220850
+	bl ghiUnlock
 	mov r0, #1
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -334,10 +334,10 @@ _022210F8: .word Unk_ov60_022291C0
 _022210FC: .word Unk_ov60_02229E2C
 _02221100: .word Unk_ov60_022291DC
 _02221104: .word Unk_ov60_02229204
-	arm_func_end ov60_02220F24
+	arm_func_end ghiFreeConnection
 
-	arm_func_start ov60_02221108
-ov60_02221108: ; 0x02221108
+	arm_func_start ghiRequestToConnection
+ghiRequestToConnection: ; 0x02221108
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bpl _02221128
@@ -357,7 +357,7 @@ _02221128:
 	ldr r3, _022211AC ; =0x00000102
 	bl __msl_assertion_failed
 _0222114C:
-	bl ov60_0222084C
+	bl ghiLock
 	cmp r4, #0
 	blt _02221168
 	ldr r0, _022211A4 ; =0x02229E2C
@@ -365,7 +365,7 @@ _0222114C:
 	cmp r4, r1
 	blt _02221174
 _02221168:
-	bl ov60_02220850
+	bl ghiUnlock
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 _02221174:
@@ -374,7 +374,7 @@ _02221174:
 	ldr r0, [r4, #0]
 	cmp r0, #0
 	moveq r4, #0
-	bl ov60_02220850
+	bl ghiUnlock
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
@@ -385,17 +385,17 @@ _022211A0: .word 0x00000101
 _022211A4: .word Unk_ov60_02229E2C
 _022211A8: .word Unk_ov60_02229228
 _022211AC: .word 0x00000102
-	arm_func_end ov60_02221108
+	arm_func_end ghiRequestToConnection
 
-	arm_func_start ov60_022211B0
-ov60_022211B0: ; 0x022211B0
+	arm_func_start ghiEnumConnections
+ghiEnumConnections: ; 0x022211B0
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r1, _02221210 ; =0x02229E2C
 	mov r4, r0
 	ldr r0, [r1, #0]
 	cmp r0, #0
 	ldmleia sp!, {r4, r5, r6, pc}
-	bl ov60_0222084C
+	bl ghiLock
 	ldr r5, _02221210 ; =0x02229E2C
 	mov r6, #0
 	ldr r0, [r5, #0xc]
@@ -414,14 +414,14 @@ _022211F8:
 	cmp r6, r0
 	blt _022211E0
 _02221208:
-	bl ov60_02220850
+	bl ghiUnlock
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _02221210: .word Unk_ov60_02229E2C
-	arm_func_end ov60_022211B0
+	arm_func_end ghiEnumConnections
 
-	arm_func_start ov60_02221214
-ov60_02221214: ; 0x02221214
+	arm_func_start ghiRedirectConnection
+ghiRedirectConnection: ; 0x02221214
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _02221234
@@ -466,11 +466,11 @@ _02221254:
 	mvn r1, #0
 	add r0, r4, #0x50
 	str r1, [r4, #0x48]
-	bl ov60_02220504
+	bl ghiResetBuffer
 	add r0, r4, #0x74
-	bl ov60_02220504
+	bl ghiResetBuffer
 	add r0, r4, #0x98
-	bl ov60_02220504
+	bl ghiResetBuffer
 	mov r0, #0
 	str r0, [r4, #0xe4]
 	str r0, [r4, #0xe8]
@@ -490,17 +490,17 @@ _02221308: .word Unk_ov60_02229148
 _0222130C: .word 0x00000132
 _02221310: .word Unk_ov60_02229244
 _02221314: .word 0x00000133
-	arm_func_end ov60_02221214
+	arm_func_end ghiRedirectConnection
 
-	arm_func_start ov60_02221318
-ov60_02221318: ; 0x02221318
+	arm_func_start ghiCleanupConnections
+ghiCleanupConnections: ; 0x02221318
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r0, _02221388 ; =0x02229E2C
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
-	ldr r0, _0222138C ; =ov60_02220F24
-	bl ov60_022211B0
+	ldr r0, _0222138C ; =ghiFreeConnection
+	bl ghiEnumConnections
 	ldr r4, _02221388 ; =0x02229E2C
 	mov r5, #0
 	ldr r0, [r4, #0xc]
@@ -526,8 +526,8 @@ _02221364:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02221388: .word Unk_ov60_02229E2C
-_0222138C: .word ov60_02220F24
-	arm_func_end ov60_02221318
+_0222138C: .word ghiFreeConnection
+	arm_func_end ghiCleanupConnections
 
 	.data
 

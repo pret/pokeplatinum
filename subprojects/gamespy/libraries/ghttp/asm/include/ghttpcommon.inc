@@ -3,9 +3,9 @@
 .public recv
 .public send
 .public GOAGetLastError
-.public ov60_0221FE2C
-.public ov60_02220130
-.public ov60_02220504
-.public ov60_02220618
-.public ov60_02220854
-.public ov60_02220B90
+.public ghiResizeBuffer
+.public ghiAppendDataToBuffer
+.public ghiResetBuffer
+.public ghiReadDataFromBuffer
+.public ghiDecryptReceivedData
+.public ghiDoSend
