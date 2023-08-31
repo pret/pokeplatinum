@@ -156,7 +156,7 @@ _02220A18:
 	mov r1, r6
 	mov r2, r4
 	mov r3, #0
-	bl ov4_021EAE04
+	bl recv
 	mov r2, r0
 	mvn r0, #0
 	str r2, [sp]
@@ -261,7 +261,7 @@ ov60_02220B90: ; 0x02220B90
 	mov r4, r0
 	ldr r0, [r4, #0x48]
 	mov r3, #0
-	bl ov4_021EAE48
+	bl send
 	mvn r1, #0
 	cmp r0, r1
 	bne _02220BF4

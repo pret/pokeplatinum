@@ -62,7 +62,7 @@ _0222289C:
 	mov r1, #0
 	mov r0, r4
 	strb r1, [r4, r6]
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r5, #0x18]
 	cmp r0, #0
 	moveq r0, #0
@@ -97,7 +97,7 @@ _0222292C:
 	cmp r0, #0
 	ldreq r4, _022229AC ; =0x022299AC
 	mov r0, r4
-	bl ov4_021EA8AC
+	bl goastrdup
 	mov r1, #0x20
 	mov r7, r0
 	str r0, [r5, #0x24]
@@ -138,7 +138,7 @@ ov60_022229B0: ; 0x022229B0
 	mov r4, r0
 	mov r2, r1
 	bl ov60_02220754
-	bl ov4_021EA8A4
+	bl SocketStartUp
 	mov r0, r4
 	bl ov60_022227F8
 	cmp r0, #0
@@ -201,7 +201,7 @@ ov60_02222A74: ; 0x02222A74
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	str r0, [r4, #0x48]
 	cmp r0, r1
@@ -217,7 +217,7 @@ ov60_02222A74: ; 0x02222A74
 	ldmia sp!, {r4, pc}
 _02222AD4:
 	mov r1, #0
-	bl ov4_021EA924
+	bl SetSockBlocking
 	cmp r0, #0
 	bne _02222B08
 	mov r0, #1
@@ -236,7 +236,7 @@ _02222B08:
 	ldr r1, _02222CB8 ; =0x02229120
 	ldr r0, [r4, #0x48]
 	ldr r1, [r1, #0]
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 _02222B24:
 	add r2, sp, #8
 	mov r1, #0
@@ -284,7 +284,7 @@ _02222BBC:
 	str r0, [sp, #0xc]
 	ldr r0, [r4, #0x48]
 	mov r2, #8
-	bl ov4_021EAD78
+	bl connect
 	mvn r1, #0
 	cmp r0, r1
 	bne _02222C20
@@ -309,7 +309,7 @@ _02222C20:
 	add r2, sp, #4
 	add r3, sp, #0
 	mov r1, #0
-	bl ov4_021EAA74
+	bl GSISocketSelect
 	cmp r0, #0
 	movgt r1, #1
 	movle r1, #0
@@ -678,7 +678,7 @@ ov60_02223130: ; 0x02223130
 	ldr r0, [r4, #0x48]
 	add r1, sp, #0
 	mov r3, r2
-	bl ov4_021EAA74
+	bl GSISocketSelect
 	mvn r1, #0
 	cmp r0, r1
 	bne _02223180
@@ -1370,7 +1370,7 @@ _02223A60:
 	b _02223C74
 _02223AC4:
 	mov r0, r4
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [sl, #0x108]
 	cmp r0, #0
 	bne _02223C74

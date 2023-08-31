@@ -4,7 +4,7 @@
 .public strncmp
 .public strstr
 .public atoi
-.public ov4_021EAA74
+.public GSISocketSelect
 .public ov4_021EDE68
 .public ov4_021F5820
 .public ov4_021F5894

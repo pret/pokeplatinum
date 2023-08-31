@@ -5,11 +5,11 @@
 .public _s32_div_f
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EA1FC
-.public ov4_021EA44C
-.public ov4_021EA4F4
-.public ov4_021EA598
-.public ov4_021EA73C
+.public TableNew
+.public TableEnter
+.public TableRemove
+.public TableLookup
+.public TableMapSafe2
 .public ov4_021EDE68
 .public ov4_021EDF5C
 .public ov4_021F163C

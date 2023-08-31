@@ -174,7 +174,7 @@ ov4_021ED62C: ; 0x021ED62C
 	ldr r6, [sp, #0x18]
 	ldr r5, [sp, #0x1c]
 	ldr r4, [sp, #0x20]
-	bl ov4_021EAE48
+	bl send
 	mvn r1, #0
 	cmp r0, r1
 	bne _021ED6D8
@@ -251,7 +251,7 @@ _021ED750:
 	subs r0, r1, r0
 	bne _021ED7CC
 	ldr r0, [r4, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	bne _021ED7CC
 	add r0, sp, #0x10
@@ -320,7 +320,7 @@ _021ED834:
 	subs r0, r1, r0
 	bne _021ED8B8
 	ldr r0, [sb, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	bne _021ED8B8
 	ldr fp, _021ED8F8 ; =0x02217F40
@@ -461,7 +461,7 @@ _021EDA38:
 	add r1, r5, r6
 	sub r2, r7, r6
 	mov r3, #0
-	bl ov4_021EAE04
+	bl recv
 	mov r8, r0
 	cmp r8, r4
 	bne _021EDA94

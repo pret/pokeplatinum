@@ -347,7 +347,7 @@ _021F21D8:
 	mov r1, r0
 	add r0, sp, #0x81
 	add r2, sp, #0x10
-	bl ov4_021EA7F4
+	bl MD5Digest
 	add r0, sp, #0x31
 	add r1, sp, #0x10
 	bl strcmp
@@ -419,7 +419,7 @@ ov4_021F22DC: ; 0x021F22DC
 	movne r0, #0
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	ldr r0, [sb, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	beq _021F23A0
 	mov fp, #0
@@ -430,7 +430,7 @@ ov4_021F22DC: ; 0x021F22DC
 _021F2324:
 	ldr r0, [sb, #0x38]
 	mov r1, r8
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r7, r0
 	str r6, [sp]
 	str r5, [sp, #4]
@@ -455,9 +455,9 @@ _021F2374:
 	bne _021F23A0
 	ldr r0, [sb, #0x38]
 	mov r1, fp
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	ldr r0, [sb, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	bne _021F2324
 _021F23A0:
@@ -532,7 +532,7 @@ _021F248C:
 	cmp r0, #0
 	ble _021F24A8
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 	add r0, r0, #0x12c
 	str r0, [r8, #0x10]
 _021F24A8:
@@ -596,10 +596,10 @@ _021F2578:
 	ldr r0, [r8, #0xc]
 	str r0, [r5, #0]
 	ldr r0, [sp, #0x10]
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r5, #8]
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 	str r0, [r5, #4]
 	mov r3, r5
 	mov r0, sb
@@ -700,9 +700,9 @@ ov4_021F26CC: ; 0x021F26CC
 	mov r4, r1
 	ldr r0, [r4, #8]
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, [r4, #8]
-	bl ov4_021EACF0
+	bl closesocket
 	ldr r0, [r4, #0x18]
 	bl DWCi_GsFree
 	mov r0, #0
@@ -714,7 +714,7 @@ ov4_021F26CC: ; 0x021F26CC
 	ldr r0, [r4, #0x38]
 	cmp r0, #0
 	beq _021F2720
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, #0
 	str r0, [r4, #0x38]
 _021F2720:
@@ -766,7 +766,7 @@ _021F27B0:
 	str r0, [r1, #0x3c]
 _021F27B8:
 	ldr r0, [r4, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	beq _021F281C
 	mov r6, #0
@@ -774,7 +774,7 @@ _021F27B8:
 _021F27D0:
 	ldr r0, [r4, #0x38]
 	mov r1, r7
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r2, [r0, #0x10]
 	cmp r2, #0x64
 	bge _021F2800
@@ -787,9 +787,9 @@ _021F27D0:
 _021F2800:
 	ldr r0, [r4, #0x38]
 	mov r1, r6
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	ldr r0, [r4, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	bne _021F27D0
 _021F281C:
@@ -812,32 +812,32 @@ ov4_021F2848: ; 0x021F2848
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	mov r1, #0x4000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x8000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x10000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x20000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x40000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x4000
-	bl ov4_021EA9A8
+	bl SetSendBufferSize
 	mov r0, r4
 	mov r1, #0x8000
-	bl ov4_021EA9A8
+	bl SetSendBufferSize
 	mov r0, r4
 	mov r1, #0x10000
-	bl ov4_021EA9A8
+	bl SetSendBufferSize
 	mov r0, r4
-	bl ov4_021EA9E8
+	bl GetReceiveBufferSize
 	mov r0, r4
-	bl ov4_021EAA30
+	bl GetSendBufferSize
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021F2848
 
@@ -850,13 +850,13 @@ ov4_021F28C0: ; 0x021F28C0
 	ldr r0, [r7, #0x204]
 	cmp r0, r1
 	beq _021F2948
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	beq _021F2948
 	mov r1, #0
 	ldr r0, [r7, #0x204]
 	mov r2, r1
-	bl ov4_021EADD8
+	bl accept
 	mov r6, r0
 	mvn r1, #0
 	cmp r6, r1
@@ -871,13 +871,13 @@ ov4_021F28C0: ; 0x021F28C0
 	mov r0, r6
 	str r6, [r5, #8]
 	mov r1, #0
-	bl ov4_021EA924
+	bl SetSockBlocking
 	ldr r0, [r5, #8]
 	bl ov4_021F2848
 	b _021F2948
 _021F2940:
 	mov r0, r6
-	bl ov4_021EACF0
+	bl closesocket
 _021F2948:
 	ldr r7, [r7, #0x434]
 	cmp r7, #0
@@ -894,7 +894,7 @@ _021F2958:
 	cmp r0, #0
 	bne _021F2990
 	mov r0, r5
-	bl ov4_021EAF48
+	bl time
 	ldr r1, [r7, #0x10]
 	cmp r0, r1
 	ble _021F299C
@@ -962,7 +962,7 @@ ov4_021F2A04: ; 0x021F2A04
 	str r0, [r4, #8]
 	mov r0, #0
 	str r7, [r4, #0xc]
-	bl ov4_021EAF48
+	bl time
 	add r0, r0, #0x12c
 	str r0, [r4, #0x10]
 	ldr r3, [r5, #0x434]
@@ -970,7 +970,7 @@ ov4_021F2A04: ; 0x021F2A04
 	mov r0, #0x18
 	mov r1, #0
 	str r3, [r4, #0x3c]
-	bl ov4_021E9A8C
+	bl ArrayNew
 	str r0, [r4, #0x38]
 	mov r0, r4
 	str r4, [r5, #0x434]
@@ -1029,7 +1029,7 @@ _021F2B24:
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	str r0, [r4, #8]
 	cmp r0, r1
@@ -1047,7 +1047,7 @@ _021F2B24:
 	ldmia sp!, {r4, r5, pc}
 _021F2B70:
 	mov r1, #0
-	bl ov4_021EA924
+	bl SetSockBlocking
 	cmp r0, #0
 	bne _021F2BAC
 	ldr r2, _021F2C6C ; =0x02218BF4
@@ -1079,7 +1079,7 @@ _021F2BAC:
 	ldr r0, [r0, #0x14]
 	strh r0, [sp, #6]
 	ldr r0, [r4, #8]
-	bl ov4_021EAD78
+	bl connect
 	mvn r1, #0
 	cmp r0, r1
 	bne _021F2C50
@@ -1204,9 +1204,9 @@ _021F2CC0:
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 	ldr r0, [r7, #0x38]
 	add r1, sp, #0
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 	add r0, r0, #0x12c
 	str r0, [r7, #0x10]
 	mov r0, #0
@@ -1311,7 +1311,7 @@ _021F2ED0:
 	addne sp, sp, #0x20
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 	add r0, r0, #0x12c
 	str r0, [r6, #0x10]
 	mov r0, #0

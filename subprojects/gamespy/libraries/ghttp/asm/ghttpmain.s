@@ -314,7 +314,7 @@ _0222175C:
 	mov r1, #0
 	mov r0, r8
 	str r1, [r4, #0xc]
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r4, #0x14]
 	cmp r0, #0
 	bne _02221798
@@ -328,7 +328,7 @@ _02221798:
 	cmpne r0, #0
 	beq _022217CC
 	mov r0, r7
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r4, #0x28]
 	cmp r0, #0
 	bne _022217CC
@@ -397,7 +397,7 @@ _02221884:
 	mov r5, #0xa
 _022218A4:
 	mov r0, r5
-	bl ov4_021EA898
+	bl msleep
 	mov r0, r4
 	bl ov60_0222144C
 	cmp r0, #0

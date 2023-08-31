@@ -463,7 +463,7 @@ _022560CC:
 	mov r0, r3
 	mov r1, #1
 	strb r3, [sp, #1]
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	cmp r0, r1
 	str r0, [r6, #0]
@@ -472,7 +472,7 @@ _022560CC:
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r1, r4
 	mov r2, #8
-	bl ov4_021EAD78
+	bl connect
 	mvn r1, #0
 	cmp r0, r1
 	movne r0, #1
@@ -480,7 +480,7 @@ _022560CC:
 	strne r0, [r6, #4]
 	ldmneia sp!, {r4, r5, r6, pc}
 	ldr r0, [r6, #0]
-	bl ov4_021EACF0
+	bl closesocket
 	mov r0, #0
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
@@ -625,9 +625,9 @@ _02256340:
 	cmp r0, r1
 	beq _02256360
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, [r4, #0]
-	bl ov4_021EACF0
+	bl closesocket
 _02256360:
 	mov r1, #2
 	add r0, r4, #0x108
@@ -699,7 +699,7 @@ ciSocketSelect: ; 0x0225642C
 	str ip, [sp, #8]
 	str ip, [sp, #4]
 	str ip, [sp]
-	bl ov4_021EAA74
+	bl GSISocketSelect
 	cmp r6, #0
 	ldrne r0, [sp, #8]
 	strne r0, [r6]
@@ -859,7 +859,7 @@ _0225665C:
 	ldr r1, [r6, #0x114]
 	movge r2, sb
 	mov r3, r8
-	bl ov4_021EAE48
+	bl send
 	movs r1, r0
 	cmpne r1, r7
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -1035,7 +1035,7 @@ _022568BC:
 	mov r2, fp
 	mov r3, #0
 	add r1, r6, r5
-	bl ov4_021EAE04
+	bl recv
 	mov sb, r0
 	cmp sb, #0
 	movle r0, #2

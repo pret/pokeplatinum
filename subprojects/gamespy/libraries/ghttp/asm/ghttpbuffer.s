@@ -549,7 +549,7 @@ _02220564:
 	mov r1, r6
 	mov r2, r5
 	mov r3, r4
-	bl ov4_021EAA74
+	bl GSISocketSelect
 	cmp r0, r8
 	beq _0222058C
 	ldr r0, [sp]

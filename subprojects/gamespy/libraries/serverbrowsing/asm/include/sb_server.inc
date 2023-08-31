@@ -8,11 +8,11 @@
 .public _u32_div_f
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EA224
-.public ov4_021EA364
-.public ov4_021EA3D8
-.public ov4_021EA44C
-.public ov4_021EA598
+.public TableNew2
+.public TableFree
+.public TableCount
+.public TableEnter
+.public TableLookup
 .public ov4_021FE0AC
 .public ov4_021FE0BC
 .public ov4_021FE0D0

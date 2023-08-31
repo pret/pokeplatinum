@@ -15,10 +15,10 @@ CloseStatsConnection: ; 0x021F6338
 	cmp r0, r1
 	beq _021F6364
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, _021F63A0 ; =0x02219358
 	ldr r0, [r0, #0]
-	bl ov4_021EACF0
+	bl closesocket
 _021F6364:
 	ldr r0, _021F63A0 ; =0x02219358
 	mvn r1, #0
@@ -102,7 +102,7 @@ _021F6460:
 	mov r3, r7
 	add r1, r1, r5
 	sub r2, r2, r5
-	bl ov4_021EAE04
+	bl recv
 	cmp r0, #0
 	bgt _021F6494
 	bl CloseStatsConnection
@@ -245,10 +245,10 @@ _021F6648: .word Unk_ov4_022193C4
 
 	arm_func_start ov4_021F664C
 ov4_021F664C: ; 0x021F664C
-	ldr ip, _021F6654 ; =ov4_021EAB6C
+	ldr ip, _021F6654 ; =CanReceiveOnSocket
 	bx ip
 	; .align 2, 0
-_021F6654: .word ov4_021EAB6C
+_021F6654: .word CanReceiveOnSocket
 	arm_func_end ov4_021F664C
 
 	arm_func_start ov4_021F6658
@@ -295,14 +295,14 @@ ov4_021F66C0: ; 0x021F66C0
 	mvneq r0, #0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
 	mov r4, #0
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	ble _021F6738
 	ldr r8, _021F6740 ; =0x0221AF80
 _021F66F8:
 	ldr r0, [r8, #4]
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r1, [r0, #0]
 	cmp r1, r7
 	ldreq r1, [r0, #4]
@@ -313,7 +313,7 @@ _021F66F8:
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
 	ldr r0, [r8, #4]
 	add r4, r4, #1
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r4, r0
 	blt _021F66F8
 _021F6738:
@@ -353,7 +353,7 @@ ov4_021F6744: ; 0x021F6744
 	ldr r0, _021F67F0 ; =0x0221AF80
 	mov r1, r4
 	ldr r0, [r0, #4]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	cmp r5, #0
 	movgt r1, #1
 	str r5, [r0, #8]
@@ -395,7 +395,7 @@ ov4_021F67F4: ; 0x021F67F4
 	ldr r0, _021F687C ; =0x0221AF80
 	mov r1, r5
 	ldr r0, [r0, #4]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	cmp r4, #0
 	movgt r1, #1
 	mov r2, #0
@@ -638,14 +638,14 @@ ov4_021F6B6C: ; 0x021F6B6C
 	ldmmiia sp!, {r4, r5, r6, r7, pc}
 	ldr r0, _021F6C6C ; =0x0221AF80
 	ldr r0, [r0, #4]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r7, r0
 	addge sp, sp, #0x14
 	ldmgeia sp!, {r4, r5, r6, r7, pc}
 	ldr r0, _021F6C6C ; =0x0221AF80
 	mov r1, r7
 	ldr r0, [r0, #4]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r3, r0
 	ldr ip, [r3, #0x18]
 	cmp ip, #0
@@ -695,7 +695,7 @@ _021F6C54:
 	ldr r0, _021F6C6C ; =0x0221AF80
 	mov r1, r7
 	ldr r0, [r0, #4]
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -711,7 +711,7 @@ ov4_021F6C70: ; 0x021F6C70
 	cmp r0, #0
 	addeq sp, sp, #0x24
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
-	bl ov4_021E9BBC
+	bl ArrayLength
 	subs r4, r0, #1
 	bmi _021F6D34
 	ldr r5, _021F6D58 ; =0x022159A4
@@ -759,7 +759,7 @@ _021F6CE4:
 _021F6D34:
 	ldr r0, _021F6D54 ; =0x0221AF80
 	ldr r0, [r0, #4]
-	bl ov4_021E9B50
+	bl ArrayFree
 	ldr r0, _021F6D54 ; =0x0221AF80
 	mov r1, #0
 	str r1, [r0, #4]
@@ -782,7 +782,7 @@ ov4_021F6D64: ; 0x021F6D64
 	moveq r0, r1
 	ldmeqia sp!, {r3, pc}
 	ldr r0, [r0, #0x20]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
@@ -799,7 +799,7 @@ ov4_021F6D94: ; 0x021F6D94
 	moveq r0, r1
 	ldmeqia sp!, {r3, pc}
 	ldr r0, [r0, #0x1c]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0

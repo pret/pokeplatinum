@@ -760,7 +760,7 @@ _021F03CC:
 	mov r2, #0
 	add r0, sp, #0xec
 	str r2, [r1, #0x18]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [sp, #0x10]
 	str r0, [r1, #0x18]
 _021F03FC:
@@ -1403,7 +1403,7 @@ _021F0CEC:
 	mov r2, #0x33
 	bl ov4_021F5820
 	add r0, sp, #0
-	bl ov4_021EA8E0
+	bl _strlwr
 	add r1, sp, #0
 	add r0, r4, #0x144
 	mov r2, #0x33
@@ -2015,31 +2015,31 @@ _021F15A8:
 	subs ip, ip, #1
 	bne _021F15A8
 	ldr r0, [r4, #0]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0]
 	ldr r0, [r4, #4]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #4]
 	ldr r0, [r4, #8]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #8]
 	ldr r0, [r4, #0xc]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0xc]
 	ldr r0, [r4, #0x10]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0x10]
 	ldr r0, [r4, #0x14]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0x14]
 	ldr r0, [r4, #0xc8]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0xc8]
 _021F1628:

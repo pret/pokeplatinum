@@ -1,7 +1,7 @@
 .public __msl_assertion_failed
-.public ov4_021E9BBC
-.public ov4_021EA6D0
-.public ov4_021EA898
+.public ArrayLength
+.public TableMapSafe
+.public msleep
 .public ov4_021F7B48
 .public ov4_021F7F54
 .public ov4_021F7FB4

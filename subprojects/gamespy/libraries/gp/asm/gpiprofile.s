@@ -73,7 +73,7 @@ ov4_021F300C: ; 0x021F300C
 	mov r0, #0x1c
 	mov r1, #4
 	str ip, [sp]
-	bl ov4_021EA1FC
+	bl TableNew
 	str r0, [r4, #0x428]
 	cmp r0, #0
 	movne r0, #1
@@ -226,7 +226,7 @@ _021F31F4:
 	str r0, [sp, #0x1c]
 	str r0, [sp, #0x18]
 	ldr r0, [r4, #0x428]
-	bl ov4_021EA44C
+	bl TableEnter
 	ldr r0, [r4, #0x42c]
 	add r2, sp, #0
 	add r3, r0, #1
@@ -255,7 +255,7 @@ ov4_021F32A8: ; 0x021F32A8
 	str r1, [sp]
 	ldr r0, [r0, #0x428]
 	add r1, sp, #0
-	bl ov4_021EA598
+	bl TableLookup
 	cmp r4, #0
 	strne r0, [r4]
 	cmp r0, #0
@@ -277,7 +277,7 @@ ov4_021F32E4: ; 0x021F32E4
 	ldmeqia sp!, {r3, r4, pc}
 	ldr r0, [r4, #0x428]
 	ldr r1, [sp]
-	bl ov4_021EA4F4
+	bl TableRemove
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	arm_func_end ov4_021F32E4
@@ -285,11 +285,11 @@ ov4_021F32E4: ; 0x021F32E4
 	arm_func_start ov4_021F3318
 ov4_021F3318: ; 0x021F3318
 	ldr r0, [r0, #0]
-	ldr ip, _021F3328 ; =ov4_021EA4F4
+	ldr ip, _021F3328 ; =TableRemove
 	ldr r0, [r0, #0x428]
 	bx ip
 	; .align 2, 0
-_021F3328: .word ov4_021EA4F4
+_021F3328: .word TableRemove
 	arm_func_end ov4_021F3318
 
 	arm_func_start ov4_021F332C
@@ -367,7 +367,7 @@ ov4_021F33F4: ; 0x021F33F4
 	ldr r0, [r3, #0x428]
 	ldr r1, _021F3430 ; =ov4_021F33D8
 	add r2, sp, #0
-	bl ov4_021EA73C
+	bl TableMapSafe2
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0

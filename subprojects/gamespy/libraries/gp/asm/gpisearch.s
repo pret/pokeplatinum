@@ -30,7 +30,7 @@ _021F3510:
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	str r0, [r4, #4]
 	cmp r0, r1
@@ -48,7 +48,7 @@ _021F3510:
 	ldmia sp!, {r4, r5, r6, pc}
 _021F355C:
 	mov r1, #0
-	bl ov4_021EA924
+	bl SetSockBlocking
 	cmp r0, #0
 	bne _021F3598
 	ldr r2, _021F36A8 ; =0x02218DE0
@@ -102,7 +102,7 @@ _021F3618:
 	strh r0, [sp, #2]
 	ldr r0, [r4, #4]
 	mov r2, #8
-	bl ov4_021EAD78
+	bl connect
 	mvn r1, #0
 	cmp r0, r1
 	bne _021F368C
@@ -324,7 +324,7 @@ _021F3924:
 _021F3938:
 	ldr r0, [sp, #4]
 	add r0, r0, #0x5c
-	bl ov4_021EA8E0
+	bl _strlwr
 	cmp r5, #0
 	bne _021F395C
 	ldr r0, [sp, #4]
@@ -2168,7 +2168,7 @@ _021F5444:
 	cmp r4, #0
 	beq _021F5454
 	mov r0, #0xa
-	bl ov4_021EA898
+	bl msleep
 _021F5454:
 	cmp r4, #0
 	bne _021F3A24

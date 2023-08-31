@@ -8,11 +8,11 @@
 .public strlen
 .public strchr
 .public DWCi_GsFree
-.public ov4_021E9A8C
-.public ov4_021E9B50
-.public ov4_021E9BBC
-.public ov4_021E9BC4
-.public ov4_021E9C2C
+.public ArrayNew
+.public ArrayFree
+.public ArrayLength
+.public ArrayNth
+.public ArrayAppend
 .public ov60_02220130
 .public ov60_0222046C
 .public ov60_02220504

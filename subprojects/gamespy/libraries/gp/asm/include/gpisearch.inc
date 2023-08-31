@@ -7,11 +7,11 @@
 .public DWCi_GsMalloc
 .public DWCi_GsRealloc
 .public DWCi_GsFree
-.public ov4_021EA898
-.public ov4_021EA8E0
-.public ov4_021EA924
-.public ov4_021EACDC
-.public ov4_021EAD78
+.public msleep
+.public _strlwr
+.public SetSockBlocking
+.public socket
+.public connect
 .public GOAGetLastError
 .public ov4_021EC3B0
 .public ov4_021ED5C4

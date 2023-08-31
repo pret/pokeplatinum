@@ -202,7 +202,7 @@ ov4_021F5A80: ; 0x021F5A80
 	mov r1, ip
 	str ip, [sp, #4]
 	str ip, [sp]
-	bl ov4_021EAA74
+	bl GSISocketSelect
 	mvn r1, #0
 	cmp r0, r1
 	bne _021F5AF4

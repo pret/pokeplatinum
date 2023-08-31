@@ -25,7 +25,7 @@ ov4_021F5D7C: ; 0x021F5D7C
 	bl __msl_assertion_failed
 _021F5DB8:
 	mov r0, r6
-	bl ov4_021EA8AC
+	bl goastrdup
 	mov r3, #0
 	mov r2, #1
 	str r0, [sp]
@@ -37,7 +37,7 @@ _021F5DB8:
 	bl ov4_021F623C
 	ldr r0, [r7, #0]
 	add r1, sp, #0
-	bl ov4_021EA44C
+	bl TableEnter
 	mov r0, r7
 	mov r1, r6
 	bl ov4_021F62D8
@@ -401,7 +401,7 @@ _021F6290:
 	moveq r0, #0
 	beq _021F62A8
 	mov r0, r4
-	bl ov4_021EA8AC
+	bl goastrdup
 	bl ov4_021F620C
 _021F62A8:
 	str r0, [r5, #0xc]
@@ -442,7 +442,7 @@ _021F630C:
 	str r4, [sp]
 	ldr r0, [r5, #0]
 	add r1, sp, #0
-	bl ov4_021EA598
+	bl TableLookup
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0

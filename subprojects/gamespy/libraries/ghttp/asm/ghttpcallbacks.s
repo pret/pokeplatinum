@@ -98,7 +98,7 @@ _022207F4:
 	addeq sp, sp, #8
 	ldmeqia sp!, {r4, pc}
 	ldr r0, [r4, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	str r0, [sp]
 	ldr r0, [r4, #0x44]
 	str r0, [sp, #4]

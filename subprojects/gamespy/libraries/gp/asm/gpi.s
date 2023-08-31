@@ -84,7 +84,7 @@ _021EBE94:
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _021EBEF0:
-	bl ov4_021EA8A4
+	bl SocketStartUp
 	bl current_time
 	bl srand
 	ldr r1, [sp]
@@ -108,7 +108,7 @@ ov4_021EBF14: ; 0x021EBF14
 	mov r0, #0
 	str r0, [r4, #0x460]
 	ldr r0, [r4, #0x428]
-	bl ov4_021EA364
+	bl TableFree
 	mov r0, r4
 	bl DWCi_GsFree
 	mov r0, #0
@@ -402,7 +402,7 @@ _021EC358:
 	movs r5, r0
 	beq _021EC370
 	mov r0, #0xa
-	bl ov4_021EA898
+	bl msleep
 _021EC370:
 	cmp r5, #0
 	bne _021EC0B0
@@ -462,7 +462,7 @@ _021EC428:
 	cmp r8, #0
 	beq _021EC438
 	mov r0, fp
-	bl ov4_021EA898
+	bl msleep
 _021EC438:
 	cmp r8, #0
 	bne _021EC3FC

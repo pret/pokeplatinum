@@ -186,7 +186,7 @@ _021FF10C:
 	str r2, [r0, #0x498]
 	str r1, [r0, #0x49c]
 	ldr r2, _021FF13C ; =0x0221B75C
-	ldr ip, _021FF140 ; =ov4_021E9EF8
+	ldr ip, _021FF140 ; =ArraySort
 	str r0, [r2, #0]
 	mov r1, r3
 	ldr r0, [r0, #4]
@@ -197,7 +197,7 @@ _021FF130: .word ov4_021FEF24
 _021FF134: .word ov4_021FEFFC
 _021FF138: .word ov4_021FF064
 _021FF13C: .word Unk_ov4_0221B75C
-_021FF140: .word ov4_021E9EF8
+_021FF140: .word ArraySort
 	arm_func_end ov4_021FF0CC
 
 	arm_func_start ov4_021FF144
@@ -207,7 +207,7 @@ ov4_021FF144: ; 0x021FF144
 	mov r4, r0
 	ldr r0, [r4, #4]
 	add r1, sp, #0xc
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	ldr r2, [sp, #0xc]
 	ldr r3, [r4, #0x494]
 	ldr ip, [r4, #0x488]
@@ -225,7 +225,7 @@ ov4_021FF180: ; 0x021FF180
 	mov r7, r0
 	ldr r0, [r7, #4]
 	mov r6, r1
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	cmp r4, #0
 	mov r5, #0
@@ -233,7 +233,7 @@ ov4_021FF180: ; 0x021FF180
 _021FF1A4:
 	ldr r0, [r7, #4]
 	mov r1, r5
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r0, [r0, #0]
 	cmp r6, r0
 	moveq r0, r5
@@ -253,7 +253,7 @@ ov4_021FF1D4: ; 0x021FF1D4
 	ldr r0, [sb, #4]
 	mov r8, r1
 	mov r7, r2
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	cmp r4, #0
 	mov r6, #0
@@ -261,7 +261,7 @@ ov4_021FF1D4: ; 0x021FF1D4
 _021FF1FC:
 	ldr r0, [sb, #4]
 	mov r1, r6
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r5, [r0, #0]
 	mov r0, r5
 	bl SBServerGetPublicInetAddress
@@ -306,7 +306,7 @@ ov4_021FF278: ; 0x021FF278
 	mov r6, r0
 	ldr r0, [r6, #4]
 	mov r5, r1
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r4, [r0, #0]
 	ldr r3, [r6, #0x494]
 	ldr ip, [r6, #0x488]
@@ -316,7 +316,7 @@ ov4_021FF278: ; 0x021FF278
 	blx ip
 	ldr r0, [r6, #4]
 	mov r1, r5
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	mov r0, r6
 	mov r1, r4
 	bl ov4_021FF244
@@ -325,18 +325,18 @@ ov4_021FF278: ; 0x021FF278
 
 	arm_func_start ov4_021FF2C4
 ov4_021FF2C4: ; 0x021FF2C4
-	ldr ip, _021FF2D0 ; =ov4_021E9BBC
+	ldr ip, _021FF2D0 ; =ArrayLength
 	ldr r0, [r0, #4]
 	bx ip
 	; .align 2, 0
-_021FF2D0: .word ov4_021E9BBC
+_021FF2D0: .word ArrayLength
 	arm_func_end ov4_021FF2C4
 
 	arm_func_start ov4_021FF2D4
 ov4_021FF2D4: ; 0x021FF2D4
 	stmfd sp!, {r3, lr}
 	ldr r0, [r0, #4]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 	arm_func_end ov4_021FF2D4
@@ -374,7 +374,7 @@ ov4_021FF340: ; 0x021FF340
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r0, [r6, #4]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r5, r0
 	cmp r5, #0
 	mov r4, #0
@@ -382,7 +382,7 @@ ov4_021FF340: ; 0x021FF340
 _021FF360:
 	ldr r0, [r6, #4]
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r1, [r0, #0]
 	mov r0, r6
 	bl ov4_021FF244
@@ -391,7 +391,7 @@ _021FF360:
 	blt _021FF360
 _021FF384:
 	ldr r0, [r6, #4]
-	bl ov4_021EA114
+	bl ArrayClear
 	mov r0, r6
 	bl ov4_021FF2E8
 	ldmia sp!, {r4, r5, r6, pc}
@@ -404,7 +404,7 @@ ov4_021FF398: ; 0x021FF398
 	mov r0, #4
 	mov r1, #0x64
 	mov r2, #0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	str r0, [r4, #4]
 	mov r0, #0
 	str r0, [r4, #0x5d0]
@@ -420,7 +420,7 @@ ov4_021FF3C0: ; 0x021FF3C0
 	str r4, [sp]
 	bl ov4_021FE0E0
 	add r1, sp, #0
-	bl ov4_021EA598
+	bl TableLookup
 	cmp r0, #0
 	beq _021FF400
 	ldr r1, [r0, #4]
@@ -431,14 +431,14 @@ ov4_021FF3C0: ; 0x021FF3C0
 	ldmia sp!, {r3, r4, r5, pc}
 _021FF400:
 	mov r0, r4
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [sp]
 	mov r1, #1
 	mov r0, r5
 	str r1, [sp, #4]
 	bl ov4_021FE0E0
 	add r1, sp, #0
-	bl ov4_021EA44C
+	bl TableEnter
 	ldr r0, [sp]
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
@@ -452,7 +452,7 @@ ov4_021FF430: ; 0x021FF430
 	str r1, [sp]
 	bl ov4_021FE0E0
 	add r1, sp, #0
-	bl ov4_021EA598
+	bl TableLookup
 	movs r4, r0
 	bne _021FF468
 	ldr r0, _021FF4A0 ; =0x0221A03C
@@ -472,7 +472,7 @@ _021FF468:
 	mov r0, r5
 	bl ov4_021FE0E0
 	add r1, sp, #0
-	bl ov4_021EA4F4
+	bl TableRemove
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -570,7 +570,7 @@ _021FF58C:
 	str r0, [r7, #0x5cc]
 	bl current_time
 	bl srand
-	bl ov4_021EA8A4
+	bl SocketStartUp
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021FF5EC: .word Unk_ov4_0221A058
@@ -721,7 +721,7 @@ _021FF7CC:
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	cmp r0, r1
 	str r0, [r4, #0x4b0]
@@ -731,13 +731,13 @@ _021FF7CC:
 _021FF804:
 	add r1, sp, #0
 	mov r2, #8
-	bl ov4_021EAD78
+	bl connect
 	cmp r0, #0
 	addeq sp, sp, #0x88
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
 	ldr r0, [r4, #0x4b0]
-	bl ov4_021EACF0
+	bl closesocket
 	mvn r0, #0
 	str r0, [r4, #0x4b0]
 	mov r0, #3
@@ -912,7 +912,7 @@ _021FFA4C:
 	mov r2, r8
 	mov r3, r5
 	sub r7, r7, #1
-	bl ov4_021EAE48
+	bl send
 	mov r6, r0
 	cmp r6, #0
 	bgt _021FFAB8
@@ -1071,7 +1071,7 @@ _021FFC74:
 	mov r3, #0
 	strb r0, [r1, #1]
 	ldr r0, [r5, #0x4b0]
-	bl ov4_021EAE48
+	bl send
 	cmp r0, #0
 	bgt _021FFCD8
 	mov r0, r5
@@ -1139,24 +1139,24 @@ ov4_021FFD7C: ; 0x021FFD7C
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	mov r4, #0
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	ble _021FFDCC
 _021FFDA0:
 	ldr r0, [r5, #8]
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r1, [r0, #0]
 	mov r0, r5
 	bl ov4_021FF430
 	ldr r0, [r5, #8]
 	add r4, r4, #1
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r4, r0
 	blt _021FFDA0
 _021FFDCC:
 	ldr r0, [r5, #8]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, #0
 	str r0, [r5, #8]
 	ldmia sp!, {r3, r4, r5, pc}
@@ -1178,7 +1178,7 @@ _021FFDF8:
 	sub r1, r1, #1
 	cmp r0, r1
 	beq _021FFE18
-	bl ov4_021EACF0
+	bl closesocket
 _021FFE18:
 	mvn r1, #0
 	mov r0, r4
@@ -1205,7 +1205,7 @@ ov4_021FFE44: ; 0x021FFE44
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	beq _021FFE70
-	bl ov4_021E9B50
+	bl ArrayFree
 _021FFE70:
 	mov r0, #0
 	str r0, [r4, #4]
@@ -1320,7 +1320,7 @@ ov4_021FFFCC: ; 0x021FFFCC
 	ldr r0, [r8, #8]
 	mov r7, r1
 	mov r6, r2
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	cmp r4, #0
 	mov r5, #0
@@ -1329,7 +1329,7 @@ ov4_021FFFCC: ; 0x021FFFCC
 _021FFFF8:
 	ldr r0, [r8, #8]
 	mov r1, r5
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r0, [r0, #4]
 	cmp r0, #0
 	beq _0220003C
@@ -1498,7 +1498,7 @@ _02200248:
 	tst r0, #0x40
 	beq _02200378
 	ldr r0, [sl, #8]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	cmp r4, #0
 	mov r5, #0
@@ -1507,7 +1507,7 @@ _02200248:
 _02200270:
 	ldr r0, [sl, #8]
 	mov r1, r5
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r1, r0
 	ldr r0, [r1, #4]
 	cmp r0, #0
@@ -1829,7 +1829,7 @@ _022006D4:
 	mov r0, #8
 	mov r2, #0
 	str r1, [r7, #0x484]
-	bl ov4_021E9A8C
+	bl ArrayNew
 	cmp r0, #0
 	str r0, [r7, #8]
 	addeq sp, sp, #8
@@ -1839,7 +1839,7 @@ _022006D4:
 	sub r6, r6, #1
 _0220071C:
 	ldr r0, [r7, #8]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r1, [r7, #0x484]
 	cmp r1, r0
 	ble _0220079C
@@ -1862,18 +1862,18 @@ _02200738:
 	str r0, [sp]
 	ldr r0, [r7, #8]
 	mov r1, r8
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	add r1, sb, #1
 	ldr r0, [r7, #8]
 	add r5, r5, r1
 	sub r6, r6, r1
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r1, [r7, #0x484]
 	cmp r1, r0
 	bgt _02200738
 _0220079C:
 	ldr r0, [r7, #8]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r1, [r7, #0x484]
 	cmp r1, r0
 	bgt _022008FC
@@ -2017,7 +2017,7 @@ _02200994:
 	mov r1, r7
 	mov r0, #8
 	mov r2, #0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	cmp r0, #0
 	str r0, [sl, #8]
 	addeq sp, sp, #8
@@ -2049,7 +2049,7 @@ _022009CC:
 	str r0, [sp]
 	ldr r0, [sl, #8]
 	mov r1, fp
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	add r0, r5, #1
 	add r6, r6, #1
 	cmp r6, r7
@@ -2457,7 +2457,7 @@ _02200FD0:
 _02200FE8:
 	ldr r0, [sb, #0x4b0]
 	mov r3, r6
-	bl ov4_021EAE48
+	bl send
 	cmp r0, #0
 	bgt _02201048
 	mov r0, #3
@@ -2528,7 +2528,7 @@ ov4_022010CC: ; 0x022010CC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r0, [r6, #0x4b0]
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -2538,7 +2538,7 @@ ov4_022010CC: ; 0x022010CC
 	add r1, r1, r5
 	rsb r2, r5, #0x1000
 	mov r3, #0
-	bl ov4_021EAE04
+	bl recv
 	add r1, r0, #1
 	cmp r1, #1
 	bhi _02201120
@@ -2659,7 +2659,7 @@ _022011E8:
 	ldr r2, [sp, #0x50]
 	mov r1, r4
 	mov r3, #0
-	bl ov4_021EAE48
+	bl send
 	cmp r0, #0
 	movlt r0, #3
 	movge r0, #0
@@ -2727,7 +2727,7 @@ ov4_02201394: ; 0x02201394
 	mov sl, r0
 	str r1, [sp, #8]
 	ldr r0, [sl, #0x4b0]
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	beq _0220145C
 	ldr r6, _022014B0 ; =0x000005DB
@@ -2743,7 +2743,7 @@ _022013D0:
 	mov r1, r7
 	mov r2, r6
 	mov r3, fp
-	bl ov4_021EAE18
+	bl recvfrom
 	cmp r0, r4
 	beq _0220144C
 	ldrh r2, [sp, #0xe]
@@ -2770,7 +2770,7 @@ _022013D0:
 	bl ov4_021FF144
 _0220144C:
 	ldr r0, [sl, #0x4b0]
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	bne _022013D0
 _0220145C:
@@ -2780,7 +2780,7 @@ _0220145C:
 	cmp r0, #0x7d0
 	bls _022014A4
 	ldr r0, [sl, #0x4b0]
-	bl ov4_021EACF0
+	bl closesocket
 	mvn r0, #0
 	str r0, [sl, #0x4b0]
 	mov r0, #1

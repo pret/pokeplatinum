@@ -5,8 +5,8 @@
 .public atoi
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EA8AC
-.public ov4_021EAF48
+.public goastrdup
+.public time
 .public ov4_021EC564
 .public ov4_021ECFC0
 .public ov4_021ED09C

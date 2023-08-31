@@ -1,7 +1,7 @@
 .public __msl_assertion_failed
 .public DWCi_GsFree
-.public ov4_021EA898
-.public ov4_021EA8AC
+.public msleep
+.public goastrdup
 .public ov60_0221FEB8
 .public ov60_0221FFD4
 .public ov60_022206D4

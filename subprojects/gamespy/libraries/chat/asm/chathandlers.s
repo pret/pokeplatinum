@@ -1239,14 +1239,14 @@ _0224E630:
 	moveq r0, #0
 	beq _0224E698
 	mov r0, r6
-	bl ov4_021EA8AC
+	bl goastrdup
 _0224E698:
 	str r0, [r4, #8]
 	cmp r5, #0
 	moveq r0, #0
 	beq _0224E6B0
 	mov r0, r5
-	bl ov4_021EA8AC
+	bl goastrdup
 _0224E6B0:
 	str r0, [r4, #0xc]
 	mov r0, r7
@@ -1489,7 +1489,7 @@ _0224E9E0:
 	cmp r0, #0
 	beq _0224EA54
 	mov r0, r8
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r7, #4]
 	str r0, [r1, r6, lsl #2]
 	ldr r0, [r7, #4]
@@ -1598,7 +1598,7 @@ _0224EB64:
 	cmp r0, #0
 	beq _0224EBD8
 	mov r0, r8
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r7, #4]
 	str r0, [r1, r6, lsl #2]
 	ldr r0, [r7, #4]
@@ -4416,7 +4416,7 @@ _022512C4:
 	b _022512F4
 _022512E8:
 	mov r0, r4
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [sb, sl, lsl #2]
 _022512F4:
 	add sl, sl, #1
@@ -5618,19 +5618,19 @@ _0225234C:
 	ldr r0, [r1, #8]
 	ldr r4, [r1, #0x14]
 	ldr r5, [r1, #0xc]
-	bl ov4_021EA8AC
+	bl goastrdup
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	str r0, [r6, #0]
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r4
-	bl ov4_021EA8AC
+	bl goastrdup
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	str r0, [r6, #4]
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r5
-	bl ov4_021EA8AC
+	bl goastrdup
 	add sp, sp, #0x18
 	str r0, [r6, #8]
 	cmp r0, #0
@@ -5747,7 +5747,7 @@ _02252590:
 	cmp r1, #0x40
 	cmpne r1, #0x2b
 	addeq r0, r0, #1
-	bl ov4_021EA8AC
+	bl goastrdup
 	movs r7, r0
 	addeq sp, sp, #0xc
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
@@ -6807,7 +6807,7 @@ _022533D0:
 	ldr r5, _022534B4 ; =0x0225A898
 	b _0225344C
 _0225342C:
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r8, sb, lsl #2]
 	cmp r0, #0
 	beq _0225345C

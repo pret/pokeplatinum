@@ -17,7 +17,7 @@ ov60_02221908: ; 0x02221908
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, r4
 	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
@@ -59,7 +59,7 @@ ov60_02221984: ; 0x02221984
 	ldr r6, [r0, #0x13c]
 	mov sl, #0
 	ldr r0, [r6, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	movs sb, r0
 	moveq r0, sl
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -72,7 +72,7 @@ ov60_02221984: ; 0x02221984
 _022219BC:
 	ldr r0, [r6, #0]
 	mov r1, r8
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r7, r0
 	ldr r0, [r7, #0]
 	cmp r0, #0
@@ -126,7 +126,7 @@ ov60_02221A30: ; 0x02221A30
 	str r0, [r1, #0]
 _02221A78:
 	ldr r0, [r7, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov sb, r0
 	cmp sb, #0
 	mov r8, #0
@@ -136,7 +136,7 @@ _02221A78:
 _02221A98:
 	ldr r0, [r7, #0]
 	mov r1, r8
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r6, r0
 	ldr r0, [r6, #0]
 	cmp r0, #0
@@ -165,7 +165,7 @@ _02221AD4:
 	add sl, sl, r0
 	ldr r0, [r4, #0x140]
 	mov r1, r8
-	bl ov4_021E9BC4
+	bl ArrayNth
 	movs r6, r0
 	bne _02221B30
 	ldr r1, _02221BC0 ; =0x02229444
@@ -367,12 +367,12 @@ _02221D78:
 	str r0, [r4, #0x154]
 	ldr r0, [r4, #0x13c]
 	ldr r0, [r0, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r8, r0
 	mov r1, r8
 	mov r0, #0x10
 	mov r2, #0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	cmp r0, #0
 	str r0, [r4, #0x140]
 	addeq sp, sp, #0x10
@@ -387,7 +387,7 @@ _02221DF8:
 	ldr r0, [r4, #0x13c]
 	mov r1, r7
 	ldr r0, [r0, #0]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	str r5, [r6, #0]
 	str r0, [sp]
 	mov r0, r6
@@ -402,13 +402,13 @@ _02221DF8:
 _02221E34:
 	ldr r0, [r4, #0x140]
 	mov r1, r7
-	bl ov4_021E9BC4
+	bl ArrayNth
 	bl ov60_02221CE0
 	subs r7, r7, #1
 	bpl _02221E34
 _02221E4C:
 	ldr r0, [r4, #0x140]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, #0
 	add sp, sp, #0x10
 	str r0, [r4, #0x140]
@@ -416,17 +416,17 @@ _02221E4C:
 _02221E64:
 	ldr r0, [r4, #0x140]
 	mov r1, r6
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	add r7, r7, #1
 	cmp r7, r8
 	blt _02221DF8
 _02221E7C:
 	ldr r0, [r4, #0x13c]
 	ldr r0, [r0, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r5, r0
 	ldr r0, [r4, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r5, r0
 	beq _02221EB0
 	ldr r0, _02221ED4 ; =0x02229564
@@ -456,7 +456,7 @@ ov60_02221EDC: ; 0x02221EDC
 	ldr r0, [r6, #0x140]
 	cmp r0, #0
 	beq _02221F30
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r5, r0
 	cmp r5, #0
 	mov r4, #0
@@ -464,14 +464,14 @@ ov60_02221EDC: ; 0x02221EDC
 _02221F04:
 	ldr r0, [r6, #0x140]
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	bl ov60_02221CE0
 	add r4, r4, #1
 	cmp r4, r5
 	blt _02221F04
 _02221F20:
 	ldr r0, [r6, #0x140]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, #0
 	str r0, [r6, #0x140]
 _02221F30:
@@ -958,10 +958,10 @@ _022225B8:
 _022225D8:
 	ldr r0, [sl, #0x13c]
 	ldr r0, [r0, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	ldr r0, [sl, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r4, r0
 	beq _0222260C
 	ldr r0, _022227CC ; =0x02229564
@@ -980,7 +980,7 @@ _0222260C:
 	bl __msl_assertion_failed
 _0222262C:
 	ldr r0, [sl, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r1, [sl, #0x144]
 	cmp r1, r0
 	ble _02222654
@@ -991,7 +991,7 @@ _0222262C:
 	bl __msl_assertion_failed
 _02222654:
 	ldr r0, [sl, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r1, [sl, #0x5c]
 	mov sb, r0
 	cmp r1, #0
@@ -1023,7 +1023,7 @@ _022226AC:
 	mov fp, #1
 _022226CC:
 	ldr r0, [sl, #0x140]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	movs r8, r0
 	bne _022226F0
 	mov r0, r7

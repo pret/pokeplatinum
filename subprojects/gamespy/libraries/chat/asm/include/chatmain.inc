@@ -9,10 +9,10 @@
 .public strcasecmp
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EA7F4
-.public ov4_021EA898
-.public ov4_021EA8A4
-.public ov4_021EA8A8
+.public MD5Digest
+.public msleep
+.public SocketStartUp
+.public SocketShutDown
 .public ciInitCallbacks
 .public ciCleanupCallbacks
 .public ciAddCallback_

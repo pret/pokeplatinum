@@ -226,7 +226,7 @@ _021FDA8C:
 	ldr r0, [r5, #0x20]
 	add r1, sp, #0x10
 	mov r3, #0
-	bl ov4_021EAE5C
+	bl sendto
 	add sp, sp, #0x110
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -247,7 +247,7 @@ ov4_021FDABC: ; 0x021FDABC
 	cmp r0, #1
 	ldmneia sp!, {r4, r5, r6, pc}
 _021FDAE4:
-	bl ov4_021EA8A4
+	bl SocketStartUp
 	stmia r6, {r4, r5}
 	mov r2, #0
 	ldr r3, [sp, #0x10]
@@ -258,7 +258,7 @@ _021FDAE4:
 	mov r0, #2
 	mov r1, r0
 	str r2, [r6, #0x28]
-	bl ov4_021EACDC
+	bl socket
 	str r0, [r6, #0x20]
 	add r0, r6, #0x14
 	bl ov4_021FD8C8
@@ -291,7 +291,7 @@ ov4_021FDB54: ; 0x021FDB54
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x20]
-	bl ov4_021EACF0
+	bl closesocket
 	mvn r1, #0
 	add r0, r4, #0x14
 	str r1, [r4, #0x20]
@@ -475,7 +475,7 @@ ov4_021FDD9C: ; 0x021FDD9C
 	ldrne r7, [sb, #0x24]
 	ldreq r7, [sb, #0x20]
 	mov r0, r7
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	addeq sp, sp, #0x14
 	addeq sp, sp, #0x800
@@ -489,7 +489,7 @@ _021FDDD8:
 	mov r0, r7
 	mov r3, #0
 	str r4, [sp, #4]
-	bl ov4_021EAE18
+	bl recvfrom
 	mov r5, r0
 	mvn r0, #0
 	cmp r5, r0
@@ -568,7 +568,7 @@ _021FDF04:
 	bne _021FDE2C
 _021FDF10:
 	mov r0, r7
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	bne _021FDDD8
 	add sp, sp, #0x14

@@ -96,7 +96,7 @@ _021FE9A8:
 	bl ov4_021FFDE0
 _021FE9B8:
 	ldr r0, [r6, #4]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	ldrne r0, [r4, #0x10]
 	cmpne r0, #0
@@ -322,7 +322,7 @@ _021FEC8C:
 	b _021FECDC
 _021FECCC:
 	mov r0, r4
-	bl ov4_021EA898
+	bl msleep
 	mov r0, sl
 	bl ServerBrowserThink
 _021FECDC:

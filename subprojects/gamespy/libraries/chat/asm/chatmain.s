@@ -345,7 +345,7 @@ _02253900:
 	mov r1, r0
 	add r2, sp, #8
 	add r0, r4, #0x550
-	bl ov4_021EA7F4
+	bl MD5Digest
 	ldr r0, [r4, #0x8a8]
 	cmp r0, #1
 	bne _02253948
@@ -674,7 +674,7 @@ _02253DAC:
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _02253DC4:
-	bl ov4_021EA8A4
+	bl SocketStartUp
 	ldr r0, _022541BC ; =0x000008B4
 	bl DWCi_GsMalloc
 	movs r4, r0
@@ -798,7 +798,7 @@ _02253F28:
 	mov r0, r4
 	bne _02253FA0
 	bl DWCi_GsFree
-	bl ov4_021EA8A8
+	bl SocketShutDown
 	add sp, sp, #0xc
 	mov r0, r7
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -810,7 +810,7 @@ _02253FA0:
 	bl ciCleanupChannels
 	mov r0, r4
 	bl DWCi_GsFree
-	bl ov4_021EA8A8
+	bl SocketShutDown
 	add sp, sp, #0xc
 	mov r0, r7
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -826,7 +826,7 @@ _02253FCC:
 	bl ciCleanupChannels
 	mov r0, r4
 	bl DWCi_GsFree
-	bl ov4_021EA8A8
+	bl SocketShutDown
 	add sp, sp, #0xc
 	mov r0, r7
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -845,7 +845,7 @@ _02254008:
 	bl ciCleanupChannels
 	mov r0, r4
 	bl DWCi_GsFree
-	bl ov4_021EA8A8
+	bl SocketShutDown
 	add sp, sp, #0xc
 	mov r0, r7
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -901,7 +901,7 @@ _022540FC:
 	mov r1, r6
 	bl ciThink
 	mov r0, r5
-	bl ov4_021EA898
+	bl msleep
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	bne _022540FC
@@ -1145,7 +1145,7 @@ _0225444C:
 	bl ciSocketDisconnect
 	mov r0, r4
 	bl DWCi_GsFree
-	bl ov4_021EA8A8
+	bl SocketShutDown
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02254474: .word Unk_ov66_0225AAA0
@@ -1213,7 +1213,7 @@ _02254538:
 	mov r1, r6
 	bl ciThink
 	mov r0, r5
-	bl ov4_021EA898
+	bl msleep
 	mov r0, r4
 	mov r1, r6
 	bl ciCheckForID
@@ -1303,7 +1303,7 @@ _02254678:
 	mov r1, r6
 	bl ciThink
 	mov r0, r5
-	bl ov4_021EA898
+	bl msleep
 	mov r0, r4
 	mov r1, r6
 	bl ciCheckForID
@@ -1741,7 +1741,7 @@ _02254CA4:
 	mov r1, r4
 	bl ciThink
 	mov r0, r5
-	bl ov4_021EA898
+	bl msleep
 	mov r0, r8
 	mov r1, r4
 	bl ciCheckForID
@@ -1770,7 +1770,7 @@ _02254D10:
 	mov r1, r5
 	bl ciThink
 	mov r0, r4
-	bl ov4_021EA898
+	bl msleep
 	mov r0, r8
 	mov r1, r5
 	bl ciCheckForID
@@ -2130,7 +2130,7 @@ _022551F8:
 	mov r1, r6
 	bl ciThink
 	mov r0, r5
-	bl ov4_021EA898
+	bl msleep
 	mov r0, r4
 	mov r1, r6
 	bl ciCheckForID
@@ -2651,7 +2651,7 @@ _02255934:
 	mov r1, r5
 	bl ciThink
 	mov r0, r4
-	bl ov4_021EA898
+	bl msleep
 	mov r0, sb
 	mov r1, r5
 	bl ciCheckForID

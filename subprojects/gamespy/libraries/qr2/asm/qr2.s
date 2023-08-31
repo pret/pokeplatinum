@@ -196,7 +196,7 @@ ov4_021FBFD4: ; 0x021FBFD4
 	addeq sp, sp, #0x14
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	ldr r0, [sl]
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	addeq sp, sp, #0x14
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -214,7 +214,7 @@ _021FC028:
 	mov r1, r7
 	mov r2, r6
 	mov r3, fp
-	bl ov4_021EAE18
+	bl recvfrom
 	mov r2, r0
 	cmp r2, r4
 	beq _021FC064
@@ -225,7 +225,7 @@ _021FC028:
 	bl qr2_parse_queryA
 _021FC064:
 	ldr r0, [sl]
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	bne _021FC028
 	add sp, sp, #0x14
@@ -360,7 +360,7 @@ _021FC218:
 	ldrne r1, [r4, #0xc4]
 	cmpne r1, #0
 	beq _021FC234
-	bl ov4_021EACF0
+	bl closesocket
 _021FC234:
 	mvn r0, #0
 	str r0, [r4, #0]
@@ -369,7 +369,7 @@ _021FC234:
 	ldr r0, [r4, #0xc4]
 	cmp r0, #0
 	beq _021FC254
-	bl ov4_021EA8A8
+	bl SocketShutDown
 _021FC254:
 	ldr r0, _021FC270 ; =0x022197F4
 	cmp r4, r0
@@ -445,7 +445,7 @@ qr2_buffer_addA: ; 0x021FC2D4
 	arm_func_start ov4_021FC330
 ov4_021FC330: ; 0x021FC330
 	stmfd sp!, {r4, r5, r6, lr}
-	bl ov4_021EABBC
+	bl getlocalhost
 	cmp r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	ldr r1, _021FC39C ; =0x0221B5F8
@@ -1368,7 +1368,7 @@ _021FCFB8:
 	ldr r2, [sp, #0x80c]
 	add r1, sp, #0xc
 	mov r3, #0
-	bl ov4_021EAE5C
+	bl sendto
 	add sp, sp, #0x810
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _021FCFF4:
@@ -1539,7 +1539,7 @@ _021FD248:
 	ldr r2, [sp, #0x80c]
 	add r1, sp, #0xc
 	mov r3, #0
-	bl ov4_021EAE5C
+	bl sendto
 	add sp, sp, #0x810
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
@@ -1566,7 +1566,7 @@ ov4_021FD274: ; 0x021FD274
 	ldr r2, [sp, #0x808]
 	add r1, sp, #8
 	mov r3, #0
-	bl ov4_021EAE5C
+	bl sendto
 	bl current_time
 	str r0, [r4, #0xb0]
 	add sp, sp, #0xc
@@ -1692,7 +1692,7 @@ _021FD46C:
 	ldr r2, [sp, #0x824]
 	add r1, sp, #0x24
 	mov r3, #0
-	bl ov4_021EAE5C
+	bl sendto
 	bl current_time
 	str r0, [sl, #0xac]
 	str r0, [sl, #0xb0]

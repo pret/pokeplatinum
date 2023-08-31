@@ -1,7 +1,7 @@
 .public memmove
 .public current_time
-.public ov4_021EAE04
-.public ov4_021EAE48
+.public recv
+.public send
 .public GOAGetLastError
 .public ov60_0221FE2C
 .public ov60_02220130

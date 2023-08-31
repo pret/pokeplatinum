@@ -52,7 +52,7 @@ ov4_021EE348: ; 0x021EE348
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	str r0, [r4, #0x204]
 	cmp r0, r1
@@ -70,7 +70,7 @@ ov4_021EE348: ; 0x021EE348
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _021EE3B4:
 	mov r1, #0
-	bl ov4_021EA924
+	bl SetSockBlocking
 	cmp r0, #0
 	bne _021EE3F0
 	ldr r2, _021EE690 ; =0x022181D4
@@ -93,7 +93,7 @@ _021EE3F0:
 	strb r0, [sp, #5]
 	ldr r0, [r4, #0x204]
 	mov r2, #8
-	bl ov4_021EAD18
+	bl bind
 	mvn r1, #0
 	cmp r0, r1
 	mov r1, #5
@@ -110,7 +110,7 @@ _021EE3F0:
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _021EE44C:
 	ldr r0, [r4, #0x204]
-	bl ov4_021EADC4
+	bl listen
 	mvn r1, #0
 	cmp r0, r1
 	bne _021EE48C
@@ -131,7 +131,7 @@ _021EE48C:
 	ldr r0, [r4, #0x204]
 	add r1, sp, #4
 	add r2, sp, #0
-	bl ov4_021EAEF0
+	bl getsockname
 	mvn r1, #0
 	cmp r0, r1
 	bne _021EE4DC
@@ -159,7 +159,7 @@ _021EE4F8:
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	str r0, [r4, #0x1d4]
 	cmp r0, r1
@@ -177,7 +177,7 @@ _021EE4F8:
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _021EE544:
 	mov r1, #0
-	bl ov4_021EA924
+	bl SetSockBlocking
 	cmp r0, #0
 	bne _021EE580
 	ldr r2, _021EE690 ; =0x022181D4
@@ -231,7 +231,7 @@ _021EE600:
 	strh r0, [sp, #6]
 	ldr r0, [r4, #0x1d4]
 	mov r2, #8
-	bl ov4_021EAD78
+	bl connect
 	mvn r1, #0
 	cmp r0, r1
 	bne _021EE674
@@ -345,7 +345,7 @@ _021EE75C:
 	mov r2, #0x1f
 	bl ov4_021F5820
 	add r0, r4, #0x144
-	bl ov4_021EA8E0
+	bl _strlwr
 	mov r0, #0x308
 	bl DWCi_GsMalloc
 	movs r4, r0
@@ -458,7 +458,7 @@ ov4_021EE900: ; 0x021EE900
 	mov r1, r0
 	mov r0, r7
 	add r2, r5, #0xa1
-	bl ov4_021EA7F4
+	bl MD5Digest
 	ldrsb r0, [r5, #0xc2]
 	cmp r0, #0
 	addne r0, r5, #0xc2
@@ -491,7 +491,7 @@ _021EE990:
 	mov r1, r0
 	add r0, sp, #0x87
 	add r2, sp, #0x14
-	bl ov4_021EA7F4
+	bl MD5Digest
 	ldr r0, [r4, #0x100]
 	cmp r0, #0
 	beq _021EEA10
@@ -695,7 +695,7 @@ ov4_021EECA4: ; 0x021EECA4
 	bl strlen
 	mov r7, r0
 	ldr r0, _021EEEFC ; =0x79707367
-	bl ov4_021EB018
+	bl Util_RandSeed
 	cmp r7, #0
 	mov r6, #0
 	bls _021EED18
@@ -705,7 +705,7 @@ ov4_021EECA4: ; 0x021EECA4
 _021EECE8:
 	mov r0, r4
 	mov r1, fp
-	bl ov4_021EB034
+	bl Util_RandInt
 	add r1, r5, r6
 	add r1, r1, #0x100
 	add r6, r6, #1
@@ -793,7 +793,7 @@ _021EED18:
 	bl strlen
 	mov r6, r0
 	ldr r0, _021EEEFC ; =0x79707367
-	bl ov4_021EB018
+	bl Util_RandSeed
 	cmp r6, #0
 	mov r8, r4
 	bls _021EEE94
@@ -802,7 +802,7 @@ _021EED18:
 _021EEE64:
 	mov r0, r4
 	mov r1, fp
-	bl ov4_021EB034
+	bl Util_RandInt
 	add r1, sb, r8
 	add r1, r1, #0x200
 	add r8, r8, #1
@@ -1196,7 +1196,7 @@ _021EF3F8:
 	mov r1, r0
 	add r0, sp, #0xa0
 	add r2, sp, #0x2d
-	bl ov4_021EA7F4
+	bl MD5Digest
 	ldr r1, _021EF5E8 ; =0x0221851C
 	mov r0, r6
 	add r2, sp, #0xa0
@@ -1464,9 +1464,9 @@ _021EF7C0:
 	cmp r0, r1
 	beq _021EF80C
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, [r4, #0x1d4]
-	bl ov4_021EACF0
+	bl closesocket
 	mvn r0, #0
 	str r0, [r4, #0x1d4]
 _021EF80C:
@@ -1475,9 +1475,9 @@ _021EF80C:
 	cmp r0, r1
 	beq _021EF834
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, [r4, #0x204]
-	bl ov4_021EACF0
+	bl closesocket
 	mvn r0, #0
 	str r0, [r4, #0x204]
 _021EF834:

@@ -314,9 +314,9 @@ ov4_021F1B0C: ; 0x021F1B0C
 _021F1B4C:
 	ldr r0, [r5, #4]
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, [r5, #4]
-	bl ov4_021EACF0
+	bl closesocket
 	ldr r0, [r5, #0x18]
 	bl DWCi_GsFree
 	mov r0, #0

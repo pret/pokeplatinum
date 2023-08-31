@@ -3,8 +3,8 @@
 .public DWCi_GsMalloc
 .public DWCi_GsRealloc
 .public DWCi_GsFree
-.public ov4_021EACF0
-.public ov4_021EAD04
+.public closesocket
+.public shutdown
 .public ov60_0221FEB8
 .public ov60_022200D0
 .public ov60_02220504

@@ -275,9 +275,9 @@ _02220FAC:
 	cmp r0, r1
 	beq _02221040
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, [r4, #0x48]
-	bl ov4_021EACF0
+	bl closesocket
 _02221040:
 	add r0, r4, #0x50
 	bl ov60_022200D0
@@ -460,9 +460,9 @@ _02221254:
 	str r0, [r4, #0x24]
 	ldr r0, [r4, #0x48]
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, [r4, #0x48]
-	bl ov4_021EACF0
+	bl closesocket
 	mvn r1, #0
 	add r0, r4, #0x50
 	str r1, [r4, #0x48]

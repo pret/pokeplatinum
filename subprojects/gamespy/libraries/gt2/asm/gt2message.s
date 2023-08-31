@@ -110,7 +110,7 @@ ov4_021F8908: ; 0x021F8908
 	mov r4, r0
 	ldr r0, [r4, #0x60]
 	mov r7, r1
-	bl ov4_021E9BBC
+	bl ArrayLength
 	movs r5, r0
 	moveq r0, #1
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -120,7 +120,7 @@ ov4_021F8908: ; 0x021F8908
 _021F8934:
 	ldr r0, [r4, #0x60]
 	mov r1, r6
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldrh r0, [r0, #8]
 	mov r1, r7
 	bl ov4_021F8824
@@ -138,13 +138,13 @@ _021F895C:
 _021F8974:
 	ldr r0, [r4, #0x60]
 	mov r1, r6
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	cmp r6, #0
 	sub r6, r6, #1
 	bne _021F8974
 _021F898C:
 	ldr r0, [r4, #0x60]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	movs r6, r0
 	bne _021F89AC
 	mov r0, #0
@@ -154,7 +154,7 @@ _021F898C:
 _021F89AC:
 	ldr r0, [r4, #0x60]
 	mov r1, #0
-	bl ov4_021E9BC4
+	bl ArrayNth
 	cmp r6, #0
 	ldr r5, [r0, #0]
 	mov r7, #0
@@ -162,7 +162,7 @@ _021F89AC:
 _021F89C8:
 	ldr r0, [r4, #0x60]
 	mov r1, r7
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r1, [r0, #0]
 	add r7, r7, #1
 	sub r1, r1, r5
@@ -192,7 +192,7 @@ ov4_021F8A04: ; 0x021F8A04
 	movne r0, #1
 	ldmneia sp!, {r3, r4, r5, r6, pc}
 	ldr r0, [r6, #0x9c]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	beq _021F8A6C
 	mov r1, #0
@@ -238,7 +238,7 @@ ov4_021F8A94: ; 0x021F8A94
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _021F8AD0:
 	ldr r0, [r6, #0x9c]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	beq _021F8B10
 	mov ip, #1
@@ -624,7 +624,7 @@ ov4_021F8FD4: ; 0x021F8FD4
 	mov r7, r2
 	mov r6, r3
 	ldr r5, [sp, #0x34]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	cmp r4, #0
 	mov sl, #0
@@ -632,7 +632,7 @@ ov4_021F8FD4: ; 0x021F8FD4
 _021F9008:
 	ldr r0, [sb, #0x5c]
 	mov r1, sl
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldrh r0, [r0, #0xc]
 	cmp r0, r7
 	bne _021F9034
@@ -666,9 +666,9 @@ _021F9050:
 	str r0, [sp]
 	ldr r0, [sb, #0x5c]
 	ldr r2, _021F9184 ; =ov4_021F8FC0
-	bl ov4_021E9D30
+	bl ArrayInsertSorted
 	ldr r0, [sb, #0x5c]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	add r1, r4, #1
 	cmp r1, r0
 	movne r0, #1
@@ -695,13 +695,13 @@ _021F9050:
 _021F90F8:
 	ldr r0, [sb, #0x5c]
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldrh r0, [r0, #0xc]
 	cmp r0, r7
 	bne _021F9170
 	ldr r0, [sb, #0x5c]
 	sub r1, r4, #1
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r4, r0
 	ldrh r1, [r4, #0xc]
 	mov r0, r7
@@ -741,9 +741,9 @@ ov4_021F9188: ; 0x021F9188
 	ldmia r1, {r4, r5}
 	mov r1, r2
 	mov r8, #0
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	ldr r0, [sb, #0x5c]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r6, r0
 	cmp r6, #0
 	mov r7, r8
@@ -751,7 +751,7 @@ ov4_021F9188: ; 0x021F9188
 _021F91BC:
 	ldr r0, [sb, #0x5c]
 	mov r1, r7
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r1, [r0, #0]
 	cmp r1, r4
 	ble _021F91EC
@@ -779,13 +779,13 @@ ov4_021F920C: ; 0x021F920C
 	mov r6, r0
 _021F9214:
 	ldr r0, [r6, #0x5c]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	subs r5, r0, #1
 	bmi _021F9284
 _021F9224:
 	ldr r0, [r6, #0x5c]
 	mov r1, r5
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r4, r0
 	ldrh r1, [r4, #0xc]
 	ldrh r0, [r6, #0x66]
@@ -971,7 +971,7 @@ _021F9494:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _021F94AC:
 	ldr r0, [r4, #0x60]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r8, r0
 	cmp r8, #0
 	mov sb, #0
@@ -979,7 +979,7 @@ _021F94AC:
 _021F94C4:
 	ldr r0, [r4, #0x60]
 	mov r1, sb
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r5, r0
 	ldrh r0, [r5, #8]
 	mov r1, r6
@@ -1401,7 +1401,7 @@ ov4_021F9A68: ; 0x021F9A68
 	sub sp, sp, #0x5f0
 	mov sl, r0
 	ldr r0, [sl]
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	beq _021F9B88
 	mvn r5, #0xe
@@ -1418,7 +1418,7 @@ _021F9AA0:
 	ldr r2, _021F9B94 ; =0x000005DC
 	mov r1, r7
 	mov r3, #0
-	bl ov4_021EAE18
+	bl recvfrom
 	mov r2, r0
 	cmp r2, r6
 	bne _021F9B34
@@ -1470,7 +1470,7 @@ _021F9B34:
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021F9B78:
 	ldr r0, [sl]
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	bne _021F9AA0
 _021F9B88:
@@ -1499,13 +1499,13 @@ ov4_021F9B98: ; 0x021F9B98
 	bl current_time
 	str r0, [sp, #0xc]
 	ldr r0, [r5, #0x60]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	ldr r0, [r5, #0x60]
 	add r1, sp, #0
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	ldr r0, [r5, #0x60]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	add r1, r4, #1
 	cmp r1, r0
 	moveq r0, #1
@@ -1575,7 +1575,7 @@ ov4_021F9CD0: ; 0x021F9CD0
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r0, [r5, #0x60]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	cmp r4, #0
 	bgt _021F9D00
@@ -1587,7 +1587,7 @@ ov4_021F9CD0: ; 0x021F9CD0
 _021F9D00:
 	ldr r0, [r5, #0x60]
 	sub r1, r4, #1
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldmia r0, {r1, r2}
 	ldr r3, [r5, #0x50]
 	mov r0, r5

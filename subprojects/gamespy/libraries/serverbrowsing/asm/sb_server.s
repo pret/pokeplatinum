@@ -50,7 +50,7 @@ ov4_021FE0E0: ; 0x021FE0E0
 	mov r1, #0x64
 	mov r2, #2
 	str ip, [sp, #4]
-	bl ov4_021EA224
+	bl TableNew2
 	ldr r1, _021FE134 ; =0x0221B750
 	str r0, [r1, #8]
 _021FE124:
@@ -72,12 +72,12 @@ ov4_021FE144: ; 0x021FE144
 	ldr r0, [r0, #8]
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl ov4_021EA3D8
+	bl TableCount
 	cmp r0, #0
 	ldmneia sp!, {r3, pc}
 	ldr r0, _021FE180 ; =0x0221B750
 	ldr r0, [r0, #8]
-	bl ov4_021EA364
+	bl TableFree
 	ldr r0, _021FE180 ; =0x0221B750
 	mov r1, #0
 	str r1, [r0, #8]
@@ -91,7 +91,7 @@ ov4_021FE184: ; 0x021FE184
 	stmfd sp!, {r4, lr}
 	ldr r4, [r0, #0]
 	ldr r0, [r4, #0x18]
-	bl ov4_021EA364
+	bl TableFree
 	mov r1, #0
 	mov r0, r4
 	str r1, [r4, #0x18]
@@ -114,7 +114,7 @@ ov4_021FE1A8: ; 0x021FE1A8
 	str r0, [sp, #4]
 	ldr r0, [r5, #0x18]
 	add r1, sp, #0
-	bl ov4_021EA44C
+	bl TableEnter
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
 	arm_func_end ov4_021FE1A8
@@ -159,7 +159,7 @@ _021FE24C:
 	str r5, [sp]
 	ldr r0, [r6, #0x18]
 	add r1, sp, #0
-	bl ov4_021EA598
+	bl TableLookup
 	cmp r0, #0
 	ldrne r4, [r0, #4]
 	mov r0, r4
@@ -623,7 +623,7 @@ ov4_021FE79C: ; 0x021FE79C
 	mov r1, r0
 	mov r2, #4
 	str ip, [sp, #4]
-	bl ov4_021EA224
+	bl TableNew2
 	str r0, [r4, #0x18]
 	cmp r0, #0
 	bne _021FE808

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021EA7B4
-ov4_021EA7B4: ; 0x021EA7B4
+	arm_func_start MD5Print
+MD5Print: ; 0x021EA7B4
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r5, #0
 	ldr r4, _021EA7F0 ; =0x022178D0
@@ -26,10 +26,10 @@ _021EA7CC:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021EA7F0: .word Unk_ov4_022178D0
-	arm_func_end ov4_021EA7B4
+	arm_func_end MD5Print
 
-	arm_func_start ov4_021EA7F4
-ov4_021EA7F4: ; 0x021EA7F4
+	arm_func_start MD5Digest
+MD5Digest: ; 0x021EA7F4
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x68
 	mov r6, r0
@@ -46,10 +46,10 @@ ov4_021EA7F4: ; 0x021EA7F4
 	bl MD5Final
 	add r0, sp, #0
 	mov r1, r4
-	bl ov4_021EA7B4
+	bl MD5Print
 	add sp, sp, #0x68
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021EA7F4
+	arm_func_end MD5Digest
 
 	.data
 

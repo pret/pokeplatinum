@@ -119,7 +119,7 @@ _021EC6C8:
 	b _021EC704
 _021EC6FC:
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 _021EC704:
 	mov sb, r0
 	cmp r4, #0x64
@@ -289,7 +289,7 @@ _021EC968:
 	mov r0, #0
 	str r0, [r5, #0x10]
 	add r0, r4, #8
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r5, #0x10]
 	ldr r0, [r5, #0x14]
 	add r0, r0, #1
@@ -434,7 +434,7 @@ _021ECB60:
 	moveq r0, #0
 	streqb r0, [sp, #0x38]
 	add r0, sp, #0x38
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r7, #8]
 	cmp r0, #0
 	bne _021ECBCC
@@ -459,7 +459,7 @@ _021ECBCC:
 	moveq r0, r4
 	streqb r0, [sp, #0x38]
 	add r0, sp, #0x38
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r7, #0xc]
 	cmp r0, #0
 	bne _021ECC2C

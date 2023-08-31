@@ -2,8 +2,8 @@
 .public memset
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EACF0
-.public ov4_021EAD04
+.public closesocket
+.public shutdown
 .public ov4_021EDF5C
 .public ov4_021EEF30
 .public ov4_021EFD24

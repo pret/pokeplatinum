@@ -9,10 +9,10 @@
 .public DWCi_GsMalloc
 .public DWCi_GsRealloc
 .public DWCi_GsFree
-.public ov4_021EA364
+.public TableFree
 .public current_time
-.public ov4_021EA898
-.public ov4_021EA8A4
+.public msleep
+.public SocketStartUp
 .public ov4_021EBF14
 .public ov4_021EBF54
 .public ov4_021EBF70

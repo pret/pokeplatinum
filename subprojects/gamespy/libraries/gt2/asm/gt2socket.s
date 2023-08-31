@@ -54,7 +54,7 @@ ov4_021FA3C4: ; 0x021FA3C4
 	str r3, [sp]
 	ldr r0, [r0, #0xc]
 	add r1, sp, #0
-	bl ov4_021EA598
+	bl TableLookup
 	cmp r0, #0
 	ldrne r0, [r0]
 	moveq r0, #0
@@ -70,7 +70,7 @@ ov4_021FA3FC: ; 0x021FA3FC
 	mov r6, r3
 	mov r5, r0
 	mov r7, r2
-	bl ov4_021EA8A4
+	bl SocketStartUp
 	cmp r6, #0
 	moveq r6, #0x10000
 	cmp r7, #0
@@ -106,7 +106,7 @@ ov4_021FA3FC: ; 0x021FA3FC
 	mov r1, #0x20
 	mov r2, #2
 	str ip, [sp, #4]
-	bl ov4_021EA224
+	bl TableNew2
 	str r0, [r4, #0xc]
 	cmp r0, #0
 	bne _021FA4C8
@@ -119,12 +119,12 @@ _021FA4C8:
 	mov r0, #4
 	ldr r2, _021FA618 ; =ov4_021FA3B4
 	mov r1, r0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	str r0, [r4, #0x10]
 	cmp r0, #0
 	bne _021FA500
 	ldr r0, [r4, #0xc]
-	bl ov4_021EA364
+	bl TableFree
 	mov r0, r4
 	bl DWCi_GsFree
 	add sp, sp, #0x1c
@@ -134,15 +134,15 @@ _021FA500:
 	mov r0, #2
 	mov r1, r0
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	str r0, [r4, #0]
 	cmp r0, r1
 	bne _021FA544
 	ldr r0, [r4, #0xc]
-	bl ov4_021EA364
+	bl TableFree
 	ldr r0, [r4, #0x10]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, r4
 	bl DWCi_GsFree
 	add sp, sp, #0x1c
@@ -166,16 +166,16 @@ _021FA544:
 	strh r0, [sp, #0x16]
 	ldr r0, [r4, #0]
 	mov r2, #8
-	bl ov4_021EAD18
+	bl bind
 	mvn r1, #0
 	cmp r0, r1
 	bne _021FA5C4
 	ldr r0, [r4, #0]
-	bl ov4_021EACF0
+	bl closesocket
 	ldr r0, [r4, #0xc]
-	bl ov4_021EA364
+	bl TableFree
 	ldr r0, [r4, #0x10]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, r4
 	bl DWCi_GsFree
 	add sp, sp, #0x1c
@@ -187,7 +187,7 @@ _021FA5C4:
 	ldr r0, [r4, #0]
 	add r1, sp, #0x14
 	add r2, sp, #0xc
-	bl ov4_021EAEF0
+	bl getsockname
 	ldr r1, [sp, #0x18]
 	mov r0, #0
 	str r1, [r4, #4]
@@ -217,14 +217,14 @@ ov4_021FA61C: ; 0x021FA61C
 	strne r0, [r4, #0x14]
 	ldmneia sp!, {r4, pc}
 	ldr r0, [r4, #0]
-	bl ov4_021EACF0
+	bl closesocket
 	ldr r0, [r4, #0xc]
-	bl ov4_021EA364
+	bl TableFree
 	ldr r0, [r4, #0x10]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, r4
 	bl DWCi_GsFree
-	bl ov4_021EA8A8
+	bl SocketShutDown
 	ldmia sp!, {r4, pc}
 	arm_func_end ov4_021FA61C
 
@@ -297,7 +297,7 @@ ov4_021FA678: ; 0x021FA678
 	mov r0, #0x10
 	mov r1, #0x40
 	mov r2, #0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	ldr r1, [sp]
 	str r0, [r1, #0x5c]
 	ldr r0, [sp]
@@ -307,7 +307,7 @@ ov4_021FA678: ; 0x021FA678
 	mov r0, #0x10
 	mov r1, #0x40
 	mov r2, #0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	ldr r1, [sp]
 	str r0, [r1, #0x60]
 	ldr r0, [sp]
@@ -317,7 +317,7 @@ ov4_021FA678: ; 0x021FA678
 	mov r0, #4
 	mov r1, #2
 	mov r2, #0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	ldr r1, [sp]
 	str r0, [r1, #0x98]
 	ldr r0, [sp]
@@ -327,7 +327,7 @@ ov4_021FA678: ; 0x021FA678
 	mov r0, #4
 	mov r1, #2
 	mov r2, #0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	ldr r1, [sp]
 	str r0, [r1, #0x9c]
 	ldr r0, [sp]
@@ -336,7 +336,7 @@ ov4_021FA678: ; 0x021FA678
 	beq _021FA808
 	ldr r0, [r7, #0xc]
 	add r1, sp, #0
-	bl ov4_021EA44C
+	bl TableEnter
 	mov r0, r7
 	mov r1, r5
 	mov r2, r4
@@ -358,25 +358,25 @@ _021FA808:
 	ldr r0, [r0, #0x5c]
 	cmp r0, #0
 	beq _021FA83C
-	bl ov4_021E9B50
+	bl ArrayFree
 _021FA83C:
 	ldr r0, [sp]
 	ldr r0, [r0, #0x60]
 	cmp r0, #0
 	beq _021FA850
-	bl ov4_021E9B50
+	bl ArrayFree
 _021FA850:
 	ldr r0, [sp]
 	ldr r0, [r0, #0x98]
 	cmp r0, #0
 	beq _021FA864
-	bl ov4_021E9B50
+	bl ArrayFree
 _021FA864:
 	ldr r0, [sp]
 	ldr r0, [r0, #0x9c]
 	cmp r0, #0
 	beq _021FA878
-	bl ov4_021E9B50
+	bl ArrayFree
 _021FA878:
 	ldr r0, [sp]
 	bl DWCi_GsFree
@@ -402,7 +402,7 @@ ov4_021FA888: ; 0x021FA888
 	ldr r0, [r1, #8]
 	bne _021FA934
 	ldr r0, [r0, #0x10]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	mov r5, #0
 	cmp r4, #0
@@ -414,14 +414,14 @@ _021FA8E0:
 	mov r1, r5
 	ldr r0, [r6, #8]
 	ldr r0, [r0, #0x10]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r0, [r0, #0]
 	cmp r6, r0
 	bne _021FA91C
 	ldr r0, [r6, #8]
 	mov r1, r5
 	ldr r0, [r0, #0x10]
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	ldmia sp!, {r4, r5, r6, lr}
 	add sp, sp, #0x10
 	bx lr
@@ -435,7 +435,7 @@ _021FA91C:
 _021FA934:
 	ldr r0, [r0, #0xc]
 	add r1, sp, #0x10
-	bl ov4_021EA4F4
+	bl TableRemove
 	ldmia sp!, {r4, r5, r6, lr}
 	add sp, sp, #0x10
 	bx lr
@@ -453,7 +453,7 @@ ov4_021FA94C: ; 0x021FA94C
 	mov r4, r2
 	bl ov4_021FAE30
 	ldr r0, [r6, #0]
-	bl ov4_021EAB94
+	bl CanSendOnSocket
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	moveq r0, #1
@@ -479,7 +479,7 @@ ov4_021FA94C: ; 0x021FA94C
 	ldr r0, [r6, #0]
 	ldr r1, [sp, #0x34]
 	ldr r2, [sp, #0x38]
-	bl ov4_021EAE5C
+	bl sendto
 	mvn r1, #0
 	cmp r0, r1
 	bne _021FAA78
@@ -592,7 +592,7 @@ ov4_021FAB4C: ; 0x021FAB4C
 	ldr r0, [r4, #0xc]
 	ldr r1, _021FAB84 ; =ov4_021FAAF4
 	add r2, sp, #0
-	bl ov4_021EA73C
+	bl TableMapSafe2
 	cmp r0, #0
 	moveq r0, #1
 	movne r0, #0
@@ -607,13 +607,13 @@ ov4_021FAB88: ; 0x021FAB88
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r0, [r5, #0x10]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	subs r4, r0, #1
 	ldmmiia sp!, {r3, r4, r5, pc}
 _021FABA0:
 	ldr r0, [r5, #0x10]
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r0, [r0, #0]
 	bl ov4_021FA888
 	subs r4, r4, #1

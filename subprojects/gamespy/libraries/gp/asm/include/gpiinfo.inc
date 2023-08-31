@@ -7,8 +7,8 @@
 .public _d_dtof
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EA8AC
-.public ov4_021EA8E0
+.public goastrdup
+.public _strlwr
 .public ov4_021EC3B0
 .public ov4_021ED5C4
 .public ov4_021ED5F4

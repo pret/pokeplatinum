@@ -4,8 +4,8 @@
 	.text
 
 
-	arm_func_start ov4_021E963C
-ov4_021E963C: ; 0x021E963C
+	arm_func_start get_sockaddrin
+get_sockaddrin: ; 0x021E963C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r1, r1, lsl #0x10
 	mov r1, r1, lsr #0x10
@@ -36,10 +36,10 @@ ov4_021E963C: ; 0x021E963C
 _021E96A8:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021E963C
+	arm_func_end get_sockaddrin
 
-	arm_func_start ov4_021E96B0
-ov4_021E96B0: ; 0x021E96B0
+	arm_func_start SendPacket
+SendPacket: ; 0x021E96B0
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	ldr r1, _021E96F4 ; =0x0221AE58
@@ -51,7 +51,7 @@ ov4_021E96B0: ; 0x021E96B0
 	ldr r2, [r1, #0x50]
 	ldr r1, _021E96FC ; =0x0221AE60
 	mov r3, #0
-	bl ov4_021EAE5C
+	bl sendto
 	bl current_time
 	ldr r1, _021E96F8 ; =0x0221AE50
 	str r0, [r1, #0x54]
@@ -61,7 +61,7 @@ ov4_021E96B0: ; 0x021E96B0
 _021E96F4: .word 0x0221AE58
 _021E96F8: .word Unk_ov4_0221AE50
 _021E96FC: .word 0x0221AE60
-	arm_func_end ov4_021E96B0
+	arm_func_end SendPacket
 
 	arm_func_start GSIStartAvailableCheckA
 GSIStartAvailableCheckA: ; 0x021E9700
@@ -74,7 +74,7 @@ GSIStartAvailableCheckA: ; 0x021E9700
 	ldr r0, _021E97E0 ; =0x0221AE50
 	mvn r1, #0
 	str r1, [r0, #4]
-	bl ov4_021EA8A4
+	bl SocketStartUp
 	ldr r0, _021E97E4 ; =0x0221AEAC
 	ldrsb r5, [r0]
 	cmp r5, #0
@@ -89,14 +89,14 @@ _021E9748:
 	ldr r1, _021E97EC ; =0x00006CFC
 	ldr r2, _021E97F0 ; =0x0221AE58
 	addeq r0, sp, #0
-	bl ov4_021E963C
+	bl get_sockaddrin
 	cmp r0, #0
 	addeq sp, sp, #0x40
 	ldmeqia sp!, {r3, r4, r5, pc}
 	mov r0, #2
 	mov r1, r0
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	ldr r2, _021E97E0 ; =0x0221AE50
 	mvn r1, #0
 	cmp r0, r1
@@ -115,7 +115,7 @@ _021E9748:
 	ldr r0, _021E97E0 ; =0x0221AE50
 	add r1, r5, #6
 	str r1, [r0, #0x50]
-	bl ov4_021E96B0
+	bl SendPacket
 	ldr r0, _021E97E0 ; =0x0221AE50
 	mov r1, #0
 	str r1, [r0, #0x58]
@@ -131,8 +131,8 @@ _021E97F0: .word 0x0221AE58
 _021E97F4: .word 0x0221AE65
 	arm_func_end GSIStartAvailableCheckA
 
-	arm_func_start ov4_021E97F8
-ov4_021E97F8: ; 0x021E97F8
+	arm_func_start HandlePacket
+HandlePacket: ; 0x021E97F8
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r0
 	cmp r1, #7
@@ -180,7 +180,7 @@ ov4_021E97F8: ; 0x021E97F8
 _021E98A4: .word 0x0221AE5C
 _021E98A8: .word Unk_ov4_0221AE50
 _021E98AC: .word Unk_ov4_022176C8
-	arm_func_end ov4_021E97F8
+	arm_func_end HandlePacket
 
 	arm_func_start GSIAvailableCheckThink
 GSIAvailableCheckThink: ; 0x021E98B0
@@ -196,7 +196,7 @@ GSIAvailableCheckThink: ; 0x021E98B0
 	streq r0, [r2]
 	addeq sp, sp, #0x58
 	ldmeqia sp!, {r3, pc}
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	beq _021E9988
 	add r0, sp, #0x10
@@ -208,17 +208,17 @@ GSIAvailableCheckThink: ; 0x021E98B0
 	ldr r0, [r0, #4]
 	mov r2, #0x40
 	mov r3, #0
-	bl ov4_021EAE18
+	bl recvfrom
 	mov r1, r0
 	add r0, sp, #0x18
 	add r2, sp, #0x10
 	add r3, sp, #8
-	bl ov4_021E97F8
+	bl HandlePacket
 	cmp r0, #0
 	bne _021E9988
 	ldr r0, _021E99E8 ; =0x0221AE50
 	ldr r0, [r0, #4]
-	bl ov4_021EACF0
+	bl closesocket
 	ldr r0, [sp, #8]
 	tst r0, #1
 	beq _021E9958
@@ -251,14 +251,14 @@ _021E9988:
 	cmp r0, #1
 	bne _021E99C8
 	ldr r0, [r1, #4]
-	bl ov4_021EACF0
+	bl closesocket
 	ldr r1, _021E99E8 ; =0x0221AE50
 	mov r0, #1
 	str r0, [r1, #0]
 	add sp, sp, #0x58
 	ldmia sp!, {r3, pc}
 _021E99C8:
-	bl ov4_021E96B0
+	bl SendPacket
 	ldr r0, _021E99E8 ; =0x0221AE50
 	ldr r1, [r0, #0x58]
 	add r1, r1, #1

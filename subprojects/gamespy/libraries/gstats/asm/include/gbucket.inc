@@ -10,9 +10,9 @@
 .public _d_div
 .public DWCi_GsMalloc
 .public DWCi_GsFree
-.public ov4_021EA44C
-.public ov4_021EA598
-.public ov4_021EA8AC
+.public TableEnter
+.public TableLookup
+.public goastrdup
 .public ov4_021F6060
 .public ov4_021F61D8
 .public ov4_021F61F0

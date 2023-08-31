@@ -390,7 +390,7 @@ _021F7B74:
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	ldr r0, [r7, #0x98]
 	mov r1, r6
-	bl ov4_021E9BC4
+	bl ArrayNth
 	movs lr, r0
 	moveq r0, #1
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -459,7 +459,7 @@ _021F7C6C:
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	ldr r0, [r7, #0x9c]
 	mov r1, r6
-	bl ov4_021E9BC4
+	bl ArrayNth
 	movs lr, r0
 	moveq r0, #1
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}

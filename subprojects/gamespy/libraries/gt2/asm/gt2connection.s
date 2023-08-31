@@ -215,7 +215,7 @@ ov4_021F81FC: ; 0x021F81FC
 	mov r7, r0
 	ldr r0, [r7, #0x60]
 	mov r6, r1
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r5, r0
 	cmp r5, #0
 	mov r4, #0
@@ -223,7 +223,7 @@ ov4_021F81FC: ; 0x021F81FC
 _021F8220:
 	ldr r0, [r7, #0x60]
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r1, r0
 	ldr r0, [r1, #0xc]
 	sub r0, r6, r0
@@ -353,12 +353,12 @@ ov4_021F8390: ; 0x021F8390
 	add r1, sp, #8
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0xc]
-	bl ov4_021EA4F4
+	bl TableRemove
 	ldr r0, [sp, #8]
 	add r1, sp, #8
 	ldr r0, [r0, #8]
 	ldr r0, [r0, #0x10]
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	ldmia sp!, {r3, lr}
 	add sp, sp, #0x10
 	bx lr
@@ -386,22 +386,22 @@ _021F8424:
 	ldr r0, [r4, #0x5c]
 	cmp r0, #0
 	beq _021F8434
-	bl ov4_021E9B50
+	bl ArrayFree
 _021F8434:
 	ldr r0, [r4, #0x60]
 	cmp r0, #0
 	beq _021F8444
-	bl ov4_021E9B50
+	bl ArrayFree
 _021F8444:
 	ldr r0, [r4, #0x98]
 	cmp r0, #0
 	beq _021F8454
-	bl ov4_021E9B50
+	bl ArrayFree
 _021F8454:
 	ldr r0, [r4, #0x9c]
 	cmp r0, #0
 	beq _021F8464
-	bl ov4_021E9B50
+	bl ArrayFree
 _021F8464:
 	mov r0, r4
 	bl DWCi_GsFree

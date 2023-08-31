@@ -150,7 +150,7 @@ _021F8608:
 	cmp sb, #0
 	bne _021F8634
 	mov r0, r4
-	bl ov4_021EA898
+	bl msleep
 _021F8634:
 	cmp sb, #0
 	beq _021F8608
@@ -183,7 +183,7 @@ gt2Send: ; 0x021F866C
 	add r1, sp, #0x18
 	bl ov4_021FAE30
 	ldr r0, [r5, #0x98]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	beq _021F86D0
 	str r4, [sp]
@@ -236,7 +236,7 @@ gt2CloseAllConnectionsHard: ; 0x021F8710
 	ldr r0, [r0, #0xc]
 	ldr r1, _021F8750 ; =ov4_021F8700
 	mov r2, #0
-	bl ov4_021EA6D0
+	bl TableMapSafe
 	ldr r0, _021F874C ; =0x0221B3B0
 	mov r1, #0
 	str r1, [r0, #0]

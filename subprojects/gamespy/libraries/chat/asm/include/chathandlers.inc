@@ -13,7 +13,7 @@
 .public DWCi_GsRealloc
 .public DWCi_GsFree
 .public current_time
-.public ov4_021EA8AC
+.public goastrdup
 .public inet_addr
 .public ciAddCallback_
 .public ciIsEnteringChannel
