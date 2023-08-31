@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov66_0224D5A8
-ov66_0224D5A8: ; 0x0224D5A8
+	arm_func_start ciFindFilter
+ciFindFilter: ; 0x0224D5A8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	movs r4, r0
 	mov sl, r1
@@ -121,10 +121,10 @@ _0224D728: .word 0x0000015D
 _0224D72C: .word Unk_ov66_0225A4F0
 _0224D730: .word 0x0000015E
 _0224D734: .word Unk_ov66_0225A4F8
-	arm_func_end ov66_0224D5A8
+	arm_func_end ciFindFilter
 
-	arm_func_start ov66_0224D738
-ov66_0224D738: ; 0x0224D738
+	arm_func_start ciFindGetKeyFilter
+ciFindGetKeyFilter: ; 0x0224D738
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	mov r5, r1
@@ -182,10 +182,10 @@ _0224D7F0: .word Unk_ov66_0225A530
 _0224D7F4: .word 0x00000181
 _0224D7F8: .word Unk_ov66_0225A538
 _0224D7FC: .word 0x00000182
-	arm_func_end ov66_0224D738
+	arm_func_end ciFindGetKeyFilter
 
-	arm_func_start ov66_0224D800
-ov66_0224D800: ; 0x0224D800
+	arm_func_start ciDestroyFilter
+ciDestroyFilter: ; 0x0224D800
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _0224D820
@@ -209,10 +209,10 @@ _0224D844: .word Unk_ov66_0225A544
 _0224D848: .word Unk_ov66_0225A4D0
 _0224D84C: .word Unk_ov66_02259EC4
 _0224D850: .word 0x00000193
-	arm_func_end ov66_0224D800
+	arm_func_end ciDestroyFilter
 
-	arm_func_start ov66_0224D854
-ov66_0224D854: ; 0x0224D854
+	arm_func_start ciRemoveFilter
+ciRemoveFilter: ; 0x0224D854
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r5, r1
@@ -248,7 +248,7 @@ _0224D8A8:
 	cmp r4, #0
 	ldrne r1, [r0, #0x24]
 	strne r1, [r4, #0x24]
-	bl ov66_0224D800
+	bl ciDestroyFilter
 	ldmia sp!, {r4, r5, r6, pc}
 _0224D8DC:
 	mov r4, r0
@@ -263,10 +263,10 @@ _0224D8F8: .word Unk_ov66_02259E74
 _0224D8FC: .word 0x0000019F
 _0224D900: .word Unk_ov66_0225A544
 _0224D904: .word 0x000001A1
-	arm_func_end ov66_0224D854
+	arm_func_end ciRemoveFilter
 
-	arm_func_start ov66_0224D908
-ov66_0224D908: ; 0x0224D908
+	arm_func_start ciFinishFilter
+ciFinishFilter: ; 0x0224D908
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	movs r5, r1
@@ -312,7 +312,7 @@ _0224D968:
 	mov r4, #0x14
 	mov r1, #0xe
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224D9B4:
 	ldr r0, [r7, #4]
 	mov r4, #0
@@ -354,7 +354,7 @@ _0224DA08:
 	mov r4, #0xc
 	mov r1, #0xf
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	b _0224E018
 _0224DA50:
 	cmp r0, #2
@@ -372,7 +372,7 @@ _0224DA50:
 	mov r4, #0xc
 	mov r1, #0x10
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	b _0224E018
 _0224DA94:
 	cmp r0, #3
@@ -392,7 +392,7 @@ _0224DA94:
 	mov r4, #0x14
 	mov r1, #0x13
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224DADC:
 	ldr r0, [r7, #4]
 	mov r4, #0
@@ -430,7 +430,7 @@ _0224DB1C:
 	mov r4, #0x1c
 	mov r1, #0x14
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224DB64:
 	ldr r0, [r7, #0xc]
 	mov r4, #0
@@ -471,7 +471,7 @@ _0224DBB4:
 	mov r4, #0x10
 	mov r1, #0x15
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	b _0224E018
 _0224DBFC:
 	cmp r0, #0xb
@@ -490,7 +490,7 @@ _0224DBFC:
 	mov r4, #0x10
 	mov r1, #0x16
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	b _0224E018
 _0224DC44:
 	cmp r0, #5
@@ -509,7 +509,7 @@ _0224DC44:
 	mov r4, #0xc
 	mov r1, #0x11
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	b _0224E018
 _0224DC8C:
 	cmp r0, #6
@@ -528,7 +528,7 @@ _0224DC8C:
 	mov r4, #0x10
 	mov r1, #0x17
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	b _0224E018
 _0224DCD4:
 	cmp r0, #7
@@ -555,7 +555,7 @@ _0224DCEC:
 	mov r4, #0x10
 	mov r1, #0x18
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224DD34:
 	ldr r0, [r7, #0]
 	mov r4, #0
@@ -587,7 +587,7 @@ _0224DD64:
 	mov r4, #0xc
 	mov r1, #0x1a
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	b _0224E018
 _0224DDAC:
 	cmp r0, #0xc
@@ -607,7 +607,7 @@ _0224DDAC:
 	mov r4, #0x14
 	mov r1, #0x1d
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224DDF4:
 	ldr r0, [r7, #8]
 	bl DWCi_GsFree
@@ -645,7 +645,7 @@ _0224DE34:
 	mov r4, #0x18
 	mov r1, #0x1e
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224DE7C:
 	ldr r0, [r7, #0]
 	mov r4, #0
@@ -681,7 +681,7 @@ _0224DEB4:
 	mov r4, #0x18
 	mov r1, #0x1e
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224DEFC:
 	ldr r0, [r7, #0]
 	mov r4, #0
@@ -717,7 +717,7 @@ _0224DF34:
 	mov r4, #0x10
 	mov r1, #0x1b
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224DF7C:
 	ldr r0, [r7, #4]
 	mov r4, #0
@@ -754,7 +754,7 @@ _0224DFBC:
 	mov r4, #8
 	mov r1, #0x1f
 	str r4, [sp, #0xc]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	b _0224E018
 _0224E004:
 	ldr r0, _0224E044 ; =0x0225A590
@@ -765,7 +765,7 @@ _0224E004:
 _0224E018:
 	mov r0, r6
 	mov r1, r5
-	bl ov66_0224D854
+	bl ciRemoveFilter
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -776,10 +776,10 @@ _0224E038: .word 0x000001C1
 _0224E03C: .word Unk_ov66_0225A55C
 _0224E040: .word 0x000001C2
 _0224E044: .word Unk_ov66_0225A590
-	arm_func_end ov66_0224D908
+	arm_func_end ciFinishFilter
 
-	arm_func_start ov66_0224E048
-ov66_0224E048: ; 0x0224E048
+	arm_func_start ciFilterTimedout
+ciFilterTimedout: ; 0x0224E048
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x104
 	movs r4, r1
@@ -818,7 +818,7 @@ _0224E0A4:
 	str r3, [sp, #0xf8]
 	str r3, [sp, #0xfc]
 	str r3, [sp, #0x100]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E0E0:
@@ -833,7 +833,7 @@ _0224E0E0:
 	mov r0, r5
 	mov r1, r4
 	str r3, [sp, #0xec]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E118:
@@ -847,7 +847,7 @@ _0224E118:
 	mov r1, r4
 	str r3, [sp, #0xdc]
 	str ip, [sp, #0xe0]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E14C:
@@ -863,7 +863,7 @@ _0224E14C:
 	str ip, [sp, #0xcc]
 	str ip, [sp, #0xd0]
 	str ip, [sp, #0xd4]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E188:
@@ -881,7 +881,7 @@ _0224E188:
 	str ip, [sp, #0xb8]
 	str ip, [sp, #0xbc]
 	str ip, [sp, #0xc0]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E1CC:
@@ -896,7 +896,7 @@ _0224E1CC:
 	str r3, [sp, #0x9c]
 	str ip, [sp, #0xa0]
 	str ip, [sp, #0xa4]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E204:
@@ -912,7 +912,7 @@ _0224E204:
 	str ip, [sp, #0x8c]
 	str ip, [sp, #0x90]
 	str ip, [sp, #0x94]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E240:
@@ -926,7 +926,7 @@ _0224E240:
 	mov r1, r4
 	str r3, [sp, #0x7c]
 	str ip, [sp, #0x80]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E274:
@@ -942,7 +942,7 @@ _0224E274:
 	mov r1, r4
 	str r3, [sp, #0x70]
 	str ip, [sp, #0x74]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E2B0:
@@ -951,7 +951,7 @@ _0224E2B0:
 	mov r0, r5
 	mov r1, r4
 	mov r2, #0
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E2D0:
@@ -965,7 +965,7 @@ _0224E2D0:
 	str ip, [sp, #0x5c]
 	str r3, [sp, #0x60]
 	str r3, [sp, #0x64]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E304:
@@ -980,7 +980,7 @@ _0224E304:
 	mov r0, r5
 	mov r1, r4
 	str r3, [sp, #0x54]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E33C:
@@ -995,7 +995,7 @@ _0224E33C:
 	str r3, [sp, #0x40]
 	str r3, [sp, #0x44]
 	str r3, [sp, #0x48]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E374:
@@ -1011,7 +1011,7 @@ _0224E374:
 	str r3, [sp, #0x2c]
 	str r3, [sp, #0x30]
 	str r3, [sp, #0x34]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E3B0:
@@ -1027,7 +1027,7 @@ _0224E3B0:
 	str r3, [sp, #0x14]
 	str r3, [sp, #0x18]
 	str r3, [sp, #0x1c]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E3EC:
@@ -1035,7 +1035,7 @@ _0224E3EC:
 	bne _0224E408
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224D854
+	bl ciRemoveFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E408:
@@ -1048,7 +1048,7 @@ _0224E408:
 	mov r1, r4
 	str ip, [sp]
 	str r3, [sp, #4]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, pc}
 _0224E438:
@@ -1068,10 +1068,10 @@ _0224E464: .word 0x00000269
 _0224E468: .word Unk_ov66_0225A594
 _0224E46C: .word Unk_ov66_0225A590
 _0224E470: .word 0x00000311
-	arm_func_end ov66_0224E048
+	arm_func_end ciFilterTimedout
 
-	arm_func_start ov66_0224E474
-ov66_0224E474: ; 0x0224E474
+	arm_func_start ciFilterThink
+ciFilterThink: ; 0x0224E474
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	bne _0224E494
@@ -1092,7 +1092,7 @@ _0224E4A8:
 	cmp r5, r0
 	bls _0224E4C0
 	mov r0, r6
-	bl ov66_0224E048
+	bl ciFilterTimedout
 _0224E4C0:
 	mov r1, r4
 	cmp r4, #0
@@ -1103,10 +1103,10 @@ _0224E4D0: .word Unk_ov66_0225A4C0
 _0224E4D4: .word Unk_ov66_0225A4D0
 _0224E4D8: .word Unk_ov66_02259DC4
 _0224E4DC: .word 0x0000031A
-	arm_func_end ov66_0224E474
+	arm_func_end ciFilterThink
 
-	arm_func_start ov66_0224E4E0
-ov66_0224E4E0: ; 0x0224E4E0
+	arm_func_start ciGetNextID
+ciGetNextID: ; 0x0224E4E0
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _0224E500
@@ -1128,10 +1128,10 @@ _0224E51C: .word Unk_ov66_0225A4C0
 _0224E520: .word Unk_ov66_0225A4D0
 _0224E524: .word Unk_ov66_02259D60
 _0224E528: .word 0x0000032D
-	arm_func_end ov66_0224E4E0
+	arm_func_end ciGetNextID
 
-	arm_func_start ov66_0224E52C
-ov66_0224E52C: ; 0x0224E52C
+	arm_func_start ciCheckFiltersForID
+ciCheckFiltersForID: ; 0x0224E52C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1170,10 +1170,10 @@ _0224E5A0: .word Unk_ov66_0225A4D0
 _0224E5A4: .word Unk_ov66_02259FB0
 _0224E5A8: .word Unk_ov66_0225A5A0
 _0224E5AC: .word 0x00000342
-	arm_func_end ov66_0224E52C
+	arm_func_end ciCheckFiltersForID
 
-	arm_func_start ov66_0224E5B0
-ov66_0224E5B0: ; 0x0224E5B0
+	arm_func_start ciCleanupFilters
+ciCleanupFilters: ; 0x0224E5B0
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _0224E5D0
@@ -1188,7 +1188,7 @@ _0224E5D0:
 	ldmeqia sp!, {r4, pc}
 _0224E5DC:
 	mov r0, r4
-	bl ov66_0224E048
+	bl ciFilterTimedout
 	ldr r1, [r4, #0x814]
 	cmp r1, #0
 	bne _0224E5DC
@@ -1198,10 +1198,10 @@ _0224E5F4: .word Unk_ov66_0225A4C0
 _0224E5F8: .word Unk_ov66_0225A4D0
 _0224E5FC: .word Unk_ov66_02259ED4
 _0224E600: .word 0x00000353
-	arm_func_end ov66_0224E5B0
+	arm_func_end ciCleanupFilters
 
-	arm_func_start ov66_0224E604
-ov66_0224E604: ; 0x0224E604
+	arm_func_start ciAddFilter
+ciAddFilter: ; 0x0224E604
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r7, r0
 	mov r8, r1
@@ -1250,7 +1250,7 @@ _0224E698:
 _0224E6B0:
 	str r0, [r4, #0xc]
 	mov r0, r7
-	bl ov66_0224E4E0
+	bl ciGetNextID
 	str r0, [r4, #0x20]
 	ldr r0, [r7, #0x814]
 	cmp r0, #0
@@ -1264,10 +1264,10 @@ _0224E6B0:
 _0224E6E0: .word Unk_ov66_0225A4C0
 _0224E6E4: .word Unk_ov66_0225A4D0
 _0224E6E8: .word Unk_ov66_02259D6C
-	arm_func_end ov66_0224E604
+	arm_func_end ciAddFilter
 
-	arm_func_start ov66_0224E6EC
-ov66_0224E6EC: ; 0x0224E6EC
+	arm_func_start ciAddLISTFilter
+ciAddLISTFilter: ; 0x0224E6EC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r7, r0
@@ -1299,13 +1299,13 @@ _0224E728:
 	mov r0, r7
 	mov r2, r1
 	mov r3, r1
-	bl ov66_0224E604
+	bl ciAddFilter
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov66_0224E6EC
+	arm_func_end ciAddLISTFilter
 
-	arm_func_start ov66_0224E770
-ov66_0224E770: ; 0x0224E770
+	arm_func_start ciAddJOINFilter
+ciAddJOINFilter: ; 0x0224E770
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x10
 	ldr r8, [sp, #0x2c]
@@ -1359,7 +1359,7 @@ _0224E7CC:
 	mov r2, r6
 	mov r1, #1
 	stmib sp, {r3, r4, r8}
-	bl ov66_0224E604
+	bl ciAddFilter
 	movs r4, r0
 	bne _0224E850
 	mov r0, r8
@@ -1375,10 +1375,10 @@ _0224E864: .word Unk_ov66_02259E94
 _0224E868: .word 0x00000391
 _0224E86C: .word Unk_ov66_0225A5BC
 _0224E870: .word 0x00000392
-	arm_func_end ov66_0224E770
+	arm_func_end ciAddJOINFilter
 
-	arm_func_start ov66_0224E874
-ov66_0224E874: ; 0x0224E874
+	arm_func_start ciAddNAMESFilter
+ciAddNAMESFilter: ; 0x0224E874
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r7, r0
@@ -1409,13 +1409,13 @@ _0224E8B0:
 	mov r0, r7
 	mov r2, r6
 	mov r1, #3
-	bl ov66_0224E604
+	bl ciAddFilter
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov66_0224E874
+	arm_func_end ciAddNAMESFilter
 
-	arm_func_start ov66_0224E8F4
-ov66_0224E8F4: ; 0x0224E8F4
+	arm_func_start ciAddCMODEFilter
+ciAddCMODEFilter: ; 0x0224E8F4
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x10
 	str r2, [sp]
@@ -1426,13 +1426,13 @@ ov66_0224E8F4: ; 0x0224E8F4
 	mov r3, ip
 	mov r1, #5
 	str ip, [sp, #0xc]
-	bl ov66_0224E604
+	bl ciAddFilter
 	add sp, sp, #0x10
 	ldmia sp!, {r3, pc}
-	arm_func_end ov66_0224E8F4
+	arm_func_end ciAddCMODEFilter
 
-	arm_func_start ov66_0224E928
-ov66_0224E928: ; 0x0224E928
+	arm_func_start ciAddGETCKEYFilter
+ciAddGETCKEYFilter: ; 0x0224E928
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x14
 	mov fp, r0
@@ -1530,15 +1530,15 @@ _0224EA60:
 	mov r0, fp
 	mov r1, #0xd
 	str r7, [sp, #0xc]
-	bl ov66_0224E604
+	bl ciAddFilter
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _0224EA98: .word Unk_ov66_0225A5DC
-	arm_func_end ov66_0224E928
+	arm_func_end ciAddGETCKEYFilter
 
-	arm_func_start ov66_0224EA9C
-ov66_0224EA9C: ; 0x0224EA9C
+	arm_func_start ciAddGETCHANKEYFilter
+ciAddGETCHANKEYFilter: ; 0x0224EA9C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x14
 	mov fp, r0
@@ -1640,15 +1640,15 @@ _0224EBE8:
 	mov r0, fp
 	mov r1, #0xe
 	str r7, [sp, #0xc]
-	bl ov66_0224E604
+	bl ciAddFilter
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _0224EC1C: .word Unk_ov66_0225A5DC
-	arm_func_end ov66_0224EA9C
+	arm_func_end ciAddGETCHANKEYFilter
 
-	arm_func_start ov66_0224EC20
-ov66_0224EC20: ; 0x0224EC20
+	arm_func_start ciParseMode
+ciParseMode: ; 0x0224EC20
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #8
 	mov r3, #0
@@ -1851,10 +1851,10 @@ _0224EEC4: .word Unk_ov66_0225A5E0
 _0224EEC8: .word Unk_ov66_0225A4D0
 _0224EECC: .word Unk_ov66_02259D78
 _0224EED0: .word 0x00000494
-	arm_func_end ov66_0224EC20
+	arm_func_end ciParseMode
 
-	arm_func_start ov66_0224EED4
-ov66_0224EED4: ; 0x0224EED4
+	arm_func_start ciApplyChangesToMode
+ciApplyChangesToMode: ; 0x0224EED4
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov r8, r1
 	ldr r1, [r8]
@@ -1941,10 +1941,10 @@ _0224EFE8: .word Unk_ov66_0225A590
 _0224EFEC: .word Unk_ov66_0225A4D0
 _0224EFF0: .word Unk_ov66_0225A028
 _0224EFF4: .word 0x0000056C
-	arm_func_end ov66_0224EED4
+	arm_func_end ciApplyChangesToMode
 
-	arm_func_start ov66_0224EFF8
-ov66_0224EFF8: ; 0x0224EFF8
+	arm_func_start ciPrivmsgHandler
+ciPrivmsgHandler: ; 0x0224EFF8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x2c
 	movs sb, r0
@@ -2044,13 +2044,13 @@ _0224F100:
 	add r3, sp, #0x20
 	mov r0, sb
 	mov r1, #2
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 _0224F178:
 	mov r0, sb
 	mov r1, r5
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	cmp r0, #0
 	ldrne r1, [r0]
 	cmpne r1, #0
@@ -2074,7 +2074,7 @@ _0224F178:
 	add r3, sp, #0x10
 	mov r0, sb
 	mov r1, #4
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
@@ -2086,10 +2086,10 @@ _0224F1FC: .word Unk_ov66_0225A5F0
 _0224F200: .word 0x00000582
 _0224F204: .word Unk_ov66_0225A608
 _0224F208: .word Unk_ov66_0225A60C
-	arm_func_end ov66_0224EFF8
+	arm_func_end ciPrivmsgHandler
 
-	arm_func_start ov66_0224F20C
-ov66_0224F20C: ; 0x0224F20C
+	arm_func_start ciNoticeHandler
+ciNoticeHandler: ; 0x0224F20C
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x2c
 	movs r7, r0
@@ -2143,13 +2143,13 @@ _0224F254:
 	ldr r2, [r7, #0x800]
 	add r3, sp, #0x20
 	mov r0, r7
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 _0224F2E4:
 	mov r0, r7
 	mov r1, r4
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	cmp r0, #0
 	ldrne r1, [r0]
 	cmpne r1, #0
@@ -2174,7 +2174,7 @@ _0224F2E4:
 	ldr r2, [r0, #0]
 	mov r0, r7
 	mov r1, #4
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -2183,10 +2183,10 @@ _0224F360: .word Unk_ov66_0225A4D0
 _0224F364: .word Unk_ov66_02259EA4
 _0224F368: .word 0x000005EA
 _0224F36C: .word Unk_ov66_0225A5F0
-	arm_func_end ov66_0224F20C
+	arm_func_end ciNoticeHandler
 
-	arm_func_start ov66_0224F370
-ov66_0224F370: ; 0x0224F370
+	arm_func_start ciUTMHandler
+ciUTMHandler: ; 0x0224F370
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x2c
 	movs r7, r0
@@ -2241,13 +2241,13 @@ _0224F3B8:
 	ldr r2, [r7, #0x800]
 	mov r0, r7
 	mov r1, #2
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 _0224F44C:
 	mov r0, r7
 	mov r1, r4
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	cmp r0, #0
 	ldrne r1, [r0]
 	cmpne r1, #0
@@ -2272,7 +2272,7 @@ _0224F44C:
 	ldr r2, [r0, #0]
 	mov r0, r7
 	mov r1, #4
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -2282,10 +2282,10 @@ _0224F4CC: .word Unk_ov66_02259D94
 _0224F4D0: .word 0x0000061F
 _0224F4D4: .word Unk_ov66_0225A5F0
 _0224F4D8: .word 0x00000625
-	arm_func_end ov66_0224F370
+	arm_func_end ciUTMHandler
 
-	arm_func_start ov66_0224F4DC
-ov66_0224F4DC: ; 0x0224F4DC
+	arm_func_start ciATMHandler
+ciATMHandler: ; 0x0224F4DC
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x2c
 	movs r7, r0
@@ -2340,13 +2340,13 @@ _0224F524:
 	ldr r2, [r7, #0x800]
 	mov r0, r7
 	mov r1, #2
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 _0224F5B8:
 	mov r0, r7
 	mov r1, r4
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	cmp r0, #0
 	ldrne r1, [r0]
 	cmpne r1, #0
@@ -2370,7 +2370,7 @@ _0224F5B8:
 	ldr r2, [r0, #0]
 	add r3, sp, #0x10
 	mov r0, r7
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -2380,10 +2380,10 @@ _0224F634: .word Unk_ov66_02259DA4
 _0224F638: .word 0x00000654
 _0224F63C: .word Unk_ov66_0225A5F0
 _0224F640: .word 0x0000065A
-	arm_func_end ov66_0224F4DC
+	arm_func_end ciATMHandler
 
-	arm_func_start ov66_0224F644
-ov66_0224F644: ; 0x0224F644
+	arm_func_start ciPingHandler
+ciPingHandler: ; 0x0224F644
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -2397,7 +2397,7 @@ _0224F668:
 	ldr r2, [r4, #0x1c]
 	ldr r1, _0224F68C ; =0x0225A614
 	add r0, r5, #0x1c
-	bl ov66_02256E70
+	bl ciSocketSendf
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0224F67C: .word Unk_ov66_0225A4C0
@@ -2405,10 +2405,10 @@ _0224F680: .word Unk_ov66_0225A4D0
 _0224F684: .word Unk_ov66_02259DD4
 _0224F688: .word 0x00000687
 _0224F68C: .word Unk_ov66_0225A614
-	arm_func_end ov66_0224F644
+	arm_func_end ciPingHandler
 
-	arm_func_start ov66_0224F690
-ov66_0224F690: ; 0x0224F690
+	arm_func_start ciNickHandler
+ciNickHandler: ; 0x0224F690
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x18
 	movs r4, r0
@@ -2467,7 +2467,7 @@ _0224F72C:
 	str r3, [sp, #0xc]
 	str r5, [sp, #0x10]
 	str r6, [sp, #0x14]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	beq _0224F794
 	mov r3, #1
@@ -2476,12 +2476,12 @@ _0224F72C:
 	str r3, [sp]
 	str r5, [sp, #4]
 	str r6, [sp, #8]
-	bl ov66_0224D908
+	bl ciFinishFilter
 _0224F794:
 	mov r0, r4
 	mov r1, r5
 	mov r2, r6
-	bl ov66_0224CF50
+	bl ciUserChangedNick
 	add sp, sp, #0x18
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -2493,10 +2493,10 @@ _0224F7BC: .word Unk_ov66_0225A61C
 _0224F7C0: .word 0x0000069A
 _0224F7C4: .word Unk_ov66_0225A634
 _0224F7C8: .word 0x000006AA
-	arm_func_end ov66_0224F690
+	arm_func_end ciNickHandler
 
-	arm_func_start ov66_0224F7CC
-ov66_0224F7CC: ; 0x0224F7CC
+	arm_func_start ciJoinHandler
+ciJoinHandler: ; 0x0224F7CC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x2c
 	movs r4, r0
@@ -2562,7 +2562,7 @@ _0224F8A0:
 	mov r0, r4
 	mov r1, r5
 	bne _0224F944
-	bl ov66_0224B9DC
+	bl ciIsEnteringChannel
 	cmp r0, #0
 	addeq sp, sp, #0x2c
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
@@ -2575,7 +2575,7 @@ _0224F8A0:
 	str r3, [r2, #8]
 	str r1, [sp, #0x20]
 	str r5, [sp, #0x24]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	cmp r0, #0
 	addeq sp, sp, #0x2c
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
@@ -2583,21 +2583,21 @@ _0224F8A0:
 	mov r0, r4
 	mov r1, r5
 	mov r2, r6
-	bl ov66_0224BA90
+	bl ciChannelEntered
 	mov r0, r4
 	mov r1, r5
 	add r2, r6, #0x34
-	bl ov66_0224C350
+	bl ciSetChannelPassword
 	mov r3, #1
 	ldr r1, _0224FA44 ; =0x0225A660
 	mov r2, r5
 	add r0, r4, #0x1c
 	str r3, [r6, #0x30]
-	bl ov66_02256E70
+	bl ciSocketSendf
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 _0224F944:
-	bl ov66_0224C134
+	bl ciInChannel
 	cmp r0, #0
 	beq _0224F968
 	mov r0, r4
@@ -2605,17 +2605,17 @@ _0224F944:
 	mov r2, r5
 	mov r3, sb
 	stmia sp, {r7, r8}
-	bl ov66_0224C784
+	bl ciUserEnteredChannel
 _0224F968:
 	mov r0, r4
 	mov r1, r5
-	bl ov66_0224C518
+	bl ciWasJoinCallbackCalled
 	cmp r0, #0
 	addeq sp, sp, #0x2c
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	mov r0, r4
 	mov r1, r5
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	movs r7, r0
 	addeq sp, sp, #0x2c
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
@@ -2635,7 +2635,7 @@ _0224F968:
 	add r3, sp, #0x14
 	mov r0, r4
 	mov r1, #6
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224F9DC:
 	ldr r0, [r7, #0x20]
 	cmp r0, #0
@@ -2652,7 +2652,7 @@ _0224F9DC:
 	add r3, sp, #0x10
 	mov r0, r4
 	mov r1, #0xc
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
@@ -2665,10 +2665,10 @@ _0224FA38: .word 0x000006DC
 _0224FA3C: .word Unk_ov66_0225A650
 _0224FA40: .word 0x000006EB
 _0224FA44: .word Unk_ov66_0225A660
-	arm_func_end ov66_0224F7CC
+	arm_func_end ciJoinHandler
 
-	arm_func_start ov66_0224FA48
-ov66_0224FA48: ; 0x0224FA48
+	arm_func_start ciPartHandler
+ciPartHandler: ; 0x0224FA48
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x28
 	movs r7, r0
@@ -2696,16 +2696,16 @@ _0224FA70:
 	mov r0, r7
 	mov r1, r4
 	mov r2, r5
-	bl ov66_0224C994
+	bl ciUserLeftChannel
 	mov r0, r7
 	mov r1, r5
-	bl ov66_0224C518
+	bl ciWasJoinCallbackCalled
 	cmp r0, #0
 	addeq sp, sp, #0x28
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
 	mov r0, r7
 	mov r1, r5
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	movs r6, r0
 	addeq sp, sp, #0x28
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2726,7 +2726,7 @@ _0224FA70:
 	add r3, sp, #0x14
 	mov r0, r7
 	mov r1, #7
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224FB2C:
 	ldr r0, [r6, #0x20]
 	cmp r0, #0
@@ -2743,7 +2743,7 @@ _0224FB2C:
 	add r3, sp, #0x10
 	mov r0, r7
 	mov r1, #0xc
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x28
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
@@ -2752,10 +2752,10 @@ _0224FB78: .word Unk_ov66_0225A4D0
 _0224FB7C: .word Unk_ov66_02259E04
 _0224FB80: .word 0x00000752
 _0224FB84: .word Unk_ov66_0225A608
-	arm_func_end ov66_0224FA48
+	arm_func_end ciPartHandler
 
-	arm_func_start ov66_0224FB88
-ov66_0224FB88: ; 0x0224FB88
+	arm_func_start ciKickHandler
+ciKickHandler: ; 0x0224FB88
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x34
 	movs sb, r0
@@ -2794,10 +2794,10 @@ _0224FBE0:
 	mov r2, r4
 	ldr r5, [r5, #8]
 	ldrne r8, _0224FD6C ; =0x0225A608
-	bl ov66_0224C994
+	bl ciUserLeftChannel
 	mov r0, sb
 	mov r1, r4
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	movs r7, r0
 	addeq sp, sp, #0x34
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
@@ -2823,17 +2823,17 @@ _0224FBE0:
 	add r3, sp, #0x28
 	mov r0, sb
 	mov r1, #5
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224FC90:
 	mov r0, sb
 	mov r1, r4
-	bl ov66_0224BC80
+	bl ciChannelLeft
 	add sp, sp, #0x34
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 _0224FCA4:
 	mov r0, sb
 	mov r1, r4
-	bl ov66_0224C518
+	bl ciWasJoinCallbackCalled
 	cmp r0, #0
 	addeq sp, sp, #0x34
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
@@ -2856,7 +2856,7 @@ _0224FCA4:
 	add r3, sp, #0x14
 	mov r0, sb
 	mov r1, #7
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224FD0C:
 	ldr r0, [r7, #0x20]
 	cmp r0, #0
@@ -2873,7 +2873,7 @@ _0224FD0C:
 	add r3, sp, #0x10
 	mov r0, sb
 	mov r1, #0xc
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x34
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
@@ -2884,10 +2884,10 @@ _0224FD60: .word 0x00000794
 _0224FD64: .word Unk_ov66_0225A668
 _0224FD68: .word 0x0000079A
 _0224FD6C: .word Unk_ov66_0225A608
-	arm_func_end ov66_0224FB88
+	arm_func_end ciKickHandler
 
-	arm_func_start ov66_0224FD70
-ov66_0224FD70: ; 0x0224FD70
+	arm_func_start ciQuitEnumChannelsCallback
+ciQuitEnumChannelsCallback: ; 0x0224FD70
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x28
 	movs r7, r1
@@ -2938,16 +2938,16 @@ _0224FE18:
 	mov r0, r8
 	mov r1, r7
 	mov r2, r6
-	bl ov66_0224C994
+	bl ciUserLeftChannel
 	mov r0, r8
 	mov r1, r6
-	bl ov66_0224C518
+	bl ciWasJoinCallbackCalled
 	cmp r0, #0
 	addeq sp, sp, #0x28
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
 	mov r0, r8
 	mov r1, r6
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	movs r4, r0
 	addeq sp, sp, #0x28
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2969,7 +2969,7 @@ _0224FE18:
 	add r3, sp, #0x14
 	mov r0, r8
 	mov r1, #7
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _0224FEA4:
 	ldr r0, [r4, #0x20]
 	cmp r0, #0
@@ -2986,7 +2986,7 @@ _0224FEA4:
 	add r3, sp, #0x10
 	mov r0, r8
 	mov r1, #0xc
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x28
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
@@ -3000,10 +3000,10 @@ _0224FF04: .word 0x000007E7
 _0224FF08: .word Unk_ov66_0225A6D0
 _0224FF0C: .word Unk_ov66_0225A6E4
 _0224FF10: .word 0x000007E8
-	arm_func_end ov66_0224FD70
+	arm_func_end ciQuitEnumChannelsCallback
 
-	arm_func_start ov66_0224FF14
-ov66_0224FF14: ; 0x0224FF14
+	arm_func_start ciQuitHandler
+ciQuitHandler: ; 0x0224FF14
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -3029,9 +3029,9 @@ _0224FF58:
 	ldr r0, [r4, #0x20]
 	ldr r1, [r4, #8]
 	ldr r3, [r0, #0]
-	ldr r2, _0224FF98 ; =ov66_0224FD70
+	ldr r2, _0224FF98 ; =ciQuitEnumChannelsCallback
 	mov r0, r5
-	bl ov66_0224CBE4
+	bl ciUserEnumChannels
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0224FF80: .word Unk_ov66_0225A4C0
@@ -3040,11 +3040,11 @@ _0224FF88: .word Unk_ov66_02259E24
 _0224FF8C: .word 0x00000813
 _0224FF90: .word Unk_ov66_0225A61C
 _0224FF94: .word 0x00000819
-_0224FF98: .word ov66_0224FD70
-	arm_func_end ov66_0224FF14
+_0224FF98: .word ciQuitEnumChannelsCallback
+	arm_func_end ciQuitHandler
 
-	arm_func_start ov66_0224FF9C
-ov66_0224FF9C: ; 0x0224FF9C
+	arm_func_start ciKillEnumChannelsCallback
+ciKillEnumChannelsCallback: ; 0x0224FF9C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x28
 	movs r7, r1
@@ -3095,16 +3095,16 @@ _02250044:
 	mov r0, r8
 	mov r1, r7
 	mov r2, r6
-	bl ov66_0224C994
+	bl ciUserLeftChannel
 	mov r0, r8
 	mov r1, r6
-	bl ov66_0224C518
+	bl ciWasJoinCallbackCalled
 	cmp r0, #0
 	addeq sp, sp, #0x28
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
 	mov r0, r8
 	mov r1, r6
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	movs r4, r0
 	addeq sp, sp, #0x28
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -3126,7 +3126,7 @@ _02250044:
 	add r3, sp, #0x14
 	mov r0, r8
 	mov r1, #7
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _022500D0:
 	ldr r0, [r4, #0x20]
 	cmp r0, #0
@@ -3143,7 +3143,7 @@ _022500D0:
 	add r3, sp, #0x10
 	mov r0, r8
 	mov r1, #0xc
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x28
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
@@ -3157,10 +3157,10 @@ _02250130: .word 0x00000829
 _02250134: .word Unk_ov66_0225A6D0
 _02250138: .word Unk_ov66_0225A6E4
 _0225013C: .word 0x0000082A
-	arm_func_end ov66_0224FF9C
+	arm_func_end ciKillEnumChannelsCallback
 
-	arm_func_start ov66_02250140
-ov66_02250140: ; 0x02250140
+	arm_func_start ciKillHandler
+ciKillHandler: ; 0x02250140
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r1
 	ldr r1, [r4, #0x24]
@@ -3177,21 +3177,21 @@ _0225016C:
 	cmp r0, #2
 	ldmneia sp!, {r3, r4, r5, pc}
 	ldr r0, [r4, #0x20]
-	ldr r2, _022501A0 ; =ov66_0224FF9C
+	ldr r2, _022501A0 ; =ciKillEnumChannelsCallback
 	ldmia r0, {r1, r3}
 	mov r0, r5
-	bl ov66_0224CBE4
+	bl ciUserEnumChannels
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02250190: .word Unk_ov66_0225A5F0
 _02250194: .word Unk_ov66_0225A4D0
 _02250198: .word Unk_ov66_02259E34
 _0225019C: .word 0x00000859
-_022501A0: .word ov66_0224FF9C
-	arm_func_end ov66_02250140
+_022501A0: .word ciKillEnumChannelsCallback
+	arm_func_end ciKillHandler
 
-	arm_func_start ov66_022501A4
-ov66_022501A4: ; 0x022501A4
+	arm_func_start ciTopicHandler
+ciTopicHandler: ; 0x022501A4
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x18
 	movs r4, r0
@@ -3221,10 +3221,10 @@ _022501EC:
 	ldmia r1, {r5, r6}
 	mov r1, r5
 	mov r2, r6
-	bl ov66_0224C5DC
+	bl ciSetChannelTopic
 	mov r0, r4
 	mov r1, r5
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	cmp r0, #0
 	ldrne r1, [r0, #0x14]
 	cmpne r1, #0
@@ -3242,7 +3242,7 @@ _022501EC:
 	add r3, sp, #0x10
 	mov r0, r4
 	mov r1, #9
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x18
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -3251,10 +3251,10 @@ _02250274: .word Unk_ov66_0225A4D0
 _02250278: .word Unk_ov66_02259E54
 _0225027C: .word 0x0000086A
 _02250280: .word Unk_ov66_0225A5F0
-	arm_func_end ov66_022501A4
+	arm_func_end ciTopicHandler
 
-	arm_func_start ov66_02250284
-ov66_02250284: ; 0x02250284
+	arm_func_start ciModeHandler
+ciModeHandler: ; 0x02250284
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x28
 	mov r4, r1
@@ -3277,7 +3277,7 @@ _022502B4:
 	ldr r8, [r1]
 	ldr r5, [r1, #4]
 	mov r1, r8
-	bl ov66_0224C134
+	bl ciInChannel
 	cmp r0, #0
 	addeq sp, sp, #0x28
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -3286,7 +3286,7 @@ _022502B4:
 	mov r0, r5
 	add r1, r1, #8
 	sub r2, r2, #2
-	bl ov66_0224EC20
+	bl ciParseMode
 	str r0, [sp, #4]
 	cmp r0, #0
 	addeq sp, sp, #0x28
@@ -3328,13 +3328,13 @@ _02250380:
 	ldr r2, [r7, #8]
 	mov r0, sb
 	mov r1, r8
-	bl ov66_0224C350
+	bl ciSetChannelPassword
 	b _02250418
 _022503A0:
 	mov r0, sb
 	mov r1, r8
 	mov r2, r6
-	bl ov66_0224C350
+	bl ciSetChannelPassword
 	b _02250418
 _022503B4:
 	ldr r1, [r7, #8]
@@ -3345,7 +3345,7 @@ _022503B4:
 	str r2, [sp]
 	mov r2, r8
 	mov r3, r5
-	bl ov66_0224D090
+	bl ciUserChangedMode
 	b _02250418
 _022503DC:
 	ldr r1, [r7, #8]
@@ -3356,7 +3356,7 @@ _022503DC:
 	str r2, [sp]
 	mov r2, r8
 	mov r3, r4
-	bl ov66_0224D090
+	bl ciUserChangedMode
 	b _02250418
 _02250404:
 	ldr r2, _02250480 ; =0x02259E44
@@ -3372,7 +3372,7 @@ _02250424:
 	add r2, sp, #8
 	mov r0, sb
 	mov r1, r8
-	bl ov66_0224C184
+	bl ciGetChannelMode
 	cmp r0, #0
 	bne _0225044C
 	ldr r0, [sp, #4]
@@ -3382,11 +3382,11 @@ _02250424:
 _0225044C:
 	ldr r1, [sp, #4]
 	add r0, sp, #8
-	bl ov66_0224EED4
+	bl ciApplyChangesToMode
 	add r2, sp, #8
 	mov r0, sb
 	mov r1, r8
-	bl ov66_0224C270
+	bl ciSetChannelMode
 	ldr r0, [sp, #4]
 	bl DWCi_GsFree
 	add sp, sp, #0x28
@@ -3398,10 +3398,10 @@ _02250480: .word Unk_ov66_02259E44
 _02250484: .word 0x00000893
 _02250488: .word Unk_ov66_0225A590
 _0225048C: .word 0x000008DC
-	arm_func_end ov66_02250284
+	arm_func_end ciModeHandler
 
-	arm_func_start ov66_02250490
-ov66_02250490: ; 0x02250490
+	arm_func_start ciErrorHandler
+ciErrorHandler: ; 0x02250490
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -3427,7 +3427,7 @@ _022504D4:
 	ldr r1, [r4, #0x20]
 	mov r0, r5
 	ldr r1, [r1, #0]
-	bl ov66_02253598
+	bl ciHandleDisconnect
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _022504F4: .word Unk_ov66_0225A4C0
@@ -3436,10 +3436,10 @@ _022504FC: .word Unk_ov66_02259E64
 _02250500: .word 0x000008F1
 _02250504: .word Unk_ov66_0225A61C
 _02250508: .word 0x000008F7
-	arm_func_end ov66_02250490
+	arm_func_end ciErrorHandler
 
-	arm_func_start ov66_0225050C
-ov66_0225050C: ; 0x0225050C
+	arm_func_start ciInviteHandler
+ciInviteHandler: ; 0x0225050C
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x18
 	movs r4, r0
@@ -3484,7 +3484,7 @@ _02250554:
 	add r3, sp, #0x10
 	mov r0, r4
 	mov r1, #3
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -3494,10 +3494,10 @@ _022505C8: .word Unk_ov66_02259EB4
 _022505CC: .word 0x00000904
 _022505D0: .word Unk_ov66_0225A5F0
 _022505D4: .word 0x0000090A
-	arm_func_end ov66_0225050C
+	arm_func_end ciInviteHandler
 
-	arm_func_start ov66_022505D8
-ov66_022505D8: ; 0x022505D8
+	arm_func_start ciNameReplyHandler
+ciNameReplyHandler: ; 0x022505D8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x40
 	mov r4, r1
@@ -3541,7 +3541,7 @@ _0225060C:
 	str r3, [sp, #0x28]
 	str r7, [sp, #0x2c]
 	str r3, [sp, #0x34]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r6, r0
 	addeq sp, sp, #0x40
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -3682,7 +3682,7 @@ _02250858:
 	mov r1, sb
 	mov r3, sl
 	mov r2, r7
-	bl ov66_0224C784
+	bl ciUserEnteredChannel
 _02250888:
 	ldr r1, _022508B4 ; =0x0225A724
 	mov r0, #0
@@ -3704,10 +3704,10 @@ _022508C4: .word Unk_ov66_0225A590
 _022508C8: .word 0x0000096D
 _022508CC: .word 0x00000974
 _022508D0: .word 0x00000981
-	arm_func_end ov66_022505D8
+	arm_func_end ciNameReplyHandler
 
-	arm_func_start ov66_022508D4
-ov66_022508D4: ; 0x022508D4
+	arm_func_start ciEndOfNamesHandler
+ciEndOfNamesHandler: ; 0x022508D4
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x60
 	movs r6, r0
@@ -3761,7 +3761,7 @@ _0225091C:
 	str r3, [sp, #0x48]
 	str r5, [sp, #0x4c]
 	str r3, [sp, #0x54]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r4, r0
 	addeq sp, sp, #0x60
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -3778,12 +3778,12 @@ _0225091C:
 	bne _022509E8
 	mov r0, r6
 	mov r1, r5
-	bl ov66_0224C454
+	bl ciJoinCallbackCalled
 _022509E8:
 	add r2, sp, #0x24
 	mov r0, r6
 	mov r1, r4
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x60
 	ldmia sp!, {r4, r5, r6, pc}
 _02250A00:
@@ -3800,7 +3800,7 @@ _02250A00:
 	str r3, [sp, #0x1c]
 	ldr r3, [ip, #0xc]
 	str r3, [sp, #0x20]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x60
 	ldmia sp!, {r4, r5, r6, pc}
 _02250A40:
@@ -3820,7 +3820,7 @@ _02250A40:
 	ldr r3, [r3, #0xc]
 	mov r1, r4
 	str r3, [sp, #0x10]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x60
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -3831,10 +3831,10 @@ _02250A98: .word 0x0000099F
 _02250A9C: .word Unk_ov66_0225A748
 _02250AA0: .word 0x000009A5
 _02250AA4: .word Unk_ov66_0225A760
-	arm_func_end ov66_022508D4
+	arm_func_end ciEndOfNamesHandler
 
-	arm_func_start ov66_02250AA8
-ov66_02250AA8: ; 0x02250AA8
+	arm_func_start ciRplTopicHandler
+ciRplTopicHandler: ; 0x02250AA8
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x30
 	mov r4, r1
@@ -3857,7 +3857,7 @@ _02250AD8:
 	ldmib r1, {r4, r6}
 	mov r1, r4
 	mov r2, r6
-	bl ov66_0224C5DC
+	bl ciSetChannelTopic
 	add r2, sp, #0x24
 	mov ip, #0
 	str ip, [r2, #4]
@@ -3868,7 +3868,7 @@ _02250AD8:
 	str ip, [r2, #8]
 	str r3, [sp, #0x24]
 	str r4, [sp, #0x28]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	beq _02250B58
 	mov r3, #1
@@ -3877,13 +3877,13 @@ _02250AD8:
 	str r3, [sp, #0x18]
 	str r4, [sp, #0x1c]
 	str r6, [sp, #0x20]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x30
 	ldmia sp!, {r4, r5, r6, pc}
 _02250B58:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	cmp r0, #0
 	ldrne r1, [r0, #0x14]
 	cmpne r1, #0
@@ -3901,7 +3901,7 @@ _02250B58:
 	add r3, sp, #0x10
 	mov r0, r5
 	mov r1, #9
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x30
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -3909,10 +3909,10 @@ _02250BB4: .word Unk_ov66_0225A748
 _02250BB8: .word Unk_ov66_0225A4D0
 _02250BBC: .word Unk_ov66_02259F4C
 _02250BC0: .word 0x00000A05
-	arm_func_end ov66_02250AA8
+	arm_func_end ciRplTopicHandler
 
-	arm_func_start ov66_02250BC4
-ov66_02250BC4: ; 0x02250BC4
+	arm_func_start ciRplNoTopicHandler
+ciRplNoTopicHandler: ; 0x02250BC4
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x30
 	mov r4, r1
@@ -3942,7 +3942,7 @@ _02250BF4:
 	str ip, [r2, #8]
 	str r3, [sp, #0x24]
 	str r4, [sp, #0x28]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	beq _02250C68
 	ldr r3, _02250CD8 ; =0x0225A608
@@ -3952,13 +3952,13 @@ _02250BF4:
 	str ip, [sp, #0x18]
 	str r4, [sp, #0x1c]
 	str r3, [sp, #0x20]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x30
 	ldmia sp!, {r3, r4, r5, pc}
 _02250C68:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	cmp r0, #0
 	ldrne r1, [r0, #0x14]
 	cmpne r1, #0
@@ -3977,7 +3977,7 @@ _02250C68:
 	add r3, sp, #0x10
 	mov r0, r5
 	mov r1, #9
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x30
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -3986,10 +3986,10 @@ _02250CCC: .word Unk_ov66_0225A4D0
 _02250CD0: .word Unk_ov66_0225A000
 _02250CD4: .word 0x00000A3C
 _02250CD8: .word Unk_ov66_0225A608
-	arm_func_end ov66_02250BC4
+	arm_func_end ciRplNoTopicHandler
 
-	arm_func_start ov66_02250CDC
-ov66_02250CDC: ; 0x02250CDC
+	arm_func_start ciErrNickInUseHandler
+ciErrNickInUseHandler: ; 0x02250CDC
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x1c
 	movs r4, r0
@@ -4027,7 +4027,7 @@ _02250D24:
 	str r3, [sp, #0x10]
 	str r5, [sp, #0x14]
 	str r6, [sp, #0x18]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	beq _02250D98
 	mov r3, #0
@@ -4036,7 +4036,7 @@ _02250D24:
 	str r3, [sp, #4]
 	str r5, [sp, #8]
 	str r6, [sp, #0xc]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _02250D98:
@@ -4058,7 +4058,7 @@ _02250DB8:
 	add r2, r4, #0x36c
 	mov r1, #1
 	str r3, [sp]
-	bl ov66_02255A08
+	bl ciNickError
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -4070,10 +4070,10 @@ _02250DF8: .word Unk_ov66_0225A748
 _02250DFC: .word 0x00000A73
 _02250E00: .word Unk_ov66_0225A764
 _02250E04: .word 0x00000A93
-	arm_func_end ov66_02250CDC
+	arm_func_end ciErrNickInUseHandler
 
-	arm_func_start ov66_02250E08
-ov66_02250E08: ; 0x02250E08
+	arm_func_start ciRplWhoReplyHandler
+ciRplWhoReplyHandler: ; 0x02250E08
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0x68
 	mov sb, r1
@@ -4100,7 +4100,7 @@ _02250E38:
 	mov r1, r5
 	mov r3, r7
 	ldr r4, [r4, #4]
-	bl ov66_0224D35C
+	bl ciSetUserBasicInfo
 	add r2, sp, #0x44
 	mov r0, #0
 	mov r3, r2
@@ -4122,7 +4122,7 @@ _02250E38:
 	str r4, [sp, #0x4c]
 	str r5, [sp, #0x54]
 	str r4, [sp, #0x60]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r8, r0
 	addeq sp, sp, #0x68
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
@@ -4150,7 +4150,7 @@ _02250E38:
 	str r4, [sp, #0x38]
 	str r5, [sp, #0x3c]
 	str r6, [sp, #0x40]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x68
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _02250F40:
@@ -4173,7 +4173,7 @@ _02250F40:
 	add r3, sp, #0x24
 	mov r0, sl
 	mov r1, #0x15
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	mov r0, #0
 	add sp, sp, #0x68
 	str r0, [r8, #0x10]
@@ -4205,7 +4205,7 @@ _02250FA0:
 	ldr r2, [r8, #0x10]
 	mov r0, sl
 	mov r1, #0x16
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x68
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
@@ -4213,10 +4213,10 @@ _02251014: .word Unk_ov66_0225A77C
 _02251018: .word Unk_ov66_0225A4D0
 _0225101C: .word Unk_ov66_0225A040
 _02251020: .word 0x00000AA6
-	arm_func_end ov66_02250E08
+	arm_func_end ciRplWhoReplyHandler
 
-	arm_func_start ov66_02251024
-ov66_02251024: ; 0x02251024
+	arm_func_start ciRplEndOfWhoHandler
+ciRplEndOfWhoHandler: ; 0x02251024
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x3c
 	mov r4, r1
@@ -4252,7 +4252,7 @@ _02251054:
 	str r4, [sp, #0x28]
 	str r3, [sp, #0x30]
 	str r4, [sp, #0x34]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x3c
 	ldmeqia sp!, {r4, r5, pc}
@@ -4266,7 +4266,7 @@ _02251054:
 	str r4, [sp, #0x18]
 	str r3, [sp, #0x1c]
 	str r3, [sp, #0x20]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x3c
 	ldmia sp!, {r4, r5, pc}
 _022510F0:
@@ -4282,7 +4282,7 @@ _022510F0:
 	str r3, [sp, #8]
 	str r3, [sp, #0xc]
 	str r3, [sp, #0x10]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x3c
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
@@ -4290,10 +4290,10 @@ _0225112C: .word Unk_ov66_0225A748
 _02251130: .word Unk_ov66_0225A4D0
 _02251134: .word Unk_ov66_0225A058
 _02251138: .word 0x00000B0D
-	arm_func_end ov66_02251024
+	arm_func_end ciRplEndOfWhoHandler
 
-	arm_func_start ov66_0225113C
-ov66_0225113C: ; 0x0225113C
+	arm_func_start ciParseValue
+ciParseValue: ; 0x0225113C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r4, r1
@@ -4352,10 +4352,10 @@ _022511F8: .word Unk_ov66_02259D84
 _022511FC: .word 0x00000B48
 _02251200: .word Unk_ov66_0225A79C
 _02251204: .word 0x00000B49
-	arm_func_end ov66_0225113C
+	arm_func_end ciParseValue
 
-	arm_func_start ov66_02251208
-ov66_02251208: ; 0x02251208
+	arm_func_start ciRplGetKeyHandler
+ciRplGetKeyHandler: ; 0x02251208
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x3c
 	mov r4, r1
@@ -4388,7 +4388,7 @@ _02251238:
 	str r4, [r2, #8]
 	str r3, [sp, #0x30]
 	str r5, [sp, #0x34]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r6, r0
 	addeq sp, sp, #0x3c
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -4407,7 +4407,7 @@ _02251238:
 _022512C4:
 	mov r0, r7
 	mov r1, r5
-	bl ov66_0225113C
+	bl ciParseValue
 	cmp r0, #0
 	beq _022512E8
 	str r0, [sb, sl, lsl #2]
@@ -4437,7 +4437,7 @@ _02251300:
 	ldr r0, [sp, #0x10]
 	add r2, sp, #0x1c
 	mov r1, r6
-	bl ov66_0224D908
+	bl ciFinishFilter
 	b _02251374
 _02251340:
 	ldr r0, [r6, #0x18]
@@ -4452,7 +4452,7 @@ _02251340:
 	ldr r0, [sp, #0x10]
 	add r3, sp, #0x1c
 	mov r1, #0x1d
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _02251374:
 	cmp r8, #0
 	mov r4, #0
@@ -4474,10 +4474,10 @@ _022513A8: .word Unk_ov66_0225A4D0
 _022513AC: .word Unk_ov66_02259F60
 _022513B0: .word 0x00000B76
 _022513B4: .word Unk_ov66_0225A608
-	arm_func_end ov66_02251208
+	arm_func_end ciRplGetKeyHandler
 
-	arm_func_start ov66_022513B8
-ov66_022513B8: ; 0x022513B8
+	arm_func_start ciRplEndGetKeyHandler
+ciRplEndGetKeyHandler: ; 0x022513B8
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x20
 	mov r5, r1
@@ -4507,7 +4507,7 @@ _022513E8:
 	str ip, [r2, #8]
 	str r3, [sp, #0x14]
 	str lr, [sp, #0x18]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x20
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -4523,7 +4523,7 @@ _022513E8:
 	mov r0, r4
 	str r3, [sp, #0xc]
 	str ip, [sp, #0x10]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x20
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -4531,10 +4531,10 @@ _02251474: .word Unk_ov66_0225A70C
 _02251478: .word Unk_ov66_0225A4D0
 _0225147C: .word Unk_ov66_0225A088
 _02251480: .word 0x00000BCC
-	arm_func_end ov66_022513B8
+	arm_func_end ciRplEndGetKeyHandler
 
-	arm_func_start ov66_02251484
-ov66_02251484: ; 0x02251484
+	arm_func_start ciRplGetCKeyHandler
+ciRplGetCKeyHandler: ; 0x02251484
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x54
 	mov r4, r1
@@ -4565,7 +4565,7 @@ _022514B4:
 	bne _022515E8
 	ldr r0, [sp, #0x10]
 	mov r1, fp
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	movs r7, r0
 	ldrne r0, [r7, #0x28]
 	cmpne r0, #0
@@ -4623,7 +4623,7 @@ _02251594:
 	ldr r2, [r7, #0x28]
 	mov r1, #0x1c
 	mov r3, sl
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	strb sb, [r8]
 	ldrsb r0, [r8]
 	cmp r0, #0
@@ -4641,7 +4641,7 @@ _022515E8:
 	str r4, [r2, #8]
 	str r3, [sp, #0x48]
 	str r5, [sp, #0x4c]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	str r0, [sp, #0x18]
 	cmp r0, #0
 	addeq sp, sp, #0x54
@@ -4660,7 +4660,7 @@ _022515E8:
 _02251650:
 	mov r0, r8
 	mov r1, r4
-	bl ov66_0225113C
+	bl ciParseValue
 	str r0, [r7, sb, lsl #2]
 	cmp r0, #0
 	ldrne r0, [sp, #0x1c]
@@ -4674,7 +4674,7 @@ _02251678:
 	beq _02251754
 	add r1, sp, #0x1c
 	mov r0, r8
-	bl ov66_0225113C
+	bl ciParseValue
 	movs sb, r0
 	beq _02251750
 _02251698:
@@ -4682,7 +4682,7 @@ _02251698:
 	add r1, sp, #0x1c
 	add r8, r8, r0
 	mov r0, r8
-	bl ov66_0225113C
+	bl ciParseValue
 	movs r4, r0
 	beq _02251730
 	add r0, r5, #1
@@ -4725,7 +4725,7 @@ _02251730:
 _0225173C:
 	mov r0, r8
 	add r1, sp, #0x1c
-	bl ov66_0225113C
+	bl ciParseValue
 	movs sb, r0
 	bne _02251698
 _02251750:
@@ -4746,7 +4746,7 @@ _02251754:
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0x18]
 	add r2, sp, #0x20
-	bl ov66_0224D908
+	bl ciFinishFilter
 	b _022517D8
 _02251798:
 	ldr r0, [sp, #0x18]
@@ -4764,7 +4764,7 @@ _02251798:
 	mov r1, #0x1e
 	ldr r2, [r0, #0x10]
 	ldr r0, [sp, #0x10]
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _022517D8:
 	cmp r5, #0
 	mov r4, #0
@@ -4787,10 +4787,10 @@ _02251810: .word Unk_ov66_02259FC4
 _02251814: .word 0x00000BFC
 _02251818: .word Unk_ov66_0225A7B8
 _0225181C: .word Unk_ov66_0225A7C0
-	arm_func_end ov66_02251484
+	arm_func_end ciRplGetCKeyHandler
 
-	arm_func_start ov66_02251820
-ov66_02251820: ; 0x02251820
+	arm_func_start ciRplEndGetCKeyHandler
+ciRplEndGetCKeyHandler: ; 0x02251820
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x24
 	mov r4, r1
@@ -4820,7 +4820,7 @@ _02251850:
 	str ip, [r2, #8]
 	str r3, [sp, #0x18]
 	str lr, [sp, #0x1c]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x24
 	ldmeqia sp!, {r4, r5, pc}
@@ -4837,17 +4837,17 @@ _02251850:
 	mov r0, r5
 	str r3, [sp, #0x10]
 	str ip, [sp, #0x14]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
 _022518E0: .word Unk_ov66_0225A70C
 _022518E4: .word Unk_ov66_0225A4D0
 _022518E8: .word Unk_ov66_0225A0E8
-	arm_func_end ov66_02251820
+	arm_func_end ciRplEndGetCKeyHandler
 
-	arm_func_start ov66_022518EC
-ov66_022518EC: ; 0x022518EC
+	arm_func_start ciRplGetChanKeyHandler
+ciRplGetChanKeyHandler: ; 0x022518EC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x58
 	mov r4, r1
@@ -4876,7 +4876,7 @@ _0225191C:
 	bne _02251A54
 	ldr r0, [sp, #0x10]
 	ldr r1, [sp, #0x18]
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	movs r8, r0
 	ldrne r0, [r8, #0x28]
 	cmpne r0, #0
@@ -4937,7 +4937,7 @@ _022519F8:
 	str r4, [sp, #0xc]
 	ldr r2, [r8, #0x28]
 	mov r1, #0x1c
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	strb sl, [sb]
 	ldrsb r0, [sb]
 	cmp r0, #0
@@ -4955,7 +4955,7 @@ _02251A54:
 	str r4, [r2, #8]
 	str r3, [sp, #0x4c]
 	str r5, [sp, #0x50]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	str r0, [sp, #0x1c]
 	cmp r0, #0
 	addeq sp, sp, #0x58
@@ -4976,7 +4976,7 @@ _02251A54:
 _02251AC4:
 	mov r0, sb
 	mov r1, r6
-	bl ov66_0225113C
+	bl ciParseValue
 	str r0, [r5, r7, lsl #2]
 	cmp r0, #0
 	ldrne r0, [sp, #0x20]
@@ -4990,7 +4990,7 @@ _02251AEC:
 	beq _02251CEC
 	add r1, sp, #0x20
 	mov r0, sb
-	bl ov66_0225113C
+	bl ciParseValue
 	movs r7, r0
 	beq _02251BC8
 	add fp, sp, #0x20
@@ -4999,7 +4999,7 @@ _02251B10:
 	mov r1, fp
 	add sb, sb, r0
 	mov r0, sb
-	bl ov66_0225113C
+	bl ciParseValue
 	movs r6, r0
 	beq _02251BA8
 	add r0, sl, #1
@@ -5042,7 +5042,7 @@ _02251BA8:
 _02251BB4:
 	mov r0, sb
 	mov r1, fp
-	bl ov66_0225113C
+	bl ciParseValue
 	movs r7, r0
 	bne _02251B10
 _02251BC8:
@@ -5055,14 +5055,14 @@ _02251BD0:
 _02251BDC:
 	add r1, sp, #0x20
 	mov r0, sb
-	bl ov66_0225113C
+	bl ciParseValue
 	movs fp, r0
 	beq _02251CE4
 	ldr r0, [sp, #0x20]
 	add r1, sp, #0x20
 	add sb, sb, r0
 	mov r0, sb
-	bl ov66_0225113C
+	bl ciParseValue
 	str r0, [sp, #0x14]
 	cmp r0, #0
 	bne _02251C1C
@@ -5143,7 +5143,7 @@ _02251CEC:
 	add r2, sp, #0x24
 	str r3, [sp, #0x34]
 	str r5, [sp, #0x38]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	cmp sl, #0
 	mov r4, #0
 	ble _02251D44
@@ -5165,10 +5165,10 @@ _02251D5C: .word Unk_ov66_0225A100
 _02251D60: .word 0x00000CE1
 _02251D64: .word Unk_ov66_0225A7B8
 _02251D68: .word Unk_ov66_0225A7C0
-	arm_func_end ov66_022518EC
+	arm_func_end ciRplGetChanKeyHandler
 
-	arm_func_start ov66_02251D6C
-ov66_02251D6C: ; 0x02251D6C
+	arm_func_start ciRplUserIPHandler
+ciRplUserIPHandler: ; 0x02251D6C
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x80
 	movs r4, r0
@@ -5219,7 +5219,7 @@ _02251DB4:
 	strb r0, [r4, #0x4ab]
 _02251E24:
 	mov r0, r4
-	bl ov66_0225389C
+	bl ciSendNickAndUser
 	add sp, sp, #0x80
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -5229,10 +5229,10 @@ _02251E3C: .word Unk_ov66_02259F74
 _02251E40: .word 0x00000DBD
 _02251E44: .word Unk_ov66_0225A7C4
 _02251E48: .word 0x00000DC3
-	arm_func_end ov66_02251D6C
+	arm_func_end ciRplUserIPHandler
 
-	arm_func_start ov66_02251E4C
-ov66_02251E4C: ; 0x02251E4C
+	arm_func_start ciRplListStartHandler
+ciRplListStartHandler: ; 0x02251E4C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0xc
 	add r2, sp, #0
@@ -5242,7 +5242,7 @@ ov66_02251E4C: ; 0x02251E4C
 	str r3, [r2, #4]
 	str r3, [r2, #8]
 	str r3, [sp]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	ldmeqia sp!, {r3, r4, pc}
@@ -5264,10 +5264,10 @@ _02251EB0: .word Unk_ov66_0225A7DC
 _02251EB4: .word Unk_ov66_0225A4D0
 _02251EB8: .word Unk_ov66_0225A0A0
 _02251EBC: .word 0x00000DEF
-	arm_func_end ov66_02251E4C
+	arm_func_end ciRplListStartHandler
 
-	arm_func_start ov66_02251EC0
-ov66_02251EC0: ; 0x02251EC0
+	arm_func_start ciRplListHandler
+ciRplListHandler: ; 0x02251EC0
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x34
 	mov sb, r1
@@ -5293,7 +5293,7 @@ _02251EF0:
 	str r3, [r2, #4]
 	str r3, [r2, #8]
 	str r3, [sp, #0x28]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r7, r0
 	ldrne r0, [r7, #0x10]
 	cmpne r0, #0
@@ -5361,7 +5361,7 @@ _02251FCC:
 	add r3, sp, #0x10
 	mov r0, sl
 	mov r1, #0xd
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	ldr r1, [r8, #4]
 	ldr r0, [r8, #8]
 	add r1, r1, #1
@@ -5422,10 +5422,10 @@ _022520FC: .word Unk_ov66_02259EFC
 _02252100: .word 0x00000E01
 _02252104: .word Unk_ov66_0225A7DC
 _02252108: .word 0x00000E15
-	arm_func_end ov66_02251EC0
+	arm_func_end ciRplListHandler
 
-	arm_func_start ov66_0225210C
-ov66_0225210C: ; 0x0225210C
+	arm_func_start ciRplListEndHandler
+ciRplListEndHandler: ; 0x0225210C
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x20
 	add r2, sp, #0x14
@@ -5436,7 +5436,7 @@ ov66_0225210C: ; 0x0225210C
 	str r3, [r2, #4]
 	str r3, [r2, #8]
 	str r3, [sp, #0x14]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x20
 	ldmeqia sp!, {r4, pc}
@@ -5453,13 +5453,13 @@ ov66_0225210C: ; 0x0225210C
 	str r3, [sp, #0x10]
 	ldr r3, [ip, #0x10]
 	str r3, [sp, #0xc]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x20
 	ldmia sp!, {r4, pc}
-	arm_func_end ov66_0225210C
+	arm_func_end ciRplListEndHandler
 
-	arm_func_start ov66_02252184
-ov66_02252184: ; 0x02252184
+	arm_func_start ciRplChannelModeIsHandler
+ciRplChannelModeIsHandler: ; 0x02252184
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x70
 	mov r4, r1
@@ -5482,7 +5482,7 @@ _022521B4:
 	ldr r0, [r3, #8]
 	add r1, r3, #0xc
 	ldr r4, [r3, #4]
-	bl ov66_0224EC20
+	bl ciParseMode
 	movs r5, r0
 	addeq sp, sp, #0x70
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -5496,20 +5496,20 @@ _022521B4:
 	stmia r2, {r0, r1}
 	mov r0, r3
 	mov r1, r5
-	bl ov66_0224EED4
+	bl ciApplyChangesToMode
 	add r2, sp, #0x30
 	mov r0, r6
 	mov r1, r4
-	bl ov66_0224C184
+	bl ciGetChannelMode
 	cmp r0, #0
 	bne _02252290
 	add r2, sp, #0x50
 	mov r0, r6
 	mov r1, r4
-	bl ov66_0224C270
+	bl ciSetChannelMode
 	mov r0, r6
 	mov r1, r4
-	bl ov66_0224BD94
+	bl ciGetChannelCallbacks
 	cmp r0, #0
 	ldrne r1, [r0, #0x18]
 	cmpne r1, #0
@@ -5527,7 +5527,7 @@ _022521B4:
 	add r3, sp, #0x10
 	mov r0, r6
 	mov r1, #0xa
-	bl ov66_02248C2C
+	bl ciAddCallback_
 _02252290:
 	add r2, sp, #0x24
 	mov ip, #0
@@ -5539,7 +5539,7 @@ _02252290:
 	str ip, [r2, #8]
 	str r3, [sp, #0x24]
 	str r4, [sp, #0x28]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	beq _022522E4
 	add r3, sp, #0x50
@@ -5549,7 +5549,7 @@ _02252290:
 	str ip, [sp, #0x18]
 	str r4, [sp, #0x1c]
 	str r3, [sp, #0x20]
-	bl ov66_0224D908
+	bl ciFinishFilter
 _022522E4:
 	mov r0, r5
 	bl DWCi_GsFree
@@ -5560,10 +5560,10 @@ _022522F4: .word Unk_ov66_0225A7EC
 _022522F8: .word Unk_ov66_0225A4D0
 _022522FC: .word Unk_ov66_0225A1D0
 _02252300: .word 0x00000E93
-	arm_func_end ov66_02252184
+	arm_func_end ciRplChannelModeIsHandler
 
-	arm_func_start ov66_02252304
-ov66_02252304: ; 0x02252304
+	arm_func_start ciRplWhoisUserHandler
+ciRplWhoisUserHandler: ; 0x02252304
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x18
 	movs r7, r0
@@ -5606,7 +5606,7 @@ _0225234C:
 	str ip, [sp, #4]
 	str r3, [sp, #0xc]
 	str ip, [sp, #0x10]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r4, r0
 	addeq sp, sp, #0x18
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -5672,11 +5672,11 @@ _02252488:
 	ldr r3, [r0, #0xc]
 	ldr r1, _022524E4 ; =0x0225A850
 	add r0, r7, #0x1c
-	bl ov66_02256E70
+	bl ciSocketSendf
 	mov r0, r7
 	mov r1, r4
 	mov r2, #0
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -5692,10 +5692,10 @@ _022524D8: .word Unk_ov66_0225A81C
 _022524DC: .word 0x00000F1E
 _022524E0: .word Unk_ov66_0225A834
 _022524E4: .word Unk_ov66_0225A850
-	arm_func_end ov66_02252304
+	arm_func_end ciRplWhoisUserHandler
 
-	arm_func_start ov66_022524E8
-ov66_022524E8: ; 0x022524E8
+	arm_func_start ciRplWhoisChannelsHandler
+ciRplWhoisChannelsHandler: ; 0x022524E8
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0xc
 	mov r6, r1
@@ -5725,7 +5725,7 @@ _02252518:
 	str r4, [r2, #8]
 	str r3, [sp]
 	str r5, [sp, #4]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
@@ -5782,10 +5782,10 @@ _02252620: .word Unk_ov66_0225A4D0
 _02252624: .word Unk_ov66_0225A1EC
 _02252628: .word 0x00000F34
 _0225262C: .word Unk_ov66_0225A724
-	arm_func_end ov66_022524E8
+	arm_func_end ciRplWhoisChannelsHandler
 
-	arm_func_start ov66_02252630
-ov66_02252630: ; 0x02252630
+	arm_func_start ciRplEndOfWhoisHandler
+ciRplEndOfWhoisHandler: ; 0x02252630
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x28
 	mov r5, r1
@@ -5815,7 +5815,7 @@ _02252660:
 	str ip, [r2, #8]
 	str r3, [sp, #0x1c]
 	str r5, [sp, #0x20]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x28
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -5838,7 +5838,7 @@ _02252660:
 	str r3, [sp, #0x14]
 	ldr r3, [ip, #0x10]
 	str r3, [sp, #0x18]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x28
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -5846,10 +5846,10 @@ _02252708: .word Unk_ov66_0225A748
 _0225270C: .word Unk_ov66_0225A4D0
 _02252710: .word Unk_ov66_0225A118
 _02252714: .word 0x00000F76
-	arm_func_end ov66_02252630
+	arm_func_end ciRplEndOfWhoisHandler
 
-	arm_func_start ov66_02252718
-ov66_02252718: ; 0x02252718
+	arm_func_start ciRplBanListHandler
+ciRplBanListHandler: ; 0x02252718
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0xc
 	mov r4, r1
@@ -5880,7 +5880,7 @@ _02252748:
 	str r6, [r2, #8]
 	str r3, [sp]
 	str r7, [sp, #4]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
@@ -5937,10 +5937,10 @@ _02252854: .word 0x00000F9D
 _02252858: .word Unk_ov66_0225A7DC
 _0225285C: .word 0x00000FAF
 _02252860: .word Unk_ov66_0225A87C
-	arm_func_end ov66_02252718
+	arm_func_end ciRplBanListHandler
 
-	arm_func_start ov66_02252864
-ov66_02252864: ; 0x02252864
+	arm_func_start ciRplEndOfBanListHandler
+ciRplEndOfBanListHandler: ; 0x02252864
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x1c
 	mov r5, r1
@@ -5970,7 +5970,7 @@ _02252894:
 	str ip, [r2, #8]
 	str r3, [sp, #0x10]
 	str r5, [sp, #0x14]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x1c
 	ldmeqia sp!, {r4, r5, pc}
@@ -5984,7 +5984,7 @@ _02252894:
 	ldr r3, [r3, #4]
 	mov r0, r4
 	str r3, [sp, #0xc]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x1c
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
@@ -5992,10 +5992,10 @@ _02252918: .word Unk_ov66_0225A748
 _0225291C: .word Unk_ov66_0225A4D0
 _02252920: .word Unk_ov66_0225A17C
 _02252924: .word 0x00000FCF
-	arm_func_end ov66_02252864
+	arm_func_end ciRplEndOfBanListHandler
 
-	arm_func_start ov66_02252928
-ov66_02252928: ; 0x02252928
+	arm_func_start ciRplWelcomeHandler
+ciRplWelcomeHandler: ; 0x02252928
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	mov r5, r1
@@ -6050,10 +6050,10 @@ _022529E0: .word Unk_ov66_0225A014
 _022529E4: .word 0x00000FEC
 _022529E8: .word Unk_ov66_0225A5F0
 _022529EC: .word 0x00000FF2
-	arm_func_end ov66_02252928
+	arm_func_end ciRplWelcomeHandler
 
-	arm_func_start ov66_022529F0
-ov66_022529F0: ; 0x022529F0
+	arm_func_start ciRplSecureKeyHandler
+ciRplSecureKeyHandler: ; 0x022529F0
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r6, r0
 	mov r4, r1
@@ -6088,28 +6088,28 @@ _02252A34:
 	mov r0, r4
 	mov r1, r8
 	add r2, r2, #0x800
-	bl ov66_0224D568
+	bl gs_xcode_buf
 	add r2, r6, #0x28
 	mov r0, r5
 	mov r1, r7
 	add r2, r2, #0x800
-	bl ov66_0224D568
+	bl gs_xcode_buf
 	add r2, r6, #0x42
 	mov r0, r4
 	mov r1, r8
 	add r2, r2, #0x200
-	bl ov66_0224D450
+	bl gs_prepare_key
 	mov r0, r5
 	mov r1, r7
 	add r2, r6, #0x140
-	bl ov66_0224D450
+	bl gs_prepare_key
 	mov r0, #1
 	str r0, [r6, #0x13c]
 	ldr r0, [r6, #0x8a8]
 	cmp r0, #0
 	beq _02252ACC
 	mov r0, r6
-	bl ov66_022538B4
+	bl ciSendLogin
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _02252ACC:
 	ldr r0, [r6, #0x10]
@@ -6117,11 +6117,11 @@ _02252ACC:
 	beq _02252AE8
 	ldr r1, _02252B0C ; =0x0225A890
 	add r0, r6, #0x1c
-	bl ov66_02256BB0
+	bl ciSocketSend
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _02252AE8:
 	mov r0, r6
-	bl ov66_0225389C
+	bl ciSendNickAndUser
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _02252AF4: .word Unk_ov66_0225A4C0
@@ -6131,10 +6131,10 @@ _02252B00: .word 0x00001015
 _02252B04: .word Unk_ov66_0225A748
 _02252B08: .word 0x0000101B
 _02252B0C: .word Unk_ov66_0225A890
-	arm_func_end ov66_022529F0
+	arm_func_end ciRplSecureKeyHandler
 
-	arm_func_start ov66_02252B10
-ov66_02252B10: ; 0x02252B10
+	arm_func_start ciRplCDKeyHandler
+ciRplCDKeyHandler: ; 0x02252B10
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x14
 	mov r5, r1
@@ -6167,7 +6167,7 @@ _02252B40:
 	str ip, [r2, #4]
 	str ip, [r2, #8]
 	str r3, [sp, #8]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x14
 	ldmeqia sp!, {r3, r4, r5, r6, pc}
@@ -6175,7 +6175,7 @@ _02252B40:
 	mov r0, r4
 	str r5, [sp]
 	str r6, [sp, #4]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -6183,10 +6183,10 @@ _02252BB8: .word Unk_ov66_0225A748
 _02252BBC: .word Unk_ov66_0225A4D0
 _02252BC0: .word Unk_ov66_02259F24
 _02252BC4: .word 0x0000104E
-	arm_func_end ov66_02252B10
+	arm_func_end ciRplCDKeyHandler
 
-	arm_func_start ov66_02252BC8
-ov66_02252BC8: ; 0x02252BC8
+	arm_func_start ciRplLoginHandler
+ciRplLoginHandler: ; 0x02252BC8
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -6222,11 +6222,11 @@ _02252C0C:
 	beq _02252C54
 	ldr r1, _02252C78 ; =0x0225A890
 	add r0, r5, #0x1c
-	bl ov66_02256BB0
+	bl ciSocketSend
 	ldmia sp!, {r3, r4, r5, pc}
 _02252C54:
 	mov r0, r5
-	bl ov66_0225389C
+	bl ciSendNickAndUser
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02252C60: .word Unk_ov66_0225A4C0
@@ -6236,10 +6236,10 @@ _02252C6C: .word 0x00001069
 _02252C70: .word Unk_ov66_0225A864
 _02252C74: .word 0x0000106F
 _02252C78: .word Unk_ov66_0225A890
-	arm_func_end ov66_02252BC8
+	arm_func_end ciRplLoginHandler
 
-	arm_func_start ov66_02252C7C
-ov66_02252C7C: ; 0x02252C7C
+	arm_func_start ciErrNoSuchChannelHandler
+ciErrNoSuchChannelHandler: ; 0x02252C7C
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x44
 	mov r4, r1
@@ -6272,7 +6272,7 @@ _02252CAC:
 	str r4, [sp, #0x30]
 	str r3, [sp, #0x38]
 	str r4, [sp, #0x3c]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	beq _02252D64
 	ldr r0, [r1, #0]
@@ -6285,7 +6285,7 @@ _02252CAC:
 	str ip, [sp, #0x20]
 	str r3, [sp, #0x24]
 	str r4, [sp, #0x28]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, pc}
 _02252D38:
@@ -6297,13 +6297,13 @@ _02252D38:
 	str r3, [sp, #0x14]
 	str r4, [sp, #0x18]
 	str r3, [sp, #0x1c]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, pc}
 _02252D64:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224D738
+	bl ciFindGetKeyFilter
 	movs r1, r0
 	addeq sp, sp, #0x44
 	ldmeqia sp!, {r4, r5, pc}
@@ -6315,7 +6315,7 @@ _02252D64:
 	str r3, [sp, #8]
 	str r3, [sp, #0xc]
 	str r3, [sp, #0x10]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x44
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
@@ -6323,10 +6323,10 @@ _02252DA8: .word Unk_ov66_0225A748
 _02252DAC: .word Unk_ov66_0225A4D0
 _02252DB0: .word Unk_ov66_0225A1B4
 _02252DB4: .word 0x00001090
-	arm_func_end ov66_02252C7C
+	arm_func_end ciErrNoSuchChannelHandler
 
-	arm_func_start ov66_02252DB8
-ov66_02252DB8: ; 0x02252DB8
+	arm_func_start ciErrTooManyChannelsHandler
+ciErrTooManyChannelsHandler: ; 0x02252DB8
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x18
 	mov r5, r1
@@ -6355,7 +6355,7 @@ _02252DE8:
 	str r3, [r2, #8]
 	str r1, [sp, #0xc]
 	str r5, [sp, #0x10]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x18
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -6366,7 +6366,7 @@ _02252DE8:
 	str ip, [sp]
 	str r3, [sp, #4]
 	str r5, [sp, #8]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -6374,10 +6374,10 @@ _02252E5C: .word Unk_ov66_0225A748
 _02252E60: .word Unk_ov66_0225A4D0
 _02252E64: .word Unk_ov66_0225A294
 _02252E68: .word 0x000010DE
-	arm_func_end ov66_02252DB8
+	arm_func_end ciErrTooManyChannelsHandler
 
-	arm_func_start ov66_02252E6C
-ov66_02252E6C: ; 0x02252E6C
+	arm_func_start ciErrChannelIsFullHandler
+ciErrChannelIsFullHandler: ; 0x02252E6C
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x18
 	mov r5, r1
@@ -6406,7 +6406,7 @@ _02252E9C:
 	str r3, [r2, #8]
 	str r1, [sp, #0xc]
 	str r5, [sp, #0x10]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x18
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -6417,7 +6417,7 @@ _02252E9C:
 	str ip, [sp]
 	str r3, [sp, #4]
 	str r5, [sp, #8]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -6425,10 +6425,10 @@ _02252F10: .word Unk_ov66_0225A748
 _02252F14: .word Unk_ov66_0225A4D0
 _02252F18: .word Unk_ov66_0225A208
 _02252F1C: .word 0x00001101
-	arm_func_end ov66_02252E6C
+	arm_func_end ciErrChannelIsFullHandler
 
-	arm_func_start ov66_02252F20
-ov66_02252F20: ; 0x02252F20
+	arm_func_start ciErrInviteOnlyChanHandler
+ciErrInviteOnlyChanHandler: ; 0x02252F20
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x18
 	mov r5, r1
@@ -6457,7 +6457,7 @@ _02252F50:
 	str r3, [r2, #8]
 	str r1, [sp, #0xc]
 	str r5, [sp, #0x10]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x18
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -6468,7 +6468,7 @@ _02252F50:
 	str ip, [sp]
 	str r3, [sp, #4]
 	str r5, [sp, #8]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -6476,10 +6476,10 @@ _02252FC4: .word Unk_ov66_0225A748
 _02252FC8: .word Unk_ov66_0225A4D0
 _02252FCC: .word Unk_ov66_0225A25C
 _02252FD0: .word 0x00001124
-	arm_func_end ov66_02252F20
+	arm_func_end ciErrInviteOnlyChanHandler
 
-	arm_func_start ov66_02252FD4
-ov66_02252FD4: ; 0x02252FD4
+	arm_func_start ciErrBannedFromChanHandler
+ciErrBannedFromChanHandler: ; 0x02252FD4
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x18
 	mov r5, r1
@@ -6508,7 +6508,7 @@ _02253004:
 	str r3, [r2, #8]
 	str r1, [sp, #0xc]
 	str r5, [sp, #0x10]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x18
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -6519,7 +6519,7 @@ _02253004:
 	str ip, [sp]
 	str r3, [sp, #4]
 	str r5, [sp, #8]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -6527,10 +6527,10 @@ _02253078: .word Unk_ov66_0225A748
 _0225307C: .word Unk_ov66_0225A4D0
 _02253080: .word Unk_ov66_0225A278
 _02253084: .word 0x00001147
-	arm_func_end ov66_02252FD4
+	arm_func_end ciErrBannedFromChanHandler
 
-	arm_func_start ov66_02253088
-ov66_02253088: ; 0x02253088
+	arm_func_start ciErrBadChannelKeyHandler
+ciErrBadChannelKeyHandler: ; 0x02253088
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x18
 	mov r5, r1
@@ -6559,7 +6559,7 @@ _022530B8:
 	str r3, [r2, #8]
 	str r1, [sp, #0xc]
 	str r5, [sp, #0x10]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x18
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -6570,7 +6570,7 @@ _022530B8:
 	str ip, [sp]
 	str r3, [sp, #4]
 	str r5, [sp, #8]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -6578,10 +6578,10 @@ _0225312C: .word Unk_ov66_0225A748
 _02253130: .word Unk_ov66_0225A4D0
 _02253134: .word Unk_ov66_0225A198
 _02253138: .word 0x0000116A
-	arm_func_end ov66_02253088
+	arm_func_end ciErrBadChannelKeyHandler
 
-	arm_func_start ov66_0225313C
-ov66_0225313C: ; 0x0225313C
+	arm_func_start ciErrBadChanMaskHandler
+ciErrBadChanMaskHandler: ; 0x0225313C
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x18
 	mov r5, r1
@@ -6610,7 +6610,7 @@ _0225316C:
 	str r3, [r2, #8]
 	str r1, [sp, #0xc]
 	str r5, [sp, #0x10]
-	bl ov66_0224D5A8
+	bl ciFindFilter
 	movs r1, r0
 	addeq sp, sp, #0x18
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -6621,7 +6621,7 @@ _0225316C:
 	str ip, [sp]
 	str r3, [sp, #4]
 	str r5, [sp, #8]
-	bl ov66_0224D908
+	bl ciFinishFilter
 	add sp, sp, #0x18
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -6629,15 +6629,15 @@ _022531E0: .word Unk_ov66_0225A748
 _022531E4: .word Unk_ov66_0225A4D0
 _022531E8: .word Unk_ov66_0225A130
 _022531EC: .word 0x0000118D
-	arm_func_end ov66_0225313C
+	arm_func_end ciErrBadChanMaskHandler
 
-	arm_func_start ov66_022531F0
-ov66_022531F0: ; 0x022531F0
+	arm_func_start ciErrNoSuchNickHandler
+ciErrNoSuchNickHandler: ; 0x022531F0
 	bx lr
-	arm_func_end ov66_022531F0
+	arm_func_end ciErrNoSuchNickHandler
 
-	arm_func_start ov66_022531F4
-ov66_022531F4: ; 0x022531F4
+	arm_func_start ciErrErroneusNicknameHandler
+ciErrErroneusNicknameHandler: ; 0x022531F4
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	movs r4, r0
@@ -6657,7 +6657,7 @@ _02253218:
 	add r2, r4, #0x36c
 	mov r1, #2
 	str r3, [sp]
-	bl ov66_02255A08
+	bl ciNickError
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
@@ -6665,10 +6665,10 @@ _02253248: .word Unk_ov66_0225A4C0
 _0225324C: .word Unk_ov66_0225A4D0
 _02253250: .word Unk_ov66_0225A2B0
 _02253254: .word 0x000011B2
-	arm_func_end ov66_022531F4
+	arm_func_end ciErrErroneusNicknameHandler
 
-	arm_func_start ov66_02253258
-ov66_02253258: ; 0x02253258
+	arm_func_start ciErrLoginFailedHandler
+ciErrLoginFailedHandler: ; 0x02253258
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _02253278
@@ -6696,10 +6696,10 @@ _022532AC: .word Unk_ov66_0225A4C0
 _022532B0: .word Unk_ov66_0225A4D0
 _022532B4: .word Unk_ov66_0225A148
 _022532B8: .word 0x000011C2
-	arm_func_end ov66_02253258
+	arm_func_end ciErrLoginFailedHandler
 
-	arm_func_start ov66_022532BC
-ov66_022532BC: ; 0x022532BC
+	arm_func_start ciErrNoUniqueNickHandler
+ciErrNoUniqueNickHandler: ; 0x022532BC
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	movs r4, r0
@@ -6719,7 +6719,7 @@ _022532E0:
 	mov r0, r4
 	mov r1, #4
 	str r3, [sp]
-	bl ov66_02255A08
+	bl ciNickError
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
@@ -6728,10 +6728,10 @@ _02253314: .word Unk_ov66_0225A4D0
 _02253318: .word Unk_ov66_0225A160
 _0225331C: .word 0x000011DB
 _02253320: .word Unk_ov66_0225A608
-	arm_func_end ov66_022532BC
+	arm_func_end ciErrNoUniqueNickHandler
 
-	arm_func_start ov66_02253324
-ov66_02253324: ; 0x02253324
+	arm_func_start ciErrUniqueNickExpiredHandler
+ciErrUniqueNickExpiredHandler: ; 0x02253324
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	movs r4, r0
@@ -6751,7 +6751,7 @@ _02253348:
 	mov r0, r4
 	mov r1, #3
 	str r3, [sp]
-	bl ov66_02255A08
+	bl ciNickError
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
@@ -6760,10 +6760,10 @@ _0225337C: .word Unk_ov66_0225A4D0
 _02253380: .word Unk_ov66_0225A2D0
 _02253384: .word 0x000011EB
 _02253388: .word Unk_ov66_0225A608
-	arm_func_end ov66_02253324
+	arm_func_end ciErrUniqueNickExpiredHandler
 
-	arm_func_start ov66_0225338C
-ov66_0225338C: ; 0x0225338C
+	arm_func_start ciErrRegisterNickFailedHandler
+ciErrRegisterNickFailedHandler: ; 0x0225338C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	movs r4, r0
 	mov r5, r1
@@ -6826,7 +6826,7 @@ _0225345C:
 	add r2, r4, #0x510
 	mov r1, #5
 	str r8, [sp]
-	bl ov66_02255A08
+	bl ciNickError
 	cmp sb, #0
 	mov r4, #0
 	ble _02253494
@@ -6847,7 +6847,7 @@ _022534A8: .word Unk_ov66_0225A2F0
 _022534AC: .word Unk_ov66_0225A70C
 _022534B0: .word 0x00001206
 _022534B4: .word Unk_ov66_0225A898
-	arm_func_end ov66_0225338C
+	arm_func_end ciErrRegisterNickFailedHandler
 	.data
 
 

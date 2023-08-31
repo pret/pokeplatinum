@@ -10,10 +10,10 @@
 .public ov4_021E9C2C
 .public ov4_021E9E40
 .public ov4_021EA8AC
-.public ov66_022483C4
-.public ov66_022483FC
-.public ov66_0224AAA0
-.public ov66_0224B298
-.public ov66_0224C134
-.public ov66_0224C454
-.public ov66_0224C518
+.public ciCallbacksArrayElementFreeFn
+.public ciFreeCallbackData
+.public ciCallCallback
+.public ciGetCallbackIndexByID
+.public ciInChannel
+.public ciJoinCallbackCalled
+.public ciWasJoinCallbackCalled

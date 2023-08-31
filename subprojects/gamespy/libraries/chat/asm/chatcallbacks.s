@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov66_022483C4
-ov66_022483C4: ; 0x022483C4
+	arm_func_start ciCallbacksArrayElementFreeFn
+ciCallbacksArrayElementFreeFn: ; 0x022483C4
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _022483E4
@@ -24,10 +24,10 @@ _022483E4:
 _022483F0: .word Unk_ov66_02259358
 _022483F4: .word Unk_ov66_02259368
 _022483F8: .word Unk_ov66_02259338
-	arm_func_end ov66_022483C4
+	arm_func_end ciCallbacksArrayElementFreeFn
 
-	arm_func_start ov66_022483FC
-ov66_022483FC: ; 0x022483FC
+	arm_func_start ciFreeCallbackData
+ciFreeCallbackData: ; 0x022483FC
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r4, r0
 	bne _0224841C
@@ -511,12 +511,12 @@ _02248A88: .word Unk_ov66_022593BC
 _02248A8C: .word Unk_ov66_022593DC
 _02248A90: .word Unk_ov66_022593EC
 _02248A94: .word 0x000001E5
-	arm_func_end ov66_022483FC
+	arm_func_end ciFreeCallbackData
 
-	arm_func_start ov66_02248A98
-ov66_02248A98: ; 0x02248A98
+	arm_func_start ciInitCallbacks
+ciInitCallbacks: ; 0x02248A98
 	stmfd sp!, {r4, lr}
-	ldr r2, _02248AC4 ; =ov66_022483C4
+	ldr r2, _02248AC4 ; =ciCallbacksArrayElementFreeFn
 	mov r4, r0
 	mov r0, #0x18
 	mov r1, #0x80
@@ -527,11 +527,11 @@ ov66_02248A98: ; 0x02248A98
 	movne r0, #1
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02248AC4: .word ov66_022483C4
-	arm_func_end ov66_02248A98
+_02248AC4: .word ciCallbacksArrayElementFreeFn
+	arm_func_end ciInitCallbacks
 
-	arm_func_start ov66_02248AC8
-ov66_02248AC8: ; 0x02248AC8
+	arm_func_start ciCleanupCallbacks
+ciCleanupCallbacks: ; 0x02248AC8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	movs sl, r0
 	bne _02248AE8
@@ -611,7 +611,7 @@ _02248BC0:
 	bl __msl_assertion_failed
 _02248BE0:
 	mov r0, r7
-	bl ov66_022483FC
+	bl ciFreeCallbackData
 	add sb, sb, #1
 	cmp sb, r8
 	blt _02248B18
@@ -631,10 +631,10 @@ _02248C1C: .word Unk_ov66_02259388
 _02248C20: .word Unk_ov66_022593A4
 _02248C24: .word Unk_ov66_022593BC
 _02248C28: .word Unk_ov66_022593DC
-	arm_func_end ov66_02248AC8
+	arm_func_end ciCleanupCallbacks
 
-	arm_func_start ov66_02248C2C
-ov66_02248C2C: ; 0x02248C2C
+	arm_func_start ciAddCallback_
+ciAddCallback_: ; 0x02248C2C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x18
 	movs r5, r0
@@ -2754,10 +2754,10 @@ _0224AA90: .word 0x00000365
 _0224AA94: .word 0x00000366
 _0224AA98: .word 0x00000371
 _0224AA9C: .word Unk_ov66_022593EC
-	arm_func_end ov66_02248C2C
+	arm_func_end ciAddCallback_
 
-	arm_func_start ov66_0224AAA0
-ov66_0224AAA0: ; 0x0224AAA0
+	arm_func_start ciCallCallback
+ciCallCallback: ; 0x0224AAA0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x14
 	movs r6, r0
@@ -2995,7 +2995,7 @@ _0224ADE4:
 	ldr r8, [r5, #4]
 	ldr r1, [r7, #8]
 	mov r0, r6
-	bl ov66_0224C454
+	bl ciJoinCallbackCalled
 	str r4, [sp]
 	mov r0, r6
 	ldmia r7, {r1, r2, r3}
@@ -3167,7 +3167,7 @@ _0224B044:
 	bl __msl_assertion_failed
 _0224B058:
 	mov r0, r5
-	bl ov66_022483FC
+	bl ciFreeCallbackData
 	add sp, sp, #0x14
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
@@ -3184,10 +3184,10 @@ _0224B08C: .word Unk_ov66_022593BC
 _0224B090: .word Unk_ov66_022593DC
 _0224B094: .word Unk_ov66_022593EC
 _0224B098: .word 0x000005EF
-	arm_func_end ov66_0224AAA0
+	arm_func_end ciCallCallback
 
-	arm_func_start ov66_0224B09C
-ov66_0224B09C: ; 0x0224B09C
+	arm_func_start ciCallCallbacks
+ciCallCallbacks: ; 0x0224B09C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x18
 	movs sl, r0
@@ -3270,11 +3270,11 @@ _0224B1B4:
 	cmp r1, #0
 	beq _0224B1E8
 	mov r0, sl
-	bl ov66_0224C134
+	bl ciInChannel
 	cmp r0, #0
 	bne _0224B1E8
 	mov r0, r7
-	bl ov66_022483FC
+	bl ciFreeCallbackData
 	ldr r0, [sl, #0x820]
 	mov r1, r8
 	bl ov4_021E9E40
@@ -3284,7 +3284,7 @@ _0224B1E8:
 	cmp r1, #0
 	beq _0224B204
 	mov r0, sl
-	bl ov66_0224C518
+	bl ciWasJoinCallbackCalled
 	cmp r0, #0
 	beq _0224B250
 _0224B204:
@@ -3302,7 +3302,7 @@ _0224B204:
 	bl ov4_021E9E40
 	mov r0, sl
 	add r1, sp, #0
-	bl ov66_0224AAA0
+	bl ciCallCallback
 	cmp sb, #0
 	beq _0224B254
 	add sp, sp, #0x18
@@ -3328,10 +3328,10 @@ _0224B288: .word Unk_ov66_02259388
 _0224B28C: .word Unk_ov66_022593A4
 _0224B290: .word Unk_ov66_022593BC
 _0224B294: .word Unk_ov66_022593DC
-	arm_func_end ov66_0224B09C
+	arm_func_end ciCallCallbacks
 
-	arm_func_start ov66_0224B298
-ov66_0224B298: ; 0x0224B298
+	arm_func_start ciGetCallbackIndexByID
+ciGetCallbackIndexByID: ; 0x0224B298
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	movs sl, r0
 	mov sb, r1
@@ -3430,18 +3430,18 @@ _0224B3E8: .word Unk_ov66_02259388
 _0224B3EC: .word Unk_ov66_022593A4
 _0224B3F0: .word Unk_ov66_022593BC
 _0224B3F4: .word Unk_ov66_022593DC
-	arm_func_end ov66_0224B298
+	arm_func_end ciGetCallbackIndexByID
 
-	arm_func_start ov66_0224B3F8
-ov66_0224B3F8: ; 0x0224B3F8
+	arm_func_start ciCheckCallbacksForID
+ciCheckCallbacksForID: ; 0x0224B3F8
 	stmfd sp!, {r3, lr}
-	bl ov66_0224B298
+	bl ciGetCallbackIndexByID
 	mvn r1, #0
 	cmp r0, r1
 	moveq r0, #0
 	movne r0, #1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov66_0224B3F8
+	arm_func_end ciCheckCallbacksForID
 	.data
 
 

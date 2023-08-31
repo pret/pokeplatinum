@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov66_02255ADC
-ov66_02255ADC: ; 0x02255ADC
+	arm_func_start ciBufferInit
+ciBufferInit: ; 0x02255ADC
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _02255AFC
@@ -34,19 +34,19 @@ _02255AFC:
 _02255B30: .word Unk_ov66_0225B148
 _02255B34: .word Unk_ov66_0225B158
 _02255B38: .word Unk_ov66_0225B074
-	arm_func_end ov66_02255ADC
+	arm_func_end ciBufferInit
 
-	arm_func_start ov66_02255B3C
-ov66_02255B3C: ; 0x02255B3C
+	arm_func_start ciBufferFree
+ciBufferFree: ; 0x02255B3C
 	ldr ip, _02255B48 ; =DWCi_GsFree
 	ldr r0, [r0, #0]
 	bx ip
 	; .align 2, 0
 _02255B48: .word DWCi_GsFree
-	arm_func_end ov66_02255B3C
+	arm_func_end ciBufferFree
 
-	arm_func_start ov66_02255B4C
-ov66_02255B4C: ; 0x02255B4C
+	arm_func_start ciBufferPreAppend
+ciBufferPreAppend: ; 0x02255B4C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -144,10 +144,10 @@ _02255CA0: .word Unk_ov66_0225B1CC
 _02255CA4: .word Unk_ov66_0225B1F0
 _02255CA8: .word 0x00007FFF
 _02255CAC: .word Unk_ov66_0225B1FC
-	arm_func_end ov66_02255B4C
+	arm_func_end ciBufferPreAppend
 
-	arm_func_start ov66_02255CB0
-ov66_02255CB0: ; 0x02255CB0
+	arm_func_start ciBufferClipFront
+ciBufferClipFront: ; 0x02255CB0
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -235,10 +235,10 @@ _02255DDC: .word Unk_ov66_0225B1B4
 _02255DE0: .word Unk_ov66_0225B1CC
 _02255DE4: .word Unk_ov66_0225B1F0
 _02255DE8: .word Unk_ov66_0225B20C
-	arm_func_end ov66_02255CB0
+	arm_func_end ciBufferClipFront
 
-	arm_func_start ov66_02255DEC
-ov66_02255DEC: ; 0x02255DEC
+	arm_func_start ciSocketInit
+ciSocketInit: ; 0x02255DEC
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _02255E0C
@@ -255,27 +255,27 @@ _02255E0C:
 	mvn r1, #0
 	add r0, r4, #0x108
 	str r1, [r4, #0]
-	bl ov66_02255ADC
+	bl ciBufferInit
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
 	add r0, r4, #0x114
-	bl ov66_02255ADC
+	bl ciBufferInit
 	cmp r0, #0
 	movne r0, #1
 	ldmneia sp!, {r4, pc}
 	add r0, r4, #0x108
-	bl ov66_02255B3C
+	bl ciBufferFree
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02255E5C: .word Unk_ov66_0225B224
 _02255E60: .word Unk_ov66_0225B158
 _02255E64: .word Unk_ov66_0225B094
-	arm_func_end ov66_02255DEC
+	arm_func_end ciSocketInit
 
-	arm_func_start ov66_02255E68
-ov66_02255E68: ; 0x02255E68
+	arm_func_start ciSocketConnect
+ciSocketConnect: ; 0x02255E68
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	movs r6, r0
@@ -504,10 +504,10 @@ _022561A0: .word Unk_ov66_0225B490
 _022561A4: .word 0x0000FFFF
 _022561A8: .word Unk_ov66_0225B49C
 _022561AC: .word Unk_ov66_0225B4B0
-	arm_func_end ov66_02255E68
+	arm_func_end ciSocketConnect
 
-	arm_func_start ov66_022561B0
-ov66_022561B0: ; 0x022561B0
+	arm_func_start ciSocketDisconnect
+ciSocketDisconnect: ; 0x022561B0
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	bne _022561D0
@@ -632,9 +632,9 @@ _02256360:
 	mov r1, #2
 	add r0, r4, #0x108
 	str r1, [r4, #4]
-	bl ov66_02255B3C
+	bl ciBufferFree
 	add r0, r4, #0x114
-	bl ov66_02255B3C
+	bl ciBufferFree
 	ldr r0, [r4, #0x328]
 	bl DWCi_GsFree
 	ldr r0, [r4, #0x32c]
@@ -683,10 +683,10 @@ _0225641C: .word Unk_ov66_0225B3BC
 _02256420: .word Unk_ov66_0225B3E0
 _02256424: .word Unk_ov66_0225B414
 _02256428: .word Unk_ov66_0225B438
-	arm_func_end ov66_022561B0
+	arm_func_end ciSocketDisconnect
 
-	arm_func_start ov66_0225642C
-ov66_0225642C: ; 0x0225642C
+	arm_func_start ciSocketSelect
+ciSocketSelect: ; 0x0225642C
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xc
 	mov ip, #0
@@ -711,10 +711,10 @@ ov66_0225642C: ; 0x0225642C
 	strne r0, [r4]
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov66_0225642C
+	arm_func_end ciSocketSelect
 
-	arm_func_start ov66_0225648C
-ov66_0225648C: ; 0x0225648C
+	arm_func_start ciSocketThinkSend
+ciSocketThinkSend: ; 0x0225648C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	movs r6, r0
 	bne _022564AC
@@ -849,7 +849,7 @@ _0225665C:
 	mov r1, r5
 	mov r2, r4
 	mov r3, r5
-	bl ov66_0225642C
+	bl ciSocketSelect
 	ldr r0, [sp]
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -864,7 +864,7 @@ _0225665C:
 	cmpne r1, r7
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	add r0, r6, #0x114
-	bl ov66_02255CB0
+	bl ciBufferClipFront
 	ldr r0, [r6, #0x118]
 	cmp r0, #0
 	bgt _0225665C
@@ -886,10 +886,10 @@ _022566EC: .word Unk_ov66_0225B414
 _022566F0: .word Unk_ov66_0225B438
 _022566F4: .word Unk_ov66_0225B4D8
 _022566F8: .word 0x00000155
-	arm_func_end ov66_0225648C
+	arm_func_end ciSocketThinkSend
 
-	arm_func_start ov66_022566FC
-ov66_022566FC: ; 0x022566FC
+	arm_func_start ciSocketThinkRecv
+ciSocketThinkRecv: ; 0x022566FC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	movs sl, r0
 	bne _0225671C
@@ -1020,13 +1020,13 @@ _022568BC:
 	ldr r0, [sl]
 	mov r1, r8
 	mov r3, r2
-	bl ov66_0225642C
+	bl ciSocketSelect
 	ldr r0, [sp]
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	mov r1, r7
 	add r0, sl, #0x108
-	bl ov66_02255B4C
+	bl ciBufferPreAppend
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	ldr r6, [sl, #0x108]
@@ -1047,7 +1047,7 @@ _022568BC:
 	mov r1, sb
 	add r0, r6, r5
 	add r2, sl, #0x124
-	bl ov66_0224D4D8
+	bl gs_crypt
 _0225693C:
 	ldr r0, [sl, #0x10c]
 	add r1, r0, sb
@@ -1074,10 +1074,10 @@ _0225698C: .word Unk_ov66_0225B414
 _02256990: .word Unk_ov66_0225B438
 _02256994: .word Unk_ov66_0225B4D8
 _02256998: .word 0x0000017B
-	arm_func_end ov66_022566FC
+	arm_func_end ciSocketThinkRecv
 
-	arm_func_start ov66_0225699C
-ov66_0225699C: ; 0x0225699C
+	arm_func_start ciSocketThink
+ciSocketThink: ; 0x0225699C
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _022569BC
@@ -1203,9 +1203,9 @@ _02256B4C:
 	cmp r0, #2
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl ov66_0225648C
+	bl ciSocketThinkSend
 	mov r0, r4
-	bl ov66_022566FC
+	bl ciSocketThinkRecv
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02256B6C: .word Unk_ov66_0225B234
@@ -1225,10 +1225,10 @@ _02256BA0: .word Unk_ov66_0225B414
 _02256BA4: .word Unk_ov66_0225B438
 _02256BA8: .word Unk_ov66_0225B4D8
 _02256BAC: .word 0x000001BF
-	arm_func_end ov66_0225699C
+	arm_func_end ciSocketThink
 
-	arm_func_start ov66_02256BB0
-ov66_02256BB0: ; 0x02256BB0
+	arm_func_start ciSocketSend
+ciSocketSend: ; 0x02256BB0
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r8, r0
 	mov r7, r1
@@ -1368,7 +1368,7 @@ _02256D80:
 	mov r6, r0
 	add r0, r8, #0x114
 	add r1, r6, #2
-	bl ov66_02255B4C
+	bl ciBufferPreAppend
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1398,7 +1398,7 @@ _02256D80:
 	add r0, r5, r4
 	add r1, r6, #2
 	add r2, r2, #0x200
-	bl ov66_0224D4D8
+	bl gs_crypt
 _02256E20:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1421,10 +1421,10 @@ _02256E60: .word Unk_ov66_0225B4D8
 _02256E64: .word 0x000001D9
 _02256E68: .word Unk_ov66_0225B148
 _02256E6C: .word 0x000001DA
-	arm_func_end ov66_02256BB0
+	arm_func_end ciSocketSend
 
-	arm_func_start ov66_02256E70
-ov66_02256E70: ; 0x02256E70
+	arm_func_start ciSocketSendf
+ciSocketSendf: ; 0x02256E70
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, lr}
 	movs r4, r0
@@ -1571,7 +1571,7 @@ _02257024:
 _02257078:
 	ldr r1, _022570D0 ; =0x0225B6F8
 	mov r0, r4
-	bl ov66_02256BB0
+	bl ciSocketSend
 	ldmia sp!, {r4, lr}
 	add sp, sp, #0x10
 	bx lr
@@ -1593,10 +1593,10 @@ _022570C4: .word Unk_ov66_0225B414
 _022570C8: .word Unk_ov66_0225B438
 _022570CC: .word Unk_ov66_0225B4D8
 _022570D0: .word Unk_ov66_0225B6F8
-	arm_func_end ov66_02256E70
+	arm_func_end ciSocketSendf
 
-	arm_func_start ov66_022570D4
-ov66_022570D4: ; 0x022570D4
+	arm_func_start ciParseUser
+ciParseUser: ; 0x022570D4
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	movs sl, r0
 	ldrnesb r0, [sl]
@@ -1714,10 +1714,10 @@ _02257260: .word Unk_ov66_0225B4FC
 _02257264: .word Unk_ov66_0225B158
 _02257268: .word Unk_ov66_0225B048
 _0225726C: .word 0x00000232
-	arm_func_end ov66_022570D4
+	arm_func_end ciParseUser
 
-	arm_func_start ov66_02257270
-ov66_02257270: ; 0x02257270
+	arm_func_start ciAddParam
+ciAddParam: ; 0x02257270
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r1
 	ldr r1, [r5, #0x24]
@@ -1746,10 +1746,10 @@ ov66_02257270: ; 0x02257270
 	ldr r1, [r5, #0x20]
 	str r4, [r1, r2, lsl #2]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov66_02257270
+	arm_func_end ciAddParam
 
-	arm_func_start ov66_022572E0
-ov66_022572E0: ; 0x022572E0
+	arm_func_start ciParseParam
+ciParseParam: ; 0x022572E0
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r6, r0
 	mov r5, r1
@@ -1801,7 +1801,7 @@ _02257378:
 	mov r7, #0
 _02257394:
 	mov r1, r5
-	bl ov66_02257270
+	bl ciAddParam
 	cmp r0, #0
 	bne _022573B4
 	mov r0, r4
@@ -1819,7 +1819,7 @@ _022573C8:
 	beq _022573F4
 	mov r0, r8
 	mov r1, r5
-	bl ov66_02257270
+	bl ciAddParam
 	cmp r0, #0
 	bne _022573F4
 	mov r0, r4
@@ -1840,10 +1840,10 @@ _02257414: .word Unk_ov66_0225B510
 _02257418: .word 0x000002A2
 _0225741C: .word Unk_ov66_0225B520
 _02257420: .word Unk_ov66_0225B524
-	arm_func_end ov66_022572E0
+	arm_func_end ciParseParam
 
-	arm_func_start ov66_02257424
-ov66_02257424: ; 0x02257424
+	arm_func_start ciParseMessage
+ciParseMessage: ; 0x02257424
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	movs sb, r1
 	mov sl, r0
@@ -1978,7 +1978,7 @@ _022575A8:
 _022575E0:
 	ldr r0, [sl, #0x32c]
 	add r1, sl, #0x328
-	bl ov66_022570D4
+	bl ciParseUser
 	cmp r0, #0
 	bne _02257640
 	ldr r0, [sl, #0x328]
@@ -2008,7 +2008,7 @@ _02257640:
 	beq _022576DC
 	ldr r0, [sl, #0x340]
 	add r1, sl, #0x328
-	bl ov66_022572E0
+	bl ciParseParam
 	cmp r0, #0
 	bne _02257784
 	ldr r0, [sl, #0x328]
@@ -2053,7 +2053,7 @@ _022576DC:
 	beq _02257778
 	ldr r0, [sl, #0x344]
 	add r1, sl, #0x328
-	bl ov66_022572E0
+	bl ciParseParam
 	cmp r0, #0
 	bne _02257784
 	ldr r0, [sl, #0x328]
@@ -2161,10 +2161,10 @@ _02257850:
 _02257858: .word Unk_ov66_0225B4FC
 _0225785C: .word Unk_ov66_0225B158
 _02257860: .word Unk_ov66_0225B0C4
-	arm_func_end ov66_02257424
+	arm_func_end ciParseMessage
 
-	arm_func_start ov66_02257864
-ov66_02257864: ; 0x02257864
+	arm_func_start ciParseInput
+ciParseInput: ; 0x02257864
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov sl, r0
 	ldr r5, [sl, #0x108]
@@ -2288,7 +2288,7 @@ _022579F4:
 	bl memset
 	mov r0, sl
 	mov r1, r5
-	bl ov66_02257424
+	bl ciParseMessage
 	cmp r0, #0
 	bne _02257A34
 	add r0, sl, #0x328
@@ -2302,16 +2302,16 @@ _02257A34:
 	ldr r1, [sl, #0x108]
 	add r0, sl, #0x108
 	sub r1, r6, r1
-	bl ov66_02255CB0
+	bl ciBufferClipFront
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _02257A50:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
-	arm_func_end ov66_02257864
+	arm_func_end ciParseInput
 
-	arm_func_start ov66_02257A58
-ov66_02257A58: ; 0x02257A58
+	arm_func_start ciSocketRecv
+ciSocketRecv: ; 0x02257A58
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _02257A78
@@ -2429,7 +2429,7 @@ _02257BE8:
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl ov66_02257864
+	bl ciParseInput
 	cmp r0, #0
 	addne r0, r4, #0x328
 	moveq r0, #0
@@ -2450,7 +2450,7 @@ _02257C3C: .word Unk_ov66_0225B3BC
 _02257C40: .word Unk_ov66_0225B3E0
 _02257C44: .word Unk_ov66_0225B414
 _02257C48: .word Unk_ov66_0225B438
-	arm_func_end ov66_02257A58
+	arm_func_end ciSocketRecv
 	.data
 
 

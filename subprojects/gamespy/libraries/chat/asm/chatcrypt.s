@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov66_0224D450
-ov66_0224D450: ; 0x0224D450
+	arm_func_start gs_prepare_key
+gs_prepare_key: ; 0x0224D450
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r7, r1
 	mov r8, r0
@@ -44,10 +44,10 @@ _0224D48C:
 	and r0, r1, #0xff
 	blt _0224D48C
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end ov66_0224D450
+	arm_func_end gs_prepare_key
 
-	arm_func_start ov66_0224D4D8
-ov66_0224D4D8: ; 0x0224D4D8
+	arm_func_start gs_crypt
+gs_crypt: ; 0x0224D4D8
 	stmfd sp!, {r4, r5, r6, lr}
 	cmp r1, #0
 	ldrb r3, [r2, #0x100]
@@ -86,10 +86,10 @@ _0224D55C:
 	strb r3, [r2, #0x100]
 	strb ip, [r2, #0x101]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov66_0224D4D8
+	arm_func_end gs_crypt
 
-	arm_func_start ov66_0224D568
-ov66_0224D568: ; 0x0224D568
+	arm_func_start gs_xcode_buf
+gs_xcode_buf: ; 0x0224D568
 	stmfd sp!, {r4, lr}
 	mov r4, r2
 	cmp r1, #0
@@ -107,4 +107,4 @@ _0224D57C:
 	cmp lr, r1
 	blt _0224D57C
 	ldmia sp!, {r4, pc}
-	arm_func_end ov66_0224D568
+	arm_func_end gs_xcode_buf
