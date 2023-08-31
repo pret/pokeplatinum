@@ -7,8 +7,8 @@
 	.text
 
 
-	arm_func_start ov4_021FD7CC
-ov4_021FD7CC: ; 0x021FD7CC
+	arm_func_start FIFOAddRear
+FIFOAddRear: ; 0x021FD7CC
 	ldr r2, [r0, #4]
 	cmp r2, #0
 	strne r1, [r2, #0x20]
@@ -22,10 +22,10 @@ ov4_021FD7CC: ; 0x021FD7CC
 	add r1, r1, #1
 	str r1, [r0, #8]
 	bx lr
-	arm_func_end ov4_021FD7CC
+	arm_func_end FIFOAddRear
 
-	arm_func_start ov4_021FD800
-ov4_021FD800: ; 0x021FD800
+	arm_func_start FIFOAddFront
+FIFOAddFront: ; 0x021FD800
 	ldr r2, [r0, #0]
 	str r2, [r1, #0x20]
 	str r1, [r0, #0]
@@ -36,10 +36,10 @@ ov4_021FD800: ; 0x021FD800
 	add r1, r1, #1
 	str r1, [r0, #8]
 	bx lr
-	arm_func_end ov4_021FD800
+	arm_func_end FIFOAddFront
 
-	arm_func_start ov4_021FD828
-ov4_021FD828: ; 0x021FD828
+	arm_func_start FIFOGetFirst
+FIFOGetFirst: ; 0x021FD828
 	ldr r2, [r0, #0]
 	cmp r2, #0
 	beq _021FD854
@@ -54,10 +54,10 @@ ov4_021FD828: ; 0x021FD828
 _021FD854:
 	mov r0, r2
 	bx lr
-	arm_func_end ov4_021FD828
+	arm_func_end FIFOGetFirst
 
-	arm_func_start ov4_021FD85C
-ov4_021FD85C: ; 0x021FD85C
+	arm_func_start FIFORemove
+FIFORemove: ; 0x021FD85C
 	ldr r2, [r0, #0]
 	mov r3, #0
 	cmp r2, #0
@@ -88,25 +88,25 @@ _021FD8B0:
 _021FD8C0:
 	mov r0, #0
 	bx lr
-	arm_func_end ov4_021FD85C
+	arm_func_end FIFORemove
 
-	arm_func_start ov4_021FD8C8
-ov4_021FD8C8: ; 0x021FD8C8
+	arm_func_start FIFOClear
+FIFOClear: ; 0x021FD8C8
 	mov r1, #0
 	str r1, [r0, #4]
 	str r1, [r0, #0]
 	str r1, [r0, #8]
 	bx lr
-	arm_func_end ov4_021FD8C8
+	arm_func_end FIFOClear
 
-	arm_func_start ov4_021FD8DC
-ov4_021FD8DC: ; 0x021FD8DC
+	arm_func_start QEStartQuery
+QEStartQuery: ; 0x021FD8DC
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x110
 	mov r5, r0
 	mov r4, r1
 	add r0, r5, #8
-	bl ov4_021FD7CC
+	bl FIFOAddRear
 	bl current_time
 	str r0, [r4, #0x1c]
 	mov r0, #2
@@ -232,10 +232,10 @@ _021FDA8C:
 	; .align 2, 0
 _021FDAB4: .word Unk_ov4_02219F30
 _021FDAB8: .word Unk_ov4_02219F40
-	arm_func_end ov4_021FD8DC
+	arm_func_end QEStartQuery
 
-	arm_func_start ov4_021FDABC
-ov4_021FDABC: ; 0x021FDABC
+	arm_func_start SBQueryEngineInit
+SBQueryEngineInit: ; 0x021FDABC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r1
@@ -261,33 +261,33 @@ _021FDAE4:
 	bl socket
 	str r0, [r6, #0x20]
 	add r0, r6, #0x14
-	bl ov4_021FD8C8
+	bl FIFOClear
 	add r0, r6, #8
-	bl ov4_021FD8C8
+	bl FIFOClear
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021FDB2C: .word Unk_ov4_0221AE50
-	arm_func_end ov4_021FDABC
+	arm_func_end SBQueryEngineInit
 
-	arm_func_start ov4_021FDB30
-ov4_021FDB30: ; 0x021FDB30
+	arm_func_start SBQueryEngineSetPublicIP
+SBQueryEngineSetPublicIP: ; 0x021FDB30
 	str r1, [r0, #0x28]
 	bx lr
-	arm_func_end ov4_021FDB30
+	arm_func_end SBQueryEngineSetPublicIP
 
-	arm_func_start ov4_021FDB38
-ov4_021FDB38: ; 0x021FDB38
+	arm_func_start SBEngineHaltUpdates
+SBEngineHaltUpdates: ; 0x021FDB38
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0x14
-	bl ov4_021FD8C8
+	bl FIFOClear
 	add r0, r4, #8
-	bl ov4_021FD8C8
+	bl FIFOClear
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FDB38
+	arm_func_end SBEngineHaltUpdates
 
-	arm_func_start ov4_021FDB54
-ov4_021FDB54: ; 0x021FDB54
+	arm_func_start SBEngineCleanup
+SBEngineCleanup: ; 0x021FDB54
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x20]
@@ -295,14 +295,14 @@ ov4_021FDB54: ; 0x021FDB54
 	mvn r1, #0
 	add r0, r4, #0x14
 	str r1, [r4, #0x20]
-	bl ov4_021FD8C8
+	bl FIFOClear
 	add r0, r4, #8
-	bl ov4_021FD8C8
+	bl FIFOClear
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FDB54
+	arm_func_end SBEngineCleanup
 
-	arm_func_start ov4_021FDB80
-ov4_021FDB80: ; 0x021FDB80
+	arm_func_start SBQueryEngineUpdateServer
+SBQueryEngineUpdateServer: ; 0x021FDB80
 	stmfd sp!, {r3, lr}
 	ldrb ip, [r1, #0x14]
 	cmp r3, #0
@@ -328,21 +328,21 @@ _021FDBC8:
 	ldr r3, [r0, #4]
 	cmp ip, r3
 	bge _021FDBE0
-	bl ov4_021FD8DC
+	bl QEStartQuery
 	ldmia sp!, {r3, pc}
 _021FDBE0:
 	cmp r2, #0
 	add r0, r0, #0x14
 	beq _021FDBF4
-	bl ov4_021FD800
+	bl FIFOAddFront
 	ldmia sp!, {r3, pc}
 _021FDBF4:
-	bl ov4_021FD7CC
+	bl FIFOAddRear
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021FDB80
+	arm_func_end SBQueryEngineUpdateServer
 
-	arm_func_start ov4_021FDBFC
-ov4_021FDBFC: ; 0x021FDBFC
+	arm_func_start ParseSingleQR2Reply
+ParseSingleQR2Reply: ; 0x021FDBFC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov r8, r2
 	ldrsb r2, [r8]
@@ -364,7 +364,7 @@ ov4_021FDBFC: ; 0x021FDBFC
 _021FDC44:
 	mov r0, r8
 	mov r1, r7
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	movs r5, r0
 	bmi _021FDC88
 	add r0, sl, r6
@@ -372,7 +372,7 @@ _021FDC44:
 	mov r0, sb
 	mov r2, r8
 	ldr r1, [r4, r1, lsl #2]
-	bl ov4_021FE1A8
+	bl SBServerAddKeyValue
 	ldr r0, [sl, #0x40]
 	add r6, r6, #1
 	cmp r6, r0
@@ -388,7 +388,7 @@ _021FDC98:
 	mov r0, sb
 	mov r1, r8
 	mov r2, r7
-	bl ov4_021FE51C
+	bl SBServerParseQR2FullKeys
 	ldrb r0, [sb, #0x14]
 	orr r0, r0, #0x43
 	strb r0, [sb, #0x14]
@@ -402,7 +402,7 @@ _021FDCB4:
 	sub r0, r0, r2
 	str r0, [sb, #0x1c]
 	add r0, sl, #8
-	bl ov4_021FD85C
+	bl FIFORemove
 	ldr r3, [sl, #0x48]
 	ldr r4, [sl, #0x44]
 	mov r0, sl
@@ -412,10 +412,10 @@ _021FDCB4:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _021FDCF8: .word Unk_ov4_02219B38
-	arm_func_end ov4_021FDBFC
+	arm_func_end ParseSingleQR2Reply
 
-	arm_func_start ov4_021FDCFC
-ov4_021FDCFC: ; 0x021FDCFC
+	arm_func_start ParseSingleGOAReply
+ParseSingleGOAReply: ; 0x021FDCFC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r1
 	mov r7, r2
@@ -428,7 +428,7 @@ ov4_021FDCFC: ; 0x021FDCFC
 	moveq r6, #0
 	mov r0, r4
 	mov r1, r7
-	bl ov4_021FE49C
+	bl SBServerParseKeyVals
 	cmp r6, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
 	ldrb r0, [r4, #0x14]
@@ -445,7 +445,7 @@ ov4_021FDCFC: ; 0x021FDCFC
 	sub r0, r0, r2
 	str r0, [r4, #0x1c]
 	add r0, r5, #8
-	bl ov4_021FD85C
+	bl FIFORemove
 	ldr r3, [r5, #0x48]
 	ldr ip, [r5, #0x44]
 	mov r0, r5
@@ -455,16 +455,16 @@ ov4_021FDCFC: ; 0x021FDCFC
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021FDD90: .word Unk_ov4_02219F4C
-	arm_func_end ov4_021FDCFC
+	arm_func_end ParseSingleGOAReply
 
-	arm_func_start ov4_021FDD94
-ov4_021FDD94: ; 0x021FDD94
+	arm_func_start ParseSingleICMPReply
+ParseSingleICMPReply: ; 0x021FDD94
 	mov r0, #1
 	bx lr
-	arm_func_end ov4_021FDD94
+	arm_func_end ParseSingleICMPReply
 
-	arm_func_start ov4_021FDD9C
-ov4_021FDD9C: ; 0x021FDD9C
+	arm_func_start ProcessIncomingReplies
+ProcessIncomingReplies: ; 0x021FDD9C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x14
 	sub sp, sp, #0x800
@@ -543,7 +543,7 @@ _021FDEA8:
 	mov r1, r6
 	mov r2, r4
 	mov r3, r5
-	bl ov4_021FDD94
+	bl ParseSingleICMPReply
 	cmp r0, #0
 	bne _021FDF10
 	b _021FDF04
@@ -555,12 +555,12 @@ _021FDED0:
 	bne _021FDEF4
 	mov r1, r6
 	mov r3, r5
-	bl ov4_021FDBFC
+	bl ParseSingleQR2Reply
 	b _021FDF10
 _021FDEF4:
 	mov r1, r6
 	mov r3, r5
-	bl ov4_021FDCFC
+	bl ParseSingleGOAReply
 	b _021FDF10
 _021FDF04:
 	ldr r6, [r6, #0x20]
@@ -576,10 +576,10 @@ _021FDF10:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _021FDF2C: .word 0x000007FF
-	arm_func_end ov4_021FDD9C
+	arm_func_end ProcessIncomingReplies
 
-	arm_func_start ov4_021FDF30
-ov4_021FDF30: ; 0x021FDF30
+	arm_func_start TimeoutOldQueries
+TimeoutOldQueries: ; 0x021FDF30
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r6, r0
 	bl current_time
@@ -611,26 +611,26 @@ _021FDF54:
 	ldr ip, [r6, #0x44]
 	blx ip
 	add r0, r6, #8
-	bl ov4_021FD828
+	bl FIFOGetFirst
 	ldr r3, [r6, #8]
 	cmp r3, #0
 	bne _021FDF54
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021FDFBC: .word 0x000009C4
-	arm_func_end ov4_021FDF30
+	arm_func_end TimeoutOldQueries
 
-	arm_func_start ov4_021FDFC0
-ov4_021FDFC0: ; 0x021FDFC0
+	arm_func_start QueueNextQueries
+QueueNextQueries: ; 0x021FDFC0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	b _021FDFE0
 _021FDFCC:
 	add r0, r4, #0x14
-	bl ov4_021FD828
+	bl FIFOGetFirst
 	mov r1, r0
 	mov r0, r4
-	bl ov4_021FD8DC
+	bl QEStartQuery
 _021FDFE0:
 	ldr r1, [r4, #0x10]
 	ldr r0, [r4, #4]
@@ -640,24 +640,24 @@ _021FDFE0:
 	cmp r0, #0
 	bgt _021FDFCC
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FDFC0
+	arm_func_end QueueNextQueries
 
-	arm_func_start ov4_021FE000
-ov4_021FE000: ; 0x021FE000
+	arm_func_start SBQueryEngineThink
+SBQueryEngineThink: ; 0x021FE000
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r1, [r4, #0x10]
 	cmp r1, #0
 	ldmeqia sp!, {r4, pc}
 	mov r1, #0
-	bl ov4_021FDD9C
+	bl ProcessIncomingReplies
 	mov r0, r4
-	bl ov4_021FDF30
+	bl TimeoutOldQueries
 	ldr r0, [r4, #0x1c]
 	cmp r0, #0
 	ble _021FE038
 	mov r0, r4
-	bl ov4_021FDFC0
+	bl QueueNextQueries
 _021FE038:
 	ldr r0, [r4, #0x10]
 	cmp r0, #0
@@ -669,10 +669,10 @@ _021FE038:
 	mov r2, #0
 	blx ip
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FE000
+	arm_func_end SBQueryEngineThink
 
-	arm_func_start ov4_021FE060
-ov4_021FE060: ; 0x021FE060
+	arm_func_start SBQueryEngineAddQueryKey
+SBQueryEngineAddQueryKey: ; 0x021FE060
 	ldr r3, [r0, #0x40]
 	cmp r3, #0x14
 	bxge lr
@@ -681,22 +681,22 @@ ov4_021FE060: ; 0x021FE060
 	add r0, r0, r3
 	strb r1, [r0, #0x2c]
 	bx lr
-	arm_func_end ov4_021FE060
+	arm_func_end SBQueryEngineAddQueryKey
 
-	arm_func_start ov4_021FE080
-ov4_021FE080: ; 0x021FE080
+	arm_func_start SBQueryEngineRemoveServerFromFIFOs
+SBQueryEngineRemoveServerFromFIFOs: ; 0x021FE080
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	add r0, r5, #8
 	mov r4, r1
-	bl ov4_021FD85C
+	bl FIFORemove
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, pc}
 	mov r1, r4
 	add r0, r5, #0x14
-	bl ov4_021FD85C
+	bl FIFORemove
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FE080
+	arm_func_end SBQueryEngineRemoveServerFromFIFOs
 
 	.data
 

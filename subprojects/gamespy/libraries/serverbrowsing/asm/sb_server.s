@@ -6,46 +6,46 @@
 	.text
 
 
-	arm_func_start ov4_021FE0AC
-ov4_021FE0AC: ; 0x021FE0AC
-	ldr ip, _021FE0B8 ; =ov4_021FE6F4
+	arm_func_start RefStringHash
+RefStringHash: ; 0x021FE0AC
+	ldr ip, _021FE0B8 ; =StringHash
 	ldr r0, [r0, #0]
 	bx ip
 	; .align 2, 0
-_021FE0B8: .word ov4_021FE6F4
-	arm_func_end ov4_021FE0AC
+_021FE0B8: .word StringHash
+	arm_func_end RefStringHash
 
-	arm_func_start ov4_021FE0BC
-ov4_021FE0BC: ; 0x021FE0BC
+	arm_func_start RefStringCompare
+RefStringCompare: ; 0x021FE0BC
 	ldr ip, _021FE0CC ; =strcasecmp
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	bx ip
 	; .align 2, 0
 _021FE0CC: .word strcasecmp
-	arm_func_end ov4_021FE0BC
+	arm_func_end RefStringCompare
 
-	arm_func_start ov4_021FE0D0
-ov4_021FE0D0: ; 0x021FE0D0
+	arm_func_start RefStringFree
+RefStringFree: ; 0x021FE0D0
 	ldr ip, _021FE0DC ; =DWCi_GsFree
 	ldr r0, [r0, #0]
 	bx ip
 	; .align 2, 0
 _021FE0DC: .word DWCi_GsFree
-	arm_func_end ov4_021FE0D0
+	arm_func_end RefStringFree
 
-	arm_func_start ov4_021FE0E0
-ov4_021FE0E0: ; 0x021FE0E0
+	arm_func_start SBRefStrHash
+SBRefStrHash: ; 0x021FE0E0
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	ldr r0, _021FE134 ; =0x0221B750
 	ldr r0, [r0, #8]
 	cmp r0, #0
 	bne _021FE124
-	ldr r0, _021FE138 ; =ov4_021FE0BC
-	ldr ip, _021FE13C ; =ov4_021FE0D0
+	ldr r0, _021FE138 ; =RefStringCompare
+	ldr ip, _021FE13C ; =RefStringFree
 	str r0, [sp]
-	ldr r3, _021FE140 ; =ov4_021FE0AC
+	ldr r3, _021FE140 ; =RefStringHash
 	mov r0, #8
 	mov r1, #0x64
 	mov r2, #2
@@ -60,13 +60,13 @@ _021FE124:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021FE134: .word Unk_ov4_0221B750
-_021FE138: .word ov4_021FE0BC
-_021FE13C: .word ov4_021FE0D0
-_021FE140: .word ov4_021FE0AC
-	arm_func_end ov4_021FE0E0
+_021FE138: .word RefStringCompare
+_021FE13C: .word RefStringFree
+_021FE140: .word RefStringHash
+	arm_func_end SBRefStrHash
 
-	arm_func_start ov4_021FE144
-ov4_021FE144: ; 0x021FE144
+	arm_func_start SBRefStrHashCleanup
+SBRefStrHashCleanup: ; 0x021FE144
 	stmfd sp!, {r3, lr}
 	ldr r0, _021FE180 ; =0x0221B750
 	ldr r0, [r0, #8]
@@ -84,10 +84,10 @@ ov4_021FE144: ; 0x021FE144
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021FE180: .word Unk_ov4_0221B750
-	arm_func_end ov4_021FE144
+	arm_func_end SBRefStrHashCleanup
 
-	arm_func_start ov4_021FE184
-ov4_021FE184: ; 0x021FE184
+	arm_func_start SBServerFree
+SBServerFree: ; 0x021FE184
 	stmfd sp!, {r4, lr}
 	ldr r4, [r0, #0]
 	ldr r0, [r4, #0x18]
@@ -97,27 +97,27 @@ ov4_021FE184: ; 0x021FE184
 	str r1, [r4, #0x18]
 	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FE184
+	arm_func_end SBServerFree
 
-	arm_func_start ov4_021FE1A8
-ov4_021FE1A8: ; 0x021FE1A8
+	arm_func_start SBServerAddKeyValue
+SBServerAddKeyValue: ; 0x021FE1A8
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	mov r5, r0
 	mov r4, r2
 	mov r0, #0
-	bl ov4_021FF3C0
+	bl SBRefStr
 	str r0, [sp]
 	mov r1, r4
 	mov r0, #0
-	bl ov4_021FF3C0
+	bl SBRefStr
 	str r0, [sp, #4]
 	ldr r0, [r5, #0x18]
 	add r1, sp, #0
 	bl TableEnter
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FE1A8
+	arm_func_end SBServerAddKeyValue
 
 	arm_func_start SBServerAddIntKeyValue
 SBServerAddIntKeyValue: ; 0x021FE1E8
@@ -131,15 +131,15 @@ SBServerAddIntKeyValue: ; 0x021FE1E8
 	add r2, sp, #0
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021FE1A8
+	bl SBServerAddKeyValue
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
 _021FE21C: .word Unk_ov4_02219F7C
 	arm_func_end SBServerAddIntKeyValue
 
-	arm_func_start ov4_021FE220
-ov4_021FE220: ; 0x021FE220
+	arm_func_start SBServerGetStringValueA
+SBServerGetStringValueA: ; 0x021FE220
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	movs r6, r0
@@ -169,7 +169,7 @@ _021FE24C:
 _021FE280: .word Unk_ov4_02219F80
 _021FE284: .word Unk_ov4_02219F88
 _021FE288: .word Unk_ov4_02219F64
-	arm_func_end ov4_021FE220
+	arm_func_end SBServerGetStringValueA
 
 	arm_func_start SBServerGetIntValueA
 SBServerGetIntValueA: ; 0x021FE28C
@@ -183,12 +183,12 @@ SBServerGetIntValueA: ; 0x021FE28C
 	cmp r0, #0
 	mov r0, r6
 	bne _021FE2BC
-	bl ov4_021FE794
+	bl SBServerGetPing
 	ldmia sp!, {r4, r5, r6, pc}
 _021FE2BC:
 	mov r1, r5
 	mov r2, #0
-	bl ov4_021FE220
+	bl SBServerGetStringValueA
 	cmp r0, #0
 	beq _021FE304
 	ldrb r2, [r0]
@@ -218,13 +218,13 @@ _021FE314: .word Unk_ov4_02219F94
 _021FE318: .word 0x020FE864
 	arm_func_end SBServerGetIntValueA
 
-	arm_func_start ov4_021FE31C
-ov4_021FE31C: ; 0x021FE31C
+	arm_func_start SBServerGetFloatValueA
+SBServerGetFloatValueA: ; 0x021FE31C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r2
 	mov r2, #0
 	mov r4, r3
-	bl ov4_021FE220
+	bl SBServerGetStringValueA
 	cmp r0, #0
 	beq _021FE344
 	bl atof
@@ -234,7 +234,7 @@ _021FE344:
 	mov r0, r5
 	mov r1, r4
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FE31C
+	arm_func_end SBServerGetFloatValueA
 
 	arm_func_start SBServerGetPublicInetAddress
 SBServerGetPublicInetAddress: ; 0x021FE350
@@ -255,11 +255,11 @@ SBServerGetPublicQueryPort: ; 0x021FE358
 	bx lr
 	arm_func_end SBServerGetPublicQueryPort
 
-	arm_func_start ov4_021FE37C
-ov4_021FE37C: ; 0x021FE37C
+	arm_func_start SBServerGetPublicQueryPortNBO
+SBServerGetPublicQueryPortNBO: ; 0x021FE37C
 	ldrh r0, [r0, #4]
 	bx lr
-	arm_func_end ov4_021FE37C
+	arm_func_end SBServerGetPublicQueryPortNBO
 
 	arm_func_start SBServerHasPrivateAddress
 SBServerHasPrivateAddress: ; 0x021FE384
@@ -290,20 +290,20 @@ SBServerGetPrivateQueryPort: ; 0x021FE3A4
 	bx lr
 	arm_func_end SBServerGetPrivateQueryPort
 
-	arm_func_start ov4_021FE3C8
-ov4_021FE3C8: ; 0x021FE3C8
+	arm_func_start SBServerSetNext
+SBServerSetNext: ; 0x021FE3C8
 	str r1, [r0, #0x20]
 	bx lr
-	arm_func_end ov4_021FE3C8
+	arm_func_end SBServerSetNext
 
-	arm_func_start ov4_021FE3D0
-ov4_021FE3D0: ; 0x021FE3D0
+	arm_func_start SBServerGetNext
+SBServerGetNext: ; 0x021FE3D0
 	ldr r0, [r0, #0x20]
 	bx lr
-	arm_func_end ov4_021FE3D0
+	arm_func_end SBServerGetNext
 
-	arm_func_start ov4_021FE3D8
-ov4_021FE3D8: ; 0x021FE3D8
+	arm_func_start CheckValidKey
+CheckValidKey: ; 0x021FE3D8
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	ldr r1, _021FE434 ; =0x02215C30
@@ -330,10 +330,10 @@ _021FE400:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021FE434: .word Unk_ov4_02215C30
-	arm_func_end ov4_021FE3D8
+	arm_func_end CheckValidKey
 
-	arm_func_start ov4_021FE438
-ov4_021FE438: ; 0x021FE438
+	arm_func_start mytok
+mytok: ; 0x021FE438
 	cmp r0, #0
 	ldrne r2, _021FE498 ; =0x0221B750
 	strne r0, [r2]
@@ -362,15 +362,15 @@ _021FE45C:
 	bx lr
 	; .align 2, 0
 _021FE498: .word Unk_ov4_0221B750
-	arm_func_end ov4_021FE438
+	arm_func_end mytok
 
-	arm_func_start ov4_021FE49C
-ov4_021FE49C: ; 0x021FE49C
+	arm_func_start SBServerParseKeyVals
+SBServerParseKeyVals: ; 0x021FE49C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	add r0, r1, #1
 	mov r1, #0x5c
-	bl ov4_021FE438
+	bl mytok
 	movs r8, r0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	mov r4, #0
@@ -381,30 +381,30 @@ ov4_021FE49C: ; 0x021FE49C
 _021FE4CC:
 	mov r0, r7
 	mov r1, r6
-	bl ov4_021FE438
+	bl mytok
 	movs sb, r0
 	mov r0, r8
 	moveq sb, r5
-	bl ov4_021FE3D8
+	bl CheckValidKey
 	cmp r0, #0
 	beq _021FE500
 	mov r0, sl
 	mov r1, r8
 	mov r2, sb
-	bl ov4_021FE1A8
+	bl SBServerAddKeyValue
 _021FE500:
 	mov r0, r4
 	mov r1, fp
-	bl ov4_021FE438
+	bl mytok
 	movs r8, r0
 	bne _021FE4CC
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021FE518: .word Unk_ov4_02219F9C
-	arm_func_end ov4_021FE49C
+	arm_func_end SBServerParseKeyVals
 
-	arm_func_start ov4_021FE51C
-ov4_021FE51C: ; 0x021FE51C
+	arm_func_start SBServerParseQR2FullKeys
+SBServerParseQR2FullKeys: ; 0x021FE51C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x8c
 	mov sl, r1
@@ -416,7 +416,7 @@ ov4_021FE51C: ; 0x021FE51C
 _021FE53C:
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	cmp r0, #0
 	addlt sp, sp, #0x8c
 	ldmltia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -425,7 +425,7 @@ _021FE53C:
 	add sl, sl, r0
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	cmp r0, #0
 	addlt sp, sp, #0x8c
 	ldmltia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -434,7 +434,7 @@ _021FE53C:
 	add sl, sl, r0
 	sub sb, sb, r0
 	mov r0, fp
-	bl ov4_021FE1A8
+	bl SBServerAddKeyValue
 	ldrsb r0, [sl]
 	cmp r0, #0
 	bne _021FE53C
@@ -469,7 +469,7 @@ _021FE5AC:
 _021FE604:
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	cmp r0, #0
 	addlt sp, sp, #0x8c
 	ldmltia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -496,7 +496,7 @@ _021FE654:
 _021FE664:
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	movs r4, r0
 	addmi sp, sp, #0x8c
 	ldmmiia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -508,7 +508,7 @@ _021FE664:
 	mov r0, fp
 	add r1, sp, #0xa
 	mov r2, sl
-	bl ov4_021FE1A8
+	bl SBServerAddKeyValue
 	mov r0, r8
 	add sl, sl, r4
 	sub sb, sb, r4
@@ -533,10 +533,10 @@ _021FE6D4:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021FE6F0: .word Unk_ov4_02219FA0
-	arm_func_end ov4_021FE51C
+	arm_func_end SBServerParseQR2FullKeys
 
-	arm_func_start ov4_021FE6F4
-ov4_021FE6F4: ; 0x021FE6F4
+	arm_func_start StringHash
+StringHash: ; 0x021FE6F4
 	stmfd sp!, {r3, lr}
 	ldrsb lr, [r0]
 	mov ip, #0
@@ -563,48 +563,48 @@ _021FE734:
 	; .align 2, 0
 _021FE744: .word __lower_mapC
 _021FE748: .word 0x9CCF9319
-	arm_func_end ov4_021FE6F4
+	arm_func_end StringHash
 
-	arm_func_start ov4_021FE74C
-ov4_021FE74C: ; 0x021FE74C
+	arm_func_start KeyValFree
+KeyValFree: ; 0x021FE74C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r1, [r4, #0]
 	mov r0, #0
-	bl ov4_021FF430
+	bl SBReleaseStr
 	ldr r1, [r4, #4]
 	mov r0, #0
-	bl ov4_021FF430
+	bl SBReleaseStr
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FE74C
+	arm_func_end KeyValFree
 
-	arm_func_start ov4_021FE770
-ov4_021FE770: ; 0x021FE770
-	ldr ip, _021FE77C ; =ov4_021FE6F4
+	arm_func_start KeyValHashKey
+KeyValHashKey: ; 0x021FE770
+	ldr ip, _021FE77C ; =StringHash
 	ldr r0, [r0, #0]
 	bx ip
 	; .align 2, 0
-_021FE77C: .word ov4_021FE6F4
-	arm_func_end ov4_021FE770
+_021FE77C: .word StringHash
+	arm_func_end KeyValHashKey
 
-	arm_func_start ov4_021FE780
-ov4_021FE780: ; 0x021FE780
+	arm_func_start KeyValCompareKey
+KeyValCompareKey: ; 0x021FE780
 	ldr ip, _021FE790 ; =strcasecmp
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0]
 	bx ip
 	; .align 2, 0
 _021FE790: .word strcasecmp
-	arm_func_end ov4_021FE780
+	arm_func_end KeyValCompareKey
 
-	arm_func_start ov4_021FE794
-ov4_021FE794: ; 0x021FE794
+	arm_func_start SBServerGetPing
+SBServerGetPing: ; 0x021FE794
 	ldr r0, [r0, #0x1c]
 	bx lr
-	arm_func_end ov4_021FE794
+	arm_func_end SBServerGetPing
 
-	arm_func_start ov4_021FE79C
-ov4_021FE79C: ; 0x021FE79C
+	arm_func_start SBAllocServer
+SBAllocServer: ; 0x021FE79C
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	mov r0, #0x24
@@ -615,11 +615,11 @@ ov4_021FE79C: ; 0x021FE79C
 	addeq sp, sp, #8
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
-	ldr r1, _021FE83C ; =ov4_021FE780
-	ldr ip, _021FE840 ; =ov4_021FE74C
+	ldr r1, _021FE83C ; =KeyValCompareKey
+	ldr ip, _021FE840 ; =KeyValFree
 	str r1, [sp]
 	mov r0, #8
-	ldr r3, _021FE844 ; =ov4_021FE770
+	ldr r3, _021FE844 ; =KeyValHashKey
 	mov r1, r0
 	mov r2, #4
 	str ip, [sp, #4]
@@ -647,44 +647,44 @@ _021FE808:
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021FE83C: .word ov4_021FE780
-_021FE840: .word ov4_021FE74C
-_021FE844: .word ov4_021FE770
-	arm_func_end ov4_021FE79C
+_021FE83C: .word KeyValCompareKey
+_021FE840: .word KeyValFree
+_021FE844: .word KeyValHashKey
+	arm_func_end SBAllocServer
 
-	arm_func_start ov4_021FE848
-ov4_021FE848: ; 0x021FE848
+	arm_func_start SBServerSetFlags
+SBServerSetFlags: ; 0x021FE848
 	strb r1, [r0, #0x15]
 	bx lr
-	arm_func_end ov4_021FE848
+	arm_func_end SBServerSetFlags
 
-	arm_func_start ov4_021FE850
-ov4_021FE850: ; 0x021FE850
+	arm_func_start SBServerSetPrivateAddr
+SBServerSetPrivateAddr: ; 0x021FE850
 	str r1, [r0, #8]
 	strh r2, [r0, #0xc]
 	bx lr
-	arm_func_end ov4_021FE850
+	arm_func_end SBServerSetPrivateAddr
 
-	arm_func_start ov4_021FE85C
-ov4_021FE85C: ; 0x021FE85C
+	arm_func_start SBServerSetICMPIP
+SBServerSetICMPIP: ; 0x021FE85C
 	str r1, [r0, #0x10]
 	bx lr
-	arm_func_end ov4_021FE85C
+	arm_func_end SBServerSetICMPIP
 
-	arm_func_start ov4_021FE864
-ov4_021FE864: ; 0x021FE864
+	arm_func_start SBServerSetState
+SBServerSetState: ; 0x021FE864
 	strb r1, [r0, #0x14]
 	bx lr
-	arm_func_end ov4_021FE864
+	arm_func_end SBServerSetState
 
-	arm_func_start ov4_021FE86C
-ov4_021FE86C: ; 0x021FE86C
+	arm_func_start SBServerGetState
+SBServerGetState: ; 0x021FE86C
 	ldrb r0, [r0, #0x14]
 	bx lr
-	arm_func_end ov4_021FE86C
+	arm_func_end SBServerGetState
 
-	arm_func_start ov4_021FE874
-ov4_021FE874: ; 0x021FE874
+	arm_func_start SBIsNullServer
+SBIsNullServer: ; 0x021FE874
 	ldr r1, _021FE88C ; =0x0221B750
 	ldr r1, [r1, #4]
 	cmp r0, r1
@@ -693,7 +693,7 @@ ov4_021FE874: ; 0x021FE874
 	bx lr
 	; .align 2, 0
 _021FE88C: .word Unk_ov4_0221B750
-	arm_func_end ov4_021FE874
+	arm_func_end SBIsNullServer
 
 	.rodata
 

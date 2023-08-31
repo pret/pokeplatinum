@@ -8,8 +8,8 @@
 	.text
 
 
-	arm_func_start ov4_021FEEC8
-ov4_021FEEC8: ; 0x021FEEC8
+	arm_func_start IntKeyCompare
+IntKeyCompare: ; 0x021FEEC8
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r2, _021FEF20 ; =0x0221B75C
 	ldr r0, [r0, #0]
@@ -34,10 +34,10 @@ ov4_021FEEC8: ; 0x021FEEC8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021FEF20: .word Unk_ov4_0221B75C
-	arm_func_end ov4_021FEEC8
+	arm_func_end IntKeyCompare
 
-	arm_func_start ov4_021FEF24
-ov4_021FEF24: ; 0x021FEF24
+	arm_func_start FloatKeyCompare
+FloatKeyCompare: ; 0x021FEF24
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r3, _021FEFF8 ; =0x0221B75C
 	mov r2, #0
@@ -46,7 +46,7 @@ ov4_021FEF24: ; 0x021FEF24
 	ldr r0, [r0, #0]
 	ldr r1, [r3, #0x498]
 	mov r3, r2
-	bl ov4_021FE31C
+	bl SBServerGetFloatValueA
 	ldr r3, _021FEFF8 ; =0x0221B75C
 	mov r2, #0
 	mov r4, r0
@@ -55,7 +55,7 @@ ov4_021FEF24: ; 0x021FEF24
 	ldr r1, [r0, #0x498]
 	mov r0, r5
 	mov r3, r2
-	bl ov4_021FE31C
+	bl SBServerGetFloatValueA
 	mov r2, r0
 	mov r3, r1
 	mov r0, r4
@@ -94,10 +94,10 @@ _021FEFB8:
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021FEFF8: .word Unk_ov4_0221B75C
-	arm_func_end ov4_021FEF24
+	arm_func_end FloatKeyCompare
 
-	arm_func_start ov4_021FEFFC
-ov4_021FEFFC: ; 0x021FEFFC
+	arm_func_start StrCaseKeyCompare
+StrCaseKeyCompare: ; 0x021FEFFC
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r2, _021FF05C ; =0x0221B75C
 	mov r5, r1
@@ -105,14 +105,14 @@ ov4_021FEFFC: ; 0x021FEFFC
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0x498]
 	ldr r2, _021FF060 ; =0x0221A038
-	bl ov4_021FE220
+	bl SBServerGetStringValueA
 	ldr r1, _021FF05C ; =0x0221B75C
 	mov r4, r0
 	ldr r1, [r1, #0]
 	ldr r0, [r5, #0]
 	ldr r1, [r1, #0x498]
 	ldr r2, _021FF060 ; =0x0221A038
-	bl ov4_021FE220
+	bl SBServerGetStringValueA
 	mov r1, r0
 	mov r0, r4
 	bl strcmp
@@ -125,10 +125,10 @@ ov4_021FEFFC: ; 0x021FEFFC
 	; .align 2, 0
 _021FF05C: .word Unk_ov4_0221B75C
 _021FF060: .word Unk_ov4_0221A038
-	arm_func_end ov4_021FEFFC
+	arm_func_end StrCaseKeyCompare
 
-	arm_func_start ov4_021FF064
-ov4_021FF064: ; 0x021FF064
+	arm_func_start StrNoCaseKeyCompare
+StrNoCaseKeyCompare: ; 0x021FF064
 	stmfd sp!, {r3, r4, r5, lr}
 	ldr r2, _021FF0C4 ; =0x0221B75C
 	mov r5, r1
@@ -136,14 +136,14 @@ ov4_021FF064: ; 0x021FF064
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #0x498]
 	ldr r2, _021FF0C8 ; =0x0221A038
-	bl ov4_021FE220
+	bl SBServerGetStringValueA
 	ldr r1, _021FF0C4 ; =0x0221B75C
 	mov r4, r0
 	ldr r1, [r1, #0]
 	ldr r0, [r5, #0]
 	ldr r1, [r1, #0x498]
 	ldr r2, _021FF0C8 ; =0x0221A038
-	bl ov4_021FE220
+	bl SBServerGetStringValueA
 	mov r1, r0
 	mov r0, r4
 	bl strcasecmp
@@ -156,10 +156,10 @@ ov4_021FF064: ; 0x021FF064
 	; .align 2, 0
 _021FF0C4: .word Unk_ov4_0221B75C
 _021FF0C8: .word Unk_ov4_0221A038
-	arm_func_end ov4_021FF064
+	arm_func_end StrNoCaseKeyCompare
 
-	arm_func_start ov4_021FF0CC
-ov4_021FF0CC: ; 0x021FF0CC
+	arm_func_start SBServerListSort
+SBServerListSort: ; 0x021FF0CC
 	cmp r3, #3
 	addls pc, pc, r3, lsl #2
 	b _021FF108
@@ -169,19 +169,19 @@ _021FF0D8: ; jump table
 	b _021FF0F8 ; case 2
 	b _021FF100 ; case 3
 _021FF0E8:
-	ldr r3, _021FF12C ; =ov4_021FEEC8
+	ldr r3, _021FF12C ; =IntKeyCompare
 	b _021FF10C
 _021FF0F0:
-	ldr r3, _021FF130 ; =ov4_021FEF24
+	ldr r3, _021FF130 ; =FloatKeyCompare
 	b _021FF10C
 _021FF0F8:
-	ldr r3, _021FF134 ; =ov4_021FEFFC
+	ldr r3, _021FF134 ; =StrCaseKeyCompare
 	b _021FF10C
 _021FF100:
-	ldr r3, _021FF138 ; =ov4_021FF064
+	ldr r3, _021FF138 ; =StrNoCaseKeyCompare
 	b _021FF10C
 _021FF108:
-	ldr r3, _021FF138 ; =ov4_021FF064
+	ldr r3, _021FF138 ; =StrNoCaseKeyCompare
 _021FF10C:
 	str r2, [r0, #0x498]
 	str r1, [r0, #0x49c]
@@ -192,16 +192,16 @@ _021FF10C:
 	ldr r0, [r0, #4]
 	bx ip
 	; .align 2, 0
-_021FF12C: .word ov4_021FEEC8
-_021FF130: .word ov4_021FEF24
-_021FF134: .word ov4_021FEFFC
-_021FF138: .word ov4_021FF064
+_021FF12C: .word IntKeyCompare
+_021FF130: .word FloatKeyCompare
+_021FF134: .word StrCaseKeyCompare
+_021FF138: .word StrNoCaseKeyCompare
 _021FF13C: .word Unk_ov4_0221B75C
 _021FF140: .word ArraySort
-	arm_func_end ov4_021FF0CC
+	arm_func_end SBServerListSort
 
-	arm_func_start ov4_021FF144
-ov4_021FF144: ; 0x021FF144
+	arm_func_start SBServerListAppendServer
+SBServerListAppendServer: ; 0x021FF144
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, lr}
 	mov r4, r0
@@ -217,10 +217,10 @@ ov4_021FF144: ; 0x021FF144
 	ldmia sp!, {r4, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end ov4_021FF144
+	arm_func_end SBServerListAppendServer
 
-	arm_func_start ov4_021FF180
-ov4_021FF180: ; 0x021FF180
+	arm_func_start SBServerListFindServer
+SBServerListFindServer: ; 0x021FF180
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	ldr r0, [r7, #4]
@@ -244,10 +244,10 @@ _021FF1A4:
 _021FF1CC:
 	mvn r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021FF180
+	arm_func_end SBServerListFindServer
 
-	arm_func_start ov4_021FF1D4
-ov4_021FF1D4: ; 0x021FF1D4
+	arm_func_start SBServerListFindServerByIP
+SBServerListFindServerByIP: ; 0x021FF1D4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov sb, r0
 	ldr r0, [sb, #4]
@@ -268,7 +268,7 @@ _021FF1FC:
 	cmp r8, r0
 	bne _021FF230
 	mov r0, r5
-	bl ov4_021FE37C
+	bl SBServerGetPublicQueryPortNBO
 	cmp r7, r0
 	moveq r0, r6
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -279,10 +279,10 @@ _021FF230:
 _021FF23C:
 	mvn r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end ov4_021FF1D4
+	arm_func_end SBServerListFindServerByIP
 
-	arm_func_start ov4_021FF244
-ov4_021FF244: ; 0x021FF244
+	arm_func_start AddServerToDeadlist
+AddServerToDeadlist: ; 0x021FF244
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
@@ -291,17 +291,17 @@ ov4_021FF244: ; 0x021FF244
 	cmp r1, #0
 	bne _021FF26C
 	mov r1, #0
-	bl ov4_021FE3C8
+	bl SBServerSetNext
 	b _021FF270
 _021FF26C:
-	bl ov4_021FE3C8
+	bl SBServerSetNext
 _021FF270:
 	str r4, [r5, #0x5d0]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FF244
+	arm_func_end AddServerToDeadlist
 
-	arm_func_start ov4_021FF278
-ov4_021FF278: ; 0x021FF278
+	arm_func_start SBServerListRemoveAt
+SBServerListRemoveAt: ; 0x021FF278
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r0, [r6, #4]
@@ -319,30 +319,30 @@ ov4_021FF278: ; 0x021FF278
 	bl ArrayDeleteAt
 	mov r0, r6
 	mov r1, r4
-	bl ov4_021FF244
+	bl AddServerToDeadlist
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021FF278
+	arm_func_end SBServerListRemoveAt
 
-	arm_func_start ov4_021FF2C4
-ov4_021FF2C4: ; 0x021FF2C4
+	arm_func_start SBServerListCount
+SBServerListCount: ; 0x021FF2C4
 	ldr ip, _021FF2D0 ; =ArrayLength
 	ldr r0, [r0, #4]
 	bx ip
 	; .align 2, 0
 _021FF2D0: .word ArrayLength
-	arm_func_end ov4_021FF2C4
+	arm_func_end SBServerListCount
 
-	arm_func_start ov4_021FF2D4
-ov4_021FF2D4: ; 0x021FF2D4
+	arm_func_start SBServerListNth
+SBServerListNth: ; 0x021FF2D4
 	stmfd sp!, {r3, lr}
 	ldr r0, [r0, #4]
 	bl ArrayNth
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021FF2D4
+	arm_func_end SBServerListNth
 
-	arm_func_start ov4_021FF2E8
-ov4_021FF2E8: ; 0x021FF2E8
+	arm_func_start SBFreeDeadList
+SBFreeDeadList: ; 0x021FF2E8
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r6, r0
@@ -355,10 +355,10 @@ ov4_021FF2E8: ; 0x021FF2E8
 	add r4, sp, #0
 _021FF310:
 	mov r0, r5
-	bl ov4_021FE3D0
+	bl SBServerGetNext
 	mov r5, r0
 	mov r0, r4
-	bl ov4_021FE184
+	bl SBServerFree
 	str r5, [sp]
 	cmp r5, #0
 	bne _021FF310
@@ -367,10 +367,10 @@ _021FF330:
 	str r0, [r6, #0x5d0]
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021FF2E8
+	arm_func_end SBFreeDeadList
 
-	arm_func_start ov4_021FF340
-ov4_021FF340: ; 0x021FF340
+	arm_func_start SBServerListClear
+SBServerListClear: ; 0x021FF340
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r0, [r6, #4]
@@ -385,7 +385,7 @@ _021FF360:
 	bl ArrayNth
 	ldr r1, [r0, #0]
 	mov r0, r6
-	bl ov4_021FF244
+	bl AddServerToDeadlist
 	add r4, r4, #1
 	cmp r4, r5
 	blt _021FF360
@@ -393,12 +393,12 @@ _021FF384:
 	ldr r0, [r6, #4]
 	bl ArrayClear
 	mov r0, r6
-	bl ov4_021FF2E8
+	bl SBFreeDeadList
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021FF340
+	arm_func_end SBServerListClear
 
-	arm_func_start ov4_021FF398
-ov4_021FF398: ; 0x021FF398
+	arm_func_start SBAllocateServerList
+SBAllocateServerList: ; 0x021FF398
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	mov r0, #4
@@ -409,16 +409,16 @@ ov4_021FF398: ; 0x021FF398
 	mov r0, #0
 	str r0, [r4, #0x5d0]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FF398
+	arm_func_end SBAllocateServerList
 
-	arm_func_start ov4_021FF3C0
-ov4_021FF3C0: ; 0x021FF3C0
+	arm_func_start SBRefStr
+SBRefStr: ; 0x021FF3C0
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	mov r4, r1
 	mov r5, r0
 	str r4, [sp]
-	bl ov4_021FE0E0
+	bl SBRefStrHash
 	add r1, sp, #0
 	bl TableLookup
 	cmp r0, #0
@@ -436,21 +436,21 @@ _021FF400:
 	mov r1, #1
 	mov r0, r5
 	str r1, [sp, #4]
-	bl ov4_021FE0E0
+	bl SBRefStrHash
 	add r1, sp, #0
 	bl TableEnter
 	ldr r0, [sp]
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FF3C0
+	arm_func_end SBRefStr
 
-	arm_func_start ov4_021FF430
-ov4_021FF430: ; 0x021FF430
+	arm_func_start SBReleaseStr
+SBReleaseStr: ; 0x021FF430
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #8
 	mov r5, r0
 	str r1, [sp]
-	bl ov4_021FE0E0
+	bl SBRefStrHash
 	add r1, sp, #0
 	bl TableLookup
 	movs r4, r0
@@ -470,7 +470,7 @@ _021FF468:
 	str r0, [r4, #4]
 	ldmneia sp!, {r3, r4, r5, pc}
 	mov r0, r5
-	bl ov4_021FE0E0
+	bl SBRefStrHash
 	add r1, sp, #0
 	bl TableRemove
 	add sp, sp, #8
@@ -479,10 +479,10 @@ _021FF468:
 _021FF4A0: .word Unk_ov4_0221A03C
 _021FF4A4: .word Unk_ov4_0221A048
 _021FF4A8: .word Unk_ov4_02219FB0
-	arm_func_end ov4_021FF430
+	arm_func_end SBReleaseStr
 
-	arm_func_start ov4_021FF4AC
-ov4_021FF4AC: ; 0x021FF4AC
+	arm_func_start NTSLengthSB
+NTSLengthSB: ; 0x021FF4AC
 	cmp r1, #0
 	mov r3, #0
 	ble _021FF4D4
@@ -497,10 +497,10 @@ _021FF4B8:
 _021FF4D4:
 	mvn r0, #0
 	bx lr
-	arm_func_end ov4_021FF4AC
+	arm_func_end NTSLengthSB
 
-	arm_func_start ov4_021FF4DC
-ov4_021FF4DC: ; 0x021FF4DC
+	arm_func_start SBServerListInit
+SBServerListInit: ; 0x021FF4DC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -524,9 +524,9 @@ _021FF524:
 	mov r1, #1
 	mov r0, r7
 	str r1, [r7, #0]
-	bl ov4_021FF398
+	bl SBAllocateServerList
 	mov r0, r7
-	bl ov4_021FE0E0
+	bl SBRefStrHash
 	mov r1, r6
 	add r0, r7, #0xc
 	bl strcpy
@@ -565,7 +565,7 @@ _021FF58C:
 	str r3, [r7, #0x4a4]
 	mov r0, r7
 	str r2, [r7, #0x4b8]
-	bl ov4_02200534
+	bl SBSetLastListErrorPtr
 	mov r0, #0
 	str r0, [r7, #0x5cc]
 	bl current_time
@@ -580,10 +580,10 @@ _021FF5F8: .word Unk_ov4_0221AE50
 _021FF5FC: .word Unk_ov4_0221A068
 _021FF600: .word 0x00000132
 _021FF604: .word Unk_ov4_0221A038
-	arm_func_end ov4_021FF4DC
+	arm_func_end SBServerListInit
 
-	arm_func_start ov4_021FF608
-ov4_021FF608: ; 0x021FF608
+	arm_func_start ErrorDisconnect
+ErrorDisconnect: ; 0x021FF608
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
 	ldr r5, [r4, #0x80]
@@ -611,7 +611,7 @@ ov4_021FF608: ; 0x021FF608
 	mov r1, r0
 	mov r0, r4
 	add r1, r5, r1
-	bl ov4_02200534
+	bl SBSetLastListErrorPtr
 	ldr r0, _021FF6C0 ; =0x0221B754
 	ldr r3, [r4, #0x494]
 	ldr r2, [r0, #0]
@@ -628,15 +628,15 @@ _021FF694:
 	mov r1, #4
 	blx ip
 	mov r0, r4
-	bl ov4_021FFDE0
+	bl SBServerListDisconnect
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021FF6BC: .word Unk_ov4_02219FAC
 _021FF6C0: .word Unk_ov4_0221B754
-	arm_func_end ov4_021FF608
+	arm_func_end ErrorDisconnect
 
-	arm_func_start ov4_021FF6C4
-ov4_021FF6C4: ; 0x021FF6C4
+	arm_func_start StringHash
+StringHash: ; 0x021FF6C4
 	stmfd sp!, {r3, lr}
 	ldrsb lr, [r0]
 	mov ip, #0
@@ -663,16 +663,16 @@ _021FF704:
 	; .align 2, 0
 _021FF714: .word __lower_mapC
 _021FF718: .word 0x9CCF9319
-	arm_func_end ov4_021FF6C4
+	arm_func_end StringHash
 
-	arm_func_start ov4_021FF71C
-ov4_021FF71C: ; 0x021FF71C
+	arm_func_start ServerListConnect
+ServerListConnect: ; 0x021FF71C
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x88
 	mov r4, r0
 	add r0, r4, #0xc
 	mov r1, #0x14
-	bl ov4_021FF6C4
+	bl StringHash
 	ldr r1, _021FF83C ; =0x0221B75C
 	mov r3, r0
 	ldr r1, [r1, #4]
@@ -747,10 +747,10 @@ _021FF804:
 _021FF83C: .word Unk_ov4_0221B75C
 _021FF840: .word Unk_ov4_0221A07C
 _021FF844: .word 0x0000EE70
-	arm_func_end ov4_021FF71C
+	arm_func_end ServerListConnect
 
-	arm_func_start ov4_021FF848
-ov4_021FF848: ; 0x021FF848
+	arm_func_start BufferAddNTS
+BufferAddNTS: ; 0x021FF848
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r1
 	ldreq r7, _021FF894 ; =0x0221A038
@@ -772,10 +772,10 @@ ov4_021FF848: ; 0x021FF848
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021FF894: .word Unk_ov4_0221A038
-	arm_func_end ov4_021FF848
+	arm_func_end BufferAddNTS
 
-	arm_func_start ov4_021FF898
-ov4_021FF898: ; 0x021FF898
+	arm_func_start BufferAddByte
+BufferAddByte: ; 0x021FF898
 	ldr r3, [r0, #0]
 	strb r1, [r3]
 	ldr r1, [r2, #0]
@@ -785,10 +785,10 @@ ov4_021FF898: ; 0x021FF898
 	add r1, r1, #1
 	str r1, [r0, #0]
 	bx lr
-	arm_func_end ov4_021FF898
+	arm_func_end BufferAddByte
 
-	arm_func_start ov4_021FF8BC
-ov4_021FF8BC: ; 0x021FF8BC
+	arm_func_start BufferAddInt
+BufferAddInt: ; 0x021FF8BC
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, lr}
 	add ip, sp, #0xc
@@ -810,10 +810,10 @@ ov4_021FF8BC: ; 0x021FF8BC
 	ldmia sp!, {r3, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end ov4_021FF8BC
+	arm_func_end BufferAddInt
 
-	arm_func_start ov4_021FF910
-ov4_021FF910: ; 0x021FF910
+	arm_func_start BufferAddData
+BufferAddData: ; 0x021FF910
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r0, [r6, #0]
@@ -827,10 +827,10 @@ ov4_021FF910: ; 0x021FF910
 	add r0, r0, r5
 	str r0, [r6, #0]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021FF910
+	arm_func_end BufferAddData
 
-	arm_func_start ov4_021FF944
-ov4_021FF944: ; 0x021FF944
+	arm_func_start SetupListChallenge
+SetupListChallenge: ; 0x021FF944
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	bl rand
@@ -895,10 +895,10 @@ _021FFA1C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021FFA2C: .word 0x2C0B02C1
-	arm_func_end ov4_021FF944
+	arm_func_end SetupListChallenge
 
-	arm_func_start ov4_021FFA30
-ov4_021FFA30: ; 0x021FFA30
+	arm_func_start SendWithRetry
+SendWithRetry: ; 0x021FFA30
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sl, r0
 	mov sb, r1
@@ -919,17 +919,17 @@ _021FFA4C:
 	cmp r7, #0
 	blt _021FFAB8
 	mov r0, sl
-	bl ov4_021FFDE0
+	bl SBServerListDisconnect
 	mov r1, #0
 	mov r2, r1
 	mov r0, sl
 	mov r3, fp
 	str r2, [sp]
-	bl ov4_021FFAC8
+	bl SBServerListConnectAndQuery
 	movs r4, r0
 	beq _021FFAB0
 	mov r0, sl
-	bl ov4_021FF608
+	bl ErrorDisconnect
 	mov r0, r4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021FFAB0:
@@ -940,10 +940,10 @@ _021FFAB8:
 	movle r0, #3
 	movgt r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end ov4_021FFA30
+	arm_func_end SendWithRetry
 
-	arm_func_start ov4_021FFAC8
-ov4_021FFAC8: ; 0x021FFAC8
+	arm_func_start SBServerListConnectAndQuery
+SBServerListConnectAndQuery: ; 0x021FFAC8
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x30c
 	mov r5, r0
@@ -976,13 +976,13 @@ _021FFB00:
 	movhi r0, #6
 	ldmhiia sp!, {r4, r5, r6, r7, pc}
 	mov r0, r5
-	bl ov4_021FF71C
+	bl ServerListConnect
 	cmp r0, #0
 	addne sp, sp, #0x30c
 	ldmneia sp!, {r4, r5, r6, r7, pc}
 	mov r0, r5
 	str r4, [r5, #0x5c4]
-	bl ov4_021FF944
+	bl SetupListChallenge
 	add r3, sp, #0xe
 	mov ip, #2
 	add r0, sp, #4
@@ -990,40 +990,40 @@ _021FFB00:
 	mov r1, #0
 	str ip, [sp, #8]
 	str r3, [sp, #4]
-	bl ov4_021FF898
+	bl BufferAddByte
 	add r0, sp, #4
 	add r2, sp, #8
 	mov r1, #1
-	bl ov4_021FF898
+	bl BufferAddByte
 	add r0, sp, #4
 	mov r1, #3
 	add r2, sp, #8
-	bl ov4_021FF898
+	bl BufferAddByte
 	ldr r1, [r5, #0x4b8]
 	add r0, sp, #4
 	add r2, sp, #8
-	bl ov4_021FF8BC
+	bl BufferAddInt
 	add r0, sp, #4
 	add r1, r5, #0xc
 	add r2, sp, #8
-	bl ov4_021FF848
+	bl BufferAddNTS
 	add r0, sp, #4
 	add r1, r5, #0x30
 	add r2, sp, #8
-	bl ov4_021FF848
+	bl BufferAddNTS
 	add r0, sp, #4
 	add r1, r5, #0x74
 	mov r2, #8
 	add r3, sp, #8
-	bl ov4_021FF910
+	bl BufferAddData
 	mov r1, r6
 	add r0, sp, #4
 	add r2, sp, #8
-	bl ov4_021FF848
+	bl BufferAddNTS
 	mov r1, r7
 	add r0, sp, #4
 	add r2, sp, #8
-	bl ov4_021FF848
+	bl BufferAddNTS
 	mov r1, r4, lsl #0x18
 	and ip, r1, #0xff000000
 	mov r1, r4, lsl #8
@@ -1037,14 +1037,14 @@ _021FFB00:
 	add r0, sp, #4
 	orr r1, ip, r1
 	add r2, sp, #8
-	bl ov4_021FF8BC
+	bl BufferAddInt
 	ldr r0, [r5, #0x5c4]
 	tst r0, #8
 	beq _021FFC58
 	ldr r1, [r5, #0x4a4]
 	add r0, sp, #4
 	add r2, sp, #8
-	bl ov4_021FF8BC
+	bl BufferAddInt
 _021FFC58:
 	ldr r0, [r5, #0x5c4]
 	tst r0, #0x80
@@ -1052,7 +1052,7 @@ _021FFC58:
 	ldr r1, [sp, #0x320]
 	add r0, sp, #4
 	add r2, sp, #8
-	bl ov4_021FF8BC
+	bl BufferAddInt
 _021FFC74:
 	ldr r2, [sp, #8]
 	add r4, sp, #0
@@ -1075,7 +1075,7 @@ _021FFC74:
 	cmp r0, #0
 	bgt _021FFCD8
 	mov r0, r5
-	bl ov4_021FFDE0
+	bl SBServerListDisconnect
 	add sp, sp, #0x30c
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, r7, pc}
@@ -1106,10 +1106,10 @@ _021FFD28: .word Unk_ov4_0221A048
 _021FFD2C: .word Unk_ov4_0221A01C
 _021FFD30: .word 0x0000020A
 _021FFD34: .word Unk_ov4_0221A038
-	arm_func_end ov4_021FFAC8
+	arm_func_end SBServerListConnectAndQuery
 
-	arm_func_start ov4_021FFD38
-ov4_021FFD38: ; 0x021FFD38
+	arm_func_start FreePopularValues
+FreePopularValues: ; 0x021FFD38
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r0, [r5, #0x480]
@@ -1120,7 +1120,7 @@ _021FFD50:
 	add r0, r5, r4, lsl #2
 	ldr r1, [r0, #0x84]
 	mov r0, r5
-	bl ov4_021FF430
+	bl SBReleaseStr
 	ldr r0, [r5, #0x480]
 	add r4, r4, #1
 	cmp r4, r0
@@ -1129,10 +1129,10 @@ _021FFD70:
 	mov r0, #0
 	str r0, [r5, #0x480]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FFD38
+	arm_func_end FreePopularValues
 
-	arm_func_start ov4_021FFD7C
-ov4_021FFD7C: ; 0x021FFD7C
+	arm_func_start FreeKeyList
+FreeKeyList: ; 0x021FFD7C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r0, [r5, #8]
@@ -1148,7 +1148,7 @@ _021FFDA0:
 	bl ArrayNth
 	ldr r1, [r0, #0]
 	mov r0, r5
-	bl ov4_021FF430
+	bl SBReleaseStr
 	ldr r0, [r5, #8]
 	add r4, r4, #1
 	bl ArrayLength
@@ -1160,10 +1160,10 @@ _021FFDCC:
 	mov r0, #0
 	str r0, [r5, #8]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FFD7C
+	arm_func_end FreeKeyList
 
-	arm_func_start ov4_021FFDE0
-ov4_021FFDE0: ; 0x021FFDE0
+	arm_func_start SBServerListDisconnect
+SBServerListDisconnect: ; 0x021FFDE0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x7c]
@@ -1185,23 +1185,23 @@ _021FFE18:
 	str r1, [r4, #0x4b0]
 	mov r1, #1
 	str r1, [r4, #0]
-	bl ov4_021FFD7C
+	bl FreeKeyList
 	mvn r1, #0
 	mov r0, r4
 	str r1, [r4, #0x484]
-	bl ov4_021FFD38
+	bl FreePopularValues
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FFDE0
+	arm_func_end SBServerListDisconnect
 
-	arm_func_start ov4_021FFE44
-ov4_021FFE44: ; 0x021FFE44
+	arm_func_start SBServerListCleanup
+SBServerListCleanup: ; 0x021FFE44
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_021FFDE0
+	bl SBServerListDisconnect
 	mov r0, r4
-	bl ov4_021FF340
+	bl SBServerListClear
 	mov r0, r4
-	bl ov4_021FE144
+	bl SBRefStrHashCleanup
 	ldr r0, [r4, #4]
 	cmp r0, #0
 	beq _021FFE70
@@ -1210,10 +1210,10 @@ _021FFE70:
 	mov r0, #0
 	str r0, [r4, #4]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FFE44
+	arm_func_end SBServerListCleanup
 
-	arm_func_start ov4_021FFE7C
-ov4_021FFE7C: ; 0x021FFE7C
+	arm_func_start InitCryptKey
+InitCryptKey: ; 0x021FFE7C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov sb, r0
 	mov r7, r2
@@ -1254,12 +1254,12 @@ _021FFF04:
 	add r0, r0, #0x400
 	add r1, sb, #0x74
 	mov r2, #8
-	bl ov4_021FD5FC
+	bl GOACryptInit
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end ov4_021FFE7C
+	arm_func_end InitCryptKey
 
-	arm_func_start ov4_021FFF1C
-ov4_021FFF1C: ; 0x021FFF1C
+	arm_func_start ServerSizeForFlags
+ServerSizeForFlags: ; 0x021FFF1C
 	mov r1, #5
 	tst r0, #2
 	addne r1, r1, #4
@@ -1271,10 +1271,10 @@ ov4_021FFF1C: ; 0x021FFF1C
 	addne r1, r1, #2
 	mov r0, r1
 	bx lr
-	arm_func_end ov4_021FFF1C
+	arm_func_end ServerSizeForFlags
 
-	arm_func_start ov4_021FFF48
-ov4_021FFF48: ; 0x021FFF48
+	arm_func_start FullRulesPresent
+FullRulesPresent: ; 0x021FFF48
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
@@ -1282,7 +1282,7 @@ ov4_021FFF48: ; 0x021FFF48
 _021FFF58:
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	cmp r0, #0
 	movlt r0, #0
 	ldmltia sp!, {r3, r4, r5, pc}
@@ -1290,7 +1290,7 @@ _021FFF58:
 	add r5, r5, r0
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	cmp r0, #0
 	movlt r0, #0
 	ldmltia sp!, {r3, r4, r5, pc}
@@ -1311,10 +1311,10 @@ _021FFFAC:
 	moveq r0, #1
 	movne r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FFF48
+	arm_func_end FullRulesPresent
 
-	arm_func_start ov4_021FFFCC
-ov4_021FFFCC: ; 0x021FFFCC
+	arm_func_start AllKeysPresent
+AllKeysPresent: ; 0x021FFFCC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r8, r0
 	ldr r0, [r8, #8]
@@ -1356,7 +1356,7 @@ _0220003C:
 	bne _02200098
 	mov r0, r7
 	mov r1, r6
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	cmp r0, sb
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -1386,10 +1386,10 @@ _022000B8: .word Unk_ov4_0221A0B8
 _022000BC: .word Unk_ov4_0221A048
 _022000C0: .word Unk_ov4_02219FD0
 _022000C4: .word 0x00000317
-	arm_func_end ov4_021FFFCC
+	arm_func_end AllKeysPresent
 
-	arm_func_start ov4_022000C8
-ov4_022000C8: ; 0x022000C8
+	arm_func_start ParseServerIPPort
+ParseServerIPPort: ; 0x022000C8
 	stmfd sp!, {r4, lr}
 	cmp r2, #5
 	ldmltia sp!, {r4, pc}
@@ -1419,10 +1419,10 @@ _02200124:
 	ldr r0, [sp, #8]
 	strh r1, [r0]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_022000C8
+	arm_func_end ParseServerIPPort
 
-	arm_func_start ov4_02200138
-ov4_02200138: ; 0x02200138
+	arm_func_start ParseServer
+ParseServer: ; 0x02200138
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x10
 	mov r8, r2
@@ -1435,7 +1435,7 @@ ov4_02200138: ; 0x02200138
 	mov r1, r2
 	str r7, [sp, #4]
 	ldr r6, [sp, #0x38]
-	bl ov4_021FE848
+	bl SBServerSetFlags
 	ldr r0, [sp]
 	sub r7, r7, #5
 	tst r0, #0x10
@@ -1475,7 +1475,7 @@ _022001F4:
 	ldrh r2, [sp, #8]
 	ldr r1, [sp, #0xc]
 	mov r0, sb
-	bl ov4_021FE850
+	bl SBServerSetPrivateAddr
 	ldr r0, [sp]
 	tst r0, #8
 	beq _02200248
@@ -1492,7 +1492,7 @@ _022001F4:
 	strb r2, [r3, #2]
 	strb r1, [r3, #3]
 	ldr r1, [sp, #0xc]
-	bl ov4_021FE85C
+	bl SBServerSetICMPIP
 _02200248:
 	ldr r0, [sp]
 	tst r0, #0x40
@@ -1553,7 +1553,7 @@ _02200300:
 	ldr r1, [r1, #0]
 	mov r0, sb
 	mov r2, r8
-	bl ov4_021FE1A8
+	bl SBServerAddKeyValue
 	mov r0, r8
 	bl strlen
 	add r0, r0, #1
@@ -1565,18 +1565,18 @@ _02200340:
 	ldr r1, [r1, #0]
 	ldr r2, [r0, #0x84]
 	mov r0, sb
-	bl ov4_021FE1A8
+	bl SBServerAddKeyValue
 _02200354:
 	add r5, r5, #1
 	cmp r5, r4
 	blt _02200270
 _02200360:
 	mov r0, sb
-	bl ov4_021FE86C
+	bl SBServerGetState
 	orr r1, r0, #1
 	mov r0, sb
 	and r1, r1, #0xff
-	bl ov4_021FE864
+	bl SBServerSetState
 _02200378:
 	ldr r0, [sp]
 	tst r0, #0x80
@@ -1592,7 +1592,7 @@ _02200388:
 	mov r1, r4
 	mov r2, r8
 	sub r7, r7, r3
-	bl ov4_021FE1A8
+	bl SBServerAddKeyValue
 	mov r0, r8
 	bl strlen
 	add r0, r0, #1
@@ -1607,20 +1607,20 @@ _022003C4:
 _022003D8:
 	mov r0, sb
 	sub r7, r7, #1
-	bl ov4_021FE86C
+	bl SBServerGetState
 	orr r1, r0, #2
 	mov r0, sb
 	and r1, r1, #0xff
-	bl ov4_021FE864
+	bl SBServerSetState
 _022003F4:
 	ldr r0, [sp, #4]
 	sub r0, r0, r7
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end ov4_02200138
+	arm_func_end ParseServer
 
-	arm_func_start ov4_02200404
-ov4_02200404: ; 0x02200404
+	arm_func_start IncomingListParseServer
+IncomingListParseServer: ; 0x02200404
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0xc
 	mov r4, r2
@@ -1632,7 +1632,7 @@ ov4_02200404: ; 0x02200404
 	ldmltia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	ldrb r8, [r5]
 	mov r0, r8
-	bl ov4_021FFF1C
+	bl ServerSizeForFlags
 	mov r7, r0
 	cmp r4, r7
 	addlt sp, sp, #0xc
@@ -1643,7 +1643,7 @@ ov4_02200404: ; 0x02200404
 	mov r0, r6
 	add r1, r5, r7
 	sub r2, r4, r7
-	bl ov4_021FFFCC
+	bl AllKeysPresent
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	moveq r0, #0
@@ -1653,7 +1653,7 @@ _02200470:
 	beq _02200494
 	add r0, r5, r7
 	sub r1, r4, r7
-	bl ov4_021FFF48
+	bl FullRulesPresent
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	moveq r0, #0
@@ -1673,13 +1673,13 @@ _02200494:
 	mov r1, r5
 	mov r2, r4
 	str r7, [sp]
-	bl ov4_022000C8
+	bl ParseServerIPPort
 	ldrh r2, [sp, #4]
 	ldr r1, [sp, #8]
 	mov r0, r6
-	bl ov4_021FE79C
+	bl SBAllocServer
 	mov r7, r0
-	bl ov4_021FE874
+	bl SBIsNullServer
 	cmp r0, #0
 	addne sp, sp, #0xc
 	mvnne r0, #1
@@ -1690,26 +1690,26 @@ _02200494:
 	mov r2, r5
 	mov r3, r4
 	str ip, [sp]
-	bl ov4_02200138
+	bl ParseServer
 	mov r4, r0
 	mov r0, r6
 	mov r1, r7
-	bl ov4_021FF144
+	bl SBServerListAppendServer
 	mov r0, r4
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _02200530: .word Unk_ov4_0221A0BC
-	arm_func_end ov4_02200404
+	arm_func_end IncomingListParseServer
 
-	arm_func_start ov4_02200534
-ov4_02200534: ; 0x02200534
+	arm_func_start SBSetLastListErrorPtr
+SBSetLastListErrorPtr: ; 0x02200534
 	str r1, [r0, #0x4ac]
 	bx lr
-	arm_func_end ov4_02200534
+	arm_func_end SBSetLastListErrorPtr
 
-	arm_func_start ov4_0220053C
-ov4_0220053C: ; 0x0220053C
+	arm_func_start ProcessMainListData
+ProcessMainListData: ; 0x0220053C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #8
 	mov r7, r0
@@ -1740,7 +1740,7 @@ _02200574:
 	cmp r6, r4
 	blt _022008FC
 	add r1, r5, r3
-	bl ov4_021FFE7C
+	bl InitCryptKey
 	add r5, r5, r4
 	sub r6, r6, r4
 	add r0, r7, #0xbc
@@ -1749,7 +1749,7 @@ _02200574:
 	mov r2, r6
 	add r0, r0, #0x400
 	str r3, [r7, #0x5c8]
-	bl ov4_021FD790
+	bl GOADecrypt
 _022005D4:
 	cmp r6, #6
 	blt _022008FC
@@ -1779,13 +1779,13 @@ _022005D4:
 	bne _02200688
 	add r0, r5, #6
 	sub r1, r6, #6
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	mvn r1, #0
 	cmp r0, r1
 	beq _022008FC
 	mov r0, r7
 	add r1, r5, #6
-	bl ov4_02200534
+	bl SBSetLastListErrorPtr
 	ldr r0, _02200950 ; =0x0221B754
 	ldr r3, [r7, #0x494]
 	ldr r2, [r0, #0]
@@ -1850,7 +1850,7 @@ _02200738:
 	blt _0220079C
 	add r0, r5, #1
 	sub r1, r6, #1
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	mov sb, r0
 	cmp sb, r4
 	beq _0220079C
@@ -1858,7 +1858,7 @@ _02200738:
 	mov r0, r7
 	add r1, r5, #1
 	str r2, [sp, #4]
-	bl ov4_021FF3C0
+	bl SBRefStr
 	str r0, [sp]
 	ldr r0, [r7, #8]
 	mov r1, r8
@@ -1902,13 +1902,13 @@ _022007EC:
 _02200800:
 	mov r0, r5
 	mov r1, r6
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	mov r4, r0
 	cmp r4, r8
 	beq _02200854
 	mov r0, r7
 	mov r1, r5
-	bl ov4_021FF3C0
+	bl SBRefStr
 	ldr r1, [r7, #0x480]
 	add r5, r5, r4
 	mov r2, r1
@@ -1938,7 +1938,7 @@ _02200880:
 	mov r0, r7
 	mov r1, r5
 	mov r2, r6
-	bl ov4_02200404
+	bl IncomingListParseServer
 	cmp r0, r8
 	addeq sp, sp, #8
 	moveq r0, #5
@@ -1998,10 +1998,10 @@ _02200958: .word Unk_ov4_0221A0C4
 _0220095C: .word Unk_ov4_0221A048
 _02200960: .word Unk_ov4_0221A008
 _02200964: .word 0x000004AF
-	arm_func_end ov4_0220053C
+	arm_func_end ProcessMainListData
 
-	arm_func_start ov4_02200968
-ov4_02200968: ; 0x02200968
+	arm_func_start ProcessPushKeyList
+ProcessPushKeyList: ; 0x02200968
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #8
 	mov sl, r0
@@ -2012,7 +2012,7 @@ ov4_02200968: ; 0x02200968
 	sub r8, r8, #1
 	ldrb r7, [sb], #1
 	beq _02200994
-	bl ov4_021FFD7C
+	bl FreeKeyList
 _02200994:
 	mov r1, r7
 	mov r0, #8
@@ -2035,7 +2035,7 @@ _022009CC:
 	ldmltia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	add r0, sb, #1
 	sub r1, r8, #1
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	mov r5, r0
 	cmp r5, r4
 	addeq sp, sp, #8
@@ -2045,7 +2045,7 @@ _022009CC:
 	mov r0, sl
 	add r1, sb, #1
 	str r2, [sp, #4]
-	bl ov4_021FF3C0
+	bl SBRefStr
 	str r0, [sp]
 	ldr r0, [sl, #8]
 	mov r1, fp
@@ -2060,10 +2060,10 @@ _02200A38:
 	mov r0, #0
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end ov4_02200968
+	arm_func_end ProcessPushKeyList
 
-	arm_func_start ov4_02200A44
-ov4_02200A44: ; 0x02200A44
+	arm_func_start ProcessPlayerSearch
+ProcessPlayerSearch: ; 0x02200A44
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x24
 	mov r8, r2
@@ -2089,7 +2089,7 @@ _02200A98:
 	mov r0, sb
 	mov r1, r8
 	str sb, [sp, #0x10]
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	cmp r0, r4
 	addeq sp, sp, #0x24
 	moveq r0, #4
@@ -2138,7 +2138,7 @@ _02200A98:
 	orr r2, r3, r2
 	orr r2, r5, r2
 	str r2, [sp, #0x1c]
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	mov r5, r0
 	cmp r5, r4
 	addeq sp, sp, #0x24
@@ -2178,10 +2178,10 @@ _02200BF4:
 	mov r0, #0
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end ov4_02200A44
+	arm_func_end ProcessPlayerSearch
 
-	arm_func_start ov4_02200C00
-ov4_02200C00: ; 0x02200C00
+	arm_func_start ProcessMaploop
+ProcessMaploop: ; 0x02200C00
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x54
 	mov r8, r2
@@ -2207,7 +2207,7 @@ ov4_02200C00: ; 0x02200C00
 	strb r3, [r4]
 	strb r2, [r4, #1]
 	ldrh r2, [sp, #8]
-	bl ov4_021FF1D4
+	bl SBServerListFindServerByIP
 	mov r1, r0
 	mvn r0, #0
 	cmp r1, r0
@@ -2215,7 +2215,7 @@ ov4_02200C00: ; 0x02200C00
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	mov r0, sl
-	bl ov4_021FF2D4
+	bl SBServerListNth
 	ldrb r2, [sb, #6]
 	ldrb r1, [sb, #7]
 	add r3, sp, #0x10
@@ -2251,7 +2251,7 @@ _02200D00:
 	blt _02200D40
 	mov r0, sb
 	mov r1, r8
-	bl ov4_021FF4AC
+	bl NTSLengthSB
 	cmp r0, r4
 	addeq sp, sp, #0x54
 	moveq r0, #4
@@ -2282,10 +2282,10 @@ _02200D40:
 	mov r0, #0
 	add sp, sp, #0x54
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end ov4_02200C00
+	arm_func_end ProcessMaploop
 
-	arm_func_start ov4_02200D84
-ov4_02200D84: ; 0x02200D84
+	arm_func_start ProcessDeleteServer
+ProcessDeleteServer: ; 0x02200D84
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	cmp r2, #6
@@ -2309,7 +2309,7 @@ ov4_02200D84: ; 0x02200D84
 	strb r3, [ip]
 	strb r2, [ip, #1]
 	ldrh r2, [sp]
-	bl ov4_021FF1D4
+	bl SBServerListFindServerByIP
 	mov r1, r0
 	mvn r0, #0
 	cmp r1, r0
@@ -2317,14 +2317,14 @@ ov4_02200D84: ; 0x02200D84
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl ov4_021FF278
+	bl SBServerListRemoveAt
 	mov r0, #0
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_02200D84
+	arm_func_end ProcessDeleteServer
 
-	arm_func_start ov4_02200E10
-ov4_02200E10: ; 0x02200E10
+	arm_func_start ProcessPushServer
+ProcessPushServer: ; 0x02200E10
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0xc
 	mov r6, r2
@@ -2337,11 +2337,11 @@ ov4_02200E10: ; 0x02200E10
 	add r4, sp, #4
 	add r3, sp, #8
 	str r4, [sp]
-	bl ov4_022000C8
+	bl ParseServerIPPort
 	ldrh r2, [sp, #4]
 	ldr r1, [sp, #8]
 	mov r0, r8
-	bl ov4_021FF1D4
+	bl SBServerListFindServerByIP
 	mov r5, r0
 	mvn r0, #0
 	cmp r5, r0
@@ -2349,9 +2349,9 @@ ov4_02200E10: ; 0x02200E10
 	ldrh r2, [sp, #4]
 	ldr r1, [sp, #8]
 	mov r0, r8
-	bl ov4_021FE79C
+	bl SBAllocServer
 	mov r4, r0
-	bl ov4_021FE874
+	bl SBIsNullServer
 	cmp r0, #0
 	beq _02200EA0
 	add sp, sp, #0xc
@@ -2360,7 +2360,7 @@ ov4_02200E10: ; 0x02200E10
 _02200E90:
 	mov r0, r8
 	mov r1, r5
-	bl ov4_021FF2D4
+	bl SBServerListNth
 	mov r4, r0
 _02200EA0:
 	mov ip, #0
@@ -2369,7 +2369,7 @@ _02200EA0:
 	mov r2, r7
 	mov r3, r6
 	str ip, [sp]
-	bl ov4_02200138
+	bl ParseServer
 	cmp r0, #0
 	addlt sp, sp, #0xc
 	movlt r0, #4
@@ -2379,7 +2379,7 @@ _02200EA0:
 	bne _02200EE4
 	mov r0, r8
 	mov r1, r4
-	bl ov4_021FF144
+	bl SBServerListAppendServer
 _02200EE4:
 	ldr r3, [r8, #0x494]
 	ldr r5, [r8, #0x488]
@@ -2390,10 +2390,10 @@ _02200EE4:
 	mov r0, #0
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
-	arm_func_end ov4_02200E10
+	arm_func_end ProcessPushServer
 
-	arm_func_start ov4_02200F08
-ov4_02200F08: ; 0x02200F08
+	arm_func_start ProcessAdHocData
+ProcessAdHocData: ; 0x02200F08
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov sb, r0
 	ldr r0, [sb, #0x80]
@@ -2444,14 +2444,14 @@ _02200FB8:
 	mov r0, sb
 	add r1, r1, #3
 	sub r2, r2, #3
-	bl ov4_02200968
+	bl ProcessPushKeyList
 	mov r8, r0
 	b _02201048
 _02200FD0:
 	mov r0, sb
 	add r1, r1, #3
 	sub r2, r2, #3
-	bl ov4_02200E10
+	bl ProcessPushServer
 	mov r8, r0
 	b _02201048
 _02200FE8:
@@ -2466,21 +2466,21 @@ _02201004:
 	mov r0, sb
 	add r1, r1, #3
 	sub r2, r2, #3
-	bl ov4_02200D84
+	bl ProcessDeleteServer
 	mov r8, r0
 	b _02201048
 _0220101C:
 	mov r0, sb
 	add r1, r1, #3
 	sub r2, r2, #3
-	bl ov4_02200C00
+	bl ProcessMaploop
 	mov r8, r0
 	b _02201048
 _02201034:
 	mov r0, sb
 	add r1, r1, #3
 	sub r2, r2, #3
-	bl ov4_02200A44
+	bl ProcessPlayerSearch
 	mov r8, r0
 _02201048:
 	ldrh r0, [sp]
@@ -2512,7 +2512,7 @@ _022010A4:
 	cmp r8, #0
 	beq _022010B4
 	mov r0, sb
-	bl ov4_021FF608
+	bl ErrorDisconnect
 _022010B4:
 	mov r0, r8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -2521,10 +2521,10 @@ _022010BC: .word Unk_ov4_0221A0D0
 _022010C0: .word Unk_ov4_0221A048
 _022010C4: .word Unk_ov4_02219FF4
 _022010C8: .word 0x000005B4
-	arm_func_end ov4_02200F08
+	arm_func_end ProcessAdHocData
 
-	arm_func_start ov4_022010CC
-ov4_022010CC: ; 0x022010CC
+	arm_func_start ProcessIncomingData
+ProcessIncomingData: ; 0x022010CC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r0, [r6, #0x4b0]
@@ -2543,7 +2543,7 @@ ov4_022010CC: ; 0x022010CC
 	cmp r1, #1
 	bhi _02201120
 	mov r0, r6
-	bl ov4_021FF608
+	bl ErrorDisconnect
 	mov r0, #3
 	ldmia sp!, {r4, r5, r6, pc}
 _02201120:
@@ -2564,13 +2564,13 @@ _02201148:
 	add r0, r0, #0x400
 	add r1, r1, r5
 	sub r2, r2, r5
-	bl ov4_021FD790
+	bl GOADecrypt
 _02201164:
 	ldr r0, [r6, #0]
 	cmp r0, #3
 	bne _0220117C
 	mov r0, r6
-	bl ov4_0220053C
+	bl ProcessMainListData
 	mov r4, r0
 _0220117C:
 	cmp r4, #0
@@ -2583,15 +2583,15 @@ _0220117C:
 	cmp r0, #0
 	ble _022011AC
 	mov r0, r6
-	bl ov4_02200F08
+	bl ProcessAdHocData
 	ldmia sp!, {r4, r5, r6, pc}
 _022011AC:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_022010CC
+	arm_func_end ProcessIncomingData
 
-	arm_func_start ov4_022011B4
-ov4_022011B4: ; 0x022011B4
+	arm_func_start SBSendMessageToServer
+SBSendMessageToServer: ; 0x022011B4
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x18
@@ -2604,7 +2604,7 @@ ov4_022011B4: ; 0x022011B4
 	mov r2, r1
 	mov r3, #2
 	str r1, [sp]
-	bl ov4_021FFAC8
+	bl SBServerListConnectAndQuery
 _022011E8:
 	ldr r0, [r5, #0]
 	cmp r0, #1
@@ -2649,7 +2649,7 @@ _022011E8:
 	strb r6, [sl, #3]
 	strb ip, [lr]
 	strb r3, [lr, #1]
-	bl ov4_021FFA30
+	bl SendWithRetry
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
@@ -2667,10 +2667,10 @@ _022011E8:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end ov4_022011B4
+	arm_func_end SBSendMessageToServer
 
-	arm_func_start ov4_022012DC
-ov4_022012DC: ; 0x022012DC
+	arm_func_start SBSendNatNegotiateCookieToServer
+SBSendNatNegotiateCookieToServer: ; 0x022012DC
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x10
@@ -2712,15 +2712,15 @@ ov4_022012DC: ; 0x022012DC
 	strb r7, [ip, #3]
 	mov r4, #0xa
 	str r4, [sp]
-	bl ov4_022011B4
+	bl SBSendMessageToServer
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end ov4_022012DC
+	arm_func_end SBSendNatNegotiateCookieToServer
 
-	arm_func_start ov4_02201394
-ov4_02201394: ; 0x02201394
+	arm_func_start ProcessLanData
+ProcessLanData: ; 0x02201394
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x5f0
 	mov r1, #8
@@ -2749,25 +2749,25 @@ _022013D0:
 	ldrh r2, [sp, #0xe]
 	ldr r1, [sp, #0x10]
 	mov r0, sl
-	bl ov4_021FF1D4
+	bl SBServerListFindServerByIP
 	cmp r0, r4
 	bne _0220144C
 	ldrh r2, [sp, #0xe]
 	ldr r1, [sp, #0x10]
 	mov r0, sl
-	bl ov4_021FE79C
+	bl SBAllocServer
 	mov r5, r0
-	bl ov4_021FE874
+	bl SBIsNullServer
 	cmp r0, #0
 	addne sp, sp, #0x5f0
 	movne r0, #5
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	mov r0, r5
 	mov r1, #0x11
-	bl ov4_021FE848
+	bl SBServerSetFlags
 	mov r0, sl
 	mov r1, r5
-	bl ov4_021FF144
+	bl SBServerListAppendServer
 _0220144C:
 	ldr r0, [sl, #0x4b0]
 	bl CanReceiveOnSocket
@@ -2799,13 +2799,13 @@ _022014A4:
 	; .align 2, 0
 _022014B0: .word 0x000005DB
 _022014B4: .word Unk_ov4_0221B754
-	arm_func_end ov4_02201394
+	arm_func_end ProcessLanData
 
-	arm_func_start ov4_022014B8
-ov4_022014B8: ; 0x022014B8
+	arm_func_start SBListThink
+SBListThink: ; 0x022014B8
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_021FF2E8
+	bl SBFreeDeadList
 	ldr r0, [r4, #0]
 	cmp r0, #3
 	addls pc, pc, r0, lsl #2
@@ -2817,16 +2817,16 @@ _022014D4: ; jump table
 	b _022014E4 ; case 3
 _022014E4:
 	mov r0, r4
-	bl ov4_022010CC
+	bl ProcessIncomingData
 	ldmia sp!, {r4, pc}
 _022014F0:
 	mov r0, r4
-	bl ov4_02201394
+	bl ProcessLanData
 	ldmia sp!, {r4, pc}
 _022014FC:
 	mov r0, #0
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_022014B8
+	arm_func_end SBListThink
 
 	.data
 
