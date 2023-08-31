@@ -21,7 +21,7 @@ typedef struct MoveTable {
     MoveContestData contest;
 } MoveTable;
 
-typedef enum MoveAttribute {
+enum MoveAttribute {
     MOVEATTRIBUTE_EFFECT = 0,
     MOVEATTRIBUTE_CLASS,
     MOVEATTRIBUTE_POWER,
@@ -34,11 +34,11 @@ typedef enum MoveAttribute {
     MOVEATTRIBUTE_FLAGS,
     MOVEATTRIBUTE_CONTEST_EFFECT,
     MOVEATTRIBUTE_CONTEST_TYPE,
-} MoveAttribute;
+};
 
-void MoveTable_Load(void * dest);
-u32 MoveTable_LoadAttribute(int moveID, int attrno);
-u8 MoveTable_CalcMaxPP(u16 moveID, u8 ppUps);
-u32 MoveTable_Attribute(MoveTable * moveTable, int attribute);
+void MoveTable_Load(void *buf);
+u32 MoveTable_LoadAttribute(int move, enum MoveAttribute attribute);
+u8 MoveTable_CalcMaxPP(u16 move, u8 ppUps);
+u32 MoveTable_Attribute(MoveTable *moveTable, enum MoveAttribute attribute);
 
 #endif // POKEPLATINUM_MOVE_TABLE_H
