@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021F741C
-ov4_021F741C: ; 0x021F741C
+	arm_func_start gti2AllocateBuffer
+gti2AllocateBuffer: ; 0x021F741C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r1
 	mov r5, r0
@@ -19,18 +19,18 @@ ov4_021F741C: ; 0x021F741C
 	strne r4, [r5, #4]
 	movne r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021F741C
+	arm_func_end gti2AllocateBuffer
 
-	arm_func_start ov4_021F7448
-ov4_021F7448: ; 0x021F7448
+	arm_func_start gti2GetBufferFreeSpace
+gti2GetBufferFreeSpace: ; 0x021F7448
 	ldr r1, [r0, #4]
 	ldr r0, [r0, #8]
 	sub r0, r1, r0
 	bx lr
-	arm_func_end ov4_021F7448
+	arm_func_end gti2GetBufferFreeSpace
 
-	arm_func_start ov4_021F7458
-ov4_021F7458: ; 0x021F7458
+	arm_func_start gti2BufferWriteByte
+gti2BufferWriteByte: ; 0x021F7458
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldmib r5, {r0, r2}
@@ -53,10 +53,10 @@ _021F7484:
 _021F749C: .word Unk_ov4_022194F0
 _021F74A0: .word Unk_ov4_0221950C
 _021F74A4: .word Unk_ov4_022194C4
-	arm_func_end ov4_021F7458
+	arm_func_end gti2BufferWriteByte
 
-	arm_func_start ov4_021F74A8
-ov4_021F74A8: ; 0x021F74A8
+	arm_func_start gti2BufferWriteUShort
+gti2BufferWriteUShort: ; 0x021F74A8
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldmib r5, {r0, r2}
@@ -86,10 +86,10 @@ _021F74D8:
 _021F7508: .word Unk_ov4_02219518
 _021F750C: .word Unk_ov4_0221950C
 _021F7510: .word Unk_ov4_022194D8
-	arm_func_end ov4_021F74A8
+	arm_func_end gti2BufferWriteUShort
 
-	arm_func_start ov4_021F7514
-ov4_021F7514: ; 0x021F7514
+	arm_func_start gti2BufferWriteData
+gti2BufferWriteData: ; 0x021F7514
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r5, r1
 	mov r4, r2
@@ -127,10 +127,10 @@ _021F7568:
 _021F7590: .word Unk_ov4_0221953C
 _021F7594: .word Unk_ov4_0221950C
 _021F7598: .word Unk_ov4_022194B0
-	arm_func_end ov4_021F7514
+	arm_func_end gti2BufferWriteData
 
-	arm_func_start ov4_021F759C
-ov4_021F759C: ; 0x021F759C
+	arm_func_start gti2BufferShorten
+gti2BufferShorten: ; 0x021F759C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r1
 	mvn r1, #0
@@ -174,7 +174,7 @@ _021F762C: .word Unk_ov4_02219560
 _021F7630: .word Unk_ov4_0221950C
 _021F7634: .word Unk_ov4_0221949C
 _021F7638: .word Unk_ov4_02219578
-	arm_func_end ov4_021F759C
+	arm_func_end gti2BufferShorten
 
 	.data
 

@@ -11,7 +11,7 @@ gt2CreateSocket: ; 0x021F8470
 	stmfd sp!, {r3, lr}
 	ldr ip, [sp, #8]
 	str ip, [sp]
-	bl ov4_021FA3FC
+	bl gti2CreateSocket
 	ldmia sp!, {r3, pc}
 	arm_func_end gt2CreateSocket
 
@@ -21,7 +21,7 @@ gt2CloseSocket: ; 0x021F8484
 	mov r4, r0
 	bl gt2CloseAllConnectionsHard
 	mov r0, r4
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	ldmia sp!, {r4, pc}
 	arm_func_end gt2CloseSocket
 
@@ -29,40 +29,40 @@ gt2CloseSocket: ; 0x021F8484
 gt2Think: ; 0x021F849C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_021F9A68
+	bl gti2ReceiveMessages
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl ov4_021FAB4C
+	bl gti2SocketConnectionsThink
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl ov4_021FAB88
+	bl gti2FreeClosedConnections
 	ldmia sp!, {r4, pc}
 	arm_func_end gt2Think
 
 	arm_func_start gt2Listen
 gt2Listen: ; 0x021F84CC
-	ldr ip, _021F84D4 ; =ov4_021FA660
+	ldr ip, _021F84D4 ; =gti2Listen
 	bx ip
 	; .align 2, 0
-_021F84D4: .word ov4_021FA660
+_021F84D4: .word gti2Listen
 	arm_func_end gt2Listen
 
 	arm_func_start gt2Accept
 gt2Accept: ; 0x021F84D8
-	ldr ip, _021F84E0 ; =ov4_021F805C
+	ldr ip, _021F84E0 ; =gti2AcceptConnection
 	bx ip
 	; .align 2, 0
-_021F84E0: .word ov4_021F805C
+_021F84E0: .word gti2AcceptConnection
 	arm_func_end gt2Accept
 
 	arm_func_start gt2Reject
 gt2Reject: ; 0x021F84E4
-	ldr ip, _021F84EC ; =ov4_021F80B8
+	ldr ip, _021F84EC ; =gti2RejectConnection
 	bx ip
 	; .align 2, 0
-_021F84EC: .word ov4_021F80B8
+_021F84EC: .word gti2RejectConnection
 	arm_func_end gt2Reject
 
 	arm_func_start gt2Connect
@@ -75,7 +75,7 @@ gt2Connect: ; 0x021F84F0
 	add r1, sp, #4
 	add r2, sp, #0
 	mov r4, r3
-	bl ov4_021FACAC
+	bl gt2StringToAddress
 	cmp r0, #0
 	ldrne r2, [sp, #4]
 	cmpne r2, #0
@@ -102,7 +102,7 @@ gt2Connect: ; 0x021F84F0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	add r1, sp, #8
 	mov r0, r6
-	bl ov4_021F7F54
+	bl gti2NewOutgoingConnection
 	cmp r0, #0
 	addne sp, sp, #0xc
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, pc}
@@ -113,11 +113,11 @@ gt2Connect: ; 0x021F84F0
 	ldr r0, [sp, #8]
 	ldr r3, [sp, #0x30]
 	mov r1, r4
-	bl ov4_021F7FB4
+	bl gti2StartConnectionAttempt
 	movs r4, r0
 	beq _021F85C8
 	ldr r0, [sp, #8]
-	bl ov4_021FA888
+	bl gti2FreeSocketConnection
 	add sp, sp, #0xc
 	mov r0, r4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
@@ -181,7 +181,7 @@ gt2Send: ; 0x021F866C
 	bxne lr
 	add r0, sp, #0x14
 	add r1, sp, #0x18
-	bl ov4_021FAE30
+	bl gti2MessageCheck
 	ldr r0, [r5, #0x98]
 	bl ArrayLength
 	cmp r0, #0
@@ -191,7 +191,7 @@ gt2Send: ; 0x021F866C
 	ldr r3, [sp, #0x18]
 	mov r0, r5
 	mov r1, #0
-	bl ov4_021F7B48
+	bl gti2SendFilterCallback
 	ldmia sp!, {r3, r4, r5, lr}
 	add sp, sp, #0x10
 	bx lr
@@ -200,7 +200,7 @@ _021F86D0:
 	ldr r2, [sp, #0x18]
 	mov r0, r5
 	mov r3, r4
-	bl ov4_021FA344
+	bl gti2Send
 	ldmia sp!, {r3, r4, r5, lr}
 	add sp, sp, #0x10
 	bx lr
@@ -208,21 +208,21 @@ _021F86D0:
 
 	arm_func_start gt2CloseConnectionHard
 gt2CloseConnectionHard: ; 0x021F86F0
-	ldr ip, _021F86FC ; =ov4_021F8340
+	ldr ip, _021F86FC ; =gti2CloseConnection
 	mov r1, #1
 	bx ip
 	; .align 2, 0
-_021F86FC: .word ov4_021F8340
+_021F86FC: .word gti2CloseConnection
 	arm_func_end gt2CloseConnectionHard
 
-	arm_func_start ov4_021F8700
-ov4_021F8700: ; 0x021F8700
+	arm_func_start gti2CloseAllConnectionsHardMap
+gti2CloseAllConnectionsHardMap: ; 0x021F8700
 	ldr ip, _021F870C ; =gt2CloseConnectionHard
 	ldr r0, [r0, #0]
 	bx ip
 	; .align 2, 0
 _021F870C: .word gt2CloseConnectionHard
-	arm_func_end ov4_021F8700
+	arm_func_end gti2CloseAllConnectionsHardMap
 
 	arm_func_start gt2CloseAllConnectionsHard
 gt2CloseAllConnectionsHard: ; 0x021F8710
@@ -234,7 +234,7 @@ gt2CloseAllConnectionsHard: ; 0x021F8710
 	mov r2, #1
 	str r2, [r1, #0]
 	ldr r0, [r0, #0xc]
-	ldr r1, _021F8750 ; =ov4_021F8700
+	ldr r1, _021F8750 ; =gti2CloseAllConnectionsHardMap
 	mov r2, #0
 	bl TableMapSafe
 	ldr r0, _021F874C ; =0x0221B3B0
@@ -243,7 +243,7 @@ gt2CloseAllConnectionsHard: ; 0x021F8710
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021F874C: .word Unk_ov4_0221B3B0
-_021F8750: .word ov4_021F8700
+_021F8750: .word gti2CloseAllConnectionsHardMap
 	arm_func_end gt2CloseAllConnectionsHard
 
 	arm_func_start gt2GetLocalPort

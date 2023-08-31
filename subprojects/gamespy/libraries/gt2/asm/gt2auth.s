@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021F7128
-ov4_021F7128: ; 0x021F7128
+	arm_func_start gti2VerifyChallenge
+gti2VerifyChallenge: ; 0x021F7128
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	ldrb r5, [r0]
 	mov lr, #0
@@ -51,10 +51,10 @@ _021F71B0:
 	blt _021F714C
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
-	arm_func_end ov4_021F7128
+	arm_func_end gti2VerifyChallenge
 
-	arm_func_start ov4_021F71C4
-ov4_021F71C4: ; 0x021F71C4
+	arm_func_start gti2GetChallenge
+gti2GetChallenge: ; 0x021F71C4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	movs sl, r0
 	bne _021F71E4
@@ -132,10 +132,10 @@ _021F72D0: .word Unk_ov4_02219488
 _021F72D4: .word Unk_ov4_02219490
 _021F72D8: .word Unk_ov4_02219450
 _021F72DC: .word 0x2C0B02C1
-	arm_func_end ov4_021F71C4
+	arm_func_end gti2GetChallenge
 
-	arm_func_start ov4_021F72E0
-ov4_021F72E0: ; 0x021F72E0
+	arm_func_start gti2GetResponse
+gti2GetResponse: ; 0x021F72E0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov r5, r0
 	ldr r0, _021F73E0 ; =0x02219464
@@ -143,7 +143,7 @@ ov4_021F72E0: ; 0x021F72E0
 	bl strlen
 	mov r7, r0
 	mov r0, r4
-	bl ov4_021F7128
+	bl gti2VerifyChallenge
 	mov sl, #0
 	mov fp, r0
 	mov r8, sl
@@ -206,10 +206,10 @@ _021F73C0:
 	; .align 2, 0
 _021F73E0: .word Unk_ov4_02219464
 _021F73E4: .word 0x2C0B02C1
-	arm_func_end ov4_021F72E0
+	arm_func_end gti2GetResponse
 
-	arm_func_start ov4_021F73E8
-ov4_021F73E8: ; 0x021F73E8
+	arm_func_start gti2CheckResponse
+gti2CheckResponse: ; 0x021F73E8
 	mov ip, #0
 _021F73EC:
 	cmp ip, #0
@@ -224,7 +224,7 @@ _021F73EC:
 	blt _021F73EC
 	mov r0, #1
 	bx lr
-	arm_func_end ov4_021F73E8
+	arm_func_end gti2CheckResponse
 
 	.data
 

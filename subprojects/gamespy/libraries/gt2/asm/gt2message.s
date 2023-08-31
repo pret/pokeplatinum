@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021F87F0
-ov4_021F87F0: ; 0x021F87F0
+	arm_func_start gti2UShortFromBuffer
+gti2UShortFromBuffer: ; 0x021F87F0
 	ldrb r2, [r0, r1]
 	add r1, r1, #1
 	ldrb r1, [r0, r1]
@@ -16,27 +16,27 @@ ov4_021F87F0: ; 0x021F87F0
 	mov r0, r0, lsl #0x10
 	orr r0, r1, r0, lsr #16
 	bx lr
-	arm_func_end ov4_021F87F0
+	arm_func_end gti2UShortFromBuffer
 
-	arm_func_start ov4_021F8810
-ov4_021F8810: ; 0x021F8810
+	arm_func_start gti2UShortToBuffer
+gti2UShortToBuffer: ; 0x021F8810
 	mov r3, r2, asr #8
 	strb r3, [r0, r1]
 	add r1, r1, #1
 	strb r2, [r0, r1]
 	bx lr
-	arm_func_end ov4_021F8810
+	arm_func_end gti2UShortToBuffer
 
-	arm_func_start ov4_021F8824
-ov4_021F8824: ; 0x021F8824
+	arm_func_start gti2SNDiff
+gti2SNDiff: ; 0x021F8824
 	sub r0, r0, r1
 	mov r0, r0, lsl #0x10
 	mov r0, r0, asr #0x10
 	bx lr
-	arm_func_end ov4_021F8824
+	arm_func_end gti2SNDiff
 
-	arm_func_start ov4_021F8834
-ov4_021F8834: ; 0x021F8834
+	arm_func_start gti2ConnectionError
+gti2ConnectionError: ; 0x021F8834
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r3, [r6, #0xc]
@@ -47,12 +47,12 @@ ov4_021F8834: ; 0x021F8834
 	ldr r1, [r6, #0x10]
 	cmp r1, #0
 	beq _021F8884
-	bl ov4_021F8390
+	bl gti2ConnectionClosed
 	mov r2, #0
 	mov r0, r6
 	mov r1, r5
 	mov r3, r2
-	bl ov4_021F77F4
+	bl gti2ConnectedCallback
 	cmp r0, #0
 	bne _021F88C0
 	mov r0, #0
@@ -62,50 +62,50 @@ _021F8884:
 	moveq r0, #1
 	streq r0, [r6, #0x14]
 	mov r0, r6
-	bl ov4_021F8390
+	bl gti2ConnectionClosed
 	b _021F88C0
 _021F889C:
 	cmp r3, #7
 	beq _021F88C0
-	bl ov4_021F8390
+	bl gti2ConnectionClosed
 	mov r0, r6
 	mov r1, r4
-	bl ov4_021F79C0
+	bl gti2ClosedCallback
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
 _021F88C0:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021F8834
+	arm_func_end gti2ConnectionError
 
-	arm_func_start ov4_021F88C8
-ov4_021F88C8: ; 0x021F88C8
-	ldr ip, _021F88D8 ; =ov4_021F8834
+	arm_func_start gti2ConnectionCommunicationError
+gti2ConnectionCommunicationError: ; 0x021F88C8
+	ldr ip, _021F88D8 ; =gti2ConnectionError
 	mov r1, #7
 	mov r2, #2
 	bx ip
 	; .align 2, 0
-_021F88D8: .word ov4_021F8834
-	arm_func_end ov4_021F88C8
+_021F88D8: .word gti2ConnectionError
+	arm_func_end gti2ConnectionCommunicationError
 
-	arm_func_start ov4_021F88DC
-ov4_021F88DC: ; 0x021F88DC
+	arm_func_start gti2ConnectionMemoryError
+gti2ConnectionMemoryError: ; 0x021F88DC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_021FA270
+	bl gti2SendClosed
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
 	mov r1, #1
 	mov r2, #4
-	bl ov4_021F8834
+	bl gti2ConnectionError
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F88DC
+	arm_func_end gti2ConnectionMemoryError
 
-	arm_func_start ov4_021F8908
-ov4_021F8908: ; 0x021F8908
+	arm_func_start gti2HandleESN
+gti2HandleESN: ; 0x021F8908
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x60]
@@ -123,7 +123,7 @@ _021F8934:
 	bl ArrayNth
 	ldrh r0, [r0, #8]
 	mov r1, r7
-	bl ov4_021F8824
+	bl gti2SNDiff
 	cmp r0, #0
 	addlt r6, r6, #1
 	cmplt r6, r5
@@ -173,13 +173,13 @@ _021F89EC:
 	mov r2, r5
 	add r0, r4, #0x50
 	mov r1, #0
-	bl ov4_021F759C
+	bl gti2BufferShorten
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021F8908
+	arm_func_end gti2HandleESN
 
-	arm_func_start ov4_021F8A04
-ov4_021F8A04: ; 0x021F8A04
+	arm_func_start gti2HandleAppUnreliable
+gti2HandleAppUnreliable: ; 0x021F8A04
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r6, r0
@@ -200,7 +200,7 @@ ov4_021F8A04: ; 0x021F8A04
 	mov r2, r5
 	mov r3, r4
 	str r1, [sp]
-	bl ov4_021F7C40
+	bl gti2ReceiveFilterCallback
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #4
@@ -211,16 +211,16 @@ _021F8A6C:
 	mov r1, r5
 	mov r2, r4
 	mov r3, #0
-	bl ov4_021F78DC
+	bl gti2ReceivedCallback
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021F8A04
+	arm_func_end gti2HandleAppUnreliable
 
-	arm_func_start ov4_021F8A94
-ov4_021F8A94: ; 0x021F8A94
+	arm_func_start gti2HandleAppReliable
+gti2HandleAppReliable: ; 0x021F8A94
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r6, r0
@@ -230,7 +230,7 @@ ov4_021F8A94: ; 0x021F8A94
 	mov r4, r2
 	cmpne r3, #6
 	beq _021F8AD0
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	bne _021F8B34
 	add sp, sp, #4
@@ -247,7 +247,7 @@ _021F8AD0:
 	mov r3, r4
 	mov r1, #0
 	str ip, [sp]
-	bl ov4_021F7C40
+	bl gti2ReceiveFilterCallback
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #4
@@ -258,7 +258,7 @@ _021F8B10:
 	mov r1, r5
 	mov r2, r4
 	mov r3, #1
-	bl ov4_021F78DC
+	bl gti2ReceivedCallback
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -267,17 +267,17 @@ _021F8B34:
 	mov r0, #1
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021F8A94
+	arm_func_end gti2HandleAppReliable
 
-	arm_func_start ov4_021F8B40
-ov4_021F8B40: ; 0x021F8B40
+	arm_func_start gti2HandleClientChallenge
+gti2HandleClientChallenge: ; 0x021F8B40
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x40
 	mov r4, r0
 	ldr r3, [r4, #0xc]
 	cmp r3, #2
 	beq _021F8B70
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0x40
@@ -286,7 +286,7 @@ ov4_021F8B40: ; 0x021F8B40
 _021F8B70:
 	cmp r2, #0x20
 	bge _021F8B90
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0x40
@@ -294,16 +294,16 @@ _021F8B70:
 	ldmia sp!, {r4, pc}
 _021F8B90:
 	add r0, sp, #0x20
-	bl ov4_021F72E0
+	bl gti2GetResponse
 	add r0, sp, #0
-	bl ov4_021F71C4
+	bl gti2GetChallenge
 	add r1, sp, #0
 	add r0, r4, #0x68
-	bl ov4_021F72E0
+	bl gti2GetResponse
 	add r1, sp, #0x20
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F9E18
+	bl gti2SendServerChallenge
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #3
@@ -311,10 +311,10 @@ _021F8B90:
 	movne r0, #1
 	add sp, sp, #0x40
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F8B40
+	arm_func_end gti2HandleClientChallenge
 
-	arm_func_start ov4_021F8BD8
-ov4_021F8BD8: ; 0x021F8BD8
+	arm_func_start gti2HandleServerChallenge
+gti2HandleServerChallenge: ; 0x021F8BD8
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x20
 	mov r5, r0
@@ -322,7 +322,7 @@ ov4_021F8BD8: ; 0x021F8BD8
 	mov r4, r1
 	cmp r3, #0
 	beq _021F8C0C
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0x20
@@ -331,7 +331,7 @@ ov4_021F8BD8: ; 0x021F8BD8
 _021F8C0C:
 	cmp r2, #0x40
 	bge _021F8C2C
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0x20
@@ -340,11 +340,11 @@ _021F8C0C:
 _021F8C2C:
 	mov r0, r4
 	add r1, r5, #0x68
-	bl ov4_021F73E8
+	bl gti2CheckResponse
 	cmp r0, #0
 	bne _021F8C5C
 	mov r0, r5
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0x20
@@ -353,12 +353,12 @@ _021F8C2C:
 _021F8C5C:
 	add r0, sp, #0
 	add r1, r4, #0x20
-	bl ov4_021F72E0
+	bl gti2GetResponse
 	ldr r2, [r5, #0x38]
 	ldr r3, [r5, #0x3c]
 	add r1, sp, #0
 	mov r0, r5
-	bl ov4_021F9EA4
+	bl gti2SendClientResponse
 	cmp r0, #0
 	addeq sp, sp, #0x20
 	moveq r0, #0
@@ -374,10 +374,10 @@ _021F8CA4:
 	str r0, [r5, #0xc]
 	add sp, sp, #0x20
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021F8BD8
+	arm_func_end gti2HandleServerChallenge
 
-	arm_func_start ov4_021F8CB4
-ov4_021F8CB4: ; 0x021F8CB4
+	arm_func_start gti2HandleClientResponse
+gti2HandleClientResponse: ; 0x021F8CB4
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xc
 	mov r6, r0
@@ -386,7 +386,7 @@ ov4_021F8CB4: ; 0x021F8CB4
 	mov r4, r2
 	cmp r3, #3
 	beq _021F8CEC
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0xc
@@ -395,7 +395,7 @@ ov4_021F8CB4: ; 0x021F8CB4
 _021F8CEC:
 	cmp r4, #0x20
 	bge _021F8D0C
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0xc
@@ -404,11 +404,11 @@ _021F8CEC:
 _021F8D0C:
 	mov r0, r5
 	add r1, r6, #0x68
-	bl ov4_021F73E8
+	bl gti2CheckResponse
 	cmp r0, #0
 	bne _021F8D3C
 	mov r0, r6
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0xc
@@ -420,13 +420,13 @@ _021F8D3C:
 	cmp r0, #0
 	bne _021F8D78
 	mov r0, r6
-	bl ov4_021FA270
+	bl gti2SendClosed
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, pc}
 	mov r0, r6
-	bl ov4_021F8390
+	bl gti2ConnectionClosed
 	add sp, sp, #0xc
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, pc}
@@ -444,21 +444,21 @@ _021F8D78:
 	ldr r0, [r6, #8]
 	ldr r2, [r6, #0]
 	mov r1, r6
-	bl ov4_021F76D8
+	bl gti2ConnectAttemptCallback
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021F8CB4
+	arm_func_end gti2HandleClientResponse
 
-	arm_func_start ov4_021F8DC4
-ov4_021F8DC4: ; 0x021F8DC4
+	arm_func_start gti2HandleAccept
+gti2HandleAccept: ; 0x021F8DC4
 	stmfd sp!, {r3, lr}
 	ldr r1, [r0, #0xc]
 	cmp r1, #1
 	beq _021F8DE8
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
@@ -469,15 +469,15 @@ _021F8DE8:
 	mov r2, r1
 	mov r3, r1
 	str ip, [r0, #0xc]
-	bl ov4_021F77F4
+	bl gti2ConnectedCallback
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021F8DC4
+	arm_func_end gti2HandleAccept
 
-	arm_func_start ov4_021F8E10
-ov4_021F8E10: ; 0x021F8E10
+	arm_func_start gti2HandleReject
+gti2HandleReject: ; 0x021F8E10
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r3, [r6, #0xc]
@@ -485,15 +485,15 @@ ov4_021F8E10: ; 0x021F8E10
 	mov r4, r2
 	cmp r3, #1
 	beq _021F8E40
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 _021F8E40:
-	bl ov4_021F8390
+	bl gti2ConnectionClosed
 	mov r0, r6
-	bl ov4_021FA270
+	bl gti2SendClosed
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -501,18 +501,18 @@ _021F8E40:
 	mov r2, r5
 	mov r3, r4
 	mov r1, #2
-	bl ov4_021F77F4
+	bl gti2ConnectedCallback
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021F8E10
+	arm_func_end gti2HandleReject
 
-	arm_func_start ov4_021F8E7C
-ov4_021F8E7C: ; 0x021F8E7C
+	arm_func_start gti2HandleClose
+gti2HandleClose: ; 0x021F8E7C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_021FA270
+	bl gti2SendClosed
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
@@ -522,15 +522,15 @@ ov4_021F8E7C: ; 0x021F8E7C
 	moveq r2, #0
 	movne r2, #1
 	mov r0, r4
-	bl ov4_021F8834
+	bl gti2ConnectionError
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #1
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F8E7C
+	arm_func_end gti2HandleClose
 
-	arm_func_start ov4_021F8EC0
-ov4_021F8EC0: ; 0x021F8EC0
+	arm_func_start gti2DeliverReliableMessage
+gti2DeliverReliableMessage: ; 0x021F8EC0
 	stmfd sp!, {r3, lr}
 	ldrh ip, [r0, #0x66]
 	cmp r1, #0
@@ -539,7 +539,7 @@ ov4_021F8EC0: ; 0x021F8EC0
 	bne _021F8EF4
 	mov r1, r2
 	mov r2, r3
-	bl ov4_021F8A94
+	bl gti2HandleAppReliable
 	cmp r0, #0
 	bne _021F8FB8
 	mov r0, #0
@@ -549,7 +549,7 @@ _021F8EF4:
 	bne _021F8F18
 	mov r1, r2
 	mov r2, r3
-	bl ov4_021F8B40
+	bl gti2HandleClientChallenge
 	cmp r0, #0
 	bne _021F8FB8
 	mov r0, #0
@@ -559,7 +559,7 @@ _021F8F18:
 	bne _021F8F3C
 	mov r1, r2
 	mov r2, r3
-	bl ov4_021F8BD8
+	bl gti2HandleServerChallenge
 	cmp r0, #0
 	bne _021F8FB8
 	mov r0, #0
@@ -569,7 +569,7 @@ _021F8F3C:
 	bne _021F8F60
 	mov r1, r2
 	mov r2, r3
-	bl ov4_021F8CB4
+	bl gti2HandleClientResponse
 	cmp r0, #0
 	bne _021F8FB8
 	mov r0, #0
@@ -577,7 +577,7 @@ _021F8F3C:
 _021F8F60:
 	cmp r1, #4
 	bne _021F8F7C
-	bl ov4_021F8DC4
+	bl gti2HandleAccept
 	cmp r0, #0
 	bne _021F8FB8
 	mov r0, #0
@@ -587,7 +587,7 @@ _021F8F7C:
 	bne _021F8FA0
 	mov r1, r2
 	mov r2, r3
-	bl ov4_021F8E10
+	bl gti2HandleReject
 	cmp r0, #0
 	bne _021F8FB8
 	mov r0, #0
@@ -595,27 +595,27 @@ _021F8F7C:
 _021F8FA0:
 	cmp r1, #6
 	bne _021F8FB8
-	bl ov4_021F8E7C
+	bl gti2HandleClose
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, pc}
 _021F8FB8:
 	mov r0, #1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021F8EC0
+	arm_func_end gti2DeliverReliableMessage
 
-	arm_func_start ov4_021F8FC0
-ov4_021F8FC0: ; 0x021F8FC0
-	ldr ip, _021F8FD0 ; =ov4_021F8824
+	arm_func_start gti2IncomingBufferMessageCompare
+gti2IncomingBufferMessageCompare: ; 0x021F8FC0
+	ldr ip, _021F8FD0 ; =gti2SNDiff
 	ldrh r0, [r0, #0xc]
 	ldrh r1, [r1, #0xc]
 	bx ip
 	; .align 2, 0
-_021F8FD0: .word ov4_021F8824
-	arm_func_end ov4_021F8FC0
+_021F8FD0: .word gti2SNDiff
+	arm_func_end gti2IncomingBufferMessageCompare
 
-	arm_func_start ov4_021F8FD4
-ov4_021F8FD4: ; 0x021F8FD4
+	arm_func_start gti2BufferIncomingMessage
+gti2BufferIncomingMessage: ; 0x021F8FD4
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0x10
 	mov sb, r0
@@ -643,7 +643,7 @@ _021F9008:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 _021F9034:
 	mov r1, r7
-	bl ov4_021F8824
+	bl gti2SNDiff
 	cmp r0, #0
 	bgt _021F9050
 	add sl, sl, #1
@@ -651,7 +651,7 @@ _021F9034:
 	blt _021F9008
 _021F9050:
 	add r0, sb, #0x44
-	bl ov4_021F7448
+	bl gti2GetBufferFreeSpace
 	ldr r2, [sp, #0x30]
 	cmp r0, r2
 	movlt r0, #1
@@ -665,7 +665,7 @@ _021F9050:
 	strh r7, [sp, #0xc]
 	str r0, [sp]
 	ldr r0, [sb, #0x5c]
-	ldr r2, _021F9184 ; =ov4_021F8FC0
+	ldr r2, _021F9184 ; =gti2IncomingBufferMessageCompare
 	bl ArrayInsertSorted
 	ldr r0, [sb, #0x5c]
 	bl ArrayLength
@@ -678,7 +678,7 @@ _021F9050:
 	ldr r2, [sp, #0x30]
 	mov r1, r6
 	add r0, sb, #0x44
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	cmp r4, #0
 	bne _021F90F8
 	sub r0, r7, #1
@@ -686,7 +686,7 @@ _021F9050:
 	ldrh r1, [sb, #0x66]
 	mov r0, sb
 	mov r2, r2, lsr #0x10
-	bl ov4_021FA1D0
+	bl gti2SendNack
 	cmp r0, #0
 	bne _021F9170
 	add sp, sp, #0x10
@@ -705,7 +705,7 @@ _021F90F8:
 	mov r4, r0
 	ldrh r1, [r4, #0xc]
 	mov r0, r7
-	bl ov4_021F8824
+	bl gti2SNDiff
 	mov r0, r0, lsl #0x10
 	mov r0, r0, lsr #0x10
 	cmp r0, #1
@@ -718,7 +718,7 @@ _021F90F8:
 	mov r0, sb
 	mov r1, r1, lsr #0x10
 	mov r2, r2, lsr #0x10
-	bl ov4_021FA1D0
+	bl gti2SendNack
 	cmp r0, #0
 	addeq sp, sp, #0x10
 	moveq r0, #0
@@ -730,11 +730,11 @@ _021F9170:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_021F9184: .word ov4_021F8FC0
-	arm_func_end ov4_021F8FD4
+_021F9184: .word gti2IncomingBufferMessageCompare
+	arm_func_end gti2BufferIncomingMessage
 
-	arm_func_start ov4_021F9188
-ov4_021F9188: ; 0x021F9188
+	arm_func_start gti2RemoveHoldMessage
+gti2RemoveHoldMessage: ; 0x021F9188
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov sb, r0
 	ldr r0, [sb, #0x5c]
@@ -769,12 +769,12 @@ _021F91F8:
 	mov r1, r4
 	mov r2, r5
 	add r0, sb, #0x44
-	bl ov4_021F759C
+	bl gti2BufferShorten
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end ov4_021F9188
+	arm_func_end gti2RemoveHoldMessage
 
-	arm_func_start ov4_021F920C
-ov4_021F920C: ; 0x021F920C
+	arm_func_start gti2DeliverHoldMessages
+gti2DeliverHoldMessages: ; 0x021F920C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 _021F9214:
@@ -796,14 +796,14 @@ _021F9224:
 	ldmia r4, {r2, r3}
 	mov r0, r6
 	add r2, ip, r2
-	bl ov4_021F8EC0
+	bl gti2DeliverReliableMessage
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r0, r6
 	mov r1, r4
 	mov r2, r5
-	bl ov4_021F9188
+	bl gti2RemoveHoldMessage
 	b _021F9214
 _021F927C:
 	subs r5, r5, #1
@@ -811,10 +811,10 @@ _021F927C:
 _021F9284:
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021F920C
+	arm_func_end gti2DeliverHoldMessages
 
-	arm_func_start ov4_021F928C
-ov4_021F928C: ; 0x021F928C
+	arm_func_start gti2SetPendingAck
+gti2SetPendingAck: ; 0x021F928C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x90]
@@ -825,10 +825,10 @@ ov4_021F928C: ; 0x021F928C
 	bl current_time
 	str r0, [r4, #0x94]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F928C
+	arm_func_end gti2SetPendingAck
 
-	arm_func_start ov4_021F92B4
-ov4_021F92B4: ; 0x021F92B4
+	arm_func_start gti2HandleReliableMessage
+gti2HandleReliableMessage: ; 0x021F92B4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0xc
 	mov r6, r3
@@ -837,7 +837,7 @@ ov4_021F92B4: ; 0x021F92B4
 	mov r7, r2
 	cmp r6, #7
 	bge _021F92EC
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0xc
@@ -846,14 +846,14 @@ ov4_021F92B4: ; 0x021F92B4
 _021F92EC:
 	mov r0, r7
 	mov r1, #3
-	bl ov4_021F87F0
+	bl gti2UShortFromBuffer
 	mov r5, r0
 	mov r0, r7
 	mov r1, #5
-	bl ov4_021F87F0
+	bl gti2UShortFromBuffer
 	mov r1, r0
 	mov r0, r4
-	bl ov4_021F8908
+	bl gti2HandleESN
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	moveq r0, #0
@@ -862,18 +862,18 @@ _021F92EC:
 	cmp r5, r1
 	bne _021F9378
 	mov r0, r4
-	bl ov4_021F928C
+	bl gti2SetPendingAck
 	mov r0, r4
 	mov r1, r8
 	add r2, r7, #7
 	sub r3, r6, #7
-	bl ov4_021F8EC0
+	bl gti2DeliverReliableMessage
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	mov r0, r4
-	bl ov4_021F920C
+	bl gti2DeliverHoldMessages
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0xc
@@ -881,11 +881,11 @@ _021F92EC:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 _021F9378:
 	mov r0, r5
-	bl ov4_021F8824
+	bl gti2SNDiff
 	cmp r0, #0
 	bge _021F939C
 	mov r0, r4
-	bl ov4_021F928C
+	bl gti2SetPendingAck
 	add sp, sp, #0xc
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
@@ -898,7 +898,7 @@ _021F939C:
 	mov r2, r5
 	add r3, r7, #7
 	str ip, [sp, #4]
-	bl ov4_021F8FD4
+	bl gti2BufferIncomingMessage
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	moveq r0, #0
@@ -907,7 +907,7 @@ _021F939C:
 	cmp r0, #0
 	beq _021F93F4
 	mov r0, r4
-	bl ov4_021F88DC
+	bl gti2ConnectionMemoryError
 	cmp r0, #0
 	addeq sp, sp, #0xc
 	moveq r0, #0
@@ -916,15 +916,15 @@ _021F93F4:
 	mov r0, #1
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
-	arm_func_end ov4_021F92B4
+	arm_func_end gti2HandleReliableMessage
 
-	arm_func_start ov4_021F9400
-ov4_021F9400: ; 0x021F9400
+	arm_func_start gti2HandleAck
+gti2HandleAck: ; 0x021F9400
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	cmp r2, #2
 	beq _021F9424
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
@@ -932,25 +932,25 @@ ov4_021F9400: ; 0x021F9400
 _021F9424:
 	mov r0, r1
 	mov r1, #0
-	bl ov4_021F87F0
+	bl gti2UShortFromBuffer
 	mov r1, r0
 	mov r0, r4
-	bl ov4_021F8908
+	bl gti2HandleESN
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F9400
+	arm_func_end gti2HandleAck
 
-	arm_func_start ov4_021F944C
-ov4_021F944C: ; 0x021F944C
+	arm_func_start gti2HandleNack
+gti2HandleNack: ; 0x021F944C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r7, r1
 	mov r4, r0
 	mov r0, r7
 	mov r1, #0
 	mov r5, r2
-	bl ov4_021F87F0
+	bl gti2UShortFromBuffer
 	mov r6, r0
 	cmp r5, #2
 	moveq r7, r6
@@ -959,12 +959,12 @@ ov4_021F944C: ; 0x021F944C
 	bne _021F9494
 	mov r0, r7
 	mov r1, #2
-	bl ov4_021F87F0
+	bl gti2UShortFromBuffer
 	mov r7, r0
 	b _021F94AC
 _021F9494:
 	mov r0, r4
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
@@ -983,17 +983,17 @@ _021F94C4:
 	mov r5, r0
 	ldrh r0, [r5, #8]
 	mov r1, r6
-	bl ov4_021F8824
+	bl gti2SNDiff
 	cmp r0, #0
 	blt _021F9514
 	ldrh r0, [r5, #8]
 	mov r1, r7
-	bl ov4_021F8824
+	bl gti2SNDiff
 	cmp r0, #0
 	bgt _021F9514
 	mov r0, r4
 	mov r1, r5
-	bl ov4_021FA2D8
+	bl gti2ResendMessage
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -1004,18 +1004,18 @@ _021F9514:
 _021F9520:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end ov4_021F944C
+	arm_func_end gti2HandleNack
 
-	arm_func_start ov4_021F9528
-ov4_021F9528: ; 0x021F9528
-	ldr ip, _021F9530 ; =ov4_021FA25C
+	arm_func_start gti2HandlePing
+gti2HandlePing: ; 0x021F9528
+	ldr ip, _021F9530 ; =gti2SendPong
 	bx ip
 	; .align 2, 0
-_021F9530: .word ov4_021FA25C
-	arm_func_end ov4_021F9528
+_021F9530: .word gti2SendPong
+	arm_func_end gti2HandlePing
 
-	arm_func_start ov4_021F9534
-ov4_021F9534: ; 0x021F9534
+	arm_func_start gti2HandlePong
+gti2HandlePong: ; 0x021F9534
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x34]
@@ -1047,17 +1047,17 @@ ov4_021F9534: ; 0x021F9534
 	ldr r1, [sp]
 	mov r0, r4
 	sub r1, r2, r1
-	bl ov4_021F7A84
+	bl gti2PingCallback
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021F95C4: .word Unk_ov4_0221972C
-	arm_func_end ov4_021F9534
+	arm_func_end gti2HandlePong
 
-	arm_func_start ov4_021F95C8
-ov4_021F95C8: ; 0x021F95C8
+	arm_func_start gti2HandleClosed
+gti2HandleClosed: ; 0x021F95C8
 	stmfd sp!, {r3, lr}
 	ldr r1, [r0, #0xc]
 	cmp r1, #7
@@ -1067,22 +1067,22 @@ ov4_021F95C8: ; 0x021F95C8
 	moveq r2, #0
 	movne r2, #1
 	mov r1, #2
-	bl ov4_021F8834
+	bl gti2ConnectionError
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021F95C8
+	arm_func_end gti2HandleClosed
 
-	arm_func_start ov4_021F9600
-ov4_021F9600: ; 0x021F9600
+	arm_func_start gti2HandleUnreliableMessage
+gti2HandleUnreliableMessage: ; 0x021F9600
 	stmfd sp!, {r3, lr}
 	cmp r1, #0x64
 	sub ip, r3, #3
 	bne _021F962C
 	add r1, r2, #3
 	mov r2, ip
-	bl ov4_021F9400
+	bl gti2HandleAck
 	cmp r0, #0
 	bne _021F96B0
 	mov r0, #0
@@ -1092,7 +1092,7 @@ _021F962C:
 	bne _021F9650
 	add r1, r2, #3
 	mov r2, ip
-	bl ov4_021F944C
+	bl gti2HandleNack
 	cmp r0, #0
 	bne _021F96B0
 	mov r0, #0
@@ -1102,7 +1102,7 @@ _021F9650:
 	bne _021F9674
 	mov r1, r2
 	mov r2, r3
-	bl ov4_021F9528
+	bl gti2HandlePing
 	cmp r0, #0
 	bne _021F96B0
 	mov r0, #0
@@ -1112,7 +1112,7 @@ _021F9674:
 	bne _021F9698
 	add r1, r2, #3
 	mov r2, ip
-	bl ov4_021F9534
+	bl gti2HandlePong
 	cmp r0, #0
 	bne _021F96B0
 	mov r0, #0
@@ -1120,17 +1120,17 @@ _021F9674:
 _021F9698:
 	cmp r1, #0x68
 	bne _021F96B0
-	bl ov4_021F95C8
+	bl gti2HandleClosed
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, pc}
 _021F96B0:
 	mov r0, #1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021F9600
+	arm_func_end gti2HandleUnreliableMessage
 
-	arm_func_start ov4_021F96B8
-ov4_021F96B8: ; 0x021F96B8
+	arm_func_start gti2HandleMessage
+gti2HandleMessage: ; 0x021F96B8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x18
 	ldr r5, [sp, #0x38]
@@ -1140,7 +1140,7 @@ ov4_021F96B8: ; 0x021F96B8
 	mov r1, r6
 	mov r2, r5
 	mov sb, r0
-	bl ov4_021FA3C4
+	bl gti2SocketFindConnection
 	str r0, [sp, #0x14]
 	ldr r0, [sb, #0x2c]
 	cmp r0, #0
@@ -1153,7 +1153,7 @@ ov4_021F96B8: ; 0x021F96B8
 	mov r0, sb
 	mov r2, r6
 	mov r3, r5
-	bl ov4_021F7D38
+	bl gti2DumpCallback
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	moveq r0, #0
@@ -1180,7 +1180,7 @@ _021F974C:
 	mov r2, r5
 	mov r3, r8
 	stmia sp, {r7, ip}
-	bl ov4_021F7E5C
+	bl gti2UnrecognizedMessageCallback
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	moveq r0, #0
@@ -1205,7 +1205,7 @@ _021F97C0:
 	mov r0, sb
 	mov r1, r6
 	mov r2, r5
-	bl ov4_021FA28C
+	bl gti2SendClosedOnSocket
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	moveq r0, #0
@@ -1224,7 +1224,7 @@ _021F97EC:
 	mov r0, sb
 	mov r2, r6
 	mov r3, r5
-	bl ov4_021F7F84
+	bl gti2NewIncomingConnection
 	cmp r0, #0
 	beq _021F9850
 	cmp r0, #5
@@ -1232,7 +1232,7 @@ _021F97EC:
 	mov r0, sb
 	mov r1, r6
 	mov r2, r5
-	bl ov4_021FA28C
+	bl gti2SendClosedOnSocket
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	moveq r0, #0
@@ -1253,7 +1253,7 @@ _021F9850:
 	beq _021F988C
 _021F9874:
 	mov r0, r5
-	bl ov4_021FA270
+	bl gti2SendClosed
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	moveq r0, #0
@@ -1281,7 +1281,7 @@ _021F98C8:
 	mov r0, r5
 	mov r1, r8
 	mov r2, r7
-	bl ov4_021F8A04
+	bl gti2HandleAppUnreliable
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0x18
@@ -1292,7 +1292,7 @@ _021F98F4:
 	cmp r1, #0
 	bge _021F991C
 	mov r0, r5
-	bl ov4_021F88C8
+	bl gti2ConnectionCommunicationError
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0x18
@@ -1304,7 +1304,7 @@ _021F991C:
 	mov r2, r8
 	bge _021F9948
 	mov r3, r7
-	bl ov4_021F92B4
+	bl gti2HandleReliableMessage
 	cmp r0, #0
 	movne r0, #1
 	add sp, sp, #0x18
@@ -1312,7 +1312,7 @@ _021F991C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _021F9948:
 	mov r3, r7
-	bl ov4_021F9600
+	bl gti2HandleUnreliableMessage
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
@@ -1320,16 +1320,16 @@ _021F9948:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _021F9964: .word Unk_ov4_02219734
-	arm_func_end ov4_021F96B8
+	arm_func_end gti2HandleMessage
 
-	arm_func_start ov4_021F9968
-ov4_021F9968: ; 0x021F9968
+	arm_func_start gti2HandleConnectionReset
+gti2HandleConnectionReset: ; 0x021F9968
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r7, r0
 	mov r6, r1
 	mov r5, r2
-	bl ov4_021FA3C4
+	bl gti2SocketFindConnection
 	ldr r1, [r7, #0x2c]
 	mov r4, r0
 	cmp r1, #0
@@ -1344,7 +1344,7 @@ ov4_021F9968: ; 0x021F9968
 	mov r2, r6
 	mov r3, r5
 	str ip, [sp, #0xc]
-	bl ov4_021F7D38
+	bl gti2DumpCallback
 	cmp r0, #0
 	addeq sp, sp, #0x10
 	moveq r0, #0
@@ -1374,7 +1374,7 @@ _021F9A18:
 	mov r0, r4
 	mov r1, #6
 	mov r2, #1
-	bl ov4_021F8834
+	bl gti2ConnectionError
 	cmp r0, #0
 	bne _021F9A5C
 	add sp, sp, #0x10
@@ -1384,7 +1384,7 @@ _021F9A3C:
 	mov r0, r4
 	mov r1, #2
 	mov r2, #1
-	bl ov4_021F8834
+	bl gti2ConnectionError
 	cmp r0, #0
 	addeq sp, sp, #0x10
 	moveq r0, #0
@@ -1393,10 +1393,10 @@ _021F9A5C:
 	mov r0, #1
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021F9968
+	arm_func_end gti2HandleConnectionReset
 
-	arm_func_start ov4_021F9A68
-ov4_021F9A68: ; 0x021F9A68
+	arm_func_start gti2ReceiveMessages
+gti2ReceiveMessages: ; 0x021F9A68
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x5f0
 	mov sl, r0
@@ -1436,7 +1436,7 @@ _021F9AA0:
 	orr r2, r3, r2
 	mov r2, r2, lsl #0x10
 	mov r2, r2, lsr #0x10
-	bl ov4_021F9968
+	bl gti2HandleConnectionReset
 	cmp r0, #0
 	bne _021F9B78
 	add sp, sp, #0x5f0
@@ -1446,7 +1446,7 @@ _021F9B18:
 	cmp r0, r4
 	beq _021F9B78
 	mov r0, sl
-	bl ov4_021FABC0
+	bl gti2SocketError
 	add sp, sp, #0x5f0
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -1463,7 +1463,7 @@ _021F9B34:
 	mov r3, r3, lsr #0x10
 	str r3, [sp]
 	ldr r3, [sp, #0x10]
-	bl ov4_021F96B8
+	bl gti2HandleMessage
 	cmp r0, #0
 	addeq sp, sp, #0x5f0
 	moveq r0, #0
@@ -1479,10 +1479,10 @@ _021F9B88:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021F9B94: .word 0x000005DC
-	arm_func_end ov4_021F9A68
+	arm_func_end gti2ReceiveMessages
 
-	arm_func_start ov4_021F9B98
-ov4_021F9B98: ; 0x021F9B98
+	arm_func_start gti2StoreOutgoingReliableMessageInfo
+gti2StoreOutgoingReliableMessageInfo: ; 0x021F9B98
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x10
 	add r4, sp, #0
@@ -1512,21 +1512,21 @@ ov4_021F9B98: ; 0x021F9B98
 	movne r0, #0
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021F9B98
+	arm_func_end gti2StoreOutgoingReliableMessageInfo
 
-	arm_func_start ov4_021F9C0C
-ov4_021F9C0C: ; 0x021F9C0C
+	arm_func_start gti2BeginReliableMessage
+gti2BeginReliableMessage: ; 0x021F9C0C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r5, r2
 	add r0, r7, #0x50
 	mov r6, r1
 	mov r4, r3
-	bl ov4_021F7448
+	bl gti2GetBufferFreeSpace
 	cmp r0, r5
 	bge _021F9C4C
 	mov r0, r7
-	bl ov4_021F88DC
+	bl gti2ConnectionMemoryError
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #1
@@ -1536,11 +1536,11 @@ _021F9C4C:
 	ldrh r1, [r7, #0x64]
 	mov r0, r7
 	mov r2, r5
-	bl ov4_021F9B98
+	bl gti2StoreOutgoingReliableMessageInfo
 	cmp r0, #0
 	bne _021F9C80
 	mov r0, r7
-	bl ov4_021F88DC
+	bl gti2ConnectionMemoryError
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #1
@@ -1550,28 +1550,28 @@ _021F9C80:
 	ldr r1, _021F9CCC ; =0x02219734
 	add r0, r7, #0x50
 	mov r2, #2
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	add r0, r7, #0x50
 	and r1, r6, #0xff
-	bl ov4_021F7458
+	bl gti2BufferWriteByte
 	ldrh r1, [r7, #0x64]
 	add r0, r7, #0x50
 	add r2, r1, #1
 	strh r2, [r7, #0x64]
-	bl ov4_021F74A8
+	bl gti2BufferWriteUShort
 	ldrh r1, [r7, #0x66]
 	add r0, r7, #0x50
-	bl ov4_021F74A8
+	bl gti2BufferWriteUShort
 	mov r0, #0
 	str r0, [r4, #0]
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021F9CCC: .word Unk_ov4_02219734
-	arm_func_end ov4_021F9C0C
+	arm_func_end gti2BeginReliableMessage
 
-	arm_func_start ov4_021F9CD0
-ov4_021F9CD0: ; 0x021F9CD0
+	arm_func_start gti2EndReliableMessage
+gti2EndReliableMessage: ; 0x021F9CD0
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r0, [r5, #0x60]
@@ -1592,7 +1592,7 @@ _021F9D00:
 	ldr r3, [r5, #0x50]
 	mov r0, r5
 	add r1, r3, r1
-	bl ov4_021F8110
+	bl gti2ConnectionSendData
 	cmp r0, #0
 	mov r0, #0
 	strne r0, [r5, #0x90]
@@ -1603,10 +1603,10 @@ _021F9D34: .word Unk_ov4_02219738
 _021F9D38: .word Unk_ov4_02219740
 _021F9D3C: .word Unk_ov4_02219714
 _021F9D40: .word 0x00000475
-	arm_func_end ov4_021F9CD0
+	arm_func_end gti2EndReliableMessage
 
-	arm_func_start ov4_021F9D44
-ov4_021F9D44: ; 0x021F9D44
+	arm_func_start gti2SendAppReliable
+gti2SendAppReliable: ; 0x021F9D44
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r4, r2
@@ -1615,7 +1615,7 @@ ov4_021F9D44: ; 0x021F9D44
 	add r2, r4, #7
 	mov r1, #0
 	mov r6, r0
-	bl ov4_021F9C0C
+	bl gti2BeginReliableMessage
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -1628,25 +1628,25 @@ ov4_021F9D44: ; 0x021F9D44
 	mov r1, r5
 	mov r2, r4
 	add r0, r6, #0x50
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r0, r6
-	bl ov4_021F9CD0
+	bl gti2EndReliableMessage
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021F9D44
+	arm_func_end gti2SendAppReliable
 
-	arm_func_start ov4_021F9DB8
-ov4_021F9DB8: ; 0x021F9DB8
+	arm_func_start gti2SendClientChallenge
+gti2SendClientChallenge: ; 0x021F9DB8
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r1
 	add r3, sp, #0
 	mov r1, #1
 	mov r2, #0x27
 	mov r5, r0
-	bl ov4_021F9C0C
+	bl gti2BeginReliableMessage
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -1657,17 +1657,17 @@ ov4_021F9DB8: ; 0x021F9DB8
 	mov r1, r4
 	add r0, r5, #0x50
 	mov r2, #0x20
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r0, r5
-	bl ov4_021F9CD0
+	bl gti2EndReliableMessage
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021F9DB8
+	arm_func_end gti2SendClientChallenge
 
-	arm_func_start ov4_021F9E18
-ov4_021F9E18: ; 0x021F9E18
+	arm_func_start gti2SendServerChallenge
+gti2SendServerChallenge: ; 0x021F9E18
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r5, r1
@@ -1676,7 +1676,7 @@ ov4_021F9E18: ; 0x021F9E18
 	mov r1, #2
 	mov r2, #0x47
 	mov r6, r0
-	bl ov4_021F9C0C
+	bl gti2BeginReliableMessage
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -1689,13 +1689,13 @@ ov4_021F9E18: ; 0x021F9E18
 	mov r1, r5
 	add r0, r6, #0x50
 	mov r2, #0x20
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r1, r4
 	add r0, r6, #0x50
 	mov r2, #0x20
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r0, r6
-	bl ov4_021F9CD0
+	bl gti2EndReliableMessage
 	cmp r0, #0
 	ldrne r1, [r6, #0x88]
 	moveq r0, #0
@@ -1703,10 +1703,10 @@ ov4_021F9E18: ; 0x021F9E18
 	strne r1, [r6, #0x8c]
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021F9E18
+	arm_func_end gti2SendServerChallenge
 
-	arm_func_start ov4_021F9EA4
-ov4_021F9EA4: ; 0x021F9EA4
+	arm_func_start gti2SendClientResponse
+gti2SendClientResponse: ; 0x021F9EA4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r3
 	mov r6, r1
@@ -1715,7 +1715,7 @@ ov4_021F9EA4: ; 0x021F9EA4
 	add r2, r4, #0x27
 	mov r1, #3
 	mov r7, r0
-	bl ov4_021F9C0C
+	bl gti2BeginReliableMessage
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -1726,28 +1726,28 @@ ov4_021F9EA4: ; 0x021F9EA4
 	mov r1, r6
 	add r0, r7, #0x50
 	mov r2, #0x20
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r1, r5
 	mov r2, r4
 	add r0, r7, #0x50
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r0, r7
-	bl ov4_021F9CD0
+	bl gti2EndReliableMessage
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021F9EA4
+	arm_func_end gti2SendClientResponse
 
-	arm_func_start ov4_021F9F1C
-ov4_021F9F1C: ; 0x021F9F1C
+	arm_func_start gti2SendAccept
+gti2SendAccept: ; 0x021F9F1C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	add r3, sp, #0
 	mov r1, #4
 	mov r2, #7
 	mov r4, r0
-	bl ov4_021F9C0C
+	bl gti2BeginReliableMessage
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -1758,16 +1758,16 @@ ov4_021F9F1C: ; 0x021F9F1C
 	movne r0, #1
 	ldmneia sp!, {r3, r4, pc}
 	mov r0, r4
-	bl ov4_021F9CD0
+	bl gti2EndReliableMessage
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021F9F1C
+	arm_func_end gti2SendAccept
 
-	arm_func_start ov4_021F9F78
-ov4_021F9F78: ; 0x021F9F78
+	arm_func_start gti2SendReject
+gti2SendReject: ; 0x021F9F78
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	mov r4, r2
@@ -1776,7 +1776,7 @@ ov4_021F9F78: ; 0x021F9F78
 	add r2, r4, #7
 	mov r1, #5
 	mov r6, r0
-	bl ov4_021F9C0C
+	bl gti2BeginReliableMessage
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -1789,25 +1789,25 @@ ov4_021F9F78: ; 0x021F9F78
 	mov r1, r5
 	mov r2, r4
 	add r0, r6, #0x50
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r0, r6
-	bl ov4_021F9CD0
+	bl gti2EndReliableMessage
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021F9F78
+	arm_func_end gti2SendReject
 
-	arm_func_start ov4_021F9FEC
-ov4_021F9FEC: ; 0x021F9FEC
+	arm_func_start gti2SendClose
+gti2SendClose: ; 0x021F9FEC
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	add r3, sp, #0
 	mov r1, #6
 	mov r2, #7
 	mov r4, r0
-	bl ov4_021F9C0C
+	bl gti2BeginReliableMessage
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -1818,23 +1818,23 @@ ov4_021F9FEC: ; 0x021F9FEC
 	movne r0, #1
 	ldmneia sp!, {r3, r4, pc}
 	mov r0, r4
-	bl ov4_021F9CD0
+	bl gti2EndReliableMessage
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021F9FEC
+	arm_func_end gti2SendClose
 
-	arm_func_start ov4_021FA048
-ov4_021FA048: ; 0x021FA048
+	arm_func_start gti2SendKeepAlive
+gti2SendKeepAlive: ; 0x021FA048
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	mov r1, #7
 	add r3, sp, #0
 	mov r2, r1
 	mov r4, r0
-	bl ov4_021F9C0C
+	bl gti2BeginReliableMessage
 	cmp r0, #0
 	addeq sp, sp, #4
 	moveq r0, #0
@@ -1845,16 +1845,16 @@ ov4_021FA048: ; 0x021FA048
 	movne r0, #1
 	ldmneia sp!, {r3, r4, pc}
 	mov r0, r4
-	bl ov4_021F9CD0
+	bl gti2EndReliableMessage
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021FA048
+	arm_func_end gti2SendKeepAlive
 
-	arm_func_start ov4_021FA0A4
-ov4_021FA0A4: ; 0x021FA0A4
+	arm_func_start gti2SendAppUnreliable
+gti2SendAppUnreliable: ; 0x021FA0A4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov r7, r2
 	mov sb, r0
@@ -1871,7 +1871,7 @@ _021FA0D4:
 	mov r0, sb
 	mov r1, r8
 	mov r2, r7
-	bl ov4_021F8110
+	bl gti2ConnectionSendData
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #1
@@ -1879,7 +1879,7 @@ _021FA0D4:
 _021FA0F4:
 	add r6, r7, #2
 	add r0, sb, #0x50
-	bl ov4_021F7448
+	bl gti2GetBufferFreeSpace
 	cmp r0, r6
 	movlt r0, #1
 	ldmltia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
@@ -1888,30 +1888,30 @@ _021FA0F4:
 	ldr r5, [sb, #0x50]
 	ldr r4, [sb, #0x58]
 	mov r2, #2
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r1, r8
 	mov r2, r7
 	add r0, sb, #0x50
-	bl ov4_021F7514
+	bl gti2BufferWriteData
 	mov r0, sb
 	mov r2, r6
 	add r1, r5, r4
-	bl ov4_021F8110
+	bl gti2ConnectionSendData
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	mov r2, r6
 	add r0, sb, #0x50
 	mvn r1, #0
-	bl ov4_021F759C
+	bl gti2BufferShorten
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
 _021FA168: .word Unk_ov4_02219734
-	arm_func_end ov4_021FA0A4
+	arm_func_end gti2SendAppUnreliable
 
-	arm_func_start ov4_021FA16C
-ov4_021FA16C: ; 0x021FA16C
+	arm_func_start gti2SendAck
+gti2SendAck: ; 0x021FA16C
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	ldr r1, _021FA1CC ; =0x02219734
@@ -1925,11 +1925,11 @@ ov4_021FA16C: ; 0x021FA16C
 	strb r2, [r0, #1]
 	ldrh r2, [r4, #0x66]
 	mov r1, #3
-	bl ov4_021F8810
+	bl gti2UShortToBuffer
 	add r1, sp, #0
 	mov r0, r4
 	mov r2, #5
-	bl ov4_021F8110
+	bl gti2ConnectionSendData
 	cmp r0, #0
 	mov r0, #0
 	strne r0, [r4, #0x90]
@@ -1938,10 +1938,10 @@ ov4_021FA16C: ; 0x021FA16C
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021FA1CC: .word Unk_ov4_02219734
-	arm_func_end ov4_021FA16C
+	arm_func_end gti2SendAck
 
-	arm_func_start ov4_021FA1D0
-ov4_021FA1D0: ; 0x021FA1D0
+	arm_func_start gti2SendNack
+gti2SendNack: ; 0x021FA1D0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #8
 	ldr r3, _021FA258 ; =0x02219734
@@ -1958,20 +1958,20 @@ ov4_021FA1D0: ; 0x021FA1D0
 	strb lr, [r0]
 	strb ip, [r0, #1]
 	strb r3, [sp, #2]
-	bl ov4_021F8810
+	bl gti2UShortToBuffer
 	cmp r4, r7
 	add r6, r6, #5
 	beq _021FA234
 	add r0, sp, #0
 	mov r1, r6
 	mov r2, r7
-	bl ov4_021F8810
+	bl gti2UShortToBuffer
 	add r6, r6, #2
 _021FA234:
 	add r1, sp, #0
 	mov r0, r5
 	mov r2, r6
-	bl ov4_021F8110
+	bl gti2ConnectionSendData
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #1
@@ -1979,32 +1979,32 @@ _021FA234:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021FA258: .word Unk_ov4_02219734
-	arm_func_end ov4_021FA1D0
+	arm_func_end gti2SendNack
 
-	arm_func_start ov4_021FA25C
-ov4_021FA25C: ; 0x021FA25C
-	ldr ip, _021FA26C ; =ov4_021F8110
+	arm_func_start gti2SendPong
+gti2SendPong: ; 0x021FA25C
+	ldr ip, _021FA26C ; =gti2ConnectionSendData
 	mov r3, #0x67
 	strb r3, [r1, #2]
 	bx ip
 	; .align 2, 0
-_021FA26C: .word ov4_021F8110
-	arm_func_end ov4_021FA25C
+_021FA26C: .word gti2ConnectionSendData
+	arm_func_end gti2SendPong
 
-	arm_func_start ov4_021FA270
-ov4_021FA270: ; 0x021FA270
-	ldr ip, _021FA288 ; =ov4_021FA28C
+	arm_func_start gti2SendClosed
+gti2SendClosed: ; 0x021FA270
+	ldr ip, _021FA288 ; =gti2SendClosedOnSocket
 	mov r1, r0
 	ldrh r2, [r1, #4]
 	ldr r0, [r1, #8]
 	ldr r1, [r1, #0]
 	bx ip
 	; .align 2, 0
-_021FA288: .word ov4_021FA28C
-	arm_func_end ov4_021FA270
+_021FA288: .word gti2SendClosedOnSocket
+	arm_func_end gti2SendClosed
 
-	arm_func_start ov4_021FA28C
-ov4_021FA28C: ; 0x021FA28C
+	arm_func_start gti2SendClosedOnSocket
+gti2SendClosedOnSocket: ; 0x021FA28C
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	ldr lr, _021FA2D4 ; =0x02219734
@@ -2017,7 +2017,7 @@ ov4_021FA28C: ; 0x021FA28C
 	strb lr, [r3, #1]
 	mov ip, #3
 	str ip, [sp]
-	bl ov4_021FA94C
+	bl gti2SocketSend
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
@@ -2025,10 +2025,10 @@ ov4_021FA28C: ; 0x021FA28C
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021FA2D4: .word Unk_ov4_02219734
-	arm_func_end ov4_021FA28C
+	arm_func_end gti2SendClosedOnSocket
 
-	arm_func_start ov4_021FA2D8
-ov4_021FA2D8: ; 0x021FA2D8
+	arm_func_start gti2ResendMessage
+gti2ResendMessage: ; 0x021FA2D8
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r0
 	mov r5, r1
@@ -2036,12 +2036,12 @@ ov4_021FA2D8: ; 0x021FA2D8
 	ldrh r2, [r4, #0x66]
 	ldr r0, [r4, #0x50]
 	add r1, r1, #5
-	bl ov4_021F8810
+	bl gti2UShortToBuffer
 	ldr r3, [r4, #0x50]
 	ldmia r5, {r1, r2}
 	mov r0, r4
 	add r1, r3, r1
-	bl ov4_021F8110
+	bl gti2ConnectionSendData
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -2056,19 +2056,19 @@ ov4_021FA2D8: ; 0x021FA2D8
 	streq r0, [r4, #0x8c]
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FA2D8
+	arm_func_end gti2ResendMessage
 
-	arm_func_start ov4_021FA344
-ov4_021FA344: ; 0x021FA344
+	arm_func_start gti2Send
+gti2Send: ; 0x021FA344
 	stmfd sp!, {r3, lr}
 	cmp r3, #0
 	beq _021FA358
-	bl ov4_021F9D44
+	bl gti2SendAppReliable
 	ldmia sp!, {r3, pc}
 _021FA358:
-	bl ov4_021FA0A4
+	bl gti2SendAppUnreliable
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021FA344
+	arm_func_end gti2Send
 
 	.data
 

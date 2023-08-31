@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021F763C
-ov4_021F763C: ; 0x021F763C
+	arm_func_start gti2SocketErrorCallback
+gti2SocketErrorCallback: ; 0x021F763C
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _021F765C
@@ -40,7 +40,7 @@ _021F765C:
 	cmp r0, #0
 	bne _021F76C4
 	mov r0, r4
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	mov r0, #0
 	ldmia sp!, {r4, pc}
 _021F76C4:
@@ -50,10 +50,10 @@ _021F76C4:
 _021F76CC: .word Unk_ov4_02219690
 _021F76D0: .word Unk_ov4_02219698
 _021F76D4: .word Unk_ov4_02219620
-	arm_func_end ov4_021F763C
+	arm_func_end gti2SocketErrorCallback
 
-	arm_func_start ov4_021F76D8
-ov4_021F76D8: ; 0x021F76D8
+	arm_func_start gti2ConnectAttemptCallback
+gti2ConnectAttemptCallback: ; 0x021F76D8
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0xc
 	mov r6, r1
@@ -116,7 +116,7 @@ _021F770C:
 	cmp r0, #0
 	bne _021F77DC
 	mov r0, r7
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	add sp, sp, #0xc
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, pc}
@@ -128,10 +128,10 @@ _021F77DC:
 _021F77E8: .word Unk_ov4_022196A8
 _021F77EC: .word Unk_ov4_02219698
 _021F77F0: .word Unk_ov4_02219654
-	arm_func_end ov4_021F76D8
+	arm_func_end gti2ConnectAttemptCallback
 
-	arm_func_start ov4_021F77F4
-ov4_021F77F4: ; 0x021F77F4
+	arm_func_start gti2ConnectedCallback
+gti2ConnectedCallback: ; 0x021F77F4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -183,7 +183,7 @@ _021F7820:
 	ldr r1, [r0, #0x1c]
 	cmp r1, #0
 	bne _021F78C8
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F78C8:
@@ -193,10 +193,10 @@ _021F78C8:
 _021F78D0: .word Unk_ov4_022196C0
 _021F78D4: .word Unk_ov4_02219698
 _021F78D8: .word Unk_ov4_022195F0
-	arm_func_end ov4_021F77F4
+	arm_func_end gti2ConnectedCallback
 
-	arm_func_start ov4_021F78DC
-ov4_021F78DC: ; 0x021F78DC
+	arm_func_start gti2ReceivedCallback
+gti2ReceivedCallback: ; 0x021F78DC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -247,7 +247,7 @@ _021F7908:
 	ldr r1, [r0, #0x1c]
 	cmp r1, #0
 	bne _021F79AC
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F79AC:
@@ -257,10 +257,10 @@ _021F79AC:
 _021F79B4: .word Unk_ov4_022196C0
 _021F79B8: .word Unk_ov4_02219698
 _021F79BC: .word Unk_ov4_022195D8
-	arm_func_end ov4_021F78DC
+	arm_func_end gti2ReceivedCallback
 
-	arm_func_start ov4_021F79C0
-ov4_021F79C0: ; 0x021F79C0
+	arm_func_start gti2ClosedCallback
+gti2ClosedCallback: ; 0x021F79C0
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	mov r5, r1
@@ -303,7 +303,7 @@ _021F79E4:
 	ldr r1, [r0, #0x1c]
 	cmp r1, #0
 	bne _021F7A70
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _021F7A70:
@@ -313,10 +313,10 @@ _021F7A70:
 _021F7A78: .word Unk_ov4_022196C0
 _021F7A7C: .word Unk_ov4_02219698
 _021F7A80: .word Unk_ov4_022195C4
-	arm_func_end ov4_021F79C0
+	arm_func_end gti2ClosedCallback
 
-	arm_func_start ov4_021F7A84
-ov4_021F7A84: ; 0x021F7A84
+	arm_func_start gti2PingCallback
+gti2PingCallback: ; 0x021F7A84
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	mov r5, r1
@@ -359,7 +359,7 @@ _021F7AA8:
 	ldr r1, [r0, #0x1c]
 	cmp r1, #0
 	bne _021F7B34
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
 _021F7B34:
@@ -369,10 +369,10 @@ _021F7B34:
 _021F7B3C: .word Unk_ov4_022196C0
 _021F7B40: .word Unk_ov4_02219698
 _021F7B44: .word Unk_ov4_022195B0
-	arm_func_end ov4_021F7A84
+	arm_func_end gti2PingCallback
 
-	arm_func_start ov4_021F7B48
-ov4_021F7B48: ; 0x021F7B48
+	arm_func_start gti2SendFilterCallback
+gti2SendFilterCallback: ; 0x021F7B48
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -427,7 +427,7 @@ _021F7B74:
 	ldr r1, [r0, #0x1c]
 	cmp r1, #0
 	bne _021F7C28
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F7C28:
@@ -438,10 +438,10 @@ _021F7C30: .word Unk_ov4_022196C0
 _021F7C34: .word Unk_ov4_02219698
 _021F7C38: .word Unk_ov4_02219608
 _021F7C3C: .word 0x00000101
-	arm_func_end ov4_021F7B48
+	arm_func_end gti2SendFilterCallback
 
-	arm_func_start ov4_021F7C40
-ov4_021F7C40: ; 0x021F7C40
+	arm_func_start gti2ReceiveFilterCallback
+gti2ReceiveFilterCallback: ; 0x021F7C40
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -496,7 +496,7 @@ _021F7C6C:
 	ldr r1, [r0, #0x1c]
 	cmp r1, #0
 	bne _021F7D20
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F7D20:
@@ -507,10 +507,10 @@ _021F7D28: .word Unk_ov4_022196C0
 _021F7D2C: .word Unk_ov4_02219698
 _021F7D30: .word Unk_ov4_02219638
 _021F7D34: .word 0x0000012D
-	arm_func_end ov4_021F7C40
+	arm_func_end gti2ReceiveFilterCallback
 
-	arm_func_start ov4_021F7D38
-ov4_021F7D38: ; 0x021F7D38
+	arm_func_start gti2DumpCallback
+gti2DumpCallback: ; 0x021F7D38
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0xc
 	movs r7, r0
@@ -575,7 +575,7 @@ _021F7D68:
 	cmp r0, #0
 	bne _021F7E44
 	mov r0, r7
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	add sp, sp, #0xc
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, pc}
@@ -587,10 +587,10 @@ _021F7E44:
 _021F7E50: .word Unk_ov4_02219690
 _021F7E54: .word Unk_ov4_02219698
 _021F7E58: .word Unk_ov4_0221959C
-	arm_func_end ov4_021F7D38
+	arm_func_end gti2DumpCallback
 
-	arm_func_start ov4_021F7E5C
-ov4_021F7E5C: ; 0x021F7E5C
+	arm_func_start gti2UnrecognizedMessageCallback
+gti2UnrecognizedMessageCallback: ; 0x021F7E5C
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #4
 	ldr r4, [sp, #0x24]
@@ -643,7 +643,7 @@ _021F7E98:
 	cmp r0, #0
 	bne _021F7F38
 	mov r0, r8
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	add sp, sp, #4
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
@@ -656,7 +656,7 @@ _021F7F44: .word Unk_ov4_02219690
 _021F7F48: .word Unk_ov4_02219698
 _021F7F4C: .word Unk_ov4_02219670
 _021F7F50: .word 0x00000197
-	arm_func_end ov4_021F7E5C
+	arm_func_end gti2UnrecognizedMessageCallback
 
 	.data
 

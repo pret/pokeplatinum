@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021FA360
-ov4_021FA360: ; 0x021FA360
+	arm_func_start gti2ConnectionHash
+gti2ConnectionHash: ; 0x021FA360
 	stmfd sp!, {r3, lr}
 	ldr r2, [r0, #0]
 	ldrh r0, [r2, #4]
@@ -16,10 +16,10 @@ ov4_021FA360: ; 0x021FA360
 	bl _u32_div_f
 	mov r0, r1
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021FA360
+	arm_func_end gti2ConnectionHash
 
-	arm_func_start ov4_021FA380
-ov4_021FA380: ; 0x021FA380
+	arm_func_start gti2ConnectionCompare
+gti2ConnectionCompare: ; 0x021FA380
 	ldr r3, [r0, #0]
 	ldr r2, [r1, #0]
 	ldr r0, [r3, #0]
@@ -33,19 +33,19 @@ ov4_021FA380: ; 0x021FA380
 	mov r0, r0, lsl #0x10
 	mov r0, r0, asr #0x10
 	bx lr
-	arm_func_end ov4_021FA380
+	arm_func_end gti2ConnectionCompare
 
-	arm_func_start ov4_021FA3B4
-ov4_021FA3B4: ; 0x021FA3B4
-	ldr ip, _021FA3C0 ; =ov4_021F83EC
+	arm_func_start gti2ConnectionFree
+gti2ConnectionFree: ; 0x021FA3B4
+	ldr ip, _021FA3C0 ; =gti2ConnectionCleanup
 	ldr r0, [r0, #0]
 	bx ip
 	; .align 2, 0
-_021FA3C0: .word ov4_021F83EC
-	arm_func_end ov4_021FA3B4
+_021FA3C0: .word gti2ConnectionCleanup
+	arm_func_end gti2ConnectionFree
 
-	arm_func_start ov4_021FA3C4
-ov4_021FA3C4: ; 0x021FA3C4
+	arm_func_start gti2SocketFindConnection
+gti2SocketFindConnection: ; 0x021FA3C4
 	stmdb sp!, {lr}
 	sub sp, sp, #0xa4
 	add r3, sp, #4
@@ -60,10 +60,10 @@ ov4_021FA3C4: ; 0x021FA3C4
 	moveq r0, #0
 	add sp, sp, #0xa4
 	ldmia sp!, {pc}
-	arm_func_end ov4_021FA3C4
+	arm_func_end gti2SocketFindConnection
 
-	arm_func_start ov4_021FA3FC
-ov4_021FA3FC: ; 0x021FA3FC
+	arm_func_start gti2CreateSocket
+gti2CreateSocket: ; 0x021FA3FC
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x1c
 	mov r4, r1
@@ -78,7 +78,7 @@ ov4_021FA3FC: ; 0x021FA3FC
 	add r2, sp, #8
 	mov r0, r4
 	moveq r7, #0x10000
-	bl ov4_021FACAC
+	bl gt2StringToAddress
 	cmp r0, #0
 	addeq sp, sp, #0x1c
 	moveq r0, #4
@@ -98,8 +98,8 @@ ov4_021FA3FC: ; 0x021FA3FC
 	ldr r1, [sp, #0x30]
 	str r7, [r4, #0x38]
 	str r1, [r4, #0x24]
-	ldr r0, _021FA610 ; =ov4_021FA380
-	ldr r3, _021FA614 ; =ov4_021FA360
+	ldr r0, _021FA610 ; =gti2ConnectionCompare
+	ldr r3, _021FA614 ; =gti2ConnectionHash
 	str r0, [sp]
 	mov ip, #0
 	mov r0, #4
@@ -117,7 +117,7 @@ ov4_021FA3FC: ; 0x021FA3FC
 	ldmia sp!, {r4, r5, r6, r7, pc}
 _021FA4C8:
 	mov r0, #4
-	ldr r2, _021FA618 ; =ov4_021FA3B4
+	ldr r2, _021FA618 ; =gti2ConnectionFree
 	mov r1, r0
 	bl ArrayNew
 	str r0, [r4, #0x10]
@@ -202,13 +202,13 @@ _021FA5C4:
 	add sp, sp, #0x1c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021FA610: .word ov4_021FA380
-_021FA614: .word ov4_021FA360
-_021FA618: .word ov4_021FA3B4
-	arm_func_end ov4_021FA3FC
+_021FA610: .word gti2ConnectionCompare
+_021FA614: .word gti2ConnectionHash
+_021FA618: .word gti2ConnectionFree
+	arm_func_end gti2CreateSocket
 
-	arm_func_start ov4_021FA61C
-ov4_021FA61C: ; 0x021FA61C
+	arm_func_start gti2CloseSocket
+gti2CloseSocket: ; 0x021FA61C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0x1c]
@@ -226,25 +226,25 @@ ov4_021FA61C: ; 0x021FA61C
 	bl DWCi_GsFree
 	bl SocketShutDown
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FA61C
+	arm_func_end gti2CloseSocket
 
-	arm_func_start ov4_021FA660
-ov4_021FA660: ; 0x021FA660
+	arm_func_start gti2Listen
+gti2Listen: ; 0x021FA660
 	str r1, [r0, #0x20]
 	bx lr
-	arm_func_end ov4_021FA660
+	arm_func_end gti2Listen
 
-	arm_func_start ov4_021FA668
-ov4_021FA668: ; 0x021FA668
+	arm_func_start gti2CreateConnectionObject
+gti2CreateConnectionObject: ; 0x021FA668
 	ldr ip, _021FA674 ; =DWCi_GsMalloc
 	mov r0, #0xa0
 	bx ip
 	; .align 2, 0
 _021FA674: .word DWCi_GsMalloc
-	arm_func_end ov4_021FA668
+	arm_func_end gti2CreateConnectionObject
 
-	arm_func_start ov4_021FA678
-ov4_021FA678: ; 0x021FA678
+	arm_func_start gti2NewSocketConnection
+gti2NewSocketConnection: ; 0x021FA678
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r3
 	mov r5, r2
@@ -254,11 +254,11 @@ ov4_021FA678: ; 0x021FA678
 	mov r2, r4
 	mov r7, r0
 	str r3, [sp]
-	bl ov4_021FA3C4
+	bl gti2SocketFindConnection
 	cmp r0, #0
 	movne r0, #5
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
-	bl ov4_021FA668
+	bl gti2CreateConnectionObject
 	str r0, [sp]
 	cmp r0, #0
 	beq _021FA808
@@ -285,13 +285,13 @@ ov4_021FA678: ; 0x021FA678
 	ldr r0, [sp]
 	ldr r1, [r7, #0x3c]
 	add r0, r0, #0x44
-	bl ov4_021F741C
+	bl gti2AllocateBuffer
 	cmp r0, #0
 	beq _021FA808
 	ldr r0, [sp]
 	ldr r1, [r7, #0x38]
 	add r0, r0, #0x50
-	bl ov4_021F741C
+	bl gti2AllocateBuffer
 	cmp r0, #0
 	beq _021FA808
 	mov r0, #0x10
@@ -340,7 +340,7 @@ ov4_021FA678: ; 0x021FA678
 	mov r0, r7
 	mov r1, r5
 	mov r2, r4
-	bl ov4_021FA3C4
+	bl gti2SocketFindConnection
 	str r0, [r6, #0]
 	cmp r0, #0
 	movne r0, #0
@@ -383,10 +383,10 @@ _021FA878:
 _021FA880:
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021FA678
+	arm_func_end gti2NewSocketConnection
 
-	arm_func_start ov4_021FA888
-ov4_021FA888: ; 0x021FA888
+	arm_func_start gti2FreeSocketConnection
+gti2FreeSocketConnection: ; 0x021FA888
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r1, [sp, #0x10]
@@ -439,10 +439,10 @@ _021FA934:
 	ldmia sp!, {r4, r5, r6, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end ov4_021FA888
+	arm_func_end gti2FreeSocketConnection
 
-	arm_func_start ov4_021FA94C
-ov4_021FA94C: ; 0x021FA94C
+	arm_func_start gti2SocketSend
+gti2SocketSend: ; 0x021FA94C
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x18
@@ -451,7 +451,7 @@ ov4_021FA94C: ; 0x021FA94C
 	add r0, sp, #0x34
 	add r1, sp, #0x38
 	mov r4, r2
-	bl ov4_021FAE30
+	bl gti2MessageCheck
 	ldr r0, [r6, #0]
 	bl CanSendOnSocket
 	cmp r0, #0
@@ -491,7 +491,7 @@ ov4_021FA94C: ; 0x021FA94C
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4
-	bl ov4_021F9968
+	bl gti2HandleConnectionReset
 	cmp r0, #0
 	bne _021FAAE0
 	add sp, sp, #0x18
@@ -513,7 +513,7 @@ _021FAA2C:
 	cmp r0, r1
 	beq _021FAAE0
 	mov r0, r6
-	bl ov4_021FABC0
+	bl gti2SocketError
 	add sp, sp, #0x18
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, lr}
@@ -526,7 +526,7 @@ _021FAA78:
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4
-	bl ov4_021FA3C4
+	bl gti2SocketFindConnection
 	mov r1, #0
 	str r1, [sp]
 	ldr r2, [sp, #0x34]
@@ -539,7 +539,7 @@ _021FAA78:
 	str ip, [sp, #8]
 	mov r4, #1
 	str r4, [sp, #0xc]
-	bl ov4_021F7D38
+	bl gti2DumpCallback
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	moveq r0, #0
@@ -552,10 +552,10 @@ _021FAAE0:
 	ldmia sp!, {r4, r5, r6, lr}
 	add sp, sp, #0x10
 	bx lr
-	arm_func_end ov4_021FA94C
+	arm_func_end gti2SocketSend
 
-	arm_func_start ov4_021FAAF4
-ov4_021FAAF4: ; 0x021FAAF4
+	arm_func_start gti2SocketConnectionsThinkMap
+gti2SocketConnectionsThinkMap: ; 0x021FAAF4
 	stmfd sp!, {r4, lr}
 	ldr r4, [r0, #0]
 	ldr r1, [r1, #0]
@@ -563,7 +563,7 @@ ov4_021FAAF4: ; 0x021FAAF4
 	cmp r0, #7
 	beq _021FAB20
 	mov r0, r4
-	bl ov4_021F82D8
+	bl gti2ConnectionThink
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r4, pc}
@@ -576,21 +576,21 @@ _021FAB20:
 	cmpeq r0, #0
 	bne _021FAB44
 	mov r0, r4
-	bl ov4_021FA888
+	bl gti2FreeSocketConnection
 _021FAB44:
 	mov r0, #1
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FAAF4
+	arm_func_end gti2SocketConnectionsThinkMap
 
-	arm_func_start ov4_021FAB4C
-ov4_021FAB4C: ; 0x021FAB4C
+	arm_func_start gti2SocketConnectionsThink
+gti2SocketConnectionsThink: ; 0x021FAB4C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	mov r4, r0
 	bl current_time
 	str r0, [sp]
 	ldr r0, [r4, #0xc]
-	ldr r1, _021FAB84 ; =ov4_021FAAF4
+	ldr r1, _021FAB84 ; =gti2SocketConnectionsThinkMap
 	add r2, sp, #0
 	bl TableMapSafe2
 	cmp r0, #0
@@ -599,11 +599,11 @@ ov4_021FAB4C: ; 0x021FAB4C
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_021FAB84: .word ov4_021FAAF4
-	arm_func_end ov4_021FAB4C
+_021FAB84: .word gti2SocketConnectionsThinkMap
+	arm_func_end gti2SocketConnectionsThink
 
-	arm_func_start ov4_021FAB88
-ov4_021FAB88: ; 0x021FAB88
+	arm_func_start gti2FreeClosedConnections
+gti2FreeClosedConnections: ; 0x021FAB88
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r0, [r5, #0x10]
@@ -615,14 +615,14 @@ _021FABA0:
 	mov r1, r4
 	bl ArrayNth
 	ldr r0, [r0, #0]
-	bl ov4_021FA888
+	bl gti2FreeSocketConnection
 	subs r4, r4, #1
 	bpl _021FABA0
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FAB88
+	arm_func_end gti2FreeClosedConnections
 
-	arm_func_start ov4_021FABC0
-ov4_021FABC0: ; 0x021FABC0
+	arm_func_start gti2SocketError
+gti2SocketError: ; 0x021FABC0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r1, [r4, #0x18]
@@ -632,10 +632,10 @@ ov4_021FABC0: ; 0x021FABC0
 	str r1, [r4, #0x18]
 	bl gt2CloseAllConnectionsHard
 	mov r0, r4
-	bl ov4_021F763C
+	bl gti2SocketErrorCallback
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
 	mov r0, r4
-	bl ov4_021FA61C
+	bl gti2CloseSocket
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FABC0
+	arm_func_end gti2SocketError
