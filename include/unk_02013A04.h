@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 UnkStruct_02013A04 * sub_02013A04(u32 param0, u32 param1);
 void sub_02013A3C(UnkStruct_02013A04 * param0);

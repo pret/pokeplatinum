@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
