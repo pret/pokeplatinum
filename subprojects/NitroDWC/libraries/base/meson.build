@@ -4,7 +4,7 @@ libdwcbase_srcs = files(
     'src/dwc_connectinet.c',
     'src/dwc_nasfunc.c',
     'src/dwc_nd.c',
-    'asm/dwc_common.s',
+    'src/dwc_common.c',
     'src/dwc_main.c',
     'src/dwc_login.c',
     'src/dwc_friend.c',
