@@ -98,7 +98,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
     }
 
     if ((Item_GetAttributeFromStruct(v0, 34) != 0) || (Item_GetAttributeFromStruct(v0, 35) != 0)) {
-        if ((GetMonData(param0, MON_DATA_62 + param2, NULL) < 3) && (MoveTable_GetMoveMaxPP(GetMonData(param0, MON_DATA_MOVE1 + param2, NULL), 0) >= 5)) {
+        if ((GetMonData(param0, MON_DATA_62 + param2, NULL) < 3) && (MoveTable_CalcMaxPP(GetMonData(param0, MON_DATA_MOVE1 + param2, NULL), 0) >= 5)) {
             Heap_FreeToHeap(v0);
             return 1;
         }
@@ -548,7 +548,7 @@ static u8 sub_02096F34 (Pokemon * param0, u32 param1)
     v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
     v2 = (u8)GetMonData(param0, MON_DATA_62 + param1, NULL);
 
-    if (v1 < MoveTable_GetMoveMaxPP(v0, v2)) {
+    if (v1 < MoveTable_CalcMaxPP(v0, v2)) {
         return 1;
     }
 
@@ -568,7 +568,7 @@ static u8 sub_02096F84 (Pokemon * param0, u32 param1, u32 param2)
     }
 
     v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
-    v2 = (u8)MoveTable_GetMoveMaxPP(v0, GetMonData(param0, MON_DATA_62 + param1, NULL));
+    v2 = (u8)MoveTable_CalcMaxPP(v0, GetMonData(param0, MON_DATA_62 + param1, NULL));
 
     if (v1 < v2) {
         if (param2 == 127) {
@@ -603,12 +603,12 @@ static u8 sub_02097004 (Pokemon * param0, u32 param1, u32 param2)
 
     v0 = (u16)GetMonData(param0, MON_DATA_MOVE1 + param1, NULL);
 
-    if (MoveTable_GetMoveMaxPP(v0, 0) < 5) {
+    if (MoveTable_CalcMaxPP(v0, 0) < 5) {
         return 0;
     }
 
     v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
-    v3 = (u8)MoveTable_GetMoveMaxPP(v0, v2);
+    v3 = (u8)MoveTable_CalcMaxPP(v0, v2);
 
     if (v2 + param2 > 3) {
         v2 = 3;
@@ -616,7 +616,7 @@ static u8 sub_02097004 (Pokemon * param0, u32 param1, u32 param2)
         v2 = v2 + param2;
     }
 
-    v1 = v1 + MoveTable_GetMoveMaxPP(v0, v2) - v3;
+    v1 = v1 + MoveTable_CalcMaxPP(v0, v2) - v3;
 
     sub_02074B30(param0, 62 + param1, &v2);
     sub_02074B30(param0, 58 + param1, &v1);

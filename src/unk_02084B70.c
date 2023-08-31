@@ -1143,7 +1143,7 @@ static void sub_02086590 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 par
     v0 = 0;
     sub_02074B30(param1, 62 + param2, &v0);
 
-    v0 = MoveTable_GetMoveMaxPP(param0->unk_5A4->unk_26, 0);
+    v0 = MoveTable_CalcMaxPP(param0->unk_5A4->unk_26, 0);
     sub_02074B30(param1, 58 + param2, &v0);
 
     if (param0->unk_5A4->unk_24 != 0) {

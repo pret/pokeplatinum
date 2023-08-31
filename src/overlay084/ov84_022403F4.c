@@ -443,8 +443,8 @@ void ov84_02240D5C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u8 param2)
     }
 
     v0 = GetMoveFromTMOrHMItemID(param1);
-    v1 = MoveTable_GetMoveAttribute(v0, 3);
-    v2 = MoveTable_GetMoveAttribute(v0, 1);
+    v1 = MoveTable_LoadAttribute(v0, 3);
+    v2 = MoveTable_LoadAttribute(v0, 1);
 
     sub_0200D948(param0->unk_D8, param0->unk_DC, sub_0207C944(), sub_0207C908(v1), 1, 49409);
     sub_0200D41C(param0->unk_E0[10], sub_0207C92C(v1) + 6);

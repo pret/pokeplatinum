@@ -1930,7 +1930,7 @@ static void ov16_022699AC (UnkStruct_ov16_02268A14 * param0, int param1, int par
 
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_00[v1] != 0) {
-                v6 = MoveTable_GetMoveAttribute(v0->unk_00[v1], 3);
+                v6 = MoveTable_LoadAttribute(v0->unk_00[v1], 3);
                 ov16_0226B06C(param0, v6, v1);
             } else {
                 ov16_0226B088(param0, v1);
@@ -2810,7 +2810,7 @@ void ov16_0226AC98 (UnkStruct_ov16_02268A14 * param0, int param1, const UnkStruc
 
     for (v4 = 0; v4 < 4; v4++) {
         if ((param2->unk_00[v4] != v0->unk_00.unk_00[v4]) && (param2->unk_00[v4] != 0)) {
-            v5 = MoveTable_GetMoveAttribute(param2->unk_00[v4], 3);
+            v5 = MoveTable_LoadAttribute(param2->unk_00[v4], 3);
             v1 = sub_02006F50(sub_0207C944(), sub_0207C908(v5), 1, &v2, 5);
             MI_CpuCopy32(v2->pRawData, v0->unk_18[v4], v3);
             Heap_FreeToHeap(v1);
@@ -2885,7 +2885,7 @@ static void ov16_0226AF0C (UnkStruct_ov16_02268A14 * param0)
         GF_ASSERT(param0->unk_5EC[v0] == NULL);
 
         if (v4->unk_00[v0] != 0) {
-            v5 = MoveTable_GetMoveAttribute(v4->unk_00[v0], 3);
+            v5 = MoveTable_LoadAttribute(v4->unk_00[v0], 3);
             v3.unk_14[0] = 20025 + v0;
             v3.unk_00 = Unk_ov16_022702B4[v0][0];
             v3.unk_02 = Unk_ov16_022702B4[v0][1];

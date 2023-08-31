@@ -612,7 +612,7 @@ static void ov17_0223BA10 (UnkStruct_ov17_02246F24 * param0, NARC * param1)
             v2 = GetMonData(param0->unk_00->unk_00.unk_00[param0->unk_00->unk_00.unk_113], MON_DATA_MOVE1 + v0, NULL);
 
             if (v2 != 0) {
-                v1 = MoveTable_GetMoveAttribute(v2, 11);
+                v1 = MoveTable_LoadAttribute(v2, 11);
             } else {
                 v1 = 0;
             }

@@ -4,7 +4,8 @@
 #include "constants/battle.h"
 #include "constants/moves.h"
 
-#include "struct_defs/struct_020790C4.h"
+#include "move_table.h"
+
 #include "struct_decls/struct_itemdata_decl.h"
 
 typedef struct AIContext {

@@ -840,7 +840,7 @@ static void sub_02091188 (UnkStruct_0208D7BC * param0, u32 param1)
         v5 = param0->unk_250.unk_40[param1];
     } else {
         v3 = param0->unk_24C->unk_18;
-        v4 = MoveTable_GetMoveMaxPP(v3, 0);
+        v4 = MoveTable_CalcMaxPP(v3, 0);
         v5 = v4;
     }
 
@@ -872,7 +872,7 @@ void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
     sub_0201ADA4(&param0->unk_244[6], 0);
     sub_0201ADA4(&param0->unk_244[7], 0);
 
-    v2 = MoveTable_GetMoveAttribute(param1, 2);
+    v2 = MoveTable_LoadAttribute(param1, 2);
 
     if (v2 <= 1) {
         sub_0200B1B8(param0->unk_688, 154, param0->unk_694);
@@ -882,7 +882,7 @@ void sub_020912A4 (UnkStruct_0208D7BC * param0, u32 param1)
 
     sub_020900D8(param0, &param0->unk_244[5], ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 2);
 
-    v2 = MoveTable_GetMoveAttribute(param1, 4);
+    v2 = MoveTable_LoadAttribute(param1, 4);
 
     if (v2 == 0) {
         sub_0200B1B8(param0->unk_688, 154, param0->unk_694);
@@ -969,7 +969,7 @@ void sub_02091570 (UnkStruct_0208D7BC * param0, u32 param1)
 
     sub_0201ADA4(&param0->unk_244[5], 0);
 
-    v1 = MoveTable_GetMoveAttribute(param1, 10);
+    v1 = MoveTable_LoadAttribute(param1, 10);
     v2 = sub_0209577C(v1);
     v0 = sub_0200B144(0, 26, 210, 19);
 

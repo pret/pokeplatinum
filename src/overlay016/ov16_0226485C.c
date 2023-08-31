@@ -761,7 +761,7 @@ void ov16_022656F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int par
     for (v1 = 0; v1 < 4; v1++) {
         v0.unk_04[v1] = param1->battleMons[param2].moves[v1];
         v0.unk_0C[v1] = param1->battleMons[param2].ppCur[v1];
-        v0.unk_10[v1] = MoveTable_GetMoveMaxPP(param1->battleMons[param2].moves[v1], param1->battleMons[param2].ppUps[v1]);
+        v0.unk_10[v1] = MoveTable_CalcMaxPP(param1->battleMons[param2].moves[v1], param1->battleMons[param2].ppUps[v1]);
     }
 
     v0.unk_02 = ov16_02254A6C(param0, param1, param2, 0, 0xffffffff);
@@ -1685,7 +1685,7 @@ void ov16_02266B78 (UnkStruct_0207ADB4 * param0, BattleContext * param1, UnkStru
         if (param1->movePower) {
             param2->unk_08 = param1->movePower;
         } else {
-            param2->unk_08 = param1->aiContext.moveTable[param7].unk_03;
+            param2->unk_08 = param1->aiContext.moveTable[param7].power;
         }
 
         param2->unk_0C = param1->battleMons[param5].friendship;
