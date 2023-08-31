@@ -3,7 +3,6 @@
 
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_itemdata_decl.h"
 
 #include "heap.h"
 #include "unk_02073C2C.h"

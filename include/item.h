@@ -2,7 +2,6 @@
 #define POKEPLATINUM_UNK_0207CDEC_H
 
 #include "strbuf.h"
-#include "struct_decls/struct_itemdata_decl.h"
 
 typedef struct ItemPartyParam {
     u8 slp_heal : 1;

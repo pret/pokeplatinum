@@ -8,7 +8,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_defs/pokemon.h"
-#include "struct_decls/struct_itemdata_decl.h"
 
 #include "constdata/const_020F1E88.h"
 
