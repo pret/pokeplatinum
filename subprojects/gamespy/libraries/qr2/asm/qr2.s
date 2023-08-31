@@ -93,7 +93,7 @@ _021FBEAC:
 	ldr r0, [r0, #0]
 	cmp r0, #0
 	bne _021FBEDC
-	bl ov4_021FC330
+	bl enum_local_ips
 _021FBEDC:
 	ldr r0, [sp, #0x5c]
 	cmp r0, #0
@@ -113,7 +113,7 @@ _021FBF08:
 	addeq r0, sp, #0
 	add r2, r6, #0xcc
 	mov r3, #0
-	bl ov4_021FC3A4
+	bl get_sockaddrin
 	b _021FBF2C
 _021FBF28:
 	mov r0, #1
@@ -175,17 +175,17 @@ qr2_think: ; 0x021FBFA0
 	cmp r0, #0
 	beq _021FBFC4
 	mov r0, r4
-	bl ov4_021FC080
+	bl qr2_check_send_heartbeat
 _021FBFC4:
 	mov r0, r4
-	bl ov4_021FBFD4
+	bl qr2_check_queries
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021FBFD0: .word Unk_ov4_022197F0
 	arm_func_end qr2_think
 
-	arm_func_start ov4_021FBFD4
-ov4_021FBFD4: ; 0x021FBFD4
+	arm_func_start qr2_check_queries
+qr2_check_queries: ; 0x021FBFD4
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x14
 	mov r1, #8
@@ -232,10 +232,10 @@ _021FC064:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021FC07C: .word Unk_ov4_0221B650
-	arm_func_end ov4_021FBFD4
+	arm_func_end qr2_check_queries
 
-	arm_func_start ov4_021FC080
-ov4_021FC080: ; 0x021FC080
+	arm_func_start qr2_check_send_heartbeat
+qr2_check_send_heartbeat: ; 0x021FC080
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	bl current_time
@@ -265,7 +265,7 @@ ov4_021FC080: ; 0x021FC080
 _021FC0E8:
 	mov r0, r5
 	mov r1, #3
-	bl ov4_021FD2D4
+	bl send_heartbeat
 	ldr r0, [r5, #0xb8]
 	add r0, r0, #1
 	str r0, [r5, #0xb8]
@@ -281,7 +281,7 @@ _021FC104:
 	bls _021FC134
 	mov r0, r5
 	mov r1, #1
-	bl ov4_021FD2D4
+	bl send_heartbeat
 	b _021FC164
 _021FC134:
 	ldr r2, [r5, #0xac]
@@ -296,7 +296,7 @@ _021FC134:
 _021FC158:
 	mov r0, r5
 	mov r1, #0
-	bl ov4_021FD2D4
+	bl send_heartbeat
 _021FC164:
 	ldr r1, [r5, #0xb0]
 	ldr r0, _021FC190 ; =0x00004E20
@@ -304,14 +304,14 @@ _021FC164:
 	cmp r1, r0
 	ldmlsia sp!, {r3, r4, r5, pc}
 	mov r0, r5
-	bl ov4_021FD274
+	bl send_keepalive
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021FC184: .word 0x00002710
 _021FC188: .word Unk_ov4_02219924
 _021FC18C: .word 0x0000EA60
 _021FC190: .word 0x00004E20
-	arm_func_end ov4_021FC080
+	arm_func_end qr2_check_send_heartbeat
 
 	arm_func_start qr2_send_statechanged
 qr2_send_statechanged: ; 0x021FC194
@@ -332,7 +332,7 @@ qr2_send_statechanged: ; 0x021FC194
 	ldmloia sp!, {r4, pc}
 	mov r0, r4
 	mov r1, #1
-	bl ov4_021FD2D4
+	bl send_heartbeat
 	mov r0, #0
 	str r0, [r4, #0xb4]
 	ldmia sp!, {r4, pc}
@@ -352,7 +352,7 @@ qr2_shutdown: ; 0x021FC1F0
 	beq _021FC218
 	mov r0, r4
 	mov r1, #2
-	bl ov4_021FD2D4
+	bl send_heartbeat
 _021FC218:
 	ldr r0, [r4, #0]
 	mvn r1, #0
@@ -442,8 +442,8 @@ qr2_buffer_addA: ; 0x021FC2D4
 	ldmia sp!, {r4, r5, r6, pc}
 	arm_func_end qr2_buffer_addA
 
-	arm_func_start ov4_021FC330
-ov4_021FC330: ; 0x021FC330
+	arm_func_start enum_local_ips
+enum_local_ips: ; 0x021FC330
 	stmfd sp!, {r4, r5, r6, lr}
 	bl getlocalhost
 	cmp r0, #0
@@ -475,10 +475,10 @@ _021FC350:
 	; .align 2, 0
 _021FC39C: .word Unk_ov4_0221B5F8
 _021FC3A0: .word Unk_ov4_0221B5FC
-	arm_func_end ov4_021FC330
+	arm_func_end enum_local_ips
 
-	arm_func_start ov4_021FC3A4
-ov4_021FC3A4: ; 0x021FC3A4
+	arm_func_start get_sockaddrin
+get_sockaddrin: ; 0x021FC3A4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r1, r1, lsl #0x10
 	mov r1, r1, lsr #0x10
@@ -524,19 +524,19 @@ _021FC438:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021FC448: .word Unk_ov4_02219960
-	arm_func_end ov4_021FC3A4
+	arm_func_end get_sockaddrin
 
-	arm_func_start ov4_021FC44C
-ov4_021FC44C: ; 0x021FC44C
+	arm_func_start swap_byte
+swap_byte: ; 0x021FC44C
 	ldrb r3, [r0]
 	ldrb r2, [r1]
 	strb r2, [r0]
 	strb r3, [r1]
 	bx lr
-	arm_func_end ov4_021FC44C
+	arm_func_end swap_byte
 
-	arm_func_start ov4_021FC460
-ov4_021FC460: ; 0x021FC460
+	arm_func_start encode_ct
+encode_ct: ; 0x021FC460
 	cmp r0, #0x1a
 	addlo r0, r0, #0x41
 	andlo r0, r0, #0xff
@@ -555,10 +555,10 @@ ov4_021FC460: ; 0x021FC460
 	moveq r0, #0x2f
 	movne r0, #0
 	bx lr
-	arm_func_end ov4_021FC460
+	arm_func_end encode_ct
 
-	arm_func_start ov4_021FC4A8
-ov4_021FC4A8: ; 0x021FC4A8
+	arm_func_start gs_encode
+gs_encode: ; 0x021FC4A8
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #8
 	mov r7, r1
@@ -600,7 +600,7 @@ _021FC4D4:
 	mov sb, #0
 _021FC53C:
 	ldrb r0, [r5], #1
-	bl ov4_021FC460
+	bl encode_ct
 	add sb, sb, #1
 	cmp sb, #3
 	strb r0, [r6], #1
@@ -612,10 +612,10 @@ _021FC55C:
 	strb r0, [r6]
 	add sp, sp, #8
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end ov4_021FC4A8
+	arm_func_end gs_encode
 
-	arm_func_start ov4_021FC56C
-ov4_021FC56C: ; 0x021FC56C
+	arm_func_start gs_encrypt
+gs_encrypt: ; 0x021FC56C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x104
 	str r1, [sp]
@@ -651,7 +651,7 @@ _021FC5B8:
 	and r4, r1, #0xff
 	mov r0, r6
 	add r1, fp, r5
-	bl ov4_021FC44C
+	bl swap_byte
 	add r0, r7, #1
 	mov r0, r0, lsl #0x10
 	mov r7, r0, asr #0x10
@@ -681,7 +681,7 @@ _021FC628:
 	add r1, r2, r1, ror #24
 	and r7, r1, #0xff
 	add r1, r4, r7
-	bl ov4_021FC44C
+	bl swap_byte
 	ldrb r3, [r4, r6]
 	ldrb r1, [r4, r7]
 	add r0, r5, #1
@@ -700,10 +700,10 @@ _021FC628:
 	bgt _021FC628
 	add sp, sp, #0x104
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end ov4_021FC56C
+	arm_func_end gs_encrypt
 
-	arm_func_start ov4_021FC6B0
-ov4_021FC6B0: ; 0x021FC6B0
+	arm_func_start qr_add_packet_header
+qr_add_packet_header: ; 0x021FC6B0
 	strb r1, [r0]
 	ldrb ip, [r2]
 	ldrb r3, [r2, #1]
@@ -716,10 +716,10 @@ ov4_021FC6B0: ; 0x021FC6B0
 	strb r2, [r0, #4]
 	str r1, [r0, #0x800]
 	bx lr
-	arm_func_end ov4_021FC6B0
+	arm_func_end qr_add_packet_header
 
-	arm_func_start ov4_021FC6E0
-ov4_021FC6E0: ; 0x021FC6E0
+	arm_func_start compute_challenge_response
+compute_challenge_response: ; 0x021FC6E0
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0x44
 	mov r5, r3
@@ -745,12 +745,12 @@ ov4_021FC6E0: ; 0x021FC6E0
 	add r2, sp, #0
 	add r0, r6, #0x44
 	sub r3, r5, #1
-	bl ov4_021FC56C
+	bl gs_encrypt
 	ldr r2, [r4, #0x800]
 	sub r1, r5, #1
 	add r0, sp, #0
 	add r2, r4, r2
-	bl ov4_021FC4A8
+	bl gs_encode
 	ldr r0, [r4, #0x800]
 	add r0, r4, r0
 	bl strlen
@@ -760,10 +760,10 @@ ov4_021FC6E0: ; 0x021FC6E0
 	str r0, [r4, #0x800]
 	add sp, sp, #0x44
 	ldmia sp!, {r3, r4, r5, r6, pc}
-	arm_func_end ov4_021FC6E0
+	arm_func_end compute_challenge_response
 
-	arm_func_start ov4_021FC780
-ov4_021FC780: ; 0x021FC780
+	arm_func_start handle_public_address
+handle_public_address: ; 0x021FC780
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	mov r4, r0
@@ -809,10 +809,10 @@ ov4_021FC780: ; 0x021FC780
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021FC82C: .word Unk_ov4_02219970
-	arm_func_end ov4_021FC780
+	arm_func_end handle_public_address
 
-	arm_func_start ov4_021FC830
-ov4_021FC830: ; 0x021FC830
+	arm_func_start qr_build_partial_query_reply
+qr_build_partial_query_reply: ; 0x021FC830
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x10c
 	movs fp, r3
@@ -977,36 +977,36 @@ _021FCA64:
 _021FCA7C: .word Unk_ov4_0221997C
 _021FCA80: .word Unk_ov4_02219B38
 _021FCA84: .word Unk_ov4_02219984
-	arm_func_end ov4_021FC830
+	arm_func_end qr_build_partial_query_reply
 
-	arm_func_start ov4_021FCA88
-ov4_021FCA88: ; 0x021FCA88
+	arm_func_start qr_build_query_reply
+qr_build_query_reply: ; 0x021FCA88
 	stmfd sp!, {r3, r4, r5, lr}
 	str r3, [sp]
 	mov r3, r2
 	mov r2, #0
 	mov r5, r0
 	mov r4, r1
-	bl ov4_021FC830
+	bl qr_build_partial_query_reply
 	ldr ip, [sp, #0x14]
 	ldr r3, [sp, #0x10]
 	mov r0, r5
 	mov r1, r4
 	mov r2, #1
 	str ip, [sp]
-	bl ov4_021FC830
+	bl qr_build_partial_query_reply
 	ldr r0, [sp, #0x1c]
 	ldr r3, [sp, #0x18]
 	str r0, [sp]
 	mov r0, r5
 	mov r1, r4
 	mov r2, #2
-	bl ov4_021FC830
+	bl qr_build_partial_query_reply
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FCA88
+	arm_func_end qr_build_query_reply
 
-	arm_func_start ov4_021FCAE0
-ov4_021FCAE0: ; 0x021FCAE0
+	arm_func_start qr_process_query
+qr_process_query: ; 0x021FCAE0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r5, #0
@@ -1050,13 +1050,13 @@ ov4_021FCAE0: ; 0x021FCAE0
 	mov r2, ip
 	mov r3, r5
 	str r7, [sp, #0xc]
-	bl ov4_021FCA88
+	bl qr_build_query_reply
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021FCAE0
+	arm_func_end qr_process_query
 
-	arm_func_start ov4_021FCB98
-ov4_021FCB98: ; 0x021FCB98
+	arm_func_start qr_build_partial_old_query_reply
+qr_build_partial_old_query_reply: ; 0x021FCB98
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x188
 	mov r8, r2
@@ -1185,10 +1185,10 @@ _021FCD60: .word Unk_ov4_02219B38
 _021FCD64: .word Unk_ov4_0221997C
 _021FCD68: .word Unk_ov4_02219984
 _021FCD6C: .word Unk_ov4_02219988
-	arm_func_end ov4_021FCB98
+	arm_func_end qr_build_partial_old_query_reply
 
-	arm_func_start ov4_021FCD70
-ov4_021FCD70: ; 0x021FCD70
+	arm_func_start qr_process_old_query
+qr_process_old_query: ; 0x021FCD70
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r1
 	mov r2, #1
@@ -1197,15 +1197,15 @@ ov4_021FCD70: ; 0x021FCD70
 	mov r3, #0x5c
 	mov r2, #0
 	strb r3, [r4]
-	bl ov4_021FCB98
+	bl qr_build_partial_old_query_reply
 	mov r0, r5
 	mov r1, r4
 	mov r2, #1
-	bl ov4_021FCB98
+	bl qr_build_partial_old_query_reply
 	mov r0, r5
 	mov r1, r4
 	mov r2, #2
-	bl ov4_021FCB98
+	bl qr_build_partial_old_query_reply
 	ldr r1, _021FCDD0 ; =0x02219990
 	mov r0, r4
 	bl qr2_buffer_addA
@@ -1215,10 +1215,10 @@ ov4_021FCD70: ; 0x021FCD70
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021FCDD0: .word Unk_ov4_02219990
-	arm_func_end ov4_021FCD70
+	arm_func_end qr_process_old_query
 
-	arm_func_start ov4_021FCDD4
-ov4_021FCDD4: ; 0x021FCDD4
+	arm_func_start qr_process_client_message
+qr_process_client_message: ; 0x021FCDD4
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xc
 	ldr ip, _021FCEF8 ; =0x02215C28
@@ -1298,10 +1298,10 @@ _021FCED0:
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _021FCEF8: .word Unk_ov4_02215C28
-	arm_func_end ov4_021FCDD4
+	arm_func_end qr_process_client_message
 
-	arm_func_start ov4_021FCEFC
-ov4_021FCEFC: ; 0x021FCEFC
+	arm_func_start qr_got_recent_message
+qr_got_recent_message: ; 0x021FCEFC
 	stmfd sp!, {r4, lr}
 	mov r3, #0
 _021FCF04:
@@ -1329,7 +1329,7 @@ _021FCF04:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021FCF5C: .word 0x66666667
-	arm_func_end ov4_021FCEFC
+	arm_func_end qr_got_recent_message
 
 	arm_func_start qr2_parse_queryA
 qr2_parse_queryA: ; 0x021FCF60
@@ -1360,7 +1360,7 @@ _021FCFB8:
 	bne _021FCFF4
 	add r1, sp, #0xc
 	mov r0, r8
-	bl ov4_021FCD70
+	bl qr_process_old_query
 	str r6, [sp]
 	mov r0, #8
 	str r0, [sp, #4]
@@ -1392,7 +1392,7 @@ _021FCFF4:
 	mov r1, sb
 	mov r2, r4
 	sub r7, r7, #7
-	bl ov4_021FC6B0
+	bl qr_add_packet_header
 	cmp sb, #8
 	addls pc, pc, sb, lsl #2
 	b _021FD240
@@ -1411,7 +1411,7 @@ _021FD078:
 	mov r0, r8
 	mov r2, r5
 	mov r3, r7
-	bl ov4_021FCAE0
+	bl qr_process_query
 	b _021FD248
 _021FD090:
 	cmp r7, #0xd
@@ -1422,13 +1422,13 @@ _021FD090:
 	add r1, r5, r7
 	mov r0, r8
 	sub r1, r1, #0xd
-	bl ov4_021FC780
+	bl handle_public_address
 _021FD0B4:
 	add r1, sp, #0xc
 	mov r0, r8
 	mov r2, r5
 	mov r3, r7
-	bl ov4_021FC6E0
+	bl compute_challenge_response
 	b _021FD248
 _021FD0CC:
 	ldr r0, [sp, #0x80c]
@@ -1520,13 +1520,13 @@ _021FD180:
 	strb r2, [r3, #2]
 	strb r1, [r3, #3]
 	ldr r1, [sp, #8]
-	bl ov4_021FCEFC
+	bl qr_got_recent_message
 	cmp r0, #0
 	bne _021FD248
 	mov r0, r8
 	add r1, r5, #4
 	sub r2, r7, #4
-	bl ov4_021FCDD4
+	bl qr_process_client_message
 	b _021FD248
 _021FD240:
 	add sp, sp, #0x810
@@ -1546,8 +1546,8 @@ _021FD248:
 _021FD270: .word Unk_ov4_022197F0
 	arm_func_end qr2_parse_queryA
 
-	arm_func_start ov4_021FD274
-ov4_021FD274: ; 0x021FD274
+	arm_func_start send_keepalive
+send_keepalive: ; 0x021FD274
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0xc
 	sub sp, sp, #0x800
@@ -1557,7 +1557,7 @@ ov4_021FD274: ; 0x021FD274
 	add r2, r4, #0x84
 	mov r1, #8
 	str r3, [sp, #0x808]
-	bl ov4_021FC6B0
+	bl qr_add_packet_header
 	add r0, r4, #0xcc
 	str r0, [sp]
 	mov r0, #8
@@ -1572,10 +1572,10 @@ ov4_021FD274: ; 0x021FD274
 	add sp, sp, #0xc
 	add sp, sp, #0x800
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021FD274
+	arm_func_end send_keepalive
 
-	arm_func_start ov4_021FD2D4
-ov4_021FD2D4: ; 0x021FD2D4
+	arm_func_start send_heartbeat
+send_heartbeat: ; 0x021FD2D4
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x28
 	sub sp, sp, #0x800
@@ -1586,7 +1586,7 @@ ov4_021FD2D4: ; 0x021FD2D4
 	add r2, sl, #0x84
 	mov r1, #3
 	str r3, [sp, #0x824]
-	bl ov4_021FC6B0
+	bl qr_add_packet_header
 	ldr r4, _021FD4B4 ; =0x0221B5F8
 	mov r8, #0
 	ldr r0, [r4, #0]
@@ -1671,7 +1671,7 @@ _021FD418:
 	add r1, sp, #0x24
 	mov r0, sl
 	str r3, [sp, #0xc]
-	bl ov4_021FCA88
+	bl qr_build_query_reply
 	b _021FD46C
 _021FD448:
 	ldr r2, [sp, #0x824]
@@ -1714,7 +1714,7 @@ _021FD4D0: .word Unk_ov4_022199CC
 _021FD4D4: .word Unk_ov4_022199DC
 _021FD4D8: .word Unk_ov4_022199E8
 _021FD4DC: .word Unk_ov4_022199F4
-	arm_func_end ov4_021FD2D4
+	arm_func_end send_heartbeat
 
 	.rodata
 
