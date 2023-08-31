@@ -1,53 +1,53 @@
-#ifndef POKEPLATINUM_UNK_0207CDEC_H
-#define POKEPLATINUM_UNK_0207CDEC_H
+#ifndef POKEPLATINUM_ITEM_DATA_H
+#define POKEPLATINUM_ITEM_DATA_H
 
 #include "strbuf.h"
 
 typedef struct ItemPartyParam {
-    u8 slp_heal : 1;
-    u8 psn_heal : 1;
-    u8 brn_heal : 1;
-    u8 frz_heal : 1;
-    u8 prz_heal : 1;
-    u8 cfs_heal : 1;
-    u8 inf_heal : 1;
-    u8 guard_spec : 1;
+    u8 healSleep : 1;
+    u8 healPoison : 1;
+    u8 healBurn : 1;
+    u8 healFreeze : 1;
+    u8 healParalysis : 1;
+    u8 healConfusion : 1;
+    u8 healAttract : 1;
+    u8 guardSpec : 1;
     u8 revive : 1;
-    u8 revive_all : 1;
-    u8 level_up : 1;
+    u8 reviveAll : 1;
+    u8 levelUp : 1;
     u8 evolve : 1;
-    u8 atk_stages : 4;
-    u8 def_stages : 4;
-    u8 spatk_stages : 4;
-    u8 spdef_stages : 4;
-    u8 speed_stages : 4;
-    u8 accuracy_stages : 4;
-    u8 critrate_stages : 2;
-    u8 pp_up : 1;
-    u8 pp_max : 1;
-    u8 pp_restore : 1;
-    u8 pp_restore_all : 1;
-    u8 hp_restore : 1;
-    u8 hp_ev_up : 1;
-    u8 atk_ev_up : 1;
-    u8 def_ev_up : 1;
-    u8 speed_ev_up : 1;
-    u8 spatk_ev_up : 1;
-    u8 spdef_ev_up : 1;
-    u8 friendship_mod_lo : 1;
-    u8 friendship_mod_med : 1;
-    u8 friendship_mod_hi : 1;
-    s8 hp_ev_up_param;
-    s8 atk_ev_up_param;
-    s8 def_ev_up_param;
-    s8 speed_ev_up_param;
-    s8 spatk_ev_up_param;
-    s8 spdef_ev_up_param;
-    u8 hp_restore_param;
-    u8 pp_restore_param;
-    s8 friendship_mod_lo_param;
-    s8 friendship_mod_med_param;
-    s8 friendship_mod_hi_param;
+    u8 atkStages : 4;
+    u8 defStages : 4;
+    u8 spatkStages : 4;
+    u8 spdefStages : 4;
+    u8 speedStages : 4;
+    u8 accStages : 4;
+    u8 critStages : 2;
+    u8 ppUp : 1;
+    u8 ppMax : 1;
+    u8 ppRestore : 1;
+    u8 ppRestoreAll : 1;
+    u8 hpRestore : 1;
+    u8 giveHPEVs : 1;
+    u8 giveAtkEVs : 1;
+    u8 giveDefEVs : 1;
+    u8 giveSpeedEVs : 1;
+    u8 giveSpAtkEVs : 1;
+    u8 giveSpDefEVs : 1;
+    u8 giveFriendshipLow : 1;
+    u8 giveFriendshipMed : 1;
+    u8 giveFriendshipHigh : 1;
+    s8 hpEVs;
+    s8 atkEVs;
+    s8 defEVs;
+    s8 speedEVs;
+    s8 spatkEVs;
+    s8 spdefEVs;
+    u8 hpRestored;
+    u8 ppRestored;
+    s8 friendshipLow;
+    s8 friendshipMed;
+    s8 friendshipHigh;
     u8 padding[2];
 } ItemPartyParam;
 
@@ -98,4 +98,4 @@ u8 Item_IsHerbalMedicine(u16 param0);
 void * sub_0207D388(int param0);
 ItemData * sub_0207D3B0(ItemData * param0, u16 param1);
 
-#endif // POKEPLATINUM_UNK_0207CDEC_H
+#endif // POKEPLATINUM_ITEM_DATA_H

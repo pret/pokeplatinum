@@ -865,93 +865,93 @@ static s32 GetPartyAttribute (ItemPartyParam * partyParam, u16 attributeID)
 {
     switch (attributeID) {
     case 15:
-        return (s32)partyParam->slp_heal;
+        return (s32)partyParam->healSleep;
     case 16:
-        return (s32)partyParam->psn_heal;
+        return (s32)partyParam->healPoison;
     case 17:
-        return (s32)partyParam->brn_heal;
+        return (s32)partyParam->healBurn;
     case 18:
-        return (s32)partyParam->frz_heal;
+        return (s32)partyParam->healFreeze;
     case 19:
-        return (s32)partyParam->prz_heal;
+        return (s32)partyParam->healParalysis;
     case 20:
-        return (s32)partyParam->cfs_heal;
+        return (s32)partyParam->healConfusion;
     case 21:
-        return (s32)partyParam->inf_heal;
+        return (s32)partyParam->healAttract;
     case 22:
-        return (s32)partyParam->guard_spec;
+        return (s32)partyParam->guardSpec;
     case 23:
         return (s32)partyParam->revive;
     case 24:
-        return (s32)partyParam->revive_all;
+        return (s32)partyParam->reviveAll;
     case 25:
-        return (s32)partyParam->level_up;
+        return (s32)partyParam->levelUp;
     case 26:
         return (s32)partyParam->evolve;
     case 27:
-        return (s32)partyParam->atk_stages;
+        return (s32)partyParam->atkStages;
     case 28:
-        return (s32)partyParam->def_stages;
+        return (s32)partyParam->defStages;
     case 29:
-        return (s32)partyParam->spatk_stages;
+        return (s32)partyParam->spatkStages;
     case 30:
-        return (s32)partyParam->spdef_stages;
+        return (s32)partyParam->spdefStages;
     case 31:
-        return (s32)partyParam->speed_stages;
+        return (s32)partyParam->speedStages;
     case 32:
-        return (s32)partyParam->accuracy_stages;
+        return (s32)partyParam->accStages;
     case 33:
-        return (s32)partyParam->critrate_stages;
+        return (s32)partyParam->critStages;
     case 34:
-        return (s32)partyParam->pp_up;
+        return (s32)partyParam->ppUp;
     case 35:
-        return (s32)partyParam->pp_max;
+        return (s32)partyParam->ppMax;
     case 36:
-        return (s32)partyParam->pp_restore;
+        return (s32)partyParam->ppRestore;
     case 37:
-        return (s32)partyParam->pp_restore_all;
+        return (s32)partyParam->ppRestoreAll;
     case 38:
-        return (s32)partyParam->hp_restore;
+        return (s32)partyParam->hpRestore;
     case 39:
-        return (s32)partyParam->hp_ev_up;
+        return (s32)partyParam->giveHPEVs;
     case 40:
-        return (s32)partyParam->atk_ev_up;
+        return (s32)partyParam->giveAtkEVs;
     case 41:
-        return (s32)partyParam->def_ev_up;
+        return (s32)partyParam->giveDefEVs;
     case 42:
-        return (s32)partyParam->speed_ev_up;
+        return (s32)partyParam->giveSpeedEVs;
     case 43:
-        return (s32)partyParam->spatk_ev_up;
+        return (s32)partyParam->giveSpAtkEVs;
     case 44:
-        return (s32)partyParam->spdef_ev_up;
+        return (s32)partyParam->giveSpDefEVs;
     case 45:
-        return (s32)partyParam->friendship_mod_lo;
+        return (s32)partyParam->giveFriendshipLow;
     case 46:
-        return (s32)partyParam->friendship_mod_med;
+        return (s32)partyParam->giveFriendshipMed;
     case 47:
-        return (s32)partyParam->friendship_mod_hi;
+        return (s32)partyParam->giveFriendshipHigh;
     case 48:
-        return (s32)partyParam->hp_ev_up_param;
+        return (s32)partyParam->hpEVs;
     case 49:
-        return (s32)partyParam->atk_ev_up_param;
+        return (s32)partyParam->atkEVs;
     case 50:
-        return (s32)partyParam->def_ev_up_param;
+        return (s32)partyParam->defEVs;
     case 51:
-        return (s32)partyParam->speed_ev_up_param;
+        return (s32)partyParam->speedEVs;
     case 52:
-        return (s32)partyParam->spatk_ev_up_param;
+        return (s32)partyParam->spatkEVs;
     case 53:
-        return (s32)partyParam->spdef_ev_up_param;
+        return (s32)partyParam->spdefEVs;
     case 54:
-        return (s32)partyParam->hp_restore_param;
+        return (s32)partyParam->hpRestored;
     case 55:
-        return (s32)partyParam->pp_restore_param;
+        return (s32)partyParam->ppRestored;
     case 56:
-        return (s32)partyParam->friendship_mod_lo_param;
+        return (s32)partyParam->friendshipLow;
     case 57:
-        return (s32)partyParam->friendship_mod_med_param;
+        return (s32)partyParam->friendshipMed;
     case 58:
-        return (s32)partyParam->friendship_mod_hi_param;
+        return (s32)partyParam->friendshipHigh;
     }
 
     return 0;
