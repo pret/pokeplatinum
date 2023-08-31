@@ -920,7 +920,7 @@ static void ov13_02222E2C (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     u32 v4;
 
     v1 = &param0->unk_206C[param1];
-    v3 = MoveTable_LoadAttribute(param2, 10);
+    v3 = MoveTable_LoadAttribute(param2, MOVEATTRIBUTE_CONTEST_EFFECT);
     v4 = sub_0209577C(v3);
     v0 = sub_0200B144(0, 26, 210, param0->unk_00->unk_0C);
     v2 = sub_0200B1EC(v0, v4);
@@ -1400,7 +1400,7 @@ static void ov13_02223B74 (UnkStruct_ov13_022213F0 * param0)
     {
         UnkStruct_ov13_022236B8 v2;
 
-        v2.unk_02 = MoveTable_LoadAttribute(param0->unk_00->unk_24, 5);
+        v2.unk_02 = MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_PP);
         v2.unk_03 = v2.unk_02;
 
         ov13_0222317C(param0, &v2, 5);
@@ -1444,13 +1444,13 @@ static void ov13_02223C9C (UnkStruct_ov13_022213F0 * param0)
         ov13_02222EF8(param0, 10, v0->unk_05);
         ov13_02222F74(param0, 3, v0->unk_02, v0->unk_03);
     } else {
-        u32 v1 = MoveTable_LoadAttribute(param0->unk_00->unk_24, 5);
+        u32 v1 = MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_PP);
 
         ov13_022220CC(param0, param0->unk_00->unk_24, 1, Unk_ov13_02228EB0[4], 0, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))));
         ov13_02222DCC(param0, 8, param0->unk_00->unk_24);
-        ov13_02222BB4(param0, 6, MoveTable_LoadAttribute(param0->unk_00->unk_24, 4));
-        ov13_02222CE4(param0, 7, MoveTable_LoadAttribute(param0->unk_00->unk_24, 2));
-        ov13_02222EF8(param0, 10, MoveTable_LoadAttribute(param0->unk_00->unk_24, 1));
+        ov13_02222BB4(param0, 6, MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_ACCURACY));
+        ov13_02222CE4(param0, 7, MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_POWER));
+        ov13_02222EF8(param0, 10, MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_CLASS));
         ov13_02222F74(param0, 3, v1, v1);
     }
 
@@ -1531,7 +1531,7 @@ static void ov13_02223F7C (UnkStruct_ov13_022213F0 * param0)
         ov13_02222E2C(param0, 5, v2->unk_00);
         ov13_02222F74(param0, 3, v2->unk_02, v2->unk_03);
     } else {
-        u32 v3 = MoveTable_LoadAttribute(param0->unk_00->unk_24, 5);
+        u32 v3 = MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_PP);
 
         ov13_022220CC(param0, param0->unk_00->unk_24, 1, Unk_ov13_02228EB0[4], 0, 0, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))));
         ov13_02222E2C(param0, 5, param0->unk_00->unk_24);

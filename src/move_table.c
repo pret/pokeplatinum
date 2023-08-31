@@ -27,7 +27,7 @@ u8 MoveTable_CalcMaxPP(u16 move, u8 ppUps)
         ppUps = 3;
     }
 
-    u8 pp = MoveTable_LoadAttribute(move, 5);
+    u8 pp = MoveTable_LoadAttribute(move, MOVEATTRIBUTE_PP);
     pp += (pp * 20 * ppUps) / 100;
 
     return pp;
