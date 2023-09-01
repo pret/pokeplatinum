@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02071CFC_H
 #define POKEPLATINUM_UNK_02071CFC_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "strbuf.h"
 
 u32 sub_02071CFC(MessageLoader * param0, const int param1, Strbuf *param2);

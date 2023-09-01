@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -15,7 +15,7 @@
 #include "overlay104/struct_ov104_0223C4CC.h"
 
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"

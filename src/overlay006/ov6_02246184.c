@@ -10,7 +10,7 @@
 #include "overlay006/struct_ov6_02246254.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"

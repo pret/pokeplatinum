@@ -5,7 +5,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203A790_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_02005474.h"
 #include "game_overlay.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"

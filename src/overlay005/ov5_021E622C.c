@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_02017038.h"

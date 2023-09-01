@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_defs/pokemon.h"
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
@@ -17,7 +17,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

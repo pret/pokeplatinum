@@ -20,7 +20,7 @@
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"

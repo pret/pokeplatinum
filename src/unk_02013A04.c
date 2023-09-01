@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_02013A04.h"
 #include "heap.h"
 #include "strbuf.h"

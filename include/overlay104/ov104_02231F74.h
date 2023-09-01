@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV104_02231F74_H
 #define POKEPLATINUM_OV104_02231F74_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"

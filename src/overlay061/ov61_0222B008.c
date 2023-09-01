@@ -24,7 +24,7 @@
 #include "overlay062/struct_ov62_0223D518_sub1_sub1.h"
 #include "overlay062/struct_ov62_02241130.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"

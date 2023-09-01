@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV94_022414B8_H
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02026324_decl.h"

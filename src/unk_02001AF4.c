@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -16,7 +16,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_020149F0.h"

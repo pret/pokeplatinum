@@ -16,7 +16,7 @@
 
 #include "unk_020021B0.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"

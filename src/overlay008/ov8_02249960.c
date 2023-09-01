@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02027860_decl.h"
@@ -31,7 +31,7 @@
 #include "overlay008/struct_ov8_02249FB8.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "heap.h"

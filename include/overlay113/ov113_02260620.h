@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV113_02260620_H
 #define POKEPLATINUM_OV113_02260620_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"

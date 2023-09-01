@@ -3,7 +3,7 @@
 
 #include "struct_defs/box_pokemon.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02073C2C.h"

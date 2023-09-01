@@ -3,7 +3,7 @@
 
 #include "assert.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -21,7 +21,7 @@
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"

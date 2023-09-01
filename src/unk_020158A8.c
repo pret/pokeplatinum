@@ -5,7 +5,7 @@
 
 #include "struct_defs/struct_020158A8.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_020158A8.h"
 #include "heap.h"
 #include "strbuf.h"

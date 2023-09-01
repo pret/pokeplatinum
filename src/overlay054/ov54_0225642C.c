@@ -17,7 +17,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02002B7C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

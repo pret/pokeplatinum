@@ -34,7 +34,7 @@ pokeplatinum_c = files(
     'unk_0200A328.c',
     'unk_0200A784.c',
     'unk_0200A9DC.c',
-    'unk_0200AC5C.c',
+    'message.c',
     'unk_0200B29C.c',
     'unk_0200B358.c',
     'unk_0200C440.c',

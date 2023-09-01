@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_020158A8_H
 #define POKEPLATINUM_STRUCT_020158A8_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "strbuf.h"
 
 typedef struct {

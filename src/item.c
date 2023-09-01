@@ -6,9 +6,9 @@
 
 #include "struct_defs/struct_0207CDEC.h"
 
-#include "unk_0200AC5C.h"
 #include "heap.h"
 #include "item.h"
+#include "message.h"
 #include "narc.h"
 #include "strbuf.h"
 

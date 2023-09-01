@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
@@ -32,7 +32,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
 #include "unk_02017728.h"

@@ -11,7 +11,7 @@
 #include "overlay006/battle_params.h"
 
 #include "unk_02002B7C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_02017728.h"
 #include "heap.h"
 #include "strbuf.h"

@@ -24,7 +24,7 @@
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 #include "struct_defs/struct_0203E724_t.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "strbuf.h"
 #include "unk_0202440C.h"

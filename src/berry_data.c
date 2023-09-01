@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "berry_data.h"
 #include "strbuf.h"
 

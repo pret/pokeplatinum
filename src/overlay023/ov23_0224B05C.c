@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"

@@ -58,7 +58,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"

@@ -20,7 +20,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"

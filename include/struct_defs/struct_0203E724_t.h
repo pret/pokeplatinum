@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0203E724_T_H
 #define POKEPLATINUM_STRUCT_0203E724_T_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "functypes/funcptr_0203E724.h"
 

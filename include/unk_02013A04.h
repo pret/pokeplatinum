@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02013A04_H
 #define POKEPLATINUM_UNK_02013A04_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "strbuf.h"
 

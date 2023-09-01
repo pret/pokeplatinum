@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02090800_H
 #define POKEPLATINUM_STRUCT_02090800_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02090800_sub1.h"

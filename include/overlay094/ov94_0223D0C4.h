@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV94_0223D0C4_H
 #define POKEPLATINUM_OV94_0223D0C4_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/pokemon.h"

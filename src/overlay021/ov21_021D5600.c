@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "error_handling.h"
 #include "strbuf.h"

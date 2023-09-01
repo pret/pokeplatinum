@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013BE0_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -32,7 +32,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"

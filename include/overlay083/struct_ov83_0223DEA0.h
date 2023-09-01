@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV83_0223DEA0_H
 #define POKEPLATINUM_STRUCT_OV83_0223DEA0_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 

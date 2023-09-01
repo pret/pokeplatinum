@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
@@ -23,7 +23,7 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "unk_020244AC.h"

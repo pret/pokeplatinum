@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV19_021D0D80_H
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"

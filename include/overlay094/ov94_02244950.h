@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV94_02244950_H
 #define POKEPLATINUM_OV94_02244950_H
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay094/struct_ov94_0223FD4C_decl.h"

@@ -27,7 +27,7 @@
 #include "overlay006/struct_ov6_02240D5C_sub1.h"
 
 #include "unk_020021B0.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0201378C.h"
 #include "heap.h"
 #include "strbuf.h"

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
@@ -19,7 +19,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"

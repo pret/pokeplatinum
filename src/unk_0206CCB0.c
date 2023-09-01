@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
@@ -35,7 +35,7 @@
 #include "struct_defs/struct_0206C638.h"
 
 #include "unk_020021B0.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

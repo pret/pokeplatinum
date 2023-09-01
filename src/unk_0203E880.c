@@ -24,7 +24,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_0201D15C.h"

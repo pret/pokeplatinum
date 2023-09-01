@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_0200AC5C.h"
-#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 
@@ -16,6 +14,8 @@
 #include "overlay104/struct_ov104_0224028C.h"
 
 #include "heap.h"
+#include "message.h"
+#include "strbuf.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E68.h"
 #include "unk_020329E0.h"

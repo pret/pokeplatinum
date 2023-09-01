@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_0200AC5C_H
-#define POKEPLATINUM_UNK_0200AC5C_H
+#ifndef POKEPLATINUM_MESSAGE_FORMAT_H
+#define POKEPLATINUM_MESSAGE_FORMAT_H
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "strbuf.h"
@@ -46,4 +46,4 @@ u32 MessageLoader_MessageCount(const MessageLoader * param0);
 void MessageLoader_Get(const MessageLoader * param0, u32 param1, u16 * param2);
 void MessageLoader_GetSpeciesName(u32 param0, u32 param1, u16 * param2);
 
-#endif // POKEPLATINUM_UNK_0200AC5C_H
+#endif // POKEPLATINUM_MESSAGE_FORMAT_H
