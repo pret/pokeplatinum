@@ -2,14 +2,14 @@
 	.include "include/sb_serverbrowsing.inc"
 
 	
-	.extern Unk_ov4_0221AE50
+	.extern __GSIACResult
 
-	.extern Unk_ov4_02219B38
+	.extern qr2_registered_key_list
 	.text
 
 
-	arm_func_start ov4_021FE890
-ov4_021FE890: ; 0x021FE890
+	arm_func_start ListCallback
+ListCallback: ; 0x021FE890
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	mov r5, r2
@@ -57,7 +57,7 @@ _021FE92C:
 	mov r0, r4
 	mov r1, r5
 	mov r2, #0
-	bl ov4_021FDB80
+	bl SBQueryEngineUpdateServer
 	b _021FEA14
 _021FE940:
 	ldrb r0, [r5, #0x14]
@@ -80,7 +80,7 @@ _021FE974:
 	beq _021FE98C
 	mov r0, r4
 	mov r1, r5
-	bl ov4_021FE080
+	bl SBQueryEngineRemoveServerFromFIFOs
 _021FE98C:
 	ldr r3, [r4, #0x634]
 	ldr ip, [r4, #0x630]
@@ -93,10 +93,10 @@ _021FE9A8:
 	ldr r1, [r4, #0x620]
 	cmp r1, #0
 	beq _021FE9B8
-	bl ov4_021FFDE0
+	bl SBServerListDisconnect
 _021FE9B8:
 	ldr r0, [r6, #4]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	ldrne r0, [r4, #0x10]
 	cmpne r0, #0
@@ -119,7 +119,7 @@ _021FE9EC:
 _021FEA08:
 	ldr r1, [r4, #0x4ec]
 	mov r0, r4
-	bl ov4_021FDB30
+	bl SBQueryEngineSetPublicIP
 _021FEA14:
 	cmp r5, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -134,10 +134,10 @@ _021FEA14:
 	moveq r0, #0
 	streq r0, [r4, #0x628]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021FE890
+	arm_func_end ListCallback
 
-	arm_func_start ov4_021FEA48
-ov4_021FEA48: ; 0x021FEA48
+	arm_func_start EngineCallback
+EngineCallback: ; 0x021FEA48
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r2
 	mov r4, r3
@@ -182,7 +182,7 @@ _021FEAB4:
 	moveq r0, #0
 	streq r0, [r4, #0x628]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FEA48
+	arm_func_end EngineCallback
 
 	arm_func_start ServerBrowserNewA
 ServerBrowserNewA: ; 0x021FEAE8
@@ -216,7 +216,7 @@ _021FEB24:
 	str r0, [r4, #0x624]
 	ldr r1, [sp, #0x30]
 	str r5, [sp]
-	ldr r0, _021FEBB4 ; =ov4_021FE890
+	ldr r0, _021FEBB4 ; =ListCallback
 	str r1, [sp, #4]
 	str r0, [sp, #8]
 	mov r1, r8
@@ -224,23 +224,23 @@ _021FEB24:
 	mov r3, r6
 	add r0, r4, #0x4c
 	str r4, [sp, #0xc]
-	bl ov4_021FF4DC
-	ldr r0, _021FEBB8 ; =ov4_021FEA48
+	bl SBServerListInit
+	ldr r0, _021FEBB8 ; =EngineCallback
 	ldr r1, [sp, #0x28]
 	str r0, [sp]
 	ldr r2, [sp, #0x2c]
 	ldr r3, [sp, #0x30]
 	mov r0, r4
 	str r4, [sp, #4]
-	bl ov4_021FDABC
+	bl SBQueryEngineInit
 	mov r0, r4
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FEBAC: .word Unk_ov4_0221AE50
+_021FEBAC: .word __GSIACResult
 _021FEBB0: .word 0x00000638
-_021FEBB4: .word ov4_021FE890
-_021FEBB8: .word ov4_021FEA48
+_021FEBB4: .word ListCallback
+_021FEBB8: .word EngineCallback
 	arm_func_end ServerBrowserNewA
 
 	arm_func_start ServerBrowserFree
@@ -248,16 +248,16 @@ ServerBrowserFree: ; 0x021FEBBC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0x4c
-	bl ov4_021FFE44
+	bl SBServerListCleanup
 	mov r0, r4
-	bl ov4_021FDB54
+	bl SBEngineCleanup
 	mov r0, r4
 	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
 	arm_func_end ServerBrowserFree
 
-	arm_func_start ov4_021FEBE0
-ov4_021FEBE0: ; 0x021FEBE0
+	arm_func_start ServerBrowserBeginUpdate2
+ServerBrowserBeginUpdate2: ; 0x021FEBE0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x108
 	ldr r8, [sp, #0x130]
@@ -299,7 +299,7 @@ _021FEC40:
 	add r5, r5, r0
 	ldrb r1, [sb, r6]
 	mov r0, sl
-	bl ov4_021FE060
+	bl SBQueryEngineAddQueryKey
 	add r6, r6, #1
 	cmp r6, r8
 	blt _021FEC40
@@ -310,7 +310,7 @@ _021FEC8C:
 	add r1, sp, #8
 	add r0, sl, #0x4c
 	str r4, [sp]
-	bl ov4_021FFAC8
+	bl SBServerListConnectAndQuery
 	cmp r0, #0
 	addne sp, sp, #0x108
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -322,7 +322,7 @@ _021FEC8C:
 	b _021FECDC
 _021FECCC:
 	mov r0, r4
-	bl ov4_021EA898
+	bl msleep
 	mov r0, sl
 	bl ServerBrowserThink
 _021FECDC:
@@ -338,9 +338,9 @@ _021FECDC:
 	add sp, sp, #0x108
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_021FED08: .word Unk_ov4_02219B38
+_021FED08: .word qr2_registered_key_list
 _021FED0C: .word Unk_ov4_02219FA8
-	arm_func_end ov4_021FEBE0
+	arm_func_end ServerBrowserBeginUpdate2
 
 	arm_func_start ServerBrowserLimitUpdateA
 ServerBrowserLimitUpdateA: ; 0x021FED10
@@ -354,7 +354,7 @@ ServerBrowserLimitUpdateA: ; 0x021FED10
 	ldr ip, [sp, #0x20]
 	str lr, [sp, #8]
 	str ip, [sp, #0xc]
-	bl ov4_021FEBE0
+	bl ServerBrowserBeginUpdate2
 	add sp, sp, #0x10
 	ldmia sp!, {r3, pc}
 	arm_func_end ServerBrowserLimitUpdateA
@@ -380,7 +380,7 @@ ServerBrowserSendMessageToServerA: ; 0x021FED44
 	mov r3, r4
 	add r0, r5, #0x4c
 	mov r2, r2, lsr #0x10
-	bl ov4_022011B4
+	bl SBSendMessageToServer
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	arm_func_end ServerBrowserSendMessageToServerA
@@ -403,7 +403,7 @@ ServerBrowserSendNatNegotiateCookieToServerA: ; 0x021FED9C
 	mov r3, r4
 	add r0, r5, #0x4c
 	mov r2, r2, lsr #0x10
-	bl ov4_022012DC
+	bl SBSendNatNegotiateCookieToServer
 	ldmia sp!, {r4, r5, r6, pc}
 	arm_func_end ServerBrowserSendNatNegotiateCookieToServerA
 
@@ -412,13 +412,13 @@ ServerBrowserRemoveServer: ; 0x021FEDE4
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0x4c
-	bl ov4_021FF180
+	bl SBServerListFindServer
 	mov r1, r0
 	mvn r0, #0
 	cmp r1, r0
 	ldmeqia sp!, {r4, pc}
 	add r0, r4, #0x4c
-	bl ov4_021FF278
+	bl SBServerListRemoveAt
 	ldmia sp!, {r4, pc}
 	arm_func_end ServerBrowserRemoveServer
 
@@ -426,30 +426,30 @@ ServerBrowserRemoveServer: ; 0x021FEDE4
 ServerBrowserThink: ; 0x021FEE10
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_021FE000
+	bl SBQueryEngineThink
 	add r0, r4, #0x4c
-	bl ov4_022014B8
+	bl SBListThink
 	ldmia sp!, {r4, pc}
 	arm_func_end ServerBrowserThink
 
-	arm_func_start ov4_021FEE28
-ov4_021FEE28: ; 0x021FEE28
+	arm_func_start ServerBrowserHalt
+ServerBrowserHalt: ; 0x021FEE28
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	add r0, r4, #0x4c
-	bl ov4_021FFDE0
+	bl SBServerListDisconnect
 	mov r0, r4
-	bl ov4_021FDB38
+	bl SBEngineHaltUpdates
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FEE28
+	arm_func_end ServerBrowserHalt
 
 	arm_func_start ServerBrowserClear
 ServerBrowserClear: ; 0x021FEE44
 	stmfd sp!, {r4, lr}
 	mov r4, r0
-	bl ov4_021FEE28
+	bl ServerBrowserHalt
 	add r0, r4, #0x4c
-	bl ov4_021FF340
+	bl SBServerListClear
 	ldmia sp!, {r4, pc}
 	arm_func_end ServerBrowserClear
 
@@ -472,29 +472,29 @@ ServerBrowserState: ; 0x021FEE5C
 
 	arm_func_start ServerBrowserGetServer
 ServerBrowserGetServer: ; 0x021FEE90
-	ldr ip, _021FEE9C ; =ov4_021FF2D4
+	ldr ip, _021FEE9C ; =SBServerListNth
 	add r0, r0, #0x4c
 	bx ip
 	; .align 2, 0
-_021FEE9C: .word ov4_021FF2D4
+_021FEE9C: .word SBServerListNth
 	arm_func_end ServerBrowserGetServer
 
 	arm_func_start ServerBrowserCount
 ServerBrowserCount: ; 0x021FEEA0
-	ldr ip, _021FEEAC ; =ov4_021FF2C4
+	ldr ip, _021FEEAC ; =SBServerListCount
 	add r0, r0, #0x4c
 	bx ip
 	; .align 2, 0
-_021FEEAC: .word ov4_021FF2C4
+_021FEEAC: .word SBServerListCount
 	arm_func_end ServerBrowserCount
 
 	arm_func_start ServerBrowserSortA
 ServerBrowserSortA: ; 0x021FEEB0
-	ldr ip, _021FEEBC ; =ov4_021FF0CC
+	ldr ip, _021FEEBC ; =SBServerListSort
 	add r0, r0, #0x4c
 	bx ip
 	; .align 2, 0
-_021FEEBC: .word ov4_021FF0CC
+_021FEEBC: .word SBServerListSort
 	arm_func_end ServerBrowserSortA
 
 	arm_func_start ServerBrowserGetMyPublicIPAddr

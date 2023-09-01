@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021EA1FC
-ov4_021EA1FC: ; 0x021EA1FC
+	arm_func_start TableNew
+TableNew: ; 0x021EA1FC
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	ldr ip, [sp, #0x10]
@@ -15,13 +15,13 @@ ov4_021EA1FC: ; 0x021EA1FC
 	mov r3, r2
 	mov r2, #4
 	str ip, [sp, #4]
-	bl ov4_021EA224
+	bl TableNew2
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021EA1FC
+	arm_func_end TableNew
 
-	arm_func_start ov4_021EA224
-ov4_021EA224: ; 0x021EA224
+	arm_func_start TableNew2
+TableNew2: ; 0x021EA224
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	movs r7, r3
 	mov sl, r0
@@ -88,7 +88,7 @@ _021EA304:
 	mov r0, sl
 	mov r1, r8
 	mov r2, r6
-	bl ov4_021E9A8C
+	bl ArrayNew
 	ldr r1, [r4, #0]
 	str r0, [r1, r5, lsl #2]
 	add r5, r5, #1
@@ -111,10 +111,10 @@ _021EA354: .word Unk_ov4_0221789C
 _021EA358: .word Unk_ov4_022178A8
 _021EA35C: .word Unk_ov4_022178B4
 _021EA360: .word Unk_ov4_022178BC
-	arm_func_end ov4_021EA224
+	arm_func_end TableNew2
 
-	arm_func_start ov4_021EA364
-ov4_021EA364: ; 0x021EA364
+	arm_func_start TableFree
+TableFree: ; 0x021EA364
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	bne _021EA384
@@ -133,7 +133,7 @@ _021EA384:
 _021EA39C:
 	ldr r0, [r5, #0]
 	ldr r0, [r0, r4, lsl #2]
-	bl ov4_021E9B50
+	bl ArrayFree
 	ldr r0, [r5, #4]
 	add r4, r4, #1
 	cmp r4, r0
@@ -148,10 +148,10 @@ _021EA3B8:
 _021EA3CC: .word Unk_ov4_022178B4
 _021EA3D0: .word Unk_ov4_02217888
 _021EA3D4: .word Unk_ov4_02217824
-	arm_func_end ov4_021EA364
+	arm_func_end TableFree
 
-	arm_func_start ov4_021EA3D8
-ov4_021EA3D8: ; 0x021EA3D8
+	arm_func_start TableCount
+TableCount: ; 0x021EA3D8
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r5, #0
@@ -172,7 +172,7 @@ _021EA3FC:
 _021EA418:
 	ldr r0, [r6, #0]
 	ldr r0, [r0, r4, lsl #2]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r1, [r6, #4]
 	add r4, r4, #1
 	cmp r4, r1
@@ -185,10 +185,10 @@ _021EA438:
 _021EA440: .word Unk_ov4_022178B4
 _021EA444: .word Unk_ov4_02217888
 _021EA448: .word Unk_ov4_0221783C
-	arm_func_end ov4_021EA3D8
+	arm_func_end TableCount
 
-	arm_func_start ov4_021EA44C
-ov4_021EA44C: ; 0x021EA44C
+	arm_func_start TableEnter
+TableEnter: ; 0x021EA44C
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	movs r6, r0
@@ -214,7 +214,7 @@ _021EA474:
 	ldr r0, [r1, r4, lsl #2]
 	ldr r2, [r6, #0x10]
 	mov r1, r5
-	bl ov4_021E9F18
+	bl ArraySearch
 	mov r2, r0
 	mvn r0, #0
 	cmp r2, r0
@@ -222,22 +222,22 @@ _021EA474:
 	mov r1, r5
 	bne _021EA4D8
 	ldr r0, [r0, r4, lsl #2]
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 _021EA4D8:
 	ldr r0, [r0, r4, lsl #2]
-	bl ov4_021E9E98
+	bl ArrayReplaceAt
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _021EA4E8: .word Unk_ov4_022178B4
 _021EA4EC: .word Unk_ov4_02217888
 _021EA4F0: .word Unk_ov4_02217830
-	arm_func_end ov4_021EA44C
+	arm_func_end TableEnter
 
-	arm_func_start ov4_021EA4F4
-ov4_021EA4F4: ; 0x021EA4F4
+	arm_func_start TableRemove
+TableRemove: ; 0x021EA4F4
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	movs r6, r0
@@ -264,7 +264,7 @@ _021EA51C:
 	ldr r0, [r1, r4, lsl #2]
 	ldr r2, [r6, #0x10]
 	mov r1, r5
-	bl ov4_021E9F18
+	bl ArraySearch
 	mov r1, r0
 	mvn r0, #0
 	cmp r1, r0
@@ -273,7 +273,7 @@ _021EA51C:
 	ldmeqia sp!, {r3, r4, r5, r6, pc}
 	ldr r0, [r6, #0]
 	ldr r0, [r0, r4, lsl #2]
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	mov r0, #1
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
@@ -281,10 +281,10 @@ _021EA51C:
 _021EA58C: .word Unk_ov4_022178B4
 _021EA590: .word Unk_ov4_02217888
 _021EA594: .word Unk_ov4_02217848
-	arm_func_end ov4_021EA4F4
+	arm_func_end TableRemove
 
-	arm_func_start ov4_021EA598
-ov4_021EA598: ; 0x021EA598
+	arm_func_start TableLookup
+TableLookup: ; 0x021EA598
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #4
 	movs r6, r0
@@ -311,7 +311,7 @@ _021EA5C0:
 	ldr r0, [r1, r4, lsl #2]
 	ldr r2, [r6, #0x10]
 	mov r1, r5
-	bl ov4_021E9F18
+	bl ArraySearch
 	mov r1, r0
 	mvn r0, #0
 	cmp r1, r0
@@ -320,17 +320,17 @@ _021EA5C0:
 	ldmeqia sp!, {r3, r4, r5, r6, pc}
 	ldr r0, [r6, #0]
 	ldr r0, [r0, r4, lsl #2]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _021EA62C: .word Unk_ov4_022178B4
 _021EA630: .word Unk_ov4_02217888
 _021EA634: .word Unk_ov4_02217854
-	arm_func_end ov4_021EA598
+	arm_func_end TableLookup
 
-	arm_func_start ov4_021EA638
-ov4_021EA638: ; 0x021EA638
+	arm_func_start TableMap
+TableMap: ; 0x021EA638
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -362,7 +362,7 @@ _021EA698:
 	mov r1, r6
 	ldr r0, [r0, r4, lsl #2]
 	mov r2, r5
-	bl ov4_021E9FD0
+	bl ArrayMap
 	ldr r0, [r7, #4]
 	add r4, r4, #1
 	cmp r4, r0
@@ -373,10 +373,10 @@ _021EA6C0: .word Unk_ov4_022178B4
 _021EA6C4: .word Unk_ov4_02217888
 _021EA6C8: .word Unk_ov4_0221780C
 _021EA6CC: .word Unk_ov4_022178CC
-	arm_func_end ov4_021EA638
+	arm_func_end TableMap
 
-	arm_func_start ov4_021EA6D0
-ov4_021EA6D0: ; 0x021EA6D0
+	arm_func_start TableMapSafe
+TableMapSafe: ; 0x021EA6D0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r6, r1
 	mov r7, r0
@@ -397,7 +397,7 @@ _021EA708:
 	mov r1, r6
 	ldr r0, [r0, r4, lsl #2]
 	mov r2, r5
-	bl ov4_021EA03C
+	bl ArrayMapBackwards
 	ldr r0, [r7, #4]
 	add r4, r4, #1
 	cmp r4, r0
@@ -407,10 +407,10 @@ _021EA708:
 _021EA730: .word Unk_ov4_022178CC
 _021EA734: .word Unk_ov4_02217888
 _021EA738: .word Unk_ov4_02217860
-	arm_func_end ov4_021EA6D0
+	arm_func_end TableMapSafe
 
-	arm_func_start ov4_021EA73C
-ov4_021EA73C: ; 0x021EA73C
+	arm_func_start TableMapSafe2
+TableMapSafe2: ; 0x021EA73C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r6, r1
 	mov r7, r0
@@ -431,7 +431,7 @@ _021EA774:
 	mov r1, r6
 	ldr r0, [r0, r4, lsl #2]
 	mov r2, r5
-	bl ov4_021EA09C
+	bl ArrayMapBackwards2
 	cmp r0, #0
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
 	ldr r0, [r7, #4]
@@ -445,7 +445,7 @@ _021EA7A0:
 _021EA7A8: .word Unk_ov4_022178CC
 _021EA7AC: .word Unk_ov4_02217888
 _021EA7B0: .word Unk_ov4_02217870
-	arm_func_end ov4_021EA73C
+	arm_func_end TableMapSafe2
 
 	.data
 

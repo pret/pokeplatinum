@@ -5,4 +5,4 @@
 .public strlen
 .public _s32_div_f
 .public current_time
-.public ov4_021F7128
+.public gti2VerifyChallenge

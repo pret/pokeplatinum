@@ -5,8 +5,8 @@
 .public strlen
 .public DWCi_GsRealloc
 .public DWCi_GsFree
-.public ov4_021EAA74
+.public GSISocketSelect
 .public GOAGetLastError
-.public ov60_0221FE2C
-.public ov60_02220130
-.public ov60_02220B90
+.public ghiResizeBuffer
+.public ghiAppendDataToBuffer
+.public ghiDoSend

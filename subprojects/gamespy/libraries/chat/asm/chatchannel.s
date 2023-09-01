@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov66_0224B414
-ov66_0224B414: ; 0x0224B414
+	arm_func_start ciHashString
+ciHashString: ; 0x0224B414
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -54,10 +54,10 @@ _0224B4A4: .word Unk_ov66_02259818
 _0224B4A8: .word Unk_ov66_02259568
 _0224B4AC: .word Unk_ov66_02259828
 _0224B4B0: .word __lower_mapC
-	arm_func_end ov66_0224B414
+	arm_func_end ciHashString
 
-	arm_func_start ov66_0224B4B4
-ov66_0224B4B4: ; 0x0224B4B4
+	arm_func_start ciGetChannel
+ciGetChannel: ; 0x0224B4B4
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #0x1e4
 	ldr r2, _0224B4E8 ; =0x00000101
@@ -68,15 +68,15 @@ ov66_0224B4B4: ; 0x0224B4B4
 	strb r0, [sp, #0x100]
 	ldr r0, [r4, #0x80c]
 	add r1, sp, #0
-	bl ov4_021EA598
+	bl TableLookup
 	add sp, sp, #0x1e4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
 _0224B4E8: .word 0x00000101
-	arm_func_end ov66_0224B4B4
+	arm_func_end ciGetChannel
 
-	arm_func_start ov66_0224B4EC
-ov66_0224B4EC: ; 0x0224B4EC
+	arm_func_start ciChannelTableHashFn
+ciChannelTableHashFn: ; 0x0224B4EC
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -97,17 +97,17 @@ _0224B510:
 _0224B52C:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224B414
+	bl ciHashString
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0224B53C: .word Unk_ov66_02259838
 _0224B540: .word Unk_ov66_02259818
 _0224B544: .word Unk_ov66_022596FC
 _0224B548: .word Unk_ov66_02259848
-	arm_func_end ov66_0224B4EC
+	arm_func_end ciChannelTableHashFn
 
-	arm_func_start ov66_0224B54C
-ov66_0224B54C: ; 0x0224B54C
+	arm_func_start ciChannelTableCompareFn
+ciChannelTableCompareFn: ; 0x0224B54C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -189,10 +189,10 @@ _0224B65C: .word Unk_ov66_02259878
 _0224B660: .word Unk_ov66_02259888
 _0224B664: .word Unk_ov66_02259898
 _0224B668: .word Unk_ov66_022598A8
-	arm_func_end ov66_0224B54C
+	arm_func_end ciChannelTableCompareFn
 
-	arm_func_start ov66_0224B66C
-ov66_0224B66C: ; 0x0224B66C
+	arm_func_start ciChannelTableElementFreeFn
+ciChannelTableElementFreeFn: ; 0x0224B66C
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _0224B68C
@@ -207,16 +207,16 @@ _0224B68C:
 	ldr r0, [r4, #0x134]
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
-	bl ov4_021EA364
+	bl TableFree
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0224B6A8: .word Unk_ov66_02259838
 _0224B6AC: .word Unk_ov66_02259818
 _0224B6B0: .word Unk_ov66_022597F0
-	arm_func_end ov66_0224B66C
+	arm_func_end ciChannelTableElementFreeFn
 
-	arm_func_start ov66_0224B6B4
-ov66_0224B6B4: ; 0x0224B6B4
+	arm_func_start ciUserTableHashFn
+ciUserTableHashFn: ; 0x0224B6B4
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -237,17 +237,17 @@ _0224B6D8:
 _0224B6F4:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224B414
+	bl ciHashString
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0224B704: .word Unk_ov66_02259838
 _0224B708: .word Unk_ov66_02259818
 _0224B70C: .word Unk_ov66_02259614
 _0224B710: .word Unk_ov66_02259848
-	arm_func_end ov66_0224B6B4
+	arm_func_end ciUserTableHashFn
 
-	arm_func_start ov66_0224B714
-ov66_0224B714: ; 0x0224B714
+	arm_func_start ciUserTableCompareFn
+ciUserTableCompareFn: ; 0x0224B714
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -327,10 +327,10 @@ _0224B820: .word Unk_ov66_02259898
 _0224B824: .word Unk_ov66_02259888
 _0224B828: .word 0x00000103
 _0224B82C: .word Unk_ov66_022598A8
-	arm_func_end ov66_0224B714
+	arm_func_end ciUserTableCompareFn
 
-	arm_func_start ov66_0224B830
-ov66_0224B830: ; 0x0224B830
+	arm_func_start ciUserTableElementFreeFn
+ciUserTableElementFreeFn: ; 0x0224B830
 	stmfd sp!, {r3, lr}
 	cmp r0, #0
 	ldmneia sp!, {r3, pc}
@@ -345,22 +345,22 @@ _0224B854: .word Unk_ov66_02259838
 _0224B858: .word Unk_ov66_02259818
 _0224B85C: .word Unk_ov66_022597D4
 _0224B860: .word 0x0000010A
-	arm_func_end ov66_0224B830
+	arm_func_end ciUserTableElementFreeFn
 
-	arm_func_start ov66_0224B864
-ov66_0224B864: ; 0x0224B864
+	arm_func_start ciInitChannels
+ciInitChannels: ; 0x0224B864
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
-	ldr r1, _0224B8E0 ; =ov66_0224B54C
-	ldr ip, _0224B8E4 ; =ov66_0224B66C
+	ldr r1, _0224B8E0 ; =ciChannelTableCompareFn
+	ldr ip, _0224B8E4 ; =ciChannelTableElementFreeFn
 	str r1, [sp]
 	mov r4, r0
-	ldr r3, _0224B8E8 ; =ov66_0224B4EC
+	ldr r3, _0224B8E8 ; =ciChannelTableHashFn
 	mov r0, #0x1e4
 	mov r1, #7
 	mov r2, #2
 	str ip, [sp, #4]
-	bl ov4_021EA224
+	bl TableNew2
 	cmp r0, #0
 	str r0, [r4, #0x80c]
 	addeq sp, sp, #8
@@ -369,25 +369,25 @@ ov66_0224B864: ; 0x0224B864
 	mov r1, #0
 	mov r2, r1
 	mov r0, #0x1e4
-	bl ov4_021E9A8C
+	bl ArrayNew
 	cmp r0, #0
 	str r0, [r4, #0x810]
 	addne sp, sp, #8
 	movne r0, #1
 	ldmneia sp!, {r4, pc}
 	ldr r0, [r4, #0x80c]
-	bl ov4_021EA364
+	bl TableFree
 	mov r0, #0
 	add sp, sp, #8
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0224B8E0: .word ov66_0224B54C
-_0224B8E4: .word ov66_0224B66C
-_0224B8E8: .word ov66_0224B4EC
-	arm_func_end ov66_0224B864
+_0224B8E0: .word ciChannelTableCompareFn
+_0224B8E4: .word ciChannelTableElementFreeFn
+_0224B8E8: .word ciChannelTableHashFn
+	arm_func_end ciInitChannels
 
-	arm_func_start ov66_0224B8EC
-ov66_0224B8EC: ; 0x0224B8EC
+	arm_func_start ciCleanupChannels
+ciCleanupChannels: ; 0x0224B8EC
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _0224B90C
@@ -400,22 +400,22 @@ _0224B90C:
 	ldr r0, [r4, #0x80c]
 	cmp r0, #0
 	beq _0224B91C
-	bl ov4_021EA364
+	bl TableFree
 _0224B91C:
 	ldr r0, [r4, #0x810]
 	cmp r0, #0
 	ldmeqia sp!, {r4, pc}
-	bl ov4_021E9B50
+	bl ArrayFree
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _0224B930: .word Unk_ov66_022598B8
 _0224B934: .word Unk_ov66_02259818
 _0224B938: .word Unk_ov66_02259600
 _0224B93C: .word 0x00000127
-	arm_func_end ov66_0224B8EC
+	arm_func_end ciCleanupChannels
 
-	arm_func_start ov66_0224B940
-ov66_0224B940: ; 0x0224B940
+	arm_func_start ciChannelEntering
+ciChannelEntering: ; 0x0224B940
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0x1e4
 	movs r5, r0
@@ -447,7 +447,7 @@ _0224B980:
 	strb r0, [sp, #0x100]
 	ldr r0, [r5, #0x810]
 	add r1, sp, #0
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	add sp, sp, #0x1e4
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
@@ -455,18 +455,18 @@ _0224B9C0: .word Unk_ov66_022598B8
 _0224B9C4: .word Unk_ov66_02259818
 _0224B9C8: .word Unk_ov66_0225963C
 _0224B9CC: .word 0x00000101
-	arm_func_end ov66_0224B940
+	arm_func_end ciChannelEntering
 
-	arm_func_start ov66_0224B9D0
-ov66_0224B9D0: ; 0x0224B9D0
+	arm_func_start ciEnteringChannelComparator
+ciEnteringChannelComparator: ; 0x0224B9D0
 	ldr ip, _0224B9D8 ; =strcasecmp
 	bx ip
 	; .align 2, 0
 _0224B9D8: .word strcasecmp
-	arm_func_end ov66_0224B9D0
+	arm_func_end ciEnteringChannelComparator
 
-	arm_func_start ov66_0224B9DC
-ov66_0224B9DC: ; 0x0224B9DC
+	arm_func_start ciIsEnteringChannel
+ciIsEnteringChannel: ; 0x0224B9DC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	movs sl, r0
 	mov sb, r1
@@ -478,7 +478,7 @@ ov66_0224B9DC: ; 0x0224B9DC
 	bl __msl_assertion_failed
 _0224BA00:
 	ldr r0, [sl, #0x810]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r7, r0
 	cmp r7, #0
 	mov r6, #0
@@ -489,7 +489,7 @@ _0224BA00:
 _0224BA24:
 	ldr r0, [sl, #0x810]
 	mov r1, r6
-	bl ov4_021E9BC4
+	bl ArrayNth
 	movs r8, r0
 	bne _0224BA4C
 	ldr r3, _0224BA8C ; =0x00000153
@@ -517,10 +517,10 @@ _0224BA80: .word Unk_ov66_022596A0
 _0224BA84: .word 0x0000014D
 _0224BA88: .word Unk_ov66_022598C8
 _0224BA8C: .word 0x00000153
-	arm_func_end ov66_0224B9DC
+	arm_func_end ciIsEnteringChannel
 
-	arm_func_start ov66_0224BA90
-ov66_0224BA90: ; 0x0224BA90
+	arm_func_start ciChannelEntered
+ciChannelEntered: ; 0x0224BA90
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x1ec
 	movs r7, r0
@@ -602,15 +602,15 @@ _0224BB74:
 	bl strncpy
 	mov r0, #0
 	strb r0, [sp, #0x108]
-	ldr r1, _0224BC70 ; =ov66_0224B714
-	ldr r0, _0224BC74 ; =ov66_0224B830
+	ldr r1, _0224BC70 ; =ciUserTableCompareFn
+	ldr r0, _0224BC74 ; =ciUserTableElementFreeFn
 	str r1, [sp]
 	str r0, [sp, #4]
-	ldr r3, _0224BC78 ; =ov66_0224B6B4
+	ldr r3, _0224BC78 ; =ciUserTableHashFn
 	mov r0, #0xe0
 	mov r1, #0x3d
 	mov r2, #2
-	bl ov4_021EA224
+	bl TableNew2
 	str r0, [sp, #0x13c]
 	cmp r0, #0
 	addeq sp, sp, #0x1ec
@@ -622,19 +622,19 @@ _0224BB74:
 	strb r3, [sp, #0x16c]
 	str r3, [sp]
 	ldr r0, [r7, #0x810]
-	ldr r2, _0224BC7C ; =ov66_0224B9D0
+	ldr r2, _0224BC7C ; =ciEnteringChannelComparator
 	add r1, sp, #8
-	bl ov4_021E9F18
+	bl ArraySearch
 	mov r1, r0
 	mvn r0, #0
 	cmp r1, r0
 	beq _0224BC30
 	ldr r0, [r7, #0x810]
-	bl ov4_021E9DB0
+	bl ArrayRemoveAt
 _0224BC30:
 	ldr r0, [r7, #0x80c]
 	add r1, sp, #8
-	bl ov4_021EA44C
+	bl TableEnter
 	add sp, sp, #0x1ec
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -649,14 +649,14 @@ _0224BC60: .word Unk_ov66_022598F8
 _0224BC64: .word Unk_ov66_02259918
 _0224BC68: .word 0x00000163
 _0224BC6C: .word Unk_ov66_0225992C
-_0224BC70: .word ov66_0224B714
-_0224BC74: .word ov66_0224B830
-_0224BC78: .word ov66_0224B6B4
-_0224BC7C: .word ov66_0224B9D0
-	arm_func_end ov66_0224BA90
+_0224BC70: .word ciUserTableCompareFn
+_0224BC74: .word ciUserTableElementFreeFn
+_0224BC78: .word ciUserTableHashFn
+_0224BC7C: .word ciEnteringChannelComparator
+	arm_func_end ciChannelEntered
 
-	arm_func_start ov66_0224BC80
-ov66_0224BC80: ; 0x0224BC80
+	arm_func_start ciChannelLeft
+ciChannelLeft: ; 0x0224BC80
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x1e8
 	movs r5, r0
@@ -704,21 +704,21 @@ _0224BD0C:
 	strb r3, [sp, #0x104]
 	str r3, [sp]
 	ldr r0, [r5, #0x810]
-	ldr r2, _0224BD90 ; =ov66_0224B9D0
+	ldr r2, _0224BD90 ; =ciEnteringChannelComparator
 	add r1, sp, #4
-	bl ov4_021E9F18
+	bl ArraySearch
 	mov r1, r0
 	mvn r0, #0
 	cmp r1, r0
 	beq _0224BD58
 	ldr r0, [r5, #0x810]
-	bl ov4_021E9DB0
+	bl ArrayRemoveAt
 	add sp, sp, #0x1e8
 	ldmia sp!, {r3, r4, r5, pc}
 _0224BD58:
 	ldr r0, [r5, #0x80c]
 	add r1, sp, #4
-	bl ov4_021EA4F4
+	bl TableRemove
 	add sp, sp, #0x1e8
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
@@ -731,11 +731,11 @@ _0224BD80: .word 0x0000018B
 _0224BD84: .word Unk_ov66_022598E4
 _0224BD88: .word 0x00000101
 _0224BD8C: .word Unk_ov66_022598F8
-_0224BD90: .word ov66_0224B9D0
-	arm_func_end ov66_0224BC80
+_0224BD90: .word ciEnteringChannelComparator
+	arm_func_end ciChannelLeft
 
-	arm_func_start ov66_0224BD94
-ov66_0224BD94: ; 0x0224BD94
+	arm_func_start ciGetChannelCallbacks
+ciGetChannelCallbacks: ; 0x0224BD94
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -776,7 +776,7 @@ _0224BDF4:
 _0224BE1C:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	cmp r0, #0
 	moveq r0, #0
 	addne r0, r0, #0x104
@@ -791,10 +791,10 @@ _0224BE4C: .word 0x000001AB
 _0224BE50: .word Unk_ov66_022598E4
 _0224BE54: .word 0x00000101
 _0224BE58: .word Unk_ov66_022598F8
-	arm_func_end ov66_0224BD94
+	arm_func_end ciGetChannelCallbacks
 
-	arm_func_start ov66_0224BE5C
-ov66_0224BE5C: ; 0x0224BE5C
+	arm_func_start ciChannelListUsersMap
+ciChannelListUsersMap: ; 0x0224BE5C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -903,10 +903,10 @@ _0224BFD8: .word Unk_ov66_02259990
 _0224BFDC: .word 0x000001C7
 _0224BFE0: .word Unk_ov66_022599A4
 _0224BFE4: .word 0x000001D9
-	arm_func_end ov66_0224BE5C
+	arm_func_end ciChannelListUsersMap
 
-	arm_func_start ov66_0224BFE8
-ov66_0224BFE8: ; 0x0224BFE8
+	arm_func_start ciChannelListUsers
+ciChannelListUsers: ; 0x0224BFE8
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x18
 	movs r7, r0
@@ -958,7 +958,7 @@ _0224C07C:
 _0224C098:
 	mov r0, r7
 	mov r1, r6
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	cmp r0, #0
 	addeq sp, sp, #0x18
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -968,9 +968,9 @@ _0224C098:
 	str r1, [sp, #0x10]
 	str r1, [sp, #0x14]
 	ldr r0, [r0, #0x134]
-	ldr r1, _0224C130 ; =ov66_0224BE5C
+	ldr r1, _0224C130 ; =ciChannelListUsersMap
 	add r2, sp, #8
-	bl ov4_021EA638
+	bl TableMap
 	ldr r1, [sp, #0x14]
 	mov r0, r7
 	stmia sp, {r1, r4}
@@ -995,11 +995,11 @@ _0224C120: .word 0x00000101
 _0224C124: .word Unk_ov66_022598F8
 _0224C128: .word Unk_ov66_022599A8
 _0224C12C: .word 0x000001F3
-_0224C130: .word ov66_0224BE5C
-	arm_func_end ov66_0224BFE8
+_0224C130: .word ciChannelListUsersMap
+	arm_func_end ciChannelListUsers
 
-	arm_func_start ov66_0224C134
-ov66_0224C134: ; 0x0224C134
+	arm_func_start ciInChannel
+ciInChannel: ; 0x0224C134
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1012,7 +1012,7 @@ ov66_0224C134: ; 0x0224C134
 _0224C158:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	cmp r0, #0
 	moveq r0, #0
 	movne r0, #1
@@ -1022,10 +1022,10 @@ _0224C174: .word Unk_ov66_022598B8
 _0224C178: .word Unk_ov66_02259818
 _0224C17C: .word Unk_ov66_0225955C
 _0224C180: .word 0x0000020F
-	arm_func_end ov66_0224C134
+	arm_func_end ciInChannel
 
-	arm_func_start ov66_0224C184
-ov66_0224C184: ; 0x0224C184
+	arm_func_start ciGetChannelMode
+ciGetChannelMode: ; 0x0224C184
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r5, r1
@@ -1067,7 +1067,7 @@ _0224C1E8:
 _0224C210:
 	mov r0, r6
 	mov r1, r5
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	movs r1, r0
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -1090,10 +1090,10 @@ _0224C260: .word Unk_ov66_022598D4
 _0224C264: .word Unk_ov66_022598E4
 _0224C268: .word 0x00000101
 _0224C26C: .word Unk_ov66_022598F8
-	arm_func_end ov66_0224C184
+	arm_func_end ciGetChannelMode
 
-	arm_func_start ov66_0224C270
-ov66_0224C270: ; 0x0224C270
+	arm_func_start ciSetChannelMode
+ciSetChannelMode: ; 0x0224C270
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r5, r1
@@ -1135,7 +1135,7 @@ _0224C2D4:
 _0224C2FC:
 	mov r0, r6
 	mov r1, r5
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	cmp r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r1, #1
@@ -1155,10 +1155,10 @@ _0224C340: .word 0x00000235
 _0224C344: .word Unk_ov66_022598E4
 _0224C348: .word 0x00000101
 _0224C34C: .word Unk_ov66_022598F8
-	arm_func_end ov66_0224C270
+	arm_func_end ciSetChannelMode
 
-	arm_func_start ov66_0224C350
-ov66_0224C350: ; 0x0224C350
+	arm_func_start ciSetChannelPassword
+ciSetChannelPassword: ; 0x0224C350
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1200,7 +1200,7 @@ _0224C3B4:
 _0224C3DC:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	movs r5, r0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	ldr r0, [r5, #0x15c]
@@ -1229,10 +1229,10 @@ _0224C444: .word Unk_ov66_022598E4
 _0224C448: .word 0x00000101
 _0224C44C: .word Unk_ov66_022598F8
 _0224C450: .word Unk_ov66_0225992C
-	arm_func_end ov66_0224C350
+	arm_func_end ciSetChannelPassword
 
-	arm_func_start ov66_0224C454
-ov66_0224C454: ; 0x0224C454
+	arm_func_start ciJoinCallbackCalled
+ciJoinCallbackCalled: ; 0x0224C454
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1273,7 +1273,7 @@ _0224C4B4:
 _0224C4DC:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	cmp r0, #0
 	movne r1, #1
 	strne r1, [r0, #0x160]
@@ -1287,10 +1287,10 @@ _0224C508: .word 0x0000027A
 _0224C50C: .word Unk_ov66_022598E4
 _0224C510: .word 0x00000101
 _0224C514: .word Unk_ov66_022598F8
-	arm_func_end ov66_0224C454
+	arm_func_end ciJoinCallbackCalled
 
-	arm_func_start ov66_0224C518
-ov66_0224C518: ; 0x0224C518
+	arm_func_start ciWasJoinCallbackCalled
+ciWasJoinCallbackCalled: ; 0x0224C518
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1331,7 +1331,7 @@ _0224C578:
 _0224C5A0:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	cmp r0, #0
 	moveq r0, #0
 	ldrne r0, [r0, #0x160]
@@ -1345,10 +1345,10 @@ _0224C5CC: .word Unk_ov66_022598D4
 _0224C5D0: .word Unk_ov66_022598E4
 _0224C5D4: .word 0x00000101
 _0224C5D8: .word Unk_ov66_022598F8
-	arm_func_end ov66_0224C518
+	arm_func_end ciWasJoinCallbackCalled
 
-	arm_func_start ov66_0224C5DC
-ov66_0224C5DC: ; 0x0224C5DC
+	arm_func_start ciSetChannelTopic
+ciSetChannelTopic: ; 0x0224C5DC
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r6, r0
 	mov r4, r1
@@ -1390,7 +1390,7 @@ _0224C640:
 _0224C668:
 	mov r0, r6
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	movs r4, r0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r1, r5
@@ -1409,10 +1409,10 @@ _0224C6A8: .word Unk_ov66_022598D4
 _0224C6AC: .word Unk_ov66_022598E4
 _0224C6B0: .word 0x00000101
 _0224C6B4: .word Unk_ov66_022598F8
-	arm_func_end ov66_0224C5DC
+	arm_func_end ciSetChannelTopic
 
-	arm_func_start ov66_0224C6B8
-ov66_0224C6B8: ; 0x0224C6B8
+	arm_func_start ciGetChannelNumUsers
+ciGetChannelNumUsers: ; 0x0224C6B8
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -1453,12 +1453,12 @@ _0224C718:
 _0224C740:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	cmp r0, #0
 	mvneq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	ldr r0, [r0, #0x134]
-	bl ov4_021EA3D8
+	bl TableCount
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _0224C764: .word Unk_ov66_022598B8
@@ -1469,10 +1469,10 @@ _0224C774: .word 0x000002BE
 _0224C778: .word Unk_ov66_022598E4
 _0224C77C: .word 0x00000101
 _0224C780: .word Unk_ov66_022598F8
-	arm_func_end ov66_0224C6B8
+	arm_func_end ciGetChannelNumUsers
 
-	arm_func_start ov66_0224C784
-ov66_0224C784: ; 0x0224C784
+	arm_func_start ciUserEnteredChannel
+ciUserEnteredChannel: ; 0x0224C784
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0xe0
 	movs r7, r0
@@ -1543,7 +1543,7 @@ _0224C860:
 _0224C874:
 	mov r0, r7
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	movs r4, r0
 	addeq sp, sp, #0xe0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -1588,10 +1588,10 @@ _0224C91C:
 	str r5, [sp, #0xdc]
 	ldr r0, [r4, #0x134]
 	add r1, sp, #0
-	bl ov4_021EA44C
+	bl TableEnter
 	ldr r0, [r4, #0x134]
 	add r1, sp, #0
-	bl ov4_021EA598
+	bl TableLookup
 	cmp r0, #0
 	addne sp, sp, #0xe0
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
@@ -1616,10 +1616,10 @@ _0224C984: .word Unk_ov66_022598E4
 _0224C988: .word Unk_ov66_022599F4
 _0224C98C: .word Unk_ov66_02259A10
 _0224C990: .word 0x000002F7
-	arm_func_end ov66_0224C784
+	arm_func_end ciUserEnteredChannel
 
-	arm_func_start ov66_0224C994
-ov66_0224C994: ; 0x0224C994
+	arm_func_start ciUserLeftChannel
+ciUserLeftChannel: ; 0x0224C994
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0xe0
 	movs r6, r0
@@ -1678,7 +1678,7 @@ _0224CA3C:
 _0224CA5C:
 	mov r0, r6
 	mov r1, r4
-	bl ov66_0224B4B4
+	bl ciGetChannel
 	movs r4, r0
 	addeq sp, sp, #0xe0
 	ldmeqia sp!, {r4, r5, r6, pc}
@@ -1690,7 +1690,7 @@ _0224CA5C:
 	strb r0, [sp, #0x7f]
 	ldr r0, [r4, #0x134]
 	add r1, sp, #0
-	bl ov4_021EA4F4
+	bl TableRemove
 	add sp, sp, #0xe0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
@@ -1704,10 +1704,10 @@ _0224CAB8: .word Unk_ov66_02259A64
 _0224CABC: .word Unk_ov66_022598D4
 _0224CAC0: .word 0x00000301
 _0224CAC4: .word Unk_ov66_022598E4
-	arm_func_end ov66_0224C994
+	arm_func_end ciUserLeftChannel
 
-	arm_func_start ov66_0224CAC8
-ov66_0224CAC8: ; 0x0224CAC8
+	arm_func_start ciUserEnumChannelsMap
+ciUserEnumChannelsMap: ; 0x0224CAC8
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	mov r5, r1
@@ -1765,7 +1765,7 @@ _0224CB6C:
 _0224CB8C:
 	ldr r0, [r4, #0x134]
 	ldr r1, [r5, #4]
-	bl ov4_021EA598
+	bl TableLookup
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	ldr r3, [r5, #0xc]
@@ -1786,10 +1786,10 @@ _0224CBD4: .word 0x00000323
 _0224CBD8: .word Unk_ov66_02259AA8
 _0224CBDC: .word Unk_ov66_02259AC4
 _0224CBE0: .word 0x00000325
-	arm_func_end ov66_0224CAC8
+	arm_func_end ciUserEnumChannelsMap
 
-	arm_func_start ov66_0224CBE4
-ov66_0224CBE4: ; 0x0224CBE4
+	arm_func_start ciUserEnumChannels
+ciUserEnumChannels: ; 0x0224CBE4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0xf0
 	movs r7, r0
@@ -1850,9 +1850,9 @@ _0224CC90:
 	str r4, [sp, #0xc]
 	str r0, [sp, #4]
 	ldr r0, [r7, #0x80c]
-	ldr r1, _0224CCF8 ; =ov66_0224CAC8
+	ldr r1, _0224CCF8 ; =ciUserEnumChannelsMap
 	add r2, sp, #0
-	bl ov4_021EA638
+	bl TableMap
 	add sp, sp, #0xf0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -1865,11 +1865,11 @@ _0224CCE8: .word Unk_ov66_02259A54
 _0224CCEC: .word Unk_ov66_02259A64
 _0224CCF0: .word Unk_ov66_022599A8
 _0224CCF4: .word 0x00000339
-_0224CCF8: .word ov66_0224CAC8
-	arm_func_end ov66_0224CBE4
+_0224CCF8: .word ciUserEnumChannelsMap
+	arm_func_end ciUserEnumChannels
 
-	arm_func_start ov66_0224CCFC
-ov66_0224CCFC: ; 0x0224CCFC
+	arm_func_start ciUserChangeNickMap
+ciUserChangeNickMap: ; 0x0224CCFC
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xfc
 	movs r5, r0
@@ -1958,7 +1958,7 @@ _0224CE0C:
 _0224CE30:
 	ldr r0, [r5, #0x134]
 	ldr r1, [r4, #4]
-	bl ov4_021EA598
+	bl TableLookup
 	movs r6, r0
 	addeq sp, sp, #0xfc
 	ldmeqia sp!, {r3, r4, r5, r6, pc}
@@ -1968,7 +1968,7 @@ _0224CE30:
 	bl memcpy
 	ldr r0, [r5, #0x134]
 	mov r1, r6
-	bl ov4_021EA4F4
+	bl TableRemove
 	cmp r0, #0
 	bne _0224CE80
 	ldr r0, _0224CF48 ; =0x02259B8C
@@ -1985,10 +1985,10 @@ _0224CE80:
 	strb r0, [sp, #0x9b]
 	ldr r0, [r5, #0x134]
 	add r1, sp, #0x1c
-	bl ov4_021EA44C
+	bl TableEnter
 	ldr r0, [r4, #0]
 	mov r1, r5
-	bl ov66_0224C518
+	bl ciWasJoinCallbackCalled
 	cmp r0, #0
 	ldrne r0, [r5, #0x114]
 	cmpne r0, #0
@@ -2009,7 +2009,7 @@ _0224CE80:
 	ldr r0, [r4, #0]
 	ldr r2, [r5, #0x114]
 	mov r1, #8
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0xfc
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -2030,10 +2030,10 @@ _0224CF40: .word Unk_ov66_02259B4C
 _0224CF44: .word Unk_ov66_02259B68
 _0224CF48: .word Unk_ov66_02259B8C
 _0224CF4C: .word 0x00000367
-	arm_func_end ov66_0224CCFC
+	arm_func_end ciUserChangeNickMap
 
-	arm_func_start ov66_0224CF50
-ov66_0224CF50: ; 0x0224CF50
+	arm_func_start ciUserChangedNick
+ciUserChangedNick: ; 0x0224CF50
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xc
 	movs r6, r0
@@ -2104,9 +2104,9 @@ _0224D03C:
 	str r5, [sp, #4]
 	str r4, [sp, #8]
 	ldr r0, [r6, #0x80c]
-	ldr r1, _0224D08C ; =ov66_0224CCFC
+	ldr r1, _0224D08C ; =ciUserChangeNickMap
 	add r2, sp, #0
-	bl ov4_021EA638
+	bl TableMap
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
@@ -2121,11 +2121,11 @@ _0224D07C: .word Unk_ov66_02259BD8
 _0224D080: .word 0x00000389
 _0224D084: .word Unk_ov66_02259BE8
 _0224D088: .word Unk_ov66_02259BFC
-_0224D08C: .word ov66_0224CCFC
-	arm_func_end ov66_0224CF50
+_0224D08C: .word ciUserChangeNickMap
+	arm_func_end ciUserChangedNick
 
-	arm_func_start ov66_0224D090
-ov66_0224D090: ; 0x0224D090
+	arm_func_start ciUserChangedMode
+ciUserChangedMode: ; 0x0224D090
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x2e0
 	movs r8, r0
@@ -2202,7 +2202,7 @@ _0224D180:
 	strb r0, [sp, #0x1fc]
 	ldr r0, [r8, #0x80c]
 	add r1, sp, #0xfc
-	bl ov4_021EA598
+	bl TableLookup
 	movs r4, r0
 	addeq sp, sp, #0x2e0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2214,7 +2214,7 @@ _0224D180:
 	strb r0, [sp, #0x9b]
 	ldr r0, [r4, #0x134]
 	add r1, sp, #0x1c
-	bl ov4_021EA598
+	bl TableLookup
 	cmp r0, #0
 	addeq sp, sp, #0x2e0
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -2244,7 +2244,7 @@ _0224D180:
 	add r3, sp, #0x10
 	mov r0, r8
 	mov r1, #0xb
-	bl ov66_02248C2C
+	bl ciAddCallback_
 	add sp, sp, #0x2e0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
@@ -2262,10 +2262,10 @@ _0224D27C: .word Unk_ov66_022598E4
 _0224D280: .word Unk_ov66_022599F4
 _0224D284: .word 0x0000039F
 _0224D288: .word 0x00000101
-	arm_func_end ov66_0224D090
+	arm_func_end ciUserChangedMode
 
-	arm_func_start ov66_0224D28C
-ov66_0224D28C: ; 0x0224D28C
+	arm_func_start ciSetUserBasicInfoMap
+ciSetUserBasicInfoMap: ; 0x0224D28C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r0
 	mov r5, r1
@@ -2295,7 +2295,7 @@ _0224D2CC:
 _0224D2EC:
 	ldr r0, [r4, #0x134]
 	ldr r1, [r5, #0]
-	bl ov4_021EA598
+	bl TableLookup
 	movs r4, r0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	ldr r1, [r5, #4]
@@ -2322,10 +2322,10 @@ _0224D34C: .word Unk_ov66_02259930
 _0224D350: .word 0x0000041B
 _0224D354: .word Unk_ov66_02259A7C
 _0224D358: .word 0x00000424
-	arm_func_end ov66_0224D28C
+	arm_func_end ciSetUserBasicInfoMap
 
-	arm_func_start ov66_0224D35C
-ov66_0224D35C: ; 0x0224D35C
+	arm_func_start ciSetUserBasicInfo
+ciSetUserBasicInfo: ; 0x0224D35C
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0xec
 	movs r7, r0
@@ -2377,9 +2377,9 @@ _0224D3EC:
 	str r4, [sp, #8]
 	str r0, [sp]
 	ldr r0, [r7, #0x80c]
-	ldr r1, _0224D44C ; =ov66_0224D28C
+	ldr r1, _0224D44C ; =ciSetUserBasicInfoMap
 	add r2, sp, #0
-	bl ov4_021EA638
+	bl TableMap
 	add sp, sp, #0xec
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -2391,8 +2391,8 @@ _0224D43C: .word Unk_ov66_02259C18
 _0224D440: .word 0x0000043F
 _0224D444: .word Unk_ov66_02259C28
 _0224D448: .word Unk_ov66_02259C38
-_0224D44C: .word ov66_0224D28C
-	arm_func_end ov66_0224D35C
+_0224D44C: .word ciSetUserBasicInfoMap
+	arm_func_end ciSetUserBasicInfo
 	.data
 
 

@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021EF924
-ov4_021EF924: ; 0x021EF924
+	arm_func_start gpiIsValidDate
+gpiIsValidDate: ; 0x021EF924
 	stmfd sp!, {r3, r4, r5, lr}
 	cmp r0, #0
 	cmpeq r1, #0
@@ -108,10 +108,10 @@ _021EFA74:
 	; .align 2, 0
 _021EFA7C: .word 0x51EB851F
 _021EFA80: .word 0x0000076C
-	arm_func_end ov4_021EF924
+	arm_func_end gpiIsValidDate
 
-	arm_func_start ov4_021EFA84
-ov4_021EFA84: ; 0x021EFA84
+	arm_func_start gpiIntToDate
+gpiIntToDate: ; 0x021EFA84
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	mov lr, r1, asr #0x18
 	mov ip, r1, asr #0x10
@@ -125,7 +125,7 @@ ov4_021EFA84: ; 0x021EFA84
 	mov r1, r5
 	mov r2, r6
 	mov r7, r3
-	bl ov4_021EF924
+	bl gpiIsValidDate
 	cmp r0, #0
 	bne _021EFAD8
 	ldr r0, _021EFB1C ; =0x022185DC
@@ -137,12 +137,12 @@ _021EFAD8:
 	mov r0, r4
 	mov r1, r5
 	mov r2, r6
-	bl ov4_021EF924
+	bl gpiIsValidDate
 	cmp r0, #0
 	bne _021EFB04
 	ldr r1, _021EFB28 ; =0x022185CC
 	mov r0, sb
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _021EFB04:
@@ -157,10 +157,10 @@ _021EFB1C: .word Unk_ov4_022185DC
 _021EFB20: .word Unk_ov4_022185C0
 _021EFB24: .word Unk_ov4_0221859C
 _021EFB28: .word Unk_ov4_022185CC
-	arm_func_end ov4_021EFA84
+	arm_func_end gpiIntToDate
 
-	arm_func_start ov4_021EFB2C
-ov4_021EFB2C: ; 0x021EFB2C
+	arm_func_start gpiInfoCacheToArg
+gpiInfoCacheToArg: ; 0x021EFB2C
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	mov r4, r1
@@ -171,7 +171,7 @@ ov4_021EFB2C: ; 0x021EFB2C
 	beq _021EFB58
 	add r0, r4, #8
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 _021EFB58:
 	ldr r1, [r5, #4]
 	cmp r1, #0
@@ -180,7 +180,7 @@ _021EFB58:
 	beq _021EFB78
 	add r0, r4, #0x27
 	mov r2, #0x15
-	bl ov4_021F5820
+	bl strzcpy
 _021EFB78:
 	ldr r1, [r5, #8]
 	cmp r1, #0
@@ -189,7 +189,7 @@ _021EFB78:
 	beq _021EFB98
 	add r0, r4, #0x3c
 	mov r2, #0x33
-	bl ov4_021F5820
+	bl strzcpy
 _021EFB98:
 	ldr r1, [r5, #0xc]
 	cmp r1, #0
@@ -198,7 +198,7 @@ _021EFB98:
 	beq _021EFBB8
 	add r0, r4, #0x6f
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 _021EFBB8:
 	ldr r1, [r5, #0x10]
 	cmp r1, #0
@@ -207,7 +207,7 @@ _021EFBB8:
 	beq _021EFBD8
 	add r0, r4, #0x8e
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 _021EFBD8:
 	ldr r1, [r5, #0x14]
 	cmp r1, #0
@@ -216,19 +216,19 @@ _021EFBD8:
 	beq _021EFBF8
 	add r0, r4, #0xad
 	mov r2, #0x4c
-	bl ov4_021F5820
+	bl strzcpy
 _021EFBF8:
 	ldr r3, [r5, #0x18]
 	add r0, r4, #0x100
 	add r1, r5, #0x1c
 	mov r2, #0xb
 	str r3, [r4, #0xfc]
-	bl ov4_021F5820
+	bl strzcpy
 	add r0, r4, #0xb
 	add r0, r0, #0x100
 	add r1, r5, #0x27
 	mov r2, #3
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r0, [r5, #0x2c]
 	adds r1, r5, #0x34
 	str r0, [r4, #0x110]
@@ -239,7 +239,7 @@ _021EFBF8:
 	beq _021EFC50
 	add r0, r4, #0x118
 	mov r2, #0x80
-	bl ov4_021F5820
+	bl strzcpy
 _021EFC50:
 	ldr r0, [r5, #0xb4]
 	str r0, [r4, #0x198]
@@ -258,7 +258,7 @@ _021EFC50:
 	beq _021EFC98
 	add r0, r4, #0x1ac
 	mov r2, #0x33
-	bl ov4_021F5820
+	bl strzcpy
 _021EFC98:
 	ldr r0, [r5, #0x18]
 	str r0, [r4, #0xfc]
@@ -295,10 +295,10 @@ _021EFC98:
 	ldr r0, [r5, #0xec]
 	str r0, [r4, #0x200]
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021EFB2C
+	arm_func_end gpiInfoCacheToArg
 
-	arm_func_start ov4_021EFD24
-ov4_021EFD24: ; 0x021EFD24
+	arm_func_start gpiProcessGetInfo
+gpiProcessGetInfo: ; 0x021EFD24
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x268
 	mov r4, r2
@@ -307,7 +307,7 @@ ov4_021EFD24: ; 0x021EFD24
 	mov r1, r4
 	mov r2, #1
 	ldr r6, [sl]
-	bl ov4_021F58A0
+	bl gpiCheckForError
 	cmp r0, #0
 	addne sp, sp, #0x268
 	movne r0, #4
@@ -321,11 +321,11 @@ ov4_021EFD24: ; 0x021EFD24
 	ldr r2, _021F04B0 ; =0x022185FC
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x268
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -334,17 +334,17 @@ _021EFD9C:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021EFDE4
 	ldr r2, _021F04B0 ; =0x022185FC
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x268
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -363,7 +363,7 @@ _021EFE0C:
 	add r2, sp, #0x10
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	mov r0, #0
 	add r7, sp, #0x178
 	mov r1, r0
@@ -393,7 +393,7 @@ _021EFE34:
 	mov r3, #0x1f
 	str r2, [sp, #0x178]
 	str r5, [sp, #0x240]
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	ldreq r0, [sp, #0x178]
 	moveq r1, #0
@@ -402,7 +402,7 @@ _021EFE34:
 	ldr r1, _021F04CC ; =0x02218650
 	mov r0, r4
 	mov r3, #0x15
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	ldreq r0, [sp, #0x17c]
 	moveq r1, #0
@@ -411,7 +411,7 @@ _021EFE34:
 	ldr r1, _021F04D0 ; =0x02218660
 	mov r0, r4
 	mov r3, #0x33
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	ldreq r0, [sp, #0x180]
 	moveq r1, #0
@@ -420,7 +420,7 @@ _021EFE34:
 	ldr r1, _021F04D4 ; =0x02218668
 	mov r0, r4
 	mov r3, #0x1f
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	ldreq r0, [sp, #0x184]
 	moveq r1, #0
@@ -429,7 +429,7 @@ _021EFE34:
 	ldr r1, _021F04D8 ; =0x02218674
 	mov r0, r4
 	mov r3, #0x1f
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	ldreq r0, [sp, #0x188]
 	moveq r1, #0
@@ -438,7 +438,7 @@ _021EFE34:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	mvneq r0, #0
 	streq r0, [sp, #0x190]
@@ -451,7 +451,7 @@ _021EFF60:
 	ldr r1, _021F04E0 ; =0x0221868C
 	mov r0, r4
 	mov r3, #0x4c
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	ldreq r0, [sp, #0x18c]
 	moveq r1, #0
@@ -460,7 +460,7 @@ _021EFF60:
 	add r2, sp, #0x194
 	mov r0, r4
 	mov r3, #0xb
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	add r2, sp, #0x100
@@ -469,7 +469,7 @@ _021EFF60:
 	add r2, r2, #0x9f
 	mov r0, r4
 	mov r3, #3
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streqb r0, [sp, #0x19f]
@@ -477,7 +477,7 @@ _021EFF60:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x1a4]
@@ -491,7 +491,7 @@ _021EFFFC:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x1a8]
@@ -505,7 +505,7 @@ _021F0030:
 	add r2, sp, #0x1ac
 	mov r0, r4
 	mov r3, #0x80
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streqb r0, [sp, #0x1ac]
@@ -513,7 +513,7 @@ _021F0030:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021F0080
 	mov r0, #0
@@ -530,7 +530,7 @@ _021F0080:
 	add r3, sp, #0x230
 	mov r0, sl
 	str r5, [sp]
-	bl ov4_021EFA84
+	bl gpiIntToDate
 	cmp r0, #0
 	addne sp, sp, #0x268
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -539,7 +539,7 @@ _021F00B0:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	ldreq r0, _021F0500 ; =0x00000502
 	streq r0, [sp, #0x238]
@@ -559,7 +559,7 @@ _021F00FC:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	mvneq r0, #0
 	streq r0, [sp, #0x23c]
@@ -572,7 +572,7 @@ _021F012C:
 	ldr r1, _021F050C ; =0x022186E8
 	mov r0, r4
 	mov r3, #0x33
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	ldreq r0, [sp, #0x240]
 	moveq r1, #0
@@ -581,7 +581,7 @@ _021F012C:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x244]
@@ -594,7 +594,7 @@ _021F0180:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x248]
@@ -607,7 +607,7 @@ _021F01B0:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x24c]
@@ -620,7 +620,7 @@ _021F01E0:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x250]
@@ -633,7 +633,7 @@ _021F0210:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x254]
@@ -646,7 +646,7 @@ _021F0240:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x258]
@@ -659,7 +659,7 @@ _021F0270:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x25c]
@@ -672,7 +672,7 @@ _021F02A0:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x260]
@@ -685,7 +685,7 @@ _021F02D0:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	moveq r0, #0
 	streq r0, [sp, #0x264]
@@ -698,17 +698,17 @@ _021F0300:
 	add r2, sp, #0xec
 	mov r0, r4
 	mov r3, #0x40
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021F0348
 	ldr r2, _021F04B0 ; =0x022185FC
 	mov r0, sl
 	mov r1, #1
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, sl
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0x268
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -730,7 +730,7 @@ _021F0360:
 	bne _021F0390
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021F31C4
+	bl gpiProfileListAdd
 	str r0, [sp, #0x10]
 _021F0390:
 	mov r8, r4
@@ -748,7 +748,7 @@ _021F03A4:
 	beq _021F03CC
 	mov r0, sl
 	mov r1, sb
-	bl ov4_021F31C4
+	bl gpiProfileListAdd
 	str r0, [sp, #0x10]
 _021F03CC:
 	cmp r8, #0
@@ -760,7 +760,7 @@ _021F03CC:
 	mov r2, #0
 	add r0, sp, #0xec
 	str r2, [r1, #0x18]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [sp, #0x10]
 	str r0, [r1, #0x18]
 _021F03FC:
@@ -770,7 +770,7 @@ _021F03FC:
 	ldr r1, [sp, #0x10]
 	add r2, sp, #0x178
 	mov r0, sl
-	bl ov4_021F1564
+	bl gpiSetInfoCache
 _021F0418:
 	ldr r1, [fp, #0xc]
 	ldr r0, [fp, #0x10]
@@ -784,14 +784,14 @@ _021F0418:
 	bne _021F0458
 	ldr r1, _021F0538 ; =0x02218740
 	mov r0, sl
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x268
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021F0458:
 	add r0, sp, #0x178
 	mov r1, r4
-	bl ov4_021EFB2C
+	bl gpiInfoCacheToArg
 	mov r2, #0
 	stmia r4, {r2, sb}
 	str fp, [sp]
@@ -800,14 +800,14 @@ _021F0458:
 	mov r0, sl
 	mov r3, r4
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	addne sp, sp, #0x268
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 _021F0494:
 	mov r0, sl
 	mov r1, fp
-	bl ov4_021F1BA8
+	bl gpiRemoveOperation
 	mov r0, #0
 	add sp, sp, #0x268
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -848,10 +848,10 @@ _021F052C: .word Unk_ov4_02218728
 _021F0530: .word Unk_ov4_02218730
 _021F0534: .word Unk_ov4_02218738
 _021F0538: .word Unk_ov4_02218740
-	arm_func_end ov4_021EFD24
+	arm_func_end gpiProcessGetInfo
 
-	arm_func_start ov4_021F053C
-ov4_021F053C: ; 0x021F053C
+	arm_func_start gpiAddLocalInfo
+gpiAddLocalInfo: ; 0x021F053C
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r4, [r6, #0]
@@ -860,19 +860,19 @@ ov4_021F053C: ; 0x021F053C
 	cmp r2, #0
 	ble _021F0598
 	ldr r2, _021F05F4 ; =0x02218750
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x198]
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, [r4, #0x440]
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021F05F8 ; =0x02218768
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0
 	str r0, [r4, #0x448]
 _021F0598:
@@ -882,19 +882,19 @@ _021F0598:
 	ldr r2, _021F05FC ; =0x02218770
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x198]
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, [r4, #0x450]
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021F05F8 ; =0x02218768
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0
 	str r0, [r4, #0x458]
 _021F05EC:
@@ -904,50 +904,50 @@ _021F05EC:
 _021F05F4: .word Unk_ov4_02218750
 _021F05F8: .word Unk_ov4_02218768
 _021F05FC: .word Unk_ov4_02218770
-	arm_func_end ov4_021F053C
+	arm_func_end gpiAddLocalInfo
 
-	arm_func_start ov4_021F0600
-ov4_021F0600: ; 0x021F0600
+	arm_func_start gpiSendLocalInfo
+gpiSendLocalInfo: ; 0x021F0600
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r4, [r6, #0]
 	mov r5, r2
 	mov r2, r1
 	add r1, r4, #0x440
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	cmp r0, #0
 	ldmneia sp!, {r4, r5, r6, pc}
 	mov r0, r6
 	mov r2, r5
 	add r1, r4, #0x440
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	cmp r0, #0
 	moveq r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021F0600
+	arm_func_end gpiSendLocalInfo
 
-	arm_func_start ov4_021F0640
-ov4_021F0640: ; 0x021F0640
+	arm_func_start gpiSendUserInfo
+gpiSendUserInfo: ; 0x021F0640
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r4, [r6, #0]
 	mov r5, r2
 	mov r2, r1
 	add r1, r4, #0x450
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	cmp r0, #0
 	ldmneia sp!, {r4, r5, r6, pc}
 	mov r0, r6
 	mov r2, r5
 	add r1, r4, #0x450
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	cmp r0, #0
 	moveq r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021F0640
+	arm_func_end gpiSendUserInfo
 
-	arm_func_start ov4_021F0680
-ov4_021F0680: ; 0x021F0680
+	arm_func_start gpiSetInfoi
+gpiSetInfoi: ; 0x021F0680
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x10
 	sub r1, r1, #6
@@ -986,7 +986,7 @@ _021F0704:
 	cmp r2, #0
 	bge _021F0720
 	ldr r1, _021F0AE8 ; =0x02218784
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x10
 	mov r0, #2
 	ldmia sp!, {r4, pc}
@@ -997,7 +997,7 @@ _021F0720:
 	ldr r1, _021F0AF0 ; =0x02218698
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1015,7 +1015,7 @@ _021F074C:
 _021F0770:
 	ldr r1, _021F0AF8 ; =0x022186D8
 	ldr r2, _021F0AFC ; =0x0221879C
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1023,7 +1023,7 @@ _021F0770:
 _021F078C:
 	ldr r1, _021F0AF8 ; =0x022186D8
 	ldr r2, _021F0B00 ; =0x022187A0
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1031,14 +1031,14 @@ _021F078C:
 _021F07A8:
 	ldr r1, _021F0AF8 ; =0x022186D8
 	ldr r2, _021F0B04 ; =0x022187A4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
 	ldmia sp!, {r4, pc}
 _021F07C4:
 	ldr r1, _021F0B08 ; =0x022187A8
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x10
 	mov r0, #2
 	ldmia sp!, {r4, pc}
@@ -1049,7 +1049,7 @@ _021F07D8:
 	ldr r1, _021F0B0C ; =0x02218680
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1061,7 +1061,7 @@ _021F0804:
 	ldr r1, _021F0B10 ; =0x022187B8
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1073,7 +1073,7 @@ _021F0830:
 	ldr r1, _021F0B14 ; =0x022187C8
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1088,7 +1088,7 @@ _021F085C:
 	ldr r1, _021F0B18 ; =0x022187D4
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1103,7 +1103,7 @@ _021F0894:
 	ldr r1, _021F0B1C ; =0x022187E0
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1118,7 +1118,7 @@ _021F08CC:
 	ldr r1, _021F0B20 ; =0x022187F0
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1130,7 +1130,7 @@ _021F0904:
 	ldr r1, _021F0B24 ; =0x02218800
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1142,7 +1142,7 @@ _021F0930:
 	ldr r1, _021F0B28 ; =0x02218810
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1156,7 +1156,7 @@ _021F095C:
 	ldr r1, _021F0B2C ; =0x02218824
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1168,7 +1168,7 @@ _021F0990:
 	ldr r1, _021F0B30 ; =0x022186F0
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1180,7 +1180,7 @@ _021F09BC:
 	ldr r1, _021F0B34 ; =0x022186F8
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1192,7 +1192,7 @@ _021F09E8:
 	ldr r1, _021F0B38 ; =0x02218700
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1204,7 +1204,7 @@ _021F0A14:
 	ldr r1, _021F0B3C ; =0x02218708
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1216,7 +1216,7 @@ _021F0A40:
 	ldr r1, _021F0B40 ; =0x02218710
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1228,7 +1228,7 @@ _021F0A6C:
 	ldr r1, _021F0B44 ; =0x02218718
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1240,7 +1240,7 @@ _021F0A98:
 	ldr r1, _021F0B48 ; =0x02218720
 	add r2, sp, #0
 	mov r0, r4
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F0ADC
 	add sp, sp, #0x10
@@ -1248,7 +1248,7 @@ _021F0A98:
 _021F0AC4:
 	ldr r1, _021F0B4C ; =0x02218834
 	mov r0, r4
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x10
 	mov r0, #2
 	ldmia sp!, {r4, pc}
@@ -1283,10 +1283,10 @@ _021F0B40: .word Unk_ov4_02218710
 _021F0B44: .word Unk_ov4_02218718
 _021F0B48: .word Unk_ov4_02218720
 _021F0B4C: .word Unk_ov4_02218834
-	arm_func_end ov4_021F0680
+	arm_func_end gpiSetInfoi
 
-	arm_func_start ov4_021F0B50
-ov4_021F0B50: ; 0x021F0B50
+	arm_func_start gpiSetInfos
+gpiSetInfos: ; 0x021F0B50
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #0x100
 	mov r6, r0
@@ -1294,7 +1294,7 @@ ov4_021F0B50: ; 0x021F0B50
 	ldr r4, [r6, #0]
 	bne _021F0B7C
 	ldr r1, _021F12A0 ; =0x02218844
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x100
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
@@ -1340,7 +1340,7 @@ _021F0C08:
 	cmp r1, #0
 	bne _021F0C28
 	ldr r1, _021F12A0 ; =0x02218844
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x100
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
@@ -1348,15 +1348,15 @@ _021F0C28:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 	add r1, sp, #0
 	add r0, r4, #0x110
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12A4 ; =0x02218648
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1366,7 +1366,7 @@ _021F0C68:
 	cmp r1, #0
 	bne _021F0C88
 	ldr r1, _021F12A0 ; =0x02218844
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x100
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
@@ -1374,16 +1374,16 @@ _021F0C88:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x15
-	bl ov4_021F5820
+	bl strzcpy
 	add r0, r4, #0x2f
 	add r1, sp, #0
 	add r0, r0, #0x100
 	mov r2, #0x15
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12A8 ; =0x02218650
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1393,7 +1393,7 @@ _021F0CCC:
 	cmp r1, #0
 	bne _021F0CEC
 	ldr r1, _021F12A0 ; =0x02218844
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x100
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
@@ -1401,17 +1401,17 @@ _021F0CEC:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x33
-	bl ov4_021F5820
+	bl strzcpy
 	add r0, sp, #0
-	bl ov4_021EA8E0
+	bl _strlwr
 	add r1, sp, #0
 	add r0, r4, #0x144
 	mov r2, #0x33
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12AC ; =0x02218660
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1421,7 +1421,7 @@ _021F0D34:
 	cmp r1, #0
 	bne _021F0D54
 	ldr r1, _021F12A0 ; =0x02218844
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x100
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
@@ -1429,16 +1429,16 @@ _021F0D54:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 	add r0, r4, #0x77
 	add r1, sp, #0
 	add r0, r0, #0x100
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12B0 ; =0x02218854
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0640
+	bl gpiSendUserInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1447,11 +1447,11 @@ _021F0D98:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12B4 ; =0x02218668
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1460,11 +1460,11 @@ _021F0DC8:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x1f
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12B8 ; =0x02218674
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1473,11 +1473,11 @@ _021F0DF8:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x4c
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12BC ; =0x0221868C
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1486,11 +1486,11 @@ _021F0E28:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0xb
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12C0 ; =0x02218698
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1502,7 +1502,7 @@ _021F0E58:
 	beq _021F0E80
 	ldr r1, _021F12C4 ; =0x02218860
 	mov r0, r6
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x100
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
@@ -1510,11 +1510,11 @@ _021F0E80:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #3
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12C8 ; =0x022186A4
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1558,7 +1558,7 @@ _021F0F2C:
 	ldr r1, _021F12DC ; =0x022186D8
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1567,11 +1567,11 @@ _021F0F4C:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12E0 ; =0x02218680
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1582,7 +1582,7 @@ _021F0F7C:
 	mov r2, r0
 	ldr r1, _021F12E4 ; =0x0000070D
 	mov r0, r6
-	bl ov4_021F0680
+	bl gpiSetInfoi
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1593,7 +1593,7 @@ _021F0FA4:
 	mov r2, r0
 	ldr r1, _021F12E8 ; =0x0000070E
 	mov r0, r6
-	bl ov4_021F0680
+	bl gpiSetInfoi
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1602,11 +1602,11 @@ _021F0FCC:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12EC ; =0x02218878
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1617,7 +1617,7 @@ _021F0FFC:
 	mov r2, r0
 	mov r0, r6
 	mov r1, #0x710
-	bl ov4_021F0680
+	bl gpiSetInfoi
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1626,11 +1626,11 @@ _021F1024:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F12F0 ; =0x0221888C
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1641,7 +1641,7 @@ _021F1054:
 	mov r2, r0
 	ldr r1, _021F12F4 ; =0x00000712
 	mov r0, r6
-	bl ov4_021F0680
+	bl gpiSetInfoi
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1652,7 +1652,7 @@ _021F107C:
 	mov r2, r0
 	ldr r1, _021F12F8 ; =0x00000714
 	mov r0, r6
-	bl ov4_021F0680
+	bl gpiSetInfoi
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1663,7 +1663,7 @@ _021F10A4:
 	mov r2, r0
 	ldr r1, _021F12FC ; =0x00000715
 	mov r0, r6
-	bl ov4_021F0680
+	bl gpiSetInfoi
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1672,11 +1672,11 @@ _021F10CC:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F1300 ; =0x022188A0
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1685,11 +1685,11 @@ _021F10FC:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x33
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F1304 ; =0x022186E8
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1698,11 +1698,11 @@ _021F112C:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F1308 ; =0x022186F0
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1711,11 +1711,11 @@ _021F115C:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F130C ; =0x022186F8
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1724,11 +1724,11 @@ _021F118C:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F1310 ; =0x02218700
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1737,11 +1737,11 @@ _021F11BC:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F1314 ; =0x02218708
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1750,11 +1750,11 @@ _021F11EC:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F1318 ; =0x02218710
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1763,11 +1763,11 @@ _021F121C:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F131C ; =0x02218718
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1776,11 +1776,11 @@ _021F124C:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r1, _021F1320 ; =0x02218720
 	add r2, sp, #0
 	mov r0, r6
-	bl ov4_021F0600
+	bl gpiSendLocalInfo
 	cmp r0, #0
 	beq _021F1294
 	add sp, sp, #0x100
@@ -1788,7 +1788,7 @@ _021F124C:
 _021F127C:
 	ldr r1, _021F1324 ; =0x02218834
 	mov r0, r6
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x100
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
@@ -1831,10 +1831,10 @@ _021F1318: .word Unk_ov4_02218710
 _021F131C: .word Unk_ov4_02218718
 _021F1320: .word Unk_ov4_02218720
 _021F1324: .word Unk_ov4_02218834
-	arm_func_end ov4_021F0B50
+	arm_func_end gpiSetInfos
 
-	arm_func_start ov4_021F1328
-ov4_021F1328: ; 0x021F1328
+	arm_func_start gpiSendGetInfo
+gpiSendGetInfo: ; 0x021F1328
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	ldr r4, [r7, #0]
@@ -1842,31 +1842,31 @@ ov4_021F1328: ; 0x021F1328
 	mov r6, r1
 	ldr r2, _021F13B0 ; =0x022188AC
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x198]
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021F13B4 ; =0x0221862C
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r2, r6
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	mov r0, r7
 	add r1, r4, #0x1f4
 	ldr r2, _021F13B8 ; =0x022188C4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r2, r5
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	mov r0, r7
 	add r1, r4, #0x1f4
 	ldr r2, _021F13BC ; =0x02218768
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -1874,10 +1874,10 @@ _021F13B0: .word Unk_ov4_022188AC
 _021F13B4: .word Unk_ov4_0221862C
 _021F13B8: .word Unk_ov4_022188C4
 _021F13BC: .word Unk_ov4_02218768
-	arm_func_end ov4_021F1328
+	arm_func_end gpiSendGetInfo
 
-	arm_func_start ov4_021F13C0
-ov4_021F13C0: ; 0x021F13C0
+	arm_func_start gpiGetInfo
+gpiGetInfo: ; 0x021F13C0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x1c
 	mov r8, r0
@@ -1898,7 +1898,7 @@ ov4_021F13C0: ; 0x021F13C0
 	add r2, sp, #0x18
 	mov r0, r8
 	mov r1, r7
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	ldrne r0, [sp, #0x18]
 	ldrne r0, [r0, #0xc]
@@ -1910,7 +1910,7 @@ ov4_021F13C0: ; 0x021F13C0
 	bne _021F1450
 	ldr r1, _021F1560 ; =0x02218740
 	mov r0, r8
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x1c
 	mov r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
@@ -1918,7 +1918,7 @@ _021F1450:
 	ldr r0, [sp, #0x18]
 	mov r1, r4
 	ldr r0, [r0, #0xc]
-	bl ov4_021EFB2C
+	bl gpiInfoCacheToArg
 	mov r2, #0
 	ldr ip, [sp, #0x3c]
 	stmia r4, {r2, r7}
@@ -1930,7 +1930,7 @@ _021F1450:
 	str r5, [sp, #0xc]
 	str ip, [sp, #0x10]
 	str ip, [sp, #8]
-	bl ov4_021F1A54
+	bl gpiAddOperation
 	cmp r0, #0
 	addne sp, sp, #0x1c
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, pc}
@@ -1943,13 +1943,13 @@ _021F1450:
 	str r2, [sp, #4]
 	mov r3, r4
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	addne sp, sp, #0x1c
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	ldr r1, [sp, #0x14]
 	mov r0, r8
-	bl ov4_021F1BA8
+	bl gpiRemoveOperation
 	b _021F1534
 _021F14E0:
 	str r6, [sp]
@@ -1960,7 +1960,7 @@ _021F14E0:
 	mov r1, #2
 	mov r2, #0
 	str r4, [sp, #8]
-	bl ov4_021F1A54
+	bl gpiAddOperation
 	cmp r0, #0
 	addne sp, sp, #0x1c
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, pc}
@@ -1969,7 +1969,7 @@ _021F14E0:
 	ldr r5, [r1, #0x18]
 	mov r1, r7
 	mov r2, r5
-	bl ov4_021F1328
+	bl gpiSendGetInfo
 	cmp r0, #0
 	addne sp, sp, #0x1c
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, pc}
@@ -1978,7 +1978,7 @@ _021F1534:
 	beq _021F1554
 	mov r0, r8
 	mov r1, r5
-	bl ov4_021EC3B0
+	bl gpiProcess
 	cmp r0, #0
 	addne sp, sp, #0x1c
 	ldmneia sp!, {r3, r4, r5, r6, r7, r8, pc}
@@ -1988,10 +1988,10 @@ _021F1554:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021F1560: .word Unk_ov4_02218740
-	arm_func_end ov4_021F13C0
+	arm_func_end gpiGetInfo
 
-	arm_func_start ov4_021F1564
-ov4_021F1564: ; 0x021F1564
+	arm_func_start gpiSetInfoCache
+gpiSetInfoCache: ; 0x021F1564
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r0, [r0, #0]
 	mov r5, r1
@@ -2001,7 +2001,7 @@ ov4_021F1564: ; 0x021F1564
 	moveq r0, #1
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r0, r5
-	bl ov4_021F163C
+	bl gpiFreeInfoCache
 	mov r0, #0xf0
 	bl DWCi_GsMalloc
 	movs r6, r0
@@ -2015,31 +2015,31 @@ _021F15A8:
 	subs ip, ip, #1
 	bne _021F15A8
 	ldr r0, [r4, #0]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0]
 	ldr r0, [r4, #4]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #4]
 	ldr r0, [r4, #8]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #8]
 	ldr r0, [r4, #0xc]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0xc]
 	ldr r0, [r4, #0x10]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0x10]
 	ldr r0, [r4, #0x14]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0x14]
 	ldr r0, [r4, #0xc8]
-	bl ov4_021EA8AC
+	bl goastrdup
 	ldr r1, [r5, #0xc]
 	str r0, [r1, #0xc8]
 _021F1628:
@@ -2048,10 +2048,10 @@ _021F1628:
 	movne r0, #1
 	moveq r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov4_021F1564
+	arm_func_end gpiSetInfoCache
 
-	arm_func_start ov4_021F163C
-ov4_021F163C: ; 0x021F163C
+	arm_func_start gpiFreeInfoCache
+gpiFreeInfoCache: ; 0x021F163C
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0xc]
@@ -2103,7 +2103,7 @@ ov4_021F163C: ; 0x021F163C
 	mov r0, #0
 	str r0, [r4, #0xc]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F163C
+	arm_func_end gpiFreeInfoCache
 
 	.data
 

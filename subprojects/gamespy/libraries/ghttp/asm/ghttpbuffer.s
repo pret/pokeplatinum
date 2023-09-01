@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov60_0221FE2C
-ov60_0221FE2C: ; 0x0221FE2C
+	arm_func_start ghiResizeBuffer
+ghiResizeBuffer: ; 0x0221FE2C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -46,10 +46,10 @@ _0221FEA8: .word Unk_ov60_02228FD4
 _0221FEAC: .word Unk_ov60_02228FDC
 _0221FEB0: .word Unk_ov60_02228F68
 _0221FEB4: .word Unk_ov60_02228FEC
-	arm_func_end ov60_0221FE2C
+	arm_func_end ghiResizeBuffer
 
-	arm_func_start ov60_0221FEB8
-ov60_0221FEB8: ; 0x0221FEB8
+	arm_func_start ghiInitBuffer
+ghiInitBuffer: ; 0x0221FEB8
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -110,7 +110,7 @@ _0221FF38:
 	mov r0, r6
 	mov r1, r5
 	str r2, [r6, #0x20]
-	bl ov60_0221FE2C
+	bl ghiResizeBuffer
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -126,10 +126,10 @@ _0221FFC4: .word Unk_ov60_02228F48
 _0221FFC8: .word Unk_ov60_02228FD4
 _0221FFCC: .word Unk_ov60_0222900C
 _0221FFD0: .word Unk_ov60_02228FEC
-	arm_func_end ov60_0221FEB8
+	arm_func_end ghiInitBuffer
 
-	arm_func_start ov60_0221FFD4
-ov60_0221FFD4: ; 0x0221FFD4
+	arm_func_start ghiInitFixedBuffer
+ghiInitFixedBuffer: ; 0x0221FFD4
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -198,10 +198,10 @@ _022200C0: .word Unk_ov60_02228F78
 _022200C4: .word Unk_ov60_02228FD4
 _022200C8: .word Unk_ov60_0222901C
 _022200CC: .word Unk_ov60_02229028
-	arm_func_end ov60_0221FFD4
+	arm_func_end ghiInitFixedBuffer
 
-	arm_func_start ov60_022200D0
-ov60_022200D0: ; 0x022200D0
+	arm_func_start ghiFreeBuffer
+ghiFreeBuffer: ; 0x022200D0
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _022200F0
@@ -229,10 +229,10 @@ _02220110:
 _02220124: .word Unk_ov60_02228FD4
 _02220128: .word Unk_ov60_02228FDC
 _0222012C: .word Unk_ov60_02228F38
-	arm_func_end ov60_022200D0
+	arm_func_end ghiFreeBuffer
 
-	arm_func_start ov60_02220130
-ov60_02220130: ; 0x02220130
+	arm_func_start ghiAppendDataToBuffer
+ghiAppendDataToBuffer: ; 0x02220130
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0xc
@@ -336,7 +336,7 @@ _0222022C:
 _022202A8:
 	ldr r1, [sb, #0x14]
 	mov r0, sb
-	bl ov60_0221FE2C
+	bl ghiResizeBuffer
 	cmp r0, #0
 	beq _022202F4
 	ldr r0, [sb]
@@ -383,7 +383,7 @@ _02220318:
 _02220350:
 	ldr r1, [sb, #0x14]
 	mov r0, sb
-	bl ov60_0221FE2C
+	bl ghiResizeBuffer
 	cmp r0, #0
 	bne _0222038C
 	ldr r0, [sb]
@@ -424,36 +424,36 @@ _022203DC: .word Unk_ov60_02228FA4
 _022203E0: .word Unk_ov60_02229034
 _022203E4: .word Unk_ov60_0222903C
 _022203E8: .word Unk_ov60_0222904C
-	arm_func_end ov60_02220130
+	arm_func_end ghiAppendDataToBuffer
 
-	arm_func_start ov60_022203EC
-ov60_022203EC: ; 0x022203EC
+	arm_func_start ghiAppendHeaderToBuffer
+ghiAppendHeaderToBuffer: ; 0x022203EC
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r2
 	mov r2, #0
 	mov r5, r0
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	ldr r1, _02220464 ; =0x02229088
 	mov r0, r5
 	mov r2, #2
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	mov r0, r5
 	mov r1, r4
 	mov r2, #0
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
 	ldr r1, _02220468 ; =0x0222908C
 	mov r0, r5
 	mov r2, #2
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	cmp r0, #0
 	movne r0, #1
 	moveq r0, #0
@@ -461,10 +461,10 @@ ov60_022203EC: ; 0x022203EC
 	; .align 2, 0
 _02220464: .word Unk_ov60_02229088
 _02220468: .word Unk_ov60_0222908C
-	arm_func_end ov60_022203EC
+	arm_func_end ghiAppendHeaderToBuffer
 
-	arm_func_start ov60_0222046C
-ov60_0222046C: ; 0x0222046C
+	arm_func_start ghiAppendCharToBuffer
+ghiAppendCharToBuffer: ; 0x0222046C
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	movs r4, r0
@@ -483,7 +483,7 @@ _02220494:
 	add r1, sp, #0
 	mov r0, r4
 	mov r2, #1
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
@@ -491,10 +491,10 @@ _022204BC: .word Unk_ov60_02228FD4
 _022204C0: .word Unk_ov60_02228FDC
 _022204C4: .word Unk_ov60_02228F8C
 _022204C8: .word 0x00000131
-	arm_func_end ov60_0222046C
+	arm_func_end ghiAppendCharToBuffer
 
-	arm_func_start ov60_022204CC
-ov60_022204CC: ; 0x022204CC
+	arm_func_start ghiAppendIntToBuffer
+ghiAppendIntToBuffer: ; 0x022204CC
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #0x10
 	mov r2, r1
@@ -505,15 +505,15 @@ ov60_022204CC: ; 0x022204CC
 	add r1, sp, #0
 	mov r0, r4
 	mov r2, #0
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 	add sp, sp, #0x10
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _02220500: .word Unk_ov60_02229090
-	arm_func_end ov60_022204CC
+	arm_func_end ghiAppendIntToBuffer
 
-	arm_func_start ov60_02220504
-ov60_02220504: ; 0x02220504
+	arm_func_start ghiResetBuffer
+ghiResetBuffer: ; 0x02220504
 	stmfd sp!, {r4, lr}
 	movs r4, r0
 	bne _02220524
@@ -533,10 +533,10 @@ _02220524:
 _0222053C: .word Unk_ov60_02228FD4
 _02220540: .word Unk_ov60_02228FDC
 _02220544: .word Unk_ov60_02228F58
-	arm_func_end ov60_02220504
+	arm_func_end ghiResetBuffer
 
-	arm_func_start ov60_02220548
-ov60_02220548: ; 0x02220548
+	arm_func_start ghiSendBufferedData
+ghiSendBufferedData: ; 0x02220548
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #8
 	mov r7, r0
@@ -549,7 +549,7 @@ _02220564:
 	mov r1, r6
 	mov r2, r5
 	mov r3, r4
-	bl ov4_021EAA74
+	bl GSISocketSelect
 	cmp r0, r8
 	beq _0222058C
 	ldr r0, [sp]
@@ -578,7 +578,7 @@ _022205B4:
 	mov r0, r7
 	add r1, r1, r3
 	sub r2, r2, r3
-	bl ov60_02220B90
+	bl ghiDoSend
 	cmp r0, r8
 	addeq sp, sp, #8
 	moveq r0, #0
@@ -592,10 +592,10 @@ _022205B4:
 	mov r0, #1
 	add sp, sp, #8
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
-	arm_func_end ov60_02220548
+	arm_func_end ghiSendBufferedData
 
-	arm_func_start ov60_02220618
-ov60_02220618: ; 0x02220618
+	arm_func_start ghiReadDataFromBuffer
+ghiReadDataFromBuffer: ; 0x02220618
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r0
 	mov r6, r1
@@ -646,7 +646,7 @@ _022206C4: .word Unk_ov60_02228FDC
 _022206C8: .word Unk_ov60_02228FBC
 _022206CC: .word 0x000001B7
 _022206D0: .word Unk_ov60_022290A8
-	arm_func_end ov60_02220618
+	arm_func_end ghiReadDataFromBuffer
 
 	.data
 

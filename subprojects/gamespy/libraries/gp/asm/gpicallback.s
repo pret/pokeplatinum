@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021EDE68
-ov4_021EDE68: ; 0x021EDE68
+	arm_func_start gpiCallErrorCallback
+gpiCallErrorCallback: ; 0x021EDE68
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x10
 	mov r4, r0
@@ -65,7 +65,7 @@ _021EDF20:
 	str r2, [sp, #4]
 	mov r0, r4
 	ldmia r1, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
@@ -74,10 +74,10 @@ _021EDF4C: .word Unk_ov4_02218070
 _021EDF50: .word Unk_ov4_02218044
 _021EDF54: .word Unk_ov4_02218080
 _021EDF58: .word Unk_ov4_02218098
-	arm_func_end ov4_021EDE68
+	arm_func_end gpiCallErrorCallback
 
-	arm_func_start ov4_021EDF5C
-ov4_021EDF5C: ; 0x021EDF5C
+	arm_func_start gpiAddCallback
+gpiAddCallback: ; 0x021EDF5C
 	stmfd sp!, {r0, r1, r2, r3}
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
@@ -89,7 +89,7 @@ ov4_021EDF5C: ; 0x021EDF5C
 	bne _021EDF9C
 	ldr r1, _021EDFFC ; =0x022180C8
 	mov r0, r6
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, lr}
 	add sp, sp, #0x10
@@ -121,10 +121,10 @@ _021EDF9C:
 	bx lr
 	; .align 2, 0
 _021EDFFC: .word Unk_ov4_022180C8
-	arm_func_end ov4_021EDF5C
+	arm_func_end gpiAddCallback
 
-	arm_func_start ov4_021EE000
-ov4_021EE000: ; 0x021EE000
+	arm_func_start gpiCallCallback
+gpiCallCallback: ; 0x021EE000
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	mov r7, r1
 	ldr r1, [r7, #0]
@@ -264,10 +264,10 @@ _021EE1E8: .word Unk_ov4_022180D8
 _021EE1EC: .word Unk_ov4_02218070
 _021EE1F0: .word Unk_ov4_02218034
 _021EE1F4: .word Unk_ov4_022180F8
-	arm_func_end ov4_021EE000
+	arm_func_end gpiCallCallback
 
-	arm_func_start ov4_021EE1F8
-ov4_021EE1F8: ; 0x021EE1F8
+	arm_func_start gpiProcessCallbacks
+gpiProcessCallbacks: ; 0x021EE1F8
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov sl, r0
 	movs sb, r1
@@ -294,7 +294,7 @@ _021EE22C:
 	moveq r5, r8
 	cmp r6, r1
 	moveq r6, r7
-	bl ov4_021EE000
+	bl gpiCallCallback
 	b _021EE268
 _021EE264:
 	mov r7, r1
@@ -324,7 +324,7 @@ _021EE2A4:
 _021EE2B4:
 	ldr r6, [r1, #0x14]
 	mov r0, sl
-	bl ov4_021EE000
+	bl gpiCallCallback
 	mov r1, r6
 	cmp r6, #0
 	bne _021EE2B4
@@ -335,7 +335,7 @@ _021EE2CC:
 _021EE2D8:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
-	arm_func_end ov4_021EE1F8
+	arm_func_end gpiProcessCallbacks
 
 	.data
 

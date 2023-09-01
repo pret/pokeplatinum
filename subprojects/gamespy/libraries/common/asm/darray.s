@@ -6,21 +6,21 @@
 	.text
 
 
-	arm_func_start ov4_021E99EC
-ov4_021E99EC: ; 0x021E99EC
+	arm_func_start FreeElement
+FreeElement: ; 0x021E99EC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r2, [r4, #0x10]
 	cmp r2, #0
 	ldmeqia sp!, {r4, pc}
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r1, [r4, #0x10]
 	blx r1
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021E99EC
+	arm_func_end FreeElement
 
-	arm_func_start ov4_021E9A10
-ov4_021E9A10: ; 0x021E9A10
+	arm_func_start ArrayGrow
+ArrayGrow: ; 0x021E9A10
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r1, [r4, #4]
@@ -44,23 +44,23 @@ ov4_021E9A10: ; 0x021E9A10
 _021E9A5C: .word Unk_ov4_02217790
 _021E9A60: .word Unk_ov4_0221779C
 _021E9A64: .word Unk_ov4_022176FC
-	arm_func_end ov4_021E9A10
+	arm_func_end ArrayGrow
 
-	arm_func_start ov4_021E9A68
-ov4_021E9A68: ; 0x021E9A68
+	arm_func_start SetElement
+SetElement: ; 0x021E9A68
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r4, r1
 	mov r5, r0
 	mov r1, r2
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r2, [r5, #8]
 	mov r1, r4
 	bl memcpy
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021E9A68
+	arm_func_end SetElement
 
-	arm_func_start ov4_021E9A8C
-ov4_021E9A8C: ; 0x021E9A8C
+	arm_func_start ArrayNew
+ArrayNew: ; 0x021E9A8C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, r0
 	mov r0, #0x18
@@ -115,10 +115,10 @@ _021E9B40: .word Unk_ov4_0221779C
 _021E9B44: .word Unk_ov4_022176E4
 _021E9B48: .word Unk_ov4_022177B0
 _021E9B4C: .word Unk_ov4_02217790
-	arm_func_end ov4_021E9A8C
+	arm_func_end ArrayNew
 
-	arm_func_start ov4_021E9B50
-ov4_021E9B50: ; 0x021E9B50
+	arm_func_start ArrayFree
+ArrayFree: ; 0x021E9B50
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	bne _021E9B70
@@ -135,7 +135,7 @@ _021E9B70:
 _021E9B80:
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021E99EC
+	bl FreeElement
 	ldr r0, [r5, #0]
 	add r4, r4, #1
 	cmp r4, r0
@@ -150,16 +150,16 @@ _021E9B9C:
 _021E9BB0: .word Unk_ov4_022177A8
 _021E9BB4: .word Unk_ov4_0221779C
 _021E9BB8: .word Unk_ov4_022176F0
-	arm_func_end ov4_021E9B50
+	arm_func_end ArrayFree
 
-	arm_func_start ov4_021E9BBC
-ov4_021E9BBC: ; 0x021E9BBC
+	arm_func_start ArrayLength
+ArrayLength: ; 0x021E9BBC
 	ldr r0, [r0, #0]
 	bx lr
-	arm_func_end ov4_021E9BBC
+	arm_func_end ArrayLength
 
-	arm_func_start ov4_021E9BC4
-ov4_021E9BC4: ; 0x021E9BC4
+	arm_func_start ArrayNth
+ArrayNth: ; 0x021E9BC4
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r1
 	mov r5, r0
@@ -191,10 +191,10 @@ _021E9C10:
 _021E9C20: .word Unk_ov4_022177BC
 _021E9C24: .word Unk_ov4_0221779C
 _021E9C28: .word Unk_ov4_022176D8
-	arm_func_end ov4_021E9BC4
+	arm_func_end ArrayNth
 
-	arm_func_start ov4_021E9C2C
-ov4_021E9C2C: ; 0x021E9C2C
+	arm_func_start ArrayAppend
+ArrayAppend: ; 0x021E9C2C
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	mov r4, r1
@@ -210,16 +210,16 @@ _021E9C50:
 	ldr r2, [r5, #0]
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021E9C78
+	bl ArrayInsertAt
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021E9C6C: .word Unk_ov4_022177A8
 _021E9C70: .word Unk_ov4_0221779C
 _021E9C74: .word Unk_ov4_02217708
-	arm_func_end ov4_021E9C2C
+	arm_func_end ArrayAppend
 
-	arm_func_start ov4_021E9C78
-ov4_021E9C78: ; 0x021E9C78
+	arm_func_start ArrayInsertAt
+ArrayInsertAt: ; 0x021E9C78
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r4, r2
 	mov r6, r0
@@ -240,7 +240,7 @@ _021E9CAC:
 	cmp r1, r0
 	bne _021E9CC4
 	mov r0, r6
-	bl ov4_021E9A10
+	bl ArrayGrow
 _021E9CC4:
 	ldr r0, [r6, #0]
 	add r0, r0, #1
@@ -250,11 +250,11 @@ _021E9CC4:
 	bge _021E9D10
 	mov r0, r6
 	add r1, r4, #1
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r7, r0
 	mov r0, r6
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r1, r0
 	ldr r3, [r6, #8]
 	sub r0, r8, r4
@@ -265,16 +265,16 @@ _021E9D10:
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4
-	bl ov4_021E9A68
+	bl SetElement
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021E9D24: .word Unk_ov4_022177DC
 _021E9D28: .word Unk_ov4_0221779C
 _021E9D2C: .word Unk_ov4_02217734
-	arm_func_end ov4_021E9C78
+	arm_func_end ArrayInsertAt
 
-	arm_func_start ov4_021E9D30
-ov4_021E9D30: ; 0x021E9D30
+	arm_func_start ArrayInsertSorted
+ArrayInsertSorted: ; 0x021E9D30
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xc
 	movs r4, r2
@@ -294,7 +294,7 @@ _021E9D5C:
 	ldr r2, [r6, #0]
 	ldr r3, [r6, #8]
 	mov r0, r5
-	bl ov4_021EA198
+	bl mybsearch
 	ldr r2, [r6, #0x14]
 	ldr r1, [r6, #8]
 	sub r0, r0, r2
@@ -302,17 +302,17 @@ _021E9D5C:
 	mov r2, r0
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021E9C78
+	bl ArrayInsertAt
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
 _021E9DA4: .word Unk_ov4_022177FC
 _021E9DA8: .word Unk_ov4_0221779C
 _021E9DAC: .word Unk_ov4_02217768
-	arm_func_end ov4_021E9D30
+	arm_func_end ArrayInsertSorted
 
-	arm_func_start ov4_021E9DB0
-ov4_021E9DB0: ; 0x021E9DB0
+	arm_func_start ArrayRemoveAt
+ArrayRemoveAt: ; 0x021E9DB0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r7, r1
 	mov r4, r0
@@ -333,11 +333,11 @@ _021E9DE0:
 	bge _021E9E24
 	mov r0, r4
 	mov r1, r7
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r5, r0
 	mov r0, r4
 	add r1, r7, #1
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r1, r0
 	ldr r3, [r4, #8]
 	sub r0, r6, r7
@@ -353,10 +353,10 @@ _021E9E24:
 _021E9E34: .word Unk_ov4_022177BC
 _021E9E38: .word Unk_ov4_0221779C
 _021E9E3C: .word Unk_ov4_02217714
-	arm_func_end ov4_021E9DB0
+	arm_func_end ArrayRemoveAt
 
-	arm_func_start ov4_021E9E40
-ov4_021E9E40: ; 0x021E9E40
+	arm_func_start ArrayDeleteAt
+ArrayDeleteAt: ; 0x021E9E40
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r4, r1
 	mov r5, r0
@@ -373,19 +373,19 @@ _021E9E5C:
 _021E9E70:
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021E99EC
+	bl FreeElement
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021E9DB0
+	bl ArrayRemoveAt
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021E9E8C: .word Unk_ov4_022177BC
 _021E9E90: .word Unk_ov4_0221779C
 _021E9E94: .word Unk_ov4_02217724
-	arm_func_end ov4_021E9E40
+	arm_func_end ArrayDeleteAt
 
-	arm_func_start ov4_021E9E98
-ov4_021E9E98: ; 0x021E9E98
+	arm_func_start ArrayReplaceAt
+ArrayReplaceAt: ; 0x021E9E98
 	stmfd sp!, {r4, r5, r6, lr}
 	movs r4, r2
 	mov r6, r0
@@ -403,20 +403,20 @@ _021E9EB8:
 _021E9ECC:
 	mov r0, r6
 	mov r1, r4
-	bl ov4_021E99EC
+	bl FreeElement
 	mov r0, r6
 	mov r1, r5
 	mov r2, r4
-	bl ov4_021E9A68
+	bl SetElement
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021E9EEC: .word Unk_ov4_022177BC
 _021E9EF0: .word Unk_ov4_0221779C
 _021E9EF4: .word Unk_ov4_02217744
-	arm_func_end ov4_021E9E98
+	arm_func_end ArrayReplaceAt
 
-	arm_func_start ov4_021E9EF8
-ov4_021E9EF8: ; 0x021E9EF8
+	arm_func_start ArraySort
+ArraySort: ; 0x021E9EF8
 	ldr ip, _021E9F14 ; =qsort
 	mov r2, r0
 	mov r3, r1
@@ -426,10 +426,10 @@ ov4_021E9EF8: ; 0x021E9EF8
 	bx ip
 	; .align 2, 0
 _021E9F14: .word qsort
-	arm_func_end ov4_021E9EF8
+	arm_func_end ArraySort
 
-	arm_func_start ov4_021E9F18
-ov4_021E9F18: ; 0x021E9F18
+	arm_func_start ArraySearch
+ArraySearch: ; 0x021E9F18
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0xc
 	mov ip, #1
@@ -447,7 +447,7 @@ ov4_021E9F18: ; 0x021E9F18
 	cmp r1, #0
 	mov r1, r4
 	beq _021E9F84
-	bl ov4_021E9BC4
+	bl ArrayNth
 	add r1, sp, #8
 	str r5, [sp]
 	str r1, [sp, #4]
@@ -455,16 +455,16 @@ ov4_021E9F18: ; 0x021E9F18
 	ldr r3, [r7, #8]
 	mov r0, r6
 	sub r2, r8, r4
-	bl ov4_021EA198
+	bl mybsearch
 	b _021E9FA0
 _021E9F84:
-	bl ov4_021E9BC4
+	bl ArrayNth
 	str r5, [sp]
 	mov r1, r0
 	ldr r3, [r7, #8]
 	mov r0, r6
 	sub r2, r8, r4
-	bl ov4_021EA140
+	bl mylsearch
 _021E9FA0:
 	cmp r0, #0
 	ldrne r1, [sp, #8]
@@ -478,10 +478,10 @@ _021E9FA0:
 	bl _s32_div_f
 	add sp, sp, #0xc
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
-	arm_func_end ov4_021E9F18
+	arm_func_end ArraySearch
 
-	arm_func_start ov4_021E9FD0
-ov4_021E9FD0: ; 0x021E9FD0
+	arm_func_start ArrayMap
+ArrayMap: ; 0x021E9FD0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r6, r1
 	mov r7, r0
@@ -500,7 +500,7 @@ _021E9FF8:
 _021EA008:
 	mov r0, r7
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r1, r5
 	blx r6
 	ldr r0, [r7, #0]
@@ -512,10 +512,10 @@ _021EA008:
 _021EA030: .word Unk_ov4_02217808
 _021EA034: .word Unk_ov4_0221779C
 _021EA038: .word Unk_ov4_022176CC
-	arm_func_end ov4_021E9FD0
+	arm_func_end ArrayMap
 
-	arm_func_start ov4_021EA03C
-ov4_021EA03C: ; 0x021EA03C
+	arm_func_start ArrayMapBackwards
+ArrayMapBackwards: ; 0x021EA03C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	movs r6, r1
 	mov r7, r0
@@ -533,7 +533,7 @@ _021EA064:
 _021EA070:
 	mov r0, r7
 	mov r1, r4
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r1, r5
 	blx r6
 	subs r4, r4, #1
@@ -543,10 +543,10 @@ _021EA070:
 _021EA090: .word Unk_ov4_02217808
 _021EA094: .word Unk_ov4_0221779C
 _021EA098: .word Unk_ov4_02217754
-	arm_func_end ov4_021EA03C
+	arm_func_end ArrayMapBackwards
 
-	arm_func_start ov4_021EA09C
-ov4_021EA09C: ; 0x021EA09C
+	arm_func_start ArrayMapBackwards2
+ArrayMapBackwards2: ; 0x021EA09C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	movs r7, r1
 	mov r8, r0
@@ -564,7 +564,7 @@ _021EA0C4:
 _021EA0D0:
 	mov r0, r8
 	mov r1, r5
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r1, r6
 	mov r4, r0
 	blx r7
@@ -581,26 +581,26 @@ _021EA104: .word Unk_ov4_02217808
 _021EA108: .word Unk_ov4_0221779C
 _021EA10C: .word Unk_ov4_0221777C
 _021EA110: .word 0x00000121
-	arm_func_end ov4_021EA09C
+	arm_func_end ArrayMapBackwards2
 
-	arm_func_start ov4_021EA114
-ov4_021EA114: ; 0x021EA114
+	arm_func_start ArrayClear
+ArrayClear: ; 0x021EA114
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
-	bl ov4_021E9BBC
+	bl ArrayLength
 	subs r4, r0, #1
 	ldmmiia sp!, {r3, r4, r5, pc}
 _021EA128:
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	subs r4, r4, #1
 	bpl _021EA128
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021EA114
+	arm_func_end ArrayClear
 
-	arm_func_start ov4_021EA140
-ov4_021EA140: ; 0x021EA140
+	arm_func_start mylsearch
+mylsearch: ; 0x021EA140
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	mov r8, r2
 	mov sl, r0
@@ -625,10 +625,10 @@ _021EA168:
 _021EA190:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
-	arm_func_end ov4_021EA140
+	arm_func_end mylsearch
 
-	arm_func_start ov4_021EA198
-ov4_021EA198: ; 0x021EA198
+	arm_func_start mybsearch
+mybsearch: ; 0x021EA198
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	ldr r7, [sp, #0x2c]
 	mov r4, #0
@@ -656,7 +656,7 @@ _021EA1C0:
 _021EA1F4:
 	mla r0, r4, sb, sl
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end ov4_021EA198
+	arm_func_end mybsearch
 
 	.data
 

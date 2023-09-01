@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021FD500
-ov4_021FD500: ; 0x021FD500
+	arm_func_start keyrand
+keyrand: ; 0x021FD500
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	ldr r7, [sp, #0x28]
 	ldr r6, [sp, #0x2c]
@@ -57,10 +57,10 @@ _021FD5A4:
 	bhi _021FD544
 	and r0, r0, #0xff
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
-	arm_func_end ov4_021FD500
+	arm_func_end keyrand
 
-	arm_func_start ov4_021FD5B4
-ov4_021FD5B4: ; 0x021FD5B4
+	arm_func_start GOAHashInit
+GOAHashInit: ; 0x021FD5B4
 	mov r1, #1
 	strb r1, [r0, #0x100]
 	mov r1, #3
@@ -80,10 +80,10 @@ _021FD5E4:
 	sub r2, r2, #1
 	blt _021FD5E4
 	bx lr
-	arm_func_end ov4_021FD5B4
+	arm_func_end GOAHashInit
 
-	arm_func_start ov4_021FD5FC
-ov4_021FD5FC: ; 0x021FD5FC
+	arm_func_start GOACryptInit
+GOACryptInit: ; 0x021FD5FC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x10
 	mov r7, r2
@@ -91,7 +91,7 @@ ov4_021FD5FC: ; 0x021FD5FC
 	mov r8, r1
 	cmp r7, #1
 	bhs _021FD624
-	bl ov4_021FD5B4
+	bl GOAHashInit
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 _021FD624:
@@ -114,7 +114,7 @@ _021FD650:
 	mov r2, r8
 	mov r3, r7
 	str r4, [sp, #4]
-	bl ov4_021FD500
+	bl keyrand
 	ldrb r2, [sb, r6]
 	ldrb r1, [sb, r0]
 	strb r1, [sb, r6]
@@ -137,10 +137,10 @@ _021FD650:
 	str r0, [sp, #0xc]
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
-	arm_func_end ov4_021FD5FC
+	arm_func_end GOACryptInit
 
-	arm_func_start ov4_021FD6C4
-ov4_021FD6C4: ; 0x021FD6C4
+	arm_func_start GOADecryptByte
+GOADecryptByte: ; 0x021FD6C4
 	stmfd sp!, {r4, lr}
 	ldrb r4, [r0, #0x100]
 	add r2, r4, #1
@@ -192,10 +192,10 @@ ov4_021FD6C4: ; 0x021FD6C4
 	strb r1, [r0, #0x104]
 	ldrb r0, [r0, #0x103]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FD6C4
+	arm_func_end GOADecryptByte
 
-	arm_func_start ov4_021FD790
-ov4_021FD790: ; 0x021FD790
+	arm_func_start GOADecrypt
+GOADecrypt: ; 0x021FD790
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r2
 	mov r7, r0
@@ -206,10 +206,10 @@ ov4_021FD790: ; 0x021FD790
 _021FD7AC:
 	ldrb r1, [r6, r4]
 	mov r0, r7
-	bl ov4_021FD6C4
+	bl GOADecryptByte
 	strb r0, [r6, r4]
 	add r4, r4, #1
 	cmp r4, r5
 	blt _021FD7AC
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021FD790
+	arm_func_end GOADecrypt

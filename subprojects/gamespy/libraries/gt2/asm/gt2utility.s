@@ -59,8 +59,8 @@ _021FACA4: .word Unk_ov4_0221976C
 _021FACA8: .word Unk_ov4_02219770
 	arm_func_end gt2AddressToString
 
-	arm_func_start ov4_021FACAC
-ov4_021FACAC: ; 0x021FACAC
+	arm_func_start gt2StringToAddress
+gt2StringToAddress: ; 0x021FACAC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x104
 	movs r8, r0
@@ -170,10 +170,10 @@ _021FAE20: .word Unk_ov4_02219794
 _021FAE24: .word Unk_ov4_02219750
 _021FAE28: .word 0x020FE864
 _021FAE2C: .word 0x0000FFFF
-	arm_func_end ov4_021FACAC
+	arm_func_end gt2StringToAddress
 
-	arm_func_start ov4_021FAE30
-ov4_021FAE30: ; 0x021FAE30
+	arm_func_start gti2MessageCheck
+gti2MessageCheck: ; 0x021FAE30
 	stmfd sp!, {r4, lr}
 	ldr r2, [r0, #0]
 	mov r4, r1
@@ -196,7 +196,7 @@ _021FAE58:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021FAE7C: .word Unk_ov4_022197A4
-	arm_func_end ov4_021FAE30
+	arm_func_end gti2MessageCheck
 
 	.data
 

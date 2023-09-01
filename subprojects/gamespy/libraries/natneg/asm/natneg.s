@@ -1,13 +1,13 @@
 	.include "macros/function.inc"
 	.include "include/natneg.inc"
 
-	.extern Unk_ov4_0221AE50
+	.extern __GSIACResult
 
 	.text
 
 
-	arm_func_start ov4_021FAE80
-ov4_021FAE80: ; 0x021FAE80
+	arm_func_start FindNegotiatorForCookie
+FindNegotiatorForCookie: ; 0x021FAE80
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r1, _021FAEE4 ; =0x0221B3E4
 	mov r6, r0
@@ -16,48 +16,48 @@ ov4_021FAE80: ; 0x021FAE80
 	moveq r0, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
 	mov r5, #0
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	ble _021FAEDC
 	ldr r4, _021FAEE4 ; =0x0221B3E4
 _021FAEB0:
 	ldr r0, [r4, #0x10]
 	mov r1, r5
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r1, [r0, #8]
 	cmp r1, r6
 	ldmeqia sp!, {r4, r5, r6, pc}
 	ldr r0, [r4, #0x10]
 	add r5, r5, #1
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r5, r0
 	blt _021FAEB0
 _021FAEDC:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021FAEE4: .word Unk_ov4_0221B3E4
-	arm_func_end ov4_021FAE80
+_021FAEE4: .word Matchup2Hostname
+	arm_func_end FindNegotiatorForCookie
 
-	arm_func_start ov4_021FAEE8
-ov4_021FAEE8: ; 0x021FAEE8
+	arm_func_start NegotiatorFree
+NegotiatorFree: ; 0x021FAEE8
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0]
 	mvn r1, #0
 	cmp r0, r1
 	beq _021FAF04
-	bl ov4_021EACF0
+	bl closesocket
 _021FAF04:
 	mvn r0, #0
 	str r0, [r4, #0]
 	mov r0, #4
 	str r0, [r4, #0x10]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FAEE8
+	arm_func_end NegotiatorFree
 
-	arm_func_start ov4_021FAF18
-ov4_021FAF18: ; 0x021FAF18
+	arm_func_start AddNegotiator
+AddNegotiator: ; 0x021FAF18
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x40
 	mov r0, #0
@@ -75,63 +75,63 @@ ov4_021FAF18: ; 0x021FAF18
 	stmia r3, {r0, r1}
 	cmp r2, #0
 	bne _021FAF74
-	ldr r2, _021FAFAC ; =ov4_021FAEE8
+	ldr r2, _021FAFAC ; =NegotiatorFree
 	mov r0, #0x40
 	mov r1, #4
-	bl ov4_021E9A8C
+	bl ArrayNew
 	ldr r1, _021FAFA8 ; =0x0221B3E4
 	str r0, [r1, #0x10]
 _021FAF74:
 	ldr r0, _021FAFA8 ; =0x0221B3E4
 	add r1, sp, #0
 	ldr r0, [r0, #0x10]
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	ldr r0, _021FAFA8 ; =0x0221B3E4
 	ldr r0, [r0, #0x10]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r2, _021FAFA8 ; =0x0221B3E4
 	sub r1, r0, #1
 	ldr r0, [r2, #0x10]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	add sp, sp, #0x40
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FAFA8: .word Unk_ov4_0221B3E4
-_021FAFAC: .word ov4_021FAEE8
-	arm_func_end ov4_021FAF18
+_021FAFA8: .word Matchup2Hostname
+_021FAFAC: .word NegotiatorFree
+	arm_func_end AddNegotiator
 
-	arm_func_start ov4_021FAFB0
-ov4_021FAFB0: ; 0x021FAFB0
+	arm_func_start RemoveNegotiator
+RemoveNegotiator: ; 0x021FAFB0
 	stmfd sp!, {r4, r5, r6, lr}
 	ldr r1, _021FB014 ; =0x0221B3E4
 	mov r6, r0
 	ldr r0, [r1, #0x10]
 	mov r5, #0
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	ldmleia sp!, {r4, r5, r6, pc}
 	ldr r4, _021FB014 ; =0x0221B3E4
 _021FAFD4:
 	ldr r0, [r4, #0x10]
 	mov r1, r5
-	bl ov4_021E9BC4
+	bl ArrayNth
 	cmp r6, r0
 	bne _021FAFFC
 	ldr r0, _021FB014 ; =0x0221B3E4
 	mov r1, r5
 	ldr r0, [r0, #0x10]
-	bl ov4_021E9DB0
+	bl ArrayRemoveAt
 	ldmia sp!, {r4, r5, r6, pc}
 _021FAFFC:
 	ldr r0, [r4, #0x10]
 	add r5, r5, #1
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r5, r0
 	blt _021FAFD4
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021FB014: .word Unk_ov4_0221B3E4
-	arm_func_end ov4_021FAFB0
+_021FB014: .word Matchup2Hostname
+	arm_func_end RemoveNegotiator
 
 	arm_func_start NNFreeNegotiateList
 NNFreeNegotiateList: ; 0x021FB018
@@ -140,17 +140,17 @@ NNFreeNegotiateList: ; 0x021FB018
 	ldr r0, [r0, #0x10]
 	cmp r0, #0
 	ldmeqia sp!, {r3, pc}
-	bl ov4_021E9B50
+	bl ArrayFree
 	ldr r0, _021FB040 ; =0x0221B3E4
 	mov r1, #0
 	str r1, [r0, #0x10]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FB040: .word Unk_ov4_0221B3E4
+_021FB040: .word Matchup2Hostname
 	arm_func_end NNFreeNegotiateList
 
-	arm_func_start ov4_021FB044
-ov4_021FB044: ; 0x021FB044
+	arm_func_start CheckMagic
+CheckMagic: ; 0x021FB044
 	stmfd sp!, {r3, lr}
 	ldr r1, _021FB064 ; =0x022197A8
 	mov r2, #6
@@ -161,10 +161,10 @@ ov4_021FB044: ; 0x021FB044
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021FB064: .word NNMagicData
-	arm_func_end ov4_021FB044
+	arm_func_end CheckMagic
 
-	arm_func_start ov4_021FB068
-ov4_021FB068: ; 0x021FB068
+	arm_func_start SendPacket
+SendPacket: ; 0x021FB068
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #0x10
 	mov ip, r2, asr #8
@@ -183,16 +183,16 @@ ov4_021FB068: ; 0x021FB068
 	ldr r2, [sp, #0x18]
 	mov r3, #0
 	str ip, [sp, #4]
-	bl ov4_021EAE5C
+	bl sendto
 	add sp, sp, #0x10
 	ldmia sp!, {r3, pc}
-	arm_func_end ov4_021FB068
+	arm_func_end SendPacket
 
-	arm_func_start ov4_021FB0BC
-ov4_021FB0BC: ; 0x021FB0BC
+	arm_func_start GetLocalIP
+GetLocalIP: ; 0x021FB0BC
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r7, #0
-	bl ov4_021EABBC
+	bl getlocalhost
 	movs r6, r0
 	moveq r0, r7
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -207,7 +207,7 @@ _021FB0DC:
 	cmp r1, r4
 	beq _021FB10C
 	mov r7, r1
-	bl ov4_021EAC48
+	bl IsPrivateIP
 	cmp r0, #0
 	movne r0, r7
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
@@ -219,27 +219,27 @@ _021FB114:
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021FB11C: .word 0x0100007F
-	arm_func_end ov4_021FB0BC
+	arm_func_end GetLocalIP
 
-	arm_func_start ov4_021FB120
-ov4_021FB120: ; 0x021FB120
+	arm_func_start GetLocalPort
+GetLocalPort: ; 0x021FB120
 	stmdb sp!, {lr}
 	sub sp, sp, #0xc
 	mov r3, #8
 	add r1, sp, #4
 	add r2, sp, #0
 	str r3, [sp]
-	bl ov4_021EAEF0
+	bl getsockname
 	mvn r1, #0
 	cmp r0, r1
 	moveq r0, #0
 	ldrneh r0, [sp, #6]
 	add sp, sp, #0xc
 	ldmia sp!, {pc}
-	arm_func_end ov4_021FB120
+	arm_func_end GetLocalPort
 
-	arm_func_start ov4_021FB154
-ov4_021FB154: ; 0x021FB154
+	arm_func_start SendInitPackets
+SendInitPackets: ; 0x021FB154
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x5c
 	ldr r2, _021FB38C ; =0x022197A8
@@ -281,13 +281,13 @@ ov4_021FB154: ; 0x021FB154
 	cmp r2, r0
 	movne r1, #1
 	strb r1, [r5, #0xe]
-	bl ov4_021FB0BC
+	bl GetLocalIP
 	mov r7, r0
-	bl ov4_021FB0BC
+	bl GetLocalIP
 	mov r8, r0
-	bl ov4_021FB0BC
+	bl GetLocalIP
 	mov r4, r0
-	bl ov4_021FB0BC
+	bl GetLocalIP
 	mov r2, #0
 	mov r1, r7, lsl #0x18
 	and r7, r1, #0xff000000
@@ -329,7 +329,7 @@ ov4_021FB154: ; 0x021FB154
 	ldr r1, [r1, #0xc]
 	ldr r2, _021FB398 ; =0x00006CFD
 	mov r3, r5
-	bl ov4_021FB068
+	bl SendPacket
 _021FB2BC:
 	ldr r0, [r6, #0x18]
 	cmp r0, #0
@@ -342,7 +342,7 @@ _021FB2BC:
 	ldr r1, [r1, #0xc]
 	ldr r2, _021FB398 ; =0x00006CFD
 	mov r3, r5
-	bl ov4_021FB068
+	bl SendPacket
 _021FB2EC:
 	ldrb r0, [r5, #0xe]
 	cmp r0, #0
@@ -351,10 +351,10 @@ _021FB2EC:
 	cmp r0, #0
 	ldrne r0, [r6, #4]
 	ldreq r0, [r6]
-	bl ov4_021FB120
+	bl GetLocalPort
 	mov r7, r0
 	mov r0, r8
-	bl ov4_021FB120
+	bl GetLocalPort
 	mov r1, r7, asr #8
 	mov r0, r0, lsl #8
 	and r1, r1, #0xff
@@ -376,7 +376,7 @@ _021FB2EC:
 	ldr r1, [r1, #8]
 	ldr r2, _021FB398 ; =0x00006CFD
 	mov r3, r5
-	bl ov4_021FB068
+	bl SendPacket
 _021FB370:
 	bl current_time
 	add r0, r0, #0x1f4
@@ -388,12 +388,12 @@ _021FB370:
 	; .align 2, 0
 _021FB38C: .word NNMagicData
 _021FB390: .word 0x0221AEEC
-_021FB394: .word Unk_ov4_0221B3E4
+_021FB394: .word Matchup2Hostname
 _021FB398: .word 0x00006CFD
-	arm_func_end ov4_021FB154
+	arm_func_end SendInitPackets
 
-	arm_func_start ov4_021FB39C
-ov4_021FB39C: ; 0x021FB39C
+	arm_func_start SendPingPacket
+SendPingPacket: ; 0x021FB39C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x18
 	ldr r1, _021FB4B8 ; =0x022197A8
@@ -453,7 +453,7 @@ ov4_021FB39C: ; 0x021FB39C
 	str r1, [sp]
 	ldrh r2, [r4, #0x30]
 	ldr r1, [r4, #0x2c]
-	bl ov4_021FB068
+	bl SendPacket
 	bl current_time
 	add r0, r0, #0x2bc
 	str r0, [r4, #0x28]
@@ -467,10 +467,10 @@ ov4_021FB39C: ; 0x021FB39C
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021FB4B8: .word NNMagicData
-	arm_func_end ov4_021FB39C
+	arm_func_end SendPingPacket
 
-	arm_func_start ov4_021FB4BC
-ov4_021FB4BC: ; 0x021FB4BC
+	arm_func_start NameToIp
+NameToIp: ; 0x021FB4BC
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	bl inet_addr
@@ -485,10 +485,10 @@ ov4_021FB4BC: ; 0x021FB4BC
 	ldrne r0, [r0]
 	ldrne r0, [r0]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021FB4BC
+	arm_func_end NameToIp
 
-	arm_func_start ov4_021FB4F4
-ov4_021FB4F4: ; 0x021FB4F4
+	arm_func_start ResolveServer
+ResolveServer: ; 0x021FB4F4
 	stmdb sp!, {lr}
 	sub sp, sp, #0x84
 	cmp r0, #0
@@ -501,16 +501,16 @@ ov4_021FB4F4: ; 0x021FB4F4
 	bl snprintf
 	add r0, sp, #4
 _021FB520:
-	bl ov4_021FB4BC
+	bl NameToIp
 	add sp, sp, #0x84
 	ldmia sp!, {pc}
 	; .align 2, 0
 _021FB52C: .word Unk_ov4_022197B0
 _021FB530: .word 0x0221AEEC
-	arm_func_end ov4_021FB4F4
+	arm_func_end ResolveServer
 
-	arm_func_start ov4_021FB534
-ov4_021FB534: ; 0x021FB534
+	arm_func_start ResolveServers
+ResolveServers: ; 0x021FB534
 	stmfd sp!, {r3, lr}
 	ldr r0, _021FB5A0 ; =0x0221B3E4
 	ldr r1, [r0, #0xc]
@@ -518,7 +518,7 @@ ov4_021FB534: ; 0x021FB534
 	bne _021FB55C
 	ldr r0, [r0, #4]
 	ldr r1, _021FB5A4 ; =0x022197B8
-	bl ov4_021FB4F4
+	bl ResolveServer
 	ldr r1, _021FB5A0 ; =0x0221B3E4
 	str r0, [r1, #0xc]
 _021FB55C:
@@ -528,7 +528,7 @@ _021FB55C:
 	bne _021FB580
 	ldr r0, [r0, #0]
 	ldr r1, _021FB5A8 ; =0x022197D4
-	bl ov4_021FB4F4
+	bl ResolveServer
 	ldr r1, _021FB5A0 ; =0x0221B3E4
 	str r0, [r1, #8]
 _021FB580:
@@ -541,10 +541,10 @@ _021FB580:
 	movne r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FB5A0: .word Unk_ov4_0221B3E4
+_021FB5A0: .word Matchup2Hostname
 _021FB5A4: .word Unk_ov4_022197B8
 _021FB5A8: .word Unk_ov4_022197D4
-	arm_func_end ov4_021FB534
+	arm_func_end ResolveServers
 
 	arm_func_start NNBeginNegotiationWithSocket
 NNBeginNegotiationWithSocket: ; 0x021FB5AC
@@ -558,11 +558,11 @@ NNBeginNegotiationWithSocket: ; 0x021FB5AC
 	mov r5, r3
 	movne r0, #2
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
-	bl ov4_021FB534
+	bl ResolveServers
 	cmp r0, #0
 	moveq r0, #3
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
-	bl ov4_021FAF18
+	bl AddNegotiator
 	movs r4, r0
 	moveq r0, #1
 	ldmeqia sp!, {r4, r5, r6, r7, r8, pc}
@@ -577,7 +577,7 @@ NNBeginNegotiationWithSocket: ; 0x021FB5AC
 	str r2, [r4, #0x3c]
 	mov r1, r0
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mov r2, #0
 	str r0, [r4, #0]
 	str r2, [r4, #0x20]
@@ -591,28 +591,28 @@ NNBeginNegotiationWithSocket: ; 0x021FB5AC
 	cmp r1, r0
 	mov r0, r4
 	bne _021FB664
-	bl ov4_021FAFB0
+	bl RemoveNegotiator
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 _021FB664:
-	bl ov4_021FB154
+	bl SendInitPackets
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FB670: .word Unk_ov4_0221AE50
+_021FB670: .word __GSIACResult
 	arm_func_end NNBeginNegotiationWithSocket
 
 	arm_func_start NNCancel
 NNCancel: ; 0x021FB674
 	stmfd sp!, {r4, lr}
-	bl ov4_021FAE80
+	bl FindNegotiatorForCookie
 	movs r4, r0
 	ldmeqia sp!, {r4, pc}
 	ldr r0, [r4, #0]
 	mvn r1, #0
 	cmp r0, r1
 	beq _021FB698
-	bl ov4_021EACF0
+	bl closesocket
 _021FB698:
 	mvn r0, #0
 	str r0, [r4, #0]
@@ -621,8 +621,8 @@ _021FB698:
 	ldmia sp!, {r4, pc}
 	arm_func_end NNCancel
 
-	arm_func_start ov4_021FB6AC
-ov4_021FB6AC: ; 0x021FB6AC
+	arm_func_start NegotiateThink
+NegotiateThink: ; 0x021FB6AC
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, lr}
 	sub sp, sp, #0x1c
 	mov r2, #8
@@ -631,7 +631,7 @@ ov4_021FB6AC: ; 0x021FB6AC
 	ldr r1, [sb, #0x10]
 	cmp r1, #4
 	bne _021FB6D8
-	bl ov4_021FAFB0
+	bl RemoveNegotiator
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
 _021FB6D8:
@@ -646,7 +646,7 @@ _021FB6D8:
 	mov r4, #0
 	mvn sl, #0
 _021FB700:
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	beq _021FB754
 	str r8, [sp]
@@ -655,7 +655,7 @@ _021FB700:
 	mov r1, r6
 	mov r2, r5
 	mov r3, r4
-	bl ov4_021EAE18
+	bl recvfrom
 	mov r1, r0
 	cmp r1, sl
 	beq _021FB754
@@ -696,10 +696,10 @@ _021FB7A8:
 	cmp r0, #0
 	mov r0, sb
 	bne _021FB7C8
-	bl ov4_021FB154
+	bl SendInitPackets
 	b _021FB7CC
 _021FB7C8:
-	bl ov4_021FB39C
+	bl SendPingPacket
 _021FB7CC:
 	ldr r0, [sb, #0x10]
 	cmp r0, #3
@@ -756,7 +756,7 @@ _021FB84C:
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
 _021FB898: .word Unk_ov4_0221B3F8
-	arm_func_end ov4_021FB6AC
+	arm_func_end NegotiateThink
 
 	arm_func_start NNThink
 NNThink: ; 0x021FB89C
@@ -765,24 +765,24 @@ NNThink: ; 0x021FB89C
 	ldr r0, [r0, #0x10]
 	cmp r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
-	bl ov4_021E9BBC
+	bl ArrayLength
 	subs r5, r0, #1
 	ldmmiia sp!, {r3, r4, r5, pc}
 	ldr r4, _021FB8DC ; =0x0221B3E4
 _021FB8C0:
 	ldr r0, [r4, #0x10]
 	mov r1, r5
-	bl ov4_021E9BC4
-	bl ov4_021FB6AC
+	bl ArrayNth
+	bl NegotiateThink
 	subs r5, r5, #1
 	bpl _021FB8C0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021FB8DC: .word Unk_ov4_0221B3E4
+_021FB8DC: .word Matchup2Hostname
 	arm_func_end NNThink
 
-	arm_func_start ov4_021FB8E0
-ov4_021FB8E0: ; 0x021FB8E0
+	arm_func_start SendConnectAck
+SendConnectAck: ; 0x021FB8E0
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x1c
 	ldr r2, _021FB9A8 ; =0x022197A8
@@ -830,15 +830,15 @@ ov4_021FB8E0: ; 0x021FB8E0
 	ldr r0, [r0, #0]
 	ldr r1, [r1, #4]
 	mov r2, r2, lsr #0x10
-	bl ov4_021FB068
+	bl SendPacket
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _021FB9A8: .word NNMagicData
-	arm_func_end ov4_021FB8E0
+	arm_func_end SendConnectAck
 
-	arm_func_start ov4_021FB9AC
-ov4_021FB9AC: ; 0x021FB9AC
+	arm_func_start ProcessConnectPacket
+ProcessConnectPacket: ; 0x021FB9AC
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r1
 	ldrb r1, [r5, #0x13]
@@ -846,7 +846,7 @@ ov4_021FB9AC: ; 0x021FB9AC
 	cmp r1, #0
 	bne _021FB9CC
 	mov r1, r2
-	bl ov4_021FB8E0
+	bl SendConnectAck
 _021FB9CC:
 	ldr r0, [r4, #0x10]
 	cmp r0, #2
@@ -887,12 +887,12 @@ _021FBA1C:
 	ldr r2, [r4, #0x34]
 	blx r2
 	mov r0, r4
-	bl ov4_021FB39C
+	bl SendPingPacket
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FB9AC
+	arm_func_end ProcessConnectPacket
 
-	arm_func_start ov4_021FBA68
-ov4_021FBA68: ; 0x021FBA68
+	arm_func_start ProcessPingPacket
+ProcessPingPacket: ; 0x021FBA68
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r3, [r5, #0x10]
@@ -913,7 +913,7 @@ ov4_021FBA68: ; 0x021FBA68
 	ldrb r2, [r1, #0x12]
 	cmp r2, #0
 	bne _021FBAC0
-	bl ov4_021FB39C
+	bl SendPingPacket
 	ldmia sp!, {r3, r4, r5, pc}
 _021FBAC0:
 	ldr r2, [r5, #0x10]
@@ -922,7 +922,7 @@ _021FBAC0:
 	ldrb r1, [r5, #0x33]
 	cmp r1, #0
 	bne _021FBADC
-	bl ov4_021FB39C
+	bl SendPingPacket
 _021FBADC:
 	mov r0, #3
 	str r0, [r5, #0x10]
@@ -944,12 +944,12 @@ _021FBB1C:
 	ldrb r1, [r1, #0x13]
 	cmp r1, #0
 	ldmneia sp!, {r3, r4, r5, pc}
-	bl ov4_021FB39C
+	bl SendPingPacket
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021FBA68
+	arm_func_end ProcessPingPacket
 
-	arm_func_start ov4_021FBB30
-ov4_021FBB30: ; 0x021FBB30
+	arm_func_start ProcessInitPacket
+ProcessInitPacket: ; 0x021FBB30
 	stmfd sp!, {r3, r4, lr}
 	sub sp, sp, #4
 	mov r3, r1
@@ -1015,10 +1015,10 @@ _021FBBF0:
 	ldr r1, [r2, #4]
 	ldr r0, [r4, #0]
 	mov r2, ip, lsr #0x10
-	bl ov4_021FB068
+	bl SendPacket
 	add sp, sp, #4
 	ldmia sp!, {r3, r4, pc}
-	arm_func_end ov4_021FBB30
+	arm_func_end ProcessInitPacket
 
 	arm_func_start NNProcessData
 NNProcessData: ; 0x021FBC34
@@ -1027,7 +1027,7 @@ NNProcessData: ; 0x021FBC34
 	mov r6, r0
 	mov r7, r1
 	mov r5, r2
-	bl ov4_021FB044
+	bl CheckMagic
 	cmp r0, #0
 	addeq sp, sp, #0x2c
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
@@ -1061,7 +1061,7 @@ _021FBC7C:
 	and r1, r3, #0xff000000
 	orr r0, r2, r0
 	orr r0, r1, r0
-	bl ov4_021FAE80
+	bl FindNegotiatorForCookie
 	cmp r0, #0
 	addeq sp, sp, #0x2c
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
@@ -1069,11 +1069,11 @@ _021FBC7C:
 	add r1, sp, #0x18
 	mov r2, r5
 	bne _021FBCF8
-	bl ov4_021FB9AC
+	bl ProcessConnectPacket
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 _021FBCF8:
-	bl ov4_021FBA68
+	bl ProcessPingPacket
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 _021FBD04:
@@ -1105,13 +1105,13 @@ _021FBD18:
 	and r1, r3, #0xff000000
 	orr r0, r2, r0
 	orr r0, r1, r0
-	bl ov4_021FAE80
+	bl FindNegotiatorForCookie
 	cmp r0, #0
 	addeq sp, sp, #0x2c
 	ldmeqia sp!, {r4, r5, r6, r7, pc}
 	add r1, sp, #0
 	mov r2, r5
-	bl ov4_021FBB30
+	bl ProcessInitPacket
 	add sp, sp, #0x2c
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	arm_func_end NNProcessData
@@ -1142,24 +1142,24 @@ Unk_ov4_022197D4: ; 0x022197D4
 	.bss
 
 
-	.global Unk_ov4_0221B3E4
-Unk_ov4_0221B3E4: ; 0x0221B3E4
+	.global Matchup2Hostname
+Matchup2Hostname: ; 0x0221B3E4
 	.space 0x4
 
-	.global Unk_ov4_0221B3E8
-Unk_ov4_0221B3E8: ; 0x0221B3E8
+	.global Matchup1Hostname
+Matchup1Hostname: ; 0x0221B3E8
 	.space 0x4
 
-	.global Unk_ov4_0221B3EC
-Unk_ov4_0221B3EC: ; 0x0221B3EC
+	.global matchup2ip
+matchup2ip: ; 0x0221B3EC
 	.space 0x4
 
-	.global Unk_ov4_0221B3F0
-Unk_ov4_0221B3F0: ; 0x0221B3F0
+	.global matchup1ip
+matchup1ip: ; 0x0221B3F0
 	.space 0x4
 
-	.global Unk_ov4_0221B3F4
-Unk_ov4_0221B3F4: ; 0x0221B3F4
+	.global negotiateList
+negotiateList: ; 0x0221B3F4
 	.space 0x4
 
 	.global Unk_ov4_0221B3F8

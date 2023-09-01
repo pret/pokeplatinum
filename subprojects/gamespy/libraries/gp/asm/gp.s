@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/gp.inc"
 
-	.extern Unk_ov4_0221AE50
+	.extern __GSIACResult
 
 	.text
 
@@ -17,10 +17,10 @@ gpInitialize: ; 0x021EB228
 	cmp r0, #0
 	moveq r0, #2
 	ldmeqia sp!, {r3, pc}
-	bl ov4_021EBDCC
+	bl gpiInitialize
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021EB254: .word Unk_ov4_0221AE50
+_021EB254: .word __GSIACResult
 	arm_func_end gpInitialize
 
 	arm_func_start gpDestroy
@@ -30,7 +30,7 @@ gpDestroy: ; 0x021EB258
 	ldrne r1, [r0]
 	cmpne r1, #0
 	ldmeqia sp!, {r3, pc}
-	bl ov4_021EBF14
+	bl gpiDestroy
 	ldmia sp!, {r3, pc}
 	arm_func_end gpDestroy
 
@@ -47,7 +47,7 @@ gpProcess: ; 0x021EB274
 	movne r0, #0
 	ldmneia sp!, {r3, pc}
 	mov r1, #0
-	bl ov4_021EC3B0
+	bl gpiProcess
 	ldmia sp!, {r3, pc}
 	arm_func_end gpProcess
 
@@ -65,7 +65,7 @@ gpSetCallback: ; 0x021EB2A8
 	blt _021EB2E0
 _021EB2D0:
 	ldr r1, _021EB2F4 ; =0x02217940
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, pc}
 _021EB2E0:
@@ -104,7 +104,7 @@ gpConnectPreAuthenticatedA: ; 0x021EB2F8
 	cmp r4, #0
 	bne _021EB368
 	ldr r1, _021EB3F4 ; =0x02217950
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x44
 	mov r0, #2
 	ldmia sp!, {r3, r4, pc}
@@ -142,7 +142,7 @@ _021EB3B0:
 	mov r2, lr
 	mov r3, lr
 	str ip, [sp, #0x20]
-	bl ov4_021EE6BC
+	bl gpiConnect
 	add sp, sp, #0x44
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
@@ -161,9 +161,9 @@ gpDisconnect: ; 0x021EB3FC
 	cmp r1, #0
 	ldmneia sp!, {r4, pc}
 	mov r1, #1
-	bl ov4_021EF75C
+	bl gpiDisconnect
 	mov r0, r4
-	bl ov4_021EBF70
+	bl gpiReset
 	ldmia sp!, {r4, pc}
 	arm_func_end gpDisconnect
 
@@ -181,7 +181,7 @@ gpProfileSearchA: ; 0x021EB430
 	cmp ip, #0
 	bne _021EB470
 	ldr r1, _021EB4F0 ; =0x02217950
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x2c
 	mov r0, #2
 	ldmia sp!, {r3, r4, pc}
@@ -216,7 +216,7 @@ _021EB4B0:
 	ldr lr, [sp, #0x4c]
 	str ip, [sp, #0x14]
 	str lr, [sp, #0x18]
-	bl ov4_021F3808
+	bl gpiProfileSearch
 	add sp, sp, #0x2c
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
@@ -239,7 +239,7 @@ gpGetInfo: ; 0x021EB4F8
 	cmp lr, #0
 	bne _021EB53C
 	ldr r1, _021EB5CC ; =0x02217950
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x20c
 	mov r0, #2
 	ldmia sp!, {r4, r5, pc}
@@ -272,7 +272,7 @@ _021EB594:
 	cmp ip, #4
 	bne _021EB5B4
 	ldr r1, _021EB5D0 ; =0x02217964
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x20c
 	mov r0, #2
 	ldmia sp!, {r4, r5, pc}
@@ -280,7 +280,7 @@ _021EB5B4:
 	ldr ip, [sp, #0x21c]
 	str lr, [sp]
 	str ip, [sp, #4]
-	bl ov4_021F13C0
+	bl gpiGetInfo
 	add sp, sp, #0x20c
 	ldmia sp!, {r4, r5, pc}
 	; .align 2, 0
@@ -304,11 +304,11 @@ gpSetInfosA: ; 0x021EB5D4
 	cmp r3, #4
 	bne _021EB618
 	ldr r1, _021EB620 ; =0x02217964
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, pc}
 _021EB618:
-	bl ov4_021F0B50
+	bl gpiSetInfos
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EB620: .word Unk_ov4_02217964
@@ -337,7 +337,7 @@ gpSendBuddyRequestA: ; 0x021EB624
 	cmp r1, #4
 	bne _021EB68C
 	ldr r1, _021EB778 ; =0x02217964
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #4
 	add sp, sp, #0x400
 	mov r0, #2
@@ -346,7 +346,7 @@ _021EB68C:
 	cmp r2, #0
 	bne _021EB6AC
 	ldr r1, _021EB77C ; =0x02217994
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #4
 	add sp, sp, #0x400
 	mov r0, #2
@@ -355,7 +355,7 @@ _021EB6AC:
 	mov r1, r2
 	ldr r2, _021EB780 ; =0x00000401
 	add r0, sp, #0
-	bl ov4_021F5820
+	bl strzcpy
 	ldrsb r0, [sp]
 	cmp r0, #0
 	beq _021EB6E8
@@ -372,35 +372,35 @@ _021EB6E8:
 	ldr r2, _021EB784 ; =0x022179A4
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021EB788 ; =0x022179B0
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x198]
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021EB78C ; =0x022179BC
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r2, r5
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021EB790 ; =0x022179CC
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r6
 	add r1, r4, #0x1f4
 	add r2, sp, #0
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021EB794 ; =0x022179D8
 	mov r0, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0
 	add sp, sp, #4
 	add sp, sp, #0x400
@@ -432,11 +432,11 @@ gpAuthBuddyRequest: ; 0x021EB798
 	cmp r2, #4
 	bne _021EB7DC
 	ldr r1, _021EB7E4 ; =0x02217964
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, pc}
 _021EB7DC:
-	bl ov4_021ED184
+	bl gpiAuthBuddyRequest
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EB7E4: .word Unk_ov4_02217964
@@ -458,12 +458,12 @@ gpDenyBuddyRequest: ; 0x021EB7E8
 	cmp r2, #4
 	bne _021EB82C
 	ldr r1, _021EB8A4 ; =0x02217964
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, pc}
 _021EB82C:
 	add r2, sp, #0
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, pc}
@@ -484,12 +484,12 @@ _021EB82C:
 	mov r1, #0
 	str r1, [r0, #0x10]
 	ldr r0, [sp]
-	bl ov4_021F3490
+	bl gpiCanFreeProfile
 	cmp r0, #0
 	beq _021EB89C
 	ldr r1, [sp]
 	mov r0, r4
-	bl ov4_021F3318
+	bl gpiRemoveProfile
 _021EB89C:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, pc}
@@ -535,7 +535,7 @@ _021EB918:
 	cmp r5, #0
 	bne _021EB930
 	ldr r1, _021EBA00 ; =0x022179E0
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
 _021EB930:
@@ -547,16 +547,16 @@ _021EB930:
 _021EB944:
 	ldr r1, _021EBA04 ; =0x022179F0
 	mov r0, r4
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
 _021EB958:
-	bl ov4_021F3460
+	bl gpiFindBuddy
 	movs r6, r0
 	bne _021EB978
 	ldr r1, _021EBA04 ; =0x022179F0
 	mov r0, r4
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r4, r5, r6, pc}
 _021EB978:
@@ -580,7 +580,7 @@ _021EB998:
 	beq _021EB9C8
 	add r0, r5, #8
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 _021EB9C8:
 	ldr r1, [r4, #0xc]
 	cmp r1, #0
@@ -589,7 +589,7 @@ _021EB9C8:
 	beq _021EB9E8
 	add r0, r5, #0x108
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 _021EB9E8:
 	ldr r1, [r4, #0x10]
 	mov r0, #0
@@ -624,7 +624,7 @@ gpGetBuddyIndex: ; 0x021EBA18
 	strne r0, [r4]
 	ldmneia sp!, {r3, r4, pc}
 	add r2, sp, #0
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	ldrne r0, [sp]
 	ldrne r0, [r0, #8]
@@ -651,7 +651,7 @@ gpIsBuddy: ; 0x021EBA88
 	movne r0, #0
 	ldmneia sp!, {r3, pc}
 	add r2, sp, #0
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	ldrne r0, [sp]
 	ldrne r0, [r0, #8]
@@ -677,11 +677,11 @@ gpDeleteBuddy: ; 0x021EBAD4
 	cmp r2, #4
 	bne _021EBB18
 	ldr r1, _021EBB28 ; =0x02217964
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, pc}
 _021EBB18:
-	bl ov4_021ED274
+	bl gpiDeleteBuddy
 	cmp r0, #0
 	moveq r0, #0
 	ldmia sp!, {r3, pc}
@@ -710,7 +710,7 @@ gpSetStatusA: ; 0x021EBB2C
 	cmp r1, #4
 	bne _021EBB88
 	ldr r1, _021EBD38 ; =0x02217964
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x200
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -718,7 +718,7 @@ _021EBB88:
 	cmp r2, #0
 	bne _021EBBA4
 	ldr r1, _021EBD3C ; =0x02217A14
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x200
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -726,7 +726,7 @@ _021EBBA4:
 	cmp r5, #0
 	bne _021EBBC0
 	ldr r1, _021EBD40 ; =0x02217A2C
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x200
 	mov r0, #2
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -734,7 +734,7 @@ _021EBBC0:
 	mov r1, r2
 	add r0, sp, #0x100
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	add r0, sp, #0x100
 	ldrsb r0, [r0]
 	cmp r0, #0
@@ -752,7 +752,7 @@ _021EBC00:
 	add r0, sp, #0
 	mov r1, r5
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldrsb r0, [sp]
 	cmp r0, #0
 	beq _021EBC3C
@@ -786,47 +786,47 @@ _021EBC78:
 	add r0, r4, #0x218
 	mov r2, #0x100
 	str r6, [r4, #0x214]
-	bl ov4_021F5820
+	bl strzcpy
 	add r1, sp, #0
 	add r0, r4, #0x318
 	mov r2, #0x100
-	bl ov4_021F5820
+	bl strzcpy
 	ldr r2, _021EBD44 ; =0x02217A44
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	mov r2, r6
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021EBD48 ; =0x022179B0
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x198]
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021EBD4C ; =0x02217A50
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	add r1, r4, #0x1f4
 	add r2, sp, #0x100
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021EBD50 ; =0x02217A60
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	add r1, r4, #0x1f4
 	add r2, sp, #0
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021EBD54 ; =0x022179D8
 	mov r0, r7
 	add r1, r4, #0x1f4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0
 	add sp, sp, #0x200
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -858,19 +858,19 @@ gpSendBuddyMessageA: ; 0x021EBD58
 	cmp r2, #4
 	bne _021EBDA0
 	ldr r1, _021EBDC4 ; =0x02217964
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, pc}
 _021EBDA0:
 	cmp r3, #0
 	bne _021EBDB8
 	ldr r1, _021EBDC8 ; =0x02217A6C
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	mov r0, #2
 	ldmia sp!, {r3, pc}
 _021EBDB8:
 	mov r2, #1
-	bl ov4_021ED09C
+	bl gpiSendBuddyMessage
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021EBDC4: .word Unk_ov4_02217964

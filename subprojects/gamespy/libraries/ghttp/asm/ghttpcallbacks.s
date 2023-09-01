@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov60_022206D4
-ov60_022206D4: ; 0x022206D4
+	arm_func_start ghiCallCompletedCallback
+ghiCallCompletedCallback: ; 0x022206D4
 	stmfd sp!, {r3, r4, r5, lr}
 	movs r5, r0
 	bne _022206F4
@@ -42,10 +42,10 @@ _022206F4:
 _02220748: .word Unk_ov60_022290FC
 _0222074C: .word Unk_ov60_02229108
 _02220750: .word Unk_ov60_022290E0
-	arm_func_end ov60_022206D4
+	arm_func_end ghiCallCompletedCallback
 
-	arm_func_start ov60_02220754
-ov60_02220754: ; 0x02220754
+	arm_func_start ghiCallProgressCallback
+ghiCallProgressCallback: ; 0x02220754
 	stmfd sp!, {r3, r4, r5, r6, lr}
 	sub sp, sp, #0xc
 	movs r6, r0
@@ -79,10 +79,10 @@ _02220780:
 _022207C4: .word Unk_ov60_022290FC
 _022207C8: .word Unk_ov60_02229108
 _022207CC: .word Unk_ov60_022290C8
-	arm_func_end ov60_02220754
+	arm_func_end ghiCallProgressCallback
 
-	arm_func_start ov60_022207D0
-ov60_022207D0: ; 0x022207D0
+	arm_func_start ghiCallPostCallback
+ghiCallPostCallback: ; 0x022207D0
 	stmfd sp!, {r4, lr}
 	sub sp, sp, #8
 	movs r4, r0
@@ -98,7 +98,7 @@ _022207F4:
 	addeq sp, sp, #8
 	ldmeqia sp!, {r4, pc}
 	ldr r0, [r4, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	str r0, [sp]
 	ldr r0, [r4, #0x44]
 	str r0, [sp, #4]
@@ -114,7 +114,7 @@ _022207F4:
 _02220838: .word Unk_ov60_022290FC
 _0222083C: .word Unk_ov60_02229108
 _02220840: .word Unk_ov60_022290B4
-	arm_func_end ov60_022207D0
+	arm_func_end ghiCallPostCallback
 
 	.data
 

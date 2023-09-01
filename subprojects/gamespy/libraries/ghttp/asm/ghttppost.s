@@ -6,25 +6,25 @@
 	.text
 
 
-	arm_func_start ov60_02221900
-ov60_02221900: ; 0x02221900
+	arm_func_start ghiIsPostAutoFree
+ghiIsPostAutoFree: ; 0x02221900
 	ldr r0, [r0, #0x10]
 	bx lr
-	arm_func_end ov60_02221900
+	arm_func_end ghiIsPostAutoFree
 
-	arm_func_start ov60_02221908
-ov60_02221908: ; 0x02221908
+	arm_func_start ghiFreePost
+ghiFreePost: ; 0x02221908
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, r4
 	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
-	arm_func_end ov60_02221908
+	arm_func_end ghiFreePost
 
-	arm_func_start ov60_02221924
-ov60_02221924: ; 0x02221924
+	arm_func_start ghiPostGetContentType
+ghiPostGetContentType: ; 0x02221924
 	stmfd sp!, {r4, lr}
 	ldr r4, [r0, #0x13c]
 	cmp r4, #0
@@ -51,15 +51,15 @@ _02221974: .word 0x00000192
 _02221978: .word Unk_ov60_0222949C
 _0222197C: .word Unk_ov60_022294A0
 _02221980: .word Unk_ov60_022294E4
-	arm_func_end ov60_02221924
+	arm_func_end ghiPostGetContentType
 
-	arm_func_start ov60_02221984
-ov60_02221984: ; 0x02221984
+	arm_func_start ghiPostGetNoFilesContentLength
+ghiPostGetNoFilesContentLength: ; 0x02221984
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	ldr r6, [r0, #0x13c]
 	mov sl, #0
 	ldr r0, [r6, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	movs sb, r0
 	moveq r0, sl
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -72,7 +72,7 @@ ov60_02221984: ; 0x02221984
 _022219BC:
 	ldr r0, [r6, #0]
 	mov r1, r8
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r7, r0
 	ldr r0, [r7, #0]
 	cmp r0, #0
@@ -102,10 +102,10 @@ _02221A18:
 _02221A24: .word Unk_ov60_02229508
 _02221A28: .word Unk_ov60_02229444
 _02221A2C: .word Unk_ov60_022293E0
-	arm_func_end ov60_02221984
+	arm_func_end ghiPostGetNoFilesContentLength
 
-	arm_func_start ov60_02221A30
-ov60_02221A30: ; 0x02221A30
+	arm_func_start ghiPostGetHasFilesContentLength
+ghiPostGetHasFilesContentLength: ; 0x02221A30
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	ldr r1, _02221BB4 ; =0x02229E40
 	mov r4, r0
@@ -126,7 +126,7 @@ ov60_02221A30: ; 0x02221A30
 	str r0, [r1, #0]
 _02221A78:
 	ldr r0, [r7, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov sb, r0
 	cmp sb, #0
 	mov r8, #0
@@ -136,7 +136,7 @@ _02221A78:
 _02221A98:
 	ldr r0, [r7, #0]
 	mov r1, r8
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r6, r0
 	ldr r0, [r6, #0]
 	cmp r0, #0
@@ -165,7 +165,7 @@ _02221AD4:
 	add sl, sl, r0
 	ldr r0, [r4, #0x140]
 	mov r1, r8
-	bl ov4_021E9BC4
+	bl ArrayNth
 	movs r6, r0
 	bne _02221B30
 	ldr r1, _02221BC0 ; =0x02229444
@@ -219,10 +219,10 @@ _02221BC0: .word Unk_ov60_02229444
 _02221BC4: .word Unk_ov60_02229420
 _02221BC8: .word Unk_ov60_02229440
 _02221BCC: .word 0x000001F9
-	arm_func_end ov60_02221A30
+	arm_func_end ghiPostGetHasFilesContentLength
 
-	arm_func_start ov60_02221BD0
-ov60_02221BD0: ; 0x02221BD0
+	arm_func_start ghiPostGetContentLength
+ghiPostGetContentLength: ; 0x02221BD0
 	stmfd sp!, {r3, r4, r5, lr}
 	mov r5, r0
 	ldr r4, [r5, #0x13c]
@@ -241,19 +241,19 @@ _02221BF8:
 	cmp r0, #0
 	mov r0, r5
 	beq _02221C1C
-	bl ov60_02221A30
+	bl ghiPostGetHasFilesContentLength
 	ldmia sp!, {r3, r4, r5, pc}
 _02221C1C:
-	bl ov60_02221984
+	bl ghiPostGetNoFilesContentLength
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _02221C24: .word Unk_ov60_02229494
 _02221C28: .word Unk_ov60_02229444
 _02221C2C: .word Unk_ov60_0222938C
-	arm_func_end ov60_02221BD0
+	arm_func_end ghiPostGetContentLength
 
-	arm_func_start ov60_02221C30
-ov60_02221C30: ; 0x02221C30
+	arm_func_start ghiPostStateInit
+ghiPostStateInit: ; 0x02221C30
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r1, [r4, #0]
@@ -301,10 +301,10 @@ _02221CCC:
 _02221CD4: .word Unk_ov60_02229440
 _02221CD8: .word Unk_ov60_02229444
 _02221CDC: .word Unk_ov60_02229334
-	arm_func_end ov60_02221C30
+	arm_func_end ghiPostStateInit
 
-	arm_func_start ov60_02221CE0
-ov60_02221CE0: ; 0x02221CE0
+	arm_func_start ghiPostStateCleanup
+ghiPostStateCleanup: ; 0x02221CE0
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0]
@@ -335,10 +335,10 @@ _02221D3C: .word Unk_ov60_02229440
 _02221D40: .word Unk_ov60_02229444
 _02221D44: .word Unk_ov60_02229348
 _02221D48: .word 0x00000269
-	arm_func_end ov60_02221CE0
+	arm_func_end ghiPostStateCleanup
 
-	arm_func_start ov60_02221D4C
-ov60_02221D4C: ; 0x02221D4C
+	arm_func_start ghiPostInitState
+ghiPostInitState: ; 0x02221D4C
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x10
 	mov r4, r0
@@ -367,12 +367,12 @@ _02221D78:
 	str r0, [r4, #0x154]
 	ldr r0, [r4, #0x13c]
 	ldr r0, [r0, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r8, r0
 	mov r1, r8
 	mov r0, #0x10
 	mov r2, #0
-	bl ov4_021E9A8C
+	bl ArrayNew
 	cmp r0, #0
 	str r0, [r4, #0x140]
 	addeq sp, sp, #0x10
@@ -387,14 +387,14 @@ _02221DF8:
 	ldr r0, [r4, #0x13c]
 	mov r1, r7
 	ldr r0, [r0, #0]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	str r5, [r6, #0]
 	str r0, [sp]
 	mov r0, r6
 	str r5, [r6, #4]
 	str r5, [r6, #8]
 	str r5, [r6, #0xc]
-	bl ov60_02221C30
+	bl ghiPostStateInit
 	cmp r0, #0
 	bne _02221E64
 	subs r7, r7, #1
@@ -402,13 +402,13 @@ _02221DF8:
 _02221E34:
 	ldr r0, [r4, #0x140]
 	mov r1, r7
-	bl ov4_021E9BC4
-	bl ov60_02221CE0
+	bl ArrayNth
+	bl ghiPostStateCleanup
 	subs r7, r7, #1
 	bpl _02221E34
 _02221E4C:
 	ldr r0, [r4, #0x140]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, #0
 	add sp, sp, #0x10
 	str r0, [r4, #0x140]
@@ -416,17 +416,17 @@ _02221E4C:
 _02221E64:
 	ldr r0, [r4, #0x140]
 	mov r1, r6
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	add r7, r7, #1
 	cmp r7, r8
 	blt _02221DF8
 _02221E7C:
 	ldr r0, [r4, #0x13c]
 	ldr r0, [r0, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r5, r0
 	ldr r0, [r4, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r5, r0
 	beq _02221EB0
 	ldr r0, _02221ED4 ; =0x02229564
@@ -436,7 +436,7 @@ _02221E7C:
 	bl __msl_assertion_failed
 _02221EB0:
 	mov r0, r4
-	bl ov60_02221BD0
+	bl ghiPostGetContentLength
 	str r0, [r4, #0x14c]
 	mov r0, #1
 	add sp, sp, #0x10
@@ -447,16 +447,16 @@ _02221ECC: .word Unk_ov60_02229444
 _02221ED0: .word Unk_ov60_0222930C
 _02221ED4: .word Unk_ov60_02229564
 _02221ED8: .word 0x000002B1
-	arm_func_end ov60_02221D4C
+	arm_func_end ghiPostInitState
 
-	arm_func_start ov60_02221EDC
-ov60_02221EDC: ; 0x02221EDC
+	arm_func_start ghiPostCleanupState
+ghiPostCleanupState: ; 0x02221EDC
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r6, r0
 	ldr r0, [r6, #0x140]
 	cmp r0, #0
 	beq _02221F30
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r5, r0
 	cmp r5, #0
 	mov r4, #0
@@ -464,14 +464,14 @@ ov60_02221EDC: ; 0x02221EDC
 _02221F04:
 	ldr r0, [r6, #0x140]
 	mov r1, r4
-	bl ov4_021E9BC4
-	bl ov60_02221CE0
+	bl ArrayNth
+	bl ghiPostStateCleanup
 	add r4, r4, #1
 	cmp r4, r5
 	blt _02221F04
 _02221F20:
 	ldr r0, [r6, #0x140]
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, #0
 	str r0, [r6, #0x140]
 _02221F30:
@@ -480,14 +480,14 @@ _02221F30:
 	ldrne r1, [r0, #0x10]
 	cmpne r1, #0
 	ldmeqia sp!, {r4, r5, r6, pc}
-	bl ov60_02221908
+	bl ghiFreePost
 	mov r0, #0
 	str r0, [r6, #0x13c]
 	ldmia sp!, {r4, r5, r6, pc}
-	arm_func_end ov60_02221EDC
+	arm_func_end ghiPostCleanupState
 
-	arm_func_start ov60_02221F54
-ov60_02221F54: ; 0x02221F54
+	arm_func_start ghiPostStringStateDoPosting
+ghiPostStringStateDoPosting: ; 0x02221F54
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	mov r4, r0
 	ldr r0, [r4, #4]
@@ -547,14 +547,14 @@ _02222018:
 	beq _0222203C
 	mov r1, r7
 	add r0, sl, #0x50
-	bl ov60_0222046C
+	bl ghiAppendCharToBuffer
 	b _022220A8
 _0222203C:
 	cmp r7, #0x20
 	bne _02222054
 	mov r1, #0x2b
 	add r0, sl, #0x50
-	bl ov60_0222046C
+	bl ghiAppendCharToBuffer
 	b _022220A8
 _02222054:
 	mov r0, r7, asr #3
@@ -578,7 +578,7 @@ _0222207C:
 	add r0, sl, #0x50
 	strb r2, [sp, #2]
 	mov r2, #3
-	bl ov60_02220130
+	bl ghiAppendDataToBuffer
 _022220A8:
 	add r6, r6, #1
 	ldrsb r7, [r8, r6]
@@ -595,7 +595,7 @@ _022220C0:
 	sub r5, r2, r0
 	mov r0, sl
 	mov r2, r5
-	bl ov60_02220B90
+	bl ghiDoSend
 	mvn r1, #0
 	cmp r0, r1
 	moveq r0, #0
@@ -619,10 +619,10 @@ _02222128: .word Unk_ov60_02229604
 _0222212C: .word Unk_ov60_02229450
 _02222130: .word Unk_ov60_022295F4
 _02222134: .word 0x0000030D
-	arm_func_end ov60_02221F54
+	arm_func_end ghiPostStringStateDoPosting
 
-	arm_func_start ov60_02222138
-ov60_02222138: ; 0x02222138
+	arm_func_start ghiPostFileDiskStateDoPosting
+ghiPostFileDiskStateDoPosting: ; 0x02222138
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x1000
 	mov r8, r0
@@ -693,7 +693,7 @@ _022221FC:
 _02222230:
 	mov r0, r7
 	mov r1, r6
-	bl ov60_02220C0C
+	bl ghiTrySendThenBuffer
 	cmp r0, #0
 	addeq sp, sp, #0x1000
 	moveq r0, #0
@@ -717,10 +717,10 @@ _02222284: .word 0x00000336
 _02222288: .word Unk_ov60_02229618
 _0222228C: .word 0x00000337
 _02222290: .word Unk_ov60_02229640
-	arm_func_end ov60_02222138
+	arm_func_end ghiPostFileDiskStateDoPosting
 
-	arm_func_start ov60_02222294
-ov60_02222294: ; 0x02222294
+	arm_func_start ghiPostFileMemoryStateDoPosting
+ghiPostFileMemoryStateDoPosting: ; 0x02222294
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r6, r0
 	ldr r0, [r6, #4]
@@ -758,7 +758,7 @@ _022222FC:
 	movge r2, r4
 	mov r0, r5
 	add r1, r1, r3
-	bl ov60_02220B90
+	bl ghiDoSend
 	cmp r0, r7
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, pc}
@@ -781,10 +781,10 @@ _02222364: .word Unk_ov60_02229400
 _02222368: .word 0x0000036E
 _0222236C: .word Unk_ov60_02229678
 _02222370: .word 0x00000375
-	arm_func_end ov60_02222294
+	arm_func_end ghiPostFileMemoryStateDoPosting
 
-	arm_func_start ov60_02222374
-ov60_02222374: ; 0x02222374
+	arm_func_start ghiPostStateDoPosting
+ghiPostStateDoPosting: ; 0x02222374
 	stmfd sp!, {r4, r5, r6, lr}
 	sub sp, sp, #8
 	sub sp, sp, #0x800
@@ -866,7 +866,7 @@ _0222248C:
 	mov r2, r0
 	add r1, sp, #8
 	mov r0, r5
-	bl ov60_02220C0C
+	bl ghiTrySendThenBuffer
 	cmp r0, #0
 	addeq sp, sp, #8
 	addeq sp, sp, #0x800
@@ -884,7 +884,7 @@ _022224CC:
 	bne _022224F4
 	mov r0, r6
 	mov r1, r5
-	bl ov60_02221F54
+	bl ghiPostStringStateDoPosting
 	add sp, sp, #8
 	add sp, sp, #0x800
 	ldmia sp!, {r4, r5, r6, pc}
@@ -893,7 +893,7 @@ _022224F4:
 	bne _02222514
 	mov r0, r6
 	mov r1, r5
-	bl ov60_02222138
+	bl ghiPostFileDiskStateDoPosting
 	add sp, sp, #8
 	add sp, sp, #0x800
 	ldmia sp!, {r4, r5, r6, pc}
@@ -908,7 +908,7 @@ _02222514:
 _02222530:
 	mov r0, r6
 	mov r1, r5
-	bl ov60_02222294
+	bl ghiPostFileMemoryStateDoPosting
 	add sp, sp, #8
 	add sp, sp, #0x800
 	ldmia sp!, {r4, r5, r6, pc}
@@ -925,10 +925,10 @@ _02222568: .word Unk_ov60_02229758
 _0222256C: .word Unk_ov60_02229440
 _02222570: .word Unk_ov60_022297AC
 _02222574: .word 0x000003F5
-	arm_func_end ov60_02222374
+	arm_func_end ghiPostStateDoPosting
 
-	arm_func_start ov60_02222578
-ov60_02222578: ; 0x02222578
+	arm_func_start ghiPostDoPosting
+ghiPostDoPosting: ; 0x02222578
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	movs sl, r0
 	bne _02222598
@@ -958,10 +958,10 @@ _022225B8:
 _022225D8:
 	ldr r0, [sl, #0x13c]
 	ldr r0, [r0, #0]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	mov r4, r0
 	ldr r0, [sl, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r4, r0
 	beq _0222260C
 	ldr r0, _022227CC ; =0x02229564
@@ -980,7 +980,7 @@ _0222260C:
 	bl __msl_assertion_failed
 _0222262C:
 	ldr r0, [sl, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r1, [sl, #0x144]
 	cmp r1, r0
 	ble _02222654
@@ -991,13 +991,13 @@ _0222262C:
 	bl __msl_assertion_failed
 _02222654:
 	ldr r0, [sl, #0x140]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	ldr r1, [sl, #0x5c]
 	mov sb, r0
 	cmp r1, #0
 	beq _022226AC
 	mov r0, sl
-	bl ov60_02220548
+	bl ghiSendBufferedData
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -1007,7 +1007,7 @@ _02222654:
 	movlt r0, #2
 	ldmltia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	add r0, sl, #0x50
-	bl ov60_02220504
+	bl ghiResetBuffer
 	ldr r0, [sl, #0x144]
 	cmp r0, sb
 	moveq r0, #1
@@ -1023,7 +1023,7 @@ _022226AC:
 	mov fp, #1
 _022226CC:
 	ldr r0, [sl, #0x140]
-	bl ov4_021E9BC4
+	bl ArrayNth
 	movs r8, r0
 	bne _022226F0
 	mov r0, r7
@@ -1038,7 +1038,7 @@ _022226F0:
 	moveq r2, fp
 	movne r2, #0
 	mov r0, r8
-	bl ov60_02222374
+	bl ghiPostStateDoPosting
 	cmp r0, #0
 	bne _02222744
 	ldr r0, [sl, #0xfc]
@@ -1073,7 +1073,7 @@ _02222764:
 	mov r2, r0
 	ldr r1, _022227F4 ; =0x022298A8
 	mov r0, sl
-	bl ov60_02220C0C
+	bl ghiTrySendThenBuffer
 	cmp r0, #0
 	moveq r0, #0
 	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -1103,7 +1103,7 @@ _022227E8: .word 0x0000042F
 _022227EC: .word Unk_ov60_0222987C
 _022227F0: .word 0x0000043B
 _022227F4: .word Unk_ov60_022298A8
-	arm_func_end ov60_02222578
+	arm_func_end ghiPostDoPosting
 
 	.rodata
 

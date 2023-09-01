@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov4_021F1D24
-ov4_021F1D24: ; 0x021F1D24
+	arm_func_start gpiProcessPeerInitiatingConnection
+gpiProcessPeerInitiatingConnection: ; 0x021F1D24
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x18
 	mov r6, r1
@@ -24,7 +24,7 @@ _021F1D4C: ; jump table
 	b _021F1D70 ; case 2
 	b _021F1EF4 ; case 3
 _021F1D5C:
-	bl ov4_021F2AE8
+	bl gpiPeerStartConnect
 	cmp r0, #0
 	beq _021F1FF8
 	add sp, sp, #0x18
@@ -32,7 +32,7 @@ _021F1D5C:
 _021F1D70:
 	ldr r1, [r6, #8]
 	add r2, sp, #0x14
-	bl ov4_021F5A80
+	bl gpiCheckSocketConnect
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
@@ -41,7 +41,7 @@ _021F1D70:
 	bne _021F1DAC
 	ldr r1, _021F2048 ; =0x02218A88
 	mov r0, r7
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x18
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -52,12 +52,12 @@ _021F1DAC:
 	add r2, sp, #8
 	mov r0, r7
 	mov r5, #1
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	bne _021F1DE8
 	ldr r1, _021F2048 ; =0x02218A88
 	mov r0, r7
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x18
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -65,36 +65,36 @@ _021F1DE8:
 	ldr r2, _021F204C ; =0x02218AA4
 	mov r0, r7
 	add r1, r6, #0x28
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021F2050 ; =0x02218AAC
 	mov r0, r7
 	add r1, r6, #0x28
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x1a0]
 	mov r0, r7
 	add r1, r6, #0x28
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	ldr r2, _021F2054 ; =0x02218AB4
 	mov r0, r7
 	add r1, r6, #0x28
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	add r1, r6, #0x28
 	add r2, r4, #0x110
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	add r1, r6, #0x28
 	ldr r2, _021F2058 ; =0x02218ABC
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	add r1, r6, #0x28
 	ldr r2, [sp, #8]
 	ldr r2, [r2, #0x18]
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, r7
 	add r1, r6, #0x28
 	ldr r2, _021F205C ; =0x02218AC4
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, [r4, #0x434]
 	cmp r2, #0
 	beq _021F1EAC
@@ -123,12 +123,12 @@ _021F1EAC:
 	mov r1, #0
 	str r1, [r0, #0x18]
 	ldr r0, [sp, #8]
-	bl ov4_021F3490
+	bl gpiCanFreeProfile
 	cmp r0, #0
 	beq _021F1EE8
 	ldr r1, [sp, #8]
 	mov r0, r7
-	bl ov4_021F3318
+	bl gpiRemoveProfile
 _021F1EE8:
 	mov r0, #0x68
 	str r0, [r6, #0]
@@ -141,7 +141,7 @@ _021F1EF4:
 	str r1, [sp, #4]
 	ldr r1, [r6, #8]
 	add r2, r6, #0x18
-	bl ov4_021ED92C
+	bl gpiRecvToBuffer
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
@@ -166,14 +166,14 @@ _021F1EF4:
 	ble _021F1F84
 	ldr r1, _021F2068 ; =0x02218AD8
 	mov r0, r7
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x18
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F1F84:
 	mov r0, r7
 	mov r1, r6
-	bl ov4_021F2A84
+	bl gpiPeerGetSig
 	cmp r0, #0
 	beq _021F1FD0
 	add sp, sp, #0x18
@@ -187,7 +187,7 @@ _021F1FA0:
 	beq _021F1FD0
 	ldr r1, _021F2070 ; =0x02218B04
 	mov r0, r7
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x18
 	mov r0, #3
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
@@ -215,7 +215,7 @@ _021F1FF8:
 	add r3, sp, #0xc
 	mov r0, r7
 	add r2, r6, #0x28
-	bl ov4_021EDB54
+	bl gpiSendFromBuffer
 	ldr r1, [sp, #0xc]
 	cmp r1, #0
 	cmpeq r0, #0
@@ -240,10 +240,10 @@ _021F2070: .word Unk_ov4_02218B04
 _021F2074: .word Unk_ov4_02218B24
 _021F2078: .word Unk_ov4_02218B28
 _021F207C: .word Unk_ov4_02218A64
-	arm_func_end ov4_021F1D24
+	arm_func_end gpiProcessPeerInitiatingConnection
 
-	arm_func_start ov4_021F2080
-ov4_021F2080: ; 0x021F2080
+	arm_func_start gpiProcessPeerAcceptingConnection
+gpiProcessPeerAcceptingConnection: ; 0x021F2080
 	stmfd sp!, {r4, r5, r6, r7, lr}
 	sub sp, sp, #0x184
 	mov r5, r1
@@ -266,7 +266,7 @@ _021F20B4:
 	add r3, sp, #0xc
 	mov r0, r6
 	add r2, r5, #0x18
-	bl ov4_021ED92C
+	bl gpiRecvToBuffer
 	cmp r0, #0
 	addne sp, sp, #0x184
 	ldmneia sp!, {r4, r5, r6, r7, pc}
@@ -297,7 +297,7 @@ _021F2104:
 	add r2, sp, #0x71
 	mov r0, r7
 	mov r3, #0x10
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021F216C
 	mov r0, #0x6a
@@ -313,7 +313,7 @@ _021F216C:
 	ldr r1, _021F22C8 ; =0x02218AB4
 	add r2, sp, #0x52
 	mov r3, #0x1f
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021F21A8
 	mov r0, #0x6a
@@ -326,7 +326,7 @@ _021F21A8:
 	ldr r1, _021F22CC ; =0x02218ABC
 	add r2, sp, #0x31
 	mov r3, #0x21
-	bl ov4_021F5978
+	bl gpiValueForKey
 	cmp r0, #0
 	bne _021F21D8
 	mov r0, #0x6a
@@ -347,7 +347,7 @@ _021F21D8:
 	mov r1, r0
 	add r0, sp, #0x81
 	add r2, sp, #0x10
-	bl ov4_021EA7F4
+	bl MD5Digest
 	add r0, sp, #0x31
 	add r1, sp, #0x10
 	bl strcmp
@@ -356,11 +356,11 @@ _021F21D8:
 	ldr r2, _021F22D4 ; =0x02218AD0
 	mov r0, r6
 	add r1, r5, #0x28
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021F22BC ; =0x02218AC4
 	mov r0, r6
 	add r1, r5, #0x28
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0x6a
 	str r0, [r5, #0]
 	add sp, sp, #0x184
@@ -370,11 +370,11 @@ _021F2254:
 	ldr r2, _021F22D8 ; =0x02218AFC
 	mov r0, r6
 	add r1, r5, #0x28
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	ldr r2, _021F22BC ; =0x02218AC4
 	mov r0, r6
 	add r1, r5, #0x28
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	mov r0, #0x69
 	str r0, [r5, #0]
 	str r7, [r5, #0xc]
@@ -405,10 +405,10 @@ _021F22CC: .word Unk_ov4_02218ABC
 _021F22D0: .word Unk_ov4_02218B54
 _021F22D4: .word Unk_ov4_02218AD0
 _021F22D8: .word Unk_ov4_02218AFC
-	arm_func_end ov4_021F2080
+	arm_func_end gpiProcessPeerAcceptingConnection
 
-	arm_func_start ov4_021F22DC
-ov4_021F22DC: ; 0x021F22DC
+	arm_func_start gpiPeerSendMessages
+gpiPeerSendMessages: ; 0x021F22DC
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0xc
 	mov sb, r1
@@ -419,7 +419,7 @@ ov4_021F22DC: ; 0x021F22DC
 	movne r0, #0
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	ldr r0, [sb, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	beq _021F23A0
 	mov fp, #0
@@ -430,7 +430,7 @@ ov4_021F22DC: ; 0x021F22DC
 _021F2324:
 	ldr r0, [sb, #0x38]
 	mov r1, r8
-	bl ov4_021E9BC4
+	bl ArrayNth
 	mov r7, r0
 	str r6, [sp]
 	str r5, [sp, #4]
@@ -438,7 +438,7 @@ _021F2324:
 	mov r0, sl
 	mov r2, r7
 	mov r3, r4
-	bl ov4_021EDB54
+	bl gpiSendFromBuffer
 	ldr r1, [sp, #8]
 	cmp r1, #0
 	cmpeq r0, #0
@@ -455,9 +455,9 @@ _021F2374:
 	bne _021F23A0
 	ldr r0, [sb, #0x38]
 	mov r1, fp
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	ldr r0, [sb, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	bne _021F2324
 _021F23A0:
@@ -466,10 +466,10 @@ _021F23A0:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021F23AC: .word Unk_ov4_02218ACC
-	arm_func_end ov4_021F22DC
+	arm_func_end gpiPeerSendMessages
 
-	arm_func_start ov4_021F23B0
-ov4_021F23B0: ; 0x021F23B0
+	arm_func_start gpiProcessPeerConnected
+gpiProcessPeerConnected: ; 0x021F23B0
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x24
 	mov r8, r1
@@ -485,7 +485,7 @@ ov4_021F23B0: ; 0x021F23B0
 	str r1, [sp, #4]
 	ldr r1, [r8, #8]
 	add r2, r8, #0x28
-	bl ov4_021EDB54
+	bl gpiSendFromBuffer
 	ldr r1, [sp, #0x1c]
 	cmp r1, #0
 	cmpeq r0, #0
@@ -501,7 +501,7 @@ _021F2414:
 	bne _021F244C
 	mov r0, sb
 	mov r1, r8
-	bl ov4_021F22DC
+	bl gpiPeerSendMessages
 	cmp r0, #0
 	addne sp, sp, #0x24
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -519,7 +519,7 @@ _021F244C:
 	add r3, sp, #0x20
 	mov r0, sb
 	add r2, r8, #0x18
-	bl ov4_021ED92C
+	bl gpiRecvToBuffer
 	cmp r0, #0
 	beq _021F248C
 	mov r0, #0x6a
@@ -532,7 +532,7 @@ _021F248C:
 	cmp r0, #0
 	ble _021F24A8
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 	add r0, r0, #0x12c
 	str r0, [r8, #0x10]
 _021F24A8:
@@ -546,7 +546,7 @@ _021F24B8:
 	add r2, sp, #0x10
 	add r3, sp, #0xc
 	str r6, [sp]
-	bl ov4_021EDCD4
+	bl gpiReadMessageFromBuffer
 	cmp r0, #0
 	addne sp, sp, #0x24
 	ldmneia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -588,7 +588,7 @@ _021F2538:
 	bne _021F2578
 	ldr r1, _021F2628 ; =0x02218B5C
 	mov r0, sb
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0x24
 	mov r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
@@ -596,16 +596,16 @@ _021F2578:
 	ldr r0, [r8, #0xc]
 	str r0, [r5, #0]
 	ldr r0, [sp, #0x10]
-	bl ov4_021EA8AC
+	bl goastrdup
 	str r0, [r5, #8]
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 	str r0, [r5, #4]
 	mov r3, r5
 	mov r0, sb
 	stmia sp, {r4, sl}
 	ldmia fp, {r1, r2}
-	bl ov4_021EDF5C
+	bl gpiAddCallback
 	cmp r0, #0
 	beq _021F25F0
 	add sp, sp, #0x24
@@ -615,7 +615,7 @@ _021F25BC:
 	ldr r3, _021F262C ; =0x02218B6C
 	mov r0, sb
 	mov r2, #0x67
-	bl ov4_021ED09C
+	bl gpiSendBuddyMessage
 	b _021F25F0
 _021F25D4:
 	str r1, [sp]
@@ -624,11 +624,11 @@ _021F25D4:
 	str r1, [sp, #4]
 	mov r1, r8
 	ldr r3, [r8, #0x18]
-	bl ov4_021F5698
+	bl gpiHandleTransferMessage
 _021F25F0:
 	mov r0, sb
 	add r1, r8, #0x18
-	bl ov4_021EDE10
+	bl gpiClipBufferToPosition
 _021F25FC:
 	ldr r0, [sp, #0x10]
 	cmp r0, #0
@@ -644,10 +644,10 @@ _021F25FC:
 _021F2624: .word Unk_ov4_02218ACC
 _021F2628: .word Unk_ov4_02218B5C
 _021F262C: .word Unk_ov4_02218B6C
-	arm_func_end ov4_021F23B0
+	arm_func_end gpiProcessPeerConnected
 
-	arm_func_start ov4_021F2630
-ov4_021F2630: ; 0x021F2630
+	arm_func_start gpiProcessPeer
+gpiProcessPeer: ; 0x021F2630
 	stmfd sp!, {r4, r5, r6, lr}
 	mov r5, r1
 	ldr r1, [r5, #0]
@@ -669,11 +669,11 @@ _021F2660:
 	cmp r0, #0
 	mov r0, r6
 	beq _021F268C
-	bl ov4_021F1D24
+	bl gpiProcessPeerInitiatingConnection
 	mov r4, r0
 	b _021F2694
 _021F268C:
-	bl ov4_021F2080
+	bl gpiProcessPeerAcceptingConnection
 	mov r4, r0
 _021F2694:
 	cmp r4, #0
@@ -682,7 +682,7 @@ _021F2694:
 	bne _021F26B4
 	mov r0, r6
 	mov r1, r5
-	bl ov4_021F23B0
+	bl gpiProcessPeerConnected
 	mov r4, r0
 _021F26B4:
 	mov r0, r4
@@ -692,17 +692,17 @@ _021F26BC: .word Unk_ov4_02218B70
 _021F26C0: .word Unk_ov4_02218B28
 _021F26C4: .word Unk_ov4_022189E0
 _021F26C8: .word 0x000001D9
-	arm_func_end ov4_021F2630
+	arm_func_end gpiProcessPeer
 
-	arm_func_start ov4_021F26CC
-ov4_021F26CC: ; 0x021F26CC
+	arm_func_start gpiDestroyPeer
+gpiDestroyPeer: ; 0x021F26CC
 	stmfd sp!, {r4, lr}
 	mov r4, r1
 	ldr r0, [r4, #8]
 	mov r1, #2
-	bl ov4_021EAD04
+	bl shutdown
 	ldr r0, [r4, #8]
-	bl ov4_021EACF0
+	bl closesocket
 	ldr r0, [r4, #0x18]
 	bl DWCi_GsFree
 	mov r0, #0
@@ -714,17 +714,17 @@ ov4_021F26CC: ; 0x021F26CC
 	ldr r0, [r4, #0x38]
 	cmp r0, #0
 	beq _021F2720
-	bl ov4_021E9B50
+	bl ArrayFree
 	mov r0, #0
 	str r0, [r4, #0x38]
 _021F2720:
 	mov r0, r4
 	bl DWCi_GsFree
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F26CC
+	arm_func_end gpiDestroyPeer
 
-	arm_func_start ov4_021F272C
-ov4_021F272C: ; 0x021F272C
+	arm_func_start gpiRemovePeer
+gpiRemovePeer: ; 0x021F272C
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r5, r0
 	movs r4, r1
@@ -754,7 +754,7 @@ _021F2774:
 	bl __msl_assertion_failed
 	ldr r1, _021F2844 ; =0x02218BA8
 	mov r0, r5
-	bl ov4_021F5894
+	bl gpiDebug
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 _021F27A0:
 	mov r1, r0
@@ -766,7 +766,7 @@ _021F27B0:
 	str r0, [r1, #0x3c]
 _021F27B8:
 	ldr r0, [r4, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	beq _021F281C
 	mov r6, #0
@@ -774,7 +774,7 @@ _021F27B8:
 _021F27D0:
 	ldr r0, [r4, #0x38]
 	mov r1, r7
-	bl ov4_021E9BC4
+	bl ArrayNth
 	ldr r2, [r0, #0x10]
 	cmp r2, #0x64
 	bge _021F2800
@@ -783,19 +783,19 @@ _021F27D0:
 	ldr r1, [r4, #0xc]
 	mov r0, r5
 	add r3, ip, r3
-	bl ov4_021ECFC0
+	bl gpiSendServerBuddyMessage
 _021F2800:
 	ldr r0, [r4, #0x38]
 	mov r1, r6
-	bl ov4_021E9E40
+	bl ArrayDeleteAt
 	ldr r0, [r4, #0x38]
-	bl ov4_021E9BBC
+	bl ArrayLength
 	cmp r0, #0
 	bne _021F27D0
 _021F281C:
 	mov r0, r5
 	mov r1, r4
-	bl ov4_021F26CC
+	bl gpiDestroyPeer
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
 _021F282C: .word Unk_ov4_02218B98
@@ -805,44 +805,44 @@ _021F2838: .word 0x00000213
 _021F283C: .word Unk_ov4_02218B24
 _021F2840: .word 0x00000225
 _021F2844: .word Unk_ov4_02218BA8
-	arm_func_end ov4_021F272C
+	arm_func_end gpiRemovePeer
 
-	arm_func_start ov4_021F2848
-ov4_021F2848: ; 0x021F2848
+	arm_func_start gpiSetPeerSocketSizes
+gpiSetPeerSocketSizes: ; 0x021F2848
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	mov r1, #0x4000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x8000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x10000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x20000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x40000
-	bl ov4_021EA964
+	bl SetReceiveBufferSize
 	mov r0, r4
 	mov r1, #0x4000
-	bl ov4_021EA9A8
+	bl SetSendBufferSize
 	mov r0, r4
 	mov r1, #0x8000
-	bl ov4_021EA9A8
+	bl SetSendBufferSize
 	mov r0, r4
 	mov r1, #0x10000
-	bl ov4_021EA9A8
+	bl SetSendBufferSize
 	mov r0, r4
-	bl ov4_021EA9E8
+	bl GetReceiveBufferSize
 	mov r0, r4
-	bl ov4_021EAA30
+	bl GetSendBufferSize
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F2848
+	arm_func_end gpiSetPeerSocketSizes
 
-	arm_func_start ov4_021F28C0
-ov4_021F28C0: ; 0x021F28C0
+	arm_func_start gpiProcessPeers
+gpiProcessPeers: ; 0x021F28C0
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	mov r4, r0
 	ldr r7, [r4, #0]
@@ -850,20 +850,20 @@ ov4_021F28C0: ; 0x021F28C0
 	ldr r0, [r7, #0x204]
 	cmp r0, r1
 	beq _021F2948
-	bl ov4_021EAB6C
+	bl CanReceiveOnSocket
 	cmp r0, #0
 	beq _021F2948
 	mov r1, #0
 	ldr r0, [r7, #0x204]
 	mov r2, r1
-	bl ov4_021EADD8
+	bl accept
 	mov r6, r0
 	mvn r1, #0
 	cmp r6, r1
 	beq _021F2948
 	mov r0, r4
 	mov r2, #0
-	bl ov4_021F2A04
+	bl gpiAddPeer
 	movs r5, r0
 	beq _021F2940
 	mov r0, #0x68
@@ -871,13 +871,13 @@ ov4_021F28C0: ; 0x021F28C0
 	mov r0, r6
 	str r6, [r5, #8]
 	mov r1, #0
-	bl ov4_021EA924
+	bl SetSockBlocking
 	ldr r0, [r5, #8]
-	bl ov4_021F2848
+	bl gpiSetPeerSocketSizes
 	b _021F2948
 _021F2940:
 	mov r0, r6
-	bl ov4_021EACF0
+	bl closesocket
 _021F2948:
 	ldr r7, [r7, #0x434]
 	cmp r7, #0
@@ -887,21 +887,21 @@ _021F2958:
 	mov r0, r4
 	mov r1, r7
 	ldr r6, [r7, #0x3c]
-	bl ov4_021F2630
+	bl gpiProcessPeer
 	ldr r1, [r7, #0]
 	cmp r1, #0x6a
 	beq _021F2990
 	cmp r0, #0
 	bne _021F2990
 	mov r0, r5
-	bl ov4_021EAF48
+	bl time
 	ldr r1, [r7, #0x10]
 	cmp r0, r1
 	ble _021F299C
 _021F2990:
 	mov r0, r4
 	mov r1, r7
-	bl ov4_021F272C
+	bl gpiRemovePeer
 _021F299C:
 	mov r7, r6
 	cmp r6, #0
@@ -909,10 +909,10 @@ _021F299C:
 _021F29A8:
 	mov r0, #0
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
-	arm_func_end ov4_021F28C0
+	arm_func_end gpiProcessPeers
 
-	arm_func_start ov4_021F29B0
-ov4_021F29B0: ; 0x021F29B0
+	arm_func_start gpiGetConnectedPeer
+gpiGetConnectedPeer: ; 0x021F29B0
 	ldr r0, [r0, #0]
 	ldr r0, [r0, #0x434]
 	cmp r0, #0
@@ -929,10 +929,10 @@ _021F29C0:
 _021F29E0:
 	mov r0, #0
 	bx lr
-	arm_func_end ov4_021F29B0
+	arm_func_end gpiGetConnectedPeer
 
-	arm_func_start ov4_021F29E8
-ov4_021F29E8: ; 0x021F29E8
+	arm_func_start gpiFreeMessage
+gpiFreeMessage: ; 0x021F29E8
 	stmfd sp!, {r4, lr}
 	mov r4, r0
 	ldr r0, [r4, #0]
@@ -940,10 +940,10 @@ ov4_021F29E8: ; 0x021F29E8
 	mov r0, #0
 	str r0, [r4, #0]
 	ldmia sp!, {r4, pc}
-	arm_func_end ov4_021F29E8
+	arm_func_end gpiFreeMessage
 
-	arm_func_start ov4_021F2A04
-ov4_021F2A04: ; 0x021F2A04
+	arm_func_start gpiAddPeer
+gpiAddPeer: ; 0x021F2A04
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	ldr r5, [r0, #0]
 	mov r0, #0x40
@@ -962,25 +962,25 @@ ov4_021F2A04: ; 0x021F2A04
 	str r0, [r4, #8]
 	mov r0, #0
 	str r7, [r4, #0xc]
-	bl ov4_021EAF48
+	bl time
 	add r0, r0, #0x12c
 	str r0, [r4, #0x10]
 	ldr r3, [r5, #0x434]
-	ldr r2, _021F2A80 ; =ov4_021F29E8
+	ldr r2, _021F2A80 ; =gpiFreeMessage
 	mov r0, #0x18
 	mov r1, #0
 	str r3, [r4, #0x3c]
-	bl ov4_021E9A8C
+	bl ArrayNew
 	str r0, [r4, #0x38]
 	mov r0, r4
 	str r4, [r5, #0x434]
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021F2A80: .word ov4_021F29E8
-	arm_func_end ov4_021F2A04
+_021F2A80: .word gpiFreeMessage
+	arm_func_end gpiAddPeer
 
-	arm_func_start ov4_021F2A84
-ov4_021F2A84: ; 0x021F2A84
+	arm_func_start gpiPeerGetSig
+gpiPeerGetSig: ; 0x021F2A84
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x10
 	mov r2, #0
@@ -991,7 +991,7 @@ ov4_021F2A84: ; 0x021F2A84
 	mov r1, #2
 	mov r5, r0
 	str r2, [sp, #8]
-	bl ov4_021F1A54
+	bl gpiAddOperation
 	cmp r0, #0
 	addne sp, sp, #0x10
 	ldmneia sp!, {r3, r4, r5, pc}
@@ -999,29 +999,29 @@ ov4_021F2A84: ; 0x021F2A84
 	ldr r1, [r4, #0xc]
 	ldr r2, [r0, #0x18]
 	mov r0, r5
-	bl ov4_021F1328
+	bl gpiSendGetInfo
 	cmp r0, #0
 	moveq r0, #0x65
 	streq r0, [r4]
 	moveq r0, #0
 	add sp, sp, #0x10
 	ldmia sp!, {r3, r4, r5, pc}
-	arm_func_end ov4_021F2A84
+	arm_func_end gpiPeerGetSig
 
-	arm_func_start ov4_021F2AE8
-ov4_021F2AE8: ; 0x021F2AE8
+	arm_func_start gpiPeerStartConnect
+gpiPeerStartConnect: ; 0x021F2AE8
 	stmfd sp!, {r4, r5, lr}
 	sub sp, sp, #0xc
 	mov r4, r1
 	ldr r1, [r4, #0xc]
 	add r2, sp, #0
 	mov r5, r0
-	bl ov4_021F32A8
+	bl gpiGetProfile
 	cmp r0, #0
 	bne _021F2B24
 	ldr r1, _021F2C64 ; =0x02218A88
 	mov r0, r5
-	bl ov4_021F5D68
+	bl gpiSetErrorString
 	add sp, sp, #0xc
 	mov r0, #3
 	ldmia sp!, {r4, r5, pc}
@@ -1029,7 +1029,7 @@ _021F2B24:
 	mov r0, #2
 	mov r1, #1
 	mov r2, #0
-	bl ov4_021EACDC
+	bl socket
 	mvn r1, #0
 	str r0, [r4, #8]
 	cmp r0, r1
@@ -1037,33 +1037,33 @@ _021F2B24:
 	ldr r2, _021F2C68 ; =0x02218BCC
 	mov r0, r5
 	mov r1, #5
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r5
 	mov r1, #3
 	mov r2, #0
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0xc
 	mov r0, #3
 	ldmia sp!, {r4, r5, pc}
 _021F2B70:
 	mov r1, #0
-	bl ov4_021EA924
+	bl SetSockBlocking
 	cmp r0, #0
 	bne _021F2BAC
 	ldr r2, _021F2C6C ; =0x02218BF4
 	mov r0, r5
 	mov r1, #5
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r5
 	mov r1, #3
 	mov r2, #0
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0xc
 	mov r0, #3
 	ldmia sp!, {r4, r5, pc}
 _021F2BAC:
 	ldr r0, [r4, #8]
-	bl ov4_021F2848
+	bl gpiSetPeerSocketSizes
 	add r1, sp, #4
 	mov r2, #0
 	ldr r3, [sp]
@@ -1079,7 +1079,7 @@ _021F2BAC:
 	ldr r0, [r0, #0x14]
 	strh r0, [sp, #6]
 	ldr r0, [r4, #8]
-	bl ov4_021EAD78
+	bl connect
 	mvn r1, #0
 	cmp r0, r1
 	bne _021F2C50
@@ -1095,11 +1095,11 @@ _021F2BAC:
 	ldr r2, _021F2C70 ; =0x02218C28
 	mov r0, r5
 	mov r1, #5
-	bl ov4_021F5D44
+	bl gpiSetError
 	mov r0, r5
 	mov r1, #3
 	mov r2, #1
-	bl ov4_021EDE68
+	bl gpiCallErrorCallback
 	add sp, sp, #0xc
 	mov r0, #3
 	ldmia sp!, {r4, r5, pc}
@@ -1114,10 +1114,10 @@ _021F2C64: .word Unk_ov4_02218A88
 _021F2C68: .word Unk_ov4_02218BCC
 _021F2C6C: .word Unk_ov4_02218BF4
 _021F2C70: .word Unk_ov4_02218C28
-	arm_func_end ov4_021F2AE8
+	arm_func_end gpiPeerStartConnect
 
-	arm_func_start ov4_021F2C74
-ov4_021F2C74: ; 0x021F2C74
+	arm_func_start gpiPeerAddMessage
+gpiPeerAddMessage: ; 0x021F2C74
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x18
 	movs r7, r1
@@ -1153,35 +1153,35 @@ _021F2CC0:
 	str r3, [r1, #0xc]
 	str r3, [r1, #0x14]
 	str r6, [sp, #0x10]
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 	add r1, sp, #0
 	mov r0, r8
 	mov r2, r6
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 	ldr r2, _021F2DFC ; =0x02218C64
 	add r1, sp, #0
 	mov r0, r8
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 	add r1, sp, #0
 	mov r0, r8
 	mov r2, r4
-	bl ov4_021ED5F4
+	bl gpiAppendIntToBuffer
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 	ldr r2, _021F2E00 ; =0x02218C6C
 	add r1, sp, #0
 	mov r0, r8
-	bl ov4_021ED5C4
+	bl gpiAppendStringToBuffer
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
@@ -1191,22 +1191,22 @@ _021F2CC0:
 	mov r2, r5
 	mov r3, r4
 	str ip, [sp, #0x14]
-	bl ov4_021ED4B8
+	bl gpiAppendStringToBufferLen
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 	add r1, sp, #0
 	mov r0, r8
 	mov r2, #0
-	bl ov4_021ED420
+	bl gpiAppendCharToBuffer
 	cmp r0, #0
 	addne sp, sp, #0x18
 	ldmneia sp!, {r4, r5, r6, r7, r8, pc}
 	ldr r0, [r7, #0x38]
 	add r1, sp, #0
-	bl ov4_021E9C2C
+	bl ArrayAppend
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 	add r0, r0, #0x12c
 	str r0, [r7, #0x10]
 	mov r0, #0
@@ -1221,10 +1221,10 @@ _021F2DF4: .word 0x00000341
 _021F2DF8: .word Unk_ov4_02218C60
 _021F2DFC: .word Unk_ov4_02218C64
 _021F2E00: .word Unk_ov4_02218C6C
-	arm_func_end ov4_021F2C74
+	arm_func_end gpiPeerAddMessage
 
-	arm_func_start ov4_021F2E04
-ov4_021F2E04: ; 0x021F2E04
+	arm_func_start gpiPeerStartTransferMessage
+gpiPeerStartTransferMessage: ; 0x021F2E04
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, sb, lr}
 	sub sp, sp, #0x48
 	mov sb, r0
@@ -1249,7 +1249,7 @@ _021F2E3C:
 	add r2, sp, #8
 	mov r0, sb
 	mov r1, r8
-	bl ov4_021ED8FC
+	bl gpiSendOrBufferString
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
@@ -1258,10 +1258,10 @@ _021F2E70: .word Unk_ov4_02218B28
 _021F2E74: .word Unk_ov4_02218A04
 _021F2E78: .word 0x00000376
 _021F2E7C: .word Unk_ov4_02218C80
-	arm_func_end ov4_021F2E04
+	arm_func_end gpiPeerStartTransferMessage
 
-	arm_func_start ov4_021F2E80
-ov4_021F2E80: ; 0x021F2E80
+	arm_func_start gpiPeerFinishTransferMessage
+gpiPeerFinishTransferMessage: ; 0x021F2E80
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x20
 	movs r6, r1
@@ -1291,7 +1291,7 @@ _021F2ED0:
 	add r2, sp, #0
 	mov r0, r7
 	mov r1, r6
-	bl ov4_021ED8FC
+	bl gpiSendOrBufferString
 	cmp r0, #0
 	addne sp, sp, #0x20
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
@@ -1299,19 +1299,19 @@ _021F2ED0:
 	mov r1, r6
 	mov r2, r5
 	mov r3, r4
-	bl ov4_021ED7FC
+	bl gpiSendOrBufferStringLen
 	cmp r0, #0
 	addne sp, sp, #0x20
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, r7
 	mov r1, r6
 	mov r2, #0
-	bl ov4_021ED71C
+	bl gpiSendOrBufferChar
 	cmp r0, #0
 	addne sp, sp, #0x20
 	ldmneia sp!, {r3, r4, r5, r6, r7, pc}
 	mov r0, #0
-	bl ov4_021EAF48
+	bl time
 	add r0, r0, #0x12c
 	str r0, [r6, #0x10]
 	mov r0, #0
@@ -1324,7 +1324,7 @@ _021F2F5C: .word Unk_ov4_02218A20
 _021F2F60: .word 0x00000389
 _021F2F64: .word Unk_ov4_02218C94
 _021F2F68: .word Unk_ov4_02218C98
-	arm_func_end ov4_021F2E80
+	arm_func_end gpiPeerFinishTransferMessage
 
 	.data
 
