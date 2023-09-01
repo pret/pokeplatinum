@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 
@@ -33,13 +33,13 @@
 int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * param1, int param2)
 {
     int v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     Strbuf* v2;
     Strbuf* v3 = Strbuf_Init(511, 111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;
-    v2 = sub_0200B1EC(v1, param2);
+    v2 = MessageLoader_GetNewStrbuf(v1, param2);
 
     if (param2 == 22) {
         Strbuf* v5 = sub_02025F04(param1->unk_08, 111);

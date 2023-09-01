@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02015920_decl.h"
@@ -24,7 +24,7 @@ struct UnkStruct_02095EAC_t {
     BOOL unk_04;
     UnkStruct_0203DDFC * unk_08;
     UnkStruct_0200B358 * unk_0C;
-    UnkStruct_0200B144 * unk_10;
+    MessageLoader * unk_10;
     Strbuf* unk_14[5];
     Strbuf* unk_28;
     Strbuf* unk_2C;

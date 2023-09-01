@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -113,7 +113,7 @@ typedef struct {
 typedef struct {
     UnkStruct_02018340 * unk_00;
     UnkStruct_0200B358 * unk_04;
-    UnkStruct_0200B144 * unk_08;
+    MessageLoader * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
     u8 unk_14;
@@ -803,7 +803,7 @@ static void ov65_02236B90 (UnkStruct_ov65_02236840 * param0, u32 param1)
 static void ov65_02236C10 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, u32 param2)
 {
     param0->unk_04 = sub_0200B358(param2);
-    param0->unk_08 = sub_0200B144(0, 26, 674, param2);
+    param0->unk_08 = MessageLoader_Init(0, 26, 674, param2);
     param0->unk_0C = Strbuf_Init(256, param2);
     param0->unk_10 = Strbuf_Init(256, param2);
     param0->unk_14 = 0xff;
@@ -814,7 +814,7 @@ static void ov65_02236C5C (UnkStruct_ov65_02236840 * param0)
 {
     Strbuf_Free(param0->unk_10);
     Strbuf_Free(param0->unk_0C);
-    sub_0200B190(param0->unk_08);
+    MessageLoader_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_04);
 }
 
@@ -834,12 +834,12 @@ static void ov65_02236C7C (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
         break;
     }
 
-    sub_0200B1B8(param0->unk_08, Unk_ov65_02239E5C[param1->unk_00], param0->unk_10);
+    MessageLoader_GetStrbuf(param0->unk_08, Unk_ov65_02239E5C[param1->unk_00], param0->unk_10);
     sub_0200C388(param0->unk_04, param0->unk_0C, param0->unk_10);
     sub_0201D78C(&param0->unk_200, 0, param0->unk_0C, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->unk_200);
     sub_0201A9A4(&param0->unk_220);
-    sub_0200B1B8(param0->unk_08, 128, param0->unk_0C);
+    MessageLoader_GetStrbuf(param0->unk_08, 128, param0->unk_0C);
     sub_0201D78C(&param0->unk_210, 0, param0->unk_0C, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param0->unk_210);
     sub_0201A9A4(&param0->unk_1F0);
@@ -915,7 +915,7 @@ static void ov65_02236E50 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     sub_0201ADA4(&param0->unk_1F0, 15);
     v0 = Strbuf_Init(256, param4);
 
-    sub_0200B1B8(param0->unk_08, param2, v0);
+    MessageLoader_GetStrbuf(param0->unk_08, param2, v0);
     sub_0200C388(param0->unk_04, param0->unk_0C, v0);
 
     param0->unk_14 = sub_0201D78C(&param0->unk_1F0, 1, param0->unk_0C, 0, 0, param0->unk_16, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
@@ -979,7 +979,7 @@ static void ov65_02236F70 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     ov65_0223726C(param0, param1, param2, 0, param3);
     ov65_02237284(param0, param1, param2, 1, param3);
 
-    sub_0200B1B8(param0->unk_08, 131, v0);
+    MessageLoader_GetStrbuf(param0->unk_08, 131, v0);
     sub_0200C388(param0->unk_04, v1, v0);
 
     sub_0201ADA4(&param0->unk_230, 15);
@@ -1031,14 +1031,14 @@ static void ov65_0223709C (UnkStruct_ov65_022367A8 * param0, UnkStruct_ov65_0223
 
     ov65_0223726C(param1, param2, param3, 0, param4);
 
-    sub_0200B1B8(param1->unk_08, 129, v0);
+    MessageLoader_GetStrbuf(param1->unk_08, 129, v0);
     sub_0200C388(param1->unk_04, v1, v0);
     sub_0201AE78(&param1->unk_220, 15, 0, param3 * (2 * 8), (20 * 8), (2 * 8));
     sub_0201D78C(&param1->unk_220, 0, v1, 0, param3 * (2 * 8), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     ov65_02237284(param1, param2, param3, 0, param4);
 
-    sub_0200B1B8(param1->unk_08, 130, v0);
+    MessageLoader_GetStrbuf(param1->unk_08, 130, v0);
     sub_0200C388(param1->unk_04, v1, v0);
     sub_0201D78C(&param1->unk_220, 0, v1, 72, param3 * (2 * 8), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     sub_0201A9A4(&param1->unk_220);

@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -149,10 +147,10 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
 static Strbuf* ov6_022462E4 (u32 param0, u32 param1)
 {
     Strbuf* v0;
-    UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 370, param0);
+    MessageLoader * v1 = MessageLoader_Init(0, 26, 370, param0);
 
-    v0 = sub_0200B1EC(v1, param1);
-    sub_0200B190(v1);
+    v0 = MessageLoader_GetNewStrbuf(v1, param1);
+    MessageLoader_Free(v1);
     return v0;
 }
 

@@ -186,7 +186,7 @@ int ov58_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_00 = sub_02018340(39);
 
         v0->unk_0C = sub_0200B358(39);
-        v0->unk_10 = sub_0200B144(0, 26, 425, 39);
+        v0->unk_10 = MessageLoader_Init(0, 26, 425, 39);
 
         sub_02017DD4(4, 8);
 
@@ -338,7 +338,7 @@ int ov58_021D1018 (UnkStruct_020067E8 * param0, int * param1)
         ov58_021D13F0(v0->unk_00);
 
         sub_0201E530();
-        sub_0200B190(v0->unk_10);
+        MessageLoader_Free(v0->unk_10);
         sub_0200B3F0(v0->unk_0C);
         (*param1)++;
         break;
@@ -560,7 +560,7 @@ static void ov58_021D12C4 (UnkStruct_02095EAC * param0)
         ov58_021D2CB0(param0, 4);
     }
 
-    sub_0200B1B8(param0->unk_10, 7, param0->unk_28);
+    MessageLoader_GetStrbuf(param0->unk_10, 7, param0->unk_28);
 
     param0->unk_442C = Heap_AllocFromHeap(39, 30 * 16 * 32);
     param0->unk_9454 = sub_02015920(39);
@@ -1717,7 +1717,7 @@ static void ov58_021D2A98 (UnkStruct_02095EAC * param0, int param1, int param2)
 
     v0 = Strbuf_Init((40 * 2), 39);
 
-    sub_0200B1B8(param0->unk_10, param1, v0);
+    MessageLoader_GetStrbuf(param0->unk_10, param1, v0);
     sub_0200C388(param0->unk_0C, param0->unk_2C, v0);
     Strbuf_Free(v0);
 

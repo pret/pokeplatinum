@@ -318,14 +318,14 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
 
 static void ov81_021D1130 (UnkStruct_ov81_021D1610 * param0)
 {
-    param0->unk_50 = sub_0200B144(0, 26, 366, 42);
+    param0->unk_50 = MessageLoader_Init(0, 26, 366, 42);
     param0->unk_54 = sub_0200B358(42);
     param0->unk_58 = Strbuf_Init(128, 42);
 }
 
 static void ov81_021D115C (UnkStruct_ov81_021D1610 * param0)
 {
-    sub_0200B190(param0->unk_50);
+    MessageLoader_Free(param0->unk_50);
     sub_0200B3F0(param0->unk_54);
     Strbuf_Free(param0->unk_58);
 }

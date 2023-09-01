@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -949,7 +949,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     u8 * v1;
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
-    UnkStruct_0200B144 * v4;
+    MessageLoader * v4;
     Strbuf* v5, * v6;
     Pokemon * v7;
     BoxPokemon * v8;
@@ -959,7 +959,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     v4 = ov16_0223E05C(param0->unk_0C);
     v9 = ov16_0223E0D0(param0->unk_0C);
     v5 = Strbuf_Init((12 + (5 * 2)), 5);
-    v6 = sub_0200B1EC(v4, 964);
+    v6 = MessageLoader_GetNewStrbuf(v4, 964);
     v7 = ov16_0223DFAC(param0->unk_0C, param0->unk_24, param0->unk_26);
     v8 = sub_02076B10(v7);
 
@@ -1162,16 +1162,16 @@ static void ov16_02267CE8 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     u8 * v1;
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
-    UnkStruct_0200B144 * v4;
+    MessageLoader * v4;
     Strbuf* v5;
 
     v0 = ov16_0223DF00(param0->unk_0C);
     v4 = ov16_0223E05C(param0->unk_0C);
 
     if (param1 & (1 << 10)) {
-        v5 = sub_0200B1EC(v4, 950);
+        v5 = MessageLoader_GetNewStrbuf(v4, 950);
     } else {
-        v5 = sub_0200B1EC(v4, 1220);
+        v5 = MessageLoader_GetNewStrbuf(v4, 1220);
     }
 
     sub_0201A870(v0, &v3, 13, 2, 0, 0xf);
@@ -1205,7 +1205,7 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     u8 * v1;
     NNSG2dImageProxy * v2;
     UnkStruct_0205AA50 v3;
-    UnkStruct_0200B144 * v4;
+    MessageLoader * v4;
     Strbuf* v5, * v6;
     UnkStruct_0200B358 * v7;
 
@@ -1215,9 +1215,9 @@ static void ov16_02267DC4 (UnkStruct_ov16_022674C4 * param0, u32 param1)
     v5 = Strbuf_Init(30, 5);
 
     if (param1 & (1 << 10)) {
-        v6 = sub_0200B1EC(v4, 951);
+        v6 = MessageLoader_GetNewStrbuf(v4, 951);
     } else {
-        v6 = sub_0200B1EC(v4, 1221);
+        v6 = MessageLoader_GetNewStrbuf(v4, 1221);
     }
 
     sub_0200B60C(v7, 0, param0->unk_27, 2, 1, 1);

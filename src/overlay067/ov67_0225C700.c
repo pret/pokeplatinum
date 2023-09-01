@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -55,7 +55,7 @@
 
 typedef struct {
     UnkStruct_0200B358 * unk_00;
-    UnkStruct_0200B144 * unk_04;
+    MessageLoader * unk_04;
     UnkStruct_0205AA50 unk_08;
     Strbuf* unk_18;
     Strbuf* unk_1C;
@@ -646,7 +646,7 @@ static void ov67_0225D17C (UnkStruct_ov67_0225D154 * param0)
 static void ov67_0225D188 (UnkStruct_ov67_0225D210 * param0, UnkStruct_02018340 * param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkStruct_021C0794 * param9, u32 param10)
 {
     param0->unk_00 = sub_0200B358(param10);
-    param0->unk_04 = sub_0200B144(0, 26, param3, param10);
+    param0->unk_04 = MessageLoader_Init(0, 26, param3, param10);
     param0->unk_18 = Strbuf_Init(256, param10);
     param0->unk_1C = Strbuf_Init(256, param10);
     param0->unk_20 = param2;
@@ -663,7 +663,7 @@ static void ov67_0225D210 (UnkStruct_ov67_0225D210 * param0, u32 param1)
     }
 
     sub_0201ADA4(&param0->unk_08, 15);
-    sub_0200B1B8(param0->unk_04, param1, param0->unk_1C);
+    MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
     sub_0200C388(param0->unk_00, param0->unk_18, param0->unk_1C);
     sub_0201D738(&param0->unk_08, 1, param0->unk_18, 0, 0, 0xff, NULL);
 
@@ -725,7 +725,7 @@ static void ov67_0225D330 (UnkStruct_ov67_0225D210 * param0)
     sub_0201A8FC(&param0->unk_08);
     Strbuf_Free(param0->unk_1C);
     Strbuf_Free(param0->unk_18);
-    sub_0200B190(param0->unk_04);
+    MessageLoader_Free(param0->unk_04);
     sub_0200B3F0(param0->unk_00);
 }
 
@@ -741,7 +741,7 @@ asm static void ov67_0225D37C (UnkStruct_ov67_0225D210 * param0, u32 param1)
     ldr r0, [r4, #4]
     ldr r2, [r4, #0x1c]
     add r1, r5, #0
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     ldr r0, [r4, #0]
     ldr r1, [r4, #0x18]
     ldr r2, [r4, #0x1c]

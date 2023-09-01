@@ -2272,7 +2272,7 @@ asm void ov117_02266150 (UnkStruct_ov117_02261280 * param0)
     add r0, #0x80
     ldr r0, [r0, #0]
     add r1, r1, #4
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     str r0, [sp, #0x34]
     ldr r0, [sp, #0x2c]
     mov r1, #0xa

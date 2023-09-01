@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "strbuf.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202F264.h"
@@ -97,14 +95,14 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, BattleParams * param1, int para
 
 static void ov62_0224856C (Strbuf *param0, int param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
 
     Strbuf_Clear(param0);
 
-    v0 = sub_0200B144(1, 26, 10, param1);
+    v0 = MessageLoader_Init(1, 26, 10, param1);
 
-    sub_0200B1B8(v0, 332, param0);
-    sub_0200B190(v0);
+    MessageLoader_GetStrbuf(v0, 332, param0);
+    MessageLoader_Free(v0);
 }
 
 int ov62_02248598 (UnkStruct_021C0794 * param0, int param1, u8 param2, u16 * param3, u16 * param4)

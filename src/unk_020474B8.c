@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -288,13 +288,13 @@ BOOL sub_02047930 (UnkStruct_0203E724 * param0)
 
 static Strbuf* sub_02047998 (u16 param0, u32 param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 412, param1);
-    v1 = sub_0200B1EC(v0, param0);
+    v0 = MessageLoader_Init(1, 26, 412, param1);
+    v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     return v1;
 }
 

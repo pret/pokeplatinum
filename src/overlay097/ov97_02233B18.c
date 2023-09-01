@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -438,7 +438,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
 {
     Strbuf* v0;
     UnkStruct_0200B358 * v1;
-    UnkStruct_0200B144 * v2;
+    MessageLoader * v2;
     int v3, v4, v5;
     Strbuf* v6;
 
@@ -457,7 +457,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
     }
 
     if (param1->unk_34 != -1) {
-        v2 = sub_0200B144(1, 26, 454, 78);
+        v2 = MessageLoader_Init(1, 26, 454, 78);
 
         if (param1->unk_40) {
             v1 = param1->unk_40;
@@ -468,7 +468,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
         Strbuf_Clear(param0->unk_12668);
 
         v0 = param0->unk_12668;
-        v6 = sub_0200B1EC(v2, param1->unk_34);
+        v6 = MessageLoader_GetNewStrbuf(v2, param1->unk_34);
 
         sub_0200C388(v1, param0->unk_12668, v6);
         Strbuf_Free(v6);
@@ -480,7 +480,7 @@ static void ov97_02233DD0 (UnkStruct_ov97_02234A2C * param0, UnkStruct_ov97_0223
             sub_0200B3F0(v1);
         }
 
-        sub_0200B190(v2);
+        MessageLoader_Free(v2);
         param1->unk_34 = -1;
     }
 
@@ -1185,7 +1185,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     int v0, v1;
     int v2, v3;
     UnkStruct_ov97_02233DAC v4;
-    UnkStruct_0200B144 * v5;
+    MessageLoader * v5;
     u8 v6[10 + 1];
     u16 v7[10 + 1];
     Strbuf* v8;
@@ -1232,10 +1232,10 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
 
     v8 = Strbuf_Init(64, 78);
-    v5 = sub_0200B144(1, 26, 412, 78);
+    v5 = MessageLoader_Init(1, 26, 412, 78);
     v0 = ov97_02236DD0(GetGBABoxMonData(param1, 11, NULL));
 
-    sub_0200B1B8(v5, v0, v8);
+    MessageLoader_GetStrbuf(v5, v0, v8);
 
     v4.unk_3C = v8;
     v4.unk_34 = -1;
@@ -1244,7 +1244,7 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
 
     ov97_02233DD0(param0, &v4, 0x4 | 0x2);
 
-    sub_0200B190(v5);
+    MessageLoader_Free(v5);
     Strbuf_Free(v8);
 
     v2 = GetGBABoxMonData(param1, 12, NULL);

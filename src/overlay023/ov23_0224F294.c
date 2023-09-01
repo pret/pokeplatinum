@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -491,7 +491,7 @@ static void ov23_0224F7F4 (UnkStruct_ov23_02250CD4 * param0)
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v3;
+        MessageLoader * v3;
         int v4;
 
         v3 = ov23_02253E3C(ov23_0224219C());
@@ -748,7 +748,7 @@ static void ov23_0224FBFC (UnkStruct_ov23_02250CD4 * param0, int param1)
     sub_0200DC48(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v7;
+        MessageLoader * v7;
         int v8;
 
         v7 = ov23_02253E3C(ov23_0224219C());
@@ -860,7 +860,7 @@ static void ov23_0224FE38 (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v5;
+        MessageLoader * v5;
         int v6 = 0;
 
         v5 = ov23_02253E3C(ov23_022421DC());
@@ -1052,7 +1052,7 @@ static void ov23_0225021C (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v6;
+        MessageLoader * v6;
         int v7;
 
         v6 = ov23_02253E3C(ov23_022421DC());
@@ -1060,7 +1060,7 @@ static void ov23_0225021C (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
         for (v7 = 0; v7 < v4; v7++) {
             sub_0200BA94(param0->unk_70, 2, v1(v7, param0));
             sub_0200B60C(param0->unk_70, 6, v2(v7, param0), 2, 2, 1);
-            sub_0200B1B8(ov23_02253E3C(ov23_0224219C()), 128, param0->unk_6C);
+            MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 128, param0->unk_6C);
             sub_0200C388(param0->unk_70, param0->unk_68, param0->unk_6C);
             sub_02013A6C(param0->unk_40, param0->unk_68, v7);
         }
@@ -1228,7 +1228,7 @@ static void ov23_022505EC (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v5;
+        MessageLoader * v5;
         int v6 = 0;
 
         v5 = ov23_02253E3C(ov23_022421DC());
@@ -1629,7 +1629,7 @@ static void ov23_02250D90 (UnkStruct_ov23_02250CD4 * param0, UnkFuncPtr_ov23_022
     sub_0200DC48(&param0->unk_10, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v5;
+        MessageLoader * v5;
         int v6 = 0;
 
         v5 = ov23_02253E3C(ov23_022421DC());

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
@@ -170,7 +170,7 @@ BattleParams * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov10
     Pokemon * v6;
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 * v8;
-    UnkStruct_0200B144 * v9;
+    MessageLoader * v9;
     Strbuf* v10;
     UnkStruct_02025E6C * v11;
     Party * v12;

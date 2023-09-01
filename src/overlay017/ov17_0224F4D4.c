@@ -195,7 +195,7 @@ int ov17_0224F4D4 (UnkStruct_020067E8 * param0, int * param1)
 
     ov17_0224FDDC();
 
-    v0->unk_10.unk_B4 = sub_0200B144(0, 26, 218, 24);
+    v0->unk_10.unk_B4 = MessageLoader_Init(0, 26, 218, 24);
     v0->unk_10.unk_B8 = sub_0200B358(24);
     v0->unk_10.unk_BC = Strbuf_Init((2 * 160), 24);
     v0->unk_10.unk_C4 = sub_02012744(10, 24);
@@ -319,7 +319,7 @@ int ov17_0224F86C (UnkStruct_020067E8 * param0, int * param1)
 
     Strbuf_Free(v0->unk_10.unk_BC);
     sub_0200B3F0(v0->unk_10.unk_B8);
-    sub_0200B190(v0->unk_10.unk_B4);
+    MessageLoader_Free(v0->unk_10.unk_B4);
 
     Heap_FreeToHeap(v0->unk_10.unk_20);
     sub_0200DA58(v0->unk_04);

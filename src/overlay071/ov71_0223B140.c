@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -414,12 +414,12 @@ static void ov71_0223B620 (UnkStruct_ov71_0223B620 * param0)
     param0->unk_3370 = Strbuf_Init(5, 25);
 
     {
-        UnkStruct_0200B144 * v0;
+        MessageLoader * v0;
 
-        v0 = sub_0200B144(0, 26, 616, 25);
+        v0 = MessageLoader_Init(0, 26, 616, 25);
 
-        sub_0200B1B8(v0, 11, param0->unk_3370);
-        sub_0200B190(v0);
+        MessageLoader_GetStrbuf(v0, 11, param0->unk_3370);
+        MessageLoader_Free(v0);
     }
 }
 

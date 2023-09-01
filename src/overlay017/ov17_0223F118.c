@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -190,13 +190,13 @@ void ov17_0223F2F8 (UnkStruct_ov17_0223F2E4 * param0, int param1, int param2, in
 
 Strbuf* ov17_0223F310 (u32 param0, u32 param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 207, param1);
-    v1 = sub_0200B1EC(v0, param0);
+    v0 = MessageLoader_Init(1, 26, 207, param1);
+    v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     return v1;
 }
 

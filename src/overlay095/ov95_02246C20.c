@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -57,7 +57,7 @@ struct UnkStruct_ov95_02247628_t {
     int unk_04;
     UnkStruct_02018340 * unk_08;
     UnkStruct_0200B358 * unk_0C;
-    UnkStruct_0200B144 * unk_10;
+    MessageLoader * unk_10;
     Strbuf* unk_14;
     UnkStruct_020218BC * unk_18;
     UnkStruct_0200C738 unk_1C;
@@ -152,7 +152,7 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_04 = 0;
             v0->unk_08 = sub_02018340(57);
             v0->unk_14 = Strbuf_Init(400, 57);
-            v0->unk_10 = sub_0200B144(0, 26, 350, 57);
+            v0->unk_10 = MessageLoader_Init(0, 26, 350, 57);
             v0->unk_0C = sub_0200B358(57);
 
             switch (v0->unk_00->unk_10) {
@@ -220,7 +220,7 @@ int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
     sub_0200DA58(v1->unk_1A8);
     sub_02039794();
     sub_0200B3F0(v1->unk_0C);
-    sub_0200B190(v1->unk_10);
+    MessageLoader_Free(v1->unk_10);
     Strbuf_Free(v1->unk_14);
     Heap_FreeToHeap(v1->unk_08);
     sub_02021964(v1->unk_18);
@@ -684,7 +684,7 @@ UnkStruct_0200B358 * ov95_0224762C (UnkStruct_ov95_02247628 * param0)
     return param0->unk_0C;
 }
 
-UnkStruct_0200B144 * ov95_02247630 (UnkStruct_ov95_02247628 * param0)
+MessageLoader * ov95_02247630 (UnkStruct_ov95_02247628 * param0)
 {
     return param0->unk_10;
 }

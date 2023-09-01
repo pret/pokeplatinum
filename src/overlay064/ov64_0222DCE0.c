@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -145,7 +145,7 @@ typedef struct {
     UnkStruct_0200C738 unk_78;
     UnkStruct_02009714 * unk_204[4];
     UnkStruct_0200B358 * unk_214;
-    UnkStruct_0200B144 * unk_218;
+    MessageLoader * unk_218;
     NARC * unk_21C;
     UnkStruct_0205AA50 unk_220;
     Strbuf* unk_230;
@@ -1064,12 +1064,12 @@ static void ov64_0222E570 (UnkStruct_ov64_0222E21C * param0)
 static void ov64_0222E5D8 (UnkStruct_ov64_0222E21C * param0, u32 param1)
 {
     param0->unk_214 = sub_0200B358(param1);
-    param0->unk_218 = sub_0200B144(0, 26, 675, param1);
+    param0->unk_218 = MessageLoader_Init(0, 26, 675, param1);
 }
 
 static void ov64_0222E604 (UnkStruct_ov64_0222E21C * param0)
 {
-    sub_0200B190(param0->unk_218);
+    MessageLoader_Free(param0->unk_218);
     sub_0200B3F0(param0->unk_214);
 }
 
@@ -1124,7 +1124,7 @@ static void ov64_0222E738 (UnkStruct_ov64_0222E21C * param0, u32 param1)
     }
 
     sub_0201ADA4(&param0->unk_220, 0);
-    sub_0200B1B8(param0->unk_218, param1, param0->unk_234);
+    MessageLoader_GetStrbuf(param0->unk_218, param1, param0->unk_234);
     sub_0200C388(param0->unk_214, param0->unk_230, param0->unk_234);
 
     param0->unk_238 = sub_0201D78C(&param0->unk_220, 1, param0->unk_230, 0, 4, 2, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -1536,7 +1536,7 @@ asm static void ov64_0222EC94 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_
     ldr r1, [sp, #0x2c]
     ldr r2, [sp, #0x24]
     ldrb r1, [r1]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x62
     ldr r1, [sp, #0x18]
     lsl r0, r0, #2
@@ -1706,7 +1706,7 @@ static void ov64_0222EFBC (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222
     v0 = Strbuf_Init(128, param3);
 
     sub_0201ADA4(&param0->unk_1C, 15);
-    sub_0200B1B8(param1->unk_218, param2, v0);
+    MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
     sub_0200C388(param1->unk_214, param0->unk_38, v0);
 
     param0->unk_30 = sub_0201D78C(&param0->unk_1C, 1, param0->unk_38, 0, 0, param0->unk_34, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -2055,7 +2055,7 @@ asm static void ov64_0222F414 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_
     ldr r0, [r7, r0]
     mov r1, #7
     add r2, r4, #0
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0
     add r1, r4, #0
     add r2, r0, #0
@@ -2599,7 +2599,7 @@ static void ov64_0222FE70 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222
 
     v0 = Strbuf_Init(128, param3);
 
-    sub_0200B1B8(param1->unk_218, param2, v0);
+    MessageLoader_GetStrbuf(param1->unk_218, param2, v0);
     sub_0200C388(param1->unk_214, param0->unk_D4, v0);
 
     param0->unk_D8 = sub_0201D78C(&param0->unk_C4, 1, param0->unk_D4, 0, 0, param0->unk_DC, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -3047,7 +3047,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     ldr r0, [r4, r0]
     mov r1, #0x2f
     add r2, r6, #0
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0
     add r1, r6, #0
     add r2, r0, #0
@@ -3074,7 +3074,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     ldr r0, [r4, r0]
     ldr r2, [sp, #0x20]
     mov r1, #0x33
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x62
     lsl r0, r0, #2
     ldr r0, [r4, r0]
@@ -3105,7 +3105,7 @@ asm static void ov64_02230680 (UnkStruct_ov64_02230620 * param0, UnkStruct_ov64_
     ldr r0, [r4, r0]
     mov r1, #0x30
     add r2, r6, #0
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0
     add r1, r6, #0
     add r2, r0, #0
@@ -5372,7 +5372,7 @@ asm static void ov64_022320B8 (UnkStruct_ov64_02230F98 * param0, u32 param1, u32
     ldr r2, [sp, #0x48]
     ldr r5, [sp, #0x38]
     ldr r4, [sp, #0x44]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x62
     lsl r0, r0, #2
     ldr r0, [r6, r0]

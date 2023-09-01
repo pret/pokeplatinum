@@ -7,7 +7,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02013B10_decl.h"
@@ -87,7 +87,7 @@ typedef struct {
     UnkStruct_ov97_0222D04C unk_04;
     UnkStruct_02018340 * unk_2A5C;
     UnkStruct_0200B358 * unk_2A60;
-    UnkStruct_0200B144 * unk_2A64;
+    MessageLoader * unk_2A64;
     UnkStruct_0205AA50 unk_2A68[20];
     int unk_2BA8[20];
     int unk_2BF8;
@@ -317,13 +317,13 @@ static void ov97_02230530 (UnkStruct_ov97_02230868 * param0, UnkStruct_ov97_0223
     }
 
     param0->unk_2C2C = sub_02013A04(param2, 87);
-    param0->unk_2A64 = sub_0200B144(0, 26, 421, 87);
+    param0->unk_2A64 = MessageLoader_Init(0, 26, 421, 87);
 
     for (v0 = 0; v0 < param2; v0++) {
         sub_02013A4C(param0->unk_2C2C, param0->unk_2A64, param1[v0].unk_00, param1[v0].unk_04);
     }
 
-    sub_0200B190(param0->unk_2A64);
+    MessageLoader_Free(param0->unk_2A64);
 
     v1 = Unk_ov97_0223E660;
 
@@ -337,7 +337,7 @@ static void ov97_02230530 (UnkStruct_ov97_02230868 * param0, UnkStruct_ov97_0223
 static void ov97_022305EC (UnkStruct_0205AA50 * param0, int param1)
 {
     Strbuf* v0;
-    UnkStruct_0200B144 * v1 = sub_0200B144(1, 26, 421, 87);
+    MessageLoader * v1 = MessageLoader_Init(1, 26, 421, 87);
     UnkStruct_0200B358 * v2 = sub_0200B358(87);
 
     sub_0201ADA4(param0, sub_02002DF8(1, 6));
@@ -347,7 +347,7 @@ static void ov97_022305EC (UnkStruct_0205AA50 * param0, int param1)
     sub_0201A954(param0);
 
     Strbuf_Free(v0);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
     sub_0200B3F0(v2);
 }
 
@@ -591,7 +591,7 @@ static void ov97_02230C44 (UnkStruct_ov97_02230868 * param0, int param1, int par
     u32 v3;
     UnkStruct_ov97_0223E680 * v4 = Unk_ov97_0223E680;
 
-    param0->unk_2A64 = sub_0200B144(1, 26, 421, param0->unk_00);
+    param0->unk_2A64 = MessageLoader_Init(1, 26, 421, param0->unk_00);
     param0->unk_2A60 = sub_0200B358(param0->unk_00);
     param0->unk_2C24 = param2;
 
@@ -636,7 +636,7 @@ static void ov97_02230C44 (UnkStruct_ov97_02230868 * param0, int param1, int par
         }
     }
 
-    sub_0200B190(param0->unk_2A64);
+    MessageLoader_Free(param0->unk_2A64);
     sub_0200B3F0(param0->unk_2A60);
 
     if (param2 == 0) {
@@ -657,7 +657,7 @@ static int ov97_02230E04 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
     sub_0201ADA4(param1, v2->unk_1C);
 
     if (v2->unk_20) {
-        param0->unk_2A64 = sub_0200B144(1, 26, 421, 87);
+        param0->unk_2A64 = MessageLoader_Init(1, 26, 421, 87);
         param0->unk_2A60 = sub_0200B358(87);
     }
 
@@ -671,7 +671,7 @@ static int ov97_02230E04 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
 
         sub_0201D78C(param1, v2->unk_14, v0, 0, 0, 0xff, v2->unk_18, NULL);
         Strbuf_Free(v0);
-        sub_0200B190(param0->unk_2A64);
+        MessageLoader_Free(param0->unk_2A64);
         sub_0200B3F0(param0->unk_2A60);
     }
 
@@ -1336,7 +1336,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
     UnkStruct_02025E6C * v5;
     Strbuf* v6;
     UnkStruct_0200B358 * v7;
-    UnkStruct_0200B144 * v8;
+    MessageLoader * v8;
     int v9[4];
     int v10[4];
 
@@ -1374,7 +1374,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
     v10[3] = ov97_02231C48(v9);
 
     v7 = sub_0200B358(87);
-    v8 = sub_0200B144(1, 26, 421, 87);
+    v8 = MessageLoader_Init(1, 26, 421, 87);
     v2 = 0;
 
     sub_0201ADA4(param1, 0);
@@ -1408,7 +1408,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
         sub_0201A954(param1);
     }
 
-    sub_0200B190(v8);
+    MessageLoader_Free(v8);
     sub_0200B3F0(v7);
 
     return v1;
@@ -1419,7 +1419,7 @@ static void ov97_02231E78 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 
     Strbuf* v0;
 
     param0->unk_2C54 = param2;
-    param0->unk_2A64 = sub_0200B144(1, 26, 421, 87);
+    param0->unk_2A64 = MessageLoader_Init(1, 26, 421, 87);
     param0->unk_2A60 = sub_0200B358(87);
 
     sub_0201ADA4(param1, 0);
@@ -1431,7 +1431,7 @@ static void ov97_02231E78 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 
     sub_0201A954(param1);
 
     Strbuf_Free(v0);
-    sub_0200B190(param0->unk_2A64);
+    MessageLoader_Free(param0->unk_2A64);
     sub_0200B3F0(param0->unk_2A60);
 }
 

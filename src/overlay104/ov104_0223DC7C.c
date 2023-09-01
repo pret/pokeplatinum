@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
@@ -271,17 +271,17 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
         param0->unk_30 = sub_02012744(4, 94);
 
         {
-            UnkStruct_0200B144 * v9;
+            MessageLoader * v9;
             Strbuf* v10;
 
-            v9 = sub_0200B144(1, 26, 618, param1);
-            v10 = sub_0200B1EC(v9, param2->unk_00);
+            v9 = MessageLoader_Init(1, 26, 618, param1);
+            v10 = MessageLoader_GetNewStrbuf(v9, param2->unk_00);
 
             ov104_0223E29C(param0, &v0->unk_7C, v10, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 2004, 208 + -92 + param0->unk_28, 11 * 8 + param0->unk_2A, 0, NULL);
 
             sub_020129D0(v0->unk_7C.unk_00, 0);
             Strbuf_Free(v10);
-            sub_0200B190(v9);
+            MessageLoader_Free(v9);
         }
 
         {

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -89,11 +89,11 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_ov94_0223BA88_sub3 unk_B80;
     int unk_B88;
     UnkStruct_0200B358 * unk_B8C;
-    UnkStruct_0200B144 * unk_B90;
-    UnkStruct_0200B144 * unk_B94;
-    UnkStruct_0200B144 * unk_B98;
-    UnkStruct_0200B144 * unk_B9C;
-    UnkStruct_0200B144 * unk_BA0;
+    MessageLoader * unk_B90;
+    MessageLoader * unk_B94;
+    MessageLoader * unk_B98;
+    MessageLoader * unk_B9C;
+    MessageLoader * unk_BA0;
     Strbuf* unk_BA4;
     Strbuf* unk_BA8;
     Strbuf* unk_BAC;

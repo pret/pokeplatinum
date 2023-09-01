@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -145,34 +145,34 @@ void ov21_021D4DA0 (UnkStruct_0205AA50 * param0)
 
 u32 ov21_021D4DAC (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, int param4, int param5)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
     u32 v2;
 
-    v0 = sub_0200B144(0, 26, param2, param0->unk_14);
+    v0 = MessageLoader_Init(0, 26, param2, param0->unk_14);
     GF_ASSERT(v0);
 
-    v1 = sub_0200B1EC(v0, param3);
+    v1 = MessageLoader_GetNewStrbuf(v0, param3);
     sub_0201D78C(param1, 2, v1, param4, param5, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     v2 = sub_02002D7C(2, v1, 0);
 
     Strbuf_Free(v1);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
 
     return v2;
 }
 
 void ov21_021D4E10 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
     int v2;
     int v3;
 
-    v0 = sub_0200B144(0, 26, param2, param0->unk_14);
+    v0 = MessageLoader_Init(0, 26, param2, param0->unk_14);
     GF_ASSERT(v0);
 
-    v1 = sub_0200B1EC(v0, param3);
+    v1 = MessageLoader_GetNewStrbuf(v0, param3);
     v2 = sub_02002D7C(2, v1, 0);
     v3 = sub_0201C294(param1) * 8;
     v3 = v3 - v2;
@@ -180,7 +180,7 @@ void ov21_021D4E10 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param
 
     sub_0201D78C(param1, 2, v1, v3, 0, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
 }
 
 void ov21_021D4E80 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, Strbuf *param2, int param3, int param4)

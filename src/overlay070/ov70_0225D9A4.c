@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -162,7 +162,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0200B358 * unk_00;
-    UnkStruct_0200B144 * unk_04[4];
+    MessageLoader * unk_04[4];
     Strbuf* unk_14;
     Strbuf* unk_18;
 } UnkStruct_ov70_0225F208;
@@ -2026,7 +2026,7 @@ static void ov70_0225F208 (UnkStruct_ov70_0225F208 * param0, u32 param1)
     param0->unk_00 = sub_0200B368(8, 64, param1);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = sub_0200B144(1, 26, v1[v0], param1);
+        param0->unk_04[v0] = MessageLoader_Init(1, 26, v1[v0], param1);
     }
 
     param0->unk_14 = Strbuf_Init(480, param1);
@@ -2040,7 +2040,7 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
     sub_0200B3F0(param0->unk_00);
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0200B190(param0->unk_04[v0]);
+        MessageLoader_Free(param0->unk_04[v0]);
     }
 
     Strbuf_Free(param0->unk_14);
@@ -2049,7 +2049,7 @@ static void ov70_0225F25C (UnkStruct_ov70_0225F208 * param0)
 
 static Strbuf* ov70_0225F288 (UnkStruct_ov70_0225F208 * param0, int param1, u32 param2)
 {
-    sub_0200B1B8(param0->unk_04[param1], param2, param0->unk_18);
+    MessageLoader_GetStrbuf(param0->unk_04[param1], param2, param0->unk_18);
     sub_0200C388(param0->unk_00, param0->unk_14, param0->unk_18);
     return param0->unk_14;
 }

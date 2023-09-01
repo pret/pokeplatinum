@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -55,8 +55,8 @@ UnkStruct_ov16_0226D160 * ov16_0223E034(UnkStruct_0207ADB4 * param0, UnkEnum_ov1
 void ov16_0223E040(UnkStruct_0207ADB4 * param0, UnkEnum_ov16_0226D194 param1, UnkStruct_ov16_0226D160 * param2);
 UnkStruct_0200C440 * ov16_0223E04C(UnkStruct_0207ADB4 * param0);
 UnkStruct_0200C440 * ov16_0223E054(UnkStruct_0207ADB4 * param0);
-UnkStruct_0200B144 * ov16_0223E05C(UnkStruct_0207ADB4 * param0);
-UnkStruct_0200B144 * ov16_0223E060(UnkStruct_0207ADB4 * param0);
+MessageLoader * ov16_0223E05C(UnkStruct_0207ADB4 * param0);
+MessageLoader * ov16_0223E060(UnkStruct_0207ADB4 * param0);
 UnkStruct_02002F38 * ov16_0223E064(UnkStruct_0207ADB4 * param0);
 UnkStruct_02026324 * ov16_0223E068(UnkStruct_0207ADB4 * param0);
 u8 * ov16_0223E06C(UnkStruct_0207ADB4 * param0);
@@ -171,7 +171,7 @@ void ov16_0223F9A0(UnkStruct_0207ADB4 * param0, int param1);
 BOOL ov16_0223F9E0(UnkStruct_0207ADB4 * param0, int param1);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3, int param4);
-u8 ov16_0223FB24(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2, int param3);
-u8 ov16_0223FB78(UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
+u8 ov16_0223FB24(UnkStruct_0207ADB4 * param0, MessageLoader * param1, BattleMessage * param2, int param3);
+u8 ov16_0223FB78(UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 
 #endif // POKEPLATINUM_OV16_0223DF00_H

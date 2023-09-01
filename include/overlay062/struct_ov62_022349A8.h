@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_022349A8_H
 #define POKEPLATINUM_STRUCT_OV62_022349A8_H
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -39,7 +39,7 @@ typedef struct {
     int unk_3E8;
     int unk_3EC;
     int unk_3F0;
-    UnkStruct_0200B144 * unk_3F4;
+    MessageLoader * unk_3F4;
     UnkStruct_0200B358 * unk_3F8;
     Strbuf* unk_3FC;
     UnkStruct_ov61_0222B920 unk_400;

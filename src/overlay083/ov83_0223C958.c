@@ -378,27 +378,27 @@ static void ov83_0223CF2C (UnkStruct_ov83_0223B784 * param0)
 {
     int v0;
 
-    param0->unk_15E0.unk_00 = sub_0200B144(0, 26, 464, param0->unk_00);
+    param0->unk_15E0.unk_00 = MessageLoader_Init(0, 26, 464, param0->unk_00);
     param0->unk_15E0.unk_04 = sub_0200B368(4, 64, param0->unk_00);
     param0->unk_15E0.unk_08 = Strbuf_Init(64, param0->unk_00);
-    param0->unk_15E0.unk_0C = sub_0200B1EC(param0->unk_15E0.unk_00, 0);
-    param0->unk_15E0.unk_10 = sub_0200B1EC(param0->unk_15E0.unk_00, 1);
-    param0->unk_15E0.unk_14 = sub_0200B1EC(param0->unk_15E0.unk_00, 2);
-    param0->unk_15E0.unk_18 = sub_0200B1EC(param0->unk_15E0.unk_00, 20);
-    param0->unk_15E0.unk_1C = sub_0200B1EC(param0->unk_15E0.unk_00, 21);
-    param0->unk_15E0.unk_20 = sub_0200B1EC(param0->unk_15E0.unk_00, 22);
-    param0->unk_15E0.unk_24 = sub_0200B1EC(param0->unk_15E0.unk_00, 23);
-    param0->unk_15E0.unk_28 = sub_0200B1EC(param0->unk_15E0.unk_00, 24);
-    param0->unk_15E0.unk_2C = sub_0200B1EC(param0->unk_15E0.unk_00, 25);
-    param0->unk_15E0.unk_30 = sub_0200B1EC(param0->unk_15E0.unk_00, 8);
-    param0->unk_15E0.unk_34 = sub_0200B1EC(param0->unk_15E0.unk_00, 9);
+    param0->unk_15E0.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 0);
+    param0->unk_15E0.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 1);
+    param0->unk_15E0.unk_14 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 2);
+    param0->unk_15E0.unk_18 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 20);
+    param0->unk_15E0.unk_1C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 21);
+    param0->unk_15E0.unk_20 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 22);
+    param0->unk_15E0.unk_24 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 23);
+    param0->unk_15E0.unk_28 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 24);
+    param0->unk_15E0.unk_2C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 25);
+    param0->unk_15E0.unk_30 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 8);
+    param0->unk_15E0.unk_34 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 9);
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_15E0.unk_38[v0] = sub_0200B1EC(param0->unk_15E0.unk_00, 3 + v0);
+        param0->unk_15E0.unk_38[v0] = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 3 + v0);
     }
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_15E0.unk_4C[v0] = sub_0200B1EC(param0->unk_15E0.unk_00, 10 + v0);
+        param0->unk_15E0.unk_4C[v0] = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 10 + v0);
     }
 }
 
@@ -428,5 +428,5 @@ static void ov83_0223D068 (UnkStruct_ov83_0223B784 * param0)
 
     Strbuf_Free(param0->unk_15E0.unk_08);
     sub_0200B3F0(param0->unk_15E0.unk_04);
-    sub_0200B190(param0->unk_15E0.unk_00);
+    MessageLoader_Free(param0->unk_15E0.unk_00);
 }

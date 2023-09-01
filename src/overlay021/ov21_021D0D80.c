@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -977,10 +977,10 @@ u32 ov21_021D1C88 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D33
 Strbuf* ov21_021D1CE0 (int param0, int param1)
 {
     Strbuf* v0;
-    UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
+    MessageLoader * v1 = MessageLoader_Init(0, 26, 697, param1);
 
-    v0 = sub_0200B1EC(v1, param0);
-    sub_0200B190(v1);
+    v0 = MessageLoader_GetNewStrbuf(v1, param0);
+    MessageLoader_Free(v1);
 
     return v0;
 }

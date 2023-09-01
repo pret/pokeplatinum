@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_02018340_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -25,7 +25,7 @@
 typedef struct {
     int unk_00;
     UnkStruct_02018340 * unk_04;
-    UnkStruct_0200B144 * unk_08;
+    MessageLoader * unk_08;
     int unk_0C;
     UnkStruct_0205AA50 unk_10;
     int unk_20;
@@ -323,14 +323,14 @@ static void ov120_021D10D4 (UnkStruct_ov120_021D0F24 * param0)
 
 static void ov120_021D114C (UnkStruct_ov120_021D0F24 * param0)
 {
-    param0->unk_08 = sub_0200B144(1, 26, 607, param0->unk_00);
+    param0->unk_08 = MessageLoader_Init(1, 26, 607, param0->unk_00);
     sub_0201D710();
     param0->unk_0C = 0;
 }
 
 static void ov120_021D116C (UnkStruct_ov120_021D0F24 * param0)
 {
-    sub_0200B190(param0->unk_08);
+    MessageLoader_Free(param0->unk_08);
 }
 
 static void ov120_021D1178 (UnkStruct_ov120_021D0F24 * param0)

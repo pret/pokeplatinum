@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
@@ -85,7 +85,7 @@ struct UnkStruct_ov111_021D0F7C_t {
     VecFx32 unk_1C;
     VecFx32 unk_28;
     void * unk_34;
-    UnkStruct_0200B144 * unk_38;
+    MessageLoader * unk_38;
     UnkStruct_0200B358 * unk_3C;
     Strbuf* unk_40;
     Strbuf* unk_44;
@@ -1122,7 +1122,7 @@ static void ov111_021D1C0C (UnkStruct_ov111_021D0F7C * param0)
     ov111_021D3320(&param0->unk_16C);
 
     sub_02015760(param0->unk_34);
-    sub_0200B190(param0->unk_38);
+    MessageLoader_Free(param0->unk_38);
     sub_0200B3F0(param0->unk_3C);
     Strbuf_Free(param0->unk_40);
     Strbuf_Free(param0->unk_44);
@@ -1159,7 +1159,7 @@ static void ov111_021D1D68 (UnkStruct_ov111_021D0F7C * param0)
     ov111_021D1FC4(param0);
     ov111_021D2034(param0);
 
-    param0->unk_38 = sub_0200B144(1, 26, 540, 115);
+    param0->unk_38 = MessageLoader_Init(1, 26, 540, 115);
     param0->unk_3C = sub_0200B358(115);
     param0->unk_40 = Strbuf_Init(600, 115);
     param0->unk_44 = Strbuf_Init(600, 115);
@@ -1532,7 +1532,7 @@ static void ov111_021D2380 (UnkStruct_ov111_021D0F7C * param0, u32 param1)
 static u8 ov111_021D23C4 (UnkStruct_ov111_021D0F7C * param0, UnkStruct_0205AA50 * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     sub_0201ADA4(param1, param8);
-    sub_0200B1B8(param0->unk_38, param2, param0->unk_44);
+    MessageLoader_GetStrbuf(param0->unk_38, param2, param0->unk_44);
     sub_0200C388(param0->unk_3C, param0->unk_40, param0->unk_44);
 
     return sub_0201D78C(param1, param9, param0->unk_40, param3, param4, param5, (u32)((((param6) & 0xff) << 16) | (((param7) & 0xff) << 8) | (((param8) & 0xff) << 0)), NULL);
@@ -1553,7 +1553,7 @@ asm static u8 ov111_021D2424 (UnkStruct_ov111_021D0F7C * param0, UnkStruct_0205A
     ldr r0, [r5, #0x38]
     ldr r2, [r5, #0x44]
     add r1, r7, #0
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     ldr r0, [r5, #0x3c]
     ldr r1, [r5, #0x40]
     ldr r2, [r5, #0x44]

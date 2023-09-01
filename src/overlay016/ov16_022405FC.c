@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -7651,7 +7651,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     BattleMessage v4;
     int v5;
     int v6;
-    UnkStruct_0200B144 * v7;
+    MessageLoader * v7;
     u32 v8;
     int v9;
     int v10;
@@ -8216,7 +8216,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     Pokemon * v3;
     UnkStruct_02002F38 * v4;
     UnkStruct_02007768 * v5;
-    UnkStruct_0200B144 * v6;
+    MessageLoader * v6;
 
     v6 = ov16_0223E05C(v2->unk_00);
     v4 = ov16_0223E064(v2->unk_00);
@@ -9733,7 +9733,7 @@ static void ov16_0224B520 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
     UnkStruct_02002F38 * v3;
-    UnkStruct_0200B144 * v4;
+    MessageLoader * v4;
     UnkStruct_0200B358 * v5;
     Strbuf* v6, * v7;
     UnkStruct_02018340 * v8;
@@ -9778,11 +9778,11 @@ static void ov16_0224B520 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_0224B7CC 
     }
 
     if (v13 == 0) {
-        v6 = sub_0200B1EC(v4, 944);
+        v6 = MessageLoader_GetNewStrbuf(v4, 944);
     } else if (v13 == 1) {
-        v6 = sub_0200B1EC(v4, 945);
+        v6 = MessageLoader_GetNewStrbuf(v4, 945);
     } else {
-        v6 = sub_0200B1EC(v4, 946);
+        v6 = MessageLoader_GetNewStrbuf(v4, 946);
     }
 
     sub_0200B5CC(v5, 0, sub_02076B10(param2));

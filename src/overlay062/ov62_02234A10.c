@@ -47,7 +47,7 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
     sub_0201A7E8(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
     sub_0201ADA4(v2, 0x0);
 
-    v0 = sub_0200B1EC(param0->unk_14.unk_34, 192);
+    v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 192);
     v1 = ov62_0223429C(v2, v0);
 
     sub_0201D78C(v2, 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

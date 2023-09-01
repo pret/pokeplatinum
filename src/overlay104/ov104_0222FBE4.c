@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
@@ -1877,13 +1877,13 @@ BOOL ov104_02230E40 (UnkStruct_ov104_0222E930 * param0)
 
 static Strbuf* ov104_02230E90 (u16 param0, u32 param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 412, param1);
-    v1 = sub_0200B1EC(v0, param0);
+    v0 = MessageLoader_Init(1, 26, 412, param1);
+    v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     return v1;
 }
 

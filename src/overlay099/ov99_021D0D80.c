@@ -132,7 +132,7 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201E3D8();
     sub_0201E450(4);
 
-    v0->unk_20 = sub_0200B144(0, 26, 548, 75);
+    v0->unk_20 = MessageLoader_Init(0, 26, 548, 75);
     v0->unk_10F8 = NARC_ctor(NARC_INDEX_GRAPHIC__ENDING, 75);
 
     ov99_021D1918(v0);
@@ -272,7 +272,7 @@ int ov99_021D11A8 (UnkStruct_020067E8 * param0, int * param1)
         ov99_021D1314(v0);
     }
 
-    sub_0200B190(v0->unk_20);
+    MessageLoader_Free(v0->unk_20);
     sub_0200D0B0(v0->unk_18, v0->unk_1C);
     sub_0200C8D4(v0->unk_18);
     sub_02002FA0(v0->unk_0C, 0);

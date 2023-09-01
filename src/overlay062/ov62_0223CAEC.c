@@ -3,7 +3,7 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
@@ -68,7 +68,7 @@ typedef struct {
     UnkStruct_ov61_0222BDAC_1 * unk_718;
     UnkStruct_ov62_0223DF10 * unk_71C;
     UnkStruct_ov62_0223D518_sub1 unk_720;
-    UnkStruct_0200B144 * unk_744;
+    MessageLoader * unk_744;
     Strbuf* unk_748;
     UnkStruct_ov62_02249380 unk_74C[3][20];
     UnkStruct_ov62_02248CDC unk_B0C;
@@ -200,7 +200,7 @@ asm static void ov62_0223CAEC (UnkStruct_0208C06C * param0)
     ldrb r1, [r3, r1]
     ldr r0, [r5, #0x4c]
     add r1, #0x5e
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     ldr r1, = 0x748
     str r0, [r4, r1]
  _0223CB46:
@@ -345,7 +345,7 @@ static void ov62_0223CF2C (UnkStruct_0208C06C * param0)
         v2 += (Unk_ov62_02248EA0[v3][2] * Unk_ov62_02248EA0[v3][3]);
         sub_0201ADA4(v1, 0x0);
 
-        v5 = sub_0200B1EC(param0->unk_14.unk_34, 80 + v3);
+        v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 80 + v3);
         v4 = ov62_0223429C(v1, v5);
 
         sub_0201D78C(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -397,7 +397,7 @@ static void ov62_0223D004 (UnkStruct_0208C06C * param0)
 
         sub_0201ADA4(v1, 0x0);
 
-        v5 = sub_0200B1EC(param0->unk_14.unk_34, 67);
+        v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 67);
         v4 = 0;
 
         sub_0201D78C(v1, 0, v5, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -568,7 +568,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     mul r2, r3
     ldrb r1, [r1, r2]
     sub r1, r1, #1
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     b _0223D1BA
  _0223D1A6:
     ldr r1, = 0x714
@@ -579,7 +579,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     mul r2, r3
     ldrb r1, [r1, r2]
     sub r1, r1, #1
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
  _0223D1BA:
     mov r1, #0
     add r7, r0, #0
@@ -609,11 +609,11 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     bne _0223D200
     ldr r1, [r4, #0x14]
     add r1, #0x52
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     b _0223D206
  _0223D200:
     mov r1, #0x5b
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
  _0223D206:
     mov r1, #0
     add r7, r0, #0
@@ -656,7 +656,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x20]
     ldr r0, [r5, #0x48]
     mov r1, #0x55
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     add r7, r0, #0
     ldr r0, [sp, #0x20]
     mov r1, #4
@@ -664,7 +664,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     add r1, r0, #0
     ldr r0, = 0x744
     ldr r0, [r4, r0]
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     str r0, [sp, #0x1c]
     mov r0, #1
     str r0, [sp]
@@ -683,7 +683,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x24]
     ldr r0, [r5, #0x48]
     mov r1, #0x56
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     add r7, r0, #0
     mov r0, #0xff
     mov r1, #0x66
@@ -705,7 +705,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     str r0, [sp, #0x28]
     ldr r0, [r5, #0x48]
     mov r1, #0x57
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     add r7, r0, #0
     ldr r0, [sp, #0x28]
     cmp r0, #0
@@ -723,7 +723,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
     ldr r0, [sp, #0x10]
     mov r1, #0x66
     add r2, sp, #0x2c
-    bl sub_0200B274
+    bl MessageLoader_GetSpeciesName
     ldr r0, [sp, #0x1c]
     add r1, sp, #0x2c
     bl Strbuf_CopyChars
@@ -731,7 +731,7 @@ asm static void ov62_0223D160 (UnkStruct_0208C06C * param0)
  _0223D308:
     ldr r0, [r5, #0x48]
     mov r1, #0x15
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     str r0, [sp, #0x1c]
  _0223D312:
     mov r0, #1

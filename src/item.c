@@ -4,8 +4,6 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
-
 #include "struct_defs/struct_0207CDEC.h"
 
 #include "unk_0200AC5C.h"
@@ -788,18 +786,18 @@ void* Item_Load(u16 item, enum ItemFileType type, u32 heapID)
 
 void Item_LoadName(Strbuf *dst, u16 item, u32 heapID)
 {
-    UnkStruct_0200B144 *msgData = sub_0200B144(1, 26, 392, heapID);
+    MessageLoader *msgData = MessageLoader_Init(1, 26, 392, heapID);
 
-    sub_0200B1B8(msgData, item, dst);
-    sub_0200B190(msgData);
+    MessageLoader_GetStrbuf(msgData, item, dst);
+    MessageLoader_Free(msgData);
 }
 
 void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID)
 {
-    UnkStruct_0200B144 *msgData = sub_0200B144(1, 26, 391, heapID);
+    MessageLoader *msgData = MessageLoader_Init(1, 26, 391, heapID);
 
-    sub_0200B1B8(msgData, item, dst);
-    sub_0200B190(msgData);
+    MessageLoader_GetStrbuf(msgData, item, dst);
+    MessageLoader_Free(msgData);
 }
 
 s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID)

@@ -1,9 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "strbuf.h"
-
 #include "struct_defs/box_pokemon.h"
 
 #include "unk_0200AC5C.h"
@@ -36,7 +33,7 @@ u32 sub_020797D4 (void)
 static void sub_020797DC (UnkStruct_020797DC * param0)
 {
     u32 v0, v1;
-    UnkStruct_0200B144 * v2;
+    MessageLoader * v2;
 
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
@@ -53,14 +50,14 @@ static void sub_020797DC (UnkStruct_020797DC * param0)
     }
 
     param0->unk_13C6 = 0;
-    v2 = sub_0200B144(1, 26, 18, 0);
+    v2 = MessageLoader_Init(1, 26, 18, 0);
 
     if (v2) {
         for (v0 = 0; v0 < 18; v0++) {
-            sub_0200B240(v2, 6 + v0, param0->unk_10E4[v0]);
+            MessageLoader_Get(v2, 6 + v0, param0->unk_10E4[v0]);
         }
 
-        sub_0200B190(v2);
+        MessageLoader_Free(v2);
     }
 
     param0->unk_00 = 0;

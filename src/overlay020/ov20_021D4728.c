@@ -146,13 +146,13 @@ asm static void ov20_021D48C4 (UnkStruct_ov20_021D4AD4 * param0, NARC * param1)
     mov r0, #0x1a
     mov r2, #0xb
     mov r3, #0x23
-    bl sub_0200B010
+    bl MessageBank_GetNewStrbufFromNARC
     add r6, r0, #0
     ldr r1, = 0x1B5
     mov r0, #0x1a
     mov r2, #0xc
     mov r3, #0x23
-    bl sub_0200B010
+    bl MessageBank_GetNewStrbufFromNARC
     add r4, r0, #0
     mov r0, #0x23
     str r0, [sp]

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -91,7 +91,7 @@ typedef struct {
     u8 unk_17;
     UnkStruct_02018340 * unk_18;
     UnkStruct_020978D8 * unk_1C;
-    UnkStruct_0200B144 * unk_20;
+    MessageLoader * unk_20;
     Strbuf* unk_24[3];
     UnkStruct_02002F38 * unk_30;
     void * unk_34;
@@ -282,7 +282,7 @@ static int ov75_021D0FA0 (UnkStruct_ov75_021D1184 * param0)
 
         v0 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
 
-        sub_0200B1B8(param0->unk_20, 2, v0);
+        MessageLoader_GetStrbuf(param0->unk_20, 2, v0);
         sub_0201D78C(&param0->unk_44[5], 1, v0, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
         Strbuf_Free(v0);
         break;
@@ -339,7 +339,7 @@ static int ov75_021D108C (UnkStruct_ov75_021D1184 * param0)
         sub_0201ADA4(&(param0->unk_44[5]), ((15 << 4) | 15));
 
         v1 = Strbuf_Init((19 * 2 * 2), param0->unk_00);
-        sub_0200B1B8(param0->unk_20, 3, v1);
+        MessageLoader_GetStrbuf(param0->unk_20, 3, v1);
         param0->unk_0F = sub_0201D78C(&param0->unk_44[5], 1, v1, 0, 0, param0->unk_10, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((15 & 0xff) << 0)))), NULL);
 
         Strbuf_Free(v1);
@@ -546,7 +546,7 @@ static int ov75_021D1434 (UnkStruct_ov75_021D1184 * param0)
     ov75_021D1CB8(param0);
 
     if (param0->unk_24 != NULL) {
-        sub_0200B190(param0->unk_20);
+        MessageLoader_Free(param0->unk_20);
     }
 
     ov75_021D19A8(param0);
@@ -847,13 +847,13 @@ static void ov75_021D19C8 (UnkStruct_ov75_021D1184 * param0)
         Strbuf* v2;
         int v3;
 
-        param0->unk_20 = sub_0200B144(1, 26, 409, param0->unk_00);
+        param0->unk_20 = MessageLoader_Init(1, 26, 409, param0->unk_00);
 
         v2 = Strbuf_Init(8 * 2, param0->unk_00);
 
         for (v0 = 0; v0 < 2; v0++) {
             Strbuf_Clear(v2);
-            sub_0200B1B8(param0->unk_20, 0 + v0, v2);
+            MessageLoader_GetStrbuf(param0->unk_20, 0 + v0, v2);
 
             v3 = (8 * 8) - sub_02002D7C(1, v2, 0);
             v3 /= 2;

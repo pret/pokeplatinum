@@ -144,7 +144,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
     {
         Strbuf* v2;
 
-        v2 = sub_0200B1EC(param0->unk_69C, 202);
+        v2 = MessageLoader_GetNewStrbuf(param0->unk_69C, 202);
 
         sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v1));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, v2);

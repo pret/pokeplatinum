@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -761,13 +761,13 @@ static void ov21_021E9968 (UnkStruct_0205AA50 * param0, int param1, int param2)
 static void ov21_021E998C (UnkStruct_0205AA50 * param0, int param1)
 {
     Strbuf* v0 = Strbuf_Init(64, param1);
-    UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param1);
+    MessageLoader * v1 = MessageLoader_Init(0, 26, 697, param1);
 
-    sub_0200B1B8(v1, 110, v0);
+    MessageLoader_GetStrbuf(v1, 110, v0);
     sub_0201D78C(param0, 0, v0, 32, 0, 0, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     Strbuf_Free(v0);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
 }
 
 static UnkStruct_02007C7C * ov21_021E99E0 (UnkStruct_02007768 * param0, Pokemon * param1, int param2, int param3, int param4)

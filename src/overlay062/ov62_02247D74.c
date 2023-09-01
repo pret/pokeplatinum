@@ -76,7 +76,7 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
         v3 = sub_02030B94(v5, 102);
 
         ov62_022349A8(param0, v3);
-        v4 = sub_0200B1EC(param0->unk_14.unk_34, param1);
+        v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
         sub_0200B48C(v2, 0, v3, 0, 1, GAME_LANGUAGE);
         sub_0200C388(v2, v0, v4);
@@ -84,7 +84,7 @@ static void ov62_02247DD8 (UnkStruct_0208C06C * param0, int param1, int param2)
         Strbuf_Free(v4);
         sub_0200B3F0(v2);
     } else {
-        v0 = sub_0200B1EC(param0->unk_14.unk_34, param1);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     }
 
     sub_0201ADA4(v1, 0xCC);
@@ -107,7 +107,7 @@ static void ov62_02247E9C (UnkStruct_0208C06C * param0)
     sub_0201A7E8(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
     sub_0201ADA4(v1, 0x0);
 
-    v2 = sub_0200B1EC(param0->unk_14.unk_34, 130);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 130);
     v4 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -121,7 +121,7 @@ static void ov62_02247E9C (UnkStruct_0208C06C * param0)
     sub_0201A7E8(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
     sub_0201ADA4(v1, 0x0);
 
-    v2 = sub_0200B1EC(param0->unk_14.unk_34, 131);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 131);
     v4 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v4, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

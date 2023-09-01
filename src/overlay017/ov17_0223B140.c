@@ -211,10 +211,10 @@ int ov17_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_0C.unk_20 = ov12_0221FCDC(21);
     ov12_0221FDC0(v0->unk_0C.unk_20, 1);
 
-    v0->unk_0C.unk_38 = sub_0200B144(0, 26, 204, 21);
-    v0->unk_0C.unk_3C = sub_0200B144(0, 26, 205, 21);
-    v0->unk_0C.unk_40 = sub_0200B144(0, 26, 210, 21);
-    v0->unk_0C.unk_44 = sub_0200B144(0, 26, 211, 21);
+    v0->unk_0C.unk_38 = MessageLoader_Init(0, 26, 204, 21);
+    v0->unk_0C.unk_3C = MessageLoader_Init(0, 26, 205, 21);
+    v0->unk_0C.unk_40 = MessageLoader_Init(0, 26, 210, 21);
+    v0->unk_0C.unk_44 = MessageLoader_Init(0, 26, 211, 21);
     v0->unk_0C.unk_54 = sub_02012744((2 * 4), 21);
     v0->unk_0C.unk_48 = sub_0200B358(21);
     v0->unk_0C.unk_4C = Strbuf_Init((3 * 160), 21);
@@ -365,10 +365,10 @@ int ov17_0223B580 (UnkStruct_020067E8 * param0, int * param1)
 
     Strbuf_Free(v0->unk_0C.unk_4C);
     sub_0200B3F0(v0->unk_0C.unk_48);
-    sub_0200B190(v0->unk_0C.unk_38);
-    sub_0200B190(v0->unk_0C.unk_3C);
-    sub_0200B190(v0->unk_0C.unk_40);
-    sub_0200B190(v0->unk_0C.unk_44);
+    MessageLoader_Free(v0->unk_0C.unk_38);
+    MessageLoader_Free(v0->unk_0C.unk_3C);
+    MessageLoader_Free(v0->unk_0C.unk_40);
+    MessageLoader_Free(v0->unk_0C.unk_44);
 
     Heap_FreeToHeap(v0->unk_0C.unk_24);
     sub_0200DA58(v0->unk_04);

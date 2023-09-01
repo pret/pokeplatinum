@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
@@ -79,7 +79,7 @@ typedef struct {
     UnkStruct_0200112C * unk_40;
     UnkStruct_02013A04 * unk_44;
     int unk_48;
-    UnkStruct_0200B144 * unk_4C;
+    MessageLoader * unk_4C;
     int unk_50;
     int unk_54;
     int unk_58;
@@ -460,7 +460,7 @@ static void ov73_021D1238 (UnkStruct_ov73_021D1058 * param0)
 
 static void ov73_021D12C4 (UnkStruct_ov73_021D1058 * param0)
 {
-    param0->unk_4C = sub_0200B144(1, 26, 389, param0->unk_00);
+    param0->unk_4C = MessageLoader_Init(1, 26, 389, param0->unk_00);
 
     sub_0201D710();
 
@@ -475,7 +475,7 @@ static void ov73_021D1300 (UnkStruct_ov73_021D1058 * param0)
 {
     sub_0200B3F0(param0->unk_64);
     sub_02015760(param0->unk_60);
-    sub_0200B190(param0->unk_4C);
+    MessageLoader_Free(param0->unk_4C);
 }
 
 static void ov73_021D1318 (UnkStruct_ov73_021D1058 * param0)
@@ -724,7 +724,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
 
             param0->unk_5C = Strbuf_Init(0x400, param0->unk_00);
 
-            sub_0200B1B8(param0->unk_4C, param1, v1);
+            MessageLoader_GetStrbuf(param0->unk_4C, param1, v1);
             sub_0200B48C(param0->unk_64, 0, param0->unk_70->unk_18, param0->unk_84, 1, GAME_LANGUAGE);
             sub_0200B48C(param0->unk_64, 1, param0->unk_74->unk_18, 0, 1, GAME_LANGUAGE);
             sub_0200C388(param0->unk_64, param0->unk_5C, v1);
@@ -849,7 +849,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
     case 0:
         sub_02019120(0, 0);
         param0->unk_5C = Strbuf_Init(0x400, param0->unk_00);
-        sub_0200B1B8(param0->unk_4C, param1, param0->unk_5C);
+        MessageLoader_GetStrbuf(param0->unk_4C, param1, param0->unk_5C);
 
         if (param2 == 1) {
             v1 = Unk_ov72_021D37D4;
@@ -2128,7 +2128,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
                 }
 
                 {
-                    Strbuf* v10 = sub_0200B1EC(param0->unk_4C, v9);
+                    Strbuf* v10 = MessageLoader_GetNewStrbuf(param0->unk_4C, v9);
 
                     Strbuf_Copy(param0->unk_74->unk_18, v10);
                     Strbuf_Free(v10);

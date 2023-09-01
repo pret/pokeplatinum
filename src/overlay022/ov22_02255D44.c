@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -1342,7 +1342,7 @@ static u32 ov22_02257278 (UnkStruct_ov22_02255D44 * param0)
 
 static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 param2, u8 param3, u8 param4, u8 param5)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
     int v2 = sub_02027B50(param0->unk_738);
 
@@ -1352,39 +1352,39 @@ static void ov22_022572A0 (UnkStruct_ov22_02255D44 * param0, u32 param1, u8 para
     sub_0200DD0C(param0->unk_00.unk_40, 3, (0 + (29 * 4)), 8, v2, 14);
     sub_0200E060(param0->unk_718, 0, (0 + (29 * 4)), 8);
 
-    v0 = sub_0200B144(0, 26, 385, 13);
-    v1 = sub_0200B1EC(v0, param1);
+    v0 = MessageLoader_Init(0, 26, 385, 13);
+    v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     sub_0201A954(param0->unk_718);
 }
 
 static void ov22_02257368 (UnkStruct_ov22_02255D44 * param0, u32 param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
     Strbuf* v2;
 
     sub_0201ADA4(param0->unk_718, 15);
 
-    v0 = sub_0200B144(0, 26, 385, 13);
-    v2 = sub_0200B1EC(v0, param1);
+    v0 = MessageLoader_Init(0, 26, 385, 13);
+    v2 = MessageLoader_GetNewStrbuf(v0, param1);
     v1 = Strbuf_Init(256, 13);
 
     sub_0200C388(param0->unk_744, v1, v2);
     sub_0201D78C(param0->unk_718, 1, v1, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     Strbuf_Free(v2);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     sub_0201A954(param0->unk_718);
 }
 
 static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 {
     u32 v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     u32 v2;
     Strbuf* v3;
 
@@ -1392,8 +1392,8 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
 
     sub_0201ADA4(param0->unk_718, 15);
 
-    v1 = sub_0200B144(0, 26, 385, 13);
-    v3 = sub_0200B1EC(v1, param1);
+    v1 = MessageLoader_Init(0, 26, 385, 13);
+    v3 = MessageLoader_GetNewStrbuf(v1, param1);
     param0->unk_740 = Strbuf_Init(256, 13);
 
     sub_0200C388(param0->unk_744, param0->unk_740, v3);
@@ -1407,7 +1407,7 @@ static u32 ov22_022573EC (UnkStruct_ov22_02255D44 * param0, u32 param1)
     v0 = sub_0201D78C(param0->unk_718, 1, param0->unk_740, 0, 0, v2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     Strbuf_Free(v3);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
     sub_0201A954(param0->unk_718);
 
     return v0;

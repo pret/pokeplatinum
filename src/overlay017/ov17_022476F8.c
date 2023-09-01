@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -204,7 +204,7 @@ static void ov17_0224792C (UnkStruct_ov17_02247A48 * param0, int param1, const U
     }
 }
 
-static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_0224792C * param4)
+static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, MessageLoader * param1, u32 param2, int param3, const UnkStruct_ov17_0224792C * param4)
 {
     Strbuf* v0;
     int v1;
@@ -215,7 +215,7 @@ static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, UnkStruct_0200B144 
         v1 = 1;
     }
 
-    v0 = sub_0200B1EC(param1, param2);
+    v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_0224792C(param0, param3, param4);
 
     sub_0200C388(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);

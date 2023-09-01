@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
@@ -1147,7 +1147,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r3, [sp, #0x1c]
     mov r0, #0
     mov r1, #0x1a
-    bl sub_0200B144
+    bl MessageLoader_Init
     str r0, [sp, #0x38]
     ldr r1, [sp, #0x1c]
     mov r0, #0x80
@@ -1193,7 +1193,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r0, [sp, #0x38]
     ldr r1, [sp, #0x3c]
     ldr r2, [sp, #0x34]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     ldr r0, [sp, #0x34]
     bl Strbuf_NumLines
     str r0, [sp, #0x30]
@@ -1288,7 +1288,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r0, [sp, #0x34]
     bl Strbuf_Free
     ldr r0, [sp, #0x38]
-    bl sub_0200B190
+    bl MessageLoader_Free
     add sp, #0x40
     pop {r3, r4, r5, r6, r7, pc}
     nop

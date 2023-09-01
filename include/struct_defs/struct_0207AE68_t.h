@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -26,7 +26,7 @@
 struct UnkStruct_0207AE68_t {
     UnkStruct_02018340 * unk_00;
     UnkStruct_0205AA50 * unk_04;
-    UnkStruct_0200B144 * unk_08;
+    MessageLoader * unk_08;
     UnkStruct_0200B358 * unk_0C;
     Strbuf* unk_10;
     UnkStruct_02002F38 * unk_14;

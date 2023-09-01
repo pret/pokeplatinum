@@ -124,11 +124,11 @@ int ov94_0223BCB0 (UnkStruct_020067E8 * param0, int * param1)
         }
 
         v0->unk_B8C = sub_0200B368(11, 64, 62);
-        v0->unk_B90 = sub_0200B144(0, 26, 671, 62);
-        v0->unk_B98 = sub_0200B144(0, 26, 674, 62);
-        v0->unk_B9C = sub_0200B144(0, 26, 695, 62);
-        v0->unk_B94 = sub_0200B144(0, 26, 412, 62);
-        v0->unk_BA0 = sub_0200B144(0, 26, 694, 62);
+        v0->unk_B90 = MessageLoader_Init(0, 26, 671, 62);
+        v0->unk_B98 = MessageLoader_Init(0, 26, 674, 62);
+        v0->unk_B9C = MessageLoader_Init(0, 26, 695, 62);
+        v0->unk_B94 = MessageLoader_Init(0, 26, 412, 62);
+        v0->unk_BA0 = MessageLoader_Init(0, 26, 694, 62);
 
         sub_02017DD4(4, 8);
 
@@ -221,11 +221,11 @@ int ov94_0223BF54 (UnkStruct_020067E8 * param0, int * param1)
 
     ov94_0223C508(v0);
 
-    sub_0200B190(v0->unk_B94);
-    sub_0200B190(v0->unk_B9C);
-    sub_0200B190(v0->unk_B98);
-    sub_0200B190(v0->unk_B90);
-    sub_0200B190(v0->unk_BA0);
+    MessageLoader_Free(v0->unk_B94);
+    MessageLoader_Free(v0->unk_B9C);
+    MessageLoader_Free(v0->unk_B98);
+    MessageLoader_Free(v0->unk_B90);
+    MessageLoader_Free(v0->unk_BA0);
     sub_0200B3F0(v0->unk_B8C);
 
     ov94_0223C0A0(v0);

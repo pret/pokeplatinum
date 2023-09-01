@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -246,16 +246,16 @@ static void ov23_0224DD2C (UnkStruct_ov23_0224E280 * param0)
     sub_0200DC48(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v1;
+        MessageLoader * v1;
         int v2;
 
-        v1 = sub_0200B144(0, 26, 634, 4);
+        v1 = MessageLoader_Init(0, 26, 634, 4);
 
         for (v2 = 0; v2 < NELEMS(Unk_ov23_022568B4); v2++) {
             sub_02013A4C(param0->unk_1C, v1, Unk_ov23_022568B4[v2].unk_00, Unk_ov23_022568B4[v2].unk_04);
         }
 
-        sub_0200B190(v1);
+        MessageLoader_Free(v1);
     }
 
     MI_CpuCopy8(ov23_02253D40(), &v0, sizeof(UnkStruct_ov84_02240FA8));
@@ -307,11 +307,11 @@ static void ov23_0224DE3C (UnkStruct_ov23_0224E280 * param0)
     sub_0200DC48(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v1;
+        MessageLoader * v1;
         int v2, v3;
         u8 v4[4];
 
-        v1 = sub_0200B144(0, 26, 633, 4);
+        v1 = MessageLoader_Init(0, 26, 633, 4);
 
         for (v2 = 0; v2 < 4; v2++) {
             u32 v5 = sub_0201D35C() % 12;
@@ -330,7 +330,7 @@ static void ov23_0224DE3C (UnkStruct_ov23_0224E280 * param0)
             }
         }
 
-        sub_0200B190(v1);
+        MessageLoader_Free(v1);
     }
 
     v0 = Unk_ov23_02256894;
@@ -395,10 +395,10 @@ static void ov23_0224DFA0 (UnkStruct_ov23_0224E280 * param0)
     sub_0200DC48(&param0->unk_0C, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v1;
+        MessageLoader * v1;
         int v2;
 
-        v1 = sub_0200B144(0, 26, 632, 4);
+        v1 = MessageLoader_Init(0, 26, 632, 4);
 
         for (v2 = 0; v2 < 4; v2++) {
             u32 v3 = 4 * param0->unk_32 + v2;
@@ -406,7 +406,7 @@ static void ov23_0224DFA0 (UnkStruct_ov23_0224E280 * param0)
             sub_02013A4C(param0->unk_1C, v1, 0 + v3, v2);
         }
 
-        sub_0200B190(v1);
+        MessageLoader_Free(v1);
     }
 
     v0 = Unk_ov23_02256894;
@@ -988,10 +988,10 @@ static void ov23_0224EAA4 (UnkStruct_ov23_022577B0 * param0)
     sub_0201A7E8(param0->unk_04->unk_08, &param0->unk_08, 3, 1, 1, 16, v1 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (16 * v1 * 2));
     sub_0200DC48(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     {
-        UnkStruct_0200B144 * v2;
+        MessageLoader * v2;
         int v3;
 
-        v2 = sub_0200B144(0, 26, 632, 4);
+        v2 = MessageLoader_Init(0, 26, 632, 4);
 
         for (v3 = 0; v3 < 4; v3++) {
             u32 v4 = 4 * param0->unk_2E + v3;
@@ -1000,7 +1000,7 @@ static void ov23_0224EAA4 (UnkStruct_ov23_022577B0 * param0)
         }
 
         sub_02013A4C(param0->unk_18, v2, 48, 51);
-        sub_0200B190(v2);
+        MessageLoader_Free(v2);
     }
 
     v0 = Unk_ov23_02256894;

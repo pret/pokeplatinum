@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -28,7 +28,7 @@
 static BOOL ov104_0222E7CC(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0222E930 * param1);
 static void ov104_0222E7FC(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0222E930 * param1);
 static void ov104_0222E82C(UnkStruct_ov104_022320B4 * param0, u16 param1, u32 * param2, void * param3);
-static void ov104_0222E830(u8 ** param0, UnkStruct_0200B144 ** param1, int param2, int param3);
+static void ov104_0222E830(u8 ** param0, MessageLoader ** param1, int param2, int param3);
 static void ov104_0222E904(UnkStruct_ov104_0222E930 * param0, int param1);
 
 UnkStruct_ov104_022320B4 * ov104_0222E63C (UnkStruct_0209B75C * param0, int param1, int param2)
@@ -97,7 +97,7 @@ void ov104_0222E710 (UnkStruct_ov104_022320B4 * param0)
     Strbuf_Free(param0->unk_48);
     Strbuf_Free(param0->unk_4C);
     Heap_FreeToHeap(param0->unk_40);
-    sub_0200B190(param0->unk_3C);
+    MessageLoader_Free(param0->unk_3C);
 
     Heap_FreeToHeap(param0);
 }
@@ -144,7 +144,7 @@ static BOOL ov104_0222E7CC (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0
 static void ov104_0222E7FC (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0222E930 * param1)
 {
     if (param1->unk_80 != param0->unk_3C) {
-        sub_0200B190(param1->unk_80);
+        MessageLoader_Free(param1->unk_80);
     }
 
     if (param1->unk_84 != param0->unk_40) {
@@ -161,7 +161,7 @@ static void ov104_0222E82C (UnkStruct_ov104_022320B4 * param0, u16 param1, u32 *
     }
 }
 
-static void ov104_0222E830 (u8 ** param0, UnkStruct_0200B144 ** param1, int param2, int param3)
+static void ov104_0222E830 (u8 ** param0, MessageLoader ** param1, int param2, int param3)
 {
     int v0, v1;
 
@@ -169,7 +169,7 @@ static void ov104_0222E830 (u8 ** param0, UnkStruct_0200B144 ** param1, int para
     v1 = ov104_0222EA90(param2, 2);
 
     *param0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FRONTIER__SCRIPT__FR_SCRIPT, v0, param3);
-    *param1 = sub_0200B144(1, 26, v1, param3);
+    *param1 = MessageLoader_Init(1, 26, v1, param3);
 }
 
 void ov104_0222E86C (UnkStruct_ov104_022320B4 * param0, int param1, int param2)
@@ -177,7 +177,7 @@ void ov104_0222E86C (UnkStruct_ov104_022320B4 * param0, int param1, int param2)
     int v0;
     UnkStruct_ov104_0222E930 * v1;
     int v2, v3;
-    UnkStruct_0200B144 * v4;
+    MessageLoader * v4;
 
     v2 = ov104_0222EA90(param0->unk_52, 2);
     v3 = ov104_0222EA90(param1, 2);
@@ -186,7 +186,7 @@ void ov104_0222E86C (UnkStruct_ov104_022320B4 * param0, int param1, int param2)
         return;
     }
 
-    v4 = sub_0200B144(1, 26, v3, param2);
+    v4 = MessageLoader_Init(1, 26, v3, param2);
 
     for (v0 = 0; v0 < 8; v0++) {
         v1 = param0->unk_04[v0];
@@ -198,7 +198,7 @@ void ov104_0222E86C (UnkStruct_ov104_022320B4 * param0, int param1, int param2)
         }
     }
 
-    sub_0200B190(param0->unk_3C);
+    MessageLoader_Free(param0->unk_3C);
     param0->unk_3C = v4;
 }
 

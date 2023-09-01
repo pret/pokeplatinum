@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
 #include "strbuf.h"
@@ -39,7 +39,7 @@ typedef struct {
     Strbuf* unk_04;
     Strbuf* unk_08;
     UnkStruct_0200B358 * unk_0C;
-    UnkStruct_0200B144 * unk_10;
+    MessageLoader * unk_10;
     UnkStruct_020149F0 * unk_14;
     UnkStruct_0205AA50 unk_18;
     UnkStruct_0205AA50 unk_28;
@@ -75,7 +75,7 @@ void sub_0209ACF4 (UnkStruct_020508D4 * param0)
     v1->unk_04 = Strbuf_Init(400, 32);
     v1->unk_08 = Strbuf_Init(400, 32);
     v1->unk_0C = sub_0200B358(32);
-    v1->unk_10 = sub_0200B144(1, 26, 420, 32);
+    v1->unk_10 = MessageLoader_Init(1, 26, 420, 32);
     v1->unk_14 = sub_020149F0(32);
     v1->unk_50 = sub_0209747C(2, 0, v1->unk_00->unk_0C, 32);
 
@@ -96,7 +96,7 @@ static void sub_0209AD84 (UnkStruct_0209AD84 * param0)
     Strbuf_Free(param0->unk_04);
     Strbuf_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_0C);
-    sub_0200B190(param0->unk_10);
+    MessageLoader_Free(param0->unk_10);
     sub_0209ADBC(param0);
     Heap_FreeToHeap(param0);
 }
@@ -265,10 +265,10 @@ static void sub_0209B084 (UnkStruct_0209AD84 * param0, int param1, BOOL param2)
     UnkStruct_0205AA50 * v0 = &(param0->unk_18);
 
     if (param2) {
-        sub_0200B1B8(param0->unk_10, param1, param0->unk_04);
+        MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_04);
         sub_0200C388(param0->unk_0C, param0->unk_08, param0->unk_04);
     } else {
-        sub_0200B1B8(param0->unk_10, param1, param0->unk_08);
+        MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_08);
     }
 
     if (sub_0201A7CC(v0) == 0) {
@@ -308,7 +308,7 @@ static void sub_0209B12C (UnkStruct_0209AD84 * param0)
         sub_0201ADA4(v0, 15);
 
         for (v1 = 0; v1 < 5; v1++) {
-            sub_0200B1B8(param0->unk_10, 9 + v1, param0->unk_08);
+            MessageLoader_GetStrbuf(param0->unk_10, 9 + v1, param0->unk_08);
             sub_0201D738(v0, 0, param0->unk_08, 12, v1 * 16, 0xff, NULL);
         }
 
@@ -340,7 +340,7 @@ static void sub_0209B1D8 (UnkStruct_0209AD84 * param0)
         sub_0201ADA4(v0, 15);
 
         for (v1 = 0; v1 < 2; v1++) {
-            sub_0200B1B8(param0->unk_10, v1 + 14, param0->unk_08);
+            MessageLoader_GetStrbuf(param0->unk_10, v1 + 14, param0->unk_08);
             sub_0201D738(v0, 0, param0->unk_08, 12, v1 * 16, 0xff, NULL);
         }
 

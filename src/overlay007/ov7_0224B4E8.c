@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "strbuf.h"
@@ -53,7 +53,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_44;
     UnkStruct_0205AA50 unk_54;
     UnkStruct_0200B358 * unk_64;
-    UnkStruct_0200B144 * unk_68;
+    MessageLoader * unk_68;
     UnkStruct_02098700 * unk_6C;
     u16 * unk_70;
     int unk_74;
@@ -101,7 +101,7 @@ static void ov7_0224B4E8 (UnkStruct_ov7_0224B4E8 * param0, int param1)
         sub_0205D988(&param0->unk_54);
     }
 
-    sub_0200B1B8(param0->unk_68, param1, param0->unk_14);
+    MessageLoader_GetStrbuf(param0->unk_68, param1, param0->unk_14);
     sub_0200C388(param0->unk_64, param0->unk_18, param0->unk_14);
 
     param0->unk_74 = sub_0205D994(&param0->unk_54, param0->unk_18, sub_02025E44(param0->unk_10->unk_0C), 1);
@@ -146,7 +146,7 @@ static void ov7_0224B5A8 (UnkStruct_ov7_0224B4E8 * param0)
         for (v4 = 0; v4 < v3; v4++) {
             ov7_0224B57C(param0, v4);
 
-            sub_0200B1B8(param0->unk_68, 113, param0->unk_1C);
+            MessageLoader_GetStrbuf(param0->unk_68, 113, param0->unk_1C);
             sub_0200C388(param0->unk_64, param0->unk_20, param0->unk_1C);
             sub_02013A6C(param0->unk_08, param0->unk_20, v4);
         }
@@ -322,7 +322,7 @@ static u8 Unk_ov7_0224F4CC[] = {
 
 static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     UnkStruct_0200B358 * v1 = param0->unk_64;
     Strbuf* v2;
     Strbuf* v3;
@@ -334,7 +334,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
     const int v12 = 55;
     const int v13 = (24 * 8) - 1;
 
-    v0 = sub_0200B144(0, 26, 353, 4);
+    v0 = MessageLoader_Init(0, 26, 353, 4);
     v2 = Strbuf_Init((90 * 2), 4);
     v3 = Strbuf_Init((90 * 2), 4);
     v4 = &param0->unk_24;
@@ -345,12 +345,12 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 
     ov7_0224B57C(param0, param0->unk_78 - 1);
 
-    sub_0200B1B8(v0, 95, v2);
+    MessageLoader_GetStrbuf(v0, 95, v2);
     sub_0200C388(v1, v3, v2);
     sub_0201D738(v4, 0, v3, v10 + v12, 0, 0xff, NULL);
 
     for (v5 = 0; v5 < 9; v5++) {
-        sub_0200B1B8(v0, 75 + v5, v2);
+        MessageLoader_GetStrbuf(v0, 75 + v5, v2);
         sub_0201D738(v4, 0, v2, v10, v9 + v11 * v5, 0xff, NULL);
     }
 
@@ -406,7 +406,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
             break;
         }
 
-        sub_0200B1B8(v0, v7, v2);
+        MessageLoader_GetStrbuf(v0, v7, v2);
         sub_0200C388(v1, v3, v2);
         {
             int v14 = sub_02002D7C(0, v3, 0);
@@ -418,7 +418,7 @@ static void ov7_0224B8DC (UnkStruct_ov7_0224B4E8 * param0)
 
     Strbuf_Free(v2);
     Strbuf_Free(v3);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     sub_0201A954(v4);
 }
 
@@ -542,7 +542,7 @@ static BOOL ov7_0224BC74 (UnkStruct_020508D4 * param0)
         ov7_0224B6AC(v1);
         ov7_0224B558(v1, 0);
         sub_0200B3F0(v1->unk_64);
-        sub_0200B190(v1->unk_68);
+        MessageLoader_Free(v1->unk_68);
         Strbuf_Free(v1->unk_14);
         Strbuf_Free(v1->unk_18);
         Strbuf_Free(v1->unk_1C);
@@ -567,7 +567,7 @@ static UnkStruct_ov7_0224B4E8 * ov7_0224BE10 (UnkStruct_0203CDB0 * param0)
     v0->unk_10 = param0;
     v0->unk_10->unk_B0 = NULL;
     v0->unk_64 = sub_0200B358(4);
-    v0->unk_68 = sub_0200B144(0, 26, 221, 4);
+    v0->unk_68 = MessageLoader_Init(0, 26, 221, 4);
     v0->unk_14 = Strbuf_Init((90 * 2), 4);
     v0->unk_18 = Strbuf_Init((90 * 2), 4);
     v0->unk_1C = Strbuf_Init((90 * 2), 4);

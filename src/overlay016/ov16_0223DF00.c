@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "unk_0200AC5C.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -90,8 +90,8 @@ UnkStruct_ov16_02268520 * ov16_0223E020(UnkStruct_0207ADB4 * param0, int param1)
 UnkStruct_ov16_02268A14 * ov16_0223E02C(UnkStruct_0207ADB4 * param0);
 UnkStruct_0200C440 * ov16_0223E04C(UnkStruct_0207ADB4 * param0);
 UnkStruct_0200C440 * ov16_0223E054(UnkStruct_0207ADB4 * param0);
-UnkStruct_0200B144 * ov16_0223E05C(UnkStruct_0207ADB4 * param0);
-UnkStruct_0200B144 * ov16_0223E060(UnkStruct_0207ADB4 * param0);
+MessageLoader * ov16_0223E05C(UnkStruct_0207ADB4 * param0);
+MessageLoader * ov16_0223E060(UnkStruct_0207ADB4 * param0);
 UnkStruct_02002F38 * ov16_0223E064(UnkStruct_0207ADB4 * param0);
 UnkStruct_02026324 * ov16_0223E068(UnkStruct_0207ADB4 * param0);
 u8 * ov16_0223E06C(UnkStruct_0207ADB4 * param0);
@@ -204,11 +204,11 @@ void ov16_0223F9A0(UnkStruct_0207ADB4 * param0, int param1);
 BOOL ov16_0223F9E0(UnkStruct_0207ADB4 * param0, int param1);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(UnkStruct_0207ADB4 * param0, int param1, int param2, int param3, int param4);
-u8 ov16_0223FB24(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2, int param3);
-u8 ov16_0223FB78(UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
+u8 ov16_0223FB24(UnkStruct_0207ADB4 * param0, MessageLoader * param1, BattleMessage * param2, int param3);
+u8 ov16_0223FB78(UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 static void ov16_0223FBE8(UnkStruct_0207ADB4 * param0, BattleMessage * param1);
 static void ov16_0223FDE4(UnkStruct_0207ADB4 * param0, BattleMessage * param1);
-static void ov16_02240584(UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2);
+static void ov16_02240584(UnkStruct_0207ADB4 * param0, MessageLoader * param1, BattleMessage * param2);
 static BOOL ov16_022405A4(UnkStruct_0201D738 * param0, u16 param1);
 static void ov16_02240460(UnkStruct_0207ADB4 * param0, u32 param1, int param2);
 static void ov16_02240484(UnkStruct_0207ADB4 * param0, u32 param1, int param2);
@@ -340,12 +340,12 @@ UnkStruct_0200C440 * ov16_0223E054 (UnkStruct_0207ADB4 * param0)
     return param0->unk_1A8;
 }
 
-UnkStruct_0200B144 * ov16_0223E05C (UnkStruct_0207ADB4 * param0)
+MessageLoader * ov16_0223E05C (UnkStruct_0207ADB4 * param0)
 {
     return param0->unk_0C;
 }
 
-UnkStruct_0200B144 * ov16_0223E060 (UnkStruct_0207ADB4 * param0)
+MessageLoader * ov16_0223E060 (UnkStruct_0207ADB4 * param0)
 {
     return param0->unk_10;
 }
@@ -1762,7 +1762,7 @@ u8 ov16_0223F9FC (UnkStruct_0207ADB4 * param0, int param1, int param2, int param
             }
         } else {
             {
-                UnkStruct_0200B144 * v3;
+                MessageLoader * v3;
                 Strbuf* v4;
                 int v5;
                 u32 v6;
@@ -1786,14 +1786,14 @@ u8 ov16_0223F9FC (UnkStruct_0207ADB4 * param0, int param1, int param2, int param
                     v6 = 613;
                 }
 
-                v3 = sub_0200B144(0, 26, v6, 5);
-                v4 = sub_0200B1EC(v3, v5);
+                v3 = MessageLoader_Init(0, 26, v6, 5);
+                v4 = MessageLoader_GetNewStrbuf(v3, v5);
 
                 sub_0201ADA4(v0, 0xff);
 
                 v1 = sub_0201D738(v0, 1, v4, 0, 0, param4, ov16_022405A4);
                 Strbuf_Free(v4);
-                sub_0200B190(v3);
+                MessageLoader_Free(v3);
             }
         }
     } else {
@@ -1805,7 +1805,7 @@ u8 ov16_0223F9FC (UnkStruct_0207ADB4 * param0, int param1, int param2, int param
     return v1;
 }
 
-u8 ov16_0223FB24 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2, int param3)
+u8 ov16_0223FB24 (UnkStruct_0207ADB4 * param0, MessageLoader * param1, BattleMessage * param2, int param3)
 {
     UnkStruct_0205AA50 * v0 = ov16_0223DF04(param0, 0);
 
@@ -1818,7 +1818,7 @@ u8 ov16_0223FB24 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, Batt
     return sub_0201D738(v0, 1, param0->unk_18, 0, 0, param3, ov16_022405A4);
 }
 
-u8 ov16_0223FB78 (UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8)
+u8 ov16_0223FB78 (UnkStruct_0207ADB4 * param0, UnkStruct_0205AA50 * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8)
 {
     int v0;
 
@@ -2360,11 +2360,11 @@ static void ov16_02240574 (UnkStruct_0207ADB4 * param0, u32 param1, int param2)
     sub_0200BD40(param0->unk_14, param1, param0->unk_64, param2);
 }
 
-static void ov16_02240584 (UnkStruct_0207ADB4 * param0, UnkStruct_0200B144 * param1, BattleMessage * param2)
+static void ov16_02240584 (UnkStruct_0207ADB4 * param0, MessageLoader * param1, BattleMessage * param2)
 {
     Strbuf* v0;
 
-    v0 = sub_0200B1EC(param1, param2->id);
+    v0 = MessageLoader_GetNewStrbuf(param1, param2->id);
 
     sub_0200C388(param0->unk_14, param0->unk_18, v0);
     Strbuf_Free(v0);

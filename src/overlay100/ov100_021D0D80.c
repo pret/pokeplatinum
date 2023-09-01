@@ -229,7 +229,7 @@ static void ov100_021D1034 (UnkStruct_ov100_021D46C8 * param0)
     param0->unk_10 = sub_02002F38(111);
     param0->unk_14 = sub_02024220(111, 0, 1, 0, 4, NULL);
     param0->unk_18 = sub_020203AC(111);
-    param0->unk_2C = sub_0200B144(0, 26, 234, 111);
+    param0->unk_2C = MessageLoader_Init(0, 26, 234, 111);
 
     sub_02003858(param0->unk_10, 1);
     sub_02002F70(param0->unk_10, 0, 0x200, 111);
@@ -275,7 +275,7 @@ static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
     sub_020203B8(param0->unk_18);
     sub_0200D0B0(param0->unk_04, param0->unk_08);
     sub_0200C8D4(param0->unk_04);
-    sub_0200B190(param0->unk_2C);
+    MessageLoader_Free(param0->unk_2C);
 
     G3X_AlphaBlend(0);
 }
