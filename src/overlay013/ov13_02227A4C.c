@@ -28,7 +28,7 @@ void ov13_02227A7C (UnkStruct_ov13_02227244 * param0)
     u32 v0;
 
     for (v0 = 0; v0 < 36; v0++) {
-        if (param0->unk_00->unk_20 == param0->unk_3C[param0->unk_114D][v0].unk_00) {
+        if (param0->unk_00->unk_20 == param0->unk_3C[param0->unk_114D][v0].item) {
             param0->unk_00->unk_27[param0->unk_114D] = v0 % 6;
             param0->unk_00->unk_2C[param0->unk_114D] = v0 / 6;
             break;
@@ -46,7 +46,7 @@ static const u8 Unk_ov13_02229BB0[] = {
 
 void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
 {
-    UnkStruct_0207CDEC * v0;
+    BagItem * v0;
     u32 v1, v2, v3;
     s32 v4;
 
@@ -60,8 +60,8 @@ void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
                 break;
             }
 
-            if (!((v0->unk_00 == 0) || (v0->unk_02 == 0))) {
-                v4 = Item_GetAttribute(v0->unk_00, 13, param0->unk_00->unk_0C);
+            if (!((v0->item == 0) || (v0->quantity == 0))) {
+                v4 = Item_GetAttribute(v0->item, 13, param0->unk_00->unk_0C);
 
                 for (v3 = 0; v3 < 5; v3++) {
                     if ((v4 & (1 << v3)) == 0) {
@@ -92,8 +92,8 @@ void ov13_02227AC8 (UnkStruct_ov13_02227244 * param0)
 
 u16 ov13_02227BA8 (UnkStruct_ov13_02227244 * param0, u32 param1)
 {
-    if ((param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].unk_00 != 0) && (param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].unk_02 != 0)) {
-        return param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].unk_00;
+    if ((param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].item != 0) && (param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].quantity != 0)) {
+        return param0->unk_3C[param0->unk_114D][param0->unk_00->unk_2C[param0->unk_114D] * 6 + param1].item;
     }
 
     return 0;

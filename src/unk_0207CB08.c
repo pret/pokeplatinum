@@ -53,7 +53,7 @@ void sub_0207CB2C (UnkStruct_0207CB08 * param0, UnkStruct_021C0794 * param1, u8 
     param0->unk_66 = 0;
 }
 
-void sub_0207CB48 (UnkStruct_0207CB08 * param0, UnkStruct_0207CDEC * param1, u8 param2, u8 param3)
+void sub_0207CB48 (UnkStruct_0207CB08 * param0, BagItem * param1, u8 param2, u8 param3)
 {
     param0->unk_04[param3].unk_00 = param1;
     param0->unk_04[param3].unk_08 = param2;

@@ -30,7 +30,7 @@ typedef struct {
     u8 unk_32;
     UnkStruct_ov13_02228A50 * unk_34;
     UnkStruct_ov16_0226DEEC * unk_38;
-    UnkStruct_0207CDEC unk_3C[5][36];
+    BagItem unk_3C[5][36];
     UnkStruct_0200C704 * unk_30C;
     UnkStruct_0200D0F4 * unk_310[6];
     u16 unk_328[3][144];

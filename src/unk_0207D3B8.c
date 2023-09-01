@@ -13,14 +13,14 @@
 #include "unk_0207D3B8.h"
 
 typedef struct UnkStruct_0207D3C0_t {
-    UnkStruct_0207CDEC unk_00[165];
-    UnkStruct_0207CDEC unk_294[50];
-    UnkStruct_0207CDEC unk_35C[100];
-    UnkStruct_0207CDEC unk_4EC[12];
-    UnkStruct_0207CDEC unk_51C[40];
-    UnkStruct_0207CDEC unk_5BC[64];
-    UnkStruct_0207CDEC unk_6BC[15];
-    UnkStruct_0207CDEC unk_6F8[30];
+    BagItem unk_00[165];
+    BagItem unk_294[50];
+    BagItem unk_35C[100];
+    BagItem unk_4EC[12];
+    BagItem unk_51C[40];
+    BagItem unk_5BC[64];
+    BagItem unk_6BC[15];
+    BagItem unk_6F8[30];
     u32 unk_770;
 } UnkStruct_0207D3C0;
 
@@ -44,7 +44,7 @@ typedef struct UnkStruct_0207D99C_t {
     UnkStruct_0207D99C_sub2 unk_14;
 } UnkStruct_0207D99C;
 
-static u32 sub_0207D40C(UnkStruct_0207D3C0 * param0, u16 param1, UnkStruct_0207CDEC ** param2, u32 * param3, u32 param4);
+static u32 sub_0207D40C(UnkStruct_0207D3C0 * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4);
 
 int sub_0207D3B8 (void)
 {
@@ -81,7 +81,7 @@ void sub_0207D404 (UnkStruct_0207D3C0 * param0, u32 param1)
     param0->unk_770 = param1;
 }
 
-static u32 sub_0207D40C (UnkStruct_0207D3C0 * param0, u16 param1, UnkStruct_0207CDEC ** param2, u32 * param3, u32 param4)
+static u32 sub_0207D40C (UnkStruct_0207D3C0 * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4)
 {
     u32 v0 = Item_GetAttribute(param1, 5, param4);
 
@@ -123,14 +123,14 @@ static u32 sub_0207D40C (UnkStruct_0207D3C0 * param0, u16 param1, UnkStruct_0207
     return v0;
 }
 
-static UnkStruct_0207CDEC * sub_0207D4B4 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u16 param3, u16 param4)
+static BagItem * sub_0207D4B4 (BagItem * param0, u32 param1, u16 param2, u16 param3, u16 param4)
 {
     u32 v0;
     u32 v1 = 0xffffffff;
 
     for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0].unk_00 == param2) {
-            if ((param0[v0].unk_02 + param3) > param4) {
+        if (param0[v0].item == param2) {
+            if ((param0[v0].quantity + param3) > param4) {
                 return NULL;
             }
 
@@ -138,7 +138,7 @@ static UnkStruct_0207CDEC * sub_0207D4B4 (UnkStruct_0207CDEC * param0, u32 param
         }
 
         if (v1 == 0xffffffff) {
-            if ((param0[v0].unk_00 == 0) && (param0[v0].unk_02 == 0)) {
+            if ((param0[v0].item == 0) && (param0[v0].quantity == 0)) {
                 v1 = v0;
             }
         }
@@ -151,9 +151,9 @@ static UnkStruct_0207CDEC * sub_0207D4B4 (UnkStruct_0207CDEC * param0, u32 param
     return &param0[v1];
 }
 
-static UnkStruct_0207CDEC * sub_0207D518 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+static BagItem * sub_0207D518 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0;
+    BagItem * v0;
     u32 v1;
     u32 v2;
 
@@ -177,14 +177,14 @@ BOOL sub_0207D55C (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 para
 
 BOOL sub_0207D570 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D518(param0, param1, param2, param3);
+    BagItem * v0 = sub_0207D518(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
     }
 
-    v0->unk_00 = param1;
-    v0->unk_02 += param2;
+    v0->item = param1;
+    v0->quantity += param2;
 
     {
         u32 v1;
@@ -200,13 +200,13 @@ BOOL sub_0207D570 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 para
     return 1;
 }
 
-static UnkStruct_0207CDEC * sub_0207D5B8 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u16 param3)
+static BagItem * sub_0207D5B8 (BagItem * param0, u32 param1, u16 param2, u16 param3)
 {
     u32 v0;
 
     for (v0 = 0; v0 < param1; v0++) {
-        if (param0[v0].unk_00 == param2) {
-            if (param0[v0].unk_02 >= param3) {
+        if (param0[v0].item == param2) {
+            if (param0[v0].quantity >= param3) {
                 return &param0[v0];
             } else {
                 return NULL;
@@ -217,9 +217,9 @@ static UnkStruct_0207CDEC * sub_0207D5B8 (UnkStruct_0207CDEC * param0, u32 param
     return NULL;
 }
 
-static UnkStruct_0207CDEC * sub_0207D5E8 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+static BagItem * sub_0207D5E8 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0;
+    BagItem * v0;
     u32 v1;
 
     sub_0207D40C(param0, param1, &v0, &v1, param3);
@@ -228,16 +228,16 @@ static UnkStruct_0207CDEC * sub_0207D5E8 (UnkStruct_0207D3C0 * param0, u16 param
 
 BOOL sub_0207D60C (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D5E8(param0, param1, param2, param3);
+    BagItem * v0 = sub_0207D5E8(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
     }
 
-    v0->unk_02 -= param2;
+    v0->quantity -= param2;
 
-    if (v0->unk_02 == 0) {
-        v0->unk_00 = 0;
+    if (v0->quantity == 0) {
+        v0->item = 0;
     }
 
     {
@@ -250,18 +250,18 @@ BOOL sub_0207D60C (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 para
     return 1;
 }
 
-BOOL sub_0207D658 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u16 param3, u32 param4)
+BOOL sub_0207D658 (BagItem * param0, u32 param1, u16 param2, u16 param3, u32 param4)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D5B8(param0, param1, param2, param3);
+    BagItem * v0 = sub_0207D5B8(param0, param1, param2, param3);
 
     if (v0 == NULL) {
         return 0;
     }
 
-    v0->unk_02 -= param3;
+    v0->quantity -= param3;
 
-    if (v0->unk_02 == 0) {
-        v0->unk_00 = 0;
+    if (v0->quantity == 0) {
+        v0->item = 0;
     }
 
     sub_0207D780(param0, param1);
@@ -280,7 +280,7 @@ BOOL sub_0207D688 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 para
 
 BOOL sub_0207D69C (UnkStruct_0207D3C0 * param0, u32 param1)
 {
-    UnkStruct_0207CDEC * v0;
+    BagItem * v0;
     u32 v1;
     u32 v2;
 
@@ -322,7 +322,7 @@ BOOL sub_0207D69C (UnkStruct_0207D3C0 * param0, u32 param1)
     }
 
     for (v2 = 0; v2 < v1; v2++) {
-        if (v0[v2].unk_00 != 0) {
+        if (v0[v2].item != 0) {
             return 1;
         }
     }
@@ -332,29 +332,29 @@ BOOL sub_0207D69C (UnkStruct_0207D3C0 * param0, u32 param1)
 
 u16 sub_0207D730 (UnkStruct_0207D3C0 * param0, u16 param1, u32 param2)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D5E8(param0, param1, 1, param2);
+    BagItem * v0 = sub_0207D5E8(param0, param1, 1, param2);
 
     if (v0 == NULL) {
         return 0;
     }
 
-    return v0->unk_02;
+    return v0->quantity;
 }
 
-u16 sub_0207D748 (UnkStruct_0207CDEC * param0, u32 param1, u16 param2, u32 param3)
+u16 sub_0207D748 (BagItem * param0, u32 param1, u16 param2, u32 param3)
 {
-    UnkStruct_0207CDEC * v0 = sub_0207D5B8(param0, param1, param2, 1);
+    BagItem * v0 = sub_0207D5B8(param0, param1, param2, 1);
 
     if (v0 == NULL) {
         return 0;
     }
 
-    return v0->unk_02;
+    return v0->quantity;
 }
 
-static void sub_0207D75C (UnkStruct_0207CDEC * param0, UnkStruct_0207CDEC * param1)
+static void sub_0207D75C (BagItem * param0, BagItem * param1)
 {
-    UnkStruct_0207CDEC v0;
+    BagItem v0;
 
     v0 = *param0;
 
@@ -362,26 +362,26 @@ static void sub_0207D75C (UnkStruct_0207CDEC * param0, UnkStruct_0207CDEC * para
     *param1 = v0;
 }
 
-void sub_0207D780 (UnkStruct_0207CDEC * param0, const u32 param1)
+void sub_0207D780 (BagItem * param0, const u32 param1)
 {
     u32 v0, v1;
 
     for (v0 = 0; v0 < param1 - 1; v0++) {
         for (v1 = v0 + 1; v1 < param1; v1++) {
-            if (param0[v0].unk_02 == 0) {
+            if (param0[v0].quantity == 0) {
                 sub_0207D75C(&param0[v0], &param0[v1]);
             }
         }
     }
 }
 
-void sub_0207D7CC (UnkStruct_0207CDEC * param0, const u32 param1)
+void sub_0207D7CC (BagItem * param0, const u32 param1)
 {
     u32 v0, v1;
 
     for (v0 = 0; v0 < param1 - 1; v0++) {
         for (v1 = v0 + 1; v1 < param1; v1++) {
-            if ((param0[v0].unk_02 == 0) || ((param0[v1].unk_02 != 0) && (param0[v0].unk_00 > param0[v1].unk_00))) {
+            if ((param0[v0].quantity == 0) || ((param0[v1].quantity != 0) && (param0[v0].item > param0[v1].item))) {
                 sub_0207D75C(&param0[v0], &param0[v1]);
             }
         }
@@ -427,9 +427,9 @@ void * sub_0207D824 (UnkStruct_0207D3C0 * param0, const u8 * param1, u32 param2)
     return v0;
 }
 
-UnkStruct_0207CDEC * sub_0207D910 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2)
+BagItem * sub_0207D910 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2)
 {
-    UnkStruct_0207CDEC * v0;
+    BagItem * v0;
     u16 v1;
 
     switch (param1) {

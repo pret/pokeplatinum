@@ -199,10 +199,10 @@ static void ov13_022274A8 (UnkStruct_ov13_02227244 * param0, u32 param1, u32 par
 
     sub_0201ADA4(v0, 0);
 
-    if (param0->unk_3C[param0->unk_114D][param1].unk_00 != 0) {
+    if (param0->unk_3C[param0->unk_114D][param1].item != 0) {
         v1 = sub_0200B1EC(param0->unk_10, Unk_ov13_02229AB0[param2][0]);
 
-        sub_0200B70C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].unk_00);
+        sub_0200B70C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].item);
         sub_0200C388(param0->unk_14, param0->unk_18, v1);
 
         v2 = sub_02002D7C(param4, param0->unk_18, 0);
@@ -224,10 +224,10 @@ static void ov13_0222754C (UnkStruct_ov13_02227244 * param0, u32 param1, u32 par
 
     sub_0201ADA4(v1, 0);
 
-    if (param0->unk_3C[param0->unk_114D][param1].unk_02 != 0) {
+    if (param0->unk_3C[param0->unk_114D][param1].quantity != 0) {
         v0 = sub_0200B1EC(param0->unk_10, Unk_ov13_02229AB0[param2][1]);
 
-        sub_0200B60C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].unk_02, 3, 0, 1);
+        sub_0200B60C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].quantity, 3, 0, 1);
         sub_0200C388(param0->unk_14, param0->unk_18, v0);
         sub_0201D78C(v1, param4, param0->unk_18, 0, param5, 0xff, param6, NULL);
         Strbuf_Free(v0);
@@ -336,7 +336,7 @@ static void ov13_022278A0 (UnkStruct_ov13_02227244 * param0, u32 param1)
     v0 = &param0->unk_2C[0];
     v1 = sub_0200B1EC(param0->unk_10, Unk_ov13_02229AB0[0][0]);
 
-    sub_0200B70C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].unk_00);
+    sub_0200B70C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].item);
     sub_0200C388(param0->unk_14, param0->unk_18, v1);
     sub_0201ADA4(v0, 0);
     sub_0201D78C(v0, 0, param0->unk_18, 0, 0, 0xff, (((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
@@ -352,7 +352,7 @@ static void ov13_02227910 (UnkStruct_ov13_02227244 * param0, u32 param1)
     v0 = &param0->unk_2C[2];
     v1 = Strbuf_Init(130, param0->unk_00->unk_0C);
 
-    Item_GetDescriptionIntoString(v1, param0->unk_3C[param0->unk_114D][param1].unk_00, param0->unk_00->unk_0C);
+    Item_GetDescriptionIntoString(v1, param0->unk_3C[param0->unk_114D][param1].item, param0->unk_00->unk_0C);
     sub_0201D78C(v0, 0, v1, 4, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
     sub_0201A9A4(v0);
