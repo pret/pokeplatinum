@@ -2582,7 +2582,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
 {
     ItemData * v0;
 
-    v0 = Item_LoadDataOrGFX(param0->unk_5A4->unk_24, 0, 12);
+    v0 = Item_Load(param0->unk_5A4->unk_24, 0, 12);
 
     if ((param0->unk_5A4->unk_24 == 466) && (sub_02077B14(Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11)) == 1)) {
         param0->unk_5A4->unk_38 = 1;
@@ -2591,13 +2591,13 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
         return 31;
     }
 
-    if ((Item_GetAttributeFromStruct(v0, 34) != 0) || (Item_GetAttributeFromStruct(v0, 35) != 0)) {
+    if ((Item_Get(v0, 34) != 0) || (Item_Get(v0, 35) != 0)) {
         Heap_FreeToHeap(v0);
         sub_020866A0(param0, 0);
         return 6;
     }
 
-    if ((Item_GetAttributeFromStruct(v0, 36) != 0) && (Item_GetAttributeFromStruct(v0, 37) == 0)) {
+    if ((Item_Get(v0, 36) != 0) && (Item_Get(v0, 37) == 0)) {
         Heap_FreeToHeap(v0);
         sub_020866A0(param0, 1);
         return 6;
@@ -2606,7 +2606,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
     if (sub_0209693C(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
         sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
 
-        if (Item_GetAttributeFromStruct(v0, 26) != 0) {
+        if (Item_Get(v0, 26) != 0) {
             Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
             param0->unk_5A4->unk_38 = sub_02076B94(NULL, v1, 3, param0->unk_5A4->unk_24, &param0->unk_5A4->unk_3C);

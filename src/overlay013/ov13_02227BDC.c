@@ -97,24 +97,24 @@ static void ov13_02227C54 (UnkStruct_ov13_02227244 * param0)
     v0 = ov16_0223E010(param0->unk_00->unk_00);
 
     for (v1 = 0; v1 < 6; v1++) {
-        sub_0200CC3C(v0, param0->unk_30C, v2, sub_0207CE78(1, 1), 0, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
-        sub_0200CDC4(param0->unk_08, 3, v0, param0->unk_30C, v2, sub_0207CE78(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
+        sub_0200CC3C(v0, param0->unk_30C, v2, Item_ID(1, 1), 0, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
+        sub_0200CDC4(param0->unk_08, 3, v0, param0->unk_30C, v2, Item_ID(1, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, 46263 + v1);
     }
 
-    sub_0200CE24(v0, param0->unk_30C, v2, Item_GetIndexOfIconNCER(), 0, 46263);
-    sub_0200CE54(v0, param0->unk_30C, v2, Item_GetIndexOfIconNANR(), 0, 46263);
+    sub_0200CE24(v0, param0->unk_30C, v2, Item_IconNCERFile(), 0, 46263);
+    sub_0200CE54(v0, param0->unk_30C, v2, Item_IconNANRFile(), 0, 46263);
     NARC_dtor(v2);
 }
 
 static void ov13_02227D10 (UnkStruct_ov13_02227244 * param0, u16 param1, u32 param2)
 {
     UnkStruct_0200C6E4 * v0 = ov16_0223E010(param0->unk_00->unk_00);
-    sub_0200D948(v0, param0->unk_30C, 16, sub_0207CE78(param1, 1), 0, param2);
+    sub_0200D948(v0, param0->unk_30C, 16, Item_ID(param1, 1), 0, param2);
 }
 
 static void ov13_02227D48 (UnkStruct_ov13_02227244 * param0, u16 param1, u16 param2, u32 param3)
 {
-    sub_02003050(param0->unk_08, 16, sub_0207CE78(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
+    sub_02003050(param0->unk_08, 16, Item_ID(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
 }
 
 static UnkStruct_0200D0F4 * ov13_02227D78 (UnkStruct_ov13_02227244 * param0, u32 param1)

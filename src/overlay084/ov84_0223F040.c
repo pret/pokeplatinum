@@ -210,7 +210,7 @@ void ov84_0223F528 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     if (param1 != 0xffff) {
         v0 = Strbuf_Init(130, 6);
-        Item_GetDescriptionIntoString(v0, param1, 6);
+        Item_LoadDescription(v0, param1, 6);
     } else {
         v0 = sub_0200B1EC(param0->unk_114, 94);
     }
@@ -227,7 +227,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     u16 v3;
 
     v0 = &param0->unk_04[1];
-    v2 = GetMoveFromTMOrHMItemID(param1);
+    v2 = Item_MoveForTMHM(param1);
 
     v1 = sub_0200B1EC(param0->unk_114, 98);
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -333,7 +333,7 @@ void ov84_0223F8D0 (UnkStruct_ov84_0223B5A0 * param0, BagItem * param1, u32 para
 
 void ov84_0223F94C (UnkStruct_ov84_0223B5A0 * param0, BagItem * param1, u32 param2)
 {
-    sub_0200C648(param0->unk_110, 2, sub_0207D344(param1->item) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
+    sub_0200C648(param0->unk_110, 2, Item_BerryNumber(param1->item) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
     ov84_0223F81C(param0, param1->quantity, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 

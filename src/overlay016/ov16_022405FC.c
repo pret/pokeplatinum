@@ -7664,7 +7664,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     for (v1 = v2->unk_30[6]; v1 < ov16_0223DF60(v2->unk_00, v6); v1++) {
         v3 = ov16_0223DFAC(v2->unk_00, v6, v1);
         v9 = GetMonData(v3, MON_DATA_HELD_ITEM, NULL);
-        v10 = Item_GetAttribute(v9, 1, 5);
+        v10 = Item_LoadParam(v9, 1, 5);
 
         if ((v10 == 51) || (v2->unk_04->monsGainingExp[v5] & sub_020787CC(v1))) {
             break;
@@ -7686,7 +7686,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         u32 v12;
 
         v9 = GetMonData(v3, MON_DATA_HELD_ITEM, NULL);
-        v10 = Item_GetAttribute(v9, 1, 5);
+        v10 = Item_LoadParam(v9, 1, 5);
 
         if (((v8 & 0x1) == 0) && ((v2->unk_04->battleMons[1].curHP + v2->unk_04->battleMons[3].curHP) == 0) && (GetMonData(v3, MON_DATA_163, NULL)) && (v2->unk_04->expJinglePlayed == 0)) {
             sub_0200549C(1127);
@@ -8125,8 +8125,8 @@ static void ov16_022499C0 (Party * param0, int param1, int param2, int param3)
     v8 = sub_02075874(param2, param3, 5);
     v7 = Party_GetPokemonBySlotIndex(param0, param1);
     v4 = GetMonData(v7, MON_DATA_HELD_ITEM, NULL);
-    v5 = Item_GetAttribute(v4, 1, 5);
-    v6 = Item_GetAttribute(v4, 2, 5);
+    v5 = Item_LoadParam(v4, 1, 5);
+    v6 = Item_LoadParam(v4, 2, 5);
     v3 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {

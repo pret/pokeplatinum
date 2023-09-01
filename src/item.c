@@ -679,7 +679,7 @@ const u16 sBerryItemIDs[] = {
 	ITEM_ROWAP_BERRY
 };
 
-void sub_0207CDEC (void * param0, u16 param1, u16 param2)
+void Item_MoveInPocket (void * param0, u16 param1, u16 param2)
 {
     BagItem * v0;
     BagItem v1;
@@ -707,7 +707,7 @@ void sub_0207CDEC (void * param0, u16 param1, u16 param2)
     v0[param2] = v1;
 }
 
-u16 sub_0207CE78 (u16 param0, u16 param1)
+u16 Item_ID (u16 param0, u16 param1)
 {
     switch (param1) {
     case 0:
@@ -747,7 +747,7 @@ u16 sub_0207CE78 (u16 param0, u16 param1)
     return 0;
 }
 
-u16 sub_0207CF10 (u16 param0)
+u16 Item_FromGBAID (u16 param0)
 {
     u16 v0;
 
@@ -760,17 +760,17 @@ u16 sub_0207CF10 (u16 param0)
     return 0;
 }
 
-u16 Item_GetIndexOfIconNCER (void)
+u16 Item_IconNCERFile (void)
 {
     return 1;
 }
 
-u16 Item_GetIndexOfIconNANR (void)
+u16 Item_IconNANRFile (void)
 {
     return 0;
 }
 
-void * Item_LoadDataOrGFX (u16 itemID, u16 attributeID, u32 heapID)
+void * Item_Load (u16 itemID, u16 attributeID, u32 heapID)
 {
     if (itemID > 467) {
         itemID = 0;
@@ -788,7 +788,7 @@ void * Item_LoadDataOrGFX (u16 itemID, u16 attributeID, u32 heapID)
     return NULL;
 }
 
-void Item_GetNameIntoString (Strbuf* dest, u16 itemID, u32 heapID)
+void Item_LoadName (Strbuf* dest, u16 itemID, u32 heapID)
 {
     UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 392, heapID);
 
@@ -796,7 +796,7 @@ void Item_GetNameIntoString (Strbuf* dest, u16 itemID, u32 heapID)
     sub_0200B190(msgData);
 }
 
-void Item_GetDescriptionIntoString (Strbuf* dest, u16 itemID, u16 heapID)
+void Item_LoadDescription (Strbuf* dest, u16 itemID, u16 heapID)
 {
     UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 391, heapID);
 
@@ -804,19 +804,19 @@ void Item_GetDescriptionIntoString (Strbuf* dest, u16 itemID, u16 heapID)
     sub_0200B190(msgData);
 }
 
-s32 Item_GetAttribute (u16 itemID, u16 attributeID, u32 heapID)
+s32 Item_LoadParam (u16 itemID, u16 attributeID, u32 heapID)
 {
     ItemData * v0;
     s32 v1;
 
-    v0 = (ItemData *)Item_LoadDataOrGFX(itemID, 0, heapID);
-    v1 = Item_GetAttributeFromStruct(v0, attributeID);
+    v0 = (ItemData *)Item_Load(itemID, 0, heapID);
+    v1 = Item_Get(v0, attributeID);
     Heap_FreeToHeapExplicit(heapID, v0);
 
     return v1;
 }
 
-s32 Item_GetAttributeFromStruct (ItemData * itemData, u16 attributeID)
+s32 Item_Get (ItemData * itemData, u16 attributeID)
 {
     switch (attributeID) {
     case 0:
@@ -957,7 +957,7 @@ static s32 GetPartyAttribute (ItemPartyParam * partyParam, u16 attributeID)
     return 0;
 }
 
-const u16 GetMoveFromTMOrHMItemID (u16 itemID)
+const u16 Item_MoveForTMHM (u16 itemID)
 {
     if ((itemID < 328) || (itemID > 427)) {
         return 0;
@@ -967,7 +967,7 @@ const u16 GetMoveFromTMOrHMItemID (u16 itemID)
     return sMovesTMHM[itemID];
 }
 
-u8 Item_IsMoveHM (u16 moveID)
+u8 Item_IsHMMove (u16 moveID)
 {
     u8 v0;
 
@@ -980,7 +980,7 @@ u8 Item_IsMoveHM (u16 moveID)
     return FALSE;
 }
 
-u8 Item_GetTMOrHMNumberFromID (u16 itemID)
+u8 Item_TMHMNumber (u16 itemID)
 {
     if ((itemID < 328) || (itemID > 427)) {
         return 0;
@@ -1002,7 +1002,7 @@ u8 Item_IsMail (u16 itemID)
     return FALSE;
 }
 
-u8 sub_0207D2F0 (u16 param0)
+u8 Item_MailNumber (u16 param0)
 {
     u32 i;
 
@@ -1015,7 +1015,7 @@ u8 sub_0207D2F0 (u16 param0)
     return 0;
 }
 
-u16 sub_0207D310 (u8 param0)
+u16 Item_ForMailNumber (u8 param0)
 {
     if (param0 >= 12) {
         return 0;
@@ -1037,7 +1037,7 @@ u8 Item_IsBerry (u16 itemID)
     return FALSE;
 }
 
-u8 sub_0207D344 (u16 param0)
+u8 Item_BerryNumber (u16 param0)
 {
     if (param0 < 149) {
         return 0xff;
@@ -1046,7 +1046,7 @@ u8 sub_0207D344 (u16 param0)
     return param0 - 149;
 }
 
-u16 sub_0207D354 (u8 param0)
+u16 Item_ForBerryNumber (u8 param0)
 {
 	if (param0 >= 64) {
         return 0xffff;
@@ -1064,13 +1064,13 @@ u8 Item_IsHerbalMedicine (u16 itemID)
     return FALSE;
 }
 
-void * sub_0207D388 (int param0)
+void * ItemTable_Load (int param0)
 {
-    int v0 = sub_0207CE78(467, 0);
+    int v0 = Item_ID(467, 0);
     return NARC_AllocAndReadFromMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, 0, param0, 0, 36 * v0);
 }
 
-ItemData * sub_0207D3B0 (ItemData * param0, u16 param1)
+ItemData * ItemTable_Index (ItemData * param0, u16 param1)
 {
     u8 * v0;
 

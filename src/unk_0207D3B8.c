@@ -83,7 +83,7 @@ void sub_0207D404 (UnkStruct_0207D3C0 * param0, u32 param1)
 
 static u32 sub_0207D40C (UnkStruct_0207D3C0 * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4)
 {
-    u32 v0 = Item_GetAttribute(param1, 5, param4);
+    u32 v0 = Item_LoadParam(param1, 5, param4);
 
     switch (v0) {
     case 7:

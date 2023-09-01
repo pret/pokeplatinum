@@ -139,7 +139,7 @@ BOOL sub_02047660 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 v4;
 
-    v4 = GetMoveFromTMOrHMItemID(v3);
+    v4 = Item_MoveForTMHM(v3);
     sub_0200B630(*v1, v2, v4);
 
     return 0;

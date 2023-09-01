@@ -208,7 +208,7 @@ int sub_020977E4 (UnkStruct_02028430 * param0, u16 param1, Pokemon * param2, int
         return 0xFFFFFFFF;
     }
 
-    v0 = sub_0207D310(sub_02028314(v1));
+    v0 = Item_ForMailNumber(sub_02028314(v1));
 
     sub_02074B30(param2, 170, v1);
     sub_02074B30(param2, 6, &v0);

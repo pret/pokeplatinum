@@ -406,7 +406,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
     if (param0->unk_114D == 3) {
         int v1 = ov13_02227244(param0);
-        u32 v2 = Item_GetAttribute(v0->unk_1C, 7, v0->unk_0C);
+        u32 v2 = Item_LoadParam(v0->unk_1C, 7, v0->unk_0C);
 
         if ((v0->unk_18 != 0) && (v0->unk_1C != 55) && (v2 != 3)) {
             Pokemon * v3;

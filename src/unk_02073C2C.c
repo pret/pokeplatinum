@@ -1120,7 +1120,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
     case MON_DATA_177:
     case MON_DATA_178:
         if ((v2->species == SPECIES_ARCEUS) && (v2->unk_0D == 121)) {
-            v0 = sub_02077988(Item_GetAttribute(v2->item, 1, 0));
+            v0 = sub_02077988(Item_LoadParam(v2->item, 1, 0));
         } else {
             v0 = sub_020759CC(v2->species, v3->form, 6 + (param1 - 177));
         }
@@ -2374,7 +2374,7 @@ void sub_02075C74 (Pokemon * param0, u8 param1, u16 param2)
     }
 
     v1 = GetMonData(param0, MON_DATA_HELD_ITEM, NULL);
-    v5 = Item_GetAttribute(v1, 1, 0);
+    v5 = Item_LoadParam(v1, 1, 0);
     v4 = 0;
     v2 = GetMonData(param0, MON_DATA_FRIENDSHIP, NULL);
 
@@ -3217,7 +3217,7 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
     v6 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
     v8 = GetMonData(param1, MON_DATA_BEAUTY, NULL);
     v9 = (v6 & 0xffff0000) >> 16;
-    v7 = Item_GetAttribute(v1, 1, 0);
+    v7 = Item_LoadParam(v1, 1, 0);
 
     if (v0 != 64) {
         if ((v7 == 64) && (param2 != 3)) {
@@ -4031,7 +4031,7 @@ void sub_02077930 (BoxPokemon * param0)
     v2 = sub_02074570(param0, MON_DATA_HELD_ITEM, NULL);
 
     if ((v0 == 493) && (v1 == 121)) {
-        v3 = sub_02077988(Item_GetAttribute(v2, 1, 0));
+        v3 = sub_02077988(Item_LoadParam(v2, 1, 0));
         SetBoxMonData(param0, 112, &v3);
     }
 }

@@ -1387,7 +1387,7 @@ static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, Party * para
     sub_0201ADA4(&param0[32 + param1], 0);
 
     v1 = Strbuf_Init(20, 26);
-    Item_GetNameIntoString(v1, v2, 26);
+    Item_LoadName(v1, v2, 26);
     ov88_0223EC78(&param0[32 + param1], v1, 9, 0, 3, 0);
     Strbuf_Free(v1);
 }
