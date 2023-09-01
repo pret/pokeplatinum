@@ -2,9 +2,9 @@
 	.include "include/sb_serverbrowsing.inc"
 
 	
-	.extern Unk_ov4_0221AE50
+	.extern __GSIACResult
 
-	.extern Unk_ov4_02219B38
+	.extern qr2_registered_key_list
 	.text
 
 
@@ -237,7 +237,7 @@ _021FEB24:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FEBAC: .word Unk_ov4_0221AE50
+_021FEBAC: .word __GSIACResult
 _021FEBB0: .word 0x00000638
 _021FEBB4: .word ListCallback
 _021FEBB8: .word EngineCallback
@@ -338,7 +338,7 @@ _021FECDC:
 	add sp, sp, #0x108
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_021FED08: .word Unk_ov4_02219B38
+_021FED08: .word qr2_registered_key_list
 _021FED0C: .word Unk_ov4_02219FA8
 	arm_func_end ServerBrowserBeginUpdate2
 

@@ -36,8 +36,8 @@ _021F6364:
 	str r1, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021F63A0: .word Unk_ov4_02219358
-_021F63A4: .word Unk_ov4_0221AF80
+_021F63A0: .word sock
+_021F63A4: .word rcvlen
 	arm_func_end CloseStatsConnection
 
 	arm_func_start IsStatsConnected
@@ -50,7 +50,7 @@ IsStatsConnected: ; 0x021F63A8
 	moveq r0, #0
 	bx lr
 	; .align 2, 0
-_021F63C4: .word Unk_ov4_02219358
+_021F63C4: .word sock
 	arm_func_end IsStatsConnected
 
 	arm_func_start PersistThink
@@ -143,8 +143,8 @@ _021F64F4:
 	movne r0, #1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_021F6510: .word Unk_ov4_02219358
-_021F6514: .word Unk_ov4_0221AF80
+_021F6510: .word sock
+_021F6514: .word rcvlen
 	arm_func_end PersistThink
 
 	arm_func_start xcode_buf
@@ -168,7 +168,7 @@ _021F6530:
 	blt _021F6530
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_021F655C: .word Unk_ov4_02219358
+_021F655C: .word sock
 	arm_func_end xcode_buf
 
 	arm_func_start value_for_key
@@ -227,7 +227,7 @@ _021F6604:
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
 _021F6624: .word Unk_ov4_02215B27
-_021F6628: .word Unk_ov4_0221AF80
+_021F6628: .word rcvlen
 _021F662C: .word Unk_ov4_022193C8
 _021F6630: .word Unk_ov4_0221AFB0
 	arm_func_end value_for_key
@@ -320,7 +320,7 @@ _021F6738:
 	mvn r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021F6740: .word Unk_ov4_0221AF80
+_021F6740: .word rcvlen
 	arm_func_end FindRequest
 
 	arm_func_start ProcessPlayerAuth
@@ -369,7 +369,7 @@ ProcessPlayerAuth: ; 0x021F6744
 _021F67E4: .word Unk_ov4_022193CC
 _021F67E8: .word Unk_ov4_022193D4
 _021F67EC: .word Unk_ov4_022193D8
-_021F67F0: .word Unk_ov4_0221AF80
+_021F67F0: .word rcvlen
 	arm_func_end ProcessPlayerAuth
 
 	arm_func_start ProcessGetPid
@@ -409,7 +409,7 @@ ProcessGetPid: ; 0x021F67F4
 	; .align 2, 0
 _021F6874: .word Unk_ov4_022193E0
 _021F6878: .word Unk_ov4_022193D4
-_021F687C: .word Unk_ov4_0221AF80
+_021F687C: .word rcvlen
 	arm_func_end ProcessGetPid
 
 	arm_func_start ProcessGetData
@@ -622,8 +622,8 @@ _021F6B5C:
 	sub r0, r7, sb
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_021F6B64: .word Unk_ov4_022193A4
-_021F6B68: .word Unk_ov4_02219358
+_021F6B64: .word enc1
+_021F6B68: .word sock
 	arm_func_end ProcessInBuffer
 
 	arm_func_start CallReqCallback
@@ -699,7 +699,7 @@ _021F6C54:
 	add sp, sp, #0x14
 	ldmia sp!, {r4, r5, r6, r7, pc}
 	; .align 2, 0
-_021F6C6C: .word Unk_ov4_0221AF80
+_021F6C6C: .word rcvlen
 	arm_func_end CallReqCallback
 
 	arm_func_start ClosePendingCallbacks
@@ -766,10 +766,10 @@ _021F6D34:
 	add sp, sp, #0x24
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, pc}
 	; .align 2, 0
-_021F6D54: .word Unk_ov4_0221AF80
+_021F6D54: .word rcvlen
 _021F6D58: .word Unk_ov4_022159A4
-_021F6D5C: .word Unk_ov4_022193B4
-_021F6D60: .word Unk_ov4_02219358
+_021F6D5C: .word enc3
+_021F6D60: .word sock
 	arm_func_end ClosePendingCallbacks
 
 	arm_func_start GetTeamIndex
@@ -786,7 +786,7 @@ GetTeamIndex: ; 0x021F6D64
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021F6D90: .word Unk_ov4_0221AF80
+_021F6D90: .word rcvlen
 	arm_func_end GetTeamIndex
 
 	arm_func_start GetPlayerIndex
@@ -803,7 +803,7 @@ GetPlayerIndex: ; 0x021F6D94
 	ldr r0, [r0, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021F6DC0: .word Unk_ov4_0221AF80
+_021F6DC0: .word rcvlen
 	arm_func_end GetPlayerIndex
 
 	arm_func_start ServerOpInt
@@ -835,7 +835,7 @@ _021F6E18:
 	add sp, sp, #0x10
 	bx lr
 	; .align 2, 0
-_021F6E28: .word Unk_ov4_0221AF80
+_021F6E28: .word rcvlen
 	arm_func_end ServerOpInt
 
 	arm_func_start ServerOpFloat
@@ -869,7 +869,7 @@ _021F6E80:
 	add sp, sp, #0x10
 	bx lr
 	; .align 2, 0
-_021F6E98: .word Unk_ov4_0221AF80
+_021F6E98: .word rcvlen
 	arm_func_end ServerOpFloat
 
 	arm_func_start ServerOpString
@@ -897,7 +897,7 @@ ServerOpString: ; 0x021F6E9C
 	bl BucketNew
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021F6EF4: .word Unk_ov4_0221AF80
+_021F6EF4: .word rcvlen
 	arm_func_end ServerOpString
 
 	arm_func_start TeamOpInt
@@ -1130,21 +1130,21 @@ Unk_ov4_02215B27: ; 0x02215B27
 	.data
 
 
-	.global Unk_ov4_02219358
-Unk_ov4_02219358: ; 0x02219358
+	.global sock
+sock: ; 0x02219358
 	.word 0xFFFFFFFF
 
-	.global Unk_ov4_0221935C
-Unk_ov4_0221935C: ; 0x0221935C
+	.global inittimeout
+inittimeout: ; 0x0221935C
 	.ascii " N"
 	.space 0x2
 
-	.global Unk_ov4_02219360
-Unk_ov4_02219360: ; 0x02219360
-	.word Unk_ov4_022193A4
+	.global enc
+enc: ; 0x02219360
+	.word enc1
 
-	.global Unk_ov4_02219364
-Unk_ov4_02219364: ; 0x02219364
+	.global bucketfuncs
+bucketfuncs: ; 0x02219364
 	.word BucketSet
 	.word BucketAdd
 	.word BucketSub
@@ -1153,8 +1153,8 @@ Unk_ov4_02219364: ; 0x02219364
 	.word BucketConcat
 	.word BucketAvg
 
-	.global Unk_ov4_02219380
-Unk_ov4_02219380: ; 0x02219380
+	.global bopfuncs
+bopfuncs: ; 0x02219380
 	.word ServerOpInt
 	.word ServerOpFloat
 	.word ServerOpString
@@ -1165,14 +1165,14 @@ Unk_ov4_02219380: ; 0x02219380
 	.word PlayerOpFloat
 	.word PlayerOpString
 
-	.global Unk_ov4_022193A4
-Unk_ov4_022193A4: ; 0x022193A4
+	.global enc1
+enc1: ; 0x022193A4
 	.space 0x1
 	.asciz "ameSpy3D"
 	.space 0x6
 
-	.global Unk_ov4_022193B4
-Unk_ov4_022193B4: ; 0x022193B4
+	.global enc3
+enc3: ; 0x022193B4
 	.space 0x1
 	.ascii "rojectAphex"
 	.space 0x4
@@ -1266,52 +1266,52 @@ Unk_ov4_02219448: ; 0x02219448
 	.bss
 
 
-	.global Unk_ov4_0221AF80
-Unk_ov4_0221AF80: ; 0x0221AF80
+	.global rcvlen
+rcvlen: ; 0x0221AF80
 	.space 0x4
 
-	.global Unk_ov4_0221AF84
-Unk_ov4_0221AF84: ; 0x0221AF84
+	.global serverreqs
+serverreqs: ; 0x0221AF84
 	.space 0x4
 
-	.global Unk_ov4_0221AF88
-Unk_ov4_0221AF88: ; 0x0221AF88
+	.global initstart
+initstart: ; 0x0221AF88
 	.space 0x4
 
-	.global Unk_ov4_0221AF8C
-Unk_ov4_0221AF8C: ; 0x0221AF8C
+	.global rcvbuffer
+rcvbuffer: ; 0x0221AF8C
 	.space 0x4
 
-	.global Unk_ov4_0221AF90
-Unk_ov4_0221AF90: ; 0x0221AF90
+	.global stats_initstate
+stats_initstate: ; 0x0221AF90
 	.space 0x4
 
-	.global Unk_ov4_0221AF94
-Unk_ov4_0221AF94: ; 0x0221AF94
+	.global gameport
+gameport: ; 0x0221AF94
 	.space 0x4
 
-	.global Unk_ov4_0221AF98
-Unk_ov4_0221AF98: ; 0x0221AF98
+	.global sesskey
+sesskey: ; 0x0221AF98
 	.space 0x4
 
-	.global Unk_ov4_0221AF9C
-Unk_ov4_0221AF9C: ; 0x0221AF9C
+	.global internal_init
+internal_init: ; 0x0221AF9C
 	.space 0x4
 
-	.global Unk_ov4_0221AFA0
-Unk_ov4_0221AFA0: ; 0x0221AFA0
+	.global connid
+connid: ; 0x0221AFA0
 	.space 0x4
 
 	.global Unk_ov4_0221AFA4
 Unk_ov4_0221AFA4: ; 0x0221AFA4
 	.space 0x4
 
-	.global Unk_ov4_0221AFA8
-Unk_ov4_0221AFA8: ; 0x0221AFA8
+	.global g_statsgame
+g_statsgame: ; 0x0221AFA8
 	.space 0x4
 
-	.global Unk_ov4_0221AFAC
-Unk_ov4_0221AFAC: ; 0x0221AFAC
+	.global rcvmax
+rcvmax: ; 0x0221AFAC
 	.space 0x4
 
 	.global Unk_ov4_0221AFB0

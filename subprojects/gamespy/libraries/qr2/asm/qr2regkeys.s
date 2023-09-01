@@ -13,7 +13,7 @@ qr2_register_keyA: ; 0x021FD4E0
 	str r1, [r2, r0, lsl #2]
 	bx lr
 	; .align 2, 0
-_021FD4FC: .word Unk_ov4_02219B38
+_021FD4FC: .word qr2_registered_key_list
 	arm_func_end qr2_register_keyA
 
 	.data
@@ -160,8 +160,8 @@ Unk_ov4_02219B28: ; 0x02219B28
 	.asciz "teamfraglimit"
 	.space 0x2
 
-	.global Unk_ov4_02219B38
-Unk_ov4_02219B38: ; 0x02219B38
+	.global qr2_registered_key_list
+qr2_registered_key_list: ; 0x02219B38
 	.word Unk_ov4_02219A00
 	.word Unk_ov4_02219AB8
 	.word Unk_ov4_02219A64

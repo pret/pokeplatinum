@@ -1,9 +1,9 @@
 	.include "macros/function.inc"
 	.include "include/sb_queryengine.inc"
 
-	.extern Unk_ov4_0221AE50
+	.extern __GSIACResult
 
-	.extern Unk_ov4_02219B38
+	.extern qr2_registered_key_list
 	.text
 
 
@@ -266,7 +266,7 @@ _021FDAE4:
 	bl FIFOClear
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021FDB2C: .word Unk_ov4_0221AE50
+_021FDB2C: .word __GSIACResult
 	arm_func_end SBQueryEngineInit
 
 	arm_func_start SBQueryEngineSetPublicIP
@@ -411,7 +411,7 @@ _021FDCB4:
 	blx r4
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_021FDCF8: .word Unk_ov4_02219B38
+_021FDCF8: .word qr2_registered_key_list
 	arm_func_end ParseSingleQR2Reply
 
 	arm_func_start ParseSingleGOAReply

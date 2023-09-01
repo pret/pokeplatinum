@@ -204,7 +204,7 @@ _021F73C0:
 	mov r0, r5
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_021F73E0: .word Unk_ov4_02219464
+_021F73E0: .word GT2ChallengeKey
 _021F73E4: .word 0x2C0B02C1
 	arm_func_end gti2GetResponse
 
@@ -234,8 +234,8 @@ Unk_ov4_02219450: ; 0x02219450
 	.ascii "gti2GetChallenge"
 	.space 0x4
 
-	.global Unk_ov4_02219464
-Unk_ov4_02219464: ; 0x02219464
+	.global GT2ChallengeKey
+GT2ChallengeKey: ; 0x02219464
 	.ascii "3b8dd8995f7c40a9a5c5b7dd5b481341"
 	.space 0x4
 

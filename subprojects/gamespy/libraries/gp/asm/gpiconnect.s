@@ -268,7 +268,7 @@ _021EE690: .word Unk_ov4_022181D4
 _021EE694: .word Unk_ov4_02218208
 _021EE698: .word Unk_ov4_02218230
 _021EE69C: .word Unk_ov4_0221825C
-_021EE6A0: .word Unk_ov4_0221812C
+_021EE6A0: .word GPConnectionManagerHostname
 _021EE6A4: .word Unk_ov4_0221828C
 _021EE6A8: .word Unk_ov4_022182C0
 _021EE6AC: .word Unk_ov4_022182E0
@@ -1561,8 +1561,8 @@ Unk_ov4_0221810C: ; 0x0221810C
 Unk_ov4_0221811C: ; 0x0221811C
 	.incbin "incbin/overlay4_data.bin", 0x229C, 0x22AC - 0x229C
 
-	.global Unk_ov4_0221812C
-Unk_ov4_0221812C: ; 0x0221812C
+	.global GPConnectionManagerHostname
+GPConnectionManagerHostname: ; 0x0221812C
 	.incbin "incbin/overlay4_data.bin", 0x22AC, 0x22EC - 0x22AC
 
 	.global Unk_ov4_0221816C

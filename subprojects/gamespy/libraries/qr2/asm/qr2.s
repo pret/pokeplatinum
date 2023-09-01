@@ -3,7 +3,7 @@
 
 	
 
-	.extern Unk_ov4_02219B38
+	.extern qr2_registered_key_list
 	.text
 
 
@@ -975,7 +975,7 @@ _021FCA64:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _021FCA7C: .word Unk_ov4_0221997C
-_021FCA80: .word Unk_ov4_02219B38
+_021FCA80: .word qr2_registered_key_list
 _021FCA84: .word Unk_ov4_02219984
 	arm_func_end qr_build_partial_query_reply
 
@@ -1181,7 +1181,7 @@ _021FCD3C:
 	add sp, sp, #0x188
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_021FCD60: .word Unk_ov4_02219B38
+_021FCD60: .word qr2_registered_key_list
 _021FCD64: .word Unk_ov4_0221997C
 _021FCD68: .word Unk_ov4_02219984
 _021FCD6C: .word Unk_ov4_02219988

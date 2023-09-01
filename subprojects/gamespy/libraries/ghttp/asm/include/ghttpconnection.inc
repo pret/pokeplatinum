@@ -13,6 +13,6 @@
 .public ghiFindFreeSlot
 .public ghiFreeConnection
 .public ghiEnumConnections
-.public ov60_02221900
+.public ghiIsPostAutoFree
 .public ghiFreePost
 .public ghiPostCleanupState

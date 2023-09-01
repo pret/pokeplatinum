@@ -678,7 +678,7 @@ longrand: ; 0x021EAFF8
 	str r0, [r1, #0]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021EB014: .word Unk_ov4_022178D8
+_021EB014: .word randomnum
 	arm_func_end longrand
 
 	arm_func_start Util_RandSeed
@@ -690,7 +690,7 @@ Util_RandSeed: ; 0x021EB018
 	str r1, [r0, #0]
 	bx lr
 	; .align 2, 0
-_021EB030: .word Unk_ov4_022178D8
+_021EB030: .word randomnum
 	arm_func_end Util_RandSeed
 
 	arm_func_start Util_RandInt
@@ -838,25 +838,25 @@ _021EB20C:
 	bhi _021EB1A8
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_021EB218: .word Unk_ov4_02215980
-_021EB21C: .word Unk_ov4_02215984
-_021EB220: .word Unk_ov4_02215988
+_021EB218: .word alternateEncoding
+_021EB21C: .word urlSafeEncodeing
+_021EB220: .word defaultEncoding
 _021EB224: .word 0x55555556
 	arm_func_end B64Encode
 
 	.rodata
 
 
-	.global Unk_ov4_02215980
-Unk_ov4_02215980: ; 0x02215980
+	.global alternateEncoding
+alternateEncoding: ; 0x02215980
 	.asciz "[]_"
 
-	.global Unk_ov4_02215984
-Unk_ov4_02215984: ; 0x02215984
+	.global urlSafeEncodeing
+urlSafeEncodeing: ; 0x02215984
 	.asciz "-_="
 
-	.global Unk_ov4_02215988
-Unk_ov4_02215988: ; 0x02215988
+	.global defaultEncoding
+defaultEncoding: ; 0x02215988
 	.asciz "+/="
 
 
@@ -864,8 +864,8 @@ Unk_ov4_02215988: ; 0x02215988
 	.data
 
 
-	.global Unk_ov4_022178D8
-Unk_ov4_022178D8: ; 0x022178D8
+	.global randomnum
+randomnum: ; 0x022178D8
 	.word 0x1
 
 	.global Unk_ov4_022178DC
@@ -901,8 +901,8 @@ Unk_ov4_02217920: ; 0x02217920
 Unk_ov4_0221AF2C: ; 0x0221AF2C
 	.space 0x4
 
-	.global Unk_ov4_0221AF30
-Unk_ov4_0221AF30: ; 0x0221AF30
+	.global GSINitroErrno
+GSINitroErrno: ; 0x0221AF30
 	.space 0x4
 
 	.global Unk_ov4_0221AF34

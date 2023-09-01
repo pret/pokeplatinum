@@ -2,7 +2,7 @@
 	.include "include/sb_serverlist.inc"
 
 	.extern __lower_mapC
-	.extern Unk_ov4_0221AE50
+	.extern __GSIACResult
 	.extern Unk_ov4_0221B754
 
 	.text
@@ -576,7 +576,7 @@ _021FF58C:
 _021FF5EC: .word Unk_ov4_0221A058
 _021FF5F0: .word Unk_ov4_0221A048
 _021FF5F4: .word Unk_ov4_02219FE0
-_021FF5F8: .word Unk_ov4_0221AE50
+_021FF5F8: .word __GSIACResult
 _021FF5FC: .word Unk_ov4_0221A068
 _021FF600: .word 0x00000132
 _021FF604: .word Unk_ov4_0221A038

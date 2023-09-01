@@ -494,8 +494,8 @@ Unk_ov4_0221933C: ; 0x0221933C
 Unk_ov4_0221AF70: ; 0x0221AF70
 	.space 0x4
 
-	.global Unk_ov4_0221AF74
-Unk_ov4_0221AF74: ; 0x0221AF74
+	.global g_buckets
+g_buckets: ; 0x0221AF74
 	.space 0x4
 
 	.global Unk_ov4_0221AF78

@@ -136,7 +136,7 @@ _021F368C:
 _021F36A0: .word Unk_ov4_02218DA8
 _021F36A4: .word Unk_ov4_02218DB8
 _021F36A8: .word Unk_ov4_02218DE0
-_021F36AC: .word Unk_ov4_02218D68
+_021F36AC: .word GPSearchManagerHostname
 _021F36B0: .word Unk_ov4_02218E14
 _021F36B4: .word Unk_ov4_02218E44
 _021F36B8: .word Unk_ov4_02218E64
@@ -2308,8 +2308,8 @@ Unk_ov4_02218D3C: ; 0x02218D3C
 Unk_ov4_02218D50: ; 0x02218D50
 	.incbin "incbin/overlay4_data.bin", 0x2ED0, 0x2EE8 - 0x2ED0
 
-	.global Unk_ov4_02218D68
-Unk_ov4_02218D68: ; 0x02218D68
+	.global GPSearchManagerHostname
+GPSearchManagerHostname: ; 0x02218D68
 	.incbin "incbin/overlay4_data.bin", 0x2EE8, 0x2F28 - 0x2EE8
 
 	.global Unk_ov4_02218DA8

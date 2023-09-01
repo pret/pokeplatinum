@@ -296,7 +296,7 @@ _02221074:
 	ldr r0, [r4, #0x13c]
 	cmp r0, #0
 	beq _0222109C
-	bl ov60_02221900
+	bl ghiIsPostAutoFree
 	cmp r0, #0
 	beq _0222109C
 	ldr r0, [r4, #0x13c]

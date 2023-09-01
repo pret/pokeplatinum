@@ -3,8 +3,8 @@
 
 	.extern Unk_ov60_02229E28
 
-	.extern Unk_ov60_0222911C
-	.extern Unk_ov60_02229120
+	.extern ghiThrottleTimeDelay
+	.extern ghiThrottleBufferSize
 	.text
 
 
@@ -200,8 +200,8 @@ _022215F4:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022215FC: .word Unk_ov60_02229E3C
-_02221600: .word Unk_ov60_0222911C
-_02221604: .word Unk_ov60_02229120
+_02221600: .word ghiThrottleTimeDelay
+_02221604: .word ghiThrottleBufferSize
 	arm_func_end ghttpStartup
 
 	arm_func_start ghttpCleanup

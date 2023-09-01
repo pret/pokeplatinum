@@ -6,11 +6,11 @@
 	.text
 
 
-	arm_func_start ov60_02221900
-ov60_02221900: ; 0x02221900
+	arm_func_start ghiIsPostAutoFree
+ghiIsPostAutoFree: ; 0x02221900
 	ldr r0, [r0, #0x10]
 	bx lr
-	arm_func_end ov60_02221900
+	arm_func_end ghiIsPostAutoFree
 
 	arm_func_start ghiFreePost
 ghiFreePost: ; 0x02221908

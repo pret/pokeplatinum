@@ -3,8 +3,8 @@
 
 	
 
-	.extern Unk_ov66_02259CA0
-	.extern Unk_ov66_0225A310
+	.extern numServerMessageTypes
+	.extern serverMessageTypes
 	.text
 
 
@@ -54,8 +54,8 @@ _0225353C:
 _02253544: .word Unk_ov66_0225AA84
 _02253548: .word Unk_ov66_0225AA94
 _0225354C: .word Unk_ov66_0225AA24
-_02253550: .word Unk_ov66_02259CA0
-_02253554: .word Unk_ov66_0225A310
+_02253550: .word numServerMessageTypes
+_02253554: .word serverMessageTypes
 _02253558: .word 0x0225A314
 	arm_func_end ciProcessServerMessage
 
@@ -948,7 +948,7 @@ _022541B0: .word Unk_ov66_0225AC84
 _022541B4: .word 0x00000191
 _022541B8: .word Unk_ov66_0225AC9C
 _022541BC: .word 0x000008B4
-_022541C0: .word Unk_ov66_0225A89C
+_022541C0: .word ciVersionID
 _022541C4: .word Unk_ov66_0225ACB8
 _022541C8: .word Unk_ov66_0225ACC8
 	arm_func_end chatConnectDoit
@@ -2772,8 +2772,8 @@ _02255AD8: .word 0x00000BC9
 	.data
 
 
-	.global Unk_ov66_0225A89C
-Unk_ov66_0225A89C: ; 0x0225A89C
+	.global ciVersionID
+ciVersionID: ; 0x0225A89C
 	.incbin "incbin/overlay66_data.bin", 0x1B7C, 0x1B80 - 0x1B7C
 
 	.global Unk_ov66_0225A8A0

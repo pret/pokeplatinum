@@ -6931,8 +6931,8 @@ Unk_ov66_02259C98: ; 0x02259C98
 Unk_ov66_02259C9C: ; 0x02259C9C
 	.incbin "incbin/overlay66_data.bin", 0xF7C, 0xF80 - 0xF7C
 
-	.global Unk_ov66_02259CA0
-Unk_ov66_02259CA0: ; 0x02259CA0
+	.global numServerMessageTypes
+numServerMessageTypes: ; 0x02259CA0
 	.incbin "incbin/overlay66_data.bin", 0xF80, 0xF84 - 0xF80
 
 	.global Unk_ov66_02259CA4
@@ -7347,8 +7347,8 @@ Unk_ov66_0225A2D0: ; 0x0225A2D0
 Unk_ov66_0225A2F0: ; 0x0225A2F0
 	.incbin "incbin/overlay66_data.bin", 0x15D0, 0x15F0 - 0x15D0
 
-	.global Unk_ov66_0225A310
-Unk_ov66_0225A310: ; 0x0225A310
+	.global serverMessageTypes
+serverMessageTypes: ; 0x0225A310
 	.incbin "incbin/overlay66_data.bin", 0x15F0, 0x17A0 - 0x15F0
 
 	.global Unk_ov66_0225A4C0

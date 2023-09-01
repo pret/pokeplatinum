@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/natneg.inc"
 
-	.extern Unk_ov4_0221AE50
+	.extern __GSIACResult
 
 	.text
 
@@ -36,7 +36,7 @@ _021FAEDC:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021FAEE4: .word Unk_ov4_0221B3E4
+_021FAEE4: .word Matchup2Hostname
 	arm_func_end FindNegotiatorForCookie
 
 	arm_func_start NegotiatorFree
@@ -96,7 +96,7 @@ _021FAF74:
 	add sp, sp, #0x40
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FAFA8: .word Unk_ov4_0221B3E4
+_021FAFA8: .word Matchup2Hostname
 _021FAFAC: .word NegotiatorFree
 	arm_func_end AddNegotiator
 
@@ -130,7 +130,7 @@ _021FAFFC:
 	blt _021FAFD4
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
-_021FB014: .word Unk_ov4_0221B3E4
+_021FB014: .word Matchup2Hostname
 	arm_func_end RemoveNegotiator
 
 	arm_func_start NNFreeNegotiateList
@@ -146,7 +146,7 @@ NNFreeNegotiateList: ; 0x021FB018
 	str r1, [r0, #0x10]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FB040: .word Unk_ov4_0221B3E4
+_021FB040: .word Matchup2Hostname
 	arm_func_end NNFreeNegotiateList
 
 	arm_func_start CheckMagic
@@ -388,7 +388,7 @@ _021FB370:
 	; .align 2, 0
 _021FB38C: .word NNMagicData
 _021FB390: .word 0x0221AEEC
-_021FB394: .word Unk_ov4_0221B3E4
+_021FB394: .word Matchup2Hostname
 _021FB398: .word 0x00006CFD
 	arm_func_end SendInitPackets
 
@@ -541,7 +541,7 @@ _021FB580:
 	movne r0, #1
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021FB5A0: .word Unk_ov4_0221B3E4
+_021FB5A0: .word Matchup2Hostname
 _021FB5A4: .word Unk_ov4_022197B8
 _021FB5A8: .word Unk_ov4_022197D4
 	arm_func_end ResolveServers
@@ -599,7 +599,7 @@ _021FB664:
 	mov r0, #0
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_021FB670: .word Unk_ov4_0221AE50
+_021FB670: .word __GSIACResult
 	arm_func_end NNBeginNegotiationWithSocket
 
 	arm_func_start NNCancel
@@ -778,7 +778,7 @@ _021FB8C0:
 	bpl _021FB8C0
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_021FB8DC: .word Unk_ov4_0221B3E4
+_021FB8DC: .word Matchup2Hostname
 	arm_func_end NNThink
 
 	arm_func_start SendConnectAck
@@ -1142,24 +1142,24 @@ Unk_ov4_022197D4: ; 0x022197D4
 	.bss
 
 
-	.global Unk_ov4_0221B3E4
-Unk_ov4_0221B3E4: ; 0x0221B3E4
+	.global Matchup2Hostname
+Matchup2Hostname: ; 0x0221B3E4
 	.space 0x4
 
-	.global Unk_ov4_0221B3E8
-Unk_ov4_0221B3E8: ; 0x0221B3E8
+	.global Matchup1Hostname
+Matchup1Hostname: ; 0x0221B3E8
 	.space 0x4
 
-	.global Unk_ov4_0221B3EC
-Unk_ov4_0221B3EC: ; 0x0221B3EC
+	.global matchup2ip
+matchup2ip: ; 0x0221B3EC
 	.space 0x4
 
-	.global Unk_ov4_0221B3F0
-Unk_ov4_0221B3F0: ; 0x0221B3F0
+	.global matchup1ip
+matchup1ip: ; 0x0221B3F0
 	.space 0x4
 
-	.global Unk_ov4_0221B3F4
-Unk_ov4_0221B3F4: ; 0x0221B3F4
+	.global negotiateList
+negotiateList: ; 0x0221B3F4
 	.space 0x4
 
 	.global Unk_ov4_0221B3F8

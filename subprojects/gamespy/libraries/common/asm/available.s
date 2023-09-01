@@ -59,7 +59,7 @@ SendPacket: ; 0x021E96B0
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _021E96F4: .word 0x0221AE58
-_021E96F8: .word Unk_ov4_0221AE50
+_021E96F8: .word __GSIACResult
 _021E96FC: .word 0x0221AE60
 	arm_func_end SendPacket
 
@@ -123,8 +123,8 @@ _021E9748:
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
 _021E97DC: .word 0x0221AEEC
-_021E97E0: .word Unk_ov4_0221AE50
-_021E97E4: .word Unk_ov4_0221AEAC
+_021E97E0: .word __GSIACResult
+_021E97E4: .word GSIACHostname
 _021E97E8: .word Unk_ov4_022176A4
 _021E97EC: .word 0x00006CFC
 _021E97F0: .word 0x0221AE58
@@ -178,7 +178,7 @@ HandlePacket: ; 0x021E97F8
 	ldmia sp!, {r4, r5, r6, pc}
 	; .align 2, 0
 _021E98A4: .word 0x0221AE5C
-_021E98A8: .word Unk_ov4_0221AE50
+_021E98A8: .word __GSIACResult
 _021E98AC: .word Unk_ov4_022176C8
 	arm_func_end HandlePacket
 
@@ -268,7 +268,7 @@ _021E99DC:
 	add sp, sp, #0x58
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021E99E8: .word Unk_ov4_0221AE50
+_021E99E8: .word __GSIACResult
 	arm_func_end GSIAvailableCheckThink
 
 	.data
@@ -288,19 +288,19 @@ Unk_ov4_022176C8: ; 0x022176C8
 	.bss
 
 
-	.global Unk_ov4_0221AE50
-Unk_ov4_0221AE50: ; 0x0221AE50
+	.global __GSIACResult
+__GSIACResult: ; 0x0221AE50
 	.space 0x4
 
 	.global Unk_ov4_0221AE54
 Unk_ov4_0221AE54: ; 0x0221AE54
 	.space 0x58
 
-	.global Unk_ov4_0221AEAC
-Unk_ov4_0221AEAC: ; 0x0221AEAC
+	.global GSIACHostname
+GSIACHostname: ; 0x0221AEAC
 	.space 0x40
 
-	.global Unk_ov4_0221AEEC
-Unk_ov4_0221AEEC: ; 0x0221AEEC
+	.global __GSIACGamename
+__GSIACGamename: ; 0x0221AEEC
 	.space 0x40
 

@@ -4,7 +4,7 @@
 	.extern Unk_ov60_02229E28
 	.extern Unk_ov60_02229E24
 
-	.extern Unk_ov60_02229120
+	.extern ghiThrottleBufferSize
 	.text
 
 
@@ -346,7 +346,7 @@ _02222C88:
 	add sp, sp, #0x10
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_02222CB8: .word Unk_ov60_02229120
+_02222CB8: .word ghiThrottleBufferSize
 _02222CBC: .word Unk_ov60_02229E28
 _02222CC0: .word Unk_ov60_02229E24
 	arm_func_end ghiDoConnecting

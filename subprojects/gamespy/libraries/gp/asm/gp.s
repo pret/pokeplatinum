@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/gp.inc"
 
-	.extern Unk_ov4_0221AE50
+	.extern __GSIACResult
 
 	.text
 
@@ -20,7 +20,7 @@ gpInitialize: ; 0x021EB228
 	bl gpiInitialize
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_021EB254: .word Unk_ov4_0221AE50
+_021EB254: .word __GSIACResult
 	arm_func_end gpInitialize
 
 	arm_func_start gpDestroy

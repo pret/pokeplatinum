@@ -252,7 +252,7 @@ _02220B6C:
 	movle r0, #1
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_02220B8C: .word Unk_ov60_0222911C
+_02220B8C: .word ghiThrottleTimeDelay
 	arm_func_end ghiDoReceive
 
 	arm_func_start ghiDoSend
@@ -324,12 +324,12 @@ _02220C50:
 	.data
 
 
-	.global Unk_ov60_0222911C
-Unk_ov60_0222911C: ; 0x0222911C
+	.global ghiThrottleTimeDelay
+ghiThrottleTimeDelay: ; 0x0222911C
 	.incbin "incbin/overlay60_data.bin", 0x2DC, 0x2E0 - 0x2DC
 
-	.global Unk_ov60_02229120
-Unk_ov60_02229120: ; 0x02229120
+	.global ghiThrottleBufferSize
+ghiThrottleBufferSize: ; 0x02229120
 	.incbin "incbin/overlay60_data.bin", 0x2E0, 0x4
 
 
