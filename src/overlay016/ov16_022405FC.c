@@ -6729,7 +6729,7 @@ static BOOL ov16_02247F44 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    param1->calcTemp = MoveTable_Attribute(&param1->aiContext.moveTable[param1->moveCur], v0);
+    param1->calcTemp = MoveTable_Get(&param1->aiContext.moveTable[param1->moveCur], v0);
 
     return 0;
 }

@@ -117,7 +117,7 @@ void ov17_02245F44 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246540 * 
 
         param1->unk_00[v0].unk_03 = param0->unk_220.unk_0E[v0];
         param1->unk_00[v0].unk_00 = param0->unk_220.unk_06[v0];
-        param1->unk_00[v0].unk_02 = MoveTable_LoadAttribute(param1->unk_00[v0].unk_00, MOVEATTRIBUTE_CONTEST_EFFECT);
+        param1->unk_00[v0].unk_02 = MoveTable_LoadParam(param1->unk_00[v0].unk_00, MOVEATTRIBUTE_CONTEST_EFFECT);
         param1->unk_00[v0].unk_09 = ov17_02243AC4(&param0->unk_220, v0);
     }
 }
@@ -338,7 +338,7 @@ void ov17_022463C4 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246540 * 
     param3->unk_06.unk_04 = param1->unk_00[param2].unk_08 / 10;
 
     if (v2 > 0) {
-        param3->unk_0C = ov17_02243970(MoveTable_LoadAttribute(param1->unk_00[param2].unk_00, MOVEATTRIBUTE_CONTEST_TYPE));
+        param3->unk_0C = ov17_02243970(MoveTable_LoadParam(param1->unk_00[param2].unk_00, MOVEATTRIBUTE_CONTEST_TYPE));
 
         switch (param1->unk_B3[v1] / 10) {
         case 2:
@@ -353,7 +353,7 @@ void ov17_022463C4 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_02246540 * 
             break;
         }
     } else if (v2 < 0) {
-        param3->unk_0C = ov17_0224399C(MoveTable_LoadAttribute(param1->unk_00[param2].unk_00, MOVEATTRIBUTE_CONTEST_TYPE));
+        param3->unk_0C = ov17_0224399C(MoveTable_LoadParam(param1->unk_00[param2].unk_00, MOVEATTRIBUTE_CONTEST_TYPE));
 
         switch (param1->unk_B3[v1] / 10) {
         case 3:

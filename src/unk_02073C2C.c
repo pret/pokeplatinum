@@ -3566,7 +3566,7 @@ void sub_02077144 (BoxPokemon * param0, u16 param1)
     }
 
     v1[3] = param1;
-    v2[3] = MoveTable_LoadAttribute(param1, MOVEATTRIBUTE_PP);
+    v2[3] = MoveTable_LoadParam(param1, MOVEATTRIBUTE_PP);
     v3[3] = 0;
 
     for (v0 = 0; v0 < 4; v0++) {

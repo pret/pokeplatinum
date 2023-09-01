@@ -1284,8 +1284,8 @@ static void ov17_02246F24 (UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0224
         param1->unk_00[v0].unk_00 = GetMonData(param0->unk_00->unk_00.unk_00[param2], MON_DATA_MOVE1 + v0, NULL);
 
         if (ov17_02243A98(&param0->unk_220, param2, param1->unk_00[v0].unk_00) == 1) {
-            param1->unk_00[v0].unk_0A = MoveTable_LoadAttribute(param1->unk_00[v0].unk_00, MOVEATTRIBUTE_CONTEST_EFFECT);
-            param1->unk_00[v0].unk_0B = MoveTable_LoadAttribute(param1->unk_00[v0].unk_00, MOVEATTRIBUTE_CONTEST_TYPE);
+            param1->unk_00[v0].unk_0A = MoveTable_LoadParam(param1->unk_00[v0].unk_00, MOVEATTRIBUTE_CONTEST_EFFECT);
+            param1->unk_00[v0].unk_0B = MoveTable_LoadParam(param1->unk_00[v0].unk_00, MOVEATTRIBUTE_CONTEST_TYPE);
         } else {
             param1->unk_00[v0].unk_00 = 0;
         }

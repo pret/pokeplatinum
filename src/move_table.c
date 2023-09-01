@@ -6,19 +6,19 @@
 #include "move_table.h"
 #include "narc.h"
 
-static void LoadMoveEntry(int move, MoveTable *moveTable);
+static void LoadMoveEntry(int move, MoveTable *entry);
 
 void MoveTable_Load(void *buf)
 {
     NARC_ReadFromMemberByIndexPair(buf, NARC_INDEX_POKETOOL__WAZA__PL_WAZA_TBL, 0, 0, sizeof(MoveTable) * MAX_MOVES);
 }
 
-u32 MoveTable_LoadAttribute(int move, enum MoveAttribute attribute)
+u32 MoveTable_LoadParam(int move, enum MoveAttribute param)
 {
     MoveTable moveData;
 
     LoadMoveEntry(move, &moveData);
-    return MoveTable_Attribute(&moveData, attribute);
+    return MoveTable_Get(&moveData, param);
 }
 
 u8 MoveTable_CalcMaxPP(u16 move, u8 ppUps)
@@ -27,59 +27,59 @@ u8 MoveTable_CalcMaxPP(u16 move, u8 ppUps)
         ppUps = 3;
     }
 
-    u8 pp = MoveTable_LoadAttribute(move, MOVEATTRIBUTE_PP);
+    u8 pp = MoveTable_LoadParam(move, MOVEATTRIBUTE_PP);
     pp += (pp * 20 * ppUps) / 100;
 
     return pp;
 }
 
-u32 MoveTable_Attribute(MoveTable *moveTable, enum MoveAttribute attribute)
+u32 MoveTable_Get(MoveTable *entry, enum MoveAttribute param)
 {
     u32 result;
 
-    switch (attribute) {
+    switch (param) {
     case MOVEATTRIBUTE_EFFECT:
-        result = moveTable->effect;
+        result = entry->effect;
         break;
     case MOVEATTRIBUTE_CLASS:
-        result = moveTable->class;
+        result = entry->class;
         break;
     case MOVEATTRIBUTE_POWER:
-        result = moveTable->power;
+        result = entry->power;
         break;
     case MOVEATTRIBUTE_TYPE:
-        result = moveTable->type;
+        result = entry->type;
         break;
     case MOVEATTRIBUTE_ACCURACY:
-        result = moveTable->accuracy;
+        result = entry->accuracy;
         break;
     case MOVEATTRIBUTE_PP:
-        result = moveTable->pp;
+        result = entry->pp;
         break;
     case MOVEATTRIBUTE_EFFECT_CHANCE:
-        result = moveTable->effectChance;
+        result = entry->effectChance;
         break;
     case MOVEATTRIBUTE_RANGE:
-        result = moveTable->range;
+        result = entry->range;
         break;
     case MOVEATTRIBUTE_PRIORTY:
-        result = moveTable->priority;
+        result = entry->priority;
         break;
     case MOVEATTRIBUTE_FLAGS:
-        result = moveTable->flags;
+        result = entry->flags;
         break;
     case MOVEATTRIBUTE_CONTEST_EFFECT:
-        result = moveTable->contest.effect;
+        result = entry->contest.effect;
         break;
     case MOVEATTRIBUTE_CONTEST_TYPE:
-        result = moveTable->contest.type;
+        result = entry->contest.type;
         break;
     }
 
     return result;
 }
 
-static void LoadMoveEntry(int move, MoveTable *moveTable)
+static void LoadMoveEntry(int move, MoveTable *entry)
 {
-    NARC_ReadWholeMemberByIndexPair(moveTable, NARC_INDEX_POKETOOL__WAZA__PL_WAZA_TBL, move);
+    NARC_ReadWholeMemberByIndexPair(entry, NARC_INDEX_POKETOOL__WAZA__PL_WAZA_TBL, move);
 }

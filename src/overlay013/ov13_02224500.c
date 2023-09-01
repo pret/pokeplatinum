@@ -607,7 +607,7 @@ static void ov13_02224FA8 (UnkStruct_ov13_022213F0 * param0)
     if (param0->unk_00->unk_34 < 4) {
         ov13_02224A5C(param0, param0->unk_1FB4[26], v0->unk_30[param0->unk_00->unk_34].unk_05);
     } else {
-        ov13_02224A5C(param0, param0->unk_1FB4[26], MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_CLASS));
+        ov13_02224A5C(param0, param0->unk_1FB4[26], MoveTable_LoadParam(param0->unk_00->unk_24, MOVEATTRIBUTE_CLASS));
     }
 
     ov13_022249AC(param0->unk_1FB4[26], Unk_ov13_02229274[0], Unk_ov13_02229274[1]);
@@ -666,7 +666,7 @@ static void ov13_022251B4 (UnkStruct_ov13_022213F0 * param0)
     }
 
     if (param0->unk_00->unk_24 != 0) {
-        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_TYPE));
+        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, MoveTable_LoadParam(param0->unk_00->unk_24, MOVEATTRIBUTE_TYPE));
         ov13_022249AC(param0->unk_1FB4[25], Unk_ov13_022293DC[4][0], Unk_ov13_022293DC[4][1]);
     }
 }
@@ -683,12 +683,12 @@ static void ov13_02225248 (UnkStruct_ov13_022213F0 * param0)
             continue;
         }
 
-        ov13_02224A0C(param0, param0->unk_1FB4[21 + v1], 45072 + v1, MoveTable_LoadAttribute(v0->unk_30[v1].unk_00, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
+        ov13_02224A0C(param0, param0->unk_1FB4[21 + v1], 45072 + v1, MoveTable_LoadParam(v0->unk_30[v1].unk_00, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
         ov13_022249AC(param0->unk_1FB4[21 + v1], Unk_ov13_022293DC[v1][0], Unk_ov13_022293DC[v1][1]);
     }
 
     if (param0->unk_00->unk_24 != 0) {
-        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, MoveTable_LoadAttribute(param0->unk_00->unk_24, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
+        ov13_02224A0C(param0, param0->unk_1FB4[25], 45076, MoveTable_LoadParam(param0->unk_00->unk_24, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
         ov13_022249AC(param0->unk_1FB4[25], Unk_ov13_022293DC[4][0], Unk_ov13_022293DC[4][1]);
     }
 }

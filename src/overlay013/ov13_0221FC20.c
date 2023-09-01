@@ -1264,10 +1264,10 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
             v2->unk_02 = GetMonData(param0->unk_04[v0].unk_00, MON_DATA_58 + v1, NULL);
             v2->unk_03 = GetMonData(param0->unk_04[v0].unk_00, MON_DATA_62 + v1, NULL);
             v2->unk_03 = MoveTable_CalcMaxPP(v2->unk_00, v2->unk_03);
-            v2->unk_04 = MoveTable_LoadAttribute(v2->unk_00, MOVEATTRIBUTE_TYPE);
-            v2->unk_05 = MoveTable_LoadAttribute(v2->unk_00, MOVEATTRIBUTE_CLASS);
-            v2->unk_06 = MoveTable_LoadAttribute(v2->unk_00, MOVEATTRIBUTE_ACCURACY);
-            v2->unk_07 = MoveTable_LoadAttribute(v2->unk_00, MOVEATTRIBUTE_POWER);
+            v2->unk_04 = MoveTable_LoadParam(v2->unk_00, MOVEATTRIBUTE_TYPE);
+            v2->unk_05 = MoveTable_LoadParam(v2->unk_00, MOVEATTRIBUTE_CLASS);
+            v2->unk_06 = MoveTable_LoadParam(v2->unk_00, MOVEATTRIBUTE_ACCURACY);
+            v2->unk_07 = MoveTable_LoadParam(v2->unk_00, MOVEATTRIBUTE_POWER);
         }
     }
 }
@@ -1541,7 +1541,7 @@ static void ov13_02221654 (UnkStruct_ov13_022213F0 * param0, u8 param1)
         v2 = param0->unk_00->unk_24;
     }
 
-    v0 = MoveTable_LoadAttribute(v2, MOVEATTRIBUTE_CONTEST_EFFECT);
+    v0 = MoveTable_LoadParam(v2, MOVEATTRIBUTE_CONTEST_EFFECT);
     v3 = sub_02095734(v0) / 10;
 
     for (v1 = 0; v1 < v3; v1++) {
