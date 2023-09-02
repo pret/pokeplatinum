@@ -1,9 +1,0 @@
-.public NNS_FndCreateExpHeapEx
-.public NNS_FndDestroyExpHeap
-.public NNS_FndAllocFromExpHeapEx
-.public NNS_FndFreeToExpHeap
-.public OS_EnableIrqMask
-.public OS_DisableIrqMask
-.public OS_Terminate
-.public MI_CpuFill8
-.public ov18_0224501C

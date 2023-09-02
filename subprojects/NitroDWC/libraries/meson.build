@@ -1,8 +1,0 @@
-subdir('ac')
-subdir('account')
-subdir('auth')
-subdir('base')
-subdir('bm')
-subdir('nd')
-subdir('nhttp')
-subdir('util')

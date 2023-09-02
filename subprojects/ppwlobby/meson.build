@@ -50,3 +50,5 @@ ppwlobby_dep = declare_dependency(
     include_directories: public_includes,
     link_with: ppwlobby_libs
 )
+
+meson.override_dependency('ppwlobby', ppwlobby_dep)

@@ -34,9 +34,11 @@ def main():
     build_ninja_string = backslash_to_forward_slash(build_ninja_string)
     build_ninja_string = fix_static_libs(build_ninja_string)
     build_ninja_string = nasm_to_asm(build_ninja_string)
+    build_ninja_string = relativize_prebuilt_lib_paths(build_ninja_string)
 
     # compile_commands.json edits
     compile_commands_string = backslash_to_forward_slash(compile_commands_string)
+    compile_commands_string = relativize_prebuilt_lib_paths(compile_commands_string)
 
     # For WSL accessing Windows, paths to PCH input files must be relative
     if is_wsl_accessing_windows():
@@ -51,10 +53,13 @@ def main():
 def nasm_to_asm(fileString: str) -> str:
     return fileString.replace('Nasm', 'ASM')
 
+def relativize_prebuilt_lib_paths(fileString: str) -> str:
+    '''Make paths to prebuilt .a files relative'''
+    return re.sub(r'/[\w/\-.]+?(subprojects[\w/\-.]+?prebuilt)', r'../\1', fileString)
 
 def relativize_pch_paths(fileString: str) -> str:
     '''Make paths to headers to be precompiled relative (for WSL)'''
-    return re.sub(r'c_PCH [\w/]+?subprojects', r'c_PCH ../subprojects', fileString)
+    return re.sub(r'c_PCH [\w/\-.]+?subprojects', r'c_PCH ../subprojects', fileString)
 
 
 if __name__ == '__main__':

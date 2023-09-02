@@ -483,7 +483,7 @@ int _tmain(int argc, _TCHAR *argv[])
 #endif
 
     // Build standard library paths for environment variables
-    size_t mwcincludes_size = _tcslen(tool_dir) + 140;
+    size_t mwcincludes_size = _tcslen(tool_dir) * 3  + 46;
     _TCHAR *MWCIncludes = malloc(sizeof(_TCHAR) * mwcincludes_size);
     _sntprintf(MWCIncludes, mwcincludes_size, _T(
         FMT_TS "/" FMT_TS FMT_TS FMT_TS "/" FMT_TS FMT_TS FMT_TS "/" FMT_TS),

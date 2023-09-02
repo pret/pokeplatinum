@@ -21,7 +21,6 @@ public_includes = include_directories('include', 'asm')
 c_args = [
     '-O4,p',
     '-proc', 'arm946e',
-    '-thumb',
     '-enum', 'int',
     '-lang', 'c99',
     '-Cpp_exceptions', 'off',
@@ -34,6 +33,11 @@ c_args = [
     '-nosyspath',
     '-stdinc'
 ]
+
+add_global_arguments(c_args,
+    language: 'c',
+    native: false
+)
 
 pokeplatinum_args = [
     '-DPM_KEEP_ASSERTS',
@@ -68,23 +72,45 @@ subdir('tools')
 
 
 ############################################################
+###                     DEPENDENCIES                     ###
+############################################################
+nitrosdk_dep = dependency('NitroSDK',
+    default_options: {
+        'mwrap_ver': '2.0/sp1p2',
+        'sp1p3_conditionals': true
+    }
+)
+
+nitrosystem_dep = dependency('NitroSystem',
+    default_options: {
+        'mwrap_ver': '2.0/sp2'
+    }
+)
+
+nitrowifi_dep = dependency('NitroWiFi',
+    default_options: {
+        'mwrap_ver': '2.0/sp1p2',
+        'sp1p3_conditionals': true
+    }
+)
+
+nitrodwc_dep = dependency('NitroDWC',
+    default_options: {
+        'mwrap_ver': '2.0/sp2p2',
+        'link_ppwlobby': true
+    }
+)
+
+libvct_dep = dependency('libvct')
+libcrypto_dep = dependency('libcrypto')
+libsyscall_dep = dependency('libsyscall')
+ppwlobby_dep = dependency('ppwlobby')
+
+
+############################################################
 ###                      SPEC FILES                      ###
 ############################################################
 subdir('platinum.us')
-
-
-############################################################
-###                     DEPENDENCIES                     ###
-############################################################
-gamespy_dep     = dependency('gamespy',     fallback : ['gamespy', 'gamespy_dep'])
-libvct_dep      = dependency('libVCT',      fallback : ['libVCT', 'libvct_dep'])
-nitrosdk_dep    = dependency('NitroSDK',    fallback : ['NitroSDK', 'nitrosdk_dep'])
-nitrosystem_dep = dependency('NitroSystem', fallback : ['NitroSystem', 'nitrosystem_dep'])
-nitrowifi_dep   = dependency('NitroWiFi',   fallback : ['NitroWiFi', 'nitrowifi_dep'])
-nitrodwc_dep    = dependency('NitroDWC',    fallback : ['NitroDWC', 'nitrodwc_dep'])
-libcrypto_dep   = dependency('libcrypto',   fallback : ['libcrypto', 'libcrypto_dep'])
-libsyscall_dep  = dependency('libsyscall',  fallback : ['libsyscall', 'libsyscall_dep'])
-ppwlobby_dep    = dependency('ppwlobby',    fallback : ['ppwlobby', 'ppwlobby_dep'])
 
 
 ############################################################
@@ -94,21 +120,19 @@ subdir('lib')
 
 
 ############################################################
-###                     GAME SOURCES                     ###
+###                     ARM9 BINARY                      ###
 ############################################################
 subdir('src')
 subdir('asm')
 
-
-# Build main executable
 main = executable('main',
     sources: [
         pokeplatinum_c,
         pokeplatinum_asm
     ],
     c_args: [
-        c_args,
-        pokeplatinum_args
+        pokeplatinum_args,
+        '-thumb'
     ],
     nasm_args: asm_args,
     c_pch: 'include/pch/global_pch.h',
@@ -118,14 +142,13 @@ main = executable('main',
         libspl_public_includes
     ],
     dependencies: [
-        gamespy_dep,
-        libvct_dep,
         nitrosdk_dep,
         nitrosystem_dep,
         nitrowifi_dep,
         nitrodwc_dep,
-        libsyscall_dep,
+        libvct_dep,
         libcrypto_dep,
+        libsyscall_dep,
 	    ppwlobby_dep
     ],
     link_with: [
@@ -150,8 +173,11 @@ subdir('res')
 ############################################################
 ###                    ARM7 BINARIES                     ###
 ############################################################
-ichneumon_sub = subproject('NitroSDK').get_variable('ichneumon_sub')
-ichneumon_sub_defs = subproject('NitroSDK').get_variable('ichneumon_sub_defs')
+ichneumon_sub = subproject('NitroSDK'
+    ).get_variable('ichneumon_sub')
+
+ichneumon_sub_defs = subproject('NitroSDK'
+    ).get_variable('ichneumon_sub_defs')
 
 
 ############################################################
@@ -186,7 +212,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
         '@OUTPUT0@',
         '@OUTPUT1@'
     ],
-    build_by_default : true
+    build_by_default: true
 )
 
 
@@ -195,8 +221,15 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
 ############################################################
 sha1sum = find_program('sha1sum', native: true)
 
-test('SBIN Checksums', sha1sum, args: ['-c', '--quiet', sbins_sha1])
-test('ROM Checksum', sha1sum, args: ['-c', '--quiet', rom_sha1])
+test('SBIN Checksums',
+    sha1sum,
+    args: ['-c', '--quiet', sbins_sha1]
+)
+
+test('ROM Checksum',
+    sha1sum,
+    args: ['-c', '--quiet', rom_sha1]
+)
 
 
 ############################################################

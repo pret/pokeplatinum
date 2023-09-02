@@ -35,3 +35,5 @@ libcrypto_dep = declare_dependency(
     include_directories: public_includes,
     link_with: [libcrypto_static, libcrypto_ov97]
 )
+
+meson.override_dependency('libcrypto', libcrypto_dep)
