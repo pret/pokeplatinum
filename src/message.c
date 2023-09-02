@@ -1,358 +1,345 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "inlines.h"
+#include "constants/message_banks.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "strbuf.h"
 
-#include "narc.h"
-#include "message.h"
 #include "heap.h"
+#include "message.h"
+#include "narc.h"
 #include "strbuf.h"
 
-static void sub_0200AD98(u16 * param0, const u16 * param1, const MessageBankEntry * param2);
+#define KEY_START 596947
+#define KEY_INC 18749
 
-MessageBank * MessageBank_Load (u32 param0, u32 param1, u32 param2)
+static void MemCopyEntry(charcode_t *dst, const charcode_t *src, const MessageBankEntry *entry);
+
+static inline int EntryOffset(u32 bankIndex)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(param0, param1, param2);
+    return sizeof(MessageBank) + sizeof(MessageBankEntry) * bankIndex;
 }
 
-void MessageBank_Free (MessageBank * param0)
+static inline void DecodeEntry(MessageBankEntry *entry, u32 entryID, u32 seed)
 {
-    Heap_FreeToHeap(param0);
+    seed = (seed * 765 * (entryID + 1)) & 0xFFFF;
+    seed |= seed << 16;
+
+    entry->offset ^= seed;
+    entry->length ^= seed;
 }
 
-static inline int inline_0200ACF0 (u32 param0)
+static inline void DecodeString(charcode_t *str, u32 len, u32 entryID, u16 seed)
 {
-    return sizeof(MessageBank) + sizeof(MessageBankEntry) * param0;
-}
+    seed = (entryID + 1) * KEY_START;
 
-static inline void inline_0200AC6C (MessageBankEntry * param0, u32 param1, u32 param2)
-{
-    param2 = (param2 * 765 * (param1 + 1)) & 0xffff;
-    param2 |= (param2 << 16);
-
-    param0->unk_00 ^= param2;
-    param0->unk_04 ^= param2;
-}
-
-static inline void inline_0200AC6C_1 (u16 * param0, u32 param1, u32 param2, u16 param3)
-{
-    param3 = (param2 + 1) * 596947;
-
-    while (param1--) {
-        *param0 ^= param3;
-        param0++;
-        param3 += 18749;
+    while (len--) {
+        *str ^= seed;
+        str++;
+        seed += KEY_INC;
     }
 }
 
-void MessageBank_Get (const MessageBank * param0, u32 param1, u16 * param2)
+static inline u8* EntryOffsetAddress(const MessageBank *bank, u32 bankIndex)
 {
-    if (param1 < param0->unk_00) {
-        MessageBankEntry v0;
-        const u16 * v1;
+    return (u8 *)bank + bankIndex;
+}
 
-        v0 = param0->unk_04[param1];
-        inline_0200AC6C(&v0, param1, param0->unk_02);
-        v1 = (u16 *)(((u8 *)param0) + v0.unk_00);
-        sub_0200AD98(param2, v1, &v0);
-        inline_0200AC6C_1(param2, v0.unk_04, param1, param0->unk_02);
-    } else {
-        GF_ASSERT(0);
+MessageBank* MessageBank_Load(u32 narcID, u32 bankID, u32 heapID)
+{
+    return NARC_AllocAndReadWholeMemberByIndexPair(narcID, bankID, heapID);
+}
+
+void MessageBank_Free(MessageBank *bank)
+{
+    Heap_FreeToHeap(bank);
+}
+
+void MessageBank_Get(const MessageBank *bank, u32 entryID, charcode_t *dst)
+{
+    if (entryID < bank->count) {
+        MessageBankEntry entry = bank->entries[entryID];
+        DecodeEntry(&entry, entryID, bank->seed);
+
+        const charcode_t *str = (charcode_t *)EntryOffsetAddress(bank, entry.offset);
+        MemCopyEntry(dst, str, &entry);
+        DecodeString(dst, entry.length, entryID, bank->seed);
+
+        return;
+    }
+
+    GF_ASSERT(FALSE);
+}
+
+void MessageBank_GetFromNARC(u32 narcID, u32 bankID, u32 entryID, u32 heapID, charcode_t *dst)
+{
+    NARC *narc = NARC_ctor(narcID, heapID);
+
+    if (narc) {
+        MessageBank bank;
+        NARC_ReadFromMember(narc, bankID, 0, sizeof(MessageBank), &bank);
+
+        MessageBankEntry entry;
+        NARC_ReadFromMember(narc, bankID, EntryOffset(entryID), sizeof(MessageBankEntry), &entry);
+
+        DecodeEntry(&entry, entryID, bank.seed);
+
+        u32 size = entry.length * sizeof(charcode_t);
+        NARC_ReadFromMember(narc, bankID, entry.offset, size, dst);
+
+        DecodeString(dst, entry.length, entryID, bank.seed);
+        NARC_dtor(narc);
     }
 }
 
-void MessageBank_GetFromNARC (u32 param0, u32 param1, u32 param2, u32 param3, u16 * param4)
+static void MemCopyEntry(charcode_t *dst, const charcode_t *src, const MessageBankEntry *entry)
 {
-    NARC * v0 = NARC_ctor(param0, param3);
-
-    if (v0) {
-        MessageBank v1;
-        MessageBankEntry v2;
-        u16 * v3;
-        u32 v4;
-
-        NARC_ReadFromMember(v0, param1, 0, sizeof(MessageBank), &v1);
-        NARC_ReadFromMember(v0, param1, inline_0200ACF0(param2), sizeof(MessageBankEntry), &v2);
-
-        inline_0200AC6C(&v2, param2, v1.unk_02);
-
-        v4 = v2.unk_04 * sizeof(u16);
-        NARC_ReadFromMember(v0, param1, v2.unk_00, v4, param4);
-
-        inline_0200AC6C_1(param4, v2.unk_04, param2, v1.unk_02);
-        NARC_dtor(v0);
-    }
+    MI_CpuCopy16(src, dst, entry->length * sizeof(charcode_t));
 }
 
-static void sub_0200AD98 (u16 * param0, const u16 * param1, const MessageBankEntry * param2)
+void MessageBank_GetStrbuf(const MessageBank *bank, u32 entryID, Strbuf *strbuf)
 {
-    MI_CpuCopy16(param1, param0, param2->unk_04 * sizeof(u16));
-}
+    if (entryID < bank->count) {
+        MessageBankEntry entry = bank->entries[entryID];
+        DecodeEntry(&entry, entryID, bank->seed);
 
-void MessageBank_GetStrbuf (const MessageBank * param0, u32 param1, Strbuf *param2)
-{
-    if (param1 < param0->unk_00) {
-        MessageBankEntry v0;
-        u16 * v1;
-        u32 v2;
+        u32 size = entry.length * sizeof(charcode_t);
+        charcode_t *cstr = Heap_AllocFromHeapAtEnd(0, size);
+        if (cstr) {
+            MI_CpuCopy16(EntryOffsetAddress(bank, entry.offset), cstr, size);
+            DecodeString(cstr, entry.length, entryID, bank->seed);
 
-        v0 = param0->unk_04[param1];
-        inline_0200AC6C(&v0, param1, param0->unk_02);
+            Strbuf_CopyNumChars(strbuf, cstr, entry.length);
 
-        v2 = v0.unk_04 * sizeof(u16);
-        v1 = Heap_AllocFromHeapAtEnd(0, v2);
-
-        if (v1) {
-            MI_CpuCopy16((((u8 *)param0) + v0.unk_00), v1, v2);
-
-            inline_0200AC6C_1(v1, v0.unk_04, param1, param0->unk_02);
-            Strbuf_CopyNumChars(param2, v1, v0.unk_04);
-            Heap_FreeToHeap(v1);
+            Heap_FreeToHeap(cstr);
         }
-    } else {
-        GF_ASSERT(0);
-        Strbuf_Clear(param2);
+
+        return;
     }
+
+    GF_ASSERT(FALSE);
+    Strbuf_Clear(strbuf);
 }
 
-Strbuf* MessageBank_GetNewStrbuf (const MessageBank * param0, u32 param1, u32 param2)
+Strbuf* MessageBank_GetNewStrbuf(const MessageBank *bank, u32 entryID, u32 heapID)
 {
-    if (param1 < param0->unk_00) {
-        MessageBankEntry v0;
-        u16 * v1;
-        u32 v2;
+    if (entryID < bank->count) {
+        MessageBankEntry entry = bank->entries[entryID];
+        DecodeEntry(&entry, entryID, bank->seed);
 
-        v0 = param0->unk_04[param1];
-        inline_0200AC6C(&v0, param1, param0->unk_02);
-        v2 = v0.unk_04 * sizeof(u16);
-        v1 = Heap_AllocFromHeapAtEnd(param2, v2);
+        u32 size = entry.length * sizeof(u16);
+        charcode_t *cstr = Heap_AllocFromHeapAtEnd(heapID, size);
+        if (cstr) {
+            MI_CpuCopy16(EntryOffsetAddress(bank, entry.offset), cstr, size);
+            DecodeString(cstr, entry.length, entryID, bank->seed);
 
-        if (v1) {
-            Strbuf* v3;
-
-            MI_CpuCopy16((((u8 *)param0) + v0.unk_00), v1, v2);
-            inline_0200AC6C_1(v1, v0.unk_04, param1, param0->unk_02);
-
-            v3 = Strbuf_Init(v0.unk_04, param2);
-
-            if (v3) {
-                Strbuf_CopyNumChars(v3, v1, v0.unk_04);
+            Strbuf *strbuf = Strbuf_Init(entry.length, heapID);
+            if (strbuf) {
+                Strbuf_CopyNumChars(strbuf, cstr, entry.length);
             }
 
-            Heap_FreeToHeap(v1);
-            return v3;
+            Heap_FreeToHeap(cstr);
+            return strbuf;
         }
 
         return NULL;
-    } else {
-        GF_ASSERT(0);
-        return Strbuf_Init(4, param2);
+    }
+
+    GF_ASSERT(FALSE);
+    return Strbuf_Init(4, heapID);
+}
+
+void MessageBank_GetStrbufFromNARC(u32 narcID, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf)
+{
+    NARC *narc = NARC_ctor(narcID, heapID);
+
+    if (narc) {
+        MessageBank_GetStrbufFromHandle(narc, bankID, entryID, heapID, strbuf);
+        NARC_dtor(narc);
     }
 }
 
-void MessageBank_GetStrbufFromNARC (u32 param0, u32 param1, u32 param2, u32 param3, Strbuf *param4)
+void MessageBank_GetStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID, Strbuf *strbuf)
 {
-    NARC * v0;
+    MessageBank bank;
+    NARC_ReadFromMember(narc, bankID, 0, sizeof(MessageBank), &bank);
 
-    v0 = NARC_ctor(param0, param3);
+    if (entryID < bank.count) {
+        MessageBankEntry entry;
+        NARC_ReadFromMember(narc, bankID, EntryOffset(entryID), sizeof(MessageBankEntry), &entry);
+        DecodeEntry(&entry, entryID, bank.seed);
 
-    if (v0) {
-        MessageBank_GetStrbufFromHandle(v0, param1, param2, param3, param4);
-        NARC_dtor(v0);
-    }
-}
+        u32 size = entry.length * sizeof(charcode_t);
+        charcode_t *cstr = Heap_AllocFromHeapAtEnd(heapID, size);
+        if (cstr) {
+            NARC_ReadFromMember(narc, bankID, entry.offset, size, cstr);
+            DecodeString(cstr, entry.length, entryID, bank.seed);
 
-void MessageBank_GetStrbufFromHandle (NARC * param0, u32 param1, u32 param2, u32 param3, Strbuf *param4)
-{
-    MessageBank v0;
-    MessageBankEntry v1;
-    u16 * v2;
-    u32 v3;
+            Strbuf_CopyNumChars(strbuf, cstr, entry.length);
 
-    NARC_ReadFromMember(param0, param1, 0, sizeof(MessageBank), &v0);
-
-    if (param2 < v0.unk_00) {
-        NARC_ReadFromMember(param0, param1, inline_0200ACF0(param2), sizeof(MessageBankEntry), &v1);
-        inline_0200AC6C(&v1, param2, v0.unk_02);
-
-        v3 = v1.unk_04 * sizeof(u16);
-        v2 = Heap_AllocFromHeapAtEnd(param3, v3);
-
-        if (v2) {
-            NARC_ReadFromMember(param0, param1, v1.unk_00, v3, v2);
-            inline_0200AC6C_1(v2, v1.unk_04, param2, v0.unk_02);
-            Strbuf_CopyNumChars(param4, v2, v1.unk_04);
-            Heap_FreeToHeap(v2);
+            Heap_FreeToHeap(cstr);
         }
-    } else {
-        GF_ASSERT(0);
-        Strbuf_Clear(param4);
-    }
-}
 
-Strbuf* MessageBank_GetNewStrbufFromNARC (u32 param0, u32 param1, u32 param2, u32 param3)
-{
-    NARC * v0;
-    Strbuf* v1;
-
-    v0 = NARC_ctor(param0, param3);
-
-    if (v0) {
-        v1 = MessageBank_GetNewStrbufFromHandle(v0, param1, param2, param3);
-        NARC_dtor(v0);
-    } else {
-        v1 = Strbuf_Init(4, param3);
+        return;
     }
 
-    return v1;
+    GF_ASSERT(FALSE);
+    Strbuf_Clear(strbuf);
 }
 
-Strbuf* MessageBank_GetNewStrbufFromHandle (NARC * param0, u32 param1, u32 param2, u32 param3)
+Strbuf* MessageBank_GetNewStrbufFromNARC (u32 narcID, u32 bankID, u32 entryID, u32 heapID)
 {
-    MessageBank v0;
+    NARC *narc = NARC_ctor(narcID, heapID);
 
-    NARC_ReadFromMember(param0, param1, 0, sizeof(MessageBank), &v0);
+    Strbuf *strbuf;
+    if (narc) {
+        strbuf = MessageBank_GetNewStrbufFromHandle(narc, bankID, entryID, heapID);
+        NARC_dtor(narc);
+    } else {
+        strbuf = Strbuf_Init(4, heapID);
+    }
 
-    if (param2 < v0.unk_00) {
-        MessageBankEntry v1;
-        Strbuf* v2;
+    return strbuf;
+}
 
-        NARC_ReadFromMember(param0, param1, inline_0200ACF0(param2), sizeof(MessageBankEntry), &v1);
-        inline_0200AC6C(&v1, param2, v0.unk_02);
+Strbuf* MessageBank_GetNewStrbufFromHandle(NARC *narc, u32 bankID, u32 entryID, u32 heapID)
+{
+    MessageBank bank;
+    NARC_ReadFromMember(narc, bankID, 0, sizeof(MessageBank), &bank);
 
-        v2 = Strbuf_Init(v1.unk_04, param3);
+    if (entryID < bank.count) {
+        MessageBankEntry entry;
+        NARC_ReadFromMember(narc, bankID, EntryOffset(entryID), sizeof(MessageBankEntry), &entry);
+        DecodeEntry(&entry, entryID, bank.seed);
 
-        if (v2) {
-            u16 * v3;
-            u32 v4;
+        Strbuf *strbuf = Strbuf_Init(entry.length, heapID);
+        if (strbuf) {
+            u32 size = entry.length * sizeof(charcode_t);
+            charcode_t *cstr = Heap_AllocFromHeapAtEnd(heapID, size);
 
-            v4 = v1.unk_04 * sizeof(u16);
-            v3 = Heap_AllocFromHeapAtEnd(param3, v4);
+            if (cstr) {
+                NARC_ReadFromMember(narc, bankID, entry.offset, size, cstr);
+                DecodeString(cstr, entry.length, entryID, bank.seed);
 
-            if (v3) {
-                NARC_ReadFromMember(param0, param1, v1.unk_00, v4, v3);
-                inline_0200AC6C_1(v3, v1.unk_04, param2, v0.unk_02);
-                Strbuf_CopyNumChars(v2, v3, v1.unk_04);
-                Heap_FreeToHeap(v3);
+                Strbuf_CopyNumChars(strbuf, cstr, entry.length);
+
+                Heap_FreeToHeap(cstr);
             }
         }
 
-        return v2;
-    } else {
-        GF_ASSERT(0);
-        return Strbuf_Init(4, param3);
+        return strbuf;
     }
+
+    GF_ASSERT(FALSE);
+    return Strbuf_Init(4, heapID);
 }
 
-u32 MessageBank_EntryCount (const MessageBank * param0)
+u32 MessageBank_EntryCount(const MessageBank *bank)
 {
-    return param0->unk_00;
+    return bank->count;
 }
 
-u32 MessageBank_NARCEntryCount (u32 param0, u32 param1)
+u32 MessageBank_NARCEntryCount(u32 narcID, u32 bankID)
 {
-    MessageBank v0;
+    MessageBank bank;
+    NARC_ReadFromMemberByIndexPair(&bank, narcID, bankID, 0, sizeof(MessageBank));
 
-    NARC_ReadFromMemberByIndexPair(&v0, param0, param1, 0, sizeof(MessageBank));
-    return v0.unk_00;
+    return bank.count;
 }
 
-MessageLoader * MessageLoader_Init (int param0, u32 param1, u32 param2, u32 param3)
+MessageLoader* MessageLoader_Init(enum MessageLoaderType type, u32 narcID, u32 bankID, u32 heapID)
 {
-    MessageLoader * v0 = Heap_AllocFromHeapAtEnd(param3, sizeof(MessageLoader));
+    MessageLoader *loader = Heap_AllocFromHeapAtEnd(heapID, sizeof(MessageLoader));
 
-    if (v0) {
-        if (param0 == 0) {
-            v0->unk_08_val1 = MessageBank_Load(param1, param2, param3);
+    if (loader) {
+        if (type == MESSAGE_LOADER_BANK_HANDLE) {
+            loader->bank = MessageBank_Load(narcID, bankID, heapID);
 
-            if (v0->unk_08_val1 == NULL) {
-                Heap_FreeToHeap(v0);
+            if (loader->bank == NULL) {
+                Heap_FreeToHeap(loader);
                 return NULL;
             }
         } else {
-            v0->unk_08_val2 = NARC_ctor(param1, param3);
+            loader->narc = NARC_ctor(narcID, heapID);
         }
 
-        v0->unk_00 = param0;
-        v0->unk_04 = param1;
-        v0->unk_06 = param2;
-        v0->unk_02 = param3;
+        loader->type = type;
+        loader->narcID = narcID;
+        loader->bankID = bankID;
+        loader->heapID = heapID;
     }
 
-    return v0;
+    return loader;
 }
 
-void MessageLoader_Free (MessageLoader * param0)
+void MessageLoader_Free(MessageLoader *loader)
 {
-    if (param0) {
-        switch (param0->unk_00) {
-        case 0:
-            MessageBank_Free(param0->unk_08_val1);
+    if (loader) {
+        switch (loader->type) {
+        case MESSAGE_LOADER_BANK_HANDLE:
+            MessageBank_Free(loader->bank);
             break;
-        case 1:
-            NARC_dtor(param0->unk_08_val2);
+        case MESSAGE_LOADER_NARC_HANDLE:
+            NARC_dtor(loader->narc);
             break;
         }
 
-        Heap_FreeToHeap(param0);
+        Heap_FreeToHeap(loader);
     }
 }
 
-void MessageLoader_GetStrbuf (const MessageLoader * param0, u32 param1, Strbuf *param2)
+void MessageLoader_GetStrbuf(const MessageLoader *loader, u32 entryID, Strbuf *strbuf)
 {
-    switch (param0->unk_00) {
-    case 0:
-        MessageBank_GetStrbuf(param0->unk_08_val1, param1, param2);
+    switch (loader->type) {
+    case MESSAGE_LOADER_BANK_HANDLE:
+        MessageBank_GetStrbuf(loader->bank, entryID, strbuf);
         break;
-    case 1:
-        MessageBank_GetStrbufFromHandle(param0->unk_08_val2, param0->unk_06, param1, param0->unk_02, param2);
+    case MESSAGE_LOADER_NARC_HANDLE:
+        MessageBank_GetStrbufFromHandle(loader->narc, loader->bankID, entryID, loader->heapID, strbuf);
         break;
     }
 }
 
-Strbuf* MessageLoader_GetNewStrbuf (const MessageLoader * param0, u32 param1)
+Strbuf* MessageLoader_GetNewStrbuf(const MessageLoader *loader, u32 entryID)
 {
-    switch (param0->unk_00) {
-    case 0:
-        return MessageBank_GetNewStrbuf(param0->unk_08_val1, param1, param0->unk_02);
-    case 1:
-        return MessageBank_GetNewStrbufFromHandle(param0->unk_08_val2, param0->unk_06, param1, param0->unk_02);
+    switch (loader->type) {
+    case MESSAGE_LOADER_BANK_HANDLE:
+        return MessageBank_GetNewStrbuf(loader->bank, entryID, loader->heapID);
+    case MESSAGE_LOADER_NARC_HANDLE:
+        return MessageBank_GetNewStrbufFromHandle(loader->narc, loader->bankID, entryID, loader->heapID);
     }
 
     return NULL;
 }
 
-u32 MessageLoader_MessageCount (const MessageLoader * param0)
+u32 MessageLoader_MessageCount(const MessageLoader *loader)
 {
-    switch (param0->unk_00) {
-    case 0:
-        return MessageBank_EntryCount(param0->unk_08_val1);
-    case 1:
-        return MessageBank_NARCEntryCount(param0->unk_04, param0->unk_06);
+    switch (loader->type) {
+    case MESSAGE_LOADER_BANK_HANDLE:
+        return MessageBank_EntryCount(loader->bank);
+    case MESSAGE_LOADER_NARC_HANDLE:
+        return MessageBank_NARCEntryCount(loader->narcID, loader->bankID);
     }
 
     return 0;
 }
 
-void MessageLoader_Get (const MessageLoader * param0, u32 param1, u16 * param2)
+void MessageLoader_Get(const MessageLoader *loader, u32 entryID, charcode_t *dst)
 {
-    switch (param0->unk_00) {
-    case 0:
-        MessageBank_Get(param0->unk_08_val1, param1, param2);
+    switch (loader->type) {
+    case MESSAGE_LOADER_BANK_HANDLE:
+        MessageBank_Get(loader->bank, entryID, dst);
         break;
-    case 1:
-        MessageBank_GetFromNARC(param0->unk_04, param0->unk_06, param1, param0->unk_02, param2);
+    case MESSAGE_LOADER_NARC_HANDLE:
+        MessageBank_GetFromNARC(loader->narcID, loader->bankID, entryID, loader->heapID, dst);
         break;
     }
 }
 
-void MessageLoader_GetSpeciesName (u32 param0, u32 param1, u16 * param2)
+void MessageLoader_GetSpeciesName(u32 species, u32 heapID, charcode_t *dst)
 {
-    MessageLoader * v0 = MessageLoader_Init(1, 26, 412, param1);
+    MessageLoader *loader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, MESSAGE_BANK_SPECIES_NAMES, heapID);
 
-    MessageLoader_Get(v0, 0 + param0, param2);
-    MessageLoader_Free(v0);
+    MessageLoader_Get(loader, species, dst);
+    MessageLoader_Free(loader);
 }
