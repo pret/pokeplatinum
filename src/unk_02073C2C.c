@@ -902,7 +902,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
     case MON_DATA_67:
     case MON_DATA_68:
     case MON_DATA_69:
-        v0 = MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
+        v0 = MoveTable_CalcMaxPP(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
         break;
     case MON_DATA_HP_IV:
         v0 = v3->unk_10_0;
@@ -1775,8 +1775,8 @@ static void sub_02075454 (BoxPokemon * param0, int param1, int param2)
     case MON_DATA_59:
     case MON_DATA_60:
     case MON_DATA_61:
-        if ((v3->unk_08[param1 - 58] + param2) > MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
-            v3->unk_08[param1 - 58] = MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
+        if ((v3->unk_08[param1 - 58] + param2) > MoveTable_CalcMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
+            v3->unk_08[param1 - 58] = MoveTable_CalcMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
         } else {
             v3->unk_08[param1 - 58] += param2;
         }
@@ -3566,7 +3566,7 @@ void sub_02077144 (BoxPokemon * param0, u16 param1)
     }
 
     v1[3] = param1;
-    v2[3] = MoveTable_GetMoveAttribute(param1, 5);
+    v2[3] = MoveTable_LoadParam(param1, MOVEATTRIBUTE_PP);
     v3[3] = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -3587,7 +3587,7 @@ void sub_020771F8 (Pokemon * param0, u16 param1, u8 param2)
     v1 = 0;
     sub_02074B30(param0, 62 + param2, &v1);
 
-    v0 = MoveTable_GetMoveMaxPP(param1, 0);
+    v0 = MoveTable_CalcMaxPP(param1, 0);
     sub_02074B30(param0, 58 + param2, (u8 *)&v0);
 
     return;
@@ -3606,7 +3606,7 @@ void sub_02077238 (BoxPokemon * param0, u16 param1, u8 param2)
     SetBoxMonData(param0, 54 + param2, (u8 *)&param1);
 
     v1 = sub_02074570(param0, 62 + param2, NULL);
-    v0 = MoveTable_GetMoveMaxPP(param1, v1);
+    v0 = MoveTable_CalcMaxPP(param1, v1);
 
     SetBoxMonData(param0, 58 + param2, (u8 *)&v0);
 }

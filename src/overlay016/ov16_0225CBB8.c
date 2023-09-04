@@ -6304,13 +6304,13 @@ static void ov16_02264530 (UnkStruct_0207ADB4 * param0, UnkStruct_ov16_02265BBC 
 static void ov16_022645B8 (u8 * param0, u8 * param1, int param2, int param3, u16 param4)
 {
     if (param2 == 0) {
-        if ((MoveTable_GetMoveAttribute(param4, 9) & 0x40) == 0) {
+        if ((MoveTable_LoadParam(param4, MOVEATTRIBUTE_FLAGS) & 0x40) == 0) {
             param0[0] = 1;
         } else {
             param0[0] = 0;
         }
 
-        if (MoveTable_GetMoveAttribute(param4, 9) & 0x80) {
+        if (MoveTable_LoadParam(param4, MOVEATTRIBUTE_FLAGS) & 0x80) {
             param1[0] = 1;
         } else {
             param1[0] = 0;

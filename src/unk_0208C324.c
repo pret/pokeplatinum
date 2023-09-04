@@ -1083,7 +1083,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
         param2->unk_34[v1] = (u16)GetMonData(param1, MON_DATA_MOVE1 + v1, NULL);
         param2->unk_3C[v1] = (u8)GetMonData(param1, MON_DATA_58 + v1, NULL);
         v2 = (u8)GetMonData(param1, MON_DATA_62 + v1, NULL);
-        param2->unk_40[v1] = MoveTable_GetMoveMaxPP(param2->unk_34[v1], v2);
+        param2->unk_40[v1] = MoveTable_CalcMaxPP(param2->unk_34[v1], v2);
     }
 
     param2->unk_45 = (u8)GetMonData(param1, MON_DATA_COOL, NULL);
@@ -1946,7 +1946,7 @@ static void sub_0208E498 (UnkStruct_0208D7BC * param0, u32 param1)
     sub_0208E46C(param0);
 
     if (param1 != 0xffffffff) {
-        v0 = MoveTable_GetMoveAttribute(param1, 10);
+        v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_EFFECT);
         v2 = sub_02095734(v0) / 10;
 
         for (v1 = 0; v1 < v2; v1++) {

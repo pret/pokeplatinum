@@ -47,7 +47,7 @@ int ov17_02243AF0 (int param0, int param1, int param2, int param3)
     int v0;
     int v1;
 
-    v0 = MoveTable_GetMoveAttribute(param1, 11);
+    v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_TYPE);
     v1 = Unk_ov17_022539C8[param0][v0];
 
     return v1;

@@ -1351,7 +1351,7 @@ static void ov16_02241374 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     } else if (param1->moveType) {
         v0 = param1->moveType;
     } else {
-        v0 = param1->aiContext.moveTable[param1->moveCur].unk_04;
+        v0 = param1->aiContext.moveTable[param1->moveCur].type;
     }
 
     param1->damage = ov16_0225A280(param0, param1, param1->moveCur, param1->sideConditionsMask[ov16_0223E208(param0, param1->defender)], param1->fieldConditionsMask, param1->movePower, v0, param1->attacker, param1->defender, param1->criticalMul);
@@ -1847,7 +1847,7 @@ static BOOL ov16_02241BFC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     int v0;
 
     ov16_02248AF0(param1, 1);
-    v0 = param1->aiContext.moveTable[param1->moveCur].unk_00;
+    v0 = param1->aiContext.moveTable[param1->moveCur].effect;
     ov16_02248B00(param1, 30, v0);
 
     return 0;
@@ -3346,7 +3346,7 @@ static BOOL ov16_0224358C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     for (v1 = 0; v1 < v0; v1++) {
         if (param1->battleMons[param1->attacker].moves[v1] != 160) {
-            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].unk_04;
+            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].type;
 
             if (v3 == 9) {
                 if ((ov16_02252060(param1, param1->attacker, 27, NULL) == 7) || (ov16_02252060(param1, param1->attacker, 28, NULL) == 7)) {
@@ -3370,7 +3370,7 @@ static BOOL ov16_0224358C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                 v1 = ov16_0223F4BC(param0) % v0;
             } while (param1->battleMons[param1->attacker].moves[v1] == 160);
 
-            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].unk_04;
+            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].type;
 
             if (v3 == 9) {
                 if ((ov16_02252060(param1, param1->attacker, 27, NULL) == 7) || (ov16_02252060(param1, param1->attacker, 28, NULL) == 7)) {
@@ -3646,7 +3646,7 @@ static BOOL ov16_02243B38 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         param1->moveStatusFlags |= 0x80000;
     } else {
         if (((param1->battleMons[param1->defender].moveEffectsMask & 0x18) == 0) && (ov16_02255A4C(param1, param1->attacker) != 99) && (ov16_02255A4C(param1, param1->defender) != 99)) {
-            v0 = param1->aiContext.moveTable[param1->moveCur].unk_05 + (param1->battleMons[param1->attacker].level - param1->battleMons[param1->defender].level);
+            v0 = param1->aiContext.moveTable[param1->moveCur].accuracy + (param1->battleMons[param1->attacker].level - param1->battleMons[param1->defender].level);
 
             if (((ov16_0223F4BC(param0) % 100) < v0) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
                 v0 = 1;
@@ -3657,7 +3657,7 @@ static BOOL ov16_02243B38 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             if ((((param1->battleMons[param1->defender].moveEffectsData.lockOnTarget == param1->attacker) && (param1->battleMons[param1->defender].moveEffectsMask & 0x18)) || (ov16_02255A4C(param1, param1->attacker) == 99) || (ov16_02255A4C(param1, param1->defender) == 99)) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
                 v0 = 1;
             } else {
-                v0 = param1->aiContext.moveTable[param1->moveCur].unk_05 + (param1->battleMons[param1->attacker].level - param1->battleMons[param1->defender].level);
+                v0 = param1->aiContext.moveTable[param1->moveCur].accuracy + (param1->battleMons[param1->attacker].level - param1->battleMons[param1->defender].level);
 
                 if (((ov16_0223F4BC(param0) % 100) < v0) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
                     v0 = 1;
@@ -3759,8 +3759,8 @@ static BOOL ov16_02243DBC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                 param1->msgMoveTemp = param1->movePrevByBattler[param1->defender];
                 param1->battleMons[param1->attacker].moves[v2] = param1->msgMoveTemp;
 
-                if (param1->aiContext.moveTable[param1->msgMoveTemp].unk_06 < 5) {
-                    param1->battleMons[param1->attacker].ppCur[v2] = param1->aiContext.moveTable[param1->msgMoveTemp].unk_06;
+                if (param1->aiContext.moveTable[param1->msgMoveTemp].pp < 5) {
+                    param1->battleMons[param1->attacker].ppCur[v2] = param1->aiContext.moveTable[param1->msgMoveTemp].pp;
                 } else {
                     param1->battleMons[param1->attacker].ppCur[v2] = 5;
                 }
@@ -4017,7 +4017,7 @@ static BOOL ov16_022444B0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
         if (v0 == 4) {
             param1->battleMons[param1->attacker].moves[v1] = param1->moveSketched[param1->defender];
-            param1->battleMons[param1->attacker].ppCur[v1] = param1->aiContext.moveTable[param1->moveSketched[param1->defender]].unk_06;
+            param1->battleMons[param1->attacker].ppCur[v1] = param1->aiContext.moveTable[param1->moveSketched[param1->defender]].pp;
             ov16_022662FC(param0, param1, param1->attacker);
             param1->msgMoveTemp = param1->moveSketched[param1->defender];
 
@@ -4244,12 +4244,12 @@ static BOOL ov16_02244A0C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 
     if ((Unk_ov16_0226E57C[param1->battleMons[param1->attacker].moveEffectsData.protectSuccessTurns] >= ov16_0223F4BC(param0)) && (v1)) {
-        if (param1->aiContext.moveTable[param1->moveCur].unk_00 == 111) {
+        if (param1->aiContext.moveTable[param1->moveCur].effect == 111) {
             param1->turnFlags[param1->attacker].protecting = 1;
             param1->msgBuffer.id = 282;
         }
 
-        if (param1->aiContext.moveTable[param1->moveCur].unk_00 == 116) {
+        if (param1->aiContext.moveTable[param1->moveCur].effect == 116) {
             param1->turnFlags[param1->attacker].enduring = 1;
             param1->msgBuffer.id = 442;
         }
@@ -4406,8 +4406,8 @@ static BOOL ov16_02244D60 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->battleMons[param1->attacker].slowStartFinished = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v0]].unk_06 < 5) {
-            param1->battleMons[param1->attacker].ppCur[v0] = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v0]].unk_06;
+        if (param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v0]].pp < 5) {
+            param1->battleMons[param1->attacker].ppCur[v0] = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v0]].pp;
         } else {
             param1->battleMons[param1->attacker].ppCur[v0] = 5;
         }
@@ -4626,7 +4626,7 @@ static BOOL ov16_0224544C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         ov16_02253F20(param0, param1, param1->attacker);
     }
 
-    param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03;
+    param1->movePower = param1->aiContext.moveTable[param1->moveCur].power;
 
     v1 = 5 - param1->battleMons[param1->attacker].moveEffectsData.rolloutCount;
 
@@ -4651,7 +4651,7 @@ static BOOL ov16_02245568 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         param1->battleMons[param1->attacker].moveEffectsData.furyCutterCount++;
     }
 
-    param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03;
+    param1->movePower = param1->aiContext.moveTable[param1->moveCur].power;
 
     for (v0 = 1; v0 < param1->battleMons[param1->attacker].moveEffectsData.furyCutterCount; v0++) {
         param1->movePower *= 2;
@@ -4993,7 +4993,7 @@ static BOOL ov16_02245D68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v4 = GetMonData(v5, MON_DATA_161, NULL);
 
     param1->damage = sub_020759CC(v2, v3, 1);
-    param1->damage *= param1->aiContext.moveTable[param1->moveCur].unk_03;
+    param1->damage *= param1->aiContext.moveTable[param1->moveCur].power;
     param1->damage *= ((v4 * 2 / 5) + 2);
     param1->damage /= sub_020759CC(param1->battleMons[param1->defender].species, param1->battleMons[param1->defender].formNum, 2);
     param1->damage /= 50;
@@ -5208,7 +5208,7 @@ static BOOL ov16_02246334 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     if ((param1->sideConditions[v0].followMe) && (param1->battleMons[param1->sideConditions[v0].followMeUser].curHP)) {
         param1->defender = param1->sideConditions[v0].followMeUser;
-    } else if ((param1->aiContext.moveTable[param1->moveCur].unk_08 == 0x4) || (param1->aiContext.moveTable[param1->moveCur].unk_08 == 0x8)) {
+    } else if ((param1->aiContext.moveTable[param1->moveCur].range == 0x4) || (param1->aiContext.moveTable[param1->moveCur].range == 0x8)) {
         param1->defender = v1;
     } else {
         v0 = ov16_02253954(param0, param1, param1->attacker, param1->moveCur, 1, 0);
@@ -5313,7 +5313,7 @@ static BOOL ov16_02246630 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov16_02248AF0(param1, 1);
 
     if (param1->movePower == 0) {
-        param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03 * param1->battleMons[param1->attacker].curHP / param1->battleMons[param1->attacker].maxHP;
+        param1->movePower = param1->aiContext.moveTable[param1->moveCur].power * param1->battleMons[param1->attacker].curHP / param1->battleMons[param1->attacker].maxHP;
 
         if (param1->movePower == 0) {
             param1->movePower = 1;
@@ -5471,7 +5471,7 @@ static BOOL ov16_02246904 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     if ((ov16_022555A4(param0, param1, 8, 0, 13) == 0) && (ov16_022555A4(param0, param1, 8, 0, 76) == 0)) {
         if (param1->fieldConditionsMask & (0x3 | 0xc | 0x30 | 0xc0 | 0x8000)) {
-            param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03 * 2;
+            param1->movePower = param1->aiContext.moveTable[param1->moveCur].power * 2;
 
             if (param1->fieldConditionsMask & 0x3) {
                 param1->moveType = 11;
@@ -5489,7 +5489,7 @@ static BOOL ov16_02246904 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
                 param1->moveType = 15;
             }
         } else {
-            param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03;
+            param1->movePower = param1->aiContext.moveTable[param1->moveCur].power;
         }
     }
 
@@ -5520,7 +5520,7 @@ static BOOL ov16_022469C4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
             if (v3) {
                 v4 = ov16_02254EE0(&param1->battleMons[v1], v3);
 
-                if ((param1->aiContext.moveTable[v3].unk_00 == 128) && (param1->battleMons[v1].ppCur[v4])) {
+                if ((param1->aiContext.moveTable[v3].effect == 128) && (param1->battleMons[v1].ppCur[v4])) {
                     param1->battleMons[v1].ppCur[v4]--;
 
                     if ((ov16_02255A4C(param1, param1->switchedMon) == 46) && (param1->battleMons[v1].ppCur[v4])) {
@@ -5728,9 +5728,9 @@ static BOOL ov16_02246EE4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov16_02248AF0(param1, 1);
 
     if (param1->battlerActions[param1->defender][0] == 39) {
-        param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03 * 2;
+        param1->movePower = param1->aiContext.moveTable[param1->moveCur].power * 2;
     } else {
-        param1->movePower = param1->aiContext.moveTable[param1->moveCur].unk_03;
+        param1->movePower = param1->aiContext.moveTable[param1->moveCur].power;
     }
 
     return 0;
@@ -5787,7 +5787,7 @@ static BOOL ov16_02246FA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         v1 = ov16_02255570(param1, param1->defender);
     }
 
-    if ((param1->battlerActions[param1->defender][0] != 39) && (param1->turnFlags[param1->defender].struggling == 0) && (ov16_0225B0C0(param1, v1) == 1) && (param1->aiContext.moveTable[v1].unk_03)) {
+    if ((param1->battlerActions[param1->defender][0] != 39) && (param1->turnFlags[param1->defender].struggling == 0) && (ov16_0225B0C0(param1, v1) == 1) && (param1->aiContext.moveTable[v1].power)) {
         param1->battleMons[param1->attacker].moveEffectsData.meFirst = 1;
         param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber = param1->meFirstTurnOrder;
         param1->msgMoveTemp = v1;
@@ -5854,7 +5854,7 @@ static BOOL ov16_02247118 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         v1 = ov16_02255570(param1, param1->defender);
     }
 
-    if ((param1->battlerActions[param1->defender][0] == 39) || ((param1->aiContext.moveTable[v1].unk_03 == 0) && (param1->turnFlags[param1->defender].struggling == 0))) {
+    if ((param1->battlerActions[param1->defender][0] == 39) || ((param1->aiContext.moveTable[v1].power == 0) && (param1->turnFlags[param1->defender].struggling == 0))) {
         ov16_02248AF0(param1, v0);
     }
 
@@ -6663,9 +6663,9 @@ static BOOL ov16_02247E10 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v0 = ov16_02248AD0(param1);
 
     if (ov16_02255A4C(param1, param1->attacker) == 32) {
-        v1 = param1->aiContext.moveTable[param1->moveCur].unk_07 * 2;
+        v1 = param1->aiContext.moveTable[param1->moveCur].effectChance * 2;
     } else {
-        v1 = param1->aiContext.moveTable[param1->moveCur].unk_07;
+        v1 = param1->aiContext.moveTable[param1->moveCur].effectChance;
     }
 
     GF_ASSERT(v1 != 0);
@@ -6729,7 +6729,7 @@ static BOOL ov16_02247F44 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov16_02248AF0(param1, 1);
 
     v0 = ov16_02248AD0(param1);
-    param1->calcTemp = MoveTable_GetAttribute(&param1->aiContext.moveTable[param1->moveCur], v0);
+    param1->calcTemp = MoveTable_Get(&param1->aiContext.moveTable[param1->moveCur], v0);
 
     return 0;
 }
@@ -7420,7 +7420,7 @@ static BOOL ov16_022489F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v0 = ov16_02248AD0(param1);
     v1 = ov16_02248AD0(param1);
 
-    if (param1->aiContext.moveTable[param1->moveCur].unk_04 == v0) {
+    if (param1->aiContext.moveTable[param1->moveCur].type == v0) {
         ov16_02248AF0(param1, v1);
     }
 

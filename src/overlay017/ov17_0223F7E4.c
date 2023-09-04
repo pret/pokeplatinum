@@ -1460,8 +1460,8 @@ void ov17_02240A80 (UnkStruct_ov17_0223F7E4 * param0, u16 param1[])
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param1[v1] != 0) {
-            v0->unk_12C[v1] = MoveTable_GetMoveAttribute(param1[v1], 10);
-            v0->unk_130[v1] = MoveTable_GetMoveAttribute(param1[v1], 11);
+            v0->unk_12C[v1] = MoveTable_LoadParam(param1[v1], MOVEATTRIBUTE_CONTEST_EFFECT);
+            v0->unk_130[v1] = MoveTable_LoadParam(param1[v1], MOVEATTRIBUTE_CONTEST_TYPE);
         } else {
             v0->unk_12C[v1] = 0;
             v0->unk_130[v1] = 0;
