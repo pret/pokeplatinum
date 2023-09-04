@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/pokemon.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -1481,7 +1481,7 @@ static void ov13_02223E68 (UnkStruct_ov13_022213F0 * param0)
         ov13_0222317C(param0, v0, 1 + v1);
     }
 
-    if (Item_GetAttribute(param0->unk_00->unk_22, 37, param0->unk_00->unk_0C) == 0) {
+    if (Item_LoadParam(param0->unk_00->unk_22, 37, param0->unk_00->unk_0C) == 0) {
         ov13_022221C8(param0, 94);
     }
 
@@ -1565,36 +1565,36 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
     u8 v6;
 
     v1 = param0->unk_00;
-    v2 = Item_LoadDataOrGFX(v1->unk_22, 0, v1->unk_0C);
+    v2 = Item_Load(v1->unk_22, 0, v1->unk_0C);
     v0 = ov16_0223DFAC(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
     v4 = GetMonData(v0, MON_DATA_163, NULL);
     v5 = 0;
 
-    if (Item_GetAttributeFromStruct(v2, 15) != 0) {
+    if (Item_Get(v2, 15) != 0) {
         v5 |= 0x1;
     }
 
-    if (Item_GetAttributeFromStruct(v2, 16) != 0) {
+    if (Item_Get(v2, 16) != 0) {
         v5 |= 0x2;
     }
 
-    if (Item_GetAttributeFromStruct(v2, 17) != 0) {
+    if (Item_Get(v2, 17) != 0) {
         v5 |= 0x4;
     }
 
-    if (Item_GetAttributeFromStruct(v2, 18) != 0) {
+    if (Item_Get(v2, 18) != 0) {
         v5 |= 0x8;
     }
 
-    if (Item_GetAttributeFromStruct(v2, 19) != 0) {
+    if (Item_Get(v2, 19) != 0) {
         v5 |= 0x10;
     }
 
-    if (Item_GetAttributeFromStruct(v2, 20) != 0) {
+    if (Item_Get(v2, 20) != 0) {
         v5 |= 0x20;
     }
 
-    if (Item_GetAttributeFromStruct(v2, 21) != 0) {
+    if (Item_Get(v2, 21) != 0) {
         v5 |= 0x40;
     }
 
@@ -1609,7 +1609,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
         sub_0200B60C(param0->unk_1FA8, 1, v4 - param0->unk_04[v1->unk_11].unk_10, 3, 0, 1);
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
-    } else if ((Item_GetAttributeFromStruct(v2, 36) != 0) || (Item_GetAttributeFromStruct(v2, 37) != 0)) {
+    } else if ((Item_Get(v2, 36) != 0) || (Item_Get(v2, 37) != 0)) {
         sub_0200B1B8(param0->unk_1FA4, 87, param0->unk_1FAC);
     } else if (v5 == 0x1) {
         v3 = sub_0200B1EC(param0->unk_1FA4, 92);

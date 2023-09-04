@@ -3,9 +3,8 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/pokemon.h"
-#include "struct_decls/struct_itemdata_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0207F248.h"
@@ -56,34 +55,34 @@ static u8 sub_02084B70 (u16 param0)
     ItemData * v0;
     s32 v1;
 
-    v0 = Item_LoadDataOrGFX(param0, 0, 12);
+    v0 = Item_Load(param0, 0, 12);
 
-    if (Item_GetAttributeFromStruct(v0, 14) != 1) {
+    if (Item_Get(v0, 14) != 1) {
         Heap_FreeToHeap(v0);
         return 28;
     }
 
-    if ((Item_GetAttributeFromStruct(v0, 27) != 0) || (Item_GetAttributeFromStruct(v0, 28) != 0) || (Item_GetAttributeFromStruct(v0, 29) != 0) || (Item_GetAttributeFromStruct(v0, 30) != 0) || (Item_GetAttributeFromStruct(v0, 31) != 0) || (Item_GetAttributeFromStruct(v0, 32) != 0) || (Item_GetAttributeFromStruct(v0, 33) != 0)) {
+    if ((Item_Get(v0, 27) != 0) || (Item_Get(v0, 28) != 0) || (Item_Get(v0, 29) != 0) || (Item_Get(v0, 30) != 0) || (Item_Get(v0, 31) != 0) || (Item_Get(v0, 32) != 0) || (Item_Get(v0, 33) != 0)) {
         Heap_FreeToHeap(v0);
         return 0;
     }
 
-    if (Item_GetAttributeFromStruct(v0, 24) != 0) {
+    if (Item_Get(v0, 24) != 0) {
         Heap_FreeToHeap(v0);
         return 1;
     }
 
-    if (Item_GetAttributeFromStruct(v0, 25) != 0) {
+    if (Item_Get(v0, 25) != 0) {
         Heap_FreeToHeap(v0);
         return 2;
     }
 
-    v1 = Item_GetAttributeFromStruct(v0, 15);
-    v1 += (Item_GetAttributeFromStruct(v0, 16) << 1);
-    v1 += (Item_GetAttributeFromStruct(v0, 17) << 2);
-    v1 += (Item_GetAttributeFromStruct(v0, 18) << 3);
-    v1 += (Item_GetAttributeFromStruct(v0, 19) << 4);
-    v1 += (Item_GetAttributeFromStruct(v0, 20) << 5);
+    v1 = Item_Get(v0, 15);
+    v1 += (Item_Get(v0, 16) << 1);
+    v1 += (Item_Get(v0, 17) << 2);
+    v1 += (Item_Get(v0, 18) << 3);
+    v1 += (Item_Get(v0, 19) << 4);
+    v1 += (Item_Get(v0, 20) << 5);
 
     switch (v1) {
     case 0x1:
@@ -105,7 +104,7 @@ static u8 sub_02084B70 (u16 param0)
         Heap_FreeToHeap(v0);
         return 8;
     case 0x3f:
-        if (Item_GetAttributeFromStruct(v0, 38) != 0) {
+        if (Item_Get(v0, 38) != 0) {
             Heap_FreeToHeap(v0);
             return 11;
         } else {
@@ -114,17 +113,17 @@ static u8 sub_02084B70 (u16 param0)
         }
     }
 
-    if (Item_GetAttributeFromStruct(v0, 21) != 0) {
+    if (Item_Get(v0, 21) != 0) {
         Heap_FreeToHeap(v0);
         return 10;
     }
 
-    if (Item_GetAttributeFromStruct(v0, 38) != 0) {
+    if (Item_Get(v0, 38) != 0) {
         Heap_FreeToHeap(v0);
         return 11;
     }
 
-    v1 = Item_GetAttributeFromStruct(v0, 48);
+    v1 = Item_Get(v0, 48);
 
     if (v1 > 0) {
         Heap_FreeToHeap(v0);
@@ -136,7 +135,7 @@ static u8 sub_02084B70 (u16 param0)
         return 18;
     }
 
-    v1 = Item_GetAttributeFromStruct(v0, 49);
+    v1 = Item_Get(v0, 49);
 
     if (v1 > 0) {
         Heap_FreeToHeap(v0);
@@ -148,7 +147,7 @@ static u8 sub_02084B70 (u16 param0)
         return 19;
     }
 
-    v1 = Item_GetAttributeFromStruct(v0, 50);
+    v1 = Item_Get(v0, 50);
 
     if (v1 > 0) {
         Heap_FreeToHeap(v0);
@@ -160,7 +159,7 @@ static u8 sub_02084B70 (u16 param0)
         return 20;
     }
 
-    v1 = Item_GetAttributeFromStruct(v0, 51);
+    v1 = Item_Get(v0, 51);
 
     if (v1 > 0) {
         Heap_FreeToHeap(v0);
@@ -172,7 +171,7 @@ static u8 sub_02084B70 (u16 param0)
         return 21;
     }
 
-    v1 = Item_GetAttributeFromStruct(v0, 52);
+    v1 = Item_Get(v0, 52);
 
     if (v1 > 0) {
         Heap_FreeToHeap(v0);
@@ -184,7 +183,7 @@ static u8 sub_02084B70 (u16 param0)
         return 22;
     }
 
-    v1 = Item_GetAttributeFromStruct(v0, 53);
+    v1 = Item_Get(v0, 53);
 
     if (v1 > 0) {
         Heap_FreeToHeap(v0);
@@ -196,22 +195,22 @@ static u8 sub_02084B70 (u16 param0)
         return 23;
     }
 
-    if (Item_GetAttributeFromStruct(v0, 26) != 0) {
+    if (Item_Get(v0, 26) != 0) {
         Heap_FreeToHeap(v0);
         return 24;
     }
 
-    if (Item_GetAttributeFromStruct(v0, 34) != 0) {
+    if (Item_Get(v0, 34) != 0) {
         Heap_FreeToHeap(v0);
         return 25;
     }
 
-    if (Item_GetAttributeFromStruct(v0, 35) != 0) {
+    if (Item_Get(v0, 35) != 0) {
         Heap_FreeToHeap(v0);
         return 26;
     }
 
-    if ((Item_GetAttributeFromStruct(v0, 36) != 0) || (Item_GetAttributeFromStruct(v0, 37) != 0)) {
+    if ((Item_Get(v0, 36) != 0) || (Item_Get(v0, 37) != 0)) {
         Heap_FreeToHeap(v0);
         return 27;
     }
@@ -544,7 +543,7 @@ static int sub_02085704 (void * param0)
 
 BOOL sub_020857A8 (u16 param0)
 {
-    if (Item_GetAttribute(param0, 24, 12) != 0) {
+    if (Item_LoadParam(param0, 24, 12) != 0) {
         return 1;
     }
 
@@ -944,7 +943,7 @@ u8 sub_02086104 (UnkStruct_0207F248 * param0, Pokemon * param1)
         }
     }
 
-    if (sub_02077FB4(param1, Item_GetTMOrHMNumberFromID(param0->unk_5A4->unk_24)) == 0) {
+    if (sub_02077FB4(param1, Item_TMHMNumber(param0->unk_5A4->unk_24)) == 0) {
         return 0xff;
     }
 
@@ -1147,7 +1146,7 @@ static void sub_02086590 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 par
     sub_02074B30(param1, 58 + param2, &v0);
 
     if (param0->unk_5A4->unk_24 != 0) {
-        if (Item_IsMoveHM(param0->unk_5A4->unk_26) == 0) {
+        if (Item_IsHMMove(param0->unk_5A4->unk_26) == 0) {
             sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
         }
 

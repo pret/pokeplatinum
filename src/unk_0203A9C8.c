@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -1114,7 +1114,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_02097728 * v8;
 
-        v8 = sub_0203D920(v0, 2, v2->unk_22, sub_0207D2F0(v2->unk_24), 11);
+        v8 = sub_0203D920(v0, 2, v2->unk_22, Item_MailNumber(v2->unk_24), 11);
         v1->unk_25C = v8;
 
         if (v2->unk_20 == 10) {
@@ -1297,7 +1297,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         v4.unk_04 = sub_0207CB94(v2);
         v4.unk_06 = sub_0207CBA4(v2);
         v4.unk_00 = param0;
-        v5 = Item_GetAttribute(v4.unk_04, 6, 11);
+        v5 = Item_LoadParam(v4.unk_04, 6, 11);
         v3 = (UnkFuncPtr_0203BC5C)sub_020683F4(0, v5);
         v3(&v4, &v1->unk_230);
     }
@@ -1345,7 +1345,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
             UnkStruct_02097728 * v11;
             UnkStruct_0203C540 * v12;
 
-            v11 = sub_0203D920(v0, 2, v9, sub_0207D2F0(v10), 11);
+            v11 = sub_0203D920(v0, 2, v9, Item_MailNumber(v10), 11);
             v1->unk_25C = v11;
             v1->unk_260 = sub_0203C540(v10, 0, (u8)v9);
             sub_0203B674(v1, sub_0203C558);
@@ -1698,7 +1698,7 @@ static void sub_0203C2D8 (UnkStruct_020508D4 * param0, u16 param1)
     v6 = 0;
 
     for (v3 = 0; v3 < 64; v3++) {
-        param1 = sub_0207D354(v3);
+        param1 = Item_ForBerryNumber(v3);
 
         if (sub_0207D688(v2, param1, 1, 11) == 1) {
             sub_02097320(v1->unk_25C, param1, 0);

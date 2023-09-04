@@ -183,7 +183,7 @@ void * ov16_0224B940 (UnkStruct_0207ADB4 * param0)
     ov16_02251604(param0, v0);
 
     MoveTable_Load(&v0->aiContext.moveTable);
-    v0->aiContext.itemTable = sub_0207D388(5);
+    v0->aiContext.itemTable = ItemTable_Load(5);
 
     return v0;
 }

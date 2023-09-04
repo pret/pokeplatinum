@@ -4,7 +4,7 @@
 #include "struct_defs/struct_0207CDEC.h"
 
 typedef struct {
-    UnkStruct_0207CDEC * unk_00;
+    BagItem * unk_00;
     u16 unk_04;
     u16 unk_06;
     u8 unk_08;

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -210,7 +210,7 @@ void ov84_0223F528 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
 
     if (param1 != 0xffff) {
         v0 = Strbuf_Init(130, 6);
-        Item_GetDescriptionIntoString(v0, param1, 6);
+        Item_LoadDescription(v0, param1, 6);
     } else {
         v0 = sub_0200B1EC(param0->unk_114, 94);
     }
@@ -227,7 +227,7 @@ void ov84_0223F584 (UnkStruct_ov84_0223B5A0 * param0, u16 param1)
     u16 v3;
 
     v0 = &param0->unk_04[1];
-    v2 = GetMoveFromTMOrHMItemID(param1);
+    v2 = Item_MoveForTMHM(param1);
 
     v1 = sub_0200B1EC(param0->unk_114, 98);
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -316,14 +316,14 @@ void ov84_0223F81C (UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u3
     Strbuf_Free(v0);
 }
 
-void ov84_0223F8D0 (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param1, u32 param2)
+void ov84_0223F8D0 (UnkStruct_ov84_0223B5A0 * param0, BagItem * param1, u32 param2)
 {
-    u16 v0 = param1->unk_00;
+    u16 v0 = param1->item;
 
     if (v0 < 420) {
         v0 = v0 - 328 + 1;
         sub_0200C648(param0->unk_110, 2, v0, 2, 2, &param0->unk_04[0], 0, param2 + 5);
-        ov84_0223F81C(param0, param1->unk_02, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
+        ov84_0223F81C(param0, param1->quantity, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
     } else {
         v0 = v0 - 420 + 1;
         sub_0200C5BC(param0->unk_110, v0, 2, 1, &param0->unk_04[0], 16, param2 + 5);
@@ -331,10 +331,10 @@ void ov84_0223F8D0 (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param
     }
 }
 
-void ov84_0223F94C (UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param1, u32 param2)
+void ov84_0223F94C (UnkStruct_ov84_0223B5A0 * param0, BagItem * param1, u32 param2)
 {
-    sub_0200C648(param0->unk_110, 2, sub_0207D344(param1->unk_00) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
-    ov84_0223F81C(param0, param1->unk_02, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
+    sub_0200C648(param0->unk_110, 2, Item_BerryNumber(param1->item) + 1, 2, 2, &param0->unk_04[0], 0, param2 + 5);
+    ov84_0223F81C(param0, param1->quantity, param2, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
 static void * ov84_0223F994 (UnkStruct_ov84_0223B5A0 * param0, NNSG2dCharacterData ** param1)

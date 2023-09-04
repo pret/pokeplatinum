@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
 
@@ -544,7 +544,7 @@ void ov94_0223D910 (UnkStruct_0200B144 * param0, UnkStruct_0200B144 * param1, Un
     v2 = sub_0200B29C(param2, param0, 102, 62);
     v0 = sub_0200B1EC(param1, v10);
 
-    Item_GetNameIntoString(v5, v8, 62);
+    Item_LoadName(v5, v8, 62);
 
     for (v9 = 0; v9 < 5; v9++) {
         sub_0201ADA4(&param3[v9], 0x0);

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/union_02022594_020225E0.h"

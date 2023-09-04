@@ -4174,7 +4174,7 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     }
 
     if (v0->unk_06 != 0) {
-        Item_GetNameIntoString(v0->unk_1C, v0->unk_06, 9);
+        Item_LoadName(v0->unk_1C, v0->unk_06, 9);
     } else {
         sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
     }
@@ -4281,7 +4281,7 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
     v0->unk_06 = param1;
 
     if (v0->unk_06 != 0) {
-        Item_GetNameIntoString(v0->unk_1C, v0->unk_06, 9);
+        Item_LoadName(v0->unk_1C, v0->unk_06, 9);
     } else {
         sub_0200B1B8(param2->unk_18C, 20, v0->unk_1C);
     }

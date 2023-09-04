@@ -4,7 +4,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_020998EC_decl.h"

@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -1250,10 +1250,10 @@ static void ov97_02234B0C (UnkStruct_ov97_02234A2C * param0, BoxPokemonGBA * par
     v2 = GetGBABoxMonData(param1, 12, NULL);
 
     if (v2) {
-        v3 = sub_0207CF10(v2);
+        v3 = Item_FromGBAID(v2);
         v8 = Strbuf_Init(64, 78);
 
-        Item_GetNameIntoString(v8, v3, 78);
+        Item_LoadName(v8, v3, 78);
 
         v4.unk_3C = v8;
         v4.unk_34 = -1;

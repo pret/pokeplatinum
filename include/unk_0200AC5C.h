@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200AC5C_decl.h"
 #include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 UnkStruct_0200AC5C * sub_0200AC5C(u32 param0, u32 param1, u32 param2);
 void sub_0200AC64(UnkStruct_0200AC5C * param0);

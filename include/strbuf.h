@@ -1,14 +1,12 @@
 #ifndef POKEPLATINUM_STRBUF_H
 #define POKEPLATINUM_STRBUF_H
 
-#include "struct_decls/struct_02023790_decl.h"
-
 typedef u16 charcode_t;
 
 /**
  * Managed string buffer.
  */
-struct Strbuf {
+typedef struct Strbuf {
     /// Maximum allocated size of the buffer.
     u16 maxSize;
 
@@ -24,7 +22,7 @@ struct Strbuf {
     /// incorrectly in order to match the original byte-code. The correct
     /// definition method would be as `data[]`.
     charcode_t data[1];
-};
+} Strbuf;
 
 /**
  * Control codes for how to pad numeric strings.

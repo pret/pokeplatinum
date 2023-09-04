@@ -713,11 +713,11 @@ static void ov19_021DC4F8 (UnkStruct_ov19_021DBA9C * param0, u32 param1)
         ov19_021D783C(&v0, &v2, ov19_021D77D0(param0->unk_00), v1->unk_1C, v1->unk_20, 0);
         NNS_G2dInitImageProxy(&v2);
 
-        v4 = sub_02006F50(16, sub_0207CE78(param1, 1), 0, &v3, 10);
+        v4 = sub_02006F50(16, Item_FileID(param1, 1), 0, &v3, 10);
         v3->mapingType = GX_GetOBJVRamModeChar();
         NNS_G2dLoadImage1DMapping(v3, 1520 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
-        sub_02006E84(16, sub_0207CE78(param1, 2), 1, 6 * 0x20, 0x20, 10);
+        sub_02006E84(16, Item_FileID(param1, 2), 1, 6 * 0x20, 0x20, 10);
         param0->unk_90 = ov19_021D785C(param0->unk_08, &v0, 18, 224, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         if (param0->unk_90) {

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/pokemon.h"
@@ -948,7 +948,7 @@ static void sub_02072F30 (UnkStruct_02072334 * param0, UnkStruct_021C0794 * para
         v7->unk_01 = 1;
         v7->unk_04 = sub_02028310(v6);
         v7->unk_05 = sub_02028314(v6);
-        v7->unk_06 = sub_0207D310(v7->unk_05);
+        v7->unk_06 = Item_ForMailNumber(v7->unk_05);
 
         Strbuf_CopyChars(v7->unk_08, sub_0202830C(v6));
 

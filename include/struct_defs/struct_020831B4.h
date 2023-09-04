@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_020831B4_H
 
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 typedef struct {
     Strbuf* unk_00;

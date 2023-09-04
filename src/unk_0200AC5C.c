@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "narc.h"
 #include "unk_0200AC5C.h"

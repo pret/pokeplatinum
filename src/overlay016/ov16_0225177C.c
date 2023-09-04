@@ -1,12 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207ADB4_decl.h"
-#include "struct_decls/struct_itemdata_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 
@@ -6160,7 +6159,7 @@ BOOL ov16_02259B9C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int * p
         }
 
         if ((param1->battleMons[param1->msgBattlerTemp].species == 493) && (param1->battleMons[param1->msgBattlerTemp].curHP) && (ov16_02255A4C(param1, param1->msgBattlerTemp) == 121)) {
-            v1 = sub_02077988(Item_GetAttribute(param1->battleMons[param1->msgBattlerTemp].heldItem, 1, 5));
+            v1 = sub_02077988(Item_LoadParam(param1->battleMons[param1->msgBattlerTemp].heldItem, 1, 5));
 
             if (param1->battleMons[param1->msgBattlerTemp].formNum != v1) {
                 param1->battleMons[param1->msgBattlerTemp].formNum = v1;
@@ -6962,10 +6961,10 @@ s32 ov16_0225B0FC (BattleContext * param0, u16 param1, u16 param2)
     ItemData * v0;
     u16 v1;
 
-    v1 = sub_0207CE78(param1, 0);
-    v0 = sub_0207D3B0(param0->aiContext.itemTable, v1);
+    v1 = Item_FileID(param1, 0);
+    v0 = ItemTable_Index(param0->aiContext.itemTable, v1);
 
-    return Item_GetAttributeFromStruct(v0, param2);
+    return Item_Get(v0, param2);
 }
 
 int ov16_0225B120 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)

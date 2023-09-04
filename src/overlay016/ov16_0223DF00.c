@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -588,7 +588,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
     v1 = ov16_0223DFAC(param0, param1, param2);
     v6 = 0;
 
-    if (Item_GetAttribute(param4, 15, 5)) {
+    if (Item_LoadParam(param4, 15, 5)) {
         v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x7) {
@@ -608,7 +608,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 16, 5)) {
+    if (Item_LoadParam(param4, 16, 5)) {
         v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0xf88) {
@@ -625,7 +625,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 17, 5)) {
+    if (Item_LoadParam(param4, 17, 5)) {
         v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x10) {
@@ -642,7 +642,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 18, 5)) {
+    if (Item_LoadParam(param4, 18, 5)) {
         v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x20) {
@@ -659,7 +659,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 19, 5)) {
+    if (Item_LoadParam(param4, 19, 5)) {
         v3 = GetMonData(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x40) {
@@ -676,7 +676,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 20, 5)) {
+    if (Item_LoadParam(param4, 20, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             v3 = ov16_02252060(v0, param1, 53, NULL);
 
@@ -688,7 +688,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 21, 5)) {
+    if (Item_LoadParam(param4, 21, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             v3 = ov16_02252060(v0, param1, 53, NULL);
 
@@ -700,7 +700,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 22, 5)) {
+    if (Item_LoadParam(param4, 22, 5)) {
         v3 = ov16_0225B45C(param0, v0, 1, param1);
 
         if (v3 == 0) {
@@ -712,7 +712,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 27, 5)) {
+    if (Item_LoadParam(param4, 27, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             if (ov16_02252060(v0, param1, 19, NULL) < 12) {
                 ov16_02252A14(v0, param1, 19, 1);
@@ -721,7 +721,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 28, 5)) {
+    if (Item_LoadParam(param4, 28, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             if (ov16_02252060(v0, param1, 20, NULL) < 12) {
                 ov16_02252A14(v0, param1, 20, 1);
@@ -730,7 +730,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 29, 5)) {
+    if (Item_LoadParam(param4, 29, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             if (ov16_02252060(v0, param1, 22, NULL) < 12) {
                 ov16_02252A14(v0, param1, 22, 1);
@@ -739,7 +739,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 30, 5)) {
+    if (Item_LoadParam(param4, 30, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             if (ov16_02252060(v0, param1, 23, NULL) < 12) {
                 ov16_02252A14(v0, param1, 23, 1);
@@ -748,7 +748,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 31, 5)) {
+    if (Item_LoadParam(param4, 31, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             if (ov16_02252060(v0, param1, 21, NULL) < 12) {
                 ov16_02252A14(v0, param1, 21, 1);
@@ -757,7 +757,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 32, 5)) {
+    if (Item_LoadParam(param4, 32, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             if (ov16_02252060(v0, param1, 24, NULL) < 12) {
                 ov16_02252A14(v0, param1, 24, 1);
@@ -766,7 +766,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 33, 5)) {
+    if (Item_LoadParam(param4, 33, 5)) {
         if ((v4 == param2) || (v5 == param2)) {
             v3 = ov16_02252060(v0, param1, 53, NULL);
 
@@ -778,8 +778,8 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 36, 5)) {
-        v3 = Item_GetAttribute(param4, 55, 5);
+    if (Item_LoadParam(param4, 36, 5)) {
+        v3 = Item_LoadParam(param4, 55, 5);
 
         if (GetMonData(v1, MON_DATA_58 + param3, NULL) != GetMonData(v1, MON_DATA_66 + param3, NULL)) {
             sub_0207536C(v1, MON_DATA_58 + param3, v3);
@@ -794,8 +794,8 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 37, 5)) {
-        v3 = Item_GetAttribute(param4, 55, 5);
+    if (Item_LoadParam(param4, 37, 5)) {
+        v3 = Item_LoadParam(param4, 55, 5);
 
         for (param3 = 0; param3 < 4; param3++) {
             if (GetMonData(v1, MON_DATA_58 + param3, NULL) != GetMonData(v1, MON_DATA_66 + param3, NULL)) {
@@ -812,10 +812,10 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 38, 5)) {
+    if (Item_LoadParam(param4, 38, 5)) {
         v3 = 0;
 
-        if (Item_GetAttribute(param4, 23, 5)) {
+        if (Item_LoadParam(param4, 23, 5)) {
             if (GetMonData(v1, MON_DATA_163, NULL) == 0) {
                 v3 = 1;
             }
@@ -824,7 +824,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
 
         if ((v3) && (GetMonData(v1, MON_DATA_163, NULL) != GetMonData(v1, MON_DATA_164, NULL))) {
-            v3 = Item_GetAttribute(param4, 54, 5);
+            v3 = Item_LoadParam(param4, 54, 5);
 
             switch (v3) {
             case 255:
@@ -850,7 +850,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
 
             sub_0207536C(v1, MON_DATA_163, v3);
 
-            if (!Item_GetAttribute(param4, 23, 5)) {
+            if (!Item_LoadParam(param4, 23, 5)) {
                 if (ov16_0223E208(param0, param1)) {
                     ov16_022523E8(v0, param1, 95, &v3);
                 } else {
@@ -864,21 +864,21 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
         }
     }
 
-    if (Item_GetAttribute(param4, 45, 5)) {
+    if (Item_LoadParam(param4, 45, 5)) {
         if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) < 100) && (v2 == 1)) {
-            v6 = Item_GetAttribute(param4, 56, 5);
+            v6 = Item_LoadParam(param4, 56, 5);
         }
     }
 
-    if (Item_GetAttribute(param4, 46, 5)) {
+    if (Item_LoadParam(param4, 46, 5)) {
         if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) >= 100) && (GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) < 200) && (v2 == 1)) {
-            v6 = Item_GetAttribute(param4, 57, 5);
+            v6 = Item_LoadParam(param4, 57, 5);
         }
     }
 
-    if (Item_GetAttribute(param4, 47, 5)) {
+    if (Item_LoadParam(param4, 47, 5)) {
         if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) >= 200) && (v2 == 1)) {
-            v6 = Item_GetAttribute(param4, 58, 5);
+            v6 = Item_LoadParam(param4, 58, 5);
         }
     }
 
@@ -894,7 +894,7 @@ BOOL ov16_0223E30C (UnkStruct_0207ADB4 * param0, int param1, int param2, int par
 
             v3 = GetMonData(v1, MON_DATA_HELD_ITEM, NULL);
 
-            if (Item_GetAttribute(param4, 1, 5) == 53) {
+            if (Item_LoadParam(param4, 1, 5) == 53) {
                 v6 = v6 * 150 / 100;
             }
         }

@@ -4,10 +4,8 @@
 #include "constants/battle.h"
 #include "constants/moves.h"
 
+#include "item.h"
 #include "move_table.h"
-
-#include "struct_decls/struct_itemdata_decl.h"
-
 typedef struct AIContext {
     u8 scriptCursor;
     u8 moveSlot;
