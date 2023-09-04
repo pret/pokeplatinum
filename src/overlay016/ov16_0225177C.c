@@ -6961,7 +6961,7 @@ s32 ov16_0225B0FC (BattleContext * param0, u16 param1, u16 param2)
     ItemData * v0;
     u16 v1;
 
-    v1 = Item_ID(param1, 0);
+    v1 = Item_FileID(param1, 0);
     v0 = ItemTable_Index(param0->aiContext.itemTable, v1);
 
     return Item_Get(v0, param2);

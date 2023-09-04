@@ -165,7 +165,7 @@ void Item_MoveInPocket(void *pocket, u16 srcSlot, u16 dstSlot);
  * @param type      The type of ID to get. 
  * @return The item's ID of the specified type.
  */
-u16 Item_ID(u16 item, enum ItemFileType type);
+u16 Item_FileID(u16 item, enum ItemFileType type);
 
 /**
  * @brief Get the ID of an item which matches the given GBA-era item ID.

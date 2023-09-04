@@ -707,7 +707,7 @@ void Item_MoveInPocket(void *pocket, u16 srcSlot, u16 dstSlot)
     items[dstSlot] = item;
 }
 
-u16 Item_ID(u16 item, enum ItemFileType type)
+u16 Item_FileID(u16 item, enum ItemFileType type)
 {
     switch (type) {
     case ITEM_FILE_TYPE_DATA:
@@ -1052,7 +1052,7 @@ u8 Item_IsHerbalMedicine(u16 item)
 
 void* ItemTable_Load(int heapID)
 {
-    int maxItem = Item_ID(NUM_ITEMS, ITEM_FILE_TYPE_DATA);
+    int maxItem = Item_FileID(NUM_ITEMS, ITEM_FILE_TYPE_DATA);
     return NARC_AllocAndReadFromMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, 0, heapID, 0, sizeof(ItemData) * maxItem);
 }
 

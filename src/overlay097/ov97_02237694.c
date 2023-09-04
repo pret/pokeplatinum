@@ -658,7 +658,7 @@ static void ov97_022380C8 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
         break;
     }
 
-    ov97_02237B0C(16, Item_ID(v0, 1), Item_ID(v0, 2), Item_IconNCERFile(), Item_IconNANRFile(), 1);
+    ov97_02237B0C(16, Item_FileID(v0, 1), Item_FileID(v0, 2), Item_IconNCERFile(), Item_IconNANRFile(), 1);
     ov97_02237C80((0 * FX32_ONE), (256 * FX32_ONE));
 
     param0->unk_26C = ov97_02237D14(1, param0->unk_26C, HW_LCD_WIDTH / 2, 0, 0);

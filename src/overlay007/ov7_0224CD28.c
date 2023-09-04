@@ -1513,12 +1513,12 @@ static void ov7_0224EB7C (UnkStruct_ov7_0224D008 * param0, u16 param1)
 
     v0 = sub_02009DC8(param0->unk_94.unk_194[0], 2);
 
-    sub_02009968(param0->unk_94.unk_194[0], v0, 16, Item_ID(param1, 1), 0, 11);
+    sub_02009968(param0->unk_94.unk_194[0], v0, 16, Item_FileID(param1, 1), 0, 11);
     sub_0200A4C0(v0);
 
     v0 = sub_02009DC8(param0->unk_94.unk_194[1], 1);
 
-    sub_020099D4(param0->unk_94.unk_194[1], v0, 16, Item_ID(param1, 2), 0, 11);
+    sub_020099D4(param0->unk_94.unk_194[1], v0, 16, Item_FileID(param1, 2), 0, 11);
     sub_0200A6B8(v0);
 }
 
