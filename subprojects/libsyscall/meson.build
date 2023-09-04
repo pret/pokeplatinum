@@ -15,3 +15,5 @@ libsyscall = static_library('syscall',
 libsyscall_dep = declare_dependency(
     link_with: libsyscall
 )
+
+meson.override_dependency('libsyscall', libsyscall_dep)

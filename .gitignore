@@ -5,6 +5,11 @@
 /tools/cw/mwrap.exe
 
 # Wrapped subprojects folders
+/subprojects/libvct-*/
+/subprojects/NitroDWC-*/
+/subprojects/NitroSDK-*/
+/subprojects/NitroSystem-*/
+/subprojects/NitroWiFi-*/
 /subprojects/nitrogfx/
 /subprojects/libpng-*/
 /subprojects/zlib-*/
