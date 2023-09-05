@@ -6,8 +6,8 @@
 	.text
 
 
-	arm_func_start ov66_02257C4C
-ov66_02257C4C: ; 0x02257C4C
+	arm_func_start b64size
+b64size: ; 0x02257C4C
 	ldr r1, _02257C80 ; =0xAAAAAAAB
 	mov r3, #3
 	umull r1, r2, r0, r1
@@ -23,20 +23,20 @@ ov66_02257C4C: ; 0x02257C4C
 	bx lr
 	; .align 2, 0
 _02257C80: .word 0xAAAAAAAB
-	arm_func_end ov66_02257C4C
+	arm_func_end b64size
 
-	arm_func_start ov66_02257C84
-ov66_02257C84: ; 0x02257C84
+	arm_func_start my_randinit
+my_randinit: ; 0x02257C84
 	ldr r1, _02257C94 ; =0x0225C6F8
 	orr r0, r0, r0, lsl #16
 	str r0, [r1, #0]
 	bx lr
 	; .align 2, 0
 _02257C94: .word Unk_ov66_0225C6F8
-	arm_func_end ov66_02257C84
+	arm_func_end my_randinit
 
-	arm_func_start ov66_02257C98
-ov66_02257C98: ; 0x02257C98
+	arm_func_start my_rand
+my_rand: ; 0x02257C98
 	stmfd sp!, {r3, lr}
 	ldr r1, _02257CD0 ; =0x0225B52C
 	ldr r0, _02257CD4 ; =0x0225C6F8
@@ -52,12 +52,12 @@ ov66_02257C98: ; 0x02257C98
 	and r0, r2, #0xff
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02257CD0: .word 0x0225B52C
+_02257CD0: .word Unk_ov66_0225B528 + 0x4
 _02257CD4: .word Unk_ov66_0225C6F8
-	arm_func_end ov66_02257C98
+	arm_func_end my_rand
 
-	arm_func_start ov66_02257CD8
-ov66_02257CD8: ; 0x02257CD8
+	arm_func_start DWCi_EncValidateKey
+DWCi_EncValidateKey: ; 0x02257CD8
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	ldr r4, _02257DC8 ; =0x0225B52C
 	mov ip, #0
@@ -121,13 +121,13 @@ _02257D84:
 	str r0, [r1, #0xc]
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
-_02257DC8: .word 0x0225B52C
-_02257DCC: .word 0x0225B53C
-_02257DD0: .word 0x0225B55C
-	arm_func_end ov66_02257CD8
+_02257DC8: .word Unk_ov66_0225B528 + 0x4
+_02257DCC: .word g_session + 0x4
+_02257DD0: .word g_session + 0x24
+	arm_func_end DWCi_EncValidateKey
 
-	arm_func_start ov66_02257DD4
-ov66_02257DD4: ; 0x02257DD4
+	arm_func_start DWCi_EncSessionValidateResponse
+DWCi_EncSessionValidateResponse: ; 0x02257DD4
 	stmfd sp!, {r4, r5, r6, r7, r8, lr}
 	sub sp, sp, #0x50
 	ldr r4, _02257F78 ; =0x02258CE4
@@ -152,7 +152,7 @@ _02257DF0:
 	ldmleia sp!, {r4, r5, r6, r7, r8, pc}
 	sub r4, r5, #0x28
 	mov r0, r4
-	bl ov66_02257C4C
+	bl b64size
 	add r1, r0, #0x29
 	mov r0, #7
 	bl DWC_Alloc
@@ -178,7 +178,7 @@ _02257E5C:
 	mov r3, #2
 	bl B64Encode
 	mov r0, r4
-	bl ov66_02257C4C
+	bl b64size
 	add r1, r7, #0x14
 	ldr r3, _02257F7C ; =0x0225B55C
 	add r8, r1, r0
@@ -193,7 +193,7 @@ _02257EA8:
 	add r8, r8, #2
 	bne _02257EA8
 	mov r0, r4
-	bl ov66_02257C4C
+	bl b64size
 	mov r2, r0
 	add r0, sp, #0x11
 	mov r1, r7
@@ -239,17 +239,17 @@ _02257F08:
 	ldmia sp!, {r4, r5, r6, r7, r8, pc}
 	; .align 2, 0
 _02257F78: .word Unk_ov66_02258CE4
-_02257F7C: .word 0x0225B55C
-_02257F80: .word 0x0225B52C
-	arm_func_end ov66_02257DD4
+_02257F7C: .word g_session + 0x24
+_02257F80: .word Unk_ov66_0225B528 + 0x4
+	arm_func_end DWCi_EncSessionValidateResponse
 
-	arm_func_start ov66_02257F84
-ov66_02257F84: ; 0x02257F84
+	arm_func_start DWCi_EncSessionProgressCallback
+DWCi_EncSessionProgressCallback: ; 0x02257F84
 	bx lr
-	arm_func_end ov66_02257F84
+	arm_func_end DWCi_EncSessionProgressCallback
 
-	arm_func_start ov66_02257F88
-ov66_02257F88: ; 0x02257F88
+	arm_func_start DWCi_EncSessionCompleteCallback
+DWCi_EncSessionCompleteCallback: ; 0x02257F88
 	stmfd sp!, {r3, r4, r5, lr}
 	sub sp, sp, #0x48
 	ldr r3, _022581D8 ; =0x0225B52C
@@ -375,7 +375,7 @@ _02258130:
 _02258150:
 	mov r0, r5
 	mov r1, r4
-	bl ov66_02257DD4
+	bl DWCi_EncSessionValidateResponse
 	cmp r0, #0
 	bne _02258178
 	mov r0, r5
@@ -411,16 +411,16 @@ _022581CC:
 	add sp, sp, #0x48
 	ldmia sp!, {r3, r4, r5, pc}
 	; .align 2, 0
-_022581D8: .word 0x0225B52C
-_022581DC: .word 0x02258CF5
-_022581E0: .word 0x0225B55C
-_022581E4: .word 0x0225B5CC
-_022581E8: .word 0x0225B5A0
-_022581EC: .word 0x0225B5D4
-	arm_func_end ov66_02257F88
+_022581D8: .word Unk_ov66_0225B528 + 0x4
+_022581DC: .word Unk_ov66_02258CF5
+_022581E0: .word g_session + 0x24
+_022581E4: .word Unk_ov66_0225B5CC
+_022581E8: .word g_session + 0x68
+_022581EC: .word Unk_ov66_0225B5D4
+	arm_func_end DWCi_EncSessionCompleteCallback
 
-	arm_func_start ov66_022581F0
-ov66_022581F0: ; 0x022581F0
+	arm_func_start DWCi_EncSessionEncrypt
+DWCi_EncSessionEncrypt: ; 0x022581F0
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, lr}
 	ldr r4, [sp, #0x20]
 	mov sb, r2
@@ -471,12 +471,12 @@ _02258284:
 	blt _02258284
 _0225829C:
 	mov r0, r6
-	bl ov66_02257C84
+	bl my_randinit
 	cmp r7, #0
 	mov r8, #0
 	ble _022582D0
 _022582B0:
-	bl ov66_02257C98
+	bl my_rand
 	add r2, r5, r8
 	ldrb r1, [r2, #4]
 	add r8, r8, #1
@@ -505,17 +505,17 @@ _022582D0:
 	mov r2, #0
 	bl DWC_Free
 	add r0, r7, #4
-	bl ov66_02257C4C
+	bl b64size
 	mov r1, #0
 	strb r1, [r4, r0]
 	mov r0, r1
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_02258334: .word 0x0225B52C
-	arm_func_end ov66_022581F0
+_02258334: .word Unk_ov66_0225B528 + 0x4
+	arm_func_end DWCi_EncSessionEncrypt
 
-	arm_func_start ov66_02258338
-ov66_02258338: ; 0x02258338
+	arm_func_start DWCi_EncSessionInitialize
+DWCi_EncSessionInitialize: ; 0x02258338
 	stmfd sp!, {r3, r4, r5, r6, r7, lr}
 	sub sp, sp, #0x28
 	mov r5, #0
@@ -600,7 +600,7 @@ _022583D0:
 	mov r3, r6
 	add r0, r4, #0x34
 	add r1, sp, #0x11
-	bl ov66_02257CD8
+	bl DWCi_EncValidateKey
 	mov r0, #0
 	bl DWC_InitGHTTP
 	ldr r0, _022584A4 ; =0x0225B52C
@@ -611,12 +611,12 @@ _022583D0:
 	add sp, sp, #0x28
 	ldmia sp!, {r3, r4, r5, r6, r7, pc}
 	; .align 2, 0
-_022584A4: .word 0x0225B52C
-_022584A8: .word 0x0225B628
+_022584A4: .word Unk_ov66_0225B528 + 0x4
+_022584A8: .word Unk_ov66_0225B628
 _022584AC: .word Unk_ov66_0225B528
-_022584B0: .word 0x0225B5DC
-_022584B4: .word 0x0225B604
-	arm_func_end ov66_02258338
+_022584B0: .word Unk_ov66_0225B5DC
+_022584B4: .word Unk_ov66_0225B604
+	arm_func_end DWCi_EncSessionInitialize
 
 	arm_func_start ov66_022584B8
 ov66_022584B8: ; 0x022584B8
@@ -634,11 +634,11 @@ _022584D4:
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
 _022584E4: .word 0xFFFEA048
-_022584E8: .word 0x0225B52C
+_022584E8: .word Unk_ov66_0225B528 + 0x4
 	arm_func_end ov66_022584B8
 
-	arm_func_start ov66_022584EC
-ov66_022584EC: ; 0x022584EC
+	arm_func_start DWCi_EncSessionProcess
+DWCi_EncSessionProcess: ; 0x022584EC
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	ldr r0, _022585E8 ; =0x0225B52C
@@ -660,12 +660,12 @@ _0225852C:
 	bl ov66_022584B8
 	b _022585D8
 _02258534:
-	ldr r2, _022585EC ; =ov66_02257F88
+	ldr r2, _022585EC ; =DWCi_EncSessionCompleteCallback
 	mov r1, #0
 	str r2, [sp]
 	str r1, [sp, #4]
 	ldr r0, [r0, #0x54]
-	ldr r3, _022585F0 ; =ov66_02257F84
+	ldr r3, _022585F0 ; =DWCi_EncSessionProgressCallback
 	mov r2, r1
 	bl DWC_GetGHTTPDataEx
 	ldr r1, _022585E8 ; =0x0225B52C
@@ -683,12 +683,12 @@ _02258574:
 	bl ov66_022584B8
 	b _022585D8
 _02258588:
-	ldr r2, _022585EC ; =ov66_02257F88
+	ldr r2, _022585EC ; =DWCi_EncSessionCompleteCallback
 	mov r1, #0
 	str r2, [sp]
 	str r1, [sp, #4]
 	ldr r0, [r0, #0x54]
-	ldr r3, _022585F0 ; =ov66_02257F84
+	ldr r3, _022585F0 ; =DWCi_EncSessionProgressCallback
 	mov r2, r1
 	bl DWC_GetGHTTPDataEx
 	ldr r1, _022585E8 ; =0x0225B52C
@@ -710,13 +710,13 @@ _022585D8:
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_022585E8: .word 0x0225B52C
-_022585EC: .word ov66_02257F88
-_022585F0: .word ov66_02257F84
-	arm_func_end ov66_022584EC
+_022585E8: .word Unk_ov66_0225B528 + 0x4
+_022585EC: .word DWCi_EncSessionCompleteCallback
+_022585F0: .word DWCi_EncSessionProgressCallback
+	arm_func_end DWCi_EncSessionProcess
 
-	arm_func_start ov66_022585F4
-ov66_022585F4: ; 0x022585F4
+	arm_func_start DWCi_EncSessionShutdown
+DWCi_EncSessionShutdown: ; 0x022585F4
 	stmfd sp!, {r3, lr}
 	ldr r0, _02258660 ; =0x0225B52C
 	ldr r1, [r0, #0x54]
@@ -747,22 +747,22 @@ _02258644:
 	str r1, [r0, #4]
 	ldmia sp!, {r3, pc}
 	; .align 2, 0
-_02258660: .word 0x0225B52C
-	arm_func_end ov66_022585F4
+_02258660: .word Unk_ov66_0225B528 + 0x4
+	arm_func_end DWCi_EncSessionShutdown
 
-	arm_func_start ov66_02258664
-ov66_02258664: ; 0x02258664
+	arm_func_start DWCi_EncSessionGetResponse
+DWCi_EncSessionGetResponse: ; 0x02258664
 	ldr r1, _02258678 ; =0x0225B52C
 	ldr r2, [r1, #0x6c]
 	str r2, [r0, #0]
 	ldr r0, [r1, #0x68]
 	bx lr
 	; .align 2, 0
-_02258678: .word 0x0225B52C
-	arm_func_end ov66_02258664
+_02258678: .word Unk_ov66_0225B528 + 0x4
+	arm_func_end DWCi_EncSessionGetResponse
 
-	arm_func_start ov66_0225867C
-ov66_0225867C: ; 0x0225867C
+	arm_func_start DWCi_EncSessionGetPrivateAsync
+DWCi_EncSessionGetPrivateAsync: ; 0x0225867C
 	stmfd sp!, {r4, r5, r6, r7, r8, sb, sl, fp, lr}
 	sub sp, sp, #0x34
 	ldr r4, _022588A4 ; =0x0225B52C
@@ -786,7 +786,7 @@ ov66_0225867C: ; 0x0225867C
 	str r1, [r0, #0x54]
 _022586D0:
 	add r0, r8, #0xc
-	bl ov66_02257C4C
+	bl b64size
 	mov r7, r0
 	ldr r0, _022588A8 ; =0x0225B650
 	bl strlen
@@ -862,7 +862,7 @@ _022586D0:
 	str r8, [sp]
 	ldr r0, [r4, #0x5c]
 	mov r2, #8
-	bl ov66_022581F0
+	bl DWCi_EncSessionEncrypt
 	cmp r0, #2
 	bne _0225883C
 	mov r1, r4
@@ -906,44 +906,44 @@ _0225888C:
 	add sp, sp, #0x34
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
-_022588A4: .word 0x0225B52C
-_022588A8: .word 0x0225B650
-_022588AC: .word 0x0225B5CC
-_022588B0: .word 0x0225B658
-_022588B4: .word 0x0225B65C
+_022588A4: .word Unk_ov66_0225B528 + 0x4
+_022588A8: .word Unk_ov66_0225B650
+_022588AC: .word Unk_ov66_0225B5CC
+_022588B0: .word Unk_ov66_0225B658
+_022588B4: .word Unk_ov66_0225B65C
 _022588B8: .word Unk_ov66_0225B528
-_022588BC: .word 0x0225B53C
-_022588C0: .word 0x0225B680
-_022588C4: .word 0x0225B6AC
-_022588C8: .word 0x0225B664
-_022588CC: .word 0x0225B5A0
-	arm_func_end ov66_0225867C
+_022588BC: .word g_session + 0x4
+_022588C0: .word Unk_ov66_0225B680
+_022588C4: .word Unk_ov66_0225B680 + 0x2C
+_022588C8: .word Unk_ov66_0225B664
+_022588CC: .word g_session + 0x68
+	arm_func_end DWCi_EncSessionGetPrivateAsync
 
-	arm_func_start ov66_022588D0
-ov66_022588D0: ; 0x022588D0
+	arm_func_start DWCi_EncSessionGetAsync
+DWCi_EncSessionGetAsync: ; 0x022588D0
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	ldr lr, [sp, #0x10]
 	mov ip, #0
 	str lr, [sp]
 	str ip, [sp, #4]
-	bl ov66_0225867C
+	bl DWCi_EncSessionGetPrivateAsync
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
-	arm_func_end ov66_022588D0
+	arm_func_end DWCi_EncSessionGetAsync
 
-	arm_func_start ov66_022588F4
-ov66_022588F4: ; 0x022588F4
+	arm_func_start DWCi_EncSessionGetReuseHashAsync
+DWCi_EncSessionGetReuseHashAsync: ; 0x022588F4
 	stmfd sp!, {r3, lr}
 	sub sp, sp, #8
 	ldr lr, [sp, #0x10]
 	mov ip, #1
 	str lr, [sp]
 	str ip, [sp, #4]
-	bl ov66_0225867C
+	bl DWCi_EncSessionGetPrivateAsync
 	add sp, sp, #8
 	ldmia sp!, {r3, pc}
-	arm_func_end ov66_022588F4
+	arm_func_end DWCi_EncSessionGetReuseHashAsync
 
 	.rodata
 
@@ -951,6 +951,9 @@ ov66_022588F4: ; 0x022588F4
 	.global Unk_ov66_02258CE4
 Unk_ov66_02258CE4: ; 0x02258CE4
 	.asciz "0123456789abcdef"
+
+	.global Unk_ov66_02258CF5
+Unk_ov66_02258CF5: ; 0x02258CF5
 	.asciz "0123456789abcdef"
 	.space 0x2
 
@@ -962,28 +965,61 @@ Unk_ov66_02258CE4: ; 0x02258CE4
 Unk_ov66_0225B528: ; 0x0225B528
 	.word 0x0
 	.word 0x2
-	.space 0x9C
-	.ascii "&hash="
-	.space 0x2
-	.ascii "error:"
-	.space 0x2
-	.ascii "http://gamestats2.gs.nintendowifi.net/"
-	.space 0x2
-	.ascii "http://sdkdev.gamespy.com/games/"
-	.space 0x4
-	.ascii "http://ishikawa.servebeer.com/games/"
-	.space 0x4
-	.ascii "&data="
-	.space 0x2
-	.ascii "%d"
-	.space 0x2
+	.word 0x0
+	.word 0x0
+
+	.global g_session
+g_session: ; 0x0225B538
+	.space 0x94
+
+	.global Unk_ov66_0225B5CC
+Unk_ov66_0225B5CC: ; 0x0225B5CC
+	.asciz "&hash="
+	.space 0x1
+
+	.global Unk_ov66_0225B5D4
+Unk_ov66_0225B5D4: ; 0x0225B5D4
+	.asciz "error:"
+	.space 0x1
+
+	.global Unk_ov66_0225B5DC
+Unk_ov66_0225B5DC: ; 0x0225B5DC
+	.asciz "http://gamestats2.gs.nintendowifi.net/"
+	.space 0x1
+
+	.global Unk_ov66_0225B604
+Unk_ov66_0225B604: ; 0x0225B604
+	.asciz "http://sdkdev.gamespy.com/games/"
+	.space 0x3
+
+	.global Unk_ov66_0225B628
+Unk_ov66_0225B628: ; 0x0225B628
+	.asciz "http://ishikawa.servebeer.com/games/"
+	.space 0x3
+
+	.global Unk_ov66_0225B650
+Unk_ov66_0225B650: ; 0x0225B650
+	.asciz "&data="
+	.space 0x1
+
+	.global Unk_ov66_0225B658
+Unk_ov66_0225B658: ; 0x0225B658
+	.asciz "%d"
+	.space 0x1
+
+	.global Unk_ov66_0225B65C
+Unk_ov66_0225B65C: ; 0x0225B65C
 	.asciz "?pid="
 	.space 0x2
+
+	.global Unk_ov66_0225B664
+Unk_ov66_0225B664: ; 0x0225B664
 	.asciz "%s%s%s?pid=%d&hash=%s&data="
+
+	.global Unk_ov66_0225B680
+Unk_ov66_0225B680: ; 0x0225B680
 	.ascii "0000000000000000000000000000000000000000"
 	.space 0x8
-
-
 
 
 	.bss

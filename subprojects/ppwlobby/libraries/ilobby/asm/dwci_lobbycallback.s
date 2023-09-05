@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/dwci_lobbycallb.inc"
 
-	
+	.extern Unk_ov66_02259130
 
 	.text
 
@@ -45,7 +45,7 @@ _02246478:
 	add sp, sp, #0x1c
 	ldmia sp!, {r3, r4, pc}
 	; .align 2, 0
-_02246498: .word 0x02259138
+_02246498: .word Unk_ov66_02259130 + 0x8
 	arm_func_end ov66_0224640C
 
 	arm_func_start ov66_0224649C

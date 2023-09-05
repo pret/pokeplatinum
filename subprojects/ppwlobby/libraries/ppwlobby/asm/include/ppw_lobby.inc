@@ -172,9 +172,9 @@
 .public ov66_02245C54
 .public ov66_02245D20
 .public ov66_02246290
-.public ov66_02258338
-.public ov66_022584EC
-.public ov66_022585F4
-.public ov66_02258664
-.public ov66_022588D0
-.public ov66_022588F4
+.public DWCi_EncSessionInitialize
+.public DWCi_EncSessionProcess
+.public DWCi_EncSessionShutdown
+.public DWCi_EncSessionGetResponse
+.public DWCi_EncSessionGetAsync
+.public DWCi_EncSessionGetReuseHashAsync
