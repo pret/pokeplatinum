@@ -3,6 +3,7 @@
 
 	.extern Unk_021C3A38
 	.extern Unk_021C3A38
+	.extern FX_SinCosTable_
 
 	.text
 
@@ -1084,7 +1085,7 @@ _020A15E8: .word 0x00000FFF
 _020A15EC: .word Unk_021C3A38
 _020A15F0: .word 0x5EEDF715
 _020A15F4: .word 0x1B0CB173
-_020A15F8: .word 0x020F983C
+_020A15F8: .word FX_SinCosTable_
 _020A15FC: .word 0x00000003
 _020A1600: .word 0xAAAAAAAB
 _020A1604: .word 0x0000FFFF

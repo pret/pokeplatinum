@@ -3,6 +3,7 @@
 
 	.extern Unk_021C3A38
 	.extern Unk_021C3A38
+	.extern FX_SinCosTable_
 
 	.text
 
@@ -187,7 +188,7 @@ _020A2098:
 	ldmia sp!, {r4, lr}
 	bx lr
 	; .align 2, 0
-_020A20B4: .word 0x020F983C
+_020A20B4: .word FX_SinCosTable_
 	arm_func_end SPL_020A1FE0
 
 	arm_func_start SPL_020A20B8
