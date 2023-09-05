@@ -1301,7 +1301,7 @@ static int ov109_021D1918 (UnkStruct_ov109_021D0F70 * param0)
         BOOL v1;
 
         v0 = Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0];
-        v0 += sub_0201D2E8() % (Unk_ov109_021D5BE4[param0->unk_2C.unk_04][1] - v0 + 1);
+        v0 += LCRNG_Next() % (Unk_ov109_021D5BE4[param0->unk_2C.unk_04][1] - v0 + 1);
 
         if (v0 < Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0]) {
             v0 = Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0];

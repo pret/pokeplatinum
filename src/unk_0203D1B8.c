@@ -1642,21 +1642,21 @@ static u8 sub_0203E484 (UnkStruct_021C0794 * param0, u8 param1)
     u8 v3[12];
     u8 v4, v5, v6, v7;
 
-    v2 = sub_0201D2D0();
+    v2 = LCRNG_GetSeed();
 
-    sub_0201D2DC(sub_0202B428(v1));
+    LCRNG_SetSeed(sub_0202B428(v1));
     MI_CpuCopy8(v0, v3, sizeof(v3));
 
     for (v4 = 0; v4 < 12; v4++) {
         for (v5 = v4 + 1; v5 < 12; v5++) {
-            v6 = sub_0201D2E8() % 12;
+            v6 = LCRNG_Next() % 12;
             v7 = v3[v4];
             v3[v4] = v3[v6];
             v3[v6] = v7;
         }
     }
 
-    sub_0201D2DC(v2);
+    LCRNG_SetSeed(v2);
     return v3[param1];
 }
 

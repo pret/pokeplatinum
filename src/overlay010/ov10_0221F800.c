@@ -804,8 +804,8 @@ static u8 ov10_02220014 (UnkStruct_ov10_0221FB28 * param0)
         ov10_02221440(param0, 2, 0, 0);
         ov10_02221440(param0, 3, 0, 0);
     } else if (param0->unk_B76 < 24) {
-        v0 = (sub_0201D2E8() % param0->unk_B70) - (param0->unk_B70 / 2);
-        v1 = (sub_0201D2E8() % param0->unk_B71) - (param0->unk_B71 / 2);
+        v0 = (LCRNG_Next() % param0->unk_B70) - (param0->unk_B70 / 2);
+        v1 = (LCRNG_Next() % param0->unk_B71) - (param0->unk_B71 / 2);
 
         if (((v0 < 0) && (param0->unk_B6C < 0)) || ((v0 > 0) && (param0->unk_B6C > 0))) {
             v0 *= -1;

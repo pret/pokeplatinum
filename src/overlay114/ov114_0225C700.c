@@ -1910,7 +1910,7 @@ static int ov114_0225DA2C (const u8 * param0, u32 param1)
     u32 v1;
     int v2;
 
-    v0 = sub_0201D35C() % 100;
+    v0 = MTRNG_Next() % 100;
     v1 = 0;
 
     for (v2 = 0; v2 < param1; v2++) {

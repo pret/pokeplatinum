@@ -138,7 +138,7 @@ u32 sub_02030E48 (UnkStruct_021C0794 * param0, UnkStruct_ov96_0223B574 * param1)
 
     sub_02030DD0(param0, param1);
 
-    v0 = sub_0201D2E8() % 1000;
+    v0 = LCRNG_Next() % 1000;
 
     param1->unk_58 = v0;
     param1->unk_5A = 0xffff;

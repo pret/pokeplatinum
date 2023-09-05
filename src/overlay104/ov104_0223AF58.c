@@ -1376,7 +1376,7 @@ void ov104_0223AF58 (u8 param0, u8 param1, u8 param2, u8 param3, u16 param4[])
     v3 = ov104_0223B644(param2);
 
     do {
-        v1 = (sub_0201D2E8() % (8 + 4));
+        v1 = (LCRNG_Next() % (8 + 4));
 
         if (v1 < 8) {
             param4[v2 + v4] = Unk_ov104_0224041C[v3][v1];
@@ -1413,7 +1413,7 @@ void ov104_0223AFB4 (u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16
     }
 
     do {
-        v5 = (sub_0201D2E8() % (NELEMS(Unk_ov104_022404BC)));
+        v5 = (LCRNG_Next() % (NELEMS(Unk_ov104_022404BC)));
         v1 = v5;
 
         while (TRUE) {
@@ -1441,7 +1441,7 @@ void ov104_0223AFB4 (u8 param0, u8 param1, int param2, u8 param3, u8 param4, u16
 
             if (v5 == v1) {
                 while (TRUE) {
-                    v6 = (sub_0201D2E8() % 8);
+                    v6 = (LCRNG_Next() % 8);
 
                     if (v4 != Unk_ov104_0224041C[v8][v6]) {
                         param5[v7 + v3] = Unk_ov104_0224041C[v8][v6];
@@ -1519,7 +1519,7 @@ void ov104_0223B0C8 (u8 param0, u8 param1, u8 param2, u8 param3, u16 param4, u16
     }
 
     v5 = (v0->unk_02 - v0->unk_00) + 1;
-    v4 = v0->unk_00 + (sub_0201D2E8() % v5);
+    v4 = v0->unk_00 + (LCRNG_Next() % v5);
     v4 -= 1;
     v6 = v4;
 

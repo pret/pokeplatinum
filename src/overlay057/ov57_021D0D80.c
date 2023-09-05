@@ -404,11 +404,11 @@ static void ov57_021D0EAC (int param0, UnkStruct_021C0794 * param1, BOOL param2)
     sub_02025D84(v3);
 
     v4 = sub_0202B4A0(param1);
-    sub_0202B40C(v4, 1, sub_0201D35C());
+    sub_0202B40C(v4, 1, MTRNG_Next());
     sub_0206C008(param1);
 
     v2 = sub_02025E38(param1);
-    v0 = sub_0201D35C();
+    v0 = MTRNG_Next();
 
     if (param2) {
         sub_02025F1C(v2, v0);

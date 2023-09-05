@@ -104,7 +104,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         sub_0202B444(v1, 0, 1, v14);
         sub_0202B470(v1, 0, sub_02025F30(v15));
         sub_0202B494(v1, 0, GAME_LANGUAGE);
-        sub_0202B40C(v1, 0, sub_0201D35C());
+        sub_0202B40C(v1, 0, MTRNG_Next());
         Strbuf_Free(v14);
         sub_0202B384(v1, 0, 1);
         sub_0206D424(param0->unk_34);

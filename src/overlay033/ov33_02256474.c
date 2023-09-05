@@ -309,8 +309,8 @@ static void ov33_022567D4 (VecFx32 * param0)
 {
     fx32 v0, v1;
 
-    v0 = (-32 + (sub_0201D35C() & 63)) * FX32_ONE;
-    v1 = (-32 + (sub_0201D35C() & 63)) * FX32_ONE;
+    v0 = (-32 + (MTRNG_Next() & 63)) * FX32_ONE;
+    v1 = (-32 + (MTRNG_Next() & 63)) * FX32_ONE;
 
     VEC_Set(param0, v0, v1, 0);
     VEC_Normalize(param0, param0);

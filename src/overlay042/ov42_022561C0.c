@@ -152,7 +152,7 @@ static BOOL ov42_02256310 (UnkStruct_ov42_0225621C * param0)
     case 0:
 
         if (ov42_02256398()) {
-            param0->unk_08.unk_00 = sub_0201D35C() & 1;
+            param0->unk_08.unk_00 = MTRNG_Next() & 1;
             ov42_022564A0(param0->unk_0C, 2);
             param0->unk_01++;
         }

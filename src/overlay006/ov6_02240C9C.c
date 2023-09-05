@@ -1107,7 +1107,7 @@ static u8 ov6_02241B40 (const UnkStruct_ov6_0224222C * param0, const UnkStruct_o
     }
 
     v0 = v3 - v2 + 1;
-    v1 = sub_0201D2E8() % v0;
+    v1 = LCRNG_Next() % v0;
 
     if (param1->unk_0D == 0) {
         if ((param1->unk_0E == 55) || (param1->unk_0E == 72) || (param1->unk_0E == 46)) {
@@ -1502,7 +1502,7 @@ static BOOL ov6_0224219C (const UnkStruct_ov6_0224222C * param0, const u8 param1
         return 0;
     }
 
-    *param3 = v0[sub_0201D2E8() % v1];
+    *param3 = v0[LCRNG_Next() % v1];
     return 1;
 }
 
@@ -1717,7 +1717,7 @@ static BOOL ov6_02242514 (const int param0, const UnkStruct_ov6_022422D0 * param
 
             v1 = 1;
             v4 = Unk_ov6_02248FF0[param1->unk_11].unk_00;
-            v2 = Unk_ov6_02248FF0[param1->unk_11].unk_04[sub_0201D2E8() % v4];
+            v2 = Unk_ov6_02248FF0[param1->unk_11].unk_04[LCRNG_Next() % v4];
         }
 
         if (v1) {

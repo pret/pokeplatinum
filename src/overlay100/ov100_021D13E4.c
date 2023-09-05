@@ -328,7 +328,7 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
         param0->unk_0C.unk_D4[v0].unk_24 = 0;
         param0->unk_0C.unk_D4[v0].unk_28[0] = 1;
         param0->unk_0C.unk_D4[v0].unk_28[1] = 1;
-        param0->unk_0C.unk_D4[v0].unk_28[2] = sub_0201D2E8() % 10;
+        param0->unk_0C.unk_D4[v0].unk_28[2] = LCRNG_Next() % 10;
         param0->unk_0C.unk_D4[v0].unk_28[3] = 0;
         param0->unk_0C.unk_D4[v0].unk_40 = sub_0200D9E8(ov100_021D4438, &param0->unk_0C.unk_D4[v0], 4096 - 1);
     }
@@ -361,7 +361,7 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
         param0->unk_0C.unk_0C[v0].unk_24 = 0;
         param0->unk_0C.unk_0C[v0].unk_28[0] = 1;
         param0->unk_0C.unk_0C[v0].unk_28[1] = 1;
-        param0->unk_0C.unk_0C[v0].unk_28[2] = sub_0201D2E8() % 10;
+        param0->unk_0C.unk_0C[v0].unk_28[2] = LCRNG_Next() % 10;
         param0->unk_0C.unk_0C[v0].unk_28[3] = 0;
         param0->unk_0C.unk_0C[v0].unk_40 = sub_0200D9E8(ov100_021D4438, &param0->unk_0C.unk_0C[v0], 4096);
     }

@@ -1156,7 +1156,7 @@ void sub_0206D9B4 (UnkStruct_0202440C * param0, Pokemon * param1, u8 param2)
     UnkStruct_0206D9F4 * v1 = &v0.val14;
 
     v1->unk_06 = param2;
-    v1->unk_05 = sub_0201D35C() % 3;
+    v1->unk_05 = MTRNG_Next() % 3;
 
     sub_0206CE38(param1, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     sub_0202E43C(param0, 2, 21, (const u8 *)v1);
@@ -2072,7 +2072,7 @@ static int sub_0206E870 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     GF_ASSERT(v1 > 0);
 
     if (v1 > 1) {
-        v1 = sub_0201D35C() % v1;
+        v1 = MTRNG_Next() % v1;
     } else {
         v1 = 0;
     }
@@ -2703,7 +2703,7 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
     v5 = 0xff;
     v6 = 0xff;
-    v0 = (sub_0201D2E8() % 0xffff);
+    v0 = (LCRNG_Next() % 0xffff);
     v2 = GetNatureFromPersonality(v0);
 
     sub_0200B6D8(param1, 0, v2);
@@ -2745,7 +2745,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     UnkStruct_02025E6C * v7 = sub_02025E38(sub_0203D174(param0));
 
     v1 = sub_0202D834(param0->unk_0C);
-    v2 = (sub_0201D2E8() % 29);
+    v2 = (LCRNG_Next() % 29);
 
     sub_02071D10(sub_0206C3C8(v2), 4, v6);
     sub_0200B48C(param1, 0, v6, 0, 1, GAME_LANGUAGE);
@@ -2804,7 +2804,7 @@ static int sub_0206EEBC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v2 = sub_0206EE9C(v5);
 
     if (v2 > 1) {
-        v3 = sub_0201D35C() % v2;
+        v3 = MTRNG_Next() % v2;
     } else {
         v3 = 0;
     }
@@ -2857,13 +2857,13 @@ static int sub_0206EF7C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v0 = 0;
 
     if (sub_0206A954(sub_020507E4(param0->unk_0C)) == 1) {
-        v0 = (sub_0201D2E8() % 8);
+        v0 = (LCRNG_Next() % 8);
     } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 11) == 1) {
-        v0 = (sub_0201D2E8() % 5);
+        v0 = (LCRNG_Next() % 5);
     } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 10) == 1) {
-        v0 = (sub_0201D2E8() % 4);
+        v0 = (LCRNG_Next() % 4);
     } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 18) == 1) {
-        v0 = (sub_0201D2E8() % 2);
+        v0 = (LCRNG_Next() % 2);
     }
 
     return 0 + v0;
@@ -2875,7 +2875,7 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v1, v2, v3;
     const UnkStruct_02026324 * v4 = sub_02027560(param0->unk_0C);
 
-    v1 = (sub_0201D2E8() % (493 - 1)) + 1;
+    v1 = (LCRNG_Next() % (493 - 1)) + 1;
 
     for (v2 = 1; v2 <= 493; v2++) {
         if (sub_02026FE8(v4, v1) == 1) {
@@ -2895,12 +2895,12 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     sub_0200B48C(param1, 0, v0, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 
-    v1 = (sub_0201D2E8() % 3);
+    v1 = (LCRNG_Next() % 3);
 
     if (v1 == 0) {
         return 8;
     } else if (v1 == 1) {
-        v1 = (sub_0201D2E8() % 34) + 25;
+        v1 = (LCRNG_Next() % 34) + 25;
         sub_0200B60C(param1, 1, v1, 2, 0, 1);
         return 9;
     } else {
@@ -2935,7 +2935,7 @@ static int sub_0206F118 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 {
     u16 v0;
 
-    v0 = (sub_0201D2E8() % 3);
+    v0 = (LCRNG_Next() % 3);
 
     if (v0 == 0) {
         return 11;
@@ -2950,7 +2950,7 @@ static int sub_0206F13C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 {
     u16 v0;
 
-    v0 = (sub_0201D2E8() % 3);
+    v0 = (LCRNG_Next() % 3);
 
     if (v0 == 0) {
         return 14;
@@ -2974,9 +2974,9 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
 
     sub_0206CE74(param1, 0, GetMonData(v3, MON_DATA_SPECIES, NULL), GetMonData(v3, MON_DATA_111, NULL), sub_02025FD8(v5), sub_02025FCC(v5));
-    sub_0200BFAC(param1, 1, (sub_0201D2E8() % 100));
+    sub_0200BFAC(param1, 1, (LCRNG_Next() % 100));
 
-    v1 = (sub_0201D2E8() % (493 - 2) + 1);
+    v1 = (LCRNG_Next() % (493 - 2) + 1);
 
     for (v2 = 1; v2 <= 493; v2++) {
         if (sub_02026FE8(v6, v1) == 1) {
@@ -2993,7 +2993,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
         }
     }
 
-    sub_0200B630(param1, 3, (sub_0201D2E8() % 467 - 2) + 1);
+    sub_0200B630(param1, 3, (LCRNG_Next() % 467 - 2) + 1);
 
     return 17;
 }
@@ -3032,7 +3032,7 @@ static int sub_0206F29C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 {
     u16 v0;
 
-    v0 = (sub_0201D2E8() % 9);
+    v0 = (LCRNG_Next() % 9);
 
     if (v0 == 0) {
         return 20;

@@ -97,7 +97,7 @@ static int ov104_0223BCBC (u8 param0, int param1, int param2)
         v2 = Unk_ov104_02241298[param1].unk_00;
     }
 
-    v0 = v2 + (sub_0201D2E8() % v1);
+    v0 = v2 + (LCRNG_Next() % v1);
     return v0;
 }
 

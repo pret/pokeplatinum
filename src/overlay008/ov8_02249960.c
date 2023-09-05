@@ -3929,14 +3929,14 @@ void ov8_0224C198 (UnkStruct_0203CDB0 * param0)
 
             if (v6 != 2) {
                 const u8 * v9 = Unk_ov8_0224C6F8[v6];
-                int v10 = sub_0201D35C() % v8->unk_08;
+                int v10 = MTRNG_Next() % v8->unk_08;
 
                 v1->unk_02 = v10 + v8->unk_04;
 
                 do {
                     do {
-                        v1->unk_04 = sub_0201D35C() % v8->unk_14;
-                        v1->unk_06 = sub_0201D35C() % v8->unk_18;
+                        v1->unk_04 = MTRNG_Next() % v8->unk_14;
+                        v1->unk_06 = MTRNG_Next() % v8->unk_18;
                     } while (v9[(v1->unk_06 * v8->unk_14) + v1->unk_04] == 1);
 
                     v1->unk_04 += v8->unk_0C;

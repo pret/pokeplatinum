@@ -199,7 +199,7 @@ void sub_02028658 (UnkStruct_021C0794 * param0, int param1)
         }
     }
 
-    v0->unk_90 = sub_0201D30C(v0->unk_90 + param1);
+    v0->unk_90 = ARNG_Next(v0->unk_90 + param1);
     v0->unk_9AC_0 = 1;
 }
 

@@ -1326,9 +1326,9 @@ void ov83_0223EDDC (UnkStruct_ov83_0223ED3C * param0, int param1, int param2)
         ov83_0223F054(v0);
     }
 
-    v1 = sub_0201D35C();
-    v10 = v9.unk_10 + (sub_0201D35C() % v9.unk_11);
-    v11 = v9.unk_12 + (sub_0201D35C() % v9.unk_13);
+    v1 = MTRNG_Next();
+    v10 = v9.unk_10 + (MTRNG_Next() % v9.unk_11);
+    v11 = v9.unk_12 + (MTRNG_Next() % v9.unk_13);
 
     v11 += v10;
 
@@ -1344,7 +1344,7 @@ void ov83_0223EDDC (UnkStruct_ov83_0223ED3C * param0, int param1, int param2)
     v4 += 96 * FX32_ONE;
     v5 += 96 * FX32_ONE;
 
-    v6 = v9.unk_00 + (sub_0201D35C() % v9.unk_04);
+    v6 = v9.unk_00 + (MTRNG_Next() % v9.unk_04);
     ov83_0223F1C0(v0, v9.unk_17, v2, v3, v7, v4, v5, v8, FX32_CONST(0.10f), v6, v9.unk_08, v9.unk_18, v9.unk_14, &param0->unk_08[v9.unk_15], v9.unk_16, param0->unk_04, param0->unk_0C, v9.unk_19, v9.unk_1A);
     v0->unk_7C = param0->unk_410;
 

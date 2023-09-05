@@ -196,7 +196,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
 
     if (param3 == 0) {
         do {
-            v2 = (sub_0201D2E8() | sub_0201D2E8() << 16);
+            v2 = (LCRNG_Next() | LCRNG_Next() << 16);
         } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (sub_02075E38(param2, v2) == 1));
 
         param0->unk_10 = v2;
@@ -465,7 +465,7 @@ u32 ov104_0222E2F0 (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, int para
 {
     u32 v0, v1, v2;
 
-    v0 = sub_0201D2E8() | (sub_0201D2E8() << 16);
+    v0 = LCRNG_Next() | (LCRNG_Next() << 16);
     v2 = ov104_0222DD6C(param0, param1, v0, param4, param3, param2, 0, param5, param6);
 
     return v2;
@@ -531,7 +531,7 @@ BOOL ov104_0222E3E4 (UnkStruct_0204B184 * param0, const u16 param1[], const u16 
     v2 = 0;
 
     while (v0 != param4) {
-        v5 = (sub_0201D2E8() % param0->unk_02);
+        v5 = (LCRNG_Next() % param0->unk_02);
         v1 = param0->unk_04[v5];
 
         ov104_0222DCF4(&v3[v0], v1, 179);

@@ -1051,7 +1051,7 @@ u32 sub_02095A74 (int param0, int param1)
     u32 v2;
 
     if ((param0 == 3) || (param1 == 1)) {
-        return sub_0201D2E8() % 12;
+        return LCRNG_Next() % 12;
     }
 
     MI_CpuClear8(v0, 12);
@@ -1072,5 +1072,5 @@ u32 sub_02095A74 (int param0, int param1)
         v0[v1++] = 8;
     }
 
-    return v0[sub_0201D2E8() % v1];
+    return v0[LCRNG_Next() % v1];
 }

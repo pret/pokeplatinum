@@ -712,7 +712,7 @@ static u8 ov70_0225D194 (const u8 * param0, u32 param1)
 {
     int v0;
 
-    v0 = sub_0201D35C() % param1;
+    v0 = MTRNG_Next() % param1;
     return param0[v0];
 }
 

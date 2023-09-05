@@ -1715,7 +1715,7 @@ static void ov111_021D26EC (UnkStruct_ov111_021D0F7C * param0)
 
     for (v0 = 0; v0 < 2; v0++) {
         while (TRUE) {
-            v1 = (sub_0201D2E8() % 9);
+            v1 = (LCRNG_Next() % 9);
 
             if (param0->unk_3C4[v1] == 176) {
                 param0->unk_3C4[v1] = 4;
@@ -1732,12 +1732,12 @@ static void ov111_021D271C (UnkStruct_ov111_021D0F7C * param0)
     int v0, v1, v2, v3, v4;
     u8 v5;
 
-    v5 = (sub_0201D2E8() % 4);
+    v5 = (LCRNG_Next() % 4);
     v3 = 0;
 
     for (v0 = 0; v0 < 9; v0++) {
         while (TRUE) {
-            v4 = (sub_0201D2E8() % 9);
+            v4 = (LCRNG_Next() % 9);
 
             if (param0->unk_3C4[v4] == 176) {
                 v3 = 0;
@@ -1813,14 +1813,14 @@ static void ov111_021D27D4 (UnkStruct_ov111_021D0F7C * param0, u8 param1)
         v2[v0] = 0xff;
     }
 
-    v3 = (sub_0201D2E8() % 4);
+    v3 = (LCRNG_Next() % 4);
 
     for (v0 = 0; v0 < 4; v0++) {
         if (v0 == v3) {
             param0->unk_3CE[v0] = 92;
         } else {
             while (TRUE) {
-                v2[v0] = (sub_0201D2E8() % (NELEMS(Unk_ov111_021D37E4)));
+                v2[v0] = (LCRNG_Next() % (NELEMS(Unk_ov111_021D37E4)));
 
                 for (v1 = 0; v1 < v0; v1++) {
                     if (v2[v1] == v2[v0]) {

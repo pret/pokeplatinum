@@ -2180,7 +2180,7 @@ static void ov115_022626E0 (UnkStruct_ov115_022622F8 * param0, UnkStruct_ov115_0
         param0->unk_04.unk_04.z = -param0->unk_04.unk_04.z;
 
         if (param4) {
-            v3 = sub_0201D35C();
+            v3 = MTRNG_Next();
 
             if (MATH_ABS(param0->unk_04.unk_04.x) <= MATH_ABS(param0->unk_04.unk_04.z)) {
                 v1 = FX_Mul(param0->unk_04.unk_04.z, (FX32_CONST(1.0f)));

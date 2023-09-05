@@ -582,7 +582,7 @@ void ov5_021EB7F8 (UnkStruct_02061AB4 * param0)
     v0 = sub_02062ACC(param0, (sizeof(UnkStruct_ov5_021EB7F8)));
 
     v0->unk_00 = -1;
-    v0->unk_02 = sub_0201D2E8() % 16;
+    v0->unk_02 = LCRNG_Next() % 16;
 
     ov5_021ECF04(param0, &v0->unk_04);
 
@@ -663,7 +663,7 @@ void ov5_021EB8B8 (UnkStruct_02061AB4 * param0)
 
         if (v2->unk_01 >= 32) {
             v2->unk_01 = 0;
-            v2->unk_02 = sub_0201D2E8() % 16;
+            v2->unk_02 = LCRNG_Next() % 16;
         }
     }
 

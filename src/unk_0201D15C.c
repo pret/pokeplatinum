@@ -10,7 +10,7 @@ typedef struct {
     MATHCRC16Table unk_00;
 } UnkStruct_021BFB10;
 
-static u16 sub_0201D608(u32 * param0);
+static u16 LCRNG_NextFrom(u32 * seed);
 
 fx32 sub_0201D15C (u16 param0)
 {
@@ -85,78 +85,78 @@ fx32 sub_0201D2C4 (fx32 param0)
     return sub_0201D264(v0);
 }
 
-u32 Unk_021BFB14;
+u32 gLCRNG_State;
 
-u32 sub_0201D2D0 (void)
+u32 LCRNG_GetSeed (void)
 {
-    return Unk_021BFB14;
+    return gLCRNG_State;
 }
 
-void sub_0201D2DC (u32 param0)
+void LCRNG_SetSeed (u32 seed)
 {
-    Unk_021BFB14 = param0;
+    gLCRNG_State = seed;
 }
 
-u16 sub_0201D2E8 (void)
+u16 LCRNG_Next (void)
 {
-    Unk_021BFB14 = Unk_021BFB14 * 1103515245L + 24691;
-    return (u16)(Unk_021BFB14 / 65536L);
+    gLCRNG_State = gLCRNG_State * 1103515245L + 24691;
+    return (u16)(gLCRNG_State / 65536L);
 }
 
-u32 sub_0201D30C (u32 param0)
+u32 ARNG_Next (u32 seed)
 {
-    return param0 * 1812433253L + 1;
+    return seed * 1812433253L + 1;
 }
 
-static u32 Unk_021BFB18[624];
-static int Unk_02100834 = 624 + 1;
-static u32 Unk_02100838[2] = {0x0UL, 0x9908b0dfUL};
+static u32 sMTRNG_State[624];
+static int sMTRNG_Size = 624 + 1;
+static u32 sMTRNG_Xor[2] = {0x0UL, 0x9908b0dfUL};
 
-void sub_0201D318 (u32 param0)
+void MTRNG_SetSeed (u32 seed)
 {
-    Unk_021BFB18[0] = param0 & 0xffffffff;
+    sMTRNG_State[0] = seed & 0xffffffff;
 
-    for (Unk_02100834 = 1; Unk_02100834 < 624; Unk_02100834++) {
-        Unk_021BFB18[Unk_02100834] = (1812433253UL * (Unk_021BFB18[Unk_02100834 - 1] ^ (Unk_021BFB18[Unk_02100834 - 1] >> 30)) + Unk_02100834);
-        Unk_021BFB18[Unk_02100834] &= 0xffffffff;
+    for (sMTRNG_Size = 1; sMTRNG_Size < 624; sMTRNG_Size++) {
+        sMTRNG_State[sMTRNG_Size] = (1812433253UL * (sMTRNG_State[sMTRNG_Size - 1] ^ (sMTRNG_State[sMTRNG_Size - 1] >> 30)) + sMTRNG_Size);
+        sMTRNG_State[sMTRNG_Size] &= 0xffffffff;
     }
 }
 
-u32 sub_0201D35C (void)
+u32 MTRNG_Next (void)
 {
-    u32 v0;
+    u32 result;
 
-    if (Unk_02100834 >= 624) {
-        int v1;
+    if (sMTRNG_Size >= 624) {
+        int i;
 
-        if (Unk_02100834 == 624 + 1) {
-            sub_0201D318(5489UL);
+        if (sMTRNG_Size == 624 + 1) {
+            MTRNG_SetSeed(5489UL);
         }
 
-        for (v1 = 0; v1 < 624 - 397; v1++) {
-            v0 = (Unk_021BFB18[v1] & 0x80000000UL) | (Unk_021BFB18[v1 + 1] & 0x7fffffffUL);
-            Unk_021BFB18[v1] = Unk_021BFB18[v1 + 397] ^ (v0 >> 1) ^ Unk_02100838[v0 & 0x1UL];
+        for (i = 0; i < 624 - 397; i++) {
+            result = (sMTRNG_State[i] & 0x80000000UL) | (sMTRNG_State[i + 1] & 0x7fffffffUL);
+            sMTRNG_State[i] = sMTRNG_State[i + 397] ^ (result >> 1) ^ sMTRNG_Xor[result & 0x1UL];
         }
 
-        for (; v1 < 624 - 1; v1++) {
-            v0 = (Unk_021BFB18[v1] & 0x80000000UL) | (Unk_021BFB18[v1 + 1] & 0x7fffffffUL);
-            Unk_021BFB18[v1] = Unk_021BFB18[v1 + (397 - 624)] ^ (v0 >> 1) ^ Unk_02100838[v0 & 0x1UL];
+        for (; i < 624 - 1; i++) {
+            result = (sMTRNG_State[i] & 0x80000000UL) | (sMTRNG_State[i + 1] & 0x7fffffffUL);
+            sMTRNG_State[i] = sMTRNG_State[i + (397 - 624)] ^ (result >> 1) ^ sMTRNG_Xor[result & 0x1UL];
         }
 
-        v0 = (Unk_021BFB18[624 - 1] & 0x80000000UL) | (Unk_021BFB18[0] & 0x7fffffffUL);
+        result = (sMTRNG_State[624 - 1] & 0x80000000UL) | (sMTRNG_State[0] & 0x7fffffffUL);
 
-        Unk_021BFB18[624 - 1] = Unk_021BFB18[397 - 1] ^ (v0 >> 1) ^ Unk_02100838[v0 & 0x1UL];
-        Unk_02100834 = 0;
+        sMTRNG_State[624 - 1] = sMTRNG_State[397 - 1] ^ (result >> 1) ^ sMTRNG_Xor[result & 0x1UL];
+        sMTRNG_Size = 0;
     }
 
-    v0 = Unk_021BFB18[Unk_02100834++];
+    result = sMTRNG_State[sMTRNG_Size++];
 
-    v0 ^= (v0 >> 11);
-    v0 ^= (v0 << 7) & 0x9d2c5680UL;
-    v0 ^= (v0 << 15) & 0xefc60000UL;
-    v0 ^= (v0 >> 18);
+    result ^= (result >> 11);
+    result ^= (result << 7) & 0x9d2c5680UL;
+    result ^= (result << 15) & 0xefc60000UL;
+    result ^= (result >> 18);
 
-    return v0;
+    return result;
 }
 
 void sub_0201D470 (MtxFx22 * param0, u16 param1, fx32 param2, fx32 param3, u8 param4)
@@ -235,7 +235,7 @@ void sub_0201D5D4 (void * param0, u32 param1, u32 param2)
     u16 * v1 = (u16 *)param0;
 
     for (v0 = 0; v0 < param1 / 2; v0++) {
-        v1[v0] ^= sub_0201D608(&param2);
+        v1[v0] ^= LCRNG_NextFrom(&param2);
     }
 }
 
@@ -244,10 +244,10 @@ void sub_0201D600 (void * param0, u32 param1, u32 param2)
     sub_0201D5D4(param0, param1, param2);
 }
 
-static u16 sub_0201D608 (u32 * param0)
+static u16 LCRNG_NextFrom (u32 * seed)
 {
-    param0[0] = param0[0] * 1103515245L + 24691;
-    return (u16)(param0[0] / 65536L);
+    seed[0] = seed[0] * 1103515245L + 24691;
+    return (u16)(seed[0] / 65536L);
 }
 
 static UnkStruct_021BFB10 * Unk_021BFB10 = NULL;

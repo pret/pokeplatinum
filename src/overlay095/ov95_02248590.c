@@ -226,7 +226,7 @@ void * ov95_02248590 (UnkStruct_ov95_02247628 * param0)
         v0->unk_CC = NULL;
         v0->unk_160 = NULL;
         v0->unk_164 = NULL;
-        v0->unk_BC = sub_0201D35C();
+        v0->unk_BC = MTRNG_Next();
         v0->unk_D0 = 0;
         v0->unk_168 = 0;
 
@@ -259,7 +259,7 @@ void ov95_022485FC (void * param0)
             ov95_022490A4(v1->unk_164);
         }
 
-        sub_0201D318(v1->unk_BC);
+        MTRNG_SetSeed(v1->unk_BC);
         Heap_FreeToHeap(v1);
     }
 
@@ -618,11 +618,11 @@ static void ov95_02248CA8 (UnkStruct_ov95_02248688 * param0)
     sub_02006EE0(93, 14, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 58, &v0);
     sub_02006EE0(93, 14, NNS_G2D_VRAM_TYPE_2DSUB, 0, 58, &v0);
     ov95_022475C4(&v2, &param0->unk_0C, &v1, &v0, 1);
-    sub_0201D318(UnkEnum_ov95_02248CA8_00);
+    MTRNG_SetSeed(UnkEnum_ov95_02248CA8_00);
 
     for (v3 = 0; v3 < 20; v3++) {
-        v4 = 12 + (sub_0201D35C() % 232);
-        v5 = -28 + (sub_0201D35C() % 452);
+        v4 = 12 + (MTRNG_Next() % 232);
+        v5 = -28 + (MTRNG_Next() % 452);
 
         param0->unk_1C[v3][0] = ov95_022475E4(param0->unk_00, &v2, v4, v5, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
         param0->unk_1C[v3][1] = ov95_022475E4(param0->unk_00, &v2, v4, v5 + 56, 0, NNS_G2D_VRAM_TYPE_2DMAIN);

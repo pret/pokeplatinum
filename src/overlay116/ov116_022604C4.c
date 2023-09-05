@@ -63,7 +63,7 @@ static u32 ov116_022617E4(UnkStruct_ov116_0226139C * param0);
 
 static void ov116_022604C4 (UnkStruct_ov116_0226139C * param0)
 {
-    param0->unk_78 = sub_0201D2D0();
+    param0->unk_78 = LCRNG_GetSeed();
 
     ov116_022612CC(param0);
     sub_02017798(ov116_02261794, param0);
@@ -680,7 +680,7 @@ static void ov116_022610FC (UnkStruct_ov116_0226139C * param0)
         v0 = sub_0201E530();
     }
 
-    sub_0201D2DC(param0->unk_78);
+    LCRNG_SetSeed(param0->unk_78);
 
     ov116_02261F3C(param0->unk_04);
     ov116_02261DF0(param0->unk_04);

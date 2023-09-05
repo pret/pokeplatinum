@@ -297,7 +297,7 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
     u8 v6;
     Pokemon * v7;
 
-    v5 = sub_0201D2D0();
+    v5 = LCRNG_GetSeed();
 
     Party_InitWithCapacity(param0->parties[param1], 6);
 
@@ -326,10 +326,10 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v10 = (v8[v1].unk_04 & 0xfc00) >> 10;
             v4 = v8[v1].unk_00 + v8[v1].unk_02 + v9 + param0->unk_18[param1];
 
-            sub_0201D2DC(v4);
+            LCRNG_SetSeed(v4);
 
             for (v2 = 0; v2 < param0->trainerData[param1].class; v2++) {
-                v4 = sub_0201D2E8();
+                v4 = LCRNG_Next();
             }
 
             v4 = (v4 << 8) + v3;
@@ -355,10 +355,10 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v13 = (v11[v1].unk_04 & 0xfc00) >> 10;
             v4 = v11[v1].unk_00 + v11[v1].unk_02 + v12 + param0->unk_18[param1];
 
-            sub_0201D2DC(v4);
+            LCRNG_SetSeed(v4);
 
             for (v2 = 0; v2 < param0->trainerData[param1].class; v2++) {
-                v4 = sub_0201D2E8();
+                v4 = LCRNG_Next();
             }
 
             v4 = (v4 << 8) + v3;
@@ -389,10 +389,10 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v16 = (v14[v1].unk_04 & 0xfc00) >> 10;
 
             v4 = v14[v1].unk_00 + v14[v1].unk_02 + v15 + param0->unk_18[param1];
-            sub_0201D2DC(v4);
+            LCRNG_SetSeed(v4);
 
             for (v2 = 0; v2 < param0->trainerData[param1].class; v2++) {
-                v4 = sub_0201D2E8();
+                v4 = LCRNG_Next();
             }
 
             v4 = (v4 << 8) + v3;
@@ -419,10 +419,10 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v19 = (v17[v1].unk_04 & 0xfc00) >> 10;
             v4 = v17[v1].unk_00 + v17[v1].unk_02 + v18 + param0->unk_18[param1];
 
-            sub_0201D2DC(v4);
+            LCRNG_SetSeed(v4);
 
             for (v2 = 0; v2 < param0->trainerData[param1].class; v2++) {
-                v4 = sub_0201D2E8();
+                v4 = LCRNG_Next();
             }
 
             v4 = (v4 << 8) + v3;
@@ -445,5 +445,5 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
 
     Heap_FreeToHeap(v0);
     Heap_FreeToHeap(v7);
-    sub_0201D2DC(v5);
+    LCRNG_SetSeed(v5);
 }

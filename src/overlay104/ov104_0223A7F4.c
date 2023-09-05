@@ -126,7 +126,7 @@ static int ov104_0223A7F4 (u8 param0, int param1, int param2)
         v2 = Unk_ov104_022401FC[param1].unk_00;
     }
 
-    v0 = v2 + (sub_0201D2E8() % v1);
+    v0 = v2 + (LCRNG_Next() % v1);
     return v0;
 }
 
@@ -231,10 +231,10 @@ BOOL ov104_0223A918 (const u16 param0[], const u16 param1[], int param2, int par
     while (v1 != param3) {
         if ((v1 >= param3 - v6) && (v7->unk_07 == 1)) {
             v2 = (v7 + 1)->unk_04 - (v7 + 1)->unk_02;
-            v3 = (v7 + 1)->unk_04 - (sub_0201D2E8() % (v2 + 1));
+            v3 = (v7 + 1)->unk_04 - (LCRNG_Next() % (v2 + 1));
             v0 = (v7 + 1)->unk_06;
         } else {
-            v3 = v7->unk_04 - (sub_0201D2E8() % (v2 + 1));
+            v3 = v7->unk_04 - (LCRNG_Next() % (v2 + 1));
             v0 = v7->unk_06;
         }
 

@@ -209,7 +209,7 @@ static void ov104_02233D80 (UnkStruct_ov104_0223ADA0 * param0, u8 param1, u8 par
     u32 v3;
     UnkStruct_ov104_0223A348_sub2 v4;
 
-    v0 = (sub_0201D2E8() % 6);
+    v0 = (LCRNG_Next() % 6);
 
     if (param2 == 0) {
         v1 = param0->unk_254[param1];

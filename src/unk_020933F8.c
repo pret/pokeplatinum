@@ -413,7 +413,7 @@ UnkStruct_02095C48 * sub_02093800 (const UnkStruct_02093800 * param0)
     Heap_Create(11, 20, (0x3000 + 0x1000));
 
     v0 = sub_020937C4();
-    v0->unk_19A4 = sub_0201D2D0();
+    v0->unk_19A4 = LCRNG_GetSeed();
 
     sub_02094E7C(v0);
 
@@ -541,7 +541,7 @@ void sub_02093AD4 (UnkStruct_02095C48 * param0)
         Heap_FreeToHeap(param0->unk_14C[v0]);
     }
 
-    sub_0201D2DC(param0->unk_19A4);
+    LCRNG_SetSeed(param0->unk_19A4);
     sub_020937F8(param0);
     Heap_Destroy(20);
 }
@@ -1704,19 +1704,19 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, UnkStruct_021C0794 * param1, u32
 
 static void sub_02094E7C (UnkStruct_02095C48 * param0)
 {
-    sub_0201D2DC((sub_020138C8() * (sub_0201D2D0() + 10)) & 0xffff);
+    LCRNG_SetSeed((sub_020138C8() * (LCRNG_GetSeed() + 10)) & 0xffff);
 }
 
 u16 sub_02094E98 (UnkStruct_02095C48 * param0)
 {
-    return sub_0201D2E8();
+    return LCRNG_Next();
 }
 
 u16 sub_02094EA0 (u32 param0, u32 * param1)
 {
     u32 v0;
 
-    v0 = sub_0201D30C(param0);
+    v0 = ARNG_Next(param0);
     *param1 = v0;
 
     return v0 / 65536L;

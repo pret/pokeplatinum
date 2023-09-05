@@ -1438,7 +1438,7 @@ static void ov16_02268FCC (UnkStruct_0201CD38 * param0, void * param1)
                 break;
             }
 
-            v2->unk_05 += sub_0201D2E8() % 8;
+            v2->unk_05 += LCRNG_Next() % 8;
             v2->unk_07 = 2;
             v2->unk_03++;
             break;

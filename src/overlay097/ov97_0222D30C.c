@@ -1370,15 +1370,15 @@ static void ov97_0222E814 (UnkStruct_ov97_0222E398 * param0)
         }
         {
             if (v0 > 50) {
-                param0->unk_88[v0].unk_30 = 210 + 50 + v0 + sub_0201D2E8() % 5;
+                param0->unk_88[v0].unk_30 = 210 + 50 + v0 + LCRNG_Next() % 5;
             } else if (v0 > 40) {
-                param0->unk_88[v0].unk_30 = 210 + 40 + v0 + sub_0201D2E8() % 5;
+                param0->unk_88[v0].unk_30 = 210 + 40 + v0 + LCRNG_Next() % 5;
             } else if (v0 > 30) {
-                param0->unk_88[v0].unk_30 = 210 + 30 + v0 + sub_0201D2E8() % 5;
+                param0->unk_88[v0].unk_30 = 210 + 30 + v0 + LCRNG_Next() % 5;
             } else if (v0 > 25) {
-                param0->unk_88[v0].unk_30 = 210 + 20 + v0 + sub_0201D2E8() % 5;
+                param0->unk_88[v0].unk_30 = 210 + 20 + v0 + LCRNG_Next() % 5;
             } else if (v0 > 20) {
-                param0->unk_88[v0].unk_30 = 210 + 10 + v0 + sub_0201D2E8() % 5;
+                param0->unk_88[v0].unk_30 = 210 + 10 + v0 + LCRNG_Next() % 5;
             } else {
                 int v2[] = {
                     1,
@@ -1416,7 +1416,7 @@ static void ov97_0222E814 (UnkStruct_ov97_0222E398 * param0)
         param0->unk_88[v0].unk_44 = param0->unk_88[v0].unk_38;
 
         v1 = *( VecFx32 *)sub_02021D28(param0->unk_88[v0].unk_0C);
-        v1.x = FX32_CONST(16 + (sub_0201D2E8() % (256 - 32)));
+        v1.x = FX32_CONST(16 + (LCRNG_Next() % (256 - 32)));
         v1.y = FX32_CONST(0);
 
         sub_02021C50(param0->unk_88[v0].unk_0C, &v1);
@@ -1447,13 +1447,13 @@ static void ov97_0222EA68 (UnkStruct_ov97_0222E398 * param0)
         param0->unk_88[v0].unk_08 = 0;
 
         if (v0 > 30) {
-            param0->unk_88[v0].unk_30 = 15 + (sub_0201D2E8() % 10);
+            param0->unk_88[v0].unk_30 = 15 + (LCRNG_Next() % 10);
         } else if (v0 > 20) {
-            param0->unk_88[v0].unk_30 = 10 + (sub_0201D2E8() % 10);
+            param0->unk_88[v0].unk_30 = 10 + (LCRNG_Next() % 10);
         } else if (v0 > 10) {
-            param0->unk_88[v0].unk_30 = 10 + (sub_0201D2E8() % 5);
+            param0->unk_88[v0].unk_30 = 10 + (LCRNG_Next() % 5);
         } else {
-            param0->unk_88[v0].unk_30 = 5 + (sub_0201D2E8() % 5);
+            param0->unk_88[v0].unk_30 = 5 + (LCRNG_Next() % 5);
         }
 
         param0->unk_88[v0].unk_30 = 0;
@@ -1461,8 +1461,8 @@ static void ov97_0222EA68 (UnkStruct_ov97_0222E398 * param0)
         param0->unk_88[v0].unk_44 = param0->unk_88[v0].unk_38;
 
         {
-            int v2 = sub_0201D2E8() % 360;
-            int v3 = 64 + (sub_0201D2E8() % 32);
+            int v2 = LCRNG_Next() % 360;
+            int v3 = 64 + (LCRNG_Next() % 32);
 
             v1.x = param0->unk_88[v0].unk_10.x + (sub_0201D250(v2) * v3);
             v1.y = param0->unk_88[v0].unk_10.y + (sub_0201D264(v2) * v3);
@@ -1490,30 +1490,30 @@ static void ov97_0222EBD0 (UnkStruct_ov97_0222E398 * param0)
         param0->unk_1848[v0].unk_2C = 4 + (v0 % 2);
         param0->unk_1848[v0].unk_34 = 0;
         param0->unk_1848[v0].unk_04 = 0;
-        param0->unk_1848[v0].unk_3C = 2 + (sub_0201D2E8() % 4);
+        param0->unk_1848[v0].unk_3C = 2 + (LCRNG_Next() % 4);
         param0->unk_1848[v0].unk_1C = FX32_CONST((v0 / 30) + 4);
 
         if (v0 > 60) {
             param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 70 + (sub_0201D2E8() % 10);
+            param0->unk_1848[v0].unk_30 = 70 + (LCRNG_Next() % 10);
         } else if (v0 > 50) {
             param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 60 + (sub_0201D2E8() % 10);
+            param0->unk_1848[v0].unk_30 = 60 + (LCRNG_Next() % 10);
         } else if (v0 > 40) {
             param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 50 + (sub_0201D2E8() % 5);
+            param0->unk_1848[v0].unk_30 = 50 + (LCRNG_Next() % 5);
         } else if (v0 > 30) {
             param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 40 + (sub_0201D2E8() % 10);
+            param0->unk_1848[v0].unk_30 = 40 + (LCRNG_Next() % 10);
         } else if (v0 > 20) {
             param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 30 + (sub_0201D2E8() % 10);
+            param0->unk_1848[v0].unk_30 = 30 + (LCRNG_Next() % 10);
         } else if (v0 > 10) {
             param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 20 + (sub_0201D2E8() % 5);
+            param0->unk_1848[v0].unk_30 = 20 + (LCRNG_Next() % 5);
         } else {
             param0->unk_1848[v0].unk_38 = 5;
-            param0->unk_1848[v0].unk_30 = 10 + (sub_0201D2E8() % 5);
+            param0->unk_1848[v0].unk_30 = 10 + (LCRNG_Next() % 5);
         }
 
         param0->unk_1848[v0].unk_40 = param0->unk_1848[v0].unk_38;

@@ -1995,7 +1995,7 @@ static BOOL ov104_0223102C (UnkStruct_ov104_0222E930 * param0)
     u16 * v0 = ov104_0222FBE4(param0);
     u16 v1 = ov104_0222FC00(param0);
 
-    *v0 = (sub_0201D2E8() % v1);
+    *v0 = (LCRNG_Next() % v1);
     return 1;
 }
 

@@ -1231,7 +1231,7 @@ static void ov104_02238D8C (UnkStruct_ov104_0223BFFC * param0, Party * param1, u
                 v0 = 0;
             }
         } else {
-            v3 = (sub_0201D2E8() % 4 + 2);
+            v3 = (LCRNG_Next() % 4 + 2);
             sub_02074B30(v5, 160, &v3);
             break;
         }

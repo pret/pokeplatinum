@@ -1729,9 +1729,9 @@ static UnkStruct_0201CD38 * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
     s16 v7, v8, v9;
 
     v2 = Heap_AllocFromHeap(63, sizeof(UnkStruct_ov86_0223CD94));
-    v5 = sub_0201D2E8();
+    v5 = LCRNG_Next();
 
-    sub_0201D2DC(13716);
+    LCRNG_SetSeed(13716);
 
     for (v3 = 0, v6 = 0; v3 < 48; v3++) {
         v2->unk_08[v3].unk_00 = v0[v6];
@@ -1740,9 +1740,9 @@ static UnkStruct_0201CD38 * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
             v6 = 0;
         }
 
-        v7 = -4096 + (sub_0201D2E8() % 8192);
-        v8 = 4096 + (sub_0201D2E8() % 8192);
-        v9 = -328 + (sub_0201D2E8() % 656);
+        v7 = -4096 + (LCRNG_Next() % 8192);
+        v8 = 4096 + (LCRNG_Next() % 8192);
+        v9 = -328 + (LCRNG_Next() % 656);
 
         for (v4 = 0; v4 < 4; v4++) {
             v2->unk_08[v3].unk_08[v4].x = v7 + v1[v4].x;
@@ -1751,21 +1751,21 @@ static UnkStruct_0201CD38 * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
             v2->unk_08[v3].unk_20.x = 0;
             v2->unk_08[v3].unk_20.y = 0;
             v2->unk_08[v3].unk_20.z = 0;
-            v2->unk_08[v3].unk_26.x = 512 + sub_0201D2E8() % 512;
-            v2->unk_08[v3].unk_26.y = 512 + sub_0201D2E8() % 512;
-            v2->unk_08[v3].unk_26.z = 512 + sub_0201D2E8() % 512;
+            v2->unk_08[v3].unk_26.x = 512 + LCRNG_Next() % 512;
+            v2->unk_08[v3].unk_26.y = 512 + LCRNG_Next() % 512;
+            v2->unk_08[v3].unk_26.z = 512 + LCRNG_Next() % 512;
 
             MTX_Identity44(&v2->unk_08[v3].unk_2C);
         }
 
-        v4 = sub_0201D2E8() & 7;
+        v4 = LCRNG_Next() & 7;
 
         while (v4--) {
             VEC_Fx16Add(&v2->unk_08[v3].unk_20, &v2->unk_08[v3].unk_26, &v2->unk_08[v3].unk_20);
         }
     }
 
-    sub_0201D2DC(v5);
+    LCRNG_SetSeed(v5);
 
     v2->unk_00 = 0;
     v2->unk_04 = 0;

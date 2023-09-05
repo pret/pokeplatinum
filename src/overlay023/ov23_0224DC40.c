@@ -314,7 +314,7 @@ static void ov23_0224DE3C (UnkStruct_ov23_0224E280 * param0)
         v1 = MessageLoader_Init(0, 26, 633, 4);
 
         for (v2 = 0; v2 < 4; v2++) {
-            u32 v5 = sub_0201D35C() % 12;
+            u32 v5 = MTRNG_Next() % 12;
 
             for (v3 = 0; v3 < v2; v3++) {
                 if ((v4[v3] == v5)) {

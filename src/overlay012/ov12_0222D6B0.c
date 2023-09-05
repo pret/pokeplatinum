@@ -533,7 +533,7 @@ static void ov12_0222DC98 (UnkStruct_0201CD38 * param0, void * param1)
         UnkStruct_ov12_02235350 v1;
         int v2;
 
-        v2 = 10 + (sub_0201D2E8() % 10);
+        v2 = 10 + (LCRNG_Next() % 10);
 
         sub_0200D550(v0->unk_10, &v1.unk_00, &v1.unk_02);
         ov12_02225BC8(&v0->unk_14, v1.unk_00, Unk_ov12_0223A14A[v0->unk_0F].unk_00, v1.unk_02, Unk_ov12_0223A14A[v0->unk_0F].unk_02, v2);
@@ -670,16 +670,16 @@ void ov12_0222DEFC (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
 
             v2->unk_14[v1].unk_0C = 0;
             v2->unk_14[v1].unk_0D = 0;
-            v2->unk_14[v1].unk_0E = 10 + (sub_0201D2E8() % 10) + v1;
-            v2->unk_14[v1].unk_0F = (sub_0201D2E8() % 6);
+            v2->unk_14[v1].unk_0E = 10 + (LCRNG_Next() % 10) + v1;
+            v2->unk_14[v1].unk_0F = (LCRNG_Next() % 6);
             v2->unk_14[v1].unk_38 = 1.0f;
             v2->unk_14[v1].unk_00 = v2->unk_08;
             v2->unk_14[v1].unk_04 = v2->unk_0C;
             v2->unk_14[v1].unk_08 = v2->unk_10;
             v2->unk_14[v1].unk_3C = &v2->unk_514[v1];
 
-            v4 = Unk_ov12_0223A19A[v0][1] + (sub_0201D2E8() % Unk_ov12_0223A19A[v0][3]);
-            v5 = Unk_ov12_0223A19A[v0][0] + (sub_0201D2E8() % Unk_ov12_0223A19A[v0][2]);
+            v4 = Unk_ov12_0223A19A[v0][1] + (LCRNG_Next() % Unk_ov12_0223A19A[v0][3]);
+            v5 = Unk_ov12_0223A19A[v0][0] + (LCRNG_Next() % Unk_ov12_0223A19A[v0][2]);
 
             sub_0200D4C4(v6, v4, v5);
             sub_0200D6A4(v6, 2);
@@ -987,7 +987,7 @@ void ov12_0222E61C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
         v0->unk_22[0] = 0;
 
         for (v1 = 1; v1 < 4; v1++) {
-            v0->unk_22[v1] = (sub_0201D2E8() % 4) + (v1 * 5);
+            v0->unk_22[v1] = (LCRNG_Next() % 4) + (v1 * 5);
             v0->unk_2C[v1] = sub_0200CE6C(v0->unk_00.unk_08, v0->unk_00.unk_10, &v4);
         }
 

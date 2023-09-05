@@ -486,7 +486,7 @@ BOOL ov5_021F6B3C (UnkStruct_0203E724 * param0)
             *v6 = v0;
             *v7 = v1[v0];
         } else if (v1[*v6] == v1[v0]) {
-            if ((sub_0201D2E8() % 2) == 0) {
+            if ((LCRNG_Next() % 2) == 0) {
                 *v6 = v0;
                 *v7 = v1[v0];
             }

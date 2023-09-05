@@ -6157,7 +6157,7 @@ static BOOL sub_02044398 (UnkStruct_0203E724 * param0)
     u16 * v1 = inline_0204FCAC(param0);
     u16 v2 = inline_02049538(param0);
 
-    *v1 = (sub_0201D2E8() % v2);
+    *v1 = (LCRNG_Next() % v2);
 
     return 1;
 }
@@ -6168,7 +6168,7 @@ static BOOL sub_020443D0 (UnkStruct_0203E724 * param0)
     u16 * v1 = inline_0204FCAC(param0);
     u16 v2 = inline_02049538(param0);
 
-    *v1 = (sub_0201D2E8() % v2);
+    *v1 = (LCRNG_Next() % v2);
 
     return 1;
 }
@@ -6603,7 +6603,7 @@ static BOOL sub_02044BE8 (UnkStruct_0203E724 * param0)
     u16 v2, v3, v4, v5;
 
     v2 = sub_02026EAC(v0);
-    v3 = sub_0201D2E8() % v2;
+    v3 = LCRNG_Next() % v2;
     *v1 = 25;
 
     for (v4 = 1, v5 = 0; v4 <= 493; v4++) {
@@ -7175,7 +7175,7 @@ static BOOL sub_02045650 (UnkStruct_0203E724 * param0)
         return 0;
     }
 
-    v5 = sub_0201D2E8() % v4;
+    v5 = LCRNG_Next() % v4;
 
     for (v3 = 0; v3 < (49 - 34 + 1); v3++) {
         if (v2[v3] == 1) {
@@ -7417,7 +7417,7 @@ static BOOL sub_020459BC (UnkStruct_0203E724 * param0)
         v2 = 270;
     } else if (v6 >= 30) {
         v2 = 268;
-    } else if (sub_0201D2E8() % 100 < 25) {
+    } else if (LCRNG_Next() % 100 < 25) {
         v2 = 269;
     } else {
         static const u16 v9[] = {
@@ -7441,7 +7441,7 @@ static BOOL sub_020459BC (UnkStruct_0203E724 * param0)
             0x214
         };
 
-        v2 = sub_0201D2E8() % 6;
+        v2 = LCRNG_Next() % 6;
         v2 = v9[v2 + (v5 * 6)];
     }
 
@@ -7653,7 +7653,7 @@ static BOOL sub_02045D70 (UnkStruct_0203E724 * param0)
         v1 = 100;
     }
 
-    v0 = sub_0201D2E8() % 101;
+    v0 = LCRNG_Next() % 101;
 
     if (v0 <= v1) {
         *v2 = 1;
@@ -8103,7 +8103,7 @@ BOOL sub_0204645C (UnkStruct_0203E724 * param0)
     *v6 = 0xfff;
     *v7 = 0xfff;
     *v8 = 0xfff;
-    v0 = (sub_0201D2E8() % (NELEMS(Unk_020EAB96)));
+    v0 = (LCRNG_Next() % (NELEMS(Unk_020EAB96)));
     *v5 = Unk_020EAB96[v0];
 
     v1 = sub_02046524(v0, 0xfff, 0xfff, 0xfff);
@@ -8135,7 +8135,7 @@ static u8 sub_02046524 (u16 param0, u16 param1, u16 param2, u16 param3)
     v1 = 0;
 
     while (TRUE) {
-        v0 = (sub_0201D2E8() % ((NELEMS(Unk_020EAB96)) + 1));
+        v0 = (LCRNG_Next() % ((NELEMS(Unk_020EAB96)) + 1));
 
         if (v0 == (NELEMS(Unk_020EAB96))) {
             break;
@@ -8164,7 +8164,7 @@ static u8 sub_02046568 (u16 param0, u16 param1, u16 param2, u16 param3)
     v1 = 0;
 
     while (TRUE) {
-        v0 = (sub_0201D2E8() % ((NELEMS(Unk_020EAB8C)) + 1));
+        v0 = (LCRNG_Next() % ((NELEMS(Unk_020EAB8C)) + 1));
 
         if (v0 == (NELEMS(Unk_020EAB8C))) {
             break;

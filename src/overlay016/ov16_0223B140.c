@@ -802,7 +802,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
 
     ov16_0223CE20(v0->unk_00);
 
-    sub_0201D2DC(v0->unk_2430);
+    LCRNG_SetSeed(v0->unk_2430);
 
     if (ov16_0223F450(v0)) {
         sub_020057A4(1796, 0);
@@ -1086,7 +1086,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
         param0->unk_2464[v0] = param1->unk_178[v0];
     }
 
-    param0->unk_2430 = sub_0201D2D0();
+    param0->unk_2430 = LCRNG_GetSeed();
     param0->unk_2444 = param1->unk_174;
     param0->unk_2448 = param1->unk_174;
     param0->battleStatusMask = param1->unk_164;

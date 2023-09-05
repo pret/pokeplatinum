@@ -193,5 +193,5 @@ int ov6_02246B40 (UnkStruct_0203CDB0 * param0)
         return 0;
     }
 
-    return v0[sub_0201D35C() % v1];
+    return v0[MTRNG_Next() % v1];
 }

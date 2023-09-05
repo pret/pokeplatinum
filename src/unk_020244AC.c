@@ -1163,7 +1163,7 @@ int sub_02025574 (UnkStruct_021C0794 * param0, int param1, void * param2)
     sub_020259F8(param0, param1, &v3, &v4, &v6);
 
     do {
-        v5 = sub_0201D30C(v3);
+        v5 = ARNG_Next(v3);
     } while (v5 == 0xffffffff);
 
     sub_02025A18(param0, param1, v5, v3, v6 ^ 1);

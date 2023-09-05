@@ -1071,7 +1071,7 @@ u8 sub_0204AE84 (u16 param0)
 u16 sub_0204AEC0 (UnkStruct_0204AFC4 * param0)
 {
     if (param0->unk_0F == 6) {
-        return sub_0201D2E8();
+        return LCRNG_Next();
     }
 
     param0->unk_08 = sub_0206BFF0(param0->unk_08);

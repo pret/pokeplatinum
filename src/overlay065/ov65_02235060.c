@@ -905,7 +905,7 @@ static void ov65_02235E84 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov65_0223
 {
     param1->unk_10 = ov65_022361C8;
     param1->unk_18 = ov65_02235EF4;
-    param1->unk_08 = 256 + (sub_0201D35C() % 1024);
+    param1->unk_08 = 256 + (MTRNG_Next() % 1024);
     param1->unk_0C = 3;
 
     ov65_02236250(param0, 0, param1);
@@ -1083,9 +1083,9 @@ static BOOL ov65_022361C8 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov65_0223
     param1->unk_08--;
 
     if (param1->unk_08 <= 0) {
-        param1->unk_08 = 256 + (sub_0201D35C() % 1024);
+        param1->unk_08 = 256 + (MTRNG_Next() % 1024);
 
-        v0 = sub_0201D35C() % 4;
+        v0 = MTRNG_Next() % 4;
         v1 = ov63_0222BF90(param1->unk_00, 4);
 
         ov65_02236230(param0, 0, v0, v1);

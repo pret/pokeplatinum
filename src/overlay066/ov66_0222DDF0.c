@@ -3423,7 +3423,7 @@ static u32 ov66_02230828 (const UnkStruct_ov66_022307D4 * param0)
         v1 += param0->unk_00[v0];
     }
 
-    v3 = sub_0201D35C() % v1;
+    v3 = MTRNG_Next() % v1;
     v2 = 0;
 
     for (v0 = 0; v0 < (27 / 3); v0++) {

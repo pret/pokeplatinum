@@ -2337,7 +2337,7 @@ static void ov70_02268EEC (UnkStruct_ov70_02268E44 * param0, UnkStruct_ov70_0225
             }
         } else {
             do {
-                v1 = sub_0201D35C() % param2;
+                v1 = MTRNG_Next() % param2;
                 v2 = v1;
                 v4 = ov70_0225E064(param1, v2);
             } while (v4 == 1);

@@ -2259,7 +2259,7 @@ static int ov5_021E6684 (UnkStruct_02026310 * param0)
     }
 
     if (v3 == 2) {
-        if (sub_0201D2E8() >= (0xffff / 2)) {
+        if (LCRNG_Next() >= (0xffff / 2)) {
             v2 = 0;
         } else {
             v2 = 1;
@@ -2267,7 +2267,7 @@ static int ov5_021E6684 (UnkStruct_02026310 * param0)
     }
 
     if (sub_02074570(v4[v2], MON_DATA_HELD_ITEM, NULL) == 229) {
-        if (sub_0201D2E8() >= (0xffff / 2)) {
+        if (LCRNG_Next() >= (0xffff / 2)) {
             return -1;
         }
     } else {
@@ -2284,7 +2284,7 @@ void ov5_021E6720 (UnkStruct_02026310 * param0)
     int v4 = 0;
 
     if ((v2 = ov5_021E6684(param0)) < 0) {
-        sub_02026270(param0, sub_0201D35C());
+        sub_02026270(param0, MTRNG_Next());
     } else {
         BoxPokemon * v5 = ov5_021E622C(param0, v2);
 
@@ -2292,7 +2292,7 @@ void ov5_021E6720 (UnkStruct_02026310 * param0)
         v3 = GetNatureFromPersonality(v0);
 
         while (TRUE) {
-            v1 = sub_0201D35C();
+            v1 = MTRNG_Next();
 
             if ((v3 == GetNatureFromPersonality(v1)) && (v1 != 0)) {
                 break;
@@ -2336,12 +2336,12 @@ static void ov5_021E67B0 (Pokemon * param0, UnkStruct_02026310 * param1)
     }
 
     for (v1 = 0; v1 < 3; v1++) {
-        v0[v1] = v2[sub_0201D2E8() % (6 - v1)];
+        v0[v1] = v2[LCRNG_Next() % (6 - v1)];
         ov5_021E6778(v2, v1);
     }
 
     for (v1 = 0; v1 < 3; v1++) {
-        v3[v1] = sub_0201D2E8() % 2;
+        v3[v1] = LCRNG_Next() % 2;
     }
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -2654,7 +2654,7 @@ void ov5_021E6DE8 (Pokemon * param0, u16 param1, UnkStruct_02026310 * param2, u3
 
         if (sub_02075E38(param3, v2) == 0) {
             for (v5 = 0; v5 < 4; v5++) {
-                v2 = sub_0201D30C(v2);
+                v2 = ARNG_Next(v2);
 
                 if (sub_02075E38(param3, v2)) {
                     break;
@@ -2872,7 +2872,7 @@ BOOL ov5_021E7154 (UnkStruct_02026310 * param0, Party * param1, UnkStruct_0203CD
     if ((sub_02026234(param0) == 0) && (v2 == 2)) {
         if ((sub_02026228(sub_02026218(param0, 1)) & 0xff) == 0xff) {
             v3 = ov5_021E70FC(param0);
-            v4 = sub_0201D2E8();
+            v4 = LCRNG_Next();
             v4 = (v4 * 100) / 0xffff;
 
             if (v3 > v4) {
@@ -3068,7 +3068,7 @@ static void ov5_021E742C (Pokemon * param0, int param1)
 
         if (v17 == sub_02017070(2, 1)) {
             while (sub_02075E38(v4, v3)) {
-                v3 = sub_0201D30C(v3);
+                v3 = ARNG_Next(v3);
             }
         }
     }

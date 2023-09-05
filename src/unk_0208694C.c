@@ -1090,9 +1090,9 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
         Strbuf* v0;
 
         if (param0->unk_04 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 0 + sub_0201D2E8() % 18);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 0 + LCRNG_Next() % 18);
         } else if (param0->unk_04 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 18 + sub_0201D2E8() % 18);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 18 + LCRNG_Next() % 18);
         }
 
         Strbuf_Copy(param1->unk_18, v0);
@@ -1101,7 +1101,7 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
     } else if (param0->unk_00 == 3) {
         Strbuf* v1;
 
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (sub_0201D2E8() % 2));
+        v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (LCRNG_Next() % 2));
 
         Strbuf_Copy(param1->unk_18, v1);
         Strbuf_Free(v1);

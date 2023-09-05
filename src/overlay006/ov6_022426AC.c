@@ -86,7 +86,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
             v2 = 2;
             break;
         default:
-            if (sub_0201D2E8() % 2) {
+            if (LCRNG_Next() % 2) {
                 v2 = 0;
             } else {
                 v2 = 1;

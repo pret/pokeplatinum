@@ -205,13 +205,13 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     v12 = GetMonData(v4, MON_DATA_152, NULL);
     v8 = GetMonData(v4, MON_DATA_PERSONALITY, NULL);
     v7 = GetMonData(v4, MON_DATA_OT_ID, NULL);
-    v9 = sub_0201D30C((u32)OS_GetTick());
+    v9 = ARNG_Next((u32)OS_GetTick());
 
     if (v8 == 0x0) {
         (void)0;
     } else if (v8 == 0x1) {
         while (sub_02075E38(v7, v9)) {
-            v9 = sub_0201D30C(v9);
+            v9 = ARNG_Next(v9);
         }
     } else {
         v9 = v8;
@@ -224,7 +224,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     v10 = GetMonData(v4, MON_DATA_HP_IV, 0) + GetMonData(v4, MON_DATA_ATK_IV, 0) + GetMonData(v4, MON_DATA_DEF_IV, 0) + GetMonData(v4, MON_DATA_SPEED_IV, 0) + GetMonData(v4, MON_DATA_SPATK_IV, 0) + GetMonData(v4, MON_DATA_SPDEF_IV, 0);
 
     if (v10 == 0) {
-        v8 = sub_0201D2E8();
+        v8 = LCRNG_Next();
         v9 = (v8 & (0x1F << 0)) >> 0;
 
         sub_02074B30(v4, 70, (u8 *)&v9);
@@ -235,7 +235,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
         v9 = (v8 & (0x1F << 10)) >> 10;
         sub_02074B30(v4, 72, (u8 *)&v9);
 
-        v8 = sub_0201D2E8();
+        v8 = LCRNG_Next();
         v9 = (v8 & (0x1F << 0)) >> 0;
         sub_02074B30(v4, 73, (u8 *)&v9);
 

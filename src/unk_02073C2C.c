@@ -384,14 +384,14 @@ void sub_02073E18 (BoxPokemon * param0, int param1, int param2, int param3, int 
     v3 = sub_02073D20(param0);
 
     if (!param4) {
-        param5 = (sub_0201D2E8() | (sub_0201D2E8() << 16));
+        param5 = (LCRNG_Next() | (LCRNG_Next() << 16));
     }
 
     SetBoxMonData(param0, 0, (u8 *)&param5);
 
     if (param6 == 2) {
         do {
-            param7 = (sub_0201D2E8() | (sub_0201D2E8() << 16));
+            param7 = (LCRNG_Next() | (LCRNG_Next() << 16));
         } while ((((param7 & 0xffff0000) >> 16) ^ (param7 & 0xffff) ^ ((param5 & 0xffff0000) >> 16) ^ (param5 & 0xffff)) < 8);
     } else if (param6 != 1) {
         param7 = 0;
@@ -422,7 +422,7 @@ void sub_02073E18 (BoxPokemon * param0, int param1, int param2, int param3, int 
         SetBoxMonData(param0, 74, (u8 *)&param3);
         SetBoxMonData(param0, 75, (u8 *)&param3);
     } else {
-        v1 = sub_0201D2E8();
+        v1 = LCRNG_Next();
         v2 = (v1 & (0x1f << 0)) >> 0;
         SetBoxMonData(param0, 70, (u8 *)&v2);
 
@@ -432,7 +432,7 @@ void sub_02073E18 (BoxPokemon * param0, int param1, int param2, int param3, int 
         v2 = (v1 & (0x1f << 10)) >> 10;
         SetBoxMonData(param0, 72, (u8 *)&v2);
 
-        v1 = sub_0201D2E8();
+        v1 = LCRNG_Next();
         v2 = (v1 & (0x1f << 0)) >> 0;
         SetBoxMonData(param0, 73, (u8 *)&v2);
 
@@ -468,7 +468,7 @@ void sub_02074044 (Pokemon * param0, u16 param1, u8 param2, u8 param3, u8 param4
     u32 v0;
 
     do {
-        v0 = (sub_0201D2E8() | (sub_0201D2E8() << 16));
+        v0 = (LCRNG_Next() | (LCRNG_Next() << 16));
     } while (param4 != GetNatureFromPersonality(v0));
 
     sub_02073D80(param0, param1, param2, param3, 1, v0, 0, 0);
@@ -482,7 +482,7 @@ void sub_02074088 (Pokemon * param0, u16 param1, u8 param2, u8 param3, u8 param4
 
     if ((param6) && (param6 < 29)) {
         do {
-            v0 = (sub_0201D2E8() | (sub_0201D2E8() << 16));
+            v0 = (LCRNG_Next() | (LCRNG_Next() << 16));
             v2 = (((v0 & 0x3000000) >> 18) | ((v0 & 0x30000) >> 12) | ((v0 & 0x300) >> 6) | (v0 & 0x3)) % 28;
         } while ((param5 != GetNatureFromPersonality(v0)) || (param4 != sub_02075DAC(param1, v0)) || (v2 != (param6 - 1)));
     } else {
@@ -2362,7 +2362,7 @@ void sub_02075C74 (Pokemon * param0, u8 param1, u16 param2)
     u8 v5;
 
     if (param1 == 5) {
-        if (sub_0201D2E8() & 1) {
+        if (LCRNG_Next() & 1) {
             return;
         }
     }
@@ -2498,18 +2498,18 @@ u32 sub_02075E64 (u32 param0)
 
     param0 = (((param0 & 0xffff0000) >> 16) ^ (param0 & 0xffff)) >> 3;
 
-    v2 = sub_0201D2E8() & 0x7;
-    v3 = sub_0201D2E8() & 0x7;
+    v2 = LCRNG_Next() & 0x7;
+    v3 = LCRNG_Next() & 0x7;
 
     for (v0 = 0; v0 < 13; v0++) {
         if (param0 & FlagIndex(v0)) {
-            if (sub_0201D2E8() & 1) {
+            if (LCRNG_Next() & 1) {
                 v2 |= FlagIndex(v0 + 3);
             } else {
                 v3 |= FlagIndex(v0 + 3);
             }
         } else {
-            if (sub_0201D2E8() & 1) {
+            if (LCRNG_Next() & 1) {
                 v2 |= FlagIndex(v0 + 3);
                 v3 |= FlagIndex(v0 + 3);
             }
@@ -3851,11 +3851,11 @@ void sub_020776B0 (Party * param0)
     int v4;
 
     v3 = Party_GetCurrentCount(param0);
-    v0 = sub_0201D2E8();
+    v0 = LCRNG_Next();
 
     if ((v0 == 16384) || (v0 == 32768) || (v0 == 49152)) {
         do {
-            v4 = sub_0201D2E8() % v3;
+            v4 = LCRNG_Next() % v3;
             v2 = Party_GetPokemonBySlotIndex(param0, v4);
 
             if ((GetMonData(v2, MON_DATA_SPECIES, NULL)) && (GetMonData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
@@ -3867,7 +3867,7 @@ void sub_020776B0 (Party * param0)
 
         if (sub_02077758(param0, FlagIndex(v4)) == 0) {
             do {
-                v1 = sub_0201D2E8() & 0xff;
+                v1 = LCRNG_Next() & 0xff;
             } while ((v1 & 0x7) == 0);
 
             if (v1 & 0xf0) {
@@ -3956,7 +3956,7 @@ void sub_0207782C (Party * param0)
 
     v1 = Party_GetCurrentCount(param0);
 
-    if (sub_0201D2E8() % 3 == 0) {
+    if (LCRNG_Next() % 3 == 0) {
         for (v0 = 0; v0 < v1; v0++) {
             v3 = Party_GetPokemonBySlotIndex(param0, v0);
 
@@ -4425,7 +4425,7 @@ void sub_02077F0C (Pokemon * param0, u32 param1, int param2)
         return;
     }
 
-    v1 = sub_0201D2E8() % 100;
+    v1 = LCRNG_Next() % 100;
     v2 = GetMonData(param0, MON_DATA_SPECIES, NULL);
     v3 = GetMonData(param0, MON_DATA_FORM, NULL);
     v5 = sub_020759CC(v2, v3, 16);

@@ -982,7 +982,7 @@ static int ov23_0223E8CC (u16 param0, u16 param1)
         return -1;
     }
 
-    v6 = sub_0201D2E8() % v5;
+    v6 = LCRNG_Next() % v5;
     v5 = 0;
 
     for (v0 = 0; v0 < 250; v0++) {
