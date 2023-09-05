@@ -38,7 +38,7 @@
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
 #include "unk_020711EC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay005/ov5_021F0EB0.h"
 #include "overlay006/ov6_02243258.h"
 

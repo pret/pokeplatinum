@@ -16,7 +16,7 @@
 #include "unk_020480A8.h"
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"
 
@@ -71,11 +71,11 @@ BOOL sub_020480D8 (UnkStruct_0203E724 * param0)
     for (v13 = 0, v14 = 0, v18 = 0; v18 < 18; v18++) {
         for (v17 = 0; v17 < (5 * 6); v17++) {
             v2 = sub_02079C9C(v3, v18, v17);
-            v19 = sub_02074570(v2, MON_DATA_SPECIES, NULL);
+            v19 = GetBoxMonData(v2, MON_DATA_SPECIES, NULL);
 
             if (v19) {
-                if (sub_02074570(v2, MON_DATA_IS_EGG, NULL) == 0) {
-                    v15 = (sub_02074570(v2, MON_DATA_OT_ID, NULL) & 0xffff);
+                if (GetBoxMonData(v2, MON_DATA_IS_EGG, NULL) == 0) {
+                    v15 = (GetBoxMonData(v2, MON_DATA_OT_ID, NULL) & 0xffff);
 
                     v16 = sub_02048268(v7, v15);
 

@@ -6,7 +6,7 @@
 #include "struct_defs/struct_020997B8.h"
 
 #include "heap.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020997B8.h"
 
 UnkStruct_020997B8 * sub_020997B8 (u32 param0)
@@ -34,7 +34,7 @@ u16 * sub_020997D8 (Pokemon * param0, u32 param1)
 
     v3 = (u16)GetMonData(param0, MON_DATA_SPECIES, NULL);
     v5 = (u8)GetMonData(param0, MON_DATA_FORM, NULL);
-    v4 = (u8)GetMonData(param0, MON_DATA_161, NULL);
+    v4 = (u8)GetMonData(param0, MON_DATA_LEVEL, NULL);
 
     for (v7 = 0; v7 < 4; v7++) {
         v2[v7] = (u16)GetMonData(param0, MON_DATA_MOVE1 + v7, NULL);
@@ -43,7 +43,7 @@ u16 * sub_020997D8 (Pokemon * param0, u32 param1)
     v0 = Heap_AllocFromHeap(param1, (44 / 2) * 2);
     v1 = Heap_AllocFromHeap(param1, (44 / 2) * 2);
 
-    sub_02077D28(v3, v5, v0);
+    LoadMonLevelUpMoves(v3, v5, v0);
 
     v8 = 0;
 

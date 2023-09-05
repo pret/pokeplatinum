@@ -67,7 +67,7 @@
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay012/ov12_022380BC.h"
@@ -611,27 +611,27 @@ static void ov16_0225C47C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 
     if ((v0->unk_18 & 0x200000) == 0) {
         for (v1 = 0; v1 < 4; v1++) {
-            if ((v0->unk_01_4 & FlagIndex(v1)) == 0) {
-                sub_02074B30(v2, 54 + v1, (u8 *)&v0->unk_0E[v1]);
-                sub_02074B30(v2, 58 + v1, (u8 *)&v0->unk_12[v1]);
+            if ((v0->unk_01_4 & GetSingleBitMask(v1)) == 0) {
+                SetMonData(v2, 54 + v1, (u8 *)&v0->unk_0E[v1]);
+                SetMonData(v2, 58 + v1, (u8 *)&v0->unk_12[v1]);
             }
         }
     }
 
-    if ((v0->unk_08 & FlagIndex(v0->unk_01_0)) == 0) {
-        sub_02074B30(v2, 6, (u8 *)&v0->unk_0C);
+    if ((v0->unk_08 & GetSingleBitMask(v0->unk_01_0)) == 0) {
+        SetMonData(v2, 6, (u8 *)&v0->unk_0C);
     }
 
-    sub_02074B30(v2, 163, (u8 *)&v0->unk_02);
-    sub_02074B30(v2, 160, (u8 *)&v0->unk_04);
+    SetMonData(v2, 163, (u8 *)&v0->unk_02);
+    SetMonData(v2, 160, (u8 *)&v0->unk_04);
 
     if (v0->unk_26) {
-        sub_02074B30(v2, 112, (u8 *)&v0->unk_1C);
+        SetMonData(v2, 112, (u8 *)&v0->unk_1C);
     }
 
     if (v0->unk_24) {
-        sub_02074B30(v2, 10, (u8 *)&v0->unk_20);
-        sub_0207418C(v2);
+        SetMonData(v2, 10, (u8 *)&v0->unk_20);
+        CalculateMonLevelAndStats(v2);
     }
 
     ov16_02266ABC(param0, param1->unk_190, v0->unk_00);
@@ -680,11 +680,11 @@ static void ov16_0225C5E0 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
         if (v0->unk_01 == 104) {
             v4 = 0;
         } else {
-            v4 = GetMonData(v1, MON_DATA_10, NULL);
+            v4 = GetMonData(v1, MON_DATA_ABILITY, NULL);
         }
 
         if ((v0->unk_02 != 215) || ((v0->unk_02 == 215) && (v4 != 43))) {
-            sub_02074B30(v1, 160, (u8 *)&v5);
+            SetMonData(v1, 160, (u8 *)&v5);
         }
     }
 
@@ -974,9 +974,9 @@ static void ov16_0225CA74 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 
                 if ((GetMonData(v2, MON_DATA_SPECIES, NULL)) && (GetMonData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
                     if (Battler_Side(param0, v4)) {
-                        v6 += GetMonData(v2, MON_DATA_163, NULL);
+                        v6 += GetMonData(v2, MON_DATA_CURRENT_HP, NULL);
                     } else {
-                        v5 += GetMonData(v2, MON_DATA_163, NULL);
+                        v5 += GetMonData(v2, MON_DATA_CURRENT_HP, NULL);
                     }
                 }
             }

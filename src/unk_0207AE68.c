@@ -61,7 +61,7 @@
 #include "unk_0202CD50.h"
 #include "unk_020393C8.h"
 #include "unk_02056720.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207AE68.h"
 #include "unk_0207C63C.h"
@@ -295,7 +295,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             }
 
             sub_0200590C(param0->unk_60, param0->unk_84, param0->unk_86);
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+            sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
                 param0->unk_65 = sub_0207C584(param0, 917);
@@ -404,11 +404,11 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         break;
     case 11:
         if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[1]) == 0)) {
-            sub_02074B30(param0->unk_28, 5, (u8 *)&param0->unk_62);
-            sub_0207803C(param0->unk_28);
-            sub_0207418C(param0->unk_28);
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
-            sub_0200B538(param0->unk_0C, 1, sub_02076B10(param0->unk_28));
+            SetMonData(param0->unk_28, 5, (u8 *)&param0->unk_62);
+            CalculateMonAbility(param0->unk_28);
+            CalculateMonLevelAndStats(param0->unk_28);
+            sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
+            sub_0200B538(param0->unk_0C, 1, GetBoxMon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 918);
             param0->unk_66 = 40;
             param0->unk_64++;
@@ -420,10 +420,10 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
                 sub_0202736C(param0->unk_48, param0->unk_28);
                 sub_0202CF28(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
-                sub_02056A48(param0->unk_54, sub_02076B10(param0->unk_28));
+                sub_02056A48(param0->unk_54, GetBoxMon(param0->unk_28));
 
                 if (GetMonData(param0->unk_28, MON_DATA_77, NULL) == 0) {
-                    sub_02074B30(param0->unk_28, 179, NULL);
+                    SetMonData(param0->unk_28, 179, NULL);
                 }
 
                 param0->unk_64++;
@@ -445,7 +445,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             param0->unk_64 = 14;
             break;
         default:
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+            sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
             sub_0200B630(param0->unk_0C, 1, v3);
             param0->unk_65 = sub_0207C584(param0, 4);
             param0->unk_66 = 30;
@@ -455,14 +455,14 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     }
     break;
     case 14:
-        sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+        sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1193);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 16:
-        sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+        sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
         param0->unk_65 = sub_0207C584(param0, 1194);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -562,7 +562,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     case 35:
         switch (sub_02002114(param0->unk_40, param0->unk_5C)) {
         case 0:
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+            sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
             sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
             param0->unk_65 = sub_0207C584(param0, 1198);
             param0->unk_66 = 30;
@@ -587,7 +587,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         param0->unk_64++;
         break;
     case 27:
-        sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+        sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, GetMonData(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, 1200);
         param0->unk_66 = 30;
@@ -599,12 +599,12 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         param0->unk_64++;
         break;
     case 31:
-        sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+        sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1202);
         param0->unk_66 = 0;
-        sub_02074B30(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
-        sub_02077230(param0->unk_28, param0->unk_6C, param0->unk_6E);
+        SetMonData(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
+        SetMonMove(param0->unk_28, param0->unk_6C, param0->unk_6E);
         param0->unk_66 = 30;
         param0->unk_64 = 37;
         break;
@@ -668,7 +668,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         break;
     case 43:
         if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[0]) == 0)) {
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+            sub_0200B5CC(param0->unk_0C, 0, GetBoxMon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 919);
             param0->unk_66 = 20;
             param0->unk_64++;
@@ -709,50 +709,50 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 sub_020775EC(param0->unk_28, v1);
 
                 v2 = 292;
-                sub_02074B30(v1, 5, &v2);
+                SetMonData(v1, 5, &v2);
 
                 v2 = 4;
-                sub_02074B30(v1, 155, &v2);
+                SetMonData(v1, 155, &v2);
 
                 v2 = 0;
-                sub_02074B30(v1, 6, &v2);
-                sub_02074B30(v1, 11, &v2);
+                SetMonData(v1, 6, &v2);
+                SetMonData(v1, 11, &v2);
 
                 for (v0 = 25; v0 < 53 + 1; v0++) {
-                    sub_02074B30(v1, v0, &v2);
+                    SetMonData(v1, v0, &v2);
                 }
 
                 for (v0 = 78; v0 < 109 + 1; v0++) {
-                    sub_02074B30(v1, v0, &v2);
+                    SetMonData(v1, v0, &v2);
                 }
 
                 for (v0 = 123; v0 < 143 + 1; v0++) {
-                    sub_02074B30(v1, v0, &v2);
+                    SetMonData(v1, v0, &v2);
                 }
 
-                sub_02074B30(v1, 179, NULL);
-                sub_02074B30(v1, 77, &v2);
-                sub_02074B30(v1, 160, &v2);
+                SetMonData(v1, 179, NULL);
+                SetMonData(v1, 77, &v2);
+                SetMonData(v1, 160, &v2);
 
                 v3 = sub_0202818C(param0->unk_5C);
-                sub_02074B30(v1, 170, v3);
+                SetMonData(v1, 170, v3);
                 Heap_FreeToHeap(v3);
-                sub_02074B30(v1, 162, &v2);
+                SetMonData(v1, 162, &v2);
 
                 MI_CpuClearFast(&v4, sizeof(UnkStruct_0202CA28));
 
-                sub_02074B30(v1, 171, (UnkStruct_0202CA28 *)&v4);
-                sub_0207803C(v1);
+                SetMonData(v1, 171, (UnkStruct_0202CA28 *)&v4);
+                CalculateMonAbility(v1);
 
-                v0 = sub_02075D6C(v1);
-                sub_02074B30(v1, 111, &v0);
+                v0 = GetMonGender(v1);
+                SetMonData(v1, 111, &v0);
 
-                sub_0207418C(v1);
+                CalculateMonLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
                 sub_0202736C(param0->unk_48, v1);
                 sub_0202CF28(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
-                sub_02056A48(param0->unk_54, sub_02076B10(v1));
+                sub_02056A48(param0->unk_54, GetBoxMon(v1));
                 Heap_FreeToHeap(v1);
                 sub_0207D60C(param0->unk_4C, 4, 1, param0->unk_5C);
             }
@@ -762,7 +762,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
     case 18:
     case 19:
         v0 = 0;
-        sub_02074B30(param0->unk_28, 6, &v0);
+        SetMonData(param0->unk_28, 6, &v0);
         break;
     }
 }
@@ -955,8 +955,8 @@ static void sub_0207C498 (UnkStruct_0207AE68 * param0)
     v1 = AllocMonZeroed(param0->unk_5C);
 
     sub_020775EC(param0->unk_28, v1);
-    sub_02074B30(v1, 5, (u8 *)&param0->unk_62);
-    sub_0207418C(v1);
+    SetMonData(v1, 5, (u8 *)&param0->unk_62);
+    CalculateMonLevelAndStats(v1);
     sub_02075EF4(&v0, v1, 2);
     Heap_FreeToHeap(v1);
 

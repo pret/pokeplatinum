@@ -42,7 +42,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay095/ov95_02246C20.h"
 #include "overlay095/ov95_022476F0.h"
 #include "overlay095/ov95_02247B6C.h"
@@ -360,7 +360,7 @@ static int ov95_02247F04 (UnkStruct_ov95_02247C6C * param0, int * param1)
             {
                 const BoxPokemon * v6 = ov95_02247634(param0->unk_00);
 
-                if (sub_02074570((BoxPokemon *)v6, MON_DATA_IS_EGG, NULL) == 0) {
+                if (GetBoxMonData((BoxPokemon *)v6, MON_DATA_IS_EGG, NULL) == 0) {
                     u8 v7;
 
                     sub_02007B98(param0->unk_10, 1);

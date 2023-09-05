@@ -20,7 +20,7 @@
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_02051D8C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_02096420.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -328,7 +328,7 @@ void ov104_0223C04C (UnkStruct_ov104_0223BFFC * param0)
         v6 = Party_GetPokemonBySlotIndex(param0->unk_74, v1);
         v0 = 0;
 
-        sub_02074B30(v6, 6, &v0);
+        SetMonData(v6, 6, &v0);
     }
 
     Heap_FreeToHeap(v5);

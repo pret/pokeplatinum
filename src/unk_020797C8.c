@@ -6,7 +6,7 @@
 #include "message.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 
 typedef struct UnkStruct_020797DC_t {
@@ -97,7 +97,7 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon * param2)
     }
 
     for (v0 = 0; v0 < (5 * 6); v0++) {
-        if (sub_02074570(&(param0->unk_04[param1][v0]), MON_DATA_SPECIES, NULL) == 0) {
+        if (GetBoxMonData(&(param0->unk_04[param1][v0]), MON_DATA_SPECIES, NULL) == 0) {
             param0->unk_04[param1][v0] = *param2;
             sub_02024804();
             return 1;
@@ -154,7 +154,7 @@ u32 sub_020799A0 (const UnkStruct_020797DC * param0)
 
     while (TRUE) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
-            if (sub_02074570((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
+            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
                 return v0;
             }
         }
@@ -184,7 +184,7 @@ BOOL sub_020799F0 (const UnkStruct_020797DC * param0, int * param1, int * param2
 
     while (TRUE) {
         for ( ; v1 < (5 * 6); v1++) {
-            if (sub_02074570((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
+            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
                 *param1 = v0;
                 *param2 = v1;
                 return 1;
@@ -214,7 +214,7 @@ u32 sub_02079A50 (const UnkStruct_020797DC * param0)
 
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
-            if (sub_02074570((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) != 0) {
+            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) != 0) {
                 v2++;
             }
         }
@@ -297,7 +297,7 @@ u32 sub_02079B54 (const UnkStruct_020797DC * param0, u32 param1)
         u32 v1 = 0;
 
         for (v0 = 0; v0 < (5 * 6); v0++) {
-            if (sub_02074570((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
+            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
                 v1++;
             }
         }
@@ -321,8 +321,8 @@ u32 sub_02079B98 (const UnkStruct_020797DC * param0, u32 param1)
         u32 v1 = 0;
 
         for (v0 = 0; v0 < (5 * 6); v0++) {
-            if (sub_02074570((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
-                if (sub_02074570((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_IS_EGG, NULL) == 0) {
+            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
+                if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_IS_EGG, NULL) == 0) {
                     v1++;
                 }
             }
@@ -356,7 +356,7 @@ u32 sub_02079C08 (const UnkStruct_020797DC * param0, u32 param1, u32 param2, int
         param1 = param0->unk_00;
     }
 
-    return sub_02074570((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
+    return GetBoxMonData((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
 }
 
 void sub_02079C50 (UnkStruct_020797DC * param0, u32 param1, u32 param2, int param3, void * param4)

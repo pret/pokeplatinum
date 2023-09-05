@@ -33,7 +33,7 @@
 #include "unk_0202B37C.h"
 #include "unk_0205C980.h"
 #include "unk_0206B9D8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay057/ov57_021D0F30.h"
 
@@ -137,7 +137,7 @@ static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
     if (!sub_02025D10(v1) || !sub_02025D40(v1)) {
         sub_02025DE8(sub_02025CD8(v0));
         sub_02025CE4(v1);
-        sub_02077B8C(Party_GetFromSavedata(v0));
+        SetShayminLandForm(Party_GetFromSavedata(v0));
     }
 
     sub_02017434(sub_02025E5C(v0));

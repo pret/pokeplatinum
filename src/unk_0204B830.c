@@ -39,7 +39,7 @@
 #include "unk_02054884.h"
 #include "unk_02056720.h"
 #include "unk_0206AFE0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_020923C0.h"
@@ -210,7 +210,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     if (v8 == 0x0) {
         (void)0;
     } else if (v8 == 0x1) {
-        while (sub_02075E38(v7, v9)) {
+        while (GetMonPersonalityShininess(v7, v9)) {
             v9 = ARNG_Next(v9);
         }
     } else {
@@ -218,32 +218,32 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     }
 
     sub_020780C4(v4, v9);
-    v10 = sub_02075D6C(v4);
+    v10 = GetMonGender(v4);
 
-    sub_02074B30(v4, 111, (u8 *)&v10);
+    SetMonData(v4, 111, (u8 *)&v10);
     v10 = GetMonData(v4, MON_DATA_HP_IV, 0) + GetMonData(v4, MON_DATA_ATK_IV, 0) + GetMonData(v4, MON_DATA_DEF_IV, 0) + GetMonData(v4, MON_DATA_SPEED_IV, 0) + GetMonData(v4, MON_DATA_SPATK_IV, 0) + GetMonData(v4, MON_DATA_SPDEF_IV, 0);
 
     if (v10 == 0) {
         v8 = LCRNG_Next();
         v9 = (v8 & (0x1F << 0)) >> 0;
 
-        sub_02074B30(v4, 70, (u8 *)&v9);
+        SetMonData(v4, 70, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 5)) >> 5;
-        sub_02074B30(v4, 71, (u8 *)&v9);
+        SetMonData(v4, 71, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 10)) >> 10;
-        sub_02074B30(v4, 72, (u8 *)&v9);
+        SetMonData(v4, 72, (u8 *)&v9);
 
         v8 = LCRNG_Next();
         v9 = (v8 & (0x1F << 0)) >> 0;
-        sub_02074B30(v4, 73, (u8 *)&v9);
+        SetMonData(v4, 73, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 5)) >> 5;
-        sub_02074B30(v4, 74, (u8 *)&v9);
+        SetMonData(v4, 74, (u8 *)&v9);
 
         v9 = (v8 & (0x1F << 10)) >> 10;
-        sub_02074B30(v4, 75, (u8 *)&v9);
+        SetMonData(v4, 75, (u8 *)&v9);
     }
 
     v13 = sub_0202D79C(param0->unk_0C);
@@ -296,9 +296,9 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
         v6 = AllocMonZeroed(32);
 
         sub_020775EC(v4, v6);
-        sub_02074B30(v6, 145, v15);
-        sub_02074B30(v6, 7, &v16);
-        sub_02074B30(v6, 157, &v17);
+        SetMonData(v6, 145, v15);
+        SetMonData(v6, 7, &v16);
+        SetMonData(v6, 157, &v17);
 
         v4 = v6;
         Strbuf_Free(v15);
@@ -314,7 +314,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
         }
     }
 
-    sub_0207418C(v4);
+    CalculateMonLevelAndStats(v4);
 
     v3 = Party_GetFromSavedata(param0->unk_0C);
     v5 = Party_AddPokemon(v3, v4);
@@ -339,7 +339,7 @@ static void sub_0204BDEC (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     v1 = (Pokemon *)&v0->val1.unk_04;
 
     sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
-    sub_0200B578(param0->unk_04, 1, sub_02076B10(v1));
+    sub_0200B578(param0->unk_04, 1, GetBoxMon(v1));
 }
 
 static void sub_0204BE2C (UnkStruct_0204B830 * param0, u16 * param1, u16 * param2)
@@ -364,7 +364,7 @@ static void sub_0204BE44 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
     v1 = (Pokemon *)v0->val2.unk_04;
 
     sub_0200B498(param0->unk_04, 0, sub_02025E38(param0->unk_00->unk_0C));
-    sub_0200B538(param0->unk_04, 1, sub_02076B10(v1));
+    sub_0200B538(param0->unk_04, 1, GetBoxMon(v1));
 }
 
 static BOOL sub_0204BE84 (UnkStruct_0203CDB0 * param0, void * param1)

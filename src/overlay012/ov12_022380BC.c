@@ -13,7 +13,7 @@
 #include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay012/ov12_022380BC.h"
 
 static void ov12_022380DC(UnkStruct_ov12_022380DC * param0, int param1, int param2, int param3);

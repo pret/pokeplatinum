@@ -12,7 +12,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay079/ov79_021D3768.h"
 
 static void ov79_021D3870(UnkStruct_ov79_021D3820 * param0, int param1);

@@ -69,7 +69,7 @@
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay097/ov97_0222D04C.h"
 #include "overlay097/ov97_0222D30C.h"
 #include "overlay097/ov97_02232054.h"

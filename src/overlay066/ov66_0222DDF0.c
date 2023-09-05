@@ -61,7 +61,7 @@
 #include "unk_0202C858.h"
 #include "unk_0202CD50.h"
 #include "unk_02030EA4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207E060.h"
 #include "overlay066/ov66_0222DDF0.h"

@@ -11,13 +11,13 @@
 #include "unk_02025E08.h"
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"
 
 BOOL sub_02054884 (Pokemon * param0)
 {
-    if (GetMonData(param0, MON_DATA_163, NULL) == 0) {
+    if (GetMonData(param0, MON_DATA_CURRENT_HP, NULL) == 0) {
         return 0;
     }
 
@@ -45,7 +45,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     sub_02077E64(v1, v4, 4, param5, param6, param0);
 
     v2 = param4;
-    sub_02074B30(v1, 6, &v2);
+    SetMonData(v1, 6, &v2);
     v0 = Party_AddPokemon(v3, v1);
 
     if (v0) {
@@ -78,7 +78,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
 
 void sub_02054988 (Party * param0, int param1, int param2, u16 param3)
 {
-    sub_020771F8(Party_GetPokemonBySlotIndex(param0, param1), param3, param2);
+    ResetMonMove(Party_GetPokemonBySlotIndex(param0, param1), param3, param2);
 }
 
 int sub_020549A0 (Party * param0, u16 param1)
@@ -181,7 +181,7 @@ void sub_02054AC4 (Party * param0)
         v3 = Party_GetPokemonBySlotIndex(param0, v0);
 
         if (GetMonData(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            sub_02074B30(v3, 25, &v2);
+            SetMonData(v3, 25, &v2);
         }
     }
 }
@@ -200,13 +200,13 @@ int sub_02054B04 (Party * param0, u16 param1)
 
         if (sub_02054884(v4)) {
             if (GetMonData(v4, MON_DATA_160, NULL) & (0x80 | 0x8)) {
-                u32 v5 = GetMonData(v4, MON_DATA_163, NULL);
+                u32 v5 = GetMonData(v4, MON_DATA_CURRENT_HP, NULL);
 
                 if (v5 > 1) {
                     v5--;
                 }
 
-                sub_02074B30(v4, 163, &v5);
+                SetMonData(v4, 163, &v5);
 
                 if (v5 == 1) {
                     v1++;
@@ -229,10 +229,10 @@ int sub_02054B04 (Party * param0, u16 param1)
 
 BOOL sub_02054B94 (Pokemon * param0)
 {
-    if ((GetMonData(param0, MON_DATA_160, NULL) & (0x80 | 0x8)) && (GetMonData(param0, MON_DATA_163, NULL) == 1)) {
+    if ((GetMonData(param0, MON_DATA_160, NULL) & (0x80 | 0x8)) && (GetMonData(param0, MON_DATA_CURRENT_HP, NULL) == 1)) {
         u32 v0 = 0;
 
-        sub_02074B30(param0, 160, &v0);
+        SetMonData(param0, 160, &v0);
         return 1;
     }
 

@@ -6,7 +6,7 @@
 
 #include "unk_0201378C.h"
 #include "unk_0202EEC0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 typedef struct UnkStruct_02024440_t {
     Pokemon unk_00[6];

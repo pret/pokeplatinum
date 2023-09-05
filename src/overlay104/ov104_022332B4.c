@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0202FF4C.h"
 #include "unk_02051D8C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -404,7 +404,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
 
         for (v10 = 0; v10 < v6; v10++) {
             v3 = Party_GetPokemonBySlotIndex(v4->unk_4D4, v10);
-            sub_0200B538(param0->unk_00->unk_44, v10, sub_02076B10(v3));
+            sub_0200B538(param0->unk_00->unk_44, v10, GetBoxMon(v3));
         }
         break;
     case 35:

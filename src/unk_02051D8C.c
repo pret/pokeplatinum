@@ -57,7 +57,7 @@
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
@@ -325,11 +325,11 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
     for (v0 = 0; v0 < Party_GetCurrentCount(v3); v0++) {
         sub_020775EC(Party_GetPokemonBySlotIndex(v3, v0), v8);
 
-        if ((GetMonData(v8, MON_DATA_161, NULL) != param2) && (param2 != 0)) {
-            v1 = sub_02075AD0(GetMonData(v8, MON_DATA_SPECIES, NULL), param2);
+        if ((GetMonData(v8, MON_DATA_LEVEL, NULL) != param2) && (param2 != 0)) {
+            v1 = GetMonSpeciesLevelExp(GetMonData(v8, MON_DATA_SPECIES, NULL), param2);
 
-            sub_02074B30(v8, 8, &v1);
-            sub_0207418C(v8);
+            SetMonData(v8, 8, &v1);
+            CalculateMonLevelAndStats(v8);
         }
 
         sub_0205213C(param0, v8, 0);

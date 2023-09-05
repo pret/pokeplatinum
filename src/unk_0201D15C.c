@@ -229,19 +229,19 @@ u32 sub_0201D5B8 (const void * param0, u32 param1)
     return v0;
 }
 
-void sub_0201D5D4 (void * param0, u32 param1, u32 param2)
+void EncryptData (void * data, u32 bytes, u32 seed)
 {
-    int v0;
-    u16 * v1 = (u16 *)param0;
+    int i;
+    u16 * dataWords = (u16 *)data;
 
-    for (v0 = 0; v0 < param1 / 2; v0++) {
-        v1[v0] ^= LCRNG_NextFrom(&param2);
+    for (i = 0; i < bytes / 2; i++) {
+        dataWords[i] ^= LCRNG_NextFrom(&seed);
     }
 }
 
-void sub_0201D600 (void * param0, u32 param1, u32 param2)
+void DecryptData (void * data, u32 bytes, u32 seed)
 {
-    sub_0201D5D4(param0, param1, param2);
+    EncryptData(data, bytes, seed);
 }
 
 static u16 LCRNG_NextFrom (u32 * seed)

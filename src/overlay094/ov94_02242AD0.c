@@ -43,7 +43,7 @@
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "overlay094/ov94_0223B140.h"
@@ -797,7 +797,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
                 Pokemon * v1 = AllocMonZeroed(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v1);
-                sub_0200B5CC(param0->unk_B8C, 0, sub_02076B10(v1));
+                sub_0200B5CC(param0->unk_B8C, 0, GetBoxMon(v1));
 
                 param0->unk_28 = 2;
                 param0->unk_2C = 34;
@@ -817,7 +817,7 @@ static int ov94_02243398 (UnkStruct_ov94_0223FD4C * param0)
                 Pokemon * v2 = AllocMonZeroed(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v2);
-                sub_0200B5CC(param0->unk_B8C, 0, sub_02076B10(v2));
+                sub_0200B5CC(param0->unk_B8C, 0, GetBoxMon(v2));
 
                 param0->unk_28 = 3;
                 param0->unk_2C = 34;
@@ -1298,8 +1298,8 @@ static void ov94_02243BC4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
             }
         }
 
-        sub_02074B30(param1, 9, &v1);
-        sub_02074B30(param1, 111, NULL);
+        SetMonData(param1, 9, &v1);
+        SetMonData(param1, 111, NULL);
 
         ov94_02243DE8(param0->unk_00->unk_00, 0);
     }
@@ -1316,7 +1316,7 @@ static void ov94_02243BC4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
         int v4 = 0;
 
         sub_020799F0(param0->unk_00->unk_0C, &param2, &v4);
-        sub_020798A0(param0->unk_00->unk_0C, param2, sub_02076B10(param1));
+        sub_020798A0(param0->unk_00->unk_0C, param2, GetBoxMon(param1));
 
         param0->unk_124.unk_00 = param2;
         param0->unk_124.unk_04 = v4;
@@ -1347,10 +1347,10 @@ static void ov94_02243CE4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
 
     {
         u8 v1 = 70;
-        sub_02074B30(param1, 9, &v1);
+        SetMonData(param1, 9, &v1);
     }
 
-    sub_02074B30(param1, 111, NULL);
+    SetMonData(param1, 111, NULL);
 
     if (param2 == 18) {
         int v2;
@@ -1364,7 +1364,7 @@ static void ov94_02243CE4 (UnkStruct_ov94_0223FD4C * param0, Pokemon * param1, i
         int v3 = 0;
 
         sub_020799F0(param0->unk_00->unk_0C, &param2, &v3);
-        sub_020798A0(param0->unk_00->unk_0C, param2, sub_02076B10(param1));
+        sub_020798A0(param0->unk_00->unk_0C, param2, GetBoxMon(param1));
 
         param0->unk_124.unk_00 = param2;
         param0->unk_124.unk_04 = v3;
@@ -1402,7 +1402,7 @@ static void ov94_02243E48 (UnkStruct_0202B628 * param0, UnkStruct_ov94_0223BA88 
     Pokemon * v2 = (Pokemon *)param1->unk_00.unk_00;
 
     GetMonData(v2, MON_DATA_117, v1);
-    v0 = sub_0202C1EC(param1->unk_10C, param1->unk_F6, v1, sub_02075D6C(v2), 62);
+    v0 = sub_0202C1EC(param1->unk_10C, param1->unk_F6, v1, GetMonGender(v2), 62);
     sub_0202B758(param0, v0, 4);
 }
 

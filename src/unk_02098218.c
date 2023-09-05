@@ -37,7 +37,7 @@
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
 #include "unk_02098218.h"
@@ -224,9 +224,9 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
             int v6 = 11;
             int v7 = 0;
 
-            sub_02074B30(v2, 76, &v7);
+            SetMonData(v2, 76, &v7);
             sub_0209304C(v2, v3, v4, v5, v6);
-            sub_02074B30(v2, 179, NULL);
+            SetMonData(v2, 179, NULL);
         }
 
         {
@@ -248,7 +248,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
         v9 = GetMonData(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
         v0->unk_08 = sub_0208712C(11, 1, v9, 10, sub_02025E44(sub_0203D174(v8)));
-        v0->unk_08->unk_10 = GetMonData(v0->unk_0C.unk_00, MON_DATA_111, NULL);
+        v0->unk_08->unk_10 = GetMonData(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
         v0->unk_08->unk_08 = GetMonData(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         sub_02050A38(param0, &Unk_020F2DAC, v0->unk_08);
         v0->unk_00++;
@@ -256,7 +256,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
     break;
     case 4:
         if (v0->unk_08->unk_14 == 0) {
-            sub_02074B30(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
+            SetMonData(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
 
             {
                 UnkStruct_0203CDB0 * v10 = sub_02050A60(param0);

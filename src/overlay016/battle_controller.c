@@ -32,7 +32,7 @@
 #include "heap.h"
 #include "unk_02025E68.h"
 #include "unk_02034198.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "party.h"
 #include "item.h"
@@ -369,7 +369,7 @@ static void BattleController_CommandSelectionInput (BattleSystem *battleSys, Bat
                 break;
             }
 
-            if (battleCtx->battlersSwitchingMask & FlagIndex(i)) {
+            if (battleCtx->battlersSwitchingMask & GetSingleBitMask(i)) {
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
                 battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_AFTER_MOVE;
                 break;
@@ -860,7 +860,7 @@ static void BattleController_CheckPreMoveActions(BattleSystem *battleSys, Battle
             while (battleCtx->turnStartCheckTemp < maxBattlers) {
                 battler = battleCtx->battlerActionOrder[battleCtx->turnStartCheckTemp];
 
-                if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+                if (battleCtx->battlersSwitchingMask & GetSingleBitMask(battler)) {
                     battleCtx->turnStartCheckTemp++;
                     continue;
                 }
@@ -1349,7 +1349,7 @@ static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleC
     while (battleCtx->monConditionCheckTemp < maxBattlers) {
         battler = battleCtx->monSpeedOrder[battleCtx->monConditionCheckTemp];
 
-        if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+        if (battleCtx->battlersSwitchingMask & GetSingleBitMask(battler)) {
             battleCtx->monConditionCheckTemp++;
             continue;
         }
@@ -1573,13 +1573,13 @@ static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleC
                 if (BattleContext_MoveFailed(battleCtx, battler)) {
                     i = BATTLE_SUBSEQ_UPROAR_END;
                     battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_UPROAR;
-                    battleCtx->fieldConditionsMask &= ((FlagIndex(battler) << FIELD_CONDITION_UPROAR_SHIFT) ^ 0xFFFFFFFF);
+                    battleCtx->fieldConditionsMask &= ((GetSingleBitMask(battler) << FIELD_CONDITION_UPROAR_SHIFT) ^ 0xFFFFFFFF);
                 } else if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_UPROAR) {
                     i = BATTLE_SUBSEQ_UPROAR_CONTINUES;
                 } else {
                     i = BATTLE_SUBSEQ_UPROAR_END;
                     battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_UPROAR;
-                    battleCtx->fieldConditionsMask &= ((FlagIndex(battler) << FIELD_CONDITION_UPROAR_SHIFT) ^ 0xFFFFFFFF);
+                    battleCtx->fieldConditionsMask &= ((GetSingleBitMask(battler) << FIELD_CONDITION_UPROAR_SHIFT) ^ 0xFFFFFFFF);
                 }
 
                 battleCtx->msgBattlerTemp = battler;
@@ -1806,7 +1806,7 @@ static void BattleController_CheckSideConditions(BattleSystem *battleSys, Battle
     case SIDE_COND_CHECK_FUTURE_SIGHT:
         while (battleCtx->sideConditionCheckTemp < maxBattlers) {
             battler = battleCtx->monSpeedOrder[battleCtx->sideConditionCheckTemp];
-            if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+            if (battleCtx->battlersSwitchingMask & GetSingleBitMask(battler)) {
                 battleCtx->sideConditionCheckTemp++;
                 continue;
             }
@@ -1837,7 +1837,7 @@ static void BattleController_CheckSideConditions(BattleSystem *battleSys, Battle
     case SIDE_COND_CHECK_PERISH_SONG:
         while (battleCtx->sideConditionCheckTemp < maxBattlers) {
             battler = battleCtx->monSpeedOrder[battleCtx->sideConditionCheckTemp];
-            if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+            if (battleCtx->battlersSwitchingMask & GetSingleBitMask(battler)) {
                 battleCtx->sideConditionCheckTemp++;
                 continue;
             }
@@ -1959,7 +1959,7 @@ static void ov16_0224DDA8 (BattleSystem * param0, BattleContext * param1)
             if ((param1->aiContext.usedItemCondition[param1->attacker >> 1] & 1) && (param1->aiContext.usedItemCondition[param1->attacker >> 1] & 0x3e)) {
                 param1->msgTemp = 6;
             } else {
-                param1->msgTemp = sub_020787EC(param1->aiContext.usedItemCondition[param1->attacker >> 1]);
+                param1->msgTemp = GetLowestSetBitIndex(param1->aiContext.usedItemCondition[param1->attacker >> 1]);
             }
 
             v1 = (0 + 268);
@@ -2196,7 +2196,7 @@ static int ov16_0224E13C (BattleSystem * param0, BattleContext * param1, int * p
     v0 = ((BattleSystem_RandNext(param0) & 0xff) * (param1->battleMons[param1->attacker].level + v3)) >> 8;
 
     if (v0 < v3) {
-        v0 = BattleSystem_CheckStruggling(param0, param1, param1->attacker, FlagIndex(param1->moveSlot[param1->attacker]), 0xffffffff);
+        v0 = BattleSystem_CheckStruggling(param0, param1, param1->attacker, GetSingleBitMask(param1->moveSlot[param1->attacker]), 0xffffffff);
 
         if (v0 == 0xf) {
             param2[0] = (0 + 255);
@@ -2205,7 +2205,7 @@ static int ov16_0224E13C (BattleSystem * param0, BattleContext * param1, int * p
 
         do {
             v1 = BattleSystem_RandNext(param0) & 3;
-        } while (v0 & FlagIndex(v1));
+        } while (v0 & GetSingleBitMask(v1));
 
         param1->moveSlot[param1->attacker] = v1;
         param1->moveTemp = param1->battleMons[param1->attacker].moves[param1->moveSlot[param1->attacker]];
@@ -2301,7 +2301,7 @@ static BOOL ov16_0224E458 (BattleSystem * param0, BattleContext * param1)
         } else {
             param1->moveStatusFlags |= 0x200;
         }
-    } else if ((param1->battleMons[param1->attacker].ppCur[v1] == 0) && ((param1->battleStatusMask & 0x200) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0x1000) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0xc00) == 0) && ((param1->fieldConditionsMask & (FlagIndex(param1->attacker) << 8)) == 0) && (v1 < 4)) {
+    } else if ((param1->battleMons[param1->attacker].ppCur[v1] == 0) && ((param1->battleStatusMask & 0x200) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0x1000) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0xc00) == 0) && ((param1->fieldConditionsMask & (GetSingleBitMask(param1->attacker) << 8)) == 0) && (v1 < 4)) {
         param1->moveStatusFlags |= 0x200;
     }
 
@@ -2574,7 +2574,7 @@ static BOOL ov16_0224E784 (BattleSystem * param0, BattleContext * param1)
             break;
         case 13:
             if (param1->battleMons[param1->attacker].statusVolatile & 0xf0000) {
-                param1->msgBattlerTemp = sub_020787EC((param1->battleMons[param1->attacker].statusVolatile & 0xf0000) >> 16);
+                param1->msgBattlerTemp = GetLowestSetBitIndex((param1->battleMons[param1->attacker].statusVolatile & 0xf0000) >> 16);
 
                 if (BattleSystem_RandNext(param0) & 1) {
                     BattleSystem_LoadScript(param1, 1, (0 + 107));
@@ -3218,13 +3218,13 @@ static void ov16_0224F8EC (BattleSystem * param0, BattleContext * param1)
             if (param1->aiContext.moveTable[param1->moveCur].class == 0) {
                 param1->turnFlags[param1->defender].physicalDamageTakenFrom[param1->attacker] = param1->damage;
                 param1->turnFlags[param1->defender].physicalDamageLastAttacker = param1->attacker;
-                param1->turnFlags[param1->defender].physicalDamageAttackerMask |= FlagIndex(param1->attacker);
+                param1->turnFlags[param1->defender].physicalDamageAttackerMask |= GetSingleBitMask(param1->attacker);
                 param1->selfTurnFlags[param1->defender].physicalDamageTaken = param1->damage;
                 param1->selfTurnFlags[param1->defender].physicalDamageLastAttacker = param1->attacker;
             } else if (param1->aiContext.moveTable[param1->moveCur].class == 1) {
                 param1->turnFlags[param1->defender].specialDamageTakenFrom[param1->attacker] = param1->damage;
                 param1->turnFlags[param1->defender].specialDamageLastAttacker = param1->attacker;
-                param1->turnFlags[param1->defender].specialDamageAttackerMask |= FlagIndex(param1->attacker);
+                param1->turnFlags[param1->defender].specialDamageAttackerMask |= GetSingleBitMask(param1->attacker);
                 param1->selfTurnFlags[param1->defender].specialDamageTaken = param1->damage;
                 param1->selfTurnFlags[param1->defender].specialDamageLastAttacker = param1->attacker;
             }
@@ -3495,7 +3495,7 @@ static void ov16_0224FEE4 (BattleSystem * param0, BattleContext * param1)
         while (param1->afterMoveEffectTemp < BattleSystem_MaxBattlers(param0)) {
             v4 = param1->monSpeedOrder[param1->afterMoveEffectTemp];
 
-            if (param1->battlersSwitchingMask & FlagIndex(v4)) {
+            if (param1->battlersSwitchingMask & GetSingleBitMask(v4)) {
                 param1->afterMoveEffectTemp++;
                 continue;
             }
@@ -3604,7 +3604,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
             do {
                 v0 = param1->monSpeedOrder[param1->battlerCounter++];
 
-                if (((param1->battlersSwitchingMask & FlagIndex(v0)) == 0) && (param1->battleMons[v0].curHP)) {
+                if (((param1->battlersSwitchingMask & GetSingleBitMask(v0)) == 0) && (param1->battleMons[v0].curHP)) {
                     v2 = BattleSystem_BattlerData(param0, v0);
 
                     if (((v3 & 0x1) && ((ov16_02263AE4(v2) & 0x1) == 0)) || ((v3 & 0x1) == 0) && (ov16_02263AE4(v2) & 0x1)) {
@@ -3626,7 +3626,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
             do {
                 v4 = param1->monSpeedOrder[param1->battlerCounter++];
 
-                if (((param1->battlersSwitchingMask & FlagIndex(v4)) == 0) && (param1->battleMons[v4].curHP)) {
+                if (((param1->battlersSwitchingMask & GetSingleBitMask(v4)) == 0) && (param1->battleMons[v4].curHP)) {
                     if (v4 != param1->attacker) {
                         ov16_02255F94(param0, param1);
                         param1->defender = v4;
@@ -3645,7 +3645,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
 static void ov16_02250438 (BattleSystem * param0, BattleContext * param1)
 {
     if (param1->battleStatusMask & 0xf0000000) {
-        param1->faintedMon = sub_020787EC((param1->battleStatusMask & 0xf0000000) >> 28);
+        param1->faintedMon = GetLowestSetBitIndex((param1->battleStatusMask & 0xf0000000) >> 28);
         param1->battleStatusMask &= (0xf0000000 ^ 0xffffffff);
 
         BattleSystem_LoadScript(param1, 1, (0 + 277));
@@ -3872,7 +3872,7 @@ static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleCont
                         v10 = Party_GetPokemonBySlotIndex(v9, v5);
 
                         if ((GetMonData(v10, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v10, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            if (v6 = GetMonData(v10, MON_DATA_163, NULL)) {
+                            if (v6 = GetMonData(v10, MON_DATA_CURRENT_HP, NULL)) {
                                 v8++;
 
                                 if (param1->selectedPartySlot[v1 ^ 2] != v5) {
@@ -3883,7 +3883,7 @@ static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleCont
                     }
 
                     if (v7 == 0) {
-                        param1->battlersSwitchingMask |= FlagIndex(v1);
+                        param1->battlersSwitchingMask |= GetSingleBitMask(v1);
                         param1->selectedPartySlot[v1] = 6;
                     } else {
                         param1->commandNext = v4;
@@ -3908,12 +3908,12 @@ static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleCont
                         v15 = Party_GetPokemonBySlotIndex(v14, v12);
 
                         if ((GetMonData(v15, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v15, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v13 += GetMonData(v15, MON_DATA_163, NULL);
+                            v13 += GetMonData(v15, MON_DATA_CURRENT_HP, NULL);
                         }
                     }
 
                     if (v13 == 0) {
-                        param1->battlersSwitchingMask |= FlagIndex(v1);
+                        param1->battlersSwitchingMask |= GetSingleBitMask(v1);
                         param1->selectedPartySlot[v1] = 6;
                     } else {
                         param1->commandNext = v4;
@@ -3973,7 +3973,7 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                             v7 = Party_GetPokemonBySlotIndex(v6, v4);
 
                             if ((GetMonData(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v7, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                                v5 += GetMonData(v7, MON_DATA_163, NULL);
+                                v5 += GetMonData(v7, MON_DATA_CURRENT_HP, NULL);
                             }
                         }
 
@@ -4001,7 +4001,7 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                         v13 = Party_GetPokemonBySlotIndex(v11, v9);
 
                         if ((GetMonData(v13, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v13, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v10 += GetMonData(v13, MON_DATA_163, NULL);
+                            v10 += GetMonData(v13, MON_DATA_CURRENT_HP, NULL);
                         }
                     }
 
@@ -4009,7 +4009,7 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                         v13 = Party_GetPokemonBySlotIndex(v12, v9);
 
                         if ((GetMonData(v13, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v13, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v10 += GetMonData(v13, MON_DATA_163, NULL);
+                            v10 += GetMonData(v13, MON_DATA_CURRENT_HP, NULL);
                         }
                     }
 
@@ -4038,7 +4038,7 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                         v18 = Party_GetPokemonBySlotIndex(v17, v15);
 
                         if ((GetMonData(v18, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v18, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v16 += GetMonData(v18, MON_DATA_163, NULL);
+                            v16 += GetMonData(v18, MON_DATA_CURRENT_HP, NULL);
                         }
                     }
 
@@ -4120,7 +4120,7 @@ static BOOL BattleController_CheckRange (BattleSystem *battleSys, BattleContext 
 
     if (battleType & 0x2) {
         if (*range == 0x100) {
-            if ((battleCtx->battlersSwitchingMask & FlagIndex(BattleSystem_Partner(battleSys, battler))) == 0) {
+            if ((battleCtx->battlersSwitchingMask & GetSingleBitMask(BattleSystem_Partner(battleSys, battler))) == 0) {
                 return 1;
             } else {
                 return 0;
@@ -4161,16 +4161,16 @@ static BOOL BattleController_CheckAnyFainted (BattleContext * param0, int param1
     int v1;
 
     v0 = 0;
-    v1 = FlagIndex(param0->monSpeedOrder[v0]) << 24;
+    v1 = GetSingleBitMask(param0->monSpeedOrder[v0]) << 24;
 
     if (param0->battleStatusMask & 0xf000000) {
         while ((param0->battleStatusMask & v1) == 0) {
             v0++;
-            v1 = FlagIndex(param0->monSpeedOrder[v0]) << 24;
+            v1 = GetSingleBitMask(param0->monSpeedOrder[v0]) << 24;
         }
 
         param0->battleStatusMask &= (v1 ^ 0xffffffff);
-        param0->faintedMon = sub_020787EC(v1 >> 24);
+        param0->faintedMon = GetLowestSetBitIndex(v1 >> 24);
 
         if (param3 == 1) {
             BattleSystem_LoadScript(param0, 1, (0 + 6));
@@ -4202,7 +4202,7 @@ static BOOL BattleController_CheckExpPayout (BattleContext * param0, int param1,
             }
 
             param0->battleStatusMask2 &= (v0 ^ 0xffffffff);
-            param0->faintedMon = sub_020787EC(v0 >> 28);
+            param0->faintedMon = GetLowestSetBitIndex(v0 >> 28);
 
             BattleSystem_LoadScript(param0, 1, (0 + 276));
 

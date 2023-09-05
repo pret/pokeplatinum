@@ -53,7 +53,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02098988.h"
 #include "unk_0209ACBC.h"
 #include "overlay021/ov21_021D0D80.h"

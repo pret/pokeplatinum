@@ -43,7 +43,7 @@
 #include "unk_0201E86C.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_02094EDC.h"
 #include "overlay017/ov17_0223F118.h"

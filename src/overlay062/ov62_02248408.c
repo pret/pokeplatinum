@@ -18,7 +18,7 @@
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_0202F1D4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay062/ov62_02248408.h"
 
@@ -82,7 +82,7 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, BattleParams * param1, int para
             Strbuf_CopyChars(v6, v8);
 
             if (sub_02002DB4(0, v6, v7) == 0) {
-                sub_02074B30(v13, 179, NULL);
+                SetMonData(v13, 179, NULL);
                 continue;
             }
         }

@@ -43,7 +43,7 @@
 #include "unk_0200DA60.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 #include "overlay012/ov12_02235E94.h"

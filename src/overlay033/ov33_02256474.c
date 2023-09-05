@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
@@ -293,7 +293,7 @@ static void ov33_02256634 (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
                 GF_ASSERT(0);
             }
 
-            param0->unk_134[v5].unk_30 = sub_020759CC(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 28);
+            param0->unk_134[v5].unk_30 = GetMonFormPersonalDataAttribute(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 28);
             param0->unk_134[v5].unk_31 = 0;
             param0->unk_134[v5].unk_32 = 0;
 

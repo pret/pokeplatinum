@@ -22,7 +22,7 @@
 #include "strbuf.h"
 #include "unk_0202B604.h"
 #include "map_header.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079170.h"
 #include "overlay081/ov81_021D1610.h"
 
@@ -825,7 +825,7 @@ static void ov81_021D28C8 (UnkStruct_ov81_021D1610 * param0, u16 param1, u8 para
     Pokemon * v0 = AllocMonZeroed(42);
 
     sub_02074088(v0, param1, 1, 32, param2, 0, 0);
-    sub_0200B538(param0->unk_54, param3, sub_02076B10(v0));
+    sub_0200B538(param0->unk_54, param3, GetBoxMon(v0));
     Heap_FreeToHeap(v0);
 }
 

@@ -52,7 +52,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02033200.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "item.h"
 #include "overlay097/ov97_02237694.h"
 
@@ -579,8 +579,8 @@ static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int pa
     u32 v2;
     UnkStruct_ov97_0223F550 * v3 = &Unk_ov97_0223F550;
 
-    v0 = sub_02075D6C(param1);
-    v1 = sub_02075E0C(param1);
+    v0 = GetMonGender(param1);
+    v1 = GetMonShininess(param1);
 
     sub_02075FB4(param5, param2, v0, 2, v1, param3, 0);
 

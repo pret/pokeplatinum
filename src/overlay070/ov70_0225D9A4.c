@@ -88,7 +88,7 @@
 #include "unk_020279FC.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_0207C908.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"

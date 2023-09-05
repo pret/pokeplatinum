@@ -30,7 +30,7 @@
 #include "unk_02018340.h"
 #include "unk_0201F834.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D3208.h"
@@ -803,7 +803,7 @@ static int ov21_021E02F0 (int param0, const UnkStruct_ov21_021DF844 * param1)
     int v0;
     int v1;
 
-    v0 = sub_020759F0(param0, 18);
+    v0 = GetMonSpeciesPersonalDataAttribute(param0, 18);
 
     if (v0 == 0) {
         return 1;

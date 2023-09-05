@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay006/ov6_022426AC.h"
 
 typedef struct UnkStruct_ov6_022426B8_t {
@@ -73,7 +73,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
         int v2;
         u8 v3;
 
-        v3 = sub_020759F0(param1, 18);
+        v3 = GetMonSpeciesPersonalDataAttribute(param1, 18);
 
         switch (v3) {
         case 0:

@@ -62,7 +62,7 @@
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0208C324.h"
@@ -1565,7 +1565,7 @@ void ov106_0224313C (UnkStruct_ov106_02243118 * param0, u16 param1, u16 param2)
 
     param0->unk_2A0[2] = param0->unk_18;
     v2 = Party_GetPokemonBySlotIndex(param0->unk_290, 0);
-    param0->unk_2A0[3] = GetMonData(v2, MON_DATA_161, NULL);
+    param0->unk_2A0[3] = GetMonData(v2, MON_DATA_LEVEL, NULL);
 
     return;
 }

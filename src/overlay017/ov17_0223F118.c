@@ -37,7 +37,7 @@
 #include "unk_0201E86C.h"
 #include "gx_layers.h"
 #include "unk_02024220.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_02252A70.h"
 

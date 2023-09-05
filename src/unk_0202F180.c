@@ -10,7 +10,7 @@
 #include "unk_0202CD50.h"
 #include "unk_0202F180.h"
 #include "unk_02056720.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 void sub_0202F180 (UnkStruct_021C0794 * param0, const Pokemon * param1)
 {

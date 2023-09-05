@@ -9,7 +9,7 @@
 #include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_0202631C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020986CC.h"
 
 typedef struct UnkStruct_02026324_t {
@@ -571,7 +571,7 @@ static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, Pokemon * par
 
     switch (param1) {
     case 201:
-        v0 = sub_02076AF8(param2);
+        v0 = GetMonForm(param2);
         sub_0202643C(param0, v0);
         break;
     case 412:
@@ -630,7 +630,7 @@ static u32 sub_02026BAC (const UnkStruct_02026324 * param0, u16 param1, int para
     u32 v0, v1;
     u32 v2;
 
-    if (sub_020759F0(param1, 18) == 255) {
+    if (GetMonSpeciesPersonalDataAttribute(param1, 18) == 255) {
         if (param2 == 0) {
             return 2;
         } else {
@@ -1071,7 +1071,7 @@ void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
 {
     u16 v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
     u32 v1 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    u32 v2 = sub_02075D6C(param1);
+    u32 v2 = GetMonGender(param1);
     u32 v3;
 
     inline_02026DD0(param0);
@@ -1100,7 +1100,7 @@ void sub_0202736C (UnkStruct_02026324 * param0, Pokemon * param1)
     u16 v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
     u32 v1 = GetMonData(param1, MON_DATA_LANGUAGE, NULL);
     u32 v2 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    u32 v3 = sub_02075D6C(param1);
+    u32 v3 = GetMonGender(param1);
     u32 v4;
 
     inline_02026DD0(param0);

@@ -26,7 +26,7 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "poffin.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
@@ -504,7 +504,7 @@ void sub_02098EF8 (Poffin * param0, Pokemon * param1)
     u8 v8[7];
     u8 v9[7];
 
-    v2 = sub_02075BCC(param1);
+    v2 = GetMonNature(param1);
     v4 = Unk_020F685C[v2][0];
     v5 = Unk_020F685C[v2][1];
 
@@ -534,13 +534,13 @@ void sub_02098EF8 (Poffin * param0, Pokemon * param1)
             v7[v0] = 255;
         }
 
-        sub_02074B30(param1, 19 + v0, &v7[v0]);
+        SetMonData(param1, 19 + v0, &v7[v0]);
     }
 
     v3 = GetMonData(param1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v3 < 255) {
         ++v3;
-        sub_02074B30(param1, 9, &v3);
+        SetMonData(param1, 9, &v3);
     }
 }

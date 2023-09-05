@@ -56,7 +56,7 @@
 #include "unk_02061804.h"
 #include "unk_020677F4.h"
 #include "unk_0206AFE0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "overlay005/ov5_021EB1A0.h"
@@ -535,7 +535,7 @@ BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
         for (v3 = 0; v3 < v2; v3++) {
             if (v8[v3] == 112) {
                 v0 = Party_GetPokemonBySlotIndex(v1, v3);
-                sub_02074B30(v0, 6, &v7);
+                SetMonData(v0, 6, &v7);
             }
         }
     }
@@ -549,7 +549,7 @@ BOOL ov5_021F6C60 (UnkStruct_0203E724 * param0)
 
             switch (v5) {
             case 487:
-                sub_02077A00(v0);
+                SetGiratinaForm(v0);
                 break;
             case 479:
                 SetRotomForm(v0, 0, 0);
@@ -596,7 +596,7 @@ BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
         }
 
         v4 = 0;
-        sub_02074B30(v0, 6, &v4);
+        SetMonData(v0, 6, &v4);
     }
 
     v3 = GetMonData(v0, MON_DATA_FORM, NULL);
@@ -606,7 +606,7 @@ BOOL ov5_021F6D80 (UnkStruct_0203E724 * param0)
 
         switch (v2) {
         case 487:
-            sub_02077A00(v0);
+            SetGiratinaForm(v0);
             break;
         case 479:
             SetRotomForm(v0, 0, 0);
@@ -628,7 +628,7 @@ BOOL ov5_021F6E50 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v2);
-    sub_02074B30(v0, 112, &v3);
+    SetMonData(v0, 112, &v3);
 
     return 0;
 }

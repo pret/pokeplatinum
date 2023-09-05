@@ -23,7 +23,7 @@
 #include "unk_020507CC.h"
 #include "unk_020562F8.h"
 #include "unk_0206A8DC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "unk_02092494.h"
 
@@ -74,7 +74,7 @@ BOOL sub_0204C59C (UnkStruct_0203E724 * param0)
     for (v6 = 0; v6 < 6; v6++) {
         sub_0202F000(v0, v6, v2);
         sub_0209304C(v2, v3, 2, 0, 32);
-        v5 = sub_02079868(v1, sub_02076B10(v2));
+        v5 = sub_02079868(v1, GetBoxMon(v2));
         GF_ASSERT(v5);
         sub_0202F180(param0->unk_34->unk_0C, v2);
     }

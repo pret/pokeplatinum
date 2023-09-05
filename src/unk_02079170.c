@@ -21,7 +21,7 @@
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "unk_020277A4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079170.h"
 #include "party.h"
 
@@ -337,7 +337,7 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
 
             sub_02073D80(v7, v9, v8[v1].unk_02, v6, 1, v4, 2, 0);
             sub_02078AEC(v8[v1].unk_06, v7, param2);
-            sub_02074B30(v7, 112, &v10);
+            SetMonData(v7, 112, &v10);
             Party_AddPokemon(param0->parties[param1], v7);
         }
     }
@@ -367,11 +367,11 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             sub_02073D80(v7, v12, v11[v1].unk_02, v6, 1, v4, 2, 0);
 
             for (v2 = 0; v2 < 4; v2++) {
-                sub_02077230(v7, v11[v1].unk_06[v2], v2);
+                SetMonMove(v7, v11[v1].unk_06[v2], v2);
             }
 
             sub_02078AEC(v11[v1].unk_0E, v7, param2);
-            sub_02074B30(v7, 112, &v13);
+            SetMonData(v7, 112, &v13);
             Party_AddPokemon(param0->parties[param1], v7);
         }
     }
@@ -399,9 +399,9 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v6 = v14[v1].unk_00 * 31 / 255;
 
             sub_02073D80(v7, v15, v14[v1].unk_02, v6, 1, v4, 2, 0);
-            sub_02074B30(v7, 6, (u8 *)&v14[v1].unk_06);
+            SetMonData(v7, 6, (u8 *)&v14[v1].unk_06);
             sub_02078AEC(v14[v1].unk_08, v7, param2);
-            sub_02074B30(v7, 112, &v16);
+            SetMonData(v7, 112, &v16);
             Party_AddPokemon(param0->parties[param1], v7);
         }
     }
@@ -429,14 +429,14 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v6 = v17[v1].unk_00 * 31 / 255;
 
             sub_02073D80(v7, v18, v17[v1].unk_02, v6, 1, v4, 2, 0);
-            sub_02074B30(v7, 6, (u8 *)&v17[v1].unk_06);
+            SetMonData(v7, 6, (u8 *)&v17[v1].unk_06);
 
             for (v2 = 0; v2 < 4; v2++) {
-                sub_02077230(v7, v17[v1].unk_08[v2], v2);
+                SetMonMove(v7, v17[v1].unk_08[v2], v2);
             }
 
             sub_02078AEC(v17[v1].unk_10, v7, param2);
-            sub_02074B30(v7, 112, &v19);
+            SetMonData(v7, 112, &v19);
             Party_AddPokemon(param0->parties[param1], v7);
         }
     }

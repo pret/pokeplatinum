@@ -15,7 +15,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02022594.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "party.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -207,17 +207,17 @@ static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
 
     for (v1 = 0; v1 < param0->unk_00; v1++) {
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
-        v2 = sub_02073C88(v0);
+        v2 = DecryptMon(v0);
 
         param0->unk_04[v1].unk_00 = sub_02079D40((const BoxPokemon *)v0);
         param0->unk_04[v1].unk_04 = GetMonData(v0, MON_DATA_SPECIES, NULL);
-        param0->unk_04[v1].unk_06 = GetMonData(v0, MON_DATA_163, NULL);
-        param0->unk_04[v1].unk_08 = GetMonData(v0, MON_DATA_164, NULL);
+        param0->unk_04[v1].unk_06 = GetMonData(v0, MON_DATA_CURRENT_HP, NULL);
+        param0->unk_04[v1].unk_08 = GetMonData(v0, MON_DATA_MAX_HP, NULL);
         param0->unk_04[v1].unk_0A = GetMonData(v0, MON_DATA_HELD_ITEM, NULL);
         param0->unk_04[v1].unk_0C = (GetMonData(v0, MON_DATA_160, NULL) != 0);
         param0->unk_04[v1].unk_0E = GetMonData(v0, MON_DATA_IS_EGG, NULL);
         param0->unk_04[v1].unk_0F = GetMonData(v0, MON_DATA_FORM, NULL);
 
-        sub_02073CD4(v0, v2);
+        EncryptMon(v0, v2);
     }
 }

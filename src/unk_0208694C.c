@@ -63,7 +63,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "unk_0208694C.h"
@@ -1421,7 +1421,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
 
         v1 = AllocMonZeroed(18);
         sub_02073D80(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
-        sub_0200B538(param0->unk_168, 0, sub_02076B10(v1));
+        sub_0200B538(param0->unk_168, 0, GetBoxMon(v1));
         Heap_FreeToHeap(v1);
     }
 
@@ -1488,7 +1488,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
             Pokemon * v4 = AllocMonZeroed(18);
 
             sub_02073D80(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
-            sub_0200B538(param0->unk_168, 0, sub_02076B10(v4));
+            sub_0200B538(param0->unk_168, 0, GetBoxMon(v4));
             Heap_FreeToHeap(v4);
         } else {
             param0->unk_D8[param0->unk_158] = 0xffff;

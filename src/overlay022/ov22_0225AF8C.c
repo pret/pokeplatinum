@@ -25,7 +25,7 @@
 #include "unk_02018340.h"
 #include "unk_0202298C.h"
 #include "unk_020298BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay022/ov22_02254DE0.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_022578F4.h"

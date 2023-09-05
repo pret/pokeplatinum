@@ -80,7 +80,7 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"

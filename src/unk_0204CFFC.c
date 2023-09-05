@@ -23,7 +23,7 @@
 #include "unk_02054884.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "item.h"
@@ -207,7 +207,7 @@ BOOL sub_0204D3DC (UnkStruct_0203E724 * param0)
         v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v4);
 
         if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
-            if (GetMonData(v1, MON_DATA_161, NULL) <= v3) {
+            if (GetMonData(v1, MON_DATA_LEVEL, NULL) <= v3) {
                 v6++;
             }
         }
@@ -229,7 +229,7 @@ BOOL sub_0204D470 (UnkStruct_0203E724 * param0)
     *v2 = 0;
 
     if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
-        *v2 = GetMonData(v1, MON_DATA_161, NULL);
+        *v2 = GetMonData(v1, MON_DATA_LEVEL, NULL);
     }
 
     return 0;
@@ -257,7 +257,7 @@ BOOL sub_0204D4CC (UnkStruct_0203E724 * param0)
         return 0;
     }
 
-    *v2 = sub_02075BCC(v1);
+    *v2 = GetMonNature(v1);
 
     return 0;
 }
@@ -277,7 +277,7 @@ BOOL sub_0204D540 (UnkStruct_0203E724 * param0)
         v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v5);
 
         if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
-            if (sub_02075BCC(v1) == v3) {
+            if (GetMonNature(v1) == v3) {
                 *v2 = v5;
                 break;
             }
@@ -332,7 +332,7 @@ BOOL sub_0204D614 (UnkStruct_0203E724 * param0)
         v4 = 255;
     }
 
-    sub_02074B30(v1, 9, &v4);
+    SetMonData(v1, 9, &v4);
     return 0;
 }
 
@@ -353,7 +353,7 @@ BOOL sub_0204D6E4 (UnkStruct_0203E724 * param0)
         v4 -= v2;
     }
 
-    sub_02074B30(v1, 9, &v4);
+    SetMonData(v1, 9, &v4);
     return 0;
 }
 
@@ -446,7 +446,7 @@ BOOL sub_0204D8C4 (UnkStruct_0203E724 * param0)
         v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v4->unk_0C), v2);
 
         if (GetMonData(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            if (GetMonData(v3, MON_DATA_163, NULL) != 0) {
+            if (GetMonData(v3, MON_DATA_CURRENT_HP, NULL) != 0) {
                 v1++;
             }
         }
@@ -471,7 +471,7 @@ BOOL sub_0204D94C (UnkStruct_0203E724 * param0)
         v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v4->unk_0C), v2);
 
         if (GetMonData(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            if (GetMonData(v3, MON_DATA_163, NULL) != 0) {
+            if (GetMonData(v3, MON_DATA_CURRENT_HP, NULL) != 0) {
                 v1++;
             }
         }
@@ -538,7 +538,7 @@ BOOL sub_0204DA84 (UnkStruct_0203E724 * param0)
     u16 * v2 = inline_0204FCAC(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v1);
-    *v2 = GetMonData(v0, MON_DATA_111, NULL);
+    *v2 = GetMonData(v0, MON_DATA_GENDER, NULL);
 
     return 0;
 }
@@ -590,7 +590,7 @@ BOOL sub_0204DB74 (UnkStruct_0203E724 * param0)
     u16 v5 = inline_02049538(param0);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v4);
-    sub_02077408(v1, v5);
+    DeleteMonMove(v1, v5);
 
     return 0;
 }
@@ -632,7 +632,7 @@ BOOL sub_0204DC60 (UnkStruct_0203E724 * param0)
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v2);
     v3 = 0;
 
-    sub_02074B30(v1, 6, &v3);
+    SetMonData(v1, 6, &v3);
 
     return 0;
 }
@@ -813,7 +813,7 @@ BOOL sub_0204E01C (UnkStruct_0203E724 * param0)
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v1);
 
-    sub_02074B30(v0, sub_020923C0(v2, 0), &v3);
+    SetMonData(v0, sub_020923C0(v2, 0), &v3);
     sub_0206DDB8(param0->unk_34->unk_0C, v0, sub_020923C0(v2, 0));
 
     return 0;

@@ -10,7 +10,7 @@
 #include "unk_0200762C.h"
 #include "gx_layers.h"
 #include "unk_0202419C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 void ov105_02245CD0(void);
 void ov105_02245D50(UnkStruct_02007768 * param0);

@@ -74,7 +74,7 @@
 #include "unk_02038ED4.h"
 #include "unk_020393C8.h"
 #include "unk_02073838.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_02092494.h"

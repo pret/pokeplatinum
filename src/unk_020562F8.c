@@ -21,7 +21,7 @@
 #include "unk_02054D00.h"
 #include "unk_020562F8.h"
 #include "unk_0205DAC8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 typedef struct {
     u16 unk_00;

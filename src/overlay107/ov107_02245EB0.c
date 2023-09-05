@@ -71,7 +71,7 @@
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
 #include "unk_0205DFC4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -564,7 +564,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
                 v8 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param0->unk_0D));
 
                 ov107_02248BEC(param0);
-                ov107_02248104(param0, 0, sub_02076B10(v8));
+                ov107_02248104(param0, 0, GetBoxMon(v8));
 
                 param0->unk_0A = ov107_022477CC(param0, 20, 1);
                 param0->unk_08 = 15;
@@ -577,7 +577,7 @@ static BOOL ov107_022462CC (UnkStruct_ov107_02246170 * param0)
             v8 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param0->unk_0D));
 
             ov107_02248BEC(param0);
-            ov107_02248104(param0, 0, sub_02076B10(v8));
+            ov107_02248104(param0, 0, GetBoxMon(v8));
 
             param0->unk_0A = ov107_022477CC(param0, 21, 1);
             ov107_02247DF0(param0);
@@ -1722,7 +1722,7 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, UnkStruct_020
     mov r3, #0x48
     bl ov107_02247A14
     add r0, r6, #0
-    bl sub_02075BCC
+    bl GetMonNature
     add r2, r0, #0
     ldr r0, [r5, #0x24]
     mov r1, #0
@@ -2045,9 +2045,9 @@ static void ov107_02247B78 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
 
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v2);
 
-        sub_0200C5BC(param0->unk_144, GetMonData(v3, MON_DATA_163, NULL), 3, 1, param1, v0 + (64 * v2), 1);
+        sub_0200C5BC(param0->unk_144, GetMonData(v3, MON_DATA_CURRENT_HP, NULL), 3, 1, param1, v0 + (64 * v2), 1);
         sub_0200C578(param0->unk_144, 0, param1, 24 + v0 + (64 * v2), 1);
-        sub_0200C5BC(param0->unk_144, GetMonData(v3, MON_DATA_164, NULL), 3, 0, param1, 32 + v0 + (64 * v2), 1);
+        sub_0200C5BC(param0->unk_144, GetMonData(v3, MON_DATA_MAX_HP, NULL), 3, 0, param1, 32 + v0 + (64 * v2), 1);
     }
 
     sub_0201A9A4(param1);
@@ -2076,9 +2076,9 @@ static void ov107_02247C64 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
 
     for (v4 = 0; v4 < v3; v4++) {
         v5 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v4);
-        sub_0200C648(param0->unk_144, 1, GetMonData(v5, MON_DATA_161, NULL), 3, 0, param1, v1 + (64 * v4), 1);
+        sub_0200C648(param0->unk_144, 1, GetMonData(v5, MON_DATA_LEVEL, NULL), 3, 0, param1, v1 + (64 * v4), 1);
 
-        v0 = GetMonData(v5, MON_DATA_111, NULL);
+        v0 = GetMonData(v5, MON_DATA_GENDER, NULL);
         ov107_022481FC(param0, param1, v2 + (64 * v4), 1, 0, v0);
     }
 
@@ -3098,7 +3098,7 @@ static void ov107_02248A8C (UnkStruct_ov107_02246170 * param0, u8 param1)
     ov107_02249DBC(&param0->unk_50[7], sub_02027B50(param0->unk_148));
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    ov107_02248104(param0, 0, sub_02076B10(v0));
+    ov107_02248104(param0, 0, GetBoxMon(v0));
 
     param0->unk_0A = ov107_022477CC(param0, 47, 1);
 
@@ -3138,7 +3138,7 @@ static void ov107_02248B50 (UnkStruct_ov107_02246170 * param0, u8 param1)
     ov107_02249DBC(&param0->unk_50[7], sub_02027B50(param0->unk_148));
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    ov107_02248104(param0, 0, sub_02076B10(v0));
+    ov107_02248104(param0, 0, GetBoxMon(v0));
 
     param0->unk_0A = ov107_022477CC(param0, 70, 1);
 
@@ -3557,7 +3557,7 @@ static void ov107_02249024 (UnkStruct_ov107_02246170 * param0, u8 param1)
     v0 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
 
     ov107_02249DBC(&param0->unk_50[7], sub_02027B50(param0->unk_148));
-    ov107_02248104(param0, 0, sub_02076B10(v0));
+    ov107_02248104(param0, 0, GetBoxMon(v0));
 
     param0->unk_0A = ov107_022477CC(param0, 20, 1);
     param0->unk_3CC[ov107_02249C98(param0->unk_14, param1)] = 1;
@@ -3581,7 +3581,7 @@ static void ov107_022490E8 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
 
     ov107_02249DBC(&param0->unk_50[7], sub_02027B50(param0->unk_148));
     v1 = Party_GetPokemonBySlotIndex(param0->unk_3DC, ov107_02249C98(param0->unk_14, param1));
-    ov107_02248104(param0, 0, sub_02076B10(v1));
+    ov107_02248104(param0, 0, GetBoxMon(v1));
 
     if (param2 == 1) {
         param0->unk_0A = ov107_022477CC(param0, 31, 1);
@@ -3598,17 +3598,17 @@ static void ov107_022490E8 (UnkStruct_ov107_02246170 * param0, u8 param1, u8 par
     }
 
     if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 0) {
-        v0 = sub_02075AD0(GetMonData(v1, MON_DATA_SPECIES, NULL), 50);
-        sub_02074B30(v1, 8, &v0);
-        sub_0207418C(v1);
+        v0 = GetMonSpeciesLevelExp(GetMonData(v1, MON_DATA_SPECIES, NULL), 50);
+        SetMonData(v1, 8, &v0);
+        CalculateMonLevelAndStats(v1);
     } else if (param0->unk_3D0[ov107_02249C98(param0->unk_14, param1)] == 1) {
-        v0 = sub_02075AD0(GetMonData(v1, MON_DATA_SPECIES, NULL), 55);
-        sub_02074B30(v1, 8, &v0);
-        sub_0207418C(v1);
+        v0 = GetMonSpeciesLevelExp(GetMonData(v1, MON_DATA_SPECIES, NULL), 55);
+        SetMonData(v1, 8, &v0);
+        CalculateMonLevelAndStats(v1);
     } else {
-        v0 = sub_02075AD0(GetMonData(v1, MON_DATA_SPECIES, NULL), 45);
-        sub_02074B30(v1, 8, &v0);
-        sub_0207418C(v1);
+        v0 = GetMonSpeciesLevelExp(GetMonData(v1, MON_DATA_SPECIES, NULL), 45);
+        SetMonData(v1, 8, &v0);
+        CalculateMonLevelAndStats(v1);
     }
 
     ov107_02247B78(param0, &param0->unk_50[3]);
@@ -3655,7 +3655,7 @@ static void ov107_022492A8 (UnkStruct_ov107_02246170 * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3DC, v0);
-        v2 = ov104_0222E240(GetMonData(v3, MON_DATA_163, NULL), GetMonData(v3, MON_DATA_164, NULL));
+        v2 = ov104_0222E240(GetMonData(v3, MON_DATA_CURRENT_HP, NULL), GetMonData(v3, MON_DATA_MAX_HP, NULL));
 
         if (param0->unk_368[v0] != NULL) {
             ov107_02249C1C(param0->unk_368[v0], v2);

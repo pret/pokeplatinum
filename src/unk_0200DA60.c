@@ -32,7 +32,7 @@
 #include "unk_0201CCF0.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay005/ov5_021D2F14.h"
 
 typedef struct {

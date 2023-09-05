@@ -185,7 +185,7 @@
 #include "unk_02071CD0.h"
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079170.h"
 #include "unk_020797C8.h"
 #include "party.h"
@@ -3632,7 +3632,7 @@ static BOOL sub_0204174C (UnkStruct_0203E724 * param0)
     u16 * v2 = inline_0204FCAC(param0);
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v1);
-    *v2 = sub_02076AF8(v0);
+    *v2 = GetMonForm(v0);
 
     return 0;
 }
@@ -7026,8 +7026,8 @@ static BOOL sub_02045384 (UnkStruct_0203E724 * param0)
         v3 = GetMonData(v5, MON_DATA_SPECIES, NULL);
 
         if (v3 == 386) {
-            sub_02074B30(v5, 112, &v0);
-            sub_0207418C(v5);
+            SetMonData(v5, 112, &v0);
+            CalculateMonLevelAndStats(v5);
             sub_0202736C(v6, v5);
         }
     }
@@ -7049,7 +7049,7 @@ static BOOL sub_02045404 (UnkStruct_0203E724 * param0)
     for (v1 = 0; v1 < v9; v1++) {
         v0 = Party_GetPokemonBySlotIndex(v8, v1);
         v2 = GetMonData(v0, MON_DATA_SPECIES, NULL);
-        v6 = GetMonData(v0, MON_DATA_111, NULL);
+        v6 = GetMonData(v0, MON_DATA_GENDER, NULL);
         v5 = GetMonData(v0, MON_DATA_IS_EGG, NULL);
 
         if ((v2 == 415) && (v5 == 0)) {
@@ -8313,8 +8313,8 @@ static u32 sub_0204676C (UnkStruct_021C0794 * param0)
             v7 = sub_02026218(v6, v0);
             v2 = sub_02026220(v7);
 
-            if ((sub_02074570(v2, 5, NULL) == 479) && (sub_02074570(v2, MON_DATA_IS_EGG, NULL) == 0)) {
-                v3 |= 1 << sub_02074570(v2, MON_DATA_FORM, NULL);
+            if ((GetBoxMonData(v2, 5, NULL) == 479) && (GetBoxMonData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
+                v3 |= 1 << GetBoxMonData(v2, MON_DATA_FORM, NULL);
             }
         }
     }
@@ -8329,8 +8329,8 @@ static u32 sub_0204676C (UnkStruct_021C0794 * param0)
             for (v0 = 0; v0 < (5 * 6); v0++) {
                 v2 = sub_02079C9C(v8, v9, v0);
 
-                if ((sub_02074570(v2, 5, NULL) == 479) && (sub_02074570(v2, MON_DATA_IS_EGG, NULL) == 0)) {
-                    v3 |= 1 << sub_02074570(v2, MON_DATA_FORM, NULL);
+                if ((GetBoxMonData(v2, 5, NULL) == 479) && (GetBoxMonData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
+                    v3 |= 1 << GetBoxMonData(v2, MON_DATA_FORM, NULL);
                 }
             }
         }
@@ -8455,7 +8455,7 @@ static BOOL sub_020469D0 (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
 
     v1 = Party_GetFromSavedata(param0->unk_34->unk_0C);
-    sub_02077A9C(v1, v2);
+    SetPartyGiratinaForm(v1, v2);
     {
         int v3, v4;
         Pokemon * v5;

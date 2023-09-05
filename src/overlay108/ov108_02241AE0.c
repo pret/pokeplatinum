@@ -60,7 +60,7 @@
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_0223BCBC.h"

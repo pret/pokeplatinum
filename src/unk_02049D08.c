@@ -41,7 +41,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 typedef struct {
@@ -964,7 +964,7 @@ static u16 sub_0204AC54 (UnkStruct_021C0794 * param0, u8 param1, UnkStruct_0204A
             continue;
         }
 
-        sub_02074B30(v4, param1, &v0);
+        SetMonData(v4, param1, &v0);
         sub_0206DDB8(param0, v4, param1);
         ++v1;
     }
@@ -1004,19 +1004,19 @@ static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * para
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_04[v0] = GetMonData(param1, MON_DATA_MOVE1 + v0, NULL);
-        param0->unk_1E_val2 |= ((GetMonData(param1, MON_DATA_62 + v0, NULL))<< (v0 * 2));
+        param0->unk_1E_val2 |= ((GetMonData(param1, MON_DATA_MOVE1_PP_UPS + v0, NULL))<< (v0 * 2));
     }
 
     param0->unk_1F = GetMonData(param1, MON_DATA_LANGUAGE, NULL);
     param0->unk_0C = GetMonData(param1, MON_DATA_OT_ID, NULL);
     param0->unk_10 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_14_val2 = GetMonData(param1, MON_DATA_175, NULL);
+    param0->unk_14_val2 = GetMonData(param1, MON_DATA_COMBINED_IVS, NULL);
 
     for (v0 = 0; v0 < 6; v0++) {
         param0->unk_18_val2[v0] = GetMonData(param1, MON_DATA_HP_EV + v0, NULL);
     }
 
-    param0->unk_20 = GetMonData(param1, MON_DATA_10, NULL);
+    param0->unk_20 = GetMonData(param1, MON_DATA_ABILITY, NULL);
     param0->unk_21 = GetMonData(param1, MON_DATA_FRIENDSHIP, NULL);
 
     GetMonData(param1, MON_DATA_117, param0->unk_22);

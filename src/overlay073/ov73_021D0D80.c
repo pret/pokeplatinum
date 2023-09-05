@@ -60,7 +60,7 @@
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_0208694C.h"
 
 FS_EXTERN_OVERLAY(overlay57);

@@ -16,7 +16,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "party.h"
 #include "overlay005/ov5_021E622C.h"

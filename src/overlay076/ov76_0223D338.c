@@ -50,7 +50,7 @@
 #include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202CD50.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay076/ov76_0223B140.h"
@@ -732,7 +732,7 @@ static void ov76_0223DE00 (UnkStruct_ov76_0223DE00 * param0)
     int v1;
 
     v0 = GetMonData(param0->unk_428, MON_DATA_SPECIES, NULL);
-    v1 = sub_02075BCC(param0->unk_428);
+    v1 = GetMonNature(param0->unk_428);
 
     sub_02007B98(param0->unk_D4.unk_D4, 1);
     sub_020789F4(param0->unk_42C, param0->unk_D4.unk_188, param0->unk_D4.unk_D4, v0, 2, 0, 0);
@@ -882,8 +882,8 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             v1 = param0->unk_3C4[0] + 1;
 
             ov76_0223B848(&v2, param0);
-            sub_02074B30(param0->unk_428, 162, (u8 *)&v1);
-            sub_02074B30(param0->unk_428, 171, &v2);
+            SetMonData(param0->unk_428, 162, (u8 *)&v1);
+            SetMonData(param0->unk_428, 171, &v2);
 
             param0->unk_D4.unk_154 = ov12_02236004(53, &v3);
             ov12_02236320(param0->unk_D4.unk_154);
@@ -1015,7 +1015,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             if (param0->unk_264[param0->unk_3C4[0]].unk_00 != 0xff) {
                 v8 = param0->unk_00->unk_04[param0->unk_264[param0->unk_3C4[0]].unk_00];
 
-                sub_02074B30(v8, 171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
+                SetMonData(v8, 171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
             }
         }
         param0->unk_3D4 = 8;
@@ -1244,7 +1244,7 @@ void ov76_0223E91C (UnkStruct_ov76_0223DE00 * param0, int param1)
     v1 = param0->unk_04[param1].unk_00;
 
     if (v1 != 0xff) {
-        sub_02074B30(param0->unk_00->unk_04[v1], 162, (u8 *)&v2);
+        SetMonData(param0->unk_00->unk_04[v1], 162, (u8 *)&v2);
     }
 
     param0->unk_04[param1].unk_00 = 0xff;

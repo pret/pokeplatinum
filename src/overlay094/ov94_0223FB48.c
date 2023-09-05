@@ -42,7 +42,7 @@
 #include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "party.h"
@@ -1069,7 +1069,7 @@ static void ov94_02240DF8 (int param0, int param1, int param2, int param3, UnkSt
 
 static void ov94_02240E50 (BoxPokemon * param0, UnkStruct_ov94_0223BA88_sub2 * param1)
 {
-    param1->unk_03 = sub_02075B40(param0);
+    param1->unk_03 = GetBoxMonLevel(param0);
 }
 
 static void ov94_02240E5C (void * param0)
@@ -1094,23 +1094,23 @@ static void ov94_02240EAC (BoxPokemon * param0, UnkStruct_02022550 * param1, Unk
 {
     int v0, v1, v2, v3;
 
-    sub_02073D20(param0);
+    DecryptBoxMon(param0);
 
-    v0 = sub_02074570(param0, MON_DATA_172, NULL);
-    *param3 = sub_02074570(param0, MON_DATA_SPECIES, NULL);
+    v0 = GetBoxMonData(param0, MON_DATA_172, NULL);
+    *param3 = GetBoxMonData(param0, MON_DATA_SPECIES, NULL);
 
-    v3 = sub_02074570(param0, MON_DATA_FORM, NULL);
-    v2 = sub_02074570(param0, MON_DATA_IS_EGG, NULL);
-    v1 = sub_02074570(param0, MON_DATA_HELD_ITEM, NULL);
+    v3 = GetBoxMonData(param0, MON_DATA_FORM, NULL);
+    v2 = GetBoxMonData(param0, MON_DATA_IS_EGG, NULL);
+    v1 = GetBoxMonData(param0, MON_DATA_HELD_ITEM, NULL);
 
     param6->unk_00 = *param3;
-    param6->unk_02 = sub_02074570(param0, MON_DATA_111, NULL) + 1;
+    param6->unk_02 = GetBoxMonData(param0, MON_DATA_GENDER, NULL) + 1;
 
     if (v2) {
         param6->unk_03 = 0;
     }
 
-    sub_02073D48(param0, 1);
+    EncryptBoxMon(param0, 1);
 
     if (v0) {
         ov94_02240DF8(*param3, v3, v2, param4, param1, param5, param7);
@@ -1167,7 +1167,7 @@ static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
         for (v1 = 0; v1 < v8; v1++) {
             v3 = Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, v1);
-            v4 = sub_02076B10(v3);
+            v4 = GetBoxMon(v3);
 
             ov94_02240E50(v4, &param0->unk_1108->unk_00[v1]);
             ov94_02240EAC(v4, param0->unk_E28[v1], param0->unk_EA0[v1], &v0[v1], v1, v6, &param0->unk_1108->unk_00[v1], &v7[v1]);
@@ -1221,7 +1221,7 @@ BoxPokemon * ov94_022411DC (Party * param0, UnkStruct_020797DC * param1, int par
             return NULL;
         }
 
-        return sub_02076B10(Party_GetPokemonBySlotIndex(param0, param3));
+        return GetBoxMon(Party_GetPokemonBySlotIndex(param0, param3));
     }
 
     return sub_02079C9C(param1, param2, param3);
@@ -1255,13 +1255,13 @@ static int ov94_0224123C (BoxPokemon * param0)
 {
     int v0, v1 = 0, v2;
 
-    v2 = sub_02073D20(param0);
+    v2 = DecryptBoxMon(param0);
 
     for (v0 = 0; v0 < 10; v0++) {
-        v1 += sub_02074570(param0, Unk_ov94_02245E34[v0], NULL);
+        v1 += GetBoxMonData(param0, Unk_ov94_02245E34[v0], NULL);
     }
 
-    sub_02073D48(param0, v2);
+    EncryptBoxMon(param0, v2);
 
     if (v1) {
         return 1;
@@ -1275,14 +1275,14 @@ static int ov94_02241278 (BoxPokemon * param0)
     int v0;
     int v1, v2;
 
-    v0 = sub_02073D20(param0);
+    v0 = DecryptBoxMon(param0);
 
     {
-        v1 = sub_02074570(param0, MON_DATA_SPECIES, NULL);
-        v2 = sub_02074570(param0, MON_DATA_FORM, NULL);
+        v1 = GetBoxMonData(param0, MON_DATA_SPECIES, NULL);
+        v2 = GetBoxMonData(param0, MON_DATA_FORM, NULL);
     }
 
-    sub_02073D48(param0, v0);
+    EncryptBoxMon(param0, v0);
 
     if (v2 > 0) {
         switch (v1) {
@@ -1301,13 +1301,13 @@ static int ov94_022412C8 (BoxPokemon * param0)
     int v0;
     int v1;
 
-    v0 = sub_02073D20(param0);
+    v0 = DecryptBoxMon(param0);
 
     {
-        v1 = sub_02074570(param0, MON_DATA_HELD_ITEM, NULL);
+        v1 = GetBoxMonData(param0, MON_DATA_HELD_ITEM, NULL);
     }
 
-    sub_02073D48(param0, v0);
+    EncryptBoxMon(param0, v0);
 
     switch (v1) {
     case 112:
@@ -1325,11 +1325,11 @@ static int ov94_022412F4 (Party * param0, UnkStruct_020797DC * param1, int param
         return 0;
     }
 
-    if (!sub_02074570(v0, MON_DATA_172, NULL)) {
+    if (!GetBoxMonData(v0, MON_DATA_172, NULL)) {
         return 0;
     }
 
-    if (sub_02074570(v0, MON_DATA_173, NULL)) {
+    if (GetBoxMonData(v0, MON_DATA_173, NULL)) {
         return 2;
     }
 
@@ -1371,9 +1371,9 @@ static int ov94_02241384 (BoxPokemon * param0, UnkStruct_ov94_0223BA88_sub3 * pa
 {
     UnkStruct_ov94_0223BA88_sub2 v0;
 
-    v0.unk_00 = sub_02074570(param0, MON_DATA_SPECIES, NULL);
-    v0.unk_02 = sub_02074570(param0, MON_DATA_111, NULL) + 1;
-    v0.unk_03 = sub_02075B40(param0);
+    v0.unk_00 = GetBoxMonData(param0, MON_DATA_SPECIES, NULL);
+    v0.unk_02 = GetBoxMonData(param0, MON_DATA_GENDER, NULL) + 1;
+    v0.unk_03 = GetBoxMonLevel(param0);
 
     return ov94_02241328(&v0, param1);
 }
@@ -1384,18 +1384,18 @@ static void ov94_022413BC (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223
     UnkStruct_ov94_0223BA88_sub3 v1;
     BoxPokemon * v2;
 
-    v0.unk_00 = sub_02074570(param1->unk_114, MON_DATA_SPECIES, NULL);
-    v0.unk_02 = sub_02074570(param1->unk_114, MON_DATA_111, NULL) + 1;
-    v0.unk_03 = sub_02075B40(param1->unk_114);
+    v0.unk_00 = GetBoxMonData(param1->unk_114, MON_DATA_SPECIES, NULL);
+    v0.unk_02 = GetBoxMonData(param1->unk_114, MON_DATA_GENDER, NULL) + 1;
+    v0.unk_03 = GetBoxMonLevel(param1->unk_114);
 
     param0->unk_EC = v0;
 
     ov94_022425A8(param0, param1);
 
-    v2 = sub_02076B10((Pokemon *)param1->unk_250[param1->unk_11C].unk_00.unk_00);
+    v2 = GetBoxMon((Pokemon *)param1->unk_250[param1->unk_11C].unk_00.unk_00);
 
-    v1.unk_00 = sub_02074570(v2, MON_DATA_SPECIES, NULL);
-    v1.unk_02 = sub_02074570(v2, MON_DATA_111, NULL) + 1;
+    v1.unk_00 = GetBoxMonData(v2, MON_DATA_SPECIES, NULL);
+    v1.unk_02 = GetBoxMonData(v2, MON_DATA_GENDER, NULL) + 1;
     v1.unk_03 = 0;
     v1.unk_04 = 0;
 

@@ -34,7 +34,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
@@ -226,12 +226,12 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
         break;
     case 2:
         sub_0200B48C(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        sub_0200B5CC(param0->unk_10.unk_B8, 1, sub_02076B10(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        sub_0200B5CC(param0->unk_10.unk_B8, 1, GetBoxMon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
         sub_0200B60C(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
         sub_0200B48C(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        sub_0200B5CC(param0->unk_10.unk_B8, 2, sub_02076B10(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        sub_0200B5CC(param0->unk_10.unk_B8, 2, GetBoxMon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);

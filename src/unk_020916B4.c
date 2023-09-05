@@ -11,7 +11,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_0208C324.h"
 #include "unk_0208EA44.h"
 #include "unk_020916B4.h"
@@ -349,7 +349,7 @@ void sub_02091F8C (UnkStruct_0208D7BC * param0)
 
     sub_020789BC(param0->unk_6A0, param0->unk_2B4.unk_08, param0->unk_250.unk_0C, 1);
 
-    param0->unk_2B4.unk_38 = sub_020759CC(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1;
+    param0->unk_2B4.unk_38 = GetMonFormPersonalDataAttribute(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1;
     param0->unk_2B4.unk_34 = sub_02007C34(param0->unk_2B4.unk_04, &v0, 52, 104, 0, 0, param0->unk_2B4.unk_08, NULL);
 
     sub_02007DEC(param0->unk_2B4.unk_34, 35, param0->unk_2B4.unk_38);

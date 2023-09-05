@@ -13,7 +13,7 @@
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206C660.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay006/ov6_02246184.h"
 #include "overlay095/ov95_02246C20.h"
 

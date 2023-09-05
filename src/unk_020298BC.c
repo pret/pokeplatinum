@@ -20,7 +20,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_020298BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay022/ov22_02259098.h"
 
 typedef struct UnkStruct_0202A138_t {
@@ -154,8 +154,8 @@ static void sub_020299C0 (UnkStruct_0202A138 * param0, const Strbuf *param1, int
 static void sub_020299D8 (const UnkStruct_0202A138 * param0, Pokemon * param1)
 {
     sub_02073D80(param1, param0->unk_08, 0, 0, 1, param0->unk_00, 1, param0->unk_04);
-    sub_02074B30(param1, 117, param0->unk_0A);
-    sub_02074B30(param1, 112, &param0->unk_33);
+    SetMonData(param1, 117, param0->unk_0A);
+    SetMonData(param1, 112, &param0->unk_33);
 }
 
 static void sub_02029A18 (UnkStruct_0202A150 * param0, u8 param1, u8 param2, u8 param3, u8 param4)

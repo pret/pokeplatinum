@@ -98,7 +98,7 @@
 #include "unk_0203909C.h"
 #include "unk_020393C8.h"
 #include "unk_020507CC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_0207DFAC.h"
@@ -668,7 +668,7 @@ static int ov65_0222DF88 (UnkStruct_ov65_0222EBE0 * param0)
     for (v3 = 0; v3 < v2; v3++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v3);
 
-        if (GetMonData(v1, MON_DATA_163, NULL) == 0) {
+        if (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) == 0) {
             continue;
         }
 

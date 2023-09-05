@@ -14,7 +14,7 @@
 
 #include "strbuf.h"
 #include "unk_0202DF8C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 static int inline inline_0202E1A8(const UnkStruct_0202DF8C * param0, int param1);
@@ -52,11 +52,11 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 
     for (v4 = 0, v5 = 0; v4 < v3; v4++) {
         v1 = Party_GetPokemonBySlotIndex(param1, v4);
-        v6 = sub_02073C88(v1);
+        v6 = DecryptMon(v1);
 
         if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
             v0->unk_00[v5].unk_00 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-            v0->unk_00[v5].unk_02 = GetMonData(v1, MON_DATA_161, NULL);
+            v0->unk_00[v5].unk_02 = GetMonData(v1, MON_DATA_LEVEL, NULL);
             v0->unk_00[v5].unk_03 = GetMonData(v1, MON_DATA_FORM, NULL);
             v0->unk_00[v5].unk_04 = GetMonData(v1, MON_DATA_PERSONALITY, NULL);
             v0->unk_00[v5].unk_08 = GetMonData(v1, MON_DATA_OT_ID, NULL);
@@ -79,7 +79,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
             v5++;
         }
 
-        sub_02073CD4(v1, v6);
+        EncryptMon(v1, v6);
     }
 
     v0->unk_168 = param2->year;

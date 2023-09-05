@@ -19,7 +19,7 @@
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_02051D8C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_02096420.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -1638,7 +1638,7 @@ BattleParams * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkStruct_ov10
 
         ov104_0222DF40(&param0->unk_290[v6], v9, ov104_0223B57C(param0, v7));
 
-        sub_0207803C(v9);
+        CalculateMonAbility(v9);
         sub_0205213C(v8, v9, 1);
     }
 
@@ -1668,7 +1668,7 @@ BattleParams * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkStruct_ov10
 
         ov104_0222DF40(&param0->unk_290[v6], v9, ov104_0223B57C(param0, v7));
 
-        sub_0207803C(v9);
+        CalculateMonAbility(v9);
         sub_0205213C(v8, v9, 3);
         Heap_FreeToHeap(v9);
         break;
@@ -1685,7 +1685,7 @@ static BOOL ov104_0223B4A4 (UnkStruct_ov104_0223B5C0 * param0, u8 param1)
         param0->unk_290[param1].unk_10 += ((24 + 1) * 10001);
     }
 
-    return sub_02075E38(param0->unk_290[param1].unk_0C, param0->unk_290[param1].unk_10);
+    return GetMonPersonalityShininess(param0->unk_290[param1].unk_0C, param0->unk_290[param1].unk_10);
 }
 
 static u32 ov104_0223B4D4 (u8 param0)
@@ -1810,7 +1810,7 @@ u8 ov104_0223B5C0 (UnkStruct_ov104_0223B5C0 * param0)
 
     v2 = Party_GetFromSavedata(param0->unk_6FC);
     v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_260[0]);
-    v1 = GetMonData(v3, MON_DATA_161, NULL);
+    v1 = GetMonData(v3, MON_DATA_LEVEL, NULL);
 
     return v1 / 10;
 }
@@ -1869,11 +1869,11 @@ u16 ov104_0223B64C (UnkStruct_ov104_0223B5C0 * param0)
 
     v0 = Party_GetFromSavedata(param0->unk_6FC);
     v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[0]);
-    v2 = GetMonData(v1, MON_DATA_161, NULL);
+    v2 = GetMonData(v1, MON_DATA_LEVEL, NULL);
 
     if (ov104_0223B500(param0->unk_04) == 2) {
         v1 = Party_GetPokemonBySlotIndex(v0, param0->unk_260[1]);
-        v3 = GetMonData(v1, MON_DATA_161, NULL);
+        v3 = GetMonData(v1, MON_DATA_LEVEL, NULL);
 
         if (v2 > v3) {
             return v2;

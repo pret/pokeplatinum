@@ -63,7 +63,7 @@
 #include "unk_0202F1D4.h"
 #include "unk_02056720.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079170.h"
 #include "party.h"
 #include "item.h"
@@ -592,7 +592,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
         if (v3 & 0x7) {
             v3 &= (0x7 ^ 0xffffffff);
-            sub_02074B30(v1, 160, &v3);
+            SetMonData(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -612,7 +612,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
         if (v3 & 0xf88) {
             v3 &= ((0x8 | 0x80 | 0xf00) ^ 0xffffffff);
-            sub_02074B30(v1, 160, &v3);
+            SetMonData(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -629,7 +629,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
         if (v3 & 0x10) {
             v3 &= (0x10 ^ 0xffffffff);
-            sub_02074B30(v1, 160, &v3);
+            SetMonData(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -646,7 +646,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
         if (v3 & 0x20) {
             v3 &= (0x20 ^ 0xffffffff);
-            sub_02074B30(v1, 160, &v3);
+            SetMonData(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -663,7 +663,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
         if (v3 & 0x40) {
             v3 &= (0x40 ^ 0xffffffff);
-            sub_02074B30(v1, 160, &v3);
+            SetMonData(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -780,11 +780,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     if (Item_LoadParam(param4, 36, 5)) {
         v3 = Item_LoadParam(param4, 55, 5);
 
-        if (GetMonData(v1, MON_DATA_58 + param3, NULL) != GetMonData(v1, MON_DATA_66 + param3, NULL)) {
-            sub_0207536C(v1, MON_DATA_58 + param3, v3);
+        if (GetMonData(v1, MON_DATA_MOVE1_PP + param3, NULL) != GetMonData(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
+            IncreaseMonData(v1, MON_DATA_MOVE1_PP + param3, v3);
 
             if ((v4 == param2) || (v5 == param2)) {
-                if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & FlagIndex(param3)) == 0)) {
+                if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & GetSingleBitMask(param3)) == 0)) {
                     ov16_02252A14(v0, param1, 31 + param3, v3);
                 }
             }
@@ -797,11 +797,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
         v3 = Item_LoadParam(param4, 55, 5);
 
         for (param3 = 0; param3 < 4; param3++) {
-            if (GetMonData(v1, MON_DATA_58 + param3, NULL) != GetMonData(v1, MON_DATA_66 + param3, NULL)) {
-                sub_0207536C(v1, MON_DATA_58 + param3, v3);
+            if (GetMonData(v1, MON_DATA_MOVE1_PP + param3, NULL) != GetMonData(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
+                IncreaseMonData(v1, MON_DATA_MOVE1_PP + param3, v3);
 
                 if ((v4 == param2) || (v5 == param2)) {
-                    if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & FlagIndex(param3)) == 0)) {
+                    if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & GetSingleBitMask(param3)) == 0)) {
                         ov16_02252A14(v0, param1, 31 + param3, v3);
                     }
                 }
@@ -815,29 +815,29 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
         v3 = 0;
 
         if (Item_LoadParam(param4, 23, 5)) {
-            if (GetMonData(v1, MON_DATA_163, NULL) == 0) {
+            if (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) == 0) {
                 v3 = 1;
             }
         } else {
-            v3 = GetMonData(v1, MON_DATA_163, NULL);
+            v3 = GetMonData(v1, MON_DATA_CURRENT_HP, NULL);
         }
 
-        if ((v3) && (GetMonData(v1, MON_DATA_163, NULL) != GetMonData(v1, MON_DATA_164, NULL))) {
+        if ((v3) && (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) != GetMonData(v1, MON_DATA_MAX_HP, NULL))) {
             v3 = Item_LoadParam(param4, 54, 5);
 
             switch (v3) {
             case 255:
-                v3 = GetMonData(v1, MON_DATA_164, NULL);
+                v3 = GetMonData(v1, MON_DATA_MAX_HP, NULL);
                 break;
             case 254:
-                v3 = GetMonData(v1, MON_DATA_164, NULL) / 2;
+                v3 = GetMonData(v1, MON_DATA_MAX_HP, NULL) / 2;
 
                 if (v3 == 0) {
                     v3 = 1;
                 }
                 break;
             case 253:
-                v3 = GetMonData(v1, MON_DATA_164, NULL) * 25 / 100;
+                v3 = GetMonData(v1, MON_DATA_MAX_HP, NULL) * 25 / 100;
 
                 if (v3 == 0) {
                     v3 = 1;
@@ -847,7 +847,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
                 break;
             }
 
-            sub_0207536C(v1, MON_DATA_163, v3);
+            IncreaseMonData(v1, MON_DATA_CURRENT_HP, v3);
 
             if (!Item_LoadParam(param4, 23, 5)) {
                 if (Battler_Side(param0, param1)) {
@@ -898,7 +898,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
             }
         }
 
-        sub_0207536C(v1, MON_DATA_FRIENDSHIP, v6);
+        IncreaseMonData(v1, MON_DATA_FRIENDSHIP, v6);
 
         if ((v4 == param2) || (v5 == param2)) {
             ov16_02252A14(v0, param1, 44, v6);
@@ -957,13 +957,13 @@ u8 ov16_0223EC58 (BattleSystem * param0, int param1, u8 param2)
 
     if (((BattleSystem_BattlerSlot(param0, param1) == 4) && ((param0->battleType & 0x8) == 0))) {
         if (param0->battleType & 0x4) {
-            if ((param2 & FlagIndex(BattleSystem_Partner(param0, param1))) == 0) {
+            if ((param2 & GetSingleBitMask(BattleSystem_Partner(param0, param1))) == 0) {
                 return 1;
             }
         } else {
             v0 = ov16_0225B45C(param0, param0->battleCtx, 12, 0) & 0xffff;
 
-            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & FlagIndex(0))) {
+            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & GetSingleBitMask(0))) {
                 return 0;
             } else {
                 return 1;
@@ -987,8 +987,8 @@ u16 ov16_0223ECC4 (BattleParams * param0, int * param1, int * param2)
 
     while (param0->unk_150) {
         for (param1[0] = 0; param1[0] < 6; param1[0]++) {
-            if (param0->unk_150 & FlagIndex(param1[0])) {
-                param0->unk_150 &= (FlagIndex(param1[0]) ^ 0xffffffff);
+            if (param0->unk_150 & GetSingleBitMask(param1[0])) {
+                param0->unk_150 &= (GetSingleBitMask(param1[0]) ^ 0xffffffff);
                 break;
             }
         }
@@ -1089,7 +1089,7 @@ void ov16_0223EE70 (BattleSystem * param0)
         v2 = ov16_0223DFAC(param0, 0, v0);
         v3 = GetMonData(v2, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v3 == 412) && (param0->unk_2414[0] & FlagIndex(v0))) {
+        if ((v3 == 412) && (param0->unk_2414[0] & GetSingleBitMask(v0))) {
             switch (ov16_0223E22C(param0)) {
             default:
             case 2:
@@ -1119,20 +1119,20 @@ void ov16_0223EE70 (BattleSystem * param0)
                 break;
             }
 
-            sub_02074B30(v2, 112, &v1);
+            SetMonData(v2, 112, &v1);
         }
     }
 }
 
 void ov16_0223EF2C (BattleSystem * param0, int param1, int param2)
 {
-    param0->unk_2414[param1] |= FlagIndex(param2);
+    param0->unk_2414[param1] |= GetSingleBitMask(param2);
 }
 
 void ov16_0223EF48 (BattleSystem * param0, Pokemon * param1)
 {
     if (param0->unk_98) {
-        sub_02056A48(param0->unk_98, sub_02076B10(param1));
+        sub_02056A48(param0->unk_98, GetBoxMon(param1));
     }
 }
 
@@ -1678,7 +1678,7 @@ u32 ov16_0223F904 (Party * param0, UnkStruct_02025E6C * param1)
     u8 v3;
 
     v3 = sub_02025F58(param1);
-    v1 = sub_02077550(param0) * 4 * v0[v3];
+    v1 = GetPartyHighestLevel(param0) * 4 * v0[v3];
     v2 = sub_02025F74(param1);
 
     if (v1 > v2) {

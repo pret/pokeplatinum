@@ -32,7 +32,7 @@
 #include "unk_0201C970.h"
 #include "unk_0201D15C.h"
 #include "unk_02020020.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay113/ov113_0225E368.h"
 #include "overlay113/ov113_02260620.h"
 

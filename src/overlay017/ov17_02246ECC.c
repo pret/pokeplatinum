@@ -6,7 +6,7 @@
 #include "overlay017/struct_ov17_022472F8.h"
 
 #include "heap.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"

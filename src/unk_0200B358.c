@@ -24,7 +24,7 @@
 #include "unk_02025E68.h"
 #include "unk_020277A4.h"
 #include "unk_0202B37C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "unk_020996D0.h"
 
@@ -209,7 +209,7 @@ void sub_0200B538 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
     u32 v1;
 
     v0 = MessageLoader_Init(1, 26, 412, param0->unk_04);
-    v1 = sub_02074570(param2, MON_DATA_SPECIES, NULL);
+    v1 = GetBoxMonData(param2, MON_DATA_SPECIES, NULL);
 
     MessageLoader_GetStrbuf(v0, v1, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
@@ -220,7 +220,7 @@ void sub_0200B578 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
 {
     u32 v0;
 
-    v0 = sub_02074570(param2, MON_DATA_SPECIES, NULL);
+    v0 = GetBoxMonData(param2, MON_DATA_SPECIES, NULL);
     sub_0200B594(param0, param1, v0);
 }
 
@@ -237,13 +237,13 @@ void sub_0200B594 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
 
 void sub_0200B5CC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
 {
-    sub_02074570(param2, MON_DATA_119, param0->unk_0C);
+    GetBoxMonData(param2, MON_DATA_119, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
 void sub_0200B5EC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
 {
-    sub_02074570(param2, MON_DATA_145, param0->unk_0C);
+    GetBoxMonData(param2, MON_DATA_145, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 

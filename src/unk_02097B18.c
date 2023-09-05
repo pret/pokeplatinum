@@ -42,7 +42,7 @@
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_02097B18.h"
@@ -398,8 +398,8 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
         if (v7->unk_22 != 7) {
             v8 = sub_02097F00(v0->unk_08, v7->unk_22);
 
-            sub_02074B30(v8, 162, (u8 *)&v13);
-            sub_02074B30(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
+            SetMonData(v8, 162, (u8 *)&v13);
+            SetMonData(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);
             v10 = sub_0202CA64(v9, 0);

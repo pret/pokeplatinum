@@ -35,7 +35,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_02034198.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02094EDC.h"
 #include "overlay017/ov17_0223DAD0.h"
 #include "overlay017/ov17_022492DC.h"

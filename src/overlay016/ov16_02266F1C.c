@@ -35,7 +35,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_0208C098.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_02266F1C.h"
@@ -961,7 +961,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     v5 = Strbuf_Init((12 + (5 * 2)), 5);
     v6 = MessageLoader_GetNewStrbuf(v4, 964);
     v7 = ov16_0223DFAC(param0->unk_0C, param0->unk_24, param0->unk_26);
-    v8 = sub_02076B10(v7);
+    v8 = GetBoxMon(v7);
 
     sub_0200B5CC(v9, 0, v8);
     sub_0200C388(v9, v5, v6);

@@ -17,7 +17,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay119/ov119_021D0D80.h"
 #include "overlay119/ov119_021D191C.h"
 

@@ -8,7 +8,7 @@
 
 #include "heap.h"
 #include "unk_020244AC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 #define PARTY_ASSERT_SLOT(party, slot) {        \

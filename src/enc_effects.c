@@ -14,7 +14,7 @@
 
 #include "enc_effects.h"
 #include "unk_02054884.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay005/ov5_021DDBE8.h"
 
 // This needs to be moved to a constants file somewhere

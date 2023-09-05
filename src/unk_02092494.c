@@ -15,7 +15,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E68.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02092494.h"
 
 static int sub_02092E8C(Pokemon * param0, BOOL param1, int param2);
@@ -320,7 +320,7 @@ void sub_0209282C (UnkStruct_02090800 * param0)
 
 static void sub_02092878 (UnkStruct_02090800 * param0)
 {
-    int v0 = sub_02075BCC(param0->unk_0C);
+    int v0 = GetMonNature(param0->unk_0C);
 
     if (v0 > 24) {
         return;
@@ -734,7 +734,7 @@ void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2,
             param3 = (sub_02017070(2, 2));
         }
 
-        if (sub_02074570(param0, MON_DATA_IS_EGG, NULL) == 0) {
+        if (GetBoxMonData(param0, MON_DATA_IS_EGG, NULL) == 0) {
             sub_02093368(param0, 0);
             sub_020932F0(param0, param3, 1);
             sub_020933C8(param0);
@@ -746,7 +746,7 @@ void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2,
         sub_020932A4(param0, param1, param4);
         break;
     case 1:
-        if (sub_02074570(param0, MON_DATA_IS_EGG, NULL) == 0) {
+        if (GetBoxMonData(param0, MON_DATA_IS_EGG, NULL) == 0) {
             sub_02093368(param0, 0);
             sub_020932F0(param0, (sub_02017070(1, 1)), 1);
             sub_020933C8(param0);
@@ -767,7 +767,7 @@ void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2,
         break;
     case 4:
         if (sub_0207884C(param0, param1, param4) == 1) {
-            if (sub_02074570(param0, MON_DATA_IS_EGG, NULL) == 0) {
+            if (GetBoxMonData(param0, MON_DATA_IS_EGG, NULL) == 0) {
                 sub_02093368(param0, 0);
                 sub_020932F0(param0, param3, 1);
                 sub_020933C8(param0);
@@ -776,7 +776,7 @@ void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2,
                 sub_02093368(param0, 1);
             }
         } else {
-            if (sub_02074570(param0, MON_DATA_IS_EGG, NULL) == 0) {
+            if (GetBoxMonData(param0, MON_DATA_IS_EGG, NULL) == 0) {
                 sub_02093368(param0, 0);
                 sub_020932F0(param0, param3, 1);
                 sub_020933C8(param0);
@@ -789,7 +789,7 @@ void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2,
         sub_020933E8(param0);
         break;
     case 5:
-        if (sub_02074570(param0, MON_DATA_IS_EGG, NULL) == 0) {
+        if (GetBoxMonData(param0, MON_DATA_IS_EGG, NULL) == 0) {
             (void)0;
         } else {
             sub_020932F0(param0, (sub_02017070(1, 2)), 1);
@@ -804,16 +804,16 @@ void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2,
             {
                 int v0;
 
-                v0 = sub_02074570(param0, MON_DATA_153, NULL);
+                v0 = GetBoxMonData(param0, MON_DATA_153, NULL);
                 SetBoxMonData(param0, 152, &v0);
 
-                v0 = sub_02074570(param0, MON_DATA_149, NULL);
+                v0 = GetBoxMonData(param0, MON_DATA_149, NULL);
                 SetBoxMonData(param0, 146, &v0);
 
-                v0 = sub_02074570(param0, MON_DATA_150, NULL);
+                v0 = GetBoxMonData(param0, MON_DATA_150, NULL);
                 SetBoxMonData(param0, 147, &v0);
 
-                v0 = sub_02074570(param0, MON_DATA_151, NULL);
+                v0 = GetBoxMonData(param0, MON_DATA_151, NULL);
                 SetBoxMonData(param0, 148, &v0);
             }
         }
@@ -874,7 +874,7 @@ static void sub_02093368 (BoxPokemon * param0, int param1)
 
 static void sub_020933C8 (BoxPokemon * param0)
 {
-    int v0 = sub_02074570(param0, MON_DATA_161, NULL);
+    int v0 = GetBoxMonData(param0, MON_DATA_LEVEL, NULL);
     SetBoxMonData(param0, 156, &v0);
 }
 

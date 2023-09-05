@@ -108,7 +108,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"
@@ -1004,8 +1004,8 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 *
     param0->unk_1C = param1->unk_9C;
     param0->unk_20 = sub_0202CD88(param1->unk_0C);
     param0->unk_38 = Heap_AllocFromHeap(32, sub_02025E68());
-    param0->unk_3C = Heap_AllocFromHeap(32, sub_02076AF0());
-    param0->unk_40 = Heap_AllocFromHeap(32, sub_02076AF0());
+    param0->unk_3C = Heap_AllocFromHeap(32, GetPokemonStructSize());
+    param0->unk_40 = Heap_AllocFromHeap(32, GetPokemonStructSize());
     param0->unk_00 = param1;
     param0->unk_34 = 0;
 }
@@ -1060,8 +1060,8 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
         break;
     case 4:
         v2->unk_48.unk_08 = v2->unk_04.unk_38;
-        v2->unk_48.unk_00 = sub_02076B10(v2->unk_04.unk_3C);
-        v2->unk_48.unk_04 = sub_02076B10(v2->unk_04.unk_40);
+        v2->unk_48.unk_00 = GetBoxMon(v2->unk_04.unk_3C);
+        v2->unk_48.unk_04 = GetBoxMon(v2->unk_04.unk_40);
         v2->unk_48.unk_14 = sub_02025E44(v1->unk_0C);
         v2->unk_48.unk_10 = 1;
 
@@ -1265,7 +1265,7 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v1->unk_04);
-        sub_02074B30(v3, 118, (u8 *)&v1->unk_0C->unk_1C);
+        SetMonData(v3, 118, (u8 *)&v1->unk_0C->unk_1C);
     }
     break;
     case 5:
@@ -1300,7 +1300,7 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     switch (param1) {
     case 1:
         v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v2->unk_04);
-        v2->unk_0C->unk_10 = GetMonData(v0, MON_DATA_111, NULL);
+        v2->unk_0C->unk_10 = GetMonData(v0, MON_DATA_GENDER, NULL);
         v2->unk_0C->unk_08 = GetMonData(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {

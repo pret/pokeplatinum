@@ -20,7 +20,7 @@
 #include "unk_020507CC.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"

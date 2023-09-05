@@ -25,7 +25,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "unk_0207070C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_0207E0B8.h"
@@ -177,7 +177,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
     if (param0->unk_704[param0->unk_B11].unk_0C == 0) {
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         MessageLoader_GetStrbuf(param0->unk_69C, 81, param0->unk_6A8);
-        sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_6A0, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else if (sub_0207D570(param0->unk_5A4->unk_04, param0->unk_704[param0->unk_B11].unk_0C, 1, 12) == 1) {
         u32 v4;
@@ -185,11 +185,11 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         v4 = 0;
 
-        sub_02074B30(v0, 6, &v4);
-        sub_02077928(v0);
+        SetMonData(v0, 6, &v4);
+        SetArceusForm(v0);
 
         if ((v3 == NULL) || (v3->unk_1C->unk_00 < 573) || (v3->unk_1C->unk_00 > 583)) {
-            v1 = sub_02077A00(v0);
+            v1 = SetGiratinaForm(v0);
 
             if ((param0->unk_704[param0->unk_B11].unk_0C == 112) && (v1 == 0)) {
                 v2 = 18;
@@ -197,7 +197,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
         }
 
         MessageLoader_GetStrbuf(param0->unk_69C, 82, param0->unk_6A8);
-        sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_6A0, 0, GetBoxMon(v0));
         sub_0200B70C(param0->unk_6A0, 1, param0->unk_704[param0->unk_B11].unk_0C);
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
 
@@ -347,9 +347,9 @@ static int sub_020838F4 (void * param0)
         v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
         v2 = 0;
 
-        sub_02074B30(v1, 6, &v2);
-        sub_02077928(v1);
-        sub_02077A00(v1);
+        SetMonData(v1, 6, &v2);
+        SetArceusForm(v1);
+        SetGiratinaForm(v1);
 
         v0->unk_704[v0->unk_B11].unk_0C = 0;
 

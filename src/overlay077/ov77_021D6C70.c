@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay077/ov77_021D6C70.h"
 
 typedef struct UnkStruct_ov77_021D6CFC_t {

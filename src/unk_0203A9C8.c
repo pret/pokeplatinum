@@ -90,7 +90,7 @@
 #include "unk_0207064C.h"
 #include "unk_0207070C.h"
 #include "unk_02071D40.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"

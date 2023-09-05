@@ -39,7 +39,7 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D4EE4.h"
@@ -175,7 +175,7 @@ void ov21_021D2188 (UnkStruct_ov21_021D13FC * param0, int param1, int param2, in
     }
 
     if (param2 == -1) {
-        param2 = sub_02075DAC(param1, 0);
+        param2 = GetMonPersonalityGender(param1, 0);
     }
 
     sub_02075FB4(&v0, param1, param2, param3, param4, param5, param6);

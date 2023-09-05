@@ -6,7 +6,7 @@
 
 #include "unk_020244AC.h"
 #include "unk_02056720.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 
 typedef struct UnkStruct_02056B24_t {
@@ -302,9 +302,9 @@ void sub_02056A48 (UnkStruct_02056B24 * param0, const BoxPokemon * param1)
         v0 = 12 - 1;
     }
 
-    param0->unk_B8[v0].unk_00 = sub_02074570((BoxPokemon *)param1, MON_DATA_SPECIES, NULL);
+    param0->unk_B8[v0].unk_00 = GetBoxMonData((BoxPokemon *)param1, MON_DATA_SPECIES, NULL);
     param0->unk_B8[v0].unk_02 = sub_02079E44(param1);
-    param0->unk_B8[v0].unk_04 = sub_02074570((BoxPokemon *)param1, MON_DATA_FORM, NULL);
+    param0->unk_B8[v0].unk_04 = GetBoxMonData((BoxPokemon *)param1, MON_DATA_FORM, NULL);
 }
 
 int sub_02056AAC (const UnkStruct_02056B24 * param0)

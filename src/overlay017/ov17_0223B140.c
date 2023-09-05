@@ -43,7 +43,7 @@
 #include "strbuf.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"

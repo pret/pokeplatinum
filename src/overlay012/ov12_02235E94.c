@@ -32,7 +32,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0202C9F4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"

@@ -18,7 +18,7 @@
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
 #include "unk_02028124.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "party.h"
 

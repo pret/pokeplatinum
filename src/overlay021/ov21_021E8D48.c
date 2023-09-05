@@ -47,7 +47,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
@@ -603,8 +603,8 @@ static void ov21_021E95F8 (UnkStruct_ov21_021E968C * param0, UnkStruct_020218BC 
     UnkStruct_ov19_021DA864 v1;
     int v2, v3;
 
-    v2 = sub_020759F0(param4, 6);
-    v3 = sub_020759F0(param4, 7);
+    v2 = GetMonSpeciesPersonalDataAttribute(param4, 6);
+    v3 = GetMonSpeciesPersonalDataAttribute(param4, 7);
     v2 = ov21_021DF180(v2);
     v3 = ov21_021DF180(v3);
 

@@ -22,7 +22,7 @@
 #include "unk_0201E010.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "party.h"
 #include "item.h"

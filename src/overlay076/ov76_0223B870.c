@@ -51,7 +51,7 @@
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02225864.h"
@@ -873,12 +873,12 @@ void ov76_0223C80C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2)
 
     if (v1 != 0xff) {
         v3 = param2 + 1;
-        sub_02074B30(param0->unk_00->unk_04[v1], 162, (u8 *)&v3);
+        SetMonData(param0->unk_00->unk_04[v1], 162, (u8 *)&v3);
     }
 
     if (v2 != 0xff) {
         v4 = param1 + 1;
-        sub_02074B30(param0->unk_00->unk_04[v2], 162, (u8 *)&v4);
+        SetMonData(param0->unk_00->unk_04[v2], 162, (u8 *)&v4);
     }
 
     v0 = param0->unk_04[param1].unk_00;

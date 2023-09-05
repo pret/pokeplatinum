@@ -19,7 +19,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "party.h"
 #include "item.h"
@@ -318,7 +318,7 @@ static void ov13_02221C54 (UnkStruct_ov13_022213F0 * param0, u32 param1, u32 par
     v2 = Strbuf_Init(12, param0->unk_00->unk_0C);
     v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, Unk_ov13_02228EC4[param3]);
 
-    sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v1->unk_00));
+    sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v1->unk_00));
     sub_0200C388(param0->unk_1FA8, v2, v3);
 
     if (param2 == 0) {
@@ -1204,7 +1204,7 @@ static void ov13_02223550 (UnkStruct_ov13_022213F0 * param0, u32 param1)
     v2 = Strbuf_Init(12, param0->unk_00->unk_0C);
     v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, Unk_ov13_02228EC4[param1]);
 
-    sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v1->unk_00));
+    sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v1->unk_00));
     sub_0200C388(param0->unk_1FA8, v2, v3);
     Strbuf_Free(v3);
 
@@ -1564,7 +1564,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
     v1 = param0->unk_00;
     v2 = Item_Load(v1->unk_22, 0, v1->unk_0C);
     v0 = ov16_0223DFAC(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
-    v4 = GetMonData(v0, MON_DATA_163, NULL);
+    v4 = GetMonData(v0, MON_DATA_CURRENT_HP, NULL);
     v5 = 0;
 
     if (Item_Get(v2, 15) != 0) {
@@ -1597,12 +1597,12 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
 
     if ((param0->unk_04[v1->unk_11].unk_10 == 0) && (v4 != 0)) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 88);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if (param0->unk_04[v1->unk_11].unk_10 != v4) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 82);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200B60C(param0->unk_1FA8, 1, v4 - param0->unk_04[v1->unk_11].unk_10, 3, 0, 1);
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
@@ -1610,42 +1610,42 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
         MessageLoader_GetStrbuf(param0->unk_1FA4, 87, param0->unk_1FAC);
     } else if (v5 == 0x1) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 92);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if (v5 == 0x2) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 83);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if (v5 == 0x4) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 85);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if (v5 == 0x8) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 86);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if (v5 == 0x10) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 84);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if (v5 == 0x20) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 90);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else if (v5 == 0x40) {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 91);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     } else {
         v3 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 89);
-        sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+        sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v3);
         Strbuf_Free(v3);
     }
@@ -1663,7 +1663,7 @@ void ov13_0222449C (UnkStruct_ov13_022213F0 * param0)
     v0 = ov16_0223DFAC(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 95);
 
-    sub_0200B5CC(param0->unk_1FA8, 0, sub_02076B10(v0));
+    sub_0200B5CC(param0->unk_1FA8, 0, GetBoxMon(v0));
     sub_0200B630(param0->unk_1FA8, 1, 373);
     sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v2);
     Strbuf_Free(v2);

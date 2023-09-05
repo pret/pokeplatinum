@@ -28,7 +28,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_0224F18C.h"
 #include "overlay017/ov17_02250744.h"

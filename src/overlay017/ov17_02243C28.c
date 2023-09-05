@@ -31,7 +31,7 @@
 #include "unk_0200762C.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02094EDC.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay017/ov17_0223F7E4.h"
@@ -681,14 +681,14 @@ static void ov17_022444BC (UnkStruct_0201CD38 * param0, void * param1)
         MI_CpuClear8(&v4, sizeof(UnkStruct_ov16_02264408));
 
         v6 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_SPECIES, NULL);
-        v7 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_111, NULL);
-        v8 = sub_02075E0C(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D]);
+        v7 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_GENDER, NULL);
+        v8 = GetMonShininess(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D]);
         v9 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_FORM, NULL);
         v14 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v0->unk_0D], MON_DATA_PERSONALITY, NULL);
 
         v10 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_SPECIES, NULL);
-        v11 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_111, NULL);
-        v12 = sub_02075E0C(v0->unk_00->unk_0C.unk_00->unk_00[v16]);
+        v11 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_GENDER, NULL);
+        v12 = GetMonShininess(v0->unk_00->unk_0C.unk_00->unk_00[v16]);
         v13 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_FORM, NULL);
         v15 = GetMonData(v0->unk_00->unk_0C.unk_00->unk_00[v16], MON_DATA_PERSONALITY, NULL);
 

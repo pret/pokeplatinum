@@ -25,7 +25,7 @@
 #include "unk_02034198.h"
 #include "unk_02051D8C.h"
 #include "unk_0205DFC4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_02096420.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -294,13 +294,13 @@ void ov104_0223BA24 (Party * param0)
             continue;
         }
 
-        if (GetMonData(v4, MON_DATA_163, NULL) == 0) {
+        if (GetMonData(v4, MON_DATA_CURRENT_HP, NULL) == 0) {
             v3 = 1;
-            sub_02074B30(v4, 163, &v3);
+            SetMonData(v4, 163, &v3);
         }
 
         v3 = 0;
-        sub_02074B30(v4, 160, &v3);
+        SetMonData(v4, 160, &v3);
     }
 
     return;

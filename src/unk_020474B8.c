@@ -31,7 +31,7 @@
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
 #include "unk_02071CFC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "item.h"

@@ -56,7 +56,7 @@
 #include "unk_02055808.h"
 #include "unk_0206A8DC.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_020923C0.h"
 #include "unk_020933F8.h"
@@ -1149,7 +1149,7 @@ void sub_02094680 (UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 *
     int v1;
 
     v1 = sub_02095904(param1);
-    v0 = sub_02076B10(param0->unk_00.unk_00[v1]);
+    v0 = GetBoxMon(param0->unk_00.unk_00[v1]);
 
     sub_0200B5CC(param2, param3, v0);
 }
@@ -1622,7 +1622,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, UnkStruct_021C0794 * param1, u32
                 v0 = 1;
             }
 
-            sub_02074B30(param0->unk_1974, v2, &v3);
+            SetMonData(param0->unk_1974, v2, &v3);
             sub_0206DDB8(param0->unk_1970, param0->unk_1974, v2);
         }
 

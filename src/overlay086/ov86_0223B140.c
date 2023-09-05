@@ -60,7 +60,7 @@
 #include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202CBE4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay086/ov86_0223B140.h"
 
@@ -1303,10 +1303,10 @@ static void ov86_0223C47C (UnkStruct_ov86_0223C3E4 * param0, int param1)
 
 static void ov86_0223C4DC (UnkStruct_ov86_0223C3E4 * param0)
 {
-    sub_0200B538(param0->unk_14, 0, sub_02076B10(param0->unk_24));
-    sub_0200B60C(param0->unk_14, 1, sub_02075B38(param0->unk_24), 3, 0, 1);
+    sub_0200B538(param0->unk_14, 0, GetBoxMon(param0->unk_24));
+    sub_0200B60C(param0->unk_14, 1, GetMonLevel(param0->unk_24), 3, 0, 1);
 
-    switch (sub_02075D6C(param0->unk_24)) {
+    switch (GetMonGender(param0->unk_24)) {
     case 0:
         MessageLoader_GetStrbuf(param0->unk_20, 1, param0->unk_18);
         break;
@@ -1364,7 +1364,7 @@ static void ov86_0223C58C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_34++;
         break;
     case 2:
-        sub_0200B5EC(v0->unk_14, 0, sub_02076B10(v0->unk_24));
+        sub_0200B5EC(v0->unk_14, 0, GetBoxMon(v0->unk_24));
         MessageLoader_GetStrbuf(v0->unk_20, 4, v0->unk_18);
         sub_0200C388(v0->unk_14, v0->unk_1C, v0->unk_18);
         ov86_0223C47C(v0, 96);
@@ -1921,7 +1921,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
     BOOL v0;
     int v1 = 6;
 
-    v0 = sub_02073C88(param1);
+    v0 = DecryptMon(param1);
 
     do {
         {
@@ -1979,7 +1979,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
         }
     } while (0);
 
-    sub_02073CD4(param1, v0);
+    EncryptMon(param1, v0);
 
     return v1;
 }

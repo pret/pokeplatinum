@@ -34,7 +34,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02094EDC.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_0225AF8C.h"
@@ -352,7 +352,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
 
     v5 = AllocMonZeroed(13);
     sub_0202A560(param0->unk_04, v5);
-    v6 = sub_02076B10(v5);
+    v6 = GetBoxMon(v5);
     sub_0200B5CC(v1, 4, v6);
     Heap_FreeToHeap(v5);
 

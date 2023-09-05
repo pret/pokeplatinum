@@ -29,7 +29,7 @@
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
 #include "unk_0202F1D4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 UnkStruct_0202F264 * Unk_021C07A4 = NULL;
@@ -302,9 +302,9 @@ static void sub_0202F510 (UnkStruct_021C0794 * param0, UnkStruct_0202F41C * para
         for (v1 = 0; v1 < v3; v1++) {
             v7 = &(param2->unk_1150[v5].unk_04[v1]);
 
-            if ((v7->unk_2C_30 == 0) && (v7->unk_04_2 == 0)) {
-                param1->unk_00[v4] = v7->unk_06;
-                param1->unk_18[v4] = v7->unk_30_3;
+            if ((v7->isEgg == 0) && (v7->invalidData == 0)) {
+                param1->unk_00[v4] = v7->species;
+                param1->unk_18[v4] = v7->form;
             }
 
             v4++;
@@ -393,11 +393,11 @@ static BOOL sub_0202F794 (UnkStruct_021C0794 * param0, const UnkStruct_0202F264 
             for (v4 = 0; v4 < 6; v4++) {
                 v6 = &(v0->unk_1150[v3].unk_04[v4]);
 
-                if (v6->unk_06 > 495) {
+                if (v6->species > 495) {
                     return 0;
                 }
 
-                if (v6->unk_08 > 467) {
+                if (v6->heldItem > 467) {
                     return 0;
                 }
 
@@ -415,12 +415,12 @@ static BOOL sub_0202F794 (UnkStruct_021C0794 * param0, const UnkStruct_0202F264 
 
 void sub_0202F858 (void * param0, u32 param1, u32 param2)
 {
-    sub_0201D5D4(param0, param1, param2);
+    EncryptData(param0, param1, param2);
 }
 
 static void sub_0202F860 (void * param0, u32 param1, u32 param2)
 {
-    sub_0201D600(param0, param1, param2);
+    DecryptData(param0, param1, param2);
 }
 
 void sub_0202F868 (int param0, int param1, u8 param2)
@@ -607,7 +607,7 @@ static void sub_0202FD30 (UnkStruct_0202FD30 * param0, Party * param1)
 
     for (v0 = 0; v0 < param0->unk_02; v0++) {
         sub_02078E0C(&param0->unk_04[v0], v1);
-        sub_02074B30(v1, 162, &v2);
+        SetMonData(v1, 162, &v2);
         Party_AddPokemon(param1, v1);
     }
 

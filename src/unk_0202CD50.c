@@ -49,7 +49,7 @@ static void sub_0202CD94 (UnkStruct_0202CD88 * param0, int param1)
     }
 
     param0->unk_1B8.unk_00 = sub_0201D5B8(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32)) & 0xffff;
-    sub_0201D5D4(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
+    EncryptData(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
 }
 
 static void sub_0202CDC0 (UnkStruct_0202CD88 * param0, int param1)
@@ -58,7 +58,7 @@ static void sub_0202CDC0 (UnkStruct_0202CD88 * param0, int param1)
         return;
     }
 
-    sub_0201D600(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
+    DecryptData(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
 }
 
 static u32 sub_0202CDE0 (const UnkStruct_0202CD88 * param0, int param1)

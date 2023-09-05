@@ -61,7 +61,7 @@
 #include "roaming_pokemon.h"
 #include "unk_0206CCB0.h"
 #include "unk_02071CFC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_020923C0.h"
@@ -483,7 +483,7 @@ static void sub_0206CE08 (int param0, u16 * param1, Pokemon * param2)
 static void sub_0206CE38 (Pokemon * param0, u16 * param1, u8 * param2, u8 * param3, u8 * param4)
 {
     *param1 = GetMonData(param0, MON_DATA_SPECIES, NULL);
-    *param2 = GetMonData(param0, MON_DATA_111, NULL);
+    *param2 = GetMonData(param0, MON_DATA_GENDER, NULL);
     *param3 = GetMonData(param0, MON_DATA_LANGUAGE, NULL);
     *param4 = GetMonData(param0, MON_DATA_MET_GAME, NULL);
 }
@@ -536,7 +536,7 @@ void sub_0206CF48 (UnkStruct_0202440C * param0, Pokemon * param1, int param2)
 
     v0->unk_00 = 1;
     v0->unk_1F = 0;
-    v0->unk_1E = sub_02075BCC(param1);
+    v0->unk_1E = GetMonNature(param1);
 
     sub_0206CE38(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
     v0->unk_07 = GetMonData(param1, MON_DATA_77, NULL);
@@ -1053,7 +1053,7 @@ void sub_0206D7C4 (UnkStruct_0203CDB0 * param0)
         v6 = Party_GetPokemonBySlotIndex(v8, v5);
 
         if (GetMonData(v6, MON_DATA_IS_EGG, NULL) == 0) {
-            v3 = GetMonData(v6, MON_DATA_111, NULL);
+            v3 = GetMonData(v6, MON_DATA_GENDER, NULL);
 
             if (v3 == 0) {
                 v0 = 1;
@@ -2725,7 +2725,7 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     }
 
     for (v1 = 0; v1 < 5; v1++) {
-        if (sub_02075C60(v2, 1 + v1) > 0) {
+        if (GetNatureStatAffinity(v2, 1 + v1) > 0) {
             v6 = v1;
             break;
         }
@@ -2758,7 +2758,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
             v4 = sub_0202D93C(v0, 4);
             v5 = sub_0202D93C(v0, 3);
 
-            sub_0206CE74(param1, 1, v4, sub_02075DAC(v4, v5), sub_02025FD8(v7), sub_02025FCC(v7));
+            sub_0206CE74(param1, 1, v4, GetMonPersonalityGender(v4, v5), sub_02025FD8(v7), sub_02025FCC(v7));
             break;
         }
     }
@@ -2973,7 +2973,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v4 = Party_GetFromSavedata(param0->unk_0C);
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
 
-    sub_0206CE74(param1, 0, GetMonData(v3, MON_DATA_SPECIES, NULL), GetMonData(v3, MON_DATA_111, NULL), sub_02025FD8(v5), sub_02025FCC(v5));
+    sub_0206CE74(param1, 0, GetMonData(v3, MON_DATA_SPECIES, NULL), GetMonData(v3, MON_DATA_GENDER, NULL), sub_02025FD8(v5), sub_02025FCC(v5));
     sub_0200BFAC(param1, 1, (LCRNG_Next() % 100));
 
     v1 = (LCRNG_Next() % (493 - 2) + 1);

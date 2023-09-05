@@ -50,7 +50,7 @@
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
 #include "unk_020655F4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
@@ -520,7 +520,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 36:
-        sub_0200B538(v0->unk_28, 1, sub_02076B10(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
+        sub_0200B538(v0->unk_28, 1, GetBoxMon(Party_GetPokemonBySlotIndex(v0->unk_50, v0->unk_84)));
         MessageLoader_GetStrbuf(v0->unk_2C, 18, v0->unk_0C);
         sub_0200C388(v0->unk_28, v0->unk_10, v0->unk_0C);
         v0->unk_30 = sub_0205AA50(v0, v0->unk_10);
@@ -758,7 +758,7 @@ static void sub_0205AC80 (UnkStruct_0205A0D8 * param0, BOOL param1)
 
     v0 = Party_GetFromSavedata(param0->unk_24->unk_0C);
     v2 = param0->unk_4C;
-    v4 = sub_02076AF0();
+    v4 = GetPokemonStructSize();
     v1 = (UnkStruct_0205AD20 *)(v2 + v4 * 3);
     v1->unk_00 = param1;
 
@@ -809,7 +809,7 @@ static BOOL sub_0205AD20 (UnkStruct_0205A0D8 * param0)
 {
     UnkStruct_0205AD20 * v0;
 
-    v0 = (UnkStruct_0205AD20 *)((u8 *)(param0->unk_48) + (sub_02076AF0() * 3));
+    v0 = (UnkStruct_0205AD20 *)((u8 *)(param0->unk_48) + (GetPokemonStructSize() * 3));
     return v0->unk_00;
 }
 
@@ -844,7 +844,7 @@ static void sub_0205AD80 (UnkStruct_0205A0D8 * param0)
     u32 v0;
     int v1;
 
-    v0 = sub_02076AF0();
+    v0 = GetPokemonStructSize();
     Party_InitWithCapacity(param0->unk_50, 3);
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -858,7 +858,7 @@ static void sub_0205ADAC (UnkStruct_0205A0D8 * param0)
     u8 * v1, * v2;
     int v3;
 
-    v0 = sub_02076AF0();
+    v0 = GetPokemonStructSize();
     v1 = &param0->unk_4C[param0->unk_85 * v0];
     v2 = &param0->unk_48[param0->unk_84 * v0];
 
@@ -880,7 +880,7 @@ static void sub_0205ADF8 (UnkStruct_0205A0D8 * param0, int param1)
         MessageLoader * v4;
 
         v4 = MessageLoader_Init(1, 26, 412, 4);
-        v3 = sub_02076AF0();
+        v3 = GetPokemonStructSize();
 
         sub_0201A7E8(param0->unk_24->unk_08, v0, 3, 21, 9, 10, 8, 13, 10);
         sub_0200DAA4(param0->unk_24->unk_08, 3, 1, 11, 0, 4);
@@ -988,7 +988,7 @@ void sub_0205B0C0 (int param0, int param1, void * param2, void * param3)
 
 int sub_0205B0E4 (void)
 {
-    return sub_02076AF0() * 3 + sizeof(UnkStruct_0205AD20);
+    return GetPokemonStructSize() * 3 + sizeof(UnkStruct_0205AD20);
 }
 
 u8 * sub_0205B0F4 (int param0, void * param1, int param2)

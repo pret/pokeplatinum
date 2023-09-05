@@ -19,7 +19,7 @@
 #include "unk_02025E08.h"
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "item.h"
 #include "unk_0209747C.h"
 #include "overlay020/ov20_021D0D80.h"
@@ -160,7 +160,7 @@ int sub_02097750 (UnkStruct_02097728 * param0, Pokemon * param1)
         return 0;
     }
 
-    sub_02074B30(param1, 170, param0->unk_14);
+    SetMonData(param1, 170, param0->unk_14);
     return 1;
 }
 
@@ -190,8 +190,8 @@ int sub_02097788 (UnkStruct_02028430 * param0, Pokemon * param1, int param2)
     GetMonData(param1, MON_DATA_170, v2);
     sub_02028480(param0, 0, v0, v2);
     sub_02028124(v2);
-    sub_02074B30(param1, 170, v2);
-    sub_02074B30(param1, 6, &v1);
+    SetMonData(param1, 170, v2);
+    SetMonData(param1, 6, &v1);
     Heap_FreeToHeap(v2);
 
     return v0;
@@ -210,8 +210,8 @@ int sub_020977E4 (UnkStruct_02028430 * param0, u16 param1, Pokemon * param2, int
 
     v0 = Item_ForMailNumber(sub_02028314(v1));
 
-    sub_02074B30(param2, 170, v1);
-    sub_02074B30(param2, 6, &v0);
+    SetMonData(param2, 170, v1);
+    SetMonData(param2, 6, &v0);
     sub_02028470(param0, 0, param1);
     Heap_FreeToHeap(v1);
 

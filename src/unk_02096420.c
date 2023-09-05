@@ -5,7 +5,7 @@
 #include "struct_decls/struct_party_decl.h"
 
 #include "heap.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "party.h"
 #include "item.h"
@@ -68,7 +68,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
         }
     }
 
-    v1[0] = GetMonData(param0, MON_DATA_163, NULL);
+    v1[0] = GetMonData(param0, MON_DATA_CURRENT_HP, NULL);
 
     if (((Item_Get(v0, 23) != 0) || (Item_Get(v0, 24) != 0)) && (Item_Get(v0, 25) == 0)) {
         if (v1[0] == 0) {
@@ -76,14 +76,14 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
             return 1;
         }
     } else if (Item_Get(v0, 38) != 0) {
-        if ((v1[0] != 0) && (v1[0] < GetMonData(param0, MON_DATA_164, NULL))) {
+        if ((v1[0] != 0) && (v1[0] < GetMonData(param0, MON_DATA_MAX_HP, NULL))) {
             Heap_FreeToHeap(v0);
             return 1;
         }
     }
 
     if (Item_Get(v0, 25) != 0) {
-        if (GetMonData(param0, MON_DATA_161, NULL) < 100) {
+        if (GetMonData(param0, MON_DATA_LEVEL, NULL) < 100) {
             Heap_FreeToHeap(v0);
             return 1;
         }
@@ -97,7 +97,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
     }
 
     if ((Item_Get(v0, 34) != 0) || (Item_Get(v0, 35) != 0)) {
-        if ((GetMonData(param0, MON_DATA_62 + param2, NULL) < 3) && (MoveTable_CalcMaxPP(GetMonData(param0, MON_DATA_MOVE1 + param2, NULL), 0) >= 5)) {
+        if ((GetMonData(param0, MON_DATA_MOVE1_PP_UPS + param2, NULL) < 3) && (MoveTable_CalcMaxPP(GetMonData(param0, MON_DATA_MOVE1 + param2, NULL), 0) >= 5)) {
             Heap_FreeToHeap(v0);
             return 1;
         }
@@ -311,12 +311,12 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
     }
 
     if (v1[0] != v1[1]) {
-        sub_02074B30(param0, 160, &v1[1]);
+        SetMonData(param0, 160, &v1[1]);
         v2 = 1;
     }
 
-    v1[0] = GetMonData(param0, MON_DATA_163, NULL);
-    v1[1] = GetMonData(param0, MON_DATA_164, NULL);
+    v1[0] = GetMonData(param0, MON_DATA_CURRENT_HP, NULL);
+    v1[1] = GetMonData(param0, MON_DATA_MAX_HP, NULL);
 
     if (((Item_Get(v0, 23) != 0) || (Item_Get(v0, 24) != 0)) && (Item_Get(v0, 25) != 0)) {
         if (v1[0] == 0) {
@@ -334,15 +334,15 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
         v3 = 1;
     }
 
-    v1[2] = GetMonData(param0, MON_DATA_161, NULL);
+    v1[2] = GetMonData(param0, MON_DATA_LEVEL, NULL);
 
     if (Item_Get(v0, 25) != 0) {
         if (v1[2] < 100) {
-            sub_0207536C(param0, MON_DATA_EXP, sub_02075A70(param0));
-            sub_0207418C(param0);
+            IncreaseMonData(param0, MON_DATA_EXP, GetMonExpToNextLevel(param0));
+            CalculateMonLevelAndStats(param0);
 
             if (v1[0] == 0) {
-                v1[3] = GetMonData(param0, MON_DATA_164, NULL);
+                v1[3] = GetMonData(param0, MON_DATA_MAX_HP, NULL);
                 sub_020970AC(param0, v1[0], v1[3], v1[3] - v1[1]);
             }
 
@@ -400,8 +400,8 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
             if (v1[6] != -1) {
                 v1[0] = v1[6];
-                sub_02074B30(param0, 13, &v1[0]);
-                sub_0207418C(param0);
+                SetMonData(param0, 13, &v1[0]);
+                CalculateMonLevelAndStats(param0);
                 v2 = 1;
             }
 
@@ -417,8 +417,8 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
         if (v1[6] != -1) {
             v1[1] = v1[6];
-            sub_02074B30(param0, 14, &v1[1]);
-            sub_0207418C(param0);
+            SetMonData(param0, 14, &v1[1]);
+            CalculateMonLevelAndStats(param0);
             v2 = 1;
         }
 
@@ -433,8 +433,8 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
         if (v1[6] != -1) {
             v1[2] = v1[6];
-            sub_02074B30(param0, 15, &v1[2]);
-            sub_0207418C(param0);
+            SetMonData(param0, 15, &v1[2]);
+            CalculateMonLevelAndStats(param0);
             v2 = 1;
         }
 
@@ -449,8 +449,8 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
         if (v1[6] != -1) {
             v1[3] = v1[6];
-            sub_02074B30(param0, 16, &v1[3]);
-            sub_0207418C(param0);
+            SetMonData(param0, 16, &v1[3]);
+            CalculateMonLevelAndStats(param0);
             v2 = 1;
         }
 
@@ -465,8 +465,8 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
         if (v1[6] != -1) {
             v1[4] = v1[6];
-            sub_02074B30(param0, 17, &v1[4]);
-            sub_0207418C(param0);
+            SetMonData(param0, 17, &v1[4]);
+            CalculateMonLevelAndStats(param0);
             v2 = 1;
         }
 
@@ -481,8 +481,8 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
 
         if (v1[6] != -1) {
             v1[5] = v1[6];
-            sub_02074B30(param0, 18, &v1[5]);
-            sub_0207418C(param0);
+            SetMonData(param0, 18, &v1[5]);
+            CalculateMonLevelAndStats(param0);
             v2 = 1;
         }
 
@@ -544,8 +544,8 @@ static u8 sub_02096F34 (Pokemon * param0, u32 param1)
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
-    v2 = (u8)GetMonData(param0, MON_DATA_62 + param1, NULL);
+    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_PP + param1, NULL);
+    v2 = (u8)GetMonData(param0, MON_DATA_MOVE1_PP_UPS + param1, NULL);
 
     if (v1 < MoveTable_CalcMaxPP(v0, v2)) {
         return 1;
@@ -566,8 +566,8 @@ static u8 sub_02096F84 (Pokemon * param0, u32 param1, u32 param2)
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
-    v2 = (u8)MoveTable_CalcMaxPP(v0, GetMonData(param0, MON_DATA_62 + param1, NULL));
+    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_PP + param1, NULL);
+    v2 = (u8)MoveTable_CalcMaxPP(v0, GetMonData(param0, MON_DATA_MOVE1_PP_UPS + param1, NULL));
 
     if (v1 < v2) {
         if (param2 == 127) {
@@ -580,7 +580,7 @@ static u8 sub_02096F84 (Pokemon * param0, u32 param1, u32 param2)
             }
         }
 
-        sub_02074B30(param0, 58 + param1, &v1);
+        SetMonData(param0, 58 + param1, &v1);
         return 1;
     }
 
@@ -594,7 +594,7 @@ static u8 sub_02097004 (Pokemon * param0, u32 param1, u32 param2)
     u8 v2;
     u8 v3;
 
-    v2 = GetMonData(param0, MON_DATA_62 + param1, NULL);
+    v2 = GetMonData(param0, MON_DATA_MOVE1_PP_UPS + param1, NULL);
 
     if (v2 == 3) {
         return 0;
@@ -606,7 +606,7 @@ static u8 sub_02097004 (Pokemon * param0, u32 param1, u32 param2)
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, MON_DATA_58 + param1, NULL);
+    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_PP + param1, NULL);
     v3 = (u8)MoveTable_CalcMaxPP(v0, v2);
 
     if (v2 + param2 > 3) {
@@ -617,8 +617,8 @@ static u8 sub_02097004 (Pokemon * param0, u32 param1, u32 param2)
 
     v1 = v1 + MoveTable_CalcMaxPP(v0, v2) - v3;
 
-    sub_02074B30(param0, 62 + param1, &v2);
-    sub_02074B30(param0, 58 + param1, &v1);
+    SetMonData(param0, 62 + param1, &v2);
+    SetMonData(param0, 58 + param1, &v1);
 
     return 1;
 }
@@ -641,7 +641,7 @@ static void sub_020970AC (Pokemon * param0, u32 param1, u32 param2, u32 param3)
         param1 += param3;
     }
 
-    sub_02074B30(param0, 163, &param1);
+    SetMonData(param0, 163, &param1);
 }
 
 static s32 sub_020970EC (s32 param0, s32 param1, s32 param2)
@@ -747,7 +747,7 @@ static u8 sub_020971D0 (Pokemon * param0, s32 param1, s32 param2, u16 param3, u3
         param2 = 0;
     }
 
-    sub_02074B30(param0, 9, &param2);
+    SetMonData(param0, 9, &param2);
     return 1;
 }
 
@@ -766,11 +766,11 @@ void sub_02097284 (Party * param0)
             continue;
         }
 
-        v3 = GetMonData(v4, MON_DATA_164, NULL);
-        sub_02074B30(v4, 163, &v3);
+        v3 = GetMonData(v4, MON_DATA_MAX_HP, NULL);
+        SetMonData(v4, 163, &v3);
 
         v3 = 0;
-        sub_02074B30(v4, 160, &v3);
+        SetMonData(v4, 160, &v3);
 
         for (v1 = 0; v1 < 4; v1++) {
             if (sub_02096F34(v4, v1) == 1) {

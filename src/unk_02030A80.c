@@ -25,7 +25,7 @@
 #include "unk_0202C858.h"
 #include "unk_02030A80.h"
 #include "unk_0205C980.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020996D0.h"
 
 UnkStruct_02030A80 * sub_02030A80 (int param0)

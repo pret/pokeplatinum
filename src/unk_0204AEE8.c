@@ -32,7 +32,7 @@
 #include "unk_02034198.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 static BOOL sub_0204B470(UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * param1, u16 param2, UnkStruct_ov104_0223A348_sub2 * param3, u8 param4, u16 * param5, u16 * param6, UnkStruct_0204B404 * param7, int param8);
@@ -345,7 +345,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     if (param4 == 0) {
         do {
             v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
-        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (sub_02075E38(param3, v2) == 1));
+        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (GetMonPersonalityShininess(param3, v2) == 1));
 
         param1->unk_10 = v2;
     } else {
@@ -363,7 +363,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & FlagIndex(v0)) {
+        if (v4.unk_0A & GetSingleBitMask(v0)) {
             v1++;
         }
     }
@@ -375,7 +375,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & FlagIndex(v0)) {
+        if (v4.unk_0A & GetSingleBitMask(v0)) {
             param1->unk_18_val2[v0] = v1;
         }
     }
@@ -383,16 +383,16 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     param1->unk_1E_val2 = 0;
     param1->unk_1F = Unk_020E4C44;
 
-    v0 = sub_020759F0(param1->unk_00_val1_0, 25);
+    v0 = GetMonSpeciesPersonalDataAttribute(param1->unk_00_val1_0, 25);
 
     if (v0) {
         if (param1->unk_10 & 1) {
             param1->unk_20 = v0;
         } else {
-            param1->unk_20 = sub_020759F0(param1->unk_00_val1_0, 24);
+            param1->unk_20 = GetMonSpeciesPersonalDataAttribute(param1->unk_00_val1_0, 24);
         }
     } else {
-        param1->unk_20 = sub_020759F0(param1->unk_00_val1_0, 24);
+        param1->unk_20 = GetMonSpeciesPersonalDataAttribute(param1->unk_00_val1_0, 24);
     }
 
     param1->unk_21 = v3;
