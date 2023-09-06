@@ -2,6 +2,8 @@
 	.include "include/ppw_profile.inc"
 
 	
+	.extern Unk_ov66_02258EA8
+
 
 	.text
 
@@ -109,7 +111,7 @@ _02241D30:
 	add sp, sp, #0x34
 	ldmia sp!, {r3, r4, r5, r6, pc}
 	; .align 2, 0
-_02241D3C: .word 0x02258EB0
+_02241D3C: .word Unk_ov66_02258EA8 + 0x8
 	arm_func_end ov66_02241C44
 
 	arm_func_start ov66_02241D40
@@ -565,7 +567,7 @@ _02242370:
 	add sp, sp, #0xd4
 	ldmia sp!, {r3, r4, r5, r6, r7, r8, sb, sl, pc}
 	; .align 2, 0
-_02242398: .word 0x02258EB0
+_02242398: .word Unk_ov66_02258EA8 + 0x8
 	arm_func_end ov66_02242008
 
 	arm_func_start ov66_0224239C
