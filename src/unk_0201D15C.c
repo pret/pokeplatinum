@@ -10,7 +10,7 @@ typedef struct {
     MATHCRC16Table unk_00;
 } UnkStruct_021BFB10;
 
-static u16 LCRNG_NextFrom(u32 * seed);
+static u16 LCRNG_NextFrom(u32 *seed);
 
 fx32 sub_0201D15C (u16 param0)
 {
@@ -229,22 +229,22 @@ u32 sub_0201D5B8 (const void * param0, u32 param1)
     return v0;
 }
 
-void EncryptData (void * data, u32 bytes, u32 seed)
+void EncryptData (void *data, u32 bytes, u32 seed)
 {
     int i;
-    u16 * dataWords = (u16 *)data;
+    u16 *dataWords = (u16 *)data;
 
     for (i = 0; i < bytes / 2; i++) {
         dataWords[i] ^= LCRNG_NextFrom(&seed);
     }
 }
 
-void DecryptData (void * data, u32 bytes, u32 seed)
+void DecryptData (void *data, u32 bytes, u32 seed)
 {
     EncryptData(data, bytes, seed);
 }
 
-static u16 LCRNG_NextFrom (u32 * seed)
+static u16 LCRNG_NextFrom (u32 *seed)
 {
     seed[0] = seed[0] * 1103515245L + 24691;
     return (u16)(seed[0] / 65536L);

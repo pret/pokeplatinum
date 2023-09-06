@@ -22,8 +22,8 @@ void sub_0201D470(MtxFx22 * param0, u16 param1, fx32 param2, fx32 param3, u8 par
 s32  sub_0201D4CC(s32 param0, s32 param1, s32 param2, s32 param3, u32 param4);
 s32  sub_0201D580(u16 param0, s32 param1);
 u32  sub_0201D5B8(const void * param0, u32 param1);
-void EncryptData(void * data, u32 bytes, u32 seed);
-void DecryptData(void * data, u32 bytes, u32 seed);
+void EncryptData(void *data, u32 bytes, u32 seed);
+void DecryptData(void *data, u32 bytes, u32 seed);
 u16  sub_0201D628(const void * param0, u32 param1);
 void sub_0201D640(int param0);
 
