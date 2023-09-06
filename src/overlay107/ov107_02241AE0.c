@@ -3568,19 +3568,19 @@ static BOOL ov107_02245210 (Pokemon * param0)
 
     v0 = 0;
 
-    if (GetMonData(param0, MON_DATA_MOVE1_PP, NULL) != GetMonData(param0, MON_DATA_MOVE1_MAX_PP, NULL)) {
+    if (GetMonData(param0, MON_DATA_MOVE1_CUR_PP, NULL) != GetMonData(param0, MON_DATA_MOVE1_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (GetMonData(param0, MON_DATA_MOVE2_PP, NULL) != GetMonData(param0, MON_DATA_MOVE2_MAX_PP, NULL)) {
+    if (GetMonData(param0, MON_DATA_MOVE2_CUR_PP, NULL) != GetMonData(param0, MON_DATA_MOVE2_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (GetMonData(param0, MON_DATA_MOVE3_PP, NULL) != GetMonData(param0, MON_DATA_MOVE3_MAX_PP, NULL)) {
+    if (GetMonData(param0, MON_DATA_MOVE3_CUR_PP, NULL) != GetMonData(param0, MON_DATA_MOVE3_MAX_PP, NULL)) {
         v0 = 1;
     }
 
-    if (GetMonData(param0, MON_DATA_MOVE4_PP, NULL) != GetMonData(param0, MON_DATA_MOVE4_MAX_PP, NULL)) {
+    if (GetMonData(param0, MON_DATA_MOVE4_CUR_PP, NULL) != GetMonData(param0, MON_DATA_MOVE4_MAX_PP, NULL)) {
         v0 = 1;
     }
 

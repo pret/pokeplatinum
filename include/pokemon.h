@@ -664,7 +664,7 @@ void SetBoxShayminForm(BoxPokemon *boxMon, int monForm);
  * @param mon 
  * @return Whether Shaymin is allowed to change into Sky Form
  */
-BOOL AllowShayminSkyForm(Pokemon *mon);
+BOOL CanShayminSkyForm(Pokemon *mon);
 
 /**
  * @brief Iterates over all the Pokemon in Party, setting the form of any Shaymin to land form.
@@ -687,7 +687,7 @@ BOOL SetPartyShayminForm(Party *party, int param1, const RTCTime *rtcTime);
 
 /**
  * @brief Sets Rotom to the given form. Has no effect if the given Pokemon is not a Rotom
- *        If Rotom should learn a form specific move and there is no room, overwrites moveSlot with the new move
+ * If Rotom should learn a form specific move and there is no room, overwrites moveSlot with the new move
  * 
  * @param mon 
  * @param monForm 
@@ -713,9 +713,9 @@ void sub_02077EA4(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokebal
 void sub_02077EE4(Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
 void sub_02077EF8(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
 void sub_02077F0C(Pokemon *mon, u32 param1, int param2);
-BOOL sub_02077FB4(Pokemon *mon, u8 param1);
-BOOL sub_02077FBC(BoxPokemon *boxMon, u8 param1);
-BOOL sub_02077FE4(u16 monSpecies, int monForm, u8 tmID);
+BOOL CanMonLearnTM(Pokemon *mon, u8 tmID);
+BOOL CanBoxMonLearnTM(BoxPokemon *boxMon, u8 tmID);
+BOOL CanMonSpeciesLearnTM(u16 monSpecies, int monForm, u8 tmID);
 
 /**
  * @brief Sets the ability of a Pokemon based on its species, form and peronsality value

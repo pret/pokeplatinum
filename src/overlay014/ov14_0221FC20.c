@@ -2262,7 +2262,7 @@ static void ov14_02221E18 (BattleSystem * param0, BattleContext * param1)
 
         if (v3 != param1->selectedPartySlot[v0]) {
             for (v4 = 0; v4 < 4; v4++) {
-                if (GetMonData(v5, MON_DATA_MOVE1_PP + v4, NULL) != GetMonData(v5, MON_DATA_MOVE1_MAX_PP + v4, NULL)) {
+                if (GetMonData(v5, MON_DATA_MOVE1_CUR_PP + v4, NULL) != GetMonData(v5, MON_DATA_MOVE1_MAX_PP + v4, NULL)) {
                     ov14_02222D24(param1, v2);
                     break;
                 }

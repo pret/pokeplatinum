@@ -35,10 +35,10 @@ typedef struct PokemonPersonalData {
     u8 greatMarshFleeRate; //!< The pokemons base flee rate in the Great Marsh safari zone
     u8 color : 7; //!< The pokemons color category
     u8 inverse : 1;
-    u32 unk_1C;
-    u32 unk_20;
-    u32 unk_24;
-    u32 unk_28;
+    u32 tmLearnsetMask1;
+    u32 tmLearnsetMask2;
+    u32 tmLearnsetMask3;
+    u32 tmLearnsetMask4;
 } PokemonPersonalData;
 
 #endif // POKEPLATINUM_STRUCT_02075874_H

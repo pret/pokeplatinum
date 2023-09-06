@@ -5,9 +5,9 @@
  * @brief Block B of the BoxPokemon data structure 
  */
 typedef struct PokemonDataBlockB {
-    u16 unk_00[4];
-    u8 unk_08[4];
-    u8 unk_0C[4];
+    u16 moves[4]; //!< The ID of each move the pokemon knows
+    u8 moveCurrentPPs[4]; //!< The current PP of each move
+    u8 movePPUps[4]; //!< The number of PP Ups used on each move
     u32 hpIV : 5; //!< The pokemons HP IVs
     u32 atkIV : 5; //!< The pokemons Attack IVs
     u32 defIV : 5; //!< The pokemons Defense IVs

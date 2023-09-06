@@ -1081,7 +1081,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
 
     for (v1 = 0; v1 < 4; v1++) {
         param2->unk_34[v1] = (u16)GetMonData(param1, MON_DATA_MOVE1 + v1, NULL);
-        param2->unk_3C[v1] = (u8)GetMonData(param1, MON_DATA_MOVE1_PP + v1, NULL);
+        param2->unk_3C[v1] = (u8)GetMonData(param1, MON_DATA_MOVE1_CUR_PP + v1, NULL);
         v2 = (u8)GetMonData(param1, MON_DATA_MOVE1_PP_UPS + v1, NULL);
         param2->unk_40[v1] = MoveTable_CalcMaxPP(param2->unk_34[v1], v2);
     }

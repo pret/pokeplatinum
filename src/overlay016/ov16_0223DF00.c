@@ -780,8 +780,8 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     if (Item_LoadParam(param4, 36, 5)) {
         v3 = Item_LoadParam(param4, 55, 5);
 
-        if (GetMonData(v1, MON_DATA_MOVE1_PP + param3, NULL) != GetMonData(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
-            IncreaseMonData(v1, MON_DATA_MOVE1_PP + param3, v3);
+        if (GetMonData(v1, MON_DATA_MOVE1_CUR_PP + param3, NULL) != GetMonData(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
+            IncreaseMonData(v1, MON_DATA_MOVE1_CUR_PP + param3, v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & GetSingleBitMask(param3)) == 0)) {
@@ -797,8 +797,8 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
         v3 = Item_LoadParam(param4, 55, 5);
 
         for (param3 = 0; param3 < 4; param3++) {
-            if (GetMonData(v1, MON_DATA_MOVE1_PP + param3, NULL) != GetMonData(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
-                IncreaseMonData(v1, MON_DATA_MOVE1_PP + param3, v3);
+            if (GetMonData(v1, MON_DATA_MOVE1_CUR_PP + param3, NULL) != GetMonData(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
+                IncreaseMonData(v1, MON_DATA_MOVE1_CUR_PP + param3, v3);
 
                 if ((v4 == param2) || (v5 == param2)) {
                     if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & GetSingleBitMask(param3)) == 0)) {

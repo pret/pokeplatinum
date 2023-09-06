@@ -954,7 +954,7 @@ static u8 ov13_02220A4C (UnkStruct_ov13_022213F0 * param0)
                 continue;
             }
 
-            param0->unk_207C[v1] = (u16)GetMonData(param0->unk_04[v0->unk_11].unk_00, MON_DATA_MOVE1_PP + v1, NULL);
+            param0->unk_207C[v1] = (u16)GetMonData(param0->unk_04[v0->unk_11].unk_00, MON_DATA_MOVE1_CUR_PP + v1, NULL);
         }
 
         ov13_02224144(param0);
@@ -1260,7 +1260,7 @@ static void ov13_02220F98 (UnkStruct_ov13_022213F0 * param0)
                 continue;
             }
 
-            v2->unk_02 = GetMonData(param0->unk_04[v0].unk_00, MON_DATA_MOVE1_PP + v1, NULL);
+            v2->unk_02 = GetMonData(param0->unk_04[v0].unk_00, MON_DATA_MOVE1_CUR_PP + v1, NULL);
             v2->unk_03 = GetMonData(param0->unk_04[v0].unk_00, MON_DATA_MOVE1_PP_UPS + v1, NULL);
             v2->unk_03 = MoveTable_CalcMaxPP(v2->unk_00, v2->unk_03);
             v2->unk_04 = MoveTable_LoadParam(v2->unk_00, MOVEATTRIBUTE_TYPE);

@@ -943,7 +943,7 @@ u8 sub_02086104 (UnkStruct_0207F248 * param0, Pokemon * param1)
         }
     }
 
-    if (sub_02077FB4(param1, Item_TMHMNumber(param0->unk_5A4->unk_24)) == 0) {
+    if (CanMonLearnTM(param1, Item_TMHMNumber(param0->unk_5A4->unk_24)) == 0) {
         return 0xff;
     }
 

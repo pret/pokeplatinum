@@ -7,7 +7,7 @@
 /**
  * @brief The main Pokemon data structure
  */
-typedef struct {
+typedef struct Pokemon {
     BoxPokemon box; //!< Contains the pokemons boxed data
     PartyPokemon party; //!< Contains the pokemons extra data while it is in the players party
 } Pokemon;

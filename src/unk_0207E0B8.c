@@ -2584,7 +2584,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
 
     v0 = Item_Load(param0->unk_5A4->unk_24, 0, 12);
 
-    if ((param0->unk_5A4->unk_24 == 466) && (AllowShayminSkyForm(Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11)) == 1)) {
+    if ((param0->unk_5A4->unk_24 == 466) && (CanShayminSkyForm(Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11)) == 1)) {
         param0->unk_5A4->unk_38 = 1;
         Heap_FreeToHeap(v0);
         sub_020819B4(param0);

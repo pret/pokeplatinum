@@ -2442,7 +2442,7 @@ static void ov5_021E6948 (Pokemon * param0, BoxPokemon * param1, BoxPokemon * pa
         if (v7->unk_00[v0] != 0) {
             for (v1 = 0; v1 < 100; v1++) {
                 if (v7->unk_00[v0] == Item_MoveForTMHM(328 + v1)) {
-                    if (sub_02077FE4(v3, v6, v1)) {
+                    if (CanMonSpeciesLearnTM(v3, v6, v1)) {
                         if (AddMonMove(param0, v7->unk_00[v0]) == 0xffff) {
                             ReplaceMonMove(param0, v7->unk_00[v0]);
                         }
@@ -3042,7 +3042,7 @@ static void ov5_021E742C (Pokemon * param0, int param1)
 
     for (v7 = 0; v7 < 4; v7++) {
         v1[v7] = GetMonData(param0, MON_DATA_MOVE1 + v7, NULL);
-        v2[v7] = GetMonData(param0, MON_DATA_MOVE1_PP + v7, NULL);
+        v2[v7] = GetMonData(param0, MON_DATA_MOVE1_CUR_PP + v7, NULL);
     }
 
     v3 = GetMonData(param0, MON_DATA_PERSONALITY, NULL);

@@ -200,7 +200,7 @@ void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleC
 
     for (v1 = 0; v1 < 4; v1++) {
         battleCtx->battleMons[battler].moves[v1] = GetMonData(v0, MON_DATA_MOVE1 + v1, 0);
-        battleCtx->battleMons[battler].ppCur[v1] = GetMonData(v0, MON_DATA_MOVE1_PP + v1, 0);
+        battleCtx->battleMons[battler].ppCur[v1] = GetMonData(v0, MON_DATA_MOVE1_CUR_PP + v1, 0);
         battleCtx->battleMons[battler].ppUps[v1] = GetMonData(v0, MON_DATA_MOVE1_PP_UPS + v1, 0);
     }
 
@@ -307,7 +307,7 @@ void ov16_02251C94 (BattleSystem * param0, BattleContext * param1, int param2, i
         for (v1 = 0; v1 < 4; v1++) {
             if ((param1->battleMons[param2].moveEffectsData.mimickedMoveSlot & GetSingleBitMask(v1)) == 0) {
                 param1->battleMons[param2].moves[v1] = GetMonData(v0, MON_DATA_MOVE1 + v1, 0);
-                param1->battleMons[param2].ppCur[v1] = GetMonData(v0, MON_DATA_MOVE1_PP + v1, 0);
+                param1->battleMons[param2].ppCur[v1] = GetMonData(v0, MON_DATA_MOVE1_CUR_PP + v1, 0);
                 param1->battleMons[param2].ppUps[v1] = GetMonData(v0, MON_DATA_MOVE1_PP_UPS + v1, 0);
             }
         }

@@ -544,7 +544,7 @@ static u8 sub_02096F34 (Pokemon * param0, u32 param1)
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_PP + param1, NULL);
+    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_CUR_PP + param1, NULL);
     v2 = (u8)GetMonData(param0, MON_DATA_MOVE1_PP_UPS + param1, NULL);
 
     if (v1 < MoveTable_CalcMaxPP(v0, v2)) {
@@ -566,7 +566,7 @@ static u8 sub_02096F84 (Pokemon * param0, u32 param1, u32 param2)
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_PP + param1, NULL);
+    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_CUR_PP + param1, NULL);
     v2 = (u8)MoveTable_CalcMaxPP(v0, GetMonData(param0, MON_DATA_MOVE1_PP_UPS + param1, NULL));
 
     if (v1 < v2) {
@@ -606,7 +606,7 @@ static u8 sub_02097004 (Pokemon * param0, u32 param1, u32 param2)
         return 0;
     }
 
-    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_PP + param1, NULL);
+    v1 = (u8)GetMonData(param0, MON_DATA_MOVE1_CUR_PP + param1, NULL);
     v3 = (u8)MoveTable_CalcMaxPP(v0, v2);
 
     if (v2 + param2 > 3) {
