@@ -48,7 +48,7 @@ int PokemonStructSize(void);
  * @param heapID 
  * @return A new empty but encrypted Pokemon struct
  */
-Pokemon * AllocMonZeroed(u32 heapID);
+Pokemon *AllocMonZeroed(u32 heapID);
 
 /**
  * @brief Decrypts a Pokemon data structure. PartyPokemon data is encrypted using the pokemons personality value, BoxPokemon data using a checksum value
@@ -84,8 +84,11 @@ BOOL DecryptBoxMon(BoxPokemon *boxMon);
  */
 BOOL EncryptBoxMon(BoxPokemon *boxMon, BOOL encrypt);
 
-void sub_02073D80(Pokemon *mon, int monSpecies, int monLevel, int monIVs, int useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
-void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, int useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+void sub_02073D80(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+
+// TODO make this static?
+void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+
 void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
@@ -109,39 +112,39 @@ void CalculateMonStats(Pokemon *mon);
  * @brief Gets a value from a Pokemon, storing it in dest if neccessary
  * 
  * @param mon 
- * @param monDataAttribute 
+ * @param param 
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 GetMonData(Pokemon *mon, int monDataAttribute, void *dest);
+u32 GetMonData(Pokemon *mon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Gets a value from a Pokemon, storing it in dest if neccessary
  * 
  * @param boxMon 
- * @param monDataAttribute 
+ * @param param 
  * @param[out] dest Pointer for storing longer data
  * @return The requested value
  */
-u32 GetBoxMonData(BoxPokemon *boxMon, int monDataAttribute, void *dest);
+u32 GetBoxMonData(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 
 /**
  * @brief Sets a value in a Pokemon, reading it from value if neccessary
  * 
  * @param mon 
- * @param monDataAttribute 
+ * @param param
  * @param value 
  */
-void SetMonData(Pokemon *mon, int monDataAttribute, const void *value);
+void SetMonData(Pokemon *mon, enum PokemonDataParam param, const void *value);
 
 /**
  * @brief Sets a value in a BoxPokemon, reading it from value if neccessary
  * 
  * @param boxMon 
- * @param monDataAttribute 
+ * @param param 
  * @param value 
  */
-void SetBoxMonData(BoxPokemon *boxMon, int monDataAttribute, const void *value);
+void SetBoxMonData(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
 
 /**
  * @brief Increases some numerical fields in a Pokemon by the given value. Does nothing if the field is not supported  
@@ -149,10 +152,10 @@ void SetBoxMonData(BoxPokemon *boxMon, int monDataAttribute, const void *value);
  * @todo list of supported fields?
  *
  * @param mon 
- * @param monDataAttribute 
+ * @param param 
  * @param value 
  */
-void IncreaseMonData(Pokemon *mon, int monDataAttribute, int value);
+void IncreaseMonData(Pokemon *mon, enum PokemonDataParam param, int value);
 
 /**
  * @brief Gets a PokemonPersonalData based on a pokemon species and form
@@ -162,7 +165,7 @@ void IncreaseMonData(Pokemon *mon, int monDataAttribute, int value);
  * @param heapID The index of the heap that the PokemonPersonalData should be loaded into
  * @return PokemonPersonalData* 
  */
-PokemonPersonalData * GetMonFormPersonalData(int monSpecies, int monForm, int heapID);
+PokemonPersonalData *GetMonFormPersonalData(int monSpecies, int monForm, int heapID);
 
 /**
  * @brief Gets a PokemonPersonalData based on a pokemon species
@@ -171,16 +174,16 @@ PokemonPersonalData * GetMonFormPersonalData(int monSpecies, int monForm, int he
  * @param heapID The index of the heap that the PokemonPersonalData should be loaded into
  * @return PokemonPersonalData* 
  */
-PokemonPersonalData * GetMonPersonalData(int monSpecies, int heapID);
+PokemonPersonalData *GetMonPersonalData(int monSpecies, int heapID);
 
 /**
  * @brief Gets a value from a PokemonPersonalData structure
  * 
  * @param monPersonalData 
- * @param monPersonalDataAttribute What value to get 
+ * @param param What value to get 
  * @return The requested value
  */
-u32 GetMonPersonalDataAttribute(PokemonPersonalData *monPersonalData, int monPersonalDataAttribute);
+u32 GetMonPersonalDataAttribute(PokemonPersonalData *monPersonalData, enum PokemonPersonalDataParam param);
 
 /**
  * @brief Frees a PokemonPersonalData structure from the heap
@@ -194,19 +197,19 @@ void FreeMonPersonalData(PokemonPersonalData *monPersonalData);
  * 
  * @param monSpecies 
  * @param monForm 
- * @param monPersonalDataAttribute What value to get
+ * @param param What value to get
  * @return The requested value
  */
-u32 GetMonFormPersonalDataAttribute(int monSpecies, int monForm, int monPersonalDataAttribute);
+u32 GetMonFormPersonalDataAttribute(int monSpecies, int monForm, enum PokemonPersonalDataParam param);
 
 /**
  * @brief Loads a PokemonPersonalData based on its species and gets a value from it
  * 
  * @param monSpecies 
- * @param monPersonalDataAttribute What value to get
+ * @param param What value to get
  * @return The requested value
  */
-u32 GetMonSpeciesPersonalDataAttribute(int monSpecies, int monPersonalDataAttribute);
+u32 GetMonSpeciesPersonalDataAttribute(int monSpecies, enum PokemonPersonalDataParam param);
 
 /**
  * @brief Gets how much progress a Pokemon has made towards its next level as a percentage
@@ -399,7 +402,7 @@ u8 sub_020765B8(Pokemon *mon, u8 param1);
 u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, int param2);
 u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 void sub_0207697C(UnkStruct_02008A90 *param0, u16 param1);
-UnkStruct_0200D0F4 * sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, UnkStruct_02002F38 *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
+UnkStruct_0200D0F4 *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, UnkStruct_02002F38 *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
 void sub_02076AAC(int param0, int param1, UnkStruct_ov5_021DE5D0 *param2);
 
 /**
@@ -438,7 +441,7 @@ u8 GetBoxMonForm(BoxPokemon *boxMon);
  * @param mon 
  * @return The BoxPokemon data for a given Pokemon
  */
-BoxPokemon * GetBoxMon(Pokemon *mon);
+BoxPokemon *GetBoxMon(Pokemon *mon);
 
 u8 sub_02076B14(Pokemon *mon);
 u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *evoTypeResult);

@@ -1,32 +1,57 @@
 #ifndef POKEPLATINUM_CONSTANTS_POKEMON_H
 #define POKEPLATINUM_CONSTANTS_POKEMON_H
 
-// Pokemon types
-#define TYPE_NONE             255
-#define TYPE_NORMAL           0
-#define TYPE_FIGHTING         1
-#define TYPE_FLYING           2
-#define TYPE_POISON           3
-#define TYPE_GROUND           4
-#define TYPE_ROCK             5
-#define TYPE_BUG              6
-#define TYPE_GHOST            7
-#define TYPE_STEEL            8
-#define TYPE_MYSTERY          9
-#define TYPE_FIRE             10
-#define TYPE_WATER            11
-#define TYPE_GRASS            12
-#define TYPE_ELECTRIC         13
-#define TYPE_PSYCHIC          14
-#define TYPE_ICE              15
-#define TYPE_DRAGON           16
-#define TYPE_DARK             17
-#define NUMBER_OF_MON_TYPES   18
+/**
+ * @brief Pokemon Types
+ */
+enum PokemonType {
+    TYPE_NORMAL = 0,
+    TYPE_FIGHTING,
+    TYPE_FLYING,
+    TYPE_POISON,
+    TYPE_GROUND,
+    TYPE_ROCK,
+    TYPE_BUG,
+    TYPE_GHOST,
+    TYPE_STEEL,
+    TYPE_MYSTERY,
+    TYPE_FIRE,
+    TYPE_WATER,
+    TYPE_GRASS,
+    TYPE_ELECTRIC,
+    TYPE_PSYCHIC,
+    TYPE_ICE,
+    TYPE_DRAGON,
+    TYPE_DARK,
+    NUMBER_OF_MON_TYPES,
+    TYPE_NONE = 255,    
+};
+
+/**
+ * @brief Pokemon Stats
+ */
+enum PokemonStats {
+    STAT_HP = 0,
+    STAT_ATTACK,
+    STAT_DEFENSE,
+    STAT_SPEED,
+    STAT_SPECIAL_ATTACK,
+    STAT_SPECIAL_DEFENSE
+};
 
 #define MAX_PARTY_SIZE  6
 #define NUM_BOOSTABLE_STATS 8
 
-enum {
+enum PokemonGender {
+    MON_GENDER_MALE,
+    MON_GENDER_FEMALE,
+    MON_GENDER_NONE
+};
+
+/**
+ * @brief Pokemon Data Parameters
+ */
+enum PokemonDataParam {
     MON_DATA_PERSONALITY,
     MON_DATA_1,
     MON_DATA_2,
@@ -209,7 +234,10 @@ enum {
     MON_DATA_179,
 };
 
-enum {
+/**
+ * @brief PokemonPersonalData Parameters
+ */
+enum PokemonPersonalDataParam {
     MON_DATA_PERSONAL_BASE_HP = 0,
     MON_DATA_PERSONAL_BASE_ATK,
     MON_DATA_PERSONAL_BASE_DEF,
