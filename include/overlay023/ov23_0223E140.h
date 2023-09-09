@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_0223E140_H
 #define POKEPLATINUM_OV23_0223E140_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "overlay023/struct_ov23_0224271C_decl.h"
 

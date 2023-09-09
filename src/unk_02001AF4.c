@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -16,7 +16,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
 #include "unk_020149F0.h"
@@ -380,15 +380,15 @@ static void sub_02002018 (UnkStruct_02001AF4 * param0, u8 * param1, u8 * param2,
 UnkStruct_02001AF4 * sub_02002054 (UnkStruct_02018340 * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u8 param4, u32 param5)
 {
     UnkStruct_02081CF4 v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     UnkStruct_02013A04 * v2;
 
-    v1 = sub_0200B144(1, 26, 361, param5);
+    v1 = MessageLoader_Init(1, 26, 361, param5);
     v2 = sub_02013A04(2, param5);
 
     sub_02013A4C(v2, v1, 41, 0);
     sub_02013A4C(v2, v1, 42, 0xfffffffe);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
 
     v0.unk_00 = v2;
     v0.unk_04 = sub_0201A778(param5, 1);

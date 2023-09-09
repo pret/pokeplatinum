@@ -4,14 +4,14 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
@@ -38,10 +38,10 @@
 
 UnkStruct_02018340 * ov16_0223DF00(BattleSystem * param0);
 UnkStruct_0205AA50 * ov16_0223DF04(BattleSystem * param0, int param1);
-u32 BattleSystem_BattleType(BattleSystem * param0);
-BattleContext * BattleSystem_Context(BattleSystem *battleSys);
-UnkStruct_ov16_0225BFFC * BattleSystem_BattlerData(BattleSystem * param0, int param1);
-int BattleSystem_MaxBattlers(BattleSystem * param0);
+u32 ov16_0223DF0C(BattleSystem * param0);
+BattleContext * ov16_0223DF10(BattleSystem * param0);
+UnkStruct_ov16_0225BFFC * ov16_0223DF14(BattleSystem * param0, int param1);
+int ov16_0223DF1C(BattleSystem * param0);
 Party * ov16_0223DF20(BattleSystem * param0, int param1);
 int ov16_0223DF60(BattleSystem * param0, int param1);
 Pokemon * ov16_0223DFAC(BattleSystem * param0, int param1, int param2);
@@ -55,8 +55,8 @@ UnkStruct_ov16_0226D160 * ov16_0223E034(BattleSystem * param0, UnkEnum_ov16_0226
 void ov16_0223E040(BattleSystem * param0, UnkEnum_ov16_0226D194 param1, UnkStruct_ov16_0226D160 * param2);
 UnkStruct_0200C440 * ov16_0223E04C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E054(BattleSystem * param0);
-UnkStruct_0200B144 * ov16_0223E05C(BattleSystem * param0);
-UnkStruct_0200B144 * ov16_0223E060(BattleSystem * param0);
+MessageLoader * ov16_0223E05C(BattleSystem * param0);
+MessageLoader * ov16_0223E060(BattleSystem * param0);
 UnkStruct_02002F38 * ov16_0223E064(BattleSystem * param0);
 UnkStruct_02026324 * ov16_0223E068(BattleSystem * param0);
 u8 * ov16_0223E06C(BattleSystem * param0);
@@ -77,17 +77,17 @@ UnkStruct_0207D3C0 * ov16_0223E1AC(BattleSystem * param0);
 UnkStruct_0207D99C * ov16_0223E1B0(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);
 int ov16_0223E1C4(BattleSystem * param0, int param1);
-u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
+u8 ov16_0223E1F8(BattleSystem * param0, int param1);
 u8 ov16_0223E208(BattleSystem * param0, int param1);
 void * ov16_0223E220(BattleSystem * param0);
 UnkStruct_020797DC * ov16_0223E228(BattleSystem * param0);
 int ov16_0223E22C(BattleSystem * param0);
 int ov16_0223E240(BattleSystem * param0);
 int ov16_0223E24C(BattleSystem * param0);
-int BattleSystem_Partner(BattleSystem *battleSys, int battler);
+int ov16_0223E258(BattleSystem * param0, int param1);
 int ov16_0223E2A4(BattleSystem * param0, int param1, int param2);
 BOOL ov16_0223E30C(BattleSystem * param0, int param1, int param2, int param3, int param4);
-u32 BattleSystem_BattleStatus(BattleSystem *battleSys);
+u32 ov16_0223EBEC(BattleSystem * param0);
 int ov16_0223EBF8(BattleSystem * param0);
 int ov16_0223EC04(BattleSystem * param0);
 u8 ov16_0223EC58(BattleSystem * param0, int param1, u8 param2);
@@ -171,7 +171,7 @@ void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL ov16_0223F9E0(BattleSystem * param0, int param1);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
-u8 ov16_0223FB24(BattleSystem * param0, UnkStruct_0200B144 * param1, BattleMessage * param2, int param3);
-u8 ov16_0223FB78(BattleSystem * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
+u8 ov16_0223FB24(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
+u8 ov16_0223FB78(BattleSystem * param0, UnkStruct_0205AA50 * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 
 #endif // POKEPLATINUM_OV16_0223DF00_H

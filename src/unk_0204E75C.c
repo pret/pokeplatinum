@@ -83,7 +83,7 @@ BOOL sub_0204E934 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
-    *v2 = (u16)Item_GetAttribute(v1, 5, 11);
+    *v2 = (u16)Item_LoadParam(v1, 5, 11);
     return 0;
 }
 

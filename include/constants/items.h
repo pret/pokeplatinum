@@ -1,3 +1,6 @@
+#ifndef POKEPLATINUM_CONSTANTS_ITEMS_H
+#define POKEPLATINUM_CONSTANTS_ITEMS_H
+
 #define POCKET_ITEMS        0
 #define POCKET_MEDICINE     1
 #define POCKET_BALLS        2
@@ -663,3 +666,10 @@
 #define ITEM_VS_RECORDER         465
 #define ITEM_GRACIDEA            466
 #define ITEM_SECRET_KEY          467
+
+#define NUM_ITEMS                ITEM_SECRET_KEY
+#define MAX_ITEMS                (NUM_ITEMS + 1)
+
+#define ITEM_RETURN_ID           0xFFFF
+
+#endif // POKEPLATINUM_CONSTANTS_ITEMS_H

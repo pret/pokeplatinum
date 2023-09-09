@@ -6,13 +6,13 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020158A8.h"
@@ -36,7 +36,7 @@
 #include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -113,7 +113,7 @@ typedef struct {
     u16 unk_0E;
     UnkStruct_02098DE8 * unk_10;
     UnkStruct_020158A8 * unk_14;
-    UnkStruct_0200B144 * unk_18;
+    MessageLoader * unk_18;
     UnkStruct_ov79_021D2928_sub1 unk_1C;
     UnkStruct_ov79_021D38D0 unk_30;
     UnkStruct_ov79_021D3820 unk_40;
@@ -502,12 +502,12 @@ static void ov79_021D2768 (UnkStruct_ov79_021D2928 * param0)
 {
     int v0 = 0;
 
-    param0->unk_18 = sub_0200B144(0, 26, 462, param0->unk_00);
+    param0->unk_18 = MessageLoader_Init(0, 26, 462, param0->unk_00);
     param0->unk_1C.unk_00 = sub_0200B368(1, 64, param0->unk_00);
     param0->unk_1C.unk_04 = Strbuf_Init(64, param0->unk_00);
 
     for (v0 = 0; v0 < 3; v0++) {
-        param0->unk_1C.unk_08[v0] = sub_0200B1EC(param0->unk_18, v0);
+        param0->unk_1C.unk_08[v0] = MessageLoader_GetNewStrbuf(param0->unk_18, v0);
     }
 }
 
@@ -521,7 +521,7 @@ static void ov79_021D27AC (UnkStruct_ov79_021D2928 * param0)
 
     Strbuf_Free(param0->unk_1C.unk_04);
     sub_0200B3F0(param0->unk_1C.unk_00);
-    sub_0200B190(param0->unk_18);
+    MessageLoader_Free(param0->unk_18);
 }
 
 static void ov79_021D27D8 (UnkStruct_ov79_021D2928 * param0)

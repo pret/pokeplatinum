@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
@@ -23,7 +23,7 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "unk_020244AC.h"
@@ -495,7 +495,7 @@ void sub_0202D63C (UnkStruct_0202D764 * param0, UnkStruct_ov104_0223A348 * param
     UnkStruct_ov104_0223A348_sub1 * v0;
     UnkStruct_ov104_0223A348_sub2 * v1;
     UnkStruct_0202D63C * v2;
-    UnkStruct_0200B144 * v3;
+    MessageLoader * v3;
 
     v0 = &(param1->unk_00);
     v1 = param1->unk_30;
@@ -505,10 +505,10 @@ void sub_0202D63C (UnkStruct_0202D764 * param0, UnkStruct_ov104_0223A348 * param
     v0->unk_04 = v2->unk_C9;
 
     if (v2->unk_C8_val1_unk_00_0) {
-        v3 = sub_0200B144(0, 26, 22, 11);
+        v3 = MessageLoader_Init(0, 26, 22, 11);
 
-        sub_0200B240(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->unk_08);
-        sub_0200B190(v3);
+        MessageLoader_Get(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->unk_08);
+        MessageLoader_Free(v3);
     } else {
         MI_CpuCopy8(v2->unk_A8, v0->unk_08, 16);
     }

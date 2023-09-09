@@ -7,14 +7,14 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 
@@ -43,7 +43,7 @@
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
@@ -100,7 +100,7 @@ typedef struct {
     UnkStruct_0200B358 * unk_1C44;
     Strbuf* unk_1C48;
     Strbuf* unk_1C4C;
-    UnkStruct_0200B144 * unk_1C50;
+    MessageLoader * unk_1C50;
     NARC * unk_1C54;
 } UnkStruct_ov86_0223B3C8;
 
@@ -192,7 +192,7 @@ typedef struct {
     UnkStruct_0200B358 * unk_14;
     Strbuf* unk_18;
     Strbuf* unk_1C;
-    UnkStruct_0200B144 * unk_20;
+    MessageLoader * unk_20;
     Pokemon * unk_24;
     const UnkStruct_02025E6C * unk_28;
     int unk_2C;
@@ -315,7 +315,7 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0 = sub_0200681C(param0, sizeof(UnkStruct_ov86_0223B3C8), 63);
 
     v0->unk_0C = sub_02006840(param0);
-    v0->unk_1C50 = sub_0200B144(0, 26, 351, 63);
+    v0->unk_1C50 = MessageLoader_Init(0, 26, 351, 63);
     v0->unk_1C48 = Strbuf_Init(500, 63);
     v0->unk_1C4C = Strbuf_Init(500, 63);
     v0->unk_1C44 = sub_0200B358(63);
@@ -379,7 +379,7 @@ int ov86_0223B2E4 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200B3F0(v0->unk_1C44);
         Strbuf_Free(v0->unk_1C48);
         Strbuf_Free(v0->unk_1C4C);
-        sub_0200B190(v0->unk_1C50);
+        MessageLoader_Free(v0->unk_1C50);
         NARC_dtor(v0->unk_1C54);
         sub_02006830(param0);
         Heap_Destroy(63);
@@ -1308,14 +1308,14 @@ static void ov86_0223C4DC (UnkStruct_ov86_0223C3E4 * param0)
 
     switch (sub_02075D6C(param0->unk_24)) {
     case 0:
-        sub_0200B1B8(param0->unk_20, 1, param0->unk_18);
+        MessageLoader_GetStrbuf(param0->unk_20, 1, param0->unk_18);
         break;
     case 1:
-        sub_0200B1B8(param0->unk_20, 2, param0->unk_18);
+        MessageLoader_GetStrbuf(param0->unk_20, 2, param0->unk_18);
         break;
     case 2:
     default:
-        sub_0200B1B8(param0->unk_20, 3, param0->unk_18);
+        MessageLoader_GetStrbuf(param0->unk_20, 3, param0->unk_18);
         break;
     }
 
@@ -1333,7 +1333,7 @@ static void ov86_0223C54C (UnkStruct_ov86_0223C3E4 * param0)
         break;
     }
 
-    sub_0200B1B8(param0->unk_20, 5 + v0, param0->unk_18);
+    MessageLoader_GetStrbuf(param0->unk_20, 5 + v0, param0->unk_18);
     sub_0200C388(param0->unk_14, param0->unk_1C, param0->unk_18);
 }
 
@@ -1348,7 +1348,7 @@ static void ov86_0223C58C (UnkStruct_0201CD38 * param0, void * param1)
 
     switch (v0->unk_34) {
     case 0:
-        sub_0200B1B8(v0->unk_20, 0, v0->unk_1C);
+        MessageLoader_GetStrbuf(v0->unk_20, 0, v0->unk_1C);
         ov86_0223C47C(v0, 16);
         sub_0201ACCC(v0->unk_10);
         v0->unk_30 = 20;
@@ -1365,7 +1365,7 @@ static void ov86_0223C58C (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 2:
         sub_0200B5EC(v0->unk_14, 0, sub_02076B10(v0->unk_24));
-        sub_0200B1B8(v0->unk_20, 4, v0->unk_18);
+        MessageLoader_GetStrbuf(v0->unk_20, 4, v0->unk_18);
         sub_0200C388(v0->unk_14, v0->unk_1C, v0->unk_18);
         ov86_0223C47C(v0, 96);
         ov86_0223C54C(v0);
@@ -1432,7 +1432,7 @@ static void ov86_0223C72C (UnkStruct_ov86_0223B3C8 * param0)
 {
     int v0;
 
-    sub_0200B1B8(param0->unk_1C50, 12, param0->unk_1C48);
+    MessageLoader_GetStrbuf(param0->unk_1C50, 12, param0->unk_1C48);
 
     v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;
     sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 4, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
@@ -1441,7 +1441,7 @@ static void ov86_0223C72C (UnkStruct_ov86_0223B3C8 * param0)
     sub_0200B60C(param0->unk_1C44, 1, sub_02025F24(param0->unk_0C->unk_00), 5, 2, 1);
     sub_0200B60C(param0->unk_1C44, 2, sub_0202CC58(param0->unk_0C->unk_08), 3, 0, 1);
     sub_0200B60C(param0->unk_1C44, 3, sub_0202CC5C(param0->unk_0C->unk_08), 2, 2, 1);
-    sub_0200B1B8(param0->unk_1C50, 13, param0->unk_1C4C);
+    MessageLoader_GetStrbuf(param0->unk_1C50, 13, param0->unk_1C4C);
     sub_0200C388(param0->unk_1C44, param0->unk_1C48, param0->unk_1C4C);
 
     v0 = (256 - sub_02002D7C(0, param0->unk_1C48, 0)) / 2;

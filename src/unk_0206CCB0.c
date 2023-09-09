@@ -3,9 +3,9 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -35,7 +35,7 @@
 #include "struct_defs/struct_0206C638.h"
 
 #include "unk_020021B0.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -492,7 +492,7 @@ static void sub_0206CE74 (UnkStruct_0200B358 * param0, int param1, u16 param2, u
 {
     u16 v0[11];
 
-    sub_0200B274(param2, 4, v0);
+    MessageLoader_GetSpeciesName(param2, 4, v0);
     sub_0206CD94(param0, param1, v0, param3, param4, 1);
 }
 
@@ -500,7 +500,7 @@ static void sub_0206CEA4 (UnkStruct_0200B358 * param0, int param1, u16 param2)
 {
     u16 v0[11];
 
-    sub_0200B274(param2, 4, v0);
+    MessageLoader_GetSpeciesName(param2, 4, v0);
     sub_0206CD94(param0, param1, v0, 0, GAME_LANGUAGE, 1);
 }
 
@@ -2910,13 +2910,13 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
 static Strbuf* sub_0206F0D8 (u16 param0, u32 param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 412, param1);
-    v1 = sub_0200B1EC(v0, param0);
+    v0 = MessageLoader_Init(1, 26, 412, param1);
+    v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     return v1;
 }
 

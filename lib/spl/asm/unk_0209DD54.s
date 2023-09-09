@@ -1,7 +1,7 @@
 	.include "macros/function.inc"
 	.include "include/unk_0209DD54.inc"
 
-	
+	.extern FX_SinCosTable_
 
 	.text
 
@@ -299,7 +299,7 @@ _0209E11C:
 	bx lr
 	; .align 2, 0
 _0209E1B0: .word 0x040004A4
-_0209E1B4: .word 0x020F983C
+_0209E1B4: .word FX_SinCosTable_
 _0209E1B8: .word Unk_02100DA8
 _0209E1BC: .word 0x00000CCD
 _0209E1C0: .word 0xFFFFF333
@@ -601,7 +601,7 @@ _0209E598:
 	bx lr
 	; .align 2, 0
 _0209E62C: .word 0x040004A4
-_0209E630: .word 0x020F983C
+_0209E630: .word FX_SinCosTable_
 _0209E634: .word Unk_02100DA8
 _0209E638: .word 0x00000CCD
 _0209E63C: .word 0xFFFFF333
@@ -826,7 +826,7 @@ _0209E8F0:
 	bx lr
 	; .align 2, 0
 _0209E984: .word 0x040004A4
-_0209E988: .word 0x020F983C
+_0209E988: .word FX_SinCosTable_
 _0209E98C: .word Unk_02100DA8
 _0209E990: .word 0x04000454
 _0209E994: .word 0x04000470
@@ -1049,7 +1049,7 @@ _0209EC40:
 	bx lr
 	; .align 2, 0
 _0209ECD4: .word 0x040004A4
-_0209ECD8: .word 0x020F983C
+_0209ECD8: .word FX_SinCosTable_
 _0209ECDC: .word Unk_02100DA8
 _0209ECE0: .word 0x04000454
 _0209ECE4: .word 0x04000470
@@ -2247,7 +2247,7 @@ _0209FE80:
 	bx lr
 	; .align 2, 0
 _0209FEF8: .word 0x040004A4
-_0209FEFC: .word 0x020F983C
+_0209FEFC: .word FX_SinCosTable_
 _0209FF00: .word 0x04000454
 _0209FF04: .word 0x04000470
 _0209FF08: .word 0x04000480
@@ -2532,7 +2532,7 @@ _020A02D0:
 	bx lr
 	; .align 2, 0
 _020A0344: .word 0x040004A4
-_020A0348: .word 0x020F983C
+_020A0348: .word FX_SinCosTable_
 _020A034C: .word 0x04000454
 _020A0350: .word 0x04000470
 _020A0354: .word 0x04000480

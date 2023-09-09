@@ -2,14 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
 
@@ -37,7 +37,7 @@
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -315,13 +315,13 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, i
     Strbuf* v2;
     UnkStruct_0200B358 * v3;
     BoxPokemon * v4;
-    UnkStruct_0200B144 * v5;
+    MessageLoader * v5;
 
     sub_0201ADA4(param0, 15);
 
-    v5 = sub_0200B144(0, 26, 357, 71);
+    v5 = MessageLoader_Init(0, 26, 357, 71);
     v3 = sub_0200B358(71);
-    v1 = sub_0200B1EC(v5, param1);
+    v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, 71);
     v4 = sub_02076B10(param2);
 
@@ -330,7 +330,7 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, i
 
     v0 = sub_0201D738(param0, 1, v2, 0, 0, param3, NULL);
 
-    sub_0200B190(v5);
+    MessageLoader_Free(v5);
     Strbuf_Free(v2);
     Strbuf_Free(v1);
     sub_0200B3F0(v3);
@@ -350,15 +350,15 @@ void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * par
     {
         int v1;
         Strbuf* v2;
-        UnkStruct_0200B144 * v3 = sub_0200B144(0, 26, 357, 71);
+        MessageLoader * v3 = MessageLoader_Init(0, 26, 357, 71);
 
         for (v1 = 0; v1 < 2; v1++) {
-            v2 = sub_0200B1EC(v3, 2 + v1);
+            v2 = MessageLoader_GetNewStrbuf(v3, 2 + v1);
             sub_02013A6C(param0->unk_04.unk_44, v2, v1);
             Strbuf_Free(v2);
         }
 
-        sub_0200B190(v3);
+        MessageLoader_Free(v3);
     }
 
     v0.unk_00 = param0->unk_04.unk_44;

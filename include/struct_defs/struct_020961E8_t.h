@@ -4,14 +4,14 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -30,7 +30,7 @@ struct UnkStruct_020961E8_t {
     UnkStruct_ov59_021D109C unk_0C;
     UnkStruct_0201CD38 * unk_20;
     UnkStruct_0200B358 * unk_24;
-    UnkStruct_0200B144 * unk_28;
+    MessageLoader * unk_28;
     Strbuf* unk_2C[5];
     Strbuf* unk_40;
     Strbuf* unk_44;

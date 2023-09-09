@@ -19,7 +19,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C440.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -125,7 +125,7 @@ BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_3C.unk_00 = param0->unk_18->pRawData;
     param0->unk_3C.unk_04 = 32;
     param0->unk_3C.unk_06 = 32;
-    param0->unk_4BF8 = sub_0200B144(1, 26, 391, 10);
+    param0->unk_4BF8 = MessageLoader_Init(1, 26, 391, 10);
 
     for (v0 = 0; v0 < 18; v0++) {
         param0->unk_48[v0] = NULL;
@@ -160,7 +160,7 @@ void ov19_021DBA9C (UnkStruct_ov19_021DBA9C * param0)
 void ov19_021DBAD0 (UnkStruct_ov19_021DBA9C * param0)
 {
     if (param0->unk_4BF8) {
-        sub_0200B190(param0->unk_4BF8);
+        MessageLoader_Free(param0->unk_4BF8);
     }
 
     if (param0->unk_14) {
@@ -595,7 +595,7 @@ void ov19_021DC29C (UnkStruct_ov19_021DBA9C * param0)
         sub_02019184(param0->unk_04, 1, 3, 0);
         sub_020198C0(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);
         sub_0201ADA4(&param0->unk_10[2], 4);
-        sub_0200B1B8(param0->unk_4BF8, v1, param0->unk_4BFC);
+        MessageLoader_GetStrbuf(param0->unk_4BF8, v1, param0->unk_4BFC);
         sub_0201D78C(&param0->unk_10[2], 0, param0->unk_4BFC, 0, 0, 0xff, (u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
         sub_0201A954(&param0->unk_10[2]);
 
@@ -713,11 +713,11 @@ static void ov19_021DC4F8 (UnkStruct_ov19_021DBA9C * param0, u32 param1)
         ov19_021D783C(&v0, &v2, ov19_021D77D0(param0->unk_00), v1->unk_1C, v1->unk_20, 0);
         NNS_G2dInitImageProxy(&v2);
 
-        v4 = sub_02006F50(16, sub_0207CE78(param1, 1), 0, &v3, 10);
+        v4 = sub_02006F50(16, Item_FileID(param1, 1), 0, &v3, 10);
         v3->mapingType = GX_GetOBJVRamModeChar();
         NNS_G2dLoadImage1DMapping(v3, 1520 * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v2);
 
-        sub_02006E84(16, sub_0207CE78(param1, 2), 1, 6 * 0x20, 0x20, 10);
+        sub_02006E84(16, Item_FileID(param1, 2), 1, 6 * 0x20, 0x20, 10);
         param0->unk_90 = ov19_021D785C(param0->unk_08, &v0, 18, 224, 0, NNS_G2D_VRAM_TYPE_2DMAIN);
 
         if (param0->unk_90) {

@@ -3,14 +3,14 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012CE0_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -25,7 +25,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
@@ -533,20 +533,20 @@ static void ov17_02249828 (UnkStruct_ov17_022492DC * param0)
 {
     Strbuf* v0, * v1;
     u32 v2, v3;
-    UnkStruct_0200B144 * v4;
+    MessageLoader * v4;
 
-    v4 = sub_0200B144(1, 26, 204, 23);
+    v4 = MessageLoader_Init(1, 26, 204, 23);
     v2 = sub_02095848(param0->unk_04->unk_00->unk_110, param0->unk_04->unk_00->unk_111, param0->unk_00->unk_155);
     v3 = sub_020958C4(param0->unk_04->unk_00->unk_10F, param0->unk_04->unk_00->unk_111);
-    v0 = sub_0200B1EC(v4, v2);
-    v1 = sub_0200B1EC(v4, v3);
+    v0 = MessageLoader_GetNewStrbuf(v4, v2);
+    v1 = MessageLoader_GetNewStrbuf(v4, v3);
 
     ov17_02249BC4(param0, &param0->unk_1C[0], v0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33003, 128, (8 * 0x10 - 1), 1);
     ov17_02249BC4(param0, &param0->unk_1C[1], v1, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), 0, 33003, 128, (8 * 0x14 - 1), 1);
 
     Strbuf_Free(v0);
     Strbuf_Free(v1);
-    sub_0200B190(v4);
+    MessageLoader_Free(v4);
 }
 
 static void ov17_022498E8 (UnkStruct_ov17_022492DC * param0, int param1, int param2)
@@ -557,19 +557,19 @@ static void ov17_022498E8 (UnkStruct_ov17_022492DC * param0, int param1, int par
 static void ov17_022498F4 (UnkStruct_ov17_022492DC * param0)
 {
     Strbuf* v0, * v1, * v2, * v3;
-    UnkStruct_0200B144 * v4;
+    MessageLoader * v4;
 
     v4 = param0->unk_04->unk_84;
 
     if (param0->unk_04->unk_A14[param0->unk_04->unk_00->unk_113] == 1) {
-        v0 = sub_0200B1EC(v4, 0);
+        v0 = MessageLoader_GetNewStrbuf(v4, 0);
     } else {
-        v0 = sub_0200B1EC(v4, 1);
+        v0 = MessageLoader_GetNewStrbuf(v4, 1);
     }
 
-    v1 = sub_0200B1EC(v4, 2);
-    v2 = sub_0200B1EC(v4, 3);
-    v3 = sub_0200B1EC(v4, 4);
+    v1 = MessageLoader_GetNewStrbuf(v4, 2);
+    v2 = MessageLoader_GetNewStrbuf(v4, 3);
+    v3 = MessageLoader_GetNewStrbuf(v4, 4);
 
     ov17_02249BC4(param0, &param0->unk_1C[2], v0, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 128, 24, 1);
     ov17_02249BC4(param0, &param0->unk_1C[3], v1, 2, ((u32)(((1 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0xb & 0xff) << 0))), 0, 33003, 128, 120, 1);

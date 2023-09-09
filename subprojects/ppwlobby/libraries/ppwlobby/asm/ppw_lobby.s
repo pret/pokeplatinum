@@ -2,6 +2,7 @@
 	.include "include/ppw_lobby.inc"
 
 	.extern Unk_ov66_0225B6D4
+	.extern Unk_ov66_0225B6D8
 
 
 	.text
@@ -259,8 +260,8 @@ _02235344: .word Unk_ov66_0225B6C4
 _02235348: .word ov66_02239F84
 _0223534C: .word ov66_0223A1C8
 _02235350: .word 0x0000047C
-_02235354: .word 0x02258EA0
-_02235358: .word 0x02258EB0
+_02235354: .word Unk_ov66_02258E98 + 0x8
+_02235358: .word Unk_ov66_02258EA8 + 0x8
 	arm_func_end ov66_02235058
 
 	arm_func_start ov66_0223535C
@@ -287,7 +288,7 @@ ov66_02235374: ; 0x02235374
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_022353A0: .word 0x02258EA0
+_022353A0: .word Unk_ov66_02258E98 + 0x8
 	arm_func_end ov66_02235374
 
 	arm_func_start PPW_LobbyShutdownAsync
@@ -340,7 +341,7 @@ PPW_LobbyProcess: ; 0x02235428
 	cmp r7, #0
 	beq _022356C4
 	str r0, [sp, #0x10]
-	bl ov66_022584EC
+	bl DWCi_EncSessionProcess
 	cmp r0, #0
 	beq _02235648
 	cmp r0, #1
@@ -348,7 +349,7 @@ PPW_LobbyProcess: ; 0x02235428
 	cmp r0, #8
 	bne _0223568C
 	add r0, sp, #0x10
-	bl ov66_02258664
+	bl DWCi_EncSessionGetResponse
 	mov r5, r0
 	ldr r1, [sp, #0x10]
 	mov r0, #0
@@ -364,7 +365,7 @@ _02235494:
 	beq _022354DC
 	ldr r6, [r7, #0x38]
 	ldr r5, [sp, #0x10]
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	ldr r2, _02235B38 ; =0x0225B6D8
 	ldr r0, _02235B34 ; =0x0225B6D4
 	ldr r8, [r2]
@@ -380,7 +381,7 @@ _02235494:
 	b _02235514
 _022354DC:
 	ldr r5, [r7, #0x38]
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	ldr r3, _02235B38 ; =0x0225B6D8
 	mov r0, #0
 	ldr r2, _02235B34 ; =0x0225B6D4
@@ -409,14 +410,14 @@ _02235534:
 	subs r0, r0, #1
 	str r0, [r7, #4]
 	beq _02235608
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	ldr r0, [r7, #0xc]
 	mov r0, r0, lsl #0x1f
 	movs r0, r0, lsr #0x1f
 	addeq r1, r7, #0xd
 	ldrne r1, [r7, #0x14]
 	ldr r0, [r7, #8]
-	bl ov66_02258338
+	bl DWCi_EncSessionInitialize
 	ldr r0, [r7, #0x3c]
 	ldr r4, [r7, #0x2c]
 	cmp r0, #0
@@ -434,7 +435,7 @@ _02235534:
 	ldr r1, [r7, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588F4
+	bl DWCi_EncSessionGetReuseHashAsync
 	b _022355E8
 _022355B4:
 	mov r0, r0, lsl #0x1f
@@ -449,12 +450,12 @@ _022355B4:
 	ldr r1, [r7, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588D0
+	bl DWCi_EncSessionGetAsync
 _022355E8:
 	cmp r0, #0
 	moveq r0, #1
 	beq _022355FC
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	mov r0, #0
 _022355FC:
 	cmp r0, #0
@@ -462,7 +463,7 @@ _022355FC:
 	bne _02235690
 _02235608:
 	ldr r4, [r7, #0x38]
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	ldr r3, _02235B38 ; =0x0225B6D8
 	mov r0, #0
 	ldr r2, _02235B34 ; =0x0225B6D4
@@ -480,7 +481,7 @@ _02235608:
 _02235648:
 	bl DWC_ClearError
 	ldr r5, [r7, #0x38]
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	mov r0, #0
 	ldr r4, _02235B38 ; =0x0225B6D8
 	ldr r2, _02235B34 ; =0x0225B6D4
@@ -830,9 +831,9 @@ _02235B20:
 	ldmia sp!, {r4, r5, r6, r7, r8, sb, sl, fp, pc}
 	; .align 2, 0
 _02235B34: .word Unk_ov66_0225B6D4
-_02235B38: .word 0x0225B6D8
+_02235B38: .word Unk_ov66_0225B6D8
 _02235B3C: .word Unk_ov66_0225B6C4
-_02235B40: .word 0x02258EA0
+_02235B40: .word Unk_ov66_02258E98 + 0x8
 _02235B44: .word Unk_ov66_02258FB0
 _02235B48: .word ov66_0223A250
 	arm_func_end PPW_LobbyProcess
@@ -2365,7 +2366,7 @@ _02236FE0:
 	addeq r1, r6, #0xd
 	ldrne r1, [r6, #0x14]
 	ldr r0, [r6, #8]
-	bl ov66_02258338
+	bl DWCi_EncSessionInitialize
 	ldr r0, [r6, #0x3c]
 	ldr r4, [r6, #0x2c]
 	cmp r0, #0
@@ -2383,7 +2384,7 @@ _02236FE0:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588F4
+	bl DWCi_EncSessionGetReuseHashAsync
 	b _02237084
 _02237050:
 	mov r0, r0, lsl #0x1f
@@ -2398,12 +2399,12 @@ _02237050:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588D0
+	bl DWCi_EncSessionGetAsync
 _02237084:
 	cmp r0, #0
 	moveq r0, #1
 	beq _02237098
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	mov r0, #0
 _02237098:
 	cmp r0, #0
@@ -2432,7 +2433,7 @@ _022370CC:
 _022370E8: .word Unk_ov66_0225B6C4
 _022370EC: .word Unk_ov66_02258E58
 _022370F0: .word Unk_ov66_0225B6D4
-_022370F4: .word 0x02258EC0
+_022370F4: .word Unk_ov66_02258EB8 + 0x8
 _022370F8: .word ov66_022393C0
 	arm_func_end PPW_LobbySubmitQuestionnaire
 
@@ -2911,7 +2912,7 @@ _02237798:
 	addeq r1, r6, #0xd
 	ldrne r1, [r6, #0x14]
 	ldr r0, [r6, #8]
-	bl ov66_02258338
+	bl DWCi_EncSessionInitialize
 	ldr r0, [r6, #0x3c]
 	ldr r4, [r6, #0x2c]
 	cmp r0, #0
@@ -2929,7 +2930,7 @@ _02237798:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588F4
+	bl DWCi_EncSessionGetReuseHashAsync
 	b _0223783C
 _02237808:
 	mov r0, r0, lsl #0x1f
@@ -2944,12 +2945,12 @@ _02237808:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588D0
+	bl DWCi_EncSessionGetAsync
 _0223783C:
 	cmp r0, #0
 	moveq r0, #1
 	beq _02237850
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	mov r0, #0
 _02237850:
 	cmp r0, #0
@@ -2974,7 +2975,7 @@ _02237880:
 _02237894: .word Unk_ov66_0225B6C4
 _02237898: .word Unk_ov66_02258E58
 _0223789C: .word Unk_ov66_0225B6D4
-_022378A0: .word 0x02258EC0
+_022378A0: .word Unk_ov66_02258EB8 + 0x8
 _022378A4: .word ov66_0223899C
 	arm_func_end ov66_022374B4
 
@@ -4328,7 +4329,7 @@ _02238B6C:
 	addeq r1, r6, #0xd
 	ldrne r1, [r6, #0x14]
 	ldr r0, [r6, #8]
-	bl ov66_02258338
+	bl DWCi_EncSessionInitialize
 	ldr r0, [r6, #0x3c]
 	ldr r4, [r6, #0x2c]
 	cmp r0, #0
@@ -4346,7 +4347,7 @@ _02238B6C:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588F4
+	bl DWCi_EncSessionGetReuseHashAsync
 	b _02238C10
 _02238BDC:
 	mov r0, r0, lsl #0x1f
@@ -4361,12 +4362,12 @@ _02238BDC:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588D0
+	bl DWCi_EncSessionGetAsync
 _02238C10:
 	cmp r0, #0
 	moveq r0, #1
 	beq _02238C24
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	mov r0, #0
 _02238C24:
 	cmp r0, #0
@@ -4391,7 +4392,7 @@ _02238C54:
 _02238C68: .word Unk_ov66_0225B6C4
 _02238C6C: .word Unk_ov66_02258E58
 _02238C70: .word Unk_ov66_0225B6D4
-_02238C74: .word 0x02258EC0
+_02238C74: .word Unk_ov66_02258EB8 + 0x8
 _02238C78: .word ov66_02238C7C
 	arm_func_end ov66_0223899C
 
@@ -4570,7 +4571,7 @@ _02238F00:
 	addeq r1, r6, #0xd
 	ldrne r1, [r6, #0x14]
 	ldr r0, [r6, #8]
-	bl ov66_02258338
+	bl DWCi_EncSessionInitialize
 	ldr r0, [r6, #0x3c]
 	ldr r4, [r6, #0x2c]
 	cmp r0, #0
@@ -4588,7 +4589,7 @@ _02238F00:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588F4
+	bl DWCi_EncSessionGetReuseHashAsync
 	b _02238FA4
 _02238F70:
 	mov r0, r0, lsl #0x1f
@@ -4603,12 +4604,12 @@ _02238F70:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588D0
+	bl DWCi_EncSessionGetAsync
 _02238FA4:
 	cmp r0, #0
 	moveq r0, #1
 	beq _02238FB8
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	mov r0, #0
 _02238FB8:
 	cmp r0, #0
@@ -4633,7 +4634,7 @@ _02238FE8:
 _02238FFC: .word Unk_ov66_0225B6C4
 _02239000: .word Unk_ov66_02258E58
 _02239004: .word Unk_ov66_0225B6D4
-_02239008: .word 0x02258EC0
+_02239008: .word Unk_ov66_02258EB8 + 0x8
 _0223900C: .word ov66_02239010
 	arm_func_end ov66_02238C7C
 
@@ -4770,7 +4771,7 @@ _022391F4:
 	addeq r1, r6, #0xd
 	ldrne r1, [r6, #0x14]
 	ldr r0, [r6, #8]
-	bl ov66_02258338
+	bl DWCi_EncSessionInitialize
 	ldr r0, [r6, #0x3c]
 	ldr r4, [r6, #0x2c]
 	cmp r0, #0
@@ -4788,7 +4789,7 @@ _022391F4:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588F4
+	bl DWCi_EncSessionGetReuseHashAsync
 	b _02239298
 _02239264:
 	mov r0, r0, lsl #0x1f
@@ -4803,12 +4804,12 @@ _02239264:
 	ldr r1, [r6, #0x24]
 	mov r0, r5
 	mov r3, r4
-	bl ov66_022588D0
+	bl DWCi_EncSessionGetAsync
 _02239298:
 	cmp r0, #0
 	moveq r0, #1
 	beq _022392AC
-	bl ov66_022585F4
+	bl DWCi_EncSessionShutdown
 	mov r0, #0
 _022392AC:
 	cmp r0, #0
@@ -4833,7 +4834,7 @@ _022392DC:
 _022392F0: .word Unk_ov66_0225B6C4
 _022392F4: .word Unk_ov66_02258E58
 _022392F8: .word Unk_ov66_0225B6D4
-_022392FC: .word 0x02258EC0
+_022392FC: .word Unk_ov66_02258EB8 + 0x8
 _02239300: .word ov66_02239304
 	arm_func_end ov66_02239010
 
@@ -6447,7 +6448,7 @@ _0223A9C0:
 	mov r0, r4
 	ldmia sp!, {r4, pc}
 	; .align 2, 0
-_0223A9C8: .word 0x02258EA0
+_0223A9C8: .word Unk_ov66_02258E98 + 0x8
 	arm_func_end ov66_0223A984
 
 	arm_func_start ov66_0223A9CC

@@ -1370,7 +1370,7 @@ void BoxMonGBAToBoxMon (BoxPokemonGBA * param0, BoxPokemon * param1)
     v1 = GetGBABoxMonData(param0, 12, NULL);
 
     if (v1) {
-        v1 = sub_0207CF10(v1);
+        v1 = Item_FromGBAID(v1);
     }
 
     SetBoxMonData(param1, 6, (u8 *)&v1);

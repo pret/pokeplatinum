@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
@@ -44,8 +44,8 @@ struct BattleSystem {
     UnkStruct_0207C690 * unk_00;
     UnkStruct_02018340 * unk_04;
     UnkStruct_0205AA50 * unk_08;
-    UnkStruct_0200B144 * unk_0C;
-    UnkStruct_0200B144 * unk_10;
+    MessageLoader * unk_0C;
+    MessageLoader * unk_10;
     UnkStruct_0200B358 * unk_14;
     Strbuf *msgBuffer;
     UnkStruct_0201CD38 * unk_1C;

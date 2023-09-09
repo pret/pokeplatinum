@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -43,7 +43,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -512,7 +512,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_0200B144 * v2;
+    MessageLoader * v2;
     UnkStruct_02081CF4 v3;
     u32 v4, v5;
 
@@ -524,7 +524,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
     sub_0200DC48(&v1->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
-    v2 = sub_0200B144(0, 26, 367, 11);
+    v2 = MessageLoader_Init(0, 26, 367, 11);
 
     v1->unk_24 = sub_02013A04(v5, 11);
     v1->unk_28 = 0;
@@ -537,7 +537,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 
             v6 = sub_0200B358(11);
             v7 = Strbuf_Init(8, 11);
-            v8 = sub_0200B1EC(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
+            v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
             sub_0200B498(v6, 0, sub_02025E38(v0->unk_0C));
             sub_0200C388(v6, v7, v8);
@@ -556,7 +556,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     }
 
     v0->unk_90 = v1->unk_30[v1->unk_28];
-    sub_0200B190(v2);
+    MessageLoader_Free(v2);
 
     v3.unk_00 = v1->unk_24;
     v3.unk_04 = &v1->unk_00;
@@ -643,7 +643,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_0200B144 * v2;
+    MessageLoader * v2;
     UnkStruct_0200B358 * v3;
     Strbuf* v4;
     Strbuf* v5;
@@ -665,12 +665,12 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     sub_0200DC48(&v1->unk_10, 1, 1024 - (18 + 12) - 9, 11);
     sub_0201ADA4(&v1->unk_10, 15);
 
-    v2 = sub_0200B144(0, 26, 367, 11);
+    v2 = MessageLoader_Init(0, 26, 367, 11);
 
     if (v6 == 0) {
-        v5 = sub_0200B1EC(v2, 9);
+        v5 = MessageLoader_GetNewStrbuf(v2, 9);
     } else {
-        v5 = sub_0200B1EC(v2, 10);
+        v5 = MessageLoader_GetNewStrbuf(v2, 10);
     }
 
     sub_0201D738(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
@@ -678,7 +678,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
 
     v3 = sub_0200B358(11);
     v4 = Strbuf_Init(32, 11);
-    v5 = sub_0200B1EC(v2, 11);
+    v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
         u16 * v7 = sub_0203A784(sub_0203A790(v0->unk_0C));
@@ -695,7 +695,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     Strbuf_Free(v4);
     Strbuf_Free(v5);
     sub_0200B3F0(v3);
-    sub_0200B190(v2);
+    MessageLoader_Free(v2);
     sub_0201A9A4(&v1->unk_10);
 }
 
@@ -1114,7 +1114,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_02097728 * v8;
 
-        v8 = sub_0203D920(v0, 2, v2->unk_22, sub_0207D2F0(v2->unk_24), 11);
+        v8 = sub_0203D920(v0, 2, v2->unk_22, Item_MailNumber(v2->unk_24), 11);
         v1->unk_25C = v8;
 
         if (v2->unk_20 == 10) {
@@ -1297,7 +1297,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         v4.unk_04 = sub_0207CB94(v2);
         v4.unk_06 = sub_0207CBA4(v2);
         v4.unk_00 = param0;
-        v5 = Item_GetAttribute(v4.unk_04, 6, 11);
+        v5 = Item_LoadParam(v4.unk_04, 6, 11);
         v3 = (UnkFuncPtr_0203BC5C)sub_020683F4(0, v5);
         v3(&v4, &v1->unk_230);
     }
@@ -1345,7 +1345,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
             UnkStruct_02097728 * v11;
             UnkStruct_0203C540 * v12;
 
-            v11 = sub_0203D920(v0, 2, v9, sub_0207D2F0(v10), 11);
+            v11 = sub_0203D920(v0, 2, v9, Item_MailNumber(v10), 11);
             v1->unk_25C = v11;
             v1->unk_260 = sub_0203C540(v10, 0, (u8)v9);
             sub_0203B674(v1, sub_0203C558);
@@ -1698,7 +1698,7 @@ static void sub_0203C2D8 (UnkStruct_020508D4 * param0, u16 param1)
     v6 = 0;
 
     for (v3 = 0; v3 < 64; v3++) {
-        param1 = sub_0207D354(v3);
+        param1 = Item_ForBerryNumber(v3);
 
         if (sub_0207D688(v2, param1, 1, 11) == 1) {
             sub_02097320(v1->unk_25C, param1, 0);

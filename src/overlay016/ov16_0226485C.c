@@ -759,7 +759,7 @@ void BattleIO_ShowMoveSelectScreen (BattleSystem *battleSys, BattleContext *batt
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         v0.unk_04[i] = battleCtx->battleMons[battler].moves[i];
         v0.unk_0C[i] = battleCtx->battleMons[battler].ppCur[i];
-        v0.unk_10[i] = MoveTable_GetMoveMaxPP(battleCtx->battleMons[battler].moves[i], battleCtx->battleMons[battler].ppUps[i]);
+        v0.unk_10[i] = MoveTable_CalcMaxPP(battleCtx->battleMons[battler].moves[i], battleCtx->battleMons[battler].ppUps[i]);
     }
 
     v0.unk_02 = BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, STRUGGLE_CHECK_ALL);
@@ -1683,7 +1683,7 @@ void ov16_02266B78 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov1
         if (param1->movePower) {
             param2->unk_08 = param1->movePower;
         } else {
-            param2->unk_08 = param1->aiContext.moveTable[param7].unk_03;
+            param2->unk_08 = param1->aiContext.moveTable[param7].power;
         }
 
         param2->unk_0C = param1->battleMons[param5].friendship;

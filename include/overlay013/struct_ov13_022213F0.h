@@ -2,13 +2,13 @@
 #define POKEPLATINUM_STRUCT_OV13_022213F0_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay013/struct_ov13_0221FC20.h"
 #include "overlay013/struct_ov13_02221ED0.h"
@@ -38,7 +38,7 @@ typedef struct {
     u8 unk_1F9F_4 : 3;
     u8 unk_1F9F_7 : 1;
     UnkStruct_0200C440 * unk_1FA0;
-    UnkStruct_0200B144 * unk_1FA4;
+    MessageLoader * unk_1FA4;
     UnkStruct_0200B358 * unk_1FA8;
     Strbuf* unk_1FAC;
     UnkStruct_0200C704 * unk_1FB0;

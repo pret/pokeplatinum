@@ -6,10 +6,10 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -57,7 +57,7 @@ typedef struct {
     u16 unk_0A;
     UnkStruct_02018340 * unk_0C;
     UnkStruct_0205AA50 unk_10[16];
-    UnkStruct_0200B144 * unk_110;
+    MessageLoader * unk_110;
     UnkStruct_0200B358 * unk_114;
     Strbuf* unk_118;
     Strbuf* unk_11C;
@@ -133,7 +133,7 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     ov110_021D1180(v1);
 
-    v1->unk_110 = sub_0200B144(1, 26, 16, 114);
+    v1->unk_110 = MessageLoader_Init(1, 26, 16, 114);
     v1->unk_114 = sub_0200B358(114);
     v1->unk_118 = Strbuf_Init(800, 114);
     v1->unk_11C = Strbuf_Init(800, 114);
@@ -182,7 +182,7 @@ int ov110_021D0EF0 (UnkStruct_020067E8 * param0, int * param1)
 
     v1->unk_120 = NULL;
 
-    sub_0200B190(v1->unk_110);
+    MessageLoader_Free(v1->unk_110);
     sub_0200B3F0(v1->unk_114);
     Strbuf_Free(v1->unk_118);
     Strbuf_Free(v1->unk_11C);
@@ -505,7 +505,7 @@ asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205A
     add r2, #0xc
     ldr r2, [r5, r2]
     add r1, r7, #0
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x45
     lsl r2, r2, #2
     add r1, r2, #4
@@ -1229,13 +1229,13 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
 
 static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 412, 114);
-    v1 = sub_0200B1EC(v0, param0->unk_08);
+    v0 = MessageLoader_Init(1, 26, 412, 114);
+    v1 = MessageLoader_GetNewStrbuf(v0, param0->unk_08);
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     sub_0200B48C(param0->unk_114, 0, v1, 0, 0, GAME_LANGUAGE);
     Strbuf_Free(v1);
 

@@ -3,9 +3,9 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_defs/pokemon.h"
@@ -15,7 +15,7 @@
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203E724_t.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "strbuf.h"
 #include "unk_0202440C.h"
@@ -139,7 +139,7 @@ BOOL sub_02047660 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 v4;
 
-    v4 = GetMoveFromTMOrHMItemID(v3);
+    v4 = Item_MoveForTMHM(v3);
     sub_0200B630(*v1, v2, v4);
 
     return 0;
@@ -288,13 +288,13 @@ BOOL sub_02047930 (UnkStruct_0203E724 * param0)
 
 static Strbuf* sub_02047998 (u16 param0, u32 param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 412, param1);
-    v1 = sub_0200B1EC(v0, param0);
+    v0 = MessageLoader_Init(1, 26, 412, param1);
+    v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     return v1;
 }
 

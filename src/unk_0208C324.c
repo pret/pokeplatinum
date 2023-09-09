@@ -29,7 +29,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -488,15 +488,15 @@ static void sub_0208C86C (void)
 
 static void sub_0208C884 (UnkStruct_0208D7BC * param0)
 {
-    param0->unk_688 = sub_0200B144(0, 26, 455, 19);
-    param0->unk_68C = sub_0200B144(1, 26, 535, 19);
+    param0->unk_688 = MessageLoader_Init(0, 26, 455, 19);
+    param0->unk_68C = MessageLoader_Init(1, 26, 535, 19);
     param0->unk_684 = sub_0200C440(1, 2, 0, 19);
     param0->unk_690 = sub_0200B358(19);
     param0->unk_250.unk_00 = Strbuf_Init(12, 19);
     param0->unk_250.unk_04 = Strbuf_Init(12, 19);
     param0->unk_250.unk_08 = Strbuf_Init(8, 19);
     param0->unk_694 = Strbuf_Init(128, 19);
-    param0->unk_69C = sub_0200B144(0, 26, 647, 19);
+    param0->unk_69C = MessageLoader_Init(0, 26, 647, 19);
     param0->unk_698 = Strbuf_Init(7 + 1, 19);
 
     if (param0->unk_24C->unk_08 != NULL) {
@@ -506,9 +506,9 @@ static void sub_0208C884 (UnkStruct_0208D7BC * param0)
 
 static void sub_0208C950 (UnkStruct_0208D7BC * param0)
 {
-    sub_0200B190(param0->unk_69C);
-    sub_0200B190(param0->unk_68C);
-    sub_0200B190(param0->unk_688);
+    MessageLoader_Free(param0->unk_69C);
+    MessageLoader_Free(param0->unk_68C);
+    MessageLoader_Free(param0->unk_688);
     sub_0200C560(param0->unk_684);
     sub_0200B3F0(param0->unk_690);
     Strbuf_Free(param0->unk_250.unk_00);
@@ -771,7 +771,7 @@ static int sub_0208CD44 (UnkStruct_0208D7BC * param0)
         sub_02005748(1501);
 
         if (param0->unk_6A5_0 != 4) {
-            if ((Item_IsMoveHM(param0->unk_250.unk_34[param0->unk_6A5_0]) == 1) && (param0->unk_24C->unk_18 != 0)) {
+            if ((Item_IsHMMove(param0->unk_250.unk_34[param0->unk_6A5_0]) == 1) && (param0->unk_24C->unk_18 != 0)) {
                 sub_0200D3EC(param0->unk_41C[18], 0);
                 sub_0208E46C(param0);
                 sub_020914F8(param0);
@@ -1032,15 +1032,15 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
 
     v0 = sub_02076B10(param1);
 
-    sub_0200B1B8(param0->unk_688, 11, param0->unk_694);
+    MessageLoader_GetStrbuf(param0->unk_688, 11, param0->unk_694);
     sub_0200B538(param0->unk_690, 0, v0);
     sub_0200C388(param0->unk_690, param0->unk_250.unk_00, param0->unk_694);
 
-    sub_0200B1B8(param0->unk_688, 0, param0->unk_694);
+    MessageLoader_GetStrbuf(param0->unk_688, 0, param0->unk_694);
     sub_0200B5CC(param0->unk_690, 0, v0);
     sub_0200C388(param0->unk_690, param0->unk_250.unk_04, param0->unk_694);
 
-    sub_0200B1B8(param0->unk_688, 14, param0->unk_694);
+    MessageLoader_GetStrbuf(param0->unk_688, 14, param0->unk_694);
     sub_0200B5EC(param0->unk_690, 0, v0);
     sub_0200C388(param0->unk_690, param0->unk_250.unk_08, param0->unk_694);
 
@@ -1083,7 +1083,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
         param2->unk_34[v1] = (u16)GetMonData(param1, MON_DATA_MOVE1 + v1, NULL);
         param2->unk_3C[v1] = (u8)GetMonData(param1, MON_DATA_58 + v1, NULL);
         v2 = (u8)GetMonData(param1, MON_DATA_62 + v1, NULL);
-        param2->unk_40[v1] = MoveTable_GetMoveMaxPP(param2->unk_34[v1], v2);
+        param2->unk_40[v1] = MoveTable_CalcMaxPP(param2->unk_34[v1], v2);
     }
 
     param2->unk_45 = (u8)GetMonData(param1, MON_DATA_COOL, NULL);
@@ -1946,7 +1946,7 @@ static void sub_0208E498 (UnkStruct_0208D7BC * param0, u32 param1)
     sub_0208E46C(param0);
 
     if (param1 != 0xffffffff) {
-        v0 = MoveTable_GetMoveAttribute(param1, 10);
+        v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CONTEST_EFFECT);
         v2 = sub_02095734(v0) / 10;
 
         for (v1 = 0; v1 < v2; v1++) {

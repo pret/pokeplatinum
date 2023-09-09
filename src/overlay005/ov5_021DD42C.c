@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0203E724_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay005/struct_ov5_021DD42C.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_02014A84.h"
 #include "unk_02018340.h"
@@ -37,7 +37,7 @@ static u8 ov5_021DD574(UnkStruct_0203E724 * param0);
 static void ov5_021DD588(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * param1);
 static void ov5_021DD5D0(UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, UnkStruct_ov5_021DD648 * param2);
 static void ov5_021DD610(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * param1);
-static void ov5_021DD648(UnkStruct_ov5_021DD648 * param0, const UnkStruct_0200B144 * param1, u32 param2);
+static void ov5_021DD648(UnkStruct_ov5_021DD648 * param0, const MessageLoader * param1, u32 param2);
 static void ov5_021DD664(UnkStruct_ov5_021DD648 * param0, u16 param1, u16 param2, u16 param3, u16 param4);
 static void ov5_021DD6B4(UnkStruct_ov5_021DD648 * param0, int param1, int param2, int param3, int param4);
 static void ov5_021DD6DC(UnkStruct_ov5_021DD648 * param0, int param1);
@@ -49,7 +49,7 @@ void ov5_021DD42C (UnkStruct_ov5_021DD42C * param0, UnkStruct_0203E724 * param1)
     param0->unk_02 = 1;
 }
 
-void ov5_021DD444 (UnkStruct_0203E724 * param0, const UnkStruct_0200B144 * param1, u16 param2, u8 param3, UnkStruct_ov5_021DD42C * param4)
+void ov5_021DD444 (UnkStruct_0203E724 * param0, const MessageLoader * param1, u16 param2, u8 param3, UnkStruct_ov5_021DD42C * param4)
 {
     UnkStruct_ov5_021DD648 v0;
     u8 v1;
@@ -73,7 +73,7 @@ void ov5_021DD444 (UnkStruct_0203E724 * param0, const UnkStruct_0200B144 * param
     ov5_021DD6B4(&v0, v3, v1, param3, v2);
 }
 
-void ov5_021DD498 (UnkStruct_0203E724 * param0, const UnkStruct_0200B144 * param1, int param2)
+void ov5_021DD498 (UnkStruct_0203E724 * param0, const MessageLoader * param1, int param2)
 {
     UnkStruct_ov5_021DD648 v0;
 
@@ -145,9 +145,9 @@ static void ov5_021DD610 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * 
     sub_0201ADA4(param1->unk_0C, 15);
 }
 
-static void ov5_021DD648 (UnkStruct_ov5_021DD648 * param0, const UnkStruct_0200B144 * param1, u32 param2)
+static void ov5_021DD648 (UnkStruct_ov5_021DD648 * param0, const MessageLoader * param1, u32 param2)
 {
-    sub_0200B1B8(param1, param2, param0->unk_04);
+    MessageLoader_GetStrbuf(param1, param2, param0->unk_04);
     sub_0200C388(param0->unk_08, param0->unk_00, param0->unk_04);
 }
 

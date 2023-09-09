@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
@@ -52,7 +52,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
@@ -292,7 +292,7 @@ typedef struct {
 typedef struct {
     UnkStruct_02018340 * unk_00;
     UnkStruct_0200B358 * unk_04;
-    UnkStruct_0200B144 * unk_08;
+    MessageLoader * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
     u16 unk_14;
@@ -1447,7 +1447,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
 
     v0 = Strbuf_Init(128, param6);
 
-    sub_0200B1B8(param1->unk_08, 0, v0);
+    MessageLoader_GetStrbuf(param1->unk_08, 0, v0);
     sub_0201D78C(&param0->unk_0C, 0, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
     sub_020070E8(param5, 18, param1->unk_00, 2, 0, 0, 0, param6);
@@ -3263,7 +3263,7 @@ static void ov115_02263B78 (UnkStruct_ov115_02261ADC * param0)
 static void ov115_02263BCC (UnkStruct_ov115_02261ADC * param0, u32 param1)
 {
     param0->unk_04 = sub_0200B358(param1);
-    param0->unk_08 = sub_0200B144(0, 26, 407, param1);
+    param0->unk_08 = MessageLoader_Init(0, 26, 407, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
     param0->unk_10 = Strbuf_Init(128, param1);
 }
@@ -3272,7 +3272,7 @@ static void ov115_02263C04 (UnkStruct_ov115_02261ADC * param0)
 {
     Strbuf_Free(param0->unk_10);
     Strbuf_Free(param0->unk_0C);
-    sub_0200B190(param0->unk_08);
+    MessageLoader_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_04);
 }
 

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -29,7 +29,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -480,12 +480,12 @@ static void ov94_022401E0 (UnkStruct_ov94_0223FD4C * param0)
     param0->unk_BAC = Strbuf_Init((90 * 2), 62);
 
     if (param0->unk_24 == 5) {
-        param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 21);
+        param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 21);
     } else if (param0->unk_24 == 6) {
-        param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 17);
+        param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 17);
     }
 
-    param0->unk_BA8 = sub_0200B1EC(param0->unk_B90, 103);
+    param0->unk_BA8 = MessageLoader_GetNewStrbuf(param0->unk_B90, 103);
 
     if (param0->unk_112 == 30) {
         param0->unk_112 = 0;
@@ -1019,7 +1019,7 @@ static void ov94_02240D58 (UnkStruct_ov94_0223FD4C * param0, int param1, int par
     UnkStruct_0205AA50 * v0;
     Strbuf* v1;
 
-    v1 = sub_0200B1EC(param0->unk_B90, param1);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
     sub_0200C388(param0->unk_B8C, param0->unk_BAC, v1);
 
     if (param5 == 0) {
@@ -1190,7 +1190,7 @@ static void ov94_02240FA0 (UnkStruct_ov94_0223FD4C * param0, int param1)
             }
         }
 
-        sub_0200B1B8(param0->unk_B90, 89, param0->unk_BA4);
+        MessageLoader_GetStrbuf(param0->unk_B90, 89, param0->unk_BA4);
     }
 
     NARC_dtor(v6);

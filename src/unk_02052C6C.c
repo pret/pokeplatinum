@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -22,7 +22,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -279,7 +279,7 @@ static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 {
     UnkStruct_020279FC * v0 = sub_02025E44(param0->unk_0C);
 
-    param1->unk_2C = sub_0200B010(26, 213, 15, 32);
+    param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
     sub_0205D8F4(param0->unk_08, &param1->unk_1C, 3);
     sub_0205D944(&param1->unk_1C, v0);
@@ -302,7 +302,7 @@ static void sub_0205300C (UnkStruct_0205300C * param0)
 
 static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1, int param2)
 {
-    UnkStruct_0200B144 * v0 = sub_0200B144(1, 26, 213, 4);
+    MessageLoader * v0 = MessageLoader_Init(1, 26, 213, 4);
 
     if (param2 == 2) {
         UnkStruct_0200B358 * v1;
@@ -312,10 +312,10 @@ static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
         param1->unk_2C = sub_0200B29C(v1, v0, 16, 4);
         sub_0200B3F0(v1);
     } else {
-        param1->unk_2C = sub_0200B1EC(v0, 18);
+        param1->unk_2C = MessageLoader_GetNewStrbuf(v0, 18);
     }
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, sub_02025E44(param0->unk_0C), 1);
 }
 

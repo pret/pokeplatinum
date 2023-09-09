@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -14,6 +12,8 @@
 #include "overlay104/struct_ov104_0223BFFC.h"
 
 #include "heap.h"
+#include "message.h"
+#include "strbuf.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
 #include "unk_02025E68.h"
@@ -170,7 +170,7 @@ BattleParams * ov104_0223BDD8 (UnkStruct_ov104_0223BFFC * param0, UnkStruct_ov10
     Pokemon * v6;
     UnkStruct_ov104_0223A348_sub1 v7;
     UnkStruct_0204B184 * v8;
-    UnkStruct_0200B144 * v9;
+    MessageLoader * v9;
     Strbuf* v10;
     UnkStruct_02025E6C * v11;
     Party * v12;

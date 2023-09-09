@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -35,7 +35,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
@@ -200,7 +200,7 @@ int ov109_021D3D50 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_10 = v2->unk_34;
         v0->unk_14 = sub_02018340(95);
         v0->unk_34 = sub_0200B358(95);
-        v0->unk_38 = sub_0200B144(0, 26, 377, 95);
+        v0->unk_38 = MessageLoader_Init(0, 26, 377, 95);
 
         sub_02017DD4(4, 8);
         ov109_021D40D0();
@@ -317,7 +317,7 @@ int ov109_021D3F9C (UnkStruct_020067E8 * param0, int * param1)
     ov109_021D471C(v1);
     ov109_021D42CC(v1->unk_14);
 
-    sub_0200B190(v1->unk_38);
+    MessageLoader_Free(v1->unk_38);
     sub_0200B3F0(v1->unk_34);
 
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
@@ -531,7 +531,7 @@ static void ov109_021D41F8 (UnkStruct_ov109_021D5140 * param0, NARC * param1)
     param0->unk_58 = Strbuf_Init((20 * 2), 95);
     param0->unk_3B8 = 0;
 
-    sub_0200B1B8(param0->unk_38, 17, param0->unk_58);
+    MessageLoader_GetStrbuf(param0->unk_38, 17, param0->unk_58);
     ov109_021D577C(param0, param1);
 
     param0->unk_41C = sub_0205CA4C(95);
@@ -1578,7 +1578,7 @@ static void ov109_021D55A8 (UnkStruct_ov109_021D5140 * param0, int param1, int p
 
     v0 = Strbuf_Init((90 * 2), 95);
 
-    sub_0200B1B8(param0->unk_38, param1, v0);
+    MessageLoader_GetStrbuf(param0->unk_38, param1, v0);
     sub_0200C388(param0->unk_34, param0->unk_54, v0);
     Strbuf_Free(v0);
     sub_0201ADA4(&param0->unk_35C, 0xf0f);

@@ -1,9 +1,0 @@
-.public MIi_CpuClear32
-.public MI_CpuCopy8
-.public strncmp
-.public ov4_021E62EC
-.public ov4_021E74DC
-.public ov4_021E753C
-.public ov4_021E7628
-.public ov4_021E7730
-.public ov4_021E77C0

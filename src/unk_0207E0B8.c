@@ -6,9 +6,8 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/pokemon.h"
-#include "struct_decls/struct_itemdata_decl.h"
 
 #include "constdata/const_020F1E88.h"
 
@@ -32,7 +31,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200C6E4.h"
@@ -640,7 +639,7 @@ static int sub_0207E750 (UnkStruct_0207F248 * param0)
             sub_02082708(param0, 0xffffffff, 1);
             param0->unk_5A4->unk_23 = 0;
             param0->unk_B0E = 25;
-            sub_0200B1B8(param0->unk_69C, 105, param0->unk_6A4);
+            MessageLoader_GetStrbuf(param0->unk_69C, 105, param0->unk_6A4);
             return 24;
         }
     } else if (v0 == 3) {
@@ -674,7 +673,7 @@ static int sub_0207E7E0 (UnkStruct_020067E8 * param0, int * param1)
         Strbuf_Free(v0->unk_6AC[v1]);
     }
 
-    sub_0200B190(v0->unk_69C);
+    MessageLoader_Free(v0->unk_69C);
     sub_0200C560(v0->unk_698);
     sub_0200B3F0(v0->unk_6A0);
 
@@ -969,7 +968,7 @@ static UnkStruct_0207F248 * sub_0207ECC0 (UnkStruct_020067E8 * param0)
         v0->unk_B20 = NULL;
     }
 
-    v0->unk_69C = sub_0200B144(0, 26, 453, 12);
+    v0->unk_69C = MessageLoader_Init(0, 26, 453, 12);
     v0->unk_698 = sub_0200C440(15, 14, 0, 12);
     v0->unk_6A0 = sub_0200B358(12);
 
@@ -2121,7 +2120,7 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
             Strbuf* v1;
             int v2;
 
-            v1 = sub_0200B1EC(param0->unk_69C, 184);
+            v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 184);
             v2 = sub_02026074(param0->unk_5A4->unk_14, 3);
 
             sub_0200B60C(param0->unk_6A0, 0, v2, 3, 0, 1);
@@ -2463,7 +2462,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
             UnkStruct_0203CDB0 * v3;
 
             v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
-            v1 = sub_0200B1EC(param0->unk_69C, 64);
+            v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 64);
 
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B60C(param0->unk_6A0, 1, param0->unk_B14[2], 3, 0, 1);
@@ -2583,7 +2582,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
 {
     ItemData * v0;
 
-    v0 = Item_LoadDataOrGFX(param0->unk_5A4->unk_24, 0, 12);
+    v0 = Item_Load(param0->unk_5A4->unk_24, 0, 12);
 
     if ((param0->unk_5A4->unk_24 == 466) && (sub_02077B14(Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11)) == 1)) {
         param0->unk_5A4->unk_38 = 1;
@@ -2592,13 +2591,13 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
         return 31;
     }
 
-    if ((Item_GetAttributeFromStruct(v0, 34) != 0) || (Item_GetAttributeFromStruct(v0, 35) != 0)) {
+    if ((Item_Get(v0, 34) != 0) || (Item_Get(v0, 35) != 0)) {
         Heap_FreeToHeap(v0);
         sub_020866A0(param0, 0);
         return 6;
     }
 
-    if ((Item_GetAttributeFromStruct(v0, 36) != 0) && (Item_GetAttributeFromStruct(v0, 37) == 0)) {
+    if ((Item_Get(v0, 36) != 0) && (Item_Get(v0, 37) == 0)) {
         Heap_FreeToHeap(v0);
         sub_020866A0(param0, 1);
         return 6;
@@ -2607,7 +2606,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
     if (sub_0209693C(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
         sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
 
-        if (Item_GetAttributeFromStruct(v0, 26) != 0) {
+        if (Item_Get(v0, 26) != 0) {
             Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
             param0->unk_5A4->unk_38 = sub_02076B94(NULL, v1, 3, param0->unk_5A4->unk_24, &param0->unk_5A4->unk_3C);
@@ -2656,14 +2655,14 @@ static int sub_02081224 (UnkStruct_0207F248 * param0)
 
     if (param0->unk_5A4->unk_24 == 112) {
         if (GetMonData(v0, MON_DATA_SPECIES, NULL) != 487) {
-            sub_0200B1B8(param0->unk_69C, 203, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->unk_69C, 203, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B744(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             v2 = 11;
         } else if (v4 != NULL) {
             if (v4->unk_1C->unk_00 == 466) {
-                sub_0200B1B8(param0->unk_69C, 204, param0->unk_6A8);
+                MessageLoader_GetStrbuf(param0->unk_69C, 204, param0->unk_6A8);
                 sub_0200B70C(param0->unk_6A0, 0, param0->unk_5A4->unk_24);
                 sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
                 v2 = 11;
@@ -2681,20 +2680,20 @@ static int sub_02081224 (UnkStruct_0207F248 * param0)
 
             v2 = sub_02081408(param0, v0, &v3);
 
-            sub_0200B1B8(param0->unk_69C, 118, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->unk_69C, 118, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B70C(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             break;
         case 1:
-            sub_0200B1B8(param0->unk_69C, 78, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->unk_69C, 78, param0->unk_6A8);
             sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
             sub_0200B744(param0->unk_6A0, 1, param0->unk_704[param0->unk_B11].unk_0C);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
             v2 = 9;
             break;
         case 2:
-            sub_0200B1B8(param0->unk_69C, 77, param0->unk_6A4);
+            MessageLoader_GetStrbuf(param0->unk_69C, 77, param0->unk_6A4);
             v2 = 11;
             break;
         }
@@ -2809,7 +2808,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
 
         if (sub_0207D570(param0->unk_5A4->unk_04, (u16)v5, 1, 12) == 0) {
             sub_020814A8(param0, v2, v4, v5);
-            sub_0200B1B8(param0->unk_69C, 83, param0->unk_6A4);
+            MessageLoader_GetStrbuf(param0->unk_69C, 83, param0->unk_6A4);
             v0 = 11;
         } else {
             if (Item_IsMail(param0->unk_5A4->unk_24) == 1) {
@@ -2819,7 +2818,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
                 return 32;
             }
 
-            sub_0200B1B8(param0->unk_69C, 84, param0->unk_6A8);
+            MessageLoader_GetStrbuf(param0->unk_69C, 84, param0->unk_6A8);
             sub_0200B70C(param0->unk_6A0, 1, v5);
             sub_0200B70C(param0->unk_6A0, 2, v4);
             sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
@@ -2875,13 +2874,13 @@ static int sub_02081760 (UnkStruct_0207F248 * param0)
     }
 
     if (v3 == 0) {
-        sub_0200B1B8(param0->unk_69C, 118, param0->unk_6A8);
+        MessageLoader_GetStrbuf(param0->unk_69C, 118, param0->unk_6A8);
         sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v0));
         sub_0200B70C(param0->unk_6A0, 1, param0->unk_5A4->unk_24);
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);
     } else {
         sub_0207D570(param0->unk_5A4->unk_04, (u16)v3, 1, 12);
-        sub_0200B1B8(param0->unk_69C, 84, param0->unk_6A8);
+        MessageLoader_GetStrbuf(param0->unk_69C, 84, param0->unk_6A8);
         sub_0200B70C(param0->unk_6A0, 1, v3);
         sub_0200B70C(param0->unk_6A0, 2, v2);
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, param0->unk_6A8);

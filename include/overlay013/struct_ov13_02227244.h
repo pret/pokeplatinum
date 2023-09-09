@@ -2,13 +2,13 @@
 #define POKEPLATINUM_STRUCT_OV13_02227244_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207CDEC.h"
 #include "overlay013/struct_ov13_022264F4.h"
@@ -20,7 +20,7 @@ typedef struct {
     UnkStruct_02018340 * unk_04;
     UnkStruct_02002F38 * unk_08;
     UnkStruct_0200C440 * unk_0C;
-    UnkStruct_0200B144 * unk_10;
+    MessageLoader * unk_10;
     UnkStruct_0200B358 * unk_14;
     Strbuf* unk_18;
     UnkStruct_0205AA50 unk_1C;
@@ -30,7 +30,7 @@ typedef struct {
     u8 unk_32;
     UnkStruct_ov13_02228A50 * unk_34;
     UnkStruct_ov16_0226DEEC * unk_38;
-    UnkStruct_0207CDEC unk_3C[5][36];
+    BagItem unk_3C[5][36];
     UnkStruct_0200C704 * unk_30C;
     UnkStruct_0200D0F4 * unk_310[6];
     u16 unk_328[3][144];

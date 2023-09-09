@@ -3,10 +3,8 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/pokemon.h"
 
+#include "struct_defs/pokemon.h"
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
@@ -19,7 +17,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -633,18 +631,18 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
 
     {
         Strbuf* v3, * v4;
-        UnkStruct_0200B144 * v5;
+        MessageLoader * v5;
 
-        v5 = sub_0200B144(1, 26, 205, param2);
-        v3 = sub_0200B1EC(v5, param0->unk_16);
-        v4 = sub_0200B1EC(v5, param0->unk_18);
+        v5 = MessageLoader_Init(1, 26, 205, param2);
+        v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
+        v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
         sub_02074B30(param1, 119, v3);
         sub_02074B30(param1, 145, v4);
 
         Strbuf_Free(v3);
         Strbuf_Free(v4);
-        sub_0200B190(v5);
+        MessageLoader_Free(v5);
     }
 
     {

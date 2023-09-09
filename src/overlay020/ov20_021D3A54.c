@@ -4,11 +4,11 @@
 #include "enums.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
@@ -20,7 +20,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -107,11 +107,11 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
 {
     int v0, v1, v2;
     UnkStruct_0205AA50 v3;
-    UnkStruct_0200B144 * v4;
+    MessageLoader * v4;
     Strbuf* v5;
     u32 v6, v7;
 
-    v4 = sub_0200B144(1, 26, 436, 35);
+    v4 = MessageLoader_Init(1, 26, 436, 35);
 
     v1 = 1;
     v2 = 9;
@@ -123,10 +123,10 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         }
 
         if (sub_02099CA0(param0->unk_08, v0)) {
-            v5 = sub_0200B1EC(v4, 0 + v0);
+            v5 = MessageLoader_GetNewStrbuf(v4, 0 + v0);
             v6 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0));
         } else {
-            v5 = sub_0200B1EC(v4, 12);
+            v5 = MessageLoader_GetNewStrbuf(v4, 12);
             v6 = (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0));
         }
 
@@ -147,7 +147,7 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         v1 += (9 + 1);
     }
 
-    sub_0200B190(v4);
+    MessageLoader_Free(v4);
 
     return param2;
 }
@@ -201,12 +201,12 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         {44, 21},
     };
     UnkStruct_0205AA50 v1;
-    UnkStruct_0200B144 * v2;
+    MessageLoader * v2;
     Strbuf* v3;
     int v4, v5;
 
-    v2 = sub_0200B144(1, 26, 436, 35);
-    v3 = sub_0200B1EC(v2, 13);
+    v2 = MessageLoader_Init(1, 26, 436, 35);
+    v3 = MessageLoader_GetNewStrbuf(v2, 13);
     v5 = ((8 * 8) - sub_02002D7C(0, v3, 0)) / 2;
 
     for (v4 = 0; v4 < NELEMS(v0); v4++) {
@@ -223,7 +223,7 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     }
 
     Strbuf_Free(v3);
-    sub_0200B190(v2);
+    MessageLoader_Free(v2);
 
     return param2;
 }

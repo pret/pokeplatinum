@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -910,7 +910,7 @@ void ov16_0225D8AC (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, Unk
 void ov16_0225D8F0 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C2EC * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     BattleMessage v2;
 
     v1 = ov16_0223E060(param0);
@@ -932,7 +932,7 @@ void ov16_0225D8F0 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, Unk
 void ov16_0225D958 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, BattleMessage * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
 
     v1 = ov16_0223E05C(param0);
     v0 = (UnkStruct_ov16_0225D8F0 *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0225D8F0));
@@ -1158,7 +1158,7 @@ void ov16_0225DD7C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, Unk
 void ov16_0225DDD8 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C3F8 * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02263C1C(param0, param1, param2, &v2);
@@ -1177,7 +1177,7 @@ void ov16_0225DDD8 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, Unk
 void ov16_0225DE30 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C40C * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02263CF0(param0, param1, param2, &v2);
@@ -1196,7 +1196,7 @@ void ov16_0225DE30 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, Unk
 void ov16_0225DE88 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02263DD0(param0, param1, &v2);
@@ -1215,7 +1215,7 @@ void ov16_0225DE88 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 void ov16_0225DEDC (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C430 * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02263E7C(param0, param1, param2, &v2);
@@ -1249,7 +1249,7 @@ void ov16_0225DF34 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 void ov16_0225DF6C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C454 * param2)
 {
     UnkStruct_ov16_0225DF6C * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
 
     if (param1->bootState == 0x0) {
         v1 = ov16_0223E05C(param0);
@@ -1415,7 +1415,7 @@ void ov16_0225E200 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, Unk
 
 void ov16_0225E23C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     BattleMessage v1;
 
     if (param1->bootState == 0x0) {
@@ -1475,7 +1475,7 @@ void ov16_0225E300 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 void ov16_0225E338 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     BattleMessage v2;
 
     ov16_022641B4(param0, param1, &v2);
@@ -1494,7 +1494,7 @@ void ov16_0225E338 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 void ov16_0225E38C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, UnkStruct_ov16_0225C9F0 * param2)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02264270(param0, param1, param2, &v2);
@@ -1513,7 +1513,7 @@ void ov16_0225E38C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1, Unk
 void ov16_0225E3E0 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * param1)
 {
     UnkStruct_ov16_0225D8F0 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     BattleMessage v2;
 
     ov16_02264360(param0, param1, &v2);
@@ -2959,7 +2959,7 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
 
     case 1:
     {
-        UnkStruct_0200B144 * v9;
+        MessageLoader * v9;
         BattleMessage v10;
 
         v9 = ov16_0223E05C(v0->unk_00);
@@ -3303,7 +3303,7 @@ static void ov16_02260C00 (UnkStruct_0201CD38 * param0, void * param1)
         }
 
         {
-            UnkStruct_0200B144 * v6;
+            MessageLoader * v6;
             BattleMessage v7;
 
             v6 = ov16_0223E05C(v0->unk_00);
@@ -3800,7 +3800,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
                     }
                     break;
                 case 0:
-                    if ((((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == (0x2 | 0x1)) || (BattleSystem_BattleType(v0->unk_00) == ((0x2 | 0x1) | 0x10)))) || (v0->unk_08->unk_04->unk_11 < 1)) && (Item_GetAttribute(v0->unk_04->unk_1C, 38, 5))) {
+                    if ((((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == (0x2 | 0x1)) || (BattleSystem_BattleType(v0->unk_00) == ((0x2 | 0x1) | 0x10)))) || (v0->unk_08->unk_04->unk_11 < 1)) && (Item_LoadParam(v0->unk_04->unk_1C, 38, 5))) {
                         if (ov16_0223EDAC(v0->unk_00) == 1) {
                             v0->unk_12 = 17;
                         } else {
@@ -3873,7 +3873,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 9:
     {
-        UnkStruct_0200B144 * v8;
+        MessageLoader * v8;
         BattleMessage v9;
 
         v9.id = 1206;
@@ -3935,7 +3935,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 15:
     {
-        UnkStruct_0200B144 * v14;
+        MessageLoader * v14;
         BattleMessage v15;
 
         v15.id = 1203;
@@ -4032,7 +4032,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 23:
     {
-        UnkStruct_0200B144 * v24;
+        MessageLoader * v24;
         BattleMessage v25;
         int v26;
 
@@ -4060,7 +4060,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
     {
         UnkStruct_ov16_022674C4 * v27;
         int v28;
-        UnkStruct_0200B144 * v29;
+        MessageLoader * v29;
         BattleMessage v30;
         int v31;
         int v32 = 0;
@@ -4081,37 +4081,37 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         v30.tags = 2;
         v30.params[0] = v28 | (v0->unk_08->unk_0C[v28] << 8);
 
-        if (Item_GetAttribute(v0->unk_04->unk_1C, 15, 5)) {
+        if (Item_LoadParam(v0->unk_04->unk_1C, 15, 5)) {
             v31 = 0;
             v32++;
         }
 
-        if (Item_GetAttribute(v0->unk_04->unk_1C, 16, 5)) {
+        if (Item_LoadParam(v0->unk_04->unk_1C, 16, 5)) {
             v31 = 1;
             v32++;
         }
 
-        if (Item_GetAttribute(v0->unk_04->unk_1C, 17, 5)) {
+        if (Item_LoadParam(v0->unk_04->unk_1C, 17, 5)) {
             v31 = 2;
             v32++;
         }
 
-        if (Item_GetAttribute(v0->unk_04->unk_1C, 18, 5)) {
+        if (Item_LoadParam(v0->unk_04->unk_1C, 18, 5)) {
             v31 = 3;
             v32++;
         }
 
-        if (Item_GetAttribute(v0->unk_04->unk_1C, 19, 5)) {
+        if (Item_LoadParam(v0->unk_04->unk_1C, 19, 5)) {
             v31 = 4;
             v32++;
         }
 
-        if (Item_GetAttribute(v0->unk_04->unk_1C, 20, 5)) {
+        if (Item_LoadParam(v0->unk_04->unk_1C, 20, 5)) {
             v31 = 5;
             v32++;
         }
 
-        if (Item_GetAttribute(v0->unk_04->unk_1C, 21, 5)) {
+        if (Item_LoadParam(v0->unk_04->unk_1C, 21, 5)) {
             v31 = 6;
             v32++;
         }
@@ -4520,7 +4520,7 @@ static void ov16_022623F0 (UnkStruct_0201CD38 * param0, void * param1)
         if (v0->unk_10) {
             {
                 UnkStruct_0205AA50 * v6;
-                UnkStruct_0200B144 * v7;
+                MessageLoader * v7;
                 BattleMessage v8;
 
                 v7 = ov16_0223E05C(v0->unk_00);
@@ -6304,13 +6304,13 @@ static void ov16_02264530 (BattleSystem * param0, UnkStruct_ov16_02265BBC * para
 static void ov16_022645B8 (u8 * param0, u8 * param1, int param2, int param3, u16 param4)
 {
     if (param2 == 0) {
-        if ((MoveTable_GetMoveAttribute(param4, 9) & 0x40) == 0) {
+        if ((MoveTable_LoadParam(param4, MOVEATTRIBUTE_FLAGS) & 0x40) == 0) {
             param0[0] = 1;
         } else {
             param0[0] = 0;
         }
 
-        if (MoveTable_GetMoveAttribute(param4, 9) & 0x80) {
+        if (MoveTable_LoadParam(param4, MOVEATTRIBUTE_FLAGS) & 0x80) {
             param1[0] = 1;
         } else {
             param1[0] = 0;

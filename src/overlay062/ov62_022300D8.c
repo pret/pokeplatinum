@@ -3,13 +3,13 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
@@ -25,7 +25,7 @@
 
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -640,7 +640,7 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
     UnkStruct_020127E8 v2;
     Strbuf* v3;
     int v4;
-    UnkStruct_0200B144 * v5;
+    MessageLoader * v5;
     UnkStruct_0205AA50 v6;
     UnkStruct_ov62_022307C0_sub1 * v7[2];
     int v8[2] = {NNS_G2D_VRAM_TYPE_2DMAIN, NNS_G2D_VRAM_TYPE_2DSUB};
@@ -685,7 +685,7 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
 void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * param1, int param2, const UnkStruct_020F3DCC * param3)
 {
     Strbuf* v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     UnkStruct_0205AA50 v2;
     UnkStruct_0200B358 * v3;
     Strbuf* v4;
@@ -695,10 +695,10 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
 
     if (param2 == 8) {
         if (param0->unk_88C[param3->unk_18] == NULL) {
-            v0 = sub_0200B1EC(v1, param2);
+            v0 = MessageLoader_GetNewStrbuf(v1, param2);
         } else {
             v3 = ov62_02231690(102);
-            v4 = sub_0200B1EC(param0->unk_14.unk_34, 7);
+            v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
             ov62_022349A8(param0, v5);
             v0 = Strbuf_Init(255, 102);
@@ -711,10 +711,10 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
         }
     } else if (param2 == 41) {
         if (param0->unk_88C[param3->unk_18] == NULL) {
-            v0 = sub_0200B1EC(v1, param2);
+            v0 = MessageLoader_GetNewStrbuf(v1, param2);
         } else {
             v3 = ov62_02231690(102);
-            v4 = sub_0200B1EC(param0->unk_14.unk_34, 7);
+            v4 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 7);
             v5 = sub_02030B94(param0->unk_88C[param3->unk_18], 102);
             ov62_022349A8(param0, v5);
             v0 = Strbuf_Init(255, 102);
@@ -726,7 +726,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
             sub_0200B3F0(v3);
         }
     } else {
-        v0 = sub_0200B1EC(v1, param2);
+        v0 = MessageLoader_GetNewStrbuf(v1, param2);
     }
 
     sub_0201A7A0(&v2);
@@ -760,7 +760,7 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
     UnkStruct_020127E8 v2;
     Strbuf* v3;
     int v4;
-    UnkStruct_0200B144 * v5;
+    MessageLoader * v5;
     UnkStruct_0205AA50 v6;
     int v7 = 9999;
 
@@ -800,11 +800,11 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
 void ov62_0223124C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * param1, int param2)
 {
     Strbuf* v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     UnkStruct_0205AA50 v2;
 
     v1 = param1->unk_34;
-    v0 = sub_0200B1EC(v1, param2);
+    v0 = MessageLoader_GetNewStrbuf(v1, param2);
 
     sub_0201A7A0(&v2);
     sub_0201A870(param1->unk_10, &v2, 20, 2, 0, 0);

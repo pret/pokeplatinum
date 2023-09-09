@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/party_pokemon.h"
@@ -63,7 +63,7 @@
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200C6E4.h"
 #include "unk_0201378C.h"
@@ -902,7 +902,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
     case MON_DATA_67:
     case MON_DATA_68:
     case MON_DATA_69:
-        v0 = MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
+        v0 = MoveTable_CalcMaxPP(v3->unk_00[param1 - 66], v3->unk_0C[param1 - 66]);
         break;
     case MON_DATA_HP_IV:
         v0 = v3->unk_10_0;
@@ -986,7 +986,7 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
         break;
     case MON_DATA_117:
         if (param0->unk_04_2) {
-            sub_0200B274(495, 0, param2);
+            MessageLoader_GetSpeciesName(495, 0, param2);
         } else {
             {
                 u16 * v6 = param2;
@@ -1120,13 +1120,13 @@ static u32 sub_020745D0 (BoxPokemon * param0, int param1, void * param2)
     case MON_DATA_177:
     case MON_DATA_178:
         if ((v2->species == SPECIES_ARCEUS) && (v2->unk_0D == 121)) {
-            v0 = sub_02077988(Item_GetAttribute(v2->item, 1, 0));
+            v0 = sub_02077988(Item_LoadParam(v2->item, 1, 0));
         } else {
             v0 = sub_020759CC(v2->species, v3->form, 6 + (param1 - 177));
         }
         break;
     case MON_DATA_179:
-        sub_0200B274(v2->species, 0, param2);
+        MessageLoader_GetSpeciesName(v2->species, 0, param2);
         break;
     }
 
@@ -1471,7 +1471,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
     {
         u16 v10[10 + 1];
 
-        sub_0200B274(v6->species, 0, &v10[0]);
+        MessageLoader_GetSpeciesName(v6->species, 0, &v10[0]);
         v7->unk_10_31 = sub_0200220C(v10, &v4[0]);
     }
     case MON_DATA_117:
@@ -1484,7 +1484,7 @@ static void sub_02074CD8 (BoxPokemon * param0, int param1, const void * param2)
         u16 v11[10 + 1];
         u16 v12[10 + 1];
 
-        sub_0200B274(v6->species, 0, &v11[0]);
+        MessageLoader_GetSpeciesName(v6->species, 0, &v11[0]);
         Strbuf_ToChars((Strbuf *)param2, &v12[0], NELEMS(v12));
 
         v7->unk_10_31 = sub_0200220C(v11, v12);
@@ -1775,8 +1775,8 @@ static void sub_02075454 (BoxPokemon * param0, int param1, int param2)
     case MON_DATA_59:
     case MON_DATA_60:
     case MON_DATA_61:
-        if ((v3->unk_08[param1 - 58] + param2) > MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
-            v3->unk_08[param1 - 58] = MoveTable_GetMoveMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
+        if ((v3->unk_08[param1 - 58] + param2) > MoveTable_CalcMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58])) {
+            v3->unk_08[param1 - 58] = MoveTable_CalcMaxPP(v3->unk_00[param1 - 58], v3->unk_0C[param1 - 58]);
         } else {
             v3->unk_08[param1 - 58] += param2;
         }
@@ -2374,7 +2374,7 @@ void sub_02075C74 (Pokemon * param0, u8 param1, u16 param2)
     }
 
     v1 = GetMonData(param0, MON_DATA_HELD_ITEM, NULL);
-    v5 = Item_GetAttribute(v1, 1, 0);
+    v5 = Item_LoadParam(v1, 1, 0);
     v4 = 0;
     v2 = GetMonData(param0, MON_DATA_FRIENDSHIP, NULL);
 
@@ -3217,7 +3217,7 @@ u16 sub_02076B94 (Party * param0, Pokemon * param1, u8 param2, u16 param3, int *
     v6 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
     v8 = GetMonData(param1, MON_DATA_BEAUTY, NULL);
     v9 = (v6 & 0xffff0000) >> 16;
-    v7 = Item_GetAttribute(v1, 1, 0);
+    v7 = Item_LoadParam(v1, 1, 0);
 
     if (v0 != 64) {
         if ((v7 == 64) && (param2 != 3)) {
@@ -3566,7 +3566,7 @@ void sub_02077144 (BoxPokemon * param0, u16 param1)
     }
 
     v1[3] = param1;
-    v2[3] = MoveTable_GetMoveAttribute(param1, 5);
+    v2[3] = MoveTable_LoadParam(param1, MOVEATTRIBUTE_PP);
     v3[3] = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -3587,7 +3587,7 @@ void sub_020771F8 (Pokemon * param0, u16 param1, u8 param2)
     v1 = 0;
     sub_02074B30(param0, 62 + param2, &v1);
 
-    v0 = MoveTable_GetMoveMaxPP(param1, 0);
+    v0 = MoveTable_CalcMaxPP(param1, 0);
     sub_02074B30(param0, 58 + param2, (u8 *)&v0);
 
     return;
@@ -3606,7 +3606,7 @@ void sub_02077238 (BoxPokemon * param0, u16 param1, u8 param2)
     SetBoxMonData(param0, 54 + param2, (u8 *)&param1);
 
     v1 = sub_02074570(param0, 62 + param2, NULL);
-    v0 = MoveTable_GetMoveMaxPP(param1, v1);
+    v0 = MoveTable_CalcMaxPP(param1, v1);
 
     SetBoxMonData(param0, 58 + param2, (u8 *)&v0);
 }
@@ -4031,7 +4031,7 @@ void sub_02077930 (BoxPokemon * param0)
     v2 = sub_02074570(param0, MON_DATA_HELD_ITEM, NULL);
 
     if ((v0 == 493) && (v1 == 121)) {
-        v3 = sub_02077988(Item_GetAttribute(v2, 1, 0));
+        v3 = sub_02077988(Item_LoadParam(v2, 1, 0));
         SetBoxMonData(param0, 112, &v3);
     }
 }

@@ -5,12 +5,12 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_defs/pokemon.h"
@@ -36,7 +36,7 @@
 #include "unk_02002328.h"
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -101,7 +101,7 @@ typedef struct {
     u8 unk_1A;
     u8 unk_1B;
     UnkStruct_02072EB8 unk_1C[20];
-    UnkStruct_0200B144 * unk_10C;
+    MessageLoader * unk_10C;
     UnkStruct_02072334_sub1 unk_110;
     u8 unk_138;
     u8 unk_139;
@@ -948,7 +948,7 @@ static void sub_02072F30 (UnkStruct_02072334 * param0, UnkStruct_021C0794 * para
         v7->unk_01 = 1;
         v7->unk_04 = sub_02028310(v6);
         v7->unk_05 = sub_02028314(v6);
-        v7->unk_06 = sub_0207D310(v7->unk_05);
+        v7->unk_06 = Item_ForMailNumber(v7->unk_05);
 
         Strbuf_CopyChars(v7->unk_08, sub_0202830C(v6));
 
@@ -1029,18 +1029,18 @@ static void sub_020730B8 (UnkStruct_02072334 * param0, u8 param1, BOOL param2)
 
 static void sub_02073130 (UnkStruct_02072334 * param0)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     int v1;
     Strbuf* v2;
 
-    param0->unk_10C = sub_0200B144(1, 26, 408, param0->unk_00);
+    param0->unk_10C = MessageLoader_Init(1, 26, 408, param0->unk_00);
     param0->unk_110.unk_00 = sub_0200B368(1, 128, param0->unk_00);
     param0->unk_110.unk_04 = Strbuf_Init(128, param0->unk_00);
-    param0->unk_110.unk_08 = sub_0200B1EC(param0->unk_10C, 4);
-    param0->unk_110.unk_0C = sub_0200B1EC(param0->unk_10C, 0);
+    param0->unk_110.unk_08 = MessageLoader_GetNewStrbuf(param0->unk_10C, 4);
+    param0->unk_110.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_10C, 0);
 
     for (v1 = 0; v1 < 6; v1++) {
-        param0->unk_110.unk_10[v1] = sub_0200B1EC(param0->unk_10C, 6 + v1);
+        param0->unk_110.unk_10[v1] = MessageLoader_GetNewStrbuf(param0->unk_10C, 6 + v1);
     }
 }
 
@@ -1056,7 +1056,7 @@ static void sub_020731A4 (UnkStruct_02072334 * param0)
     Strbuf_Free(param0->unk_110.unk_08);
     Strbuf_Free(param0->unk_110.unk_04);
     sub_0200B3F0(param0->unk_110.unk_00);
-    sub_0200B190(param0->unk_10C);
+    MessageLoader_Free(param0->unk_10C);
 }
 
 static void sub_020731F4 (UnkStruct_02072334 * param0)

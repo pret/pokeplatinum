@@ -5,11 +5,11 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
@@ -22,7 +22,7 @@
 #include "unk_02001AF4.h"
 #include "unk_02002328.h"
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -61,7 +61,7 @@ typedef struct UnkStruct_ov7_02249C2C_t {
     UnkStruct_0203CDB0 * unk_68;
     UnkFuncPtr_ov7_02249C2C unk_6C;
     UnkFuncPtr_ov7_02249C2C_1 unk_70;
-    UnkStruct_0200B144 * unk_74;
+    MessageLoader * unk_74;
     UnkStruct_02025E6C * unk_78;
     UnkStruct_02025E6C * unk_7C;
     u8 unk_80[8];
@@ -153,10 +153,10 @@ static void ov7_02249960 (int param0, BOOL param1)
     }
 
     if (param1) {
-        sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, param0, Unk_ov7_0224F5A0->unk_00[4]);
+        MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, param0, Unk_ov7_0224F5A0->unk_00[4]);
         sub_0200C388(Unk_ov7_0224F5A0->unk_58, Unk_ov7_0224F5A0->unk_00[5], Unk_ov7_0224F5A0->unk_00[4]);
     } else {
-        sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, param0, Unk_ov7_0224F5A0->unk_00[5]);
+        MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, param0, Unk_ov7_0224F5A0->unk_00[5]);
     }
 
     if (!sub_0201A7CC(&Unk_ov7_0224F5A0->unk_40)) {
@@ -197,7 +197,7 @@ static void ov7_02249AB4 (UnkStruct_0203CDB0 * param0)
     Unk_ov7_0224F5A0->unk_88 = 0;
     Unk_ov7_0224F5A0->unk_68 = param0;
     Unk_ov7_0224F5A0->unk_97 = 0;
-    Unk_ov7_0224F5A0->unk_74 = sub_0200B144(1, 26, 353, 4);
+    Unk_ov7_0224F5A0->unk_74 = MessageLoader_Init(1, 26, 353, 4);
     Unk_ov7_0224F5A0->unk_78 = sub_02025E38(sub_0203D174(Unk_ov7_0224F5A0->unk_68));
     Unk_ov7_0224F5A0->unk_7C = sub_02025E6C(4);
 
@@ -244,7 +244,7 @@ static void ov7_02249B98 (void)
         Unk_ov7_0224F5A0->unk_58 = NULL;
     }
 
-    sub_0200B190(Unk_ov7_0224F5A0->unk_74);
+    MessageLoader_Free(Unk_ov7_0224F5A0->unk_74);
 
     if (Unk_ov7_0224F5A0->unk_40.unk_0C != NULL) {
         sub_0201A8FC(&Unk_ov7_0224F5A0->unk_40);
@@ -316,16 +316,16 @@ static void ov7_02249C94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
         sub_020339AC(v1, Unk_ov7_0224F5A0->unk_7C);
         sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 0, v1 + 1, 2, 2, 1);
         sub_0200B498(Unk_ov7_0224F5A0->unk_50, 1, Unk_ov7_0224F5A0->unk_7C);
-        sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, 63, Unk_ov7_0224F5A0->unk_00[1]);
+        MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 63, Unk_ov7_0224F5A0->unk_00[1]);
         sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
         sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0xff, NULL);
         sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 2, sub_02025F20(Unk_ov7_0224F5A0->unk_7C) % 0x10000, 5, 2, 1);
-        sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, 65, Unk_ov7_0224F5A0->unk_00[3]);
+        MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 65, Unk_ov7_0224F5A0->unk_00[3]);
         sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[2], Unk_ov7_0224F5A0->unk_00[3]);
         sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[2], 11 * 8, param2 * 16, 0xff, NULL);
     } else {
         sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 0, v1 + 1, 2, 2, 1);
-        sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, 64, Unk_ov7_0224F5A0->unk_00[1]);
+        MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 64, Unk_ov7_0224F5A0->unk_00[1]);
         sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
         sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0xff, NULL);
     }
@@ -398,7 +398,7 @@ static void ov7_02249EE0 (UnkStruct_ov7_02249C2C * param0)
 {
     sub_0200B498(Unk_ov7_0224F5A0->unk_54, 0, Unk_ov7_0224F5A0->unk_78);
     sub_0200B60C(Unk_ov7_0224F5A0->unk_54, 1, sub_02025F20(Unk_ov7_0224F5A0->unk_78) % 0x10000, 5, 2, 1);
-    sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, 62, Unk_ov7_0224F5A0->unk_00[6]);
+    MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 62, Unk_ov7_0224F5A0->unk_00[6]);
     sub_0200C388(Unk_ov7_0224F5A0->unk_54, Unk_ov7_0224F5A0->unk_00[7], Unk_ov7_0224F5A0->unk_00[6]);
     sub_0201D738(&Unk_ov7_0224F5A0->unk_30, 0, Unk_ov7_0224F5A0->unk_00[7], 2, 2, 0, NULL);
 }
@@ -415,7 +415,7 @@ static void ov7_02249F54 (UnkStruct_0201CD38 * param0, void * param1)
 
         for (v2 = 0; v2 < 16; v2++) {
             sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 0, v2 + 1, 2, 2, 1);
-            sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, 64, Unk_ov7_0224F5A0->unk_00[1]);
+            MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 64, Unk_ov7_0224F5A0->unk_00[1]);
             sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
             sub_02013A6C(Unk_ov7_0224F5A0->unk_64, Unk_ov7_0224F5A0->unk_00[0], 0);
         }
@@ -545,7 +545,7 @@ asm static void ov7_0224A128 (UnkStruct_0201CD38 * param0, void * param1)
     ldr r2, [r0, #0]
     ldr r0, [r2, #0x74]
     ldr r2, [r2, #0x10]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     ldr r0, = Unk_ov7_0224F5A0
               ldr r2, [r0, #0]
     ldr r0, [r2, #0x58]
@@ -729,11 +729,11 @@ static void ov7_0224A438 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 
     if (NULL != sub_02032EE8(v0)) {
         sub_0200B498(Unk_ov7_0224F5A0->unk_50, 0, sub_02032EE8(v0));
-        sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, 66, Unk_ov7_0224F5A0->unk_00[1]);
+        MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 66, Unk_ov7_0224F5A0->unk_00[1]);
         sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[0], Unk_ov7_0224F5A0->unk_00[1]);
         sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[0], 8, param2 * 16, 0, NULL);
         sub_0200B60C(Unk_ov7_0224F5A0->unk_50, 2, sub_02025F24(sub_02032EE8(v0)), 5, 2, 1);
-        sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, 65, Unk_ov7_0224F5A0->unk_00[3]);
+        MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, 65, Unk_ov7_0224F5A0->unk_00[3]);
         sub_0200C388(Unk_ov7_0224F5A0->unk_50, Unk_ov7_0224F5A0->unk_00[2], Unk_ov7_0224F5A0->unk_00[3]);
         sub_0201D738(&Unk_ov7_0224F5A0->unk_20, 0, Unk_ov7_0224F5A0->unk_00[2], 9 * 8, param2 * 16, 0, NULL);
     }
@@ -840,7 +840,7 @@ static void ov7_0224A64C (UnkStruct_ov7_02249C2C * param0)
 
     sub_0200B60C(Unk_ov7_0224F5A0->unk_54, 0, v1, 2, 5, 1);
     sub_0201ADA4(&Unk_ov7_0224F5A0->unk_30, 15);
-    sub_0200B1B8(Unk_ov7_0224F5A0->unk_74, v0, Unk_ov7_0224F5A0->unk_00[7]);
+    MessageLoader_GetStrbuf(Unk_ov7_0224F5A0->unk_74, v0, Unk_ov7_0224F5A0->unk_00[7]);
     sub_0200C388(Unk_ov7_0224F5A0->unk_54, Unk_ov7_0224F5A0->unk_00[6], Unk_ov7_0224F5A0->unk_00[7]);
     sub_0201D738(&Unk_ov7_0224F5A0->unk_30, 0, Unk_ov7_0224F5A0->unk_00[6], 2, 2, 0, NULL);
 }

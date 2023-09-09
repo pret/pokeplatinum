@@ -2355,48 +2355,48 @@ Unk_ov66_02259270: ; 0x02259270
 
 	.global Unk_ov66_02259274
 Unk_ov66_02259274: ; 0x02259274
-	.ascii "D7"
-	.space 0x2
+	.asciz "D7"
+	.space 0x1
 
 	.global Unk_ov66_02259278
 Unk_ov66_02259278: ; 0x02259278
-	.ascii "D8"
-	.space 0x2
+	.asciz "D8"
+	.space 0x1
 
 	.global Unk_ov66_0225927C
 Unk_ov66_0225927C: ; 0x0225927C
-	.ascii "D6"
-	.space 0x2
+	.asciz "D6"
+	.space 0x1
 
 	.global Unk_ov66_02259280
 Unk_ov66_02259280: ; 0x02259280
-	.ascii "D9"
-	.space 0x2
+	.asciz "D9"
+	.space 0x1
 
 	.global Unk_ov66_02259284
 Unk_ov66_02259284: ; 0x02259284
-	.ascii "D1"
-	.space 0x2
+	.asciz "D1"
+	.space 0x1
 
 	.global Unk_ov66_02259288
 Unk_ov66_02259288: ; 0x02259288
-	.ascii "D2"
-	.space 0x2
+	.asciz "D2"
+	.space 0x1
 
 	.global Unk_ov66_0225928C
 Unk_ov66_0225928C: ; 0x0225928C
-	.ascii "D3"
-	.space 0x2
+	.asciz "D3"
+	.space 0x1
 
 	.global Unk_ov66_02259290
 Unk_ov66_02259290: ; 0x02259290
-	.ascii "D4"
-	.space 0x2
+	.asciz "D4"
+	.space 0x1
 
 	.global Unk_ov66_02259294
 Unk_ov66_02259294: ; 0x02259294
-	.ascii "D5"
-	.space 0x2
+	.asciz "D5"
+	.space 0x1
 
 	.global Unk_ov66_02259298
 Unk_ov66_02259298: ; 0x02259298

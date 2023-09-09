@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0201378C.h"
 #include "unk_02017038.h"
@@ -38,7 +38,7 @@ UnkStruct_02090800 * sub_02092494 (Pokemon * param0, BOOL param1, int param2)
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_02090800));
     v0->unk_00 = param2;
-    v0->unk_04 = sub_0200B144(1, 26, 455, v0->unk_00);
+    v0->unk_04 = MessageLoader_Init(1, 26, 455, v0->unk_00);
     v0->unk_08 = sub_0200B368(9, 32, v0->unk_00);
     v0->unk_0C = param0;
     v0->unk_10 = param1;
@@ -314,7 +314,7 @@ void sub_0209282C (UnkStruct_02090800 * param0)
     }
 
     sub_0200B3F0(param0->unk_08);
-    sub_0200B190(param0->unk_04);
+    MessageLoader_Free(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 
@@ -327,7 +327,7 @@ static void sub_02092878 (UnkStruct_02090800 * param0)
     }
 
     param0->unk_14.unk_04 = Strbuf_Init(((2 * 18) * 2), param0->unk_00);
-    sub_0200B1B8(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
+    MessageLoader_GetStrbuf(param0->unk_04, (24 + v0), param0->unk_14.unk_04);
 }
 
 static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
@@ -336,7 +336,7 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 8), param0->unk_00);
 
-    sub_0200B1B8(param0->unk_04, param1, v0);
+    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
     sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
     sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
@@ -356,7 +356,7 @@ static void sub_020929C0 (UnkStruct_02090800 * param0, int param1)
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 4), param0->unk_00);
 
-    sub_0200B1B8(param0->unk_04, param1, v0);
+    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
     sub_0200B60C(param0->unk_08, 0, GetMonData(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
     sub_0200C2E0(param0->unk_08, 1, GetMonData(param0->unk_0C, MON_DATA_150, NULL));
     sub_0200B60C(param0->unk_08, 2, GetMonData(param0->unk_0C, MON_DATA_151, NULL), 2, 0, 1);
@@ -399,7 +399,7 @@ static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
 
     param0->unk_1C.unk_04 = Strbuf_Init((((2 * 18) * 2) * 5), param0->unk_00);
 
-    sub_0200B1B8(param0->unk_04, param1, v0);
+    MessageLoader_GetStrbuf(param0->unk_04, param1, v0);
 
     if (param2 == 0) {
         sub_0200B60C(param0->unk_08, 5, GetMonData(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
@@ -589,7 +589,7 @@ static void sub_02092C24 (UnkStruct_02090800 * param0)
     }
 
     v4 = Unk_020F5578[v1][(v2 % 5)];
-    sub_0200B1B8(param0->unk_04, v4, param0->unk_24.unk_04);
+    MessageLoader_GetStrbuf(param0->unk_04, v4, param0->unk_24.unk_04);
 }
 
 static const u16 Unk_020F556C[6] = {
@@ -615,7 +615,7 @@ static void sub_02092E10 (UnkStruct_02090800 * param0)
     }
 
     v2 = Unk_020F556C[v1];
-    sub_0200B1B8(param0->unk_04, v2, param0->unk_2C.unk_04);
+    MessageLoader_GetStrbuf(param0->unk_04, v2, param0->unk_2C.unk_04);
 }
 
 static void sub_02092E4C (UnkStruct_02090800 * param0)
@@ -635,7 +635,7 @@ static void sub_02092E4C (UnkStruct_02090800 * param0)
         v1 = 108;
     }
 
-    sub_0200B1B8(param0->unk_04, v1, param0->unk_34.unk_04);
+    MessageLoader_GetStrbuf(param0->unk_04, v1, param0->unk_34.unk_04);
 }
 
 static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)

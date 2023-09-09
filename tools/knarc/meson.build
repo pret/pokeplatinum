@@ -10,6 +10,7 @@ cpp_scrs = [
 ]
 
 knarc_exe = executable('knarc',
+    cpp_args: '-std=c++17',
     sources: [
         c_srcs,
         cpp_scrs

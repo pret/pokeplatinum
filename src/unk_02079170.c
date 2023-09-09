@@ -4,8 +4,6 @@
 #include "constants/trainer.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
 #include "struct_defs/pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -18,7 +16,7 @@
 
 #include "unk_020021B0.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
@@ -149,7 +147,7 @@ void sub_02079170 (BattleParams * param0, const UnkStruct_021C0794 * param1, int
 {
     TrainerData v0;
     int v1;
-    UnkStruct_0200B144 * v2 = sub_0200B144(1, 26, 618, param2);
+    MessageLoader * v2 = MessageLoader_Init(1, 26, 618, param2);
     Strbuf *v3;
     const u16 * v4 = sub_02027870(sub_02027848(param1));
 
@@ -161,7 +159,7 @@ void sub_02079170 (BattleParams * param0, const UnkStruct_021C0794 * param1, int
             if (v0.class == TRAINER_CLASS_RIVAL) {
                 sub_020021B0(&param0->trainerData[v1].unk_14[0], v4);
             } else {
-                v3 = sub_0200B1EC(v2, param0->unk_18[v1]);
+                v3 = MessageLoader_GetNewStrbuf(v2, param0->unk_18[v1]);
                 Strbuf_ToChars(v3, &param0->trainerData[v1].unk_14[0], 8);
                 Strbuf_Free(v3);
             }
@@ -172,7 +170,7 @@ void sub_02079170 (BattleParams * param0, const UnkStruct_021C0794 * param1, int
 
     param0->battleType |= v0.unk_10;
 
-    sub_0200B190(v2);
+    MessageLoader_Free(v2);
 }
 
 u32 sub_02079220 (int param0, int param1)
@@ -261,7 +259,7 @@ void sub_020792F8 (int param0, int param1, Strbuf *param2, int param3)
         NARC_ReadFromMember(v0, 0, v2, 4, &v3[0]);
 
         if ((v3[0] == param0) && (v3[1] == param1)) {
-            sub_0200AF20(26, 617, v2 / 4, param3, param2);
+            MessageBank_GetStrbufFromNARC(26, 617, v2 / 4, param3, param2);
             break;
         }
 

@@ -1,17 +1,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203CDB0_sub2_t.h"
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -35,7 +35,7 @@ typedef struct UnkStruct_ov5_021DD9C8_t {
     u8 unk_31;
     NNSG2dCharacterData * unk_34;
     void * unk_38;
-    UnkStruct_0200B144 * unk_3C;
+    MessageLoader * unk_3C;
     Strbuf* unk_40;
 } UnkStruct_ov5_021DD9C8;
 
@@ -234,13 +234,13 @@ UnkStruct_ov5_021DD9C8 * ov5_021DD98C (UnkStruct_02018340 * param0)
     ov5_021DD894(v0, param0);
     ov5_021DD718(v0);
 
-    v0->unk_3C = sub_0200B144(1, 26, 433, 4);
+    v0->unk_3C = MessageLoader_Init(1, 26, 433, 4);
     return v0;
 }
 
 void ov5_021DD9C8 (UnkStruct_ov5_021DD9C8 * param0)
 {
-    sub_0200B190(param0->unk_3C);
+    MessageLoader_Free(param0->unk_3C);
     sub_0201A8FC(&param0->unk_20);
     Strbuf_Free(param0->unk_40);
     Heap_FreeToHeap(param0);

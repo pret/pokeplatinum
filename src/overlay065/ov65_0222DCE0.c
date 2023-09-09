@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
@@ -58,7 +58,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -717,8 +717,8 @@ static void ov65_0222E01C (UnkStruct_ov65_0222EBE0 * param0)
 
     param0->unk_15C = sub_02018340(54);
     param0->unk_164 = sub_0200B358(54);
-    param0->unk_168 = sub_0200B144(0, 26, 674, 54);
-    param0->unk_16C = sub_0200B144(0, 26, 695, 54);
+    param0->unk_168 = MessageLoader_Init(0, 26, 674, 54);
+    param0->unk_16C = MessageLoader_Init(0, 26, 695, 54);
 
     ov65_0222E618();
     ov65_0222E638(param0->unk_15C);
@@ -888,8 +888,8 @@ static void ov65_0222E47C (UnkStruct_ov65_0222EBE0 * param0)
     ov65_0222EF4C(param0);
     ov65_0222EC5C(param0->unk_15C);
 
-    sub_0200B190(param0->unk_16C);
-    sub_0200B190(param0->unk_168);
+    MessageLoader_Free(param0->unk_16C);
+    MessageLoader_Free(param0->unk_168);
     sub_0200B3F0(param0->unk_164);
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay63));
 }
@@ -1538,7 +1538,7 @@ static void ov65_0222EE98 (UnkStruct_ov65_0222EBE0 * param0)
 
     sub_0201A7E8(param0->unk_15C, &param0->unk_350, 3, 5, 1, 22, 2, 13, 512 - 18 * 3);
     sub_0201ADA4(&param0->unk_350, 0x8000);
-    sub_0200B1B8(param0->unk_168, 21, param0->unk_178);
+    MessageLoader_GetStrbuf(param0->unk_168, 21, param0->unk_178);
 
     {
         u32 v2 = sub_02002EEC(0, param0->unk_178, 0, 22 * 8);
@@ -2335,7 +2335,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
 
     if (v6 == 1) {
         if (ov4_021D2388() == -1) {
-            sub_0200B1B8(param0->unk_168, v3, param0->unk_170);
+            MessageLoader_GetStrbuf(param0->unk_168, v3, param0->unk_170);
         } else {
             v1 = sub_0202AD2C(param0->unk_00, ov4_021D2388(), 8);
 
@@ -2348,7 +2348,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
             Strbuf_CopyChars(param0->unk_170, sub_0202AEF0(param0->unk_00, ov4_021D2388()));
         }
     } else {
-        sub_0200B1B8(param0->unk_168, v3, param0->unk_170);
+        MessageLoader_GetStrbuf(param0->unk_168, v3, param0->unk_170);
     }
 
     sub_0201D78C(&param0->unk_340, 0, param0->unk_170, 102, 0, 0xff, v0, NULL);
@@ -3480,7 +3480,7 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
             sub_02013A4C(param0->unk_154, param0->unk_168, v3[v0].unk_00, v3[v0].unk_04);
         } else {
             sub_0200C0B0(param0->unk_164, 0, v0);
-            sub_0200B1B8(param0->unk_168, v3[v0].unk_00, param0->unk_170);
+            MessageLoader_GetStrbuf(param0->unk_168, v3[v0].unk_00, param0->unk_170);
             sub_0200C388(param0->unk_164, param0->unk_178, param0->unk_170);
             sub_02013A6C(param0->unk_154, param0->unk_178, v3[v0].unk_04);
         }
@@ -4762,9 +4762,9 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
     sub_0201A7E8(param0->unk_15C, &param0->unk_330, 2, 2, 19, 27, 4, 12, (((512 - (18 + 12)) - 73) - (27 * 4)));
 
     if (param2) {
-        sub_0200B1B8(param0->unk_16C, param1, param0->unk_170);
+        MessageLoader_GetStrbuf(param0->unk_16C, param1, param0->unk_170);
     } else {
-        sub_0200B1B8(param0->unk_168, param1, param0->unk_170);
+        MessageLoader_GetStrbuf(param0->unk_168, param1, param0->unk_170);
     }
 
     sub_0200C388(param0->unk_164, param0->unk_174, param0->unk_170);
@@ -4800,7 +4800,7 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     sub_0201A7E8(param0->unk_15C, &param0->unk_360, 2, 4, 4, 23, 16, 12, (((512 - (18 + 12)) - 9) - (23 * 16)));
-    sub_0200B1B8(param0->unk_16C, param1, param0->unk_170);
+    MessageLoader_GetStrbuf(param0->unk_16C, param1, param0->unk_170);
     sub_0200C388(param0->unk_164, param0->unk_174, param0->unk_170);
 
     sub_0201ADA4(&param0->unk_360, 15);
@@ -5426,7 +5426,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #8
     ldr r2, [r5, r2]
     mov r1, #0x2a
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x5e
     ldr r0, = 0xB18
     lsl r2, r2, #2
@@ -5466,7 +5466,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     ldr r0, [r5, r2]
     add r2, #8
     ldr r2, [r5, r2]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #8
     str r0, [sp]
     mov r2, #0xff
@@ -5503,7 +5503,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x2b
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x20
     str r0, [sp]
     mov r2, #0xff
@@ -5525,7 +5525,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0xda
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x5e
     ldr r0, = 0xB18
     lsl r2, r2, #2
@@ -5561,7 +5561,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x2c
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x38
     str r0, [sp]
     mov r2, #0xff
@@ -5595,7 +5595,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #8
     ldr r2, [r5, r2]
     mov r1, #0x2d
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x5e
     ldr r0, = 0xB18
     lsl r2, r2, #2
@@ -5637,7 +5637,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     lsl r2, r1, #3
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x5e
     ldr r0, = 0xB18
     lsl r2, r2, #2
@@ -5673,7 +5673,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     lsl r2, r1, #3
     ldr r0, [r5, r0]
     ldr r2, [r5, r2]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x50
     str r0, [sp]
     mov r2, #0xff
@@ -5707,7 +5707,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #8
     ldr r2, [r5, r2]
     mov r1, #0x30
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x5e
     ldr r0, = 0xB18
     lsl r2, r2, #2
@@ -5747,7 +5747,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x31
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x68
     str r0, [sp]
     mov r2, #0xff
@@ -5781,7 +5781,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #8
     ldr r2, [r5, r2]
     mov r1, #0x32
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x5e
     ldr r0, = 0xB18
     lsl r2, r2, #2
@@ -5820,7 +5820,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x33
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x80
     str r0, [sp]
     mov r2, #0xff
@@ -5878,7 +5878,7 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #8
     ldr r2, [r5, r2]
     mov r1, #0x4a
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x5e
     ldr r0, = 0xB18
     lsl r2, r2, #2
@@ -5954,7 +5954,7 @@ static void ov65_02233E20 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
-        sub_0200B1B8(param0->unk_168, 52, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 52, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
@@ -5965,7 +5965,7 @@ static void ov65_02233E20 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     }
 
     {
-        sub_0200B1B8(param0->unk_168, 59, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234694(param0, 65, 112, v0, 120, 48);
     }
@@ -5985,7 +5985,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     ldr r0, [r5, r2]
     add r2, #0x10
     ldr r2, [r5, r2]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r1, #0
     str r1, [sp]
     mov r2, #0xff
@@ -6005,7 +6005,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x3c
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x18
     str r0, [sp]
     mov r2, #0xff
@@ -6026,7 +6026,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x3e
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r1, #0x5e
     lsl r1, r1, #2
     mov r0, #0
@@ -6093,7 +6093,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x3b
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x40
     str r0, [sp]
     mov r2, #0xff
@@ -6132,7 +6132,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x3d
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x58
     str r0, [sp]
     mov r2, #0xff
@@ -6153,7 +6153,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x3e
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r1, #0x5e
     lsl r1, r1, #2
     mov r0, #0
@@ -6220,7 +6220,7 @@ asm static void ov65_02233EF0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     add r2, #0x10
     ldr r2, [r5, r2]
     mov r1, #0x3b
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r0, #0x80
     str r0, [sp]
     mov r2, #0xff
@@ -6264,9 +6264,9 @@ static void ov65_0223416C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
-        sub_0200B1B8(param0->unk_168, 54, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 54, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
-        sub_0200B1B8(param0->unk_168, 63, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 63, param0->unk_178);
 
         {
             u32 v1 = 180 - (sub_02002D7C(0, param0->unk_178, 0) + 1) / 2;
@@ -6282,7 +6282,7 @@ static void ov65_0223416C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     }
 
     {
-        sub_0200B1B8(param0->unk_168, 59, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 80, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
         ov65_02234694(param0, 68, 134, v0, 104, 80);
@@ -6301,7 +6301,7 @@ static void ov65_022342A8 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
-        sub_0200B1B8(param0->unk_168, 55, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 55, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
         v1 = sub_02030698(v2, 124, v0);
@@ -6322,7 +6322,7 @@ static void ov65_022342A8 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     }
 
     {
-        sub_0200B1B8(param0->unk_168, 59, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 80, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234694(param0, 65, 122, v0, 108, 80);
     }
@@ -6335,7 +6335,7 @@ static void ov65_022343CC (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
-        sub_0200B1B8(param0->unk_168, 56, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 56, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
@@ -6346,7 +6346,7 @@ static void ov65_022343CC (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     }
 
     {
-        sub_0200B1B8(param0->unk_168, 59, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 59, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234694(param0, 69, 142, v0, 112, 48);
     }
@@ -6362,13 +6362,13 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     v0 = param0->unk_BE0.unk_71 - 1;
 
     {
-        sub_0200B1B8(param0->unk_168, 70, param0->unk_178);
+        MessageLoader_GetStrbuf(param0->unk_168, 70, param0->unk_178);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     }
 
     {
         sub_0200C0B0(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_00);
-        sub_0200B1B8(param0->unk_168, 71, param0->unk_170);
+        MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
         sub_0200C388(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 24, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 10), 164, 24);
@@ -6376,7 +6376,7 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
     {
         sub_0200C0B0(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_01);
-        sub_0200B1B8(param0->unk_168, 71, param0->unk_170);
+        MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
         sub_0200C388(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 48, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 11), 164, 48);
@@ -6384,7 +6384,7 @@ static void ov65_0223449C (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
 
     {
         sub_0200C0B0(param0->unk_BE0.unk_00, 0, UnkEnum_ov66_022324D0_02);
-        sub_0200B1B8(param0->unk_168, 71, param0->unk_170);
+        MessageLoader_GetStrbuf(param0->unk_168, 71, param0->unk_170);
         sub_0200C388(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
         sub_0201D78C(&param0->unk_BE0.unk_1FC, 0, param0->unk_178, 8, 72, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         ov65_02234708(param0, 72, sub_0202AD2C(v1, v0, 12), 164, 72);
@@ -6436,13 +6436,13 @@ static void ov65_022346C4 (UnkStruct_ov65_0222EBE0 * param0, Strbuf *param1, u32
         v2 = 58;
     }
 
-    sub_0200B1B8(param0->unk_168, v2, param1);
+    MessageLoader_GetStrbuf(param0->unk_168, v2, param1);
 }
 
 static void ov65_02234708 (UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 param2, u32 param3, u32 param4)
 {
     sub_0200B60C(param0->unk_BE0.unk_00, 0, param2, 4, 1, 1);
-    sub_0200B1B8(param0->unk_168, param1, param0->unk_170);
+    MessageLoader_GetStrbuf(param0->unk_168, param1, param0->unk_170);
     sub_0200C388(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
 
     {
@@ -6578,7 +6578,7 @@ static void ov65_02234900 (UnkStruct_ov65_0222EBE0 * param0, UnkStruct_0205AA50 
 
     ov65_02234F68(param0, param2 - 1);
 
-    sub_0200B1B8(param0->unk_168, 42, param0->unk_170);
+    MessageLoader_GetStrbuf(param0->unk_168, 42, param0->unk_170);
     sub_0200C388(param0->unk_BE0.unk_00, param0->unk_178, param0->unk_170);
     sub_0201D78C(param1, 1, param0->unk_178, 0, v2, 0xff, v1, NULL);
     sub_0201A9A4(param1);
@@ -6717,7 +6717,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     sub_0201A870(param0->unk_15C, &v3, 8, 2, 0, 0);
 
     v4 = Strbuf_Init(64, param2);
-    sub_0200B1B8(param0->unk_168, 73, v4);
+    MessageLoader_GetStrbuf(param0->unk_168, 73, v4);
 
     {
         v8 = -((sub_02002D7C(0, param0->unk_178, 0) + 1) / 2);

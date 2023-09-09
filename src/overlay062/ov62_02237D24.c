@@ -4,7 +4,7 @@
 #include "overlay062/ov62_const_funcptr_tables.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -30,7 +30,7 @@
 #include "unk_02005474.h"
 #include "game_overlay.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
@@ -1249,7 +1249,7 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
 
     sub_0201ADA4(v1, 0x0);
 
-    v2 = sub_0200B1EC(param0->unk_14.unk_34, param1);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v3, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
@@ -1404,7 +1404,7 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     add r7, r0, #0
     ldr r0, [r5, #0x48]
     mov r1, #0x38
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     str r0, [sp, #0x1c]
     mov r0, #0xff
     mov r1, #0x66
@@ -1539,7 +1539,7 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     add r7, r0, #0
     ldr r0, [r5, #0x48]
     mov r1, #0x38
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     str r0, [sp, #0x1c]
     mov r0, #0xff
     mov r1, #0x66
@@ -1729,7 +1729,7 @@ static void ov62_02239A0C (UnkStruct_0208C06C * param0, int param1)
             v4->unk_1E8[v5].unk_04 = v4->unk_1D4.unk_08[v5];
         }
     }
-    v4->unk_1D4.unk_0C = sub_0200B144(0, 26, 412, 102);
+    v4->unk_1D4.unk_0C = MessageLoader_Init(0, 26, 412, 102);
     v4->unk_1D4.unk_10 = 1;
 }
 
@@ -1737,7 +1737,7 @@ static void ov62_02239B7C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
 
-    sub_0200B190(v0->unk_1D4.unk_0C);
+    MessageLoader_Free(v0->unk_1D4.unk_0C);
     Heap_FreeToHeap(v0->unk_1E8);
     Heap_FreeToHeap(v0->unk_1D4.unk_08);
 
@@ -1822,7 +1822,7 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     add r1, r7, #0
     ldr r0, [r0, #0x48]
     add r1, #0x44
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     str r0, [sp, #0x2c]
     ldr r1, [sp, #0x2c]
     add r0, r4, #0
