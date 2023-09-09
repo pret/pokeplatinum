@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02015064_decl.h"
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
@@ -51,7 +51,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -1241,40 +1241,40 @@ static void ov78_021D1E44 (UnkStruct_ov78_021D107C * param0, int param1)
 
 static u8 ov78_021D1FB4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
     u8 v2;
 
-    v0 = sub_0200B144(0, 26, param2, param1);
+    v0 = MessageLoader_Init(0, 26, param2, param1);
     GF_ASSERT(v0);
-    v1 = sub_0200B1EC(v0, param3);
+    v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
     sub_0201ADA4(param0, 15);
     v2 = sub_0201D78C(param0, 1, v1, 0, 0, param5, param4, NULL);
     sub_0200E060(param0, 0, 512, 0);
 
     Strbuf_Free(v1);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
 
     return v2;
 }
 
 static u8 ov78_021D201C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4, u32 param5, Strbuf **param6)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     u8 v1;
 
     GF_ASSERT((*param6) == NULL);
 
-    v0 = sub_0200B144(0, 26, param2, param1);
+    v0 = MessageLoader_Init(0, 26, param2, param1);
     GF_ASSERT(v0);
 
-    *param6 = sub_0200B1EC(v0, param3);
+    *param6 = MessageLoader_GetNewStrbuf(v0, param3);
     sub_0201ADA4(param0, 15);
     v1 = sub_0201D78C(param0, 1, *param6, 0, 0, param5, param4, NULL);
 
     sub_0200E060(param0, 0, 512, 0);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
 
     return v1;
 }
@@ -1722,17 +1722,17 @@ static void ov78_021D2884 (UnkStruct_ov78_021D107C * param0)
 
 static void ov78_021D28A8 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(0, 26, param2, param1);
+    v0 = MessageLoader_Init(0, 26, param2, param1);
     GF_ASSERT(v0);
-    v1 = sub_0200B1EC(v0, param3);
+    v1 = MessageLoader_GetNewStrbuf(v0, param3);
 
     sub_0201ADA4(param0, (((param4) >> 0) & 0xff));
     sub_0201D78C(param0, 0, v1, 1, 0, 0xff, param4, NULL);
     Strbuf_Free(v1);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
 }
 
 static void ov78_021D2904 (UnkStruct_ov78_021D107C * param0)

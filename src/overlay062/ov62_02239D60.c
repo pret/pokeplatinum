@@ -33,7 +33,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
@@ -917,7 +917,7 @@ static void ov62_0223AB14 (UnkStruct_0208C06C * param0)
         sub_0201A7A0(v1);
         sub_0201A7E8(param0->unk_14.unk_10, v1, 6, Unk_ov62_02248DC4[v3][0], Unk_ov62_02248DC4[v3][1], Unk_ov62_02248DC4[v3][2], Unk_ov62_02248DC4[v3][3], 14, v2);
 
-        v5 = sub_0200B1EC(param0->unk_14.unk_34, 60 + v3);
+        v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 60 + v3);
         v4 = ov62_0223429C(v1, v5);
 
         sub_0201ADA4(v1, Unk_ov62_02248D78[0]);
@@ -961,7 +961,7 @@ static void ov62_0223AC0C (UnkStruct_0208C06C * param0, int param1)
     Strbuf* v2;
 
     v1 = &v0->unk_1B4[2];
-    v2 = sub_0200B1EC(param0->unk_14.unk_34, param1);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
 
     sub_0201ADA4(v1, Unk_ov62_02248D78[2]);
     sub_0201D78C(v1, 0, v2, 0, Unk_ov62_02248DA8[2], 0xff, Unk_ov62_02248D90[2], NULL);
@@ -980,7 +980,7 @@ static void ov62_0223AC58 (UnkStruct_0208C06C * param0, int param1)
     int v6 = 28 + v0->unk_380.unk_00;
 
     v1 = &v0->unk_1B4[2];
-    v2 = sub_0200B1EC(param0->unk_14.unk_34, v6);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, v6);
     v3 = Strbuf_Init(255, 102);
     v4 = Strbuf_Init(255, 102);
     v5 = ov62_02231690(102);
@@ -1061,7 +1061,7 @@ static void ov62_0223ADC0 (UnkStruct_0208C06C * param0, int param1)
         v4 = 494;
     }
 
-    sub_0200B274(v4, 102, v5);
+    MessageLoader_GetSpeciesName(v4, 102, v5);
     Strbuf_CopyChars(v2, v5);
 
     v3 = ov62_0223429C(v1, v2);
@@ -1484,7 +1484,7 @@ static void ov62_0223B6AC (UnkStruct_0208C06C * param0)
         sub_0201A7E8(param0->unk_14.unk_10, v1, 6, Unk_ov62_02248D5C[v3][0], Unk_ov62_02248D5C[v3][1], Unk_ov62_02248D5C[v3][2], Unk_ov62_02248D5C[v3][3], 14, v2);
         sub_0201ADA4(v1, 0x0);
 
-        v6 = sub_0200B1EC(param0->unk_14.unk_34, v5[v3]);
+        v6 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, v5[v3]);
         v4 = ov62_0223429C(v1, v6);
 
         sub_0201D78C(v1, 0, v6, v4, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
@@ -1505,7 +1505,7 @@ static void ov62_0223B768 (UnkStruct_0208C06C * param0, int param1)
 
     sub_0201ADA4(v1, 0x0);
 
-    v2 = sub_0200B1EC(param0->unk_14.unk_34, param1);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
 
     sub_0201D78C(v1, 0, v2, v3, 0, 0xff, (((u32)(((15 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
@@ -1529,7 +1529,7 @@ static void ov62_0223B7C0 (UnkStruct_0208C06C * param0)
         sub_0201A7E8(param0->unk_14.unk_10, v1, 6, 12, 6, 8, 4, 14, v2);
         sub_0201ADA4(v1, 0x0);
 
-        v5 = sub_0200B1EC(param0->unk_14.unk_34, 34);
+        v5 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 34);
 
         {
             u32 v6 = (64 - sub_02002EB4(0, v5, 0)) / 2;
@@ -1583,7 +1583,7 @@ static void ov62_0223B888 (UnkStruct_0208C06C * param0)
         sub_0201ADA4(v1, 0x0);
 
         if (v3 == 0) {
-            v7 = sub_0200B1EC(param0->unk_14.unk_34, 310 + v0->unk_380.unk_00);
+            v7 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 310 + v0->unk_380.unk_00);
             v4 = ov62_0223429C(v1, v7);
             v5 = 0;
         }

@@ -20,7 +20,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -578,7 +578,7 @@ static void ov80_021D1AB0 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
     }
 
     if (param0->unk_00 == 1) {
-        Strbuf* v3 = sub_0200B1EC(param0->unk_84, 0);
+        Strbuf* v3 = MessageLoader_GetNewStrbuf(param0->unk_84, 0);
 
         sub_0201D78C(param1, 0, v3, 0, 6, 0xff, v1, NULL);
         Strbuf_Free(v3);
@@ -605,13 +605,13 @@ static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
     sub_0201ADA4(param1, 0);
 
     if ((param2->unk_08 != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_0 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_2)) {
-        v2 = sub_0200B1EC(param0->unk_84, param2->unk_08);
+        v2 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->unk_08);
         sub_0201D78C(param1, 0, v2, param2->unk_0C, param2->unk_0E, 0xff, v1, NULL);
         Strbuf_Free(v2);
     }
 
     if ((param2->unk_0A != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_4 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_6)) {
-        v3 = sub_0200B1EC(param0->unk_84, param2->unk_0A);
+        v3 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->unk_0A);
         sub_0201D78C(param1, 0, v3, param2->unk_10, param2->unk_12, 0xff, v1, NULL);
         Strbuf_Free(v3);
     }
@@ -705,7 +705,7 @@ static void ov80_021D1D6C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
 
     sub_02019964(param0->unk_28, 5, 10, 0, 12, 2, param0->unk_CC->rawData, 0, 7, param0->unk_CC->screenWidth / 8, param0->unk_CC->screenHeight / 8);
 
-    v2 = sub_0200B1EC(param0->unk_84, 1);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_84, 1);
     v0 = (10 * 8) - sub_02002D7C(0, v2, 0);
     v0 /= 2;
     v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));

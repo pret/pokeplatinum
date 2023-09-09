@@ -38,7 +38,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -146,7 +146,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_44 = sub_02015F84(param11, 1, 0);
     v0->unk_67 = 0;
     v0->unk_66 = 2;
-    v0->unk_08 = sub_0200B144(1, 26, 368, param11);
+    v0->unk_08 = MessageLoader_Init(1, 26, 368, param11);
     v0->unk_0C = sub_0200B358(param11);
     v0->unk_10 = Strbuf_Init((2 * 160), param11);
     v0->unk_3C = Heap_AllocFromHeap(param11, sizeof(UnkStruct_02098D38));
@@ -211,7 +211,7 @@ void sub_0207B0E0 (UnkStruct_0207AE68 * param0)
     sub_02015FB8(param0->unk_44);
     sub_020242C4(param0->unk_34);
     sub_0207C460(param0->unk_00);
-    sub_0200B190(param0->unk_08);
+    MessageLoader_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_0C);
     Heap_FreeToHeap(param0->unk_10);
     Heap_FreeToHeap(param0->unk_3C);
@@ -984,7 +984,7 @@ static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
 {
     Strbuf* v0;
 
-    v0 = sub_0200B1EC(param0->unk_08, param1);
+    v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
 
     sub_0200C388(param0->unk_0C, param0->unk_10, v0);
     Heap_FreeToHeap(v0);

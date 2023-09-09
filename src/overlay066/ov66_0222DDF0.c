@@ -7,7 +7,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02014FB0_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -47,7 +47,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_02014D38.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -1021,15 +1021,15 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C *
     }
 
     if (v1) {
-        UnkStruct_0200B144 * v4;
+        MessageLoader * v4;
         Strbuf* v5;
 
-        v4 = sub_0200B144(1, 26, 673, param2);
-        v5 = sub_0200B1EC(v4, 64);
+        v4 = MessageLoader_Init(1, 26, 673, param2);
+        v5 = MessageLoader_GetNewStrbuf(v4, 64);
 
         sub_02025EE0(param1, v5);
         Strbuf_Free(v5);
-        sub_0200B190(v4);
+        MessageLoader_Free(v4);
     }
 
     sub_02025F1C(param1, ov66_0222E79C(param0));

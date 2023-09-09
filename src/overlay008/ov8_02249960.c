@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02027860_decl.h"
@@ -31,7 +31,7 @@
 #include "overlay008/struct_ov8_02249FB8.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -186,7 +186,7 @@ typedef struct {
     UnkStruct_ov8_0224B28C unk_1C;
     u32 unk_40;
     UnkStruct_0205AA50 * unk_44;
-    UnkStruct_0200B144 * unk_48;
+    MessageLoader * unk_48;
     Strbuf* unk_4C;
 } UnkStruct_ov8_0224B67C;
 
@@ -2938,7 +2938,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
             v2->unk_00++;
 
             sub_020057A4(1593, 0);
-            sub_0200B1B8(v2->unk_48, 12, v2->unk_4C);
+            MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             sub_0205D8F4(v1->unk_08, v2->unk_44, 3);
             sub_0200E084(v2->unk_44, 0);
             sub_0205D944(v2->unk_44, sub_02025E44(v1->unk_0C));
@@ -2969,7 +2969,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-BOOL ov8_0224B67C (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, Strbuf *param3)
+BOOL ov8_0224B67C (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1, MessageLoader * param2, Strbuf *param3)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071BD0 * v1;

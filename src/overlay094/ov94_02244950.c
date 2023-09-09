@@ -6,7 +6,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 
@@ -18,7 +18,7 @@
 #include "unk_02002B7C.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -321,7 +321,7 @@ static void ov94_02244F2C (UnkStruct_ov94_0223FD4C * param0)
 {
     param0->unk_BAC = Strbuf_Init((90 * 2), 62);
     param0->unk_BDC = Strbuf_Init((16 * 8 * 2), 62);
-    param0->unk_BB0 = sub_0200B1EC(param0->unk_B90, 31);
+    param0->unk_BB0 = MessageLoader_GetNewStrbuf(param0->unk_B90, 31);
 }
 
 static void ov94_02244F64 (UnkStruct_ov94_0223FD4C * param0)
@@ -906,11 +906,11 @@ static int ov94_022457F0 (UnkStruct_ov94_0223FD4C * param0)
     return 3;
 }
 
-void ov94_02245824 (UnkStruct_ov94_0223FD4C * param0, UnkStruct_0200B144 * param1, int param2, int param3, u16 param4)
+void ov94_02245824 (UnkStruct_ov94_0223FD4C * param0, MessageLoader * param1, int param2, int param3, u16 param4)
 {
     Strbuf* v0;
 
-    v0 = sub_0200B1EC(param1, param2);
+    v0 = MessageLoader_GetNewStrbuf(param1, param2);
 
     sub_0200C388(param0->unk_B8C, param0->unk_BAC, v0);
     Strbuf_Free(v0);
@@ -960,7 +960,7 @@ static void ov94_0224593C (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
     Strbuf* v0 = Strbuf_Init((16 * 8 * 2), 62);
 
-    sub_0200B1B8(param0->unk_B9C, param1, v0);
+    MessageLoader_GetStrbuf(param0->unk_B9C, param1, v0);
     sub_0200C388(param0->unk_B8C, param0->unk_BDC, v0);
 
     sub_0201ADA4(&param0->unk_F8C, 15);

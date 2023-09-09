@@ -16,7 +16,7 @@
 
 #include "struct_defs/struct_0203CDB0.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_02017038.h"
@@ -3145,7 +3145,7 @@ void ov5_021E771C (Pokemon * param0, int param1)
 
     v4 = GetMonData(param0, MON_DATA_SPECIES, NULL);
 
-    sub_0200B274(v4, 0, v5);
+    MessageLoader_GetSpeciesName(v4, 0, v5);
     sub_02074B30(param0, 117, v5);
     sub_02074B30(param0, 77, &v1);
     sub_02074B30(param0, 155, &v2);

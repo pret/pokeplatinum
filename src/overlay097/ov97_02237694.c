@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -34,7 +34,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -225,7 +225,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
     int v0;
     Strbuf* v1;
     UnkStruct_0200B358 * v2;
-    UnkStruct_0200B144 * v3;
+    MessageLoader * v3;
     UnkStruct_ov97_0223F550 * v4 = &Unk_ov97_0223F550;
 
     if ((param1 != -1) && (param0->unk_4C != param1)) {
@@ -236,7 +236,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
         }
 
         if (param0->unk_4C != -1) {
-            v3 = sub_0200B144(1, 26, param0->unk_34, v4->unk_08);
+            v3 = MessageLoader_Init(1, 26, param0->unk_34, v4->unk_08);
 
             if (param0->unk_14 == NULL) {
                 v2 = sub_0200B358(v4->unk_08);
@@ -264,7 +264,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
                 sub_0200B3F0(v2);
             }
 
-            sub_0200B190(v3);
+            MessageLoader_Free(v3);
         }
     }
 

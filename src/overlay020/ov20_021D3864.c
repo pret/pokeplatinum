@@ -15,7 +15,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
@@ -87,7 +87,7 @@ static void ov20_021D390C (UnkStruct_02018340 * param0, const UnkStruct_ov61_022
     sub_0201A9F4(&v0);
     sub_0201ADA4(&v0, 14);
 
-    v1 = sub_0200B010(26, 438, param2, 35);
+    v1 = MessageBank_GetNewStrbufFromNARC(26, 438, param2, 35);
     v2 = ((param1->unk_03 * 8) - sub_02002D7C(0, v1, 0)) / 2;
 
     sub_0201D78C(&v0, 0, v1, v2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((14 & 0xff) << 0)), NULL);

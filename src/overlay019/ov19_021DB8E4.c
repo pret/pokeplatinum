@@ -19,7 +19,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C440.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -125,7 +125,7 @@ BOOL ov19_021DB8E4 (UnkStruct_ov19_021DBA9C * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_3C.unk_00 = param0->unk_18->pRawData;
     param0->unk_3C.unk_04 = 32;
     param0->unk_3C.unk_06 = 32;
-    param0->unk_4BF8 = sub_0200B144(1, 26, 391, 10);
+    param0->unk_4BF8 = MessageLoader_Init(1, 26, 391, 10);
 
     for (v0 = 0; v0 < 18; v0++) {
         param0->unk_48[v0] = NULL;
@@ -160,7 +160,7 @@ void ov19_021DBA9C (UnkStruct_ov19_021DBA9C * param0)
 void ov19_021DBAD0 (UnkStruct_ov19_021DBA9C * param0)
 {
     if (param0->unk_4BF8) {
-        sub_0200B190(param0->unk_4BF8);
+        MessageLoader_Free(param0->unk_4BF8);
     }
 
     if (param0->unk_14) {
@@ -595,7 +595,7 @@ void ov19_021DC29C (UnkStruct_ov19_021DBA9C * param0)
         sub_02019184(param0->unk_04, 1, 3, 0);
         sub_020198C0(param0->unk_04, 1, param0->unk_38->rawData, 0, 24, 32, 7);
         sub_0201ADA4(&param0->unk_10[2], 4);
-        sub_0200B1B8(param0->unk_4BF8, v1, param0->unk_4BFC);
+        MessageLoader_GetStrbuf(param0->unk_4BF8, v1, param0->unk_4BFC);
         sub_0201D78C(&param0->unk_10[2], 0, param0->unk_4BFC, 0, 0, 0xff, (u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
         sub_0201A954(&param0->unk_10[2]);
 

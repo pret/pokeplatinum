@@ -16,7 +16,7 @@
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_020170BC.h"
@@ -1078,7 +1078,7 @@ static void ov99_021D2AAC (UnkStruct_ov99_021D2CB0 * param0)
         sub_0201ADA4(param0->unk_24, 15);
         sub_0201A9F4(param0->unk_24);
 
-        v1 = sub_0200B1EC(param0->unk_20, ov99_021D4130());
+        v1 = MessageLoader_GetNewStrbuf(param0->unk_20, ov99_021D4130());
         v2 = (256 - sub_02002D7C(0, v1, 0)) / 2;
 
         sub_0201D7E0(param0->unk_24, 0, v1, v2, 80, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), 3, 0, NULL);

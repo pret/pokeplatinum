@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -37,7 +37,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_02014A84.h"
@@ -84,7 +84,7 @@ struct UnkStruct_ov56_02256468_t {
     UnkStruct_02025E6C * unk_10;
     UnkStruct_02018340 * unk_14;
     UnkStruct_0200B358 * unk_18;
-    UnkStruct_0200B144 * unk_1C;
+    MessageLoader * unk_1C;
     u16 * unk_20;
     NNSG2dScreenData * unk_24;
     UnkStruct_020218BC * unk_28;
@@ -133,7 +133,7 @@ static int ov56_02256A68(UnkStruct_ov56_02256468 * param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 * param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 * param0);
 static void ov56_02257048(UnkStruct_ov56_02256468 * param0, UnkStruct_02025E6C * param1, UnkStruct_02014A84 * param2, u32 param3);
-static Strbuf* ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, UnkStruct_02025E6C * param4);
+static Strbuf* ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, MessageLoader * param3, UnkStruct_02025E6C * param4);
 static void ov56_02256D64(UnkStruct_02018340 * param0, NNSG2dScreenData * param1, UnkStruct_ov56_022562EC * param2, int param3, int param4, int * param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 * param0);
 static void ov56_0225712C(UnkStruct_ov56_02256468 * param0);
@@ -199,7 +199,7 @@ static void ov56_02256294 (UnkStruct_ov56_02256468 * param0)
     param0->unk_2D8.unk_04 = 0;
     param0->unk_2D8.unk_06 = 0;
     param0->unk_18 = sub_0200B358(4);
-    param0->unk_1C = sub_0200B144(0, 26, 635, 4);
+    param0->unk_1C = MessageLoader_Init(0, 26, 635, 4);
     param0->unk_20 = sub_02006F6C(74, 3, 1, &(param0->unk_24), 4);
 }
 
@@ -271,7 +271,7 @@ void ov56_02256468 (UnkStruct_ov56_02256468 * param0)
         }
 
         sub_02021964(param0->unk_28);
-        sub_0200B190(param0->unk_1C);
+        MessageLoader_Free(param0->unk_1C);
         sub_0200B3F0(param0->unk_18);
 
         ov56_022563E8(param0->unk_22C);
@@ -774,7 +774,7 @@ static void ov56_02256D64 (UnkStruct_02018340 * param0, NNSG2dScreenData * param
     sub_02019460(param0, 7, sub_02019FE4(param0, 7), 32 * 24 * 2, 0);
 }
 
-static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, UnkStruct_02025E6C * param4)
+static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, MessageLoader * param3, UnkStruct_02025E6C * param4)
 {
     Strbuf* v0 = NULL;
     Strbuf* v1;

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV104_022320B4_T_H
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -17,7 +17,7 @@ struct UnkStruct_ov104_022320B4_t {
     UnkStruct_ov104_0222E8C8 unk_24;
     int unk_34;
     u8 unk_38;
-    UnkStruct_0200B144 * unk_3C;
+    MessageLoader * unk_3C;
     u8 * unk_40;
     UnkStruct_0200B358 * unk_44;
     Strbuf* unk_48;

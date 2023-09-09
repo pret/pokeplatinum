@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -30,7 +30,7 @@
 #include "unk_02006E3C.h"
 #include "unk_020093B4.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -57,9 +57,9 @@ typedef struct UnkStruct_ov87_021D106C_t {
     UnkStruct_02022550 * unk_1C4[6];
     void * unk_1DC;
     void * unk_1E0;
-    UnkStruct_0200B144 * unk_1E4;
-    UnkStruct_0200B144 * unk_1E8;
-    UnkStruct_0200B144 * unk_1EC;
+    MessageLoader * unk_1E4;
+    MessageLoader * unk_1E8;
+    MessageLoader * unk_1EC;
     UnkStruct_0200B358 * unk_1F0;
     Strbuf* unk_1F4;
     Strbuf* unk_1F8;
@@ -108,9 +108,9 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         sub_0200A784(0, 128, 0, 32, 0, 128, 0, 32, 61);
 
         v0->unk_34 = sub_020095C4(64, &v0->unk_38, 61);
-        v0->unk_1E4 = sub_0200B144(0, 26, 352, 61);
-        v0->unk_1E8 = sub_0200B144(1, 26, 412, 61);
-        v0->unk_1EC = sub_0200B144(1, 26, 647, 61);
+        v0->unk_1E4 = MessageLoader_Init(0, 26, 352, 61);
+        v0->unk_1E8 = MessageLoader_Init(1, 26, 412, 61);
+        v0->unk_1EC = MessageLoader_Init(1, 26, 647, 61);
         v0->unk_1F0 = sub_0200B358(61);
         v0->unk_1F4 = Strbuf_Init(256, 61);
         v0->unk_1F8 = Strbuf_Init(256, 61);
@@ -130,9 +130,9 @@ void ov87_021D1140 (UnkStruct_ov87_021D106C * param0)
         Strbuf_Free(param0->unk_1F8);
         Strbuf_Free(param0->unk_1F4);
         sub_0200B3F0(param0->unk_1F0);
-        sub_0200B190(param0->unk_1EC);
-        sub_0200B190(param0->unk_1E8);
-        sub_0200B190(param0->unk_1E4);
+        MessageLoader_Free(param0->unk_1EC);
+        MessageLoader_Free(param0->unk_1E8);
+        MessageLoader_Free(param0->unk_1E4);
         sub_02021964(param0->unk_34);
         sub_0200A878();
         Heap_FreeToHeap(param0->unk_10);
@@ -388,7 +388,7 @@ static void ov87_021D1590 (UnkStruct_ov87_021D106C * param0)
     sub_0200B60C(param0->unk_1F0, 1, v0->unk_04.year + 2000, 4, 0, 1);
     sub_0200C2E0(param0->unk_1F0, 2, v0->unk_04.month);
     sub_0200B60C(param0->unk_1F0, 3, v0->unk_04.day, 2, 0, 1);
-    sub_0200B1B8(param0->unk_1E4, 0, param0->unk_1F4);
+    MessageLoader_GetStrbuf(param0->unk_1E4, 0, param0->unk_1F4);
     sub_0200C388(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
     sub_0201ADA4(v1, 15);
     sub_0201D738(v1, 0, param0->unk_1F8, 0, 0, 0xff, NULL);
@@ -406,17 +406,17 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
     switch (v0->unk_1C) {
     case UnkEnum_ov87_021D12C0_0:
         sub_0201D738(v2, 0, v1->unk_00, 0, 0, 0xff, NULL);
-        sub_0200B1B8(param0->unk_1E4, 5, param0->unk_1F4);
+        MessageLoader_GetStrbuf(param0->unk_1E4, 5, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 72, 0, 0xff, NULL);
-        sub_0200B1B8(param0->unk_1E8, v1->unk_10, param0->unk_1F4);
+        MessageLoader_GetStrbuf(param0->unk_1E8, v1->unk_10, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 94, 0, 0xff, NULL);
 
         switch (sub_02075DAC(v1->unk_10, v1->unk_08)) {
         case 0:
-            sub_0200B1B8(param0->unk_1E4, 3, param0->unk_1F4);
+            MessageLoader_GetStrbuf(param0->unk_1E4, 3, param0->unk_1F4);
             break;
         case 1:
-            sub_0200B1B8(param0->unk_1E4, 4, param0->unk_1F4);
+            MessageLoader_GetStrbuf(param0->unk_1E4, 4, param0->unk_1F4);
             break;
         default:
             Strbuf_Clear(param0->unk_1F4);
@@ -424,11 +424,11 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
         }
 
         sub_0201D738(v2, 0, param0->unk_1F4, 174, 0, 0xff, NULL);
-        sub_0200B1B8(param0->unk_1E4, 1, param0->unk_1F4);
+        MessageLoader_GetStrbuf(param0->unk_1E4, 1, param0->unk_1F4);
         sub_0200B60C(param0->unk_1F0, 0, v1->unk_12, 4, 1, 1);
         sub_0200C388(param0->unk_1F0, param0->unk_1F8, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F8, 194, 0, 0xff, NULL);
-        sub_0200B1B8(param0->unk_1E4, 2, param0->unk_1F4);
+        MessageLoader_GetStrbuf(param0->unk_1E4, 2, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 0, 16, 0xff, NULL);
         sub_0201D738(v2, 0, v1->unk_04, sub_02002D7C(0, param0->unk_1F4, 0), 16, 0xff, NULL);
         break;
@@ -438,7 +438,7 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
 
         for (v3 = 0; v3 < 4; v3++) {
             if (v1->unk_14[v3]) {
-                sub_0200B1B8(param0->unk_1EC, v1->unk_14[v3], param0->unk_1F4);
+                MessageLoader_GetStrbuf(param0->unk_1EC, v1->unk_14[v3], param0->unk_1F4);
                 sub_0201D738(v2, 0, param0->unk_1F4, (v3 & 1) * 96, (v3 / 2) * 16, 0xff, NULL);
             } else {
                 break;

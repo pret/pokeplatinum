@@ -3,10 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "strbuf.h"
-
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "error_handling.h"
 #include "strbuf.h"
@@ -207,16 +204,16 @@ static inline BOOL inline_ov21_021D5764_1 (int param0, int param1)
 
 static Strbuf* ov21_021D5724 (int param0, int param1, int param2)
 {
-    UnkStruct_0200B144 * v0 = sub_0200B144(1, 26, param0, param2);
+    MessageLoader * v0 = MessageLoader_Init(1, 26, param0, param2);
 
     if (v0) {
         Strbuf* v1 = Strbuf_Init(256, param2);
 
         if (v1) {
-            sub_0200B1B8(v0, param1, v1);
+            MessageLoader_GetStrbuf(v0, param1, v1);
         }
 
-        sub_0200B190(v0);
+        MessageLoader_Free(v0);
         return v1;
     }
 

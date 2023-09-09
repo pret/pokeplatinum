@@ -12,7 +12,7 @@
 #include "overlay023/struct_ov23_0224271C.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
@@ -504,7 +504,7 @@ BOOL ov23_02241D58 (Strbuf *param0)
 
             sub_0200BACC(v1, 2, Unk_ov23_02257744->unk_468[v0]);
             sub_0200C324(v1, 2);
-            sub_0200B1B8(ov23_02253E3C(ov23_0224219C()), 95, v2);
+            MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 95, v2);
             sub_0200C388(v1, param0, v2);
 
             Unk_ov23_02257744->unk_468[v0] = 0;

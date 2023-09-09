@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013BE0_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -32,7 +32,7 @@
 
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200F174.h"
@@ -2621,19 +2621,19 @@ static BOOL ov5_021E51B4 (UnkStruct_ov5_021E5128 * param0)
 static Strbuf* ov5_021E5240 (u32 param0, u32 param1)
 {
     UnkStruct_0200B358 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     Strbuf* v2;
     Strbuf* v3;
 
-    v1 = sub_0200B144(1, 26, 359, param1);
+    v1 = MessageLoader_Init(1, 26, 359, param1);
     v0 = sub_0200B358(param1);
     v2 = Strbuf_Init(128, param1);
     v3 = Strbuf_Init(128, param1);
-    sub_0200B1B8(v1, 0, v3);
+    MessageLoader_GetStrbuf(v1, 0, v3);
     sub_0200BA08(v0, 0, param0);
     sub_0200C388(v0, v2, v3);
 
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
     sub_0200B3F0(v0);
     Strbuf_Free(v3);
     return v2;

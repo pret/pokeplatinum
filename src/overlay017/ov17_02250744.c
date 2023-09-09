@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
 
@@ -22,7 +22,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -75,7 +75,7 @@ typedef struct {
 } UnkStruct_ov17_02251070;
 
 static void ov17_022507F0(UnkStruct_ov17_0224FCA0 * param0, int param1, const UnkStruct_ov17_022508E4 * param2);
-static void ov17_022508E4(UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4);
+static void ov17_022508E4(UnkStruct_ov17_0224FCA0 * param0, MessageLoader * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4);
 void ov17_02250744(UnkStruct_ov17_0224FCA0 * param0);
 void ov17_022507C4(UnkStruct_ov17_022507C4 * param0);
 void ov17_02250968(UnkStruct_ov17_0224FCA0 * param0, u32 param1, const UnkStruct_ov17_022508E4 * param2);
@@ -239,7 +239,7 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
     }
 }
 
-static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4)
+static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, MessageLoader * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4)
 {
     Strbuf* v0;
     int v1;
@@ -250,7 +250,7 @@ static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 
         v1 = 1;
     }
 
-    v0 = sub_0200B1EC(param1, param2);
+    v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_022507F0(param0, param3, param4);
 
     sub_0200C388(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);

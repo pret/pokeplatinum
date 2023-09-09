@@ -40,7 +40,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -139,7 +139,7 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_00 = sub_02018340(39);
         v1 = NARC_ctor(NARC_INDEX_GRAPHIC__MYSIGN, 39);
         v0->unk_10 = sub_0200B358(39);
-        v0->unk_14 = sub_0200B144(0, 26, 425, 39);
+        v0->unk_14 = MessageLoader_Init(0, 26, 425, 39);
 
         sub_02017DD4(4, 8);
         ov72_0223DA70();
@@ -238,7 +238,7 @@ int ov72_0223D984 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002C60(2);
     ov72_0223DC6C(v0->unk_00);
     sub_0201E530();
-    sub_0200B190(v0->unk_14);
+    MessageLoader_Free(v0->unk_14);
     sub_0200B3F0(v0->unk_10);
     ov72_0223DC34(v0);
     sub_02006830(param0);
@@ -414,8 +414,8 @@ static void ov72_0223DB98 (UnkStruct_ov72_0223DB98 * param0)
     param0->unk_437E = 0;
     param0->unk_370 = 1;
 
-    sub_0200B1B8(param0->unk_14, 12, param0->unk_2C);
-    sub_0200B1B8(param0->unk_14, 9, param0->unk_30);
+    MessageLoader_GetStrbuf(param0->unk_14, 12, param0->unk_2C);
+    MessageLoader_GetStrbuf(param0->unk_14, 9, param0->unk_30);
 
     param0->unk_5D00 = sub_02015920(39);
 
@@ -1103,7 +1103,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
 
     v0 = Strbuf_Init((40 * 2), 39);
 
-    sub_0200B1B8(param0->unk_14, param1, v0);
+    MessageLoader_GetStrbuf(param0->unk_14, param1, v0);
     sub_0200C388(param0->unk_10, param0->unk_34, v0);
     Strbuf_Free(v0);
     sub_0201ADA4(&param0->unk_338, 0xf0f);

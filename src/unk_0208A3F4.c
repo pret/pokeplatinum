@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012CE0_decl.h"
@@ -25,7 +25,7 @@
 #include "unk_02002B7C.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
@@ -706,11 +706,11 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     Strbuf* v3;
     int v4;
     int v5;
-    UnkStruct_0200B144 * v6;
+    MessageLoader * v6;
     UnkStruct_0205AA50 v7;
 
-    v6 = sub_0200B144(0, 26, 212, 101);
-    v3 = sub_0200B1EC(v6, 2 + param1);
+    v6 = MessageLoader_Init(0, 26, 212, 101);
+    v3 = MessageLoader_GetNewStrbuf(v6, 2 + param1);
 
     {
         sub_0201A7A0(&v7);
@@ -745,7 +745,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
 
     sub_02012AC0(param0->unk_2C0.unk_90[param1], param4);
     Strbuf_Free(v3);
-    sub_0200B190(v6);
+    MessageLoader_Free(v6);
     sub_0201A8FC(&v7);
 }
 
@@ -761,18 +761,18 @@ void sub_0208B1C4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int
 
 void sub_0208B230 (UnkStruct_0205AA50 * param0, int param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
     sub_0201ADA4(param0, 15);
 
-    v0 = sub_0200B144(0, 26, 212, 101);
-    v1 = sub_0200B1EC(v0, param1);
+    v0 = MessageLoader_Init(0, 26, 212, 101);
+    v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
     sub_0201ADA4(param0, 15);
     sub_0201D738(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
 
     Strbuf_Free(v1);
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
 }

@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0200AC5C_DECL_H
 #define POKEPLATINUM_STRUCT_0200AC5C_DECL_H
 
-typedef struct UnkStruct_0200AC5C_t UnkStruct_0200AC5C;
+typedef struct MessageBank_t MessageBank;
 
 #endif // POKEPLATINUM_STRUCT_0200AC5C_DECL_H

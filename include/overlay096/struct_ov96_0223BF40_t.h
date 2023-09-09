@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -51,9 +51,9 @@ struct UnkStruct_ov96_0223BF40_t {
     int unk_BC4;
     int unk_BC8;
     UnkStruct_0200B358 * unk_BCC;
-    UnkStruct_0200B144 * unk_BD0;
-    UnkStruct_0200B144 * unk_BD4;
-    UnkStruct_0200B144 * unk_BD8;
+    MessageLoader * unk_BD0;
+    MessageLoader * unk_BD4;
+    MessageLoader * unk_BD8;
     Strbuf* unk_BDC;
     Strbuf* unk_BE0;
     Strbuf* unk_BE4;

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -43,7 +43,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -97,9 +97,9 @@ struct UnkStruct_02087A10_t {
     UnkStruct_02018340 * unk_160;
     BOOL unk_164;
     UnkStruct_0200B358 * unk_168;
-    UnkStruct_0200B144 * unk_16C;
-    UnkStruct_0200B144 * unk_170;
-    UnkStruct_0200B144 * unk_174;
+    MessageLoader * unk_16C;
+    MessageLoader * unk_170;
+    MessageLoader * unk_174;
     Strbuf* unk_178;
     Strbuf* unk_17C;
     Strbuf* unk_180;
@@ -912,9 +912,9 @@ static int sub_0208694C (UnkStruct_020067E8 * param0, int * param1)
         v1 = NARC_ctor(NARC_INDEX_DATA__NAMEIN, 18);
 
         v0->unk_168 = sub_0200B358(18);
-        v0->unk_16C = sub_0200B144(0, 26, 422, 18);
-        v0->unk_170 = sub_0200B144(1, 26, 427, 18);
-        v0->unk_174 = sub_0200B144(1, 26, 368, 18);
+        v0->unk_16C = MessageLoader_Init(0, 26, 422, 18);
+        v0->unk_170 = MessageLoader_Init(1, 26, 427, 18);
+        v0->unk_174 = MessageLoader_Init(1, 26, 368, 18);
 
         sub_02017DD4(4, 8);
         sub_020871CC();
@@ -1090,9 +1090,9 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
         Strbuf* v0;
 
         if (param0->unk_04 == 0) {
-            v0 = sub_0200B1EC(param0->unk_170, 0 + sub_0201D2E8() % 18);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 0 + sub_0201D2E8() % 18);
         } else if (param0->unk_04 == 1) {
-            v0 = sub_0200B1EC(param0->unk_170, 18 + sub_0201D2E8() % 18);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 18 + sub_0201D2E8() % 18);
         }
 
         Strbuf_Copy(param1->unk_18, v0);
@@ -1101,7 +1101,7 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
     } else if (param0->unk_00 == 3) {
         Strbuf* v1;
 
-        v1 = sub_0200B1EC(param0->unk_170, 88 + (sub_0201D2E8() % 2));
+        v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (sub_0201D2E8() % 2));
 
         Strbuf_Copy(param1->unk_18, v1);
         Strbuf_Free(v1);
@@ -1194,9 +1194,9 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
 
     Strbuf_Free(v0->unk_178);
     Strbuf_Free(v0->unk_17C);
-    sub_0200B190(v0->unk_174);
-    sub_0200B190(v0->unk_170);
-    sub_0200B190(v0->unk_16C);
+    MessageLoader_Free(v0->unk_174);
+    MessageLoader_Free(v0->unk_170);
+    MessageLoader_Free(v0->unk_16C);
     sub_0200B3F0(v0->unk_168);
     sub_02006830(param0);
     sub_02017798(NULL, NULL);
@@ -1431,7 +1431,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
 
     param0->unk_178 = sub_0200B29C(param0->unk_168, param0->unk_16C, Unk_020F2850[param0->unk_00], 18);
     param0->unk_17C = sub_0200B29C(param0->unk_168, param0->unk_16C, 8, 18);
-    param0->unk_184 = sub_0200B1EC(param0->unk_16C, 7);
+    param0->unk_184 = MessageLoader_GetNewStrbuf(param0->unk_16C, 7);
     param0->unk_158 = sub_020021F0(param0->unk_118);
     param0->unk_1C.unk_00 = 0;
     param0->unk_1C.unk_04 = 1;

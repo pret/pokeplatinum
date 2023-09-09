@@ -36,7 +36,7 @@
 #include "unk_02005474.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_02012744.h"
 #include "unk_02018340.h"
@@ -2272,7 +2272,7 @@ asm void ov117_02266150 (UnkStruct_ov117_02261280 * param0)
     add r0, #0x80
     ldr r0, [r0, #0]
     add r1, r1, #4
-    bl sub_0200B1EC
+    bl MessageLoader_GetNewStrbuf
     str r0, [sp, #0x34]
     ldr r0, [sp, #0x2c]
     mov r1, #0xa

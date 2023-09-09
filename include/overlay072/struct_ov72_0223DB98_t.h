@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02015920_decl.h"
@@ -25,7 +25,7 @@ struct UnkStruct_ov72_0223DB98_t {
     UnkStruct_0202CD88 * unk_08;
     UnkStruct_020279FC * unk_0C;
     UnkStruct_0200B358 * unk_10;
-    UnkStruct_0200B144 * unk_14;
+    MessageLoader * unk_14;
     Strbuf* unk_18[5];
     Strbuf* unk_2C;
     Strbuf* unk_30;

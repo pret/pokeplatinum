@@ -22,7 +22,7 @@
 #include "overlay023/funcptr_ov23_022431EC.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -229,7 +229,7 @@ BOOL ov23_0224223C (UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, in
 
         sub_0200B498(v0, 0, param0);
         sub_0200B498(v0, 1, param1);
-        sub_0200B1B8(ov23_02253E3C(ov23_0224219C()), param2, v1);
+        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
         sub_0200C388(v0, param3, v1);
         Strbuf_Free(v1);
         sub_0200B3F0(v0);
@@ -250,7 +250,7 @@ BOOL ov23_022422A8 (UnkStruct_02025E6C * param0, int param1, int param2, Strbuf 
         v1 = Strbuf_Init((50 * 2), 4);
 
         sub_0200B498(v0, param1, param0);
-        sub_0200B1B8(ov23_02253E3C(ov23_0224219C()), param2, v1);
+        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
         sub_0200C388(v0, param3, v1);
         Strbuf_Free(v1);
         sub_0200B3F0(v0);
@@ -1064,7 +1064,7 @@ void ov23_02243038 (int param0)
             v1 = Strbuf_Init((50 * 2), 11);
 
             sub_0200B498(v0, 0, sub_02032EE8(param0));
-            sub_0200B1B8(ov23_02253E3C(ov23_0224219C()), 115, v1);
+            MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 115, v1);
             sub_0200C388(v0, Unk_ov23_02257748->unk_DC[param0], v1);
             Strbuf_Free(v1);
             sub_0200B3F0(v0);

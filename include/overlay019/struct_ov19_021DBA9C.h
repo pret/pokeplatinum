@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV19_021DBA9C_H
 #define POKEPLATINUM_STRUCT_OV19_021DBA9C_H
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0201AE08.h"
@@ -41,7 +41,7 @@ typedef struct {
     u8 unk_3E4[18][1024];
     u8 unk_4BE4[18];
     u8 padding_4BF6[2];
-    UnkStruct_0200B144 * unk_4BF8;
+    MessageLoader * unk_4BF8;
     Strbuf* unk_4BFC;
 } UnkStruct_ov19_021DBA9C;
 

@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -53,7 +53,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -130,7 +130,7 @@ static int ov88_0223E914(UnkStruct_02095E80 * param0);
 static void ov88_0223E984(UnkStruct_02095E80 * param0);
 static void ov88_0223E998(UnkStruct_02095E80 * param0);
 static void ov88_0223B710(UnkStruct_0200B358 * param0, Party * param1, int param2);
-static void ov88_0223B748(UnkStruct_0205AA50 * param0, UnkStruct_0200B358 * param1, UnkStruct_0200B144 * param2, Party * param3, int param4);
+static void ov88_0223B748(UnkStruct_0205AA50 * param0, UnkStruct_0200B358 * param1, MessageLoader * param2, Party * param3, int param4);
 static void ov88_0223C8D8(UnkStruct_0205AA50 * param0, int param1, Party * param2, int param3, UnkStruct_02095E80 * param4);
 static void ov88_0223E694(Party * param0, Party * param1, int param2, int param3, UnkStruct_ov88_0223C370 * param4);
 static void ov88_0223BF7C(UnkStruct_02095E80 * param0);
@@ -311,7 +311,7 @@ int ov88_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_178 = sub_0200B368(12, (10 + 1) * 2, 26);
     v0->unk_17C = sub_0200B358(26);
     v0->unk_180 = sub_0200B358(26);
-    v0->unk_184 = sub_0200B144(0, 26, 354, 26);
+    v0->unk_184 = MessageLoader_Init(0, 26, 354, 26);
     v0->unk_40 = NULL;
 
     ov88_0223C370(v0, param0);
@@ -366,7 +366,7 @@ static void ov88_0223B320 (UnkStruct_02095E80 * param0)
     v4 = sub_02032EE8(sub_0203608C() ^ 1);
     v0 = sub_02025F04(v3, 26);
     v1 = sub_02025F04(v4, 26);
-    v2 = sub_0200B1EC(param0->unk_184, 50);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_184, 50);
 
     ov88_0223EC78(&param0->unk_49C[0], v0, 10, 0, 1, 1);
     ov88_0223EC78(&param0->unk_49C[1], v1, 10, 0, 1, 1);
@@ -520,7 +520,7 @@ static void ov88_0223B710 (UnkStruct_0200B358 * param0, Party * param1, int para
     }
 }
 
-static void ov88_0223B748 (UnkStruct_0205AA50 * param0, UnkStruct_0200B358 * param1, UnkStruct_0200B144 * param2, Party * param3, int param4)
+static void ov88_0223B748 (UnkStruct_0205AA50 * param0, UnkStruct_0200B358 * param1, MessageLoader * param2, Party * param3, int param4)
 {
     int v0;
 
@@ -900,7 +900,7 @@ int ov88_0223C03C (UnkStruct_020067E8 * param0, int * param1)
     ov88_0223C44C(v0->unk_174);
 
     Heap_FreeToHeapExplicit(26, v0->unk_174);
-    sub_0200B190(v0->unk_184);
+    MessageLoader_Free(v0->unk_184);
     sub_0200B3F0(v0->unk_180);
     sub_0200B3F0(v0->unk_17C);
     sub_0200B3F0(v0->unk_178);
@@ -1168,7 +1168,7 @@ static void ov88_0223C370 (UnkStruct_02095E80 * param0, UnkStruct_020067E8 * par
     memset(param0->unk_2274, 0xff, Party_sizeof());
 
     param0->unk_18C = sub_02025F04(v0->unk_04, 26);
-    param0->unk_190 = sub_0200B1EC(param0->unk_184, 42);
+    param0->unk_190 = MessageLoader_GetNewStrbuf(param0->unk_184, 42);
 
     sub_02038F8C(v0->unk_14);
 }
@@ -1370,7 +1370,7 @@ static void ov88_0223C8D8 (UnkStruct_0205AA50 * param0, int param1, Party * para
     if (!param4->unk_6F4[param1 * 6 + param3].unk_05) {
         v0 = Strbuf_Init(10, 26);
         sub_0201ADA4(&param0[28 + param1], 0);
-        sub_0200B1B8(param4->unk_184, 41, v0);
+        MessageLoader_GetStrbuf(param4->unk_184, 41, v0);
         ov88_0223EC78(&param0[28 + param1], v0, 9, 0xff, 6, 0);
 
         v3 = GetMonData(Party_GetPokemonBySlotIndex(param2, param3), MON_DATA_161, NULL);
@@ -1923,7 +1923,7 @@ static int ov88_0223D69C (UnkStruct_02095E80 * param0)
     param0->unk_36D4 = sub_02013A04(v1 + 1, 26);
 
     {
-        UnkStruct_0200B144 * v3;
+        MessageLoader * v3;
         Strbuf* v4 = Strbuf_Init(100, 26);
         int v5 = 0;
 
@@ -2023,7 +2023,7 @@ static int ov88_0223D854 (UnkStruct_02095E80 * param0)
     }
 
     if (param0->unk_36C4 == -1) {
-        sub_0200B190(param0->unk_36D0);
+        MessageLoader_Free(param0->unk_36D0);
         sub_0200B3F0(param0->unk_36CC);
         sub_020364F0(19);
         ov88_0223ECBC(&param0->unk_49C[23], 28, 1, param0->unk_184, param0->unk_178);
@@ -2064,7 +2064,7 @@ static int ov88_0223D96C (UnkStruct_02095E80 * param0)
     }
 
     param0->unk_36CC = sub_0200B358(26);
-    param0->unk_36D0 = sub_0200B144(0, 26, 675, 26);
+    param0->unk_36D0 = MessageLoader_Init(0, 26, 675, 26);
     param0->unk_36EC = sub_0202B370(param0->unk_04);
     param0->unk_226C = ov88_0223D854;
 

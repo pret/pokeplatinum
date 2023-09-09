@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -18,7 +18,7 @@
 
 #include "unk_02001AF4.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -34,7 +34,7 @@ static void ov19_021DB7BC(UnkStruct_02018340 * param0, u32 param1, u32 param2, u
 static void ov19_021DB84C(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
 static void ov19_021DB898(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
 
-BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, UnkStruct_0200B144 * param5, const UnkStruct_0200B358 * param6, int param7, NARC * param8)
+BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, MessageLoader * param5, const UnkStruct_0200B358 * param6, int param7, NARC * param8)
 {
     param0->unk_0C = param1;
     param0->unk_00 = param3;
@@ -42,7 +42,7 @@ BOOL ov19_021DB2FC (UnkStruct_ov19_021DB6F0 * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_2C = param6;
     param0->unk_20 = param7;
     param0->unk_10 = param5;
-    param0->unk_14 = sub_0200B144(0, 26, 18, 10);
+    param0->unk_14 = MessageLoader_Init(0, 26, 18, 10);
     param0->unk_30 = Strbuf_Init(64, 10);
     param0->unk_34 = Strbuf_Init(64, 10);
     param0->unk_1C = 0;
@@ -71,7 +71,7 @@ void ov19_021DB370 (UnkStruct_ov19_021DB6F0 * param0)
         }
 
         if (param0->unk_14) {
-            sub_0200B190(param0->unk_14);
+            MessageLoader_Free(param0->unk_14);
         }
 
         if (param0->unk_30) {
@@ -114,7 +114,7 @@ void ov19_021DB448 (UnkStruct_ov19_021DB6F0 * param0, u32 param1)
     sub_0201A9F4(&param0->unk_18[0]);
     ov19_021DB4B4(param0->unk_00, param0->unk_18[0].unk_04, param0->unk_18[0].unk_05, param0->unk_18[0].unk_06, param0->unk_18[0].unk_07, param0->unk_18[0].unk_08);
     sub_0201ADA4(&param0->unk_18[0], 15);
-    sub_0200B1B8(param0->unk_10, param1, param0->unk_30);
+    MessageLoader_GetStrbuf(param0->unk_10, param1, param0->unk_30);
     sub_0200C388(param0->unk_2C, param0->unk_34, param0->unk_30);
     sub_0201D738(&(param0->unk_18[0]), 1, param0->unk_34, 0, 0, 0xff, NULL);
     sub_0201ACCC(&(param0->unk_18[0]));
@@ -182,7 +182,7 @@ void ov19_021DB57C (UnkStruct_ov19_021DB6F0 * param0, const UnkStruct_ov19_021DF
         if ((param1->unk_00[v2] >= UnkEnum_021DFB94_56) && (param1->unk_00[v2] <= UnkEnum_021DFB94_61)) {
             ov19_021DB638(param0, v0, param1->unk_22, param1->unk_00[v2] - UnkEnum_021DFB94_56);
         } else {
-            sub_0200B1B8(param0->unk_14, 24 + param1->unk_00[v2], param0->unk_30);
+            MessageLoader_GetStrbuf(param0->unk_14, 24 + param1->unk_00[v2], param0->unk_30);
             sub_0201D78C(v0, 0, param0->unk_30, 10, v1, 0xff, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         }
 

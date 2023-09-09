@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
@@ -36,7 +36,7 @@ typedef struct {
     UnkStruct_0200C704 * unk_5C;
     UnkStruct_02018340 * unk_60;
     UnkStruct_0205AA50 unk_64[2];
-    UnkStruct_0200B144 * unk_84;
+    MessageLoader * unk_84;
     UnkStruct_0200B358 * unk_88;
     Strbuf* unk_8C;
     UnkStruct_02002F38 * unk_90;

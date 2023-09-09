@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02008A90.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -67,7 +67,7 @@ struct UnkStruct_02095E80_t {
     UnkStruct_0200B358 * unk_178;
     UnkStruct_0200B358 * unk_17C;
     UnkStruct_0200B358 * unk_180;
-    UnkStruct_0200B144 * unk_184;
+    MessageLoader * unk_184;
     Strbuf* unk_188;
     Strbuf* unk_18C;
     Strbuf* unk_190;
@@ -126,7 +126,7 @@ struct UnkStruct_02095E80_t {
     int unk_36C4;
     int unk_36C8;
     UnkStruct_0200B358 * unk_36CC;
-    UnkStruct_0200B144 * unk_36D0;
+    MessageLoader * unk_36D0;
     UnkStruct_02013A04 * unk_36D4;
     UnkStruct_0200112C * unk_36D8;
     UnkStruct_0205AA50 unk_36DC;

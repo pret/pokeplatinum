@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -21,7 +21,7 @@
 
 #include "unk_020021B0.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -130,7 +130,7 @@ void ov104_0222DCF4 (UnkStruct_0204B1E8 * param0, int param1, int param2)
 UnkStruct_0204B184 * ov104_0222DD04 (UnkStruct_ov104_0223A348_sub1 * param0, int param1, int param2, int param3)
 {
     UnkStruct_0204B184 * v0;
-    UnkStruct_0200B144 * v1 = sub_0200B144(1, 26, 21, param2);
+    MessageLoader * v1 = MessageLoader_Init(1, 26, 21, param2);
     Strbuf* v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348_sub1));
@@ -142,11 +142,11 @@ UnkStruct_0204B184 * ov104_0222DD04 (UnkStruct_ov104_0223A348_sub1 * param0, int
     param0->unk_18[1] = param1 * 3;
     param0->unk_04 = v0->unk_00;
 
-    v2 = sub_0200B1EC(v1, param1);
+    v2 = MessageLoader_GetNewStrbuf(v1, param1);
 
     Strbuf_ToChars(v2, &param0->unk_08[0], 8);
     Strbuf_Free(v2);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
 
     return v0;
 }
@@ -248,7 +248,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     }
 
     param0->unk_21 = v3;
-    sub_0200B274(param0->unk_00_val1_0, param7, &(param0->unk_22[0]));
+    MessageLoader_GetSpeciesName(param0->unk_00_val1_0, param7, &(param0->unk_22[0]));
 
     return v2;
 }
@@ -318,15 +318,15 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * par
     sub_02074B30(param1, 9, &param0->unk_21);
 
     if (param0->unk_14_val1_30) {
-        UnkStruct_0200B144 * v7;
+        MessageLoader * v7;
         Strbuf* v8;
 
-        v7 = sub_0200B144(1, 26, 412, 4);
-        v8 = sub_0200B1EC(v7, param0->unk_00_val1_0);
+        v7 = MessageLoader_Init(1, 26, 412, 4);
+        v8 = MessageLoader_GetNewStrbuf(v7, param0->unk_00_val1_0);
 
         sub_02074B30(param1, 119, v8);
         Strbuf_Free(v8);
-        sub_0200B190(v7);
+        MessageLoader_Free(v7);
     } else {
         sub_02074B30(param1, 117, param0->unk_22);
     }
@@ -354,7 +354,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
 {
     u32 v0;
     Strbuf* v1;
-    UnkStruct_0200B144 * v2;
+    MessageLoader * v2;
     int v3;
     int v4 = 0;
     UnkStruct_02025E6C * v5 = sub_02025E38(param0);
@@ -365,14 +365,14 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     v3 = sub_0203A138(562);
     sub_0209304C(param1, v5, v4, v3, 11);
 
-    v2 = sub_0200B144(0, 26, 363, 11);
-    v1 = sub_0200B1EC(v2, 0);
+    v2 = MessageLoader_Init(0, 26, 363, 11);
+    v1 = MessageLoader_GetNewStrbuf(v2, 0);
 
     sub_02074B30(param1, 145, v1);
     sub_02074B30(param1, 7, &v0);
 
     Strbuf_Free(v1);
-    sub_0200B190(v2);
+    MessageLoader_Free(v2);
 
     return;
 }
