@@ -2,11 +2,11 @@
 #define POKEPLATINUM_STRUCT_OV13_022264F4_H
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
 typedef struct {
-    UnkStruct_0207ADB4 * unk_00;
+    BattleSystem * unk_00;
     UnkStruct_02025E6C * unk_04;
     UnkStruct_0207D3C0 * unk_08;
     u32 unk_0C;

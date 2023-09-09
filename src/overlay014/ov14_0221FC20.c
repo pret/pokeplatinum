@@ -4,12 +4,12 @@
 #include "assert.h"
 
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 
 #include "battle/battle_context.h"
 
 #include "struct_defs/pokemon.h"
-#include "struct_defs/struct_0207ADB4_t.h"
+#include "struct_defs/battle_system.h"
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"
 
@@ -51,144 +51,144 @@ static const u16 Unk_ov14_0222EE78[] = {
 	0xffff
 };
 
-typedef void (* UnkFuncPtr_ov14_0222EEAC)(UnkStruct_0207ADB4 *, BattleContext *);
+typedef void (* UnkFuncPtr_ov14_0222EEAC)(BattleSystem *, BattleContext *);
 
-static s32 ov14_02222D7C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9);
-void ov14_0221FC20(UnkStruct_0207ADB4 * param0, BattleContext * param1, u8 param2, u8 param3);
-u8 ov14_0221FCF4(UnkStruct_0207ADB4 * param0, u8 param1);
-static u8 ov14_0221FD44(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static u8 ov14_0221FE38(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220078(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222C88(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220184(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022201C4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220204(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220244(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220284(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022202B8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220310(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220368(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022203C0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220418(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220464(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022204B0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022204FC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220548(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220590(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022205D8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220628(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220678(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022206A8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022206D8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220708(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220738(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220768(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220798(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022207C8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022207F8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_0222084C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_0222089C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220900(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220964(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220980(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220B10(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220B34(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220C70(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220CA4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220CD4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220D04(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220D48(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220D8C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220E68(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220E84(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220EA8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221060(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221114(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022211AC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022212A0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221394(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_0222140C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221444(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_0222147C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022214D0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221524(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221578(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022215CC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022216F8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221824(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022218E4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022219A4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221A48(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221AEC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221B5C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221BCC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221BE8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221BEC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221BF0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221C24(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222844(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_0222287C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022228C8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222900(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222918(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_0222294C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_0222296C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_0222298C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022229AC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222A08(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222A28(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222A44(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222A6C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222B10(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222B48(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222B80(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220AB4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02220F88(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222BB4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221C88(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221CF0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221D20(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221D88(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221E18(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221EBC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221EEC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221F1C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221F78(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221F9C(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02221FCC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222090(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022220CC(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222260(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222298(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022223B0(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222400(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222450(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022224A4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022224F8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222648(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022227A4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_022227F4(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222BF8(UnkStruct_0207ADB4 * param0, BattleContext * param1);
-static void ov14_02222C28(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-static BOOL ov14_02222C60(UnkStruct_0207ADB4 * param0, BattleContext * param1);
+static s32 ov14_02222D7C(BattleSystem * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9);
+void ov14_0221FC20(BattleSystem * param0, BattleContext * param1, u8 param2, u8 param3);
+u8 ov14_0221FCF4(BattleSystem * param0, u8 param1);
+static u8 ov14_0221FD44(BattleSystem * param0, BattleContext * param1);
+static u8 ov14_0221FE38(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220078(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222C88(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220184(BattleSystem * param0, BattleContext * param1);
+static void ov14_022201C4(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220204(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220244(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220284(BattleSystem * param0, BattleContext * param1);
+static void ov14_022202B8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220310(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220368(BattleSystem * param0, BattleContext * param1);
+static void ov14_022203C0(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220418(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220464(BattleSystem * param0, BattleContext * param1);
+static void ov14_022204B0(BattleSystem * param0, BattleContext * param1);
+static void ov14_022204FC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220548(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220590(BattleSystem * param0, BattleContext * param1);
+static void ov14_022205D8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220628(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220678(BattleSystem * param0, BattleContext * param1);
+static void ov14_022206A8(BattleSystem * param0, BattleContext * param1);
+static void ov14_022206D8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220708(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220738(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220768(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220798(BattleSystem * param0, BattleContext * param1);
+static void ov14_022207C8(BattleSystem * param0, BattleContext * param1);
+static void ov14_022207F8(BattleSystem * param0, BattleContext * param1);
+static void ov14_0222084C(BattleSystem * param0, BattleContext * param1);
+static void ov14_0222089C(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220900(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220964(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220980(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220B10(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220B34(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220C70(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220CA4(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220CD4(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220D04(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220D48(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220D8C(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220E68(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220E84(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220EA8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221060(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221114(BattleSystem * param0, BattleContext * param1);
+static void ov14_022211AC(BattleSystem * param0, BattleContext * param1);
+static void ov14_022212A0(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221394(BattleSystem * param0, BattleContext * param1);
+static void ov14_0222140C(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221444(BattleSystem * param0, BattleContext * param1);
+static void ov14_0222147C(BattleSystem * param0, BattleContext * param1);
+static void ov14_022214D0(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221524(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221578(BattleSystem * param0, BattleContext * param1);
+static void ov14_022215CC(BattleSystem * param0, BattleContext * param1);
+static void ov14_022216F8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221824(BattleSystem * param0, BattleContext * param1);
+static void ov14_022218E4(BattleSystem * param0, BattleContext * param1);
+static void ov14_022219A4(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221A48(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221AEC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221B5C(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221BCC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221BE8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221BEC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221BF0(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221C24(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222844(BattleSystem * param0, BattleContext * param1);
+static void ov14_0222287C(BattleSystem * param0, BattleContext * param1);
+static void ov14_022228C8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222900(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222918(BattleSystem * param0, BattleContext * param1);
+static void ov14_0222294C(BattleSystem * param0, BattleContext * param1);
+static void ov14_0222296C(BattleSystem * param0, BattleContext * param1);
+static void ov14_0222298C(BattleSystem * param0, BattleContext * param1);
+static void ov14_022229AC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222A08(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222A28(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222A44(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222A6C(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222B10(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222B48(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222B80(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220AB4(BattleSystem * param0, BattleContext * param1);
+static void ov14_02220F88(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222BB4(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221C88(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221CF0(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221D20(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221D88(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221E18(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221EBC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221EEC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221F1C(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221F78(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221F9C(BattleSystem * param0, BattleContext * param1);
+static void ov14_02221FCC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222090(BattleSystem * param0, BattleContext * param1);
+static void ov14_022220CC(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222260(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222298(BattleSystem * param0, BattleContext * param1);
+static void ov14_022223B0(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222400(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222450(BattleSystem * param0, BattleContext * param1);
+static void ov14_022224A4(BattleSystem * param0, BattleContext * param1);
+static void ov14_022224F8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222648(BattleSystem * param0, BattleContext * param1);
+static void ov14_022227A4(BattleSystem * param0, BattleContext * param1);
+static void ov14_022227F4(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222BF8(BattleSystem * param0, BattleContext * param1);
+static void ov14_02222C28(BattleSystem * param0, BattleContext * param1, int param2);
+static BOOL ov14_02222C60(BattleSystem * param0, BattleContext * param1);
 static int ov14_02222CF0(BattleContext * param0);
 static int ov14_02222D10(BattleContext * param0, int param1);
 static void ov14_02222D24(BattleContext * param0, int param1);
 static u8 ov14_02222D34(BattleContext * param0, u8 param1);
-static s32 ov14_02222E84(UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8);
-static int ov14_0222327C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3);
+static s32 ov14_02222E84(BattleSystem * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8);
+static int ov14_0222327C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 static void ov14_0222254C(BattleContext * param0, int param1, int * param2, int * param3, int param4);
 static BOOL ov14_022233F4(BattleContext * param0, int param1);
-static BOOL ov14_0222342C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-static BOOL ov14_022235F0(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-static BOOL ov14_02223B34(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, u8 param3);
-static BOOL ov14_02223C8C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-static BOOL ov14_02223E10(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, u32 param3, u8 param4);
-static BOOL ov14_02224070(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-static BOOL ov14_0222416C(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-static BOOL ov14_022241A4(UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2);
-int ov14_022243BC(UnkStruct_0207ADB4 * param0, int param1);
-BOOL ov14_022244B0(UnkStruct_0207ADB4 * param0, int param1);
+static BOOL ov14_0222342C(BattleSystem * param0, BattleContext * param1, int param2);
+static BOOL ov14_022235F0(BattleSystem * param0, BattleContext * param1, int param2);
+static BOOL ov14_02223B34(BattleSystem * param0, BattleContext * param1, int param2, u8 param3);
+static BOOL ov14_02223C8C(BattleSystem * param0, BattleContext * param1, int param2);
+static BOOL ov14_02223E10(BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u8 param4);
+static BOOL ov14_02224070(BattleSystem * param0, BattleContext * param1, int param2);
+static BOOL ov14_0222416C(BattleSystem * param0, BattleContext * param1, int param2);
+static BOOL ov14_022241A4(BattleSystem * param0, BattleContext * param1, int param2);
+int ov14_022243BC(BattleSystem * param0, int param1);
+BOOL ov14_022244B0(BattleSystem * param0, int param1);
 
 static const UnkFuncPtr_ov14_0222EEAC Unk_ov14_0222EEAC[] = {
     ov14_02220184,
@@ -302,7 +302,7 @@ static const UnkFuncPtr_ov14_0222EEAC Unk_ov14_0222EEAC[] = {
     ov14_02222BF8
 };
 
-void ov14_0221FC20 (UnkStruct_0207ADB4 * param0, BattleContext * param1, u8 param2, u8 param3)
+void ov14_0221FC20 (BattleSystem * param0, BattleContext * param1, u8 param2, u8 param3)
 {
     int v0;
     u8 v1;
@@ -324,10 +324,10 @@ void ov14_0221FC20 (UnkStruct_0207ADB4 * param0, BattleContext * param1, u8 para
         param3 = param3 >> 1;
     }
 
-    v1 = ov16_02254A6C(param0, param1, param2, 0, 0xffffffff);
+    v1 = BattleSystem_CheckStruggling(param0, param1, param2, 0, 0xffffffff);
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        if (v1 & sub_020787CC(v0)) {
+        if (v1 & FlagIndex(v0)) {
             param1->aiContext.moveCurPP[v0] = 0;
         }
 
@@ -336,23 +336,23 @@ void ov14_0221FC20 (UnkStruct_0207ADB4 * param0, BattleContext * param1, u8 para
 
     param1->aiContext.scriptStackSize = 0;
 
-    if (param0->unk_2C & 0x100) {
+    if (param0->battleType & 0x100) {
         param1->aiContext.thinkingMask = 0x20000000;
     } else {
-        param1->aiContext.thinkingMask = param0->unk_AC[param2].unk_0C;
+        param1->aiContext.thinkingMask = param0->trainers[param2].unk_0C;
     }
 
-    if (param0->unk_2C & 0x2) {
+    if (param0->battleType & 0x2) {
         param1->aiContext.thinkingMask |= 0x80;
     }
 }
 
-u8 ov14_0221FCF4 (UnkStruct_0207ADB4 * param0, u8 param1)
+u8 ov14_0221FCF4 (BattleSystem * param0, u8 param1)
 {
     u8 v0;
     BattleContext * v1;
 
-    v1 = param0->unk_30;
+    v1 = param0->battleCtx;
 
     if ((v1->aiContext.stateFlags & 0x10) == 0) {
         v1->aiContext.attacker = param1;
@@ -361,7 +361,7 @@ u8 ov14_0221FCF4 (UnkStruct_0207ADB4 * param0, u8 param1)
         ov14_0221FC20(param0, v1, v1->aiContext.attacker, 0xf);
     }
 
-    if ((param0->unk_2C & 0x2) == 0) {
+    if ((param0->battleType & 0x2) == 0) {
         v0 = ov14_0221FD44(param0, v1);
     } else {
         v0 = ov14_0221FE38(param0, v1);
@@ -370,7 +370,7 @@ u8 ov14_0221FCF4 (UnkStruct_0207ADB4 * param0, u8 param1)
     return v0;
 }
 
-static u8 ov14_0221FD44 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static u8 ov14_0221FD44 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     u8 v1[4];
@@ -427,7 +427,7 @@ static u8 ov14_0221FD44 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     return v4;
 }
 
-static u8 ov14_0221FE38 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static u8 ov14_0221FE38 (BattleSystem * param0, BattleContext * param1)
 {
     int v0, v1, v2;
     s16 v3[4];
@@ -548,7 +548,7 @@ static u8 ov14_0221FE38 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     return v8;
 }
 
-static void ov14_02220078 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220078 (BattleSystem * param0, BattleContext * param1)
 {
     while (param1->aiContext.scriptCursor != 2) {
         switch (param1->aiContext.scriptCursor) {
@@ -590,7 +590,7 @@ static void ov14_02220078 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220184 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220184 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -605,7 +605,7 @@ static void ov14_02220184 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022201C4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022201C4 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -620,7 +620,7 @@ static void ov14_022201C4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220204 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220204 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -635,7 +635,7 @@ static void ov14_02220204 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220244 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220244 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -650,7 +650,7 @@ static void ov14_02220244 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220284 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220284 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -664,7 +664,7 @@ static void ov14_02220284 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022202B8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022202B8 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     u32 v1;
@@ -685,7 +685,7 @@ static void ov14_022202B8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220310 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220310 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     u32 v1;
@@ -706,7 +706,7 @@ static void ov14_02220310 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220368 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220368 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     u32 v1;
@@ -727,7 +727,7 @@ static void ov14_02220368 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022203C0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022203C0 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     u32 v1;
@@ -748,7 +748,7 @@ static void ov14_022203C0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220418 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220418 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -767,7 +767,7 @@ static void ov14_02220418 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220464 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220464 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -786,7 +786,7 @@ static void ov14_02220464 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022204B0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022204B0 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -805,7 +805,7 @@ static void ov14_022204B0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022204FC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022204FC (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -824,7 +824,7 @@ static void ov14_022204FC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220548 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220548 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -843,7 +843,7 @@ static void ov14_02220548 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220590 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220590 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -862,7 +862,7 @@ static void ov14_02220590 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022205D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022205D8 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -883,7 +883,7 @@ static void ov14_022205D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220628 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220628 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -904,7 +904,7 @@ static void ov14_02220628 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220678 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220678 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -919,7 +919,7 @@ static void ov14_02220678 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022206A8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022206A8 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -934,7 +934,7 @@ static void ov14_022206A8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022206D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022206D8 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -949,7 +949,7 @@ static void ov14_022206D8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220708 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220708 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -964,7 +964,7 @@ static void ov14_02220708 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220738 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220738 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -979,7 +979,7 @@ static void ov14_02220738 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220768 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220768 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -994,7 +994,7 @@ static void ov14_02220768 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220798 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220798 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1009,7 +1009,7 @@ static void ov14_02220798 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022207C8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022207C8 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1024,7 +1024,7 @@ static void ov14_022207C8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022207F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022207F8 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1045,7 +1045,7 @@ static void ov14_022207F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_0222084C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_0222084C (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1067,7 +1067,7 @@ static void ov14_0222084C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov14_02222D24(param1, v1);
 }
 
-static void ov14_0222089C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_0222089C (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1086,7 +1086,7 @@ static void ov14_0222089C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220900 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220900 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1105,13 +1105,13 @@ static void ov14_02220900 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220964 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220964 (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->totalTurns;
 }
 
-static void ov14_02220980 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220980 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1137,19 +1137,19 @@ static void ov14_02220980 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
         param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].type;
         break;
     case 6:
-        v1 = ov16_0223E258(param0, param1->aiContext.attacker);
+        v1 = BattleSystem_Partner(param0, param1->aiContext.attacker);
         param1->aiContext.calcTemp = ov16_02252060(param1, v1, 27, NULL);
         break;
     case 5:
-        v1 = ov16_0223E258(param0, param1->aiContext.defender);
+        v1 = BattleSystem_Partner(param0, param1->aiContext.defender);
         param1->aiContext.calcTemp = ov16_02252060(param1, v1, 27, NULL);
         break;
     case 8:
-        v1 = ov16_0223E258(param0, param1->aiContext.attacker);
+        v1 = BattleSystem_Partner(param0, param1->aiContext.attacker);
         param1->aiContext.calcTemp = ov16_02252060(param1, v1, 28, NULL);
         break;
     case 7:
-        v1 = ov16_0223E258(param0, param1->aiContext.defender);
+        v1 = BattleSystem_Partner(param0, param1->aiContext.defender);
         param1->aiContext.calcTemp = ov16_02252060(param1, v1, 27, NULL);
         break;
     default:
@@ -1158,7 +1158,7 @@ static void ov14_02220980 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220AB4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220AB4 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -1177,13 +1177,13 @@ static void ov14_02220AB4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220B10 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220B10 (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].power;
 }
 
-static void ov14_02220B34 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220B34 (BattleSystem * param0, BattleContext * param1)
 {
     int v0 = 0, v1, v2;
     s32 v3[4];
@@ -1236,7 +1236,7 @@ static void ov14_02220B34 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220C70 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220C70 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -1249,7 +1249,7 @@ static void ov14_02220C70 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = param1->movePrevByBattler[v0];
 }
 
-static void ov14_02220CA4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220CA4 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1264,7 +1264,7 @@ static void ov14_02220CA4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220CD4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220CD4 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1279,7 +1279,7 @@ static void ov14_02220CD4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220D04 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220D04 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1294,7 +1294,7 @@ static void ov14_02220D04 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220D48 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220D48 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1309,7 +1309,7 @@ static void ov14_02220D48 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220D8C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220D8C (BattleSystem * param0, BattleContext * param1)
 {
     Party * v0;
     Pokemon * v1;
@@ -1327,9 +1327,9 @@ static void ov14_02220D8C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v3 = ov14_02222D34(param1, v6);
     v0 = ov16_0223DF20(param0, v3);
 
-    if (param0->unk_2C & 0x2) {
+    if (param0->battleType & 0x2) {
         v4 = param1->selectedPartySlot[v3];
-        v5 = param1->selectedPartySlot[ov16_0223E258(param0, v3)];
+        v5 = param1->selectedPartySlot[BattleSystem_Partner(param0, v3)];
     } else {
         v4 = v5 = param1->selectedPartySlot[v3];
     }
@@ -1343,19 +1343,19 @@ static void ov14_02220D8C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220E68 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220E68 (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.move;
 }
 
-static void ov14_02220E84 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220E84 (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].effect;
 }
 
-static void ov14_02220EA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220EA8 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -1396,7 +1396,7 @@ static void ov14_02220EA8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02220F88 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02220F88 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -1449,7 +1449,7 @@ static void ov14_02220F88 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221060 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221060 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     u32 v1;
@@ -1491,7 +1491,7 @@ static void ov14_02221060 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221114 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221114 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1525,7 +1525,7 @@ static void ov14_02221114 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022211AC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
 {
     Party * v0;
     Pokemon * v1;
@@ -1543,9 +1543,9 @@ static void ov14_022211AC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v8 = ov14_02222CF0(param1);
     v3 = ov14_02222D34(param1, v6);
 
-    if (param0->unk_2C & 0x2) {
+    if (param0->battleType & 0x2) {
         v4 = param1->selectedPartySlot[v3];
-        v5 = param1->selectedPartySlot[ov16_0223E258(param0, v3)];
+        v5 = param1->selectedPartySlot[BattleSystem_Partner(param0, v3)];
     } else {
         v4 = v5 = param1->selectedPartySlot[v3];
     }
@@ -1562,7 +1562,7 @@ static void ov14_022211AC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022212A0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
 {
     Party * v0;
     Pokemon * v1;
@@ -1580,9 +1580,9 @@ static void ov14_022212A0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     v8 = ov14_02222CF0(param1);
     v3 = ov14_02222D34(param1, v6);
 
-    if (param0->unk_2C & 0x2) {
+    if (param0->battleType & 0x2) {
         v4 = param1->selectedPartySlot[v3];
-        v5 = param1->selectedPartySlot[ov16_0223E258(param0, v3)];
+        v5 = param1->selectedPartySlot[BattleSystem_Partner(param0, v3)];
     } else {
         v4 = v5 = param1->selectedPartySlot[v3];
     }
@@ -1599,7 +1599,7 @@ static void ov14_022212A0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221394 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221394 (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
 
@@ -1626,7 +1626,7 @@ static void ov14_02221394 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_0222140C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_0222140C (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1641,7 +1641,7 @@ static void ov14_0222140C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221444 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221444 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1656,7 +1656,7 @@ static void ov14_02221444 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_0222147C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_0222147C (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -1677,7 +1677,7 @@ static void ov14_0222147C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022214D0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022214D0 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -1698,7 +1698,7 @@ static void ov14_022214D0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221524 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221524 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -1719,7 +1719,7 @@ static void ov14_02221524 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221578 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221578 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -1740,7 +1740,7 @@ static void ov14_02221578 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022215CC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022215CC (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1794,7 +1794,7 @@ static void ov14_022215CC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022216F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022216F8 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -1848,7 +1848,7 @@ static void ov14_022216F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221824 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221824 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     u8 v1;
@@ -1906,7 +1906,7 @@ static void ov14_02221824 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022218E4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022218E4 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     u8 v1;
@@ -1964,7 +1964,7 @@ static void ov14_022218E4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022219A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022219A4 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     u8 v1;
@@ -2007,7 +2007,7 @@ static void ov14_022219A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221A48 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221A48 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     u8 v1;
@@ -2050,7 +2050,7 @@ static void ov14_02221A48 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221AEC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221AEC (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2080,7 +2080,7 @@ static void ov14_02221AEC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221B5C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221B5C (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2106,23 +2106,23 @@ static void ov14_02221B5C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221BCC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221BCC (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.stateFlags |= (0x1 | 0x2 | 0x8);
 }
 
-static void ov14_02221BE8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221BE8 (BattleSystem * param0, BattleContext * param1)
 {
     return;
 }
 
-static void ov14_02221BEC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221BEC (BattleSystem * param0, BattleContext * param1)
 {
     return;
 }
 
-static void ov14_02221BF0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221BF0 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2135,7 +2135,7 @@ static void ov14_02221BF0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = param1->battleMons[v0].heldItem;
 }
 
-static void ov14_02221C24 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221C24 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2152,7 +2152,7 @@ static void ov14_02221C24 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221C88 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221C88 (BattleSystem * param0, BattleContext * param1)
 {
     u16 v0;
     u8 v1;
@@ -2178,7 +2178,7 @@ static void ov14_02221C88 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221CF0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221CF0 (BattleSystem * param0, BattleContext * param1)
 {
     u32 v0;
     int v1;
@@ -2193,7 +2193,7 @@ static void ov14_02221CF0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221D20 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221D20 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2217,7 +2217,7 @@ static void ov14_02221D20 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221D88 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221D88 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2243,7 +2243,7 @@ static void ov14_02221D88 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221E18 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221E18 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2275,7 +2275,7 @@ static void ov14_02221E18 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221EBC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221EBC (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2288,13 +2288,13 @@ static void ov14_02221EBC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = ov16_02258B80(param1, v0);
 }
 
-static void ov14_02221EEC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221EEC (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->battleMons[param1->aiContext.attacker].ppCur[param1->aiContext.moveSlot];
 }
 
-static void ov14_02221F1C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221F1C (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2313,19 +2313,19 @@ static void ov14_02221F1C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02221F78 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221F78 (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].class;
 }
 
-static void ov14_02221F9C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221F9C (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->movePrevByBattler[param1->aiContext.defender]].class;
 }
 
-static void ov14_02221FCC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02221FCC (BattleSystem * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2[4];
@@ -2338,7 +2338,7 @@ static void ov14_02221FCC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     v7 = ov14_02222CF0(param1);
     v6 = ov14_02222D34(param1, v7);
-    v5 = ov16_0223DF1C(param0);
+    v5 = BattleSystem_MaxBattlers(param0);
 
     for (v0 = 0; v0 < v5; v0++) {
         v2[v0] = v0;
@@ -2364,7 +2364,7 @@ static void ov14_02221FCC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222090 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222090 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2377,7 +2377,7 @@ static void ov14_02222090 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = param1->totalTurns - param1->battleMons[v0].moveEffectsData.fakeOutTurnNumber;
 }
 
-static void ov14_022220CC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022220CC (BattleSystem * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2;
@@ -2426,7 +2426,7 @@ static void ov14_022220CC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222260 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222260 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2439,7 +2439,7 @@ static void ov14_02222260 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222298 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222298 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2478,7 +2478,7 @@ static void ov14_02222298 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022223B0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022223B0 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2498,7 +2498,7 @@ static void ov14_022223B0 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222400 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222400 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2513,7 +2513,7 @@ static void ov14_02222400 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = param1->battleMons[v2].statBoosts[v1] - param1->battleMons[param1->aiContext.attacker].statBoosts[v1];
 }
 
-static void ov14_02222450 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222450 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2536,7 +2536,7 @@ static void ov14_02222450 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022224A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022224A4 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2559,7 +2559,7 @@ static void ov14_022224A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022224F8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022224F8 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2615,7 +2615,7 @@ static void ov14_0222254C (BattleContext * param0, int param1, int * param2, int
     }
 }
 
-static void ov14_02222648 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222648 (BattleSystem * param0, BattleContext * param1)
 {
     int v0 = 0, v1, v2;
     s32 v3;
@@ -2657,7 +2657,7 @@ static void ov14_02222648 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
             ov14_02222D7C(param0, param1, v7, &param1->battleMons[v7].moves[0], &v4[0], param1->battleMons[v7].heldItem, &v6[0], ov16_02255A4C(param1, v7), param1->battleMons[v7].moveEffectsData.embargoTurns, v5);
 
-            v7 = ov16_0223E258(param0, param1->aiContext.attacker);
+            v7 = BattleSystem_Partner(param0, param1->aiContext.attacker);
 
             if (v1 == 0) {
                 v3 = v4[param1->aiContext.moveSlot];
@@ -2681,7 +2681,7 @@ static void ov14_02222648 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022227A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022227A4 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2697,12 +2697,12 @@ static void ov14_022227A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     v2 = ov14_02222D34(param1, v0);
 
-    if (param1->battlersSwitchingMask & sub_020787CC(v2)) {
+    if (param1->battlersSwitchingMask & FlagIndex(v2)) {
         ov14_02222D24(param1, v1);
     }
 }
 
-static void ov14_022227F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022227F4 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2718,12 +2718,12 @@ static void ov14_022227F4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
 
     v2 = ov14_02222D34(param1, v0);
 
-    if ((param1->battlersSwitchingMask & sub_020787CC(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & FlagIndex(v2)) == 0) {
         ov14_02222D24(param1, v1);
     }
 }
 
-static void ov14_02222844 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222844 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2736,7 +2736,7 @@ static void ov14_02222844 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = param1->battleMons[v0].gender;
 }
 
-static void ov14_0222287C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_0222287C (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2753,7 +2753,7 @@ static void ov14_0222287C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_022228C8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022228C8 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2766,13 +2766,13 @@ static void ov14_022228C8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = param1->battleMons[v0].moveEffectsData.stockpileCount;
 }
 
-static void ov14_02222900 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222900 (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
-    param1->aiContext.calcTemp = param0->unk_2C;
+    param1->aiContext.calcTemp = param0->battleType;
 }
 
-static void ov14_02222918 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222918 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2785,25 +2785,25 @@ static void ov14_02222918 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = param1->recycleItem[v0];
 }
 
-static void ov14_0222294C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_0222294C (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].type;
 }
 
-static void ov14_0222296C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_0222296C (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].power;
 }
 
-static void ov14_0222298C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_0222298C (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
     param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.calcTemp].effect;
 }
 
-static void ov14_022229AC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_022229AC (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2820,7 +2820,7 @@ static void ov14_022229AC (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222A08 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222A08 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2829,7 +2829,7 @@ static void ov14_02222A08 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov14_02222C28(param0, param1, v0);
 }
 
-static void ov14_02222A28 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222A28 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2838,7 +2838,7 @@ static void ov14_02222A28 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     ov14_02222D24(param1, v0);
 }
 
-static void ov14_02222A44 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222A44 (BattleSystem * param0, BattleContext * param1)
 {
     ov14_02222D24(param1, 1);
 
@@ -2849,7 +2849,7 @@ static void ov14_02222A44 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.stateFlags |= 0x1;
 }
 
-static void ov14_02222A6C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222A6C (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2880,7 +2880,7 @@ static void ov14_02222A6C (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222B10 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222B10 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2892,7 +2892,7 @@ static void ov14_02222B10 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222B48 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222B48 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2905,7 +2905,7 @@ static void ov14_02222B48 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222B80 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222B80 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -2918,7 +2918,7 @@ static void ov14_02222B80 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222BB4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222BB4 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2935,7 +2935,7 @@ static void ov14_02222BB4 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222BF8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222BF8 (BattleSystem * param0, BattleContext * param1)
 {
     u8 v0;
     int v1;
@@ -2948,7 +2948,7 @@ static void ov14_02222BF8 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     param1->aiContext.calcTemp = ov16_02255A4C(param1, v0);
 }
 
-static void ov14_02222C28 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+static void ov14_02222C28 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     param1->aiContext.scriptStackPointer[param1->aiContext.scriptStackSize++] = param1->aiScriptCursor;
     ov14_02222D24(param1, param2);
@@ -2956,7 +2956,7 @@ static void ov14_02222C28 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     GF_ASSERT(param1->aiContext.scriptStackSize <= 8);
 }
 
-static BOOL ov14_02222C60 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static BOOL ov14_02222C60 (BattleSystem * param0, BattleContext * param1)
 {
     if (param1->aiContext.scriptStackSize) {
         param1->aiContext.scriptStackSize--;
@@ -2967,7 +2967,7 @@ static BOOL ov14_02222C60 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
     }
 }
 
-static void ov14_02222C88 (UnkStruct_0207ADB4 * param0, BattleContext * param1)
+static void ov14_02222C88 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -3026,7 +3026,7 @@ static u8 ov14_02222D34 (BattleContext * param0, u8 param1)
     return v0;
 }
 
-static s32 ov14_02222D7C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9)
+static s32 ov14_02222D7C (BattleSystem * param0, BattleContext * param1, int param2, u16 * param3, s32 * param4, u16 param5, u8 * param6, int param7, int param8, int param9)
 {
     int v0, v1;
     int v2;
@@ -3090,7 +3090,7 @@ static const u16 Unk_ov14_0222EE60[][2] = {
     {0xFFFF, 0xFFFF}
 };
 
-static s32 ov14_02222E84 (UnkStruct_0207ADB4 * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8)
+static s32 ov14_02222E84 (BattleSystem * param0, BattleContext * param1, u16 param2, u16 param3, u8 * param4, int param5, int param6, int param7, u8 param8)
 {
     int v0;
     int v1;
@@ -3283,7 +3283,7 @@ static s32 ov14_02222E84 (UnkStruct_0207ADB4 * param0, BattleContext * param1, u
     return v5;
 }
 
-static int ov14_0222327C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, int param3)
+static int ov14_0222327C (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     int v0;
 
@@ -3393,7 +3393,7 @@ static BOOL ov14_022233F4 (BattleContext * param0, int param1)
     return 0;
 }
 
-static BOOL ov14_0222342C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+static BOOL ov14_0222342C (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0, v1;
     u16 v2;
@@ -3401,7 +3401,7 @@ static BOOL ov14_0222342C (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     u32 v4;
     Pokemon * v5;
 
-    if (ov16_0223DF0C(param0) & 0x2) {
+    if (BattleSystem_BattleType(param0) & 0x2) {
         return 0;
     }
 
@@ -3447,7 +3447,7 @@ static BOOL ov14_0222342C (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     return 0;
 }
 
-static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0, v1;
     u8 v2, v3;
@@ -3459,7 +3459,7 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     int v11;
     Pokemon * v12;
 
-    if (ov16_0223DF0C(param0) & 0x2) {
+    if (BattleSystem_BattleType(param0) & 0x2) {
         v2 = 0;
         v3 = 2;
     } else {
@@ -3503,10 +3503,10 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
 
     v4 = param2;
 
-    if ((ov16_0223DF0C(param0) & 0x10) || (ov16_0223DF0C(param0) & 0x8)) {
+    if ((BattleSystem_BattleType(param0) & 0x10) || (BattleSystem_BattleType(param0) & 0x8)) {
         v5 = v4;
     } else {
-        v5 = ov16_0223E258(param0, param2);
+        v5 = BattleSystem_Partner(param0, param2);
     }
 
     v9 = 0;
@@ -3593,7 +3593,7 @@ static BOOL ov14_022235F0 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     return 0;
 }
 
-static BOOL ov14_02223B34 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, u8 param3)
+static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int param2, u8 param3)
 {
     int v0;
     u32 v1;
@@ -3602,10 +3602,10 @@ static BOOL ov14_02223B34 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     u16 v4;
     int v5;
 
-    v3 = ov16_0223E1F8(param0, param2) ^ 1;
+    v3 = BattleSystem_BattlerSlot(param0, param2) ^ 1;
     v2 = ov16_0223E1C4(param0, v3);
 
-    if ((param1->battlersSwitchingMask & sub_020787CC(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & FlagIndex(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
             v4 = param1->battleMons[param2].moves[v0];
             v5 = ov14_0222327C(param0, param1, param2, v4);
@@ -3627,13 +3627,13 @@ static BOOL ov14_02223B34 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
         }
     }
 
-    if ((ov16_0223DF0C(param0) & 0x2) == 0) {
+    if ((BattleSystem_BattleType(param0) & 0x2) == 0) {
         return 0;
     }
 
-    v2 = ov16_0223E258(param0, v2);
+    v2 = BattleSystem_Partner(param0, v2);
 
-    if ((param1->battlersSwitchingMask & sub_020787CC(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & FlagIndex(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
             v4 = param1->battleMons[param2].moves[v0];
             v5 = ov14_0222327C(param0, param1, param2, v4);
@@ -3658,7 +3658,7 @@ static BOOL ov14_02223B34 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     return 0;
 }
 
-static BOOL ov14_02223C8C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+static BOOL ov14_02223C8C (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0;
     u8 v1, v2;
@@ -3698,10 +3698,10 @@ static BOOL ov14_02223C8C (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
 
     v1 = param2;
 
-    if ((ov16_0223DF0C(param0) & 0x10) || (ov16_0223DF0C(param0) & 0x8)) {
+    if ((BattleSystem_BattleType(param0) & 0x10) || (BattleSystem_BattleType(param0) & 0x8)) {
         v2 = v1;
     } else {
-        v2 = ov16_0223E258(param0, param2);
+        v2 = BattleSystem_Partner(param0, param2);
     }
 
     v6 = 0;
@@ -3723,7 +3723,7 @@ static BOOL ov14_02223C8C (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     return 0;
 }
 
-static BOOL ov14_02223E10 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2, u32 param3, u8 param4)
+static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u8 param4)
 {
     int v0, v1;
     u8 v2, v3;
@@ -3743,10 +3743,10 @@ static BOOL ov14_02223E10 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
 
     v2 = param2;
 
-    if ((ov16_0223DF0C(param0) & 0x10) || (ov16_0223DF0C(param0) & 0x8)) {
+    if ((BattleSystem_BattleType(param0) & 0x10) || (BattleSystem_BattleType(param0) & 0x8)) {
         v3 = v2;
     } else {
-        v3 = ov16_0223E258(param0, param2);
+        v3 = BattleSystem_Partner(param0, param2);
     }
 
     v7 = 0;
@@ -3785,7 +3785,7 @@ static BOOL ov14_02223E10 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     return 0;
 }
 
-static BOOL ov14_02224070 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+static BOOL ov14_02224070 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     if (((param1->battleMons[param2].status & 0x7) == 0) || (ov16_02255A4C(param1, param2) != 30) || (param1->battleMons[param2].curHP < (param1->battleMons[param2].maxHP / 2))) {
         return 0;
@@ -3821,7 +3821,7 @@ static BOOL ov14_02224070 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     return 0;
 }
 
-static BOOL ov14_0222416C (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+static BOOL ov14_0222416C (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0;
     u8 v1;
@@ -3837,7 +3837,7 @@ static BOOL ov14_0222416C (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     return v1 >= 4;
 }
 
-static BOOL ov14_022241A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1, int param2)
+static BOOL ov14_022241A4 (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0;
     int v1;
@@ -3852,10 +3852,10 @@ static BOOL ov14_022241A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     v1 = 0;
     v2 = param2;
 
-    if ((ov16_0223DF0C(param0) & 0x10) || (ov16_0223DF0C(param0) & 0x8)) {
+    if ((BattleSystem_BattleType(param0) & 0x10) || (BattleSystem_BattleType(param0) & 0x8)) {
         v3 = v2;
     } else {
-        v3 = ov16_0223E258(param0, param2);
+        v3 = BattleSystem_Partner(param0, param2);
     }
 
     v5 = 0;
@@ -3910,7 +3910,7 @@ static BOOL ov14_022241A4 (UnkStruct_0207ADB4 * param0, BattleContext * param1, 
     return 0;
 }
 
-int ov14_022243BC (UnkStruct_0207ADB4 * param0, int param1)
+int ov14_022243BC (BattleSystem * param0, int param1)
 {
     int v0;
     u8 v1, v2;
@@ -3919,8 +3919,8 @@ int ov14_022243BC (UnkStruct_0207ADB4 * param0, int param1)
     Pokemon * v6;
     BattleContext * v7;
 
-    v7 = param0->unk_30;
-    v3 = ov16_0223DF0C(param0);
+    v7 = param0->battleCtx;
+    v3 = BattleSystem_BattleType(param0);
 
     if ((v3 & 0x1) || ((ov16_0223E208(param0, param1) == 0))) {
         if (ov14_022241A4(param0, v7, param1)) {
@@ -3931,7 +3931,7 @@ int ov14_022243BC (UnkStruct_0207ADB4 * param0, int param1)
                     if ((v3 & 0x10) || (v3 & 0x8)) {
                         v2 = v1;
                     } else {
-                        v2 = ov16_0223E258(param0, param1);
+                        v2 = BattleSystem_Partner(param0, param1);
                     }
 
                     v4 = 0;
@@ -3960,7 +3960,7 @@ int ov14_022243BC (UnkStruct_0207ADB4 * param0, int param1)
     return 1;
 }
 
-BOOL ov14_022244B0 (UnkStruct_0207ADB4 * param0, int param1)
+BOOL ov14_022244B0 (BattleSystem * param0, int param1)
 {
     int v0;
     u8 v1 = 0;
@@ -3972,12 +3972,12 @@ BOOL ov14_022244B0 (UnkStruct_0207ADB4 * param0, int param1)
     Pokemon * v7;
     BattleContext * v8;
 
-    v8 = param0->unk_30;
+    v8 = param0->battleCtx;
     v8->aiContext.usedItemCondition[param1 >> 1] = 0;
 
     v4 = 0;
 
-    if (((param0->unk_2C & ((0x2 | 0x1) | 0x8 | 0x40)) == ((0x2 | 0x1) | 0x8 | 0x40)) && (ov16_0223E1F8(param0, param1) == 4)) {
+    if (((param0->battleType & ((0x2 | 0x1) | 0x8 | 0x40)) == ((0x2 | 0x1) | 0x8 | 0x40)) && (BattleSystem_BattlerSlot(param0, param1) == 4)) {
         return v4;
     }
 
@@ -4019,37 +4019,37 @@ BOOL ov14_022244B0 (UnkStruct_0207ADB4 * param0, int param1)
                 }
             } else if (ov16_0225B0FC(v8, v2, 15)) {
                 if (v8->battleMons[param1].status & 0x7) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= sub_020787CC(5);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(5);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 16)) {
                 if ((v8->battleMons[param1].status & 0x8) || (v8->battleMons[param1].status & 0x80)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= sub_020787CC(4);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(4);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 17)) {
                 if (v8->battleMons[param1].status & 0x10) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= sub_020787CC(3);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(3);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 18)) {
                 if (v8->battleMons[param1].status & 0x20) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= sub_020787CC(2);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(2);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 19)) {
                 if (v8->battleMons[param1].status & 0x40) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= sub_020787CC(1);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(1);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 20)) {
                 if (v8->battleMons[param1].statusVolatile & 0x7) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= sub_020787CC(0);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(0);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }

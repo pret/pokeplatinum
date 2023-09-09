@@ -26,7 +26,7 @@ struct UnkStruct_ov16_0225BFFC_t {
     u8 unk_90[256];
     u8 unk_190;
     u8 unk_191;
-    u8 unk_192;
+    u8 bootState;
     u8 unk_193;
     UnkStruct_0201CD38 * unk_194;
     u16 unk_198;

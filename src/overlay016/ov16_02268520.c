@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay016/struct_ov16_02268520.h"
@@ -267,7 +267,7 @@ void ov16_022686BC (UnkStruct_ov16_02268520 * param0, int param1)
     sub_0200D3F4(param0->unk_00, param1);
 }
 
-void ov16_022686CC (UnkStruct_ov16_02268520 * param0, UnkStruct_0207ADB4 * param1, u16 param2, int param3)
+void ov16_022686CC (UnkStruct_ov16_02268520 * param0, BattleSystem * param1, u16 param2, int param3)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_ov16_02268520));
 

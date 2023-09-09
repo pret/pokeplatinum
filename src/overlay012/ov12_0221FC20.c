@@ -13,7 +13,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_0222118C_decl.h"
 #include "overlay012/struct_ov12_022211D8_decl.h"
 #include "overlay012/struct_ov12_022222D4_decl.h"
@@ -4195,7 +4195,7 @@ int ov12_022234E4 (int param0, int param1)
     return Unk_ov12_02238928[param0][param1];
 }
 
-UnkStruct_ov12_02223764 * ov12_022234F8 (UnkStruct_0207ADB4 * param0, int param1, int param2)
+UnkStruct_ov12_02223764 * ov12_022234F8 (BattleSystem * param0, int param1, int param2)
 {
     int v0;
     int v1[] = {0, 0, 20, 10, 10, 20};
@@ -4345,7 +4345,7 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (UnkStruct_0207ADB4 * param0, int param1
     return v2;
 }
 
-UnkStruct_ov12_02223764 * ov12_02223764 (UnkStruct_0207ADB4 * param0, int param1)
+UnkStruct_ov12_02223764 * ov12_02223764 (BattleSystem * param0, int param1)
 {
     UnkStruct_ov12_02223764 * v0;
 

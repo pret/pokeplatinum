@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 
 #include "overlay016/struct_ov16_0225BFFC_t.h"
@@ -15,13 +15,13 @@
 
 static void ov16_02264800(UnkStruct_0201CD38 * param0, void * param1);
 
-void ov16_02264798 (UnkStruct_ov16_0225BFFC * param0, UnkStruct_0207ADB4 * param1)
+void ov16_02264798 (UnkStruct_ov16_0225BFFC * param0, BattleSystem * param1)
 {
     if (param0->unk_194 != NULL) {
         return;
     }
 
-    if (ov16_0223DF0C(param1) & (0x20 | 0x200)) {
+    if (BattleSystem_BattleType(param1) & (0x20 | 0x200)) {
         return;
     }
 

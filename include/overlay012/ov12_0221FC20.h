@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "functypes/funcptr_0201CE28.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02223178_decl.h"
 #include "overlay012/struct_ov12_02223764.h"
@@ -83,8 +83,8 @@ void ov12_02223460(UnkStruct_ov12_0221FCDC * param0, int param1);
 void ov12_02223488(UnkStruct_ov12_0221FCDC * param0);
 BOOL ov12_022234A8(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022234E4(int param0, int param1);
-UnkStruct_ov12_02223764 * ov12_022234F8(UnkStruct_0207ADB4 * param0, int param1, int param2);
-UnkStruct_ov12_02223764 * ov12_02223764(UnkStruct_0207ADB4 * param0, int param1);
+UnkStruct_ov12_02223764 * ov12_022234F8(BattleSystem * param0, int param1, int param2);
+UnkStruct_ov12_02223764 * ov12_02223764(BattleSystem * param0, int param1);
 void ov12_02223770(UnkStruct_ov12_02223764 * param0);
 void ov12_022237A4(UnkStruct_ov12_02223764 * param0, int param1);
 int ov12_022237D8(UnkStruct_ov12_02223764 * param0);

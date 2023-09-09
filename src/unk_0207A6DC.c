@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 
 #include "struct_defs/struct_02027F8C.h"
 #include "struct_defs/struct_02039A58.h"
@@ -32,7 +32,7 @@
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_0226485C.h"
 
-void sub_0207A81C(UnkStruct_0207ADB4 * param0, int param1, int param2, void * param3, u8 param4);
+void sub_0207A81C(BattleSystem * param0, int param1, int param2, void * param3, u8 param4);
 BOOL sub_0207A8F4(UnkStruct_0207A778 * param0, u32 param1);
 BOOL sub_0207A960(UnkStruct_0207A778 * param0);
 BOOL sub_0207A988(UnkStruct_0207A778 * param0);
@@ -96,13 +96,13 @@ static const UnkStruct_02039A58 Unk_020F099C[] = {
 void sub_0207A6DC (void * param0)
 {
     int v0 = sizeof(Unk_020F099C) / sizeof(UnkStruct_02039A58);
-    UnkStruct_0207ADB4 * v1;
+    BattleSystem * v1;
     UnkStruct_0207ACB4 * v2;
     UnkStruct_0207AD40 * v3;
 
-    v1 = (UnkStruct_0207ADB4 *)param0;
+    v1 = (BattleSystem *)param0;
 
-    if (ov16_0223EBEC(v1) & 0x10) {
+    if (BattleSystem_BattleStatus(v1) & 0x10) {
         return;
     }
 
@@ -228,7 +228,7 @@ static u8 * sub_0207A814 (int param0, void * param1, int param2)
     return (u8 *)v0->unk_10[param0];
 }
 
-void sub_0207A81C (UnkStruct_0207ADB4 * param0, int param1, int param2, void * param3, u8 param4)
+void sub_0207A81C (BattleSystem * param0, int param1, int param2, void * param3, u8 param4)
 {
     int v0;
     UnkStruct_0207A81C * v1;
@@ -270,7 +270,7 @@ void sub_0207A81C (UnkStruct_0207ADB4 * param0, int param1, int param2, void * p
 
 static void sub_0207A8A8 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0207ADB4 * v0 = (UnkStruct_0207ADB4 *)param3;
+    BattleSystem * v0 = (BattleSystem *)param3;
     int v1;
     u8 * v2 = (u8 *)param2;
     u8 * v3 = ov16_0223E074(v0);
@@ -645,7 +645,7 @@ void sub_0207AD40 (UnkStruct_0201CD38 * param0, void * param1)
 
 static void sub_0207ADB4 (int param0, int param1, void * param2, void * param3)
 {
-    UnkStruct_0207ADB4 * v0 = (UnkStruct_0207ADB4 *)param3;
+    BattleSystem * v0 = (BattleSystem *)param3;
 
     ov16_0223F338(v0, 255);
     ov16_0223F344(v0, 255);
