@@ -1,11 +1,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/pokemon.h"
+#include "constants/abilities.h"
+#include "constants/battle.h"
 #include "constants/heap.h"
+#include "constants/moves.h"
 #include "constants/narc.h"
+#include "constants/pokemon.h"
 #include "constants/sdat.h"
 #include "constants/trainer.h"
+#include "constants/battle/condition.h"
+#include "constants/battle/message_tags.h"
 #include "constants/narc_files/battle_skill_subseq.h"
 
 #include "struct_decls/struct_02025E6C_decl.h"
@@ -44,6 +49,12 @@ typedef struct {
     u8 unk_01;
 } UnkStruct_ov16_0226EAD0;
 
+enum MachineState {
+    STATE_PROCESSING = 0,
+    STATE_BREAK_OUT,
+    STATE_DONE
+};
+
 typedef void (*BattleControlFunc)(BattleSystem*, BattleContext*);
 
 static void BattleController_GetBattleMon(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -52,13 +63,13 @@ static void BattleController_TrainerMessage(BattleSystem *battleSys, BattleConte
 static void BattleController_ShowBattleMon(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_InitCommandSelection(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_CommandSelectionInput(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_0224C448(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224C5C4(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224C718(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224C794(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224CF7C(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224D9C4(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224DC10(BattleSystem * param0, BattleContext * param1);
+static void BattleController_CalcTurnOrder(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_CheckPreMoveActions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_CheckFieldConditions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_CheckSideConditions(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_TurnEnd(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224DC68(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224DDA8(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224DF08(BattleSystem * param0, BattleContext * param1);
@@ -126,13 +137,13 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_ShowBattleMon,
     BattleController_InitCommandSelection,
     BattleController_CommandSelectionInput,
-    ov16_0224C448,
-    ov16_0224C5C4,
-    ov16_0224C718,
-    ov16_0224C794,
-    ov16_0224CF7C,
-    ov16_0224D9C4,
-    ov16_0224DC10,
+    BattleController_CalcTurnOrder,
+    BattleController_CheckPreMoveActions,
+    BattleController_BranchActions,
+    BattleController_CheckFieldConditions,
+    BattleController_CheckMonConditions,
+    BattleController_CheckSideConditions,
+    BattleController_TurnEnd,
     ov16_0224DC68,
     ov16_0224DDA8,
     ov16_0224DF08,
@@ -167,7 +178,7 @@ static const BattleControlFunc BattleControlCommands[] = {
     ov16_02250798
 };
 
-void * BattleContext_New (BattleSystem *battleSys)
+void* BattleContext_New (BattleSystem *battleSys)
 {
     BattleContext *battleContext = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleContext));
 
@@ -344,7 +355,7 @@ static void BattleController_CommandSelectionInput (BattleSystem *battleSys, Bat
 {
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
     int battleType = BattleSystem_BattleType(battleSys);
-    int tmp = 0;
+    int battlersDone = 0;
     BattleMessage msg;
 
     for (int i = 0; i < maxBattlers; i++) {
@@ -702,7 +713,7 @@ static void BattleController_CommandSelectionInput (BattleSystem *battleSys, Bat
             // fall-through
 
         case COMMAND_SELECTION_END:
-            tmp++;
+            battlersDone++;
             break;
 
         case COMMAND_SELECTION_ALERT_MESSAGE_WAIT:
@@ -729,7 +740,7 @@ static void BattleController_CommandSelectionInput (BattleSystem *battleSys, Bat
         }
     }
 
-    if (tmp == maxBattlers) {
+    if (battlersDone == maxBattlers) {
         BattleSystem_RecordCommand(battleSys, battleCtx);
         BattleSystem_LoadFightOverlay(battleSys, 0);
 
@@ -743,88 +754,82 @@ static void BattleController_CommandSelectionInput (BattleSystem *battleSys, Bat
     }
 }
 
-static void ov16_0224C448 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_CalcTurnOrder(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    u32 v2;
-    int v3, v4;
-    int v5;
-    int v6;
+    int battler, i, j; // Must declare these here to match.
 
-    v1 = BattleSystem_MaxBattlers(param0);
-    v2 = BattleSystem_BattleType(param0);
-    v5 = 0;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
+    int order = 0;
 
-    if (v2 & (0x20 | 0x200)) {
-        for (v0 = 0; v0 < v1; v0++) {
-            param1->battlerActionOrder[v0] = v0;
+    if (battleType & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
+        // The player always acts before a wild mon encountered in the Safari Zone or the Pal Park.
+        for (battler = 0; battler < maxBattlers; battler++) {
+            battleCtx->battlerActionOrder[battler] = battler;
         }
     } else {
-        if (v2 & 0x4) {
-            for (v0 = 0; v0 < v1; v0++) {
-                if (param1->battlerActions[v0][3] == 4) {
-                    v5 = 5;
+        if (battleType & BATTLE_TYPE_LINK) {
+            // Check if any battler decided to forfeit. If so, break out and process the forfeit first.
+            for (battler = 0; battler < maxBattlers; battler++) {
+                if (battleCtx->battlerActions[battler][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_RUN) {
+                    order = 5;
                     break;
                 }
             }
         } else {
-            if (param1->battlerActions[0][3] == 4) {
-                v0 = 0;
-                v5 = 5;
+            // If the player decided to Run using either of their mons, process that first.
+            if (battleCtx->battlerActions[0][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_RUN) {
+                battler = 0;
+                order = 5;
             }
 
-            if (param1->battlerActions[2][3] == 4) {
-                v0 = 2;
-                v5 = 5;
+            if (battleCtx->battlerActions[2][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_RUN) {
+                battler = 2;
+                order = 5;
             }
         }
 
-        if (v5 == 5) {
-            param1->battlerActionOrder[0] = v0;
-            v5 = 1;
+        if (order == 5) {
+            battleCtx->battlerActionOrder[0] = battler;
+            order = 1;
 
-            for (v3 = 0; v3 < v1; v3++) {
-                if (v3 != v0) {
-                    param1->battlerActionOrder[v5] = v3;
-                    v5++;
+            // All other battlers should be defaulted to a position after the one running/forfeiting.
+            for (i = 0; i < maxBattlers; i++) {
+                if (i != battler) {
+                    battleCtx->battlerActionOrder[order] = i;
+                    order++;
                 }
             }
         } else {
-            for (v0 = 0; v0 < v1; v0++) {
-                if ((param1->battlerActions[v0][3] == 2) || (param1->battlerActions[v0][3] == 3)) {
-                    param1->battlerActionOrder[v5] = v0;
-                    v5++;
+            // Items and switching are processed next.
+            for (battler = 0; battler < maxBattlers; battler++) {
+                if (battleCtx->battlerActions[battler][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_ITEM
+                        || battleCtx->battlerActions[battler][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_PARTY) {
+                    battleCtx->battlerActionOrder[order] = battler;
+                    order++;
                 }
             }
 
-            for (v0 = 0; v0 < v1; v0++) {
-                if ((param1->battlerActions[v0][3] != 2) && (param1->battlerActions[v0][3] != 3)) {
-                    param1->battlerActionOrder[v5] = v0;
-                    v5++;
+            // Fight is always processed last.
+            for (battler = 0; battler < maxBattlers; battler++) {
+                if (battleCtx->battlerActions[battler][BATTLE_ACTION_SELECTED_COMMAND] != PLAYER_INPUT_ITEM
+                        && battleCtx->battlerActions[battler][BATTLE_ACTION_SELECTED_COMMAND] != PLAYER_INPUT_PARTY) {
+                    battleCtx->battlerActionOrder[order] = battler;
+                    order++;
                 }
             }
 
-            for (v3 = 0; v3 < v1 - 1; v3++) {
-                for (v4 = v3 + 1; v4 < v1; v4++) {
-                    {
-                        int v7;
-                        int v8;
+            // Reorder battlers that chose to Fight according to their speed and priority.
+            for (i = 0; i < maxBattlers - 1; i++) {
+                for (j = i + 1; j < maxBattlers; j++) {
+                    int battler1 = battleCtx->battlerActionOrder[i];
+                    int battler2 = battleCtx->battlerActionOrder[j];
 
-                        v7 = param1->battlerActionOrder[v3];
-                        v8 = param1->battlerActionOrder[v4];
-
-                        if (param1->battlerActions[v7][3] == param1->battlerActions[v8][3]) {
-                            if (param1->battlerActions[v7][3] == 1) {
-                                v6 = 0;
-                            } else {
-                                v6 = 1;
-                            }
-
-                            if (BattleSystem_CompareBattlerSpeed(param0, param1, v7, v8, v6)) {
-                                param1->battlerActionOrder[v3] = v8;
-                                param1->battlerActionOrder[v4] = v7;
-                            }
+                    if (battleCtx->battlerActions[battler1][BATTLE_ACTION_SELECTED_COMMAND] == battleCtx->battlerActions[battler2][BATTLE_ACTION_SELECTED_COMMAND]) {
+                        BOOL skipPriority = battleCtx->battlerActions[battler1][BATTLE_ACTION_SELECTED_COMMAND] != PLAYER_INPUT_FIGHT;
+                        if (BattleSystem_CompareBattlerSpeed(battleSys, battleCtx, battler1, battler2, skipPriority)) {
+                            battleCtx->battlerActionOrder[i] = battler2;
+                            battleCtx->battlerActionOrder[j] = battler1;
                         }
                     }
                 }
@@ -832,1079 +837,1068 @@ static void ov16_0224C448 (BattleSystem * param0, BattleContext * param1)
         }
     }
 
-    param1->command = 7;
+    battleCtx->command = BATTLE_CONTROL_CHECK_PRE_MOVE_ACTIONS;
 }
 
-static void ov16_0224C5C4 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-    int v1;
-    int v2;
+enum PreMoveAction {
+    PRE_MOVE_ACTION_TIGHTEN_FOCUS = 0,
+    PRE_MOVE_ACTION_CHECK_RAGE_FLAG,
+    PRE_MOVE_ACTION_SPEED_RNG,
 
-    v0 = 0;
-    v2 = BattleSystem_MaxBattlers(param0);
+    PRE_MOVE_ACTION_END
+};
+
+static void BattleController_CheckPreMoveActions(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int state = STATE_PROCESSING;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int battler;
 
     do {
-        switch (param1->turnStartCheckState) {
-        case 0:
-            while (param1->turnStartCheckTemp < v2) {
-                v1 = param1->battlerActionOrder[param1->turnStartCheckTemp];
+        switch (battleCtx->turnStartCheckState) {
+        case PRE_MOVE_ACTION_TIGHTEN_FOCUS:
+            while (battleCtx->turnStartCheckTemp < maxBattlers) {
+                battler = battleCtx->battlerActionOrder[battleCtx->turnStartCheckTemp];
 
-                if (param1->battlersSwitchingMask & FlagIndex(v1)) {
-                    param1->turnStartCheckTemp++;
+                if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+                    battleCtx->turnStartCheckTemp++;
                     continue;
                 }
 
-                param1->turnStartCheckTemp++;
+                battleCtx->turnStartCheckTemp++;
 
-                if (((param1->battleMons[v1].status & 0x7) == 0) && (Battler_SelectedMove(param1, v1) == 264) && (Battler_CheckTruant(param1, v1) == 0) && (param1->turnFlags[v1].struggling == 0)) {
-                    BattleIO_ClearMessageBox(param0);
-                    param1->msgBattlerTemp = v1;
-                    BattleSystem_LoadScript(param1, 1, (0 + 232));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
+                if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) == FALSE
+                        && Battler_SelectedMove(battleCtx, battler) == MOVE_FOCUS_PUNCH
+                        && Battler_CheckTruant(battleCtx, battler) == FALSE
+                        && battleCtx->turnFlags[battler].struggling == FALSE) {
+                    BattleIO_ClearMessageBox(battleSys);
+                    battleCtx->msgBattlerTemp = battler;
+
+                    BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_TIGHTEN_FOCUS);
+                    battleCtx->commandNext = battleCtx->command;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
                     return;
                 }
             }
 
-            param1->turnStartCheckTemp = 0;
-            param1->turnStartCheckState++;
+            battleCtx->turnStartCheckTemp = 0;
+            battleCtx->turnStartCheckState++;
             break;
-        case 1:
-            for (v1 = 0; v1 < v2; v1++) {
-                if ((param1->battleMons[v1].statusVolatile & 0x800000) && (Battler_SelectedMove(param1, v1) != 99)) {
-                    param1->battleMons[v1].statusVolatile &= 0x800000;
+
+        case PRE_MOVE_ACTION_CHECK_RAGE_FLAG:
+            for (battler = 0; battler < maxBattlers; battler++) {
+                if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_RAGE)
+                        && Battler_SelectedMove(battleCtx, battler) != MOVE_RAGE) {
+                    battleCtx->battleMons[battler].statusVolatile &= VOLATILE_CONDITION_RAGE;
                 }
             }
 
-            param1->turnStartCheckState++;
+            battleCtx->turnStartCheckState++;
             break;
-        case 2:
-            for (v1 = 0; v1 < 4; v1++) {
-                param1->speedRand[v1] = BattleSystem_RandNext(param0);
+
+        case PRE_MOVE_ACTION_SPEED_RNG:
+            for (battler = 0; battler < MAX_BATTLERS; battler++) {
+                battleCtx->speedRand[battler] = BattleSystem_RandNext(battleSys);
             }
 
-            param1->turnStartCheckState++;
+            battleCtx->turnStartCheckState++;
             break;
-        case 3:
-            param1->turnStartCheckState = 0;
-            v0 = 2;
+
+        case PRE_MOVE_ACTION_END:
+            battleCtx->turnStartCheckState = 0;
+            state = STATE_DONE;
             break;
         }
-    } while (v0 == 0);
+    } while (state == STATE_PROCESSING);
 
-    if (v0 == 2) {
-        param1->command = 8;
+    if (state == STATE_DONE) {
+        battleCtx->command = BATTLE_CONTROL_BRANCH_ACTIONS;
     }
 }
 
-static void ov16_0224C718 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    v0 = BattleSystem_MaxBattlers(param0);
-
-    if (BattleSystem_RecordingStopped(param0, param1)) {
+    if (BattleSystem_RecordingStopped(battleSys, battleCtx)) {
         return;
     }
 
-    param1->waitingBattlers = 0;
-
-    for (v1 = 0; v1 < v0; v1++) {
-        if (param1->battlerActions[v1][0] != 39) {
-            param1->waitingBattlers++;
+    battleCtx->waitingBattlers = 0;
+    for (int i = 0; i < maxBattlers; i++) {
+        if (battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] != BATTLE_CONTROL_AFTER_MOVE) {
+            battleCtx->waitingBattlers++;
         }
     }
 
-    BattleSystem_SortMonsBySpeed(param0, param1);
-
-    if (param1->turnOrderCounter == v0) {
-        param1->turnOrderCounter = 0;
-        param1->command = 9;
+    BattleSystem_SortMonsBySpeed(battleSys, battleCtx);
+    if (battleCtx->turnOrderCounter == maxBattlers) {
+        battleCtx->turnOrderCounter = 0;
+        battleCtx->command = BATTLE_CONTROL_CHECK_FIELD_CONDITIONS;
     } else {
-        param1->command = param1->battlerActions[param1->battlerActionOrder[param1->turnOrderCounter]][0];
+        battleCtx->command = battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_PICK_COMMAND];
     }
 }
 
-static void ov16_0224C794 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0 = 0;
-    int v1;
-    int v2;
+enum FieldConditionCheckState {
+    FIELD_COND_CHECK_START = 0,
 
-    v2 = BattleSystem_MaxBattlers(param0);
+    FIELD_COND_CHECK_REFLECT = FIELD_COND_CHECK_START,
+    FIELD_COND_CHECK_LIGHT_SCREEN,
+    FIELD_COND_CHECK_MIST,
+    FIELD_COND_CHECK_SAFEGUARD,
+    FIELD_COND_CHECK_TAILWIND,
+    FIELD_COND_CHECK_LUCKY_CHANT,
+    FIELD_COND_CHECK_WISH,
+    FIELD_COND_CHECK_RAINING,
+    FIELD_COND_CHECK_SANDSTORM,
+    FIELD_COND_CHECK_SUNNY,
+    FIELD_COND_CHECK_HAILING,
+    FIELD_COND_CHECK_DEEP_FOG,
+    FIELD_COND_CHECK_GRAVITY,
+
+    FIELD_COND_CHECK_END
+};
+
+static inline void PrepareSubroutineSequence(BattleContext *battleCtx, int script)
+{
+    BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, script);
+    battleCtx->commandNext = battleCtx->command;
+    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+}
+
+static inline void StepFieldConditionCheck(BattleContext *battleCtx, int state)
+{
+    if (state == STATE_PROCESSING) {
+        battleCtx->fieldConditionCheckState++;
+        battleCtx->fieldConditionCheckTemp = 0;
+    }
+}
+
+static void BattleController_CheckFieldConditions(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int state = STATE_PROCESSING;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    int side;
 
     do {
-        if (BattleController_CheckAnyFainted(param1, param1->command, param1->command, 1) == 1) {
+        // Explicit `== TRUE` is needed to match on these
+        if (BattleController_CheckAnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE
+                || BattleController_CheckExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
+                || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE) {
             return;
         }
 
-        if (BattleController_CheckExpPayout(param1, param1->command, param1->command) == 1) {
-            return;
-        }
+        switch (battleCtx->fieldConditionCheckState) {
+        case FIELD_COND_CHECK_REFLECT:
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
 
-        if (BattleController_CheckBattleOver(param0, param1) == 1) {
-            return;
-        }
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_REFLECT
+                        && --battleCtx->sideConditions[side].reflectTurns == 0) {
+                    battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_REFLECT;
+                    battleCtx->msgMoveTemp = MOVE_REFLECT;
 
-        switch (param1->fieldConditionCheckState) {
-        case 0:
-            while (param1->fieldConditionCheckTemp < 2) {
-                v1 = param1->fieldConditionCheckTemp;
-
-                if (param1->sideConditionsMask[v1] & 0x1) {
-                    if (--param1->sideConditions[v1].reflectTurns == 0) {
-                        param1->sideConditionsMask[v1] &= (0x1 ^ 0xffffffff);
-                        param1->msgMoveTemp = 115;
-                        BattleSystem_LoadScript(param1, 1, (0 + 50));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
-                        param1->msgBattlerTemp = BattleSystem_SideToBattler(param0, param1, v1);
-                        v0 = 1;
-                    }
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_MOVE_EFFECT_END);
+                    battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                    state = STATE_BREAK_OUT;
                 }
 
-                param1->fieldConditionCheckTemp++;
-
-                if (v0) {
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
                     break;
                 }
             }
 
-            if (v0 == 0) {
-                param1->fieldConditionCheckState++;
-                param1->fieldConditionCheckTemp = 0;
-            }
+            StepFieldConditionCheck(battleCtx, state);
             break;
-        case 1:
-            while (param1->fieldConditionCheckTemp < 2) {
-                v1 = param1->fieldConditionCheckTemp;
 
-                if (param1->sideConditionsMask[v1] & 0x2) {
-                    if (--param1->sideConditions[v1].lightScreenTurns == 0) {
-                        param1->sideConditionsMask[v1] &= (0x2 ^ 0xffffffff);
-                        param1->msgMoveTemp = 113;
-                        BattleSystem_LoadScript(param1, 1, (0 + 50));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
-                        param1->msgBattlerTemp = BattleSystem_SideToBattler(param0, param1, v1);
-                        v0 = 1;
-                    }
+        case FIELD_COND_CHECK_LIGHT_SCREEN:
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
+
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_LIGHT_SCREEN
+                        && --battleCtx->sideConditions[side].lightScreenTurns == 0) {
+                    battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_LIGHT_SCREEN;
+                    battleCtx->msgMoveTemp = MOVE_LIGHT_SCREEN;
+
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_MOVE_EFFECT_END);
+                    battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                    state = STATE_BREAK_OUT;
                 }
 
-                param1->fieldConditionCheckTemp++;
-
-                if (v0) {
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
                     break;
                 }
             }
 
-            if (v0 == 0) {
-                param1->fieldConditionCheckState++;
-                param1->fieldConditionCheckTemp = 0;
-            }
+            StepFieldConditionCheck(battleCtx, state);
             break;
-        case 2:
-            while (param1->fieldConditionCheckTemp < 2) {
-                v1 = param1->fieldConditionCheckTemp;
 
-                if (param1->sideConditionsMask[v1] & 0x40) {
-                    if (--param1->sideConditions[v1].mistTurns == 0) {
-                        param1->sideConditionsMask[v1] &= (0x40 ^ 0xffffffff);
-                        param1->msgMoveTemp = 54;
-                        BattleSystem_LoadScript(param1, 1, (0 + 50));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
-                        param1->msgBattlerTemp = BattleSystem_SideToBattler(param0, param1, v1);
-                        v0 = 1;
-                    }
+        case FIELD_COND_CHECK_MIST:
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
+
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_MIST
+                        && --battleCtx->sideConditions[side].mistTurns == 0) {
+                    battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_MIST;
+                    battleCtx->msgMoveTemp = MOVE_MIST;
+
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_MOVE_EFFECT_END);
+                    battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                    state = STATE_BREAK_OUT;
                 }
 
-                param1->fieldConditionCheckTemp++;
-
-                if (v0) {
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
                     break;
                 }
             }
 
-            if (v0 == 0) {
-                param1->fieldConditionCheckState++;
-                param1->fieldConditionCheckTemp = 0;
-            }
+            StepFieldConditionCheck(battleCtx, state);
             break;
-        case 3:
-            while (param1->fieldConditionCheckTemp < 2) {
-                v1 = param1->fieldConditionCheckTemp;
 
-                if (param1->sideConditionsMask[v1] & 0x8) {
-                    if (--param1->sideConditions[v1].safeguardTurns == 0) {
-                        param1->sideConditionsMask[v1] &= (0x8 ^ 0xffffffff);
-                        param1->msgBattlerTemp = param1->sideConditions[v1].safeguardUser;
-                        BattleSystem_LoadScript(param1, 1, (0 + 110));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
-                        param1->msgBattlerTemp = BattleSystem_SideToBattler(param0, param1, v1);
-                        v0 = 1;
-                    }
+        case FIELD_COND_CHECK_SAFEGUARD:
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
+
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_SAFEGUARD
+                        && --battleCtx->sideConditions[side].safeguardTurns == 0) {
+                    battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_SAFEGUARD;
+                    battleCtx->msgBattlerTemp = battleCtx->sideConditions[side].safeguardUser;
+
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_SAFEGUARD_END);
+                    battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                    state = STATE_BREAK_OUT;
                 }
 
-                param1->fieldConditionCheckTemp++;
-
-                if (v0) {
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
                     break;
                 }
             }
 
-            if (v0 == 0) {
-                param1->fieldConditionCheckState++;
-                param1->fieldConditionCheckTemp = 0;
-            }
+            StepFieldConditionCheck(battleCtx, state);
             break;
-        case 4:
-            while (param1->fieldConditionCheckTemp < 2) {
-                v1 = param1->fieldConditionCheckTemp;
 
-                if (param1->sideConditionsMask[v1] & 0x300) {
-                    param1->sideConditionsMask[v1] -= 1 << 8;
+        case FIELD_COND_CHECK_TAILWIND:
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
 
-                    if ((param1->sideConditionsMask[v1] & 0x300) == 0) {
-                        BattleSystem_LoadScript(param1, 1, (0 + 233));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
-                        param1->msgBattlerTemp = BattleSystem_SideToBattler(param0, param1, v1);
-                        v0 = 1;
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_TAILWIND) {
+                    battleCtx->sideConditionsMask[side] -= SIDE_CONDITION_TAILWIND_SHIFT;
+
+                    if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_TAILWIND) == FALSE) {
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_TAILWIND_END);
+                        battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                        state = STATE_BREAK_OUT;
                     }
                 }
 
-                param1->fieldConditionCheckTemp++;
-
-                if (v0) {
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
                     break;
                 }
             }
 
-            if (v0 == 0) {
-                param1->fieldConditionCheckState++;
-                param1->fieldConditionCheckTemp = 0;
-            }
+            StepFieldConditionCheck(battleCtx, state);
             break;
-        case 5:
-            while (param1->fieldConditionCheckTemp < 2) {
-                v1 = param1->fieldConditionCheckTemp;
 
-                if (param1->sideConditionsMask[v1] & 0x7000) {
-                    param1->sideConditionsMask[v1] -= 1 << 12;
+        case FIELD_COND_CHECK_LUCKY_CHANT:
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
 
-                    if ((param1->sideConditionsMask[v1] & 0x7000) == 0) {
-                        BattleSystem_LoadScript(param1, 1, (0 + 250));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
-                        param1->msgBattlerTemp = BattleSystem_SideToBattler(param0, param1, v1);
-                        v0 = 1;
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_LUCKY_CHANT) {
+                    battleCtx->sideConditionsMask[side] -= SIDE_CONDITION_LUCKY_CHANT_SHIFT;
+
+                    if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_LUCKY_CHANT) == FALSE) {
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_LUCKY_CHANT_END);
+                        battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                        state = STATE_BREAK_OUT;
                     }
                 }
 
-                param1->fieldConditionCheckTemp++;
-
-                if (v0) {
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
                     break;
                 }
             }
 
-            if (v0 == 0) {
-                param1->fieldConditionCheckState++;
-                param1->fieldConditionCheckTemp = 0;
-            }
+            StepFieldConditionCheck(battleCtx, state);
             break;
-        case 6:
-            while (param1->fieldConditionCheckTemp < v2) {
-                v1 = param1->monSpeedOrder[param1->fieldConditionCheckTemp];
 
-                if (param1->fieldConditions.wishTurns[v1]) {
-                    if (--param1->fieldConditions.wishTurns[v1] == 0) {
-                        if (param1->battleMons[v1].curHP) {
-                            param1->msgBattlerTemp = v1;
-                            param1->msgBuffer.tags = 2;
-                            param1->msgBuffer.id = 533;
-                            param1->msgBuffer.params[0] = v1 | (param1->fieldConditions.wishTarget[v1] << 8);
-                            param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[v1].maxHP, 2);
-                            BattleSystem_LoadScript(param1, 1, (0 + 136));
-                            param1->commandNext = param1->command;
-                            param1->command = 21;
-                            v0 = 1;
-                        }
-                    }
+        case FIELD_COND_CHECK_WISH:
+            while (battleCtx->fieldConditionCheckTemp < maxBattlers) {
+                side = battleCtx->monSpeedOrder[battleCtx->fieldConditionCheckTemp];
+
+                if (battleCtx->fieldConditions.wishTurns[side]
+                        && --battleCtx->fieldConditions.wishTurns[side] == 0
+                        && battleCtx->battleMons[side].curHP) {
+                    battleCtx->msgBattlerTemp = side;
+
+                    battleCtx->msgBuffer.tags = TAG_NICKNAME;
+                    battleCtx->msgBuffer.id = 533;
+                    battleCtx->msgBuffer.params[0] = side | (battleCtx->fieldConditions.wishTarget[side] << 8);
+
+                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[side].maxHP, 2);
+
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WISH_HEAL);
+                    state = STATE_BREAK_OUT;
                 }
 
-                param1->fieldConditionCheckTemp++;
-
-                if (v0) {
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
                     break;
                 }
             }
 
-            if (v0 == 0) {
-                param1->fieldConditionCheckState++;
-                param1->fieldConditionCheckTemp = 0;
-            }
+            StepFieldConditionCheck(battleCtx, state);
             break;
-        case 7:
-            if (param1->fieldConditionsMask & 0x3) {
-                if (param1->fieldConditionsMask & 0x2) {
-                    param1->msgBuffer.id = 801;
-                    param1->msgBuffer.tags = 0;
-                    BattleSystem_LoadScript(param1, 1, (0 + 104));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
+
+        case FIELD_COND_CHECK_RAINING:
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING) {
+                if (battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING_PERM) {
+                    battleCtx->msgBuffer.id = 801;
+                    battleCtx->msgBuffer.tags = TAG_NONE;
+
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
                 } else {
-                    if (--param1->fieldConditions.weatherTurns == 0) {
-                        BattleSystem_LoadScript(param1, 1, (0 + 234));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
+                    if (--battleCtx->fieldConditions.weatherTurns == 0) {
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_RAINING_END);
                     } else {
-                        param1->msgBuffer.id = 801;
-                        param1->msgBuffer.tags = 0;
-                        BattleSystem_LoadScript(param1, 1, (0 + 104));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
+                        battleCtx->msgBuffer.id = 801;
+                        battleCtx->msgBuffer.tags = TAG_NONE;
+
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
                     }
                 }
 
-                param1->scriptTemp = 19;
-                v0 = 1;
+                battleCtx->scriptTemp = 19;
+                state = STATE_BREAK_OUT;
             }
 
-            param1->fieldConditionCheckState++;
+            battleCtx->fieldConditionCheckState++;
             break;
-        case 8:
-            if (param1->fieldConditionsMask & 0xc) {
-                if (param1->fieldConditionsMask & 0x8) {
-                    param1->msgBuffer.id = 805;
-                    param1->msgBuffer.tags = 0;
-                    BattleSystem_LoadScript(param1, 1, (0 + 104));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
+
+        case FIELD_COND_CHECK_SANDSTORM:
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM) {
+                if (battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM_PERM) {
+                    battleCtx->msgBuffer.id = 805;
+                    battleCtx->msgBuffer.tags = TAG_NONE;
+                    
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
                 } else {
-                    if (--param1->fieldConditions.weatherTurns == 0) {
-                        BattleSystem_LoadScript(param1, 1, (0 + 235));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
+                    if (--battleCtx->fieldConditions.weatherTurns == 0) {
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_SANDSTORM_END);
                     } else {
-                        param1->msgBuffer.id = 805;
-                        param1->msgBuffer.tags = 0;
-                        BattleSystem_LoadScript(param1, 1, (0 + 104));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
+                        battleCtx->msgBuffer.id = 805;
+                        battleCtx->msgBuffer.tags = TAG_NONE;
+                        
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
                     }
                 }
 
-                param1->scriptTemp = 21;
-                v0 = 1;
+                battleCtx->scriptTemp = 21;
+                state = STATE_BREAK_OUT;
             }
 
-            param1->fieldConditionCheckState++;
+            battleCtx->fieldConditionCheckState++;
             break;
-        case 9:
-            if (param1->fieldConditionsMask & 0x30) {
-                if (param1->fieldConditionsMask & 0x20) {
-                    param1->msgBuffer.id = 808;
-                    param1->msgBuffer.tags = 0;
-                    BattleSystem_LoadScript(param1, 1, (0 + 104));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
+
+        case FIELD_COND_CHECK_SUNNY:
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) {
+                if (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY_PERM) {
+                    battleCtx->msgBuffer.id = 808;
+                    battleCtx->msgBuffer.tags = TAG_NONE;
+                    
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
                 } else {
-                    if (--param1->fieldConditions.weatherTurns == 0) {
-                        BattleSystem_LoadScript(param1, 1, (0 + 236));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
+                    if (--battleCtx->fieldConditions.weatherTurns == 0) {
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_SUNNY_END);
                     } else {
-                        param1->msgBuffer.id = 808;
-                        param1->msgBuffer.tags = 0;
-                        BattleSystem_LoadScript(param1, 1, (0 + 104));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
+                        battleCtx->msgBuffer.id = 808;
+                        battleCtx->msgBuffer.tags = TAG_NONE;
+                        
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
                     }
                 }
 
-                param1->scriptTemp = 22;
-                v0 = 1;
+                battleCtx->scriptTemp = 22;
+                state = STATE_BREAK_OUT;
             }
 
-            param1->fieldConditionCheckState++;
+            battleCtx->fieldConditionCheckState++;
             break;
-        case 10:
-            if (param1->fieldConditionsMask & 0xc0) {
-                if (param1->fieldConditionsMask & 0x80) {
-                    param1->msgBuffer.id = 811;
-                    param1->msgBuffer.tags = 0;
-                    BattleSystem_LoadScript(param1, 1, (0 + 104));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
+
+        case FIELD_COND_CHECK_HAILING:
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING) {
+                if (battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING_PERM) {
+                    battleCtx->msgBuffer.id = 811;
+                    battleCtx->msgBuffer.tags = TAG_NONE;
+                    
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
                 } else {
-                    if (--param1->fieldConditions.weatherTurns == 0) {
-                        BattleSystem_LoadScript(param1, 1, (0 + 237));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
+                    if (--battleCtx->fieldConditions.weatherTurns == 0) {
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_HAILING_END);
                     } else {
-                        param1->msgBuffer.id = 811;
-                        param1->msgBuffer.tags = 0;
-                        BattleSystem_LoadScript(param1, 1, (0 + 104));
-                        param1->commandNext = param1->command;
-                        param1->command = 21;
+                        battleCtx->msgBuffer.id = 811;
+                        battleCtx->msgBuffer.tags = TAG_NONE;
+                        
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
                     }
                 }
 
-                param1->scriptTemp = 20;
-                v0 = 1;
+                battleCtx->scriptTemp = 20;
+                state = STATE_BREAK_OUT;
             }
 
-            param1->fieldConditionCheckState++;
+            battleCtx->fieldConditionCheckState++;
             break;
-        case 11:
-            if (param1->fieldConditionsMask & 0x8000) {
-                param1->msgBuffer.id = 813;
-                param1->msgBuffer.tags = 0;
-                BattleSystem_LoadScript(param1, 1, (0 + 104));
-                param1->commandNext = param1->command;
-                param1->command = 21;
-                param1->scriptTemp = 18;
-                v0 = 1;
+
+        case FIELD_COND_CHECK_DEEP_FOG:
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_DEEP_FOG) {
+                battleCtx->msgBuffer.id = 813;
+                battleCtx->msgBuffer.tags = TAG_NONE;
+                
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WEATHER_CONTINUES);
+
+                battleCtx->scriptTemp = 18;
+                state = STATE_BREAK_OUT;
             }
 
-            param1->fieldConditionCheckState++;
+            battleCtx->fieldConditionCheckState++;
             break;
-        case 12:
-            if (param1->fieldConditionsMask & 0x7000) {
-                param1->fieldConditionsMask -= (1 << 12);
 
-                if ((param1->fieldConditionsMask & 0x7000) == 0) {
-                    BattleSystem_LoadScript(param1, 1, (0 + 238));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-                    v0 = 1;
+        case FIELD_COND_CHECK_GRAVITY:
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
+                battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_GRAVITY_SHIFT);
+
+                if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == 0) {
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_GRAVITY_END);
+                    state = STATE_BREAK_OUT;
                 }
             }
 
-            param1->fieldConditionCheckState++;
+            battleCtx->fieldConditionCheckState++;
             break;
-        case 13:
-            v0 = 2;
+
+        case FIELD_COND_CHECK_END:
+            state = STATE_DONE;
             break;
         }
-    } while (v0 == 0);
+    } while (state == STATE_PROCESSING);
 
-    if (v0 == 1) {
-        BattleIO_ClearMessageBox(param0);
+    if (state == STATE_BREAK_OUT) {
+        BattleIO_ClearMessageBox(battleSys);
     }
 
-    if (v0 == 2) {
-        param1->fieldConditionCheckState = 0;
-        param1->command = 10;
+    if (state == STATE_DONE) {
+        battleCtx->fieldConditionCheckState = FIELD_COND_CHECK_START;
+        battleCtx->command = BATTLE_CONTROL_CHECK_MON_CONDITIONS;
     }
 }
 
-static void ov16_0224CF7C (BattleSystem * param0, BattleContext * param1)
+enum MonConditionCheckState {
+    MON_COND_CHECK_START = 0,
+
+    MON_COND_CHECK_INGRAIN = MON_COND_CHECK_START,
+    MON_COND_CHECK_AQUA_RING,
+    MON_COND_CHECK_ABILITY,
+    MON_COND_CHECK_USE_ITEM,
+    MON_COND_CHECK_LEFTOVERS,
+    MON_COND_CHECK_LEECH_SEED,
+    MON_COND_CHECK_POISON,
+    MON_COND_CHECK_TOXIC,
+    MON_COND_CHECK_BURN,
+    MON_COND_CHECK_NIGHTMARE,
+    MON_COND_CHECK_CURSE,
+    MON_COND_CHECK_BIND,
+    MON_COND_CHECK_BAD_DREAMS,
+    MON_COND_CHECK_UPROAR,
+    MON_COND_CHECK_THRASH,
+    MON_COND_CHECK_DISABLE,
+    MON_COND_CHECK_ENCORE,
+    MON_COND_CHECK_LOCK_ON,
+    MON_COND_CHECK_CHARGE,
+    MON_COND_CHECK_TAUNT,
+    MON_COND_CHECK_MAGNET_RISE,
+    MON_COND_CHECK_HEAL_BLOCK,
+    MON_COND_CHECK_EMBARGO,
+    MON_COND_CHECK_YAWN,
+    MON_COND_CHECK_ITEM_CONDITION,
+    MON_COND_CHECK_ITEM_DETRIMENTAL_EFFECT,
+
+    MON_COND_CHECK_END
+};
+
+static void BattleController_CheckMonConditions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u8 v1 = 0;
-    int v2;
-    int v3;
+    u8 state = STATE_PROCESSING;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    v2 = BattleSystem_MaxBattlers(param0);
-
-    if (BattleController_CheckAnyFainted(param1, param1->command, param1->command, 1) == 1) {
+    // Explicit `== TRUE` is needed to match on these.
+    if (BattleController_CheckAnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE
+            || BattleController_CheckExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
+            || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE) {
         return;
     }
 
-    if (BattleController_CheckExpPayout(param1, param1->command, param1->command) == 1) {
-        return;
-    }
+    int i, battler;
+    while (battleCtx->monConditionCheckTemp < maxBattlers) {
+        battler = battleCtx->monSpeedOrder[battleCtx->monConditionCheckTemp];
 
-    if (BattleController_CheckBattleOver(param0, param1) == 1) {
-        return;
-    }
-
-    while (param1->monConditionCheckTemp < v2) {
-        v3 = param1->monSpeedOrder[param1->monConditionCheckTemp];
-
-        if (param1->battlersSwitchingMask & FlagIndex(v3)) {
-            param1->monConditionCheckTemp++;
+        if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+            battleCtx->monConditionCheckTemp++;
             continue;
         }
 
-        switch (param1->monConditionCheckState) {
-        case 0:
-            if ((param1->battleMons[v3].moveEffectsMask & 0x400) && (param1->battleMons[v3].curHP != param1->battleMons[v3].maxHP) && (param1->battleMons[v3].curHP != 0)) {
-                if (param1->battleMons[v3].moveEffectsData.healBlockTurns) {
-                    param1->msgBattlerTemp = v3;
-                    BattleSystem_LoadScript(param1, 1, (0 + 239));
+        switch (battleCtx->monConditionCheckState) {
+        case MON_COND_CHECK_INGRAIN:
+            if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)
+                    && battleCtx->battleMons[battler].curHP != battleCtx->battleMons[battler].maxHP
+                    && battleCtx->battleMons[battler].curHP) {
+                if (battleCtx->battleMons[battler].moveEffectsData.healBlockTurns) {
+                    battleCtx->msgBattlerTemp = battler;
+                    BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_CANNOT_HEAL);
                 } else {
-                    param1->msgBattlerTemp = v3;
-                    BattleSystem_LoadScript(param1, 1, (0 + 137));
+                    battleCtx->msgBattlerTemp = battler;
+                    BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_INGRAIN_HEAL);
                 }
 
-                param1->commandNext = param1->command;
-                param1->command = 21;
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
-                v1 = 1;
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 1:
-            if ((param1->battleMons[v3].moveEffectsMask & 0x1000000) && (param1->battleMons[v3].curHP != param1->battleMons[v3].maxHP) && (param1->battleMons[v3].curHP != 0)) {
-                if (param1->battleMons[v3].moveEffectsData.healBlockTurns) {
-                    param1->msgBattlerTemp = v3;
-                    BattleSystem_LoadScript(param1, 1, (0 + 239));
+
+        case MON_COND_CHECK_AQUA_RING:
+            if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_AQUA_RING)
+                    && battleCtx->battleMons[battler].curHP != battleCtx->battleMons[battler].maxHP
+                    && battleCtx->battleMons[battler].curHP) {
+                if (battleCtx->battleMons[battler].moveEffectsData.healBlockTurns) {
+                    battleCtx->msgBattlerTemp = battler;
+                    BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_CANNOT_HEAL);
                 } else {
-                    param1->msgBattlerTemp = v3;
-                    param1->msgMoveTemp = 392;
-                    param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[v3].maxHP, 16);
-                    BattleSystem_LoadScript(param1, 1, (0 + 169));
+                    battleCtx->msgBattlerTemp = battler;
+                    battleCtx->msgMoveTemp = MOVE_AQUA_RING;
+                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
+                    BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_AQUA_RING_HEAL);
                 }
 
-                param1->commandNext = param1->command;
-                param1->command = 21;
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
-                v1 = 1;
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 2:
-            if (BattleSystem_TriggerTurnEndAbility(param0, param1, v3) == 1) {
-                v1 = 1;
+        case MON_COND_CHECK_ABILITY:
+            if (BattleSystem_TriggerTurnEndAbility(battleSys, battleCtx, battler) == TRUE) {
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 3:
-            if (BattleSystem_TriggerHeldItem(param0, param1, v3) == 1) {
-                v1 = 1;
+
+        case MON_COND_CHECK_USE_ITEM:
+            if (BattleSystem_TriggerHeldItem(battleSys, battleCtx, battler) == TRUE) {
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 4:
-            if (BattleSystem_TriggerLeftovers(param0, param1, v3) == 1) {
-                v1 = 1;
+
+        case MON_COND_CHECK_LEFTOVERS:
+            if (BattleSystem_TriggerLeftovers(battleSys, battleCtx, battler) == TRUE) {
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 5:
-            if ((param1->battleMons[v3].moveEffectsMask & 0x4) && (param1->battleMons[param1->battleMons[v3].moveEffectsMask & 0x3].curHP != 0) && (Battler_Ability(param1, v3) != 98) && (param1->battleMons[v3].curHP != 0)) {
-                param1->msgAttacker = param1->battleMons[v3].moveEffectsMask & 0x3;
-                param1->msgDefender = v3;
 
-                BattleSystem_LoadScript(param1, 1, (0 + 69));
+        case MON_COND_CHECK_LEECH_SEED:
+            if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_LEECH_SEED)
+                    && battleCtx->battleMons[battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_LEECH_SEED_RECIPIENT].curHP
+                    && Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD
+                    && battleCtx->battleMons[battler].curHP) {
+                battleCtx->msgAttacker = battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_LEECH_SEED_RECIPIENT;
+                battleCtx->msgDefender = battler;
 
-                param1->commandNext = param1->command;
-                param1->command = 21;
-
-                v1 = 1;
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_LEECH_SEED_EFFECT);
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 6:
-            if ((param1->battleMons[v3].status & 0x8) && (param1->battleMons[v3].curHP != 0)) {
-                param1->msgBattlerTemp = v3;
-                param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[v3].maxHP * -1, 8);
 
-                BattleSystem_LoadScript(param1, 1, (0 + 23));
+        case MON_COND_CHECK_POISON:
+            if ((battleCtx->battleMons[battler].status & MON_CONDITION_POISON) && battleCtx->battleMons[battler].curHP) {
+                battleCtx->msgBattlerTemp = battler;
+                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 8);
 
-                param1->commandNext = param1->command;
-                param1->command = 21;
-
-                v1 = 1;
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_POISON_DAMAGE);
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 7:
-            if ((param1->battleMons[v3].status & 0x80) && (param1->battleMons[v3].curHP != 0)) {
-                param1->msgBattlerTemp = v3;
-                param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[v3].maxHP, 16);
 
-                if ((param1->battleMons[v3].status & 0xf00) != 0xf00) {
-                    param1->battleMons[v3].status += 0x100;
+        case MON_COND_CHECK_TOXIC:
+            if ((battleCtx->battleMons[battler].status & MON_CONDITION_TOXIC) && battleCtx->battleMons[battler].curHP) {
+                battleCtx->msgBattlerTemp = battler;
+                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
+
+                // If we're not already at the maximum Toxic stage, increment the counter
+                if ((battleCtx->battleMons[battler].status & MON_CONDITION_TOXIC_COUNTER) != MON_CONDITION_TOXIC_COUNTER) {
+                    battleCtx->battleMons[battler].status += MON_CONDITION_TOXIC_COUNT_INC;
                 }
 
-                param1->hpCalcTemp *= ((param1->battleMons[v3].status & 0xf00) >> 8);
-                param1->hpCalcTemp *= -1;
+                battleCtx->hpCalcTemp *= ((battleCtx->battleMons[battler].status & MON_CONDITION_TOXIC_COUNTER) >> 8);
+                battleCtx->hpCalcTemp *= -1;
 
-                BattleSystem_LoadScript(param1, 1, (0 + 23));
-
-                param1->commandNext = param1->command;
-                param1->command = 21;
-
-                v1 = 1;
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_POISON_DAMAGE);
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 8:
-            if ((param1->battleMons[v3].status & 0x10) && (param1->battleMons[v3].curHP != 0)) {
-                param1->msgBattlerTemp = v3;
-                BattleSystem_LoadScript(param1, 1, (0 + 26));
-                param1->commandNext = param1->command;
-                param1->command = 21;
-                v1 = 1;
+
+        case MON_COND_CHECK_BURN:
+            if ((battleCtx->battleMons[battler].status & MON_CONDITION_BURN) && battleCtx->battleMons[battler].curHP) {
+                battleCtx->msgBattlerTemp = battler;
+                
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_BURN_DAMAGE);
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 9:
-            if ((param1->battleMons[v3].statusVolatile & 0x8000000) && (param1->battleMons[v3].curHP != 0)) {
-                if (param1->battleMons[v3].status & 0x7) {
-                    param1->msgBattlerTemp = v3;
-                    BattleSystem_LoadScript(param1, 1, (0 + 94));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-                    v1 = 1;
+
+        case MON_COND_CHECK_NIGHTMARE:
+            if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_NIGHTMARE) && battleCtx->battleMons[battler].curHP) {
+                if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
+                    battleCtx->msgBattlerTemp = battler;
+
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_NIGHTMARE_EFFECT);
+                    state = STATE_BREAK_OUT;
                 } else {
-                    param1->battleMons[v3].statusVolatile &= (0x8000000 ^ 0xffffffff);
+                    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_NIGHTMARE;
                 }
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 10:
-            if ((param1->battleMons[v3].statusVolatile & 0x10000000) && (param1->battleMons[v3].curHP != 0)) {
-                param1->msgBattlerTemp = v3;
 
-                BattleSystem_LoadScript(param1, 1, (0 + 98));
+        case MON_COND_CHECK_CURSE:
+            if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CURSE) && battleCtx->battleMons[battler].curHP) {
+                battleCtx->msgBattlerTemp = battler;
 
-                param1->commandNext = param1->command;
-                param1->command = 21;
-
-                v1 = 1;
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_CURSE_DAMAGE);
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 11:
-            if ((param1->battleMons[v3].statusVolatile & 0xe000) && (param1->battleMons[v3].curHP != 0)) {
-                param1->battleMons[v3].statusVolatile -= 0x2000;
 
-                if (param1->battleMons[v3].statusVolatile & 0xe000) {
-                    param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[v3].maxHP * -1, 16);
-                    BattleSystem_LoadScript(param1, 1, (0 + 59));
+        case MON_COND_CHECK_BIND:
+            if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_BIND) && battleCtx->battleMons[battler].curHP) {
+                battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_BIND_SHIFT);
+
+                if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_BIND) {
+                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
+                    BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_BIND_EFFECT);
                 } else {
-                    BattleSystem_LoadScript(param1, 1, (0 + 60));
+                    BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_BIND_END);
                 }
 
-                param1->msgMoveTemp = param1->battleMons[v3].moveEffectsData.bindingMove;
-                param1->msgBattlerTemp = v3;
-                param1->commandNext = param1->command;
-                param1->command = 21;
+                battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moveEffectsData.bindingMove;
+                battleCtx->msgBattlerTemp = battler;
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
-                v1 = 1;
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 12:
-            param1->scriptTemp = BattleSystem_CountAbility(param0, param1, 4, v3, 123);
 
-            if ((param1->battleMons[v3].status & 0x7) && (Battler_Ability(param1, v3) != 98) && (param1->battleMons[v3].curHP != 0) && (param1->scriptTemp)) {
-                param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[v3].maxHP * -1, 8);
+        case MON_COND_CHECK_BAD_DREAMS:
+            battleCtx->scriptTemp = BattleSystem_CountAbility(battleSys, battleCtx, 4, battler, ABILITY_BAD_DREAMS);
 
-                BattleSystem_LoadScript(param1, 1, (0 + 263));
+            if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP)
+                    && Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD
+                    && battleCtx->battleMons[battler].curHP
+                    && battleCtx->scriptTemp) {
+                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 8);
 
-                param1->battleStatusMask |= 0x40;
-                param1->msgBattlerTemp = v3;
-                param1->commandNext = param1->command;
-                param1->command = 21;
+                BattleSystem_LoadScript(battleCtx, 1, BATTLE_SUBSEQ_BAD_DREAMS);
 
-                v1 = 1;
+                battleCtx->battleStatusMask |= SYSTEM_CONTROL_SKIP_DAMAGE_SPRITE_BLINK;
+                battleCtx->msgBattlerTemp = battler;
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 13:
-            if (param1->battleMons[v3].statusVolatile & 0x70) {
-                {
-                    u8 v4;
 
-                    for (v4 = 0; v4 < v2; v4++) {
-                        if ((param1->battleMons[v4].status & 0x7) && (param1->battleMons[v4].curHP) && (Battler_Ability(param1, v4) != 43)) {
-                            param1->msgBattlerTemp = v4;
-                            BattleSystem_LoadScript(param1, 1, (0 + 19));
-                            param1->commandNext = param1->command;
-                            param1->command = 21;
-                            break;
-                        }
-                    }
-
-                    if (v4 != v2) {
-                        v1 = 2;
+        case MON_COND_CHECK_UPROAR:
+            if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_UPROAR) {
+                u8 j;
+                for (j = 0; j < maxBattlers; j++) {
+                    if ((battleCtx->battleMons[j].status & MON_CONDITION_SLEEP)
+                            && battleCtx->battleMons[j].curHP
+                            && Battler_Ability(battleCtx, j) != ABILITY_SOUNDPROOF) {
+                        battleCtx->msgBattlerTemp = j;
+                        PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_WAKE_UP);
                         break;
                     }
                 }
 
-                param1->battleMons[v3].statusVolatile -= 0x10;
+                if (j != maxBattlers) {
+                    state = STATE_DONE;
+                    break;
+                }
 
-                if (BattleContext_MoveFailed(param1, v3)) {
-                    v0 = (0 + 241);
-                    param1->battleMons[v3].statusVolatile &= (0x70 ^ 0xffffffff);
-                    param1->fieldConditionsMask &= ((FlagIndex(v3) << 8) ^ 0xffffffff);
-                } else if (param1->battleMons[v3].statusVolatile & 0x70) {
-                    v0 = (0 + 240);
+                battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_UPROAR_SHIFT);
+
+                if (BattleContext_MoveFailed(battleCtx, battler)) {
+                    i = BATTLE_SUBSEQ_UPROAR_END;
+                    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_UPROAR;
+                    battleCtx->fieldConditionsMask &= ((FlagIndex(battler) << FIELD_CONDITION_UPROAR_SHIFT) ^ 0xFFFFFFFF);
+                } else if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_UPROAR) {
+                    i = BATTLE_SUBSEQ_UPROAR_CONTINUES;
                 } else {
-                    v0 = (0 + 241);
-                    param1->battleMons[v3].statusVolatile &= (0x70 ^ 0xffffffff);
-                    param1->fieldConditionsMask &= ((FlagIndex(v3) << 8) ^ 0xffffffff);
+                    i = BATTLE_SUBSEQ_UPROAR_END;
+                    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_UPROAR;
+                    battleCtx->fieldConditionsMask &= ((FlagIndex(battler) << FIELD_CONDITION_UPROAR_SHIFT) ^ 0xFFFFFFFF);
                 }
 
-                param1->msgBattlerTemp = v3;
-
-                BattleSystem_LoadScript(param1, 1, v0);
-
-                param1->commandNext = param1->command;
-                param1->command = 21;
-
-                v1 = 1;
+                battleCtx->msgBattlerTemp = battler;
+                PrepareSubroutineSequence(battleCtx, i);
+                state = STATE_BREAK_OUT;
             }
 
-            if (v1 != 2) {
-                param1->monConditionCheckState++;
+            if (state != STATE_DONE) {
+                battleCtx->monConditionCheckState++;
             }
             break;
-        case 14:
-            if (param1->battleMons[v3].statusVolatile & 0xc00) {
-                param1->battleMons[v3].statusVolatile -= 0x400;
 
-                if (BattleContext_MoveFailed(param1, v3)) {
-                    param1->battleMons[v3].statusVolatile &= (0xc00 ^ 0xffffffff);
-                } else if (((param1->battleMons[v3].statusVolatile & 0xc00) == 0) && ((param1->battleMons[v3].statusVolatile & 0x7) == 0)) {
-                    param1->sideEffectMon = v3;
+        case MON_COND_CHECK_THRASH:
+            if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_THRASH) {
+                battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_THRASH_SHIFT);
 
-                    BattleSystem_LoadScript(param1, 1, (0 + 51));
-
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-
-                    v1 = 1;
+                if (BattleContext_MoveFailed(battleCtx, battler)) {
+                    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_THRASH;
+                } else if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_THRASH) == FALSE
+                        && (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) == FALSE) {
+                    battleCtx->sideEffectMon = battler;
+                    
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_THRASH_END);
+                    state = STATE_BREAK_OUT;
                 }
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 15:
-            if (param1->battleMons[v3].moveEffectsData.disabledMove) {
-                for (v0 = 0; v0 < 4; v0++) {
-                    if (param1->battleMons[v3].moveEffectsData.disabledMove == param1->battleMons[v3].moves[v0]) {
+
+        case MON_COND_CHECK_DISABLE:
+            if (battleCtx->battleMons[battler].moveEffectsData.disabledMove) {
+                for (i = 0; i < MAX_BATTLERS; i++) {
+                    if (battleCtx->battleMons[battler].moveEffectsData.disabledMove == battleCtx->battleMons[battler].moves[i]) {
                         break;
                     }
                 }
 
-                if (v0 == 4) {
-                    param1->battleMons[v3].moveEffectsData.disabledTurns = 0;
+                if (i == MAX_BATTLERS) {
+                    battleCtx->battleMons[battler].moveEffectsData.disabledTurns = 0;
                 }
 
-                if (param1->battleMons[v3].moveEffectsData.disabledTurns) {
-                    param1->battleMons[v3].moveEffectsData.disabledTurns--;
+                if (battleCtx->battleMons[battler].moveEffectsData.disabledTurns) {
+                    battleCtx->battleMons[battler].moveEffectsData.disabledTurns--;
                 } else {
-                    param1->battleMons[v3].moveEffectsData.disabledMove = 0;
-                    param1->msgBattlerTemp = v3;
+                    battleCtx->battleMons[battler].moveEffectsData.disabledMove = 0;
+                    battleCtx->msgBattlerTemp = battler;
 
-                    BattleSystem_LoadScript(param1, 1, (0 + 72));
-
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-
-                    v1 = 1;
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_DISABLE_END);
+                    state = STATE_BREAK_OUT;
                 }
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 16:
-            if (param1->battleMons[v3].moveEffectsData.encoredMove) {
-                for (v0 = 0; v0 < 4; v0++) {
-                    if (param1->battleMons[v3].moveEffectsData.encoredMove == param1->battleMons[v3].moves[v0]) {
+
+        case MON_COND_CHECK_ENCORE:
+            if (battleCtx->battleMons[battler].moveEffectsData.encoredMove) {
+                for (i = 0; i < MAX_BATTLERS; i++) {
+                    if (battleCtx->battleMons[battler].moveEffectsData.encoredMove == battleCtx->battleMons[battler].moves[i]) {
                         break;
                     }
                 }
 
-                if ((v0 == 4) || ((v0 != 4) && (param1->battleMons[v3].ppCur[v0] == 0))) {
-                    param1->battleMons[v3].moveEffectsData.encoredTurns = 0;
+                // this chain is kind of ugly, but it does not match unless it is structured this way
+                if (i == MAX_BATTLERS || (i != MAX_BATTLERS && battleCtx->battleMons[battler].ppCur[i] == 0)) {
+                    battleCtx->battleMons[battler].moveEffectsData.encoredTurns = 0;
                 }
 
-                if (param1->battleMons[v3].moveEffectsData.encoredTurns) {
-                    param1->battleMons[v3].moveEffectsData.encoredTurns--;
+                if (battleCtx->battleMons[battler].moveEffectsData.encoredTurns) {
+                    battleCtx->battleMons[battler].moveEffectsData.encoredTurns--;
                 } else {
-                    param1->battleMons[v3].moveEffectsData.encoredMove = 0;
-                    param1->msgBattlerTemp = v3;
+                    battleCtx->battleMons[battler].moveEffectsData.encoredMove = 0;
+                    battleCtx->msgBattlerTemp = battler;
 
-                    BattleSystem_LoadScript(param1, 1, (0 + 74));
-
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-
-                    v1 = 1;
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_ENCORE_END);
+                    state = STATE_BREAK_OUT;
                 }
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 17:
-            if (param1->battleMons[v3].moveEffectsMask & 0x18) {
-                param1->battleMons[v3].moveEffectsMask -= 0x8;
+
+        case MON_COND_CHECK_LOCK_ON:
+            if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_LOCK_ON) {
+                battleCtx->battleMons[battler].moveEffectsMask -= (1 << MOVE_EFFECT_LOCK_ON_SHIFT);
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 18:
-            if (param1->battleMons[v3].moveEffectsData.chargedTurns) {
-                if (--param1->battleMons[v3].moveEffectsData.chargedTurns == 0) {
-                    param1->battleMons[v3].moveEffectsMask &= (0x200 ^ 0xffffffff);
+
+        case MON_COND_CHECK_CHARGE:
+            if (battleCtx->battleMons[battler].moveEffectsData.chargedTurns
+                    && --battleCtx->battleMons[battler].moveEffectsData.chargedTurns == 0) {
+                battleCtx->battleMons[battler].moveEffectsMask &= ~MOVE_EFFECT_CHARGE;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_TAUNT:
+            if (battleCtx->battleMons[battler].moveEffectsData.tauntedTurns
+                    && --battleCtx->battleMons[battler].moveEffectsData.tauntedTurns == 0) {
+                battleCtx->msgBattlerTemp = battler;
+                
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_TAUNT_END);
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_MAGNET_RISE:
+            if (battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns
+                    && --battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0) {
+                battleCtx->msgBattlerTemp = battler;
+                
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_MAGNET_RISE_END);
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_HEAL_BLOCK:
+            if (battleCtx->battleMons[battler].moveEffectsData.healBlockTurns
+                    && --battleCtx->battleMons[battler].moveEffectsData.healBlockTurns == 0) {
+                battleCtx->msgBattlerTemp = battler;
+                
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_HEAL_BLOCK_END);
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_EMBARGO:
+            if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns
+                    && --battleCtx->battleMons[battler].moveEffectsData.embargoTurns == 0) {
+                battleCtx->msgBattlerTemp = battler;
+                
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_EMBARGO_END);
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_YAWN:
+            if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_YAWN) {
+                battleCtx->battleMons[battler].moveEffectsMask -= (1 << MOVE_EFFECT_YAWN_SHIFT);
+
+                if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_YAWN) == FALSE) {
+                    battleCtx->sideEffectMon = battler;
+                    battleCtx->sideEffectType = 4;
+
+                    PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_FALL_ASLEEP);
+                    state = STATE_BREAK_OUT;
                 }
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 19:
-            if (param1->battleMons[v3].moveEffectsData.tauntedTurns) {
-                param1->battleMons[v3].moveEffectsData.tauntedTurns--;
 
-                if (param1->battleMons[v3].moveEffectsData.tauntedTurns == 0) {
-                    param1->msgBattlerTemp = v3;
-                    BattleSystem_LoadScript(param1, 1, (0 + 288));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-                    v1 = 1;
-                }
+        case MON_COND_CHECK_ITEM_CONDITION:
+            int seqNum;
+            if (BattleSystem_TriggerHeldItemOnStatus(battleSys, battleCtx, battler, &seqNum) == TRUE) {
+                battleCtx->msgBattlerTemp = battler;
+                
+                PrepareSubroutineSequence(battleCtx, seqNum);
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 20:
-            if (param1->battleMons[v3].moveEffectsData.magnetRiseTurns) {
-                param1->battleMons[v3].moveEffectsData.magnetRiseTurns--;
 
-                if (param1->battleMons[v3].moveEffectsData.magnetRiseTurns == 0) {
-                    param1->msgBattlerTemp = v3;
-                    BattleSystem_LoadScript(param1, 1, (0 + 242));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-                    v1 = 1;
-                }
+        case MON_COND_CHECK_ITEM_DETRIMENTAL_EFFECT:
+            if (BattleSystem_TriggerDetrimentalHeldItem(battleSys, battleCtx, battler) == TRUE) {
+                state = STATE_BREAK_OUT;
             }
 
-            param1->monConditionCheckState++;
+            battleCtx->monConditionCheckState++;
             break;
-        case 21:
-            if (param1->battleMons[v3].moveEffectsData.healBlockTurns) {
-                param1->battleMons[v3].moveEffectsData.healBlockTurns--;
 
-                if (param1->battleMons[v3].moveEffectsData.healBlockTurns == 0) {
-                    param1->msgBattlerTemp = v3;
-                    BattleSystem_LoadScript(param1, 1, (0 + 243));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-                    v1 = 1;
-                }
-            }
-
-            param1->monConditionCheckState++;
-            break;
-        case 22:
-            if (param1->battleMons[v3].moveEffectsData.embargoTurns) {
-                param1->battleMons[v3].moveEffectsData.embargoTurns--;
-
-                if (param1->battleMons[v3].moveEffectsData.embargoTurns == 0) {
-                    param1->msgBattlerTemp = v3;
-                    BattleSystem_LoadScript(param1, 1, (0 + 244));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-                    v1 = 1;
-                }
-            }
-
-            param1->monConditionCheckState++;
-            break;
-        case 23:
-            if (param1->battleMons[v3].moveEffectsMask & 0x1800) {
-                param1->battleMons[v3].moveEffectsMask -= 0x800;
-
-                if ((param1->battleMons[v3].moveEffectsMask & 0x1800) == 0) {
-                    param1->sideEffectMon = v3;
-                    param1->sideEffectType = 4;
-                    BattleSystem_LoadScript(param1, 1, (0 + 18));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-                    v1 = 1;
-                }
-            }
-
-            param1->monConditionCheckState++;
-            break;
-        case 24:
-        {
-            int v5;
-
-            if (BattleSystem_TriggerHeldItemOnStatus(param0, param1, v3, &v5) == 1) {
-                param1->msgBattlerTemp = v3;
-                BattleSystem_LoadScript(param1, 1, v5);
-                param1->commandNext = param1->command;
-                param1->command = 21;
-                v1 = 1;
-            }
-        }
-            param1->monConditionCheckState++;
-            break;
-        case 25:
-            if (BattleSystem_TriggerDetrimentalHeldItem(param0, param1, v3) == 1) {
-                v1 = 1;
-            }
-
-            param1->monConditionCheckState++;
-            break;
-        case 26:
-            param1->monConditionCheckState = 0;
-            param1->monConditionCheckTemp++;
+        case MON_COND_CHECK_END:
+            battleCtx->monConditionCheckState = MON_COND_CHECK_START;
+            battleCtx->monConditionCheckTemp++;
             break;
         }
 
-        if (v1) {
-            BattleIO_ClearMessageBox(param0);
+        if (state) {
+            BattleIO_ClearMessageBox(battleSys);
             return;
         }
     }
 
-    param1->monConditionCheckState = 0;
-    param1->monConditionCheckTemp = 0;
-    param1->command = 11;
+    battleCtx->monConditionCheckState = MON_COND_CHECK_START;
+    battleCtx->monConditionCheckTemp = 0;
+    battleCtx->command = BATTLE_CONTROL_CHECK_SIDE_CONDITIONS;
 }
 
-static void ov16_0224D9C4 (BattleSystem * param0, BattleContext * param1)
+enum SideConditionCheckState {
+    SIDE_COND_CHECK_START = 0,
+
+    SIDE_COND_CHECK_FUTURE_SIGHT = SIDE_COND_CHECK_START,
+    SIDE_COND_CHECK_PERISH_SONG,
+    SIDE_COND_CHECK_TRICK_ROOM,
+
+    SIDE_COND_CHECK_END
+};
+
+static void BattleController_CheckSideConditions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    v1 = BattleSystem_MaxBattlers(param0);
-
-    if (BattleController_CheckAnyFainted(param1, param1->command, param1->command, 1) == 1) {
+    if (BattleController_CheckAnyFainted(battleCtx, battleCtx->command, battleCtx->command, 1) == TRUE) {
         return;
     }
 
-    BattleIO_ClearMessageBox(param0);
+    BattleIO_ClearMessageBox(battleSys);
 
-    switch (param1->sideConditionCheckState) {
-    case 0:
-        while (param1->sideConditionCheckTemp < v1) {
-            v2 = param1->monSpeedOrder[param1->sideConditionCheckTemp];
-
-            if (param1->battlersSwitchingMask & FlagIndex(v2)) {
-                param1->sideConditionCheckTemp++;
+    int battler;
+    switch (battleCtx->sideConditionCheckState) {
+    case SIDE_COND_CHECK_FUTURE_SIGHT:
+        while (battleCtx->sideConditionCheckTemp < maxBattlers) {
+            battler = battleCtx->monSpeedOrder[battleCtx->sideConditionCheckTemp];
+            if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+                battleCtx->sideConditionCheckTemp++;
                 continue;
             }
 
-            param1->sideConditionCheckTemp++;
+            battleCtx->sideConditionCheckTemp++;
+            if (battleCtx->fieldConditions.futureSightTurns[battler]
+                    && --battleCtx->fieldConditions.futureSightTurns[battler] == FALSE
+                    && battleCtx->battleMons[battler].curHP) {
+                battleCtx->sideConditionsMask[Battler_Side(battleSys, battler)] &= ~SIDE_CONDITION_FUTURE_SIGHT;
 
-            if (param1->fieldConditions.futureSightTurns[v2]) {
-                if ((--param1->fieldConditions.futureSightTurns[v2] == 0) && (param1->battleMons[v2].curHP != 0)) {
-                    param1->sideConditionsMask[Battler_Side(param0, v2)] &= (0x10 ^ 0xffffffff);
-                    param1->msgBuffer.id = 475;
-                    param1->msgBuffer.tags = 10;
-                    param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, v2);
-                    param1->msgBuffer.params[1] = param1->fieldConditions.futureSightMove[v2];
-                    param1->msgBattlerTemp = v2;
-                    param1->msgAttacker = param1->fieldConditions.futureSightAttacker[v2];
-                    param1->msgMoveTemp = param1->fieldConditions.futureSightMove[v2];
-                    param1->hpCalcTemp = param1->fieldConditions.futureSightDamage[v2];
-                    BattleSystem_LoadScript(param1, 1, (0 + 121));
-                    param1->commandNext = param1->command;
-                    param1->command = 21;
-                    return;
-                }
+                battleCtx->msgBuffer.id = 475;
+                battleCtx->msgBuffer.tags = TAG_NICKNAME_MOVE;
+                battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+                battleCtx->msgBuffer.params[1] = battleCtx->fieldConditions.futureSightMove[battler];
+
+                battleCtx->msgBattlerTemp = battler;
+                battleCtx->msgAttacker = battleCtx->fieldConditions.futureSightAttacker[battler];
+                battleCtx->msgMoveTemp = battleCtx->fieldConditions.futureSightMove[battler];
+                battleCtx->hpCalcTemp = battleCtx->fieldConditions.futureSightDamage[battler];
+
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_FUTURE_SIGHT_DAMAGE);
+                return;
             }
         }
 
-        param1->sideConditionCheckState++;
-        param1->sideConditionCheckTemp = 0;
-    case 1:
-        while (param1->sideConditionCheckTemp < v1) {
-            v2 = param1->monSpeedOrder[param1->sideConditionCheckTemp];
-
-            if (param1->battlersSwitchingMask & FlagIndex(v2)) {
-                param1->sideConditionCheckTemp++;
+        battleCtx->sideConditionCheckState++;
+        battleCtx->sideConditionCheckTemp = 0;
+    case SIDE_COND_CHECK_PERISH_SONG:
+        while (battleCtx->sideConditionCheckTemp < maxBattlers) {
+            battler = battleCtx->monSpeedOrder[battleCtx->sideConditionCheckTemp];
+            if (battleCtx->battlersSwitchingMask & FlagIndex(battler)) {
+                battleCtx->sideConditionCheckTemp++;
                 continue;
             }
 
-            param1->sideConditionCheckTemp++;
-
-            if (param1->battleMons[v2].moveEffectsMask & 0x20) {
-                if (param1->battleMons[v2].moveEffectsData.perishSongTurns == 0) {
-                    param1->battleMons[v2].moveEffectsMask &= (0x20 ^ 0xffffffff);
-                    param1->msgTemp = param1->battleMons[v2].moveEffectsData.perishSongTurns;
-                    param1->hpCalcTemp = param1->battleMons[v2].curHP * -1;
-                    param1->battleStatusMask |= 0x40;
+            battleCtx->sideConditionCheckTemp++;
+            if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_PERISH_SONG) {
+                if (battleCtx->battleMons[battler].moveEffectsData.perishSongTurns == 0) {
+                    battleCtx->battleMons[battler].moveEffectsMask &= ~MOVE_EFFECT_PERISH_SONG;
+                    battleCtx->msgTemp = battleCtx->battleMons[battler].moveEffectsData.perishSongTurns;
+                    battleCtx->hpCalcTemp = battleCtx->battleMons[battler].curHP * -1;
+                    battleCtx->battleStatusMask |= SYSTEM_CONTROL_SKIP_DAMAGE_SPRITE_BLINK;
                 } else {
-                    param1->msgTemp = param1->battleMons[v2].moveEffectsData.perishSongTurns;
-                    param1->battleMons[v2].moveEffectsData.perishSongTurns--;
+                    battleCtx->msgTemp = battleCtx->battleMons[battler].moveEffectsData.perishSongTurns;
+                    battleCtx->battleMons[battler].moveEffectsData.perishSongTurns--;
                 }
 
-                param1->msgBattlerTemp = v2;
-                BattleSystem_LoadScript(param1, 1, (0 + 102));
-                param1->commandNext = param1->command;
-                param1->command = 21;
+                battleCtx->msgBattlerTemp = battler;
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_CONTINUE_PERISH_SONG);
                 return;
             }
         }
 
-        param1->sideConditionCheckState++;
-        param1->sideConditionCheckTemp = 0;
-    case 2:
-        if (param1->fieldConditionsMask & 0x70000) {
-            param1->fieldConditionsMask -= (1 << 16);
-
-            if ((param1->fieldConditionsMask & 0x70000) == 0) {
-                BattleSystem_LoadScript(param1, 1, (0 + 251));
-                param1->commandNext = param1->command;
-                param1->command = 21;
+        battleCtx->sideConditionCheckState++;
+        battleCtx->sideConditionCheckTemp = 0;
+    case SIDE_COND_CHECK_TRICK_ROOM:
+        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) {
+            battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_TRICK_ROOM_SHIFT);
+            if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) == FALSE) {
+                PrepareSubroutineSequence(battleCtx, BATTLE_SUBSEQ_TRICK_ROOM_END);
                 return;
             }
         }
 
-        param1->sideConditionCheckState++;
-        param1->sideConditionCheckTemp = 0;
+        battleCtx->sideConditionCheckState++;
+        battleCtx->sideConditionCheckTemp = 0;
         break;
     default:
         break;
     }
 
-    param1->sideConditionCheckState = 0;
-    param1->sideConditionCheckTemp = 0;
-    param1->command = 12;
+    battleCtx->sideConditionCheckState = SIDE_COND_CHECK_START;
+    battleCtx->sideConditionCheckTemp = 0;
+    battleCtx->command = BATTLE_CONTROL_TURN_END;
 }
 
-static void ov16_0224DC10 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_TurnEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleController_CheckExpPayout(param1, param1->command, param1->command) == 1) {
+    // Explicit `== TRUE` is needed to match on these.
+    if (BattleController_CheckExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
+            || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE
+            || BattleController_CheckAnySwitches(battleSys, battleCtx) == TRUE) {
         return;
     }
 
-    if (BattleController_CheckBattleOver(param0, param1) == 1) {
-        return;
-    }
+    battleCtx->totalTurns++;
+    battleCtx->meFirstTurnOrder++;
 
-    if (BattleController_CheckAnySwitches(param0, param1) == 1) {
-        return;
-    }
+    BattleContext_Init(battleCtx);
+    BattleSystem_SetupNextTurn(battleSys, battleCtx);
 
-    param1->totalTurns++;
-    param1->meFirstTurnOrder++;
-
-    BattleContext_Init(param1);
-    BattleSystem_SetupNextTurn(param0, param1);
-
-    param1->command = 2;
+    battleCtx->command = BATTLE_CONTROL_TRAINER_MESSAGE;
 }
 
 static void ov16_0224DC68 (BattleSystem * param0, BattleContext * param1)
