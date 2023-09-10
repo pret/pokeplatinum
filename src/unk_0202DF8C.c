@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202DF8C.h"

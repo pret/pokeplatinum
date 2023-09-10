@@ -14,7 +14,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_02087A10_decl.h"
 
 #include "constdata/const_020F2DAC.h"

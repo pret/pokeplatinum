@@ -8,7 +8,7 @@
 
 #include "battle/battle_context.h"
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/battle_system.h"
 #include "battle/ai_context.h"
 #include "battle/battle_context.h"

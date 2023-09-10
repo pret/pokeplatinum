@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 

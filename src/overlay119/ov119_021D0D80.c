@@ -10,8 +10,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008A90.h"

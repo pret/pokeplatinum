@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/struct_party.h"
 
 #include "heap.h"

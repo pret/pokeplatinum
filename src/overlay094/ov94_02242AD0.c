@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_0202DA40_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "overlay084/struct_ov84_0223BA5C.h"
 #include "overlay094/struct_ov94_0223BA88.h"

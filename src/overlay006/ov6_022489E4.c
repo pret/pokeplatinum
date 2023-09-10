@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_020954F0.h"
 #include "struct_defs/struct_02095C48.h"

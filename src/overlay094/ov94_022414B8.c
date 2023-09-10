@@ -11,8 +11,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/const_ov94_02245FD4.h"

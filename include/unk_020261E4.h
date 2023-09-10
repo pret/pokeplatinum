@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02026224_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_defs/struct_0202818C.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 int sub_020261E4(void);

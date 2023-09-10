@@ -6,7 +6,7 @@
 #include "constants/species.h"
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"

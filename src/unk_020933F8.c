@@ -15,8 +15,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F55EC.h"

@@ -19,11 +19,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
-#include "struct_defs/party_pokemon.h"
-#include "struct_defs/pokemon_personal_data.h"
-#include "struct_defs/pokemon_evolution_data.h"
+#include "pokemon.h"
 #include "struct_defs/struct_020789BC.h"
 #include "struct_defs/struct_020789F4.h"
 #include "struct_defs/struct_02078B40.h"
@@ -88,6 +84,16 @@ static const s8 sNatureFlavorAffinities[][5] = {
     { 0x0, -0x1, 0x0, 0x1, 0x0 },
     { 0x0, 0x0, 0x0, 0x0, 0x0 },
 };
+
+typedef struct PokemonEvolutionMethod {
+    u16 type;
+    u16 param;
+    u16 targetSpecies;
+} PokemonEvolutionMethod;
+
+typedef struct PokemonEvolutionData {
+    PokemonEvolutionMethod methods[7];
+} PokemonEvolutionData;
 
 static enum PokemonDataBlockID {
     DATA_BLOCK_A = 0,

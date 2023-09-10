@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV16_0225177C_H
 #define POKEPLATINUM_OV16_0225177C_H
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/battle_system.h"
 #include "battle/battle_context.h"
 #include "battle/battle_mon.h"

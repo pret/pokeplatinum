@@ -34,7 +34,7 @@
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/trainer_data.h"
 #include "struct_defs/battle_system.h"
 #include "overlay006/battle_params.h"

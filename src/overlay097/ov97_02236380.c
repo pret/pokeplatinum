@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "data_021BF67C.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 
 #include "overlay097/box_pokemon_gba.h"
 

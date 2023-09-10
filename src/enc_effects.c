@@ -7,7 +7,7 @@
 #include "constants/species.h"
 #include "constants/trainer.h"
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay006/battle_params.h"

@@ -7,7 +7,7 @@
 #include "struct_decls/battle_system.h"
 #include "battle/battle_context.h"
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/struct_0207A81C.h"
 #include "struct_defs/battle_system.h"
 #include "battle/battle_context.h"

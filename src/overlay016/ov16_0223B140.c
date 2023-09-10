@@ -16,7 +16,7 @@
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/struct_0207A778.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0207C690.h"

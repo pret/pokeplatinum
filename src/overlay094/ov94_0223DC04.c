@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay094/struct_ov94_0223BA88.h"

@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/box_pokemon.h"
-
 #include "message.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"

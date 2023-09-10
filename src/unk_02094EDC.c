@@ -3,8 +3,10 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
+#include "strbuf.h"
+#include "pokemon.h"
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"

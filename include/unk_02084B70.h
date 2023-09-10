@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02084B70_H
 #define POKEPLATINUM_UNK_02084B70_H
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/struct_0207F248.h"
 
 void sub_020852B8(UnkStruct_0207F248 * param0);

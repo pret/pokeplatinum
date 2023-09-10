@@ -4,7 +4,7 @@
 #include "constants/trainer.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/trainer_data.h"
