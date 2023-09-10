@@ -1095,7 +1095,7 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
     param2->unk_4B = 5;
 
     for (v1 = 0; v1 < 5; v1++) {
-        if (sub_0207762C(param1, v1) == 1) {
+        if (GetMonFlavorAffinity(param1, v1) == 1) {
             param2->unk_4B = v1;
             break;
         }

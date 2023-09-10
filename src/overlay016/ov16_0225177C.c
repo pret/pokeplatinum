@@ -4534,7 +4534,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 0;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 0) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 0) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4548,7 +4548,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 1;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 1) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 1) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4562,7 +4562,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 2;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 2) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 2) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4576,7 +4576,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 3;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 3) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 3) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4590,7 +4590,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 4;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 4) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 4) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4943,7 +4943,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 0;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 0) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 0) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -4957,7 +4957,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 1;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 1) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 1) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -4971,7 +4971,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 2;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 2) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 2) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -4985,7 +4985,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 3;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 3) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 3) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -4999,7 +4999,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 4;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 4) == -1) {
+                if (GetMonPersonalityFlavorAffinity(param1->battleMons[param2].pid, 4) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -5476,7 +5476,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 0;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 0) == -1) {
+            if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->attacker].pid, 0) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5490,7 +5490,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 1;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 1) == -1) {
+            if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->attacker].pid, 1) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5504,7 +5504,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 2;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 2) == -1) {
+            if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->attacker].pid, 2) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5518,7 +5518,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 3;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 3) == -1) {
+            if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->attacker].pid, 3) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5532,7 +5532,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 4;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 4) == -1) {
+            if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->attacker].pid, 4) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5755,7 +5755,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 0;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 0) == -1) {
+        if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->defender].pid, 0) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5765,7 +5765,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 1;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 1) == -1) {
+        if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->defender].pid, 1) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5775,7 +5775,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 2;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 2) == -1) {
+        if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->defender].pid, 2) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5785,7 +5785,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 3;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 3) == -1) {
+        if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->defender].pid, 3) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5795,7 +5795,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 4;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 4) == -1) {
+        if (GetMonPersonalityFlavorAffinity(param1->battleMons[param1->defender].pid, 4) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);

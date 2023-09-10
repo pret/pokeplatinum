@@ -2714,7 +2714,7 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
     if ((v0 % 2) == 0) {
         for (v1 = 0; v1 < 5; v1++) {
-            if (sub_02077648(v0, v1) == 1) {
+            if (GetMonPersonalityFlavorAffinity(v0, v1) == 1) {
                 v5 = v1;
                 break;
             }

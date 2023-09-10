@@ -22,10 +22,6 @@
 #include "struct_defs/pokemon.h"
 #include "struct_defs/box_pokemon.h"
 #include "struct_defs/party_pokemon.h"
-#include "struct_defs/pokemon_data_block_a.h"
-#include "struct_defs/pokemon_data_block_b.h"
-#include "struct_defs/pokemon_data_block_c.h"
-#include "struct_defs/pokemon_data_block_d.h"
 #include "struct_defs/pokemon_personal_data.h"
 #include "struct_defs/pokemon_evolution_data.h"
 #include "struct_defs/struct_020789BC.h"
@@ -63,7 +59,9 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
-static const s8 Unk_020F0695[][5] = {
+// Columns: Spicy, Dry, Sweet, Bitter, Sour
+// TODO enum here?
+static const s8 sNatureFlavorAffinities[][5] = {
     { 0x0, 0x0, 0x0, 0x0, 0x0 },
     { 0x1, 0x0, 0x0, 0x0, -0x1 },
     { 0x1, 0x0, -0x1, 0x0, 0x0 },
@@ -91,6 +89,14 @@ static const s8 Unk_020F0695[][5] = {
     { 0x0, 0x0, 0x0, 0x0, 0x0 },
 };
 
+static enum PokemonDataBlockID {
+    DATA_BLOCK_A = 0,
+    DATA_BLOCK_B,
+    DATA_BLOCK_C,
+    DATA_BLOCK_D
+};
+
+static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
 static u32 GetMonDataAttribute(Pokemon *mon, enum PokemonDataParam param, void *dest);
 static u32 GetBoxMonDataAttribute(BoxPokemon *boxMon, enum PokemonDataParam param, void *dest);
 static void SetMonDataAttribute(Pokemon *mon, enum PokemonDataParam param, const void *value);
@@ -99,13 +105,14 @@ static void IncreaseMonDataAttribute(Pokemon *mon, enum PokemonDataParam param, 
 static void IncreaseBoxMonDataAttribute(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
 static u32 GetMonExpRateLevelExp(int monExpRate, int monLevel);
 static u16 GetNatureAdjustedStatValue(u8 monNature, u16 monStatValue, u8 statType);
+static inline BOOL IsMonPersonalityShiny(u32 monOTID, u32 monPersonality);
 static void LoadMonPersonalData(int monSpecies, PokemonPersonalData *monPersonalData);
 static void LoadMonFormPersonalData(int monSpecies, int monForm, PokemonPersonalData *monPersonalData);
 static void LoadMonEvolutionData(int monSpecies, PokemonEvolutionData *monEvolutionData);
 static void EncryptMonData(void *data, u32 bytes, u32 seed);
 static void DecryptMonData(void *data, u32 bytes, u32 seed);
 static u16 GetMonDataChecksum(void *data, u32 bytes);
-static void *GetBoxMonDataBlock(BoxPokemon *boxMon, u32 personality, u8 dataBlockID);
+static void *GetBoxMonDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
 static int GetMonFormNarcIndex(int monSpecies, int monForm);
 static void sub_02076300(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
@@ -223,8 +230,7 @@ void sub_02073D80 (Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL 
     CalculateMonLevelAndStats(mon);
 }
 
-// TODO make this static?
-void sub_02073E18 (BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
+static void sub_02073E18 (BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
 {
     ZeroBoxMonData(boxMon);
 
@@ -240,7 +246,7 @@ void sub_02073E18 (BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs,
     if (monOTIDSource == 2) {
         do {
             monOTID = (LCRNG_Next() | (LCRNG_Next() << 16));
-        } while ((((monOTID & 0xffff0000) >> 16) ^ (monOTID & 0xffff) ^ ((monPersonality & 0xffff0000) >> 16) ^ (monPersonality & 0xffff)) < 8);
+        } while (IsMonPersonalityShiny(monOTID, monPersonality));
     } else if (monOTIDSource != 1) {
         monOTID = 0;
     }
@@ -580,11 +586,10 @@ static u32 GetBoxMonDataAttribute (BoxPokemon *boxMon, enum PokemonDataParam par
 {
     u32 result = 0;
 
-    // TODO enum?
-    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, boxMon->personality, 0);
-    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, boxMon->personality, 1);
-    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, boxMon->personality, 2);
-    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, boxMon->personality, 3);
+    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
+    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
+    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
+    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_D);
 
     switch (param) {
     default:
@@ -1089,11 +1094,10 @@ static void SetBoxMonDataAttribute (BoxPokemon *boxMon, enum PokemonDataParam pa
     u16 *u16Value = value;
     u8 *u8Value = value;
 
-    // TODO enum values?
-    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, boxMon->personality, 0);
-    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, boxMon->personality, 1);
-    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, boxMon->personality, 2);
-    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, boxMon->personality, 3);
+    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
+    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
+    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
+    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_D);
 
     switch (param) {
     case MON_DATA_PERSONALITY:
@@ -1521,11 +1525,10 @@ static void IncreaseMonDataAttribute (Pokemon *mon, enum PokemonDataParam param,
 
 static void IncreaseBoxMonDataAttribute (BoxPokemon *boxMon, enum PokemonDataParam param, int value)
 {
-    // TODO enum values?
-    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, boxMon->personality, 0);
-    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, boxMon->personality, 1);
-    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, boxMon->personality, 2);
-    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, boxMon->personality, 3);
+    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
+    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
+    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
+    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_D);
 
     // TODO consts for various maximum values?
     switch (param) {
@@ -2283,9 +2286,13 @@ u8 GetBoxMonShininess (BoxPokemon *boxMon)
     return GetMonPersonalityShininess(monOTID, monPersonality);
 }
 
+static inline BOOL IsMonPersonalityShiny(u32 monOTID, u32 monPersonality) {
+    return (((monOTID & 0xffff0000) >> 16) ^ (monOTID & 0xffff) ^ ((monPersonality & 0xffff0000) >> 16) ^ (monPersonality & 0xffff)) < 8;
+}
+
 u8 GetMonPersonalityShininess (u32 monOTID, u32 monPersonality)
 {
-    return (((monOTID & 0xffff0000) >> 16) ^ (monOTID & 0xffff) ^ ((monPersonality & 0xffff0000) >> 16) ^ (monPersonality & 0xffff)) < 8;
+    return IsMonPersonalityShiny(monOTID, monPersonality);
 }
 
 u32 sub_02075E64 (u32 param0)
@@ -2326,8 +2333,7 @@ void sub_02075F00 (UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2)
     sub_02075F0C(param0, &mon->box, param2, TRUE);
 }
 
-// TODO change param3 to BOOL
-void sub_02075F0C (UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, int param3)
+void sub_02075F0C (UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, BOOL param3)
 {
     BOOL reencrypt = DecryptBoxMon(boxMon);
 
@@ -2648,8 +2654,7 @@ u8 sub_020765B8 (Pokemon *mon, u8 param1)
     return sub_020765C4(&mon->box, param1, TRUE);
 }
 
-// TODO change param2 to BOOL
-u8 sub_020765C4 (BoxPokemon *boxMon, u8 param1, int param2)
+u8 sub_020765C4 (BoxPokemon *boxMon, u8 param1, BOOL param2)
 {
     u16 monSpeciesEgg = GetBoxMonData(boxMon, MON_DATA_SPECIES_EGG, NULL);
     u8 monGender = GetBoxMonGender(boxMon);
@@ -2959,8 +2964,7 @@ BoxPokemon *GetBoxMon (Pokemon *mon)
     return &mon->box;
 }
 
-// TODO return BOOL
-u8 sub_02076B14 (Pokemon *mon)
+BOOL sub_02076B14 (Pokemon *mon)
 {
     u16 monSpecies = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 monNextLevel = GetMonData(mon, MON_DATA_LEVEL, NULL) + 1;
@@ -3574,20 +3578,23 @@ void sub_02077618 (Pokemon *src, BoxPokemon *dest)
     return;
 }
 
-s8 sub_0207762C (Pokemon *mon, int param1)
+// TODO enums
+s8 GetMonFlavorAffinity (Pokemon *mon, int flavor)
 {
-    return sub_02077634(&mon->box, param1);
+    return GetBoxMonFlavorAffinity(&mon->box, flavor);
 }
 
-s8 sub_02077634 (BoxPokemon *boxMon, int param1)
+// TODO enums
+s8 GetBoxMonFlavorAffinity (BoxPokemon *boxMon, int flavor)
 {
-    return sub_02077648(GetBoxMonData(boxMon, MON_DATA_PERSONALITY, NULL), param1);
+    return GetMonPersonalityFlavorAffinity(GetBoxMonData(boxMon, MON_DATA_PERSONALITY, NULL), flavor);
 }
 
-s8 sub_02077648 (u32 monPersonality, int param1)
+// TODO enums
+s8 GetMonPersonalityFlavorAffinity (u32 monPersonality, int flavor)
 {
     u8 monNature = GetNatureFromPersonality(monPersonality);
-    return Unk_020F0695[monNature][param1];
+    return sNatureFlavorAffinities[monNature][flavor];
 }
 
 int GetMonLevelUpMoveIDs (int monSpecies, int monForm, u16 *monLevelUpMoveIDs)
@@ -4236,15 +4243,14 @@ void sub_020780C4 (Pokemon *mon, u32 monPersonality)
 
     sub_020775EC(mon, newMon);
 
-    // TODO enum values?
-    PokemonDataBlockA *newMonBlockA = GetBoxMonDataBlock(&newMon->box, mon->box.personality, 0);
-    PokemonDataBlockB *newMonBlockB = GetBoxMonDataBlock(&newMon->box, mon->box.personality, 1);
-    PokemonDataBlockC *newMonBlockC = GetBoxMonDataBlock(&newMon->box, mon->box.personality, 2);
-    PokemonDataBlockD *newMonBlockD = GetBoxMonDataBlock(&newMon->box, mon->box.personality, 3);
-    PokemonDataBlockA *monBlockA = GetBoxMonDataBlock(&mon->box, monPersonality, 0);
-    PokemonDataBlockB *monBlockB = GetBoxMonDataBlock(&mon->box, monPersonality, 1);
-    PokemonDataBlockC *monBlockC = GetBoxMonDataBlock(&mon->box, monPersonality, 2);
-    PokemonDataBlockD *monBlockD = GetBoxMonDataBlock(&mon->box, monPersonality, 3);
+    PokemonDataBlockA *newMonBlockA = GetBoxMonDataBlock(&newMon->box, mon->box.personality, DATA_BLOCK_A);
+    PokemonDataBlockB *newMonBlockB = GetBoxMonDataBlock(&newMon->box, mon->box.personality, DATA_BLOCK_B);
+    PokemonDataBlockC *newMonBlockC = GetBoxMonDataBlock(&newMon->box, mon->box.personality, DATA_BLOCK_C);
+    PokemonDataBlockD *newMonBlockD = GetBoxMonDataBlock(&newMon->box, mon->box.personality, DATA_BLOCK_D);
+    PokemonDataBlockA *monBlockA = GetBoxMonDataBlock(&mon->box, monPersonality, DATA_BLOCK_A);
+    PokemonDataBlockB *monBlockB = GetBoxMonDataBlock(&mon->box, monPersonality, DATA_BLOCK_B);
+    PokemonDataBlockC *monBlockC = GetBoxMonDataBlock(&mon->box, monPersonality, DATA_BLOCK_C);
+    PokemonDataBlockD *monBlockD = GetBoxMonDataBlock(&mon->box, monPersonality, DATA_BLOCK_D);
 
     DecryptMonData(&newMon->box.dataBlocks, sizeof(PokemonDataBlock) * 4, newMon->box.checksum);
     DecryptMonData(&mon->party, sizeof(PartyPokemon), mon->box.personality);
@@ -4309,23 +4315,23 @@ static u16 GetMonDataChecksum (void *data, u32 bytes)
         PokemonDataBlock *dataBlocks = boxMon->dataBlocks;              \
         switch (dataBlockID)                                            \
         {                                                               \
-        case 0:                                                         \
+        case DATA_BLOCK_A:                                              \
             result = &dataBlocks[v1];                                   \
             break;                                                      \
-        case 1:                                                         \
+        case DATA_BLOCK_B:                                              \
             result = &dataBlocks[v2];                                   \
             break;                                                      \
-        case 2:                                                         \
+        case DATA_BLOCK_C:                                              \
             result = &dataBlocks[v3];                                   \
             break;                                                      \
-        case 3:                                                         \
+        case DATA_BLOCK_D:                                              \
             result = &dataBlocks[v4];                                   \
             break;                                                      \
         }                                                               \
         break;                                                          \
 }
 
-static void *GetBoxMonDataBlock (BoxPokemon *boxMon, u32 personality, u8 dataBlockID)
+static void *GetBoxMonDataBlock (BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID)
 {
     personality = (personality & 0x3e000) >> 13;
     GF_ASSERT(personality <= 31);
@@ -4683,11 +4689,11 @@ void sub_02078B40 (Pokemon *mon, UnkStruct_02078B40 *param1)
     }
 
     BoxPokemon *boxMon = GetBoxMon(mon);
-    // TODO enum values?
-    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, boxMon->personality, 0);
-    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, boxMon->personality, 1);
-    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, boxMon->personality, 2);
-    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, boxMon->personality, 3);
+
+    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_A);
+    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_B);
+    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_C);
+    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, boxMon->personality, DATA_BLOCK_D);
 
     param1->personality = boxMon->personality;
     param1->partyDecrypted = FALSE;
@@ -4758,11 +4764,11 @@ void sub_02078E0C (UnkStruct_02078B40 *param0, Pokemon *mon)
     MI_CpuClearFast(mon, sizeof(Pokemon));
 
     BoxPokemon *boxMon = GetBoxMon(mon);
-    // TODO enum values?
-    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, param0->personality, 0);
-    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, param0->personality, 1);
-    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, param0->personality, 2);
-    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, param0->personality, 3);
+
+    PokemonDataBlockA *monDataBlockA = GetBoxMonDataBlock(boxMon, param0->personality, DATA_BLOCK_A);
+    PokemonDataBlockB *monDataBlockB = GetBoxMonDataBlock(boxMon, param0->personality, DATA_BLOCK_B);
+    PokemonDataBlockC *monDataBlockC = GetBoxMonDataBlock(boxMon, param0->personality, DATA_BLOCK_C);
+    PokemonDataBlockD *monDataBlockD = GetBoxMonDataBlock(boxMon, param0->personality, DATA_BLOCK_D);
 
     boxMon->personality = param0->personality;
     boxMon->partyDecrypted = FALSE;

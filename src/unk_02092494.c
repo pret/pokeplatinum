@@ -609,7 +609,7 @@ static void sub_02092E10 (UnkStruct_02090800 * param0)
     v1 = 0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        if (sub_0207762C(param0->unk_0C, v0) == 1) {
+        if (GetMonFlavorAffinity(param0->unk_0C, v0) == 1) {
             v1 = v0 + 1;
         }
     }

@@ -85,10 +85,6 @@ BOOL DecryptBoxMon(BoxPokemon *boxMon);
 BOOL EncryptBoxMon(BoxPokemon *boxMon, BOOL encrypt);
 
 void sub_02073D80(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
-
-// TODO make this static?
-void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
-
 void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
@@ -385,7 +381,7 @@ u8 GetMonPersonalityShininess(u32 monOTID, u32 monPersonality);
 u32 sub_02075E64(u32 param0);
 void sub_02075EF4(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2);
 void sub_02075F00(UnkStruct_02008A90 *param0, Pokemon *mon, u8 param2);
-void sub_02075F0C(UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, int param3);
+void sub_02075F0C(UnkStruct_02008A90 *param0, BoxPokemon *boxMon, u8 param2, BOOL param3);
 void sub_02075FB4(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
 
 /**
@@ -399,7 +395,7 @@ u8 SanitizeFormId(u16 monSpecies, u8 monForm);
 
 u8 sub_020765AC(Pokemon *mon, u8 param1);
 u8 sub_020765B8(Pokemon *mon, u8 param1);
-u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, int param2);
+u8 sub_020765C4(BoxPokemon *boxMon, u8 param1, BOOL param2);
 u8 sub_02076648(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
 void sub_0207697C(UnkStruct_02008A90 *param0, u16 param1);
 UnkStruct_0200D0F4 *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, UnkStruct_02002F38 *param2, int param3, int param4, int param5, int param6, int param7, int heapID);
@@ -443,7 +439,7 @@ u8 GetBoxMonForm(BoxPokemon *boxMon);
  */
 BoxPokemon *GetBoxMon(Pokemon *mon);
 
-u8 sub_02076B14(Pokemon *mon);
+BOOL sub_02076B14(Pokemon *mon);
 u16 sub_02076B94(Party *party, Pokemon *mon, u8 evoTypeList, u16 evoParam, int *evoTypeResult);
 u16 sub_02076F84(const u16 monSpecies);
 u16 sub_02076FD4(const u16 monSpecies);
@@ -568,9 +564,33 @@ u16 sub_020775C4(u16 param0);
 void sub_020775EC(Pokemon *src, Pokemon *dest);
 void sub_02077604(BoxPokemon *src, BoxPokemon *dest);
 void sub_02077618(Pokemon *src, BoxPokemon *dest);
-s8 sub_0207762C(Pokemon *mon, int param1);
-s8 sub_02077634(BoxPokemon *boxMon, int param1);
-s8 sub_02077648(u32 monPersonality, int param1);
+
+/**
+ * @brief Gets the affinitiy of a given Pokemon to a given flavor
+ * 
+ * @param mon 
+ * @param flavor 
+ * @return 1 if liked flavor, -1 if disliked flavor, else 0
+ */
+s8 GetMonFlavorAffinity(Pokemon *mon, int flavor);
+
+/**
+ * @brief Gets the affinitiy of a given BoxPokemon to a given flavor
+ * 
+ * @param boxMon 
+ * @param flavor 
+ * @return 1 if liked flavor, -1 if disliked flavor, else 0
+ */
+s8 GetBoxMonFlavorAffinity(BoxPokemon *boxMon, int flavor);
+
+/**
+ * @brief Gets the affinitiy of a given Pokemon personality to a given flavor
+ * 
+ * @param monPersonality 
+ * @param flavor 
+ * @return 1 if liked flavor, -1 if disliked flavor, else 0
+ */
+s8 GetMonPersonalityFlavorAffinity(u32 monPersonality, int flavor);
 
 /**
  * @brief Gets all moves that the given pokemon species and form can learn by leveling up
