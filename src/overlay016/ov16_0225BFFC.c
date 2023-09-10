@@ -807,7 +807,7 @@ static void ov16_0225C868 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 {
     UnkStruct_ov16_0225C840 * v0 = (UnkStruct_ov16_0225C840 *)&param1->unk_90[0];
 
-    if (ov16_0223E208(param0, param1->unk_190)) {
+    if (Battler_Side(param0, param1->unk_190)) {
         ov16_0225E1B4(param0, param1, v0);
     } else {
         ov16_02266ABC(param0, param1->unk_190, 50);
@@ -820,7 +820,7 @@ static void ov16_0225C8A4 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 {
     UnkStruct_ov16_0225C840 * v0 = (UnkStruct_ov16_0225C840 *)&param1->unk_90[0];
 
-    if (ov16_0223E208(param0, param1->unk_190)) {
+    if (Battler_Side(param0, param1->unk_190)) {
         ov16_0225E200(param0, param1, v0);
     } else {
         ov16_02266ABC(param0, param1->unk_190, 51);
@@ -973,7 +973,7 @@ static void ov16_0225CA74 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
                 v2 = Party_GetPokemonBySlotIndex(v1, v3);
 
                 if ((GetMonData(v2, MON_DATA_SPECIES, NULL)) && (GetMonData(v2, MON_DATA_IS_EGG, NULL) == 0)) {
-                    if (ov16_0223E208(param0, v4)) {
+                    if (Battler_Side(param0, v4)) {
                         v6 += GetMonData(v2, MON_DATA_163, NULL);
                     } else {
                         v5 += GetMonData(v2, MON_DATA_163, NULL);

@@ -641,7 +641,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
     }
 
     if (((v9 & (0x4 | 0x8)) == (0x4 | 0x8)) || ((v9 & 0x10)) || ((v9 == ((0x2 | 0x1) | 0x8 | 0x40))) || ((v9 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80)))) {
-        if (ov16_0223E208(battleSys, battler)) {
+        if (Battler_Side(battleSys, battler)) {
             v2 = ov16_0223E1C4(battleSys, 2);
         } else {
             v2 = ov16_0223E1C4(battleSys, 3);
@@ -669,7 +669,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             }
         }
 
-        if (ov16_0223E208(battleSys, battler)) {
+        if (Battler_Side(battleSys, battler)) {
             v2 = ov16_0223E1C4(battleSys, 4);
         } else {
             v2 = ov16_0223E1C4(battleSys, 5);
@@ -1266,7 +1266,7 @@ void ov16_022662FC (BattleSystem * param0, BattleContext * param1, int param2)
     v0.unk_01_4 = param1->battleMons[param2].moveEffectsData.mimickedMoveSlot;
     v0.unk_02 = param1->battleMons[param2].curHP;
     v0.unk_0C = param1->battleMons[param2].heldItem;
-    v0.unk_08 = param1->sideConditions[ov16_0223E208(param0, param2)].knockedOffItemsMask;
+    v0.unk_08 = param1->sideConditions[Battler_Side(param0, param2)].knockedOffItemsMask;
     v0.unk_1C = param1->battleMons[param2].formNum;
     v0.unk_20 = param1->battleMons[param2].ability;
 
@@ -1601,7 +1601,7 @@ void ov16_02266A38 (BattleSystem * param0)
     ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_02266A38));
 }
 
-void ov16_02266AA0 (BattleSystem * param0)
+void BattleIO_ClearMessageBox (BattleSystem * param0)
 {
     int v0 = 66;
     ov16_02264A04(param0, 1, 0, &v0, 4);
@@ -1688,7 +1688,7 @@ void ov16_02266B78 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov1
 
         param2->unk_0C = param1->battleMons[param5].friendship;
 
-        if ((ov16_022555A4(param0, param1, 8, 0, 13) == 0) && (ov16_022555A4(param0, param1, 8, 0, 76) == 0)) {
+        if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
             param2->unk_10 = param1->fieldConditionsMask;
         } else {
             param2->unk_10 = 0;
@@ -1730,7 +1730,7 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
     v5 = BattleSystem_BattleType(param0);
     param2->unk_00 = param3;
 
-    if (((v5 & (0x4 | 0x8)) == (0x4 | 0x8)) || ((v5 & 0x10) && (ov16_0223E208(param0, param4))) || ((v5 == ((0x2 | 0x1) | 0x8 | 0x40)) && (ov16_0223E208(param0, param4))) || ((v5 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80)))) {
+    if (((v5 & (0x4 | 0x8)) == (0x4 | 0x8)) || ((v5 & 0x10) && (Battler_Side(param0, param4))) || ((v5 == ((0x2 | 0x1) | 0x8 | 0x40)) && (Battler_Side(param0, param4))) || ((v5 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80)))) {
         if ((BattleSystem_BattlerSlot(param0, param4) == 2) || (BattleSystem_BattlerSlot(param0, param4) == 3)) {
             v1 = param4;
             v2 = BattleSystem_Partner(param0, param4);
