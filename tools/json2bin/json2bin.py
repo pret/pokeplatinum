@@ -160,25 +160,21 @@ def json2bin(target: str,
              schema: Parser,
              output_dir: str | None,
              index_func: FunctionType,
-             batch_mode: bool,
              glob_pattern: str='*.json',
              narc_name: str | None=None,
              narc_packer: str | None=None):
     output_dir = pathlib.Path(output_dir)
     
-    if batch_mode:
-        if not narc_name or not narc_packer:
-            raise RuntimeError('Missing narc_name or narc_packer input in batch mode; halting')
+    if not narc_name or not narc_packer:
+        raise RuntimeError('Missing narc_name or narc_packer input in batch mode; halting')
 
-        files_output_dir = output_dir / narc_name
-        files_output_dir.mkdir(exist_ok=True, parents=True)
-        for fname_in in pathlib.Path(target).glob(glob_pattern):
-            process(fname_in, schema, files_output_dir, index_func)
-        
-        subprocess.run([
-            pathlib.Path(narc_packer),
-            '-d', files_output_dir,
-            '-p', output_dir / f'{narc_name}.narc'
-        ])
-    else:
-        process(target, schema, output_dir, index_func)
+    files_output_dir = output_dir / narc_name
+    files_output_dir.mkdir(exist_ok=True, parents=True)
+    for fname_in in pathlib.Path(target).glob(glob_pattern):
+        process(fname_in, schema, files_output_dir, index_func)
+    
+    subprocess.run([
+        pathlib.Path(narc_packer),
+        '-d', files_output_dir,
+        '-p', output_dir / f'{narc_name}.narc'
+    ])

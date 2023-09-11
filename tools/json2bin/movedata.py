@@ -36,7 +36,6 @@ j2b.json2bin(args.source_dir,
              SCHEMA,
              args.output_dir,
              indexer,
-             True,
              glob_pattern='**/data.json',
              narc_name='pl_waza_tbl',
              narc_packer=args.knarc)
