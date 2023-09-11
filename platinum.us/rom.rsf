@@ -216,7 +216,13 @@ RomSpec
 	File wazaeffect/effectclact/wecellanm.narc
 	File wazaeffect/effectclact/wechar.narc
 	File wazaeffect/effectclact/wepltt.narc
-	File poketool/waza/pl_waza_tbl.narc
+
+	Root /poketool/waza
+	HostRoot res/moves
+	File pl_waza_tbl.narc
+
+	Root /
+	HostRoot res
 	File poketool/waza/waza_tbl.narc
 	File fielddata/script/scr_seq.narc
 	File graphic/bag_gra.narc
