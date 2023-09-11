@@ -484,7 +484,7 @@ pl_waza_tbl_narc = custom_target('pl_waza_tbl.narc',
         movedata_py,
         '--knarc', knarc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
-        '--output-dir', '@BUILD_ROOT@' / 'res' / 'poketool' / 'waza',
+        '--output-dir', '@OUTDIR@',
     ]
 )
 
