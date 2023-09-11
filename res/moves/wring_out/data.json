@@ -1,0 +1,24 @@
+{
+    "name": "Wring Out",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_NORMAL",
+    "power": 1,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_INCREASE_POWER_WITH_MORE_HP",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 22,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

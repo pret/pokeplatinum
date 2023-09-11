@@ -1,0 +1,25 @@
+{
+    "name": "Close Combat",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_DEF_SPD_DOWN_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK",
+        "MOVE_FLAG_HIDE_SHADOWS"
+    ],
+    "contest": {
+        "effect": 22,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

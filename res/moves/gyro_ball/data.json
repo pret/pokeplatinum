@@ -1,0 +1,24 @@
+{
+    "name": "Gyro Ball",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_STEEL",
+    "power": 1,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_POWER_BASED_ON_LOW_SPEED",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 15,
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

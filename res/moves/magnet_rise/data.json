@@ -1,0 +1,19 @@
+{
+    "name": "Magnet Rise",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ELECTRIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_GIVE_GROUND_IMMUNITY",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Selfdestruct",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_NORMAL",
+    "power": 200,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_HALVE_DEFENSE",
+        "chance": 0
+    },
+    "range": "RANGE_ALL_ADJACENT",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 9,
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "-",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 0,
+    "effect": {
+        "type": "MOVE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 0,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

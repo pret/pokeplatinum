@@ -1,0 +1,21 @@
+{
+    "name": "Toxic Spikes",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_POISON",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_TOXIC_SPIKES",
+        "chance": 0
+    },
+    "range": "RANGE_OPPONENT_SIDE",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

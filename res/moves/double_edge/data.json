@@ -1,0 +1,25 @@
+{
+    "name": "Double-Edge",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_NORMAL",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_RECOIL_THIRD",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK",
+        "MOVE_FLAG_HIDE_SHADOWS"
+    ],
+    "contest": {
+        "effect": 9,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

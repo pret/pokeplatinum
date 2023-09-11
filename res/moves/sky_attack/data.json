@@ -1,0 +1,23 @@
+{
+    "name": "Sky Attack",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FLYING",
+    "power": 140,
+    "accuracy": 90,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 6,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Bug Buzz",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_BUG",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_LOWER_SP_DEF_HIT",
+        "chance": 10
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": 4,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

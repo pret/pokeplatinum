@@ -1,0 +1,22 @@
+{
+    "name": "Dream Eater",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 100,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_RECOVER_DAMAGE_SLEEP",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": 20,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

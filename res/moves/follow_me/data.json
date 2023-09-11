@@ -1,0 +1,19 @@
+{
+    "name": "Follow Me",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_MAKE_GLOBAL_TARGET",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 3,
+    "flags": [],
+    "contest": {
+        "effect": 14,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

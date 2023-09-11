@@ -1,0 +1,19 @@
+{
+    "name": "Conversion 2",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 30,
+    "effect": {
+        "type": "MOVE_EFFECT_CONVERSION2",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 23,
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

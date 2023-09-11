@@ -1,0 +1,22 @@
+{
+    "name": "Ingrain",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GRASS",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_GROUND_TRAP_USER_CONTINUOUS_HEAL",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_SNATCH",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 21,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}
