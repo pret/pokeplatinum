@@ -83,3 +83,5 @@ sdk/
 
 !tools/asmdiff/asmdiff.sh
 
+tools/**/__pycache__
+

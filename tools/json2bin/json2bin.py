@@ -1,6 +1,6 @@
 import json
-import os
 import pathlib
+import subprocess
 
 from argparse import ArgumentParser
 from enum import Enum, Flag
@@ -9,11 +9,14 @@ from types import FunctionType, LambdaType
 
 ARGPARSER = ArgumentParser(
     prog='json2bin.py',
-    description='Tool for converting JSON documents to binary data via a constructed parsing schema'
+    description='Tool for converting a collection of JSON documents into\na NARC via a constructed parsing schema'
 )
-ARGPARSER.add_argument('-b', '--batch-mode', action='store_true')
-ARGPARSER.add_argument('-i', '--input', required=True)
-ARGPARSER.add_argument('-o', '--output')
+ARGPARSER.add_argument('--knarc', required=True,
+                       help='Path to the knarc executable')
+ARGPARSER.add_argument('--source-dir', required=True,
+                       help='Source directory with subdirs for each data element')
+ARGPARSER.add_argument('--output-dir', required=True,
+                       help='Output directory where generated files will be written')
 
 
 class Parser():
@@ -148,11 +151,8 @@ def process(fname_in: str,
             output_dir: str | None,
             index_func: FunctionType):
     fname_in_path = pathlib.Path(fname_in)
-    if fname_in_path.suffix != '.json':
-        return
-    
     output_bin = parse(fname_in, schema)
-    output_idx = index_func(fname_in_path.stem.upper())
+    output_idx = index_func(fname_in_path)
     write(output_bin, output_idx, output_dir)
 
 
@@ -160,11 +160,25 @@ def json2bin(target: str,
              schema: Parser,
              output_dir: str | None,
              index_func: FunctionType,
-             batch_mode: bool):
-    pathlib.Path(output_dir, exist_ok=True, parents=True)
+             batch_mode: bool,
+             glob_pattern: str='*.json',
+             narc_name: str | None=None,
+             narc_packer: str | None=None):
+    output_dir = pathlib.Path(output_dir)
     
     if batch_mode:
-        for fname_in in os.listdir(target):
-            process(pathlib.Path(target) / fname_in, schema, output_dir, index_func)
+        if not narc_name or not narc_packer:
+            raise RuntimeError('Missing narc_name or narc_packer input in batch mode; halting')
+
+        files_output_dir = output_dir / narc_name
+        files_output_dir.mkdir(exist_ok=True, parents=True)
+        for fname_in in pathlib.Path(target).glob(glob_pattern):
+            process(fname_in, schema, files_output_dir, index_func)
+        
+        subprocess.run([
+            pathlib.Path(narc_packer),
+            '-d', files_output_dir,
+            '-p', output_dir / f'{narc_name}.narc'
+        ])
     else:
-        process(pathlib.Path(target) / fname_in, schema, output_dir, index_func)
+        process(target, schema, output_dir, index_func)
