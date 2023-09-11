@@ -109,9 +109,26 @@ static void SetMonDataAttribute(Pokemon *mon, enum PokemonDataParam param, const
 static void SetBoxMonDataAttribute(BoxPokemon *boxMon, enum PokemonDataParam param, const void *value);
 static void IncreaseMonDataAttribute(Pokemon *mon, enum PokemonDataParam param, int value);
 static void IncreaseBoxMonDataAttribute(BoxPokemon *boxMon, enum PokemonDataParam param, int value);
+static u32 GetBoxMonExpToNextLevel(BoxPokemon *boxMon);
+static void LoadMonExperienceTable (int monExpRate, u32 *monExpTable);
 static u32 GetMonExpRateLevelExp(int monExpRate, int monLevel);
 static u16 GetNatureAdjustedStatValue(u8 monNature, u16 monStatValue, u8 statType);
+static u8 GetBoxMonShininess(BoxPokemon *boxMon);
 static inline BOOL IsMonPersonalityShiny(u32 monOTID, u32 monPersonality);
+static void sub_02076300(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
+static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
+static void SetBoxMonDefaultMoves(BoxPokemon *boxMon);
+static u16 AddBoxMonMove(BoxPokemon *boxMon, u16 moveID);
+static void ReplaceBoxMonMove(BoxPokemon *boxMon, u16 moveID);
+static void SetBoxMonMove(BoxPokemon *boxMon, u16 moveID, u8 moveSlot);
+static BOOL MonHasMove(Pokemon *mon, u16 moveID);
+static s8 GetBoxMonFlavorAffinity(BoxPokemon *boxMon, int flavor);
+static BOOL sub_020778E0(BoxPokemon *boxMon);
+static BOOL sub_02077900(BoxPokemon *boxMon);
+static void sub_02077EA4(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
+static void sub_02077EF8(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
+static BOOL CanBoxMonLearnTM(BoxPokemon *boxMon, u8 tmID);
+static void CalculateBoxMonAbility(BoxPokemon *boxMon);
 static void LoadMonPersonalData(int monSpecies, PokemonPersonalData *monPersonalData);
 static void LoadMonFormPersonalData(int monSpecies, int monForm, PokemonPersonalData *monPersonalData);
 static void LoadMonEvolutionData(int monSpecies, PokemonEvolutionData *monEvolutionData);
@@ -120,8 +137,7 @@ static void DecryptMonData(void *data, u32 bytes, u32 seed);
 static u16 GetMonDataChecksum(void *data, u32 bytes);
 static void *GetBoxMonDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
 static int GetMonFormNarcIndex(int monSpecies, int monForm);
-static void sub_02076300(UnkStruct_02008A90 *param0, u16 monSpecies, u8 monGender, u8 param3, u8 monShininess, u8 monForm, u32 monPersonality);
-static u8 sub_020767BC(u16 monSpecies, u8 monGender, u8 param2, u8 monForm, u32 monPersonality);
+static inline int GetLowestBitInverse (int num);
 
 void ZeroMonData (Pokemon *mon)
 {
@@ -1999,7 +2015,7 @@ u32 GetMonExpToNextLevel (Pokemon *mon)
     return GetBoxMonExpToNextLevel(&mon->box);
 }
 
-u32 GetBoxMonExpToNextLevel (BoxPokemon *boxMon)
+static u32 GetBoxMonExpToNextLevel (BoxPokemon *boxMon)
 {
     u16 monSpecies = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
     u16 monNextlevel = GetBoxMonLevel(boxMon) + 1;
@@ -2018,16 +2034,16 @@ u32 GetMonSpeciesLevelExp (int monSpecies, int monLevel)
     return GetMonExpRateLevelExp(GetMonSpeciesPersonalDataAttribute(monSpecies, MON_DATA_PERSONAL_EXP_RATE), monLevel);
 }
 
-void LoadMonExperienceTable (int monExpRate, u32 *monExpTable)
+static void LoadMonExperienceTable (int monExpRate, u32 *monExpTable)
 {
-    // TODO enum for exp rate types?
+    // TODO const for table size, enum for exp rate types
     GF_ASSERT(monExpRate < 8);
     NARC_ReadWholeMemberByIndexPair(monExpTable, NARC_INDEX_POKETOOL__PERSONAL__PL_GROWTBL, monExpRate);
 }
 
-u32 GetMonExpRateLevelExp (int monExpRate, int monLevel)
+static u32 GetMonExpRateLevelExp (int monExpRate, int monLevel)
 {
-    // TODO enum for exp rate types?
+    // TODO const for table size, enum for exp rate types
     GF_ASSERT(monExpRate < 8);
     GF_ASSERT(monLevel <= 101);
 
@@ -2068,7 +2084,7 @@ u32 GetMonSpeciesLevel (u16 monSpecies, u32 monExp)
 
 u32 GetMonPersonalDataLevel (PokemonPersonalData *monPersonalData, u16 unused_monSpecies, u32 monExp)
 {
-    // TODO const for table size?
+    // TODO const for table size, enum for exp rate types
     static u32 monExpTable[101];
 
     int monExpRate = GetMonPersonalDataAttribute(monPersonalData, MON_DATA_PERSONAL_EXP_RATE);
@@ -2134,7 +2150,7 @@ static const s8 sNatureStatAffinities[][5] = {
     {0, 0, 0, 0, 0}
 };
 
-u16 GetNatureAdjustedStatValue (u8 monNature, u16 monStatValue, u8 statType)
+static u16 GetNatureAdjustedStatValue (u8 monNature, u16 monStatValue, u8 statType)
 {
     if (statType < STAT_ATTACK || statType > STAT_SPECIAL_DEFENSE) {
         return monStatValue;
@@ -2284,7 +2300,7 @@ u8 GetMonShininess (Pokemon *mon)
     return GetBoxMonShininess(&mon->box);
 }
 
-u8 GetBoxMonShininess (BoxPokemon *boxMon)
+static u8 GetBoxMonShininess (BoxPokemon *boxMon)
 {
     u32 monOTID = GetBoxMonData(boxMon, MON_DATA_OT_ID, NULL);
     u32 monPersonality = GetBoxMonData(boxMon, MON_DATA_PERSONALITY, NULL);
@@ -3266,7 +3282,7 @@ u16 sub_02076FD4 (const u16 monSpecies)
     return sub_02076F84(monSpecies);
 }
 
-void SetBoxMonDefaultMoves (BoxPokemon *boxMon)
+static void SetBoxMonDefaultMoves (BoxPokemon *boxMon)
 {
     BOOL reencrypt;
     // TODO const value?
@@ -3308,7 +3324,7 @@ u16 AddMonMove (Pokemon *mon, u16 moveID)
     return AddBoxMonMove(boxMon, moveID);
 }
 
-u16 AddBoxMonMove (BoxPokemon *boxMon, u16 moveID)
+static u16 AddBoxMonMove (BoxPokemon *boxMon, u16 moveID)
 {
     // TODO const values for sentinels?
     u16 result = 0xffff;
@@ -3340,7 +3356,7 @@ void ReplaceMonMove (Pokemon *mon, u16 moveID)
     ReplaceBoxMonMove(boxMon, moveID);
 }
 
-void ReplaceBoxMonMove (BoxPokemon *boxMon, u16 moveID)
+static void ReplaceBoxMonMove (BoxPokemon *boxMon, u16 moveID)
 {
     BOOL reencrypt = DecryptBoxMon(boxMon);
     
@@ -3386,7 +3402,7 @@ void SetMonMove (Pokemon *mon, u16 moveID, u8 moveSlot)
     SetBoxMonMove(&mon->box, moveID, moveSlot);
 }
 
-void SetBoxMonMove (BoxPokemon *boxMon, u16 moveID, u8 moveSlot)
+static void SetBoxMonMove (BoxPokemon *boxMon, u16 moveID, u8 moveSlot)
 {
     SetBoxMonData(boxMon, MON_DATA_MOVE1 + moveSlot, &moveID);
 
@@ -3486,7 +3502,7 @@ void DeleteMonMove (Pokemon *mon, u32 moveSlot)
     SetMonData(mon, MON_DATA_MOVE4_PP_UPS, &movePPUps);
 }
 
-BOOL MonHasMove (Pokemon *mon, u16 moveID)
+static BOOL MonHasMove (Pokemon *mon, u16 moveID)
 {
     int i;
     for (i = 0; i < 4; i++) {
@@ -3591,7 +3607,7 @@ s8 GetMonFlavorAffinity (Pokemon *mon, int flavor)
 }
 
 // TODO enums
-s8 GetBoxMonFlavorAffinity (BoxPokemon *boxMon, int flavor)
+static s8 GetBoxMonFlavorAffinity (BoxPokemon *boxMon, int flavor)
 {
     return GetMonPersonalityFlavorAffinity(GetBoxMonData(boxMon, MON_DATA_PERSONALITY, NULL), flavor);
 }
@@ -3756,7 +3772,7 @@ BOOL sub_020778D8 (Pokemon *mon)
     return sub_020778E0(&mon->box);
 }
 
-BOOL sub_020778E0 (BoxPokemon *boxMon)
+static BOOL sub_020778E0 (BoxPokemon *boxMon)
 {
     return (GetBoxMonData(boxMon, MON_DATA_POKERUS, NULL) & 0xf) != 0;
 }
@@ -3766,7 +3782,7 @@ BOOL sub_020778F8 (Pokemon *mon)
     return sub_02077900(&mon->box);
 }
 
-BOOL sub_02077900 (BoxPokemon *boxMon)
+static BOOL sub_02077900 (BoxPokemon *boxMon)
 {
     u8 monPokerus = GetBoxMonData(boxMon, MON_DATA_POKERUS, NULL);
 
@@ -3943,12 +3959,13 @@ BOOL CanShayminSkyForm (Pokemon *mon)
     RTCTime rtcTime;
     sub_02013880(&rtcTime);
 
-    // TODO refactor
-    if (monSpecies == SPECIES_SHAYMIN && monForm == 0 && monCurrentHP > 0 && monFatefulEncounter == TRUE && (v2 & 0x20) == 0 && rtcTime.hour >= 4 && rtcTime.hour < 20) {
-        return TRUE;
-    }
-
-    return FALSE;
+    return (monSpecies == SPECIES_SHAYMIN
+            && monForm == 0
+            && monCurrentHP > 0
+            && monFatefulEncounter == TRUE
+            && (v2 & 0x20) == 0
+            && rtcTime.hour >= 4
+            && rtcTime.hour < 20);
 }
 
 void SetShayminLandForm (Party *party)
@@ -4065,6 +4082,14 @@ BOOL SetRotomForm (Pokemon *mon, int monForm, int moveSlot)
     return TRUE;
 }
 
+/* TODO:
+    This function is annoying.
+    It's used in exactly one other file (`unk_020997B8.c`), so it has to be public.
+    The data structure of the NARC uses bitmasks that should probably be a struct,
+    and calling code uses sentinel values that should probably be consts,
+    but then we'd be polluting namespace for the sake of two .c files.
+    Could define in each .c file, but then there's risk of these becoming desynced (This is the worse option imo).
+*/
 void LoadMonLevelUpMoves (int monSpecies, int monForm, u16 *monLevelUpMoves)
 {
     monSpecies = GetMonFormNarcIndex(monSpecies, monForm);
@@ -4128,7 +4153,7 @@ void sub_02077E64 (Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, in
     }
 }
 
-void sub_02077EA4 (BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5)
+static void sub_02077EA4 (BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5)
 {
     sub_0209305C(boxMon, param1, 0, param3, param5);
     SetBoxMonData(boxMon, MON_DATA_MET_GAME, &Unk_020E4C40);
@@ -4141,7 +4166,7 @@ void sub_02077EE4 (Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, in
     sub_02077EF8(&mon->box, param1, monPokeball, param3, param4, param5);
 }
 
-void sub_02077EF8 (BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5)
+static void sub_02077EF8 (BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5)
 {
     sub_02077EA4(boxMon, param1, monPokeball, param3, param4, param5);
 }
@@ -4182,7 +4207,7 @@ BOOL CanMonLearnTM (Pokemon *mon, u8 tmID)
     return CanBoxMonLearnTM(&mon->box, tmID);
 }
 
-BOOL CanBoxMonLearnTM (BoxPokemon *boxMon, u8 tmID)
+static BOOL CanBoxMonLearnTM (BoxPokemon *boxMon, u8 tmID)
 {
     u16 monSpeciesEgg = GetBoxMonData(boxMon, MON_DATA_SPECIES_EGG, NULL);
     int monForm = GetBoxMonData(boxMon, MON_DATA_FORM, NULL);
@@ -4220,7 +4245,7 @@ void CalculateMonAbility (Pokemon *mon)
     CalculateBoxMonAbility(&mon->box);
 }
 
-void CalculateBoxMonAbility (BoxPokemon *boxMon)
+static void CalculateBoxMonAbility (BoxPokemon *boxMon)
 {
     BOOL reencrypt = DecryptBoxMon(boxMon);
     int monSpecies = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
@@ -4666,8 +4691,6 @@ void sub_02078AC8 (NARC *narc, u8 *param1, u16 param2)
 
 BOOL sub_02078AEC (int param0, Pokemon *mon, int heapID)
 {
-
-    // TODO restructure this
     int v0 = param0;
 
     if (v0 == 0) {

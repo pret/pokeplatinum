@@ -394,14 +394,6 @@ u8 GetMonPercentToNextLevel(Pokemon *mon);
 u32 GetMonExpToNextLevel(Pokemon *mon);
 
 /**
- * @brief Gets how much experience is needed for the given BoxPokemon to level up
- * 
- * @param boxMon 
- * @return The amount of exp. needed for the given BoxPokemon to level up
- */
-u32 GetBoxMonExpToNextLevel(BoxPokemon *boxMon);
-
-/**
  * @brief Gets the amount of expeirence needed for the given Pokemon to reach its current level
  * 
  * @param mon 
@@ -532,14 +524,6 @@ u8 GetMonPersonalDataGender(PokemonPersonalData *monPersonalData, u16 unused_mon
 u8 GetMonShininess(Pokemon *mon);
 
 /**
- * @brief Gets whether a BoxPokemon is shiny based on its Original Trainer ID and its personality value
- * 
- * @param boxMon 
- * @return Whether the pokemon is shiny or not
- */
-u8 GetBoxMonShininess(BoxPokemon *boxMon);
-
-/**
  * @brief Gets whether a pokemon is shiny based on its Original Trainer ID and its personality value
  * 
  * @param monOTID 
@@ -615,13 +599,6 @@ u16 sub_02076F84(const u16 monSpecies);
 u16 sub_02076FD4(const u16 monSpecies);
 
 /**
- * @brief Sets the moveset of a BoxPokemon to the highest 4 available to that pokemon in its level up movelist
- * 
- * @param boxMon 
- */
-void SetBoxMonDefaultMoves(BoxPokemon *boxMon);
-
-/**
  * @brief Adds a move to the moveset of a Pokemon
  * 
  * @param mon 
@@ -631,29 +608,12 @@ void SetBoxMonDefaultMoves(BoxPokemon *boxMon);
 u16 AddMonMove(Pokemon *mon, u16 moveID);
 
 /**
- * @brief Adds a move to the moveset of a BoxPokemon
- * 
- * @param boxMon 
- * @param moveID 
- * @return u16 
- */
-u16 AddBoxMonMove(BoxPokemon *boxMon, u16 moveID);
-
-/**
  * @brief Deletes the first move of a Pokemon and adds the given move to the end of its moveset
  * 
  * @param mon 
  * @param moveID 
  */
 void ReplaceMonMove(Pokemon *mon, u16 moveID);
-
-/**
- * @brief Deletes the first move of a BoxPokemon and adds the given move to the end of its moveset
- * 
- * @param boxMon 
- * @param moveID 
- */
-void ReplaceBoxMonMove(BoxPokemon *boxMon, u16 moveID);
 
 /**
  * @brief Sets the given moveSlot of a Pokemon, removing its PP Ups
@@ -672,15 +632,6 @@ void ResetMonMove(Pokemon *mon, u16 moveID, u8 moveSlot);
  * @param moveSlot 
  */
 void SetMonMove(Pokemon *mon, u16 moveID, u8 moveSlot);
-
-/**
- * @brief Sets the given moveSlot of a BoxPokemon, retaining the PP Ups for that slot
- * 
- * @param boxMon 
- * @param moveID 
- * @param moveSlot 
- */
-void SetBoxMonMove(BoxPokemon *boxMon, u16 moveID, u8 moveSlot);
 
 u16 sub_0207727C(Pokemon *mon, int *index, u16 *moveID);
 
@@ -710,15 +661,6 @@ void SwapBoxMonMoves(BoxPokemon *boxMon, int moveSlot1, int moveSlot2);
  */
 void DeleteMonMove(Pokemon *mon, u32 moveSlot);
 
-/**
- * @brief Checks whether a Pokemon has a given move
- * 
- * @param mon 
- * @param moveID 
- * @return Whether the given Pokemon has the given move
- */
-BOOL MonHasMove(Pokemon *mon, u16 moveID);
-
 void sub_020774C8(BoxPokemon *boxMon, Pokemon *mon);
 
 /**
@@ -745,15 +687,6 @@ void sub_02077618(Pokemon *src, BoxPokemon *dest);
 s8 GetMonFlavorAffinity(Pokemon *mon, int flavor);
 
 /**
- * @brief Gets the affinitiy of a given BoxPokemon to a given flavor
- * 
- * @param boxMon 
- * @param flavor 
- * @return 1 if liked flavor, -1 if disliked flavor, else 0
- */
-s8 GetBoxMonFlavorAffinity(BoxPokemon *boxMon, int flavor);
-
-/**
  * @brief Gets the affinitiy of a given Pokemon personality to a given flavor
  * 
  * @param monPersonality 
@@ -777,9 +710,7 @@ u8 sub_02077758(Party *party, u8 param1);
 void sub_020777B4(Party *party, s32 param1);
 void sub_0207782C(Party *party);
 BOOL sub_020778D8(Pokemon *mon);
-BOOL sub_020778E0(BoxPokemon *boxMon);
 BOOL sub_020778F8(Pokemon *mon);
-BOOL sub_02077900(BoxPokemon *boxMon);
 
 /**
  * @brief Sets Arceus' form based on its held item. Has no effect if the given Pokemon is not an Arceus
@@ -902,12 +833,9 @@ void sub_02077D3C(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int pa
 void sub_02077DB4(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
 BOOL sub_02077E3C(Pokemon *mon);
 void sub_02077E64(Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
-void sub_02077EA4(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
 void sub_02077EE4(Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
-void sub_02077EF8(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
 void sub_02077F0C(Pokemon *mon, u32 param1, int param2);
 BOOL CanMonLearnTM(Pokemon *mon, u8 tmID);
-BOOL CanBoxMonLearnTM(BoxPokemon *boxMon, u8 tmID);
 BOOL CanMonSpeciesLearnTM(u16 monSpecies, int monForm, u8 tmID);
 
 /**
@@ -916,13 +844,6 @@ BOOL CanMonSpeciesLearnTM(u16 monSpecies, int monForm, u8 tmID);
  * @param mon
  */
 void CalculateMonAbility(Pokemon *mon);
-
-/**
- * @brief Sets the ability of a BoxPokemon based on its species, form and peronsality value
- *
- * @param boxMon
- */
-void CalculateBoxMonAbility(BoxPokemon *boxMon);
 
 void sub_020780C4(Pokemon *mon, u32 monPersonality);
 
