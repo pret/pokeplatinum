@@ -1598,7 +1598,7 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
     for (v3 = 0; v3 < v4; v3++) {
         v1 = BattleSystem_BattlerData(v0, v3);
 
-        if (((Battler_BootState(v1) == 0x0) && ((BattleSystem_BattleStatus(v0) & 0x10) == 0)) || ((ov16_0223E208(v0, v3) == 0) && (BattleSystem_BattleStatus(v0) & 0x10))) {
+        if (((Battler_BootState(v1) == 0x0) && ((BattleSystem_BattleStatus(v0) & 0x10) == 0)) || ((Battler_Side(v0, v3) == 0) && (BattleSystem_BattleStatus(v0) & 0x10))) {
             v2 = ov16_02263B08(v1);
 
             if (v2 != NULL) {

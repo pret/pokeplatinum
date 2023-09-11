@@ -3234,7 +3234,7 @@ static void ov16_02260B04 (UnkStruct_0201CD38 * param0, void * param1)
     v1 = sub_020759F0(v2, 26);
     v1 = v1 * Unk_ov16_0226F194[v3][0] / Unk_ov16_0226F194[v3][1];
 
-    if ((ov16_0223F4BC(v0->unk_00) % 255) <= v1) {
+    if ((BattleSystem_RandNext(v0->unk_00) % 255) <= v1) {
         ov16_022656D4(v0->unk_00, v0->unk_09, 4);
     } else {
         ov16_022656D4(v0->unk_00, v0->unk_09, 5);
@@ -3382,7 +3382,7 @@ static void ov16_02260DB0 (UnkStruct_0201CD38 * param0, void * param1)
     v3 = BattleSystem_BattleType(v0->unk_00);
     v1 = BattleSystem_Context(v0->unk_00);
 
-    if ((v3 & (0x1 | 0x100)) || (BattleSystem_BattleStatus(v0->unk_00) & 0x1) || (ov16_0223E208(v0->unk_00, v0->unk_1D) == 0)) {
+    if ((v3 & (0x1 | 0x100)) || (BattleSystem_BattleStatus(v0->unk_00) & 0x1) || (Battler_Side(v0->unk_00, v0->unk_1D) == 0)) {
         v2 = ov14_0221FCF4(v0->unk_00, v0->unk_1D);
 
         switch (v2) {
@@ -3408,7 +3408,7 @@ static void ov16_02260DB0 (UnkStruct_0201CD38 * param0, void * param1)
                 }
             }
 
-            v2 = v5[ov16_0223F4BC(v0->unk_00) % v6];
+            v2 = v5[BattleSystem_RandNext(v0->unk_00) % v6];
         }
 
         ov16_0225B540(v0->unk_00, v1, 11, v0->unk_1D, ov16_02253954(v0->unk_00, v1, v0->unk_1D, v0->unk_0C[v2 - 1], 1, NULL));
@@ -3612,7 +3612,7 @@ static void ov16_0226110C (UnkStruct_0201CD38 * param0, void * param1)
                 break;
             case 0x200:
 
-                if (ov16_0223E208(v0->unk_00, v0->unk_0D) != ov16_0223E208(v0->unk_00, v2)) {
+                if (Battler_Side(v0->unk_00, v0->unk_0D) != Battler_Side(v0->unk_00, v2)) {
                     ov16_02264730(v0->unk_00);
                 }
                 break;
@@ -5411,7 +5411,7 @@ static void ov16_0226354C (UnkStruct_0201CD38 * param0, void * param1)
     UnkEnum_ov16_0226D194 v1;
     UnkEnum_ov16_0226D194_1 v2;
 
-    if (ov16_0223E208(v0->unk_00, v0->unk_05) == 0) {
+    if (Battler_Side(v0->unk_00, v0->unk_05) == 0) {
         v1 = UnkEnum_ov16_0226D194_00;
     } else {
         v1 = UnkEnum_ov16_0226D194_01;
@@ -5469,7 +5469,7 @@ static void ov16_02263604 (UnkStruct_0201CD38 * param0, void * param1)
     UnkEnum_ov16_0226D220 v3;
     UnkEnum_ov16_0226D194_2 v4;
 
-    if (ov16_0223E208(v0->unk_00, v0->unk_05) == 0) {
+    if (Battler_Side(v0->unk_00, v0->unk_05) == 0) {
         v1 = UnkEnum_ov16_0226D194_00;
     } else {
         v1 = UnkEnum_ov16_0226D194_01;
@@ -6159,7 +6159,7 @@ static void ov16_02264270 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 
     for (v0 = 0; v0 < BattleSystem_MaxBattlers(param0); v0++) {
         if (param2->unk_01 & FlagIndex(v0)) {
-            if (ov16_0223E208(param0, v0)) {
+            if (Battler_Side(param0, v0)) {
                 v2++;
             } else {
                 v1++;
