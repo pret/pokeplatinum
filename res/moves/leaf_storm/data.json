@@ -1,0 +1,24 @@
+{
+    "name": "Leaf Storm",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GRASS",
+    "power": 140,
+    "accuracy": 90,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_USER_SP_ATK_DOWN_2",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK",
+        "MOVE_FLAG_HIDE_SHADOWS"
+    ],
+    "contest": {
+        "effect": 22,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

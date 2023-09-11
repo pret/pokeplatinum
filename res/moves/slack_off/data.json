@@ -1,0 +1,22 @@
+{
+    "name": "Slack Off",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_RESTORE_HALF_HP",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_SNATCH",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 8,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

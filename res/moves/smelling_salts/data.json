@@ -1,0 +1,23 @@
+{
+    "name": "SmellingSalt",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_NORMAL",
+    "power": 60,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_DOUBLE_POWER_AND_CURE_PARALYSIS",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": 16,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

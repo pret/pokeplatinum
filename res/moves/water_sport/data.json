@@ -1,0 +1,19 @@
+{
+    "name": "Water Sport",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_WATER",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_HALVE_FIRE_DAMAGE",
+        "chance": 0
+    },
+    "range": "RANGE_FIELD",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Sacred Fire",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIRE",
+    "power": 100,
+    "accuracy": 95,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_THAW_AND_BURN_HIT",
+        "chance": 50
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_HIDE_SHADOWS"
+    ],
+    "contest": {
+        "effect": 22,
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

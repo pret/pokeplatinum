@@ -1,0 +1,19 @@
+{
+    "name": "Stealth Rock",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ROCK",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_STEALTH_ROCK",
+        "chance": 0
+    },
+    "range": "RANGE_OPPONENT_SIDE",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Odor Sleuth",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 40,
+    "effect": {
+        "type": "MOVE_EFFECT_IGNORE_EVASION_REMOVE_GHOST_IMMUNE",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 20,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

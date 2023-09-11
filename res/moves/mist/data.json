@@ -1,0 +1,21 @@
+{
+    "name": "Mist",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ICE",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 30,
+    "effect": {
+        "type": "MOVE_EFFECT_PREVENT_STAT_REDUCTION",
+        "chance": 0
+    },
+    "range": "RANGE_USER_SIDE",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_SNATCH"
+    ],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

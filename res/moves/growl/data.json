@@ -1,0 +1,24 @@
+{
+    "name": "Growl",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 40,
+    "effect": {
+        "type": "MOVE_EFFECT_ATK_DOWN",
+        "chance": 0
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MAGIC_COAT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 19,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

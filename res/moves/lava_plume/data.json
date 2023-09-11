@@ -1,0 +1,23 @@
+{
+    "name": "Lava Plume",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FIRE",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_BURN_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_ALL_ADJACENT",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 17,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "name": "Horn Drill",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_NORMAL",
+    "power": 1,
+    "accuracy": 30,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_ONE_HIT_KO",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": 9,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

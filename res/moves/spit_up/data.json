@@ -1,0 +1,22 @@
+{
+    "name": "Spit Up",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_NORMAL",
+    "power": 1,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_SPIT_UP",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 18,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

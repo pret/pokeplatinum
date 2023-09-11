@@ -1,0 +1,25 @@
+{
+    "name": "Fury Cutter",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_BUG",
+    "power": 10,
+    "accuracy": 95,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_DOUBLE_POWER_EACH_TURN",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 7,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

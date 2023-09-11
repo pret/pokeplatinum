@@ -1,0 +1,23 @@
+{
+    "name": "Thunder",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 120,
+    "accuracy": 70,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_THUNDER",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_HIDE_SHADOWS"
+    ],
+    "contest": {
+        "effect": 17,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

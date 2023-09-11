@@ -1,0 +1,19 @@
+{
+    "name": "Future Sight",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 80,
+    "accuracy": 90,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_HIT_IN_3_TURNS",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 17,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

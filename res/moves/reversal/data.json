@@ -1,0 +1,25 @@
+{
+    "name": "Reversal",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 1,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_INCREASE_POWER_WITH_LESS_HP",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 15,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

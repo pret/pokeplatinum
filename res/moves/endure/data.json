@@ -1,0 +1,21 @@
+{
+    "name": "Endure",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_SURVIVE_WITH_1_HP",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 3,
+    "flags": [
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

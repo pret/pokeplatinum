@@ -1,0 +1,19 @@
+{
+    "name": "Mirror Coat",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 1,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_MIRROR_COAT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET_SPECIAL",
+    "priority": -5,
+    "flags": [],
+    "contest": {
+        "effect": 15,
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

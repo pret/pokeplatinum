@@ -1,0 +1,23 @@
+{
+    "name": "Shadow Force",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GHOST",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_SHADOW_FORCE",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 22,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

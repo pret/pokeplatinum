@@ -1,0 +1,19 @@
+{
+    "name": "Protect",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_PROTECT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 3,
+    "flags": [],
+    "contest": {
+        "effect": 16,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

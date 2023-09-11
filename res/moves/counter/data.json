@@ -1,0 +1,21 @@
+{
+    "name": "Counter",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 1,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_COUNTER",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET_SPECIAL",
+    "priority": -5,
+    "flags": [
+        "MOVE_FLAG_CONTACT"
+    ],
+    "contest": {
+        "effect": 15,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Imprison",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_PSYCHIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_MAKE_SHARED_MOVES_UNUSEABLE",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 20,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

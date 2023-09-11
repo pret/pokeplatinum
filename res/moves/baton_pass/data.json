@@ -1,0 +1,19 @@
+{
+    "name": "Baton Pass",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 40,
+    "effect": {
+        "type": "MOVE_EFFECT_PASS_STATS_AND_STATUS",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 16,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

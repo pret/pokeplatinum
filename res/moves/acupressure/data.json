@@ -1,0 +1,22 @@
+{
+    "name": "Acupressure",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 30,
+    "effect": {
+        "type": "MOVE_EFFECT_RANDOM_STAT_UP_2",
+        "chance": 0
+    },
+    "range": "RANGE_USER_OR_ALLY",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_SNATCH",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 11,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

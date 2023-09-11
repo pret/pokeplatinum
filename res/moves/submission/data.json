@@ -1,0 +1,24 @@
+{
+    "name": "Submission",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 80,
+    "accuracy": 80,
+    "pp": 25,
+    "effect": {
+        "type": "MOVE_EFFECT_RECOIL_QUARTER",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 5,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

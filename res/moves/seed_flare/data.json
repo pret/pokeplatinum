@@ -1,0 +1,24 @@
+{
+    "name": "Seed Flare",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GRASS",
+    "power": 120,
+    "accuracy": 85,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_LOWER_SP_DEF_2_HIT",
+        "chance": 40
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK",
+        "MOVE_FLAG_HIDE_SHADOWS"
+    ],
+    "contest": {
+        "effect": 22,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

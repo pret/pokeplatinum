@@ -1,0 +1,19 @@
+{
+    "name": "Healing Wish",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_PSYCHIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 8,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}
