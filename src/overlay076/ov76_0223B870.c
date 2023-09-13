@@ -595,9 +595,9 @@ void ov76_0223C188 (UnkStruct_ov76_0223DE00 * param0)
 
         param0->unk_2FC[v0] = sub_0200CE6C(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, &v6);
 
-        v2 = GetMonData(v5, MON_DATA_SPECIES, NULL);
-        v1 = GetMonData(v5, MON_DATA_IS_EGG, NULL);
-        v4 = GetMonData(v5, MON_DATA_FORM, NULL);
+        v2 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
+        v1 = Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL);
+        v4 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
         v3 = sub_02079EDC(v2, v4, v1);
 
         sub_02021F24(param0->unk_2FC[v0]->unk_00, v3);
@@ -873,12 +873,12 @@ void ov76_0223C80C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2)
 
     if (v1 != 0xff) {
         v3 = param2 + 1;
-        SetMonData(param0->unk_00->unk_04[v1], 162, (u8 *)&v3);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], 162, (u8 *)&v3);
     }
 
     if (v2 != 0xff) {
         v4 = param1 + 1;
-        SetMonData(param0->unk_00->unk_04[v2], 162, (u8 *)&v4);
+        Pokemon_SetValue(param0->unk_00->unk_04[v2], 162, (u8 *)&v4);
     }
 
     v0 = param0->unk_04[param1].unk_00;

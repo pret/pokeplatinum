@@ -249,7 +249,7 @@ void sub_02081E08 (UnkStruct_0207F248 * param0)
         v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
         v1 = MessageLoader_GetNewStrbuf(param0->unk_69C, 37);
 
-        sub_0200B5CC(param0->unk_6A0, 0, GetBoxMon(v0));
+        sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v0));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, v1);
         Strbuf_Free(v1);
     }
@@ -275,7 +275,7 @@ void sub_02081ED8 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 param2)
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_69C, Unk_020F1EA0[param2][0]);
 
-    sub_0200B5CC(param0->unk_6A0, 0, GetBoxMon(param1));
+    sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(param1));
     sub_0200C388(param0->unk_6A0, param0->unk_704[param2].unk_00, v0);
     Strbuf_Free(v0);
 }
@@ -749,12 +749,12 @@ void sub_020829DC (UnkStruct_0207F248 * param0)
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
 
-    v3[0] = (u16)GetMonData(v0, MON_DATA_MAX_HP, NULL);
-    v3[1] = (u16)GetMonData(v0, MON_DATA_ATK, NULL);
-    v3[2] = (u16)GetMonData(v0, MON_DATA_DEF, NULL);
-    v3[3] = (u16)GetMonData(v0, MON_DATA_SP_ATK, NULL);
-    v3[4] = (u16)GetMonData(v0, MON_DATA_SP_DEF, NULL);
-    v3[5] = (u16)GetMonData(v0, MON_DATA_SPEED, NULL);
+    v3[0] = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
+    v3[1] = (u16)Pokemon_GetValue(v0, MON_DATA_ATK, NULL);
+    v3[2] = (u16)Pokemon_GetValue(v0, MON_DATA_DEF, NULL);
+    v3[3] = (u16)Pokemon_GetValue(v0, MON_DATA_SP_ATK, NULL);
+    v3[4] = (u16)Pokemon_GetValue(v0, MON_DATA_SP_DEF, NULL);
+    v3[5] = (u16)Pokemon_GetValue(v0, MON_DATA_SPEED, NULL);
 
     sub_0201A7E8(param0->unk_00, &param0->unk_254[0], 0, 1, 1, 14, 12, 0, 576);
     sub_0200DC48(&param0->unk_254[0], 1, 1, 14);

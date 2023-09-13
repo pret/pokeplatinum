@@ -844,7 +844,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     if (param4 == 0) {
         do {
             v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
-        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (GetMonPersonalityShininess(param3, v2) == 1));
+        } while ((v4.unk_0B != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param3, v2) == 1));
 
         param1->unk_10 = v2;
     } else {
@@ -862,7 +862,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & GetSingleBitMask(v0)) {
+        if (v4.unk_0A & Pokemon_GetFlagMaskOf(v0)) {
             v1++;
         }
     }
@@ -874,7 +874,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & GetSingleBitMask(v0)) {
+        if (v4.unk_0A & Pokemon_GetFlagMaskOf(v0)) {
             param1->unk_18_val2[v0] = v1;
         }
     }
@@ -882,16 +882,16 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     param1->unk_1E_val2 = 0;
     param1->unk_1F = Unk_020E4C44;
 
-    v0 = GetMonSpeciesPersonalDataAttribute(param1->unk_00_val1_0, 25);
+    v0 = PokemonPersonalData_GetSpeciesValue(param1->unk_00_val1_0, 25);
 
     if (v0) {
         if (param1->unk_10 & 1) {
             param1->unk_20 = v0;
         } else {
-            param1->unk_20 = GetMonSpeciesPersonalDataAttribute(param1->unk_00_val1_0, 24);
+            param1->unk_20 = PokemonPersonalData_GetSpeciesValue(param1->unk_00_val1_0, 24);
         }
     } else {
-        param1->unk_20 = GetMonSpeciesPersonalDataAttribute(param1->unk_00_val1_0, 24);
+        param1->unk_20 = PokemonPersonalData_GetSpeciesValue(param1->unk_00_val1_0, 24);
     }
 
     param1->unk_21 = v3;
@@ -919,19 +919,19 @@ BattleParams * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223
     v3->unk_128 = 18;
     v3->unk_12C = 18;
 
-    v6 = AllocMonZeroed(param0->unk_04);
+    v6 = Pokemon_New(param0->unk_04);
     v1 = 50;
 
     Party_InitWithCapacity(v3->parties[0], param0->unk_0E);
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
-        sub_020775EC(Party_GetPokemonBySlotIndex(v5, param0->unk_2A[v0]), v6);
+        Pokemon_Copy(Party_GetPokemonBySlotIndex(v5, param0->unk_2A[v0]), v6);
 
-        if (GetMonData(v6, MON_DATA_LEVEL, NULL) > v1) {
-            v2 = GetMonSpeciesLevelExp(GetMonData(v6, MON_DATA_SPECIES, NULL), v1);
+        if (Pokemon_GetValue(v6, MON_DATA_LEVEL, NULL) > v1) {
+            v2 = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL), v1);
 
-            SetMonData(v6, 8, &v2);
-            CalculateMonLevelAndStats(v6);
+            Pokemon_SetValue(v6, 8, &v2);
+            Pokemon_CalcLevelAndStats(v6);
         }
 
         sub_0205213C(v3, v6, 0);
@@ -966,7 +966,7 @@ static void ov104_0223A6AC (BattleParams * param0, UnkStruct_ov104_0223A348 * pa
     Pokemon * v2;
 
     ov104_0222E284(param0, &param1->unk_00, param2, param3, param4);
-    v2 = AllocMonZeroed(param4);
+    v2 = Pokemon_New(param4);
 
     for (v0 = 0; v0 < param2; v0++) {
         ov104_0222DF40(&param1->unk_30[v0], v2, 120);

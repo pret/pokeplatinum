@@ -220,7 +220,7 @@ BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
     case 0:
     {
         if ((v0 != NULL) && (v0->unk_0C != NULL)) {
-            SetPartyGiratinaForm(Party_GetFromSavedata(v0->unk_0C), 0);
+            Party_SetGiratinaForm(Party_GetFromSavedata(v0->unk_0C), 0);
         }
     }
 

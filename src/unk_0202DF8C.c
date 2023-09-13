@@ -52,24 +52,24 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 
     for (v4 = 0, v5 = 0; v4 < v3; v4++) {
         v1 = Party_GetPokemonBySlotIndex(param1, v4);
-        v6 = DecryptMon(v1);
+        v6 = Pokemon_EnterDecryptionContext(v1);
 
-        if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
-            v0->unk_00[v5].unk_00 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-            v0->unk_00[v5].unk_02 = GetMonData(v1, MON_DATA_LEVEL, NULL);
-            v0->unk_00[v5].unk_03 = GetMonData(v1, MON_DATA_FORM, NULL);
-            v0->unk_00[v5].unk_04 = GetMonData(v1, MON_DATA_PERSONALITY, NULL);
-            v0->unk_00[v5].unk_08 = GetMonData(v1, MON_DATA_OT_ID, NULL);
-            v0->unk_00[v5].unk_32[0] = GetMonData(v1, MON_DATA_MOVE1, NULL);
-            v0->unk_00[v5].unk_32[1] = GetMonData(v1, MON_DATA_MOVE2, NULL);
-            v0->unk_00[v5].unk_32[2] = GetMonData(v1, MON_DATA_MOVE3, NULL);
-            v0->unk_00[v5].unk_32[3] = GetMonData(v1, MON_DATA_MOVE4, NULL);
+        if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
+            v0->unk_00[v5].unk_00 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+            v0->unk_00[v5].unk_02 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+            v0->unk_00[v5].unk_03 = Pokemon_GetValue(v1, MON_DATA_FORM, NULL);
+            v0->unk_00[v5].unk_04 = Pokemon_GetValue(v1, MON_DATA_PERSONALITY, NULL);
+            v0->unk_00[v5].unk_08 = Pokemon_GetValue(v1, MON_DATA_OT_ID, NULL);
+            v0->unk_00[v5].unk_32[0] = Pokemon_GetValue(v1, MON_DATA_MOVE1, NULL);
+            v0->unk_00[v5].unk_32[1] = Pokemon_GetValue(v1, MON_DATA_MOVE2, NULL);
+            v0->unk_00[v5].unk_32[2] = Pokemon_GetValue(v1, MON_DATA_MOVE3, NULL);
+            v0->unk_00[v5].unk_32[3] = Pokemon_GetValue(v1, MON_DATA_MOVE4, NULL);
 
             if (v2) {
-                GetMonData(v1, MON_DATA_119, v2);
+                Pokemon_GetValue(v1, MON_DATA_119, v2);
                 Strbuf_ToChars(v2, v0->unk_00[v5].unk_0C, 11);
 
-                GetMonData(v1, MON_DATA_145, v2);
+                Pokemon_GetValue(v1, MON_DATA_145, v2);
                 Strbuf_ToChars(v2, v0->unk_00[v5].unk_22, 8);
             } else {
                 v0->unk_00[v5].unk_0C[0] = 0xffff;
@@ -79,7 +79,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
             v5++;
         }
 
-        EncryptMon(v1, v6);
+        Pokemon_ExitDecryptionContext(v1, v6);
     }
 
     v0->unk_168 = param2->year;

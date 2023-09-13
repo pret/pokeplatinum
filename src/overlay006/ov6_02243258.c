@@ -2069,7 +2069,7 @@ static void * ov6_0224509C (Pokemon * param0, UnkStruct_02008A90 * param1, u32 p
     GF_ASSERT(v0 != NULL);
 
     {
-        int v1 = GetMonData(param0, MON_DATA_PERSONALITY, NULL);
+        int v1 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
         sub_02013750(param1->unk_00, param1->unk_02, param2, v0, v1, 0, 2, param1->unk_06);
     }
 

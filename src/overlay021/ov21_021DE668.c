@@ -641,8 +641,8 @@ static void ov21_021DF098 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
     int v4, v5;
     int v6 = ov21_021D33D4(param2->unk_04, v3);
 
-    v4 = GetMonFormPersonalDataAttribute(v3, v6, 6);
-    v5 = GetMonFormPersonalDataAttribute(v3, v6, 7);
+    v4 = PokemonPersonalData_GetFormValue(v3, v6, 6);
+    v5 = PokemonPersonalData_GetFormValue(v3, v6, 7);
     v4 = ov21_021DF180(v4);
     v5 = ov21_021DF180(v5);
 

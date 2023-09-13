@@ -3536,7 +3536,7 @@ static void ov109_021D3B70 (UnkStruct_ov109_021D0F70 * param0, int param1)
     v5 = Party_GetPokemonBySlotIndex(v3, v1);
 
     sub_0209304C(v5, sub_02032EE8(sub_0203608C()), 5, 0, 11);
-    sub_020775EC(v5, v4);
+    Pokemon_Copy(v5, v4);
 }
 
 static int ov109_021D3BC4 (UnkStruct_ov109_021D0F70 * param0)
@@ -3607,8 +3607,8 @@ static BOOL ov109_021D3C94 (Party * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v2, MON_DATA_IS_EGG, NULL)) {
-            if (GetMonData(v2, MON_DATA_3, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL)) {
+            if (Pokemon_GetValue(v2, MON_DATA_3, NULL)) {
                 return 1;
             }
         }

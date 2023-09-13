@@ -394,7 +394,7 @@ static void ov40_02256848 (UnkStruct_ov40_0225645C * param0, const UnkStruct_ov4
     ov25_02255938(param0->unk_24[2], 1 + sub_02079EDC(1, 0, 1));
 
     if (param1->unk_00 > 0) {
-        if (GetMonFormPersonalDataAttribute(param1->unk_1C[0], param1->unk_20[0], 28)) {
+        if (PokemonPersonalData_GetFormValue(param1->unk_1C[0], param1->unk_20[0], 28)) {
             ov25_022558C4(param0->unk_24[0], 6);
         } else {
             ov25_022558C4(param0->unk_24[0], 7);

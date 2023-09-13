@@ -129,16 +129,16 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
     u8 v4;
     u8 v5;
 
-    v5 = DecryptBoxMon(param1);
+    v5 = BoxPokemon_EnterDecryptionContext(param1);
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param4);
 
-    v2 = GetBoxMonData(param1, MON_DATA_SPECIES, NULL);
-    v3 = GetBoxMonData(param1, MON_DATA_IS_EGG, NULL);
-    v4 = GetBoxMonData(param1, MON_DATA_FORM, NULL);
+    v2 = BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    v3 = BoxPokemon_GetValue(param1, MON_DATA_IS_EGG, NULL);
+    v4 = BoxPokemon_GetValue(param1, MON_DATA_FORM, NULL);
     param7->unk_28 = sub_02079D40((BoxPokemon *)param1);
     param7->unk_2C = sub_02079EDC(v2, v4, v3);
-    param7->unk_30 = GetBoxMonData(param1, MON_DATA_HELD_ITEM, NULL);
-    param7->unk_2E = GetBoxMonData(param1, MON_DATA_11, NULL);
+    param7->unk_30 = BoxPokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
+    param7->unk_2E = BoxPokemon_GetValue(param1, MON_DATA_11, NULL);
 
     NNS_G2dInitImageProxy(&(param7->unk_04));
     NARC_ReadFromMember(param0->unk_48, param7->unk_28, 0, ((4 * 4) * 0x20 + 0x80), param0->unk_4C);
@@ -156,7 +156,7 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
 
     sub_02021E90(param7->unk_00, 2 + param7->unk_2C);
     ov19_021DA63C(param0, param7, ov19_021D5EC8(param0->unk_40));
-    EncryptBoxMon(param1, v5);
+    BoxPokemon_ExitDecryptionContext(param1, v5);
 }
 
 void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 param2, u32 param3, u8 * param4, s32 param5, s32 param6, u32 param7, u32 param8, u32 param9, UnkStruct_ov19_021DCD18 * param10)
@@ -166,16 +166,16 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 p
     BOOL v2;
     u8 v3, v4;
 
-    v2 = DecryptBoxMon(param1);
-    v3 = GetBoxMonData(param1, MON_DATA_IS_EGG, NULL);
-    v4 = GetBoxMonData(param1, MON_DATA_FORM, NULL);
+    v2 = BoxPokemon_EnterDecryptionContext(param1);
+    v3 = BoxPokemon_GetValue(param1, MON_DATA_IS_EGG, NULL);
+    v4 = BoxPokemon_GetValue(param1, MON_DATA_FORM, NULL);
 
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param7);
 
     param10->unk_28 = param3;
     param10->unk_2C = sub_02079EDC(param2, v4, v3);
-    param10->unk_30 = GetBoxMonData(param1, MON_DATA_HELD_ITEM, NULL);
-    param10->unk_2E = GetBoxMonData(param1, MON_DATA_11, NULL);
+    param10->unk_30 = BoxPokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
+    param10->unk_2E = BoxPokemon_GetValue(param1, MON_DATA_11, NULL);
 
     NNS_G2dInitImageProxy(&(param10->unk_04));
     NNS_G2dGetUnpackedCharacterData(param4, &v0);
@@ -192,7 +192,7 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 p
 
     sub_02021E90(param10->unk_00, 2 + param10->unk_2C);
     ov19_021DA63C(param0, param10, ov19_021D5EC8(param0->unk_40));
-    EncryptBoxMon(param1, v2);
+    BoxPokemon_ExitDecryptionContext(param1, v2);
 }
 
 void ov19_021DA63C (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * param1, u32 param2)

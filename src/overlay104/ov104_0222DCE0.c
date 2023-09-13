@@ -197,7 +197,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     if (param3 == 0) {
         do {
             v2 = (LCRNG_Next() | LCRNG_Next() << 16);
-        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (GetMonPersonalityShininess(param2, v2) == 1));
+        } while ((v4.unk_0B != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param2, v2) == 1));
 
         param0->unk_10 = v2;
     } else {
@@ -215,7 +215,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & GetSingleBitMask(v0)) {
+        if (v4.unk_0A & Pokemon_GetFlagMaskOf(v0)) {
             v1++;
         }
     }
@@ -227,7 +227,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & GetSingleBitMask(v0)) {
+        if (v4.unk_0A & Pokemon_GetFlagMaskOf(v0)) {
             param0->unk_18_val2[v0] = v1;
         }
     }
@@ -235,16 +235,16 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     param0->unk_1E_val2 = 0;
     param0->unk_1F = Unk_020E4C44;
 
-    v0 = GetMonSpeciesPersonalDataAttribute(param0->unk_00_val1_0, 25);
+    v0 = PokemonPersonalData_GetSpeciesValue(param0->unk_00_val1_0, 25);
 
     if (v0) {
         if (param0->unk_10 & 1) {
             param0->unk_20 = v0;
         } else {
-            param0->unk_20 = GetMonSpeciesPersonalDataAttribute(param0->unk_00_val1_0, 24);
+            param0->unk_20 = PokemonPersonalData_GetSpeciesValue(param0->unk_00_val1_0, 24);
         }
     } else {
-        param0->unk_20 = GetMonSpeciesPersonalDataAttribute(param0->unk_00_val1_0, 24);
+        param0->unk_20 = PokemonPersonalData_GetSpeciesValue(param0->unk_00_val1_0, 24);
     }
 
     param0->unk_21 = v3;
@@ -261,7 +261,7 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * par
     u16 v5;
     u32 v6;
 
-    ZeroMonData(param1);
+    Pokemon_Init(param1);
 
     if (param2 == 120) {
         v4 = 50;
@@ -274,48 +274,48 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * par
     v1 = (param0->unk_14_val2 & 0x3FFFFFFF);
 
     sub_02073D80(param1, param0->unk_00_val1_0, v4, v1, 1, param0->unk_10, 2, 0);
-    SetMonData(param1, 175, &v1);
-    CalculateMonLevelAndStats(param1);
+    Pokemon_SetValue(param1, 175, &v1);
+    Pokemon_CalcLevelAndStats(param1);
 
     v2 = param0->unk_00_val1_11;
 
-    SetMonData(param1, 112, &v2);
-    SetMonData(param1, 6, &param0->unk_02);
+    Pokemon_SetValue(param1, 112, &v2);
+    Pokemon_SetValue(param1, 6, &param0->unk_02);
 
     for (v0 = 0; v0 < 4; v0++) {
         v5 = param0->unk_04[v0];
-        SetMonData(param1, 54 + v0, &v5);
+        Pokemon_SetValue(param1, 54 + v0, &v5);
 
         v2 = (param0->unk_1E_val2 >> (v0 * 2)) & 0x3;
-        SetMonData(param1, 62 + v0, &v2);
+        Pokemon_SetValue(param1, 62 + v0, &v2);
 
-        v3 = (u8)GetMonData(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
-        SetMonData(param1, 58 + v0, &v3);
+        v3 = (u8)Pokemon_GetValue(param1, MON_DATA_MOVE1_MAX_PP + v0, NULL);
+        Pokemon_SetValue(param1, 58 + v0, &v3);
     }
 
     v6 = param0->unk_0C;
-    SetMonData(param1, 7, &v6);
+    Pokemon_SetValue(param1, 7, &v6);
 
     v2 = param0->unk_18_val1_00;
-    SetMonData(param1, 13, &v2);
+    Pokemon_SetValue(param1, 13, &v2);
 
     v2 = param0->unk_18_val1_01;
-    SetMonData(param1, 14, &v2);
+    Pokemon_SetValue(param1, 14, &v2);
 
     v2 = param0->unk_18_val1_02;
-    SetMonData(param1, 15, &v2);
+    Pokemon_SetValue(param1, 15, &v2);
 
     v2 = param0->unk_18_val1_03;
-    SetMonData(param1, 16, &v2);
+    Pokemon_SetValue(param1, 16, &v2);
 
     v2 = param0->unk_18_val1_04;
-    SetMonData(param1, 17, &v2);
+    Pokemon_SetValue(param1, 17, &v2);
 
     v2 = param0->unk_18_val1_05;
-    SetMonData(param1, 18, &v2);
+    Pokemon_SetValue(param1, 18, &v2);
 
-    SetMonData(param1, 10, &param0->unk_20);
-    SetMonData(param1, 9, &param0->unk_21);
+    Pokemon_SetValue(param1, 10, &param0->unk_20);
+    Pokemon_SetValue(param1, 9, &param0->unk_21);
 
     if (param0->unk_14_val1_30) {
         MessageLoader * v7;
@@ -324,15 +324,15 @@ void ov104_0222DF40 (const UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * par
         v7 = MessageLoader_Init(1, 26, 412, 4);
         v8 = MessageLoader_GetNewStrbuf(v7, param0->unk_00_val1_0);
 
-        SetMonData(param1, 119, v8);
+        Pokemon_SetValue(param1, 119, v8);
         Strbuf_Free(v8);
         MessageLoader_Free(v7);
     } else {
-        SetMonData(param1, 117, param0->unk_22);
+        Pokemon_SetValue(param1, 117, param0->unk_22);
     }
 
-    SetMonData(param1, 12, &param0->unk_1F);
-    CalculateMonLevelAndStats(param1);
+    Pokemon_SetValue(param1, 12, &param0->unk_1F);
+    Pokemon_CalcLevelAndStats(param1);
 }
 
 u16 ov104_0222E10C (u8 param0)
@@ -359,7 +359,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     int v4 = 0;
     UnkStruct_02025E6C * v5 = sub_02025E38(param0);
 
-    v0 = GetMonData(param1, MON_DATA_OT_ID, NULL);
+    v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
     sub_02077EE4(param1, sub_02025E38(param0), 4, 0, 0, 11);
 
     v3 = sub_0203A138(562);
@@ -368,8 +368,8 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     v2 = MessageLoader_Init(0, 26, 363, 11);
     v1 = MessageLoader_GetNewStrbuf(v2, 0);
 
-    SetMonData(param1, 145, v1);
-    SetMonData(param1, 7, &v0);
+    Pokemon_SetValue(param1, 145, v1);
+    Pokemon_SetValue(param1, 7, &v0);
 
     Strbuf_Free(v1);
     MessageLoader_Free(v2);

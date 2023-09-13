@@ -176,10 +176,10 @@ static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
 
     for (v0 = 0, v2 = 0; v0 < v3; v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
-        v4 = GetMonData(v7, MON_DATA_SPECIES, NULL);
-        v5 = GetMonData(v7, MON_DATA_LEVEL, NULL);
+        v4 = Pokemon_GetValue(v7, MON_DATA_SPECIES, NULL);
+        v5 = Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL);
 
-        if (GetMonData(v7, MON_DATA_IS_EGG, NULL) != 0) {
+        if (Pokemon_GetValue(v7, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
         }
 

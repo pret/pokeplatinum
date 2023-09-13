@@ -464,7 +464,7 @@ static BOOL sub_020268D8 (const UnkStruct_02026324 * param0, u32 param1)
 
 static void sub_020268FC (UnkStruct_02026324 * param0, u16 param1, Pokemon * param2)
 {
-    u8 v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+    u8 v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
     u32 v1;
 
     if (param1 == 386) {
@@ -571,38 +571,38 @@ static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, Pokemon * par
 
     switch (param1) {
     case 201:
-        v0 = GetMonForm(param2);
+        v0 = Pokemon_GetForm(param2);
         sub_0202643C(param0, v0);
         break;
     case 412:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020267B8(param0, param1, v0);
         break;
     case 413:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020267B8(param0, param1, v0);
         break;
     case 422:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 423:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 386:
         sub_020268FC(param0, param1, param2);
         break;
     case 492:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 487:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 479:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_02026A00(param0, param1, v0);
         break;
     default:
@@ -630,7 +630,7 @@ static u32 sub_02026BAC (const UnkStruct_02026324 * param0, u16 param1, int para
     u32 v0, v1;
     u32 v2;
 
-    if (GetMonSpeciesPersonalDataAttribute(param1, 18) == 255) {
+    if (PokemonPersonalData_GetSpeciesValue(param1, 18) == 255) {
         if (param2 == 0) {
             return 2;
         } else {
@@ -1069,9 +1069,9 @@ u32 sub_02027288 (const UnkStruct_02026324 * param0)
 
 void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
 {
-    u16 v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
-    u32 v1 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    u32 v2 = GetMonGender(param1);
+    u16 v0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    u32 v1 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+    u32 v2 = Pokemon_GetGender(param1);
     u32 v3;
 
     inline_02026DD0(param0);
@@ -1097,10 +1097,10 @@ void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
 
 void sub_0202736C (UnkStruct_02026324 * param0, Pokemon * param1)
 {
-    u16 v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
-    u32 v1 = GetMonData(param1, MON_DATA_LANGUAGE, NULL);
-    u32 v2 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    u32 v3 = GetMonGender(param1);
+    u16 v0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    u32 v1 = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
+    u32 v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+    u32 v3 = Pokemon_GetGender(param1);
     u32 v4;
 
     inline_02026DD0(param0);

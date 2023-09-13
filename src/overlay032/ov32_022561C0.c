@@ -206,17 +206,17 @@ static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
 
     for (v1 = 0; v1 < param0->unk_00; v1++) {
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
-        v2 = DecryptMon(v0);
+        v2 = Pokemon_EnterDecryptionContext(v0);
 
         param0->unk_04[v1].unk_00 = sub_02079D40((const BoxPokemon *)v0);
-        param0->unk_04[v1].unk_04 = GetMonData(v0, MON_DATA_SPECIES, NULL);
-        param0->unk_04[v1].unk_06 = GetMonData(v0, MON_DATA_CURRENT_HP, NULL);
-        param0->unk_04[v1].unk_08 = GetMonData(v0, MON_DATA_MAX_HP, NULL);
-        param0->unk_04[v1].unk_0A = GetMonData(v0, MON_DATA_HELD_ITEM, NULL);
-        param0->unk_04[v1].unk_0C = (GetMonData(v0, MON_DATA_160, NULL) != 0);
-        param0->unk_04[v1].unk_0E = GetMonData(v0, MON_DATA_IS_EGG, NULL);
-        param0->unk_04[v1].unk_0F = GetMonData(v0, MON_DATA_FORM, NULL);
+        param0->unk_04[v1].unk_04 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+        param0->unk_04[v1].unk_06 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
+        param0->unk_04[v1].unk_08 = Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
+        param0->unk_04[v1].unk_0A = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_04[v1].unk_0C = (Pokemon_GetValue(v0, MON_DATA_160, NULL) != 0);
+        param0->unk_04[v1].unk_0E = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
+        param0->unk_04[v1].unk_0F = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
-        EncryptMon(v0, v2);
+        Pokemon_ExitDecryptionContext(v0, v2);
     }
 }

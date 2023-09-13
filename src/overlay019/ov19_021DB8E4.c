@@ -250,14 +250,14 @@ void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NN
     for (v3 = 0, v4 = 0; v3 < 5; v3++) {
         for (v2 = 0; v2 < 6; v2++) {
             v1 = sub_02079C9C(v0, param1, v4++);
-            v7 = DecryptBoxMon(v1);
-            v5 = GetBoxMonData(v1, MON_DATA_SPECIES, NULL);
+            v7 = BoxPokemon_EnterDecryptionContext(v1);
+            v5 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
             if (v5) {
-                if (GetBoxMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
-                    u16 v9 = GetBoxMonData(v1, MON_DATA_FORM, NULL);
+                if (BoxPokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
+                    u16 v9 = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
 
-                    v6 = GetMonFormPersonalDataAttribute(v5, v9, 27);
+                    v6 = PokemonPersonalData_GetFormValue(v5, v9, 27);
                 } else {
                     v6 = (v5 != 490) ? 8 : 1;
                 }
@@ -273,7 +273,7 @@ void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NN
                 sub_0201A6D0(&(param0->unk_3C), 10 + v2 * 2, 11 + v3 * 2, 2, 2, v6);
             }
 
-            EncryptBoxMon(v1, v7);
+            BoxPokemon_ExitDecryptionContext(v1, v7);
         }
     }
 

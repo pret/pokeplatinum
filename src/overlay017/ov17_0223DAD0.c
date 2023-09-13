@@ -723,7 +723,7 @@ static void ov17_0223E458 (UnkStruct_ov17_0224DF54 * param0)
     ov17_0224CFB8(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_14.unk_A14[v0] = ov17_0224CFA8(GetMonData(param0->unk_00->unk_00.unk_00[v0], MON_DATA_SPECIES, NULL));
+        param0->unk_14.unk_A14[v0] = ov17_0224CFA8(Pokemon_GetValue(param0->unk_00->unk_00.unk_00[v0], MON_DATA_SPECIES, NULL));
     }
 }
 

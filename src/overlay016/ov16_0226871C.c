@@ -2165,7 +2165,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
             }
 
             v6 = ov16_0223DFAC(param0->unk_00, v12, v0->unk_00[v12].unk_00);
-            v7 = GetBoxMon(v6);
+            v7 = Pokemon_GetBoxPokemon(v6);
 
             sub_0200B5CC(v8, 0, v7);
             sub_0200C388(v8, v4, v5);

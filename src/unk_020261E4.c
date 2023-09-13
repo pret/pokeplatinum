@@ -39,8 +39,8 @@ void sub_020261EC (UnkStruct_02026310 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026310));
 
-    ZeroBoxMonData(&param0->unk_00[0].unk_00);
-    ZeroBoxMonData(&param0->unk_00[1].unk_00);
+    BoxPokemon_Init(&param0->unk_00[0].unk_00);
+    BoxPokemon_Init(&param0->unk_00[1].unk_00);
 
     param0->unk_D8 = 0;
     param0->unk_DC = 0;
@@ -114,8 +114,8 @@ BOOL sub_02026280 (UnkStruct_02026310 * param0)
 {
     int v0, v1;
 
-    v0 = GetBoxMonData(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
-    v1 = GetBoxMonData(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
+    v0 = BoxPokemon_GetValue(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
+    v1 = BoxPokemon_GetValue(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
 
     if (v0 != v1) {
         return 1;
@@ -147,7 +147,7 @@ void sub_020262C0 (UnkStruct_02026224 * param0)
 
 void sub_020262F4 (UnkStruct_02026218 * param0)
 {
-    ZeroBoxMonData(&param0->unk_00);
+    BoxPokemon_Init(&param0->unk_00);
     param0->unk_68 = 0;
     sub_020262C0(&param0->unk_08);
 }

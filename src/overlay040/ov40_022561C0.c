@@ -217,14 +217,14 @@ static void ov40_022563D0 (UnkStruct_ov40_0225645C_1 * param0, UnkStruct_0202631
     for (v2 = 0; v2 < param0->unk_00; v2++) {
         v0 = sub_02026218(param1, v2);
         v1 = sub_02026220(v0);
-        v3 = DecryptBoxMon(v1);
+        v3 = BoxPokemon_EnterDecryptionContext(v1);
 
         param0->unk_04[v2] = sub_02079D40(v1);
-        param0->unk_1C[v2] = GetBoxMonData(v1, MON_DATA_SPECIES, NULL);
-        param0->unk_20[v2] = GetBoxMonData(v1, MON_DATA_FORM, NULL);
+        param0->unk_1C[v2] = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+        param0->unk_20[v2] = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
         param0->unk_0C[v2] = ov5_021E6590(v0);
-        param0->unk_14[v2] = GetBoxMonGender(v1);
+        param0->unk_14[v2] = BoxPokemon_GetGender(v1);
 
-        EncryptBoxMon(v1, v3);
+        BoxPokemon_ExitDecryptionContext(v1, v3);
     }
 }

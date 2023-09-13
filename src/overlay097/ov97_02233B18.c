@@ -397,7 +397,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     UnkStruct_02024440 * v7;
 
     v7 = sub_02024440(param0->unk_10);
-    v4 = GetBoxMon(&v6);
+    v4 = Pokemon_GetBoxPokemon(&v6);
 
     for (v0 = 0; v0 < 6; v0++) {
         v2 = param0->unk_42C[v0].unk_04;

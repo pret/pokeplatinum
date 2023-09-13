@@ -17,11 +17,11 @@
 
 BOOL sub_02054884 (Pokemon * param0)
 {
-    if (GetMonData(param0, MON_DATA_CURRENT_HP, NULL) == 0) {
+    if (Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL) == 0) {
         return 0;
     }
 
-    if (GetMonData(param0, MON_DATA_IS_EGG, NULL)) {
+    if (Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL)) {
         return 0;
     }
 
@@ -38,14 +38,14 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
 
     v4 = sub_02025E38(param1);
     v3 = Party_GetFromSavedata(param1);
-    v1 = AllocMonZeroed(param0);
+    v1 = Pokemon_New(param0);
 
-    ZeroMonData(v1);
+    Pokemon_Init(v1);
     sub_02073D80(v1, param2, param3, 32, 0, 0, 0, 0);
     sub_02077E64(v1, v4, 4, param5, param6, param0);
 
     v2 = param4;
-    SetMonData(v1, 6, &v2);
+    Pokemon_SetValue(v1, 6, &v2);
     v0 = Party_AddPokemon(v3, v1);
 
     if (v0) {
@@ -63,9 +63,9 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     BOOL v1;
     UnkStruct_02025E6C * v2 = sub_02025E38(param1);
     Party * v3 = Party_GetFromSavedata(param1);
-    Pokemon * v4 = AllocMonZeroed(32);
+    Pokemon * v4 = Pokemon_New(32);
 
-    ZeroMonData(v4);
+    Pokemon_Init(v4);
 
     v0 = sub_02017070(param4, param5);
     ov5_021E6CF0(v4, param2, param3, v2, 4, v0);
@@ -78,7 +78,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
 
 void sub_02054988 (Party * param0, int param1, int param2, u16 param3)
 {
-    ResetMonMove(Party_GetPokemonBySlotIndex(param0, param1), param3, param2);
+    Pokemon_ResetMoveSlot(Party_GetPokemonBySlotIndex(param0, param1), param3, param2);
 }
 
 int sub_020549A0 (Party * param0, u16 param1)
@@ -91,11 +91,11 @@ int sub_020549A0 (Party * param0, u16 param1)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v2, MON_DATA_IS_EGG, NULL) != 0) {
+        if (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
         }
 
-        if ((GetMonData(v2, MON_DATA_MOVE1, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE2, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE3, NULL) == param1) || (GetMonData(v2, MON_DATA_MOVE4, NULL) == param1)) {
+        if ((Pokemon_GetValue(v2, MON_DATA_MOVE1, NULL) == param1) || (Pokemon_GetValue(v2, MON_DATA_MOVE2, NULL) == param1) || (Pokemon_GetValue(v2, MON_DATA_MOVE3, NULL) == param1) || (Pokemon_GetValue(v2, MON_DATA_MOVE4, NULL) == param1)) {
             return v0;
             break;
         }
@@ -152,7 +152,7 @@ Pokemon * sub_02054A74 (const Party * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v2, MON_DATA_IS_EGG, NULL) == 0) {
+        if (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0) {
             return v2;
         }
     }
@@ -180,8 +180,8 @@ void sub_02054AC4 (Party * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v3 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v3, MON_DATA_IS_EGG, NULL) == 0) {
-            SetMonData(v3, 25, &v2);
+        if (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) {
+            Pokemon_SetValue(v3, 25, &v2);
         }
     }
 }
@@ -199,14 +199,14 @@ int sub_02054B04 (Party * param0, u16 param1)
         v4 = Party_GetPokemonBySlotIndex(param0, v2);
 
         if (sub_02054884(v4)) {
-            if (GetMonData(v4, MON_DATA_160, NULL) & (0x80 | 0x8)) {
-                u32 v5 = GetMonData(v4, MON_DATA_CURRENT_HP, NULL);
+            if (Pokemon_GetValue(v4, MON_DATA_160, NULL) & (0x80 | 0x8)) {
+                u32 v5 = Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL);
 
                 if (v5 > 1) {
                     v5--;
                 }
 
-                SetMonData(v4, 163, &v5);
+                Pokemon_SetValue(v4, 163, &v5);
 
                 if (v5 == 1) {
                     v1++;
@@ -229,10 +229,10 @@ int sub_02054B04 (Party * param0, u16 param1)
 
 BOOL sub_02054B94 (Pokemon * param0)
 {
-    if ((GetMonData(param0, MON_DATA_160, NULL) & (0x80 | 0x8)) && (GetMonData(param0, MON_DATA_CURRENT_HP, NULL) == 1)) {
+    if ((Pokemon_GetValue(param0, MON_DATA_160, NULL) & (0x80 | 0x8)) && (Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL) == 1)) {
         u32 v0 = 0;
 
-        SetMonData(param0, 160, &v0);
+        Pokemon_SetValue(param0, 160, &v0);
         return 1;
     }
 

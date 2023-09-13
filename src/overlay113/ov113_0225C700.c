@@ -1351,10 +1351,10 @@ static void ov113_0225DD4C (int param0, UnkStruct_021C0794 * param1, UnkStruct_o
 
     for (v3 = 0; v3 < v1; v3++) {
         v2 = Party_GetPokemonBySlotIndex(v0, v3);
-        param2[v3].unk_02 = GetMonData(v2, MON_DATA_SPECIES_EGG, NULL);
-        param2[v3].unk_04 = GetMonData(v2, MON_DATA_PERSONALITY, NULL);
-        param2[v3].unk_08 = GetMonData(v2, MON_DATA_FORM, NULL);
-        param2[v3].unk_00 = ov113_0226072C(param0, GetMonData(v2, MON_DATA_OT_ID, NULL));
+        param2[v3].unk_02 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
+        param2[v3].unk_04 = Pokemon_GetValue(v2, MON_DATA_PERSONALITY, NULL);
+        param2[v3].unk_08 = Pokemon_GetValue(v2, MON_DATA_FORM, NULL);
+        param2[v3].unk_00 = ov113_0226072C(param0, Pokemon_GetValue(v2, MON_DATA_OT_ID, NULL));
     }
 }
 

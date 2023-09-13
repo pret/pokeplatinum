@@ -628,7 +628,7 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
 
     for (v0 = 0; v0 < 4; v0++) {
         v1 = param0->unk_0C[v0];
-        SetMonData(param1, 54 + v0, &v1);
+        Pokemon_SetValue(param1, 54 + v0, &v1);
     }
 
     {
@@ -639,8 +639,8 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
-        SetMonData(param1, 119, v3);
-        SetMonData(param1, 145, v4);
+        Pokemon_SetValue(param1, 119, v3);
+        Pokemon_SetValue(param1, 145, v4);
 
         Strbuf_Free(v3);
         Strbuf_Free(v4);
@@ -657,12 +657,12 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
         v10 = param0->unk_1E;
         v11 = param0->unk_1F;
 
-        SetMonData(param1, 19, &v6);
-        SetMonData(param1, 20, &v7);
-        SetMonData(param1, 21, &v8);
-        SetMonData(param1, 22, &v9);
-        SetMonData(param1, 23, &v10);
-        SetMonData(param1, 24, &v11);
+        Pokemon_SetValue(param1, 19, &v6);
+        Pokemon_SetValue(param1, 20, &v7);
+        Pokemon_SetValue(param1, 21, &v8);
+        Pokemon_SetValue(param1, 22, &v9);
+        Pokemon_SetValue(param1, 23, &v10);
+        Pokemon_SetValue(param1, 24, &v11);
     }
 }
 

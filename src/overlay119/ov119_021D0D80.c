@@ -322,7 +322,7 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, i
     v3 = sub_0200B358(71);
     v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, 71);
-    v4 = GetBoxMon(param2);
+    v4 = Pokemon_GetBoxPokemon(param2);
 
     sub_0200B538(v3, 0, v4);
     sub_0200C388(v3, v2, v1);
@@ -758,13 +758,13 @@ void ov119_021D1858 (UnkStruct_ov119_021D0FD0 * param0)
     int v4;
 
     v2 = param0->unk_00->unk_0C.unk_00;
-    v3 = GetMonData(v2, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
     v4 = sub_020765AC(v2, 2);
 
     {
         int v5 = 0;
 
-        SetMonData(v2, 76, &v5);
+        Pokemon_SetValue(v2, 76, &v5);
     }
 
     sub_02075EF4(&v0, v2, 2);
@@ -778,8 +778,8 @@ void ov119_021D18C0 (UnkStruct_ov119_021D0FD0 * param0)
     int v0;
     int v1;
 
-    v0 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
-    v1 = GetMonNature(param0->unk_00->unk_0C.unk_00);
+    v0 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+    v1 = Pokemon_GetNature(param0->unk_00->unk_0C.unk_00);
 
     sub_02007B98(param0->unk_70, 1);
     sub_020789F4(param0->unk_04.unk_3C, param0->unk_04.unk_54, param0->unk_70, v0, 2, 0, 0);

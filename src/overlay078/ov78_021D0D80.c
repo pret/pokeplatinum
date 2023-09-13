@@ -663,7 +663,7 @@ static void ov78_021D1468 (UnkStruct_02007C7C ** param0, UnkStruct_ov78_021D107C
     UnkStruct_02008A90 v0;
     int v1;
 
-    v1 = GetMonPersonalityGender(param2, 0);
+    v1 = Pokemon_GetGenderOf(param2, 0);
 
     sub_02075FB4(&v0, param2, v1, 2, 0, NULL, NULL);
 

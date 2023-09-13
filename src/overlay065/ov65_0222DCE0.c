@@ -668,11 +668,11 @@ static int ov65_0222DF88 (UnkStruct_ov65_0222EBE0 * param0)
     for (v3 = 0; v3 < v2; v3++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v3);
 
-        if (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) == 0) {
+        if (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) == 0) {
             continue;
         }
 
-        if (GetMonData(v1, MON_DATA_IS_EGG, NULL)) {
+        if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL)) {
             continue;
         }
 
@@ -1820,8 +1820,8 @@ static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     for (v5 = 0; v5 < v4; v5++) {
         Pokemon * v6 = Party_GetPokemonBySlotIndex(v2, v5);
 
-        param0->unk_04->unk_00.unk_00[v5] = GetMonData(v6, MON_DATA_SPECIES, NULL);
-        param0->unk_04->unk_00.unk_0C[v5] = GetMonData(v6, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_04->unk_00.unk_00[v5] = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
+        param0->unk_04->unk_00.unk_0C[v5] = Pokemon_GetValue(v6, MON_DATA_HELD_ITEM, NULL);
     }
 
     param0->unk_04->unk_00.unk_18 = sub_02025FCC(v0);

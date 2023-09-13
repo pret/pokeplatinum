@@ -1590,7 +1590,7 @@ static void ov108_02242F38 (UnkStruct_ov108_02241DB0 * param0)
     for (v2 = 0; v2 < v0; v2++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3C8, v2);
 
-        if (GetMonData(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
+        if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
             ov108_022435A8(param0->unk_39C[v2], 0);
         } else {
             ov108_022435A8(param0->unk_39C[v2], 1);
@@ -1600,7 +1600,7 @@ static void ov108_02242F38 (UnkStruct_ov108_02241DB0 * param0)
     for (v2 = 0; v2 < v1; v2++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3CC, v2);
 
-        if (GetMonData(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
+        if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
             ov108_022435A8(param0->unk_3AC[v2], 0);
         } else {
             ov108_022435A8(param0->unk_3AC[v2], 1);

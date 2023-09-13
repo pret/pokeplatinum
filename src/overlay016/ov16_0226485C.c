@@ -545,8 +545,8 @@ void ov16_022651DC (BattleSystem * param0, BattleContext * param1, int param2, i
     int v3;
 
     v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
-    v2 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-    v3 = GetMonData(v1, MON_DATA_LEVEL, NULL);
+    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
     v0.unk_00 = 12;
     v0.unk_01 = param1->battleMons[param2].level;
@@ -561,8 +561,8 @@ void ov16_022651DC (BattleSystem * param0, BattleContext * param1, int param2, i
         v0.unk_07_5 = param1->battleMons[param2].gender;
     }
 
-    v0.unk_08 = param1->battleMons[param2].exp - GetMonSpeciesLevelExp(v2, v3);
-    v0.unk_0C = GetMonSpeciesLevelExp(v2, v3 + 1) - GetMonSpeciesLevelExp(v2, v3);
+    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
     v0.unk_07_7 = ov16_0223F9E0(param0, param1->battleMons[param2].species);
     v0.unk_10 = ov16_0223ED8C(param0);
     v0.unk_14 = param3;
@@ -596,7 +596,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
     for (v1 = 0; v1 < BattleSystem_MaxBattlers(battleSys); v1++) {
         if (BattleSystem_CanPickCommand(battleCtx, v1) == 0) {
-            v10 |= GetSingleBitMask(v1);
+            v10 |= Pokemon_GetFlagMaskOf(v1);
         }
     }
 
@@ -617,11 +617,11 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
     for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
         v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-        v5 = GetMonData(v8, MON_DATA_SPECIES_EGG, NULL);
+        v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
         if ((v5) && (v5 != 494)) {
-            if (GetMonData(v8, MON_DATA_CURRENT_HP, NULL)) {
-                if (GetMonData(v8, MON_DATA_160, NULL)) {
+            if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_160, NULL)) {
                     v0.unk_08[0][v6] = 3;
                 } else {
                     v0.unk_08[0][v6] = 1;
@@ -633,7 +633,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             if (v9 & (0x4 | 0x20 | 0x80 | 0x200)) {
                 v0.unk_02[v6] = 0;
             } else {
-                v0.unk_02[v6] = GetMonPercentToNextLevel(v8);
+                v0.unk_02[v6] = Pokemon_GetPercentToNextLevel(v8);
             }
 
             v6++;
@@ -652,11 +652,11 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = GetMonData(v8, MON_DATA_SPECIES_EGG, NULL);
+            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
             if ((v5) && (v5 != 494)) {
-                if (GetMonData(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (GetMonData(v8, MON_DATA_160, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_160, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -680,11 +680,11 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = GetMonData(v8, MON_DATA_SPECIES_EGG, NULL);
+            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
             if ((v5) && (v5 != 494)) {
-                if (GetMonData(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (GetMonData(v8, MON_DATA_160, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_160, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -703,11 +703,11 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
             v8 = Party_GetPokemonBySlotIndex(v7, battleCtx->partyOrder[v2][v1]);
-            v5 = GetMonData(v8, MON_DATA_SPECIES_EGG, NULL);
+            v5 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
 
             if ((v5) && (v5 != 494)) {
-                if (GetMonData(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (GetMonData(v8, MON_DATA_160, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_160, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -844,11 +844,11 @@ void BattleIO_ShowBagScreen (BattleSystem *battleSys, BattleContext *battleCtx, 
     }
 
     if (BattleSystem_BattleType(battleSys) == (0x2 | 0x8 | 0x40)) {
-        if (((battleCtx->battlersSwitchingMask & GetSingleBitMask(1)) == 0) && ((battleCtx->battlersSwitchingMask & GetSingleBitMask(3)) == 0)) {
+        if (((battleCtx->battlersSwitchingMask & Pokemon_GetFlagMaskOf(1)) == 0) && ((battleCtx->battlersSwitchingMask & Pokemon_GetFlagMaskOf(3)) == 0)) {
             v0.unk_01 = 1;
             v0.unk_02 = 0;
             v0.unk_03 = 0;
-        } else if ((battleCtx->battlersSwitchingMask & GetSingleBitMask(1)) == 0) {
+        } else if ((battleCtx->battlersSwitchingMask & Pokemon_GetFlagMaskOf(1)) == 0) {
             v0.unk_01 = 0;
 
             if (battleCtx->battleMons[1].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000)) {
@@ -994,8 +994,8 @@ void ov16_02265C38 (BattleSystem * param0, BattleContext * param1, int param2)
     int v3;
 
     v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
-    v2 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-    v3 = GetMonData(v1, MON_DATA_LEVEL, NULL);
+    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
     v0.unk_00 = 24;
     v0.unk_01 = param1->battleMons[param2].level;
@@ -1009,8 +1009,8 @@ void ov16_02265C38 (BattleSystem * param0, BattleContext * param1, int param2)
         v0.unk_07 = param1->battleMons[param2].gender;
     }
 
-    v0.unk_0C = param1->battleMons[param2].exp - GetMonSpeciesLevelExp(v2, v3);
-    v0.unk_10 = GetMonSpeciesLevelExp(v2, v3 + 1) - GetMonSpeciesLevelExp(v2, v3);
+    v0.unk_0C = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_10 = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
 
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C35C));
 }
@@ -1023,13 +1023,13 @@ void ov16_02265D14 (BattleSystem * param0, BattleContext * param1, int param2, i
     int v3;
 
     v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
-    v2 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-    v3 = GetMonData(v1, MON_DATA_LEVEL, NULL);
+    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
     v0.unk_00 = 25;
     v0.unk_04 = param3;
-    v0.unk_08 = param1->battleMons[param2].exp - GetMonSpeciesLevelExp(v2, v3);
-    v0.unk_0C = GetMonSpeciesLevelExp(v2, v3 + 1) - GetMonSpeciesLevelExp(v2, v3);
+    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
 
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C370));
 }
@@ -1232,8 +1232,8 @@ void ov16_022661CC (BattleSystem * param0, BattleContext * param1, int param2)
     int v3;
 
     v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
-    v2 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-    v3 = GetMonData(v1, MON_DATA_LEVEL, NULL);
+    v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
     v0.unk_00 = 38;
     v0.unk_01 = param1->battleMons[param2].level;
@@ -1248,8 +1248,8 @@ void ov16_022661CC (BattleSystem * param0, BattleContext * param1, int param2)
         v0.unk_07_5 = param1->battleMons[param2].gender;
     }
 
-    v0.unk_08 = param1->battleMons[param2].exp - GetMonSpeciesLevelExp(v2, v3);
-    v0.unk_0C = GetMonSpeciesLevelExp(v2, v3 + 1) - GetMonSpeciesLevelExp(v2, v3);
+    v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
+    v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
     v0.unk_07_7 = ov16_0223F9E0(param0, param1->battleMons[param2].species);
     v0.unk_10 = ov16_0223ED8C(param0);
 
@@ -1505,7 +1505,7 @@ void ov16_0226683C (BattleSystem * param0, BattleContext * param1)
 
     for (v1 = 0; v1 < BattleSystem_MaxBattlers(param0); v1++) {
         if (param1->battlerActions[v1][0] == 16) {
-            v0.unk_01 |= GetSingleBitMask(v1);
+            v0.unk_01 |= Pokemon_GetFlagMaskOf(v1);
         }
     }
 
@@ -1744,11 +1744,11 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
 
         for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
             v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[v1][v0]);
-            v3 = GetMonData(v7, MON_DATA_SPECIES_EGG, NULL);
+            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
 
             if ((v3) && (v3 != 494)) {
-                if (GetMonData(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (GetMonData(v7, MON_DATA_160, NULL)) {
+                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
+                    if (Pokemon_GetValue(v7, MON_DATA_160, NULL)) {
                         param2->unk_02[v4] = 3;
                     } else {
                         param2->unk_02[v4] = 1;
@@ -1766,11 +1766,11 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
 
         for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
             v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[v2][v0]);
-            v3 = GetMonData(v7, MON_DATA_SPECIES_EGG, NULL);
+            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
 
             if ((v3) && (v3 != 494)) {
-                if (GetMonData(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (GetMonData(v7, MON_DATA_160, NULL)) {
+                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
+                    if (Pokemon_GetValue(v7, MON_DATA_160, NULL)) {
                         param2->unk_02[v4] = 3;
                     } else {
                         param2->unk_02[v4] = 1;
@@ -1794,11 +1794,11 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
 
         for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
             v7 = Party_GetPokemonBySlotIndex(v6, param1->partyOrder[param4][v0]);
-            v3 = GetMonData(v7, MON_DATA_SPECIES_EGG, NULL);
+            v3 = Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL);
 
             if ((v3) && (v3 != 494)) {
-                if (GetMonData(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (GetMonData(v7, MON_DATA_160, NULL)) {
+                if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
+                    if (Pokemon_GetValue(v7, MON_DATA_160, NULL)) {
                         param2->unk_02[v4] = 3;
                     } else {
                         param2->unk_02[v4] = 1;

@@ -209,7 +209,7 @@ void sub_0200B538 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
     u32 v1;
 
     v0 = MessageLoader_Init(1, 26, 412, param0->unk_04);
-    v1 = GetBoxMonData(param2, MON_DATA_SPECIES, NULL);
+    v1 = BoxPokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
 
     MessageLoader_GetStrbuf(v0, v1, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
@@ -220,7 +220,7 @@ void sub_0200B578 (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
 {
     u32 v0;
 
-    v0 = GetBoxMonData(param2, MON_DATA_SPECIES, NULL);
+    v0 = BoxPokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
     sub_0200B594(param0, param1, v0);
 }
 
@@ -237,13 +237,13 @@ void sub_0200B594 (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
 
 void sub_0200B5CC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
 {
-    GetBoxMonData(param2, MON_DATA_119, param0->unk_0C);
+    BoxPokemon_GetValue(param2, MON_DATA_119, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
 void sub_0200B5EC (UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2)
 {
-    GetBoxMonData(param2, MON_DATA_145, param0->unk_0C);
+    BoxPokemon_GetValue(param2, MON_DATA_145, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 

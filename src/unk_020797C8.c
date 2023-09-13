@@ -35,7 +35,7 @@ static void sub_020797DC (UnkStruct_020797DC * param0)
 
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
-            ZeroBoxMonData(&(param0->unk_04[v0][v1]));
+            BoxPokemon_Init(&(param0->unk_04[v0][v1]));
         }
     }
 
@@ -88,14 +88,14 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon * param2)
     u32 v0;
 
     sub_0207896C(param2);
-    SetBoxShayminForm(param2, 0);
+    BoxPokemon_SetShayminForm(param2, 0);
 
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
     }
 
     for (v0 = 0; v0 < (5 * 6); v0++) {
-        if (GetBoxMonData(&(param0->unk_04[param1][v0]), MON_DATA_SPECIES, NULL) == 0) {
+        if (BoxPokemon_GetValue(&(param0->unk_04[param1][v0]), MON_DATA_SPECIES, NULL) == 0) {
             param0->unk_04[param1][v0] = *param2;
             sub_02024804();
             return 1;
@@ -108,7 +108,7 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon * param2)
 BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon * param3)
 {
     sub_0207896C(param3);
-    SetBoxShayminForm(param3, 0);
+    BoxPokemon_SetShayminForm(param3, 0);
 
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -132,7 +132,7 @@ void sub_02079968 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
     }
 
     if ((param2 < (5 * 6)) && (param1 < 18)) {
-        ZeroBoxMonData(&(param0->unk_04[param1][param2]));
+        BoxPokemon_Init(&(param0->unk_04[param1][param2]));
         sub_02024804();
     } else {
         GF_ASSERT(0);
@@ -152,7 +152,7 @@ u32 sub_020799A0 (const UnkStruct_020797DC * param0)
 
     while (TRUE) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
-            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
                 return v0;
             }
         }
@@ -182,7 +182,7 @@ BOOL sub_020799F0 (const UnkStruct_020797DC * param0, int * param1, int * param2
 
     while (TRUE) {
         for ( ; v1 < (5 * 6); v1++) {
-            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) == 0) {
                 *param1 = v0;
                 *param2 = v1;
                 return 1;
@@ -212,7 +212,7 @@ u32 sub_02079A50 (const UnkStruct_020797DC * param0)
 
     for (v0 = 0; v0 < 18; v0++) {
         for (v1 = 0; v1 < (5 * 6); v1++) {
-            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) != 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[v0][v1])), MON_DATA_172, NULL) != 0) {
                 v2++;
             }
         }
@@ -295,7 +295,7 @@ u32 sub_02079B54 (const UnkStruct_020797DC * param0, u32 param1)
         u32 v1 = 0;
 
         for (v0 = 0; v0 < (5 * 6); v0++) {
-            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
                 v1++;
             }
         }
@@ -319,8 +319,8 @@ u32 sub_02079B98 (const UnkStruct_020797DC * param0, u32 param1)
         u32 v1 = 0;
 
         for (v0 = 0; v0 < (5 * 6); v0++) {
-            if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
-                if (GetBoxMonData((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_IS_EGG, NULL) == 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_172, NULL)) {
+                if (BoxPokemon_GetValue((BoxPokemon *)(&(param0->unk_04[param1][v0])), MON_DATA_IS_EGG, NULL) == 0) {
                     v1++;
                 }
             }
@@ -354,7 +354,7 @@ u32 sub_02079C08 (const UnkStruct_020797DC * param0, u32 param1, u32 param2, int
         param1 = param0->unk_00;
     }
 
-    return GetBoxMonData((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
+    return BoxPokemon_GetValue((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
 }
 
 void sub_02079C50 (UnkStruct_020797DC * param0, u32 param1, u32 param2, int param3, void * param4)
@@ -366,7 +366,7 @@ void sub_02079C50 (UnkStruct_020797DC * param0, u32 param1, u32 param2, int para
         param1 = param0->unk_00;
     }
 
-    SetBoxMonData((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
+    BoxPokemon_SetValue((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
     sub_02024804();
 }
 

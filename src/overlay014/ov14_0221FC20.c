@@ -327,7 +327,7 @@ void ov14_0221FC20 (BattleSystem * param0, BattleContext * param1, u8 param2, u8
     v1 = BattleSystem_CheckStruggling(param0, param1, param2, 0, 0xffffffff);
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        if (v1 & GetSingleBitMask(v0)) {
+        if (v1 & Pokemon_GetFlagMaskOf(v0)) {
             param1->aiContext.moveCurPP[v0] = 0;
         }
 
@@ -1337,7 +1337,7 @@ static void ov14_02220D8C (BattleSystem * param0, BattleContext * param1)
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if ((v2 != v4) && (v2 != v5) && (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v1, MON_DATA_SPECIES_EGG, NULL) != 494)) {
+        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494)) {
             param1->aiContext.calcTemp++;
         }
     }
@@ -1375,8 +1375,8 @@ static void ov14_02220EA8 (BattleSystem * param0, BattleContext * param1)
             if ((param1->battleMons[v0].ability == 23) || (param1->battleMons[v0].ability == 42) || (param1->battleMons[v0].ability == 71)) {
                 param1->aiContext.calcTemp = param1->battleMons[v0].ability;
             } else {
-                v2 = GetMonSpeciesPersonalDataAttribute(param1->battleMons[v0].species, 24);
-                v3 = GetMonSpeciesPersonalDataAttribute(param1->battleMons[v0].species, 25);
+                v2 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[v0].species, 24);
+                v3 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[v0].species, 25);
 
                 if ((v2) && (v3)) {
                     if (BattleSystem_RandNext(param0) & 1) {
@@ -1420,8 +1420,8 @@ static void ov14_02220F88 (BattleSystem * param0, BattleContext * param1)
             if ((param1->battleMons[v0].ability == 23) || (param1->battleMons[v0].ability == 42) || (param1->battleMons[v0].ability == 71)) {
                 v3 = param1->battleMons[v0].ability;
             } else {
-                v4 = GetMonSpeciesPersonalDataAttribute(param1->battleMons[v0].species, 24);
-                v5 = GetMonSpeciesPersonalDataAttribute(param1->battleMons[v0].species, 25);
+                v4 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[v0].species, 24);
+                v5 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[v0].species, 25);
 
                 if ((v4) && (v5)) {
                     if ((v4 != v2) && (v5 != v2)) {
@@ -1555,7 +1555,7 @@ static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if ((v2 != v4) && (v2 != v5) && (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && (GetMonData(v1, MON_DATA_160, NULL) & v7)) {
+        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v1, MON_DATA_160, NULL) & v7)) {
             ov14_02222D24(param1, v8);
             return;
         }
@@ -1592,7 +1592,7 @@ static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if ((v2 != v4) && (v2 != v5) && (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && ((GetMonData(v1, MON_DATA_160, NULL) & v7) == 0)) {
+        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && ((Pokemon_GetValue(v1, MON_DATA_160, NULL) & v7) == 0)) {
             ov14_02222D24(param1, v8);
             return;
         }
@@ -2235,7 +2235,7 @@ static void ov14_02221D88 (BattleSystem * param0, BattleContext * param1)
         v4 = ov16_0223DFAC(param0, v0, v3);
 
         if (v3 != param1->selectedPartySlot[v0]) {
-            if (GetMonData(v4, MON_DATA_CURRENT_HP, NULL) != GetMonData(v4, MON_DATA_MAX_HP, NULL)) {
+            if (Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL) != Pokemon_GetValue(v4, MON_DATA_MAX_HP, NULL)) {
                 ov14_02222D24(param1, v2);
                 break;
             }
@@ -2262,7 +2262,7 @@ static void ov14_02221E18 (BattleSystem * param0, BattleContext * param1)
 
         if (v3 != param1->selectedPartySlot[v0]) {
             for (v4 = 0; v4 < 4; v4++) {
-                if (GetMonData(v5, MON_DATA_MOVE1_CUR_PP + v4, NULL) != GetMonData(v5, MON_DATA_MOVE1_MAX_PP + v4, NULL)) {
+                if (Pokemon_GetValue(v5, MON_DATA_MOVE1_CUR_PP + v4, NULL) != Pokemon_GetValue(v5, MON_DATA_MOVE1_MAX_PP + v4, NULL)) {
                     ov14_02222D24(param1, v2);
                     break;
                 }
@@ -2406,16 +2406,16 @@ static void ov14_022220CC (BattleSystem * param0, BattleContext * param1)
         if (v0 != param1->selectedPartySlot[v4]) {
             v10 = ov16_0223DFAC(param0, v4, v0);
 
-            if ((GetMonData(v10, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v10, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v10, MON_DATA_SPECIES_EGG, NULL) != 494)) {
+            if ((Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v10, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v10, MON_DATA_SPECIES_EGG, NULL) != 494)) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v8[v1] = GetMonData(v10, MON_DATA_MOVE1 + v1, NULL);
+                    v8[v1] = Pokemon_GetValue(v10, MON_DATA_MOVE1 + v1, NULL);
                 }
 
                 for (v1 = 0; v1 < 6; v1++) {
-                    v9[v1] = GetMonData(v10, MON_DATA_HP_IV + v1, NULL);
+                    v9[v1] = Pokemon_GetValue(v10, MON_DATA_HP_IV + v1, NULL);
                 }
 
-                v6 = ov14_02222D7C(param0, param1, param1->aiContext.attacker, &v8[0], &v7[0], GetMonData(v10, MON_DATA_HELD_ITEM, NULL), &v9[0], GetMonData(v10, MON_DATA_ABILITY, NULL), MON_DATA_PERSONALITY, v2);
+                v6 = ov14_02222D7C(param0, param1, param1->aiContext.attacker, &v8[0], &v7[0], Pokemon_GetValue(v10, MON_DATA_HELD_ITEM, NULL), &v9[0], Pokemon_GetValue(v10, MON_DATA_ABILITY, NULL), MON_DATA_PERSONALITY, v2);
 
                 if (v6 > v5) {
                     ov14_02222D24(param1, v3);
@@ -2697,7 +2697,7 @@ static void ov14_022227A4 (BattleSystem * param0, BattleContext * param1)
 
     v2 = ov14_02222D34(param1, v0);
 
-    if (param1->battlersSwitchingMask & GetSingleBitMask(v2)) {
+    if (param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v2)) {
         ov14_02222D24(param1, v1);
     }
 }
@@ -2718,7 +2718,7 @@ static void ov14_022227F4 (BattleSystem * param0, BattleContext * param1)
 
     v2 = ov14_02222D34(param1, v0);
 
-    if ((param1->battlersSwitchingMask & GetSingleBitMask(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v2)) == 0) {
         ov14_02222D24(param1, v1);
     }
 }
@@ -3423,14 +3423,14 @@ static BOOL ov14_0222342C (BattleSystem * param0, BattleContext * param1, int pa
         for (v0 = 0; v0 < ov16_0223DF60(param0, param2); v0++) {
             v5 = ov16_0223DFAC(param0, param2, v0);
 
-            if ((GetMonData(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[param2])) {
+            if ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[param2])) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v2 = GetMonData(v5, MON_DATA_MOVE1 + v1, NULL);
+                    v2 = Pokemon_GetValue(v5, MON_DATA_MOVE1 + v1, NULL);
                     v3 = ov16_0225BE3C(param0, param1, v5, v2);
 
                     if (v2) {
                         v4 = 0;
-                        ov16_022552D4(param1, v2, v3, GetMonData(v5, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param2 ^ 1), ov16_02258AB8(param1, param2 ^ 1), ov16_02252060(param1, param2 ^ 1, 27, NULL), ov16_02252060(param1, param2 ^ 1, 28, NULL), &v4);
+                        ov16_022552D4(param1, v2, v3, Pokemon_GetValue(v5, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param2 ^ 1), ov16_02258AB8(param1, param2 ^ 1), ov16_02252060(param1, param2 ^ 1, 27, NULL), ov16_02252060(param1, param2 ^ 1, 28, NULL), &v4);
 
                         if (v4 & 0x2) {
                             if ((BattleSystem_RandNext(param0) % 3) < 2) {
@@ -3515,16 +3515,16 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
     for (v0 = v9; v0 < v10; v0++) {
         v12 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((GetMonData(v12, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v12, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v12, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v4]) && (v0 != param1->selectedPartySlot[v5]) && (v0 != param1->aiSwitchedPartySlot[v4]) && (v0 != param1->aiSwitchedPartySlot[v5])) {
+        if ((Pokemon_GetValue(v12, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v12, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v12, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v4]) && (v0 != param1->selectedPartySlot[v5]) && (v0 != param1->aiSwitchedPartySlot[v4]) && (v0 != param1->aiSwitchedPartySlot[v5])) {
             for (v1 = 0; v1 < 4; v1++) {
-                v6 = GetMonData(v12, MON_DATA_MOVE1 + v1, NULL);
+                v6 = Pokemon_GetValue(v12, MON_DATA_MOVE1 + v1, NULL);
                 v7 = ov16_0225BE3C(param0, param1, v12, v6);
 
                 if ((v6) && (param1->aiContext.moveTable[v6].power)) {
                     v8 = 0;
 
                     if (param1->battleMons[v2].curHP) {
-                        ov16_022552D4(param1, v6, v7, GetMonData(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
                     }
 
                     if (v8 & 0x2) {
@@ -3537,7 +3537,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v3].curHP) {
-                        ov16_022552D4(param1, v6, v7, GetMonData(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
                     }
 
                     if (v8 & 0x2) {
@@ -3554,16 +3554,16 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
     for (v0 = v9; v0 < v10; v0++) {
         v12 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((GetMonData(v12, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v12, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v12, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v4]) && (v0 != param1->selectedPartySlot[v5]) && (v0 != param1->aiSwitchedPartySlot[v4]) && (v0 != param1->aiSwitchedPartySlot[v5])) {
+        if ((Pokemon_GetValue(v12, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v12, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v12, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v4]) && (v0 != param1->selectedPartySlot[v5]) && (v0 != param1->aiSwitchedPartySlot[v4]) && (v0 != param1->aiSwitchedPartySlot[v5])) {
             for (v1 = 0; v1 < 4; v1++) {
-                v6 = GetMonData(v12, MON_DATA_MOVE1 + v1, NULL);
+                v6 = Pokemon_GetValue(v12, MON_DATA_MOVE1 + v1, NULL);
                 v7 = ov16_0225BE3C(param0, param1, v12, v6);
 
                 if ((v6) && (param1->aiContext.moveTable[v6].power)) {
                     v8 = 0;
 
                     if (param1->battleMons[v2].curHP) {
-                        ov16_022552D4(param1, v6, v7, GetMonData(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
                     }
 
                     if (v8 == 0) {
@@ -3576,7 +3576,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v3].curHP) {
-                        ov16_022552D4(param1, v6, v7, GetMonData(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
                     }
 
                     if (v8 == 0) {
@@ -3605,7 +3605,7 @@ static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int pa
     v3 = BattleSystem_BattlerSlot(param0, param2) ^ 1;
     v2 = ov16_0223E1C4(param0, v3);
 
-    if ((param1->battlersSwitchingMask & GetSingleBitMask(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
             v4 = param1->battleMons[param2].moves[v0];
             v5 = ov14_0222327C(param0, param1, param2, v4);
@@ -3633,7 +3633,7 @@ static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int pa
 
     v2 = BattleSystem_Partner(param0, v2);
 
-    if ((param1->battlersSwitchingMask & GetSingleBitMask(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
             v4 = param1->battleMons[param2].moves[v0];
             v5 = ov14_0222327C(param0, param1, param2, v4);
@@ -3710,8 +3710,8 @@ static BOOL ov14_02223C8C (BattleSystem * param0, BattleContext * param1, int pa
     for (v0 = v6; v0 < v7; v0++) {
         v8 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((GetMonData(v8, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v8, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v8, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v1]) && (v0 != param1->selectedPartySlot[v2]) && (v0 != param1->aiSwitchedPartySlot[v1]) && (v0 != param1->aiSwitchedPartySlot[v2])) {
-            v4 = GetMonData(v8, MON_DATA_ABILITY, NULL);
+        if ((Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v1]) && (v0 != param1->selectedPartySlot[v2]) && (v0 != param1->aiSwitchedPartySlot[v1]) && (v0 != param1->aiSwitchedPartySlot[v2])) {
+            v4 = Pokemon_GetValue(v8, MON_DATA_ABILITY, NULL);
 
             if ((v5 == v4) && (BattleSystem_RandNext(param0) & 1)) {
                 param1->aiSwitchedPartySlot[param2] = v0;
@@ -3755,20 +3755,20 @@ static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int pa
     for (v0 = v7; v0 < v8; v0++) {
         v9 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((GetMonData(v9, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v9, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v9, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v2]) && (v0 != param1->selectedPartySlot[v3]) && (v0 != param1->aiSwitchedPartySlot[v2]) && (v0 != param1->aiSwitchedPartySlot[v3])) {
+        if ((Pokemon_GetValue(v9, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v9, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v9, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v2]) && (v0 != param1->selectedPartySlot[v3]) && (v0 != param1->aiSwitchedPartySlot[v2]) && (v0 != param1->aiSwitchedPartySlot[v3])) {
             v6 = 0;
             v5 = ov14_0222327C(param0, param1, param1->moveHitBattler[param2], param1->moveHit[param2]);
 
-            ov16_022552D4(param1, param1->moveHit[param2], v5, Battler_Ability(param1, param1->moveHitBattler[param2]), GetMonData(v9, MON_DATA_ABILITY, NULL), ov16_0225B0FC(param1, GetMonData(v9, MON_DATA_HELD_ITEM, NULL), 1), GetMonData(v9, MON_DATA_177, NULL), GetMonData(v9, MON_DATA_178, NULL), &v6);
+            ov16_022552D4(param1, param1->moveHit[param2], v5, Battler_Ability(param1, param1->moveHitBattler[param2]), Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), ov16_0225B0FC(param1, Pokemon_GetValue(v9, MON_DATA_HELD_ITEM, NULL), 1), Pokemon_GetValue(v9, MON_DATA_177, NULL), Pokemon_GetValue(v9, MON_DATA_178, NULL), &v6);
 
             if (v6 & param3) {
                 for (v1 = 0; v1 < 4; v1++) {
-                    v4 = GetMonData(v9, MON_DATA_MOVE1 + v1, NULL);
+                    v4 = Pokemon_GetValue(v9, MON_DATA_MOVE1 + v1, NULL);
                     v5 = ov16_0225BE3C(param0, param1, v9, v4);
 
                     if (v4) {
                         v6 = 0;
-                        ov16_022552D4(param1, v4, v5, GetMonData(v9, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param1->moveHitBattler[param2]), ov16_02258AB8(param1, param1->moveHitBattler[param2]), ov16_02252060(param1, param1->moveHitBattler[param2], 27, NULL), ov16_02252060(param1, param1->moveHitBattler[param2], 28, NULL), &v6);
+                        ov16_022552D4(param1, v4, v5, Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param1->moveHitBattler[param2]), ov16_02258AB8(param1, param1->moveHitBattler[param2]), ov16_02252060(param1, param1->moveHitBattler[param2], 27, NULL), ov16_02252060(param1, param1->moveHitBattler[param2], 28, NULL), &v6);
 
                         if (v6 & 0x2) {
                             if ((BattleSystem_RandNext(param0) % param4) == 0) {
@@ -3864,7 +3864,7 @@ static BOOL ov14_022241A4 (BattleSystem * param0, BattleContext * param1, int pa
     for (v0 = v5; v0 < v6; v0++) {
         v7 = ov16_0223DFAC(param0, param2, v0);
 
-        if ((GetMonData(v7, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v7, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v2]) && (v0 != param1->selectedPartySlot[v3]) && (v0 != param1->aiSwitchedPartySlot[v2]) && (v0 != param1->aiSwitchedPartySlot[v3])) {
+        if ((Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[v2]) && (v0 != param1->selectedPartySlot[v3]) && (v0 != param1->aiSwitchedPartySlot[v2]) && (v0 != param1->aiSwitchedPartySlot[v3])) {
             v1++;
         }
     }
@@ -3940,7 +3940,7 @@ int ov14_022243BC (BattleSystem * param0, int param1)
                     for (v0 = v4; v0 < v5; v0++) {
                         v6 = ov16_0223DFAC(param0, param1, v0);
 
-                        if ((GetMonData(v6, MON_DATA_CURRENT_HP, NULL) != 0) && (v0 != v7->selectedPartySlot[v1]) && (v0 != v7->selectedPartySlot[v2]) && (v0 != v7->aiSwitchedPartySlot[v1]) && (v0 != v7->aiSwitchedPartySlot[v2])) {
+                        if ((Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL) != 0) && (v0 != v7->selectedPartySlot[v1]) && (v0 != v7->selectedPartySlot[v2]) && (v0 != v7->aiSwitchedPartySlot[v1]) && (v0 != v7->aiSwitchedPartySlot[v2])) {
                             break;
                         }
                     }
@@ -3990,7 +3990,7 @@ BOOL ov14_022244B0 (BattleSystem * param0, int param1)
     for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
 
-        if ((GetMonData(v7, MON_DATA_CURRENT_HP, NULL) != 0) && (GetMonData(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (GetMonData(v7, MON_DATA_SPECIES_EGG, NULL) != 494)) {
+        if ((Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 494)) {
             v1++;
         }
     }
@@ -4019,37 +4019,37 @@ BOOL ov14_022244B0 (BattleSystem * param0, int param1)
                 }
             } else if (ov16_0225B0FC(v8, v2, 15)) {
                 if (v8->battleMons[param1].status & 0x7) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= GetSingleBitMask(5);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(5);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 16)) {
                 if ((v8->battleMons[param1].status & 0x8) || (v8->battleMons[param1].status & 0x80)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= GetSingleBitMask(4);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(4);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 17)) {
                 if (v8->battleMons[param1].status & 0x10) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= GetSingleBitMask(3);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(3);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 18)) {
                 if (v8->battleMons[param1].status & 0x20) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= GetSingleBitMask(2);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(2);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 19)) {
                 if (v8->battleMons[param1].status & 0x40) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= GetSingleBitMask(1);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(1);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 20)) {
                 if (v8->battleMons[param1].statusVolatile & 0x7) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= GetSingleBitMask(0);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(0);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }

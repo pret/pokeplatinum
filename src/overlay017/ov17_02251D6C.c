@@ -677,8 +677,8 @@ static void ov17_0225266C (UnkStruct_0201CD38 * param0, void * param1)
     {
         int v1, v2;
 
-        v1 = GetMonData(v0->unk_00->unk_10.unk_00->unk_00[v0->unk_11], MON_DATA_SPECIES, NULL);
-        v2 = GetMonData(v0->unk_00->unk_10.unk_00->unk_00[v0->unk_11], MON_DATA_FORM, NULL);
+        v1 = Pokemon_GetValue(v0->unk_00->unk_10.unk_00->unk_00[v0->unk_11], MON_DATA_SPECIES, NULL);
+        v2 = Pokemon_GetValue(v0->unk_00->unk_10.unk_00->unk_00[v0->unk_11], MON_DATA_FORM, NULL);
         sub_02077D3C(v0->unk_00->unk_00->unk_14C[v0->unk_11], 0, v1, v2, 0, 127, NULL, 24);
     }
         v0->unk_10++;

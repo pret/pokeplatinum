@@ -153,8 +153,8 @@ UnkStruct_ov21_021E8D48 * ov21_021E8D48 (const UnkStruct_ov21_021E8E0C * param0)
         u32 v1;
         u32 v2;
 
-        v1 = GetMonData(param0->unk_10, MON_DATA_SPECIES, NULL);
-        v2 = GetMonData(param0->unk_10, MON_DATA_FORM, NULL);
+        v1 = Pokemon_GetValue(param0->unk_10, MON_DATA_SPECIES, NULL);
+        v2 = Pokemon_GetValue(param0->unk_10, MON_DATA_FORM, NULL);
 
         if (v1 == 487) {
             sub_02098988(v2);
@@ -205,8 +205,8 @@ static void ov21_021E8E0C (UnkStruct_ov21_021E8D48 * param0, const UnkStruct_ov2
     NARC * v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1->unk_0C);
     int v2;
 
-    param0->unk_220 = GetMonData(param1->unk_10, MON_DATA_SPECIES, NULL);
-    v2 = GetMonData(param1->unk_10, MON_DATA_FORM, NULL);
+    param0->unk_220 = Pokemon_GetValue(param1->unk_10, MON_DATA_SPECIES, NULL);
+    v2 = Pokemon_GetValue(param1->unk_10, MON_DATA_FORM, NULL);
 
     param0->unk_00 = param1->unk_00;
     param0->unk_19C = sub_020095C4(32, &param0->unk_10, param1->unk_0C);
@@ -603,8 +603,8 @@ static void ov21_021E95F8 (UnkStruct_ov21_021E968C * param0, UnkStruct_020218BC 
     UnkStruct_ov19_021DA864 v1;
     int v2, v3;
 
-    v2 = GetMonSpeciesPersonalDataAttribute(param4, 6);
-    v3 = GetMonSpeciesPersonalDataAttribute(param4, 7);
+    v2 = PokemonPersonalData_GetSpeciesValue(param4, 6);
+    v3 = PokemonPersonalData_GetSpeciesValue(param4, 7);
     v2 = ov21_021DF180(v2);
     v3 = ov21_021DF180(v3);
 

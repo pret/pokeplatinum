@@ -822,10 +822,10 @@ static void ov81_021D285C (UnkStruct_ov81_021D1610 * param0, UnkStruct_0205AA50 
 
 static void ov81_021D28C8 (UnkStruct_ov81_021D1610 * param0, u16 param1, u8 param2, u8 param3)
 {
-    Pokemon * v0 = AllocMonZeroed(42);
+    Pokemon * v0 = Pokemon_New(42);
 
     sub_02074088(v0, param1, 1, 32, param2, 0, 0);
-    sub_0200B538(param0->unk_54, param3, GetBoxMon(v0));
+    sub_0200B538(param0->unk_54, param3, Pokemon_GetBoxPokemon(v0));
     Heap_FreeToHeap(v0);
 }
 

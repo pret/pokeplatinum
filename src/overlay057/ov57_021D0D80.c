@@ -137,7 +137,7 @@ static int ov57_021D0E34 (UnkStruct_020067E8 * param0, int * param1)
     if (!sub_02025D10(v1) || !sub_02025D40(v1)) {
         sub_02025DE8(sub_02025CD8(v0));
         sub_02025CE4(v1);
-        SetShayminLandForm(Party_GetFromSavedata(v0));
+        Party_SetShayminLandForm(Party_GetFromSavedata(v0));
     }
 
     sub_02017434(sub_02025E5C(v0));

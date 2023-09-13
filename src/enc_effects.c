@@ -285,7 +285,7 @@ static u32 EncEffects_WildPokemonEffect (Party *wildParty, int mapHeaderID)
     u32 result = ENCEFF_NORMAL_WILD;
 
     Pokemon *wildPokemon = Party_FirstBattler(wildParty);
-    u32 wildSpecies = GetMonData(wildPokemon, MON_DATA_SPECIES, NULL);
+    u32 wildSpecies = Pokemon_GetValue(wildPokemon, MON_DATA_SPECIES, NULL);
 
     switch (wildSpecies) {
         case SPECIES_SHAYMIN:

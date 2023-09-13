@@ -177,10 +177,10 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_18 = sub_020095C4(64, &v0->unk_1C, 57);
             sub_0200964C(&(v0->unk_1C), 0, (192 + 40 << FX32_SHIFT));
 
-            v0->unk_1B0 = GetBoxMonData((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
-            v0->unk_1B2 = GetBoxMonData((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_FORM, NULL);
-            v0->unk_1B4 = GetBoxMonData((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_SPECIES, NULL);
-            v0->unk_1B6 = GetBoxMonData((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
+            v0->unk_1B0 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_SPECIES, NULL);
+            v0->unk_1B2 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_00), MON_DATA_FORM, NULL);
+            v0->unk_1B4 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_SPECIES, NULL);
+            v0->unk_1B6 = BoxPokemon_GetValue((BoxPokemon *)(v0->unk_00->unk_04), MON_DATA_FORM, NULL);
             v0->unk_1B8 = NULL;
 
             sub_02017798(NULL, NULL);
@@ -203,10 +203,10 @@ int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
 
 static BOOL ov95_02246DEC (BoxPokemon * param0)
 {
-    int v0 = GetBoxMonData(param0, MON_DATA_SPECIES, NULL);
-    int v1 = GetBoxMonData(param0, MON_DATA_FORM, NULL);
+    int v0 = BoxPokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
+    int v1 = BoxPokemon_GetValue(param0, MON_DATA_FORM, NULL);
 
-    return GetMonFormPersonalDataAttribute(v0, v1, 28) == 0;
+    return PokemonPersonalData_GetFormValue(v0, v1, 28) == 0;
 }
 
 int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
@@ -574,12 +574,12 @@ void ov95_022473E8 (UnkStruct_ov95_02247628 * param0, int param1, u32 param2, u3
         u16 v8;
 
         v5 = (BoxPokemon *)((param1 == 0) ? param0->unk_00->unk_00 : param0->unk_00->unk_04);
-        v6 = DecryptBoxMon(v5);
+        v6 = BoxPokemon_EnterDecryptionContext(v5);
 
         sub_02075F0C(&v0, v5, 2, 0);
 
-        v7 = GetBoxMonData(v5, MON_DATA_PERSONALITY, NULL);
-        v8 = GetBoxMonData(v5, MON_DATA_SPECIES, NULL);
+        v7 = BoxPokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL);
+        v8 = BoxPokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
 
         if (param4) {
             v4.unk_08 *= 2;
@@ -589,7 +589,7 @@ void ov95_022473E8 (UnkStruct_ov95_02247628 * param0, int param1, u32 param2, u3
         DC_FlushRange(v3, v2);
         sub_0201958C(param0->unk_08, param2, v3, v2, 0);
 
-        EncryptBoxMon(v5, v6);
+        BoxPokemon_ExitDecryptionContext(v5, v6);
         Heap_FreeToHeap(v3);
     }
 

@@ -71,18 +71,18 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, BattleParams * param1, int para
         for (v11 = 0; v11 < v12; v11++) {
             v13 = Party_GetPokemonBySlotIndex(param1->parties[v4], v11);
 
-            if (GetMonData(v13, MON_DATA_172, NULL) == 0) {
+            if (Pokemon_GetValue(v13, MON_DATA_172, NULL) == 0) {
                 break;
             }
 
             MI_CpuClear16(v8, sizeof(u16) * v9);
 
-            GetMonData(v13, MON_DATA_117, v8);
+            Pokemon_GetValue(v13, MON_DATA_117, v8);
             Strbuf_Clear(v6);
             Strbuf_CopyChars(v6, v8);
 
             if (sub_02002DB4(0, v6, v7) == 0) {
-                SetMonData(v13, 179, NULL);
+                Pokemon_SetValue(v13, 179, NULL);
                 continue;
             }
         }

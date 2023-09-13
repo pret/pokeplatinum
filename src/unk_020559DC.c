@@ -147,7 +147,7 @@ static void sub_02055B64 (UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime
         Party * v1;
 
         v1 = Party_GetFromSavedata(param0->unk_0C);
-        SetPartyShayminForm(v1, param1, param2);
+        Party_SetShayminForm(v1, param1, param2);
     }
 }
 

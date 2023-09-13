@@ -579,12 +579,12 @@ static void ov97_02237EF8 (UnkStruct_02022550 * param0, Pokemon * param1, int pa
     u32 v2;
     UnkStruct_ov97_0223F550 * v3 = &Unk_ov97_0223F550;
 
-    v0 = GetMonGender(param1);
-    v1 = GetMonShininess(param1);
+    v0 = Pokemon_GetGender(param1);
+    v1 = Pokemon_IsShiny(param1);
 
     sub_02075FB4(param5, param2, v0, 2, v1, param3, 0);
 
-    v2 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
+    v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
     sub_020136A4(param5->unk_00, param5->unk_02, v3->unk_08, 0, 0, 10, 10, param4, v2, 0, 2, param2);
 
     DC_FlushRange(param4, 0x20 * 10 * 10);
@@ -625,7 +625,7 @@ static void ov97_02237FF4 (UnkStruct_ov97_0223F550 * param0, int param1, UnkStru
     switch (param1) {
     case 1:
     case 13:
-        ov97_02237EF8(param0->unk_26C, v0, GetMonData(v0, MON_DATA_SPECIES, 0), GetMonData(v0, MON_DATA_FORM, 0), param0->unk_278, &param0->unk_EF8);
+        ov97_02237EF8(param0->unk_26C, v0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_FORM, 0), param0->unk_278, &param0->unk_EF8);
         break;
     case 2:
         ov97_02237EF8(param0->unk_26C, v0, 494, 0, param0->unk_278, &param0->unk_EF8);

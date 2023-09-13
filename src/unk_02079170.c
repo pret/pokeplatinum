@@ -302,7 +302,7 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
     Party_InitWithCapacity(param0->parties[param1], 6);
 
     v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_022431BC_3) * 6);
-    v7 = AllocMonZeroed(param2);
+    v7 = Pokemon_New(param2);
 
     sub_0207939C(param0->unk_18[param1], v0);
 
@@ -337,7 +337,7 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
 
             sub_02073D80(v7, v9, v8[v1].unk_02, v6, 1, v4, 2, 0);
             sub_02078AEC(v8[v1].unk_06, v7, param2);
-            SetMonData(v7, 112, &v10);
+            Pokemon_SetValue(v7, 112, &v10);
             Party_AddPokemon(param0->parties[param1], v7);
         }
     }
@@ -367,11 +367,11 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             sub_02073D80(v7, v12, v11[v1].unk_02, v6, 1, v4, 2, 0);
 
             for (v2 = 0; v2 < 4; v2++) {
-                SetMonMove(v7, v11[v1].unk_06[v2], v2);
+                Pokemon_SetMoveSlot(v7, v11[v1].unk_06[v2], v2);
             }
 
             sub_02078AEC(v11[v1].unk_0E, v7, param2);
-            SetMonData(v7, 112, &v13);
+            Pokemon_SetValue(v7, 112, &v13);
             Party_AddPokemon(param0->parties[param1], v7);
         }
     }
@@ -399,9 +399,9 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v6 = v14[v1].unk_00 * 31 / 255;
 
             sub_02073D80(v7, v15, v14[v1].unk_02, v6, 1, v4, 2, 0);
-            SetMonData(v7, 6, (u8 *)&v14[v1].unk_06);
+            Pokemon_SetValue(v7, 6, (u8 *)&v14[v1].unk_06);
             sub_02078AEC(v14[v1].unk_08, v7, param2);
-            SetMonData(v7, 112, &v16);
+            Pokemon_SetValue(v7, 112, &v16);
             Party_AddPokemon(param0->parties[param1], v7);
         }
     }
@@ -429,14 +429,14 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v6 = v17[v1].unk_00 * 31 / 255;
 
             sub_02073D80(v7, v18, v17[v1].unk_02, v6, 1, v4, 2, 0);
-            SetMonData(v7, 6, (u8 *)&v17[v1].unk_06);
+            Pokemon_SetValue(v7, 6, (u8 *)&v17[v1].unk_06);
 
             for (v2 = 0; v2 < 4; v2++) {
-                SetMonMove(v7, v17[v1].unk_08[v2], v2);
+                Pokemon_SetMoveSlot(v7, v17[v1].unk_08[v2], v2);
             }
 
             sub_02078AEC(v17[v1].unk_10, v7, param2);
-            SetMonData(v7, 112, &v19);
+            Pokemon_SetValue(v7, 112, &v19);
             Party_AddPokemon(param0->parties[param1], v7);
         }
     }

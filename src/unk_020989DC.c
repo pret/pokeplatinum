@@ -504,14 +504,14 @@ void sub_02098EF8 (Poffin * param0, Pokemon * param1)
     u8 v8[7];
     u8 v9[7];
 
-    v2 = GetMonNature(param1);
+    v2 = Pokemon_GetNature(param1);
     v4 = Unk_020F685C[v2][0];
     v5 = Unk_020F685C[v2][1];
 
     Poffin_StoreAttributesToArray(param0, v8);
 
     for (v0 = 0; v0 < 6; v0++) {
-        v7[v0] = GetMonData(param1, MON_DATA_COOL + v0, NULL);
+        v7[v0] = Pokemon_GetValue(param1, MON_DATA_COOL + v0, NULL);
     }
 
     v1 = 0;
@@ -534,13 +534,13 @@ void sub_02098EF8 (Poffin * param0, Pokemon * param1)
             v7[v0] = 255;
         }
 
-        SetMonData(param1, 19 + v0, &v7[v0]);
+        Pokemon_SetValue(param1, 19 + v0, &v7[v0]);
     }
 
-    v3 = GetMonData(param1, MON_DATA_FRIENDSHIP, NULL);
+    v3 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v3 < 255) {
         ++v3;
-        SetMonData(param1, 9, &v3);
+        Pokemon_SetValue(param1, 9, &v3);
     }
 }

@@ -73,7 +73,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
         int v2;
         u8 v3;
 
-        v3 = GetMonSpeciesPersonalDataAttribute(param1, 18);
+        v3 = PokemonPersonalData_GetSpeciesValue(param1, 18);
 
         switch (v3) {
         case 0:

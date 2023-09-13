@@ -596,7 +596,7 @@ void sub_020512E4 (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
     v4 = 1;
     v3 = Party_GetPokemonBySlotIndex(v1->parties[1], 0);
 
-    SetMonData(v3, 110, &v4);
+    Pokemon_SetValue(v3, 110, &v4);
 
     if (param4) {
         v1->unk_164 |= 0x8;
@@ -933,7 +933,7 @@ static void sub_020518B0 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
         } else if (v2 == 0x4) {
             v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
 
-            if (sub_0207A294(0, GetMonData(v0, MON_DATA_SPECIES, 0))) {
+            if (sub_0207A294(0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0))) {
                 sub_0202CFEC(sub_0202CD88(param0->unk_0C), 9);
             } else {
                 sub_0202CFEC(sub_0202CD88(param0->unk_0C), 10);
@@ -947,7 +947,7 @@ static void sub_020518B0 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
         if (v2 == 0x4) {
             v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
 
-            if (sub_0207A294(0, GetMonData(v0, MON_DATA_SPECIES, 0))) {
+            if (sub_0207A294(0, Pokemon_GetValue(v0, MON_DATA_SPECIES, 0))) {
                 sub_0202CFEC(sub_0202CD88(param0->unk_0C), 9);
             } else {
                 sub_0202CFEC(sub_0202CD88(param0->unk_0C), 10);
@@ -985,7 +985,7 @@ static void sub_02051988 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 
             if (param0->unk_78.unk_02 >= 5) {
                 v0 = Party_GetPokemonBySlotIndex(param1->parties[1], 0);
-                v3 = sub_0202BECC(sub_02025E5C(param0->unk_0C), GetMonData(v0, MON_DATA_SPECIES, 0), GetMonData(v0, MON_DATA_GENDER, 0), param1->unk_138, 11);
+                v3 = sub_0202BECC(sub_02025E5C(param0->unk_0C), Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_GENDER, 0), param1->unk_138, 11);
                 sub_0202B758(param0->unk_9C, v3, 2);
             }
         } else if (v2 == 0x4) {
@@ -993,7 +993,7 @@ static void sub_02051988 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 
             v4 = param1->unk_148;
             v0 = Party_GetPokemonBySlotIndex(param1->parties[v4], 0);
-            v3 = sub_0202BE4C(sub_02025E5C(param0->unk_0C), GetMonData(v0, MON_DATA_SPECIES, 0), GetMonData(v0, MON_DATA_GENDER, 0), param1->unk_138, 11);
+            v3 = sub_0202BE4C(sub_02025E5C(param0->unk_0C), Pokemon_GetValue(v0, MON_DATA_SPECIES, 0), Pokemon_GetValue(v0, MON_DATA_GENDER, 0), param1->unk_138, 11);
 
             sub_0202B758(param0->unk_9C, v3, 2);
         }
@@ -1022,7 +1022,7 @@ void sub_02051ABC (UnkStruct_020508D4 * param0, u16 param1, u8 param2, int * par
         Pokemon * v3;
 
         v3 = Party_GetPokemonBySlotIndex(v1->parties[1], 0);
-        SetGiratinaOriginForm(v3);
+        Pokemon_SetGiratinaOriginForm(v3);
     }
 
     if (param4) {

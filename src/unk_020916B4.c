@@ -349,7 +349,7 @@ void sub_02091F8C (UnkStruct_0208D7BC * param0)
 
     sub_020789BC(param0->unk_6A0, param0->unk_2B4.unk_08, param0->unk_250.unk_0C, 1);
 
-    param0->unk_2B4.unk_38 = GetMonFormPersonalDataAttribute(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1;
+    param0->unk_2B4.unk_38 = PokemonPersonalData_GetFormValue(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1;
     param0->unk_2B4.unk_34 = sub_02007C34(param0->unk_2B4.unk_04, &v0, 52, 104, 0, 0, param0->unk_2B4.unk_08, NULL);
 
     sub_02007DEC(param0->unk_2B4.unk_34, 35, param0->unk_2B4.unk_38);

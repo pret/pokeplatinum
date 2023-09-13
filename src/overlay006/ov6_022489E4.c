@@ -85,7 +85,7 @@ void ov6_02248AC8 (int param0, int param1, void * param2, void * param3)
     int v2;
     u8 * v3;
 
-    v1 = PokemonStructSize();
+    v1 = Pokemon_StructSize();
     v3 = param2;
     v2 = v3[v1];
 
@@ -100,7 +100,7 @@ BOOL ov6_02248AF0 (UnkStruct_02095C48 * param0, int param1, const Pokemon * para
     int v1;
     int v2;
 
-    v1 = PokemonStructSize();
+    v1 = Pokemon_StructSize();
     v0 = Heap_AllocFromHeap(20, v1 + 1);
     MI_CpuCopy8(param2, v0, v1);
     v0[v1] = param1;
@@ -122,7 +122,7 @@ void ov6_02248B30 (int param0, int param1, void * param2, void * param3)
     u8 * v3;
     int v4;
 
-    v1 = PokemonStructSize();
+    v1 = Pokemon_StructSize();
     v2 = v1 * 4;
     v3 = param2;
 
@@ -140,7 +140,7 @@ BOOL ov6_02248B70 (UnkStruct_02095C48 * param0, Pokemon ** param1)
     int v3;
     int v4;
 
-    v1 = PokemonStructSize();
+    v1 = Pokemon_StructSize();
     v2 = v1 * 4;
     v0 = param0->unk_569;
 

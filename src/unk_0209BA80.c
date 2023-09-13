@@ -282,13 +282,13 @@ BOOL sub_0209BC64 (UnkStruct_0209BBA4 * param0, u16 param1, u16 param2)
     } else {
         v2 = Party_GetPokemonBySlotIndex(v3, param1);
 
-        param0->unk_76[0] = GetMonData(v2, MON_DATA_SPECIES, NULL);
-        param0->unk_7E[0] = GetMonData(v2, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_76[0] = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
+        param0->unk_7E[0] = Pokemon_GetValue(v2, MON_DATA_HELD_ITEM, NULL);
 
         v2 = Party_GetPokemonBySlotIndex(v3, param2);
 
-        param0->unk_76[1] = GetMonData(v2, MON_DATA_SPECIES, NULL);
-        param0->unk_7E[1] = GetMonData(v2, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_76[1] = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
+        param0->unk_7E[1] = Pokemon_GetValue(v2, MON_DATA_HELD_ITEM, NULL);
     }
 
     param0->unk_08[0] = param0->unk_76[0];

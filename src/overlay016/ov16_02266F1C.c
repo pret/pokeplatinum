@@ -960,7 +960,7 @@ static void ov16_02267864 (UnkStruct_ov16_022674C4 * param0)
     v5 = Strbuf_Init((12 + (5 * 2)), 5);
     v6 = MessageLoader_GetNewStrbuf(v4, 964);
     v7 = ov16_0223DFAC(param0->unk_0C, param0->unk_24, param0->unk_26);
-    v8 = GetBoxMon(v7);
+    v8 = Pokemon_GetBoxPokemon(v7);
 
     sub_0200B5CC(v9, 0, v8);
     sub_0200C388(v9, v5, v6);

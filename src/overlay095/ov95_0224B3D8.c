@@ -373,7 +373,7 @@ static int ov95_0224B71C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
         if (ov95_0224BC00(param0)) {
             const BoxPokemon * v0 = ov95_0224763C(param0->unk_00);
 
-            if (GetBoxMonData((BoxPokemon *)v0, MON_DATA_IS_EGG, NULL) == 0) {
+            if (BoxPokemon_GetValue((BoxPokemon *)v0, MON_DATA_IS_EGG, NULL) == 0) {
                 u8 v1;
 
                 sub_02078A4C(param0->unk_84, &v1, ov95_02247660(param0->unk_00), 1);

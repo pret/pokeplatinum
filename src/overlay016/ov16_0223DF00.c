@@ -588,11 +588,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     v6 = 0;
 
     if (Item_LoadParam(param4, 15, 5)) {
-        v3 = GetMonData(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x7) {
             v3 &= (0x7 ^ 0xffffffff);
-            SetMonData(v1, 160, &v3);
+            Pokemon_SetValue(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -608,11 +608,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 16, 5)) {
-        v3 = GetMonData(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
 
         if (v3 & 0xf88) {
             v3 &= ((0x8 | 0x80 | 0xf00) ^ 0xffffffff);
-            SetMonData(v1, 160, &v3);
+            Pokemon_SetValue(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -625,11 +625,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 17, 5)) {
-        v3 = GetMonData(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x10) {
             v3 &= (0x10 ^ 0xffffffff);
-            SetMonData(v1, 160, &v3);
+            Pokemon_SetValue(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -642,11 +642,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 18, 5)) {
-        v3 = GetMonData(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x20) {
             v3 &= (0x20 ^ 0xffffffff);
-            SetMonData(v1, 160, &v3);
+            Pokemon_SetValue(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -659,11 +659,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 19, 5)) {
-        v3 = GetMonData(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
 
         if (v3 & 0x40) {
             v3 &= (0x40 ^ 0xffffffff);
-            SetMonData(v1, 160, &v3);
+            Pokemon_SetValue(v1, 160, &v3);
 
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = ov16_02252060(v0, param1, 52, NULL);
@@ -780,11 +780,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     if (Item_LoadParam(param4, 36, 5)) {
         v3 = Item_LoadParam(param4, 55, 5);
 
-        if (GetMonData(v1, MON_DATA_MOVE1_CUR_PP + param3, NULL) != GetMonData(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
-            IncreaseMonData(v1, MON_DATA_MOVE1_CUR_PP + param3, v3);
+        if (Pokemon_GetValue(v1, MON_DATA_MOVE1_CUR_PP + param3, NULL) != Pokemon_GetValue(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
+            Pokemon_IncreaseValue(v1, MON_DATA_MOVE1_CUR_PP + param3, v3);
 
             if ((v4 == param2) || (v5 == param2)) {
-                if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & GetSingleBitMask(param3)) == 0)) {
+                if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & Pokemon_GetFlagMaskOf(param3)) == 0)) {
                     ov16_02252A14(v0, param1, 31 + param3, v3);
                 }
             }
@@ -797,11 +797,11 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
         v3 = Item_LoadParam(param4, 55, 5);
 
         for (param3 = 0; param3 < 4; param3++) {
-            if (GetMonData(v1, MON_DATA_MOVE1_CUR_PP + param3, NULL) != GetMonData(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
-                IncreaseMonData(v1, MON_DATA_MOVE1_CUR_PP + param3, v3);
+            if (Pokemon_GetValue(v1, MON_DATA_MOVE1_CUR_PP + param3, NULL) != Pokemon_GetValue(v1, MON_DATA_MOVE1_MAX_PP + param3, NULL)) {
+                Pokemon_IncreaseValue(v1, MON_DATA_MOVE1_CUR_PP + param3, v3);
 
                 if ((v4 == param2) || (v5 == param2)) {
-                    if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & GetSingleBitMask(param3)) == 0)) {
+                    if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & Pokemon_GetFlagMaskOf(param3)) == 0)) {
                         ov16_02252A14(v0, param1, 31 + param3, v3);
                     }
                 }
@@ -815,29 +815,29 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
         v3 = 0;
 
         if (Item_LoadParam(param4, 23, 5)) {
-            if (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) == 0) {
+            if (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) == 0) {
                 v3 = 1;
             }
         } else {
-            v3 = GetMonData(v1, MON_DATA_CURRENT_HP, NULL);
+            v3 = Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL);
         }
 
-        if ((v3) && (GetMonData(v1, MON_DATA_CURRENT_HP, NULL) != GetMonData(v1, MON_DATA_MAX_HP, NULL))) {
+        if ((v3) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != Pokemon_GetValue(v1, MON_DATA_MAX_HP, NULL))) {
             v3 = Item_LoadParam(param4, 54, 5);
 
             switch (v3) {
             case 255:
-                v3 = GetMonData(v1, MON_DATA_MAX_HP, NULL);
+                v3 = Pokemon_GetValue(v1, MON_DATA_MAX_HP, NULL);
                 break;
             case 254:
-                v3 = GetMonData(v1, MON_DATA_MAX_HP, NULL) / 2;
+                v3 = Pokemon_GetValue(v1, MON_DATA_MAX_HP, NULL) / 2;
 
                 if (v3 == 0) {
                     v3 = 1;
                 }
                 break;
             case 253:
-                v3 = GetMonData(v1, MON_DATA_MAX_HP, NULL) * 25 / 100;
+                v3 = Pokemon_GetValue(v1, MON_DATA_MAX_HP, NULL) * 25 / 100;
 
                 if (v3 == 0) {
                     v3 = 1;
@@ -847,7 +847,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
                 break;
             }
 
-            IncreaseMonData(v1, MON_DATA_CURRENT_HP, v3);
+            Pokemon_IncreaseValue(v1, MON_DATA_CURRENT_HP, v3);
 
             if (!Item_LoadParam(param4, 23, 5)) {
                 if (Battler_Side(param0, param1)) {
@@ -864,41 +864,41 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 45, 5)) {
-        if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) < 100) && (v2 == 1)) {
+        if ((Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL) < 100) && (v2 == 1)) {
             v6 = Item_LoadParam(param4, 56, 5);
         }
     }
 
     if (Item_LoadParam(param4, 46, 5)) {
-        if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) >= 100) && (GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) < 200) && (v2 == 1)) {
+        if ((Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL) >= 100) && (Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL) < 200) && (v2 == 1)) {
             v6 = Item_LoadParam(param4, 57, 5);
         }
     }
 
     if (Item_LoadParam(param4, 47, 5)) {
-        if ((GetMonData(v1, MON_DATA_FRIENDSHIP, NULL) >= 200) && (v2 == 1)) {
+        if ((Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL) >= 200) && (v2 == 1)) {
             v6 = Item_LoadParam(param4, 58, 5);
         }
     }
 
     if (v6) {
         if (v6 > 0) {
-            if (GetMonData(v1, MON_DATA_POKEBALL, NULL) == 11) {
+            if (Pokemon_GetValue(v1, MON_DATA_POKEBALL, NULL) == 11) {
                 v6++;
             }
 
-            if (GetMonData(v1, MON_DATA_152, NULL) == ov16_0223E24C(param0)) {
+            if (Pokemon_GetValue(v1, MON_DATA_152, NULL) == ov16_0223E24C(param0)) {
                 v6++;
             }
 
-            v3 = GetMonData(v1, MON_DATA_HELD_ITEM, NULL);
+            v3 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
 
             if (Item_LoadParam(param4, 1, 5) == 53) {
                 v6 = v6 * 150 / 100;
             }
         }
 
-        IncreaseMonData(v1, MON_DATA_FRIENDSHIP, v6);
+        Pokemon_IncreaseValue(v1, MON_DATA_FRIENDSHIP, v6);
 
         if ((v4 == param2) || (v5 == param2)) {
             ov16_02252A14(v0, param1, 44, v6);
@@ -957,13 +957,13 @@ u8 ov16_0223EC58 (BattleSystem * param0, int param1, u8 param2)
 
     if (((BattleSystem_BattlerSlot(param0, param1) == 4) && ((param0->battleType & 0x8) == 0))) {
         if (param0->battleType & 0x4) {
-            if ((param2 & GetSingleBitMask(BattleSystem_Partner(param0, param1))) == 0) {
+            if ((param2 & Pokemon_GetFlagMaskOf(BattleSystem_Partner(param0, param1))) == 0) {
                 return 1;
             }
         } else {
             v0 = ov16_0225B45C(param0, param0->battleCtx, 12, 0) & 0xffff;
 
-            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & GetSingleBitMask(0))) {
+            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & Pokemon_GetFlagMaskOf(0))) {
                 return 0;
             } else {
                 return 1;
@@ -987,8 +987,8 @@ u16 ov16_0223ECC4 (BattleParams * param0, int * param1, int * param2)
 
     while (param0->unk_150) {
         for (param1[0] = 0; param1[0] < 6; param1[0]++) {
-            if (param0->unk_150 & GetSingleBitMask(param1[0])) {
-                param0->unk_150 &= (GetSingleBitMask(param1[0]) ^ 0xffffffff);
+            if (param0->unk_150 & Pokemon_GetFlagMaskOf(param1[0])) {
+                param0->unk_150 &= (Pokemon_GetFlagMaskOf(param1[0]) ^ 0xffffffff);
                 break;
             }
         }
@@ -1087,9 +1087,9 @@ void ov16_0223EE70 (BattleSystem * param0)
 
     for (v0 = 0; v0 < ov16_0223DF60(param0, 0); v0++) {
         v2 = ov16_0223DFAC(param0, 0, v0);
-        v3 = GetMonData(v2, MON_DATA_SPECIES_EGG, NULL);
+        v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v3 == 412) && (param0->unk_2414[0] & GetSingleBitMask(v0))) {
+        if ((v3 == 412) && (param0->unk_2414[0] & Pokemon_GetFlagMaskOf(v0))) {
             switch (ov16_0223E22C(param0)) {
             default:
             case 2:
@@ -1119,20 +1119,20 @@ void ov16_0223EE70 (BattleSystem * param0)
                 break;
             }
 
-            SetMonData(v2, 112, &v1);
+            Pokemon_SetValue(v2, 112, &v1);
         }
     }
 }
 
 void ov16_0223EF2C (BattleSystem * param0, int param1, int param2)
 {
-    param0->unk_2414[param1] |= GetSingleBitMask(param2);
+    param0->unk_2414[param1] |= Pokemon_GetFlagMaskOf(param2);
 }
 
 void ov16_0223EF48 (BattleSystem * param0, Pokemon * param1)
 {
     if (param0->unk_98) {
-        sub_02056A48(param0->unk_98, GetBoxMon(param1));
+        sub_02056A48(param0->unk_98, Pokemon_GetBoxPokemon(param1));
     }
 }
 
@@ -1678,7 +1678,7 @@ u32 ov16_0223F904 (Party * param0, UnkStruct_02025E6C * param1)
     u8 v3;
 
     v3 = sub_02025F58(param1);
-    v1 = GetPartyHighestLevel(param0) * 4 * v0[v3];
+    v1 = Party_GetMaxLevel(param0) * 4 * v0[v3];
     v2 = sub_02025F74(param1);
 
     if (v1 > v2) {
@@ -1704,7 +1704,7 @@ void ov16_0223F938 (BattleSystem * param0, int param1)
         }
     }
 
-    if (((v0 & 0x1) == 0) && (GetMonData(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
+    if (((v0 & 0x1) == 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
         sub_0202736C(param0->unk_60, v1);
     }
 }

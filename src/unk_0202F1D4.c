@@ -601,13 +601,13 @@ static void sub_0202FD30 (UnkStruct_0202FD30 * param0, Party * param1)
     Pokemon * v1;
     u8 v2 = 0;
 
-    v1 = AllocMonZeroed(11);
+    v1 = Pokemon_New(11);
 
     Party_InitWithCapacity(param1, param0->unk_00);
 
     for (v0 = 0; v0 < param0->unk_02; v0++) {
         sub_02078E0C(&param0->unk_04[v0], v1);
-        SetMonData(v1, 162, &v2);
+        Pokemon_SetValue(v1, 162, &v2);
         Party_AddPokemon(param1, v1);
     }
 
