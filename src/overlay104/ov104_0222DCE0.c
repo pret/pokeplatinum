@@ -215,7 +215,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & Pokemon_GetFlagMaskOf(v0)) {
+        if (v4.unk_0A & NumToFlag(v0)) {
             v1++;
         }
     }
@@ -227,7 +227,7 @@ u32 ov104_0222DD6C (UnkStruct_ov104_0223A348_sub2 * param0, u16 param1, u32 para
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & Pokemon_GetFlagMaskOf(v0)) {
+        if (v4.unk_0A & NumToFlag(v0)) {
             param0->unk_18_val2[v0] = v1;
         }
     }

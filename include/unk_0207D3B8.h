@@ -14,7 +14,7 @@ u32 sub_0207D3FC(const UnkStruct_0207D3C0 * param0);
 void sub_0207D404(UnkStruct_0207D3C0 * param0, u32 param1);
 BOOL sub_0207D55C(UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3);
 BOOL sub_0207D570(UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3);
-BOOL sub_0207D60C(UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3);
+BOOL Bag_SubtractItem(UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3);
 BOOL sub_0207D658(BagItem * param0, u32 param1, u16 param2, u16 param3, u32 param4);
 BOOL sub_0207D688(UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3);
 BOOL sub_0207D69C(UnkStruct_0207D3C0 * param0, u32 param1);
@@ -36,7 +36,7 @@ u16 sub_0207D9E8(UnkStruct_0207D99C * param0);
 u16 sub_0207D9EC(UnkStruct_0207D99C * param0);
 void sub_0207D9F0(UnkStruct_0207D99C * param0, u32 param1, u8 param2, u8 param3);
 void sub_0207D9F8(UnkStruct_0207D99C * param0);
-void sub_0207DA1C(UnkStruct_0207D99C * param0, u16 param1, u16 param2);
+void Bag_SetLastItemUsed(UnkStruct_0207D99C * param0, u16 param1, u16 param2);
 void sub_0207DA24(UnkStruct_0207D99C * param0, u16 param1);
 
 #endif // POKEPLATINUM_UNK_0207D3B8_H

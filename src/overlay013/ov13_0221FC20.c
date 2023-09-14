@@ -1740,8 +1740,8 @@ static void ov13_02221A3C (UnkStruct_ov13_022213F0 * param0)
 static void ov13_02221A54 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
 {
     if ((param1 != 65) && (param1 != 67) && (param1 != 66)) {
-        sub_0207D60C(ov16_0223E1AC(param0), param1, 1, param3);
+        Bag_SubtractItem(BattleSystem_Bag(param0), param1, 1, param3);
     }
 
-    sub_0207DA1C(ov16_0223E1B0(param0), param1, param2);
+    Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);
 }

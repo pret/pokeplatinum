@@ -154,7 +154,7 @@ static int ov82_0223B3DC (UnkStruct_ov83_0223C344 * param0)
         break;
     }
 
-    v1 = sub_0207D60C(param0->unk_10->unk_14, param0->unk_08, 1, param0->unk_00);
+    v1 = Bag_SubtractItem(param0->unk_10->unk_14, param0->unk_08, 1, param0->unk_00);
     GF_ASSERT(v1);
 
     return 4;

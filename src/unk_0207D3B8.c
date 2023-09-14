@@ -226,7 +226,7 @@ static BagItem * sub_0207D5E8 (UnkStruct_0207D3C0 * param0, u16 param1, u16 para
     return sub_0207D5B8(v0, v1, param1, param2);
 }
 
-BOOL sub_0207D60C (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
+BOOL Bag_SubtractItem (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2, u32 param3)
 {
     BagItem * v0 = sub_0207D5E8(param0, param1, param2, param3);
 
@@ -552,7 +552,7 @@ void sub_0207D9F8 (UnkStruct_0207D99C * param0)
     sub_0207DA24(param0, 0);
 }
 
-void sub_0207DA1C (UnkStruct_0207D99C * param0, u16 param1, u16 param2)
+void Bag_SetLastItemUsed (UnkStruct_0207D99C * param0, u16 param1, u16 param2)
 {
     param0->unk_14.unk_0A = param1;
     param0->unk_14.unk_0C = param2;

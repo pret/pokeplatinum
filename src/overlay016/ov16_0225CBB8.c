@@ -3402,7 +3402,7 @@ static void ov16_02260DB0 (UnkStruct_0201CD38 * param0, void * param1)
             v6 = 0;
 
             for (v4 = 0; v4 < 4; v4++) {
-                if ((v0->unk_22 & Pokemon_GetFlagMaskOf(v4)) == 0) {
+                if ((v0->unk_22 & NumToFlag(v4)) == 0) {
                     v5[v6] = v4 + 1;
                     v6++;
                 }
@@ -3411,7 +3411,7 @@ static void ov16_02260DB0 (UnkStruct_0201CD38 * param0, void * param1)
             v2 = v5[BattleSystem_RandNext(v0->unk_00) % v6];
         }
 
-        ov16_0225B540(v0->unk_00, v1, 11, v0->unk_1D, ov16_02253954(v0->unk_00, v1, v0->unk_1D, v0->unk_0C[v2 - 1], 1, NULL));
+        ov16_0225B540(v0->unk_00, v1, 11, v0->unk_1D, BattleSystem_Defender(v0->unk_00, v1, v0->unk_1D, v0->unk_0C[v2 - 1], 1, NULL));
     }
 
     ov16_02265790(v0->unk_00, v0->unk_1D, v2);
@@ -3665,7 +3665,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
                 v0->unk_04->unk_04 = ov16_0223E16C(v0->unk_00, v0->unk_0D);
                 v0->unk_04->unk_0C = 5;
                 v0->unk_04->unk_26 = 0;
-                v0->unk_04->unk_08 = ov16_0223E1AC(v0->unk_00);
+                v0->unk_04->unk_08 = BattleSystem_Bag(v0->unk_00);
                 v0->unk_04->unk_10 = v0->unk_0D;
                 v0->unk_04->unk_25 = v0->unk_10;
                 v0->unk_04->unk_22 = v0->unk_14;
@@ -3847,16 +3847,16 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 8:
     {
-        UnkStruct_ov16_0224DDA8 v7;
+        BattleItemUse v7;
 
         if (v0->unk_04->unk_1C == 0) {
-            v7.unk_00 = 0xff;
+            v7.item = 0xff;
         } else {
-            v7.unk_00 = v0->unk_04->unk_1C;
-            v7.unk_02 = v0->unk_04->unk_1E;
+            v7.item = v0->unk_04->unk_1C;
+            v7.pocket = v0->unk_04->unk_1E;
 
             if ((v0->unk_04->unk_1E == 1) || (v0->unk_04->unk_1E == 0)) {
-                v7.unk_03 = 1 + v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
+                v7.target = 1 + v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
             }
         }
 
@@ -4180,9 +4180,9 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
 static void ov16_02261D50 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov16_0225D794 * v0 = (UnkStruct_ov16_0225D794 *)param1;
-    UnkStruct_ov16_0224DDA8 v1;
+    BattleItemUse v1;
 
-    v1.unk_00 = 1;
+    v1.item = 1;
 
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
     ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
@@ -4210,27 +4210,27 @@ static void ov16_02261DA8 (UnkStruct_0201CD38 * param0, void * param1)
 static void ov16_02261DE0 (UnkStruct_0201CD38 * param0, void * param1)
 {
     UnkStruct_ov16_0225D794 * v0 = (UnkStruct_ov16_0225D794 *)param1;
-    UnkStruct_ov16_0224DDA8 v1;
+    BattleItemUse v1;
     u8 v2;
 
     if (ov16_0223F530(v0->unk_00, v0->unk_0D, &v2) == 1) {
         ov16_0226474C(v0->unk_00);
     }
 
-    v1.unk_00 = v2;
+    v1.item = v2;
 
     if (ov16_0223F530(v0->unk_00, v0->unk_0D, &v2) == 1) {
         ov16_0226474C(v0->unk_00);
     }
 
-    v1.unk_00 |= (v2 << 8);
+    v1.item |= (v2 << 8);
 
     if (ov16_0223F530(v0->unk_00, v0->unk_0D, &v2) == 1) {
         ov16_0226474C(v0->unk_00);
     }
 
-    v1.unk_02 = v2 & 0xf;
-    v1.unk_03 = (v2 & 0xf0) >> 8;
+    v1.pocket = v2 & 0xf;
+    v1.target = (v2 & 0xf0) >> 8;
 
     ov16_02265A70(v0->unk_00, v0->unk_0D, v1);
     ov16_02266ABC(v0->unk_00, v0->unk_0D, v0->unk_0C);
@@ -4348,7 +4348,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
                 v0->unk_04->unk_28 = v0->unk_09;
                 v0->unk_04->unk_32 = v0->unk_17;
 
-                if ((v0->unk_18 & Pokemon_GetFlagMaskOf(v0->unk_09)) == 0) {
+                if ((v0->unk_18 & NumToFlag(v0->unk_09)) == 0) {
                     v0->unk_04->unk_14 = v0->unk_0C[v0->unk_09];
                 } else {
                     v0->unk_04->unk_14 = 6;
@@ -4356,7 +4356,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
 
                 if (BattleSystem_BattleType(v0->unk_00) & 0x8) {
                     v0->unk_04->unk_15 = 6;
-                } else if ((v0->unk_18 & Pokemon_GetFlagMaskOf(BattleSystem_Partner(v0->unk_00, v0->unk_09))) == 0) {
+                } else if ((v0->unk_18 & NumToFlag(BattleSystem_Partner(v0->unk_00, v0->unk_09))) == 0) {
                     v0->unk_04->unk_15 = v0->unk_0C[BattleSystem_Partner(v0->unk_00, v0->unk_09)];
                 } else {
                     v0->unk_04->unk_15 = 6;
@@ -6158,7 +6158,7 @@ static void ov16_02264270 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
     int v2 = 0;
 
     for (v0 = 0; v0 < BattleSystem_MaxBattlers(param0); v0++) {
-        if (param2->unk_01 & Pokemon_GetFlagMaskOf(v0)) {
+        if (param2->unk_01 & NumToFlag(v0)) {
             if (Battler_Side(param0, v0)) {
                 v2++;
             } else {
