@@ -34,7 +34,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
@@ -226,12 +226,12 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
         break;
     case 2:
         sub_0200B48C(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        sub_0200B5CC(param0->unk_10.unk_B8, 1, sub_02076B10(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        sub_0200B5CC(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
         sub_0200B60C(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
         sub_0200B48C(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        sub_0200B5CC(param0->unk_10.unk_B8, 2, sub_02076B10(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        sub_0200B5CC(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -343,7 +343,7 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
 
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
-            GetMonData(param0->unk_10.unk_00->unk_00[v4], MON_DATA_119, v2);
+            Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_119, v2);
             sub_0201ADA4(&param0->unk_10.unk_24[1 + v3], 0x0);
             sub_0201ADA4(&param0->unk_10.unk_24[5 + v3], 0x0);
             sub_0201D78C(&param0->unk_10.unk_24[1 + v3], 0, v2, 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

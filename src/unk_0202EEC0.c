@@ -1,12 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 
 #include "unk_0201378C.h"
 #include "unk_0202EEC0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 typedef struct UnkStruct_02024440_t {
     Pokemon unk_00[6];
@@ -28,8 +27,8 @@ void sub_0202EEC8 (UnkStruct_02024440 * param0)
     MI_CpuClearFast(param0, sizeof(UnkStruct_02024440));
 
     for (v0 = 0; v0 < 6; v0++) {
-        ZeroMonData(&param0->unk_00[v0]);
-        GF_ASSERT(GetMonData(&param0->unk_00[v0], MON_DATA_172, NULL) == 0);
+        Pokemon_Init(&param0->unk_00[v0]);
+        GF_ASSERT(Pokemon_GetValue(&param0->unk_00[v0], MON_DATA_172, NULL) == 0);
     }
 }
 
@@ -40,8 +39,8 @@ void sub_0202EF04 (UnkStruct_02024440 * param0)
     MI_CpuClearFast(param0->unk_00, sizeof(Pokemon) * 6);
 
     for (v0 = 0; v0 < 6; v0++) {
-        ZeroMonData(&param0->unk_00[v0]);
-        GF_ASSERT(GetMonData(&param0->unk_00[v0], MON_DATA_172, NULL) == 0);
+        Pokemon_Init(&param0->unk_00[v0]);
+        GF_ASSERT(Pokemon_GetValue(&param0->unk_00[v0], MON_DATA_172, NULL) == 0);
     }
 }
 
@@ -76,7 +75,7 @@ static int sub_0202EF40 (UnkStruct_02024440 * param0, u32 param1)
 
 void sub_0202EFA4 (UnkStruct_02024440 * param0, BoxPokemon * param1, int param2)
 {
-    sub_020774C8(param1, &param0->unk_00[param2]);
+    Pokemon_FromBoxPokemon(param1, &param0->unk_00[param2]);
 }
 
 void sub_0202EFB8 (UnkStruct_02024440 * param0, u32 param1)
@@ -101,7 +100,7 @@ int sub_0202F028 (const UnkStruct_02024440 * param0)
     int v0, v1;
 
     for (v1 = 0, v0 = 0; v0 < 6; v0++) {
-        if (GetMonData((Pokemon *)&param0->unk_00[v0], MON_DATA_172, NULL)) {
+        if (Pokemon_GetValue((Pokemon *)&param0->unk_00[v0], MON_DATA_172, NULL)) {
             v1++;
         }
     }

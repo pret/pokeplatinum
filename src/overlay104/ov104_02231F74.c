@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -60,7 +60,7 @@
 #include "strbuf.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
@@ -1120,8 +1120,8 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
         u32 v9, v10;
 
         v4 = Heap_AllocFromHeap(param2, (10 * 10 * ((8 / 2) * 8)));
-        v9 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-        v10 = GetMonData(param1, MON_DATA_SPECIES, NULL);
+        v9 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+        v10 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
         sub_02075EF4(&v3, param1, 2);
         sub_020136A4(v3.unk_00, v3.unk_02, param2, 0, 0, 10, 10, v4, v9, 0, 2, v10);

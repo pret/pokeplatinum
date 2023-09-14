@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"
 #include "struct_decls/struct_021C0794_decl.h"

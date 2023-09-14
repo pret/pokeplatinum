@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202FF58.h"
@@ -22,7 +22,7 @@
 #include "unk_020507CC.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
@@ -188,7 +188,7 @@ static void ov104_02233BAC (UnkStruct_ov104_0223ADA0 * param0)
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        v4 = AllocMonZeroed(11);
+        v4 = Pokemon_New(11);
         ov104_0222DF40(&param0->unk_280[v0], v4, ov104_0223ADA0(param0));
         ov104_0222E1C0(param0->unk_4F8, param0->unk_4D4, v4);
         Heap_FreeToHeap(v4);
@@ -209,7 +209,7 @@ static void ov104_02233D80 (UnkStruct_ov104_0223ADA0 * param0, u8 param1, u8 par
     u32 v3;
     UnkStruct_ov104_0223A348_sub2 v4;
 
-    v0 = (sub_0201D2E8() % 6);
+    v0 = (LCRNG_Next() % 6);
 
     if (param2 == 0) {
         v1 = param0->unk_254[param1];
@@ -272,7 +272,7 @@ static void ov104_02233F1C (UnkStruct_ov104_0223ADA0 * param0)
 
     ov104_0222E330(v4, v6, v5, v7, NULL, 4, 11, 179);
 
-    v1 = AllocMonZeroed(11);
+    v1 = Pokemon_New(11);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov104_0222DF40(&v4[v0], v1, ov104_0223ADA0(param0));
@@ -291,7 +291,7 @@ static void ov104_02233F1C (UnkStruct_ov104_0223ADA0 * param0)
 
     ov104_0222E330(v4, v6, v5, v7, NULL, 4, 11, 179);
 
-    v1 = AllocMonZeroed(11);
+    v1 = Pokemon_New(11);
 
     for (v0 = 0; v0 < 4; v0++) {
         ov104_0222DF40(&v4[v0], v1, ov104_0223ADA0(param0));
@@ -417,10 +417,10 @@ void ov104_02234148 (UnkStruct_ov104_0223ADA0 * param0, u8 param1)
         v6[0] = param0->unk_4E8[v0];
         sub_0202FF84(param0->unk_4F4, 4, v0, v6);
 
-        v5[0] = GetMonData(v12, MON_DATA_ATK_IV, NULL);
+        v5[0] = Pokemon_GetValue(v12, MON_DATA_ATK_IV, NULL);
         sub_0202FF84(param0->unk_4F4, 5, v0, v5);
 
-        v7[0] = GetMonData(v12, MON_DATA_PERSONALITY, NULL);
+        v7[0] = Pokemon_GetValue(v12, MON_DATA_PERSONALITY, NULL);
         sub_0202FF84(param0->unk_4F4, 6, v0, v7);
     }
 
@@ -432,10 +432,10 @@ void ov104_02234148 (UnkStruct_ov104_0223ADA0 * param0, u8 param1)
         v6[0] = param0->unk_3D2[v0];
         sub_0202FF84(param0->unk_4F4, 7, v0, v6);
 
-        v5[0] = GetMonData(v12, MON_DATA_ATK_IV, NULL);
+        v5[0] = Pokemon_GetValue(v12, MON_DATA_ATK_IV, NULL);
         sub_0202FF84(param0->unk_4F4, 8, v0, v5);
 
-        v7[0] = GetMonData(v12, MON_DATA_PERSONALITY, NULL);
+        v7[0] = Pokemon_GetValue(v12, MON_DATA_PERSONALITY, NULL);
         sub_0202FF84(param0->unk_4F4, 9, v0, v7);
     }
 
@@ -499,7 +499,7 @@ void ov104_0223449C (UnkStruct_ov104_0223ADA0 * param0)
 
     sub_0207A008(param0->unk_4D4);
 
-    v3 = AllocMonZeroed(11);
+    v3 = Pokemon_New(11);
 
     for (v0 = 0; v0 < v1; v0++) {
         ov104_0222DF40(&param0->unk_280[param0->unk_4DC[v0]], v3, ov104_0223ADA0(param0));
@@ -536,8 +536,8 @@ void ov104_02234570 (UnkStruct_ov104_0223ADA0 * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param0->unk_4D4, v0);
-        v4[v0] = GetMonData(v6, MON_DATA_SPECIES, NULL);
-        v5[v0] = GetMonData(v6, MON_DATA_HELD_ITEM, NULL);
+        v4[v0] = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
+        v5[v0] = Pokemon_GetValue(v6, MON_DATA_HELD_ITEM, NULL);
     }
 
     v2 = v1;
@@ -545,8 +545,8 @@ void ov104_02234570 (UnkStruct_ov104_0223ADA0 * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param0->unk_4D8, v0);
-        v4[v0 + v2] = GetMonData(v6, MON_DATA_SPECIES, NULL);
-        v5[v0 + v2] = GetMonData(v6, MON_DATA_HELD_ITEM, NULL);
+        v4[v0 + v2] = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
+        v5[v0 + v2] = Pokemon_GetValue(v6, MON_DATA_HELD_ITEM, NULL);
 
         param0->unk_254[v0] = param0->unk_3D2[v0];
     }
@@ -590,7 +590,7 @@ void ov104_0223470C (UnkStruct_ov104_0223ADA0 * param0)
 
     sub_0207A008(param0->unk_4D8);
 
-    v3 = AllocMonZeroed(11);
+    v3 = Pokemon_New(11);
 
     for (v0 = 0; v0 < v2; v0++) {
         ov104_0222DF40(&param0->unk_3F0[v0], v3, ov104_0223ADA0(param0));

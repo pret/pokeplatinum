@@ -8,8 +8,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -31,7 +30,7 @@
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
 #include "unk_02071CFC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "item.h"
@@ -446,7 +445,7 @@ BOOL sub_02047D00 (UnkStruct_0203E724 * param0)
     u16 v6;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v4);
-    v6 = GetMonData(v1, MON_DATA_MOVE1 + v5, NULL);
+    v6 = Pokemon_GetValue(v1, MON_DATA_MOVE1 + v5, NULL);
 
     sub_0200B630(*v2, v3, v6);
     return 0;

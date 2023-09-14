@@ -216,7 +216,7 @@ inline u16 inline_020564D0 (const u16 param0)
         u16 v0;
         u16 v1;
         v0 = (0xffff / param0) + 1;
-        v1 = sub_0201D2E8() / v0;
+        v1 = LCRNG_Next() / v0;
 
         GF_ASSERT((v1 < param0));
         return v1;

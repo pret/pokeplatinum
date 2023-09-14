@@ -1250,13 +1250,13 @@ static int sub_020652EC (const int * param0, int param1)
 
 static int sub_0206530C (const int * param0, int param1)
 {
-    return param0[sub_0201D2E8() % sub_020652EC(param0, param1)];
+    return param0[LCRNG_Next() % sub_020652EC(param0, param1)];
 }
 
 static int sub_02065330 (int param0, int param1)
 {
     const int * v0 = sub_02065358(param0);
-    return v0[sub_0201D2E8() % sub_020652EC(v0, param1)];
+    return v0[LCRNG_Next() % sub_020652EC(v0, param1)];
 }
 
 static const int * sub_02065358 (int param0)

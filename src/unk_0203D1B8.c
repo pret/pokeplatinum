@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -108,7 +108,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"
@@ -1004,8 +1004,8 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 *
     param0->unk_1C = param1->unk_9C;
     param0->unk_20 = sub_0202CD88(param1->unk_0C);
     param0->unk_38 = Heap_AllocFromHeap(32, sub_02025E68());
-    param0->unk_3C = Heap_AllocFromHeap(32, sub_02076AF0());
-    param0->unk_40 = Heap_AllocFromHeap(32, sub_02076AF0());
+    param0->unk_3C = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
+    param0->unk_40 = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
     param0->unk_00 = param1;
     param0->unk_34 = 0;
 }
@@ -1060,8 +1060,8 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
         break;
     case 4:
         v2->unk_48.unk_08 = v2->unk_04.unk_38;
-        v2->unk_48.unk_00 = sub_02076B10(v2->unk_04.unk_3C);
-        v2->unk_48.unk_04 = sub_02076B10(v2->unk_04.unk_40);
+        v2->unk_48.unk_00 = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
+        v2->unk_48.unk_04 = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
         v2->unk_48.unk_14 = sub_02025E44(v1->unk_0C);
         v2->unk_48.unk_10 = 1;
 
@@ -1089,7 +1089,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
         break;
     case 5:
     {
-        int v3 = GetMonData(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
+        int v3 = Pokemon_GetValue(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
         int v4;
         int v5;
 
@@ -1104,7 +1104,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
     break;
     case 6:
         if (sub_0207B0D0(v2->unk_60)) {
-            sub_020775EC(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
+            Pokemon_Copy(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
             sub_0207B0E0(v2->unk_60);
             Heap_Destroy(26);
             v2->unk_00 = 7;
@@ -1265,7 +1265,7 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v1->unk_04);
-        sub_02074B30(v3, 118, (u8 *)&v1->unk_0C->unk_1C);
+        Pokemon_SetValue(v3, 118, (u8 *)&v1->unk_0C->unk_1C);
     }
     break;
     case 5:
@@ -1300,8 +1300,8 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     switch (param1) {
     case 1:
         v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v2->unk_04);
-        v2->unk_0C->unk_10 = GetMonData(v0, MON_DATA_111, NULL);
-        v2->unk_0C->unk_08 = GetMonData(v0, MON_DATA_FORM, NULL);
+        v2->unk_0C->unk_10 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
+        v2->unk_0C->unk_08 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
             Strbuf_CopyChars(v2->unk_10, param5);
@@ -1642,21 +1642,21 @@ static u8 sub_0203E484 (UnkStruct_021C0794 * param0, u8 param1)
     u8 v3[12];
     u8 v4, v5, v6, v7;
 
-    v2 = sub_0201D2D0();
+    v2 = LCRNG_GetSeed();
 
-    sub_0201D2DC(sub_0202B428(v1));
+    LCRNG_SetSeed(sub_0202B428(v1));
     MI_CpuCopy8(v0, v3, sizeof(v3));
 
     for (v4 = 0; v4 < 12; v4++) {
         for (v5 = v4 + 1; v5 < 12; v5++) {
-            v6 = sub_0201D2E8() % 12;
+            v6 = LCRNG_Next() % 12;
             v7 = v3[v4];
             v3[v4] = v3[v6];
             v3[v6] = v7;
         }
     }
 
-    sub_0201D2DC(v2);
+    LCRNG_SetSeed(v2);
     return v3[param1];
 }
 

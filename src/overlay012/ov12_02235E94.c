@@ -32,7 +32,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_0202C9F4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_022237EC.h"
@@ -369,7 +369,7 @@ UnkStruct_ov12_02235FE0 * ov12_02236004 (int param0, const UnkStruct_ov12_022360
 void ov12_02236030 (UnkStruct_ov12_02235FE0 * param0, const UnkStruct_ov12_02236030 * param1)
 {
     param0->unk_04 = *param1;
-    param0->unk_9C = GetMonData(param0->unk_04.unk_08, MON_DATA_162, NULL);
+    param0->unk_9C = Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_162, NULL);
 
     GF_ASSERT(param0->unk_9C < 12 + 1);
 
@@ -379,11 +379,11 @@ void ov12_02236030 (UnkStruct_ov12_02235FE0 * param0, const UnkStruct_ov12_02236
         if (param0->unk_04.unk_04 != 0) {
             param0->unk_98 = param0->unk_04.unk_04;
         } else {
-            param0->unk_98 = GetMonData(param0->unk_04.unk_08, MON_DATA_POKEBALL, NULL);
+            param0->unk_98 = Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_POKEBALL, NULL);
         }
     } else {
         param0->unk_94 = 1;
-        GetMonData(param0->unk_04.unk_08, MON_DATA_171, &param0->unk_A0);
+        Pokemon_GetValue(param0->unk_04.unk_08, MON_DATA_171, &param0->unk_A0);
     }
 }
 
@@ -1632,7 +1632,7 @@ static BOOL ov12_02236F24 (UnkStruct_ov12_02237C54 * param0)
             int v0;
 
             if (ov12_02235EB0(param0->unk_90.unk_00) == 1) {
-                v0 = (sub_0201D2E8() % 20) + 10;
+                v0 = (LCRNG_Next() % 20) + 10;
 
                 sub_0200D7C0(param0->unk_30, 0x2000 * v0);
             }
@@ -1743,7 +1743,7 @@ static BOOL ov12_022371E4 (UnkStruct_ov12_02237C54 * param0)
             int v0;
 
             if (ov12_02235EB0(param0->unk_90.unk_00) == 1) {
-                v0 = (sub_0201D2E8() % 20) + 10;
+                v0 = (LCRNG_Next() % 20) + 10;
 
                 sub_0200D7C0(param0->unk_30, 0x2000 * v0);
             }
@@ -2037,7 +2037,7 @@ UnkStruct_ov12_02237C54 * ov12_02237728 (UnkStruct_ov12_02237728 * param0)
     {
         int v1;
 
-        v1 = sub_0201D2E8() % 2;
+        v1 = LCRNG_Next() % 2;
 
         if (v1) {
             v0->unk_22 = +1;

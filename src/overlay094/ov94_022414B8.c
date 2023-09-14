@@ -11,8 +11,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
 #include "overlay094/const_ov94_02245FD4.h"
@@ -49,7 +48,7 @@
 #include "unk_020279FC.h"
 #include "unk_0202C858.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223FB48.h"
 #include "overlay094/ov94_022414B8.h"
@@ -650,7 +649,7 @@ static int ov94_02241BAC (UnkStruct_ov94_0223FD4C * param0)
         sub_0201A8FC(&param0->unk_F9C[1]);
         param0->unk_B74.unk_00 = v0;
         sub_02005748(1500);
-        param0->unk_10E4->unk_20 = sub_020759F0(v0, 18);
+        param0->unk_10E4->unk_20 = PokemonPersonalData_GetSpeciesValue(v0, 18);
 
         if (ov94_02241B80(&param0->unk_B74, param0->unk_10E4->unk_20)) {
             param0->unk_2C = 10;
@@ -1013,10 +1012,10 @@ static void ov94_022423FC (MessageLoader * param0, UnkStruct_0200B358 * param1, 
     Strbuf* v3 = Strbuf_Init(10 + 1, 62);
     int v4, v5, v6;
 
-    sub_02074570(param3, MON_DATA_119, v2);
+    BoxPokemon_GetValue(param3, MON_DATA_119, v2);
 
-    v4 = sub_02074570(param3, MON_DATA_111, NULL) + 1;
-    v5 = sub_02075B40(param3);
+    v4 = BoxPokemon_GetValue(param3, MON_DATA_GENDER, NULL) + 1;
+    v5 = BoxPokemon_GetLevel(param3);
     v0 = MessageLoader_GetNewStrbuf(param0, 100);
 
     sub_0200B60C(param1, 3, v5, 3, 0, 1);
@@ -1038,7 +1037,7 @@ static void ov94_022423FC (MessageLoader * param0, UnkStruct_0200B358 * param1, 
         ov94_02245900(&param2[1], v3, 70, 0, 0, Unk_ov94_02246920[v4 - 1]);
     }
 
-    param4->unk_00 = sub_02074570(param3, MON_DATA_SPECIES, NULL);
+    param4->unk_00 = BoxPokemon_GetValue(param3, MON_DATA_SPECIES, NULL);
     param4->unk_02 = v4;
     param4->unk_03 = v5;
 
@@ -1086,12 +1085,12 @@ void ov94_022425A8 (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * 
     u16 * v0;
 
     if (ov94_022411D0(param1->unk_110)) {
-        SetShayminForm((Pokemon *)(param1->unk_114), 0);
+        Pokemon_SetShayminForm((Pokemon *)(param1->unk_114), 0);
 
-        MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, PokemonStructSize());
+        MI_CpuCopyFast(param1->unk_114, param0->unk_00.unk_00, Pokemon_StructSize());
     } else {
-        SetBoxShayminForm(param1->unk_114, 0);
-        sub_020774C8(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
+        BoxPokemon_SetShayminForm(param1->unk_114, 0);
+        Pokemon_FromBoxPokemon(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 
     sub_020021D0(param0->unk_10C, sub_02025EF0(param1->unk_00->unk_1C), 8);

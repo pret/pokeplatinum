@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 void sub_0200DA60(UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3, u32 param4);
 u32 sub_0200DAA0(void);

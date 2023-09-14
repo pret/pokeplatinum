@@ -303,8 +303,8 @@ static void ov77_021D6A44 (UnkStruct_ov77_021D6ADC * param0, const u8 param1, co
             VecFx32 v3;
 
             v3 = *sub_02021D28(v1->unk_04);
-            v3.x = FX32_ONE * (64 + (sub_0201D2E8() % 128));
-            v3.y = FX32_ONE * (v2 + (sub_0201D2E8() % 64));
+            v3.x = FX32_ONE * (64 + (LCRNG_Next() % 128));
+            v3.y = FX32_ONE * (v2 + (LCRNG_Next() % 64));
 
             sub_02021C50(v1->unk_04, &v3);
         }
@@ -394,8 +394,8 @@ static void ov77_021D6BAC (UnkStruct_ov77_021D6734 * param0, const u8 param1, in
             VecFx32 v3;
 
             v3 = *sub_02021D28(v2->unk_04);
-            v3.x = FX32_ONE * ((16 - 6) + (sub_0201D2E8() % 224));
-            v3.y = FX32_ONE * (192 + (64 - 6) + (sub_0201D2E8() % 56));
+            v3.x = FX32_ONE * ((16 - 6) + (LCRNG_Next() % 224));
+            v3.y = FX32_ONE * (192 + (64 - 6) + (LCRNG_Next() % 56));
 
             sub_02021C50(v2->unk_04, &v3);
         }

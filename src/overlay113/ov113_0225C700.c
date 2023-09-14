@@ -18,7 +18,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -80,7 +80,7 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02231428.h"
@@ -1351,10 +1351,10 @@ static void ov113_0225DD4C (int param0, UnkStruct_021C0794 * param1, UnkStruct_o
 
     for (v3 = 0; v3 < v1; v3++) {
         v2 = Party_GetPokemonBySlotIndex(v0, v3);
-        param2[v3].unk_02 = GetMonData(v2, MON_DATA_SPECIES_EGG, NULL);
-        param2[v3].unk_04 = GetMonData(v2, MON_DATA_PERSONALITY, NULL);
-        param2[v3].unk_08 = GetMonData(v2, MON_DATA_FORM, NULL);
-        param2[v3].unk_00 = ov113_0226072C(param0, GetMonData(v2, MON_DATA_OT_ID, NULL));
+        param2[v3].unk_02 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
+        param2[v3].unk_04 = Pokemon_GetValue(v2, MON_DATA_PERSONALITY, NULL);
+        param2[v3].unk_08 = Pokemon_GetValue(v2, MON_DATA_FORM, NULL);
+        param2[v3].unk_00 = ov113_0226072C(param0, Pokemon_GetValue(v2, MON_DATA_OT_ID, NULL));
     }
 }
 

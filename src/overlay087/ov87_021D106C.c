@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay087/struct_ov87_021D0D80_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -42,7 +42,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay087/ov87_021D106C.h"
 
 typedef struct UnkStruct_ov87_021D106C_t {
@@ -114,7 +114,7 @@ UnkStruct_ov87_021D106C * ov87_021D106C (UnkStruct_ov87_021D0D80 * param0, const
         v0->unk_1F0 = sub_0200B358(61);
         v0->unk_1F4 = Strbuf_Init(256, 61);
         v0->unk_1F8 = Strbuf_Init(256, 61);
-        v0->unk_1FC = AllocMonZeroed(61);
+        v0->unk_1FC = Pokemon_New(61);
 
         sub_02017798(ov87_021D11AC, v0);
     }
@@ -411,7 +411,7 @@ static void ov87_021D1640 (UnkStruct_ov87_021D106C * param0)
         MessageLoader_GetStrbuf(param0->unk_1E8, v1->unk_10, param0->unk_1F4);
         sub_0201D738(v2, 0, param0->unk_1F4, 94, 0, 0xff, NULL);
 
-        switch (sub_02075DAC(v1->unk_10, v1->unk_08)) {
+        switch (Pokemon_GetGenderOf(v1->unk_10, v1->unk_08)) {
         case 0:
             MessageLoader_GetStrbuf(param0->unk_1E4, 3, param0->unk_1F4);
             break;
@@ -552,7 +552,7 @@ static void ov87_021D1970 (UnkStruct_ov87_021D106C * param0)
 
     for (v3 = 0; v3 < v2->unk_14; v3++) {
         sub_02073D80(param0->unk_1FC, v2->unk_20[v3].unk_10, v2->unk_20[v3].unk_12, 32, 1, v2->unk_20[v3].unk_08, 1, v2->unk_20[v3].unk_0C);
-        sub_02074B30(param0->unk_1FC, 112, (void *)(&(v2->unk_20[v3].unk_13)));
+        Pokemon_SetValue(param0->unk_1FC, 112, (void *)(&(v2->unk_20[v3].unk_13)));
         sub_02075EF4(&v1, param0->unk_1FC, 2);
         sub_02013720(v1.unk_00, v1.unk_02, 61, &v0, param0->unk_200, v2->unk_20[v3].unk_08, 0, 2, v2->unk_20[v3].unk_10);
 

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV13_02221ED0_H
 #define POKEPLATINUM_STRUCT_OV13_02221ED0_H
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay013/struct_ov13_022236B8.h"
 
 typedef struct {

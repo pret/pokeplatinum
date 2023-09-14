@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -41,7 +41,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206B9D8.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 typedef struct {
@@ -176,14 +176,14 @@ BOOL sub_02049EC4 (u16 param0, UnkStruct_021C0794 * param1, u8 param2)
 
     for (v0 = 0, v2 = 0; v0 < v3; v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
-        v4 = GetMonData(v7, MON_DATA_SPECIES, NULL);
-        v5 = GetMonData(v7, MON_DATA_HELD_ITEM, NULL);
+        v4 = Pokemon_GetValue(v7, MON_DATA_SPECIES, NULL);
+        v5 = Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL);
 
         if (param2 == 0) {
             v5 = 0;
         }
 
-        if (GetMonData(v7, MON_DATA_IS_EGG, NULL) != 0) {
+        if (Pokemon_GetValue(v7, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
         }
 
@@ -447,8 +447,8 @@ BOOL sub_0204A378 (UnkStruct_0204AFC4 * param0, void ** param1, UnkStruct_021C07
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         param0->unk_2A[v0] = v1->unk_2C[v0] - 1;
         v3 = Party_GetPokemonBySlotIndex(v2, param0->unk_2A[v0]);
-        param0->unk_2E[v0] = GetMonData(v3, MON_DATA_SPECIES, NULL);
-        param0->unk_36[v0] = GetMonData(v3, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_2E[v0] = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
+        param0->unk_36[v0] = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
     }
 
     Heap_FreeToHeap(*param1);
@@ -467,8 +467,8 @@ int sub_0204A410 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
 
     for (v0 = 0; v0 < param0->unk_0E; v0++) {
         v5 = Party_GetPokemonBySlotIndex(v4, param0->unk_2A[v0]);
-        v2[v0] = GetMonData(v5, MON_DATA_SPECIES, NULL);
-        v3[v0] = GetMonData(v5, MON_DATA_HELD_ITEM, NULL);
+        v2[v0] = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
+        v3[v0] = Pokemon_GetValue(v5, MON_DATA_HELD_ITEM, NULL);
 
         if (v0 == 0) {
             continue;
@@ -960,11 +960,11 @@ static u16 sub_0204AC54 (UnkStruct_021C0794 * param0, u8 param1, UnkStruct_0204A
     for (v2 = 0; v2 < param2->unk_0E; v2++) {
         v4 = Party_GetPokemonBySlotIndex(v3, param2->unk_2A[v2]);
 
-        if (GetMonData(v4, param1, NULL)) {
+        if (Pokemon_GetValue(v4, param1, NULL)) {
             continue;
         }
 
-        sub_02074B30(v4, param1, &v0);
+        Pokemon_SetValue(v4, param1, &v0);
         sub_0206DDB8(param0, v4, param1);
         ++v1;
     }
@@ -998,28 +998,28 @@ static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * para
 {
     int v0;
 
-    param0->unk_00_val1_0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
-    param0->unk_00_val1_11 = GetMonData(param1, MON_DATA_FORM, NULL);
-    param0->unk_02 = GetMonData(param1, MON_DATA_HELD_ITEM, NULL);
+    param0->unk_00_val1_0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    param0->unk_00_val1_11 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
+    param0->unk_02 = Pokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_04[v0] = GetMonData(param1, MON_DATA_MOVE1 + v0, NULL);
-        param0->unk_1E_val2 |= ((GetMonData(param1, MON_DATA_62 + v0, NULL))<< (v0 * 2));
+        param0->unk_04[v0] = Pokemon_GetValue(param1, MON_DATA_MOVE1 + v0, NULL);
+        param0->unk_1E_val2 |= ((Pokemon_GetValue(param1, MON_DATA_MOVE1_PP_UPS + v0, NULL))<< (v0 * 2));
     }
 
-    param0->unk_1F = GetMonData(param1, MON_DATA_LANGUAGE, NULL);
-    param0->unk_0C = GetMonData(param1, MON_DATA_OT_ID, NULL);
-    param0->unk_10 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_14_val2 = GetMonData(param1, MON_DATA_175, NULL);
+    param0->unk_1F = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
+    param0->unk_0C = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
+    param0->unk_10 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+    param0->unk_14_val2 = Pokemon_GetValue(param1, MON_DATA_COMBINED_IVS, NULL);
 
     for (v0 = 0; v0 < 6; v0++) {
-        param0->unk_18_val2[v0] = GetMonData(param1, MON_DATA_HP_EV + v0, NULL);
+        param0->unk_18_val2[v0] = Pokemon_GetValue(param1, MON_DATA_HP_EV + v0, NULL);
     }
 
-    param0->unk_20 = GetMonData(param1, MON_DATA_10, NULL);
-    param0->unk_21 = GetMonData(param1, MON_DATA_FRIENDSHIP, NULL);
+    param0->unk_20 = Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
+    param0->unk_21 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
 
-    GetMonData(param1, MON_DATA_117, param0->unk_22);
+    Pokemon_GetValue(param1, MON_DATA_117, param0->unk_22);
 }
 
 static void sub_0204AE20 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1, int param2)
@@ -1071,7 +1071,7 @@ u8 sub_0204AE84 (u16 param0)
 u16 sub_0204AEC0 (UnkStruct_0204AFC4 * param0)
 {
     if (param0->unk_0F == 6) {
-        return sub_0201D2E8();
+        return LCRNG_Next();
     }
 
     param0->unk_08 = sub_0206BFF0(param0->unk_08);

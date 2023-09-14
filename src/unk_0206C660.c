@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -13,7 +13,7 @@
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206C660.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay006/ov6_02246184.h"
 #include "overlay095/ov95_02246C20.h"
 
@@ -97,8 +97,8 @@ void sub_0206C740 (UnkStruct_020508D4 * param0, UnkStruct_ov6_02246204 * param1,
     v0->unk_04 = 0;
     v0->unk_00 = param1;
     v0->unk_08 = param2;
-    v0->unk_24 = AllocMonZeroed(param3);
-    v0->unk_28 = AllocMonZeroed(param3);
+    v0->unk_24 = Pokemon_New(param3);
+    v0->unk_28 = Pokemon_New(param3);
 
     sub_02050944(param0, sub_0206C680, v0);
 }

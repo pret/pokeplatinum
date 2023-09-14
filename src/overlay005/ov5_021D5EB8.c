@@ -2240,7 +2240,7 @@ static void ov5_021D78A4 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         }
 
         v3 = (s32 *)v1->unk_08;
-        v6 = sub_0201D35C();
+        v6 = MTRNG_Next();
 
         v3[0] = 0;
         v4 = v6 % 3;
@@ -2289,7 +2289,7 @@ static void ov5_021D7960 (UnkStruct_ov5_021D6FA8 * param0)
         v2[0] += 2;
 
         if (v2[0] > v2[1]) {
-            if ((sub_0201D35C() % 10) < 7) {
+            if ((MTRNG_Next() % 10) < 7) {
                 v2[3] = 2;
             } else {
                 v2[3] = 1;
@@ -2442,7 +2442,7 @@ static void ov5_021D7C40 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         }
 
         v4 = (s32 *)v2->unk_08;
-        v5 = sub_0201D35C() % 4;
+        v5 = MTRNG_Next() % 4;
 
         sub_02021E50(v2->unk_04, v5);
 
@@ -2451,7 +2451,7 @@ static void ov5_021D7C40 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v4[6] = 0;
         v4[8] = 0;
 
-        v1 = sub_0201D35C();
+        v1 = MTRNG_Next();
 
         v4[9] = 4 + (v1 % 60);
 
@@ -2461,17 +2461,17 @@ static void ov5_021D7C40 (UnkStruct_ov5_021DB4B8 * param0, int param1)
             v4[1] = -1;
         }
 
-        v4[2] = 4 + (sub_0201D35C() % 2);
-        v4[3] = 1 + (sub_0201D35C() % 2);
+        v4[2] = 4 + (MTRNG_Next() % 2);
+        v4[3] = 1 + (MTRNG_Next() % 2);
         v4[0] = (s32) & v3->unk_B4[1];
         v4[7] = (s32) & v3->unk_B4[2];
 
-        v6.x = (-32 + (sub_0201D35C() % 414)) << FX32_SHIFT;
+        v6.x = (-32 + (MTRNG_Next() % 414)) << FX32_SHIFT;
 
         if ((v3->unk_B4[1] == 1) && (v0 >= (param1 / 2))) {
-            v6.y = (-40 - (sub_0201D35C() % 20)) << FX32_SHIFT;
+            v6.y = (-40 - (MTRNG_Next() % 20)) << FX32_SHIFT;
         } else {
-            v6.y = (-8 - (sub_0201D35C() % 20)) << FX32_SHIFT;
+            v6.y = (-8 - (MTRNG_Next() % 20)) << FX32_SHIFT;
         }
 
         ov5_021D630C(v2->unk_04, &v6);
@@ -2682,7 +2682,7 @@ static void ov5_021D8098 (UnkStruct_ov5_021DB4B8 * param0, int param1)
 
         v4[5] = v5[v2];
         v4[0] = 0;
-        v4[1] = 4 + (sub_0201D35C() % (46 - 4));
+        v4[1] = 4 + (MTRNG_Next() % (46 - 4));
 
         v7 = (v4[1] - 4) / (((46 - 4) / 3) + 1);
         sub_02021E50(v1->unk_04, v7);
@@ -2694,7 +2694,7 @@ static void ov5_021D8098 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         {
             VecFx32 v8 = ov5_021D7010(v1);
 
-            v8.x = -20 + (v7 * 20) + (sub_0201D35C() % 420);
+            v8.x = -20 + (v7 * 20) + (MTRNG_Next() % 420);
             v8.y = -8;
             v8.z = 0;
             v8.x <<= FX32_SHIFT;
@@ -3214,7 +3214,7 @@ static void ov5_021D8B88 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v5 = v1->unk_08;
 
         v5[0] = 0;
-        v5[1] = 15 + (sub_0201D35C() % (35 - 15));
+        v5[1] = 15 + (MTRNG_Next() % (35 - 15));
 
         v6 = 3 - ((v5[1] - 15) / (((35 - 15) / 4) + 1));
 
@@ -3223,7 +3223,7 @@ static void ov5_021D8B88 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v5[3] = 0;
         v5[5] = v7[v2];
 
-        v3 = sub_0201D35C() % 1000;
+        v3 = MTRNG_Next() % 1000;
 
         if (v3 == 777) {
             v6 = 4;
@@ -3236,9 +3236,9 @@ static void ov5_021D8B88 (UnkStruct_ov5_021DB4B8 * param0, int param1)
             VecFx32 v9;
 
             v9 = ov5_021D7010(v1);
-            v9.x = 262 + (sub_0201D35C() % 24);
+            v9.x = 262 + (MTRNG_Next() % 24);
             v9.x <<= FX32_SHIFT;
-            v9.y = -64 + (sub_0201D35C() % 192);
+            v9.y = -64 + (MTRNG_Next() % 192);
             v9.y <<= FX32_SHIFT;
 
             ov5_021D630C(v1->unk_04, &v9);
@@ -3545,8 +3545,8 @@ static void ov5_021D92C4 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v4 = (s32 *)v1->unk_08;
 
         v4[0] = 0;
-        v4[1] = 18 + (sub_0201D35C() % (24 - 18));
-        v5 = sub_0201D35C() % 4;
+        v4[1] = 18 + (MTRNG_Next() % (24 - 18));
+        v5 = MTRNG_Next() % 4;
 
         sub_02021E50(v1->unk_04, v5);
 
@@ -3564,8 +3564,8 @@ static void ov5_021D92C4 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         {
             VecFx32 v6 = ov5_021D7010(v1);
 
-            v6.x = 256 + (sub_0201D35C() % 24);
-            v6.y = -32 + (sub_0201D35C() % 168);
+            v6.x = 256 + (MTRNG_Next() % 24);
+            v6.y = -32 + (MTRNG_Next() % 168);
             v6.x <<= FX32_SHIFT;
             v6.y <<= FX32_SHIFT;
             v6.z = 0;
@@ -3722,9 +3722,9 @@ static void ov5_021D9690 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         v7 = (s32 *)v1->unk_08;
 
         v7[0] = 0;
-        v7[1] = 7 + (sub_0201D35C() % 5);
+        v7[1] = 7 + (MTRNG_Next() % 5);
 
-        v2 = sub_0201D35C() % 1000;
+        v2 = MTRNG_Next() % 1000;
 
         if ((v2 % 2) == 0) {
             v7[2] = 1;
@@ -3733,15 +3733,15 @@ static void ov5_021D9690 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         }
 
         v7[3] = 1;
-        v7[4] = 3 + (sub_0201D35C() % 6);
-        v7[5] = 4 + (sub_0201D35C() % 5);
+        v7[4] = 3 + (MTRNG_Next() % 6);
+        v7[5] = 4 + (MTRNG_Next() % 5);
 
-        v5 = sub_0201D35C() % 0x14;
+        v5 = MTRNG_Next() % 0x14;
 
         {
             v6 = ov5_021D7010(v1);
-            v6.x = -64 + (sub_0201D35C() % 384);
-            v6.y = -8 + (sub_0201D35C() % 256);
+            v6.x = -64 + (MTRNG_Next() % 384);
+            v6.y = -8 + (MTRNG_Next() % 256);
             v6.x <<= FX32_SHIFT;
             v6.y <<= FX32_SHIFT;
             v6.z = 0;
@@ -3757,15 +3757,15 @@ static void ov5_021D9690 (UnkStruct_ov5_021DB4B8 * param0, int param1)
 
         if (v2 < 0) {
             v2 *= -1;
-            v4 = v3 - (sub_0201D35C() % v2);
+            v4 = v3 - (MTRNG_Next() % v2);
         } else {
-            v4 = v3 + (sub_0201D35C() % v2);
+            v4 = v3 + (MTRNG_Next() % v2);
         }
 
         if ((v3 <= v6.y) && (v4 >= v6.y)) {
             v7[1] *= 2;
         } else {
-            v5 = sub_0201D35C() % 4;
+            v5 = MTRNG_Next() % 4;
         }
 
         sub_02021E50(v1->unk_04, v5);
@@ -3824,8 +3824,8 @@ static void ov5_021D97E8 (UnkStruct_0201CD38 * param0, void * param1)
             ov5_021D64E4(v2[1], 16);
 
             if (v2[1] >= 10) {
-                v2[2] = 10 + (sub_0201D35C() % 20);
-                v2[3] = 5 + (sub_0201D35C() % 3);
+                v2[2] = 10 + (MTRNG_Next() % 20);
+                v2[3] = 5 + (MTRNG_Next() % 3);
                 v2[4] = 1;
                 v0->unk_BA2 = 3;
             }
@@ -3838,8 +3838,8 @@ static void ov5_021D97E8 (UnkStruct_0201CD38 * param0, void * param1)
         G2_SetBG2Offset(0, 32);
         ov5_021D64E4(v2[1], 16);
 
-        v2[2] = 10 + (sub_0201D35C() % 20);
-        v2[3] = 5 + (sub_0201D35C() % 3);
+        v2[2] = 10 + (MTRNG_Next() % 20);
+        v2[3] = 5 + (MTRNG_Next() % 3);
         v2[4] = 1;
 
         v0->unk_BA2 = 3;
@@ -3854,16 +3854,16 @@ static void ov5_021D97E8 (UnkStruct_0201CD38 * param0, void * param1)
                 v2[1]--;
 
                 if (v2[1] <= v2[3]) {
-                    v2[2] = 10 + (sub_0201D35C() % 15);
-                    v2[3] = 7 + (sub_0201D35C() % 3);
+                    v2[2] = 10 + (MTRNG_Next() % 15);
+                    v2[3] = 7 + (MTRNG_Next() % 3);
                     v2[4] = 0;
                 }
             } else {
                 v2[1]++;
 
                 if (v2[1] >= v2[3]) {
-                    v2[2] = 10 + (sub_0201D35C() % 20);
-                    v2[3] = 5 + (sub_0201D35C() % 3);
+                    v2[2] = 10 + (MTRNG_Next() % 20);
+                    v2[3] = 5 + (MTRNG_Next() % 3);
                     v2[4] = 1;
                 }
             }
@@ -4283,7 +4283,7 @@ static void ov5_021DA0A8 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         }
 
         v3 = (s32 *)v1->unk_08;
-        v8 = sub_0201D35C();
+        v8 = MTRNG_Next();
 
         v3[0] = 0;
         v6 = v8 % 3;
@@ -4326,7 +4326,7 @@ static void ov5_021DA1A8 (UnkStruct_ov5_021D6FA8 * param0)
         v2[0] += 2;
 
         if (v2[0] > v2[1]) {
-            if ((sub_0201D35C() % 10) < 5) {
+            if ((MTRNG_Next() % 10) < 5) {
                 v2[3] = 2;
             } else {
                 v2[3] = 1;
@@ -4522,14 +4522,14 @@ static void ov5_021DA5A0 (UnkStruct_ov5_021DB4B8 * param0, int param1)
         }
 
         v5 = (s32 *)v2->unk_08;
-        v4 = sub_0201D35C() % 4;
+        v4 = MTRNG_Next() % 4;
 
         sub_02021E50(v2->unk_04, v4);
 
         v5[4] = 10;
         v5[5] = 0;
 
-        v1 = sub_0201D35C();
+        v1 = MTRNG_Next();
 
         if ((v1 % 2) == 0) {
             v5[1] = 1;
@@ -4537,20 +4537,20 @@ static void ov5_021DA5A0 (UnkStruct_ov5_021DB4B8 * param0, int param1)
             v5[1] = -1;
         }
 
-        v5[3] = 1 + (sub_0201D35C() % 1);
+        v5[3] = 1 + (MTRNG_Next() % 1);
         v5[0] = (s32) & v3->unk_B4[1];
         v5[6] = (s32) & v3->unk_B4[5];
-        v5[7] = 10 + (sub_0201D35C() % 20);
+        v5[7] = 10 + (MTRNG_Next() % 20);
 
         {
             VecFx32 v6 = ov5_021D7010(v2);
 
-            v6.x = -32 + (sub_0201D35C() % 414);
+            v6.x = -32 + (MTRNG_Next() % 414);
 
             if ((v3->unk_B4[1] == 1) && (v0 >= (param1 / 2))) {
-                v6.y = -40 - (sub_0201D35C() % 20);
+                v6.y = -40 - (MTRNG_Next() % 20);
             } else {
-                v6.y = -8 - (sub_0201D35C() % 20);
+                v6.y = -8 - (MTRNG_Next() % 20);
             }
 
             v6.x <<= FX32_SHIFT;
@@ -4628,10 +4628,10 @@ static void ov5_021DA748 (UnkStruct_0201CD38 * param0, void * param1)
             case 0:
                 v1[1] = 1;
                 v1[5] = 0;
-                v1[6] = 200 + (sub_0201D35C() % 480);
+                v1[6] = 200 + (MTRNG_Next() % 480);
                 v1[7] = 0;
 
-                if ((sub_0201D35C() % 3) != 0) {
+                if ((MTRNG_Next() % 3) != 0) {
                     v1[2] = 36;
 
                     sub_02005748(1597);
@@ -4659,9 +4659,9 @@ static void ov5_021DA748 (UnkStruct_0201CD38 * param0, void * param1)
                     v1[7] = 0;
 
                     if (v1[2] == 200) {
-                        v1[4] = (sub_0201D35C() % 15);
+                        v1[4] = (MTRNG_Next() % 15);
                     } else {
-                        v1[4] = ((v1[6] * 50) / 100) + (sub_0201D35C() % 120);
+                        v1[4] = ((v1[6] * 50) / 100) + (MTRNG_Next() % 120);
                     }
                 }
 
@@ -4768,33 +4768,33 @@ static void ov5_021DA9DC (UnkStruct_ov5_021DB4B8 * param0, int param1)
         }
 
         v2 = (s32 *)v1->unk_08;
-        v4 = sub_0201D35C() % 0xe;
+        v4 = MTRNG_Next() % 0xe;
 
         sub_02021E50(v1->unk_04, v4);
 
         v3 = v4 / 4;
         v3++;
 
-        v2[0] = 8 + (sub_0201D35C() % 25);
+        v2[0] = 8 + (MTRNG_Next() % 25);
         v2[0] *= v3;
         v2[1] = 16 / v3;
         v2[2] = 0;
-        v2[3] = sub_0201D35C() % 2;
+        v2[3] = MTRNG_Next() % 2;
         v2[4] = 1;
 
         switch (v3) {
         case 1:
         case 2:
-            v5.x = -128 + (sub_0201D35C() % 512);
-            v5.y = 8 + (sub_0201D35C() % 192);
+            v5.x = -128 + (MTRNG_Next() % 512);
+            v5.y = 8 + (MTRNG_Next() % 192);
             break;
         case 3:
-            v5.x = -128 + (sub_0201D35C() % 512);
-            v5.y = 64 + (sub_0201D35C() % 128);
+            v5.x = -128 + (MTRNG_Next() % 512);
+            v5.y = 64 + (MTRNG_Next() % 128);
             break;
         case 4:
-            v5.x = -128 + (sub_0201D35C() % 512);
-            v5.y = 160 + (sub_0201D35C() % 32);
+            v5.x = -128 + (MTRNG_Next() % 512);
+            v5.y = 160 + (MTRNG_Next() % 32);
             break;
         }
 

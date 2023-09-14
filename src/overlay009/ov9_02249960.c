@@ -3307,7 +3307,7 @@ static int ov9_0224B964 (UnkStruct_ov101_021D5D90 * param0, void * param1)
         v2->unk_10.z += v6->z;
     }
 
-    v2->unk_04 = sub_0201D2E8() % ((FX32_ONE * 8));
+    v2->unk_04 = LCRNG_Next() % ((FX32_ONE * 8));
     v2->unk_08 = 0x800;
 
     if ((v2->unk_04 & 0x1)) {

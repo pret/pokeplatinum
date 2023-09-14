@@ -2367,7 +2367,7 @@ static void ov23_022451C8 (UnkStruct_0201CD38 * param0, void * param1)
             sub_02006E60(50, 8, v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
         } else {
             u16 v2[] = {11, 12, 13, 14};
-            u16 v3 = sub_0201D2E8() % 4;
+            u16 v3 = LCRNG_Next() % 4;
 
             sub_02006E60(50, v2[v3], v0->unk_10, 2, 0, 32 * 24 * 2, 0, 4);
         }
@@ -4087,7 +4087,7 @@ static BOOL ov23_02247568 (UnkStruct_02018340 * param0, UnkStruct_ov23_022471D8 
 
         param1->unk_124++;
 
-        v11.x = (128 - (10 / 2) + (sub_0201D2E8() % 10)) * FX32_ONE;
+        v11.x = (128 - (10 / 2) + (LCRNG_Next() % 10)) * FX32_ONE;
         v11.y = param1->unk_120 * FX32_ONE;
 
         sub_02021C50(Unk_ov23_02257764->unk_25C[0], &v11);

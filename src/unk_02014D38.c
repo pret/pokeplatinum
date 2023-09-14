@@ -282,7 +282,7 @@ u32 sub_02014EE4 (UnkStruct_02014EC4 * param0)
     }
 
     if (v1) {
-        int v2 = sub_0201D2E8() % v1;
+        int v2 = LCRNG_Next() % v1;
 
         for (v0 = 0; v0 < 32; v0++) {
             if (((param0->unk_04 >> v0) & 1) == 0) {

@@ -6,7 +6,7 @@
 #include "constants/species.h"
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
@@ -17,7 +17,7 @@
 #include "unk_02025E68.h"
 #include "unk_0202D7A8.h"
 #include "roaming_pokemon.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 typedef struct {
     u16 unk_00;
@@ -291,15 +291,15 @@ void RoamingPokemon_ActivateSlot (UnkStruct_021C0794 * saveData, const u8 slot)
     sub_0202D980(v1, 6, level);
 
     v4 = sub_02025E38(saveData);
-    v0 = AllocMonZeroed(4);
+    v0 = Pokemon_New(4);
 
-    ZeroMonData(v0);
+    Pokemon_Init(v0);
     sub_02073D80(v0, species, level, 32, 0, 0, 1, sub_02025F24(v4));
     sub_0202D980(v1, 7, 0);
     sub_0202D980(v1, 8, 1);
-    sub_0202D980(v1, 2, GetMonData(v0, MON_DATA_175, NULL));
-    sub_0202D980(v1, 3, GetMonData(v0, MON_DATA_PERSONALITY, NULL));
-    sub_0202D980(v1, 5, GetMonData(v0, MON_DATA_164, NULL));
+    sub_0202D980(v1, 2, Pokemon_GetValue(v0, MON_DATA_COMBINED_IVS, NULL));
+    sub_0202D980(v1, 3, Pokemon_GetValue(v0, MON_DATA_PERSONALITY, NULL));
+    sub_0202D980(v1, 5, Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL));
     Heap_FreeToHeap(v0);
 
     previouslyVisitedMap = sub_0202D8BC(v2);

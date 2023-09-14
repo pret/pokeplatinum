@@ -323,8 +323,8 @@ void sub_02001028 (void)
 
     v2 = v0.year + v0.month * 0x100 * v0.day * 0x10000 + v1.hour * 0x10000 + (v1.minute + v1.second) * 0x1000000 + Unk_021BF67C.unk_2C;
 
-    sub_0201D318(v2);
-    sub_0201D2DC(v2);
+    MTRNG_SetSeed(v2);
+    LCRNG_SetSeed(v2);
 }
 
 void sub_0200106C (void)

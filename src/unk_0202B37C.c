@@ -45,7 +45,7 @@ void sub_0202B3D8 (UnkStruct_0202B4A0 * param0, u32 param1)
 
     for (v0 = 0; v0 < 6; v0++) {
         for (v1 = 0; v1 < param1; v1++) {
-            param0->unk_00[v0].unk_28 = sub_0201D30C(param0->unk_00[v0].unk_28);
+            param0->unk_00[v0].unk_28 = ARNG_Next(param0->unk_00[v0].unk_28);
         }
     }
 }
@@ -58,7 +58,7 @@ u32 sub_0202B400 (UnkStruct_0202B4A0 * param0, int param1)
 void sub_0202B40C (UnkStruct_0202B4A0 * param0, int param1, u32 param2)
 {
     param0->unk_00[param1].unk_24 = param2;
-    param0->unk_00[param1].unk_28 = sub_0201D30C(param2);
+    param0->unk_00[param1].unk_28 = ARNG_Next(param2);
 }
 
 u32 sub_0202B428 (UnkStruct_0202B4A0 * param0)

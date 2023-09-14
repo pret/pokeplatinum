@@ -15,7 +15,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_02079D40.h"
 #include "unk_0207C908.h"
@@ -672,7 +672,7 @@ void sub_0208F71C (UnkStruct_0208D7BC * param0)
 
     sub_0200D948(param0->unk_414, param0->unk_418, 19, v1, 0, 11);
     sub_0200D414(param0->unk_41C[19], sub_02079EDC(param0->unk_250.unk_0C, param0->unk_250.unk_4E, param0->unk_250.unk_50_28) + 7);
-    sub_02021D0C(param0->unk_41C[19], (sub_020759CC(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1));
+    sub_02021D0C(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1));
 }
 
 void sub_0208F7A4 (UnkStruct_0208D7BC * param0)

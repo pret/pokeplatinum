@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
@@ -23,7 +23,7 @@
 #include "unk_02034198.h"
 #include "unk_02051D8C.h"
 #include "unk_0205DFC4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -350,7 +350,7 @@ BOOL ov104_02235BC0 (UnkStruct_ov104_0222E930 * param0)
 
         for (v8 = 0; v8 < 3; v8++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_24[v8]);
-            sub_02074B30(v1, 6, &v3->unk_36A[v8]);
+            Pokemon_SetValue(v1, 6, &v3->unk_36A[v8]);
         }
         break;
     case 19:

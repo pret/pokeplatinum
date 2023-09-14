@@ -374,7 +374,7 @@ static void ov41_02256B8C (UnkStruct_0201CD38 * param0, void * param1)
         ov25_02255950(v0->unk_24[0], v0->unk_68);
 
         if (v0->unk_60) {
-            v0->unk_6C = sub_0201D35C() & 7;
+            v0->unk_6C = MTRNG_Next() & 7;
 
             if (v0->unk_6A > 6656) {
                 v0->unk_6A = 6656;

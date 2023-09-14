@@ -3,8 +3,10 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
+#include "strbuf.h"
+#include "pokemon.h"
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
@@ -23,7 +25,7 @@
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "unk_020298BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -626,7 +628,7 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
 
     for (v0 = 0; v0 < 4; v0++) {
         v1 = param0->unk_0C[v0];
-        sub_02074B30(param1, 54 + v0, &v1);
+        Pokemon_SetValue(param1, 54 + v0, &v1);
     }
 
     {
@@ -637,8 +639,8 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
         v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
         v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
-        sub_02074B30(param1, 119, v3);
-        sub_02074B30(param1, 145, v4);
+        Pokemon_SetValue(param1, 119, v3);
+        Pokemon_SetValue(param1, 145, v4);
 
         Strbuf_Free(v3);
         Strbuf_Free(v4);
@@ -655,12 +657,12 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
         v10 = param0->unk_1E;
         v11 = param0->unk_1F;
 
-        sub_02074B30(param1, 19, &v6);
-        sub_02074B30(param1, 20, &v7);
-        sub_02074B30(param1, 21, &v8);
-        sub_02074B30(param1, 22, &v9);
-        sub_02074B30(param1, 23, &v10);
-        sub_02074B30(param1, 24, &v11);
+        Pokemon_SetValue(param1, 19, &v6);
+        Pokemon_SetValue(param1, 20, &v7);
+        Pokemon_SetValue(param1, 21, &v8);
+        Pokemon_SetValue(param1, 22, &v9);
+        Pokemon_SetValue(param1, 23, &v10);
+        Pokemon_SetValue(param1, 24, &v11);
     }
 }
 
@@ -1051,7 +1053,7 @@ u32 sub_02095A74 (int param0, int param1)
     u32 v2;
 
     if ((param0 == 3) || (param1 == 1)) {
-        return sub_0201D2E8() % 12;
+        return LCRNG_Next() % 12;
     }
 
     MI_CpuClear8(v0, 12);
@@ -1072,5 +1074,5 @@ u32 sub_02095A74 (int param0, int param1)
         v0[v1++] = 8;
     }
 
-    return v0[sub_0201D2E8() % v1];
+    return v0[LCRNG_Next() % v1];
 }

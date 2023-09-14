@@ -11,7 +11,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -241,7 +241,7 @@ static int ov5_021F0A80 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
 
 static int ov5_021F0AB8 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
 {
-    param0->unk_14 = ((sub_0201D2E8() % 4) + 1) * 30;
+    param0->unk_14 = ((LCRNG_Next() % 4) + 1) * 30;
     param0->unk_18 = Unk_ov5_021FFA00[param0->unk_1C];
     param0->unk_0C = 4;
 

@@ -19,7 +19,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -74,7 +74,7 @@
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
 #include "map_header.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079170.h"
 #include "unk_02079D40.h"
 #include "party.h"
@@ -804,8 +804,8 @@ static u8 ov10_02220014 (UnkStruct_ov10_0221FB28 * param0)
         ov10_02221440(param0, 2, 0, 0);
         ov10_02221440(param0, 3, 0, 0);
     } else if (param0->unk_B76 < 24) {
-        v0 = (sub_0201D2E8() % param0->unk_B70) - (param0->unk_B70 / 2);
-        v1 = (sub_0201D2E8() % param0->unk_B71) - (param0->unk_B71 / 2);
+        v0 = (LCRNG_Next() % param0->unk_B70) - (param0->unk_B70 / 2);
+        v1 = (LCRNG_Next() % param0->unk_B71) - (param0->unk_B71 / 2);
 
         if (((v0 < 0) && (param0->unk_B6C < 0)) || ((v0 > 0) && (param0->unk_B6C > 0))) {
             v0 *= -1;
@@ -1541,7 +1541,7 @@ static void ov10_022211F0 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u16
         if (v3 > v1) {
             v0 = Party_GetPokemonBySlotIndex(param1, v1);
 
-            if ((GetMonData(v0, MON_DATA_SPECIES, NULL) == 0) || (GetMonData(v0, MON_DATA_IS_EGG, NULL) != 0)) {
+            if ((Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL) == 0) || (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) != 0)) {
                 continue;
             }
 
@@ -2044,27 +2044,27 @@ static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u8 
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
 
         param0->unk_214[v1 + param2].unk_00 = sub_02079D80(v0);
-        param0->unk_214[v1 + param2].unk_04 = (u16)GetMonData(v0, MON_DATA_SPECIES, NULL);
+        param0->unk_214[v1 + param2].unk_04 = (u16)Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 
         if (param0->unk_214[v1 + param2].unk_04 == 0) {
             continue;
         }
 
-        param0->unk_214[v1 + param2].unk_0F = (u16)GetMonData(v0, MON_DATA_IS_EGG, NULL);
-        param0->unk_214[v1 + param2].unk_06 = (u16)GetMonData(v0, MON_DATA_163, NULL);
-        param0->unk_214[v1 + param2].unk_08 = (u16)GetMonData(v0, MON_DATA_164, NULL);
-        param0->unk_214[v1 + param2].unk_0C = (u16)GetMonData(v0, MON_DATA_161, NULL);
-        param0->unk_214[v1 + param2].unk_0A = (u16)GetMonData(v0, MON_DATA_HELD_ITEM, NULL);
-        param0->unk_214[v1 + param2].unk_10 = (u8)GetMonData(v0, MON_DATA_162, NULL);
-        param0->unk_214[v1 + param2].unk_11 = (u8)GetMonData(v0, MON_DATA_FORM, NULL);
+        param0->unk_214[v1 + param2].unk_0F = (u16)Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
+        param0->unk_214[v1 + param2].unk_06 = (u16)Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
+        param0->unk_214[v1 + param2].unk_08 = (u16)Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
+        param0->unk_214[v1 + param2].unk_0C = (u16)Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
+        param0->unk_214[v1 + param2].unk_0A = (u16)Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_214[v1 + param2].unk_10 = (u8)Pokemon_GetValue(v0, MON_DATA_162, NULL);
+        param0->unk_214[v1 + param2].unk_11 = (u8)Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
-        if (GetMonData(v0, MON_DATA_176, NULL) == 1) {
+        if (Pokemon_GetValue(v0, MON_DATA_176, NULL) == 1) {
             param0->unk_214[v1 + param2].unk_0E = 0;
         } else {
             param0->unk_214[v1 + param2].unk_0E = 1;
         }
 
-        param0->unk_214[v1 + param2].unk_0D = sub_02075D6C(v0);
+        param0->unk_214[v1 + param2].unk_0D = Pokemon_GetGender(v0);
         param0->unk_214[v1 + param2].unk_14 = (u8)sub_0208E9F0(v0);
     }
 }
@@ -2273,7 +2273,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
 
     v2 = MessageLoader_GetNewStrbuf(param1, 8 + param5);
 
-    sub_0200B5CC(param3, 0, sub_02076B10(v0));
+    sub_0200B5CC(param3, 0, Pokemon_GetBoxPokemon(v0));
     sub_0200C388(param3, param4, v2);
     Strbuf_Free(v2);
     sub_0201D78C(v1, 0, param4, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);

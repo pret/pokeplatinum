@@ -88,7 +88,7 @@ static void MakePoffinFoul (Poffin * poffin, u8 param1)
     v0 = 0;
 
     do {
-        v1 = sub_0201D2E8() % 5;
+        v1 = LCRNG_Next() % 5;
 
         if (poffin->attributes[v1 + 1] != 0) {
             continue;

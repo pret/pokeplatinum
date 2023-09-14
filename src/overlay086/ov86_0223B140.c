@@ -16,7 +16,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008900.h"
@@ -60,7 +60,7 @@
 #include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_0202CBE4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay086/ov86_0223B140.h"
 
@@ -328,7 +328,7 @@ int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
         v2 = Party_GetCurrentCount(v0->unk_0C->unk_04);
 
         for (v1 = 0; v1 < v2; v1++) {
-            if (GetMonData(Party_GetPokemonBySlotIndex(v0->unk_0C->unk_04, v1), MON_DATA_IS_EGG, NULL) == 0) {
+            if (Pokemon_GetValue(Party_GetPokemonBySlotIndex(v0->unk_0C->unk_04, v1), MON_DATA_IS_EGG, NULL) == 0) {
                 v0->unk_2C8[v0->unk_04] = v1;
                 v0->unk_04++;
             }
@@ -861,15 +861,15 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
         v11 = Party_GetPokemonBySlotIndex(param0->unk_0C->unk_04, param0->unk_2C8[v12]);
         sub_02075EF4(&v1, (Pokemon *)v11, 2);
 
-        param0->unk_2E0[v12] = GetMonData((Pokemon *)v11, MON_DATA_SPECIES, NULL);
-        param0->unk_2F8[v12] = GetMonData((Pokemon *)v11, MON_DATA_FORM, NULL);
+        param0->unk_2E0[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_SPECIES, NULL);
+        param0->unk_2F8[v12] = Pokemon_GetValue((Pokemon *)v11, MON_DATA_FORM, NULL);
 
-        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[0], param0->unk_310, GetMonData((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[0], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200, 3200);
 
-        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[1], param0->unk_310, GetMonData((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
+        sub_02013720(v1.unk_00, v1.unk_02, 63, &v0[1], param0->unk_310, Pokemon_GetValue((Pokemon *)v11, MON_DATA_PERSONALITY, NULL), 1, 2, param0->unk_2E0[v12]);
 
         DC_FlushRange(param0->unk_310, 3200);
         GX_LoadOBJ(param0->unk_310, v12 * 2 * 3200 + 3200, 3200);
@@ -1303,10 +1303,10 @@ static void ov86_0223C47C (UnkStruct_ov86_0223C3E4 * param0, int param1)
 
 static void ov86_0223C4DC (UnkStruct_ov86_0223C3E4 * param0)
 {
-    sub_0200B538(param0->unk_14, 0, sub_02076B10(param0->unk_24));
-    sub_0200B60C(param0->unk_14, 1, sub_02075B38(param0->unk_24), 3, 0, 1);
+    sub_0200B538(param0->unk_14, 0, Pokemon_GetBoxPokemon(param0->unk_24));
+    sub_0200B60C(param0->unk_14, 1, Pokemon_GetLevel(param0->unk_24), 3, 0, 1);
 
-    switch (sub_02075D6C(param0->unk_24)) {
+    switch (Pokemon_GetGender(param0->unk_24)) {
     case 0:
         MessageLoader_GetStrbuf(param0->unk_20, 1, param0->unk_18);
         break;
@@ -1329,7 +1329,7 @@ static void ov86_0223C54C (UnkStruct_ov86_0223C3E4 * param0)
     switch (v0) {
     case 0:
     case 1:
-        sub_0200B8C8(param0->unk_14, 0, GetMonData(param0->unk_24, MON_DATA_153, NULL));
+        sub_0200B8C8(param0->unk_14, 0, Pokemon_GetValue(param0->unk_24, MON_DATA_153, NULL));
         break;
     }
 
@@ -1355,7 +1355,7 @@ static void ov86_0223C58C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_34++;
         break;
     case 1:
-        GetMonData(v0->unk_24, MON_DATA_119, v0->unk_1C);
+        Pokemon_GetValue(v0->unk_24, MON_DATA_119, v0->unk_1C);
         ov86_0223C47C(v0, 48);
         ov86_0223C4DC(v0);
         ov86_0223C47C(v0, 64);
@@ -1364,7 +1364,7 @@ static void ov86_0223C58C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_34++;
         break;
     case 2:
-        sub_0200B5EC(v0->unk_14, 0, sub_02076B10(v0->unk_24));
+        sub_0200B5EC(v0->unk_14, 0, Pokemon_GetBoxPokemon(v0->unk_24));
         MessageLoader_GetStrbuf(v0->unk_20, 4, v0->unk_18);
         sub_0200C388(v0->unk_14, v0->unk_1C, v0->unk_18);
         ov86_0223C47C(v0, 96);
@@ -1729,9 +1729,9 @@ static UnkStruct_0201CD38 * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
     s16 v7, v8, v9;
 
     v2 = Heap_AllocFromHeap(63, sizeof(UnkStruct_ov86_0223CD94));
-    v5 = sub_0201D2E8();
+    v5 = LCRNG_Next();
 
-    sub_0201D2DC(13716);
+    LCRNG_SetSeed(13716);
 
     for (v3 = 0, v6 = 0; v3 < 48; v3++) {
         v2->unk_08[v3].unk_00 = v0[v6];
@@ -1740,9 +1740,9 @@ static UnkStruct_0201CD38 * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
             v6 = 0;
         }
 
-        v7 = -4096 + (sub_0201D2E8() % 8192);
-        v8 = 4096 + (sub_0201D2E8() % 8192);
-        v9 = -328 + (sub_0201D2E8() % 656);
+        v7 = -4096 + (LCRNG_Next() % 8192);
+        v8 = 4096 + (LCRNG_Next() % 8192);
+        v9 = -328 + (LCRNG_Next() % 656);
 
         for (v4 = 0; v4 < 4; v4++) {
             v2->unk_08[v3].unk_08[v4].x = v7 + v1[v4].x;
@@ -1751,21 +1751,21 @@ static UnkStruct_0201CD38 * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
             v2->unk_08[v3].unk_20.x = 0;
             v2->unk_08[v3].unk_20.y = 0;
             v2->unk_08[v3].unk_20.z = 0;
-            v2->unk_08[v3].unk_26.x = 512 + sub_0201D2E8() % 512;
-            v2->unk_08[v3].unk_26.y = 512 + sub_0201D2E8() % 512;
-            v2->unk_08[v3].unk_26.z = 512 + sub_0201D2E8() % 512;
+            v2->unk_08[v3].unk_26.x = 512 + LCRNG_Next() % 512;
+            v2->unk_08[v3].unk_26.y = 512 + LCRNG_Next() % 512;
+            v2->unk_08[v3].unk_26.z = 512 + LCRNG_Next() % 512;
 
             MTX_Identity44(&v2->unk_08[v3].unk_2C);
         }
 
-        v4 = sub_0201D2E8() & 7;
+        v4 = LCRNG_Next() & 7;
 
         while (v4--) {
             VEC_Fx16Add(&v2->unk_08[v3].unk_20, &v2->unk_08[v3].unk_26, &v2->unk_08[v3].unk_20);
         }
     }
 
-    sub_0201D2DC(v5);
+    LCRNG_SetSeed(v5);
 
     v2->unk_00 = 0;
     v2->unk_04 = 0;
@@ -1921,11 +1921,11 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
     BOOL v0;
     int v1 = 6;
 
-    v0 = sub_02073C88(param1);
+    v0 = Pokemon_EnterDecryptionContext(param1);
 
     do {
         {
-            int v2 = GetMonData(param1, MON_DATA_MET_GAME, NULL);
+            int v2 = Pokemon_GetValue(param1, MON_DATA_MET_GAME, NULL);
 
             if ((v2 == 1) || (v2 == 2) || (v2 == 3)) {
                 v1 = 4;
@@ -1943,7 +1943,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
             }
         }
 
-        if (GetMonData(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL)) {
+        if (Pokemon_GetValue(param1, MON_DATA_FATEFUL_ENCOUNTER, NULL)) {
             v1 = 6;
             break;
         }
@@ -1952,7 +1952,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
             u32 v3, v4;
 
             v3 = sub_02025F20(param2);
-            v4 = GetMonData(param1, MON_DATA_OT_ID, NULL);
+            v4 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
 
             if (v3 != v4) {
                 v1 = 2;
@@ -1960,7 +1960,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
             }
 
             sub_02025EF4(param2, param0->unk_1C48);
-            GetMonData(param1, MON_DATA_145, param0->unk_1C4C);
+            Pokemon_GetValue(param1, MON_DATA_145, param0->unk_1C4C);
 
             if (Strbuf_Compare(param0->unk_1C48, param0->unk_1C4C)) {
                 v1 = 2;
@@ -1968,10 +1968,10 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
             }
         }
 
-        if (GetMonData(param1, MON_DATA_153, NULL) >= 2000) {
+        if (Pokemon_GetValue(param1, MON_DATA_153, NULL) >= 2000) {
             v1 = 6;
         } else {
-            if (GetMonData(param1, MON_DATA_147, NULL) == 0) {
+            if (Pokemon_GetValue(param1, MON_DATA_147, NULL) == 0) {
                 v1 = 0;
             } else {
                 v1 = 1;
@@ -1979,7 +1979,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
         }
     } while (0);
 
-    sub_02073CD4(param1, v0);
+    Pokemon_ExitDecryptionContext(param1, v0);
 
     return v1;
 }

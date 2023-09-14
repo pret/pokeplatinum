@@ -344,7 +344,7 @@ void ov83_0223FBBC (UnkStruct_ov83_0223FBA4 * param0, int param1, s32 param2, BO
     }
 
     if (param0->unk_04 < 0) {
-        v1 = sub_0201D35C();
+        v1 = MTRNG_Next();
         v2 = (v1 % 5);
 
         if (v2 <= param0->unk_08) {

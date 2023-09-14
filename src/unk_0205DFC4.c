@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -19,7 +19,7 @@
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
 #include "unk_02061804.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay004/ov4_021D0D80.h"
 
@@ -251,7 +251,7 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     for (v1 = 0; v1 < v2; v1++) {
         v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0), v1);
 
-        if (GetMonData(v0, MON_DATA_IS_EGG, NULL) == 0) {
+        if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) == 0) {
             return v1;
         }
     }
@@ -270,7 +270,7 @@ BOOL HasAllLegendaryTitansInParty (UnkStruct_021C0794 * param0)
     v2 = Party_GetCurrentCount(v4);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v6[v0] = GetMonData(Party_GetPokemonBySlotIndex(v4, v0), MON_DATA_SPECIES, NULL);
+        v6[v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v4, v0), MON_DATA_SPECIES, NULL);
     }
 
     for (v0 = 0; v0 < 3; v0++) {

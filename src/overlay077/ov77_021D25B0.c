@@ -959,9 +959,9 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
 
     Unk_021BF67C.unk_65 = 0;
     GXLayers_SwapDisplay();
-    v0->unk_14 = sub_0201D2D0();
+    v0->unk_14 = LCRNG_GetSeed();
 
-    sub_0201D2DC(0);
+    LCRNG_SetSeed(0);
 
     return 1;
 }
@@ -1023,7 +1023,7 @@ static int ov77_021D2E60 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F2C0();
     }
 
-    sub_0201D2DC(v0->unk_14);
+    LCRNG_SetSeed(v0->unk_14);
     sub_02006830(param0);
     Heap_Destroy(76);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);

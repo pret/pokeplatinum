@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay005/struct_ov5_021DE6BC_decl.h"
 #include "overlay005/struct_ov5_021DE79C_decl.h"
 #include "overlay005/struct_ov5_021DE928_decl.h"
@@ -54,7 +54,7 @@
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "unk_02054884.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay005/ov5_021D0D80.h"
 #include "overlay005/ov5_021DDBE8.h"
 #include "overlay005/ov5_021E2338.h"
@@ -1421,8 +1421,8 @@ u32 CutInEffects_ForBattle (const BattleParams * param0)
 
     v3 = Party_FirstBattler(param0->parties[0]);
     v4 = Party_FirstBattler(param0->parties[1]);
-    v5 = GetMonData(v3, MON_DATA_161, NULL);
-    v6 = GetMonData(v4, MON_DATA_161, NULL);
+    v5 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
+    v6 = Pokemon_GetValue(v4, MON_DATA_LEVEL, NULL);
     v0 = v6 - v5;
 
     switch (param0->unk_12C) {

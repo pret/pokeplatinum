@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
@@ -21,7 +21,7 @@
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_02051D8C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_02096420.h"
 #include "overlay104/ov104_0222DCE0.h"
@@ -126,7 +126,7 @@ static int ov104_0223A7F4 (u8 param0, int param1, int param2)
         v2 = Unk_ov104_022401FC[param1].unk_00;
     }
 
-    v0 = v2 + (sub_0201D2E8() % v1);
+    v0 = v2 + (LCRNG_Next() % v1);
     return v0;
 }
 
@@ -231,10 +231,10 @@ BOOL ov104_0223A918 (const u16 param0[], const u16 param1[], int param2, int par
     while (v1 != param3) {
         if ((v1 >= param3 - v6) && (v7->unk_07 == 1)) {
             v2 = (v7 + 1)->unk_04 - (v7 + 1)->unk_02;
-            v3 = (v7 + 1)->unk_04 - (sub_0201D2E8() % (v2 + 1));
+            v3 = (v7 + 1)->unk_04 - (LCRNG_Next() % (v2 + 1));
             v0 = (v7 + 1)->unk_06;
         } else {
-            v3 = v7->unk_04 - (sub_0201D2E8() % (v2 + 1));
+            v3 = v7->unk_04 - (LCRNG_Next() % (v2 + 1));
             v0 = v7->unk_06;
         }
 
@@ -366,10 +366,10 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
     v4->unk_12C = 19;
 
     Party_InitWithCapacity(v4->parties[0], v2);
-    v5 = AllocMonZeroed(11);
+    v5 = Pokemon_New(11);
 
     for (v0 = 0; v0 < v2; v0++) {
-        sub_020775EC(Party_GetPokemonBySlotIndex(param0->unk_4D4, v0), v5);
+        Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_4D4, v0), v5);
         sub_0205213C(v4, v5, 0);
     }
 
@@ -386,10 +386,10 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
         v4->trainerData[v0].unk_0C = ov104_0223AEE4(param0);
     }
 
-    v5 = AllocMonZeroed(11);
+    v5 = Pokemon_New(11);
 
     for (v0 = 0; v0 < v3; v0++) {
-        sub_020775EC(Party_GetPokemonBySlotIndex(param0->unk_4D8, v0), v5);
+        Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_4D8, v0), v5);
         sub_0205213C(v4, v5, 1);
     }
 
@@ -409,10 +409,10 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
         ov104_0222E284(v4, &v6, v3, 3, 11);
         Party_InitWithCapacity(v4->parties[3], ov104_0223AA74(param0->unk_04, 0));
 
-        v5 = AllocMonZeroed(11);
+        v5 = Pokemon_New(11);
 
         for (v0 = 0; v0 < v3; v0++) {
-            sub_020775EC(Party_GetPokemonBySlotIndex(param0->unk_4D8, (v3 + v0)), v5);
+            Pokemon_Copy(Party_GetPokemonBySlotIndex(param0->unk_4D8, (v3 + v0)), v5);
             sub_0205213C(v4, v5, 3);
         }
 
@@ -456,7 +456,7 @@ void ov104_0223ADB0 (UnkStruct_ov104_0223ADA0 * param0)
     ov104_0222E330(param0->unk_280, param0->unk_254, param0->unk_260, param0->unk_268, NULL, 6, 11, 179);
     sub_0207A008(param0->unk_4D4);
 
-    v1 = AllocMonZeroed(11);
+    v1 = Pokemon_New(11);
 
     for (v0 = 0; v0 < 6; v0++) {
         ov104_0222DF40(&param0->unk_280[v0], v1, ov104_0223ADA0(param0));
@@ -482,7 +482,7 @@ void ov104_0223AE30 (UnkStruct_ov104_0223ADA0 * param0)
 
     ov104_0222E330(v3, param0->unk_584, param0->unk_590, param0->unk_598, NULL, 2, 11, 179);
 
-    v2 = AllocMonZeroed(11);
+    v2 = Pokemon_New(11);
 
     for (v0 = 0; v0 < 2; v0++) {
         ov104_0222DF40(&v3[v0], v2, ov104_0223ADA0(param0));

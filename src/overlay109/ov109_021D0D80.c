@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -74,7 +74,7 @@
 #include "unk_02038ED4.h"
 #include "unk_020393C8.h"
 #include "unk_02073838.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_02092494.h"
@@ -1301,7 +1301,7 @@ static int ov109_021D1918 (UnkStruct_ov109_021D0F70 * param0)
         BOOL v1;
 
         v0 = Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0];
-        v0 += sub_0201D2E8() % (Unk_ov109_021D5BE4[param0->unk_2C.unk_04][1] - v0 + 1);
+        v0 += LCRNG_Next() % (Unk_ov109_021D5BE4[param0->unk_2C.unk_04][1] - v0 + 1);
 
         if (v0 < Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0]) {
             v0 = Unk_ov109_021D5BE4[param0->unk_2C.unk_04][0];
@@ -3536,7 +3536,7 @@ static void ov109_021D3B70 (UnkStruct_ov109_021D0F70 * param0, int param1)
     v5 = Party_GetPokemonBySlotIndex(v3, v1);
 
     sub_0209304C(v5, sub_02032EE8(sub_0203608C()), 5, 0, 11);
-    sub_020775EC(v5, v4);
+    Pokemon_Copy(v5, v4);
 }
 
 static int ov109_021D3BC4 (UnkStruct_ov109_021D0F70 * param0)
@@ -3607,8 +3607,8 @@ static BOOL ov109_021D3C94 (Party * param0)
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(param0, v0);
 
-        if (GetMonData(v2, MON_DATA_IS_EGG, NULL)) {
-            if (GetMonData(v2, MON_DATA_3, NULL)) {
+        if (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL)) {
+            if (Pokemon_GetValue(v2, MON_DATA_3, NULL)) {
                 return 1;
             }
         }

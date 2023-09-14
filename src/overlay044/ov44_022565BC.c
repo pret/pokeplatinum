@@ -17,7 +17,7 @@
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "unk_02018340.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
@@ -330,7 +330,7 @@ static void ov44_02256954 (UnkStruct_ov44_022565BC * param0, u32 param1, u32 par
     if (param1 == 5) {
         v1 = 4;
     } else {
-        if (sub_020759CC(param3, param4, 28)) {
+        if (PokemonPersonalData_GetFormValue(param3, param4, 28)) {
             v1 = 4;
         } else {
             v1 = 5;

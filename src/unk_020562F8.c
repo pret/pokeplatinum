@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02024440_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020564B4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "overlay006/battle_params.h"
@@ -21,7 +21,7 @@
 #include "unk_02054D00.h"
 #include "unk_020562F8.h"
 #include "unk_0205DAC8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 typedef struct {
     u16 unk_00;
@@ -141,13 +141,13 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
     UnkStruct_02024440 * v4;
 
     v4 = sub_02024440(param0->unk_0C);
-    v3 = AllocMonZeroed(4);
+    v3 = Pokemon_New(4);
 
     for (v0 = 0; v0 < 6; v0++) {
         param1->unk_30[v0] = 0;
         sub_0202F000(v4, v0, v3);
 
-        v2 = GetMonData(v3, MON_DATA_SPECIES, NULL);
+        v2 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
         param1->unk_00[v0].unk_00 = v2;
         sub_02056400(v2, v1);
@@ -160,8 +160,8 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
 
         param1->unk_00[v0].unk_03 = v1[3];
         param1->unk_00[v0].unk_04 = v1[2];
-        param1->unk_00[v0].unk_06 = GetMonData(v3, MON_DATA_177, NULL);
-        param1->unk_00[v0].unk_07 = GetMonData(v3, MON_DATA_178, NULL);
+        param1->unk_00[v0].unk_06 = Pokemon_GetValue(v3, MON_DATA_177, NULL);
+        param1->unk_00[v0].unk_07 = Pokemon_GetValue(v3, MON_DATA_178, NULL);
     }
 
     Heap_FreeToHeap(v3);
@@ -274,7 +274,7 @@ static void sub_02056624 (UnkStruct_0203CDB0 * param0, BattleParams * param1, Un
 static BattleParams * sub_0205664C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * param1)
 {
     BattleParams * v0;
-    Pokemon * v1 = AllocMonZeroed(32);
+    Pokemon * v1 = Pokemon_New(32);
     UnkStruct_02024440 * v2 = sub_02024440(param0->unk_0C);
     int v3 = sub_020563BC(param0);
 

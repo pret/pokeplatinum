@@ -935,27 +935,27 @@ static int sub_0205BAE8 (UnkStruct_0205B43C * param0, int param1)
         return Unk_020ED548[v0];
         break;
     case 5:
-        return Unk_020ED560[sub_0201D2E8() % 2][v0];
+        return Unk_020ED560[LCRNG_Next() % 2][v0];
         break;
     case 6:
-        return Unk_020ED620[sub_0201D2E8() % 4][v0];
+        return Unk_020ED620[LCRNG_Next() % 4][v0];
         break;
     case 7:
-        return Unk_020ED550[sub_0201D2E8() % 2][v0];
+        return Unk_020ED550[LCRNG_Next() % 2][v0];
         break;
     case 8:
     case 1:
-        return Unk_020ED600[sub_0201D2E8() % 4][v0];
+        return Unk_020ED600[LCRNG_Next() % 4][v0];
         break;
     case 9:
     case 2:
-        return Unk_020ED640[sub_0201D2E8() % 4][v0];
+        return Unk_020ED640[LCRNG_Next() % 4][v0];
         break;
     case 10:
     case 3:
     case 12:
     case 13:
-        return Unk_020ED660[sub_0201D2E8() % 4][v0];
+        return Unk_020ED660[LCRNG_Next() % 4][v0];
         break;
     }
 

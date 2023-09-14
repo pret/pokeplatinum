@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "overlay076/const_ov76_0223EF3C.h"
 
@@ -51,7 +51,7 @@
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02225864.h"
@@ -595,9 +595,9 @@ void ov76_0223C188 (UnkStruct_ov76_0223DE00 * param0)
 
         param0->unk_2FC[v0] = sub_0200CE6C(param0->unk_D4.unk_08, param0->unk_D4.unk_0C, &v6);
 
-        v2 = GetMonData(v5, MON_DATA_SPECIES, NULL);
-        v1 = GetMonData(v5, MON_DATA_IS_EGG, NULL);
-        v4 = GetMonData(v5, MON_DATA_FORM, NULL);
+        v2 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
+        v1 = Pokemon_GetValue(v5, MON_DATA_IS_EGG, NULL);
+        v4 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
         v3 = sub_02079EDC(v2, v4, v1);
 
         sub_02021F24(param0->unk_2FC[v0]->unk_00, v3);
@@ -873,12 +873,12 @@ void ov76_0223C80C (UnkStruct_ov76_0223DE00 * param0, int param1, int param2)
 
     if (v1 != 0xff) {
         v3 = param2 + 1;
-        sub_02074B30(param0->unk_00->unk_04[v1], 162, (u8 *)&v3);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], 162, (u8 *)&v3);
     }
 
     if (v2 != 0xff) {
         v4 = param1 + 1;
-        sub_02074B30(param0->unk_00->unk_04[v2], 162, (u8 *)&v4);
+        Pokemon_SetValue(param0->unk_00->unk_04[v2], 162, (u8 *)&v4);
     }
 
     v0 = param0->unk_04[param1].unk_00;

@@ -16,7 +16,7 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02030EC4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207E060_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -61,7 +61,7 @@
 #include "unk_0202C858.h"
 #include "unk_0202CD50.h"
 #include "unk_02030EA4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207E060.h"
 #include "overlay066/ov66_0222DDF0.h"
@@ -2350,9 +2350,9 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
         for (v8 = 0; v8 < 6; v8++) {
             if (v8 < v7) {
                 v6 = Party_GetPokemonBySlotIndex(v1, v8);
-                param0->unk_20.unk_20[v8] = GetMonData(v6, MON_DATA_SPECIES, NULL);
-                param0->unk_20.unk_2C[v8] = GetMonData(v6, MON_DATA_FORM, NULL);
-                param0->unk_20.unk_32[v8] = GetMonData(v6, MON_DATA_IS_EGG, NULL);
+                param0->unk_20.unk_20[v8] = Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL);
+                param0->unk_20.unk_2C[v8] = Pokemon_GetValue(v6, MON_DATA_FORM, NULL);
+                param0->unk_20.unk_32[v8] = Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL);
             } else {
                 param0->unk_20.unk_20[v8] = 495;
             }
@@ -3423,7 +3423,7 @@ static u32 ov66_02230828 (const UnkStruct_ov66_022307D4 * param0)
         v1 += param0->unk_00[v0];
     }
 
-    v3 = sub_0201D35C() % v1;
+    v3 = MTRNG_Next() % v1;
     v2 = 0;
 
     for (v0 = 0; v0 < (27 / 3); v0++) {

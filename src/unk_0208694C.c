@@ -14,7 +14,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_02087A10_decl.h"
 
 #include "constdata/const_020F2DAC.h"
@@ -63,7 +63,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "unk_0208694C.h"
@@ -1090,9 +1090,9 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
         Strbuf* v0;
 
         if (param0->unk_04 == 0) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 0 + sub_0201D2E8() % 18);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 0 + LCRNG_Next() % 18);
         } else if (param0->unk_04 == 1) {
-            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 18 + sub_0201D2E8() % 18);
+            v0 = MessageLoader_GetNewStrbuf(param0->unk_170, 18 + LCRNG_Next() % 18);
         }
 
         Strbuf_Copy(param1->unk_18, v0);
@@ -1101,7 +1101,7 @@ static void sub_02086E6C (UnkStruct_02087A10 * param0, UnkStruct_0208737C * para
     } else if (param0->unk_00 == 3) {
         Strbuf* v1;
 
-        v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (sub_0201D2E8() % 2));
+        v1 = MessageLoader_GetNewStrbuf(param0->unk_170, 88 + (LCRNG_Next() % 2));
 
         Strbuf_Copy(param1->unk_18, v1);
         Strbuf_Free(v1);
@@ -1141,7 +1141,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
         u16 v3[10 + 1];
         Pokemon * v4;
 
-        v4 = AllocMonZeroed(18);
+        v4 = Pokemon_New(18);
         sub_02073D80(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
         Heap_FreeToHeap(v4);
     }
@@ -1419,9 +1419,9 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
     if (param0->unk_00 == 1) {
         Pokemon * v1;
 
-        v1 = AllocMonZeroed(18);
+        v1 = Pokemon_New(18);
         sub_02073D80(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
-        sub_0200B538(param0->unk_168, 0, sub_02076B10(v1));
+        sub_0200B538(param0->unk_168, 0, Pokemon_GetBoxPokemon(v1));
         Heap_FreeToHeap(v1);
     }
 
@@ -1485,10 +1485,10 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
         }
 
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {
-            Pokemon * v4 = AllocMonZeroed(18);
+            Pokemon * v4 = Pokemon_New(18);
 
             sub_02073D80(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
-            sub_0200B538(param0->unk_168, 0, sub_02076B10(v4));
+            sub_0200B538(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
             Heap_FreeToHeap(v4);
         } else {
             param0->unk_D8[param0->unk_158] = 0xffff;

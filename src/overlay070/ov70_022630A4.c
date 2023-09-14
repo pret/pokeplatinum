@@ -555,7 +555,7 @@ static void ov70_02263270 (UnkStruct_ov70_02263270 * param0)
     param0->unk_00 = 0;
     param0->unk_04 = 0;
     param0->unk_05 = 1;
-    param0->unk_06 = sub_0201D35C() % 4;
+    param0->unk_06 = MTRNG_Next() % 4;
     param0->unk_07 = 1;
 }
 
@@ -584,7 +584,7 @@ static fx32 ov70_02263290 (UnkStruct_ov70_02263270 * param0)
             if (param0->unk_07 == 1) {
                 param0->unk_04 = 0;
                 param0->unk_05 = 1;
-                param0->unk_06 = sub_0201D35C() % 4;
+                param0->unk_06 = MTRNG_Next() % 4;
             } else {
                 param0->unk_05 = 0;
             }

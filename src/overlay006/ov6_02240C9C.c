@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
@@ -40,7 +40,7 @@
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "roaming_pokemon.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079170.h"
 #include "party.h"
 #include "overlay005/ov5_021EFB0C.h"
@@ -270,7 +270,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
                 v16 = Party_FirstBattler(v11);
 
                 v14.unk_04 = 1;
-                v14.unk_0C = GetMonData(v16, MON_DATA_161, NULL);
+                v14.unk_0C = Pokemon_GetValue(v16, MON_DATA_LEVEL, NULL);
             }
         }
 
@@ -649,7 +649,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, BattleParams ** param1)
                 v15 = Party_FirstBattler(v10);
 
                 v13.unk_04 = 1;
-                v13.unk_0C = GetMonData(v15, MON_DATA_161, NULL);
+                v13.unk_0C = Pokemon_GetValue(v15, MON_DATA_LEVEL, NULL);
             }
         }
 
@@ -1054,7 +1054,7 @@ static void ov6_02241A90 (Pokemon * param0, u8 * param1)
 {
     u16 v0;
 
-    v0 = GetMonData(param0, MON_DATA_HELD_ITEM, NULL);
+    v0 = Pokemon_GetValue(param0, MON_DATA_HELD_ITEM, NULL);
 
     if ((v0 == 224) || (v0 == 320)) {
         (*param1) = ((*param1) * 2) / 3;
@@ -1081,7 +1081,7 @@ static u8 ov6_02241AE4 (Pokemon * param0, const UnkStruct_ov6_022422D0 * param1)
     if (param1->unk_0D == 0) {
         if (param1->unk_0E == 28) {
             if (inline_020564D0(2) == 0) {
-                v0 = (u32)GetMonData(param0, MON_DATA_PERSONALITY, NULL);
+                v0 = (u32)Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
                 v0 = v0 % 25;
                 return (u8)v0;
             }
@@ -1107,7 +1107,7 @@ static u8 ov6_02241B40 (const UnkStruct_ov6_0224222C * param0, const UnkStruct_o
     }
 
     v0 = v3 - v2 + 1;
-    v1 = sub_0201D2E8() % v0;
+    v1 = LCRNG_Next() % v0;
 
     if (param1->unk_0D == 0) {
         if ((param1->unk_0E == 55) || (param1->unk_0E == 72) || (param1->unk_0E == 46)) {
@@ -1131,8 +1131,8 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
     u8 v4;
     Pokemon * v5;
 
-    v5 = AllocMonZeroed(11);
-    ZeroMonData(v5);
+    v5 = Pokemon_New(11);
+    Pokemon_Init(v5);
 
     v2 = 0;
 
@@ -1140,7 +1140,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
         if (param4->unk_0E == 56) {
             u32 v6;
 
-            v6 = sub_020759F0(param0, 18);
+            v6 = PokemonPersonalData_GetSpeciesValue(param0, 18);
 
             switch (v6) {
             case 0:
@@ -1149,13 +1149,13 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
                 break;
             default:
                 if (inline_020564D0(3) > 0) {
-                    v3 = GetMonData(param5, MON_DATA_111, NULL);
+                    v3 = Pokemon_GetValue(param5, MON_DATA_GENDER, NULL);
                     v2 = 1;
                 }
             }
         } else if (param4->unk_0E == 28) {
             if (inline_020564D0(2) == 0) {
-                v4 = sub_02075BCC(param5);
+                v4 = Pokemon_GetNature(param5);
                 v2 = 1;
             }
         }
@@ -1168,7 +1168,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
 
         do {
             if (param4->unk_0E == 56) {
-                v7 = sub_02075DAC(param0, v1);
+                v7 = Pokemon_GetGenderOf(param0, v1);
                 GF_ASSERT(v7 != 2);
 
                 if (v7 != v3) {
@@ -1177,7 +1177,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
                     v1 = sub_02075E64(param3);
                 }
             } else if (param4->unk_0E == 28) {
-                v8 = GetNatureFromPersonality(v1);
+                v8 = Pokemon_GetNatureOf(v1);
 
                 if (v8 == v4) {
                     break;
@@ -1202,14 +1202,14 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
     BOOL v2;
     Pokemon * v3;
 
-    v3 = AllocMonZeroed(11);
-    ZeroMonData(v3);
+    v3 = Pokemon_New(11);
+    Pokemon_Init(v3);
     v0 = 1;
 
     {
         u32 v4;
 
-        v4 = sub_020759F0(param0, 18);
+        v4 = PokemonPersonalData_GetSpeciesValue(param0, 18);
 
         switch (v4) {
         case 0:
@@ -1223,7 +1223,7 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
         if (param3->unk_0D == 0) {
             if (param3->unk_0E == 56) {
                 if (inline_020564D0(3) > 0) {
-                    v1 = GetMonData(param4, MON_DATA_111, NULL);
+                    v1 = Pokemon_GetValue(param4, MON_DATA_GENDER, NULL);
 
                     if (v1 == 1) {
                         v1 = 0;
@@ -1234,7 +1234,7 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
                     }
 
                     sub_02074088(v3, param0, param1, 32, v1, ov6_02241AE4(param4, param3), 0);
-                    sub_02074B30(v3, 7, &param3->unk_00);
+                    Pokemon_SetValue(v3, 7, &param3->unk_00);
 
                     v2 = ov6_02242514(param2, param3, v3, param5);
                     GF_ASSERT(v2);
@@ -1246,7 +1246,7 @@ static void ov6_02241CC0 (u16 param0, u8 param1, const int param2, const UnkStru
     }
 
     sub_02074044(v3, param0, param1, 32, ov6_02241AE4(param4, param3));
-    sub_02074B30(v3, 7, &param3->unk_00);
+    Pokemon_SetValue(v3, 7, &param3->unk_00);
     v2 = ov6_02242514(param2, param3, v3, param5);
 
     GF_ASSERT(v2);
@@ -1490,8 +1490,8 @@ static BOOL ov6_0224219C (const UnkStruct_ov6_0224222C * param0, const u8 param1
     v1 = 0;
 
     for (v2 = 0; v2 < param1; v2++) {
-        v3 = sub_020759F0(param0[v2].unk_00, 6);
-        v4 = sub_020759F0(param0[v2].unk_00, 7);
+        v3 = PokemonPersonalData_GetSpeciesValue(param0[v2].unk_00, 6);
+        v4 = PokemonPersonalData_GetSpeciesValue(param0[v2].unk_00, 7);
 
         if ((v3 == param2) || (v4 == param2)) {
             v0[v1++] = v2;
@@ -1502,7 +1502,7 @@ static BOOL ov6_0224219C (const UnkStruct_ov6_0224222C * param0, const u8 param1
         return 0;
     }
 
-    *param3 = v0[sub_0201D2E8() % v1];
+    *param3 = v0[LCRNG_Next() % v1];
     return 1;
 }
 
@@ -1564,7 +1564,7 @@ static BOOL ov6_022422D0 (const UnkStruct_ov6_022422D0 * param0, Pokemon * param
 
     if (param0->unk_0D == 0) {
         if ((param0->unk_0E == 51) || (param0->unk_0E == 22)) {
-            v0 = GetMonData(param1, MON_DATA_161, NULL);
+            v0 = Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL);
 
             if (v0 <= 5) {
                 return 0;
@@ -1620,7 +1620,7 @@ static void ov6_0224239C (const u32 param0, UnkStruct_0206C638 * param1, BattleP
     BOOL v6;
     Pokemon * v7;
 
-    v7 = AllocMonZeroed(4);
+    v7 = Pokemon_New(4);
     v0 = sub_0202D93C(param1, 4);
     v1 = sub_0202D93C(param1, 6);
     v2 = sub_0202D93C(param1, 2);
@@ -1629,9 +1629,9 @@ static void ov6_0224239C (const u32 param0, UnkStruct_0206C638 * param1, BattleP
     v5 = sub_0202D93C(param1, 5);
 
     sub_02074158(v7, v0, v1, v2, v3);
-    sub_02074B30(v7, 7, &param0);
-    sub_02074B30(v7, 160, &v4);
-    sub_02074B30(v7, 163, &v5);
+    Pokemon_SetValue(v7, 7, &param0);
+    Pokemon_SetValue(v7, 160, &v4);
+    Pokemon_SetValue(v7, 163, &v5);
 
     v6 = Party_AddPokemon(param2->parties[1], v7);
 
@@ -1694,7 +1694,7 @@ static BOOL ov6_02242514 (const int param0, const UnkStruct_ov6_022422D0 * param
         int v3;
 
         v1 = 0;
-        v3 = GetMonData(param2, MON_DATA_SPECIES, NULL);
+        v3 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
 
         if (v3 == 422) {
             v1 = 1;
@@ -1717,11 +1717,11 @@ static BOOL ov6_02242514 (const int param0, const UnkStruct_ov6_022422D0 * param
 
             v1 = 1;
             v4 = Unk_ov6_02248FF0[param1->unk_11].unk_00;
-            v2 = Unk_ov6_02248FF0[param1->unk_11].unk_04[sub_0201D2E8() % v4];
+            v2 = Unk_ov6_02248FF0[param1->unk_11].unk_04[LCRNG_Next() % v4];
         }
 
         if (v1) {
-            sub_02074B30(param2, 112, (u8 *)&v2);
+            Pokemon_SetValue(param2, 112, (u8 *)&v2);
         }
     }
 
@@ -1758,9 +1758,9 @@ static u8 ov6_022425D4 (const UnkStruct_ov6_0224222C * param0, const UnkStruct_o
 
 static void ov6_02242634 (UnkStruct_0203CDB0 * param0, Pokemon * param1, UnkStruct_ov6_02242634 * param2, UnkStruct_ov6_022422D0 * param3)
 {
-    if (GetMonData(param1, MON_DATA_IS_EGG, NULL) == 0) {
+    if (Pokemon_GetValue(param1, MON_DATA_IS_EGG, NULL) == 0) {
         param3->unk_0D = 0;
-        param3->unk_0E = GetMonData(param1, MON_DATA_10, NULL);
+        param3->unk_0E = Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
     } else {
         param3->unk_0D = 1;
         param3->unk_0E = 123;

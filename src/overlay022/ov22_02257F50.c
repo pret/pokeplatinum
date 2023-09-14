@@ -148,8 +148,8 @@ void ov22_0225804C (int param0, int param1, int * param2, int * param3, int para
     case 0:
         *param2 = (8 + 2);
         *param3 = (16 + 2);
-        *param2 += (sub_0201D35C() % ((112 - (2 * 2)) - param4));
-        *param3 += (sub_0201D35C() % ((129 - (2 * 2)) - param5));
+        *param2 += (MTRNG_Next() % ((112 - (2 * 2)) - param4));
+        *param3 += (MTRNG_Next() % ((129 - (2 * 2)) - param5));
         break;
     case 1:
     case 2:

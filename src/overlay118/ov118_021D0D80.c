@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_0207F248.h"
 
@@ -24,7 +24,7 @@
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
 #include "unk_0203CC84.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -78,16 +78,16 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
     switch (v0->unk_00) {
     case 0:
     {
-        v0->unk_0C = GetMonData(v1, MON_DATA_SPECIES, NULL);
+        v0->unk_0C = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
         switch (v0->unk_0C) {
         case 487:
-            sub_02077A00(v1);
+            Pokemon_SetGiratinaForm(v1);
             v0->unk_08 = 65;
             v0->unk_10 = 0;
             break;
         case 492:
-            SetShayminForm(v1, 1);
+            Pokemon_SetShayminForm(v1, 1);
             v0->unk_08 = 35;
             v0->unk_10 = 1;
             break;
@@ -146,7 +146,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
 
         v2 = MessageLoader_GetNewStrbuf(param0->unk_69C, 202);
 
-        sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v1));
+        sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, v2);
         Strbuf_Free(v2);
         sub_02082708(param0, 0xffffffff, 1);

@@ -22,8 +22,8 @@ void sub_0202D7B0 (UnkStruct_0202D7B0 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0202D7B0));
 
-    param0->unk_00 = sub_0201D35C();
-    param0->unk_04 = sub_0201D35C();
+    param0->unk_00 = MTRNG_Next();
+    param0->unk_04 = MTRNG_Next();
     param0->unk_08.unk_00 = 0;
     param0->unk_08.unk_04 = 0xffff;
     param0->unk_08.unk_06 = 0xffff;

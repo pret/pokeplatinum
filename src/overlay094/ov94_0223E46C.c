@@ -39,7 +39,7 @@
 #include "unk_0202DA40.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223E46C.h"
@@ -428,7 +428,7 @@ static int ov94_0223EA84 (UnkStruct_ov94_0223FD4C * param0)
             break;
         case 1:
             if (param0->unk_B7A.unk_00 != 0) {
-                param0->unk_10E4->unk_20 = sub_020759F0(param0->unk_B7A.unk_00, 18);
+                param0->unk_10E4->unk_20 = PokemonPersonalData_GetSpeciesValue(param0->unk_B7A.unk_00, 18);
 
                 if (ov94_02241B80(&param0->unk_B7A, param0->unk_10E4->unk_20)) {
                     sub_02005748(1500);
@@ -843,7 +843,7 @@ static int ov94_0223F2B0 (UnkStruct_ov94_0223FD4C * param0)
         sub_0201ADA4(&param0->unk_FCC[1], 0x0);
 
         ov94_02242158(&param0->unk_FCC[1], param0->unk_B94, v0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
-        param0->unk_10E4->unk_20 = sub_020759F0(v0, 18);
+        param0->unk_10E4->unk_20 = PokemonPersonalData_GetSpeciesValue(v0, 18);
         ov94_02242AC4(&param0->unk_111C, param0->unk_10E4->unk_06 + param0->unk_10E4->unk_04, param0->unk_10E4->unk_0A, param0->unk_10E4->unk_08);
 
         if (ov94_02241B80(&param0->unk_B7A, param0->unk_10E4->unk_20)) {

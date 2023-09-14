@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay094/struct_ov94_0223BA88.h"
@@ -31,7 +31,7 @@
 #include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay094/ov94_0223BCB0.h"
 #include "overlay094/ov94_0223D0C4.h"
 #include "overlay094/ov94_0223DC04.h"
@@ -80,7 +80,7 @@ int ov94_0223DC04 (UnkStruct_ov94_0223FD4C * param0, int param1)
     ov94_0223DE04(param0);
     ov94_0223DED8(param0);
     ov94_0223DE7C(param0);
-    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], sub_02076B10((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00), &param0->unk_250[param0->unk_11C].unk_EC);
+    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00), &param0->unk_250[param0->unk_11C].unk_EC);
 
     v0 = (Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00;
 

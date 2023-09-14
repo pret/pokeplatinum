@@ -210,8 +210,8 @@ static void ov23_022491CC (int param0[][2], int param1[][3])
         param1[v0][1] = 0;
         param1[v0][2] = 0;
 
-        Unk_ov23_0225776C[v0][0] = sub_0201D2E8() % 500 + 50;
-        Unk_ov23_0225776C[v0][1] = sub_0201D2E8() % 500 + 50;
+        Unk_ov23_0225776C[v0][0] = LCRNG_Next() % 500 + 50;
+        Unk_ov23_0225776C[v0][1] = LCRNG_Next() % 500 + 50;
     }
 }
 

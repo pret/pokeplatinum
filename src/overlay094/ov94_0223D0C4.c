@@ -9,8 +9,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 
 #include "overlay094/const_ov94_02245FD8.h"
 
@@ -41,7 +40,7 @@
 #include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "item.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -92,7 +91,7 @@ int ov94_0223D0C4 (UnkStruct_ov94_0223FD4C * param0, int param1)
     ov94_0223D2E8(param0);
     ov94_0223D438(param0);
     ov94_0223D3DC(param0);
-    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00), &param0->unk_12C.unk_EC);
+    ov94_0223D910(param0->unk_B90, param0->unk_B94, param0->unk_B8C, &param0->unk_FCC[0], Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00), &param0->unk_12C.unk_EC);
 
     v0 = (Pokemon *)param0->unk_12C.unk_00.unk_00;
 
@@ -506,7 +505,7 @@ static void ov94_0223D88C (UnkStruct_ov94_0223FD4C * param0, int param1, int par
 {
     Strbuf* v0;
 
-    sub_0200B538(param0->unk_B8C, 0, sub_02076B10(param5));
+    sub_0200B538(param0->unk_B8C, 0, Pokemon_GetBoxPokemon(param5));
     v0 = MessageLoader_GetNewStrbuf(param0->unk_B90, param1);
     sub_0200C388(param0->unk_B8C, param0->unk_BAC, v0);
     sub_0201ADA4(&param0->unk_F5C, 0xf0f);
@@ -530,12 +529,12 @@ void ov94_0223D910 (MessageLoader * param0, MessageLoader * param1, UnkStruct_02
     Strbuf* v5 = Strbuf_Init((8 + 1) * 2, 62);
     int v6, v7, v8, v9, v10;
 
-    sub_02074570(param4, MON_DATA_119, v4);
+    BoxPokemon_GetValue(param4, MON_DATA_119, v4);
 
     v10 = param5->unk_00;
     v6 = param5->unk_02;
     v7 = param5->unk_03;
-    v8 = sub_02074570(param4, MON_DATA_HELD_ITEM, NULL);
+    v8 = BoxPokemon_GetValue(param4, MON_DATA_HELD_ITEM, NULL);
     v3 = MessageLoader_GetNewStrbuf(param0, 70);
     v1 = MessageLoader_GetNewStrbuf(param0, Unk_ov94_02245FD8[v6]);
 
@@ -581,7 +580,7 @@ void ov94_0223DA78 (MessageLoader * param0, UnkStruct_0205AA50 param1[], u16 * p
     Strbuf_CopyChars(v0, param2);
 
     v2 = MessageLoader_GetNewStrbuf(param0, 172);
-    GetMonData(param3, MON_DATA_145, v3);
+    Pokemon_GetValue(param3, MON_DATA_145, v3);
 
     ov94_02245900(&param1[0], v1, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
     ov94_02245900(&param1[1], v0, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)));
@@ -602,8 +601,8 @@ void ov94_0223DB2C (Pokemon * param0)
     sub_02075EF4(&v0, param0, 2);
 
     {
-        int v2 = GetMonData(param0, MON_DATA_PERSONALITY, NULL);
-        int v3 = GetMonData(param0, MON_DATA_SPECIES, NULL);
+        int v2 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
+        int v3 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
 
         sub_020136A4(v0.unk_00, v0.unk_02, 62, 0, 0, 10, 10, v1, v2, 0, 2, v3);
     }

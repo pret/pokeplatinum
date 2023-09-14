@@ -153,7 +153,7 @@ static void ov100_021D42B0 (UnkStruct_ov100_021D4104 * param0)
     if (v3 == 0) {
         param0->unk_28[2]++;
         param0->unk_28[2] %= NELEMS(v2);
-        param0->unk_28[2] = sub_0201D2E8() % NELEMS(v2);
+        param0->unk_28[2] = LCRNG_Next() % NELEMS(v2);
         param0->unk_0C = 3;
     }
 
@@ -172,8 +172,8 @@ static void ov100_021D4318 (UnkStruct_ov100_021D4104 * param0)
     if (param0->unk_20 < 12) {
         param0->unk_24++;
         param0->unk_24 %= 3;
-        param0->unk_28[0] = (sub_0201D2E8() % param0->unk_24) + 1;
-        param0->unk_28[1] = (sub_0201D2E8() % param0->unk_24) + 1;
+        param0->unk_28[0] = (LCRNG_Next() % param0->unk_24) + 1;
+        param0->unk_28[1] = (LCRNG_Next() % param0->unk_24) + 1;
         param0->unk_0C = 2;
     }
 

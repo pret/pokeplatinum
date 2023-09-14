@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
@@ -23,7 +23,7 @@
 #include "unk_02030108.h"
 #include "unk_02051D8C.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -258,7 +258,7 @@ BOOL ov104_02234A1C (UnkStruct_ov104_0222E930 * param0)
 
         for (v7 = 0; v7 < v5; v7++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[v7]);
-            sub_02074B30(v1, 6, &v3->unk_728[v7]);
+            Pokemon_SetValue(v1, 6, &v3->unk_728[v7]);
         }
         break;
     case 28:
@@ -297,7 +297,7 @@ BOOL ov104_02234A1C (UnkStruct_ov104_0222E930 * param0)
     case 15:
         v2 = Party_GetFromSavedata(v0->unk_08);
         v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[0]);
-        *v11 = GetMonData(v1, MON_DATA_SPECIES, NULL);
+        *v11 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
         break;
     case 35:
         ov104_022356A0(v3);
@@ -414,7 +414,7 @@ BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
     v4 = sub_0209B978(param0->unk_00->unk_00);
     v2 = Party_GetFromSavedata(v5->unk_08);
     v3 = Party_GetPokemonBySlotIndex(v2, v4->unk_260[0]);
-    v1 = GetMonData(v3, MON_DATA_SPECIES, NULL);
+    v1 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (v4->unk_04 == 0) {
         v0 = sub_0202440C(v5->unk_08);

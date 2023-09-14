@@ -46,7 +46,7 @@ BOOL sub_0204CE1C (UnkStruct_0203E724 * param0)
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4 = inline_02049538(param0);
 
-    v2 = sub_0201D2E8() % 100;
+    v2 = LCRNG_Next() % 100;
 
     if (v2 < 15) {
         v0 = 0;
@@ -136,7 +136,7 @@ BOOL sub_0204CF68 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = (sub_0201D2E8() % (NELEMS(Unk_020EBF64)));
+    *v0 = (LCRNG_Next() % (NELEMS(Unk_020EBF64)));
     return 0;
 }
 

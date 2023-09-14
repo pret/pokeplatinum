@@ -27,7 +27,7 @@
 #include "unk_0206B9D8.h"
 #include "unk_0206C2D0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 static void sub_02055AC0(UnkStruct_0203CDB0 * param0, s32 param1);
@@ -147,7 +147,7 @@ static void sub_02055B64 (UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime
         Party * v1;
 
         v1 = Party_GetFromSavedata(param0->unk_0C);
-        sub_02077BD8(v1, param1, param2);
+        Party_SetShayminForm(v1, param1, param2);
     }
 }
 

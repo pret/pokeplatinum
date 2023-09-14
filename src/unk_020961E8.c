@@ -302,7 +302,7 @@ static void sub_020963C0 (UnkStruct_020961E8 * param0, int param1)
         param0->unk_418.unk_BB8 = v2;
     }
 
-    param0->unk_418.unk_BBC = sub_0201D2E8();
+    param0->unk_418.unk_BBC = LCRNG_Next();
     sub_0203597C(116, &param0->unk_418, sizeof(UnkStruct_ov59_021D30E0));
 }
 

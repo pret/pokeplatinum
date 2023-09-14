@@ -4,8 +4,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay033/struct_ov33_02256474_decl.h"
@@ -16,7 +15,7 @@
 #include "heap.h"
 #include "unk_02022594.h"
 #include "unk_020244AC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "party.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -88,11 +87,11 @@ static BOOL ov33_0225621C (UnkStruct_ov33_0225621C * param0, UnkStruct_ov25_0225
             for (v2 = 0; v2 < param0->unk_04.unk_00; v2++) {
                 v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-                if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
-                    param0->unk_04.unk_04[v4].unk_04 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-                    param0->unk_04.unk_04[v4].unk_08 = GetMonData(v1, MON_DATA_FORM, NULL);
+                if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
+                    param0->unk_04.unk_04[v4].unk_04 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+                    param0->unk_04.unk_04[v4].unk_08 = Pokemon_GetValue(v1, MON_DATA_FORM, NULL);
                     param0->unk_04.unk_04[v4].unk_00 = sub_02079D40((const BoxPokemon *)v1);
-                    v3 = ov33_0225630C(GetMonData(v1, MON_DATA_FRIENDSHIP, NULL));
+                    v3 = ov33_0225630C(Pokemon_GetValue(v1, MON_DATA_FRIENDSHIP, NULL));
 
                     switch (v3) {
                     case 0:

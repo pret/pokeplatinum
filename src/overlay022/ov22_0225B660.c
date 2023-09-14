@@ -10,8 +10,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
 #include "struct_defs/struct_02041DC8.h"
@@ -34,7 +33,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02094EDC.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_0225AF8C.h"
@@ -350,9 +349,9 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0202A524(param0->unk_04, v2);
     sub_0200B48C(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
-    v5 = AllocMonZeroed(13);
+    v5 = Pokemon_New(13);
     sub_0202A560(param0->unk_04, v5);
-    v6 = sub_02076B10(v5);
+    v6 = Pokemon_GetBoxPokemon(v5);
     sub_0200B5CC(v1, 4, v6);
     Heap_FreeToHeap(v5);
 

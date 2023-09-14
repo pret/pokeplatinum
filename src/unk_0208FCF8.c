@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208D7BC.h"
@@ -17,7 +17,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_0207A274.h"
 #include "unk_0208C324.h"
@@ -573,9 +573,9 @@ static void sub_020908CC (UnkStruct_0208D7BC * param0)
 
         if (param0->unk_24C->unk_11 == 2) {
             {
-                Pokemon * v3 = AllocMonZeroed(19);
+                Pokemon * v3 = Pokemon_New(19);
 
-                sub_020774C8(v1, v3);
+                Pokemon_FromBoxPokemon(v1, v3);
                 sub_02090800(&param0->unk_244[0], v3, v2);
                 Heap_FreeToHeap(v3);
             }

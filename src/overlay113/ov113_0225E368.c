@@ -32,7 +32,7 @@
 #include "unk_0201C970.h"
 #include "unk_0201D15C.h"
 #include "unk_02020020.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay113/ov113_0225E368.h"
 #include "overlay113/ov113_02260620.h"
 
@@ -1036,7 +1036,7 @@ static u8 ov113_0225EEF8 (const UnkStruct_ov113_02260818 * param0)
 {
     u8 v0;
 
-    v0 = GetNatureFromPersonality(param0->unk_04);
+    v0 = Pokemon_GetNatureOf(param0->unk_04);
     return Unk_ov113_02260D30[v0];
 }
 

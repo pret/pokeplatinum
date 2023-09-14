@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0202F298.h"
 #include "struct_defs/struct_0202F298_sub1.h"
 #include "struct_defs/struct_0202F41C.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay006/battle_params.h"
 
 #include "unk_02002B7C.h"
@@ -18,7 +18,7 @@
 #include "unk_0202440C.h"
 #include "unk_020244AC.h"
 #include "unk_0202F1D4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay062/ov62_02248408.h"
 
@@ -71,18 +71,18 @@ void ov62_02248408 (UnkStruct_0202F264 * param0, BattleParams * param1, int para
         for (v11 = 0; v11 < v12; v11++) {
             v13 = Party_GetPokemonBySlotIndex(param1->parties[v4], v11);
 
-            if (GetMonData(v13, MON_DATA_172, NULL) == 0) {
+            if (Pokemon_GetValue(v13, MON_DATA_172, NULL) == 0) {
                 break;
             }
 
             MI_CpuClear16(v8, sizeof(u16) * v9);
 
-            GetMonData(v13, MON_DATA_117, v8);
+            Pokemon_GetValue(v13, MON_DATA_117, v8);
             Strbuf_Clear(v6);
             Strbuf_CopyChars(v6, v8);
 
             if (sub_02002DB4(0, v6, v7) == 0) {
-                sub_02074B30(v13, 179, NULL);
+                Pokemon_SetValue(v13, 179, NULL);
                 continue;
             }
         }

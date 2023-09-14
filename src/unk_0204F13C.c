@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -43,7 +43,7 @@
 #include "unk_0204FA34.h"
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
@@ -176,10 +176,10 @@ static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
 
     for (v0 = 0, v2 = 0; v0 < v3; v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
-        v4 = GetMonData(v7, MON_DATA_SPECIES, NULL);
-        v5 = GetMonData(v7, MON_DATA_161, NULL);
+        v4 = Pokemon_GetValue(v7, MON_DATA_SPECIES, NULL);
+        v5 = Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL);
 
-        if (GetMonData(v7, MON_DATA_IS_EGG, NULL) != 0) {
+        if (Pokemon_GetValue(v7, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
         }
 

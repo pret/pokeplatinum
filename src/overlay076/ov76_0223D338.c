@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "overlay076/const_ov76_0223EF3C.h"
 
@@ -50,7 +50,7 @@
 #include "unk_02023FCC.h"
 #include "unk_0202C9F4.h"
 #include "unk_0202CD50.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay076/ov76_0223B140.h"
@@ -112,20 +112,20 @@ void ov76_0223D3CC (UnkStruct_ov76_0223DE00 * param0)
 
     if (param0->unk_04[param0->unk_3C4[0]].unk_00 != 0xff) {
         v2 = param0->unk_00->unk_04[param0->unk_04[param0->unk_3C4[0]].unk_00];
-        sub_020775EC(v2, param0->unk_428);
+        Pokemon_Copy(v2, param0->unk_428);
 
         return;
     }
 
     for (v0 = 0; v0 < param0->unk_00->unk_00; v0++) {
         v2 = param0->unk_00->unk_04[v0];
-        v1 = GetMonData(v2, MON_DATA_IS_EGG, NULL);
+        v1 = Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL);
 
         if (v1 != 0) {
             continue;
         }
 
-        sub_020775EC(v2, param0->unk_428);
+        Pokemon_Copy(v2, param0->unk_428);
         break;
     }
 }
@@ -718,7 +718,7 @@ void ov76_0223DD88 (UnkStruct_ov76_0223DE00 * param0)
 
     sub_02075EF4(&v0, param0->unk_428, 2);
 
-    v2 = GetMonData(param0->unk_428, MON_DATA_SPECIES, NULL);
+    v2 = Pokemon_GetValue(param0->unk_428, MON_DATA_SPECIES, NULL);
     v3 = sub_020765AC(param0->unk_428, 2);
 
     param0->unk_D4.unk_D8 = v3;
@@ -731,8 +731,8 @@ static void ov76_0223DE00 (UnkStruct_ov76_0223DE00 * param0)
     int v0;
     int v1;
 
-    v0 = GetMonData(param0->unk_428, MON_DATA_SPECIES, NULL);
-    v1 = sub_02075BCC(param0->unk_428);
+    v0 = Pokemon_GetValue(param0->unk_428, MON_DATA_SPECIES, NULL);
+    v1 = Pokemon_GetNature(param0->unk_428);
 
     sub_02007B98(param0->unk_D4.unk_D4, 1);
     sub_020789F4(param0->unk_42C, param0->unk_D4.unk_188, param0->unk_D4.unk_D4, v0, 2, 0, 0);
@@ -865,7 +865,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
                 v0.unk_18 = 1;
                 v0.unk_1C = param0->unk_D4.unk_08;
                 v0.unk_20 = param0->unk_D4.unk_14;
-                v0.unk_10 = GetMonData(param0->unk_428, MON_DATA_POKEBALL, NULL);
+                v0.unk_10 = Pokemon_GetValue(param0->unk_428, MON_DATA_POKEBALL, NULL);
 
                 param0->unk_D4.unk_158 = ov12_02237728(&v0);
                 param0->unk_3DC++;
@@ -882,8 +882,8 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             v1 = param0->unk_3C4[0] + 1;
 
             ov76_0223B848(&v2, param0);
-            sub_02074B30(param0->unk_428, 162, (u8 *)&v1);
-            sub_02074B30(param0->unk_428, 171, &v2);
+            Pokemon_SetValue(param0->unk_428, 162, (u8 *)&v1);
+            Pokemon_SetValue(param0->unk_428, 171, &v2);
 
             param0->unk_D4.unk_154 = ov12_02236004(53, &v3);
             ov12_02236320(param0->unk_D4.unk_154);
@@ -955,7 +955,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
                 v5.unk_18 = 1;
                 v5.unk_1C = param0->unk_D4.unk_08;
                 v5.unk_20 = param0->unk_D4.unk_14;
-                v5.unk_10 = GetMonData(param0->unk_428, MON_DATA_POKEBALL, NULL);
+                v5.unk_10 = Pokemon_GetValue(param0->unk_428, MON_DATA_POKEBALL, NULL);
 
                 param0->unk_D4.unk_158 = ov12_02237728(&v5);
 
@@ -1015,7 +1015,7 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             if (param0->unk_264[param0->unk_3C4[0]].unk_00 != 0xff) {
                 v8 = param0->unk_00->unk_04[param0->unk_264[param0->unk_3C4[0]].unk_00];
 
-                sub_02074B30(v8, 171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
+                Pokemon_SetValue(v8, 171, sub_0202CA28(param0->unk_00->unk_20, param0->unk_3C4[0]));
             }
         }
         param0->unk_3D4 = 8;
@@ -1244,7 +1244,7 @@ void ov76_0223E91C (UnkStruct_ov76_0223DE00 * param0, int param1)
     v1 = param0->unk_04[param1].unk_00;
 
     if (v1 != 0xff) {
-        sub_02074B30(param0->unk_00->unk_04[v1], 162, (u8 *)&v2);
+        Pokemon_SetValue(param0->unk_00->unk_04[v1], 162, (u8 *)&v2);
     }
 
     param0->unk_04[param1].unk_00 = 0xff;

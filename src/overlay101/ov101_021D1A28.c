@@ -228,7 +228,7 @@ static void ov101_021D1A68 (UnkStruct_ov101_021D13C8 * param0)
     fx32 v2;
 
     for (v0 = 0; v0 < 3; v0++) {
-        v1 = (int)sub_0201D2E8() % 21;
+        v1 = (int)LCRNG_Next() % 21;
         param0->unk_A8[v0] = v1;
         param0->unk_90[v0] = (FX32_ONE * ((21 * 32))) - ((FX32_ONE * ((v1) * 32)));
         param0->unk_90[v0] %= (FX32_ONE * ((21 * 32)));
@@ -2738,7 +2738,7 @@ static fx32 ov101_021D4024 (UnkStruct_ov101_021D13C8 * param0, UnkEnum_ov101_021
 
 static u32 ov101_021D405C (UnkStruct_ov101_021D13C8 * param0)
 {
-    u32 v0 = ((u32)sub_0201D2E8()) % 100;
+    u32 v0 = ((u32)LCRNG_Next()) % 100;
     return v0;
 }
 
@@ -3063,7 +3063,7 @@ static UnkEnum_ov101_021D4550 ov101_021D4550 (UnkStruct_ov101_021D13C8 * param0)
 
 static void ov101_021D45B0 (UnkStruct_ov101_021D13C8 * param0)
 {
-    param0->unk_34 = sub_0201D2E8() % 6;
+    param0->unk_34 = LCRNG_Next() % 6;
 }
 
 static void ov101_021D45C4 (UnkStruct_ov101_021D13C8 * param0)

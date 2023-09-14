@@ -14,8 +14,7 @@
 #include "struct_decls/struct_0202A750_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay006/struct_ov6_022465F4_decl.h"
@@ -61,7 +60,7 @@
 #include "roaming_pokemon.h"
 #include "unk_0206CCB0.h"
 #include "unk_02071CFC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_020923C0.h"
@@ -475,17 +474,17 @@ static void sub_0206CE08 (int param0, u16 * param1, Pokemon * param2)
 {
     Strbuf* v0 = Strbuf_Init(64, param0);
 
-    GetMonData(param2, MON_DATA_119, v0);
+    Pokemon_GetValue(param2, MON_DATA_119, v0);
     Strbuf_ToChars(v0, param1, 10 + 1);
     Strbuf_Free(v0);
 }
 
 static void sub_0206CE38 (Pokemon * param0, u16 * param1, u8 * param2, u8 * param3, u8 * param4)
 {
-    *param1 = GetMonData(param0, MON_DATA_SPECIES, NULL);
-    *param2 = GetMonData(param0, MON_DATA_111, NULL);
-    *param3 = GetMonData(param0, MON_DATA_LANGUAGE, NULL);
-    *param4 = GetMonData(param0, MON_DATA_MET_GAME, NULL);
+    *param1 = Pokemon_GetValue(param0, MON_DATA_SPECIES, NULL);
+    *param2 = Pokemon_GetValue(param0, MON_DATA_GENDER, NULL);
+    *param3 = Pokemon_GetValue(param0, MON_DATA_LANGUAGE, NULL);
+    *param4 = Pokemon_GetValue(param0, MON_DATA_MET_GAME, NULL);
 }
 
 static void sub_0206CE74 (UnkStruct_0200B358 * param0, int param1, u16 param2, u8 param3, u8 param4, u8 param5)
@@ -506,12 +505,12 @@ static void sub_0206CEA4 (UnkStruct_0200B358 * param0, int param1, u16 param2)
 
 static void sub_0206CED0 (int param0, Pokemon * param1, u8 * param2, u16 * param3)
 {
-    *param2 = GetMonData(param1, MON_DATA_77, NULL);
+    *param2 = Pokemon_GetValue(param1, MON_DATA_77, NULL);
 
     if (*param2) {
         Strbuf* v0 = Strbuf_Init(64, param0);
 
-        GetMonData(param1, MON_DATA_119, v0);
+        Pokemon_GetValue(param1, MON_DATA_119, v0);
         Strbuf_ToChars(v0, param3, 10 + 1);
         Strbuf_Free(v0);
     }
@@ -536,10 +535,10 @@ void sub_0206CF48 (UnkStruct_0202440C * param0, Pokemon * param1, int param2)
 
     v0->unk_00 = 1;
     v0->unk_1F = 0;
-    v0->unk_1E = sub_02075BCC(param1);
+    v0->unk_1E = Pokemon_GetNature(param1);
 
     sub_0206CE38(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
-    v0->unk_07 = GetMonData(param1, MON_DATA_77, NULL);
+    v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_77, NULL);
 
     sub_0206CED0(param2, param1, &v0->unk_07, v0->unk_08);
     sub_02025C84(27);
@@ -614,7 +613,7 @@ void sub_0206D048 (UnkStruct_0202440C * param0, Pokemon * param1)
 
     v0->unk_00 = 1;
     sub_0206CE38(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
-    v0->unk_07 = GetMonData(param1, MON_DATA_77, NULL);
+    v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_77, NULL);
 
     sub_0206CED0(11, param1, &v0->unk_07, v0->unk_08);
     sub_02025C84(27);
@@ -704,7 +703,7 @@ void sub_0206D160 (UnkStruct_0206D140 * param0, Pokemon * param1, int param2, in
 
     sub_0206CE38(param1, &param0->unk_06, &param0->unk_08, &param0->unk_09, &param0->unk_0A);
 
-    param0->unk_22 = GetMonData(param1, MON_DATA_POKEBALL, NULL);
+    param0->unk_22 = Pokemon_GetValue(param1, MON_DATA_POKEBALL, NULL);
     GF_ASSERT(param0->unk_22);
 
     sub_0206CED0(param4, param1, &param0->unk_0B, param0->unk_0C);
@@ -1052,8 +1051,8 @@ void sub_0206D7C4 (UnkStruct_0203CDB0 * param0)
     for (v5 = 0; v5 < v4; v5++) {
         v6 = Party_GetPokemonBySlotIndex(v8, v5);
 
-        if (GetMonData(v6, MON_DATA_IS_EGG, NULL) == 0) {
-            v3 = GetMonData(v6, MON_DATA_111, NULL);
+        if (Pokemon_GetValue(v6, MON_DATA_IS_EGG, NULL) == 0) {
+            v3 = Pokemon_GetValue(v6, MON_DATA_GENDER, NULL);
 
             if (v3 == 0) {
                 v0 = 1;
@@ -1156,7 +1155,7 @@ void sub_0206D9B4 (UnkStruct_0202440C * param0, Pokemon * param1, u8 param2)
     UnkStruct_0206D9F4 * v1 = &v0.val14;
 
     v1->unk_06 = param2;
-    v1->unk_05 = sub_0201D35C() % 3;
+    v1->unk_05 = MTRNG_Next() % 3;
 
     sub_0206CE38(param1, &v1->unk_00, &v1->unk_02, &v1->unk_03, &v1->unk_04);
     sub_0202E43C(param0, 2, 21, (const u8 *)v1);
@@ -1458,7 +1457,7 @@ static u8 sub_0206DE4C (Pokemon * param0)
     v0 = 0;
 
     for (v1 = 0; v1 < (NELEMS(Unk_020EFDDC)); v1++) {
-        if (GetMonData(param0, Unk_020EFDDC[v1], NULL) == 1) {
+        if (Pokemon_GetValue(param0, Unk_020EFDDC[v1], NULL) == 1) {
             v0++;
         }
     }
@@ -2072,7 +2071,7 @@ static int sub_0206E870 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     GF_ASSERT(v1 > 0);
 
     if (v1 > 1) {
-        v1 = sub_0201D35C() % v1;
+        v1 = MTRNG_Next() % v1;
     } else {
         v1 = 0;
     }
@@ -2703,8 +2702,8 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
     v5 = 0xff;
     v6 = 0xff;
-    v0 = (sub_0201D2E8() % 0xffff);
-    v2 = GetNatureFromPersonality(v0);
+    v0 = (LCRNG_Next() % 0xffff);
+    v2 = Pokemon_GetNatureOf(v0);
 
     sub_0200B6D8(param1, 0, v2);
 
@@ -2714,7 +2713,7 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
     if ((v0 % 2) == 0) {
         for (v1 = 0; v1 < 5; v1++) {
-            if (sub_02077648(v0, v1) == 1) {
+            if (Pokemon_GetFlavorAffinityOf(v0, v1) == 1) {
                 v5 = v1;
                 break;
             }
@@ -2725,7 +2724,7 @@ static int sub_0206ED14 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     }
 
     for (v1 = 0; v1 < 5; v1++) {
-        if (sub_02075C60(v2, 1 + v1) > 0) {
+        if (Pokemon_GetStatAffinityOf(v2, 1 + v1) > 0) {
             v6 = v1;
             break;
         }
@@ -2745,7 +2744,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     UnkStruct_02025E6C * v7 = sub_02025E38(sub_0203D174(param0));
 
     v1 = sub_0202D834(param0->unk_0C);
-    v2 = (sub_0201D2E8() % 29);
+    v2 = (LCRNG_Next() % 29);
 
     sub_02071D10(sub_0206C3C8(v2), 4, v6);
     sub_0200B48C(param1, 0, v6, 0, 1, GAME_LANGUAGE);
@@ -2758,7 +2757,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
             v4 = sub_0202D93C(v0, 4);
             v5 = sub_0202D93C(v0, 3);
 
-            sub_0206CE74(param1, 1, v4, sub_02075DAC(v4, v5), sub_02025FD8(v7), sub_02025FCC(v7));
+            sub_0206CE74(param1, 1, v4, Pokemon_GetGenderOf(v4, v5), sub_02025FD8(v7), sub_02025FCC(v7));
             break;
         }
     }
@@ -2804,7 +2803,7 @@ static int sub_0206EEBC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v2 = sub_0206EE9C(v5);
 
     if (v2 > 1) {
-        v3 = sub_0201D35C() % v2;
+        v3 = MTRNG_Next() % v2;
     } else {
         v3 = 0;
     }
@@ -2857,13 +2856,13 @@ static int sub_0206EF7C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v0 = 0;
 
     if (sub_0206A954(sub_020507E4(param0->unk_0C)) == 1) {
-        v0 = (sub_0201D2E8() % 8);
+        v0 = (LCRNG_Next() % 8);
     } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 11) == 1) {
-        v0 = (sub_0201D2E8() % 5);
+        v0 = (LCRNG_Next() % 5);
     } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 10) == 1) {
-        v0 = (sub_0201D2E8() % 4);
+        v0 = (LCRNG_Next() % 4);
     } else if (inline_0208BE68(sub_020507E4(param0->unk_0C), 18) == 1) {
-        v0 = (sub_0201D2E8() % 2);
+        v0 = (LCRNG_Next() % 2);
     }
 
     return 0 + v0;
@@ -2875,7 +2874,7 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v1, v2, v3;
     const UnkStruct_02026324 * v4 = sub_02027560(param0->unk_0C);
 
-    v1 = (sub_0201D2E8() % (493 - 1)) + 1;
+    v1 = (LCRNG_Next() % (493 - 1)) + 1;
 
     for (v2 = 1; v2 <= 493; v2++) {
         if (sub_02026FE8(v4, v1) == 1) {
@@ -2895,12 +2894,12 @@ static int sub_0206F01C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     sub_0200B48C(param1, 0, v0, 0, 1, GAME_LANGUAGE);
     Strbuf_Free(v0);
 
-    v1 = (sub_0201D2E8() % 3);
+    v1 = (LCRNG_Next() % 3);
 
     if (v1 == 0) {
         return 8;
     } else if (v1 == 1) {
-        v1 = (sub_0201D2E8() % 34) + 25;
+        v1 = (LCRNG_Next() % 34) + 25;
         sub_0200B60C(param1, 1, v1, 2, 0, 1);
         return 9;
     } else {
@@ -2935,7 +2934,7 @@ static int sub_0206F118 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 {
     u16 v0;
 
-    v0 = (sub_0201D2E8() % 3);
+    v0 = (LCRNG_Next() % 3);
 
     if (v0 == 0) {
         return 11;
@@ -2950,7 +2949,7 @@ static int sub_0206F13C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 {
     u16 v0;
 
-    v0 = (sub_0201D2E8() % 3);
+    v0 = (LCRNG_Next() % 3);
 
     if (v0 == 0) {
         return 14;
@@ -2973,10 +2972,10 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v4 = Party_GetFromSavedata(param0->unk_0C);
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
 
-    sub_0206CE74(param1, 0, GetMonData(v3, MON_DATA_SPECIES, NULL), GetMonData(v3, MON_DATA_111, NULL), sub_02025FD8(v5), sub_02025FCC(v5));
-    sub_0200BFAC(param1, 1, (sub_0201D2E8() % 100));
+    sub_0206CE74(param1, 0, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v3, MON_DATA_GENDER, NULL), sub_02025FD8(v5), sub_02025FCC(v5));
+    sub_0200BFAC(param1, 1, (LCRNG_Next() % 100));
 
-    v1 = (sub_0201D2E8() % (493 - 2) + 1);
+    v1 = (LCRNG_Next() % (493 - 2) + 1);
 
     for (v2 = 1; v2 <= 493; v2++) {
         if (sub_02026FE8(v6, v1) == 1) {
@@ -2993,7 +2992,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
         }
     }
 
-    sub_0200B630(param1, 3, (sub_0201D2E8() % 467 - 2) + 1);
+    sub_0200B630(param1, 3, (LCRNG_Next() % 467 - 2) + 1);
 
     return 17;
 }
@@ -3032,7 +3031,7 @@ static int sub_0206F29C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 {
     u16 v0;
 
-    v0 = (sub_0201D2E8() % 9);
+    v0 = (LCRNG_Next() % 9);
 
     if (v0 == 0) {
         return 20;

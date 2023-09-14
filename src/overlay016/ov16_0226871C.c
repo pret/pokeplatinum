@@ -18,8 +18,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/battle_system.h"
 #include "overlay016/struct_ov16_0226DC24_decl.h"
 #include "overlay016/struct_ov16_0226DEEC_decl.h"
@@ -61,7 +60,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_02079D40.h"
 #include "unk_0207C908.h"
@@ -1438,7 +1437,7 @@ static void ov16_02268FCC (UnkStruct_0201CD38 * param0, void * param1)
                 break;
             }
 
-            v2->unk_05 += sub_0201D2E8() % 8;
+            v2->unk_05 += LCRNG_Next() % 8;
             v2->unk_07 = 2;
             v2->unk_03++;
             break;
@@ -2166,7 +2165,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
             }
 
             v6 = ov16_0223DFAC(param0->unk_00, v12, v0->unk_00[v12].unk_00);
-            v7 = sub_02076B10(v6);
+            v7 = Pokemon_GetBoxPokemon(v6);
 
             sub_0200B5CC(v8, 0, v7);
             sub_0200C388(v8, v4, v5);

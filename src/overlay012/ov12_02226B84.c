@@ -3539,18 +3539,18 @@ static void ov12_0222A624 (UnkStruct_ov12_0222A624 * param0)
             G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, 1);
             G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
             G2_SetWnd0Position(0, 160, 128, 192);
-            param0->unk_3C = 35 + (sub_0201D2E8() % 5);
+            param0->unk_3C = 35 + (LCRNG_Next() % 5);
         } else {
             GX_SetVisibleWnd(GX_WNDMASK_W0);
             G2_SetWnd0InsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3, 1);
             G2_SetWndOutsidePlane(GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3 | GX_WND_PLANEMASK_OBJ, 1);
             G2_SetWnd0Position(128, 96 - 10, 256, 192);
-            param0->unk_3C = 35 + (sub_0201D2E8() % 5);
+            param0->unk_3C = 35 + (LCRNG_Next() % 5);
         }
         break;
     case 5:
     case 6:
-        if (sub_0201D2E8() % 2) {
+        if (LCRNG_Next() % 2) {
             if (param0->unk_38 == 0) {
                 param0->unk_38++;
                 sub_0200D5DC(param0->unk_1C, 0, +4);
@@ -3565,7 +3565,7 @@ static void ov12_0222A624 (UnkStruct_ov12_0222A624 * param0)
         break;
     case 10:
     case 11:
-        if (sub_0201D2E8() % 2) {
+        if (LCRNG_Next() % 2) {
             if (param0->unk_38 == 1) {
                 param0->unk_38++;
                 sub_0200D5DC(param0->unk_1C, 0, +4);
@@ -3580,7 +3580,7 @@ static void ov12_0222A624 (UnkStruct_ov12_0222A624 * param0)
         break;
     case 15:
     case 16:
-        if (sub_0201D2E8() % 2) {
+        if (LCRNG_Next() % 2) {
             if (param0->unk_38 == 2) {
                 param0->unk_38++;
                 sub_0200D5DC(param0->unk_1C, 0, +4);
@@ -3595,7 +3595,7 @@ static void ov12_0222A624 (UnkStruct_ov12_0222A624 * param0)
         break;
     case 22:
     case 23:
-        if (sub_0201D2E8() % 2) {
+        if (LCRNG_Next() % 2) {
             if (param0->unk_38 == 3) {
                 param0->unk_38++;
                 sub_0200D5DC(param0->unk_1C, 0, +8);

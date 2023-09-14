@@ -3,7 +3,7 @@
 
 #include "strbuf.h"
 #include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02098700_decl.h"
@@ -22,7 +22,7 @@
 #include "strbuf.h"
 #include "unk_02025E68.h"
 #include "unk_020366A0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_02079170.h"
 #include "party.h"
@@ -191,27 +191,27 @@ void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleC
     int v2;
     UnkStruct_02098700 * v3;
 
-    battleCtx->battleMons[battler].species = GetMonData(v0, MON_DATA_SPECIES, 0);
-    battleCtx->battleMons[battler].attack = GetMonData(v0, MON_DATA_165, 0);
-    battleCtx->battleMons[battler].defense = GetMonData(v0, MON_DATA_166, 0);
-    battleCtx->battleMons[battler].speed = GetMonData(v0, MON_DATA_167, 0);
-    battleCtx->battleMons[battler].spAttack = GetMonData(v0, MON_DATA_168, 0);
-    battleCtx->battleMons[battler].spDefense = GetMonData(v0, MON_DATA_169, 0);
+    battleCtx->battleMons[battler].species = Pokemon_GetValue(v0, MON_DATA_SPECIES, 0);
+    battleCtx->battleMons[battler].attack = Pokemon_GetValue(v0, MON_DATA_ATK, 0);
+    battleCtx->battleMons[battler].defense = Pokemon_GetValue(v0, MON_DATA_DEF, 0);
+    battleCtx->battleMons[battler].speed = Pokemon_GetValue(v0, MON_DATA_SPEED, 0);
+    battleCtx->battleMons[battler].spAttack = Pokemon_GetValue(v0, MON_DATA_SP_ATK, 0);
+    battleCtx->battleMons[battler].spDefense = Pokemon_GetValue(v0, MON_DATA_SP_DEF, 0);
 
     for (v1 = 0; v1 < 4; v1++) {
-        battleCtx->battleMons[battler].moves[v1] = GetMonData(v0, MON_DATA_MOVE1 + v1, 0);
-        battleCtx->battleMons[battler].ppCur[v1] = GetMonData(v0, MON_DATA_58 + v1, 0);
-        battleCtx->battleMons[battler].ppUps[v1] = GetMonData(v0, MON_DATA_62 + v1, 0);
+        battleCtx->battleMons[battler].moves[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1 + v1, 0);
+        battleCtx->battleMons[battler].ppCur[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1_CUR_PP + v1, 0);
+        battleCtx->battleMons[battler].ppUps[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1_PP_UPS + v1, 0);
     }
 
-    battleCtx->battleMons[battler].hpIV = GetMonData(v0, MON_DATA_HP_IV, 0);
-    battleCtx->battleMons[battler].attackIV = GetMonData(v0, MON_DATA_ATK_IV, 0);
-    battleCtx->battleMons[battler].defenseIV = GetMonData(v0, MON_DATA_DEF_IV, 0);
-    battleCtx->battleMons[battler].speedIV = GetMonData(v0, MON_DATA_SPEED_IV, 0);
-    battleCtx->battleMons[battler].spAttackIV = GetMonData(v0, MON_DATA_SPATK_IV, 0);
-    battleCtx->battleMons[battler].spDefenseIV = GetMonData(v0, MON_DATA_SPDEF_IV, 0);
-    battleCtx->battleMons[battler].isEgg = GetMonData(v0, MON_DATA_IS_EGG, 0);
-    battleCtx->battleMons[battler].hasNickname = GetMonData(v0, MON_DATA_77, 0);
+    battleCtx->battleMons[battler].hpIV = Pokemon_GetValue(v0, MON_DATA_HP_IV, 0);
+    battleCtx->battleMons[battler].attackIV = Pokemon_GetValue(v0, MON_DATA_ATK_IV, 0);
+    battleCtx->battleMons[battler].defenseIV = Pokemon_GetValue(v0, MON_DATA_DEF_IV, 0);
+    battleCtx->battleMons[battler].speedIV = Pokemon_GetValue(v0, MON_DATA_SPEED_IV, 0);
+    battleCtx->battleMons[battler].spAttackIV = Pokemon_GetValue(v0, MON_DATA_SPATK_IV, 0);
+    battleCtx->battleMons[battler].spDefenseIV = Pokemon_GetValue(v0, MON_DATA_SPDEF_IV, 0);
+    battleCtx->battleMons[battler].isEgg = Pokemon_GetValue(v0, MON_DATA_IS_EGG, 0);
+    battleCtx->battleMons[battler].hasNickname = Pokemon_GetValue(v0, MON_DATA_77, 0);
 
     if ((battleCtx->battleStatusMask & 0x100) == 0) {
         for (v1 = 0; v1 < 0x8; v1++) {
@@ -230,36 +230,36 @@ void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleC
     battleCtx->battleMons[battler].friskAnnounced = 0;
     battleCtx->battleMons[battler].moldBreakerAnnounced = 0;
     battleCtx->battleMons[battler].pressureAnnounced = 0;
-    battleCtx->battleMons[battler].type1 = GetMonData(v0, MON_DATA_177, 0);
-    battleCtx->battleMons[battler].type2 = GetMonData(v0, MON_DATA_178, 0);
-    battleCtx->battleMons[battler].gender = sub_02075D6C(v0);
-    battleCtx->battleMons[battler].isShiny = sub_02075E0C(v0);
+    battleCtx->battleMons[battler].type1 = Pokemon_GetValue(v0, MON_DATA_177, 0);
+    battleCtx->battleMons[battler].type2 = Pokemon_GetValue(v0, MON_DATA_178, 0);
+    battleCtx->battleMons[battler].gender = Pokemon_GetGender(v0);
+    battleCtx->battleMons[battler].isShiny = Pokemon_IsShiny(v0);
 
     if (BattleSystem_BattleType(battleSys) & (0x20 | 0x200)) {
         battleCtx->battleMons[battler].ability = 0;
         battleCtx->battleMons[battler].status = 0;
         battleCtx->battleMons[battler].heldItem = 0;
     } else {
-        battleCtx->battleMons[battler].ability = GetMonData(v0, MON_DATA_10, 0);
-        battleCtx->battleMons[battler].status = GetMonData(v0, MON_DATA_160, 0);
-        battleCtx->battleMons[battler].heldItem = GetMonData(v0, MON_DATA_HELD_ITEM, 0);
+        battleCtx->battleMons[battler].ability = Pokemon_GetValue(v0, MON_DATA_ABILITY, 0);
+        battleCtx->battleMons[battler].status = Pokemon_GetValue(v0, MON_DATA_160, 0);
+        battleCtx->battleMons[battler].heldItem = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, 0);
     }
 
     if ((BattleSystem_BattleType(battleSys) & (0x20 | 0x200)) && (Battler_Side(battleSys, battler) == 0)) {
         battleCtx->battleMons[battler].formNum = 0;
     } else {
-        battleCtx->battleMons[battler].formNum = GetMonData(v0, MON_DATA_FORM, 0);
+        battleCtx->battleMons[battler].formNum = Pokemon_GetValue(v0, MON_DATA_FORM, 0);
     }
 
-    battleCtx->battleMons[battler].level = GetMonData(v0, MON_DATA_161, 0);
-    battleCtx->battleMons[battler].friendship = GetMonData(v0, MON_DATA_FRIENDSHIP, 0);
-    battleCtx->battleMons[battler].curHP = GetMonData(v0, MON_DATA_163, 0);
-    battleCtx->battleMons[battler].maxHP = GetMonData(v0, MON_DATA_164, 0);
-    battleCtx->battleMons[battler].exp = GetMonData(v0, MON_DATA_EXP, 0);
-    battleCtx->battleMons[battler].pid = GetMonData(v0, MON_DATA_PERSONALITY, 0);
-    battleCtx->battleMons[battler].OTId = GetMonData(v0, MON_DATA_OT_ID, 0);
-    battleCtx->battleMons[battler].OTGender = GetMonData(v0, MON_DATA_OT_GENDER, 0);
-    battleCtx->battleMons[battler].capturedBall = GetMonData(v0, MON_DATA_POKEBALL, 0);
+    battleCtx->battleMons[battler].level = Pokemon_GetValue(v0, MON_DATA_LEVEL, 0);
+    battleCtx->battleMons[battler].friendship = Pokemon_GetValue(v0, MON_DATA_FRIENDSHIP, 0);
+    battleCtx->battleMons[battler].curHP = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, 0);
+    battleCtx->battleMons[battler].maxHP = Pokemon_GetValue(v0, MON_DATA_MAX_HP, 0);
+    battleCtx->battleMons[battler].exp = Pokemon_GetValue(v0, MON_DATA_EXP, 0);
+    battleCtx->battleMons[battler].pid = Pokemon_GetValue(v0, MON_DATA_PERSONALITY, 0);
+    battleCtx->battleMons[battler].OTId = Pokemon_GetValue(v0, MON_DATA_OT_ID, 0);
+    battleCtx->battleMons[battler].OTGender = Pokemon_GetValue(v0, MON_DATA_OT_GENDER, 0);
+    battleCtx->battleMons[battler].capturedBall = Pokemon_GetValue(v0, MON_DATA_POKEBALL, 0);
 
     sub_02098988(battleCtx->battleMons[battler].formNum);
     v3 = sub_02098700(5);
@@ -269,15 +269,15 @@ void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleC
 
     sub_020987BC(v3);
     sub_02098718(v3);
-    GetMonData(v0, MON_DATA_117, &battleCtx->battleMons[battler].nickname[0]);
-    GetMonData(v0, MON_DATA_144, &battleCtx->battleMons[battler].OTName[0]);
+    Pokemon_GetValue(v0, MON_DATA_117, &battleCtx->battleMons[battler].nickname[0]);
+    Pokemon_GetValue(v0, MON_DATA_144, &battleCtx->battleMons[battler].OTName[0]);
 
     battleCtx->battleMons[battler].timesDamaged = 0;
     battleCtx->battleMons[battler].trainerMessageFlags = 0;
 
     v2 = Battler_Side(battleSys, battler);
 
-    if (battleCtx->sideConditions[v2].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battler])) {
+    if (battleCtx->sideConditions[v2].knockedOffItemsMask & Pokemon_GetFlagMaskOf(battleCtx->selectedPartySlot[battler])) {
         battleCtx->battleMons[battler].heldItem = 0;
         battleCtx->battleMons[battler].moveEffectsData.canUnburden = 0;
     } else {
@@ -293,26 +293,26 @@ void ov16_02251C94 (BattleSystem * param0, BattleContext * param1, int param2, i
     int v1;
     int v2;
 
-    param1->battleMons[param2].attack = GetMonData(v0, MON_DATA_165, 0);
-    param1->battleMons[param2].defense = GetMonData(v0, MON_DATA_166, 0);
-    param1->battleMons[param2].speed = GetMonData(v0, MON_DATA_167, 0);
-    param1->battleMons[param2].spAttack = GetMonData(v0, MON_DATA_168, 0);
-    param1->battleMons[param2].spDefense = GetMonData(v0, MON_DATA_169, 0);
-    param1->battleMons[param2].level = GetMonData(v0, MON_DATA_161, 0);
-    param1->battleMons[param2].friendship = GetMonData(v0, MON_DATA_FRIENDSHIP, 0);
-    param1->battleMons[param2].curHP = GetMonData(v0, MON_DATA_163, 0);
-    param1->battleMons[param2].maxHP = GetMonData(v0, MON_DATA_164, 0);
+    param1->battleMons[param2].attack = Pokemon_GetValue(v0, MON_DATA_ATK, 0);
+    param1->battleMons[param2].defense = Pokemon_GetValue(v0, MON_DATA_DEF, 0);
+    param1->battleMons[param2].speed = Pokemon_GetValue(v0, MON_DATA_SPEED, 0);
+    param1->battleMons[param2].spAttack = Pokemon_GetValue(v0, MON_DATA_SP_ATK, 0);
+    param1->battleMons[param2].spDefense = Pokemon_GetValue(v0, MON_DATA_SP_DEF, 0);
+    param1->battleMons[param2].level = Pokemon_GetValue(v0, MON_DATA_LEVEL, 0);
+    param1->battleMons[param2].friendship = Pokemon_GetValue(v0, MON_DATA_FRIENDSHIP, 0);
+    param1->battleMons[param2].curHP = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, 0);
+    param1->battleMons[param2].maxHP = Pokemon_GetValue(v0, MON_DATA_MAX_HP, 0);
 
     if ((param1->battleMons[param2].statusVolatile & 0x200000) == 0) {
         for (v1 = 0; v1 < 4; v1++) {
-            if ((param1->battleMons[param2].moveEffectsData.mimickedMoveSlot & FlagIndex(v1)) == 0) {
-                param1->battleMons[param2].moves[v1] = GetMonData(v0, MON_DATA_MOVE1 + v1, 0);
-                param1->battleMons[param2].ppCur[v1] = GetMonData(v0, MON_DATA_58 + v1, 0);
-                param1->battleMons[param2].ppUps[v1] = GetMonData(v0, MON_DATA_62 + v1, 0);
+            if ((param1->battleMons[param2].moveEffectsData.mimickedMoveSlot & Pokemon_GetFlagMaskOf(v1)) == 0) {
+                param1->battleMons[param2].moves[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1 + v1, 0);
+                param1->battleMons[param2].ppCur[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1_CUR_PP + v1, 0);
+                param1->battleMons[param2].ppUps[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1_PP_UPS + v1, 0);
             }
         }
 
-        param1->battleMons[param2].exp = GetMonData(v0, MON_DATA_EXP, 0);
+        param1->battleMons[param2].exp = Pokemon_GetValue(v0, MON_DATA_EXP, 0);
     }
 }
 
@@ -1499,8 +1499,8 @@ void ov16_022535F0 (BattleSystem * param0, BattleContext * param1, int param2)
     v1 = BattleSystem_BattleType(param0);
 
     while (v0 <= 2) {
-        if (((param1->battlersSwitchingMask & FlagIndex(v0)) == 0) && ((param1->battlersSwitchingMask & FlagIndex(param2)) == 0) && (param1->battleMons[param2].curHP)) {
-            param1->monsGainingExp[(param2 >> 1) & 1] |= FlagIndex(param1->selectedPartySlot[v0]);
+        if (((param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v0)) == 0) && ((param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(param2)) == 0) && (param1->battleMons[param2].curHP)) {
+            param1->monsGainingExp[(param2 >> 1) & 1] |= Pokemon_GetFlagMaskOf(param1->selectedPartySlot[v0]);
         }
 
         v0 += 2;
@@ -1972,7 +1972,7 @@ BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * pa
                     for (v3 = 0; v3 < Party_GetCurrentCount(v5); v3++) {
                         v6 = Party_GetPokemonBySlotIndex(v5, v3);
 
-                        if (GetMonData(v6, MON_DATA_163, NULL)) {
+                        if (Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL)) {
                             v4++;
                         }
                     }
@@ -2003,7 +2003,7 @@ BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * pa
                     for (v7 = 0; v7 < Party_GetCurrentCount(v9); v7++) {
                         v10 = Party_GetPokemonBySlotIndex(v9, v7);
 
-                        if (GetMonData(v10, MON_DATA_163, NULL)) {
+                        if (Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL)) {
                             v8++;
                         }
                     }
@@ -2092,8 +2092,8 @@ void BattleContext_InitCounters (BattleSystem * param0, BattleContext * param1)
     v0 = BattleSystem_BattleType(param0);
 
     if ((v0 & 0x2) == 0) {
-        param1->battlersSwitchingMask |= FlagIndex(2);
-        param1->battlersSwitchingMask |= FlagIndex(3);
+        param1->battlersSwitchingMask |= Pokemon_GetFlagMaskOf(2);
+        param1->battlersSwitchingMask |= Pokemon_GetFlagMaskOf(3);
     }
 
     param1->safariCatchCount = 6;
@@ -2141,8 +2141,8 @@ void ov16_0225433C (BattleSystem * param0, BattleContext * param1, int param2)
     }
 
     for (v0 = 0; v0 < v1; v0++) {
-        if (param1->battleMons[v0].statusVolatile & (FlagIndex(param2) << 16)) {
-            param1->battleMons[v0].statusVolatile &= ((FlagIndex(param2) << 16) ^ 0xffffffff);
+        if (param1->battleMons[v0].statusVolatile & (Pokemon_GetFlagMaskOf(param2) << 16)) {
+            param1->battleMons[v0].statusVolatile &= ((Pokemon_GetFlagMaskOf(param2) << 16) ^ 0xffffffff);
         }
 
         if ((param1->battleMons[v0].statusVolatile & 0xe000) && (param1->battleMons[v0].moveEffectsData.bindTarget == param2)) {
@@ -2184,7 +2184,7 @@ void ov16_0225433C (BattleSystem * param0, BattleContext * param1, int param2)
     param1->conversion2Battler[param2] = 0;
     param1->conversion2Type[param2] = 0;
     param1->metronomeMove[param2] = 0;
-    param1->fieldConditionsMask &= ((FlagIndex(param2) << 8) ^ 0xffffffff);
+    param1->fieldConditionsMask &= ((Pokemon_GetFlagMaskOf(param2) << 8) ^ 0xffffffff);
 
     if (param1->battleMons[param2].moveEffectsMask & 0x800000) {
         v0 = param1->battleMons[param2].attack;
@@ -2226,8 +2226,8 @@ void ov16_02254744 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->battleMons[v0].statusVolatile &= (0x4000000 ^ 0xffffffff);
         }
 
-        if (param1->battleMons[v0].statusVolatile & (FlagIndex(param2) << 16)) {
-            param1->battleMons[v0].statusVolatile &= ((FlagIndex(param2) << 16) ^ 0xffffffff);
+        if (param1->battleMons[v0].statusVolatile & (Pokemon_GetFlagMaskOf(param2) << 16)) {
+            param1->battleMons[v0].statusVolatile &= ((Pokemon_GetFlagMaskOf(param2) << 16) ^ 0xffffffff);
         }
 
         if ((param1->battleMons[v0].statusVolatile & 0xe000) && (param1->battleMons[v0].moveEffectsData.bindTarget == param2)) {
@@ -2265,7 +2265,7 @@ void ov16_02254744 (BattleSystem * param0, BattleContext * param1, int param2)
     param1->conversion2Battler[param2] = 0;
     param1->conversion2Type[param2] = 0;
     param1->metronomeMove[param2] = 0;
-    param1->fieldConditionsMask &= ((FlagIndex(param2) << 8) ^ 0xffffffff);
+    param1->fieldConditionsMask &= ((Pokemon_GetFlagMaskOf(param2) << 8) ^ 0xffffffff);
 
     for (v0 = 0; v0 < v1; v0++) {
         if ((v0 != param2) && (Battler_Side(param0, v0) != Battler_Side(param0, param2))) {
@@ -2318,39 +2318,39 @@ int BattleSystem_CheckStruggling (BattleSystem *battleSys, BattleContext *battle
 
     for (v0 = 0; v0 < 4; v0++) {
         if ((battleCtx->battleMons[battler].moves[v0] == 0) && (struggleChecksMask & 0x1)) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if ((battleCtx->battleMons[battler].ppCur[v0] == 0) && (struggleChecksMask & 0x2)) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if ((battleCtx->battleMons[battler].moves[v0] == battleCtx->battleMons[battler].moveEffectsData.disabledMove) && (struggleChecksMask & 0x4)) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if ((battleCtx->battleMons[battler].moves[v0] == battleCtx->movePrevByBattler[battler]) && (struggleChecksMask & 0x8) && (battleCtx->battleMons[battler].statusVolatile & 0x80000000)) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if ((battleCtx->battleMons[battler].moveEffectsData.tauntedTurns) && (struggleChecksMask & 0x10) && (battleCtx->aiContext.moveTable[battleCtx->battleMons[battler].moves[v0]].power == 0)) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if ((ov16_02255EF4(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x20)) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if ((ov16_02256044(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x40)) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if ((ov16_02256078(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x80)) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if ((battleCtx->battleMons[battler].moveEffectsData.encoredMove) && (battleCtx->battleMons[battler].moveEffectsData.encoredMove != battleCtx->battleMons[battler].moves[v0])) {
-            moveFlags |= FlagIndex(v0);
+            moveFlags |= Pokemon_GetFlagMaskOf(v0);
         }
 
         if (((v1 == 55) || (v1 == 115) || (v1 == 125)) && (struggleChecksMask & 0x200)) {
@@ -2358,7 +2358,7 @@ int BattleSystem_CheckStruggling (BattleSystem *battleSys, BattleContext *battle
                 battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove = 0;
             } else {
                 if ((battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) && (battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove != battleCtx->battleMons[battler].moves[v0])) {
-                    moveFlags |= FlagIndex(v0);
+                    moveFlags |= Pokemon_GetFlagMaskOf(v0);
                 }
             }
         }
@@ -2371,49 +2371,49 @@ BOOL BattleSystem_CanUseMove (BattleSystem *battleSys, BattleContext *battleCtx,
 {
     BOOL result = TRUE;
 
-    if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x4) & FlagIndex(moveSlot)) {
+    if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x4) & Pokemon_GetFlagMaskOf(moveSlot)) {
         msgOut->tags = 10;
         msgOut->id = 609;
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x8) & FlagIndex(moveSlot)) {
+    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x8) & Pokemon_GetFlagMaskOf(moveSlot)) {
         msgOut->tags = 2;
         msgOut->id = 612;
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x10) & FlagIndex(moveSlot)) {
+    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x10) & Pokemon_GetFlagMaskOf(moveSlot)) {
         msgOut->tags = 10;
         msgOut->id = 613;
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x20) & FlagIndex(moveSlot)) {
+    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x20) & Pokemon_GetFlagMaskOf(moveSlot)) {
         msgOut->tags = 10;
         msgOut->id = 616;
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x40) & FlagIndex(moveSlot)) {
+    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x40) & Pokemon_GetFlagMaskOf(moveSlot)) {
         msgOut->tags = 10;
         msgOut->id = 1001;
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x80) & FlagIndex(moveSlot)) {
+    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x80) & Pokemon_GetFlagMaskOf(moveSlot)) {
         msgOut->tags = 34;
         msgOut->id = 1057;
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = 377;
         msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x200) & FlagIndex(moveSlot)) {
+    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x200) & Pokemon_GetFlagMaskOf(moveSlot)) {
         msgOut->tags = 24;
         msgOut->id = 911;
         msgOut->params[0] = battleCtx->battleMons[battler].heldItem;
         msgOut->params[1] = battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove;
         result = FALSE;
-    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x2) & FlagIndex(moveSlot)) {
+    } else if (BattleSystem_CheckStruggling(battleSys, battleCtx, battler, 0, 0x2) & Pokemon_GetFlagMaskOf(moveSlot)) {
         msgOut->tags = 0;
         msgOut->id = 823;
         result = FALSE;
@@ -2898,7 +2898,7 @@ int BattleSystem_CountAbility (BattleSystem * param0, BattleContext * param1, in
     case 4:
         for (v1 = 0; v1 < v2; v1++) {
             if ((Battler_Side(param0, v1) != Battler_Side(param0, param3)) && (param1->battleMons[v1].curHP) && (Battler_Ability(param1, v1) == param4)) {
-                v0 |= FlagIndex(v1);
+                v0 |= Pokemon_GetFlagMaskOf(v1);
             }
         }
         break;
@@ -3028,7 +3028,7 @@ BOOL ov16_02255980 (BattleSystem * param0, BattleContext * param1, int param2)
     v0 = 0;
     v1 = Battler_Side(param0, param2);
 
-    if ((param1->battleMons[param2].heldItem) && ((param1->sideConditions[v1].knockedOffItemsMask & FlagIndex(param1->selectedPartySlot[param2])) == 0) && (Item_IsMail(param1->battleMons[param2].heldItem) == 0)) {
+    if ((param1->battleMons[param2].heldItem) && ((param1->sideConditions[v1].knockedOffItemsMask & Pokemon_GetFlagMaskOf(param1->selectedPartySlot[param2])) == 0) && (Item_IsMail(param1->battleMons[param2].heldItem) == 0)) {
         v0 = 1;
     }
 
@@ -3137,7 +3137,7 @@ BOOL ov16_02255B10 (BattleSystem * param0, BattleContext * param1, int param2)
     for (v6 = v7; v6 < v8; v6++) {
         v2 = Party_GetPokemonBySlotIndex(v1, v6);
 
-        if ((GetMonData(v2, MON_DATA_SPECIES, NULL)) && (GetMonData(v2, MON_DATA_IS_EGG, NULL) == 0) && (GetMonData(v2, MON_DATA_163, NULL)) && (v10 != v6) && (v11 != v6)) {
+        if ((Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v2, MON_DATA_CURRENT_HP, NULL)) && (v10 != v6) && (v11 != v6)) {
             v4++;
         }
     }
@@ -4534,7 +4534,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 0;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 0) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 0) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4548,7 +4548,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 1;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 1) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 1) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4562,7 +4562,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 2;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 2) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 2) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4576,7 +4576,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 3;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 3) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 3) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4590,7 +4590,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 4;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 4) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 4) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4943,7 +4943,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 0;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 0) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 0) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -4957,7 +4957,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 1;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 1) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 1) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -4971,7 +4971,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 2;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 2) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 2) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -4985,7 +4985,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 3;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 3) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 3) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -4999,7 +4999,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 4;
 
-                if (sub_02077648(param1->battleMons[param2].pid, 4) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 4) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -5203,7 +5203,7 @@ BOOL ov16_022588BC (BattleSystem * param0, BattleContext * param1, int * param2)
 
     switch (v2) {
     case 116:
-        if ((param1->battleMons[param1->attacker].curHP) && (param1->battleMons[param1->attacker].heldItem == 0) && ((param1->sideConditions[v4].knockedOffItemsMask & FlagIndex(param1->selectedPartySlot[param1->attacker])) == 0) && (param1->moveCur != 282) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken)) && ((param1->battleStatusMask2 & 0x10) == 0) && (param1->aiContext.moveTable[param1->moveCur].flags & 0x1)) {
+        if ((param1->battleMons[param1->attacker].curHP) && (param1->battleMons[param1->attacker].heldItem == 0) && ((param1->sideConditions[v4].knockedOffItemsMask & Pokemon_GetFlagMaskOf(param1->selectedPartySlot[param1->attacker])) == 0) && (param1->moveCur != 282) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken)) && ((param1->battleStatusMask2 & 0x10) == 0) && (param1->aiContext.moveTable[param1->moveCur].flags & 0x1)) {
             param2[0] = (0 + 216);
             v0 = 1;
         }
@@ -5476,7 +5476,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 0;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 0) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 0) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5490,7 +5490,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 1;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 1) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 1) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5504,7 +5504,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 2;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 2) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 2) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5518,7 +5518,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 3;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 3) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 3) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5532,7 +5532,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 4;
 
-            if (sub_02077648(param1->battleMons[param1->attacker].pid, 4) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 4) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5755,7 +5755,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 0;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 0) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 0) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5765,7 +5765,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 1;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 1) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 1) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5775,7 +5775,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 2;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 2) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 2) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5785,7 +5785,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 3;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 3) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 3) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5795,7 +5795,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 4;
 
-        if (sub_02077648(param1->battleMons[param1->defender].pid, 4) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 4) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -6007,7 +6007,7 @@ void ov16_02259A5C (BattleSystem * param0, BattleContext * param1, Pokemon * par
     v2 = ov16_0223E22C(param0);
 
     if (BattleSystem_BattleType(param0) & 0x200) {
-        v3 = GetMonData(param2, MON_DATA_POKEBALL, NULL);
+        v3 = Pokemon_GetValue(param2, MON_DATA_POKEBALL, NULL);
     } else {
         v3 = param1->msgItemTemp;
     }
@@ -6063,9 +6063,9 @@ BOOL ov16_02259B38 (BattleSystem * param0, Pokemon * param1)
     v2 = sub_02025F30(v0);
     v3 = sub_02025EF0(v0);
 
-    GetMonData(param1, MON_DATA_144, &v4[0]);
+    Pokemon_GetValue(param1, MON_DATA_144, &v4[0]);
 
-    if ((v1 == GetMonData(param1, MON_DATA_OT_ID, NULL)) && (v2 == GetMonData(param1, MON_DATA_OT_GENDER, NULL)) && (sub_02002238(v3, &v4[0], 7) == 0)) {
+    if ((v1 == Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL)) && (v2 == Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL)) && (sub_02002238(v3, &v4[0], 7) == 0)) {
         return 1;
     }
 
@@ -6158,7 +6158,7 @@ BOOL ov16_02259B9C (BattleSystem * param0, BattleContext * param1, int * param2)
         }
 
         if ((param1->battleMons[param1->msgBattlerTemp].species == 493) && (param1->battleMons[param1->msgBattlerTemp].curHP) && (Battler_Ability(param1, param1->msgBattlerTemp) == 121)) {
-            v1 = sub_02077988(Item_LoadParam(param1->battleMons[param1->msgBattlerTemp].heldItem, 1, 5));
+            v1 = Pokemon_GetArceusTypeOf(Item_LoadParam(param1->battleMons[param1->msgBattlerTemp].heldItem, 1, 5));
 
             if (param1->battleMons[param1->msgBattlerTemp].formNum != v1) {
                 param1->battleMons[param1->msgBattlerTemp].formNum = v1;
@@ -6175,7 +6175,7 @@ BOOL ov16_02259B9C (BattleSystem * param0, BattleContext * param1, int * param2)
                     int v4;
                     int v5;
 
-                    v3 = AllocMonZeroed(5);
+                    v3 = Pokemon_New(5);
 
                     if (BattleSystem_BattleType(param0) & 0x2) {
                         v4 = param1->battlerActions[param1->msgBattlerTemp][1];
@@ -6183,21 +6183,21 @@ BOOL ov16_02259B9C (BattleSystem * param0, BattleContext * param1, int * param2)
                         v4 = param1->msgBattlerTemp ^ 1;
                     }
 
-                    sub_020775EC(ov16_0223DFAC(param0, v4, param1->selectedPartySlot[v4]), v3);
+                    Pokemon_Copy(ov16_0223DFAC(param0, v4, param1->selectedPartySlot[v4]), v3);
                     v5 = 0;
 
-                    sub_02074B30(v3, 6, &v5);
+                    Pokemon_SetValue(v3, 6, &v5);
                     v5 = 0;
 
-                    sub_02074B30(v3, 112, &v5);
-                    sub_02077A00(v3);
+                    Pokemon_SetValue(v3, 112, &v5);
+                    Pokemon_SetGiratinaForm(v3);
 
-                    param1->battleMons[param1->msgBattlerTemp].attack = GetMonData(v3, MON_DATA_165, 0);
-                    param1->battleMons[param1->msgBattlerTemp].defense = GetMonData(v3, MON_DATA_166, 0);
-                    param1->battleMons[param1->msgBattlerTemp].speed = GetMonData(v3, MON_DATA_167, 0);
-                    param1->battleMons[param1->msgBattlerTemp].spAttack = GetMonData(v3, MON_DATA_168, 0);
-                    param1->battleMons[param1->msgBattlerTemp].spDefense = GetMonData(v3, MON_DATA_169, 0);
-                    param1->battleMons[param1->msgBattlerTemp].ability = GetMonData(v3, MON_DATA_10, 0);
+                    param1->battleMons[param1->msgBattlerTemp].attack = Pokemon_GetValue(v3, MON_DATA_ATK, 0);
+                    param1->battleMons[param1->msgBattlerTemp].defense = Pokemon_GetValue(v3, MON_DATA_DEF, 0);
+                    param1->battleMons[param1->msgBattlerTemp].speed = Pokemon_GetValue(v3, MON_DATA_SPEED, 0);
+                    param1->battleMons[param1->msgBattlerTemp].spAttack = Pokemon_GetValue(v3, MON_DATA_SP_ATK, 0);
+                    param1->battleMons[param1->msgBattlerTemp].spDefense = Pokemon_GetValue(v3, MON_DATA_SP_DEF, 0);
+                    param1->battleMons[param1->msgBattlerTemp].ability = Pokemon_GetValue(v3, MON_DATA_ABILITY, 0);
                     param1->battleMons[param1->msgBattlerTemp].formNum = 0;
                     param1->battleStatusMask2 |= 0x4000000;
 
@@ -7082,7 +7082,7 @@ BOOL ov16_0225B228 (BattleSystem * param0, BattleContext * param1, int * param2)
         v0 = 1;
     }
 
-    if ((v4 == 116) && (param1->battleMons[param1->attacker].curHP) && (param1->battleMons[param1->attacker].heldItem == 0) && ((param1->sideConditions[v6].knockedOffItemsMask & FlagIndex(param1->selectedPartySlot[param1->attacker])) == 0) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken)) && (param1->aiContext.moveTable[param1->moveCur].flags & 0x1)) {
+    if ((v4 == 116) && (param1->battleMons[param1->attacker].curHP) && (param1->battleMons[param1->attacker].heldItem == 0) && ((param1->sideConditions[v6].knockedOffItemsMask & Pokemon_GetFlagMaskOf(param1->selectedPartySlot[param1->attacker])) == 0) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken)) && (param1->aiContext.moveTable[param1->moveCur].flags & 0x1)) {
         param2[0] = (0 + 216);
         v0 = 1;
     }
@@ -7692,13 +7692,13 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
 
         for (v0 = v17; v0 < v18; v0++) {
             v19 = ov16_0223DFAC(param0, param1, v0);
-            v7 = GetMonData(v19, MON_DATA_SPECIES_EGG, NULL);
+            v7 = Pokemon_GetValue(v19, MON_DATA_SPECIES_EGG, NULL);
 
-            if ((v7 != 0) && (v7 != 494) && (GetMonData(v19, MON_DATA_163, NULL)) && ((v10 & FlagIndex(v0)) == 0) && (v20->selectedPartySlot[v14] != v0) && (v20->selectedPartySlot[v15] != v0) && (v0 != v20->aiSwitchedPartySlot[v14]) && (v0 != v20->aiSwitchedPartySlot[v15])) {
+            if ((v7 != 0) && (v7 != 494) && (Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL)) && ((v10 & Pokemon_GetFlagMaskOf(v0)) == 0) && (v20->selectedPartySlot[v14] != v0) && (v20->selectedPartySlot[v15] != v0) && (v0 != v20->aiSwitchedPartySlot[v14]) && (v0 != v20->aiSwitchedPartySlot[v15])) {
                 v3 = ov16_02252060(v20, v2, 27, NULL);
                 v4 = ov16_02252060(v20, v2, 28, NULL);
-                v5 = GetMonData(v19, MON_DATA_177, NULL);
-                v6 = GetMonData(v19, MON_DATA_178, NULL);
+                v5 = Pokemon_GetValue(v19, MON_DATA_177, NULL);
+                v6 = Pokemon_GetValue(v19, MON_DATA_178, NULL);
                 v11 = ov16_022558CC(v5, v3, v4);
                 v11 += ov16_022558CC(v6, v3, v4);
 
@@ -7707,7 +7707,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
                     v13 = v0;
                 }
             } else {
-                v10 |= FlagIndex(v0);
+                v10 |= Pokemon_GetFlagMaskOf(v0);
             }
         }
 
@@ -7715,12 +7715,12 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
             v19 = ov16_0223DFAC(param0, param1, v13);
 
             for (v0 = 0; v0 < 4; v0++) {
-                v8 = GetMonData(v19, MON_DATA_MOVE1 + v0, NULL);
+                v8 = Pokemon_GetValue(v19, MON_DATA_MOVE1 + v0, NULL);
                 v9 = ov16_0225BE3C(param0, v20, v19, v8);
 
                 if (v8) {
                     v16 = 0;
-                    ov16_022552D4(v20, v8, v9, GetMonData(v19, MON_DATA_10, NULL), Battler_Ability(v20, v2), ov16_02258AB8(v20, v2), ov16_02252060(v20, v2, 27, NULL), ov16_02252060(v20, v2, 28, NULL), &v16);
+                    ov16_022552D4(v20, v8, v9, Pokemon_GetValue(v19, MON_DATA_ABILITY, NULL), Battler_Ability(v20, v2), ov16_02258AB8(v20, v2), ov16_02252060(v20, v2, 27, NULL), ov16_02252060(v20, v2, 28, NULL), &v16);
 
                     if (v16 & 0x2) {
                         break;
@@ -7729,7 +7729,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
             }
 
             if (v0 == 4) {
-                v10 |= FlagIndex(v13);
+                v10 |= Pokemon_GetFlagMaskOf(v13);
             } else {
                 return v13;
             }
@@ -7743,11 +7743,11 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
 
     for (v0 = v17; v0 < v18; v0++) {
         v19 = ov16_0223DFAC(param0, param1, v0);
-        v7 = GetMonData(v19, MON_DATA_SPECIES_EGG, NULL);
+        v7 = Pokemon_GetValue(v19, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v7 != 0) && (v7 != 494) && (GetMonData(v19, MON_DATA_163, NULL)) && (v20->selectedPartySlot[v14] != v0) && (v20->selectedPartySlot[v15] != v0) && (v0 != v20->aiSwitchedPartySlot[v14]) && (v0 != v20->aiSwitchedPartySlot[v15])) {
+        if ((v7 != 0) && (v7 != 494) && (Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL)) && (v20->selectedPartySlot[v14] != v0) && (v20->selectedPartySlot[v15] != v0) && (v0 != v20->aiSwitchedPartySlot[v14]) && (v0 != v20->aiSwitchedPartySlot[v15])) {
             for (v1 = 0; v1 < 4; v1++) {
-                v8 = GetMonData(v19, MON_DATA_MOVE1 + v1, NULL);
+                v8 = Pokemon_GetValue(v19, MON_DATA_MOVE1 + v1, NULL);
                 v9 = ov16_0225BE3C(param0, v20, v19, v8);
 
                 if ((v8) && (v20->aiContext.moveTable[v8].power != 1)) {
@@ -7785,10 +7785,10 @@ int ov16_0225BE3C (BattleSystem * param0, BattleContext * param1, Pokemon * para
 
     switch (param3) {
     case 363:
-        v0 = ov16_0225B0FC(param1, GetMonData(param2, MON_DATA_HELD_ITEM, NULL), 12);
+        v0 = ov16_0225B0FC(param1, Pokemon_GetValue(param2, MON_DATA_HELD_ITEM, NULL), 12);
         break;
     case 449:
-        switch (ov16_0225B0FC(param1, GetMonData(param2, MON_DATA_HELD_ITEM, NULL), 1)) {
+        switch (ov16_0225B0FC(param1, Pokemon_GetValue(param2, MON_DATA_HELD_ITEM, NULL), 1)) {
         case 131:
             v0 = 1;
             break;
@@ -7843,7 +7843,7 @@ int ov16_0225BE3C (BattleSystem * param0, BattleContext * param1, Pokemon * para
         }
         break;
     case 237:
-        v0 = ((GetMonData(param2, MON_DATA_HP_IV, NULL) & 1) >> 0) | ((GetMonData(param2, MON_DATA_ATK_IV, NULL) & 1) << 1) | ((GetMonData(param2, MON_DATA_DEF_IV, NULL) & 1) << 2) | ((GetMonData(param2, MON_DATA_SPEED_IV, NULL) & 1) << 3) | ((GetMonData(param2, MON_DATA_SPATK_IV, NULL) & 1) << 4) | ((GetMonData(param2, MON_DATA_SPDEF_IV, NULL) & 1) << 5);
+        v0 = ((Pokemon_GetValue(param2, MON_DATA_HP_IV, NULL) & 1) >> 0) | ((Pokemon_GetValue(param2, MON_DATA_ATK_IV, NULL) & 1) << 1) | ((Pokemon_GetValue(param2, MON_DATA_DEF_IV, NULL) & 1) << 2) | ((Pokemon_GetValue(param2, MON_DATA_SPEED_IV, NULL) & 1) << 3) | ((Pokemon_GetValue(param2, MON_DATA_SPATK_IV, NULL) & 1) << 4) | ((Pokemon_GetValue(param2, MON_DATA_SPDEF_IV, NULL) & 1) << 5);
         v0 = (v0 * 15 / 63) + 1;
 
         if (v0 >= 9) {

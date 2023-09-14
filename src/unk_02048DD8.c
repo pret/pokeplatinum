@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202E7D8.h"
@@ -37,7 +37,7 @@
 #include "unk_02054884.h"
 #include "unk_02056720.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay006/ov6_022465FC.h"
 #include "overlay006/ov6_02246A30.h"
@@ -290,7 +290,7 @@ static void sub_02049268 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
     Party * v0 = Party_GetFromSavedata(param0->unk_0C);
     Pokemon * v1 = sub_02054A74(v0);
 
-    sub_0200B538(param1, 0, sub_02076B10(v1));
+    sub_0200B538(param1, 0, Pokemon_GetBoxPokemon(v1));
 }
 
 static void sub_02049288 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)

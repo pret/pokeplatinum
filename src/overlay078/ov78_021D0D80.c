@@ -71,7 +71,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay078/ov78_021D0D80.h"
 
 typedef struct {
@@ -663,7 +663,7 @@ static void ov78_021D1468 (UnkStruct_02007C7C ** param0, UnkStruct_ov78_021D107C
     UnkStruct_02008A90 v0;
     int v1;
 
-    v1 = sub_02075DAC(param2, 0);
+    v1 = Pokemon_GetGenderOf(param2, 0);
 
     sub_02075FB4(&v0, param2, v1, 2, 0, NULL, NULL);
 

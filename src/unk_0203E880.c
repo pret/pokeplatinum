@@ -1017,23 +1017,23 @@ void sub_0203F310 (UnkStruct_0203CDB0 * param0)
 {
     u8 v0;
 
-    v0 = (sub_0201D2E8() % (NELEMS(Unk_02100AE0)));
+    v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
     if (param0->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
         sub_0203F1B0(param0, (730 + Unk_02100AE0[v0][1]));
     }
 
-    v0 = (sub_0201D2E8() % (NELEMS(Unk_02100AE0)));
+    v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
     if (param0->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
         sub_0203F1B0(param0, (730 + Unk_02100AE0[v0][1]));
     }
 
     if (param0->unk_1C->unk_00 != 256) {
-        v0 = (sub_0201D2E8() % (NELEMS(Unk_02100AD4)));
+        v0 = (LCRNG_Next() % (NELEMS(Unk_02100AD4)));
         sub_0203F1B0(param0, (730 + Unk_02100AD4[v0]));
 
-        v0 = (sub_0201D2E8() % (NELEMS(Unk_02100AD4)));
+        v0 = (LCRNG_Next() % (NELEMS(Unk_02100AD4)));
         sub_0203F1B0(param0, (730 + Unk_02100AD4[v0]));
     }
 

@@ -37,7 +37,7 @@
 #include "unk_0201E86C.h"
 #include "gx_layers.h"
 #include "unk_02024220.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay017/ov17_0223F118.h"
 #include "overlay017/ov17_02252A70.h"
 
@@ -221,14 +221,14 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
     s32 v6, v7;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v5 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_HELD_ITEM, NULL);
+        v5 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_HELD_ITEM, NULL);
         v6 = 100;
 
         switch (param0->unk_00.unk_10F) {
         case 0:
-            v1 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
-            v2 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
-            v3 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
+            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
+            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
+            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
 
             switch (v5) {
             case 260:
@@ -241,9 +241,9 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
             }
             break;
         case 1:
-            v1 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
-            v2 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
-            v3 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
+            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
+            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
+            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
 
             switch (v5) {
             case 261:
@@ -256,9 +256,9 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
             }
             break;
         case 2:
-            v1 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
-            v2 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
-            v3 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
+            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
+            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_BEAUTY, NULL);
+            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
 
             switch (v5) {
             case 262:
@@ -271,9 +271,9 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
             }
             break;
         case 3:
-            v1 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
-            v2 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
-            v3 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
+            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
+            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_CUTE, NULL);
+            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
 
             switch (v5) {
             case 263:
@@ -286,9 +286,9 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
             }
             break;
         case 4:
-            v1 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
-            v2 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
-            v3 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
+            v1 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_TOUGH, NULL);
+            v2 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SMART, NULL);
+            v3 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_COOL, NULL);
 
             switch (v5) {
             case 264:
@@ -306,7 +306,7 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
             return;
         }
 
-        v4 = GetMonData(param0->unk_00.unk_00[v0], MON_DATA_SHEEN, NULL);
+        v4 = Pokemon_GetValue(param0->unk_00.unk_00[v0], MON_DATA_SHEEN, NULL);
         v7 = v1 + ((v2 + v3 + v4) / 2);
         v7 = v7 * v6 / 100;
 

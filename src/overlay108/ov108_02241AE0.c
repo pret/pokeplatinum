@@ -16,7 +16,7 @@
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay108/struct_ov108_02241DB0_decl.h"
@@ -60,7 +60,7 @@
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_0223BCBC.h"
@@ -339,7 +339,7 @@ int ov108_02241AE0 (UnkStruct_020067E8 * param0, int * param1)
 
     (*v1->unk_24) = ov108_02242B1C(v1);
 
-    v1->unk_16 = (sub_0201D2E8() % (4 * 4));
+    v1->unk_16 = (LCRNG_Next() % (4 * 4));
 
     ov108_0224237C(v1);
 
@@ -1108,7 +1108,7 @@ static void ov108_02242964 (UnkStruct_ov108_02241DB0 * param0, int param1)
         param0->unk_10 = 0;
 
         if (param0->unk_0C == 1) {
-            param0->unk_0D = (sub_0201D2E8() % (4 * 4));
+            param0->unk_0D = (LCRNG_Next() % (4 * 4));
         } else {
             param0->unk_0D++;
         }
@@ -1267,7 +1267,7 @@ void ov108_02242AE8 (UnkStruct_ov108_02241DB0 * param0, u16 param1, u16 param2)
 
 static u16 ov108_02242B1C (UnkStruct_ov108_02241DB0 * param0)
 {
-    return sub_0201D2E8();
+    return LCRNG_Next();
 }
 
 void ov108_02242B24 (int param0, int param1, void * param2, void * param3)
@@ -1516,7 +1516,7 @@ static void ov108_02242E10 (UnkStruct_ov108_02241DB0 * param0)
             v2 += param0->unk_30[2];
         }
 
-        v4 = (sub_0201D2E8() % v3);
+        v4 = (LCRNG_Next() % v3);
         v4 += v2;
         v6 = v4;
         v0 = 0;
@@ -1561,7 +1561,7 @@ static u8 ov108_02242EF4 (UnkStruct_ov108_02241DB0 * param0, u8 param1)
     u16 v2;
 
     v0 = 0;
-    v2 = (sub_0201D2E8() % 100);
+    v2 = (LCRNG_Next() % 100);
 
     for (v1 = 0; v1 < 4; v1++) {
         v0 += Unk_ov108_022436B0[param1][v1];
@@ -1590,7 +1590,7 @@ static void ov108_02242F38 (UnkStruct_ov108_02241DB0 * param0)
     for (v2 = 0; v2 < v0; v2++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3C8, v2);
 
-        if (GetMonData(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
+        if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
             ov108_022435A8(param0->unk_39C[v2], 0);
         } else {
             ov108_022435A8(param0->unk_39C[v2], 1);
@@ -1600,7 +1600,7 @@ static void ov108_02242F38 (UnkStruct_ov108_02241DB0 * param0)
     for (v2 = 0; v2 < v1; v2++) {
         v3 = Party_GetPokemonBySlotIndex(param0->unk_3CC, v2);
 
-        if (GetMonData(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
+        if (Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL) == 0) {
             ov108_022435A8(param0->unk_3AC[v2], 0);
         } else {
             ov108_022435A8(param0->unk_3AC[v2], 1);

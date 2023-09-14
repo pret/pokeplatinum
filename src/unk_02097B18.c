@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F1E88.h"
@@ -42,7 +42,7 @@
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_02097B18.h"
@@ -94,7 +94,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     v1 = sub_02006840(param0);
     v0->unk_00 = v1;
     v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 53);
-    v0->unk_428 = AllocMonZeroed(53);
+    v0->unk_428 = Pokemon_New(53);
     v0->unk_D4.unk_00 = 0xFF;
     v0->unk_418.unk_00 = 0;
 
@@ -136,7 +136,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
                 continue;
             }
 
-            v5 = GetMonData(v0->unk_00->unk_04[v4], MON_DATA_162, 0);
+            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_162, 0);
 
             if (v5 != 0) {
                 v0->unk_04[v5 - 1].unk_00 = v4;
@@ -398,8 +398,8 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
         if (v7->unk_22 != 7) {
             v8 = sub_02097F00(v0->unk_08, v7->unk_22);
 
-            sub_02074B30(v8, 162, (u8 *)&v13);
-            sub_02074B30(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
+            Pokemon_SetValue(v8, 162, (u8 *)&v13);
+            Pokemon_SetValue(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);
             v10 = sub_0202CA64(v9, 0);

@@ -49,7 +49,7 @@
 #include "unk_020279FC.h"
 #include "unk_020366A0.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 #include "overlay011/ov11_0221F840.h"
@@ -723,7 +723,7 @@ static void ov17_0223E458 (UnkStruct_ov17_0224DF54 * param0)
     ov17_0224CFB8(param0);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_14.unk_A14[v0] = ov17_0224CFA8(GetMonData(param0->unk_00->unk_00.unk_00[v0], MON_DATA_SPECIES, NULL));
+        param0->unk_14.unk_A14[v0] = ov17_0224CFA8(Pokemon_GetValue(param0->unk_00->unk_00.unk_00[v0], MON_DATA_SPECIES, NULL));
     }
 }
 

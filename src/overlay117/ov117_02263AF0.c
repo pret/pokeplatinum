@@ -454,7 +454,7 @@ static void ov117_02263BA4 (UnkStruct_02018340 * param0, UnkStruct_ov117_02263DA
         if (param1->unk_10 == 0) {
             v7 = 0;
         } else {
-            v7 = (sub_0201D2E8() & 7) + 1;
+            v7 = (LCRNG_Next() & 7) + 1;
 
             if (param1->unk_28 & 1) {
                 v7 = -v7;
@@ -841,11 +841,11 @@ static void ov117_02264214 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_0
             sub_0200D364(v1, v6);
             sub_0200D324(v1->unk_00);
 
-            v10->unk_04 = sub_0201D2E8() % 0x2000 + 0x2000;
-            v10->unk_08 = sub_0201D2E8() % 0x4000 + 0x2000;
-            v10->unk_0C = (sub_0201D2E8() % 360) << FX32_SHIFT;
-            v10->unk_10 = sub_0201D2E8() % 0x14000 + 0xa000;
-            v10->unk_14 = sub_0201D2E8() % 15 + 20;
+            v10->unk_04 = LCRNG_Next() % 0x2000 + 0x2000;
+            v10->unk_08 = LCRNG_Next() % 0x4000 + 0x2000;
+            v10->unk_0C = (LCRNG_Next() % 360) << FX32_SHIFT;
+            v10->unk_10 = LCRNG_Next() % 0x14000 + 0xa000;
+            v10->unk_14 = LCRNG_Next() % 15 + 20;
 
             param1->unk_04[v7].unk_00 = v1;
 
@@ -866,14 +866,14 @@ static void ov117_02264214 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_0
         }
 
         sub_0200D500(v1, 128, 96, ((192 + 160) << FX32_SHIFT));
-        sub_0200D364(v1, 28 + sub_0201D2E8() % 3);
+        sub_0200D364(v1, 28 + LCRNG_Next() % 3);
         sub_0200D324(v1->unk_00);
 
-        v11->unk_04 = sub_0201D2E8() % 0x2000 + 0x2000;
-        v11->unk_08 = sub_0201D2E8() % 0x4000 + 0x2000;
-        v11->unk_0C = (sub_0201D2E8() % 360) << FX32_SHIFT;
-        v11->unk_10 = sub_0201D2E8() % 0x14000 + 0x10000;
-        v11->unk_14 = sub_0201D2E8() % 15 + 20;
+        v11->unk_04 = LCRNG_Next() % 0x2000 + 0x2000;
+        v11->unk_08 = LCRNG_Next() % 0x4000 + 0x2000;
+        v11->unk_0C = (LCRNG_Next() % 360) << FX32_SHIFT;
+        v11->unk_10 = LCRNG_Next() % 0x14000 + 0x10000;
+        v11->unk_14 = LCRNG_Next() % 15 + 20;
 
         param1->unk_868[v8].unk_00 = v1;
     }
@@ -894,11 +894,11 @@ static void ov117_02264214 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_0
         sub_0200D364(v1, 11);
         sub_0200D324(v1->unk_00);
 
-        v12->unk_04 = sub_0201D2E8() % 0x2000 + 0x2000;
-        v12->unk_08 = sub_0201D2E8() % 0x4000 + 0x2000;
-        v12->unk_0C = (sub_0201D2E8() % 360) << FX32_SHIFT;
-        v12->unk_10 = sub_0201D2E8() % 0x14000 + 0x10000;
-        v12->unk_14 = sub_0201D2E8() % 15 + 20;
+        v12->unk_04 = LCRNG_Next() % 0x2000 + 0x2000;
+        v12->unk_08 = LCRNG_Next() % 0x4000 + 0x2000;
+        v12->unk_0C = (LCRNG_Next() % 360) << FX32_SHIFT;
+        v12->unk_10 = LCRNG_Next() % 0x14000 + 0x10000;
+        v12->unk_14 = LCRNG_Next() % 15 + 20;
 
         param1->unk_928[v8].unk_00 = v1;
     }
@@ -2456,8 +2456,8 @@ static void ov117_0226639C (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_0
         sub_0200D810(param2->unk_00[v2], GX_OAM_MODE_XLU);
         sub_0200D3F4(param2->unk_00[v2], 1);
 
-        param2->unk_08[v2] = sub_0201D2E8() % 0x1000 + 0x1000;
-        param2->unk_10[v2] = sub_0201D2E8() % 0x400 + 0x400;
+        param2->unk_08[v2] = LCRNG_Next() % 0x1000 + 0x1000;
+        param2->unk_10[v2] = LCRNG_Next() % 0x400 + 0x400;
 
         if (v2 & 1) {
             param2->unk_08[v2] *= -1;

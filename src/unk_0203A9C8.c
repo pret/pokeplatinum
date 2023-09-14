@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
@@ -90,7 +90,7 @@
 #include "unk_0207064C.h"
 #include "unk_0207070C.h"
 #include "unk_02071D40.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"
@@ -1341,7 +1341,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
 
         Heap_FreeToHeap(v1->unk_260);
 
-        if ((Item_IsMail(v10) == 1) && (GetMonData(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
+        if ((Item_IsMail(v10) == 1) && (Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
             UnkStruct_02097728 * v11;
             UnkStruct_0203C540 * v12;
 

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV22_022578F4_H
 
 #include "struct_defs/struct_02008A90.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay022/struct_ov22_02257964.h"
 #include "overlay022/struct_ov22_02259560.h"
 #include "overlay022/struct_ov22_0225B388.h"

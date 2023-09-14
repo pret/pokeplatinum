@@ -54,7 +54,7 @@
 #include "strbuf.h"
 #include "unk_02034198.h"
 #include "unk_020393C8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_0208C098.h"
 #include "unk_020989DC.h"
 #include "unk_02098FFC.h"
@@ -527,13 +527,13 @@ static void ov79_021D27AC (UnkStruct_ov79_021D2928 * param0)
 static void ov79_021D27D8 (UnkStruct_ov79_021D2928 * param0)
 {
     param0->unk_30.unk_00 = param0->unk_10->unk_00;
-    param0->unk_30.unk_04 = GetMonData(param0->unk_10->unk_00, MON_DATA_SPECIES, NULL);
-    param0->unk_30.unk_07 = sub_02075D6C(param0->unk_10->unk_00);
-    param0->unk_30.unk_06 = sub_02075BCC(param0->unk_10->unk_00);
-    param0->unk_30.unk_08 = sub_020759CC(param0->unk_30.unk_04, GetMonData(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
+    param0->unk_30.unk_04 = Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_SPECIES, NULL);
+    param0->unk_30.unk_07 = Pokemon_GetGender(param0->unk_10->unk_00);
+    param0->unk_30.unk_06 = Pokemon_GetNature(param0->unk_10->unk_00);
+    param0->unk_30.unk_08 = PokemonPersonalData_GetFormValue(param0->unk_30.unk_04, Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_FORM, NULL), 28) ^ 1;
     param0->unk_30.unk_0C = Strbuf_Init(12, param0->unk_00);
 
-    GetMonData(param0->unk_10->unk_00, MON_DATA_119, param0->unk_30.unk_0C);
+    Pokemon_GetValue(param0->unk_10->unk_00, MON_DATA_119, param0->unk_30.unk_0C);
 
     param0->unk_30.unk_09 = sub_02098EAC(param0->unk_10->unk_04, param0->unk_30.unk_06);
 }
@@ -690,7 +690,7 @@ static int ov79_021D2AF0 (UnkStruct_ov79_021D2928 * param0, UnkStruct_ov79_021D2
 {
     u32 v0;
 
-    v0 = GetMonData(param0->unk_30.unk_00, MON_DATA_FORM, NULL);
+    v0 = Pokemon_GetValue(param0->unk_30.unk_00, MON_DATA_FORM, NULL);
 
     switch (param0->unk_30.unk_09) {
     case 1:

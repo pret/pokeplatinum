@@ -56,7 +56,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
@@ -756,13 +756,13 @@ static int ov91_021D13E4 (UnkStruct_ov91_021D0ED8 * param0)
     u32 v0;
 
     v0 = ov91_021D1DD0(param0);
-    sub_02074B30(param0->unk_00->unk_00, 54 + param0->unk_00->unk_17, &v0);
+    Pokemon_SetValue(param0->unk_00->unk_00, 54 + param0->unk_00->unk_17, &v0);
 
     v0 = 0;
-    sub_02074B30(param0->unk_00->unk_00, 62 + param0->unk_00->unk_17, &v0);
+    Pokemon_SetValue(param0->unk_00->unk_00, 62 + param0->unk_00->unk_17, &v0);
 
     v0 = MoveTable_CalcMaxPP(ov91_021D1DD0(param0), 0);
-    sub_02074B30(param0->unk_00->unk_00, 58 + param0->unk_00->unk_17, &v0);
+    Pokemon_SetValue(param0->unk_00->unk_00, 58 + param0->unk_00->unk_17, &v0);
 
     param0->unk_00->unk_16 = 0;
 
@@ -1107,35 +1107,35 @@ static void ov91_021D1C10 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
 
     switch (param1) {
     case 0:
-        sub_0200B5CC(param0->unk_FC, 0, sub_02076B10(param0->unk_00->unk_00));
+        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 1:
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 2:
-        sub_0200B5CC(param0->unk_FC, 0, sub_02076B10(param0->unk_00->unk_00));
+        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         break;
     case 3:
-        sub_0200B5CC(param0->unk_FC, 0, sub_02076B10(param0->unk_00->unk_00));
+        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 4:
-        sub_0200B5CC(param0->unk_FC, 0, sub_02076B10(param0->unk_00->unk_00));
+        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 5:
-        sub_0200B5CC(param0->unk_FC, 0, sub_02076B10(param0->unk_00->unk_00));
+        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DE0(param0));
         break;
     case 6:
-        sub_0200B5CC(param0->unk_FC, 0, sub_02076B10(param0->unk_00->unk_00));
+        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 7:
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 8:
-        sub_0200B5CC(param0->unk_FC, 0, sub_02076B10(param0->unk_00->unk_00));
+        sub_0200B5CC(param0->unk_FC, 0, Pokemon_GetBoxPokemon(param0->unk_00->unk_00));
         sub_0200B630(param0->unk_FC, 1, ov91_021D1DD0(param0));
         break;
     case 9:
@@ -1158,7 +1158,7 @@ static u16 ov91_021D1DD0 (UnkStruct_ov91_021D0ED8 * param0)
 
 static u16 ov91_021D1DE0 (UnkStruct_ov91_021D0ED8 * param0)
 {
-    return (u16)GetMonData(param0->unk_00->unk_00, 54 + param0->unk_00->unk_17, NULL);
+    return (u16)Pokemon_GetValue(param0->unk_00->unk_00, 54 + param0->unk_00->unk_17, NULL);
 }
 
 static void ov91_021D1DF8 (UnkStruct_ov91_021D0ED8 * param0, u32 param1)
@@ -1196,7 +1196,7 @@ static u8 ov91_021D1EA0 (UnkStruct_ov91_021D0ED8 * param0)
     u8 v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        if (GetMonData(param0->unk_00->unk_00, MON_DATA_MOVE1 + v0, NULL) == 0) {
+        if (Pokemon_GetValue(param0->unk_00->unk_00, MON_DATA_MOVE1 + v0, NULL) == 0) {
             break;
         }
     }

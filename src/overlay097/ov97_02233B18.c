@@ -26,8 +26,7 @@
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02099F80.h"
 #include "overlay019/struct_ov19_021DA864.h"
@@ -71,7 +70,7 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202EEC0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "item.h"
 #include "unk_0209A74C.h"
@@ -398,7 +397,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     UnkStruct_02024440 * v7;
 
     v7 = sub_02024440(param0->unk_10);
-    v4 = sub_02076B10(&v6);
+    v4 = Pokemon_GetBoxPokemon(&v6);
 
     for (v0 = 0; v0 < 6; v0++) {
         v2 = param0->unk_42C[v0].unk_04;

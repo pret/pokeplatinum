@@ -151,7 +151,7 @@ static int ov6_0224673C (UnkStruct_0203CDB0 * param0, const u8 * param1)
         return v0[0];
     }
 
-    return v0[sub_0201D35C() % v2];
+    return v0[MTRNG_Next() % v2];
 }
 
 static int ov6_0224678C (UnkStruct_0202440C * param0, int param1, int param2, BOOL param3, BOOL param4, u8 * param5)

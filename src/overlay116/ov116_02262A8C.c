@@ -1118,18 +1118,18 @@ static const UnkStruct_ov116_02267C88 Unk_ov116_02267C88[][4] = {
 
 static inline u32 inline_ov116_02263E20 (void)
 {
-    u32 v0 = sub_0201D2D0();
+    u32 v0 = LCRNG_GetSeed();
     u32 v1;
 
-    v1 = sub_0201D2E8();
-    sub_0201D2DC(v0);
+    v1 = LCRNG_Next();
+    LCRNG_SetSeed(v0);
 
     return v1;
 }
 
 static inline s8 inline_ov116_02263E20_1 (void)
 {
-    if (sub_0201D2E8() % 2) {
+    if (LCRNG_Next() % 2) {
         return +1;
     } else {
         return -1;

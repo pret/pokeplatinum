@@ -38,7 +38,7 @@ static void ov116_02260440 (int param0, int param1, void * param2, void * param3
 
     v0->unk_14 = *((UnkStruct_ov116_0226048C *)param2);
 
-    sub_0201D2DC(v0->unk_14.unk_04);
+    LCRNG_SetSeed(v0->unk_14.unk_04);
     ov116_022617D4(v0);
 }
 

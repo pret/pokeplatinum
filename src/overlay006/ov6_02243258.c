@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_020711EC_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -38,7 +38,7 @@
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
 #include "unk_020711EC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay005/ov5_021F0EB0.h"
 #include "overlay006/ov6_02243258.h"
 
@@ -2069,7 +2069,7 @@ static void * ov6_0224509C (Pokemon * param0, UnkStruct_02008A90 * param1, u32 p
     GF_ASSERT(v0 != NULL);
 
     {
-        int v1 = GetMonData(param0, MON_DATA_PERSONALITY, NULL);
+        int v1 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL);
         sub_02013750(param1->unk_00, param1->unk_02, param2, v0, v1, 0, 2, param1->unk_06);
     }
 

@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02023FCC_decl.h"
-#include "struct_decls/struct_02075874_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -46,7 +45,7 @@
 #include "unk_02023FCC.h"
 #include "unk_0202440C.h"
 #include "unk_02030A80.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "unk_0208B284.h"
@@ -1178,7 +1177,7 @@ static void ov62_0223AFEC (UnkStruct_0208C06C * param0)
 static void ov62_0223B050 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
-    UnkStruct_02075874 * v1;
+    PokemonPersonalData * v1;
     UnkStruct_02008A90 v2;
     u8 v3;
     u8 v4;
@@ -1204,15 +1203,15 @@ static void ov62_0223B050 (UnkStruct_0208C06C * param0)
         v7 = 494;
     }
 
-    v1 = sub_02075894(v7, 102);
-    v3 = sub_02075DAC(v7, v8);
-    v4 = sub_02075E38(v5, v8);
+    v1 = PokemonPersonalData_FromMonSpecies(v7, 102);
+    v3 = Pokemon_GetGenderOf(v7, v8);
+    v4 = Pokemon_IsPersonalityShiny(v5, v8);
     v9 = sub_02076648(v7, v3, v10, v6, v8);
     v9 = 0;
 
     sub_02075FB4(&v2, v7, v3, v10, v4, v6, v8);
     v0->unk_32C = sub_02007C34(param0->unk_14.unk_50, &v2, 42, 91 + v9, 0, 0, NULL, NULL);
-    sub_020759B8(v1);
+    PokemonPersonalData_Free(v1);
 }
 
 static void ov62_0223B124 (UnkStruct_0208C06C * param0, int param1)

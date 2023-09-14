@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_0200C738.h"
 #include "struct_defs/struct_0207F248.h"
@@ -22,7 +22,7 @@
 #include "unk_0201E010.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "party.h"
 #include "item.h"
@@ -84,7 +84,7 @@ void sub_02082CEC (UnkStruct_0207F248 * param0, u8 param1, u16 param2, u16 param
 
     sub_0200D9B4(param0->unk_5A8, param0->unk_5AC, param4, sub_02079D80(v0), 0, 4 + param1);
 
-    v2 = GetMonData(v0, MON_DATA_IS_EGG, NULL);
+    v2 = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
 
     v1.unk_00 = 4 + param1;
     v1.unk_04 = param2;
@@ -113,8 +113,8 @@ void sub_02082DA8 (UnkStruct_0207F248 * param0, u8 param1)
     BOOL v7;
 
     v0 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param1);
-    v2 = GetMonData(v0, MON_DATA_SPECIES, NULL);
-    v3 = GetMonData(v0, MON_DATA_FORM, NULL);
+    v2 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 12);
     v4 = NNS_G2dGetImageLocation(sub_02021F98(param0->unk_704[param1].unk_24), NNS_G2D_VRAM_TYPE_2DMAIN);
     v5 = sub_0200723C(v1, sub_02079D80(v0), 0, 12, 1);

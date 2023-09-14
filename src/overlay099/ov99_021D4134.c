@@ -235,8 +235,8 @@ void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param
 
             if (param0->unk_1114.unk_02 == 0) {
                 if (param0->unk_1114.unk_06 % 3 == 0) {
-                    if (sub_0201D2E8() & 1) {
-                        param0->unk_1114.unk_00 = sub_0201D2E8() % 10;
+                    if (LCRNG_Next() & 1) {
+                        param0->unk_1114.unk_00 = LCRNG_Next() % 10;
                         param0->unk_1114.unk_06++;
                     } else {
                         param0->unk_1114.unk_00 = 40;
@@ -257,7 +257,7 @@ void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param
         if (param0->unk_1114.unk_04 != -1) {
             param0->unk_1114.unk_04++;
 
-            if ((param0->unk_1114.unk_04 > 16) && (sub_0201D2E8() % 5 == 0)) {
+            if ((param0->unk_1114.unk_04 > 16) && (LCRNG_Next() % 5 == 0)) {
                 v1 = 1;
                 param0->unk_1114.unk_04 = -1;
             } else {

@@ -648,7 +648,7 @@ static BOOL ov5_021DBCE0 (UnkStruct_ov5_021DBA58 * param0)
             ov5_021DBC40(param0, param0->unk_10[v3], Unk_ov5_021F8E34);
             v4 = 1;
         } else {
-            if (((sub_0201D2E8() % 100) < 50) && (ov5_021DBEB8(param0->unk_10[v3]) == 0)) {
+            if (((LCRNG_Next() % 100) < 50) && (ov5_021DBEB8(param0->unk_10[v3]) == 0)) {
                 ov5_021DBECC(param0->unk_10[v3], 0x31);
                 ov5_021DBC40(param0, param0->unk_10[v3], Unk_ov5_021F8E3C);
 

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
@@ -27,7 +27,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "item.h"
 #include "overlay019/ov19_021D0D80.h"
@@ -250,14 +250,14 @@ void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NN
     for (v3 = 0, v4 = 0; v3 < 5; v3++) {
         for (v2 = 0; v2 < 6; v2++) {
             v1 = sub_02079C9C(v0, param1, v4++);
-            v7 = sub_02073D20(v1);
-            v5 = sub_02074570(v1, MON_DATA_SPECIES, NULL);
+            v7 = BoxPokemon_EnterDecryptionContext(v1);
+            v5 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
             if (v5) {
-                if (sub_02074570(v1, MON_DATA_IS_EGG, NULL) == 0) {
-                    u16 v9 = sub_02074570(v1, MON_DATA_FORM, NULL);
+                if (BoxPokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
+                    u16 v9 = BoxPokemon_GetValue(v1, MON_DATA_FORM, NULL);
 
-                    v6 = sub_020759CC(v5, v9, 27);
+                    v6 = PokemonPersonalData_GetFormValue(v5, v9, 27);
                 } else {
                     v6 = (v5 != 490) ? 8 : 1;
                 }
@@ -273,7 +273,7 @@ void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NN
                 sub_0201A6D0(&(param0->unk_3C), 10 + v2 * 2, 11 + v3 * 2, 2, 2, v6);
             }
 
-            sub_02073D48(v1, v7);
+            BoxPokemon_ExitDecryptionContext(v1, v7);
         }
     }
 

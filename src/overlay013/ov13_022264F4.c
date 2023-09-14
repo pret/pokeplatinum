@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
@@ -38,7 +38,7 @@
 #include "gx_layers.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "item.h"
@@ -415,7 +415,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             v3 = ov16_0223DFAC(v0->unk_00, v0->unk_10, v1);
             v4 = MessageLoader_GetNewStrbuf(param0->unk_10, 46);
 
-            sub_0200B5CC(param0->unk_14, 0, sub_02076B10(v3));
+            sub_0200B5CC(param0->unk_14, 0, Pokemon_GetBoxPokemon(v3));
             sub_0200B630(param0->unk_14, 1, 373);
             sub_0200C388(param0->unk_14, param0->unk_18, v4);
             Strbuf_Free(v4);
