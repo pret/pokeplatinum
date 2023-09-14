@@ -296,7 +296,7 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
 
     v1 = NARC_ctor(NARC_INDEX_GRAPHIC__F_NOTE_GRA, 42);
 
-    if (sub_02025F30(param0->unk_48) == 0) {
+    if (TrainerInfo_Gender(param0->unk_48) == 0) {
         sub_020070E8(v1, 2, param0->unk_00, 2, 0, 0, 0, 42);
         sub_0200710C(v1, 0, param0->unk_00, 2, 0, 0, 0, 42);
         sub_02007130(v1, 4, 0, 0, 0, 42);

@@ -370,7 +370,7 @@ BOOL sub_02046AD4 (UnkStruct_0203E724 * param0)
     v1 = 0;
 
     for (v4 = 0; v4 < 8; v4++) {
-        if (sub_02025F34(sub_02025E38(param0->unk_34->unk_0C), v4) == 1) {
+        if (TrainerInfo_HasBadge(sub_02025E38(param0->unk_34->unk_0C), v4) == 1) {
             v2++;
         }
     }

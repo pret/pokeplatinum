@@ -4001,7 +4001,7 @@ static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
 
     {
         char v2 = 109;
-        BOOL v3 = sub_02025F34(sub_02025E38(param0->unk_00->unk_0C), 4);
+        BOOL v3 = TrainerInfo_HasBadge(sub_02025E38(param0->unk_00->unk_0C), 4);
 
         if (v3 == 1) {
             v2 = 91;

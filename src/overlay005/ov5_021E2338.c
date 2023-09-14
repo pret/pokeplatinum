@@ -2972,7 +2972,7 @@ static u32 ov5_021E5880 (UnkStruct_0203CDB0 * param0)
 {
     TrainerInfo * v0 = sub_02025E38(param0->unk_0C);
 
-    return sub_02025F30(v0);
+    return TrainerInfo_Gender(v0);
 }
 
 static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const UnkStruct_ov5_021F9D0C * param2)

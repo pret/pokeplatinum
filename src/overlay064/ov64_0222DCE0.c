@@ -1161,19 +1161,19 @@ static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 
     TrainerInfo * v1;
 
     v0 = sub_0202B370(param1);
-    v1 = sub_02025E6C(param3);
+    v1 = TrainerInfo_New(param3);
 
-    sub_02025EC0(v1, sub_0202AEF0(v0, param2));
+    TrainerInfo_SetName(v1, sub_0202AEF0(v0, param2));
     sub_0200B498(param0->unk_214, 0, v1);
     Heap_FreeToHeap(v1);
 }
 
 static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3)
 {
-    TrainerInfo * v0 = sub_02025E6C(param3);
+    TrainerInfo * v0 = TrainerInfo_New(param3);
     UnkStruct_0202B370 * v1 = sub_0202B370(param1);
 
-    sub_02025EC0(v0, sub_0202AF34(v1, param2));
+    TrainerInfo_SetName(v0, sub_0202AF34(v1, param2));
     sub_0200B498(param0->unk_214, 0, v0);
     Heap_FreeToHeap(v0);
 }
@@ -1341,9 +1341,9 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
             u64 v1;
             TrainerInfo * v2;
 
-            v2 = sub_02025E6C(param3);
+            v2 = TrainerInfo_New(param3);
 
-            sub_02025EC0(v2, Strbuf_GetData(param1->unk_2C.unk_00));
+            TrainerInfo_SetName(v2, Strbuf_GetData(param1->unk_2C.unk_00));
             sub_0200B498(param2->unk_214, 0, v2);
             Heap_FreeToHeap(v2);
 

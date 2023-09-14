@@ -6036,9 +6036,9 @@ BOOL ov16_02259ADC (BattleSystem * param0, BattleContext * param1)
     const u16 * v3;
 
     v0 = ov16_0223E16C(param0, 0);
-    v1 = sub_02025F20(v0);
-    v2 = sub_02025F30(v0);
-    v3 = sub_02025EF0(v0);
+    v1 = TrainerInfo_ID(v0);
+    v2 = TrainerInfo_Gender(v0);
+    v3 = TrainerInfo_Name(v0);
 
     if ((v1 == param1->battleMons[param1->attacker].OTId) && (v2 == param1->battleMons[param1->attacker].OTGender) && (sub_02002238(v3, &param1->battleMons[param1->attacker].OTName[0], 7) == 0)) {
         return 1;
@@ -6056,9 +6056,9 @@ BOOL ov16_02259B38 (BattleSystem * param0, Pokemon * param1)
     u16 v4[7 + 1];
 
     v0 = ov16_0223E16C(param0, 0);
-    v1 = sub_02025F20(v0);
-    v2 = sub_02025F30(v0);
-    v3 = sub_02025EF0(v0);
+    v1 = TrainerInfo_ID(v0);
+    v2 = TrainerInfo_Gender(v0);
+    v3 = TrainerInfo_Name(v0);
 
     Pokemon_GetValue(param1, MON_DATA_144, &v4[0]);
 

@@ -672,7 +672,7 @@ void ov84_02240248 (UnkStruct_ov84_0223B5A0 * param0, u8 param1)
 
     v1 = MessageLoader_GetNewStrbuf(param0->unk_114, 79);
 
-    sub_0200B60C(param0->unk_118, 0, sub_02025F74(param0->unk_CC), 6, 1, 1);
+    sub_0200B60C(param0->unk_118, 0, TrainerInfo_Money(param0->unk_CC), 6, 1, 1);
     sub_0200C388(param0->unk_118, param0->unk_3F8, v1);
 
     v2 = sub_02002D7C(0, param0->unk_3F8, 0);

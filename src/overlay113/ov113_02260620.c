@@ -579,11 +579,11 @@ void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, UnkStr
         return;
     }
 
-    v1 = sub_02025E6C(118);
+    v1 = TrainerInfo_New(118);
     ov66_0222E640(v0, v1, 118);
 
-    v4 = sub_02025F04(v1, 118);
-    v6 = sub_02025F30(v1);
+    v4 = TrainerInfo_NameNewStrbuf(v1, 118);
+    v6 = TrainerInfo_Gender(v1);
 
     sub_0200B48C(param1, 0, v4, v6, 1, GAME_LANGUAGE);
 

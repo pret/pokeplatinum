@@ -1824,16 +1824,16 @@ static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         param0->unk_04->unk_00.unk_0C[v5] = Pokemon_GetValue(v6, MON_DATA_HELD_ITEM, NULL);
     }
 
-    param0->unk_04->unk_00.unk_18 = sub_02025FCC(v0);
-    param0->unk_04->unk_00.unk_19 = sub_02025FD8(v0);
+    param0->unk_04->unk_00.unk_18 = TrainerInfo_GameCode(v0);
+    param0->unk_04->unk_00.unk_19 = TrainerInfo_RegionCode(v0);
     param0->unk_04->unk_00.unk_1A = sub_02027474(v1);
     param0->unk_04->unk_00.unk_1B = 29;
 
     ov65_02232E70(param0, param1);
 
     param0->unk_04->unk_00.unk_1C = 0;
-    param0->unk_04->unk_00.unk_1D = sub_02025F8C(v0);
-    param0->unk_04->unk_00.unk_1E = sub_02025F30(v0);
+    param0->unk_04->unk_00.unk_1D = TrainerInfo_Appearance(v0);
+    param0->unk_04->unk_00.unk_1E = TrainerInfo_Gender(v0);
     param0->unk_04->unk_00.unk_1F = sub_0202C8C0(v3);
     param0->unk_04->unk_00.unk_20 = sub_0202C8C4(v3);
     param0->unk_04->unk_00.unk_21 = 1;
@@ -2309,7 +2309,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
     int v0, v1, v2;
     int v3;
     TrainerInfo * v4 = sub_02025E38(param0->unk_160);
-    Strbuf* v5 = sub_02025F04(v4, 54);
+    Strbuf* v5 = TrainerInfo_NameNewStrbuf(v4, 54);
     u32 v6;
 
     if (!sub_0201A7CC(&param0->unk_340)) {
@@ -2319,7 +2319,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
 
     sub_0201ADA4(&param0->unk_340, 0);
 
-    v1 = sub_02025F30(v4);
+    v1 = TrainerInfo_Gender(v4);
 
     if (v1 == 0) {
         v0 = ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0)));
@@ -4813,9 +4813,9 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static void ov65_02232DC0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (param1 != -1) {
-        TrainerInfo * v0 = sub_02025E6C(54);
+        TrainerInfo * v0 = TrainerInfo_New(54);
 
-        sub_02025EC0(v0, sub_0202AEF0(param0->unk_00, param1));
+        TrainerInfo_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
         sub_0200B498(param0->unk_164, 0, v0);
         Heap_FreeToHeap(v0);
     }
@@ -5482,14 +5482,14 @@ asm static void ov65_02233940 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
     mov r3, #0x68
     bl sub_0201D78C
     mov r0, #0x36
-    bl sub_02025E6C
+    bl TrainerInfo_New
     add r6, r0, #0
     ldr r0, [r5, #0]
     add r1, r4, #0
     bl sub_0202AF34
     add r1, r0, #0
     add r0, r6, #0
-    bl sub_02025EC0
+    bl TrainerInfo_SetName
     ldr r0, = 0xB18
     mov r1, #0
     ldr r0, [r5, r0]
@@ -6895,9 +6895,9 @@ static BOOL ov65_02234E8C (UnkStruct_ov65_02234E50 * param0, u32 param1, u32 par
 static void ov65_02234F68 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (param1 != -1) {
-        TrainerInfo * v0 = sub_02025E6C(54);
+        TrainerInfo * v0 = TrainerInfo_New(54);
 
-        sub_02025EC0(v0, sub_0202AEF0(param0->unk_00, param1));
+        TrainerInfo_SetName(v0, sub_0202AEF0(param0->unk_00, param1));
         sub_0200B498(param0->unk_BE0.unk_00, 0, v0);
         Heap_FreeToHeap(v0);
     }

@@ -28,7 +28,7 @@ void sub_0206C2D0 (UnkStruct_021C0794 * param0, const s32 param1)
     v4 = sub_02025E38(param0);
 
     for (v0 = 0; v0 < 8; v0++) {
-        if (sub_02025F34(v4, v0) == 0) {
+        if (TrainerInfo_HasBadge(v4, v0) == 0) {
             continue;
         }
 

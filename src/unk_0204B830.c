@@ -289,9 +289,9 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     }
 
     if (v0->val1.unk_00 == 0) {
-        Strbuf* v15 = sub_02025F04(v1, 32);
-        u32 v16 = sub_02025F20(v1);
-        u32 v17 = sub_02025F30(v1);
+        Strbuf* v15 = TrainerInfo_NameNewStrbuf(v1, 32);
+        u32 v16 = TrainerInfo_ID(v1);
+        u32 v17 = TrainerInfo_Gender(v1);
 
         v6 = Pokemon_New(32);
 

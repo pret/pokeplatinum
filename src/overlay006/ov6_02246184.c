@@ -70,15 +70,15 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     v0->unk_10 = param0;
     v0->unk_0C = param1;
     v0->unk_04 = Pokemon_New(param0);
-    v0->unk_08 = sub_02025E6C(param0);
+    v0->unk_08 = TrainerInfo_New(param0);
 
-    sub_02025E8C(v0->unk_08);
+    TrainerInfo_Init(v0->unk_08);
     v1 = ov6_022462E4(param0, 4 + param1);
 
     Strbuf_ToChars(v1, v2, 128);
     Strbuf_Free(v1);
-    sub_02025EC0(v0->unk_08, v2);
-    sub_02025F2C(v0->unk_08, v0->unk_00->unk_40);
+    TrainerInfo_SetName(v0->unk_08, v2);
+    TrainerInfo_SetGender(v0->unk_08, v0->unk_00->unk_40);
 
     return v0;
 }

@@ -188,7 +188,7 @@ static void ov23_0224DC68 (UnkStruct_ov23_0224E280 * param0, int param1)
     if (param1 >= 136) {
         TrainerInfo * v1 = sub_02032EE8(param0->unk_30);
 
-        if (1 == sub_02025F30(v1)) {
+        if (1 == TrainerInfo_Gender(v1)) {
             v0 = v0 - 136 + 155;
         }
     }
@@ -203,7 +203,7 @@ static void ov23_0224DC90 (UnkStruct_ov23_022577B0 * param0, int param1)
     if (param1 >= 136) {
         TrainerInfo * v1 = sub_02032EE8(param0->unk_2C);
 
-        if (1 == sub_02025F30(v1)) {
+        if (1 == TrainerInfo_Gender(v1)) {
             v0 = v0 - 136 + 155;
         }
     }

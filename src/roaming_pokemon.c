@@ -292,7 +292,7 @@ void RoamingPokemon_ActivateSlot (UnkStruct_021C0794 * saveData, const u8 slot)
     v0 = Pokemon_New(4);
 
     Pokemon_Init(v0);
-    sub_02073D80(v0, species, level, 32, 0, 0, 1, sub_02025F24(v4));
+    sub_02073D80(v0, species, level, 32, 0, 0, 1, TrainerInfo_ID_LowHalf(v4));
     sub_0202D980(v1, 7, 0);
     sub_0202D980(v1, 8, 1);
     sub_0202D980(v1, 2, Pokemon_GetValue(v0, MON_DATA_COMBINED_IVS, NULL));

@@ -1057,8 +1057,8 @@ static int ov104_0223A7AC (u8 param0)
             GF_ASSERT(0);
         }
 
-        v2 = sub_02025FCC(v0);
-        v3 = sub_02025FCC(v1);
+        v2 = TrainerInfo_GameCode(v0);
+        v3 = TrainerInfo_GameCode(v1);
 
         if ((v2 == 0) || (v3 == 0)) {
             return 0;

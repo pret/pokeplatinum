@@ -87,9 +87,9 @@ void ov21_021D3208 (UnkStruct_ov21_021D3320 * param0, UnkStruct_ov21_021D3208 * 
     ov21_021D3434(param0, param1->unk_1C);
     ov21_021D344C(param0, param1->unk_20);
 
-    param0->unk_174C = sub_02025FCC(param1->unk_04);
-    param0->unk_1750 = sub_02025F30(param1->unk_04);
-    param0->unk_1754 = sub_02025F04(param1->unk_04, param2);
+    param0->unk_174C = TrainerInfo_GameCode(param1->unk_04);
+    param0->unk_1750 = TrainerInfo_Gender(param1->unk_04);
+    param0->unk_1754 = TrainerInfo_NameNewStrbuf(param1->unk_04, param2);
     param0->unk_1748 = sub_02098700(param2);
 
     if (param0->unk_1750 == 0) {

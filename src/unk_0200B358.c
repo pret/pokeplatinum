@@ -172,7 +172,7 @@ void sub_0200B498 (UnkStruct_0200B358 * param0, u32 param1, const TrainerInfo * 
 {
     const u16 * v0;
 
-    v0 = sub_02025EF0(param2);
+    v0 = TrainerInfo_Name(param2);
 
     Strbuf_CopyChars(param0->unk_0C, v0);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
@@ -193,7 +193,7 @@ void sub_0200B4E4 (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C
 
     v1 = MessageLoader_Init(1, 26, 553, param0->unk_04);
 
-    if (sub_02025F30(v0) == 0) {
+    if (TrainerInfo_Gender(v0) == 0) {
         MessageLoader_GetStrbuf(v1, 1, param0->unk_0C);
     } else {
         MessageLoader_GetStrbuf(v1, 0, param0->unk_0C);

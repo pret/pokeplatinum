@@ -1386,14 +1386,14 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
             sub_0200B498(v7, 0, v5);
             v6 = sub_0200B29C(v7, v8, 53, 87);
 
-            if (sub_02025F30(v5) == 0) {
+            if (TrainerInfo_Gender(v5) == 0) {
                 sub_0201D78C(param1, 0, v6, 0, v2, 0xff, ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             } else {
                 sub_0201D78C(param1, 0, v6, 0, v2, 0xff, ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             }
 
             Strbuf_Free(v6);
-            sub_0200B60C(v7, 0, sub_02025F20(v5) & 0xFFFF, 5, 2, 1);
+            sub_0200B60C(v7, 0, TrainerInfo_ID(v5) & 0xFFFF, 5, 2, 1);
 
             v6 = sub_0200B29C(v7, v8, 54, 87);
 

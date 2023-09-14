@@ -626,11 +626,11 @@ void sub_0206D088 (UnkStruct_0202440C * param0, u8 param1, const TrainerInfo * p
     v0->unk_00 = 1;
     v0->unk_01 = param1;
 
-    sub_020021B0(v0->unk_06, sub_02025EF0(param2));
+    sub_020021B0(v0->unk_06, TrainerInfo_Name(param2));
 
-    v0->unk_03 = sub_02025FD8(param2);
-    v0->unk_04 = sub_02025FCC(param2);
-    v0->unk_02 = sub_02025F30(param2);
+    v0->unk_03 = TrainerInfo_RegionCode(param2);
+    v0->unk_04 = TrainerInfo_GameCode(param2);
+    v0->unk_02 = TrainerInfo_Gender(param2);
 
     sub_02025C84(27);
 }
@@ -1181,8 +1181,8 @@ static BOOL sub_0206DA50 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
 
 static void sub_0206DA6C (UnkStruct_0206DA6C * param0, const TrainerInfo * param1)
 {
-    param0->unk_00 = sub_02025E68();
-    sub_02025E80(param1, (TrainerInfo *)param0->unk_04);
+    param0->unk_00 = TrainerInfo_Size();
+    TrainerInfo_Copy(param1, (TrainerInfo *)param0->unk_04);
 }
 
 static void sub_0206DA84 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, UnkStruct_ov6_022465F4 * param2)
@@ -1190,7 +1190,7 @@ static void sub_0206DA84 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
     UnkStruct_0206DA6C * v0 = (UnkStruct_0206DA6C *)ov6_02246498(param2);
     TrainerInfo * v1 = (TrainerInfo *)&v0->unk_04;
 
-    GF_ASSERT(sub_02025E68() == v0->unk_00);
+    GF_ASSERT(TrainerInfo_Size() == v0->unk_00);
 
     sub_0206CDD0(param1, 0, param2);
     sub_0200B498(param1, 1, v1);
@@ -2757,7 +2757,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
             v4 = sub_0202D93C(v0, 4);
             v5 = sub_0202D93C(v0, 3);
 
-            sub_0206CE74(param1, 1, v4, Pokemon_GetGenderOf(v4, v5), sub_02025FD8(v7), sub_02025FCC(v7));
+            sub_0206CE74(param1, 1, v4, Pokemon_GetGenderOf(v4, v5), TrainerInfo_RegionCode(v7), TrainerInfo_GameCode(v7));
             break;
         }
     }
@@ -2972,7 +2972,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     v4 = Party_GetFromSavedata(param0->unk_0C);
     v3 = Party_GetPokemonBySlotIndex(v4, sub_0205E1B4(param0->unk_0C));
 
-    sub_0206CE74(param1, 0, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v3, MON_DATA_GENDER, NULL), sub_02025FD8(v5), sub_02025FCC(v5));
+    sub_0206CE74(param1, 0, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), Pokemon_GetValue(v3, MON_DATA_GENDER, NULL), TrainerInfo_RegionCode(v5), TrainerInfo_GameCode(v5));
     sub_0200BFAC(param1, 1, (LCRNG_Next() % 100));
 
     v1 = (LCRNG_Next() % (493 - 2) + 1);
@@ -3020,7 +3020,7 @@ static int sub_0206F27C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
 
 static BOOL sub_0206F280 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * param1)
 {
-    if (sub_02025F34(sub_02025E38(param0->unk_0C), 0) == 1) {
+    if (TrainerInfo_HasBadge(sub_02025E38(param0->unk_0C), 0) == 1) {
         return 1;
     } else {
         return 0;

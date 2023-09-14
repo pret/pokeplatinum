@@ -750,7 +750,7 @@ u16 ov5_021D271C (UnkStruct_0203CDB0 * param0, u8 param1)
 
         if (ov5_021E0118(param0->unk_3C, v2, param1)
 
-            && sub_02025F34(v1, 3)) {
+            && TrainerInfo_HasBadge(v1, 3)) {
             if (sub_020549A0(Party_GetFromSavedata(param0->unk_0C), 57) != 0xff) {
                 return 10004;
             }

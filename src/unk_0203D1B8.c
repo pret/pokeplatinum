@@ -1003,7 +1003,7 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 *
     param0->unk_10 = param1->unk_0C;
     param0->unk_1C = param1->unk_9C;
     param0->unk_20 = sub_0202CD88(param1->unk_0C);
-    param0->unk_38 = Heap_AllocFromHeap(32, sub_02025E68());
+    param0->unk_38 = Heap_AllocFromHeap(32, TrainerInfo_Size());
     param0->unk_3C = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
     param0->unk_40 = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
     param0->unk_00 = param1;
@@ -1256,7 +1256,7 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
     case 0:
     {
         TrainerInfo * v2 = sub_02025E38(v0->unk_0C);
-        sub_02025EC0(v2, v1->unk_0C->unk_1C);
+        TrainerInfo_SetName(v2, v1->unk_0C->unk_1C);
     }
     break;
     case 1:

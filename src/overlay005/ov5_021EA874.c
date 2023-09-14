@@ -326,9 +326,9 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
 
         {
             UnkStruct_0202B370 * v2 = sub_0202B370(param0->unk_34);
-            TrainerInfo * v3 = sub_02025E6C(4);
+            TrainerInfo * v3 = TrainerInfo_New(4);
 
-            sub_02025EC0(v3, sub_0202AEF0(v2, v1));
+            TrainerInfo_SetName(v3, sub_0202AEF0(v2, v1));
             sub_0200B498(param0->unk_38, 0, v3);
             Heap_FreeToHeap(v3);
         }

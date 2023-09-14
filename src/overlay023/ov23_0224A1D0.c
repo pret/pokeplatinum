@@ -115,7 +115,7 @@ static BOOL ov23_0224A294 (int param0, int param1)
         v0->unk_FA[param1] = 0;
         v0->unk_14A[param0].unk_20 = param0;
         v0->unk_14A[param1].unk_20 = 0xff;
-        sub_02025E80(v0->unk_290[param0], (TrainerInfo *)&v0->unk_14A[param0].unk_00);
+        TrainerInfo_Copy(v0->unk_290[param0], (TrainerInfo *)&v0->unk_14A[param0].unk_00);
         return 1;
     }
 
@@ -425,7 +425,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             return;
         }
 
-        if (sub_0202600C(v0->unk_290[v1->unk_02], sub_02032EE8(v1->unk_01)) == 1) {
+        if (TrainerInfo_Equals(v0->unk_290[v1->unk_02], sub_02032EE8(v1->unk_01)) == 1) {
             ov23_0224AE60(v1->unk_02);
 
             if (v1->unk_01 == sub_0203608C()) {
@@ -497,7 +497,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
         }
 
         if (v0->unk_290[v1->unk_01]) {
-            if (sub_0202600C(v0->unk_290[v1->unk_01], sub_02032EE8(sub_0203608C())) == 1) {
+            if (TrainerInfo_Equals(v0->unk_290[v1->unk_01], sub_02032EE8(sub_0203608C())) == 1) {
                 sub_0206DAD4(v0->unk_54, sub_02032EE8(v1->unk_01));
             }
         }
@@ -532,13 +532,13 @@ void ov23_0224AAB0 (void)
     if (v0->unk_290[sub_0203608C()]) {
         sub_020360D0(91, v0->unk_290[sub_0203608C()]);
     } else {
-        TrainerInfo * v0 = sub_02025E6C(15);
+        TrainerInfo * v0 = TrainerInfo_New(15);
         Strbuf* v1 = Strbuf_Init(20, 15);
 
         GF_ASSERT(v0);
         GF_ASSERT(v1);
 
-        sub_02025EE0(v0, v1);
+        TrainerInfo_SetNameFromStrbuf(v0, v1);
         sub_020360D0(91, v0);
         Strbuf_Free(v1);
         Heap_FreeToHeap(v0);
@@ -559,9 +559,9 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
     u8 v4 = param0;
 
     if (v0) {
-        sub_02025E80(v2, (TrainerInfo *)v0->unk_14A[param0].unk_00);
+        TrainerInfo_Copy(v2, (TrainerInfo *)v0->unk_14A[param0].unk_00);
 
-        v3 = sub_02025F04(v2, 15);
+        v3 = TrainerInfo_NameNewStrbuf(v2, 15);
 
         if (Strbuf_Length(v3) != 0) {
             v0->unk_14A[param0].unk_20 = param0;
@@ -596,8 +596,8 @@ void ov23_0224ABC4 (int param0, int param1, void * param2, void * param3)
             Heap_FreeToHeap(v0->unk_290[v3]);
         }
 
-        v0->unk_290[v3] = sub_02025E6C(15);
-        sub_02025E80((TrainerInfo *)v1->unk_00, v0->unk_290[v3]);
+        v0->unk_290[v3] = TrainerInfo_New(15);
+        TrainerInfo_Copy((TrainerInfo *)v1->unk_00, v0->unk_290[v3]);
         v0->unk_FA[v3] = 1;
     }
 }
@@ -647,7 +647,7 @@ void ov23_0224AC4C (void)
         v4->unk_290[0] = v0;
         v4->unk_FA[0] = 1;
 
-        sub_02025E80(v0, (TrainerInfo *)&v4->unk_14A[0].unk_00);
+        TrainerInfo_Copy(v0, (TrainerInfo *)&v4->unk_14A[0].unk_00);
 
         v4->unk_14A[0].unk_20 = 0;
     }
@@ -797,13 +797,13 @@ BOOL ov23_0224AEC4 (int param0, int param1)
         TrainerInfo * v1 = sub_02032EE8(param1);
 
         if (v1) {
-            v0->unk_290[param0] = sub_02025E6C(15);
-            sub_02025E80(v1, v0->unk_290[param0]);
+            v0->unk_290[param0] = TrainerInfo_New(15);
+            TrainerInfo_Copy(v1, v0->unk_290[param0]);
 
             v0->unk_FA[param0] = 1;
             v0->unk_14A[param0].unk_20 = param0;
 
-            sub_02025E80(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
+            TrainerInfo_Copy(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
 
             if (param1 == sub_0203608C()) {
                 UnkStruct_0202855C * v2 = sub_020298A0(v0->unk_54->unk_0C);

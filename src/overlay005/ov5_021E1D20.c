@@ -97,7 +97,7 @@ static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1
 
     sub_0200B8C8(param0, 0, param1->unk_04);
     sub_0200B498(param0, 1, param1->unk_08);
-    sub_0200B60C(param0, 2, sub_02025F58(param1->unk_08), 1, 0, 1);
+    sub_0200B60C(param0, 2, TrainerInfo_BadgeCount(param1->unk_08), 1, 0, 1);
 
     if (param1->unk_00 >= 100) {
         v0 = 3;

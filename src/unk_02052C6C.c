@@ -200,7 +200,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     v5->unk_04.unk_00 = sub_02025E38(v0->unk_0C);
     v5->unk_04.unk_04 = Party_GetFromSavedata(v0->unk_0C);
     v5->unk_04.unk_08 = sub_02025E5C(v0->unk_0C);
-    v5->unk_10.unk_00 = sub_02025F30(sub_02025E38(v0->unk_0C));
+    v5->unk_10.unk_00 = TrainerInfo_Gender(sub_02025E38(v0->unk_0C));
     v5->unk_10.unk_04 = sub_0206A954(v3);
     v5->unk_10.unk_08 = sub_02027560(v0->unk_0C);
 
@@ -215,7 +215,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     sub_0203D190(v2);
     sub_0206AD9C(v3);
     sub_0206A944(v3);
-    sub_02025FE0(v4);
+    TrainerInfo_SetMainStoryCleared(v4);
 
     v6 = sub_0202CD88(v0->unk_0C);
 

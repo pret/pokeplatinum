@@ -1155,8 +1155,8 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
     sub_02029FAC(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param2) {
-        v2 = sub_02025F04(param2, 13);
-        v3 = sub_02025F30(param2);
+        v2 = TrainerInfo_NameNewStrbuf(param2, 13);
+        v3 = TrainerInfo_Gender(param2);
         sub_0202A0EC(param0, v2, v3);
         Strbuf_Free(v2);
     }
@@ -1203,8 +1203,8 @@ static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 
     sub_0202A284(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param3) {
-        v4 = sub_02025F04(param3, 13);
-        v5 = sub_02025F30(param3);
+        v4 = TrainerInfo_NameNewStrbuf(param3, 13);
+        v5 = TrainerInfo_Gender(param3);
         sub_0202A4B4(param0, v4, v5);
         Strbuf_Free(v4);
     }

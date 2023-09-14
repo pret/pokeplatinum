@@ -4545,11 +4545,11 @@ BOOL sub_02078838(Pokemon *mon)
 
 BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
 {
-    u32 v0 = sub_02025F20(param1);
+    u32 v0 = TrainerInfo_ID(param1);
     u32 monOTID = BoxPokemon_GetValue(boxMon, MON_DATA_OT_ID, NULL);
-    u32 v2 = sub_02025F30(param1);
+    u32 v2 = TrainerInfo_Gender(param1);
     u32 monOtGender = BoxPokemon_GetValue(boxMon, MON_DATA_OT_GENDER, NULL);
-    Strbuf *v4 = sub_02025F04(param1, heapID);
+    Strbuf *v4 = TrainerInfo_NameNewStrbuf(param1, heapID);
     // TODO enum/const value?
     Strbuf *v5 = Strbuf_Init(8, heapID);
     BOOL v6 = FALSE;

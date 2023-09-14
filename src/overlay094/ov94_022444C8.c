@@ -161,12 +161,12 @@ int ov94_0224484C (UnkStruct_ov94_0223FD4C * param0, int param1)
 
 static TrainerInfo * ov94_02244870 (UnkStruct_ov94_0223BA88 * param0)
 {
-    TrainerInfo * v0 = sub_02025E6C(62);
+    TrainerInfo * v0 = TrainerInfo_New(62);
 
-    sub_02025E8C(v0);
-    sub_02025EC0(v0, param0->unk_10C);
-    sub_02025FD0(v0, param0->unk_122);
-    sub_02025FDC(v0, param0->unk_123);
+    TrainerInfo_Init(v0);
+    TrainerInfo_SetName(v0, param0->unk_10C);
+    TrainerInfo_SetGameCode(v0, param0->unk_122);
+    TrainerInfo_SetRegionCode(v0, param0->unk_123);
 
     return v0;
 }

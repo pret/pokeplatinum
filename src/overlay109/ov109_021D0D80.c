@@ -796,7 +796,7 @@ static int ov109_021D122C (UnkStruct_ov109_021D0F70 * param0)
     for (v0 = 0; v0 < (7 + 1); v0++) {
         if (ov109_021D3B54(param0, v0)) {
             param0->unk_2C.unk_58[v0] = sub_02032EE8(v0);
-            sub_02025EF4(
+            TrainerInfo_NameStrbuf(
                 param0->unk_2C.unk_58[v0], param0->unk_2C.unk_6C[v0]);
         }
     }

@@ -31,7 +31,7 @@ void sub_020985E4 (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
 
     v1->unk_04 = sub_02025E44(param1);
     v1->unk_08 = sub_02025E38(param1);
-    v1->unk_00 = sub_02025F30(v1->unk_08);
+    v1->unk_00 = TrainerInfo_Gender(v1->unk_08);
 
     v0->unk_00 = 0;
     v0->unk_04 = v1;

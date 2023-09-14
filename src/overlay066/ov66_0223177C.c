@@ -717,19 +717,19 @@ static void ov66_02231FFC (UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 par
     param0->unk_20[3] = param11;
 
     if (param4) {
-        sub_02025EF4(param4, param0->unk_10[0]);
+        TrainerInfo_NameStrbuf(param4, param0->unk_10[0]);
     }
 
     if (param5) {
-        sub_02025EF4(param5, param0->unk_10[1]);
+        TrainerInfo_NameStrbuf(param5, param0->unk_10[1]);
     }
 
     if (param6) {
-        sub_02025EF4(param6, param0->unk_10[2]);
+        TrainerInfo_NameStrbuf(param6, param0->unk_10[2]);
     }
 
     if (param7) {
-        sub_02025EF4(param7, param0->unk_10[3]);
+        TrainerInfo_NameStrbuf(param7, param0->unk_10[3]);
     }
 }
 

@@ -455,18 +455,18 @@ UnkStruct_02095C48 * sub_02093800 (const UnkStruct_02093800 * param0)
         v0->unk_00.unk_D8[0] = Strbuf_Init(8, 20);
         Strbuf_Copy(v0->unk_00.unk_D8[0], param0->unk_0C);
 
-        v0->unk_00.unk_F8[0] = sub_02025F30(param0->unk_10);
+        v0->unk_00.unk_F8[0] = TrainerInfo_Gender(param0->unk_10);
         v0->unk_00.unk_FC[0] = 0;
         v0->unk_00.unk_100[0] = sub_02093B2C(v0->unk_00.unk_00[0], v0->unk_00.unk_10F);
 
         if (sub_0209590C(v0) == 0) {
-            if (sub_02025F30(param0->unk_10) == 0) {
+            if (TrainerInfo_Gender(param0->unk_10) == 0) {
                 v0->unk_00.unk_104[0] = 0xba;
             } else {
                 v0->unk_00.unk_104[0] = 0xbb;
             }
         } else {
-            if (sub_02025F30(param0->unk_10) == 0) {
+            if (TrainerInfo_Gender(param0->unk_10) == 0) {
                 v0->unk_00.unk_104[0] = 0x0;
             } else {
                 v0->unk_00.unk_104[0] = 0x61;
@@ -767,7 +767,7 @@ static void sub_02093C6C (UnkStruct_0201CD38 * param0, void * param1)
                 for (v1 = 0; v1 < v0->unk_00.unk_117; v1++) {
                     v2 = sub_02032EE8(v1);
                     Strbuf_Clear(v0->unk_00.unk_D8[v1]);
-                    sub_02025EF4(v2, v0->unk_00.unk_D8[v1]);
+                    TrainerInfo_NameStrbuf(v2, v0->unk_00.unk_D8[v1]);
                 }
             }
 
@@ -953,7 +953,7 @@ static void sub_02093C6C (UnkStruct_0201CD38 * param0, void * param1)
 
         for (v5 = 0; v5 < v0->unk_00.unk_117; v5++) {
             v6 = sub_02032EE8(v5);
-            v0->unk_00.unk_F8[v5] = sub_02025F30(v6);
+            v0->unk_00.unk_F8[v5] = TrainerInfo_Gender(v6);
         }
 
         for ( ; v5 < 4; v5++) {
@@ -997,7 +997,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
             v3 = sub_02032EE8(v2);
             GF_ASSERT(v3 != NULL);
 
-            if (sub_02025FF0(v3) == 0) {
+            if (TrainerInfo_IsMainStoryCleared(v3) == 0) {
                 break;
             }
         }
@@ -1012,7 +1012,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
             v3 = sub_02032EE8(v2);
             GF_ASSERT(v3 != NULL);
 
-            if (sub_02026004(v3) == 0) {
+            if (TrainerInfo_HasNationalDex(v3) == 0) {
                 break;
             }
         }
@@ -1028,7 +1028,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
         for (v2 = 0; v2 < v0; v2++) {
             v3 = sub_02032EE8(v2);
 
-            if (sub_02025FCC(v3) == 0) {
+            if (TrainerInfo_GameCode(v3) == 0) {
                 param0->unk_15B++;
             }
         }

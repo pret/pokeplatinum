@@ -637,7 +637,7 @@ int ov70_0225D9A4 (UnkStruct_020067E8 * param0, int * param1)
     {
         u32 v2;
 
-        v2 = sub_02025F30(v0->unk_458);
+        v2 = TrainerInfo_Gender(v0->unk_458);
         v0->unk_444 = ov70_0225C9B4(24, v2, v0->unk_44C, 112, 113);
     }
 
@@ -1106,7 +1106,7 @@ void ov70_0225E234 (UnkStruct_ov70_0225DEE8 * param0, u32 param1, u32 param2)
     TrainerInfo * v0;
     const UnkStruct_ov66_0222E71C * v1;
 
-    v0 = sub_02025E6C(112);
+    v0 = TrainerInfo_New(112);
 
     if (param1 == ov66_0222E338(param0->unk_34)) {
         v1 = ov66_0222E3BC(param0->unk_34);
@@ -2108,7 +2108,7 @@ static void ov70_0225F350 (UnkStruct_ov70_0225F350 * param0, const UnkStruct_ov7
 {
     u32 v0;
 
-    v0 = sub_02025F30(param3);
+    v0 = TrainerInfo_Gender(param3);
 
     param0->unk_14C = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY_OTHER, param4);
 
@@ -2607,14 +2607,14 @@ static void ov70_0225FAD0 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
     ov70_022602C0(param2);
     ov70_0225FA14(param3, param6, 92, Unk_ov70_0226D5CC[1], 0, param7);
 
-    v1 = sub_02025E6C(param7);
+    v1 = TrainerInfo_New(param7);
     ov66_0222E640(param8, v1, param7);
 
     {
         u32 v2;
 
         ov70_022602DC(param2, param4, 0, 44, 0, 0, v0);
-        ov70_0225F2A8(param4, sub_02025F24(v1), 5, 0, 2);
+        ov70_0225F2A8(param4, TrainerInfo_ID_LowHalf(v1), 5, 0, 2);
         ov70_02260314(param2, param4, 0, 49, 122, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
         ov70_022602DC(param2, param4, 0, 45, 0, 16, v0);
         ov70_02260370(param2, param4, v1);

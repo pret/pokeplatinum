@@ -398,7 +398,7 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
         sub_02052894(v4);
 
         v10 = sub_02032EE8(1 - sub_0203608C());
-        sub_02025E80(v10, v4->unk_D0[2]);
+        TrainerInfo_Copy(v10, v4->unk_D0[2]);
 
         v7 = ov104_0222DD04(&v6, param0->unk_18[param0->unk_06 + 7], 11, 178);
         Heap_FreeToHeap(v7);

@@ -19,10 +19,10 @@ UnkStruct_0207E060 * sub_0207E060 (const TrainerInfo * param0, u32 param1)
     memset(v0, 0, (sizeof(UnkStruct_0207E060)));
 
     v0->unk_1B = 28;
-    v0->unk_1E = sub_02025F30(param0);
-    v0->unk_1D = sub_02025F8C(param0);
-    v0->unk_18 = sub_02025FCC(param0);
-    v0->unk_19 = sub_02025FD8(param0);
+    v0->unk_1E = TrainerInfo_Gender(param0);
+    v0->unk_1D = TrainerInfo_Appearance(param0);
+    v0->unk_18 = TrainerInfo_GameCode(param0);
+    v0->unk_19 = TrainerInfo_RegionCode(param0);
 
     v1 = ov4_021D222C(v0, (sizeof(UnkStruct_0207E060)));
     GF_ASSERT(v1 == 1);

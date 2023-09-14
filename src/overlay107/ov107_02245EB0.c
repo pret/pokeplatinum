@@ -2360,9 +2360,9 @@ static void ov107_0224812C (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
     v1 = sub_02025E38(param0->unk_14C);
     v2 = Strbuf_Init((7 + 1), 100);
 
-    Strbuf_CopyChars(v2, sub_02025EF0(v1));
+    Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
 
-    if (sub_02025F30(v1) == 0) {
+    if (TrainerInfo_Gender(v1) == 0) {
         v0 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
     } else {
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
@@ -2381,7 +2381,7 @@ static void ov107_02248194 (UnkStruct_ov107_02246170 * param0, UnkStruct_0205AA5
 
     v0 = sub_02032EE8((sub_0203608C() ^ 1));
 
-    if (sub_02025F30(v0) == 0) {
+    if (TrainerInfo_Gender(v0) == 0) {
         v1 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
     } else {
         v1 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
@@ -2939,7 +2939,7 @@ void ov107_022488CC (UnkStruct_ov107_02246170 * param0, u16 param1)
     param0->unk_3E4[v1] = param1;
     v1 += 1;
 
-    param0->unk_3E4[v1] = sub_02025F30(v2);
+    param0->unk_3E4[v1] = TrainerInfo_Gender(v2);
     v1 += 1;
 
     for (v0 = 0; v0 < 3; v0++) {

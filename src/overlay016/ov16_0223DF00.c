@@ -462,7 +462,7 @@ UnkStruct_0207D99C * ov16_0223E1B0 (BattleSystem * param0)
 
 u32 ov16_0223E1B4 (BattleSystem * param0, int param1)
 {
-    return sub_02025F30(param0->unk_48[param1]);
+    return TrainerInfo_Gender(param0->unk_48[param1]);
 }
 
 int ov16_0223E1C4 (BattleSystem * param0, int param1)
@@ -1677,9 +1677,9 @@ u32 ov16_0223F904 (Party * param0, TrainerInfo * param1)
     u32 v1, v2;
     u8 v3;
 
-    v3 = sub_02025F58(param1);
+    v3 = TrainerInfo_BadgeCount(param1);
     v1 = Party_GetMaxLevel(param0) * 4 * v0[v3];
-    v2 = sub_02025F74(param1);
+    v2 = TrainerInfo_Money(param1);
 
     if (v1 > v2) {
         v1 = v2;
@@ -1775,7 +1775,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
                 }
 
                 for (v7 = 0; v7 < 4; v7++) {
-                    if (sub_02025FCC(param0->unk_48[v7]) == 0) {
+                    if (TrainerInfo_GameCode(param0->unk_48[v7]) == 0) {
                         break;
                     }
                 }

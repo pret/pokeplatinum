@@ -135,7 +135,7 @@ static BOOL ov6_02246AB0 (UnkStruct_0203CDB0 * param0)
 {
     TrainerInfo * v0 = sub_02025E38(param0->unk_0C);
 
-    if (sub_02025F58(v0) >= 5) {
+    if (TrainerInfo_BadgeCount(v0) >= 5) {
         return 1;
     } else {
         return 0;

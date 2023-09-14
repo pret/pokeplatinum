@@ -273,7 +273,7 @@ void sub_020579BC (int param0)
     Unk_021C0848->unk_290[param0] = NULL;
 
     if (Unk_021C0848->unk_290[v0]) {
-        sub_02025E80(Unk_021C0848->unk_290[v0], (TrainerInfo *)&Unk_021C0848->unk_14A[v0].unk_00);
+        TrainerInfo_Copy(Unk_021C0848->unk_290[v0], (TrainerInfo *)&Unk_021C0848->unk_14A[v0].unk_00);
     }
 
     Unk_021C0848->unk_14A[param0].unk_20 = 0xff;
@@ -420,11 +420,11 @@ static void sub_02057C8C (u8 param0)
             {
                 int v5 = 0;
 
-                if (0 == sub_02025FCC(v3)) {
+                if (0 == TrainerInfo_GameCode(v3)) {
                     v5 = 1;
                 }
 
-                v2 = sub_0205E7D0(Unk_021C0848->unk_54->unk_38, Unk_021C0848->unk_A2[param0].unk_00, Unk_021C0848->unk_A2[param0].unk_02, Unk_021C0848->unk_A2[param0].unk_04, 0x0, sub_02025F30(v3), v5, NULL);
+                v2 = sub_0205E7D0(Unk_021C0848->unk_54->unk_38, Unk_021C0848->unk_A2[param0].unk_00, Unk_021C0848->unk_A2[param0].unk_02, Unk_021C0848->unk_A2[param0].unk_04, 0x0, TrainerInfo_Gender(v3), v5, NULL);
             }
 
             GF_ASSERT(v2);

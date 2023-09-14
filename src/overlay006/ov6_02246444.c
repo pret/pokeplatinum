@@ -109,8 +109,8 @@ static UnkStruct_ov6_022465F4 * ov6_022464F8 (UnkStruct_0203CDB0 * param0, UnkSt
     UnkStruct_ov6_022465F4 * v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov6_022465F4));
 
     ov6_02246444(v1);
-    ov6_0224645C(v1, sub_02025EF0(v0));
-    ov6_02246450(v1, sub_02025F30(v0));
+    ov6_0224645C(v1, TrainerInfo_Name(v0));
+    ov6_02246450(v1, TrainerInfo_Gender(v0));
     ov6_02246454(v1, GAME_LANGUAGE);
     ov6_02246458(v1, GAME_VERSION);
     ov6_02246468(v1, sub_0202E4D8(param1));
@@ -125,8 +125,8 @@ static UnkStruct_ov6_022465F4 * ov6_02246550 (UnkStruct_0203CDB0 * param0, int p
 
     ov6_02246444(v1);
     v1->unk_00 = param1;
-    ov6_0224645C(v1, sub_02025EF0(v0));
-    ov6_02246450(v1, sub_02025F30(v0));
+    ov6_0224645C(v1, TrainerInfo_Name(v0));
+    ov6_02246450(v1, TrainerInfo_Gender(v0));
     ov6_02246454(v1, GAME_LANGUAGE);
     ov6_02246458(v1, GAME_VERSION);
 

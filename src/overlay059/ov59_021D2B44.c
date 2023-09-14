@@ -156,12 +156,12 @@ static void ov59_021D2B90 (UnkStruct_021C0794 * param0, UnkStruct_0202E794 * par
     for (v0 = 0; v0 < param3; v0++, param1++) {
         MI_CpuClearFast(param1, sizeof(UnkStruct_0202E794));
 
-        param1->unk_00 = sub_02025F20(v1);
-        param1->unk_04 = sub_02025F30(v1);
+        param1->unk_00 = TrainerInfo_ID(v1);
+        param1->unk_04 = TrainerInfo_Gender(v1);
         param1->unk_05 = GAME_VERSION;
         param1->unk_06 = GAME_LANGUAGE;
 
-        sub_020021D0(param1->unk_08, sub_02025EF0(v1), 7 + 1);
+        sub_020021D0(param1->unk_08, TrainerInfo_Name(v1), 7 + 1);
 
         param1->unk_18 = param2[v0].unk_00;
         param1->unk_18.unk_01 = 0;
@@ -295,7 +295,7 @@ static const void ** ov59_021D2E40 (int param0, const void ** param1, const void
         return NULL;
     }
 
-    if (sub_02025FCC(v0) == 0) {
+    if (TrainerInfo_GameCode(v0) == 0) {
         return param2;
     }
 

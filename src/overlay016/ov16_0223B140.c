@@ -733,7 +733,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     for (v2 = 0; v2 < 4; v2++) {
         Party_cpy(v0->parties[v2], v1->parties[v2]);
         Heap_FreeToHeap(v0->parties[v2]);
-        sub_02025E80(v0->unk_48[v2], v1->unk_D0[v2]);
+        TrainerInfo_Copy(v0->unk_48[v2], v1->unk_D0[v2]);
         Heap_FreeToHeap(v0->unk_48[v2]);
     }
 
@@ -1075,8 +1075,8 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->battleType = param1->battleType;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_48[v0] = sub_02025E6C(5);
-        sub_02025E80(param1->unk_D0[v0], param0->unk_48[v0]);
+        param0->unk_48[v0] = TrainerInfo_New(5);
+        TrainerInfo_Copy(param1->unk_D0[v0], param0->unk_48[v0]);
         param0->unk_78[v0] = param1->unk_F0[v0];
     }
 
@@ -2102,7 +2102,7 @@ static BOOL ov16_0223D98C (UnkStruct_020067E8 * param0)
     if (v0->battleType & 0x8) {
         for (v3 = 0; v3 < 4; v3++) {
             v0->unk_1C0->unk_04[sub_020362F4(v3)] = v0->parties[v3];
-            v0->unk_1C0->unk_14[sub_020362F4(v3)] = sub_02025F04(v0->unk_48[v3], 5);
+            v0->unk_1C0->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewStrbuf(v0->unk_48[v3], 5);
         }
 
         v0->unk_1C0->unk_24 = 5;
@@ -2111,8 +2111,8 @@ static BOOL ov16_0223D98C (UnkStruct_020067E8 * param0)
     } else {
         v0->unk_1C0->unk_04[sub_020362F4(v2)] = v0->parties[v2];
         v0->unk_1C0->unk_04[sub_020362F4(v2 ^ 1)] = v0->parties[v2 ^ 1];
-        v0->unk_1C0->unk_14[sub_020362F4(v2)] = sub_02025F04(v0->unk_48[v2], 5);
-        v0->unk_1C0->unk_14[sub_020362F4(v2 ^ 1)] = sub_02025F04(v0->unk_48[v2 ^ 1], 5);
+        v0->unk_1C0->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewStrbuf(v0->unk_48[v2], 5);
+        v0->unk_1C0->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewStrbuf(v0->unk_48[v2 ^ 1], 5);
         v0->unk_1C0->unk_24 = 5;
         v0->unk_1C0->unk_28 = 1;
         v0->unk_1C0->unk_29 = 0;
@@ -2191,7 +2191,7 @@ static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
     if (v0->battleType & BATTLE_TYPE_2vs2) {
         for (v3 = 0; v3 < 4; v3++) {
             v1->unk_04[sub_020362F4(v3)] = v0->parties[v3];
-            v1->unk_14[sub_020362F4(v3)] = sub_02025F04(v0->unk_D0[v3], 5);
+            v1->unk_14[sub_020362F4(v3)] = TrainerInfo_NameNewStrbuf(v0->unk_D0[v3], 5);
         }
 
         v1->unk_24 = 5;
@@ -2206,8 +2206,8 @@ static BOOL ov16_0223DB1C (UnkStruct_020067E8 * param0)
     } else {
         v1->unk_04[sub_020362F4(v2)] = v0->parties[v2];
         v1->unk_04[sub_020362F4(v2 ^ 1)] = v0->parties[v2 ^ 1];
-        v1->unk_14[sub_020362F4(v2)] = sub_02025F04(v0->unk_D0[v2], 5);
-        v1->unk_14[sub_020362F4(v2 ^ 1)] = sub_02025F04(v0->unk_D0[v2 ^ 1], 5);
+        v1->unk_14[sub_020362F4(v2)] = TrainerInfo_NameNewStrbuf(v0->unk_D0[v2], 5);
+        v1->unk_14[sub_020362F4(v2 ^ 1)] = TrainerInfo_NameNewStrbuf(v0->unk_D0[v2 ^ 1], 5);
         v1->unk_24 = 5;
         v1->unk_28 = 2;
         v1->unk_29 = 0;

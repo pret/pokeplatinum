@@ -120,7 +120,7 @@ static const UnkStruct_02039A58 Unk_020F68A4[] = {
     {sub_02059D0C, sub_02032950, NULL},
     {ov23_0224D698, sub_02032950, NULL},
     {ov23_0224D6AC, ov23_0224D6F4, NULL},
-    {sub_0205B988, sub_02025E68, NULL},
+    {sub_0205B988, TrainerInfo_Size, NULL},
     {sub_0205B9AC, sub_02032950, NULL},
     {sub_0205B98C, sub_02032950, NULL},
     {sub_0205BA6C, sub_02032950, NULL},

@@ -706,7 +706,7 @@ void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
     v1->unk_66A = 1;
 
     if (param0 != sub_0203608C()) {
-        v3 = sub_0202C0EC((u16 *)sub_02025EF0(v2), sub_02025F30(v2), 31);
+        v3 = sub_0202C0EC((u16 *)TrainerInfo_Name(v2), TrainerInfo_Gender(v2), 31);
         sub_0202B758(v0->unk_9C, v3, 4);
     }
 }
@@ -926,7 +926,7 @@ static int sub_0205BAE8 (UnkStruct_0205B43C * param0, int param1)
         v0 = v4->unk_18[(param1 - 10) % 4];
         v0 = v0 >> 7;
     } else {
-        v0 = sub_02025F30(v2);
+        v0 = TrainerInfo_Gender(v2);
     }
 
     switch (v4->unk_1C) {
@@ -1031,7 +1031,7 @@ int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, UnkStruct
         return 0;
     }
 
-    v0 = sub_02025F30(v1);
+    v0 = TrainerInfo_Gender(v1);
 
     switch (param2) {
     case 1:
@@ -1102,7 +1102,7 @@ u8 sub_0205BE38 (void)
 
     v1 = sub_02032EE8(sub_0203608C() ^ 1);
     GF_ASSERT(v1 != NULL);
-    v0 = sub_02025FCC(v1);
+    v0 = TrainerInfo_GameCode(v1);
 
     return v0;
 }
@@ -1119,8 +1119,8 @@ static void sub_0205BE58 (UnkStruct_0205B4F8 * param0, int param1)
 
         if (v0 != NULL) {
             if (sub_0203608C() == 0) {
-                param0->unk_00[v3] = sub_02025F20(v0);
-                param0->unk_18[v3] = sub_02025F8C(v0) | (sub_02025F30(v0) << 7);
+                param0->unk_00[v3] = TrainerInfo_ID(v0);
+                param0->unk_18[v3] = TrainerInfo_Appearance(v0) | (TrainerInfo_Gender(v0) << 7);
             }
         } else {
             param0->unk_00[v3] = 0;
@@ -1219,8 +1219,8 @@ int sub_0205BF44 (UnkStruct_0205B43C * param0, UnkStruct_0200B358 * param1)
     }
 
     if (sub_02014C80(&param0->unk_178) != 4) {
-        int v4 = sub_02025F8C(param0->unk_08);
-        int v5 = sub_02025F30(param0->unk_08);
+        int v4 = TrainerInfo_Appearance(param0->unk_08);
+        int v5 = TrainerInfo_Gender(param0->unk_08);
 
         sub_0200B960(param1, 0, sub_0205CA14(v5, v4, 2));
 
@@ -1293,7 +1293,7 @@ void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, TrainerI
     sub_0200B498(param0, 0, v0);
     sub_0200B498(param0, 1, param3);
 
-    v3 = sub_02025FD8(v0);
+    v3 = TrainerInfo_RegionCode(v0);
 
     if ((v3 >= 1) && (v3 <= 7)) {
         static const int v5[] = {
@@ -1373,7 +1373,7 @@ void * sub_0205C17C (UnkStruct_0205B43C * param0)
     param0->unk_188[0] = sub_02071F04(0);
     param0->unk_188[1] = sub_02071F04(0);
 
-    sub_02071D40(0, 0, 0, sub_0205CA14(sub_02025F30(param0->unk_08), sub_02025F8C(param0->unk_08), 0), param0->unk_00, param0->unk_184);
+    sub_02071D40(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->unk_00, param0->unk_184);
 
     return (void *)param0->unk_188[sub_0203608C() ^ 1];
 }

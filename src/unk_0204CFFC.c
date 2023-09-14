@@ -76,7 +76,7 @@ BOOL sub_0204D0E8 (UnkStruct_0203E724 * param0)
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), *v3);
     v5 = Pokemon_GetValue(v1, MON_DATA_OT_ID, NULL);
-    v6 = sub_02025F20(v2);
+    v6 = TrainerInfo_ID(v2);
 
     if (v5 == v6) {
         *v4 = 0;

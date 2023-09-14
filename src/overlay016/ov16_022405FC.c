@@ -3161,10 +3161,10 @@ static BOOL ov16_022432B4 (BattleSystem * param0, BattleContext * param1)
             v0 += ov16_022431BC(param0, param1, 3);
         }
 
-        sub_02025F94(ov16_0223E16C(param0, 0), v0);
+        TrainerInfo_GiveMoney(ov16_0223E16C(param0, 0), v0);
     } else {
         v0 = ov16_0223F904(param0->parties[0], param0->unk_48[0]);
-        sub_02025FB8(ov16_0223E16C(param0, 0), v0);
+        TrainerInfo_TakeMoney(ov16_0223E16C(param0, 0), v0);
     }
 
     if (v0) {
@@ -3533,7 +3533,7 @@ static BOOL ov16_022438A8 (BattleSystem * param0, BattleContext * param1)
         param1->msgTemp = 0xffff;
     }
 
-    sub_02025F94(ov16_0223E16C(param0, 0), param1->msgTemp);
+    TrainerInfo_GiveMoney(ov16_0223E16C(param0, 0), param1->msgTemp);
 
     return 0;
 }

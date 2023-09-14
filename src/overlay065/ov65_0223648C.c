@@ -1088,7 +1088,7 @@ static void ov65_02237284 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     u16 v1;
 
     v0 = sub_02032EE8(param2);
-    v1 = sub_02025F24(v0);
+    v1 = TrainerInfo_ID_LowHalf(v0);
 
     sub_0200B60C(param0->unk_04, param3, v1, 5, 2, 1);
 }
@@ -1427,7 +1427,7 @@ static void ov65_022376D0 (UnkStruct_ov65_022367A8 * param0, u32 param1, u32 par
     if (param1 != sub_0203608C()) {
         v1 = sub_02032EE8(param1);
         GF_ASSERT(v1 != NULL);
-        v0.unk_0A = sub_02025F8C(v1);
+        v0.unk_0A = TrainerInfo_Appearance(v1);
     } else {
         if (param0->unk_00.unk_00->unk_00.unk_1E == 0) {
             v0.unk_0A = 0x0;

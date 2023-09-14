@@ -647,7 +647,7 @@ static void ov68_0225CC78 (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 par
     TrainerInfo * v0;
     const UnkStruct_ov66_0222E71C * v1;
 
-    v0 = sub_02025E6C(param2);
+    v0 = TrainerInfo_New(param2);
     v1 = ov66_0222E3BC(param0->unk_30);
 
     ov66_0222E640(v1, v0, param2);

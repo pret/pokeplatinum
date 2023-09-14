@@ -2569,7 +2569,7 @@ static BOOL ov104_02231AF4 (UnkStruct_ov104_0222E930 * param0)
 
     v1 = sub_0209B970(param0->unk_00->unk_00);
 
-    if (sub_02025F30(sub_02025E38(v1->unk_08)) == 0) {
+    if (TrainerInfo_Gender(sub_02025E38(v1->unk_08)) == 0) {
         v0 = 0x0;
     } else {
         v0 = 0x61;

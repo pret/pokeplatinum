@@ -623,8 +623,8 @@ int ov104_0222E5F0 (const TrainerInfo * param0)
     u32 v0;
     int v1, v2;
 
-    v0 = sub_02025F30(param0);
-    v2 = sub_02025FCC(param0);
+    v0 = TrainerInfo_Gender(param0);
+    v2 = TrainerInfo_GameCode(param0);
 
     switch (v2) {
     case 12:

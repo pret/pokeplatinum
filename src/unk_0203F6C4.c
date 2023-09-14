@@ -4627,7 +4627,7 @@ static BOOL sub_020427E0 (UnkStruct_0203E724 * param0)
 
     v1 = sub_0205BE38();
 
-    if (v1 == sub_02025FD4()) {
+    if (v1 == TrainerInfo_DPGameCode()) {
         *v0 = 0;
     } else {
         *v0 = 1;
@@ -5151,7 +5151,7 @@ static BOOL sub_02043254 (UnkStruct_0203E724 * param0)
         *v3 = sub_0205E078(v4, inline_0208BE68(sub_020507E4(param0->unk_34->unk_0C), 10));
     } else {
         v4 = sub_02026F20(v0);
-        *v3 = sub_0205E0E4(v4, sub_02025F30(v1));
+        *v3 = sub_0205E0E4(v4, TrainerInfo_Gender(v1));
     }
 
     return 0;
@@ -5617,7 +5617,7 @@ static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
     TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
     UnkStruct_0200B358 ** v1 = sub_0203F098(param0->unk_34, 15);
 
-    sub_0205C980(sub_02025F20(v0), sub_02025F30(v0), *v1);
+    sub_0205C980(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), *v1);
     return 0;
 }
 
@@ -5627,8 +5627,8 @@ static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
-    *v2 = sub_0205C9BC(sub_02025F20(v0), sub_02025F30(v0), v1);
-    *v2 = sub_0205CA14(sub_02025F30(v0), *v2, 2);
+    *v2 = sub_0205C9BC(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
+    *v2 = sub_0205CA14(TrainerInfo_Gender(v0), *v2, 2);
 
     return 0;
 }
@@ -5639,7 +5639,7 @@ static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
-    *v2 = sub_0205C9BC(sub_02025F20(v0), sub_02025F30(v0), v1);
+    *v2 = sub_0205C9BC(TrainerInfo_ID(v0), TrainerInfo_Gender(v0), v1);
 
     return 0;
 }
@@ -5649,7 +5649,7 @@ static BOOL sub_02043BA0 (UnkStruct_0203E724 * param0)
     TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
 
-    sub_02025F90(v0, v1);
+    TrainerInfo_SetAppearance(v0, v1);
     return 0;
 }
 
@@ -5673,7 +5673,7 @@ static BOOL sub_02043C0C (UnkStruct_0203E724 * param0)
     TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 * v1 = inline_0204FCAC(param0);
 
-    *v1 = sub_02025F30(v0);
+    *v1 = TrainerInfo_Gender(v0);
     return 0;
 }
 
@@ -6715,7 +6715,7 @@ static BOOL sub_02044DDC (UnkStruct_0203E724 * param0)
 
     if (v0 == 1) {
         sub_02027454(sub_02027560(param0->unk_34->unk_0C));
-        sub_02025FF8(sub_02025E38(param0->unk_34->unk_0C));
+        TrainerInfo_GiveNationalDex(sub_02025E38(param0->unk_34->unk_0C));
     } else if (v0 == 2) {
         *v1 = sub_02027474(sub_02027560(param0->unk_34->unk_0C));
     } else {

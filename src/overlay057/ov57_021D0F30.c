@@ -27,6 +27,6 @@ void ov57_021D0F44 (int param0, UnkStruct_021C0794 * param1)
     sub_0203D1A8(param1);
 
     v0 = sub_02025E38(param1);
-    sub_02025F78(v0, 3000);
+    TrainerInfo_SetMoney(v0, 3000);
     sub_0206A92C(sub_020507E4(param1));
 }

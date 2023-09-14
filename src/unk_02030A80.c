@@ -57,10 +57,10 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
 
     sub_02027914(v3, &v4, &v5, &v6);
     MI_CpuClear8(param0, sizeof(UnkStruct_02030A80));
-    sub_020021B0(param0->unk_00, sub_02025EF0(v0));
+    sub_020021B0(param0->unk_00, TrainerInfo_Name(v0));
 
-    param0->unk_10 = sub_02025F20(v0);
-    param0->unk_14 = sub_02025F30(v0);
+    param0->unk_10 = TrainerInfo_ID(v0);
+    param0->unk_14 = TrainerInfo_Gender(v0);
     param0->unk_1C = v4;
     param0->unk_1B_1 = v5;
     param0->unk_1B_0 = v6;
@@ -74,7 +74,7 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
     sub_02027938(v3, &param0->unk_20_val1);
 
     param0->unk_15 = v8.birthday.month;
-    param0->unk_16 = sub_0205CA14(sub_02025F30(v0), sub_02025F8C(v0), 0);
+    param0->unk_16 = sub_0205CA14(TrainerInfo_Gender(v0), TrainerInfo_Appearance(v0), 0);
     param0->unk_19 = GAME_VERSION;
     param0->unk_1A = GAME_LANGUAGE;
     param0->unk_7C.unk_00 = sub_0202486C(param1, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));

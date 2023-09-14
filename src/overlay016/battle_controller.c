@@ -2156,21 +2156,21 @@ static int ov16_0224E13C (BattleSystem * param0, BattleContext * param1, int * p
         return 0;
     }
 
-    if (sub_02025F58(v4) >= 8) {
+    if (TrainerInfo_BadgeCount(v4) >= 8) {
         return 0;
     }
 
     v3 = 10;
 
-    if (sub_02025F58(v4) >= 2) {
+    if (TrainerInfo_BadgeCount(v4) >= 2) {
         v3 = 30;
     }
 
-    if (sub_02025F58(v4) >= 4) {
+    if (TrainerInfo_BadgeCount(v4) >= 4) {
         v3 = 50;
     }
 
-    if (sub_02025F58(v4) >= 6) {
+    if (TrainerInfo_BadgeCount(v4) >= 6) {
         v3 = 70;
     }
 

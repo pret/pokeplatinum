@@ -6419,7 +6419,7 @@ static void ov16_0226474C (BattleSystem * param0)
 static u8 ov16_02264768 (BattleSystem * param0, u8 param1, u8 param2)
 {
     if (BattleSystem_BattleType(param0) & 0x4) {
-        if ((sub_02025FCC(ov16_0223E16C(param0, param1)) == 0) && (param2 <= 1)) {
+        if ((TrainerInfo_GameCode(ov16_0223E16C(param0, param1)) == 0) && (param2 <= 1)) {
             param2 += 103;
         }
     }

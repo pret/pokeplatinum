@@ -445,7 +445,7 @@ UnkStruct_ov66_0222DFF8 * ov66_0222DDF0 (UnkStruct_021C0794 * param0, u32 param1
         v0->unk_04.unk_00 = ov66_0223177C(param1);
 
         for (v2 = 0; v2 < 4; v2++) {
-            v0->unk_04.unk_E4[v2] = sub_02025E6C(param1);
+            v0->unk_04.unk_E4[v2] = TrainerInfo_New(param1);
         }
     }
 
@@ -998,7 +998,7 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, TrainerInfo * param1
     v1 = 0;
 
     if (v0 == 1) {
-        sub_02025EC0(param1, param0->unk_08);
+        TrainerInfo_SetName(param1, param0->unk_08);
 
         {
             Strbuf* v2;
@@ -1006,7 +1006,7 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, TrainerInfo * param1
 
             v3 = Strbuf_Init((7 + 1) * 4, param2);
             v2 = Strbuf_Init((7 + 1) * 4, param2);
-            sub_02025EF4(param1, v2);
+            TrainerInfo_NameStrbuf(param1, v2);
             v0 = sub_02002DB4(0, v2, v3);
 
             if (v0 == 0) {
@@ -1027,16 +1027,16 @@ void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, TrainerInfo * param1
         v4 = MessageLoader_Init(1, 26, 673, param2);
         v5 = MessageLoader_GetNewStrbuf(v4, 64);
 
-        sub_02025EE0(param1, v5);
+        TrainerInfo_SetNameFromStrbuf(param1, v5);
         Strbuf_Free(v5);
         MessageLoader_Free(v4);
     }
 
-    sub_02025F1C(param1, ov66_0222E79C(param0));
-    sub_02025F2C(param1, ov66_0222E7C8(param0));
-    sub_02025F90(param1, ov66_0222E858(param0));
-    sub_02025FDC(param1, ov66_0222E80C(param0));
-    sub_02025FE0(param1);
+    TrainerInfo_SetID(param1, ov66_0222E79C(param0));
+    TrainerInfo_SetGender(param1, ov66_0222E7C8(param0));
+    TrainerInfo_SetAppearance(param1, ov66_0222E858(param0));
+    TrainerInfo_SetRegionCode(param1, ov66_0222E80C(param0));
+    TrainerInfo_SetMainStoryCleared(param1);
 }
 
 u32 ov66_0222E71C (const UnkStruct_ov66_0222E71C * param0)
@@ -1748,9 +1748,9 @@ void ov66_0222EEF4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
-        v1 = sub_02025E6C(112);
+        v1 = TrainerInfo_New(112);
         ov66_0222E640(v0, v1, 112);
-        v2 = sub_0202C250(sub_02025EF0(v1), v0->unk_38, 112, 22);
+        v2 = sub_0202C250(TrainerInfo_Name(v1), v0->unk_38, 112, 22);
 
         sub_0202B758(v3, v2, 4);
         Heap_FreeToHeap(v1);
@@ -1768,10 +1768,10 @@ void ov66_0222EF44 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
     v0 = (UnkStruct_ov66_0222E71C *)ov66_0222E374(param0, param1);
 
     if (v0 != NULL) {
-        v1 = sub_02025E6C(112);
+        v1 = TrainerInfo_New(112);
         ov66_0222E640(v0, v1, 112);
 
-        v2 = sub_0202C250(sub_02025EF0(v1), v0->unk_38, 112, 23);
+        v2 = sub_0202C250(TrainerInfo_Name(v1), v0->unk_38, 112, 23);
 
         sub_0202B758(v3, v2, 4);
         Heap_FreeToHeap(v1);
@@ -2330,7 +2330,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
     {
         Strbuf* v5;
 
-        v5 = sub_02025F04(v0, param2);
+        v5 = TrainerInfo_NameNewStrbuf(v0, param2);
 
         Strbuf_ToChars(v5, param0->unk_20.unk_08, 7 + 1);
         Strbuf_ToChars(v5, param0->unk_00, 7 + 1);
@@ -2338,7 +2338,7 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
     }
 
     param0->unk_20.unk_00 = DWC_LOBBY_INVALID_USER_ID;
-    param0->unk_20.unk_04 = sub_02025F20(v0);
+    param0->unk_20.unk_04 = TrainerInfo_ID(v0);
 
     {
         Pokemon * v6;
@@ -2359,14 +2359,14 @@ static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 
         }
     }
 
-    param0->unk_20.unk_38 = sub_02025F30(v0);
-    param0->unk_20.unk_39 = sub_02025FD8(v0);
-    param0->unk_20.unk_3A = sub_02025F8C(v0);
+    param0->unk_20.unk_38 = TrainerInfo_Gender(v0);
+    param0->unk_20.unk_39 = TrainerInfo_RegionCode(v0);
+    param0->unk_20.unk_3A = TrainerInfo_Appearance(v0);
     param0->unk_20.unk_3A = ov66_02230C0C(param0->unk_20.unk_3A);
     param0->unk_20.unk_3C = sub_0202C8C0(v2);
     param0->unk_20.unk_3E = sub_0202C8C4(v2);
     param0->unk_20.unk_3F = sub_02027474(v3);
-    param0->unk_20.unk_40 = sub_02025FF0(v0);
+    param0->unk_20.unk_40 = TrainerInfo_IsMainStoryCleared(v0);
     param0->unk_20.unk_41 = 0xff;
     param0->unk_20.unk_43 = 0;
     param0->unk_20.unk_42 = GAME_VERSION;
@@ -2551,7 +2551,7 @@ static void ov66_0222FBE0 (UnkStruct_ov66_0222FBC8 * param0)
 
 static void ov66_0222FBF0 (UnkStruct_ov66_0222FBF0 * param0, u32 param1)
 {
-    param0->unk_00 = sub_02025E6C(param1);
+    param0->unk_00 = TrainerInfo_New(param1);
 }
 
 static void ov66_0222FC00 (UnkStruct_ov66_0222FBF0 * param0)

@@ -79,7 +79,7 @@ void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param
     Unk_021C07B4->unk_08 = param0;
     Unk_021C07B4->unk_04 = param1;
 
-    sub_02025E80(v1, Unk_021C07B4->unk_33C[0]);
+    TrainerInfo_Copy(v1, Unk_021C07B4->unk_33C[0]);
 }
 
 void sub_02032A70 (void)
@@ -119,7 +119,7 @@ void sub_02032AC0 (void)
         v1 = sub_02025E38(Unk_021C07B4->unk_08);
     }
 
-    sub_02025E80(v1, Unk_021C07B4->unk_33C[v0]);
+    TrainerInfo_Copy(v1, Unk_021C07B4->unk_33C[v0]);
     OS_GetMacAddress(&Unk_021C07B4->unk_0C[v0].unk_5C[0]);
 
     v2 = sub_0202B42C(v3, 1, 0);
@@ -175,7 +175,7 @@ void sub_02032BEC (int param0, int param1, void * param2, void * param3)
     MI_CpuCopy8(param2, &Unk_021C07B4->unk_0C[v0->unk_62], sizeof(UnkStruct_02032BEC));
     Unk_021C07B4->unk_396 = v0->unk_62;
 
-    if (sub_02025EA8(Unk_021C07B4->unk_33C[Unk_021C07B4->unk_396]) == 1) {
+    if (TrainerInfo_HasNoName(Unk_021C07B4->unk_33C[Unk_021C07B4->unk_396]) == 1) {
         return;
     }
 
@@ -224,7 +224,7 @@ BOOL sub_02032CE8 (void)
         for (v0 = 0; v0 < (7 + 1); v0++) {
             if (Unk_021C07B4->unk_38C[v0] != 0) {
                 Unk_021C07B4->unk_0C[v0].unk_62 = v0;
-                MI_CpuCopy8(Unk_021C07B4->unk_33C[v0], Unk_021C07B4->unk_0C[v0].unk_20, sub_02025E68());
+                MI_CpuCopy8(Unk_021C07B4->unk_33C[v0], Unk_021C07B4->unk_0C[v0].unk_20, TrainerInfo_Size());
                 sub_02035F00(4, &Unk_021C07B4->unk_0C[v0], sizeof(UnkStruct_02032BEC));
             }
         }
@@ -244,7 +244,7 @@ BOOL sub_02032D84 (void)
 
 void sub_02032D98 (int param0)
 {
-    sub_02025E8C(Unk_021C07B4->unk_33C[param0]);
+    TrainerInfo_Init(Unk_021C07B4->unk_33C[param0]);
     Unk_021C07B4->unk_38C[param0] = 0;
 }
 

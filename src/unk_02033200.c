@@ -544,7 +544,7 @@ void sub_020339AC (int param0, TrainerInfo * param1)
     for (v0 = 0; v0 < 16; ++v0) {
         if (Unk_021C07C0->unk_14C8[v0] != 0) {
             if (param0 == v1) {
-                sub_02025E80(sub_02033FB0(v0), param1);
+                TrainerInfo_Copy(sub_02033FB0(v0), param1);
                 return;
             }
 
@@ -613,13 +613,13 @@ static void sub_02033AA8 (void)
         v2 = (UnkStruct_0203330C *)Unk_021C07C0->unk_150C;
 
         GF_ASSERT(32 >= sub_0202602C());
-        GF_ASSERT(32 == sub_02025E68());
+        GF_ASSERT(32 == TrainerInfo_Size());
         GF_ASSERT(WM_SIZE_USER_GAMEINFO >= MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
 
-        MI_CpuCopy8(v1, v2->unk_10, sub_02025E68());
+        MI_CpuCopy8(v1, v2->unk_10, TrainerInfo_Size());
         MI_CpuCopy8(Unk_021C07C0->unk_1500, v2->unk_30, sub_0202602C());
 
-        v2->unk_00 = sub_02025F20(v1);
+        v2->unk_00 = TrainerInfo_ID(v1);
         v2->unk_04 = sub_0203895C();
         v2->unk_05 = sub_02038974();
 
@@ -629,7 +629,7 @@ static void sub_02033AA8 (void)
     } else {
         v3 = (UnkStruct_02034168 *)Unk_021C07C0->unk_150C;
 
-        v3->unk_00 = sub_02025F20(v1);
+        v3->unk_00 = TrainerInfo_ID(v1);
         v3->unk_04 = sub_0203895C();
         v3->unk_05 = sub_02038974();
 

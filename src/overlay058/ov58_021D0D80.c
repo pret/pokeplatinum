@@ -1647,7 +1647,7 @@ static void ov58_021D28E4 (UnkStruct_0205AA50 * param0, int param1, u32 param2, 
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param3->unk_398[v0][0] != NULL) {
-            sub_02025EF4(param3->unk_398[v0][0], param3->unk_14[v0]);
+            TrainerInfo_NameStrbuf(param3->unk_398[v0][0], param3->unk_14[v0]);
 
             if (v1 == v0) {
                 sub_0201D78C(&param0[v0], 1, param3->unk_14[v0], 0, 0, 0xff, (u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);

@@ -118,7 +118,7 @@ static inline BOOL inline_020708AC (const UnkStruct_02070950 * param0, int param
 
 static inline BOOL inline_02070950 (const UnkStruct_02070950 * param0, int param1)
 {
-    return sub_02025F34(sub_02025E38(param0->unk_04->unk_0C), param1);
+    return TrainerInfo_HasBadge(sub_02025E38(param0->unk_04->unk_0C), param1);
 }
 
 static inline BOOL inline_02070A24 (const UnkStruct_02070950 * param0)

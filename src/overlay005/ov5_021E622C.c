@@ -2028,7 +2028,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     BoxPokemon * v5 = sub_02026220(param2);
     TrainerInfo * v6 = sub_02025E38(param3);
 
-    v2 = sub_02025EF0(v6);
+    v2 = TrainerInfo_Name(v6);
     Pokemon_GetValue(v1, MON_DATA_117, v3);
 
     if (ov5_021E62B0(Pokemon_GetBoxPokemon(v1))) {
@@ -2625,9 +2625,9 @@ void ov5_021E6CF0 (Pokemon * param0, u16 param1, u8 param2, TrainerInfo * param3
     Strbuf_Free(v5);
 
     if (param4 == 4) {
-        u32 v6 = sub_02025F20(param3);
-        u32 v7 = sub_02025F30(param3);
-        Strbuf* v8 = sub_02025F04(param3, 32);
+        u32 v6 = TrainerInfo_ID(param3);
+        u32 v7 = TrainerInfo_Gender(param3);
+        Strbuf* v8 = TrainerInfo_NameNewStrbuf(param3, 32);
 
         Pokemon_SetValue(param0, 145, v8);
         Pokemon_SetValue(param0, 7, &v6);
@@ -2690,7 +2690,7 @@ void ov5_021E6EA8 (UnkStruct_02026310 * param0, Party * param1, TrainerInfo * pa
     v0 = ov5_021E6B54(v0, param0);
 
     {
-        u32 v4 = sub_02025F20(param2);
+        u32 v4 = TrainerInfo_ID(param2);
         BoxPokemon * v5 = ov5_021E622C(param0, v1[0]);
         u8 v6 = BoxPokemon_GetValue(v5, MON_DATA_FORM, NULL);
 

@@ -182,7 +182,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, MessageLoader * para
     str r1, [sp, #8]
     bl sub_0201D738
     add r0, r5, #0
-    bl sub_02025F24
+    bl TrainerInfo_ID_LowHalf
     add r2, r0, #0
     mov r0, #2
     str r0, [sp]
@@ -518,7 +518,7 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageLoader * param1, 
             sub_0200C388(v0, v2, v1);
             sub_0201D738(param0, 0, v2, v7, 1 + v8 * (4 + v3), 0xff, NULL);
 
-            sub_0200B60C(v0, 5, sub_02025F24(v13), 5, 2, 1);
+            sub_0200B60C(v0, 5, TrainerInfo_ID_LowHalf(v13), 5, 2, 1);
             MessageLoader_GetStrbuf(param1, 17, v1);
             sub_0200C388(v0, v2, v1);
 

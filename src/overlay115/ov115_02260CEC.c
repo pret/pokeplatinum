@@ -1484,7 +1484,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
                     v8 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)));
                 }
 
-                sub_02025EF4(param2->unk_08[v2], v7);
+                TrainerInfo_NameStrbuf(param2->unk_08[v2], v7);
                 sub_0201C2AC(&v5, v3);
                 sub_0201C2B0(&v5, v4);
 

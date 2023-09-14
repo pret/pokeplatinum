@@ -100,9 +100,9 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
         Strbuf* v14 = Strbuf_Init(64, 32);
         TrainerInfo * v15 = sub_02025E38(param0->unk_34->unk_0C);
 
-        sub_02025EF4(v15, v14);
+        TrainerInfo_NameStrbuf(v15, v14);
         sub_0202B444(v1, 0, 1, v14);
-        sub_0202B470(v1, 0, sub_02025F30(v15));
+        sub_0202B470(v1, 0, TrainerInfo_Gender(v15));
         sub_0202B494(v1, 0, GAME_LANGUAGE);
         sub_0202B40C(v1, 0, MTRNG_Next());
         Strbuf_Free(v14);

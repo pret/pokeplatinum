@@ -275,17 +275,17 @@ void sub_02028830 (UnkStruct_020298B0 * param0, const TrainerInfo * param1)
     int v1;
 
     for (v1 = 0; v1 < 5; v1++) {
-        if (param0->unk_9C[v1] == sub_02025F20(param1)) {
+        if (param0->unk_9C[v1] == TrainerInfo_ID(param1)) {
             return;
         }
     }
 
     GF_ASSERT(v0 < 5);
-    MI_CpuCopy8(sub_02025EF0(param1), param0->unk_B0[v0], (sizeof(u16) * (7 + 1)));
+    MI_CpuCopy8(TrainerInfo_Name(param1), param0->unk_B0[v0], (sizeof(u16) * (7 + 1)));
 
-    param0->unk_9C[v0] = sub_02025F20(param1);
-    param0->unk_100[v0] = sub_02025FD8(param1);
-    param0->unk_105[v0] = sub_02025FCC(param1);
+    param0->unk_9C[v0] = TrainerInfo_ID(param1);
+    param0->unk_100[v0] = TrainerInfo_RegionCode(param1);
+    param0->unk_105[v0] = TrainerInfo_GameCode(param1);
     param0->unk_10A++;
 
     if (param0->unk_10A >= 5) {
@@ -305,12 +305,12 @@ TrainerInfo * sub_020288C8 (const UnkStruct_020298B0 * param0, int param1, int p
     }
 
     if (param0->unk_B0[v3][0] != 0) {
-        v2 = sub_02025E6C(param1);
+        v2 = TrainerInfo_New(param1);
 
-        sub_02025EC0(v2, param0->unk_B0[v3]);
-        sub_02025FD0(v2, param0->unk_105[v3]);
-        sub_02025FDC(v2, param0->unk_100[v3]);
-        sub_02025F1C(v2, param0->unk_9C[v3]);
+        TrainerInfo_SetName(v2, param0->unk_B0[v3]);
+        TrainerInfo_SetGameCode(v2, param0->unk_105[v3]);
+        TrainerInfo_SetRegionCode(v2, param0->unk_100[v3]);
+        TrainerInfo_SetID(v2, param0->unk_9C[v3]);
 
         return v2;
     }

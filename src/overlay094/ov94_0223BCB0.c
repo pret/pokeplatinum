@@ -187,7 +187,7 @@ int ov94_0223BE2C (UnkStruct_020067E8 * param0, int * param1)
         if (sub_0200F2AC()) {
             if (v0->unk_104) {
                 ov94_0223C4E0(v0);
-                ov94_02243EF8(v0, sub_02025F30(v0->unk_00->unk_1C));
+                ov94_02243EF8(v0, TrainerInfo_Gender(v0->unk_00->unk_1C));
                 ov94_02244234(v0, v0->unk_118, 0);
                 ov94_0223D068(v0);
                 v0->unk_104 = 0;

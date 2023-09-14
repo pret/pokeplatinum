@@ -411,10 +411,10 @@ static void ov57_021D0EAC (int param0, UnkStruct_021C0794 * param1, BOOL param2)
     v0 = MTRNG_Next();
 
     if (param2) {
-        sub_02025F1C(v2, v0);
+        TrainerInfo_SetID(v2, v0);
     }
 
-    sub_02025F90(v2, sub_0205C9BC(v0, sub_02025F30(v2), 0));
+    TrainerInfo_SetAppearance(v2, sub_0205C9BC(v0, TrainerInfo_Gender(v2), 0));
 
     v1 = sub_02027854(param1);
     sub_02027B90(v1, param0, Unk_ov57_021D0FA0, NELEMS(Unk_ov57_021D0FA0) / 2);

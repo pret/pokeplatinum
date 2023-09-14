@@ -2188,9 +2188,9 @@ static int sub_0208E958 (UnkStruct_0208D7BC * param0)
 
 void sub_0208E9C0 (UnkStruct_02098D38 * param0, const TrainerInfo * param1)
 {
-    param0->unk_08 = sub_02025EF0(param1);
-    param0->unk_0C = sub_02025F20(param1);
-    param0->unk_10 = (u8)sub_02025F30(param1);
+    param0->unk_08 = TrainerInfo_Name(param1);
+    param0->unk_0C = TrainerInfo_ID(param1);
+    param0->unk_10 = (u8)TrainerInfo_Gender(param1);
 }
 
 u32 sub_0208E9E0 (void)

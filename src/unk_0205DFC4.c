@@ -720,12 +720,12 @@ u8 sub_0205E6B8 (void)
     v0 = sub_02032EE8(sub_0203608C() ^ 1);
     GF_ASSERT(v0 != NULL);
 
-    return sub_02025FCC(v0);
+    return TrainerInfo_GameCode(v0);
 }
 
 u8 sub_0205E6D8 (UnkStruct_021C0794 * param0)
 {
-    if (sub_02025FCC(sub_02025E38(param0)) == 0) {
+    if (TrainerInfo_GameCode(sub_02025E38(param0)) == 0) {
         return 1;
     }
 

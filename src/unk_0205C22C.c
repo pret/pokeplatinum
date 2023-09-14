@@ -211,8 +211,8 @@ static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * para
         switch (param0->unk_0C[v1].unk_01) {
         case 0:
             if (v0 != NULL) {
-                param0->unk_0C[v1].unk_08 = sub_02025F8C(v3);
-                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, sub_02025F20(v3));
+                param0->unk_0C[v1].unk_08 = TrainerInfo_Appearance(v3);
+                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, TrainerInfo_ID(v3));
                 param0->unk_0C[v1].unk_0C = v2->unk_00;
 
                 if (sub_0205C340(param0, v1, v0, param3)) {

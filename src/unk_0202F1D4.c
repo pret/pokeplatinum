@@ -488,7 +488,7 @@ void sub_0202F8AC (BattleParams * param0)
 
     for (v0 = 0; v0 < 4; v0++) {
         sub_0202FCE8(param0->parties[v0], &v1->unk_1150[v0]);
-        sub_02025E80(param0->unk_D0[v0], &v1->unk_1B68[v0]);
+        TrainerInfo_Copy(param0->unk_D0[v0], &v1->unk_1B68[v0]);
 
         v2->unk_14C[v0] = sub_02006494(param0->unk_F0[v0]);
     }
@@ -566,7 +566,7 @@ void sub_0202FAFC (BattleParams * param0, UnkStruct_021C0794 * param1)
         param0->unk_178[v0] = v1->unk_00.unk_134[v0];
 
         sub_0202FD30(&v1->unk_1150[v0], param0->parties[v0]);
-        sub_02025E80(&v1->unk_1B68[v0], param0->unk_D0[v0]);
+        TrainerInfo_Copy(&v1->unk_1B68[v0], param0->unk_D0[v0]);
 
         param0->unk_194[v0] = v1->unk_00.unk_14C[v0];
     }

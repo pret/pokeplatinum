@@ -1344,7 +1344,7 @@ static u8 sub_0202C6CC (TrainerInfo * param0, u32 param1)
 
     for (v0 = 0; v0 < NELEMS(Unk_020E5B50); v0++) {
         if (Unk_020E5B50[v0].unk_04 == param1) {
-            if (sub_02025F34(param0, Unk_020E5B50[v0].unk_06) == 0) {
+            if (TrainerInfo_HasBadge(param0, Unk_020E5B50[v0].unk_06) == 0) {
                 return v0;
             }
 

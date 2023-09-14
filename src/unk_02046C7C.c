@@ -107,7 +107,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     UnkStruct_02093800 v8;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_34->unk_0C), v7);
-    v0 = sub_02025F04(v3, 4);
+    v0 = TrainerInfo_NameNewStrbuf(v3, 4);
 
     v8.unk_00 = v5;
     v8.unk_01 = v4;

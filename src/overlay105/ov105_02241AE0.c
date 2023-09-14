@@ -2717,9 +2717,9 @@ static void ov105_02244F0C (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
     v2 = Strbuf_Init((7 + 1), 93);
 
     sub_0201ADA4(param1, 0);
-    Strbuf_CopyChars(v2, sub_02025EF0(v1));
+    Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
 
-    if (sub_02025F30(v1) == 0) {
+    if (TrainerInfo_Gender(v1) == 0) {
         v0 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
     } else {
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
@@ -2742,9 +2742,9 @@ static void ov105_02244F84 (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
     v1 = Strbuf_Init((7 + 1), 93);
 
     sub_0201ADA4(param1, 0);
-    sub_02025EF4(v2, v1);
+    TrainerInfo_NameStrbuf(v2, v1);
 
-    if (sub_02025F30(v2) == 0) {
+    if (TrainerInfo_Gender(v2) == 0) {
         v0 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
     } else {
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));

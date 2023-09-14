@@ -62,10 +62,10 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
         u8 v3;
 
         v3 = sub_02071F28(param4);
-        sub_02072014(param0, GAME_VERSION, v3, param2, sub_02025FD8(v0), param5);
+        sub_02072014(param0, GAME_VERSION, v3, param2, TrainerInfo_RegionCode(v0), param5);
     }
 
-    sub_02072038(sub_02025F24(v0), sub_02025F30(v0), sub_02025EF0(v0), sub_02025F74(v0), sub_02026E48(sub_02027560(param4->unk_0C)), sub_02027520(sub_02027560(param4->unk_0C)), sub_0202D034(v1), param5);
+    sub_02072038(TrainerInfo_ID_LowHalf(v0), TrainerInfo_Gender(v0), TrainerInfo_Name(v0), TrainerInfo_Money(v0), sub_02026E48(sub_02027560(param4->unk_0C)), sub_02027520(sub_02027560(param4->unk_0C)), sub_0202D034(v1), param5);
 
     {
         RTCDate v4;
@@ -252,7 +252,7 @@ static void sub_0207216C (TrainerInfo * param0, UnkStruct_0203CDB0 * param1, Unk
     v2 = sub_0202C844(v1);
 
     for (v0 = 0; v0 < 8; v0++) {
-        if (sub_02025F34(param0, v0)) {
+        if (TrainerInfo_HasBadge(param0, v0)) {
             param2->unk_48[v0].unk_00_0 = 1;
         } else {
             param2->unk_48[v0].unk_00_0 = 0;

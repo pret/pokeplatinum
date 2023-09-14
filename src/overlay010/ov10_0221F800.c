@@ -681,7 +681,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
                 v3 = sub_02032EE8(v2);
 
                 if (v3 != NULL) {
-                    if (sub_02025FCC(v3) == 0) {
+                    if (TrainerInfo_GameCode(v3) == 0) {
                         param0->unk_BC4 = 1;
                         break;
                     }

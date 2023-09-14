@@ -25,7 +25,7 @@ BOOL sub_0204C8F0 (UnkStruct_0203E724 * param0)
     u32 v1;
 
     v1 = sub_0203E850(param0);
-    sub_02025F94(v0, v1);
+    TrainerInfo_GiveMoney(v0, v1);
 
     return 0;
 }
@@ -36,7 +36,7 @@ BOOL sub_0204C914 (UnkStruct_0203E724 * param0)
     u32 v1;
 
     v1 = sub_0203E850(param0);
-    sub_02025FB8(v0, v1);
+    TrainerInfo_TakeMoney(v0, v1);
 
     return 0;
 }
@@ -47,7 +47,7 @@ BOOL sub_0204C938 (UnkStruct_0203E724 * param0)
     u32 v1;
 
     v1 = inline_02049538(param0);
-    sub_02025FB8(v0, v1);
+    TrainerInfo_TakeMoney(v0, v1);
 
     return 0;
 }
@@ -60,7 +60,7 @@ BOOL sub_0204C968 (UnkStruct_0203E724 * param0)
 
     v1 = inline_0204FCAC(param0);
     v2 = sub_0203E850(param0);
-    v3 = sub_02025F74(v0);
+    v3 = TrainerInfo_Money(v0);
 
     if (v3 < v2) {
         *v1 = 0;
@@ -79,7 +79,7 @@ BOOL sub_0204C9AC (UnkStruct_0203E724 * param0)
 
     v1 = inline_0204FCAC(param0);
     v2 = inline_02049538(param0);
-    v3 = sub_02025F74(v0);
+    v3 = TrainerInfo_Money(v0);
 
     if (v3 < v2) {
         *v1 = 0;

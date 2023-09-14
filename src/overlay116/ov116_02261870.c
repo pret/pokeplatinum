@@ -532,7 +532,7 @@ void ov116_022620AC (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
             Strbuf* v11;
             int v12;
 
-            v11 = sub_02025F04(v9, 106);
+            v11 = TrainerInfo_NameNewStrbuf(v9, 106);
             v12 = ov116_0226208C(v3, v11);
 
             if (v10) {

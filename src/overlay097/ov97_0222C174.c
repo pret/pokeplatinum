@@ -513,13 +513,13 @@ static void ov97_0222C210 (UnkStruct_ov97_0222C388 * param0)
     u32 v1;
     const u16 * v2;
 
-    v2 = sub_02025EF0(param0->unk_10);
+    v2 = TrainerInfo_Name(param0->unk_10);
 
     for (v0 = 0; v0 < 7 + 1; v0++) {
         Unk_ov97_0223F180[v0] = ov97_0222C174(v2[v0]);
     }
 
-    v1 = sub_02025F24(param0->unk_10);
+    v1 = TrainerInfo_ID_LowHalf(param0->unk_10);
     ov97_0222C1A4(&Unk_ov97_0223F190[0], v1);
     Unk_ov97_0223F190[5] = 0;
 }
@@ -642,7 +642,7 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     param0->unk_F0.unk_14 = v6;
 
     sub_0200B498(v6, 0, param0->unk_10);
-    sub_0200B60C(v6, 1, sub_02025F24(param0->unk_10), 5, 2, 1);
+    sub_0200B60C(v6, 1, TrainerInfo_ID_LowHalf(param0->unk_10), 5, 2, 1);
 
     ov97_0223795C(param0->unk_04, &param0->unk_F0, 3, 13, 66);
     param0->unk_F0.unk_08 = 0;

@@ -877,7 +877,7 @@ static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
     for (v0 = 0; v0 < param0->unk_00->unk_30; v0++) {
         if (v4 != param0->unk_00->unk_2C[v0]) {
             v2 = ov114_0225C7CC(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]);
-            v3 = sub_02025F04(v2, 110);
+            v3 = TrainerInfo_NameNewStrbuf(v2, 110);
             v1 = ov117_022622C4(param0, param0->unk_00->unk_2C[v0]);
 
             if (ov114_0225C7A4(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]) == 1) {

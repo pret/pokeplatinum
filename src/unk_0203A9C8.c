@@ -575,7 +575,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1->unk_20 = sub_02001AF4(&v3, 28, 4, v1->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     sub_0201A9A4(&v1->unk_00);
-    sub_0203B318(v1, v1->unk_30, v5, sub_02025F30(sub_02025E38(v0->unk_0C)));
+    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(sub_02025E38(v0->unk_0C)));
 }
 
 static u32 sub_0203AFCC (UnkStruct_020708E0 * param0, u8 * param1)

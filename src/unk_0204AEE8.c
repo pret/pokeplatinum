@@ -206,7 +206,7 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     Pokemon * v2;
     TrainerInfo * v3 = sub_02025E38(param1);
 
-    param0->unk_83E[0] = sub_02025F30(v3);
+    param0->unk_83E[0] = TrainerInfo_Gender(v3);
     v1 = Party_GetFromSavedata(param1);
 
     for (v0 = 0; v0 < 2; v0++) {

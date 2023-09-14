@@ -821,9 +821,9 @@ void sub_0209305C (BoxPokemon * param0, TrainerInfo * param1, int param2, int pa
 
 static void sub_020932A4 (BoxPokemon * param0, TrainerInfo * param1, int param2)
 {
-    int v0 = sub_02025F20(param1);
-    int v1 = sub_02025F30(param1);
-    Strbuf* v2 = sub_02025F04(param1, param2);
+    int v0 = TrainerInfo_ID(param1);
+    int v1 = TrainerInfo_Gender(param1);
+    Strbuf* v2 = TrainerInfo_NameNewStrbuf(param1, param2);
 
     BoxPokemon_SetValue(param0, 7, &v0);
     BoxPokemon_SetValue(param0, 157, &v1);

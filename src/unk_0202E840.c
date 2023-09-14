@@ -198,7 +198,7 @@ void * sub_0202E9FC (UnkStruct_021C0794 * param0, int param1)
     MI_CpuClear8(v3, sizeof(UnkStruct_0202E91C));
 
     v1 = sub_0202B400(sub_0202B4A0(param0), 1);
-    v4 = sub_02025F04(v5, param1);
+    v4 = TrainerInfo_NameNewStrbuf(v5, param1);
     v6 = sub_0202E924(param0, param1);
 
     for (v0 = 0; v0 < 13; v0++) {
@@ -408,7 +408,7 @@ UnkStruct_0202EE10 * sub_0202ED8C (UnkStruct_021C0794 * param0, int param1, int 
     for (v0 = 0; v0 < v3->unk_00; v0++) {
         v3->unk_04[v0].unk_00 = v2;
         v3->unk_04[v0].unk_04 = v4[v0 + v1];
-        v3->unk_04[v0].unk_08 = sub_02025F04(v5, param2);
+        v3->unk_04[v0].unk_08 = TrainerInfo_NameNewStrbuf(v5, param2);
     }
 
     Heap_FreeToHeap(v4);
