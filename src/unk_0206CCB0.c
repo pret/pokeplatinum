@@ -626,7 +626,7 @@ void sub_0206D088 (UnkStruct_0202440C * param0, u8 param1, const TrainerInfo * p
     v0->unk_00 = 1;
     v0->unk_01 = param1;
 
-    sub_020021B0(v0->unk_06, TrainerInfo_Name(param2));
+    GF_strcpy(v0->unk_06, TrainerInfo_Name(param2));
 
     v0->unk_03 = TrainerInfo_RegionCode(param2);
     v0->unk_04 = TrainerInfo_GameCode(param2);

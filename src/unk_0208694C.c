@@ -1149,8 +1149,8 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
     if ((v0->unk_158 == 0) || (sub_0200220C(v0->unk_D8, v0->unk_118) == 0) || sub_02086F14(v0->unk_D8)) {
         sub_02086E6C(v0, v1);
     } else {
-        sub_020021B0(v0->unk_118, v0->unk_D8);
-        sub_020021B0(v1->unk_1C, v0->unk_D8);
+        GF_strcpy(v0->unk_118, v0->unk_D8);
+        GF_strcpy(v1->unk_1C, v0->unk_D8);
         Strbuf_CopyChars(v1->unk_18, v0->unk_D8);
     }
 
@@ -1432,7 +1432,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
     param0->unk_178 = sub_0200B29C(param0->unk_168, param0->unk_16C, Unk_020F2850[param0->unk_00], 18);
     param0->unk_17C = sub_0200B29C(param0->unk_168, param0->unk_16C, 8, 18);
     param0->unk_184 = MessageLoader_GetNewStrbuf(param0->unk_16C, 7);
-    param0->unk_158 = sub_020021F0(param0->unk_118);
+    param0->unk_158 = GF_strlen(param0->unk_118);
     param0->unk_1C.unk_00 = 0;
     param0->unk_1C.unk_04 = 1;
     param0->unk_1C.unk_08 = -1;
@@ -1884,7 +1884,7 @@ static void sub_02087FC0 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
         UnkStruct_0208737C * v1 = (UnkStruct_0208737C *)sub_02006840(param1);
 
         if (param0->unk_118[0] != 0xffff) {
-            sub_020021B0(param0->unk_D8, param0->unk_118);
+            GF_strcpy(param0->unk_D8, param0->unk_118);
             sub_02088554(&param0->unk_41C[3], param0->unk_D8, 0, 0, 12, 0, (u32)(((0xe & 0xff) << 16) | ((0xf & 0xff) << 8) | ((1 & 0xff) << 0)), NULL);
         }
     }

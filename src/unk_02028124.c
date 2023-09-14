@@ -102,7 +102,7 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
     v9 = Party_GetFromSavedata(param3);
     v8 = sub_02025E38(param3);
 
-    sub_020021B0(param0->unk_08, TrainerInfo_Name(v8));
+    GF_strcpy(param0->unk_08, TrainerInfo_Name(v8));
 
     param0->unk_04 = (u8)TrainerInfo_Gender(v8);
     param0->unk_00 = TrainerInfo_ID(v8);

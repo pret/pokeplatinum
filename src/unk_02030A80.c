@@ -57,7 +57,7 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
 
     sub_02027914(v3, &v4, &v5, &v6);
     MI_CpuClear8(param0, sizeof(UnkStruct_02030A80));
-    sub_020021B0(param0->unk_00, TrainerInfo_Name(v0));
+    GF_strcpy(param0->unk_00, TrainerInfo_Name(v0));
 
     param0->unk_10 = TrainerInfo_ID(v0);
     param0->unk_14 = TrainerInfo_Gender(v0);

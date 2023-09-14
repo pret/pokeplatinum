@@ -6040,7 +6040,7 @@ BOOL ov16_02259ADC (BattleSystem * param0, BattleContext * param1)
     v2 = TrainerInfo_Gender(v0);
     v3 = TrainerInfo_Name(v0);
 
-    if ((v1 == param1->battleMons[param1->attacker].OTId) && (v2 == param1->battleMons[param1->attacker].OTGender) && (sub_02002238(v3, &param1->battleMons[param1->attacker].OTName[0], 7) == 0)) {
+    if ((v1 == param1->battleMons[param1->attacker].OTId) && (v2 == param1->battleMons[param1->attacker].OTGender) && (GF_strncmp(v3, &param1->battleMons[param1->attacker].OTName[0], 7) == 0)) {
         return 1;
     }
 
@@ -6062,7 +6062,7 @@ BOOL ov16_02259B38 (BattleSystem * param0, Pokemon * param1)
 
     Pokemon_GetValue(param1, MON_DATA_144, &v4[0]);
 
-    if ((v1 == Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL)) && (v2 == Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL)) && (sub_02002238(v3, &v4[0], 7) == 0)) {
+    if ((v1 == Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL)) && (v2 == Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL)) && (GF_strncmp(v3, &v4[0], 7) == 0)) {
         return 1;
     }
 

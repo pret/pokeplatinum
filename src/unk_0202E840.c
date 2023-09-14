@@ -60,7 +60,7 @@ void sub_0202E858 (UnkStruct_0202E858 * param0)
 
 BOOL sub_0202E870 (UnkStruct_0202E858 * param0)
 {
-    if (sub_020021F0(param0->unk_08) == 0) {
+    if (GF_strlen(param0->unk_08) == 0) {
         return 0;
     }
 

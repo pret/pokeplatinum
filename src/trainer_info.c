@@ -51,10 +51,10 @@ void TrainerInfo_SetName (TrainerInfo * param0, const u16 * param1)
 {
     int v0;
 
-    v0 = sub_020021F0(param1);
+    v0 = GF_strlen(param1);
     GF_ASSERT(v0 < 7 + 1);
 
-    sub_020021B0(param0->name, param1);
+    GF_strcpy(param0->name, param1);
 }
 
 void TrainerInfo_SetNameFromStrbuf (TrainerInfo * param0, const Strbuf *param1)
@@ -231,7 +231,7 @@ int TrainerInfo_HasNationalDex (TrainerInfo * param0)
 
 BOOL TrainerInfo_Equals (const TrainerInfo * param0, const TrainerInfo * param1)
 {
-    if (0 == sub_02002238(param0->name, param1->name, 7)) {
+    if (0 == GF_strncmp(param0->name, param1->name, 7)) {
         if (param0->id == param1->id) {
             return 1;
         }

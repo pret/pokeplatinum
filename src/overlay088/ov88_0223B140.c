@@ -1680,7 +1680,7 @@ static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, Un
 {
     int v0;
 
-    sub_020021B0(param2->unk_00, TrainerInfo_Name(param0));
+    GF_strcpy(param2->unk_00, TrainerInfo_Name(param0));
 
     param2->unk_10 = TrainerInfo_ID(param0);
     param2->unk_14 = TrainerInfo_RegionCode(param0);

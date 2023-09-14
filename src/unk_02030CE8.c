@@ -123,7 +123,7 @@ static void sub_02030DD0 (UnkStruct_021C0794 * param0, UnkStruct_ov96_0223B574 *
     param1->unk_03 = sub_0202C8C4(v0);
     param1->unk_04 = TrainerInfo_ID(v1);
 
-    sub_020021B0(param1->unk_08, TrainerInfo_Name(v1));
+    GF_strcpy(param1->unk_08, TrainerInfo_Name(v1));
     param1->unk_10 = 0;
 
     strcpy(param1->unk_1C, v2);

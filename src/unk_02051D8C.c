@@ -427,7 +427,7 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
         int v12 = TrainerInfo_Gender(v0);
 
         param0->trainerData[0].class = sub_0205CA14(v12, v11, 1);
-        sub_020021B0(&param0->trainerData[0].unk_14[0], TrainerInfo_Name(param0->unk_D0[0]));
+        GF_strcpy(&param0->trainerData[0].unk_14[0], TrainerInfo_Name(param0->unk_D0[0]));
         param0->trainerData[2] = param0->trainerData[0];
     } else {
         sub_02052894(param0);
@@ -574,6 +574,6 @@ BOOL sub_02052888 (u32 param0)
 void sub_02052894 (BattleParams * param0)
 {
     param0->trainerData[0].class = TrainerInfo_Gender(param0->unk_D0[0]);
-    sub_020021B0(&param0->trainerData[0].unk_14[0], TrainerInfo_Name(param0->unk_D0[0]));
+    GF_strcpy(&param0->trainerData[0].unk_14[0], TrainerInfo_Name(param0->unk_D0[0]));
     param0->trainerData[2] = param0->trainerData[0];
 }
