@@ -241,8 +241,8 @@ static void sub_02078234(void * param0, u32 param1, u32 param2);
 static u16 sub_0207823C(void * param0, u32 param1);
 static void * sub_0207825C(BoxPokemon * param0, u32 param1, u8 param2);
 static int sub_02078740(int param0, int param1);
-u32 FlagIndex(int flag);
-int sub_020787EC(u32 param0);
+u32 NumToFlag(int flag);
+int FlagToNum(u32 param0);
 BOOL sub_02078804(u16 param0);
 BOOL sub_02078838(Pokemon * param0);
 int sub_020788D0(int param0);
@@ -2502,16 +2502,16 @@ u32 sub_02075E64 (u32 param0)
     v3 = sub_0201D2E8() & 0x7;
 
     for (v0 = 0; v0 < 13; v0++) {
-        if (param0 & FlagIndex(v0)) {
+        if (param0 & NumToFlag(v0)) {
             if (sub_0201D2E8() & 1) {
-                v2 |= FlagIndex(v0 + 3);
+                v2 |= NumToFlag(v0 + 3);
             } else {
-                v3 |= FlagIndex(v0 + 3);
+                v3 |= NumToFlag(v0 + 3);
             }
         } else {
             if (sub_0201D2E8() & 1) {
-                v2 |= FlagIndex(v0 + 3);
-                v3 |= FlagIndex(v0 + 3);
+                v2 |= NumToFlag(v0 + 3);
+                v3 |= NumToFlag(v0 + 3);
             }
         }
     }
@@ -3865,7 +3865,7 @@ void sub_020776B0 (Party * param0)
             }
         } while (v4 == v3);
 
-        if (sub_02077758(param0, FlagIndex(v4)) == 0) {
+        if (sub_02077758(param0, NumToFlag(v4)) == 0) {
             do {
                 v1 = sub_0201D2E8() & 0xff;
             } while ((v1 & 0x7) == 0);
@@ -5138,34 +5138,34 @@ static int sub_02078740 (int param0, int param1)
     return param0;
 }
 
-u32 FlagIndex (int index)
+u32 NumToFlag(int num)
 {
     int i; // only matches when declared here
     u32 flag = 1;
 
-    GF_ASSERT(index < 32);
+    GF_ASSERT(num < 32);
 
-    for (i = 0; i < index; i++) {
+    for (i = 0; i < num; i++) {
         flag <<= 1;
     }
 
     return flag;
 }
 
-int sub_020787EC (u32 param0)
+int FlagToNum(u32 flag)
 {
-    int v0;
-    u32 v1 = 1;
+    int i;
+    u32 mask = 1;
 
-    for (v0 = 0; v0 < 32; v0++) {
-        if (param0 & v1) {
+    for (i = 0; i < 32; i++) {
+        if (flag & mask) {
             break;
         }
 
-        v1 <<= 1;
+        mask <<= 1;
     }
 
-    return v0;
+    return i;
 }
 
 static const u16 Unk_020F05BE[18] = {

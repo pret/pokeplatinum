@@ -2646,7 +2646,7 @@ static void ov19_021D3D44 (UnkStruct_ov19_021D5DF8 * param0, u32 * param1)
             if ((v1 == 112) && (sub_02074570(param0->unk_00.unk_4C.unk_00, MON_DATA_SPECIES, NULL) != 487)) {
                 (void)0;
             } else if (v1 != 0) {
-                sub_0207D60C(sub_0207D990(param0->unk_11C), v1, 1, 9);
+                Bag_SubtractItem(sub_0207D990(param0->unk_11C), v1, 1, 9);
                 ov19_021D5BE8(&param0->unk_00, v1, param0);
                 ov19_021D0F14(param0);
             }

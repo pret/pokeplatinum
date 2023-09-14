@@ -88,7 +88,7 @@ void ov16_02265790(BattleSystem * param0, int param1, int param2);
 void BattleIO_ShowTargetSelection(BattleSystem *battleSys, BattleContext *battleCtx, int range, int battler);
 void ov16_022658CC(BattleSystem * param0, int param1, int param2);
 void BattleIO_ShowBagScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-void ov16_02265A70(BattleSystem * param0, int param1, UnkStruct_ov16_0224DDA8 param2);
+void ov16_02265A70(BattleSystem * param0, int param1, BattleItemUse param2);
 void BattleIO_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doubles);
 void ov16_02265B10(BattleSystem * param0, int param1, int param2);
 void BattleIO_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname);
@@ -114,7 +114,7 @@ void ov16_02266100(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_0226614C(BattleSystem * param0, int param1);
 void BattleIO_SetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg);
 void ov16_022661B0(BattleSystem * param0, int param1);
-void ov16_022661CC(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_RefreshHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_022662FC(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02266460(BattleSystem * param0, int param1);
 void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler);
@@ -564,7 +564,7 @@ void ov16_022651DC (BattleSystem * param0, BattleContext * param1, int param2, i
     v0.unk_08 = param1->battleMons[param2].exp - sub_02075AD0(v2, v3);
     v0.unk_0C = sub_02075AD0(v2, v3 + 1) - sub_02075AD0(v2, v3);
     v0.unk_07_7 = ov16_0223F9E0(param0, param1->battleMons[param2].species);
-    v0.unk_10 = ov16_0223ED8C(param0);
+    v0.unk_10 = BattleSystem_NumSafariBalls(param0);
     v0.unk_14 = param3;
 
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C23C));
@@ -596,7 +596,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
     for (v1 = 0; v1 < BattleSystem_MaxBattlers(battleSys); v1++) {
         if (BattleSystem_CanPickCommand(battleCtx, v1) == 0) {
-            v10 |= FlagIndex(v1);
+            v10 |= NumToFlag(v1);
         }
     }
 
@@ -844,11 +844,11 @@ void BattleIO_ShowBagScreen (BattleSystem *battleSys, BattleContext *battleCtx, 
     }
 
     if (BattleSystem_BattleType(battleSys) == (0x2 | 0x8 | 0x40)) {
-        if (((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) && ((battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0)) {
+        if (((battleCtx->battlersSwitchingMask & NumToFlag(1)) == 0) && ((battleCtx->battlersSwitchingMask & NumToFlag(3)) == 0)) {
             v0.unk_01 = 1;
             v0.unk_02 = 0;
             v0.unk_03 = 0;
-        } else if ((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) {
+        } else if ((battleCtx->battlersSwitchingMask & NumToFlag(1)) == 0) {
             v0.unk_01 = 0;
 
             if (battleCtx->battleMons[1].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000)) {
@@ -897,9 +897,9 @@ void BattleIO_ShowBagScreen (BattleSystem *battleSys, BattleContext *battleCtx, 
     ov16_02264A04(battleSys, 1, battler, &v0, sizeof(UnkStruct_ov16_0225C2B0));
 }
 
-void ov16_02265A70 (BattleSystem * param0, int param1, UnkStruct_ov16_0224DDA8 param2)
+void ov16_02265A70 (BattleSystem * param0, int param1, BattleItemUse param2)
 {
-    ov16_02264A04(param0, 0, param1, &param2, sizeof(UnkStruct_ov16_0224DDA8));
+    ov16_02264A04(param0, 0, param1, &param2, sizeof(BattleItemUse));
 }
 
 void BattleIO_ShowPartyScreen (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int listMode, int canSwitch, int doubles)
@@ -1224,7 +1224,7 @@ void ov16_022661B0 (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 0, param1, &v0, 4);
 }
 
-void ov16_022661CC (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleIO_RefreshHPGauge (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225C468 v0;
     Pokemon * v1;
@@ -1251,7 +1251,7 @@ void ov16_022661CC (BattleSystem * param0, BattleContext * param1, int param2)
     v0.unk_08 = param1->battleMons[param2].exp - sub_02075AD0(v2, v3);
     v0.unk_0C = sub_02075AD0(v2, v3 + 1) - sub_02075AD0(v2, v3);
     v0.unk_07_7 = ov16_0223F9E0(param0, param1->battleMons[param2].species);
-    v0.unk_10 = ov16_0223ED8C(param0);
+    v0.unk_10 = BattleSystem_NumSafariBalls(param0);
 
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C468));
 }
@@ -1505,7 +1505,7 @@ void ov16_0226683C (BattleSystem * param0, BattleContext * param1)
 
     for (v1 = 0; v1 < BattleSystem_MaxBattlers(param0); v1++) {
         if (param1->battlerActions[v1][0] == 16) {
-            v0.unk_01 |= FlagIndex(v1);
+            v0.unk_01 |= NumToFlag(v1);
         }
     }
 

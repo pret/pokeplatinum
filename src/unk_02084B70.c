@@ -644,7 +644,7 @@ int sub_02085804 (UnkStruct_0207F248 * param0)
                 sub_0207F8F8(param0, v3);
                 param0->unk_B0E = 1;
             } else {
-                sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
+                Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
                 param0->unk_5A4->unk_23 = 0;
                 param0->unk_B11 = 7;
                 return 32;
@@ -1147,7 +1147,7 @@ static void sub_02086590 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 par
 
     if (param0->unk_5A4->unk_24 != 0) {
         if (Item_IsHMMove(param0->unk_5A4->unk_26) == 0) {
-            sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
+            Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
         }
 
         sub_02075C74(param1, 4, (u16)sub_02086930(param0));
@@ -1236,7 +1236,7 @@ int sub_02086774 (UnkStruct_0207F248 * param0)
         if (sub_02096F14(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, (u8)v0, sub_02086930(param0), 12) == 1) {
             Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             sub_02084E58(param0, param0->unk_5A4->unk_24, GetMonData(v1, MON_DATA_MOVE1 + v0, NULL));
-            sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
+            Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
             sub_02005748(1516);
         } else {
             MessageLoader_GetStrbuf(param0->unk_69C, 105, param0->unk_6A4);

@@ -110,8 +110,8 @@ Strbuf* ov16_0223E0D4(BattleSystem * param0);
 u16 ov16_0223E0D8(BattleSystem * param0, int param1);
 TrainerData * ov16_0223E120(BattleSystem * param0, int param1);
 UnkStruct_02025E6C * ov16_0223E16C(BattleSystem * param0, int param1);
-UnkStruct_0207D3C0 * ov16_0223E1AC(BattleSystem * param0);
-UnkStruct_0207D99C * ov16_0223E1B0(BattleSystem * param0);
+UnkStruct_0207D3C0 * BattleSystem_Bag(BattleSystem * param0);
+UnkStruct_0207D99C * BattleSystem_BagCursor(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);
 int ov16_0223E1C4(BattleSystem * param0, int param1);
 u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
@@ -131,8 +131,8 @@ u8 ov16_0223EC58(BattleSystem * param0, int param1, u8 param2);
 u16 ov16_0223ECC4(BattleParams * param0, int * param1, int * param2);
 u8 ov16_0223ED60(BattleSystem * param0);
 u8 ov16_0223ED6C(BattleSystem * param0);
-int ov16_0223ED8C(BattleSystem * param0);
-void ov16_0223ED98(BattleSystem * param0, int param1);
+int BattleSystem_NumSafariBalls(BattleSystem * param0);
+void BattleSystem_SetSafariBalls(BattleSystem * param0, int param1);
 UnkStruct_020279FC * ov16_0223EDA4(BattleSystem * param0);
 BOOL ov16_0223EDAC(BattleSystem * param0);
 int ov16_0223EDE0(BattleSystem * param0);
@@ -450,12 +450,12 @@ UnkStruct_02025E6C * ov16_0223E16C (BattleSystem * param0, int param1)
     }
 }
 
-UnkStruct_0207D3C0 * ov16_0223E1AC (BattleSystem * param0)
+UnkStruct_0207D3C0 * BattleSystem_Bag (BattleSystem * param0)
 {
     return param0->unk_58;
 }
 
-UnkStruct_0207D99C * ov16_0223E1B0 (BattleSystem * param0)
+UnkStruct_0207D99C * BattleSystem_BagCursor (BattleSystem * param0)
 {
     return param0->unk_5C;
 }
@@ -784,7 +784,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
             sub_0207536C(v1, MON_DATA_58 + param3, v3);
 
             if ((v4 == param2) || (v5 == param2)) {
-                if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & FlagIndex(param3)) == 0)) {
+                if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & NumToFlag(param3)) == 0)) {
                     ov16_02252A14(v0, param1, 31 + param3, v3);
                 }
             }
@@ -801,7 +801,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
                 sub_0207536C(v1, MON_DATA_58 + param3, v3);
 
                 if ((v4 == param2) || (v5 == param2)) {
-                    if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & FlagIndex(param3)) == 0)) {
+                    if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & NumToFlag(param3)) == 0)) {
                         ov16_02252A14(v0, param1, 31 + param3, v3);
                     }
                 }
@@ -957,13 +957,13 @@ u8 ov16_0223EC58 (BattleSystem * param0, int param1, u8 param2)
 
     if (((BattleSystem_BattlerSlot(param0, param1) == 4) && ((param0->battleType & 0x8) == 0))) {
         if (param0->battleType & 0x4) {
-            if ((param2 & FlagIndex(BattleSystem_Partner(param0, param1))) == 0) {
+            if ((param2 & NumToFlag(BattleSystem_Partner(param0, param1))) == 0) {
                 return 1;
             }
         } else {
             v0 = ov16_0225B45C(param0, param0->battleCtx, 12, 0) & 0xffff;
 
-            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & FlagIndex(0))) {
+            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & NumToFlag(0))) {
                 return 0;
             } else {
                 return 1;
@@ -987,8 +987,8 @@ u16 ov16_0223ECC4 (BattleParams * param0, int * param1, int * param2)
 
     while (param0->unk_150) {
         for (param1[0] = 0; param1[0] < 6; param1[0]++) {
-            if (param0->unk_150 & FlagIndex(param1[0])) {
-                param0->unk_150 &= (FlagIndex(param1[0]) ^ 0xffffffff);
+            if (param0->unk_150 & NumToFlag(param1[0])) {
+                param0->unk_150 &= (NumToFlag(param1[0]) ^ 0xffffffff);
                 break;
             }
         }
@@ -1016,12 +1016,12 @@ u8 ov16_0223ED6C (BattleSystem * param0)
     return ov16_0225B45C(param0, param0->battleCtx, 5, NULL);
 }
 
-int ov16_0223ED8C (BattleSystem * param0)
+int BattleSystem_NumSafariBalls (BattleSystem * param0)
 {
     return param0->unk_2410;
 }
 
-void ov16_0223ED98 (BattleSystem * param0, int param1)
+void BattleSystem_SetSafariBalls (BattleSystem * param0, int param1)
 {
     param0->unk_2410 = param1;
 }
@@ -1089,7 +1089,7 @@ void ov16_0223EE70 (BattleSystem * param0)
         v2 = ov16_0223DFAC(param0, 0, v0);
         v3 = GetMonData(v2, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v3 == 412) && (param0->unk_2414[0] & FlagIndex(v0))) {
+        if ((v3 == 412) && (param0->unk_2414[0] & NumToFlag(v0))) {
             switch (ov16_0223E22C(param0)) {
             default:
             case 2:
@@ -1126,7 +1126,7 @@ void ov16_0223EE70 (BattleSystem * param0)
 
 void ov16_0223EF2C (BattleSystem * param0, int param1, int param2)
 {
-    param0->unk_2414[param1] |= FlagIndex(param2);
+    param0->unk_2414[param1] |= NumToFlag(param2);
 }
 
 void ov16_0223EF48 (BattleSystem * param0, Pokemon * param1)

@@ -4,6 +4,6 @@
 #include "struct_decls/battle_system.h"
 #include "battle/battle_context.h"
 
-BOOL ov16_022405FC(BattleSystem * param0, BattleContext * param1);
+BOOL BattleScriptEngine_Poll(BattleSystem * param0, BattleContext * param1);
 
 #endif // POKEPLATINUM_OV16_022405FC_H

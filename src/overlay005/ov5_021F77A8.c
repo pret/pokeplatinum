@@ -784,10 +784,10 @@ BOOL ov5_021F7998 (UnkStruct_0203E724 * param0)
         GF_ASSERT(0);
     }
 
-    sub_0207D60C(v5, 72, v1, 32);
-    sub_0207D60C(v5, 73, v2, 32);
-    sub_0207D60C(v5, 74, v3, 32);
-    sub_0207D60C(v5, 75, v4, 32);
+    Bag_SubtractItem(v5, 72, v1, 32);
+    Bag_SubtractItem(v5, 73, v2, 32);
+    Bag_SubtractItem(v5, 74, v3, 32);
+    Bag_SubtractItem(v5, 75, v4, 32);
 
     return 0;
 }

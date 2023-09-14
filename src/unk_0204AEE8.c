@@ -363,7 +363,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & FlagIndex(v0)) {
+        if (v4.unk_0A & NumToFlag(v0)) {
             v1++;
         }
     }
@@ -375,7 +375,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & FlagIndex(v0)) {
+        if (v4.unk_0A & NumToFlag(v0)) {
             param1->unk_18_val2[v0] = v1;
         }
     }

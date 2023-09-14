@@ -2604,7 +2604,7 @@ static int sub_0208107C (UnkStruct_0207F248 * param0)
     }
 
     if (sub_0209693C(param0->unk_5A4->unk_00, param0->unk_5A4->unk_24, param0->unk_B11, 0, 12) == 1) {
-        sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
+        Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
 
         if (Item_Get(v0, 26) != 0) {
             Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
@@ -2713,7 +2713,7 @@ static int sub_02081408 (UnkStruct_0207F248 * param0, Pokemon * param1, int * pa
 
     v1 = param0->unk_5A4->unk_1C;
 
-    sub_0207D60C(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
+    Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
     sub_02074B30(param1, 6, &v0);
     sub_02077928(param1);
 
@@ -2812,7 +2812,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
             v0 = 11;
         } else {
             if (Item_IsMail(param0->unk_5A4->unk_24) == 1) {
-                sub_0207D60C(param0->unk_5A4->unk_04, (u16)v5, 1, 12);
+                Bag_SubtractItem(param0->unk_5A4->unk_04, (u16)v5, 1, 12);
                 sub_020814A8(param0, v2, v4, v5);
                 param0->unk_5A4->unk_23 = 6;
                 return 32;

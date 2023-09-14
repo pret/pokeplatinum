@@ -125,7 +125,7 @@ void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
         UnkStruct_0207D99C * v1;
         u8 v2;
 
-        v1 = ov16_0223E1B0(param0->unk_00);
+        v1 = BattleSystem_BagCursor(param0->unk_00);
 
         for (v2 = 0; v2 < 5; v2++) {
             sub_0207D9D8(v1, v2, &v0->unk_00->unk_27[v2], &v0->unk_00->unk_2C[v2]);
@@ -210,7 +210,7 @@ static u8 ov13_0222668C (UnkStruct_ov13_02227244 * param0)
     ov13_022270B8(param0);
     sub_02002BB8(2, param0->unk_00->unk_0C);
 
-    param0->unk_114D = (u8)sub_0207D9EC(ov16_0223E1B0(param0->unk_00->unk_00));
+    param0->unk_114D = (u8)sub_0207D9EC(BattleSystem_BagCursor(param0->unk_00->unk_00));
 
     ov13_02227AC8(param0);
     ov13_02228924(param0, param0->unk_114C);
@@ -568,7 +568,7 @@ static u8 ov13_02226CFC (UnkStruct_0201CD38 * param0, UnkStruct_ov13_02227244 * 
         UnkStruct_0207D99C * v0;
         u8 v1;
 
-        v0 = ov16_0223E1B0(param1->unk_00->unk_00);
+        v0 = BattleSystem_BagCursor(param1->unk_00->unk_00);
 
         for (v1 = 0; v1 < 5; v1++) {
             sub_0207D9F0(v0, v1, param1->unk_00->unk_27[v1], param1->unk_00->unk_2C[v1]);
@@ -843,6 +843,6 @@ int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_02227260 (BattleSystem * param0, u16 param1, u16 param2, u32 param3)
 {
-    sub_0207D60C(ov16_0223E1AC(param0), param1, 1, param3);
-    sub_0207DA1C(ov16_0223E1B0(param0), param1, param2);
+    Bag_SubtractItem(BattleSystem_Bag(param0), param1, 1, param3);
+    Bag_SetLastItemUsed(BattleSystem_BagCursor(param0), param1, param2);
 }
