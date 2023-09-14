@@ -2,240 +2,232 @@
 #include <string.h>
 
 #include "unk_020021B0.h"
+
+#include "charcode.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 
-int TrainerInfo_Size (void)
+#define MONEY_MAX 999999
+
+int TrainerInfo_Size(void)
 {
     return sizeof(TrainerInfo);
 }
 
-TrainerInfo * TrainerInfo_New (u32 param0)
+TrainerInfo* TrainerInfo_New(u32 heapID)
 {
-    TrainerInfo * v0;
+    TrainerInfo *info = Heap_AllocFromHeap(heapID, sizeof(TrainerInfo));
+    TrainerInfo_Init(info);
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(TrainerInfo));
-    TrainerInfo_Init(v0);
-
-    return v0;
+    return info;
 }
 
-void TrainerInfo_Copy (const TrainerInfo * param0, TrainerInfo * param1)
+void TrainerInfo_Copy(const TrainerInfo *src, TrainerInfo *dst)
 {
-    MI_CpuCopy8(param0, param1, sizeof(TrainerInfo));
+    MI_CpuCopy8(src, dst, sizeof(TrainerInfo));
 }
 
-void TrainerInfo_Init (TrainerInfo * param0)
-{
-    memset(param0, 0, sizeof(TrainerInfo));
-    param0->regionCode = GAME_LANGUAGE;
 
-    TrainerInfo_SetGameCode(param0, GAME_VERSION);
+void TrainerInfo_Init(TrainerInfo *info)
+{
+    memset(info, 0, sizeof(TrainerInfo));
+    info->regionCode = GAME_LANGUAGE;
+
+    TrainerInfo_SetGameCode(info, GAME_VERSION);
 }
 
-BOOL TrainerInfo_HasNoName (const TrainerInfo * param0)
+BOOL TrainerInfo_HasNoName(const TrainerInfo *info)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 7 + 1; v0++) {
-        if (param0->name[v0] != 0) {
-            return 0;
+    for (int i = 0; i < TRAINER_NAME_LEN + 1; i++) {
+        if (info->name[i] != CHAR_EMPTY) {
+            return FALSE;
         }
     }
 
-    return 1;
+    return TRUE;
 }
 
-void TrainerInfo_SetName (TrainerInfo * param0, const u16 * param1)
+void TrainerInfo_SetName(TrainerInfo *info, const charcode_t *name)
 {
-    int v0;
+    int len = GF_strlen(name);
+    GF_ASSERT(len < TRAINER_NAME_LEN + 1);
 
-    v0 = GF_strlen(param1);
-    GF_ASSERT(v0 < 7 + 1);
-
-    GF_strcpy(param0->name, param1);
+    GF_strcpy(info->name, name);
 }
 
-void TrainerInfo_SetNameFromStrbuf (TrainerInfo * param0, const Strbuf *param1)
+void TrainerInfo_SetNameFromStrbuf(TrainerInfo *info, const Strbuf *name)
 {
-    Strbuf_ToChars(param1, param0->name, 7 + 1);
+    Strbuf_ToChars(name, info->name, TRAINER_NAME_LEN + 1);
 }
 
-const u16 * TrainerInfo_Name (const TrainerInfo * param0)
+const charcode_t* TrainerInfo_Name(const TrainerInfo *info)
 {
-    return param0->name;
+    return info->name;
 }
 
-void TrainerInfo_NameStrbuf (const TrainerInfo * param0, Strbuf *param1)
+void TrainerInfo_NameStrbuf(const TrainerInfo *info, Strbuf *name)
 {
-    Strbuf_CopyChars(param1, param0->name);
+    Strbuf_CopyChars(name, info->name);
 }
 
-Strbuf* TrainerInfo_NameNewStrbuf (const TrainerInfo * param0, int param1)
+Strbuf* TrainerInfo_NameNewStrbuf(const TrainerInfo *info, int heapID)
 {
-    Strbuf* v0 = Strbuf_Init(7 + 1, param1);
+    Strbuf *name = Strbuf_Init(TRAINER_NAME_LEN + 1, heapID);
 
-    TrainerInfo_NameStrbuf(param0, v0);
-    return v0;
+    TrainerInfo_NameStrbuf(info, name);
+    return name;
 }
 
-void TrainerInfo_SetID (TrainerInfo * param0, u32 param1)
+void TrainerInfo_SetID(TrainerInfo *info, u32 id)
 {
-    param0->id = param1;
+    info->id = id;
 }
 
-u32 TrainerInfo_ID (const TrainerInfo * param0)
+u32 TrainerInfo_ID(const TrainerInfo *info)
 {
-    return param0->id;
+    return info->id;
 }
 
-u16 TrainerInfo_ID_LowHalf (const TrainerInfo * param0)
+u16 TrainerInfo_ID_LowHalf(const TrainerInfo *info)
 {
-    return (u16)(param0->id & 0xffff);
+    return info->id & 0xFFFF;
 }
 
-void TrainerInfo_SetGender (TrainerInfo * param0, int param1)
+void TrainerInfo_SetGender(TrainerInfo *info, int gender)
 {
-    param0->gender = param1;
+    info->gender = gender;
 }
 
-u32 TrainerInfo_Gender (const TrainerInfo * param0)
+u32 TrainerInfo_Gender(const TrainerInfo *info)
 {
-    return param0->gender;
+    return info->gender;
 }
 
-BOOL TrainerInfo_HasBadge (const TrainerInfo * param0, int param1)
+BOOL TrainerInfo_HasBadge(const TrainerInfo *info, int badge)
 {
-    if (param0->badgeMask & (1 << param1)) {
-        return 1;
+    if (info->badgeMask & (1 << badge)) {
+        return TRUE;
     } else {
-        return 0;
+        return FALSE;
     }
 }
 
-void TrainerInfo_SetBadge (TrainerInfo * param0, int param1)
+void TrainerInfo_SetBadge(TrainerInfo *info, int badge)
 {
-    param0->badgeMask |= (1 << param1);
+    info->badgeMask |= (1 << badge);
 }
 
-int TrainerInfo_BadgeCount (const TrainerInfo * param0)
+int TrainerInfo_BadgeCount(const TrainerInfo *info)
 {
-    int v0 = 0;
-    u32 v1;
-
-    for (v1 = param0->badgeMask; v1 != 0; v1 >>= 1) {
-        if (v1 & 1) {
-            v0++;
+    int count = 0;
+    for (u32 mask = info->badgeMask; mask != 0; mask >>= 1) {
+        if (mask & 1) {
+            count++;
         }
     }
 
-    return v0;
+    return count;
 }
 
-u32 TrainerInfo_Money (const TrainerInfo * param0)
+u32 TrainerInfo_Money(const TrainerInfo *info)
 {
-    return param0->money;
+    return info->money;
 }
 
-u32 TrainerInfo_SetMoney (TrainerInfo * param0, u32 param1)
+u32 TrainerInfo_SetMoney(TrainerInfo *info, u32 money)
 {
-    if (param1 > 999999) {
-        param1 = 999999;
+    if (money > MONEY_MAX) {
+        money = MONEY_MAX;
     }
 
-    param0->money = param1;
-    return param0->money;
+    info->money = money;
+    return info->money;
 }
 
-u8 TrainerInfo_Appearance (const TrainerInfo * param0)
+u8 TrainerInfo_Appearance(const TrainerInfo *info)
 {
-    return param0->appearance;
+    return info->appearance;
 }
 
-void TrainerInfo_SetAppearance (TrainerInfo * param0, u8 param1)
+void TrainerInfo_SetAppearance(TrainerInfo *info, u8 appearance)
 {
-    param0->appearance = param1;
+    info->appearance = appearance;
 }
 
-u32 TrainerInfo_GiveMoney (TrainerInfo * param0, u32 param1)
+u32 TrainerInfo_GiveMoney(TrainerInfo *info, u32 money)
 {
-    if (param1 > 999999) {
-        param0->money = 999999;
+    if (money > MONEY_MAX) {
+        info->money = MONEY_MAX;
     } else {
-        param0->money += param1;
+        info->money += money;
     }
 
-    if (param0->money > 999999) {
-        param0->money = 999999;
+    if (info->money > MONEY_MAX) {
+        info->money = MONEY_MAX;
     }
 
-    return param0->money;
+    return info->money;
 }
 
-u32 TrainerInfo_TakeMoney (TrainerInfo * param0, u32 param1)
+u32 TrainerInfo_TakeMoney(TrainerInfo *info, u32 money)
 {
-    if (param0->money < param1) {
-        param0->money = 0;
+    if (info->money < money) {
+        info->money = 0;
     } else {
-        param0->money -= param1;
+        info->money -= money;
     }
 
-    return param0->money;
+    return info->money;
 }
 
-u8 TrainerInfo_GameCode (const TrainerInfo * param0)
+u8 TrainerInfo_GameCode(const TrainerInfo *info)
 {
-    return param0->gameCode;
+    return info->gameCode;
 }
 
-void TrainerInfo_SetGameCode (TrainerInfo * param0, u8 param1)
+void TrainerInfo_SetGameCode(TrainerInfo *info, u8 gameCode)
 {
-    param0->gameCode = param1;
+    info->gameCode = gameCode;
 }
 
-u8 TrainerInfo_DPGameCode (void)
+u8 TrainerInfo_DPGameCode(void)
 {
     return 0;
 }
 
-u8 TrainerInfo_RegionCode (const TrainerInfo * param0)
+u8 TrainerInfo_RegionCode(const TrainerInfo *info)
 {
-    return param0->regionCode;
+    return info->regionCode;
 }
 
-void TrainerInfo_SetRegionCode (TrainerInfo * param0, u8 param1)
+void TrainerInfo_SetRegionCode(TrainerInfo *info, u8 regionCode)
 {
-    param0->regionCode = param1;
+    info->regionCode = regionCode;
 }
 
-void TrainerInfo_SetMainStoryCleared (TrainerInfo * param0)
+void TrainerInfo_SetMainStoryCleared(TrainerInfo *info)
 {
-    param0->isMainStoryCleared = 1;
+    info->isMainStoryCleared = TRUE;
 }
 
-int TrainerInfo_IsMainStoryCleared (TrainerInfo * param0)
+BOOL TrainerInfo_IsMainStoryCleared(TrainerInfo *info)
 {
-    return param0->isMainStoryCleared;
+    return info->isMainStoryCleared;
 }
 
-void TrainerInfo_GiveNationalDex (TrainerInfo * param0)
+void TrainerInfo_GiveNationalDex(TrainerInfo *info)
 {
-    param0->hasNationalDex = 1;
+    info->hasNationalDex = TRUE;
 }
 
-int TrainerInfo_HasNationalDex (TrainerInfo * param0)
+BOOL TrainerInfo_HasNationalDex(TrainerInfo *info)
 {
-    return param0->hasNationalDex;
+    return info->hasNationalDex;
 }
 
-BOOL TrainerInfo_Equals (const TrainerInfo * param0, const TrainerInfo * param1)
+BOOL TrainerInfo_Equals(const TrainerInfo *info1, const TrainerInfo *info2)
 {
-    if (0 == GF_strncmp(param0->name, param1->name, 7)) {
-        if (param0->id == param1->id) {
-            return 1;
-        }
-    }
-
-    return 0;
+    return GF_strncmp(info1->name, info2->name, TRAINER_NAME_LEN) == 0
+            && info1->id == info2->id;
 }
