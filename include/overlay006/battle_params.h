@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_BATTLE_PARAMS_H
 #define POKEPLATINUM_BATTLE_PARAMS_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"

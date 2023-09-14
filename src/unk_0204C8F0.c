@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
 #include "unk_0203E880.h"

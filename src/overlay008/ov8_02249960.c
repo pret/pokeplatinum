@@ -39,7 +39,7 @@
 #include "unk_0201D15C.h"
 #include "unk_02020020.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
 #include "unk_0203A378.h"

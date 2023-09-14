@@ -3,12 +3,12 @@
 #include <dwc.h>
 
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202ACE0.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"

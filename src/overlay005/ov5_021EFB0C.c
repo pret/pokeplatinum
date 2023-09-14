@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
@@ -15,7 +15,7 @@
 #include "narc.h"
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
 #include "unk_02054D00.h"

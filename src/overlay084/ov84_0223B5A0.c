@@ -52,7 +52,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202D7A8.h"
 #include "unk_020393C8.h"

@@ -14,7 +14,7 @@
 #include "message.h"
 #include "strbuf.h"
 #include "unk_0201D15C.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_02051D8C.h"

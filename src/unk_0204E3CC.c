@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0203A6DC.h"
 #include "unk_0204E3CC.h"

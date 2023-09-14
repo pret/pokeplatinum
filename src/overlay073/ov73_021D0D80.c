@@ -57,7 +57,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_020279FC.h"
 #include "pokemon.h"

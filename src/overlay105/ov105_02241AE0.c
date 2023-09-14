@@ -58,7 +58,7 @@
 #include "strbuf.h"
 #include "unk_02024220.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"

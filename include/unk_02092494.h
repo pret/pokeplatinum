@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02092494_H
 #define POKEPLATINUM_UNK_02092494_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "pokemon.h"
 #include "struct_defs/struct_02090800.h"
 

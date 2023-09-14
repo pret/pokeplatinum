@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02028124.h"
 #include "pokemon.h"
 #include "unk_02079D40.h"

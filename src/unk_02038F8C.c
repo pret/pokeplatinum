@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202C858.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"

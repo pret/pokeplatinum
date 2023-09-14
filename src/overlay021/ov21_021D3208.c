@@ -14,7 +14,7 @@
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"

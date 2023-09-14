@@ -29,7 +29,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02030494.h"
 #include "unk_020329E0.h"
 #include "unk_02051D8C.h"

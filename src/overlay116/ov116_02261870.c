@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02017294.h"
@@ -33,7 +33,7 @@
 #include "unk_02020020.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay116/ov116_02261870.h"
 #include "overlay116/ov116_0226432C.h"

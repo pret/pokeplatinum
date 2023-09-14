@@ -54,7 +54,7 @@
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202CBE4.h"
 #include "pokemon.h"
 #include "party.h"

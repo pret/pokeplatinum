@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 #include "struct_defs/struct_0207E060.h"
 
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0207E060.h"
 #include "overlay004/ov4_021D0D80.h"
 

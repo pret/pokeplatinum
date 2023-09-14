@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -10,7 +10,7 @@
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202C858.h"
 #include "unk_0202D05C.h"
 #include "unk_0205C980.h"

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV115_02262F50_H
 #define POKEPLATINUM_STRUCT_OV115_02262F50_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay115/struct_ov115_02262DC4.h"
 
 typedef struct {

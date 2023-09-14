@@ -32,7 +32,7 @@
 #include "unk_0201D670.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "coins.h"
 #include "unk_0202D05C.h"
 #include "overlay005/ov5_021DC018.h"

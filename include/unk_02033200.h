@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02033200_H
 
 #include "struct_defs/struct_02014A84.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_0203330C.h"
 
 #include <nitro/wm.h>

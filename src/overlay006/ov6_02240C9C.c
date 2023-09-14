@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -21,7 +21,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
 #include "map_header.h"

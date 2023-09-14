@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202855C.h"
@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202854C.h"
 
 static void sub_02028B48(UnkStruct_020298B0 * param0, int param1, int param2);

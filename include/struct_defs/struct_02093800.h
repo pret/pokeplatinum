@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_02093800_H
 
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "pokemon.h"

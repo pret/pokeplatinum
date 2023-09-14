@@ -17,7 +17,7 @@
 
 #include "message.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202D05C.h"
 #include "unk_020329E0.h"
 #include "unk_02049D08.h"

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -18,7 +18,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202B37C.h"
 #include "unk_0202CD50.h"
 #include "unk_0202E840.h"

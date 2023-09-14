@@ -4,7 +4,7 @@
 #include "unk_020021B0.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 int sub_02025E68 (void)
 {

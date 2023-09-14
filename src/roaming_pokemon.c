@@ -5,7 +5,6 @@
 
 #include "constants/species.h"
 
-#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202D7B0.h"
@@ -13,7 +12,7 @@
 
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202D7A8.h"
 #include "roaming_pokemon.h"
 #include "pokemon.h"

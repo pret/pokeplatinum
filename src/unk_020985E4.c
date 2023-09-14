@@ -12,7 +12,7 @@
 #include "unk_0200F174.h"
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
 #include "unk_020985E4.h"

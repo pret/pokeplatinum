@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0207E060_H
 #define POKEPLATINUM_UNK_0207E060_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0207E060_decl.h"
 
 UnkStruct_0207E060 * sub_0207E060(const TrainerInfo * param0, u32 param1);

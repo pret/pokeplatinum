@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV66_0223185C_H
 #define POKEPLATINUM_STRUCT_OV66_0223185C_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 typedef struct {
     const TrainerInfo * unk_00;

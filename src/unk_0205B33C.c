@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -26,7 +26,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202B604.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"

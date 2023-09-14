@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 #include "overlay083/struct_ov83_0223B784.h"
 #include "overlay083/struct_ov83_0223D2E8.h"

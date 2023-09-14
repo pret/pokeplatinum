@@ -71,7 +71,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020363E8.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay115/ov115_02260CEC.h"

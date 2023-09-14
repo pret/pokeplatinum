@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV83_0223D150_H
 #define POKEPLATINUM_OV83_0223D150_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay083/struct_ov83_0223B784.h"
 
 void ov83_0223D150(UnkStruct_ov83_0223B784 * param0, TrainerInfo * param1);

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0203E0FC_H
 
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202B370_decl.h"

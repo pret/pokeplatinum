@@ -38,7 +38,7 @@
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02028124.h"
 #include "unk_0202C9F4.h"
 #include "pokemon.h"

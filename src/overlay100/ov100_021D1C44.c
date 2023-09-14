@@ -27,7 +27,7 @@
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay100/ov100_021D1C44.h"
 #include "overlay100/ov100_021D400C.h"
 #include "overlay100/ov100_021D44C0.h"

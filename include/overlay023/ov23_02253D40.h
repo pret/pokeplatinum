@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 #include "overlay023/struct_ov23_02253F60.h"
 #include "overlay084/struct_ov84_02240FA8.h"

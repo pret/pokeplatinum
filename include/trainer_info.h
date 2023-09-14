@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_UNK_02025E68_H
-#define POKEPLATINUM_UNK_02025E68_H
+#ifndef POKEPLATINUM_TRAINER_INFO_H
+#define POKEPLATINUM_TRAINER_INFO_H
 
 #include "constants/string.h"
 
@@ -54,4 +54,4 @@ void sub_02025FF8(TrainerInfo * param0);
 int sub_02026004(TrainerInfo * param0);
 BOOL sub_0202600C(const TrainerInfo * param0, const TrainerInfo * param1);
 
-#endif // POKEPLATINUM_UNK_02025E68_H
+#endif // POKEPLATINUM_TRAINER_INFO_H

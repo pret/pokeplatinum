@@ -5,7 +5,7 @@
 
 #include "data_021BF67C.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -34,7 +34,7 @@
 #include "unk_0202440C.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"

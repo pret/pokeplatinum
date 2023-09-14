@@ -5,7 +5,7 @@
 #include "struct_defs/struct_02014A84.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 

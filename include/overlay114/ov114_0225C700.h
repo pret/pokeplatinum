@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV114_0225C700_H
 
 #include "struct_decls/struct_020218BC_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay114/struct_ov114_0225C76C.h"

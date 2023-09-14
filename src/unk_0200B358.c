@@ -5,7 +5,7 @@
 
 #include "constants/pokemon.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -21,7 +21,7 @@
 #include "unk_0201D0C8.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_0202B37C.h"
 #include "pokemon.h"

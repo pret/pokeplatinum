@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV13_022264F4_H
 #define POKEPLATINUM_STRUCT_OV13_022264F4_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 

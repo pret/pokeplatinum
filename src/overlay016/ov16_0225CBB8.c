@@ -131,7 +131,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "pokemon.h"
 #include "move_table.h"
 #include "party.h"

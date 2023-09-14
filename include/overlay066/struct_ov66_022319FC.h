@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV66_022319FC_H
 #define POKEPLATINUM_STRUCT_OV66_022319FC_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 typedef struct {
     u32 unk_00;

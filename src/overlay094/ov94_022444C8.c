@@ -8,7 +8,7 @@
 
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202DA40.h"
 #include "unk_02056720.h"
 #include "pokemon.h"

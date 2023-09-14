@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0202FAA8_sub1.h"
 #include "struct_defs/struct_0202FD30.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 typedef struct UnkStruct_0202F298_t {
     UnkStruct_0202FAA8 unk_00;

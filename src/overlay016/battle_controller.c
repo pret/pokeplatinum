@@ -13,7 +13,7 @@
 #include "constants/battle/message_tags.h"
 #include "constants/narc_files/battle_skill_subseq.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 #include "pokemon.h"
@@ -30,7 +30,7 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02034198.h"
 #include "pokemon.h"
 #include "move_table.h"

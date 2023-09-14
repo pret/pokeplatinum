@@ -4,7 +4,7 @@
 #include "constants/battle.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
@@ -20,7 +20,7 @@
 #include "unk_020021B0.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02027F84.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F1D4.h"

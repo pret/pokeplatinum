@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02025E0C_decl.h"
 #include "struct_decls/struct_02025E5C_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_021C0794_decl.h"
 

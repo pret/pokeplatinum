@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
@@ -28,7 +28,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0205CA94.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"

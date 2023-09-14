@@ -23,7 +23,7 @@
 #include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02230C44.h"
 #include "overlay067/ov67_0225C700.h"

@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014FB0_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 #include "unk_02014D38.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay006/ov6_02247830.h"
 
 static void ov6_02247830 (u8 * param0, u8 param1, u8 param2)

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV23_0224A294_H
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_decls/struct_0205E884_decl.h"

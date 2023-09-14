@@ -4,7 +4,7 @@
 #include "struct_defs/struct_02039A58.h"
 #include "struct_defs/struct_02072014.h"
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02032798.h"
 #include "unk_0204FA34.h"
 #include "unk_0205001C.h"

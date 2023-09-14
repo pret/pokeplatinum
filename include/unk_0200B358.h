@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"

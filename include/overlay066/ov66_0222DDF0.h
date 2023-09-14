@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV66_0222DDF0_H
 #define POKEPLATINUM_OV66_0222DDF0_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E294.h"

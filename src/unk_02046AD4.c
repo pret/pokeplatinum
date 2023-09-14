@@ -8,7 +8,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0203D1B8.h"
 #include "unk_02046AD4.h"
 #include "overlay007/ov7_0224CD28.h"

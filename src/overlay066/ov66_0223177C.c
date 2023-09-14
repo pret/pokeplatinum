@@ -6,7 +6,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 #include "overlay066/struct_ov66_02231428.h"
 #include "overlay066/struct_ov66_0223185C.h"
@@ -24,7 +24,7 @@
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay066/ov66_0223177C.h"
 
 typedef struct {

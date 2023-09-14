@@ -17,7 +17,7 @@
 #include "narc.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020366A0.h"
 #include "pokemon.h"
 #include "move_table.h"

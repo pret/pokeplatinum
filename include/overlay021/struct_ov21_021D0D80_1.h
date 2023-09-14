@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV21_021D0D80_1_H
 #define POKEPLATINUM_STRUCT_OV21_021D0D80_1_H
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0209ACBC_decl.h"
 

@@ -2,7 +2,7 @@
 #include <nitro/wvr.h>
 #include <string.h>
 
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 
 #include "struct_defs/struct_02014A84.h"
 #include "struct_defs/struct_0202610C.h"
@@ -12,7 +12,7 @@
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"

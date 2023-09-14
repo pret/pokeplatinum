@@ -60,7 +60,7 @@
 #include "unk_02020020.h"
 #include "strbuf.h"
 #include "unk_0202419C.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"
 #include "unk_020329E0.h"

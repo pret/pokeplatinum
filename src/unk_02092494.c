@@ -1,10 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
-#include "unk_02025E68.h"
-
-#include "pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
 #include "message.h"
@@ -13,7 +9,7 @@
 #include "unk_02017038.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "pokemon.h"
 #include "unk_02092494.h"
 
