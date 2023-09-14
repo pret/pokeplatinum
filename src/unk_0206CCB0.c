@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -619,7 +619,7 @@ void sub_0206D048 (UnkStruct_0202440C * param0, Pokemon * param1)
     sub_02025C84(27);
 }
 
-void sub_0206D088 (UnkStruct_0202440C * param0, u8 param1, const UnkStruct_02025E6C * param2)
+void sub_0206D088 (UnkStruct_0202440C * param0, u8 param1, const TrainerInfo * param2)
 {
     UnkStruct_0202E81C * v0 = sub_0202E81C(param0);
 
@@ -1179,16 +1179,16 @@ static BOOL sub_0206DA50 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
     return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
 }
 
-static void sub_0206DA6C (UnkStruct_0206DA6C * param0, const UnkStruct_02025E6C * param1)
+static void sub_0206DA6C (UnkStruct_0206DA6C * param0, const TrainerInfo * param1)
 {
     param0->unk_00 = sub_02025E68();
-    sub_02025E80(param1, (UnkStruct_02025E6C *)param0->unk_04);
+    sub_02025E80(param1, (TrainerInfo *)param0->unk_04);
 }
 
 static void sub_0206DA84 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, UnkStruct_ov6_022465F4 * param2)
 {
     UnkStruct_0206DA6C * v0 = (UnkStruct_0206DA6C *)ov6_02246498(param2);
-    UnkStruct_02025E6C * v1 = (UnkStruct_02025E6C *)&v0->unk_04;
+    TrainerInfo * v1 = (TrainerInfo *)&v0->unk_04;
 
     GF_ASSERT(sub_02025E68() == v0->unk_00);
 
@@ -1196,7 +1196,7 @@ static void sub_0206DA84 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
     sub_0200B498(param1, 1, v1);
 }
 
-void sub_0206DAB8 (UnkStruct_0203CDB0 * param0, const UnkStruct_02025E6C * param1)
+void sub_0206DAB8 (UnkStruct_0203CDB0 * param0, const TrainerInfo * param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206DA6C * v1 = &v0.val15;
@@ -1205,7 +1205,7 @@ void sub_0206DAB8 (UnkStruct_0203CDB0 * param0, const UnkStruct_02025E6C * param
     sub_0206CD70(param0, 2, 22, v1);
 }
 
-void sub_0206DAD4 (UnkStruct_0203CDB0 * param0, const UnkStruct_02025E6C * param1)
+void sub_0206DAD4 (UnkStruct_0203CDB0 * param0, const TrainerInfo * param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206DA6C * v1 = &v0.val15;
@@ -2171,7 +2171,7 @@ static BOOL sub_0206EA0C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
 
 static int sub_0206EA10 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, UnkStruct_ov6_022465F4 * param2)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0));
+    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0));
     int v1 = param0->unk_1C->unk_00;
 
     if ((v1 == 411) || ((v1 >= 412) && (v1 <= 417))) {
@@ -2741,7 +2741,7 @@ static int sub_0206EDAC (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v2, v3;
     u32 v4, v5;
     Strbuf* v6 = Strbuf_Init(22, 4);
-    UnkStruct_02025E6C * v7 = sub_02025E38(sub_0203D174(param0));
+    TrainerInfo * v7 = sub_02025E38(sub_0203D174(param0));
 
     v1 = sub_0202D834(param0->unk_0C);
     v2 = (LCRNG_Next() % 29);
@@ -2966,7 +2966,7 @@ static int sub_0206F160 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     u16 v1, v2;
     Pokemon * v3;
     Party * v4;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0->unk_0C);
+    TrainerInfo * v5 = sub_02025E38(param0->unk_0C);
     UnkStruct_02026324 * v6 = sub_02027560(param0->unk_0C);
 
     v4 = Party_GetFromSavedata(param0->unk_0C);

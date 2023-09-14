@@ -15,7 +15,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -1068,7 +1068,7 @@ static BOOL ov104_022302E8 (UnkStruct_ov104_0222E930 * param0)
         v3.unk_02 = (*((param0)->unk_1C++));
 
         if (v3.unk_00 == 0xeeee) {
-            const UnkStruct_02025E6C * v5;
+            const TrainerInfo * v5;
             UnkStruct_ov104_02230BE4 * v6;
 
             v6 = sub_0209B970(v0->unk_00);
@@ -1078,7 +1078,7 @@ static BOOL ov104_022302E8 (UnkStruct_ov104_0222E930 * param0)
             ov104_0223D0EC(v1, &v3);
         } else if (v3.unk_00 == 0xeeef) {
             if (sub_02035E38() == 1) {
-                const UnkStruct_02025E6C * v7;
+                const TrainerInfo * v7;
                 int v8, v9;
 
                 v8 = sub_02035E18();
@@ -1143,7 +1143,7 @@ static BOOL ov104_022303C8 (UnkStruct_ov104_0222E930 * param0)
         v4.unk_02 = 0;
 
         if (v4.unk_00 == 0xeeee) {
-            const UnkStruct_02025E6C * v6;
+            const TrainerInfo * v6;
             UnkStruct_ov104_02230BE4 * v7;
 
             v7 = sub_0209B970(v0->unk_00);
@@ -1151,7 +1151,7 @@ static BOOL ov104_022303C8 (UnkStruct_ov104_0222E930 * param0)
             v4.unk_00 = ov104_0222E5F0(v6);
             v5 = (32 - 1);
         } else if (v4.unk_00 == 0xeeef) {
-            const UnkStruct_02025E6C * v8;
+            const TrainerInfo * v8;
             int v9;
 
             v9 = (*((param0)->unk_1C++));
@@ -2867,7 +2867,7 @@ static BOOL ov104_02231EFC (UnkStruct_ov104_0222E930 * param0)
 {
     u16 v0;
     UnkStruct_0202440C * v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     UnkStruct_ov104_02230BE4 * v3;
 
     v3 = sub_0209B970(param0->unk_00->unk_00);

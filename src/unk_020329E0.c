@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -42,11 +42,11 @@ typedef struct {
 } UnkStruct_021C07B4_sub1;
 
 typedef struct {
-    UnkStruct_02025E6C * unk_00;
+    TrainerInfo * unk_00;
     const UnkStruct_0202610C * unk_04;
     UnkStruct_021C0794 * unk_08;
     UnkStruct_02032BEC unk_0C[8];
-    UnkStruct_02025E6C * unk_33C[8];
+    TrainerInfo * unk_33C[8];
     UnkStruct_021C07B4_sub1 unk_35C[8];
     u8 unk_38C[8];
     u8 unk_394;
@@ -59,7 +59,7 @@ static UnkStruct_021C07B4 * Unk_021C07B4;
 void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param1)
 {
     int v0;
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    TrainerInfo * v1 = sub_02025E38(param0);
 
     if (Unk_021C07B4) {
         return;
@@ -69,7 +69,7 @@ void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param
     MI_CpuClear8(Unk_021C07B4, sizeof(UnkStruct_021C07B4));
 
     for (v0 = 0; v0 < (7 + 1); v0++) {
-        Unk_021C07B4->unk_33C[v0] = (UnkStruct_02025E6C *)&Unk_021C07B4->unk_0C[v0].unk_20[0];
+        Unk_021C07B4->unk_33C[v0] = (TrainerInfo *)&Unk_021C07B4->unk_0C[v0].unk_20[0];
         sub_02032D98(v0);
     }
 
@@ -107,7 +107,7 @@ BOOL sub_02032AAC (void)
 void sub_02032AC0 (void)
 {
     u16 v0 = sub_0203608C();
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     const u16 * v2;
     UnkStruct_0202B4A0 * v3 = sub_0202B4A0(Unk_021C07B4->unk_08);
     UnkStruct_0202B370 * v4 = sub_0202B370(Unk_021C07B4->unk_08);
@@ -326,7 +326,7 @@ BOOL sub_02032E90 (void)
     return v1;
 }
 
-UnkStruct_02025E6C * sub_02032EE8 (int param0)
+TrainerInfo * sub_02032EE8 (int param0)
 {
     if (!Unk_021C07B4) {
         return NULL;
@@ -493,7 +493,7 @@ void sub_020331E0 (UnkStruct_021C0794 * param0, int param1)
     sub_02033114(param0);
 }
 
-void sub_020331F4 (UnkStruct_02025E6C * param0)
+void sub_020331F4 (TrainerInfo * param0)
 {
     Unk_021C07B4->unk_00 = param0;
 }

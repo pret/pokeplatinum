@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 #include "struct_defs/struct_0207E060.h"
 
@@ -10,7 +10,7 @@
 #include "unk_0207E060.h"
 #include "overlay004/ov4_021D0D80.h"
 
-UnkStruct_0207E060 * sub_0207E060 (const UnkStruct_02025E6C * param0, u32 param1)
+UnkStruct_0207E060 * sub_0207E060 (const TrainerInfo * param0, u32 param1)
 {
     UnkStruct_0207E060 * v0;
     BOOL v1;

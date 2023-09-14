@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
@@ -188,7 +188,7 @@ static void sub_0204BA88 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_0C);
+    TrainerInfo * v1 = sub_02025E38(param0->unk_0C);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     Party * v3;
     Pokemon * v4;

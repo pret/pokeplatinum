@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -94,7 +92,7 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
     u8 v0, v1, v2, v3;
     u16 v4;
     u32 v5, v6, v7;
-    UnkStruct_02025E6C * v8;
+    TrainerInfo * v8;
     Party * v9;
     Pokemon * v10;
 

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
@@ -218,7 +218,7 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
 
         {
             Pokemon * v2 = v0->unk_0C.unk_00;
-            UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(v1));
+            TrainerInfo * v3 = sub_02025E38(sub_0203D174(v1));
             int v4 = 6;
             int v5 = sub_0203A138(v1->unk_1C->unk_00);
             int v6 = 11;

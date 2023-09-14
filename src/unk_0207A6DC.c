@@ -4,7 +4,7 @@
 #include "constants/battle.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
@@ -76,7 +76,7 @@ static void sub_0207ADB4(int param0, int param1, void * param2, void * param3);
 static void sub_0207ACB4(UnkStruct_0201CD38 * param0, void * param1);
 static void sub_0207AD40(UnkStruct_0201CD38 * param0, void * param1);
 static void sub_0207AE34(int param0, int param1, void * param2, void * param3);
-static void sub_0207ADD4(UnkStruct_02025E6C * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
+static void sub_0207ADD4(TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
 
 static const UnkStruct_02039A58 Unk_020F099C[] = {
     {sub_0207ADB4, sub_02032944, NULL},
@@ -314,13 +314,13 @@ static void sub_0207A934 (int param0, int param1, void * param2, void * param3)
 
 BOOL sub_0207A960 (UnkStruct_0207A778 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     if (sub_02035B54() != 264) {
         return 0;
     }
 
-    v0 = (UnkStruct_02025E6C *)&param0->unk_20[0];
+    v0 = (TrainerInfo *)&param0->unk_20[0];
     sub_02025E80(param0->unk_00->unk_D0[0], v0);
 
     return 1;
@@ -442,7 +442,7 @@ BOOL sub_0207AAC8 (UnkStruct_0207A778 * param0)
 BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
 {
     UnkStruct_02027F8C * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     if (sub_02035B54() != 264) {
         return 0;
@@ -652,7 +652,7 @@ static void sub_0207ADB4 (int param0, int param1, void * param2, void * param3)
     ov16_0223F350(v0, 1);
 }
 
-static void sub_0207ADD4 (UnkStruct_02025E6C * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
+static void sub_0207ADD4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
 {
     int v0;
 

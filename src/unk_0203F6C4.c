@@ -12,7 +12,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -5141,7 +5141,7 @@ static BOOL sub_02043250 (UnkStruct_0203E724 * param0)
 static BOOL sub_02043254 (UnkStruct_0203E724 * param0)
 {
     const UnkStruct_02026324 * v0 = sub_02027560(param0->unk_34->unk_0C);
-    const UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_34->unk_0C);
+    const TrainerInfo * v1 = sub_02025E38(param0->unk_34->unk_0C);
     u8 v2 = (*((param0)->unk_08++));
     u16 * v3 = inline_0204FCAC(param0);
     u16 v4;
@@ -5404,7 +5404,7 @@ static BOOL sub_02043748 (UnkStruct_0203E724 * param0)
     UnkStruct_02061AB4 ** v0 = sub_0203F098(param0->unk_34, 10);
     UnkStruct_0200B358 ** v1 = sub_0203F098(param0->unk_34, 15);
     u16 v2 = sub_0203E838(param0);
-    UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
     UnkStruct_02014EC4 * v4 = sub_02014EC4(sub_0203D174(param0->unk_34));
     u16 v5;
 
@@ -5614,7 +5614,7 @@ static BOOL sub_02043A94 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
     UnkStruct_0200B358 ** v1 = sub_0203F098(param0->unk_34, 15);
 
     sub_0205C980(sub_02025F20(v0), sub_02025F30(v0), *v1);
@@ -5623,7 +5623,7 @@ static BOOL sub_02043AA4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -5635,7 +5635,7 @@ static BOOL sub_02043AE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -5646,7 +5646,7 @@ static BOOL sub_02043B48 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043BA0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 v1 = inline_02049538(param0);
 
     sub_02025F90(v0, v1);
@@ -5670,7 +5670,7 @@ static BOOL sub_02043BE0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02043C0C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v0 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 * v1 = inline_0204FCAC(param0);
 
     *v1 = sub_02025F30(v0);
@@ -6821,7 +6821,7 @@ static BOOL sub_0204504C (UnkStruct_0203E724 * param0)
 static BOOL sub_02045068 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02025E6C * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 * v2 = inline_0204FCAC(param0);
     UnkStruct_020797DC * v3 = sub_02024420(v0->unk_0C);
     u16 v4 = inline_02049538(param0);

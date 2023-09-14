@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -184,7 +184,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_02049FA8 * v1, * v2;
     UnkStruct_020507E4 * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
     UnkStruct_0205300C * v5;
     UnkStruct_0202CD88 * v6;
     Party * v7;

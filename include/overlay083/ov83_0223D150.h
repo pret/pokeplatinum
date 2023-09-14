@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_OV83_0223D150_H
 #define POKEPLATINUM_OV83_0223D150_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "overlay083/struct_ov83_0223B784.h"
 
-void ov83_0223D150(UnkStruct_ov83_0223B784 * param0, UnkStruct_02025E6C * param1);
+void ov83_0223D150(UnkStruct_ov83_0223B784 * param0, TrainerInfo * param1);
 void ov83_0223D1EC(UnkStruct_ov83_0223B784 * param0);
 void ov83_0223D204(int param0, int param1, void * param2, void * param3);
 void ov83_0223D210(int param0, int param1, void * param2, void * param3);

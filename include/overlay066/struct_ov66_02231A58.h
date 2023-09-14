@@ -1,14 +1,14 @@
 #ifndef POKEPLATINUM_STRUCT_OV66_02231A58_H
 #define POKEPLATINUM_STRUCT_OV66_02231A58_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 typedef struct {
     u32 unk_00;
-    const UnkStruct_02025E6C * unk_04;
-    const UnkStruct_02025E6C * unk_08;
-    const UnkStruct_02025E6C * unk_0C;
-    const UnkStruct_02025E6C * unk_10;
+    const TrainerInfo * unk_04;
+    const TrainerInfo * unk_08;
+    const TrainerInfo * unk_0C;
+    const TrainerInfo * unk_10;
     u16 unk_14;
     u16 unk_16;
     u16 unk_18;

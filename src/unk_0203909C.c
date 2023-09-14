@@ -3,7 +3,7 @@
 #include <dwc.h>
 
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -116,7 +116,7 @@ void sub_02039298 (UnkStruct_021C0794 * param0, int param1, int param2, int para
 {
     UnkStruct_0202B370 * v0 = sub_0202B370(param0);
     DWCFriendData * v1 = sub_0202AED8(v0, param2);
-    UnkStruct_02025E6C * v2 = sub_02032EE8(param1);
+    TrainerInfo * v2 = sub_02032EE8(param1);
     DWCFriendData * v3;
     Strbuf* v4;
 

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -14,7 +14,7 @@ typedef struct {
     UnkStruct_02018340 * unk_00;
     UnkStruct_0205AA50 unk_04[4];
     UnkStruct_0202B628 * unk_44;
-    UnkStruct_02025E6C * unk_48;
+    TrainerInfo * unk_48;
     UnkStruct_021C0794 * unk_4C;
     MessageLoader * unk_50;
     UnkStruct_0200B358 * unk_54;

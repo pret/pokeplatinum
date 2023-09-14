@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
@@ -400,7 +400,7 @@ UnkStruct_0205D274 * sub_0205D050 (UnkFuncPtr_0201CE28 func, UnkStruct_0203CDB0 
     UnkStruct_0205D274 * v0;
     UnkStruct_0201CD38 * v1;
     int v2;
-    UnkStruct_02025E6C * v3;
+    TrainerInfo * v3;
 
     v1 = sub_0200679C(func, sizeof(UnkStruct_0205D274), 5, 4);
     v0 = sub_0201CED0(v1);

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 #include "overlay083/struct_ov83_0223B784.h"
 #include "overlay083/struct_ov83_0223D2E8.h"
@@ -19,7 +19,7 @@
 #include "overlay083/ov83_0223D4CC.h"
 #include "overlay083/ov83_0223F7F4.h"
 
-void ov83_0223D150 (UnkStruct_ov83_0223B784 * param0, UnkStruct_02025E6C * param1)
+void ov83_0223D150 (UnkStruct_ov83_0223B784 * param0, TrainerInfo * param1)
 {
     int v0;
     int v1;

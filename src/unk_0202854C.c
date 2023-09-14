@@ -3,7 +3,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202855C.h"
@@ -269,7 +269,7 @@ void sub_02028828 (UnkStruct_020298B0 * param0)
     param0->unk_99 = 1;
 }
 
-void sub_02028830 (UnkStruct_020298B0 * param0, const UnkStruct_02025E6C * param1)
+void sub_02028830 (UnkStruct_020298B0 * param0, const TrainerInfo * param1)
 {
     int v0 = param0->unk_10A;
     int v1;
@@ -293,11 +293,11 @@ void sub_02028830 (UnkStruct_020298B0 * param0, const UnkStruct_02025E6C * param
     }
 }
 
-UnkStruct_02025E6C * sub_020288C8 (const UnkStruct_020298B0 * param0, int param1, int param2)
+TrainerInfo * sub_020288C8 (const UnkStruct_020298B0 * param0, int param1, int param2)
 {
     int v0 = (sizeof(u16) * (7 + 1));
     int v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     int v3 = param0->unk_10A - param2 - 1;
 
     if (v3 < 0) {

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -936,7 +936,7 @@ static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v1;
     UnkStruct_ov21_021D0D80 * v2;
     UnkStruct_02026324 * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
     UnkStruct_020507E4 * v5;
 
     v0 = sub_02050A60(param0);

@@ -10,7 +10,6 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -19,7 +18,6 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0202CA28.h"
-#include "pokemon.h"
 #include "struct_defs/struct_020789BC.h"
 #include "struct_defs/struct_020789F4.h"
 #include "struct_defs/struct_02078B40.h"
@@ -125,8 +123,8 @@ static BOOL Pokemon_HasMove(Pokemon *mon, u16 moveID);
 static s8 BoxPokemon_GetFlavorAffinity(BoxPokemon *boxMon, int flavor);
 static BOOL sub_020778E0(BoxPokemon *boxMon);
 static BOOL sub_02077900(BoxPokemon *boxMon);
-static void sub_02077EA4(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
-static void sub_02077EF8(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
+static void sub_02077EA4(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+static void sub_02077EF8(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 static BOOL BoxPokemon_CanLearnTM(BoxPokemon *boxMon, u8 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void PokemonPersonalData_LoadSpecies(int monSpecies, PokemonPersonalData *monPersonalData);
@@ -4142,7 +4140,7 @@ BOOL sub_02077E3C(Pokemon *mon)
     return sub_02005844(monSpecies, monForm);
 }
 
-void sub_02077E64(Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5)
+void sub_02077E64(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
     sub_02077EA4(&mon->box, param1, monPokeball, param3, param4, param5);
 
@@ -4155,7 +4153,7 @@ void sub_02077E64(Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, int
     }
 }
 
-static void sub_02077EA4(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5)
+static void sub_02077EA4(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
     sub_0209305C(boxMon, param1, 0, param3, param5);
     BoxPokemon_SetValue(boxMon, MON_DATA_MET_GAME, &Unk_020E4C40);
@@ -4163,12 +4161,12 @@ static void sub_02077EA4(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int mon
     BoxPokemon_SetValue(boxMon, MON_DATA_158, &param4);
 }
 
-void sub_02077EE4(Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5)
+void sub_02077EE4(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
     sub_02077EF8(&mon->box, param1, monPokeball, param3, param4, param5);
 }
 
-static void sub_02077EF8(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5)
+static void sub_02077EF8(BoxPokemon *boxMon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5)
 {
     sub_02077EA4(boxMon, param1, monPokeball, param3, param4, param5);
 }
@@ -4545,7 +4543,7 @@ BOOL sub_02078838(Pokemon *mon)
     return sub_02078804(monSpecies);
 }
 
-BOOL sub_0207884C(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int heapID)
+BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID)
 {
     u32 v0 = sub_02025F20(param1);
     u32 monOTID = BoxPokemon_GetValue(boxMon, MON_DATA_OT_ID, NULL);

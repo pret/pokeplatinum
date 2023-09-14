@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02012B20_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
@@ -1807,7 +1807,7 @@ static int ov65_0222F490 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static void ov65_0222F4C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_160);
+    TrainerInfo * v0 = sub_02025E38(param0->unk_160);
     UnkStruct_02026324 * v1 = sub_02027560(param0->unk_160);
     Party * v2 = Party_GetFromSavedata(param0->unk_160);
     UnkStruct_0202C878 * v3 = sub_0202C878(param0->unk_160);
@@ -2308,7 +2308,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
 {
     int v0, v1, v2;
     int v3;
-    UnkStruct_02025E6C * v4 = sub_02025E38(param0->unk_160);
+    TrainerInfo * v4 = sub_02025E38(param0->unk_160);
     Strbuf* v5 = sub_02025F04(v4, 54);
     u32 v6;
 
@@ -4813,7 +4813,7 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 static void ov65_02232DC0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (param1 != -1) {
-        UnkStruct_02025E6C * v0 = sub_02025E6C(54);
+        TrainerInfo * v0 = sub_02025E6C(54);
 
         sub_02025EC0(v0, sub_0202AEF0(param0->unk_00, param1));
         sub_0200B498(param0->unk_164, 0, v0);
@@ -6895,7 +6895,7 @@ static BOOL ov65_02234E8C (UnkStruct_ov65_02234E50 * param0, u32 param1, u32 par
 static void ov65_02234F68 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (param1 != -1) {
-        UnkStruct_02025E6C * v0 = sub_02025E6C(54);
+        TrainerInfo * v0 = sub_02025E6C(54);
 
         sub_02025EC0(v0, sub_0202AEF0(param0->unk_00, param1));
         sub_0200B498(param0->unk_BE0.unk_00, 0, v0);

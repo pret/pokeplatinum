@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "pokemon.h"
@@ -98,7 +98,7 @@ void ov104_0222ECE8 (int param0, int param1, void * param2, void * param3)
 BOOL ov104_0222ED00 (UnkStruct_ov104_0223B5C0 * param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     u16 * v3;
     int v4, v5;
 
@@ -330,7 +330,7 @@ u8 * ov104_0222EED8 (int param0, void * param1, int param2)
 BOOL ov104_0222EEF8 (UnkStruct_ov104_0223ADA0 * param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     u16 * v3;
     int v4, v5;
 
@@ -846,7 +846,7 @@ void ov104_0222F480 (int param0, int param1, void * param2, void * param3)
 BOOL ov104_0222F4B8 (UnkStruct_ov104_0223BA10 * param0)
 {
     int v0, v1, v2, v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
 
     v1 = 0;
     v3 = 40;

@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -245,7 +245,7 @@ BOOL sub_020498A8 (UnkStruct_0203E724 * param0)
 BOOL sub_020498D0 (UnkStruct_0203E724 * param0)
 {
     int v0, v1;
-    const UnkStruct_02025E6C * v2;
+    const TrainerInfo * v2;
     u16 v3 = inline_02049538(param0);
     u16 v4 = inline_02049538(param0);
     u16 * v5 = inline_0204FCAC(param0);

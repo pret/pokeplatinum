@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02017294.h"
@@ -491,7 +491,7 @@ void ov116_022620AC (UnkStruct_ov116_0226139C * param0, UnkStruct_ov116_02262A8C
         },
     };
     int v5, v6, v7, v8;
-    UnkStruct_02025E6C * v9;
+    TrainerInfo * v9;
     BOOL v10;
 
     switch (param1->unk_04) {

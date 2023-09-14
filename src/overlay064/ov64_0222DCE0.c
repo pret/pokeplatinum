@@ -20,7 +20,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -1158,7 +1158,7 @@ static void ov64_0222E7F8 (UnkStruct_ov64_0222E21C * param0, u64 param1)
 static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3)
 {
     UnkStruct_0202B370 * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     v0 = sub_0202B370(param1);
     v1 = sub_02025E6C(param3);
@@ -1170,7 +1170,7 @@ static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 
 
 static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E6C(param3);
+    TrainerInfo * v0 = sub_02025E6C(param3);
     UnkStruct_0202B370 * v1 = sub_0202B370(param1);
 
     sub_02025EC0(v0, sub_0202AF34(v1, param2));
@@ -1339,7 +1339,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
     case 7:
         if (sub_0200F2AC()) {
             u64 v1;
-            UnkStruct_02025E6C * v2;
+            TrainerInfo * v2;
 
             v2 = sub_02025E6C(param3);
 

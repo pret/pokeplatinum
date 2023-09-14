@@ -7,16 +7,12 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008900.h"
@@ -194,7 +190,7 @@ typedef struct {
     Strbuf* unk_1C;
     MessageLoader * unk_20;
     Pokemon * unk_24;
-    const UnkStruct_02025E6C * unk_28;
+    const TrainerInfo * unk_28;
     int unk_2C;
     int unk_30;
     int unk_34;
@@ -302,7 +298,7 @@ static void ov86_0223D220(UnkStruct_0201CD38 * param0);
 static void ov86_0223D264(UnkStruct_ov86_0223D264 * param0, fx32 param1, fx32 param2, int param3);
 static fx32 ov86_0223D284(UnkStruct_ov86_0223D264 * param0);
 static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 * param0);
-static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const UnkStruct_02025E6C * param2);
+static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const TrainerInfo * param2);
 static UnkStruct_0201CD38 * ov86_0223CAE4(UnkStruct_ov86_0223C9B0 * param0, fx16 param1, fx32 param2, int param3);
 
 int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
@@ -1916,7 +1912,7 @@ static BOOL ov86_0223D2A4 (UnkStruct_ov86_0223D264 * param0)
     return param0->unk_10;
 }
 
-static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const UnkStruct_02025E6C * param2)
+static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const TrainerInfo * param2)
 {
     BOOL v0;
     int v1 = 6;

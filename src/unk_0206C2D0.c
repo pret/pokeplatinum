@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202C834_decl.h"
 #include "struct_decls/struct_0202C844_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -17,7 +17,7 @@ void sub_0206C2D0 (UnkStruct_021C0794 * param0, const s32 param1)
     int v1;
     UnkStruct_0202C834 * v2;
     UnkStruct_0202C844 * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
 
     if (param1 <= 0) {
         return;

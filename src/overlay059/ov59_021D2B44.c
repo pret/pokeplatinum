@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202440C.h"
@@ -151,7 +151,7 @@ static BOOL ov59_021D2B5C (int param0, int param1)
 static void ov59_021D2B90 (UnkStruct_021C0794 * param0, UnkStruct_0202E794 * param1, UnkStruct_0202E768 * param2, int param3, int param4, int param5)
 {
     int v0;
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    TrainerInfo * v1 = sub_02025E38(param0);
 
     for (v0 = 0; v0 < param3; v0++, param1++) {
         MI_CpuClearFast(param1, sizeof(UnkStruct_0202E794));
@@ -287,7 +287,7 @@ static BOOL ov59_021D2DC4 (UnkStruct_0202E794 * param0, int param1, const UnkStr
 
 static const void ** ov59_021D2E40 (int param0, const void ** param1, const void ** param2)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     v0 = sub_02032EE8(param0);
 

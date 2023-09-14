@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
@@ -761,7 +761,7 @@ void sub_0203D884 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1)
 void * sub_0203D8AC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203D8AC * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     int v2 = 0, v3 = 0;
     sub_0203A76C(sub_0203A790(param0->unk_0C));
 
@@ -1255,7 +1255,7 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
     switch (v1->unk_0C->unk_00) {
     case 0:
     {
-        UnkStruct_02025E6C * v2 = sub_02025E38(v0->unk_0C);
+        TrainerInfo * v2 = sub_02025E38(v0->unk_0C);
         sub_02025EC0(v2, v1->unk_0C->unk_1C);
     }
     break;

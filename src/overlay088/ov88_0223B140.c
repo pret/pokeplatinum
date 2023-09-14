@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -178,7 +178,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 * param0);
 static int ov88_0223D854(UnkStruct_02095E80 * param0);
 static int ov88_0223D69C(UnkStruct_02095E80 * param0);
 static void ov88_0223D1EC(UnkStruct_02095E80 * param0, int param1);
-static void ov88_0223D0D4(UnkStruct_02025E6C * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
+static void ov88_0223D0D4(TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
 static void ov88_0223C488(NARC * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 
 static const int Unk_ov88_0223EF9C[][2] = {
@@ -360,7 +360,7 @@ static void ov88_0223B2F0 (NNSG2dCharacterData * param0, int param1, int param2,
 static void ov88_0223B320 (UnkStruct_02095E80 * param0)
 {
     Strbuf* v0, * v1, * v2;
-    UnkStruct_02025E6C * v3, * v4;
+    TrainerInfo * v3, * v4;
 
     v3 = sub_02032EE8(sub_0203608C());
     v4 = sub_02032EE8(sub_0203608C() ^ 1);
@@ -1676,7 +1676,7 @@ static void ov88_0223D0C0 (UnkStruct_021C0794 * param0)
     sub_020359DC(32, v0, 14);
 }
 
-static void ov88_0223D0D4 (UnkStruct_02025E6C * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
+static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
 {
     int v0;
 
@@ -1849,7 +1849,7 @@ static int ov88_0223D4C4 (UnkStruct_02095E80 * param0)
 
 static int ov88_0223D514 (UnkStruct_02095E80 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1;
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
@@ -1875,7 +1875,7 @@ static int ov88_0223D514 (UnkStruct_02095E80 * param0)
 static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     v0 = sub_02001288(param0->unk_36D8);
 
@@ -1894,7 +1894,7 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
         param0->unk_36C8 = v0;
 
         {
-            UnkStruct_02025E6C * v2 = sub_02025E6C(26);
+            TrainerInfo * v2 = sub_02025E6C(26);
 
             sub_02025EC0(v2, sub_0202AEF0(param0->unk_36EC, v0));
             sub_0200B498(param0->unk_36CC, 0, v2);
@@ -1946,7 +1946,7 @@ static int ov88_0223D69C (UnkStruct_02095E80 * param0)
 
 static int ov88_0223D740 (UnkStruct_02095E80 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1;
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
@@ -2010,7 +2010,7 @@ static int ov88_0223D840 (UnkStruct_02095E80 * param0)
 static int ov88_0223D854 (UnkStruct_02095E80 * param0)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     param0->unk_36C4 = -1;
 
@@ -2544,7 +2544,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 static void ov88_0223E7F0 (UnkStruct_0202B628 * param0, Pokemon * param1)
 {
     void * v0;
-    UnkStruct_02025E6C * v1 = sub_02032EE8(sub_0203608C() ^ 1);
+    TrainerInfo * v1 = sub_02032EE8(sub_0203608C() ^ 1);
     u16 v2[10 + 1];
 
     Pokemon_GetValue(param1, MON_DATA_117, v2);

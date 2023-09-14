@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -20,7 +20,7 @@ void sub_02073700(UnkStruct_021C0794 * param0, int param1, UnkStruct_ov96_0223B4
 void sub_02073700 (UnkStruct_021C0794 * param0, int param1, UnkStruct_ov96_0223B450_sub1 * param2)
 {
     int v0;
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    TrainerInfo * v1 = sub_02025E38(param0);
     UnkStruct_0202C878 * v2 = sub_0202C878(param0);
     UnkStruct_0202D750 * v3 = sub_0202D750(param0);
 

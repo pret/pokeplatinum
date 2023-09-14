@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -112,7 +112,7 @@ u32 sub_02030D98 (UnkStruct_021C0794 * param0, int param1)
 static void sub_02030DD0 (UnkStruct_021C0794 * param0, UnkStruct_ov96_0223B574 * param1)
 {
     UnkStruct_0202C878 * v0 = sub_0202C878(param0);
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    TrainerInfo * v1 = sub_02025E38(param0);
     char * v2 = sub_02030D50(param0);
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov96_0223B574));

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
@@ -195,14 +195,14 @@ static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * para
     WMBssDesc * v0;
     int v1;
     UnkStruct_0203330C * v2;
-    UnkStruct_02025E6C * v3;
+    TrainerInfo * v3;
 
     for (v1 = 0; v1 < 10; v1++) {
         v0 = sub_0205B774(param1, v1);
 
         if (v0 != NULL) {
             v2 = (UnkStruct_0203330C *)v0->gameInfo.userGameInfo;
-            v3 = (UnkStruct_02025E6C *)v2->unk_10;
+            v3 = (TrainerInfo *)v2->unk_10;
         } else {
             v2 = NULL;
             v3 = NULL;

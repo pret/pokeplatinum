@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -3100,8 +3100,8 @@ static void ov23_022414D4 (void)
 BOOL ov23_022415B8 (Strbuf *param0)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v1;
+    TrainerInfo * v2;
 
     if (!Unk_ov23_02257740) {
         return 0;

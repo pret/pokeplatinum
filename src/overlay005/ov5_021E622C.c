@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026224_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
@@ -2026,7 +2026,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     u16 v3[10 + 1];
     UnkStruct_02026224 * v4 = sub_02026224(param2);
     BoxPokemon * v5 = sub_02026220(param2);
-    UnkStruct_02025E6C * v6 = sub_02025E38(param3);
+    TrainerInfo * v6 = sub_02025E38(param3);
 
     v2 = sub_02025EF0(v6);
     Pokemon_GetValue(v1, MON_DATA_117, v3);
@@ -2597,7 +2597,7 @@ static u16 ov5_021E6C20 (UnkStruct_02026310 * param0, u8 param1[])
     return v4;
 }
 
-void ov5_021E6CF0 (Pokemon * param0, u16 param1, u8 param2, UnkStruct_02025E6C * param3, int param4, int param5)
+void ov5_021E6CF0 (Pokemon * param0, u16 param1, u8 param2, TrainerInfo * param3, int param4, int param5)
 {
     u8 v0, v1, v2;
     u16 v3;
@@ -2680,7 +2680,7 @@ void ov5_021E6DE8 (Pokemon * param0, u16 param1, UnkStruct_02026310 * param2, u3
     Strbuf_Free(v3);
 }
 
-void ov5_021E6EA8 (UnkStruct_02026310 * param0, Party * param1, UnkStruct_02025E6C * param2)
+void ov5_021E6EA8 (UnkStruct_02026310 * param0, Party * param1, TrainerInfo * param2)
 {
     u16 v0;
     u8 v1[2], v2;

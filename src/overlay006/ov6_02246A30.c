@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
@@ -133,7 +133,7 @@ static BOOL ov6_02246A9C (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov6_02246AB0 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_0C);
+    TrainerInfo * v0 = sub_02025E38(param0->unk_0C);
 
     if (sub_02025F58(v0) >= 5) {
         return 1;

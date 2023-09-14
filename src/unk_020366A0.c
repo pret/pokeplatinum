@@ -5,7 +5,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
@@ -36,7 +36,7 @@ typedef struct {
     MATHRandContext32 unk_0C;
     UnkFuncPtr_02036C94 unk_24;
     UnkStruct_021C0794 * unk_28;
-    UnkStruct_02025E6C * unk_2C;
+    TrainerInfo * unk_2C;
     const UnkStruct_0202610C * unk_30;
     UnkStruct_ov65_0222F6EC unk_34;
     int unk_40;
@@ -734,7 +734,7 @@ static void sub_02036FBC (void)
 
 static void sub_02036FD4 (void)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     if (!sub_02033E30()) {
         return;
@@ -839,7 +839,7 @@ static void sub_0203712C (void)
 
 static void sub_02037144 (void)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     if (!sub_020334A4()) {
         return;
@@ -918,7 +918,7 @@ static void sub_02037270 (void)
 
 static void sub_02037284 (void)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     if (Unk_021C07D4->unk_40 != 0) {
         Unk_021C07D4->unk_40--;
@@ -950,7 +950,7 @@ static void sub_020372DC (void)
 
 static void sub_020372F0 (void)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     if (Unk_021C07D4->unk_40 != 0) {
         Unk_021C07D4->unk_40--;
@@ -1658,7 +1658,7 @@ BOOL sub_02037DB0 (void)
 
 static void sub_02037E20 (void)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     if (!sub_020334A4()) {
         return;
@@ -2204,7 +2204,7 @@ static void sub_0203862C (void)
 
 static void sub_020386B4 (void)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     if (!sub_020334A4()) {
         return;
@@ -2224,7 +2224,7 @@ static void sub_020386B4 (void)
 
 void * sub_0203871C (UnkStruct_021C0794 * param0, int param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0);
+    TrainerInfo * v0 = sub_02025E38(param0);
 
     if (sub_02035E38()) {
         return NULL;
@@ -2246,7 +2246,7 @@ void * sub_0203871C (UnkStruct_021C0794 * param0, int param1)
 
 void sub_0203878C (UnkStruct_021C0794 * param0, const void * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0);
+    TrainerInfo * v0 = sub_02025E38(param0);
 
     if (sub_02035E38()) {
         return;

@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -824,7 +824,7 @@ UnkStruct_021C0794 * ov25_02254544 (const UnkStruct_ov25_0225424C * param0)
 
 int ov25_02254548 (const UnkStruct_ov25_0225424C * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_54);
+    TrainerInfo * v0 = sub_02025E38(param0->unk_54);
 
     if (sub_02025F30(v0) == 1) {
         return 0;

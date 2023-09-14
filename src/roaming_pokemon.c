@@ -5,7 +5,6 @@
 
 #include "constants/species.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -250,7 +249,7 @@ void RoamingPokemon_ActivateSlot (UnkStruct_021C0794 * saveData, const u8 slot)
     UnkStruct_0206C638 * v1;
     UnkStruct_0202D7B0 * v2;
     int previouslyVisitedMap;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
     int species;
     u8 level;
 

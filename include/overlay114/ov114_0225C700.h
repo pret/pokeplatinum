@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV114_0225C700_H
 
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_02230DBC.h"
 #include "overlay114/struct_ov114_0225C76C.h"
@@ -15,7 +15,7 @@ void ov114_0225C700(UnkStruct_ov114_0225C76C * param0, BOOL param1, UnkStruct_02
 u32 ov114_0225C76C(const UnkStruct_ov114_0225C76C * param0, u32 param1);
 u32 ov114_0225C78C(const UnkStruct_ov114_0225C76C * param0, u32 param1);
 BOOL ov114_0225C7A4(const UnkStruct_ov114_0225C76C * param0, u32 param1);
-UnkStruct_02025E6C * ov114_0225C7CC(const UnkStruct_ov114_0225C76C * param0, u32 param1);
+TrainerInfo * ov114_0225C7CC(const UnkStruct_ov114_0225C76C * param0, u32 param1);
 UnkStruct_ov114_0225D678 * ov114_0225C814(const UnkStruct_ov114_0225C76C * param0, u32 param1);
 UnkStruct_ov114_0225D678 * ov114_0225C820(const UnkStruct_ov114_0225C76C * param0, u32 param1);
 UnkStruct_ov114_0225D678 * ov114_0225C82C(const UnkStruct_ov114_0225C76C * param0, u32 param1);

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
@@ -762,7 +762,7 @@ static void sub_02093C6C (UnkStruct_0201CD38 * param0, void * param1)
         if (v0->unk_568 >= v0->unk_00.unk_117) {
             {
                 int v1;
-                const UnkStruct_02025E6C * v2;
+                const TrainerInfo * v2;
 
                 for (v1 = 0; v1 < v0->unk_00.unk_117; v1++) {
                     v2 = sub_02032EE8(v1);
@@ -949,7 +949,7 @@ static void sub_02093C6C (UnkStruct_0201CD38 * param0, void * param1)
     default:
     {
         int v5;
-        const UnkStruct_02025E6C * v6;
+        const TrainerInfo * v6;
 
         for (v5 = 0; v5 < v0->unk_00.unk_117; v5++) {
             v6 = sub_02032EE8(v5);
@@ -991,7 +991,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
 
     {
         int v2;
-        UnkStruct_02025E6C * v3;
+        TrainerInfo * v3;
 
         for (v2 = 0; v2 < v0; v2++) {
             v3 = sub_02032EE8(v2);

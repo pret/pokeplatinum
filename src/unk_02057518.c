@@ -6,7 +6,7 @@
 #include "data_021BF67C.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -273,7 +273,7 @@ void sub_020579BC (int param0)
     Unk_021C0848->unk_290[param0] = NULL;
 
     if (Unk_021C0848->unk_290[v0]) {
-        sub_02025E80(Unk_021C0848->unk_290[v0], (UnkStruct_02025E6C *)&Unk_021C0848->unk_14A[v0].unk_00);
+        sub_02025E80(Unk_021C0848->unk_290[v0], (TrainerInfo *)&Unk_021C0848->unk_14A[v0].unk_00);
     }
 
     Unk_021C0848->unk_14A[param0].unk_20 = 0xff;
@@ -400,7 +400,7 @@ static void sub_02057C8C (u8 param0)
     }
 
     {
-        UnkStruct_02025E6C * v3 = sub_02032EE8(param0);
+        TrainerInfo * v3 = sub_02032EE8(param0);
 
         if (v3 == NULL) {
             (void)0;

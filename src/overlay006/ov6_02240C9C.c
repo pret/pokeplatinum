@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -767,7 +767,7 @@ static BOOL ov6_02241674 (UnkStruct_0203CDB0 * param0, Pokemon * param1, BattleP
         sub_0206978C(param0->unk_94, &v1, &v2);
 
         if (param6->unk_04 == 1) {
-            UnkStruct_02025E6C * v3;
+            TrainerInfo * v3;
 
             v3 = sub_02025E38(sub_0203D174(param0));
             v0 = ov6_02241F2C(v1, v2, 1, param6->unk_08, sub_02025F20(v3), param5, param1, param2);

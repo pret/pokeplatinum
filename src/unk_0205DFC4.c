@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "pokemon.h"
@@ -715,7 +715,7 @@ int sub_0205E6A8 (u32 param0)
 
 u8 sub_0205E6B8 (void)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     v0 = sub_02032EE8(sub_0203608C() ^ 1);
     GF_ASSERT(v0 != NULL);

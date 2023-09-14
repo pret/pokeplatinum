@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_02095C48_H
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202A750_decl.h"
 #include "pokemon.h"
@@ -33,7 +33,7 @@ typedef struct {
     const UnkStruct_020279FC * unk_196C;
     UnkStruct_021C0794 * unk_1970;
     Pokemon * unk_1974;
-    const UnkStruct_02025E6C * unk_1978;
+    const TrainerInfo * unk_1978;
     u8 unk_197C;
     u8 unk_197D;
     u8 unk_197E;

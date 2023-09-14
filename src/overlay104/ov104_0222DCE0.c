@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -357,7 +357,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     MessageLoader * v2;
     int v3;
     int v4 = 0;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0);
+    TrainerInfo * v5 = sub_02025E38(param0);
 
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
     sub_02077EE4(param1, sub_02025E38(param0), 4, 0, 0, 11);
@@ -618,7 +618,7 @@ void ov104_0222E5D0 (UnkStruct_0200B358 * param0, u32 param1)
     return;
 }
 
-int ov104_0222E5F0 (const UnkStruct_02025E6C * param0)
+int ov104_0222E5F0 (const TrainerInfo * param0)
 {
     u32 v0;
     int v1, v2;

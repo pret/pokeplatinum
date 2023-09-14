@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0202854C_H
 #define POKEPLATINUM_UNK_0202854C_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -19,8 +19,8 @@ void sub_020287E0(UnkStruct_021C0794 * param0);
 void sub_020287F8(UnkStruct_021C0794 * param0);
 BOOL sub_02028810(UnkStruct_021C0794 * param0);
 void sub_02028828(UnkStruct_020298B0 * param0);
-void sub_02028830(UnkStruct_020298B0 * param0, const UnkStruct_02025E6C * param1);
-UnkStruct_02025E6C * sub_020288C8(const UnkStruct_020298B0 * param0, int param1, int param2);
+void sub_02028830(UnkStruct_020298B0 * param0, const TrainerInfo * param1);
+TrainerInfo * sub_020288C8(const UnkStruct_020298B0 * param0, int param1, int param2);
 u32 sub_02028930(UnkStruct_020298B0 * param0);
 int sub_02028938(int param0);
 BOOL sub_0202895C(UnkStruct_020298B0 * param0, int param1);

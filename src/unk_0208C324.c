@@ -6,8 +6,6 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F410C.h"
@@ -2188,7 +2186,7 @@ static int sub_0208E958 (UnkStruct_0208D7BC * param0)
     return 18;
 }
 
-void sub_0208E9C0 (UnkStruct_02098D38 * param0, const UnkStruct_02025E6C * param1)
+void sub_0208E9C0 (UnkStruct_02098D38 * param0, const TrainerInfo * param1)
 {
     param0->unk_08 = sub_02025EF0(param1);
     param0->unk_0C = sub_02025F20(param1);

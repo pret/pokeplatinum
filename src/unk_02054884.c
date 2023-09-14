@@ -1,14 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_02017038.h"
 #include "heap.h"
 #include "unk_02025E08.h"
+#include "unk_02025E68.h"
 #include "unk_0202F180.h"
 #include "unk_02054884.h"
 #include "pokemon.h"
@@ -34,7 +33,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     Pokemon * v1;
     u32 v2;
     Party * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
 
     v4 = sub_02025E38(param1);
     v3 = Party_GetFromSavedata(param1);
@@ -61,7 +60,7 @@ BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
 {
     int v0;
     BOOL v1;
-    UnkStruct_02025E6C * v2 = sub_02025E38(param1);
+    TrainerInfo * v2 = sub_02025E38(param1);
     Party * v3 = Party_GetFromSavedata(param1);
     Pokemon * v4 = Pokemon_New(32);
 

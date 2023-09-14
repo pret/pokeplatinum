@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -98,7 +98,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
     case 6:
     {
         Strbuf* v14 = Strbuf_Init(64, 32);
-        UnkStruct_02025E6C * v15 = sub_02025E38(param0->unk_34->unk_0C);
+        TrainerInfo * v15 = sub_02025E38(param0->unk_34->unk_0C);
 
         sub_02025EF4(v15, v14);
         sub_0202B444(v1, 0, 1, v14);

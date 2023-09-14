@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_0206D140_decl.h"
 #include "pokemon.h"
@@ -21,7 +21,7 @@ void sub_0206CFE4(UnkStruct_0202440C * param0, BOOL param1, u16 param2);
 void sub_0206D000(UnkStruct_0202440C * param0);
 void sub_0206D018(UnkStruct_0202440C * param0, Pokemon * param1);
 void sub_0206D048(UnkStruct_0202440C * param0, Pokemon * param1);
-void sub_0206D088(UnkStruct_0202440C * param0, u8 param1, const UnkStruct_02025E6C * param2);
+void sub_0206D088(UnkStruct_0202440C * param0, u8 param1, const TrainerInfo * param2);
 void sub_0206D0C8(UnkStruct_0202440C * param0, u16 param1);
 void sub_0206D0F0(UnkStruct_0202440C * param0);
 void sub_0206D104(UnkStruct_0202440C * param0);
@@ -43,8 +43,8 @@ void sub_0206D7C4(UnkStruct_0203CDB0 * param0);
 void sub_0206D90C(UnkStruct_0202440C * param0, Pokemon * param1, u16 param2);
 void sub_0206D914(UnkStruct_0203CDB0 * param0, u16 param1, u8 param2, u16 param3);
 void sub_0206D9B4(UnkStruct_0202440C * param0, Pokemon * param1, u8 param2);
-void sub_0206DAB8(UnkStruct_0203CDB0 * param0, const UnkStruct_02025E6C * param1);
-void sub_0206DAD4(UnkStruct_0203CDB0 * param0, const UnkStruct_02025E6C * param1);
+void sub_0206DAB8(UnkStruct_0203CDB0 * param0, const TrainerInfo * param1);
+void sub_0206DAD4(UnkStruct_0203CDB0 * param0, const TrainerInfo * param1);
 void sub_0206DB20(UnkStruct_0203CDB0 * param0);
 void sub_0206DB5C(UnkStruct_0203CDB0 * param0, u8 param1);
 void sub_0206DBB0(UnkStruct_021C0794 * param0, u32 param1, Pokemon * param2, BOOL param3);

@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -63,7 +63,7 @@ void ov104_02236FC0(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 
 void ov104_022370E0(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1);
 void ov104_02237180(UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10 * param1);
 static void ov104_022370C0(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
-static void ov104_02237284(UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02025E6C * param2, u16 param3);
+static void ov104_02237284(UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, TrainerInfo * param2, u16 param3);
 u16 ov104_02237338(UnkStruct_ov104_0223BA10 * param0);
 
 UnkStruct_ov104_0223BA10 * ov104_022361B4 (UnkStruct_021C0794 * param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 * param6)
@@ -798,7 +798,7 @@ void ov104_02237180 (UnkStruct_ov104_022320B4 * param0, UnkStruct_ov104_0223BA10
     return;
 }
 
-static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, UnkStruct_02025E6C * param2, u16 param3)
+static void ov104_02237284 (UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, TrainerInfo * param2, u16 param3)
 {
     MessageLoader * v0;
     Strbuf* v1 = Strbuf_Init((10 * 2), param0->unk_34);

@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
@@ -74,7 +74,7 @@ static const u8 Unk_020EFA84[20] = {
 
 void sub_0206B70C (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, int param2)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1 = 0, v2 = 0, v3 = 0;
     int v4, v5, v6;
     UnkStruct_020556C4 * v7;

@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
@@ -115,7 +115,7 @@ static BOOL ov23_0224A294 (int param0, int param1)
         v0->unk_FA[param1] = 0;
         v0->unk_14A[param0].unk_20 = param0;
         v0->unk_14A[param1].unk_20 = 0xff;
-        sub_02025E80(v0->unk_290[param0], (UnkStruct_02025E6C *)&v0->unk_14A[param0].unk_00);
+        sub_02025E80(v0->unk_290[param0], (TrainerInfo *)&v0->unk_14A[param0].unk_00);
         return 1;
     }
 
@@ -532,7 +532,7 @@ void ov23_0224AAB0 (void)
     if (v0->unk_290[sub_0203608C()]) {
         sub_020360D0(91, v0->unk_290[sub_0203608C()]);
     } else {
-        UnkStruct_02025E6C * v0 = sub_02025E6C(15);
+        TrainerInfo * v0 = sub_02025E6C(15);
         Strbuf* v1 = Strbuf_Init(20, 15);
 
         GF_ASSERT(v0);
@@ -554,12 +554,12 @@ void ov23_0224AB30 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_ov23_0224A294 * v0 = sub_02057518();
     int v1;
-    const UnkStruct_02025E6C * v2 = param2;
+    const TrainerInfo * v2 = param2;
     Strbuf* v3;
     u8 v4 = param0;
 
     if (v0) {
-        sub_02025E80(v2, (UnkStruct_02025E6C *)v0->unk_14A[param0].unk_00);
+        sub_02025E80(v2, (TrainerInfo *)v0->unk_14A[param0].unk_00);
 
         v3 = sub_02025F04(v2, 15);
 
@@ -597,7 +597,7 @@ void ov23_0224ABC4 (int param0, int param1, void * param2, void * param3)
         }
 
         v0->unk_290[v3] = sub_02025E6C(15);
-        sub_02025E80((UnkStruct_02025E6C *)v1->unk_00, v0->unk_290[v3]);
+        sub_02025E80((TrainerInfo *)v1->unk_00, v0->unk_290[v3]);
         v0->unk_FA[v3] = 1;
     }
 }
@@ -627,7 +627,7 @@ BOOL ov23_0224AC3C (void)
 
 void ov23_0224AC4C (void)
 {
-    UnkStruct_02025E6C * v0 = NULL;
+    TrainerInfo * v0 = NULL;
     int v1, v2;
     int v3 = sub_0203608C();
     UnkStruct_ov23_0224A294 * v4 = sub_02057518();
@@ -647,7 +647,7 @@ void ov23_0224AC4C (void)
         v4->unk_290[0] = v0;
         v4->unk_FA[0] = 1;
 
-        sub_02025E80(v0, (UnkStruct_02025E6C *)&v4->unk_14A[0].unk_00);
+        sub_02025E80(v0, (TrainerInfo *)&v4->unk_14A[0].unk_00);
 
         v4->unk_14A[0].unk_20 = 0;
     }
@@ -794,7 +794,7 @@ BOOL ov23_0224AEC4 (int param0, int param1)
     UnkStruct_ov23_0224A294 * v0 = sub_02057518();
 
     if (v0->unk_290[param0] == NULL) {
-        UnkStruct_02025E6C * v1 = sub_02032EE8(param1);
+        TrainerInfo * v1 = sub_02032EE8(param1);
 
         if (v1) {
             v0->unk_290[param0] = sub_02025E6C(15);
@@ -803,7 +803,7 @@ BOOL ov23_0224AEC4 (int param0, int param1)
             v0->unk_FA[param0] = 1;
             v0->unk_14A[param0].unk_20 = param0;
 
-            sub_02025E80(v1, (UnkStruct_02025E6C *)&v0->unk_14A[param0].unk_00);
+            sub_02025E80(v1, (TrainerInfo *)&v0->unk_14A[param0].unk_00);
 
             if (param1 == sub_0203608C()) {
                 UnkStruct_0202855C * v2 = sub_020298A0(v0->unk_54->unk_0C);

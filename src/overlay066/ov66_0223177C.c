@@ -6,7 +6,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 #include "overlay066/struct_ov66_02231428.h"
 #include "overlay066/struct_ov66_0223185C.h"
@@ -83,7 +83,7 @@ static UnkStruct_ov66_02231FB0 * ov66_02231F68(UnkStruct_ov66_02231E94 * param0,
 static void ov66_02231FB0(UnkStruct_ov66_02231FB0 * param0, UnkStruct_ov66_02231FB0 * param1);
 static void ov66_02231FC0(UnkStruct_ov66_02231E94 * param0, UnkStruct_ov66_02231FB0 * param1);
 static void ov66_02231FE8(UnkStruct_ov66_02231E94 * param0, UnkStruct_ov66_02231FB0 * param1);
-static void ov66_02231FFC(UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 param2, u32 param3, const UnkStruct_02025E6C * param4, const UnkStruct_02025E6C * param5, const UnkStruct_02025E6C * param6, const UnkStruct_02025E6C * param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14);
+static void ov66_02231FFC(UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 param2, u32 param3, const TrainerInfo * param4, const TrainerInfo * param5, const TrainerInfo * param6, const TrainerInfo * param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14);
 static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
 static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
 static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
@@ -702,7 +702,7 @@ static void ov66_02231FE8 (UnkStruct_ov66_02231E94 * param0, UnkStruct_ov66_0223
     param1->unk_2C = NULL;
 }
 
-static void ov66_02231FFC (UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 param2, u32 param3, const UnkStruct_02025E6C * param4, const UnkStruct_02025E6C * param5, const UnkStruct_02025E6C * param6, const UnkStruct_02025E6C * param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14)
+static void ov66_02231FFC (UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 param2, u32 param3, const TrainerInfo * param4, const TrainerInfo * param5, const TrainerInfo * param6, const TrainerInfo * param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14)
 {
     GF_ASSERT(param14 < 9);
     param0->unk_00 = param14;

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_020961E8_decl.h"
 
 #include "struct_defs/struct_0203DE34.h"
@@ -1453,7 +1453,7 @@ static void ov59_021D23B0 (u16 * param0)
 static int ov59_021D23FC (void)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v1 = 0;
 

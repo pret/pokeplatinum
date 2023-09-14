@@ -1,14 +1,14 @@
 #ifndef POKEPLATINUM_STRUCT_0203E2FC_H
 #define POKEPLATINUM_STRUCT_0203E2FC_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_defs/struct_020279FC.h"
 #include "pokemon.h"
 
 typedef struct {
     Pokemon * unk_00;
     UnkStruct_020279FC * unk_04;
-    UnkStruct_02025E6C * unk_08;
+    TrainerInfo * unk_08;
     u16 unk_0C;
 } UnkStruct_0203E2FC;
 

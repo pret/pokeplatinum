@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -66,7 +66,7 @@ BOOL sub_0204CAEC (UnkStruct_0203E724 * param0)
     UnkStruct_021C0794 * v1 = v0->unk_0C;
     UnkStruct_02026310 * v2 = (UnkStruct_02026310 *)(sub_020245BC(v1, 8));
     Party * v3 = Party_GetFromSavedata(v0->unk_0C);
-    UnkStruct_02025E6C * v4 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v4 = sub_02025E38(sub_0203D174(param0->unk_34));
 
     ov5_021E6EA8(v2, v3, v4);
     return 0;

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -55,7 +55,7 @@ typedef struct {
 struct UnkStruct_0205B43C_t {
     UnkStruct_0203CDB0 * unk_00;
     UnkStruct_021C0794 * unk_04;
-    UnkStruct_02025E6C * unk_08;
+    TrainerInfo * unk_08;
     UnkStruct_0201CD38 * unk_0C;
     UnkFuncPtr_0205B43C unk_10;
     int unk_14;
@@ -225,7 +225,7 @@ static void sub_0205B4B0 (UnkStruct_0205B43C * param0)
 static int sub_0205B4D4 (void)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v1 = 0;
 
@@ -426,7 +426,7 @@ static UnkStruct_0205B4F8 * Unk_021C0854;
 
 int sub_0205B780 (UnkStruct_0205B43C * param0, int param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     UnkStruct_0203330C * v1;
     UnkStruct_0205B4F8 * v2;
 
@@ -477,7 +477,7 @@ int sub_0205B780 (UnkStruct_0205B43C * param0, int param1)
 
 int sub_0205B804 (UnkStruct_0205B43C * param0, int param1, u16 param2)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     UnkStruct_0203330C * v1;
     UnkStruct_0205B4F8 * v2;
 
@@ -691,7 +691,7 @@ void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
     UnkStruct_02072014 * v1 = (UnkStruct_02072014 *)param2;
-    UnkStruct_02025E6C * v2 = sub_02032EE8(sub_0203608C() ^ 1);
+    TrainerInfo * v2 = sub_02032EE8(sub_0203608C() ^ 1);
     void * v3;
 
     {
@@ -899,7 +899,7 @@ static int sub_0205BAC0 (int param0)
 static int sub_0205BAE8 (UnkStruct_0205B43C * param0, int param1)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     UnkStruct_0203330C * v3;
     UnkStruct_0205B4F8 * v4;
 
@@ -1015,7 +1015,7 @@ static int sub_0205BCD4 (int param0, int param1, UnkStruct_0200B358 * param2)
 int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, UnkStruct_0200B358 * param3)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     param1--;
 
@@ -1098,7 +1098,7 @@ int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, UnkStruct
 u8 sub_0205BE38 (void)
 {
     u8 v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     v1 = sub_02032EE8(sub_0203608C() ^ 1);
     GF_ASSERT(v1 != NULL);
@@ -1109,7 +1109,7 @@ u8 sub_0205BE38 (void)
 
 static void sub_0205BE58 (UnkStruct_0205B4F8 * param0, int param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1, v2 = 0;
 
     for (v1 = 1; v1 < 4 + 1; v1++) {
@@ -1270,9 +1270,9 @@ UnkStruct_02014A84 * sub_0205C028 (UnkStruct_0205B43C * param0)
     return &param0->unk_178;
 }
 
-void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, UnkStruct_02025E6C * param3, UnkStruct_02014EC4 * param4)
+void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     Strbuf* v1;
     MessageLoader * v2 = MessageLoader_Init(1, 26, 635, 4);
     int v3, v4;

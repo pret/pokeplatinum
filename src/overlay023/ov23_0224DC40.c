@@ -8,7 +8,7 @@
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
 #include "struct_defs/struct_02013A04_t.h"
@@ -186,7 +186,7 @@ static void ov23_0224DC68 (UnkStruct_ov23_0224E280 * param0, int param1)
     int v0 = param1;
 
     if (param1 >= 136) {
-        UnkStruct_02025E6C * v1 = sub_02032EE8(param0->unk_30);
+        TrainerInfo * v1 = sub_02032EE8(param0->unk_30);
 
         if (1 == sub_02025F30(v1)) {
             v0 = v0 - 136 + 155;
@@ -201,7 +201,7 @@ static void ov23_0224DC90 (UnkStruct_ov23_022577B0 * param0, int param1)
     int v0 = param1;
 
     if (param1 >= 136) {
-        UnkStruct_02025E6C * v1 = sub_02032EE8(param0->unk_2C);
+        TrainerInfo * v1 = sub_02032EE8(param0->unk_2C);
 
         if (1 == sub_02025F30(v1)) {
             v0 = v0 - 136 + 155;

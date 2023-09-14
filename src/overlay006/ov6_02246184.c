@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 
@@ -49,7 +47,7 @@ typedef struct {
 typedef struct UnkStruct_ov6_02246204_t {
     UnkStruct_ov6_0224630C * unk_00;
     Pokemon * unk_04;
-    UnkStruct_02025E6C * unk_08;
+    TrainerInfo * unk_08;
     u32 unk_0C;
     u32 unk_10;
 };

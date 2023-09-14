@@ -6,7 +6,6 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -17,9 +16,6 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -677,7 +673,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
         }
         {
             int v2;
-            UnkStruct_02025E6C * v3;
+            TrainerInfo * v3;
 
             param0->unk_BC4 = 0;
 

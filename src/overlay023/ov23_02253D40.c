@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
@@ -272,13 +272,13 @@ void ov23_02254044 (UnkStruct_ov23_02253E2C * param0)
     ov23_02253FA4(param0, 2);
 }
 
-void ov23_02254050 (UnkStruct_ov23_02253E2C * param0, UnkStruct_02025E6C * param1)
+void ov23_02254050 (UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1)
 {
     sub_0200B498(param0->unk_28, 1, param1);
     param0->unk_44_1 = 1;
 }
 
-void ov23_02254068 (UnkStruct_ov23_02253E2C * param0, UnkStruct_02025E6C * param1)
+void ov23_02254068 (UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1)
 {
     sub_0200B498(param0->unk_28, 0, param1);
     param0->unk_44_1 = 1;

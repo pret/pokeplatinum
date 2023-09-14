@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV23_0224A294_H
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_02057B48.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -37,8 +37,8 @@ typedef struct {
     u8 unk_13A[8];
     u8 unk_142[8];
     UnkStruct_ov23_0224ABC4 unk_14A[8 + 1];
-    UnkStruct_02025E6C * unk_27C[5];
-    UnkStruct_02025E6C * unk_290[8];
+    TrainerInfo * unk_27C[5];
+    TrainerInfo * unk_290[8];
     u16 unk_2B0;
     u16 unk_2B2;
     u8 unk_2B4[4];

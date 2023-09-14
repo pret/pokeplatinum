@@ -17,7 +17,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
@@ -107,7 +107,7 @@ typedef struct {
     int unk_2C50;
     int unk_2C54;
     u32 unk_2C58[4];
-    UnkStruct_02025E6C * unk_2C68[5];
+    TrainerInfo * unk_2C68[5];
     int unk_2C7C[5];
     int unk_2C90;
     int unk_2C94;
@@ -1316,7 +1316,7 @@ static int ov97_02231C48 (int * param0)
 static int ov97_02231C84 (UnkStruct_ov97_02230868 * param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v1 = 0;
 
@@ -1333,7 +1333,7 @@ static int ov97_02231CA0 (UnkStruct_ov97_02230868 * param0, UnkStruct_0205AA50 *
 {
     int v0, v1, v2, v3;
     u32 v4;
-    UnkStruct_02025E6C * v5;
+    TrainerInfo * v5;
     Strbuf* v6;
     UnkStruct_0200B358 * v7;
     MessageLoader * v8;

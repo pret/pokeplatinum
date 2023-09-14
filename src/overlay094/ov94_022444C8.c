@@ -2,9 +2,6 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
-
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
@@ -24,7 +21,7 @@
 
 FS_EXTERN_OVERLAY(overlay95);
 
-static UnkStruct_02025E6C * ov94_02244870(UnkStruct_ov94_0223BA88 * param0);
+static TrainerInfo * ov94_02244870(UnkStruct_ov94_0223BA88 * param0);
 static Pokemon * ov94_022448AC(UnkStruct_ov94_0223FD4C * param0, int param1);
 static void ov94_022448E8(UnkStruct_ov94_0223FD4C * param0);
 
@@ -162,9 +159,9 @@ int ov94_0224484C (UnkStruct_ov94_0223FD4C * param0, int param1)
     return 1;
 }
 
-static UnkStruct_02025E6C * ov94_02244870 (UnkStruct_ov94_0223BA88 * param0)
+static TrainerInfo * ov94_02244870 (UnkStruct_ov94_0223BA88 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E6C(62);
+    TrainerInfo * v0 = sub_02025E6C(62);
 
     sub_02025E8C(v0);
     sub_02025EC0(v0, param0->unk_10C);

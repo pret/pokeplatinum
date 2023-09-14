@@ -1,9 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
-
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 #include "overlay006/battle_params.h"
@@ -351,7 +348,7 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
     UnkStruct_0204B184 * v7;
     MessageLoader * v8;
     Strbuf* v9;
-    UnkStruct_02025E6C * v10;
+    TrainerInfo * v10;
 
     v2 = ov104_0223AA50(param0->unk_04);
     v3 = ov104_0223AA74(param0->unk_04, 0);

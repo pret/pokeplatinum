@@ -3,7 +3,7 @@
 
 #include "strbuf.h"
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -45,7 +45,7 @@ void sub_02030A98 (UnkStruct_02030A80 * param0)
 
 void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1);
+    TrainerInfo * v0 = sub_02025E38(param1);
     UnkStruct_0202C878 * v1 = sub_0202C878(param1);
     UnkStruct_02025CCC * v2 = sub_02025CCC(param1);
     const UnkStruct_0202783C * v3 = sub_02027848(param1);

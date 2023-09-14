@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
@@ -39,7 +39,7 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02025E6C * unk_08;
+    TrainerInfo * unk_08;
     UnkStruct_02025E5C * unk_0C;
 } UnkStruct_ov5_021E1D20;
 

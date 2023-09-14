@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
@@ -1580,7 +1578,7 @@ BattleParams * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkStruct_ov10
     Pokemon * v9;
     UnkStruct_ov104_0223A348_sub1 v10;
     UnkStruct_0204B184 * v11;
-    UnkStruct_02025E6C * v12;
+    TrainerInfo * v12;
     Party * v13;
 
     v6 = (param0->unk_05 * 2);

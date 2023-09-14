@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_0207C690.h"
@@ -866,7 +866,7 @@ static void ov117_022613B8 (UnkStruct_ov117_02261280 * param0)
 static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     Strbuf* v3;
     int v4;
     u32 v5;

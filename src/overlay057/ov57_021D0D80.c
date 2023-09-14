@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -394,7 +394,7 @@ static void ov57_021D0EAC (int param0, UnkStruct_021C0794 * param1, BOOL param2)
 {
     u32 v0;
     UnkStruct_02027854 * v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     UnkStruct_02055BA8 * v3;
     UnkStruct_0202B4A0 * v4;
 

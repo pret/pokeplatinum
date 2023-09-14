@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_020305B8_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -1192,7 +1192,7 @@ BOOL ov108_02242A38 (UnkStruct_ov108_02241DB0 * param0, u16 param1, u16 param2)
 void ov108_02242A7C (UnkStruct_ov108_02241DB0 * param0, u16 param1)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v1 = 0;
     v2 = sub_02025E38(param0->unk_DC);

@@ -10,7 +10,7 @@
 #include "message.h"
 #include "struct_decls/struct_02014FB0_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
@@ -161,7 +161,7 @@ typedef struct {
     UnkStruct_ov66_02231428 unk_D0;
     s64 unk_D4;
     s64 unk_DC;
-    UnkStruct_02025E6C * unk_E4[4];
+    TrainerInfo * unk_E4[4];
 } UnkStruct_ov66_0222DFF8_sub1;
 
 typedef struct {
@@ -221,7 +221,7 @@ typedef struct {
 } UnkStruct_ov66_02230A6C;
 
 typedef struct {
-    UnkStruct_02025E6C * unk_00;
+    TrainerInfo * unk_00;
     BOOL unk_04;
 } UnkStruct_ov66_0222FBF0;
 
@@ -989,7 +989,7 @@ void ov66_0222E5D8 (UnkStruct_ov66_0222DFF8 * param0, u32 param1, u32 param2)
     ov66_0222F964(param0);
 }
 
-void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C * param1, u32 param2)
+void ov66_0222E640 (const UnkStruct_ov66_0222E71C * param0, TrainerInfo * param1, u32 param2)
 {
     BOOL v0;
     BOOL v1;
@@ -1272,7 +1272,7 @@ void ov66_0222E908 (const UnkStruct_ov66_0222E71C * param0, UnkStruct_ov66_0222E
     *param1 = param0->unk_8C;
 }
 
-UnkStruct_02025E6C * ov66_0222E918 (const UnkStruct_ov66_0222DFF8 * param0)
+TrainerInfo * ov66_0222E918 (const UnkStruct_ov66_0222DFF8 * param0)
 {
     return param0->unk_508.unk_00;
 }
@@ -1740,7 +1740,7 @@ void ov66_0222EEE4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 void ov66_0222EEF4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 {
     UnkStruct_ov66_0222E71C * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     void * v2;
     UnkStruct_0202B628 * v3;
 
@@ -1760,7 +1760,7 @@ void ov66_0222EEF4 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 void ov66_0222EF44 (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
 {
     UnkStruct_ov66_0222E71C * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     void * v2;
     UnkStruct_0202B628 * v3;
 
@@ -1933,7 +1933,7 @@ BOOL ov66_0222F144 (const UnkStruct_ov66_0222DFF8 * param0, UnkStruct_ov68_0225D
 
 void ov66_0222F16C (UnkStruct_ov66_0222DFF8 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     GF_ASSERT(param0->unk_4B8 == NULL);
 
@@ -2313,7 +2313,7 @@ static void ov66_0222F768 (UnkStruct_ov66_0222DFF8 * param0)
 
 static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 * param1, u32 param2)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     Party * v1;
     UnkStruct_0202C878 * v2;
     UnkStruct_02026324 * v3;
@@ -2775,7 +2775,7 @@ static void ov66_0222FEC0 (UnkStruct_ov66_0222DFF8 * param0, const UnkStruct_ov6
 {
     const UnkStruct_ov66_0222E71C * v0;
     int v1;
-    UnkStruct_02025E6C * v2[4];
+    TrainerInfo * v2[4];
     u32 v3;
     UnkStruct_ov66_02231908 v4;
 
@@ -2864,7 +2864,7 @@ static void ov66_02230058 (UnkStruct_ov66_0222DFF8 * param0, const UnkStruct_ov6
 {
     const UnkStruct_ov66_0222E71C * v0;
     int v1;
-    UnkStruct_02025E6C * v2[4];
+    TrainerInfo * v2[4];
     u32 v3;
     UnkStruct_ov66_022319FC v4;
 
@@ -2905,7 +2905,7 @@ static void ov66_02230114 (UnkStruct_ov66_0222DFF8 * param0, const UnkStruct_ov6
 {
     const UnkStruct_ov66_0222E71C * v0;
     int v1;
-    UnkStruct_02025E6C * v2[4];
+    TrainerInfo * v2[4];
     u32 v3;
     UnkStruct_ov66_02231A58 v4;
 
@@ -2946,7 +2946,7 @@ static void ov66_022301D0 (UnkStruct_ov66_0222DFF8 * param0, const UnkStruct_ov6
 {
     const UnkStruct_ov66_0222E71C * v0;
     int v1;
-    UnkStruct_02025E6C * v2[4];
+    TrainerInfo * v2[4];
     u32 v3;
     UnkStruct_ov66_02231B80 v4;
 

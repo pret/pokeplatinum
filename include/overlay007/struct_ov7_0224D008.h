@@ -11,7 +11,7 @@
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -35,7 +35,7 @@ typedef struct {
     UnkStruct_ov5_021D30A8 unk_94;
     UnkStruct_02022550 * unk_25C[4];
     u16 unk_26C[2];
-    UnkStruct_02025E6C * unk_270;
+    TrainerInfo * unk_270;
     void * unk_274;
     UnkStruct_020279FC * unk_278;
     UnkStruct_0202B628 * unk_27C;

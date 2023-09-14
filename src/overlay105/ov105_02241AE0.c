@@ -9,13 +9,9 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay105/struct_ov105_02241FF4_decl.h"
@@ -2714,7 +2710,7 @@ static void ov105_02244F00 (UnkStruct_ov105_02241FF4 * param0, u32 param1, BoxPo
 static void ov105_02244F0C (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4)
 {
     u32 v0;
-    const UnkStruct_02025E6C * v1;
+    const TrainerInfo * v1;
     Strbuf* v2;
 
     v1 = sub_02025E38(param0->unk_13C);
@@ -2740,7 +2736,7 @@ static void ov105_02244F84 (UnkStruct_ov105_02241FF4 * param0, UnkStruct_0205AA5
 {
     u32 v0;
     Strbuf* v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v2 = sub_02032EE8(1 - sub_0203608C());
     v1 = Strbuf_Init((7 + 1), 93);
@@ -3132,7 +3128,7 @@ BOOL ov105_02245620 (UnkStruct_ov105_02241FF4 * param0, u16 param1, u16 param2)
 
 void ov105_02245684 (UnkStruct_ov105_02241FF4 * param0, u16 param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     v0 = sub_02025E38(param0->unk_13C);
     param0->unk_33C[0] = param1;

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_0203CDB0.h"
@@ -62,8 +62,8 @@ typedef struct UnkStruct_ov7_02249C2C_t {
     UnkFuncPtr_ov7_02249C2C unk_6C;
     UnkFuncPtr_ov7_02249C2C_1 unk_70;
     MessageLoader * unk_74;
-    UnkStruct_02025E6C * unk_78;
-    UnkStruct_02025E6C * unk_7C;
+    TrainerInfo * unk_78;
+    TrainerInfo * unk_7C;
     u8 unk_80[8];
     u32 unk_88;
     u16 unk_8C;
@@ -882,7 +882,7 @@ static void ov7_0224A6D4 (int param0, UnkStruct_ov7_02249C2C * param1)
         29,
         30
     };
-    UnkStruct_02025E6C * v1 = sub_02032EE8(param0);
+    TrainerInfo * v1 = sub_02032EE8(param0);
 
     if (v1) {
         sub_0200B498(param1->unk_58, 1, v1);

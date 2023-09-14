@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV5_021E622C_H
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
@@ -23,9 +23,9 @@ int ov5_021E6630(UnkStruct_02026310 * param0, u8 param1, UnkStruct_0200B358 * pa
 u8 ov5_021E6640(UnkStruct_02026310 * param0, int param1, UnkStruct_0200B358 * param2);
 void ov5_021E6720(UnkStruct_02026310 * param0);
 void ov5_021E6B40(UnkStruct_02026310 * param0);
-void ov5_021E6CF0(Pokemon * param0, u16 param1, u8 param2, UnkStruct_02025E6C * param3, int param4, int param5);
+void ov5_021E6CF0(Pokemon * param0, u16 param1, u8 param2, TrainerInfo * param3, int param4, int param5);
 void ov5_021E6DE8(Pokemon * param0, u16 param1, UnkStruct_02026310 * param2, u32 param3, u8 param4);
-void ov5_021E6EA8(UnkStruct_02026310 * param0, Party * param1, UnkStruct_02025E6C * param2);
+void ov5_021E6EA8(UnkStruct_02026310 * param0, Party * param1, TrainerInfo * param2);
 BOOL ov5_021E7154(UnkStruct_02026310 * param0, Party * param1, UnkStruct_0203CDB0 * param2);
 Pokemon * ov5_021E7278(Party * param0);
 void ov5_021E72BC(UnkStruct_02026310 * param0, UnkStruct_0200B358 * param1);

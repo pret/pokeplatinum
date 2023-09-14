@@ -6,7 +6,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -204,7 +204,7 @@ void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
     int v0;
     Party * v1;
     Pokemon * v2;
-    UnkStruct_02025E6C * v3 = sub_02025E38(param1);
+    TrainerInfo * v3 = sub_02025E38(param1);
 
     param0->unk_83E[0] = sub_02025F30(v3);
     v1 = Party_GetFromSavedata(param1);

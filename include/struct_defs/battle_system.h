@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_02027F8C_decl.h"
@@ -56,7 +56,7 @@ struct BattleSystem {
     BattleContext *battleCtx;
     UnkStruct_ov16_0225BFFC *battlers[MAX_BATTLERS];
     int maxBattlers;
-    UnkStruct_02025E6C * unk_48[4];
+    TrainerInfo * unk_48[4];
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
     UnkStruct_02026324 * unk_60;

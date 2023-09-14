@@ -3,9 +3,6 @@
 
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -32,11 +29,13 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E08.h"
+#include "unk_02025E68.h"
 #include "unk_02030494.h"
 #include "unk_020329E0.h"
 #include "unk_02051D8C.h"
 #include "pokemon.h"
 #include "party.h"
+#include "strbuf.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
 #include "overlay063/ov63_0222CCE4.h"
@@ -321,7 +320,7 @@ BOOL ov104_02237748 (UnkStruct_ov104_0222E930 * param0)
     int v11, v12, v13;
     UnkStruct_ov104_02230BE4 * v14;
     UnkStruct_ov104_0223C4CC * v15;
-    UnkStruct_02025E6C * v16;
+    TrainerInfo * v16;
     u8 v17 = (*((param0)->unk_1C++));
     u8 v18 = ov104_0222FC00(param0);
     u8 v19 = ov104_0222FC00(param0);

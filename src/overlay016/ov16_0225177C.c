@@ -1,9 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02098700_decl.h"
@@ -5997,7 +5994,7 @@ BOOL BattleSystem_CanPickCommand (BattleContext *battleSys, int battler)
 
 void ov16_02259A5C (BattleSystem * param0, BattleContext * param1, Pokemon * param2)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1;
     int v2;
     int v3;
@@ -6033,7 +6030,7 @@ BOOL ov16_02259AC0 (BattleContext * param0, int param1)
 
 BOOL ov16_02259ADC (BattleSystem * param0, BattleContext * param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     u32 v1;
     u32 v2;
     const u16 * v3;
@@ -6052,7 +6049,7 @@ BOOL ov16_02259ADC (BattleSystem * param0, BattleContext * param1)
 
 BOOL ov16_02259B38 (BattleSystem * param0, Pokemon * param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     u32 v1;
     u32 v2;
     const u16 * v3;

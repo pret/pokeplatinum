@@ -6,16 +6,12 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -275,7 +271,7 @@ typedef struct {
     UnkStruct_0209C0F0 unk_2C;
     UnkStruct_ov109_021D17EC unk_34;
     UnkStruct_ov109_021D1048 unk_44[5];
-    UnkStruct_02025E6C * unk_58[5];
+    TrainerInfo * unk_58[5];
     Strbuf* unk_6C[5];
 } UnkStruct_ov109_021D0F70_sub1;
 
@@ -358,7 +354,7 @@ static UnkStruct_0200D0F4 * ov109_021D24E0(UnkStruct_ov109_021D0F70 * param0, co
 static void ov109_021D24F8(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D25E8(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D2634(UnkStruct_ov109_021D0F70 * param0, u32 param1);
-static void ov109_021D268C(UnkStruct_ov109_021D0F70 * param0, u32 param1, const UnkStruct_02025E6C * param2);
+static void ov109_021D268C(UnkStruct_ov109_021D0F70 * param0, u32 param1, const TrainerInfo * param2);
 static void ov109_021D2714(UnkStruct_ov109_021D0F70 * param0, u32 param1, u32 param2);
 static void ov109_021D2788(UnkStruct_ov109_021D0F70 * param0);
 static void ov109_021D27AC(UnkStruct_ov109_021D0F70 * param0, int param1);
@@ -2074,7 +2070,7 @@ static void ov109_021D2634 (UnkStruct_ov109_021D0F70 * param0, u32 param1)
     sub_0201A9A4(v1);
 }
 
-static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const UnkStruct_02025E6C * param2)
+static void ov109_021D268C (UnkStruct_ov109_021D0F70 * param0, u32 param1, const TrainerInfo * param2)
 {
     Strbuf* v0;
     UnkStruct_ov109_021D24F8 * v1 = &param0->unk_C9C;

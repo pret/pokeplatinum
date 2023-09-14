@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -120,7 +120,7 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     sub_020295B8
 };
 
-asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, MessageLoader * param1, UnkStruct_02025E6C * param2, const UnkStruct_0202855C * param3)
+asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x20
@@ -354,7 +354,7 @@ static void ov23_0225381C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void ov23_02253834 (UnkStruct_02018340 * param0, UnkStruct_02025E6C * param1, UnkFuncPtr_ov23_02253834 param2, void * param3, BOOL param4)
+void ov23_02253834 (UnkStruct_02018340 * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834 param2, void * param3, BOOL param4)
 {
     UnkStruct_0202855C * v0;
     MessageLoader * v1;
@@ -474,7 +474,7 @@ void ov23_02253A00 (UnkStruct_0202855C * param0, int param1)
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageLoader * param1, UnkStruct_02025E6C * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
+static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -510,7 +510,7 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageLoader * param1, 
     sub_0201D738(param0, 0, v1, v7, 1 + v8 * 3, 0xff, NULL);
 
     for (v3 = 0; v3 < 5; v3++) {
-        UnkStruct_02025E6C * v13 = sub_020288C8(param4, 4, v3);
+        TrainerInfo * v13 = sub_020288C8(param4, 4, v3);
 
         if (v13) {
             sub_0200B498(v0, 0, v13);
@@ -537,7 +537,7 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageLoader * param1, 
     sub_0200B3F0(v0);
 }
 
-void * ov23_02253C64 (UnkStruct_02018340 * param0, UnkStruct_02025E6C * param1, UnkStruct_020298B0 * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
+void * ov23_02253C64 (UnkStruct_02018340 * param0, TrainerInfo * param1, UnkStruct_020298B0 * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
 {
     UnkStruct_0202855C * v0;
     MessageLoader * v1;

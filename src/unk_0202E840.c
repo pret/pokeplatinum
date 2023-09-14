@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -191,7 +191,7 @@ void * sub_0202E9FC (UnkStruct_021C0794 * param0, int param1)
     u32 v1, v2;
     UnkStruct_0202E91C * v3;
     Strbuf* v4;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0);
+    TrainerInfo * v5 = sub_02025E38(param0);
     u32 * v6;
 
     v3 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_0202E91C));
@@ -393,7 +393,7 @@ UnkStruct_0202EE10 * sub_0202ED8C (UnkStruct_021C0794 * param0, int param1, int 
     u32 v2;
     UnkStruct_0202EE10 * v3;
     u32 * v4;
-    UnkStruct_02025E6C * v5;
+    TrainerInfo * v5;
 
     v5 = sub_02025E38(param0);
     v3 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202EE10));

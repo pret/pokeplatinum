@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_defs/trainer_data.h"
@@ -15,7 +15,7 @@ UnkStruct_0200B358 * sub_0200B358(u32 param0);
 UnkStruct_0200B358 * sub_0200B368(u32 param0, u32 param1, u32 param2);
 void sub_0200B3F0(UnkStruct_0200B358 * param0);
 void sub_0200B48C(UnkStruct_0200B358 * param0, u32 param1, const Strbuf *param2, u32 param3, BOOL param4, u32 param5);
-void sub_0200B498(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_02025E6C * param2);
+void sub_0200B498(UnkStruct_0200B358 * param0, u32 param1, const TrainerInfo * param2);
 void sub_0200B4BC(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2);
 void sub_0200B4E4(UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2);
 void sub_0200B538(UnkStruct_0200B358 * param0, u32 param1, BoxPokemon * param2);

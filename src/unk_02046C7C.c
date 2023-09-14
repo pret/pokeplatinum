@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 
@@ -99,7 +99,7 @@ BOOL sub_02046CFC (UnkStruct_0203E724 * param0)
     Strbuf* v0;
     Pokemon * v1;
     void ** v2 = sub_0203F098(param0->unk_34, 20);
-    UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v3 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);

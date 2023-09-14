@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -1040,8 +1038,8 @@ int ov104_0223A790 (u8 param0)
 
 static int ov104_0223A7AC (u8 param0)
 {
-    UnkStruct_02025E6C * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v0;
+    TrainerInfo * v1;
     u8 v2, v3;
 
     switch (param0) {

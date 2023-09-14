@@ -5,7 +5,6 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02025E5C.h"
-#include "struct_defs/struct_02025E6C.h"
 #include "struct_defs/struct_020279FC.h"
 
 #include "unk_020244AC.h"
@@ -17,7 +16,7 @@
 
 struct UnkStruct_02025E0C_t {
     UnkStruct_020279FC unk_00;
-    UnkStruct_02025E6C unk_04;
+    TrainerInfo unk_04;
     u16 unk_24;
     UnkStruct_02025E5C unk_26;
 };
@@ -37,7 +36,7 @@ void sub_02025E0C (UnkStruct_02025E0C * param0)
     sub_0202CBE4(&param0->unk_26);
 }
 
-UnkStruct_02025E6C * sub_02025E38 (UnkStruct_021C0794 * param0)
+TrainerInfo * sub_02025E38 (UnkStruct_021C0794 * param0)
 {
     UnkStruct_02025E0C * v0;
 

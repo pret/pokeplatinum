@@ -2,7 +2,7 @@
 #include <nitro/wvr.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 
 #include "struct_defs/struct_02014A84.h"
 #include "struct_defs/struct_0202610C.h"
@@ -32,7 +32,7 @@ typedef struct {
     int unk_14F4;
     u8 unk_14F8;
     u8 unk_14F9;
-    UnkStruct_02025E6C * unk_14FC;
+    TrainerInfo * unk_14FC;
     UnkStruct_0202610C * unk_1500;
     u32 unk_1504;
     u32 unk_1508;
@@ -68,7 +68,7 @@ static UnkStruct_021C07C0 * Unk_021C07C0 = NULL;
 static u16 Unk_021C07B8 = 0;
 static volatile int Unk_021C07BC;
 
-void sub_02033200 (UnkStruct_02025E6C * param0, BOOL param1)
+void sub_02033200 (TrainerInfo * param0, BOOL param1)
 {
     int v0;
 
@@ -534,7 +534,7 @@ int sub_0203394C (void)
     return v0;
 }
 
-void sub_020339AC (int param0, UnkStruct_02025E6C * param1)
+void sub_020339AC (int param0, TrainerInfo * param1)
 {
     int v0, v1;
     UnkStruct_0203330C * v2;
@@ -602,7 +602,7 @@ void sub_02033A5C (void)
 static void sub_02033AA8 (void)
 {
     u8 v0[6];
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     UnkStruct_0203330C * v2;
     UnkStruct_02034168 * v3;
     int v4 = sub_0203895C();
@@ -885,14 +885,14 @@ UnkStruct_0203330C * sub_02033F6C (int param0)
     return NULL;
 }
 
-UnkStruct_02025E6C * sub_02033F9C (void)
+TrainerInfo * sub_02033F9C (void)
 {
     return Unk_021C07C0->unk_14FC;
 }
 
-UnkStruct_02025E6C * sub_02033FB0 (int param0)
+TrainerInfo * sub_02033FB0 (int param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     UnkStruct_0203330C * v1;
 
     if (Unk_021C07C0->unk_14C8[param0] == 0) {
@@ -900,7 +900,7 @@ UnkStruct_02025E6C * sub_02033FB0 (int param0)
     }
 
     v1 = (UnkStruct_0203330C *)Unk_021C07C0->unk_188[param0].gameInfo.userGameInfo;
-    v0 = (UnkStruct_02025E6C *)&v1->unk_10[0];
+    v0 = (TrainerInfo *)&v1->unk_10[0];
 
     return v0;
 }

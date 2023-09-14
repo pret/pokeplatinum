@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "unk_02025E68.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
@@ -547,7 +547,7 @@ static const UnkUnion_02022594 Unk_ov113_02260D4C[] = {
 void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, UnkStruct_0205AA50 param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
 {
     const UnkStruct_ov66_0222E71C * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     Strbuf* v2;
     Strbuf* v3;
     Strbuf* v4;
