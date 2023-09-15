@@ -3664,7 +3664,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
                 memset(v0->unk_04, 0, sizeof(UnkStruct_ov13_022264F4));
 
                 v0->unk_04->unk_00 = v0->unk_00;
-                v0->unk_04->unk_04 = ov16_0223E16C(v0->unk_00, v0->unk_0D);
+                v0->unk_04->unk_04 = BattleSystem_TrainerInfo(v0->unk_00, v0->unk_0D);
                 v0->unk_04->unk_0C = 5;
                 v0->unk_04->unk_26 = 0;
                 v0->unk_04->unk_08 = BattleSystem_Bag(v0->unk_00);
@@ -6421,7 +6421,7 @@ static void ov16_0226474C (BattleSystem * param0)
 static u8 ov16_02264768 (BattleSystem * param0, u8 param1, u8 param2)
 {
     if (BattleSystem_BattleType(param0) & 0x4) {
-        if ((TrainerInfo_GameCode(ov16_0223E16C(param0, param1)) == 0) && (param2 <= 1)) {
+        if ((TrainerInfo_GameCode(BattleSystem_TrainerInfo(param0, param1)) == 0) && (param2 <= 1)) {
             param2 += 103;
         }
     }
