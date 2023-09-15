@@ -853,7 +853,7 @@ void sub_020780C4(Pokemon *mon, u32 monPersonality);
  * @param index 
  * @return A bitmask with a single bit set at the specified index.
  */
-u32 Pokemon_GetFlagMaskOf(int index);
+u32 NumToFlag(int index);
 
 /**
  * @brief Gets the index of the lowest set bit of the given number
@@ -861,7 +861,7 @@ u32 Pokemon_GetFlagMaskOf(int index);
  * @param num 
  * @return The index of the lowest set bit of the given number 
  */
-int Pokemon_GetLowestFlagIndex(u32 num);
+int FlagToNum(u32 num);
 
 BOOL sub_02078804(u16 param0);
 u16 sub_02078824(u8 index);

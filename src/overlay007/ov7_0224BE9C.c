@@ -878,7 +878,7 @@ static void ov7_0224CCF4 (UnkStruct_02029D04 * param0, UnkStruct_0207D3C0 * para
     BOOL v3;
 
     sub_02029E2C(param0, v0, 1);
-    v3 = sub_0207D60C(param1, v1, v2, param4);
+    v3 = Bag_SubtractItem(param1, v1, v2, param4);
 
     GF_ASSERT(v3 == 1);
 }

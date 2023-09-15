@@ -9,7 +9,38 @@
 #define POCKET_MAIL         5
 #define POCKET_BATTLE_ITEMS 6
 #define POCKET_KEY_ITEMS    7
-#define POCKETS_COUNT       8
+#define POCKET_MAX          8
+
+enum {
+    BATTLE_POCKET_RECOVER_HP = 0,
+    BATTLE_POCKET_RECOVER_STATUS,
+    BATTLE_POCKET_POKE_BALLS,
+    BATTLE_POCKET_BATTLE_ITEMS,
+
+    BATTLE_POCKET_MAX,
+};
+
+enum {
+    ITEM_TYPE_FULL_RESTORE = 0,
+    ITEM_TYPE_RECOVER_HP,
+    ITEM_TYPE_RECOVER_STATUS,
+    ITEM_TYPE_STAT_BOOSTER,
+    ITEM_TYPE_GUARD_SPEC,
+
+    ITEM_TYPE_MAX
+};
+
+#define ITEM_RECOVER_CONFUSION  (1 << 0)
+#define ITEM_RECOVER_PARALYSIS  (1 << 1)
+#define ITEM_RECOVER_FREEZE     (1 << 2)
+#define ITEM_RECOVER_BURN       (1 << 3)
+#define ITEM_RECOVER_POISON     (1 << 4)
+#define ITEM_RECOVER_SLEEP      (1 << 5)
+#define ITEM_RECOVER_FULL       (ITEM_RECOVER_SLEEP \
+                                | ITEM_RECOVER_POISON \
+                                | ITEM_RECOVER_BURN \
+                                | ITEM_RECOVER_FREEZE \
+                                | ITEM_RECOVER_PARALYSIS)
 
 #define HOLD_EFFECT_NONE                    0
 #define HOLD_EFFECT_HP_RESTORE              1

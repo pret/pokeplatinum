@@ -754,7 +754,7 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 sub_0202CFEC(param0->unk_50, 22);
                 sub_02056A48(param0->unk_54, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
-                sub_0207D60C(param0->unk_4C, 4, 1, param0->unk_5C);
+                Bag_SubtractItem(param0->unk_4C, 4, 1, param0->unk_5C);
             }
         }
         break;

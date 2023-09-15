@@ -653,7 +653,7 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     v0->unk_2434 = -51;
 
     ov16_0223DD4C(v0);
-    sub_0207D9F8(ov16_0223E1B0(v0));
+    sub_0207D9F8(BattleSystem_BagCursor(v0));
 
     v0->unk_1C4 = sub_02015F84(5, 4, 0);
     v0->cellTransferState = sub_0201DCC8(4, 5);
@@ -1603,7 +1603,7 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
 
             if (v2 != NULL) {
                 if (sub_0208C104(v2->unk_28, v2->unk_2C, (8 * 6)) == 1) {
-                    v5 |= Pokemon_GetFlagMaskOf(v3);
+                    v5 |= NumToFlag(v3);
                 }
             }
         }

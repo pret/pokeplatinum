@@ -2326,16 +2326,16 @@ u32 sub_02075E64(u32 param0)
     u16 v3 = LCRNG_Next() & 0x7;
 
     for (i = 0; i < 13; i++) {
-        if (param0 & Pokemon_GetFlagMaskOf(i)) {
+        if (param0 & NumToFlag(i)) {
             if (LCRNG_Next() & 1) {
-                v2 |= Pokemon_GetFlagMaskOf(i + 3);
+                v2 |= NumToFlag(i + 3);
             } else {
-                v3 |= Pokemon_GetFlagMaskOf(i + 3);
+                v3 |= NumToFlag(i + 3);
             }
         } else {
             if (LCRNG_Next() & 1) {
-                v2 |= Pokemon_GetFlagMaskOf(i + 3);
-                v3 |= Pokemon_GetFlagMaskOf(i + 3);
+                v2 |= NumToFlag(i + 3);
+                v3 |= NumToFlag(i + 3);
             }
         }
     }
@@ -3656,7 +3656,7 @@ void sub_020776B0(Party *party)
             }
         } while (partySlot == currentPartyCount);
 
-        if (sub_02077758(party, Pokemon_GetFlagMaskOf(partySlot)) == 0) {
+        if (sub_02077758(party, NumToFlag(partySlot)) == 0) {
             u8 monPokerus;
             do {
                 monPokerus = LCRNG_Next() & 0xff;
@@ -4466,31 +4466,31 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
     return monSpecies;
 }
 
-u32 Pokemon_GetFlagMaskOf(int index)
+u32 NumToFlag(int num)
 {
     int i;
-    u32 bitMask = 1;
+    u32 flag = 1;
 
-    GF_ASSERT(index < 32);
+    GF_ASSERT(num < 32);
 
-    for (i = 0; i < index; i++) {
-        bitMask <<= 1;
+    for (i = 0; i < num; i++) {
+        flag <<= 1;
     }
 
-    return bitMask;
+    return flag;
 }
 
-int Pokemon_GetLowestFlagIndex(u32 num)
+int FlagToNum(u32 flag)
 {
     int i;
-    u32 bit = 1;
+    u32 mask = 1;
 
     for (i = 0; i < 32; i++) {
-        if (num & bit) {
+        if (flag & mask) {
             break;
         }
 
-        bit <<= 1;
+        mask <<= 1;
     }
 
     return i;

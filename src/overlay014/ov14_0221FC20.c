@@ -327,7 +327,7 @@ void ov14_0221FC20 (BattleSystem * param0, BattleContext * param1, u8 param2, u8
     v1 = BattleSystem_CheckStruggling(param0, param1, param2, 0, 0xffffffff);
 
     for (v0 = 0; v0 < LEARNED_MOVES_MAX; v0++) {
-        if (v1 & Pokemon_GetFlagMaskOf(v0)) {
+        if (v1 & NumToFlag(v0)) {
             param1->aiContext.moveCurPP[v0] = 0;
         }
 
@@ -356,7 +356,7 @@ u8 ov14_0221FCF4 (BattleSystem * param0, u8 param1)
 
     if ((v1->aiContext.stateFlags & 0x10) == 0) {
         v1->aiContext.attacker = param1;
-        v1->aiContext.defender = ov16_02257028(param0, v1, param1);
+        v1->aiContext.defender = BattleSystem_RandomOpponent(param0, v1, param1);
 
         ov14_0221FC20(param0, v1, v1->aiContext.attacker, 0xf);
     }
@@ -2697,7 +2697,7 @@ static void ov14_022227A4 (BattleSystem * param0, BattleContext * param1)
 
     v2 = ov14_02222D34(param1, v0);
 
-    if (param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v2)) {
+    if (param1->battlersSwitchingMask & NumToFlag(v2)) {
         ov14_02222D24(param1, v1);
     }
 }
@@ -2718,7 +2718,7 @@ static void ov14_022227F4 (BattleSystem * param0, BattleContext * param1)
 
     v2 = ov14_02222D34(param1, v0);
 
-    if ((param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & NumToFlag(v2)) == 0) {
         ov14_02222D24(param1, v1);
     }
 }
@@ -3605,7 +3605,7 @@ static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int pa
     v3 = BattleSystem_BattlerSlot(param0, param2) ^ 1;
     v2 = ov16_0223E1C4(param0, v3);
 
-    if ((param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & NumToFlag(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
             v4 = param1->battleMons[param2].moves[v0];
             v5 = ov14_0222327C(param0, param1, param2, v4);
@@ -3633,7 +3633,7 @@ static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int pa
 
     v2 = BattleSystem_Partner(param0, v2);
 
-    if ((param1->battlersSwitchingMask & Pokemon_GetFlagMaskOf(v2)) == 0) {
+    if ((param1->battlersSwitchingMask & NumToFlag(v2)) == 0) {
         for (v0 = 0; v0 < 4; v0++) {
             v4 = param1->battleMons[param2].moves[v0];
             v5 = ov14_0222327C(param0, param1, param2, v4);
@@ -4019,37 +4019,37 @@ BOOL ov14_022244B0 (BattleSystem * param0, int param1)
                 }
             } else if (ov16_0225B0FC(v8, v2, 15)) {
                 if (v8->battleMons[param1].status & 0x7) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(5);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= NumToFlag(5);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 16)) {
                 if ((v8->battleMons[param1].status & 0x8) || (v8->battleMons[param1].status & 0x80)) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(4);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= NumToFlag(4);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 17)) {
                 if (v8->battleMons[param1].status & 0x10) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(3);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= NumToFlag(3);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 18)) {
                 if (v8->battleMons[param1].status & 0x20) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(2);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= NumToFlag(2);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 19)) {
                 if (v8->battleMons[param1].status & 0x40) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(1);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= NumToFlag(1);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if (ov16_0225B0FC(v8, v2, 20)) {
                 if (v8->battleMons[param1].statusVolatile & 0x7) {
-                    v8->aiContext.usedItemCondition[param1 >> 1] |= Pokemon_GetFlagMaskOf(0);
+                    v8->aiContext.usedItemCondition[param1 >> 1] |= NumToFlag(0);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
