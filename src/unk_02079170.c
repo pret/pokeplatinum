@@ -157,7 +157,7 @@ void sub_02079170 (BattleParams * param0, const UnkStruct_021C0794 * param1, int
             param0->trainerData[v1] = v0;
 
             if (v0.class == TRAINER_CLASS_RIVAL) {
-                sub_020021B0(&param0->trainerData[v1].unk_14[0], v4);
+                GF_strcpy(&param0->trainerData[v1].unk_14[0], v4);
             } else {
                 v3 = MessageLoader_GetNewStrbuf(v2, param0->unk_18[v1]);
                 Strbuf_ToChars(v3, &param0->trainerData[v1].unk_14[0], 8);

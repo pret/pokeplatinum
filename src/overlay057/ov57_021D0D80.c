@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -26,7 +26,7 @@
 #include "unk_0201D15C.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_020279FC.h"
 #include "unk_02027B70.h"
@@ -394,7 +394,7 @@ static void ov57_021D0EAC (int param0, UnkStruct_021C0794 * param1, BOOL param2)
 {
     u32 v0;
     UnkStruct_02027854 * v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     UnkStruct_02055BA8 * v3;
     UnkStruct_0202B4A0 * v4;
 
@@ -411,10 +411,10 @@ static void ov57_021D0EAC (int param0, UnkStruct_021C0794 * param1, BOOL param2)
     v0 = MTRNG_Next();
 
     if (param2) {
-        sub_02025F1C(v2, v0);
+        TrainerInfo_SetID(v2, v0);
     }
 
-    sub_02025F90(v2, sub_0205C9BC(v0, sub_02025F30(v2), 0));
+    TrainerInfo_SetAppearance(v2, sub_0205C9BC(v0, TrainerInfo_Gender(v2), 0));
 
     v1 = sub_02027854(param1);
     sub_02027B90(v1, param0, Unk_ov57_021D0FA0, NELEMS(Unk_ov57_021D0FA0) / 2);

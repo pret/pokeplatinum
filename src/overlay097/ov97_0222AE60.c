@@ -11,7 +11,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
 #include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -53,7 +53,7 @@
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202CBE4.h"
 #include "unk_0202DAB4.h"
@@ -97,7 +97,7 @@ typedef struct {
     UnkStruct_02018340 * unk_00;
     UnkStruct_021C0794 * unk_04;
     UnkStruct_02026324 * unk_08;
-    UnkStruct_02025E6C * unk_0C;
+    TrainerInfo * unk_0C;
     UnkStruct_02025E5C * unk_10;
     UnkStruct_0202442C * unk_14;
     int unk_18;
@@ -146,7 +146,7 @@ static BOOL ov97_0222B978(void * param0, int param1, UnkStruct_ov97_02237808 * p
 static BOOL ov97_0222B5C0(void * param0, int param1, UnkStruct_ov97_02237808 * param2, int param3);
 UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
 int ov23_0224AC0C(void);
-int sub_02025E68(void);
+int TrainerInfo_Size(void);
 
 static UnkStruct_ov97_0223DF54 Unk_ov97_0223DF54[] = {
     {0x5, 0x5, 0x16, 0xE, 0x2B7, 0x10, NULL}
@@ -580,7 +580,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
     v5 = MessageLoader_Init(1, 26, 550, 81);
     v4 = sub_0200B358(81);
 
-    if (sub_02025F30(v6->unk_0C) == 1) {
+    if (TrainerInfo_Gender(v6->unk_0C) == 1) {
         v7 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | ((15 & 0xff) << 0)));
     } else {
         v7 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((15 & 0xff) << 0)));
@@ -1001,7 +1001,7 @@ static int ov97_0222BD70 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_08 = sub_02027560(v0->unk_04);
     v0->unk_10 = sub_02025E5C(v0->unk_04);
     v0->unk_4C = sub_02027520(v0->unk_08);
-    v0->unk_50 = sub_02025F58(v0->unk_0C);
+    v0->unk_50 = TrainerInfo_BadgeCount(v0->unk_0C);
     v0->unk_12C = 15;
 
     ov97_02237694(81);

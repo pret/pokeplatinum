@@ -15,7 +15,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -77,7 +77,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     BoxPokemon * unk_114;
     int unk_118;
     int unk_11C;
-    UnkStruct_02025E6C * unk_120;
+    TrainerInfo * unk_120;
     UnkStruct_ov94_0223FD4C_sub1 unk_124;
     UnkStruct_ov94_0223BA88 unk_12C;
     UnkStruct_ov94_0223BA88 unk_250[7];

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_0200D0F4_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_02078B40_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -832,8 +832,8 @@ void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMove
 void sub_02077D3C(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7);
 void sub_02077DB4(UnkStruct_0202CC84 *param0, int param1, u16 monSpecies, int param3, int param4, int param5, int param6, int param7, u8 param8);
 BOOL sub_02077E3C(Pokemon *mon);
-void sub_02077E64(Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
-void sub_02077EE4(Pokemon *mon, UnkStruct_02025E6C *param1, int monPokeball, int param3, int param4, int param5);
+void sub_02077E64(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
+void sub_02077EE4(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3, int param4, int param5);
 void sub_02077F0C(Pokemon *mon, u32 param1, int param2);
 BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID);
 BOOL Pokemon_CanFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
@@ -866,7 +866,7 @@ int Pokemon_GetLowestFlagIndex(u32 num);
 BOOL sub_02078804(u16 param0);
 u16 sub_02078824(u8 index);
 BOOL sub_02078838(Pokemon *mon);
-BOOL sub_0207884C(BoxPokemon *boxMon, UnkStruct_02025E6C *param1, int heapID);
+BOOL sub_0207884C(BoxPokemon *boxMon, TrainerInfo *param1, int heapID);
 int sub_020788D0(int param0);
 void sub_0207893C(Pokemon *mon);
 void sub_0207896C(BoxPokemon *boxMon);

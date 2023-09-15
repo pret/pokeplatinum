@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
@@ -26,7 +26,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202CBE4.h"
 #include "unk_020366A0.h"
@@ -39,7 +39,7 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02025E6C * unk_08;
+    TrainerInfo * unk_08;
     UnkStruct_02025E5C * unk_0C;
 } UnkStruct_ov5_021E1D20;
 
@@ -97,7 +97,7 @@ static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1
 
     sub_0200B8C8(param0, 0, param1->unk_04);
     sub_0200B498(param0, 1, param1->unk_08);
-    sub_0200B60C(param0, 2, sub_02025F58(param1->unk_08), 1, 0, 1);
+    sub_0200B60C(param0, 2, TrainerInfo_BadgeCount(param1->unk_08), 1, 0, 1);
 
     if (param1->unk_00 >= 100) {
         v0 = 3;

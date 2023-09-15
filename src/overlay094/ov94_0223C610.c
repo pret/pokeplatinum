@@ -29,7 +29,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "overlay094/ov94_0223BCB0.h"
@@ -101,7 +101,7 @@ int ov94_0223C610 (UnkStruct_ov94_0223FD4C * param0, int param1)
         param0->unk_2C = 0;
         param0->unk_34 = 1;
 
-        ov94_02243FA8(param0, sub_02025F30(param0->unk_00->unk_1C));
+        ov94_02243FA8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
     } else {
         if (param0->unk_1110 == 1) {
             sub_0200F174(0, 1, 1, 0x0, 6, 1, 62);
@@ -489,7 +489,7 @@ static int ov94_0223CC28 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_0223CDD8 (UnkStruct_ov94_0223FD4C * param0)
 {
-    ov94_022440B8(param0, sub_02025F30(param0->unk_00->unk_1C));
+    ov94_022440B8(param0, TrainerInfo_Gender(param0->unk_00->unk_1C));
 
     param0->unk_2C = 8;
     param0->unk_10F0 = 0;

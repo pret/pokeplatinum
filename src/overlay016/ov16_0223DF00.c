@@ -16,7 +16,7 @@
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -56,7 +56,7 @@
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
 #include "unk_0202CD50.h"
@@ -109,7 +109,7 @@ UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 u16 ov16_0223E0D8(BattleSystem * param0, int param1);
 TrainerData * ov16_0223E120(BattleSystem * param0, int param1);
-UnkStruct_02025E6C * ov16_0223E16C(BattleSystem * param0, int param1);
+TrainerInfo * ov16_0223E16C(BattleSystem * param0, int param1);
 UnkStruct_0207D3C0 * ov16_0223E1AC(BattleSystem * param0);
 UnkStruct_0207D99C * ov16_0223E1B0(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);
@@ -200,7 +200,7 @@ void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
 void ov16_0223F8DC(BattleSystem * param0, int param1);
-u32 ov16_0223F904(Party * param0, UnkStruct_02025E6C * param1);
+u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
 void ov16_0223F938(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL ov16_0223F9E0(BattleSystem * param0, int param1);
@@ -439,7 +439,7 @@ TrainerData * ov16_0223E120 (BattleSystem * param0, int param1)
     }
 }
 
-UnkStruct_02025E6C * ov16_0223E16C (BattleSystem * param0, int param1)
+TrainerInfo * ov16_0223E16C (BattleSystem * param0, int param1)
 {
     if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
         return param0->unk_48[param1];
@@ -462,7 +462,7 @@ UnkStruct_0207D99C * ov16_0223E1B0 (BattleSystem * param0)
 
 u32 ov16_0223E1B4 (BattleSystem * param0, int param1)
 {
-    return sub_02025F30(param0->unk_48[param1]);
+    return TrainerInfo_Gender(param0->unk_48[param1]);
 }
 
 int ov16_0223E1C4 (BattleSystem * param0, int param1)
@@ -1669,7 +1669,7 @@ void ov16_0223F8DC (BattleSystem * param0, int param1)
     }
 }
 
-u32 ov16_0223F904 (Party * param0, UnkStruct_02025E6C * param1)
+u32 ov16_0223F904 (Party * param0, TrainerInfo * param1)
 {
     static const u8 v0[] = {
         2, 4, 6, 9, 12, 16, 20, 25, 30,
@@ -1677,9 +1677,9 @@ u32 ov16_0223F904 (Party * param0, UnkStruct_02025E6C * param1)
     u32 v1, v2;
     u8 v3;
 
-    v3 = sub_02025F58(param1);
+    v3 = TrainerInfo_BadgeCount(param1);
     v1 = Party_GetMaxLevel(param0) * 4 * v0[v3];
-    v2 = sub_02025F74(param1);
+    v2 = TrainerInfo_Money(param1);
 
     if (v1 > v2) {
         v1 = v2;
@@ -1775,7 +1775,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
                 }
 
                 for (v7 = 0; v7 < 4; v7++) {
-                    if (sub_02025FCC(param0->unk_48[v7]) == 0) {
+                    if (TrainerInfo_GameCode(param0->unk_48[v7]) == 0) {
                         break;
                     }
                 }

@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
@@ -15,7 +15,7 @@
 #include "narc.h"
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
 #include "unk_02054D00.h"
@@ -164,8 +164,8 @@ void ov5_021EFBDC (UnkStruct_0203CDB0 * param0)
     v2->unk_00 = (24 * 60);
 
     {
-        UnkStruct_02025E6C * v4 = sub_02025E38(param0->unk_0C);
-        v3 = ov5_021EFF4C(sub_02025F20(v4), v0);
+        TrainerInfo * v4 = sub_02025E38(param0->unk_0C);
+        v3 = ov5_021EFF4C(TrainerInfo_ID(v4), v0);
     }
 
     if (sub_0202D844(v1) == v0) {

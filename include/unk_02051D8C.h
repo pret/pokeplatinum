@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02051D8C_H
 #define POKEPLATINUM_UNK_02051D8C_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
@@ -19,7 +19,7 @@ BattleParams * sub_02051F4C(int param0, const UnkStruct_0203CDB0 * param1);
 void sub_020520A4(BattleParams * param0);
 void sub_0205213C(BattleParams * param0, Pokemon * param1, int param2);
 void sub_02052164(BattleParams * param0, const Party * param1, int param2);
-void sub_02052184(BattleParams * param0, const UnkStruct_02025E6C * param1, int param2);
+void sub_02052184(BattleParams * param0, const TrainerInfo * param1, int param2);
 void sub_020521A4(BattleParams * param0, const UnkStruct_0202CC84 * param1, int param2);
 void sub_020521B8(BattleParams * param0, const UnkStruct_0203CDB0 * param1, UnkStruct_021C0794 * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6);
 void sub_02052314(BattleParams * param0, const UnkStruct_0203CDB0 * param1);

@@ -11,7 +11,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095EAC_sub1.h"
@@ -53,7 +53,7 @@ struct UnkStruct_02095EAC_t {
     int unk_380;
     int unk_384;
     u8 unk_388[8][2];
-    UnkStruct_02025E6C * unk_398[8][2];
+    TrainerInfo * unk_398[8][2];
     u8 unk_3D8[16384];
     u16 unk_43D8;
     u8 unk_43DA;

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -79,7 +79,7 @@ typedef struct {
     Party * unk_50;
     UnkStruct_0205AA50 unk_54;
     UnkStruct_0205AA50 unk_64;
-    UnkStruct_02025E6C * unk_74;
+    TrainerInfo * unk_74;
     UnkStruct_020149F0 * unk_78;
     UnkStruct_0205AA50 * unk_7C;
     u8 unk_80;

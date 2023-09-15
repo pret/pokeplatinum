@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 
@@ -11,7 +11,7 @@
 
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020507CC.h"
 #include "unk_0206A8DC.h"
@@ -133,9 +133,9 @@ static BOOL ov6_02246A9C (UnkStruct_0203CDB0 * param0)
 
 static BOOL ov6_02246AB0 (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_0C);
+    TrainerInfo * v0 = sub_02025E38(param0->unk_0C);
 
-    if (sub_02025F58(v0) >= 5) {
+    if (TrainerInfo_BadgeCount(v0) >= 5) {
         return 1;
     } else {
         return 0;

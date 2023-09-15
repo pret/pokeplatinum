@@ -4,7 +4,7 @@
 #include "constants/battle.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
@@ -20,7 +20,7 @@
 #include "unk_020021B0.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02027F84.h"
 #include "unk_0202CC64.h"
 #include "unk_0202F1D4.h"
@@ -76,7 +76,7 @@ static void sub_0207ADB4(int param0, int param1, void * param2, void * param3);
 static void sub_0207ACB4(UnkStruct_0201CD38 * param0, void * param1);
 static void sub_0207AD40(UnkStruct_0201CD38 * param0, void * param1);
 static void sub_0207AE34(int param0, int param1, void * param2, void * param3);
-static void sub_0207ADD4(UnkStruct_02025E6C * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
+static void sub_0207ADD4(TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
 
 static const UnkStruct_02039A58 Unk_020F099C[] = {
     {sub_0207ADB4, sub_02032944, NULL},
@@ -136,7 +136,7 @@ static int sub_0207A758 (void)
 
 static int sub_0207A75C (void)
 {
-    return sub_02025E68();
+    return TrainerInfo_Size();
 }
 
 static int sub_0207A764 (void)
@@ -314,14 +314,14 @@ static void sub_0207A934 (int param0, int param1, void * param2, void * param3)
 
 BOOL sub_0207A960 (UnkStruct_0207A778 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     if (sub_02035B54() != 264) {
         return 0;
     }
 
-    v0 = (UnkStruct_02025E6C *)&param0->unk_20[0];
-    sub_02025E80(param0->unk_00->unk_D0[0], v0);
+    v0 = (TrainerInfo *)&param0->unk_20[0];
+    TrainerInfo_Copy(param0->unk_00->unk_D0[0], v0);
 
     return 1;
 }
@@ -336,7 +336,7 @@ BOOL sub_0207A988 (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(25, (void *)&param0->unk_20[0], sub_02025E68());
+    return sub_0203597C(25, (void *)&param0->unk_20[0], TrainerInfo_Size());
 }
 
 static void sub_0207A9BC (int param0, int param1, void * param2, void * param3)
@@ -442,7 +442,7 @@ BOOL sub_0207AAC8 (UnkStruct_0207A778 * param0)
 BOOL sub_0207AAFC (UnkStruct_0207A778 * param0)
 {
     UnkStruct_02027F8C * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     if (sub_02035B54() != 264) {
         return 0;
@@ -652,16 +652,16 @@ static void sub_0207ADB4 (int param0, int param1, void * param2, void * param3)
     ov16_0223F350(v0, 1);
 }
 
-static void sub_0207ADD4 (UnkStruct_02025E6C * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
+static void sub_0207ADD4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
 {
     int v0;
 
-    sub_020021B0(param2->unk_00, sub_02025EF0(param0));
+    GF_strcpy(param2->unk_00, TrainerInfo_Name(param0));
 
-    param2->unk_10 = sub_02025F20(param0);
-    param2->unk_14 = sub_02025FD8(param0);
-    param2->unk_15 = sub_02025FCC(param0);
-    param2->unk_16 = sub_02025F30(param0);
+    param2->unk_10 = TrainerInfo_ID(param0);
+    param2->unk_14 = TrainerInfo_RegionCode(param0);
+    param2->unk_15 = TrainerInfo_GameCode(param0);
+    param2->unk_16 = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
         param2->unk_18[v0] = param1[v0].unk_10;

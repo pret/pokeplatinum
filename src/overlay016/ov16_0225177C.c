@@ -1,9 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02098700_decl.h"
@@ -20,7 +17,7 @@
 #include "narc.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020366A0.h"
 #include "pokemon.h"
 #include "move_table.h"
@@ -5997,7 +5994,7 @@ BOOL BattleSystem_CanPickCommand (BattleContext *battleSys, int battler)
 
 void ov16_02259A5C (BattleSystem * param0, BattleContext * param1, Pokemon * param2)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1;
     int v2;
     int v3;
@@ -6033,17 +6030,17 @@ BOOL ov16_02259AC0 (BattleContext * param0, int param1)
 
 BOOL ov16_02259ADC (BattleSystem * param0, BattleContext * param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     u32 v1;
     u32 v2;
     const u16 * v3;
 
     v0 = ov16_0223E16C(param0, 0);
-    v1 = sub_02025F20(v0);
-    v2 = sub_02025F30(v0);
-    v3 = sub_02025EF0(v0);
+    v1 = TrainerInfo_ID(v0);
+    v2 = TrainerInfo_Gender(v0);
+    v3 = TrainerInfo_Name(v0);
 
-    if ((v1 == param1->battleMons[param1->attacker].OTId) && (v2 == param1->battleMons[param1->attacker].OTGender) && (sub_02002238(v3, &param1->battleMons[param1->attacker].OTName[0], 7) == 0)) {
+    if ((v1 == param1->battleMons[param1->attacker].OTId) && (v2 == param1->battleMons[param1->attacker].OTGender) && (GF_strncmp(v3, &param1->battleMons[param1->attacker].OTName[0], 7) == 0)) {
         return 1;
     }
 
@@ -6052,20 +6049,20 @@ BOOL ov16_02259ADC (BattleSystem * param0, BattleContext * param1)
 
 BOOL ov16_02259B38 (BattleSystem * param0, Pokemon * param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     u32 v1;
     u32 v2;
     const u16 * v3;
     u16 v4[7 + 1];
 
     v0 = ov16_0223E16C(param0, 0);
-    v1 = sub_02025F20(v0);
-    v2 = sub_02025F30(v0);
-    v3 = sub_02025EF0(v0);
+    v1 = TrainerInfo_ID(v0);
+    v2 = TrainerInfo_Gender(v0);
+    v3 = TrainerInfo_Name(v0);
 
     Pokemon_GetValue(param1, MON_DATA_144, &v4[0]);
 
-    if ((v1 == Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL)) && (v2 == Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL)) && (sub_02002238(v3, &v4[0], 7) == 0)) {
+    if ((v1 == Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL)) && (v2 == Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL)) && (GF_strncmp(v3, &v4[0], 7) == 0)) {
         return 1;
     }
 

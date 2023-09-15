@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02027F84.h"
 #include "unk_020366A0.h"
 #include "unk_020508D4.h"
@@ -195,14 +195,14 @@ static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * para
     WMBssDesc * v0;
     int v1;
     UnkStruct_0203330C * v2;
-    UnkStruct_02025E6C * v3;
+    TrainerInfo * v3;
 
     for (v1 = 0; v1 < 10; v1++) {
         v0 = sub_0205B774(param1, v1);
 
         if (v0 != NULL) {
             v2 = (UnkStruct_0203330C *)v0->gameInfo.userGameInfo;
-            v3 = (UnkStruct_02025E6C *)v2->unk_10;
+            v3 = (TrainerInfo *)v2->unk_10;
         } else {
             v2 = NULL;
             v3 = NULL;
@@ -211,8 +211,8 @@ static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * para
         switch (param0->unk_0C[v1].unk_01) {
         case 0:
             if (v0 != NULL) {
-                param0->unk_0C[v1].unk_08 = sub_02025F8C(v3);
-                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, sub_02025F20(v3));
+                param0->unk_0C[v1].unk_08 = TrainerInfo_Appearance(v3);
+                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, TrainerInfo_ID(v3));
                 param0->unk_0C[v1].unk_0C = v2->unk_00;
 
                 if (sub_0205C340(param0, v1, v0, param3)) {

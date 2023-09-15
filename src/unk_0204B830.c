@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
@@ -24,7 +24,7 @@
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_0202854C.h"
 #include "unk_020298BC.h"
@@ -188,7 +188,7 @@ static void sub_0204BA88 (UnkStruct_0204B830 * param0, u16 * param1, u16 * param
 static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 {
     UnkUnion_0204C4D0 * v0 = sub_0204B844(param0);
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_0C);
+    TrainerInfo * v1 = sub_02025E38(param0->unk_0C);
     UnkStruct_020507E4 * v2 = sub_020507E4(param0->unk_0C);
     Party * v3;
     Pokemon * v4;
@@ -289,9 +289,9 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
     }
 
     if (v0->val1.unk_00 == 0) {
-        Strbuf* v15 = sub_02025F04(v1, 32);
-        u32 v16 = sub_02025F20(v1);
-        u32 v17 = sub_02025F30(v1);
+        Strbuf* v15 = TrainerInfo_NameNewStrbuf(v1, 32);
+        u32 v16 = TrainerInfo_ID(v1);
+        u32 v17 = TrainerInfo_Gender(v1);
 
         v6 = Pokemon_New(32);
 

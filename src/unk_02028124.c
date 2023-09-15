@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -16,7 +14,7 @@
 #include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02028124.h"
 #include "pokemon.h"
 #include "unk_02079D40.h"
@@ -94,7 +92,7 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
     u8 v0, v1, v2, v3;
     u16 v4;
     u32 v5, v6, v7;
-    UnkStruct_02025E6C * v8;
+    TrainerInfo * v8;
     Party * v9;
     Pokemon * v10;
 
@@ -104,10 +102,10 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
     v9 = Party_GetFromSavedata(param3);
     v8 = sub_02025E38(param3);
 
-    sub_020021B0(param0->unk_08, sub_02025EF0(v8));
+    GF_strcpy(param0->unk_08, TrainerInfo_Name(v8));
 
-    param0->unk_04 = (u8)sub_02025F30(v8);
-    param0->unk_00 = sub_02025F20(v8);
+    param0->unk_04 = (u8)TrainerInfo_Gender(v8);
+    param0->unk_00 = TrainerInfo_ID(v8);
     param0->unk_1E = 0;
 
     for (v0 = param2, v1 = 0; v0 < Party_GetCurrentCount(v9); v0++) {

@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_020302DC_decl.h"
 #include "struct_decls/struct_0203041C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
@@ -61,7 +61,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_020302D0.h"
 #include "unk_0203061C.h"
@@ -3070,15 +3070,15 @@ static void ov107_02244A98 (UnkStruct_ov107_02241D6C * param0, u32 param1)
 static void ov107_02244AB4 (UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4)
 {
     u32 v0;
-    const UnkStruct_02025E6C * v1;
+    const TrainerInfo * v1;
     Strbuf* v2;
 
     v1 = sub_02025E38(param0->unk_1CC);
     v2 = Strbuf_Init((7 + 1), 100);
 
-    Strbuf_CopyChars(v2, sub_02025EF0(v1));
+    Strbuf_CopyChars(v2, TrainerInfo_Name(v1));
 
-    if (sub_02025F30(v1) == 0) {
+    if (TrainerInfo_Gender(v1) == 0) {
         v0 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
     } else {
         v0 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
@@ -3093,12 +3093,12 @@ static void ov107_02244AB4 (UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA5
 
 static void ov107_02244B24 (UnkStruct_ov107_02241D6C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u8 param4)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     u32 v1;
 
     v0 = sub_02032EE8((sub_0203608C() ^ 1));
 
-    if (sub_02025F30(v0) == 0) {
+    if (TrainerInfo_Gender(v0) == 0) {
         v1 = ((u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | (((0 & 0xff) << 0))));
     } else {
         v1 = ((u32)(((3 & 0xff) << 16) | ((4 & 0xff) << 8) | (((0 & 0xff) << 0))));
@@ -3628,7 +3628,7 @@ BOOL ov107_0224529C (UnkStruct_ov107_02241D6C * param0, u16 param1, u16 param2)
 void ov107_022452F4 (UnkStruct_ov107_02241D6C * param0, u16 param1)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v1 = 0;
     v2 = sub_02025E38(param0->unk_1CC);
@@ -3636,7 +3636,7 @@ void ov107_022452F4 (UnkStruct_ov107_02241D6C * param0, u16 param1)
     param0->unk_444[v1] = param1;
     v1 += 1;
 
-    param0->unk_444[v1] = sub_02025F30(v2);
+    param0->unk_444[v1] = TrainerInfo_Gender(v2);
     v1 += 1;
 
     for (v0 = 0; v0 < 3; v0++) {

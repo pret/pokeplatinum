@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020961E8_sub1.h"
@@ -60,7 +60,7 @@ struct UnkStruct_020961E8_t {
     int unk_3B0;
     int unk_3B4;
     u8 unk_3B8[8][2];
-    UnkStruct_02025E6C * unk_3C8[5][2];
+    TrainerInfo * unk_3C8[5][2];
     int unk_3F0[5];
     int unk_404;
     u16 unk_408;

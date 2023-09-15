@@ -6,7 +6,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -19,7 +19,7 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
@@ -259,11 +259,11 @@ BOOL sub_020478E4 (UnkStruct_0203E724 * param0)
 {
     int v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    UnkStruct_02025E6C * v2 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v2 = sub_02025E38(sub_0203D174(param0->unk_34));
     UnkStruct_0200B358 ** v3 = sub_0203F098(v1, 15);
     u8 v4 = (*((param0)->unk_08++));
 
-    v0 = sub_0205CA14(sub_02025F30(v2), sub_02025F8C(v2), 2);
+    v0 = sub_0205CA14(TrainerInfo_Gender(v2), TrainerInfo_Appearance(v2), 2);
     sub_0200B998(*v3, v4, v0);
 
     return 0;

@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
@@ -76,7 +76,7 @@
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020277A4.h"
 #include "unk_020279FC.h"
@@ -761,7 +761,7 @@ void sub_0203D884 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1)
 void * sub_0203D8AC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203D8AC * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     int v2 = 0, v3 = 0;
     sub_0203A76C(sub_0203A790(param0->unk_0C));
 
@@ -1003,7 +1003,7 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 *
     param0->unk_10 = param1->unk_0C;
     param0->unk_1C = param1->unk_9C;
     param0->unk_20 = sub_0202CD88(param1->unk_0C);
-    param0->unk_38 = Heap_AllocFromHeap(32, sub_02025E68());
+    param0->unk_38 = Heap_AllocFromHeap(32, TrainerInfo_Size());
     param0->unk_3C = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
     param0->unk_40 = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
     param0->unk_00 = param1;
@@ -1255,8 +1255,8 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
     switch (v1->unk_0C->unk_00) {
     case 0:
     {
-        UnkStruct_02025E6C * v2 = sub_02025E38(v0->unk_0C);
-        sub_02025EC0(v2, v1->unk_0C->unk_1C);
+        TrainerInfo * v2 = sub_02025E38(v0->unk_0C);
+        TrainerInfo_SetName(v2, v1->unk_0C->unk_1C);
     }
     break;
     case 1:

@@ -5,7 +5,7 @@
 #include "struct_defs/struct_02014A84.h"
 #include "struct_decls/struct_02014EC4_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 
@@ -42,7 +42,7 @@ void sub_0205BEA8(int param0);
 int sub_0205BF44(UnkStruct_0205B43C * param0, UnkStruct_0200B358 * param1);
 void sub_0205C010(UnkStruct_0205B43C * param0, UnkStruct_02014A84 * param1);
 UnkStruct_02014A84 * sub_0205C028(UnkStruct_0205B43C * param0);
-void sub_0205C040(UnkStruct_0200B358 * param0, int param1, int param2, UnkStruct_02025E6C * param3, UnkStruct_02014EC4 * param4);
+void sub_0205C040(UnkStruct_0200B358 * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4);
 void sub_0205C12C(UnkStruct_02014A84 * param0);
 void sub_0205C154(UnkStruct_0205B43C * param0);
 void * sub_0205C17C(UnkStruct_0205B43C * param0);

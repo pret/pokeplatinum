@@ -141,7 +141,7 @@ BOOL sub_0202B4D8 (const UnkStruct_0202B4A0 * param0, const u16 * param1)
     for (v0 = 0; v0 < 6; v0++) {
         v1 = &param0->unk_00[v0];
 
-        if (!sub_02002238(param1, v1->unk_00, 7 + 1)) {
+        if (!GF_strncmp(param1, v1->unk_00, 7 + 1)) {
             return 1;
         }
     }
@@ -166,11 +166,11 @@ BOOL sub_0202B530 (const UnkStruct_0202B510 * param0, const UnkStruct_0202B510 *
 {
     int v0;
 
-    if (sub_02002238(param0->unk_10, param1->unk_10, 7 + 1)) {
+    if (GF_strncmp(param0->unk_10, param1->unk_10, 7 + 1)) {
         return 0;
     }
 
-    if (sub_02002238(param0->unk_00, param1->unk_00, 7 + 1)) {
+    if (GF_strncmp(param0->unk_00, param1->unk_00, 7 + 1)) {
         return 0;
     }
 

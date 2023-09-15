@@ -7,7 +7,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -28,7 +28,7 @@
 #include "unk_0201E3D8.h"
 #include "unk_02022594.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020508D4.h"
 #include "unk_02056720.h"
 #include "unk_02099D44.h"
@@ -824,9 +824,9 @@ UnkStruct_021C0794 * ov25_02254544 (const UnkStruct_ov25_0225424C * param0)
 
 int ov25_02254548 (const UnkStruct_ov25_0225424C * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param0->unk_54);
+    TrainerInfo * v0 = sub_02025E38(param0->unk_54);
 
-    if (sub_02025F30(v0) == 1) {
+    if (TrainerInfo_Gender(v0) == 1) {
         return 0;
     } else {
         return 1;

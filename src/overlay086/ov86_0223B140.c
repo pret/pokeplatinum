@@ -7,16 +7,12 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008900.h"
@@ -58,7 +54,7 @@
 #include "unk_02020020.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202CBE4.h"
 #include "pokemon.h"
 #include "party.h"
@@ -194,7 +190,7 @@ typedef struct {
     Strbuf* unk_1C;
     MessageLoader * unk_20;
     Pokemon * unk_24;
-    const UnkStruct_02025E6C * unk_28;
+    const TrainerInfo * unk_28;
     int unk_2C;
     int unk_30;
     int unk_34;
@@ -302,7 +298,7 @@ static void ov86_0223D220(UnkStruct_0201CD38 * param0);
 static void ov86_0223D264(UnkStruct_ov86_0223D264 * param0, fx32 param1, fx32 param2, int param3);
 static fx32 ov86_0223D284(UnkStruct_ov86_0223D264 * param0);
 static BOOL ov86_0223D2A4(UnkStruct_ov86_0223D264 * param0);
-static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const UnkStruct_02025E6C * param2);
+static int ov86_0223D2A8(UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const TrainerInfo * param2);
 static UnkStruct_0201CD38 * ov86_0223CAE4(UnkStruct_ov86_0223C9B0 * param0, fx16 param1, fx32 param2, int param3);
 
 int ov86_0223B140 (UnkStruct_020067E8 * param0, int * param1)
@@ -883,7 +879,7 @@ static void ov86_0223BAC8 (UnkStruct_ov86_0223B3C8 * param0, NNSG2dCellDataBank 
     NNS_G2dLoadImage1DMapping(v7, 38400, NNS_G2D_VRAM_TYPE_2DMAIN, &v5);
     NNS_G2dLoadPalette(v8, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &v6);
 
-    sub_02076AAC(((sub_02025F30(param0->unk_0C->unk_00) == 1) ? 1 : 0), 2, &v4);
+    sub_02076AAC(((TrainerInfo_Gender(param0->unk_0C->unk_00) == 1) ? 1 : 0), 2, &v4);
     sub_020135F0(v4.unk_00, v4.unk_14, 63, &v0[0], param0->unk_310);
 
     DC_FlushRange(param0->unk_310, 3200);
@@ -1438,7 +1434,7 @@ static void ov86_0223C72C (UnkStruct_ov86_0223B3C8 * param0)
     sub_0201D78C(&param0->unk_14, 0, param0->unk_1C48, v0, 4, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     sub_0200B498(param0->unk_1C44, 0, param0->unk_0C->unk_00);
 
-    sub_0200B60C(param0->unk_1C44, 1, sub_02025F24(param0->unk_0C->unk_00), 5, 2, 1);
+    sub_0200B60C(param0->unk_1C44, 1, TrainerInfo_ID_LowHalf(param0->unk_0C->unk_00), 5, 2, 1);
     sub_0200B60C(param0->unk_1C44, 2, sub_0202CC58(param0->unk_0C->unk_08), 3, 0, 1);
     sub_0200B60C(param0->unk_1C44, 3, sub_0202CC5C(param0->unk_0C->unk_08), 2, 2, 1);
     MessageLoader_GetStrbuf(param0->unk_1C50, 13, param0->unk_1C4C);
@@ -1916,7 +1912,7 @@ static BOOL ov86_0223D2A4 (UnkStruct_ov86_0223D264 * param0)
     return param0->unk_10;
 }
 
-static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const UnkStruct_02025E6C * param2)
+static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, const TrainerInfo * param2)
 {
     BOOL v0;
     int v1 = 6;
@@ -1951,7 +1947,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
         {
             u32 v3, v4;
 
-            v3 = sub_02025F20(param2);
+            v3 = TrainerInfo_ID(param2);
             v4 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
 
             if (v3 != v4) {
@@ -1959,7 +1955,7 @@ static int ov86_0223D2A8 (UnkStruct_ov86_0223B3C8 * param0, Pokemon * param1, co
                 break;
             }
 
-            sub_02025EF4(param2, param0->unk_1C48);
+            TrainerInfo_NameStrbuf(param2, param0->unk_1C48);
             Pokemon_GetValue(param1, MON_DATA_145, param0->unk_1C4C);
 
             if (Strbuf_Compare(param0->unk_1C48, param0->unk_1C4C)) {

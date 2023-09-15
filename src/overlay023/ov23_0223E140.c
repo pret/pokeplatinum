@@ -13,7 +13,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -55,7 +55,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202854C.h"
 #include "unk_0202B604.h"
@@ -1791,7 +1791,7 @@ static int ov23_0223F970 (UnkStruct_ov23_02256EB0 * param0)
 {
     UnkStruct_021C0794 * v0 = sub_0203D174(Unk_ov23_02257740->unk_00);
     UnkStruct_020298B0 * v1 = sub_020298B0(v0);
-    BOOL v2 = sub_02025F20(sub_02025E38(v0)) % 2;
+    BOOL v2 = TrainerInfo_ID(sub_02025E38(v0)) % 2;
     BOOL v3 = sub_02027474(sub_02027560(v0));
     int v4 = 0;
 
@@ -3100,8 +3100,8 @@ static void ov23_022414D4 (void)
 BOOL ov23_022415B8 (Strbuf *param0)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v1;
+    TrainerInfo * v2;
 
     if (!Unk_ov23_02257740) {
         return 0;

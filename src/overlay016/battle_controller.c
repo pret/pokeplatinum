@@ -13,7 +13,7 @@
 #include "constants/battle/message_tags.h"
 #include "constants/narc_files/battle_skill_subseq.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 #include "pokemon.h"
@@ -30,7 +30,7 @@
 #include "unk_02005474.h"
 #include "unk_0200F174.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02034198.h"
 #include "pokemon.h"
 #include "move_table.h"
@@ -2127,7 +2127,7 @@ static int ov16_0224E13C (BattleSystem * param0, BattleContext * param1, int * p
     int v0, v1;
     u32 v2;
     u8 v3 = 0;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
 
     v2 = BattleSystem_BattleType(param0);
     v4 = ov16_0223E16C(param0, 0);
@@ -2156,21 +2156,21 @@ static int ov16_0224E13C (BattleSystem * param0, BattleContext * param1, int * p
         return 0;
     }
 
-    if (sub_02025F58(v4) >= 8) {
+    if (TrainerInfo_BadgeCount(v4) >= 8) {
         return 0;
     }
 
     v3 = 10;
 
-    if (sub_02025F58(v4) >= 2) {
+    if (TrainerInfo_BadgeCount(v4) >= 2) {
         v3 = 30;
     }
 
-    if (sub_02025F58(v4) >= 4) {
+    if (TrainerInfo_BadgeCount(v4) >= 4) {
         v3 = 50;
     }
 
-    if (sub_02025F58(v4) >= 6) {
+    if (TrainerInfo_BadgeCount(v4) >= 6) {
         v3 = 70;
     }
 

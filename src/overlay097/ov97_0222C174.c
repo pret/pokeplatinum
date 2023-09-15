@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -49,7 +49,7 @@
 #include "strbuf.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
 #include "unk_0202DAB4.h"
@@ -365,7 +365,7 @@ typedef struct {
     UnkStruct_02018340 * unk_04;
     UnkStruct_021C0794 * unk_08;
     UnkStruct_02026324 * unk_0C;
-    UnkStruct_02025E6C * unk_10;
+    TrainerInfo * unk_10;
     UnkStruct_020279FC * unk_14;
     UnkStruct_0205AA50 unk_18;
     UnkStruct_0205AA50 unk_28;
@@ -513,13 +513,13 @@ static void ov97_0222C210 (UnkStruct_ov97_0222C388 * param0)
     u32 v1;
     const u16 * v2;
 
-    v2 = sub_02025EF0(param0->unk_10);
+    v2 = TrainerInfo_Name(param0->unk_10);
 
     for (v0 = 0; v0 < 7 + 1; v0++) {
         Unk_ov97_0223F180[v0] = ov97_0222C174(v2[v0]);
     }
 
-    v1 = sub_02025F24(param0->unk_10);
+    v1 = TrainerInfo_ID_LowHalf(param0->unk_10);
     ov97_0222C1A4(&Unk_ov97_0223F190[0], v1);
     Unk_ov97_0223F190[5] = 0;
 }
@@ -642,7 +642,7 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     param0->unk_F0.unk_14 = v6;
 
     sub_0200B498(v6, 0, param0->unk_10);
-    sub_0200B60C(v6, 1, sub_02025F24(param0->unk_10), 5, 2, 1);
+    sub_0200B60C(v6, 1, TrainerInfo_ID_LowHalf(param0->unk_10), 5, 2, 1);
 
     ov97_0223795C(param0->unk_04, &param0->unk_F0, 3, 13, 66);
     param0->unk_F0.unk_08 = 0;

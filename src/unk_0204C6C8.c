@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -108,7 +108,7 @@ BOOL sub_0204C7D8 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C808 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02025E6C * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
     UnkStruct_021C0794 * v2 = v0->unk_0C;
     u16 * v3 = sub_02025E50(v2);
     u32 v4, v5;
@@ -129,7 +129,7 @@ BOOL sub_0204C808 (UnkStruct_0203E724 * param0)
 BOOL sub_0204C854 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_02025E6C * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
     UnkStruct_021C0794 * v2 = v0->unk_0C;
     u16 * v3 = sub_02025E50(v2);
     u16 * v4 = inline_0204FCAC(param0);

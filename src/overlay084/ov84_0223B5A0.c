@@ -52,7 +52,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202D7A8.h"
 #include "unk_020393C8.h"
@@ -415,7 +415,7 @@ int ov84_0223B5A0 (UnkStruct_020067E8 * param0, int * param1)
     ov84_0223B9AC(v0);
 
     v0->unk_00 = sub_02018340(6);
-    v0->unk_425 = sub_02025F30(v0->unk_CC);
+    v0->unk_425 = TrainerInfo_Gender(v0->unk_CC);
 
     sub_0200F174(1, 3, 3, 0x0, 6, 1, 6);
     sub_02017DD4(3, 8);
@@ -2864,7 +2864,7 @@ static int ov84_0223E920 (UnkStruct_ov84_0223B5A0 * param0)
     }
 
     sub_02005748(1604);
-    sub_02025F94(param0->unk_CC, param0->unk_488 * param0->unk_48C);
+    TrainerInfo_GiveMoney(param0->unk_CC, param0->unk_488 * param0->unk_48C);
 
     if (param0->unk_488 == 1) {
         if (param0->unk_C4->unk_75 != 0xff) {

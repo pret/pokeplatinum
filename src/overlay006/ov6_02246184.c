@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 
@@ -14,7 +12,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202F180.h"
 #include "map_header.h"
 #include "unk_020559DC.h"
@@ -49,7 +47,7 @@ typedef struct {
 typedef struct UnkStruct_ov6_02246204_t {
     UnkStruct_ov6_0224630C * unk_00;
     Pokemon * unk_04;
-    UnkStruct_02025E6C * unk_08;
+    TrainerInfo * unk_08;
     u32 unk_0C;
     u32 unk_10;
 };
@@ -72,15 +70,15 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     v0->unk_10 = param0;
     v0->unk_0C = param1;
     v0->unk_04 = Pokemon_New(param0);
-    v0->unk_08 = sub_02025E6C(param0);
+    v0->unk_08 = TrainerInfo_New(param0);
 
-    sub_02025E8C(v0->unk_08);
+    TrainerInfo_Init(v0->unk_08);
     v1 = ov6_022462E4(param0, 4 + param1);
 
     Strbuf_ToChars(v1, v2, 128);
     Strbuf_Free(v1);
-    sub_02025EC0(v0->unk_08, v2);
-    sub_02025F2C(v0->unk_08, v0->unk_00->unk_40);
+    TrainerInfo_SetName(v0->unk_08, v2);
+    TrainerInfo_SetGender(v0->unk_08, v0->unk_00->unk_40);
 
     return v0;
 }

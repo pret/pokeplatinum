@@ -17,7 +17,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -149,7 +149,7 @@ typedef struct {
 typedef struct {
     u8 unk_00[4];
     u8 unk_04[4];
-    const UnkStruct_02025E6C * unk_08[4];
+    const TrainerInfo * unk_08[4];
 } UnkStruct_ov114_0225E0F8;
 
 typedef struct {
@@ -299,7 +299,7 @@ static void ov114_0225D07C(UnkStruct_ov114_0225CFCC * param0);
 static void ov114_0225D084(UnkStruct_ov114_0225D084 * param0, u32 param1);
 static void ov114_0225D0D8(UnkStruct_ov114_0225D084 * param0);
 static void ov114_0225D0F8(UnkStruct_ov114_0225D084 * param0);
-static void ov114_0225D104(UnkStruct_ov114_0225D084 * param0, const UnkStruct_02025E6C * param1);
+static void ov114_0225D104(UnkStruct_ov114_0225D084 * param0, const TrainerInfo * param1);
 static void ov114_0225D114(UnkStruct_ov114_0225D084 * param0, u32 param1);
 static void ov114_0225D124(UnkStruct_ov114_0225D084 * param0, u32 param1, u32 param2);
 static void ov114_0225D138(UnkStruct_ov114_0225D084 * param0, u32 param1, u32 param2);
@@ -319,7 +319,7 @@ static BOOL ov114_0225D43C(const UnkStruct_ov114_0225D338 * param0, u32 param1);
 static void ov114_0225D458(UnkStruct_ov114_0225D338 * param0, u32 param1);
 static void ov114_0225D474(UnkStruct_ov114_0225D338 * param0, u32 param1);
 static void ov114_0225DAC0(UnkStruct_ov114_0225DAC0 * param0, u32 param1, u32 param2, NNSG2dScreenData * param3, UnkStruct_ov114_0225CEF0 * param4, u32 param5, u32 param6, UnkStruct_ov114_0225CFCC * param7, UnkStruct_ov114_0225CDB4 * param8, u32 param9);
-static void ov114_0225DC44(UnkStruct_ov114_0225DAC0 * param0, UnkStruct_ov114_0225D084 * param1, const UnkStruct_02025E6C * param2, s16 param3, s16 param4, u32 param5);
+static void ov114_0225DC44(UnkStruct_ov114_0225DAC0 * param0, UnkStruct_ov114_0225D084 * param1, const TrainerInfo * param2, s16 param3, s16 param4, u32 param5);
 static void ov114_0225DCA0(UnkStruct_ov114_0225DAC0 * param0, UnkStruct_ov114_0225D084 * param1, BOOL param2, u32 param3, u32 param4, s16 param5);
 static void ov114_0225DD0C(UnkStruct_ov114_0225DAC0 * param0, u32 param1);
 static void ov114_0225DD2C(UnkStruct_ov114_0225DAC0 * param0, UnkStruct_ov114_0225D084 * param1, u32 param2, s16 param3, s16 param4, u32 param5);
@@ -798,7 +798,7 @@ void ov114_0225C700 (UnkStruct_ov114_0225C76C * param0, BOOL param1, UnkStruct_0
     int v0;
     int v1;
     u32 v2;
-    UnkStruct_02025E6C * v3;
+    TrainerInfo * v3;
 
     memset(param0, 0, sizeof(UnkStruct_ov114_0225C76C));
 
@@ -871,7 +871,7 @@ BOOL ov114_0225C7A4 (const UnkStruct_ov114_0225C76C * param0, u32 param1)
     return v1;
 }
 
-UnkStruct_02025E6C * ov114_0225C7CC (const UnkStruct_ov114_0225C76C * param0, u32 param1)
+TrainerInfo * ov114_0225C7CC (const UnkStruct_ov114_0225C76C * param0, u32 param1)
 {
     u32 v0;
 
@@ -1455,7 +1455,7 @@ static void ov114_0225D0F8 (UnkStruct_ov114_0225D084 * param0)
     sub_0200C41C(param0->unk_04);
 }
 
-static void ov114_0225D104 (UnkStruct_ov114_0225D084 * param0, const UnkStruct_02025E6C * param1)
+static void ov114_0225D104 (UnkStruct_ov114_0225D084 * param0, const TrainerInfo * param1)
 {
     sub_0200B498(param0->unk_04, 0, param1);
 }
@@ -2009,7 +2009,7 @@ static void ov114_0225DAC0 (UnkStruct_ov114_0225DAC0 * param0, u32 param1, u32 p
     param0->unk_18 = param1;
 }
 
-static void ov114_0225DC44 (UnkStruct_ov114_0225DAC0 * param0, UnkStruct_ov114_0225D084 * param1, const UnkStruct_02025E6C * param2, s16 param3, s16 param4, u32 param5)
+static void ov114_0225DC44 (UnkStruct_ov114_0225DAC0 * param0, UnkStruct_ov114_0225D084 * param1, const TrainerInfo * param2, s16 param3, s16 param4, u32 param5)
 {
     ov114_0225D104(param1, param2);
 

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
 
@@ -70,7 +70,7 @@ static void ov104_0223C738(UnkStruct_0201CD38 * param0, void * param1);
 static void ov104_0223C720(UnkStruct_0201CD38 * param0, void * param1);
 static void ov104_0223C72C(UnkStruct_0201CD38 * param0, void * param1);
 static void ov104_0223C948(UnkStruct_02018340 * param0, int param1);
-static void ov104_0223CC74(UnkStruct_ov104_0223C4CC * param0, int param1, const UnkStruct_02025E6C * param2);
+static void ov104_0223CC74(UnkStruct_ov104_0223C4CC * param0, int param1, const TrainerInfo * param2);
 static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC * param0);
 static void ov104_0223CB80(UnkStruct_ov104_0223C4CC * param0);
 static void ov104_0223CFF4(UnkStruct_ov104_0223C4CC * param0);
@@ -126,7 +126,7 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
     UnkStruct_ov104_0223C4CC * v0;
     int v1, v2;
     UnkStruct_ov104_02230BE4 * v3 = sub_0209B970(param0);
-    const UnkStruct_02025E6C * v4;
+    const TrainerInfo * v4;
 
     v4 = sub_02025E38(v3->unk_08);
     v2 = v3->unk_24;
@@ -644,7 +644,7 @@ static void ov104_0223CC10 (UnkStruct_ov104_0223C4CC * param0)
     NARC_dtor(v0);
 }
 
-static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const UnkStruct_02025E6C * param2)
+static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const TrainerInfo * param2)
 {
     param0->unk_14 = ov63_0222BE18(32, 94);
     param0->unk_18 = ov63_0222BCE8((256 / 16), (256 / 16), 94);

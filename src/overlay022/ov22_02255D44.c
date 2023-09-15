@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
 #include "pokemon.h"
@@ -63,7 +63,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
@@ -163,8 +163,8 @@ static void ov22_02256C70(UnkStruct_0201CD38 * param0, void * param1);
 static void ov22_02256DB8(UnkStruct_ov22_02255D44 * param0, BOOL * param1);
 static void ov22_02256DE0(UnkStruct_0201CD38 * param0, void * param1);
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 * param0, int param1, int param2, int param3);
-static void ov22_02256F38(UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const UnkStruct_02025E6C * param2);
-static void ov22_02256FD8(UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const UnkStruct_02025E6C * param3);
+static void ov22_02256F38(UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const TrainerInfo * param2);
+static void ov22_02256FD8(UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const TrainerInfo * param3);
 static void ov22_02257104(UnkStruct_ov22_02255D44 * param0);
 static void ov22_0225718C(UnkStruct_ov22_02255D44 * param0);
 static void ov22_022571D4(UnkStruct_ov22_02255D44 * param0);
@@ -1144,7 +1144,7 @@ static void ov22_02256DE0 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const UnkStruct_02025E6C * param2)
+static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const TrainerInfo * param2)
 {
     UnkStruct_ov22_02259560 * v0;
     int v1;
@@ -1155,8 +1155,8 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
     sub_02029FAC(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param2) {
-        v2 = sub_02025F04(param2, 13);
-        v3 = sub_02025F30(param2);
+        v2 = TrainerInfo_NameNewStrbuf(param2, 13);
+        v3 = TrainerInfo_Gender(param2);
         sub_0202A0EC(param0, v2, v3);
         Strbuf_Free(v2);
     }
@@ -1188,7 +1188,7 @@ static void ov22_02256F38 (UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 
     sub_02029F5C(param0);
 }
 
-static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const UnkStruct_02025E6C * param3)
+static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const TrainerInfo * param3)
 {
     int v0;
     int v1;
@@ -1203,8 +1203,8 @@ static void ov22_02256FD8 (UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 
     sub_0202A284(param0, param1->unk_2C.unk_4C.unk_0C, &param1->unk_2C.unk_4C);
 
     if (param3) {
-        v4 = sub_02025F04(param3, 13);
-        v5 = sub_02025F30(param3);
+        v4 = TrainerInfo_NameNewStrbuf(param3, 13);
+        v5 = TrainerInfo_Gender(param3);
         sub_0202A4B4(param0, v4, v5);
         Strbuf_Free(v4);
     }

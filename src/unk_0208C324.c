@@ -6,8 +6,6 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F410C.h"
@@ -43,7 +41,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
 #include "unk_020507CC.h"
@@ -2188,11 +2186,11 @@ static int sub_0208E958 (UnkStruct_0208D7BC * param0)
     return 18;
 }
 
-void sub_0208E9C0 (UnkStruct_02098D38 * param0, const UnkStruct_02025E6C * param1)
+void sub_0208E9C0 (UnkStruct_02098D38 * param0, const TrainerInfo * param1)
 {
-    param0->unk_08 = sub_02025EF0(param1);
-    param0->unk_0C = sub_02025F20(param1);
-    param0->unk_10 = (u8)sub_02025F30(param1);
+    param0->unk_08 = TrainerInfo_Name(param1);
+    param0->unk_0C = TrainerInfo_ID(param1);
+    param0->unk_10 = (u8)TrainerInfo_Gender(param1);
 }
 
 u32 sub_0208E9E0 (void)

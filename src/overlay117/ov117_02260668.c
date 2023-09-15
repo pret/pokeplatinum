@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_0207C690.h"
@@ -55,7 +55,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
 #include "unk_020366A0.h"
@@ -866,7 +866,7 @@ static void ov117_022613B8 (UnkStruct_ov117_02261280 * param0)
 static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     Strbuf* v3;
     int v4;
     u32 v5;
@@ -877,7 +877,7 @@ static void ov117_022613EC (UnkStruct_ov117_02261280 * param0)
     for (v0 = 0; v0 < param0->unk_00->unk_30; v0++) {
         if (v4 != param0->unk_00->unk_2C[v0]) {
             v2 = ov114_0225C7CC(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]);
-            v3 = sub_02025F04(v2, 110);
+            v3 = TrainerInfo_NameNewStrbuf(v2, 110);
             v1 = ov117_022622C4(param0, param0->unk_00->unk_2C[v0]);
 
             if (ov114_0225C7A4(&param0->unk_00->unk_00, param0->unk_00->unk_2C[v0]) == 1) {

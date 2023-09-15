@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
 #include "overlay023/struct_ov23_02253F60.h"
 #include "overlay084/struct_ov84_02240FA8.h"
@@ -19,8 +19,8 @@ int ov23_02253F60(UnkStruct_ov23_02253E2C * param0, int param1, BOOL param2, Unk
 int ov23_02253F78(UnkStruct_ov23_02253E2C * param0, int param1, BOOL param2, UnkStruct_ov23_02253F60 param3, int param4);
 void ov23_02253F98(UnkStruct_ov23_02253E2C * param0);
 void ov23_02254044(UnkStruct_ov23_02253E2C * param0);
-void ov23_02254050(UnkStruct_ov23_02253E2C * param0, UnkStruct_02025E6C * param1);
-void ov23_02254068(UnkStruct_ov23_02253E2C * param0, UnkStruct_02025E6C * param1);
+void ov23_02254050(UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1);
+void ov23_02254068(UnkStruct_ov23_02253E2C * param0, TrainerInfo * param1);
 void ov23_02254080(UnkStruct_ov23_02253E2C * param0, int param1);
 void ov23_02254098(UnkStruct_ov23_02253E2C * param0, int param1);
 void ov23_022540B0(UnkStruct_ov23_02253E2C * param0, int param1);

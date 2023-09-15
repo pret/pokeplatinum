@@ -12,7 +12,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0209BDF8.h"
 #include "struct_decls/struct_0209C194_decl.h"
@@ -64,7 +64,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     int unk_3C0;
     int unk_3C4;
     u8 unk_3C8[8][2];
-    UnkStruct_02025E6C * unk_3D8[5][2];
+    TrainerInfo * unk_3D8[5][2];
     int unk_400[5];
     int unk_414;
     u16 unk_418;

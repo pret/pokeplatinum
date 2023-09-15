@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014FB0_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 
 #include "unk_02014D38.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay006/ov6_02247830.h"
 
 static void ov6_02247830 (u8 * param0, u8 param1, u8 param2)
@@ -93,14 +93,14 @@ static int ov6_02247890 (const UnkStruct_02014FB0 * param0, u16 param1, u16 para
     return -1;
 }
 
-int ov6_022479D0 (const UnkStruct_02025E6C * param0, u16 param1, u16 param2, u16 param3, u16 param4, u32 param5)
+int ov6_022479D0 (const TrainerInfo * param0, u16 param1, u16 param2, u16 param3, u16 param4, u32 param5)
 {
     int v0;
     u16 v1;
     UnkStruct_02014FB0 * v2;
 
     v2 = sub_02014FB0(param5);
-    v1 = sub_02025F24(param0);
+    v1 = TrainerInfo_ID_LowHalf(param0);
     v0 = ov6_02247890(v2, v1, param1, param2, param3, param4);
 
     sub_02014FF0(v2);

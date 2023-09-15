@@ -41,7 +41,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202854C.h"
 #include "unk_0202B604.h"
@@ -1368,7 +1368,7 @@ u32 ov7_0224E8F4 (UnkStruct_ov7_0224D008 * param0)
     if (param0->unk_2A9 == 3) {
         return sub_0202D230(sub_0202D750(param0->unk_284), 0, 0);
     } else {
-        return sub_02025F74(param0->unk_270);
+        return TrainerInfo_Money(param0->unk_270);
     }
 }
 
@@ -1377,7 +1377,7 @@ void ov7_0224E920 (UnkStruct_ov7_0224D008 * param0, u32 param1)
     if (param0->unk_2A9 == 3) {
         sub_0202D230(sub_0202D750(param0->unk_284), (u16)param1, 6);
     } else {
-        sub_02025FB8(param0->unk_270, param1);
+        TrainerInfo_TakeMoney(param0->unk_270, param1);
     }
 }
 

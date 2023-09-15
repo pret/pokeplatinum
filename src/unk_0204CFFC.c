@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "unk_0202440C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "map_header.h"
 #include "unk_0203CC84.h"
 #include "unk_0204CFFC.h"
@@ -69,14 +69,14 @@ BOOL sub_0204D0E8 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     Pokemon * v1;
-    UnkStruct_02025E6C * v2 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v2 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 * v3 = inline_0204FCAC(param0);
     u16 * v4 = inline_0204FCAC(param0);
     u16 v5, v6;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), *v3);
     v5 = Pokemon_GetValue(v1, MON_DATA_OT_ID, NULL);
-    v6 = sub_02025F20(v2);
+    v6 = TrainerInfo_ID(v2);
 
     if (v5 == v6) {
         *v4 = 0;
@@ -95,7 +95,7 @@ BOOL sub_0204D154 (UnkStruct_0203E724 * param0)
     Party * v3;
     Pokemon * v4;
     UnkStruct_0203CDB0 * v5 = param0->unk_34;
-    UnkStruct_02025E6C * v6 = sub_02025E38(v5->unk_0C);
+    TrainerInfo * v6 = sub_02025E38(v5->unk_0C);
     u16 v7 = inline_02049538(param0);
     u16 v8 = inline_02049538(param0);
 

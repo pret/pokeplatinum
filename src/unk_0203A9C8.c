@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -58,7 +58,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0202B604.h"
@@ -575,7 +575,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1->unk_20 = sub_02001AF4(&v3, 28, 4, v1->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     sub_0201A9A4(&v1->unk_00);
-    sub_0203B318(v1, v1->unk_30, v5, sub_02025F30(sub_02025E38(v0->unk_0C)));
+    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(sub_02025E38(v0->unk_0C)));
 }
 
 static u32 sub_0203AFCC (UnkStruct_020708E0 * param0, u8 * param1)
@@ -936,7 +936,7 @@ static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v1;
     UnkStruct_ov21_021D0D80 * v2;
     UnkStruct_02026324 * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
     UnkStruct_020507E4 * v5;
 
     v0 = sub_02050A60(param0);

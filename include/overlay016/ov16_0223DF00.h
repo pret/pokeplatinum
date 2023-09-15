@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -72,7 +72,7 @@ UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 u16 ov16_0223E0D8(BattleSystem * param0, int param1);
 TrainerData * ov16_0223E120(BattleSystem * param0, int param1);
-UnkStruct_02025E6C * ov16_0223E16C(BattleSystem * param0, int param1);
+TrainerInfo * ov16_0223E16C(BattleSystem * param0, int param1);
 UnkStruct_0207D3C0 * ov16_0223E1AC(BattleSystem * param0);
 UnkStruct_0207D99C * ov16_0223E1B0(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);
@@ -165,7 +165,7 @@ void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
 void ov16_0223F8DC(BattleSystem * param0, int param1);
-u32 ov16_0223F904(Party * param0, UnkStruct_02025E6C * param1);
+u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
 void ov16_0223F938(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL ov16_0223F9E0(BattleSystem * param0, int param1);

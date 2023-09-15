@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -18,7 +18,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202B37C.h"
 #include "unk_0202CD50.h"
 #include "unk_0202E840.h"
@@ -60,7 +60,7 @@ void sub_0202E858 (UnkStruct_0202E858 * param0)
 
 BOOL sub_0202E870 (UnkStruct_0202E858 * param0)
 {
-    if (sub_020021F0(param0->unk_08) == 0) {
+    if (GF_strlen(param0->unk_08) == 0) {
         return 0;
     }
 
@@ -191,14 +191,14 @@ void * sub_0202E9FC (UnkStruct_021C0794 * param0, int param1)
     u32 v1, v2;
     UnkStruct_0202E91C * v3;
     Strbuf* v4;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0);
+    TrainerInfo * v5 = sub_02025E38(param0);
     u32 * v6;
 
     v3 = Heap_AllocFromHeapAtEnd(param1, sizeof(UnkStruct_0202E91C));
     MI_CpuClear8(v3, sizeof(UnkStruct_0202E91C));
 
     v1 = sub_0202B400(sub_0202B4A0(param0), 1);
-    v4 = sub_02025F04(v5, param1);
+    v4 = TrainerInfo_NameNewStrbuf(v5, param1);
     v6 = sub_0202E924(param0, param1);
 
     for (v0 = 0; v0 < 13; v0++) {
@@ -393,7 +393,7 @@ UnkStruct_0202EE10 * sub_0202ED8C (UnkStruct_021C0794 * param0, int param1, int 
     u32 v2;
     UnkStruct_0202EE10 * v3;
     u32 * v4;
-    UnkStruct_02025E6C * v5;
+    TrainerInfo * v5;
 
     v5 = sub_02025E38(param0);
     v3 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_0202EE10));
@@ -408,7 +408,7 @@ UnkStruct_0202EE10 * sub_0202ED8C (UnkStruct_021C0794 * param0, int param1, int 
     for (v0 = 0; v0 < v3->unk_00; v0++) {
         v3->unk_04[v0].unk_00 = v2;
         v3->unk_04[v0].unk_04 = v4[v0 + v1];
-        v3->unk_04[v0].unk_08 = sub_02025F04(v5, param2);
+        v3->unk_04[v0].unk_08 = TrainerInfo_NameNewStrbuf(v5, param2);
     }
 
     Heap_FreeToHeap(v4);

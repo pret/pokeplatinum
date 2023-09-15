@@ -5,19 +5,18 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02025E5C.h"
-#include "struct_defs/struct_02025E6C.h"
 #include "struct_defs/struct_020279FC.h"
 
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "coins.h"
 #include "unk_0202CBE4.h"
 
 struct UnkStruct_02025E0C_t {
     UnkStruct_020279FC unk_00;
-    UnkStruct_02025E6C unk_04;
+    TrainerInfo unk_04;
     u16 unk_24;
     UnkStruct_02025E5C unk_26;
 };
@@ -32,12 +31,12 @@ void sub_02025E0C (UnkStruct_02025E0C * param0)
     MI_CpuClearFast(param0, sizeof(UnkStruct_02025E0C));
 
     sub_02027A1C(&param0->unk_00);
-    sub_02025E8C(&param0->unk_04);
+    TrainerInfo_Init(&param0->unk_04);
     Coins_Init(&param0->unk_24);
     sub_0202CBE4(&param0->unk_26);
 }
 
-UnkStruct_02025E6C * sub_02025E38 (UnkStruct_021C0794 * param0)
+TrainerInfo * sub_02025E38 (UnkStruct_021C0794 * param0)
 {
     UnkStruct_02025E0C * v0;
 

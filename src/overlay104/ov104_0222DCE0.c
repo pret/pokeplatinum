@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -28,7 +28,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202C858.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
@@ -357,7 +357,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     MessageLoader * v2;
     int v3;
     int v4 = 0;
-    UnkStruct_02025E6C * v5 = sub_02025E38(param0);
+    TrainerInfo * v5 = sub_02025E38(param0);
 
     v0 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
     sub_02077EE4(param1, sub_02025E38(param0), 4, 0, 0, 11);
@@ -450,7 +450,7 @@ void ov104_0222E284 (BattleParams * param0, UnkStruct_ov104_0223A348_sub1 * para
     param0->unk_18[param3] = param1->unk_00;
     param0->trainerData[param3].class = param1->unk_04;
 
-    sub_020021B0(&param0->trainerData[param3].unk_14[0], &param1->unk_08[0]);
+    GF_strcpy(&param0->trainerData[param3].unk_14[0], &param1->unk_08[0]);
 
     v0 = (UnkStruct_02014A84 *)&param1->unk_20[0];
     param0->trainerData[param3].unk_24 = *v0;
@@ -618,13 +618,13 @@ void ov104_0222E5D0 (UnkStruct_0200B358 * param0, u32 param1)
     return;
 }
 
-int ov104_0222E5F0 (const UnkStruct_02025E6C * param0)
+int ov104_0222E5F0 (const TrainerInfo * param0)
 {
     u32 v0;
     int v1, v2;
 
-    v0 = sub_02025F30(param0);
-    v2 = sub_02025FCC(param0);
+    v0 = TrainerInfo_Gender(param0);
+    v2 = TrainerInfo_GameCode(param0);
 
     switch (v2) {
     case 12:

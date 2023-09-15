@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_02005474.h"
@@ -51,7 +51,7 @@ void ov107_02249CE0 (u32 param0, u16 param1)
 
 void ov107_02249CF4 (UnkStruct_0200B358 * param0, u32 param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     u32 v1;
 
     v0 = sub_02032EE8((sub_0203608C() ^ 1));

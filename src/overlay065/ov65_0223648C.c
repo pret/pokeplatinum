@@ -14,7 +14,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
@@ -62,7 +62,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
 #include "unk_020329E0.h"
@@ -1076,7 +1076,7 @@ static void ov65_022371FC (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
 
 static void ov65_0223726C (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, int param2, int param3, u32 param4)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     v0 = sub_02032EE8(param2);
     sub_0200B498(param0->unk_04, param3, v0);
@@ -1084,11 +1084,11 @@ static void ov65_0223726C (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
 
 static void ov65_02237284 (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, int param2, int param3, u32 param4)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     u16 v1;
 
     v0 = sub_02032EE8(param2);
-    v1 = sub_02025F24(v0);
+    v1 = TrainerInfo_ID_LowHalf(v0);
 
     sub_0200B60C(param0->unk_04, param3, v1, 5, 2, 1);
 }
@@ -1416,7 +1416,7 @@ static void ov65_022376A0 (UnkStruct_ov65_022367A8 * param0, u32 param1, u32 par
 static void ov65_022376D0 (UnkStruct_ov65_022367A8 * param0, u32 param1, u32 param2)
 {
     UnkStruct_ov65_022376D0 v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     if (param0->unk_30.unk_1C0[param1].unk_00 != NULL) {
         return;
@@ -1427,7 +1427,7 @@ static void ov65_022376D0 (UnkStruct_ov65_022367A8 * param0, u32 param1, u32 par
     if (param1 != sub_0203608C()) {
         v1 = sub_02032EE8(param1);
         GF_ASSERT(v1 != NULL);
-        v0.unk_0A = sub_02025F8C(v1);
+        v0.unk_0A = TrainerInfo_Appearance(v1);
     } else {
         if (param0->unk_00.unk_00->unk_00.unk_1E == 0) {
             v0.unk_0A = 0x0;

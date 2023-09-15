@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 #include "pokemon.h"
@@ -33,7 +33,7 @@ u8 ov104_0222E3A8(u16 param0);
 BOOL ov104_0222E3E4(UnkStruct_0204B184 * param0, const u16 param1[], const u16 param2[], int param3, int param4, u16 param5[], int param6);
 void ov104_0222E4BC(u8 param0, u16 param1, u16 param2, u16 * param3, UnkStruct_ov104_0223A348_sub2 * param4, u8 * param5, u32 * param6, u8 param7);
 void ov104_0222E5D0(UnkStruct_0200B358 * param0, u32 param1);
-int ov104_0222E5F0(const UnkStruct_02025E6C * param0);
+int ov104_0222E5F0(const TrainerInfo * param0);
 void ov104_0222E630(UnkStruct_021C0794 * param0);
 
 #endif // POKEPLATINUM_OV104_0222DCE0_H

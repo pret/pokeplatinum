@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -218,7 +218,7 @@ void ov23_022421EC (void)
     ov23_02254210(Unk_ov23_02257748->unk_128);
 }
 
-BOOL ov23_0224223C (UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, int param2, Strbuf *param3)
+BOOL ov23_0224223C (TrainerInfo * param0, TrainerInfo * param1, int param2, Strbuf *param3)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -240,7 +240,7 @@ BOOL ov23_0224223C (UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, in
     return 0;
 }
 
-BOOL ov23_022422A8 (UnkStruct_02025E6C * param0, int param1, int param2, Strbuf *param3)
+BOOL ov23_022422A8 (TrainerInfo * param0, int param1, int param2, Strbuf *param3)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -266,8 +266,8 @@ static BOOL ov23_02242308 (Strbuf *param0)
     int v0;
     UnkStruct_0200B358 * v1;
     Strbuf* v2;
-    UnkStruct_02025E6C * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v3;
+    TrainerInfo * v4;
 
     if (!Unk_ov23_02257748) {
         return 0;

@@ -16,7 +16,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -61,7 +61,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_02030EA4.h"
 #include "unk_020393C8.h"
@@ -644,10 +644,10 @@ static Strbuf* ov68_0225CC44 (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 
 
 static void ov68_0225CC78 (UnkStruct_ov68_0225CB70 * param0, u32 param1, u32 param2)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     const UnkStruct_ov66_0222E71C * v1;
 
-    v0 = sub_02025E6C(param2);
+    v0 = TrainerInfo_New(param2);
     v1 = ov66_0222E3BC(param0->unk_30);
 
     ov66_0222E640(v1, v0, param2);

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_020961E8_decl.h"
 
 #include "struct_defs/struct_0203DE34.h"
@@ -51,7 +51,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
 #include "unk_0202CD50.h"
@@ -1453,7 +1453,7 @@ static void ov59_021D23B0 (u16 * param0)
 static int ov59_021D23FC (void)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v1 = 0;
 
@@ -1481,9 +1481,9 @@ static BOOL ov59_021D2418 (UnkStruct_0205AA50 * param0, int param1, u32 param2, 
 
     for (v0 = 0; v0 < 5; v0++) {
         if (param3->unk_3C8[v0][0] != NULL) {
-            u16 v3 = sub_02025F24(param3->unk_3C8[v0][0]);
+            u16 v3 = TrainerInfo_ID_LowHalf(param3->unk_3C8[v0][0]);
 
-            sub_02025EF4(param3->unk_3C8[v0][0], param3->unk_2C[v0]);
+            TrainerInfo_NameStrbuf(param3->unk_3C8[v0][0], param3->unk_2C[v0]);
             sub_0200B60C(param3->unk_24, 0, v3, 5, 2, 1);
 
             v2 = sub_0200B29C(param3->unk_24, param3->unk_28, 1, 51);
@@ -1538,7 +1538,7 @@ static BOOL ov59_021D254C (UnkStruct_020961E8 * param0)
         param0->unk_4AC8[v0][1] = param0->unk_4AC8[v0][0];
 
         if (param0->unk_3C8[v0][0] != NULL) {
-            param0->unk_4AC8[v0][0].val2.unk_00 = sub_02025F20(param0->unk_3C8[v0][0]);
+            param0->unk_4AC8[v0][0].val2.unk_00 = TrainerInfo_ID(param0->unk_3C8[v0][0]);
             param0->unk_4AC8[v0][0].val2.unk_04 = 1;
         } else {
             param0->unk_4AC8[v0][0].val1 = 0;
@@ -1622,8 +1622,8 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
 
             GF_ASSERT(param0->unk_3C8[v0][0] != NULL);
 
-            v3 = sub_02025F30(param0->unk_3C8[v0][0]);
-            v2 = sub_02025F8C(param0->unk_3C8[v0][0]);
+            v3 = TrainerInfo_Gender(param0->unk_3C8[v0][0]);
+            v2 = TrainerInfo_Appearance(param0->unk_3C8[v0][0]);
 
             if (sub_0203608C() == v0) {
                 sub_02021D6C(param0->unk_28C[v0 + 1], 38 + v3 * 2);
@@ -1640,7 +1640,7 @@ static void ov59_021D26E8 (UnkStruct_020961E8 * param0)
             break;
         case 3:
             if (sub_0203608C() == v0) {
-                int v4 = sub_02025F30(param0->unk_3C8[v0][0]);
+                int v4 = TrainerInfo_Gender(param0->unk_3C8[v0][0]);
                 sub_02021D6C(param0->unk_28C[v0 + 1], 38 + v4 * 2 + 1);
             } else {
                 sub_02021D6C(param0->unk_28C[v0 + 1], 27 + v0 * 2 + 1);

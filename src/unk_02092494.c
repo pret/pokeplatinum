@@ -1,10 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-
-#include "pokemon.h"
 #include "struct_defs/struct_02090800.h"
 
 #include "message.h"
@@ -13,7 +9,7 @@
 #include "unk_02017038.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "pokemon.h"
 #include "unk_02092494.h"
 
@@ -25,7 +21,7 @@ static void sub_02092B1C(UnkStruct_02090800 * param0, int param1, int param2);
 static void sub_02092C24(UnkStruct_02090800 * param0);
 static void sub_02092E10(UnkStruct_02090800 * param0);
 static void sub_02092E4C(UnkStruct_02090800 * param0);
-static void sub_020932A4(BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2);
+static void sub_020932A4(BoxPokemon * param0, TrainerInfo * param1, int param2);
 static void sub_020932F0(BoxPokemon * param0, int param1, int param2);
 static void sub_02093368(BoxPokemon * param0, int param1);
 static void sub_020933C8(BoxPokemon * param0);
@@ -720,12 +716,12 @@ static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
     return v0;
 }
 
-void sub_0209304C (Pokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209304C (Pokemon * param0, TrainerInfo * param1, int param2, int param3, int param4)
 {
     sub_0209305C(&param0->box, param1, param2, param3, param4);
 }
 
-void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2, int param3, int param4)
+void sub_0209305C (BoxPokemon * param0, TrainerInfo * param1, int param2, int param3, int param4)
 {
     switch (param2) {
     case 0:
@@ -823,11 +819,11 @@ void sub_0209305C (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2,
     }
 }
 
-static void sub_020932A4 (BoxPokemon * param0, UnkStruct_02025E6C * param1, int param2)
+static void sub_020932A4 (BoxPokemon * param0, TrainerInfo * param1, int param2)
 {
-    int v0 = sub_02025F20(param1);
-    int v1 = sub_02025F30(param1);
-    Strbuf* v2 = sub_02025F04(param1, param2);
+    int v0 = TrainerInfo_ID(param1);
+    int v1 = TrainerInfo_Gender(param1);
+    Strbuf* v2 = TrainerInfo_NameNewStrbuf(param1, param2);
 
     BoxPokemon_SetValue(param0, 7, &v0);
     BoxPokemon_SetValue(param0, 157, &v1);

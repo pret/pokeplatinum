@@ -2,16 +2,13 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
-
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202DA40.h"
 #include "unk_02056720.h"
 #include "pokemon.h"
@@ -24,7 +21,7 @@
 
 FS_EXTERN_OVERLAY(overlay95);
 
-static UnkStruct_02025E6C * ov94_02244870(UnkStruct_ov94_0223BA88 * param0);
+static TrainerInfo * ov94_02244870(UnkStruct_ov94_0223BA88 * param0);
 static Pokemon * ov94_022448AC(UnkStruct_ov94_0223FD4C * param0, int param1);
 static void ov94_022448E8(UnkStruct_ov94_0223FD4C * param0);
 
@@ -162,14 +159,14 @@ int ov94_0224484C (UnkStruct_ov94_0223FD4C * param0, int param1)
     return 1;
 }
 
-static UnkStruct_02025E6C * ov94_02244870 (UnkStruct_ov94_0223BA88 * param0)
+static TrainerInfo * ov94_02244870 (UnkStruct_ov94_0223BA88 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E6C(62);
+    TrainerInfo * v0 = TrainerInfo_New(62);
 
-    sub_02025E8C(v0);
-    sub_02025EC0(v0, param0->unk_10C);
-    sub_02025FD0(v0, param0->unk_122);
-    sub_02025FDC(v0, param0->unk_123);
+    TrainerInfo_Init(v0);
+    TrainerInfo_SetName(v0, param0->unk_10C);
+    TrainerInfo_SetGameCode(v0, param0->unk_122);
+    TrainerInfo_SetRegionCode(v0, param0->unk_123);
 
     return v0;
 }

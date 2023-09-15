@@ -43,7 +43,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
 #include "unk_0202C858.h"
@@ -1093,13 +1093,13 @@ void ov94_022425A8 (UnkStruct_ov94_0223BA88 * param0, UnkStruct_ov94_0223FD4C * 
         Pokemon_FromBoxPokemon(param1->unk_114, (Pokemon *)param0->unk_00.unk_00);
     }
 
-    sub_020021D0(param0->unk_10C, sub_02025EF0(param1->unk_00->unk_1C), 8);
+    sub_020021D0(param0->unk_10C, TrainerInfo_Name(param1->unk_00->unk_1C), 8);
 
-    param0->unk_11C = sub_02025F24(param1->unk_00->unk_1C);
+    param0->unk_11C = TrainerInfo_ID_LowHalf(param1->unk_00->unk_1C);
     param0->unk_11E = sub_0202C8C0(param1->unk_00->unk_18);
     param0->unk_11F = sub_0202C8C4(param1->unk_00->unk_18);
-    param0->unk_120 = sub_02025F8C(param1->unk_00->unk_1C);
-    param0->unk_F6 = sub_02025F30(param1->unk_00->unk_1C);
+    param0->unk_120 = TrainerInfo_Appearance(param1->unk_00->unk_1C);
+    param0->unk_F6 = TrainerInfo_Gender(param1->unk_00->unk_1C);
     param0->unk_122 = GAME_VERSION;
     param0->unk_123 = GAME_LANGUAGE;
 }

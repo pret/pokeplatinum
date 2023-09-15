@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_STRUCT_OV13_022264F4_H
 #define POKEPLATINUM_STRUCT_OV13_022264F4_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
 
 typedef struct {
     BattleSystem * unk_00;
-    UnkStruct_02025E6C * unk_04;
+    TrainerInfo * unk_04;
     UnkStruct_0207D3C0 * unk_08;
     u32 unk_0C;
     s32 unk_10;

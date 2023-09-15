@@ -5,7 +5,7 @@
 
 #include "data_021BF67C.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -34,7 +34,7 @@
 #include "unk_0202440C.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
@@ -96,7 +96,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
     }
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_D0[v0] = sub_02025E6C(param0);
+        v1->unk_D0[v0] = TrainerInfo_New(param0);
     }
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -157,7 +157,7 @@ BattleParams * sub_02051F38 (int param0, int param1)
 
 BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
+    TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
     UnkStruct_020279FC * v1 = sub_02025E44(param1->unk_0C);
     MessageLoader * v2;
     Strbuf* v3;
@@ -168,11 +168,11 @@ BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
     v2 = MessageLoader_Init(1, 26, 553, param0);
     v3 = Strbuf_Init(8, param0);
 
-    MessageLoader_GetStrbuf(v2, sub_02025F30(v0) ^ 1, v3);
-    sub_02025EC0(v4->unk_D0[0], Strbuf_GetData(v3));
+    MessageLoader_GetStrbuf(v2, TrainerInfo_Gender(v0) ^ 1, v3);
+    TrainerInfo_SetName(v4->unk_D0[0], Strbuf_GetData(v3));
     Strbuf_Free(v3);
     MessageLoader_Free(v2);
-    sub_02025F2C(v4->unk_D0[0], sub_02025F30(v0) ^ 1);
+    TrainerInfo_SetGender(v4->unk_D0[0], TrainerInfo_Gender(v0) ^ 1);
     sub_0205281C(v4, param1);
     sub_02027A10(v1, v4->unk_108);
 
@@ -239,10 +239,10 @@ void sub_02052164 (BattleParams * param0, const Party * param1, int param2)
     Party_cpy(param1, param0->parties[param2]);
 }
 
-void sub_02052184 (BattleParams * param0, const UnkStruct_02025E6C * param1, int param2)
+void sub_02052184 (BattleParams * param0, const TrainerInfo * param1, int param2)
 {
     GF_ASSERT(param2 < 4);
-    sub_02025E80(param1, param0->unk_D0[param2]);
+    TrainerInfo_Copy(param1, param0->unk_D0[param2]);
 }
 
 void sub_020521A4 (BattleParams * param0, const UnkStruct_0202CC84 * param1, int param2)
@@ -252,7 +252,7 @@ void sub_020521A4 (BattleParams * param0, const UnkStruct_0202CC84 * param1, int
 
 void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, UnkStruct_021C0794 * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param2);
+    TrainerInfo * v0 = sub_02025E38(param2);
     Party * v1 = Party_GetFromSavedata(param2);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param2);
     UnkStruct_02026324 * v3 = sub_02027560(param2);
@@ -307,7 +307,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
 {
     int v0;
     u32 v1;
-    UnkStruct_02025E6C * v2 = sub_02025E38(param1->unk_0C);
+    TrainerInfo * v2 = sub_02025E38(param1->unk_0C);
     Party * v3 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v4 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v5 = sub_02027560(param1->unk_0C);
@@ -358,7 +358,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
 
 void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, const Party * param2, const u8 * param3)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
+    TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
     UnkStruct_0207D3C0 * v1 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v2 = sub_02027560(param1->unk_0C);
     UnkStruct_0202CC84 * v3 = sub_0202CC98(param1->unk_0C);
@@ -423,11 +423,11 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
     param0->unk_198 = param1->unk_0C;
 
     if (sub_020326C4(sub_0203895C())) {
-        int v11 = sub_02025F8C(v0);
-        int v12 = sub_02025F30(v0);
+        int v11 = TrainerInfo_Appearance(v0);
+        int v12 = TrainerInfo_Gender(v0);
 
         param0->trainerData[0].class = sub_0205CA14(v12, v11, 1);
-        sub_020021B0(&param0->trainerData[0].unk_14[0], sub_02025EF0(param0->unk_D0[0]));
+        GF_strcpy(&param0->trainerData[0].unk_14[0], TrainerInfo_Name(param0->unk_D0[0]));
         param0->trainerData[2] = param0->trainerData[0];
     } else {
         sub_02052894(param0);
@@ -441,13 +441,13 @@ void sub_020526CC (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
 
 void sub_020526E8 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
+    TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
     u16 * v4 = sub_0203A784(sub_0203A790(param1->unk_0C));
 
-    sub_02025E80(param0->unk_D0[0], v0);
+    TrainerInfo_Copy(param0->unk_D0[0], v0);
     Party_cpy(param0->parties[0], v1);
     sub_0207D3EC(param0->unk_E0, v2);
     sub_02026338(param0->unk_E8, v3);
@@ -457,7 +457,7 @@ void sub_020526E8 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
 
 void sub_02052754 (const BattleParams * param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1->unk_0C);
+    TrainerInfo * v0 = sub_02025E38(param1->unk_0C);
     Party * v1 = Party_GetFromSavedata(param1->unk_0C);
     UnkStruct_0207D3C0 * v2 = sub_0207D990(param1->unk_0C);
     UnkStruct_02026324 * v3 = sub_02027560(param1->unk_0C);
@@ -573,7 +573,7 @@ BOOL sub_02052888 (u32 param0)
 
 void sub_02052894 (BattleParams * param0)
 {
-    param0->trainerData[0].class = sub_02025F30(param0->unk_D0[0]);
-    sub_020021B0(&param0->trainerData[0].unk_14[0], sub_02025EF0(param0->unk_D0[0]));
+    param0->trainerData[0].class = TrainerInfo_Gender(param0->unk_D0[0]);
+    GF_strcpy(&param0->trainerData[0].unk_14[0], TrainerInfo_Name(param0->unk_D0[0]));
     param0->trainerData[2] = param0->trainerData[0];
 }

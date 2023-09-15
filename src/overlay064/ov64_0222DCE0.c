@@ -20,7 +20,7 @@
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -78,7 +78,7 @@
 #include "unk_0202309C.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0203061C.h"
@@ -1158,22 +1158,22 @@ static void ov64_0222E7F8 (UnkStruct_ov64_0222E21C * param0, u64 param1)
 static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3)
 {
     UnkStruct_0202B370 * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     v0 = sub_0202B370(param1);
-    v1 = sub_02025E6C(param3);
+    v1 = TrainerInfo_New(param3);
 
-    sub_02025EC0(v1, sub_0202AEF0(v0, param2));
+    TrainerInfo_SetName(v1, sub_0202AEF0(v0, param2));
     sub_0200B498(param0->unk_214, 0, v1);
     Heap_FreeToHeap(v1);
 }
 
 static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E6C(param3);
+    TrainerInfo * v0 = TrainerInfo_New(param3);
     UnkStruct_0202B370 * v1 = sub_0202B370(param1);
 
-    sub_02025EC0(v0, sub_0202AF34(v1, param2));
+    TrainerInfo_SetName(v0, sub_0202AF34(v1, param2));
     sub_0200B498(param0->unk_214, 0, v0);
     Heap_FreeToHeap(v0);
 }
@@ -1339,11 +1339,11 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
     case 7:
         if (sub_0200F2AC()) {
             u64 v1;
-            UnkStruct_02025E6C * v2;
+            TrainerInfo * v2;
 
-            v2 = sub_02025E6C(param3);
+            v2 = TrainerInfo_New(param3);
 
-            sub_02025EC0(v2, Strbuf_GetData(param1->unk_2C.unk_00));
+            TrainerInfo_SetName(v2, Strbuf_GetData(param1->unk_2C.unk_00));
             sub_0200B498(param2->unk_214, 0, v2);
             Heap_FreeToHeap(v2);
 

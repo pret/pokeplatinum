@@ -27,7 +27,7 @@
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay100/ov100_021D1C44.h"
 #include "overlay100/ov100_021D400C.h"
 #include "overlay100/ov100_021D44C0.h"
@@ -170,7 +170,7 @@ static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
     ov100_021D4AC8(&param0->unk_1A0.unk_10DC[1], 42, param0->unk_1EBC->unk_00);
     sub_02017348(&param0->unk_1A0.unk_10DC[1].unk_00, 0);
 
-    if (sub_02025F30(param0->unk_1EC0->unk_08) != 1) {
+    if (TrainerInfo_Gender(param0->unk_1EC0->unk_08) != 1) {
         ov100_021D4AC8(&param0->unk_1A0.unk_13EC[0], 61, param0->unk_1EBC->unk_00);
         ov100_021D4B4C(0, &param0->unk_1A0.unk_13EC[0], 62, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
     } else {

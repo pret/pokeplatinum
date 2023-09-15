@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CC84.h"
@@ -32,7 +32,7 @@ typedef struct {
     u16 unk_24;
     u8 unk_26;
     u8 unk_27;
-    UnkStruct_02025E6C * unk_28[16];
+    TrainerInfo * unk_28[16];
     UnkUnion_ov97_0222D2B0 unk_68;
     u8 unk_3C0;
     u8 unk_3C1[16];

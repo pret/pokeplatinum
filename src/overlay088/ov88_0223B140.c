@@ -11,7 +11,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
@@ -72,7 +72,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_0202ACE0.h"
 #include "unk_0202B604.h"
@@ -178,7 +178,7 @@ static int ov88_0223D7AC(UnkStruct_02095E80 * param0);
 static int ov88_0223D854(UnkStruct_02095E80 * param0);
 static int ov88_0223D69C(UnkStruct_02095E80 * param0);
 static void ov88_0223D1EC(UnkStruct_02095E80 * param0, int param1);
-static void ov88_0223D0D4(UnkStruct_02025E6C * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
+static void ov88_0223D0D4(TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
 static void ov88_0223C488(NARC * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7);
 
 static const int Unk_ov88_0223EF9C[][2] = {
@@ -360,12 +360,12 @@ static void ov88_0223B2F0 (NNSG2dCharacterData * param0, int param1, int param2,
 static void ov88_0223B320 (UnkStruct_02095E80 * param0)
 {
     Strbuf* v0, * v1, * v2;
-    UnkStruct_02025E6C * v3, * v4;
+    TrainerInfo * v3, * v4;
 
     v3 = sub_02032EE8(sub_0203608C());
     v4 = sub_02032EE8(sub_0203608C() ^ 1);
-    v0 = sub_02025F04(v3, 26);
-    v1 = sub_02025F04(v4, 26);
+    v0 = TrainerInfo_NameNewStrbuf(v3, 26);
+    v1 = TrainerInfo_NameNewStrbuf(v4, 26);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_184, 50);
 
     ov88_0223EC78(&param0->unk_49C[0], v0, 10, 0, 1, 1);
@@ -1167,7 +1167,7 @@ static void ov88_0223C370 (UnkStruct_02095E80 * param0, UnkStruct_020067E8 * par
     Party_InitWithCapacity(param0->unk_2274, 6);
     memset(param0->unk_2274, 0xff, Party_sizeof());
 
-    param0->unk_18C = sub_02025F04(v0->unk_04, 26);
+    param0->unk_18C = TrainerInfo_NameNewStrbuf(v0->unk_04, 26);
     param0->unk_190 = MessageLoader_GetNewStrbuf(param0->unk_184, 42);
 
     sub_02038F8C(v0->unk_14);
@@ -1676,16 +1676,16 @@ static void ov88_0223D0C0 (UnkStruct_021C0794 * param0)
     sub_020359DC(32, v0, 14);
 }
 
-static void ov88_0223D0D4 (UnkStruct_02025E6C * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
+static void ov88_0223D0D4 (TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2)
 {
     int v0;
 
-    sub_020021B0(param2->unk_00, sub_02025EF0(param0));
+    GF_strcpy(param2->unk_00, TrainerInfo_Name(param0));
 
-    param2->unk_10 = sub_02025F20(param0);
-    param2->unk_14 = sub_02025FD8(param0);
-    param2->unk_15 = sub_02025FCC(param0);
-    param2->unk_16 = sub_02025F30(param0);
+    param2->unk_10 = TrainerInfo_ID(param0);
+    param2->unk_14 = TrainerInfo_RegionCode(param0);
+    param2->unk_15 = TrainerInfo_GameCode(param0);
+    param2->unk_16 = TrainerInfo_Gender(param0);
 
     for (v0 = 0; v0 < 16; v0++) {
         param2->unk_18[v0] = param1[v0].unk_10;
@@ -1849,7 +1849,7 @@ static int ov88_0223D4C4 (UnkStruct_02095E80 * param0)
 
 static int ov88_0223D514 (UnkStruct_02095E80 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1;
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
@@ -1875,7 +1875,7 @@ static int ov88_0223D514 (UnkStruct_02095E80 * param0)
 static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     v0 = sub_02001288(param0->unk_36D8);
 
@@ -1894,9 +1894,9 @@ static int ov88_0223D5B8 (UnkStruct_02095E80 * param0)
         param0->unk_36C8 = v0;
 
         {
-            UnkStruct_02025E6C * v2 = sub_02025E6C(26);
+            TrainerInfo * v2 = TrainerInfo_New(26);
 
-            sub_02025EC0(v2, sub_0202AEF0(param0->unk_36EC, v0));
+            TrainerInfo_SetName(v2, sub_0202AEF0(param0->unk_36EC, v0));
             sub_0200B498(param0->unk_36CC, 0, v2);
             Heap_FreeToHeap(v2);
         }
@@ -1946,7 +1946,7 @@ static int ov88_0223D69C (UnkStruct_02095E80 * param0)
 
 static int ov88_0223D740 (UnkStruct_02095E80 * param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1;
 
     switch (ov88_0223ED2C(param0->unk_174, &param0->unk_6BC, &param0->unk_6C8)) {
@@ -2010,7 +2010,7 @@ static int ov88_0223D840 (UnkStruct_02095E80 * param0)
 static int ov88_0223D854 (UnkStruct_02095E80 * param0)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     param0->unk_36C4 = -1;
 
@@ -2523,7 +2523,7 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
     sub_0207893C(v1);
     Pokemon_Copy(v0, param4->unk_3C);
     Pokemon_Copy(v1, param4->unk_40);
-    sub_02025E80(sub_02032EE8(sub_0203608C() ^ 1), param4->unk_38);
+    TrainerInfo_Copy(sub_02032EE8(sub_0203608C() ^ 1), param4->unk_38);
 
     param4->unk_2C = param2;
 
@@ -2544,11 +2544,11 @@ static void ov88_0223E694 (Party * param0, Party * param1, int param2, int param
 static void ov88_0223E7F0 (UnkStruct_0202B628 * param0, Pokemon * param1)
 {
     void * v0;
-    UnkStruct_02025E6C * v1 = sub_02032EE8(sub_0203608C() ^ 1);
+    TrainerInfo * v1 = sub_02032EE8(sub_0203608C() ^ 1);
     u16 v2[10 + 1];
 
     Pokemon_GetValue(param1, MON_DATA_117, v2);
-    v0 = sub_0202C11C((u16 *)sub_02025EF0(v1), sub_02025F30(v1), v2, Pokemon_GetGender(param1), 26);
+    v0 = sub_0202C11C((u16 *)TrainerInfo_Name(v1), TrainerInfo_Gender(v1), v2, Pokemon_GetGender(param1), 26);
     sub_0202B758(param0, v0, 4);
 }
 

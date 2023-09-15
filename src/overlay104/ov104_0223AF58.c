@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
@@ -14,7 +12,7 @@
 
 #include "heap.h"
 #include "unk_0201D15C.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02030108.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
@@ -1580,7 +1578,7 @@ BattleParams * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkStruct_ov10
     Pokemon * v9;
     UnkStruct_ov104_0223A348_sub1 v10;
     UnkStruct_0204B184 * v11;
-    UnkStruct_02025E6C * v12;
+    TrainerInfo * v12;
     Party * v13;
 
     v6 = (param0->unk_05 * 2);
@@ -1650,7 +1648,7 @@ BattleParams * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkStruct_ov10
         sub_02052894(v8);
 
         v12 = sub_02032EE8(1 - sub_0203608C());
-        sub_02025E80(v12, v8->unk_D0[2]);
+        TrainerInfo_Copy(v12, v8->unk_D0[2]);
 
         v11 = ov104_0222DD04(&v10, param0->unk_18[v6 + 1], 11, 178);
         Heap_FreeToHeap(v11);

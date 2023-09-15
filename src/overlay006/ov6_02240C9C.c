@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -21,7 +21,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202D7A8.h"
 #include "map_header.h"
@@ -767,10 +767,10 @@ static BOOL ov6_02241674 (UnkStruct_0203CDB0 * param0, Pokemon * param1, BattleP
         sub_0206978C(param0->unk_94, &v1, &v2);
 
         if (param6->unk_04 == 1) {
-            UnkStruct_02025E6C * v3;
+            TrainerInfo * v3;
 
             v3 = sub_02025E38(sub_0203D174(param0));
-            v0 = ov6_02241F2C(v1, v2, 1, param6->unk_08, sub_02025F20(v3), param5, param1, param2);
+            v0 = ov6_02241F2C(v1, v2, 1, param6->unk_08, TrainerInfo_ID(v3), param5, param1, param2);
         } else {
             v0 = ov6_02241F7C(param0, param1, param5, param4, 1, param2, v1, v2);
         }
@@ -1783,5 +1783,5 @@ static void ov6_02242634 (UnkStruct_0203CDB0 * param0, Pokemon * param1, UnkStru
         }
     }
 
-    param3->unk_00 = sub_02025F20(sub_02025E38(param0->unk_0C));
+    param3->unk_00 = TrainerInfo_ID(sub_02025E38(param0->unk_0C));
 }

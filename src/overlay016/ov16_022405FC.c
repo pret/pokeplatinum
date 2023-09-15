@@ -30,7 +30,6 @@
 #include "struct_defs/struct_020127E8.h"
 #include "struct_defs/struct_0201EE28.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "pokemon.h"
 #include "struct_defs/trainer_data.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0208737C.h"
@@ -68,7 +67,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "pokemon.h"
 #include "move_table.h"
 #include "unk_02079170.h"
@@ -3162,10 +3161,10 @@ static BOOL ov16_022432B4 (BattleSystem * param0, BattleContext * param1)
             v0 += ov16_022431BC(param0, param1, 3);
         }
 
-        sub_02025F94(ov16_0223E16C(param0, 0), v0);
+        TrainerInfo_GiveMoney(ov16_0223E16C(param0, 0), v0);
     } else {
         v0 = ov16_0223F904(param0->parties[0], param0->unk_48[0]);
-        sub_02025FB8(ov16_0223E16C(param0, 0), v0);
+        TrainerInfo_TakeMoney(ov16_0223E16C(param0, 0), v0);
     }
 
     if (v0) {
@@ -3534,7 +3533,7 @@ static BOOL ov16_022438A8 (BattleSystem * param0, BattleContext * param1)
         param1->msgTemp = 0xffff;
     }
 
-    sub_02025F94(ov16_0223E16C(param0, 0), param1->msgTemp);
+    TrainerInfo_GiveMoney(ov16_0223E16C(param0, 0), param1->msgTemp);
 
     return 0;
 }

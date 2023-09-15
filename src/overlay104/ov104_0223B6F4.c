@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
@@ -19,7 +19,7 @@
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0203061C.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
@@ -169,7 +169,7 @@ BattleParams * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov10
     UnkStruct_0204B184 * v8;
     MessageLoader * v9;
     Strbuf* v10;
-    UnkStruct_02025E6C * v11;
+    TrainerInfo * v11;
 
     v2 = ov104_0223B7A8(param0->unk_10, 0);
     v3 = ov104_0223B7DC(param0->unk_10, 0);
@@ -225,7 +225,7 @@ BattleParams * ov104_0223B810 (UnkStruct_ov104_0223BA10 * param0, UnkStruct_ov10
         sub_02052894(v5);
 
         v11 = sub_02032EE8(1 - sub_0203608C());
-        sub_02025E80(v11, v5->unk_D0[2]);
+        TrainerInfo_Copy(v11, v5->unk_D0[2]);
 
         v8 = ov104_0222DD04(&v7, param0->unk_30[param0->unk_11 + 7], 11, 178);
         Heap_FreeToHeap(v8);

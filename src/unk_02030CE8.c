@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -12,7 +12,7 @@
 #include "unk_0201D15C.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202C858.h"
 #include "unk_02030CE8.h"
 
@@ -112,7 +112,7 @@ u32 sub_02030D98 (UnkStruct_021C0794 * param0, int param1)
 static void sub_02030DD0 (UnkStruct_021C0794 * param0, UnkStruct_ov96_0223B574 * param1)
 {
     UnkStruct_0202C878 * v0 = sub_0202C878(param0);
-    UnkStruct_02025E6C * v1 = sub_02025E38(param0);
+    TrainerInfo * v1 = sub_02025E38(param0);
     char * v2 = sub_02030D50(param0);
 
     MI_CpuClear8(param1, sizeof(UnkStruct_ov96_0223B574));
@@ -121,9 +121,9 @@ static void sub_02030DD0 (UnkStruct_021C0794 * param0, UnkStruct_ov96_0223B574 *
     param1->unk_01 = GAME_LANGUAGE;
     param1->unk_02 = sub_0202C8C0(v0);
     param1->unk_03 = sub_0202C8C4(v0);
-    param1->unk_04 = sub_02025F20(v1);
+    param1->unk_04 = TrainerInfo_ID(v1);
 
-    sub_020021B0(param1->unk_08, sub_02025EF0(v1));
+    GF_strcpy(param1->unk_08, TrainerInfo_Name(v1));
     param1->unk_10 = 0;
 
     strcpy(param1->unk_1C, v2);
