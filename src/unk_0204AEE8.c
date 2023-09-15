@@ -34,6 +34,7 @@
 #include "unk_0204AEE8.h"
 #include "pokemon.h"
 #include "party.h"
+#include "flags.h"
 
 static BOOL sub_0204B470(UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * param1, u16 param2, UnkStruct_ov104_0223A348_sub2 * param3, u8 param4, u16 * param5, u16 * param6, UnkStruct_0204B404 * param7, int param8);
 static void * sub_0204B630(u16 param0, int param1);
@@ -363,7 +364,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & NumToFlag(v0)) {
+        if (v4.unk_0A & FlagIndex(v0)) {
             v1++;
         }
     }
@@ -375,7 +376,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & NumToFlag(v0)) {
+        if (v4.unk_0A & FlagIndex(v0)) {
             param1->unk_18_val2[v0] = v1;
         }
     }

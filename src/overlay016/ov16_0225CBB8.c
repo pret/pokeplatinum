@@ -136,6 +136,8 @@
 #include "move_table.h"
 #include "party.h"
 #include "item.h"
+#include "flags.h"
+#include "flags.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay012/ov12_02237EFC.h"
@@ -3402,7 +3404,7 @@ static void ov16_02260DB0 (UnkStruct_0201CD38 * param0, void * param1)
             v6 = 0;
 
             for (v4 = 0; v4 < 4; v4++) {
-                if ((v0->unk_22 & NumToFlag(v4)) == 0) {
+                if ((v0->unk_22 & FlagIndex(v4)) == 0) {
                     v5[v6] = v4 + 1;
                     v6++;
                 }
@@ -4348,7 +4350,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
                 v0->unk_04->unk_28 = v0->unk_09;
                 v0->unk_04->unk_32 = v0->unk_17;
 
-                if ((v0->unk_18 & NumToFlag(v0->unk_09)) == 0) {
+                if ((v0->unk_18 & FlagIndex(v0->unk_09)) == 0) {
                     v0->unk_04->unk_14 = v0->unk_0C[v0->unk_09];
                 } else {
                     v0->unk_04->unk_14 = 6;
@@ -4356,7 +4358,7 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
 
                 if (BattleSystem_BattleType(v0->unk_00) & 0x8) {
                     v0->unk_04->unk_15 = 6;
-                } else if ((v0->unk_18 & NumToFlag(BattleSystem_Partner(v0->unk_00, v0->unk_09))) == 0) {
+                } else if ((v0->unk_18 & FlagIndex(BattleSystem_Partner(v0->unk_00, v0->unk_09))) == 0) {
                     v0->unk_04->unk_15 = v0->unk_0C[BattleSystem_Partner(v0->unk_00, v0->unk_09)];
                 } else {
                     v0->unk_04->unk_15 = 6;
@@ -6158,7 +6160,7 @@ static void ov16_02264270 (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
     int v2 = 0;
 
     for (v0 = 0; v0 < BattleSystem_MaxBattlers(param0); v0++) {
-        if (param2->unk_01 & NumToFlag(v0)) {
+        if (param2->unk_01 & FlagIndex(v0)) {
             if (Battler_Side(param0, v0)) {
                 v2++;
             } else {

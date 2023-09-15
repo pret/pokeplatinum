@@ -81,6 +81,7 @@
 #include "unk_0207AE68.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C098.h"
+#include "flags.h"
 #include "overlay010/ov10_0221F800.h"
 #include "overlay011/ov11_0221F840.h"
 #include "overlay012/ov12_0221FC20.h"
@@ -1603,7 +1604,7 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
 
             if (v2 != NULL) {
                 if (sub_0208C104(v2->unk_28, v2->unk_2C, (8 * 6)) == 1) {
-                    v5 |= NumToFlag(v3);
+                    v5 |= FlagIndex(v3);
                 }
             }
         }

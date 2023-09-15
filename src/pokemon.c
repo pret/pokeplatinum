@@ -47,6 +47,7 @@
 #include "party.h"
 #include "item.h"
 #include "unk_02092494.h"
+#include "flags.h"
 
 #include "constants/pokemon.h"
 #include "constants/species.h"
@@ -2326,16 +2327,16 @@ u32 sub_02075E64(u32 param0)
     u16 v3 = LCRNG_Next() & 0x7;
 
     for (i = 0; i < 13; i++) {
-        if (param0 & NumToFlag(i)) {
+        if (param0 & FlagIndex(i)) {
             if (LCRNG_Next() & 1) {
-                v2 |= NumToFlag(i + 3);
+                v2 |= FlagIndex(i + 3);
             } else {
-                v3 |= NumToFlag(i + 3);
+                v3 |= FlagIndex(i + 3);
             }
         } else {
             if (LCRNG_Next() & 1) {
-                v2 |= NumToFlag(i + 3);
-                v3 |= NumToFlag(i + 3);
+                v2 |= FlagIndex(i + 3);
+                v3 |= FlagIndex(i + 3);
             }
         }
     }
@@ -3656,7 +3657,7 @@ void sub_020776B0(Party *party)
             }
         } while (partySlot == currentPartyCount);
 
-        if (sub_02077758(party, NumToFlag(partySlot)) == 0) {
+        if (sub_02077758(party, FlagIndex(partySlot)) == 0) {
             u8 monPokerus;
             do {
                 monPokerus = LCRNG_Next() & 0xff;
@@ -4466,7 +4467,7 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
     return monSpecies;
 }
 
-u32 NumToFlag(int num)
+u32 FlagIndex(int num)
 {
     int i;
     u32 flag = 1;
@@ -4480,7 +4481,7 @@ u32 NumToFlag(int num)
     return flag;
 }
 
-int FlagToNum(u32 flag)
+int LowestBit(u32 flag)
 {
     int i;
     u32 mask = 1;

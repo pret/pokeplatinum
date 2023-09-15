@@ -24,6 +24,7 @@
 #include "unk_02051D8C.h"
 #include "pokemon.h"
 #include "party.h"
+#include "flags.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223A0C4.h"
 
@@ -860,7 +861,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & NumToFlag(v0)) {
+        if (v4.unk_0A & FlagIndex(v0)) {
             v1++;
         }
     }
@@ -872,7 +873,7 @@ static u32 ov104_0223A3A8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & NumToFlag(v0)) {
+        if (v4.unk_0A & FlagIndex(v0)) {
             param1->unk_18_val2[v0] = v1;
         }
     }
