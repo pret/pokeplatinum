@@ -119,7 +119,7 @@ typedef struct BattleContext {
 
     int afterMoveEffectTemp;
     int beforeMoveCheckState;
-    int moveExecutionCheckState;
+    int tryMoveCheckState;
     int statusCheckState;
     int abilityCheckState;
     int switchInCheckState;

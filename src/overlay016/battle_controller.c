@@ -81,7 +81,7 @@ static void BattleController_SafariRockCommand(BattleSystem *battleSys, BattleCo
 static void BattleController_SafariRunCommand(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_0224F734(BattleSystem * param0, BattleContext * param1);
+static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224F824(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F854(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F8D4(BattleSystem * param0, BattleContext * param1);
@@ -156,7 +156,7 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_SafariRunCommand,
     BattleController_ExecScript,
     BattleController_BeforeMove,
-    ov16_0224F734,
+    BattleController_TryMove,
     ov16_0224F824,
     ov16_0224F854,
     ov16_0224F8D4,
@@ -3164,7 +3164,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
 
         BattleSystem_LoadScript(battleCtx, 0, battleCtx->moveCur);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-        battleCtx->commandNext = BATTLE_CONTROL_MOVE_EXECUTION;
+        battleCtx->commandNext = BATTLE_CONTROL_TRY_MOVE;
         
         BattleSystem_UpdateLastResort(battleSys, battleCtx);
     }
@@ -3172,60 +3172,78 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
     BattleSystem_UpdateMetronomeCount(battleSys, battleCtx);
 }
 
-static void ov16_0224F734 (BattleSystem * param0, BattleContext * param1)
+enum {
+    TRY_MOVE_START = 0,
+
+    TRY_MOVE_STATE_CHECK_VALID_TARGET = TRY_MOVE_START,
+    TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES,
+    TRY_MOVE_STATE_CHECK_MOVE_HITS,
+    TRY_MOVE_STATE_CHECK_MOVE_HIT_OVERRIDES,
+    TRY_MOVE_STATE_CHECK_TYPE_CHART,
+    TRY_MOVE_STATE_TRIGGER_IMMUNITY_ABILITIES,
+
+    TRY_MOVE_END,
+};
+
+static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    switch (param1->moveExecutionCheckState) {
-    case 0:
-        param1->moveExecutionCheckState++;
+    switch (battleCtx->tryMoveCheckState) {
+    case TRY_MOVE_STATE_CHECK_VALID_TARGET:
+        battleCtx->tryMoveCheckState++;
 
-        if (BattleController_HasNoTarget(param0, param1) == 1) {
+        if (BattleController_HasNoTarget(battleSys, battleCtx) == TRUE) {
             return;
         }
 
-    case 1:
-        param1->moveExecutionCheckState++;
+    case TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES:
+        battleCtx->tryMoveCheckState++;
 
-        if (BattleMove_TriggerRedirectionAbilities(param0, param1) == 1) {
+        if (BattleMove_TriggerRedirectionAbilities(battleSys, battleCtx) == TRUE) {
             return;
         }
-    case 2:
-        if (((param1->multiHitCheckFlags & 0x20) == 0) && (param1->defender != 0xff)) {
-            if (BattleController_CheckMoveHit(param0, param1, param1->attacker, param1->defender, param1->moveCur) == 1) {
-                return;
-            }
+
+    case TRY_MOVE_STATE_CHECK_MOVE_HITS:
+        if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_ACCURACY_CHECK) == FALSE
+                && battleCtx->defender != BATTLER_NONE
+                && BattleController_CheckMoveHit(battleSys, battleCtx, battleCtx->attacker, battleCtx->defender, battleCtx->moveCur) == 1) {
+            return;
         }
 
-        param1->moveExecutionCheckState++;
-    case 3:
-        if (((param1->multiHitCheckFlags & 0x40) == 0) && (param1->defender != 0xff)) {
-            if (BattleController_CheckMoveHitOverrides(param0, param1, param1->attacker, param1->defender, param1->moveCur) == 1) {
-                return;
-            }
+        battleCtx->tryMoveCheckState++;
+
+    case TRY_MOVE_STATE_CHECK_MOVE_HIT_OVERRIDES:
+        if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_ACCURACY_OVERRIDES) == FALSE
+                && battleCtx->defender != BATTLER_NONE
+                && BattleController_CheckMoveHitOverrides(battleSys, battleCtx, battleCtx->attacker, battleCtx->defender, battleCtx->moveCur) == 1) {
+            return;
         }
 
-        param1->moveExecutionCheckState++;
-    case 4:
-        if (((param1->multiHitCheckFlags & 0x2) == 0) && (param1->defender != 0xff)) {
-            if (BattleController_CheckTypeChart(param0, param1) == 1) {
-                return;
-            }
+        battleCtx->tryMoveCheckState++;
+
+    case TRY_MOVE_STATE_CHECK_TYPE_CHART:
+        if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_TYPE_CHART_CHECK) == FALSE
+                && battleCtx->defender != BATTLER_NONE
+                && BattleController_CheckTypeChart(battleSys, battleCtx) == 1) {
+            return;
         }
 
-        param1->moveExecutionCheckState++;
-    case 5:
-        if (((param1->multiHitCheckFlags & 0x10) == 0) && (param1->defender != 0xff)) {
-            if (BattleController_TriggerImmunityAbilities(param0, param1) == 1) {
-                return;
-            }
+        battleCtx->tryMoveCheckState++;
+
+    case TRY_MOVE_STATE_TRIGGER_IMMUNITY_ABILITIES:
+        if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_IMMUNITY_TRIGGERS) == FALSE
+                && battleCtx->defender != BATTLER_NONE
+                && BattleController_TriggerImmunityAbilities(battleSys, battleCtx) == 1) {
+            return;
         }
 
-        param1->moveExecutionCheckState++;
-    case 6:
-        param1->moveExecutionCheckState = 0;
+        battleCtx->tryMoveCheckState++;
+
+    case TRY_MOVE_END:
+        battleCtx->tryMoveCheckState = TRY_MOVE_START;
         break;
     }
 
-    param1->command = BATTLE_CONTROL_STATUS_EFFECT;
+    battleCtx->command = BATTLE_CONTROL_STATUS_EFFECT;
 }
 
 static void ov16_0224F824 (BattleSystem * param0, BattleContext * param1)

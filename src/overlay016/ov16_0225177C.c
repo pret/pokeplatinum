@@ -2077,7 +2077,7 @@ void BattleContext_Init (BattleContext * param0)
     param0->afterMoveMessageState = 0;
     param0->afterMoveEffectState = 0;
     param0->beforeMoveCheckState = 0;
-    param0->moveExecutionCheckState = 0;
+    param0->tryMoveCheckState = 0;
     param0->statusCheckState = 0;
     param0->abilityCheckState = 0;
     param0->battleStatusMask &= ((1 | 2 | 4 | 8 | 16 | 32 | 256 | 512 | 1024 | 2048 | 0x80000 | 8192) | (4096 | 16384 | 32768 | 65536 | 0x20000 | 0x40000 | 0x100000 | 0x200000 | 0x400000 | 128 | 64)) ^ 0xffffffff;
