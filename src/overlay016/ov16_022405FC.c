@@ -1866,7 +1866,7 @@ static BOOL ov16_02241C28 (BattleSystem * param0, BattleContext * param1)
 
     if (v0 == 0) {
         param1->defender = BattleSystem_Defender(param0, param1, param1->attacker, param1->msgMoveTemp, 1, 0);
-        BattleController_UpdateTarget(param0, param1, param1->attacker, param1->msgMoveTemp);
+        BattleSystem_RedirectTarget(param0, param1, param1->attacker, param1->msgMoveTemp);
         param1->battlerActions[param1->attacker][1] = param1->defender;
     }
 

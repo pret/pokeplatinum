@@ -85,7 +85,7 @@ static void BattleController_SafariBaitCommand(BattleSystem *battleSys, BattleCo
 static void BattleController_SafariRockCommand(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_SafariRunCommand(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *battleCtx);
-static void BattleController_BeforeMove(BattleSystem * param0, BattleContext * param1);
+static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224F734(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F824(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F854(BattleSystem * param0, BattleContext * param1);
@@ -377,7 +377,7 @@ static void BattleController_CommandSelectionInput(BattleSystem *battleSys, Batt
 
             if (battleCtx->battlersSwitchingMask & FlagIndex(i)) {
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
-                battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_AFTER_MOVE;
+                battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
                 break;
             } else if (BattleSystem_CanPickCommand(battleCtx, i) == FALSE) {
                 battleCtx->turnFlags[i].ppDecremented = TRUE;
@@ -933,7 +933,7 @@ static void BattleController_BranchActions(BattleSystem *battleSys, BattleContex
 
     battleCtx->waitingBattlers = 0;
     for (int i = 0; i < maxBattlers; i++) {
-        if (battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] != BATTLE_CONTROL_AFTER_MOVE) {
+        if (battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] != BATTLE_CONTROL_MOVE_END) {
             battleCtx->waitingBattlers++;
         }
     }
@@ -2014,7 +2014,7 @@ static void BattleController_ItemCommand(BattleSystem *battleSys, BattleContext 
 
     LOAD_SUBSEQ(nextScript);
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-    battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+    battleCtx->commandNext = BATTLE_CONTROL_MOVE_END;
     battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
 }
 
@@ -2040,7 +2040,7 @@ static void BattleController_RunCommand(BattleSystem *battleSys, BattleContext *
             LOAD_SUBSEQ(BATTLE_SUBSEQ_ENEMY_ESCAPE_FAILED);
             battleCtx->scriptCursor = 0;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-            battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+            battleCtx->commandNext = BATTLE_CONTROL_MOVE_END;
         } else {
             LOAD_SUBSEQ(BATTLE_SUBSEQ_ENEMY_ESCAPE);
             battleCtx->scriptCursor = 0;
@@ -2057,7 +2057,7 @@ static void BattleController_RunCommand(BattleSystem *battleSys, BattleContext *
             LOAD_SUBSEQ(BATTLE_SUBSEQ_ESCAPE_FAILED);
             battleCtx->scriptCursor = 0;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-            battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+            battleCtx->commandNext = BATTLE_CONTROL_MOVE_END;
         }
     }
 }
@@ -2069,7 +2069,7 @@ static void BattleController_SafariBallCommand(BattleSystem *battleSys, BattleCo
     battleCtx->attacker = BATTLER_US;
     battleCtx->defender = BATTLER_THEM;
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-    battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+    battleCtx->commandNext = BATTLE_CONTROL_MOVE_END;
     battleCtx->msgItemTemp = ITEM_SAFARI_BALL;
 
     int balls = BattleSystem_NumSafariBalls(battleSys) - 1;
@@ -2084,7 +2084,7 @@ static void BattleController_SafariBaitCommand(BattleSystem *battleSys, BattleCo
     battleCtx->attacker = BATTLER_US;
     battleCtx->defender = BATTLER_THEM;
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-    battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+    battleCtx->commandNext = BATTLE_CONTROL_MOVE_END;
     battleCtx->scriptTemp = BattleSystem_RandNext(battleSys) % 10;
 
     // TODO: This 12 could use with a constant
@@ -2106,7 +2106,7 @@ static void BattleController_SafariRockCommand(BattleSystem *battleSys, BattleCo
     battleCtx->attacker = BATTLER_US;
     battleCtx->defender = BATTLER_THEM;
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-    battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+    battleCtx->commandNext = BATTLE_CONTROL_MOVE_END;
     battleCtx->scriptTemp = BattleSystem_RandNext(battleSys) % 10;
 
     if (battleCtx->safariEscapeCount) {
@@ -2129,7 +2129,7 @@ static void BattleController_SafariRunCommand(BattleSystem *battleSys, BattleCon
     battleCtx->attacker = BATTLER_US;
     battleCtx->defender = BATTLER_THEM;
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-    battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+    battleCtx->commandNext = BATTLE_CONTROL_MOVE_END;
 }
 
 enum {
@@ -3052,88 +3052,105 @@ static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *
     }
 }
 
-static void BattleController_BeforeMove (BattleSystem * param0, BattleContext * param1)
+enum {
+    BEFORE_MOVE_START = 0,
+
+    BEFORE_MOVE_STATE_QUICK_CLAW = BEFORE_MOVE_START,
+    BEFORE_MOVE_STATE_STATUS_DISRUPTION,
+    BEFORE_MOVE_STATE_CHECK_OBEDIENCE,
+    BEFORE_MOVE_STATE_DECREMENT_PP,
+    BEFORE_MOVE_STATE_CHECK_TARGET_EXISTS,
+    BEFORE_MOVE_STATE_CHECK_STOLEN,
+    BEFORE_MOVE_STATE_REDIRECT_TARGET,
+
+    BEFORE_MOVE_END,
+};
+
+static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    switch (param1->beforeMoveCheckState) {
-    case 0:
-        BattleController_CheckQuickClaw(param0, param1);
-        param1->beforeMoveCheckState++;
+    switch (battleCtx->beforeMoveCheckState) {
+    case BEFORE_MOVE_STATE_QUICK_CLAW:
+        BattleController_CheckQuickClaw(battleSys, battleCtx);
+        battleCtx->beforeMoveCheckState++;
         return;
-        break;
-    case 1:
-        if ((param1->multiHitCheckFlags & 0x4) == 0) {
-            if (BattleController_CheckStatusDisruption(param0, param1) == 1) {
-                return;
-            }
+
+    case BEFORE_MOVE_STATE_STATUS_DISRUPTION:
+        if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_STATUS_CHECK) == FALSE
+            && BattleController_CheckStatusDisruption(battleSys, battleCtx) == TRUE) {
+            return;
         }
+        battleCtx->beforeMoveCheckState++;
 
-        param1->beforeMoveCheckState++;
-    case 2:
-    {
-        int v0;
-        int v1;
+    case BEFORE_MOVE_STATE_CHECK_OBEDIENCE:
+        int result;
+        int nextSeq;
 
-        if ((param1->multiHitCheckFlags & 0x1) == 0) {
-            v0 = BattleController_CheckObedience(param0, param1, &v1);
+        if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_OBEDIENCE_CHECK) == FALSE) {
+            result = BattleController_CheckObedience(battleSys, battleCtx, &nextSeq);
 
-            if (v0) {
-                switch (v0) {
-                case 1:
-                    param1->commandNext = 38;
+            if (result) {
+                switch (result) {
+                case OBEY_CHECK_DO_NOTHING:
+                    battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
                     break;
-                case 2:
-                    param1->commandNext = param1->command;
+                case OBEY_CHECK_DIFFERENT_MOVE:
+                    battleCtx->commandNext = battleCtx->command;
                     break;
-                case 3:
-                    param1->commandNext = 33;
+                case OBEY_CHECK_HIT_SELF:
+                    battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED;
                     break;
                 }
 
-                param1->command = 21;
-                BattleSystem_LoadScript(param1, 1, v1);
-                return;
-            }
-        }
-    }
-        param1->beforeMoveCheckState++;
-    case 3:
-        if ((param1->multiHitCheckFlags & 0x8) == 0) {
-            if (BattleController_DecrementPP(param0, param1) == 1) {
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                LOAD_SUBSEQ(nextSeq);
+
                 return;
             }
         }
 
-        param1->beforeMoveCheckState++;
-    case 4:
-        if (BattleController_HasNoTarget(param0, param1) == 1) {
+        battleCtx->beforeMoveCheckState++;
+
+    case BEFORE_MOVE_STATE_DECREMENT_PP:
+        if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_PP_DECREMENT) == FALSE
+                && BattleController_DecrementPP(battleSys, battleCtx) == TRUE) {
             return;
         }
 
-        param1->beforeMoveCheckState++;
-    case 5:
-        if ((param1->multiHitCheckFlags & 0x80) == 0) {
-            if (BattleController_MoveStolen(param0, param1) == 1) {
-                return;
-            }
+        battleCtx->beforeMoveCheckState++;
+
+    case BEFORE_MOVE_STATE_CHECK_TARGET_EXISTS:
+        if (BattleController_HasNoTarget(battleSys, battleCtx) == TRUE) {
+            return;
         }
 
-        param1->beforeMoveCheckState++;
-    case 6:
-        BattleController_UpdateTarget(param0, param1, param1->attacker, param1->moveCur);
-        param1->beforeMoveCheckState = 0;
+        battleCtx->beforeMoveCheckState++;
+
+    case BEFORE_MOVE_STATE_CHECK_STOLEN:
+        if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_STOLEN_CHECK) == FALSE
+                && BattleController_MoveStolen(battleSys, battleCtx) == 1) {
+            return;
+        }
+
+        battleCtx->beforeMoveCheckState++;
+
+    case BEFORE_MOVE_STATE_REDIRECT_TARGET:
+        BattleSystem_RedirectTarget(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveCur);
+        battleCtx->beforeMoveCheckState = BEFORE_MOVE_START;
     }
 
-    if (param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) {
-        param1->command = 25;
+    if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) {
+        battleCtx->command = BATTLE_CONTROL_NO_EFFECTS;
     } else {
-        param1->battleStatusMask2 |= 0x40;
-        BattleSystem_LoadScript(param1, 0, param1->moveCur);
-        param1->command = 21;
-        param1->commandNext = 23;
-        BattleSystem_UpdateLastResort(param0, param1);
+        battleCtx->battleStatusMask2 |= 0x40;
+
+        BattleSystem_LoadScript(battleCtx, 0, battleCtx->moveCur);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+        
+        BattleSystem_UpdateLastResort(battleSys, battleCtx);
     }
 
-    BattleSystem_UpdateMetronomeCount(param0, param1);
+    BattleSystem_UpdateMetronomeCount(battleSys, battleCtx);
 }
 
 static void ov16_0224F734 (BattleSystem * param0, BattleContext * param1)

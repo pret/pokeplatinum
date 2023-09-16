@@ -6,6 +6,11 @@
 #define SYSCTL_LAST_OF_MULTI_TURN       (1 << 9)
 #define SYSCTL_REUSE_LAST_MOVE          (1 << 20)
 
+#define SYSCTL_MOVE_CONNECTED           (1 << 6)
+
 #define SYSCTL_SKIP_OBEDIENCE_CHECK     (1 << 0)
+#define SYSCTL_SKIP_STATUS_CHECK        (1 << 2)
+#define SYSCTL_SKIP_PP_DECREMENT        (1 << 3)
+#define SYSCTL_SKIP_STOLEN_CHECK        (1 << 7)
 
 #endif // POKEPLATINUM_CONSTANTS_BATTLE_SYSTEM_CONTROL_H

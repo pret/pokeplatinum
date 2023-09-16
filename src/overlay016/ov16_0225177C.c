@@ -67,7 +67,7 @@ void ov16_022535F0(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL ov16_0225366C(BattleSystem * param0, BattleContext * param1, int * param2);
 BOOL ov16_02253710(BattleSystem * param0, BattleContext * param1, int * param2);
 int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5);
-void BattleController_UpdateTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
+void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 BOOL ov16_02253E3C(BattleSystem * param0, BattleContext * param1);
 void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02253EF0(BattleSystem * param0, BattleContext * param1, int param2);
@@ -1782,7 +1782,7 @@ int BattleSystem_Defender (BattleSystem * param0, BattleContext * param1, int pa
     return v0;
 }
 
-void BattleController_UpdateTarget (BattleSystem * param0, BattleContext * param1, int param2, u16 param3)
+void BattleSystem_RedirectTarget (BattleSystem * param0, BattleContext * param1, int param2, u16 param3)
 {
     int v0;
     int v1;
