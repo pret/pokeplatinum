@@ -67,9 +67,9 @@ void ov16_022535F0(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL ov16_0225366C(BattleSystem * param0, BattleContext * param1, int * param2);
 BOOL ov16_02253710(BattleSystem * param0, BattleContext * param1, int * param2);
 int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5);
-void ov16_02253C98(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
+void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 BOOL ov16_02253E3C(BattleSystem * param0, BattleContext * param1);
-void ov16_02253EC0(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02253EF0(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02253F20(BattleSystem * param0, BattleContext * param1, int param2);
 int ov16_02253F7C(BattleContext * param0, int param1);
@@ -81,7 +81,7 @@ void ov16_02254744(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_SetupNextTurn(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_CheckStruggling(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveSlot, BattleMessage *msgOut);
-int ov16_02254EE0(BattleMon * param0, u16 param1);
+int Battler_SlotForMove(BattleMon * param0, u16 param1);
 int ov16_02254FA8(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
 void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
 BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
@@ -89,7 +89,7 @@ u8 ov16_022554E0(BattleSystem * param0, BattleContext * param1, int param2, int 
 int BattleSystem_NicknameTag(BattleContext *battleSys, int battler);
 u16 Battler_SelectedMove(BattleContext * param0, int param1);
 int BattleSystem_CountAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
-BOOL ov16_0225582C(BattleContext * param0, int param1);
+BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
 BOOL ov16_0225588C(BattleSystem * param0, int param1, u8 * param2, u8 * param3, u8 * param4);
 int ov16_022558CC(u8 param0, u8 param1, u8 param2);
 BOOL ov16_02255918(u16 param0);
@@ -103,13 +103,13 @@ BOOL ov16_02255B10(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);
-BOOL ov16_02255EF4(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+BOOL BattleSystem_Imprisoned(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL ov16_02255F68(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02255F94(BattleSystem * param0, BattleContext * param1);
 void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1);
-BOOL ov16_02256044(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL ov16_02256078(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void ov16_022560B0(BattleSystem * param0, BattleContext * param1);
+BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+BOOL BattleSystem_HealBlocked(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1);
 int ov16_02256128(BattleSystem * param0, BattleContext * param1, int param2);
 int ov16_02256148(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
@@ -127,7 +127,7 @@ BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem * param0, BattleContex
 u16 ov16_02258874(BattleContext * param0, int param1);
 BOOL ov16_022588A4(BattleContext * param0, int param1);
 BOOL ov16_022588BC(BattleSystem * param0, BattleContext * param1, int * param2);
-s32 ov16_02258AB8(BattleContext * param0, int param1);
+s32 Battler_HeldItemEffect(BattleContext * param0, int param1);
 s32 ov16_02258ACC(BattleContext * param0, int param1, int param2);
 s32 ov16_02258B18(BattleContext * param0, int param1);
 s32 ov16_02258B2C(BattleContext * param0, int param1);
@@ -137,20 +137,20 @@ s32 ov16_02258B80(BattleContext * param0, int param1);
 int BattleSystem_CanSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 BOOL ov16_02258CB4(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL ov16_02259204(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02259868(BattleSystem * param0, BattleContext * param1);
+void BattleSystem_UpdateMetronomeCount(BattleSystem * param0, BattleContext * param1);
 void ov16_0225991C(BattleSystem * param0, BattleContext * param1);
 int ov16_022599D0(BattleContext * param0, int param1, int param2, int param3);
 BOOL BattleSystem_CanPickCommand(BattleContext *battleSys, int battler);
 void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * param2);
 u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
 BOOL ov16_02259AC0(BattleContext * param0, int param1);
-BOOL ov16_02259ADC(BattleSystem * param0, BattleContext * param1);
+BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
 BOOL ov16_02259B38(BattleSystem * param0, Pokemon * param1);
 BOOL ov16_02259B9C(BattleSystem * param0, BattleContext * param1, int * param2);
 void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
 void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
-int ov16_0225A280(BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u32 param4, u16 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-int ov16_0225AEB8(BattleSystem * param0, BattleContext * param1, int param2);
+int BattleSystem_CalcMoveDamage(BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u32 param4, u16 param5, u8 param6, u8 param7, u8 param8, u8 param9);
+int BattleSystem_CalcDamageVariance(BattleSystem * param0, BattleContext * param1, int param2);
 int ov16_0225AEE4(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, u32 param5);
 BOOL ov16_0225AFF4(u16 param0);
 BOOL ov16_0225B02C(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
@@ -161,7 +161,7 @@ int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, in
 void ov16_0225B148(BattleSystem * param0, BattleContext * param1);
 BOOL ov16_0225B1DC(BattleContext * param0, int param1, int param2);
 BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
-void ov16_0225B408(BattleContext * param0, int param1, int param2);
+void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
 int ov16_0225B45C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_0225B540(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
@@ -177,7 +177,7 @@ static void ov16_0225B824(BattleContext * param0, u8 param1);
 static void ov16_0225B830(BattleContext * param0, u8 param1);
 static int ov16_0225B840(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 static BOOL ov16_0225B8E4(BattleContext * param0, int param1);
-static int ov16_0225B910(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+static int BattleMove_Type(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 int ov16_0225BA88(BattleSystem * param0, int param1);
 int ov16_0225BE28(BattleSystem * param0, int param1);
 int ov16_0225BE3C(BattleSystem * param0, BattleContext * param1, Pokemon * param2, int param3);
@@ -1229,9 +1229,9 @@ u8 BattleSystem_CompareBattlerSpeed (BattleSystem * param0, BattleContext * para
 
     v19 = Battler_Ability(param1, param2);
     v20 = Battler_Ability(param1, param3);
-    v5 = ov16_02258AB8(param1, param2);
+    v5 = Battler_HeldItemEffect(param1, param2);
     v6 = ov16_02258ACC(param1, param2, 0);
-    v7 = ov16_02258AB8(param1, param3);
+    v7 = Battler_HeldItemEffect(param1, param3);
     v8 = ov16_02258ACC(param1, param3, 0);
     v21 = param1->battleMons[param2].statBoosts[0x3];
     v22 = param1->battleMons[param3].statBoosts[0x3];
@@ -1782,7 +1782,7 @@ int BattleSystem_Defender (BattleSystem * param0, BattleContext * param1, int pa
     return v0;
 }
 
-void ov16_02253C98 (BattleSystem * param0, BattleContext * param1, int param2, u16 param3)
+void BattleSystem_RedirectTarget (BattleSystem * param0, BattleContext * param1, int param2, u16 param3)
 {
     int v0;
     int v1;
@@ -1804,7 +1804,7 @@ void ov16_02253C98 (BattleSystem * param0, BattleContext * param1, int param2, u
         return;
     }
 
-    v3 = ov16_0225B910(param0, param1, param2, param3);
+    v3 = BattleMove_Type(param0, param1, param2, param3);
 
     if (v3 == 0) {
         v3 = param1->aiContext.moveTable[param3].type;
@@ -1864,7 +1864,7 @@ BOOL ov16_02253E3C (BattleSystem * param0, BattleContext * param1)
     return v0;
 }
 
-void ov16_02253EC0 (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleMon_CopyToParty (BattleSystem * param0, BattleContext * param1, int param2)
 {
     if (param1->battleMons[param2].heldItem == 0) {
         ov16_0225B830(param1, param2);
@@ -2312,7 +2312,7 @@ int BattleSystem_CheckStruggling (BattleSystem *battleSys, BattleContext *battle
     int v0;
     int v1;
 
-    v1 = ov16_02258AB8(battleCtx, battler);
+    v1 = Battler_HeldItemEffect(battleCtx, battler);
 
     for (v0 = 0; v0 < 4; v0++) {
         if ((battleCtx->battleMons[battler].moves[v0] == 0) && (struggleChecksMask & 0x1)) {
@@ -2335,15 +2335,15 @@ int BattleSystem_CheckStruggling (BattleSystem *battleSys, BattleContext *battle
             moveFlags |= FlagIndex(v0);
         }
 
-        if ((ov16_02255EF4(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x20)) {
+        if ((BattleSystem_Imprisoned(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x20)) {
             moveFlags |= FlagIndex(v0);
         }
 
-        if ((ov16_02256044(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x40)) {
+        if ((BattleSystem_FailsInHighGravity(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x40)) {
             moveFlags |= FlagIndex(v0);
         }
 
-        if ((ov16_02256078(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x80)) {
+        if ((BattleSystem_HealBlocked(battleSys, battleCtx, battler, battleCtx->battleMons[battler].moves[v0])) && (struggleChecksMask & 0x80)) {
             moveFlags |= FlagIndex(v0);
         }
 
@@ -2352,7 +2352,7 @@ int BattleSystem_CheckStruggling (BattleSystem *battleSys, BattleContext *battle
         }
 
         if (((v1 == 55) || (v1 == 115) || (v1 == 125)) && (struggleChecksMask & 0x200)) {
-            if (ov16_02254EE0(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == 4) {
+            if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == 4) {
                 battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove = 0;
             } else {
                 if ((battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) && (battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove != battleCtx->battleMons[battler].moves[v0])) {
@@ -2420,7 +2420,7 @@ BOOL BattleSystem_CanUseMove (BattleSystem *battleSys, BattleContext *battleCtx,
     return result;
 }
 
-int ov16_02254EE0 (BattleMon * param0, u16 param1)
+int Battler_SlotForMove (BattleMon * param0, u16 param1)
 {
     int v0;
 
@@ -2553,7 +2553,7 @@ static BOOL ov16_02254EF4 (BattleContext * param0, int param1, int param2, int p
     BOOL v0;
     int v1;
 
-    v1 = ov16_02258AB8(param0, param2);
+    v1 = Battler_HeldItemEffect(param0, param2);
     v0 = 1;
 
     if ((v1 == 106) || (param0->battleMons[param2].moveEffectsMask & 0x400)) {
@@ -2600,9 +2600,9 @@ int ov16_02254FA8 (BattleSystem * param0, BattleContext * param1, int param2, in
         return param6;
     }
 
-    v4 = ov16_02258AB8(param1, param4);
+    v4 = Battler_HeldItemEffect(param1, param4);
     v6 = ov16_02258ACC(param1, param4, 0);
-    v5 = ov16_02258AB8(param1, param5);
+    v5 = Battler_HeldItemEffect(param1, param5);
     v7 = ov16_02258ACC(param1, param5, 0);
 
     if (Battler_Ability(param1, param4) == 96) {
@@ -2941,7 +2941,7 @@ int BattleSystem_CountAbility (BattleSystem * param0, BattleContext * param1, in
     return v0;
 }
 
-BOOL ov16_0225582C (BattleContext * param0, int param1)
+BOOL BattleMove_IsMultiTurn (BattleContext * param0, int param1)
 {
     switch (param0->aiContext.moveTable[param1].effect) {
     case 26:
@@ -3156,7 +3156,7 @@ BOOL BattleSystem_Trapped (BattleSystem * param0, BattleContext * param1, int pa
     u32 v4;
 
     v4 = BattleSystem_BattleType(param0);
-    v3 = ov16_02258AB8(param1, param2);
+    v3 = Battler_HeldItemEffect(param1, param2);
 
     if ((v3 == 63) || (v4 & (0x4 | 0x20 | 0x200 | 0x80)) || (Battler_Ability(param1, param2) == 50)) {
         return 0;
@@ -3237,7 +3237,7 @@ BOOL BattleSystem_TryEscape (BattleSystem * param0, BattleContext * param1, int 
     u32 v4;
 
     v4 = BattleSystem_BattleType(param0);
-    v2 = ov16_02258AB8(param1, param2);
+    v2 = Battler_HeldItemEffect(param1, param2);
     v0 = 0;
 
     if (v2 == 63) {
@@ -3284,7 +3284,7 @@ BOOL Battler_CheckTruant (BattleContext * param0, int param1)
     return v0;
 }
 
-BOOL ov16_02255EF4 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+BOOL BattleSystem_Imprisoned (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     int v0;
     int v1;
@@ -3374,7 +3374,7 @@ static const u16 Unk_ov16_0226EBD4[] = {
     0x189
 };
 
-BOOL ov16_02256044 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+BOOL BattleSystem_FailsInHighGravity (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     int v0;
     BOOL v1;
@@ -3410,7 +3410,7 @@ static const u16 Unk_ov16_0226EBFA[] = {
     0x111
 };
 
-BOOL ov16_02256078 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+BOOL BattleSystem_HealBlocked (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     int v0;
     BOOL v1;
@@ -3429,7 +3429,7 @@ BOOL ov16_02256078 (BattleSystem * param0, BattleContext * param1, int param2, i
     return v1;
 }
 
-void ov16_022560B0 (BattleSystem * param0, BattleContext * param1)
+void BattleSystem_UpdateLastResort (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
@@ -4390,11 +4390,11 @@ BOOL ov16_02257808 (BattleSystem * param0, BattleContext * param1, int param2)
         return v0;
     }
 
-    if ((param1->defender != 0xff) && (ov16_02258AB8(param1, param1->defender) == 108) && (param1->defender == param1->sideEffectMon) && (param1->selfTurnFlags[param1->defender].statusFlags & 0x4)) {
+    if ((param1->defender != 0xff) && (Battler_HeldItemEffect(param1, param1->defender) == 108) && (param1->defender == param1->sideEffectMon) && (param1->selfTurnFlags[param1->defender].statusFlags & 0x4)) {
         param1->msgBattlerTemp = param1->defender;
         param1->sideEffectMon = param1->attacker;
         v0 = 1;
-    } else if ((ov16_02258AB8(param1, param1->attacker) == 108) && (param1->attacker == param1->sideEffectMon) && (param1->selfTurnFlags[param1->attacker].statusFlags & 0x4)) {
+    } else if ((Battler_HeldItemEffect(param1, param1->attacker) == 108) && (param1->attacker == param1->sideEffectMon) && (param1->selfTurnFlags[param1->attacker].statusFlags & 0x4)) {
         param1->msgBattlerTemp = param1->attacker;
         param1->sideEffectMon = param1->defender;
         v0 = 1;
@@ -4420,7 +4420,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
     int v3;
 
     v0 = 0;
-    v2 = ov16_02258AB8(param1, param2);
+    v2 = Battler_HeldItemEffect(param1, param2);
     v3 = ov16_02258ACC(param1, param2, 0);
 
     if (param1->battleMons[param2].curHP) {
@@ -4481,7 +4481,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
 
             if (v4 != 4) {
                 ov16_02252A2C(&param1->battleMons[param2], 31 + v4, v3);
-                ov16_02253EC0(param0, param1, param2);
+                BattleMon_CopyToParty(param0, param1, param2);
                 param1->msgMoveTemp = param1->battleMons[param2].moves[v4];
                 v1 = (0 + 204);
                 v0 = 1;
@@ -4747,7 +4747,7 @@ BOOL BattleSystem_TriggerLeftovers (BattleSystem * param0, BattleContext * param
     int v3;
 
     v0 = 0;
-    v2 = ov16_02258AB8(param1, param2);
+    v2 = Battler_HeldItemEffect(param1, param2);
     v3 = ov16_02258ACC(param1, param2, 0);
 
     if (param1->battleMons[param2].curHP) {
@@ -4796,7 +4796,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
     int v3;
 
     v0 = 0;
-    v2 = ov16_02258AB8(param1, param2);
+    v2 = Battler_HeldItemEffect(param1, param2);
     v3 = ov16_02258ACC(param1, param2, 0);
 
     if (param1->battleMons[param2].curHP) {
@@ -4857,7 +4857,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
 
             if (v4 != 4) {
                 ov16_02252A2C(&param1->battleMons[param2], 31 + v4, v3);
-                ov16_02253EC0(param0, param1, param2);
+                BattleMon_CopyToParty(param0, param1, param2);
                 param1->msgMoveTemp = param1->battleMons[param2].moves[v4];
                 param3[0] = (0 + 204);
                 v0 = 1;
@@ -5119,7 +5119,7 @@ BOOL BattleSystem_TriggerDetrimentalHeldItem (BattleSystem * param0, BattleConte
     int v4;
 
     v0 = 0;
-    v3 = ov16_02258AB8(param1, param2);
+    v3 = Battler_HeldItemEffect(param1, param2);
     v4 = ov16_02258ACC(param1, param2, 0);
 
     if (param1->battleMons[param2].curHP) {
@@ -5195,7 +5195,7 @@ BOOL ov16_022588BC (BattleSystem * param0, BattleContext * param1, int * param2)
         return v0;
     }
 
-    v2 = ov16_02258AB8(param1, param1->defender);
+    v2 = Battler_HeldItemEffect(param1, param1->defender);
     v3 = ov16_02258ACC(param1, param1->defender, 0);
     v4 = Battler_Side(param0, param1->attacker);
 
@@ -5236,7 +5236,7 @@ BOOL ov16_022588BC (BattleSystem * param0, BattleContext * param1, int * param2)
     return v0;
 }
 
-s32 ov16_02258AB8 (BattleContext * param0, int param1)
+s32 Battler_HeldItemEffect (BattleContext * param0, int param1)
 {
     u16 v0;
 
@@ -5315,7 +5315,7 @@ int BattleSystem_CanSwitch (BattleSystem *battleSys, BattleContext *battleCtx, i
 
     v0 = 0;
 
-    if (ov16_02258AB8(battleCtx, battler) == 123) {
+    if (Battler_HeldItemEffect(battleCtx, battler) == 123) {
         return 0;
     }
 
@@ -5327,7 +5327,7 @@ int BattleSystem_CanSwitch (BattleSystem *battleSys, BattleContext *battleCtx, i
         v0 = 1;
     }
 
-    if ((((Battler_Ability(battleCtx, battler) != 26) && (battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0) && (ov16_02252060(battleCtx, battler, 27, NULL) != 2) && (ov16_02252060(battleCtx, battler, 28, NULL) != 2)) || (ov16_02258AB8(battleCtx, battler) == 106) || (battleCtx->fieldConditionsMask & 0x7000)) && (BattleSystem_CountAbility(battleSys, battleCtx, 3, battler, 71))) {
+    if ((((Battler_Ability(battleCtx, battler) != 26) && (battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0) && (ov16_02252060(battleCtx, battler, 27, NULL) != 2) && (ov16_02252060(battleCtx, battler, 28, NULL) != 2)) || (Battler_HeldItemEffect(battleCtx, battler) == 106) || (battleCtx->fieldConditionsMask & 0x7000)) && (BattleSystem_CountAbility(battleSys, battleCtx, 3, battler, 71))) {
         v0 = 1;
     }
 
@@ -5423,7 +5423,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
         }
 
         ov16_02252A2C(&param1->battleMons[param1->attacker], 31 + v7, v3);
-        ov16_02253EC0(param0, param1, param1->attacker);
+        BattleMon_CopyToParty(param0, param1, param1->attacker);
         param1->msgMoveTemp = param1->battleMons[param1->attacker].moves[v7];
         v1 = (0 + 204);
     }
@@ -5706,7 +5706,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
 
         if (v5) {
             ov16_02252A2C(&param1->battleMons[param1->defender], 31 + v6, v2);
-            ov16_02253EC0(param0, param1, param1->defender);
+            BattleMon_CopyToParty(param0, param1, param1->defender);
 
             param1->msgMoveTemp = param1->battleMons[param1->defender].moves[v6];
             param1->flingScript = (0 + 204);
@@ -5919,9 +5919,9 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
     return 1;
 }
 
-void ov16_02259868 (BattleSystem * param0, BattleContext * param1)
+void BattleSystem_UpdateMetronomeCount (BattleSystem * param0, BattleContext * param1)
 {
-    if (ov16_02258AB8(param1, param1->attacker) == 105) {
+    if (Battler_HeldItemEffect(param1, param1->attacker) == 105) {
         if (((param1->battleMons[param1->attacker].statusVolatile & 0xc00) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0x70) == 0) && ((param1->battleStatusMask & 0x200) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0x1000) == 0)) {
             if (param1->metronomeMove[param1->attacker] == param1->moveTemp) {
                 if (param1->battleMons[param1->attacker].moveEffectsData.metronomeTurns < 10) {
@@ -5939,7 +5939,7 @@ void ov16_02259868 (BattleSystem * param0, BattleContext * param1)
 
 void ov16_0225991C (BattleSystem * param0, BattleContext * param1)
 {
-    if (ov16_02258AB8(param1, param1->attacker) == 105) {
+    if (Battler_HeldItemEffect(param1, param1->attacker) == 105) {
         if ((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) && (param1->metronomeMove[param1->attacker] == param1->moveTemp) && (param1->battleMons[param1->attacker].moveEffectsData.metronomeTurns) && (param1->selfTurnFlags[param1->attacker].repeatedMoveCount == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0xc00) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0x70) == 0) && ((param1->battleStatusMask & 0x200) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0x1000) == 0)) {
             param1->battleMons[param1->attacker].moveEffectsData.metronomeTurns--;
         }
@@ -6000,7 +6000,7 @@ void ov16_02259A5C (BattleSystem * param0, BattleContext * param1, Pokemon * par
     int v2;
     int v3;
 
-    v0 = ov16_0223E16C(param0, 0);
+    v0 = BattleSystem_TrainerInfo(param0, 0);
     v1 = ov16_0223E24C(param0);
     v2 = ov16_0223E22C(param0);
 
@@ -6029,14 +6029,14 @@ BOOL ov16_02259AC0 (BattleContext * param0, int param1)
     return v0;
 }
 
-BOOL ov16_02259ADC (BattleSystem * param0, BattleContext * param1)
+BOOL BattleSystem_TrainerIsOT (BattleSystem * param0, BattleContext * param1)
 {
     TrainerInfo * v0;
     u32 v1;
     u32 v2;
     const u16 * v3;
 
-    v0 = ov16_0223E16C(param0, 0);
+    v0 = BattleSystem_TrainerInfo(param0, 0);
     v1 = TrainerInfo_ID(v0);
     v2 = TrainerInfo_Gender(v0);
     v3 = TrainerInfo_Name(v0);
@@ -6056,7 +6056,7 @@ BOOL ov16_02259B38 (BattleSystem * param0, Pokemon * param1)
     const u16 * v3;
     u16 v4[7 + 1];
 
-    v0 = ov16_0223E16C(param0, 0);
+    v0 = BattleSystem_TrainerInfo(param0, 0);
     v1 = TrainerInfo_ID(v0);
     v2 = TrainerInfo_Gender(v0);
     v3 = TrainerInfo_Name(v0);
@@ -6334,7 +6334,7 @@ static const u16 Unk_ov16_0226EC16[] = {
     0x147
 };
 
-int ov16_0225A280 (BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u32 param4, u16 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+int BattleSystem_CalcMoveDamage (BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u32 param4, u16 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     int v0;
     s32 v1 = 0;
@@ -6775,7 +6775,7 @@ int ov16_0225A280 (BattleSystem * param0, BattleContext * param1, int param2, u3
     return v1 + 2;
 }
 
-int ov16_0225AEB8 (BattleSystem * param0, BattleContext * param1, int param2)
+int BattleSystem_CalcDamageVariance (BattleSystem * param0, BattleContext * param1, int param2)
 {
     if (param2) {
         param2 *= (100 - (BattleSystem_RandNext(param0) % 16));
@@ -6886,7 +6886,7 @@ BOOL ov16_0225B02C (BattleSystem * param0, BattleContext * param1, int param2, u
 
     v0 = 0;
 
-    if ((ov16_02256044(param0, param1, param2, param3) == 1) || (ov16_02256078(param0, param1, param2, param3) == 1)) {
+    if ((BattleSystem_FailsInHighGravity(param0, param1, param2, param3) == 1) || (BattleSystem_HealBlocked(param0, param1, param2, param3) == 1)) {
         return 0;
     }
 
@@ -7054,9 +7054,9 @@ BOOL ov16_0225B228 (BattleSystem * param0, BattleContext * param1, int * param2)
     int v6;
 
     v0 = 0;
-    v2 = ov16_02258AB8(param1, param1->attacker);
+    v2 = Battler_HeldItemEffect(param1, param1->attacker);
     v3 = ov16_02258ACC(param1, param1->attacker, 0);
-    v4 = ov16_02258AB8(param1, param1->defender);
+    v4 = Battler_HeldItemEffect(param1, param1->defender);
     v5 = ov16_02258ACC(param1, param1->defender, 0);
     v6 = Battler_Side(param0, param1->attacker);
 
@@ -7088,7 +7088,7 @@ BOOL ov16_0225B228 (BattleSystem * param0, BattleContext * param1, int * param2)
     return v0;
 }
 
-void ov16_0225B408 (BattleContext * param0, int param1, int param2)
+void BattleSystem_DecPPForPressure (BattleContext * param0, int param1, int param2)
 {
     if ((param2 != 0xff) && (Battler_Ability(param0, param2) == 46) && (param0->battleMons[param1].ppCur[param0->moveSlot[param1]])) {
         param0->battleMons[param1].ppCur[param0->moveSlot[param1]]--;
@@ -7549,7 +7549,7 @@ static BOOL ov16_0225B8E4 (BattleContext * param0, int param1)
     return 0;
 }
 
-static int ov16_0225B910 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+static int BattleMove_Type (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     int v0;
 
@@ -7558,7 +7558,7 @@ static int ov16_0225B910 (BattleSystem * param0, BattleContext * param1, int par
         v0 = ov16_02258B2C(param1, param2);
         break;
     case 449:
-        switch (ov16_02258AB8(param1, param2)) {
+        switch (Battler_HeldItemEffect(param1, param2)) {
         case 131:
             v0 = 1;
             break;
@@ -7718,7 +7718,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
 
                 if (v8) {
                     v16 = 0;
-                    ov16_022552D4(v20, v8, v9, Pokemon_GetValue(v19, MON_DATA_ABILITY, NULL), Battler_Ability(v20, v2), ov16_02258AB8(v20, v2), ov16_02252060(v20, v2, 27, NULL), ov16_02252060(v20, v2, 28, NULL), &v16);
+                    ov16_022552D4(v20, v8, v9, Pokemon_GetValue(v19, MON_DATA_ABILITY, NULL), Battler_Ability(v20, v2), Battler_HeldItemEffect(v20, v2), ov16_02252060(v20, v2, 27, NULL), ov16_02252060(v20, v2, 28, NULL), &v16);
 
                     if (v16 & 0x2) {
                         break;
@@ -7749,7 +7749,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
                 v9 = ov16_0225BE3C(param0, v20, v19, v8);
 
                 if ((v8) && (v20->aiContext.moveTable[v8].power != 1)) {
-                    v11 = ov16_0225A280(param0, v20, v8, v20->sideConditionsMask[Battler_Side(param0, v2)], v20->fieldConditionsMask, 0, 0, param1, v2, 1);
+                    v11 = BattleSystem_CalcMoveDamage(param0, v20, v8, v20->sideConditionsMask[Battler_Side(param0, v2)], v20->fieldConditionsMask, 0, 0, param1, v2, 1);
                     v16 = 0;
                     v11 = ov16_02254FA8(param0, v20, v8, v9, param1, v2, v11, &v16);
 

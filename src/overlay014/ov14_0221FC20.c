@@ -3267,7 +3267,7 @@ static s32 ov14_02222E84 (BattleSystem * param0, BattleContext * param1, u16 par
     }
 
     if (v5 == 0) {
-        v5 = ov16_0225A280(param0, param1, param2, param1->sideConditionsMask[v0], param1->fieldConditionsMask, v1, v2, param5, param1->aiContext.defender, 1);
+        v5 = BattleSystem_CalcMoveDamage(param0, param1, param2, param1->sideConditionsMask[v0], param1->fieldConditionsMask, v1, v2, param5, param1->aiContext.defender, 1);
     } else {
         param1->battleStatusMask |= 0x800;
     }
@@ -3293,7 +3293,7 @@ static int ov14_0222327C (BattleSystem * param0, BattleContext * param1, int par
         v0 = ov16_02258B2C(param1, param2);
         break;
     case 449:
-        switch (ov16_02258AB8(param1, param2)) {
+        switch (Battler_HeldItemEffect(param1, param2)) {
         case 131:
             v0 = 1;
             break;
@@ -3431,7 +3431,7 @@ static BOOL ov14_0222342C (BattleSystem * param0, BattleContext * param1, int pa
 
                     if (v2) {
                         v4 = 0;
-                        ov16_022552D4(param1, v2, v3, Pokemon_GetValue(v5, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param2 ^ 1), ov16_02258AB8(param1, param2 ^ 1), ov16_02252060(param1, param2 ^ 1, 27, NULL), ov16_02252060(param1, param2 ^ 1, 28, NULL), &v4);
+                        ov16_022552D4(param1, v2, v3, Pokemon_GetValue(v5, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param2 ^ 1), Battler_HeldItemEffect(param1, param2 ^ 1), ov16_02252060(param1, param2 ^ 1, 27, NULL), ov16_02252060(param1, param2 ^ 1, 28, NULL), &v4);
 
                         if (v4 & 0x2) {
                             if ((BattleSystem_RandNext(param0) % 3) < 2) {
@@ -3525,7 +3525,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v2].curHP) {
-                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), Battler_HeldItemEffect(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
                     }
 
                     if (v8 & 0x2) {
@@ -3538,7 +3538,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v3].curHP) {
-                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), Battler_HeldItemEffect(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
                     }
 
                     if (v8 & 0x2) {
@@ -3564,7 +3564,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v2].curHP) {
-                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), ov16_02258AB8(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), Battler_HeldItemEffect(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
                     }
 
                     if (v8 == 0) {
@@ -3577,7 +3577,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v3].curHP) {
-                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), ov16_02258AB8(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), Battler_HeldItemEffect(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
                     }
 
                     if (v8 == 0) {
@@ -3769,7 +3769,7 @@ static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int pa
 
                     if (v4) {
                         v6 = 0;
-                        ov16_022552D4(param1, v4, v5, Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param1->moveHitBattler[param2]), ov16_02258AB8(param1, param1->moveHitBattler[param2]), ov16_02252060(param1, param1->moveHitBattler[param2], 27, NULL), ov16_02252060(param1, param1->moveHitBattler[param2], 28, NULL), &v6);
+                        ov16_022552D4(param1, v4, v5, Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param1->moveHitBattler[param2]), Battler_HeldItemEffect(param1, param1->moveHitBattler[param2]), ov16_02252060(param1, param1->moveHitBattler[param2], 27, NULL), ov16_02252060(param1, param1->moveHitBattler[param2], 28, NULL), &v6);
 
                         if (v6 & 0x2) {
                             if ((BattleSystem_RandNext(param0) % param4) == 0) {
