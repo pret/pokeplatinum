@@ -63,6 +63,7 @@
 #include "pokemon.h"
 #include "move_table.h"
 #include "party.h"
+#include "flags.h"
 #include "unk_0207A6DC.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_0225177C.h"
@@ -596,7 +597,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
     for (v1 = 0; v1 < BattleSystem_MaxBattlers(battleSys); v1++) {
         if (BattleSystem_CanPickCommand(battleCtx, v1) == 0) {
-            v10 |= NumToFlag(v1);
+            v10 |= FlagIndex(v1);
         }
     }
 
@@ -844,11 +845,11 @@ void BattleIO_ShowBagScreen (BattleSystem *battleSys, BattleContext *battleCtx, 
     }
 
     if (BattleSystem_BattleType(battleSys) == (0x2 | 0x8 | 0x40)) {
-        if (((battleCtx->battlersSwitchingMask & NumToFlag(1)) == 0) && ((battleCtx->battlersSwitchingMask & NumToFlag(3)) == 0)) {
+        if (((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) && ((battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0)) {
             v0.unk_01 = 1;
             v0.unk_02 = 0;
             v0.unk_03 = 0;
-        } else if ((battleCtx->battlersSwitchingMask & NumToFlag(1)) == 0) {
+        } else if ((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0) {
             v0.unk_01 = 0;
 
             if (battleCtx->battleMons[1].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000)) {
@@ -1505,7 +1506,7 @@ void ov16_0226683C (BattleSystem * param0, BattleContext * param1)
 
     for (v1 = 0; v1 < BattleSystem_MaxBattlers(param0); v1++) {
         if (param1->battlerActions[v1][0] == 16) {
-            v0.unk_01 |= NumToFlag(v1);
+            v0.unk_01 |= FlagIndex(v1);
         }
     }
 

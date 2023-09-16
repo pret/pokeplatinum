@@ -69,6 +69,7 @@
 #include "unk_02018340.h"
 #include "pokemon.h"
 #include "party.h"
+#include "flags.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay012/ov12_022380BC.h"
 #include "overlay016/ov16_0223DF00.h"
@@ -611,14 +612,14 @@ static void ov16_0225C47C (BattleSystem * param0, UnkStruct_ov16_0225BFFC * para
 
     if ((v0->unk_18 & 0x200000) == 0) {
         for (v1 = 0; v1 < 4; v1++) {
-            if ((v0->unk_01_4 & NumToFlag(v1)) == 0) {
+            if ((v0->unk_01_4 & FlagIndex(v1)) == 0) {
                 Pokemon_SetValue(v2, 54 + v1, (u8 *)&v0->unk_0E[v1]);
                 Pokemon_SetValue(v2, 58 + v1, (u8 *)&v0->unk_12[v1]);
             }
         }
     }
 
-    if ((v0->unk_08 & NumToFlag(v0->unk_01_0)) == 0) {
+    if ((v0->unk_08 & FlagIndex(v0->unk_01_0)) == 0) {
         Pokemon_SetValue(v2, 6, (u8 *)&v0->unk_0C);
     }
 

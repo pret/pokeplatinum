@@ -67,6 +67,7 @@
 #include "unk_02079170.h"
 #include "party.h"
 #include "item.h"
+#include "flags.h"
 #include "overlay016/ov16_0223DF00.h"
 #include "overlay016/ov16_0225177C.h"
 #include "overlay016/ov16_0225CBB8.h"
@@ -784,7 +785,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
             Pokemon_IncreaseValue(v1, MON_DATA_MOVE1_CUR_PP + param3, v3);
 
             if ((v4 == param2) || (v5 == param2)) {
-                if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & NumToFlag(param3)) == 0)) {
+                if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & FlagIndex(param3)) == 0)) {
                     ov16_02252A14(v0, param1, 31 + param3, v3);
                 }
             }
@@ -801,7 +802,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
                 Pokemon_IncreaseValue(v1, MON_DATA_MOVE1_CUR_PP + param3, v3);
 
                 if ((v4 == param2) || (v5 == param2)) {
-                    if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & NumToFlag(param3)) == 0)) {
+                    if (((ov16_02252060(v0, param1, 53, NULL) & 0x200000) == 0) && ((ov16_02252060(v0, param1, 75, NULL) & FlagIndex(param3)) == 0)) {
                         ov16_02252A14(v0, param1, 31 + param3, v3);
                     }
                 }
@@ -957,13 +958,13 @@ u8 ov16_0223EC58 (BattleSystem * param0, int param1, u8 param2)
 
     if (((BattleSystem_BattlerSlot(param0, param1) == 4) && ((param0->battleType & 0x8) == 0))) {
         if (param0->battleType & 0x4) {
-            if ((param2 & NumToFlag(BattleSystem_Partner(param0, param1))) == 0) {
+            if ((param2 & FlagIndex(BattleSystem_Partner(param0, param1))) == 0) {
                 return 1;
             }
         } else {
             v0 = ov16_0225B45C(param0, param0->battleCtx, 12, 0) & 0xffff;
 
-            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & NumToFlag(0))) {
+            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & FlagIndex(0))) {
                 return 0;
             } else {
                 return 1;
@@ -987,8 +988,8 @@ u16 ov16_0223ECC4 (BattleParams * param0, int * param1, int * param2)
 
     while (param0->unk_150) {
         for (param1[0] = 0; param1[0] < 6; param1[0]++) {
-            if (param0->unk_150 & NumToFlag(param1[0])) {
-                param0->unk_150 &= (NumToFlag(param1[0]) ^ 0xffffffff);
+            if (param0->unk_150 & FlagIndex(param1[0])) {
+                param0->unk_150 &= (FlagIndex(param1[0]) ^ 0xffffffff);
                 break;
             }
         }
@@ -1089,7 +1090,7 @@ void ov16_0223EE70 (BattleSystem * param0)
         v2 = ov16_0223DFAC(param0, 0, v0);
         v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
 
-        if ((v3 == 412) && (param0->unk_2414[0] & NumToFlag(v0))) {
+        if ((v3 == 412) && (param0->unk_2414[0] & FlagIndex(v0))) {
             switch (ov16_0223E22C(param0)) {
             default:
             case 2:
@@ -1126,7 +1127,7 @@ void ov16_0223EE70 (BattleSystem * param0)
 
 void ov16_0223EF2C (BattleSystem * param0, int param1, int param2)
 {
-    param0->unk_2414[param1] |= NumToFlag(param2);
+    param0->unk_2414[param1] |= FlagIndex(param2);
 }
 
 void ov16_0223EF48 (BattleSystem * param0, Pokemon * param1)
