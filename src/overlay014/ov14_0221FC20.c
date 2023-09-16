@@ -541,7 +541,7 @@ static u8 ov14_0221FE38 (BattleSystem * param0, BattleContext * param1)
     }
 
     if (v7 == 174) {
-        if (ov16_02255950(param1, v7, param1->aiContext.attacker) == 0) {
+        if (BattleSystem_IsGhostCurse(param1, v7, param1->aiContext.attacker) == 0) {
             param1->aiContext.selectedTarget[param1->aiContext.attacker] = param1->aiContext.attacker;
         }
     }
@@ -1469,7 +1469,7 @@ static void ov14_02221060 (BattleSystem * param0, BattleContext * param1)
         v4 = ov14_0222327C(param0, param1, param1->aiContext.attacker, v3);
 
         if (v3) {
-            v1 = ov16_02254FA8(param0, param1, v3, v4, param1->aiContext.attacker, param1->aiContext.defender, v1, &v2);
+            v1 = BattleSystem_CheckTypeChart(param0, param1, v3, v4, param1->aiContext.attacker, param1->aiContext.defender, v1, &v2);
 
             if (v1 == 60 * 2) {
                 v1 = 80;
@@ -1505,7 +1505,7 @@ static void ov14_02221114 (BattleSystem * param0, BattleContext * param1)
     v1 = ov14_02222CF0(param1);
     v2 = 40;
     v3 = 0;
-    v2 = ov16_02254FA8(param0, param1, param1->aiContext.move, ov14_0222327C(param0, param1, param1->aiContext.attacker, param1->aiContext.move), param1->aiContext.attacker, param1->aiContext.defender, v2, &v3);
+    v2 = BattleSystem_CheckTypeChart(param0, param1, param1->aiContext.move, ov14_0222327C(param0, param1, param1->aiContext.attacker, param1->aiContext.move), param1->aiContext.attacker, param1->aiContext.defender, v2, &v3);
 
     if (v2 == 60 * 2) {
         v2 = 80;
@@ -3272,7 +3272,7 @@ static s32 ov14_02222E84 (BattleSystem * param0, BattleContext * param1, u16 par
         param1->battleStatusMask |= 0x800;
     }
 
-    v5 = ov16_02254FA8(param0, param1, param2, v2, param5, param1->aiContext.defender, v5, &v4);
+    v5 = BattleSystem_CheckTypeChart(param0, param1, param2, v2, param5, param1->aiContext.defender, v5, &v4);
     param1->battleStatusMask &= (0x800 ^ 0xffffffff);
 
     if (v4 & (0x8 | 0x800 | 0x100000 | 0x40000)) {
@@ -3413,7 +3413,7 @@ static BOOL ov14_0222342C (BattleSystem * param0, BattleContext * param1, int pa
 
             if (v2) {
                 v4 = 0;
-                ov16_02254FA8(param0, param1, v2, v3, param2, param2 ^ 1, 0, &v4);
+                BattleSystem_CheckTypeChart(param0, param1, v2, v3, param2, param2 ^ 1, 0, &v4);
 
                 if (v4 & 0x2) {
                     return 0;
@@ -3479,7 +3479,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
             v8 = 0;
 
             if (param1->battleMons[v2].curHP) {
-                ov16_02254FA8(param0, param1, v6, v7, param2, v2, 0, &v8);
+                BattleSystem_CheckTypeChart(param0, param1, v6, v7, param2, v2, 0, &v8);
             }
 
             if ((v8 & 0x8) == 0) {
@@ -3489,7 +3489,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
             v8 = 0;
 
             if (param1->battleMons[v3].curHP) {
-                ov16_02254FA8(param0, param1, v6, v7, param2, v3, 0, &v8);
+                BattleSystem_CheckTypeChart(param0, param1, v6, v7, param2, v3, 0, &v8);
             }
 
             if ((v8 & 0x8) == 0) {
@@ -3613,7 +3613,7 @@ static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int pa
 
             if (v4) {
                 v1 = 0;
-                ov16_02254FA8(param0, param1, v4, v5, param2, v2, 0, &v1);
+                BattleSystem_CheckTypeChart(param0, param1, v4, v5, param2, v2, 0, &v1);
 
                 if (v1 & 0x2) {
                     if (param3) {
@@ -3641,7 +3641,7 @@ static BOOL ov14_02223B34 (BattleSystem * param0, BattleContext * param1, int pa
 
             if (v4) {
                 v1 = 0;
-                ov16_02254FA8(param0, param1, v4, v5, param2, v2, 0, &v1);
+                BattleSystem_CheckTypeChart(param0, param1, v4, v5, param2, v2, 0, &v1);
 
                 if (v1 & 0x2) {
                     if (param3) {

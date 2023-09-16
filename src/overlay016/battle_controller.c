@@ -112,9 +112,9 @@ static void ov16_02250798(BattleSystem * param0, BattleContext * param1);
 static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BattleController_HasNoTarget(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_0224E6F4(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_CheckTypeChart(BattleSystem * param0, BattleContext * param1);
 static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_0224EE88(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_TriggerImmunityAbilities(BattleSystem * param0, BattleContext * param1);
 static BOOL BattleController_CheckQuickClaw(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BattleController_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 static BOOL BattleController_CheckMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
@@ -2360,10 +2360,10 @@ static BOOL BattleController_HasNoTarget(BattleSystem *battleSys, BattleContext 
     return result;
 }
 
-static BOOL ov16_0224E6F4 (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_CheckTypeChart (BattleSystem * param0, BattleContext * param1)
 {
     if (((param1->aiContext.moveTable[param1->moveCur].range != 0x10) && (param1->aiContext.moveTable[param1->moveCur].range != 0x20) && (param1->aiContext.moveTable[param1->moveCur].power) && ((param1->battleStatusMask & 0x8000) == 0) && ((param1->battleStatusMask & 0x20) == 0)) || (param1->moveCur == 86)) {
-        param1->damage = ov16_02254FA8(param0, param1, param1->moveCur, param1->moveType, param1->attacker, param1->defender, param1->damage, &param1->moveStatusFlags);
+        param1->damage = BattleSystem_CheckTypeChart(param0, param1, param1->moveCur, param1->moveType, param1->attacker, param1->defender, param1->damage, &param1->moveStatusFlags);
 
         if (param1->moveStatusFlags & 0x8) {
             param1->moveFailFlags[param1->attacker].noEffect = 1;
@@ -2745,7 +2745,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
     return result != CHECK_STATUS_DONE;
 }
 
-static BOOL ov16_0224EE88 (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_TriggerImmunityAbilities (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
@@ -2755,7 +2755,7 @@ static BOOL ov16_0224EE88 (BattleSystem * param0, BattleContext * param1)
     do {
         switch (param1->abilityCheckState) {
         case 0:
-            v1 = ov16_02256148(param1, param1->attacker, param1->defender);
+            v1 = BattleSystem_CheckImmunityAbilities(param1, param1->attacker, param1->defender);
 
             if (((v1) && ((param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) == 0)) || (v1 == (0 + 181))) {
                 BattleSystem_LoadScript(param1, 1, v1);
@@ -2833,11 +2833,11 @@ static BOOL BattleController_CheckMoveHit (BattleSystem * param0, BattleContext 
         v2 *= 2;
     }
 
-    if (ov16_02255AB4(param1, param2, param3, 86) == 1) {
+    if (Battler_IgnorableAbility(param1, param2, param3, 86) == 1) {
         v3 *= 2;
     }
 
-    if (ov16_02255AB4(param1, param2, param3, 109) == 1) {
+    if (Battler_IgnorableAbility(param1, param2, param3, 109) == 1) {
         v2 = 0;
     }
 
@@ -2888,13 +2888,13 @@ static BOOL BattleController_CheckMoveHit (BattleSystem * param0, BattleContext 
 
     if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
         if (param1->fieldConditionsMask & 0xc) {
-            if (ov16_02255AB4(param1, param2, param3, 8) == 1) {
+            if (Battler_IgnorableAbility(param1, param2, param3, 8) == 1) {
                 v0 = v0 * 80 / 100;
             }
         }
 
         if (param1->fieldConditionsMask & 0xc0) {
-            if (ov16_02255AB4(param1, param2, param3, 81) == 1) {
+            if (Battler_IgnorableAbility(param1, param2, param3, 81) == 1) {
                 v0 = v0 * 80 / 100;
             }
         }
@@ -2908,25 +2908,25 @@ static BOOL BattleController_CheckMoveHit (BattleSystem * param0, BattleContext 
         v0 = v0 * 80 / 100;
     }
 
-    if ((ov16_02255AB4(param1, param2, param3, 77) == 1) && (param1->battleMons[param3].statusVolatile & 0x7)) {
+    if ((Battler_IgnorableAbility(param1, param2, param3, 77) == 1) && (param1->battleMons[param3].statusVolatile & 0x7)) {
         v0 = v0 * 50 / 100;
     }
 
     v4 = Battler_HeldItemEffect(param1, param3);
-    v5 = ov16_02258ACC(param1, param3, 0);
+    v5 = Battler_HeldItemPower(param1, param3, 0);
 
     if (v4 == 48) {
         v0 = v0 * (100 - v5) / 100;
     }
 
     v4 = Battler_HeldItemEffect(param1, param2);
-    v5 = ov16_02258ACC(param1, param2, 0);
+    v5 = Battler_HeldItemPower(param1, param2, 0);
 
     if (v4 == 93) {
         v0 = v0 * (100 + v5) / 100;
     }
 
-    if ((v4 == 104) && (ov16_022588A4(param1, param3) == 1)) {
+    if ((v4 == 104) && (Battler_MovedThisTurn(param1, param3) == 1)) {
         v0 = v0 * (100 + v5) / 100;
     }
 
@@ -2953,9 +2953,9 @@ static BOOL BattleController_CheckMoveEffect (BattleSystem * param0, BattleConte
     }
 
     if ((param1->turnFlags[param3].protecting) && (param1->aiContext.moveTable[param4].flags & 0x2)) {
-        if ((param4 != 174) || (ov16_02255950(param1, param4, param2) == 1)) {
+        if ((param4 != 174) || (BattleSystem_IsGhostCurse(param1, param4, param2) == 1)) {
             if ((BattleMove_IsMultiTurn(param1, param4) == 0) || (param1->battleStatusMask & 0x200)) {
-                ov16_02253F20(param0, param1, param2);
+                BattleSystem_BreakMultiTurn(param0, param1, param2);
                 param1->moveStatusFlags |= 0x8000;
                 return 0;
             }
@@ -3145,7 +3145,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
 
         BattleSystem_LoadScript(battleCtx, 0, battleCtx->moveCur);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-        battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE;
+        battleCtx->commandNext = BATTLE_CONTROL_MOVE_EXECUTION;
         
         BattleSystem_UpdateLastResort(battleSys, battleCtx);
     }
@@ -3166,7 +3166,7 @@ static void ov16_0224F734 (BattleSystem * param0, BattleContext * param1)
     case 1:
         param1->moveExecutionCheckState++;
 
-        if (ov16_02253E3C(param0, param1) == 1) {
+        if (BattleMove_WasRedirected(param0, param1) == 1) {
             return;
         }
     case 2:
@@ -3187,7 +3187,7 @@ static void ov16_0224F734 (BattleSystem * param0, BattleContext * param1)
         param1->moveExecutionCheckState++;
     case 4:
         if (((param1->multiHitCheckFlags & 0x2) == 0) && (param1->defender != 0xff)) {
-            if (ov16_0224E6F4(param0, param1) == 1) {
+            if (BattleController_CheckTypeChart(param0, param1) == 1) {
                 return;
             }
         }
@@ -3195,7 +3195,7 @@ static void ov16_0224F734 (BattleSystem * param0, BattleContext * param1)
         param1->moveExecutionCheckState++;
     case 5:
         if (((param1->multiHitCheckFlags & 0x10) == 0) && (param1->defender != 0xff)) {
-            if (ov16_0224EE88(param0, param1) == 1) {
+            if (BattleController_TriggerImmunityAbilities(param0, param1) == 1) {
                 return;
             }
         }
@@ -3206,14 +3206,14 @@ static void ov16_0224F734 (BattleSystem * param0, BattleContext * param1)
         break;
     }
 
-    param1->command = 24;
+    param1->command = BATTLE_CONTROL_STATUS_EFFECT;
 }
 
 static void ov16_0224F824 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
 
-    if (ov16_0225366C(param0, param1, &v0) == 1) {
+    if (BattleSystem_CheckPrimaryEffect(param0, param1, &v0) == 1) {
         BattleSystem_LoadScript(param1, 1, v0);
         param1->command = 21;
         param1->commandNext = 25;
@@ -3262,7 +3262,7 @@ static void ov16_0224F8EC (BattleSystem * param0, BattleContext * param1)
 
     if (param1->damage) {
         v0 = Battler_HeldItemEffect(param1, param1->defender);
-        v1 = ov16_02258ACC(param1, param1->defender, 0);
+        v1 = Battler_HeldItemPower(param1, param1->defender, 0);
 
         GF_ASSERT(param1->damage < 0);
 
@@ -4223,7 +4223,7 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
 
 static BOOL BattleController_CheckRange (BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target)
 {
-    if ((battleCtx->battleMons[battler].moves[moveSlot] == 174) && (ov16_02255950(battleCtx, battleCtx->battleMons[battler].moves[moveSlot], battler) == 0)) {
+    if ((battleCtx->battleMons[battler].moves[moveSlot] == 174) && (BattleSystem_IsGhostCurse(battleCtx, battleCtx->battleMons[battler].moves[moveSlot], battler) == 0)) {
         *range = 0x10;
     } else {
         *range = battleCtx->aiContext.moveTable[battleCtx->battleMons[battler].moves[moveSlot]].range;
@@ -4463,7 +4463,7 @@ static BOOL ov16_022512F8 (BattleSystem * param0, BattleContext * param1)
     int v2;
 
     v1 = Battler_HeldItemEffect(param1, param1->attacker);
-    v2 = ov16_02258ACC(param1, param1->attacker, 0);
+    v2 = Battler_HeldItemPower(param1, param1->attacker, 0);
 
     if (param1->defender != 0xff) {
         if ((v1 == 56) && ((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken)) && ((BattleSystem_RandNext(param0) % 100) < v2) && (param1->aiContext.moveTable[param1->moveCur].flags & 0x20) && (param1->battleMons[param1->defender].curHP)) {
@@ -4523,7 +4523,7 @@ static BOOL ov16_0225143C (BattleSystem * param0, BattleContext * param1)
     v0 = 0;
     v2 = BattleSystem_MaxBattlers(param0);
     v3 = Battler_HeldItemEffect(param1, param1->attacker);
-    v4 = ov16_02258ACC(param1, param1->attacker, 0);
+    v4 = Battler_HeldItemPower(param1, param1->attacker, 0);
 
     if (BattleController_CheckAnyFainted(param1, param1->command, param1->command, 1) == 1) {
         return 1;
