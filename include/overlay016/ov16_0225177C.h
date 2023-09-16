@@ -28,7 +28,7 @@ BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * para
 BOOL ov16_02253710(BattleSystem * param0, BattleContext * param1, int * param2);
 int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5);
 void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
-BOOL BattleMove_WasRedirected(BattleSystem * param0, BattleContext * param1);
+BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
 void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02253EF0(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_BreakMultiTurn(BattleSystem * param0, BattleContext * param1, int param2);
@@ -85,7 +85,7 @@ BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1
 BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem * param0, BattleContext * param1, int param2, int * param3);
 BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
 u16 ov16_02258874(BattleContext * param0, int param1);
-BOOL ov16_022588A4(BattleContext * param0, int param1);
+BOOL Battler_MovedThisTurn(BattleContext * param0, int param1);
 BOOL ov16_022588BC(BattleSystem * param0, BattleContext * param1, int * param2);
 s32 Battler_HeldItemEffect(BattleContext * param0, int param1);
 s32 Battler_HeldItemPower(BattleContext * param0, int param1, int param2);

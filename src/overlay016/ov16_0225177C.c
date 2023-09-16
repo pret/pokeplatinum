@@ -1,6 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle/moves.h"
+#include "constants/battle/side_effects.h"
+#include "constants/narc_files/battle_skill_subseq.h"
+
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02098700_decl.h"
@@ -9,9 +13,10 @@
 #include "overlay016/const_ov16_0226EBE0.h"
 
 #include "battle/battle_context.h"
-#include "battle/battle_mon.h"
-
+#include "battle/battle_controller.h"
 #include "battle/battle_message.h"
+#include "battle/battle_mon.h"
+#include "battle/common.h"
 
 #include "unk_020021B0.h"
 #include "narc.h"
@@ -68,7 +73,7 @@ BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * para
 BOOL ov16_02253710(BattleSystem * param0, BattleContext * param1, int * param2);
 int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5);
 void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
-BOOL BattleMove_WasRedirected(BattleSystem * param0, BattleContext * param1);
+BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
 void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02253EF0(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_BreakMultiTurn(BattleSystem * param0, BattleContext * param1, int param2);
@@ -1509,28 +1514,36 @@ void ov16_022535F0 (BattleSystem * param0, BattleContext * param1, int param2)
     }
 }
 
-BOOL BattleSystem_CheckPrimaryEffect (BattleSystem * param0, BattleContext * param1, int * param2)
+BOOL BattleSystem_CheckPrimaryEffect (BattleSystem *battleSys, BattleContext * battleCtx, int * nextSeq)
 {
-    BOOL v0 = 0;
+    BOOL result = FALSE;
 
-    if (param1->sideEffectDirectFlags & 0x20000000) {
-        param2[0] = BattleContext_SideEffect(param1, 1, param1->sideEffectDirectFlags);
-        param1->sideEffectDirectFlags = 0;
+    if (battleCtx->sideEffectDirectFlags & MOVE_SIDE_EFFECT_ON_HIT) {
+        *nextSeq = BattleContext_SideEffect(battleCtx, 1, battleCtx->sideEffectDirectFlags);
+        battleCtx->sideEffectDirectFlags = 0;
 
-        if ((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) {
-            v0 = 1;
+        if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE) {
+            result = TRUE;
         }
-    } else if (param1->sideEffectDirectFlags) {
-        param2[0] = BattleContext_SideEffect(param1, 1, param1->sideEffectDirectFlags);
+    } else if (battleCtx->sideEffectDirectFlags) {
+        *nextSeq = BattleContext_SideEffect(battleCtx, 1, battleCtx->sideEffectDirectFlags);
 
-        if ((param1->battleMons[param1->sideEffectMon].curHP) && (((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) || ((param1->sideEffectDirectFlags & 0x800000) && (param1->moveStatusFlags & (0x8 | 0x40000))) || ((param1->sideEffectDirectFlags & 0x10000000) && (param1->moveStatusFlags & (0x1 | 0x10000))))) {
-            v0 = 1;
+        if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP
+                && ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+                    // Brick Break's effect still applies even if the target is immune.
+                    || ((battleCtx->sideEffectDirectFlags & MOVE_SIDE_EFFECT_BREAK_SCREENS)
+                        && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_AFFECT))
+                    // Various other moves can still apply their effect even if the target
+                    // is semi-invulnerable.
+                    || ((battleCtx->sideEffectDirectFlags & MOVE_SIDE_EFFECT_NO_DAMAGE_REQUIRED)
+                        && (battleCtx->moveStatusFlags & MOVE_STATUS_GENERAL_MISS)))) {
+            result = TRUE;
         }
 
-        param1->sideEffectDirectFlags = 0;
+        battleCtx->sideEffectDirectFlags = 0;
     }
 
-    return v0;
+    return result;
 }
 
 BOOL ov16_02253710 (BattleSystem * param0, BattleContext * param1, int * param2)
@@ -1841,27 +1854,31 @@ void BattleSystem_RedirectTarget (BattleSystem * param0, BattleContext * param1,
     }
 }
 
-BOOL BattleMove_WasRedirected (BattleSystem * param0, BattleContext * param1)
+BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL v0 = 0;
+    BOOL result = FALSE;
 
-    if (((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && (param1->selfTurnFlags[param1->defender].lightningRodActivated)) {
-        param1->selfTurnFlags[param1->defender].lightningRodActivated = 0;
-        BattleSystem_LoadScript(param1, 1, (0 + 180));
-        param1->commandNext = param1->command;
-        param1->command = 21;
-        v0 = 1;
+    if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE && DEFENDER_SELF_TURN_FLAGS.lightningRodActivated) {
+        battleCtx->selfTurnFlags[battleCtx->defender].lightningRodActivated = 0;
+
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_LIGHTNING_ROD_REDIRECTED);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+        result = TRUE;
     }
 
-    if (((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && (param1->selfTurnFlags[param1->defender].stormDrainActivated)) {
-        param1->selfTurnFlags[param1->defender].stormDrainActivated = 0;
-        BattleSystem_LoadScript(param1, 1, (0 + 180));
-        param1->commandNext = param1->command;
-        param1->command = 21;
-        v0 = 1;
+    if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE && DEFENDER_SELF_TURN_FLAGS.stormDrainActivated) {
+        battleCtx->selfTurnFlags[battleCtx->defender].stormDrainActivated = 0;
+
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_LIGHTNING_ROD_REDIRECTED);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+        result = TRUE;
     }
 
-    return v0;
+    return result;
 }
 
 void BattleMon_CopyToParty (BattleSystem * param0, BattleContext * param1, int param2)

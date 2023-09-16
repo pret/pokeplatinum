@@ -43,7 +43,7 @@
 #define MOVE_STATUS_ENDURED             (1 << 7)
 #define MOVE_STATUS_ENDURED_ITEM        (1 << 8)
 #define MOVE_STATUS_NO_PP               (1 << 9)
-#define MOVE_STATUS_BYPASS_ACCURACY     (1 << 10)
+#define MOVE_STATUS_BYPASSED_ACCURACY   (1 << 10)
 #define MOVE_STATUS_LEVITATED           (1 << 11)
 #define MOVE_STATUS_ONE_HIT_KO_FAILED   (1 << 12)
 #define MOVE_STATUS_SPLASH              (1 << 13)
@@ -73,6 +73,9 @@
 #define MOVE_STATUS_NO_EFFECTS          (MOVE_STATUS_DID_NOT_HIT \
                                         | MOVE_STATUS_NO_PP \
                                         | MOVE_STATUS_NO_MORE_WORK)
+
+#define MOVE_STATUS_DID_NOT_AFFECT      (MOVE_STATUS_INEFFECTIVE | MOVE_STATUS_WONDER_GUARD)
+#define MOVE_STATUS_GENERAL_MISS        (MOVE_STATUS_MISSED | MOVE_STATUS_SEMI_INVULNERABLE)
 
 #define RANGE_SINGLE_TARGET             0
 #define RANGE_SINGLE_TARGET_SPECIAL     (1 << 0)
