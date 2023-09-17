@@ -83,7 +83,7 @@ static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *
 static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_0224F854(BattleSystem * param0, BattleContext * param1);
+static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224F8D4(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F8EC(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224FD00(BattleSystem * param0, BattleContext * param1);
@@ -158,7 +158,7 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_BeforeMove,
     BattleController_TryMove,
     BattleController_PrimaryEffect,
-    ov16_0224F854,
+    BattleController_CheckMoveFailure,
     ov16_0224F8D4,
     ov16_0224F8EC,
     ov16_0224FD00,
@@ -3261,24 +3261,25 @@ static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContex
     battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
 }
 
-static void ov16_0224F854 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->moveStatusFlags & 0x80000000) {
-        param1->command = 34;
-    } else if (param1->moveStatusFlags & 0x200) {
-        BattleSystem_LoadScript(param1, 1, (0 + 42));
-        param1->command = 21;
-        param1->commandNext = 38;
-    } else if ((param1->multiHitLoop) && (param1->moveStatusFlags & 0x1)) {
-        param1->moveStatusFlags &= (0x1 ^ 0xffffffff);
-        param1->moveStatusFlags |= 0x4000;
-        param1->command = 28;
-    } else if (param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) {
-        BattleSystem_LoadScript(param1, 1, (0 + 7));
-        param1->command = 21;
-        param1->commandNext = 33;
+    if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_MORE_WORK) {
+        battleCtx->command = BATTLE_CONTROL_CHECK_MULTI_TARGET;
+    } else if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_PP) {
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_NO_PP);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+    } else if (battleCtx->multiHitLoop && (battleCtx->moveStatusFlags & MOVE_STATUS_MISSED)) {
+        // Thrashing moves have a special status flag.
+        battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
+        battleCtx->moveStatusFlags |= MOVE_STATUS_THRASH_DISRUPTED;
+        battleCtx->command = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
+    } else if (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) {
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_MISSED);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED; // crash damage can kill
     } else {
-        param1->command = 26;
+        battleCtx->command = BATTLE_CONTROL_USE_MOVE;
     }
 }
 
