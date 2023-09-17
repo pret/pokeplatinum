@@ -82,7 +82,7 @@ static void BattleController_SafariRunCommand(BattleSystem *battleSys, BattleCon
 static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_0224F824(BattleSystem * param0, BattleContext * param1);
+static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224F854(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F8D4(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224F8EC(BattleSystem * param0, BattleContext * param1);
@@ -157,7 +157,7 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_ExecScript,
     BattleController_BeforeMove,
     BattleController_TryMove,
-    ov16_0224F824,
+    BattleController_PrimaryEffect,
     ov16_0224F854,
     ov16_0224F8D4,
     ov16_0224F8EC,
@@ -3158,7 +3158,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
     }
 
     if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) {
-        battleCtx->command = BATTLE_CONTROL_NO_EFFECTS;
+        battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
     } else {
         battleCtx->battleStatusMask2 |= 0x40;
 
@@ -3243,21 +3243,22 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
         break;
     }
 
-    battleCtx->command = BATTLE_CONTROL_STATUS_EFFECT;
+    battleCtx->command = BATTLE_CONTROL_PRIMARY_EFFECT;
 }
 
-static void ov16_0224F824 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    int nextSeq;
 
-    if (BattleSystem_CheckPrimaryEffect(param0, param1, &v0) == 1) {
-        BattleSystem_LoadScript(param1, 1, v0);
-        param1->command = 21;
-        param1->commandNext = 25;
+    if (BattleSystem_CheckPrimaryEffect(battleSys, battleCtx, &nextSeq) == TRUE) {
+        LOAD_SUBSEQ(nextSeq);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_MOVE_FAILED;
+        
         return;
-    } else {
-        param1->command = 25;
     }
+    
+    battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
 }
 
 static void ov16_0224F854 (BattleSystem * param0, BattleContext * param1)
