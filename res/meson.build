@@ -6,3 +6,4 @@ subdir('prebuilt')
 # Decompiled data directories
 subdir('battle')
 subdir('items')
+subdir('text')

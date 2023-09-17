@@ -172,7 +172,13 @@ RomSpec
 	File data/wm.nclr
 	File data/sound/sound_data.sdat
 	File data/sound/pl_sound_data.sdat
-	File msgdata/pl_msg.narc
+
+	Root /msgdata
+	HostRoot res/text
+	File pl_msg.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File msgdata/msg.narc
 	File msgdata/scenario/scr_msg.narc
 	File poketool/pokegra/dp_height.narc
