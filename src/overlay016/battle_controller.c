@@ -84,7 +84,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
 static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_0224F8D4(BattleSystem * param0, BattleContext * param1);
+static void BattleController_UseMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224F8EC(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224FD00(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224FEE0(BattleSystem * param0, BattleContext * param1);
@@ -159,7 +159,7 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_TryMove,
     BattleController_PrimaryEffect,
     BattleController_CheckMoveFailure,
-    ov16_0224F8D4,
+    BattleController_UseMove,
     ov16_0224F8EC,
     ov16_0224FD00,
     ov16_0224FEE0,
@@ -3283,11 +3283,11 @@ static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleCon
     }
 }
 
-static void ov16_0224F8D4 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_UseMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleSystem_LoadScript(param1, 1, (0 + 1));
-    param1->command = 21;
-    param1->commandNext = 27;
+    LOAD_SUBSEQ(BATTLE_SUBSEQ_USE_MOVE);
+    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+    battleCtx->commandNext = BATTLE_CONTROL_UPDATE_HP;
 }
 
 static void ov16_0224F8EC (BattleSystem * param0, BattleContext * param1)
