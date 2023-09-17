@@ -218,7 +218,7 @@ RomSpec
 	File wazaeffect/effectclact/wepltt.narc
 
 	Root /poketool/waza
-	HostRoot res/moves
+	HostRoot res/battle/moves
 	File pl_waza_tbl.narc
 
 	Root /
