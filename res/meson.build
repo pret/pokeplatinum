@@ -3,5 +3,6 @@ nitrofs_files = []
 # Prebuilt files
 subdir('prebuilt')
 
-# New data directories
+# Decompiled data directories
+subdir('items')
 subdir('moves')

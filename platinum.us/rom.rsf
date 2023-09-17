@@ -285,8 +285,14 @@ RomSpec
 	File graphic/worldtrade.narc
 	File itemtool/itemdata/item_data.narc
 	File itemtool/itemdata/item_icon.narc
-	File itemtool/itemdata/nuts_data.narc
-	File itemtool/itemdata/pl_item_data.narc
+
+	Root /itemtool/itemdata
+	HostRoot res/items
+	File nuts_data.narc
+	File pl_item_data.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File poketool/icongra/pl_poke_icon.narc
 	File poketool/icongra/poke_icon.narc
 	File poketool/pokefoot/pokefoot.narc
