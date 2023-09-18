@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="40592" />
 	<row id="pl_msg_00000467_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dawn: {STRVAR_1 3, 1, 0}?!\rDid you tell your family that you’re\nhelping the professor?\r...You didn’t, did you?\rI know that you’re really eager to\nsee all kinds of Pokémon.\rBut you shouldn’t make your mom\nworry that you’ve disappeared.\r</language>

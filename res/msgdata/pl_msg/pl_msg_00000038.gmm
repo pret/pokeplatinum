@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50194" />
 	<row id="pl_msg_00000038_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon are wonderful, deeply\nmysterious creatures.\rBut to Trainers, the key thing is to do\nbattle with their Pokémon.\rThat’s what it boils down to.</language>

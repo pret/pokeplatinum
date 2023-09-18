@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="54315" />
 	<row id="pl_msg_00000170_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’d heard that Team Galactic was up to\nno good.\rBut here in Sunyshore, we’ve never\neven seen any of them around.\rOf course, our Gym Leader Volkner is\ninvincible in every way.</language>

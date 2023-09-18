@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="11123" />
 	<row id="pl_msg_00000145_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">If you use the hidden move Fly,\nyou’ll be instantly whisked to any\ftown you’ve visited before.</language>

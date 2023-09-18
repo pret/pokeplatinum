@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="38536" />
 	<row id="pl_msg_00000521_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oak: Ah, {STRVAR_1 3, 0, 0}!\nIt’s good to see you!\rWithout any further ado, I’d like you\nto examine this stone tablet.\rSomething just like it was also\ndiscovered in the Kanto region.\rI want to ask for your help in\nsolving the mystery behind this.\r</language>

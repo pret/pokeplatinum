@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="21510" />
 	<row id="pl_msg_00000593_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh? So, you are?!\nYou’re Buck’s friend, yes!\rI’ve heard about you from both Buck\nand Wake.\rWell, my young friend, you’re always\nwelcome here from now on!\rThis is a private club for only Sinnoh’s\nGym Leaders, or those vouched for by\fthose selfsame Gym Leaders.\rIt’s a place where the best seek to\nbetter themselves.\rWelcome to the Battleground!</language>

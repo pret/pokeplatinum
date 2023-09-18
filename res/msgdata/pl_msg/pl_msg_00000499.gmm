@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="24259" />
 	<row id="pl_msg_00000499_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Is that right? You’re a traveler?\nYes, it’s good to see other places!\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="40580" />
 	<row id="pl_msg_00000477_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dawn: Hi, {STRVAR_1 3, 0, 0}!\nHow’s your Pokédex coming along?\rMe? I’m somewhere between fantastic\nand, uh, hopeless...\rBut this isn’t about me!\nI’ve got something nice for you.\r{STRVAR_1 3, 0, 0}, choose which hand\nyou want.</language>

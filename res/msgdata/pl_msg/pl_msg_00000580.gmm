@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="62487" />
 	<row id="pl_msg_00000580_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh?\nWelcome!\rYou saw the notice outside about\nus hiring, right?\rIs that a Pokédex there?\nThen you must know Professor Rowan!\rYou’re just the Pokémon-searching\nexpert we’ve been looking for!\r</language>

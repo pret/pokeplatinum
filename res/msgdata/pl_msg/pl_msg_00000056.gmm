@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="63854" />
 	<row id="pl_msg_00000056_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ah!\nThat’s Oreburgh’s Gym Badge!\rI see, I see!\nYou’ve defeated my son.\rBut that’s no surprise.\nHe still has much to learn.\rIn place of my son Roark, I, Byron,\nwill take your challenge!\r</language>

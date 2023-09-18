@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="11955" />
 	<row id="pl_msg_00000598_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Do you know there’s a sure way to\nchange the world?\rDo a headstand, and the world turns\nupside down!</language>

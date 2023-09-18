@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="63855" />
 	<row id="pl_msg_00000133_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome!\nI don’t get challenged very often!\rThe glory you are now beholding is\nthe Pastoria Gym Leader!\rThat’s right, I’m Crasher Wake!\rMy Pokémon were toughened up by\nstormy white waters!\rThey’ll take everything you can throw\nat them and then pull you under!\rVictory will be ours!\nCome on, let’s get it done!\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="54322" />
 	<row id="pl_msg_00000186_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Well, well.\rYou’re quite the adorable Trainer,\nbut you’ve also got a spine.\rAhaha!\nI’m Bertha.\rI have a preference for Ground-type\nPokémon.\rWell, would you show this old lady\nhow much you’ve learned?\r</language>

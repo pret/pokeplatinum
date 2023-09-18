@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17411" />
 	<row id="pl_msg_00000036_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You can see the rankings of people\nin your group here.\rIt makes me try even harder ’cause\nI can’t stand losing to my friends!</language>

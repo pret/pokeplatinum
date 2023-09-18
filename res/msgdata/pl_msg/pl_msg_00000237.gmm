@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="24614" />
 	<row id="pl_msg_00000237_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">On the other side of the rift...\nIn a fantastically bizarre place...\fIt’s DIALGA!\rWill you challenge DIALGA?</language>

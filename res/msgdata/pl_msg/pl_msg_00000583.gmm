@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18235" />
 	<row id="pl_msg_00000583_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">There’s an odd spaceman\nin front of the ruins.\rThere isn’t anything there, but that\nonly seemed to make him get angry.\rHe’s saying he will blow the town\nup with a bomb...\rThe nerve of it all...\rIf only I were younger, I’d punish\nthat spaceman with my Pokémon...</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50234" />
 	<row id="pl_msg_00000046_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome! This is the Global Trade\nStation, or GTS for short.\rWe enable the trading of Pokémon with\npeople worldwide over Nintendo WFC.\rWould you like to do a global\nPokémon trade?</language>

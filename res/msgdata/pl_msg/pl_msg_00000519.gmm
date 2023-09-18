@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="20115" />
 	<row id="pl_msg_00000519_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I had a dream!\nIt was a wonderful dream!\rI dreamt that a Trainer would bring\nme a giant REMORAID!</language>

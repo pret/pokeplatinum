@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="43554" />
 	<row id="pl_msg_00000548_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{COLOR 1}Pokémon Platinum{COLOR 0}</language>

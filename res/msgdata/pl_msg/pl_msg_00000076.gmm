@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="25619" />
 	<row id="pl_msg_00000076_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">During the daytime, everyone goes off\nto the mine.\rAt night, everyone’s at home\ngetting some well-deserved rest.</language>

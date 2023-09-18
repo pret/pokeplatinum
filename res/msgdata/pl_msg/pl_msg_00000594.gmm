@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="21534" />
 	<row id="pl_msg_00000594_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">There’s a move that doubles in power\nif the Pokémon using it is poisoned,\fparalyzed, or burned.\rI’ve got the Technical Machine for\nit right here. You want it?\r</language>

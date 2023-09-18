@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="54005" />
 	<row id="pl_msg_00000484_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Howdy, traveler!\rSome of our customers are rowdy\ntypes that want to battle.\rDo what you will with them.\nI don’t mind.</language>

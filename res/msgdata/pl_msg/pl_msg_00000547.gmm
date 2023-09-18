@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="39226" />
 	<row id="pl_msg_00000547_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’m the Day-Care Man.\rWe look after the precious Pokémon\nof other Trainers.\rIf you’d like us to raise your\nPokémon, have a word with my wife.</language>

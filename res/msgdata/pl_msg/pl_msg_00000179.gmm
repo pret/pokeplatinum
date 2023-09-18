@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="43698" />
 	<row id="pl_msg_00000179_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Maylene: Brrr...\rOh, hi, {STRVAR_1 3, 0, 0}!\nAre you taking the Gym challenge now?\rI’m hoping to see Candice soon, but I’m\nstaying put until I warm up again first.\rOh, you should know that Candice is\na user of Ice-type Pokémon.\rI really admire Candice.\nShe’s so studious.\rShe wanted to practice against me to\nlearn about the Fighting type.\rIt’s because the Ice type matches up\nbadly against the Fighting type.\n</language>

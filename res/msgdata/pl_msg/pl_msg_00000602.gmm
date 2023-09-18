@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17438" />
 	<row id="pl_msg_00000602_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The original owner’s furniture is gone,\nand I didn’t buy any.\rSo, yeah, I know, it’s barren.\nStill, not bad, eh?\rBut anyway, I feel kind of bad just\nimposing the place on you for nothing.\rI’ll tell you what, order a Table from\nthis order form.\rThat’ll do as my thanks to you!</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="11795" />
 	<row id="pl_msg_00000563_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Talk to that nice lady at the counter\nand hand her your Pokémon.\rShe’ll heal your Pokémon to perfect\nhealth in no time at all!</language>

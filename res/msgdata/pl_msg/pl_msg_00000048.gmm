@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50226" />
 	<row id="pl_msg_00000048_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">What you see here is how much people\naround the world love Pokémon.\rWatching Battle Videos lets you share\nthe fun these people had.</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="13315" />
 	<row id="pl_msg_00000136_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome to the Great Marsh, the home\nof Pastoria’s Safari Game!\rAll you can catch for just $500!\nWould you like to play a Safari Game?</language>

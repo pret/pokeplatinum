@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="62503" />
 	<row id="pl_msg_00000582_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The Pokémon in this town’s ruins look\nlike some kind of strange alphabet.\rI think they’re really neat.\nI’m too small to catch them, though.\rInstead, I play with Seals to try\nreading those weird letters.\rIf you can give me Pokémon that look\nlike letters, I’ll give you some Seals.</language>

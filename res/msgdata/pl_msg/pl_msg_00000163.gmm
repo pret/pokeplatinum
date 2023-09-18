@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="52112" />
 	<row id="pl_msg_00000163_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ve heard about Victory Road, which\nleads to the Pokémon League.\rThe word is the road is harsh and\nharrowing.\rI’d better load up on as many items\nand as much medicine as I can carry...</language>

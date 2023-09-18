@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17435" />
 	<row id="pl_msg_00000030_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Why don’t you try dressing up your\nPokémon now?\rWe have a Fitting Room on\nthe second floor.\rDress up your Pokémon nicely with\nAccessories!</language>

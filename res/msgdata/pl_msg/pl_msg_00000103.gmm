@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="37946" />
 	<row id="pl_msg_00000103_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oak: Ah, it’s you! Good to see you!\nHow is your Pokédex coming along?\rCapturing every kind of Pokémon is\nno easy feat, I’ll grant you that.\rBut I’m sure you can accomplish it!\r</language>

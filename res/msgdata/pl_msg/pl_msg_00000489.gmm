@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="37239" />
 	<row id="pl_msg_00000489_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Mr. Backlot in the Pokémon Mansion \nlooks forward to seeing visitors.\rHe must be able to wait around because\nhe wants to brag about something.</language>

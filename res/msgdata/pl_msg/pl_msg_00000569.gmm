@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18211" />
 	<row id="pl_msg_00000569_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Grunt 1: Aren’t we Team Galactic?\nAnd we’re assigned here?\rStanding around among flowers...\nThis doesn’t seem all that cool.\r</language>

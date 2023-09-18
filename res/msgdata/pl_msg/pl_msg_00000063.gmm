@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="29739" />
 	<row id="pl_msg_00000063_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">...Welcome...\r...\n...Kekeke...\rWe’ve had a reservation for you.\nWe’ve held it a long time...\r</language>

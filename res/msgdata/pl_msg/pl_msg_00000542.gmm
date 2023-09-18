@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="47895" />
 	<row id="pl_msg_00000542_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">This Seal releases a cloud of\nsmall pink hearts.</language>

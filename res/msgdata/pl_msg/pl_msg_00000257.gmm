@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="62499" />
 	<row id="pl_msg_00000257_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">That sparkling new Pokétch!\nYour awkwardness as a traveler!\rHmm... You’re still a pretty new\nTrainer, aren’t you?\rBut it’s all good! You’re a new fellow\nfriend of Pokémon!\rSo, let me make a gift of this Hidden\nMachine to you!\r</language>

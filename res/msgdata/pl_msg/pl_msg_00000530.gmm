@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="28314" />
 	<row id="pl_msg_00000530_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">That Badge...\nIt’s from Sunyshore’s Gym?\rYou’ve been to that port town, then...\rWould... Would you lend an ear to this\nold man’s tale?</language>

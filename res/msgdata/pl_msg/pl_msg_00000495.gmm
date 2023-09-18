@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="39572" />
 	<row id="pl_msg_00000495_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">We needed the energy from the\nValley Windworks to make this...\rIt would take a scientific genius to\nmake something like this...\rTherefore, our boss, who made this,\nis a scientific mechanical genius!\r</language>

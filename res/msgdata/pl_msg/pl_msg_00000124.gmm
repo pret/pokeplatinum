@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="1095" />
 	<row id="pl_msg_00000124_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">All my grandchildren are clamoring\nfor Pokémon of their own.\rIt may be tricky to manage it, but\nit will brighten up the mood more.</language>

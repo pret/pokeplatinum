@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="19377" />
 	<row id="pl_msg_00000177_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’m using Technical Machines to teach\nmoves to my Pokémon.\rI’m trying for different mixes of\nmoves in different types.\rIt’s for when I go up against the Elite\nFour of the Pokémon League.\rThey say the Elite Four are tougher\nthan any Gym Leader by far.</language>

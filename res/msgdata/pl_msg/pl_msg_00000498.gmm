@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="57082" />
 	<row id="pl_msg_00000498_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ah, hello. You wish to stay a night?\nAh, but you’ve no reservations.\rI’m afraid we are totally booked.\nYou may rest a while, if you wish.\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9243" />
 	<row id="pl_msg_00000148_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome to the fabulous Veilstone\nDepartment Store.</language>

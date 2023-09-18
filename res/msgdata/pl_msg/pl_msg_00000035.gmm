@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17415" />
 	<row id="pl_msg_00000035_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Someone broke my Pokémon-catching\nrecord!\rI’ll reclaim my record and regain\nmy place in the standings!</language>

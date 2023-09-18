@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5194" />
 	<row id="pl_msg_00000311_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome to the Battle Hall!\rI am your guide to the Single and\nDouble Battle challenges.\rPlease be aware that these challenges\nare designed for a single Trainer.\r</language>

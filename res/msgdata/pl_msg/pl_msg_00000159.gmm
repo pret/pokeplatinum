@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9267" />
 	<row id="pl_msg_00000159_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You’re a Trainer, aren’t you?\rYou see, there’s this Pokémon I’d like\nsomeone to look after.\rIt’s a Pokémon called PORYGON.\nI found it near Team Galactic’s building.\rI’m no Trainer, so can you take it off\nmy hands?</language>

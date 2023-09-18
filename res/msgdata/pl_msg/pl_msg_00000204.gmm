@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="43257" />
 	<row id="pl_msg_00000204_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Choose the Judge you want\nto rate the move.</language>

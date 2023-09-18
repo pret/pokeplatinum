@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="51441" />
 	<row id="pl_msg_00000541_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome!\rWould you like some Scratch-Off Cards?\nThey’re three for {STRVAR_1 50, 0, 0} BP.\r</language>

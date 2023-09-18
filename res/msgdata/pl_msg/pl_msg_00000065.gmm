@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18331" />
 	<row id="pl_msg_00000065_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 0, 0}: Hunh?\rOh, it’s you, {STRVAR_1 3, 1, 0}!\nYou finally got here?\fYou’re slow like always.\rBut anyway, the Gym Leader’s tough!\nLike, seriously serious!\rIf the Gym Leader’s this tough,\nI wonder how he compares to my dad...\rHuh?\nI just drifted there.\rAnyway, the Gym Leader’s gone off\nto the coal mine.\rIf you want to take on the Gym Leader,\nyou’d better go off to the mine!</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50206" />
 	<row id="pl_msg_00000039_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Did you know?\rSome kinds of Pokémon evolve when\nthey get stronger from battling!\rWhen they evolve, they can take on\ncompletely different forms!</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="54319" />
 	<row id="pl_msg_00000263_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Buck: Hey, {STRVAR_1 3, 0, 0}, wait up!\nSo, what’s going on?\r...What?!\nTeam Galactic’s here?\rGotcha!\nLet’s team up and go together.\r</language>

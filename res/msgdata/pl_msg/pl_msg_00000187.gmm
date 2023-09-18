@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="54330" />
 	<row id="pl_msg_00000187_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Yo, Trainer!\rYou had me counting the days on my\nfingers waiting for you to come.\rI heard from Volkner what you \ndid in Sunyshore.\rYou managed to light a fire in that\nguy’s heart again.\rHow could you not expect me to look\nforward to seeing you in battle?\r</language>

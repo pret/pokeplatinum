@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="25268" />
 	<row id="pl_msg_00000494_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">If you’d share your shards with me,\nI can teach your Pokémon some moves.\rWould you like me to teach a move?</language>

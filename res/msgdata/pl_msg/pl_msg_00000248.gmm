@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17426" />
 	<row id="pl_msg_00000248_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’d heard the Hidden Machine Defog was\nsomewhere in these ruins.\rIt’s just that I seem to be lost, what\nwith everything looking the same.\rNow what?\nI could use help here.</language>

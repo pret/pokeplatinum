@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50230" />
 	<row id="pl_msg_00000045_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You managed to come out here?\nThat takes focus!\rFor someone like you, this\n{STRVAR_1 8, 0, 0} might be perfect.\rLet a Pokémon hold it, yah?\r</language>

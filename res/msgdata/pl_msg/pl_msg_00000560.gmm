@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9262" />
 	<row id="pl_msg_00000560_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Did you hear?\rThe Pokémon Professor returned\nto the next town over.\rThey say he was gone for four long\nyears.\rI wonder if he found some amazing\nPokémon while he was gone?</language>

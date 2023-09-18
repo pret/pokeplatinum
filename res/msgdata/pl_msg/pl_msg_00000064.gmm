@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="62498" />
 	<row id="pl_msg_00000064_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’m going to be a Sailor like my\ndaddy!\rHe’s a real man among men!\nEven the sea doesn’t scare him!\rOh, but a Gym Leader’d be cool, too!\nByron is so awesome!</language>

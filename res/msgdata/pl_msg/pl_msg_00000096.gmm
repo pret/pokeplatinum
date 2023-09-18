@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5131" />
 	<row id="pl_msg_00000096_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 0, 0, 0} entered the motor.\r{STRVAR_1 0, 0, 0} is trying to\nlearn {STRVAR_1 6, 1, 0}.\rBut {STRVAR_1 0, 0, 0} can’t learn\nmore than four moves.\rDelete a move to make\nroom for {STRVAR_1 6, 1, 0}?</language>

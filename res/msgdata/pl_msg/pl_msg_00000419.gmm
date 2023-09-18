@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="33011" />
 	<row id="pl_msg_00000419_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It was all in spite of the exploration\nteam’s best efforts.\rThe rare, oddly colored Pokémon\neluded detection.\rThe rumored red GYARADOS failed to\nappear to the dispirited team...\rThat concludes our special report,\n“Search for the Red GYARADOS!”\rBrought to you by Jubilife TV on\nNationwide Net!\rSee you next week, same time, same\nchannel!</language>

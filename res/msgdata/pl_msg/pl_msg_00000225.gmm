@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5122" />
 	<row id="pl_msg_00000225_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">What?! No way!\nYou have the key?\rLocking the door was meaningless!\nI am the loser in this after all!\rThis is no time for self-pity!\nI’ve got to alert the Commander!\r</language>

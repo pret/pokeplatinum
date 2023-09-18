@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="38532" />
 	<row id="pl_msg_00000525_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Buck: Yo, if it isn’t {STRVAR_1 3, 0, 0}!\nOut training right away, are you?\rSo, uh, since you’re training anyway,\ncan you do me a favor?\rI’d like you to patrol Stark Mountain\nfor me.</language>

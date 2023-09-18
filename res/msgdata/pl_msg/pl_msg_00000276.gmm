@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="53182" />
 	<row id="pl_msg_00000276_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">...You are?\rOK, you’re {STRVAR_1 3, 0, 0}.\nI’m Riley.\rI’m a Trainer, and yes, it is a bit\nodd that I would be training here.\rAnyway, it’s always nice to meet\nanother Trainer. Here’s a gift.\r</language>

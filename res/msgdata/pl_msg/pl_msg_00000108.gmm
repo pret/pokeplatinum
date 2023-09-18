@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="39279" />
 	<row id="pl_msg_00000108_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hey, there!\nHow’s it going, Champ-to-be?\rThis Gym is some kind of wicked!\nWhat’s wicked about it?\rI’ll tell you!\nFirst, it’s pitch-black!\rOh, no worries, though!\nI have a flashlight right here for you.\rAlso, there are the usual Gym Trainers.\nThey have flashlights, too.\rIf you cast a light on one, or they\ncatch you in the light, the battle’s on!\rOK, now this is really important!\nIt’s about the tiles on the floor.\rFirst, find the one {COLOR 2}blue{COLOR 0} tile in the\nroom, and memorize the mark on it.\rNext, head for the {COLOR 1}red{COLOR 0} door with the\nsame mark on it.\rAdvance through the correct red doors\nto reach the Gym Leader.\rIf you choose a wrong red door, you\nget sent back here, though.\rThat’s how this place is.\nGo get ’em, Champ-to-be!\r</language>

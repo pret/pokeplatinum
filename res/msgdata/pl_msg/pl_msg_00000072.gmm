@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="25611" />
 	<row id="pl_msg_00000072_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Do you make your Pokémon hold items?\rIf you’d like, let one hold this\n{STRVAR_1 8, 0, 0}.\r</language>

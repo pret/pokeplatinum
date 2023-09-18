@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="14420" />
 	<row id="pl_msg_00000452_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 52, 0, 0}　{STRVAR_1 0, 1, 0}　{STRVAR_1 0, 2, 0}　{STRVAR_1 0, 3, 0}</language>

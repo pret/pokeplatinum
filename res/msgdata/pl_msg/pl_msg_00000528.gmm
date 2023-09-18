@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="61067" />
 	<row id="pl_msg_00000528_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A strong, but a solitary presence...\nOr the weak that mass together...\rWho can say which is better?</language>

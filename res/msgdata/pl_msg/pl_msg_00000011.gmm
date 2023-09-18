@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="14338" />
 	<row id="pl_msg_00000011_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please take your designated position\nand start the battle.</language>

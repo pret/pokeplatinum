@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="43858" />
 	<row id="pl_msg_00000134_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The Great Marsh is vast!\nHow vast is it, you ask?\rTake a look from the Observatory\nand you can see for yourself!</language>

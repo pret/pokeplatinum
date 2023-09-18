@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="46175" />
 	<row id="pl_msg_00000271_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It’s a statue of a Pokémon.\nIt seems to exude power...\r{STRVAR_1 3, 0, 0} read the engraved\nwriting...\rA body of rock.\rA body of ice.\rA body of steel.\rWhen gathers the three Pokémon,\nthe king shall appear.</language>

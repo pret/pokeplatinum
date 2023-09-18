@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5150" />
 	<row id="pl_msg_00000566_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ah, so that Rowan fellow is back?\nHe’s quite the remarkable man.\rHe’s been studying Pokémon since way,\nway back.\rMy son and grandchild help Rowan\nwith his studies now.</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="37835" />
 	<row id="pl_msg_00000645_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Teach which move to\n{STRVAR_1 1, 0, 0}?</language>

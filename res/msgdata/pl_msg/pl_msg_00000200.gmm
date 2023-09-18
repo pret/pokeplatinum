@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="47427" />
 	<row id="pl_msg_00000200_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome to the Battle Castle.\nMy name is Darach.\rI will be your host on behalf of Lady\nCaitlin, the owner of the castle.\rFirst, I must ask you for any items\nyour Pokémon are holding.\rThey will be returned to you when you\nleave.\rNext, I have here 10 Castle Points, CP,\nthat can be used only here.\rThey are for you.\nPlease accept them.\r</language>

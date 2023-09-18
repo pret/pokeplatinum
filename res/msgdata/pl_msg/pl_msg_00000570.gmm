@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="20273" />
 	<row id="pl_msg_00000570_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’m going to dress up my Pokémon with\ncute Accessories and take it to the\fTV station in Jubilife City.\rThat way, everyone in the region\nwill be able to see my Pokémon!</language>

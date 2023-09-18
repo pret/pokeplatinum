@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50234" />
 	<row id="pl_msg_00000196_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">To the north is the Survival Area and\nthen Stark Mountain.\rThe road there is too tough for me to\ntravel, though.</language>

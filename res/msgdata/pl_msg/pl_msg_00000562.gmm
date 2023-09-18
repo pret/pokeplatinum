@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="53008" />
 	<row id="pl_msg_00000562_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">If a Pokémon loses all its HP,\nit can’t battle anymore.\rI’m buying lots of Potions to avoid\nhaving that happen!</language>

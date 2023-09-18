@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="16011" />
 	<row id="pl_msg_00000523_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Isn’t it hot in the Battle Zone?\nWhy not let your Pokémon drink this?\r</language>

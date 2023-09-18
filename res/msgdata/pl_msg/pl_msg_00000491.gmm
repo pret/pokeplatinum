@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="21176" />
 	<row id="pl_msg_00000491_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You know how you can catch Pokémon\nin the trophy garden?\rIf you put this on a caught Pokémon,\nit warms up to you faster.\rI’ll share one with you, so give it\na try.\r</language>

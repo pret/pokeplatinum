@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="36501" />
 	<row id="pl_msg_00000374_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi!\nHow’s it going?\rYou’re in the {STRVAR_1 61, 1, 0} group with\n{STRVAR_1 3, 0, 0} as leader, right?\rWould you like to leave that group\nand join another one?</language>

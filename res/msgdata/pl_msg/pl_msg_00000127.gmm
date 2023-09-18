@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="3083" />
 	<row id="pl_msg_00000127_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi!\nLet’s get cooking!\rHere’s my advice on cooking tasty\nPoffins for your Pokémon crew!\rIn the beginning, while it’s still\na batter, swirl it gently and avoid\fspillage.\rWhen it starts to harden, churn it\nfast in big circles!\rAt the end, make a wish for it to\nturn scrumptious and whirl it!</language>

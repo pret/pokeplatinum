@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50230" />
 	<row id="pl_msg_00000047_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">This is discriminatory!\nWhy are there only shots of Pokémon?\rWhy aren’t there any shots of ladies?\nI call discrimination!</language>

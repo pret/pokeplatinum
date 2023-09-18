@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="1099" />
 	<row id="pl_msg_00000123_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Well, now, you’re a Trainer?\rThat makes you both papa and mama\nto your Pokémon.\rYou know how having Pokémon around\nleads to new discoveries?\rIt’s the same for parents and kids.\nI’m always learning from my kids.</language>

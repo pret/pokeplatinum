@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="32474" />
 	<row id="pl_msg_00000482_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh! The fog is gone and, with it, all\ndoubt in my heart!\rThis is my thanks.\nDon’t be shy! Take it!\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="33015" />
 	<row id="pl_msg_00000418_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Reporter: Hello! The time for\nDiscovering Groups is upon us.\rToday, we dropped in to check up on\nthe Trainer {STRVAR_1 3, 0, 0}.\rThe Trainer is a member of the group\n{STRVAR_1 5, 1, 0}.\rOh, that must be {STRVAR_1 3, 0, 0} over\nthere.\rThe Trainer is obviously enjoying\nbeing a member of the group.\rIt’s like the Trainer has found\na second home!\rIf I had to describe this group, in my\nuninformed, subjective view,\fit would be the {STRVAR_1 15, 2, 0} type?\rPlease look forward to the next\nshow!</language>

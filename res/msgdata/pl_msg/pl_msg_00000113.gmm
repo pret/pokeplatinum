@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="43826" />
 	<row id="pl_msg_00000113_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Have you checked out the Global\nTerminal in Jubilife City?\rIt uses Nintendo Wi-Fi Connection!\nI can’t explain it, but it’s wicked!</language>

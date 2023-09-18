@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="21530" />
 	<row id="pl_msg_00000240_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Go upstairs in the Observatory before\nyou start your Safari Game.\rCheck the marsh with the binoculars\nto see where the Pokémon you want\fhappen to be. That’s how you win!</language>

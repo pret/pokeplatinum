@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="25602" />
 	<row id="pl_msg_00000230_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">According to one theory, Mt. Coronet\nis where the Sinnoh region began.\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="59108" />
 	<row id="pl_msg_00000360_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Look! These are Poké Balls!\nThere is a Pokémon in each one!\r</language>
