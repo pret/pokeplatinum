@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="33809" />
 	<row id="pl_msg_00000203_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hi, can we feature you in a news piece\nwe’re doing?\rAll you have to do is battle with me.\nWill you do that?</language>

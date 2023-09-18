@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="53978" />
 	<row id="pl_msg_00000695_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Unable to connect to Nintendo\nWi-Fi Connection.\n\nFor help, check the software\nInstruction Booklet or visit\nsupport.nintendo.com.\nError code: {STRVAR_1 54, 0, 0}</language>

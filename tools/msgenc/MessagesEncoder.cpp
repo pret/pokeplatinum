@@ -30,7 +30,14 @@ void MessagesEncoder::ReadMessagesFromText(string& fname) {
 }
 
 void MessagesEncoder::ReadMessagesFromGMM(string& filename) {
-    GMM(filename, std::ios::in).FromFile(*this);
+    int key_from_file = GMM(filename, std::ios::in).FromFile(*this);
+
+    // If key has been specified in the gmm, use 
+    // that instead of the command-line value
+    if (key_from_file != GMM_KEY_NOT_DEFINED) {
+        header.key = key_from_file;
+    }
+
     header.count = vec_decoded.size();
     debug_printf("%d lines\n", header.count);
 }

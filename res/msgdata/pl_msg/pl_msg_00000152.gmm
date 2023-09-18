@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9227" />
 	<row id="pl_msg_00000152_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ve had enough of shopping for\na while.\rI’ll grab a drink and unwind a bit.</language>

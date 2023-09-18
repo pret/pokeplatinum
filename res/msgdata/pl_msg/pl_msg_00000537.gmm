@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="42947" />
 	<row id="pl_msg_00000537_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">First, I’ll need to hold on to any\nitems held by your Pokémon.\r</language>

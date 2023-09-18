@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="42006" />
 	<row id="pl_msg_00000251_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">...I’m Marley.\n...You are?\rOh... {STRVAR_1 3, 0, 0}, will you help me,\nplease?\rI want to get through this tunnel.\nWill you let me go with you?\r</language>

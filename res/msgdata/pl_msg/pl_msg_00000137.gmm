@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="13327" />
 	<row id="pl_msg_00000137_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It’s a pair of binoculars...\nPut $100 in it?</language>

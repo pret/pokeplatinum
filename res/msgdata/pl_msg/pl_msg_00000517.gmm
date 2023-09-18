@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="38544" />
 	<row id="pl_msg_00000517_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The only items you ever throw are\nPoké Balls!\rBut is that true?!\nI want people to think about that.\rThat’s why I give away the Technical\nMachine Fling.\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17303" />
 	<row id="pl_msg_00000182_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Pokémon League\nThe Pinnacle of Trainerdom!</language>

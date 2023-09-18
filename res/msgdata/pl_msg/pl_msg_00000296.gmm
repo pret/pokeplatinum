@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="13387" />
 	<row id="pl_msg_00000296_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The mission is proceeding without\na hitch. The boss should be pleased.\rEverything is for everyone, and\nfor the good of Team Galactic!\r</language>

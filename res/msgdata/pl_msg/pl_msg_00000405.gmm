@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18403" />
 	<row id="pl_msg_00000405_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\nWhat, you finally come along now?\fSlooow! Way too slow!\rListen, {STRVAR_1 3, 1, 0}.\nSee how the rocks are all lumpy here?\rYou can’t climb those rocks until you\nget the Snowpoint Gym Badge.\rAnyway, I’m off.\nTeam Galactic! I’m coming for you!\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="22895" />
 	<row id="pl_msg_00000067_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome!\nThis is the Oreburgh Pokémon Gym!\rI’m Roark, the Gym Leader!\rI’m but one Trainer who decided to\nwalk proudly with Rock-type Pokémon!\rAs the Gym Leader, I need to see\nyour potential as a Trainer.\rAnd, I’ll need to see the toughness\nof the Pokémon that battle with you!\r</language>

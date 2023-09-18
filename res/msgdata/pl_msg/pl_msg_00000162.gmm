@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18359" />
 	<row id="pl_msg_00000162_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Yo!\nFellow Trainer!\rYour Pokémon are secure inside their\nPoké Balls, but there’s no masking\fthat aura of serious toughness!\rOops, sorry, I should introduce\nmyself.\rThe name’s Flint! I’m one of\nthe Pokémon League’s Elite Four!\r</language>

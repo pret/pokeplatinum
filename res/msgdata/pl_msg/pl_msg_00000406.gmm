@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18260" />
 	<row id="pl_msg_00000406_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The save file is corrupted.\nThe previous save file will be loaded.</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="22894" />
 	<row id="pl_msg_00000144_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello.\nI’m pleased to meet you.\rI’m Maylene, and I’m the Gym\nLeader.\rI don’t really know what it means to\nbe strong, or how I got to be the\fGym Leader.\rBut I will do the best I can as the\nGym Leader.\rI take battling very seriously.\nWhenever you’re ready!\r</language>

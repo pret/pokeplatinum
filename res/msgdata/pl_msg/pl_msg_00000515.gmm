@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="32395" />
 	<row id="pl_msg_00000515_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oak: Ah, {STRVAR_1 3, 0, 0}!\nThis is it! This is Pal Park!\r</language>

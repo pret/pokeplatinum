@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="32403" />
 	<row id="pl_msg_00000516_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">...I saw it!\nToday’s number is {STRVAR_1 51, 0, 0}!\rShow me a Pokémon that’s Lv. {STRVAR_1 51, 0, 0}.\nIf you can, I’ll reward you.</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="2430" />
 	<row id="pl_msg_00000469_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">There are boulders blocking the way\ninside the cavern...\rI think a Pokémon’s hidden move will be\nable to smash those boulders, though.</language>

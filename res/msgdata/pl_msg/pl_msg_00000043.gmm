@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50222" />
 	<row id="pl_msg_00000043_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I like how Pokémon can use attacks.\nThat makes things fun and different.\rSometimes, when they get stronger,\nPokémon learn new moves.\rThat keeps things fresh and fun when\nusing moves.</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="35762" />
 	<row id="pl_msg_00000194_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The Battle Frontier’s as tough as they\nsay...\rNone of the facilities are cakewalks,\nthat’s for sure.</language>

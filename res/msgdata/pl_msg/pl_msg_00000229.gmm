@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="29698" />
 	<row id="pl_msg_00000229_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Mr. Fuego: Well, hello!\nIt’s not often I get a visitor here.\rI tried to make the ironworks run\nbetter with the moving floor tiles.\rBut no one was happy about it! They\nsaid the moving floor made them dizzy!\rBut you don’t want to listen to me\nwhine. Here’s a souvenir!\r</language>

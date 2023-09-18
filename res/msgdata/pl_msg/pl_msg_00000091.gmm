@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5123" />
 	<row id="pl_msg_00000091_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Thanks for rescuing me!\nThis is something to show my thanks!\rIt’s the latest model Bicycle!\nYou must take it. I insist!\r</language>

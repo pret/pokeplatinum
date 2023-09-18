@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="42042" />
 	<row id="pl_msg_00000158_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A myth says that Mt. Coronet parted\nSinnoh into halves.\rSeeing the Pokémon SHELLOS makes me\nthink maybe the myth is real.</language>

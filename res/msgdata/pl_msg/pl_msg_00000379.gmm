@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="45872" />
 	<row id="pl_msg_00000379_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Good morning. You must be\n{STRVAR_1 3, 0, 0}.\rI’ve received a gift for you.\nHere you go!\r</language>

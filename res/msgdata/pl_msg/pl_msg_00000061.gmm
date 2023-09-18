@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="29723" />
 	<row id="pl_msg_00000061_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello, Trainer!\nThis is something I found.\rIt was mixed in with a load of cargo\nfrom another country.\rIt’s not anything that I can use,\nso I think you should take it.\r</language>

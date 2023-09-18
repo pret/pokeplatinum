@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9234" />
 	<row id="pl_msg_00000558_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">That concludes our special program,\n“Let’s Ask Prof. Rowan!”\rBrought to you by Jubilife TV on\nNationwide Net!\r</language>

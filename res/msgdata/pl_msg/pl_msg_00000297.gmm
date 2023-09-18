@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9283" />
 	<row id="pl_msg_00000297_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 0, 0}: What are you doing?\nYou’re not supposed to be here.\rThere’s nothing here anyway.\rIf anything were to happen, it’s in\nmy good hands.\rI’ve got my trusty Pokémon with me,\nfor one.\rAnd more than anything, I’m tough,\nand you know it!</language>

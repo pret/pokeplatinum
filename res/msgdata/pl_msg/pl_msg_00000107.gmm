@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18993" />
 	<row id="pl_msg_00000107_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The item Revive is something I could\nuse now.\rBut I’ve only got two Gym Badges, so\nI can’t buy any yet...</language>

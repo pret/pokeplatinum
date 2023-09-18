@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="14701" />
 	<row id="pl_msg_00000164_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hey, there!\nHow’s it going, Champ-to-be?\rLet me check out your Trainer Case.\nLet’s see how many Badges you have.\rOne, two, three...\nWhoa! Wow! You’ve already got seven!\rThat means if you can beat this Gym\nLeader, you’re on your way to the\fPokémon League next.\rThat also means this is the last time\nI get to give you advice.\rThis is it, kiddo!\nListen carefully...one last time!\rThe Gym Leader here is a master of\nElectric-type Pokémon!\rThat’s all I have to say.\nThe rest is up to you!</language>

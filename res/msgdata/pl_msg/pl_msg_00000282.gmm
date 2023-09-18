@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="54339" />
 	<row id="pl_msg_00000282_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome.\nThis is Team Galactic Headqu...\rI’m sorry, this is the Galactic\nVeilstone Building.\rCosmic energy for the win!\rWouldn’t it be wonderful if we\ncould harness that boundless energy?</language>

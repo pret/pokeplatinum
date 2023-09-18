@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="41388" />
 	<row id="pl_msg_00000696_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Press the X Button over a color dot\nto display the player’s location.</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="53290" />
 	<row id="pl_msg_00000191_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Rowan: It’s been a long while since\nI last entered this room...\r</language>

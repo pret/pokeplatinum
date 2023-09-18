@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="24069" />
 	<row id="pl_msg_00000221_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Welcome to the Pokémon Communication\nClub Colosseum.\rYou may battle with your friends\nhere.\r</language>

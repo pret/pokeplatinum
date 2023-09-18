@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18355" />
 	<row id="pl_msg_00000176_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Only the chosen may enter\nthe Snowpoint Temple.\rI’m sorry, but you will have to\nleave.\r</language>

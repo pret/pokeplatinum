@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="41986" />
 	<row id="pl_msg_00000250_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Let me size you up...\rAim for the Pokémon League!\nThat’s all you should be thinking about.</language>

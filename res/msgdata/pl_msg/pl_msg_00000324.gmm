@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="25726" />
 	<row id="pl_msg_00000324_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It’s a statue of a Pokémon.\nIt seems to exude power...\rFrom somewhere, something spoke out.\r“With our Master, upon every lighted\ntile you must tread.”</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="33007" />
 	<row id="pl_msg_00000416_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">DJ: Gotta catch ’em all!\nIt’s the Catch That Pokémon Show!\rSo, let me tell you about this show’s\nfeatured Pokémon-catching Trainer.\rThe Trainer that caught our eye with\na dandy of a catch is none other\fthan the inestimable {STRVAR_1 3, 0, 0}!\rAnd what, you may ask yourself, did\n{STRVAR_1 3, 0, 0} catch?\rWhy, none other than a mighty fine\n{STRVAR_1 0, 1, 0}!\rNice one, {STRVAR_1 3, 0, 0}!\nThat’s one slick takedown!\rThe Pokémon was nabbed with an\nexpertly thrown {STRVAR_1 8, 2, 0}.\rAnd out of {STRVAR_1 52, 3, 0} thrown, it was\nthe very last one!\rLame joking aside, we’re talking about\none great Trainer in {STRVAR_1 3, 0, 0}!\r...Oh? Hang on a second...\nI’ve got a hot new update!\rWe just got told what {STRVAR_1 3, 0, 0}\nnicknamed the caught {STRVAR_1 0, 1, 0}!\rThe nickname’s {STRVAR_1 1, 4, 0}!\nYow, {STRVAR_1 3, 0, 0}!\rYou’re the last word in cool!\nYou’re so cool, you’re absolute zero!\rListen up, folks!\nYou go out and emulate {STRVAR_1 3, 0, 0}!\rGet out there and catch Pokémon\nlike there’s no tomorrow!</language>

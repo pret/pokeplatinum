@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9291" />
 	<row id="pl_msg_00000160_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, looking a little tired?\n...Oh, no, not you.\fI meant your Pokémon.\rIf you’d like, I can give a massage\nto a Pokémon. Would you like that?</language>

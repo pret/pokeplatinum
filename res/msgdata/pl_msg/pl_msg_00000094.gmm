@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5139" />
 	<row id="pl_msg_00000094_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ordinary people like you can’t\nunderstand Team Galactic’s grand\fdesigns!\rCome to think of it... I don’t even\nknow what’s going on...</language>

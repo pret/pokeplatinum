@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="25627" />
 	<row id="pl_msg_00000074_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Listen, listen. Do you have a Pokémon\ncalled MACHOP?\rWould you be willing to trade your\nMACHOP for my ABRA?</language>

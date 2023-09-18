@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50186" />
 	<row id="pl_msg_00000198_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The Battle Zone used to attract only\nthe hardiest of the Trainers.\rThey were considered eccentric for\ngathering at a place like this.\rIt’s hard to believe how much it’s\nchanged since then.\rPlaces like the Fight Area and the\nSurvival Area just seemed to spring\fup overnight.</language>

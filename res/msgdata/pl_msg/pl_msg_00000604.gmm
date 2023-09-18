@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50199" />
 	<row id="pl_msg_00000604_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">All I need to be happy is my TV.\nThat’s all I need.\rI learn so much just sitting here.\nI absorb knowledge!\rI learned about the Pokétch app\nMarking Map, for instance.\rThey say the Marking Map can track\nPokémon that travel around.\r...I’ve never met any traveling\nPokémon, but I’ve heard about them.</language>

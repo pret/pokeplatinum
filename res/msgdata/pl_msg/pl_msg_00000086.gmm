@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="51728" />
 	<row id="pl_msg_00000086_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The more Gym Badges you have, the\nbetter they treat you at Poké Marts.\rYou get to buy a better selection of\nmerchandise, you see.\rBut I don’t have a single Gym Badge.\nIt’s because Gardenia’s too much!\rArgh! I don’t want to see another\ngrass Pokémon ever again!\rIf only I had Flying-type Pokémon...\nThen my losing streak would end!</language>

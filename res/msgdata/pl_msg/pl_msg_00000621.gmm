@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17598" />
 	<row id="pl_msg_00000621_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello!\nI’m with Jubilife TV!\rMay I hit you up for a quick\ninterview?</language>

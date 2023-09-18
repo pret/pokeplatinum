@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="29699" />
 	<row id="pl_msg_00000058_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello.\nThis is the Canalave Library.\rPlease keep quiet while you’re on\nthe premises.</language>

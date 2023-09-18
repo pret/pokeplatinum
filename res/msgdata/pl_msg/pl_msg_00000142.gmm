@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="46138" />
 	<row id="pl_msg_00000142_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Howdy, there!\rLet me examine your Pokémon to see\nif it’s worthy of a scarf!\r</language>

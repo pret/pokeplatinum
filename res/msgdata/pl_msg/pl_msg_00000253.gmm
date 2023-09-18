@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="42019" />
 	<row id="pl_msg_00000253_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">In Amity Square, you may go for\na stroll with a cute Pokémon.\rThe permitted Pokémon are: \nTURTWIG,{CURSOR_X 70}GROTLE,{CURSOR_X 140}TORTERRA,\fCHIMCHAR,{CURSOR_X 70}MONFERNO,{CURSOR_X 140}INFERNAPE,\fPIPLUP,{CURSOR_X 70}PRINPLUP,{CURSOR_X 140}EMPOLEON,\fPIKACHU,{CURSOR_X 70}CLEFAIRY,{CURSOR_X 140}PSYDUCK,\fPACHIRISU,{CURSOR_X 70}HAPPINY,{CURSOR_X 140}BUNEARY,\fand DRIFLOON!\rPlease do come back with one!\r</language>

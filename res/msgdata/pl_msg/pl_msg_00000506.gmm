@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="3819" />
 	<row id="pl_msg_00000506_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Yahoo! This lodge’s seen better days,\nbut relax, make yourself at home!</language>

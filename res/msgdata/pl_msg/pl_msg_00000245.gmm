@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="21510" />
 	<row id="pl_msg_00000245_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I picked this up during a Safari Game.\rI don’t collect Shards, so you can\nhave it. Take it away, even.\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="58391" />
 	<row id="pl_msg_00000587_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Mt. Coronet towers at the center\nof Sinnoh.\rIn a way, it’s the closest place to\nthe sky, and to space, in this region.</language>

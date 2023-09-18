@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="39560" />
 	<row id="pl_msg_00000502_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Rt. 214\nVeilstone City</language>

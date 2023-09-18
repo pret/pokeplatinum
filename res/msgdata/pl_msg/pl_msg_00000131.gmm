@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18319" />
 	<row id="pl_msg_00000131_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Grr... The package hasn’t arrived\nfrom the Veilstone warehouse yet...\rI have to wait here until then?\nI’m going batty from this wait...\rOh, man, I wish I could do something\nthat involved lots of explosives!\rYup, this is going to be a smashing\njob for Team Galactic...</language>

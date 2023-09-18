@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="40636" />
 	<row id="pl_msg_00000480_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Where departed Pokémon sleep...\nThis is the Lost Tower.</language>

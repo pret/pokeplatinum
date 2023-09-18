@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5135" />
 	<row id="pl_msg_00000095_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Eh? Did you want something?\rHow silly of me to even ask.\nYou want to free the Pokémon.\rFine!\nI, Jupiter, will deal with you.\r</language>

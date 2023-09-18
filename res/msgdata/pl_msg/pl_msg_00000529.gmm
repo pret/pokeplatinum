@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="61075" />
 	<row id="pl_msg_00000529_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Your quest for power has brought\nyou here...\r...Very well.\rLet me reward your passion with some\nabsolutely astounding moves.\rThey’re the ultimate moves!\nShall I teach them to your Pokémon?</language>

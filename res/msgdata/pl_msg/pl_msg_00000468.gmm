@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="40596" />
 	<row id="pl_msg_00000468_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 0, 0}: Hey! {STRVAR_1 3, 1, 0}!\nTell me you got a little tougher!\rMe? Do you even need to ask?\nOf course I got tougher!\rCome on!\nI’ll demonstrate it to you!\r</language>

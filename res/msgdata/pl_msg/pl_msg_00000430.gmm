@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="1593" />
 	<row id="pl_msg_00000430_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, hello!\nRight this way, please!\r</language>

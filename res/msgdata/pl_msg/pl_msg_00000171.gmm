@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="21538" />
 	<row id="pl_msg_00000171_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hmmm... The Pokémon BURMY is an\ninteresting example...\rIt hints at how the environment can\nshape people’s personalities.</language>

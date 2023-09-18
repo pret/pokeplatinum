@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="25615" />
 	<row id="pl_msg_00000071_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Giving nicknames to Pokémon is\nthe way to go.\rIt makes you feel as if they’re your\nvery own.</language>

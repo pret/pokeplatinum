@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5637" />
 	<row id="pl_msg_00000428_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You haven’t caught all your\nPokémon yet, but...\rWould you like to retire from your\nCatching Show?</language>

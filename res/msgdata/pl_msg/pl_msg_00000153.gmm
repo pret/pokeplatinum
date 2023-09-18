@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9223" />
 	<row id="pl_msg_00000153_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello, thank you for shopping\nwith us today.\rTo which floor may I take you?</language>

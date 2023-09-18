@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="33003" />
 	<row id="pl_msg_00000417_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Serge: It’s time for Rack ’Em Up\nRecords!\rToday, we’ll look at an amazing\nrecord set by a Battle Tower master!\rTanya: A Battle Tower master?\rSerge: You heard right, Tanya!\nI’m talking about {STRVAR_1 3, 0, 0}’s\f{STRVAR_1 0, 1, 0}-led team.\rThey set a new Single Battle record\nof {STRVAR_1 53, 2, 0} straight wins at the tower!\rTanya: They must really enjoy\nclimbing to high places.\rSerge: No, no, you’ve got that all\nwrong!\rThey accomplished a super feat!\nSee you again, folks!</language>

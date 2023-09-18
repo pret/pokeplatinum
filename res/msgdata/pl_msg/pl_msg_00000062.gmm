@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="62482" />
 	<row id="pl_msg_00000062_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Um...\nWho did you say I was again?\r...\n...\rOh, yes, I remember now!\nI’m the Move Deleter!\r</language>

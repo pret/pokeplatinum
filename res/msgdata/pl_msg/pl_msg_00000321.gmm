@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="28770" />
 	<row id="pl_msg_00000321_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">There is the portal leading back to\nthe Turnback Cave.\rLeap into the portal and return to\nthe Turnback Cave?</language>

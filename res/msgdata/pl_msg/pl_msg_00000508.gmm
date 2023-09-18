@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="7915" />
 	<row id="pl_msg_00000508_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">While I was fighting my way through\nthe blizzard, I dropped an HM.\rIf I still had that hidden move\nRock Climb, I’d be able to scale\fsheer cliffs...</language>

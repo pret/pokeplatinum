@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="58418" />
 	<row id="pl_msg_00000083_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The coal mine here’s fully automated.\rCoal mining was brutally hard in the\nold days, but not anymore!</language>

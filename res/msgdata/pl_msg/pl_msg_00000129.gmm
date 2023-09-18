@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="35850" />
 	<row id="pl_msg_00000129_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">For the Visual judging, you want to\ndress up your Pokémon nicely with\fAccessories matched to the theme.\rThat means you’ll be at an advantage\nif you have lots of Accessories.</language>

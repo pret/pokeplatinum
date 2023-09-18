@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="54307" />
 	<row id="pl_msg_00000262_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Mars: Hey! You!\nTell us where Master Cyrus went.\rWhere were you after you disappeared\nat the Spear Pillar?\rHuh? The Distortion World?!\nWhere GIRATINA was?\rYou’re not making any sense!\nDon’t play that card with me!\rFine! You don’t want to talk?\nI’ll bash you and make you talk!\r</language>

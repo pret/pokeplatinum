@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="57042" />
 	<row id="pl_msg_00000501_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The reservations were full up,\nbut they managed to get us in here.\rWe’re finally alone, the two of us,\nif you’d leave, that is.\rThis is something we don’t need\nanymore. Will you take it?\r</language>

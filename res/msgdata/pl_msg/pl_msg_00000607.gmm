@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="24509" />
 	<row id="pl_msg_00000607_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">“Pokémon are by our side, always.\nI hope you will understand the meaning\nof those words.”\n\nThat was the comment left by Prof. Rowan,\nwho has returned to Sinnoh from the\nKanto region.</language>

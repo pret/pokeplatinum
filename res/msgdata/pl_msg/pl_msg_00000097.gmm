@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="37906" />
 	<row id="pl_msg_00000097_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello, hello!\nI am the official Name Rater!\rWant me to rate the nicknames of\nyour Pokémon?</language>

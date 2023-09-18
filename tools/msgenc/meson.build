@@ -1,4 +1,4 @@
-charmap_txt = files('charmap.txt')
+charmap_txt = fs.copyfile('charmap.txt')
 
 msgenc_exe = executable('msgenc',
     sources: [

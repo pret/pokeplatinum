@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="2287" />
 	<row id="pl_msg_00000383_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Rowan: Ah, {STRVAR_1 3, 0, 0}!\rYou’ve come to show me the progress\nyou’ve made on your Pokédex?</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="1026" />
 	<row id="pl_msg_00000227_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello, my name’s Cheryl.\nAnd you are...?\rOK, so your name is {STRVAR_1 3, 0, 0}.\nI’m sincerely glad to meet you.\r{STRVAR_1 3, 0, 0}, may I ask a big favor\nof you?\rI want to get through this forest,\nbut I’m afraid of doing it alone.\rI’ve heard that there is a sinister\ngroup of people called Team Galactic\fabout.\rI think there’d be safety in numbers.\nPlease, may I go through with you?\r</language>

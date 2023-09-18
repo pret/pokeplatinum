@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="24598" />
 	<row id="pl_msg_00000234_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Our boss is about to do something\nspectacular!\rDon’t get in the way!\nOf course you will, won’t you?\rThat’s why the two of us will team up\nto take you down in an epic duel!\r</language>

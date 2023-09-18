@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="39243" />
 	<row id="pl_msg_00000111_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Question: The first room’s answer?\nAnswer: ←2 ↑16 →15</language>

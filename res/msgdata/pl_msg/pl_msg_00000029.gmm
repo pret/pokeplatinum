@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17419" />
 	<row id="pl_msg_00000029_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Do you have a Pokétch?\rThere’s a girl’s model and a boy’s\nmodel, each in different colors.</language>

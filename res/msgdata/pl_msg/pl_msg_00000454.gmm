@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="20888" />
 	<row id="pl_msg_00000454_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Make Pokémon migrate from\n{STRVAR_1 3, 1, 0}’s Ruby Game Pak?</language>

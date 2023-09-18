@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="57034" />
 	<row id="pl_msg_00000500_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">We’re a traveling troupe of street\nperformers.\rIn place of a formal introduction,\nplease take this!\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="13339" />
 	<row id="pl_msg_00000138_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’ve been hiking all around the\nSinnoh region.\rI love planting Berries wherever\nI go.\rI’ll give you a Berry, too.\nPlease plant it somewhere.\r</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17467" />
 	<row id="pl_msg_00000014_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A Recruitment Message arrived\nfrom a Pokémon Ranger.\n\nYou may receive a {COLOR 1}MANAPHY Egg{COLOR 0}\nfrom the Pokémon Ranger!\n\nOn the next screen, select\n{COLOR 1}LINK WITH POKéMON RANGER{COLOR 0}.\nPress the A Button to advance.</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="39291" />
 	<row id="pl_msg_00000485_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">If I could use the hidden move Defog,\nI’d clear up the fog so I can see.\rHow does Defog work?\rDon’t bird and bug Pokémon flap their\nwings to blow the fog away?</language>

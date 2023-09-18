@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="46098" />
 	<row id="pl_msg_00000139_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">The Pokémon COMBEE is quite\ninteresting.\rOnly the female evolves and grows\nstrong. The male does not.\rCome to think of it, my wife was\nawfully strong, too.\rShe evolved from my bride to the\nmother of our kids.</language>

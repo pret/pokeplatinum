@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="10899" />
 	<row id="pl_msg_00000166_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I once dreamed of becoming a Gym\nLeader...\rThough that dream never came true,\nI got to live with Pokémon all\fthis time.\rIt’s been a blessed life.</language>

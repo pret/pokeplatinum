@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18871" />
 	<row id="pl_msg_00000552_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Dawn: Hey, {STRVAR_1 3, 0, 0}?\nThe professor told me something.\rIt’s possible that either DIALGA or\nPALKIA will appear at the Spear Pillar!</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="42051" />
 	<row id="pl_msg_00000272_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I’m Mira...\rI was catching Pokémon, and then\nI got lost...\rI’m so scared...\rPlease!\nPlease take me to the exit!\r</language>

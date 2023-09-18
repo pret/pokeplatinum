@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17418" />
 	<row id="pl_msg_00000600_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">How may we serve you today?\nPerhaps a spa treatment?\rOur spa treatment will make your\n{STRVAR_1 1, 1, 0} grow more friendly.\rWould you care to have a spa\ntreatment, {STRVAR_1 3, 0, 0}?</language>

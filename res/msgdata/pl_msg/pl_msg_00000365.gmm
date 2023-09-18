@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="8761" />
 	<row id="pl_msg_00000365_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">First, we will hold your Pokémon in\nexchange for you renting our Pokémon.\rMay I suggest choosing Pokémon after\nappropriate deliberation?\r</language>

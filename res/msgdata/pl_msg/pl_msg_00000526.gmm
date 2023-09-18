@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="7819" />
 	<row id="pl_msg_00000526_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, dear, are your Pokémon feeling\ntired?\rYou should rest up.\nYes, good idea! Rest up here!</language>

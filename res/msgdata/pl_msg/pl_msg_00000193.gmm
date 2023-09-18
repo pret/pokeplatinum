@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="27313" />
 	<row id="pl_msg_00000193_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">What items should Pokémon hold?\nIt’s an important question.\rHere’s something else to think about.\r</language>

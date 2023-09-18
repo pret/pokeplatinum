@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="17459" />
 	<row id="pl_msg_00000049_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">{STRVAR_1 3, 1, 0}: Hey, {STRVAR_1 3, 0, 0}!\nDid you come to study, too?\rI went ahead and memorized everything\nthat was up on the blackboard.\rAfter all, it’s the Trainer’s job to\navoid having their precious Pokémon\fhurt in battle, right?\rSo, {STRVAR_1 3, 0, 0}, what brings you?\nHuh?\fYou’ve got something for me?\r</language>

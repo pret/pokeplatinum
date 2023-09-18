@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="18307" />
 	<row id="pl_msg_00000106_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Oh, thank goodness that you happened\nto be there!\rIf it weren’t for you, who knows how\nfar away my BUNEARY could have run...\r</language>

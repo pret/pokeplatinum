@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="47325" />
 	<row id="pl_msg_00000638_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">You’re holding a Flag!\nYou can’t deal with this now!\rOr, would you like to throw away\nthe Flag you’re holding?</language>

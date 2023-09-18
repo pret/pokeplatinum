@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="4043" />
 	<row id="pl_msg_00000643_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hey, konnichiwa!\nGlad to meet you, guten tag!\rI’m the Meister.\rIn this language’s parlance I would\nbe called a craftsman.\rSomething like that, n’est ce pas?\nComprendo?\r</language>

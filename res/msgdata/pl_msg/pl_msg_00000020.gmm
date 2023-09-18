@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="10488" />
 	<row id="pl_msg_00000020_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">No. of Hall of Fame entries</language>

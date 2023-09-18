@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="62547" />
 	<row id="pl_msg_00000277_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Riley: {STRVAR_1 3, 0, 0}, I’m glad to see\nyou here.\rIf you don’t mind, let’s team up.\nThe Pokémon seem to be restless.\r</language>

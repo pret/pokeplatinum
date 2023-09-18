@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="11219" />
 	<row id="pl_msg_00000057_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">It’s easy to get to Iron Island.\nIt’s one boat trip from here.</language>

@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="13355" />
 	<row id="pl_msg_00000140_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Everyone calls me the Pokémon\nMove Maniac. I prefer Move Tutor.\rI know every move that Pokémon learn\nwhile they’re leveling up, and I can\fteach Pokémon those moves.\rI can teach a move to a Pokémon\nof yours if you’d like.\rI’ll do it if you’ll trade me\na Heart Scale.\r</language>

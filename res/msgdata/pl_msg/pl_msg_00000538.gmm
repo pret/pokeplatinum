@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5612" />
 	<row id="pl_msg_00000538_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Ding-dong! Time’s up!\nYour Safari Game is over.</language>

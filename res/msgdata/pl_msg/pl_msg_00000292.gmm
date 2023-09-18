@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="50255" />
 	<row id="pl_msg_00000292_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Rowan: Ah, {STRVAR_1 3, 0, 0}!\nWhat timing!\rThose Team Galactic scoundrels are\nafter the legendary Pokémon!\rYou’ve got to help Dawn!</language>

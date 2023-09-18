@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="1030" />
 	<row id="pl_msg_00000572_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">A single Berry will grow into a plant\nthat makes several Berries.\rBy planting one, there will be more\nand more Berries in the world.\rI hope you will help us spread more\nBerries everywhere!\r</language>

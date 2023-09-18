@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="37914" />
 	<row id="pl_msg_00000099_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">I gathered up a lot of Berries, so\nI’m trading them in for Accessories.\rNext stop, Hearthome City!\nI’m taking the Contest challenge!</language>

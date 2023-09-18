@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="54314" />
 	<row id="pl_msg_00000185_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Hello!\nWelcome to the Pokémon League!\rI’m Aaron of the Elite Four.\nIt’s good to meet you.\rOh, I should explain, I’m a huge fan\nof bug Pokémon.\rBug Pokémon are nasty-mean, and yet\nthey’re beautiful, too...\rWould you like to know why I take\non challengers here?\rIt’s because I want to become\nperfect, just like my bug Pokémon!\rOK! Let me take you on!\r</language>

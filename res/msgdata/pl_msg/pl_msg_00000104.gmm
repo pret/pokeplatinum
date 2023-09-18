@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="5171" />
 	<row id="pl_msg_00000104_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Eterna came to be long ago in honor\nof ancient Pokémon.\rThough many things have changed,\nwhat is important has not.\rI hope it remains that way forever\nmore...</language>

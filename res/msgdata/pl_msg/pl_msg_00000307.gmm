@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <body language="English">
+	<key value="9314" />
 	<row id="pl_msg_00000307_00000" index="0">
 		<attribute name="window_context_name">used</attribute>
 		<language name="English">Please find a partner from the Trainers\nthat are gathered here.\r</language>
