@@ -20,7 +20,9 @@ meson.build text eol=lf
 *.yml text eol=lf
 *.ini text eol=lf
 *.csv text eol=lf
+
 *.txt text eol=lf
+/res/**/*.txt text eol=unset
 
 lib/msl/include/MSL_C/* text eol=lf
 
