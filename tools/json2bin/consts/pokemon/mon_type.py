@@ -20,7 +20,7 @@ class PokeType(Enum):
     TYPE_ICE = auto()
     TYPE_DRAGON = auto()
     TYPE_DARK = auto()
-    TYPE_NONE = 0x1F
+    TYPE_NONE = 0xFF
 
 
 class ContestType(Enum):

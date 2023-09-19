@@ -1946,8 +1946,8 @@ u32 PokemonPersonalData_GetValue(PokemonPersonalData *monPersonalData, enum Poke
     case MON_DATA_PERSONAL_COLOR:
         result = monPersonalData->color;
         break;
-    case MON_DATA_PERSONAL_INVERSE:
-        result = monPersonalData->inverse;
+    case MON_DATA_PERSONAL_FLIP_SPRITE:
+        result = monPersonalData->flip_sprite;
         break;
     case MON_DATA_PERSONAL_TM_LEARNSET_MASK_1:
         result = monPersonalData->tmLearnsetMask1;
