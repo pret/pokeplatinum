@@ -15,6 +15,8 @@ ARGPARSER.add_argument('--knarc', required=True,
                        help='Path to the knarc executable')
 ARGPARSER.add_argument('--source-dir', required=True,
                        help='Source directory with subdirs for each data element')
+ARGPARSER.add_argument('--private-dir', required=True,
+                       help='Directory where intermediate files will be written')
 ARGPARSER.add_argument('--output-dir', required=True,
                        help='Output directory where generated files will be written')
 
@@ -27,7 +29,7 @@ class Parser():
         self.registry = {}
         self.padding_index = 0
 
-    
+
     def register_name(self, func: FunctionType | LambdaType | None) -> 'Parser':
         '''
             Register a function for processing the name key within the JSON
@@ -64,7 +66,7 @@ class Parser():
         '''
         self.registry[f'padding_{self.padding_index}'] = (size, value)
         return self
-    
+
 
     def _walk(self, data: dict, key_seq: list[str]) -> any:
         data_val = data
@@ -89,7 +91,6 @@ class Parser():
                 parse_func, size, const_type = self.registry[key]
                 data_val = self._walk(data, key.split('.'))
                 binary.extend(parse_func(data_val, size, const_type))
-        
         return binary
 
 
@@ -102,7 +103,6 @@ def pack_flags(flags: list[str], size: int, consts: type[Flag]) -> bytes:
     result = consts(0)
     for flag_name in flags:
         result = result | consts[flag_name]
-
     return result.value.to_bytes(size, 'little')
 
 
@@ -127,7 +127,6 @@ def parse_sint(val: int, size: int, _consts: type[Enum]) -> bytes:
     '''
     if val < 0:
         val = val + (1 << (size * 8))
-    
     return val.to_bytes(size, 'little')
 
 
@@ -141,7 +140,6 @@ def write(output_bin: bytes, output_idx: int, output_dir: str | None):
     output_fname = f'{output_idx:04}.bin'
     if output_dir:
         output_fname = pathlib.Path(output_dir) / output_fname
-    
     with open(output_fname, 'wb+') as output_file:
         output_file.write(output_bin)
 
@@ -158,23 +156,24 @@ def process(fname_in: str,
 
 def json2bin(target: str,
              schema: Parser,
+             private_dir: str | None,
              output_dir: str | None,
              index_func: FunctionType,
              glob_pattern: str='*.json',
              narc_name: str | None=None,
              narc_packer: str | None=None):
+    private_dir = pathlib.Path(private_dir)
     output_dir = pathlib.Path(output_dir)
-    
+
     if not narc_name or not narc_packer:
         raise RuntimeError('Missing narc_name or narc_packer input in batch mode; halting')
 
-    files_output_dir = output_dir / narc_name
-    files_output_dir.mkdir(exist_ok=True, parents=True)
+    private_dir.mkdir(exist_ok=True, parents=True)
     for fname_in in pathlib.Path(target).glob(glob_pattern):
-        process(fname_in, schema, files_output_dir, index_func)
-    
+        process(fname_in, schema, private_dir, index_func)
+
     subprocess.run([
         pathlib.Path(narc_packer),
-        '-d', files_output_dir,
+        '-d', private_dir,
         '-p', output_dir / f'{narc_name}.narc'
     ])

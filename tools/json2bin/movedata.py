@@ -34,6 +34,7 @@ def indexer(file_path: pathlib.Path) -> int:
 args = j2b.ARGPARSER.parse_args()
 j2b.json2bin(args.source_dir,
              SCHEMA,
+             args.private_dir,
              args.output_dir,
              indexer,
              glob_pattern='**/data.json',
