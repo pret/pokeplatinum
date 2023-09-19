@@ -5,7 +5,7 @@ pl_msg_narc = custom_target('pl_msg.narc',
     input: msgenc_gen.process(pl_msg_gmm),
     command: [
         knarc_exe,
-        '-d', '@OUTDIR@/pl_msg.narc.p',
+        '-d', '@PRIVATE_DIR@',
         '-p', '@OUTPUT0@'
     ]
 )
