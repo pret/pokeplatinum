@@ -1,8 +1,0 @@
-0,1,0,0,n,n,0,0,	<-サブボタンセル
-1,0,1,1,n,n,0,2,	<-メインカーソルセル
-2,0,2,2,n,n,0,2,	<-メイン自機セル
-3,0,3,3,n,n,0,2,	<-メイン足跡セル
-4,0,4,4,n,n,0,2,	<-メイン街セル
-e,e,e,e,e,e,e,e,
-
-charID,palID,celID,celAnmID,McelID,McelAnmID,vramTransferF,BGPriority

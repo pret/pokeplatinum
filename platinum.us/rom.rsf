@@ -29,7 +29,7 @@ RomSpec
 	Segment All
 
 	Root /        # Directory in rom
-	HostRoot res  # Directory in source
+	HostRoot res/prebuilt  # Directory in source
 
 	File data/UTF16.dat
 	File data/arealight.narc
@@ -172,7 +172,13 @@ RomSpec
 	File data/wm.nclr
 	File data/sound/sound_data.sdat
 	File data/sound/pl_sound_data.sdat
-	File msgdata/pl_msg.narc
+
+	Root /msgdata
+	HostRoot res/text
+	File pl_msg.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File msgdata/msg.narc
 	File msgdata/scenario/scr_msg.narc
 	File poketool/pokegra/dp_height.narc
@@ -218,11 +224,11 @@ RomSpec
 	File wazaeffect/effectclact/wepltt.narc
 
 	Root /poketool/waza
-	HostRoot res/moves
+	HostRoot res/battle/moves
 	File pl_waza_tbl.narc
 
 	Root /
-	HostRoot res
+	HostRoot res/prebuilt
 	File poketool/waza/waza_tbl.narc
 	File fielddata/script/scr_seq.narc
 	File graphic/bag_gra.narc
@@ -285,8 +291,14 @@ RomSpec
 	File graphic/worldtrade.narc
 	File itemtool/itemdata/item_data.narc
 	File itemtool/itemdata/item_icon.narc
-	File itemtool/itemdata/nuts_data.narc
-	File itemtool/itemdata/pl_item_data.narc
+
+	Root /itemtool/itemdata
+	HostRoot res/items
+	File nuts_data.narc
+	File pl_item_data.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File poketool/icongra/pl_poke_icon.narc
 	File poketool/icongra/poke_icon.narc
 	File poketool/pokefoot/pokefoot.narc

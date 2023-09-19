@@ -1,23 +1,9 @@
 nitrofs_files = []
 
-subdir('application')
-subdir('arc')
-subdir('battle')
-subdir('contest')
-subdir('data')
-subdir('debug')
-subdir('demo')
-subdir('dwc')
-subdir('fielddata')
-subdir('frontier')
-subdir('graphic')
-subdir('itemtool')
-subdir('msgdata')
-subdir('particledata')
-subdir('pokeanime')
-subdir('poketool')
-subdir('resource')
-subdir('wazaeffect')
+# Prebuilt files
+subdir('prebuilt')
 
-# New data directories
-subdir('moves')
+# Decompiled data directories
+subdir('battle')
+subdir('items')
+subdir('text')

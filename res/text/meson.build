@@ -11,13 +11,3 @@ pl_msg_narc = custom_target('pl_msg.narc',
 )
 
 nitrofs_files += pl_msg_narc
-
-subdir('scenario')
-
-prebuilt_files = [
-    'msg.narc'
-]
-
-foreach f : prebuilt_files
-    nitrofs_files += fs.copyfile(f)
-endforeach

@@ -41,12 +41,3 @@ pl_item_data_narc = custom_target('pl_item_data.narc',
 
 nitrofs_files += nuts_data_narc
 nitrofs_files += pl_item_data_narc
-
-prebuilt_files = [
-    'item_data.narc',
-    'item_icon.narc'
-]
-
-foreach f : prebuilt_files
-    nitrofs_files += fs.copyfile(f)
-endforeach

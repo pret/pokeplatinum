@@ -22,7 +22,8 @@ meson.build text eol=lf
 *.csv text eol=lf
 
 *.txt text eol=lf
-/res/**/*.txt text eol=unset
+# These files must use CRLF to match in the ROM
+/res/**/*.txt text eol=crlf
 
 lib/msl/include/MSL_C/* text eol=lf
 
