@@ -71,7 +71,10 @@ class Parser():
     def _walk(self, data: dict, key_seq: list[str]) -> any:
         data_val = data
         for step in key_seq:
-            data_val = data_val[step]
+            if type(data_val) == list:
+                data_val = data_val[int(step)]
+            else:
+                data_val = data_val[step]
         return data_val
 
 
