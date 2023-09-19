@@ -1,0 +1,61 @@
+{
+    "name": "Smeargle",
+    "base_stats": {
+        "hp": 55,
+        "attack": 20,
+        "defense": 35,
+        "speed": 75,
+        "special_attack": 20,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 106,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_OWN_TEMPO",
+        "ABILITY_TECHNICIAN"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_WHITE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": "SKETCH",
+            "11": "SKETCH",
+            "21": "SKETCH",
+            "31": "SKETCH",
+            "41": "SKETCH",
+            "51": "SKETCH",
+            "61": "SKETCH",
+            "71": "SKETCH",
+            "81": "SKETCH",
+            "91": "SKETCH"
+        }
+    }
+}

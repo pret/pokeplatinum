@@ -1,0 +1,105 @@
+{
+    "name": "Omastar",
+    "base_stats": {
+        "hp": 70,
+        "attack": 60,
+        "defense": 125,
+        "speed": 55,
+        "special_attack": 115,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 199,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 30,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "WATER_1",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_SWIFT_SWIM",
+        "ABILITY_SHELL_ARMOR"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM55",
+            "TM58",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM06",
+            "HM07",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "CONSTRICT",
+                "WITHDRAW",
+                "BITE"
+            ],
+            "7": "BITE",
+            "10": "WATER_GUN",
+            "16": "ROLLOUT",
+            "19": "LEER",
+            "25": "MUD_SHOT",
+            "28": "BRINE",
+            "34": "PROTECT",
+            "37": "ANCIENT_POWER",
+            "40": "SPIKE_CANNON",
+            "48": "TICKLE",
+            "56": "ROCK_BLAST",
+            "67": "HYDRO_PUMP"
+        }
+    }
+}

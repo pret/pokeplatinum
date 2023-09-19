@@ -1,0 +1,103 @@
+{
+    "name": "Tentacool",
+    "base_stats": {
+        "hp": 40,
+        "attack": 40,
+        "defense": 35,
+        "speed": 70,
+        "special_attack": 50,
+        "special_defense": 100
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 105,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_POISON_BARB"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "WATER_3",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_CLEAR_BODY",
+        "ABILITY_LIQUID_OOZE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM55",
+            "TM58",
+            "TM66",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM03",
+            "HM07"
+        ],
+        "level_up": {
+            "1": "POISON_STING",
+            "5": "SUPERSONIC",
+            "8": "CONSTRICT",
+            "12": "ACID",
+            "15": "TOXIC_SPIKES",
+            "19": "BUBBLE_BEAM",
+            "22": "WRAP",
+            "26": "BARRIER",
+            "29": "WATER_PULSE",
+            "33": "POISON_JAB",
+            "36": "SCREECH",
+            "40": "HYDRO_PUMP",
+            "43": "WRING_OUT"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            30,
+            "SPECIES_TENTACRUEL"
+        ]
+    ]
+}

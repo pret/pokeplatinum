@@ -1,0 +1,96 @@
+{
+    "name": "Fearow",
+    "base_stats": {
+        "hp": 65,
+        "attack": 90,
+        "defense": 65,
+        "speed": 100,
+        "special_attack": 61,
+        "special_defense": 61
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 162,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SHARP_BEAK"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FLYING",
+        "FLYING"
+    ],
+    "abilities": [
+        "ABILITY_KEEN_EYE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM51",
+            "TM58",
+            "TM68",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM90",
+            "HM02",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "PLUCK",
+                "PECK",
+                "GROWL",
+                "LEER",
+                "FURY_ATTACK"
+            ],
+            "5": "LEER",
+            "9": "FURY_ATTACK",
+            "13": "PURSUIT",
+            "17": "AERIAL_ACE",
+            "23": "MIRROR_MOVE",
+            "29": "AGILITY",
+            "35": "ASSURANCE",
+            "41": "ROOST",
+            "47": "DRILL_PECK"
+        }
+    }
+}

@@ -1,0 +1,94 @@
+{
+    "name": "Seedot",
+    "base_stats": {
+        "hp": 40,
+        "attack": 40,
+        "defense": 50,
+        "speed": 30,
+        "special_attack": 30,
+        "special_defense": 30
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 74,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "FIELD",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_CHLOROPHYLL",
+        "ABILITY_EARLY_BIRD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM58",
+            "TM64",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM06"
+        ],
+        "level_up": {
+            "1": "BIDE",
+            "3": "HARDEN",
+            "7": "GROWTH",
+            "13": "NATURE_POWER",
+            "21": "SYNTHESIS",
+            "31": "SUNNY_DAY",
+            "43": "EXPLOSION"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            14,
+            "SPECIES_NUZLEAF"
+        ]
+    ]
+}

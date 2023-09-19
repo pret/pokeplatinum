@@ -1,0 +1,105 @@
+{
+    "name": "Raikou",
+    "base_stats": {
+        "hp": 90,
+        "attack": 85,
+        "defense": 75,
+        "speed": 115,
+        "special_attack": 115,
+        "special_defense": 100
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_ELECTRIC"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 216,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 80,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM04",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM33",
+            "TM34",
+            "TM37",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM57",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM73",
+            "TM77",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "BITE",
+                "LEER"
+            ],
+            "8": "THUNDER_SHOCK",
+            "15": "ROAR",
+            "22": "QUICK_ATTACK",
+            "29": "SPARK",
+            "36": "REFLECT",
+            "43": "CRUNCH",
+            "50": "THUNDER_FANG",
+            "57": "DISCHARGE",
+            "64": "EXTRASENSORY",
+            "71": "RAIN_DANCE",
+            "78": "CALM_MIND",
+            "85": "THUNDER"
+        }
+    }
+}

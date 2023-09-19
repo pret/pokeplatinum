@@ -1,0 +1,6 @@
+personal_files += files('data.json')
+rotom_heat_personal = files('forms/heat/data.json')
+rotom_wash_personal = files('forms/wash/data.json')
+rotom_frost_personal = files('forms/frost/data.json')
+rotom_fan_personal = files('forms/fan/data.json')
+rotom_mow_personal = files('forms/mow/data.json')

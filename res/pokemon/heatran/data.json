@@ -1,0 +1,106 @@
+{
+    "name": "Heatran",
+    "base_stats": {
+        "hp": 91,
+        "attack": 90,
+        "defense": 106,
+        "speed": 77,
+        "special_attack": 130,
+        "special_defense": 106
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 215,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 10,
+    "base_friendship": 100,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_FLASH_FIRE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM58",
+            "TM59",
+            "TM61",
+            "TM64",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM76",
+            "TM78",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": "ANCIENT_POWER",
+            "9": "LEER",
+            "17": "FIRE_FANG",
+            "25": "METAL_SOUND",
+            "33": "CRUNCH",
+            "41": "SCARY_FACE",
+            "49": "LAVA_PLUME",
+            "57": "FIRE_SPIN",
+            "65": "IRON_HEAD",
+            "73": "EARTH_POWER",
+            "81": "HEAT_WAVE",
+            "88": "STONE_EDGE",
+            "96": "MAGMA_STORM"
+        }
+    }
+}

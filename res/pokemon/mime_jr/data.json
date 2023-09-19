@@ -1,0 +1,126 @@
+{
+    "name": "Mime Jr.",
+    "base_stats": {
+        "hp": 20,
+        "attack": 25,
+        "defense": 45,
+        "speed": 60,
+        "special_attack": 70,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 145,
+    "base_exp_reward": 78,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_LEPPA_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_SOUNDPROOF",
+        "ABILITY_FILTER"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PINK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM33",
+            "TM34",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM48",
+            "TM49",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM60",
+            "TM67",
+            "TM70",
+            "TM73",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "TM92"
+        ],
+        "level_up": {
+            "1": [
+                "TICKLE",
+                "BARRIER",
+                "CONFUSION"
+            ],
+            "4": "COPYCAT",
+            "8": "MEDITATE",
+            "11": "ENCORE",
+            "15": "DOUBLE_SLAP",
+            "18": "MIMIC",
+            "22": [
+                "LIGHT_SCREEN",
+                "REFLECT"
+            ],
+            "25": "PSYBEAM",
+            "29": "SUBSTITUTE",
+            "32": "RECYCLE",
+            "36": "TRICK",
+            "39": "PSYCHIC",
+            "43": "ROLE_PLAY",
+            "46": "BATON_PASS",
+            "50": "SAFEGUARD"
+        }
+    },
+    "evolutions": [
+        [
+            "KNOW_MOVE",
+            "MIMIC",
+            "SPECIES_MR_MIME"
+        ]
+    ]
+}

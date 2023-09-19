@@ -1,0 +1,115 @@
+{
+    "name": "Drapion",
+    "base_stats": {
+        "hp": 70,
+        "attack": 90,
+        "defense": 110,
+        "speed": 95,
+        "special_attack": 60,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_DARK"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 204,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_POISON_BARB"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "BUG",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_BATTLE_ARMOR",
+        "ABILITY_SNIPER"
+    ],
+    "great_marsh_flee_rate": 60,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM36",
+            "TM39",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM54",
+            "TM56",
+            "TM58",
+            "TM66",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM79",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "THUNDER_FANG",
+                "ICE_FANG",
+                "FIRE_FANG",
+                "BITE",
+                "POISON_STING",
+                "LEER",
+                "KNOCK_OFF"
+            ],
+            "6": "KNOCK_OFF",
+            "12": "PIN_MISSILE",
+            "17": "ACUPRESSURE",
+            "23": "SCARY_FACE",
+            "28": "TOXIC_SPIKES",
+            "34": "BUG_BITE",
+            "39": "POISON_FANG",
+            "49": "CRUNCH",
+            "58": "CROSS_POISON"
+        }
+    }
+}

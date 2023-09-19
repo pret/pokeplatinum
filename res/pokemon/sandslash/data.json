@@ -1,0 +1,112 @@
+{
+    "name": "Sandslash",
+    "base_stats": {
+        "hp": 75,
+        "attack": 100,
+        "defense": 110,
+        "speed": 65,
+        "special_attack": 45,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_GROUND",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 163,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_QUICK_CLAW"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_SAND_VEIL",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM65",
+            "TM68",
+            "TM71",
+            "TM74",
+            "TM75",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "SCRATCH",
+                "DEFENSE_CURL",
+                "SAND_ATTACK"
+            ],
+            "3": "DEFENSE_CURL",
+            "7": "SAND_ATTACK",
+            "9": "POISON_STING",
+            "13": "RAPID_SPIN",
+            "15": "SWIFT",
+            "19": "FURY_SWIPES",
+            "21": "ROLLOUT",
+            "22": "CRUSH_CLAW",
+            "28": "FURY_CUTTER",
+            "33": "SAND_TOMB",
+            "40": "SLASH",
+            "45": "GYRO_BALL",
+            "52": "SANDSTORM"
+        }
+    }
+}

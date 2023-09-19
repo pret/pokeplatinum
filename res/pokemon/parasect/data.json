@@ -1,0 +1,105 @@
+{
+    "name": "Parasect",
+    "base_stats": {
+        "hp": 60,
+        "attack": 95,
+        "defense": 80,
+        "speed": 30,
+        "special_attack": 60,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 128,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_TINYMUSHROOM",
+        "rare": "ITEM_BIG_MUSHROOM"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_EFFECT_SPORE",
+        "ABILITY_DRY_SKIN"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM36",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM53",
+            "TM54",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "CROSS_POISON",
+                "SCRATCH",
+                "STUN_SPORE",
+                "POISON_POWDER",
+                "LEECH_LIFE"
+            ],
+            "6": [
+                "STUN_SPORE",
+                "POISON_POWDER"
+            ],
+            "11": "LEECH_LIFE",
+            "17": "SPORE",
+            "22": "SLASH",
+            "30": "GROWTH",
+            "39": "GIGA_DRAIN",
+            "47": "AROMATHERAPY",
+            "55": "X_SCISSOR"
+        }
+    }
+}

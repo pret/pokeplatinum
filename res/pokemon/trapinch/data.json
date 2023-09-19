@@ -1,0 +1,98 @@
+{
+    "name": "Trapinch",
+    "base_stats": {
+        "hp": 45,
+        "attack": 100,
+        "defense": 45,
+        "speed": 10,
+        "special_attack": 45,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_GROUND",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 73,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SOFT_SAND"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_HYPER_CUTTER",
+        "ABILITY_ARENA_TRAP"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": "BITE",
+            "9": "SAND_ATTACK",
+            "17": "FAINT_ATTACK",
+            "25": "SAND_TOMB",
+            "33": "CRUNCH",
+            "41": "DIG",
+            "49": "SANDSTORM",
+            "57": "HYPER_BEAM",
+            "65": "EARTH_POWER",
+            "73": "EARTHQUAKE",
+            "81": "FEINT",
+            "89": "FISSURE"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            35,
+            "SPECIES_VIBRAVA"
+        ]
+    ]
+}

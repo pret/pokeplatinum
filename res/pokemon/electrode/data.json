@@ -1,0 +1,100 @@
+{
+    "name": "Electrode",
+    "base_stats": {
+        "hp": 60,
+        "attack": 50,
+        "defense": 70,
+        "speed": 140,
+        "special_attack": 80,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_ELECTRIC"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 150,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_SOUNDPROOF",
+        "ABILITY_STATIC"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM32",
+            "TM34",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM46",
+            "TM57",
+            "TM58",
+            "TM64",
+            "TM68",
+            "TM70",
+            "TM73",
+            "TM74",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": [
+                "CHARGE",
+                "TACKLE",
+                "SONIC_BOOM",
+                "SPARK"
+            ],
+            "5": "TACKLE",
+            "8": "SONIC_BOOM",
+            "12": "SPARK",
+            "15": "ROLLOUT",
+            "19": "SCREECH",
+            "22": "LIGHT_SCREEN",
+            "26": "CHARGE_BEAM",
+            "29": "SELF_DESTRUCT",
+            "35": "SWIFT",
+            "40": "MAGNET_RISE",
+            "46": "GYRO_BALL",
+            "51": "EXPLOSION",
+            "57": "MIRROR_COAT"
+        }
+    }
+}

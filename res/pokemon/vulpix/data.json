@@ -1,0 +1,102 @@
+{
+    "name": "Vulpix",
+    "base_stats": {
+        "hp": 38,
+        "attack": 41,
+        "defense": 40,
+        "speed": 65,
+        "special_attack": 50,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 63,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_RAWST_BERRY",
+        "rare": "ITEM_RAWST_BERRY"
+    },
+    "gender_ratio": "FEMALE_75",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_FLASH_FIRE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM20",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM66",
+            "TM77",
+            "TM78",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": "EMBER",
+            "4": "TAIL_WHIP",
+            "7": "ROAR",
+            "11": "QUICK_ATTACK",
+            "14": "WILL_O_WISP",
+            "17": "CONFUSE_RAY",
+            "21": "IMPRISON",
+            "24": "FLAMETHROWER",
+            "27": "SAFEGUARD",
+            "31": "PAYBACK",
+            "34": "FIRE_SPIN",
+            "37": "CAPTIVATE",
+            "41": "GRUDGE",
+            "44": "EXTRASENSORY",
+            "47": "FIRE_BLAST"
+        }
+    },
+    "evolutions": [
+        [
+            "USE_ITEM",
+            "ITEM_FIRE_STONE",
+            "SPECIES_NINETALES"
+        ]
+    ]
+}

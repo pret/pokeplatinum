@@ -1,0 +1,98 @@
+{
+    "name": "Shroomish",
+    "base_stats": {
+        "hp": 60,
+        "attack": 40,
+        "defense": 60,
+        "speed": 35,
+        "special_attack": 40,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 65,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_KEBIA_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "FLUCTUATING",
+    "egg_groups": [
+        "FAIRY",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_EFFECT_SPORE",
+        "ABILITY_POISON_HEAL"
+    ],
+    "great_marsh_flee_rate": 120,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM49",
+            "TM53",
+            "TM58",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": "ABSORB",
+            "5": "TACKLE",
+            "9": "STUN_SPORE",
+            "13": "LEECH_SEED",
+            "17": "MEGA_DRAIN",
+            "21": "HEADBUTT",
+            "25": "POISON_POWDER",
+            "29": "WORRY_SEED",
+            "33": "GROWTH",
+            "37": "GIGA_DRAIN",
+            "41": "SEED_BOMB",
+            "45": "SPORE"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            23,
+            "SPECIES_BRELOOM"
+        ]
+    ]
+}

@@ -1,0 +1,109 @@
+{
+    "name": "Ekans",
+    "base_stats": {
+        "hp": 35,
+        "attack": 60,
+        "defense": 44,
+        "speed": 55,
+        "special_attack": 40,
+        "special_defense": 54
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 62,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_INTIMIDATE",
+        "ABILITY_SHED_SKIN"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM36",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM49",
+            "TM58",
+            "TM66",
+            "TM78",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM04"
+        ],
+        "level_up": {
+            "1": [
+                "WRAP",
+                "LEER"
+            ],
+            "4": "POISON_STING",
+            "9": "BITE",
+            "12": "GLARE",
+            "17": "SCREECH",
+            "20": "ACID",
+            "25": [
+                "STOCKPILE",
+                "SWALLOW",
+                "SPIT_UP"
+            ],
+            "28": "MUD_BOMB",
+            "33": "GASTRO_ACID",
+            "36": "HAZE",
+            "41": "GUNK_SHOT"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            22,
+            "SPECIES_ARBOK"
+        ]
+    ]
+}

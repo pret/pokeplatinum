@@ -1,0 +1,120 @@
+{
+    "name": "Grumpig",
+    "base_stats": {
+        "hp": 80,
+        "attack": 45,
+        "defense": 65,
+        "speed": 80,
+        "special_attack": 90,
+        "special_defense": 110
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 164,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_TANGA_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_THICK_FAT",
+        "ABILITY_OWN_TEMPO"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM33",
+            "TM34",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM48",
+            "TM49",
+            "TM52",
+            "TM53",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM60",
+            "TM66",
+            "TM67",
+            "TM68",
+            "TM70",
+            "TM73",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "TM92"
+        ],
+        "level_up": {
+            "1": [
+                "SPLASH",
+                "PSYWAVE",
+                "ODOR_SLEUTH",
+                "PSYBEAM"
+            ],
+            "7": "PSYWAVE",
+            "10": "ODOR_SLEUTH",
+            "14": "PSYBEAM",
+            "15": "PSYCH_UP",
+            "18": "CONFUSE_RAY",
+            "21": "MAGIC_COAT",
+            "26": "ZEN_HEADBUTT",
+            "29": [
+                "REST",
+                "SNORE"
+            ],
+            "37": "PAYBACK",
+            "47": "PSYCHIC",
+            "55": "POWER_GEM",
+            "60": "BOUNCE"
+        }
+    }
+}

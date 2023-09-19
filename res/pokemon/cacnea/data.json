@@ -1,0 +1,110 @@
+{
+    "name": "Cacnea",
+    "base_stats": {
+        "hp": 50,
+        "attack": 85,
+        "defense": 40,
+        "speed": 35,
+        "special_attack": 85,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 97,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_STICKY_BARB"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 35,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "GRASS",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_SAND_VEIL",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM37",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM66",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01"
+        ],
+        "level_up": {
+            "1": [
+                "POISON_STING",
+                "LEER"
+            ],
+            "5": "ABSORB",
+            "9": "GROWTH",
+            "13": "LEECH_SEED",
+            "17": "SAND_ATTACK",
+            "21": "PIN_MISSILE",
+            "25": "INGRAIN",
+            "29": "FAINT_ATTACK",
+            "33": "SPIKES",
+            "37": "SUCKER_PUNCH",
+            "41": "PAYBACK",
+            "45": "NEEDLE_ARM",
+            "49": "COTTON_SPORE",
+            "53": "SANDSTORM",
+            "57": "DESTINY_BOND"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            32,
+            "SPECIES_CACTURNE"
+        ]
+    ]
+}

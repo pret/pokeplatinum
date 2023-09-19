@@ -1,0 +1,107 @@
+{
+    "name": "Sudowoodo",
+    "base_stats": {
+        "hp": 70,
+        "attack": 100,
+        "defense": 115,
+        "speed": 30,
+        "special_attack": 30,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 65,
+    "base_exp_reward": 135,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_STURDY",
+        "ABILITY_ROCK_HEAD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM64",
+            "TM69",
+            "TM71",
+            "TM76",
+            "TM77",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "WOOD_HAMMER",
+                "COPYCAT",
+                "FLAIL",
+                "LOW_KICK",
+                "ROCK_THROW"
+            ],
+            "6": "FLAIL",
+            "9": "LOW_KICK",
+            "14": "ROCK_THROW",
+            "17": "MIMIC",
+            "22": "BLOCK",
+            "25": "FAINT_ATTACK",
+            "30": "ROCK_TOMB",
+            "33": "ROCK_SLIDE",
+            "38": "SLAM",
+            "41": "SUCKER_PUNCH",
+            "46": "DOUBLE_EDGE",
+            "49": "HAMMER_ARM"
+        }
+    }
+}

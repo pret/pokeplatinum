@@ -1,0 +1,111 @@
+{
+    "name": "Altaria",
+    "base_stats": {
+        "hp": 75,
+        "attack": 70,
+        "defense": 90,
+        "speed": 80,
+        "special_attack": 70,
+        "special_defense": 105
+    },
+    "types": [
+        "TYPE_DRAGON",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 188,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "ERRATIC",
+    "egg_groups": [
+        "FLYING",
+        "DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_NATURAL_CURE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM02",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM51",
+            "TM58",
+            "TM59",
+            "TM68",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM88",
+            "TM90",
+            "HM02",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "PLUCK",
+                "PECK",
+                "GROWL",
+                "ASTONISH",
+                "SING"
+            ],
+            "5": "ASTONISH",
+            "9": "SING",
+            "13": "FURY_ATTACK",
+            "18": "SAFEGUARD",
+            "23": "MIST",
+            "28": "TAKE_DOWN",
+            "32": "NATURAL_GIFT",
+            "35": "DRAGON_BREATH",
+            "39": "DRAGON_DANCE",
+            "46": "REFRESH",
+            "54": "DRAGON_PULSE",
+            "62": "PERISH_SONG",
+            "70": "SKY_ATTACK"
+        }
+    }
+}

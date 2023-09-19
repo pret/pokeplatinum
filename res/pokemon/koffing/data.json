@@ -1,0 +1,108 @@
+{
+    "name": "Koffing",
+    "base_stats": {
+        "hp": 40,
+        "attack": 65,
+        "defense": 95,
+        "speed": 35,
+        "special_attack": 60,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 114,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SMOKE_BALL"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "AMORPHOUS",
+        "AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_LEVITATE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM36",
+            "TM38",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM61",
+            "TM64",
+            "TM66",
+            "TM70",
+            "TM74",
+            "TM78",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": [
+                "POISON_GAS",
+                "TACKLE"
+            ],
+            "6": "SMOG",
+            "10": "SMOKESCREEN",
+            "15": "ASSURANCE",
+            "19": "SELF_DESTRUCT",
+            "24": "SLUDGE",
+            "28": "HAZE",
+            "33": "GYRO_BALL",
+            "37": "EXPLOSION",
+            "42": "SLUDGE_BOMB",
+            "46": "DESTINY_BOND",
+            "51": "MEMENTO"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            35,
+            "SPECIES_WEEZING"
+        ]
+    ]
+}

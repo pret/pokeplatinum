@@ -1,0 +1,109 @@
+{
+    "name": "Probopass",
+    "base_stats": {
+        "hp": 60,
+        "attack": 55,
+        "defense": 145,
+        "speed": 40,
+        "special_attack": 75,
+        "special_defense": 150
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 198,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_HARD_STONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_STURDY",
+        "ABILITY_MAGNET_PULL"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM34",
+            "TM37",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM64",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM73",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MAGNET_RISE",
+                "GRAVITY",
+                "TACKLE",
+                "IRON_DEFENSE",
+                "MAGNET_BOMB",
+                "BLOCK"
+            ],
+            "7": "IRON_DEFENSE",
+            "13": "MAGNET_BOMB",
+            "19": "BLOCK",
+            "25": "THUNDER_WAVE",
+            "31": "ROCK_SLIDE",
+            "37": "SANDSTORM",
+            "43": "REST",
+            "49": "POWER_GEM",
+            "55": "DISCHARGE",
+            "61": "STONE_EDGE",
+            "67": "ZAP_CANNON",
+            "73": "LOCK_ON",
+            "79": "EARTH_POWER"
+        }
+    }
+}

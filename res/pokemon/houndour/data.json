@@ -1,0 +1,110 @@
+{
+    "name": "Houndour",
+    "base_stats": {
+        "hp": 45,
+        "attack": 60,
+        "defense": 30,
+        "speed": 65,
+        "special_attack": 80,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 114,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_EARLY_BIRD",
+        "ABILITY_FLASH_FIRE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLACK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM27",
+            "TM30",
+            "TM32",
+            "TM35",
+            "TM36",
+            "TM38",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM49",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM63",
+            "TM66",
+            "TM78",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM90",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "LEER",
+                "EMBER"
+            ],
+            "4": "HOWL",
+            "9": "SMOG",
+            "14": "ROAR",
+            "17": "BITE",
+            "22": "ODOR_SLEUTH",
+            "27": "BEAT_UP",
+            "30": "FIRE_FANG",
+            "35": "FAINT_ATTACK",
+            "40": "EMBARGO",
+            "43": "FLAMETHROWER",
+            "48": "CRUNCH",
+            "53": "NASTY_PLOT"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            24,
+            "SPECIES_HOUNDOOM"
+        ]
+    ]
+}

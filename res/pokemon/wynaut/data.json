@@ -1,0 +1,69 @@
+{
+    "name": "Wynaut",
+    "base_stats": {
+        "hp": 95,
+        "attack": 23,
+        "defense": 48,
+        "speed": 23,
+        "special_attack": 23,
+        "special_defense": 48
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 125,
+    "base_exp_reward": 44,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_SHADOW_TAG",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": [
+                "SPLASH",
+                "CHARM",
+                "ENCORE"
+            ],
+            "15": [
+                "COUNTER",
+                "MIRROR_COAT",
+                "SAFEGUARD",
+                "DESTINY_BOND"
+            ]
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            15,
+            "SPECIES_WOBBUFFET"
+        ]
+    ]
+}

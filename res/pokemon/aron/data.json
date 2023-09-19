@@ -1,0 +1,107 @@
+{
+    "name": "Aron",
+    "base_stats": {
+        "hp": 50,
+        "attack": 70,
+        "defense": 100,
+        "speed": 30,
+        "special_attack": 40,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_STEEL",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 180,
+    "base_exp_reward": 96,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_HARD_STONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 35,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "MONSTER"
+    ],
+    "abilities": [
+        "ABILITY_STURDY",
+        "ABILITY_ROCK_HEAD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM34",
+            "TM37",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM65",
+            "TM69",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": "TACKLE",
+            "4": "HARDEN",
+            "8": "MUD_SLAP",
+            "11": "HEADBUTT",
+            "15": "METAL_CLAW",
+            "18": "IRON_DEFENSE",
+            "22": "ROAR",
+            "25": "TAKE_DOWN",
+            "29": "IRON_HEAD",
+            "32": "PROTECT",
+            "36": "METAL_SOUND",
+            "39": "IRON_TAIL",
+            "43": "DOUBLE_EDGE",
+            "46": "METAL_BURST"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            32,
+            "SPECIES_LAIRON"
+        ]
+    ]
+}
