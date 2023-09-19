@@ -29,7 +29,7 @@ RomSpec
 	Segment All
 
 	Root /        # Directory in rom
-	HostRoot res  # Directory in source
+	HostRoot res/prebuilt  # Directory in source
 
 	File data/UTF16.dat
 	File data/arealight.narc
@@ -222,7 +222,7 @@ RomSpec
 	File pl_waza_tbl.narc
 
 	Root /
-	HostRoot res
+	HostRoot res/prebuilt
 	File poketool/waza/waza_tbl.narc
 	File fielddata/script/scr_seq.narc
 	File graphic/bag_gra.narc

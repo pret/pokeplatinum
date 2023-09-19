@@ -1,3 +1,0 @@
-2,0,
-data/ug_hero.NCER,0,
-e,e,e,e,

@@ -1,6 +1,0 @@
-1,1,
-17,2,0,0,1,16,	<-メインパレット
-17,3,0,1,2,1,	<-サブパレット
-e,e,e,e,e,e,
-
-arcFidx,ardDidx,cmpF,myID,vramType(1:main,2:sub,3:both),palNum
