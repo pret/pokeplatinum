@@ -6899,7 +6899,7 @@ static BOOL ov16_02248164 (BattleSystem * param0, BattleContext * param1)
     v2 = ov16_02248AD0(param1);
     v3 = ov16_0224A984(param0, param1, v0);
 
-    ov16_022666BC(param0, v3, v1, v2);
+    BattleIO_IncrementRecord(param0, v3, v1, v2);
 
     return 0;
 }
@@ -8613,7 +8613,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
                 ov16_0223EF48(v2->unk_00, v3);
                 ov16_0223EF68(v2->unk_00, v3);
-                ov16_022666BC(v2->unk_00, 0, 0, (1 + 8));
+                BattleIO_IncrementRecord(v2->unk_00, 0, 0, (1 + 8));
 
                 if (Party_AddPokemon(v22, v3) == 1) {
                     if (v2->unk_28 == 22) {

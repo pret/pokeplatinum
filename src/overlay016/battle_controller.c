@@ -3306,7 +3306,7 @@ static void ov16_0224F8EC (BattleSystem * param0, BattleContext * param1)
         GF_ASSERT(param1->damage < 0);
 
         if (Battler_Side(param0, param1->attacker) == Battler_Side(param0, param1->defender)) {
-            ov16_022666BC(param0, param1->attacker, 0, (((70 + 1)) + 26));
+            BattleIO_IncrementRecord(param0, param1->attacker, 0, (((70 + 1)) + 26));
         }
 
         param1->lastHitByBattler[param1->defender] = param1->attacker;

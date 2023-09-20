@@ -3277,7 +3277,7 @@ BOOL BattleSystem_TryEscape (BattleSystem * param0, BattleContext * param1, int 
         }
 
         if (v0 == 0) {
-            ov16_022666BC(param0, param2, 0, (((70 + 1)) + 27));
+            BattleIO_IncrementRecord(param0, param2, 0, (((70 + 1)) + 27));
         }
 
         param1->runAttempts++;
