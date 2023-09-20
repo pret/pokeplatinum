@@ -62,7 +62,7 @@ SCHEMA = j2b.Parser() \
     .register('learnset.tms', 16, j2b.pack_flags, tms.PokemonLearnsetTMs)
 
 
-FORM_INDEXES = {
+FORM_INDICES = {
     'DEOXYS' : {
         'ATTACK': 496,
         'DEFENSE': 497,
@@ -94,7 +94,7 @@ def indexer(file_path: pathlib.Path) -> int:
     if file_path.parent.parent.stem == 'forms':
         species_idx = file_path.parent.parent.parent.stem.upper()
         form = file_path.parent.stem.upper()
-        return FORM_INDEXES[species_idx][form]
+        return FORM_INDICES[species_idx][form]
     return species.PokemonSpecies[f'SPECIES_{name}'].value
 
 

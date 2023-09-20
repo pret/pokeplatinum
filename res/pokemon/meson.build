@@ -497,8 +497,8 @@ subdir('manaphy')
 subdir('darkrai')
 subdir('shaymin')
 subdir('arceus')
-subdir('494')  # Pokemon Egg
-subdir('495')  # Bad Egg TODO verify this
+subdir('egg')
+subdir('bad_egg')
 
 
 # Order of extra files for mon forms

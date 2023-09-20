@@ -52,7 +52,7 @@ typedef struct PokemonPersonalData {
     u8 ability2; //!< The pokemons second possible ability
     u8 greatMarshFleeRate; //!< The pokemons base flee rate in the Great Marsh safari zone
     u8 color : 7; //!< The pokemons color category
-    u8 flip_sprite : 1;
+    u8 flipSprite : 1;
     // u16 padding;
 
     u32 tmLearnsetMask1; //!< Bitflags for whether this pokemon can learn a TM (TM1 -> TM32)
