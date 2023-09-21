@@ -131,7 +131,7 @@ void ov16_02266634(BattleSystem * param0, int param1);
 void ov16_0226665C(BattleSystem * param0, int param1);
 void ov16_02266684(BattleSystem * param0);
 void ov16_022666A0(BattleSystem * param0);
-void ov16_022666BC(BattleSystem * param0, int param1, int param2, int param3);
+void BattleIO_IncrementRecord(BattleSystem * param0, int param1, int param2, int param3);
 void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler);
 void ov16_0226673C(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_022667E8(BattleSystem * param0, int param1);
@@ -1426,7 +1426,7 @@ void ov16_022666A0 (BattleSystem * param0)
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_022666BC (BattleSystem * param0, int param1, int param2, int param3)
+void BattleIO_IncrementRecord (BattleSystem * param0, int param1, int param2, int param3)
 {
     UnkStruct_ov16_022666BC v0;
 

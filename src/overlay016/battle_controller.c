@@ -15,7 +15,9 @@
 #include "constants/battle/message_tags.h"
 #include "constants/battle/moves.h"
 #include "constants/battle/system_control.h"
+#include "constants/battle/turn_flags.h"
 #include "constants/narc_files/battle_skill_subseq.h"
+#include "constants/savedata/record.h"
 
 #include "trainer_info.h"
 #include "struct_decls/struct_party_decl.h"
@@ -85,7 +87,7 @@ static void BattleController_TryMove(BattleSystem *battleSys, BattleContext *bat
 static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_UseMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_0224F8EC(BattleSystem * param0, BattleContext * param1);
+static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224FD00(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224FEE0(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224FEE4(BattleSystem * param0, BattleContext * param1);
@@ -160,7 +162,7 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_PrimaryEffect,
     BattleController_CheckMoveFailure,
     BattleController_UseMove,
-    ov16_0224F8EC,
+    BattleController_UpdateHP,
     ov16_0224FD00,
     ov16_0224FEE0,
     ov16_0224FEE4,
@@ -3160,7 +3162,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
     if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) {
         battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
     } else {
-        battleCtx->battleStatusMask2 |= 0x40;
+        battleCtx->battleStatusMask2 |= SYSCTL_MOVE_SUCCEEDED;
 
         BattleSystem_LoadScript(battleCtx, 0, battleCtx->moveCur);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
@@ -3290,114 +3292,109 @@ static void BattleController_UseMove(BattleSystem *battleSys, BattleContext *bat
     battleCtx->commandNext = BATTLE_CONTROL_UPDATE_HP;
 }
 
-static void ov16_0224F8EC (BattleSystem * param0, BattleContext * param1)
+static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-
-    if (param1->moveStatusFlags & 0x20) {
-        param1->damage = param1->battleMons[param1->defender].maxHP * -1;
+    if (battleCtx->moveStatusFlags & MOVE_STATUS_ONE_HIT_KO) {
+        battleCtx->damage = DEFENDING_MON.maxHP * -1;
     }
 
-    if (param1->damage) {
-        v0 = Battler_HeldItemEffect(param1, param1->defender);
-        v1 = Battler_HeldItemPower(param1, param1->defender, 0);
+    if (battleCtx->damage) {
+        int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->defender);
+        int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, 0);
 
-        GF_ASSERT(param1->damage < 0);
+        GF_ASSERT(battleCtx->damage < 0);
 
-        if (Battler_Side(param0, param1->attacker) == Battler_Side(param0, param1->defender)) {
-            ov16_022666BC(param0, param1->attacker, 0, (((70 + 1)) + 26));
+        if (Battler_Side(battleSys, battleCtx->attacker) == Battler_Side(battleSys, battleCtx->defender)) {
+            BattleIO_IncrementRecord(battleSys, battleCtx->attacker, 0, SAVE_RECORD_ATTACKED_ALLY);
         }
 
-        param1->lastHitByBattler[param1->defender] = param1->attacker;
+        battleCtx->lastHitByBattler[battleCtx->defender] = battleCtx->attacker;
 
-        if ((param1->battleMons[param1->defender].statusVolatile & 0x1000000) && (param1->damage < 0)) {
-            if ((param1->battleMons[param1->defender].moveEffectsData.substituteHP + param1->damage) <= 0) {
-                param1->selfTurnFlags[param1->attacker].shellBellDamageDealt += (param1->battleMons[param1->defender].moveEffectsData.substituteHP * -1);
-                param1->battleMons[param1->defender].statusVolatile &= (0x1000000 ^ 0xffffffff);
-                param1->hitDamage = param1->battleMons[param1->defender].moveEffectsData.substituteHP * -1;
-                param1->battleMons[param1->defender].moveEffectsData.substituteHP = 0;
+        if ((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) && battleCtx->damage < 0) {
+            if (DEFENDING_MON.moveEffectsData.substituteHP + battleCtx->damage <= 0) {
+                ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt += DEFENDING_MON.moveEffectsData.substituteHP * -1;
+                DEFENDING_MON.statusVolatile &= ~VOLATILE_CONDITION_SUBSTITUTE;
+                battleCtx->hitDamage = DEFENDING_MON.moveEffectsData.substituteHP * -1;
+                DEFENDING_MON.moveEffectsData.substituteHP = 0;
             } else {
-                param1->selfTurnFlags[param1->attacker].shellBellDamageDealt += param1->damage;
-                param1->battleMons[param1->defender].moveEffectsData.substituteHP += param1->damage;
-                param1->hitDamage = param1->damage;
+                ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt += battleCtx->damage;
+                DEFENDING_MON.moveEffectsData.substituteHP += battleCtx->damage;
+                battleCtx->hitDamage = battleCtx->damage;
             }
 
-            param1->selfTurnFlags[param1->defender].statusFlags |= 0x8;
-            param1->msgBattlerTemp = param1->defender;
+            DEFENDER_SELF_TURN_FLAGS.statusFlags |= SELF_TURN_FLAG_SUBSTITUE_HIT;
+            battleCtx->msgBattlerTemp = battleCtx->defender;
 
-            BattleSystem_LoadScript(param1, 1, (0 + 90));
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_HIT_SUBSTITUTE);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
 
-            param1->command = 21;
-            param1->commandNext = 28;
+            return;
+        }
+
+        if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_LEAVE_WITH_1_HP
+                && DEFENDING_MON.curHP + battleCtx->damage <= 0) {
+            battleCtx->damage = (DEFENDING_MON.curHP - 1) * -1;
+        }
+
+        if (DEFENDER_TURN_FLAGS.enduring == 0) {
+            if (itemEffect == HOLD_EFFECT_MAYBE_ENDURE && (BattleSystem_RandNext(battleSys) % 100) < itemPower) {
+                DEFENDER_SELF_TURN_FLAGS.focusItemActivated = TRUE;
+            }
+
+            if (itemEffect == HOLD_EFFECT_ENDURE && DEFENDING_MON.curHP == DEFENDING_MON.maxHP) {
+                DEFENDER_SELF_TURN_FLAGS.focusItemActivated = TRUE;
+            }
+        }
+
+        if ((DEFENDER_TURN_FLAGS.enduring || DEFENDER_SELF_TURN_FLAGS.focusItemActivated)
+                && DEFENDING_MON.curHP + battleCtx->damage <= 0) {
+            battleCtx->damage = (DEFENDING_MON.curHP - 1) * -1;
+
+            if (DEFENDER_TURN_FLAGS.enduring) {
+                battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED;
+            } else {
+                battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED_ITEM;
+            }
+        }
+
+        battleCtx->storedDamage[battleCtx->defender] += battleCtx->damage;
+
+        if (battleCtx->battleMons[battleCtx->defender].timesDamaged < 0xFF) {
+            battleCtx->battleMons[battleCtx->defender].timesDamaged++;
+        }
+
+        if (CURRENT_MOVE_DATA.class == CLASS_PHYSICAL) {
+            DEFENDER_TURN_FLAGS.physicalDamageTakenFrom[battleCtx->attacker] = battleCtx->damage;
+            DEFENDER_TURN_FLAGS.physicalDamageLastAttacker = battleCtx->attacker;
+            DEFENDER_TURN_FLAGS.physicalDamageAttackerMask |= FlagIndex(battleCtx->attacker);
+            DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken = battleCtx->damage;
+            DEFENDER_SELF_TURN_FLAGS.physicalDamageLastAttacker = battleCtx->attacker;
+        } else if (CURRENT_MOVE_DATA.class == CLASS_SPECIAL) {
+            DEFENDER_TURN_FLAGS.specialDamageTakenFrom[battleCtx->attacker] = battleCtx->damage;
+            DEFENDER_TURN_FLAGS.specialDamageLastAttacker = battleCtx->attacker;
+            DEFENDER_TURN_FLAGS.specialDamageAttackerMask |= FlagIndex(battleCtx->attacker);
+            DEFENDER_SELF_TURN_FLAGS.specialDamageTaken = battleCtx->damage;
+            DEFENDER_SELF_TURN_FLAGS.specialDamageLastAttacker = battleCtx->attacker;
+        }
+
+        if (DEFENDING_MON.curHP + battleCtx->damage <= 0) {
+            ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt += DEFENDING_MON.curHP * -1;
         } else {
-            if (param1->aiContext.moveTable[param1->moveCur].effect == 101) {
-                if ((param1->battleMons[param1->defender].curHP + param1->damage) <= 0) {
-                    param1->damage = (param1->battleMons[param1->defender].curHP - 1) * -1;
-                }
-            }
-
-            if (param1->turnFlags[param1->defender].enduring == 0) {
-                if ((v0 == 65) && ((BattleSystem_RandNext(param0) % 100) < v1)) {
-                    param1->selfTurnFlags[param1->defender].focusItemActivated = 1;
-                }
-
-                if ((v0 == 103) && (param1->battleMons[param1->defender].curHP == param1->battleMons[param1->defender].maxHP)) {
-                    param1->selfTurnFlags[param1->defender].focusItemActivated = 1;
-                }
-            }
-
-            if ((param1->turnFlags[param1->defender].enduring) || (param1->selfTurnFlags[param1->defender].focusItemActivated)) {
-                if ((param1->battleMons[param1->defender].curHP + param1->damage) <= 0) {
-                    param1->damage = (param1->battleMons[param1->defender].curHP - 1) * -1;
-
-                    if (param1->turnFlags[param1->defender].enduring) {
-                        param1->moveStatusFlags |= 0x80;
-                    } else {
-                        param1->moveStatusFlags |= 0x100;
-                    }
-                }
-            }
-
-            param1->storedDamage[param1->defender] += param1->damage;
-
-            if (param1->battleMons[param1->defender].timesDamaged < 255) {
-                param1->battleMons[param1->defender].timesDamaged++;
-            }
-
-            if (param1->aiContext.moveTable[param1->moveCur].class == 0) {
-                param1->turnFlags[param1->defender].physicalDamageTakenFrom[param1->attacker] = param1->damage;
-                param1->turnFlags[param1->defender].physicalDamageLastAttacker = param1->attacker;
-                param1->turnFlags[param1->defender].physicalDamageAttackerMask |= FlagIndex(param1->attacker);
-                param1->selfTurnFlags[param1->defender].physicalDamageTaken = param1->damage;
-                param1->selfTurnFlags[param1->defender].physicalDamageLastAttacker = param1->attacker;
-            } else if (param1->aiContext.moveTable[param1->moveCur].class == 1) {
-                param1->turnFlags[param1->defender].specialDamageTakenFrom[param1->attacker] = param1->damage;
-                param1->turnFlags[param1->defender].specialDamageLastAttacker = param1->attacker;
-                param1->turnFlags[param1->defender].specialDamageAttackerMask |= FlagIndex(param1->attacker);
-                param1->selfTurnFlags[param1->defender].specialDamageTaken = param1->damage;
-                param1->selfTurnFlags[param1->defender].specialDamageLastAttacker = param1->attacker;
-            }
-
-            if ((param1->battleMons[param1->defender].curHP + param1->damage) <= 0) {
-                param1->selfTurnFlags[param1->attacker].shellBellDamageDealt += (param1->battleMons[param1->defender].curHP * -1);
-            } else {
-                param1->selfTurnFlags[param1->attacker].shellBellDamageDealt += param1->damage;
-            }
-
-            param1->turnFlags[param1->defender].lastDamageTaken = param1->damage;
-            param1->turnFlags[param1->defender].lastAttacker = param1->attacker;
-            param1->msgBattlerTemp = param1->defender;
-            param1->hpCalcTemp = param1->damage;
-
-            BattleSystem_LoadScript(param1, 1, (0 + 2));
-
-            param1->command = 21;
-            param1->commandNext = 28;
-            param1->battleStatusMask |= 0x2000;
+            ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt += battleCtx->damage;
         }
+
+        DEFENDER_TURN_FLAGS.lastDamageTaken = battleCtx->damage;
+        DEFENDER_TURN_FLAGS.lastAttacker = battleCtx->attacker;
+        battleCtx->msgBattlerTemp = battleCtx->defender;
+        battleCtx->hpCalcTemp = battleCtx->damage;
+
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_UPDATE_HP);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
+        battleCtx->battleStatusMask |= SYSCTL_MOVE_HIT;
     } else {
-        param1->command = 28;
+        battleCtx->command = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
     }
 }
 

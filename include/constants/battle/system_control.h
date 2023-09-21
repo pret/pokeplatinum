@@ -9,11 +9,12 @@
 #define SYSCTL_SKIP_SPRITE_BLINK        (1 << 6)
 #define SYSCTL_LAST_OF_MULTI_TURN       (1 << 9)
 #define SYSCTL_NONSTANDARD_ACC_CHECK    (1 << 10) // used by Future Sight and OHKO moves
+#define SYSCTL_MOVE_HIT                 (1 << 13) // this indicates that the move hit its target(s)
 #define SYSCTL_SKIP_TYPE_CHECK          (1 << 15)
 #define SYSCTL_HIT_DURING_SHADOW_FORCE  (1 << 19)
 #define SYSCTL_REUSE_LAST_MOVE          (1 << 20)
 
-#define SYSCTL_MOVE_CONNECTED           (1 << 6)
+#define SYSCTL_MOVE_SUCCEEDED           (1 << 6) // this only reflects that the move is executed, not whether it hit or missed
 
 #define SYSCTL_SKIP_OBEDIENCE_CHECK     (1 << 0)
 #define SYSCTL_SKIP_TYPE_CHART_CHECK    (1 << 1)
