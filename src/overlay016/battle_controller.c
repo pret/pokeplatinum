@@ -19,6 +19,7 @@
 #include "constants/narc_files/battle_skill_subseq.h"
 #include "constants/savedata/record.h"
 
+#include "nitro/types.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
@@ -124,10 +125,10 @@ static BOOL BattleController_CheckAnyFainted(BattleContext * param0, int param1,
 static BOOL BattleController_CheckExpPayout(BattleContext * param0, int param1, int param2);
 static void ov16_02250FF4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0225143C(BattleSystem * param0, BattleContext * param1);
-static BOOL BattleController_CriticalMessage(BattleSystem * param0, BattleContext * param1);
-static BOOL BattleController_StatusMessage(BattleSystem * param0, BattleContext * param1);
-static BOOL BattleController_RageBuilding(BattleSystem * param0, BattleContext * param1);
-static BOOL BattleController_CheckExtraFlinch(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_CriticalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleController_StatusMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleController_RageBuilding(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleController_CheckExtraFlinch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022513B0(BattleSystem * param0, BattleContext * param1);
 static void BattleController_InitAI(BattleSystem * param0, BattleContext * param1);
 static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -4433,89 +4434,87 @@ static void ov16_02250FF4 (BattleSystem * param0, BattleContext * param1)
     }
 }
 
-static BOOL BattleController_CriticalMessage (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_CriticalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleSystem_LoadScript(param1, 1, (0 + 16));
+    LOAD_SUBSEQ(BATTLE_SUBSEQ_CRITICAL_HIT);
+    battleCtx->commandNext = battleCtx->command;
+    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
-    param1->commandNext = param1->command;
-    param1->command = 21;
-
-    return 1;
+    return TRUE;
 }
 
-static BOOL BattleController_StatusMessage (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_StatusMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL v0;
-
-    v0 = 0;
-
-    if (param1->moveStatusFlags) {
-        if (param1->multiHitNumHits) {
-            if ((param1->faintedMon != 0xff) || (param1->multiHitCounter == 1) || (param1->moveStatusFlags & 0x4000)) {
-                v0 = 1;
+    BOOL result = FALSE;
+    if (battleCtx->moveStatusFlags) {
+        if (battleCtx->multiHitNumHits) {
+            if (battleCtx->faintedMon != BATTLER_NONE
+                    || battleCtx->multiHitCounter == 1
+                    || (battleCtx->moveStatusFlags & MOVE_STATUS_THRASH_DISRUPTED)) {
+                result = TRUE;
             }
         } else {
-            v0 = 1;
+            result = TRUE;
         }
     }
 
-    if (v0 == 1) {
-        BattleSystem_LoadScript(param1, 1, (0 + 21));
-
-        param1->commandNext = param1->command;
-        param1->command = 21;
+    if (result == TRUE) {
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_MOVE_STATUS_MESSAGE);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
     }
 
-    return v0;
+    return result;
 }
 
-static BOOL BattleController_RageBuilding (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_RageBuilding(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL v0;
-
-    v0 = 0;
-
-    if (param1->defender == 0xff) {
-        return v0;
+    BOOL result = FALSE;
+    if (battleCtx->defender == BATTLER_NONE) {
+        return result;
     }
 
-    if ((param1->battleMons[param1->defender].statusVolatile & 0x800000) && ((param1->moveStatusFlags & 0x4000) == 0) && (param1->defender != param1->attacker) && (param1->battleMons[param1->defender].curHP) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken))) {
-        if (param1->battleMons[param1->defender].statBoosts[0x1] < 12) {
-            param1->battleMons[param1->defender].statBoosts[0x1]++;
-            BattleSystem_LoadScript(param1, 1, (0 + 245));
-            param1->commandNext = param1->command;
-            param1->command = 21;
-            v0 = 1;
-        }
+    if ((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_RAGE)
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_THRASH_DISRUPTED) == FALSE
+            && battleCtx->defender != battleCtx->attacker
+            && DEFENDING_MON.curHP
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < 12) {
+        DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK]++;
+
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_RAGE_IS_BUILDING);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        result = TRUE;
     }
 
-    return v0;
+    return result;
 }
 
-static BOOL BattleController_CheckExtraFlinch (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_CheckExtraFlinch(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL v0 = 0;
-    int v1;
-    int v2;
+    BOOL result = FALSE;
+    int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
+    int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
 
-    v1 = Battler_HeldItemEffect(param1, param1->attacker);
-    v2 = Battler_HeldItemPower(param1, param1->attacker, 0);
+    if (battleCtx->defender != BATTLER_NONE
+            && itemEffect == HOLD_EFFECT_SOMETIMES_FLINCH
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (BattleSystem_RandNext(battleSys) % 100) < itemPower
+            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_TRIGGERS_KINGS_ROCK)
+            && DEFENDING_MON.curHP) {
+        battleCtx->sideEffectMon = battleCtx->defender;
+        battleCtx->sideEffectType = 2;
 
-    if (param1->defender != 0xff) {
-        if ((v1 == 56) && ((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) == 0) && ((param1->selfTurnFlags[param1->defender].physicalDamageTaken) || (param1->selfTurnFlags[param1->defender].specialDamageTaken)) && ((BattleSystem_RandNext(param0) % 100) < v2) && (param1->aiContext.moveTable[param1->moveCur].flags & 0x20) && (param1->battleMons[param1->defender].curHP)) {
-            param1->sideEffectMon = param1->defender;
-            param1->sideEffectType = 2;
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_FLINCH_MON);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
-            BattleSystem_LoadScript(param1, 1, (0 + 14));
-
-            param1->commandNext = param1->command;
-            param1->command = 21;
-
-            v0 = 1;
-        }
+        result = TRUE;
     }
 
-    return v0;
+    return result;
 }
 
 static BOOL ov16_022513B0 (BattleSystem * param0, BattleContext * param1)

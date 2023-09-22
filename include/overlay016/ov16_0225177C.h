@@ -25,7 +25,7 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param
 void ov16_022535E0(BattleContext * param0, int param1);
 void ov16_022535F0(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
-BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
+BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5);
 void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
@@ -76,10 +76,10 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * p
 int BattleSystem_Divide(int param0, int param1);
 int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_RandomOpponent(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem * param0, BattleContext * param1, int * param2);
+BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 BOOL ov16_02257628(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL ov16_022577A4(BattleContext * param0, int param1, int param2);
-BOOL BattleSystem_SynchronizeStatus(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
 BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem * param0, BattleContext * param1, int param2, int * param3);
