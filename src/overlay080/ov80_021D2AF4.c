@@ -9,7 +9,6 @@
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
 #include "overlay080/struct_town_map_block.h"
-#include "overlay080/struct_ov80_021D2E10.h"
 
 #include "unk_0200C6E4.h"
 #include "heap.h"
@@ -377,12 +376,12 @@ void ov80_021D2D28 (UnkStruct_ov80_021D2C1C * param0, int param1)
     }
 }
 
-UnkStruct_ov80_021D2E10 * ov80_021D2D70 (const char * param0, int param1)
+TownMapInfoBlockList * ov80_021D2D70 (const char * param0, int param1)
 {
     FSFile v0;
     int v1, v2;
     int v3;
-    UnkStruct_ov80_021D2E10 * v4;
+    TownMapInfoBlockList * v4;
     TownMapInfoBlock * v5;
 
     FS_InitFile(&v0);
@@ -395,16 +394,16 @@ UnkStruct_ov80_021D2E10 * ov80_021D2D70 (const char * param0, int param1)
     v1 = FS_ReadFile(&v0, &v3, 4);
     GF_ASSERT(v1 >= 0);
 
-    v4 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov80_021D2E10));
-    memset(v4, 0, sizeof(UnkStruct_ov80_021D2E10));
+    v4 = Heap_AllocFromHeap(param1, sizeof(TownMapInfoBlockList));
+    memset(v4, 0, sizeof(TownMapInfoBlockList));
 
-    v4->unk_04 = Heap_AllocFromHeap(param1, sizeof(TownMapInfoBlock) * v3);
-    memset(v4->unk_04, 0, sizeof(TownMapInfoBlock) * v3);
+    v4->data = Heap_AllocFromHeap(param1, sizeof(TownMapInfoBlock) * v3);
+    memset(v4->data, 0, sizeof(TownMapInfoBlock) * v3);
 
-    v4->unk_00 = v3;
+    v4->count = v3;
 
-    for (v2 = 0; v2 < v4->unk_00; v2++) {
-        v5 = &(v4->unk_04[v2]);
+    for (v2 = 0; v2 < v4->count; v2++) {
+        v5 = &(v4->data[v2]);
         v1 = FS_ReadFile(&v0, v5, sizeof(TownMapInfoBlock));
         v5->unk_16 = v2;
     }
@@ -414,19 +413,19 @@ UnkStruct_ov80_021D2E10 * ov80_021D2D70 (const char * param0, int param1)
     return v4;
 }
 
-void ov80_021D2E10 (UnkStruct_ov80_021D2E10 * param0)
+void ov80_021D2E10 (TownMapInfoBlockList * param0)
 {
-    Heap_FreeToHeap(param0->unk_04);
+    Heap_FreeToHeap(param0->data);
     Heap_FreeToHeap(param0);
 }
 
-TownMapInfoBlock * ov80_021D2E24 (UnkStruct_ov80_021D2E10 * param0, int param1, int param2, u16 param3)
+TownMapInfoBlock * ov80_021D2E24 (TownMapInfoBlockList * param0, int param1, int param2, u16 param3)
 {
     int v0;
     TownMapInfoBlock * v1;
 
-    for (v0 = 0; v0 < param0->unk_00; v0++) {
-        v1 = &(param0->unk_04[v0]);
+    for (v0 = 0; v0 < param0->count; v0++) {
+        v1 = &(param0->data[v0]);
 
         if ((v1->xCoord == param1) && (v1->yCoord == param2)) {
             if ((v1->unk_14 == 0) || (v1->unk_14 & param3)) {

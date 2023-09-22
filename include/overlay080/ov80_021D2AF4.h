@@ -6,7 +6,6 @@
 #include "overlay080/struct_town_map_info_block.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
-#include "overlay080/struct_ov80_021D2E10.h"
 
 #define TOWN_MAP_UNIT (7)
 #define TOWN_MAP_HALF_UNIT (4)
@@ -28,8 +27,8 @@ void ov80_021D2C1C(UnkStruct_ov80_021D2C1C * param0);
 UnkStruct_ov80_021D2C5C * ov80_021D2C5C(UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3);
 int ov80_021D2CC0(UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3);
 void ov80_021D2D28(UnkStruct_ov80_021D2C1C * param0, int param1);
-UnkStruct_ov80_021D2E10 * ov80_021D2D70(const char * param0, int param1);
-void ov80_021D2E10(UnkStruct_ov80_021D2E10 * param0);
-TownMapInfoBlock * ov80_021D2E24(UnkStruct_ov80_021D2E10 * param0, int param1, int param2, u16 param3);
+TownMapInfoBlockList * ov80_021D2D70(const char * param0, int param1);
+void ov80_021D2E10(TownMapInfoBlockList * param0);
+TownMapInfoBlock * ov80_021D2E24(TownMapInfoBlockList * param0, int param1, int param2, u16 param3);
 
 #endif // POKEPLATINUM_OV80_021D2AF4_H

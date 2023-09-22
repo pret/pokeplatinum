@@ -16,4 +16,9 @@ typedef struct {
     u16 unk_16;
 } TownMapInfoBlock;
 
+typedef struct TownMapInfoBlockList {
+    int count;
+    TownMapInfoBlock * data;
+} TownMapInfoBlockList;
+
 #endif // POKEPLATINUM_STRUCT_TOWN_MAP_INFO_BLOCK_H
