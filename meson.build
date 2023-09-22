@@ -226,6 +226,11 @@ test('SBIN Checksums',
     args: ['-c', '--quiet', sbins_sha1]
 )
 
+test('Resource Checksums',
+    sha1sum,
+    args: ['-c', '--quiet', res_sha1]
+)
+
 test('ROM Checksum',
     sha1sum,
     args: ['-c', '--quiet', rom_sha1]
