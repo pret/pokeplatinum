@@ -8,6 +8,21 @@
 #include "overlay080/struct_ov80_021D2C5C.h"
 #include "overlay080/struct_ov80_021D2E10.h"
 
+#define TOWN_MAP_UNIT (7)
+#define TOWN_MAP_HALF_UNIT (4)
+
+#define TOWN_MAP_COORDINATE(n) (TOWN_MAP_UNIT * n)
+
+enum {
+    TOWN_MAP_BLOCK_CIRCLE,
+    TOWN_MAP_BLOCK_1x2,
+    TOWN_MAP_BLOCK_2x2,
+    TOWN_MAP_BLOCK_L,
+    TOWN_MAP_BLOCK_L_2,
+    TOWN_MAP_BLOCK_2x1,
+    TOWN_MAP_BLOCK_PALPARK
+};
+
 UnkStruct_ov80_021D2C1C * ov80_021D2AF4(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u8 * param2, short param3, int param4);
 void ov80_021D2C1C(UnkStruct_ov80_021D2C1C * param0);
 UnkStruct_ov80_021D2C5C * ov80_021D2C5C(UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3);

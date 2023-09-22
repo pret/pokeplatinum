@@ -18,27 +18,207 @@
 
 #include "overlay080/struct_town_map_block.h"
 
-const TownMapBlock Unk_ov80_021D31D8[20] = {
-	{ 0x19B, 0x0, 0x0, 0x0, 0x0, 0x15, 0xBD },
-	{ 0x1A2, 0x1, 0x0, 0x0, 0x0, 0x23, 0xB6 },
-	{ 0x1AA, 0x2, 0x1, 0x0, 0x0, 0x23, 0x88 },
-	{ 0x1B1, 0x3, 0x5, 0x0, 0x0, 0x7A, 0x8C },
-	{ 0x1BA, 0x4, 0x0, 0x0, 0x0, 0x62, 0x70 },
-	{ 0x1C2, 0x5, 0x0, 0x0, 0x0, 0x8C, 0x46 },
-	{ 0x1C9, 0x6, 0x0, 0x0, 0x0, 0xAF, 0x62 },
-	{ 0x3, 0x7, 0x2, 0x1, 0x0, 0x1F, 0xA4 },
-	{ 0x21, 0x8, 0x1, 0x1, 0x0, 0x7, 0x9D },
-	{ 0x2D, 0x9, 0x4, 0x1, 0x0, 0x3C, 0xA4 },
-	{ 0x41, 0xA, 0x3, 0x1, 0x0, 0x42, 0x73 },
-	{ 0x56, 0xB, 0x2, 0x1, 0x0, 0x65, 0x96 },
-	{ 0x78, 0xC, 0x2, 0x1, 0x0, 0x81, 0xB2 },
-	{ 0x84, 0xD, 0x2, 0x1, 0x0, 0x96, 0x81 },
-	{ 0x96, 0xE, 0x2, 0x1, 0x0, 0xB9, 0xA4 },
-	{ 0xA5, 0xF, 0x1, 0x1, 0x0, 0x4D, 0x2D },
-	{ 0xBC, 0x11, 0x5, 0x1, 0x0, 0x89, 0x5B },
-	{ 0x188, 0x43, 0x6, 0x1, 0x1, 0x3F, 0xC4 },
-	{ 0xAC, 0x10, 0x6, 0x1, 0x2, 0xB6, 0x7E },
-	{ 0xAC, 0x44, 0x0, 0x1, 0x3, 0xB6, 0x77 }
+const TownMapBlock gTownMapBlocks[20] = {
+	{ 
+        // Twinleaf Town
+        .mapHeader = 0x19B,
+        .flyPoint = 0x0,
+        .blockType = TOWN_MAP_BLOCK_CIRCLE,
+        .blockColor = 0x0,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(3),
+        .yCoord = TOWN_MAP_COORDINATE(27)
+    },
+	{ 
+        // Sandgem Town
+        .mapHeader = 0x1A2,
+        .flyPoint = 0x1,
+        .blockType = TOWN_MAP_BLOCK_CIRCLE,
+        .blockColor = 0x0,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(5),
+        .yCoord = TOWN_MAP_COORDINATE(26)
+    },
+	{
+        // Floaroma Town
+        .mapHeader = 0x1AA,
+        .flyPoint = 0x2,
+        .blockType = TOWN_MAP_BLOCK_1x2,
+        .blockColor = 0x0,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(5),
+        .yCoord = TOWN_MAP_COORDINATE(20) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Solaceon Town
+        .mapHeader = 0x1B1,
+        .flyPoint = 0x3,
+        .blockType = TOWN_MAP_BLOCK_2x1,
+        .blockColor = 0x0,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(18) - TOWN_MAP_HALF_UNIT,
+        .yCoord = TOWN_MAP_COORDINATE(20)
+    },
+	{
+        // Celestic Town
+        .mapHeader = 0x1BA,
+        .flyPoint = 0x4,
+        .blockType = TOWN_MAP_BLOCK_CIRCLE,
+        .blockColor = 0x0,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(14),
+        .yCoord = TOWN_MAP_COORDINATE(16)
+    },
+	{
+        // Survival Area
+        .mapHeader = 0x1C2,
+        .flyPoint = 0x5,
+        .blockType = TOWN_MAP_BLOCK_CIRCLE,
+        .blockColor = 0x0,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(20),
+        .yCoord = TOWN_MAP_COORDINATE(10)
+    },
+	{
+        // Resort Area
+        .mapHeader = 0x1C9,
+        .flyPoint = 0x6,
+        .blockType = TOWN_MAP_BLOCK_CIRCLE,
+        .blockColor = 0x0,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(25),
+        .yCoord = TOWN_MAP_COORDINATE(14)
+    },
+	{
+        // Jubilife City
+        .mapHeader = 0x3,
+        .flyPoint = 0x7,
+        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(5) - TOWN_MAP_HALF_UNIT,
+        .yCoord = TOWN_MAP_COORDINATE(24) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Canalave City
+        .mapHeader = 0x21,
+        .flyPoint = 0x8,
+        .blockType = TOWN_MAP_BLOCK_1x2,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(1),
+        .yCoord = TOWN_MAP_COORDINATE(23) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Oreburgh City
+        .mapHeader = 0x2D,
+        .flyPoint = 0x9,
+        .blockType = TOWN_MAP_BLOCK_L_2,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(9) - TOWN_MAP_HALF_UNIT + 1,
+        .yCoord = TOWN_MAP_COORDINATE(24) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Eterna City
+        .mapHeader = 0x41,
+        .flyPoint = 0xA,
+        .blockType = TOWN_MAP_BLOCK_L,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(10) - TOWN_MAP_HALF_UNIT,
+        .yCoord = TOWN_MAP_COORDINATE(17) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Hearthome City
+        .mapHeader = 0x56,
+        .flyPoint = 0xB,
+        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(15) - TOWN_MAP_HALF_UNIT,
+        .yCoord = TOWN_MAP_COORDINATE(22) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Pastoria City
+        .mapHeader = 0x78,
+        .flyPoint = 0xC,
+        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(19) - TOWN_MAP_HALF_UNIT,
+        .yCoord = TOWN_MAP_COORDINATE(26) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Veilstone City
+        .mapHeader = 0x84,
+        .flyPoint = 0xD,
+        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(22) - TOWN_MAP_HALF_UNIT,
+        .yCoord = TOWN_MAP_COORDINATE(19) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Sunyshore City
+        .mapHeader = 0x96,
+        .flyPoint = 0xE,
+        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(27) - TOWN_MAP_HALF_UNIT,
+        .yCoord = TOWN_MAP_COORDINATE(24) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Snowpoint City
+        .mapHeader = 0xA5,
+        .flyPoint = 0xF,
+        .blockType = TOWN_MAP_BLOCK_1x2,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(11),
+        .yCoord = TOWN_MAP_COORDINATE(7) - TOWN_MAP_HALF_UNIT
+    },
+	{
+        // Fight Area
+        .mapHeader = 0xBC,
+        .flyPoint = 0x11,
+        .blockType = TOWN_MAP_BLOCK_2x1,
+        .blockColor = 0x1,
+        .unk_0A = 0x0,
+        .xCoord = TOWN_MAP_COORDINATE(20) - TOWN_MAP_HALF_UNIT + 1,
+        .yCoord = TOWN_MAP_COORDINATE(13)
+    },
+	{
+        // Pal Park
+        .mapHeader = 0x188,
+        .flyPoint = 0x43,
+        .blockType = TOWN_MAP_BLOCK_PALPARK,
+        .blockColor = 0x1,
+        .unk_0A = 0x1,
+        .xCoord = TOWN_MAP_COORDINATE(9),
+        .yCoord = TOWN_MAP_COORDINATE(28)
+    },
+	{
+        // Victory Road
+        .mapHeader = 0xAC,
+        .flyPoint = 0x10,
+        .blockType = TOWN_MAP_BLOCK_PALPARK,
+        .blockColor = 0x1,
+        .unk_0A = 0x2,
+        .xCoord = TOWN_MAP_COORDINATE(26),
+        .yCoord = TOWN_MAP_COORDINATE(18)
+    },
+	{
+        // Pokémon League
+        .mapHeader = 0xAC,
+        .flyPoint = 0x44,
+        .blockType = TOWN_MAP_BLOCK_CIRCLE,
+        .blockColor = 0x1,
+        .unk_0A = 0x3,
+        .xCoord = TOWN_MAP_COORDINATE(26),
+        .yCoord = TOWN_MAP_COORDINATE(17)
+    }
 };
 
 UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u8 * param2, short param3, int param4)
@@ -58,7 +238,7 @@ UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_
     v0->unk_08 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
     memset(v0->unk_08, 0, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
 
-    v2 = Unk_ov80_021D31D8;
+    v2 = gTownMapBlocks;
 
     for (v3 = 0; v3 < v0->unk_00; v3++) {
         v1 = &v0->unk_08[v3];
