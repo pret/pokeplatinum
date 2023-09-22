@@ -14,7 +14,7 @@
 #include "overlay080/struct_ov80_021D1478_sub1.h"
 #include "overlay080/struct_ov80_021D259C.h"
 #include "overlay080/struct_ov80_021D2A08.h"
-#include "overlay080/struct_ov80_021D2AF4.h"
+#include "overlay080/struct_town_map_info_block.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
 
@@ -77,7 +77,7 @@ typedef struct {
     UnkStruct_ov80_021D1478_sub1 unk_7C;
     UnkStruct_ov80_021D1478_sub1 unk_8C;
     UnkStruct_ov80_021D2C1C * unk_9C;
-    UnkStruct_ov80_021D2AF4 * unk_A0;
+    TownMapInfoBlock * unk_A0;
     UnkStruct_ov80_021D2570 unk_A4;
     UnkStruct_02022550 * unk_100;
     UnkStruct_02022550 * unk_104;
@@ -113,7 +113,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D159C(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D15C8(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D1610(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D1D24(UnkStruct_ov80_021D2A08 * param0, UnkStruct_ov80_021D2AF4 * param1, int param2);
+static void ov80_021D1D24(UnkStruct_ov80_021D2A08 * param0, TownMapInfoBlock * param1, int param2);
 static void ov80_021D1D38(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1D6C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1);
 static void ov80_021D1DF8(UnkStruct_ov80_021D2A08 * param0);
@@ -128,7 +128,7 @@ static void ov80_021D2700(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D18F8(UnkStruct_ov80_021D2A08 * param0, int param1);
 static void ov80_021D1A58(UnkStruct_ov80_021D2A08 * param0, int param1, int param2, int param3);
 static void ov80_021D1AB0(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, int param2, int param3, int param4);
-static void ov80_021D1B5C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, UnkStruct_ov80_021D2AF4 * param2);
+static void ov80_021D1B5C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, TownMapInfoBlock * param2);
 static void ov80_021D19E4(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1A30(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1C24(UnkStruct_ov80_021D2A08 * param0);
@@ -337,7 +337,7 @@ int ov80_021D1758 (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
     UnkStruct_0205AA50 * v1;
-    UnkStruct_ov80_021D2AF4 * v2 = param0->unk_94;
+    TownMapInfoBlock * v2 = param0->unk_94;
     int v3 = param0->unk_90;
     u32 v4;
     u32 v5;
@@ -358,18 +358,18 @@ int ov80_021D1758 (UnkStruct_ov80_021D2A08 * param0)
     ov80_021D1B5C(param0, &(v0->unk_28[3]), v2);
     Strbuf_Clear(param0->unk_88);
     ov80_021D1A58(param0, v3, v0->unk_18, v0->unk_1C);
-    sub_0200E2A4(param0->unk_28, 4, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04, v2->unk_06, param0->unk_04);
+    sub_0200E2A4(param0->unk_28, 4, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->textBoxType, v2->icon, param0->unk_04);
 
-    if ((v2->unk_04 == 0) || (v2->unk_04 == 1)) {
+    if ((v2->textBoxType == 0) || (v2->textBoxType == 1)) {
         v1 = &v0->unk_28[1];
     } else {
         v1 = &v0->unk_28[2];
     }
 
     v0->unk_78 = v1;
-    v0->unk_15_4 = v2->unk_04;
+    v0->unk_15_4 = v2->textBoxType;
 
-    sub_0200E69C(v1, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04);
+    sub_0200E69C(v1, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->textBoxType);
     sub_0201ADA4(v1, 15);
     sub_0201D738(v1, 1, param0->unk_88, 0, 0, 0xff, NULL);
     sub_0201A954(v1);
@@ -587,7 +587,7 @@ static void ov80_021D1AB0 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
     sub_0201A954(param1);
 }
 
-static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, UnkStruct_ov80_021D2AF4 * param2)
+static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, TownMapInfoBlock * param2)
 {
     u32 v0;
     u32 v1;
@@ -604,15 +604,15 @@ static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
     v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
     sub_0201ADA4(param1, 0);
 
-    if ((param2->unk_08 != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_0 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_2)) {
-        v2 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->unk_08);
-        sub_0201D78C(param1, 0, v2, param2->unk_0C, param2->unk_0E, 0xff, v1, NULL);
+    if ((param2->firstParagraphMsgBank != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_0 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_2)) {
+        v2 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->firstParagraphMsgBank);
+        sub_0201D78C(param1, 0, v2, param2->firstParagraphPadding_X, param2->firstParagraphPadding_Y, 0xff, v1, NULL);
         Strbuf_Free(v2);
     }
 
-    if ((param2->unk_0A != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_4 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_6)) {
-        v3 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->unk_0A);
-        sub_0201D78C(param1, 0, v3, param2->unk_10, param2->unk_12, 0xff, v1, NULL);
+    if ((param2->secondParagraphMsgBank != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_4 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_6)) {
+        v3 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->secondParagraphMsgBank);
+        sub_0201D78C(param1, 0, v3, param2->secondParagraphPadding_X, param2->secondParagraphPadding_Y, 0xff, v1, NULL);
         Strbuf_Free(v3);
     }
 }
@@ -665,7 +665,7 @@ static void ov80_021D1C24 (UnkStruct_ov80_021D2A08 * param0)
     }
 }
 
-static void ov80_021D1D24 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_ov80_021D2AF4 * param1, int param2)
+static void ov80_021D1D24 (UnkStruct_ov80_021D2A08 * param0, TownMapInfoBlock * param1, int param2)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
     u32 v1;

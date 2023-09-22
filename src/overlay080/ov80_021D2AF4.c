@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "overlay007/struct_ov7_0224F358.h"
-#include "overlay080/struct_ov80_021D2AF4.h"
+#include "overlay080/struct_town_map_info_block.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
 #include "overlay080/struct_town_map_block.h"
@@ -383,7 +383,7 @@ UnkStruct_ov80_021D2E10 * ov80_021D2D70 (const char * param0, int param1)
     int v1, v2;
     int v3;
     UnkStruct_ov80_021D2E10 * v4;
-    UnkStruct_ov80_021D2AF4 * v5;
+    TownMapInfoBlock * v5;
 
     FS_InitFile(&v0);
 
@@ -398,14 +398,14 @@ UnkStruct_ov80_021D2E10 * ov80_021D2D70 (const char * param0, int param1)
     v4 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov80_021D2E10));
     memset(v4, 0, sizeof(UnkStruct_ov80_021D2E10));
 
-    v4->unk_04 = Heap_AllocFromHeap(param1, sizeof(UnkStruct_ov80_021D2AF4) * v3);
-    memset(v4->unk_04, 0, sizeof(UnkStruct_ov80_021D2AF4) * v3);
+    v4->unk_04 = Heap_AllocFromHeap(param1, sizeof(TownMapInfoBlock) * v3);
+    memset(v4->unk_04, 0, sizeof(TownMapInfoBlock) * v3);
 
     v4->unk_00 = v3;
 
     for (v2 = 0; v2 < v4->unk_00; v2++) {
         v5 = &(v4->unk_04[v2]);
-        v1 = FS_ReadFile(&v0, v5, sizeof(UnkStruct_ov80_021D2AF4));
+        v1 = FS_ReadFile(&v0, v5, sizeof(TownMapInfoBlock));
         v5->unk_16 = v2;
     }
 
@@ -420,15 +420,15 @@ void ov80_021D2E10 (UnkStruct_ov80_021D2E10 * param0)
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov80_021D2AF4 * ov80_021D2E24 (UnkStruct_ov80_021D2E10 * param0, int param1, int param2, u16 param3)
+TownMapInfoBlock * ov80_021D2E24 (UnkStruct_ov80_021D2E10 * param0, int param1, int param2, u16 param3)
 {
     int v0;
-    UnkStruct_ov80_021D2AF4 * v1;
+    TownMapInfoBlock * v1;
 
     for (v0 = 0; v0 < param0->unk_00; v0++) {
         v1 = &(param0->unk_04[v0]);
 
-        if ((v1->unk_00 == param1) && (v1->unk_02 == param2)) {
+        if ((v1->xCoord == param1) && (v1->yCoord == param2)) {
             if ((v1->unk_14 == 0) || (v1->unk_14 & param3)) {
                 return v1;
             } else {

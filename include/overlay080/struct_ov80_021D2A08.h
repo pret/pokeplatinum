@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02039EBC_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
 #include "overlay080/struct_ov80_021D259C.h"
-#include "overlay080/struct_ov80_021D2AF4.h"
+#include "overlay080/struct_town_map_info_block.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2E10.h"
 
@@ -42,7 +42,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     Strbuf* unk_88;
     int unk_8C;
     int unk_90;
-    UnkStruct_ov80_021D2AF4 * unk_94;
+    TownMapInfoBlock * unk_94;
     void * unk_98;
     void * unk_9C;
     void * unk_A0;
