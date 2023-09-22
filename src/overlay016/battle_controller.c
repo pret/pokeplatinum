@@ -124,10 +124,10 @@ static BOOL BattleController_CheckAnyFainted(BattleContext * param0, int param1,
 static BOOL BattleController_CheckExpPayout(BattleContext * param0, int param1, int param2);
 static void ov16_02250FF4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0225143C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022511FC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02251218(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0225126C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022512F8(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_CriticalMessage(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_StatusMessage(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_RageBuilding(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_CheckExtraFlinch(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022513B0(BattleSystem * param0, BattleContext * param1);
 static void BattleController_InitAI(BattleSystem * param0, BattleContext * param1);
 static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -3322,7 +3322,7 @@ static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *ba
                 battleCtx->hitDamage = battleCtx->damage;
             }
 
-            DEFENDER_SELF_TURN_FLAGS.statusFlags |= SELF_TURN_FLAG_SUBSTITUE_HIT;
+            DEFENDER_SELF_TURN_FLAGS.statusFlags |= SELF_TURN_FLAG_SUBSTITUTE_HIT;
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
             LOAD_SUBSEQ(BATTLE_SUBSEQ_HIT_SUBSTITUTE);
@@ -3406,13 +3406,13 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
         case 0:
             param1->afterMoveMessageState++;
 
-            if (ov16_022511FC(param0, param1) == 1) {
+            if (BattleController_CriticalMessage(param0, param1) == 1) {
                 return;
             }
         case 1:
             param1->afterMoveMessageState++;
 
-            if (ov16_02251218(param0, param1) == 1) {
+            if (BattleController_StatusMessage(param0, param1) == 1) {
                 return;
             }
         case 2:
@@ -3421,7 +3421,7 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
 
             param1->afterMoveMessageState++;
 
-            if ((ov16_02253710(param0, param1, &v0) == 1) && ((param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) == 0)) {
+            if ((BattleSystem_TriggerSecondaryEffect(param0, param1, &v0) == 1) && ((param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) == 0)) {
                 BattleSystem_LoadScript(param1, 1, v0);
                 param1->commandNext = param1->command;
                 param1->command = 21;
@@ -3437,7 +3437,7 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
         case 4:
             param1->afterMoveMessageState++;
 
-            if (ov16_0225126C(param0, param1) == 1) {
+            if (BattleController_RageBuilding(param0, param1) == 1) {
                 return;
             }
         case 5:
@@ -3446,7 +3446,7 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
 
             param1->afterMoveMessageState++;
 
-            if (ov16_0225708C(param0, param1, &v1) == 1) {
+            if (BattleSystem_TriggerAbilityOnHit(param0, param1, &v1) == 1) {
                 BattleSystem_LoadScript(param1, 1, v1);
                 param1->commandNext = param1->command;
                 param1->command = 21;
@@ -3456,7 +3456,7 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
         case 6:
             param1->afterMoveMessageState++;
 
-            if (ov16_022512F8(param0, param1) == 1) {
+            if (BattleController_CheckExtraFlinch(param0, param1) == 1) {
                 return;
             }
         default:
@@ -3468,7 +3468,7 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
         case 0:
             param1->afterMoveMessageState++;
 
-            if (ov16_022511FC(param0, param1) == 1) {
+            if (BattleController_CriticalMessage(param0, param1) == 1) {
                 return;
             }
         case 1:
@@ -3477,7 +3477,7 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
 
             param1->afterMoveMessageState++;
 
-            if ((ov16_02253710(param0, param1, &v2) == 1) && ((param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) == 0)) {
+            if ((BattleSystem_TriggerSecondaryEffect(param0, param1, &v2) == 1) && ((param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) == 0)) {
                 BattleSystem_LoadScript(param1, 1, v2);
                 param1->commandNext = param1->command;
                 param1->command = 21;
@@ -3493,7 +3493,7 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
         case 3:
             param1->afterMoveMessageState++;
 
-            if (ov16_0225126C(param0, param1) == 1) {
+            if (BattleController_RageBuilding(param0, param1) == 1) {
                 return;
             }
         case 4:
@@ -3502,7 +3502,7 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
 
             param1->afterMoveMessageState++;
 
-            if (ov16_0225708C(param0, param1, &v3) == 1) {
+            if (BattleSystem_TriggerAbilityOnHit(param0, param1, &v3) == 1) {
                 BattleSystem_LoadScript(param1, 1, v3);
                 param1->commandNext = param1->command;
                 param1->command = 21;
@@ -3512,13 +3512,13 @@ static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
         case 5:
             param1->afterMoveMessageState++;
 
-            if (ov16_02251218(param0, param1) == 1) {
+            if (BattleController_StatusMessage(param0, param1) == 1) {
                 return;
             }
         case 6:
             param1->afterMoveMessageState++;
 
-            if (ov16_022512F8(param0, param1) == 1) {
+            if (BattleController_CheckExtraFlinch(param0, param1) == 1) {
                 return;
             }
         default:
@@ -3565,7 +3565,7 @@ static void ov16_0224FEE4 (BattleSystem * param0, BattleContext * param1)
     case 1:
         param1->afterMoveEffectState++;
 
-        if (ov16_02257808(param0, param1, param1->command) == 1) {
+        if (BattleSystem_SynchronizeStatus(param0, param1, param1->command) == 1) {
             return;
         }
     case 2:
@@ -3602,7 +3602,7 @@ static void ov16_0224FEE4 (BattleSystem * param0, BattleContext * param1)
 
         param1->afterMoveEffectState++;
 
-        if (ov16_022588BC(param0, param1, &v2) == 1) {
+        if (BattleSystem_TriggerHeldItemOnHit(param0, param1, &v2) == 1) {
             BattleSystem_LoadScript(param1, 1, v2);
             param1->commandNext = param1->command;
             param1->command = 21;
@@ -4433,7 +4433,7 @@ static void ov16_02250FF4 (BattleSystem * param0, BattleContext * param1)
     }
 }
 
-static BOOL ov16_022511FC (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_CriticalMessage (BattleSystem * param0, BattleContext * param1)
 {
     BattleSystem_LoadScript(param1, 1, (0 + 16));
 
@@ -4443,7 +4443,7 @@ static BOOL ov16_022511FC (BattleSystem * param0, BattleContext * param1)
     return 1;
 }
 
-static BOOL ov16_02251218 (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_StatusMessage (BattleSystem * param0, BattleContext * param1)
 {
     BOOL v0;
 
@@ -4469,7 +4469,7 @@ static BOOL ov16_02251218 (BattleSystem * param0, BattleContext * param1)
     return v0;
 }
 
-static BOOL ov16_0225126C (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_RageBuilding (BattleSystem * param0, BattleContext * param1)
 {
     BOOL v0;
 
@@ -4492,7 +4492,7 @@ static BOOL ov16_0225126C (BattleSystem * param0, BattleContext * param1)
     return v0;
 }
 
-static BOOL ov16_022512F8 (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_CheckExtraFlinch (BattleSystem * param0, BattleContext * param1)
 {
     BOOL v0 = 0;
     int v1;
