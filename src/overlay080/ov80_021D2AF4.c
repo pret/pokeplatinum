@@ -376,60 +376,60 @@ void ov80_021D2D28 (UnkStruct_ov80_021D2C1C * param0, int param1)
     }
 }
 
-TownMapInfoBlockList * ov80_021D2D70 (const char * param0, int param1)
+TownMapInfoBlockList * TownMapInfoBlockList_New (const char * filePath, int heapID)
 {
-    FSFile v0;
-    int v1, v2;
-    int v3;
-    TownMapInfoBlockList * v4;
-    TownMapInfoBlock * v5;
+    FSFile file;
+    int readResult, i;
+    int blockCount;
+    TownMapInfoBlockList * list;
+    TownMapInfoBlock * block;
 
-    FS_InitFile(&v0);
+    FS_InitFile(&file);
 
-    if (!FS_OpenFile(&v0, param0)) {
+    if (!FS_OpenFile(&file, filePath)) {
         GF_ASSERT(0);
         return NULL;
     }
 
-    v1 = FS_ReadFile(&v0, &v3, 4);
-    GF_ASSERT(v1 >= 0);
+    readResult = FS_ReadFile(&file, &blockCount, 4);
+    GF_ASSERT(readResult >= 0);
 
-    v4 = Heap_AllocFromHeap(param1, sizeof(TownMapInfoBlockList));
-    memset(v4, 0, sizeof(TownMapInfoBlockList));
+    list = Heap_AllocFromHeap(heapID, sizeof(TownMapInfoBlockList));
+    memset(list, 0, sizeof(TownMapInfoBlockList));
 
-    v4->data = Heap_AllocFromHeap(param1, sizeof(TownMapInfoBlock) * v3);
-    memset(v4->data, 0, sizeof(TownMapInfoBlock) * v3);
+    list->data = Heap_AllocFromHeap(heapID, sizeof(TownMapInfoBlock) * blockCount);
+    memset(list->data, 0, sizeof(TownMapInfoBlock) * blockCount);
 
-    v4->count = v3;
+    list->count = blockCount;
 
-    for (v2 = 0; v2 < v4->count; v2++) {
-        v5 = &(v4->data[v2]);
-        v1 = FS_ReadFile(&v0, v5, sizeof(TownMapInfoBlock));
-        v5->unk_16 = v2;
+    for (i = 0; i < list->count; i++) {
+        block = &(list->data[i]);
+        readResult = FS_ReadFile(&file, block, sizeof(TownMapInfoBlock));
+        block->unk_16 = i;
     }
 
-    (void)FS_CloseFile(&v0);
+    (void)FS_CloseFile(&file);
 
-    return v4;
+    return list;
 }
 
-void ov80_021D2E10 (TownMapInfoBlockList * param0)
+void TownMapInfoBlockList_Free (TownMapInfoBlockList * list)
 {
-    Heap_FreeToHeap(param0->data);
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(list->data);
+    Heap_FreeToHeap(list);
 }
 
-TownMapInfoBlock * ov80_021D2E24 (TownMapInfoBlockList * param0, int param1, int param2, u16 param3)
+TownMapInfoBlock * TownMapInfoBlockList_GetBlockFromCoordinates (TownMapInfoBlockList * list, int xCoord, int yCoord, u16 param3)
 {
-    int v0;
-    TownMapInfoBlock * v1;
+    int i;
+    TownMapInfoBlock * block;
 
-    for (v0 = 0; v0 < param0->count; v0++) {
-        v1 = &(param0->data[v0]);
+    for (i = 0; i < list->count; i++) {
+        block = &(list->data[i]);
 
-        if ((v1->xCoord == param1) && (v1->yCoord == param2)) {
-            if ((v1->unk_14 == 0) || (v1->unk_14 & param3)) {
-                return v1;
+        if ((block->xCoord == xCoord) && (block->yCoord == yCoord)) {
+            if ((block->unk_14 == 0) || (block->unk_14 & param3)) {
+                return block;
             } else {
                 return NULL;
             }

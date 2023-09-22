@@ -27,8 +27,36 @@ void ov80_021D2C1C(UnkStruct_ov80_021D2C1C * param0);
 UnkStruct_ov80_021D2C5C * ov80_021D2C5C(UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3);
 int ov80_021D2CC0(UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3);
 void ov80_021D2D28(UnkStruct_ov80_021D2C1C * param0, int param1);
-TownMapInfoBlockList * ov80_021D2D70(const char * param0, int param1);
-void ov80_021D2E10(TownMapInfoBlockList * param0);
-TownMapInfoBlock * ov80_021D2E24(TownMapInfoBlockList * param0, int param1, int param2, u16 param3);
+
+/**
+ * @brief Allocates a TownMapInfoBlockList struct, then initializes it with data from a binary file
+ *
+ * @param filePath    Path to the file containing the data to initialize the struct with
+ * @param heapID      ID of the heap to alloc from
+ * 
+ * @returns TownMapInfoBlockList*
+ */
+TownMapInfoBlockList * TownMapInfoBlockList_New(const char * filePath, int heapID);
+
+/**
+ * @brief Free a TownMapInfoBlockList struct back to its owning heap.
+ * 
+ * @param loader The struct to be freed.
+ */
+void TownMapInfoBlockList_Free(TownMapInfoBlockList * list);
+
+/**
+ * @brief Returns the first occurrence of TownMapInfoBlock
+ * in the list with the specified coordinates. If no match
+ * is found, a NULL pointer is returned.
+ *
+ * @param list      Pointer to a TownMapInfoBlock struct
+ * @param xCoord    x coordinate
+ * @param yCoord    y coordinate
+ * @param param3    ???
+ * 
+ * @returns TownMapInfoBlock* if success, otherwise NULL
+ */
+TownMapInfoBlock * TownMapInfoBlockList_GetBlockFromCoordinates(TownMapInfoBlockList * list, int xCoord, int yCoord, u16 param3);
 
 #endif // POKEPLATINUM_OV80_021D2AF4_H

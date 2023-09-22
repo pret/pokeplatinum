@@ -513,7 +513,7 @@ static void ov80_021D1A30 (UnkStruct_ov80_021D2A08 * param0)
 
     v0->unk_24 = v0->unk_20;
     v0->unk_20 = sub_02039F04((const UnkStruct_02039EBC *)param0->unk_30, v0->unk_18, v0->unk_1C);
-    v0->unk_A0 = ov80_021D2E24(param0->unk_40, v0->unk_18, v0->unk_1C, param0->unk_02);
+    v0->unk_A0 = TownMapInfoBlockList_GetBlockFromCoordinates(param0->unk_40, v0->unk_18, v0->unk_1C, param0->unk_02);
 }
 
 static void ov80_021D1A58 (UnkStruct_ov80_021D2A08 * param0, int param1, int param2, int param3)
