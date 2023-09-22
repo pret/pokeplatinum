@@ -8,7 +8,7 @@
 #include "overlay080/struct_ov80_021D2AF4.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
-#include "overlay080/struct_ov80_021D2C5C_sub1.h"
+#include "overlay080/struct_town_map_block.h"
 #include "overlay080/struct_ov80_021D2E10.h"
 
 #include "unk_0200C6E4.h"
@@ -16,9 +16,9 @@
 #include "unk_020218BC.h"
 #include "overlay080/ov80_021D2AF4.h"
 
-#include "overlay080/struct_ov80_021D2C5C_sub1.h"
+#include "overlay080/struct_town_map_block.h"
 
-const UnkStruct_ov80_021D2C5C_sub1 Unk_ov80_021D31D8[20] = {
+const TownMapBlock Unk_ov80_021D31D8[20] = {
 	{ 0x19B, 0x0, 0x0, 0x0, 0x0, 0x15, 0xBD },
 	{ 0x1A2, 0x1, 0x0, 0x0, 0x0, 0x23, 0xB6 },
 	{ 0x1AA, 0x2, 0x1, 0x0, 0x0, 0x23, 0x88 },
@@ -45,7 +45,7 @@ UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_
 {
     UnkStruct_ov80_021D2C1C * v0;
     UnkStruct_ov80_021D2C5C * v1;
-    const UnkStruct_ov80_021D2C5C_sub1 * v2;
+    const TownMapBlock * v2;
     short v3;
     static const UnkStruct_ov7_0224F358 v4 = {
         4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
@@ -62,27 +62,27 @@ UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_
 
     for (v3 = 0; v3 < v0->unk_00; v3++) {
         v1 = &v0->unk_08[v3];
-        v1->unk_00.unk_00 = v2[v3].unk_00;
-        v1->unk_00.unk_08 = v2[v3].unk_08;
-        v1->unk_00.unk_09 = v2[v3].unk_09;
+        v1->unk_00.mapHeader = v2[v3].mapHeader;
+        v1->unk_00.blockType = v2[v3].blockType;
+        v1->unk_00.blockColor = v2[v3].blockColor;
         v1->unk_00.unk_0A = v2[v3].unk_0A;
-        v1->unk_00.unk_0C = v2[v3].unk_0C;
-        v1->unk_00.unk_10 = v2[v3].unk_10;
+        v1->unk_00.xCoord = v2[v3].xCoord;
+        v1->unk_00.yCoord = v2[v3].yCoord;
         v1->unk_14 = param2[v3];
         v1->unk_18 = sub_0200CA08(param0, param1, &v4);
 
         sub_02021CAC(v1->unk_18, 1);
 
         if (v1->unk_14) {
-            sub_02021E90(v1->unk_18, 5 + v1->unk_00.unk_09 + v1->unk_14);
+            sub_02021E90(v1->unk_18, 5 + v1->unk_00.blockColor + v1->unk_14);
         } else {
             if ((v1->unk_00.unk_0A == 1) || (v1->unk_00.unk_0A == 2)) {
                 sub_02021CAC(v1->unk_18, 0);
             }
         }
 
-        sub_02021E2C(v1->unk_18, FX32_CONST(v1->unk_00.unk_08));
-        sub_0200D494(v1->unk_18, v1->unk_00.unk_0C + 25, v1->unk_00.unk_10 + -34);
+        sub_02021E2C(v1->unk_18, FX32_CONST(v1->unk_00.blockType));
+        sub_0200D494(v1->unk_18, v1->unk_00.xCoord + 25, v1->unk_00.yCoord + -34);
     }
 
     return v0;
@@ -111,7 +111,7 @@ UnkStruct_ov80_021D2C5C * ov80_021D2C5C (UnkStruct_ov80_021D2C1C * param0, int p
     for (v1 = 0; v1 < param0->unk_00; v1++) {
         v0 = &(param0->unk_08[v1]);
 
-        if (v0->unk_00.unk_00 != param1) {
+        if (v0->unk_00.mapHeader != param1) {
             continue;
         }
 
@@ -154,7 +154,7 @@ int ov80_021D2CC0 (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int
 
     if ((v0 == NULL) || (v0->unk_14 == 0)) {
         if (param0->unk_04 != NULL) {
-            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.blockColor + param0->unk_04->unk_14);
         }
 
         param0->unk_04 = NULL;
@@ -166,7 +166,7 @@ int ov80_021D2CC0 (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int
         param0->unk_03 = 0;
     } else {
         if ((v0->unk_00.unk_0A == 2) || (v0->unk_00.unk_0A == 3)) {
-            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.blockColor + param0->unk_04->unk_14);
         }
     }
 
@@ -184,9 +184,9 @@ void ov80_021D2D28 (UnkStruct_ov80_021D2C1C * param0, int param1)
     }
 
     if (param0->unk_03 == 0) {
-        sub_02021E90(param0->unk_04->unk_18, 8 + param0->unk_04->unk_00.unk_09);
+        sub_02021E90(param0->unk_04->unk_18, 8 + param0->unk_04->unk_00.blockColor);
     } else {
-        sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.unk_09 + param0->unk_04->unk_14);
+        sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.blockColor + param0->unk_04->unk_14);
     }
 
     param0->unk_02++;
