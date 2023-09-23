@@ -14,7 +14,7 @@
 #include "overlay080/struct_ov80_021D1478_sub1.h"
 #include "overlay080/struct_ov80_021D259C.h"
 #include "overlay080/struct_ov80_021D2A08.h"
-#include "overlay080/struct_town_map_info_block.h"
+#include "overlay080/struct_town_map_interaction.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
 
@@ -77,7 +77,7 @@ typedef struct {
     UnkStruct_ov80_021D1478_sub1 unk_7C;
     UnkStruct_ov80_021D1478_sub1 unk_8C;
     UnkStruct_ov80_021D2C1C * unk_9C;
-    TownMapInfoBlock * unk_A0;
+    TownMapInteraction * unk_A0;
     UnkStruct_ov80_021D2570 unk_A4;
     UnkStruct_02022550 * unk_100;
     UnkStruct_02022550 * unk_104;
@@ -113,7 +113,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D159C(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D15C8(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D1610(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D1D24(UnkStruct_ov80_021D2A08 * param0, TownMapInfoBlock * param1, int param2);
+static void ov80_021D1D24(UnkStruct_ov80_021D2A08 * param0, TownMapInteraction * param1, int param2);
 static void ov80_021D1D38(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1D6C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1);
 static void ov80_021D1DF8(UnkStruct_ov80_021D2A08 * param0);
@@ -128,7 +128,7 @@ static void ov80_021D2700(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D18F8(UnkStruct_ov80_021D2A08 * param0, int param1);
 static void ov80_021D1A58(UnkStruct_ov80_021D2A08 * param0, int param1, int param2, int param3);
 static void ov80_021D1AB0(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, int param2, int param3, int param4);
-static void ov80_021D1B5C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, TownMapInfoBlock * param2);
+static void ov80_021D1B5C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, TownMapInteraction * param2);
 static void ov80_021D19E4(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1A30(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1C24(UnkStruct_ov80_021D2A08 * param0);
@@ -337,7 +337,7 @@ int ov80_021D1758 (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
     UnkStruct_0205AA50 * v1;
-    TownMapInfoBlock * v2 = param0->unk_94;
+    TownMapInteraction * v2 = param0->unk_94;
     int v3 = param0->unk_90;
     u32 v4;
     u32 v5;
@@ -513,7 +513,7 @@ static void ov80_021D1A30 (UnkStruct_ov80_021D2A08 * param0)
 
     v0->unk_24 = v0->unk_20;
     v0->unk_20 = sub_02039F04((const UnkStruct_02039EBC *)param0->unk_30, v0->unk_18, v0->unk_1C);
-    v0->unk_A0 = TownMapInfoBlockList_GetBlockFromCoordinates(param0->unk_40, v0->unk_18, v0->unk_1C, param0->unk_02);
+    v0->unk_A0 = TownMapInteractionList_GetElementFromCoordinates(param0->unk_40, v0->unk_18, v0->unk_1C, param0->unk_02);
 }
 
 static void ov80_021D1A58 (UnkStruct_ov80_021D2A08 * param0, int param1, int param2, int param3)
@@ -587,7 +587,7 @@ static void ov80_021D1AB0 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
     sub_0201A954(param1);
 }
 
-static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, TownMapInfoBlock * param2)
+static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, TownMapInteraction * param2)
 {
     u32 v0;
     u32 v1;
@@ -665,7 +665,7 @@ static void ov80_021D1C24 (UnkStruct_ov80_021D2A08 * param0)
     }
 }
 
-static void ov80_021D1D24 (UnkStruct_ov80_021D2A08 * param0, TownMapInfoBlock * param1, int param2)
+static void ov80_021D1D24 (UnkStruct_ov80_021D2A08 * param0, TownMapInteraction * param1, int param2)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
     u32 v1;

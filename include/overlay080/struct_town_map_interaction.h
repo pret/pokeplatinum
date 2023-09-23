@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_STRUCT_TOWN_MAP_INFO_BLOCK_H
-#define POKEPLATINUM_STRUCT_TOWN_MAP_INFO_BLOCK_H
+#ifndef POKEPLATINUM_STRUCT_TOWN_MAP_INTERACTION_H
+#define POKEPLATINUM_STRUCT_TOWN_MAP_INTERACTION_H
 
 typedef struct {
     u16 xCoord;
@@ -14,11 +14,11 @@ typedef struct {
     u16 secondParagraphPadding_Y;
     u16 unk_14;
     u16 unk_16;
-} TownMapInfoBlock;
+} TownMapInteraction;
 
-typedef struct TownMapInfoBlockList {
+typedef struct TownMapInteractionList {
     int count;
-    TownMapInfoBlock * data;
-} TownMapInfoBlockList;
+    TownMapInteraction * data;
+} TownMapInteractionList;
 
-#endif // POKEPLATINUM_STRUCT_TOWN_MAP_INFO_BLOCK_H
+#endif // POKEPLATINUM_STRUCT_TOWN_MAP_INTERACTION_H

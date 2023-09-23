@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 
 #include "overlay007/struct_ov7_0224F358.h"
-#include "overlay080/struct_town_map_info_block.h"
+#include "overlay080/struct_town_map_interaction.h"
 #include "overlay080/struct_ov80_021D2C1C.h"
 #include "overlay080/struct_ov80_021D2C5C.h"
 #include "overlay080/struct_town_map_block.h"
@@ -376,13 +376,13 @@ void ov80_021D2D28 (UnkStruct_ov80_021D2C1C * param0, int param1)
     }
 }
 
-TownMapInfoBlockList * TownMapInfoBlockList_New (const char * filePath, int heapID)
+TownMapInteractionList * TownMapInteractionList_New (const char * filePath, int heapID)
 {
     FSFile file;
     int readResult, i;
     int blockCount;
-    TownMapInfoBlockList * list;
-    TownMapInfoBlock * block;
+    TownMapInteractionList * list;
+    TownMapInteraction * block;
 
     FS_InitFile(&file);
 
@@ -394,17 +394,17 @@ TownMapInfoBlockList * TownMapInfoBlockList_New (const char * filePath, int heap
     readResult = FS_ReadFile(&file, &blockCount, 4);
     GF_ASSERT(readResult >= 0);
 
-    list = Heap_AllocFromHeap(heapID, sizeof(TownMapInfoBlockList));
-    memset(list, 0, sizeof(TownMapInfoBlockList));
+    list = Heap_AllocFromHeap(heapID, sizeof(TownMapInteractionList));
+    memset(list, 0, sizeof(TownMapInteractionList));
 
-    list->data = Heap_AllocFromHeap(heapID, sizeof(TownMapInfoBlock) * blockCount);
-    memset(list->data, 0, sizeof(TownMapInfoBlock) * blockCount);
+    list->data = Heap_AllocFromHeap(heapID, sizeof(TownMapInteraction) * blockCount);
+    memset(list->data, 0, sizeof(TownMapInteraction) * blockCount);
 
     list->count = blockCount;
 
     for (i = 0; i < list->count; i++) {
         block = &(list->data[i]);
-        readResult = FS_ReadFile(&file, block, sizeof(TownMapInfoBlock));
+        readResult = FS_ReadFile(&file, block, sizeof(TownMapInteraction));
         block->unk_16 = i;
     }
 
@@ -413,23 +413,23 @@ TownMapInfoBlockList * TownMapInfoBlockList_New (const char * filePath, int heap
     return list;
 }
 
-void TownMapInfoBlockList_Free (TownMapInfoBlockList * list)
+void TownMapInteractionList_Free (TownMapInteractionList * list)
 {
     Heap_FreeToHeap(list->data);
     Heap_FreeToHeap(list);
 }
 
-TownMapInfoBlock * TownMapInfoBlockList_GetBlockFromCoordinates (TownMapInfoBlockList * list, int xCoord, int yCoord, u16 param3)
+TownMapInteraction * TownMapInteractionList_GetElementFromCoordinates (TownMapInteractionList * list, int xCoord, int yCoord, u16 param3)
 {
     int i;
-    TownMapInfoBlock * block;
+    TownMapInteraction * interaction;
 
     for (i = 0; i < list->count; i++) {
-        block = &(list->data[i]);
+        interaction = &(list->data[i]);
 
-        if ((block->xCoord == xCoord) && (block->yCoord == yCoord)) {
-            if ((block->unk_14 == 0) || (block->unk_14 & param3)) {
-                return block;
+        if ((interaction->xCoord == xCoord) && (interaction->yCoord == yCoord)) {
+            if ((interaction->unk_14 == 0) || (interaction->unk_14 & param3)) {
+                return interaction;
             } else {
                 return NULL;
             }
