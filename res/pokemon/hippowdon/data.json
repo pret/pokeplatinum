@@ -1,0 +1,99 @@
+{
+    "name": "Hippowdon",
+    "base_stats": {
+        "hp": 108,
+        "attack": 112,
+        "defense": 118,
+        "speed": 47,
+        "special_attack": 68,
+        "special_defense": 72
+    },
+    "types": [
+        "TYPE_GROUND",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 198,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 30,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_SAND_STREAM",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM68",
+            "TM71",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "ICE_FANG",
+                "FIRE_FANG",
+                "THUNDER_FANG",
+                "TACKLE",
+                "SAND_ATTACK",
+                "BITE",
+                "YAWN"
+            ],
+            "7": "BITE",
+            "13": "YAWN",
+            "19": "TAKE_DOWN",
+            "25": "SAND_TOMB",
+            "31": "CRUNCH",
+            "40": "EARTHQUAKE",
+            "50": "DOUBLE_EDGE",
+            "60": "FISSURE"
+        }
+    }
+}

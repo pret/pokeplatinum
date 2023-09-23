@@ -38,7 +38,7 @@ typedef struct PokemonPersonalData {
     u16 evSpeedYield : 2; //!< How many Speed EVs will be gained when defeating this pokemon
     u16 evSpAtkYield : 2; //!< How many Special Attack EVs will be gained when defeating this pokemon
     u16 evSpDefYield : 2; //!< How many Special Defense EVs will be gained when defeating this pokemon
-    u16 padding : 4;
+    // u16 padding : 4;
 
     u16 item1; //!< Common held item when this pokemon is encountered in the wild
     u16 item2; //!< Rare held item when this pokemon is encountered in the wild
@@ -52,7 +52,9 @@ typedef struct PokemonPersonalData {
     u8 ability2; //!< The pokemons second possible ability
     u8 greatMarshFleeRate; //!< The pokemons base flee rate in the Great Marsh safari zone
     u8 color : 7; //!< The pokemons color category
-    u8 inverse : 1;
+    u8 flipSprite : 1;
+    // u16 padding;
+
     u32 tmLearnsetMask1; //!< Bitflags for whether this pokemon can learn a TM (TM1 -> TM32)
     u32 tmLearnsetMask2; //!< Bitflags for whether this pokemon can learn a TM (TM33 -> TM64)
     u32 tmLearnsetMask3; //!< Bitflags for whether this pokemon can learn a TM (TM65 -> TM92, HM1 -> HM4)

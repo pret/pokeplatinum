@@ -3,7 +3,6 @@ prebuilt_files = [
     'growtbl.narc',
     'personal.narc',
     'pl_growtbl.narc',
-    'pl_personal.narc',
     'pms.narc',
     'wotbl.narc'
 ]

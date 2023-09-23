@@ -1,0 +1,117 @@
+{
+    "name": "Palkia",
+    "base_stats": {
+        "hp": 90,
+        "attack": 120,
+        "defense": 100,
+        "speed": 100,
+        "special_attack": 150,
+        "special_defense": 120
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_DRAGON"
+    ],
+    "catch_rate": 30,
+    "base_exp_reward": 220,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM02",
+            "TM03",
+            "TM05",
+            "TM06",
+            "TM07",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM52",
+            "TM55",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM65",
+            "TM68",
+            "TM71",
+            "TM72",
+            "TM73",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "TM92",
+            "HM01",
+            "HM03",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "DRAGON_BREATH",
+                "SCARY_FACE"
+            ],
+            "10": "WATER_PULSE",
+            "20": "ANCIENT_POWER",
+            "30": "DRAGON_CLAW",
+            "40": "SPACIAL_REND",
+            "50": "HEAL_BLOCK",
+            "60": "EARTH_POWER",
+            "70": "SLASH",
+            "80": "AQUA_TAIL",
+            "90": "AURA_SPHERE"
+        }
+    }
+}

@@ -3,8 +3,11 @@ import pathlib
 
 from consts import (
     movedata,
-    moves,
-    poketype
+    moves
+)
+
+from consts.pokemon import (
+    mon_type
 )
 
 import json2bin as j2b
@@ -15,7 +18,7 @@ SCHEMA = j2b.Parser() \
     .register('effect.type', 2, j2b.parse_const, movedata.MoveEffect) \
     .register('class', 1, j2b.parse_const, movedata.MoveClass) \
     .register('power', 1, j2b.parse_int) \
-    .register('type', 1, j2b.parse_const, poketype.PokeType) \
+    .register('type', 1, j2b.parse_const, mon_type.PokeType) \
     .register('accuracy', 1, j2b.parse_int) \
     .register('pp', 1, j2b.parse_int) \
     .register('effect.chance', 1, j2b.parse_int) \
@@ -23,7 +26,7 @@ SCHEMA = j2b.Parser() \
     .register('priority', 1, j2b.parse_sint) \
     .register('flags', 1, j2b.pack_flags, movedata.MoveFlags) \
     .register('contest.effect', 1, j2b.parse_int) \
-    .register('contest.type', 1, j2b.parse_const, poketype.ContestType) \
+    .register('contest.type', 1, j2b.parse_const, mon_type.ContestType) \
     .pad(2)
 
 
@@ -34,6 +37,7 @@ def indexer(file_path: pathlib.Path) -> int:
 args = j2b.ARGPARSER.parse_args()
 j2b.json2bin(args.source_dir,
              SCHEMA,
+             args.private_dir,
              args.output_dir,
              indexer,
              glob_pattern='**/data.json',

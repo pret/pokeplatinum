@@ -1,0 +1,98 @@
+{
+    "name": "Poliwag",
+    "base_stats": {
+        "hp": 40,
+        "attack": 50,
+        "defense": 40,
+        "speed": 90,
+        "special_attack": 40,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 77,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "WATER_1",
+        "WATER_1"
+    ],
+    "abilities": [
+        "ABILITY_WATER_ABSORB",
+        "ABILITY_DAMP"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": true
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM28",
+            "TM29",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM07"
+        ],
+        "level_up": {
+            "1": "WATER_SPORT",
+            "5": "BUBBLE",
+            "8": "HYPNOSIS",
+            "11": "WATER_GUN",
+            "15": "DOUBLE_SLAP",
+            "18": "RAIN_DANCE",
+            "21": "BODY_SLAM",
+            "25": "BUBBLE_BEAM",
+            "28": "MUD_SHOT",
+            "31": "BELLY_DRUM",
+            "35": "WAKE_UP_SLAP",
+            "38": "HYDRO_PUMP",
+            "41": "MUD_BOMB"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            25,
+            "SPECIES_POLIWHIRL"
+        ]
+    ]
+}

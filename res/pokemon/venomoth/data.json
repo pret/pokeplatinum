@@ -1,0 +1,104 @@
+{
+    "name": "Venomoth",
+    "base_stats": {
+        "hp": 70,
+        "attack": 65,
+        "defense": 60,
+        "speed": 90,
+        "special_attack": 90,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 138,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SHED_SHELL"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SHIELD_DUST",
+        "ABILITY_TINTED_LENS"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM29",
+            "TM32",
+            "TM36",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM48",
+            "TM51",
+            "TM53",
+            "TM58",
+            "TM62",
+            "TM68",
+            "TM70",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "SILVER_WIND",
+                "TACKLE",
+                "DISABLE",
+                "FORESIGHT",
+                "SUPERSONIC"
+            ],
+            "5": "SUPERSONIC",
+            "11": "CONFUSION",
+            "13": "POISON_POWDER",
+            "17": "LEECH_LIFE",
+            "23": "STUN_SPORE",
+            "25": "PSYBEAM",
+            "29": "SLEEP_POWDER",
+            "31": "GUST",
+            "37": "SIGNAL_BEAM",
+            "41": "ZEN_HEADBUTT",
+            "47": "POISON_FANG",
+            "55": "PSYCHIC",
+            "59": "BUG_BUZZ"
+        }
+    }
+}

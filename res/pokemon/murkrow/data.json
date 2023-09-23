@@ -1,0 +1,109 @@
+{
+    "name": "Murkrow",
+    "base_stats": {
+        "hp": 60,
+        "attack": 85,
+        "defense": 42,
+        "speed": 91,
+        "special_attack": 85,
+        "special_defense": 42
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 30,
+    "base_exp_reward": 107,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 35,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "FLYING",
+        "FLYING"
+    ],
+    "abilities": [
+        "ABILITY_INSOMNIA",
+        "ABILITY_SUPER_LUCK"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLACK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM49",
+            "TM51",
+            "TM58",
+            "TM63",
+            "TM66",
+            "TM73",
+            "TM77",
+            "TM78",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM88",
+            "TM90",
+            "HM02",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "PECK",
+                "ASTONISH"
+            ],
+            "5": "PURSUIT",
+            "11": "HAZE",
+            "15": "WING_ATTACK",
+            "21": "NIGHT_SHADE",
+            "25": "ASSURANCE",
+            "31": "TAUNT",
+            "35": "FAINT_ATTACK",
+            "41": "MEAN_LOOK",
+            "45": "SUCKER_PUNCH"
+        }
+    },
+    "evolutions": [
+        [
+            "USE_ITEM",
+            "ITEM_DUSK_STONE",
+            "SPECIES_HONCHKROW"
+        ]
+    ]
+}

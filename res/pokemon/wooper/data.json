@@ -1,0 +1,106 @@
+{
+    "name": "Wooper",
+    "base_stats": {
+        "hp": 55,
+        "attack": 45,
+        "defense": 45,
+        "speed": 15,
+        "special_attack": 25,
+        "special_defense": 25
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 52,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "WATER_1",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_DAMP",
+        "ABILITY_WATER_ABSORB"
+    ],
+    "great_marsh_flee_rate": 120,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM36",
+            "TM37",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM70",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM06",
+            "HM07"
+        ],
+        "level_up": {
+            "1": [
+                "WATER_GUN",
+                "TAIL_WHIP"
+            ],
+            "5": "MUD_SPORT",
+            "9": "MUD_SHOT",
+            "15": "SLAM",
+            "19": "MUD_BOMB",
+            "23": "AMNESIA",
+            "29": "YAWN",
+            "33": "EARTHQUAKE",
+            "37": "RAIN_DANCE",
+            "43": [
+                "MIST",
+                "HAZE"
+            ],
+            "47": "MUDDY_WATER"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            20,
+            "SPECIES_QUAGSIRE"
+        ]
+    ]
+}

@@ -1,0 +1,128 @@
+{
+    "name": "Clefairy",
+    "base_stats": {
+        "hp": 70,
+        "attack": 45,
+        "defense": 48,
+        "speed": 35,
+        "special_attack": 60,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 150,
+    "base_exp_reward": 68,
+    "ev_yields": {
+        "hp": 2,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_LEPPA_BERRY",
+        "rare": "ITEM_MOON_STONE"
+    },
+    "gender_ratio": "FEMALE_75",
+    "hatch_cycles": 10,
+    "base_friendship": 140,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "FAIRY",
+        "FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_CUTE_CHARM",
+        "ABILITY_MAGIC_GUARD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PINK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM03",
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM28",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM33",
+            "TM34",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM49",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM60",
+            "TM67",
+            "TM70",
+            "TM73",
+            "TM76",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "POUND",
+                "GROWL"
+            ],
+            "4": "ENCORE",
+            "7": "SING",
+            "10": "DOUBLE_SLAP",
+            "13": "DEFENSE_CURL",
+            "16": "FOLLOW_ME",
+            "19": "MINIMIZE",
+            "22": "WAKE_UP_SLAP",
+            "25": "COSMIC_POWER",
+            "28": "LUCKY_CHANT",
+            "31": "METRONOME",
+            "34": "GRAVITY",
+            "37": "MOONLIGHT",
+            "40": "LIGHT_SCREEN",
+            "43": "METEOR_MASH",
+            "46": "HEALING_WISH"
+        }
+    },
+    "evolutions": [
+        [
+            "USE_ITEM",
+            "ITEM_MOON_STONE",
+            "SPECIES_CLEFABLE"
+        ]
+    ]
+}

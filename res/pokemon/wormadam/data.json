@@ -1,0 +1,98 @@
+{
+    "name": "Wormadam",
+    "base_stats": {
+        "hp": 60,
+        "attack": 59,
+        "defense": 85,
+        "speed": 36,
+        "special_attack": 79,
+        "special_defense": 105
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 159,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SILVERPOWDER"
+    },
+    "gender_ratio": "FEMALE_ONLY",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_ANTICIPATION",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM48",
+            "TM53",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": "TACKLE",
+            "10": "PROTECT",
+            "15": "BUG_BITE",
+            "20": "HIDDEN_POWER",
+            "23": "CONFUSION",
+            "26": "RAZOR_LEAF",
+            "29": "GROWTH",
+            "32": "PSYBEAM",
+            "35": "CAPTIVATE",
+            "38": "FLAIL",
+            "41": "ATTRACT",
+            "44": "PSYCHIC",
+            "47": "LEAF_STORM"
+        }
+    }
+}

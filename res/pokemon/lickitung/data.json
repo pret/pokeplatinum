@@ -1,0 +1,121 @@
+{
+    "name": "Lickitung",
+    "base_stats": {
+        "hp": 90,
+        "attack": 55,
+        "defense": 75,
+        "speed": 30,
+        "special_attack": 60,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 127,
+    "ev_yields": {
+        "hp": 2,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_LAGGING_TAIL"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MONSTER",
+        "MONSTER"
+    ],
+    "abilities": [
+        "ABILITY_OWN_TEMPO",
+        "ABILITY_OBLIVIOUS"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PINK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM03",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM68",
+            "TM75",
+            "TM77",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM03",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": "LICK",
+            "5": "SUPERSONIC",
+            "9": "DEFENSE_CURL",
+            "13": "KNOCK_OFF",
+            "17": "WRAP",
+            "21": "STOMP",
+            "25": "DISABLE",
+            "29": "SLAM",
+            "33": "ROLLOUT",
+            "37": "ME_FIRST",
+            "41": "REFRESH",
+            "45": "SCREECH",
+            "49": "POWER_WHIP",
+            "53": "WRING_OUT"
+        }
+    },
+    "evolutions": [
+        [
+            "KNOW_MOVE",
+            "ROLLOUT",
+            "SPECIES_LICKILICKY"
+        ]
+    ]
+}

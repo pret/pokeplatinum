@@ -1,0 +1,98 @@
+{
+    "name": "Ariados",
+    "base_stats": {
+        "hp": 70,
+        "attack": 90,
+        "defense": 70,
+        "speed": 40,
+        "special_attack": 60,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 134,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SWARM",
+        "ABILITY_INSOMNIA"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM28",
+            "TM29",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": [
+                "BUG_BITE",
+                "POISON_STING",
+                "STRING_SHOT",
+                "SCARY_FACE",
+                "CONSTRICT"
+            ],
+            "5": "SCARY_FACE",
+            "8": "CONSTRICT",
+            "12": "LEECH_LIFE",
+            "15": "NIGHT_SHADE",
+            "19": "SHADOW_SNEAK",
+            "23": "FURY_SWIPES",
+            "28": "SUCKER_PUNCH",
+            "32": "SPIDER_WEB",
+            "37": "AGILITY",
+            "41": "PIN_MISSILE",
+            "46": "PSYCHIC",
+            "50": "POISON_JAB"
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "name": "Unown",
+    "base_stats": {
+        "hp": 48,
+        "attack": 72,
+        "defense": 48,
+        "speed": 48,
+        "special_attack": 72,
+        "special_defense": 48
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 225,
+    "base_exp_reward": 61,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 40,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_LEVITATE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLACK",
+        "flip_sprite": true
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": "HIDDEN_POWER"
+        }
+    }
+}

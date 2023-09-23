@@ -1,0 +1,107 @@
+{
+    "name": "Larvitar",
+    "base_stats": {
+        "hp": 50,
+        "attack": 64,
+        "defense": 50,
+        "speed": 41,
+        "special_attack": 45,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 67,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 40,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "MONSTER"
+    ],
+    "abilities": [
+        "ABILITY_GUTS",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM66",
+            "TM69",
+            "TM71",
+            "TM76",
+            "TM78",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "BITE",
+                "LEER"
+            ],
+            "5": "SANDSTORM",
+            "10": "SCREECH",
+            "14": "ROCK_SLIDE",
+            "19": "SCARY_FACE",
+            "23": "THRASH",
+            "28": "DARK_PULSE",
+            "32": "PAYBACK",
+            "37": "CRUNCH",
+            "41": "EARTHQUAKE",
+            "46": "STONE_EDGE",
+            "50": "HYPER_BEAM"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            30,
+            "SPECIES_PUPITAR"
+        ]
+    ]
+}

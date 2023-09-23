@@ -1,0 +1,98 @@
+{
+    "name": "Rapidash",
+    "base_stats": {
+        "hp": 65,
+        "attack": 100,
+        "defense": 70,
+        "speed": 105,
+        "special_attack": 80,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 192,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SHUCA_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_RUN_AWAY",
+        "ABILITY_FLASH_FIRE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM27",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM68",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM04"
+        ],
+        "level_up": {
+            "1": [
+                "POISON_JAB",
+                "MEGAHORN",
+                "GROWL",
+                "QUICK_ATTACK",
+                "TAIL_WHIP",
+                "EMBER"
+            ],
+            "6": "TAIL_WHIP",
+            "10": "EMBER",
+            "15": "FLAME_WHEEL",
+            "19": "STOMP",
+            "24": "FIRE_SPIN",
+            "28": "TAKE_DOWN",
+            "33": "AGILITY",
+            "37": "FIRE_BLAST",
+            "40": "FURY_ATTACK",
+            "47": "BOUNCE",
+            "56": "FLARE_BLITZ"
+        }
+    }
+}

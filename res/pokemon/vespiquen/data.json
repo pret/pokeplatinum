@@ -1,0 +1,101 @@
+{
+    "name": "Vespiquen",
+    "base_stats": {
+        "hp": 70,
+        "attack": 80,
+        "defense": 102,
+        "speed": 40,
+        "special_attack": 80,
+        "special_defense": 102
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 188,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_POISON_BARB"
+    },
+    "gender_ratio": "FEMALE_ONLY",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM36",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM51",
+            "TM56",
+            "TM58",
+            "TM62",
+            "TM68",
+            "TM70",
+            "TM78",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM01",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "SWEET_SCENT",
+                "GUST"
+            ],
+            "3": "POISON_STING",
+            "7": "CONFUSE_RAY",
+            "9": "FURY_CUTTER",
+            "13": "DEFEND_ORDER",
+            "15": "PURSUIT",
+            "19": "FURY_SWIPES",
+            "21": "POWER_GEM",
+            "25": "HEAL_ORDER",
+            "27": "TOXIC",
+            "31": "SLASH",
+            "33": "CAPTIVATE",
+            "37": "ATTACK_ORDER",
+            "39": "SWAGGER",
+            "43": "DESTINY_BOND"
+        }
+    }
+}

@@ -1,0 +1,114 @@
+{
+    "name": "Giratina",
+    "base_stats": {
+        "hp": 150,
+        "attack": 100,
+        "defense": 120,
+        "speed": 90,
+        "special_attack": 100,
+        "special_defense": 120
+    },
+    "types": [
+        "TYPE_GHOST",
+        "TYPE_DRAGON"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 220,
+    "ev_yields": {
+        "hp": 3,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLACK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM02",
+            "TM04",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM47",
+            "TM53",
+            "TM57",
+            "TM58",
+            "TM59",
+            "TM61",
+            "TM62",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM02",
+            "HM04",
+            "HM05",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "DRAGON_BREATH",
+                "SCARY_FACE"
+            ],
+            "10": "OMINOUS_WIND",
+            "20": "ANCIENT_POWER",
+            "30": "DRAGON_CLAW",
+            "40": "SHADOW_FORCE",
+            "50": "HEAL_BLOCK",
+            "60": "EARTH_POWER",
+            "70": "SLASH",
+            "80": "SHADOW_CLAW",
+            "90": "AURA_SPHERE"
+        }
+    }
+}

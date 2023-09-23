@@ -1,0 +1,122 @@
+{
+    "name": "Sneasel",
+    "base_stats": {
+        "hp": 55,
+        "attack": 95,
+        "defense": 55,
+        "speed": 115,
+        "special_attack": 35,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_ICE"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 132,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_GRIP_CLAW",
+        "rare": "ITEM_QUICK_CLAW"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 35,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_INNER_FOCUS",
+        "ABILITY_KEEN_EYE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLACK",
+        "flip_sprite": true
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM04",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM49",
+            "TM54",
+            "TM56",
+            "TM58",
+            "TM63",
+            "TM65",
+            "TM66",
+            "TM72",
+            "TM75",
+            "TM77",
+            "TM78",
+            "TM79",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM85",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM03",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "SCRATCH",
+                "LEER",
+                "TAUNT"
+            ],
+            "8": "QUICK_ATTACK",
+            "10": "SCREECH",
+            "14": "FAINT_ATTACK",
+            "21": "FURY_SWIPES",
+            "24": "AGILITY",
+            "28": "ICY_WIND",
+            "35": "SLASH",
+            "38": "BEAT_UP",
+            "42": "METAL_CLAW",
+            "49": "ICE_SHARD"
+        }
+    },
+    "evolutions": [
+        [
+            "USE_ITEM_NIGHT",
+            "ITEM_RAZOR_CLAW",
+            "SPECIES_WEAVILE"
+        ]
+    ]
+}

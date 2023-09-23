@@ -1,0 +1,140 @@
+{
+    "name": "Mewtwo",
+    "base_stats": {
+        "hp": 106,
+        "attack": 110,
+        "defense": 90,
+        "speed": 130,
+        "special_attack": 154,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 220,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM03",
+            "TM04",
+            "TM06",
+            "TM07",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM33",
+            "TM34",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM48",
+            "TM49",
+            "TM52",
+            "TM53",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM60",
+            "TM61",
+            "TM63",
+            "TM67",
+            "TM68",
+            "TM70",
+            "TM71",
+            "TM72",
+            "TM73",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "TM92",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "CONFUSION",
+                "DISABLE"
+            ],
+            "8": "BARRIER",
+            "15": "SWIFT",
+            "22": "FUTURE_SIGHT",
+            "29": "PSYCH_UP",
+            "36": "MIRACLE_EYE",
+            "43": "MIST",
+            "50": "PSYCHO_CUT",
+            "57": "AMNESIA",
+            "64": [
+                "POWER_SWAP",
+                "GUARD_SWAP"
+            ],
+            "71": "PSYCHIC",
+            "79": "ME_FIRST",
+            "86": "RECOVER",
+            "93": "SAFEGUARD",
+            "100": "AURA_SPHERE"
+        }
+    }
+}

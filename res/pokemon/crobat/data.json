@@ -1,0 +1,106 @@
+{
+    "name": "Crobat",
+    "base_stats": {
+        "hp": 85,
+        "attack": 90,
+        "defense": 80,
+        "speed": 130,
+        "special_attack": 70,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 204,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 3,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FLYING",
+        "FLYING"
+    ],
+    "abilities": [
+        "ABILITY_INNER_FOCUS",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM21",
+            "TM27",
+            "TM30",
+            "TM32",
+            "TM36",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM49",
+            "TM51",
+            "TM58",
+            "TM66",
+            "TM68",
+            "TM78",
+            "TM79",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM90",
+            "HM02",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "CROSS_POISON",
+                "SCREECH",
+                "LEECH_LIFE",
+                "SUPERSONIC",
+                "ASTONISH"
+            ],
+            "5": "SUPERSONIC",
+            "9": "ASTONISH",
+            "13": "BITE",
+            "17": "WING_ATTACK",
+            "21": "CONFUSE_RAY",
+            "27": "AIR_CUTTER",
+            "33": "MEAN_LOOK",
+            "39": "POISON_FANG",
+            "45": "HAZE",
+            "51": "AIR_SLASH"
+        }
+    }
+}

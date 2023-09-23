@@ -1,0 +1,91 @@
+{
+    "name": "Shaymin",
+    "base_stats": {
+        "hp": 100,
+        "attack": 103,
+        "defense": 75,
+        "speed": 127,
+        "special_attack": 120,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 64,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 3,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_LUM_BERRY",
+        "rare": "ITEM_LUM_BERRY"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 100,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_SERENE_GRACE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": true
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM29",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM53",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM77",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": "GROWTH",
+            "10": "MAGICAL_LEAF",
+            "19": "LEECH_SEED",
+            "28": "QUICK_ATTACK",
+            "37": "SWEET_SCENT",
+            "46": "NATURAL_GIFT",
+            "55": "WORRY_SEED",
+            "64": "AIR_SLASH",
+            "73": "ENERGY_BALL",
+            "82": "SWEET_KISS",
+            "91": "LEAF_STORM",
+            "100": "SEED_FLARE"
+        }
+    }
+}

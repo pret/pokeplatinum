@@ -1,0 +1,103 @@
+{
+    "name": "Chimecho",
+    "base_stats": {
+        "hp": 65,
+        "attack": 50,
+        "defense": 70,
+        "speed": 65,
+        "special_attack": 95,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 147,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_COLBUR_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "AMORPHOUS",
+        "AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_LEVITATE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM33",
+            "TM34",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM48",
+            "TM49",
+            "TM53",
+            "TM57",
+            "TM58",
+            "TM67",
+            "TM70",
+            "TM73",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "TM92"
+        ],
+        "level_up": {
+            "1": "WRAP",
+            "6": "GROWL",
+            "9": "ASTONISH",
+            "14": "CONFUSION",
+            "17": "UPROAR",
+            "22": "TAKE_DOWN",
+            "25": "YAWN",
+            "30": "PSYWAVE",
+            "33": "DOUBLE_EDGE",
+            "38": "HEAL_BELL",
+            "41": "SAFEGUARD",
+            "46": "EXTRASENSORY",
+            "49": "HEALING_WISH"
+        }
+    }
+}

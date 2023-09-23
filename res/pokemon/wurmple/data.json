@@ -1,0 +1,69 @@
+{
+    "name": "Wurmple",
+    "base_stats": {
+        "hp": 45,
+        "attack": 45,
+        "defense": 35,
+        "speed": 20,
+        "special_attack": 20,
+        "special_defense": 30
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_BUG"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 54,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SHIELD_DUST",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": [
+                "TACKLE",
+                "STRING_SHOT"
+            ],
+            "5": "POISON_STING",
+            "15": "BUG_BITE"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_PID_LOW",
+            7,
+            "SPECIES_SILCOON"
+        ],
+        [
+            "LEVEL_PID_HIGH",
+            7,
+            "SPECIES_CASCOON"
+        ]
+    ]
+}

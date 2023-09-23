@@ -1,0 +1,110 @@
+{
+    "name": "Hariyama",
+    "base_stats": {
+        "hp": 144,
+        "attack": 120,
+        "defense": 60,
+        "speed": 50,
+        "special_attack": 40,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 200,
+    "base_exp_reward": 184,
+    "ev_yields": {
+        "hp": 2,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_KINGS_ROCK"
+    },
+    "gender_ratio": "FEMALE_25",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "FLUCTUATING",
+    "egg_groups": [
+        "HUMAN_LIKE",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_THICK_FAT",
+        "ABILITY_GUTS"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM52",
+            "TM55",
+            "TM56",
+            "TM58",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "BRINE",
+                "TACKLE",
+                "FOCUS_ENERGY",
+                "SAND_ATTACK",
+                "ARM_THRUST"
+            ],
+            "4": "SAND_ATTACK",
+            "7": "ARM_THRUST",
+            "10": "VITAL_THROW",
+            "13": "FAKE_OUT",
+            "16": "WHIRLWIND",
+            "19": "KNOCK_OFF",
+            "22": "SMELLING_SALT",
+            "27": "BELLY_DRUM",
+            "32": "FORCE_PALM",
+            "37": "SEISMIC_TOSS",
+            "42": "WAKE_UP_SLAP",
+            "47": "ENDURE",
+            "52": "CLOSE_COMBAT",
+            "57": "REVERSAL"
+        }
+    }
+}

@@ -1,0 +1,108 @@
+{
+    "name": "Regice",
+    "base_stats": {
+        "hp": 80,
+        "attack": 50,
+        "defense": 100,
+        "speed": 50,
+        "special_attack": 100,
+        "special_defense": 200
+    },
+    "types": [
+        "TYPE_ICE",
+        "TYPE_ICE"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 216,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 3
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 80,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_CLEAR_BODY",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM52",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM64",
+            "TM68",
+            "TM69",
+            "TM72",
+            "TM73",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "EXPLOSION",
+                "STOMP"
+            ],
+            "9": "ICY_WIND",
+            "17": "CURSE",
+            "25": "SUPERPOWER",
+            "33": "ANCIENT_POWER",
+            "41": "AMNESIA",
+            "49": "CHARGE_BEAM",
+            "57": "LOCK_ON",
+            "65": "ZAP_CANNON",
+            "73": "ICE_BEAM",
+            "81": "HAMMER_ARM",
+            "89": "HYPER_BEAM"
+        }
+    }
+}

@@ -1,0 +1,106 @@
+{
+    "name": "Camerupt",
+    "base_stats": {
+        "hp": 70,
+        "attack": 100,
+        "defense": 70,
+        "speed": 40,
+        "special_attack": 105,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 150,
+    "base_exp_reward": 175,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_RAWST_BERRY",
+        "rare": "ITEM_RAWST_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_MAGMA_ARMOR",
+        "ABILITY_SOLID_ROCK"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM64",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "GROWL",
+                "TACKLE",
+                "EMBER",
+                "MAGNITUDE"
+            ],
+            "5": "EMBER",
+            "11": "MAGNITUDE",
+            "15": "FOCUS_ENERGY",
+            "21": "TAKE_DOWN",
+            "25": "AMNESIA",
+            "31": "LAVA_PLUME",
+            "33": "ROCK_SLIDE",
+            "39": "EARTH_POWER",
+            "49": "EARTHQUAKE",
+            "57": "ERUPTION",
+            "67": "FISSURE"
+        }
+    }
+}

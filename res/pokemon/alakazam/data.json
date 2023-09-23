@@ -1,0 +1,115 @@
+{
+    "name": "Alakazam",
+    "base_stats": {
+        "hp": 55,
+        "attack": 50,
+        "defense": 45,
+        "speed": 120,
+        "special_attack": 135,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 50,
+    "base_exp_reward": 186,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_TWISTEDSPOON"
+    },
+    "gender_ratio": "FEMALE_25",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "HUMAN_LIKE",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_SYNCHRONIZE",
+        "ABILITY_INNER_FOCUS"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM33",
+            "TM34",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM48",
+            "TM49",
+            "TM52",
+            "TM53",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM60",
+            "TM63",
+            "TM67",
+            "TM68",
+            "TM70",
+            "TM73",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "TM92"
+        ],
+        "level_up": {
+            "1": [
+                "TELEPORT",
+                "KINESIS",
+                "CONFUSION"
+            ],
+            "16": "CONFUSION",
+            "18": "DISABLE",
+            "22": "MIRACLE_EYE",
+            "24": "PSYBEAM",
+            "28": "REFLECT",
+            "30": "RECOVER",
+            "34": "PSYCHO_CUT",
+            "36": "CALM_MIND",
+            "40": "PSYCHIC",
+            "42": "FUTURE_SIGHT",
+            "46": "TRICK"
+        }
+    }
+}

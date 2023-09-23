@@ -1,0 +1,114 @@
+{
+    "name": "Meowth",
+    "base_stats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 35,
+        "speed": 90,
+        "special_attack": 40,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 69,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_QUICK_CLAW"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_PICKUP",
+        "ABILITY_TECHNICIAN"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM49",
+            "TM58",
+            "TM65",
+            "TM66",
+            "TM70",
+            "TM77",
+            "TM78",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM01"
+        ],
+        "level_up": {
+            "1": [
+                "SCRATCH",
+                "GROWL"
+            ],
+            "6": "BITE",
+            "9": "FAKE_OUT",
+            "14": "FURY_SWIPES",
+            "17": "SCREECH",
+            "22": "FAINT_ATTACK",
+            "25": "TAUNT",
+            "30": "PAY_DAY",
+            "33": "SLASH",
+            "38": "NASTY_PLOT",
+            "41": "ASSURANCE",
+            "46": "CAPTIVATE",
+            "49": "NIGHT_SLASH",
+            "54": "FEINT"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            28,
+            "SPECIES_PERSIAN"
+        ]
+    ]
+}

@@ -1,0 +1,117 @@
+{
+    "name": "Lucario",
+    "base_stats": {
+        "hp": 70,
+        "attack": 110,
+        "defense": 70,
+        "speed": 90,
+        "special_attack": 115,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 204,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "FIELD",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_STEADFAST",
+        "ABILITY_INNER_FOCUS"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM03",
+            "TM04",
+            "TM05",
+            "TM06",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM60",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM75",
+            "TM78",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "DARK_PULSE",
+                "QUICK_ATTACK",
+                "FORESIGHT",
+                "DETECT",
+                "METAL_CLAW"
+            ],
+            "6": "COUNTER",
+            "11": "FORCE_PALM",
+            "15": "FEINT",
+            "19": "BONE_RUSH",
+            "24": "METAL_SOUND",
+            "29": "ME_FIRST",
+            "33": "SWORDS_DANCE",
+            "37": "AURA_SPHERE",
+            "42": "CLOSE_COMBAT",
+            "47": "DRAGON_PULSE",
+            "51": "EXTREME_SPEED"
+        }
+    }
+}

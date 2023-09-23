@@ -1,0 +1,106 @@
+{
+    "name": "Pikachu",
+    "base_stats": {
+        "hp": 35,
+        "attack": 55,
+        "defense": 30,
+        "speed": 90,
+        "special_attack": 50,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_ELECTRIC"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 82,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_ORAN_BERRY",
+        "rare": "ITEM_LIGHT_BALL"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 10,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_STATIC",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM10",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM70",
+            "TM73",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "THUNDER_SHOCK",
+                "GROWL"
+            ],
+            "5": "TAIL_WHIP",
+            "10": "THUNDER_WAVE",
+            "13": "QUICK_ATTACK",
+            "18": "DOUBLE_TEAM",
+            "21": "SLAM",
+            "26": "THUNDERBOLT",
+            "29": "FEINT",
+            "34": "AGILITY",
+            "37": "DISCHARGE",
+            "42": "LIGHT_SCREEN",
+            "45": "THUNDER"
+        }
+    },
+    "evolutions": [
+        [
+            "USE_ITEM",
+            "ITEM_THUNDERSTONE",
+            "SPECIES_RAICHU"
+        ]
+    ]
+}

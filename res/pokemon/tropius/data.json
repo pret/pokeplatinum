@@ -1,0 +1,106 @@
+{
+    "name": "Tropius",
+    "base_stats": {
+        "hp": 99,
+        "attack": 68,
+        "defense": 83,
+        "speed": 51,
+        "special_attack": 72,
+        "special_defense": 87
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 200,
+    "base_exp_reward": 169,
+    "ev_yields": {
+        "hp": 2,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_CHLOROPHYLL",
+        "ABILITY_SOLAR_POWER"
+    ],
+    "great_marsh_flee_rate": 60,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM47",
+            "TM51",
+            "TM53",
+            "TM58",
+            "TM62",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM02",
+            "HM04",
+            "HM05",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "LEER",
+                "GUST"
+            ],
+            "7": "GROWTH",
+            "11": "RAZOR_LEAF",
+            "17": "STOMP",
+            "21": "SWEET_SCENT",
+            "27": "WHIRLWIND",
+            "31": "MAGICAL_LEAF",
+            "37": "BODY_SLAM",
+            "41": "SYNTHESIS",
+            "47": "AIR_SLASH",
+            "51": "SOLAR_BEAM",
+            "57": "NATURAL_GIFT",
+            "61": "LEAF_STORM"
+        }
+    }
+}

@@ -1,0 +1,99 @@
+{
+    "name": "Glaceon",
+    "base_stats": {
+        "hp": 65,
+        "attack": 60,
+        "defense": 110,
+        "speed": 65,
+        "special_attack": 130,
+        "special_defense": 95
+    },
+    "types": [
+        "TYPE_ICE",
+        "TYPE_ICE"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 196,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 35,
+    "base_friendship": 35,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_SNOW_CLOAK",
+        "ABILITY_SNOW_CLOAK"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM05",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM68",
+            "TM72",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "TAIL_WHIP",
+                "TACKLE",
+                "HELPING_HAND"
+            ],
+            "8": "SAND_ATTACK",
+            "15": "ICY_WIND",
+            "22": "QUICK_ATTACK",
+            "29": "BITE",
+            "36": "ICE_SHARD",
+            "43": "ICE_FANG",
+            "50": "LAST_RESORT",
+            "57": "MIRROR_COAT",
+            "64": "HAIL",
+            "71": "BLIZZARD",
+            "78": "BARRIER"
+        }
+    }
+}

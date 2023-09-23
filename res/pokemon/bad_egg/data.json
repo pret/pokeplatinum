@@ -1,0 +1,52 @@
+{
+    "name": "Bad Egg",
+    "base_stats": {
+        "hp": 10,
+        "attack": 10,
+        "defense": 10,
+        "speed": 10,
+        "special_attack": 10,
+        "special_defense": 10
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_EGG",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": "SPLASH"
+        }
+    }
+}

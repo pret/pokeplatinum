@@ -1,0 +1,98 @@
+{
+    "name": "Goldeen",
+    "base_stats": {
+        "hp": 45,
+        "attack": 67,
+        "defense": 60,
+        "speed": 63,
+        "special_attack": 35,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 225,
+    "base_exp_reward": 111,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "WATER_2",
+        "WATER_2"
+    ],
+    "abilities": [
+        "ABILITY_SWIFT_SWIM",
+        "ABILITY_WATER_VEIL"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM07"
+        ],
+        "level_up": {
+            "1": [
+                "PECK",
+                "TAIL_WHIP",
+                "WATER_SPORT"
+            ],
+            "7": "SUPERSONIC",
+            "11": "HORN_ATTACK",
+            "17": "WATER_PULSE",
+            "21": "FLAIL",
+            "27": "AQUA_RING",
+            "31": "FURY_ATTACK",
+            "37": "WATERFALL",
+            "41": "HORN_DRILL",
+            "47": "AGILITY",
+            "51": "MEGAHORN"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            33,
+            "SPECIES_SEAKING"
+        ]
+    ]
+}

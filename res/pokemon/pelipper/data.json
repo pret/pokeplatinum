@@ -1,0 +1,109 @@
+{
+    "name": "Pelipper",
+    "base_stats": {
+        "hp": 60,
+        "attack": 50,
+        "defense": 100,
+        "speed": 65,
+        "special_attack": 85,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 164,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "WATER_1",
+        "FLYING"
+    ],
+    "abilities": [
+        "ABILITY_KEEN_EYE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM34",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM51",
+            "TM55",
+            "TM56",
+            "TM58",
+            "TM66",
+            "TM68",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM90",
+            "HM02",
+            "HM03",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "GROWL",
+                "WATER_GUN",
+                "WATER_SPORT",
+                "WING_ATTACK"
+            ],
+            "6": "SUPERSONIC",
+            "11": "WING_ATTACK",
+            "16": "MIST",
+            "19": "WATER_PULSE",
+            "24": "PAYBACK",
+            "25": "PROTECT",
+            "31": "ROOST",
+            "38": [
+                "STOCKPILE",
+                "SWALLOW",
+                "SPIT_UP"
+            ],
+            "43": "FLING",
+            "50": "TAILWIND",
+            "57": "HYDRO_PUMP"
+        }
+    }
+}

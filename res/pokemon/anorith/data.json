@@ -1,0 +1,104 @@
+{
+    "name": "Anorith",
+    "base_stats": {
+        "hp": 45,
+        "attack": 95,
+        "defense": 50,
+        "speed": 75,
+        "special_attack": 40,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_BUG"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 99,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 30,
+    "base_friendship": 70,
+    "exp_rate": "ERRATIC",
+    "egg_groups": [
+        "WATER_3",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_BATTLE_ARMOR",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM21",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM54",
+            "TM58",
+            "TM69",
+            "TM75",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "SCRATCH",
+                "HARDEN"
+            ],
+            "7": "MUD_SPORT",
+            "13": "WATER_GUN",
+            "19": "METAL_CLAW",
+            "25": "PROTECT",
+            "31": "ANCIENT_POWER",
+            "37": "FURY_CUTTER",
+            "43": "SLASH",
+            "49": "ROCK_BLAST",
+            "55": "CRUSH_CLAW",
+            "61": "X_SCISSOR"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            40,
+            "SPECIES_ARMALDO"
+        ]
+    ]
+}

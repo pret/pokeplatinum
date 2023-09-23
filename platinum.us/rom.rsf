@@ -195,7 +195,13 @@ RomSpec
 	File poketool/trgra/trbgra.narc
 	File poketool/trgra/trfgra.narc
 	File poketool/personal/personal.narc
-	File poketool/personal/pl_personal.narc
+	
+	Root /poketool/personal
+	HostRoot res/pokemon
+	File pl_personal.narc
+
+	Root /
+	HostRoot res/prebuilt
 	File poketool/personal/evo.narc
 	File poketool/personal/growtbl.narc
 	File poketool/personal/pl_growtbl.narc

@@ -1,0 +1,124 @@
+{
+    "name": "Rhyperior",
+    "base_stats": {
+        "hp": 115,
+        "attack": 140,
+        "defense": 130,
+        "speed": 40,
+        "special_attack": 55,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_GROUND",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 30,
+    "base_exp_reward": 217,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 3,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_LIGHTNING_ROD",
+        "ABILITY_SOLID_ROCK"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM72",
+            "TM75",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM01",
+            "HM03",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "POISON_JAB",
+                "HORN_ATTACK",
+                "TAIL_WHIP",
+                "STOMP",
+                "FURY_ATTACK"
+            ],
+            "9": "STOMP",
+            "13": "FURY_ATTACK",
+            "21": "SCARY_FACE",
+            "25": "ROCK_BLAST",
+            "33": "TAKE_DOWN",
+            "37": "HORN_DRILL",
+            "42": "HAMMER_ARM",
+            "45": "STONE_EDGE",
+            "49": "EARTHQUAKE",
+            "57": "MEGAHORN",
+            "61": "ROCK_WRECKER"
+        }
+    }
+}

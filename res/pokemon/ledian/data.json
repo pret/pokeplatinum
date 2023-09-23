@@ -1,0 +1,110 @@
+{
+    "name": "Ledian",
+    "base_stats": {
+        "hp": 55,
+        "attack": 35,
+        "defense": 50,
+        "speed": 85,
+        "special_attack": 55,
+        "special_defense": 110
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 134,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SWARM",
+        "ABILITY_EARLY_BIRD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM19",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM33",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM51",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM62",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "TACKLE",
+                "SUPERSONIC",
+                "COMET_PUNCH"
+            ],
+            "6": "SUPERSONIC",
+            "9": "COMET_PUNCH",
+            "14": [
+                "LIGHT_SCREEN",
+                "REFLECT",
+                "SAFEGUARD"
+            ],
+            "17": "MACH_PUNCH",
+            "24": "BATON_PASS",
+            "29": "SILVER_WIND",
+            "36": "AGILITY",
+            "41": "SWIFT",
+            "48": "DOUBLE_EDGE",
+            "53": "BUG_BUZZ"
+        }
+    }
+}

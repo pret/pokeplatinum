@@ -1,0 +1,97 @@
+{
+    "name": "Shellder",
+    "base_stats": {
+        "hp": 30,
+        "attack": 65,
+        "defense": 100,
+        "speed": 40,
+        "special_attack": 45,
+        "special_defense": 25
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 97,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_PEARL",
+        "rare": "ITEM_BIG_PEARL"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "WATER_3",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_SHELL_ARMOR",
+        "ABILITY_SKILL_LINK"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM55",
+            "TM58",
+            "TM64",
+            "TM66",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03"
+        ],
+        "level_up": {
+            "1": "TACKLE",
+            "4": "WITHDRAW",
+            "8": "SUPERSONIC",
+            "13": "ICICLE_SPEAR",
+            "16": "PROTECT",
+            "20": "LEER",
+            "25": "CLAMP",
+            "28": "ICE_SHARD",
+            "32": "AURORA_BEAM",
+            "37": "WHIRLPOOL",
+            "40": "IRON_DEFENSE",
+            "44": "BRINE",
+            "49": "ICE_BEAM"
+        }
+    },
+    "evolutions": [
+        [
+            "USE_ITEM",
+            "ITEM_WATER_STONE",
+            "SPECIES_CLOYSTER"
+        ]
+    ]
+}
