@@ -480,7 +480,7 @@ static BOOL sub_02051074 (UnkStruct_020508D4 * param0)
         sub_02050B1C(v1->unk_10, v0);
 
         if (v1->unk_10->unk_14 == 0x4) {
-            TVBroadcast * v4 = sub_0202440C(v0->unk_0C);
+            TVBroadcast * v4 = SaveData_TVBroadcast(v0->unk_0C);
             Pokemon * v5 = Party_GetPokemonBySlotIndex(v1->unk_10->parties[1], 0);
 
             sub_0206D018(v4, v5);
@@ -515,7 +515,7 @@ static BOOL sub_02051074 (UnkStruct_020508D4 * param0)
                 sub_0203E8E0(param0, 8809, NULL, NULL);
             }
         } else {
-            PSSBoxes * v7 = sub_02024420(v0->unk_0C);
+            PSSBoxes * v7 = SaveData_PSSBoxes(v0->unk_0C);
             Party * v8 = Party_GetFromSavedata(v0->unk_0C);
 
             if ((sub_020799A0(v7) == 18) && (Party_GetCurrentCount(v8) == 6)) {

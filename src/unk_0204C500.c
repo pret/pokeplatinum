@@ -46,7 +46,7 @@ BOOL sub_0204C500 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C554 (UnkStruct_0203E724 * param0)
 {
-    PalParkTransfer * v0 = sub_02024440(param0->unk_34->unk_0C);
+    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->unk_34->unk_0C);
     Pokemon * v1 = Pokemon_New(32);
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -62,8 +62,8 @@ BOOL sub_0204C554 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204C59C (UnkStruct_0203E724 * param0)
 {
-    PalParkTransfer * v0 = sub_02024440(param0->unk_34->unk_0C);
-    PSSBoxes * v1 = sub_02024420(param0->unk_34->unk_0C);
+    PalParkTransfer * v0 = SaveData_PalParkTransfer(param0->unk_34->unk_0C);
+    PSSBoxes * v1 = SaveData_PSSBoxes(param0->unk_34->unk_0C);
     Pokemon * v2 = Pokemon_New(32);
     TrainerInfo * v3 = sub_02025E38(param0->unk_34->unk_0C);
     UnkStruct_02026324 * v4 = sub_02027560(param0->unk_34->unk_0C);

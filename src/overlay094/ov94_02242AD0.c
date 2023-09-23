@@ -663,7 +663,7 @@ static int ov94_022431F0 (UnkStruct_ov94_0223FD4C * param0)
             {
                 TVBroadcast * v2;
 
-                v2 = sub_0202440C(param0->unk_00->unk_20);
+                v2 = SaveData_TVBroadcast(param0->unk_00->unk_20);
                 sub_0206D104(v2);
             }
             break;
@@ -942,7 +942,7 @@ static int ov94_02243658 (UnkStruct_ov94_0223FD4C * param0)
     {
         TVBroadcast * v0;
 
-        v0 = sub_0202440C(param0->unk_00->unk_20);
+        v0 = SaveData_TVBroadcast(param0->unk_00->unk_20);
         sub_0206D104(v0);
     }
 

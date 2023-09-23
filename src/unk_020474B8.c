@@ -218,7 +218,7 @@ BOOL sub_02047818 (UnkStruct_0203E724 * param0)
 {
     BoxPokemon * v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    PSSBoxes * v2 = sub_02024420(v1->unk_0C);
+    PSSBoxes * v2 = SaveData_PSSBoxes(v1->unk_0C);
     UnkStruct_0200B358 ** v3 = sub_0203F098(v1, 15);
     u8 v4 = (*((param0)->unk_08++));
     u16 v5 = inline_02049538(param0);

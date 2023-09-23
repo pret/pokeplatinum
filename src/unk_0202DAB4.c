@@ -17,7 +17,7 @@ typedef struct MysteryGift {
     UnkStruct_0202DBAC unk_920[3];
 } MysteryGift;
 
-MysteryGift * sub_0202442C(SaveData * param0);
+MysteryGift * SaveData_MysteryGift(SaveData * param0);
 
 int sub_0202DAB4 (void)
 {
@@ -281,7 +281,7 @@ void sub_0202DEE4 (SaveData * param0, int param1)
     int v0;
 
     if (Unk_021C07A0 == NULL) {
-        Unk_021C07A0 = sub_0202442C(param0);
+        Unk_021C07A0 = SaveData_MysteryGift(param0);
     }
 
     sub_02025C84(31);

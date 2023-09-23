@@ -437,7 +437,7 @@ BOOL sub_0206CD2C (int param0, UnkStruct_0203CDB0 * param1, UnkStruct_ov6_022465
 
 static void sub_0206CD58 (SaveData * param0, int param1, int param2, const void * param3)
 {
-    TVBroadcast * v0 = sub_0202440C(param0);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     sub_0202E43C(v0, param1, param2, (const u8 *)param3);
@@ -450,7 +450,7 @@ static void sub_0206CD70 (UnkStruct_0203CDB0 * param0, int param1, int param2, c
 
 static void sub_0206CD7C (SaveData * param0, int param1, int param2, const void * param3)
 {
-    TVBroadcast * v0 = sub_0202440C(param0);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     sub_0202E43C(v0, param1, param2, (const u8 *)param3);
@@ -998,7 +998,7 @@ void sub_0206D720 (UnkStruct_0203CDB0 * param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D75C * v1 = &v0.val10;
-    TVBroadcast * v2 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v2 = SaveData_TVBroadcast(param0->unk_0C);
     UnkStruct_0202E808 * v3 = sub_0202E808(v2);
 
     if (v3->unk_07 == 0) {
@@ -1559,7 +1559,7 @@ void sub_0206DFE0 (SaveData * param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E018 * v1 = &v0.val24;
-    UnkStruct_0202E828 * v2 = sub_0202E828(sub_0202440C(param0));
+    UnkStruct_0202E828 * v2 = sub_0202E828(SaveData_TVBroadcast(param0));
 
     if (v2->unk_04 >= 30) {
         v1->unk_00 = *v2;
@@ -1589,7 +1589,7 @@ void sub_0206E060 (SaveData * param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E098 * v1 = &v0.val25;
-    UnkStruct_0202E834 * v2 = sub_0202E834(sub_0202440C(param0));
+    UnkStruct_0202E834 * v2 = sub_0202E834(SaveData_TVBroadcast(param0));
 
     if (v2->unk_02 >= 10) {
         v1->unk_00 = *v2;
@@ -1619,7 +1619,7 @@ void sub_0206E0E0 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E118 * v1 = &v0.val26;
-    UnkStruct_0202E7FC * v2 = sub_0202E7FC(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E7FC * v2 = sub_0202E7FC(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v2->unk_00 = 0;
@@ -1716,7 +1716,7 @@ void sub_0206E2BC (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E300 * v1 = &v0.val29;
-    UnkStruct_0202E7D8 * v2 = sub_0202E7D8(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E7D8 * v2 = sub_0202E7D8(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v2->unk_00 = 0;
@@ -1805,7 +1805,7 @@ void sub_0206E448 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E480 * v1 = &v0.val32;
-    UnkStruct_0202E7F0 * v2 = sub_0202E7F0(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E7F0 * v2 = sub_0202E7F0(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v1->unk_02 = param1;
@@ -1842,7 +1842,7 @@ void sub_0206E4DC (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E520 * v1 = &v0.val33;
-    UnkStruct_0202E7E4 * v2 = sub_0202E7E4(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E7E4 * v2 = sub_0202E7E4(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v1->unk_24 = param1;
@@ -1879,7 +1879,7 @@ void sub_0206E5A0 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E5E4 * v1 = &v0.val34;
-    UnkStruct_0202E810 * v2 = sub_0202E810(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E810 * v2 = sub_0202E810(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v1->unk_1E = param1;
@@ -1991,7 +1991,7 @@ void sub_0206E768 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E768 * v1 = &v0.val39;
-    UnkStruct_0202E81C * v2 = sub_0202E81C(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E81C * v2 = sub_0202E81C(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v1->unk_16 = param1;
@@ -3152,7 +3152,7 @@ static const UnkStruct_020EFFA4 Unk_020EFD9C[8] = {
 
 void sub_0206F2F0 (SaveData * param0)
 {
-    TVBroadcast * v0 = sub_0202440C(param0);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0);
 
     sub_0206DFE0(param0);
     sub_0206E060(param0);

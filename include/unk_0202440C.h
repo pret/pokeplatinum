@@ -10,15 +10,15 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-TVBroadcast * sub_0202440C(SaveData * param0);
-PSSBoxes * sub_02024420(SaveData * param0);
-MysteryGift * sub_0202442C(SaveData * param0);
-PalParkTransfer * sub_02024440(SaveData * param0);
-HallOfFame * sub_0202444C(SaveData * param0, int param1, int * param2);
-int sub_02024458(SaveData * param0, HallOfFame * param1);
-BattleRecording * sub_02024464(SaveData * param0, int param1, int * param2, int param3);
-int sub_0202447C(SaveData * param0, BattleRecording * param1, int param2);
-BattleFrontierStage * sub_0202448C(SaveData * param0, int param1, int * param2);
-int sub_020244A0(SaveData * param0, BattleFrontierStage * param1);
+TVBroadcast * SaveData_TVBroadcast(SaveData *save);
+PSSBoxes * SaveData_PSSBoxes(SaveData *save);
+MysteryGift * SaveData_MysteryGift(SaveData *save);
+PalParkTransfer * SaveData_PalParkTransfer(SaveData *save);
+HallOfFame * SaveData_HallOfFame(SaveData *save, int heapID, int *resultCode);
+int SaveData_SaveHallOfFame(SaveData *save, HallOfFame *hof);
+BattleRecording * SaveData_BattleRecording(SaveData *save, int heapID, int *resultCode, int recNum);
+int SaveData_SaveBattleRecording(SaveData *save, BattleRecording *rec, int recNum);
+BattleFrontierStage * SaveData_BattleFrontierStage(SaveData *save, int heapID, int *resultCode);
+int SaveData_SaveBattleFrontierStage(SaveData *save, BattleFrontierStage *frontier);
 
 #endif // POKEPLATINUM_UNK_0202440C_H

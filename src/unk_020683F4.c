@@ -346,7 +346,7 @@ static void sub_02068630 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
     v2->unk_0C = sub_02025E44(v0->unk_0C);
-    v2->unk_10 = sub_0202440C(v0->unk_0C);
+    v2->unk_10 = SaveData_TVBroadcast(v0->unk_0C);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
     v2->unk_20 = 5;
@@ -999,7 +999,7 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
     v2->unk_0C = sub_02025E44(v0->unk_0C);
-    v2->unk_10 = sub_0202440C(v0->unk_0C);
+    v2->unk_10 = SaveData_TVBroadcast(v0->unk_0C);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
     v2->unk_20 = 16;

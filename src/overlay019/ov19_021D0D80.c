@@ -3309,7 +3309,7 @@ static void ov19_021D4BB0 (u32 param0, u32 param1, void * param2)
 
 static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 * param1)
 {
-    param0->unk_120 = sub_02024420(param1->unk_00);
+    param0->unk_120 = SaveData_PSSBoxes(param1->unk_00);
     param0->unk_11C = param1->unk_00;
     param0->unk_124 = Party_GetFromSavedata(param1->unk_00);
     param0->unk_1A4 = sub_02025E44(param1->unk_00);

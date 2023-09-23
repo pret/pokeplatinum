@@ -106,24 +106,24 @@ const UnkStruct_020251A4 Unk_020E5894[] = {
 
 const int Unk_020E5830 = NELEMS(Unk_020E5894);
 
-TVBroadcast * sub_0202440C (SaveData * param0)
+TVBroadcast * SaveData_TVBroadcast (SaveData * param0)
 {
     sub_02025C48(27);
     return sub_020245BC(param0, 27);
 }
 
-PSSBoxes * sub_02024420 (SaveData * param0)
+PSSBoxes * SaveData_PSSBoxes (SaveData * param0)
 {
     return sub_020245BC(param0, 37);
 }
 
-MysteryGift * sub_0202442C (SaveData * param0)
+MysteryGift * SaveData_MysteryGift (SaveData * param0)
 {
     sub_02025C48(31);
     return sub_020245BC(param0, 31);
 }
 
-PalParkTransfer * sub_02024440 (SaveData * param0)
+PalParkTransfer * SaveData_PalParkTransfer (SaveData * param0)
 {
     return sub_020245BC(param0, 32);
 }
@@ -139,34 +139,34 @@ const UnkStruct_02025340 Unk_020E5834[] = {
 
 const int Unk_020E582C = NELEMS(Unk_020E5834);
 
-HallOfFame * sub_0202444C (SaveData * param0, int param1, int * param2)
+HallOfFame * SaveData_HallOfFame (SaveData * param0, int param1, int * param2)
 {
     return sub_02025680(param0, param1, 0, param2);
 }
 
-int sub_02024458 (SaveData * param0, HallOfFame * param1)
+int SaveData_SaveHallOfFame (SaveData * param0, HallOfFame * param1)
 {
     return sub_02025428(param0, 0, param1);
 }
 
-BattleRecording * sub_02024464 (SaveData * param0, int param1, int * param2, int param3)
+BattleRecording * SaveData_BattleRecording (SaveData * param0, int param1, int * param2, int param3)
 {
     BOOL v0;
     return sub_020257E8(param0, param1, 2 + param3, param2, &v0);
 }
 
-int sub_0202447C (SaveData * param0, BattleRecording * param1, int param2)
+int SaveData_SaveBattleRecording (SaveData * param0, BattleRecording * param1, int param2)
 {
     return sub_02025574(param0, 2 + param2, param1);
 }
 
-BattleFrontierStage * sub_0202448C (SaveData * param0, int param1, int * param2)
+BattleFrontierStage * SaveData_BattleFrontierStage (SaveData * param0, int param1, int * param2)
 {
     BOOL v0;
     return sub_020257E8(param0, param1, 1, param2, &v0);
 }
 
-int sub_020244A0 (SaveData * param0, BattleFrontierStage * param1)
+int SaveData_SaveBattleFrontierStage (SaveData * param0, BattleFrontierStage * param1)
 {
     return sub_02025574(param0, 1, param1);
 }

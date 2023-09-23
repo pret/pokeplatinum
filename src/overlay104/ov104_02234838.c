@@ -417,7 +417,7 @@ BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
     v1 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (v4->unk_04 == 0) {
-        v0 = sub_0202440C(v5->unk_08);
+        v0 = SaveData_TVBroadcast(v5->unk_08);
         sub_0206D048(v0, v3);
     }
 

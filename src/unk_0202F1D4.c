@@ -61,7 +61,7 @@ void sub_0202F1F8 (SaveData * param0, int param1, int * param2)
         Unk_021C07A4 = NULL;
     }
 
-    Unk_021C07A4 = sub_02024464(param0, param1, param2, 0);
+    Unk_021C07A4 = SaveData_BattleRecording(param0, param1, param2, 0);
     sub_0202F1DC(Unk_021C07A4);
 }
 
@@ -104,7 +104,7 @@ BOOL sub_0202F298 (SaveData * param0, int param1, int * param2, BattleParams * p
         Unk_021C07A4 = NULL;
     }
 
-    Unk_021C07A4 = sub_02024464(param0, param1, param2, param4);
+    Unk_021C07A4 = SaveData_BattleRecording(param0, param1, param2, param4);
 
     if (*param2 != 1) {
         *param2 = 3;
@@ -140,7 +140,7 @@ BOOL sub_0202F330 (SaveData * param0, int param1, int * param2, int param3)
     UnkStruct_0202F41C * v1;
     BattleRecording * v2;
 
-    v2 = sub_02024464(param0, param1, param2, param3);
+    v2 = SaveData_BattleRecording(param0, param1, param2, param3);
 
     if (*param2 != 1) {
         *param2 = 3;
@@ -179,7 +179,7 @@ int sub_0202F3AC (SaveData * param0, BattleRecording * param1, int param2, u16 *
         sub_02017DE0(8);
         sub_02017E00(11);
 
-        v0 = sub_0202447C(param0, param1, param2);
+        v0 = SaveData_SaveBattleRecording(param0, param1, param2);
 
         if (v0 == 2) {
             sub_02024814(param0, 2);

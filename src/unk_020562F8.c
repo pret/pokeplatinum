@@ -140,7 +140,7 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
     Pokemon * v3;
     PalParkTransfer * v4;
 
-    v4 = sub_02024440(param0->unk_0C);
+    v4 = SaveData_PalParkTransfer(param0->unk_0C);
     v3 = Pokemon_New(4);
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -275,7 +275,7 @@ static BattleParams * sub_0205664C (UnkStruct_0203CDB0 * param0, UnkStruct_02056
 {
     BattleParams * v0;
     Pokemon * v1 = Pokemon_New(32);
-    PalParkTransfer * v2 = sub_02024440(param0->unk_0C);
+    PalParkTransfer * v2 = SaveData_PalParkTransfer(param0->unk_0C);
     int v3 = sub_020563BC(param0);
 
     v0 = sub_02051F38(11, v3);

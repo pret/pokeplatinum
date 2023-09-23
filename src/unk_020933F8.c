@@ -1628,7 +1628,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, U
         {
             TVBroadcast * v4;
 
-            v4 = sub_0202440C(param0->unk_1970);
+            v4 = SaveData_TVBroadcast(param0->unk_1970);
             sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);
         }
 

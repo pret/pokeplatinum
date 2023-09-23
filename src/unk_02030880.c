@@ -41,7 +41,7 @@ BattleFrontierStage * sub_020308A0 (SaveData * param0, int param1, int * param2)
 {
     BattleFrontierStage * v0;
 
-    v0 = sub_0202448C(param0, param1, param2);
+    v0 = SaveData_BattleFrontierStage(param0, param1, param2);
     return v0;
 }
 
@@ -49,7 +49,7 @@ int sub_020308A8 (SaveData * param0, BattleFrontierStage * param1)
 {
     int v0;
 
-    v0 = sub_020244A0(param0, param1);
+    v0 = SaveData_SaveBattleFrontierStage(param0, param1);
     v0 |= sub_020246E0(param0);
 
     return v0;

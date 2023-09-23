@@ -77,7 +77,7 @@ static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
     RTCDate v2;
     int v3;
 
-    v0 = sub_0202444C(param0->unk_0C, 11, &v3);
+    v0 = SaveData_HallOfFame(param0->unk_0C, 11, &v3);
 
     if ((v3 != 1) || !param1) {
         sub_0202DF94(v0);
@@ -87,7 +87,7 @@ static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
 
     sub_020138A4(&v2);
     sub_0202DFA8(v0, v1, &v2);
-    sub_02024458(param0->unk_0C, v0);
+    SaveData_SaveHallOfFame(param0->unk_0C, v0);
     Heap_FreeToHeap(v0);
 }
 

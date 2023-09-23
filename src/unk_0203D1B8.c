@@ -1397,7 +1397,7 @@ void sub_0203E0FC (UnkStruct_0203CDB0 * param0, int param1)
     v0->unk_00 = sub_0202DA40(param0->unk_0C);
     v0->unk_04 = sub_02025CCC(param0->unk_0C);
     v0->unk_08 = sub_020245BC(param0->unk_0C, 2);
-    v0->unk_0C = sub_02024420(param0->unk_0C);
+    v0->unk_0C = SaveData_PSSBoxes(param0->unk_0C);
     v0->unk_10 = sub_02027560(param0->unk_0C);
     v0->unk_14 = sub_0202B370(param0->unk_0C);
     v0->unk_18 = sub_0202C878(param0->unk_0C);
@@ -1482,7 +1482,7 @@ void * sub_0203E244 (UnkStruct_0203CDB0 * param0)
     HallOfFame * v1;
     int v2;
 
-    v1 = sub_0202444C(param0->unk_0C, 11, &v2);
+    v1 = SaveData_HallOfFame(param0->unk_0C, 11, &v2);
 
     if (v2 == 2) {
         Heap_FreeToHeap(v1);
@@ -1735,7 +1735,7 @@ UnkStruct_02098C44 * sub_0203E598 (UnkStruct_0203CDB0 * param0, int param1, int 
     v0->unk_04 = sub_0207D990(param0->unk_0C);
     v0->unk_08 = sub_02028430(param0->unk_0C);
     v0->unk_0C = sub_02025E44(param0->unk_0C);
-    v0->unk_10 = sub_0202440C(param0->unk_0C);
+    v0->unk_10 = SaveData_TVBroadcast(param0->unk_0C);
     v0->unk_18 = NULL;
     v0->unk_21 = 0;
     v0->unk_20 = 5;

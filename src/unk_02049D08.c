@@ -576,7 +576,7 @@ static void sub_0204A5EC (UnkStruct_0204AFC4 * param0, SaveData * param1, u8 par
         sub_0204AE20(param0, param1, 0);
     case 1:
         if (param3 >= 7) {
-            sub_0206CFE4(sub_0202440C(param1), param2, param3);
+            sub_0206CFE4(SaveData_TVBroadcast(param1), param2, param3);
         }
         break;
     case 4:

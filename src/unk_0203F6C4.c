@@ -4480,7 +4480,7 @@ static BOOL sub_02042524 (UnkStruct_0203E724 * param0)
     int v1;
     HallOfFame * v2;
 
-    v2 = sub_0202444C(param0->unk_34->unk_0C, 4, &v1);
+    v2 = SaveData_HallOfFame(param0->unk_34->unk_0C, 4, &v1);
     v0 = inline_0204FCAC(param0);
     *v0 = 0;
 
@@ -6508,7 +6508,7 @@ static BOOL sub_02044A50 (UnkStruct_0203E724 * param0)
     u16 * v1;
     UnkStruct_0203A790 * v2 = sub_0203A790(param0->unk_34->unk_0C);
     UnkStruct_020507E4 * v3 = sub_020507E4(param0->unk_34->unk_0C);
-    TVBroadcast * v4 = sub_0202440C(param0->unk_34->unk_0C);
+    TVBroadcast * v4 = SaveData_TVBroadcast(param0->unk_34->unk_0C);
     int v5 = (*((param0)->unk_08++));
 
     v0 = sub_0203A784(v2);
@@ -6823,7 +6823,7 @@ static BOOL sub_02045068 (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     TrainerInfo * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 * v2 = inline_0204FCAC(param0);
-    PSSBoxes * v3 = sub_02024420(v0->unk_0C);
+    PSSBoxes * v3 = SaveData_PSSBoxes(v0->unk_0C);
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);
@@ -6923,7 +6923,7 @@ static BOOL sub_0204521C (UnkStruct_0203E724 * param0)
     u16 * v0 = inline_0204FCAC(param0);
     u16 v1;
 
-    v1 = sub_02079A50(sub_02024420(param0->unk_34->unk_0C));
+    v1 = sub_02079A50(SaveData_PSSBoxes(param0->unk_34->unk_0C));
     *v0 = 18 * (5 * 6) - v1;
 
     return 0;
@@ -7579,7 +7579,7 @@ static BOOL sub_02045C50 (UnkStruct_0203E724 * param0)
     const HallOfFame * v1;
     u16 * v2 = inline_0204FCAC(param0);
 
-    v1 = sub_0202444C(param0->unk_34->unk_0C, 32, &v0);
+    v1 = SaveData_HallOfFame(param0->unk_34->unk_0C, 32, &v0);
 
     if (v0 == 0) {
         *v2 = 0;
@@ -8322,7 +8322,7 @@ static u32 sub_0204676C (SaveData * param0)
         PSSBoxes * v8;
         u32 v9;
 
-        v8 = sub_02024420(param0);
+        v8 = SaveData_PSSBoxes(param0);
 
         for (v9 = 0; v9 < 18; v9++) {
             for (v0 = 0; v0 < (5 * 6); v0++) {

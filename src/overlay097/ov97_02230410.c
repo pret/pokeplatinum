@@ -149,7 +149,7 @@ typedef struct {
 } UnkStruct_ov97_0223E680;
 
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 * param1, u32 param2);
-MysteryGift * sub_0202442C(SaveData * param0);
+MysteryGift * SaveData_MysteryGift(SaveData * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 static int ov97_02230728(UnkStruct_020067E8 * param0);
 static int ov97_022306F4(UnkStruct_020067E8 * param0);
@@ -1046,7 +1046,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
     switch (*param1) {
     case 0:
         v4->unk_2C04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
-        v4->unk_2C00 = sub_0202442C(v4->unk_2C04);
+        v4->unk_2C00 = SaveData_MysteryGift(v4->unk_2C04);
         v4->unk_2C08 = sub_02025E44(v4->unk_2C04);
         v4->unk_2C0C = sub_02027B50(v4->unk_2C08);
 

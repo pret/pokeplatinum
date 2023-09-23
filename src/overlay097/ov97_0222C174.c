@@ -448,7 +448,7 @@ enum {
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 * param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 * param0);
-MysteryGift * sub_0202442C(SaveData * param0);
+MysteryGift * SaveData_MysteryGift(SaveData * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 
 static u16 ov97_0222C174 (u16 param0)
@@ -698,7 +698,7 @@ static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
 
     ov97_02237694(v0->unk_00);
 
-    v0->unk_3174 = sub_0202442C(v0->unk_08);
+    v0->unk_3174 = SaveData_MysteryGift(v0->unk_08);
     v0->unk_14C = UnkEnum_ov97_0222C78C_09;
     v0->unk_144 = ((1 + 9) + (18 + 12));
     v0->unk_154 = 0;

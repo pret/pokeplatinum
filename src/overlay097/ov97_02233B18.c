@@ -284,7 +284,7 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
     switch (v4->unk_00) {
     case 0:
         ov97_02233D10(param0);
-        v3 = sub_02024440(param0->unk_10);
+        v3 = SaveData_PalParkTransfer(param0->unk_10);
         sub_0202EFB8(v3, ov97_0223635C());
         v4->unk_00++;
         break;
@@ -378,7 +378,7 @@ static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
     PalParkTransfer * v0;
     int v1;
 
-    v0 = sub_02024440(param0->unk_10);
+    v0 = SaveData_PalParkTransfer(param0->unk_10);
 
     sub_0202EFB8(v0, ov97_0223635C());
     sub_02017DE0(4);
@@ -396,7 +396,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     Pokemon v6;
     PalParkTransfer * v7;
 
-    v7 = sub_02024440(param0->unk_10);
+    v7 = SaveData_PalParkTransfer(param0->unk_10);
     v4 = Pokemon_GetBoxPokemon(&v6);
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -1669,7 +1669,7 @@ static int ov97_02235408 (UnkStruct_ov97_02234A2C * param0)
     u32 v1;
     PalParkTransfer * v2;
 
-    v2 = sub_02024440(param0->unk_10);
+    v2 = SaveData_PalParkTransfer(param0->unk_10);
 
     if (sub_0202F0E0(v2) == 0) {
         if (sub_0202F088(v2) == 0) {
