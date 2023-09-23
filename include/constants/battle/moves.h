@@ -30,6 +30,11 @@
 #define MOVE_EFFECT_SHADOW_FORCE            (1 << 29)
 #define MOVE_EFFECT_IMPRISONED              (1 << 30) // applied to mons which are affected by Imprison
 
+#define MOVE_EFFECT_SEMI_INVULNERABLE       (MOVE_EFFECT_AIRBORNE \
+                                            | MOVE_EFFECT_UNDERGROUND \
+                                            | MOVE_EFFECT_UNDERWATER \
+                                            | MOVE_EFFECT_SHADOW_FORCE)
+
 #define MOVE_EFFECT_LOCK_ON_SHIFT   3
 #define MOVE_EFFECT_YAWN_SHIFT      11
 
