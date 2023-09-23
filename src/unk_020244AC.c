@@ -10,8 +10,7 @@
 #include "constdata/const_020E5834.h"
 #include "constdata/const_020E582C.h"
 
-#include "struct_defs/struct_020251A4.h"
-#include "struct_defs/struct_02025340.h"
+#include "struct_defs/save_table_entry.h"
 
 #include "unk_02017728.h"
 #include "heap.h"
@@ -936,10 +935,10 @@ static BOOL sub_0202516C (const SaveData * param0, int param1, int param2)
 int sub_020251A4 (int param0)
 {
     int v0;
-    const UnkStruct_020251A4 * v1 = Unk_020E5894;
+    const SaveTableEntry * v1 = Unk_020E5894;
 
     GF_ASSERT(param0 < Unk_020E5830);
-    v0 = v1[param0].unk_08();
+    v0 = v1[param0].sizeFunc();
 
     v0 += 4 - (v0 % 4);
     v0 += 4;
@@ -949,24 +948,24 @@ int sub_020251A4 (int param0)
 
 static void sub_020251DC (UnkStruct_020251DC * param0)
 {
-    const UnkStruct_020251A4 * v0 = Unk_020E5894;
+    const SaveTableEntry * v0 = Unk_020E5894;
     int v1;
     int v2 = 0;
 
     GF_ASSERT(Unk_020E5830 == 38);
 
     for (v1 = 0; v1 < Unk_020E5830; v1++) {
-        GF_ASSERT(v0[v1].unk_00 == v1);
+        GF_ASSERT(v0[v1].dataID == v1);
 
-        param0[v1].unk_00 = v0[v1].unk_00;
+        param0[v1].unk_00 = v0[v1].dataID;
         param0[v1].unk_04 = sub_020251A4(v1);
         param0[v1].unk_08 = v2;
         param0[v1].unk_0C = 0;
-        param0[v1].unk_0E = v0[v1].unk_04;
+        param0[v1].unk_0E = v0[v1].blockID;
 
         v2 += param0[v1].unk_04;
 
-        if ((v1 == Unk_020E5830 - 1) || (v0[v1].unk_04 != v0[v1 + 1].unk_04)) {
+        if ((v1 == Unk_020E5830 - 1) || (v0[v1].blockID != v0[v1 + 1].blockID)) {
             v2 += sizeof(UnkStruct_02024920);
         }
     }
@@ -1010,7 +1009,7 @@ static void sub_02025258 (UnkStruct_02025258 * param0, const UnkStruct_020251DC 
 
 static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC * param1)
 {
-    const UnkStruct_020251A4 * v0 = Unk_020E5894;
+    const SaveTableEntry * v0 = Unk_020E5894;
     int v1;
     int v2;
     void * v3;
@@ -1023,13 +1022,13 @@ static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC 
         v3 = &param0->unk_00[v4];
         v2 = param1[v1].unk_04;
         MI_CpuClearFast(v3, v2);
-        v0[v1].unk_0C(v3);
+        v0[v1].initFunc(v3);
     }
 }
 
 void sub_02025340 (SaveData * param0)
 {
-    const UnkStruct_02025340 * v0 = Unk_020E5834;
+    const SaveTableEntry * v0 = Unk_020E5834;
     int v1;
     int v2;
     void * v3;
@@ -1039,18 +1038,18 @@ void sub_02025340 (SaveData * param0)
     }
 
     for (v1 = 0; v1 < Unk_020E582C; v1++) {
-        if (v0[v1].unk_00 == 0) {
+        if (v0[v1].dataID == 0) {
             continue;
         }
 
-        v3 = sub_02025680(param0, 3, v0[v1].unk_00, &v2);
+        v3 = sub_02025680(param0, 3, v0[v1].dataID, &v2);
 
         GF_ASSERT(v3 != NULL);
-        MI_CpuClear8(v3, v0[v1].unk_08());
+        MI_CpuClear8(v3, v0[v1].sizeFunc());
 
-        v0[v1].unk_0C(v3);
+        v0[v1].initFunc(v3);
 
-        sub_02025428(param0, v0[v1].unk_00, v3);
+        sub_02025428(param0, v0[v1].dataID, v3);
         Heap_FreeToHeap(v3);
     }
 
@@ -1103,7 +1102,7 @@ static u32 sub_02025420 (void * param0, u32 param1)
 
 int sub_02025428 (const SaveData * param0, int param1, void * param2)
 {
-    const UnkStruct_02025340 * v0;
+    const SaveTableEntry * v0;
     u32 v1;
     BOOL v2;
 
@@ -1112,27 +1111,27 @@ int sub_02025428 (const SaveData * param0, int param1, void * param2)
     GF_ASSERT(param1 < Unk_020E582C);
     v0 = &Unk_020E5834[param1];
 
-    GF_ASSERT(v0->unk_00 == param1);
-    v1 = v0->unk_08() + sizeof(UnkStruct_020253B4);
+    GF_ASSERT(v0->dataID == param1);
+    v1 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
 
     if (param0->unk_202C4 == 1) {
-        sub_020253B4(param0, param2, param1, v0->unk_08());
-        v2 = sub_02025A9C((0 + v0->unk_04) * 0x1000, param2, v1);
+        sub_020253B4(param0, param2, param1, v0->sizeFunc());
+        v2 = sub_02025A9C((0 + v0->blockID) * 0x1000, param2, v1);
 
-        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->unk_08()) == 1);
-        sub_020253B4(param0, param2, param1, v0->unk_08());
+        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->sizeFunc()) == 1);
+        sub_020253B4(param0, param2, param1, v0->sizeFunc());
 
-        v2 |= sub_02025A9C((64 + v0->unk_04) * 0x1000, param2, v1);
-        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->unk_08()) == 1);
+        v2 |= sub_02025A9C((64 + v0->blockID) * 0x1000, param2, v1);
+        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->sizeFunc()) == 1);
     } else {
-        sub_020253B4(param0, param2, param1, v0->unk_08());
-        v2 = sub_02025A9C((64 + v0->unk_04) * 0x1000, param2, v1);
+        sub_020253B4(param0, param2, param1, v0->sizeFunc());
+        v2 = sub_02025A9C((64 + v0->blockID) * 0x1000, param2, v1);
 
-        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->unk_08()) == 1);
-        sub_020253B4(param0, param2, param1, v0->unk_08());
+        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->sizeFunc()) == 1);
+        sub_020253B4(param0, param2, param1, v0->sizeFunc());
 
-        v2 |= sub_02025A9C((0 + v0->unk_04) * 0x1000, param2, v1);
-        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->unk_08()) == 1);
+        v2 |= sub_02025A9C((0 + v0->blockID) * 0x1000, param2, v1);
+        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->sizeFunc()) == 1);
     }
 
     if (v2 == 1) {
@@ -1146,7 +1145,7 @@ int sub_02025428 (const SaveData * param0, int param1, void * param2)
 
 int sub_02025574 (SaveData * param0, int param1, void * param2)
 {
-    const UnkStruct_02025340 * v0;
+    const SaveTableEntry * v0;
     u32 v1;
     BOOL v2;
     u32 v3, v4, v5;
@@ -1157,8 +1156,8 @@ int sub_02025574 (SaveData * param0, int param1, void * param2)
     GF_ASSERT(param1 < Unk_020E582C);
     v0 = &Unk_020E5834[param1];
 
-    GF_ASSERT(v0->unk_00 == param1);
-    v1 = v0->unk_08() + sizeof(UnkStruct_020253B4);
+    GF_ASSERT(v0->dataID == param1);
+    v1 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
 
     sub_020259F8(param0, param1, &v3, &v4, &v6);
 
@@ -1171,13 +1170,13 @@ int sub_02025574 (SaveData * param0, int param1, void * param2)
     *((u32 *)param2) = v5;
 
     if (v6 == 1) {
-        sub_020253B4(param0, param2, param1, v0->unk_08());
-        v2 = sub_02025A9C((0 + v0->unk_04) * 0x1000, param2, v1);
-        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->unk_08()) == 1);
+        sub_020253B4(param0, param2, param1, v0->sizeFunc());
+        v2 = sub_02025A9C((0 + v0->blockID) * 0x1000, param2, v1);
+        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->sizeFunc()) == 1);
     } else {
-        sub_020253B4(param0, param2, param1, v0->unk_08());
-        v2 = sub_02025A9C((64 + v0->unk_04) * 0x1000, param2, v1);
-        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->unk_08()) == 1);
+        sub_020253B4(param0, param2, param1, v0->sizeFunc());
+        v2 = sub_02025A9C((64 + v0->blockID) * 0x1000, param2, v1);
+        GF_ASSERT(sub_020253E0(param0, param2, param1, v0->sizeFunc()) == 1);
     }
 
     if (v2 == 1) {
@@ -1191,7 +1190,7 @@ int sub_02025574 (SaveData * param0, int param1, void * param2)
 
 void * sub_02025680 (SaveData * param0, int param1, int param2, int * param3)
 {
-    const UnkStruct_02025340 * v0;
+    const SaveTableEntry * v0;
     void * v1;
     u32 v2;
     BOOL v3, v4;
@@ -1200,33 +1199,33 @@ void * sub_02025680 (SaveData * param0, int param1, int param2, int * param3)
     GF_ASSERT(param2 < Unk_020E582C);
     v0 = &Unk_020E5834[param2];
 
-    GF_ASSERT(v0->unk_00 == param2);
-    v2 = v0->unk_08() + sizeof(UnkStruct_020253B4);
+    GF_ASSERT(v0->dataID == param2);
+    v2 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
     v1 = Heap_AllocFromHeap(param1, v2);
 
-    sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
+    sub_02025AC0((0 + v0->blockID) * 0x1000, v1, v2);
 
-    v3 = sub_020253E0(param0, v1, param2, v0->unk_08());
-    v5 = sub_02025420(v1, v0->unk_08());
+    v3 = sub_020253E0(param0, v1, param2, v0->sizeFunc());
+    v5 = sub_02025420(v1, v0->sizeFunc());
 
-    sub_02025AC0((64 + v0->unk_04) * 0x1000, v1, v2);
+    sub_02025AC0((64 + v0->blockID) * 0x1000, v1, v2);
 
-    v4 = sub_020253E0(param0, v1, param2, v0->unk_08());
-    v6 = sub_02025420(v1, v0->unk_08());
+    v4 = sub_020253E0(param0, v1, param2, v0->sizeFunc());
+    v6 = sub_02025420(v1, v0->sizeFunc());
 
     *param3 = 1;
 
     if ((v3 == 1) && (v4 == 0)) {
         param0->unk_202C4 = 0;
         param0->unk_202C8 = v5;
-        sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
+        sub_02025AC0((0 + v0->blockID) * 0x1000, v1, v2);
         return v1;
     }
 
     if ((v3 == 0) && (v4 == 1)) {
         param0->unk_202C4 = 1;
         param0->unk_202C8 = v6;
-        sub_02025AC0((64 + v0->unk_04) * 0x1000, v1, v2);
+        sub_02025AC0((64 + v0->blockID) * 0x1000, v1, v2);
         return v1;
     }
 
@@ -1234,12 +1233,12 @@ void * sub_02025680 (SaveData * param0, int param1, int param2, int * param3)
         if (sub_0202499C(v5, v6) != -1) {
             param0->unk_202C4 = 0;
             param0->unk_202C8 = v5;
-            sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
+            sub_02025AC0((0 + v0->blockID) * 0x1000, v1, v2);
             return v1;
         } else {
             param0->unk_202C4 = 1;
             param0->unk_202C8 = v6;
-            sub_02025AC0((64 + v0->unk_04) * 0x1000, v1, v2);
+            sub_02025AC0((64 + v0->blockID) * 0x1000, v1, v2);
             return v1;
         }
     }
@@ -1254,7 +1253,7 @@ void * sub_02025680 (SaveData * param0, int param1, int param2, int * param3)
 
 void * sub_020257E8 (SaveData * param0, int param1, int param2, int * param3, BOOL * param4)
 {
-    const UnkStruct_02025340 * v0;
+    const SaveTableEntry * v0;
     void * v1;
     u32 v2;
     BOOL v3, v4;
@@ -1267,19 +1266,19 @@ void * sub_020257E8 (SaveData * param0, int param1, int param2, int * param3, BO
     GF_ASSERT(param2 != 0);
 
     v0 = &Unk_020E5834[param2];
-    GF_ASSERT(v0->unk_00 == param2);
+    GF_ASSERT(v0->dataID == param2);
 
-    v2 = v0->unk_08() + sizeof(UnkStruct_020253B4);
+    v2 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
     v1 = Heap_AllocFromHeap(param1, v2);
 
     sub_020259F8(param0, param2, &v7, &v8, &v9);
-    sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
+    sub_02025AC0((0 + v0->blockID) * 0x1000, v1, v2);
 
-    v3 = sub_020253E0(param0, v1, param2, v0->unk_08());
+    v3 = sub_020253E0(param0, v1, param2, v0->sizeFunc());
     MI_CpuCopy8(v1, &v5, sizeof(u32));
 
-    sub_02025AC0((64 + v0->unk_04) * 0x1000, v1, v2);
-    v4 = sub_020253E0(param0, v1, param2, v0->unk_08());
+    sub_02025AC0((64 + v0->blockID) * 0x1000, v1, v2);
+    v4 = sub_020253E0(param0, v1, param2, v0->sizeFunc());
 
     MI_CpuCopy8(v1, &v6, sizeof(u32));
 
@@ -1293,7 +1292,7 @@ void * sub_020257E8 (SaveData * param0, int param1, int param2, int * param3, BO
                 *param4 = 1;
             }
 
-            sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
+            sub_02025AC0((0 + v0->blockID) * 0x1000, v1, v2);
             return v1;
         }
     }
@@ -1305,7 +1304,7 @@ void * sub_020257E8 (SaveData * param0, int param1, int param2, int * param3, BO
                 *param4 = 1;
             }
 
-            sub_02025AC0((64 + v0->unk_04) * 0x1000, v1, v2);
+            sub_02025AC0((64 + v0->blockID) * 0x1000, v1, v2);
             return v1;
         }
     }
@@ -1313,29 +1312,29 @@ void * sub_020257E8 (SaveData * param0, int param1, int param2, int * param3, BO
     if ((v3 == 1) && (v4 == 1)) {
         if (v9 == 0) {
             if (v7 == v5) {
-                sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
+                sub_02025AC0((0 + v0->blockID) * 0x1000, v1, v2);
                 return v1;
             } else if (v8 == v6) {
                 sub_02025A18(param0, param2, v8, v8, v9 ^ 1);
                 *param4 = 1;
-                sub_02025AC0((64 + v0->unk_04) * 0x1000, v1, v2);
+                sub_02025AC0((64 + v0->blockID) * 0x1000, v1, v2);
                 return v1;
             }
         } else {
             if (v7 == v6) {
-                sub_02025AC0((64 + v0->unk_04) * 0x1000, v1, v2);
+                sub_02025AC0((64 + v0->blockID) * 0x1000, v1, v2);
                 return v1;
             } else if (v8 == v5) {
                 sub_02025A18(param0, param2, v8, v8, v9 ^ 1);
                 *param4 = 1;
-                sub_02025AC0((0 + v0->unk_04) * 0x1000, v1, v2);
+                sub_02025AC0((0 + v0->blockID) * 0x1000, v1, v2);
                 return v1;
             }
         }
     }
 
     *param3 = 2;
-    sub_020279D0(v10, v0->unk_00, 0xffffffff, 0xffffffff, 0);
+    sub_020279D0(v10, v0->dataID, 0xffffffff, 0xffffffff, 0);
 
     return v1;
 }
