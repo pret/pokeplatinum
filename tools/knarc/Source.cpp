@@ -1,135 +1,170 @@
 #include <cstring>
+#include <filesystem>
 #include <iostream>
+#include <sstream>
 #include <string>
 
+#include "util.h"
 #include "Narc.h"
-
-using namespace std;
 
 bool debug = false;
 bool pack_no_fnt = true;
 bool output_header = false;
+bool orderInputs = false;
+fs::path knarcorder_path;
+fs::path knarcignore_path;
+fs::path knarckeep_path;
 
 void PrintError(NarcError error)
 {
-    switch (error)
-    {
-        case NarcError::None:								cout << "ERROR: No error???" << endl;										break;
-        case NarcError::InvalidInputFile:					cout << "ERROR: Invalid input file" << endl;								break;
-        case NarcError::InvalidHeaderId:					cout << "ERROR: Invalid header ID" << endl;									break;
-        case NarcError::InvalidByteOrderMark:				cout << "ERROR: Invalid byte order mark" << endl;							break;
-        case NarcError::InvalidVersion:						cout << "ERROR: Invalid NARC version" << endl;								break;
-        case NarcError::InvalidHeaderSize:					cout << "ERROR: Invalid header size" << endl;								break;
-        case NarcError::InvalidChunkCount:					cout << "ERROR: Invalid chunk count" << endl;								break;
-        case NarcError::InvalidFileAllocationTableId:		cout << "ERROR: Invalid file allocation table ID" << endl;					break;
-        case NarcError::InvalidFileAllocationTableReserved:	cout << "ERROR: Invalid file allocation table reserved section" << endl;	break;
-        case NarcError::InvalidFileNameTableId:				cout << "ERROR: Invalid file name table ID" << endl;						break;
-        case NarcError::InvalidFileNameTableEntryId:		cout << "ERROR: Invalid file name table entry ID" << endl;					break;
-        case NarcError::InvalidFileImagesId:				cout << "ERROR: Invalid file images ID" << endl;							break;
-        case NarcError::InvalidOutputFile:					cout << "ERROR: Invalid output file" << endl;								break;
-        default:											cout << "ERROR: Unknown error???" << endl;									break;
-    }
+    std::cout << get_error_string(error) << std::endl;
 }
 
 static inline void usage() {
-    cout << "OVERVIEW: Knarc" << endl << endl;
-    cout << "USAGE: knarc [options] -d DIRECTORY [-p TARGET | -u SOURCE]" << endl << endl;
-    cout << "OPTIONS:" << endl;
-    cout << "\t-d DIRECTORY\tDirectory to pack from/unpack to" << endl;
-    cout << "\t-p TARGET\tPack to the target NARC" << endl;
-    cout << "\t-u SOURCE\tUnpack from the source NARC" << endl;
-    cout << "\t-n\tBuild the filename table (default: discards filenames)" << endl;
-    cout << "\t-D/--debug\tPrint additional debug messages" << endl;
-    cout << "\t-h/--help\tPrint this message and exit" << endl;
-    cout << "\t-i\tOutput a .naix header" << endl;
+    std::cout << "OVERVIEW: Knarc" << std::endl << std::endl;
+    std::cout << "USAGE: knarc <command> [<args>] [<files>]" << std::endl << std::endl;
+    std::cout << "COMMANDS:" << std::endl;
+    std::cout << "\tpack\tPack a NARC file" << std::endl;
+    std::cout << "\tunpack\tUnpack a NARC file" << std::endl;
+    std::cout << "\thelp\tDisplay this text" << std::endl;
+    std::cout << "OPTIONS:" << std::endl;
+    std::cout << "\t-o <path>\tPath to output file/directory" << std::endl;
+    std::cout << "\t-ko <path>\tPath to .knarcorder file" << std::endl;
+    std::cout << "\t-ki <path>\tPath to .knarcignore file" << std::endl;
+    std::cout << "\t-kk <path>\tPath to .knarckeep file" << std::endl;
+    std::cout << "\t-n\t\tBuild the filename table (default: discards filenames)" << std::endl;
+    std::cout << "\t-s\t\tSort files lexicographically" << std::endl;
+    std::cout << "\t-D/--debug\tPrint additional debug messages" << std::endl;
+    std::cout << "\t-i\t\tOutput a .naix header" << std::endl;
 }
+
 
 int main(int argc, char* argv[])
 {
-    string directory = "";
-    string fileName = "";
-    bool pack = false;
+    std::vector<std::string> args = get_arguments(argc, argv);
 
-    for (int i = 1; i < argc; ++i)
+    if (args.empty())
     {
-        if (!strcmp(argv[i], "-d"))
+        usage();
+        return 0;
+    }
+
+    enum Command {
+        None,
+        Pack,
+        Unpack,
+    };
+    std::string subcommand = args[0];
+    Command mode = Command::None;
+    if (subcommand == "pack")
+    {
+        mode = Command::Pack;
+    }
+    else if (subcommand == "unpack")
+    {
+        mode = Command::Unpack;
+    }
+    else if (subcommand == "help")
+    {
+        usage();
+        return 0;
+    }
+    else {
+        usage();
+        std::cerr << "ERROR: Invalid subcommand '" << subcommand << "'" << std::endl;
+        return 1;
+    }
+
+    fs::path outputPath = "";
+    std::vector<fs::path> inputPaths;
+
+    for(int i = 1; i < args.size(); i++) {
+        std::string arg = args[i];
+        if (arg == "-o")
         {
-            if (i == (argc - 1))
+            if (i == args.size() - 1)
             {
-                cerr << "ERROR: No directory specified" << endl;
-
+                std::cerr << "ERROR: No output path specified" << std::endl;
                 return 1;
             }
 
-            if (!directory.empty()) {
-                cerr << "ERROR: Multiple directories specified" << endl;
+            if (!outputPath.empty()) {
+                std::cerr << "ERROR: Multiple output paths specified" << std::endl;
                 return 1;
             }
-            directory = argv[++i];
+            outputPath = args[++i];
         }
-        else if (!strcmp(argv[i], "-p"))
+        else if (arg == "-ko")
         {
-            if (i == (argc - 1))
-            {
-                cerr << "ERROR: No NARC specified to pack to" << endl;
-
-                return 1;
-            }
-
-            if (!fileName.empty()) {
-                cerr << "ERROR: Multiple files specified" << endl;
-                return 1;
-            }
-            fileName = argv[++i];
-            pack = true;
+            knarcorder_path = fs::path(args[++i]);
         }
-        else if (!strcmp(argv[i], "-u"))
+        else if (arg == "-ki")
         {
-            if (i == (argc - 1))
-            {
-                cerr << "ERROR: No NARC specified to unpack from" << endl;
-
-                return 1;
-            }
-
-            if (!fileName.empty()) {
-                cerr << "ERROR: Multiple files specified" << endl;
-                return 1;
-            }
-            fileName = argv[++i];
-        } else if (!strcmp(argv[i], "-D") || !strcmp(argv[i], "--debug")) {
+            knarcignore_path = fs::path(args[++i]);
+        }
+        else if (arg == "-kk")
+        {
+            knarckeep_path = fs::path(args[++i]);
+        }
+        else if (arg == "-D" || arg == "--debug")
+        {
             debug = true;
-        } else if (!strcmp(argv[i], "-h") || !strcmp(argv[i], "--help")) {
+        }
+        else if (arg == "-h" || arg == "--help")
+        {
             usage();
             return 0;
         }
-        else if (!strcmp(argv[i], "-n")) {
+        else if (arg == "-n")
+        {
             pack_no_fnt = false;
         }
-        else if (!strcmp(argv[i], "-i")) {
+        else if (arg == "-i")
+        {
             output_header = true;
         }
-        else {
+        else if (arg == "-s")
+        {
+            orderInputs = true;
+        }
+        else if (arg[0] == '-')
+        {
             usage();
-            cerr << "ERROR: Unrecognized argument: " << argv[i] << endl;
+            std::cerr << "ERROR: Unrecognized argument: '" << arg << "'" << std::endl;
             return 1;
+        }
+        else {
+            inputPaths.emplace_back(arg);
         }
     }
 
-    if (fileName.empty()) {
-        cerr << "ERROR: Missing -u or -p" << endl;
+    if (inputPaths.empty()) {
+        std::cerr << "ERROR: No inputs specified" << std::endl;
         return 1;
     }
-    if (directory.empty()) {
-        cerr << "ERROR: Missing -d" << endl;
+    if (outputPath.empty()) {
+        std::cerr << "ERROR: No output specified" << std::endl;
         return 1;
     }
 
     Narc narc;
 
-    if (pack)
+    if (mode == Command::Pack)
     {
-        if (!narc.Pack(fileName, directory))
+        if (!narc.Pack(outputPath, inputPaths))
+        {
+            PrintError(narc.GetError());
+
+            return 1;
+        }
+    }
+    else if (mode == Command::Unpack)
+    {
+        if (!fs::is_directory(outputPath))
+        {
+            std::cerr << "ERROR: Invalid output directory '" << subcommand << "'" << std::endl;
+        }
+        if (!narc.Unpack(outputPath, inputPaths))
         {
             PrintError(narc.GetError());
 
@@ -138,13 +173,8 @@ int main(int argc, char* argv[])
     }
     else
     {
-        if (!narc.Unpack(fileName, directory))
-        {
-            PrintError(narc.GetError());
-
-            return 1;
-        }
+        usage();
+        std::cerr << "ERROR: Invalid subcommand '" << subcommand << "'" << std::endl;
+        return 1;
     }
-
-    return 0;
 }

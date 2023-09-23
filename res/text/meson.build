@@ -742,8 +742,9 @@ pl_msg_narc = custom_target('pl_msg.narc',
     input: gmm_to_bin_gen.process(pl_msg_gmm),
     command: [
         knarc_exe,
-        '-d', '@PRIVATE_DIR@',
-        '-p', '@OUTPUT0@'
+        'pack', '-s',
+        '-o', '@OUTPUT0@',
+        '@PRIVATE_DIR@',
     ]
 )
 

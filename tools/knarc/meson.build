@@ -6,7 +6,8 @@ endif
 
 cpp_scrs = [
     'Source.cpp',
-    'Narc.cpp'
+    'Narc.cpp',
+    'util.cpp'
 ]
 
 knarc_exe = executable('knarc',

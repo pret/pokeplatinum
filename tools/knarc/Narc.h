@@ -27,8 +27,10 @@ enum class NarcError
     InvalidFileNameTableId,
     InvalidFileNameTableEntryId,
     InvalidFileImagesId,
-    InvalidOutputFile
+    InvalidOutputFile,
 };
+
+std::string get_error_string(NarcError error);
 
 struct Header
 {
@@ -78,8 +80,8 @@ class Narc
 public:
     NarcError GetError() const;
 
-    bool Pack(const fs::path& fileName, const fs::path& directory);
-    bool Unpack(const fs::path& fileName, const fs::path& directory);
+    bool Pack(const fs::path& outputPath, const std::vector<fs::path>& inputPaths);
+    bool Unpack(const fs::path& outputPath, const std::vector<fs::path>& inputPaths);
 
 private:
     NarcError error = NarcError::None;
@@ -89,6 +91,6 @@ private:
     bool Cleanup(std::ifstream& ifs, const NarcError& e);
     bool Cleanup(std::ofstream& ofs, const NarcError& e);
 
-    std::vector<fs::directory_entry> KnarcOrderDirectoryIterator(const fs::path& path, bool recursive) const;
-    std::vector<fs::directory_entry> OrderedDirectoryIterator(const fs::path& path, bool recursive) const;
+    std::vector<fs::path> KnarcInputIterator(const std::vector<fs::path>& paths, bool recursive, bool order) const;
+    std::vector<fs::path> InputIterator(const std::vector<fs::path>& paths, bool recursive, bool order) const;
 };

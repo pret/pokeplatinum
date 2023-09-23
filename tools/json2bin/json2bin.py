@@ -178,6 +178,7 @@ def json2bin(target: str,
 
     subprocess.run([
         pathlib.Path(narc_packer),
-        '-d', private_dir,
-        '-p', output_dir / f'{narc_name}.narc'
+        'pack', '-s',
+        '-o', output_dir / f'{narc_name}.narc',
+        files_output_dir,
     ])
