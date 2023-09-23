@@ -6,8 +6,8 @@
 
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/struct_town_map_interaction.h"
-#include "overlay080/struct_ov80_021D2C1C.h"
-#include "overlay080/struct_ov80_021D2C5C.h"
+#include "overlay080/struct_town_map_city_holder.h"
+#include "overlay080/struct_town_map_city.h"
 #include "overlay080/struct_town_map_block.h"
 
 #include "unk_0200C6E4.h"
@@ -220,81 +220,81 @@ const TownMapBlock gTownMapBlocks[20] = {
     }
 };
 
-UnkStruct_ov80_021D2C1C * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u8 * param2, short param3, int param4)
+TownMapCityHolder * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u8 * param2, short param3, int param4)
 {
-    UnkStruct_ov80_021D2C1C * v0;
-    UnkStruct_ov80_021D2C5C * v1;
+    TownMapCityHolder * v0;
+    TownMapCity * v1;
     const TownMapBlock * v2;
     short v3;
     static const UnkStruct_ov7_0224F358 v4 = {
         4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 
-    v0 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov80_021D2C1C));
-    memset(v0, 0, sizeof(UnkStruct_ov80_021D2C1C));
+    v0 = Heap_AllocFromHeap(param4, sizeof(TownMapCityHolder));
+    memset(v0, 0, sizeof(TownMapCityHolder));
 
-    v0->unk_00 = param3;
-    v0->unk_08 = Heap_AllocFromHeap(param4, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
-    memset(v0->unk_08, 0, sizeof(UnkStruct_ov80_021D2C5C) * v0->unk_00);
+    v0->count = param3;
+    v0->cities = Heap_AllocFromHeap(param4, sizeof(TownMapCity) * v0->count);
+    memset(v0->cities, 0, sizeof(TownMapCity) * v0->count);
 
     v2 = gTownMapBlocks;
 
-    for (v3 = 0; v3 < v0->unk_00; v3++) {
-        v1 = &v0->unk_08[v3];
-        v1->unk_00.mapHeader = v2[v3].mapHeader;
-        v1->unk_00.blockType = v2[v3].blockType;
-        v1->unk_00.blockColor = v2[v3].blockColor;
-        v1->unk_00.unk_0A = v2[v3].unk_0A;
-        v1->unk_00.xCoord = v2[v3].xCoord;
-        v1->unk_00.yCoord = v2[v3].yCoord;
-        v1->unk_14 = param2[v3];
+    for (v3 = 0; v3 < v0->count; v3++) {
+        v1 = &v0->cities[v3];
+        v1->block.mapHeader = v2[v3].mapHeader;
+        v1->block.blockType = v2[v3].blockType;
+        v1->block.blockColor = v2[v3].blockColor;
+        v1->block.unk_0A = v2[v3].unk_0A;
+        v1->block.xCoord = v2[v3].xCoord;
+        v1->block.yCoord = v2[v3].yCoord;
+        v1->visited = param2[v3];
         v1->unk_18 = sub_0200CA08(param0, param1, &v4);
 
         sub_02021CAC(v1->unk_18, 1);
 
-        if (v1->unk_14) {
-            sub_02021E90(v1->unk_18, 5 + v1->unk_00.blockColor + v1->unk_14);
+        if (v1->visited) {
+            sub_02021E90(v1->unk_18, 5 + v1->block.blockColor + v1->visited);
         } else {
-            if ((v1->unk_00.unk_0A == 1) || (v1->unk_00.unk_0A == 2)) {
+            if ((v1->block.unk_0A == 1) || (v1->block.unk_0A == 2)) {
                 sub_02021CAC(v1->unk_18, 0);
             }
         }
 
-        sub_02021E2C(v1->unk_18, FX32_CONST(v1->unk_00.blockType));
-        sub_0200D494(v1->unk_18, v1->unk_00.xCoord + 25, v1->unk_00.yCoord + -34);
+        sub_02021E2C(v1->unk_18, FX32_CONST(v1->block.blockType));
+        sub_0200D494(v1->unk_18, v1->block.xCoord + 25, v1->block.yCoord + -34);
     }
 
     return v0;
 }
 
-void ov80_021D2C1C (UnkStruct_ov80_021D2C1C * param0)
+void ov80_021D2C1C (TownMapCityHolder * param0)
 {
-    UnkStruct_ov80_021D2C5C * v0;
+    TownMapCity * v0;
     short v1;
 
-    for (v1 = 0; v1 < param0->unk_00; v1++) {
-        v0 = &param0->unk_08[v1];
+    for (v1 = 0; v1 < param0->count; v1++) {
+        v0 = &param0->cities[v1];
         sub_02021C98(v0->unk_18, 0, 0);
         sub_02021BD4(v0->unk_18);
     }
 
-    Heap_FreeToHeap(param0->unk_08);
+    Heap_FreeToHeap(param0->cities);
     Heap_FreeToHeap(param0);
 }
 
-UnkStruct_ov80_021D2C5C * ov80_021D2C5C (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3)
+TownMapCity * ov80_021D2C5C (TownMapCityHolder * param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov80_021D2C5C * v0;
+    TownMapCity * v0;
     short v1, v2;
 
-    for (v1 = 0; v1 < param0->unk_00; v1++) {
-        v0 = &(param0->unk_08[v1]);
+    for (v1 = 0; v1 < param0->count; v1++) {
+        v0 = &(param0->cities[v1]);
 
-        if (v0->unk_00.mapHeader != param1) {
+        if (v0->block.mapHeader != param1) {
             continue;
         }
 
-        switch (v0->unk_00.unk_0A) {
+        switch (v0->block.unk_0A) {
         case 0:
             return v0;
         case 1:
@@ -318,9 +318,9 @@ UnkStruct_ov80_021D2C5C * ov80_021D2C5C (UnkStruct_ov80_021D2C1C * param0, int p
     return NULL;
 }
 
-int ov80_021D2CC0 (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int param3)
+int ov80_021D2CC0 (TownMapCityHolder * param0, int param1, int param2, int param3)
 {
-    UnkStruct_ov80_021D2C5C * v0;
+    TownMapCity * v0;
     short v1, v2;
 
     v2 = 0;
@@ -331,9 +331,9 @@ int ov80_021D2CC0 (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int
 
     v0 = ov80_021D2C5C(param0, param1, param2, param3);
 
-    if ((v0 == NULL) || (v0->unk_14 == 0)) {
+    if ((v0 == NULL) || (v0->visited == 0)) {
         if (param0->unk_04 != NULL) {
-            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.blockColor + param0->unk_04->unk_14);
+            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->block.blockColor + param0->unk_04->visited);
         }
 
         param0->unk_04 = NULL;
@@ -344,8 +344,8 @@ int ov80_021D2CC0 (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int
         param0->unk_02 = 0;
         param0->unk_03 = 0;
     } else {
-        if ((v0->unk_00.unk_0A == 2) || (v0->unk_00.unk_0A == 3)) {
-            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.blockColor + param0->unk_04->unk_14);
+        if ((v0->block.unk_0A == 2) || (v0->block.unk_0A == 3)) {
+            sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->block.blockColor + param0->unk_04->visited);
         }
     }
 
@@ -353,19 +353,19 @@ int ov80_021D2CC0 (UnkStruct_ov80_021D2C1C * param0, int param1, int param2, int
     return 1;
 }
 
-void ov80_021D2D28 (UnkStruct_ov80_021D2C1C * param0, int param1)
+void ov80_021D2D28 (TownMapCityHolder * param0, int param1)
 {
     short v0;
-    UnkStruct_ov80_021D2C5C * v1;
+    TownMapCity * v1;
 
     if ((param0->unk_04 == NULL) || (param1 != 1)) {
         return;
     }
 
     if (param0->unk_03 == 0) {
-        sub_02021E90(param0->unk_04->unk_18, 8 + param0->unk_04->unk_00.blockColor);
+        sub_02021E90(param0->unk_04->unk_18, 8 + param0->unk_04->block.blockColor);
     } else {
-        sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->unk_00.blockColor + param0->unk_04->unk_14);
+        sub_02021E90(param0->unk_04->unk_18, 5 + param0->unk_04->block.blockColor + param0->unk_04->visited);
     }
 
     param0->unk_02++;

@@ -15,8 +15,8 @@
 #include "overlay080/struct_ov80_021D259C.h"
 #include "overlay080/struct_ov80_021D2A08.h"
 #include "overlay080/struct_town_map_interaction.h"
-#include "overlay080/struct_ov80_021D2C1C.h"
-#include "overlay080/struct_ov80_021D2C5C.h"
+#include "overlay080/struct_town_map_city_holder.h"
+#include "overlay080/struct_town_map_city.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
@@ -76,7 +76,7 @@ typedef struct {
     UnkStruct_0205AA50 * unk_78;
     UnkStruct_ov80_021D1478_sub1 unk_7C;
     UnkStruct_ov80_021D1478_sub1 unk_8C;
-    UnkStruct_ov80_021D2C1C * unk_9C;
+    TownMapCityHolder * unk_9C;
     TownMapInteraction * unk_A0;
     UnkStruct_ov80_021D2570 unk_A4;
     UnkStruct_02022550 * unk_100;
@@ -1201,7 +1201,7 @@ static void ov80_021D28EC (UnkStruct_0201CD38 * param0, void * param1)
 static int ov80_021D29BC (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
-    UnkStruct_ov80_021D2C5C * v1 = NULL;
+    TownMapCity * v1 = NULL;
     u8 v2 = 1;
 
     if (v0->unk_A0 == NULL) {
@@ -1210,7 +1210,7 @@ static int ov80_021D29BC (UnkStruct_ov80_021D2A08 * param0)
 
     v1 = ov80_021D2C5C(v0->unk_9C, v0->unk_20, v0->unk_18, v0->unk_1C);
 
-    if ((v1 == NULL) || (v1->unk_14 == 0)) {
+    if ((v1 == NULL) || (v1->visited == 0)) {
         return 0;
     }
 
