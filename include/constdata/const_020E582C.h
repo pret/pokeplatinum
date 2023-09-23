@@ -1,6 +1,0 @@
-#ifndef POKEPLATINUM_CONST_020E582C_H
-#define POKEPLATINUM_CONST_020E582C_H
-
-extern const int gExtraSaveTableSize;
-
-#endif // POKEPLATINUM_CONST_020E582C_H

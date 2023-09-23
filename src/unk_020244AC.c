@@ -5,12 +5,7 @@
 
 #include "struct_decls/struct_0202783C_decl.h"
 
-#include "constdata/const_020E5830.h"
-#include "constdata/const_020E5894.h"
-#include "constdata/const_020E5834.h"
-#include "constdata/const_020E582C.h"
-
-#include "struct_defs/save_table_entry.h"
+#include "savedata/save_table.h"
 
 #include "unk_02017728.h"
 #include "heap.h"
@@ -935,7 +930,7 @@ static BOOL sub_0202516C (const SaveData * param0, int param1, int param2)
 int sub_020251A4 (int param0)
 {
     int v0;
-    const SaveTableEntry * v1 = gSaveTableEntries;
+    const SaveTableEntry * v1 = gSaveTable;
 
     GF_ASSERT(param0 < gSaveTableSize);
     v0 = v1[param0].sizeFunc();
@@ -948,7 +943,7 @@ int sub_020251A4 (int param0)
 
 static void sub_020251DC (UnkStruct_020251DC * param0)
 {
-    const SaveTableEntry * v0 = gSaveTableEntries;
+    const SaveTableEntry * v0 = gSaveTable;
     int v1;
     int v2 = 0;
 
@@ -1009,7 +1004,7 @@ static void sub_02025258 (UnkStruct_02025258 * param0, const UnkStruct_020251DC 
 
 static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC * param1)
 {
-    const SaveTableEntry * v0 = gSaveTableEntries;
+    const SaveTableEntry * v0 = gSaveTable;
     int v1;
     int v2;
     void * v3;
@@ -1028,7 +1023,7 @@ static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC 
 
 void sub_02025340 (SaveData * param0)
 {
-    const SaveTableEntry * v0 = gExtraSaveTableEntries;
+    const SaveTableEntry * v0 = gExtraSaveTable;
     int v1;
     int v2;
     void * v3;
@@ -1109,7 +1104,7 @@ int SaveDataExtra_Save (const SaveData * param0, int param1, void * param2)
     sub_02017B7C(1);
 
     GF_ASSERT(param1 < gExtraSaveTableSize);
-    v0 = &gExtraSaveTableEntries[param1];
+    v0 = &gExtraSaveTable[param1];
 
     GF_ASSERT(v0->dataID == param1);
     v1 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
@@ -1154,7 +1149,7 @@ int SaveDataExtra_SaveMirror (SaveData * param0, int param1, void * param2)
     sub_02017B7C(1);
 
     GF_ASSERT(param1 < gExtraSaveTableSize);
-    v0 = &gExtraSaveTableEntries[param1];
+    v0 = &gExtraSaveTable[param1];
 
     GF_ASSERT(v0->dataID == param1);
     v1 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
@@ -1197,7 +1192,7 @@ void * SaveDataExtra_Get (SaveData * param0, int param1, int param2, int * param
     u32 v5, v6;
 
     GF_ASSERT(param2 < gExtraSaveTableSize);
-    v0 = &gExtraSaveTableEntries[param2];
+    v0 = &gExtraSaveTable[param2];
 
     GF_ASSERT(v0->dataID == param2);
     v2 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
@@ -1265,7 +1260,7 @@ void * SaveDataExtra_Mirror (SaveData * param0, int param1, int param2, int * pa
     GF_ASSERT(param2 < gExtraSaveTableSize);
     GF_ASSERT(param2 != 0);
 
-    v0 = &gExtraSaveTableEntries[param2];
+    v0 = &gExtraSaveTable[param2];
     GF_ASSERT(v0->dataID == param2);
 
     v2 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);

@@ -13,6 +13,16 @@
 #define SAVE_PAGE_MAX       32
 #define SAVE_SECTOR_SIZE    (0x1000)
 
+typedef int (*SaveEntrySizeFunc)(void);
+typedef void (*SaveEntryInitFunc)(void*);
+
+typedef struct SaveTableEntry {
+    int dataID; //< Canonical ID for the entry. Used by external functions to retrieve it from the table.
+    u32 blockID; //< Block ID for the entry. Specifies what block of the save data the entry is stored in.
+    SaveEntrySizeFunc sizeFunc; //< Function for determining how large the entry is.
+    SaveEntryInitFunc initFunc; //< Function for initializing an empty entry.
+} SaveTableEntry;
+
 enum SaveBlockID {
     SAVE_BLOCK_ID_NORMAL = 0,
     SAVE_BLOCK_ID_BOXES,
@@ -73,6 +83,11 @@ enum ExtraSaveTableEntryID {
 
     EXTRA_SAVE_TABLE_ENTRY_MAX
 };
+
+extern const SaveTableEntry gSaveTable[];
+extern const int gSaveTableSize;
+extern const SaveTableEntry gExtraSaveTable[];
+extern const int gExtraSaveTableSize;
 
 /**
  * @brief Loads the TVBroadcast sector of the save data.

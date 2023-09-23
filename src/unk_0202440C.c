@@ -9,16 +9,11 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "constdata/const_020E5830.h"
-#include "constdata/const_020E5894.h"
-#include "constdata/const_020E5834.h"
-#include "constdata/const_020E582C.h"
-
-#include "struct_defs/save_table_entry.h"
 #include "struct_defs/struct_0202DF8C.h"
 
-#include "unk_02014D38.h"
 #include "savedata/save_table.h"
+
+#include "unk_02014D38.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
@@ -60,7 +55,7 @@
 #include "party.h"
 #include "unk_0207D3B8.h"
 
-const SaveTableEntry gSaveTableEntries[] = {
+const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_SYSTEM,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SystemData_SaveSize,        (SaveEntryInitFunc)SystemData_Init        },
     { SAVE_TABLE_ENTRY_PLAYER,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Player_SaveSize,            (SaveEntryInitFunc)Player_Init            },
     { SAVE_TABLE_ENTRY_PARTY,                 SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Party_SaveSize,             (SaveEntryInitFunc)Party_Init             },
@@ -101,7 +96,7 @@ const SaveTableEntry gSaveTableEntries[] = {
     { SAVE_TABLE_ENTRY_PSS_BOXES,             SAVE_BLOCK_ID_BOXES,  (SaveEntrySizeFunc)PSSBoxes_SaveSize,          (SaveEntryInitFunc)PSSBoxes_Init          },
 };
 
-const int gSaveTableSize = NELEMS(gSaveTableEntries);
+const int gSaveTableSize = NELEMS(gSaveTable);
 
 TVBroadcast * SaveData_TVBroadcast (SaveData * param0)
 {
@@ -125,7 +120,7 @@ PalParkTransfer * SaveData_PalParkTransfer (SaveData * param0)
     return SaveData_Get(param0, 32);
 }
 
-const SaveTableEntry gExtraSaveTableEntries[] = {
+const SaveTableEntry gExtraSaveTable[] = {
     {EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME,    SAVE_PAGE_MAX,      (SaveEntrySizeFunc)HallOfFame_SaveSize,      (SaveEntryInitFunc)HallOfFame_Init},
     {EXTRA_SAVE_TABLE_ENTRY_FRONTIER,        SAVE_PAGE_MAX + 3,  (SaveEntrySizeFunc)Frontier_Extra_SaveSize,  (SaveEntryInitFunc)Frontier_Extra_Init},
     {EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS,   SAVE_PAGE_MAX + 4,  (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init},
@@ -134,7 +129,7 @@ const SaveTableEntry gExtraSaveTableEntries[] = {
     {EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_2, SAVE_PAGE_MAX + 10, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init},
 };
 
-const int gExtraSaveTableSize = NELEMS(gExtraSaveTableEntries);
+const int gExtraSaveTableSize = NELEMS(gExtraSaveTable);
 
 HallOfFame * SaveData_HallOfFame (SaveData * param0, int param1, int * param2)
 {
