@@ -39,20 +39,20 @@ std::string get_error_string(NarcError error)
 {
     switch (error)
     {
-        case NarcError::None:								return "ERROR: No error???";
-        case NarcError::InvalidInputFile:					return "ERROR: Invalid input file";
-        case NarcError::InvalidHeaderId:					return "ERROR: Invalid header ID";
-        case NarcError::InvalidByteOrderMark:				return "ERROR: Invalid byte order mark";
-        case NarcError::InvalidVersion:						return "ERROR: Invalid NARC version";
-        case NarcError::InvalidHeaderSize:					return "ERROR: Invalid header size";
-        case NarcError::InvalidChunkCount:					return "ERROR: Invalid chunk count";
-        case NarcError::InvalidFileAllocationTableId:		return "ERROR: Invalid file allocation table ID";
-        case NarcError::InvalidFileAllocationTableReserved:	return "ERROR: Invalid file allocation table reserved section";
-        case NarcError::InvalidFileNameTableId:				return "ERROR: Invalid file name table ID";
-        case NarcError::InvalidFileNameTableEntryId:		return "ERROR: Invalid file name table entry ID";
-        case NarcError::InvalidFileImagesId:				return "ERROR: Invalid file images ID";
-        case NarcError::InvalidOutputFile:					return "ERROR: Invalid output file";
-        default:											return "ERROR: Unknown error???";
+        case NarcError::None:                               return "ERROR: No error???";
+        case NarcError::InvalidInputFile:                   return "ERROR: Invalid input file";
+        case NarcError::InvalidHeaderId:                    return "ERROR: Invalid header ID";
+        case NarcError::InvalidByteOrderMark:               return "ERROR: Invalid byte order mark";
+        case NarcError::InvalidVersion:                     return "ERROR: Invalid NARC version";
+        case NarcError::InvalidHeaderSize:                  return "ERROR: Invalid header size";
+        case NarcError::InvalidChunkCount:                  return "ERROR: Invalid chunk count";
+        case NarcError::InvalidFileAllocationTableId:       return "ERROR: Invalid file allocation table ID";
+        case NarcError::InvalidFileAllocationTableReserved: return "ERROR: Invalid file allocation table reserved section";
+        case NarcError::InvalidFileNameTableId:             return "ERROR: Invalid file name table ID";
+        case NarcError::InvalidFileNameTableEntryId:        return "ERROR: Invalid file name table entry ID";
+        case NarcError::InvalidFileImagesId:                return "ERROR: Invalid file images ID";
+        case NarcError::InvalidOutputFile:                  return "ERROR: Invalid output file";
+        default:                                            return "ERROR: Unknown error???";
     }
 }
 
