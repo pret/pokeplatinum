@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/struct_ov80_021D1478_sub1.h"
-#include "overlay080/struct_ov80_021D259C.h"
+#include "overlay080/struct_town_map_footprint.h"
 #include "overlay080/struct_ov80_021D2A08.h"
 #include "overlay080/struct_town_map_interaction.h"
 #include "overlay080/struct_town_map_city_holder.h"
@@ -982,7 +982,7 @@ static int ov80_021D2570 (UnkStruct_ov80_021D2570 * param0, int param1, int para
 static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
-    UnkStruct_ov80_021D259C * v1;
+    TownMapFootprint * v1;
     UnkStruct_ov80_021D1744 * v2;
     int v3 = 0, v4, v5;
     static const u16 v6[4] = {0, 2, 3, 1};
@@ -999,11 +999,11 @@ static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
             break;
         }
 
-        if ((v1->unk_00 == param0->unk_20) && (v1->unk_04 == param0->unk_24)) {
+        if ((v1->xCoord == param0->unk_20) && (v1->yCoord == param0->unk_24)) {
             continue;
         }
 
-        v4 = ov80_021D2570(&(v0->unk_A4), v1->unk_00, v1->unk_04);
+        v4 = ov80_021D2570(&(v0->unk_A4), v1->xCoord, v1->yCoord);
 
         if (v4 < 0) {
             v2 = &(v0->unk_A4.unk_0C[v0->unk_A4.unk_00++]);
@@ -1011,14 +1011,14 @@ static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
             v2 = &(v0->unk_A4.unk_0C[v4]);
         }
 
-        v2->unk_00 = v1->unk_00;
-        v2->unk_04 = v1->unk_04;
+        v2->unk_00 = v1->xCoord;
+        v2->unk_04 = v1->yCoord;
 
-        if (v1->unk_08 > 3) {
+        if (v1->direction > 3) {
             v2->unk_08 = 0;
             v5 = 5;
         } else {
-            v2->unk_08 = v6[v1->unk_08];
+            v2->unk_08 = v6[v1->direction];
             v5 = 0;
         }
 

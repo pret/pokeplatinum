@@ -9,7 +9,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02039EBC_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
-#include "overlay080/struct_ov80_021D259C.h"
+#include "overlay080/struct_town_map_footprint.h"
 #include "overlay080/struct_town_map_interaction.h"
 #include "overlay080/struct_town_map_city_holder.h"
 
@@ -35,7 +35,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     int (* unk_38)(struct UnkStruct_ov80_021D2A08_t *);
     TownMapCityHolder * unk_3C;
     TownMapInteractionList * unk_40;
-    UnkStruct_ov80_021D259C unk_44[5];
+    TownMapFootprint unk_44[5];
     MessageLoader * unk_80;
     MessageLoader * unk_84;
     Strbuf* unk_88;
