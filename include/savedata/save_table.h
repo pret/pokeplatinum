@@ -64,7 +64,7 @@ enum SaveTableEntryID {
 };
 
 enum ExtraSaveTableEntryID {
-    EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME,
+    EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME = 0,
     EXTRA_SAVE_TABLE_ENTRY_FRONTIER,
     EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS,
     EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_0,
@@ -74,15 +74,103 @@ enum ExtraSaveTableEntryID {
     EXTRA_SAVE_TABLE_ENTRY_MAX
 };
 
+/**
+ * @brief Loads the TVBroadcast sector of the save data.
+ * 
+ * This routine also performs a standard CRC of the sector before loading it.
+ * 
+ * @param save 
+ * @return Address of the TVBroadcast sector of the save data.
+ */
 TVBroadcast* SaveData_TVBroadcast(SaveData *save);
+
+/**
+ * @brief Loads the PSSBoxes sector of the save data.
+ * 
+ * This routine does NOT perform any CRC on the sectors before loading them.
+ * 
+ * @param save 
+ * @return Address of the PSSBoxes sector of the save data.
+ */
 PSSBoxes* SaveData_PSSBoxes(SaveData *save);
+
+/**
+ * @brief Loads the MysteryGift sector of the save data.
+ * 
+ * This routine also performs a standard CRC of the sector before loading it.
+ * 
+ * @param save 
+ * @return Address of the MysteryGift sector of the save data.
+ */
 MysteryGift* SaveData_MysteryGift(SaveData *save);
+
+/**
+ * @brief Loads the PalParkTransfer sector of the save data.
+ * 
+ * This routine does NOT perform any CRC on the sectors before loading them.
+ * 
+ * @param save 
+ * @return Address of the PalParkTransfer sector of the save data.
+ */
 PalParkTransfer* SaveData_PalParkTransfer(SaveData *save);
+
+/**
+ * @brief Loads the HallOfFame sector from the extended save data.
+ * 
+ * @param save          The save data.
+ * @param heapID        Heap on which to allocate the HallOfFame sector.
+ * @param resultCode    Load-result opcode output.
+ * @return Address of the allocated HallOfFame data.
+ */
 HallOfFame* SaveData_HallOfFame(SaveData *save, int heapID, int *resultCode);
+
+/**
+ * @brief Saves a mirror of the given HallOfFame data into the extended save.
+ * 
+ * @param save          The save data.
+ * @param hof           The hall-of-fame data to save.
+ * @return Save-result opcode.
+ */
 int SaveData_SaveHallOfFame(SaveData *save, HallOfFame *hof);
+
+/**
+ * @brief Loads the BattleRecording sector from the extended save data.
+ * 
+ * @param save          The save data.
+ * @param heapID        Heap on which to allocate the BattleRecording sector.
+ * @param resultCode    Load-result opcode output.
+ * @param recNum        Which recording slot to load.
+ * @return Address of the allocated BattleRecording data.
+ */
 BattleRecording* SaveData_BattleRecording(SaveData *save, int heapID, int *resultCode, int recNum);
+
+/**
+ * @brief Saves a mirror of the given BattleRecording data into the extended save.
+ * 
+ * @param save          The save data.
+ * @param rec           The battle recording data to save.
+ * @param recNum        Which recording slot to save.
+ * @return Save-result opcode.
+ */
 int SaveData_SaveBattleRecording(SaveData *save, BattleRecording *rec, int recNum);
+
+/**
+ * @brief Loads the BattleFrontierStage sector from the extended save data.
+ * 
+ * @param save          The save data.
+ * @param heapID        Heap on which to allocate the BattleRecording sector.
+ * @param resultCode    Load-result opcode output.
+ * @return Address of the allocated BattleFrontierStage data.
+ */
 BattleFrontierStage* SaveData_BattleFrontierStage(SaveData *save, int heapID, int *resultCode);
+
+/**
+ * @brief Saves a mirror of the given BattleRecording data into the extended save.
+ * 
+ * @param save          The save data.
+ * @param frontier      The battle frontier data to save.
+ * @return Save-result opcode.
+ */
 int SaveData_SaveBattleFrontierStage(SaveData *save, BattleFrontierStage *frontier);
 
 #endif // POKEPLATINUM_SAVEDATA_LOAD_HELPERS_H
