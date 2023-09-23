@@ -115,7 +115,7 @@ BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int p
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);
 BOOL BattleSystem_Imprisoned(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL ov16_02255F68(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02255F94(BattleSystem * param0, BattleContext * param1);
+void BattleSystem_SetupLoop(BattleSystem *battleSys, BattleContext *battleCtx);
 void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1);
 BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL BattleSystem_HealBlocked(BattleSystem * param0, BattleContext * param1, int param2, int param3);
@@ -3358,11 +3358,11 @@ BOOL ov16_02255F68 (BattleSystem * param0, BattleContext * param1, int param2)
     return v2;
 }
 
-void ov16_02255F94 (BattleSystem * param0, BattleContext * param1)
+void BattleSystem_SetupLoop(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    param1->moveStatusFlags = 0;
-    param1->criticalMul = 1;
-    param1->battleStatusMask &= (0x100000 ^ 0xffffffff);
+    battleCtx->moveStatusFlags = 0;
+    battleCtx->criticalMul = 1;
+    battleCtx->battleStatusMask &= ~SYSCTL_REUSE_LAST_MOVE;
 }
 
 void BattleSystem_SortMonsBySpeed (BattleSystem *battleSys, BattleContext *battleCtx)

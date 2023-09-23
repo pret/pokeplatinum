@@ -5526,7 +5526,7 @@ static BOOL ov16_022469C4 (BattleSystem * param0, BattleContext * param1)
                         param1->battleMons[v1].ppCur[v4]--;
                     }
 
-                    ov16_02255F94(param0, param1);
+                    BattleSystem_SetupLoop(param0, param1);
                     param1->attacker = v1;
                     param1->defender = param1->switchedMon;
                     param1->powerMul = 20;

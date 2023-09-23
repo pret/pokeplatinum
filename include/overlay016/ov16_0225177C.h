@@ -65,7 +65,7 @@ BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int p
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);
 BOOL BattleSystem_Imprisoned(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL ov16_02255F68(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02255F94(BattleSystem * param0, BattleContext * param1);
+void BattleSystem_SetupLoop(BattleSystem *battleSys, BattleContext *battleCtx);
 void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1);
 BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL BattleSystem_HealBlocked(BattleSystem * param0, BattleContext * param1, int param2, int param3);

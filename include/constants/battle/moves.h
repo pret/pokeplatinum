@@ -52,7 +52,7 @@
 #define MOVE_STATUS_LEVITATED           (1 << 11)
 #define MOVE_STATUS_ONE_HIT_KO_FAILED   (1 << 12)
 #define MOVE_STATUS_SPLASH              (1 << 13)
-#define MOVE_STATUS_THRASH_DISRUPTED    (1 << 14)
+#define MOVE_STATUS_MULTI_HIT_DISRUPTED (1 << 14)
 #define MOVE_STATUS_PROTECTED           (1 << 15)
 #define MOVE_STATUS_SEMI_INVULNERABLE   (1 << 16)
 #define MOVE_STATUS_LOST_FOCUS          (1 << 17)
@@ -67,7 +67,7 @@
                                         | MOVE_STATUS_FAILED \
                                         | MOVE_STATUS_LEVITATED \
                                         | MOVE_STATUS_ONE_HIT_KO_FAILED \
-                                        | MOVE_STATUS_THRASH_DISRUPTED \
+                                        | MOVE_STATUS_MULTI_HIT_DISRUPTED \
                                         | MOVE_STATUS_PROTECTED \
                                         | MOVE_STATUS_SEMI_INVULNERABLE \
                                         | MOVE_STATUS_LOST_FOCUS \

@@ -92,7 +92,7 @@ static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *ba
 static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_LeftoverState29(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_AfterMoveEffects(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_02250170(BattleSystem * param0, BattleContext * param1);
+static void BattleController_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_LeftoverState32(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_02250270(BattleSystem * param0, BattleContext * param1);
 static void ov16_02250298(BattleSystem * param0, BattleContext * param1);
@@ -167,7 +167,7 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_AfterMoveMessage,
     BattleController_LeftoverState29,
     BattleController_AfterMoveEffects,
-    ov16_02250170,
+    BattleController_LoopMultiHit,
     BattleController_LeftoverState32,
     ov16_02250270,
     ov16_02250298,
@@ -3275,7 +3275,7 @@ static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleCon
     } else if (battleCtx->multiHitLoop && (battleCtx->moveStatusFlags & MOVE_STATUS_MISSED)) {
         // Thrashing moves have a special status flag.
         battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
-        battleCtx->moveStatusFlags |= MOVE_STATUS_THRASH_DISRUPTED;
+        battleCtx->moveStatusFlags |= MOVE_STATUS_MULTI_HIT_DISRUPTED;
         battleCtx->command = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
     } else if (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) {
         LOAD_SUBSEQ(BATTLE_SUBSEQ_MISSED);
@@ -3670,7 +3670,7 @@ static void BattleController_AfterMoveEffects(BattleSystem *battleSys, BattleCon
 
         if (battleCtx->defender != BATTLER_NONE
                 && (DEFENDING_MON.status & MON_CONDITION_FREEZE)
-                && (battleCtx->moveStatusFlags & MOVE_STATUS_THRASH_DISRUPTED) == FALSE
+                && (battleCtx->moveStatusFlags & MOVE_STATUS_MULTI_HIT_DISRUPTED) == FALSE
                 && battleCtx->defender != battleCtx->attacker
                 && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
                 && DEFENDING_MON.curHP
@@ -3731,43 +3731,46 @@ static void BattleController_LeftoverState32(BattleSystem *battleSys, BattleCont
     return;
 }
 
-static void ov16_02250170 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->multiHitNumHits) {
-        if ((param1->faintedMon == 0xff) && ((param1->battleMons[param1->attacker].status & 0x7) == 0) && ((param1->moveStatusFlags & 0x4000) == 0)) {
-            if (--param1->multiHitCounter) {
-                param1->multiHitLoop = 1;
-                ov16_02255F94(param0, param1);
+    if (battleCtx->multiHitNumHits) {
+        if (battleCtx->faintedMon == BATTLER_NONE
+                && (ATTACKING_MON.status & MON_CONDITION_SLEEP) == FALSE // e.g., Effect Spore
+                && (battleCtx->moveStatusFlags & MOVE_STATUS_MULTI_HIT_DISRUPTED) == FALSE) {
+            if (--battleCtx->multiHitCounter) {
+                battleCtx->multiHitLoop = TRUE;
+                BattleSystem_SetupLoop(battleSys, battleCtx);
 
-                param1->battleStatusMask &= (0x4000 ^ 0xffffffff);
-                param1->multiHitCheckFlags = param1->multiHitAccuracyCheck;
+                battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION; // force the animation to play again
+                battleCtx->multiHitCheckFlags = battleCtx->multiHitAccuracyCheck;
 
-                BattleSystem_LoadScript(param1, 0, param1->moveCur);
-
-                param1->command = 21;
-                param1->commandNext = 23;
+                BattleSystem_LoadScript(battleCtx, 0, battleCtx->moveCur);
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                battleCtx->commandNext = BATTLE_CONTROL_TRY_MOVE;
             } else {
-                param1->msgTemp = param1->multiHitNumHits;
-                BattleSystem_LoadScript(param1, 1, (0 + 17));
+                battleCtx->msgTemp = battleCtx->multiHitNumHits;
 
-                param1->command = 21;
-                param1->commandNext = 33;
+                LOAD_SUBSEQ(BATTLE_SUBSEQ_HIT_X_TIMES);
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED;
             }
         } else {
-            if ((param1->faintedMon != 0xff) || (param1->battleMons[param1->attacker].status & 0x7)) {
-                param1->msgTemp = param1->multiHitNumHits - param1->multiHitCounter + 1;
+            if (battleCtx->faintedMon != BATTLER_NONE || (ATTACKING_MON.status & MON_CONDITION_SLEEP)) {
+                // If an effect (such as Effect Spore) puts the attacker to sleep or the target faints
+                // during the multi-hit loop, immediately terminate it.
+                battleCtx->msgTemp = battleCtx->multiHitNumHits - battleCtx->multiHitCounter + 1;
             } else {
-                param1->msgTemp = param1->multiHitNumHits - param1->multiHitCounter;
+                battleCtx->msgTemp = battleCtx->multiHitNumHits - battleCtx->multiHitCounter;
             }
 
-            BattleSystem_LoadScript(param1, 1, (0 + 17));
-            param1->command = 21;
-            param1->commandNext = 33;
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_HIT_X_TIMES);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED;
         }
 
-        BattleIO_ClearMessageBox(param0);
+        BattleIO_ClearMessageBox(battleSys);
     } else {
-        param1->command = 33;
+        battleCtx->command = BATTLE_CONTROL_CHECK_FAINTED;
     }
 }
 
@@ -3805,7 +3808,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
                     v2 = BattleSystem_BattlerData(param0, v0);
 
                     if (((v3 & 0x1) && ((ov16_02263AE4(v2) & 0x1) == 0)) || ((v3 & 0x1) == 0) && (ov16_02263AE4(v2) & 0x1)) {
-                        ov16_02255F94(param0, param1);
+                        BattleSystem_SetupLoop(param0, param1);
                         param1->defender = v0;
                         param1->command = 22;
                         break;
@@ -3825,7 +3828,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
 
                 if (((param1->battlersSwitchingMask & FlagIndex(v4)) == 0) && (param1->battleMons[v4].curHP)) {
                     if (v4 != param1->attacker) {
-                        ov16_02255F94(param0, param1);
+                        BattleSystem_SetupLoop(param0, param1);
                         param1->defender = v4;
                         param1->command = 22;
                         break;
@@ -4499,7 +4502,7 @@ static BOOL BattleController_StatusMessage(BattleSystem *battleSys, BattleContex
         if (battleCtx->multiHitNumHits) {
             if (battleCtx->faintedMon != BATTLER_NONE
                     || battleCtx->multiHitCounter == 1
-                    || (battleCtx->moveStatusFlags & MOVE_STATUS_THRASH_DISRUPTED)) {
+                    || (battleCtx->moveStatusFlags & MOVE_STATUS_MULTI_HIT_DISRUPTED)) {
                 result = TRUE;
             }
         } else {
@@ -4524,7 +4527,7 @@ static BOOL BattleController_RageBuilding(BattleSystem *battleSys, BattleContext
     }
 
     if ((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_RAGE)
-            && (battleCtx->moveStatusFlags & MOVE_STATUS_THRASH_DISRUPTED) == FALSE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_MULTI_HIT_DISRUPTED) == FALSE
             && battleCtx->defender != battleCtx->attacker
             && DEFENDING_MON.curHP
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
