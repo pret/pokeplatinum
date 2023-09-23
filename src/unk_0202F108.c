@@ -26,7 +26,7 @@ void sub_0202F10C (UnkStruct_0202F10C * param0)
     sub_02025C84(33);
 }
 
-void sub_0202F134 (UnkStruct_021C0794 * param0, int param1, int param2)
+void sub_0202F134 (SaveData * param0, int param1, int param2)
 {
     UnkStruct_0202F10C * v0;
 
@@ -39,7 +39,7 @@ void sub_0202F134 (UnkStruct_021C0794 * param0, int param1, int param2)
     sub_02025C84(33);
 }
 
-u16 sub_0202F160 (UnkStruct_021C0794 * param0, int param1, int param2)
+u16 sub_0202F160 (SaveData * param0, int param1, int param2)
 {
     UnkStruct_0202F10C * v0;
 

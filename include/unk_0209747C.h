@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-UnkStruct_0209747C * sub_0209747C(u32 param0, u32 param1, UnkStruct_021C0794 * param2, u32 param3);
+UnkStruct_0209747C * sub_0209747C(u32 param0, u32 param1, SaveData * param2, u32 param3);
 void sub_020974EC(UnkStruct_0209747C * param0);
 void sub_020974F4(UnkStruct_0209747C * param0, u16 param1);
 void sub_020974F8(UnkStruct_0209747C * param0, u16 param1, u16 param2);

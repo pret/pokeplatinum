@@ -215,7 +215,7 @@ typedef struct {
     u8 unk_41;
     u8 unk_42;
     u8 unk_43;
-    const UnkStruct_021C0794 * unk_44;
+    const SaveData * unk_44;
     u16 unk_48;
     u16 unk_4A;
 } UnkStruct_ov66_02230A6C;
@@ -231,7 +231,7 @@ typedef struct {
 } UnkStruct_ov66_0222DFF8_sub3;
 
 typedef struct UnkStruct_ov66_0222DFF8_t {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     UnkStruct_ov66_0222DFF8_sub1 unk_04;
     UnkStruct_ov66_0222FA80 unk_F8;
     UnkStruct_ov66_0222F6C4 unk_108;
@@ -272,10 +272,10 @@ static void ov66_0222F4C8(PPW_LOBBY_TIME_EVENT param0, void * param1);
 static void ov66_0222F684(const void * param0, u32 param1, void * param2);
 static void ov66_0222F6C4(UnkStruct_ov66_0222F6C4 * param0, UnkStruct_ov66_02231560 * param1);
 static void ov66_0222F768(UnkStruct_ov66_0222DFF8 * param0);
-static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 * param1, u32 param2);
+static void ov66_0222F7C8(UnkStruct_ov66_0222F6C4 * param0, SaveData * param1, u32 param2);
 static void ov66_0222F964(UnkStruct_ov66_0222DFF8 * param0);
-static void ov66_0222F9EC(UnkStruct_ov66_0222F6C4 * param0, const UnkStruct_021C0794 * param1);
-static BOOL ov66_0222FA04(const UnkStruct_ov66_0222F6C4 * param0, const UnkStruct_021C0794 * param1);
+static void ov66_0222F9EC(UnkStruct_ov66_0222F6C4 * param0, const SaveData * param1);
+static BOOL ov66_0222FA04(const UnkStruct_ov66_0222F6C4 * param0, const SaveData * param1);
 static void ov66_0222FA28(UnkStruct_ov66_0222F6C4 * param0, const UnkStruct_ov66_0222E71C * param1, u32 param2);
 static void ov66_0222FA80(UnkStruct_ov66_0222FA80 * param0);
 static void ov66_0222FA88(UnkStruct_ov66_0222FB64 * param0, UnkStruct_ov66_0222FA80 * param1, UnkStruct_ov66_022302B0 * param2, UnkStruct_ov66_022309A4 * param3);
@@ -355,7 +355,7 @@ static void ov66_022309B4(UnkStruct_ov66_022309A4 * param0);
 static void ov66_022309C8(UnkStruct_ov66_022309A4 * param0);
 static u32 ov66_02230A64(const UnkStruct_ov66_022309A4 * param0);
 static int ov66_02230A68(const UnkStruct_ov66_022309A4 * param0);
-static void ov66_02230A6C(UnkStruct_ov66_02230A6C * param0, const UnkStruct_021C0794 * param1);
+static void ov66_02230A6C(UnkStruct_ov66_02230A6C * param0, const SaveData * param1);
 static void ov66_02230A9C(UnkStruct_ov66_02230A6C * param0, int param1, s32 param2);
 static BOOL ov66_02230AF8(UnkStruct_ov66_02230A6C * param0, s32 param1, s32 param2);
 static int ov66_02230B28(UnkStruct_ov66_02230A6C * param0);
@@ -417,7 +417,7 @@ static const UnkStruct_ov66_022589B4 Unk_ov66_022589B4[8] = {
     {ov66_022307B4, sizeof(u32)}
 };
 
-UnkStruct_ov66_0222DFF8 * ov66_0222DDF0 (UnkStruct_021C0794 * param0, u32 param1)
+UnkStruct_ov66_0222DFF8 * ov66_0222DDF0 (SaveData * param0, u32 param1)
 {
     UnkStruct_ov66_0222DFF8 * v0;
 
@@ -607,7 +607,7 @@ BOOL ov66_0222E09C (UnkStruct_ov66_0222DFF8 * param0, u32 param1)
     return 0;
 }
 
-UnkStruct_021C0794 * ov66_0222E0C4 (UnkStruct_ov66_0222DFF8 * param0)
+SaveData * ov66_0222E0C4 (UnkStruct_ov66_0222DFF8 * param0)
 {
     return param0->unk_00;
 }
@@ -2311,7 +2311,7 @@ static void ov66_0222F768 (UnkStruct_ov66_0222DFF8 * param0)
     }
 }
 
-static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, UnkStruct_021C0794 * param1, u32 param2)
+static void ov66_0222F7C8 (UnkStruct_ov66_0222F6C4 * param0, SaveData * param1, u32 param2)
 {
     TrainerInfo * v0;
     Party * v1;
@@ -2416,12 +2416,12 @@ static void ov66_0222F964 (UnkStruct_ov66_0222DFF8 * param0)
     ov66_0222F9EC(&param0->unk_108, param0->unk_00);
 }
 
-static void ov66_0222F9EC (UnkStruct_ov66_0222F6C4 * param0, const UnkStruct_021C0794 * param1)
+static void ov66_0222F9EC (UnkStruct_ov66_0222F6C4 * param0, const SaveData * param1)
 {
     param0->unk_B4 = sub_0202486C(param1, &param0->unk_20, sizeof(UnkStruct_ov66_0222E71C));
 }
 
-static BOOL ov66_0222FA04 (const UnkStruct_ov66_0222F6C4 * param0, const UnkStruct_021C0794 * param1)
+static BOOL ov66_0222FA04 (const UnkStruct_ov66_0222F6C4 * param0, const SaveData * param1)
 {
     u32 v0;
 
@@ -3607,7 +3607,7 @@ static int ov66_02230A68 (const UnkStruct_ov66_022309A4 * param0)
     return param0->unk_14;
 }
 
-static void ov66_02230A6C (UnkStruct_ov66_02230A6C * param0, const UnkStruct_021C0794 * param1)
+static void ov66_02230A6C (UnkStruct_ov66_02230A6C * param0, const SaveData * param1)
 {
     int v0;
 

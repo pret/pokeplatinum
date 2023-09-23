@@ -231,7 +231,7 @@ BOOL ov19_021DBBA0 (UnkStruct_ov19_021DBA9C * param0)
 
 void ov19_021DBBA8 (UnkStruct_ov19_021DBA9C * param0, u32 param1, u32 param2, NNS_G2D_VRAM_TYPE param3, NNSG2dImageProxy * param4)
 {
-    const UnkStruct_020797DC * v0;
+    const PSSBoxes * v0;
     BoxPokemon * v1;
     u32 v2, v3, v4, v5;
     u8 v6, v7;
@@ -416,7 +416,7 @@ static void ov19_021DBF18 (UnkStruct_ov19_021DBA9C * param0)
 
 static void ov19_021DBF4C (UnkStruct_ov19_021DBA9C * param0)
 {
-    const UnkStruct_020797DC * v0;
+    const PSSBoxes * v0;
     UnkStruct_0205AA50 * v1;
     u32 v2, v3;
 

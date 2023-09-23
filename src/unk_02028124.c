@@ -87,7 +87,7 @@ void sub_020281A0 (UnkStruct_0202818C * param0, UnkStruct_0202818C * param1)
     MI_CpuCopy8(param0, param1, sizeof(UnkStruct_0202818C));
 }
 
-void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_021C0794 * param3)
+void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, SaveData * param3)
 {
     u8 v0, v1, v2, v3;
     u16 v4;
@@ -234,7 +234,7 @@ void sub_0202841C (UnkStruct_0202818C * param0, UnkStruct_02014A84 * param1, u8 
     sub_02014CC0(&param0->unk_20[param2], param1);
 }
 
-UnkStruct_02028430 * sub_02028430 (UnkStruct_021C0794 * param0)
+UnkStruct_02028430 * sub_02028430 (SaveData * param0)
 {
     return sub_020245BC(param0, 15);
 }

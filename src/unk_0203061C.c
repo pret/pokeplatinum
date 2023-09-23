@@ -34,7 +34,7 @@ void sub_02030624 (UnkStruct_0203068C * param0)
     return;
 }
 
-UnkStruct_0203068C * sub_0203068C (UnkStruct_021C0794 * param0)
+UnkStruct_0203068C * sub_0203068C (SaveData * param0)
 {
     return sub_020245BC(param0, 23);
 }

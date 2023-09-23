@@ -753,7 +753,7 @@ static BOOL sub_02046A4C(UnkStruct_0203E724 * param0);
 static BOOL sub_02040F0C(UnkStruct_0203E724 * param0);
 static void sub_02040F28(UnkStruct_0203CDB0 * param0, UnkStruct_0201CD38 * param1, UnkStruct_ov5_021F8E3C * param2);
 static void sub_02040F5C(UnkStruct_0201CD38 * param0, void * param1);
-static u32 sub_0204676C(UnkStruct_021C0794 * param0);
+static u32 sub_0204676C(SaveData * param0);
 
 static const u8 Unk_020EABA6[6][3] = {
     {0x1, 0x0, 0x0},
@@ -4478,7 +4478,7 @@ static BOOL sub_02042524 (UnkStruct_0203E724 * param0)
 {
     u16 * v0;
     int v1;
-    UnkStruct_0202DF8C * v2;
+    HallOfFame * v2;
 
     v2 = sub_0202444C(param0->unk_34->unk_0C, 4, &v1);
     v0 = inline_0204FCAC(param0);
@@ -5258,7 +5258,7 @@ static BOOL sub_020434D0 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020434EC (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_021C0794 * v0 = param0->unk_34->unk_0C;
+    SaveData * v0 = param0->unk_34->unk_0C;
     u16 * v1 = inline_0204FCAC(param0);
 
     if (sub_020247E0(v0)) {
@@ -6508,7 +6508,7 @@ static BOOL sub_02044A50 (UnkStruct_0203E724 * param0)
     u16 * v1;
     UnkStruct_0203A790 * v2 = sub_0203A790(param0->unk_34->unk_0C);
     UnkStruct_020507E4 * v3 = sub_020507E4(param0->unk_34->unk_0C);
-    UnkStruct_0202440C * v4 = sub_0202440C(param0->unk_34->unk_0C);
+    TVBroadcast * v4 = sub_0202440C(param0->unk_34->unk_0C);
     int v5 = (*((param0)->unk_08++));
 
     v0 = sub_0203A784(v2);
@@ -6823,7 +6823,7 @@ static BOOL sub_02045068 (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     TrainerInfo * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 * v2 = inline_0204FCAC(param0);
-    UnkStruct_020797DC * v3 = sub_02024420(v0->unk_0C);
+    PSSBoxes * v3 = sub_02024420(v0->unk_0C);
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);
@@ -6850,7 +6850,7 @@ static BOOL sub_02045068 (UnkStruct_0203E724 * param0)
 static BOOL sub_02045134 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_021C0794 * v1 = v0->unk_0C;
+    SaveData * v1 = v0->unk_0C;
     UnkStruct_0202855C * v2;
     u16 * v3 = inline_0204FCAC(param0);
 
@@ -7286,7 +7286,7 @@ static BOOL sub_02045840 (UnkStruct_0203E724 * param0)
 static BOOL sub_02045850 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_021C0794 * v1 = v0->unk_0C;
+    SaveData * v1 = v0->unk_0C;
 
     sub_0206B334(v1);
     return 0;
@@ -7576,7 +7576,7 @@ static BOOL sub_02045C10 (UnkStruct_0203E724 * param0)
 static BOOL sub_02045C50 (UnkStruct_0203E724 * param0)
 {
     int v0;
-    const UnkStruct_0202DF8C * v1;
+    const HallOfFame * v1;
     u16 * v2 = inline_0204FCAC(param0);
 
     v1 = sub_0202444C(param0->unk_34->unk_0C, 32, &v0);
@@ -8277,7 +8277,7 @@ static BOOL sub_020466A4 (UnkStruct_0203E724 * param0)
     return 1;
 }
 
-static u32 sub_0204676C (UnkStruct_021C0794 * param0)
+static u32 sub_0204676C (SaveData * param0)
 {
     int v0;
     Pokemon * v1;
@@ -8319,7 +8319,7 @@ static u32 sub_0204676C (UnkStruct_021C0794 * param0)
     }
 
     {
-        UnkStruct_020797DC * v8;
+        PSSBoxes * v8;
         u32 v9;
 
         v8 = sub_02024420(param0);

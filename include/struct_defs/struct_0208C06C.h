@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_ov62_02230C28 unk_6F8[6];
     const UnkStruct_020F3DCC * unk_818;
     const UnkStruct_020F3DCC * unk_81C[5];
-    UnkStruct_021C0794 * unk_830;
+    SaveData * unk_830;
     u16 unk_834;
     u16 unk_836;
     UnkStruct_0208C06C_sub1 unk_838;

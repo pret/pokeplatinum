@@ -7,7 +7,7 @@
 UnkStruct_020279FC * sub_020279FC(u32 param0);
 void sub_02027A10(const UnkStruct_020279FC * param0, UnkStruct_020279FC * param1);
 void sub_02027A1C(UnkStruct_020279FC * param0);
-void sub_02027A68(UnkStruct_021C0794 * param0, int param1);
+void sub_02027A68(SaveData * param0, int param1);
 int sub_02027AA4(const UnkStruct_020279FC * param0);
 void sub_02027AAC(UnkStruct_020279FC * param0, int param1);
 u8 sub_02027AC0(const UnkStruct_020279FC * param0);

@@ -25,7 +25,7 @@ u8 Poffin_GetAttribute(Poffin * poffin, PoffinAttributeID attributeID);
 int sub_0202A9E4(Poffin * poffin, u8 * param1, u8 param2, BOOL isFoul);
 void Poffin_StoreAttributesToArray(Poffin * poffin, u8 * dest);
 u8 Poffin_CalcLevel(Poffin * poffin);
-UnkStruct_0202AB28 * Poffin_GetSavedataBlock(UnkStruct_021C0794 * savedata);
+UnkStruct_0202AB28 * Poffin_GetSavedataBlock(SaveData * savedata);
 int Poffin_GetSizeOfSavedataBlock(void);
 void sub_0202AB3C(UnkStruct_0202AB28 * param0);
 u16 sub_0202AB54(UnkStruct_0202AB28 * param0);

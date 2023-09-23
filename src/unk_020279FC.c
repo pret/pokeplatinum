@@ -38,7 +38,7 @@ void sub_02027A1C (UnkStruct_020279FC * param0)
     param0->unk_02_2 = 0;
 }
 
-void sub_02027A68 (UnkStruct_021C0794 * param0, int param1)
+void sub_02027A68 (SaveData * param0, int param1)
 {
     UnkStruct_020279FC * v0;
 

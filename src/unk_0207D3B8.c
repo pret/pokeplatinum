@@ -474,7 +474,7 @@ BagItem * sub_0207D910 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2)
     return &v0[param2];
 }
 
-UnkStruct_0207D3C0 * sub_0207D990 (UnkStruct_021C0794 * param0)
+UnkStruct_0207D3C0 * sub_0207D990 (SaveData * param0)
 {
     UnkStruct_0207D3C0 * v0;
 

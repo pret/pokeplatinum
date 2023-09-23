@@ -724,7 +724,7 @@ static void sub_0205A058 (void)
     sub_020598EC(sub_020596BC, 0);
 }
 
-UnkStruct_02029894 * sub_0205A080 (UnkStruct_021C0794 * param0)
+UnkStruct_02029894 * sub_0205A080 (SaveData * param0)
 {
     if (!Unk_021C084C || !Unk_021C084C->unk_41) {
         return NULL;

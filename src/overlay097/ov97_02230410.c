@@ -92,8 +92,8 @@ typedef struct {
     int unk_2BA8[20];
     int unk_2BF8;
     void * unk_2BFC;
-    UnkStruct_0202442C * unk_2C00;
-    UnkStruct_021C0794 * unk_2C04;
+    MysteryGift * unk_2C00;
+    SaveData * unk_2C04;
     UnkStruct_020279FC * unk_2C08;
     int unk_2C0C;
     int unk_2C10;
@@ -149,7 +149,7 @@ typedef struct {
 } UnkStruct_ov97_0223E680;
 
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 * param1, u32 param2);
-UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
+MysteryGift * sub_0202442C(SaveData * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 static int ov97_02230728(UnkStruct_020067E8 * param0);
 static int ov97_022306F4(UnkStruct_020067E8 * param0);

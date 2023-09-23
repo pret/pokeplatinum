@@ -51,7 +51,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_10;
     UnkStruct_0205AA50 unk_20;
     UnkStruct_0203CDB0 * unk_30;
-    UnkStruct_021C0794 * unk_34;
+    SaveData * unk_34;
     UnkStruct_0200B358 * unk_38;
     MessageLoader * unk_3C;
     int unk_40;

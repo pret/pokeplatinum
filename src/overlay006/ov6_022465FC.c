@@ -41,14 +41,14 @@ static const UnkStruct_ov6_02249470 Unk_ov6_02249470[] = {
 
 void ov6_022465FC (UnkStruct_0203CDB0 * param0)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v0 = sub_0202440C(param0->unk_0C);
     sub_0202E374(v0, 1);
 }
 
 int ov6_0224660C (UnkStruct_0203CDB0 * param0)
 {
     int v0;
-    UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v1 = sub_0202440C(param0->unk_0C);
 
     if (sub_0202E380(v1) == 1) {
         return 0;
@@ -114,7 +114,7 @@ static void ov6_022466EC (int param0, UnkStruct_0203CDB0 * param1, u8 * param2)
 {
     u8 v0[11];
     int v1, v2;
-    UnkStruct_0202440C * v3 = sub_0202440C(param1->unk_0C);
+    TVBroadcast * v3 = sub_0202440C(param1->unk_0C);
 
     ov6_022466C8(param0, v0);
     MI_CpuClear8(param2, sizeof(u8) * 11);
@@ -154,7 +154,7 @@ static int ov6_0224673C (UnkStruct_0203CDB0 * param0, const u8 * param1)
     return v0[MTRNG_Next() % v2];
 }
 
-static int ov6_0224678C (UnkStruct_0202440C * param0, int param1, int param2, BOOL param3, BOOL param4, u8 * param5)
+static int ov6_0224678C (TVBroadcast * param0, int param1, int param2, BOOL param3, BOOL param4, u8 * param5)
 {
     if ((param1 != 4) && (param1 != 5)) {
         return sub_0202E614(param0, param1, param2, param3, param4, param5);
@@ -179,7 +179,7 @@ static int ov6_0224678C (UnkStruct_0202440C * param0, int param1, int param2, BO
 static int ov6_022467DC (int param0, UnkStruct_0203CDB0 * param1, BOOL param2, BOOL param3, const u8 * param4, u8 * param5)
 {
     u8 v0[16];
-    UnkStruct_0202440C * v1 = sub_0202440C(param1->unk_0C);
+    TVBroadcast * v1 = sub_0202440C(param1->unk_0C);
     int v2, v3;
     int v4 = 0;
 
@@ -217,7 +217,7 @@ static void ov6_02246844 (UnkStruct_0203CDB0 * param0, int param1, u8 * param2)
 
 static void ov6_02246884 (UnkStruct_0203CDB0 * param0, u8 * param1)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v0 = sub_0202440C(param0->unk_0C);
 
     while (*param1 != 0) {
         if (sub_0202E3C4(v0, *param1)) {
@@ -294,7 +294,7 @@ static const UnkStruct_ov6_02249470 * ov6_02246958 (UnkStruct_0203CDB0 * param0)
 
 int ov6_02246978 (UnkStruct_0203CDB0 * param0, int param1)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v0 = sub_0202440C(param0->unk_0C);
     const UnkStruct_ov6_02249470 * v1 = ov6_02246958(param0);
 
     switch (param1) {
@@ -326,7 +326,7 @@ BOOL ov6_022469E0 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1, int
 {
     int v0 = ov6_0224663C(param0);
     int v1 = ov6_0224669C(v0);
-    UnkStruct_0202440C * v2 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v2 = sub_0202440C(param0->unk_0C);
     UnkStruct_ov6_022465F4 * v3;
 
     sub_0202E384(v2, param2);

@@ -386,7 +386,7 @@ UnkStruct_02018340 * sub_0203D170 (void * param0)
     return v0->unk_08;
 }
 
-UnkStruct_021C0794 * sub_0203D174 (void * param0)
+SaveData * sub_0203D174 (void * param0)
 {
     return ((UnkStruct_0203CDB0 *)param0)->unk_0C;
 }

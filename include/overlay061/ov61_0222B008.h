@@ -13,7 +13,7 @@ int ov61_0222B008(UnkStruct_ov62_022349A8 * param0, const UnkStruct_ov62_0224113
 void ov61_0222B0F0(UnkStruct_ov62_022349A8 * param0);
 int ov61_0222B1B4(UnkStruct_ov62_022349A8 * param0, UnkStruct_02030A80 * param1, UnkStruct_02029C68 * param2);
 int ov61_0222B1FC(UnkStruct_ov62_022349A8 * param0, int param1);
-int ov61_0222B224(UnkStruct_ov62_022349A8 * param0, int param1, UnkStruct_02030A80 * param2, const UnkStruct_020797DC * param3, int param4);
+int ov61_0222B224(UnkStruct_ov62_022349A8 * param0, int param1, UnkStruct_02030A80 * param2, const PSSBoxes * param3, int param4);
 int ov61_0222B290(UnkStruct_ov62_022349A8 * param0, int param1);
 int ov61_0222B2B8(UnkStruct_ov62_022349A8 * param0);
 int ov61_0222B2D8(UnkStruct_ov62_022349A8 * param0, UnkStruct_02030A80 * param1, UnkStruct_ov61_0222B2D8 param2[]);

@@ -7,8 +7,8 @@
 
 int sub_02025CB0(void);
 void sub_02025CB4(UnkStruct_02025CCC * param0);
-UnkStruct_02025CCC * sub_02025CCC(UnkStruct_021C0794 * param0);
-UnkStruct_02055BA8 * sub_02025CD8(UnkStruct_021C0794 * param0);
+UnkStruct_02025CCC * sub_02025CCC(SaveData * param0);
+UnkStruct_02055BA8 * sub_02025CD8(SaveData * param0);
 void sub_02025CE4(UnkStruct_02025CCC * param0);
 BOOL sub_02025D10(const UnkStruct_02025CCC * param0);
 BOOL sub_02025D40(const UnkStruct_02025CCC * param0);

@@ -95,7 +95,7 @@ const UnkStruct_0208BE5C Unk_020F6890 = {
     0xFFFFFFFF
 };
 
-UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
+UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
 {
     UnkStruct_0203D9B8 * v0;
     Poffin * v1;

@@ -41,7 +41,7 @@
 #include "flags.h"
 #include "overlay104/ov104_0222DCE0.h"
 
-void ov104_0222E1C0(UnkStruct_021C0794 * param0, Party * param1, Pokemon * param2);
+void ov104_0222E1C0(SaveData * param0, Party * param1, Pokemon * param2);
 void ov104_0222E1D8(UnkStruct_02022550 * param0, u8 param1);
 void ov104_0222E204(UnkStruct_02022550 * param0, s16 param1, s16 param2, u8 param3);
 u8 ov104_0222E240(u16 param0, u16 param1);
@@ -349,9 +349,9 @@ u16 ov104_0222E10C (u8 param0)
     return 0x3;
 }
 
-void ov104_0222E134(UnkStruct_021C0794 * param0, Pokemon * param1);
+void ov104_0222E134(SaveData * param0, Pokemon * param1);
 
-void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
+void ov104_0222E134 (SaveData * param0, Pokemon * param1)
 {
     u32 v0;
     Strbuf* v1;
@@ -378,7 +378,7 @@ void ov104_0222E134 (UnkStruct_021C0794 * param0, Pokemon * param1)
     return;
 }
 
-void ov104_0222E1C0 (UnkStruct_021C0794 * param0, Party * param1, Pokemon * param2)
+void ov104_0222E1C0 (SaveData * param0, Party * param1, Pokemon * param2)
 {
     ov104_0222E134(param0, param2);
     Party_AddPokemon(param1, param2);
@@ -642,7 +642,7 @@ int ov104_0222E5F0 (const TrainerInfo * param0)
     return v1;
 }
 
-void ov104_0222E630 (UnkStruct_021C0794 * param0)
+void ov104_0222E630 (SaveData * param0)
 {
     UnkStruct_0202C878 * v0 = sub_0202C878(param0);
 

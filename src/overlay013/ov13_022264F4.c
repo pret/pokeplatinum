@@ -477,7 +477,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
 
         {
             Party * v7 = ov16_0223DF20(v0->unk_00, v0->unk_10);
-            UnkStruct_020797DC * v8 = ov16_0223E228(v0->unk_00);
+            PSSBoxes * v8 = ov16_0223E228(v0->unk_00);
 
             if ((Party_GetCurrentCount(v7) == 6) && (sub_020799A0(v8) == 18)) {
                 MessageLoader_GetStrbuf(param0->unk_10, 45, param0->unk_18);

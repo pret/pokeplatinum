@@ -24,7 +24,7 @@ void sub_0207D780(BagItem * param0, const u32 param1);
 void sub_0207D7CC(BagItem * param0, const u32 param1);
 void * sub_0207D824(UnkStruct_0207D3C0 * param0, const u8 * param1, u32 param2);
 BagItem * sub_0207D910(UnkStruct_0207D3C0 * param0, u16 param1, u16 param2);
-UnkStruct_0207D3C0 * sub_0207D990(UnkStruct_021C0794 * param0);
+UnkStruct_0207D3C0 * sub_0207D990(SaveData * param0);
 UnkStruct_0207D99C * sub_0207D99C(u32 param0);
 void sub_0207D9B4(UnkStruct_0207D99C * param0, u32 param1, u8 * param2, u8 * param3);
 u16 sub_0207D9C4(UnkStruct_0207D99C * param0);

@@ -61,7 +61,7 @@ int sub_0205E658(u8 param0);
 int sub_0205E680(u8 param0);
 int sub_0205E6A8(u32 param0);
 u8 sub_0205E6B8(void);
-u8 sub_0205E6D8(UnkStruct_021C0794 * param0);
+u8 sub_0205E6D8(SaveData * param0);
 int sub_0205E700(u8 param0);
 int sub_0205E728(u8 param0);
 int sub_0205E750(u8 param0);
@@ -241,7 +241,7 @@ u16 sub_0205E0E4 (u16 param0, u16 param1)
     }
 }
 
-u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
+u16 sub_0205E1B4 (SaveData * param0)
 {
     Pokemon * v0;
     u16 v1, v2;
@@ -259,7 +259,7 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     return 0;
 }
 
-BOOL HasAllLegendaryTitansInParty (UnkStruct_021C0794 * param0)
+BOOL HasAllLegendaryTitansInParty (SaveData * param0)
 {
     int v0, v1, v2, v3 = 0;
     Party * v4;
@@ -723,7 +723,7 @@ u8 sub_0205E6B8 (void)
     return TrainerInfo_GameCode(v0);
 }
 
-u8 sub_0205E6D8 (UnkStruct_021C0794 * param0)
+u8 sub_0205E6D8 (SaveData * param0)
 {
     if (TrainerInfo_GameCode(sub_02025E38(param0)) == 0) {
         return 1;

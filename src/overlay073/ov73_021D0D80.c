@@ -67,7 +67,7 @@ FS_EXTERN_OVERLAY(overlay57);
 
 typedef struct {
     int unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_020279FC * unk_08;
     int unk_0C;
     int unk_10;

@@ -63,7 +63,7 @@ typedef struct {
     UnkStruct_02097F38_sub1 * unk_04;
     UnkStruct_02097F18 * unk_08;
     UnkStruct_02098C44 * unk_0C;
-    UnkStruct_021C0794 * unk_10;
+    SaveData * unk_10;
     int unk_14;
 } UnkStruct_02097F38;
 
@@ -389,7 +389,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
         Pokemon * v8;
         UnkStruct_0202CA28 * v9;
         UnkStruct_0202CA64 * v10;
-        UnkStruct_0202440C * v11;
+        TVBroadcast * v11;
         int v12;
         int v13;
 
@@ -426,7 +426,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020980DC (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
+void sub_020980DC (UnkStruct_020508D4 * param0, SaveData * param1)
 {
     UnkStruct_02097F38 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
 

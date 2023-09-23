@@ -33,7 +33,7 @@ struct UnkStruct_0209747C_t {
     u16 unk_20[2];
 };
 
-UnkStruct_0209747C * sub_0209747C (u32 param0, u32 param1, UnkStruct_021C0794 * param2, u32 param3)
+UnkStruct_0209747C * sub_0209747C (u32 param0, u32 param1, SaveData * param2, u32 param3)
 {
     UnkStruct_0209747C * v0 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_0209747C));
 

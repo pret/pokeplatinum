@@ -7,7 +7,7 @@
 int sub_0202CC64(void);
 void sub_0202CC6C(UnkStruct_0202CC84 * param0);
 UnkStruct_0202CC84 * sub_0202CC84(int param0);
-UnkStruct_0202CC84 * sub_0202CC98(UnkStruct_021C0794 * param0);
+UnkStruct_0202CC84 * sub_0202CC98(SaveData * param0);
 BOOL sub_0202CCA4(const UnkStruct_0202CC84 * param0);
 void sub_0202CCA8(UnkStruct_0202CC84 * param0);
 const void * sub_0202CCB0(const UnkStruct_0202CC84 * param0);

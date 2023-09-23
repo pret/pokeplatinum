@@ -363,7 +363,7 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 typedef struct {
     int unk_00;
     UnkStruct_02018340 * unk_04;
-    UnkStruct_021C0794 * unk_08;
+    SaveData * unk_08;
     UnkStruct_02026324 * unk_0C;
     TrainerInfo * unk_10;
     UnkStruct_020279FC * unk_14;
@@ -386,7 +386,7 @@ typedef struct {
     u8 unk_16C[12288];
     UnkStruct_020067E8 * unk_316C;
     UnkStruct_02022550 * unk_3170;
-    UnkStruct_0202442C * unk_3174;
+    MysteryGift * unk_3174;
     int unk_3178;
     int unk_317C;
     UnkStruct_0202DBAC unk_3180;
@@ -448,7 +448,7 @@ enum {
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 * param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 * param0);
-UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
+MysteryGift * sub_0202442C(SaveData * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 
 static u16 ov97_0222C174 (u16 param0)

@@ -6,7 +6,7 @@
 
 int sub_0203061C(void);
 void sub_02030624(UnkStruct_0203068C * param0);
-UnkStruct_0203068C * sub_0203068C(UnkStruct_021C0794 * param0);
+UnkStruct_0203068C * sub_0203068C(SaveData * param0);
 u16 sub_02030698(UnkStruct_0203068C * param0, int param1, int param2);
 u16 sub_020306E4(UnkStruct_0203068C * param0, int param1, int param2, u16 param3);
 void sub_02030764(UnkStruct_0203068C * param0);

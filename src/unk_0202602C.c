@@ -100,7 +100,7 @@ int sub_02026074 (const UnkStruct_0202610C * param0, int param1)
     return v0;
 }
 
-UnkStruct_0202610C * sub_0202610C (UnkStruct_021C0794 * param0, int param1)
+UnkStruct_0202610C * sub_0202610C (SaveData * param0, int param1)
 {
     UnkStruct_02026030 * v0 = NULL;
 
@@ -114,7 +114,7 @@ UnkStruct_0202610C * sub_0202610C (UnkStruct_021C0794 * param0, int param1)
     return NULL;
 }
 
-void sub_0202613C (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param1)
+void sub_0202613C (SaveData * param0, const UnkStruct_0202610C * param1)
 {
     UnkStruct_02026030 * v0 = NULL;
 

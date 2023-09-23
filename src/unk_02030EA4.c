@@ -22,7 +22,7 @@ void sub_02030EA8 (UnkStruct_02030EC4 * param0)
     param0->unk_00 = 0xffffffff;
 }
 
-UnkStruct_02030EC4 * sub_02030EC4 (UnkStruct_021C0794 * param0)
+UnkStruct_02030EC4 * sub_02030EC4 (SaveData * param0)
 {
     UnkStruct_02030EC4 * v0;
 

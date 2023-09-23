@@ -95,11 +95,11 @@ typedef struct {
 
 typedef struct {
     UnkStruct_02018340 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_02026324 * unk_08;
     TrainerInfo * unk_0C;
     UnkStruct_02025E5C * unk_10;
-    UnkStruct_0202442C * unk_14;
+    MysteryGift * unk_14;
     int unk_18;
     int unk_1C;
     int unk_20;
@@ -144,7 +144,7 @@ static BOOL ov97_0222B8E4(void * param0, int param1, UnkStruct_ov97_02237808 * p
 static BOOL ov97_0222B934(void * param0, int param1, UnkStruct_ov97_02237808 * param2, int param3);
 static BOOL ov97_0222B978(void * param0, int param1, UnkStruct_ov97_02237808 * param2, int param3);
 static BOOL ov97_0222B5C0(void * param0, int param1, UnkStruct_ov97_02237808 * param2, int param3);
-UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
+MysteryGift * sub_0202442C(SaveData * param0);
 int ov23_0224AC0C(void);
 int TrainerInfo_Size(void);
 

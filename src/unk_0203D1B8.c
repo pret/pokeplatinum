@@ -238,7 +238,7 @@ typedef struct {
 } UnkStruct_0203E35C;
 
 static void sub_0203DF68(UnkStruct_020508D4 * param0);
-static u8 sub_0203E484(UnkStruct_021C0794 * param0, u8 param1);
+static u8 sub_0203E484(SaveData * param0, u8 param1);
 
 static int sub_0203D1B8 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -591,7 +591,7 @@ void * sub_0203D644 (UnkStruct_0203CDB0 * param0, int param1)
 UnkStruct_02098D38 * sub_0203D670 (UnkStruct_0203CDB0 * param0, int param1, int param2)
 {
     UnkStruct_02098D38 * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
@@ -871,7 +871,7 @@ void sub_0203D9D8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov90_021D0D80 * param1
     sub_0203CD84(param0, &v0, param1);
 }
 
-static UnkStruct_0203DA00 * sub_0203DA00 (int param0, UnkStruct_021C0794 * param1, int param2, BOOL * param3, BOOL param4)
+static UnkStruct_0203DA00 * sub_0203DA00 (int param0, SaveData * param1, int param2, BOOL * param3, BOOL param4)
 {
     UnkStruct_0203DA00 * v0;
     Pokemon * v1;
@@ -930,7 +930,7 @@ static BOOL sub_0203DA64 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_0203DAC0 (UnkStruct_020508D4 * param0, u16 * param1, UnkStruct_021C0794 * param2, u16 param3, u16 param4)
+void sub_0203DAC0 (UnkStruct_020508D4 * param0, u16 * param1, SaveData * param2, u16 param3, u16 param4)
 {
     UnkStruct_0203DA64 * v0;
 
@@ -1186,12 +1186,12 @@ const UnkStruct_0208BE5C Unk_020EA238 = {
     FS_OVERLAY_ID(overlay64)
 };
 
-void sub_0203DE78 (UnkStruct_0203CDB0 * param0, UnkStruct_021C0794 * param1)
+void sub_0203DE78 (UnkStruct_0203CDB0 * param0, SaveData * param1)
 {
     sub_0203CD84(param0, &Unk_020EA238, param1);
 }
 
-void sub_0203DE88 (UnkStruct_0203CDB0 * param0, UnkStruct_021C0794 * param1)
+void sub_0203DE88 (UnkStruct_0203CDB0 * param0, SaveData * param1)
 {
     sub_0203CD84(param0, &Unk_020F2FCC, param0);
 }
@@ -1479,7 +1479,7 @@ void * sub_0203E244 (UnkStruct_0203CDB0 * param0)
     static const UnkStruct_0208BE5C v0 = {
         ov87_021D0D80, ov87_021D0E2C, ov87_021D0DFC, FS_OVERLAY_ID(overlay87),
     };
-    UnkStruct_0202DF8C * v1;
+    HallOfFame * v1;
     int v2;
 
     v1 = sub_0202444C(param0->unk_0C, 11, &v2);
@@ -1632,7 +1632,7 @@ void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
     sub_02050944(param0, sub_0203E35C, v2);
 }
 
-static u8 sub_0203E484 (UnkStruct_021C0794 * param0, u8 param1)
+static u8 sub_0203E484 (SaveData * param0, u8 param1)
 {
     static const u8 v0[12] = {
         0, 5, 1, 1, 4, 4, 2, 2, 2, 3, 3, 3,

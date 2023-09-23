@@ -17,19 +17,19 @@
 #include "pokemon.h"
 #include "party.h"
 
-static int inline inline_0202E1A8(const UnkStruct_0202DF8C * param0, int param1);
+static int inline inline_0202E1A8(const HallOfFame * param0, int param1);
 
 int sub_0202DF8C (void)
 {
-    return sizeof(UnkStruct_0202DF8C);
+    return sizeof(HallOfFame);
 }
 
-void sub_0202DF94 (UnkStruct_0202DF8C * param0)
+void sub_0202DF94 (HallOfFame * param0)
 {
-    MI_CpuClear32(param0, sizeof(UnkStruct_0202DF8C));
+    MI_CpuClear32(param0, sizeof(HallOfFame));
 }
 
-void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCDate * param2)
+void sub_0202DFA8 (HallOfFame * param0, const Party * param1, const RTCDate * param2)
 {
     UnkStruct_0202DFA8 * v0;
     Pokemon * v1;
@@ -97,7 +97,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
     }
 }
 
-u32 sub_0202E148 (const UnkStruct_0202DF8C * param0)
+u32 sub_0202E148 (const HallOfFame * param0)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -109,7 +109,7 @@ u32 sub_0202E148 (const UnkStruct_0202DF8C * param0)
     return param0->unk_2AAC;
 }
 
-u32 sub_0202E174 (const UnkStruct_0202DF8C * param0, int param1)
+u32 sub_0202E174 (const HallOfFame * param0, int param1)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -118,7 +118,7 @@ u32 sub_0202E174 (const UnkStruct_0202DF8C * param0, int param1)
     return param0->unk_2AAC - param1;
 }
 
-u32 sub_0202E1A8 (const UnkStruct_0202DF8C * param0, int param1)
+u32 sub_0202E1A8 (const HallOfFame * param0, int param1)
 {
     u32 v0;
 
@@ -137,7 +137,7 @@ u32 sub_0202E1A8 (const UnkStruct_0202DF8C * param0, int param1)
     return v0;
 }
 
-void sub_0202E1F4 (const UnkStruct_0202DF8C * param0, int param1, int param2, UnkStruct_ov87_021D1640 * param3)
+void sub_0202E1F4 (const HallOfFame * param0, int param1, int param2, UnkStruct_ov87_021D1640 * param3)
 {
     const UnkStruct_0202E1F4 * v0;
     int v1;
@@ -163,7 +163,7 @@ void sub_0202E1F4 (const UnkStruct_0202DF8C * param0, int param1, int param2, Un
     }
 }
 
-void sub_0202E274 (const UnkStruct_0202DF8C * param0, int param1, RTCDate * param2)
+void sub_0202E274 (const HallOfFame * param0, int param1, RTCDate * param2)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -177,7 +177,7 @@ void sub_0202E274 (const UnkStruct_0202DF8C * param0, int param1, RTCDate * para
     param2->week = 0;
 }
 
-static int inline inline_0202E1A8 (const UnkStruct_0202DF8C * param0, int param1)
+static int inline inline_0202E1A8 (const HallOfFame * param0, int param1)
 {
     int v0 = (param0->unk_2AA8 - 1 - param1);
 

@@ -377,7 +377,7 @@ void sub_0202B270 (UnkStruct_0202B370 * param0, int param1, int param2)
     param0->unk_1C0[param1].unk_2E = 2;
 }
 
-UnkStruct_0202B370 * sub_0202B370 (UnkStruct_021C0794 * param0)
+UnkStruct_0202B370 * sub_0202B370 (SaveData * param0)
 {
     UnkStruct_0202B370 * v0;
 

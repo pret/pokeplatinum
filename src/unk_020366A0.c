@@ -35,7 +35,7 @@ typedef struct {
     u8 unk_04[6];
     MATHRandContext32 unk_0C;
     UnkFuncPtr_02036C94 unk_24;
-    UnkStruct_021C0794 * unk_28;
+    SaveData * unk_28;
     TrainerInfo * unk_2C;
     const UnkStruct_0202610C * unk_30;
     UnkStruct_ov65_0222F6EC unk_34;
@@ -146,7 +146,7 @@ static u8 Unk_02100A20[] = {"FREAK"};
 static u8 Unk_02100A30[] = {" GAME"};
 static u8 Unk_02100A28[] = {" FULL"};
 
-static void sub_020366A0 (UnkStruct_021C0794 * param0, int param1)
+static void sub_020366A0 (SaveData * param0, int param1)
 {
     void * v0;
 
@@ -210,7 +210,7 @@ BOOL sub_02036780 (void)
     return 0;
 }
 
-void sub_02036794 (UnkStruct_021C0794 * param0)
+void sub_02036794 (SaveData * param0)
 {
     if (Unk_021C07D4 != NULL) {
         return;
@@ -288,7 +288,7 @@ void sub_020368A4 (void)
     sub_02036C94(sub_02037108, 0);
 }
 
-void sub_020368B8 (UnkStruct_021C0794 * param0, int param1, int param2, const UnkStruct_0202610C * param3, BOOL param4)
+void sub_020368B8 (SaveData * param0, int param1, int param2, const UnkStruct_0202610C * param3, BOOL param4)
 {
     if (sub_02035E38()) {
         return;
@@ -303,7 +303,7 @@ void sub_020368B8 (UnkStruct_021C0794 * param0, int param1, int param2, const Un
     sub_02036C94(sub_02037144, 0);
 }
 
-void sub_02036900 (UnkStruct_021C0794 * param0, int param1, int param2, const UnkStruct_0202610C * param3, BOOL param4)
+void sub_02036900 (SaveData * param0, int param1, int param2, const UnkStruct_0202610C * param3, BOOL param4)
 {
     if (sub_02035E38()) {
         return;
@@ -365,7 +365,7 @@ BOOL sub_0203699C (void)
     return 0;
 }
 
-void sub_020369EC (UnkStruct_021C0794 * param0)
+void sub_020369EC (SaveData * param0)
 {
     if (Unk_021C07D4 != NULL) {
         return;
@@ -512,7 +512,7 @@ void sub_02036BD8 (void)
     Unk_021C07D4->unk_4A = 9;
 }
 
-void sub_02036BE8 (UnkStruct_021C0794 * param0, int param1)
+void sub_02036BE8 (SaveData * param0, int param1)
 {
     if (sub_02035E38()) {
         return;
@@ -523,7 +523,7 @@ void sub_02036BE8 (UnkStruct_021C0794 * param0, int param1)
     sub_02036C94(sub_02037E20, 0);
 }
 
-void sub_02036C1C (UnkStruct_021C0794 * param0, int param1)
+void sub_02036C1C (SaveData * param0, int param1)
 {
     if (sub_02035E38()) {
         return;
@@ -1522,7 +1522,7 @@ static void sub_02037B78 (void)
     }
 }
 
-void sub_02037BC0 (UnkStruct_021C0794 * param0)
+void sub_02037BC0 (SaveData * param0)
 {
     if (sub_02035E38()) {
         return;
@@ -1606,7 +1606,7 @@ static void sub_02037D08 (void)
     sub_02036C94(sub_02037CE4, 0);
 }
 
-void sub_02037D48 (UnkStruct_021C0794 * param0)
+void sub_02037D48 (SaveData * param0)
 {
     if (sub_02035E38()) {
         return;
@@ -2065,7 +2065,7 @@ BOOL sub_020383E8 (void)
     return 0;
 }
 
-void sub_02038438 (UnkStruct_021C0794 * param0)
+void sub_02038438 (SaveData * param0)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(3, 15, 0x100);
@@ -2090,7 +2090,7 @@ void sub_0203848C (void)
     }
 }
 
-void sub_020384C0 (UnkStruct_021C0794 * param0)
+void sub_020384C0 (SaveData * param0)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(3, 15, 0x100);
@@ -2115,7 +2115,7 @@ void sub_02038514 (void)
     }
 }
 
-void sub_02038548 (UnkStruct_021C0794 * param0)
+void sub_02038548 (SaveData * param0)
 {
     if (!Unk_021C07D4) {
         Heap_CreateAtEnd(3, 15, 0x100);
@@ -2222,7 +2222,7 @@ static void sub_020386B4 (void)
     }
 }
 
-void * sub_0203871C (UnkStruct_021C0794 * param0, int param1)
+void * sub_0203871C (SaveData * param0, int param1)
 {
     TrainerInfo * v0 = sub_02025E38(param0);
 
@@ -2244,7 +2244,7 @@ void * sub_0203871C (UnkStruct_021C0794 * param0, int param1)
     return Unk_021C07D4->unk_00;
 }
 
-void sub_0203878C (UnkStruct_021C0794 * param0, const void * param1)
+void sub_0203878C (SaveData * param0, const void * param1)
 {
     TrainerInfo * v0 = sub_02025E38(param0);
 

@@ -68,7 +68,7 @@ typedef struct {
 static int sub_0206B9D8 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1, int param2)
 {
     u8 v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     UnkStruct_02098C44 * v2 = Heap_AllocFromHeapAtEnd(param2, sizeof(UnkStruct_02098C44));
 
     v1 = param1->unk_0C;
@@ -127,7 +127,7 @@ static int sub_0206BA84 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param
 static int sub_0206BAE0 (UnkStruct_0206B9D8 * param0, UnkStruct_0203CDB0 * param1, int param2)
 {
     UnkStruct_02098D38 * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
@@ -217,7 +217,7 @@ void sub_0206BBFC (UnkStruct_020508D4 * param0, void ** param1, u8 param2, u8 pa
 
 static int sub_0206BC48 (UnkStruct_0206BC48 * param0, UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_021C0794 * v0;
+    SaveData * v0;
 
     if (sub_02039074(param1->unk_0C)) {
         param0->unk_08 = sub_0203E1AC(param1, param0->unk_12, param0->unk_14);
@@ -323,7 +323,7 @@ void sub_0206BD88 (UnkStruct_020508D4 * param0, u16 param1, u16 param2)
     sub_02050944(v0->unk_10, sub_0206BD1C, v1);
 }
 
-u16 sub_0206BDBC (UnkStruct_021C0794 * param0)
+u16 sub_0206BDBC (SaveData * param0)
 {
     UnkStruct_0203068C * v0;
     UnkStruct_0202D750 * v1;
@@ -398,7 +398,7 @@ u16 sub_0206BDBC (UnkStruct_021C0794 * param0)
     }
 }
 
-u16 sub_0206BF04 (UnkStruct_021C0794 * param0)
+u16 sub_0206BF04 (SaveData * param0)
 {
     UnkStruct_0203068C * v0;
     UnkStruct_0202D750 * v1;
@@ -469,7 +469,7 @@ u32 sub_0206BFFC (u32 param0)
     return param0 * 1566083941 + 1;
 }
 
-u32 sub_0206C008 (UnkStruct_021C0794 * param0)
+u32 sub_0206C008 (SaveData * param0)
 {
     u32 v0;
 
@@ -481,7 +481,7 @@ u32 sub_0206C008 (UnkStruct_021C0794 * param0)
     return v0;
 }
 
-u32 sub_0206C02C (UnkStruct_021C0794 * param0)
+u32 sub_0206C02C (SaveData * param0)
 {
     u32 v0, v1;
     UnkStruct_0202D750 * v2 = sub_0202D750(param0);
@@ -496,7 +496,7 @@ u32 sub_0206C02C (UnkStruct_021C0794 * param0)
     return v0;
 }
 
-u32 sub_0206C068 (UnkStruct_021C0794 * param0)
+u32 sub_0206C068 (SaveData * param0)
 {
     int v0, v1;
     u32 v2, v3;

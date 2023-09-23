@@ -29,7 +29,7 @@ void sub_0202CA10 (const UnkStruct_0202CA28 * param0, UnkStruct_0202CA28 * param
     MI_CpuCopy8(param0, param1, sizeof(UnkStruct_0202CA28));
 }
 
-UnkStruct_0202CA1C * sub_0202CA1C (UnkStruct_021C0794 * param0)
+UnkStruct_0202CA1C * sub_0202CA1C (SaveData * param0)
 {
     UnkStruct_0202CA1C * v0 = NULL;
 

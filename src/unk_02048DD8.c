@@ -212,7 +212,7 @@ BOOL sub_020490F0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_0204912C (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_34->unk_0C);
+    TVBroadcast * v0 = sub_0202440C(param0->unk_34->unk_0C);
 
     switch (sub_0203E838(param0)) {
     case 0:
@@ -261,7 +261,7 @@ static int sub_020491D0 (int param0, UnkStruct_0203CDB0 * param1, UnkStruct_0200
 static BOOL sub_020491F4 (UnkStruct_0203CDB0 * param0, int param1)
 {
     UnkFuncPtr_020EBB48_2 v0;
-    UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v1 = sub_0202440C(param0->unk_0C);
 
     if (sub_0202E6B0(v1, 1, param1) == 0) {
         return 0;
@@ -304,7 +304,7 @@ static void sub_02049288 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
 static void sub_020492A0 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
 {
     u16 v0[10 + 1];
-    UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v1 = sub_0202440C(param0->unk_0C);
     UnkStruct_0202E7E4 * v2 = sub_0202E7E4(v1);
 
     MessageLoader_GetSpeciesName(v2->unk_02, 4, v0);
@@ -314,7 +314,7 @@ static void sub_020492A0 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
 static void sub_020492D4 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
 {
     u16 v0[10 + 1];
-    UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v1 = sub_0202440C(param0->unk_0C);
     UnkStruct_0202E810 * v2 = sub_0202E810(v1);
 
     MessageLoader_GetSpeciesName(v2->unk_02, 4, v0);
@@ -324,7 +324,7 @@ static void sub_020492D4 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * para
 static void sub_02049308 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param1)
 {
     Strbuf* v0;
-    UnkStruct_0202440C * v1 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v1 = sub_0202440C(param0->unk_0C);
     UnkStruct_0202E81C * v2 = sub_0202E81C(v1);
 
     v0 = Strbuf_Init(64, 4);
@@ -406,7 +406,7 @@ static const UnkStruct_020EBB48 Unk_020EBB48[19] = {
 
 BOOL sub_020493C8 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     UnkStruct_0202E808 * v1;
     u16 * v2 = inline_0204FCAC(param0);
 
@@ -419,7 +419,7 @@ BOOL sub_020493C8 (UnkStruct_0203E724 * param0)
 
 BOOL sub_020493F4 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     UnkStruct_0202E81C * v1;
     u16 * v2 = inline_0204FCAC(param0);
     u16 * v3 = inline_0204FCAC(param0);

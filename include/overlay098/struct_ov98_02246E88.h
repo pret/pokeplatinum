@@ -13,7 +13,7 @@
 
 typedef struct {
     UnkStruct_020067E8 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_020279FC * unk_08;
     void * unk_0C;
     NNSFndHeapHandle unk_10;

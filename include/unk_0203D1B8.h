@@ -56,15 +56,15 @@ UnkStruct_02097728 * sub_0203D94C(UnkStruct_0203CDB0 * param0, int param1, u8 pa
 UnkStruct_02097728 * sub_0203D984(UnkStruct_0203CDB0 * param0, Pokemon * param1, int param2);
 UnkStruct_0203D9B8 * sub_0203D9B8(UnkStruct_0203CDB0 * param0, int param1);
 void sub_0203D9D8(UnkStruct_0203CDB0 * param0, UnkStruct_ov90_021D0D80 * param1);
-void sub_0203DAC0(UnkStruct_020508D4 * param0, u16 * param1, UnkStruct_021C0794 * param2, u16 param3, u16 param4);
+void sub_0203DAC0(UnkStruct_020508D4 * param0, u16 * param1, SaveData * param2, u16 param3, u16 param4);
 BOOL sub_0203DB10(UnkStruct_0203CDB0 * param0, void * param1);
 BOOL sub_0203DB24(UnkStruct_0203CDB0 * param0, void * param1);
 BOOL sub_0203DBF0(UnkStruct_020508D4 * param0);
 void sub_0203DDDC(UnkStruct_020508D4 * param0);
 void sub_0203DDFC(UnkStruct_0203CDB0 * param0);
 void * sub_0203DE34(UnkStruct_0203CDB0 * param0);
-void sub_0203DE78(UnkStruct_0203CDB0 * param0, UnkStruct_021C0794 * param1);
-void sub_0203DE88(UnkStruct_0203CDB0 * param0, UnkStruct_021C0794 * param1);
+void sub_0203DE78(UnkStruct_0203CDB0 * param0, SaveData * param1);
+void sub_0203DE88(UnkStruct_0203CDB0 * param0, SaveData * param1);
 void sub_0203DFE8(UnkStruct_020508D4 * param0, int param1, int param2, int param3, int param4, const u16 * param5, u16 * param6);
 void sub_0203E09C(UnkStruct_0203CDB0 * param0, UnkStruct_02072014 * param1);
 BOOL sub_0203E0AC(UnkStruct_0203CDB0 * param0, void * param1);

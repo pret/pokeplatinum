@@ -8,7 +8,7 @@
 #include "pokemon.h"
 #include "unk_0207A274.h"
 
-u32 sub_0207A274 (UnkStruct_021C0794 * param0)
+u32 sub_0207A274 (SaveData * param0)
 {
     UnkStruct_02026324 * v0;
 

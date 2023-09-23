@@ -15,7 +15,7 @@ int sub_02027F84 (void)
     return sizeof(UnkStruct_02027F8C) * 16;
 }
 
-UnkStruct_02027F8C * sub_02027F8C (UnkStruct_021C0794 * param0)
+UnkStruct_02027F8C * sub_02027F8C (SaveData * param0)
 {
     return sub_020245BC(param0, 9);
 }

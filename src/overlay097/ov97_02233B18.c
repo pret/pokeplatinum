@@ -137,7 +137,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_021C0794 * unk_10;
+    SaveData * unk_10;
     TrainerInfo * unk_14;
     UnkStruct_020279FC * unk_18;
     int unk_1C;
@@ -278,7 +278,7 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
     int v0;
     u8 v1[16];
     int v2;
-    UnkStruct_02024440 * v3;
+    PalParkTransfer * v3;
     UnkStruct_ov97_02233B8C * v4 = &param0->unk_E8F0;
 
     switch (v4->unk_00) {
@@ -375,7 +375,7 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
 
 static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
 {
-    UnkStruct_02024440 * v0;
+    PalParkTransfer * v0;
     int v1;
 
     v0 = sub_02024440(param0->unk_10);
@@ -394,7 +394,7 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     BoxPokemon * v4;
     BoxPokemonGBA * v5;
     Pokemon v6;
-    UnkStruct_02024440 * v7;
+    PalParkTransfer * v7;
 
     v7 = sub_02024440(param0->unk_10);
     v4 = Pokemon_GetBoxPokemon(&v6);
@@ -1667,7 +1667,7 @@ static int ov97_02235408 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0;
     u32 v1;
-    UnkStruct_02024440 * v2;
+    PalParkTransfer * v2;
 
     v2 = sub_02024440(param0->unk_10);
 

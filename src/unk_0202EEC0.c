@@ -7,24 +7,24 @@
 #include "unk_0202EEC0.h"
 #include "pokemon.h"
 
-typedef struct UnkStruct_02024440_t {
+typedef struct PalParkTransfer {
     Pokemon unk_00[6];
     u32 unk_288[20];
     s64 unk_2D8[20];
     s64 unk_378;
     u8 unk_380[6];
-} UnkStruct_02024440;
+} PalParkTransfer;
 
 int sub_0202EEC0 (void)
 {
-    return sizeof(UnkStruct_02024440);
+    return sizeof(PalParkTransfer);
 }
 
-void sub_0202EEC8 (UnkStruct_02024440 * param0)
+void sub_0202EEC8 (PalParkTransfer * param0)
 {
     int v0;
 
-    MI_CpuClearFast(param0, sizeof(UnkStruct_02024440));
+    MI_CpuClearFast(param0, sizeof(PalParkTransfer));
 
     for (v0 = 0; v0 < 6; v0++) {
         Pokemon_Init(&param0->unk_00[v0]);
@@ -32,7 +32,7 @@ void sub_0202EEC8 (UnkStruct_02024440 * param0)
     }
 }
 
-void sub_0202EF04 (UnkStruct_02024440 * param0)
+void sub_0202EF04 (PalParkTransfer * param0)
 {
     int v0;
 
@@ -44,7 +44,7 @@ void sub_0202EF04 (UnkStruct_02024440 * param0)
     }
 }
 
-static int sub_0202EF40 (UnkStruct_02024440 * param0, u32 param1)
+static int sub_0202EF40 (PalParkTransfer * param0, u32 param1)
 {
     int v0, v1;
     s64 v2;
@@ -73,12 +73,12 @@ static int sub_0202EF40 (UnkStruct_02024440 * param0, u32 param1)
     return v1;
 }
 
-void sub_0202EFA4 (UnkStruct_02024440 * param0, BoxPokemon * param1, int param2)
+void sub_0202EFA4 (PalParkTransfer * param0, BoxPokemon * param1, int param2)
 {
     Pokemon_FromBoxPokemon(param1, &param0->unk_00[param2]);
 }
 
-void sub_0202EFB8 (UnkStruct_02024440 * param0, u32 param1)
+void sub_0202EFB8 (PalParkTransfer * param0, u32 param1)
 {
     int v0 = sub_0202EF40(param0, param1);
 
@@ -89,13 +89,13 @@ void sub_0202EFB8 (UnkStruct_02024440 * param0, u32 param1)
     OS_GetMacAddress(param0->unk_380);
 }
 
-void sub_0202F000 (const UnkStruct_02024440 * param0, int param1, Pokemon * param2)
+void sub_0202F000 (const PalParkTransfer * param0, int param1, Pokemon * param2)
 {
     GF_ASSERT(param1 < 6);
     *param2 = param0->unk_00[param1];
 }
 
-int sub_0202F028 (const UnkStruct_02024440 * param0)
+int sub_0202F028 (const PalParkTransfer * param0)
 {
     int v0, v1;
 
@@ -108,7 +108,7 @@ int sub_0202F028 (const UnkStruct_02024440 * param0)
     return v1;
 }
 
-int sub_0202F050 (const UnkStruct_02024440 * param0, u32 param1)
+int sub_0202F050 (const PalParkTransfer * param0, u32 param1)
 {
     int v0;
     s64 v1 = sub_020138EC();
@@ -122,7 +122,7 @@ int sub_0202F050 (const UnkStruct_02024440 * param0, u32 param1)
     return 0;
 }
 
-BOOL sub_0202F088 (const UnkStruct_02024440 * param0)
+BOOL sub_0202F088 (const PalParkTransfer * param0)
 {
     int v0;
     u8 v1[6];
@@ -138,12 +138,12 @@ BOOL sub_0202F088 (const UnkStruct_02024440 * param0)
     return 1;
 }
 
-BOOL sub_0202F0BC (const UnkStruct_02024440 * param0)
+BOOL sub_0202F0BC (const PalParkTransfer * param0)
 {
     return param0->unk_378 == OS_GetOwnerRtcOffset();
 }
 
-BOOL sub_0202F0E0 (const UnkStruct_02024440 * param0)
+BOOL sub_0202F0E0 (const PalParkTransfer * param0)
 {
     int v0;
     u8 v1;

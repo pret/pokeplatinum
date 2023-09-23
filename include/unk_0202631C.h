@@ -45,7 +45,7 @@ void sub_02027508(UnkStruct_02026324 * param0);
 BOOL sub_02027514(const UnkStruct_02026324 * param0);
 BOOL sub_02027520(const UnkStruct_02026324 * param0);
 void sub_02027540(UnkStruct_02026324 * param0);
-UnkStruct_02026324 * sub_02027560(UnkStruct_021C0794 * param0);
+UnkStruct_02026324 * sub_02027560(SaveData * param0);
 u32 sub_0202756C(const UnkStruct_02026324 * param0, int param1, int param2);
 u32 sub_020276C8(const UnkStruct_02026324 * param0, int param1);
 

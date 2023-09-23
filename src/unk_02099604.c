@@ -17,11 +17,11 @@
 
 FS_EXTERN_OVERLAY(overlay82);
 
-UnkStruct_ov82_0223B164 * sub_02099604(int param0, UnkStruct_021C0794 * param1, int param2, UnkStruct_0202B628 * param3);
+UnkStruct_ov82_0223B164 * sub_02099604(int param0, SaveData * param1, int param2, UnkStruct_0202B628 * param3);
 UnkStruct_ov82_0223B164 * sub_02099674(UnkStruct_0203CDB0 * param0, int param1, int param2);
 UnkStruct_ov82_0223B164 * sub_020996A0(UnkStruct_0203CDB0 * param0, int param1, BOOL param2);
 
-UnkStruct_ov82_0223B164 * sub_02099604 (int param0, UnkStruct_021C0794 * param1, int param2, UnkStruct_0202B628 * param3)
+UnkStruct_ov82_0223B164 * sub_02099604 (int param0, SaveData * param1, int param2, UnkStruct_0202B628 * param3)
 {
     UnkStruct_ov82_0223B164 * v0;
 

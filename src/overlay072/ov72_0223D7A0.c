@@ -147,11 +147,11 @@ int ov72_0223D7A0 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F174(0, 1, 1, 0x0, 16, 1, 39);
 
         {
-            UnkStruct_021C0794 * v2 = (UnkStruct_021C0794 *)sub_02006840(param0);
+            SaveData * v2 = (SaveData *)sub_02006840(param0);
 
             v0->unk_5BFC = (u8 *)sub_0202C840(sub_0202C834(v2));
-            v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((UnkStruct_021C0794 *)sub_02006840(param0));
-            v0->unk_0C = (UnkStruct_020279FC *)sub_02025E44((UnkStruct_021C0794 *)sub_02006840(param0));
+            v0->unk_08 = (UnkStruct_0202CD88 *)sub_0202CD88((SaveData *)sub_02006840(param0));
+            v0->unk_0C = (UnkStruct_020279FC *)sub_02025E44((SaveData *)sub_02006840(param0));
         }
 
         ov72_0223DCA8(v0, v1);

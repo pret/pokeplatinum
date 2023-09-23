@@ -27,15 +27,15 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     int unk_08;
     int unk_0C;
     const void ** unk_10;
     const void ** unk_14;
 } UnkStruct_ov59_021D2FBC;
 
-typedef u32 (* UnkFuncPtr_ov59_021D33FC)(UnkStruct_021C0794 *);
-typedef void *(* UnkFuncPtr_ov59_021D33FC_1)(UnkStruct_021C0794 *, int, u32);
+typedef u32 (* UnkFuncPtr_ov59_021D33FC)(SaveData *);
+typedef void *(* UnkFuncPtr_ov59_021D33FC_1)(SaveData *, int, u32);
 typedef void (* UnkFuncPtr_ov59_021D33FC_2)(const UnkStruct_ov59_021D2FBC *);
 
 typedef struct {
@@ -44,13 +44,13 @@ typedef struct {
     UnkFuncPtr_ov59_021D33FC_2 unk_08;
 } UnkStruct_ov59_021D33FC;
 
-static u32 ov59_021D2F88 (UnkStruct_021C0794 * param0)
+static u32 ov59_021D2F88 (SaveData * param0)
 {
     UnkStruct_0202B4A0 * v0 = sub_0202B4A0(param0);
     return ov59_021D2A2C(v0);
 }
 
-static void * ov59_021D2F94 (UnkStruct_021C0794 * param0, int param1, u32 param2)
+static void * ov59_021D2F94 (SaveData * param0, int param1, u32 param2)
 {
     UnkStruct_0202B4A0 * v0 = sub_0202B4A0(param0);
     void * v1 = Heap_AllocFromHeapAtEnd(param1, param2);
@@ -66,13 +66,13 @@ static void ov59_021D2FBC (const UnkStruct_ov59_021D2FBC * param0)
     ov59_021D2AC4(param0->unk_08, param0->unk_0C, v0, param0->unk_10);
 }
 
-static u32 ov59_021D2FD4 (UnkStruct_021C0794 * param0)
+static u32 ov59_021D2FD4 (SaveData * param0)
 {
     UnkStruct_0202A750 * v0 = sub_0202A750(param0);
     return sub_02029C60();
 }
 
-static void * ov59_021D2FE0 (UnkStruct_021C0794 * param0, int param1, u32 param2)
+static void * ov59_021D2FE0 (SaveData * param0, int param1, u32 param2)
 {
     UnkStruct_02029C68 * v0;
     UnkStruct_0202A750 * v1 = sub_0202A750(param0);
@@ -92,23 +92,23 @@ static void ov59_021D300C (const UnkStruct_ov59_021D2FBC * param0)
 
 static void ov59_021D3028 (const UnkStruct_ov59_021D2FBC * param0)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_04);
+    TVBroadcast * v0 = sub_0202440C(param0->unk_04);
     ov59_021D2F10(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
 static void ov59_021D3048 (const UnkStruct_ov59_021D2FBC * param0)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_04);
+    TVBroadcast * v0 = sub_0202440C(param0->unk_04);
     ov59_021D2F38(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
 static void ov59_021D3068 (const UnkStruct_ov59_021D2FBC * param0)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_04);
+    TVBroadcast * v0 = sub_0202440C(param0->unk_04);
     ov59_021D2F60(v0, param0->unk_08, param0->unk_0C, param0->unk_10, param0->unk_14);
 }
 
-static void * ov59_021D3088 (UnkStruct_021C0794 * param0, int param1, u32 param2)
+static void * ov59_021D3088 (SaveData * param0, int param1, u32 param2)
 {
     return sub_0202E9FC(param0, param1);
 }
@@ -120,7 +120,7 @@ static void ov59_021D3090 (const UnkStruct_ov59_021D2FBC * param0)
     sub_0202ED0C(param0->unk_04, param0->unk_0C, param0->unk_08, param0->unk_10, param0->unk_00);
 }
 
-static void * ov59_021D30B4 (UnkStruct_021C0794 * param0, int param1, u32 param2)
+static void * ov59_021D30B4 (SaveData * param0, int param1, u32 param2)
 {
     UnkStruct_ov96_0223B450_sub1 * v0;
 
@@ -149,7 +149,7 @@ static const UnkStruct_ov59_021D33FC Unk_ov59_021D33FC[] = {
     {(UnkFuncPtr_ov59_021D33FC)ov59_021D2B44, (UnkFuncPtr_ov59_021D33FC_1)ov59_021D2CF8, ov59_021D3068}
 };
 
-void ov59_021D30E0 (UnkStruct_021C0794 * param0, UnkStruct_ov59_021D30E0 * param1)
+void ov59_021D30E0 (SaveData * param0, UnkStruct_ov59_021D30E0 * param1)
 {
     u32 v0;
     void * v1;
@@ -174,7 +174,7 @@ void ov59_021D30E0 (UnkStruct_021C0794 * param0, UnkStruct_ov59_021D30E0 * param
     }
 }
 
-void ov59_021D313C (UnkStruct_021C0794 * param0, const UnkStruct_ov59_021D30E0 * param1)
+void ov59_021D313C (SaveData * param0, const UnkStruct_ov59_021D30E0 * param1)
 {
     UnkStruct_ov59_021D2FBC v0;
     u32 v1;
@@ -243,7 +243,7 @@ void ov59_021D313C (UnkStruct_021C0794 * param0, const UnkStruct_ov59_021D30E0 *
     }
 
     {
-        UnkStruct_0202440C * v10 = sub_0202440C(param0);
+        TVBroadcast * v10 = sub_0202440C(param0);
         sub_0202E2EC(v10);
         sub_0202E35C(v10);
     }

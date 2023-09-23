@@ -191,7 +191,7 @@ int ov61_0222B1FC (UnkStruct_ov62_022349A8 * param0, int param1)
     return 1;
 }
 
-int ov61_0222B224 (UnkStruct_ov62_022349A8 * param0, int param1, UnkStruct_02030A80 * param2, const UnkStruct_020797DC * param3, int param4)
+int ov61_0222B224 (UnkStruct_ov62_022349A8 * param0, int param1, UnkStruct_02030A80 * param2, const PSSBoxes * param3, int param4)
 {
     if (ov61_0222BBBC(param0) == 0) {
         return 0;

@@ -72,7 +72,7 @@ static BOOL sub_02052FFC(UnkStruct_0205300C * param0);
 
 static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
 {
-    UnkStruct_0202DF8C * v0;
+    HallOfFame * v0;
     Party * v1;
     RTCDate v2;
     int v3;

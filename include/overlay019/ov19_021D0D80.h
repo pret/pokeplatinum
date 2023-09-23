@@ -34,7 +34,7 @@ u32 ov19_021D5E68(const UnkStruct_ov19_021D4DF0 * param0);
 const UnkStruct_ov19_021D5BAC * ov19_021D5E70(const UnkStruct_ov19_021D4DF0 * param0);
 u32 ov19_021D5E74(const UnkStruct_ov19_021D4DF0 * param0);
 const UnkStruct_ov19_021D4F5C * ov19_021D5E8C(const UnkStruct_ov19_021D4DF0 * param0);
-const UnkStruct_020797DC * ov19_021D5E90(const UnkStruct_ov19_021D4DF0 * param0);
+const PSSBoxes * ov19_021D5E90(const UnkStruct_ov19_021D4DF0 * param0);
 u32 ov19_021D5E94(const UnkStruct_ov19_021D4DF0 * param0);
 BoxPokemon * ov19_021D5E9C(const UnkStruct_ov19_021D4DF0 * param0);
 u32 ov19_021D5EA0(const UnkStruct_ov19_021D4DF0 * param0);

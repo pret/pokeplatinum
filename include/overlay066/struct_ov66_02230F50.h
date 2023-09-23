@@ -8,7 +8,7 @@
 
 typedef struct {
     const UnkStruct_ov66_02231560 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_ov66_02231428 unk_08;
     UnkStruct_ov66_0222DFF8 * unk_0C;
 } UnkStruct_ov66_02230F50;

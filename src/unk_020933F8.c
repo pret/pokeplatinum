@@ -1582,7 +1582,7 @@ void sub_02094BB4 (UnkStruct_02095C48 * param0, int * param1, int * param2, int 
     }
 }
 
-void sub_02094C44 (UnkStruct_02095C48 * param0, UnkStruct_021C0794 * param1, u32 param2, UnkStruct_0202B628 * param3)
+void sub_02094C44 (UnkStruct_02095C48 * param0, SaveData * param1, u32 param2, UnkStruct_0202B628 * param3)
 {
     int v0;
 
@@ -1626,7 +1626,7 @@ void sub_02094C44 (UnkStruct_02095C48 * param0, UnkStruct_021C0794 * param1, u32
         }
 
         {
-            UnkStruct_0202440C * v4;
+            TVBroadcast * v4;
 
             v4 = sub_0202440C(param0->unk_1970);
             sub_0206CF14(v4, param0->unk_1974, param0->unk_00.unk_10F, param0->unk_00.unk_110, param0->unk_00.unk_118[param0->unk_00.unk_113].unk_08 + 1);

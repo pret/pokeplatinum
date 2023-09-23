@@ -144,7 +144,7 @@ BOOL Party_HasSpecies (const Party * party, int species)
     return i != party->currentCount;
 }
 
-Party * Party_GetFromSavedata (UnkStruct_021C0794 * param0)
+Party * Party_GetFromSavedata (SaveData * param0)
 {
     Party * v0;
 

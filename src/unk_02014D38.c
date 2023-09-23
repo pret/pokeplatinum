@@ -260,7 +260,7 @@ void sub_02014E90 (void * param0)
     sub_02025C84(34);
 }
 
-UnkStruct_02014EC4 * sub_02014EC4 (UnkStruct_021C0794 * param0)
+UnkStruct_02014EC4 * sub_02014EC4 (SaveData * param0)
 {
     sub_02025C48(34);
     return sub_020245BC(param0, 34);

@@ -10,7 +10,7 @@ void sub_02028124(UnkStruct_0202818C * param0);
 BOOL sub_0202817C(UnkStruct_0202818C * param0);
 UnkStruct_0202818C * sub_0202818C(int param0);
 void sub_020281A0(UnkStruct_0202818C * param0, UnkStruct_0202818C * param1);
-void sub_020281AC(UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_021C0794 * param3);
+void sub_020281AC(UnkStruct_0202818C * param0, u8 param1, u8 param2, SaveData * param3);
 u32 sub_02028308(const UnkStruct_0202818C * param0);
 u16 * sub_0202830C(UnkStruct_0202818C * param0);
 u8 sub_02028310(const UnkStruct_0202818C * param0);
@@ -22,7 +22,7 @@ u16 sub_02028328(const UnkStruct_0202818C * param0, u8 param1, u8 param2, u16 pa
 u16 sub_02028408(const UnkStruct_0202818C * param0);
 UnkStruct_02014A84 * sub_0202840C(UnkStruct_0202818C * param0, u8 param1);
 void sub_0202841C(UnkStruct_0202818C * param0, UnkStruct_02014A84 * param1, u8 param2);
-UnkStruct_02028430 * sub_02028430(UnkStruct_021C0794 * param0);
+UnkStruct_02028430 * sub_02028430(SaveData * param0);
 int sub_0202843C(void);
 void sub_02028444(UnkStruct_02028430 * param0);
 int sub_0202845C(UnkStruct_02028430 * param0, int param1);

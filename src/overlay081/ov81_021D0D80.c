@@ -70,7 +70,7 @@ static const u8 Unk_ov81_021D33E8[9][32] = {
 int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov81_021D1610 * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
 
     sub_02017798(NULL, NULL);
     sub_020177A4();

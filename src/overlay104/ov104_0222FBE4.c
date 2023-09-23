@@ -1916,7 +1916,7 @@ static BOOL ov104_02230EFC (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02230F28 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     UnkStruct_ov104_02230BE4 * v1 = sub_0209B970(param0->unk_00->unk_00);
     u16 v2 = ov104_0222FC00(param0);
 
@@ -2866,7 +2866,7 @@ static BOOL ov104_02231ED8 (UnkStruct_ov104_0222E930 * param0)
 static BOOL ov104_02231EFC (UnkStruct_ov104_0222E930 * param0)
 {
     u16 v0;
-    UnkStruct_0202440C * v1;
+    TVBroadcast * v1;
     TrainerInfo * v2;
     UnkStruct_ov104_02230BE4 * v3;
 

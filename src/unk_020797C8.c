@@ -7,17 +7,17 @@
 #include "pokemon.h"
 #include "unk_020797C8.h"
 
-typedef struct UnkStruct_020797DC_t {
+typedef struct PSSBoxes {
     u32 unk_00;
     BoxPokemon unk_04[18][30];
     u16 unk_10E4[18][20];
     u8 unk_13B4[18];
     u8 unk_13C6;
-} UnkStruct_020797DC;
+} PSSBoxes;
 
-static void sub_020797DC(UnkStruct_020797DC * param0);
+static void sub_020797DC(PSSBoxes * param0);
 
-void sub_020797C8 (UnkStruct_020797DC * param0)
+void sub_020797C8 (PSSBoxes * param0)
 {
     sub_020797DC(param0);
     sub_02024804();
@@ -25,10 +25,10 @@ void sub_020797C8 (UnkStruct_020797DC * param0)
 
 u32 sub_020797D4 (void)
 {
-    return sizeof(UnkStruct_020797DC);
+    return sizeof(PSSBoxes);
 }
 
-static void sub_020797DC (UnkStruct_020797DC * param0)
+static void sub_020797DC (PSSBoxes * param0)
 {
     u32 v0, v1;
     MessageLoader * v2;
@@ -61,7 +61,7 @@ static void sub_020797DC (UnkStruct_020797DC * param0)
     param0->unk_00 = 0;
 }
 
-BOOL sub_02079868 (UnkStruct_020797DC * param0, BoxPokemon * param1)
+BOOL sub_02079868 (PSSBoxes * param0, BoxPokemon * param1)
 {
     u32 v0;
 
@@ -83,7 +83,7 @@ BOOL sub_02079868 (UnkStruct_020797DC * param0, BoxPokemon * param1)
     return 0;
 }
 
-BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon * param2)
+BOOL sub_020798A0 (PSSBoxes * param0, u32 param1, BoxPokemon * param2)
 {
     u32 v0;
 
@@ -105,7 +105,7 @@ BOOL sub_020798A0 (UnkStruct_020797DC * param0, u32 param1, BoxPokemon * param2)
     return 0;
 }
 
-BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokemon * param3)
+BOOL sub_02079914 (PSSBoxes * param0, u32 param1, u32 param2, BoxPokemon * param3)
 {
     sub_0207896C(param3);
     BoxPokemon_SetShayminForm(param3, 0);
@@ -125,7 +125,7 @@ BOOL sub_02079914 (UnkStruct_020797DC * param0, u32 param1, u32 param2, BoxPokem
     return 0;
 }
 
-void sub_02079968 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
+void sub_02079968 (PSSBoxes * param0, u32 param1, u32 param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -139,12 +139,12 @@ void sub_02079968 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
     }
 }
 
-u32 sub_0207999C (const UnkStruct_020797DC * param0)
+u32 sub_0207999C (const PSSBoxes * param0)
 {
     return param0->unk_00;
 }
 
-u32 sub_020799A0 (const UnkStruct_020797DC * param0)
+u32 sub_020799A0 (const PSSBoxes * param0)
 {
     int v0, v1;
 
@@ -169,7 +169,7 @@ u32 sub_020799A0 (const UnkStruct_020797DC * param0)
     return(18);
 }
 
-BOOL sub_020799F0 (const UnkStruct_020797DC * param0, int * param1, int * param2)
+BOOL sub_020799F0 (const PSSBoxes * param0, int * param1, int * param2)
 {
     int v0, v1;
 
@@ -203,7 +203,7 @@ BOOL sub_020799F0 (const UnkStruct_020797DC * param0, int * param1, int * param2
     return(18);
 }
 
-u32 sub_02079A50 (const UnkStruct_020797DC * param0)
+u32 sub_02079A50 (const PSSBoxes * param0)
 {
     int v0, v1;
     u32 v2;
@@ -221,7 +221,7 @@ u32 sub_02079A50 (const UnkStruct_020797DC * param0)
     return v2;
 }
 
-void sub_02079A94 (UnkStruct_020797DC * param0, u32 param1)
+void sub_02079A94 (PSSBoxes * param0, u32 param1)
 {
     if (param1 < 18) {
         param0->unk_00 = param1;
@@ -231,7 +231,7 @@ void sub_02079A94 (UnkStruct_020797DC * param0, u32 param1)
     }
 }
 
-u32 sub_02079AA8 (const UnkStruct_020797DC * param0, u32 param1)
+u32 sub_02079AA8 (const PSSBoxes * param0, u32 param1)
 {
     if (param1 < 18) {
         return param0->unk_13B4[param1];
@@ -241,7 +241,7 @@ u32 sub_02079AA8 (const UnkStruct_020797DC * param0, u32 param1)
     }
 }
 
-void sub_02079AC4 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
+void sub_02079AC4 (PSSBoxes * param0, u32 param1, u32 param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -259,7 +259,7 @@ void sub_02079AC4 (UnkStruct_020797DC * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, Strbuf *param2)
+void sub_02079AF4 (const PSSBoxes * param0, u32 param1, Strbuf *param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -272,7 +272,7 @@ void sub_02079AF4 (const UnkStruct_020797DC * param0, u32 param1, Strbuf *param2
     }
 }
 
-void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const Strbuf *param2)
+void sub_02079B24 (PSSBoxes * param0, u32 param1, const Strbuf *param2)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -284,7 +284,7 @@ void sub_02079B24 (UnkStruct_020797DC * param0, u32 param1, const Strbuf *param2
     }
 }
 
-u32 sub_02079B54 (const UnkStruct_020797DC * param0, u32 param1)
+u32 sub_02079B54 (const PSSBoxes * param0, u32 param1)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -308,7 +308,7 @@ u32 sub_02079B54 (const UnkStruct_020797DC * param0, u32 param1)
     return 0;
 }
 
-u32 sub_02079B98 (const UnkStruct_020797DC * param0, u32 param1)
+u32 sub_02079B98 (const PSSBoxes * param0, u32 param1)
 {
     if (param1 == 0xffffffff) {
         param1 = param0->unk_00;
@@ -334,7 +334,7 @@ u32 sub_02079B98 (const UnkStruct_020797DC * param0, u32 param1)
     return 0;
 }
 
-u32 sub_02079BEC (const UnkStruct_020797DC * param0)
+u32 sub_02079BEC (const PSSBoxes * param0)
 {
     u32 v0, v1;
 
@@ -345,7 +345,7 @@ u32 sub_02079BEC (const UnkStruct_020797DC * param0)
     return v0;
 }
 
-u32 sub_02079C08 (const UnkStruct_020797DC * param0, u32 param1, u32 param2, int param3, void * param4)
+u32 sub_02079C08 (const PSSBoxes * param0, u32 param1, u32 param2, int param3, void * param4)
 {
     GF_ASSERT((param1 < 18) || (param1 == 0xffffffff));
     GF_ASSERT(param2 < (5 * 6));
@@ -357,7 +357,7 @@ u32 sub_02079C08 (const UnkStruct_020797DC * param0, u32 param1, u32 param2, int
     return BoxPokemon_GetValue((BoxPokemon *)(&param0->unk_04[param1][param2]), param3, param4);
 }
 
-void sub_02079C50 (UnkStruct_020797DC * param0, u32 param1, u32 param2, int param3, void * param4)
+void sub_02079C50 (PSSBoxes * param0, u32 param1, u32 param2, int param3, void * param4)
 {
     GF_ASSERT((param1 < 18) || (param1 == 0xffffffff));
     GF_ASSERT(param2 < (5 * 6));
@@ -370,7 +370,7 @@ void sub_02079C50 (UnkStruct_020797DC * param0, u32 param1, u32 param2, int para
     sub_02024804();
 }
 
-BoxPokemon * sub_02079C9C (const UnkStruct_020797DC * param0, u32 param1, u32 param2)
+BoxPokemon * sub_02079C9C (const PSSBoxes * param0, u32 param1, u32 param2)
 {
     GF_ASSERT(((param1 < 18) || (param1 == 0xffffffff)));
     GF_ASSERT((param2 < (5 * 6)));
@@ -382,7 +382,7 @@ BoxPokemon * sub_02079C9C (const UnkStruct_020797DC * param0, u32 param1, u32 pa
     return (BoxPokemon *)&(param0->unk_04[param1][param2]);
 }
 
-void sub_02079CD8 (UnkStruct_020797DC * param0, u32 param1)
+void sub_02079CD8 (PSSBoxes * param0, u32 param1)
 {
     GF_ASSERT(param1 < 8);
 
@@ -390,14 +390,14 @@ void sub_02079CD8 (UnkStruct_020797DC * param0, u32 param1)
     sub_02024804();
 }
 
-BOOL sub_02079CFC (const UnkStruct_020797DC * param0, u32 param1)
+BOOL sub_02079CFC (const PSSBoxes * param0, u32 param1)
 {
     GF_ASSERT(param1 < 8);
 
     return (param0->unk_13C6 & (1 << param1)) != 0;
 }
 
-u32 sub_02079D20 (const UnkStruct_020797DC * param0)
+u32 sub_02079D20 (const PSSBoxes * param0)
 {
     u32 v0, v1;
 

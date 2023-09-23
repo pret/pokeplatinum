@@ -404,7 +404,7 @@ BOOL ov104_02234D50 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     u16 v1;
     Party * v2;
     Pokemon * v3;

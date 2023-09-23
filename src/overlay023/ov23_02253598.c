@@ -56,7 +56,7 @@ typedef struct {
 typedef struct UnkStruct_ov23_02253598_t {
     UnkStruct_ov23_022537D4 * unk_00;
     UnkStruct_0201CD38 * unk_04;
-    UnkStruct_021C0794 * unk_08;
+    SaveData * unk_08;
     UnkStruct_0202855C * unk_0C;
     UnkStruct_0202855C * unk_10;
     MATHRandContext32 unk_14;
@@ -66,7 +66,7 @@ typedef struct UnkStruct_ov23_02253598_t {
 static UnkStruct_ov23_02253598 * Unk_ov23_022577BC = NULL;
 static void ov23_022537D4(UnkStruct_0201CD38 * param0, void * param1);
 
-void ov23_02253598 (UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param1, UnkStruct_021C0794 * param2)
+void ov23_02253598 (UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param1, SaveData * param2)
 {
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_ov23_02253598));
 

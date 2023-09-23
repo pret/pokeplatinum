@@ -40,11 +40,11 @@ BOOL ov104_0223939C(UnkStruct_ov104_0222E930 * param0);
 BOOL ov104_02239400(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_0223942C(UnkStruct_ov104_0222E930 * param0);
 static u16 ov104_0223927C(UnkStruct_0204AFC4 * param0, u8 param1);
-static BOOL ov104_02239464(UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4 * param1, UnkStruct_021C0794 * param2, u16 param3, u16 param4);
+static BOOL ov104_02239464(UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4 * param1, SaveData * param2, u16 param3, u16 param4);
 
 BOOL ov104_02239130 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     Pokemon * v1;
     UnkStruct_0204AFC4 * v2;
     int v3, v4;
@@ -276,7 +276,7 @@ static BOOL ov104_0223942C (UnkStruct_ov104_0222E930 * param0)
     return 0;
 }
 
-static BOOL ov104_02239464 (UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4 * param1, UnkStruct_021C0794 * param2, u16 param3, u16 param4)
+static BOOL ov104_02239464 (UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4 * param1, SaveData * param2, u16 param3, u16 param4)
 {
     u16 * v0;
     const void * v1;

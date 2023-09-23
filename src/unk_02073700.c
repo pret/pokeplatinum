@@ -15,9 +15,9 @@
 #include "unk_0202D05C.h"
 #include "unk_0205C980.h"
 
-void sub_02073700(UnkStruct_021C0794 * param0, int param1, UnkStruct_ov96_0223B450_sub1 * param2);
+void sub_02073700(SaveData * param0, int param1, UnkStruct_ov96_0223B450_sub1 * param2);
 
-void sub_02073700 (UnkStruct_021C0794 * param0, int param1, UnkStruct_ov96_0223B450_sub1 * param2)
+void sub_02073700 (SaveData * param0, int param1, UnkStruct_ov96_0223B450_sub1 * param2)
 {
     int v0;
     TrainerInfo * v1 = sub_02025E38(param0);

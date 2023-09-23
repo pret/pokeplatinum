@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_0202440C_DECL_H
 #define POKEPLATINUM_STRUCT_0202440C_DECL_H
 
-typedef struct UnkStruct_0202440C_t UnkStruct_0202440C;
+typedef struct TVBroadcast TVBroadcast;
 
 #endif // POKEPLATINUM_STRUCT_0202440C_DECL_H

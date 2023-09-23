@@ -1092,7 +1092,7 @@ static BOOL ov83_0223C8B0 (UnkStruct_ov83_0223C344 * param0, Poffin * param1, in
     u16 v1;
     int v2;
     BOOL v3 = 1;
-    UnkStruct_0202440C * v4 = sub_0202440C(param0->unk_10->unk_0C);
+    TVBroadcast * v4 = sub_0202440C(param0->unk_10->unk_0C);
 
     for (v0 = 0; v0 < param2; v0++) {
         v1 = sub_0202AB74(param0->unk_10->unk_08, param1);

@@ -6,7 +6,7 @@
 #include "overlay070/struct_ov70_02263910.h"
 
 typedef struct {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     int unk_04;
     int unk_08;
     UnkStruct_ov70_02263910 unk_0C;

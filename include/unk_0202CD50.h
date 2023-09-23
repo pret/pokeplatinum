@@ -7,7 +7,7 @@
 
 int sub_0202CD50(void);
 void sub_0202CD58(UnkStruct_0202CD88 * param0);
-UnkStruct_0202CD88 * sub_0202CD88(UnkStruct_021C0794 * param0);
+UnkStruct_0202CD88 * sub_0202CD88(SaveData * param0);
 u32 sub_0202CE90(UnkStruct_0202CD88 * param0, int param1, u32 param2);
 u32 sub_0202CED0(UnkStruct_0202CD88 * param0, int param1, u32 param2);
 u32 sub_0202CF28(UnkStruct_0202CD88 * param0, int param1);

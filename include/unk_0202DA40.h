@@ -5,7 +5,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-UnkStruct_0202DA40 * sub_0202DA40(UnkStruct_021C0794 * param0);
+UnkStruct_0202DA40 * sub_0202DA40(SaveData * param0);
 int  sub_0202DA4C(void);
 void sub_0202DA50(UnkStruct_0202DA40 * param0);
 int  sub_0202DA60(UnkStruct_0202DA40 * param0);

@@ -36,7 +36,7 @@ void sub_02025E0C (UnkStruct_02025E0C * param0)
     sub_0202CBE4(&param0->unk_26);
 }
 
-TrainerInfo * sub_02025E38 (UnkStruct_021C0794 * param0)
+TrainerInfo * sub_02025E38 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
@@ -44,7 +44,7 @@ TrainerInfo * sub_02025E38 (UnkStruct_021C0794 * param0)
     return &v0->unk_04;
 }
 
-UnkStruct_020279FC * sub_02025E44 (UnkStruct_021C0794 * param0)
+UnkStruct_020279FC * sub_02025E44 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
@@ -52,7 +52,7 @@ UnkStruct_020279FC * sub_02025E44 (UnkStruct_021C0794 * param0)
     return &v0->unk_00;
 }
 
-u16 * sub_02025E50 (UnkStruct_021C0794 * param0)
+u16 * sub_02025E50 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
@@ -60,7 +60,7 @@ u16 * sub_02025E50 (UnkStruct_021C0794 * param0)
     return &v0->unk_24;
 }
 
-UnkStruct_02025E5C * sub_02025E5C (UnkStruct_021C0794 * param0)
+UnkStruct_02025E5C * sub_02025E5C (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 

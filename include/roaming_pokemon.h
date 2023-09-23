@@ -18,6 +18,6 @@ void sub_0206C37C(UnkStruct_0202D7B0 * param0);
 int sub_0206C3C8(const u8 param0);
 BOOL sub_0206C3E0(UnkStruct_0202D7B0 * param0);
 void sub_0206C404(UnkStruct_0202D7B0 * param0, const int param1);
-void RoamingPokemon_ActivateSlot(UnkStruct_021C0794 * saveData, const u8 speciesID);
+void RoamingPokemon_ActivateSlot(SaveData * saveData, const u8 speciesID);
 
 #endif // POKEPLATINUM_ROAMING_POKEMON_H

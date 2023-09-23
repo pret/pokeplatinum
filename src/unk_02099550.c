@@ -38,7 +38,7 @@ void sub_02099580 (void)
     Overlay_UnloadByID(FS_OVERLAY_ID(overlay18));
 }
 
-void sub_02099590 (UnkStruct_021C0794 * param0, int param1)
+void sub_02099590 (SaveData * param0, int param1)
 {
     sub_02099550();
     sub_02099570();

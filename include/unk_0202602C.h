@@ -13,7 +13,7 @@ void sub_02026040(UnkStruct_02026030 * param0);
 void sub_0202604C(const UnkStruct_0202610C * param0, Strbuf *param1);
 Strbuf* sub_0202605C(const UnkStruct_0202610C * param0, int param1);
 int sub_02026074(const UnkStruct_0202610C * param0, int param1);
-UnkStruct_0202610C * sub_0202610C(UnkStruct_021C0794 * param0, int param1);
-void sub_0202613C(UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param1);
+UnkStruct_0202610C * sub_0202610C(SaveData * param0, int param1);
+void sub_0202613C(SaveData * param0, const UnkStruct_0202610C * param1);
 
 #endif // POKEPLATINUM_UNK_0202602C_H

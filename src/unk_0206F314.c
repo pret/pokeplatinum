@@ -128,7 +128,7 @@ typedef struct {
     UnkStruct_0206F7F8 * unk_08;
 } UnkStruct_0206F314;
 
-static void sub_0206F7F8(UnkStruct_0206F7F8 * param0, UnkStruct_021C0794 * param1);
+static void sub_0206F7F8(UnkStruct_0206F7F8 * param0, SaveData * param1);
 static void sub_0206F9D4(UnkStruct_0206F7F8 * param0);
 static void sub_0206FA08(UnkStruct_0206F7F8 * param0);
 static void sub_0206FAC0(UnkStruct_0206F7F8 * param0);
@@ -199,7 +199,7 @@ static const UnkStruct_020F02D0 * const Unk_020F0254[] = {
 static int sub_0206F314 (UnkStruct_0206F314 * param0, UnkStruct_0203CDB0 * param1, u16 param2)
 {
     UnkStruct_0206F7F8 * v0;
-    UnkStruct_021C0794 * v1 = param1->unk_0C;
+    SaveData * v1 = param1->unk_0C;
 
     Heap_Create(3, 80, 0x6000);
 
@@ -252,7 +252,7 @@ static int sub_0206F3A0 (UnkStruct_0206F314 * param0)
     return 12;
 }
 
-static int sub_0206F448 (UnkStruct_0206F7F8 * param0, UnkStruct_021C0794 * param1)
+static int sub_0206F448 (UnkStruct_0206F7F8 * param0, SaveData * param1)
 {
     sub_0206F7F8(param0, param1);
     sub_0206FA08(param0);
@@ -470,7 +470,7 @@ static int sub_0206F748 (UnkStruct_0206F7F8 * param0)
     return 8;
 }
 
-static void sub_0206F7F8 (UnkStruct_0206F7F8 * param0, UnkStruct_021C0794 * param1)
+static void sub_0206F7F8 (UnkStruct_0206F7F8 * param0, SaveData * param1)
 {
     int v0, v1, v2, v3;
     UnkStruct_0202EE10 * v4;

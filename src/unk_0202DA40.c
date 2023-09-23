@@ -15,7 +15,7 @@ typedef struct UnkStruct_0202DA40_t {
     u32 unk_F4;
 } UnkStruct_0202DA40;
 
-UnkStruct_0202DA40 * sub_0202DA40 (UnkStruct_021C0794 * param0)
+UnkStruct_0202DA40 * sub_0202DA40 (SaveData * param0)
 {
     return sub_020245BC(param0, 26);
 }

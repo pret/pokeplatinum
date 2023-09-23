@@ -70,17 +70,17 @@ void sub_020277AC (UnkStruct_0202783C * param0)
     }
 }
 
-UnkStruct_0202783C * sub_0202783C (UnkStruct_021C0794 * param0)
+UnkStruct_0202783C * sub_0202783C (SaveData * param0)
 {
     return sub_020245BC(param0, 10);
 }
 
-const UnkStruct_0202783C * sub_02027848 (const UnkStruct_021C0794 * param0)
+const UnkStruct_0202783C * sub_02027848 (const SaveData * param0)
 {
     return sub_020245E0(param0, 10);
 }
 
-UnkStruct_02027854 * sub_02027854 (UnkStruct_021C0794 * param0)
+UnkStruct_02027854 * sub_02027854 (SaveData * param0)
 {
     UnkStruct_0202783C * v0;
 
@@ -88,7 +88,7 @@ UnkStruct_02027854 * sub_02027854 (UnkStruct_021C0794 * param0)
     return v0->unk_00;
 }
 
-UnkStruct_02027860 * sub_02027860 (UnkStruct_021C0794 * param0)
+UnkStruct_02027860 * sub_02027860 (SaveData * param0)
 {
     UnkStruct_0202783C * v0;
 

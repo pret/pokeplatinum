@@ -26,6 +26,6 @@ BOOL sub_02026280(UnkStruct_02026310 * param0);
 void sub_020262A8(UnkStruct_02026218 * param0, const UnkStruct_02026218 * param1);
 void sub_020262C0(UnkStruct_02026224 * param0);
 void sub_020262F4(UnkStruct_02026218 * param0);
-UnkStruct_02026310 * sub_02026310(UnkStruct_021C0794 * param0);
+UnkStruct_02026310 * sub_02026310(SaveData * param0);
 
 #endif // POKEPLATINUM_UNK_020261E4_H

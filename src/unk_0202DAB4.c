@@ -11,20 +11,20 @@
 #include "unk_020244AC.h"
 #include "unk_0202DAB4.h"
 
-typedef struct UnkStruct_0202442C_t {
+typedef struct MysteryGift {
     u8 unk_00[256];
     UnkStruct_0202DF40 unk_100[8];
     UnkStruct_0202DBAC unk_920[3];
-} UnkStruct_0202442C;
+} MysteryGift;
 
-UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
+MysteryGift * sub_0202442C(SaveData * param0);
 
 int sub_0202DAB4 (void)
 {
-    return sizeof(UnkStruct_0202442C);
+    return sizeof(MysteryGift);
 }
 
-void sub_0202DABC (UnkStruct_0202442C * param0)
+void sub_0202DABC (MysteryGift * param0)
 {
     sub_02025C84(31);
 }
@@ -38,7 +38,7 @@ static BOOL sub_0202DAC8 (u16 param0)
     return 0;
 }
 
-UnkStruct_0202DF40 * sub_0202DAD8 (UnkStruct_0202442C * param0, int param1)
+UnkStruct_0202DF40 * sub_0202DAD8 (MysteryGift * param0, int param1)
 {
     if ((param1 >= 0) && (param1 < 8)) {
         if (sub_0202DAC8(param0->unk_100[param1].unk_00)) {
@@ -49,7 +49,7 @@ UnkStruct_0202DF40 * sub_0202DAD8 (UnkStruct_0202442C * param0, int param1)
     return (UnkStruct_0202DF40 *)NULL;
 }
 
-UnkStruct_0202DBAC * sub_0202DB00 (UnkStruct_0202442C * param0, int param1)
+UnkStruct_0202DBAC * sub_0202DB00 (MysteryGift * param0, int param1)
 {
     if ((param1 >= 0) && (param1 < 3)) {
         if (sub_0202DAC8(param0->unk_920[param1].unk_00)) {
@@ -60,7 +60,7 @@ UnkStruct_0202DBAC * sub_0202DB00 (UnkStruct_0202442C * param0, int param1)
     return NULL;
 }
 
-BOOL sub_0202DB2C (UnkStruct_0202442C * param0, const void * param1, int param2)
+BOOL sub_0202DB2C (MysteryGift * param0, const void * param1, int param2)
 {
     int v0;
     BOOL v1 = 0;
@@ -83,7 +83,7 @@ BOOL sub_0202DB2C (UnkStruct_0202442C * param0, const void * param1, int param2)
     return v1;
 }
 
-BOOL sub_0202DBAC (UnkStruct_0202442C * param0, const void * param1)
+BOOL sub_0202DBAC (MysteryGift * param0, const void * param1)
 {
     int v0;
     UnkStruct_0202DBAC * v1 = (UnkStruct_0202DBAC *)param1;
@@ -115,7 +115,7 @@ BOOL sub_0202DBAC (UnkStruct_0202442C * param0, const void * param1)
     return v2;
 }
 
-BOOL sub_0202DC48 (UnkStruct_0202442C * param0, int param1)
+BOOL sub_0202DC48 (MysteryGift * param0, int param1)
 {
     GF_ASSERT(param1 < 8);
 
@@ -127,7 +127,7 @@ BOOL sub_0202DC48 (UnkStruct_0202442C * param0, int param1)
     return 1;
 }
 
-BOOL sub_0202DC7C (UnkStruct_0202442C * param0, int param1)
+BOOL sub_0202DC7C (MysteryGift * param0, int param1)
 {
     GF_ASSERT(param1 < 3);
 
@@ -140,7 +140,7 @@ BOOL sub_0202DC7C (UnkStruct_0202442C * param0, int param1)
     return 1;
 }
 
-BOOL sub_0202DCB8 (UnkStruct_0202442C * param0, int param1)
+BOOL sub_0202DCB8 (MysteryGift * param0, int param1)
 {
     GF_ASSERT(param1 < 3);
 
@@ -150,7 +150,7 @@ BOOL sub_0202DCB8 (UnkStruct_0202442C * param0, int param1)
     return 1;
 }
 
-BOOL sub_0202DCE0 (UnkStruct_0202442C * param0)
+BOOL sub_0202DCE0 (MysteryGift * param0)
 {
     int v0;
 
@@ -163,7 +163,7 @@ BOOL sub_0202DCE0 (UnkStruct_0202442C * param0)
     return 0;
 }
 
-BOOL sub_0202DD08 (UnkStruct_0202442C * param0)
+BOOL sub_0202DD08 (MysteryGift * param0)
 {
     int v0;
 
@@ -176,7 +176,7 @@ BOOL sub_0202DD08 (UnkStruct_0202442C * param0)
     return 0;
 }
 
-BOOL sub_0202DD30 (const UnkStruct_0202442C * param0, int param1)
+BOOL sub_0202DD30 (const MysteryGift * param0, int param1)
 {
     GF_ASSERT(param1 < 8);
 
@@ -187,7 +187,7 @@ BOOL sub_0202DD30 (const UnkStruct_0202442C * param0, int param1)
     return 0;
 }
 
-BOOL sub_0202DD5C (const UnkStruct_0202442C * param0, int param1)
+BOOL sub_0202DD5C (const MysteryGift * param0, int param1)
 {
     GF_ASSERT(param1 < 3);
 
@@ -198,7 +198,7 @@ BOOL sub_0202DD5C (const UnkStruct_0202442C * param0, int param1)
     return 0;
 }
 
-BOOL sub_0202DD88 (const UnkStruct_0202442C * param0)
+BOOL sub_0202DD88 (const MysteryGift * param0)
 {
     int v0;
 
@@ -211,7 +211,7 @@ BOOL sub_0202DD88 (const UnkStruct_0202442C * param0)
     return 0;
 }
 
-BOOL sub_0202DDA8 (const UnkStruct_0202442C * param0, int param1)
+BOOL sub_0202DDA8 (const MysteryGift * param0, int param1)
 {
     int v0;
 
@@ -226,27 +226,27 @@ BOOL sub_0202DDA8 (const UnkStruct_0202442C * param0, int param1)
     return 0;
 }
 
-void sub_0202DDE8 (const UnkStruct_0202442C * param0, int param1)
+void sub_0202DDE8 (const MysteryGift * param0, int param1)
 {
     int v0;
 
     for (v0 = 0; v0 < 8; v0++) {
         if (sub_0202DAC8(param0->unk_100[v0].unk_00)) {
             if (param0->unk_100[v0].unk_02_0 == param1) {
-                sub_0202DC48((UnkStruct_0202442C *)param0, v0);
+                sub_0202DC48((MysteryGift *)param0, v0);
                 return;
             }
         }
     }
 }
 
-BOOL sub_0202DE2C (UnkStruct_0202442C * param0, int param1)
+BOOL sub_0202DE2C (MysteryGift * param0, int param1)
 {
     GF_ASSERT(param1 < 2048);
     return !!(param0->unk_00[param1 / 8] & (1 << (param1 & 7)));
 }
 
-void sub_0202DE5C (UnkStruct_0202442C * param0, int param1)
+void sub_0202DE5C (MysteryGift * param0, int param1)
 {
     GF_ASSERT(param1 < 2048);
 
@@ -254,7 +254,7 @@ void sub_0202DE5C (UnkStruct_0202442C * param0, int param1)
     sub_02025C84(31);
 }
 
-void sub_0202DE8C (UnkStruct_0202442C * param0, int param1)
+void sub_0202DE8C (MysteryGift * param0, int param1)
 {
     u8 v0 = (u8) ~(1 << (param1 & 7));
 
@@ -264,19 +264,19 @@ void sub_0202DE8C (UnkStruct_0202442C * param0, int param1)
     sub_02025C84(31);
 }
 
-BOOL sub_0202DEC4 (UnkStruct_0202442C * param0)
+BOOL sub_0202DEC4 (MysteryGift * param0)
 {
     return sub_0202DE2C(param0, (2048 - 1));
 }
 
-void sub_0202DED4 (UnkStruct_0202442C * param0)
+void sub_0202DED4 (MysteryGift * param0)
 {
     sub_0202DE5C(param0, (2048 - 1));
 }
 
-static UnkStruct_0202442C * Unk_021C07A0 = NULL;
+static MysteryGift * Unk_021C07A0 = NULL;
 
-void sub_0202DEE4 (UnkStruct_021C0794 * param0, int param1)
+void sub_0202DEE4 (SaveData * param0, int param1)
 {
     int v0;
 
@@ -287,7 +287,7 @@ void sub_0202DEE4 (UnkStruct_021C0794 * param0, int param1)
     sub_02025C84(31);
 }
 
-void sub_0202DF04 (UnkStruct_021C0794 * param0, int param1)
+void sub_0202DF04 (SaveData * param0, int param1)
 {
     int v0;
 

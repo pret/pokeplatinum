@@ -159,7 +159,7 @@ static void sub_02072C98(UnkStruct_02072334 * param0, u8 param1, u8 param2);
 static void sub_02072DA4(UnkStruct_0200112C * param0, u32 param1, u8 param2);
 static void sub_02072DB8(UnkStruct_02072334 * param0);
 static void sub_02072E4C(UnkStruct_02072334 * param0);
-static void sub_02072F30(UnkStruct_02072334 * param0, UnkStruct_021C0794 * param1, int param2);
+static void sub_02072F30(UnkStruct_02072334 * param0, SaveData * param1, int param2);
 static void sub_02073020(UnkStruct_02072334 * param0, u8 param1);
 static BOOL sub_02073060(UnkStruct_02072334 * param0);
 static void sub_020730B8(UnkStruct_02072334 * param0, u8 param1, BOOL param2);
@@ -210,7 +210,7 @@ static const UnkStruct_020F0524 Unk_020F0524[] = {
 void sub_020722AC (void * param0, int * param1)
 {
     UnkStruct_02072334 * v0 = NULL;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
 
     Heap_Create(3, 43, 0x5000);
 
@@ -916,7 +916,7 @@ static void sub_02072F04 (UnkStruct_02072EB8 * param0, u8 param1)
     }
 }
 
-static void sub_02072F30 (UnkStruct_02072334 * param0, UnkStruct_021C0794 * param1, int param2)
+static void sub_02072F30 (UnkStruct_02072334 * param0, SaveData * param1, int param2)
 {
     u8 v0 = 0, v1 = 0, v2 = 0xFF, v3 = 0;
     int v4;

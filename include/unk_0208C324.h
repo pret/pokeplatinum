@@ -7,7 +7,7 @@
 #include "struct_defs/struct_02098D38.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-BOOL sub_0208C324(UnkStruct_021C0794 * param0);
+BOOL sub_0208C324(SaveData * param0);
 void sub_0208D720(UnkStruct_02098D38 * param0, const u8 * param1);
 u8 sub_0208D790(UnkStruct_0208D7BC * param0, u32 param1);
 u8 sub_0208D7BC(UnkStruct_0208D7BC * param0);

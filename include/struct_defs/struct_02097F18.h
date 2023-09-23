@@ -13,7 +13,7 @@ typedef struct {
     Party * unk_1C;
     UnkStruct_0202CA1C * unk_20;
     UnkStruct_020279FC * unk_24;
-    UnkStruct_021C0794 * unk_28;
+    SaveData * unk_28;
     u8 unk_2C;
     u8 unk_2D;
     u8 padding[2];

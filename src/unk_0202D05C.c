@@ -374,13 +374,13 @@ u32 sub_0202D474 (UnkStruct_0202D750 * param0)
     return param0->unk_04;
 }
 
-void sub_0202D478 (UnkStruct_021C0794 * param0, int param1, UnkStruct_02014A84 * param2)
+void sub_0202D478 (SaveData * param0, int param1, UnkStruct_02014A84 * param2)
 {
     UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
     sub_02014CC0(&(v0->unk_950.unk_168.unk_00[param1]), param2);
 }
 
-UnkStruct_02014A84 * sub_0202D498 (UnkStruct_021C0794 * param0, int param1)
+UnkStruct_02014A84 * sub_0202D498 (SaveData * param0, int param1)
 {
     UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
 
@@ -544,19 +544,19 @@ UnkStruct_ov90_021D1750 * sub_0202D71C (UnkStruct_0202D764 * param0, int param1)
     return v0;
 }
 
-UnkStruct_0202D060 * sub_0202D740 (UnkStruct_021C0794 * param0)
+UnkStruct_0202D060 * sub_0202D740 (SaveData * param0)
 {
     UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
     return &v0->unk_8E0_val1;
 }
 
-UnkStruct_0202D750 * sub_0202D750 (UnkStruct_021C0794 * param0)
+UnkStruct_0202D750 * sub_0202D750 (SaveData * param0)
 {
     UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
     return &v0->unk_950.unk_00;
 }
 
-UnkStruct_0202D764 * sub_0202D764 (UnkStruct_021C0794 * param0)
+UnkStruct_0202D764 * sub_0202D764 (SaveData * param0)
 {
     UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
     return &v0->unk_950.unk_188;

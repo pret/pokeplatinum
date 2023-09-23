@@ -133,10 +133,10 @@ void ov97_02232074 (UnkStruct_02018340 * param0)
     }
 }
 
-int ov97_02232148 (UnkStruct_021C0794 * param0, UnkStruct_ov97_0223829C * param1)
+int ov97_02232148 (SaveData * param0, UnkStruct_ov97_0223829C * param1)
 {
     u32 v0;
-    UnkStruct_0202442C * v1 = sub_0202442C(param0);
+    MysteryGift * v1 = sub_0202442C(param0);
 
     v0 = param1->unk_00.unk_48;
 

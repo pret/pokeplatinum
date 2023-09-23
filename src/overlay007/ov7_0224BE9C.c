@@ -137,7 +137,7 @@ typedef struct {
 typedef struct UnkStruct_ov7_0224BEFC_t {
     u32 unk_00;
     u32 unk_04;
-    UnkStruct_021C0794 * unk_08;
+    SaveData * unk_08;
     UnkStruct_02029D04 * unk_0C;
     UnkStruct_0207D3C0 * unk_10;
     UnkStruct_02018340 * unk_14;
@@ -186,7 +186,7 @@ static BOOL ov7_0224CCB8(UnkStruct_0207D3C0 * param0, const UnkStruct_ov7_0224F1
 static BOOL ov7_0224CCE4(const UnkStruct_02029D04 * param0, const UnkStruct_ov7_0224F1B4 * param1, u32 param2);
 static void ov7_0224CCF4(UnkStruct_02029D04 * param0, UnkStruct_0207D3C0 * param1, const UnkStruct_ov7_0224F1B4 * param2, u32 param3, u32 param4);
 
-UnkStruct_ov7_0224BEFC * ov7_0224BE9C (u32 param0, UnkStruct_021C0794 * param1, UnkStruct_02018340 * param2)
+UnkStruct_ov7_0224BEFC * ov7_0224BE9C (u32 param0, SaveData * param1, UnkStruct_02018340 * param2)
 {
     UnkStruct_ov7_0224BEFC * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov7_0224BEFC));
 

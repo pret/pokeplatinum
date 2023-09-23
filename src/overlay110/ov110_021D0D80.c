@@ -63,7 +63,7 @@ typedef struct {
     Strbuf* unk_11C;
     UnkStruct_02002F38 * unk_120;
     const UnkStruct_020279FC * unk_124;
-    UnkStruct_021C0794 * unk_128;
+    SaveData * unk_128;
     UnkStruct_0203068C * unk_12C;
 } UnkStruct_ov110_021D0F78;
 

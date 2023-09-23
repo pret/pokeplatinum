@@ -984,7 +984,7 @@ void sub_0202A6A8 (u8 param0, int param1, UnkStruct_0202A750 * param2, const voi
     }
 }
 
-UnkStruct_0202A750 * sub_0202A750 (UnkStruct_021C0794 * param0)
+UnkStruct_0202A750 * sub_0202A750 (SaveData * param0)
 {
     UnkStruct_0202A750 * v0 = NULL;
 

@@ -271,7 +271,7 @@ struct UnkStruct_ov107_02241D6C_t {
     UnkStruct_02002F38 * unk_1C0;
     UnkStruct_0200C440 * unk_1C4;
     UnkStruct_020279FC * unk_1C8;
-    UnkStruct_021C0794 * unk_1CC;
+    SaveData * unk_1CC;
     UnkStruct_020302DC * unk_1D0;
     UnkStruct_0203041C * unk_1D4;
     UnkStruct_ov107_02249954 unk_1D8;

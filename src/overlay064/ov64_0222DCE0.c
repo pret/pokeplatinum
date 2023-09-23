@@ -128,7 +128,7 @@ typedef struct {
 } UnkStruct_ov64_022301B4;
 
 typedef struct {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     u8 unk_04;
     u8 unk_05;
     u8 unk_06;
@@ -288,9 +288,9 @@ static void ov64_0222E71C(UnkStruct_ov64_0222E21C * param0);
 static void ov64_0222E738(UnkStruct_ov64_0222E21C * param0, u32 param1);
 static void ov64_0222E7C8(UnkStruct_ov64_0222E21C * param0);
 static void ov64_0222E7F8(UnkStruct_ov64_0222E21C * param0, u64 param1);
-static void ov64_0222E880(UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3);
-static void ov64_0222E8C0(UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3);
-static BOOL ov64_0222E8FC(UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2);
+static void ov64_0222E880(UnkStruct_ov64_0222E21C * param0, SaveData * param1, u32 param2, u32 param3);
+static void ov64_0222E8C0(UnkStruct_ov64_0222E21C * param0, SaveData * param1, u32 param2, u32 param3);
+static BOOL ov64_0222E8FC(UnkStruct_ov64_0222E21C * param0, SaveData * param1, u32 param2);
 static void ov64_0222E970(UnkStruct_ov64_0222E21C * param0, u32 param1);
 static void ov64_0222E990(UnkStruct_ov64_0222E21C * param0, u32 param1);
 static void ov64_0222E9A4(UnkStruct_ov64_0222E21C * param0, u32 param1);
@@ -1155,7 +1155,7 @@ static void ov64_0222E7F8 (UnkStruct_ov64_0222E21C * param0, u64 param1)
     sub_0200B60C(param0->unk_214, 3, v0, 4, 2, 1);
 }
 
-static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3)
+static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, SaveData * param1, u32 param2, u32 param3)
 {
     UnkStruct_0202B370 * v0;
     TrainerInfo * v1;
@@ -1168,7 +1168,7 @@ static void ov64_0222E880 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 
     Heap_FreeToHeap(v1);
 }
 
-static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2, u32 param3)
+static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, SaveData * param1, u32 param2, u32 param3)
 {
     TrainerInfo * v0 = TrainerInfo_New(param3);
     UnkStruct_0202B370 * v1 = sub_0202B370(param1);
@@ -1178,7 +1178,7 @@ static void ov64_0222E8C0 (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 
     Heap_FreeToHeap(v0);
 }
 
-static BOOL ov64_0222E8FC (UnkStruct_ov64_0222E21C * param0, UnkStruct_021C0794 * param1, u32 param2)
+static BOOL ov64_0222E8FC (UnkStruct_ov64_0222E21C * param0, SaveData * param1, u32 param2)
 {
     UnkStruct_0202B370 * v0 = sub_0202B370(param1);
     u32 v1;

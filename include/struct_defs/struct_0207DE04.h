@@ -10,7 +10,7 @@ typedef struct {
     u8 unk_03;
     u8 unk_04;
     u8 unk_05[3];
-    UnkStruct_021C0794 * unk_08;
+    SaveData * unk_08;
 } UnkStruct_0207DE04;
 
 #endif // POKEPLATINUM_STRUCT_0207DE04_H

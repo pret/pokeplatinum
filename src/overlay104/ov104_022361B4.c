@@ -46,7 +46,7 @@
 #include "overlay104/ov104_022361B4.h"
 #include "overlay104/ov104_0223B6F4.h"
 
-UnkStruct_ov104_0223BA10 * ov104_022361B4(UnkStruct_021C0794 * param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 * param6);
+UnkStruct_ov104_0223BA10 * ov104_022361B4(SaveData * param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 * param6);
 void ov104_02236514(UnkStruct_ov104_0223BA10 * param0, u16 param1);
 static void ov104_02236528(UnkStruct_ov104_0223BA10 * param0);
 static void ov104_022365F8(UnkStruct_ov104_0223BA10 * param0);
@@ -66,7 +66,7 @@ static void ov104_022370C0(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * par
 static void ov104_02237284(UnkStruct_ov104_022320B4 * param0, UnkStruct_0205AA50 * param1, TrainerInfo * param2, u16 param3);
 u16 ov104_02237338(UnkStruct_ov104_0223BA10 * param0);
 
-UnkStruct_ov104_0223BA10 * ov104_022361B4 (UnkStruct_021C0794 * param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 * param6)
+UnkStruct_ov104_0223BA10 * ov104_022361B4 (SaveData * param0, u16 param1, u8 param2, u16 param3, u16 param4, u16 param5, u16 * param6)
 {
     u32 v0, v1;
     Party * v2;
@@ -656,7 +656,7 @@ int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
     return v11;
 }
 
-void ov104_02236ED8 (UnkStruct_021C0794 * param0, u8 param1, int param2)
+void ov104_02236ED8 (SaveData * param0, u8 param1, int param2)
 {
     u16 v0;
 

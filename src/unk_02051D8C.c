@@ -250,7 +250,7 @@ void sub_020521A4 (BattleParams * param0, const UnkStruct_0202CC84 * param1, int
     sub_0202CD3C(param0->unk_F0[param2], param1);
 }
 
-void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, UnkStruct_021C0794 * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
+void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, SaveData * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
 {
     TrainerInfo * v0 = sub_02025E38(param2);
     Party * v1 = Party_GetFromSavedata(param2);

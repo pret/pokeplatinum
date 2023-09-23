@@ -242,7 +242,7 @@ void sub_0206C404 (UnkStruct_0202D7B0 * param0, const int param1)
     }
 }
 
-void RoamingPokemon_ActivateSlot (UnkStruct_021C0794 * saveData, const u8 slot)
+void RoamingPokemon_ActivateSlot (SaveData * saveData, const u8 slot)
 {
     Pokemon * v0;
     UnkStruct_0206C638 * v1;

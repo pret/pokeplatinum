@@ -54,7 +54,7 @@ typedef struct {
 
 struct UnkStruct_0205B43C_t {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     TrainerInfo * unk_08;
     UnkStruct_0201CD38 * unk_0C;
     UnkFuncPtr_0205B43C unk_10;
@@ -145,7 +145,7 @@ void sub_0205B388 (UnkStruct_0203CDB0 * param0)
 static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
 {
     void * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     UnkStruct_0205B43C * v2 = NULL;
 
     if (param0->unk_7C != NULL) {

@@ -14,7 +14,7 @@
 #include "overlay062/struct_ov62_0223CAA4.h"
 
 typedef struct {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     UnkFuncPtr_ov62_022349A8 unk_04;
     void * unk_08;
     UnkStruct_ov62_022349A8_sub1 unk_0C;

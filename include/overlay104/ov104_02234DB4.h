@@ -4,7 +4,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0223B5C0.h"
 
-UnkStruct_ov104_0223B5C0 * ov104_02234DB4(UnkStruct_021C0794 * param0, u16 param1, u8 param2, u8 param3, u8 param4);
+UnkStruct_ov104_0223B5C0 * ov104_02234DB4(SaveData * param0, u16 param1, u8 param2, u8 param3, u8 param4);
 void ov104_022350B0(UnkStruct_ov104_0223B5C0 * param0, u16 param1);
 void ov104_02235190(UnkStruct_ov104_0223B5C0 * param0);
 void ov104_022351CC(UnkStruct_ov104_0223B5C0 * param0, void * param1);

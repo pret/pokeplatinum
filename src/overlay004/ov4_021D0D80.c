@@ -26,7 +26,7 @@ typedef struct {
     DWCFriendsMatchControl unk_104;
     DWCUserData * unk_F08;
     DWCInetControl unk_F0C;
-    UnkStruct_021C0794 * unk_F6C;
+    SaveData * unk_F6C;
     void * unk_F70;
     void * unk_F74[4];
     void * unk_F84;
@@ -101,7 +101,7 @@ static void ov4_021D24AC(int param0, void * param1);
 
 static UnkStruct_ov4_0221A400 * Unk_ov4_0221A400 = NULL;
 
-int ov4_021D0D80 (UnkStruct_021C0794 * param0, int param1, int param2, int param3)
+int ov4_021D0D80 (SaveData * param0, int param1, int param2, int param3)
 {
     void * v0;
 

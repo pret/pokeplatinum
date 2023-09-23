@@ -155,7 +155,7 @@ u16 * sub_0203A78C (UnkStruct_0203A790 * param0)
     return &param0->unk_94;
 }
 
-UnkStruct_0203A790 * sub_0203A790 (UnkStruct_021C0794 * param0)
+UnkStruct_0203A790 * sub_0203A790 (SaveData * param0)
 {
     UnkStruct_0203A790 * v0;
 
@@ -163,7 +163,7 @@ UnkStruct_0203A790 * sub_0203A790 (UnkStruct_021C0794 * param0)
     return v0;
 }
 
-UnkStruct_0203A79C * sub_0203A79C (UnkStruct_021C0794 * param0)
+UnkStruct_0203A79C * sub_0203A79C (SaveData * param0)
 {
     UnkStruct_0203A79C * v0;
 

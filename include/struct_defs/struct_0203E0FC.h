@@ -19,12 +19,12 @@ typedef struct {
     UnkStruct_0202DA40 * unk_00;
     UnkStruct_02025CCC * unk_04;
     Party * unk_08;
-    UnkStruct_020797DC * unk_0C;
+    PSSBoxes * unk_0C;
     UnkStruct_02026324 * unk_10;
     UnkStruct_0202B370 * unk_14;
     UnkStruct_0202C878 * unk_18;
     TrainerInfo * unk_1C;
-    UnkStruct_021C0794 * unk_20;
+    SaveData * unk_20;
     UnkStruct_020279FC * unk_24;
     UnkStruct_0202CD88 * unk_28;
     UnkStruct_0202B628 * unk_2C;

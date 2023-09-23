@@ -630,7 +630,7 @@ static const UnkStruct_ov104_0223FCB4 Unk_ov104_0223FCB4[] = {
 
 void sub_02052894(BattleParams * param0);
 BOOL ov104_0223A0C4(UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348 * param1, u16 param2, int param3, u16 * param4, u16 * param5, UnkStruct_0204B404 * param6, int param7);
-void ov104_0223A30C(UnkStruct_021C0794 * param0, UnkStruct_ov104_0223A348 * param1, const u8 param2);
+void ov104_0223A30C(SaveData * param0, UnkStruct_ov104_0223A348 * param1, const u8 param2);
 BattleParams * ov104_0223A580(UnkStruct_0204AFC4 * param0, UnkStruct_ov104_02230BE4 * param1);
 void ov104_0223A734(UnkStruct_0204AFC4 * param0, u16 param1);
 u16 ov104_0223A750(UnkStruct_0204AFC4 * param0, const u16 * param1);
@@ -764,7 +764,7 @@ static BOOL ov104_0223A118 (UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * pa
     return v10;
 }
 
-void ov104_0223A30C (UnkStruct_021C0794 * param0, UnkStruct_ov104_0223A348 * param1, const u8 param2)
+void ov104_0223A30C (SaveData * param0, UnkStruct_ov104_0223A348 * param1, const u8 param2)
 {
     int v0;
     UnkStruct_0202D764 * v1;
@@ -905,7 +905,7 @@ BattleParams * ov104_0223A580 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223
     u8 v1;
     u32 v2;
     BattleParams * v3;
-    UnkStruct_021C0794 * v4;
+    SaveData * v4;
     Party * v5;
     Pokemon * v6;
 

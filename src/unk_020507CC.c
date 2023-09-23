@@ -23,7 +23,7 @@ void sub_020507D4 (UnkStruct_020507E4 * param0)
     memset(param0, 0, sizeof(UnkStruct_020507E4));
 }
 
-UnkStruct_020507E4 * sub_020507E4 (UnkStruct_021C0794 * param0)
+UnkStruct_020507E4 * sub_020507E4 (SaveData * param0)
 {
     UnkStruct_020507E4 * v0;
 

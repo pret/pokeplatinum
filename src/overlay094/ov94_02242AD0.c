@@ -661,7 +661,7 @@ static int ov94_022431F0 (UnkStruct_ov94_0223FD4C * param0)
             sub_0202CF28(param0->unk_00->unk_28, (1 + 23));
 
             {
-                UnkStruct_0202440C * v2;
+                TVBroadcast * v2;
 
                 v2 = sub_0202440C(param0->unk_00->unk_20);
                 sub_0206D104(v2);
@@ -940,7 +940,7 @@ static int ov94_02243658 (UnkStruct_ov94_0223FD4C * param0)
     sub_0202CF28(param0->unk_00->unk_28, (1 + 23));
 
     {
-        UnkStruct_0202440C * v0;
+        TVBroadcast * v0;
 
         v0 = sub_0202440C(param0->unk_00->unk_20);
         sub_0206D104(v0);

@@ -337,7 +337,7 @@ u32 sub_02056AFC (const UnkStruct_02056B24 * param0, int param1)
     return param0->unk_B8[param1].unk_04;
 }
 
-UnkStruct_02056B24 * sub_02056B24 (UnkStruct_021C0794 * param0)
+UnkStruct_02056B24 * sub_02056B24 (SaveData * param0)
 {
     UnkStruct_02056B24 * v0;
 

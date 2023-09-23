@@ -19,7 +19,7 @@ void sub_0202B470(UnkStruct_0202B4A0 * param0, int param1, int param2);
 int sub_0202B47C(const UnkStruct_0202B4A0 * param0, int param1);
 int sub_0202B488(const UnkStruct_0202B4A0 * param0, int param1);
 void sub_0202B494(UnkStruct_0202B4A0 * param0, int param1, int param2);
-UnkStruct_0202B4A0 * sub_0202B4A0(UnkStruct_021C0794 * param0);
+UnkStruct_0202B4A0 * sub_0202B4A0(SaveData * param0);
 BOOL sub_0202B4AC(const UnkStruct_0202B4A0 * param0, int param1);
 BOOL sub_0202B4C4(const UnkStruct_0202B4A0 * param0, int param1);
 BOOL sub_0202B4D8(const UnkStruct_0202B4A0 * param0, const u16 * param1);

@@ -42,7 +42,7 @@ void ov97_02238324(UnkStruct_ov97_0223829C * param0, UnkUnion_ov97_0222D2B0 * pa
 void ov97_022383C4(UnkStruct_0200112C * param0, u32 param1, u8 param2);
 void ov97_02238400(BOOL param0);
 void ov97_02238440(void);
-void ov97_0223846C(UnkStruct_021C0794 * param0);
+void ov97_0223846C(SaveData * param0);
 int ov97_0223847C(void);
 void ov97_022384F4(void);
 void ov97_0223850C(void);
