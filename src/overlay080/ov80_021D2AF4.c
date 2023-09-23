@@ -42,7 +42,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Floaroma Town
         .mapHeader = 0x1AA,
         .flyPoint = 0x2,
-        .blockType = TOWN_MAP_BLOCK_1x2,
+        .blockType = TOWN_MAP_BLOCK_VERTICAL,
         .blockColor = 0x0,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(5),
@@ -52,7 +52,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Solaceon Town
         .mapHeader = 0x1B1,
         .flyPoint = 0x3,
-        .blockType = TOWN_MAP_BLOCK_2x1,
+        .blockType = TOWN_MAP_BLOCK_HORIZONTAL,
         .blockColor = 0x0,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(18) - TOWN_MAP_HALF_UNIT,
@@ -92,7 +92,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Jubilife City
         .mapHeader = 0x3,
         .flyPoint = 0x7,
-        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockType = TOWN_MAP_BLOCK_SQUARE,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(5) - TOWN_MAP_HALF_UNIT,
@@ -102,7 +102,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Canalave City
         .mapHeader = 0x21,
         .flyPoint = 0x8,
-        .blockType = TOWN_MAP_BLOCK_1x2,
+        .blockType = TOWN_MAP_BLOCK_VERTICAL,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(1),
@@ -112,7 +112,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Oreburgh City
         .mapHeader = 0x2D,
         .flyPoint = 0x9,
-        .blockType = TOWN_MAP_BLOCK_L_2,
+        .blockType = TOWN_MAP_BLOCK_L_UP_LEFT,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(9) - TOWN_MAP_HALF_UNIT + 1,
@@ -122,7 +122,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Eterna City
         .mapHeader = 0x41,
         .flyPoint = 0xA,
-        .blockType = TOWN_MAP_BLOCK_L,
+        .blockType = TOWN_MAP_BLOCK_L_UP_RIGHT,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(10) - TOWN_MAP_HALF_UNIT,
@@ -132,7 +132,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Hearthome City
         .mapHeader = 0x56,
         .flyPoint = 0xB,
-        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockType = TOWN_MAP_BLOCK_SQUARE,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(15) - TOWN_MAP_HALF_UNIT,
@@ -142,7 +142,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Pastoria City
         .mapHeader = 0x78,
         .flyPoint = 0xC,
-        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockType = TOWN_MAP_BLOCK_SQUARE,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(19) - TOWN_MAP_HALF_UNIT,
@@ -152,7 +152,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Veilstone City
         .mapHeader = 0x84,
         .flyPoint = 0xD,
-        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockType = TOWN_MAP_BLOCK_SQUARE,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(22) - TOWN_MAP_HALF_UNIT,
@@ -162,7 +162,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Sunyshore City
         .mapHeader = 0x96,
         .flyPoint = 0xE,
-        .blockType = TOWN_MAP_BLOCK_2x2,
+        .blockType = TOWN_MAP_BLOCK_SQUARE,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(27) - TOWN_MAP_HALF_UNIT,
@@ -172,7 +172,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Snowpoint City
         .mapHeader = 0xA5,
         .flyPoint = 0xF,
-        .blockType = TOWN_MAP_BLOCK_1x2,
+        .blockType = TOWN_MAP_BLOCK_VERTICAL,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(11),
@@ -182,7 +182,7 @@ const TownMapBlock gTownMapBlocks[20] = {
         // Fight Area
         .mapHeader = 0xBC,
         .flyPoint = 0x11,
-        .blockType = TOWN_MAP_BLOCK_2x1,
+        .blockType = TOWN_MAP_BLOCK_HORIZONTAL,
         .blockColor = 0x1,
         .unk_0A = 0x0,
         .xCoord = TOWN_MAP_COORDINATE(20) - TOWN_MAP_HALF_UNIT + 1,
