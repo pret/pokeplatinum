@@ -995,7 +995,7 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 *
 {
     param0->unk_04 = sub_02025E38(param1->unk_0C);
     param0->unk_08 = Party_GetFromSavedata(param1->unk_0C);
-    param0->unk_0C = sub_020245BC(param1->unk_0C, 9);
+    param0->unk_0C = SaveData_Get(param1->unk_0C, 9);
     param0->unk_14 = sub_0202C878(param1->unk_0C);
     param0->unk_18 = sub_02025E44(param1->unk_0C);
     param0->unk_24 = sub_02027560(param1->unk_0C);
@@ -1396,7 +1396,7 @@ void sub_0203E0FC (UnkStruct_0203CDB0 * param0, int param1)
 
     v0->unk_00 = sub_0202DA40(param0->unk_0C);
     v0->unk_04 = sub_02025CCC(param0->unk_0C);
-    v0->unk_08 = sub_020245BC(param0->unk_0C, 2);
+    v0->unk_08 = SaveData_Get(param0->unk_0C, 2);
     v0->unk_0C = SaveData_PSSBoxes(param0->unk_0C);
     v0->unk_10 = sub_02027560(param0->unk_0C);
     v0->unk_14 = sub_0202B370(param0->unk_0C);

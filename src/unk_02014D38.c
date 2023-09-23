@@ -262,8 +262,8 @@ void Sentence_Init (void * param0)
 
 UnkStruct_02014EC4 * sub_02014EC4 (SaveData * param0)
 {
-    sub_02025C48(34);
-    return sub_020245BC(param0, 34);
+    SaveData_CRC(34);
+    return SaveData_Get(param0, 34);
 }
 
 BOOL sub_02014ED8 (const UnkStruct_02014EC4 * param0, u32 param1)

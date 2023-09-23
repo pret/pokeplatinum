@@ -75,7 +75,7 @@ UnkStruct_020698E4 * sub_0202D830 (UnkStruct_0202D7B0 * param0)
 
 UnkStruct_0202D7B0 * sub_0202D834 (SaveData * param0)
 {
-    return sub_020245BC(param0, 25);
+    return SaveData_Get(param0, 25);
 }
 
 UnkStruct_0202D844 * sub_0202D840 (UnkStruct_0202D7B0 * param0)

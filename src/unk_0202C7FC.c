@@ -38,7 +38,7 @@ void TrainerCard_Init (UnkStruct_0202C834 * param0)
 
 UnkStruct_0202C834 * sub_0202C834 (SaveData * param0)
 {
-    return sub_020245BC(param0, 19);
+    return SaveData_Get(param0, 19);
 }
 
 u8 * sub_0202C840 (UnkStruct_0202C834 * param0)

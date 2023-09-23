@@ -89,8 +89,8 @@ void Rankings_Init (UnkStruct_0202E8C0 * param0)
 
 UnkStruct_0202E8C0 * sub_0202E8C0 (SaveData * param0)
 {
-    sub_02025C48(28);
-    return sub_020245BC(param0, 28);
+    SaveData_CRC(28);
+    return SaveData_Get(param0, 28);
 }
 
 void sub_0202E8D4 (UnkStruct_0202E8C0 * param0, int param1, u8 param2)

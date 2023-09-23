@@ -21,8 +21,8 @@ void WiFiHistory_Init (UnkStruct_0202C878 * param0)
 
 UnkStruct_0202C878 * sub_0202C878 (SaveData * param0)
 {
-    sub_02025C48(30);
-    return (UnkStruct_0202C878 *)sub_020245BC(param0, 30);
+    SaveData_CRC(30);
+    return (UnkStruct_0202C878 *)SaveData_Get(param0, 30);
 }
 
 void sub_0202C88C (UnkStruct_0202C878 * param0, int param1, int param2)

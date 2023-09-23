@@ -40,7 +40,7 @@ TrainerInfo * sub_02025E38 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
-    v0 = sub_020245BC(param0, 1);
+    v0 = SaveData_Get(param0, 1);
     return &v0->unk_04;
 }
 
@@ -48,7 +48,7 @@ UnkStruct_020279FC * sub_02025E44 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
-    v0 = sub_020245BC(param0, 1);
+    v0 = SaveData_Get(param0, 1);
     return &v0->unk_00;
 }
 
@@ -56,7 +56,7 @@ u16 * sub_02025E50 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
-    v0 = sub_020245BC(param0, 1);
+    v0 = SaveData_Get(param0, 1);
     return &v0->unk_24;
 }
 
@@ -64,6 +64,6 @@ UnkStruct_02025E5C * sub_02025E5C (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
-    v0 = sub_020245BC(param0, 1);
+    v0 = SaveData_Get(param0, 1);
     return &v0->unk_26;
 }

@@ -33,7 +33,7 @@ void SystemData_Init (UnkStruct_02025CCC * param0)
 
 UnkStruct_02025CCC * sub_02025CCC (SaveData * param0)
 {
-    return sub_020245BC(param0, 0);
+    return SaveData_Get(param0, 0);
 }
 
 UnkStruct_02055BA8 * sub_02025CD8 (SaveData * param0)

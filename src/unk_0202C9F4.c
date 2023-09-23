@@ -33,7 +33,7 @@ UnkStruct_0202CA1C * sub_0202CA1C (SaveData * param0)
 {
     UnkStruct_0202CA1C * v0 = NULL;
 
-    v0 = sub_020245BC(param0, 21);
+    v0 = SaveData_Get(param0, 21);
     return v0;
 }
 

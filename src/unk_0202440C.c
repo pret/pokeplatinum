@@ -105,24 +105,24 @@ const int gSaveTableSize = NELEMS(gSaveTableEntries);
 
 TVBroadcast * SaveData_TVBroadcast (SaveData * param0)
 {
-    sub_02025C48(27);
-    return sub_020245BC(param0, 27);
+    SaveData_CRC(27);
+    return SaveData_Get(param0, 27);
 }
 
 PSSBoxes * SaveData_PSSBoxes (SaveData * param0)
 {
-    return sub_020245BC(param0, 37);
+    return SaveData_Get(param0, 37);
 }
 
 MysteryGift * SaveData_MysteryGift (SaveData * param0)
 {
-    sub_02025C48(31);
-    return sub_020245BC(param0, 31);
+    SaveData_CRC(31);
+    return SaveData_Get(param0, 31);
 }
 
 PalParkTransfer * SaveData_PalParkTransfer (SaveData * param0)
 {
-    return sub_020245BC(param0, 32);
+    return SaveData_Get(param0, 32);
 }
 
 const SaveTableEntry gExtraSaveTableEntries[] = {
@@ -138,32 +138,32 @@ const int gExtraSaveTableSize = NELEMS(gExtraSaveTableEntries);
 
 HallOfFame * SaveData_HallOfFame (SaveData * param0, int param1, int * param2)
 {
-    return sub_02025680(param0, param1, 0, param2);
+    return SaveDataExtra_Get(param0, param1, 0, param2);
 }
 
 int SaveData_SaveHallOfFame (SaveData * param0, HallOfFame * param1)
 {
-    return sub_02025428(param0, 0, param1);
+    return SaveDataExtra_Save(param0, 0, param1);
 }
 
 BattleRecording * SaveData_BattleRecording (SaveData * param0, int param1, int * param2, int param3)
 {
     BOOL v0;
-    return sub_020257E8(param0, param1, 2 + param3, param2, &v0);
+    return SaveDataExtra_Mirror(param0, param1, 2 + param3, param2, &v0);
 }
 
 int SaveData_SaveBattleRecording (SaveData * param0, BattleRecording * param1, int param2)
 {
-    return sub_02025574(param0, 2 + param2, param1);
+    return SaveDataExtra_SaveMirror(param0, 2 + param2, param1);
 }
 
 BattleFrontierStage * SaveData_BattleFrontierStage (SaveData * param0, int param1, int * param2)
 {
     BOOL v0;
-    return sub_020257E8(param0, param1, 1, param2, &v0);
+    return SaveDataExtra_Mirror(param0, param1, 1, param2, &v0);
 }
 
 int SaveData_SaveBattleFrontierStage (SaveData * param0, BattleFrontierStage * param1)
 {
-    return sub_02025574(param0, 1, param1);
+    return SaveDataExtra_SaveMirror(param0, 1, param1);
 }

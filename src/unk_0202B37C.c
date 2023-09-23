@@ -110,7 +110,7 @@ void sub_0202B494 (UnkStruct_0202B4A0 * param0, int param1, int param2)
 
 UnkStruct_0202B4A0 * sub_0202B4A0 (SaveData * param0)
 {
-    return (UnkStruct_0202B4A0 *)sub_020245BC(param0, 17);
+    return (UnkStruct_0202B4A0 *)SaveData_Get(param0, 17);
 }
 
 BOOL sub_0202B4AC (const UnkStruct_0202B4A0 * param0, int param1)

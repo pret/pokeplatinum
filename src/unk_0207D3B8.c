@@ -478,7 +478,7 @@ UnkStruct_0207D3C0 * sub_0207D990 (SaveData * param0)
 {
     UnkStruct_0207D3C0 * v0;
 
-    v0 = (UnkStruct_0207D3C0 *)sub_020245BC(param0, 3);
+    v0 = (UnkStruct_0207D3C0 *)SaveData_Get(param0, 3);
     return v0;
 }
 

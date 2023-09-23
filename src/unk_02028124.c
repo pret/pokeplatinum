@@ -236,7 +236,7 @@ void sub_0202841C (UnkStruct_0202818C * param0, UnkStruct_02014A84 * param1, u8 
 
 UnkStruct_02028430 * sub_02028430 (SaveData * param0)
 {
-    return sub_020245BC(param0, 15);
+    return SaveData_Get(param0, 15);
 }
 
 int Mail_SaveSize (void)

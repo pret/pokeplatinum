@@ -227,7 +227,7 @@ u8 Poffin_CalcLevel (Poffin * poffin)
 
 UnkStruct_0202AB28 * Poffin_GetSavedataBlock (SaveData * savedata)
 {
-    return sub_020245BC(savedata, 16);
+    return SaveData_Get(savedata, 16);
 }
 
 int Poffin_SaveSize (void)

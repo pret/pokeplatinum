@@ -134,7 +134,7 @@ void Journal_Init (UnkStruct_0202B628 * param0)
 
 UnkStruct_0202B628 * sub_0202B628 (SaveData * param0)
 {
-    return sub_020245BC(param0, 18);
+    return SaveData_Get(param0, 18);
 }
 
 UnkStruct_0202B628 * sub_0202B634 (UnkStruct_0202B628 * param0, BOOL param1)

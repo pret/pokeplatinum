@@ -35,14 +35,14 @@ void Email_Init (UnkStruct_02030CEC * param0)
 
 void sub_02030D10 (SaveData * param0)
 {
-    Email_Init(sub_020245BC(param0, 35));
+    Email_Init(SaveData_Get(param0, 35));
 }
 
 BOOL sub_02030D20 (SaveData * param0)
 {
     UnkStruct_02030CEC * v0;
 
-    v0 = sub_020245BC(param0, 35);
+    v0 = SaveData_Get(param0, 35);
 
     if (v0->unk_00[0] == '\0') {
         return 0;
@@ -55,7 +55,7 @@ void sub_02030D38 (SaveData * param0, const char * param1)
 {
     UnkStruct_02030CEC * v0;
 
-    v0 = sub_020245BC(param0, 35);
+    v0 = SaveData_Get(param0, 35);
 
     strcpy(v0->unk_00, param1);
     sub_02025C84(35);
@@ -65,13 +65,13 @@ char * sub_02030D50 (SaveData * param0)
 {
     UnkStruct_02030CEC * v0;
 
-    v0 = sub_020245BC(param0, 35);
+    v0 = SaveData_Get(param0, 35);
     return v0->unk_00;
 }
 
 void sub_02030D5C (SaveData * param0, int param1, u32 param2)
 {
-    UnkStruct_02030CEC * v0 = sub_020245BC(param0, 35);
+    UnkStruct_02030CEC * v0 = SaveData_Get(param0, 35);
 
     switch (param1) {
     case 0:
@@ -93,7 +93,7 @@ void sub_02030D5C (SaveData * param0, int param1, u32 param2)
 
 u32 sub_02030D98 (SaveData * param0, int param1)
 {
-    UnkStruct_02030CEC * v0 = sub_020245BC(param0, 35);
+    UnkStruct_02030CEC * v0 = SaveData_Get(param0, 35);
 
     switch (param1) {
     case 0:
@@ -150,7 +150,7 @@ u32 sub_02030E48 (SaveData * param0, UnkStruct_ov96_0223B574 * param1)
 
 void sub_02030E78 (SaveData * param0, UnkStruct_ov96_0223B574 * param1)
 {
-    UnkStruct_02030CEC * v0 = sub_020245BC(param0, 35);
+    UnkStruct_02030CEC * v0 = SaveData_Get(param0, 35);
 
     sub_02030DD0(param0, param1);
 

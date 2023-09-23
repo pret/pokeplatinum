@@ -29,7 +29,7 @@ void sub_0202FF4C (UnkStruct_0202FF58 * param0)
 
 UnkStruct_0202FF58 * sub_0202FF58 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
     return &v0->unk_8E0_val2;
 }
 
@@ -151,6 +151,6 @@ u32 sub_020300E0 (UnkStruct_020300F4 * param0, u8 param1, u8 param2, void * para
 
 UnkStruct_020300F4 * sub_020300F4 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
     return &v0->unk_1614.unk_00;
 }

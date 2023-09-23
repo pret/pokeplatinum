@@ -30,7 +30,7 @@ void sub_0202F134 (SaveData * param0, int param1, int param2)
 {
     UnkStruct_0202F10C * v0;
 
-    v0 = sub_020245BC(param0, 33);
+    v0 = SaveData_Get(param0, 33);
 
     if (v0->unk_00[param1][param2] < 9999) {
         v0->unk_00[param1][param2]++;
@@ -43,8 +43,8 @@ u16 sub_0202F160 (SaveData * param0, int param1, int param2)
 {
     UnkStruct_0202F10C * v0;
 
-    v0 = sub_020245BC(param0, 33);
-    sub_02025C48(33);
+    v0 = SaveData_Get(param0, 33);
+    SaveData_CRC(33);
 
     return v0->unk_00[param1][param2];
 }

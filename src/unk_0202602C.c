@@ -105,7 +105,7 @@ UnkStruct_0202610C * sub_0202610C (SaveData * param0, int param1)
     UnkStruct_02026030 * v0 = NULL;
 
     GF_ASSERT(param1 < 1);
-    v0 = sub_020245BC(param0, 13);
+    v0 = SaveData_Get(param0, 13);
 
     if (sub_02026074(&v0->unk_00[param1], 1) != 0) {
         return &v0->unk_00[param1];
@@ -118,6 +118,6 @@ void sub_0202613C (SaveData * param0, const UnkStruct_0202610C * param1)
 {
     UnkStruct_02026030 * v0 = NULL;
 
-    v0 = sub_020245BC(param0, 13);
+    v0 = SaveData_Get(param0, 13);
     sub_02026034(param1, &v0->unk_00[0]);
 }

@@ -182,7 +182,7 @@ SaveData * sub_020245A4 (void)
     return Unk_021C0794;
 }
 
-void * sub_020245BC (SaveData * param0, int param1)
+void * SaveData_Get (SaveData * param0, int param1)
 {
     GF_ASSERT(param1 < 38);
     return &(param0->unk_14.unk_00[param0->unk_20024[param1].unk_08]);
@@ -190,7 +190,7 @@ void * sub_020245BC (SaveData * param0, int param1)
 
 const void * sub_020245E0 (const SaveData * param0, int param1)
 {
-    return sub_020245BC((SaveData *)param0, param1);
+    return SaveData_Get((SaveData *)param0, param1);
 }
 
 BOOL sub_020245E8 (SaveData * param0)
@@ -647,7 +647,7 @@ static void sub_02024CD4 (SaveData * param0, int * param1, int * param2)
     sub_020279A8(v4, 1, &v5, &v6, &v7);
 
     if ((v5 != 0xffffffff) || (v6 != 0xffffffff)) {
-        v0 = sub_020257E8(
+        v0 = SaveDataExtra_Mirror(
             param0, 3, 1, &v1, &v2);
         Heap_FreeToHeap(v0);
 
@@ -662,7 +662,7 @@ static void sub_02024CD4 (SaveData * param0, int * param1, int * param2)
         sub_020279A8(v4, v3, &v5, &v6, &v7);
 
         if ((v5 != 0xffffffff) || (v6 != 0xffffffff)) {
-            v0 = sub_020257E8(param0, 3, v3, &v1, &v2);
+            v0 = SaveDataExtra_Mirror(param0, 3, v3, &v1, &v2);
             Heap_FreeToHeap(v0);
 
             if (v1 == 2) {
@@ -703,7 +703,7 @@ static BOOL sub_02024DBC (SaveData * param0)
     }
 
     for (v0 = 0; v0 < 38; v0++) {
-        param0->unk_20024[v0].unk_0C = sub_0201D628(sub_020245BC(param0, v0), param0->unk_20024[v0].unk_04);
+        param0->unk_20024[v0].unk_0C = sub_0201D628(SaveData_Get(param0, v0), param0->unk_20024[v0].unk_04);
     }
 
     return 1;
@@ -1042,14 +1042,14 @@ void sub_02025340 (SaveData * param0)
             continue;
         }
 
-        v3 = sub_02025680(param0, 3, v0[v1].dataID, &v2);
+        v3 = SaveDataExtra_Get(param0, 3, v0[v1].dataID, &v2);
 
         GF_ASSERT(v3 != NULL);
         MI_CpuClear8(v3, v0[v1].sizeFunc());
 
         v0[v1].initFunc(v3);
 
-        sub_02025428(param0, v0[v1].dataID, v3);
+        SaveDataExtra_Save(param0, v0[v1].dataID, v3);
         Heap_FreeToHeap(v3);
     }
 
@@ -1100,7 +1100,7 @@ static u32 sub_02025420 (void * param0, u32 param1)
     return v0->unk_04;
 }
 
-int sub_02025428 (const SaveData * param0, int param1, void * param2)
+int SaveDataExtra_Save (const SaveData * param0, int param1, void * param2)
 {
     const SaveTableEntry * v0;
     u32 v1;
@@ -1143,7 +1143,7 @@ int sub_02025428 (const SaveData * param0, int param1, void * param2)
     }
 }
 
-int sub_02025574 (SaveData * param0, int param1, void * param2)
+int SaveDataExtra_SaveMirror (SaveData * param0, int param1, void * param2)
 {
     const SaveTableEntry * v0;
     u32 v1;
@@ -1188,7 +1188,7 @@ int sub_02025574 (SaveData * param0, int param1, void * param2)
     }
 }
 
-void * sub_02025680 (SaveData * param0, int param1, int param2, int * param3)
+void * SaveDataExtra_Get (SaveData * param0, int param1, int param2, int * param3)
 {
     const SaveTableEntry * v0;
     void * v1;
@@ -1251,7 +1251,7 @@ void * sub_02025680 (SaveData * param0, int param1, int param2, int * param3)
     return v1;
 }
 
-void * sub_020257E8 (SaveData * param0, int param1, int param2, int * param3, BOOL * param4)
+void * SaveDataExtra_Mirror (SaveData * param0, int param1, int param2, int * param3, BOOL * param4)
 {
     const SaveTableEntry * v0;
     void * v1;
@@ -1490,10 +1490,10 @@ static void sub_02025C1C (s32 param0, int param1)
     sub_0209AA74(1, param1);
 }
 
-BOOL sub_02025C48 (int param0)
+BOOL SaveData_CRC (int param0)
 {
     SaveData * v0 = sub_020245A4();
-    void * v1 = sub_020245BC(v0, param0);
+    void * v1 = SaveData_Get(v0, param0);
     int v2 = sub_020251A4(param0) - 4;
     int v3 = v2 / 2;
     u16 * v4 = v1;
@@ -1515,7 +1515,7 @@ BOOL sub_02025C48 (int param0)
 void sub_02025C84 (int param0)
 {
     SaveData * v0 = sub_020245A4();
-    void * v1 = sub_020245BC(v0, param0);
+    void * v1 = SaveData_Get(v0, param0);
     u16 * v2 = v1;
     int v3, v4;
     u16 v5;

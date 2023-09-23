@@ -33,7 +33,7 @@ UnkStruct_0202CC84 * sub_0202CC84 (int param0)
 
 UnkStruct_0202CC84 * sub_0202CC98 (SaveData * param0)
 {
-    return (UnkStruct_0202CC84 *)sub_020245BC(param0, 22);
+    return (UnkStruct_0202CC84 *)SaveData_Get(param0, 22);
 }
 
 BOOL sub_0202CCA4 (const UnkStruct_0202CC84 * param0)

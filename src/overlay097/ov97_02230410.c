@@ -972,7 +972,7 @@ static void ov97_02231464 (void * param0)
 static void ov97_02231488 (UnkStruct_ov97_02230868 * param0)
 {
     GF_ASSERT(param0->unk_2C20 < 3);
-    sub_02025C48(31);
+    SaveData_CRC(31);
 
     if (param0->unk_2C14[param0->unk_2C20]->unk_350 != 255) {
         param0->unk_2C14[param0->unk_2C20]->unk_350++;

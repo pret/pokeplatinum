@@ -341,6 +341,6 @@ UnkStruct_02056B24 * sub_02056B24 (SaveData * param0)
 {
     UnkStruct_02056B24 * v0;
 
-    v0 = sub_020245BC(param0, 5);
+    v0 = SaveData_Get(param0, 5);
     return v0;
 }
