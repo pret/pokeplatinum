@@ -89,8 +89,8 @@ static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContex
 static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_UseMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_0224FD00(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224FEE0(BattleSystem * param0, BattleContext * param1);
+static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_LeftoverState29(BattleSystem *battleSys, BattleContext *battleCtx);
 static void ov16_0224FEE4(BattleSystem * param0, BattleContext * param1);
 static void ov16_02250170(BattleSystem * param0, BattleContext * param1);
 static void ov16_0225016C(BattleSystem * param0, BattleContext * param1);
@@ -164,8 +164,8 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_CheckMoveFailure,
     BattleController_UseMove,
     BattleController_UpdateHP,
-    ov16_0224FD00,
-    ov16_0224FEE0,
+    BattleController_AfterMoveMessage,
+    BattleController_LeftoverState29,
     ov16_0224FEE4,
     ov16_02250170,
     ov16_0225016C,
@@ -3399,140 +3399,172 @@ static void BattleController_UpdateHP(BattleSystem *battleSys, BattleContext *ba
     }
 }
 
-static void ov16_0224FD00 (BattleSystem * param0, BattleContext * param1)
+enum {
+    AFTER_MOVE_MESSAGE_ONE_HIT = 0,
+    AFTER_MOVE_MESSAGE_MULTI_HIT
+};
+
+enum {
+    AFTER_MOVE_MESSAGE_START = 0,
+
+    ONE_HIT_CRITICAL = 0,
+    ONE_HIT_STATUS,
+    ONE_HIT_TRIGGER_SECONDARY,
+    ONE_HIT_FORM_CHANGE,
+    ONE_HIT_RAGE,
+    ONE_HIT_TRIGGER_ABILITY,
+    ONE_HIT_EXTRA_FLINCH,
+
+    MULTI_HIT_CRITICAL = 0,
+    MULTI_HIT_TRIGGER_SECONDARY,
+    MULTI_HIT_FORM_CHANGE,
+    MULTI_HIT_RAGE,
+    MULTI_HIT_TRIGGER_ABILITY,
+    MULTI_HIT_STATUS,
+    MULTI_HIT_EXTRA_FLINCH,
+};
+
+static void BattleController_AfterMoveMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    switch (param1->afterMoveMessageType) {
-    case 0:
-        switch (param1->afterMoveMessageState) {
-        case 0:
-            param1->afterMoveMessageState++;
-
-            if (BattleController_CriticalMessage(param0, param1) == 1) {
+    switch (battleCtx->afterMoveMessageType) {
+    case AFTER_MOVE_MESSAGE_ONE_HIT:
+        switch (battleCtx->afterMoveMessageState) {
+        case ONE_HIT_CRITICAL:
+            battleCtx->afterMoveMessageState++;
+            if (BattleController_CriticalMessage(battleSys, battleCtx) == TRUE) {
                 return;
             }
-        case 1:
-            param1->afterMoveMessageState++;
 
-            if (BattleController_StatusMessage(param0, param1) == 1) {
+        case ONE_HIT_STATUS:
+            battleCtx->afterMoveMessageState++;
+            if (BattleController_StatusMessage(battleSys, battleCtx) == TRUE) {
                 return;
             }
-        case 2:
-        {
-            int v0;
 
-            param1->afterMoveMessageState++;
+        case ONE_HIT_TRIGGER_SECONDARY:
+            int secondaryEffSeq;
 
-            if ((BattleSystem_TriggerSecondaryEffect(param0, param1, &v0) == 1) && ((param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) == 0)) {
-                BattleSystem_LoadScript(param1, 1, v0);
-                param1->commandNext = param1->command;
-                param1->command = 21;
+            battleCtx->afterMoveMessageState++;
+            if (BattleSystem_TriggerSecondaryEffect(battleSys, battleCtx, &secondaryEffSeq) == TRUE
+                    && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE) {
+                LOAD_SUBSEQ(secondaryEffSeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
                 return;
             }
-        }
-        case 3:
-            param1->afterMoveMessageState++;
-            BattleSystem_LoadScript(param1, 1, (0 + 293));
-            param1->commandNext = param1->command;
-            param1->command = 21;
+
+        case ONE_HIT_FORM_CHANGE:
+            battleCtx->afterMoveMessageState++;
+            
+            // Shaymin changes forms from Sky to Land whenever it is Frozen.
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_CHECK_SHAYMIN_FORM);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
             return;
-        case 4:
-            param1->afterMoveMessageState++;
 
-            if (BattleController_RageBuilding(param0, param1) == 1) {
+        case ONE_HIT_RAGE:
+            battleCtx->afterMoveMessageState++;
+            if (BattleController_RageBuilding(battleSys, battleCtx) == TRUE) {
                 return;
             }
-        case 5:
-        {
-            int v1;
 
-            param1->afterMoveMessageState++;
+        case ONE_HIT_TRIGGER_ABILITY:
+            int abilitySeq;
 
-            if (BattleSystem_TriggerAbilityOnHit(param0, param1, &v1) == 1) {
-                BattleSystem_LoadScript(param1, 1, v1);
-                param1->commandNext = param1->command;
-                param1->command = 21;
+            battleCtx->afterMoveMessageState++;
+            if (BattleSystem_TriggerAbilityOnHit(battleSys, battleCtx, &abilitySeq) == TRUE) {
+                LOAD_SUBSEQ(abilitySeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                
                 return;
             }
-        }
-        case 6:
-            param1->afterMoveMessageState++;
 
-            if (BattleController_CheckExtraFlinch(param0, param1) == 1) {
+        case ONE_HIT_EXTRA_FLINCH:
+            battleCtx->afterMoveMessageState++;
+            if (BattleController_CheckExtraFlinch(battleSys, battleCtx) == TRUE) {
                 return;
             }
+
         default:
             break;
         }
         break;
-    case 1:
-        switch (param1->afterMoveMessageState) {
-        case 0:
-            param1->afterMoveMessageState++;
 
-            if (BattleController_CriticalMessage(param0, param1) == 1) {
+    case AFTER_MOVE_MESSAGE_MULTI_HIT:
+        switch (battleCtx->afterMoveMessageState) {
+        case MULTI_HIT_CRITICAL:
+            battleCtx->afterMoveMessageState++;
+            if (BattleController_CriticalMessage(battleSys, battleCtx) == TRUE) {
                 return;
             }
-        case 1:
-        {
-            int v2;
 
-            param1->afterMoveMessageState++;
+        case MULTI_HIT_TRIGGER_SECONDARY:
+            int secondaryEffSeq;
 
-            if ((BattleSystem_TriggerSecondaryEffect(param0, param1, &v2) == 1) && ((param1->moveStatusFlags & (1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576)) == 0)) {
-                BattleSystem_LoadScript(param1, 1, v2);
-                param1->commandNext = param1->command;
-                param1->command = 21;
+            battleCtx->afterMoveMessageState++;
+            if (BattleSystem_TriggerSecondaryEffect(battleSys, battleCtx, &secondaryEffSeq) == TRUE
+                    && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE) {
+                LOAD_SUBSEQ(secondaryEffSeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
                 return;
             }
-        }
-        case 2:
-            param1->afterMoveMessageState++;
-            BattleSystem_LoadScript(param1, 1, (0 + 293));
-            param1->commandNext = param1->command;
-            param1->command = 21;
+
+        case MULTI_HIT_FORM_CHANGE:
+            battleCtx->afterMoveMessageState++;
+            
+            // Shaymin changes forms from Sky to Land whenever it is Frozen.
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_CHECK_SHAYMIN_FORM);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
             return;
-        case 3:
-            param1->afterMoveMessageState++;
 
-            if (BattleController_RageBuilding(param0, param1) == 1) {
+        case MULTI_HIT_RAGE:
+            battleCtx->afterMoveMessageState++;
+            if (BattleController_RageBuilding(battleSys, battleCtx) == TRUE) {
                 return;
             }
-        case 4:
-        {
-            int v3;
 
-            param1->afterMoveMessageState++;
+        case MULTI_HIT_TRIGGER_ABILITY:
+            int abilitySeq;
 
-            if (BattleSystem_TriggerAbilityOnHit(param0, param1, &v3) == 1) {
-                BattleSystem_LoadScript(param1, 1, v3);
-                param1->commandNext = param1->command;
-                param1->command = 21;
+            battleCtx->afterMoveMessageState++;
+            if (BattleSystem_TriggerAbilityOnHit(battleSys, battleCtx, &abilitySeq) == TRUE) {
+                LOAD_SUBSEQ(abilitySeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                
                 return;
             }
-        }
-        case 5:
-            param1->afterMoveMessageState++;
 
-            if (BattleController_StatusMessage(param0, param1) == 1) {
+        case MULTI_HIT_STATUS:
+            battleCtx->afterMoveMessageState++;
+            if (BattleController_StatusMessage(battleSys, battleCtx) == TRUE) {
                 return;
             }
-        case 6:
-            param1->afterMoveMessageState++;
 
-            if (BattleController_CheckExtraFlinch(param0, param1) == 1) {
+        case MULTI_HIT_EXTRA_FLINCH:
+            battleCtx->afterMoveMessageState++;
+            if (BattleController_CheckExtraFlinch(battleSys, battleCtx) == TRUE) {
                 return;
             }
+
         default:
             break;
         }
         break;
     }
 
-    param1->afterMoveMessageState = 0;
-    param1->command = 30;
+    battleCtx->afterMoveMessageState = AFTER_MOVE_MESSAGE_START;
+    battleCtx->command = BATTLE_CONTROL_AFTER_MOVE_EFFECT;
 }
 
-static void ov16_0224FEE0 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_LeftoverState29(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
