@@ -160,7 +160,7 @@ int ov80_021D1478 (UnkStruct_ov80_021D2A08 * param0)
         ov80_021D2700(param0);
     }
 
-    ov80_021D2C1C(v0->unk_9C);
+    TownMapCityHolder_Free(v0->unk_9C);
     ov80_021D1F14(param0);
     Heap_FreeToHeap(v0);
 
@@ -189,7 +189,7 @@ int ov80_021D14A8 (UnkStruct_ov80_021D2A08 * param0)
     case 1:
         ov80_021D20DC(param0);
         ov80_021D2398(param0);
-        v0->unk_9C = ov80_021D2AF4(param0->unk_D8, param0->unk_DC, param0->unk_2C->unk_124, 20, param0->unk_04);
+        v0->unk_9C = TownMapCityHolder_New(param0->unk_D8, param0->unk_DC, param0->unk_2C->unk_124, 20, param0->unk_04);
         ov80_021D1A30(param0);
         ov80_021D19E4(param0);
         v0->unk_00 = 0;
@@ -1208,7 +1208,7 @@ static int ov80_021D29BC (UnkStruct_ov80_021D2A08 * param0)
         return 0;
     }
 
-    v1 = ov80_021D2C5C(v0->unk_9C, v0->unk_20, v0->unk_18, v0->unk_1C);
+    v1 = TownMapCityHolder_SearchByHeaderAndCoordinates(v0->unk_9C, v0->unk_20, v0->unk_18, v0->unk_1C);
 
     if ((v1 == NULL) || (v1->visited == 0)) {
         return 0;

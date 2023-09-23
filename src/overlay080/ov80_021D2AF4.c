@@ -220,96 +220,96 @@ const TownMapBlock gTownMapBlocks[20] = {
     }
 };
 
-TownMapCityHolder * ov80_021D2AF4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u8 * param2, short param3, int param4)
+TownMapCityHolder * TownMapCityHolder_New (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u8 * arriveFlags, short cityCount, int heapID)
 {
-    TownMapCityHolder * v0;
-    TownMapCity * v1;
-    const TownMapBlock * v2;
-    short v3;
+    TownMapCityHolder * holder;
+    TownMapCity * city;
+    const TownMapBlock * blockArray;
+    short i;
     static const UnkStruct_ov7_0224F358 v4 = {
         4, 0, 0, 0, 0, 10, 5, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 0, 0, 0
     };
 
-    v0 = Heap_AllocFromHeap(param4, sizeof(TownMapCityHolder));
-    memset(v0, 0, sizeof(TownMapCityHolder));
+    holder = Heap_AllocFromHeap(heapID, sizeof(TownMapCityHolder));
+    memset(holder, 0, sizeof(TownMapCityHolder));
 
-    v0->count = param3;
-    v0->cities = Heap_AllocFromHeap(param4, sizeof(TownMapCity) * v0->count);
-    memset(v0->cities, 0, sizeof(TownMapCity) * v0->count);
+    holder->count = cityCount;
+    holder->cities = Heap_AllocFromHeap(heapID, sizeof(TownMapCity) * holder->count);
+    memset(holder->cities, 0, sizeof(TownMapCity) * holder->count);
 
-    v2 = gTownMapBlocks;
+    blockArray = gTownMapBlocks;
 
-    for (v3 = 0; v3 < v0->count; v3++) {
-        v1 = &v0->cities[v3];
-        v1->block.mapHeader = v2[v3].mapHeader;
-        v1->block.blockType = v2[v3].blockType;
-        v1->block.blockColor = v2[v3].blockColor;
-        v1->block.unk_0A = v2[v3].unk_0A;
-        v1->block.xCoord = v2[v3].xCoord;
-        v1->block.yCoord = v2[v3].yCoord;
-        v1->visited = param2[v3];
-        v1->unk_18 = sub_0200CA08(param0, param1, &v4);
+    for (i = 0; i < holder->count; i++) {
+        city = &holder->cities[i];
+        city->block.mapHeader = blockArray[i].mapHeader;
+        city->block.blockType = blockArray[i].blockType;
+        city->block.blockColor = blockArray[i].blockColor;
+        city->block.unk_0A = blockArray[i].unk_0A;
+        city->block.xCoord = blockArray[i].xCoord;
+        city->block.yCoord = blockArray[i].yCoord;
+        city->visited = arriveFlags[i];
+        city->unk_18 = sub_0200CA08(param0, param1, &v4);
 
-        sub_02021CAC(v1->unk_18, 1);
+        sub_02021CAC(city->unk_18, 1);
 
-        if (v1->visited) {
-            sub_02021E90(v1->unk_18, 5 + v1->block.blockColor + v1->visited);
+        if (city->visited) {
+            sub_02021E90(city->unk_18, 5 + city->block.blockColor + city->visited);
         } else {
-            if ((v1->block.unk_0A == 1) || (v1->block.unk_0A == 2)) {
-                sub_02021CAC(v1->unk_18, 0);
+            if ((city->block.unk_0A == 1) || (city->block.unk_0A == 2)) {
+                sub_02021CAC(city->unk_18, 0);
             }
         }
 
-        sub_02021E2C(v1->unk_18, FX32_CONST(v1->block.blockType));
-        sub_0200D494(v1->unk_18, v1->block.xCoord + 25, v1->block.yCoord + -34);
+        sub_02021E2C(city->unk_18, FX32_CONST(city->block.blockType));
+        sub_0200D494(city->unk_18, city->block.xCoord + 25, city->block.yCoord + -34);
     }
 
-    return v0;
+    return holder;
 }
 
-void ov80_021D2C1C (TownMapCityHolder * param0)
+void TownMapCityHolder_Free (TownMapCityHolder * holder)
 {
-    TownMapCity * v0;
-    short v1;
+    TownMapCity * city;
+    short i;
 
-    for (v1 = 0; v1 < param0->count; v1++) {
-        v0 = &param0->cities[v1];
-        sub_02021C98(v0->unk_18, 0, 0);
-        sub_02021BD4(v0->unk_18);
+    for (i = 0; i < holder->count; i++) {
+        city = &holder->cities[i];
+        sub_02021C98(city->unk_18, 0, 0);
+        sub_02021BD4(city->unk_18);
     }
 
-    Heap_FreeToHeap(param0->cities);
-    Heap_FreeToHeap(param0);
+    Heap_FreeToHeap(holder->cities);
+    Heap_FreeToHeap(holder);
 }
 
-TownMapCity * ov80_021D2C5C (TownMapCityHolder * param0, int param1, int param2, int param3)
+TownMapCity * TownMapCityHolder_SearchByHeaderAndCoordinates (TownMapCityHolder * holder, int mapHeader, int xCoord, int yCoord)
 {
-    TownMapCity * v0;
-    short v1, v2;
+    TownMapCity * city;
+    short i;
 
-    for (v1 = 0; v1 < param0->count; v1++) {
-        v0 = &(param0->cities[v1]);
+    for (i = 0; i < holder->count; i++) {
+        city = &(holder->cities[i]);
 
-        if (v0->block.mapHeader != param1) {
+        if (city->block.mapHeader != mapHeader) {
             continue;
         }
 
-        switch (v0->block.unk_0A) {
+        switch (city->block.unk_0A) {
         case 0:
-            return v0;
+            return city;
         case 1:
-            if ((9 == param2) && (28 == param3)) {
-                return v0;
+            if ((9 == xCoord) && (28 == yCoord)) {
+                return city;
             }
             break;
         case 2:
-            if ((26 == param2) && (18 == param3)) {
-                return v0;
+            if ((26 == xCoord) && (18 == yCoord)) {
+                return city;
             }
             break;
         case 3:
-            if ((26 == param2) && (17 == param3)) {
-                return v0;
+            if ((26 == xCoord) && (17 == yCoord)) {
+                return city;
             }
             break;
         }
@@ -329,7 +329,7 @@ int ov80_021D2CC0 (TownMapCityHolder * param0, int param1, int param2, int param
         return 0;
     }
 
-    v0 = ov80_021D2C5C(param0, param1, param2, param3);
+    v0 = TownMapCityHolder_SearchByHeaderAndCoordinates(param0, param1, param2, param3);
 
     if ((v0 == NULL) || (v0->visited == 0)) {
         if (param0->unk_04 != NULL) {
