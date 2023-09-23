@@ -13,12 +13,12 @@ typedef struct UnkStruct_020507E4_t {
 
 static u8 Unk_021C07F4[8] = {};
 
-int sub_020507CC (void)
+int FieldEvents_SaveSize (void)
 {
     return sizeof(UnkStruct_020507E4);
 }
 
-void sub_020507D4 (UnkStruct_020507E4 * param0)
+void FieldEvents_Init (UnkStruct_020507E4 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_020507E4));
 }

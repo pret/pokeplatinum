@@ -4,8 +4,8 @@
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202C858(void);
-void sub_0202C860(UnkStruct_0202C878 * param0);
+int WiFiHistory_SaveSize(void);
+void WiFiHistory_Init(UnkStruct_0202C878 * param0);
 UnkStruct_0202C878 * sub_0202C878(SaveData * param0);
 void sub_0202C88C(UnkStruct_0202C878 * param0, int param1, int param2);
 int sub_0202C8C0(const UnkStruct_0202C878 * param0);

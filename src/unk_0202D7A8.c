@@ -13,12 +13,12 @@
 #include "unk_020244AC.h"
 #include "unk_0202D7A8.h"
 
-int sub_0202D7A8 (void)
+int SpecialEncounter_SaveSize (void)
 {
     return sizeof(UnkStruct_0202D7B0);
 }
 
-void sub_0202D7B0 (UnkStruct_0202D7B0 * param0)
+void SpecialEncounter_Init (UnkStruct_0202D7B0 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0202D7B0));
 

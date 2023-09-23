@@ -1748,8 +1748,8 @@ static int ov65_0222F304 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         sub_0201A8FC(&param0->unk_360);
 
         if (v1 == 0) {
-            sub_0202ACE8(param0->unk_00);
-            sub_02030CEC(sub_020245BC(param0->unk_160, 35));
+            WiFiList_Init(param0->unk_00);
+            Email_Init(sub_020245BC(param0->unk_160, 35));
             sub_02030764(sub_0203068C(param0->unk_160));
             param0->unk_3A8 = 14;
             param0->unk_04 = sub_0203871C(param0->unk_160, sizeof(UnkStruct_0207DFAC));

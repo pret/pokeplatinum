@@ -5,8 +5,8 @@
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay096/struct_ov96_0223B574.h"
 
-int sub_02030CE8(void);
-void sub_02030CEC(UnkStruct_02030CEC * param0);
+int Email_SaveSize(void);
+void Email_Init(UnkStruct_02030CEC * param0);
 void sub_02030D10(SaveData * param0);
 BOOL sub_02030D20(SaveData * param0);
 void sub_02030D38(SaveData * param0, const char * param1);

@@ -25,13 +25,13 @@ typedef struct BattleFrontierStage {
 static u16 sub_02030908(BattleFrontierStage * param0, int param1, int param2, u16 param3);
 static u16 sub_02030954(SaveData * param0, BattleFrontierStage * param1, int param2, int param3, u16 param4);
 
-int sub_02030880 (void)
+int Frontier_Extra_SaveSize (void)
 {
     GF_ASSERT(sizeof(BattleFrontierStage) % 4 == 0);
     return sizeof(BattleFrontierStage);
 }
 
-void sub_02030888 (BattleFrontierStage * param0)
+void Frontier_Extra_Init (BattleFrontierStage * param0)
 {
     MI_CpuClear8(param0, sizeof(BattleFrontierStage));
     param0->unk_00 = 0xffffffff;

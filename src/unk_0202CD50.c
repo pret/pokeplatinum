@@ -24,12 +24,12 @@ typedef struct UnkStruct_0202CD88_t {
 static void sub_0202CD94(UnkStruct_0202CD88 * param0, int param1);
 static void sub_0202CDC0(UnkStruct_0202CD88 * param0, int param1);
 
-int sub_0202CD50 (void)
+int GameRecord_SaveSize (void)
 {
     return sizeof(UnkStruct_0202CD88);
 }
 
-void sub_0202CD58 (UnkStruct_0202CD88 * param0)
+void GameRecord_Init (UnkStruct_0202CD88 * param0)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0202CD88));
     param0->unk_1B8.unk_02 = OS_GetVBlankCount() | (OS_GetVBlankCount() << 8);

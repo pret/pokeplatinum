@@ -15,7 +15,7 @@
 
 UnkStruct_0202B4A0 * Unk_021C079C;
 
-int sub_0202B37C (void)
+int RandomGroup_SaveSize (void)
 {
     return sizeof(UnkStruct_0202B4A0);
 }
@@ -25,7 +25,7 @@ void sub_0202B384 (UnkStruct_0202B4A0 * param0, int param1, int param2)
     param0->unk_00[param2] = param0->unk_00[param1];
 }
 
-void sub_0202B3A8 (UnkStruct_0202B4A0 * param0)
+void RandomGroup_Init (UnkStruct_0202B4A0 * param0)
 {
     int v0;
 

@@ -7,11 +7,11 @@
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202854C(void);
+int Underground_SaveSize(void);
 int sub_02028554(void);
 int sub_02028558(void);
 UnkStruct_0202855C * sub_0202855C(u32 param0);
-void sub_02028574(UnkStruct_020298B0 * param0);
+void Underground_Init(UnkStruct_020298B0 * param0);
 void sub_02028658(SaveData * param0, int param1);
 void sub_02028758(SaveData * param0, s32 param1, BOOL param2);
 void sub_0202878C(SaveData * param0);

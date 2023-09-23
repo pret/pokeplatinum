@@ -15,8 +15,8 @@
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
 
-int sub_0202E2CC(void);
-void sub_0202E2D4(TVBroadcast * param0);
+int TVBroadcast_SaveSize(void);
+void TVBroadcast_Init(TVBroadcast * param0);
 void sub_0202E2EC(TVBroadcast * param0);
 void sub_0202E324(TVBroadcast * param0, int param1, int param2);
 void sub_0202E35C(TVBroadcast * param0);

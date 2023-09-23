@@ -15,12 +15,12 @@ typedef struct PalParkTransfer {
     u8 unk_380[6];
 } PalParkTransfer;
 
-int sub_0202EEC0 (void)
+int PalParkTransfer_SaveSize (void)
 {
     return sizeof(PalParkTransfer);
 }
 
-void sub_0202EEC8 (PalParkTransfer * param0)
+void PalParkTransfer_Init (PalParkTransfer * param0)
 {
     int v0;
 

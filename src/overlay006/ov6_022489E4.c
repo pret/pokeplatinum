@@ -296,7 +296,7 @@ void ov6_02248D38 (int param0, int param1, void * param2, void * param3)
     int v2;
     u8 * v3;
 
-    v1 = sub_0202CC64();
+    v1 = ChatotCry_SaveSize();
     v3 = param2;
     v2 = v3[v1];
 
@@ -311,7 +311,7 @@ BOOL ov6_02248D64 (UnkStruct_02095C48 * param0, int param1, void * param2)
     int v1;
     int v2;
 
-    v1 = sub_0202CC64();
+    v1 = ChatotCry_SaveSize();
     v0 = param0->unk_569;
 
     if (param2 != NULL) {

@@ -4,8 +4,8 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_02030880(void);
-void sub_02030888(BattleFrontierStage * param0);
+int Frontier_Extra_SaveSize(void);
+void Frontier_Extra_Init(BattleFrontierStage * param0);
 BattleFrontierStage * sub_020308A0(SaveData * param0, int param1, int * param2);
 int sub_020308A8(SaveData * param0, BattleFrontierStage * param1);
 u16 sub_020308BC(SaveData * param0, BattleFrontierStage * param1, int param2, int param3);

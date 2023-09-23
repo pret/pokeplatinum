@@ -39,12 +39,12 @@ typedef struct UnkStruct_0202783C_t {
     UnkStruct_0202783C_sub1 unk_6DC;
 } UnkStruct_0202783C;
 
-int sub_020277A4 (void)
+int MiscSaveBlock_SaveSize (void)
 {
     return sizeof(UnkStruct_0202783C);
 }
 
-void sub_020277AC (UnkStruct_0202783C * param0)
+void MiscSaveBlock_Init (UnkStruct_0202783C * param0)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_0202783C));
 

@@ -4,8 +4,8 @@
 #include "struct_defs/struct_0202F10C.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202F108(void);
-void sub_0202F10C(UnkStruct_0202F10C * param0);
+int Contest_SaveSize(void);
+void Contest_Init(UnkStruct_0202F10C * param0);
 void sub_0202F134(SaveData * param0, int param1, int param2);
 u16 sub_0202F160(SaveData * param0, int param1, int param2);
 

@@ -5,8 +5,8 @@
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_02056720(void);
-void sub_02056728(UnkStruct_02056B24 * param0);
+int Poketch_SaveSize(void);
+void Poketch_Init(UnkStruct_02056B24 * param0);
 void sub_020567D0(UnkStruct_02056B24 * param0);
 BOOL sub_020567E0(UnkStruct_02056B24 * param0);
 BOOL sub_020567E8(UnkStruct_02056B24 * param0, int param1);

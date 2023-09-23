@@ -24,12 +24,12 @@
 static void sub_0202E3AC(TVBroadcast * param0);
 static UnkStruct_0202E768 * sub_0202E4DC(TVBroadcast * param0, int param1);
 
-int sub_0202E2CC (void)
+int TVBroadcast_SaveSize (void)
 {
     return sizeof(TVBroadcast);
 }
 
-void sub_0202E2D4 (TVBroadcast * param0)
+void TVBroadcast_Init (TVBroadcast * param0)
 {
     MI_CpuClearFast(param0, sizeof(TVBroadcast));
     sub_02025C84(27);

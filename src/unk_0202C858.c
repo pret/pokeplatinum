@@ -8,12 +8,12 @@
 #include "unk_020244AC.h"
 #include "unk_0202C858.h"
 
-int sub_0202C858 (void)
+int WiFiHistory_SaveSize (void)
 {
     return sizeof(UnkStruct_0202C878);
 }
 
-void sub_0202C860 (UnkStruct_0202C878 * param0)
+void WiFiHistory_Init (UnkStruct_0202C878 * param0)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0202C878));
     sub_02025C84(30);

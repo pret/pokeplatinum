@@ -6,9 +6,9 @@
 #include "struct_defs/struct_0202B510.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202B37C(void);
+int RandomGroup_SaveSize(void);
 void sub_0202B384(UnkStruct_0202B4A0 * param0, int param1, int param2);
-void sub_0202B3A8(UnkStruct_0202B4A0 * param0);
+void RandomGroup_Init(UnkStruct_0202B4A0 * param0);
 void sub_0202B3D8(UnkStruct_0202B4A0 * param0, u32 param1);
 u32  sub_0202B400(UnkStruct_0202B4A0 * param0, int param1);
 void sub_0202B40C(UnkStruct_0202B4A0 * param0, int param1, u32 param2);

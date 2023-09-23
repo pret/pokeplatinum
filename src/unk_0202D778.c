@@ -6,12 +6,12 @@
 #include "unk_020244AC.h"
 #include "unk_0202D778.h"
 
-int sub_0202D778 (void)
+int Ribbons_SaveSize (void)
 {
     return 14;
 }
 
-void sub_0202D77C (u8 * param0)
+void Ribbons_Init (u8 * param0)
 {
     memset(param0, 0, 14);
 }

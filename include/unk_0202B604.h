@@ -6,8 +6,8 @@
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202B604(void);
-void sub_0202B618(UnkStruct_0202B628 * param0);
+int Journal_SaveSize(void);
+void Journal_Init(UnkStruct_0202B628 * param0);
 UnkStruct_0202B628 * sub_0202B628(SaveData * param0);
 UnkStruct_0202B628 * sub_0202B634(UnkStruct_0202B628 * param0, BOOL param1);
 BOOL sub_0202B6A4(UnkStruct_0202B628 * param0, BOOL param1);

@@ -41,14 +41,14 @@ static BOOL sub_0202F794(SaveData * param0, const BattleRecording * param1);
 static void sub_0202F860(void * param0, u32 param1, u32 param2);
 static void sub_0202F510(SaveData * param0, UnkStruct_0202F41C * param1, const UnkStruct_0202F298 * param2, int param3, int param4);
 
-int sub_0202F1D4 (void)
+int BattleRecording_SaveSize (void)
 {
     GF_ASSERT(sizeof(BattleRecording) < 0x1000 * 2);
 
     return sizeof(BattleRecording);
 }
 
-void sub_0202F1DC (BattleRecording * param0)
+void BattleRecording_Init (BattleRecording * param0)
 {
     MI_CpuClear32(param0, sizeof(BattleRecording));
     param0->unk_00 = 0xffffffff;
@@ -62,7 +62,7 @@ void sub_0202F1F8 (SaveData * param0, int param1, int * param2)
     }
 
     Unk_021C07A4 = SaveData_BattleRecording(param0, param1, param2, 0);
-    sub_0202F1DC(Unk_021C07A4);
+    BattleRecording_Init(Unk_021C07A4);
 }
 
 void sub_0202F22C (void)

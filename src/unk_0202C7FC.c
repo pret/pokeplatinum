@@ -15,12 +15,12 @@ typedef struct UnkStruct_0202C834_t {
     u8 unk_20[1536];
 } UnkStruct_0202C834;
 
-int sub_0202C7FC (void)
+int TrainerCard_SaveSize (void)
 {
     return sizeof(UnkStruct_0202C834);
 }
 
-void sub_0202C804 (UnkStruct_0202C834 * param0)
+void TrainerCard_Init (UnkStruct_0202C834 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0202C834));
 

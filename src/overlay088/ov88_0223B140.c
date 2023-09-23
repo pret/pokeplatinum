@@ -1162,10 +1162,10 @@ static void ov88_0223C370 (UnkStruct_02095E80 * param0, UnkStruct_020067E8 * par
     param0->unk_2270 = v0->unk_08;
     param0->unk_227C = v0->unk_0C;
     param0->unk_04 = v0->unk_10;
-    param0->unk_2274 = Heap_AllocFromHeap(26, Party_sizeof());
+    param0->unk_2274 = Heap_AllocFromHeap(26, Party_SaveSize());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
-    memset(param0->unk_2274, 0xff, Party_sizeof());
+    memset(param0->unk_2274, 0xff, Party_SaveSize());
 
     param0->unk_18C = TrainerInfo_NameNewStrbuf(v0->unk_04, 26);
     param0->unk_190 = MessageLoader_GetNewStrbuf(param0->unk_184, 42);

@@ -239,12 +239,12 @@ UnkStruct_02028430 * sub_02028430 (SaveData * param0)
     return sub_020245BC(param0, 15);
 }
 
-int sub_0202843C (void)
+int Mail_SaveSize (void)
 {
     return sizeof(UnkStruct_0202818C) * 20;
 }
 
-void sub_02028444 (UnkStruct_02028430 * param0)
+void Mail_Init (UnkStruct_02028430 * param0)
 {
     int v0 = 0;
 

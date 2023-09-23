@@ -226,12 +226,12 @@ BOOL sub_02014E4C (u16 param0, u32 * param1, u32 * param2)
     return 0;
 }
 
-u32 sub_02014E8C (void)
+u32 Sentence_SaveSize (void)
 {
     return sizeof(UnkStruct_02014EC4);
 }
 
-void sub_02014E90 (void * param0)
+void Sentence_Init (void * param0)
 {
     static const struct {
         u8 unk_00;

@@ -8,8 +8,8 @@
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_020277A4(void);
-void sub_020277AC(UnkStruct_0202783C * param0);
+int MiscSaveBlock_SaveSize(void);
+void MiscSaveBlock_Init(UnkStruct_0202783C * param0);
 UnkStruct_0202783C * sub_0202783C(SaveData * param0);
 const UnkStruct_0202783C * sub_02027848(const SaveData * param0);
 UnkStruct_02027854 * sub_02027854(SaveData * param0);

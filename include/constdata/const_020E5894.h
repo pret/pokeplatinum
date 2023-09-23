@@ -3,6 +3,6 @@
 
 #include "struct_defs/save_table_entry.h"
 
-extern const SaveTableEntry Unk_020E5894[];
+extern const SaveTableEntry gSaveTableEntries[];
 
 #endif // POKEPLATINUM_CONST_020E5894_H

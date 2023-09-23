@@ -14,8 +14,8 @@
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay061/struct_ov61_0222AE80.h"
 
-void sub_02029BFC(UnkStruct_0202A750 * param0);
-int sub_02029C58(void);
+void ImageClip_Init(UnkStruct_0202A750 * param0);
+int ImageClip_SaveSize(void);
 int sub_02029C60(void);
 int sub_02029C64(void);
 UnkStruct_02029C68 * sub_02029C68(u32 param0);

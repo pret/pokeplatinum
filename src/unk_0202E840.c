@@ -67,12 +67,12 @@ BOOL sub_0202E870 (UnkStruct_0202E858 * param0)
     return 1;
 }
 
-int sub_0202E884 (void)
+int Rankings_SaveSize (void)
 {
     return sizeof(UnkStruct_0202E8C0);
 }
 
-void sub_0202E88C (UnkStruct_0202E8C0 * param0)
+void Rankings_Init (UnkStruct_0202E8C0 * param0)
 {
     int v0, v1;
 

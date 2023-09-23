@@ -8,8 +8,8 @@
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_020261E4(void);
-void sub_020261EC(UnkStruct_02026310 * param0);
+int Daycare_SaveSize(void);
+void Daycare_Init(UnkStruct_02026310 * param0);
 UnkStruct_02026218 * sub_02026218(UnkStruct_02026310 * param0, int param1);
 BoxPokemon * sub_02026220(UnkStruct_02026218 * param0);
 UnkStruct_02026224 * sub_02026224(UnkStruct_02026218 * param0);

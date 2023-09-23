@@ -30,12 +30,12 @@ typedef struct UnkStruct_02026310_t {
     u8 unk_DC;
 } UnkStruct_02026310;
 
-int sub_020261E4 (void)
+int Daycare_SaveSize (void)
 {
     return sizeof(UnkStruct_02026310);
 }
 
-void sub_020261EC (UnkStruct_02026310 * param0)
+void Daycare_Init (UnkStruct_02026310 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026310));
 

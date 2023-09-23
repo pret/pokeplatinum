@@ -19,12 +19,12 @@
 
 static int inline inline_0202E1A8(const HallOfFame * param0, int param1);
 
-int sub_0202DF8C (void)
+int HallOfFame_SaveSize (void)
 {
     return sizeof(HallOfFame);
 }
 
-void sub_0202DF94 (HallOfFame * param0)
+void HallOfFame_Init (HallOfFame * param0)
 {
     MI_CpuClear32(param0, sizeof(HallOfFame));
 }

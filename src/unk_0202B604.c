@@ -117,7 +117,7 @@ static const UnkStruct_020E5B50 Unk_020E5B50[] = {
     {0x140, 0x9A, 0x7}
 };
 
-int sub_0202B604 (void)
+int Journal_SaveSize (void)
 {
     return sizeof(UnkStruct_0202B628) * 10;
 }
@@ -127,7 +127,7 @@ static void sub_0202B60C (UnkStruct_0202B628 * param0)
     memset(param0, 0, sizeof(UnkStruct_0202B628));
 }
 
-void sub_0202B618 (UnkStruct_0202B628 * param0)
+void Journal_Init (UnkStruct_0202B628 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0202B628) * 10);
 }

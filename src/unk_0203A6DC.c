@@ -39,22 +39,22 @@ typedef struct UnkStruct_0203A79C_t {
     UnkStruct_02061D3C unk_00[64];
 } UnkStruct_0203A79C;
 
-int sub_0203A6DC (void)
+int FieldPlayerState_SaveSize (void)
 {
     return sizeof(UnkStruct_0203A790);
 }
 
-int sub_0203A6E0 (void)
+int FieldOWState_SaveSize (void)
 {
     return sizeof(UnkStruct_0203A79C);
 }
 
-void sub_0203A6E8 (UnkStruct_0203A79C * param0)
+void FieldOWState_Init (UnkStruct_0203A79C * param0)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0203A79C));
 }
 
-void sub_0203A6F8 (UnkStruct_0203A790 * param0)
+void FieldPlayerState_Init (UnkStruct_0203A790 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0203A790));
 

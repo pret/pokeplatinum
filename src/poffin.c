@@ -230,12 +230,12 @@ UnkStruct_0202AB28 * Poffin_GetSavedataBlock (SaveData * savedata)
     return sub_020245BC(savedata, 16);
 }
 
-int Poffin_GetSizeOfSavedataBlock (void)
+int Poffin_SaveSize (void)
 {
     return sizeof(Poffin) * 100;
 }
 
-void sub_0202AB3C (UnkStruct_0202AB28 * param0)
+void Poffin_Init (UnkStruct_0202AB28 * param0)
 {
     int i = 0;
 

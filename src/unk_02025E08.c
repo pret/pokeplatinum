@@ -21,12 +21,12 @@ struct UnkStruct_02025E0C_t {
     UnkStruct_02025E5C unk_26;
 };
 
-int sub_02025E08 (void)
+int Player_SaveSize (void)
 {
     return sizeof(UnkStruct_02025E0C);
 }
 
-void sub_02025E0C (UnkStruct_02025E0C * param0)
+void Player_Init (UnkStruct_02025E0C * param0)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_02025E0C));
 

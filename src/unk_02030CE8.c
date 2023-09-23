@@ -18,12 +18,12 @@
 
 static void sub_02030DD0(SaveData * param0, UnkStruct_ov96_0223B574 * param1);
 
-int sub_02030CE8 (void)
+int Email_SaveSize (void)
 {
     return sizeof(UnkStruct_02030CEC);
 }
 
-void sub_02030CEC (UnkStruct_02030CEC * param0)
+void Email_Init (UnkStruct_02030CEC * param0)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_02030CEC));
 
@@ -35,7 +35,7 @@ void sub_02030CEC (UnkStruct_02030CEC * param0)
 
 void sub_02030D10 (SaveData * param0)
 {
-    sub_02030CEC(sub_020245BC(param0, 35));
+    Email_Init(sub_020245BC(param0, 35));
 }
 
 BOOL sub_02030D20 (SaveData * param0)

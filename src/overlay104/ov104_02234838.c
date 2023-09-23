@@ -125,7 +125,7 @@ BOOL ov104_022348BC (UnkStruct_ov104_0222E930 * param0)
     v4->unk_05 = v3->unk_6F5;
     v4->unk_14 = &v3->unk_D84[0];
 
-    sub_0207A008(v4->unk_0C);
+    Party_Init(v4->unk_0C);
 
     v1 = Party_GetFromSavedata(v5->unk_08);
     v2 = Party_GetPokemonBySlotIndex(v1, v3->unk_260[0]);

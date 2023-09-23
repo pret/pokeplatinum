@@ -7,8 +7,8 @@
 #include "struct_defs/union_0204C4D0.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202DAB4(void);
-void sub_0202DABC(MysteryGift * param0);
+int MysteryGift_SaveSize(void);
+void MysteryGift_Init(MysteryGift * param0);
 UnkStruct_0202DF40 * sub_0202DAD8(MysteryGift * param0, int param1);
 UnkStruct_0202DBAC * sub_0202DB00(MysteryGift * param0, int param1);
 BOOL sub_0202DB2C(MysteryGift * param0, const void * param1, int param2);

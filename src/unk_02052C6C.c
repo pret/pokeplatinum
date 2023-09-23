@@ -80,7 +80,7 @@ static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
     v0 = SaveData_HallOfFame(param0->unk_0C, 11, &v3);
 
     if ((v3 != 1) || !param1) {
-        sub_0202DF94(v0);
+        HallOfFame_Init(v0);
     }
 
     v1 = Party_GetFromSavedata(param0->unk_0C);

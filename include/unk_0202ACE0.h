@@ -7,8 +7,8 @@
 
 #include <dwc.h>
 
-int sub_0202ACE0(void);
-void sub_0202ACE8(UnkStruct_0202B370 * param0);
+int WiFiList_SaveSize(void);
+void WiFiList_Init(UnkStruct_0202B370 * param0);
 DWCUserData * sub_0202AD28(UnkStruct_0202B370 * param0);
 u32 sub_0202AD2C(UnkStruct_0202B370 * param0, int param1, int param2);
 void sub_0202AE2C(UnkStruct_0202B370 * param0, int param1, int param2, u32 param3);

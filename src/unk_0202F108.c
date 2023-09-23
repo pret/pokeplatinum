@@ -8,12 +8,12 @@
 #include "unk_020244AC.h"
 #include "unk_0202F108.h"
 
-int sub_0202F108 (void)
+int Contest_SaveSize (void)
 {
     return sizeof(UnkStruct_0202F10C);
 }
 
-void sub_0202F10C (UnkStruct_0202F10C * param0)
+void Contest_Init (UnkStruct_0202F10C * param0)
 {
     int v0, v1;
 

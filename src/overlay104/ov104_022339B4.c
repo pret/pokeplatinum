@@ -497,7 +497,7 @@ void ov104_0223449C (UnkStruct_ov104_0223ADA0 * param0)
     v1 = ov104_0223AA50(param0->unk_04);
     v2 = ov104_0223AA74(param0->unk_04, 1);
 
-    sub_0207A008(param0->unk_4D4);
+    Party_Init(param0->unk_4D4);
 
     v3 = Pokemon_New(11);
 
@@ -588,7 +588,7 @@ void ov104_0223470C (UnkStruct_ov104_0223ADA0 * param0)
     v1 = ov104_0223AA50(param0->unk_04);
     v2 = ov104_0223AA74(param0->unk_04, 1);
 
-    sub_0207A008(param0->unk_4D8);
+    Party_Init(param0->unk_4D8);
 
     v3 = Pokemon_New(11);
 

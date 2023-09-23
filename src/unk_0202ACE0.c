@@ -16,12 +16,12 @@
 #include "unk_0202ACE0.h"
 #include "unk_02038FFC.h"
 
-int sub_0202ACE0 (void)
+int WiFiList_SaveSize (void)
 {
     return sizeof(UnkStruct_0202B370);
 }
 
-void sub_0202ACE8 (UnkStruct_0202B370 * param0)
+void WiFiList_Init (UnkStruct_0202B370 * param0)
 {
     int v0;
 

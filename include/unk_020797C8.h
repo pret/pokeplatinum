@@ -5,8 +5,8 @@
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
-void sub_020797C8(PSSBoxes * param0);
-u32 sub_020797D4(void);
+void PSSBoxes_Init(PSSBoxes * param0);
+u32 PSSBoxes_SaveSize(void);
 BOOL sub_02079868(PSSBoxes * param0, BoxPokemon * param1);
 BOOL sub_020798A0(PSSBoxes * param0, u32 param1, BoxPokemon * param2);
 BOOL sub_02079914(PSSBoxes * param0, u32 param1, u32 param2, BoxPokemon * param3);

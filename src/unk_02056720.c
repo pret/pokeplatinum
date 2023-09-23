@@ -37,12 +37,12 @@ typedef struct UnkStruct_02056B24_t {
     } unk_B8[12];
 } UnkStruct_02056B24;
 
-int sub_02056720 (void)
+int Poketch_SaveSize (void)
 {
     return sizeof(UnkStruct_02056B24);
 }
 
-void sub_02056728 (UnkStruct_02056B24 * param0)
+void Poketch_Init (UnkStruct_02056B24 * param0)
 {
     int v0;
 

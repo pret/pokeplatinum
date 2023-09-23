@@ -73,7 +73,7 @@ u16 Unk_02100920[] = {
     0x139
 };
 
-int sub_0202854C (void)
+int Underground_SaveSize (void)
 {
     return sizeof(UnkStruct_020298B0);
 }
@@ -97,7 +97,7 @@ UnkStruct_0202855C * sub_0202855C (u32 param0)
     return v0;
 }
 
-void sub_02028574 (UnkStruct_020298B0 * param0)
+void Underground_Init (UnkStruct_020298B0 * param0)
 {
     u32 v0 = 0;
     RTCDate v1;

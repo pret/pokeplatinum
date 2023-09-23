@@ -8,8 +8,8 @@
 #include "struct_defs/struct_0206C638.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202D7A8(void);
-void sub_0202D7B0(UnkStruct_0202D7B0 * param0);
+int SpecialEncounter_SaveSize(void);
+void SpecialEncounter_Init(UnkStruct_0202D7B0 * param0);
 void sub_0202D80C(UnkStruct_0202D7B0 * param0, const u32 param1);
 u32 sub_0202D814(UnkStruct_0202D7B0 * param0, const u8 param1);
 UnkStruct_020698E4 * sub_0202D830(UnkStruct_0202D7B0 * param0);

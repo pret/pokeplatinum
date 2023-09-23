@@ -18,7 +18,7 @@ int sub_0202602C (void)
     return sizeof(UnkStruct_0202610C);
 }
 
-int sub_02026030 (void)
+int RegulationBattles_SaveSize (void)
 {
     return sizeof(UnkStruct_02026030);
 }
@@ -28,7 +28,7 @@ void sub_02026034 (const UnkStruct_0202610C * param0, UnkStruct_0202610C * param
     MI_CpuCopy8(param0, param1, sizeof(UnkStruct_0202610C));
 }
 
-void sub_02026040 (UnkStruct_02026030 * param0)
+void RegulationBattles_Init (UnkStruct_02026030 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026030));
 }

@@ -4,8 +4,8 @@
 #include "struct_decls/struct_02024440_decl.h"
 #include "pokemon.h"
 
-int sub_0202EEC0(void);
-void sub_0202EEC8(PalParkTransfer * param0);
+int PalParkTransfer_SaveSize(void);
+void PalParkTransfer_Init(PalParkTransfer * param0);
 void sub_0202EF04(PalParkTransfer * param0);
 void sub_0202EFA4(PalParkTransfer * param0, BoxPokemon * param1, int param2);
 void sub_0202EFB8(PalParkTransfer * param0, u32 param1);

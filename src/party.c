@@ -17,7 +17,7 @@
     GF_ASSERT(slot < (party)->capacity);        \
 }
 
-int Party_sizeof (void)
+int Party_SaveSize (void)
 {
     return sizeof(Party);
 }
@@ -27,12 +27,12 @@ Party * sub_02079FF4 (u32 param0)
     Party * v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(Party));
-    sub_0207A008(v0);
+    Party_Init(v0);
 
     return v0;
 }
 
-void sub_0207A008 (Party * param0)
+void Party_Init (Party * param0)
 {
     Party_InitWithCapacity(param0, 6);
 }

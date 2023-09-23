@@ -17,13 +17,13 @@ typedef struct PSSBoxes {
 
 static void sub_020797DC(PSSBoxes * param0);
 
-void sub_020797C8 (PSSBoxes * param0)
+void PSSBoxes_Init (PSSBoxes * param0)
 {
     sub_020797DC(param0);
     sub_02024804();
 }
 
-u32 sub_020797D4 (void)
+u32 PSSBoxes_SaveSize (void)
 {
     return sizeof(PSSBoxes);
 }

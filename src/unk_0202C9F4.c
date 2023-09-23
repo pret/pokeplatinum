@@ -11,16 +11,16 @@
 #include "unk_020244AC.h"
 #include "unk_0202C9F4.h"
 
-int sub_0202C9F4 (void)
+int BallSeal_SaveSize (void)
 {
     return sizeof(UnkStruct_0202CA1C);
 }
 
-void sub_0202C9FC (UnkStruct_0202CA1C * param0)
+void BallSeal_Init (UnkStruct_0202CA1C * param0)
 {
     int v0;
 
-    v0 = sub_0202C9F4();
+    v0 = BallSeal_SaveSize();
     MI_CpuFill8(param0, 0, v0);
 }
 

@@ -6,8 +6,8 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 UnkStruct_0202DA40 * sub_0202DA40(SaveData * param0);
-int  sub_0202DA4C(void);
-void sub_0202DA50(UnkStruct_0202DA40 * param0);
+int  GlobalTrade_SaveSize(void);
+void GlobalTrade_Init(UnkStruct_0202DA40 * param0);
 int  sub_0202DA60(UnkStruct_0202DA40 * param0);
 void sub_0202DA68(UnkStruct_0202DA40 * param0, int param1);
 void sub_0202DA70(UnkStruct_0202DA40 * param0, Pokemon * param1);

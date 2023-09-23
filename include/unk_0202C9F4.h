@@ -7,8 +7,8 @@
 #include "struct_decls/struct_0202CA88_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202C9F4(void);
-void sub_0202C9FC(UnkStruct_0202CA1C * param0);
+int BallSeal_SaveSize(void);
+void BallSeal_Init(UnkStruct_0202CA1C * param0);
 void sub_0202CA10(const UnkStruct_0202CA28 * param0, UnkStruct_0202CA28 * param1);
 UnkStruct_0202CA1C * sub_0202CA1C(SaveData * param0);
 UnkStruct_0202CA28 * sub_0202CA28(UnkStruct_0202CA1C * param0, int param1);

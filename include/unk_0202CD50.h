@@ -5,8 +5,8 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202CD50(void);
-void sub_0202CD58(UnkStruct_0202CD88 * param0);
+int GameRecord_SaveSize(void);
+void GameRecord_Init(UnkStruct_0202CD88 * param0);
 UnkStruct_0202CD88 * sub_0202CD88(SaveData * param0);
 u32 sub_0202CE90(UnkStruct_0202CD88 * param0, int param1, u32 param2);
 u32 sub_0202CED0(UnkStruct_0202CD88 * param0, int param1, u32 param2);

@@ -6,9 +6,9 @@
 #include "struct_decls/struct_0207D99C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0207D3B8(void);
+int Bag_SaveSize(void);
 UnkStruct_0207D3C0 * sub_0207D3C0(int param0);
-void sub_0207D3D8(UnkStruct_0207D3C0 * param0);
+void Bag_Init(UnkStruct_0207D3C0 * param0);
 void sub_0207D3EC(const UnkStruct_0207D3C0 * param0, UnkStruct_0207D3C0 * param1);
 u32 sub_0207D3FC(const UnkStruct_0207D3C0 * param0);
 void sub_0207D404(UnkStruct_0207D3C0 * param0, u32 param1);

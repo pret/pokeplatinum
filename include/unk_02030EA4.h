@@ -4,8 +4,8 @@
 #include "struct_decls/struct_02030EC4_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_02030EA4(void);
-void sub_02030EA8(UnkStruct_02030EC4 * param0);
+int WiFiQuestion_SaveSize(void);
+void WiFiQuestion_Init(UnkStruct_02030EC4 * param0);
 UnkStruct_02030EC4 * sub_02030EC4(SaveData * param0);
 u32 sub_02030ED0(const UnkStruct_02030EC4 * param0);
 u32 sub_02030ED4(const UnkStruct_02030EC4 * param0);

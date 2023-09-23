@@ -60,48 +60,48 @@
 #include "party.h"
 #include "unk_0207D3B8.h"
 
-const SaveTableEntry Unk_020E5894[] = {
-    {0x0, 0x0, (SaveEntrySizeFunc)sub_02025CB0, (SaveEntryInitFunc)sub_02025CB4},
-    {0x1, 0x0, (SaveEntrySizeFunc)sub_02025E08, (SaveEntryInitFunc)sub_02025E0C},
-    {0x2, 0x0, (SaveEntrySizeFunc)Party_sizeof, (SaveEntryInitFunc)sub_0207A008},
-    {0x3, 0x0, (SaveEntrySizeFunc)sub_0207D3B8, (SaveEntryInitFunc)sub_0207D3D8},
-    {0x4, 0x0, (SaveEntrySizeFunc)sub_020507CC, (SaveEntryInitFunc)sub_020507D4},
-    {0x5, 0x0, (SaveEntrySizeFunc)sub_02056720, (SaveEntryInitFunc)sub_02056728},
-    {0x6, 0x0, (SaveEntrySizeFunc)sub_0203A6DC, (SaveEntryInitFunc)sub_0203A6F8},
-    {0x7, 0x0, (SaveEntrySizeFunc)sub_0202631C, (SaveEntryInitFunc)sub_02026D6C},
-    {0x8, 0x0, (SaveEntrySizeFunc)sub_020261E4, (SaveEntryInitFunc)sub_020261EC},
-    {0x9, 0x0, (SaveEntrySizeFunc)sub_02027F84, (SaveEntryInitFunc)sub_02027F98},
-    {0xA, 0x0, (SaveEntrySizeFunc)sub_020277A4, (SaveEntryInitFunc)sub_020277AC},
-    {0xB, 0x0, (SaveEntrySizeFunc)sub_0203A6E0, (SaveEntryInitFunc)sub_0203A6E8},
-    {0xC, 0x0, (SaveEntrySizeFunc)sub_0202854C, (SaveEntryInitFunc)sub_02028574},
-    {0xD, 0x0, (SaveEntrySizeFunc)sub_02026030, (SaveEntryInitFunc)sub_02026040},
-    {0xE, 0x0, (SaveEntrySizeFunc)sub_02029C58, (SaveEntryInitFunc)sub_02029BFC},
-    {0xF, 0x0, (SaveEntrySizeFunc)sub_0202843C, (SaveEntryInitFunc)sub_02028444},
-    {0x10, 0x0, (SaveEntrySizeFunc)Poffin_GetSizeOfSavedataBlock, (SaveEntryInitFunc)sub_0202AB3C},
-    {0x11, 0x0, (SaveEntrySizeFunc)sub_0202B37C, (SaveEntryInitFunc)sub_0202B3A8},
-    {0x12, 0x0, (SaveEntrySizeFunc)sub_0202B604, (SaveEntryInitFunc)sub_0202B618},
-    {0x13, 0x0, (SaveEntrySizeFunc)sub_0202C7FC, (SaveEntryInitFunc)sub_0202C804},
-    {0x14, 0x0, (SaveEntrySizeFunc)sub_0202CD50, (SaveEntryInitFunc)sub_0202CD58},
-    {0x15, 0x0, (SaveEntrySizeFunc)sub_0202C9F4, (SaveEntryInitFunc)sub_0202C9FC},
-    {0x16, 0x0, (SaveEntrySizeFunc)sub_0202CC64, (SaveEntryInitFunc)sub_0202CC6C},
-    {0x17, 0x0, (SaveEntrySizeFunc)sub_0203061C, (SaveEntryInitFunc)sub_02030624},
-    {0x18, 0x0, (SaveEntrySizeFunc)sub_0202D778, (SaveEntryInitFunc)sub_0202D77C},
-    {0x19, 0x0, (SaveEntrySizeFunc)sub_0202D7A8, (SaveEntryInitFunc)sub_0202D7B0},
-    {0x1A, 0x0, (SaveEntrySizeFunc)sub_0202DA4C, (SaveEntryInitFunc)sub_0202DA50},
-    {0x1B, 0x0, (SaveEntrySizeFunc)sub_0202E2CC, (SaveEntryInitFunc)sub_0202E2D4},
-    {0x1C, 0x0, (SaveEntrySizeFunc)sub_0202E884, (SaveEntryInitFunc)sub_0202E88C},
-    {0x1D, 0x0, (SaveEntrySizeFunc)sub_0202ACE0, (SaveEntryInitFunc)sub_0202ACE8},
-    {0x1E, 0x0, (SaveEntrySizeFunc)sub_0202C858, (SaveEntryInitFunc)sub_0202C860},
-    {0x1F, 0x0, (SaveEntrySizeFunc)sub_0202DAB4, (SaveEntryInitFunc)sub_0202DABC},
-    {0x20, 0x0, (SaveEntrySizeFunc)sub_0202EEC0, (SaveEntryInitFunc)sub_0202EEC8},
-    {0x21, 0x0, (SaveEntrySizeFunc)sub_0202F108, (SaveEntryInitFunc)sub_0202F10C},
-    {0x22, 0x0, (SaveEntrySizeFunc)sub_02014E8C, (SaveEntryInitFunc)sub_02014E90},
-    {0x23, 0x0, (SaveEntrySizeFunc)sub_02030CE8, (SaveEntryInitFunc)sub_02030CEC},
-    {0x24, 0x0, (SaveEntrySizeFunc)sub_02030EA4, (SaveEntryInitFunc)sub_02030EA8},
-    {0x25, 0x1, (SaveEntrySizeFunc)sub_020797D4, (SaveEntryInitFunc)sub_020797C8}
+const SaveTableEntry gSaveTableEntries[] = {
+    { SAVE_TABLE_ENTRY_SYSTEM,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SystemData_SaveSize,        (SaveEntryInitFunc)SystemData_Init        },
+    { SAVE_TABLE_ENTRY_PLAYER,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Player_SaveSize,            (SaveEntryInitFunc)Player_Init            },
+    { SAVE_TABLE_ENTRY_PARTY,                 SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Party_SaveSize,             (SaveEntryInitFunc)Party_Init             },
+    { SAVE_TABLE_ENTRY_BAG,                   SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Bag_SaveSize,               (SaveEntryInitFunc)Bag_Init               },
+    { SAVE_TABLE_ENTRY_EVENTS,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldEvents_SaveSize,       (SaveEntryInitFunc)FieldEvents_Init       },
+    { SAVE_TABLE_ENTRY_POKETCH,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Poketch_SaveSize,           (SaveEntryInitFunc)Poketch_Init           },
+    { SAVE_TABLE_ENTRY_FIELD_PLAYER_STATE,    SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldPlayerState_SaveSize,  (SaveEntryInitFunc)FieldPlayerState_Init  },
+    { SAVE_TABLE_ENTRY_POKEDEX,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Pokedex_SaveSize,           (SaveEntryInitFunc)Pokedex_Init           },
+    { SAVE_TABLE_ENTRY_DAYCARE,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Daycare_SaveSize,           (SaveEntryInitFunc)Daycare_Init           },
+    { SAVE_TABLE_ENTRY_PAL_PAD,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PalPad_SaveSize,            (SaveEntryInitFunc)PalPad_Init            },
+    { SAVE_TABLE_ENTRY_MISC,                  SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MiscSaveBlock_SaveSize,     (SaveEntryInitFunc)MiscSaveBlock_Init     },
+    { SAVE_TABLE_ENTRY_FIELD_OVERWORLD_STATE, SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)FieldOWState_SaveSize,      (SaveEntryInitFunc)FieldOWState_Init      },
+    { SAVE_TABLE_ENTRY_UNDERGROUND,           SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Underground_SaveSize,       (SaveEntryInitFunc)Underground_Init       },
+    { SAVE_TABLE_ENTRY_REGULATION_BATTLES,    SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RegulationBattles_SaveSize, (SaveEntryInitFunc)RegulationBattles_Init },
+    { SAVE_TABLE_ENTRY_IMAGE_CLIPS,           SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ImageClip_SaveSize,         (SaveEntryInitFunc)ImageClip_Init         },
+    { SAVE_TABLE_ENTRY_MAIL,                  SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Mail_SaveSize,              (SaveEntryInitFunc)Mail_Init              },
+    { SAVE_TABLE_ENTRY_POFFINS,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Poffin_SaveSize,            (SaveEntryInitFunc)Poffin_Init            },
+    { SAVE_TABLE_ENTRY_RANDOM_GROUP,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)RandomGroup_SaveSize,       (SaveEntryInitFunc)RandomGroup_Init       },
+    { SAVE_TABLE_ENTRY_JOURNAL,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Journal_SaveSize,           (SaveEntryInitFunc)Journal_Init           },
+    { SAVE_TABLE_ENTRY_TRAINER_CARD,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TrainerCard_SaveSize,       (SaveEntryInitFunc)TrainerCard_Init       },
+    { SAVE_TABLE_ENTRY_GAME_RECORDS,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GameRecord_SaveSize,        (SaveEntryInitFunc)GameRecord_Init         },
+    { SAVE_TABLE_ENTRY_BALL_SEALS,            SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)BallSeal_SaveSize,          (SaveEntryInitFunc)BallSeal_Init          },
+    { SAVE_TABLE_ENTRY_CHATOT,                SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)ChatotCry_SaveSize,         (SaveEntryInitFunc)ChatotCry_Init         },
+    { SAVE_TABLE_ENTRY_FRONTIER,              SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Frontier_SaveSize,          (SaveEntryInitFunc)Frontier_Init          },
+    { SAVE_TABLE_ENTRY_RIBBONS,               SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Ribbons_SaveSize,           (SaveEntryInitFunc)Ribbons_Init           },
+    { SAVE_TABLE_ENTRY_ENCOUNTERS,            SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)SpecialEncounter_SaveSize,  (SaveEntryInitFunc)SpecialEncounter_Init  },
+    { SAVE_TABLE_ENTRY_GLOBAL_TRADE,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)GlobalTrade_SaveSize,       (SaveEntryInitFunc)GlobalTrade_Init       },
+    { SAVE_TABLE_ENTRY_TV_BROADCAST,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)TVBroadcast_SaveSize,       (SaveEntryInitFunc)TVBroadcast_Init       },
+    { SAVE_TABLE_ENTRY_RANKINGS,              SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Rankings_SaveSize,          (SaveEntryInitFunc)Rankings_Init          },
+    { SAVE_TABLE_ENTRY_WIFI_LIST,             SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiList_SaveSize,          (SaveEntryInitFunc)WiFiList_Init          },
+    { SAVE_TABLE_ENTRY_WIFI_HISTORY,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiHistory_SaveSize,       (SaveEntryInitFunc)WiFiHistory_Init       },
+    { SAVE_TABLE_ENTRY_MYSTERY_GIFT,          SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)MysteryGift_SaveSize,       (SaveEntryInitFunc)MysteryGift_Init       },
+    { SAVE_TABLE_ENTRY_PAL_PARK_TRANSFER,     SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)PalParkTransfer_SaveSize,   (SaveEntryInitFunc)PalParkTransfer_Init   },
+    { SAVE_TABLE_ENTRY_CONTESTS,              SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Contest_SaveSize,           (SaveEntryInitFunc)Contest_Init           },
+    { SAVE_TABLE_ENTRY_SENTENCE,              SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Sentence_SaveSize,          (SaveEntryInitFunc)Sentence_Init          },
+    { SAVE_TABLE_ENTRY_EMAIL,                 SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Email_SaveSize,             (SaveEntryInitFunc)Email_Init             },
+    { SAVE_TABLE_ENTRY_WIFI_QUESTIONS,        SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiQuestion_SaveSize,      (SaveEntryInitFunc)WiFiQuestion_Init      },
+    { SAVE_TABLE_ENTRY_PSS_BOXES,             SAVE_BLOCK_ID_BOXES,  (SaveEntrySizeFunc)PSSBoxes_SaveSize,          (SaveEntryInitFunc)PSSBoxes_Init          },
 };
 
-const int Unk_020E5830 = NELEMS(Unk_020E5894);
+const int gSaveTableSize = NELEMS(gSaveTableEntries);
 
 TVBroadcast * SaveData_TVBroadcast (SaveData * param0)
 {
@@ -125,16 +125,16 @@ PalParkTransfer * SaveData_PalParkTransfer (SaveData * param0)
     return sub_020245BC(param0, 32);
 }
 
-const SaveTableEntry Unk_020E5834[] = {
-    {0x0, 0x20, (SaveEntrySizeFunc)sub_0202DF8C, (SaveEntryInitFunc)sub_0202DF94},
-    {0x1, 0x23, (SaveEntrySizeFunc)sub_02030880, (SaveEntryInitFunc)sub_02030888},
-    {0x2, 0x24, (SaveEntrySizeFunc)sub_0202F1D4, (SaveEntryInitFunc)sub_0202F1DC},
-    {0x3, 0x26, (SaveEntrySizeFunc)sub_0202F1D4, (SaveEntryInitFunc)sub_0202F1DC},
-    {0x4, 0x28, (SaveEntrySizeFunc)sub_0202F1D4, (SaveEntryInitFunc)sub_0202F1DC},
-    {0x5, 0x2A, (SaveEntrySizeFunc)sub_0202F1D4, (SaveEntryInitFunc)sub_0202F1DC}
+const SaveTableEntry gExtraSaveTableEntries[] = {
+    {EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME,    SAVE_PAGE_MAX,      (SaveEntrySizeFunc)HallOfFame_SaveSize,      (SaveEntryInitFunc)HallOfFame_Init},
+    {EXTRA_SAVE_TABLE_ENTRY_FRONTIER,        SAVE_PAGE_MAX + 3,  (SaveEntrySizeFunc)Frontier_Extra_SaveSize,  (SaveEntryInitFunc)Frontier_Extra_Init},
+    {EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS,   SAVE_PAGE_MAX + 4,  (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init},
+    {EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_0, SAVE_PAGE_MAX + 6,  (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init},
+    {EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_1, SAVE_PAGE_MAX + 8,  (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init},
+    {EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_2, SAVE_PAGE_MAX + 10, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init},
 };
 
-const int Unk_020E582C = NELEMS(Unk_020E5834);
+const int gExtraSaveTableSize = NELEMS(gExtraSaveTableEntries);
 
 HallOfFame * SaveData_HallOfFame (SaveData * param0, int param1, int * param2)
 {

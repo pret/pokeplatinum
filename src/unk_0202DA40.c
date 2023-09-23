@@ -20,12 +20,12 @@ UnkStruct_0202DA40 * sub_0202DA40 (SaveData * param0)
     return sub_020245BC(param0, 26);
 }
 
-int sub_0202DA4C (void)
+int GlobalTrade_SaveSize (void)
 {
     return sizeof(UnkStruct_0202DA40);
 }
 
-void sub_0202DA50 (UnkStruct_0202DA40 * param0)
+void GlobalTrade_Init (UnkStruct_0202DA40 * param0)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_0202DA40));
 }

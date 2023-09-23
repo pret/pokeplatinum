@@ -7,8 +7,8 @@
 
 #include <nitro/rtc.h>
 
-int sub_0202DF8C(void);
-void sub_0202DF94(HallOfFame * param0);
+int HallOfFame_SaveSize(void);
+void HallOfFame_Init(HallOfFame * param0);
 void sub_0202DFA8(HallOfFame * param0, const Party * param1, const RTCDate * param2);
 u32 sub_0202E148(const HallOfFame * param0);
 u32 sub_0202E174(const HallOfFame * param0, int param1);

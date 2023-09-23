@@ -141,7 +141,7 @@ int ov97_02232148 (SaveData * param0, UnkStruct_ov97_0223829C * param1)
     v0 = param1->unk_00.unk_48;
 
     if ((v0 == 0xFFFFFFFF) && (param1->unk_00.unk_4C == 0xFFFF)) {
-        sub_0202DABC(v1);
+        MysteryGift_Init(v1);
         sub_02024760(param0, 0);
 
         OS_ResetSystem(0);

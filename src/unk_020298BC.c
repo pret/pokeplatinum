@@ -311,7 +311,7 @@ static void sub_02029BD8 (Pokemon * param0, u8 * param1, u8 * param2)
     *param2 += (5 * 8);
 }
 
-void sub_02029BFC (UnkStruct_0202A750 * param0)
+void ImageClip_Init (UnkStruct_0202A750 * param0)
 {
     int v0;
 
@@ -326,7 +326,7 @@ void sub_02029BFC (UnkStruct_0202A750 * param0)
     sub_02029BB0(&param0->unk_7A4);
 }
 
-int sub_02029C58 (void)
+int ImageClip_SaveSize (void)
 {
     return sizeof(UnkStruct_0202A750);
 }

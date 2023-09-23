@@ -19,12 +19,12 @@ typedef struct MysteryGift {
 
 MysteryGift * SaveData_MysteryGift(SaveData * param0);
 
-int sub_0202DAB4 (void)
+int MysteryGift_SaveSize (void)
 {
     return sizeof(MysteryGift);
 }
 
-void sub_0202DABC (MysteryGift * param0)
+void MysteryGift_Init (MysteryGift * param0)
 {
     sub_02025C84(31);
 }

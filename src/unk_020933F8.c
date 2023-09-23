@@ -808,7 +808,7 @@ static void sub_02093C6C (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 28:
-        MI_CpuCopy8(v0->unk_14C[0], v0->unk_569, sub_0202CC64());
+        MI_CpuCopy8(v0->unk_14C[0], v0->unk_569, ChatotCry_SaveSize());
         sub_020364F0(12);
 
         v0->unk_568 = 0;

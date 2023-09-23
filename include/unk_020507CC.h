@@ -4,8 +4,8 @@
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_020507CC(void);
-void sub_020507D4(UnkStruct_020507E4 * param0);
+int FieldEvents_SaveSize(void);
+void FieldEvents_Init(UnkStruct_020507E4 * param0);
 UnkStruct_020507E4 * sub_020507E4(SaveData * param0);
 BOOL sub_020507F0(UnkStruct_020507E4 * param0, u16 param1);
 void sub_0205081C(UnkStruct_020507E4 * param0, u16 param1);

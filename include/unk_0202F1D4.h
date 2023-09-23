@@ -8,8 +8,8 @@
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay006/battle_params.h"
 
-int sub_0202F1D4(void);
-void sub_0202F1DC(BattleRecording * param0);
+int BattleRecording_SaveSize(void);
+void BattleRecording_Init(BattleRecording * param0);
 void sub_0202F1F8(SaveData * param0, int param1, int * param2);
 void sub_0202F22C(void);
 BOOL sub_0202F250(void);

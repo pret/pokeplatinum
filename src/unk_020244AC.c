@@ -935,9 +935,9 @@ static BOOL sub_0202516C (const SaveData * param0, int param1, int param2)
 int sub_020251A4 (int param0)
 {
     int v0;
-    const SaveTableEntry * v1 = Unk_020E5894;
+    const SaveTableEntry * v1 = gSaveTableEntries;
 
-    GF_ASSERT(param0 < Unk_020E5830);
+    GF_ASSERT(param0 < gSaveTableSize);
     v0 = v1[param0].sizeFunc();
 
     v0 += 4 - (v0 % 4);
@@ -948,13 +948,13 @@ int sub_020251A4 (int param0)
 
 static void sub_020251DC (UnkStruct_020251DC * param0)
 {
-    const SaveTableEntry * v0 = Unk_020E5894;
+    const SaveTableEntry * v0 = gSaveTableEntries;
     int v1;
     int v2 = 0;
 
-    GF_ASSERT(Unk_020E5830 == 38);
+    GF_ASSERT(gSaveTableSize == 38);
 
-    for (v1 = 0; v1 < Unk_020E5830; v1++) {
+    for (v1 = 0; v1 < gSaveTableSize; v1++) {
         GF_ASSERT(v0[v1].dataID == v1);
 
         param0[v1].unk_00 = v0[v1].dataID;
@@ -965,7 +965,7 @@ static void sub_020251DC (UnkStruct_020251DC * param0)
 
         v2 += param0[v1].unk_04;
 
-        if ((v1 == Unk_020E5830 - 1) || (v0[v1].blockID != v0[v1 + 1].blockID)) {
+        if ((v1 == gSaveTableSize - 1) || (v0[v1].blockID != v0[v1 + 1].blockID)) {
             v2 += sizeof(UnkStruct_02024920);
         }
     }
@@ -990,7 +990,7 @@ static void sub_02025258 (UnkStruct_02025258 * param0, const UnkStruct_020251DC 
         param0[v3].unk_00 = v3;
         param0[v3].unk_08 = 0;
 
-        for (; param1[v4].unk_0E == v3 && v4 < Unk_020E5830; v4++) {
+        for (; param1[v4].unk_0E == v3 && v4 < gSaveTableSize; v4++) {
             param0[v3].unk_08 += param1[v4].unk_04;
         }
 
@@ -1009,7 +1009,7 @@ static void sub_02025258 (UnkStruct_02025258 * param0, const UnkStruct_020251DC 
 
 static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC * param1)
 {
-    const SaveTableEntry * v0 = Unk_020E5894;
+    const SaveTableEntry * v0 = gSaveTableEntries;
     int v1;
     int v2;
     void * v3;
@@ -1017,7 +1017,7 @@ static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC 
 
     MI_CpuClearFast(param0->unk_00, sizeof(param0->unk_00));
 
-    for (v1 = 0; v1 < Unk_020E5830; v1++) {
+    for (v1 = 0; v1 < gSaveTableSize; v1++) {
         v4 = param1[v1].unk_08;
         v3 = &param0->unk_00[v4];
         v2 = param1[v1].unk_04;
@@ -1028,7 +1028,7 @@ static void sub_020252EC (UnkStruct_020252EC * param0, const UnkStruct_020251DC 
 
 void sub_02025340 (SaveData * param0)
 {
-    const SaveTableEntry * v0 = Unk_020E5834;
+    const SaveTableEntry * v0 = gExtraSaveTableEntries;
     int v1;
     int v2;
     void * v3;
@@ -1037,7 +1037,7 @@ void sub_02025340 (SaveData * param0)
         return;
     }
 
-    for (v1 = 0; v1 < Unk_020E582C; v1++) {
+    for (v1 = 0; v1 < gExtraSaveTableSize; v1++) {
         if (v0[v1].dataID == 0) {
             continue;
         }
@@ -1108,8 +1108,8 @@ int sub_02025428 (const SaveData * param0, int param1, void * param2)
 
     sub_02017B7C(1);
 
-    GF_ASSERT(param1 < Unk_020E582C);
-    v0 = &Unk_020E5834[param1];
+    GF_ASSERT(param1 < gExtraSaveTableSize);
+    v0 = &gExtraSaveTableEntries[param1];
 
     GF_ASSERT(v0->dataID == param1);
     v1 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
@@ -1153,8 +1153,8 @@ int sub_02025574 (SaveData * param0, int param1, void * param2)
 
     sub_02017B7C(1);
 
-    GF_ASSERT(param1 < Unk_020E582C);
-    v0 = &Unk_020E5834[param1];
+    GF_ASSERT(param1 < gExtraSaveTableSize);
+    v0 = &gExtraSaveTableEntries[param1];
 
     GF_ASSERT(v0->dataID == param1);
     v1 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
@@ -1196,8 +1196,8 @@ void * sub_02025680 (SaveData * param0, int param1, int param2, int * param3)
     BOOL v3, v4;
     u32 v5, v6;
 
-    GF_ASSERT(param2 < Unk_020E582C);
-    v0 = &Unk_020E5834[param2];
+    GF_ASSERT(param2 < gExtraSaveTableSize);
+    v0 = &gExtraSaveTableEntries[param2];
 
     GF_ASSERT(v0->dataID == param2);
     v2 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);
@@ -1262,10 +1262,10 @@ void * sub_020257E8 (SaveData * param0, int param1, int param2, int * param3, BO
     u8 v9;
     UnkStruct_0202783C * v10 = sub_0202783C(param0);
 
-    GF_ASSERT(param2 < Unk_020E582C);
+    GF_ASSERT(param2 < gExtraSaveTableSize);
     GF_ASSERT(param2 != 0);
 
-    v0 = &Unk_020E5834[param2];
+    v0 = &gExtraSaveTableEntries[param2];
     GF_ASSERT(v0->dataID == param2);
 
     v2 = v0->sizeFunc() + sizeof(UnkStruct_020253B4);

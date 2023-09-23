@@ -14,12 +14,12 @@
 #include "unk_02030494.h"
 #include "unk_0203061C.h"
 
-int sub_0203061C (void)
+int Frontier_SaveSize (void)
 {
     return sizeof(UnkStruct_0203068C);
 }
 
-void sub_02030624 (UnkStruct_0203068C * param0)
+void Frontier_Init (UnkStruct_0203068C * param0)
 {
     MI_CpuClear8(param0, sizeof(UnkStruct_0203068C));
 
