@@ -15,7 +15,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_0202F1D4.h"
 #include "pokemon.h"

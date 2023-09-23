@@ -15,7 +15,7 @@
 #include "overlay104/struct_ov104_022320B4_t.h"
 
 #include "unk_020041CC.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_0202CD50.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"

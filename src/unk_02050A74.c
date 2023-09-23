@@ -20,7 +20,7 @@
 
 #include "unk_020041CC.h"
 #include "heap.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "unk_02026150.h"
 #include "unk_0202B604.h"

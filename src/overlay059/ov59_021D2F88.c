@@ -12,7 +12,7 @@
 #include "overlay096/struct_ov96_0223B450_sub1.h"
 
 #include "heap.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020298BC.h"
 #include "unk_0202B37C.h"
 #include "unk_0202D05C.h"

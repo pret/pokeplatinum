@@ -12,7 +12,7 @@
 
 #include "unk_02018340.h"
 #include "gx_layers.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_0202DAB4.h"
 #include "overlay097/ov97_02232054.h"

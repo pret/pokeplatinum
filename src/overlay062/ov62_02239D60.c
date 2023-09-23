@@ -43,7 +43,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02030A80.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"

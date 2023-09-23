@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0203E724_t.h"
 
 #include "heap.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202631C.h"

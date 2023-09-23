@@ -7,7 +7,7 @@
 #include "struct_defs/struct_0202DF40.h"
 #include "struct_defs/union_0204C4D0.h"
 
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_0202DAB4.h"
 

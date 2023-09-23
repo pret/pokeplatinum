@@ -28,7 +28,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"

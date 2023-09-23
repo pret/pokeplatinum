@@ -19,7 +19,7 @@
 #include "unk_020041CC.h"
 #include "heap.h"
 #include "gx_layers.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02030108.h"
 #include "unk_02051D8C.h"
 #include "unk_0206CCB0.h"

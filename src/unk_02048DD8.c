@@ -27,7 +27,7 @@
 #include "message.h"
 #include "unk_0200B358.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020298BC.h"
 #include "unk_0202CD50.h"
 #include "unk_0202E2CC.h"

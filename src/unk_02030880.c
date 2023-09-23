@@ -5,7 +5,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "heap.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_0203061C.h"
 #include "unk_02030880.h"

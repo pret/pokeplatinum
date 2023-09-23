@@ -50,7 +50,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"

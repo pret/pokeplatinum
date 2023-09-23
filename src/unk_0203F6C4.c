@@ -85,7 +85,7 @@
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"

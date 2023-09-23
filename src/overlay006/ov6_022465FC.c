@@ -10,7 +10,7 @@
 #include "narc.h"
 #include "unk_0201378C.h"
 #include "unk_0201D15C.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_0202E2CC.h"
 #include "unk_020559DC.h"
 #include "unk_0206CCB0.h"

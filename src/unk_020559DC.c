@@ -11,7 +11,7 @@
 #include "struct_defs/struct_02055BA8.h"
 
 #include "unk_0201378C.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025CB0.h"
 #include "unk_0202854C.h"
 #include "unk_0202B37C.h"
