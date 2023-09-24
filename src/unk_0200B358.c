@@ -616,7 +616,7 @@ void sub_0200BCF0 (UnkStruct_0200B358 * param0, u32 param1, u8 param2)
     MessageLoader_Free(v0);
 }
 
-void sub_0200BD40 (UnkStruct_0200B358 * param0, u32 param1, const PSSBoxes * param2, u32 param3)
+void sub_0200BD40 (UnkStruct_0200B358 * param0, u32 param1, const PCBoxes * param2, u32 param3)
 {
     sub_02079AF4(param2, param3, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);

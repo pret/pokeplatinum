@@ -30,7 +30,7 @@ void ov61_0222AE80 (const UnkStruct_ov61_0222AE80 * param0, UnkStruct_02029C68 *
     sub_0202A824(param0, param1);
 }
 
-void ov61_0222AE88 (SaveData * param0, const PSSBoxes * param1, int param2, UnkStruct_ov62_02239DA4 * param3, int param4)
+void ov61_0222AE88 (SaveData * param0, const PCBoxes * param1, int param2, UnkStruct_ov62_02239DA4 * param3, int param4)
 {
     Strbuf* v0;
     int v1;

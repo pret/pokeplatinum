@@ -14,7 +14,7 @@
 #include "overlay019/struct_ov19_021DF964.h"
 
 typedef struct {
-    const PSSBoxes * unk_00;
+    const PCBoxes * unk_00;
     const Party * unk_04;
     UnkStruct_ov19_021D3CFC unk_08;
     UnkStruct_ov19_021D5594 unk_14;

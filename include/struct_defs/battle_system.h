@@ -60,7 +60,7 @@ struct BattleSystem {
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
     UnkStruct_02026324 * unk_60;
-    PSSBoxes * unk_64;
+    PCBoxes * unk_64;
     Party *parties[4];
     UnkStruct_0202CC84 * unk_78[4];
     UnkStruct_02007768 * unk_88;

@@ -6823,7 +6823,7 @@ static BOOL sub_02045068 (UnkStruct_0203E724 * param0)
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     TrainerInfo * v1 = sub_02025E38(sub_0203D174(param0->unk_34));
     u16 * v2 = inline_0204FCAC(param0);
-    PSSBoxes * v3 = SaveData_PSSBoxes(v0->unk_0C);
+    PCBoxes * v3 = SaveData_PCBoxes(v0->unk_0C);
     u16 v4 = inline_02049538(param0);
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);
@@ -6923,7 +6923,7 @@ static BOOL sub_0204521C (UnkStruct_0203E724 * param0)
     u16 * v0 = inline_0204FCAC(param0);
     u16 v1;
 
-    v1 = sub_02079A50(SaveData_PSSBoxes(param0->unk_34->unk_0C));
+    v1 = sub_02079A50(SaveData_PCBoxes(param0->unk_34->unk_0C));
     *v0 = 18 * (5 * 6) - v1;
 
     return 0;
@@ -8319,10 +8319,10 @@ static u32 sub_0204676C (SaveData * param0)
     }
 
     {
-        PSSBoxes * v8;
+        PCBoxes * v8;
         u32 v9;
 
-        v8 = SaveData_PSSBoxes(param0);
+        v8 = SaveData_PCBoxes(param0);
 
         for (v9 = 0; v9 < 18; v9++) {
             for (v0 = 0; v0 < (5 * 6); v0++) {

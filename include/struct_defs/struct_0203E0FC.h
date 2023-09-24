@@ -19,7 +19,7 @@ typedef struct {
     UnkStruct_0202DA40 * unk_00;
     UnkStruct_02025CCC * unk_04;
     Party * unk_08;
-    PSSBoxes * unk_0C;
+    PCBoxes * unk_0C;
     UnkStruct_02026324 * unk_10;
     UnkStruct_0202B370 * unk_14;
     UnkStruct_0202C878 * unk_18;

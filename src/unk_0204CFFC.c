@@ -463,7 +463,7 @@ BOOL sub_0204D94C (UnkStruct_0203E724 * param0)
     Pokemon * v3;
     UnkStruct_0203CDB0 * v4 = param0->unk_34;
     u16 * v5 = inline_0204FCAC(param0);
-    PSSBoxes * v6 = SaveData_PSSBoxes(v4->unk_0C);
+    PCBoxes * v6 = SaveData_PCBoxes(v4->unk_0C);
 
     v0 = Party_GetCurrentCount(Party_GetFromSavedata(v4->unk_0C));
 

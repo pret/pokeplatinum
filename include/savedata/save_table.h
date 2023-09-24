@@ -68,7 +68,7 @@ enum SaveTableEntryID {
     SAVE_TABLE_ENTRY_SENTENCE,
     SAVE_TABLE_ENTRY_EMAIL,
     SAVE_TABLE_ENTRY_WIFI_QUESTIONS,
-    SAVE_TABLE_ENTRY_PSS_BOXES,
+    SAVE_TABLE_ENTRY_PC_BOXES,
 
     SAVE_TABLE_ENTRY_MAX
 };
@@ -100,14 +100,14 @@ extern const int gExtraSaveTableSize;
 TVBroadcast* SaveData_TVBroadcast(SaveData *save);
 
 /**
- * @brief Loads the PSSBoxes sector of the save data.
+ * @brief Loads the PCBoxes sector of the save data.
  * 
  * This routine does NOT perform any CRC on the sectors before loading them.
  * 
  * @param save 
- * @return Address of the PSSBoxes sector of the save data.
+ * @return Address of the PCBoxes sector of the save data.
  */
-PSSBoxes* SaveData_PSSBoxes(SaveData *save);
+PCBoxes* SaveData_PCBoxes(SaveData *save);
 
 /**
  * @brief Loads the MysteryGift sector of the save data.

@@ -1,6 +1,6 @@
 #ifndef POKEPLATINUM_STRUCT_020797DC_DECL_H
 #define POKEPLATINUM_STRUCT_020797DC_DECL_H
 
-typedef struct PSSBoxes PSSBoxes;
+typedef struct PCBoxes PCBoxes;
 
 #endif // POKEPLATINUM_STRUCT_020797DC_DECL_H

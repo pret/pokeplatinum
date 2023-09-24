@@ -56,7 +56,7 @@ void sub_0200BC48(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200BC80(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200BCB8(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200BCF0(UnkStruct_0200B358 * param0, u32 param1, u8 param2);
-void sub_0200BD40(UnkStruct_0200B358 * param0, u32 param1, const PSSBoxes * param2, u32 param3);
+void sub_0200BD40(UnkStruct_0200B358 * param0, u32 param1, const PCBoxes * param2, u32 param3);
 void sub_0200BD60(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200BD98(UnkStruct_0200B358 * param0, u32 param1, u32 param2);
 void sub_0200BDD0(UnkStruct_0200B358 * param0, u32 param1, u32 param2);

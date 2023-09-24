@@ -12,7 +12,7 @@
 
 void ov61_0222AE60(SaveData * param0, const UnkStruct_02029C68 * param1, UnkStruct_ov61_0222AE80 * param2);
 void ov61_0222AE80(const UnkStruct_ov61_0222AE80 * param0, UnkStruct_02029C68 * param1);
-void ov61_0222AE88(SaveData * param0, const PSSBoxes * param1, int param2, UnkStruct_ov62_02239DA4 * param3, int param4);
+void ov61_0222AE88(SaveData * param0, const PCBoxes * param1, int param2, UnkStruct_ov62_02239DA4 * param3, int param4);
 void ov61_0222AF88(SaveData * param0, UnkStruct_ov62_02239DA4 * param1, int param2);
 void ov61_0222AFA4(SaveData * param0, const UnkStruct_02030A80 * param1, UnkStruct_ov61_0222AFC0 * param2);
 void ov61_0222AFC0(const UnkStruct_ov61_0222AFC0 * param0, UnkStruct_02030A80 * param1);

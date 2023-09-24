@@ -80,7 +80,7 @@ int ov16_0223E1C4(BattleSystem * param0, int param1);
 u8 BattleSystem_BattlerSlot(BattleSystem * param0, int param1);
 u8 Battler_Side(BattleSystem * param0, int param1);
 void * ov16_0223E220(BattleSystem * param0);
-PSSBoxes * ov16_0223E228(BattleSystem * param0);
+PCBoxes * ov16_0223E228(BattleSystem * param0);
 int ov16_0223E22C(BattleSystem * param0);
 int ov16_0223E240(BattleSystem * param0);
 int ov16_0223E24C(BattleSystem * param0);

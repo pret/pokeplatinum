@@ -83,7 +83,7 @@ const SaveTableEntry gSaveTable[] = {
     { SAVE_TABLE_ENTRY_SENTENCE,              SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Sentence_SaveSize,          (SaveEntryInitFunc)Sentence_Init          },
     { SAVE_TABLE_ENTRY_EMAIL,                 SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)Email_SaveSize,             (SaveEntryInitFunc)Email_Init             },
     { SAVE_TABLE_ENTRY_WIFI_QUESTIONS,        SAVE_BLOCK_ID_NORMAL, (SaveEntrySizeFunc)WiFiQuestion_SaveSize,      (SaveEntryInitFunc)WiFiQuestion_Init      },
-    { SAVE_TABLE_ENTRY_PSS_BOXES,             SAVE_BLOCK_ID_BOXES,  (SaveEntrySizeFunc)PSSBoxes_SaveSize,          (SaveEntryInitFunc)PSSBoxes_Init          },
+    { SAVE_TABLE_ENTRY_PC_BOXES,              SAVE_BLOCK_ID_BOXES,  (SaveEntrySizeFunc)PCBoxes_SaveSize,           (SaveEntryInitFunc)PCBoxes_Init           },
 };
 
 const int gSaveTableSize = NELEMS(gSaveTable);
@@ -94,9 +94,9 @@ TVBroadcast* SaveData_TVBroadcast(SaveData *save)
     return SaveData_Get(save, SAVE_TABLE_ENTRY_TV_BROADCAST);
 }
 
-PSSBoxes* SaveData_PSSBoxes(SaveData *save)
+PCBoxes* SaveData_PCBoxes(SaveData *save)
 {
-    return SaveData_Get(save, SAVE_TABLE_ENTRY_PSS_BOXES);
+    return SaveData_Get(save, SAVE_TABLE_ENTRY_PC_BOXES);
 }
 
 MysteryGift* SaveData_MysteryGift(SaveData *save)

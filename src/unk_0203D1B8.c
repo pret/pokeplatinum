@@ -1397,7 +1397,7 @@ void sub_0203E0FC (UnkStruct_0203CDB0 * param0, int param1)
     v0->unk_00 = sub_0202DA40(param0->unk_0C);
     v0->unk_04 = sub_02025CCC(param0->unk_0C);
     v0->unk_08 = SaveData_Get(param0->unk_0C, 2);
-    v0->unk_0C = SaveData_PSSBoxes(param0->unk_0C);
+    v0->unk_0C = SaveData_PCBoxes(param0->unk_0C);
     v0->unk_10 = sub_02027560(param0->unk_0C);
     v0->unk_14 = sub_0202B370(param0->unk_0C);
     v0->unk_18 = sub_0202C878(param0->unk_0C);

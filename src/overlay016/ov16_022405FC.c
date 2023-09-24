@@ -8625,7 +8625,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                     v2->unk_28 = 32;
                 } else {
                     {
-                        PSSBoxes * v24;
+                        PCBoxes * v24;
                         u32 v25;
                         u32 v26;
                         int v27;
