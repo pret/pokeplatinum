@@ -1,5 +1,20 @@
-# Source file lists
+#######################
+## SOURCE FILE LISTS ##
+#######################
 personal_files = []
+poke_icon_files = []
+
+# pl_poke_icon has some shared files that are listed at the beginning
+# of the NARC.
+poke_icon_shared = files(
+    '.shared/icon_palette.NCLR',
+    '.shared/pl_poke_icon_anim_01.json',
+    '.shared/pl_poke_icon_cell_01.json',
+    '.shared/pl_poke_icon_anim_02.json',
+    '.shared/pl_poke_icon_cell_02.json',
+    '.shared/pl_poke_icon_anim_03.json',
+    '.shared/pl_poke_icon_cell_03.json',
+)
 
 
 # Process mons in national dex order
@@ -501,7 +516,7 @@ subdir('egg')
 subdir('bad_egg')
 
 
-# Order of extra files for mon forms
+# Order of extra personal files for mon forms
 personal_files += [
     deoxys_attack_personal,
     deoxys_defense_personal,
@@ -515,6 +530,56 @@ personal_files += [
     rotom_frost_personal,
     rotom_fan_personal,
     rotom_mow_personal
+]
+
+# The last icon added to the list before this should have been
+# the basic egg icon.
+poke_icon_files += [
+    manaphy_egg_icon,
+    deoxys_attack_icon,
+    deoxys_defense_icon,
+    deoxys_speed_icon,
+    unown_a_icon,
+    unown_b_icon,
+    unown_c_icon,
+    unown_d_icon,
+    unown_e_icon,
+    unown_f_icon,
+    unown_g_icon,
+    unown_h_icon,
+    unown_i_icon,
+    unown_j_icon,
+    unown_k_icon,
+    unown_l_icon,
+    unown_m_icon,
+    unown_n_icon,
+    unown_o_icon,
+    unown_p_icon,
+    unown_q_icon,
+    unown_r_icon,
+    unown_s_icon,
+    unown_t_icon,
+    unown_u_icon,
+    unown_v_icon,
+    unown_w_icon,
+    unown_x_icon,
+    unown_y_icon,
+    unown_z_icon,
+    unown_exc_icon,
+    unown_que_icon,
+    burmy_sandy_icon,
+    burmy_trash_icon,
+    wormadam_sandy_icon,
+    wormadam_trash_icon,
+    shellos_east_sea_icon,
+    gastrodon_east_sea_icon,
+    giratina_origin_icon,
+    shaymin_sky_icon,
+    rotom_heat_icon,
+    rotom_wash_icon,
+    rotom_frost_icon,
+    rotom_fan_icon,
+    rotom_mow_icon,
 ]
 
 
@@ -531,4 +596,22 @@ pl_personal_narc = custom_target('pl_personal.narc',
     ]
 )
 
+pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
+    output: 'pl_poke_icon.narc',
+    input: [
+        poke_icon_shared,
+        poke_icon_files
+    ],
+    command: [
+        make_pl_poke_icon_py,
+        '--nitrogfx', nitrogfx_exe,
+        '--knarc', knarc_exe,
+        '--shared-dir', '@CURRENT_SOURCE_DIR@/.shared',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        poke_icon_files
+    ]
+)
+
 nitrofs_files += pl_personal_narc
+nitrofs_files += pl_poke_icon_narc

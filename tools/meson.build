@@ -5,6 +5,7 @@ subdir('json2bin')
 subdir('knarc')
 subdir('msgenc')
 subdir('postconf')
+subdir('scripts')
 
 # Prebuilt tools
 makebanner_exe = find_program('makebanner', native: true)
