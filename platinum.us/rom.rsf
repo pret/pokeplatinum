@@ -303,9 +303,12 @@ RomSpec
 	File nuts_data.narc
 	File pl_item_data.narc
 
+  Root /poketool/icongra
+  HostRoot res/pokemon
+	File pl_poke_icon.narc
+
 	Root /
 	HostRoot res/prebuilt
-	File poketool/icongra/pl_poke_icon.narc
 	File poketool/icongra/poke_icon.narc
 	File poketool/pokefoot/pokefoot.narc
 	File data/mmodel/mmodel.narc
