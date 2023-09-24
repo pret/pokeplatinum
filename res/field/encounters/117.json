@@ -1,0 +1,209 @@
+{
+    "land_rate": 10,
+    "land_encounters": [
+        {
+            "level": 21,
+            "species": "SPECIES_PICHU"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_ROSELIA"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_STARAVIA"
+        },
+        {
+            "level": 23,
+            "species": "SPECIES_KRICKETUNE"
+        },
+        {
+            "level": 23,
+            "species": "SPECIES_ROSELIA"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_STARAVIA"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_PIKACHU"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_PICHU"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_PIKACHU"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_PICHU"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_PIKACHU"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_PICHU"
+        }
+    ],
+    "swarms": [
+        "SPECIES_PICHU",
+        "SPECIES_ROSELIA"
+    ],
+    "morning": [
+        "SPECIES_STARAVIA",
+        "SPECIES_STARAVIA"
+    ],
+    "night": [
+        "SPECIES_KRICKETUNE",
+        "SPECIES_KRICKETUNE"
+    ],
+    "radar": [
+        "SPECIES_ROSELIA",
+        "SPECIES_STARAVIA",
+        "SPECIES_PIKACHU",
+        "SPECIES_PICHU"
+    ],
+    "rate_form0": 100,
+    "rate_form1": 100,
+    "rate_form2": 0,
+    "rate_form3": 0,
+    "rate_form4": 0,
+    "unown_table": 0,
+    "ruby": [
+        "SPECIES_PIKACHU",
+        "SPECIES_PICHU"
+    ],
+    "sapphire": [
+        "SPECIES_PIKACHU",
+        "SPECIES_PICHU"
+    ],
+    "emerald": [
+        "SPECIES_PIKACHU",
+        "SPECIES_PICHU"
+    ],
+    "firered": [
+        "SPECIES_PIKACHU",
+        "SPECIES_PICHU"
+    ],
+    "leafgreen": [
+        "SPECIES_PIKACHU",
+        "SPECIES_PICHU"
+    ],
+    "surf_rate": 0,
+    "surf_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ],
+    "old_rod_rate": 0,
+    "old_rod_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ],
+    "good_rod_rate": 0,
+    "good_rod_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ],
+    "super_rod_rate": 0,
+    "super_rod_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ]
+}
