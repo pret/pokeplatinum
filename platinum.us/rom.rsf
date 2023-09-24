@@ -303,8 +303,8 @@ RomSpec
 	File nuts_data.narc
 	File pl_item_data.narc
 
-  Root /poketool/icongra
-  HostRoot res/pokemon
+	Root /poketool/icongra
+	HostRoot res/pokemon
 	File pl_poke_icon.narc
 
 	Root /
@@ -318,7 +318,13 @@ RomSpec
 	File fielddata/eventdata/zone_event.narc
 	File fielddata/encountdata/d_enc_data.narc
 	File fielddata/encountdata/p_enc_data.narc
-	File fielddata/encountdata/pl_enc_data.narc
+
+	Root /fielddata/encountdata
+	HostRoot res/field/encounters
+	File pl_enc_data.narc
+	
+	Root /
+	HostRoot res/prebuilt
 	File fielddata/build_model/build_model.narc
 	File fielddata/build_model/build_model_matshp.dat
 	File fielddata/mapmatrix/map_matrix.narc

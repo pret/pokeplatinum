@@ -1,0 +1,209 @@
+{
+    "land_rate": 10,
+    "land_encounters": [
+        {
+            "level": 4,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_PSYDUCK"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_PSYDUCK"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_PSYDUCK"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_ZUBAT"
+        }
+    ],
+    "swarms": [
+        "SPECIES_ZUBAT",
+        "SPECIES_PSYDUCK"
+    ],
+    "morning": [
+        "SPECIES_ZUBAT",
+        "SPECIES_PSYDUCK"
+    ],
+    "night": [
+        "SPECIES_ZUBAT",
+        "SPECIES_PSYDUCK"
+    ],
+    "radar": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+    ],
+    "rate_form0": 0,
+    "rate_form1": 0,
+    "rate_form2": 0,
+    "rate_form3": 0,
+    "rate_form4": 0,
+    "unown_table": 0,
+    "ruby": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+    ],
+    "sapphire": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+    ],
+    "emerald": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+    ],
+    "firered": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+    ],
+    "leafgreen": [
+        "SPECIES_ZUBAT",
+        "SPECIES_ZUBAT"
+    ],
+    "surf_rate": 10,
+    "surf_encounters": [
+        {
+            "level_max": 30,
+            "level_min": 20,
+            "species": "SPECIES_PSYDUCK"
+        },
+        {
+            "level_max": 30,
+            "level_min": 20,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
+            "species": "SPECIES_GOLDUCK"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
+            "species": "SPECIES_GOLBAT"
+        },
+        {
+            "level_max": 40,
+            "level_min": 20,
+            "species": "SPECIES_GOLBAT"
+        }
+    ],
+    "old_rod_rate": 25,
+    "old_rod_encounters": [
+        {
+            "level_max": 6,
+            "level_min": 4,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 7,
+            "level_min": 3,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 10,
+            "level_min": 5,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 10,
+            "level_min": 5,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 15,
+            "level_min": 5,
+            "species": "SPECIES_MAGIKARP"
+        }
+    ],
+    "good_rod_rate": 50,
+    "good_rod_encounters": [
+        {
+            "level_max": 20,
+            "level_min": 15,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 20,
+            "level_min": 15,
+            "species": "SPECIES_BARBOACH"
+        },
+        {
+            "level_max": 25,
+            "level_min": 10,
+            "species": "SPECIES_MAGIKARP"
+        },
+        {
+            "level_max": 25,
+            "level_min": 10,
+            "species": "SPECIES_BARBOACH"
+        },
+        {
+            "level_max": 25,
+            "level_min": 10,
+            "species": "SPECIES_BARBOACH"
+        }
+    ],
+    "super_rod_rate": 75,
+    "super_rod_encounters": [
+        {
+            "level_max": 55,
+            "level_min": 30,
+            "species": "SPECIES_GYARADOS"
+        },
+        {
+            "level_max": 40,
+            "level_min": 30,
+            "species": "SPECIES_WHISCASH"
+        },
+        {
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_GYARADOS"
+        },
+        {
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_WHISCASH"
+        },
+        {
+            "level_max": 55,
+            "level_min": 40,
+            "species": "SPECIES_WHISCASH"
+        }
+    ]
+}

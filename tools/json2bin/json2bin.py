@@ -65,6 +65,7 @@ class Parser():
             Specify an instance of padding of a given size.
         '''
         self.registry[f'padding_{self.padding_index}'] = (size, value)
+        self.padding_index += 1
         return self
 
 
