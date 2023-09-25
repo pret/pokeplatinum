@@ -105,6 +105,24 @@ std::vector<fs::path> read_knarcorder_file(fs::path file)
     return ordered_files;
 }
 
+static bool lex_sort(fs::path a, fs::path b)
+{
+    string aStr = a.filename().string();
+    string bStr = b.filename().string();
+
+    for (size_t i = 0; i < aStr.size(); ++i) {
+        aStr[i] = tolower(aStr[i]);
+    }
+
+    for (size_t i = 0; i < bStr.size(); ++i) {
+        bStr[i] = tolower(bStr[i]);
+    }
+    // std::transform(aStr.begin(), aStr.end(), aStr.begin(), ::tolower);
+    // std::transform(bStr.begin(), bStr.end(), bStr.begin(), ::tolower);
+
+    return aStr < bStr;
+}
+
 std::vector<fs::path> Narc::KnarcInputIterator(const std::vector<fs::path>& paths, bool recursive, bool lexSort) const
 {
     std::vector<fs::path> ordered_files;
@@ -156,23 +174,7 @@ std::vector<fs::path> Narc::KnarcInputIterator(const std::vector<fs::path>& path
     }
 
     if (lexSort) {
-        std::sort(unordered_files.begin(), unordered_files.end(), [](const fs::path& a, const fs::path& b) {
-            // I fucking hate C++
-            string aStr = a.filename().string();
-            string bStr = b.filename().string();
-
-            for (size_t i = 0; i < aStr.size(); ++i) {
-                aStr[i] = tolower(aStr[i]);
-            }
-
-            for (size_t i = 0; i < bStr.size(); ++i) {
-                bStr[i] = tolower(bStr[i]);
-            }
-            // std::transform(aStr.begin(), aStr.end(), aStr.begin(), ::tolower);
-            // std::transform(bStr.begin(), bStr.end(), bStr.begin(), ::tolower);
-
-            return aStr < bStr;
-        });
+        std::sort(unordered_files.begin(), unordered_files.end(), lex_sort);
     }
     ordered_files.insert(ordered_files.end(), unordered_files.begin(), unordered_files.end());
 
@@ -194,23 +196,7 @@ vector<fs::path> Narc::InputIterator(const std::vector<fs::path>& paths, bool re
     }
 
     if (lexSort) {
-        std::sort(v.begin(), v.end(), [](const fs::path& a, const fs::path& b) {
-            // I fucking hate C++
-            string aStr = a.filename().string();
-            string bStr = b.filename().string();
-
-            for (size_t i = 0; i < aStr.size(); ++i) {
-                aStr[i] = tolower(aStr[i]);
-            }
-
-            for (size_t i = 0; i < bStr.size(); ++i) {
-                bStr[i] = tolower(bStr[i]);
-            }
-            // std::transform(aStr.begin(), aStr.end(), aStr.begin(), ::tolower);
-            // std::transform(bStr.begin(), bStr.end(), bStr.begin(), ::tolower);
-
-            return aStr < bStr;
-        });
+        std::sort(v.begin(), v.end(), lex_sort);
     }
 
     if (recursive) {
@@ -298,10 +284,12 @@ bool Narc::Pack(const fs::path& outputPath, const std::vector<fs::path>& inputPa
                 " *      DO NOT MODIFY!!!\n"
                 " */\n"
                 "\n"
-                "#ifndef NARC_" << stem_upper << "_NAIX_\n"
-                "#define NARC_" << stem_upper << "_NAIX_\n"
-                "\n"
-                "enum {\n";
+                "#ifndef NARC_"
+             << stem_upper << "_NAIX_\n"
+                              "#define NARC_"
+             << stem_upper << "_NAIX_\n"
+                              "\n"
+                              "enum {\n";
     }
     vector<FileAllocationTableEntry> fatEntries;
     uint16_t directoryCounter = 1;
