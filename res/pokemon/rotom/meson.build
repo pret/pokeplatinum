@@ -11,3 +11,6 @@ rotom_wash_icon = files('forms/wash/icon.png')
 rotom_frost_icon = files('forms/frost/icon.png')
 rotom_fan_icon = files('forms/fan/icon.png')
 rotom_mow_icon = files('forms/mow/icon.png')
+
+pokegra_files += files('male_back.png')
+pokegra_files += files('male_front.png')

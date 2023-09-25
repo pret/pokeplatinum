@@ -7,3 +7,6 @@ poke_icon_files += files('icon.png')
 deoxys_attack_icon = files('forms/attack/icon.png')
 deoxys_defense_icon = files('forms/defense/icon.png')
 deoxys_speed_icon = files('forms/speed/icon.png')
+
+pokegra_files += files('male_back.png')
+pokegra_files += files('male_front.png')

@@ -3,6 +3,7 @@
 #######################
 personal_files = []
 poke_icon_files = []
+pokegra_files = []
 
 # pl_poke_icon has some shared files that are listed at the beginning
 # of the NARC.
@@ -18,502 +19,508 @@ poke_icon_shared = files(
 
 
 # Process mons in national dex order
-subdir('000')  # Glitch pokemon "-----" aka DPBox, Invisible Shiny Bulbasaur
-subdir('bulbasaur')
-subdir('ivysaur')
-subdir('venusaur')
-subdir('charmander')
-subdir('charmeleon')
-subdir('charizard')
-subdir('squirtle')
-subdir('wartortle')
-subdir('blastoise')
-subdir('caterpie')
-subdir('metapod')
-subdir('butterfree')
-subdir('weedle')
-subdir('kakuna')
-subdir('beedrill')
-subdir('pidgey')
-subdir('pidgeotto')
-subdir('pidgeot')
-subdir('rattata')
-subdir('raticate')
-subdir('spearow')
-subdir('fearow')
-subdir('ekans')
-subdir('arbok')
-subdir('pikachu')
-subdir('raichu')
-subdir('sandshrew')
-subdir('sandslash')
-subdir('nidoran_f')
-subdir('nidorina')
-subdir('nidoqueen')
-subdir('nidoran_m')
-subdir('nidorino')
-subdir('nidoking')
-subdir('clefairy')
-subdir('clefable')
-subdir('vulpix')
-subdir('ninetales')
-subdir('jigglypuff')
-subdir('wigglytuff')
-subdir('zubat')
-subdir('golbat')
-subdir('oddish')
-subdir('gloom')
-subdir('vileplume')
-subdir('paras')
-subdir('parasect')
-subdir('venonat')
-subdir('venomoth')
-subdir('diglett')
-subdir('dugtrio')
-subdir('meowth')
-subdir('persian')
-subdir('psyduck')
-subdir('golduck')
-subdir('mankey')
-subdir('primeape')
-subdir('growlithe')
-subdir('arcanine')
-subdir('poliwag')
-subdir('poliwhirl')
-subdir('poliwrath')
-subdir('abra')
-subdir('kadabra')
-subdir('alakazam')
-subdir('machop')
-subdir('machoke')
-subdir('machamp')
-subdir('bellsprout')
-subdir('weepinbell')
-subdir('victreebel')
-subdir('tentacool')
-subdir('tentacruel')
-subdir('geodude')
-subdir('graveler')
-subdir('golem')
-subdir('ponyta')
-subdir('rapidash')
-subdir('slowpoke')
-subdir('slowbro')
-subdir('magnemite')
-subdir('magneton')
-subdir('farfetchd')
-subdir('doduo')
-subdir('dodrio')
-subdir('seel')
-subdir('dewgong')
-subdir('grimer')
-subdir('muk')
-subdir('shellder')
-subdir('cloyster')
-subdir('gastly')
-subdir('haunter')
-subdir('gengar')
-subdir('onix')
-subdir('drowzee')
-subdir('hypno')
-subdir('krabby')
-subdir('kingler')
-subdir('voltorb')
-subdir('electrode')
-subdir('exeggcute')
-subdir('exeggutor')
-subdir('cubone')
-subdir('marowak')
-subdir('hitmonlee')
-subdir('hitmonchan')
-subdir('lickitung')
-subdir('koffing')
-subdir('weezing')
-subdir('rhyhorn')
-subdir('rhydon')
-subdir('chansey')
-subdir('tangela')
-subdir('kangaskhan')
-subdir('horsea')
-subdir('seadra')
-subdir('goldeen')
-subdir('seaking')
-subdir('staryu')
-subdir('starmie')
-subdir('mr_mime')
-subdir('scyther')
-subdir('jynx')
-subdir('electabuzz')
-subdir('magmar')
-subdir('pinsir')
-subdir('tauros')
-subdir('magikarp')
-subdir('gyarados')
-subdir('lapras')
-subdir('ditto')
-subdir('eevee')
-subdir('vaporeon')
-subdir('jolteon')
-subdir('flareon')
-subdir('porygon')
-subdir('omanyte')
-subdir('omastar')
-subdir('kabuto')
-subdir('kabutops')
-subdir('aerodactyl')
-subdir('snorlax')
-subdir('articuno')
-subdir('zapdos')
-subdir('moltres')
-subdir('dratini')
-subdir('dragonair')
-subdir('dragonite')
-subdir('mewtwo')
-subdir('mew')
-subdir('chikorita')
-subdir('bayleef')
-subdir('meganium')
-subdir('cyndaquil')
-subdir('quilava')
-subdir('typhlosion')
-subdir('totodile')
-subdir('croconaw')
-subdir('feraligatr')
-subdir('sentret')
-subdir('furret')
-subdir('hoothoot')
-subdir('noctowl')
-subdir('ledyba')
-subdir('ledian')
-subdir('spinarak')
-subdir('ariados')
-subdir('crobat')
-subdir('chinchou')
-subdir('lanturn')
-subdir('pichu')
-subdir('cleffa')
-subdir('igglybuff')
-subdir('togepi')
-subdir('togetic')
-subdir('natu')
-subdir('xatu')
-subdir('mareep')
-subdir('flaaffy')
-subdir('ampharos')
-subdir('bellossom')
-subdir('marill')
-subdir('azumarill')
-subdir('sudowoodo')
-subdir('politoed')
-subdir('hoppip')
-subdir('skiploom')
-subdir('jumpluff')
-subdir('aipom')
-subdir('sunkern')
-subdir('sunflora')
-subdir('yanma')
-subdir('wooper')
-subdir('quagsire')
-subdir('espeon')
-subdir('umbreon')
-subdir('murkrow')
-subdir('slowking')
-subdir('misdreavus')
-subdir('unown')
-subdir('wobbuffet')
-subdir('girafarig')
-subdir('pineco')
-subdir('forretress')
-subdir('dunsparce')
-subdir('gligar')
-subdir('steelix')
-subdir('snubbull')
-subdir('granbull')
-subdir('qwilfish')
-subdir('scizor')
-subdir('shuckle')
-subdir('heracross')
-subdir('sneasel')
-subdir('teddiursa')
-subdir('ursaring')
-subdir('slugma')
-subdir('magcargo')
-subdir('swinub')
-subdir('piloswine')
-subdir('corsola')
-subdir('remoraid')
-subdir('octillery')
-subdir('delibird')
-subdir('mantine')
-subdir('skarmory')
-subdir('houndour')
-subdir('houndoom')
-subdir('kingdra')
-subdir('phanpy')
-subdir('donphan')
-subdir('porygon2')
-subdir('stantler')
-subdir('smeargle')
-subdir('tyrogue')
-subdir('hitmontop')
-subdir('smoochum')
-subdir('elekid')
-subdir('magby')
-subdir('miltank')
-subdir('blissey')
-subdir('raikou')
-subdir('entei')
-subdir('suicune')
-subdir('larvitar')
-subdir('pupitar')
-subdir('tyranitar')
-subdir('lugia')
-subdir('ho_oh')
-subdir('celebi')
-subdir('treecko')
-subdir('grovyle')
-subdir('sceptile')
-subdir('torchic')
-subdir('combusken')
-subdir('blaziken')
-subdir('mudkip')
-subdir('marshtomp')
-subdir('swampert')
-subdir('poochyena')
-subdir('mightyena')
-subdir('zigzagoon')
-subdir('linoone')
-subdir('wurmple')
-subdir('silcoon')
-subdir('beautifly')
-subdir('cascoon')
-subdir('dustox')
-subdir('lotad')
-subdir('lombre')
-subdir('ludicolo')
-subdir('seedot')
-subdir('nuzleaf')
-subdir('shiftry')
-subdir('taillow')
-subdir('swellow')
-subdir('wingull')
-subdir('pelipper')
-subdir('ralts')
-subdir('kirlia')
-subdir('gardevoir')
-subdir('surskit')
-subdir('masquerain')
-subdir('shroomish')
-subdir('breloom')
-subdir('slakoth')
-subdir('vigoroth')
-subdir('slaking')
-subdir('nincada')
-subdir('ninjask')
-subdir('shedinja')
-subdir('whismur')
-subdir('loudred')
-subdir('exploud')
-subdir('makuhita')
-subdir('hariyama')
-subdir('azurill')
-subdir('nosepass')
-subdir('skitty')
-subdir('delcatty')
-subdir('sableye')
-subdir('mawile')
-subdir('aron')
-subdir('lairon')
-subdir('aggron')
-subdir('meditite')
-subdir('medicham')
-subdir('electrike')
-subdir('manectric')
-subdir('plusle')
-subdir('minun')
-subdir('volbeat')
-subdir('illumise')
-subdir('roselia')
-subdir('gulpin')
-subdir('swalot')
-subdir('carvanha')
-subdir('sharpedo')
-subdir('wailmer')
-subdir('wailord')
-subdir('numel')
-subdir('camerupt')
-subdir('torkoal')
-subdir('spoink')
-subdir('grumpig')
-subdir('spinda')
-subdir('trapinch')
-subdir('vibrava')
-subdir('flygon')
-subdir('cacnea')
-subdir('cacturne')
-subdir('swablu')
-subdir('altaria')
-subdir('zangoose')
-subdir('seviper')
-subdir('lunatone')
-subdir('solrock')
-subdir('barboach')
-subdir('whiscash')
-subdir('corphish')
-subdir('crawdaunt')
-subdir('baltoy')
-subdir('claydol')
-subdir('lileep')
-subdir('cradily')
-subdir('anorith')
-subdir('armaldo')
-subdir('feebas')
-subdir('milotic')
-subdir('castform')
-subdir('kecleon')
-subdir('shuppet')
-subdir('banette')
-subdir('duskull')
-subdir('dusclops')
-subdir('tropius')
-subdir('chimecho')
-subdir('absol')
-subdir('wynaut')
-subdir('snorunt')
-subdir('glalie')
-subdir('spheal')
-subdir('sealeo')
-subdir('walrein')
-subdir('clamperl')
-subdir('huntail')
-subdir('gorebyss')
-subdir('relicanth')
-subdir('luvdisc')
-subdir('bagon')
-subdir('shelgon')
-subdir('salamence')
-subdir('beldum')
-subdir('metang')
-subdir('metagross')
-subdir('regirock')
-subdir('regice')
-subdir('registeel')
-subdir('latias')
-subdir('latios')
-subdir('kyogre')
-subdir('groudon')
-subdir('rayquaza')
-subdir('jirachi')
-subdir('deoxys')
-subdir('turtwig')
-subdir('grotle')
-subdir('torterra')
-subdir('chimchar')
-subdir('monferno')
-subdir('infernape')
-subdir('piplup')
-subdir('prinplup')
-subdir('empoleon')
-subdir('starly')
-subdir('staravia')
-subdir('staraptor')
-subdir('bidoof')
-subdir('bibarel')
-subdir('kricketot')
-subdir('kricketune')
-subdir('shinx')
-subdir('luxio')
-subdir('luxray')
-subdir('budew')
-subdir('roserade')
-subdir('cranidos')
-subdir('rampardos')
-subdir('shieldon')
-subdir('bastiodon')
-subdir('burmy')
-subdir('wormadam')
-subdir('mothim')
-subdir('combee')
-subdir('vespiquen')
-subdir('pachirisu')
-subdir('buizel')
-subdir('floatzel')
-subdir('cherubi')
-subdir('cherrim')
-subdir('shellos')
-subdir('gastrodon')
-subdir('ambipom')
-subdir('drifloon')
-subdir('drifblim')
-subdir('buneary')
-subdir('lopunny')
-subdir('mismagius')
-subdir('honchkrow')
-subdir('glameow')
-subdir('purugly')
-subdir('chingling')
-subdir('stunky')
-subdir('skuntank')
-subdir('bronzor')
-subdir('bronzong')
-subdir('bonsly')
-subdir('mime_jr')
-subdir('happiny')
-subdir('chatot')
-subdir('spiritomb')
-subdir('gible')
-subdir('gabite')
-subdir('garchomp')
-subdir('munchlax')
-subdir('riolu')
-subdir('lucario')
-subdir('hippopotas')
-subdir('hippowdon')
-subdir('skorupi')
-subdir('drapion')
-subdir('croagunk')
-subdir('toxicroak')
-subdir('carnivine')
-subdir('finneon')
-subdir('lumineon')
-subdir('mantyke')
-subdir('snover')
-subdir('abomasnow')
-subdir('weavile')
-subdir('magnezone')
-subdir('lickilicky')
-subdir('rhyperior')
-subdir('tangrowth')
-subdir('electivire')
-subdir('magmortar')
-subdir('togekiss')
-subdir('yanmega')
-subdir('leafeon')
-subdir('glaceon')
-subdir('gliscor')
-subdir('mamoswine')
-subdir('porygon_z')
-subdir('gallade')
-subdir('probopass')
-subdir('dusknoir')
-subdir('froslass')
-subdir('rotom')
-subdir('uxie')
-subdir('mesprit')
-subdir('azelf')
-subdir('dialga')
-subdir('palkia')
-subdir('heatran')
-subdir('regigigas')
-subdir('giratina')
-subdir('cresselia')
-subdir('phione')
-subdir('manaphy')
-subdir('darkrai')
-subdir('shaymin')
-subdir('arceus')
-subdir('egg')
-subdir('bad_egg')
+pokemon_subdirs = [
+    '000',  # Glitch pokemon "-----" aka DPBox, Invisible Shiny Bulbasau
+    'bulbasaur',
+    'ivysaur',
+    'venusaur',
+    'charmander',
+    'charmeleon',
+    'charizard',
+    'squirtle',
+    'wartortle',
+    'blastoise',
+    'caterpie',
+    'metapod',
+    'butterfree',
+    'weedle',
+    'kakuna',
+    'beedrill',
+    'pidgey',
+    'pidgeotto',
+    'pidgeot',
+    'rattata',
+    'raticate',
+    'spearow',
+    'fearow',
+    'ekans',
+    'arbok',
+    'pikachu',
+    'raichu',
+    'sandshrew',
+    'sandslash',
+    'nidoran_f',
+    'nidorina',
+    'nidoqueen',
+    'nidoran_m',
+    'nidorino',
+    'nidoking',
+    'clefairy',
+    'clefable',
+    'vulpix',
+    'ninetales',
+    'jigglypuff',
+    'wigglytuff',
+    'zubat',
+    'golbat',
+    'oddish',
+    'gloom',
+    'vileplume',
+    'paras',
+    'parasect',
+    'venonat',
+    'venomoth',
+    'diglett',
+    'dugtrio',
+    'meowth',
+    'persian',
+    'psyduck',
+    'golduck',
+    'mankey',
+    'primeape',
+    'growlithe',
+    'arcanine',
+    'poliwag',
+    'poliwhirl',
+    'poliwrath',
+    'abra',
+    'kadabra',
+    'alakazam',
+    'machop',
+    'machoke',
+    'machamp',
+    'bellsprout',
+    'weepinbell',
+    'victreebel',
+    'tentacool',
+    'tentacruel',
+    'geodude',
+    'graveler',
+    'golem',
+    'ponyta',
+    'rapidash',
+    'slowpoke',
+    'slowbro',
+    'magnemite',
+    'magneton',
+    'farfetchd',
+    'doduo',
+    'dodrio',
+    'seel',
+    'dewgong',
+    'grimer',
+    'muk',
+    'shellder',
+    'cloyster',
+    'gastly',
+    'haunter',
+    'gengar',
+    'onix',
+    'drowzee',
+    'hypno',
+    'krabby',
+    'kingler',
+    'voltorb',
+    'electrode',
+    'exeggcute',
+    'exeggutor',
+    'cubone',
+    'marowak',
+    'hitmonlee',
+    'hitmonchan',
+    'lickitung',
+    'koffing',
+    'weezing',
+    'rhyhorn',
+    'rhydon',
+    'chansey',
+    'tangela',
+    'kangaskhan',
+    'horsea',
+    'seadra',
+    'goldeen',
+    'seaking',
+    'staryu',
+    'starmie',
+    'mr_mime',
+    'scyther',
+    'jynx',
+    'electabuzz',
+    'magmar',
+    'pinsir',
+    'tauros',
+    'magikarp',
+    'gyarados',
+    'lapras',
+    'ditto',
+    'eevee',
+    'vaporeon',
+    'jolteon',
+    'flareon',
+    'porygon',
+    'omanyte',
+    'omastar',
+    'kabuto',
+    'kabutops',
+    'aerodactyl',
+    'snorlax',
+    'articuno',
+    'zapdos',
+    'moltres',
+    'dratini',
+    'dragonair',
+    'dragonite',
+    'mewtwo',
+    'mew',
+    'chikorita',
+    'bayleef',
+    'meganium',
+    'cyndaquil',
+    'quilava',
+    'typhlosion',
+    'totodile',
+    'croconaw',
+    'feraligatr',
+    'sentret',
+    'furret',
+    'hoothoot',
+    'noctowl',
+    'ledyba',
+    'ledian',
+    'spinarak',
+    'ariados',
+    'crobat',
+    'chinchou',
+    'lanturn',
+    'pichu',
+    'cleffa',
+    'igglybuff',
+    'togepi',
+    'togetic',
+    'natu',
+    'xatu',
+    'mareep',
+    'flaaffy',
+    'ampharos',
+    'bellossom',
+    'marill',
+    'azumarill',
+    'sudowoodo',
+    'politoed',
+    'hoppip',
+    'skiploom',
+    'jumpluff',
+    'aipom',
+    'sunkern',
+    'sunflora',
+    'yanma',
+    'wooper',
+    'quagsire',
+    'espeon',
+    'umbreon',
+    'murkrow',
+    'slowking',
+    'misdreavus',
+    'unown',
+    'wobbuffet',
+    'girafarig',
+    'pineco',
+    'forretress',
+    'dunsparce',
+    'gligar',
+    'steelix',
+    'snubbull',
+    'granbull',
+    'qwilfish',
+    'scizor',
+    'shuckle',
+    'heracross',
+    'sneasel',
+    'teddiursa',
+    'ursaring',
+    'slugma',
+    'magcargo',
+    'swinub',
+    'piloswine',
+    'corsola',
+    'remoraid',
+    'octillery',
+    'delibird',
+    'mantine',
+    'skarmory',
+    'houndour',
+    'houndoom',
+    'kingdra',
+    'phanpy',
+    'donphan',
+    'porygon2',
+    'stantler',
+    'smeargle',
+    'tyrogue',
+    'hitmontop',
+    'smoochum',
+    'elekid',
+    'magby',
+    'miltank',
+    'blissey',
+    'raikou',
+    'entei',
+    'suicune',
+    'larvitar',
+    'pupitar',
+    'tyranitar',
+    'lugia',
+    'ho_oh',
+    'celebi',
+    'treecko',
+    'grovyle',
+    'sceptile',
+    'torchic',
+    'combusken',
+    'blaziken',
+    'mudkip',
+    'marshtomp',
+    'swampert',
+    'poochyena',
+    'mightyena',
+    'zigzagoon',
+    'linoone',
+    'wurmple',
+    'silcoon',
+    'beautifly',
+    'cascoon',
+    'dustox',
+    'lotad',
+    'lombre',
+    'ludicolo',
+    'seedot',
+    'nuzleaf',
+    'shiftry',
+    'taillow',
+    'swellow',
+    'wingull',
+    'pelipper',
+    'ralts',
+    'kirlia',
+    'gardevoir',
+    'surskit',
+    'masquerain',
+    'shroomish',
+    'breloom',
+    'slakoth',
+    'vigoroth',
+    'slaking',
+    'nincada',
+    'ninjask',
+    'shedinja',
+    'whismur',
+    'loudred',
+    'exploud',
+    'makuhita',
+    'hariyama',
+    'azurill',
+    'nosepass',
+    'skitty',
+    'delcatty',
+    'sableye',
+    'mawile',
+    'aron',
+    'lairon',
+    'aggron',
+    'meditite',
+    'medicham',
+    'electrike',
+    'manectric',
+    'plusle',
+    'minun',
+    'volbeat',
+    'illumise',
+    'roselia',
+    'gulpin',
+    'swalot',
+    'carvanha',
+    'sharpedo',
+    'wailmer',
+    'wailord',
+    'numel',
+    'camerupt',
+    'torkoal',
+    'spoink',
+    'grumpig',
+    'spinda',
+    'trapinch',
+    'vibrava',
+    'flygon',
+    'cacnea',
+    'cacturne',
+    'swablu',
+    'altaria',
+    'zangoose',
+    'seviper',
+    'lunatone',
+    'solrock',
+    'barboach',
+    'whiscash',
+    'corphish',
+    'crawdaunt',
+    'baltoy',
+    'claydol',
+    'lileep',
+    'cradily',
+    'anorith',
+    'armaldo',
+    'feebas',
+    'milotic',
+    'castform',
+    'kecleon',
+    'shuppet',
+    'banette',
+    'duskull',
+    'dusclops',
+    'tropius',
+    'chimecho',
+    'absol',
+    'wynaut',
+    'snorunt',
+    'glalie',
+    'spheal',
+    'sealeo',
+    'walrein',
+    'clamperl',
+    'huntail',
+    'gorebyss',
+    'relicanth',
+    'luvdisc',
+    'bagon',
+    'shelgon',
+    'salamence',
+    'beldum',
+    'metang',
+    'metagross',
+    'regirock',
+    'regice',
+    'registeel',
+    'latias',
+    'latios',
+    'kyogre',
+    'groudon',
+    'rayquaza',
+    'jirachi',
+    'deoxys',
+    'turtwig',
+    'grotle',
+    'torterra',
+    'chimchar',
+    'monferno',
+    'infernape',
+    'piplup',
+    'prinplup',
+    'empoleon',
+    'starly',
+    'staravia',
+    'staraptor',
+    'bidoof',
+    'bibarel',
+    'kricketot',
+    'kricketune',
+    'shinx',
+    'luxio',
+    'luxray',
+    'budew',
+    'roserade',
+    'cranidos',
+    'rampardos',
+    'shieldon',
+    'bastiodon',
+    'burmy',
+    'wormadam',
+    'mothim',
+    'combee',
+    'vespiquen',
+    'pachirisu',
+    'buizel',
+    'floatzel',
+    'cherubi',
+    'cherrim',
+    'shellos',
+    'gastrodon',
+    'ambipom',
+    'drifloon',
+    'drifblim',
+    'buneary',
+    'lopunny',
+    'mismagius',
+    'honchkrow',
+    'glameow',
+    'purugly',
+    'chingling',
+    'stunky',
+    'skuntank',
+    'bronzor',
+    'bronzong',
+    'bonsly',
+    'mime_jr',
+    'happiny',
+    'chatot',
+    'spiritomb',
+    'gible',
+    'gabite',
+    'garchomp',
+    'munchlax',
+    'riolu',
+    'lucario',
+    'hippopotas',
+    'hippowdon',
+    'skorupi',
+    'drapion',
+    'croagunk',
+    'toxicroak',
+    'carnivine',
+    'finneon',
+    'lumineon',
+    'mantyke',
+    'snover',
+    'abomasnow',
+    'weavile',
+    'magnezone',
+    'lickilicky',
+    'rhyperior',
+    'tangrowth',
+    'electivire',
+    'magmortar',
+    'togekiss',
+    'yanmega',
+    'leafeon',
+    'glaceon',
+    'gliscor',
+    'mamoswine',
+    'porygon_z',
+    'gallade',
+    'probopass',
+    'dusknoir',
+    'froslass',
+    'rotom',
+    'uxie',
+    'mesprit',
+    'azelf',
+    'dialga',
+    'palkia',
+    'heatran',
+    'regigigas',
+    'giratina',
+    'cresselia',
+    'phione',
+    'manaphy',
+    'darkrai',
+    'shaymin',
+    'arceus',
+    'egg',
+    'bad_egg'
+]
+
+foreach pokemon : pokemon_subdirs
+    subdir(pokemon)
+endforeach
 
 
 # Order of extra personal files for mon forms
@@ -613,5 +620,20 @@ pl_poke_icon_narc = custom_target('pl_poke_icon.narc',
     ]
 )
 
+pl_pokegra_narc = custom_target('pl_pokegra.narc',
+    output: 'pl_pokegra.narc',
+    input: pokegra_files,
+    command: [
+        make_pl_pokegra_py,
+        '--nitrogfx', nitrogfx_exe,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        pokemon_subdirs
+    ]
+)
+
 nitrofs_files += pl_personal_narc
 nitrofs_files += pl_poke_icon_narc
+nitrofs_files += pl_pokegra_narc

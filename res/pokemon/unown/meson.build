@@ -29,3 +29,6 @@ unown_y_icon = files('forms/y/icon.png')
 unown_z_icon = files('forms/z/icon.png')
 unown_exc_icon = files('forms/exc/icon.png')
 unown_que_icon = files('forms/que/icon.png')
+
+pokegra_files += files('male_back.png')
+pokegra_files += files('male_front.png')

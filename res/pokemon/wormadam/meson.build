@@ -5,3 +5,6 @@ wormadam_trash_personal = files('forms/trash/data.json')
 poke_icon_files += files('icon.png')
 wormadam_sandy_icon = files('forms/sandy/icon.png')
 wormadam_trash_icon = files('forms/trash/icon.png')
+
+pokegra_files += files('female_back.png')
+pokegra_files += files('female_front.png')

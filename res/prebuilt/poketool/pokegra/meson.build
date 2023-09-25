@@ -5,7 +5,6 @@ prebuilt_files = [
     'height.narc',
     'otherpoke.narc',
     'pl_otherpoke.narc',
-    'pl_pokegra.narc',
     'poke_shadow_ofx.narc',
     'poke_shadow.narc',
     'poke_yofs.narc',
