@@ -19,7 +19,7 @@
 typedef struct UnkStruct_ov87_021D0D80_t {
     UnkStruct_ov87_021D12C0 unk_00;
     UnkStruct_ov87_021D106C * unk_C8;
-    UnkStruct_0202DF8C * unk_CC;
+    HallOfFame * unk_CC;
     int unk_D0;
     int unk_D4;
     BOOL unk_D8;
@@ -28,9 +28,9 @@ typedef struct UnkStruct_ov87_021D0D80_t {
 static void ov87_021D0F38(UnkStruct_ov87_021D0D80 * param0, int param1);
 static BOOL ov87_021D0F4C(UnkStruct_ov87_021D0D80 * param0);
 static BOOL ov87_021D0F88(UnkStruct_ov87_021D0D80 * param0);
-static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C * param1);
+static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1);
 static void ov87_021D1000(UnkStruct_ov87_021D12C0 * param0);
-static void ov87_021D101C(UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C * param1, int param2);
+static void ov87_021D101C(UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1, int param2);
 
 int ov87_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -165,7 +165,7 @@ static BOOL ov87_021D0F88 (UnkStruct_ov87_021D0D80 * param0)
     return 1;
 }
 
-static void ov87_021D0FC4 (UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C * param1)
+static void ov87_021D0FC4 (UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1)
 {
     int v0;
 
@@ -189,7 +189,7 @@ static void ov87_021D1000 (UnkStruct_ov87_021D12C0 * param0)
     }
 }
 
-static void ov87_021D101C (UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C * param1, int param2)
+static void ov87_021D101C (UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1, int param2)
 {
     int v0;
 

@@ -127,7 +127,7 @@ static BOOL sub_0205AD20(UnkStruct_0205A0D8 * param0);
 static void sub_0205A0D8 (UnkStruct_0205A0D8 * param0, UnkStruct_0203CDB0 * param1, Party * param2, int param3, int param4, int param5)
 {
     UnkStruct_02098D38 * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };

@@ -50,7 +50,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
@@ -116,7 +116,7 @@ typedef struct {
     u8 unk_04[NELEMS(Unk_ov19_021DFDF0)];
     u16 unk_08[NELEMS(Unk_ov19_021DFDF0)];
     BoxPokemon * unk_10;
-    UnkStruct_020797DC * unk_14;
+    PCBoxes * unk_14;
     Party * unk_18;
     BOOL unk_1C;
 } UnkStruct_ov19_021D38E0;
@@ -125,8 +125,8 @@ typedef struct UnkStruct_ov19_021D5DF8_t {
     UnkStruct_ov19_021D4DF0 unk_00;
     UnkStruct_ov19_021D61B0 * unk_114;
     UnkStruct_02042434 * unk_118;
-    UnkStruct_021C0794 * unk_11C;
-    UnkStruct_020797DC * unk_120;
+    SaveData * unk_11C;
+    PCBoxes * unk_120;
     Party * unk_124;
     UnkStruct_0208737C * unk_128;
     UnkStruct_02098D38 unk_12C;
@@ -221,15 +221,15 @@ static void ov19_021D4DE4(UnkStruct_ov19_021D4DE4 * param0, int param1);
 static void ov19_021D4DF0(UnkStruct_ov19_021D5DF8 * param0);
 static void ov19_021D4E30(UnkStruct_ov19_021D5594 * param0);
 static void ov19_021D4E50(UnkStruct_ov19_021D5594 * param0);
-static void ov19_021D4E5C(UnkStruct_020797DC * param0, UnkStruct_ov19_021D4F5C * param1);
+static void ov19_021D4E5C(PCBoxes * param0, UnkStruct_ov19_021D4F5C * param1);
 static void ov19_021D4E7C(UnkStruct_ov19_021D4F5C * param0);
 static void ov19_021D4E88(UnkStruct_ov19_021D5BAC * param0);
 static void ov19_021D4EC0(UnkStruct_ov19_021D5BAC * param0);
 static void ov19_021D4EE4(UnkStruct_ov19_021D4EE4 * param0);
 static void ov19_021D4F18(UnkStruct_ov19_021D4EE4 * param0);
 static void ov19_021D4F34(UnkStruct_ov19_021D4F34 * param0);
-static void ov19_021D4F40(const UnkStruct_020797DC * param0, UnkStruct_ov19_021D4F5C * param1);
-static void ov19_021D4F5C(UnkStruct_ov19_021D4DF0 * param0, UnkStruct_020797DC * param1);
+static void ov19_021D4F40(const PCBoxes * param0, UnkStruct_ov19_021D4F5C * param1);
+static void ov19_021D4F5C(UnkStruct_ov19_021D4DF0 * param0, PCBoxes * param1);
 static BOOL ov19_021D4F74(u32 param0, UnkStruct_ov19_021D5DF8 * param1);
 static BOOL ov19_021D4FDC(UnkStruct_ov19_021D4DF0 * param0, int param1, int param2);
 static int ov19_021D5150(u32 param0, UnkStruct_ov19_021D5DF8 * param1);
@@ -3309,7 +3309,7 @@ static void ov19_021D4BB0 (u32 param0, u32 param1, void * param2)
 
 static void ov19_021D4BE0 (UnkStruct_ov19_021D5DF8 * param0, UnkStruct_02042434 * param1)
 {
-    param0->unk_120 = sub_02024420(param1->unk_00);
+    param0->unk_120 = SaveData_PCBoxes(param1->unk_00);
     param0->unk_11C = param1->unk_00;
     param0->unk_124 = Party_GetFromSavedata(param1->unk_00);
     param0->unk_1A4 = sub_02025E44(param1->unk_00);
@@ -3415,7 +3415,7 @@ static void ov19_021D4E50 (UnkStruct_ov19_021D5594 * param0)
     Heap_FreeToHeap(param0->unk_00);
 }
 
-static void ov19_021D4E5C (UnkStruct_020797DC * param0, UnkStruct_ov19_021D4F5C * param1)
+static void ov19_021D4E5C (PCBoxes * param0, UnkStruct_ov19_021D4F5C * param1)
 {
     param1->unk_00 = sub_0207999C(param0);
     param1->unk_04 = Strbuf_Init(20, 9);
@@ -3478,13 +3478,13 @@ static void ov19_021D4F34 (UnkStruct_ov19_021D4F34 * param0)
     param0->unk_04 = 0;
 }
 
-static void ov19_021D4F40 (const UnkStruct_020797DC * param0, UnkStruct_ov19_021D4F5C * param1)
+static void ov19_021D4F40 (const PCBoxes * param0, UnkStruct_ov19_021D4F5C * param1)
 {
     param1->unk_01 = sub_02079AA8(param0, param1->unk_00);
     sub_02079AF4(param0, param1->unk_00, param1->unk_04);
 }
 
-static void ov19_021D4F5C (UnkStruct_ov19_021D4DF0 * param0, UnkStruct_020797DC * param1)
+static void ov19_021D4F5C (UnkStruct_ov19_021D4DF0 * param0, PCBoxes * param1)
 {
     UnkStruct_ov19_021D4F5C * v0 = &(param0->unk_40);
     v0->unk_01 = sub_02079AA8(param1, v0->unk_00);
@@ -4525,7 +4525,7 @@ const UnkStruct_ov19_021D4F5C * ov19_021D5E8C (const UnkStruct_ov19_021D4DF0 * p
     return &(param0->unk_40);
 }
 
-const UnkStruct_020797DC * ov19_021D5E90 (const UnkStruct_ov19_021D4DF0 * param0)
+const PCBoxes * ov19_021D5E90 (const UnkStruct_ov19_021D4DF0 * param0)
 {
     return param0->unk_00;
 }

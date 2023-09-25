@@ -34,7 +34,7 @@
 #include "gx_layers.h"
 #include "unk_02023FCC.h"
 #include "unk_02024220.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_02028124.h"
@@ -63,7 +63,7 @@ typedef struct {
     UnkStruct_02097F38_sub1 * unk_04;
     UnkStruct_02097F18 * unk_08;
     UnkStruct_02098C44 * unk_0C;
-    UnkStruct_021C0794 * unk_10;
+    SaveData * unk_10;
     int unk_14;
 } UnkStruct_02097F38;
 
@@ -389,7 +389,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
         Pokemon * v8;
         UnkStruct_0202CA28 * v9;
         UnkStruct_0202CA64 * v10;
-        UnkStruct_0202440C * v11;
+        TVBroadcast * v11;
         int v12;
         int v13;
 
@@ -405,7 +405,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
             v10 = sub_0202CA64(v9, 0);
             v12 = sub_0202CA7C(v10);
             v12 = sub_02098164(v12);
-            v11 = sub_0202440C(v2->unk_0C);
+            v11 = SaveData_TVBroadcast(v2->unk_0C);
 
             sub_0206D9B4(v11, v8, v12);
         }
@@ -426,7 +426,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020980DC (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
+void sub_020980DC (UnkStruct_020508D4 * param0, SaveData * param1)
 {
     UnkStruct_02097F38 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
 

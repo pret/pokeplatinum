@@ -70,7 +70,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201D670.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -1916,11 +1916,11 @@ static BOOL ov104_02230EFC (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02230F28 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     UnkStruct_ov104_02230BE4 * v1 = sub_0209B970(param0->unk_00->unk_00);
     u16 v2 = ov104_0222FC00(param0);
 
-    v0 = sub_0202440C(v1->unk_08);
+    v0 = SaveData_TVBroadcast(v1->unk_08);
 
     sub_0206D0C8(v0, v2);
     sub_0202CF70(sub_0202CD88(v1->unk_08), (1 + 67), v2);
@@ -2866,12 +2866,12 @@ static BOOL ov104_02231ED8 (UnkStruct_ov104_0222E930 * param0)
 static BOOL ov104_02231EFC (UnkStruct_ov104_0222E930 * param0)
 {
     u16 v0;
-    UnkStruct_0202440C * v1;
+    TVBroadcast * v1;
     TrainerInfo * v2;
     UnkStruct_ov104_02230BE4 * v3;
 
     v3 = sub_0209B970(param0->unk_00->unk_00);
-    v1 = sub_0202440C(v3->unk_08);
+    v1 = SaveData_TVBroadcast(v3->unk_08);
     v0 = ov104_0222FC00(param0);
     v2 = sub_02032EE8(1 - sub_0203608C());
 

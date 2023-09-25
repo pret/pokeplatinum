@@ -7,17 +7,17 @@
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202854C(void);
+int Underground_SaveSize(void);
 int sub_02028554(void);
 int sub_02028558(void);
 UnkStruct_0202855C * sub_0202855C(u32 param0);
-void sub_02028574(UnkStruct_020298B0 * param0);
-void sub_02028658(UnkStruct_021C0794 * param0, int param1);
-void sub_02028758(UnkStruct_021C0794 * param0, s32 param1, BOOL param2);
-void sub_0202878C(UnkStruct_021C0794 * param0);
-void sub_020287E0(UnkStruct_021C0794 * param0);
-void sub_020287F8(UnkStruct_021C0794 * param0);
-BOOL sub_02028810(UnkStruct_021C0794 * param0);
+void Underground_Init(UnkStruct_020298B0 * param0);
+void sub_02028658(SaveData * param0, int param1);
+void sub_02028758(SaveData * param0, s32 param1, BOOL param2);
+void sub_0202878C(SaveData * param0);
+void sub_020287E0(SaveData * param0);
+void sub_020287F8(SaveData * param0);
+BOOL sub_02028810(SaveData * param0);
 void sub_02028828(UnkStruct_020298B0 * param0);
 void sub_02028830(UnkStruct_020298B0 * param0, const TrainerInfo * param1);
 TrainerInfo * sub_020288C8(const UnkStruct_020298B0 * param0, int param1, int param2);
@@ -127,9 +127,9 @@ int sub_02029874(const UnkStruct_02029894 * param0);
 int sub_0202987C(const UnkStruct_02029894 * param0);
 int sub_02029884(const UnkStruct_02029894 * param0);
 BOOL sub_0202988C(const UnkStruct_02029894 * param0);
-UnkStruct_02029894 * sub_02029894(UnkStruct_021C0794 * param0);
-UnkStruct_0202855C * sub_020298A0(UnkStruct_021C0794 * param0);
+UnkStruct_02029894 * sub_02029894(SaveData * param0);
+UnkStruct_0202855C * sub_020298A0(SaveData * param0);
 UnkStruct_0202855C * sub_020298AC(UnkStruct_02029894 * param0);
-UnkStruct_020298B0 * sub_020298B0(UnkStruct_021C0794 * param0);
+UnkStruct_020298B0 * sub_020298B0(SaveData * param0);
 
 #endif // POKEPLATINUM_UNK_0202854C_H

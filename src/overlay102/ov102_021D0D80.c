@@ -38,7 +38,7 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_021C0794 * unk_08;
+    SaveData * unk_08;
     TrainerInfo * unk_0C;
     UnkStruct_02018340 * unk_10;
     UnkStruct_0205AA50 unk_14;

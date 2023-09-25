@@ -451,7 +451,7 @@ void ov104_0223ADB0 (UnkStruct_ov104_0223ADA0 * param0)
     Pokemon * v1;
 
     ov104_0222E330(param0->unk_280, param0->unk_254, param0->unk_260, param0->unk_268, NULL, 6, 11, 179);
-    sub_0207A008(param0->unk_4D4);
+    Party_Init(param0->unk_4D4);
 
     v1 = Pokemon_New(11);
 

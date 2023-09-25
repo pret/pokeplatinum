@@ -39,7 +39,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -70,7 +70,7 @@
 #include "overlay025/ov25_02253CE0.h"
 
 static void sub_0206CD70(UnkStruct_0203CDB0 * param0, int param1, int param2, const void * param3);
-static void sub_0206CD7C(UnkStruct_021C0794 * param0, int param1, int param2, const void * param3);
+static void sub_0206CD7C(SaveData * param0, int param1, int param2, const void * param3);
 static u8 sub_0206DE4C(Pokemon * param0);
 static Strbuf* sub_0206F0D8(u16 param0, u32 param1);
 
@@ -435,9 +435,9 @@ BOOL sub_0206CD2C (int param0, UnkStruct_0203CDB0 * param1, UnkStruct_ov6_022465
     return v0(param1, param2);
 }
 
-static void sub_0206CD58 (UnkStruct_021C0794 * param0, int param1, int param2, const void * param3)
+static void sub_0206CD58 (SaveData * param0, int param1, int param2, const void * param3)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     sub_0202E43C(v0, param1, param2, (const u8 *)param3);
@@ -448,9 +448,9 @@ static void sub_0206CD70 (UnkStruct_0203CDB0 * param0, int param1, int param2, c
     sub_0206CD7C(param0->unk_0C, param1, param2, param3);
 }
 
-static void sub_0206CD7C (UnkStruct_021C0794 * param0, int param1, int param2, const void * param3)
+static void sub_0206CD7C (SaveData * param0, int param1, int param2, const void * param3)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0);
 
     GF_ASSERT(sizeof(UnkUnion_0206D1B8) == 40);
     sub_0202E43C(v0, param1, param2, (const u8 *)param3);
@@ -516,7 +516,7 @@ static void sub_0206CED0 (int param0, Pokemon * param1, u8 * param2, u16 * param
     }
 }
 
-void sub_0206CF14 (UnkStruct_0202440C * param0, Pokemon * param1, int param2, int param3, int param4)
+void sub_0206CF14 (TVBroadcast * param0, Pokemon * param1, int param2, int param3, int param4)
 {
     UnkStruct_0202E7D8 * v0 = sub_0202E7D8(param0);
 
@@ -529,7 +529,7 @@ void sub_0206CF14 (UnkStruct_0202440C * param0, Pokemon * param1, int param2, in
     sub_02025C84(27);
 }
 
-void sub_0206CF48 (UnkStruct_0202440C * param0, Pokemon * param1, int param2)
+void sub_0206CF48 (TVBroadcast * param0, Pokemon * param1, int param2)
 {
     UnkStruct_0202E7E4 * v0 = sub_0202E7E4(param0);
 
@@ -544,7 +544,7 @@ void sub_0206CF48 (UnkStruct_0202440C * param0, Pokemon * param1, int param2)
     sub_02025C84(27);
 }
 
-void sub_0206CF9C (UnkStruct_0202440C * param0, int param1)
+void sub_0206CF9C (TVBroadcast * param0, int param1)
 {
     UnkStruct_0202E7E4 * v0 = sub_0202E7E4(param0);
 
@@ -554,7 +554,7 @@ void sub_0206CF9C (UnkStruct_0202440C * param0, int param1)
     sub_02025C84(27);
 }
 
-void sub_0206CFB4 (UnkStruct_0202440C * param0, int param1)
+void sub_0206CFB4 (TVBroadcast * param0, int param1)
 {
     UnkStruct_0202E7E4 * v0 = sub_0202E7E4(param0);
 
@@ -564,7 +564,7 @@ void sub_0206CFB4 (UnkStruct_0202440C * param0, int param1)
     sub_02025C84(27);
 }
 
-void sub_0206CFCC (UnkStruct_0202440C * param0, int param1)
+void sub_0206CFCC (TVBroadcast * param0, int param1)
 {
     UnkStruct_0202E7F0 * v0 = sub_0202E7F0(param0);
 
@@ -574,7 +574,7 @@ void sub_0206CFCC (UnkStruct_0202440C * param0, int param1)
     sub_02025C84(27);
 }
 
-void sub_0206CFE4 (UnkStruct_0202440C * param0, BOOL param1, u16 param2)
+void sub_0206CFE4 (TVBroadcast * param0, BOOL param1, u16 param2)
 {
     UnkStruct_0202E7FC * v0 = sub_0202E7FC(param0);
 
@@ -585,7 +585,7 @@ void sub_0206CFE4 (UnkStruct_0202440C * param0, BOOL param1, u16 param2)
     sub_02025C84(27);
 }
 
-void sub_0206D000 (UnkStruct_0202440C * param0)
+void sub_0206D000 (TVBroadcast * param0)
 {
     UnkStruct_0202E808 * v0 = sub_0202E808(param0);
 
@@ -595,7 +595,7 @@ void sub_0206D000 (UnkStruct_0202440C * param0)
     sub_02025C84(27);
 }
 
-void sub_0206D018 (UnkStruct_0202440C * param0, Pokemon * param1)
+void sub_0206D018 (TVBroadcast * param0, Pokemon * param1)
 {
     UnkStruct_0202E808 * v0 = sub_0202E808(param0);
 
@@ -607,7 +607,7 @@ void sub_0206D018 (UnkStruct_0202440C * param0, Pokemon * param1)
     sub_02025C84(27);
 }
 
-void sub_0206D048 (UnkStruct_0202440C * param0, Pokemon * param1)
+void sub_0206D048 (TVBroadcast * param0, Pokemon * param1)
 {
     UnkStruct_0202E810 * v0 = sub_0202E810(param0);
 
@@ -619,7 +619,7 @@ void sub_0206D048 (UnkStruct_0202440C * param0, Pokemon * param1)
     sub_02025C84(27);
 }
 
-void sub_0206D088 (UnkStruct_0202440C * param0, u8 param1, const TrainerInfo * param2)
+void sub_0206D088 (TVBroadcast * param0, u8 param1, const TrainerInfo * param2)
 {
     UnkStruct_0202E81C * v0 = sub_0202E81C(param0);
 
@@ -635,7 +635,7 @@ void sub_0206D088 (UnkStruct_0202440C * param0, u8 param1, const TrainerInfo * p
     sub_02025C84(27);
 }
 
-void sub_0206D0C8 (UnkStruct_0202440C * param0, u16 param1)
+void sub_0206D0C8 (TVBroadcast * param0, u16 param1)
 {
     UnkStruct_0202E828 * v0 = sub_0202E828(param0);
 
@@ -649,7 +649,7 @@ void sub_0206D0C8 (UnkStruct_0202440C * param0, u16 param1)
     sub_02025C84(27);
 }
 
-void sub_0206D0F0 (UnkStruct_0202440C * param0)
+void sub_0206D0F0 (TVBroadcast * param0)
 {
     UnkStruct_0202E828 * v0 = sub_0202E828(param0);
 
@@ -657,7 +657,7 @@ void sub_0206D0F0 (UnkStruct_0202440C * param0)
     sub_02025C84(27);
 }
 
-void sub_0206D104 (UnkStruct_0202440C * param0)
+void sub_0206D104 (TVBroadcast * param0)
 {
     UnkStruct_0202E834 * v0 = sub_0202E834(param0);
 
@@ -671,7 +671,7 @@ void sub_0206D104 (UnkStruct_0202440C * param0)
     sub_02025C84(27);
 }
 
-void sub_0206D12C (UnkStruct_0202440C * param0)
+void sub_0206D12C (TVBroadcast * param0)
 {
     UnkStruct_0202E834 * v0 = sub_0202E834(param0);
 
@@ -887,7 +887,7 @@ static int sub_0206D4D4 (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     return 10;
 }
 
-void sub_0206D504 (UnkStruct_021C0794 * param0, u16 param1, u8 param2)
+void sub_0206D504 (SaveData * param0, u16 param1, u8 param2)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D530 * v1 = &v0.val6;
@@ -998,7 +998,7 @@ void sub_0206D720 (UnkStruct_0203CDB0 * param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D75C * v1 = &v0.val10;
-    UnkStruct_0202440C * v2 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v2 = SaveData_TVBroadcast(param0->unk_0C);
     UnkStruct_0202E808 * v3 = sub_0202E808(v2);
 
     if (v3->unk_07 == 0) {
@@ -1100,7 +1100,7 @@ static BOOL sub_0206D8F0 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
     return sub_02026FE8(sub_02027560(param0->unk_0C), v0->unk_00);
 }
 
-void sub_0206D90C (UnkStruct_0202440C * param0, Pokemon * param1, u16 param2)
+void sub_0206D90C (TVBroadcast * param0, Pokemon * param1, u16 param2)
 {
     return;
 }
@@ -1149,7 +1149,7 @@ static int sub_0206D98C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     return 31;
 }
 
-void sub_0206D9B4 (UnkStruct_0202440C * param0, Pokemon * param1, u8 param2)
+void sub_0206D9B4 (TVBroadcast * param0, Pokemon * param1, u8 param2)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206D9F4 * v1 = &v0.val14;
@@ -1277,7 +1277,7 @@ static BOOL sub_0206DB9C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
     return inline_0208BE68(sub_020507E4(param0->unk_0C), 6);
 }
 
-void sub_0206DBB0 (UnkStruct_021C0794 * param0, u32 param1, Pokemon * param2, BOOL param3)
+void sub_0206DBB0 (SaveData * param0, u32 param1, Pokemon * param2, BOOL param3)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206DBE8 * v1 = &v0.val18;
@@ -1377,7 +1377,7 @@ static int sub_0206DD5C (UnkStruct_0203CDB0 * param0, UnkStruct_0200B358 * param
     return 3;
 }
 
-void sub_0206DDB8 (UnkStruct_021C0794 * param0, Pokemon * param1, u32 param2)
+void sub_0206DDB8 (SaveData * param0, Pokemon * param1, u32 param2)
 {
     u8 v0, v1;
     UnkUnion_0206D1B8 v2;
@@ -1555,11 +1555,11 @@ static BOOL sub_0206DFC8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
     return sub_0207D688(sub_0207D990(param0->unk_0C), 428, 1, 32);
 }
 
-void sub_0206DFE0 (UnkStruct_021C0794 * param0)
+void sub_0206DFE0 (SaveData * param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E018 * v1 = &v0.val24;
-    UnkStruct_0202E828 * v2 = sub_0202E828(sub_0202440C(param0));
+    UnkStruct_0202E828 * v2 = sub_0202E828(SaveData_TVBroadcast(param0));
 
     if (v2->unk_04 >= 30) {
         v1->unk_00 = *v2;
@@ -1585,11 +1585,11 @@ static BOOL sub_0206E04C (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_022465F4 * 
     return inline_0208BE68(sub_020507E4(param0->unk_0C), 17);
 }
 
-void sub_0206E060 (UnkStruct_021C0794 * param0)
+void sub_0206E060 (SaveData * param0)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E098 * v1 = &v0.val25;
-    UnkStruct_0202E834 * v2 = sub_0202E834(sub_0202440C(param0));
+    UnkStruct_0202E834 * v2 = sub_0202E834(SaveData_TVBroadcast(param0));
 
     if (v2->unk_02 >= 10) {
         v1->unk_00 = *v2;
@@ -1619,7 +1619,7 @@ void sub_0206E0E0 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E118 * v1 = &v0.val26;
-    UnkStruct_0202E7FC * v2 = sub_0202E7FC(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E7FC * v2 = sub_0202E7FC(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v2->unk_00 = 0;
@@ -1716,7 +1716,7 @@ void sub_0206E2BC (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E300 * v1 = &v0.val29;
-    UnkStruct_0202E7D8 * v2 = sub_0202E7D8(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E7D8 * v2 = sub_0202E7D8(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v2->unk_00 = 0;
@@ -1805,7 +1805,7 @@ void sub_0206E448 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E480 * v1 = &v0.val32;
-    UnkStruct_0202E7F0 * v2 = sub_0202E7F0(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E7F0 * v2 = sub_0202E7F0(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v1->unk_02 = param1;
@@ -1842,7 +1842,7 @@ void sub_0206E4DC (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E520 * v1 = &v0.val33;
-    UnkStruct_0202E7E4 * v2 = sub_0202E7E4(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E7E4 * v2 = sub_0202E7E4(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v1->unk_24 = param1;
@@ -1879,7 +1879,7 @@ void sub_0206E5A0 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E5E4 * v1 = &v0.val34;
-    UnkStruct_0202E810 * v2 = sub_0202E810(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E810 * v2 = sub_0202E810(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v1->unk_1E = param1;
@@ -1991,7 +1991,7 @@ void sub_0206E768 (UnkStruct_0203CDB0 * param0, u16 param1)
 {
     UnkUnion_0206D1B8 v0;
     UnkStruct_0206E768 * v1 = &v0.val39;
-    UnkStruct_0202E81C * v2 = sub_0202E81C(sub_0202440C(param0->unk_0C));
+    UnkStruct_0202E81C * v2 = sub_0202E81C(SaveData_TVBroadcast(param0->unk_0C));
 
     v1->unk_00 = *v2;
     v1->unk_16 = param1;
@@ -3150,9 +3150,9 @@ static const UnkStruct_020EFFA4 Unk_020EFD9C[8] = {
     {sub_0206F29C, NULL}
 };
 
-void sub_0206F2F0 (UnkStruct_021C0794 * param0)
+void sub_0206F2F0 (SaveData * param0)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0);
 
     sub_0206DFE0(param0);
     sub_0206E060(param0);

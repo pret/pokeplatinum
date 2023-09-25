@@ -191,7 +191,7 @@ int ov61_0222B1FC (UnkStruct_ov62_022349A8 * param0, int param1)
     return 1;
 }
 
-int ov61_0222B224 (UnkStruct_ov62_022349A8 * param0, int param1, UnkStruct_02030A80 * param2, const UnkStruct_020797DC * param3, int param4)
+int ov61_0222B224 (UnkStruct_ov62_022349A8 * param0, int param1, UnkStruct_02030A80 * param2, const PCBoxes * param3, int param4)
 {
     if (ov61_0222BBBC(param0) == 0) {
         return 0;
@@ -261,7 +261,7 @@ int ov61_0222B338 (UnkStruct_ov62_022349A8 * param0, UnkStruct_02030A80 * param1
         return 0;
     }
 
-    GF_ASSERT((sub_0202F1D4() - sizeof(u32)) == sizeof(UnkStruct_ov62_022349A8_sub3_sub3));
+    GF_ASSERT((BattleRecording_SaveSize() - sizeof(u32)) == sizeof(UnkStruct_ov62_022349A8_sub3_sub3));
     GF_ASSERT(sizeof(UnkStruct_ov61_0222AFC0) == sizeof(UnkStruct_02030A80));
 
     param0->unk_190.unk_00_val4 = (UnkStruct_ov62_022349A8_sub3_sub3 *)sub_0202F27C();

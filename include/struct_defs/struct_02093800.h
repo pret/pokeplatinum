@@ -21,7 +21,7 @@ typedef struct {
     const TrainerInfo * unk_10;
     UnkStruct_0202A750 * unk_14;
     const UnkStruct_020279FC * unk_18;
-    UnkStruct_021C0794 * unk_1C;
+    SaveData * unk_1C;
     void * unk_20;
 } UnkStruct_02093800;
 

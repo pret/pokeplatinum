@@ -106,7 +106,7 @@ static const u16 Unk_020EBD98[][2] = {
     {0x16, 0x47}
 };
 
-UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 param2, u8 param3, u8 * param4)
+UnkStruct_0200B358 * sub_0204AEE8 (SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4)
 {
     u8 v0;
     u16 v1;
@@ -200,7 +200,7 @@ u16 sub_0204B044 (UnkStruct_0203CDB0 * param0, const u16 * param1)
     return 0;
 }
 
-void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
+void sub_0204B060 (UnkStruct_0204AFC4 * param0, SaveData * param1)
 {
     int v0;
     Party * v1;

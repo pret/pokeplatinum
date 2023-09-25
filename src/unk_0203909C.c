@@ -15,7 +15,7 @@
 #include "unk_020366A0.h"
 #include "unk_0203909C.h"
 
-int sub_0203909C (UnkStruct_021C0794 * param0, DWCFriendData * param1, int * param2)
+int sub_0203909C (SaveData * param0, DWCFriendData * param1, int * param2)
 {
     int v0;
     DWCUserData * v1 = sub_0202AD28(sub_0202B370(param0));
@@ -42,7 +42,7 @@ int sub_0203909C (UnkStruct_021C0794 * param0, DWCFriendData * param1, int * par
     return 2;
 }
 
-int sub_02039140 (UnkStruct_021C0794 * param0, u64 param1, int * param2)
+int sub_02039140 (SaveData * param0, u64 param1, int * param2)
 {
     int v0;
     DWCUserData * v1 = sub_0202AD28(sub_0202B370(param0));
@@ -73,7 +73,7 @@ int sub_02039140 (UnkStruct_021C0794 * param0, u64 param1, int * param2)
     return 2;
 }
 
-BOOL sub_020391DC (UnkStruct_021C0794 * param0, int * param1, int param2)
+BOOL sub_020391DC (SaveData * param0, int * param1, int param2)
 {
     int v0, v1 = 0, v2;
     DWCFriendData * v3 = sub_0202AED8(sub_0202B370(param0), 0);
@@ -112,7 +112,7 @@ BOOL sub_020391DC (UnkStruct_021C0794 * param0, int * param1, int param2)
     return v1;
 }
 
-void sub_02039298 (UnkStruct_021C0794 * param0, int param1, int param2, int param3, int param4)
+void sub_02039298 (SaveData * param0, int param1, int param2, int param3, int param4)
 {
     UnkStruct_0202B370 * v0 = sub_0202B370(param0);
     DWCFriendData * v1 = sub_0202AED8(v0, param2);
@@ -147,7 +147,7 @@ void sub_02039298 (UnkStruct_021C0794 * param0, int param1, int param2, int para
     sub_02033114(param0);
 }
 
-int sub_02039390 (UnkStruct_021C0794 * param0, int param1)
+int sub_02039390 (SaveData * param0, int param1)
 {
     int v0, v1;
     DWCFriendData * v2 = sub_02032F1C(param1);

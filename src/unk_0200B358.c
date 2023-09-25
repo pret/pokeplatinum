@@ -178,7 +178,7 @@ void sub_0200B498 (UnkStruct_0200B358 * param0, u32 param1, const TrainerInfo * 
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200B4BC (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2)
+void sub_0200B4BC (UnkStruct_0200B358 * param0, u32 param1, const SaveData * param2)
 {
     const u16 * v0 = sub_02027870(sub_02027848(param2));
 
@@ -186,9 +186,9 @@ void sub_0200B4BC (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
 }
 
-void sub_0200B4E4 (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_021C0794 * param2)
+void sub_0200B4E4 (UnkStruct_0200B358 * param0, u32 param1, const SaveData * param2)
 {
-    const TrainerInfo * v0 = sub_02025E38((UnkStruct_021C0794 *)param2);
+    const TrainerInfo * v0 = sub_02025E38((SaveData *)param2);
     MessageLoader * v1;
 
     v1 = MessageLoader_Init(1, 26, 553, param0->unk_04);
@@ -616,7 +616,7 @@ void sub_0200BCF0 (UnkStruct_0200B358 * param0, u32 param1, u8 param2)
     MessageLoader_Free(v0);
 }
 
-void sub_0200BD40 (UnkStruct_0200B358 * param0, u32 param1, const UnkStruct_020797DC * param2, u32 param3)
+void sub_0200BD40 (UnkStruct_0200B358 * param0, u32 param1, const PCBoxes * param2, u32 param3)
 {
     sub_02079AF4(param2, param3, param0->unk_0C);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);
@@ -788,7 +788,7 @@ void sub_0200C01C (UnkStruct_0200B358 * param0, u32 param1, u32 param2)
     }
 }
 
-void sub_0200C054 (UnkStruct_0200B358 * param0, UnkStruct_021C0794 * param1, int param2, int param3, int param4)
+void sub_0200C054 (UnkStruct_0200B358 * param0, SaveData * param1, int param2, int param3, int param4)
 {
     int v0, v1;
     Strbuf* v2;

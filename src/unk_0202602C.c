@@ -18,7 +18,7 @@ int sub_0202602C (void)
     return sizeof(UnkStruct_0202610C);
 }
 
-int sub_02026030 (void)
+int RegulationBattles_SaveSize (void)
 {
     return sizeof(UnkStruct_02026030);
 }
@@ -28,7 +28,7 @@ void sub_02026034 (const UnkStruct_0202610C * param0, UnkStruct_0202610C * param
     MI_CpuCopy8(param0, param1, sizeof(UnkStruct_0202610C));
 }
 
-void sub_02026040 (UnkStruct_02026030 * param0)
+void RegulationBattles_Init (UnkStruct_02026030 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026030));
 }
@@ -100,12 +100,12 @@ int sub_02026074 (const UnkStruct_0202610C * param0, int param1)
     return v0;
 }
 
-UnkStruct_0202610C * sub_0202610C (UnkStruct_021C0794 * param0, int param1)
+UnkStruct_0202610C * sub_0202610C (SaveData * param0, int param1)
 {
     UnkStruct_02026030 * v0 = NULL;
 
     GF_ASSERT(param1 < 1);
-    v0 = sub_020245BC(param0, 13);
+    v0 = SaveData_Get(param0, 13);
 
     if (sub_02026074(&v0->unk_00[param1], 1) != 0) {
         return &v0->unk_00[param1];
@@ -114,10 +114,10 @@ UnkStruct_0202610C * sub_0202610C (UnkStruct_021C0794 * param0, int param1)
     return NULL;
 }
 
-void sub_0202613C (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param1)
+void sub_0202613C (SaveData * param0, const UnkStruct_0202610C * param1)
 {
     UnkStruct_02026030 * v0 = NULL;
 
-    v0 = sub_020245BC(param0, 13);
+    v0 = SaveData_Get(param0, 13);
     sub_02026034(param1, &v0->unk_00[0]);
 }

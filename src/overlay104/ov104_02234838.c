@@ -19,7 +19,7 @@
 #include "unk_020041CC.h"
 #include "heap.h"
 #include "gx_layers.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02030108.h"
 #include "unk_02051D8C.h"
 #include "unk_0206CCB0.h"
@@ -125,7 +125,7 @@ BOOL ov104_022348BC (UnkStruct_ov104_0222E930 * param0)
     v4->unk_05 = v3->unk_6F5;
     v4->unk_14 = &v3->unk_D84[0];
 
-    sub_0207A008(v4->unk_0C);
+    Party_Init(v4->unk_0C);
 
     v1 = Party_GetFromSavedata(v5->unk_08);
     v2 = Party_GetPokemonBySlotIndex(v1, v3->unk_260[0]);
@@ -404,7 +404,7 @@ BOOL ov104_02234D50 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     u16 v1;
     Party * v2;
     Pokemon * v3;
@@ -417,7 +417,7 @@ BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
     v1 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (v4->unk_04 == 0) {
-        v0 = sub_0202440C(v5->unk_08);
+        v0 = SaveData_TVBroadcast(v5->unk_08);
         sub_0206D048(v0, v3);
     }
 

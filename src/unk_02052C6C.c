@@ -32,7 +32,7 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -72,22 +72,22 @@ static BOOL sub_02052FFC(UnkStruct_0205300C * param0);
 
 static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
 {
-    UnkStruct_0202DF8C * v0;
+    HallOfFame * v0;
     Party * v1;
     RTCDate v2;
     int v3;
 
-    v0 = sub_0202444C(param0->unk_0C, 11, &v3);
+    v0 = SaveData_HallOfFame(param0->unk_0C, 11, &v3);
 
     if ((v3 != 1) || !param1) {
-        sub_0202DF94(v0);
+        HallOfFame_Init(v0);
     }
 
     v1 = Party_GetFromSavedata(param0->unk_0C);
 
     sub_020138A4(&v2);
     sub_0202DFA8(v0, v1, &v2);
-    sub_02024458(param0->unk_0C, v0);
+    SaveData_SaveHallOfFame(param0->unk_0C, v0);
     Heap_FreeToHeap(v0);
 }
 

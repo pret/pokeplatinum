@@ -15,7 +15,7 @@
 #include "unk_02017728.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_0202F1D4.h"
 #include "pokemon.h"
@@ -24,9 +24,9 @@
 
 static void ov62_0224856C(Strbuf *param0, int param1);
 
-extern UnkStruct_0202F264 * Unk_021C07A4;
+extern BattleRecording * Unk_021C07A4;
 
-void ov62_02248408 (UnkStruct_0202F264 * param0, BattleParams * param1, int param2)
+void ov62_02248408 (BattleRecording * param0, BattleParams * param1, int param2)
 {
     UnkStruct_0202F298 * v0 = &param0->unk_E8;
     UnkStruct_0202F41C * v1 = &param0->unk_84;
@@ -105,7 +105,7 @@ static void ov62_0224856C (Strbuf *param0, int param1)
     MessageLoader_Free(v0);
 }
 
-int ov62_02248598 (UnkStruct_021C0794 * param0, int param1, u8 param2, u16 * param3, u16 * param4)
+int ov62_02248598 (SaveData * param0, int param1, u8 param2, u16 * param3, u16 * param4)
 {
     int v0;
 
@@ -131,13 +131,13 @@ int ov62_02248598 (UnkStruct_021C0794 * param0, int param1, u8 param2, u16 * par
     return 0;
 }
 
-void ov62_02248624 (UnkStruct_021C0794 * param0)
+void ov62_02248624 (SaveData * param0)
 {
     GF_ASSERT(Unk_021C07A4);
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
 }
 
-int ov62_02248658 (UnkStruct_021C0794 * param0, u64 param1, u16 * param2, u16 * param3)
+int ov62_02248658 (SaveData * param0, u64 param1, u16 * param2, u16 * param3)
 {
     int v0;
 
@@ -156,7 +156,7 @@ int ov62_02248658 (UnkStruct_021C0794 * param0, u64 param1, u16 * param2, u16 * 
     return 0;
 }
 
-int ov62_022486A4 (UnkStruct_021C0794 * param0, int param1)
+int ov62_022486A4 (SaveData * param0, int param1)
 {
     int v0;
 
@@ -169,7 +169,7 @@ int ov62_022486A4 (UnkStruct_021C0794 * param0, int param1)
     sub_0202F858(&Unk_021C07A4->unk_E8, sizeof(UnkStruct_0202F298) - (sizeof(UnkStruct_0202F298_sub1)), Unk_021C07A4->unk_E8.unk_1BEC.unk_00 + ((Unk_021C07A4->unk_E8.unk_1BEC.unk_00 ^ 0xffff) << 16));
     sub_02017DE0(8);
 
-    v0 = sub_0202447C(param0, Unk_021C07A4, param1);
+    v0 = SaveData_SaveBattleRecording(param0, Unk_021C07A4, param1);
 
     if (v0 == 2) {
         v0 = sub_020246E0(param0);

@@ -6,7 +6,7 @@
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     int unk_08;
     u8 unk_0C;
     u8 padding_0D[3];

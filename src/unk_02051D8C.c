@@ -31,7 +31,7 @@
 #include "unk_0201378C.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -186,7 +186,7 @@ BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
     Party_AddPokemon(v4->parties[1], v5);
     Heap_FreeToHeap(v5);
 
-    v4->unk_EC = sub_02024420(param1->unk_0C);
+    v4->unk_EC = SaveData_PCBoxes(param1->unk_0C);
     v4->unk_E4 = param1->unk_98;
     v4->unk_190 = NULL;
     v4->unk_11C = sub_0202CD88(param1->unk_0C);
@@ -250,7 +250,7 @@ void sub_020521A4 (BattleParams * param0, const UnkStruct_0202CC84 * param1, int
     sub_0202CD3C(param0->unk_F0[param2], param1);
 }
 
-void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, UnkStruct_021C0794 * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
+void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, SaveData * param2, int param3, UnkStruct_0202B628 * param4, UnkStruct_0207D99C * param5, UnkStruct_0209C370 * param6)
 {
     TrainerInfo * v0 = sub_02025E38(param2);
     Party * v1 = Party_GetFromSavedata(param2);
@@ -280,7 +280,7 @@ void sub_020521B8 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, Unk
     sub_02027A10(v5, param0->unk_108);
     sub_020521A4(param0, v4, 0);
 
-    param0->unk_EC = sub_02024420(param2);
+    param0->unk_EC = SaveData_PCBoxes(param2);
     param0->unk_130 = sub_0203A138(param3);
     param0->unk_13C = MapHeader_GetMapEvolutionMethod(param3);
     param0->unk_140 = sub_0208C324(param2);
@@ -341,7 +341,7 @@ void sub_02052348 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, int
     sub_02027A10(v7, param0->unk_108);
     sub_020521A4(param0, v6, 0);
 
-    param0->unk_EC = sub_02024420(param1->unk_0C);
+    param0->unk_EC = SaveData_PCBoxes(param1->unk_0C);
     param0->unk_138 = sub_02055BA8(param1);
     param0->unk_E4 = param1->unk_98;
     param0->unk_190 = param1->unk_BC;
@@ -411,7 +411,7 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
     sub_02027A10(v4, param0->unk_108);
     sub_020521A4(param0, v3, 0);
 
-    param0->unk_EC = sub_02024420(param1->unk_0C);
+    param0->unk_EC = SaveData_PCBoxes(param1->unk_0C);
     param0->unk_138 = sub_02055BA8(param1);
     param0->unk_E4 = param1->unk_98;
     param0->unk_190 = param1->unk_BC;

@@ -135,7 +135,7 @@ void * ov6_02247A90 (void * param0)
     UnkStruct_02018340 * v1;
     Strbuf* v2, * v3;
     int v4, v5, v6, v7;
-    UnkStruct_021C0794 * v8;
+    SaveData * v8;
 
     v1 = sub_0203D170(param0);
     v8 = sub_0203D174(param0);

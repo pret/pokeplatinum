@@ -142,7 +142,7 @@ typedef struct {
 } UnkStruct_ov68_0225C700;
 
 static void ov68_0225C914(void * param0);
-static void ov68_0225C91C(UnkStruct_ov68_0225C91C * param0, UnkStruct_021C0794 * param1, u32 param2);
+static void ov68_0225C91C(UnkStruct_ov68_0225C91C * param0, SaveData * param1, u32 param2);
 static void ov68_0225C960(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225C980(UnkStruct_ov68_0225C91C * param0);
 static void ov68_0225C98C(UnkStruct_ov68_0225C91C * param0);
@@ -183,7 +183,7 @@ static void ov68_0225D8F0(UnkStruct_ov68_0225D388 * param0, const UnkStruct_ov68
 static void ov68_0225DA30(UnkStruct_ov68_0225D388 * param0, const UnkStruct_ov68_0225DC74 * param1, UnkStruct_ov68_0225C91C * param2, u32 param3);
 static BOOL ov68_0225DA74(UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225C91C * param1);
 static void ov68_0225DB3C(UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225CB70 * param1, UnkStruct_ov68_0225C91C * param2, u32 param3);
-static void ov68_0225D128(UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225C91C * param1, UnkStruct_021C0794 * param2, u32 param3);
+static void ov68_0225D128(UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225C91C * param1, SaveData * param2, u32 param3);
 static void ov68_0225D178(UnkStruct_ov68_0225D128 * param0, u32 param1);
 static void ov68_0225D1B4(UnkStruct_ov68_0225D128 * param0, const Strbuf *param1);
 static void ov68_0225D218(UnkStruct_ov68_0225D128 * param0, const Strbuf *param1);
@@ -451,7 +451,7 @@ static void ov68_0225C914 (void * param0)
     ov68_0225C98C(&v0->unk_00);
 }
 
-static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, UnkStruct_021C0794 * param1, u32 param2)
+static void ov68_0225C91C (UnkStruct_ov68_0225C91C * param0, SaveData * param1, u32 param2)
 {
     UnkStruct_020279FC * v0;
 
@@ -913,7 +913,7 @@ static void ov68_0225D11C (UnkStruct_ov68_0225D0F8 * param0)
     sub_02021CC8(param0->unk_14, 1);
 }
 
-static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225C91C * param1, UnkStruct_021C0794 * param2, u32 param3)
+static void ov68_0225D128 (UnkStruct_ov68_0225D128 * param0, UnkStruct_ov68_0225C91C * param1, SaveData * param2, u32 param3)
 {
     sub_0201A7E8(param1->unk_00, &param0->unk_08, 1, 2, 19, 27, 4, 4, ((((1 + (18 + 12))) + 9)));
     sub_0201ADA4(&param0->unk_08, 15);

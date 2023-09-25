@@ -11,7 +11,7 @@
 #include "unk_0202C7FC.h"
 #include "unk_0206C2D0.h"
 
-void sub_0206C2D0 (UnkStruct_021C0794 * param0, const s32 param1)
+void sub_0206C2D0 (SaveData * param0, const s32 param1)
 {
     u8 v0;
     int v1;

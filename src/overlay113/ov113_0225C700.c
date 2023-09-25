@@ -103,7 +103,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_ov66_0223127C * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_02018340 * unk_08;
     UnkStruct_02002F38 * unk_0C;
     UnkStruct_02012744 * unk_10;
@@ -168,7 +168,7 @@ static void ov113_0225DB08(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225E364(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225DD14(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225DD24(UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0225CA04 * param1);
-static void ov113_0225DD4C(int param0, UnkStruct_021C0794 * param1, UnkStruct_ov113_02260818 * param2);
+static void ov113_0225DD4C(int param0, SaveData * param1, UnkStruct_ov113_02260818 * param2);
 static void ov113_0225D304(UnkStruct_ov113_0225DBCC * param0, NARC * param1);
 static void ov113_0225D630(UnkStruct_ov113_0225DBCC * param0, NARC * param1);
 static void ov113_0225D484(UnkStruct_ov113_0225DBCC * param0);
@@ -1337,7 +1337,7 @@ UnkStruct_ov113_022607EC * ov113_0225DD44 (UnkStruct_ov113_0225DBCC * param0)
     return &param0->unk_168;
 }
 
-static void ov113_0225DD4C (int param0, UnkStruct_021C0794 * param1, UnkStruct_ov113_02260818 * param2)
+static void ov113_0225DD4C (int param0, SaveData * param1, UnkStruct_ov113_02260818 * param2)
 {
     Party * v0;
     int v1;

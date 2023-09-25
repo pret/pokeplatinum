@@ -5,7 +5,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     u8 unk_04;
     u8 padding_05[2];
     u8 unk_07;

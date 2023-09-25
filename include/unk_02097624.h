@@ -6,10 +6,10 @@
 #include "struct_defs/struct_02097728.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-UnkStruct_02097728 * sub_02097624(UnkStruct_021C0794 * param0, int param1, u8 param2, u8 param3, int param4);
-UnkStruct_02097728 * sub_0209767C(UnkStruct_021C0794 * param0, int param1, u16 param2, int param3);
-UnkStruct_02097728 * sub_020976BC(UnkStruct_021C0794 * param0, Pokemon * param1, int param2);
-UnkStruct_02097728 * sub_020976F4(UnkStruct_021C0794 * param0, u8 param1, int param2);
+UnkStruct_02097728 * sub_02097624(SaveData * param0, int param1, u8 param2, u8 param3, int param4);
+UnkStruct_02097728 * sub_0209767C(SaveData * param0, int param1, u16 param2, int param3);
+UnkStruct_02097728 * sub_020976BC(SaveData * param0, Pokemon * param1, int param2);
+UnkStruct_02097728 * sub_020976F4(SaveData * param0, u8 param1, int param2);
 BOOL sub_02097728(UnkStruct_02097728 * param0);
 int sub_0209772C(UnkStruct_02097728 * param0, int param1, u8 param2);
 int sub_02097750(UnkStruct_02097728 * param0, Pokemon * param1);

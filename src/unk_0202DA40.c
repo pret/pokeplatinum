@@ -15,17 +15,17 @@ typedef struct UnkStruct_0202DA40_t {
     u32 unk_F4;
 } UnkStruct_0202DA40;
 
-UnkStruct_0202DA40 * sub_0202DA40 (UnkStruct_021C0794 * param0)
+UnkStruct_0202DA40 * sub_0202DA40 (SaveData * param0)
 {
-    return sub_020245BC(param0, 26);
+    return SaveData_Get(param0, 26);
 }
 
-int sub_0202DA4C (void)
+int GlobalTrade_SaveSize (void)
 {
     return sizeof(UnkStruct_0202DA40);
 }
 
-void sub_0202DA50 (UnkStruct_0202DA40 * param0)
+void GlobalTrade_Init (UnkStruct_0202DA40 * param0)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_0202DA40));
 }

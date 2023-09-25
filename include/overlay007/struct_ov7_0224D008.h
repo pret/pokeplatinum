@@ -40,7 +40,7 @@ typedef struct {
     UnkStruct_020279FC * unk_278;
     UnkStruct_0202B628 * unk_27C;
     UnkStruct_0202CD88 * unk_280;
-    UnkStruct_021C0794 * unk_284;
+    SaveData * unk_284;
     UnkStruct_020507E4 * unk_288;
     BOOL unk_28C;
     u16 * unk_290;

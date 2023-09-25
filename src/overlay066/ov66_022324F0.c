@@ -56,7 +56,7 @@ typedef struct {
 } UnkStruct_ov66_0223439C;
 
 typedef struct {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     UnkStruct_0202B370 * unk_04;
     UnkStruct_0202C878 * unk_08;
     UnkStruct_ov66_022324F0 unk_0C;
@@ -152,7 +152,7 @@ static const char * Unk_ov66_02258DF0[1] = {
 
 static UnkStruct_ov66_022336C4 * Unk_ov66_0225B6C0 = NULL;
 
-void ov66_022324F0 (u32 param0, UnkStruct_021C0794 * param1, u32 param2, const UnkStruct_ov66_022324F0 * param3, void * param4)
+void ov66_022324F0 (u32 param0, SaveData * param1, u32 param2, const UnkStruct_ov66_022324F0 * param3, void * param4)
 {
     GF_ASSERT(Unk_ov66_0225B6C0 == NULL);
     GF_ASSERT(param2 < PPW_LOBBY_MAX_BINARY_SIZE);

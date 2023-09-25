@@ -36,7 +36,7 @@
 
 struct UnkStruct_02095E80_t {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_ov88_0223C370 * unk_08;
     UnkStruct_02098D38 unk_0C;
     int unk_3C;

@@ -34,7 +34,7 @@ typedef struct UnkStruct_02026324_t {
     u16 unk_322;
 } UnkStruct_02026324;
 
-int sub_0202631C (void)
+int Pokedex_SaveSize (void)
 {
     return sizeof(UnkStruct_02026324);
 }
@@ -44,7 +44,7 @@ UnkStruct_02026324 * sub_02026324 (u32 param0)
     UnkStruct_02026324 * v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02026324));
-    sub_02026D6C(v0);
+    Pokedex_Init(v0);
 
     return v0;
 }
@@ -743,7 +743,7 @@ static BOOL sub_02026D68 (u16 param0)
     return 1;
 }
 
-void sub_02026D6C (UnkStruct_02026324 * param0)
+void Pokedex_Init (UnkStruct_02026324 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026324));
 
@@ -1187,11 +1187,11 @@ void sub_02027540 (UnkStruct_02026324 * param0)
     param0->unk_31A = 1;
 }
 
-UnkStruct_02026324 * sub_02027560 (UnkStruct_021C0794 * param0)
+UnkStruct_02026324 * sub_02027560 (SaveData * param0)
 {
     UnkStruct_02026324 * v0;
 
-    v0 = sub_020245BC(param0, 7);
+    v0 = SaveData_Get(param0, 7);
     return v0;
 }
 

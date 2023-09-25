@@ -136,7 +136,7 @@ static void ov23_022522F0 (UnkStruct_ov23_02250CD4 * param0, int param1)
 {
     MATHRandContext16 v0;
     int v1, v2, v3, v4, v5;
-    UnkStruct_021C0794 * v6 = sub_0203D174(param0->unk_0C);
+    SaveData * v6 = sub_0203D174(param0->unk_0C);
     UnkStruct_020298B0 * v7 = sub_020298B0(v6);
     BOOL v8 = sub_02027474(sub_02027560(v6));
 

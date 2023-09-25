@@ -141,7 +141,7 @@ static void ov88_0223CB34(UnkStruct_0205AA50 * param0, int param1, UnkStruct_020
 static void ov88_0223BD18(Pokemon * param0, UnkStruct_ov88_0223C8AC * param1);
 static void ov88_0223E87C(UnkStruct_02022550 * param0, int param1, int param2);
 static int ov88_0223C8AC(UnkStruct_ov88_0223C8AC * param0, Party * param1, int param2, int param3);
-static void ov88_0223D0C0(UnkStruct_021C0794 * param0);
+static void ov88_0223D0C0(SaveData * param0);
 static int ov88_0223B914(UnkStruct_02095E80 * param0);
 static int ov88_0223BED8(UnkStruct_02095E80 * param0);
 static void ov88_0223B7A0(Party * param0, int param1, UnkStruct_02095E80 * param2);
@@ -1162,10 +1162,10 @@ static void ov88_0223C370 (UnkStruct_02095E80 * param0, UnkStruct_020067E8 * par
     param0->unk_2270 = v0->unk_08;
     param0->unk_227C = v0->unk_0C;
     param0->unk_04 = v0->unk_10;
-    param0->unk_2274 = Heap_AllocFromHeap(26, Party_sizeof());
+    param0->unk_2274 = Heap_AllocFromHeap(26, Party_SaveSize());
 
     Party_InitWithCapacity(param0->unk_2274, 6);
-    memset(param0->unk_2274, 0xff, Party_sizeof());
+    memset(param0->unk_2274, 0xff, Party_SaveSize());
 
     param0->unk_18C = TrainerInfo_NameNewStrbuf(v0->unk_04, 26);
     param0->unk_190 = MessageLoader_GetNewStrbuf(param0->unk_184, 42);
@@ -1668,7 +1668,7 @@ void ov88_0223D098 (int param0, Party * param1, int param2)
     }
 }
 
-static void ov88_0223D0C0 (UnkStruct_021C0794 * param0)
+static void ov88_0223D0C0 (SaveData * param0)
 {
     u8 * v0 = sub_0202D79C(param0);
     int v1;

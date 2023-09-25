@@ -15,7 +15,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_04[4];
     UnkStruct_0202B628 * unk_44;
     TrainerInfo * unk_48;
-    UnkStruct_021C0794 * unk_4C;
+    SaveData * unk_4C;
     MessageLoader * unk_50;
     UnkStruct_0200B358 * unk_54;
     Strbuf* unk_58;

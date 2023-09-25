@@ -43,7 +43,7 @@ void sub_02030A98 (UnkStruct_02030A80 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
+void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
 {
     TrainerInfo * v0 = sub_02025E38(param1);
     UnkStruct_0202C878 * v1 = sub_0202C878(param1);

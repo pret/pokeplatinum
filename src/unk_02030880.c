@@ -5,7 +5,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "heap.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_0203061C.h"
 #include "unk_02030880.h"
@@ -17,45 +17,45 @@ typedef struct {
     u16 unk_B9A;
 } UnkStruct_020308A0_sub1;
 
-typedef struct UnkStruct_020308A0_t {
+typedef struct BattleFrontierStage {
     u32 unk_00;
     UnkStruct_020308A0_sub1 unk_04;
-} UnkStruct_020308A0;
+} BattleFrontierStage;
 
-static u16 sub_02030908(UnkStruct_020308A0 * param0, int param1, int param2, u16 param3);
-static u16 sub_02030954(UnkStruct_021C0794 * param0, UnkStruct_020308A0 * param1, int param2, int param3, u16 param4);
+static u16 sub_02030908(BattleFrontierStage * param0, int param1, int param2, u16 param3);
+static u16 sub_02030954(SaveData * param0, BattleFrontierStage * param1, int param2, int param3, u16 param4);
 
-int sub_02030880 (void)
+int Frontier_Extra_SaveSize (void)
 {
-    GF_ASSERT(sizeof(UnkStruct_020308A0) % 4 == 0);
-    return sizeof(UnkStruct_020308A0);
+    GF_ASSERT(sizeof(BattleFrontierStage) % 4 == 0);
+    return sizeof(BattleFrontierStage);
 }
 
-void sub_02030888 (UnkStruct_020308A0 * param0)
+void Frontier_Extra_Init (BattleFrontierStage * param0)
 {
-    MI_CpuClear8(param0, sizeof(UnkStruct_020308A0));
+    MI_CpuClear8(param0, sizeof(BattleFrontierStage));
     param0->unk_00 = 0xffffffff;
 }
 
-UnkStruct_020308A0 * sub_020308A0 (UnkStruct_021C0794 * param0, int param1, int * param2)
+BattleFrontierStage * sub_020308A0 (SaveData * param0, int param1, int * param2)
 {
-    UnkStruct_020308A0 * v0;
+    BattleFrontierStage * v0;
 
-    v0 = sub_0202448C(param0, param1, param2);
+    v0 = SaveData_BattleFrontierStage(param0, param1, param2);
     return v0;
 }
 
-int sub_020308A8 (UnkStruct_021C0794 * param0, UnkStruct_020308A0 * param1)
+int sub_020308A8 (SaveData * param0, BattleFrontierStage * param1)
 {
     int v0;
 
-    v0 = sub_020244A0(param0, param1);
+    v0 = SaveData_SaveBattleFrontierStage(param0, param1);
     v0 |= sub_020246E0(param0);
 
     return v0;
 }
 
-u16 sub_020308BC (UnkStruct_021C0794 * param0, UnkStruct_020308A0 * param1, int param2, int param3)
+u16 sub_020308BC (SaveData * param0, BattleFrontierStage * param1, int param2, int param3)
 {
     if (sub_020247C8(param0) == 0) {
         return 0;
@@ -74,7 +74,7 @@ u16 sub_020308BC (UnkStruct_021C0794 * param0, UnkStruct_020308A0 * param1, int 
     return 0;
 }
 
-static u16 sub_02030908 (UnkStruct_020308A0 * param0, int param1, int param2, u16 param3)
+static u16 sub_02030908 (BattleFrontierStage * param0, int param1, int param2, u16 param3)
 {
     if (param3 > 9999) {
         param3 = 9999;
@@ -98,7 +98,7 @@ static u16 sub_02030908 (UnkStruct_020308A0 * param0, int param1, int param2, u1
     return param3;
 }
 
-static u16 sub_02030954 (UnkStruct_021C0794 * param0, UnkStruct_020308A0 * param1, int param2, int param3, u16 param4)
+static u16 sub_02030954 (SaveData * param0, BattleFrontierStage * param1, int param2, int param3, u16 param4)
 {
     u16 v0;
 
@@ -119,10 +119,10 @@ static u16 sub_02030954 (UnkStruct_021C0794 * param0, UnkStruct_020308A0 * param
     }
 }
 
-BOOL sub_020309A0 (UnkStruct_021C0794 * param0, int param1, int param2, int param3, int param4, int param5, int * param6, int * param7)
+BOOL sub_020309A0 (SaveData * param0, int param1, int param2, int param3, int param4, int param5, int * param6, int * param7)
 {
     UnkStruct_0203068C * v0;
-    UnkStruct_020308A0 * v1;
+    BattleFrontierStage * v1;
     u16 v2, v3, v4;
     int v5;
     BOOL v6 = 0;

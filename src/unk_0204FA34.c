@@ -13,7 +13,7 @@
 #include "unk_0205DFC4.h"
 
 void sub_0204FA34(int param0, int param1, void * param2, void * param3);
-void sub_0204FA50(UnkStruct_021C0794 * param0, UnkStruct_0203026C * param1, u8 param2);
+void sub_0204FA50(SaveData * param0, UnkStruct_0203026C * param1, u8 param2);
 
 void sub_0204FA34 (int param0, int param1, void * param2, void * param3)
 {
@@ -32,7 +32,7 @@ void sub_0204FA34 (int param0, int param1, void * param2, void * param3)
     return;
 }
 
-void sub_0204FA50 (UnkStruct_021C0794 * param0, UnkStruct_0203026C * param1, u8 param2)
+void sub_0204FA50 (SaveData * param0, UnkStruct_0203026C * param1, u8 param2)
 {
     int v0;
     u8 v1[4];

@@ -13,7 +13,7 @@
 #include "struct_defs/struct_0202E828.h"
 #include "struct_defs/struct_0202E834.h"
 
-typedef struct UnkStruct_0202440C_t {
+typedef struct TVBroadcast {
     u8 unk_00[4];
     int unk_04;
     u8 unk_08;
@@ -32,6 +32,6 @@ typedef struct UnkStruct_0202440C_t {
     UnkStruct_0202E81C unk_B2E;
     UnkStruct_0202E828 unk_B44;
     UnkStruct_0202E834 unk_B4C;
-} UnkStruct_0202440C;
+} TVBroadcast;
 
 #endif // POKEPLATINUM_STRUCT_0202440C_H

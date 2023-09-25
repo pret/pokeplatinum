@@ -12,7 +12,7 @@
 
 #include "unk_02018340.h"
 #include "gx_layers.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_0202DAB4.h"
 #include "overlay097/ov97_02232054.h"
@@ -133,15 +133,15 @@ void ov97_02232074 (UnkStruct_02018340 * param0)
     }
 }
 
-int ov97_02232148 (UnkStruct_021C0794 * param0, UnkStruct_ov97_0223829C * param1)
+int ov97_02232148 (SaveData * param0, UnkStruct_ov97_0223829C * param1)
 {
     u32 v0;
-    UnkStruct_0202442C * v1 = sub_0202442C(param0);
+    MysteryGift * v1 = SaveData_MysteryGift(param0);
 
     v0 = param1->unk_00.unk_48;
 
     if ((v0 == 0xFFFFFFFF) && (param1->unk_00.unk_4C == 0xFFFF)) {
-        sub_0202DABC(v1);
+        MysteryGift_Init(v1);
         sub_02024760(param0, 0);
 
         OS_ResetSystem(0);

@@ -10,17 +10,17 @@
 #include "unk_020244AC.h"
 #include "unk_02027F84.h"
 
-int sub_02027F84 (void)
+int PalPad_SaveSize (void)
 {
     return sizeof(UnkStruct_02027F8C) * 16;
 }
 
-UnkStruct_02027F8C * sub_02027F8C (UnkStruct_021C0794 * param0)
+UnkStruct_02027F8C * sub_02027F8C (SaveData * param0)
 {
-    return sub_020245BC(param0, 9);
+    return SaveData_Get(param0, 9);
 }
 
-void sub_02027F98 (UnkStruct_02027F8C * param0)
+void PalPad_Init (UnkStruct_02027F8C * param0)
 {
     int v0;
 
@@ -58,7 +58,7 @@ void sub_02027FEC (UnkStruct_02027F8C * param0, UnkStruct_02027F8C * param1, int
     UnkStruct_02027F8C * v4;
 
     v4 = Heap_AllocFromHeap(param3, sizeof(UnkStruct_02027F8C) * 16);
-    sub_02027F98(v4);
+    PalPad_Init(v4);
 
     for (v0 = 0; v0 < param2; v0++) {
         v3[v0] = -1;

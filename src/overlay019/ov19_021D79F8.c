@@ -382,7 +382,7 @@ static void ov19_021D7F9C (UnkStruct_ov19_021D8318 * param0, fx32 param1)
 
 static void ov19_021D803C (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021DCD18 * param1, int param2, int param3)
 {
-    const UnkStruct_020797DC * v0;
+    const PCBoxes * v0;
     BoxPokemon * v1;
     int v2, v3;
     u32 v4;
@@ -425,7 +425,7 @@ static void ov19_021D8114 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D
 
 static void ov19_021D813C (UnkStruct_ov19_021D8318 * param0, u32 param1)
 {
-    const UnkStruct_020797DC * v0;
+    const PCBoxes * v0;
     BoxPokemon * v1;
     u32 v2, v3;
 

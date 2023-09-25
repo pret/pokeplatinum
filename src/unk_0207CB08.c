@@ -22,11 +22,11 @@
 #include "unk_0202D05C.h"
 #include "unk_0207CB08.h"
 
-static u32 sub_0207CBB4(UnkStruct_021C0794 * param0);
-static u32 sub_0207CBC0(UnkStruct_021C0794 * param0);
-static u32 sub_0207CBE0(UnkStruct_021C0794 * param0);
-static u32 sub_0207CBF0(UnkStruct_021C0794 * param0);
-static u32 sub_0207CC00(UnkStruct_021C0794 * param0);
+static u32 sub_0207CBB4(SaveData * param0);
+static u32 sub_0207CBC0(SaveData * param0);
+static u32 sub_0207CBE0(SaveData * param0);
+static u32 sub_0207CBF0(SaveData * param0);
+static u32 sub_0207CC00(SaveData * param0);
 
 UnkStruct_0207CB08 * sub_0207CB08 (u8 param0)
 {
@@ -45,7 +45,7 @@ void sub_0207CB24 (UnkStruct_0207CB08 * param0, u8 param1)
     param0->unk_65 = param1;
 }
 
-void sub_0207CB2C (UnkStruct_0207CB08 * param0, UnkStruct_021C0794 * param1, u8 param2, void * param3)
+void sub_0207CB2C (UnkStruct_0207CB08 * param0, SaveData * param1, u8 param2, void * param3)
 {
     sub_0207CB24(param0, param2);
     param0->unk_00 = param1;
@@ -99,12 +99,12 @@ u8 sub_0207CBAC (UnkStruct_0207CB08 * param0)
     return param0->unk_75;
 }
 
-static u32 sub_0207CBB4 (UnkStruct_021C0794 * param0)
+static u32 sub_0207CBB4 (SaveData * param0)
 {
     return Coins_GetValue(sub_02025E50(param0));
 }
 
-static u32 sub_0207CBC0 (UnkStruct_021C0794 * param0)
+static u32 sub_0207CBC0 (SaveData * param0)
 {
     UnkStruct_0202CA1C * v0;
     u32 v1, v2;
@@ -119,24 +119,24 @@ static u32 sub_0207CBC0 (UnkStruct_021C0794 * param0)
     return v2;
 }
 
-static u32 sub_0207CBE0 (UnkStruct_021C0794 * param0)
+static u32 sub_0207CBE0 (SaveData * param0)
 {
     UnkStruct_02029D04 * v0 = sub_02029D04(sub_0202A750(param0));
     return sub_02029DF0(v0);
 }
 
-static u32 sub_0207CBF0 (UnkStruct_021C0794 * param0)
+static u32 sub_0207CBF0 (SaveData * param0)
 {
     UnkStruct_02029D04 * v0 = sub_02029D04(sub_0202A750(param0));
     return sub_02029E0C(v0);
 }
 
-static u32 sub_0207CC00 (UnkStruct_021C0794 * param0)
+static u32 sub_0207CC00 (SaveData * param0)
 {
     return (u32)sub_0202D230(sub_0202D750(param0), 0, 0);
 }
 
-BOOL sub_0207CC10 (UnkStruct_021C0794 * param0, Strbuf *param1, u16 param2, u32 param3)
+BOOL sub_0207CC10 (SaveData * param0, Strbuf *param1, u16 param2, u32 param3)
 {
     MessageLoader * v0;
     UnkStruct_0200B358 * v1;

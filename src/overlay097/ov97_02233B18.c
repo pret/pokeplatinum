@@ -65,7 +65,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
@@ -137,7 +137,7 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_021C0794 * unk_10;
+    SaveData * unk_10;
     TrainerInfo * unk_14;
     UnkStruct_020279FC * unk_18;
     int unk_1C;
@@ -278,13 +278,13 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
     int v0;
     u8 v1[16];
     int v2;
-    UnkStruct_02024440 * v3;
+    PalParkTransfer * v3;
     UnkStruct_ov97_02233B8C * v4 = &param0->unk_E8F0;
 
     switch (v4->unk_00) {
     case 0:
         ov97_02233D10(param0);
-        v3 = sub_02024440(param0->unk_10);
+        v3 = SaveData_PalParkTransfer(param0->unk_10);
         sub_0202EFB8(v3, ov97_0223635C());
         v4->unk_00++;
         break;
@@ -375,10 +375,10 @@ static int ov97_02233B8C (UnkStruct_ov97_02234A2C * param0)
 
 static void ov97_02233CE4 (UnkStruct_ov97_02234A2C * param0)
 {
-    UnkStruct_02024440 * v0;
+    PalParkTransfer * v0;
     int v1;
 
-    v0 = sub_02024440(param0->unk_10);
+    v0 = SaveData_PalParkTransfer(param0->unk_10);
 
     sub_0202EFB8(v0, ov97_0223635C());
     sub_02017DE0(4);
@@ -394,9 +394,9 @@ static void ov97_02233D10 (UnkStruct_ov97_02234A2C * param0)
     BoxPokemon * v4;
     BoxPokemonGBA * v5;
     Pokemon v6;
-    UnkStruct_02024440 * v7;
+    PalParkTransfer * v7;
 
-    v7 = sub_02024440(param0->unk_10);
+    v7 = SaveData_PalParkTransfer(param0->unk_10);
     v4 = Pokemon_GetBoxPokemon(&v6);
 
     for (v0 = 0; v0 < 6; v0++) {
@@ -1667,9 +1667,9 @@ static int ov97_02235408 (UnkStruct_ov97_02234A2C * param0)
 {
     int v0;
     u32 v1;
-    UnkStruct_02024440 * v2;
+    PalParkTransfer * v2;
 
-    v2 = sub_02024440(param0->unk_10);
+    v2 = SaveData_PalParkTransfer(param0->unk_10);
 
     if (sub_0202F0E0(v2) == 0) {
         if (sub_0202F088(v2) == 0) {

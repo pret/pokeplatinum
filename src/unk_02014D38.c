@@ -226,12 +226,12 @@ BOOL sub_02014E4C (u16 param0, u32 * param1, u32 * param2)
     return 0;
 }
 
-u32 sub_02014E8C (void)
+u32 Sentence_SaveSize (void)
 {
     return sizeof(UnkStruct_02014EC4);
 }
 
-void sub_02014E90 (void * param0)
+void Sentence_Init (void * param0)
 {
     static const struct {
         u8 unk_00;
@@ -260,10 +260,10 @@ void sub_02014E90 (void * param0)
     sub_02025C84(34);
 }
 
-UnkStruct_02014EC4 * sub_02014EC4 (UnkStruct_021C0794 * param0)
+UnkStruct_02014EC4 * sub_02014EC4 (SaveData * param0)
 {
-    sub_02025C48(34);
-    return sub_020245BC(param0, 34);
+    SaveData_CRC(34);
+    return SaveData_Get(param0, 34);
 }
 
 BOOL sub_02014ED8 (const UnkStruct_02014EC4 * param0, u32 param1)

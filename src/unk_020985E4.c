@@ -21,7 +21,7 @@
 
 FS_EXTERN_OVERLAY(overlay100);
 
-void sub_020985E4 (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
+void sub_020985E4 (UnkStruct_020508D4 * param0, SaveData * param1)
 {
     UnkStruct_0209862C * v0;
     UnkStruct_020985E4 * v1;

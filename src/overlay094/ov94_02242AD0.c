@@ -28,7 +28,7 @@
 #include "unk_0201D670.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_020279FC.h"
 #include "unk_0202B604.h"
@@ -661,9 +661,9 @@ static int ov94_022431F0 (UnkStruct_ov94_0223FD4C * param0)
             sub_0202CF28(param0->unk_00->unk_28, (1 + 23));
 
             {
-                UnkStruct_0202440C * v2;
+                TVBroadcast * v2;
 
-                v2 = sub_0202440C(param0->unk_00->unk_20);
+                v2 = SaveData_TVBroadcast(param0->unk_00->unk_20);
                 sub_0206D104(v2);
             }
             break;
@@ -940,9 +940,9 @@ static int ov94_02243658 (UnkStruct_ov94_0223FD4C * param0)
     sub_0202CF28(param0->unk_00->unk_28, (1 + 23));
 
     {
-        UnkStruct_0202440C * v0;
+        TVBroadcast * v0;
 
-        v0 = sub_0202440C(param0->unk_00->unk_20);
+        v0 = SaveData_TVBroadcast(param0->unk_00->unk_20);
         sub_0206D104(v0);
     }
 

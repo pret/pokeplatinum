@@ -125,7 +125,7 @@ struct UnkStruct_ov107_02246170_t {
     UnkStruct_02002F38 * unk_140;
     UnkStruct_0200C440 * unk_144;
     UnkStruct_020279FC * unk_148;
-    UnkStruct_021C0794 * unk_14C;
+    SaveData * unk_14C;
     UnkStruct_020302DC * unk_150;
     UnkStruct_0203041C * unk_154;
     UnkStruct_ov107_02249954 unk_158;

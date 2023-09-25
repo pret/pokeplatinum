@@ -27,7 +27,7 @@ BOOL sub_02054884 (Pokemon * param0)
     return 1;
 }
 
-BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param3, u16 param4, int param5, int param6)
+BOOL sub_020548B0 (int param0, SaveData * param1, u16 param2, u8 param3, u16 param4, int param5, int param6)
 {
     BOOL v0;
     Pokemon * v1;
@@ -56,7 +56,7 @@ BOOL sub_020548B0 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param
     return v0;
 }
 
-BOOL sub_02054930 (int param0, UnkStruct_021C0794 * param1, u16 param2, u8 param3, int param4, int param5)
+BOOL sub_02054930 (int param0, SaveData * param1, u16 param2, u8 param3, int param4, int param5)
 {
     int v0;
     BOOL v1;

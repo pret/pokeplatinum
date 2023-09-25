@@ -12,14 +12,14 @@
 #include "unk_0206A8DC.h"
 #include "overlay057/ov57_021D0F30.h"
 
-void ov57_021D0F30 (int param0, UnkStruct_021C0794 * param1)
+void ov57_021D0F30 (int param0, SaveData * param1)
 {
     if (!sub_020246A8(param1)) {
         OS_ResetSystem(0);
     }
 }
 
-void ov57_021D0F44 (int param0, UnkStruct_021C0794 * param1)
+void ov57_021D0F44 (int param0, SaveData * param1)
 {
     TrainerInfo * v0;
 

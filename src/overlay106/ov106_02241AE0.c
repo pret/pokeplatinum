@@ -110,7 +110,7 @@ struct UnkStruct_ov106_02243118_t {
     UnkStruct_02002F38 * unk_AC;
     UnkStruct_0200C440 * unk_B0;
     UnkStruct_020279FC * unk_B4;
-    UnkStruct_021C0794 * unk_B8;
+    SaveData * unk_B8;
     UnkStruct_02098D38 * unk_BC;
     UnkStruct_ov106_02243310 unk_C0;
     UnkStruct_ov106_02243650 * unk_280;

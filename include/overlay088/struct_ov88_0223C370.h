@@ -18,7 +18,7 @@ typedef struct {
     TrainerInfo * unk_04;
     Party * unk_08;
     UnkStruct_02027F8C * unk_0C;
-    UnkStruct_021C0794 * unk_10;
+    SaveData * unk_10;
     UnkStruct_0202C878 * unk_14;
     UnkStruct_020279FC * unk_18;
     UnkStruct_0202B628 * unk_1C;

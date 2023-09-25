@@ -160,7 +160,7 @@ void ov97_0222D19C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void ov97_0222D1C4 (UnkStruct_ov97_0222D04C * param0, UnkStruct_021C0794 * param1, int param2)
+void ov97_0222D1C4 (UnkStruct_ov97_0222D04C * param0, SaveData * param1, int param2)
 {
     if (sub_02035E38()) {
         return;
@@ -179,7 +179,7 @@ void ov97_0222D1F0 (const void * param0, int param1)
 
 void ov97_0222D200 (UnkStruct_ov97_0222D04C * param0, int param1)
 {
-    UnkStruct_021C0794 * v0;
+    SaveData * v0;
 
     if (sub_02035E38()) {
         return;

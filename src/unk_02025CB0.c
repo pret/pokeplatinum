@@ -20,23 +20,23 @@ typedef struct UnkStruct_02025CCC_t {
     u32 unk_50[3];
 } UnkStruct_02025CCC;
 
-int sub_02025CB0 (void)
+int SystemData_SaveSize (void)
 {
     return sizeof(UnkStruct_02025CCC);
 }
 
-void sub_02025CB4 (UnkStruct_02025CCC * param0)
+void SystemData_Init (UnkStruct_02025CCC * param0)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_02025CCC));
     sub_02025D84(&param0->unk_10);
 }
 
-UnkStruct_02025CCC * sub_02025CCC (UnkStruct_021C0794 * param0)
+UnkStruct_02025CCC * sub_02025CCC (SaveData * param0)
 {
-    return sub_020245BC(param0, 0);
+    return SaveData_Get(param0, 0);
 }
 
-UnkStruct_02055BA8 * sub_02025CD8 (UnkStruct_021C0794 * param0)
+UnkStruct_02055BA8 * sub_02025CD8 (SaveData * param0)
 {
     UnkStruct_02025CCC * v0;
 

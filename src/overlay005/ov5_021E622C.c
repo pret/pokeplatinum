@@ -1966,7 +1966,7 @@ u8 ov5_021E6640(UnkStruct_02026310 * param0, int param1, UnkStruct_0200B358 * pa
 u16 ov5_021E73A0(Party * param0, int param1, UnkStruct_0200B358 * param2);
 u8 ov5_021E73C8(UnkStruct_02026310 * param0);
 void ov5_021E72BC(UnkStruct_02026310 * param0, UnkStruct_0200B358 * param1);
-static void ov5_021E62C4(Party * param0, int param1, UnkStruct_02026218 * param2, UnkStruct_021C0794 * param3);
+static void ov5_021E62C4(Party * param0, int param1, UnkStruct_02026218 * param2, SaveData * param3);
 static int ov5_021E7110(UnkStruct_0203CDB0 * param0);
 
 static BoxPokemon * ov5_021E622C (UnkStruct_02026310 * param0, int param1)
@@ -2018,7 +2018,7 @@ static int ov5_021E62B0 (BoxPokemon * param0)
     return Item_IsMail(v0);
 }
 
-static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param2, UnkStruct_021C0794 * param3)
+static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param2, SaveData * param3)
 {
     int v0;
     Pokemon * v1 = Party_GetPokemonBySlotIndex(param0, param1);
@@ -2046,7 +2046,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     }
 }
 
-void ov5_021E6358 (Party * param0, int param1, UnkStruct_02026310 * param2, UnkStruct_021C0794 * param3)
+void ov5_021E6358 (Party * param0, int param1, UnkStruct_02026310 * param2, SaveData * param3)
 {
     int v0;
     UnkStruct_0202CD88 * v1 = sub_0202CD88(param3);

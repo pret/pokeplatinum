@@ -9,13 +9,13 @@
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0223A0C4.h"
 
-void ov104_022394A4(UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1);
+void ov104_022394A4(UnkStruct_0204AFC4 * param0, SaveData * param1);
 u16 ov104_02239588(UnkStruct_0204AFC4 * param0, u16 param1);
 void ov104_022395A0(UnkStruct_0204AFC4 * param0, u16 param1);
 u16 ov104_022395B4(UnkStruct_0204AFC4 * param0);
 u16 ov104_022395D8(UnkStruct_0204AFC4 * param0);
 
-void ov104_022394A4 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
+void ov104_022394A4 (UnkStruct_0204AFC4 * param0, SaveData * param1)
 {
     int v0;
     u16 v1[2];

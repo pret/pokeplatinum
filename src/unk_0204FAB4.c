@@ -51,7 +51,7 @@ typedef struct {
 
 BOOL sub_0204FAB4(UnkStruct_0203E724 * param0);
 BOOL sub_0204FBB4(UnkStruct_0203E724 * param0);
-static void sub_0204FBEC(UnkStruct_021C0794 * param0, UnkStruct_0203041C * param1, u8 param2);
+static void sub_0204FBEC(SaveData * param0, UnkStruct_0203041C * param1, u8 param2);
 static void sub_0204FDB4(UnkStruct_020508D4 * param0, void ** param1, u8 param2);
 static BOOL sub_0204FDE8(UnkStruct_020508D4 * param0);
 static int sub_0204FE50(UnkStruct_0204FE50 * param0, UnkStruct_0203CDB0 * param1, int param2);
@@ -129,7 +129,7 @@ BOOL sub_0204FBB4 (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-static void sub_0204FBEC (UnkStruct_021C0794 * param0, UnkStruct_0203041C * param1, u8 param2)
+static void sub_0204FBEC (SaveData * param0, UnkStruct_0203041C * param1, u8 param2)
 {
     int v0;
     u16 v1[4];
@@ -322,7 +322,7 @@ static int sub_0204FF1C (UnkStruct_0204FE50 * param0, UnkStruct_0203CDB0 * param
 static int sub_0204FF6C (UnkStruct_0204FE50 * param0, UnkStruct_0203CDB0 * param1, int param2)
 {
     UnkStruct_02098D38 * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };

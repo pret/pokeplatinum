@@ -46,7 +46,7 @@ typedef struct UnkStruct_0207D99C_t {
 
 static u32 sub_0207D40C(UnkStruct_0207D3C0 * param0, u16 param1, BagItem ** param2, u32 * param3, u32 param4);
 
-int sub_0207D3B8 (void)
+int Bag_SaveSize (void)
 {
     return sizeof(UnkStruct_0207D3C0);
 }
@@ -56,12 +56,12 @@ UnkStruct_0207D3C0 * sub_0207D3C0 (int param0)
     UnkStruct_0207D3C0 * v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0207D3C0));
-    sub_0207D3D8(v0);
+    Bag_Init(v0);
 
     return v0;
 }
 
-void sub_0207D3D8 (UnkStruct_0207D3C0 * param0)
+void Bag_Init (UnkStruct_0207D3C0 * param0)
 {
     MI_CpuClear16(param0, sizeof(UnkStruct_0207D3C0));
 }
@@ -474,11 +474,11 @@ BagItem * sub_0207D910 (UnkStruct_0207D3C0 * param0, u16 param1, u16 param2)
     return &v0[param2];
 }
 
-UnkStruct_0207D3C0 * sub_0207D990 (UnkStruct_021C0794 * param0)
+UnkStruct_0207D3C0 * sub_0207D990 (SaveData * param0)
 {
     UnkStruct_0207D3C0 * v0;
 
-    v0 = (UnkStruct_0207D3C0 *)sub_020245BC(param0, 3);
+    v0 = (UnkStruct_0207D3C0 *)SaveData_Get(param0, 3);
     return v0;
 }
 

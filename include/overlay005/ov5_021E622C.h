@@ -12,7 +12,7 @@
 
 u8 ov5_021E6238(UnkStruct_02026310 * param0);
 int ov5_021E6270(UnkStruct_02026310 * param0);
-void ov5_021E6358(Party * param0, int param1, UnkStruct_02026310 * param2, UnkStruct_021C0794 * param3);
+void ov5_021E6358(Party * param0, int param1, UnkStruct_02026310 * param2, SaveData * param3);
 u16 ov5_021E64F8(Party * param0, UnkStruct_0200B358 * param1, UnkStruct_02026310 * param2, u8 param3);
 int ov5_021E6520(BoxPokemon * param0, u32 param1);
 int ov5_021E6568(UnkStruct_02026218 * param0);

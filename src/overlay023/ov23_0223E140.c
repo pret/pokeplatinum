@@ -1789,7 +1789,7 @@ static BOOL ov23_0223F838 (int param0, int param1, int param2)
 
 static int ov23_0223F970 (UnkStruct_ov23_02256EB0 * param0)
 {
-    UnkStruct_021C0794 * v0 = sub_0203D174(Unk_ov23_02257740->unk_00);
+    SaveData * v0 = sub_0203D174(Unk_ov23_02257740->unk_00);
     UnkStruct_020298B0 * v1 = sub_020298B0(v0);
     BOOL v2 = TrainerInfo_ID(sub_02025E38(v0)) % 2;
     BOOL v3 = sub_02027474(sub_02027560(v0));

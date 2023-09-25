@@ -21,12 +21,12 @@ struct UnkStruct_02025E0C_t {
     UnkStruct_02025E5C unk_26;
 };
 
-int sub_02025E08 (void)
+int Player_SaveSize (void)
 {
     return sizeof(UnkStruct_02025E0C);
 }
 
-void sub_02025E0C (UnkStruct_02025E0C * param0)
+void Player_Init (UnkStruct_02025E0C * param0)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_02025E0C));
 
@@ -36,34 +36,34 @@ void sub_02025E0C (UnkStruct_02025E0C * param0)
     sub_0202CBE4(&param0->unk_26);
 }
 
-TrainerInfo * sub_02025E38 (UnkStruct_021C0794 * param0)
+TrainerInfo * sub_02025E38 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
-    v0 = sub_020245BC(param0, 1);
+    v0 = SaveData_Get(param0, 1);
     return &v0->unk_04;
 }
 
-UnkStruct_020279FC * sub_02025E44 (UnkStruct_021C0794 * param0)
+UnkStruct_020279FC * sub_02025E44 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
-    v0 = sub_020245BC(param0, 1);
+    v0 = SaveData_Get(param0, 1);
     return &v0->unk_00;
 }
 
-u16 * sub_02025E50 (UnkStruct_021C0794 * param0)
+u16 * sub_02025E50 (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
-    v0 = sub_020245BC(param0, 1);
+    v0 = SaveData_Get(param0, 1);
     return &v0->unk_24;
 }
 
-UnkStruct_02025E5C * sub_02025E5C (UnkStruct_021C0794 * param0)
+UnkStruct_02025E5C * sub_02025E5C (SaveData * param0)
 {
     UnkStruct_02025E0C * v0;
 
-    v0 = sub_020245BC(param0, 1);
+    v0 = SaveData_Get(param0, 1);
     return &v0->unk_26;
 }

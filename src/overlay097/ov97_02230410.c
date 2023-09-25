@@ -53,7 +53,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
@@ -92,8 +92,8 @@ typedef struct {
     int unk_2BA8[20];
     int unk_2BF8;
     void * unk_2BFC;
-    UnkStruct_0202442C * unk_2C00;
-    UnkStruct_021C0794 * unk_2C04;
+    MysteryGift * unk_2C00;
+    SaveData * unk_2C04;
     UnkStruct_020279FC * unk_2C08;
     int unk_2C0C;
     int unk_2C10;
@@ -149,7 +149,7 @@ typedef struct {
 } UnkStruct_ov97_0223E680;
 
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 * param1, u32 param2);
-UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
+MysteryGift * SaveData_MysteryGift(SaveData * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 static int ov97_02230728(UnkStruct_020067E8 * param0);
 static int ov97_022306F4(UnkStruct_020067E8 * param0);
@@ -972,7 +972,7 @@ static void ov97_02231464 (void * param0)
 static void ov97_02231488 (UnkStruct_ov97_02230868 * param0)
 {
     GF_ASSERT(param0->unk_2C20 < 3);
-    sub_02025C48(31);
+    SaveData_CRC(31);
 
     if (param0->unk_2C14[param0->unk_2C20]->unk_350 != 255) {
         param0->unk_2C14[param0->unk_2C20]->unk_350++;
@@ -1046,7 +1046,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
     switch (*param1) {
     case 0:
         v4->unk_2C04 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
-        v4->unk_2C00 = sub_0202442C(v4->unk_2C04);
+        v4->unk_2C00 = SaveData_MysteryGift(v4->unk_2C04);
         v4->unk_2C08 = sub_02025E44(v4->unk_2C04);
         v4->unk_2C0C = sub_02027B50(v4->unk_2C08);
 

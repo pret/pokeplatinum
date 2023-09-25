@@ -37,12 +37,12 @@ typedef struct UnkStruct_02056B24_t {
     } unk_B8[12];
 } UnkStruct_02056B24;
 
-int sub_02056720 (void)
+int Poketch_SaveSize (void)
 {
     return sizeof(UnkStruct_02056B24);
 }
 
-void sub_02056728 (UnkStruct_02056B24 * param0)
+void Poketch_Init (UnkStruct_02056B24 * param0)
 {
     int v0;
 
@@ -337,10 +337,10 @@ u32 sub_02056AFC (const UnkStruct_02056B24 * param0, int param1)
     return param0->unk_B8[param1].unk_04;
 }
 
-UnkStruct_02056B24 * sub_02056B24 (UnkStruct_021C0794 * param0)
+UnkStruct_02056B24 * sub_02056B24 (SaveData * param0)
 {
     UnkStruct_02056B24 * v0;
 
-    v0 = sub_020245BC(param0, 5);
+    v0 = SaveData_Get(param0, 5);
     return v0;
 }

@@ -134,7 +134,7 @@ const UnkStruct_0208BE5C Unk_020F410C = {
     0xFFFFFFFF
 };
 
-BOOL sub_0208C324 (UnkStruct_021C0794 * param0)
+BOOL sub_0208C324 (SaveData * param0)
 {
     return sub_0206ADCC(sub_020507E4(param0));
 }

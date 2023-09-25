@@ -311,7 +311,7 @@ static void sub_02029BD8 (Pokemon * param0, u8 * param1, u8 * param2)
     *param2 += (5 * 8);
 }
 
-void sub_02029BFC (UnkStruct_0202A750 * param0)
+void ImageClip_Init (UnkStruct_0202A750 * param0)
 {
     int v0;
 
@@ -326,7 +326,7 @@ void sub_02029BFC (UnkStruct_0202A750 * param0)
     sub_02029BB0(&param0->unk_7A4);
 }
 
-int sub_02029C58 (void)
+int ImageClip_SaveSize (void)
 {
     return sizeof(UnkStruct_0202A750);
 }
@@ -984,11 +984,11 @@ void sub_0202A6A8 (u8 param0, int param1, UnkStruct_0202A750 * param2, const voi
     }
 }
 
-UnkStruct_0202A750 * sub_0202A750 (UnkStruct_021C0794 * param0)
+UnkStruct_0202A750 * sub_0202A750 (SaveData * param0)
 {
     UnkStruct_0202A750 * v0 = NULL;
 
-    v0 = sub_020245BC(param0, 14);
+    v0 = SaveData_Get(param0, 14);
     return v0;
 }
 

@@ -44,7 +44,7 @@ typedef struct {
 typedef struct {
     TrainerInfo * unk_00;
     const UnkStruct_0202610C * unk_04;
-    UnkStruct_021C0794 * unk_08;
+    SaveData * unk_08;
     UnkStruct_02032BEC unk_0C[8];
     TrainerInfo * unk_33C[8];
     UnkStruct_021C07B4_sub1 unk_35C[8];
@@ -56,7 +56,7 @@ typedef struct {
 
 static UnkStruct_021C07B4 * Unk_021C07B4;
 
-void sub_020329E0 (UnkStruct_021C0794 * param0, const UnkStruct_0202610C * param1)
+void sub_020329E0 (SaveData * param0, const UnkStruct_0202610C * param1)
 {
     int v0;
     TrainerInfo * v1 = sub_02025E38(param0);
@@ -445,7 +445,7 @@ static void sub_02033054 (int param0, int param1)
     }
 }
 
-void sub_02033114 (UnkStruct_021C0794 * param0)
+void sub_02033114 (SaveData * param0)
 {
     UnkStruct_0202B370 * v0 = sub_0202B370(param0);
     int v1, v2, v3;
@@ -476,7 +476,7 @@ void sub_02033114 (UnkStruct_021C0794 * param0)
     }
 }
 
-void sub_020331B4 (UnkStruct_021C0794 * param0, int param1)
+void sub_020331B4 (SaveData * param0, int param1)
 {
     if (param1 == 1) {
         sub_02033054(0, 1);
@@ -487,7 +487,7 @@ void sub_020331B4 (UnkStruct_021C0794 * param0, int param1)
     sub_02033114(param0);
 }
 
-void sub_020331E0 (UnkStruct_021C0794 * param0, int param1)
+void sub_020331E0 (SaveData * param0, int param1)
 {
     sub_02033054(2, param1);
     sub_02033114(param0);

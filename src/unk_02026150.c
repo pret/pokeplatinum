@@ -96,7 +96,7 @@ UnkStruct_0202610C Unk_02100860 = {
     0x0
 };
 
-const UnkStruct_0202610C * sub_02026150 (UnkStruct_021C0794 * param0, int param1)
+const UnkStruct_0202610C * sub_02026150 (SaveData * param0, int param1)
 {
     UnkStruct_02026030 * v0 = NULL;
 
@@ -104,11 +104,11 @@ const UnkStruct_0202610C * sub_02026150 (UnkStruct_021C0794 * param0, int param1
         return &Unk_02100880[param1];
     }
 
-    v0 = sub_020245BC(param0, 13);
+    v0 = SaveData_Get(param0, 13);
     return &v0->unk_00[0];
 }
 
-void sub_0202616C (UnkStruct_021C0794 * param0, int param1, Strbuf *param2, int param3)
+void sub_0202616C (SaveData * param0, int param1, Strbuf *param2, int param3)
 {
     MessageLoader * v0;
     UnkStruct_02026030 * v1 = NULL;

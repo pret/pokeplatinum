@@ -17,7 +17,7 @@
 #include "enums.h"
 #include <ppwlobby/ppw_lobby.h>
 
-UnkStruct_ov66_0222DFF8 * ov66_0222DDF0(UnkStruct_021C0794 * param0, u32 param1);
+UnkStruct_ov66_0222DFF8 * ov66_0222DDF0(SaveData * param0, u32 param1);
 void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 * param0);
 void ov66_0222DF58(UnkStruct_ov66_0222DFF8 * param0);
 void ov66_0222DFF4(UnkStruct_ov66_0222DFF8 * param0);
@@ -30,7 +30,7 @@ BOOL ov66_0222E02C(UnkStruct_ov66_0222DFF8 * param0, u32 param1);
 BOOL ov66_0222E058(UnkStruct_ov66_0222DFF8 * param0, u32 param1);
 BOOL ov66_0222E084(UnkStruct_ov66_0222DFF8 * param0, int param1);
 BOOL ov66_0222E09C(UnkStruct_ov66_0222DFF8 * param0, u32 param1);
-UnkStruct_021C0794 * ov66_0222E0C4(UnkStruct_ov66_0222DFF8 * param0);
+SaveData * ov66_0222E0C4(UnkStruct_ov66_0222DFF8 * param0);
 BOOL ov66_0222E0C8(const UnkStruct_ov66_0222DFF8 * param0);
 BOOL ov66_0222E0DC(const UnkStruct_ov66_0222DFF8 * param0);
 BOOL ov66_0222E0F4(const UnkStruct_ov66_0222DFF8 * param0);

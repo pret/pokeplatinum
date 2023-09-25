@@ -27,7 +27,7 @@ void sub_0203D190 (UnkStruct_02049FA8 * param0)
     *param0 = v0;
 }
 
-void sub_0203D1A8 (UnkStruct_021C0794 * param0)
+void sub_0203D1A8 (SaveData * param0)
 {
     UnkStruct_0203A790 * v0 = sub_0203A790(param0);
     UnkStruct_02049FA8 * v1 = sub_0203A720(v0);

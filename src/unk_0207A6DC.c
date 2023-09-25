@@ -141,7 +141,7 @@ static int sub_0207A75C (void)
 
 static int sub_0207A764 (void)
 {
-    return Party_sizeof();
+    return Party_SaveSize();
 }
 
 static int sub_0207A76C (void)
@@ -402,7 +402,7 @@ BOOL sub_0207AA5C (UnkStruct_0207A778 * param0)
         return 0;
     }
 
-    return sub_0203597C(27, (void *)&param0->unk_20[0], Party_sizeof());
+    return sub_0203597C(27, (void *)&param0->unk_20[0], Party_SaveSize());
 }
 
 static void sub_0207AA90 (int param0, int param1, void * param2, void * param3)
@@ -550,9 +550,9 @@ BOOL sub_0207AC54 (UnkStruct_0207A778 * param0, int param1, int param2)
     }
 
     if (param1 == 1) {
-        return sub_0203597C(31, (void *)&param0->unk_20[0], Party_sizeof());
+        return sub_0203597C(31, (void *)&param0->unk_20[0], Party_SaveSize());
     } else {
-        return sub_0203597C(32, (void *)&param0->unk_20[0], Party_sizeof());
+        return sub_0203597C(32, (void *)&param0->unk_20[0], Party_SaveSize());
     }
 }
 

@@ -885,7 +885,7 @@ BOOL ov23_02242D60 (Strbuf *param0)
     return 0;
 }
 
-UnkStruct_02029894 * ov23_02242E10 (UnkStruct_021C0794 * param0)
+UnkStruct_02029894 * ov23_02242E10 (SaveData * param0)
 {
     if (!Unk_ov23_02257748) {
         return NULL;

@@ -63,7 +63,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     int unk_14;
-    UnkStruct_021C0794 * unk_18;
+    SaveData * unk_18;
     void * unk_1C;
     int unk_20;
     BOOL unk_24[4];
@@ -835,7 +835,7 @@ void ov97_02238440 (void)
     OS_EnableIrq();
 }
 
-void ov97_0223846C (UnkStruct_021C0794 * param0)
+void ov97_0223846C (SaveData * param0)
 {
     UnkStruct_ov97_0223F550 * v0 = &Unk_ov97_0223F550;
 

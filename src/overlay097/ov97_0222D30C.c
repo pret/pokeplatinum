@@ -60,7 +60,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_0202DAB4.h"
@@ -126,7 +126,7 @@ typedef struct {
 
 void Strbuf_ToChars(const Strbuf *param0, u16 * param1, u32 param2);
 void Strbuf_CopyNumChars(Strbuf *param0, const u16 * param1, u32 param2);
-UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
+MysteryGift * SaveData_MysteryGift(SaveData * param0);
 void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
 static int ov97_0222D474(UnkStruct_020067E8 * param0);
 static int ov97_0222D4D8(UnkStruct_020067E8 * param0);
@@ -445,8 +445,8 @@ static void ov97_0222D658 (UnkStruct_020067E8 * param0)
     UnkStruct_ov97_0222D04C * v2 = sub_0200682C(param0);
     UnkStruct_ov97_0222D250 * v3 = &v2->unk_8C.unk_00;
     UnkUnion_ov97_0222D2B0 * v4 = &v2->unk_8C.unk_50;
-    UnkStruct_021C0794 * v5 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
-    UnkStruct_0202442C * v6;
+    SaveData * v5 = ((UnkStruct_0203CC84 *)sub_02006840(param0))->unk_08;
+    MysteryGift * v6;
 
     if (v3->unk_4E_2 == 0) {
         v0 = 0;
@@ -464,7 +464,7 @@ static void ov97_0222D658 (UnkStruct_020067E8 * param0)
         v4->val2.unk_354 = RTC_ConvertDateToDay(&v7);
     }
 
-    v6 = sub_0202442C(v5);
+    v6 = SaveData_MysteryGift(v5);
     sub_0202DE5C(v6, v3->unk_4C);
 
     if (v0 == 0) {
@@ -682,7 +682,7 @@ static int ov97_0222DA84 (UnkStruct_020067E8 * param0)
     UnkStruct_0205AA50 * v0;
     UnkStruct_02025CCC * v1;
     UnkStruct_ov97_0222D04C * v2 = sub_0200682C(param0);
-    UnkStruct_0202442C * v3 = sub_0202442C(v2->unk_04);
+    MysteryGift * v3 = SaveData_MysteryGift(v2->unk_04);
 
     if (v2->unk_62C == 30) {
         v2->unk_630 = 1;
@@ -833,7 +833,7 @@ static void ov97_0222DDD0 (UnkStruct_020067E8 * param0, int param1, u32 param2)
     UnkStruct_0205AA50 * v1;
     UnkStruct_ov97_0223E5B8 v2[4];
     int v3, v4 = 0;
-    UnkStruct_0202442C * v5 = sub_0202442C(v0->unk_04);
+    MysteryGift * v5 = SaveData_MysteryGift(v0->unk_04);
 
     v1 = &v0->unk_28[0];
     v2[v4++] = Unk_ov97_0223E5B8[0];

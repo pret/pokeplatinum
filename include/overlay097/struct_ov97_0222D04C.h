@@ -23,7 +23,7 @@
 
 typedef struct {
     UnkStruct_02018340 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_020279FC * unk_08;
     UnkStruct_0200B358 * unk_0C;
     MessageLoader * unk_10;

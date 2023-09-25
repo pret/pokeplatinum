@@ -16,12 +16,12 @@
 #include "unk_0202ACE0.h"
 #include "unk_02038FFC.h"
 
-int sub_0202ACE0 (void)
+int WiFiList_SaveSize (void)
 {
     return sizeof(UnkStruct_0202B370);
 }
 
-void sub_0202ACE8 (UnkStruct_0202B370 * param0)
+void WiFiList_Init (UnkStruct_0202B370 * param0)
 {
     int v0;
 
@@ -377,10 +377,10 @@ void sub_0202B270 (UnkStruct_0202B370 * param0, int param1, int param2)
     param0->unk_1C0[param1].unk_2E = 2;
 }
 
-UnkStruct_0202B370 * sub_0202B370 (UnkStruct_021C0794 * param0)
+UnkStruct_0202B370 * sub_0202B370 (SaveData * param0)
 {
     UnkStruct_0202B370 * v0;
 
-    v0 = sub_020245BC(param0, 29);
+    v0 = SaveData_Get(param0, 29);
     return v0;
 }

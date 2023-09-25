@@ -11,7 +11,7 @@
 typedef struct {
     void * unk_00;
     const UnkStruct_020279FC * unk_04;
-    UnkStruct_021C0794 * unk_08;
+    SaveData * unk_08;
     UnkStruct_0202B628 * unk_0C;
     UnkStruct_0207D99C * unk_10;
     int unk_14;

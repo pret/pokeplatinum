@@ -99,7 +99,7 @@ typedef struct UnkStruct_ov25_02253CE0_t {
     void * unk_48;
     UnkStruct_02018340 * unk_4C;
     NNSG2dOamManagerInstance * unk_50;
-    UnkStruct_021C0794 * unk_54;
+    SaveData * unk_54;
     UnkStruct_02056B24 * unk_58;
     UnkStruct_0203CDB0 * unk_5C;
     int unk_60;
@@ -165,7 +165,7 @@ static UnkStruct_ov25_02253CE0 * ov25_02253CE0 (void)
     return sub_0203D158();
 }
 
-void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, UnkStruct_021C0794 * param2, UnkStruct_02018340 * param3, NNSG2dOamManagerInstance * param4)
+void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, UnkStruct_02018340 * param3, NNSG2dOamManagerInstance * param4)
 {
     UnkStruct_ov25_02253CE0 * v0;
 
@@ -817,9 +817,9 @@ UnkStruct_02056B24 * ov25_02254540 (const UnkStruct_ov25_0225424C * param0)
     return (UnkStruct_02056B24 *)(param0->unk_58);
 }
 
-UnkStruct_021C0794 * ov25_02254544 (const UnkStruct_ov25_0225424C * param0)
+SaveData * ov25_02254544 (const UnkStruct_ov25_0225424C * param0)
 {
-    return (UnkStruct_021C0794 *)(param0->unk_54);
+    return (SaveData *)(param0->unk_54);
 }
 
 int ov25_02254548 (const UnkStruct_ov25_0225424C * param0)

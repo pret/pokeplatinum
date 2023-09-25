@@ -12,12 +12,12 @@ typedef struct UnkStruct_0202CC84_t {
     s8 unk_04[1000];
 } UnkStruct_0202CC84;
 
-int sub_0202CC64 (void)
+int ChatotCry_SaveSize (void)
 {
     return sizeof(UnkStruct_0202CC84);
 }
 
-void sub_0202CC6C (UnkStruct_0202CC84 * param0)
+void ChatotCry_Init (UnkStruct_0202CC84 * param0)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0202CC84));
     param0->unk_00 = 0;
@@ -27,13 +27,13 @@ UnkStruct_0202CC84 * sub_0202CC84 (int param0)
 {
     UnkStruct_0202CC84 * v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_0202CC84));
 
-    sub_0202CC6C(v0);
+    ChatotCry_Init(v0);
     return v0;
 }
 
-UnkStruct_0202CC84 * sub_0202CC98 (UnkStruct_021C0794 * param0)
+UnkStruct_0202CC84 * sub_0202CC98 (SaveData * param0)
 {
-    return (UnkStruct_0202CC84 *)sub_020245BC(param0, 22);
+    return (UnkStruct_0202CC84 *)SaveData_Get(param0, 22);
 }
 
 BOOL sub_0202CCA4 (const UnkStruct_0202CC84 * param0)

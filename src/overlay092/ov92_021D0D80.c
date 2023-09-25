@@ -342,7 +342,7 @@ int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     }
 
     {
-        UnkStruct_021C0794 * v2 = sub_02006840(param0);
+        SaveData * v2 = sub_02006840(param0);
 
         v0->unk_04 = sub_0202C878(v2);
         v0->unk_BB14 = sub_0202C8C0(v0->unk_04);

@@ -75,7 +75,7 @@ static const int Unk_ov5_021F9CBC[] = {
 
 static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_021C0794 * v0 = param1->unk_0C;
+    SaveData * v0 = param1->unk_0C;
     UnkStruct_02049FA8 * v1 = sub_0203A720(sub_0203A790(v0));
     UnkStruct_02026324 * v2 = sub_02027560(v0);
 

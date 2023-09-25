@@ -43,7 +43,7 @@
 #include "unk_02022594.h"
 #include "strbuf.h"
 #include "unk_02023FCC.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02030A80.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
@@ -65,7 +65,7 @@ typedef struct {
 } UnkStruct_ov62_02239DBC_sub1;
 
 typedef struct {
-    UnkStruct_020797DC * unk_00;
+    PCBoxes * unk_00;
     UnkStruct_ov62_02239DA4 unk_04;
     int unk_1A0;
     int unk_1A4;
@@ -102,7 +102,7 @@ static void ov62_02239F98(u32 param0, u32 param1, void * param2);
 static void ov62_0223A0AC(UnkStruct_0208C06C * param0);
 static void ov62_0223A110(UnkStruct_0208C06C * param0);
 static void ov62_0223A138(UnkStruct_ov62_02239DBC * param0);
-static void ov62_0223A154(UnkStruct_021C0794 * param0, const UnkStruct_020797DC * param1, int param2, UnkStruct_ov62_02239DA4 * param3);
+static void ov62_0223A154(SaveData * param0, const PCBoxes * param1, int param2, UnkStruct_ov62_02239DA4 * param3);
 static BOOL ov62_0223A17C(UnkStruct_0208C06C * param0);
 static BOOL ov62_0223A2A8(UnkStruct_0208C06C * param0);
 static BOOL ov62_0223A394(UnkStruct_0208C06C * param0);
@@ -446,7 +446,7 @@ static void ov62_0223A138 (UnkStruct_ov62_02239DBC * param0)
     }
 }
 
-static void ov62_0223A154 (UnkStruct_021C0794 * param0, const UnkStruct_020797DC * param1, int param2, UnkStruct_ov62_02239DA4 * param3)
+static void ov62_0223A154 (SaveData * param0, const PCBoxes * param1, int param2, UnkStruct_ov62_02239DA4 * param3)
 {
     memset(param3, 0, sizeof(UnkStruct_ov62_02239DA4));
     ov61_0222AE88(param0, param1, param2, param3, 102);
@@ -465,7 +465,7 @@ static BOOL ov62_0223A17C (UnkStruct_0208C06C * param0)
     sub_02019EBC(param0->unk_14.unk_10, 6);
     sub_02019EBC(param0->unk_14.unk_10, 7);
 
-    v0->unk_00 = sub_02024420(param0->unk_830);
+    v0->unk_00 = SaveData_PCBoxes(param0->unk_830);
     ov62_0223A154(param0->unk_830, v0->unk_00, v0->unk_1A0, &v0->unk_04);
     ov62_0223A138(v0);
     ov62_022315C8(&v0->unk_1A4, &v0->unk_1A8, 0);
@@ -1237,7 +1237,7 @@ static void ov62_0223B158 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
 
     {
-        UnkStruct_020797DC * v1 = sub_02024420(param0->unk_830);
+        PCBoxes * v1 = SaveData_PCBoxes(param0->unk_830);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;
@@ -1269,7 +1269,7 @@ static void ov62_0223B230 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02239DBC * v0 = param0->unk_860;
 
     {
-        UnkStruct_020797DC * v1 = sub_02024420(param0->unk_830);
+        PCBoxes * v1 = SaveData_PCBoxes(param0->unk_830);
 
         if ((v0->unk_04.unk_176 >= 16) && (v0->unk_04.unk_176 < (16 + 8))) {
             v0->unk_04.unk_176 = 0;

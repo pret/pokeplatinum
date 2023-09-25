@@ -5,10 +5,10 @@
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0202631C(void);
+int Pokedex_SaveSize(void);
 UnkStruct_02026324 * sub_02026324(u32 param0);
 void sub_02026338(const UnkStruct_02026324 * param0, UnkStruct_02026324 * param1);
-void sub_02026D6C(UnkStruct_02026324 * param0);
+void Pokedex_Init(UnkStruct_02026324 * param0);
 u16 sub_02026DD0(const UnkStruct_02026324 * param0);
 u16 sub_02026E0C(const UnkStruct_02026324 * param0);
 u16 sub_02026E48(const UnkStruct_02026324 * param0);
@@ -45,7 +45,7 @@ void sub_02027508(UnkStruct_02026324 * param0);
 BOOL sub_02027514(const UnkStruct_02026324 * param0);
 BOOL sub_02027520(const UnkStruct_02026324 * param0);
 void sub_02027540(UnkStruct_02026324 * param0);
-UnkStruct_02026324 * sub_02027560(UnkStruct_021C0794 * param0);
+UnkStruct_02026324 * sub_02027560(SaveData * param0);
 u32 sub_0202756C(const UnkStruct_02026324 * param0, int param1, int param2);
 u32 sub_020276C8(const UnkStruct_02026324 * param0, int param1);
 

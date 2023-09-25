@@ -22,7 +22,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020279FC.h"
 #include "poffin.h"
 #include "unk_0202ACE0.h"
@@ -1092,7 +1092,7 @@ static BOOL ov83_0223C8B0 (UnkStruct_ov83_0223C344 * param0, Poffin * param1, in
     u16 v1;
     int v2;
     BOOL v3 = 1;
-    UnkStruct_0202440C * v4 = sub_0202440C(param0->unk_10->unk_0C);
+    TVBroadcast * v4 = SaveData_TVBroadcast(param0->unk_10->unk_0C);
 
     for (v0 = 0; v0 < param2; v0++) {
         v1 = sub_0202AB74(param0->unk_10->unk_08, param1);

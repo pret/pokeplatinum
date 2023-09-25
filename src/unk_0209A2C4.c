@@ -45,7 +45,7 @@ typedef struct {
     MessageLoader * unk_1C;
     UnkStruct_0205AA50 unk_20;
     UnkStruct_02001AF4 * unk_30;
-    UnkStruct_021C0794 * unk_34;
+    SaveData * unk_34;
     void * unk_38;
     u32 unk_3C;
 } UnkStruct_0209A3D0;

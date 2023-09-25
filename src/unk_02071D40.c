@@ -50,7 +50,7 @@ void sub_02071D40 (const u8 param0, const u8 param1, const u8 param2, const u8 p
 {
     TrainerInfo * v0;
     UnkStruct_0202CD88 * v1;
-    UnkStruct_021C0794 * v2;
+    SaveData * v2;
 
     v2 = sub_0203D174(param4);
     v0 = sub_02025E38(v2);
@@ -125,7 +125,7 @@ void sub_02071F20 (UnkStruct_02072014 * param0)
 u8 sub_02071F28 (UnkStruct_0203CDB0 * param0)
 {
     u8 v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     UnkStruct_0202CD88 * v2;
     UnkStruct_020507E4 * v3;
     UnkStruct_0202855C * v4;

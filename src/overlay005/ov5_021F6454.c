@@ -135,7 +135,7 @@ static u16 Unk_ov5_0220210C[] = {
 BOOL ov5_021F6454 (UnkStruct_0203E724 * param0)
 {
     int v0;
-    UnkStruct_020308A0 * v1;
+    BattleFrontierStage * v1;
     u16 v2;
     u16 * v3;
     int v4, v5;

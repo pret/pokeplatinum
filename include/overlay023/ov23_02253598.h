@@ -9,7 +9,7 @@
 #include "overlay023/struct_ov23_02253598_decl.h"
 #include "overlay023/funcptr_ov23_02253834.h"
 
-void ov23_02253598(UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param1, UnkStruct_021C0794 * param2);
+void ov23_02253598(UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param1, SaveData * param2);
 void ov23_022535CC(void);
 void ov23_022535EC(void);
 void ov23_02253604(void);

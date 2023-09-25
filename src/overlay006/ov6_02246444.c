@@ -12,7 +12,7 @@
 
 #include "unk_020021B0.h"
 #include "heap.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "trainer_info.h"
 #include "unk_0202E2CC.h"
@@ -136,7 +136,7 @@ static UnkStruct_ov6_022465F4 * ov6_02246550 (UnkStruct_0203CDB0 * param0, int p
 
 UnkStruct_ov6_022465F4 * ov6_022465A0 (UnkStruct_0203CDB0 * param0, int param1, int param2)
 {
-    UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_0C);
+    TVBroadcast * v0 = SaveData_TVBroadcast(param0->unk_0C);
 
     if ((param1 == 4) || (param1 == 5)) {
         return ov6_02246550(param0, param2);

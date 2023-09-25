@@ -39,22 +39,22 @@ typedef struct UnkStruct_0203A79C_t {
     UnkStruct_02061D3C unk_00[64];
 } UnkStruct_0203A79C;
 
-int sub_0203A6DC (void)
+int FieldPlayerState_SaveSize (void)
 {
     return sizeof(UnkStruct_0203A790);
 }
 
-int sub_0203A6E0 (void)
+int FieldOWState_SaveSize (void)
 {
     return sizeof(UnkStruct_0203A79C);
 }
 
-void sub_0203A6E8 (UnkStruct_0203A79C * param0)
+void FieldOWState_Init (UnkStruct_0203A79C * param0)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0203A79C));
 }
 
-void sub_0203A6F8 (UnkStruct_0203A790 * param0)
+void FieldPlayerState_Init (UnkStruct_0203A790 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0203A790));
 
@@ -155,19 +155,19 @@ u16 * sub_0203A78C (UnkStruct_0203A790 * param0)
     return &param0->unk_94;
 }
 
-UnkStruct_0203A790 * sub_0203A790 (UnkStruct_021C0794 * param0)
+UnkStruct_0203A790 * sub_0203A790 (SaveData * param0)
 {
     UnkStruct_0203A790 * v0;
 
-    v0 = sub_020245BC(param0, 6);
+    v0 = SaveData_Get(param0, 6);
     return v0;
 }
 
-UnkStruct_0203A79C * sub_0203A79C (UnkStruct_021C0794 * param0)
+UnkStruct_0203A79C * sub_0203A79C (SaveData * param0)
 {
     UnkStruct_0203A79C * v0;
 
-    v0 = sub_020245BC(param0, 11);
+    v0 = SaveData_Get(param0, 11);
     return v0;
 }
 

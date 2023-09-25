@@ -29,7 +29,7 @@
 #include "overlay104/ov104_022339B4.h"
 #include "overlay104/ov104_0223A7F4.h"
 
-UnkStruct_ov104_0223ADA0 * ov104_022339B4(UnkStruct_021C0794 * param0, u16 param1, u8 param2, u8 param3);
+UnkStruct_ov104_0223ADA0 * ov104_022339B4(SaveData * param0, u16 param1, u8 param2, u8 param3);
 void ov104_02233B98(UnkStruct_ov104_0223ADA0 * param0, u16 param1);
 static void ov104_02233BAC(UnkStruct_ov104_0223ADA0 * param0);
 static void ov104_02233F1C(UnkStruct_ov104_0223ADA0 * param0);
@@ -51,7 +51,7 @@ void ov104_02234474(UnkStruct_ov104_0223ADA0 * param0);
 void ov104_02234480(UnkStruct_ov104_0223ADA0 * param0);
 u16 ov104_022347F8(UnkStruct_ov104_0223ADA0 * param0);
 
-UnkStruct_ov104_0223ADA0 * ov104_022339B4 (UnkStruct_021C0794 * param0, u16 param1, u8 param2, u8 param3)
+UnkStruct_ov104_0223ADA0 * ov104_022339B4 (SaveData * param0, u16 param1, u8 param2, u8 param3)
 {
     UnkStruct_0202FF58 * v0;
     UnkStruct_020300F4 * v1;
@@ -497,7 +497,7 @@ void ov104_0223449C (UnkStruct_ov104_0223ADA0 * param0)
     v1 = ov104_0223AA50(param0->unk_04);
     v2 = ov104_0223AA74(param0->unk_04, 1);
 
-    sub_0207A008(param0->unk_4D4);
+    Party_Init(param0->unk_4D4);
 
     v3 = Pokemon_New(11);
 
@@ -588,7 +588,7 @@ void ov104_0223470C (UnkStruct_ov104_0223ADA0 * param0)
     v1 = ov104_0223AA50(param0->unk_04);
     v2 = ov104_0223AA74(param0->unk_04, 1);
 
-    sub_0207A008(param0->unk_4D8);
+    Party_Init(param0->unk_4D8);
 
     v3 = Pokemon_New(11);
 
