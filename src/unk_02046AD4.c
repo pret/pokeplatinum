@@ -15,117 +15,6 @@
 
 #include "data/mart_items.h"
 
-const u16 Unk_020EB9F0[] = {
-	0x7,
-	0x16,
-	0x19,
-	0x1A,
-	0x1B,
-	0xffff
-};
-
-const u16 Unk_020EBA0A[] = {
-	0x73,
-	0x74,
-	0x75,
-	0x77,
-	0x78,
-	0x79,
-	0xffff
-};
-
-const u16 *Unk_02100AF8[] = {
-	Unk_020EB9F0,
-	Unk_020EBA0A
-};
-
-const u16 Unk_020EBA76[] = {
-	0x1,
-	0x8,
-	0x1D,
-	0x2B,
-	0xF,
-	0x16,
-	0x24,
-	0xffff
-};
-
-const u16 Unk_020EBA26[] = {
-	0x2,
-	0x9,
-	0x1E,
-	0x25,
-	0x2C,
-	0x10,
-	0x17,
-	0xffff
-};
-
-const u16 Unk_020EBA36[] = {
-	0x3,
-	0xA,
-	0x1F,
-	0x26,
-	0x2D,
-	0x11,
-	0x18,
-	0xffff
-};
-
-const u16 Unk_020EBA56[] = {
-	0x4,
-	0x19,
-	0x20,
-	0x27,
-	0x2E,
-	0xB,
-	0x12,
-	0xffff
-};
-
-const u16 Unk_020EBA86[] = {
-	0x1A,
-	0x21,
-	0x28,
-	0x2F,
-	0x5,
-	0xC,
-	0x13,
-	0xffff
-};
-
-const u16 Unk_020EBA46[] = {
-	0x1B,
-	0x22,
-	0x29,
-	0x30,
-	0x6,
-	0xD,
-	0x14,
-	0xffff
-};
-
-const u16 Unk_020EBA96[] = {
-	0x7,
-	0x31,
-	0x1C,
-	0x2A,
-	0xE,
-	0x15,
-	0x23,
-	0xffff
-};
-
-const u16 *Unk_02100B00[] = {
-	Unk_020EBA76,
-	Unk_020EBA26,
-	Unk_020EBA36,
-	Unk_020EBA56,
-	Unk_020EBA86,
-	Unk_020EBA46,
-	Unk_020EBA96
-};
-
 BOOL sub_02046AD4 (UnkStruct_0203E724 * param0)
 {
     u16 v0[64];
@@ -170,7 +59,7 @@ BOOL sub_02046AD4 (UnkStruct_0203E724 * param0)
     }
 
     for (v4 = 0; v4 < (NELEMS(PokeMartCommonItems)); v4++) {
-        if (v1 >= PokeMartCommonItems[v4].unk_02) {
+        if (v1 >= PokeMartCommonItems[v4].requiredBadges) {
             v0[v3] = PokeMartCommonItems[v4].itemID;
             v3++;
         }
@@ -208,7 +97,7 @@ BOOL sub_02046BF4 (UnkStruct_0203E724 * param0)
         v1 = 0;
     }
 
-    ov7_0224CDA4(param0->unk_28, param0->unk_34, (u16 *)Unk_02100AF8[v0], 1, v1);
+    ov7_0224CDA4(param0->unk_28, param0->unk_34, (u16 *)VeilstoneDeptStoreDecorationStocks[v0], 1, v1);
     return 1;
 }
 
@@ -216,7 +105,7 @@ BOOL sub_02046C34 (UnkStruct_0203E724 * param0)
 {
     u16 v0 = inline_02049538(param0);
 
-    ov7_0224CDA4(param0->unk_28, param0->unk_34, (u16 *)Unk_02100B00[v0], 2, 0);
+    ov7_0224CDA4(param0->unk_28, param0->unk_34, (u16 *)SunyshoreMarketDailyStocks[v0], 2, 0);
     return 1;
 }
 

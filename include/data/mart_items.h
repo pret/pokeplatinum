@@ -1,8 +1,9 @@
 #include "constants/items.h"
+#include "constants/seals.h"
 
 typedef struct {
     u16 itemID;
-    u16 unk_02;
+    u16 requiredBadges;
 } PokeMartCommonItem;
 
 const PokeMartCommonItem PokeMartCommonItems[] = {
@@ -233,4 +234,115 @@ const u16 *PokeMartSpecialties[] = {
 	SunyshoreMartSpecialties,
 	PokemonLeagueMartSpecialties,
 	VeilstoneDeptStoreStock_B1F_DOWN_LEFT
+};
+
+const u16 VeilstoneDeptStoreStock_4F_UP[] = {
+	0x7,
+	0x16,
+	0x19,
+	0x1A,
+	0x1B,
+	0xffff
+};
+
+const u16 VeilstoneDeptStoreStock_4F_DOWN[] = {
+	0x73,
+	0x74,
+	0x75,
+	0x77,
+	0x78,
+	0x79,
+	0xffff
+};
+
+const u16 *VeilstoneDeptStoreDecorationStocks[] = {
+	VeilstoneDeptStoreStock_4F_UP,
+	VeilstoneDeptStoreStock_4F_DOWN
+};
+
+const u16 SunyshoreMarketStockMonday[] = {
+	HEART_SEAL_A,
+	STAR_SEAL_B,
+	FIRE_SEAL_A,
+	SONG_SEAL_A,
+	LINE_SEAL_C,
+	ELE_SEAL_B,
+	PARTY_SEAL_D,
+	0xffff
+};
+
+const u16 SunyshoreMarketStockTuesday[] = {
+	HEART_SEAL_B,
+	STAR_SEAL_C,
+	FIRE_SEAL_B,
+	FLORA_SEAL_A,
+	SONG_SEAL_B,
+	LINE_SEAL_D,
+	ELE_SEAL_C,
+	0xffff
+};
+
+const u16 SunyshoreMarketStockWednesday[] = {
+	HEART_SEAL_C,
+	STAR_SEAL_D,
+	FIRE_SEAL_C,
+	FLORA_SEAL_B,
+	SONG_SEAL_C,
+	SMOKE_SEAL_A,
+	ELE_SEAL_D,
+	0xffff
+};
+
+const u16 SunyshoreMarketStockThursday[] = {
+	HEART_SEAL_D,
+	FOAMY_SEAL_A,
+	FIRE_SEAL_D,
+	FLORA_SEAL_C,
+	SONG_SEAL_D,
+	STAR_SEAL_E,
+	SMOKE_SEAL_B,
+	0xffff
+};
+
+const u16 SunyshoreMarketStockFriday[] = {
+	FOAMY_SEAL_B,
+	PARTY_SEAL_A,
+	FLORA_SEAL_D,
+	SONG_SEAL_E,
+	HEART_SEAL_E,
+	STAR_SEAL_F,
+	SMOKE_SEAL_C,
+	0xffff
+};
+
+const u16 SunyshoreMarketStockSaturday[] = {
+	FOAMY_SEAL_C,
+	PARTY_SEAL_B,
+	FLORA_SEAL_E,
+	SONG_SEAL_F,
+	HEART_SEAL_F,
+	LINE_SEAL_A,
+	SMOKE_SEAL_D,
+	0xffff
+};
+
+const u16 SunyshoreMarketStockSunday[] = {
+	STAR_SEAL_A,
+	SONG_SEAL_G,
+	FOAMY_SEAL_D,
+	FLORA_SEAL_F,
+	LINE_SEAL_B,
+	ELE_SEAL_A,
+	PARTY_SEAL_C,
+	0xffff
+};
+
+const u16 *SunyshoreMarketDailyStocks[] = {
+	SunyshoreMarketStockMonday,
+	SunyshoreMarketStockTuesday,
+	SunyshoreMarketStockWednesday,
+	SunyshoreMarketStockThursday,
+	SunyshoreMarketStockFriday,
+	SunyshoreMarketStockSaturday,
+	SunyshoreMarketStockSunday
 };
