@@ -330,12 +330,12 @@ void ov16_02264AB4 (BattleSystem * param0, int param1)
     v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_0C[v1] = ov16_02252060(param0->battleCtx, param1, 6 + v1, NULL);
-        v0.unk_14[v1] = ov16_02252060(param0->battleCtx, param1, 31 + v1, NULL);
-        v0.unk_1C[v1] = ov16_02252060(param0->battleCtx, param1, 39 + v1, NULL);
+        v0.unk_0C[v1] = BattleMon_Get(param0->battleCtx, param1, 6 + v1, NULL);
+        v0.unk_14[v1] = BattleMon_Get(param0->battleCtx, param1, 31 + v1, NULL);
+        v0.unk_1C[v1] = BattleMon_Get(param0->battleCtx, param1, 39 + v1, NULL);
     }
 
-    ov16_02252060(param0->battleCtx, param1, 45, &v0.unk_24);
+    BattleMon_Get(param0->battleCtx, param1, 45, &v0.unk_24);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C168));
 }
 
@@ -358,12 +358,12 @@ void ov16_02264BB4 (BattleSystem * param0, int param1)
     ov16_0223EF2C(param0, param1, v0.unk_0C);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_18[v1] = ov16_02252060(param0->battleCtx, param1, 6 + v1, NULL);
-        v0.unk_20[v1] = ov16_02252060(param0->battleCtx, param1, 31 + v1, NULL);
-        v0.unk_28[v1] = ov16_02252060(param0->battleCtx, param1, 39 + v1, NULL);
+        v0.unk_18[v1] = BattleMon_Get(param0->battleCtx, param1, 6 + v1, NULL);
+        v0.unk_20[v1] = BattleMon_Get(param0->battleCtx, param1, 31 + v1, NULL);
+        v0.unk_28[v1] = BattleMon_Get(param0->battleCtx, param1, 39 + v1, NULL);
     }
 
-    ov16_02252060(param0->battleCtx, param1, 45, &v0.unk_30);
+    BattleMon_Get(param0->battleCtx, param1, 45, &v0.unk_30);
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
 }
 
@@ -400,12 +400,12 @@ void ov16_02264CE8 (BattleSystem * param0, int param1, int param2, int param3)
     ov16_0223EF2C(param0, param1, v0.unk_0C);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_18[v1] = ov16_02252060(param0->battleCtx, param1, 6 + v1, NULL);
-        v0.unk_20[v1] = ov16_02252060(param0->battleCtx, param1, 31 + v1, NULL);
-        v0.unk_28[v1] = ov16_02252060(param0->battleCtx, param1, 39 + v1, NULL);
+        v0.unk_18[v1] = BattleMon_Get(param0->battleCtx, param1, 6 + v1, NULL);
+        v0.unk_20[v1] = BattleMon_Get(param0->battleCtx, param1, 31 + v1, NULL);
+        v0.unk_28[v1] = BattleMon_Get(param0->battleCtx, param1, 39 + v1, NULL);
     }
 
-    ov16_02252060(param0->battleCtx, param1, 45, &v0.unk_30);
+    BattleMon_Get(param0->battleCtx, param1, 45, &v0.unk_30);
 
     for (v1 = 0; v1 < 4; v1++) {
         v0.unk_50[v1] = param0->battleCtx->battleMons[v1].species;
@@ -723,9 +723,9 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
     }
 
     for (v1 = 0; v1 < 4; v1++) {
-        v0.unk_14[v1] = ov16_02252060(battleCtx, battler, 6 + v1, NULL);
-        v0.unk_1C[v1] = ov16_02252060(battleCtx, battler, 31 + v1, NULL);
-        v0.unk_20[v1] = ov16_02252060(battleCtx, battler, 39 + v1, NULL);
+        v0.unk_14[v1] = BattleMon_Get(battleCtx, battler, 6 + v1, NULL);
+        v0.unk_1C[v1] = BattleMon_Get(battleCtx, battler, 31 + v1, NULL);
+        v0.unk_20[v1] = BattleMon_Get(battleCtx, battler, 39 + v1, NULL);
     }
 
     v0.unk_24 = battleCtx->battleMons[battler].curHP;

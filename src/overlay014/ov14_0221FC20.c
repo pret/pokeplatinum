@@ -1123,35 +1123,35 @@ static void ov14_02220980 (BattleSystem * param0, BattleContext * param1)
 
     switch (v0) {
     case 1:
-        param1->aiContext.calcTemp = ov16_02252060(param1, param1->aiContext.attacker, 27, NULL);
+        param1->aiContext.calcTemp = BattleMon_Get(param1, param1->aiContext.attacker, 27, NULL);
         break;
     case 0:
-        param1->aiContext.calcTemp = ov16_02252060(param1, param1->aiContext.defender, 27, NULL);
+        param1->aiContext.calcTemp = BattleMon_Get(param1, param1->aiContext.defender, 27, NULL);
         break;
     case 3:
-        param1->aiContext.calcTemp = ov16_02252060(param1, param1->aiContext.attacker, 28, NULL);
+        param1->aiContext.calcTemp = BattleMon_Get(param1, param1->aiContext.attacker, 28, NULL);
         break;
     case 2:
-        param1->aiContext.calcTemp = ov16_02252060(param1, param1->aiContext.defender, 28, NULL);
+        param1->aiContext.calcTemp = BattleMon_Get(param1, param1->aiContext.defender, 28, NULL);
         break;
     case 4:
         param1->aiContext.calcTemp = param1->aiContext.moveTable[param1->aiContext.move].type;
         break;
     case 6:
         v1 = BattleSystem_Partner(param0, param1->aiContext.attacker);
-        param1->aiContext.calcTemp = ov16_02252060(param1, v1, 27, NULL);
+        param1->aiContext.calcTemp = BattleMon_Get(param1, v1, 27, NULL);
         break;
     case 5:
         v1 = BattleSystem_Partner(param0, param1->aiContext.defender);
-        param1->aiContext.calcTemp = ov16_02252060(param1, v1, 27, NULL);
+        param1->aiContext.calcTemp = BattleMon_Get(param1, v1, 27, NULL);
         break;
     case 8:
         v1 = BattleSystem_Partner(param0, param1->aiContext.attacker);
-        param1->aiContext.calcTemp = ov16_02252060(param1, v1, 28, NULL);
+        param1->aiContext.calcTemp = BattleMon_Get(param1, v1, 28, NULL);
         break;
     case 7:
         v1 = BattleSystem_Partner(param0, param1->aiContext.defender);
-        param1->aiContext.calcTemp = ov16_02252060(param1, v1, 27, NULL);
+        param1->aiContext.calcTemp = BattleMon_Get(param1, v1, 27, NULL);
         break;
     default:
         GF_ASSERT(0);
@@ -1171,7 +1171,7 @@ static void ov14_02220AB4 (BattleSystem * param0, BattleContext * param1)
     v2 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
 
-    if ((ov16_02252060(param1, v0, 27, NULL) == v2) || (ov16_02252060(param1, v0, 28, NULL) == v2)) {
+    if ((BattleMon_Get(param1, v0, 27, NULL) == v2) || (BattleMon_Get(param1, v0, 28, NULL) == v2)) {
         param1->aiContext.calcTemp = 1;
     } else {
         param1->aiContext.calcTemp = 0;
@@ -1216,7 +1216,7 @@ static void ov14_02220B34 (BattleSystem * param0, BattleContext * param1)
 
     if ((Unk_ov14_0222EE78[v2] != 0xffff) || ((param1->aiContext.moveTable[param1->aiContext.move].power > 1) && (Unk_ov14_0222EE90[v1] == 0xffff))) {
         for (v0 = 0; v0 < 6; v0++) {
-            v5[v0] = ov16_02252060(param1, param1->aiContext.attacker, 10 + v0, NULL);
+            v5[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
         }
 
         ov14_02222D7C(param0, param1, param1->aiContext.attacker, &param1->battleMons[param1->aiContext.attacker].moves[0], &v3[0], param1->battleMons[param1->aiContext.attacker].heldItem, &v5[0], Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v4);
@@ -1784,7 +1784,7 @@ static void ov14_022215CC (BattleSystem * param0, BattleContext * param1)
 
     if ((Unk_ov14_0222EE78[v5] != 0xffff) || ((param1->aiContext.moveTable[param1->aiContext.move].power > 1) && (Unk_ov14_0222EE90[v4] == 0xffff))) {
         for (v0 = 0; v0 < 6; v0++) {
-            v7[v0] = ov16_02252060(param1, param1->aiContext.attacker, 10 + v0, NULL);
+            v7[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
         }
 
         v6 = ov14_02222E84(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
@@ -1838,7 +1838,7 @@ static void ov14_022216F8 (BattleSystem * param0, BattleContext * param1)
 
     if ((Unk_ov14_0222EE78[v5] != 0xffff) || ((param1->aiContext.moveTable[param1->aiContext.move].power > 1) && (Unk_ov14_0222EE90[v4] == 0xffff))) {
         for (v0 = 0; v0 < 6; v0++) {
-            v7[v0] = ov16_02252060(param1, param1->aiContext.attacker, 10 + v0, NULL);
+            v7[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
         }
 
         v6 = ov14_02222E84(param0, param1, param1->aiContext.move, param1->battleMons[param1->aiContext.attacker].heldItem, &v7[0], param1->aiContext.attacker, Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v3);
@@ -2398,7 +2398,7 @@ static void ov14_022220CC (BattleSystem * param0, BattleContext * param1)
     v4 = param1->aiContext.attacker;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v9[v0] = ov16_02252060(param1, v4, 10 + v0, NULL);
+        v9[v0] = BattleMon_Get(param1, v4, 10 + v0, NULL);
     }
 
     v5 = ov14_02222D7C(param0, param1, param1->aiContext.attacker, &param1->battleMons[v4].moves[0], &v7[0], param1->battleMons[v4].heldItem, &v9[0], Battler_Ability(param1, v4), param1->battleMons[v4].moveEffectsData.embargoTurns, v2);
@@ -2460,7 +2460,7 @@ static void ov14_02222298 (BattleSystem * param0, BattleContext * param1)
     v3 = ov14_02222CF0(param1);
 
     for (v0 = 0; v0 < 6; v0++) {
-        v9[v0] = ov16_02252060(param1, param1->aiContext.attacker, 10 + v0, NULL);
+        v9[v0] = BattleMon_Get(param1, param1->aiContext.attacker, 10 + v0, NULL);
     }
 
     v6 = ov14_02222D7C(param0, param1, param1->aiContext.attacker, &param1->battleMons[param1->aiContext.attacker].moves[0], &v8[0], param1->battleMons[param1->aiContext.attacker].heldItem, &v9[0], Battler_Ability(param1, param1->aiContext.attacker), param1->battleMons[param1->aiContext.attacker].moveEffectsData.embargoTurns, v2);
@@ -2653,7 +2653,7 @@ static void ov14_02222648 (BattleSystem * param0, BattleContext * param1)
 
         for (v1 = 0; v1 < 2; v1++) {
             for (v0 = 0; v0 < 6; v0++) {
-                v6[v0] = ov16_02252060(param1, v7, 10 + v0, NULL);
+                v6[v0] = BattleMon_Get(param1, v7, 10 + v0, NULL);
             }
 
             ov14_02222D7C(param0, param1, v7, &param1->battleMons[v7].moves[0], &v4[0], param1->battleMons[v7].heldItem, &v6[0], Battler_Ability(param1, v7), param1->battleMons[v7].moveEffectsData.embargoTurns, v5);
@@ -3431,7 +3431,7 @@ static BOOL ov14_0222342C (BattleSystem * param0, BattleContext * param1, int pa
 
                     if (v2) {
                         v4 = 0;
-                        ov16_022552D4(param1, v2, v3, Pokemon_GetValue(v5, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param2 ^ 1), Battler_HeldItemEffect(param1, param2 ^ 1), ov16_02252060(param1, param2 ^ 1, 27, NULL), ov16_02252060(param1, param2 ^ 1, 28, NULL), &v4);
+                        ov16_022552D4(param1, v2, v3, Pokemon_GetValue(v5, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param2 ^ 1), Battler_HeldItemEffect(param1, param2 ^ 1), BattleMon_Get(param1, param2 ^ 1, 27, NULL), BattleMon_Get(param1, param2 ^ 1, 28, NULL), &v4);
 
                         if (v4 & 0x2) {
                             if ((BattleSystem_RandNext(param0) % 3) < 2) {
@@ -3525,7 +3525,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v2].curHP) {
-                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), Battler_HeldItemEffect(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), Battler_HeldItemEffect(param1, v2), BattleMon_Get(param1, v2, 27, NULL), BattleMon_Get(param1, v2, 28, NULL), &v8);
                     }
 
                     if (v8 & 0x2) {
@@ -3538,7 +3538,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v3].curHP) {
-                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), Battler_HeldItemEffect(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), Battler_HeldItemEffect(param1, v3), BattleMon_Get(param1, v3, 27, NULL), BattleMon_Get(param1, v3, 28, NULL), &v8);
                     }
 
                     if (v8 & 0x2) {
@@ -3564,7 +3564,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v2].curHP) {
-                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), Battler_HeldItemEffect(param1, v2), ov16_02252060(param1, v2, 27, NULL), ov16_02252060(param1, v2, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v2), Battler_HeldItemEffect(param1, v2), BattleMon_Get(param1, v2, 27, NULL), BattleMon_Get(param1, v2, 28, NULL), &v8);
                     }
 
                     if (v8 == 0) {
@@ -3577,7 +3577,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
                     v8 = 0;
 
                     if (param1->battleMons[v3].curHP) {
-                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), Battler_HeldItemEffect(param1, v3), ov16_02252060(param1, v3, 27, NULL), ov16_02252060(param1, v3, 28, NULL), &v8);
+                        ov16_022552D4(param1, v6, v7, Pokemon_GetValue(v12, MON_DATA_ABILITY, NULL), Battler_Ability(param1, v3), Battler_HeldItemEffect(param1, v3), BattleMon_Get(param1, v3, 27, NULL), BattleMon_Get(param1, v3, 28, NULL), &v8);
                     }
 
                     if (v8 == 0) {
@@ -3769,7 +3769,7 @@ static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int pa
 
                     if (v4) {
                         v6 = 0;
-                        ov16_022552D4(param1, v4, v5, Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param1->moveHitBattler[param2]), Battler_HeldItemEffect(param1, param1->moveHitBattler[param2]), ov16_02252060(param1, param1->moveHitBattler[param2], 27, NULL), ov16_02252060(param1, param1->moveHitBattler[param2], 28, NULL), &v6);
+                        ov16_022552D4(param1, v4, v5, Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), Battler_Ability(param1, param1->moveHitBattler[param2]), Battler_HeldItemEffect(param1, param1->moveHitBattler[param2]), BattleMon_Get(param1, param1->moveHitBattler[param2], 27, NULL), BattleMon_Get(param1, param1->moveHitBattler[param2], 28, NULL), &v6);
 
                         if (v6 & 0x2) {
                             if ((BattleSystem_RandNext(param0) % param4) == 0) {
@@ -3846,7 +3846,7 @@ static BOOL ov14_022241A4 (BattleSystem * param0, BattleContext * param1, int pa
     int v5, v6;
     Pokemon * v7;
 
-    if ((param1->battleMons[param2].statusVolatile & (0xe000 | 0x4000000)) || (param1->battleMons[param2].moveEffectsMask & 0x400) || (BattleSystem_CountAbility(param0, param1, 2, param2, 23)) || (BattleSystem_CountAbility(param0, param1, 2, param2, 71)) || ((BattleSystem_CountAbility(param0, param1, 6, param2, 42) && ((ov16_02252060(param1, param2, 27, NULL) == 8) || ((ov16_02252060(param1, param2, 28, NULL) == 8)))))) {
+    if ((param1->battleMons[param2].statusVolatile & (0xe000 | 0x4000000)) || (param1->battleMons[param2].moveEffectsMask & 0x400) || (BattleSystem_CountAbility(param0, param1, 2, param2, 23)) || (BattleSystem_CountAbility(param0, param1, 2, param2, 71)) || ((BattleSystem_CountAbility(param0, param1, 6, param2, 42) && ((BattleMon_Get(param1, param2, 27, NULL) == 8) || ((BattleMon_Get(param1, param2, 28, NULL) == 8)))))) {
         return 0;
     }
 

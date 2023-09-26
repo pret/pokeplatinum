@@ -30,6 +30,11 @@
 #define MOVE_EFFECT_SHADOW_FORCE            (1 << 29)
 #define MOVE_EFFECT_IMPRISONED              (1 << 30) // applied to mons which are affected by Imprison
 
+#define MOVE_EFFECT_SEMI_INVULNERABLE       (MOVE_EFFECT_AIRBORNE \
+                                            | MOVE_EFFECT_UNDERGROUND \
+                                            | MOVE_EFFECT_UNDERWATER \
+                                            | MOVE_EFFECT_SHADOW_FORCE)
+
 #define MOVE_EFFECT_LOCK_ON_SHIFT   3
 #define MOVE_EFFECT_YAWN_SHIFT      11
 
@@ -47,7 +52,7 @@
 #define MOVE_STATUS_LEVITATED           (1 << 11)
 #define MOVE_STATUS_ONE_HIT_KO_FAILED   (1 << 12)
 #define MOVE_STATUS_SPLASH              (1 << 13)
-#define MOVE_STATUS_THRASH_DISRUPTED    (1 << 14)
+#define MOVE_STATUS_MULTI_HIT_DISRUPTED (1 << 14)
 #define MOVE_STATUS_PROTECTED           (1 << 15)
 #define MOVE_STATUS_SEMI_INVULNERABLE   (1 << 16)
 #define MOVE_STATUS_LOST_FOCUS          (1 << 17)
@@ -62,7 +67,7 @@
                                         | MOVE_STATUS_FAILED \
                                         | MOVE_STATUS_LEVITATED \
                                         | MOVE_STATUS_ONE_HIT_KO_FAILED \
-                                        | MOVE_STATUS_THRASH_DISRUPTED \
+                                        | MOVE_STATUS_MULTI_HIT_DISRUPTED \
                                         | MOVE_STATUS_PROTECTED \
                                         | MOVE_STATUS_SEMI_INVULNERABLE \
                                         | MOVE_STATUS_LOST_FOCUS \
