@@ -180,5 +180,5 @@ def json2bin(target: str,
         pathlib.Path(narc_packer),
         'pack', '-s',
         '-o', output_dir / f'{narc_name}.narc',
-        files_output_dir,
+        private_dir,
     ])

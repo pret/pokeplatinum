@@ -1,9 +1,11 @@
 42e2b71655a74d6e5bffb9ec75a25df930b20c59 res/battle/moves/pl_waza_tbl.narc
+d9bf534c175c3c991e77fff985c099723499e1eb res/field/encounters/pl_enc_data.narc
 683a7691d685c153e738b136b8266deefb0b4552 res/items/nuts_data.narc
 70d103831556bb58ae8e602adbcce99333a22889 res/items/pl_item_data.narc
+1f8689cbc763d9efedac9e6f12e940dbd361f7a9 res/pokemon/pl_personal.narc
+6d861f9f35d1b267cd7b84368a1b7dc76b4e9669 res/pokemon/pl_poke_icon.narc
 3614557aa04eb1ad7e5f260578de925f73da584d res/text/pl_msg.narc
 
-1f8689cbc763d9efedac9e6f12e940dbd361f7a9 res/prebuilt/poketool/personal/pl_personal.narc
 007c171966e3811ecaa5763ec959835dc67f57ba res/prebuilt/application/balloon/graphic/balloon_gra.narc
 6e4f26a6a77242c7db11f6145a77d85ee7dfe12e res/prebuilt/application/bucket/ballslow_data.narc
 3e420c904e49c441a22210726e7017e4ee0f607f res/prebuilt/application/custom_ball/data/cb_data.narc
@@ -211,7 +213,6 @@ a2cd6f636960544440b489e827e5e16dcaa7f014 res/prebuilt/fielddata/areadata/area_bu
 7eca91aaa5f7ef816f51a884e2f42a26f51f8bbd res/prebuilt/fielddata/build_model/build_model.narc
 f49c6992b8caf5fea13831789fe4bfb026beb967 res/prebuilt/fielddata/build_model/build_model_matshp.dat
 bda5c8e66cfa121c2d518d4388bd6f742746cda0 res/prebuilt/fielddata/encountdata/d_enc_data.narc
-d9bf534c175c3c991e77fff985c099723499e1eb res/prebuilt/fielddata/encountdata/pl_enc_data.narc
 4bcbf53d522ed962160b85af588816f7257fb1c3 res/prebuilt/fielddata/encountdata/p_enc_data.narc
 e484a4ea105e16977b9f39b965aaad014a4ec923 res/prebuilt/fielddata/eventdata/zone_event.narc
 fa044bf2e0599ed2bf42d3b632776af3b7e8452e res/prebuilt/fielddata/land_data/land_data.narc
@@ -291,7 +292,6 @@ e03ff29bc200e233217ad7a8f068ec77b33e6472 res/prebuilt/particledata/particledata.
 ad8bf1d7e289c679e0d2c844ba1700fb2e61fedd res/prebuilt/particledata/pl_pokelist/pokelist_particle.narc
 dc6caed3c4b1a0b04bebfcf6627a668e37ae6f2c res/prebuilt/pokeanime/pl_poke_anm.narc
 b37a0c1e61ba1b2ceb905bad16476f1fb5966f18 res/prebuilt/pokeanime/poke_anm.narc
-6d861f9f35d1b267cd7b84368a1b7dc76b4e9669 res/prebuilt/poketool/icongra/pl_poke_icon.narc
 0622e95a5dc830735e711852032b829ead7d21e6 res/prebuilt/poketool/icongra/poke_icon.narc
 7755e3a884a11b098122ca9dd656223fd4b02dd0 res/prebuilt/poketool/personal/evo.narc
 fbbf1287b2ac10c5212be0e4a69461507e860005 res/prebuilt/poketool/personal/growtbl.narc

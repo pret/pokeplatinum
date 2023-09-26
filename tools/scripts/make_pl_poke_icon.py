@@ -56,4 +56,4 @@ for i, input_fname in enumerate(args.icon_files):
         '-version101'
     ])
 
-subprocess.run([args.knarc, '-d', bin_dest_dir, '-p', output_dir / 'pl_poke_icon.narc'])
+subprocess.run([args.knarc, 'pack', '-s', '-o', output_dir / 'pl_poke_icon.narc', bin_dest_dir])
