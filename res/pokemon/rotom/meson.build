@@ -14,3 +14,30 @@ rotom_mow_icon = files('forms/mow/icon.png')
 
 pokegra_files += files('male_back.png')
 pokegra_files += files('male_front.png')
+
+otherpoke_index += {
+    '138': files('forms/base/back.png'),
+    '139': files('forms/base/front.png'),
+    '140': files('forms/heat/back.png'),
+    '141': files('forms/heat/front.png'),
+    '142': files('forms/wash/back.png'),
+    '143': files('forms/wash/front.png'),
+    '144': files('forms/frost/back.png'),
+    '145': files('forms/frost/front.png'),
+    '146': files('forms/fan/back.png'),
+    '147': files('forms/fan/front.png'),
+    '148': files('forms/mow/back.png'),
+    '149': files('forms/mow/front.png'),
+    '232': files('forms/base/front.png'),
+    '233': files('forms/base/back.png'),
+    '234': files('forms/heat/front.png'),
+    '235': files('forms/heat/back.png'),
+    '236': files('forms/wash/front.png'),
+    '237': files('forms/wash/back.png'),
+    '238': files('forms/frost/front.png'),
+    '239': files('forms/frost/back.png'),
+    '240': files('forms/fan/front.png'),
+    '241': files('forms/fan/back.png'),
+    '242': files('forms/mow/front.png'),
+    '243': files('forms/mow/back.png'),
+}

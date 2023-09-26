@@ -8,3 +8,18 @@ wormadam_trash_icon = files('forms/trash/icon.png')
 
 pokegra_files += files('female_back.png')
 pokegra_files += files('female_front.png')
+
+otherpoke_index += {
+    '78': files('forms/base/back.png'),
+    '79': files('forms/base/front.png'),
+    '80': files('forms/sandy/back.png'),
+    '81': files('forms/sandy/front.png'),
+    '82': files('forms/trash/back.png'),
+    '83': files('forms/trash/front.png'),
+    '172': files('forms/base/front.png'),
+    '173': files('forms/base/back.png'),
+    '174': files('forms/sandy/front.png'),
+    '175': files('forms/sandy/back.png'),
+    '176': files('forms/trash/front.png'),
+    '177': files('forms/trash/back.png'),
+}

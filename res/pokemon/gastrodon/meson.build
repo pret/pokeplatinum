@@ -7,3 +7,14 @@ pokegra_files += files('female_back.png')
 pokegra_files += files('male_back.png')
 pokegra_files += files('female_front.png')
 pokegra_files += files('male_front.png')
+
+otherpoke_index += {
+    '88': files('forms/base/back.png'),
+    '89': files('forms/east_sea/back.png'),
+    '90': files('forms/base/front.png'),
+    '91': files('forms/east_sea/front.png'),
+    '182': files('forms/base/front.png'),
+    '183': files('forms/base/back.png'),
+    '184': files('forms/east_sea/front.png'),
+    '185': files('forms/east_sea/back.png'),
+}

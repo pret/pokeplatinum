@@ -4,6 +4,7 @@
 personal_files = []
 poke_icon_files = []
 pokegra_files = []
+otherpoke_index = {} # otherpoke uses a unique, non-uniform structure
 
 # pl_poke_icon has some shared files that are listed at the beginning
 # of the NARC.
@@ -15,6 +16,12 @@ poke_icon_shared = files(
     '.shared/pl_poke_icon_cell_02.json',
     '.shared/pl_poke_icon_anim_03.json',
     '.shared/pl_poke_icon_cell_03.json',
+)
+
+otherpoke_shared = files(
+    '.shared/substitute_back.png',
+    '.shared/substitute_front.png',
+    '.shared/shadows.png',
 )
 
 
@@ -589,6 +596,12 @@ poke_icon_files += [
     rotom_mow_icon,
 ]
 
+otherpoke_files = []
+num_keys = otherpoke_index.keys().length()
+foreach key : range(num_keys)
+    otherpoke_files += otherpoke_index.get(key.to_string())
+endforeach
+
 
 # Generate NARCs
 pl_personal_narc = custom_target('pl_personal.narc',
@@ -634,6 +647,26 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
     ]
 )
 
+pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
+    output: 'pl_otherpoke.narc',
+    input: [
+        otherpoke_files,
+        otherpoke_shared
+    ],
+    command: [
+        make_pl_otherpoke_py,
+        '--nitrogfx', nitrogfx_exe,
+        '--knarc', knarc_exe,
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+        '--sprite-entries', '154',
+        '--palette-entries', '94',
+        otherpoke_files,
+        otherpoke_shared
+    ]
+)
+
 nitrofs_files += pl_personal_narc
 nitrofs_files += pl_poke_icon_narc
 nitrofs_files += pl_pokegra_narc
+nitrofs_files += pl_otherpoke_narc

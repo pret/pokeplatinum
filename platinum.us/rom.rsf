@@ -186,10 +186,10 @@ RomSpec
 	File poketool/pokegra/height.narc
 	File poketool/pokegra/height_o.narc
 	File poketool/pokegra/otherpoke.narc
-	File poketool/pokegra/pl_otherpoke.narc
 
 	Root /poketool/pokegra
 	HostRoot res/pokemon
+	File pl_otherpoke.narc
 	File pl_pokegra.narc
 
 	Root /
