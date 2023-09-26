@@ -54,7 +54,7 @@ struct BattleSystem {
     UnkStruct_02002F38 * unk_28;
     u32 battleType;
     BattleContext *battleCtx;
-    UnkStruct_ov16_0225BFFC *battlers[MAX_BATTLERS];
+    BattlerData *battlers[MAX_BATTLERS];
     int maxBattlers;
     TrainerInfo * unk_48[4];
     UnkStruct_0207D3C0 * unk_58;

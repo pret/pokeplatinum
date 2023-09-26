@@ -613,7 +613,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
         v2 = battler;
     }
 
-    v7 = ov16_0223DF20(battleSys, v2);
+    v7 = BattleSystem_Party(battleSys, v2);
     v6 = 0;
 
     for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
@@ -648,7 +648,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             v2 = ov16_0223E1C4(battleSys, 3);
         }
 
-        v7 = ov16_0223DF20(battleSys, v2);
+        v7 = BattleSystem_Party(battleSys, v2);
         v6 = 0;
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
@@ -676,7 +676,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             v2 = ov16_0223E1C4(battleSys, 5);
         }
 
-        v7 = ov16_0223DF20(battleSys, v2);
+        v7 = BattleSystem_Party(battleSys, v2);
         v6 = 3;
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
@@ -699,7 +699,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
         }
     } else {
         v2 = ov16_0223E2A4(battleSys, battler, 2);
-        v7 = ov16_0223DF20(battleSys, v2);
+        v7 = BattleSystem_Party(battleSys, v2);
         v6 = 0;
 
         for (v1 = 0; v1 < Party_GetCurrentCount(v7); v1++) {
@@ -1740,7 +1740,7 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
             v2 = param4;
         }
 
-        v6 = ov16_0223DF20(param0, v1);
+        v6 = BattleSystem_Party(param0, v1);
         v4 = 0;
 
         for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
@@ -1762,7 +1762,7 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
             }
         }
 
-        v6 = ov16_0223DF20(param0, v2);
+        v6 = BattleSystem_Party(param0, v2);
         v4 = 3;
 
         for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
@@ -1790,7 +1790,7 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
             param4 = param4;
         }
 
-        v6 = ov16_0223DF20(param0, param4);
+        v6 = BattleSystem_Party(param0, param4);
         v4 = 0;
 
         for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {

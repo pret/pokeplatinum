@@ -616,7 +616,7 @@ static BOOL ov16_02240664 (BattleSystem * param0, BattleContext * param1)
         break;
     case 0x4:
     {
-        UnkStruct_ov16_0225BFFC * v3;
+        BattlerData * v3;
 
         for (v0 = 0; v0 < v2; v0++) {
             v3 = BattleSystem_BattlerData(param0, v0);
@@ -638,7 +638,7 @@ static BOOL ov16_022406E0 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
     int v2 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v3;
+    BattlerData * v3;
 
     ov16_02248AF0(param1, 1);
     v1 = ov16_02248AD0(param1);
@@ -728,7 +728,7 @@ static BOOL ov16_022408A0 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
     int v2 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v3;
+    BattlerData * v3;
 
     ov16_02248AF0(param1, 1);
 
@@ -819,7 +819,7 @@ static BOOL ov16_02240A7C (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
     int v2 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v3;
+    BattlerData * v3;
 
     ov16_02248AF0(param1, 1);
     v1 = ov16_02248AD0(param1);
@@ -877,7 +877,7 @@ static BOOL ov16_02240B68 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
     int v2 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v3;
+    BattlerData * v3;
 
     ov16_02248AF0(param1, 1);
 
@@ -941,7 +941,7 @@ static BOOL ov16_02240C84 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
     int v3 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v4;
+    BattlerData * v4;
 
     ov16_02248AF0(param1, 1);
 
@@ -997,7 +997,7 @@ static BOOL ov16_02240D94 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
     int v2 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v3;
+    BattlerData * v3;
 
     ov16_02248AF0(param1, 1);
     v1 = ov16_02248AD0(param1);
@@ -1090,7 +1090,7 @@ static BOOL ov16_02240F44 (BattleSystem * param0, BattleContext * param1)
     int v1;
     int v2;
     int v3 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v4;
+    BattlerData * v4;
 
     ov16_02248AF0(param1, 1);
 
@@ -1198,7 +1198,7 @@ static BOOL ov16_02241108 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
     int v2 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v3;
+    BattlerData * v3;
 
     ov16_02248AF0(param1, 1);
 
@@ -1242,7 +1242,7 @@ static BOOL ov16_022411C0 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
     int v2 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v3;
+    BattlerData * v3;
     u8 v4;
 
     ov16_02248AF0(param1, 1);
@@ -1290,7 +1290,7 @@ static BOOL ov16_02241288 (BattleSystem * param0, BattleContext * param1)
     int v0;
     int v1;
     int v2 = BattleSystem_MaxBattlers(param0);
-    UnkStruct_ov16_0225BFFC * v3;
+    BattlerData * v3;
 
     ov16_02248AF0(param1, 1);
     v1 = ov16_02248AD0(param1);
@@ -1897,7 +1897,7 @@ static BOOL ov16_02241D34 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     u32 v1 = BattleSystem_BattleType(param0);
-    UnkStruct_ov16_0225BFFC * v2 = BattleSystem_BattlerData(param0, param1->faintedMon);
+    BattlerData * v2 = BattleSystem_BattlerData(param0, param1->faintedMon);
 
     ov16_02248AF0(param1, 1);
     v0 = ov16_02248AD0(param1);
@@ -1913,7 +1913,7 @@ static BOOL ov16_02241D34 (BattleSystem * param0, BattleContext * param1)
             int v9;
             Pokemon * v10;
 
-            for (v3 = 0; v3 < Party_GetCurrentCount(ov16_0223DF20(param0, 0)); v3++) {
+            for (v3 = 0; v3 < Party_GetCurrentCount(BattleSystem_Party(param0, 0)); v3++) {
                 v10 = ov16_0223DFAC(param0, 0, v3);
 
                 if ((Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL))) {
@@ -4306,7 +4306,7 @@ static BOOL ov16_02244BC4 (BattleSystem * param0, BattleContext * param1)
             int v5 = 0, v6, v7, v8, v9, v10;
             int v11, v12;
 
-            v2 = ov16_0223DF20(param0, param1->defender);
+            v2 = BattleSystem_Party(param0, param1->defender);
             v4 = ov16_0223DF60(param0, param1->defender);
 
             if ((v1 & 0x8) || ((v1 & 0x10) && (Battler_Side(param0, param1->defender)))) {
@@ -4775,7 +4775,7 @@ static BOOL ov16_0224582C (BattleSystem * param0, BattleContext * param1)
     v2 = ov16_02248AD0(param1);
     v3 = ov16_0224A984(param0, param1, v0);
 
-    if (ov16_02255B10(param0, param1, v3) == 0) {
+    if (BattleSystem_CheckAnySwitches(param0, param1, v3) == 0) {
         ov16_02248AF0(param1, v2);
     } else {
         if (v1 == 1) {
@@ -6938,7 +6938,7 @@ static BOOL ov16_02248204 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
-    UnkStruct_ov16_0225BFFC * v2;
+    BattlerData * v2;
     int v3 = BattleSystem_MaxBattlers(param0);
 
     ov16_02248AF0(param1, 1);
@@ -6977,7 +6977,7 @@ static BOOL ov16_02248294 (BattleSystem * param0, BattleContext * param1)
 {
     int v0;
     int v1;
-    UnkStruct_ov16_0225BFFC * v2;
+    BattlerData * v2;
     int v3 = BattleSystem_MaxBattlers(param0);
 
     ov16_02248AF0(param1, 1);
@@ -7021,7 +7021,7 @@ static BOOL ov16_02248324 (BattleSystem * param0, BattleContext * param1)
     int v4 = 0;
     u32 v5;
     Pokemon * v6;
-    UnkStruct_ov16_0225BFFC * v7;
+    BattlerData * v7;
 
     ov16_02248AF0(param1, 1);
 
@@ -7035,8 +7035,8 @@ static BOOL ov16_02248324 (BattleSystem * param0, BattleContext * param1)
             Party * v8;
             Party * v9;
 
-            v8 = ov16_0223DF20(param0, v2);
-            v9 = ov16_0223DF20(param0, BattleSystem_Partner(param0, v2));
+            v8 = BattleSystem_Party(param0, v2);
+            v9 = BattleSystem_Party(param0, BattleSystem_Partner(param0, v2));
             v7 = BattleSystem_BattlerData(param0, v2);
 
             for (v3 = 0; v3 < Party_GetCurrentCount(v8); v3++) {
@@ -7067,7 +7067,7 @@ static BOOL ov16_02248324 (BattleSystem * param0, BattleContext * param1)
         {
             Party * v10;
 
-            v10 = ov16_0223DF20(param0, v2);
+            v10 = BattleSystem_Party(param0, v2);
             v7 = BattleSystem_BattlerData(param0, v2);
 
             for (v3 = 0; v3 < Party_GetCurrentCount(v10); v3++) {
@@ -7732,7 +7732,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
             }
 
             Pokemon_SetValue(v3, 8, (u8 *)&v12);
-            ov16_022499C0(ov16_0223DF20(v2->unk_00, v6), v1, v2->unk_04->battleMons[v2->unk_04->faintedMon].species, v2->unk_04->battleMons[v2->unk_04->faintedMon].formNum);
+            ov16_022499C0(BattleSystem_Party(v2->unk_00, v6), v1, v2->unk_04->battleMons[v2->unk_04->faintedMon].species, v2->unk_04->battleMons[v2->unk_04->faintedMon].formNum);
         }
 
         if (v11) {
@@ -8261,7 +8261,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
             }
         } else {
             {
-                UnkStruct_ov16_0225BFFC * v8;
+                BattlerData * v8;
 
                 v8 = BattleSystem_BattlerData(v2->unk_00, 0);
 
@@ -8559,7 +8559,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
 
                 {
                     int v17;
-                    UnkStruct_ov16_0225BFFC * v18;
+                    BattlerData * v18;
 
                     for (v17 = 0; v17 < BattleSystem_MaxBattlers(v2->unk_00); v17++) {
                         v18 = BattleSystem_BattlerData(v2->unk_00, v17);
@@ -8606,7 +8606,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 Party * v22;
                 int v23;
 
-                v22 = ov16_0223DF20(v2->unk_00, 0);
+                v22 = BattleSystem_Party(v2->unk_00, 0);
                 v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 ov16_0223F9A0(v2->unk_00, v1);
@@ -8940,7 +8940,7 @@ static int ov16_0224A984 (BattleSystem * param0, BattleContext * param1, int par
         break;
     case 0x4:
     {
-        UnkStruct_ov16_0225BFFC * v1;
+        BattlerData * v1;
         int v2;
 
         v2 = BattleSystem_MaxBattlers(param0);
@@ -8956,7 +8956,7 @@ static int ov16_0224A984 (BattleSystem * param0, BattleContext * param1, int par
     break;
     case 0xa:
     {
-        UnkStruct_ov16_0225BFFC * v3;
+        BattlerData * v3;
         int v4;
 
         v4 = BattleSystem_MaxBattlers(param0);
@@ -8972,7 +8972,7 @@ static int ov16_0224A984 (BattleSystem * param0, BattleContext * param1, int par
     break;
     case 0xc:
     {
-        UnkStruct_ov16_0225BFFC * v5;
+        BattlerData * v5;
         int v6;
         int v7;
 
@@ -8995,7 +8995,7 @@ static int ov16_0224A984 (BattleSystem * param0, BattleContext * param1, int par
     break;
     case 0x3:
     {
-        UnkStruct_ov16_0225BFFC * v8;
+        BattlerData * v8;
         int v9;
 
         v9 = BattleSystem_MaxBattlers(param0);
@@ -9011,7 +9011,7 @@ static int ov16_0224A984 (BattleSystem * param0, BattleContext * param1, int par
     break;
     case 0x9:
     {
-        UnkStruct_ov16_0225BFFC * v10;
+        BattlerData * v10;
         int v11;
 
         v11 = BattleSystem_MaxBattlers(param0);
@@ -9027,7 +9027,7 @@ static int ov16_0224A984 (BattleSystem * param0, BattleContext * param1, int par
     break;
     case 0xb:
     {
-        UnkStruct_ov16_0225BFFC * v12;
+        BattlerData * v12;
         int v13;
         int v14;
 

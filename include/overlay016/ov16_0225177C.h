@@ -59,7 +59,7 @@ BOOL ov16_022559DC(BattleContext * param0, int param1);
 BOOL ov16_022559FC(BattleSystem * param0, BattleContext * param1);
 u8 Battler_Ability(BattleContext * param0, int param1);
 BOOL Battler_IgnorableAbility(BattleContext * param0, int param1, int param2, int param3);
-BOOL ov16_02255B10(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL BattleSystem_CheckAnySwitches(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);

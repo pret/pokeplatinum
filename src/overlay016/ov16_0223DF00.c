@@ -80,9 +80,9 @@ UnkStruct_02018340 * ov16_0223DF00(BattleSystem * param0);
 UnkStruct_0205AA50 * ov16_0223DF04(BattleSystem * param0, int param1);
 u32 BattleSystem_BattleType(BattleSystem * param0);
 BattleContext * BattleSystem_Context(BattleSystem * param0);
-UnkStruct_ov16_0225BFFC * BattleSystem_BattlerData(BattleSystem * param0, int param1);
+BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
 int BattleSystem_MaxBattlers(BattleSystem * param0);
-Party * ov16_0223DF20(BattleSystem * param0, int param1);
+Party * BattleSystem_Party(BattleSystem * param0, int param1);
 int ov16_0223DF60(BattleSystem * param0, int param1);
 Pokemon * ov16_0223DFAC(BattleSystem * param0, int param1, int param2);
 UnkStruct_02007768 * ov16_0223E000(BattleSystem * param0);
@@ -138,7 +138,7 @@ UnkStruct_020279FC * ov16_0223EDA4(BattleSystem * param0);
 BOOL ov16_0223EDAC(BattleSystem * param0);
 int ov16_0223EDE0(BattleSystem * param0);
 u8 ov16_0223EDF0(BattleSystem * param0);
-int ov16_0223EE18(BattleSystem * param0);
+int BattleSystem_Ruleset(BattleSystem * param0);
 UnkStruct_02015F84 * ov16_0223EE28(BattleSystem * param0);
 UnkStruct_0202CC84 * ov16_0223EE30(BattleSystem * param0, int param1);
 void ov16_0223EE70(BattleSystem * param0);
@@ -250,7 +250,7 @@ BattleContext * BattleSystem_Context (BattleSystem *battleSys)
     return battleSys->battleCtx;
 }
 
-UnkStruct_ov16_0225BFFC * BattleSystem_BattlerData (BattleSystem *battleSys, int battler)
+BattlerData * BattleSystem_BattlerData (BattleSystem *battleSys, int battler)
 {
     return battleSys->battlers[battler];
 }
@@ -260,7 +260,7 @@ int BattleSystem_MaxBattlers (BattleSystem *battleSys)
     return battleSys->maxBattlers;
 }
 
-Party * ov16_0223DF20 (BattleSystem * param0, int param1)
+Party * BattleSystem_Party (BattleSystem * param0, int param1)
 {
     if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
         return param0->parties[param1];
@@ -1055,7 +1055,7 @@ u8 ov16_0223EDF0 (BattleSystem * param0)
     return sub_02027AC0(param0->unk_1B0);
 }
 
-int ov16_0223EE18 (BattleSystem * param0)
+int BattleSystem_Ruleset (BattleSystem * param0)
 {
     return sub_02027B14(param0->unk_1B0);
 }

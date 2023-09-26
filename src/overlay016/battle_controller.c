@@ -3798,7 +3798,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
         {
             int v0;
             int v1 = BattleSystem_MaxBattlers(param0);
-            UnkStruct_ov16_0225BFFC * v2 = BattleSystem_BattlerData(param0, param1->attacker);
+            BattlerData * v2 = BattleSystem_BattlerData(param0, param1->attacker);
             u8 v3 = ov16_02263AE4(v2);
 
             do {
@@ -4018,7 +4018,7 @@ static void ov16_02250760 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleSystem_BattleType(param0);
 
     if ((v1 & 0x4) == 0) {
-        v0 = ov16_0223DF20(param0, 0);
+        v0 = BattleSystem_Party(param0, 0);
         sub_020776B0(v0);
         sub_0207782C(v0);
     }
@@ -4063,9 +4063,9 @@ static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleCont
                     int v8 = 0;
                     Party * v9;
                     Pokemon * v10;
-                    UnkStruct_ov16_0225BFFC * v11;
+                    BattlerData * v11;
 
-                    v9 = ov16_0223DF20(param0, v1);
+                    v9 = BattleSystem_Party(param0, v1);
                     v11 = BattleSystem_BattlerData(param0, v1);
 
                     for (v5 = 0; v5 < Party_GetCurrentCount(v9); v5++) {
@@ -4099,9 +4099,9 @@ static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleCont
                     int v13 = 0;
                     Party * v14;
                     Pokemon * v15;
-                    UnkStruct_ov16_0225BFFC * v16;
+                    BattlerData * v16;
 
-                    v14 = ov16_0223DF20(param0, v1);
+                    v14 = BattleSystem_Party(param0, v1);
                     v16 = BattleSystem_BattlerData(param0, v1);
 
                     for (v12 = 0; v12 < Party_GetCurrentCount(v14); v12++) {
@@ -4126,7 +4126,7 @@ static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleCont
     }
 
     if (param1->command == 21) {
-        if (((v3 & (0x4 | 0x2 | 0x80)) == 0) && (ov16_0223EE18(param0) == 0) && (((param1->battlerStatusFlags[0] & 0x1) == 0) || ((param1->battlerStatusFlags[1] & 0x1) == 0)) && (ov16_02255B10(param0, param1, 0))) {
+        if (((v3 & (0x4 | 0x2 | 0x80)) == 0) && (BattleSystem_Ruleset(param0) == 0) && (((param1->battlerStatusFlags[0] & 0x1) == 0) || ((param1->battlerStatusFlags[1] & 0x1) == 0)) && (BattleSystem_CheckAnySwitches(param0, param1, 0))) {
             if (param1->battlerStatusFlags[0] & 0x1) {
                 param1->scriptTemp = 0;
             } else {
@@ -4164,9 +4164,9 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                         int v5 = 0;
                         Party * v6;
                         Pokemon * v7;
-                        UnkStruct_ov16_0225BFFC * v8;
+                        BattlerData * v8;
 
-                        v6 = ov16_0223DF20(param0, v0);
+                        v6 = BattleSystem_Party(param0, v0);
                         v8 = BattleSystem_BattlerData(param0, v0);
 
                         for (v4 = 0; v4 < Party_GetCurrentCount(v6); v4++) {
@@ -4191,10 +4191,10 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                     Party * v11;
                     Party * v12;
                     Pokemon * v13;
-                    UnkStruct_ov16_0225BFFC * v14;
+                    BattlerData * v14;
 
-                    v11 = ov16_0223DF20(param0, v0);
-                    v12 = ov16_0223DF20(param0, BattleSystem_Partner(param0, v0));
+                    v11 = BattleSystem_Party(param0, v0);
+                    v12 = BattleSystem_Party(param0, BattleSystem_Partner(param0, v0));
                     v14 = BattleSystem_BattlerData(param0, v0);
 
                     for (v9 = 0; v9 < Party_GetCurrentCount(v11); v9++) {
@@ -4229,9 +4229,9 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                     int v16 = 0;
                     Party * v17;
                     Pokemon * v18;
-                    UnkStruct_ov16_0225BFFC * v19;
+                    BattlerData * v19;
 
-                    v17 = ov16_0223DF20(param0, v0);
+                    v17 = BattleSystem_Party(param0, v0);
                     v19 = BattleSystem_BattlerData(param0, v0);
 
                     for (v15 = 0; v15 < Party_GetCurrentCount(v17); v15++) {

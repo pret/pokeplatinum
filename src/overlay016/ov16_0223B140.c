@@ -1571,7 +1571,7 @@ static void ov16_0223CF48 (UnkStruct_0201CD38 * param0, void * param1)
 static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
 {
     BattleSystem * v0 = param1;
-    UnkStruct_ov16_0225BFFC * v1;
+    BattlerData * v1;
     UnkStruct_ov16_022674C4 * v2;
     int v3;
     int v4;

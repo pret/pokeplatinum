@@ -12,7 +12,7 @@
 #include "overlay016/struct_ov16_022674C4.h"
 #include "overlay016/struct_ov16_0226C378.h"
 
-struct UnkStruct_ov16_0225BFFC_t {
+struct BattlerData {
     UnkStruct_ov16_0225BFFC_sub1 unk_00;
     UnkStruct_0200D0F4 * unk_18;
     UnkStruct_02007C7C * unk_1C;

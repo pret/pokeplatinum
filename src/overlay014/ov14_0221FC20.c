@@ -1326,7 +1326,7 @@ static void ov14_02220D8C (BattleSystem * param0, BattleContext * param1)
     param1->aiContext.calcTemp = 0;
 
     v3 = ov14_02222D34(param1, v6);
-    v0 = ov16_0223DF20(param0, v3);
+    v0 = BattleSystem_Party(param0, v3);
 
     if (param0->battleType & 0x2) {
         v4 = param1->selectedPartySlot[v3];
@@ -1551,7 +1551,7 @@ static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
         v4 = v5 = param1->selectedPartySlot[v3];
     }
 
-    v0 = ov16_0223DF20(param0, v3);
+    v0 = BattleSystem_Party(param0, v3);
 
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
@@ -1588,7 +1588,7 @@ static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
         v4 = v5 = param1->selectedPartySlot[v3];
     }
 
-    v0 = ov16_0223DF20(param0, v3);
+    v0 = BattleSystem_Party(param0, v3);
 
     for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
@@ -3986,7 +3986,7 @@ BOOL ov14_022244B0 (BattleSystem * param0, int param1)
         return v4;
     }
 
-    v6 = ov16_0223DF20(param0, param1);
+    v6 = BattleSystem_Party(param0, param1);
 
     for (v0 = 0; v0 < Party_GetCurrentCount(v6); v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);

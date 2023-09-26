@@ -109,7 +109,7 @@ BOOL ov16_022559DC(BattleContext * param0, int param1);
 BOOL ov16_022559FC(BattleSystem * param0, BattleContext * param1);
 u8 Battler_Ability(BattleContext * param0, int param1);
 BOOL Battler_IgnorableAbility(BattleContext * param0, int param1, int param2, int param3);
-BOOL ov16_02255B10(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL BattleSystem_CheckAnySwitches(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);
@@ -1655,7 +1655,7 @@ int BattleSystem_Defender (BattleSystem * param0, BattleContext * param1, int pa
         {
             int v2;
             int v3 = BattleSystem_MaxBattlers(param0);
-            UnkStruct_ov16_0225BFFC * v4 = BattleSystem_BattlerData(param0, param2);
+            BattlerData * v4 = BattleSystem_BattlerData(param0, param2);
             u8 v5 = ov16_02263AE4(v4);
 
             for (param1->battlerCounter = 0; param1->battlerCounter < v3; param1->battlerCounter++) {
@@ -1990,7 +1990,7 @@ BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * pa
                     Party * v5;
                     Pokemon * v6;
 
-                    v5 = ov16_0223DF20(param0, 1);
+                    v5 = BattleSystem_Party(param0, 1);
                     v4 = 0;
 
                     for (v3 = 0; v3 < Party_GetCurrentCount(v5); v3++) {
@@ -2021,7 +2021,7 @@ BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * pa
                     Party * v9;
                     Pokemon * v10;
 
-                    v9 = ov16_0223DF20(param0, 1);
+                    v9 = BattleSystem_Party(param0, 1);
                     v8 = 0;
 
                     for (v7 = 0; v7 < Party_GetCurrentCount(v9); v7++) {
@@ -3120,7 +3120,7 @@ BOOL Battler_IgnorableAbility (BattleContext * param0, int param1, int param2, i
     return v0;
 }
 
-BOOL ov16_02255B10 (BattleSystem * param0, BattleContext * param1, int param2)
+BOOL BattleSystem_CheckAnySwitches (BattleSystem * param0, BattleContext * param1, int param2)
 {
     BOOL v0;
     Party * v1;
@@ -3132,7 +3132,7 @@ BOOL ov16_02255B10 (BattleSystem * param0, BattleContext * param1, int param2)
 
     v0 = 0;
     v12 = BattleSystem_BattleType(param0);
-    v1 = ov16_0223DF20(param0, param2);
+    v1 = BattleSystem_Party(param0, param2);
     v3 = ov16_0223DF60(param0, param2);
 
     if ((v12 & 0x8) || ((v12 & 0x10) && (BattleSystem_BattlerSlot(param0, param2) & 0x1))) {
