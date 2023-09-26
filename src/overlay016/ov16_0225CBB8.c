@@ -3232,7 +3232,7 @@ static void ov16_02260B04 (UnkStruct_0201CD38 * param0, void * param1)
     u8 v3;
 
     v3 = ov16_0223ED6C(v0->unk_00);
-    v2 = ov16_02252060(BattleSystem_Context(v0->unk_00), v0->unk_09, 0, NULL);
+    v2 = BattleMon_Get(BattleSystem_Context(v0->unk_00), v0->unk_09, 0, NULL);
     v1 = PokemonPersonalData_GetSpeciesValue(v2, 26);
     v1 = v1 * Unk_ov16_0226F194[v3][0] / Unk_ov16_0226F194[v3][1];
 
@@ -3447,7 +3447,7 @@ static void ov16_02260E98 (UnkStruct_0201CD38 * param0, void * param1)
         {
             u16 v2;
 
-            v2 = ov16_02252060(BattleSystem_Context(v0->unk_00), v0->unk_1D, 6 + (v1 - 1), NULL);
+            v2 = BattleMon_Get(BattleSystem_Context(v0->unk_00), v0->unk_1D, 6 + (v1 - 1), NULL);
 
             if ((!v2) || (v2 > 467)) {
                 ov16_02264730(v0->unk_00);

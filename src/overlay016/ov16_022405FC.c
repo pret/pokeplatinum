@@ -1772,7 +1772,7 @@ static BOOL ov16_02241B08 (BattleSystem * param0, BattleContext * param1)
     v3 = ov16_02248AD0(param1);
     v4 = ov16_02248AD0(param1);
     v6 = ov16_0224A984(param0, param1, v1);
-    v5 = ov16_02252060(param1, v6, v2, NULL);
+    v5 = BattleMon_Get(param1, v6, v2, NULL);
 
     switch (v0) {
     case 0:
@@ -2482,7 +2482,7 @@ static BOOL ov16_02242A14 (BattleSystem * param0, BattleContext * param1)
     v2 = ov16_02248AD0(param1);
     v3 = ov16_02248AD0(param1);
     v4 = ov16_0224A984(param0, param1, v1);
-    v5 = ov16_02252060(param1, v4, v2, NULL);
+    v5 = BattleMon_Get(param1, v4, v2, NULL);
 
     switch (v0) {
     case ((6 + 1) + 0):
@@ -2744,7 +2744,7 @@ static BOOL ov16_02242DBC (BattleSystem * param0, BattleContext * param1)
     v2 = ov16_02248AD0(param1);
     v3 = ov16_02248AD0(param1);
     v4 = ov16_0224A984(param0, param1, v1);
-    v5 = ov16_02252060(param1, v4, v2, NULL);
+    v5 = BattleMon_Get(param1, v4, v2, NULL);
     v6 = ov16_02248B10(param0, param1, v3);
 
     switch (v0) {
@@ -3348,14 +3348,14 @@ static BOOL ov16_0224358C (BattleSystem * param0, BattleContext * param1)
             v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].type;
 
             if (v3 == 9) {
-                if ((ov16_02252060(param1, param1->attacker, 27, NULL) == 7) || (ov16_02252060(param1, param1->attacker, 28, NULL) == 7)) {
+                if ((BattleMon_Get(param1, param1->attacker, 27, NULL) == 7) || (BattleMon_Get(param1, param1->attacker, 28, NULL) == 7)) {
                     v3 = 7;
                 } else {
                     v3 = 0;
                 }
             }
 
-            if ((v3 != ov16_02252060(param1, param1->attacker, 27, NULL)) && (v3 != ov16_02252060(param1, param1->attacker, 28, NULL))) {
+            if ((v3 != BattleMon_Get(param1, param1->attacker, 27, NULL)) && (v3 != BattleMon_Get(param1, param1->attacker, 28, NULL))) {
                 break;
             }
         }
@@ -3372,13 +3372,13 @@ static BOOL ov16_0224358C (BattleSystem * param0, BattleContext * param1)
             v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].type;
 
             if (v3 == 9) {
-                if ((ov16_02252060(param1, param1->attacker, 27, NULL) == 7) || (ov16_02252060(param1, param1->attacker, 28, NULL) == 7)) {
+                if ((BattleMon_Get(param1, param1->attacker, 27, NULL) == 7) || (BattleMon_Get(param1, param1->attacker, 28, NULL) == 7)) {
                     v3 = 7;
                 } else {
                     v3 = 0;
                 }
             }
-        } while ((v3 == ov16_02252060(param1, param1->attacker, 27, NULL)) || (v3 == ov16_02252060(param1, param1->attacker, 28, NULL)));
+        } while ((v3 == BattleMon_Get(param1, param1->attacker, 27, NULL)) || (v3 == BattleMon_Get(param1, param1->attacker, 28, NULL)));
 
         param1->battleMons[param1->attacker].type1 = v3;
         param1->battleMons[param1->attacker].type2 = v3;
@@ -3473,7 +3473,7 @@ static BOOL ov16_022437D4 (BattleSystem * param0, BattleContext * param1)
     v3 = ov16_02248AD0(param1);
     v4 = ov16_02248AD0(param1);
     v7 = ov16_0224A984(param0, param1, v1);
-    v5 = ov16_02252060(param1, v7, v2, NULL);
+    v5 = BattleMon_Get(param1, v7, v2, NULL);
     v6 = ov16_02248B10(param0, param1, v3);
 
     switch (v0) {
@@ -3962,7 +3962,7 @@ static BOOL ov16_022442F0 (BattleSystem * param0, BattleContext * param1)
                 for (v0 = 0; v0 < 1000; v0++) {
                     ov16_0225588C(param0, 0xffff, &v4, &v5, &v6);
 
-                    if ((v4 == v3) && (v6 <= 5) && (ov16_02252060(param1, param1->attacker, 27, NULL) != v5) && (ov16_02252060(param1, param1->attacker, 28, NULL) != v5)) {
+                    if ((v4 == v3) && (v6 <= 5) && (BattleMon_Get(param1, param1->attacker, 27, NULL) != v5) && (BattleMon_Get(param1, param1->attacker, 28, NULL) != v5)) {
                         param1->battleMons[param1->attacker].type1 = v5;
                         param1->battleMons[param1->attacker].type2 = v5;
                         param1->msgTemp = v5;
@@ -3973,7 +3973,7 @@ static BOOL ov16_022442F0 (BattleSystem * param0, BattleContext * param1)
                 v0 = 0;
 
                 while (ov16_0225588C(param0, v0, &v4, &v5, &v6) == 1) {
-                    if ((v4 == v3) && (v6 <= 5) && (ov16_02252060(param1, param1->attacker, 27, NULL) != v5) && (ov16_02252060(param1, param1->attacker, 28, NULL) != v5)) {
+                    if ((v4 == v3) && (v6 <= 5) && (BattleMon_Get(param1, param1->attacker, 27, NULL) != v5) && (BattleMon_Get(param1, param1->attacker, 28, NULL) != v5)) {
                         param1->battleMons[param1->attacker].type1 = v5;
                         param1->battleMons[param1->attacker].type2 = v5;
                         param1->msgTemp = v5;
@@ -4542,8 +4542,8 @@ static BOOL ov16_02245188 (BattleSystem * param0, BattleContext * param1)
     param1->scriptTemp = 0;
     param1->hpCalcTemp = 0;
 
-    v2 = ov16_02252060(param1, v1, 27, NULL);
-    v3 = ov16_02252060(param1, v1, 28, NULL);
+    v2 = BattleMon_Get(param1, v1, 27, NULL);
+    v3 = BattleMon_Get(param1, v1, 28, NULL);
 
     if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
         if (param1->fieldConditionsMask & 0xc) {
@@ -5526,7 +5526,7 @@ static BOOL ov16_022469C4 (BattleSystem * param0, BattleContext * param1)
                         param1->battleMons[v1].ppCur[v4]--;
                     }
 
-                    ov16_02255F94(param0, param1);
+                    BattleSystem_SetupLoop(param0, param1);
                     param1->attacker = v1;
                     param1->defender = param1->switchedMon;
                     param1->powerMul = 20;
@@ -6033,7 +6033,7 @@ static BOOL ov16_022474C4 (BattleSystem * param0, BattleContext * param1)
         param1->sideEffectType = 6;
         param1->sideEffectMon = v2;
 
-        if ((ov16_02252060(param1, param1->switchedMon, 27, NULL) == 3) || (ov16_02252060(param1, param1->switchedMon, 28, NULL) == 3)) {
+        if ((BattleMon_Get(param1, param1->switchedMon, 27, NULL) == 3) || (BattleMon_Get(param1, param1->switchedMon, 28, NULL) == 3)) {
             param1->sideConditionsMask[v3] &= (0x400 ^ 0xffffffff);
             param1->sideConditions[v3].toxicSpikesLayers = 0;
             param1->calcTemp = 0;
@@ -6385,7 +6385,7 @@ static BOOL ov16_022479E8 (BattleSystem * param0, BattleContext * param1)
 
     v2 = Unk_ov16_0226EAC0[v1];
 
-    if ((ov16_02252060(param1, param1->attacker, 27, NULL) != v2) && (ov16_02252060(param1, param1->attacker, 28, NULL) != v2)) {
+    if ((BattleMon_Get(param1, param1->attacker, 27, NULL) != v2) && (BattleMon_Get(param1, param1->attacker, 28, NULL) != v2)) {
         param1->battleMons[param1->attacker].type1 = v2;
         param1->battleMons[param1->attacker].type2 = v2;
         param1->msgTemp = v2;
@@ -6617,8 +6617,8 @@ static BOOL ov16_02247D04 (BattleSystem * param0, BattleContext * param1)
     v1 = ov16_02248AD0(param1);
     v2 = ov16_0224A984(param0, param1, v0);
     v3 = Battler_Side(param0, v2);
-    v4 = ov16_02252060(param1, v2, 27, NULL);
-    v5 = ov16_02252060(param1, v2, 28, NULL);
+    v4 = BattleMon_Get(param1, v2, 27, NULL);
+    v5 = BattleMon_Get(param1, v2, 28, NULL);
 
     if ((param1->sideConditionsMask[v3] & 0x80) && (param1->battleMons[v2].curHP)) {
         switch (ov16_022558CC(5, v4, v5)) {
@@ -6927,7 +6927,7 @@ static BOOL ov16_022481D0 (BattleSystem * param0, BattleContext * param1)
 
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_0225708C(param0, param1, &param1->scriptTemp) == 0) {
+    if (BattleSystem_TriggerAbilityOnHit(param0, param1, &param1->scriptTemp) == 0) {
         ov16_02248AF0(param1, v0);
     }
 
@@ -7158,7 +7158,7 @@ static BOOL ov16_022485E0 (BattleSystem * param0, BattleContext * param1)
 
     v0 = ov16_02248AD0(param1);
 
-    if (ov16_022588BC(param0, param1, &param1->scriptTemp) == 0) {
+    if (BattleSystem_TriggerHeldItemOnHit(param0, param1, &param1->scriptTemp) == 0) {
         ov16_02248AF0(param1, v0);
     }
 
@@ -8822,8 +8822,8 @@ static int ov16_0224A724 (BattleSystem * param0, BattleContext * param1)
     }
 
     v4 = 10;
-    v5 = ov16_02252060(param1, param1->defender, 27, NULL);
-    v6 = ov16_02252060(param1, param1->defender, 28, NULL);
+    v5 = BattleMon_Get(param1, param1->defender, 27, NULL);
+    v6 = BattleMon_Get(param1, param1->defender, 28, NULL);
 
     if (param1->msgItemTemp > 5) {
         switch (param1->msgItemTemp) {
