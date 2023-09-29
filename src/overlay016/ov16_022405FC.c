@@ -7688,9 +7688,9 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         v10 = Item_LoadParam(v9, 1, 5);
 
         if (((v8 & 0x1) == 0) && ((v2->unk_04->battleMons[1].curHP + v2->unk_04->battleMons[3].curHP) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (v2->unk_04->expJinglePlayed == 0)) {
-            sub_0200549C(1127);
+            Sound_PlayBGM(1127);
             v2->unk_04->expJinglePlayed = 1;
-            ov16_0223F460(v2->unk_00, 2);
+            BattleSystem_SetRedHPSoundFlag(v2->unk_00, 2);
         }
 
         v11 = 0;
@@ -8364,8 +8364,8 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 v2->unk_30[1] = 30;
                 v2->unk_28 = 9;
 
-                sub_0200549C(1127);
-                ov16_0223F460(v2->unk_00, 2);
+                Sound_PlayBGM(1127);
+                BattleSystem_SetRedHPSoundFlag(v2->unk_00, 2);
             }
         }
         break;

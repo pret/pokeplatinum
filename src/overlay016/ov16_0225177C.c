@@ -1656,7 +1656,7 @@ int BattleSystem_Defender (BattleSystem * param0, BattleContext * param1, int pa
             int v2;
             int v3 = BattleSystem_MaxBattlers(param0);
             BattlerData * v4 = BattleSystem_BattlerData(param0, param2);
-            u8 v5 = ov16_02263AE4(v4);
+            u8 v5 = Battler_Type(v4);
 
             for (param1->battlerCounter = 0; param1->battlerCounter < v3; param1->battlerCounter++) {
                 v2 = param1->monSpeedOrder[param1->battlerCounter];
@@ -1664,7 +1664,7 @@ int BattleSystem_Defender (BattleSystem * param0, BattleContext * param1, int pa
                 if (param1->battleMons[v2].curHP != 0) {
                     v4 = BattleSystem_BattlerData(param0, v2);
 
-                    if (((v5 & 0x1) && ((ov16_02263AE4(v4) & 0x1) == 0)) || ((v5 & 0x1) == 0) && (ov16_02263AE4(v4) & 0x1)) {
+                    if (((v5 & 0x1) && ((Battler_Type(v4) & 0x1) == 0)) || ((v5 & 0x1) == 0) && (Battler_Type(v4) & 0x1)) {
                         v0 = v2;
                         break;
                     }

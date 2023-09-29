@@ -1590,7 +1590,7 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
     if (v6 & 2) {
         if (v6 & 1) {
             sub_020057A4(1796, 0);
-            ov16_0223F460(v0, 2);
+            BattleSystem_SetRedHPSoundFlag(v0, 2);
         }
 
         return;
@@ -1612,11 +1612,11 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
 
     if ((v5) && (ov16_0223F450(v0) == 0)) {
         sub_02005748(1796);
-        ov16_0223F460(v0, 1);
+        BattleSystem_SetRedHPSoundFlag(v0, 1);
         ov16_0223F48C(v0, 4);
     } else if ((v5 == 0) && (ov16_0223F450(v0))) {
         sub_020057A4(1796, 0);
-        ov16_0223F460(v0, 0);
+        BattleSystem_SetRedHPSoundFlag(v0, 0);
     }
 
     if (ov16_0223F450(v0)) {

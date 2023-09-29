@@ -444,7 +444,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
                 sub_02059464(0x1);
                 ov23_02254068(ov23_022421AC(), sub_02032EE8(v1->unk_02));
                 ov23_02253F40(ov23_022421AC(), 12, 1, ov23_0224A328);
-                sub_0200549C(1061);
+                Sound_PlayBGM(1061);
                 sub_02005748(1573);
             } else if (v1->unk_02 == sub_0203608C()) {
                 ov23_0224A6E4(v1, 1, v4);

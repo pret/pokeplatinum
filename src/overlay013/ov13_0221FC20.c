@@ -1611,7 +1611,7 @@ static u8 ov13_022217A4 (UnkStruct_ov13_022213F0 * param0)
             int v2;
 
             v2 = BattleSystem_Partner(param0->unk_00->unk_08, param0->unk_00->unk_28);
-            sub_0200BA74(param0->unk_1FA8, 0, ov16_0223E120(param0->unk_00->unk_08, v2));
+            sub_0200BA74(param0->unk_1FA8, 0, BattleSystem_TrainerData(param0->unk_00->unk_08, v2));
         }
         sub_0200C388(param0->unk_1FA8, param0->unk_1FAC, v1);
         Strbuf_Free(v1);

@@ -965,7 +965,7 @@ static void ov16_0225CA74 (BattleSystem * param0, BattlerData * param1)
     ov16_0223F638(param0, v0->unk_02, v0->unk_08);
 
     if (BattleSystem_BattleType(param0) & 0x80) {
-        ov16_0223F444(param0, v0->unk_04);
+        BattleSystem_SetResultFlag(param0, v0->unk_04);
     } else {
         for (v4 = 0; v4 < BattleSystem_MaxBattlers(param0); v4++) {
             v1 = BattleSystem_Party(param0, v4);
@@ -984,11 +984,11 @@ static void ov16_0225CA74 (BattleSystem * param0, BattlerData * param1)
         }
 
         if ((v5 == 0) && (v6 == 0)) {
-            ov16_0223F444(param0, 0x3);
+            BattleSystem_SetResultFlag(param0, 0x3);
         } else if (v5 == 0) {
-            ov16_0223F444(param0, 0x2);
+            BattleSystem_SetResultFlag(param0, 0x2);
         } else {
-            ov16_0223F444(param0, 0x1);
+            BattleSystem_SetResultFlag(param0, 0x1);
         }
     }
 

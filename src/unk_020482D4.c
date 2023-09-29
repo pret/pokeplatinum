@@ -61,7 +61,7 @@ BOOL sub_020482FC (UnkStruct_0203E724 * param0)
 {
     u16 v0 = sub_0203E838(param0);
 
-    sub_0200549C(v0);
+    Sound_PlayBGM(v0);
     return 0;
 }
 
@@ -78,7 +78,7 @@ BOOL sub_02048320 (UnkStruct_0203E724 * param0)
     int v0 = param0->unk_34->unk_1C->unk_00;
     u16 v1 = sub_020554A4(param0->unk_34, v0);
 
-    sub_0200549C(v1);
+    Sound_PlayBGM(v1);
     return 0;
 }
 

@@ -96,7 +96,7 @@ void ov16_0225E434(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0
 void ov16_0225E468(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225CA4C * param2);
 void ov16_0225E4C8(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225CA60 * param2);
 void ov16_02263730(BattleSystem * param0, BattlerData * param1);
-u8 ov16_02263AE4(BattlerData * param0);
+u8 Battler_Type(BattlerData * param0);
 u8 Battler_BootState(BattlerData * param0);
 UnkStruct_02007C7C * ov16_02263AFC(BattlerData * param0);
 UnkStruct_ov16_022674C4 * ov16_02263B08(BattlerData * param0);

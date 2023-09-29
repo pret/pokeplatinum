@@ -18,7 +18,7 @@ typedef struct {
 } UnkStruct_02005E64;
 
 BOOL sub_02005474(u16 param0);
-BOOL sub_0200549C(u16 param0);
+BOOL Sound_PlayBGM(u16 param0);
 static void sub_020054EC(u16 param0, int param1);
 static BOOL sub_02005508(u16 param0, u8 param1, int param2);
 static BOOL sub_02005538(u16 param0, u8 param1, int param2);
@@ -77,7 +77,7 @@ BOOL sub_02005474 (u16 param0)
     return v0;
 }
 
-BOOL sub_0200549C (u16 param0)
+BOOL Sound_PlayBGM (u16 param0)
 {
     int v0;
     u8 v1 = sub_02004B18(param0);

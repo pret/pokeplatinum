@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02005474_H
 
 BOOL sub_02005474(u16 param0);
-BOOL sub_0200549C(u16 param0);
+BOOL Sound_PlayBGM(u16 param0);
 BOOL sub_02005588(u8 param0, u16 param1);
 void sub_020055D0(u16 param0, int param1);
 void sub_0200560C(int param0, int param1, int param2);

@@ -168,7 +168,7 @@ static void sub_02003C64 (void)
         if (sub_02005684() == 0) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
-                sub_0200549C(v1->unk_BCD5A);
+                Sound_PlayBGM(v1->unk_BCD5A);
             }
         }
         break;
@@ -176,7 +176,7 @@ static void sub_02003C64 (void)
         if (sub_02005684() == 0) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
-                sub_0200549C(v1->unk_BCD5A);
+                Sound_PlayBGM(v1->unk_BCD5A);
                 sub_0200560C(127, v1->unk_BCD54, 0);
             }
         }

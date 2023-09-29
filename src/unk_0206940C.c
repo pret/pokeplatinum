@@ -525,7 +525,7 @@ BOOL sub_02069A00 (UnkStruct_020508D4 * param0)
     }
     break;
     case 1:
-        sub_0200549C(1150);
+        Sound_PlayBGM(1150);
         (*v1) = 2;
         break;
     case 2:

@@ -3800,7 +3800,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
             int v0;
             int v1 = BattleSystem_MaxBattlers(param0);
             BattlerData * v2 = BattleSystem_BattlerData(param0, param1->attacker);
-            u8 v3 = ov16_02263AE4(v2);
+            u8 v3 = Battler_Type(v2);
 
             do {
                 v0 = param1->monSpeedOrder[param1->battlerCounter++];
@@ -3808,7 +3808,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
                 if (((param1->battlersSwitchingMask & FlagIndex(v0)) == 0) && (param1->battleMons[v0].curHP)) {
                     v2 = BattleSystem_BattlerData(param0, v0);
 
-                    if (((v3 & 0x1) && ((ov16_02263AE4(v2) & 0x1) == 0)) || ((v3 & 0x1) == 0) && (ov16_02263AE4(v2) & 0x1)) {
+                    if (((v3 & 0x1) && ((Battler_Type(v2) & 0x1) == 0)) || ((v3 & 0x1) == 0) && (Battler_Type(v2) & 0x1)) {
                         BattleSystem_SetupLoop(param0, param1);
                         param1->defender = v0;
                         param1->command = 22;
@@ -4205,7 +4205,7 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                     }
 
                     if (v10 == 0) {
-                        if (ov16_02263AE4(v14) & 0x1) {
+                        if (Battler_Type(v14) & 0x1) {
                             v3 |= 0x1;
                         } else {
                             v3 |= 0x2;
@@ -4234,7 +4234,7 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                     }
 
                     if (v16 == 0) {
-                        if (ov16_02263AE4(v19) & 0x1) {
+                        if (Battler_Type(v19) & 0x1) {
                             v3 |= 0x1;
                         } else {
                             v3 |= 0x2;
@@ -4247,7 +4247,7 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
 
     if (((v3 == 0x1) && (v2 & 0x1) && ((v2 & 0x4) == 0)) || ((v3 == 0x1) && (v2 & 0x80) && ((v2 & 0x4) == 0))) {
         {
-            TrainerData *v20 = ov16_0223E120(param0, 1);
+            TrainerData *v20 = BattleSystem_TrainerData(param0, 1);
 
             switch (v20->class) {
                 case TRAINER_CLASS_LEADER_ROARK:
@@ -4258,44 +4258,44 @@ static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleConte
                 case TRAINER_CLASS_LEADER_CANDICE:
                 case TRAINER_CLASS_LEADER_BYRON:
                 case TRAINER_CLASS_LEADER_VOLKNER:
-                    sub_0200549C(SEQ_VICTORY_GYM_LEADER);
+                    Sound_PlayBGM(SEQ_VICTORY_GYM_LEADER);
                     break;
                 case TRAINER_CLASS_TOWER_TYCOON:
                 case TRAINER_CLASS_HALL_MATRON:
                 case TRAINER_CLASS_FACTORY_HEAD:
                 case TRAINER_CLASS_ARCADE_STAR:
                 case TRAINER_CLASS_CASTLE_VALET:
-                    sub_0200549C(SEQ_VICTORY_FRONTIER_BRAIN);
+                    Sound_PlayBGM(SEQ_VICTORY_FRONTIER_BRAIN);
                     break;
                 case TRAINER_CLASS_CHAMPION_CYNTHIA:
-                    sub_0200549C(SEQ_VICTORY_CHAMPION);
+                    Sound_PlayBGM(SEQ_VICTORY_CHAMPION);
                     break;
                 case TRAINER_CLASS_COMMANDER_MARS:
                 case TRAINER_CLASS_COMMANDER_JUPITER:
                 case TRAINER_CLASS_COMMANDER_SATURN:
                 case TRAINER_CLASS_GALACTIC_GRUNT_MALE:
                 case TRAINER_CLASS_GALACTIC_GRUNT_FEMALE:
-                    sub_0200549C(SEQ_VICTORY_GALACTIC_GRUNT);
+                    Sound_PlayBGM(SEQ_VICTORY_GALACTIC_GRUNT);
                     break;
                 case TRAINER_CLASS_GALACTIC_BOSS:
-                    sub_0200549C(SEQ_VICTORY_CYRUS);
+                    Sound_PlayBGM(SEQ_VICTORY_CYRUS);
                     break;
                 case TRAINER_CLASS_ELITE_FOUR_AARON:
                 case TRAINER_CLASS_ELITE_FOUR_BERTHA:
                 case TRAINER_CLASS_ELITE_FOUR_FLINT:
                 case TRAINER_CLASS_ELITE_FOUR_LUCIAN:
-                    sub_0200549C(SEQ_VICTORY_ELITE_FOUR);
+                    Sound_PlayBGM(SEQ_VICTORY_ELITE_FOUR);
                     break;
                 default:
-                    sub_0200549C(SEQ_VICTORY_TRAINER);
+                    Sound_PlayBGM(SEQ_VICTORY_TRAINER);
                     break;
             }
         }
-        ov16_0223F460(param0, 2);
+        BattleSystem_SetRedHPSoundFlag(param0, 2);
     }
 
     if (v3) {
-        ov16_0223F444(param0, v3);
+        BattleSystem_SetResultFlag(param0, v3);
     }
 
     return v3 != 0;

@@ -459,7 +459,7 @@ static void sub_020046F8 (u16 param0, int param1)
         return;
     }
 
-    sub_0200549C(param0);
+    Sound_PlayBGM(param0);
 
     return;
 }
@@ -522,7 +522,7 @@ static void sub_02004874 (u16 param0, int param1)
     sub_0200426C(5);
     sub_02004014(sub_02003D5C(26));
     sub_0200501C(1);
-    sub_0200549C(param0);
+    Sound_PlayBGM(param0);
 
     return;
 }
@@ -534,7 +534,7 @@ static void sub_020048AC (u16 param0, int param1)
     sub_0200569C();
     sub_02004A3C();
     sub_020046CC(4);
-    sub_0200549C(param0);
+    Sound_PlayBGM(param0);
 
     return;
 }
@@ -546,7 +546,7 @@ void sub_020048CC (u16 param0, int param1)
     sub_0200569C();
     sub_020046CC(6);
     sub_0200501C(1);
-    sub_0200549C(param0);
+    Sound_PlayBGM(param0);
 
     return;
 }
@@ -558,7 +558,7 @@ void sub_020048F0 (u16 param0, int param1)
     sub_0200569C();
     sub_020046CC(7);
     sub_0200501C(1);
-    sub_0200549C(param0);
+    Sound_PlayBGM(param0);
 
     return;
 }
@@ -578,7 +578,7 @@ static void sub_02004930 (u8 param0, u16 param1, int param2)
 
     sub_0200569C();
     sub_020046CC(param0);
-    sub_0200549C(param1);
+    Sound_PlayBGM(param1);
 
     return;
 }
@@ -590,7 +590,7 @@ void sub_02004950 (u16 param0)
 
     sub_0200540C();
 
-    v0 = sub_0200549C(param0);
+    v0 = Sound_PlayBGM(param0);
     return;
 }
 
