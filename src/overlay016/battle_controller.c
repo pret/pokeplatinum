@@ -4126,7 +4126,7 @@ static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleCont
     }
 
     if (param1->command == 21) {
-        if (((v3 & (0x4 | 0x2 | 0x80)) == 0) && (BattleSystem_Ruleset(param0) == 0) && (((param1->battlerStatusFlags[0] & 0x1) == 0) || ((param1->battlerStatusFlags[1] & 0x1) == 0)) && (BattleSystem_CheckAnySwitches(param0, param1, 0))) {
+        if (((v3 & (0x4 | 0x2 | 0x80)) == 0) && (BattleSystem_Ruleset(param0) == 0) && (((param1->battlerStatusFlags[0] & 0x1) == 0) || ((param1->battlerStatusFlags[1] & 0x1) == 0)) && (BattleSystem_AnyReplacementMons(param0, param1, 0))) {
             if (param1->battlerStatusFlags[0] & 0x1) {
                 param1->scriptTemp = 0;
             } else {

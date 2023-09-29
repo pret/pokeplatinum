@@ -109,7 +109,7 @@ BOOL ov16_022559DC(BattleContext * param0, int param1);
 BOOL ov16_022559FC(BattleSystem * param0, BattleContext * param1);
 u8 Battler_Ability(BattleContext * param0, int param1);
 BOOL Battler_IgnorableAbility(BattleContext * param0, int param1, int param2, int param3);
-BOOL BattleSystem_CheckAnySwitches(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);
@@ -3120,57 +3120,62 @@ BOOL Battler_IgnorableAbility (BattleContext * param0, int param1, int param2, i
     return v0;
 }
 
-BOOL BattleSystem_CheckAnySwitches (BattleSystem * param0, BattleContext * param1, int param2)
+BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    BOOL v0;
-    Party * v1;
-    Pokemon * v2;
-    int v3;
-    int v4 = 0, v5, v6, v7, v8, v9;
-    int v10, v11;
-    u32 v12;
+    // Declarations here are done C89-style to match.
+    BOOL result;
+    Party *party;
+    Pokemon *pokemon;
+    int partySize;
+    int aliveMons = 0, neededAliveMons;
+    int start, end;
+    int selectedSlot1, selectedSlot2;
+    u32 battleType;
 
-    v0 = 0;
-    v12 = BattleSystem_BattleType(param0);
-    v1 = BattleSystem_Party(param0, param2);
-    v3 = BattleSystem_PartyCount(param0, param2);
+    result = FALSE;
+    battleType = BattleSystem_BattleType(battleSys);
+    party = BattleSystem_Party(battleSys, battler);
+    partySize = BattleSystem_PartyCount(battleSys, battler);
 
-    if ((v12 & 0x8) || ((v12 & 0x10) && (BattleSystem_BattlerSlot(param0, param2) & 0x1))) {
-        v7 = 0;
-        v8 = v3;
-        v9 = v3;
-        v5 = 1;
-        v10 = param1->selectedPartySlot[param2];
-        v11 = param1->selectedPartySlot[param2];
-    } else if (v12 & 0x2) {
-        v7 = 0;
-        v8 = v3;
-        v9 = v3;
-        v5 = 1;
-        v10 = param1->selectedPartySlot[param2];
-        v11 = param1->selectedPartySlot[BattleSystem_Partner(param0, param2)];
+    if ((battleType & BATTLE_TYPE_2vs2)
+            || ((battleType & BATTLE_TYPE_TAG)
+                && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_THEM))) {
+        // have to copy these 4 identical assignments across each branch to match
+        start = 0;
+        end = partySize;
+        neededAliveMons = 1;
+        selectedSlot1 = battleCtx->selectedPartySlot[battler];
+        selectedSlot2 = battleCtx->selectedPartySlot[battler];
+    } else if (battleType & BATTLE_TYPE_DOUBLES) {
+        start = 0;
+        end = partySize;
+        neededAliveMons = 1;
+        selectedSlot1 = battleCtx->selectedPartySlot[battler];
+        selectedSlot2 = battleCtx->selectedPartySlot[BattleSystem_Partner(battleSys, battler)];
     } else {
-        v7 = 0;
-        v8 = v3;
-        v9 = v3;
-        v5 = 1;
-        v10 = param1->selectedPartySlot[param2];
-        v11 = param1->selectedPartySlot[param2];
+        start = 0;
+        end = partySize;
+        neededAliveMons = 1;
+        selectedSlot1 = battleCtx->selectedPartySlot[battler];
+        selectedSlot2 = battleCtx->selectedPartySlot[battler];
     }
 
-    for (v6 = v7; v6 < v8; v6++) {
-        v2 = Party_GetPokemonBySlotIndex(v1, v6);
-
-        if ((Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v2, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v2, MON_DATA_CURRENT_HP, NULL)) && (v10 != v6) && (v11 != v6)) {
-            v4++;
+    for (int i = start; i < end; i++) {
+        pokemon = Party_GetPokemonBySlotIndex(party, i);
+        if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES, NULL)
+                && Pokemon_GetValue(pokemon, MON_DATA_IS_EGG, NULL) == FALSE
+                && Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL)
+                && selectedSlot1 != i
+                && selectedSlot2 != i) {
+            aliveMons++;
         }
     }
 
-    if (v4 >= v5) {
-        v0 = 1;
+    if (aliveMons >= neededAliveMons) {
+        result = TRUE;
     }
 
-    return v0;
+    return result;
 }
 
 BOOL BattleSystem_Trapped (BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3)

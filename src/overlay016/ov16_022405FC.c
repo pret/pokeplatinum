@@ -4775,7 +4775,7 @@ static BOOL ov16_0224582C (BattleSystem * param0, BattleContext * param1)
     v2 = ov16_02248AD0(param1);
     v3 = ov16_0224A984(param0, param1, v0);
 
-    if (BattleSystem_CheckAnySwitches(param0, param1, v3) == 0) {
+    if (BattleSystem_AnyReplacementMons(param0, param1, v3) == 0) {
         ov16_02248AF0(param1, v2);
     } else {
         if (v1 == 1) {
