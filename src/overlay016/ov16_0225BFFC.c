@@ -673,7 +673,7 @@ static void ov16_0225C5E0 (BattleSystem * param0, BattlerData * param1)
     u32 v5;
 
     v5 = 0;
-    v3 = ov16_0223DF60(param0, param1->unk_190);
+    v3 = BattleSystem_PartyCount(param0, param1->unk_190);
 
     for (v2 = 0; v2 < v3; v2++) {
         v1 = ov16_0223DFAC(param0, param1->unk_190, v2);

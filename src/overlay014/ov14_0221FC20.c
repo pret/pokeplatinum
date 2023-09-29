@@ -1335,7 +1335,7 @@ static void ov14_02220D8C (BattleSystem * param0, BattleContext * param1)
         v4 = v5 = param1->selectedPartySlot[v3];
     }
 
-    for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
+    for (v2 = 0; v2 < BattleSystem_PartyCount(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
         if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494)) {
@@ -1553,7 +1553,7 @@ static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
 
     v0 = BattleSystem_Party(param0, v3);
 
-    for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
+    for (v2 = 0; v2 < BattleSystem_PartyCount(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
         if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v1, MON_DATA_160, NULL) & v7)) {
@@ -1590,7 +1590,7 @@ static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
 
     v0 = BattleSystem_Party(param0, v3);
 
-    for (v2 = 0; v2 < ov16_0223DF60(param0, v3); v2++) {
+    for (v2 = 0; v2 < BattleSystem_PartyCount(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
         if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && ((Pokemon_GetValue(v1, MON_DATA_160, NULL) & v7) == 0)) {
@@ -2232,7 +2232,7 @@ static void ov14_02221D88 (BattleSystem * param0, BattleContext * param1)
     v2 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
 
-    for (v3 = 0; v3 < ov16_0223DF60(param0, v0); v3++) {
+    for (v3 = 0; v3 < BattleSystem_PartyCount(param0, v0); v3++) {
         v4 = ov16_0223DFAC(param0, v0, v3);
 
         if (v3 != param1->selectedPartySlot[v0]) {
@@ -2258,7 +2258,7 @@ static void ov14_02221E18 (BattleSystem * param0, BattleContext * param1)
     v2 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
 
-    for (v3 = 0; v3 < ov16_0223DF60(param0, v0); v3++) {
+    for (v3 = 0; v3 < BattleSystem_PartyCount(param0, v0); v3++) {
         v5 = ov16_0223DFAC(param0, v0, v3);
 
         if (v3 != param1->selectedPartySlot[v0]) {
@@ -2403,7 +2403,7 @@ static void ov14_022220CC (BattleSystem * param0, BattleContext * param1)
 
     v5 = ov14_02222D7C(param0, param1, param1->aiContext.attacker, &param1->battleMons[v4].moves[0], &v7[0], param1->battleMons[v4].heldItem, &v9[0], Battler_Ability(param1, v4), param1->battleMons[v4].moveEffectsData.embargoTurns, v2);
 
-    for (v0 = 0; v0 < ov16_0223DF60(param0, v4); v0++) {
+    for (v0 = 0; v0 < BattleSystem_PartyCount(param0, v4); v0++) {
         if (v0 != param1->selectedPartySlot[v4]) {
             v10 = ov16_0223DFAC(param0, v4, v0);
 
@@ -3421,7 +3421,7 @@ static BOOL ov14_0222342C (BattleSystem * param0, BattleContext * param1, int pa
             }
         }
 
-        for (v0 = 0; v0 < ov16_0223DF60(param0, param2); v0++) {
+        for (v0 = 0; v0 < BattleSystem_PartyCount(param0, param2); v0++) {
             v5 = ov16_0223DFAC(param0, param2, v0);
 
             if ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (v0 != param1->selectedPartySlot[param2])) {
@@ -3511,7 +3511,7 @@ static BOOL ov14_022235F0 (BattleSystem * param0, BattleContext * param1, int pa
     }
 
     v9 = 0;
-    v10 = ov16_0223DF60(param0, param2);
+    v10 = BattleSystem_PartyCount(param0, param2);
 
     for (v0 = v9; v0 < v10; v0++) {
         v12 = ov16_0223DFAC(param0, param2, v0);
@@ -3706,7 +3706,7 @@ static BOOL ov14_02223C8C (BattleSystem * param0, BattleContext * param1, int pa
     }
 
     v6 = 0;
-    v7 = ov16_0223DF60(param0, param2);
+    v7 = BattleSystem_PartyCount(param0, param2);
 
     for (v0 = v6; v0 < v7; v0++) {
         v8 = ov16_0223DFAC(param0, param2, v0);
@@ -3751,7 +3751,7 @@ static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int pa
     }
 
     v7 = 0;
-    v8 = ov16_0223DF60(param0, param2);
+    v8 = BattleSystem_PartyCount(param0, param2);
 
     for (v0 = v7; v0 < v8; v0++) {
         v9 = ov16_0223DFAC(param0, param2, v0);
@@ -3860,7 +3860,7 @@ static BOOL ov14_022241A4 (BattleSystem * param0, BattleContext * param1, int pa
     }
 
     v5 = 0;
-    v6 = ov16_0223DF60(param0, param2);
+    v6 = BattleSystem_PartyCount(param0, param2);
 
     for (v0 = v5; v0 < v6; v0++) {
         v7 = ov16_0223DFAC(param0, param2, v0);
@@ -3936,7 +3936,7 @@ int ov14_022243BC (BattleSystem * param0, int param1)
                     }
 
                     v4 = 0;
-                    v5 = ov16_0223DF60(param0, param1);
+                    v5 = BattleSystem_PartyCount(param0, param1);
 
                     for (v0 = v4; v0 < v5; v0++) {
                         v6 = ov16_0223DFAC(param0, param1, v0);

@@ -4299,14 +4299,14 @@ static void ov16_02261E8C (UnkStruct_0201CD38 * param0, void * param1)
 
                     Heap_FreeToHeap(v9);
 
-                    for (v3 = 0; v3 < ov16_0223DF60(v0->unk_00, v6); v3++) {
+                    for (v3 = 0; v3 < BattleSystem_PartyCount(v0->unk_00, v6); v3++) {
                         v9 = ov16_0223DFAC(v0->unk_00, v6, v0->unk_1C[v6][v3]);
                         v10 = Party_GetPokemonBySlotIndex(v0->unk_04->unk_00, v3 * 2);
                         Pokemon_Copy(v9, v10);
                         v0->unk_04->unk_2C[v3 * 2] = v0->unk_1C[v6][v3];
                     }
 
-                    for (v3 = 0; v3 < ov16_0223DF60(v0->unk_00, v7); v3++) {
+                    for (v3 = 0; v3 < BattleSystem_PartyCount(v0->unk_00, v7); v3++) {
                         v9 = ov16_0223DFAC(v0->unk_00, v7, v0->unk_1C[v7][v3]);
                         v10 = Party_GetPokemonBySlotIndex(v0->unk_04->unk_00, v3 * 2 + 1);
                         Pokemon_Copy(v9, v10);

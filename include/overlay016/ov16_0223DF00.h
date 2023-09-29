@@ -43,7 +43,24 @@ BattleContext * BattleSystem_Context(BattleSystem * param0);
 BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
 int BattleSystem_MaxBattlers(BattleSystem * param0);
 Party * BattleSystem_Party(BattleSystem * param0, int param1);
-int ov16_0223DF60(BattleSystem * param0, int param1);
+
+/**
+ * @brief Get the party count for a particular battler.
+ * 
+ * - If the battle taking place is a 2vs2 battle (player-with-partner vs. two
+ * opponent trainers), then the battler input is not modified.
+ * - If the battle taking place is against two opponents (but the player does
+ * not have a partner) and the requested count is for an enemy party, then the
+ * battler input is not modified.
+ * - If the battle taking place is otherwise a double-battle, then the battler
+ * input will be normalized to 0 or 1.
+ * - Otherwise, the battler input is used to retrieve the particular party.
+ * 
+ * @param battleSys 
+ * @param battler   The battler party to count.
+ * @return Number of Pokemon in the requested battler's party.
+ */
+int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon * ov16_0223DFAC(BattleSystem * param0, int param1, int param2);
 UnkStruct_02007768 * ov16_0223E000(BattleSystem * param0);
 UnkStruct_ov12_0221FCDC * ov16_0223E008(BattleSystem * param0);

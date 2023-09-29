@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "battle/common.h"
 #include "constants/battle.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -83,7 +84,7 @@ BattleContext * BattleSystem_Context(BattleSystem * param0);
 BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
 int BattleSystem_MaxBattlers(BattleSystem * param0);
 Party * BattleSystem_Party(BattleSystem * param0, int param1);
-int ov16_0223DF60(BattleSystem * param0, int param1);
+int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
 Pokemon * ov16_0223DFAC(BattleSystem * param0, int param1, int param2);
 UnkStruct_02007768 * ov16_0223E000(BattleSystem * param0);
 UnkStruct_ov12_0221FCDC * ov16_0223E008(BattleSystem * param0);
@@ -271,14 +272,16 @@ Party * BattleSystem_Party (BattleSystem * param0, int param1)
     }
 }
 
-int ov16_0223DF60 (BattleSystem * param0, int param1)
+int BattleSystem_PartyCount(BattleSystem *battleSys, int battler)
 {
-    if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
-        return Party_GetCurrentCount(param0->parties[param1]);
-    } else if (param0->battleType & 0x2) {
-        return Party_GetCurrentCount(param0->parties[param1 & 1]);
+    if ((battleSys->battleType & BATTLE_TYPE_2vs2)
+            || ((battleSys->battleType & BATTLE_TYPE_TAG)
+                && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_THEM))) {
+        return Party_GetCurrentCount(battleSys->parties[battler]);
+    } else if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
+        return Party_GetCurrentCount(battleSys->parties[battler & 1]);
     } else {
-        return Party_GetCurrentCount(param0->parties[param1]);
+        return Party_GetCurrentCount(battleSys->parties[battler]);
     }
 }
 
@@ -1086,7 +1089,7 @@ void ov16_0223EE70 (BattleSystem * param0)
         return;
     }
 
-    for (v0 = 0; v0 < ov16_0223DF60(param0, 0); v0++) {
+    for (v0 = 0; v0 < BattleSystem_PartyCount(param0, 0); v0++) {
         v2 = ov16_0223DFAC(param0, 0, v0);
         v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
 

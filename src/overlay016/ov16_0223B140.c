@@ -1278,7 +1278,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
             }
 
             for (v0 = 0; v0 < param0->maxBattlers; v0++) {
-                for (v1 = 0; v1 < ov16_0223DF60(param0, v0); v1++) {
+                for (v1 = 0; v1 < BattleSystem_PartyCount(param0, v0); v1++) {
                     v3 = ov16_0223DFAC(param0, v0, v1);
 
                     if (v0 == 2) {

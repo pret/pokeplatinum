@@ -4307,7 +4307,7 @@ static BOOL ov16_02244BC4 (BattleSystem * param0, BattleContext * param1)
             int v11, v12;
 
             v2 = BattleSystem_Party(param0, param1->defender);
-            v4 = ov16_0223DF60(param0, param1->defender);
+            v4 = BattleSystem_PartyCount(param0, param1->defender);
 
             if ((v1 & 0x8) || ((v1 & 0x10) && (Battler_Side(param0, param1->defender)))) {
                 v8 = 0;
@@ -4968,7 +4968,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
 
     ov16_02248AF0(param1, 1);
 
-    v1 = ov16_0223DF60(param0, param1->attacker);
+    v1 = BattleSystem_PartyCount(param0, param1->attacker);
 
     if (param1->multiHitNumHits == 0) {
         param1->multiHitNumHits = 2;
@@ -5138,7 +5138,7 @@ static BOOL ov16_022461F4 (BattleSystem * param0, BattleContext * param1)
 
     v0 = ov16_02248AD0(param1);
     v6 = 0;
-    v5 = ov16_0223DF60(param0, param1->attacker);
+    v5 = BattleSystem_PartyCount(param0, param1->attacker);
 
     for (v3 = 0; v3 < v5; v3++) {
         if (v3 != param1->selectedPartySlot[param1->attacker]) {
@@ -6199,7 +6199,7 @@ static BOOL ov16_022476F8 (BattleSystem * param0, BattleContext * param1)
 
     ov16_02248AF0(param1, 1);
 
-    for (v1 = 0; v1 < ov16_0223DF60(param0, 0); v1++) {
+    for (v1 = 0; v1 < BattleSystem_PartyCount(param0, 0); v1++) {
         v8 = ov16_0223DFAC(param0, 0, v1);
         v4 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
         v5 = Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL);
@@ -7375,7 +7375,7 @@ static BOOL ov16_02248944 (BattleSystem * param0, BattleContext * param1)
 
     v0 = ov16_02248AD0(param1);
 
-    if (((ov16_0223DF60(param0, 0) != 6) || (sub_020799A0(param0->unk_64) != 18)) && (param0->unk_2410)) {
+    if (((BattleSystem_PartyCount(param0, 0) != 6) || (sub_020799A0(param0->unk_64) != 18)) && (param0->unk_2410)) {
         ov16_02248AF0(param1, v0);
     }
 
@@ -7660,7 +7660,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     v5 = (v2->unk_04->faintedMon) >> 1 & 1;
     v6 = 0;
 
-    for (v1 = v2->unk_30[6]; v1 < ov16_0223DF60(v2->unk_00, v6); v1++) {
+    for (v1 = v2->unk_30[6]; v1 < BattleSystem_PartyCount(v2->unk_00, v6); v1++) {
         v3 = ov16_0223DFAC(v2->unk_00, v6, v1);
         v9 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
         v10 = Item_LoadParam(v9, 1, 5);
@@ -7670,7 +7670,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
     }
 
-    if (v1 == ov16_0223DF60(v2->unk_00, v6)) {
+    if (v1 == BattleSystem_PartyCount(v2->unk_00, v6)) {
         v2->unk_28 = 38;
     } else if ((v8 & 0x2) && ((v8 & 0x40) == 0)) {
         if (v2->unk_04->selectedPartySlot[2] == v1) {
@@ -8543,7 +8543,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 v16 = sub_0208712C(5, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, ov16_0223EDA4(v2->unk_00));
                 v2->unk_50[1] = v16;
 
-                if (ov16_0223DF60(v2->unk_00, 0) < 6) {
+                if (BattleSystem_PartyCount(v2->unk_00, 0) < 6) {
                     v16->unk_44 = 0;
                 } else {
                     v16->unk_44 = 1174 + ov16_0223F240(v2->unk_00);

@@ -3133,7 +3133,7 @@ BOOL BattleSystem_CheckAnySwitches (BattleSystem * param0, BattleContext * param
     v0 = 0;
     v12 = BattleSystem_BattleType(param0);
     v1 = BattleSystem_Party(param0, param2);
-    v3 = ov16_0223DF60(param0, param2);
+    v3 = BattleSystem_PartyCount(param0, param2);
 
     if ((v12 & 0x8) || ((v12 & 0x10) && (BattleSystem_BattlerSlot(param0, param2) & 0x1))) {
         v7 = 0;
@@ -7795,7 +7795,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
 
     v2 = BattleSystem_RandomOpponent(param0, v20, param1);
     v17 = 0;
-    v18 = ov16_0223DF60(param0, param1);
+    v18 = BattleSystem_PartyCount(param0, param1);
     v10 = 0;
 
     while (v10 != 0x3f) {
