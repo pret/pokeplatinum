@@ -22,12 +22,13 @@ ARGPARSER.add_argument('--output-dir', required=True,
 
 
 class Parser():
-    __slots__ = ('registry', 'padding_index')
+    __slots__ = ('registry', 'padding_index', 'field_index')
 
 
     def __init__(self):
         self.registry = {}
         self.padding_index = 0
+        self.field_index = 0
 
 
     def register_name(self, func: FunctionType | LambdaType | None) -> 'Parser':
@@ -49,14 +50,16 @@ class Parser():
                  field_name: str,
                  size: int,
                  func: FunctionType | LambdaType,
-                 const_type: type[Enum] | None = None) -> 'Parser':
+                 const_type: type[Enum] | None = None,
+                 optional: bool = False) -> 'Parser':
         '''
             Register a function for processing a given key within the JSON
             structure, along with a size of the field in bytes and any
             constants definition needed to process the field into an integral
             value.
         '''
-        self.registry[field_name] = (func, size, const_type)
+        self.registry[f'{self.field_index:04}_{field_name}'] = (func, size, const_type, optional)
+        self.field_index += 1
         return self
 
 
@@ -75,7 +78,7 @@ class Parser():
             if type(data_val) == list:
                 data_val = data_val[int(step)]
             else:
-                data_val = data_val[step]
+                data_val = data_val.get(step, {}) # All future walks will return {}
         return data_val
 
 
@@ -92,8 +95,14 @@ class Parser():
                 size, val = self.registry[key]
                 binary.extend(val.to_bytes(size, 'little'))
             else:
-                parse_func, size, const_type = self.registry[key]
-                data_val = self._walk(data, key.split('.'))
+                parse_func, size, const_type, optional = self.registry[key]
+                data_key = key[5:] # first 4 characters are a key-prefix
+                data_val = self._walk(data, data_key.split('.'))
+                if data_val == {} or data_val is None:
+                    if optional:
+                        continue
+                    raise KeyError(data_key)
+
                 binary.extend(parse_func(data_val, size, const_type))
         return binary
 
