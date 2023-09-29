@@ -9,6 +9,7 @@
 #include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/sdat.h"
+#include "constants/species.h"
 #include "constants/trainer.h"
 #include "constants/battle/battle_effects.h"
 #include "constants/battle/condition.h"
@@ -117,7 +118,7 @@ static BOOL BattleController_CheckQuickClaw(BattleSystem *battleSys, BattleConte
 static int BattleController_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 static int BattleController_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 static BOOL BattleController_MoveStolen(BattleSystem *battleSys, BattleContext * battleCtx);
-static BOOL BattleController_CheckAnySwitches(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BattleController_CheckBattleOver(BattleSystem * param0, BattleContext * param1);
 static BOOL BattleController_CheckRange(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target);
 static void ov16_02250E8C(BattleSystem * param0, BattleContext * param1);
@@ -1892,7 +1893,7 @@ static void BattleController_TurnEnd(BattleSystem *battleSys, BattleContext *bat
     // Explicit `== TRUE` is needed to match on these.
     if (BattleController_CheckExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
             || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE
-            || BattleController_CheckAnySwitches(battleSys, battleCtx) == TRUE) {
+            || BattleController_ReplaceFainted(battleSys, battleCtx) == TRUE) {
         return;
     }
 
@@ -4035,113 +4036,103 @@ static void ov16_02250798 (BattleSystem * param0, BattleContext * param1)
     return;
 }
 
-static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL v0 = 0;
-    int v1;
-    int v2;
-    u32 v3;
-    int v4;
+    BOOL result = FALSE;
+    int i; // must be declared here to match
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
+    int retCommand = battleCtx->command;
 
-    v2 = BattleSystem_MaxBattlers(param0);
-    v3 = BattleSystem_BattleType(param0);
-    v4 = param1->command;
+    for (i = 0; i < maxBattlers; i++) {
+        battleCtx->battlerStatusFlags[i] &= ~BATTLER_STATUS_SWITCHING;
 
-    for (v1 = 0; v1 < v2; v1++) {
-        param1->battlerStatusFlags[v1] &= 0x1 ^ 0xffffffff;
-
-        if (((v3 & 0x2) && ((v3 & (0x8 | 0x10)) == 0)) || ((v3 & 0x10) && ((Battler_Side(param0, v1)) == 0))) {
-            if ((param1->battleMons[v1].curHP == 0) && (param1->battleMons[v1 ^ 2].curHP == 0) && (v1 & 2)) {
+        if (((battleType & BATTLE_TYPE_DOUBLES) && (battleType & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_TAG)) == FALSE)
+                || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, i) == FALSE)) {
+            // If both of this side's mons have been defeated, replace slot 1 first.
+            if (battleCtx->battleMons[i].curHP == 0 && battleCtx->battleMons[i ^ 2].curHP == 0 && (i & 2)) {
                 continue;
             }
 
-            if (param1->battleMons[v1].curHP == 0) {
-                {
-                    int v5;
-                    int v6;
-                    int v7 = 0;
-                    int v8 = 0;
-                    Party * v9;
-                    Pokemon * v10;
-                    BattlerData * v11;
+            if (battleCtx->battleMons[i].curHP == 0) {
+                int j;
+                int curHP;
+                int totalHP = 0;
+                int monsAlive = 0;
+                Party *party = BattleSystem_Party(battleSys, i);
+                BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i); // this has to go here, even though it's unused
 
-                    v9 = BattleSystem_Party(param0, v1);
-                    v11 = BattleSystem_BattlerData(param0, v1);
-
-                    for (v5 = 0; v5 < Party_GetCurrentCount(v9); v5++) {
-                        v10 = Party_GetPokemonBySlotIndex(v9, v5);
-
-                        if ((Pokemon_GetValue(v10, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v10, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            if (v6 = Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL)) {
-                                v8++;
-
-                                if (param1->selectedPartySlot[v1 ^ 2] != v5) {
-                                    v7 += v6;
-                                }
-                            }
+                // Check that there are still living mons in the party.
+                for (j = 0; j < Party_GetCurrentCount(party); j++) {
+                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
+                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != FALSE
+                            && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+                            && (curHP = Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL))) {
+                        monsAlive++;
+                        if (battleCtx->selectedPartySlot[i ^ 2] != j) {
+                            totalHP += curHP;
                         }
                     }
+                }
 
-                    if (v7 == 0) {
-                        param1->battlersSwitchingMask |= FlagIndex(v1);
-                        param1->selectedPartySlot[v1] = 6;
-                    } else {
-                        param1->commandNext = v4;
-                        param1->command = 21;
-                        param1->battlerStatusFlags[v1] |= 0x1;
-                    }
+                if (totalHP == 0) {
+                    battleCtx->battlersSwitchingMask |= FlagIndex(i);
+                    battleCtx->selectedPartySlot[i] = 6;
+                } else {
+                    battleCtx->commandNext = retCommand;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                    battleCtx->battlerStatusFlags[i] |= BATTLER_STATUS_SWITCHING;
                 }
             }
-        } else {
-            if (param1->battleMons[v1].curHP == 0) {
-                {
-                    int v12;
-                    int v13 = 0;
-                    Party * v14;
-                    Pokemon * v15;
-                    BattlerData * v16;
+        } else if (battleCtx->battleMons[i].curHP == 0) {
+            int j;
+            int curHP = 0;
+            Party *party = BattleSystem_Party(battleSys, i);
+            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                    v14 = BattleSystem_Party(param0, v1);
-                    v16 = BattleSystem_BattlerData(param0, v1);
+            for (j = 0; j < Party_GetCurrentCount(party); j++) {
+                Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
 
-                    for (v12 = 0; v12 < Party_GetCurrentCount(v14); v12++) {
-                        v15 = Party_GetPokemonBySlotIndex(v14, v12);
-
-                        if ((Pokemon_GetValue(v15, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v15, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v13 += Pokemon_GetValue(v15, MON_DATA_CURRENT_HP, NULL);
-                        }
-                    }
-
-                    if (v13 == 0) {
-                        param1->battlersSwitchingMask |= FlagIndex(v1);
-                        param1->selectedPartySlot[v1] = 6;
-                    } else {
-                        param1->commandNext = v4;
-                        param1->command = 21;
-                        param1->battlerStatusFlags[v1] |= 0x1;
-                    }
+                if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != FALSE
+                        && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                    curHP += Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL);
                 }
             }
-        }
-    }
 
-    if (param1->command == 21) {
-        if (((v3 & (0x4 | 0x2 | 0x80)) == 0) && (BattleSystem_Ruleset(param0) == 0) && (((param1->battlerStatusFlags[0] & 0x1) == 0) || ((param1->battlerStatusFlags[1] & 0x1) == 0)) && (BattleSystem_AnyReplacementMons(param0, param1, 0))) {
-            if (param1->battlerStatusFlags[0] & 0x1) {
-                param1->scriptTemp = 0;
+            if (curHP == 0) {
+                battleCtx->battlersSwitchingMask |= FlagIndex(i);
+                battleCtx->selectedPartySlot[i] = 6;
             } else {
-                param1->scriptTemp = 1;
+                battleCtx->commandNext = retCommand;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                battleCtx->battlerStatusFlags[i] |= BATTLER_STATUS_SWITCHING;
             }
-
-            BattleSystem_LoadScript(param1, 1, (0 + 231));
-        } else {
-            BattleSystem_LoadScript(param1, 1, (0 + 10));
         }
-
-        v0 = 1;
     }
 
-    return v0;
+    if (battleCtx->command == BATTLE_CONTROL_EXEC_SCRIPT) {
+        if ((battleType & BATTLE_TYPE_FORCED_SET_MODE) == FALSE
+                && BattleSystem_Ruleset(battleSys) == 0 // switch mode
+                && ((battleCtx->battlerStatusFlags[0] & BATTLER_STATUS_SWITCHING) == FALSE
+                    || (battleCtx->battlerStatusFlags[1] & BATTLER_STATUS_SWITCHING) == FALSE)
+                && BattleSystem_AnyReplacementMons(battleSys, battleCtx, BATTLER_US)) {
+            // If the player is flagged as replacing a fainted mon, then inform the script
+            // to skip ahead to showing the party list without prompt.
+            if (battleCtx->battlerStatusFlags[0] & BATTLER_STATUS_SWITCHING) {
+                battleCtx->scriptTemp = FALSE;
+            } else {
+                battleCtx->scriptTemp = TRUE;
+            }
+
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_REPLACE_FAINTED);
+        } else {
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_SHOW_PARTY_LIST);
+        }
+
+        result = TRUE;
+    }
+
+    return result;
 }
 
 static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleContext * param1)
