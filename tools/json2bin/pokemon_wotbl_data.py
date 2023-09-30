@@ -26,13 +26,13 @@ def parse_level_up_moves(table: dict, _size: int, _enum: None):
         level = int(key)
         level_moves = value
         if type(level_moves) == str:
-            out += table_line(moves.Move[level_moves].value, level)
+            out.extend(table_line(moves.Move[level_moves].value, level))
         elif type(level_moves) == list:
             for move in level_moves:
-                out += table_line(moves.Move[move].value, level)
+                out.extend(table_line(moves.Move[move].value, level))
         else:
             print('ERROR')
-    out += [0xFF, 0xFF]  # Sentinel value for end of list
+    out.extend([0xFF, 0xFF])  # Sentinel value for end of list
     return pad_bytes(out)
 
 
