@@ -604,6 +604,18 @@ endforeach
 
 
 # Generate NARCs
+wotbl_narc = custom_target('wotbl.narc',
+    output: 'wotbl.narc',
+    input: personal_files,
+    command: [
+        pokemon_wotbl_data_py,
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+    ]
+)
+
 pl_personal_narc = custom_target('pl_personal.narc',
     output: 'pl_personal.narc',
     input: personal_files,
@@ -670,3 +682,4 @@ nitrofs_files += pl_personal_narc
 nitrofs_files += pl_poke_icon_narc
 nitrofs_files += pl_pokegra_narc
 nitrofs_files += pl_otherpoke_narc
+nitrofs_files += wotbl_narc
