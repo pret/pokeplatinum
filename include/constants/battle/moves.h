@@ -95,6 +95,11 @@
 #define RANGE_USER_OR_ALLY              (1 << 9)
 #define RANGE_SINGLE_TARGET_ME_FIRST    (1 << 10)
 
+#define RANGE_MY_SIDE   (RANGE_SINGLE_TARGET_SPECIAL \
+                        | RANGE_USER \
+                        | RANGE_FIELD \
+                        | RANGE_USER_OR_ALLY)
+
 #define MOVE_FLAG_MAKES_CONTACT         (1 << 0)
 #define MOVE_FLAG_CAN_PROTECT           (1 << 1)
 #define MOVE_FLAG_CAN_MAGIC_COAT        (1 << 2)
