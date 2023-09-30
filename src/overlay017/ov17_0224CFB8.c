@@ -286,7 +286,7 @@ static void ov17_0224D1E8 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
 
     sub_0200D9E8(ov17_0224D240, v1, 30000);
     v0->unk_1078 = 0;
-    sub_0200549C(1135);
+    Sound_PlayBGM(1135);
 }
 
 static void ov17_0224D240 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1472,7 +1472,7 @@ static void ov17_0224E7C8 (UnkStruct_ov17_0224F30C * param0, void * param1, cons
     UnkStruct_ov17_0224DF54_sub2 * v1 = param3;
 
     sub_0200569C();
-    sub_0200549C(v1->unk_24.unk_00);
+    Sound_PlayBGM(v1->unk_24.unk_00);
 
     v0->unk_1078 = 1;
     v0->unk_1084 = v0->unk_107C;
@@ -1533,7 +1533,7 @@ static void ov17_0224E86C (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 4:
-        sub_0200549C(1135);
+        Sound_PlayBGM(1135);
         sub_02005748(1765);
         v0->unk_4C++;
         break;

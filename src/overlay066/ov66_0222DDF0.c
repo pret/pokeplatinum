@@ -2493,7 +2493,7 @@ static void ov66_0222FA88 (UnkStruct_ov66_0222FB64 * param0, UnkStruct_ov66_0222
         ov66_022302D0(param2);
 
         if (param0->unk_0C == 0) {
-            sub_0200549C(1213);
+            Sound_PlayBGM(1213);
         }
 
         param0->unk_00_4 = 1;

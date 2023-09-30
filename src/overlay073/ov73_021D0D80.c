@@ -1466,7 +1466,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         }
         break;
     case 3:
-        sub_0200549C(1029);
+        Sound_PlayBGM(1029);
         param0->unk_89 = 1;
         param0->unk_8A = 0;
         ov73_021D1A20(param0);

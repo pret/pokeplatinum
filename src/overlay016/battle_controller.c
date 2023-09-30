@@ -9,6 +9,7 @@
 #include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/sdat.h"
+#include "constants/species.h"
 #include "constants/trainer.h"
 #include "constants/battle/battle_effects.h"
 #include "constants/battle/condition.h"
@@ -117,8 +118,8 @@ static BOOL BattleController_CheckQuickClaw(BattleSystem *battleSys, BattleConte
 static int BattleController_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 static int BattleController_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 static BOOL BattleController_MoveStolen(BattleSystem *battleSys, BattleContext * battleCtx);
-static BOOL BattleController_CheckAnySwitches(BattleSystem * param0, BattleContext * param1);
-static BOOL BattleController_CheckBattleOver(BattleSystem * param0, BattleContext * param1);
+static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BattleController_CheckBattleOver(BattleSystem * battleSys, BattleContext *battleCtx);
 static BOOL BattleController_CheckRange(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target);
 static void ov16_02250E8C(BattleSystem * param0, BattleContext * param1);
 static BOOL BattleController_CheckAnyFainted(BattleContext * param0, int param1, int param2, int param3);
@@ -1892,7 +1893,7 @@ static void BattleController_TurnEnd(BattleSystem *battleSys, BattleContext *bat
     // Explicit `== TRUE` is needed to match on these.
     if (BattleController_CheckExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
             || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE
-            || BattleController_CheckAnySwitches(battleSys, battleCtx) == TRUE) {
+            || BattleController_ReplaceFainted(battleSys, battleCtx) == TRUE) {
         return;
     }
 
@@ -3798,8 +3799,8 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
         {
             int v0;
             int v1 = BattleSystem_MaxBattlers(param0);
-            UnkStruct_ov16_0225BFFC * v2 = BattleSystem_BattlerData(param0, param1->attacker);
-            u8 v3 = ov16_02263AE4(v2);
+            BattlerData * v2 = BattleSystem_BattlerData(param0, param1->attacker);
+            u8 v3 = Battler_Type(v2);
 
             do {
                 v0 = param1->monSpeedOrder[param1->battlerCounter++];
@@ -3807,7 +3808,7 @@ static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
                 if (((param1->battlersSwitchingMask & FlagIndex(v0)) == 0) && (param1->battleMons[v0].curHP)) {
                     v2 = BattleSystem_BattlerData(param0, v0);
 
-                    if (((v3 & 0x1) && ((ov16_02263AE4(v2) & 0x1) == 0)) || ((v3 & 0x1) == 0) && (ov16_02263AE4(v2) & 0x1)) {
+                    if (((v3 & 0x1) && ((Battler_Type(v2) & 0x1) == 0)) || ((v3 & 0x1) == 0) && (Battler_Type(v2) & 0x1)) {
                         BattleSystem_SetupLoop(param0, param1);
                         param1->defender = v0;
                         param1->command = 22;
@@ -4018,7 +4019,7 @@ static void ov16_02250760 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleSystem_BattleType(param0);
 
     if ((v1 & 0x4) == 0) {
-        v0 = ov16_0223DF20(param0, 0);
+        v0 = BattleSystem_Party(param0, 0);
         sub_020776B0(v0);
         sub_0207782C(v0);
     }
@@ -4035,279 +4036,251 @@ static void ov16_02250798 (BattleSystem * param0, BattleContext * param1)
     return;
 }
 
-static BOOL BattleController_CheckAnySwitches (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_ReplaceFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL v0 = 0;
-    int v1;
-    int v2;
-    u32 v3;
-    int v4;
+    BOOL result = FALSE;
+    int i; // must be declared here to match
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
+    int retCommand = battleCtx->command;
 
-    v2 = BattleSystem_MaxBattlers(param0);
-    v3 = BattleSystem_BattleType(param0);
-    v4 = param1->command;
+    for (i = 0; i < maxBattlers; i++) {
+        battleCtx->battlerStatusFlags[i] &= ~BATTLER_STATUS_SWITCHING;
 
-    for (v1 = 0; v1 < v2; v1++) {
-        param1->battlerStatusFlags[v1] &= 0x1 ^ 0xffffffff;
-
-        if (((v3 & 0x2) && ((v3 & (0x8 | 0x10)) == 0)) || ((v3 & 0x10) && ((Battler_Side(param0, v1)) == 0))) {
-            if ((param1->battleMons[v1].curHP == 0) && (param1->battleMons[v1 ^ 2].curHP == 0) && (v1 & 2)) {
+        if (((battleType & BATTLE_TYPE_DOUBLES) && (battleType & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_TAG)) == FALSE)
+                || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, i) == FALSE)) {
+            // If both of this side's mons have been defeated, replace slot 1 first.
+            if (battleCtx->battleMons[i].curHP == 0 && battleCtx->battleMons[i ^ 2].curHP == 0 && (i & 2)) {
                 continue;
             }
 
-            if (param1->battleMons[v1].curHP == 0) {
-                {
-                    int v5;
-                    int v6;
-                    int v7 = 0;
-                    int v8 = 0;
-                    Party * v9;
-                    Pokemon * v10;
-                    UnkStruct_ov16_0225BFFC * v11;
+            if (battleCtx->battleMons[i].curHP == 0) {
+                int j;
+                int curHP;
+                int totalHP = 0;
+                int monsAlive = 0;
+                Party *party = BattleSystem_Party(battleSys, i);
+                BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i); // this has to go here, even though it's unused
 
-                    v9 = ov16_0223DF20(param0, v1);
-                    v11 = BattleSystem_BattlerData(param0, v1);
-
-                    for (v5 = 0; v5 < Party_GetCurrentCount(v9); v5++) {
-                        v10 = Party_GetPokemonBySlotIndex(v9, v5);
-
-                        if ((Pokemon_GetValue(v10, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v10, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            if (v6 = Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL)) {
-                                v8++;
-
-                                if (param1->selectedPartySlot[v1 ^ 2] != v5) {
-                                    v7 += v6;
-                                }
-                            }
+                // Check that there are still living mons in the party.
+                for (j = 0; j < Party_GetCurrentCount(party); j++) {
+                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
+                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != FALSE
+                            && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG
+                            && (curHP = Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL))) {
+                        monsAlive++;
+                        if (battleCtx->selectedPartySlot[i ^ 2] != j) {
+                            totalHP += curHP;
                         }
                     }
+                }
 
-                    if (v7 == 0) {
-                        param1->battlersSwitchingMask |= FlagIndex(v1);
-                        param1->selectedPartySlot[v1] = 6;
-                    } else {
-                        param1->commandNext = v4;
-                        param1->command = 21;
-                        param1->battlerStatusFlags[v1] |= 0x1;
-                    }
+                if (totalHP == 0) {
+                    battleCtx->battlersSwitchingMask |= FlagIndex(i);
+                    battleCtx->selectedPartySlot[i] = 6;
+                } else {
+                    battleCtx->commandNext = retCommand;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                    battleCtx->battlerStatusFlags[i] |= BATTLER_STATUS_SWITCHING;
                 }
             }
-        } else {
-            if (param1->battleMons[v1].curHP == 0) {
-                {
-                    int v12;
-                    int v13 = 0;
-                    Party * v14;
-                    Pokemon * v15;
-                    UnkStruct_ov16_0225BFFC * v16;
+        } else if (battleCtx->battleMons[i].curHP == 0) {
+            int j;
+            int curHP = 0;
+            Party *party = BattleSystem_Party(battleSys, i);
+            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                    v14 = ov16_0223DF20(param0, v1);
-                    v16 = BattleSystem_BattlerData(param0, v1);
+            for (j = 0; j < Party_GetCurrentCount(party); j++) {
+                Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
 
-                    for (v12 = 0; v12 < Party_GetCurrentCount(v14); v12++) {
-                        v15 = Party_GetPokemonBySlotIndex(v14, v12);
-
-                        if ((Pokemon_GetValue(v15, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v15, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v13 += Pokemon_GetValue(v15, MON_DATA_CURRENT_HP, NULL);
-                        }
-                    }
-
-                    if (v13 == 0) {
-                        param1->battlersSwitchingMask |= FlagIndex(v1);
-                        param1->selectedPartySlot[v1] = 6;
-                    } else {
-                        param1->commandNext = v4;
-                        param1->command = 21;
-                        param1->battlerStatusFlags[v1] |= 0x1;
-                    }
+                if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != FALSE
+                        && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                    curHP += Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL);
                 }
             }
-        }
-    }
 
-    if (param1->command == 21) {
-        if (((v3 & (0x4 | 0x2 | 0x80)) == 0) && (ov16_0223EE18(param0) == 0) && (((param1->battlerStatusFlags[0] & 0x1) == 0) || ((param1->battlerStatusFlags[1] & 0x1) == 0)) && (ov16_02255B10(param0, param1, 0))) {
-            if (param1->battlerStatusFlags[0] & 0x1) {
-                param1->scriptTemp = 0;
+            if (curHP == 0) {
+                battleCtx->battlersSwitchingMask |= FlagIndex(i);
+                battleCtx->selectedPartySlot[i] = 6;
             } else {
-                param1->scriptTemp = 1;
+                battleCtx->commandNext = retCommand;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                battleCtx->battlerStatusFlags[i] |= BATTLER_STATUS_SWITCHING;
             }
-
-            BattleSystem_LoadScript(param1, 1, (0 + 231));
-        } else {
-            BattleSystem_LoadScript(param1, 1, (0 + 10));
         }
-
-        v0 = 1;
     }
 
-    return v0;
+    if (battleCtx->command == BATTLE_CONTROL_EXEC_SCRIPT) {
+        if ((battleType & BATTLE_TYPE_FORCED_SET_MODE) == FALSE
+                && BattleSystem_Ruleset(battleSys) == 0 // switch mode
+                && ((battleCtx->battlerStatusFlags[0] & BATTLER_STATUS_SWITCHING) == FALSE
+                    || (battleCtx->battlerStatusFlags[1] & BATTLER_STATUS_SWITCHING) == FALSE)
+                && BattleSystem_AnyReplacementMons(battleSys, battleCtx, BATTLER_US)) {
+            // If the player is flagged as replacing a fainted mon, then inform the script
+            // to skip ahead to showing the party list without prompt.
+            if (battleCtx->battlerStatusFlags[0] & BATTLER_STATUS_SWITCHING) {
+                battleCtx->scriptTemp = FALSE;
+            } else {
+                battleCtx->scriptTemp = TRUE;
+            }
+
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_REPLACE_FAINTED);
+        } else {
+            LOAD_SUBSEQ(BATTLE_SUBSEQ_SHOW_PARTY_LIST);
+        }
+
+        result = TRUE;
+    }
+
+    return result;
 }
 
-static BOOL BattleController_CheckBattleOver (BattleSystem * param0, BattleContext * param1)
+static BOOL BattleController_CheckBattleOver(BattleSystem * battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    u32 v2;
-    u8 v3;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
+    u8 battleResult = BATTLE_IN_PROGRESS;
 
-    v1 = BattleSystem_MaxBattlers(param0);
-    v2 = BattleSystem_BattleType(param0);
-    v3 = 0;
+    for (i = 0; i < maxBattlers; i++) {
+        if ((battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER || battleType == BATTLE_TYPE_AI_PARTNER)
+                && Battler_Side(battleSys, i) == BATTLER_US) {
+            // If the player has no more usable Pokemon in a tag battle with an AI-controlled partner,
+            // flag the battle as lost.
+            if (BattleSystem_BattlerSlot(battleSys, i) == BATTLER_TYPE_PLAYER_SIDE_SLOT_1
+                    && battleCtx->battleMons[i].curHP == 0) {
+                int totalPartyHP = 0;
+                Party *party = BattleSystem_Party(battleSys, i);
+                BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if (((v2 == ((0x2 | 0x1) | 0x8 | 0x40)) || (v2 == (0x2 | 0x8 | 0x40))) && (Battler_Side(param0, v0) == 0)) {
-            if (BattleSystem_BattlerSlot(param0, v0) == 2) {
-                if (param1->battleMons[v0].curHP == 0) {
-                    {
-                        int v4;
-                        int v5 = 0;
-                        Party * v6;
-                        Pokemon * v7;
-                        UnkStruct_ov16_0225BFFC * v8;
+                for (int j = 0; j < Party_GetCurrentCount(party); j++) {
+                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
+                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                            && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL);
+                    }
+                }
 
-                        v6 = ov16_0223DF20(param0, v0);
-                        v8 = BattleSystem_BattlerData(param0, v0);
+                if (totalPartyHP == 0) {
+                    battleResult |= BATTLE_RESULT_LOSE;
+                }
+            }
+        } else if ((battleType & BATTLE_TYPE_2vs2) || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, i))) {
+            if (battleCtx->battleMons[i].curHP == 0) {
+                int totalPartyHP = 0;
+                Party *party = BattleSystem_Party(battleSys, i);
+                Party *partnerParty = BattleSystem_Party(battleSys, BattleSystem_Partner(battleSys, i));
+                BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                        for (v4 = 0; v4 < Party_GetCurrentCount(v6); v4++) {
-                            v7 = Party_GetPokemonBySlotIndex(v6, v4);
+                for (int j = 0; j < Party_GetCurrentCount(party); j++) {
+                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
+                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                            && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL);
+                    }
+                }
 
-                            if ((Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                                v5 += Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL);
-                            }
-                        }
+                for (int j = 0; j < Party_GetCurrentCount(partnerParty); j++) {
+                    Pokemon *pokemon = Party_GetPokemonBySlotIndex(partnerParty, j);
+                    if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                            && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                        totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL);
+                    }
+                }
 
-                        if (v5 == 0) {
-                            v3 |= 0x2;
-                        }
+                if (totalPartyHP == 0) {
+                    if (Battler_Type(battlerData) & BATTLER_THEM) {
+                        battleResult |= BATTLE_RESULT_WIN;
+                    } else {
+                        battleResult |= BATTLE_RESULT_LOSE;
                     }
                 }
             }
-        } else if ((v2 & 0x8) || ((v2 & 0x10) && (Battler_Side(param0, v0)))) {
-            if (param1->battleMons[v0].curHP == 0) {
-                {
-                    int v9;
-                    int v10 = 0;
-                    Party * v11;
-                    Party * v12;
-                    Pokemon * v13;
-                    UnkStruct_ov16_0225BFFC * v14;
+        } else if (battleCtx->battleMons[i].curHP == 0) {
+            int totalPartyHP = 0;
+            Party *party = BattleSystem_Party(battleSys, i);
+            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                    v11 = ov16_0223DF20(param0, v0);
-                    v12 = ov16_0223DF20(param0, BattleSystem_Partner(param0, v0));
-                    v14 = BattleSystem_BattlerData(param0, v0);
-
-                    for (v9 = 0; v9 < Party_GetCurrentCount(v11); v9++) {
-                        v13 = Party_GetPokemonBySlotIndex(v11, v9);
-
-                        if ((Pokemon_GetValue(v13, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v13, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v10 += Pokemon_GetValue(v13, MON_DATA_CURRENT_HP, NULL);
-                        }
-                    }
-
-                    for (v9 = 0; v9 < Party_GetCurrentCount(v12); v9++) {
-                        v13 = Party_GetPokemonBySlotIndex(v12, v9);
-
-                        if ((Pokemon_GetValue(v13, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v13, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v10 += Pokemon_GetValue(v13, MON_DATA_CURRENT_HP, NULL);
-                        }
-                    }
-
-                    if (v10 == 0) {
-                        if (ov16_02263AE4(v14) & 0x1) {
-                            v3 |= 0x1;
-                        } else {
-                            v3 |= 0x2;
-                        }
-                    }
+            for (int j = 0; j < Party_GetCurrentCount(party); j++) {
+                Pokemon *pokemon = Party_GetPokemonBySlotIndex(party, j);
+                if (Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                        && Pokemon_GetValue(pokemon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                    totalPartyHP += Pokemon_GetValue(pokemon, MON_DATA_CURRENT_HP, NULL);
                 }
             }
-        } else {
-            if (param1->battleMons[v0].curHP == 0) {
-                {
-                    int v15;
-                    int v16 = 0;
-                    Party * v17;
-                    Pokemon * v18;
-                    UnkStruct_ov16_0225BFFC * v19;
 
-                    v17 = ov16_0223DF20(param0, v0);
-                    v19 = BattleSystem_BattlerData(param0, v0);
-
-                    for (v15 = 0; v15 < Party_GetCurrentCount(v17); v15++) {
-                        v18 = Party_GetPokemonBySlotIndex(v17, v15);
-
-                        if ((Pokemon_GetValue(v18, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v18, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                            v16 += Pokemon_GetValue(v18, MON_DATA_CURRENT_HP, NULL);
-                        }
-                    }
-
-                    if (v16 == 0) {
-                        if (ov16_02263AE4(v19) & 0x1) {
-                            v3 |= 0x1;
-                        } else {
-                            v3 |= 0x2;
-                        }
-                    }
+            if (totalPartyHP == 0) {
+                if (Battler_Type(battlerData) & BATTLER_THEM) {
+                    battleResult |= BATTLE_RESULT_WIN;
+                } else {
+                    battleResult |= BATTLE_RESULT_LOSE;
                 }
             }
         }
     }
 
-    if (((v3 == 0x1) && (v2 & 0x1) && ((v2 & 0x4) == 0)) || ((v3 == 0x1) && (v2 & 0x80) && ((v2 & 0x4) == 0))) {
-        {
-            TrainerData *v20 = ov16_0223E120(param0, 1);
+    // Have to keep this ugly double-chain in order to match. Simplified: we win a trainer/frontier battle and it's not
+    // a link battle.
+    if ((battleResult == BATTLE_RESULT_WIN && (battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_LINK) == FALSE)
+            || (battleResult == BATTLE_RESULT_WIN && (battleType & BATTLE_TYPE_FRONTIER) && (battleType & BATTLE_TYPE_LINK) == FALSE)) {
+        TrainerData *trainer = BattleSystem_TrainerData(battleSys, 1);
 
-            switch (v20->class) {
-                case TRAINER_CLASS_LEADER_ROARK:
-                case TRAINER_CLASS_LEADER_GARDENIA:
-                case TRAINER_CLASS_LEADER_WAKE:
-                case TRAINER_CLASS_LEADER_MAYLENE:
-                case TRAINER_CLASS_LEADER_FANTINA:
-                case TRAINER_CLASS_LEADER_CANDICE:
-                case TRAINER_CLASS_LEADER_BYRON:
-                case TRAINER_CLASS_LEADER_VOLKNER:
-                    sub_0200549C(SEQ_VICTORY_GYM_LEADER);
-                    break;
-                case TRAINER_CLASS_TOWER_TYCOON:
-                case TRAINER_CLASS_HALL_MATRON:
-                case TRAINER_CLASS_FACTORY_HEAD:
-                case TRAINER_CLASS_ARCADE_STAR:
-                case TRAINER_CLASS_CASTLE_VALET:
-                    sub_0200549C(SEQ_VICTORY_FRONTIER_BRAIN);
-                    break;
-                case TRAINER_CLASS_CHAMPION_CYNTHIA:
-                    sub_0200549C(SEQ_VICTORY_CHAMPION);
-                    break;
-                case TRAINER_CLASS_COMMANDER_MARS:
-                case TRAINER_CLASS_COMMANDER_JUPITER:
-                case TRAINER_CLASS_COMMANDER_SATURN:
-                case TRAINER_CLASS_GALACTIC_GRUNT_MALE:
-                case TRAINER_CLASS_GALACTIC_GRUNT_FEMALE:
-                    sub_0200549C(SEQ_VICTORY_GALACTIC_GRUNT);
-                    break;
-                case TRAINER_CLASS_GALACTIC_BOSS:
-                    sub_0200549C(SEQ_VICTORY_CYRUS);
-                    break;
-                case TRAINER_CLASS_ELITE_FOUR_AARON:
-                case TRAINER_CLASS_ELITE_FOUR_BERTHA:
-                case TRAINER_CLASS_ELITE_FOUR_FLINT:
-                case TRAINER_CLASS_ELITE_FOUR_LUCIAN:
-                    sub_0200549C(SEQ_VICTORY_ELITE_FOUR);
-                    break;
-                default:
-                    sub_0200549C(SEQ_VICTORY_TRAINER);
-                    break;
-            }
+        switch (trainer->class) {
+            case TRAINER_CLASS_LEADER_ROARK:
+            case TRAINER_CLASS_LEADER_GARDENIA:
+            case TRAINER_CLASS_LEADER_WAKE:
+            case TRAINER_CLASS_LEADER_MAYLENE:
+            case TRAINER_CLASS_LEADER_FANTINA:
+            case TRAINER_CLASS_LEADER_CANDICE:
+            case TRAINER_CLASS_LEADER_BYRON:
+            case TRAINER_CLASS_LEADER_VOLKNER:
+                Sound_PlayBGM(SEQ_VICTORY_GYM_LEADER);
+                break;
+
+            case TRAINER_CLASS_TOWER_TYCOON:
+            case TRAINER_CLASS_HALL_MATRON:
+            case TRAINER_CLASS_FACTORY_HEAD:
+            case TRAINER_CLASS_ARCADE_STAR:
+            case TRAINER_CLASS_CASTLE_VALET:
+                Sound_PlayBGM(SEQ_VICTORY_FRONTIER_BRAIN);
+                break;
+
+            case TRAINER_CLASS_CHAMPION_CYNTHIA:
+                Sound_PlayBGM(SEQ_VICTORY_CHAMPION);
+                break;
+
+            case TRAINER_CLASS_COMMANDER_MARS:
+            case TRAINER_CLASS_COMMANDER_JUPITER:
+            case TRAINER_CLASS_COMMANDER_SATURN:
+            case TRAINER_CLASS_GALACTIC_GRUNT_MALE:
+            case TRAINER_CLASS_GALACTIC_GRUNT_FEMALE:
+                Sound_PlayBGM(SEQ_VICTORY_GALACTIC_GRUNT);
+                break;
+
+            case TRAINER_CLASS_GALACTIC_BOSS:
+                Sound_PlayBGM(SEQ_VICTORY_CYRUS);
+                break;
+
+            case TRAINER_CLASS_ELITE_FOUR_AARON:
+            case TRAINER_CLASS_ELITE_FOUR_BERTHA:
+            case TRAINER_CLASS_ELITE_FOUR_FLINT:
+            case TRAINER_CLASS_ELITE_FOUR_LUCIAN:
+                Sound_PlayBGM(SEQ_VICTORY_ELITE_FOUR);
+                break;
+
+            default:
+                Sound_PlayBGM(SEQ_VICTORY_TRAINER);
+                break;
         }
-        ov16_0223F460(param0, 2);
+
+        BattleSystem_SetRedHPSoundFlag(battleSys, 2);
     }
 
-    if (v3) {
-        ov16_0223F444(param0, v3);
+    if (battleResult) {
+        BattleSystem_SetResultFlag(battleSys, battleResult);
     }
 
-    return v3 != 0;
+    return battleResult != 0;
 }
 
 static BOOL BattleController_CheckRange (BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u32 battleType, int *range, int moveSlot, u32 *target)

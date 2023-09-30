@@ -59,7 +59,21 @@ BOOL ov16_022559DC(BattleContext * param0, int param1);
 BOOL ov16_022559FC(BattleSystem * param0, BattleContext * param1);
 u8 Battler_Ability(BattleContext * param0, int param1);
 BOOL Battler_IgnorableAbility(BattleContext * param0, int param1, int param2, int param3);
-BOOL ov16_02255B10(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Checks if there are any Pokemon which can act as a replacement for a
+ * fainted one.
+ * 
+ * Replacement-eligible Pokemon have HP > 0 and belong to the same party as a
+ * fallen ally.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler which wishes to replace a fainted Pokemon.
+ * @return TRUE if there are any Pokemon which can replace the fainted one;
+ * otherwise FALSE. 
+ */
+BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);

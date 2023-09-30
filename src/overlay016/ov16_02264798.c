@@ -15,7 +15,7 @@
 
 static void ov16_02264800(UnkStruct_0201CD38 * param0, void * param1);
 
-void ov16_02264798 (UnkStruct_ov16_0225BFFC * param0, BattleSystem * param1)
+void ov16_02264798 (BattlerData * param0, BattleSystem * param1)
 {
     if (param0->unk_194 != NULL) {
         return;
@@ -29,7 +29,7 @@ void ov16_02264798 (UnkStruct_ov16_0225BFFC * param0, BattleSystem * param1)
     param0->unk_194 = sub_0200D9E8(ov16_02264800, param0, 1010);
 }
 
-void ov16_022647D8 (UnkStruct_ov16_0225BFFC * param0)
+void ov16_022647D8 (BattlerData * param0)
 {
     if (param0->unk_194 == NULL) {
         return;
@@ -45,7 +45,7 @@ void ov16_022647D8 (UnkStruct_ov16_0225BFFC * param0)
 
 static void ov16_02264800 (UnkStruct_0201CD38 * param0, void * param1)
 {
-    UnkStruct_ov16_0225BFFC * v0 = param1;
+    BattlerData * v0 = param1;
     int v1;
 
     v0->unk_198 += 20;

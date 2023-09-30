@@ -6,7 +6,7 @@
 
 typedef struct {
     BattleSystem * unk_00;
-    UnkStruct_ov16_0225BFFC * unk_04;
+    BattlerData * unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;

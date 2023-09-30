@@ -542,7 +542,7 @@ static void ov17_022523AC (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 6:
         if (sub_0200F2AC() == 1) {
-            sub_0200549C(1181);
+            Sound_PlayBGM(1181);
             v0->unk_10++;
         }
         break;
@@ -655,7 +655,7 @@ static void ov17_0225266C (UnkStruct_0201CD38 * param0, void * param1)
     case 0:
         ov17_02250FE4(v0->unk_00);
         ov17_02251598(v0->unk_00, 0, &v0->unk_12);
-        sub_0200549C(1182);
+        Sound_PlayBGM(1182);
         sub_02005748(1765);
         v0->unk_10++;
         break;
