@@ -95,18 +95,18 @@ static void BattleController_LeftoverState29(BattleSystem *battleSys, BattleCont
 static void BattleController_AfterMoveEffects(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleController_LeftoverState32(BattleSystem *battleSys, BattleContext *battleCtx);
-static void ov16_02250270(BattleSystem * param0, BattleContext * param1);
-static void ov16_02250298(BattleSystem * param0, BattleContext * param1);
-static void ov16_02250438(BattleSystem * param0, BattleContext * param1);
-static void ov16_02250480(BattleSystem * param0, BattleContext * param1);
-static void ov16_02250494(BattleSystem * param0, BattleContext * param1);
-static void ov16_02250498(BattleSystem * param0, BattleContext * param1);
-static void ov16_022505C4(BattleSystem * param0, BattleContext * param1);
-static void ov16_022506A4(BattleSystem * param0, BattleContext * param1);
-static void ov16_022506C0(BattleSystem * param0, BattleContext * param1);
-static void ov16_0225074C(BattleSystem * param0, BattleContext * param1);
-static void ov16_02250760(BattleSystem * param0, BattleContext * param1);
-static void ov16_02250798(BattleSystem * param0, BattleContext * param1);
+static void BattleController_LoopWhileFainted(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_LoopSpreadMoves(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_FaintAfterSelfdestruct(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_TriggerAfterHitEffects(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_LeftoverState37(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_UpdateMoveBuffers(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_CheckAnyFainted(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_EndFight(BattleSystem *battleSys, BattleContext *battleCtx);
+static void BattleController_EndWait(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -170,18 +170,18 @@ static const BattleControlFunc BattleControlCommands[] = {
     BattleController_AfterMoveEffects,
     BattleController_LoopMultiHit,
     BattleController_LeftoverState32,
-    ov16_02250270,
-    ov16_02250298,
-    ov16_02250438,
-    ov16_02250480,
-    ov16_02250494,
-    ov16_02250498,
-    ov16_022505C4,
-    ov16_022506A4,
-    ov16_022506C0,
-    ov16_0225074C,
-    ov16_02250760,
-    ov16_02250798
+    BattleController_LoopWhileFainted,
+    BattleController_LoopSpreadMoves,
+    BattleController_FaintAfterSelfdestruct,
+    BattleController_TriggerAfterHitEffects,
+    BattleController_LeftoverState37,
+    BattleController_UpdateMoveBuffers,
+    BattleController_MoveEnd,
+    BattleController_CheckAnyFainted,
+    BattleController_HandleResult,
+    BattleController_ScreenWipe,
+    BattleController_EndFight,
+    BattleController_EndWait
 };
 
 void* BattleContext_New (BattleSystem *battleSys)
@@ -2024,7 +2024,7 @@ static void BattleController_SwitchCommand(BattleSystem *battleSys, BattleContex
     battleCtx->attacker = battleCtx->battlerActionOrder[battleCtx->turnOrderCounter];
     battleCtx->switchedMon = battleCtx->attacker;
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-    battleCtx->commandNext = BATTLE_CONTROL_AFTER_SWITCH;
+    battleCtx->commandNext = BATTLE_CONTROL_CHECK_ANY_FAINTED;
     battleCtx->scriptTemp = 0;
     battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
 }
@@ -2635,7 +2635,7 @@ static BOOL BattleController_CheckStatusDisruption(BattleSystem *battleSys, Batt
                         
                         LOAD_SUBSEQ(BATTLE_SUBSEQ_HURT_SELF_IN_CONFUSION);
                         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-                        battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED;
+                        battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
 
                         result = CHECK_STATUS_DISRUPT_MOVE;
                     }
@@ -3120,7 +3120,7 @@ static void BattleController_BeforeMove(BattleSystem *battleSys, BattleContext *
                     battleCtx->commandNext = battleCtx->command;
                     break;
                 case OBEY_CHECK_HIT_SELF:
-                    battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED;
+                    battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
                     break;
                 }
 
@@ -3268,7 +3268,7 @@ static void BattleController_PrimaryEffect(BattleSystem *battleSys, BattleContex
 static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_MORE_WORK) {
-        battleCtx->command = BATTLE_CONTROL_CHECK_MULTI_TARGET;
+        battleCtx->command = BATTLE_CONTROL_LOOP_SPREAD_MOVES;
     } else if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_PP) {
         LOAD_SUBSEQ(BATTLE_SUBSEQ_NO_PP);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
@@ -3281,7 +3281,7 @@ static void BattleController_CheckMoveFailure(BattleSystem *battleSys, BattleCon
     } else if (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) {
         LOAD_SUBSEQ(BATTLE_SUBSEQ_MISSED);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-        battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED; // crash damage can kill
+        battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED; // crash damage can kill
     } else {
         battleCtx->command = BATTLE_CONTROL_USE_MOVE;
     }
@@ -3753,7 +3753,7 @@ static void BattleController_LoopMultiHit(BattleSystem *battleSys, BattleContext
 
                 LOAD_SUBSEQ(BATTLE_SUBSEQ_HIT_X_TIMES);
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-                battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED;
+                battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
             }
         } else {
             if (battleCtx->faintedMon != BATTLER_NONE || (ATTACKING_MON.status & MON_CONDITION_SLEEP)) {
@@ -3766,272 +3766,254 @@ static void BattleController_LoopMultiHit(BattleSystem *battleSys, BattleContext
 
             LOAD_SUBSEQ(BATTLE_SUBSEQ_HIT_X_TIMES);
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
-            battleCtx->commandNext = BATTLE_CONTROL_CHECK_FAINTED;
+            battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
         }
 
         BattleIO_ClearMessageBox(battleSys);
     } else {
-        battleCtx->command = BATTLE_CONTROL_CHECK_FAINTED;
+        battleCtx->command = BATTLE_CONTROL_LOOP_FAINTED;
     }
 }
 
-static void ov16_02250270 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_LoopWhileFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->battleStatusMask & 0xf000000) {
-        BattleController_AnyFainted(param1, 33, 33, 0);
+    if (battleCtx->battleStatusMask & SYSCTL_MON_FAINTED) {
+        BattleController_AnyFainted(battleCtx, BATTLE_CONTROL_LOOP_FAINTED, BATTLE_CONTROL_LOOP_FAINTED, FALSE);
     } else {
-        param1->command = 34;
+        battleCtx->command = BATTLE_CONTROL_LOOP_SPREAD_MOVES;
     }
 }
 
-static void ov16_02250298 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_LoopSpreadMoves(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->battleStatusMask2 & 0x8) {
-        param1->battleStatusMask2 &= (0x8 ^ 0xffffffff);
-        param1->defender = param1->attacker;
-        param1->attacker = param1->magicCoatMon;
+    if (battleCtx->battleStatusMask2 & SYSCTL_MAGIC_COAT_REFLECTED) {
+        battleCtx->battleStatusMask2 &= ~SYSCTL_MAGIC_COAT_REFLECTED;
+        battleCtx->defender = battleCtx->attacker;
+        battleCtx->attacker = battleCtx->magicCoatMon;
     }
 
-    BattleController_UpdateHitByMoveFlags(param0, param1);
+    BattleController_UpdateHitByMoveFlags(battleSys, battleCtx);
 
-    if ((param1->aiContext.moveTable[param1->moveCur].range == 0x4) && ((param1->battleStatusMask & 0x2) == 0) && (param1->battlerCounter < BattleSystem_MaxBattlers(param0))) {
-        param1->multiHitCheckFlags = (0x1 | 0x4 | 0x8);
-        {
-            int v0;
-            int v1 = BattleSystem_MaxBattlers(param0);
-            BattlerData * v2 = BattleSystem_BattlerData(param0, param1->attacker);
-            u8 v3 = Battler_Type(v2);
+    if (CURRENT_MOVE_DATA.range == RANGE_ADJACENT_OPPONENTS
+            && (battleCtx->battleStatusMask & SYSCTL_CHECK_LOOP_ONLY_ONCE) == FALSE
+            && battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys)) {
+        battleCtx->multiHitCheckFlags = SYSCTL_HIT_MULTIPLE_TARGETS;
 
-            do {
-                v0 = param1->monSpeedOrder[param1->battlerCounter++];
+        int maxBattlers = BattleSystem_MaxBattlers(battleSys); // unused, but must stay to match
+        BattlerData *battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
+        u8 battlerType = Battler_Type(battlerData);
 
-                if (((param1->battlersSwitchingMask & FlagIndex(v0)) == 0) && (param1->battleMons[v0].curHP)) {
-                    v2 = BattleSystem_BattlerData(param0, v0);
+        do {
+            int battler = battleCtx->monSpeedOrder[battleCtx->battlerCounter++];
+            if ((battleCtx->battlersSwitchingMask & FlagIndex(battler)) == FALSE && battleCtx->battleMons[battler].curHP) {
+                battlerData = BattleSystem_BattlerData(battleSys, battler);
 
-                    if (((v3 & 0x1) && ((Battler_Type(v2) & 0x1) == 0)) || ((v3 & 0x1) == 0) && (Battler_Type(v2) & 0x1)) {
-                        BattleSystem_SetupLoop(param0, param1);
-                        param1->defender = v0;
-                        param1->command = 22;
-                        break;
-                    }
+                // Loop back to the start of the move if battlers are on opposite sides
+                if (((battlerType & BATTLER_THEM) && (Battler_Type(battlerData) & BATTLER_THEM) == FALSE)
+                        || ((battlerType & BATTLER_THEM) == FALSE && (Battler_Type(battlerData) & BATTLER_THEM))) {
+                    BattleSystem_SetupLoop(battleSys, battleCtx);
+                    battleCtx->defender = battler;
+                    battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
+                    break;
                 }
-            } while (param1->battlerCounter < BattleSystem_MaxBattlers(param0));
-        }
-        BattleIO_ClearMessageBox(param0);
-    } else if ((param1->aiContext.moveTable[param1->moveCur].range == 0x8) && ((param1->battleStatusMask & 0x2) == 0) && (param1->battlerCounter < BattleSystem_MaxBattlers(param0))) {
-        param1->multiHitCheckFlags = (0x1 | 0x4 | 0x8);
-        {
-            int v4;
-            int v5 = BattleSystem_MaxBattlers(param0);
+            }
+        } while (battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys));
 
-            do {
-                v4 = param1->monSpeedOrder[param1->battlerCounter++];
+        BattleIO_ClearMessageBox(battleSys);
+    } else if (CURRENT_MOVE_DATA.range == RANGE_ALL_ADJACENT
+            && (battleCtx->battleStatusMask & SYSCTL_CHECK_LOOP_ONLY_ONCE) == FALSE
+            && battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys)) {
+        battleCtx->multiHitCheckFlags = SYSCTL_HIT_MULTIPLE_TARGETS;
+        int maxBattlers = BattleSystem_MaxBattlers(battleSys); // unused, but must stay to match.
 
-                if (((param1->battlersSwitchingMask & FlagIndex(v4)) == 0) && (param1->battleMons[v4].curHP)) {
-                    if (v4 != param1->attacker) {
-                        BattleSystem_SetupLoop(param0, param1);
-                        param1->defender = v4;
-                        param1->command = 22;
-                        break;
-                    }
-                }
-            } while (param1->battlerCounter < BattleSystem_MaxBattlers(param0));
-        }
-        BattleIO_ClearMessageBox(param0);
+        do {
+            int battler = battleCtx->monSpeedOrder[battleCtx->battlerCounter++];
+            if ((battleCtx->battlersSwitchingMask & FlagIndex(battler)) == FALSE
+                    && battleCtx->battleMons[battler].curHP
+                    && battler != battleCtx->attacker) {
+                BattleSystem_SetupLoop(battleSys, battleCtx);
+                battleCtx->defender = battler;
+                battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
+                break;
+            }
+        } while (battleCtx->battlerCounter < BattleSystem_MaxBattlers(battleSys));
+
+        BattleIO_ClearMessageBox(battleSys);
     } else {
-        param1->command = 35;
+        battleCtx->command = BATTLE_CONTROL_FAINT_AFTER_SELFDESTRUCT;
     }
 }
 
-static void ov16_02250438 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_FaintAfterSelfdestruct(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->battleStatusMask & 0xf0000000) {
-        param1->faintedMon = LowestBit((param1->battleStatusMask & 0xf0000000) >> 28);
-        param1->battleStatusMask &= (0xf0000000 ^ 0xffffffff);
+    if (battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) {
+        battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
+        battleCtx->battleStatusMask &= ~SYSCTL_MON_SELFDESTRUCTED;
 
-        BattleSystem_LoadScript(param1, 1, (0 + 277));
-
-        param1->command = 21;
-        param1->commandNext = 36;
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_AFTER_SELFDESTRUCT);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_TRIGGER_AFTER_HIT_EFFECTS;
     } else {
-        param1->command = 36;
+        battleCtx->command = BATTLE_CONTROL_TRIGGER_AFTER_HIT_EFFECTS;
     }
 }
 
-static void ov16_02250480 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_TriggerAfterHitEffects(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleController_TriggerAfterMoveHitEffects(param0, param1) == 1) {
+    if (BattleController_TriggerAfterMoveHitEffects(battleSys, battleCtx) == TRUE) {
         return;
     }
 
-    param1->command = 38;
+    battleCtx->command = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
 }
 
-static void ov16_02250494 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_LeftoverState37(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
 
-static void ov16_02250498 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_UpdateMoveBuffers(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
+    u8 itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
 
-    v0 = Battler_HeldItemEffect(param1, param1->attacker);
-
-    if ((param1->battleStatusMask & 0x20) || (param1->battleStatusMask2 & 0x4)) {
-        if ((v0 == 55) || (v0 == 115) || (v0 == 125)) {
-            if ((param1->moveTemp == 165) || ((param1->moveTemp == 369) && (param1->battleStatusMask2 & 0x10)) || ((param1->moveTemp == 226) && (param1->battleStatusMask2 & 0x40))) {
-                (void)0;
-            } else {
-                param1->battleMons[param1->attacker].moveEffectsData.choiceLockedMove = param1->moveTemp;
+    if ((battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN)
+            || (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN)) {
+        if (itemEffect == HOLD_EFFECT_CHOICE_ATK
+                || itemEffect == HOLD_EFFECT_CHOICE_SPEED
+                || itemEffect == HOLD_EFFECT_CHOICE_SPATK) {
+            if (battleCtx->moveTemp != MOVE_STRUGGLE
+                    && (battleCtx->moveTemp != MOVE_U_TURN || (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE)
+                    && (battleCtx->moveTemp != MOVE_BATON_PASS || (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) == FALSE)) {
+                ATTACKING_MON.moveEffectsData.choiceLockedMove = battleCtx->moveTemp;
             }
         } else {
-            param1->battleMons[param1->attacker].moveEffectsData.choiceLockedMove = 0;
+            ATTACKING_MON.moveEffectsData.choiceLockedMove = MOVE_NONE;
         }
     }
 
-    if ((param1->battleStatusMask & 0x100000) == 0) {
-        if (param1->battleStatusMask2 & 0x4) {
-            param1->moveProtect[param1->attacker] = param1->moveCur;
-            param1->movePrev = param1->moveTemp;
+    if ((battleCtx->battleStatusMask & SYSCTL_REUSE_LAST_MOVE) == FALSE) {
+        if (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN) {
+            battleCtx->moveProtect[battleCtx->attacker] = battleCtx->moveCur;
+            battleCtx->movePrev = battleCtx->moveTemp;
         } else {
-            param1->moveProtect[param1->attacker] = 0;
-            param1->movePrev = 0;
+            battleCtx->moveProtect[battleCtx->attacker] = MOVE_NONE;
+            battleCtx->movePrev = MOVE_NONE;
         }
 
-        if (param1->battleStatusMask2 & 0x40) {
-            param1->movePrevByBattler[param1->attacker] = param1->moveTemp;
+        if (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) {
+            battleCtx->movePrevByBattler[battleCtx->attacker] = battleCtx->moveTemp;
         } else {
-            param1->movePrevByBattler[param1->attacker] = 0;
+            battleCtx->movePrevByBattler[battleCtx->attacker] = MOVE_NONE;
         }
     }
 
-    if (param1->battleStatusMask2 & 0x4) {
-        param1->moveSketched[param1->attacker] = param1->moveTemp;
+    if (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN) {
+        battleCtx->moveSketched[battleCtx->attacker] = battleCtx->moveTemp;
     }
 
-    BattleController_UpdateHitByMoveFlags(param0, param1);
-    BattleSystem_VerifyMetronomeCount(param0, param1);
+    BattleController_UpdateHitByMoveFlags(battleSys, battleCtx);
+    BattleSystem_VerifyMetronomeCount(battleSys, battleCtx);
 
-    param1->command = 39;
+    battleCtx->command = BATTLE_CONTROL_MOVE_END;
 }
 
-static void ov16_022505C4 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u32 v1;
-
-    v1 = BattleSystem_BattleType(param0);
-
-    if ((v1 & (0x20 | 0x200)) == 0) {
-        if (BattleSystem_RecoverStatusByAbility(param0, param1, param1->attacker, 0) == 1) {
+    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_MOVES) == FALSE) {
+        if (BattleSystem_RecoverStatusByAbility(battleSys, battleCtx, battleCtx->attacker, FALSE) == TRUE
+                || (battleCtx->defender != BATTLER_NONE
+                    && BattleSystem_RecoverStatusByAbility(battleSys, battleCtx, battleCtx->defender, FALSE) == TRUE)
+                || BattleController_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
+                || BattleController_CheckBattleOver(battleSys, battleCtx) == TRUE) {
             return;
         }
 
-        if ((param1->defender != 0xff) && (BattleSystem_RecoverStatusByAbility(param0, param1, param1->defender, 0) == 1)) {
+        int nextSeq = BattleSystem_ShowMonChecks(battleSys, battleCtx);
+        if (nextSeq) {
+            LOAD_SUBSEQ(nextSeq);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
             return;
         }
 
-        if (BattleController_AnyExpPayout(param1, param1->command, param1->command) == 1) {
+        if (BattleController_ToggleSemiInvulnMons(battleSys, battleCtx) == TRUE) {
             return;
         }
 
-        if (BattleController_CheckBattleOver(param0, param1) == 1) {
-            return;
-        }
-
-        v0 = BattleSystem_ShowMonChecks(param0, param1);
-
-        if (v0) {
-            BattleSystem_LoadScript(param1, 1, v0);
-            param1->commandNext = param1->command;
-            param1->command = 21;
-            return;
-        }
-
-        if (BattleController_ToggleSemiInvulnMons(param0, param1) == 1) {
-            return;
-        }
-
-        BattleController_ClearFlags(param0, param1);
+        BattleController_ClearFlags(battleSys, battleCtx);
     }
 
-    param1->battlerActions[param1->battlerActionOrder[param1->turnOrderCounter]][0] = 39;
-
-    if (param1->selfTurnFlags[param1->attacker].trickRoomActivated) {
-        BattleSystem_SortMonsInTrickRoom(param0, param1);
-        BattleSystem_SortMonsBySpeed(param0, param1);
-        param1->turnOrderCounter = 0;
+    battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
+    if (ATTACKER_SELF_TURN_FLAGS.trickRoomActivated) {
+        BattleSystem_SortMonsInTrickRoom(battleSys, battleCtx);
+        BattleSystem_SortMonsBySpeed(battleSys, battleCtx);
+        battleCtx->turnOrderCounter = 0;
     } else {
-        param1->turnOrderCounter++;
+        battleCtx->turnOrderCounter++;
     }
 
-    BattleContext_Init(param1);
-
-    param1->command = 8;
+    BattleContext_Init(battleCtx);
+    battleCtx->command = BATTLE_CONTROL_BRANCH_ACTIONS;
 }
 
-static void ov16_022506A4 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_CheckAnyFainted(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-
-    if (BattleController_AnyFainted(param1, param1->command, param1->command, 1) == 1) {
+    if (BattleController_AnyFainted(battleCtx, battleCtx->command, battleCtx->command, TRUE) == TRUE) {
         return;
     }
 
-    param1->command = 39;
+    battleCtx->command = BATTLE_CONTROL_MOVE_END;
 }
 
-static void ov16_022506C0 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_HandleResult(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleSystem_ResultMask(param0) & 0x80) {
-        param1->command = 43;
-    } else if ((BattleSystem_ResultMask(param0) == 0x2) || (BattleSystem_ResultMask(param0) == 0x3)) {
-        BattleSystem_LoadScript(param1, 1, (0 + 5));
-        param1->command = 21;
-        param1->commandNext = 43;
-    } else if (BattleSystem_ResultMask(param0) == 0x1) {
-        BattleSystem_LoadScript(param1, 1, (0 + 4));
-        param1->command = 21;
-        param1->commandNext = 43;
-    } else if (BattleSystem_ResultMask(param0) == 0x4) {
-        param1->command = 21;
-        param1->commandNext = 43;
-    } else if (BattleSystem_ResultMask(param0) == 0x5) {
-        param1->command = 43;
+    if (BattleSystem_ResultMask(battleSys) & BATTLE_RESULT_TRY_FLEE) {
+        battleCtx->command = BATTLE_CONTROL_FIGHT_END;
+    } else if (BattleSystem_ResultMask(battleSys) == BATTLE_RESULT_LOSE
+            || BattleSystem_ResultMask(battleSys) == BATTLE_RESULT_DRAW) {
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_BATTLE_LOST);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_FIGHT_END;
+    } else if (BattleSystem_ResultMask(battleSys) == BATTLE_RESULT_WIN) {
+        LOAD_SUBSEQ(BATTLE_SUBSEQ_BATTLE_WON);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_FIGHT_END;
+    } else if (BattleSystem_ResultMask(battleSys) == BATTLE_RESULT_CAPTURED_MON) {
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_FIGHT_END;
+    } else if (BattleSystem_ResultMask(battleSys) == BATTLE_RESULT_PLAYER_FLED) {
+        battleCtx->command = BATTLE_CONTROL_FIGHT_END;
     }
 
-    param1->battleEndFlag = 1;
+    battleCtx->battleEndFlag = TRUE;
 }
 
-static void ov16_0225074C (BattleSystem * param0, BattleContext * param1)
+static void BattleController_ScreenWipe(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (ScreenWipe_Done() == 1) {
-        param1->command = 43;
+    if (ScreenWipe_Done() == TRUE) {
+        battleCtx->command = BATTLE_CONTROL_FIGHT_END;
     }
 }
 
-static void ov16_02250760 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_EndFight(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    Party * v0;
-    u32 v1;
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v1 = BattleSystem_BattleType(param0);
-
-    if ((v1 & 0x4) == 0) {
-        v0 = BattleSystem_Party(param0, 0);
-        Pokemon_ApplyPokerus(v0);
-        Pokemon_ValidatePokerus(v0);
+    if ((battleType & BATTLE_TYPE_LINK) == FALSE) {
+        Party *playerParty = BattleSystem_Party(battleSys, BATTLER_US);
+        Pokemon_ApplyPokerus(playerParty);
+        Pokemon_ValidatePokerus(playerParty);
     }
 
-    if (v1 & 0x4) {
+    if (battleType & BATTLE_TYPE_LINK) {
         Link_Message(22);
     }
 
-    param1->command = 44;
+    battleCtx->command = BATTLE_CONTROL_END_WAIT;
 }
 
-static void ov16_02250798 (BattleSystem * param0, BattleContext * param1)
+static void BattleController_EndWait(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     return;
 }
