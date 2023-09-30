@@ -14,12 +14,6 @@ from consts.pokemon import (
 def table_line(move_id: int, level: int) -> bytes:
     return ((move_id & 0x01FF) | ((level & 0x7F) << 9)).to_bytes(2, 'little', signed=False)
 
-def pad_bytes(data: bytes) -> bytes:
-    '''Aligns data to 4-byte boundary.'''
-    alignment = len(data) % 4
-    padding = (4 - alignment) if alignment != 0 else 0
-    return data + [0x00] * padding
-
 def parse_level_up_moves(table: dict, _size: int, _enum: None):
     out = []
     for key, value in table.items():
@@ -31,14 +25,15 @@ def parse_level_up_moves(table: dict, _size: int, _enum: None):
             for move in level_moves:
                 out.extend(table_line(moves.Move[move].value, level))
         else:
-            print('ERROR')
-    out.extend([0xFF, 0xFF])  # Sentinel value for end of list
-    return pad_bytes(out)
+            raise TypeError(f"Invalid table value {level}; expected str or list")
+    return out
 
 
 SCHEMA = j2b.Parser() \
     .register_name(lambda s: s) \
-    .register('learnset.level_up', 0, parse_level_up_moves)  # Level-up learnsets are not fixed size
+    .register('learnset.level_up', 0, parse_level_up_moves, optional=True) \
+    .pad(2, 0xff) \
+    .align(4)
 
 
 FORM_INDICES = {

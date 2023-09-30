@@ -22,11 +22,12 @@ ARGPARSER.add_argument('--output-dir', required=True,
 
 
 class Parser():
-    __slots__ = ('registry', 'padding_index', 'field_index')
+    __slots__ = ('registry', 'padding_index', 'field_index', 'alignment_index')
 
 
     def __init__(self):
         self.registry = {}
+        self.alignment_index = 0
         self.padding_index = 0
         self.field_index = 0
 
@@ -63,6 +64,15 @@ class Parser():
         return self
 
 
+    def align(self, alignment: int, value: int = 0) -> 'Parser':
+        '''
+            Specify an instance of padding to a given alignment.
+        '''
+        self.registry[f'align_{self.alignment_index}'] = (alignment, value)
+        self.alignment_index += 1
+        return self
+
+
     def pad(self, size: int, value: int = 0) -> 'Parser':
         '''
             Specify an instance of padding of a given size.
@@ -93,7 +103,12 @@ class Parser():
                 self.registry[key](data[key])
             elif key.startswith('padding_'):
                 size, val = self.registry[key]
-                binary.extend(val.to_bytes(size, 'little'))
+                binary.extend(bytearray([val] * size))
+            elif key.startswith('align_'):
+                alignment, val = self.registry[key]
+                offset = len(binary) % alignment
+                if offset != 0:
+                    binary.extend(bytearray([val] * (alignment - offset)))
             else:
                 parse_func, size, const_type, optional = self.registry[key]
                 data_key = key[5:] # first 4 characters are a key-prefix
@@ -101,6 +116,7 @@ class Parser():
                 if data_val == {} or data_val is None:
                     if optional:
                         continue
+                    print(json.dumps(data, indent=4))
                     raise KeyError(data_key)
 
                 binary.extend(parse_func(data_val, size, const_type))
