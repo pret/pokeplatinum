@@ -134,7 +134,7 @@ static BOOL ov16_022513B0(BattleSystem * param0, BattleContext * param1);
 static void BattleController_InitAI(BattleSystem * param0, BattleContext * param1);
 static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *battleCtx);
 
-extern u32 Unk_ov14_022248A4[];
+extern u32 TrainerAITable[];
 
 static const BattleControlFunc BattleControlCommands[] = {
     BattleController_GetBattleMon,
@@ -4648,7 +4648,7 @@ static void BattleController_InitAI (BattleSystem * param0, BattleContext * para
         for (v1 = 0; v1 < 4; v1++) {
             if (v1 & 1) {
                 for (v0 = 0; v0 < 4; v0++) {
-                    v3 = ov16_0223F700(param0, v1, v0);
+                    v3 = BattleSystem_TrainerItems(battleSys, v1, v0);
 
                     if (v3 != 0) {
                         param1->aiContext.trainerItems[v1 >> 1][param1->aiContext.trainerItemCounts[v1 >> 1]] = v3;
@@ -4659,7 +4659,7 @@ static void BattleController_InitAI (BattleSystem * param0, BattleContext * para
         }
     }
 
-    param1->aiScriptTemp = Unk_ov14_022248A4;
+    param1->aiScriptTemp = TrainerAITable;
 }
 
 static void BattleSystem_RecordCommand (BattleSystem *battleSys, BattleContext *battleCtx)
