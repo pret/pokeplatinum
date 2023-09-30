@@ -454,7 +454,7 @@ int ov65_02236548 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*param1)++;
         }
         break;
@@ -496,7 +496,7 @@ int ov65_02236548 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
 
@@ -2756,7 +2756,7 @@ static BOOL ov65_022387E8 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
 static BOOL ov65_02238838 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         sub_020329E0(param1->unk_08, NULL);
 
         param0->unk_00.unk_27 = 1;
@@ -2798,7 +2798,7 @@ static BOOL ov65_02238838 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
 static BOOL ov65_022388FC (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 * param1, u32 param2)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         param0->unk_00.unk_05 = 0;
     }
 

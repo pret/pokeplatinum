@@ -1537,7 +1537,7 @@ static int ov6_022445EC (UnkStruct_ov6_02243FFC * param0)
 
 static int ov6_02244634 (UnkStruct_ov6_02243FFC * param0)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         param0->unk_00++;
     }
 

@@ -306,7 +306,7 @@ int ov117_0226098C (UnkStruct_020067E8 * param0, int * param1)
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
         case 0:
-            if (sub_0200F2AC() == 1) {
+            if (ScreenWipe_Done() == 1) {
                 sub_0200F2C0();
             }
 
@@ -328,7 +328,7 @@ int ov117_0226098C (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             (*param1)++;
         }
         break;
@@ -419,7 +419,7 @@ int ov117_0226098C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 6:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;

@@ -560,7 +560,7 @@ void ov23_022427DC (int param0, UnkFuncPtr_ov23_022427DC param1)
 void ov23_022427F8 (void)
 {
     if (0 == sub_020593CC(sub_0203608C())) {
-        sub_020360DC(27);
+        Link_Message(27);
         sub_0203572C();
     }
 }
@@ -1150,7 +1150,7 @@ void ov23_022431C4 (int param0, int param1, void * param2, void * param3)
 
     if (v1 == sub_0203608C()) {
         ov23_022534A0(Unk_ov23_02257748->unk_0C);
-        sub_020360DC(25);
+        Link_Message(25);
         sub_020594FC();
     }
 }

@@ -349,7 +349,7 @@ static void ov20_021D2414 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_14++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             int v2;
 
             ov20_021D2EF0(v0->unk_00->unk_244);
@@ -502,7 +502,7 @@ static void ov20_021D2570 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_14++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_14++;
         }
         break;

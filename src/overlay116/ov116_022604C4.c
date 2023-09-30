@@ -473,7 +473,7 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
         ov116_0226178C(v0, v1, 4, param1);
         break;
     case 4:
-        v1 = sub_0200F2AC();
+        v1 = ScreenWipe_Done();
         ov116_0226178C(v0, v1, 5, param1);
         break;
     case 5:
@@ -589,7 +589,7 @@ int ov116_02260CF4 (UnkStruct_020067E8 * param0, int * param1)
         ov116_0226178C(v0, v1, 16, param1);
         break;
     case 16:
-        v1 = sub_0200F2AC();
+        v1 = ScreenWipe_Done();
 
         if (v1) {
             ov116_022610FC(v0);
@@ -1140,7 +1140,7 @@ static u32 ov116_022617E4 (UnkStruct_ov116_0226139C * param0)
 {
     if (ov114_0225CA54(&param0->unk_84) == 1) {
         if (param0->unk_48.unk_2C.unk_00 == 0) {
-            if (sub_0200F2AC() == 1) {
+            if (ScreenWipe_Done() == 1) {
                 sub_0200F2C0();
             }
 

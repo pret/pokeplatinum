@@ -128,7 +128,7 @@ static BOOL ov62_02235324 (UnkStruct_0208C06C * param0)
         }
         break;
     default:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             ov62_02234540(param0, 0);
             return 1;
         }

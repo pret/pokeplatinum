@@ -172,7 +172,7 @@ static BOOL ov87_021D1210 (UnkStruct_ov87_021D106C * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
 
@@ -191,7 +191,7 @@ static BOOL ov87_021D1260 (UnkStruct_ov87_021D106C * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov87_021D186C(param0);
             ov87_021D14B8(param0);
             return 1;

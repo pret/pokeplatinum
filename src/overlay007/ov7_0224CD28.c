@@ -1536,7 +1536,7 @@ static void ov7_0224EC38 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_ov7_0224D008 * v1;
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return;
     }
 
@@ -1562,7 +1562,7 @@ static void ov7_0224EC38 (UnkStruct_020508D4 * param0)
 
 static u8 ov7_0224EC9C (UnkStruct_0203CDB0 * param0, UnkStruct_ov7_0224D008 * param1)
 {
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return 18;
     }
 

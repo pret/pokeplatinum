@@ -182,7 +182,7 @@ int ov90_021D0E04 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             break;
         }
 
@@ -203,7 +203,7 @@ int ov90_021D0E04 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 3:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             break;
         }
 

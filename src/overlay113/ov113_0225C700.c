@@ -483,7 +483,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_9BC = 1;
             (*param1)++;
         }
@@ -586,7 +586,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 9:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             sub_0200F2C0();
         }
 
@@ -594,7 +594,7 @@ int ov113_0225CA04 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 10:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             (*param1)++;
         }
         break;

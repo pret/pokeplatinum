@@ -3911,7 +3911,7 @@ static void ov16_02250498 (BattleSystem * param0, BattleContext * param1)
     }
 
     BattleController_UpdateHitByMoveFlags(param0, param1);
-    ov16_0225991C(param0, param1);
+    BattleSystem_VerifyMetronomeCount(param0, param1);
 
     param1->command = 39;
 }
@@ -3924,11 +3924,11 @@ static void ov16_022505C4 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleSystem_BattleType(param0);
 
     if ((v1 & (0x20 | 0x200)) == 0) {
-        if (ov16_02257628(param0, param1, param1->attacker, 0) == 1) {
+        if (BattleSystem_RecoverStatusByAbility(param0, param1, param1->attacker, 0) == 1) {
             return;
         }
 
-        if ((param1->defender != 0xff) && (ov16_02257628(param0, param1, param1->defender, 0) == 1)) {
+        if ((param1->defender != 0xff) && (BattleSystem_RecoverStatusByAbility(param0, param1, param1->defender, 0) == 1)) {
             return;
         }
 
@@ -3959,7 +3959,7 @@ static void ov16_022505C4 (BattleSystem * param0, BattleContext * param1)
     param1->battlerActions[param1->battlerActionOrder[param1->turnOrderCounter]][0] = 39;
 
     if (param1->selfTurnFlags[param1->attacker].trickRoomActivated) {
-        ov16_0225B148(param0, param1);
+        BattleSystem_SortMonsInTrickRoom(param0, param1);
         BattleSystem_SortMonsBySpeed(param0, param1);
         param1->turnOrderCounter = 0;
     } else {
@@ -4006,7 +4006,7 @@ static void ov16_022506C0 (BattleSystem * param0, BattleContext * param1)
 
 static void ov16_0225074C (BattleSystem * param0, BattleContext * param1)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         param1->command = 43;
     }
 }
@@ -4020,12 +4020,12 @@ static void ov16_02250760 (BattleSystem * param0, BattleContext * param1)
 
     if ((v1 & 0x4) == 0) {
         v0 = BattleSystem_Party(param0, 0);
-        sub_020776B0(v0);
-        sub_0207782C(v0);
+        Pokemon_ApplyPokerus(v0);
+        Pokemon_ValidatePokerus(v0);
     }
 
     if (v1 & 0x4) {
-        sub_020360DC(22);
+        Link_Message(22);
     }
 
     param1->command = 44;

@@ -1727,7 +1727,7 @@ static void ov114_0225D688 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 1:
         ov114_0225E31C(&v0->unk_230, &v0->unk_30);
-        v1 = sub_0200F2AC();
+        v1 = ScreenWipe_Done();
 
         if (v1 == 1) {
             v0->unk_00++;
@@ -1873,7 +1873,7 @@ static void ov114_0225D688 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 14:
         ov114_0225DA5C(v0);
-        v1 = sub_0200F2AC();
+        v1 = ScreenWipe_Done();
 
         if (v1 == 1) {
             ov114_0225DFFC(&v0->unk_348);
@@ -2640,7 +2640,7 @@ static void ov114_0225E874 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_04++;
         break;
     case 1:
-        v1 = sub_0200F2AC();
+        v1 = ScreenWipe_Done();
 
         if (v1) {
             v0->unk_04++;
@@ -2880,7 +2880,7 @@ static void ov114_0225E874 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_04++;
         break;
     case 18:
-        v1 = sub_0200F2AC();
+        v1 = ScreenWipe_Done();
 
         if (v1) {
             v0->unk_04 = 21;
@@ -2956,7 +2956,7 @@ static void ov114_0225ED40 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_04++;
         break;
     case 1:
-        v1 = sub_0200F2AC();
+        v1 = ScreenWipe_Done();
 
         if (v1) {
             v0->unk_04++;
@@ -3124,7 +3124,7 @@ static void ov114_0225ED40 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_04++;
         break;
     case 17:
-        v1 = sub_0200F2AC();
+        v1 = ScreenWipe_Done();
 
         if (v1) {
             v0->unk_04 = 20;
@@ -3260,7 +3260,7 @@ static BOOL ov114_0225F27C (UnkStruct_ov114_0225F270 * param0, UnkStruct_ov114_0
         param0->unk_00++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param0->unk_00++;
         }
         break;
@@ -3330,7 +3330,7 @@ static BOOL ov114_0225F27C (UnkStruct_ov114_0225F270 * param0, UnkStruct_ov114_0
         param0->unk_00++;
         break;
     case 11:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02039794();
 
             if (param0->unk_01) {

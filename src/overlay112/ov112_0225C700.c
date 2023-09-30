@@ -386,7 +386,7 @@ int ov112_0225C7C4 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v2 = sub_0200F2AC();
+        v2 = ScreenWipe_Done();
 
         if (v2 == 1) {
             (*param1)++;
@@ -423,7 +423,7 @@ int ov112_0225C7C4 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 4:
-        v2 = sub_0200F2AC();
+        v2 = ScreenWipe_Done();
 
         if (v2 == 1) {
             return 1;

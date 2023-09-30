@@ -821,7 +821,7 @@ int ov65_0222E3FC (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = 1;
         }
         break;
@@ -838,7 +838,7 @@ int ov65_0222E3FC (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
         break;
@@ -2397,7 +2397,7 @@ static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     UnkStruct_ov65_022354D8 * v4;
     int v5;
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return param1;
     }
 
@@ -2584,7 +2584,7 @@ static int ov65_022302C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     UnkStruct_ov65_022354D8 * v3;
     u32 v4;
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return param1;
     }
 

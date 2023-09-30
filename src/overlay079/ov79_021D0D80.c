@@ -154,7 +154,7 @@ static int ov79_021D0E1C (UnkStruct_ov79_021D0E1C * param0)
     case 2:
         ov79_021D21F8(param0);
 
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return 0;
         }
         break;
@@ -171,7 +171,7 @@ static int ov79_021D0E1C (UnkStruct_ov79_021D0E1C * param0)
     case 4:
         ov79_021D21F8(param0);
 
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return 0;
         }
         break;

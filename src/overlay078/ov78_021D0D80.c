@@ -448,7 +448,7 @@ static void ov78_021D109C (UnkStruct_ov78_021D107C * param0)
 
 static BOOL ov78_021D10BC (UnkStruct_ov78_021D107C * param0)
 {
-    return sub_0200F2AC();
+    return ScreenWipe_Done();
 }
 
 static void ov78_021D10C4 (UnkStruct_ov78_021D107C * param0, int param1)

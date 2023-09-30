@@ -233,7 +233,7 @@ static int ov95_02249840 (UnkStruct_ov95_022497D8 * param0, int * param1)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
     }

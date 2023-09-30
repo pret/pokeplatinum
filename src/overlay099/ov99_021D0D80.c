@@ -205,7 +205,7 @@ int ov99_021D1028 (UnkStruct_020067E8 * param0, int * param1)
     case 0:
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (v0->unk_1102 == 1) {
                 ov99_021D1CFC(v0, v0->unk_1101);
                 v0->unk_1102 = 0;

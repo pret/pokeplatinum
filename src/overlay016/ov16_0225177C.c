@@ -127,7 +127,7 @@ int BattleSystem_Divide(int param0, int param1);
 int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_RandomOpponent(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
-BOOL ov16_02257628(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL ov16_022577A4(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
 BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
@@ -148,7 +148,7 @@ int BattleSystem_CanSwitch(BattleSystem *battleSys, BattleContext *battleCtx, in
 BOOL ov16_02258CB4(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL ov16_02259204(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_UpdateMetronomeCount(BattleSystem * param0, BattleContext * param1);
-void ov16_0225991C(BattleSystem * param0, BattleContext * param1);
+void BattleSystem_VerifyMetronomeCount(BattleSystem * param0, BattleContext * param1);
 int ov16_022599D0(BattleContext * param0, int param1, int param2, int param3);
 BOOL BattleSystem_CanPickCommand(BattleContext *battleSys, int battler);
 void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * param2);
@@ -168,7 +168,7 @@ BOOL ov16_0225B084(BattleContext * param0, u16 param1);
 BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
 s32 ov16_0225B0FC(BattleContext * param0, u16 param1, u16 param2);
 int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_0225B148(BattleSystem * param0, BattleContext * param1);
+void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * param1);
 BOOL ov16_0225B1DC(BattleContext * param0, int param1, int param2);
 BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
@@ -4090,7 +4090,7 @@ int BattleSystem_ShowMonChecks (BattleSystem * param0, BattleContext * param1)
             for (v0 = 0; v0 < v5; v0++) {
                 v4 = param1->monSpeedOrder[v0];
 
-                if (ov16_02257628(param0, param1, v4, 1) == 1) {
+                if (BattleSystem_RecoverStatusByAbility(param0, param1, v4, 1) == 1) {
                     v2 = (0 + 221);
                     v3 = 1;
                     break;
@@ -4332,7 +4332,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
     return result;
 }
 
-BOOL ov16_02257628 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+BOOL BattleSystem_RecoverStatusByAbility (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     BOOL v0;
 
@@ -6056,7 +6056,7 @@ void BattleSystem_UpdateMetronomeCount (BattleSystem * param0, BattleContext * p
     }
 }
 
-void ov16_0225991C (BattleSystem * param0, BattleContext * param1)
+void BattleSystem_VerifyMetronomeCount (BattleSystem * param0, BattleContext * param1)
 {
     if (Battler_HeldItemEffect(param1, param1->attacker) == 105) {
         if ((param1->moveStatusFlags & ((1 | 8 | 64 | 2048 | 4096 | 16384 | 32768 | 65536 | 131072 | 262144 | 524288 | 1048576) | 512 | 0x80000000)) && (param1->metronomeMove[param1->attacker] == param1->moveTemp) && (param1->battleMons[param1->attacker].moveEffectsData.metronomeTurns) && (param1->selfTurnFlags[param1->attacker].repeatedMoveCount == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0xc00) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0x70) == 0) && ((param1->battleStatusMask & 0x200) == 0) && ((param1->battleMons[param1->attacker].statusVolatile & 0x1000) == 0)) {
@@ -7099,7 +7099,7 @@ int BattleSystem_SideToBattler (BattleSystem * param0, BattleContext * param1, i
     return v0;
 }
 
-void ov16_0225B148 (BattleSystem * param0, BattleContext * param1)
+void BattleSystem_SortMonsInTrickRoom (BattleSystem * param0, BattleContext * param1)
 {
     int v0, v1;
     int v2;

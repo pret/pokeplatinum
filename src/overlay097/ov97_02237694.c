@@ -174,7 +174,7 @@ void ov97_022377F0 (int * param0)
 {
     UnkStruct_ov97_0223F550 * v0 = &Unk_ov97_0223F550;
 
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         *param0 = v0->unk_0C;
     }
 }

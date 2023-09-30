@@ -52,7 +52,7 @@ BOOL sub_0209862C (UnkStruct_020508D4 * param0)
         ov5_021D1744(0);
         v1->unk_00++;
     case 1:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 

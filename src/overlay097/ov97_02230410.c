@@ -1249,7 +1249,7 @@ static int ov97_0223161C (UnkStruct_020067E8 * param0, int * param1)
         ov97_02230C10(v4, 0, 28, param1);
         break;
     case 27:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = v4->unk_2CA0;
         }
         break;

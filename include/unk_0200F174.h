@@ -6,7 +6,7 @@
 
 void sub_0200F174(int param0, int param1, int param2, u16 param3, int param4, int param5, int param6);
 void sub_0200F27C(void);
-BOOL sub_0200F2AC(void);
+BOOL ScreenWipe_Done(void);
 void sub_0200F2C0(void);
 void sub_0200F32C(int param0);
 void sub_0200F338(int param0);

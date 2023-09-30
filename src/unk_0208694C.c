@@ -975,7 +975,7 @@ static int sub_02086B64 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = 1;
             v0->unk_630 = 0;
         }
@@ -1028,7 +1028,7 @@ static int sub_02086B64 (UnkStruct_020067E8 * param0, int * param1)
         sub_02088514(&v0->unk_38);
         break;
     case 3:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
         break;

@@ -250,7 +250,7 @@ static void ov21_021D0F38 (UnkStruct_ov21_021D0F18 * param0)
 
 static BOOL ov21_021D0F58 (UnkStruct_ov21_021D0F18 * param0)
 {
-    return sub_0200F2AC();
+    return ScreenWipe_Done();
 }
 
 const static UnkFuncPtr_ov21_021E9B74 Unk_ov21_021E9B74[10] = {

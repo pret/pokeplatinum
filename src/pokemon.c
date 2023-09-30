@@ -3638,7 +3638,7 @@ int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMov
     return result;
 }
 
-void sub_020776B0(Party *party)
+void Pokemon_ApplyPokerus(Party *party)
 {
     int currentPartyCount = Party_GetCurrentCount(party);
     u16 rand = LCRNG_Next();
@@ -3734,7 +3734,7 @@ void sub_020777B4(Party *party, s32 param1)
     }
 }
 
-void sub_0207782C(Party *party)
+void Pokemon_ValidatePokerus(Party *party)
 {
     int currentPartyCount = Party_GetCurrentCount(party);
 

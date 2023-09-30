@@ -568,7 +568,7 @@ static int ov109_021D0F78 (UnkStruct_ov109_021D0F70 * param0)
 
 static int ov109_021D0F8C (UnkStruct_ov109_021D0F70 * param0)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         if (sub_0203608C() == 0) {
             param0->unk_00 = 2;
         } else {
@@ -1486,7 +1486,7 @@ static int ov109_021D1BA4 (UnkStruct_ov109_021D0F70 * param0)
 
 static int ov109_021D1BE4 (UnkStruct_ov109_021D0F70 * param0)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         param0->unk_00 = 53;
         return 1;
     }

@@ -509,7 +509,7 @@ static BOOL ov108_02241DB0 (UnkStruct_ov108_02241DB0 * param0)
         }
         break;
     case 9:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;
@@ -728,7 +728,7 @@ static BOOL ov108_022421F0 (UnkStruct_ov108_02241DB0 * param0)
         param0->unk_08++;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;

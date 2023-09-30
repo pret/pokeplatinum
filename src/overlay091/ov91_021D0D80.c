@@ -662,7 +662,7 @@ static void ov91_021D11F0 (UnkStruct_ov91_021D0ED8 * param0)
 
 static int ov91_021D1214 (UnkStruct_ov91_021D0ED8 * param0)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         return param0->unk_180;
     }
 

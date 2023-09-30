@@ -1432,7 +1432,7 @@ static void ov23_0223F118 (UnkStruct_0201CD38 * param0, void * param1)
         (v0->unk_00)++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (v1->unk_6C == NULL) {
                 sub_0203CD44(v1);
                 (v0->unk_00)++;
@@ -1463,7 +1463,7 @@ static void ov23_0223F118 (UnkStruct_0201CD38 * param0, void * param1)
         (v0->unk_00)++;
         break;
     case 7:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_08 = 0;
             sub_02005748(1354);
             v0->unk_00 = 8;
@@ -1576,7 +1576,7 @@ static void ov23_0223F118 (UnkStruct_0201CD38 * param0, void * param1)
     case 19:
         sub_020219F8(Unk_ov23_02257740->unk_20);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02039794();
             ov23_0223F020(v0);
             sub_020509D4(v1);
@@ -1597,7 +1597,7 @@ static void ov23_0223F118 (UnkStruct_0201CD38 * param0, void * param1)
     case 21:
         sub_0200F338(0);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov5_021EF3FC(v0->unk_10->unk_04->unk_1C);
             ov5_021EF3DC(v0->unk_10->unk_04->unk_1C);
 
@@ -1638,7 +1638,7 @@ static void ov23_0223F118 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_00 = 24;
         break;
     case 24:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             int v3;
 
             for (v3 = 0; v3 < 8; v3++) {
@@ -2952,7 +2952,7 @@ void ov23_022412F0 (void)
     v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_ov23_022412CC));
 
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_022412CC));
-    sub_020360DC(71);
+    Link_Message(71);
 
     v0->unk_4E4 = 250 / 3 - 10;
 

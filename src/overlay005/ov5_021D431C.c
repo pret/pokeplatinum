@@ -398,14 +398,14 @@ BOOL ov5_021D453C (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021D432C * param1)
 
         v16 = ov5_021D42F0(param0->unk_54, 1);
 
-        if (v16 && sub_0200F2AC() && (param1->unk_24 == sub_02020A88(param0->unk_24))) {
+        if (v16 && ScreenWipe_Done() && (param1->unk_24 == sub_02020A88(param0->unk_24))) {
             ov5_021D42B0(param0->unk_50, param0->unk_54, 1);
             return 1;
         }
     }
     break;
     case 6:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
         break;
@@ -595,7 +595,7 @@ BOOL ov5_021D4858 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021D432C * param1,
 
         v10 = ov5_021D42F0(param0->unk_54, 2);
 
-        if (v10 && sub_0200F2AC()) {
+        if (v10 && ScreenWipe_Done()) {
             ov5_021D42B0(param0->unk_50, param0->unk_54, 2);
             sub_020057A4(1557, 0);
             return 1;
@@ -695,7 +695,7 @@ BOOL ov5_021D4A24 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021D432C * param1,
 
         v9 = ov5_021D42F0(param0->unk_54, 2);
 
-        if (v9 && sub_0200F2AC()) {
+        if (v9 && ScreenWipe_Done()) {
             ov5_021D42B0(param0->unk_50, param0->unk_54, 2);
 
             sub_020057A4(1557, 0);
@@ -928,7 +928,7 @@ BOOL ov5_021D4E10 (UnkStruct_020508D4 * param0)
         }
         break;
     case 3:
-        if (sub_0200F2AC() && (v2->unk_0C == sub_02020A88(v1->unk_24))) {
+        if (ScreenWipe_Done() && (v2->unk_0C == sub_02020A88(v1->unk_24))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -967,7 +967,7 @@ BOOL ov5_021D4F14 (UnkStruct_020508D4 * param0)
     }
     break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             Heap_FreeToHeap(v1);
             return 1;
         }
@@ -1000,7 +1000,7 @@ BOOL ov5_021D4FA0 (UnkStruct_020508D4 * param0)
     }
     break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             Heap_FreeToHeap(v1);
             return 1;
         }
@@ -1081,7 +1081,7 @@ BOOL ov5_021D5020 (UnkStruct_020508D4 * param0)
         }
         break;
     case 3:
-        if (sub_0200F2AC() && (v2->unk_0C == sub_02020A88(v1->unk_24))) {
+        if (ScreenWipe_Done() && (v2->unk_0C == sub_02020A88(v1->unk_24))) {
             Heap_FreeToHeap(v2);
             return 1;
         }
@@ -1136,7 +1136,7 @@ BOOL ov5_021D5150 (UnkStruct_020508D4 * param0)
         }
         break;
     case 3:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             Heap_FreeToHeap(v2);
             return 1;
         }

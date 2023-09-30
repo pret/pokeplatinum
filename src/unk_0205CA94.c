@@ -169,7 +169,7 @@ void sub_0205CA94 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 3:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_1E4++;
         }
         break;
@@ -218,7 +218,7 @@ void sub_0205CBFC (UnkStruct_0201CD38 * param0, void * param1)
     case 2:
         v1 = v0->unk_1C0[0].unk_0C(&v0->unk_1C0[0]);
 
-        if ((v1 == 0) && (sub_0200F2AC())) {
+        if ((v1 == 0) && (ScreenWipe_Done())) {
             sub_02005748(1585);
             v0->unk_1E4++;
             v0->unk_1E8 = -255;
@@ -288,7 +288,7 @@ void sub_0205CD3C (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_1E8 = 0;
             v0->unk_1E4++;
         }
@@ -331,7 +331,7 @@ void sub_0205CE7C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_1E4++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02005748(1586);
             v0->unk_1E4++;
         }

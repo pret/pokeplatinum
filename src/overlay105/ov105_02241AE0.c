@@ -657,7 +657,7 @@ static BOOL ov105_02241FF4 (UnkStruct_ov105_02241FF4 * param0)
         param0->unk_08++;
         break;
     case 3:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 
@@ -743,7 +743,7 @@ static BOOL ov105_022421F0 (UnkStruct_ov105_02241FF4 * param0)
         param0->unk_08++;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;
@@ -982,7 +982,7 @@ static BOOL ov105_022426E0 (UnkStruct_ov105_02241FF4 * param0)
         }
         break;
     case 3:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
             param0->unk_04 = sub_020067E8(&Unk_020F410C, param0->unk_140, 93);
@@ -996,7 +996,7 @@ static BOOL ov105_022426E0 (UnkStruct_ov105_02241FF4 * param0)
         }
         break;
     case 5:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_08 = 2;
         }
         break;
@@ -1499,7 +1499,7 @@ static BOOL ov105_022434BC (UnkStruct_ov105_02241FF4 * param0)
         }
         break;
     case 3:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             ov105_02245464(param0);
             ov105_022451B4(param0);
             param0->unk_04 = sub_020067E8(&Unk_020F410C, param0->unk_140, 93);
@@ -1513,7 +1513,7 @@ static BOOL ov105_022434BC (UnkStruct_ov105_02241FF4 * param0)
         }
         break;
     case 5:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_08 = 2;
         }
         break;
@@ -2133,7 +2133,7 @@ static BOOL ov105_022443DC (UnkStruct_ov105_02241FF4 * param0)
         param0->unk_08++;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;

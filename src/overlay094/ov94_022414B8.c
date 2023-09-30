@@ -525,7 +525,7 @@ static void ov94_02241920 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_0224195C (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         ov94_0224158C(param0, 9, 1, 0, 0xf0f);
         ov94_0223C3F4(param0, 16, 1);
     }

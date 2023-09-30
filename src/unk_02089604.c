@@ -289,7 +289,7 @@ BOOL sub_020898DC (UnkStruct_02089688 * param0)
         param0->unk_29C++;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_29C++;
         }
         break;
@@ -304,7 +304,7 @@ BOOL sub_02089938 (UnkStruct_02089688 * param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_29C++;
         }
         break;

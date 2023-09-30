@@ -68,7 +68,7 @@ static void ov5_021E139C (UnkStruct_0201CD38 * param0, void * param1)
 
         if (v0->unk_0C == 20) {
             sub_0200F174(2, 0, 0, 0x0, 6, 1, 4);
-        } else if ((v0->unk_0C > 20) && sub_0200F2AC()) {
+        } else if ((v0->unk_0C > 20) && ScreenWipe_Done()) {
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);
             sub_0200DA58(param0);
@@ -118,7 +118,7 @@ static void ov5_021E1470 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0205EA84(v0->unk_00->unk_3C, 1);
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);

@@ -217,7 +217,7 @@ int ov67_0225C820 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*param1)++;
         }
         break;
@@ -383,7 +383,7 @@ int ov67_0225C820 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 8:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
         break;
@@ -462,7 +462,7 @@ int ov67_0225CC6C (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*param1) = 2;
         }
         break;
@@ -522,7 +522,7 @@ int ov67_0225CC6C (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 10:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov67_0225D310(&v0->unk_40);
             return 1;
         }

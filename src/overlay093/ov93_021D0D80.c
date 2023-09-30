@@ -161,7 +161,7 @@ int ov93_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
                 sub_0208C120(1, 72);
             }
         } else {
-            if (sub_0200F2AC()) {
+            if (ScreenWipe_Done()) {
                 return 1;
             }
         }

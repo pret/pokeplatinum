@@ -124,7 +124,7 @@ int ov102_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 1;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_40 = 0;
             *param1 = 2;
         }
@@ -153,7 +153,7 @@ int ov102_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 5:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v1 = 1;
         }
         break;

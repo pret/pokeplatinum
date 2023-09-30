@@ -1217,7 +1217,7 @@ static BOOL sub_0206932C (UnkStruct_020508D4 * param0)
         v1->unk_2A = 1;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v1->unk_24 = v1->unk_20(v0);
             v1->unk_2A = 2;
         }
@@ -1246,7 +1246,7 @@ static BOOL sub_0206932C (UnkStruct_020508D4 * param0)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02062C78(v0->unk_38);
             Heap_FreeToHeap(v1);
             return 1;

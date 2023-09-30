@@ -505,7 +505,7 @@ static void ov17_022523AC (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_10++;
         break;
     case 3:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_10++;
         }
         break;
@@ -541,7 +541,7 @@ static void ov17_022523AC (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 6:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             Sound_PlayBGM(1181);
             v0->unk_10++;
         }

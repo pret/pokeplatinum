@@ -449,7 +449,7 @@ static int sub_0207E2A8 (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 33;
         break;
     case 33:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_5A4->unk_22 = v0->unk_B11;
             return 1;
         }
@@ -466,7 +466,7 @@ static int sub_0207E2A8 (UnkStruct_020067E8 * param0, int * param1)
 
 static int sub_0207E490 (UnkStruct_0207F248 * param0)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         if ((param0->unk_5A4->unk_20 == 5) || (param0->unk_5A4->unk_20 == 16)) {
             if (sub_020857A8(param0->unk_5A4->unk_24) == 1) {
                 param0->unk_B0E = 0;

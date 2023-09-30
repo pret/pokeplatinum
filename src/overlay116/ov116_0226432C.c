@@ -331,7 +331,7 @@ static void ov116_022647BC (UnkStruct_0201CD38 * param0, void * param1)
         FX32_CONST(+2)
     };
 
-    if ((sub_0200F2AC() == 0) || (v0->unk_A4->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v0->unk_A4->unk_2C.unk_00 == 1)) {
         for (v1 = 0; v1 < 3; v1++) {
             sub_0200D0F4(v0->unk_08[v1]);
         }
@@ -425,7 +425,7 @@ static void ov116_022649E4 (UnkStruct_0201CD38 * param0, void * param1)
     UnkStruct_ov116_02264FEC * v0 = param1;
     UnkStruct_ov116_022649E4 * v1 = v0->unk_00->unk_14;
 
-    if ((sub_0200F2AC() == 0) || (v1->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v1->unk_2C.unk_00 == 1)) {
         *v0->unk_10 = 0;
         sub_0200DA58(param0);
         Heap_FreeToHeap(v0);
@@ -833,7 +833,7 @@ static void ov116_0226534C (UnkStruct_0201CD38 * param0, void * param1)
     UnkStruct_ov116_0226534C * v0 = param1;
     UnkStruct_ov116_022649E4 * v1 = v0->unk_84;
 
-    if ((sub_0200F2AC() == 0) || (v1->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v1->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
 
         return;
@@ -1166,7 +1166,7 @@ static void ov116_0226591C (UnkStruct_0201CD38 * param0, void * param1)
 
     v2 = *v3->unk_0C;
 
-    if ((sub_0200F2AC() == 0) || (v3->unk_30->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v3->unk_30->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
         return;
     }
@@ -1236,7 +1236,7 @@ static void ov116_02265AA4 (UnkStruct_0201CD38 * param0, void * param1)
     fx32 v3, v4;
     fx32 v5, v6;
 
-    if ((sub_0200F2AC() == 0) || (v0->unk_30->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v0->unk_30->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
         return;
     }
@@ -1501,7 +1501,7 @@ static void ov116_022660A8 (UnkStruct_0201CD38 * param0, void * param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((sub_0200F2AC() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
         return;
     }
@@ -1628,7 +1628,7 @@ static void ov116_0226644C (UnkStruct_0201CD38 * param0, void * param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((sub_0200F2AC() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
         return;
     }
@@ -1746,7 +1746,7 @@ static void ov116_022667F4 (UnkStruct_0201CD38 * param0, void * param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((sub_0200F2AC() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
         return;
     }
@@ -1892,7 +1892,7 @@ static void ov116_02266BF0 (UnkStruct_0201CD38 * param0, void * param1)
     fx32 v4, v5;
     fx32 v6, v7;
 
-    if ((sub_0200F2AC() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
+    if ((ScreenWipe_Done() == 0) || (v1->unk_30->unk_2C.unk_00 == 1)) {
         sub_0200DA58(param0);
         return;
     }

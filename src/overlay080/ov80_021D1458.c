@@ -1123,7 +1123,7 @@ static void ov80_021D2774 (UnkStruct_0201CD38 * param0, void * param1)
         v1->unk_04++;
         break;
     case 3:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return;
         }
 
@@ -1141,7 +1141,7 @@ static void ov80_021D2774 (UnkStruct_0201CD38 * param0, void * param1)
         v1->unk_04++;
         break;
     case 4:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return;
         }
 
@@ -1169,7 +1169,7 @@ static void ov80_021D28EC (UnkStruct_0201CD38 * param0, void * param1)
         v1->unk_04++;
         break;
     case 1:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return;
         }
 
@@ -1182,7 +1182,7 @@ static void ov80_021D28EC (UnkStruct_0201CD38 * param0, void * param1)
         v1->unk_04++;
         break;
     case 2:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return;
         }
 

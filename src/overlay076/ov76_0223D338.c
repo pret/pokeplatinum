@@ -357,7 +357,7 @@ static BOOL ov76_0223D674 (UnkStruct_ov76_0223DE00 * param0)
         break;
 
     case 2:
-        if (sub_0200F2AC() != 1) {
+        if (ScreenWipe_Done() != 1) {
             break;
         }
 
@@ -440,7 +440,7 @@ static BOOL ov76_0223D674 (UnkStruct_ov76_0223DE00 * param0)
         param0->unk_3D4++;
         break;
     case 6:
-        if (sub_0200F2AC() != 1) {
+        if (ScreenWipe_Done() != 1) {
             break;
         }
         sub_0201A8FC(&param0->unk_D4.unk_18[0]);
@@ -1213,7 +1213,7 @@ static BOOL ov76_0223E8A4 (UnkStruct_ov76_0223DE00 * param0)
         param0->unk_3D4++;
         break;
     case 2:
-        if (sub_0200F2AC() != 1) {
+        if (ScreenWipe_Done() != 1) {
             break;
         }
 
