@@ -78,22 +78,22 @@
         ],
         "level_up": {
             "1": [
-                "WATER_GUN",
-                "TAIL_WHIP"
+                "MOVE_WATER_GUN",
+                "MOVE_TAIL_WHIP"
             ],
-            "5": "MUD_SPORT",
-            "9": "MUD_SHOT",
-            "15": "SLAM",
-            "19": "MUD_BOMB",
-            "23": "AMNESIA",
-            "29": "YAWN",
-            "33": "EARTHQUAKE",
-            "37": "RAIN_DANCE",
+            "5": "MOVE_MUD_SPORT",
+            "9": "MOVE_MUD_SHOT",
+            "15": "MOVE_SLAM",
+            "19": "MOVE_MUD_BOMB",
+            "23": "MOVE_AMNESIA",
+            "29": "MOVE_YAWN",
+            "33": "MOVE_EARTHQUAKE",
+            "37": "MOVE_RAIN_DANCE",
             "43": [
-                "MIST",
-                "HAZE"
+                "MOVE_MIST",
+                "MOVE_HAZE"
             ],
-            "47": "MUDDY_WATER"
+            "47": "MOVE_MUDDY_WATER"
         }
     },
     "evolutions": [

@@ -79,17 +79,17 @@
             "HM07"
         ],
         "level_up": {
-            "1": "WATER_GUN",
-            "6": "LOCK_ON",
-            "10": "PSYBEAM",
-            "14": "AURORA_BEAM",
-            "19": "BUBBLE_BEAM",
-            "23": "FOCUS_ENERGY",
-            "27": "BULLET_SEED",
-            "32": "WATER_PULSE",
-            "36": "SIGNAL_BEAM",
-            "40": "ICE_BEAM",
-            "45": "HYPER_BEAM"
+            "1": "MOVE_WATER_GUN",
+            "6": "MOVE_LOCK_ON",
+            "10": "MOVE_PSYBEAM",
+            "14": "MOVE_AURORA_BEAM",
+            "19": "MOVE_BUBBLE_BEAM",
+            "23": "MOVE_FOCUS_ENERGY",
+            "27": "MOVE_BULLET_SEED",
+            "32": "MOVE_WATER_PULSE",
+            "36": "MOVE_SIGNAL_BEAM",
+            "40": "MOVE_ICE_BEAM",
+            "45": "MOVE_HYPER_BEAM"
         }
     },
     "evolutions": [

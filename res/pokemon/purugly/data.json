@@ -88,22 +88,22 @@
         ],
         "level_up": {
             "1": [
-                "FAKE_OUT",
-                "SCRATCH",
-                "GROWL"
+                "MOVE_FAKE_OUT",
+                "MOVE_SCRATCH",
+                "MOVE_GROWL"
             ],
-            "5": "SCRATCH",
-            "8": "GROWL",
-            "13": "HYPNOSIS",
-            "17": "FAINT_ATTACK",
-            "20": "FURY_SWIPES",
-            "25": "CHARM",
-            "29": "ASSIST",
-            "32": "CAPTIVATE",
-            "37": "SLASH",
-            "38": "SWAGGER",
-            "45": "BODY_SLAM",
-            "53": "ATTRACT"
+            "5": "MOVE_SCRATCH",
+            "8": "MOVE_GROWL",
+            "13": "MOVE_HYPNOSIS",
+            "17": "MOVE_FAINT_ATTACK",
+            "20": "MOVE_FURY_SWIPES",
+            "25": "MOVE_CHARM",
+            "29": "MOVE_ASSIST",
+            "32": "MOVE_CAPTIVATE",
+            "37": "MOVE_SLASH",
+            "38": "MOVE_SWAGGER",
+            "45": "MOVE_BODY_SLAM",
+            "53": "MOVE_ATTRACT"
         }
     }
 }

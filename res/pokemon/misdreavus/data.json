@@ -88,20 +88,20 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "PSYWAVE"
+                "MOVE_GROWL",
+                "MOVE_PSYWAVE"
             ],
-            "5": "SPITE",
-            "10": "ASTONISH",
-            "14": "CONFUSE_RAY",
-            "19": "MEAN_LOOK",
-            "23": "PSYBEAM",
-            "28": "PAIN_SPLIT",
-            "32": "PAYBACK",
-            "37": "SHADOW_BALL",
-            "41": "PERISH_SONG",
-            "46": "GRUDGE",
-            "50": "POWER_GEM"
+            "5": "MOVE_SPITE",
+            "10": "MOVE_ASTONISH",
+            "14": "MOVE_CONFUSE_RAY",
+            "19": "MOVE_MEAN_LOOK",
+            "23": "MOVE_PSYBEAM",
+            "28": "MOVE_PAIN_SPLIT",
+            "32": "MOVE_PAYBACK",
+            "37": "MOVE_SHADOW_BALL",
+            "41": "MOVE_PERISH_SONG",
+            "46": "MOVE_GRUDGE",
+            "50": "MOVE_POWER_GEM"
         }
     },
     "evolutions": [

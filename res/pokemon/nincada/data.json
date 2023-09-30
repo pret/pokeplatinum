@@ -73,17 +73,17 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "HARDEN"
+                "MOVE_SCRATCH",
+                "MOVE_HARDEN"
             ],
-            "5": "LEECH_LIFE",
-            "9": "SAND_ATTACK",
-            "14": "FURY_SWIPES",
-            "19": "MIND_READER",
-            "25": "FALSE_SWIPE",
-            "31": "MUD_SLAP",
-            "38": "METAL_CLAW",
-            "45": "DIG"
+            "5": "MOVE_LEECH_LIFE",
+            "9": "MOVE_SAND_ATTACK",
+            "14": "MOVE_FURY_SWIPES",
+            "19": "MOVE_MIND_READER",
+            "25": "MOVE_FALSE_SWIPE",
+            "31": "MOVE_MUD_SLAP",
+            "38": "MOVE_METAL_CLAW",
+            "45": "MOVE_DIG"
         }
     },
     "evolutions": [

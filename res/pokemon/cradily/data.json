@@ -84,24 +84,24 @@
         ],
         "level_up": {
             "1": [
-                "ASTONISH",
-                "CONSTRICT",
-                "ACID",
-                "INGRAIN"
+                "MOVE_ASTONISH",
+                "MOVE_CONSTRICT",
+                "MOVE_ACID",
+                "MOVE_INGRAIN"
             ],
-            "8": "ACID",
-            "15": "INGRAIN",
-            "22": "CONFUSE_RAY",
-            "29": "AMNESIA",
-            "36": "ANCIENT_POWER",
-            "46": "GASTRO_ACID",
-            "56": "ENERGY_BALL",
+            "8": "MOVE_ACID",
+            "15": "MOVE_INGRAIN",
+            "22": "MOVE_CONFUSE_RAY",
+            "29": "MOVE_AMNESIA",
+            "36": "MOVE_ANCIENT_POWER",
+            "46": "MOVE_GASTRO_ACID",
+            "56": "MOVE_ENERGY_BALL",
             "66": [
-                "STOCKPILE",
-                "SPIT_UP",
-                "SWALLOW"
+                "MOVE_STOCKPILE",
+                "MOVE_SPIT_UP",
+                "MOVE_SWALLOW"
             ],
-            "76": "WRING_OUT"
+            "76": "MOVE_WRING_OUT"
         }
     }
 }

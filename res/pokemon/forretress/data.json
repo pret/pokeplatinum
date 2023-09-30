@@ -84,27 +84,27 @@
         ],
         "level_up": {
             "1": [
-                "TOXIC_SPIKES",
-                "TACKLE",
-                "PROTECT",
-                "SELF_DESTRUCT",
-                "BUG_BITE"
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_TACKLE",
+                "MOVE_PROTECT",
+                "MOVE_SELFDESTRUCT",
+                "MOVE_BUG_BITE"
             ],
-            "6": "SELF_DESTRUCT",
-            "9": "BUG_BITE",
-            "12": "TAKE_DOWN",
-            "17": "RAPID_SPIN",
-            "20": "BIDE",
-            "23": "NATURAL_GIFT",
-            "28": "SPIKES",
-            "31": "MIRROR_SHOT",
-            "33": "PAYBACK",
-            "38": "EXPLOSION",
-            "45": "IRON_DEFENSE",
-            "50": "GYRO_BALL",
-            "55": "DOUBLE_EDGE",
-            "62": "MAGNET_RISE",
-            "67": "ZAP_CANNON"
+            "6": "MOVE_SELFDESTRUCT",
+            "9": "MOVE_BUG_BITE",
+            "12": "MOVE_TAKE_DOWN",
+            "17": "MOVE_RAPID_SPIN",
+            "20": "MOVE_BIDE",
+            "23": "MOVE_NATURAL_GIFT",
+            "28": "MOVE_SPIKES",
+            "31": "MOVE_MIRROR_SHOT",
+            "33": "MOVE_PAYBACK",
+            "38": "MOVE_EXPLOSION",
+            "45": "MOVE_IRON_DEFENSE",
+            "50": "MOVE_GYRO_BALL",
+            "55": "MOVE_DOUBLE_EDGE",
+            "62": "MOVE_MAGNET_RISE",
+            "67": "MOVE_ZAP_CANNON"
         }
     }
 }

@@ -100,24 +100,24 @@
         ],
         "level_up": {
             "1": [
-                "THIEF",
-                "TAIL_WHIP",
-                "ASTONISH",
-                "LICK",
-                "SCRATCH"
+                "MOVE_THIEF",
+                "MOVE_TAIL_WHIP",
+                "MOVE_ASTONISH",
+                "MOVE_LICK",
+                "MOVE_SCRATCH"
             ],
-            "4": "BIND",
-            "7": "FAINT_ATTACK",
-            "10": "FURY_SWIPES",
-            "14": "FEINT",
-            "18": "PSYBEAM",
-            "22": "SHADOW_SNEAK",
-            "27": "SLASH",
-            "32": "SCREECH",
-            "37": "SUBSTITUTE",
-            "43": "SUCKER_PUNCH",
-            "49": "SHADOW_CLAW",
-            "55": "ANCIENT_POWER"
+            "4": "MOVE_BIND",
+            "7": "MOVE_FAINT_ATTACK",
+            "10": "MOVE_FURY_SWIPES",
+            "14": "MOVE_FEINT",
+            "18": "MOVE_PSYBEAM",
+            "22": "MOVE_SHADOW_SNEAK",
+            "27": "MOVE_SLASH",
+            "32": "MOVE_SCREECH",
+            "37": "MOVE_SUBSTITUTE",
+            "43": "MOVE_SUCKER_PUNCH",
+            "49": "MOVE_SHADOW_CLAW",
+            "55": "MOVE_ANCIENT_POWER"
         }
     }
 }

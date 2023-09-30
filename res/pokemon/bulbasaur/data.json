@@ -75,22 +75,22 @@
             "HM06"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "3": "GROWL",
-            "7": "LEECH_SEED",
-            "9": "VINE_WHIP",
+            "1": "MOVE_TACKLE",
+            "3": "MOVE_GROWL",
+            "7": "MOVE_LEECH_SEED",
+            "9": "MOVE_VINE_WHIP",
             "13": [
-                "POISON_POWDER",
-                "SLEEP_POWDER"
+                "MOVE_POISON_POWDER",
+                "MOVE_SLEEP_POWDER"
             ],
-            "15": "TAKE_DOWN",
-            "19": "RAZOR_LEAF",
-            "21": "SWEET_SCENT",
-            "25": "GROWTH",
-            "27": "DOUBLE_EDGE",
-            "31": "WORRY_SEED",
-            "33": "SYNTHESIS",
-            "37": "SEED_BOMB"
+            "15": "MOVE_TAKE_DOWN",
+            "19": "MOVE_RAZOR_LEAF",
+            "21": "MOVE_SWEET_SCENT",
+            "25": "MOVE_GROWTH",
+            "27": "MOVE_DOUBLE_EDGE",
+            "31": "MOVE_WORRY_SEED",
+            "33": "MOVE_SYNTHESIS",
+            "37": "MOVE_SEED_BOMB"
         }
     },
     "evolutions": [

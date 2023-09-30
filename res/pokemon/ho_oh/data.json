@@ -96,21 +96,21 @@
             "HM06"
         ],
         "level_up": {
-            "1": "WHIRLWIND",
-            "9": "SAFEGUARD",
-            "15": "GUST",
-            "23": "RECOVER",
-            "29": "FIRE_BLAST",
-            "37": "SUNNY_DAY",
-            "43": "SWIFT",
-            "51": "NATURAL_GIFT",
-            "57": "ANCIENT_POWER",
-            "65": "EXTRASENSORY",
-            "71": "PUNISHMENT",
-            "79": "FUTURE_SIGHT",
-            "85": "SACRED_FIRE",
-            "93": "CALM_MIND",
-            "99": "SKY_ATTACK"
+            "1": "MOVE_WHIRLWIND",
+            "9": "MOVE_SAFEGUARD",
+            "15": "MOVE_GUST",
+            "23": "MOVE_RECOVER",
+            "29": "MOVE_FIRE_BLAST",
+            "37": "MOVE_SUNNY_DAY",
+            "43": "MOVE_SWIFT",
+            "51": "MOVE_NATURAL_GIFT",
+            "57": "MOVE_ANCIENT_POWER",
+            "65": "MOVE_EXTRASENSORY",
+            "71": "MOVE_PUNISHMENT",
+            "79": "MOVE_FUTURE_SIGHT",
+            "85": "MOVE_SACRED_FIRE",
+            "93": "MOVE_CALM_MIND",
+            "99": "MOVE_SKY_ATTACK"
         }
     }
 }

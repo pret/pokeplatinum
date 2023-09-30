@@ -78,13 +78,13 @@
         ],
         "level_up": {
             "1": [
-                "MEGA_DRAIN",
-                "AROMATHERAPY",
-                "STUN_SPORE",
-                "POISON_POWDER"
+                "MOVE_MEGA_DRAIN",
+                "MOVE_AROMATHERAPY",
+                "MOVE_STUN_SPORE",
+                "MOVE_POISON_POWDER"
             ],
-            "53": "PETAL_DANCE",
-            "65": "SOLAR_BEAM"
+            "53": "MOVE_PETAL_DANCE",
+            "65": "MOVE_SOLAR_BEAM"
         }
     }
 }

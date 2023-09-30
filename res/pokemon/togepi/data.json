@@ -83,20 +83,20 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "CHARM"
+                "MOVE_GROWL",
+                "MOVE_CHARM"
             ],
-            "6": "METRONOME",
-            "10": "SWEET_KISS",
-            "15": "YAWN",
-            "19": "ENCORE",
-            "24": "FOLLOW_ME",
-            "28": "WISH",
-            "33": "ANCIENT_POWER",
-            "37": "SAFEGUARD",
-            "42": "BATON_PASS",
-            "46": "DOUBLE_EDGE",
-            "51": "LAST_RESORT"
+            "6": "MOVE_METRONOME",
+            "10": "MOVE_SWEET_KISS",
+            "15": "MOVE_YAWN",
+            "19": "MOVE_ENCORE",
+            "24": "MOVE_FOLLOW_ME",
+            "28": "MOVE_WISH",
+            "33": "MOVE_ANCIENT_POWER",
+            "37": "MOVE_SAFEGUARD",
+            "42": "MOVE_BATON_PASS",
+            "46": "MOVE_DOUBLE_EDGE",
+            "51": "MOVE_LAST_RESORT"
         }
     },
     "evolutions": [

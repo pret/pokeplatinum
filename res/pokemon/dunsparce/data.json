@@ -92,20 +92,20 @@
             "HM06"
         ],
         "level_up": {
-            "1": "RAGE",
-            "5": "DEFENSE_CURL",
-            "9": "YAWN",
-            "13": "GLARE",
-            "17": "ROLLOUT",
-            "21": "SPITE",
-            "25": "PURSUIT",
-            "29": "SCREECH",
-            "33": "ROOST",
-            "37": "TAKE_DOWN",
-            "41": "ANCIENT_POWER",
-            "45": "DIG",
-            "49": "ENDEAVOR",
-            "53": "FLAIL"
+            "1": "MOVE_RAGE",
+            "5": "MOVE_DEFENSE_CURL",
+            "9": "MOVE_YAWN",
+            "13": "MOVE_GLARE",
+            "17": "MOVE_ROLLOUT",
+            "21": "MOVE_SPITE",
+            "25": "MOVE_PURSUIT",
+            "29": "MOVE_SCREECH",
+            "33": "MOVE_ROOST",
+            "37": "MOVE_TAKE_DOWN",
+            "41": "MOVE_ANCIENT_POWER",
+            "45": "MOVE_DIG",
+            "49": "MOVE_ENDEAVOR",
+            "53": "MOVE_FLAIL"
         }
     }
 }

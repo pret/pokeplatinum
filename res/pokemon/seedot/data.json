@@ -75,13 +75,13 @@
             "HM06"
         ],
         "level_up": {
-            "1": "BIDE",
-            "3": "HARDEN",
-            "7": "GROWTH",
-            "13": "NATURE_POWER",
-            "21": "SYNTHESIS",
-            "31": "SUNNY_DAY",
-            "43": "EXPLOSION"
+            "1": "MOVE_BIDE",
+            "3": "MOVE_HARDEN",
+            "7": "MOVE_GROWTH",
+            "13": "MOVE_NATURE_POWER",
+            "21": "MOVE_SYNTHESIS",
+            "31": "MOVE_SUNNY_DAY",
+            "43": "MOVE_EXPLOSION"
         }
     },
     "evolutions": [

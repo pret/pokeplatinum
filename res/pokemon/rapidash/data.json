@@ -75,24 +75,24 @@
         ],
         "level_up": {
             "1": [
-                "POISON_JAB",
-                "MEGAHORN",
-                "GROWL",
-                "QUICK_ATTACK",
-                "TAIL_WHIP",
-                "EMBER"
+                "MOVE_POISON_JAB",
+                "MOVE_MEGAHORN",
+                "MOVE_GROWL",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_TAIL_WHIP",
+                "MOVE_EMBER"
             ],
-            "6": "TAIL_WHIP",
-            "10": "EMBER",
-            "15": "FLAME_WHEEL",
-            "19": "STOMP",
-            "24": "FIRE_SPIN",
-            "28": "TAKE_DOWN",
-            "33": "AGILITY",
-            "37": "FIRE_BLAST",
-            "40": "FURY_ATTACK",
-            "47": "BOUNCE",
-            "56": "FLARE_BLITZ"
+            "6": "MOVE_TAIL_WHIP",
+            "10": "MOVE_EMBER",
+            "15": "MOVE_FLAME_WHEEL",
+            "19": "MOVE_STOMP",
+            "24": "MOVE_FIRE_SPIN",
+            "28": "MOVE_TAKE_DOWN",
+            "33": "MOVE_AGILITY",
+            "37": "MOVE_FIRE_BLAST",
+            "40": "MOVE_FURY_ATTACK",
+            "47": "MOVE_BOUNCE",
+            "56": "MOVE_FLARE_BLITZ"
         }
     }
 }

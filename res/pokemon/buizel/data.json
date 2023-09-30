@@ -80,18 +80,18 @@
         ],
         "level_up": {
             "1": [
-                "SONIC_BOOM",
-                "GROWL",
-                "WATER_SPORT"
+                "MOVE_SONIC_BOOM",
+                "MOVE_GROWL",
+                "MOVE_WATER_SPORT"
             ],
-            "3": "QUICK_ATTACK",
-            "6": "WATER_GUN",
-            "10": "PURSUIT",
-            "15": "SWIFT",
-            "21": "AQUA_JET",
-            "28": "AGILITY",
-            "36": "WHIRLPOOL",
-            "45": "RAZOR_WIND"
+            "3": "MOVE_QUICK_ATTACK",
+            "6": "MOVE_WATER_GUN",
+            "10": "MOVE_PURSUIT",
+            "15": "MOVE_SWIFT",
+            "21": "MOVE_AQUA_JET",
+            "28": "MOVE_AGILITY",
+            "36": "MOVE_WHIRLPOOL",
+            "45": "MOVE_RAZOR_WIND"
         }
     },
     "evolutions": [

@@ -90,23 +90,23 @@
         ],
         "level_up": {
             "1": [
-                "ABSORB",
-                "TACKLE",
-                "STUN_SPORE",
-                "LEECH_SEED"
+                "MOVE_ABSORB",
+                "MOVE_TACKLE",
+                "MOVE_STUN_SPORE",
+                "MOVE_LEECH_SEED"
             ],
-            "5": "TACKLE",
-            "9": "STUN_SPORE",
-            "13": "LEECH_SEED",
-            "17": "MEGA_DRAIN",
-            "21": "HEADBUTT",
-            "23": "MACH_PUNCH",
-            "25": "COUNTER",
-            "29": "FORCE_PALM",
-            "33": "SKY_UPPERCUT",
-            "37": "MIND_READER",
-            "41": "SEED_BOMB",
-            "45": "DYNAMIC_PUNCH"
+            "5": "MOVE_TACKLE",
+            "9": "MOVE_STUN_SPORE",
+            "13": "MOVE_LEECH_SEED",
+            "17": "MOVE_MEGA_DRAIN",
+            "21": "MOVE_HEADBUTT",
+            "23": "MOVE_MACH_PUNCH",
+            "25": "MOVE_COUNTER",
+            "29": "MOVE_FORCE_PALM",
+            "33": "MOVE_SKY_UPPERCUT",
+            "37": "MOVE_MIND_READER",
+            "41": "MOVE_SEED_BOMB",
+            "45": "MOVE_DYNAMIC_PUNCH"
         }
     }
 }

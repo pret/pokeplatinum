@@ -86,18 +86,18 @@
             "HM07"
         ],
         "level_up": {
-            "1": "WATER_PULSE",
-            "5": "SCARY_FACE",
-            "15": "ANCIENT_POWER",
-            "20": "BODY_SLAM",
-            "30": "CALM_MIND",
-            "35": "ICE_BEAM",
-            "45": "HYDRO_PUMP",
-            "50": "REST",
-            "60": "SHEER_COLD",
-            "65": "DOUBLE_EDGE",
-            "75": "AQUA_TAIL",
-            "80": "WATER_SPOUT"
+            "1": "MOVE_WATER_PULSE",
+            "5": "MOVE_SCARY_FACE",
+            "15": "MOVE_ANCIENT_POWER",
+            "20": "MOVE_BODY_SLAM",
+            "30": "MOVE_CALM_MIND",
+            "35": "MOVE_ICE_BEAM",
+            "45": "MOVE_HYDRO_PUMP",
+            "50": "MOVE_REST",
+            "60": "MOVE_SHEER_COLD",
+            "65": "MOVE_DOUBLE_EDGE",
+            "75": "MOVE_AQUA_TAIL",
+            "80": "MOVE_WATER_SPOUT"
         }
     }
 }

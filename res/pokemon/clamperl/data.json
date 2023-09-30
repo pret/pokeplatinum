@@ -72,10 +72,10 @@
         ],
         "level_up": {
             "1": [
-                "CLAMP",
-                "WATER_GUN",
-                "WHIRLPOOL",
-                "IRON_DEFENSE"
+                "MOVE_CLAMP",
+                "MOVE_WATER_GUN",
+                "MOVE_WHIRLPOOL",
+                "MOVE_IRON_DEFENSE"
             ]
         }
     },

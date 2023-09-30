@@ -100,24 +100,24 @@
         ],
         "level_up": {
             "1": [
-                "CURSE",
-                "YAWN",
-                "TACKLE",
-                "GROWL"
+                "MOVE_CURSE",
+                "MOVE_YAWN",
+                "MOVE_TACKLE",
+                "MOVE_GROWL"
             ],
-            "6": "GROWL",
-            "11": "WATER_GUN",
-            "15": "CONFUSION",
-            "20": "DISABLE",
-            "25": "HEADBUTT",
-            "29": "WATER_PULSE",
-            "34": "ZEN_HEADBUTT",
-            "37": "WITHDRAW",
-            "41": "SLACK_OFF",
-            "47": "AMNESIA",
-            "54": "PSYCHIC",
-            "61": "RAIN_DANCE",
-            "67": "PSYCH_UP"
+            "6": "MOVE_GROWL",
+            "11": "MOVE_WATER_GUN",
+            "15": "MOVE_CONFUSION",
+            "20": "MOVE_DISABLE",
+            "25": "MOVE_HEADBUTT",
+            "29": "MOVE_WATER_PULSE",
+            "34": "MOVE_ZEN_HEADBUTT",
+            "37": "MOVE_WITHDRAW",
+            "41": "MOVE_SLACK_OFF",
+            "47": "MOVE_AMNESIA",
+            "54": "MOVE_PSYCHIC",
+            "61": "MOVE_RAIN_DANCE",
+            "67": "MOVE_PSYCH_UP"
         }
     }
 }

@@ -76,21 +76,21 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL",
-                "QUICK_ATTACK",
-                "WING_ATTACK"
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_WING_ATTACK"
             ],
-            "5": "QUICK_ATTACK",
-            "9": "WING_ATTACK",
-            "13": "DOUBLE_TEAM",
-            "18": "ENDEAVOR",
-            "23": "WHIRLWIND",
-            "28": "AERIAL_ACE",
-            "33": "TAKE_DOWN",
-            "34": "CLOSE_COMBAT",
-            "41": "AGILITY",
-            "49": "BRAVE_BIRD"
+            "5": "MOVE_QUICK_ATTACK",
+            "9": "MOVE_WING_ATTACK",
+            "13": "MOVE_DOUBLE_TEAM",
+            "18": "MOVE_ENDEAVOR",
+            "23": "MOVE_WHIRLWIND",
+            "28": "MOVE_AERIAL_ACE",
+            "33": "MOVE_TAKE_DOWN",
+            "34": "MOVE_CLOSE_COMBAT",
+            "41": "MOVE_AGILITY",
+            "49": "MOVE_BRAVE_BIRD"
         }
     }
 }

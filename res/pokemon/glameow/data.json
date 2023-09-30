@@ -84,18 +84,18 @@
             "HM01"
         ],
         "level_up": {
-            "1": "FAKE_OUT",
-            "5": "SCRATCH",
-            "8": "GROWL",
-            "13": "HYPNOSIS",
-            "17": "FAINT_ATTACK",
-            "20": "FURY_SWIPES",
-            "25": "CHARM",
-            "29": "ASSIST",
-            "32": "CAPTIVATE",
-            "37": "SLASH",
-            "41": "SUCKER_PUNCH",
-            "45": "ATTRACT"
+            "1": "MOVE_FAKE_OUT",
+            "5": "MOVE_SCRATCH",
+            "8": "MOVE_GROWL",
+            "13": "MOVE_HYPNOSIS",
+            "17": "MOVE_FAINT_ATTACK",
+            "20": "MOVE_FURY_SWIPES",
+            "25": "MOVE_CHARM",
+            "29": "MOVE_ASSIST",
+            "32": "MOVE_CAPTIVATE",
+            "37": "MOVE_SLASH",
+            "41": "MOVE_SUCKER_PUNCH",
+            "45": "MOVE_ATTRACT"
         }
     },
     "evolutions": [

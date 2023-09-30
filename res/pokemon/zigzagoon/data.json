@@ -83,20 +83,20 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL"
+                "MOVE_TACKLE",
+                "MOVE_GROWL"
             ],
-            "5": "TAIL_WHIP",
-            "9": "HEADBUTT",
-            "13": "SAND_ATTACK",
-            "17": "ODOR_SLEUTH",
-            "21": "MUD_SPORT",
-            "25": "PIN_MISSILE",
-            "29": "COVET",
-            "33": "FLAIL",
-            "37": "REST",
-            "41": "BELLY_DRUM",
-            "45": "FLING"
+            "5": "MOVE_TAIL_WHIP",
+            "9": "MOVE_HEADBUTT",
+            "13": "MOVE_SAND_ATTACK",
+            "17": "MOVE_ODOR_SLEUTH",
+            "21": "MOVE_MUD_SPORT",
+            "25": "MOVE_PIN_MISSILE",
+            "29": "MOVE_COVET",
+            "33": "MOVE_FLAIL",
+            "37": "MOVE_REST",
+            "41": "MOVE_BELLY_DRUM",
+            "45": "MOVE_FLING"
         }
     },
     "evolutions": [

@@ -80,29 +80,29 @@
         ],
         "level_up": {
             "1": [
-                "ZEN_HEADBUTT",
-                "TICKLE",
-                "MUD_SLAP",
-                "MUD_SPORT",
-                "WATER_SPORT"
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_TICKLE",
+                "MOVE_MUD_SLAP",
+                "MOVE_MUD_SPORT",
+                "MOVE_WATER_SPORT"
             ],
             "6": [
-                "MUD_SPORT",
-                "WATER_SPORT"
+                "MOVE_MUD_SPORT",
+                "MOVE_WATER_SPORT"
             ],
-            "10": "WATER_GUN",
-            "14": "MUD_BOMB",
-            "18": "AMNESIA",
-            "22": "WATER_PULSE",
-            "26": "MAGNITUDE",
+            "10": "MOVE_WATER_GUN",
+            "14": "MOVE_MUD_BOMB",
+            "18": "MOVE_AMNESIA",
+            "22": "MOVE_WATER_PULSE",
+            "26": "MOVE_MAGNITUDE",
             "33": [
-                "REST",
-                "SNORE"
+                "MOVE_REST",
+                "MOVE_SNORE"
             ],
-            "39": "AQUA_TAIL",
-            "45": "EARTHQUAKE",
-            "51": "FUTURE_SIGHT",
-            "57": "FISSURE"
+            "39": "MOVE_AQUA_TAIL",
+            "45": "MOVE_EARTHQUAKE",
+            "51": "MOVE_FUTURE_SIGHT",
+            "57": "MOVE_FISSURE"
         }
     }
 }

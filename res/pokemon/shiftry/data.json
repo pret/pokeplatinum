@@ -95,12 +95,12 @@
         ],
         "level_up": {
             "1": [
-                "FAINT_ATTACK",
-                "WHIRLWIND",
-                "NASTY_PLOT",
-                "RAZOR_LEAF"
+                "MOVE_FAINT_ATTACK",
+                "MOVE_WHIRLWIND",
+                "MOVE_NASTY_PLOT",
+                "MOVE_RAZOR_LEAF"
             ],
-            "49": "LEAF_STORM"
+            "49": "MOVE_LEAF_STORM"
         }
     }
 }

@@ -86,20 +86,20 @@
             "HM06"
         ],
         "level_up": {
-            "1": "BIDE",
-            "4": "MEDITATE",
-            "8": "CONFUSION",
-            "11": "DETECT",
-            "15": "HIDDEN_POWER",
-            "18": "MIND_READER",
-            "22": "FEINT",
-            "25": "CALM_MIND",
-            "29": "FORCE_PALM",
-            "32": "HIGH_JUMP_KICK",
-            "36": "PSYCH_UP",
-            "39": "POWER_TRICK",
-            "43": "REVERSAL",
-            "46": "RECOVER"
+            "1": "MOVE_BIDE",
+            "4": "MOVE_MEDITATE",
+            "8": "MOVE_CONFUSION",
+            "11": "MOVE_DETECT",
+            "15": "MOVE_HIDDEN_POWER",
+            "18": "MOVE_MIND_READER",
+            "22": "MOVE_FEINT",
+            "25": "MOVE_CALM_MIND",
+            "29": "MOVE_FORCE_PALM",
+            "32": "MOVE_HI_JUMP_KICK",
+            "36": "MOVE_PSYCH_UP",
+            "39": "MOVE_POWER_TRICK",
+            "43": "MOVE_REVERSAL",
+            "46": "MOVE_RECOVER"
         }
     },
     "evolutions": [

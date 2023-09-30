@@ -105,21 +105,21 @@
         ],
         "level_up": {
             "1": [
-                "POUND",
-                "GROWL"
+                "MOVE_POUND",
+                "MOVE_GROWL"
             ],
-            "5": "TAIL_WHIP",
-            "9": "REFRESH",
-            "12": "SOFT_BOILED",
-            "16": "DOUBLE_SLAP",
-            "20": "MINIMIZE",
-            "23": "SING",
-            "27": "FLING",
-            "31": "DEFENSE_CURL",
-            "34": "LIGHT_SCREEN",
-            "38": "EGG_BOMB",
-            "42": "HEALING_WISH",
-            "46": "DOUBLE_EDGE"
+            "5": "MOVE_TAIL_WHIP",
+            "9": "MOVE_REFRESH",
+            "12": "MOVE_SOFTBOILED",
+            "16": "MOVE_DOUBLE_SLAP",
+            "20": "MOVE_MINIMIZE",
+            "23": "MOVE_SING",
+            "27": "MOVE_FLING",
+            "31": "MOVE_DEFENSE_CURL",
+            "34": "MOVE_LIGHT_SCREEN",
+            "38": "MOVE_EGG_BOMB",
+            "42": "MOVE_HEALING_WISH",
+            "46": "MOVE_DOUBLE_EDGE"
         }
     },
     "evolutions": [

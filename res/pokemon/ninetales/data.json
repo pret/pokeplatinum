@@ -81,11 +81,11 @@
         ],
         "level_up": {
             "1": [
-                "NASTY_PLOT",
-                "EMBER",
-                "QUICK_ATTACK",
-                "CONFUSE_RAY",
-                "SAFEGUARD"
+                "MOVE_NASTY_PLOT",
+                "MOVE_EMBER",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_SAFEGUARD"
             ]
         }
     }

@@ -85,16 +85,16 @@
         ],
         "level_up": {
             "1": [
-                "SEED_BOMB",
-                "BARRAGE",
-                "HYPNOSIS",
-                "CONFUSION",
-                "STOMP"
+                "MOVE_SEED_BOMB",
+                "MOVE_BARRAGE",
+                "MOVE_HYPNOSIS",
+                "MOVE_CONFUSION",
+                "MOVE_STOMP"
             ],
-            "17": "STOMP",
-            "27": "EGG_BOMB",
-            "37": "WOOD_HAMMER",
-            "47": "LEAF_STORM"
+            "17": "MOVE_STOMP",
+            "27": "MOVE_EGG_BOMB",
+            "37": "MOVE_WOOD_HAMMER",
+            "47": "MOVE_LEAF_STORM"
         }
     }
 }

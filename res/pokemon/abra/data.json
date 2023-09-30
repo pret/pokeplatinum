@@ -91,7 +91,7 @@
             "TM92"
         ],
         "level_up": {
-            "1": "TELEPORT"
+            "1": "MOVE_TELEPORT"
         }
     },
     "evolutions": [

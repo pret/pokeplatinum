@@ -99,21 +99,21 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "LEER"
+                "MOVE_SCRATCH",
+                "MOVE_LEER"
             ],
-            "5": "QUICK_ATTACK",
-            "9": "SWORDS_DANCE",
-            "14": "FURY_CUTTER",
-            "18": "SLASH",
-            "22": "PURSUIT",
-            "27": "EMBARGO",
-            "31": "CRUSH_CLAW",
-            "35": "TAUNT",
-            "40": "DETECT",
-            "44": "FALSE_SWIPE",
-            "48": "X_SCISSOR",
-            "53": "CLOSE_COMBAT"
+            "5": "MOVE_QUICK_ATTACK",
+            "9": "MOVE_SWORDS_DANCE",
+            "14": "MOVE_FURY_CUTTER",
+            "18": "MOVE_SLASH",
+            "22": "MOVE_PURSUIT",
+            "27": "MOVE_EMBARGO",
+            "31": "MOVE_CRUSH_CLAW",
+            "35": "MOVE_TAUNT",
+            "40": "MOVE_DETECT",
+            "44": "MOVE_FALSE_SWIPE",
+            "48": "MOVE_X_SCISSOR",
+            "53": "MOVE_CLOSE_COMBAT"
         }
     }
 }

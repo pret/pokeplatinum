@@ -100,21 +100,21 @@
         ],
         "level_up": {
             "1": [
-                "COMET_PUNCH",
-                "LEER"
+                "MOVE_COMET_PUNCH",
+                "MOVE_LEER"
             ],
-            "7": "FAKE_OUT",
-            "10": "TAIL_WHIP",
-            "13": "BITE",
-            "19": "MEGA_PUNCH",
-            "22": "RAGE",
-            "25": "DIZZY_PUNCH",
-            "31": "CRUNCH",
-            "34": "ENDURE",
-            "37": "OUTRAGE",
-            "43": "DOUBLE_HIT",
-            "46": "SUCKER_PUNCH",
-            "49": "REVERSAL"
+            "7": "MOVE_FAKE_OUT",
+            "10": "MOVE_TAIL_WHIP",
+            "13": "MOVE_BITE",
+            "19": "MOVE_MEGA_PUNCH",
+            "22": "MOVE_RAGE",
+            "25": "MOVE_DIZZY_PUNCH",
+            "31": "MOVE_CRUNCH",
+            "34": "MOVE_ENDURE",
+            "37": "MOVE_OUTRAGE",
+            "43": "MOVE_DOUBLE_HIT",
+            "46": "MOVE_SUCKER_PUNCH",
+            "49": "MOVE_REVERSAL"
         }
     }
 }

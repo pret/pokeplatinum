@@ -82,21 +82,21 @@
         ],
         "level_up": {
             "1": [
-                "WING_ATTACK",
-                "EMBER"
+                "MOVE_WING_ATTACK",
+                "MOVE_EMBER"
             ],
-            "8": "FIRE_SPIN",
-            "15": "AGILITY",
-            "22": "ENDURE",
-            "29": "ANCIENT_POWER",
-            "36": "FLAMETHROWER",
-            "43": "SAFEGUARD",
-            "50": "AIR_SLASH",
-            "57": "ROOST",
-            "64": "HEAT_WAVE",
-            "71": "SOLAR_BEAM",
-            "78": "SKY_ATTACK",
-            "85": "SUNNY_DAY"
+            "8": "MOVE_FIRE_SPIN",
+            "15": "MOVE_AGILITY",
+            "22": "MOVE_ENDURE",
+            "29": "MOVE_ANCIENT_POWER",
+            "36": "MOVE_FLAMETHROWER",
+            "43": "MOVE_SAFEGUARD",
+            "50": "MOVE_AIR_SLASH",
+            "57": "MOVE_ROOST",
+            "64": "MOVE_HEAT_WAVE",
+            "71": "MOVE_SOLAR_BEAM",
+            "78": "MOVE_SKY_ATTACK",
+            "85": "MOVE_SUNNY_DAY"
         }
     }
 }

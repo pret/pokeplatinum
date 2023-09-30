@@ -87,24 +87,24 @@
         ],
         "level_up": {
             "1": [
-                "PECK",
-                "LEER"
+                "MOVE_PECK",
+                "MOVE_LEER"
             ],
-            "6": "NIGHT_SHADE",
-            "9": "TELEPORT",
-            "12": "LUCKY_CHANT",
-            "17": "MIRACLE_EYE",
-            "20": "ME_FIRST",
-            "23": "CONFUSE_RAY",
-            "28": "WISH",
-            "33": "PSYCHO_SHIFT",
-            "36": "FUTURE_SIGHT",
-            "39": "OMINOUS_WIND",
+            "6": "MOVE_NIGHT_SHADE",
+            "9": "MOVE_TELEPORT",
+            "12": "MOVE_LUCKY_CHANT",
+            "17": "MOVE_MIRACLE_EYE",
+            "20": "MOVE_ME_FIRST",
+            "23": "MOVE_CONFUSE_RAY",
+            "28": "MOVE_WISH",
+            "33": "MOVE_PSYCHO_SHIFT",
+            "36": "MOVE_FUTURE_SIGHT",
+            "39": "MOVE_OMINOUS_WIND",
             "44": [
-                "POWER_SWAP",
-                "GUARD_SWAP"
+                "MOVE_POWER_SWAP",
+                "MOVE_GUARD_SWAP"
             ],
-            "47": "PSYCHIC"
+            "47": "MOVE_PSYCHIC"
         }
     },
     "evolutions": [

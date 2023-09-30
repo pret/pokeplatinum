@@ -85,20 +85,20 @@
         ],
         "level_up": {
             "1": [
-                "WATER_SPORT",
-                "SCRATCH"
+                "MOVE_WATER_SPORT",
+                "MOVE_SCRATCH"
             ],
-            "5": "TAIL_WHIP",
-            "9": "WATER_GUN",
-            "14": "DISABLE",
-            "18": "CONFUSION",
-            "22": "WATER_PULSE",
-            "27": "FURY_SWIPES",
-            "31": "SCREECH",
-            "35": "PSYCH_UP",
-            "40": "ZEN_HEADBUTT",
-            "44": "AMNESIA",
-            "48": "HYDRO_PUMP"
+            "5": "MOVE_TAIL_WHIP",
+            "9": "MOVE_WATER_GUN",
+            "14": "MOVE_DISABLE",
+            "18": "MOVE_CONFUSION",
+            "22": "MOVE_WATER_PULSE",
+            "27": "MOVE_FURY_SWIPES",
+            "31": "MOVE_SCREECH",
+            "35": "MOVE_PSYCH_UP",
+            "40": "MOVE_ZEN_HEADBUTT",
+            "44": "MOVE_AMNESIA",
+            "48": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

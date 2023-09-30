@@ -80,22 +80,22 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL",
-                "FORESIGHT"
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_FORESIGHT"
             ],
-            "5": "HYPNOSIS",
-            "9": "PECK",
-            "13": "UPROAR",
-            "17": "REFLECT",
-            "21": "CONFUSION",
-            "25": "TAKE_DOWN",
-            "29": "AIR_SLASH",
-            "33": "ZEN_HEADBUTT",
-            "37": "EXTRASENSORY",
-            "41": "PSYCHO_SHIFT",
-            "45": "ROOST",
-            "49": "DREAM_EATER"
+            "5": "MOVE_HYPNOSIS",
+            "9": "MOVE_PECK",
+            "13": "MOVE_UPROAR",
+            "17": "MOVE_REFLECT",
+            "21": "MOVE_CONFUSION",
+            "25": "MOVE_TAKE_DOWN",
+            "29": "MOVE_AIR_SLASH",
+            "33": "MOVE_ZEN_HEADBUTT",
+            "37": "MOVE_EXTRASENSORY",
+            "41": "MOVE_PSYCHO_SHIFT",
+            "45": "MOVE_ROOST",
+            "49": "MOVE_DREAM_EATER"
         }
     },
     "evolutions": [

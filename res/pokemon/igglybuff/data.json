@@ -84,13 +84,13 @@
         ],
         "level_up": {
             "1": [
-                "SING",
-                "CHARM"
+                "MOVE_SING",
+                "MOVE_CHARM"
             ],
-            "5": "DEFENSE_CURL",
-            "9": "POUND",
-            "13": "SWEET_KISS",
-            "17": "COPYCAT"
+            "5": "MOVE_DEFENSE_CURL",
+            "9": "MOVE_POUND",
+            "13": "MOVE_SWEET_KISS",
+            "17": "MOVE_COPYCAT"
         }
     },
     "evolutions": [

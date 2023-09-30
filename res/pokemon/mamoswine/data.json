@@ -84,25 +84,25 @@
         ],
         "level_up": {
             "1": [
-                "ANCIENT_POWER",
-                "PECK",
-                "ODOR_SLEUTH",
-                "MUD_SPORT",
-                "POWDER_SNOW"
+                "MOVE_ANCIENT_POWER",
+                "MOVE_PECK",
+                "MOVE_ODOR_SLEUTH",
+                "MOVE_MUD_SPORT",
+                "MOVE_POWDER_SNOW"
             ],
-            "4": "MUD_SPORT",
-            "8": "POWDER_SNOW",
-            "13": "MUD_SLAP",
-            "16": "ENDURE",
-            "20": "MUD_BOMB",
-            "25": "HAIL",
-            "28": "ICE_FANG",
-            "32": "TAKE_DOWN",
-            "33": "DOUBLE_HIT",
-            "40": "EARTHQUAKE",
-            "48": "MIST",
-            "56": "BLIZZARD",
-            "65": "SCARY_FACE"
+            "4": "MOVE_MUD_SPORT",
+            "8": "MOVE_POWDER_SNOW",
+            "13": "MOVE_MUD_SLAP",
+            "16": "MOVE_ENDURE",
+            "20": "MOVE_MUD_BOMB",
+            "25": "MOVE_HAIL",
+            "28": "MOVE_ICE_FANG",
+            "32": "MOVE_TAKE_DOWN",
+            "33": "MOVE_DOUBLE_HIT",
+            "40": "MOVE_EARTHQUAKE",
+            "48": "MOVE_MIST",
+            "56": "MOVE_BLIZZARD",
+            "65": "MOVE_SCARY_FACE"
         }
     }
 }

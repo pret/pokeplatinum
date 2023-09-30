@@ -85,21 +85,21 @@
         ],
         "level_up": {
             "1": [
-                "BITE",
-                "LEER"
+                "MOVE_BITE",
+                "MOVE_LEER"
             ],
-            "8": "BUBBLE_BEAM",
-            "15": "RAIN_DANCE",
-            "22": "GUST",
-            "29": "AURORA_BEAM",
-            "36": "MIST",
-            "43": "MIRROR_COAT",
-            "50": "ICE_FANG",
-            "57": "TAILWIND",
-            "64": "EXTRASENSORY",
-            "71": "HYDRO_PUMP",
-            "78": "CALM_MIND",
-            "85": "BLIZZARD"
+            "8": "MOVE_BUBBLE_BEAM",
+            "15": "MOVE_RAIN_DANCE",
+            "22": "MOVE_GUST",
+            "29": "MOVE_AURORA_BEAM",
+            "36": "MOVE_MIST",
+            "43": "MOVE_MIRROR_COAT",
+            "50": "MOVE_ICE_FANG",
+            "57": "MOVE_TAILWIND",
+            "64": "MOVE_EXTRASENSORY",
+            "71": "MOVE_HYDRO_PUMP",
+            "78": "MOVE_CALM_MIND",
+            "85": "MOVE_BLIZZARD"
         }
     }
 }

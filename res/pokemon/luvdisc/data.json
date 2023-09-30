@@ -73,19 +73,19 @@
             "HM07"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "4": "CHARM",
-            "7": "WATER_GUN",
-            "9": "AGILITY",
-            "14": "TAKE_DOWN",
-            "17": "LUCKY_CHANT",
-            "22": "ATTRACT",
-            "27": "SWEET_KISS",
-            "31": "WATER_PULSE",
-            "37": "AQUA_RING",
-            "40": "CAPTIVATE",
-            "46": "FLAIL",
-            "51": "SAFEGUARD"
+            "1": "MOVE_TACKLE",
+            "4": "MOVE_CHARM",
+            "7": "MOVE_WATER_GUN",
+            "9": "MOVE_AGILITY",
+            "14": "MOVE_TAKE_DOWN",
+            "17": "MOVE_LUCKY_CHANT",
+            "22": "MOVE_ATTRACT",
+            "27": "MOVE_SWEET_KISS",
+            "31": "MOVE_WATER_PULSE",
+            "37": "MOVE_AQUA_RING",
+            "40": "MOVE_CAPTIVATE",
+            "46": "MOVE_FLAIL",
+            "51": "MOVE_SAFEGUARD"
         }
     }
 }

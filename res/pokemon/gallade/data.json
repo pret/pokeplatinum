@@ -107,25 +107,25 @@
         ],
         "level_up": {
             "1": [
-                "LEAF_BLADE",
-                "NIGHT_SLASH",
-                "LEER",
-                "CONFUSION",
-                "DOUBLE_TEAM",
-                "TELEPORT"
+                "MOVE_LEAF_BLADE",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_LEER",
+                "MOVE_CONFUSION",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_TELEPORT"
             ],
-            "6": "CONFUSION",
-            "10": "DOUBLE_TEAM",
-            "12": "TELEPORT",
-            "17": "FURY_CUTTER",
-            "22": "SLASH",
-            "25": "SWORDS_DANCE",
-            "31": "PSYCHO_CUT",
-            "36": "HELPING_HAND",
-            "39": "FEINT",
-            "45": "FALSE_SWIPE",
-            "50": "PROTECT",
-            "53": "CLOSE_COMBAT"
+            "6": "MOVE_CONFUSION",
+            "10": "MOVE_DOUBLE_TEAM",
+            "12": "MOVE_TELEPORT",
+            "17": "MOVE_FURY_CUTTER",
+            "22": "MOVE_SLASH",
+            "25": "MOVE_SWORDS_DANCE",
+            "31": "MOVE_PSYCHO_CUT",
+            "36": "MOVE_HELPING_HAND",
+            "39": "MOVE_FEINT",
+            "45": "MOVE_FALSE_SWIPE",
+            "50": "MOVE_PROTECT",
+            "53": "MOVE_CLOSE_COMBAT"
         }
     }
 }

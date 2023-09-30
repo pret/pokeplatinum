@@ -92,23 +92,23 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "FORESIGHT",
-                "DEFENSE_CURL",
-                "QUICK_ATTACK"
+                "MOVE_SCRATCH",
+                "MOVE_FORESIGHT",
+                "MOVE_DEFENSE_CURL",
+                "MOVE_QUICK_ATTACK"
             ],
-            "4": "DEFENSE_CURL",
-            "7": "QUICK_ATTACK",
-            "13": "FURY_SWIPES",
-            "17": "HELPING_HAND",
-            "21": "FOLLOW_ME",
-            "28": "SLAM",
-            "32": "REST",
-            "36": "SUCKER_PUNCH",
-            "42": "AMNESIA",
-            "46": "BATON_PASS",
-            "50": "ME_FIRST",
-            "56": "HYPER_VOICE"
+            "4": "MOVE_DEFENSE_CURL",
+            "7": "MOVE_QUICK_ATTACK",
+            "13": "MOVE_FURY_SWIPES",
+            "17": "MOVE_HELPING_HAND",
+            "21": "MOVE_FOLLOW_ME",
+            "28": "MOVE_SLAM",
+            "32": "MOVE_REST",
+            "36": "MOVE_SUCKER_PUNCH",
+            "42": "MOVE_AMNESIA",
+            "46": "MOVE_BATON_PASS",
+            "50": "MOVE_ME_FIRST",
+            "56": "MOVE_HYPER_VOICE"
         }
     }
 }

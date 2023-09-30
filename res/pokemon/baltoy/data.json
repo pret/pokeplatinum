@@ -88,20 +88,20 @@
             "TM92"
         ],
         "level_up": {
-            "1": "CONFUSION",
-            "3": "HARDEN",
-            "5": "RAPID_SPIN",
-            "7": "MUD_SLAP",
-            "11": "PSYBEAM",
-            "15": "ROCK_TOMB",
-            "19": "SELF_DESTRUCT",
-            "25": "ANCIENT_POWER",
-            "31": "POWER_TRICK",
-            "37": "SANDSTORM",
-            "45": "COSMIC_POWER",
-            "53": "EARTH_POWER",
-            "61": "HEAL_BLOCK",
-            "71": "EXPLOSION"
+            "1": "MOVE_CONFUSION",
+            "3": "MOVE_HARDEN",
+            "5": "MOVE_RAPID_SPIN",
+            "7": "MOVE_MUD_SLAP",
+            "11": "MOVE_PSYBEAM",
+            "15": "MOVE_ROCK_TOMB",
+            "19": "MOVE_SELFDESTRUCT",
+            "25": "MOVE_ANCIENT_POWER",
+            "31": "MOVE_POWER_TRICK",
+            "37": "MOVE_SANDSTORM",
+            "45": "MOVE_COSMIC_POWER",
+            "53": "MOVE_EARTH_POWER",
+            "61": "MOVE_HEAL_BLOCK",
+            "71": "MOVE_EXPLOSION"
         }
     },
     "evolutions": [

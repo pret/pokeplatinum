@@ -106,21 +106,21 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "WRAP"
+                "MOVE_LEER",
+                "MOVE_WRAP"
             ],
-            "9": "NIGHT_SHADE",
-            "17": "DOUBLE_TEAM",
-            "25": "KNOCK_OFF",
-            "33": "PURSUIT",
-            "41": "PSYCHIC",
-            "49": "SWIFT",
-            "57": "PSYCHO_SHIFT",
-            "65": "ZEN_HEADBUTT",
-            "73": "AGILITY",
-            "81": "RECOVER",
-            "89": "PSYCHO_BOOST",
-            "97": "EXTREME_SPEED"
+            "9": "MOVE_NIGHT_SHADE",
+            "17": "MOVE_DOUBLE_TEAM",
+            "25": "MOVE_KNOCK_OFF",
+            "33": "MOVE_PURSUIT",
+            "41": "MOVE_PSYCHIC",
+            "49": "MOVE_SWIFT",
+            "57": "MOVE_PSYCHO_SHIFT",
+            "65": "MOVE_ZEN_HEADBUTT",
+            "73": "MOVE_AGILITY",
+            "81": "MOVE_RECOVER",
+            "89": "MOVE_PSYCHO_BOOST",
+            "97": "MOVE_EXTREME_SPEED"
         }
     }
 }

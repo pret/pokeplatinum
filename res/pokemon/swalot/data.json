@@ -82,27 +82,27 @@
         ],
         "level_up": {
             "1": [
-                "POUND",
-                "YAWN",
-                "POISON_GAS",
-                "SLUDGE"
+                "MOVE_POUND",
+                "MOVE_YAWN",
+                "MOVE_POISON_GAS",
+                "MOVE_SLUDGE"
             ],
-            "6": "YAWN",
-            "9": "POISON_GAS",
-            "14": "SLUDGE",
-            "17": "AMNESIA",
-            "23": "ENCORE",
-            "26": "BODY_SLAM",
-            "30": "TOXIC",
+            "6": "MOVE_YAWN",
+            "9": "MOVE_POISON_GAS",
+            "14": "MOVE_SLUDGE",
+            "17": "MOVE_AMNESIA",
+            "23": "MOVE_ENCORE",
+            "26": "MOVE_BODY_SLAM",
+            "30": "MOVE_TOXIC",
             "38": [
-                "STOCKPILE",
-                "SPIT_UP",
-                "SWALLOW"
+                "MOVE_STOCKPILE",
+                "MOVE_SPIT_UP",
+                "MOVE_SWALLOW"
             ],
-            "45": "SLUDGE_BOMB",
-            "52": "GASTRO_ACID",
-            "59": "WRING_OUT",
-            "66": "GUNK_SHOT"
+            "45": "MOVE_SLUDGE_BOMB",
+            "52": "MOVE_GASTRO_ACID",
+            "59": "MOVE_WRING_OUT",
+            "66": "MOVE_GUNK_SHOT"
         }
     }
 }

@@ -85,18 +85,18 @@
             "TM90"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "5": "SWEET_SCENT",
-            "9": "CHARM",
-            "13": "MOONLIGHT",
-            "17": "QUICK_ATTACK",
-            "21": "WISH",
-            "25": "ENCORE",
-            "29": "FLATTER",
-            "33": "HELPING_HAND",
-            "37": "ZEN_HEADBUTT",
-            "41": "BUG_BUZZ",
-            "45": "COVET"
+            "1": "MOVE_TACKLE",
+            "5": "MOVE_SWEET_SCENT",
+            "9": "MOVE_CHARM",
+            "13": "MOVE_MOONLIGHT",
+            "17": "MOVE_QUICK_ATTACK",
+            "21": "MOVE_WISH",
+            "25": "MOVE_ENCORE",
+            "29": "MOVE_FLATTER",
+            "33": "MOVE_HELPING_HAND",
+            "37": "MOVE_ZEN_HEADBUTT",
+            "41": "MOVE_BUG_BUZZ",
+            "45": "MOVE_COVET"
         }
     }
 }

@@ -80,11 +80,11 @@
         ],
         "level_up": {
             "1": [
-                "WEATHER_BALL",
-                "POISON_STING",
-                "MEGA_DRAIN",
-                "MAGICAL_LEAF",
-                "SWEET_SCENT"
+                "MOVE_WEATHER_BALL",
+                "MOVE_POISON_STING",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_SWEET_SCENT"
             ]
         }
     }

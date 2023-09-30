@@ -148,19 +148,19 @@
         ],
         "level_up": {
             "1": [
-                "POUND",
-                "TRANSFORM"
+                "MOVE_POUND",
+                "MOVE_TRANSFORM"
             ],
-            "10": "MEGA_PUNCH",
-            "20": "METRONOME",
-            "30": "PSYCHIC",
-            "40": "BARRIER",
-            "50": "ANCIENT_POWER",
-            "60": "AMNESIA",
-            "70": "ME_FIRST",
-            "80": "BATON_PASS",
-            "90": "NASTY_PLOT",
-            "100": "AURA_SPHERE"
+            "10": "MOVE_MEGA_PUNCH",
+            "20": "MOVE_METRONOME",
+            "30": "MOVE_PSYCHIC",
+            "40": "MOVE_BARRIER",
+            "50": "MOVE_ANCIENT_POWER",
+            "60": "MOVE_AMNESIA",
+            "70": "MOVE_ME_FIRST",
+            "80": "MOVE_BATON_PASS",
+            "90": "MOVE_NASTY_PLOT",
+            "100": "MOVE_AURA_SPHERE"
         }
     }
 }

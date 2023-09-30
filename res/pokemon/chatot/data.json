@@ -75,18 +75,18 @@
             "HM05"
         ],
         "level_up": {
-            "1": "PECK",
-            "5": "GROWL",
-            "9": "MIRROR_MOVE",
-            "13": "SING",
-            "17": "FURY_ATTACK",
-            "21": "CHATTER",
-            "25": "TAUNT",
-            "29": "MIMIC",
-            "33": "ROOST",
-            "37": "UPROAR",
-            "41": "FEATHER_DANCE",
-            "45": "HYPER_VOICE"
+            "1": "MOVE_PECK",
+            "5": "MOVE_GROWL",
+            "9": "MOVE_MIRROR_MOVE",
+            "13": "MOVE_SING",
+            "17": "MOVE_FURY_ATTACK",
+            "21": "MOVE_CHATTER",
+            "25": "MOVE_TAUNT",
+            "29": "MOVE_MIMIC",
+            "33": "MOVE_ROOST",
+            "37": "MOVE_UPROAR",
+            "41": "MOVE_FEATHER_DANCE",
+            "45": "MOVE_HYPER_VOICE"
         }
     }
 }

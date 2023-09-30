@@ -83,16 +83,16 @@
             "HM08"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "3": "SAND_ATTACK",
-            "7": "DRAGON_RAGE",
-            "13": "SANDSTORM",
-            "15": "TAKE_DOWN",
-            "19": "SAND_TOMB",
-            "25": "SLASH",
-            "27": "DRAGON_CLAW",
-            "31": "DIG",
-            "37": "DRAGON_RUSH"
+            "1": "MOVE_TACKLE",
+            "3": "MOVE_SAND_ATTACK",
+            "7": "MOVE_DRAGON_RAGE",
+            "13": "MOVE_SANDSTORM",
+            "15": "MOVE_TAKE_DOWN",
+            "19": "MOVE_SAND_TOMB",
+            "25": "MOVE_SLASH",
+            "27": "MOVE_DRAGON_CLAW",
+            "31": "MOVE_DIG",
+            "37": "MOVE_DRAGON_RUSH"
         }
     },
     "evolutions": [

@@ -88,26 +88,26 @@
         ],
         "level_up": {
             "1": [
-                "FIRE_FANG",
-                "THUNDER_FANG",
-                "RAGE",
-                "BITE",
-                "LEER",
-                "HEADBUTT"
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_RAGE",
+                "MOVE_BITE",
+                "MOVE_LEER",
+                "MOVE_HEADBUTT"
             ],
-            "5": "BITE",
-            "10": "LEER",
-            "16": "HEADBUTT",
-            "20": "FOCUS_ENERGY",
-            "25": "EMBER",
-            "30": "PROTECT",
-            "32": "DRAGON_BREATH",
-            "37": "ZEN_HEADBUTT",
-            "43": "SCARY_FACE",
-            "50": "FLY",
-            "53": "CRUNCH",
-            "61": "DRAGON_CLAW",
-            "70": "DOUBLE_EDGE"
+            "5": "MOVE_BITE",
+            "10": "MOVE_LEER",
+            "16": "MOVE_HEADBUTT",
+            "20": "MOVE_FOCUS_ENERGY",
+            "25": "MOVE_EMBER",
+            "30": "MOVE_PROTECT",
+            "32": "MOVE_DRAGON_BREATH",
+            "37": "MOVE_ZEN_HEADBUTT",
+            "43": "MOVE_SCARY_FACE",
+            "50": "MOVE_FLY",
+            "53": "MOVE_CRUNCH",
+            "61": "MOVE_DRAGON_CLAW",
+            "70": "MOVE_DOUBLE_EDGE"
         }
     }
 }

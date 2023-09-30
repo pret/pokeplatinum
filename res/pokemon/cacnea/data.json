@@ -81,23 +81,23 @@
         ],
         "level_up": {
             "1": [
-                "POISON_STING",
-                "LEER"
+                "MOVE_POISON_STING",
+                "MOVE_LEER"
             ],
-            "5": "ABSORB",
-            "9": "GROWTH",
-            "13": "LEECH_SEED",
-            "17": "SAND_ATTACK",
-            "21": "PIN_MISSILE",
-            "25": "INGRAIN",
-            "29": "FAINT_ATTACK",
-            "33": "SPIKES",
-            "37": "SUCKER_PUNCH",
-            "41": "PAYBACK",
-            "45": "NEEDLE_ARM",
-            "49": "COTTON_SPORE",
-            "53": "SANDSTORM",
-            "57": "DESTINY_BOND"
+            "5": "MOVE_ABSORB",
+            "9": "MOVE_GROWTH",
+            "13": "MOVE_LEECH_SEED",
+            "17": "MOVE_SAND_ATTACK",
+            "21": "MOVE_PIN_MISSILE",
+            "25": "MOVE_INGRAIN",
+            "29": "MOVE_FAINT_ATTACK",
+            "33": "MOVE_SPIKES",
+            "37": "MOVE_SUCKER_PUNCH",
+            "41": "MOVE_PAYBACK",
+            "45": "MOVE_NEEDLE_ARM",
+            "49": "MOVE_COTTON_SPORE",
+            "53": "MOVE_SANDSTORM",
+            "57": "MOVE_DESTINY_BOND"
         }
     },
     "evolutions": [

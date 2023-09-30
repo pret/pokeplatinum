@@ -101,18 +101,18 @@
             "HM07"
         ],
         "level_up": {
-            "1": "TWISTER",
-            "5": "SCARY_FACE",
-            "15": "ANCIENT_POWER",
-            "20": "DRAGON_CLAW",
-            "30": "DRAGON_DANCE",
-            "35": "CRUNCH",
-            "45": "FLY",
-            "50": "REST",
-            "60": "EXTREME_SPEED",
-            "65": "HYPER_BEAM",
-            "75": "DRAGON_PULSE",
-            "80": "OUTRAGE"
+            "1": "MOVE_TWISTER",
+            "5": "MOVE_SCARY_FACE",
+            "15": "MOVE_ANCIENT_POWER",
+            "20": "MOVE_DRAGON_CLAW",
+            "30": "MOVE_DRAGON_DANCE",
+            "35": "MOVE_CRUNCH",
+            "45": "MOVE_FLY",
+            "50": "MOVE_REST",
+            "60": "MOVE_EXTREME_SPEED",
+            "65": "MOVE_HYPER_BEAM",
+            "75": "MOVE_DRAGON_PULSE",
+            "80": "MOVE_OUTRAGE"
         }
     }
 }

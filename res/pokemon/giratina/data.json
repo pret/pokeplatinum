@@ -97,18 +97,18 @@
         ],
         "level_up": {
             "1": [
-                "DRAGON_BREATH",
-                "SCARY_FACE"
+                "MOVE_DRAGON_BREATH",
+                "MOVE_SCARY_FACE"
             ],
-            "10": "OMINOUS_WIND",
-            "20": "ANCIENT_POWER",
-            "30": "DRAGON_CLAW",
-            "40": "SHADOW_FORCE",
-            "50": "HEAL_BLOCK",
-            "60": "EARTH_POWER",
-            "70": "SLASH",
-            "80": "SHADOW_CLAW",
-            "90": "AURA_SPHERE"
+            "10": "MOVE_OMINOUS_WIND",
+            "20": "MOVE_ANCIENT_POWER",
+            "30": "MOVE_DRAGON_CLAW",
+            "40": "MOVE_SHADOW_FORCE",
+            "50": "MOVE_HEAL_BLOCK",
+            "60": "MOVE_EARTH_POWER",
+            "70": "MOVE_SLASH",
+            "80": "MOVE_SHADOW_CLAW",
+            "90": "MOVE_AURA_SPHERE"
         }
     }
 }

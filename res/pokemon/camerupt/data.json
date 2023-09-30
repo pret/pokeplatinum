@@ -85,22 +85,22 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "TACKLE",
-                "EMBER",
-                "MAGNITUDE"
+                "MOVE_GROWL",
+                "MOVE_TACKLE",
+                "MOVE_EMBER",
+                "MOVE_MAGNITUDE"
             ],
-            "5": "EMBER",
-            "11": "MAGNITUDE",
-            "15": "FOCUS_ENERGY",
-            "21": "TAKE_DOWN",
-            "25": "AMNESIA",
-            "31": "LAVA_PLUME",
-            "33": "ROCK_SLIDE",
-            "39": "EARTH_POWER",
-            "49": "EARTHQUAKE",
-            "57": "ERUPTION",
-            "67": "FISSURE"
+            "5": "MOVE_EMBER",
+            "11": "MOVE_MAGNITUDE",
+            "15": "MOVE_FOCUS_ENERGY",
+            "21": "MOVE_TAKE_DOWN",
+            "25": "MOVE_AMNESIA",
+            "31": "MOVE_LAVA_PLUME",
+            "33": "MOVE_ROCK_SLIDE",
+            "39": "MOVE_EARTH_POWER",
+            "49": "MOVE_EARTHQUAKE",
+            "57": "MOVE_ERUPTION",
+            "67": "MOVE_FISSURE"
         }
     }
 }

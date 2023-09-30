@@ -75,17 +75,17 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "SAND_ATTACK"
+                "MOVE_TACKLE",
+                "MOVE_SAND_ATTACK"
             ],
-            "7": "BITE",
-            "13": "YAWN",
-            "19": "TAKE_DOWN",
-            "25": "SAND_TOMB",
-            "31": "CRUNCH",
-            "37": "EARTHQUAKE",
-            "44": "DOUBLE_EDGE",
-            "50": "FISSURE"
+            "7": "MOVE_BITE",
+            "13": "MOVE_YAWN",
+            "19": "MOVE_TAKE_DOWN",
+            "25": "MOVE_SAND_TOMB",
+            "31": "MOVE_CRUNCH",
+            "37": "MOVE_EARTHQUAKE",
+            "44": "MOVE_DOUBLE_EDGE",
+            "50": "MOVE_FISSURE"
         }
     },
     "evolutions": [

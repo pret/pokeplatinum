@@ -106,24 +106,24 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "HARDEN",
-                "MUD_SLAP",
-                "HEADBUTT"
+                "MOVE_TACKLE",
+                "MOVE_HARDEN",
+                "MOVE_MUD_SLAP",
+                "MOVE_HEADBUTT"
             ],
-            "4": "HARDEN",
-            "8": "MUD_SLAP",
-            "11": "HEADBUTT",
-            "15": "METAL_CLAW",
-            "18": "IRON_DEFENSE",
-            "22": "ROAR",
-            "25": "TAKE_DOWN",
-            "29": "IRON_HEAD",
-            "34": "PROTECT",
-            "40": "METAL_SOUND",
-            "48": "IRON_TAIL",
-            "57": "DOUBLE_EDGE",
-            "65": "METAL_BURST"
+            "4": "MOVE_HARDEN",
+            "8": "MOVE_MUD_SLAP",
+            "11": "MOVE_HEADBUTT",
+            "15": "MOVE_METAL_CLAW",
+            "18": "MOVE_IRON_DEFENSE",
+            "22": "MOVE_ROAR",
+            "25": "MOVE_TAKE_DOWN",
+            "29": "MOVE_IRON_HEAD",
+            "34": "MOVE_PROTECT",
+            "40": "MOVE_METAL_SOUND",
+            "48": "MOVE_IRON_TAIL",
+            "57": "MOVE_DOUBLE_EDGE",
+            "65": "MOVE_METAL_BURST"
         }
     }
 }

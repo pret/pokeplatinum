@@ -86,22 +86,22 @@
             "TM92"
         ],
         "level_up": {
-            "1": "SPLASH",
-            "7": "PSYWAVE",
-            "10": "ODOR_SLEUTH",
-            "14": "PSYBEAM",
-            "15": "PSYCH_UP",
-            "18": "CONFUSE_RAY",
-            "21": "MAGIC_COAT",
-            "26": "ZEN_HEADBUTT",
+            "1": "MOVE_SPLASH",
+            "7": "MOVE_PSYWAVE",
+            "10": "MOVE_ODOR_SLEUTH",
+            "14": "MOVE_PSYBEAM",
+            "15": "MOVE_PSYCH_UP",
+            "18": "MOVE_CONFUSE_RAY",
+            "21": "MOVE_MAGIC_COAT",
+            "26": "MOVE_ZEN_HEADBUTT",
             "29": [
-                "REST",
-                "SNORE"
+                "MOVE_REST",
+                "MOVE_SNORE"
             ],
-            "34": "PAYBACK",
-            "41": "PSYCHIC",
-            "46": "POWER_GEM",
-            "48": "BOUNCE"
+            "34": "MOVE_PAYBACK",
+            "41": "MOVE_PSYCHIC",
+            "46": "MOVE_POWER_GEM",
+            "48": "MOVE_BOUNCE"
         }
     },
     "evolutions": [

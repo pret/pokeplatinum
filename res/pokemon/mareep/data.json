@@ -72,17 +72,17 @@
             "TM90"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "5": "GROWL",
-            "10": "THUNDER_SHOCK",
-            "14": "THUNDER_WAVE",
-            "19": "COTTON_SPORE",
-            "23": "CHARGE",
-            "28": "DISCHARGE",
-            "32": "SIGNAL_BEAM",
-            "37": "LIGHT_SCREEN",
-            "41": "POWER_GEM",
-            "46": "THUNDER"
+            "1": "MOVE_TACKLE",
+            "5": "MOVE_GROWL",
+            "10": "MOVE_THUNDER_SHOCK",
+            "14": "MOVE_THUNDER_WAVE",
+            "19": "MOVE_COTTON_SPORE",
+            "23": "MOVE_CHARGE",
+            "28": "MOVE_DISCHARGE",
+            "32": "MOVE_SIGNAL_BEAM",
+            "37": "MOVE_LIGHT_SCREEN",
+            "41": "MOVE_POWER_GEM",
+            "46": "MOVE_THUNDER"
         }
     },
     "evolutions": [

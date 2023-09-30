@@ -84,24 +84,24 @@
         ],
         "level_up": {
             "1": [
-                "WOOD_HAMMER",
-                "COPYCAT",
-                "FLAIL",
-                "LOW_KICK",
-                "ROCK_THROW"
+                "MOVE_WOOD_HAMMER",
+                "MOVE_COPYCAT",
+                "MOVE_FLAIL",
+                "MOVE_LOW_KICK",
+                "MOVE_ROCK_THROW"
             ],
-            "6": "FLAIL",
-            "9": "LOW_KICK",
-            "14": "ROCK_THROW",
-            "17": "MIMIC",
-            "22": "BLOCK",
-            "25": "FAINT_ATTACK",
-            "30": "ROCK_TOMB",
-            "33": "ROCK_SLIDE",
-            "38": "SLAM",
-            "41": "SUCKER_PUNCH",
-            "46": "DOUBLE_EDGE",
-            "49": "HAMMER_ARM"
+            "6": "MOVE_FLAIL",
+            "9": "MOVE_LOW_KICK",
+            "14": "MOVE_ROCK_THROW",
+            "17": "MOVE_MIMIC",
+            "22": "MOVE_BLOCK",
+            "25": "MOVE_FAINT_ATTACK",
+            "30": "MOVE_ROCK_TOMB",
+            "33": "MOVE_ROCK_SLIDE",
+            "38": "MOVE_SLAM",
+            "41": "MOVE_SUCKER_PUNCH",
+            "46": "MOVE_DOUBLE_EDGE",
+            "49": "MOVE_HAMMER_ARM"
         }
     }
 }

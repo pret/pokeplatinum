@@ -85,21 +85,21 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "FORESIGHT"
+                "MOVE_SCRATCH",
+                "MOVE_FORESIGHT"
             ],
-            "4": "DEFENSE_CURL",
-            "7": "QUICK_ATTACK",
-            "13": "FURY_SWIPES",
-            "16": "HELPING_HAND",
-            "19": "FOLLOW_ME",
-            "25": "SLAM",
-            "28": "REST",
-            "31": "SUCKER_PUNCH",
-            "36": "AMNESIA",
-            "39": "BATON_PASS",
-            "42": "ME_FIRST",
-            "47": "HYPER_VOICE"
+            "4": "MOVE_DEFENSE_CURL",
+            "7": "MOVE_QUICK_ATTACK",
+            "13": "MOVE_FURY_SWIPES",
+            "16": "MOVE_HELPING_HAND",
+            "19": "MOVE_FOLLOW_ME",
+            "25": "MOVE_SLAM",
+            "28": "MOVE_REST",
+            "31": "MOVE_SUCKER_PUNCH",
+            "36": "MOVE_AMNESIA",
+            "39": "MOVE_BATON_PASS",
+            "42": "MOVE_ME_FIRST",
+            "47": "MOVE_HYPER_VOICE"
         }
     },
     "evolutions": [

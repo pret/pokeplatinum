@@ -87,19 +87,19 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "LEER"
+                "MOVE_SCRATCH",
+                "MOVE_LEER"
             ],
-            "7": "EMBER",
-            "9": "TAUNT",
-            "15": "FURY_SWIPES",
-            "17": "FLAME_WHEEL",
-            "23": "NASTY_PLOT",
-            "25": "TORMENT",
-            "31": "FACADE",
-            "33": "FIRE_SPIN",
-            "39": "SLACK_OFF",
-            "41": "FLAMETHROWER"
+            "7": "MOVE_EMBER",
+            "9": "MOVE_TAUNT",
+            "15": "MOVE_FURY_SWIPES",
+            "17": "MOVE_FLAME_WHEEL",
+            "23": "MOVE_NASTY_PLOT",
+            "25": "MOVE_TORMENT",
+            "31": "MOVE_FACADE",
+            "33": "MOVE_FIRE_SPIN",
+            "39": "MOVE_SLACK_OFF",
+            "41": "MOVE_FLAMETHROWER"
         }
     },
     "evolutions": [

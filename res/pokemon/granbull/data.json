@@ -98,22 +98,22 @@
         ],
         "level_up": {
             "1": [
-                "ICE_FANG",
-                "FIRE_FANG",
-                "THUNDER_FANG",
-                "TACKLE",
-                "SCARY_FACE",
-                "TAIL_WHIP",
-                "CHARM"
+                "MOVE_ICE_FANG",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_TACKLE",
+                "MOVE_SCARY_FACE",
+                "MOVE_TAIL_WHIP",
+                "MOVE_CHARM"
             ],
-            "7": "BITE",
-            "13": "LICK",
-            "19": "HEADBUTT",
-            "27": "ROAR",
-            "35": "RAGE",
-            "43": "TAKE_DOWN",
-            "51": "PAYBACK",
-            "59": "CRUNCH"
+            "7": "MOVE_BITE",
+            "13": "MOVE_LICK",
+            "19": "MOVE_HEADBUTT",
+            "27": "MOVE_ROAR",
+            "35": "MOVE_RAGE",
+            "43": "MOVE_TAKE_DOWN",
+            "51": "MOVE_PAYBACK",
+            "59": "MOVE_CRUNCH"
         }
     }
 }

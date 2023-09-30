@@ -81,22 +81,22 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL",
-                "MUD_SLAP",
-                "WATER_GUN"
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_MUD_SLAP",
+                "MOVE_WATER_GUN"
             ],
-            "6": "MUD_SLAP",
-            "10": "WATER_GUN",
-            "15": "BIDE",
-            "16": "MUD_SHOT",
-            "20": "FORESIGHT",
-            "25": "MUD_BOMB",
-            "31": "TAKE_DOWN",
-            "37": "MUDDY_WATER",
-            "42": "PROTECT",
-            "46": "EARTHQUAKE",
-            "53": "ENDEAVOR"
+            "6": "MOVE_MUD_SLAP",
+            "10": "MOVE_WATER_GUN",
+            "15": "MOVE_BIDE",
+            "16": "MOVE_MUD_SHOT",
+            "20": "MOVE_FORESIGHT",
+            "25": "MOVE_MUD_BOMB",
+            "31": "MOVE_TAKE_DOWN",
+            "37": "MOVE_MUDDY_WATER",
+            "42": "MOVE_PROTECT",
+            "46": "MOVE_EARTHQUAKE",
+            "53": "MOVE_ENDEAVOR"
         }
     },
     "evolutions": [

@@ -89,10 +89,10 @@
         ],
         "level_up": {
             "1": [
-                "FAKE_OUT",
-                "ATTRACT",
-                "SING",
-                "DOUBLE_SLAP"
+                "MOVE_FAKE_OUT",
+                "MOVE_ATTRACT",
+                "MOVE_SING",
+                "MOVE_DOUBLE_SLAP"
             ]
         }
     }

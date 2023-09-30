@@ -93,22 +93,22 @@
         ],
         "level_up": {
             "1": [
-                "ICE_PUNCH",
-                "POWDER_SNOW",
-                "LEER",
-                "RAZOR_LEAF",
-                "ICY_WIND"
+                "MOVE_ICE_PUNCH",
+                "MOVE_POWDER_SNOW",
+                "MOVE_LEER",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_ICY_WIND"
             ],
-            "5": "RAZOR_LEAF",
-            "9": "ICY_WIND",
-            "13": "GRASS_WHISTLE",
-            "17": "SWAGGER",
-            "21": "MIST",
-            "26": "ICE_SHARD",
-            "31": "INGRAIN",
-            "36": "WOOD_HAMMER",
-            "47": "BLIZZARD",
-            "58": "SHEER_COLD"
+            "5": "MOVE_RAZOR_LEAF",
+            "9": "MOVE_ICY_WIND",
+            "13": "MOVE_GRASS_WHISTLE",
+            "17": "MOVE_SWAGGER",
+            "21": "MOVE_MIST",
+            "26": "MOVE_ICE_SHARD",
+            "31": "MOVE_INGRAIN",
+            "36": "MOVE_WOOD_HAMMER",
+            "47": "MOVE_BLIZZARD",
+            "58": "MOVE_SHEER_COLD"
         }
     }
 }

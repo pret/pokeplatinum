@@ -89,18 +89,18 @@
         ],
         "level_up": {
             "1": [
-                "RAZOR_LEAF",
-                "POUND"
+                "MOVE_RAZOR_LEAF",
+                "MOVE_POUND"
             ],
-            "3": "HARDEN",
-            "7": "GROWTH",
-            "13": "NATURE_POWER",
-            "19": "FAKE_OUT",
-            "25": "TORMENT",
-            "31": "FAINT_ATTACK",
-            "37": "RAZOR_WIND",
-            "43": "SWAGGER",
-            "49": "EXTRASENSORY"
+            "3": "MOVE_HARDEN",
+            "7": "MOVE_GROWTH",
+            "13": "MOVE_NATURE_POWER",
+            "19": "MOVE_FAKE_OUT",
+            "25": "MOVE_TORMENT",
+            "31": "MOVE_FAINT_ATTACK",
+            "37": "MOVE_RAZOR_WIND",
+            "43": "MOVE_SWAGGER",
+            "49": "MOVE_EXTRASENSORY"
         }
     },
     "evolutions": [

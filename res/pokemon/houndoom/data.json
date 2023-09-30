@@ -86,24 +86,24 @@
         ],
         "level_up": {
             "1": [
-                "THUNDER_FANG",
-                "LEER",
-                "EMBER",
-                "HOWL",
-                "SMOG"
+                "MOVE_THUNDER_FANG",
+                "MOVE_LEER",
+                "MOVE_EMBER",
+                "MOVE_HOWL",
+                "MOVE_SMOG"
             ],
-            "4": "HOWL",
-            "9": "SMOG",
-            "14": "ROAR",
-            "17": "BITE",
-            "22": "ODOR_SLEUTH",
-            "28": "BEAT_UP",
-            "32": "FIRE_FANG",
-            "38": "FAINT_ATTACK",
-            "44": "EMBARGO",
-            "48": "FLAMETHROWER",
-            "54": "CRUNCH",
-            "60": "NASTY_PLOT"
+            "4": "MOVE_HOWL",
+            "9": "MOVE_SMOG",
+            "14": "MOVE_ROAR",
+            "17": "MOVE_BITE",
+            "22": "MOVE_ODOR_SLEUTH",
+            "28": "MOVE_BEAT_UP",
+            "32": "MOVE_FIRE_FANG",
+            "38": "MOVE_FAINT_ATTACK",
+            "44": "MOVE_EMBARGO",
+            "48": "MOVE_FLAMETHROWER",
+            "54": "MOVE_CRUNCH",
+            "60": "MOVE_NASTY_PLOT"
         }
     }
 }

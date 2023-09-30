@@ -76,25 +76,25 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL",
-                "LEECH_SEED"
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_LEECH_SEED"
             ],
-            "3": "GROWL",
-            "7": "LEECH_SEED",
-            "9": "VINE_WHIP",
+            "3": "MOVE_GROWL",
+            "7": "MOVE_LEECH_SEED",
+            "9": "MOVE_VINE_WHIP",
             "13": [
-                "POISON_POWDER",
-                "SLEEP_POWDER"
+                "MOVE_POISON_POWDER",
+                "MOVE_SLEEP_POWDER"
             ],
-            "15": "TAKE_DOWN",
-            "20": "RAZOR_LEAF",
-            "23": "SWEET_SCENT",
-            "28": "GROWTH",
-            "31": "DOUBLE_EDGE",
-            "36": "WORRY_SEED",
-            "39": "SYNTHESIS",
-            "44": "SOLAR_BEAM"
+            "15": "MOVE_TAKE_DOWN",
+            "20": "MOVE_RAZOR_LEAF",
+            "23": "MOVE_SWEET_SCENT",
+            "28": "MOVE_GROWTH",
+            "31": "MOVE_DOUBLE_EDGE",
+            "36": "MOVE_WORRY_SEED",
+            "39": "MOVE_SYNTHESIS",
+            "44": "MOVE_SOLAR_BEAM"
         }
     },
     "evolutions": [

@@ -85,14 +85,14 @@
         ],
         "level_up": {
             "1": [
-                "POUND",
-                "CHARM"
+                "MOVE_POUND",
+                "MOVE_CHARM"
             ],
-            "4": "ENCORE",
-            "7": "SING",
-            "10": "SWEET_KISS",
-            "13": "COPYCAT",
-            "16": "MAGICAL_LEAF"
+            "4": "MOVE_ENCORE",
+            "7": "MOVE_SING",
+            "10": "MOVE_SWEET_KISS",
+            "13": "MOVE_COPYCAT",
+            "16": "MOVE_MAGICAL_LEAF"
         }
     },
     "evolutions": [

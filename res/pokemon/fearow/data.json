@@ -76,21 +76,21 @@
         ],
         "level_up": {
             "1": [
-                "PLUCK",
-                "PECK",
-                "GROWL",
-                "LEER",
-                "FURY_ATTACK"
+                "MOVE_PLUCK",
+                "MOVE_PECK",
+                "MOVE_GROWL",
+                "MOVE_LEER",
+                "MOVE_FURY_ATTACK"
             ],
-            "5": "LEER",
-            "9": "FURY_ATTACK",
-            "13": "PURSUIT",
-            "17": "AERIAL_ACE",
-            "23": "MIRROR_MOVE",
-            "29": "AGILITY",
-            "35": "ASSURANCE",
-            "41": "ROOST",
-            "47": "DRILL_PECK"
+            "5": "MOVE_LEER",
+            "9": "MOVE_FURY_ATTACK",
+            "13": "MOVE_PURSUIT",
+            "17": "MOVE_AERIAL_ACE",
+            "23": "MOVE_MIRROR_MOVE",
+            "29": "MOVE_AGILITY",
+            "35": "MOVE_ASSURANCE",
+            "41": "MOVE_ROOST",
+            "47": "MOVE_DRILL_PECK"
         }
     }
 }

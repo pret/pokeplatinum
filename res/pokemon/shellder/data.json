@@ -72,19 +72,19 @@
             "HM03"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "4": "WITHDRAW",
-            "8": "SUPERSONIC",
-            "13": "ICICLE_SPEAR",
-            "16": "PROTECT",
-            "20": "LEER",
-            "25": "CLAMP",
-            "28": "ICE_SHARD",
-            "32": "AURORA_BEAM",
-            "37": "WHIRLPOOL",
-            "40": "IRON_DEFENSE",
-            "44": "BRINE",
-            "49": "ICE_BEAM"
+            "1": "MOVE_TACKLE",
+            "4": "MOVE_WITHDRAW",
+            "8": "MOVE_SUPERSONIC",
+            "13": "MOVE_ICICLE_SPEAR",
+            "16": "MOVE_PROTECT",
+            "20": "MOVE_LEER",
+            "25": "MOVE_CLAMP",
+            "28": "MOVE_ICE_SHARD",
+            "32": "MOVE_AURORA_BEAM",
+            "37": "MOVE_WHIRLPOOL",
+            "40": "MOVE_IRON_DEFENSE",
+            "44": "MOVE_BRINE",
+            "49": "MOVE_ICE_BEAM"
         }
     },
     "evolutions": [

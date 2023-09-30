@@ -87,21 +87,21 @@
         ],
         "level_up": {
             "1": [
-                "VICE_GRIP",
-                "FOCUS_ENERGY"
+                "MOVE_VICE_GRIP",
+                "MOVE_FOCUS_ENERGY"
             ],
-            "4": "BIND",
-            "8": "SEISMIC_TOSS",
-            "13": "HARDEN",
-            "18": "REVENGE",
-            "21": "BRICK_BREAK",
-            "25": "VITAL_THROW",
-            "30": "X_SCISSOR",
-            "35": "THRASH",
-            "38": "SWORDS_DANCE",
-            "42": "SUBMISSION",
-            "47": "GUILLOTINE",
-            "52": "SUPERPOWER"
+            "4": "MOVE_BIND",
+            "8": "MOVE_SEISMIC_TOSS",
+            "13": "MOVE_HARDEN",
+            "18": "MOVE_REVENGE",
+            "21": "MOVE_BRICK_BREAK",
+            "25": "MOVE_VITAL_THROW",
+            "30": "MOVE_X_SCISSOR",
+            "35": "MOVE_THRASH",
+            "38": "MOVE_SWORDS_DANCE",
+            "42": "MOVE_SUBMISSION",
+            "47": "MOVE_GUILLOTINE",
+            "52": "MOVE_SUPERPOWER"
         }
     }
 }

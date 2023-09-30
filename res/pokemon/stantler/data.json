@@ -87,20 +87,20 @@
             "TM92"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "3": "LEER",
-            "7": "ASTONISH",
-            "10": "HYPNOSIS",
-            "13": "STOMP",
-            "16": "SAND_ATTACK",
-            "21": "TAKE_DOWN",
-            "23": "CONFUSE_RAY",
-            "27": "CALM_MIND",
-            "33": "ROLE_PLAY",
-            "38": "ZEN_HEADBUTT",
-            "43": "IMPRISON",
-            "49": "CAPTIVATE",
-            "53": "ME_FIRST"
+            "1": "MOVE_TACKLE",
+            "3": "MOVE_LEER",
+            "7": "MOVE_ASTONISH",
+            "10": "MOVE_HYPNOSIS",
+            "13": "MOVE_STOMP",
+            "16": "MOVE_SAND_ATTACK",
+            "21": "MOVE_TAKE_DOWN",
+            "23": "MOVE_CONFUSE_RAY",
+            "27": "MOVE_CALM_MIND",
+            "33": "MOVE_ROLE_PLAY",
+            "38": "MOVE_ZEN_HEADBUTT",
+            "43": "MOVE_IMPRISON",
+            "49": "MOVE_CAPTIVATE",
+            "53": "MOVE_ME_FIRST"
         }
     }
 }

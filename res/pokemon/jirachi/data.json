@@ -93,23 +93,23 @@
         ],
         "level_up": {
             "1": [
-                "WISH",
-                "CONFUSION"
+                "MOVE_WISH",
+                "MOVE_CONFUSION"
             ],
-            "5": "REST",
-            "10": "SWIFT",
-            "15": "HELPING_HAND",
-            "20": "PSYCHIC",
-            "25": "REFRESH",
-            "30": "REST",
-            "35": "ZEN_HEADBUTT",
-            "40": "DOUBLE_EDGE",
-            "45": "GRAVITY",
-            "50": "HEALING_WISH",
-            "55": "FUTURE_SIGHT",
-            "60": "COSMIC_POWER",
-            "65": "LAST_RESORT",
-            "70": "DOOM_DESIRE"
+            "5": "MOVE_REST",
+            "10": "MOVE_SWIFT",
+            "15": "MOVE_HELPING_HAND",
+            "20": "MOVE_PSYCHIC",
+            "25": "MOVE_REFRESH",
+            "30": "MOVE_REST",
+            "35": "MOVE_ZEN_HEADBUTT",
+            "40": "MOVE_DOUBLE_EDGE",
+            "45": "MOVE_GRAVITY",
+            "50": "MOVE_HEALING_WISH",
+            "55": "MOVE_FUTURE_SIGHT",
+            "60": "MOVE_COSMIC_POWER",
+            "65": "MOVE_LAST_RESORT",
+            "70": "MOVE_DOOM_DESIRE"
         }
     }
 }

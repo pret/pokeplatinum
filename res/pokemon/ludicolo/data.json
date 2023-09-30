@@ -90,10 +90,10 @@
         ],
         "level_up": {
             "1": [
-                "ASTONISH",
-                "GROWL",
-                "MEGA_DRAIN",
-                "NATURE_POWER"
+                "MOVE_ASTONISH",
+                "MOVE_GROWL",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_NATURE_POWER"
             ]
         }
     }

@@ -87,19 +87,19 @@
             "TM92"
         ],
         "level_up": {
-            "1": "GROWL",
-            "6": "CONFUSION",
-            "10": "DOUBLE_TEAM",
-            "12": "TELEPORT",
-            "17": "LUCKY_CHANT",
-            "21": "MAGICAL_LEAF",
-            "23": "CALM_MIND",
-            "28": "PSYCHIC",
-            "32": "IMPRISON",
-            "34": "FUTURE_SIGHT",
-            "39": "CHARM",
-            "43": "HYPNOSIS",
-            "45": "DREAM_EATER"
+            "1": "MOVE_GROWL",
+            "6": "MOVE_CONFUSION",
+            "10": "MOVE_DOUBLE_TEAM",
+            "12": "MOVE_TELEPORT",
+            "17": "MOVE_LUCKY_CHANT",
+            "21": "MOVE_MAGICAL_LEAF",
+            "23": "MOVE_CALM_MIND",
+            "28": "MOVE_PSYCHIC",
+            "32": "MOVE_IMPRISON",
+            "34": "MOVE_FUTURE_SIGHT",
+            "39": "MOVE_CHARM",
+            "43": "MOVE_HYPNOSIS",
+            "45": "MOVE_DREAM_EATER"
         }
     },
     "evolutions": [

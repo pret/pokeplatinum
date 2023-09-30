@@ -1,5 +1,5 @@
 {
-    "name": "Nidoran♀",
+    "name": "Nidoran\u2640",
     "base_stats": {
         "hp": 55,
         "attack": 47,
@@ -82,20 +82,20 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "SCRATCH"
+                "MOVE_GROWL",
+                "MOVE_SCRATCH"
             ],
-            "7": "TAIL_WHIP",
-            "9": "DOUBLE_KICK",
-            "13": "POISON_STING",
-            "19": "FURY_SWIPES",
-            "21": "BITE",
-            "25": "HELPING_HAND",
-            "31": "TOXIC_SPIKES",
-            "33": "FLATTER",
-            "37": "CRUNCH",
-            "43": "CAPTIVATE",
-            "45": "POISON_FANG"
+            "7": "MOVE_TAIL_WHIP",
+            "9": "MOVE_DOUBLE_KICK",
+            "13": "MOVE_POISON_STING",
+            "19": "MOVE_FURY_SWIPES",
+            "21": "MOVE_BITE",
+            "25": "MOVE_HELPING_HAND",
+            "31": "MOVE_TOXIC_SPIKES",
+            "33": "MOVE_FLATTER",
+            "37": "MOVE_CRUNCH",
+            "43": "MOVE_CAPTIVATE",
+            "45": "MOVE_POISON_FANG"
         }
     },
     "evolutions": [

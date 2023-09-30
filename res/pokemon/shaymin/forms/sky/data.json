@@ -74,18 +74,18 @@
             "TM90"
         ],
         "level_up": {
-            "1": "GROWTH",
-            "10": "MAGICAL_LEAF",
-            "19": "LEECH_SEED",
-            "28": "QUICK_ATTACK",
-            "37": "SWEET_SCENT",
-            "46": "NATURAL_GIFT",
-            "55": "WORRY_SEED",
-            "64": "AIR_SLASH",
-            "73": "ENERGY_BALL",
-            "82": "SWEET_KISS",
-            "91": "LEAF_STORM",
-            "100": "SEED_FLARE"
+            "1": "MOVE_GROWTH",
+            "10": "MOVE_MAGICAL_LEAF",
+            "19": "MOVE_LEECH_SEED",
+            "28": "MOVE_QUICK_ATTACK",
+            "37": "MOVE_SWEET_SCENT",
+            "46": "MOVE_NATURAL_GIFT",
+            "55": "MOVE_WORRY_SEED",
+            "64": "MOVE_AIR_SLASH",
+            "73": "MOVE_ENERGY_BALL",
+            "82": "MOVE_SWEET_KISS",
+            "91": "MOVE_LEAF_STORM",
+            "100": "MOVE_SEED_FLARE"
         }
     }
 }

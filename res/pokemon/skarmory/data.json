@@ -87,21 +87,21 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "PECK"
+                "MOVE_LEER",
+                "MOVE_PECK"
             ],
-            "6": "SAND_ATTACK",
-            "9": "SWIFT",
-            "12": "AGILITY",
-            "17": "FURY_ATTACK",
-            "20": "FEINT",
-            "23": "AIR_CUTTER",
-            "28": "SPIKES",
-            "31": "METAL_SOUND",
-            "34": "STEEL_WING",
-            "39": "AIR_SLASH",
-            "42": "SLASH",
-            "45": "NIGHT_SLASH"
+            "6": "MOVE_SAND_ATTACK",
+            "9": "MOVE_SWIFT",
+            "12": "MOVE_AGILITY",
+            "17": "MOVE_FURY_ATTACK",
+            "20": "MOVE_FEINT",
+            "23": "MOVE_AIR_CUTTER",
+            "28": "MOVE_SPIKES",
+            "31": "MOVE_METAL_SOUND",
+            "34": "MOVE_STEEL_WING",
+            "39": "MOVE_AIR_SLASH",
+            "42": "MOVE_SLASH",
+            "45": "MOVE_NIGHT_SLASH"
         }
     }
 }

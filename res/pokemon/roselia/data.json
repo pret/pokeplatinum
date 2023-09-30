@@ -77,22 +77,22 @@
             "HM01"
         ],
         "level_up": {
-            "1": "ABSORB",
-            "4": "GROWTH",
-            "7": "POISON_STING",
-            "10": "STUN_SPORE",
-            "13": "MEGA_DRAIN",
-            "16": "LEECH_SEED",
-            "19": "MAGICAL_LEAF",
-            "22": "GRASS_WHISTLE",
-            "25": "GIGA_DRAIN",
-            "28": "TOXIC_SPIKES",
-            "31": "SWEET_SCENT",
-            "34": "INGRAIN",
-            "37": "TOXIC",
-            "40": "PETAL_DANCE",
-            "43": "AROMATHERAPY",
-            "46": "SYNTHESIS"
+            "1": "MOVE_ABSORB",
+            "4": "MOVE_GROWTH",
+            "7": "MOVE_POISON_STING",
+            "10": "MOVE_STUN_SPORE",
+            "13": "MOVE_MEGA_DRAIN",
+            "16": "MOVE_LEECH_SEED",
+            "19": "MOVE_MAGICAL_LEAF",
+            "22": "MOVE_GRASS_WHISTLE",
+            "25": "MOVE_GIGA_DRAIN",
+            "28": "MOVE_TOXIC_SPIKES",
+            "31": "MOVE_SWEET_SCENT",
+            "34": "MOVE_INGRAIN",
+            "37": "MOVE_TOXIC",
+            "40": "MOVE_PETAL_DANCE",
+            "43": "MOVE_AROMATHERAPY",
+            "46": "MOVE_SYNTHESIS"
         }
     },
     "evolutions": [

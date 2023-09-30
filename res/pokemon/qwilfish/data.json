@@ -81,29 +81,29 @@
         ],
         "level_up": {
             "1": [
-                "SPIKES",
-                "TACKLE",
-                "POISON_STING"
+                "MOVE_SPIKES",
+                "MOVE_TACKLE",
+                "MOVE_POISON_STING"
             ],
             "9": [
-                "HARDEN",
-                "MINIMIZE"
+                "MOVE_HARDEN",
+                "MOVE_MINIMIZE"
             ],
-            "13": "WATER_GUN",
-            "17": "ROLLOUT",
-            "21": "TOXIC_SPIKES",
+            "13": "MOVE_WATER_GUN",
+            "17": "MOVE_ROLLOUT",
+            "21": "MOVE_TOXIC_SPIKES",
             "25": [
-                "STOCKPILE",
-                "SPIT_UP"
+                "MOVE_STOCKPILE",
+                "MOVE_SPIT_UP"
             ],
-            "29": "REVENGE",
-            "33": "BRINE",
-            "37": "PIN_MISSILE",
-            "41": "TAKE_DOWN",
-            "45": "AQUA_TAIL",
-            "49": "POISON_JAB",
-            "53": "DESTINY_BOND",
-            "57": "HYDRO_PUMP"
+            "29": "MOVE_REVENGE",
+            "33": "MOVE_BRINE",
+            "37": "MOVE_PIN_MISSILE",
+            "41": "MOVE_TAKE_DOWN",
+            "45": "MOVE_AQUA_TAIL",
+            "49": "MOVE_POISON_JAB",
+            "53": "MOVE_DESTINY_BOND",
+            "57": "MOVE_HYDRO_PUMP"
         }
     }
 }

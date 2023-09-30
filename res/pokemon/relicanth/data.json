@@ -85,20 +85,20 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "HARDEN"
+                "MOVE_TACKLE",
+                "MOVE_HARDEN"
             ],
-            "8": "WATER_GUN",
-            "15": "ROCK_TOMB",
-            "22": "YAWN",
-            "29": "TAKE_DOWN",
-            "36": "MUD_SPORT",
-            "43": "ANCIENT_POWER",
-            "50": "DOUBLE_EDGE",
-            "57": "DIVE",
-            "64": "REST",
-            "71": "HYDRO_PUMP",
-            "78": "HEAD_SMASH"
+            "8": "MOVE_WATER_GUN",
+            "15": "MOVE_ROCK_TOMB",
+            "22": "MOVE_YAWN",
+            "29": "MOVE_TAKE_DOWN",
+            "36": "MOVE_MUD_SPORT",
+            "43": "MOVE_ANCIENT_POWER",
+            "50": "MOVE_DOUBLE_EDGE",
+            "57": "MOVE_DIVE",
+            "64": "MOVE_REST",
+            "71": "MOVE_HYDRO_PUMP",
+            "78": "MOVE_HEAD_SMASH"
         }
     }
 }

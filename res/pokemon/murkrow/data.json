@@ -85,18 +85,18 @@
         ],
         "level_up": {
             "1": [
-                "PECK",
-                "ASTONISH"
+                "MOVE_PECK",
+                "MOVE_ASTONISH"
             ],
-            "5": "PURSUIT",
-            "11": "HAZE",
-            "15": "WING_ATTACK",
-            "21": "NIGHT_SHADE",
-            "25": "ASSURANCE",
-            "31": "TAUNT",
-            "35": "FAINT_ATTACK",
-            "41": "MEAN_LOOK",
-            "45": "SUCKER_PUNCH"
+            "5": "MOVE_PURSUIT",
+            "11": "MOVE_HAZE",
+            "15": "MOVE_WING_ATTACK",
+            "21": "MOVE_NIGHT_SHADE",
+            "25": "MOVE_ASSURANCE",
+            "31": "MOVE_TAUNT",
+            "35": "MOVE_FAINT_ATTACK",
+            "41": "MOVE_MEAN_LOOK",
+            "45": "MOVE_SUCKER_PUNCH"
         }
     },
     "evolutions": [

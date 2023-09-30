@@ -74,18 +74,18 @@
             "TM90"
         ],
         "level_up": {
-            "1": "ABSORB",
-            "5": "TACKLE",
-            "9": "STUN_SPORE",
-            "13": "LEECH_SEED",
-            "17": "MEGA_DRAIN",
-            "21": "HEADBUTT",
-            "25": "POISON_POWDER",
-            "29": "WORRY_SEED",
-            "33": "GROWTH",
-            "37": "GIGA_DRAIN",
-            "41": "SEED_BOMB",
-            "45": "SPORE"
+            "1": "MOVE_ABSORB",
+            "5": "MOVE_TACKLE",
+            "9": "MOVE_STUN_SPORE",
+            "13": "MOVE_LEECH_SEED",
+            "17": "MOVE_MEGA_DRAIN",
+            "21": "MOVE_HEADBUTT",
+            "25": "MOVE_POISON_POWDER",
+            "29": "MOVE_WORRY_SEED",
+            "33": "MOVE_GROWTH",
+            "37": "MOVE_GIGA_DRAIN",
+            "41": "MOVE_SEED_BOMB",
+            "45": "MOVE_SPORE"
         }
     },
     "evolutions": [

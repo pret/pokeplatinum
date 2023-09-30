@@ -90,22 +90,22 @@
         ],
         "level_up": {
             "1": [
-                "ICE_FANG",
-                "FIRE_FANG",
-                "THUNDER_FANG",
-                "TACKLE",
-                "SCARY_FACE",
-                "TAIL_WHIP",
-                "CHARM"
+                "MOVE_ICE_FANG",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_TACKLE",
+                "MOVE_SCARY_FACE",
+                "MOVE_TAIL_WHIP",
+                "MOVE_CHARM"
             ],
-            "7": "BITE",
-            "13": "LICK",
-            "19": "HEADBUTT",
-            "25": "ROAR",
-            "31": "RAGE",
-            "37": "TAKE_DOWN",
-            "43": "PAYBACK",
-            "49": "CRUNCH"
+            "7": "MOVE_BITE",
+            "13": "MOVE_LICK",
+            "19": "MOVE_HEADBUTT",
+            "25": "MOVE_ROAR",
+            "31": "MOVE_RAGE",
+            "37": "MOVE_TAKE_DOWN",
+            "43": "MOVE_PAYBACK",
+            "49": "MOVE_CRUNCH"
         }
     },
     "evolutions": [

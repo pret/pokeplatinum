@@ -84,10 +84,10 @@
         ],
         "level_up": {
             "1": [
-                "THUNDER_SHOCK",
-                "TAIL_WHIP",
-                "QUICK_ATTACK",
-                "THUNDERBOLT"
+                "MOVE_THUNDER_SHOCK",
+                "MOVE_TAIL_WHIP",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_THUNDERBOLT"
             ]
         }
     }

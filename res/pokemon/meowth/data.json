@@ -86,22 +86,22 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "GROWL"
+                "MOVE_SCRATCH",
+                "MOVE_GROWL"
             ],
-            "6": "BITE",
-            "9": "FAKE_OUT",
-            "14": "FURY_SWIPES",
-            "17": "SCREECH",
-            "22": "FAINT_ATTACK",
-            "25": "TAUNT",
-            "30": "PAY_DAY",
-            "33": "SLASH",
-            "38": "NASTY_PLOT",
-            "41": "ASSURANCE",
-            "46": "CAPTIVATE",
-            "49": "NIGHT_SLASH",
-            "54": "FEINT"
+            "6": "MOVE_BITE",
+            "9": "MOVE_FAKE_OUT",
+            "14": "MOVE_FURY_SWIPES",
+            "17": "MOVE_SCREECH",
+            "22": "MOVE_FAINT_ATTACK",
+            "25": "MOVE_TAUNT",
+            "30": "MOVE_PAY_DAY",
+            "33": "MOVE_SLASH",
+            "38": "MOVE_NASTY_PLOT",
+            "41": "MOVE_ASSURANCE",
+            "46": "MOVE_CAPTIVATE",
+            "49": "MOVE_NIGHT_SLASH",
+            "54": "MOVE_FEINT"
         }
     },
     "evolutions": [

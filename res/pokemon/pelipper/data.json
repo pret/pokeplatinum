@@ -84,26 +84,26 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "WATER_GUN",
-                "WATER_SPORT",
-                "WING_ATTACK"
+                "MOVE_GROWL",
+                "MOVE_WATER_GUN",
+                "MOVE_WATER_SPORT",
+                "MOVE_WING_ATTACK"
             ],
-            "6": "SUPERSONIC",
-            "11": "WING_ATTACK",
-            "16": "MIST",
-            "19": "WATER_PULSE",
-            "24": "PAYBACK",
-            "25": "PROTECT",
-            "31": "ROOST",
+            "6": "MOVE_SUPERSONIC",
+            "11": "MOVE_WING_ATTACK",
+            "16": "MOVE_MIST",
+            "19": "MOVE_WATER_PULSE",
+            "24": "MOVE_PAYBACK",
+            "25": "MOVE_PROTECT",
+            "31": "MOVE_ROOST",
             "38": [
-                "STOCKPILE",
-                "SWALLOW",
-                "SPIT_UP"
+                "MOVE_STOCKPILE",
+                "MOVE_SWALLOW",
+                "MOVE_SPIT_UP"
             ],
-            "43": "FLING",
-            "50": "TAILWIND",
-            "57": "HYDRO_PUMP"
+            "43": "MOVE_FLING",
+            "50": "MOVE_TAILWIND",
+            "57": "MOVE_HYDRO_PUMP"
         }
     }
 }

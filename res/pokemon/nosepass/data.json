@@ -80,20 +80,20 @@
             "HM06"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "7": "HARDEN",
-            "13": "ROCK_THROW",
-            "19": "BLOCK",
-            "25": "THUNDER_WAVE",
-            "31": "ROCK_SLIDE",
-            "37": "SANDSTORM",
-            "43": "REST",
-            "49": "POWER_GEM",
-            "55": "DISCHARGE",
-            "61": "STONE_EDGE",
-            "67": "ZAP_CANNON",
-            "73": "LOCK_ON",
-            "79": "EARTH_POWER"
+            "1": "MOVE_TACKLE",
+            "7": "MOVE_HARDEN",
+            "13": "MOVE_ROCK_THROW",
+            "19": "MOVE_BLOCK",
+            "25": "MOVE_THUNDER_WAVE",
+            "31": "MOVE_ROCK_SLIDE",
+            "37": "MOVE_SANDSTORM",
+            "43": "MOVE_REST",
+            "49": "MOVE_POWER_GEM",
+            "55": "MOVE_DISCHARGE",
+            "61": "MOVE_STONE_EDGE",
+            "67": "MOVE_ZAP_CANNON",
+            "73": "MOVE_LOCK_ON",
+            "79": "MOVE_EARTH_POWER"
         }
     },
     "evolutions": [

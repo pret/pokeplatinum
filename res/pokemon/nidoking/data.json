@@ -103,14 +103,14 @@
         ],
         "level_up": {
             "1": [
-                "PECK",
-                "FOCUS_ENERGY",
-                "DOUBLE_KICK",
-                "POISON_STING"
+                "MOVE_PECK",
+                "MOVE_FOCUS_ENERGY",
+                "MOVE_DOUBLE_KICK",
+                "MOVE_POISON_STING"
             ],
-            "23": "THRASH",
-            "43": "EARTH_POWER",
-            "58": "MEGAHORN"
+            "23": "MOVE_THRASH",
+            "43": "MOVE_EARTH_POWER",
+            "58": "MOVE_MEGAHORN"
         }
     }
 }

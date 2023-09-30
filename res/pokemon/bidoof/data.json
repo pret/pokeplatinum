@@ -82,18 +82,18 @@
             "HM06"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "5": "GROWL",
-            "9": "DEFENSE_CURL",
-            "13": "ROLLOUT",
-            "17": "HEADBUTT",
-            "21": "HYPER_FANG",
-            "25": "YAWN",
-            "29": "AMNESIA",
-            "33": "TAKE_DOWN",
-            "37": "SUPER_FANG",
-            "41": "SUPERPOWER",
-            "45": "CURSE"
+            "1": "MOVE_TACKLE",
+            "5": "MOVE_GROWL",
+            "9": "MOVE_DEFENSE_CURL",
+            "13": "MOVE_ROLLOUT",
+            "17": "MOVE_HEADBUTT",
+            "21": "MOVE_HYPER_FANG",
+            "25": "MOVE_YAWN",
+            "29": "MOVE_AMNESIA",
+            "33": "MOVE_TAKE_DOWN",
+            "37": "MOVE_SUPER_FANG",
+            "41": "MOVE_SUPERPOWER",
+            "45": "MOVE_CURSE"
         }
     },
     "evolutions": [

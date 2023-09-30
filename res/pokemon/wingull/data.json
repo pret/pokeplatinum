@@ -79,19 +79,19 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "WATER_GUN"
+                "MOVE_GROWL",
+                "MOVE_WATER_GUN"
             ],
-            "6": "SUPERSONIC",
-            "11": "WING_ATTACK",
-            "16": "MIST",
-            "19": "WATER_PULSE",
-            "24": "QUICK_ATTACK",
-            "29": "ROOST",
-            "34": "PURSUIT",
-            "37": "AGILITY",
-            "42": "AERIAL_ACE",
-            "47": "AIR_SLASH"
+            "6": "MOVE_SUPERSONIC",
+            "11": "MOVE_WING_ATTACK",
+            "16": "MOVE_MIST",
+            "19": "MOVE_WATER_PULSE",
+            "24": "MOVE_QUICK_ATTACK",
+            "29": "MOVE_ROOST",
+            "34": "MOVE_PURSUIT",
+            "37": "MOVE_AGILITY",
+            "42": "MOVE_AERIAL_ACE",
+            "47": "MOVE_AIR_SLASH"
         }
     },
     "evolutions": [

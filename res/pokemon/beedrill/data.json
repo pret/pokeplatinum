@@ -84,18 +84,18 @@
             "HM06"
         ],
         "level_up": {
-            "1": "FURY_ATTACK",
-            "10": "FURY_ATTACK",
-            "13": "FOCUS_ENERGY",
-            "16": "TWINEEDLE",
-            "19": "RAGE",
-            "22": "PURSUIT",
-            "25": "TOXIC_SPIKES",
-            "28": "PIN_MISSILE",
-            "31": "AGILITY",
-            "34": "ASSURANCE",
-            "37": "POISON_JAB",
-            "40": "ENDEAVOR"
+            "1": "MOVE_FURY_ATTACK",
+            "10": "MOVE_FURY_ATTACK",
+            "13": "MOVE_FOCUS_ENERGY",
+            "16": "MOVE_TWINEEDLE",
+            "19": "MOVE_RAGE",
+            "22": "MOVE_PURSUIT",
+            "25": "MOVE_TOXIC_SPIKES",
+            "28": "MOVE_PIN_MISSILE",
+            "31": "MOVE_AGILITY",
+            "34": "MOVE_ASSURANCE",
+            "37": "MOVE_POISON_JAB",
+            "40": "MOVE_ENDEAVOR"
         }
     }
 }

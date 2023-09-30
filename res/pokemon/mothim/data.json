@@ -83,19 +83,19 @@
             "HM05"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "10": "PROTECT",
-            "15": "BUG_BITE",
-            "20": "HIDDEN_POWER",
-            "23": "CONFUSION",
-            "26": "GUST",
-            "29": "POISON_POWDER",
-            "32": "PSYBEAM",
-            "35": "CAMOUFLAGE",
-            "38": "SILVER_WIND",
-            "41": "AIR_SLASH",
-            "44": "PSYCHIC",
-            "47": "BUG_BUZZ"
+            "1": "MOVE_TACKLE",
+            "10": "MOVE_PROTECT",
+            "15": "MOVE_BUG_BITE",
+            "20": "MOVE_HIDDEN_POWER",
+            "23": "MOVE_CONFUSION",
+            "26": "MOVE_GUST",
+            "29": "MOVE_POISON_POWDER",
+            "32": "MOVE_PSYBEAM",
+            "35": "MOVE_CAMOUFLAGE",
+            "38": "MOVE_SILVER_WIND",
+            "41": "MOVE_AIR_SLASH",
+            "44": "MOVE_PSYCHIC",
+            "47": "MOVE_BUG_BUZZ"
         }
     }
 }

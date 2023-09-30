@@ -90,24 +90,24 @@
         ],
         "level_up": {
             "1": [
-                "BUBBLE",
-                "HARDEN",
-                "VICE_GRIP",
-                "LEER"
+                "MOVE_BUBBLE",
+                "MOVE_HARDEN",
+                "MOVE_VICE_GRIP",
+                "MOVE_LEER"
             ],
-            "7": "HARDEN",
-            "10": "VICE_GRIP",
-            "13": "LEER",
-            "20": "BUBBLE_BEAM",
-            "23": "PROTECT",
-            "26": "KNOCK_OFF",
-            "30": "SWIFT",
-            "34": "TAUNT",
-            "39": "NIGHT_SLASH",
-            "44": "CRABHAMMER",
-            "52": "SWORDS_DANCE",
-            "57": "CRUNCH",
-            "65": "GUILLOTINE"
+            "7": "MOVE_HARDEN",
+            "10": "MOVE_VICE_GRIP",
+            "13": "MOVE_LEER",
+            "20": "MOVE_BUBBLE_BEAM",
+            "23": "MOVE_PROTECT",
+            "26": "MOVE_KNOCK_OFF",
+            "30": "MOVE_SWIFT",
+            "34": "MOVE_TAUNT",
+            "39": "MOVE_NIGHT_SLASH",
+            "44": "MOVE_CRABHAMMER",
+            "52": "MOVE_SWORDS_DANCE",
+            "57": "MOVE_CRUNCH",
+            "65": "MOVE_GUILLOTINE"
         }
     }
 }

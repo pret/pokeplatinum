@@ -89,20 +89,20 @@
         ],
         "level_up": {
             "1": [
-                "EXPLOSION",
-                "STOMP"
+                "MOVE_EXPLOSION",
+                "MOVE_STOMP"
             ],
-            "9": "ICY_WIND",
-            "17": "CURSE",
-            "25": "SUPERPOWER",
-            "33": "ANCIENT_POWER",
-            "41": "AMNESIA",
-            "49": "CHARGE_BEAM",
-            "57": "LOCK_ON",
-            "65": "ZAP_CANNON",
-            "73": "ICE_BEAM",
-            "81": "HAMMER_ARM",
-            "89": "HYPER_BEAM"
+            "9": "MOVE_ICY_WIND",
+            "17": "MOVE_CURSE",
+            "25": "MOVE_SUPERPOWER",
+            "33": "MOVE_ANCIENT_POWER",
+            "41": "MOVE_AMNESIA",
+            "49": "MOVE_CHARGE_BEAM",
+            "57": "MOVE_LOCK_ON",
+            "65": "MOVE_ZAP_CANNON",
+            "73": "MOVE_ICE_BEAM",
+            "81": "MOVE_HAMMER_ARM",
+            "89": "MOVE_HYPER_BEAM"
         }
     }
 }

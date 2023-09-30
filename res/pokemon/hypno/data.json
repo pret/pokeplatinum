@@ -91,26 +91,26 @@
         ],
         "level_up": {
             "1": [
-                "NIGHTMARE",
-                "SWITCHEROO",
-                "POUND",
-                "HYPNOSIS",
-                "DISABLE",
-                "CONFUSION"
+                "MOVE_NIGHTMARE",
+                "MOVE_SWITCHEROO",
+                "MOVE_POUND",
+                "MOVE_HYPNOSIS",
+                "MOVE_DISABLE",
+                "MOVE_CONFUSION"
             ],
-            "7": "DISABLE",
-            "9": "CONFUSION",
-            "15": "HEADBUTT",
-            "18": "POISON_GAS",
-            "21": "MEDITATE",
-            "28": "PSYBEAM",
-            "33": "PSYCH_UP",
-            "38": "HEADBUTT",
-            "45": "SWAGGER",
-            "50": "PSYCHIC",
-            "55": "NASTY_PLOT",
-            "64": "ZEN_HEADBUTT",
-            "69": "FUTURE_SIGHT"
+            "7": "MOVE_DISABLE",
+            "9": "MOVE_CONFUSION",
+            "15": "MOVE_HEADBUTT",
+            "18": "MOVE_POISON_GAS",
+            "21": "MOVE_MEDITATE",
+            "28": "MOVE_PSYBEAM",
+            "33": "MOVE_PSYCH_UP",
+            "38": "MOVE_HEADBUTT",
+            "45": "MOVE_SWAGGER",
+            "50": "MOVE_PSYCHIC",
+            "55": "MOVE_NASTY_PLOT",
+            "64": "MOVE_ZEN_HEADBUTT",
+            "69": "MOVE_FUTURE_SIGHT"
         }
     }
 }

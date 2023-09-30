@@ -85,19 +85,19 @@
             "TM92"
         ],
         "level_up": {
-            "1": "WRAP",
-            "6": "GROWL",
-            "9": "ASTONISH",
-            "14": "CONFUSION",
-            "17": "UPROAR",
-            "22": "TAKE_DOWN",
-            "25": "YAWN",
-            "30": "PSYWAVE",
-            "33": "DOUBLE_EDGE",
-            "38": "HEAL_BELL",
-            "41": "SAFEGUARD",
-            "46": "EXTRASENSORY",
-            "49": "HEALING_WISH"
+            "1": "MOVE_WRAP",
+            "6": "MOVE_GROWL",
+            "9": "MOVE_ASTONISH",
+            "14": "MOVE_CONFUSION",
+            "17": "MOVE_UPROAR",
+            "22": "MOVE_TAKE_DOWN",
+            "25": "MOVE_YAWN",
+            "30": "MOVE_PSYWAVE",
+            "33": "MOVE_DOUBLE_EDGE",
+            "38": "MOVE_HEAL_BELL",
+            "41": "MOVE_SAFEGUARD",
+            "46": "MOVE_EXTRASENSORY",
+            "49": "MOVE_HEALING_WISH"
         }
     }
 }

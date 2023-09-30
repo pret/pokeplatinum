@@ -88,12 +88,12 @@
         ],
         "level_up": {
             "1": [
-                "WATER_GUN",
-                "RAPID_SPIN",
-                "RECOVER",
-                "SWIFT"
+                "MOVE_WATER_GUN",
+                "MOVE_RAPID_SPIN",
+                "MOVE_RECOVER",
+                "MOVE_SWIFT"
             ],
-            "28": "CONFUSE_RAY"
+            "28": "MOVE_CONFUSE_RAY"
         }
     }
 }

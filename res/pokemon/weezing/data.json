@@ -84,22 +84,22 @@
         ],
         "level_up": {
             "1": [
-                "POISON_GAS",
-                "TACKLE",
-                "SMOG",
-                "SMOKESCREEN"
+                "MOVE_POISON_GAS",
+                "MOVE_TACKLE",
+                "MOVE_SMOG",
+                "MOVE_SMOKE_SCREEN"
             ],
-            "6": "SMOG",
-            "10": "SMOKESCREEN",
-            "15": "ASSURANCE",
-            "19": "SELF_DESTRUCT",
-            "24": "SLUDGE",
-            "28": "HAZE",
-            "33": "DOUBLE_HIT",
-            "40": "EXPLOSION",
-            "48": "SLUDGE_BOMB",
-            "55": "DESTINY_BOND",
-            "63": "MEMENTO"
+            "6": "MOVE_SMOG",
+            "10": "MOVE_SMOKE_SCREEN",
+            "15": "MOVE_ASSURANCE",
+            "19": "MOVE_SELFDESTRUCT",
+            "24": "MOVE_SLUDGE",
+            "28": "MOVE_HAZE",
+            "33": "MOVE_DOUBLE_HIT",
+            "40": "MOVE_EXPLOSION",
+            "48": "MOVE_SLUDGE_BOMB",
+            "55": "MOVE_DESTINY_BOND",
+            "63": "MOVE_MEMENTO"
         }
     }
 }

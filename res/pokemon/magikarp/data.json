@@ -46,9 +46,9 @@
     "learnset": {
         "tms": [],
         "level_up": {
-            "1": "SPLASH",
-            "15": "TACKLE",
-            "30": "FLAIL"
+            "1": "MOVE_SPLASH",
+            "15": "MOVE_TACKLE",
+            "30": "MOVE_FLAIL"
         }
     },
     "evolutions": [

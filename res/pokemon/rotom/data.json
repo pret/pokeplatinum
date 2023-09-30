@@ -79,19 +79,19 @@
         ],
         "level_up": {
             "1": [
-                "TRICK",
-                "ASTONISH",
-                "THUNDER_WAVE",
-                "THUNDER_SHOCK",
-                "CONFUSE_RAY"
+                "MOVE_TRICK",
+                "MOVE_ASTONISH",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_THUNDER_SHOCK",
+                "MOVE_CONFUSE_RAY"
             ],
-            "8": "UPROAR",
-            "15": "DOUBLE_TEAM",
-            "22": "SHOCK_WAVE",
-            "29": "OMINOUS_WIND",
-            "36": "SUBSTITUTE",
-            "43": "CHARGE",
-            "50": "DISCHARGE"
+            "8": "MOVE_UPROAR",
+            "15": "MOVE_DOUBLE_TEAM",
+            "22": "MOVE_SHOCK_WAVE",
+            "29": "MOVE_OMINOUS_WIND",
+            "36": "MOVE_SUBSTITUTE",
+            "43": "MOVE_CHARGE",
+            "50": "MOVE_DISCHARGE"
         }
     }
 }

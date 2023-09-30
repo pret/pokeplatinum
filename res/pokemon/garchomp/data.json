@@ -93,22 +93,22 @@
         ],
         "level_up": {
             "1": [
-                "FIRE_FANG",
-                "TACKLE",
-                "SAND_ATTACK",
-                "DRAGON_RAGE",
-                "SANDSTORM"
+                "MOVE_FIRE_FANG",
+                "MOVE_TACKLE",
+                "MOVE_SAND_ATTACK",
+                "MOVE_DRAGON_RAGE",
+                "MOVE_SANDSTORM"
             ],
-            "3": "SAND_ATTACK",
-            "7": "DRAGON_RAGE",
-            "13": "SANDSTORM",
-            "15": "TAKE_DOWN",
-            "19": "SAND_TOMB",
-            "28": "SLASH",
-            "33": "DRAGON_CLAW",
-            "40": "DIG",
-            "48": "CRUNCH",
-            "55": "DRAGON_RUSH"
+            "3": "MOVE_SAND_ATTACK",
+            "7": "MOVE_DRAGON_RAGE",
+            "13": "MOVE_SANDSTORM",
+            "15": "MOVE_TAKE_DOWN",
+            "19": "MOVE_SAND_TOMB",
+            "28": "MOVE_SLASH",
+            "33": "MOVE_DRAGON_CLAW",
+            "40": "MOVE_DIG",
+            "48": "MOVE_CRUNCH",
+            "55": "MOVE_DRAGON_RUSH"
         }
     }
 }

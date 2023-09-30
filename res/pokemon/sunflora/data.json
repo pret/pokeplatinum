@@ -78,21 +78,21 @@
         ],
         "level_up": {
             "1": [
-                "ABSORB",
-                "POUND",
-                "GROWTH"
+                "MOVE_ABSORB",
+                "MOVE_POUND",
+                "MOVE_GROWTH"
             ],
-            "5": "MEGA_DRAIN",
-            "9": "INGRAIN",
-            "13": "GRASS_WHISTLE",
-            "17": "LEECH_SEED",
-            "21": "BULLET_SEED",
-            "25": "WORRY_SEED",
-            "29": "RAZOR_LEAF",
-            "33": "PETAL_DANCE",
-            "37": "SUNNY_DAY",
-            "41": "SOLAR_BEAM",
-            "43": "LEAF_STORM"
+            "5": "MOVE_MEGA_DRAIN",
+            "9": "MOVE_INGRAIN",
+            "13": "MOVE_GRASS_WHISTLE",
+            "17": "MOVE_LEECH_SEED",
+            "21": "MOVE_BULLET_SEED",
+            "25": "MOVE_WORRY_SEED",
+            "29": "MOVE_RAZOR_LEAF",
+            "33": "MOVE_PETAL_DANCE",
+            "37": "MOVE_SUNNY_DAY",
+            "41": "MOVE_SOLAR_BEAM",
+            "43": "MOVE_LEAF_STORM"
         }
     }
 }

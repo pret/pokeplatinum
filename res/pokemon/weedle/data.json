@@ -47,10 +47,10 @@
         "tms": [],
         "level_up": {
             "1": [
-                "POISON_STING",
-                "STRING_SHOT"
+                "MOVE_POISON_STING",
+                "MOVE_STRING_SHOT"
             ],
-            "15": "BUG_BITE"
+            "15": "MOVE_BUG_BITE"
         }
     },
     "evolutions": [

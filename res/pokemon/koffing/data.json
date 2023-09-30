@@ -82,20 +82,20 @@
         ],
         "level_up": {
             "1": [
-                "POISON_GAS",
-                "TACKLE"
+                "MOVE_POISON_GAS",
+                "MOVE_TACKLE"
             ],
-            "6": "SMOG",
-            "10": "SMOKESCREEN",
-            "15": "ASSURANCE",
-            "19": "SELF_DESTRUCT",
-            "24": "SLUDGE",
-            "28": "HAZE",
-            "33": "GYRO_BALL",
-            "37": "EXPLOSION",
-            "42": "SLUDGE_BOMB",
-            "46": "DESTINY_BOND",
-            "51": "MEMENTO"
+            "6": "MOVE_SMOG",
+            "10": "MOVE_SMOKE_SCREEN",
+            "15": "MOVE_ASSURANCE",
+            "19": "MOVE_SELFDESTRUCT",
+            "24": "MOVE_SLUDGE",
+            "28": "MOVE_HAZE",
+            "33": "MOVE_GYRO_BALL",
+            "37": "MOVE_EXPLOSION",
+            "42": "MOVE_SLUDGE_BOMB",
+            "46": "MOVE_DESTINY_BOND",
+            "51": "MOVE_MEMENTO"
         }
     },
     "evolutions": [

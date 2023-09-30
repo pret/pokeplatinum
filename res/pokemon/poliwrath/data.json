@@ -89,13 +89,13 @@
         ],
         "level_up": {
             "1": [
-                "BUBBLE_BEAM",
-                "HYPNOSIS",
-                "DOUBLE_SLAP",
-                "SUBMISSION"
+                "MOVE_BUBBLE_BEAM",
+                "MOVE_HYPNOSIS",
+                "MOVE_DOUBLE_SLAP",
+                "MOVE_SUBMISSION"
             ],
-            "43": "DYNAMIC_PUNCH",
-            "53": "MIND_READER"
+            "43": "MOVE_DYNAMIC_PUNCH",
+            "53": "MOVE_MIND_READER"
         }
     }
 }

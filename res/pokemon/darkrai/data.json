@@ -104,19 +104,19 @@
         ],
         "level_up": {
             "1": [
-                "OMINOUS_WIND",
-                "DISABLE"
+                "MOVE_OMINOUS_WIND",
+                "MOVE_DISABLE"
             ],
-            "11": "QUICK_ATTACK",
-            "20": "HYPNOSIS",
-            "29": "FAINT_ATTACK",
-            "38": "NIGHTMARE",
-            "47": "DOUBLE_TEAM",
-            "57": "HAZE",
-            "66": "DARK_VOID",
-            "75": "NASTY_PLOT",
-            "84": "DREAM_EATER",
-            "93": "DARK_PULSE"
+            "11": "MOVE_QUICK_ATTACK",
+            "20": "MOVE_HYPNOSIS",
+            "29": "MOVE_FAINT_ATTACK",
+            "38": "MOVE_NIGHTMARE",
+            "47": "MOVE_DOUBLE_TEAM",
+            "57": "MOVE_HAZE",
+            "66": "MOVE_DARK_VOID",
+            "75": "MOVE_NASTY_PLOT",
+            "84": "MOVE_DREAM_EATER",
+            "93": "MOVE_DARK_PULSE"
         }
     }
 }

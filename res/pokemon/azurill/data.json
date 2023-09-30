@@ -71,12 +71,12 @@
             "HM07"
         ],
         "level_up": {
-            "1": "SPLASH",
-            "2": "CHARM",
-            "7": "TAIL_WHIP",
-            "10": "BUBBLE",
-            "15": "SLAM",
-            "18": "WATER_GUN"
+            "1": "MOVE_SPLASH",
+            "2": "MOVE_CHARM",
+            "7": "MOVE_TAIL_WHIP",
+            "10": "MOVE_BUBBLE",
+            "15": "MOVE_SLAM",
+            "18": "MOVE_WATER_GUN"
         }
     },
     "evolutions": [

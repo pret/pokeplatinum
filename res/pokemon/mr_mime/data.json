@@ -99,29 +99,29 @@
         ],
         "level_up": {
             "1": [
-                "MAGICAL_LEAF",
-                "POWER_SWAP",
-                "GUARD_SWAP",
-                "BARRIER",
-                "CONFUSION"
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_POWER_SWAP",
+                "MOVE_GUARD_SWAP",
+                "MOVE_BARRIER",
+                "MOVE_CONFUSION"
             ],
-            "4": "COPYCAT",
-            "8": "MEDITATE",
-            "11": "ENCORE",
-            "15": "DOUBLE_SLAP",
-            "18": "MIMIC",
+            "4": "MOVE_COPYCAT",
+            "8": "MOVE_MEDITATE",
+            "11": "MOVE_ENCORE",
+            "15": "MOVE_DOUBLE_SLAP",
+            "18": "MOVE_MIMIC",
             "22": [
-                "LIGHT_SCREEN",
-                "REFLECT"
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_REFLECT"
             ],
-            "25": "PSYBEAM",
-            "29": "SUBSTITUTE",
-            "32": "RECYCLE",
-            "36": "TRICK",
-            "39": "PSYCHIC",
-            "43": "ROLE_PLAY",
-            "46": "BATON_PASS",
-            "50": "SAFEGUARD"
+            "25": "MOVE_PSYBEAM",
+            "29": "MOVE_SUBSTITUTE",
+            "32": "MOVE_RECYCLE",
+            "36": "MOVE_TRICK",
+            "39": "MOVE_PSYCHIC",
+            "43": "MOVE_ROLE_PLAY",
+            "46": "MOVE_BATON_PASS",
+            "50": "MOVE_SAFEGUARD"
         }
     }
 }

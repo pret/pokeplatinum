@@ -104,14 +104,14 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "TAIL_WHIP",
-                "DOUBLE_KICK",
-                "POISON_STING"
+                "MOVE_SCRATCH",
+                "MOVE_TAIL_WHIP",
+                "MOVE_DOUBLE_KICK",
+                "MOVE_POISON_STING"
             ],
-            "23": "BODY_SLAM",
-            "43": "EARTH_POWER",
-            "58": "SUPERPOWER"
+            "23": "MOVE_BODY_SLAM",
+            "43": "MOVE_EARTH_POWER",
+            "58": "MOVE_SUPERPOWER"
         }
     }
 }

@@ -73,18 +73,18 @@
             "HM01"
         ],
         "level_up": {
-            "1": "ABSORB",
-            "5": "SWEET_SCENT",
-            "9": "ACID",
-            "13": "POISON_POWDER",
-            "15": "STUN_SPORE",
-            "17": "SLEEP_POWDER",
-            "21": "MEGA_DRAIN",
-            "25": "LUCKY_CHANT",
-            "29": "NATURAL_GIFT",
-            "33": "MOONLIGHT",
-            "37": "GIGA_DRAIN",
-            "41": "PETAL_DANCE"
+            "1": "MOVE_ABSORB",
+            "5": "MOVE_SWEET_SCENT",
+            "9": "MOVE_ACID",
+            "13": "MOVE_POISON_POWDER",
+            "15": "MOVE_STUN_SPORE",
+            "17": "MOVE_SLEEP_POWDER",
+            "21": "MOVE_MEGA_DRAIN",
+            "25": "MOVE_LUCKY_CHANT",
+            "29": "MOVE_NATURAL_GIFT",
+            "33": "MOVE_MOONLIGHT",
+            "37": "MOVE_GIGA_DRAIN",
+            "41": "MOVE_PETAL_DANCE"
         }
     },
     "evolutions": [

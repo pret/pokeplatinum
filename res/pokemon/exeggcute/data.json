@@ -83,21 +83,21 @@
         ],
         "level_up": {
             "1": [
-                "BARRAGE",
-                "UPROAR",
-                "HYPNOSIS"
+                "MOVE_BARRAGE",
+                "MOVE_UPROAR",
+                "MOVE_HYPNOSIS"
             ],
-            "7": "REFLECT",
-            "11": "LEECH_SEED",
-            "17": "BULLET_SEED",
-            "19": "STUN_SPORE",
-            "21": "POISON_POWDER",
-            "23": "SLEEP_POWDER",
-            "27": "CONFUSION",
-            "33": "WORRY_SEED",
-            "37": "NATURAL_GIFT",
-            "43": "SOLAR_BEAM",
-            "47": "PSYCHIC"
+            "7": "MOVE_REFLECT",
+            "11": "MOVE_LEECH_SEED",
+            "17": "MOVE_BULLET_SEED",
+            "19": "MOVE_STUN_SPORE",
+            "21": "MOVE_POISON_POWDER",
+            "23": "MOVE_SLEEP_POWDER",
+            "27": "MOVE_CONFUSION",
+            "33": "MOVE_WORRY_SEED",
+            "37": "MOVE_NATURAL_GIFT",
+            "43": "MOVE_SOLAR_BEAM",
+            "47": "MOVE_PSYCHIC"
         }
     },
     "evolutions": [

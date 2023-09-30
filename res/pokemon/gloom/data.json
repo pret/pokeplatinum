@@ -76,21 +76,21 @@
         ],
         "level_up": {
             "1": [
-                "ABSORB",
-                "SWEET_SCENT",
-                "ACID"
+                "MOVE_ABSORB",
+                "MOVE_SWEET_SCENT",
+                "MOVE_ACID"
             ],
-            "5": "SWEET_SCENT",
-            "9": "ACID",
-            "13": "POISON_POWDER",
-            "15": "STUN_SPORE",
-            "17": "SLEEP_POWDER",
-            "23": "MEGA_DRAIN",
-            "29": "LUCKY_CHANT",
-            "35": "NATURAL_GIFT",
-            "41": "MOONLIGHT",
-            "47": "GIGA_DRAIN",
-            "53": "PETAL_DANCE"
+            "5": "MOVE_SWEET_SCENT",
+            "9": "MOVE_ACID",
+            "13": "MOVE_POISON_POWDER",
+            "15": "MOVE_STUN_SPORE",
+            "17": "MOVE_SLEEP_POWDER",
+            "23": "MOVE_MEGA_DRAIN",
+            "29": "MOVE_LUCKY_CHANT",
+            "35": "MOVE_NATURAL_GIFT",
+            "41": "MOVE_MOONLIGHT",
+            "47": "MOVE_GIGA_DRAIN",
+            "53": "MOVE_PETAL_DANCE"
         }
     },
     "evolutions": [

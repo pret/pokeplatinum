@@ -79,23 +79,23 @@
         ],
         "level_up": {
             "1": [
-                "SWEET_SCENT",
-                "GUST"
+                "MOVE_SWEET_SCENT",
+                "MOVE_GUST"
             ],
-            "3": "POISON_STING",
-            "7": "CONFUSE_RAY",
-            "9": "FURY_CUTTER",
-            "13": "DEFEND_ORDER",
-            "15": "PURSUIT",
-            "19": "FURY_SWIPES",
-            "21": "POWER_GEM",
-            "25": "HEAL_ORDER",
-            "27": "TOXIC",
-            "31": "SLASH",
-            "33": "CAPTIVATE",
-            "37": "ATTACK_ORDER",
-            "39": "SWAGGER",
-            "43": "DESTINY_BOND"
+            "3": "MOVE_POISON_STING",
+            "7": "MOVE_CONFUSE_RAY",
+            "9": "MOVE_FURY_CUTTER",
+            "13": "MOVE_DEFEND_ORDER",
+            "15": "MOVE_PURSUIT",
+            "19": "MOVE_FURY_SWIPES",
+            "21": "MOVE_POWER_GEM",
+            "25": "MOVE_HEAL_ORDER",
+            "27": "MOVE_TOXIC",
+            "31": "MOVE_SLASH",
+            "33": "MOVE_CAPTIVATE",
+            "37": "MOVE_ATTACK_ORDER",
+            "39": "MOVE_SWAGGER",
+            "43": "MOVE_DESTINY_BOND"
         }
     }
 }

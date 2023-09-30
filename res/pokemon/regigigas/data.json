@@ -85,18 +85,18 @@
         ],
         "level_up": {
             "1": [
-                "FIRE_PUNCH",
-                "ICE_PUNCH",
-                "THUNDER_PUNCH",
-                "DIZZY_PUNCH",
-                "KNOCK_OFF",
-                "CONFUSE_RAY",
-                "FORESIGHT"
+                "MOVE_FIRE_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_KNOCK_OFF",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_FORESIGHT"
             ],
-            "25": "REVENGE",
-            "50": "ZEN_HEADBUTT",
-            "75": "CRUSH_GRIP",
-            "100": "GIGA_IMPACT"
+            "25": "MOVE_REVENGE",
+            "50": "MOVE_ZEN_HEADBUTT",
+            "75": "MOVE_CRUSH_GRIP",
+            "100": "MOVE_GIGA_IMPACT"
         }
     }
 }

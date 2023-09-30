@@ -47,10 +47,10 @@
         "tms": [],
         "level_up": {
             "1": [
-                "SWEET_SCENT",
-                "GUST"
+                "MOVE_SWEET_SCENT",
+                "MOVE_GUST"
             ],
-            "13": "BUG_BITE"
+            "13": "MOVE_BUG_BITE"
         }
     },
     "evolutions": [

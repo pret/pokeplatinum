@@ -79,14 +79,14 @@
         ],
         "level_up": {
             "1": [
-                "LEAF_BLADE",
-                "MEGA_DRAIN",
-                "SWEET_SCENT",
-                "STUN_SPORE",
-                "SUNNY_DAY"
+                "MOVE_LEAF_BLADE",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_SWEET_SCENT",
+                "MOVE_STUN_SPORE",
+                "MOVE_SUNNY_DAY"
             ],
-            "23": "MAGICAL_LEAF",
-            "53": "LEAF_STORM"
+            "23": "MOVE_MAGICAL_LEAF",
+            "53": "MOVE_LEAF_STORM"
         }
     }
 }

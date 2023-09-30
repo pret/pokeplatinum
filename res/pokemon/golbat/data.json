@@ -83,21 +83,21 @@
         ],
         "level_up": {
             "1": [
-                "SCREECH",
-                "LEECH_LIFE",
-                "SUPERSONIC",
-                "ASTONISH"
+                "MOVE_SCREECH",
+                "MOVE_LEECH_LIFE",
+                "MOVE_SUPERSONIC",
+                "MOVE_ASTONISH"
             ],
-            "5": "SUPERSONIC",
-            "9": "ASTONISH",
-            "13": "BITE",
-            "17": "WING_ATTACK",
-            "21": "CONFUSE_RAY",
-            "27": "AIR_CUTTER",
-            "33": "MEAN_LOOK",
-            "39": "POISON_FANG",
-            "45": "HAZE",
-            "51": "AIR_SLASH"
+            "5": "MOVE_SUPERSONIC",
+            "9": "MOVE_ASTONISH",
+            "13": "MOVE_BITE",
+            "17": "MOVE_WING_ATTACK",
+            "21": "MOVE_CONFUSE_RAY",
+            "27": "MOVE_AIR_CUTTER",
+            "33": "MOVE_MEAN_LOOK",
+            "39": "MOVE_POISON_FANG",
+            "45": "MOVE_HAZE",
+            "51": "MOVE_AIR_SLASH"
         }
     },
     "evolutions": [

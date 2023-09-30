@@ -79,17 +79,17 @@
             "HM05"
         ],
         "level_up": {
-            "1": "ABSORB",
-            "10": "ABSORB",
-            "13": "GUST",
-            "17": "STUN_SPORE",
-            "20": "MORNING_SUN",
-            "24": "MEGA_DRAIN",
-            "27": "WHIRLWIND",
-            "31": "ATTRACT",
-            "34": "SILVER_WIND",
-            "38": "GIGA_DRAIN",
-            "41": "BUG_BUZZ"
+            "1": "MOVE_ABSORB",
+            "10": "MOVE_ABSORB",
+            "13": "MOVE_GUST",
+            "17": "MOVE_STUN_SPORE",
+            "20": "MOVE_MORNING_SUN",
+            "24": "MOVE_MEGA_DRAIN",
+            "27": "MOVE_WHIRLWIND",
+            "31": "MOVE_ATTRACT",
+            "34": "MOVE_SILVER_WIND",
+            "38": "MOVE_GIGA_DRAIN",
+            "41": "MOVE_BUG_BUZZ"
         }
     }
 }

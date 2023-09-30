@@ -87,15 +87,15 @@
         ],
         "level_up": {
             "1": [
-                "ASTONISH",
-                "PURSUIT",
-                "HAZE",
-                "WING_ATTACK"
+                "MOVE_ASTONISH",
+                "MOVE_PURSUIT",
+                "MOVE_HAZE",
+                "MOVE_WING_ATTACK"
             ],
-            "25": "SWAGGER",
-            "35": "NASTY_PLOT",
-            "45": "NIGHT_SLASH",
-            "55": "DARK_PULSE"
+            "25": "MOVE_SWAGGER",
+            "35": "MOVE_NASTY_PLOT",
+            "45": "MOVE_NIGHT_SLASH",
+            "55": "MOVE_DARK_PULSE"
         }
     }
 }

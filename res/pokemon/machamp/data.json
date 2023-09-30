@@ -86,21 +86,21 @@
         ],
         "level_up": {
             "1": [
-                "LOW_KICK",
-                "LEER",
-                "FOCUS_ENERGY"
+                "MOVE_LOW_KICK",
+                "MOVE_LEER",
+                "MOVE_FOCUS_ENERGY"
             ],
-            "7": "FOCUS_ENERGY",
-            "10": "KARATE_CHOP",
-            "13": "FORESIGHT",
-            "19": "SEISMIC_TOSS",
-            "22": "REVENGE",
-            "25": "VITAL_THROW",
-            "32": "SUBMISSION",
-            "36": "WAKE_UP_SLAP",
-            "40": "CROSS_CHOP",
-            "44": "SCARY_FACE",
-            "51": "DYNAMIC_PUNCH"
+            "7": "MOVE_FOCUS_ENERGY",
+            "10": "MOVE_KARATE_CHOP",
+            "13": "MOVE_FORESIGHT",
+            "19": "MOVE_SEISMIC_TOSS",
+            "22": "MOVE_REVENGE",
+            "25": "MOVE_VITAL_THROW",
+            "32": "MOVE_SUBMISSION",
+            "36": "MOVE_WAKE_UP_SLAP",
+            "40": "MOVE_CROSS_CHOP",
+            "44": "MOVE_SCARY_FACE",
+            "51": "MOVE_DYNAMIC_PUNCH"
         }
     }
 }

@@ -81,24 +81,24 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "HOWL",
-                "SAND_ATTACK",
-                "BITE"
+                "MOVE_TACKLE",
+                "MOVE_HOWL",
+                "MOVE_SAND_ATTACK",
+                "MOVE_BITE"
             ],
-            "5": "HOWL",
-            "9": "SAND_ATTACK",
-            "13": "BITE",
-            "17": "ODOR_SLEUTH",
-            "22": "ROAR",
-            "27": "SWAGGER",
-            "32": "ASSURANCE",
-            "37": "SCARY_FACE",
-            "42": "TAUNT",
-            "47": "EMBARGO",
-            "52": "TAKE_DOWN",
-            "57": "THIEF",
-            "62": "SUCKER_PUNCH"
+            "5": "MOVE_HOWL",
+            "9": "MOVE_SAND_ATTACK",
+            "13": "MOVE_BITE",
+            "17": "MOVE_ODOR_SLEUTH",
+            "22": "MOVE_ROAR",
+            "27": "MOVE_SWAGGER",
+            "32": "MOVE_ASSURANCE",
+            "37": "MOVE_SCARY_FACE",
+            "42": "MOVE_TAUNT",
+            "47": "MOVE_EMBARGO",
+            "52": "MOVE_TAKE_DOWN",
+            "57": "MOVE_THIEF",
+            "62": "MOVE_SUCKER_PUNCH"
         }
     }
 }

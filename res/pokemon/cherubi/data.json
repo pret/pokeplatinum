@@ -72,16 +72,16 @@
             "TM90"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "7": "GROWTH",
-            "10": "LEECH_SEED",
-            "13": "HELPING_HAND",
-            "19": "MAGICAL_LEAF",
-            "22": "SUNNY_DAY",
-            "28": "WORRY_SEED",
-            "31": "TAKE_DOWN",
-            "37": "SOLAR_BEAM",
-            "40": "LUCKY_CHANT"
+            "1": "MOVE_TACKLE",
+            "7": "MOVE_GROWTH",
+            "10": "MOVE_LEECH_SEED",
+            "13": "MOVE_HELPING_HAND",
+            "19": "MOVE_MAGICAL_LEAF",
+            "22": "MOVE_SUNNY_DAY",
+            "28": "MOVE_WORRY_SEED",
+            "31": "MOVE_TAKE_DOWN",
+            "37": "MOVE_SOLAR_BEAM",
+            "40": "MOVE_LUCKY_CHANT"
         }
     },
     "evolutions": [

@@ -1,5 +1,5 @@
 {
-    "name": "Farfetch’d",
+    "name": "Farfetch\u2019d",
     "base_stats": {
         "hp": 52,
         "attack": 65,
@@ -79,23 +79,23 @@
         ],
         "level_up": {
             "1": [
-                "POISON_JAB",
-                "PECK",
-                "SAND_ATTACK",
-                "LEER",
-                "FURY_CUTTER"
+                "MOVE_POISON_JAB",
+                "MOVE_PECK",
+                "MOVE_SAND_ATTACK",
+                "MOVE_LEER",
+                "MOVE_FURY_CUTTER"
             ],
-            "7": "FURY_ATTACK",
-            "9": "KNOCK_OFF",
-            "13": "AERIAL_ACE",
-            "19": "SLASH",
-            "21": "AIR_CUTTER",
-            "25": "SWORDS_DANCE",
-            "31": "AGILITY",
-            "33": "NIGHT_SLASH",
-            "37": "AIR_SLASH",
-            "43": "FEINT",
-            "45": "FALSE_SWIPE"
+            "7": "MOVE_FURY_ATTACK",
+            "9": "MOVE_KNOCK_OFF",
+            "13": "MOVE_AERIAL_ACE",
+            "19": "MOVE_SLASH",
+            "21": "MOVE_AIR_CUTTER",
+            "25": "MOVE_SWORDS_DANCE",
+            "31": "MOVE_AGILITY",
+            "33": "MOVE_NIGHT_SLASH",
+            "37": "MOVE_AIR_SLASH",
+            "43": "MOVE_FEINT",
+            "45": "MOVE_FALSE_SWIPE"
         }
     }
 }

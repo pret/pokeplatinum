@@ -80,18 +80,18 @@
             "HM06"
         ],
         "level_up": {
-            "1": "SCRATCH",
+            "1": "MOVE_SCRATCH",
             "6": [
-                "STUN_SPORE",
-                "POISON_POWDER"
+                "MOVE_STUN_SPORE",
+                "MOVE_POISON_POWDER"
             ],
-            "11": "LEECH_LIFE",
-            "17": "SPORE",
-            "22": "SLASH",
-            "27": "GROWTH",
-            "33": "GIGA_DRAIN",
-            "38": "AROMATHERAPY",
-            "43": "X_SCISSOR"
+            "11": "MOVE_LEECH_LIFE",
+            "17": "MOVE_SPORE",
+            "22": "MOVE_SLASH",
+            "27": "MOVE_GROWTH",
+            "33": "MOVE_GIGA_DRAIN",
+            "38": "MOVE_AROMATHERAPY",
+            "43": "MOVE_X_SCISSOR"
         }
     },
     "evolutions": [

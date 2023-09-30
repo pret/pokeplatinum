@@ -94,24 +94,24 @@
         ],
         "level_up": {
             "1": [
-                "POUND",
-                "LICK",
-                "LOVELY_KISS",
-                "POWDER_SNOW"
+                "MOVE_POUND",
+                "MOVE_LICK",
+                "MOVE_LOVELY_KISS",
+                "MOVE_POWDER_SNOW"
             ],
-            "5": "LICK",
-            "8": "LOVELY_KISS",
-            "11": "POWDER_SNOW",
-            "15": "DOUBLE_SLAP",
-            "18": "ICE_PUNCH",
-            "21": "MEAN_LOOK",
-            "25": "FAKE_TEARS",
-            "28": "WAKE_UP_SLAP",
-            "33": "AVALANCHE",
-            "39": "BODY_SLAM",
-            "44": "WRING_OUT",
-            "49": "PERISH_SONG",
-            "55": "BLIZZARD"
+            "5": "MOVE_LICK",
+            "8": "MOVE_LOVELY_KISS",
+            "11": "MOVE_POWDER_SNOW",
+            "15": "MOVE_DOUBLE_SLAP",
+            "18": "MOVE_ICE_PUNCH",
+            "21": "MOVE_MEAN_LOOK",
+            "25": "MOVE_FAKE_TEARS",
+            "28": "MOVE_WAKE_UP_SLAP",
+            "33": "MOVE_AVALANCHE",
+            "39": "MOVE_BODY_SLAM",
+            "44": "MOVE_WRING_OUT",
+            "49": "MOVE_PERISH_SONG",
+            "55": "MOVE_BLIZZARD"
         }
     }
 }

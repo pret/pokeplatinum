@@ -82,20 +82,20 @@
         ],
         "level_up": {
             "1": [
-                "WRAP",
-                "LEER"
+                "MOVE_WRAP",
+                "MOVE_LEER"
             ],
-            "5": "THUNDER_WAVE",
-            "11": "TWISTER",
-            "15": "DRAGON_RAGE",
-            "21": "SLAM",
-            "25": "AGILITY",
-            "31": "AQUA_TAIL",
-            "35": "DRAGON_RUSH",
-            "41": "SAFEGUARD",
-            "45": "DRAGON_DANCE",
-            "51": "OUTRAGE",
-            "55": "HYPER_BEAM"
+            "5": "MOVE_THUNDER_WAVE",
+            "11": "MOVE_TWISTER",
+            "15": "MOVE_DRAGON_RAGE",
+            "21": "MOVE_SLAM",
+            "25": "MOVE_AGILITY",
+            "31": "MOVE_AQUA_TAIL",
+            "35": "MOVE_DRAGON_RUSH",
+            "41": "MOVE_SAFEGUARD",
+            "45": "MOVE_DRAGON_DANCE",
+            "51": "MOVE_OUTRAGE",
+            "55": "MOVE_HYPER_BEAM"
         }
     },
     "evolutions": [

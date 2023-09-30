@@ -77,17 +77,17 @@
         ],
         "level_up": {
             "1": [
-                "STOCKPILE",
-                "SWALLOW",
-                "SPIT_UP",
-                "VINE_WHIP",
-                "SLEEP_POWDER",
-                "SWEET_SCENT",
-                "RAZOR_LEAF"
+                "MOVE_STOCKPILE",
+                "MOVE_SWALLOW",
+                "MOVE_SPIT_UP",
+                "MOVE_VINE_WHIP",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_SWEET_SCENT",
+                "MOVE_RAZOR_LEAF"
             ],
             "47": [
-                "LEAF_STORM",
-                "LEAF_BLADE"
+                "MOVE_LEAF_STORM",
+                "MOVE_LEAF_BLADE"
             ]
         }
     }

@@ -80,20 +80,20 @@
         ],
         "level_up": {
             "1": [
-                "CONSTRICT",
-                "WITHDRAW"
+                "MOVE_CONSTRICT",
+                "MOVE_WITHDRAW"
             ],
-            "7": "BITE",
-            "10": "WATER_GUN",
-            "16": "ROLLOUT",
-            "19": "LEER",
-            "25": "MUD_SHOT",
-            "28": "BRINE",
-            "34": "PROTECT",
-            "37": "ANCIENT_POWER",
-            "43": "TICKLE",
-            "46": "ROCK_BLAST",
-            "52": "HYDRO_PUMP"
+            "7": "MOVE_BITE",
+            "10": "MOVE_WATER_GUN",
+            "16": "MOVE_ROLLOUT",
+            "19": "MOVE_LEER",
+            "25": "MOVE_MUD_SHOT",
+            "28": "MOVE_BRINE",
+            "34": "MOVE_PROTECT",
+            "37": "MOVE_ANCIENT_POWER",
+            "43": "MOVE_TICKLE",
+            "46": "MOVE_ROCK_BLAST",
+            "52": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

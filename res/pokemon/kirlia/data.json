@@ -88,23 +88,23 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "CONFUSION",
-                "DOUBLE_TEAM",
-                "TELEPORT"
+                "MOVE_GROWL",
+                "MOVE_CONFUSION",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_TELEPORT"
             ],
-            "6": "CONFUSION",
-            "10": "DOUBLE_TEAM",
-            "12": "TELEPORT",
-            "17": "LUCKY_CHANT",
-            "22": "MAGICAL_LEAF",
-            "25": "CALM_MIND",
-            "31": "PSYCHIC",
-            "36": "IMPRISON",
-            "39": "FUTURE_SIGHT",
-            "45": "CHARM",
-            "50": "HYPNOSIS",
-            "53": "DREAM_EATER"
+            "6": "MOVE_CONFUSION",
+            "10": "MOVE_DOUBLE_TEAM",
+            "12": "MOVE_TELEPORT",
+            "17": "MOVE_LUCKY_CHANT",
+            "22": "MOVE_MAGICAL_LEAF",
+            "25": "MOVE_CALM_MIND",
+            "31": "MOVE_PSYCHIC",
+            "36": "MOVE_IMPRISON",
+            "39": "MOVE_FUTURE_SIGHT",
+            "45": "MOVE_CHARM",
+            "50": "MOVE_HYPNOSIS",
+            "53": "MOVE_DREAM_EATER"
         }
     },
     "evolutions": [

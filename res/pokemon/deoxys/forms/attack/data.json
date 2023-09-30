@@ -106,21 +106,21 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "WRAP"
+                "MOVE_LEER",
+                "MOVE_WRAP"
             ],
-            "9": "NIGHT_SHADE",
-            "17": "TELEPORT",
-            "25": "TAUNT",
-            "33": "PURSUIT",
-            "41": "PSYCHIC",
-            "49": "SUPERPOWER",
-            "57": "PSYCHO_SHIFT",
-            "65": "ZEN_HEADBUTT",
-            "73": "COSMIC_POWER",
-            "81": "ZAP_CANNON",
-            "89": "PSYCHO_BOOST",
-            "97": "HYPER_BEAM"
+            "9": "MOVE_NIGHT_SHADE",
+            "17": "MOVE_TELEPORT",
+            "25": "MOVE_TAUNT",
+            "33": "MOVE_PURSUIT",
+            "41": "MOVE_PSYCHIC",
+            "49": "MOVE_SUPERPOWER",
+            "57": "MOVE_PSYCHO_SHIFT",
+            "65": "MOVE_ZEN_HEADBUTT",
+            "73": "MOVE_COSMIC_POWER",
+            "81": "MOVE_ZAP_CANNON",
+            "89": "MOVE_PSYCHO_BOOST",
+            "97": "MOVE_HYPER_BEAM"
         }
     }
 }

@@ -86,24 +86,24 @@
         ],
         "level_up": {
             "1": [
-                "TRICK_ROOM",
-                "CONVERSION_2",
-                "TACKLE",
-                "CONVERSION",
-                "NASTY_PLOT"
+                "MOVE_TRICK_ROOM",
+                "MOVE_CONVERSION_2",
+                "MOVE_TACKLE",
+                "MOVE_CONVERSION",
+                "MOVE_NASTY_PLOT"
             ],
-            "7": "PSYBEAM",
-            "12": "AGILITY",
-            "18": "RECOVER",
-            "23": "MAGNET_RISE",
-            "29": "SIGNAL_BEAM",
-            "34": "EMBARGO",
-            "40": "DISCHARGE",
-            "45": "LOCK_ON",
-            "51": "TRI_ATTACK",
-            "56": "MAGIC_COAT",
-            "62": "ZAP_CANNON",
-            "67": "HYPER_BEAM"
+            "7": "MOVE_PSYBEAM",
+            "12": "MOVE_AGILITY",
+            "18": "MOVE_RECOVER",
+            "23": "MOVE_MAGNET_RISE",
+            "29": "MOVE_SIGNAL_BEAM",
+            "34": "MOVE_EMBARGO",
+            "40": "MOVE_DISCHARGE",
+            "45": "MOVE_LOCK_ON",
+            "51": "MOVE_TRI_ATTACK",
+            "56": "MOVE_MAGIC_COAT",
+            "62": "MOVE_ZAP_CANNON",
+            "67": "MOVE_HYPER_BEAM"
         }
     }
 }

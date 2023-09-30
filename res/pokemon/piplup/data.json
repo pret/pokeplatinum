@@ -81,19 +81,19 @@
             "HM07"
         ],
         "level_up": {
-            "1": "POUND",
-            "4": "GROWL",
-            "8": "BUBBLE",
-            "11": "WATER_SPORT",
-            "15": "PECK",
-            "18": "BUBBLE_BEAM",
-            "22": "BIDE",
-            "25": "FURY_ATTACK",
-            "29": "BRINE",
-            "32": "WHIRLPOOL",
-            "36": "MIST",
-            "39": "DRILL_PECK",
-            "43": "HYDRO_PUMP"
+            "1": "MOVE_POUND",
+            "4": "MOVE_GROWL",
+            "8": "MOVE_BUBBLE",
+            "11": "MOVE_WATER_SPORT",
+            "15": "MOVE_PECK",
+            "18": "MOVE_BUBBLE_BEAM",
+            "22": "MOVE_BIDE",
+            "25": "MOVE_FURY_ATTACK",
+            "29": "MOVE_BRINE",
+            "32": "MOVE_WHIRLPOOL",
+            "36": "MOVE_MIST",
+            "39": "MOVE_DRILL_PECK",
+            "43": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

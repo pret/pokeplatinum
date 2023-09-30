@@ -83,21 +83,21 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "EMBER"
+                "MOVE_LEER",
+                "MOVE_EMBER"
             ],
-            "4": "HOWL",
-            "9": "SMOG",
-            "14": "ROAR",
-            "17": "BITE",
-            "22": "ODOR_SLEUTH",
-            "27": "BEAT_UP",
-            "30": "FIRE_FANG",
-            "35": "FAINT_ATTACK",
-            "40": "EMBARGO",
-            "43": "FLAMETHROWER",
-            "48": "CRUNCH",
-            "53": "NASTY_PLOT"
+            "4": "MOVE_HOWL",
+            "9": "MOVE_SMOG",
+            "14": "MOVE_ROAR",
+            "17": "MOVE_BITE",
+            "22": "MOVE_ODOR_SLEUTH",
+            "27": "MOVE_BEAT_UP",
+            "30": "MOVE_FIRE_FANG",
+            "35": "MOVE_FAINT_ATTACK",
+            "40": "MOVE_EMBARGO",
+            "43": "MOVE_FLAMETHROWER",
+            "48": "MOVE_CRUNCH",
+            "53": "MOVE_NASTY_PLOT"
         }
     },
     "evolutions": [

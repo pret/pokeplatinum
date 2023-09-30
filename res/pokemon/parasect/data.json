@@ -83,23 +83,23 @@
         ],
         "level_up": {
             "1": [
-                "CROSS_POISON",
-                "SCRATCH",
-                "STUN_SPORE",
-                "POISON_POWDER",
-                "LEECH_LIFE"
+                "MOVE_CROSS_POISON",
+                "MOVE_SCRATCH",
+                "MOVE_STUN_SPORE",
+                "MOVE_POISON_POWDER",
+                "MOVE_LEECH_LIFE"
             ],
             "6": [
-                "STUN_SPORE",
-                "POISON_POWDER"
+                "MOVE_STUN_SPORE",
+                "MOVE_POISON_POWDER"
             ],
-            "11": "LEECH_LIFE",
-            "17": "SPORE",
-            "22": "SLASH",
-            "30": "GROWTH",
-            "39": "GIGA_DRAIN",
-            "47": "AROMATHERAPY",
-            "55": "X_SCISSOR"
+            "11": "MOVE_LEECH_LIFE",
+            "17": "MOVE_SPORE",
+            "22": "MOVE_SLASH",
+            "30": "MOVE_GROWTH",
+            "39": "MOVE_GIGA_DRAIN",
+            "47": "MOVE_AROMATHERAPY",
+            "55": "MOVE_X_SCISSOR"
         }
     }
 }

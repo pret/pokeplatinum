@@ -101,10 +101,10 @@
         ],
         "level_up": {
             "1": [
-                "SING",
-                "DOUBLE_SLAP",
-                "MINIMIZE",
-                "METRONOME"
+                "MOVE_SING",
+                "MOVE_DOUBLE_SLAP",
+                "MOVE_MINIMIZE",
+                "MOVE_METRONOME"
             ]
         }
     }

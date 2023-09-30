@@ -83,22 +83,22 @@
         ],
         "level_up": {
             "1": [
-                "POWDER_SNOW",
-                "LEER",
-                "DOUBLE_TEAM",
-                "BITE"
+                "MOVE_POWDER_SNOW",
+                "MOVE_LEER",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_BITE"
             ],
-            "4": "DOUBLE_TEAM",
-            "10": "BITE",
-            "13": "ICY_WIND",
-            "19": "HEADBUTT",
-            "22": "PROTECT",
-            "28": "ICE_FANG",
-            "31": "CRUNCH",
-            "37": "ICE_BEAM",
-            "40": "HAIL",
-            "51": "BLIZZARD",
-            "59": "SHEER_COLD"
+            "4": "MOVE_DOUBLE_TEAM",
+            "10": "MOVE_BITE",
+            "13": "MOVE_ICY_WIND",
+            "19": "MOVE_HEADBUTT",
+            "22": "MOVE_PROTECT",
+            "28": "MOVE_ICE_FANG",
+            "31": "MOVE_CRUNCH",
+            "37": "MOVE_ICE_BEAM",
+            "40": "MOVE_HAIL",
+            "51": "MOVE_BLIZZARD",
+            "59": "MOVE_SHEER_COLD"
         }
     }
 }

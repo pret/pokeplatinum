@@ -76,20 +76,20 @@
         ],
         "level_up": {
             "1": [
-                "FAKE_TEARS",
-                "COPYCAT"
+                "MOVE_FAKE_TEARS",
+                "MOVE_COPYCAT"
             ],
-            "6": "FLAIL",
-            "9": "LOW_KICK",
-            "14": "ROCK_THROW",
-            "17": "MIMIC",
-            "22": "BLOCK",
-            "25": "FAINT_ATTACK",
-            "30": "ROCK_TOMB",
-            "33": "ROCK_SLIDE",
-            "38": "SLAM",
-            "41": "SUCKER_PUNCH",
-            "46": "DOUBLE_EDGE"
+            "6": "MOVE_FLAIL",
+            "9": "MOVE_LOW_KICK",
+            "14": "MOVE_ROCK_THROW",
+            "17": "MOVE_MIMIC",
+            "22": "MOVE_BLOCK",
+            "25": "MOVE_FAINT_ATTACK",
+            "30": "MOVE_ROCK_TOMB",
+            "33": "MOVE_ROCK_SLIDE",
+            "38": "MOVE_SLAM",
+            "41": "MOVE_SUCKER_PUNCH",
+            "46": "MOVE_DOUBLE_EDGE"
         }
     },
     "evolutions": [

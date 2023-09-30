@@ -75,19 +75,19 @@
             "TM90"
         ],
         "level_up": {
-            "1": "POUND",
-            "5": "UPROAR",
-            "11": "ASTONISH",
-            "15": "HOWL",
-            "21": "SUPERSONIC",
-            "25": "STOMP",
-            "31": "SCREECH",
-            "35": "ROAR",
+            "1": "MOVE_POUND",
+            "5": "MOVE_UPROAR",
+            "11": "MOVE_ASTONISH",
+            "15": "MOVE_HOWL",
+            "21": "MOVE_SUPERSONIC",
+            "25": "MOVE_STOMP",
+            "31": "MOVE_SCREECH",
+            "35": "MOVE_ROAR",
             "41": [
-                "REST",
-                "SLEEP_TALK"
+                "MOVE_REST",
+                "MOVE_SLEEP_TALK"
             ],
-            "45": "HYPER_VOICE"
+            "45": "MOVE_HYPER_VOICE"
         }
     },
     "evolutions": [

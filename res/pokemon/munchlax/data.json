@@ -89,22 +89,22 @@
         ],
         "level_up": {
             "1": [
-                "METRONOME",
-                "ODOR_SLEUTH",
-                "TACKLE"
+                "MOVE_METRONOME",
+                "MOVE_ODOR_SLEUTH",
+                "MOVE_TACKLE"
             ],
-            "4": "DEFENSE_CURL",
-            "9": "AMNESIA",
-            "12": "LICK",
-            "17": "RECYCLE",
-            "20": "SCREECH",
-            "25": "STOCKPILE",
-            "28": "SWALLOW",
-            "33": "BODY_SLAM",
-            "36": "FLING",
-            "41": "ROLLOUT",
-            "44": "NATURAL_GIFT",
-            "49": "LAST_RESORT"
+            "4": "MOVE_DEFENSE_CURL",
+            "9": "MOVE_AMNESIA",
+            "12": "MOVE_LICK",
+            "17": "MOVE_RECYCLE",
+            "20": "MOVE_SCREECH",
+            "25": "MOVE_STOCKPILE",
+            "28": "MOVE_SWALLOW",
+            "33": "MOVE_BODY_SLAM",
+            "36": "MOVE_FLING",
+            "41": "MOVE_ROLLOUT",
+            "44": "MOVE_NATURAL_GIFT",
+            "49": "MOVE_LAST_RESORT"
         }
     },
     "evolutions": [

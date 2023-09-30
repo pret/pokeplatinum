@@ -86,20 +86,20 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "NIGHT_SHADE"
+                "MOVE_LEER",
+                "MOVE_NIGHT_SHADE"
             ],
-            "6": "DISABLE",
-            "9": "FORESIGHT",
-            "14": "ASTONISH",
-            "17": "CONFUSE_RAY",
-            "22": "SHADOW_SNEAK",
-            "25": "PURSUIT",
-            "30": "CURSE",
-            "33": "WILL_O_WISP",
-            "38": "MEAN_LOOK",
-            "41": "PAYBACK",
-            "46": "FUTURE_SIGHT"
+            "6": "MOVE_DISABLE",
+            "9": "MOVE_FORESIGHT",
+            "14": "MOVE_ASTONISH",
+            "17": "MOVE_CONFUSE_RAY",
+            "22": "MOVE_SHADOW_SNEAK",
+            "25": "MOVE_PURSUIT",
+            "30": "MOVE_CURSE",
+            "33": "MOVE_WILL_O_WISP",
+            "38": "MOVE_MEAN_LOOK",
+            "41": "MOVE_PAYBACK",
+            "46": "MOVE_FUTURE_SIGHT"
         }
     },
     "evolutions": [

@@ -92,21 +92,21 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL"
+                "MOVE_TACKLE",
+                "MOVE_GROWL"
             ],
-            "5": "GROWL",
-            "9": "DEFENSE_CURL",
-            "13": "ROLLOUT",
-            "15": "WATER_GUN",
-            "18": "HEADBUTT",
-            "23": "HYPER_FANG",
-            "28": "YAWN",
-            "33": "AMNESIA",
-            "38": "TAKE_DOWN",
-            "43": "SUPER_FANG",
-            "48": "SUPERPOWER",
-            "53": "CURSE"
+            "5": "MOVE_GROWL",
+            "9": "MOVE_DEFENSE_CURL",
+            "13": "MOVE_ROLLOUT",
+            "15": "MOVE_WATER_GUN",
+            "18": "MOVE_HEADBUTT",
+            "23": "MOVE_HYPER_FANG",
+            "28": "MOVE_YAWN",
+            "33": "MOVE_AMNESIA",
+            "38": "MOVE_TAKE_DOWN",
+            "43": "MOVE_SUPER_FANG",
+            "48": "MOVE_SUPERPOWER",
+            "53": "MOVE_CURSE"
         }
     }
 }

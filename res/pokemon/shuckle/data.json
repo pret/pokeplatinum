@@ -79,17 +79,17 @@
         ],
         "level_up": {
             "1": [
-                "WITHDRAW",
-                "CONSTRICT",
-                "BIDE"
+                "MOVE_WITHDRAW",
+                "MOVE_CONSTRICT",
+                "MOVE_BIDE"
             ],
-            "9": "ENCORE",
-            "14": "SAFEGUARD",
-            "22": "WRAP",
-            "27": "REST",
-            "35": "GASTRO_ACID",
-            "40": "BUG_BITE",
-            "48": "POWER_TRICK"
+            "9": "MOVE_ENCORE",
+            "14": "MOVE_SAFEGUARD",
+            "22": "MOVE_WRAP",
+            "27": "MOVE_REST",
+            "35": "MOVE_GASTRO_ACID",
+            "40": "MOVE_BUG_BITE",
+            "48": "MOVE_POWER_TRICK"
         }
     }
 }

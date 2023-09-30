@@ -91,25 +91,25 @@
         ],
         "level_up": {
             "1": [
-                "INGRAIN",
-                "CONSTRICT"
+                "MOVE_INGRAIN",
+                "MOVE_CONSTRICT"
             ],
-            "5": "SLEEP_POWDER",
-            "8": "ABSORB",
-            "12": "GROWTH",
-            "15": "POISON_POWDER",
-            "19": "VINE_WHIP",
-            "22": "BIND",
-            "26": "MEGA_DRAIN",
-            "29": "STUN_SPORE",
-            "33": "ANCIENT_POWER",
-            "36": "KNOCK_OFF",
-            "40": "NATURAL_GIFT",
-            "43": "SLAM",
-            "47": "TICKLE",
-            "50": "WRING_OUT",
-            "54": "POWER_WHIP",
-            "57": "BLOCK"
+            "5": "MOVE_SLEEP_POWDER",
+            "8": "MOVE_ABSORB",
+            "12": "MOVE_GROWTH",
+            "15": "MOVE_POISON_POWDER",
+            "19": "MOVE_VINE_WHIP",
+            "22": "MOVE_BIND",
+            "26": "MOVE_MEGA_DRAIN",
+            "29": "MOVE_STUN_SPORE",
+            "33": "MOVE_ANCIENT_POWER",
+            "36": "MOVE_KNOCK_OFF",
+            "40": "MOVE_NATURAL_GIFT",
+            "43": "MOVE_SLAM",
+            "47": "MOVE_TICKLE",
+            "50": "MOVE_WRING_OUT",
+            "54": "MOVE_POWER_WHIP",
+            "57": "MOVE_BLOCK"
         }
     }
 }

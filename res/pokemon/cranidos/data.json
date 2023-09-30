@@ -91,18 +91,18 @@
         ],
         "level_up": {
             "1": [
-                "HEADBUTT",
-                "LEER"
+                "MOVE_HEADBUTT",
+                "MOVE_LEER"
             ],
-            "6": "FOCUS_ENERGY",
-            "10": "PURSUIT",
-            "15": "TAKE_DOWN",
-            "19": "SCARY_FACE",
-            "24": "ASSURANCE",
-            "28": "ANCIENT_POWER",
-            "33": "ZEN_HEADBUTT",
-            "37": "SCREECH",
-            "43": "HEAD_SMASH"
+            "6": "MOVE_FOCUS_ENERGY",
+            "10": "MOVE_PURSUIT",
+            "15": "MOVE_TAKE_DOWN",
+            "19": "MOVE_SCARY_FACE",
+            "24": "MOVE_ASSURANCE",
+            "28": "MOVE_ANCIENT_POWER",
+            "33": "MOVE_ZEN_HEADBUTT",
+            "37": "MOVE_SCREECH",
+            "43": "MOVE_HEAD_SMASH"
         }
     },
     "evolutions": [

@@ -85,24 +85,24 @@
         ],
         "level_up": {
             "1": [
-                "GUNK_SHOT",
-                "ROCK_BLAST",
-                "WATER_GUN",
-                "CONSTRICT",
-                "PSYBEAM",
-                "AURORA_BEAM"
+                "MOVE_GUNK_SHOT",
+                "MOVE_ROCK_BLAST",
+                "MOVE_WATER_GUN",
+                "MOVE_CONSTRICT",
+                "MOVE_PSYBEAM",
+                "MOVE_AURORA_BEAM"
             ],
-            "6": "CONSTRICT",
-            "10": "PSYBEAM",
-            "14": "AURORA_BEAM",
-            "19": "BUBBLE_BEAM",
-            "23": "FOCUS_ENERGY",
-            "25": "OCTAZOOKA",
-            "29": "BULLET_SEED",
-            "36": "WRING_OUT",
-            "42": "SIGNAL_BEAM",
-            "48": "ICE_BEAM",
-            "55": "HYPER_BEAM"
+            "6": "MOVE_CONSTRICT",
+            "10": "MOVE_PSYBEAM",
+            "14": "MOVE_AURORA_BEAM",
+            "19": "MOVE_BUBBLE_BEAM",
+            "23": "MOVE_FOCUS_ENERGY",
+            "25": "MOVE_OCTAZOOKA",
+            "29": "MOVE_BULLET_SEED",
+            "36": "MOVE_WRING_OUT",
+            "42": "MOVE_SIGNAL_BEAM",
+            "48": "MOVE_ICE_BEAM",
+            "55": "MOVE_HYPER_BEAM"
         }
     }
 }

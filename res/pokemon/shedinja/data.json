@@ -79,19 +79,19 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "HARDEN"
+                "MOVE_SCRATCH",
+                "MOVE_HARDEN"
             ],
-            "5": "LEECH_LIFE",
-            "9": "SAND_ATTACK",
-            "14": "FURY_SWIPES",
-            "19": "MIND_READER",
-            "25": "SPITE",
-            "31": "CONFUSE_RAY",
-            "38": "SHADOW_SNEAK",
-            "45": "GRUDGE",
-            "52": "HEAL_BLOCK",
-            "59": "SHADOW_BALL"
+            "5": "MOVE_LEECH_LIFE",
+            "9": "MOVE_SAND_ATTACK",
+            "14": "MOVE_FURY_SWIPES",
+            "19": "MOVE_MIND_READER",
+            "25": "MOVE_SPITE",
+            "31": "MOVE_CONFUSE_RAY",
+            "38": "MOVE_SHADOW_SNEAK",
+            "45": "MOVE_GRUDGE",
+            "52": "MOVE_HEAL_BLOCK",
+            "59": "MOVE_SHADOW_BALL"
         }
     }
 }

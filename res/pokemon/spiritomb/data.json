@@ -85,20 +85,20 @@
         ],
         "level_up": {
             "1": [
-                "CURSE",
-                "PURSUIT",
-                "CONFUSE_RAY",
-                "SPITE",
-                "SHADOW_SNEAK"
+                "MOVE_CURSE",
+                "MOVE_PURSUIT",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_SPITE",
+                "MOVE_SHADOW_SNEAK"
             ],
-            "7": "FAINT_ATTACK",
-            "13": "HYPNOSIS",
-            "19": "DREAM_EATER",
-            "25": "OMINOUS_WIND",
-            "31": "SUCKER_PUNCH",
-            "37": "NASTY_PLOT",
-            "43": "MEMENTO",
-            "49": "DARK_PULSE"
+            "7": "MOVE_FAINT_ATTACK",
+            "13": "MOVE_HYPNOSIS",
+            "19": "MOVE_DREAM_EATER",
+            "25": "MOVE_OMINOUS_WIND",
+            "31": "MOVE_SUCKER_PUNCH",
+            "37": "MOVE_NASTY_PLOT",
+            "43": "MOVE_MEMENTO",
+            "49": "MOVE_DARK_PULSE"
         }
     }
 }

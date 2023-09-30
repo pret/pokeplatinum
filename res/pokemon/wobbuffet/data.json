@@ -47,10 +47,10 @@
         "tms": [],
         "level_up": {
             "1": [
-                "COUNTER",
-                "MIRROR_COAT",
-                "SAFEGUARD",
-                "DESTINY_BOND"
+                "MOVE_COUNTER",
+                "MOVE_MIRROR_COAT",
+                "MOVE_SAFEGUARD",
+                "MOVE_DESTINY_BOND"
             ]
         }
     }

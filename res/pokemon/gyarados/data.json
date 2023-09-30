@@ -90,17 +90,17 @@
             "HM07"
         ],
         "level_up": {
-            "1": "THRASH",
-            "20": "BITE",
-            "23": "DRAGON_RAGE",
-            "26": "LEER",
-            "29": "TWISTER",
-            "32": "ICE_FANG",
-            "35": "AQUA_TAIL",
-            "38": "RAIN_DANCE",
-            "41": "HYDRO_PUMP",
-            "44": "DRAGON_DANCE",
-            "47": "HYPER_BEAM"
+            "1": "MOVE_THRASH",
+            "20": "MOVE_BITE",
+            "23": "MOVE_DRAGON_RAGE",
+            "26": "MOVE_LEER",
+            "29": "MOVE_TWISTER",
+            "32": "MOVE_ICE_FANG",
+            "35": "MOVE_AQUA_TAIL",
+            "38": "MOVE_RAIN_DANCE",
+            "41": "MOVE_HYDRO_PUMP",
+            "44": "MOVE_DRAGON_DANCE",
+            "47": "MOVE_HYPER_BEAM"
         }
     }
 }

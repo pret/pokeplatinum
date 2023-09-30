@@ -81,13 +81,13 @@
         ],
         "level_up": {
             "1": [
-                "THUNDER_FANG",
-                "BITE",
-                "ROAR",
-                "FIRE_FANG",
-                "ODOR_SLEUTH"
+                "MOVE_THUNDER_FANG",
+                "MOVE_BITE",
+                "MOVE_ROAR",
+                "MOVE_FIRE_FANG",
+                "MOVE_ODOR_SLEUTH"
             ],
-            "39": "EXTREME_SPEED"
+            "39": "MOVE_EXTREME_SPEED"
         }
     }
 }
