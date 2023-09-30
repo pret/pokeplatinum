@@ -72,20 +72,20 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "LEER"
+                "MOVE_TACKLE",
+                "MOVE_LEER"
             ],
-            "4": "SMOKESCREEN",
-            "10": "EMBER",
-            "13": "QUICK_ATTACK",
-            "19": "FLAME_WHEEL",
-            "22": "DEFENSE_CURL",
-            "28": "SWIFT",
-            "31": "LAVA_PLUME",
-            "37": "FLAMETHROWER",
-            "40": "ROLLOUT",
-            "46": "DOUBLE_EDGE",
-            "49": "ERUPTION"
+            "4": "MOVE_SMOKE_SCREEN",
+            "10": "MOVE_EMBER",
+            "13": "MOVE_QUICK_ATTACK",
+            "19": "MOVE_FLAME_WHEEL",
+            "22": "MOVE_DEFENSE_CURL",
+            "28": "MOVE_SWIFT",
+            "31": "MOVE_LAVA_PLUME",
+            "37": "MOVE_FLAMETHROWER",
+            "40": "MOVE_ROLLOUT",
+            "46": "MOVE_DOUBLE_EDGE",
+            "49": "MOVE_ERUPTION"
         }
     },
     "evolutions": [

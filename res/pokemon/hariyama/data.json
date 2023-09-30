@@ -85,26 +85,26 @@
         ],
         "level_up": {
             "1": [
-                "BRINE",
-                "TACKLE",
-                "FOCUS_ENERGY",
-                "SAND_ATTACK",
-                "ARM_THRUST"
+                "MOVE_BRINE",
+                "MOVE_TACKLE",
+                "MOVE_FOCUS_ENERGY",
+                "MOVE_SAND_ATTACK",
+                "MOVE_ARM_THRUST"
             ],
-            "4": "SAND_ATTACK",
-            "7": "ARM_THRUST",
-            "10": "VITAL_THROW",
-            "13": "FAKE_OUT",
-            "16": "WHIRLWIND",
-            "19": "KNOCK_OFF",
-            "22": "SMELLING_SALT",
-            "27": "BELLY_DRUM",
-            "32": "FORCE_PALM",
-            "37": "SEISMIC_TOSS",
-            "42": "WAKE_UP_SLAP",
-            "47": "ENDURE",
-            "52": "CLOSE_COMBAT",
-            "57": "REVERSAL"
+            "4": "MOVE_SAND_ATTACK",
+            "7": "MOVE_ARM_THRUST",
+            "10": "MOVE_VITAL_THROW",
+            "13": "MOVE_FAKE_OUT",
+            "16": "MOVE_WHIRLWIND",
+            "19": "MOVE_KNOCK_OFF",
+            "22": "MOVE_SMELLING_SALT",
+            "27": "MOVE_BELLY_DRUM",
+            "32": "MOVE_FORCE_PALM",
+            "37": "MOVE_SEISMIC_TOSS",
+            "42": "MOVE_WAKE_UP_SLAP",
+            "47": "MOVE_ENDURE",
+            "52": "MOVE_CLOSE_COMBAT",
+            "57": "MOVE_REVERSAL"
         }
     }
 }

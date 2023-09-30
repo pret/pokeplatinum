@@ -78,20 +78,20 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL",
-                "THUNDER_SHOCK"
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_THUNDER_SHOCK"
             ],
-            "5": "GROWL",
-            "10": "THUNDER_SHOCK",
-            "14": "THUNDER_WAVE",
-            "20": "COTTON_SPORE",
-            "25": "CHARGE",
-            "31": "DISCHARGE",
-            "36": "SIGNAL_BEAM",
-            "42": "LIGHT_SCREEN",
-            "47": "POWER_GEM",
-            "53": "THUNDER"
+            "5": "MOVE_GROWL",
+            "10": "MOVE_THUNDER_SHOCK",
+            "14": "MOVE_THUNDER_WAVE",
+            "20": "MOVE_COTTON_SPORE",
+            "25": "MOVE_CHARGE",
+            "31": "MOVE_DISCHARGE",
+            "36": "MOVE_SIGNAL_BEAM",
+            "42": "MOVE_LIGHT_SCREEN",
+            "47": "MOVE_POWER_GEM",
+            "53": "MOVE_THUNDER"
         }
     },
     "evolutions": [

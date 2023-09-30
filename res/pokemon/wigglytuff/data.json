@@ -99,10 +99,10 @@
         ],
         "level_up": {
             "1": [
-                "SING",
-                "DISABLE",
-                "DEFENSE_CURL",
-                "DOUBLE_SLAP"
+                "MOVE_SING",
+                "MOVE_DISABLE",
+                "MOVE_DEFENSE_CURL",
+                "MOVE_DOUBLE_SLAP"
             ]
         }
     }

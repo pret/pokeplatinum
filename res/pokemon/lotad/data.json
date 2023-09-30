@@ -78,17 +78,17 @@
             "HM03"
         ],
         "level_up": {
-            "1": "ASTONISH",
-            "3": "GROWL",
-            "5": "ABSORB",
-            "7": "NATURE_POWER",
-            "11": "MIST",
-            "15": "NATURAL_GIFT",
-            "19": "MEGA_DRAIN",
-            "25": "BUBBLE_BEAM",
-            "31": "ZEN_HEADBUTT",
-            "37": "RAIN_DANCE",
-            "45": "ENERGY_BALL"
+            "1": "MOVE_ASTONISH",
+            "3": "MOVE_GROWL",
+            "5": "MOVE_ABSORB",
+            "7": "MOVE_NATURE_POWER",
+            "11": "MOVE_MIST",
+            "15": "MOVE_NATURAL_GIFT",
+            "19": "MOVE_MEGA_DRAIN",
+            "25": "MOVE_BUBBLE_BEAM",
+            "31": "MOVE_ZEN_HEADBUTT",
+            "37": "MOVE_RAIN_DANCE",
+            "45": "MOVE_ENERGY_BALL"
         }
     },
     "evolutions": [

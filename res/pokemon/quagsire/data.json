@@ -88,23 +88,23 @@
         ],
         "level_up": {
             "1": [
-                "WATER_GUN",
-                "TAIL_WHIP",
-                "MUD_SPORT"
+                "MOVE_WATER_GUN",
+                "MOVE_TAIL_WHIP",
+                "MOVE_MUD_SPORT"
             ],
-            "5": "MUD_SPORT",
-            "9": "MUD_SHOT",
-            "15": "SLAM",
-            "19": "MUD_BOMB",
-            "24": "AMNESIA",
-            "31": "YAWN",
-            "36": "EARTHQUAKE",
-            "41": "RAIN_DANCE",
+            "5": "MOVE_MUD_SPORT",
+            "9": "MOVE_MUD_SHOT",
+            "15": "MOVE_SLAM",
+            "19": "MOVE_MUD_BOMB",
+            "24": "MOVE_AMNESIA",
+            "31": "MOVE_YAWN",
+            "36": "MOVE_EARTHQUAKE",
+            "41": "MOVE_RAIN_DANCE",
             "48": [
-                "MIST",
-                "HAZE"
+                "MOVE_MIST",
+                "MOVE_HAZE"
             ],
-            "53": "MUDDY_WATER"
+            "53": "MOVE_MUDDY_WATER"
         }
     }
 }

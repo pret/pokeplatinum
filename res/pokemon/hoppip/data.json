@@ -74,22 +74,22 @@
             "TM90"
         ],
         "level_up": {
-            "1": "SPLASH",
-            "4": "SYNTHESIS",
-            "7": "TAIL_WHIP",
-            "10": "TACKLE",
-            "12": "POISON_POWDER",
-            "14": "STUN_SPORE",
-            "16": "SLEEP_POWDER",
-            "19": "BULLET_SEED",
-            "22": "LEECH_SEED",
-            "25": "MEGA_DRAIN",
-            "28": "COTTON_SPORE",
-            "31": "U_TURN",
-            "34": "WORRY_SEED",
-            "37": "GIGA_DRAIN",
-            "40": "BOUNCE",
-            "43": "MEMENTO"
+            "1": "MOVE_SPLASH",
+            "4": "MOVE_SYNTHESIS",
+            "7": "MOVE_TAIL_WHIP",
+            "10": "MOVE_TACKLE",
+            "12": "MOVE_POISON_POWDER",
+            "14": "MOVE_STUN_SPORE",
+            "16": "MOVE_SLEEP_POWDER",
+            "19": "MOVE_BULLET_SEED",
+            "22": "MOVE_LEECH_SEED",
+            "25": "MOVE_MEGA_DRAIN",
+            "28": "MOVE_COTTON_SPORE",
+            "31": "MOVE_U_TURN",
+            "34": "MOVE_WORRY_SEED",
+            "37": "MOVE_GIGA_DRAIN",
+            "40": "MOVE_BOUNCE",
+            "43": "MOVE_MEMENTO"
         }
     },
     "evolutions": [

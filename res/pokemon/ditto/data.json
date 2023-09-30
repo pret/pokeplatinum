@@ -46,7 +46,7 @@
     "learnset": {
         "tms": [],
         "level_up": {
-            "1": "TRANSFORM"
+            "1": "MOVE_TRANSFORM"
         }
     }
 }

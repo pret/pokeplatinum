@@ -78,18 +78,18 @@
             "HM06"
         ],
         "level_up": {
-            "1": "RAGE",
-            "5": "BITE",
-            "10": "LEER",
-            "16": "HEADBUTT",
-            "20": "FOCUS_ENERGY",
-            "25": "EMBER",
-            "31": "DRAGON_BREATH",
-            "35": "ZEN_HEADBUTT",
-            "40": "SCARY_FACE",
-            "46": "CRUNCH",
-            "50": "DRAGON_CLAW",
-            "55": "DOUBLE_EDGE"
+            "1": "MOVE_RAGE",
+            "5": "MOVE_BITE",
+            "10": "MOVE_LEER",
+            "16": "MOVE_HEADBUTT",
+            "20": "MOVE_FOCUS_ENERGY",
+            "25": "MOVE_EMBER",
+            "31": "MOVE_DRAGON_BREATH",
+            "35": "MOVE_ZEN_HEADBUTT",
+            "40": "MOVE_SCARY_FACE",
+            "46": "MOVE_CRUNCH",
+            "50": "MOVE_DRAGON_CLAW",
+            "55": "MOVE_DOUBLE_EDGE"
         }
     },
     "evolutions": [

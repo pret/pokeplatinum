@@ -74,20 +74,20 @@
         ],
         "level_up": {
             "1": [
-                "YAWN",
-                "SMOG"
+                "MOVE_YAWN",
+                "MOVE_SMOG"
             ],
-            "8": "EMBER",
-            "11": "ROCK_THROW",
-            "16": "HARDEN",
-            "23": "RECOVER",
-            "26": "ANCIENT_POWER",
-            "31": "AMNESIA",
-            "38": "LAVA_PLUME",
-            "41": "ROCK_SLIDE",
-            "46": "BODY_SLAM",
-            "53": "FLAMETHROWER",
-            "56": "EARTH_POWER"
+            "8": "MOVE_EMBER",
+            "11": "MOVE_ROCK_THROW",
+            "16": "MOVE_HARDEN",
+            "23": "MOVE_RECOVER",
+            "26": "MOVE_ANCIENT_POWER",
+            "31": "MOVE_AMNESIA",
+            "38": "MOVE_LAVA_PLUME",
+            "41": "MOVE_ROCK_SLIDE",
+            "46": "MOVE_BODY_SLAM",
+            "53": "MOVE_FLAMETHROWER",
+            "56": "MOVE_EARTH_POWER"
         }
     },
     "evolutions": [

@@ -46,10 +46,10 @@
     "learnset": {
         "tms": [],
         "level_up": {
-            "1": "PROTECT",
-            "10": "TACKLE",
-            "15": "BUG_BITE",
-            "20": "HIDDEN_POWER"
+            "1": "MOVE_PROTECT",
+            "10": "MOVE_TACKLE",
+            "15": "MOVE_BUG_BITE",
+            "20": "MOVE_HIDDEN_POWER"
         }
     },
     "evolutions": [

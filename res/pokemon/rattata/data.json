@@ -83,20 +83,20 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "TAIL_WHIP"
+                "MOVE_TACKLE",
+                "MOVE_TAIL_WHIP"
             ],
-            "4": "QUICK_ATTACK",
-            "7": "FOCUS_ENERGY",
-            "10": "BITE",
-            "13": "PURSUIT",
-            "16": "HYPER_FANG",
-            "19": "SUCKER_PUNCH",
-            "22": "CRUNCH",
-            "25": "ASSURANCE",
-            "28": "SUPER_FANG",
-            "31": "DOUBLE_EDGE",
-            "34": "ENDEAVOR"
+            "4": "MOVE_QUICK_ATTACK",
+            "7": "MOVE_FOCUS_ENERGY",
+            "10": "MOVE_BITE",
+            "13": "MOVE_PURSUIT",
+            "16": "MOVE_HYPER_FANG",
+            "19": "MOVE_SUCKER_PUNCH",
+            "22": "MOVE_CRUNCH",
+            "25": "MOVE_ASSURANCE",
+            "28": "MOVE_SUPER_FANG",
+            "31": "MOVE_DOUBLE_EDGE",
+            "34": "MOVE_ENDEAVOR"
         }
     },
     "evolutions": [

@@ -78,20 +78,20 @@
         ],
         "level_up": {
             "1": [
-                "PECK",
-                "GROWL"
+                "MOVE_PECK",
+                "MOVE_GROWL"
             ],
-            "5": "ASTONISH",
-            "9": "SING",
-            "13": "FURY_ATTACK",
-            "18": "SAFEGUARD",
-            "23": "MIST",
-            "28": "TAKE_DOWN",
-            "32": "NATURAL_GIFT",
-            "36": "MIRROR_MOVE",
-            "40": "REFRESH",
-            "45": "DRAGON_PULSE",
-            "50": "PERISH_SONG"
+            "5": "MOVE_ASTONISH",
+            "9": "MOVE_SING",
+            "13": "MOVE_FURY_ATTACK",
+            "18": "MOVE_SAFEGUARD",
+            "23": "MOVE_MIST",
+            "28": "MOVE_TAKE_DOWN",
+            "32": "MOVE_NATURAL_GIFT",
+            "36": "MOVE_MIRROR_MOVE",
+            "40": "MOVE_REFRESH",
+            "45": "MOVE_DRAGON_PULSE",
+            "50": "MOVE_PERISH_SONG"
         }
     },
     "evolutions": [

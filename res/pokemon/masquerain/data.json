@@ -83,22 +83,22 @@
         ],
         "level_up": {
             "1": [
-                "OMINOUS_WIND",
-                "BUBBLE",
-                "QUICK_ATTACK",
-                "SWEET_SCENT",
-                "WATER_SPORT"
+                "MOVE_OMINOUS_WIND",
+                "MOVE_BUBBLE",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_SWEET_SCENT",
+                "MOVE_WATER_SPORT"
             ],
-            "7": "QUICK_ATTACK",
-            "13": "SWEET_SCENT",
-            "19": "WATER_SPORT",
-            "22": "GUST",
-            "26": "SCARY_FACE",
-            "33": "STUN_SPORE",
-            "40": "SILVER_WIND",
-            "47": "AIR_SLASH",
-            "54": "WHIRLWIND",
-            "61": "BUG_BUZZ"
+            "7": "MOVE_QUICK_ATTACK",
+            "13": "MOVE_SWEET_SCENT",
+            "19": "MOVE_WATER_SPORT",
+            "22": "MOVE_GUST",
+            "26": "MOVE_SCARY_FACE",
+            "33": "MOVE_STUN_SPORE",
+            "40": "MOVE_SILVER_WIND",
+            "47": "MOVE_AIR_SLASH",
+            "54": "MOVE_WHIRLWIND",
+            "61": "MOVE_BUG_BUZZ"
         }
     }
 }

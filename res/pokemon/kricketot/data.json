@@ -47,10 +47,10 @@
         "tms": [],
         "level_up": {
             "1": [
-                "GROWL",
-                "BIDE"
+                "MOVE_GROWL",
+                "MOVE_BIDE"
             ],
-            "16": "BUG_BITE"
+            "16": "MOVE_BUG_BITE"
         }
     },
     "evolutions": [

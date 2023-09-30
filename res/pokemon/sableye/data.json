@@ -92,25 +92,25 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "SCRATCH"
+                "MOVE_LEER",
+                "MOVE_SCRATCH"
             ],
-            "4": "FORESIGHT",
-            "8": "NIGHT_SHADE",
-            "11": "ASTONISH",
-            "15": "FURY_SWIPES",
-            "18": "FAKE_OUT",
-            "22": "DETECT",
-            "25": "SHADOW_SNEAK",
-            "29": "KNOCK_OFF",
-            "32": "FAINT_ATTACK",
-            "36": "PUNISHMENT",
-            "39": "SHADOW_CLAW",
-            "43": "POWER_GEM",
-            "46": "CONFUSE_RAY",
-            "50": "ZEN_HEADBUTT",
-            "53": "SHADOW_BALL",
-            "57": "MEAN_LOOK"
+            "4": "MOVE_FORESIGHT",
+            "8": "MOVE_NIGHT_SHADE",
+            "11": "MOVE_ASTONISH",
+            "15": "MOVE_FURY_SWIPES",
+            "18": "MOVE_FAKE_OUT",
+            "22": "MOVE_DETECT",
+            "25": "MOVE_SHADOW_SNEAK",
+            "29": "MOVE_KNOCK_OFF",
+            "32": "MOVE_FAINT_ATTACK",
+            "36": "MOVE_PUNISHMENT",
+            "39": "MOVE_SHADOW_CLAW",
+            "43": "MOVE_POWER_GEM",
+            "46": "MOVE_CONFUSE_RAY",
+            "50": "MOVE_ZEN_HEADBUTT",
+            "53": "MOVE_SHADOW_BALL",
+            "57": "MOVE_MEAN_LOOK"
         }
     }
 }

@@ -73,21 +73,21 @@
         ],
         "level_up": {
             "1": [
-                "POISON_STING",
-                "STRING_SHOT"
+                "MOVE_POISON_STING",
+                "MOVE_STRING_SHOT"
             ],
-            "5": "SCARY_FACE",
-            "8": "CONSTRICT",
-            "12": "LEECH_LIFE",
-            "15": "NIGHT_SHADE",
-            "19": "SHADOW_SNEAK",
-            "22": "FURY_SWIPES",
-            "26": "SUCKER_PUNCH",
-            "29": "SPIDER_WEB",
-            "33": "AGILITY",
-            "36": "PIN_MISSILE",
-            "40": "PSYCHIC",
-            "43": "POISON_JAB"
+            "5": "MOVE_SCARY_FACE",
+            "8": "MOVE_CONSTRICT",
+            "12": "MOVE_LEECH_LIFE",
+            "15": "MOVE_NIGHT_SHADE",
+            "19": "MOVE_SHADOW_SNEAK",
+            "22": "MOVE_FURY_SWIPES",
+            "26": "MOVE_SUCKER_PUNCH",
+            "29": "MOVE_SPIDER_WEB",
+            "33": "MOVE_AGILITY",
+            "36": "MOVE_PIN_MISSILE",
+            "40": "MOVE_PSYCHIC",
+            "43": "MOVE_POISON_JAB"
         }
     },
     "evolutions": [

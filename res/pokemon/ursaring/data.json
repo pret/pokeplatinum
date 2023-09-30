@@ -91,21 +91,21 @@
         ],
         "level_up": {
             "1": [
-                "COVET",
-                "SCRATCH",
-                "LEER",
-                "LICK",
-                "FAKE_TEARS"
+                "MOVE_COVET",
+                "MOVE_SCRATCH",
+                "MOVE_LEER",
+                "MOVE_LICK",
+                "MOVE_FAKE_TEARS"
             ],
-            "8": "FURY_SWIPES",
-            "15": "FAINT_ATTACK",
-            "22": "SWEET_SCENT",
-            "29": "SLASH",
-            "38": "SCARY_FACE",
-            "47": "REST",
-            "49": "SNORE",
-            "58": "THRASH",
-            "67": "HAMMER_ARM"
+            "8": "MOVE_FURY_SWIPES",
+            "15": "MOVE_FAINT_ATTACK",
+            "22": "MOVE_SWEET_SCENT",
+            "29": "MOVE_SLASH",
+            "38": "MOVE_SCARY_FACE",
+            "47": "MOVE_REST",
+            "49": "MOVE_SNORE",
+            "58": "MOVE_THRASH",
+            "67": "MOVE_HAMMER_ARM"
         }
     }
 }

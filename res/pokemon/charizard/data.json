@@ -94,25 +94,25 @@
         ],
         "level_up": {
             "1": [
-                "DRAGON_CLAW",
-                "SHADOW_CLAW",
-                "AIR_SLASH",
-                "SCRATCH",
-                "GROWL",
-                "EMBER",
-                "SMOKESCREEN"
+                "MOVE_DRAGON_CLAW",
+                "MOVE_SHADOW_CLAW",
+                "MOVE_AIR_SLASH",
+                "MOVE_SCRATCH",
+                "MOVE_GROWL",
+                "MOVE_EMBER",
+                "MOVE_SMOKE_SCREEN"
             ],
-            "7": "EMBER",
-            "10": "SMOKESCREEN",
-            "17": "DRAGON_RAGE",
-            "21": "SCARY_FACE",
-            "28": "FIRE_FANG",
-            "32": "SLASH",
-            "36": "WING_ATTACK",
-            "42": "FLAMETHROWER",
-            "49": "FIRE_SPIN",
-            "59": "HEAT_WAVE",
-            "66": "FLARE_BLITZ"
+            "7": "MOVE_EMBER",
+            "10": "MOVE_SMOKE_SCREEN",
+            "17": "MOVE_DRAGON_RAGE",
+            "21": "MOVE_SCARY_FACE",
+            "28": "MOVE_FIRE_FANG",
+            "32": "MOVE_SLASH",
+            "36": "MOVE_WING_ATTACK",
+            "42": "MOVE_FLAMETHROWER",
+            "49": "MOVE_FIRE_SPIN",
+            "59": "MOVE_HEAT_WAVE",
+            "66": "MOVE_FLARE_BLITZ"
         }
     }
 }

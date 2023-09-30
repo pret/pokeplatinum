@@ -94,25 +94,25 @@
         ],
         "level_up": {
             "1": [
-                "TELEPORT",
-                "CONFUSION",
-                "HARDEN",
-                "RAPID_SPIN"
+                "MOVE_TELEPORT",
+                "MOVE_CONFUSION",
+                "MOVE_HARDEN",
+                "MOVE_RAPID_SPIN"
             ],
-            "3": "HARDEN",
-            "5": "RAPID_SPIN",
-            "7": "MUD_SLAP",
-            "11": "PSYBEAM",
-            "15": "ROCK_TOMB",
-            "19": "SELF_DESTRUCT",
-            "25": "ANCIENT_POWER",
-            "31": "POWER_TRICK",
-            "36": "HYPER_BEAM",
-            "40": "SANDSTORM",
-            "51": "COSMIC_POWER",
-            "62": "EARTH_POWER",
-            "73": "HEAL_BLOCK",
-            "86": "EXPLOSION"
+            "3": "MOVE_HARDEN",
+            "5": "MOVE_RAPID_SPIN",
+            "7": "MOVE_MUD_SLAP",
+            "11": "MOVE_PSYBEAM",
+            "15": "MOVE_ROCK_TOMB",
+            "19": "MOVE_SELFDESTRUCT",
+            "25": "MOVE_ANCIENT_POWER",
+            "31": "MOVE_POWER_TRICK",
+            "36": "MOVE_HYPER_BEAM",
+            "40": "MOVE_SANDSTORM",
+            "51": "MOVE_COSMIC_POWER",
+            "62": "MOVE_EARTH_POWER",
+            "73": "MOVE_HEAL_BLOCK",
+            "86": "MOVE_EXPLOSION"
         }
     }
 }

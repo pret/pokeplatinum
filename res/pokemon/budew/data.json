@@ -76,12 +76,12 @@
             "HM01"
         ],
         "level_up": {
-            "1": "ABSORB",
-            "4": "GROWTH",
-            "7": "WATER_SPORT",
-            "10": "STUN_SPORE",
-            "13": "MEGA_DRAIN",
-            "16": "WORRY_SEED"
+            "1": "MOVE_ABSORB",
+            "4": "MOVE_GROWTH",
+            "7": "MOVE_WATER_SPORT",
+            "10": "MOVE_STUN_SPORE",
+            "13": "MOVE_MEGA_DRAIN",
+            "16": "MOVE_WORRY_SEED"
         }
     },
     "evolutions": [

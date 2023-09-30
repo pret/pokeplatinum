@@ -88,18 +88,18 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "PROTECT"
+                "MOVE_TACKLE",
+                "MOVE_PROTECT"
             ],
-            "6": "TAUNT",
-            "10": "METAL_SOUND",
-            "15": "TAKE_DOWN",
-            "19": "IRON_DEFENSE",
-            "24": "SWAGGER",
-            "28": "ANCIENT_POWER",
-            "33": "ENDURE",
-            "37": "METAL_BURST",
-            "43": "IRON_HEAD"
+            "6": "MOVE_TAUNT",
+            "10": "MOVE_METAL_SOUND",
+            "15": "MOVE_TAKE_DOWN",
+            "19": "MOVE_IRON_DEFENSE",
+            "24": "MOVE_SWAGGER",
+            "28": "MOVE_ANCIENT_POWER",
+            "33": "MOVE_ENDURE",
+            "37": "MOVE_METAL_BURST",
+            "43": "MOVE_IRON_HEAD"
         }
     },
     "evolutions": [

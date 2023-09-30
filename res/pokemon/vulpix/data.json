@@ -75,21 +75,21 @@
             "TM90"
         ],
         "level_up": {
-            "1": "EMBER",
-            "4": "TAIL_WHIP",
-            "7": "ROAR",
-            "11": "QUICK_ATTACK",
-            "14": "WILL_O_WISP",
-            "17": "CONFUSE_RAY",
-            "21": "IMPRISON",
-            "24": "FLAMETHROWER",
-            "27": "SAFEGUARD",
-            "31": "PAYBACK",
-            "34": "FIRE_SPIN",
-            "37": "CAPTIVATE",
-            "41": "GRUDGE",
-            "44": "EXTRASENSORY",
-            "47": "FIRE_BLAST"
+            "1": "MOVE_EMBER",
+            "4": "MOVE_TAIL_WHIP",
+            "7": "MOVE_ROAR",
+            "11": "MOVE_QUICK_ATTACK",
+            "14": "MOVE_WILL_O_WISP",
+            "17": "MOVE_CONFUSE_RAY",
+            "21": "MOVE_IMPRISON",
+            "24": "MOVE_FLAMETHROWER",
+            "27": "MOVE_SAFEGUARD",
+            "31": "MOVE_PAYBACK",
+            "34": "MOVE_FIRE_SPIN",
+            "37": "MOVE_CAPTIVATE",
+            "41": "MOVE_GRUDGE",
+            "44": "MOVE_EXTRASENSORY",
+            "47": "MOVE_FIRE_BLAST"
         }
     },
     "evolutions": [

@@ -85,24 +85,24 @@
         ],
         "level_up": {
             "1": [
-                "FAKE_OUT",
-                "GROWL",
-                "TAIL_WHIP",
-                "TACKLE"
+                "MOVE_FAKE_OUT",
+                "MOVE_GROWL",
+                "MOVE_TAIL_WHIP",
+                "MOVE_TACKLE"
             ],
-            "4": "FORESIGHT",
-            "8": "ATTRACT",
-            "11": "SING",
-            "15": "DOUBLE_SLAP",
-            "18": "COPYCAT",
-            "22": "ASSIST",
-            "25": "CHARM",
-            "29": "FAINT_ATTACK",
-            "32": "WAKE_UP_SLAP",
-            "36": "COVET",
-            "39": "HEAL_BELL",
-            "42": "DOUBLE_EDGE",
-            "46": "CAPTIVATE"
+            "4": "MOVE_FORESIGHT",
+            "8": "MOVE_ATTRACT",
+            "11": "MOVE_SING",
+            "15": "MOVE_DOUBLE_SLAP",
+            "18": "MOVE_COPYCAT",
+            "22": "MOVE_ASSIST",
+            "25": "MOVE_CHARM",
+            "29": "MOVE_FAINT_ATTACK",
+            "32": "MOVE_WAKE_UP_SLAP",
+            "36": "MOVE_COVET",
+            "39": "MOVE_HEAL_BELL",
+            "42": "MOVE_DOUBLE_EDGE",
+            "46": "MOVE_CAPTIVATE"
         }
     },
     "evolutions": [

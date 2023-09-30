@@ -46,8 +46,8 @@
     "learnset": {
         "tms": [],
         "level_up": {
-            "1": "HARDEN",
-            "7": "HARDEN"
+            "1": "MOVE_HARDEN",
+            "7": "MOVE_HARDEN"
         }
     },
     "evolutions": [

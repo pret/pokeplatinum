@@ -80,27 +80,27 @@
         ],
         "level_up": {
             "1": [
-                "REVENGE",
-                "COMET_PUNCH"
+                "MOVE_REVENGE",
+                "MOVE_COMET_PUNCH"
             ],
-            "6": "AGILITY",
-            "11": "PURSUIT",
+            "6": "MOVE_AGILITY",
+            "11": "MOVE_PURSUIT",
             "16": [
-                "MACH_PUNCH",
-                "BULLET_PUNCH"
+                "MOVE_MACH_PUNCH",
+                "MOVE_BULLET_PUNCH"
             ],
-            "21": "FEINT",
-            "26": "VACUUM_WAVE",
+            "21": "MOVE_FEINT",
+            "26": "MOVE_VACUUM_WAVE",
             "31": [
-                "THUNDER_PUNCH",
-                "ICE_PUNCH",
-                "FIRE_PUNCH"
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_FIRE_PUNCH"
             ],
-            "36": "SKY_UPPERCUT",
-            "41": "MEGA_PUNCH",
-            "46": "DETECT",
-            "51": "COUNTER",
-            "56": "CLOSE_COMBAT"
+            "36": "MOVE_SKY_UPPERCUT",
+            "41": "MOVE_MEGA_PUNCH",
+            "46": "MOVE_DETECT",
+            "51": "MOVE_COUNTER",
+            "56": "MOVE_CLOSE_COMBAT"
         }
     }
 }

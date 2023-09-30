@@ -81,21 +81,21 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "HARDEN"
+                "MOVE_TACKLE",
+                "MOVE_HARDEN"
             ],
-            "6": "WATER_GUN",
-            "10": "RAPID_SPIN",
-            "15": "RECOVER",
-            "19": "CAMOUFLAGE",
-            "24": "SWIFT",
-            "28": "BUBBLE_BEAM",
-            "33": "MINIMIZE",
-            "37": "GYRO_BALL",
-            "42": "LIGHT_SCREEN",
-            "46": "POWER_GEM",
-            "51": "COSMIC_POWER",
-            "55": "HYDRO_PUMP"
+            "6": "MOVE_WATER_GUN",
+            "10": "MOVE_RAPID_SPIN",
+            "15": "MOVE_RECOVER",
+            "19": "MOVE_CAMOUFLAGE",
+            "24": "MOVE_SWIFT",
+            "28": "MOVE_BUBBLE_BEAM",
+            "33": "MOVE_MINIMIZE",
+            "37": "MOVE_GYRO_BALL",
+            "42": "MOVE_LIGHT_SCREEN",
+            "46": "MOVE_POWER_GEM",
+            "51": "MOVE_COSMIC_POWER",
+            "55": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

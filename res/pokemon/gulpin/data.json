@@ -78,22 +78,22 @@
             "HM06"
         ],
         "level_up": {
-            "1": "POUND",
-            "6": "YAWN",
-            "9": "POISON_GAS",
-            "14": "SLUDGE",
-            "17": "AMNESIA",
-            "23": "ENCORE",
-            "28": "TOXIC",
+            "1": "MOVE_POUND",
+            "6": "MOVE_YAWN",
+            "9": "MOVE_POISON_GAS",
+            "14": "MOVE_SLUDGE",
+            "17": "MOVE_AMNESIA",
+            "23": "MOVE_ENCORE",
+            "28": "MOVE_TOXIC",
             "34": [
-                "STOCKPILE",
-                "SPIT_UP",
-                "SWALLOW"
+                "MOVE_STOCKPILE",
+                "MOVE_SPIT_UP",
+                "MOVE_SWALLOW"
             ],
-            "39": "SLUDGE_BOMB",
-            "44": "GASTRO_ACID",
-            "49": "WRING_OUT",
-            "54": "GUNK_SHOT"
+            "39": "MOVE_SLUDGE_BOMB",
+            "44": "MOVE_GASTRO_ACID",
+            "49": "MOVE_WRING_OUT",
+            "54": "MOVE_GUNK_SHOT"
         }
     },
     "evolutions": [

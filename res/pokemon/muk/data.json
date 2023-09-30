@@ -92,23 +92,23 @@
         ],
         "level_up": {
             "1": [
-                "POISON_GAS",
-                "POUND",
-                "HARDEN",
-                "MUD_SLAP"
+                "MOVE_POISON_GAS",
+                "MOVE_POUND",
+                "MOVE_HARDEN",
+                "MOVE_MUD_SLAP"
             ],
-            "4": "HARDEN",
-            "7": "MUD_SLAP",
-            "12": "DISABLE",
-            "17": "MINIMIZE",
-            "20": "SLUDGE",
-            "23": "MUD_BOMB",
-            "28": "FLING",
-            "33": "SCREECH",
-            "36": "SLUDGE_BOMB",
-            "44": "ACID_ARMOR",
-            "54": "GUNK_SHOT",
-            "65": "MEMENTO"
+            "4": "MOVE_HARDEN",
+            "7": "MOVE_MUD_SLAP",
+            "12": "MOVE_DISABLE",
+            "17": "MOVE_MINIMIZE",
+            "20": "MOVE_SLUDGE",
+            "23": "MOVE_MUD_BOMB",
+            "28": "MOVE_FLING",
+            "33": "MOVE_SCREECH",
+            "36": "MOVE_SLUDGE_BOMB",
+            "44": "MOVE_ACID_ARMOR",
+            "54": "MOVE_GUNK_SHOT",
+            "65": "MOVE_MEMENTO"
         }
     }
 }

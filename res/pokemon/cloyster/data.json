@@ -78,14 +78,14 @@
         ],
         "level_up": {
             "1": [
-                "TOXIC_SPIKES",
-                "WITHDRAW",
-                "SUPERSONIC",
-                "AURORA_BEAM",
-                "PROTECT"
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_WITHDRAW",
+                "MOVE_SUPERSONIC",
+                "MOVE_AURORA_BEAM",
+                "MOVE_PROTECT"
             ],
-            "28": "SPIKES",
-            "40": "SPIKE_CANNON"
+            "28": "MOVE_SPIKES",
+            "40": "MOVE_SPIKE_CANNON"
         }
     }
 }

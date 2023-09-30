@@ -72,21 +72,21 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "DISABLE",
-                "FORESIGHT"
+                "MOVE_TACKLE",
+                "MOVE_DISABLE",
+                "MOVE_FORESIGHT"
             ],
-            "5": "SUPERSONIC",
-            "11": "CONFUSION",
-            "13": "POISON_POWDER",
-            "17": "LEECH_LIFE",
-            "23": "STUN_SPORE",
-            "25": "PSYBEAM",
-            "29": "SLEEP_POWDER",
-            "35": "SIGNAL_BEAM",
-            "37": "ZEN_HEADBUTT",
-            "41": "POISON_FANG",
-            "47": "PSYCHIC"
+            "5": "MOVE_SUPERSONIC",
+            "11": "MOVE_CONFUSION",
+            "13": "MOVE_POISON_POWDER",
+            "17": "MOVE_LEECH_LIFE",
+            "23": "MOVE_STUN_SPORE",
+            "25": "MOVE_PSYBEAM",
+            "29": "MOVE_SLEEP_POWDER",
+            "35": "MOVE_SIGNAL_BEAM",
+            "37": "MOVE_ZEN_HEADBUTT",
+            "41": "MOVE_POISON_FANG",
+            "47": "MOVE_PSYCHIC"
         }
     },
     "evolutions": [

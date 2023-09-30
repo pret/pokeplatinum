@@ -82,23 +82,23 @@
         ],
         "level_up": {
             "1": [
-                "FIRE_PUNCH",
-                "TACKLE",
-                "GROWL",
-                "THUNDER_SHOCK",
-                "THUNDER_WAVE"
+                "MOVE_FIRE_PUNCH",
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_THUNDER_SHOCK",
+                "MOVE_THUNDER_WAVE"
             ],
-            "5": "GROWL",
-            "10": "THUNDER_SHOCK",
-            "14": "THUNDER_WAVE",
-            "20": "COTTON_SPORE",
-            "25": "CHARGE",
-            "30": "THUNDER_PUNCH",
-            "34": "DISCHARGE",
-            "42": "SIGNAL_BEAM",
-            "51": "LIGHT_SCREEN",
-            "59": "POWER_GEM",
-            "68": "THUNDER"
+            "5": "MOVE_GROWL",
+            "10": "MOVE_THUNDER_SHOCK",
+            "14": "MOVE_THUNDER_WAVE",
+            "20": "MOVE_COTTON_SPORE",
+            "25": "MOVE_CHARGE",
+            "30": "MOVE_THUNDER_PUNCH",
+            "34": "MOVE_DISCHARGE",
+            "42": "MOVE_SIGNAL_BEAM",
+            "51": "MOVE_LIGHT_SCREEN",
+            "59": "MOVE_POWER_GEM",
+            "68": "MOVE_THUNDER"
         }
     }
 }

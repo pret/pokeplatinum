@@ -86,26 +86,26 @@
         ],
         "level_up": {
             "1": [
-                "FEINT",
-                "LEER",
-                "BITE",
-                "RAGE",
-                "FOCUS_ENERGY"
+                "MOVE_FEINT",
+                "MOVE_LEER",
+                "MOVE_BITE",
+                "MOVE_RAGE",
+                "MOVE_FOCUS_ENERGY"
             ],
-            "6": "RAGE",
-            "8": "FOCUS_ENERGY",
-            "11": "SCARY_FACE",
-            "16": "ICE_FANG",
-            "18": "SCREECH",
-            "21": "SWAGGER",
-            "26": "ASSURANCE",
-            "28": "CRUNCH",
-            "30": "SLASH",
-            "34": "AQUA_JET",
-            "40": "TAUNT",
-            "45": "AGILITY",
-            "50": "SKULL_BASH",
-            "56": "NIGHT_SLASH"
+            "6": "MOVE_RAGE",
+            "8": "MOVE_FOCUS_ENERGY",
+            "11": "MOVE_SCARY_FACE",
+            "16": "MOVE_ICE_FANG",
+            "18": "MOVE_SCREECH",
+            "21": "MOVE_SWAGGER",
+            "26": "MOVE_ASSURANCE",
+            "28": "MOVE_CRUNCH",
+            "30": "MOVE_SLASH",
+            "34": "MOVE_AQUA_JET",
+            "40": "MOVE_TAUNT",
+            "45": "MOVE_AGILITY",
+            "50": "MOVE_SKULL_BASH",
+            "56": "MOVE_NIGHT_SLASH"
         }
     }
 }

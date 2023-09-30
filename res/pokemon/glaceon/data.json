@@ -79,21 +79,21 @@
         ],
         "level_up": {
             "1": [
-                "TAIL_WHIP",
-                "TACKLE",
-                "HELPING_HAND"
+                "MOVE_TAIL_WHIP",
+                "MOVE_TACKLE",
+                "MOVE_HELPING_HAND"
             ],
-            "8": "SAND_ATTACK",
-            "15": "ICY_WIND",
-            "22": "QUICK_ATTACK",
-            "29": "BITE",
-            "36": "ICE_SHARD",
-            "43": "ICE_FANG",
-            "50": "LAST_RESORT",
-            "57": "MIRROR_COAT",
-            "64": "HAIL",
-            "71": "BLIZZARD",
-            "78": "BARRIER"
+            "8": "MOVE_SAND_ATTACK",
+            "15": "MOVE_ICY_WIND",
+            "22": "MOVE_QUICK_ATTACK",
+            "29": "MOVE_BITE",
+            "36": "MOVE_ICE_SHARD",
+            "43": "MOVE_ICE_FANG",
+            "50": "MOVE_LAST_RESORT",
+            "57": "MOVE_MIRROR_COAT",
+            "64": "MOVE_HAIL",
+            "71": "MOVE_BLIZZARD",
+            "78": "MOVE_BARRIER"
         }
     }
 }

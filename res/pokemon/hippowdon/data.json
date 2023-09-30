@@ -78,22 +78,22 @@
         ],
         "level_up": {
             "1": [
-                "ICE_FANG",
-                "FIRE_FANG",
-                "THUNDER_FANG",
-                "TACKLE",
-                "SAND_ATTACK",
-                "BITE",
-                "YAWN"
+                "MOVE_ICE_FANG",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_TACKLE",
+                "MOVE_SAND_ATTACK",
+                "MOVE_BITE",
+                "MOVE_YAWN"
             ],
-            "7": "BITE",
-            "13": "YAWN",
-            "19": "TAKE_DOWN",
-            "25": "SAND_TOMB",
-            "31": "CRUNCH",
-            "40": "EARTHQUAKE",
-            "50": "DOUBLE_EDGE",
-            "60": "FISSURE"
+            "7": "MOVE_BITE",
+            "13": "MOVE_YAWN",
+            "19": "MOVE_TAKE_DOWN",
+            "25": "MOVE_SAND_TOMB",
+            "31": "MOVE_CRUNCH",
+            "40": "MOVE_EARTHQUAKE",
+            "50": "MOVE_DOUBLE_EDGE",
+            "60": "MOVE_FISSURE"
         }
     }
 }

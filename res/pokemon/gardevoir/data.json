@@ -92,24 +92,24 @@
         ],
         "level_up": {
             "1": [
-                "HEALING_WISH",
-                "GROWL",
-                "CONFUSION",
-                "DOUBLE_TEAM",
-                "TELEPORT"
+                "MOVE_HEALING_WISH",
+                "MOVE_GROWL",
+                "MOVE_CONFUSION",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_TELEPORT"
             ],
-            "6": "CONFUSION",
-            "10": "DOUBLE_TEAM",
-            "12": "TELEPORT",
-            "17": "WISH",
-            "22": "MAGICAL_LEAF",
-            "25": "CALM_MIND",
-            "33": "PSYCHIC",
-            "40": "IMPRISON",
-            "45": "FUTURE_SIGHT",
-            "53": "CAPTIVATE",
-            "60": "HYPNOSIS",
-            "65": "DREAM_EATER"
+            "6": "MOVE_CONFUSION",
+            "10": "MOVE_DOUBLE_TEAM",
+            "12": "MOVE_TELEPORT",
+            "17": "MOVE_WISH",
+            "22": "MOVE_MAGICAL_LEAF",
+            "25": "MOVE_CALM_MIND",
+            "33": "MOVE_PSYCHIC",
+            "40": "MOVE_IMPRISON",
+            "45": "MOVE_FUTURE_SIGHT",
+            "53": "MOVE_CAPTIVATE",
+            "60": "MOVE_HYPNOSIS",
+            "65": "MOVE_DREAM_EATER"
         }
     }
 }

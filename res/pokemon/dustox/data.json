@@ -80,17 +80,17 @@
             "HM05"
         ],
         "level_up": {
-            "1": "CONFUSION",
-            "10": "CONFUSION",
-            "13": "GUST",
-            "17": "PROTECT",
-            "20": "MOONLIGHT",
-            "24": "PSYBEAM",
-            "27": "WHIRLWIND",
-            "31": "LIGHT_SCREEN",
-            "34": "SILVER_WIND",
-            "38": "TOXIC",
-            "41": "BUG_BUZZ"
+            "1": "MOVE_CONFUSION",
+            "10": "MOVE_CONFUSION",
+            "13": "MOVE_GUST",
+            "17": "MOVE_PROTECT",
+            "20": "MOVE_MOONLIGHT",
+            "24": "MOVE_PSYBEAM",
+            "27": "MOVE_WHIRLWIND",
+            "31": "MOVE_LIGHT_SCREEN",
+            "34": "MOVE_SILVER_WIND",
+            "38": "MOVE_TOXIC",
+            "41": "MOVE_BUG_BUZZ"
         }
     }
 }

@@ -94,22 +94,22 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "YAWN",
-                "ENCORE",
-                "SLACK_OFF"
+                "MOVE_SCRATCH",
+                "MOVE_YAWN",
+                "MOVE_ENCORE",
+                "MOVE_SLACK_OFF"
             ],
-            "7": "ENCORE",
-            "13": "SLACK_OFF",
-            "19": "FAINT_ATTACK",
-            "25": "AMNESIA",
-            "31": "COVET",
-            "36": "SWAGGER",
-            "37": "COUNTER",
-            "43": "FLAIL",
-            "49": "FLING",
-            "55": "PUNISHMENT",
-            "61": "HAMMER_ARM"
+            "7": "MOVE_ENCORE",
+            "13": "MOVE_SLACK_OFF",
+            "19": "MOVE_FAINT_ATTACK",
+            "25": "MOVE_AMNESIA",
+            "31": "MOVE_COVET",
+            "36": "MOVE_SWAGGER",
+            "37": "MOVE_COUNTER",
+            "43": "MOVE_FLAIL",
+            "49": "MOVE_FLING",
+            "55": "MOVE_PUNISHMENT",
+            "61": "MOVE_HAMMER_ARM"
         }
     }
 }

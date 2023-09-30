@@ -80,20 +80,20 @@
             "HM07"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "4": "TAIL_WHIP",
-            "7": "BUBBLE",
-            "10": "WITHDRAW",
-            "13": "WATER_GUN",
-            "16": "BITE",
-            "19": "RAPID_SPIN",
-            "22": "PROTECT",
-            "25": "WATER_PULSE",
-            "28": "AQUA_TAIL",
-            "31": "SKULL_BASH",
-            "34": "IRON_DEFENSE",
-            "37": "RAIN_DANCE",
-            "40": "HYDRO_PUMP"
+            "1": "MOVE_TACKLE",
+            "4": "MOVE_TAIL_WHIP",
+            "7": "MOVE_BUBBLE",
+            "10": "MOVE_WITHDRAW",
+            "13": "MOVE_WATER_GUN",
+            "16": "MOVE_BITE",
+            "19": "MOVE_RAPID_SPIN",
+            "22": "MOVE_PROTECT",
+            "25": "MOVE_WATER_PULSE",
+            "28": "MOVE_AQUA_TAIL",
+            "31": "MOVE_SKULL_BASH",
+            "34": "MOVE_IRON_DEFENSE",
+            "37": "MOVE_RAIN_DANCE",
+            "40": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

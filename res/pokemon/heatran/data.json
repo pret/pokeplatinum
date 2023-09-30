@@ -88,19 +88,19 @@
             "HM08"
         ],
         "level_up": {
-            "1": "ANCIENT_POWER",
-            "9": "LEER",
-            "17": "FIRE_FANG",
-            "25": "METAL_SOUND",
-            "33": "CRUNCH",
-            "41": "SCARY_FACE",
-            "49": "LAVA_PLUME",
-            "57": "FIRE_SPIN",
-            "65": "IRON_HEAD",
-            "73": "EARTH_POWER",
-            "81": "HEAT_WAVE",
-            "88": "STONE_EDGE",
-            "96": "MAGMA_STORM"
+            "1": "MOVE_ANCIENT_POWER",
+            "9": "MOVE_LEER",
+            "17": "MOVE_FIRE_FANG",
+            "25": "MOVE_METAL_SOUND",
+            "33": "MOVE_CRUNCH",
+            "41": "MOVE_SCARY_FACE",
+            "49": "MOVE_LAVA_PLUME",
+            "57": "MOVE_FIRE_SPIN",
+            "65": "MOVE_IRON_HEAD",
+            "73": "MOVE_EARTH_POWER",
+            "81": "MOVE_HEAT_WAVE",
+            "88": "MOVE_STONE_EDGE",
+            "96": "MOVE_MAGMA_STORM"
         }
     }
 }

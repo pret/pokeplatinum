@@ -80,21 +80,21 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "PROTECT"
+                "MOVE_TACKLE",
+                "MOVE_PROTECT"
             ],
-            "6": "SELF_DESTRUCT",
-            "9": "BUG_BITE",
-            "12": "TAKE_DOWN",
-            "17": "RAPID_SPIN",
-            "20": "BIDE",
-            "23": "NATURAL_GIFT",
-            "28": "SPIKES",
-            "31": "PAYBACK",
-            "34": "EXPLOSION",
-            "39": "IRON_DEFENSE",
-            "42": "GYRO_BALL",
-            "45": "DOUBLE_EDGE"
+            "6": "MOVE_SELFDESTRUCT",
+            "9": "MOVE_BUG_BITE",
+            "12": "MOVE_TAKE_DOWN",
+            "17": "MOVE_RAPID_SPIN",
+            "20": "MOVE_BIDE",
+            "23": "MOVE_NATURAL_GIFT",
+            "28": "MOVE_SPIKES",
+            "31": "MOVE_PAYBACK",
+            "34": "MOVE_EXPLOSION",
+            "39": "MOVE_IRON_DEFENSE",
+            "42": "MOVE_GYRO_BALL",
+            "45": "MOVE_DOUBLE_EDGE"
         }
     },
     "evolutions": [

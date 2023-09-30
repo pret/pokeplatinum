@@ -95,10 +95,10 @@
         ],
         "level_up": {
             "1": [
-                "SKY_ATTACK",
-                "EXTREME_SPEED",
-                "AURA_SPHERE",
-                "AIR_SLASH"
+                "MOVE_SKY_ATTACK",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_AURA_SPHERE",
+                "MOVE_AIR_SLASH"
             ]
         }
     }

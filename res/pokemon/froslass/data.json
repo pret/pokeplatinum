@@ -89,22 +89,22 @@
         ],
         "level_up": {
             "1": [
-                "POWDER_SNOW",
-                "LEER",
-                "DOUBLE_TEAM",
-                "ASTONISH"
+                "MOVE_POWDER_SNOW",
+                "MOVE_LEER",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_ASTONISH"
             ],
-            "4": "DOUBLE_TEAM",
-            "10": "ASTONISH",
-            "13": "ICY_WIND",
-            "19": "CONFUSE_RAY",
-            "22": "OMINOUS_WIND",
-            "28": "WAKE_UP_SLAP",
-            "31": "CAPTIVATE",
-            "37": "ICE_SHARD",
-            "40": "HAIL",
-            "51": "BLIZZARD",
-            "59": "DESTINY_BOND"
+            "4": "MOVE_DOUBLE_TEAM",
+            "10": "MOVE_ASTONISH",
+            "13": "MOVE_ICY_WIND",
+            "19": "MOVE_CONFUSE_RAY",
+            "22": "MOVE_OMINOUS_WIND",
+            "28": "MOVE_WAKE_UP_SLAP",
+            "31": "MOVE_CAPTIVATE",
+            "37": "MOVE_ICE_SHARD",
+            "40": "MOVE_HAIL",
+            "51": "MOVE_BLIZZARD",
+            "59": "MOVE_DESTINY_BOND"
         }
     }
 }

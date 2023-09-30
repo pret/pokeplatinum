@@ -83,22 +83,22 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "DEFENSE_CURL",
-                "MUD_SPORT",
-                "ROCK_POLISH"
+                "MOVE_TACKLE",
+                "MOVE_DEFENSE_CURL",
+                "MOVE_MUD_SPORT",
+                "MOVE_ROCK_POLISH"
             ],
-            "4": "MUD_SPORT",
-            "8": "ROCK_POLISH",
-            "11": "ROCK_THROW",
-            "15": "MAGNITUDE",
-            "18": "SELF_DESTRUCT",
-            "22": "ROLLOUT",
-            "27": "ROCK_BLAST",
-            "33": "EARTHQUAKE",
-            "38": "EXPLOSION",
-            "44": "DOUBLE_EDGE",
-            "49": "STONE_EDGE"
+            "4": "MOVE_MUD_SPORT",
+            "8": "MOVE_ROCK_POLISH",
+            "11": "MOVE_ROCK_THROW",
+            "15": "MOVE_MAGNITUDE",
+            "18": "MOVE_SELFDESTRUCT",
+            "22": "MOVE_ROLLOUT",
+            "27": "MOVE_ROCK_BLAST",
+            "33": "MOVE_EARTHQUAKE",
+            "38": "MOVE_EXPLOSION",
+            "44": "MOVE_DOUBLE_EDGE",
+            "49": "MOVE_STONE_EDGE"
         }
     },
     "evolutions": [

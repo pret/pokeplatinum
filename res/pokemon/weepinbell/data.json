@@ -75,22 +75,22 @@
         ],
         "level_up": {
             "1": [
-                "VINE_WHIP",
-                "GROWTH",
-                "WRAP"
+                "MOVE_VINE_WHIP",
+                "MOVE_GROWTH",
+                "MOVE_WRAP"
             ],
-            "7": "GROWTH",
-            "11": "WRAP",
-            "13": "SLEEP_POWDER",
-            "15": "POISON_POWDER",
-            "17": "STUN_SPORE",
-            "23": "ACID",
-            "27": "KNOCK_OFF",
-            "29": "SWEET_SCENT",
-            "35": "GASTRO_ACID",
-            "39": "RAZOR_LEAF",
-            "41": "SLAM",
-            "47": "WRING_OUT"
+            "7": "MOVE_GROWTH",
+            "11": "MOVE_WRAP",
+            "13": "MOVE_SLEEP_POWDER",
+            "15": "MOVE_POISON_POWDER",
+            "17": "MOVE_STUN_SPORE",
+            "23": "MOVE_ACID",
+            "27": "MOVE_KNOCK_OFF",
+            "29": "MOVE_SWEET_SCENT",
+            "35": "MOVE_GASTRO_ACID",
+            "39": "MOVE_RAZOR_LEAF",
+            "41": "MOVE_SLAM",
+            "47": "MOVE_WRING_OUT"
         }
     },
     "evolutions": [

@@ -92,23 +92,23 @@
         ],
         "level_up": {
             "1": [
-                "ICE_FANG",
-                "FIRE_FANG",
-                "THUNDER_FANG",
-                "WING_ATTACK",
-                "SUPERSONIC",
-                "BITE",
-                "SCARY_FACE"
+                "MOVE_ICE_FANG",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_WING_ATTACK",
+                "MOVE_SUPERSONIC",
+                "MOVE_BITE",
+                "MOVE_SCARY_FACE"
             ],
-            "9": "ROAR",
-            "17": "AGILITY",
-            "25": "ANCIENT_POWER",
-            "33": "CRUNCH",
-            "41": "TAKE_DOWN",
-            "49": "IRON_HEAD",
-            "57": "HYPER_BEAM",
-            "65": "ROCK_SLIDE",
-            "73": "GIGA_IMPACT"
+            "9": "MOVE_ROAR",
+            "17": "MOVE_AGILITY",
+            "25": "MOVE_ANCIENT_POWER",
+            "33": "MOVE_CRUNCH",
+            "41": "MOVE_TAKE_DOWN",
+            "49": "MOVE_IRON_HEAD",
+            "57": "MOVE_HYPER_BEAM",
+            "65": "MOVE_ROCK_SLIDE",
+            "73": "MOVE_GIGA_IMPACT"
         }
     }
 }

@@ -70,16 +70,16 @@
             "HM03"
         ],
         "level_up": {
-            "1": "MUD_SLAP",
-            "2": "MUD_SPORT",
-            "4": "HARDEN",
-            "7": "WATER_PULSE",
-            "11": "MUD_BOMB",
-            "16": "HIDDEN_POWER",
-            "22": "RAIN_DANCE",
-            "29": "BODY_SLAM",
-            "37": "MUDDY_WATER",
-            "46": "RECOVER"
+            "1": "MOVE_MUD_SLAP",
+            "2": "MOVE_MUD_SPORT",
+            "4": "MOVE_HARDEN",
+            "7": "MOVE_WATER_PULSE",
+            "11": "MOVE_MUD_BOMB",
+            "16": "MOVE_HIDDEN_POWER",
+            "22": "MOVE_RAIN_DANCE",
+            "29": "MOVE_BODY_SLAM",
+            "37": "MOVE_MUDDY_WATER",
+            "46": "MOVE_RECOVER"
         }
     },
     "evolutions": [

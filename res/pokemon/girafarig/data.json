@@ -89,23 +89,23 @@
         ],
         "level_up": {
             "1": [
-                "POWER_SWAP",
-                "GUARD_SWAP",
-                "ASTONISH",
-                "TACKLE",
-                "GROWL",
-                "CONFUSION"
+                "MOVE_POWER_SWAP",
+                "MOVE_GUARD_SWAP",
+                "MOVE_ASTONISH",
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_CONFUSION"
             ],
-            "5": "ODOR_SLEUTH",
-            "10": "STOMP",
-            "14": "AGILITY",
-            "19": "PSYBEAM",
-            "23": "BATON_PASS",
-            "28": "ASSURANCE",
-            "32": "DOUBLE_HIT",
-            "37": "PSYCHIC",
-            "41": "ZEN_HEADBUTT",
-            "46": "CRUNCH"
+            "5": "MOVE_ODOR_SLEUTH",
+            "10": "MOVE_STOMP",
+            "14": "MOVE_AGILITY",
+            "19": "MOVE_PSYBEAM",
+            "23": "MOVE_BATON_PASS",
+            "28": "MOVE_ASSURANCE",
+            "32": "MOVE_DOUBLE_HIT",
+            "37": "MOVE_PSYCHIC",
+            "41": "MOVE_ZEN_HEADBUTT",
+            "46": "MOVE_CRUNCH"
         }
     }
 }

@@ -78,27 +78,27 @@
         ],
         "level_up": {
             "1": [
-                "HEADBUTT",
-                "GROWL",
-                "SIGNAL_BEAM",
-                "ICY_WIND"
+                "MOVE_HEADBUTT",
+                "MOVE_GROWL",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_ICY_WIND"
             ],
-            "3": "GROWL",
-            "7": "SIGNAL_BEAM",
-            "11": "ICY_WIND",
-            "13": "ENCORE",
-            "17": "ICE_SHARD",
-            "21": "REST",
-            "23": "AQUA_RING",
-            "27": "AURORA_BEAM",
-            "31": "AQUA_JET",
-            "33": "BRINE",
-            "34": "SHEER_COLD",
-            "37": "TAKE_DOWN",
-            "41": "DIVE",
-            "43": "AQUA_TAIL",
-            "47": "ICE_BEAM",
-            "51": "SAFEGUARD"
+            "3": "MOVE_GROWL",
+            "7": "MOVE_SIGNAL_BEAM",
+            "11": "MOVE_ICY_WIND",
+            "13": "MOVE_ENCORE",
+            "17": "MOVE_ICE_SHARD",
+            "21": "MOVE_REST",
+            "23": "MOVE_AQUA_RING",
+            "27": "MOVE_AURORA_BEAM",
+            "31": "MOVE_AQUA_JET",
+            "33": "MOVE_BRINE",
+            "34": "MOVE_SHEER_COLD",
+            "37": "MOVE_TAKE_DOWN",
+            "41": "MOVE_DIVE",
+            "43": "MOVE_AQUA_TAIL",
+            "47": "MOVE_ICE_BEAM",
+            "51": "MOVE_SAFEGUARD"
         }
     }
 }

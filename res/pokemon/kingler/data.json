@@ -85,23 +85,23 @@
         ],
         "level_up": {
             "1": [
-                "MUD_SPORT",
-                "BUBBLE",
-                "VICE_GRIP"
+                "MOVE_MUD_SPORT",
+                "MOVE_BUBBLE",
+                "MOVE_VICE_GRIP"
             ],
-            "5": "VICE_GRIP",
-            "9": "LEER",
-            "11": "HARDEN",
-            "15": "BUBBLE_BEAM",
-            "19": "MUD_SHOT",
-            "21": "METAL_CLAW",
-            "25": "STOMP",
-            "32": "PROTECT",
-            "37": "GUILLOTINE",
-            "44": "SLAM",
-            "51": "BRINE",
-            "56": "CRABHAMMER",
-            "63": "FLAIL"
+            "5": "MOVE_VICE_GRIP",
+            "9": "MOVE_LEER",
+            "11": "MOVE_HARDEN",
+            "15": "MOVE_BUBBLE_BEAM",
+            "19": "MOVE_MUD_SHOT",
+            "21": "MOVE_METAL_CLAW",
+            "25": "MOVE_STOMP",
+            "32": "MOVE_PROTECT",
+            "37": "MOVE_GUILLOTINE",
+            "44": "MOVE_SLAM",
+            "51": "MOVE_BRINE",
+            "56": "MOVE_CRABHAMMER",
+            "63": "MOVE_FLAIL"
         }
     }
 }

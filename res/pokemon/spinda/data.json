@@ -88,19 +88,19 @@
             "HM06"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "5": "UPROAR",
-            "10": "COPYCAT",
-            "14": "FAINT_ATTACK",
-            "19": "PSYBEAM",
-            "23": "HYPNOSIS",
-            "28": "DIZZY_PUNCH",
-            "32": "SUCKER_PUNCH",
-            "37": "TEETER_DANCE",
-            "41": "PSYCH_UP",
-            "46": "DOUBLE_EDGE",
-            "50": "FLAIL",
-            "55": "THRASH"
+            "1": "MOVE_TACKLE",
+            "5": "MOVE_UPROAR",
+            "10": "MOVE_COPYCAT",
+            "14": "MOVE_FAINT_ATTACK",
+            "19": "MOVE_PSYBEAM",
+            "23": "MOVE_HYPNOSIS",
+            "28": "MOVE_DIZZY_PUNCH",
+            "32": "MOVE_SUCKER_PUNCH",
+            "37": "MOVE_TEETER_DANCE",
+            "41": "MOVE_PSYCH_UP",
+            "46": "MOVE_DOUBLE_EDGE",
+            "50": "MOVE_FLAIL",
+            "55": "MOVE_THRASH"
         }
     }
 }

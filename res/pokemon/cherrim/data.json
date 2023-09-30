@@ -75,19 +75,19 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWTH"
+                "MOVE_TACKLE",
+                "MOVE_GROWTH"
             ],
-            "7": "GROWTH",
-            "10": "LEECH_SEED",
-            "13": "HELPING_HAND",
-            "19": "MAGICAL_LEAF",
-            "22": "SUNNY_DAY",
-            "25": "PETAL_DANCE",
-            "30": "WORRY_SEED",
-            "35": "TAKE_DOWN",
-            "43": "SOLAR_BEAM",
-            "48": "LUCKY_CHANT"
+            "7": "MOVE_GROWTH",
+            "10": "MOVE_LEECH_SEED",
+            "13": "MOVE_HELPING_HAND",
+            "19": "MOVE_MAGICAL_LEAF",
+            "22": "MOVE_SUNNY_DAY",
+            "25": "MOVE_PETAL_DANCE",
+            "30": "MOVE_WORRY_SEED",
+            "35": "MOVE_TAKE_DOWN",
+            "43": "MOVE_SOLAR_BEAM",
+            "48": "MOVE_LUCKY_CHANT"
         }
     }
 }

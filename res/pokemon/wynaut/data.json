@@ -47,15 +47,15 @@
         "tms": [],
         "level_up": {
             "1": [
-                "SPLASH",
-                "CHARM",
-                "ENCORE"
+                "MOVE_SPLASH",
+                "MOVE_CHARM",
+                "MOVE_ENCORE"
             ],
             "15": [
-                "COUNTER",
-                "MIRROR_COAT",
-                "SAFEGUARD",
-                "DESTINY_BOND"
+                "MOVE_COUNTER",
+                "MOVE_MIRROR_COAT",
+                "MOVE_SAFEGUARD",
+                "MOVE_DESTINY_BOND"
             ]
         }
     },

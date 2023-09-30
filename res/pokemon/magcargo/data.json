@@ -85,22 +85,22 @@
         ],
         "level_up": {
             "1": [
-                "YAWN",
-                "SMOG",
-                "EMBER",
-                "ROCK_THROW"
+                "MOVE_YAWN",
+                "MOVE_SMOG",
+                "MOVE_EMBER",
+                "MOVE_ROCK_THROW"
             ],
-            "8": "EMBER",
-            "11": "ROCK_THROW",
-            "16": "HARDEN",
-            "23": "RECOVER",
-            "26": "ANCIENT_POWER",
-            "31": "AMNESIA",
-            "40": "LAVA_PLUME",
-            "45": "ROCK_SLIDE",
-            "52": "BODY_SLAM",
-            "61": "FLAMETHROWER",
-            "66": "EARTH_POWER"
+            "8": "MOVE_EMBER",
+            "11": "MOVE_ROCK_THROW",
+            "16": "MOVE_HARDEN",
+            "23": "MOVE_RECOVER",
+            "26": "MOVE_ANCIENT_POWER",
+            "31": "MOVE_AMNESIA",
+            "40": "MOVE_LAVA_PLUME",
+            "45": "MOVE_ROCK_SLIDE",
+            "52": "MOVE_BODY_SLAM",
+            "61": "MOVE_FLAMETHROWER",
+            "66": "MOVE_EARTH_POWER"
         }
     }
 }

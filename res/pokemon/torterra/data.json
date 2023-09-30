@@ -90,24 +90,24 @@
         ],
         "level_up": {
             "1": [
-                "WOOD_HAMMER",
-                "TACKLE",
-                "WITHDRAW",
-                "ABSORB",
-                "RAZOR_LEAF"
+                "MOVE_WOOD_HAMMER",
+                "MOVE_TACKLE",
+                "MOVE_WITHDRAW",
+                "MOVE_ABSORB",
+                "MOVE_RAZOR_LEAF"
             ],
-            "5": "WITHDRAW",
-            "9": "ABSORB",
-            "13": "RAZOR_LEAF",
-            "17": "CURSE",
-            "22": "BITE",
-            "27": "MEGA_DRAIN",
-            "32": "EARTHQUAKE",
-            "33": "LEECH_SEED",
-            "39": "SYNTHESIS",
-            "45": "CRUNCH",
-            "51": "GIGA_DRAIN",
-            "57": "LEAF_STORM"
+            "5": "MOVE_WITHDRAW",
+            "9": "MOVE_ABSORB",
+            "13": "MOVE_RAZOR_LEAF",
+            "17": "MOVE_CURSE",
+            "22": "MOVE_BITE",
+            "27": "MOVE_MEGA_DRAIN",
+            "32": "MOVE_EARTHQUAKE",
+            "33": "MOVE_LEECH_SEED",
+            "39": "MOVE_SYNTHESIS",
+            "45": "MOVE_CRUNCH",
+            "51": "MOVE_GIGA_DRAIN",
+            "57": "MOVE_LEAF_STORM"
         }
     }
 }

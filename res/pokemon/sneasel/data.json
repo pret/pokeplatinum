@@ -96,20 +96,20 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "LEER",
-                "TAUNT"
+                "MOVE_SCRATCH",
+                "MOVE_LEER",
+                "MOVE_TAUNT"
             ],
-            "8": "QUICK_ATTACK",
-            "10": "SCREECH",
-            "14": "FAINT_ATTACK",
-            "21": "FURY_SWIPES",
-            "24": "AGILITY",
-            "28": "ICY_WIND",
-            "35": "SLASH",
-            "38": "BEAT_UP",
-            "42": "METAL_CLAW",
-            "49": "ICE_SHARD"
+            "8": "MOVE_QUICK_ATTACK",
+            "10": "MOVE_SCREECH",
+            "14": "MOVE_FAINT_ATTACK",
+            "21": "MOVE_FURY_SWIPES",
+            "24": "MOVE_AGILITY",
+            "28": "MOVE_ICY_WIND",
+            "35": "MOVE_SLASH",
+            "38": "MOVE_BEAT_UP",
+            "42": "MOVE_METAL_CLAW",
+            "49": "MOVE_ICE_SHARD"
         }
     },
     "evolutions": [

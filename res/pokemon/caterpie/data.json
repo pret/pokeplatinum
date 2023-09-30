@@ -47,10 +47,10 @@
         "tms": [],
         "level_up": {
             "1": [
-                "TACKLE",
-                "STRING_SHOT"
+                "MOVE_TACKLE",
+                "MOVE_STRING_SHOT"
             ],
-            "15": "BUG_BITE"
+            "15": "MOVE_BUG_BITE"
         }
     },
     "evolutions": [

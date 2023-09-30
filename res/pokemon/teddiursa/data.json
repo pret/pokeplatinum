@@ -85,23 +85,23 @@
         ],
         "level_up": {
             "1": [
-                "COVET",
-                "SCRATCH",
-                "LEER",
-                "LICK",
-                "FAKE_TEARS"
+                "MOVE_COVET",
+                "MOVE_SCRATCH",
+                "MOVE_LEER",
+                "MOVE_LICK",
+                "MOVE_FAKE_TEARS"
             ],
-            "8": "FURY_SWIPES",
-            "15": "FAINT_ATTACK",
-            "22": "SWEET_SCENT",
-            "29": "SLASH",
-            "36": "CHARM",
+            "8": "MOVE_FURY_SWIPES",
+            "15": "MOVE_FAINT_ATTACK",
+            "22": "MOVE_SWEET_SCENT",
+            "29": "MOVE_SLASH",
+            "36": "MOVE_CHARM",
             "43": [
-                "REST",
-                "SNORE"
+                "MOVE_REST",
+                "MOVE_SNORE"
             ],
-            "50": "THRASH",
-            "57": "FLING"
+            "50": "MOVE_THRASH",
+            "57": "MOVE_FLING"
         }
     },
     "evolutions": [

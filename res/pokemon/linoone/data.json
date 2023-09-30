@@ -88,23 +88,23 @@
         ],
         "level_up": {
             "1": [
-                "SWITCHEROO",
-                "TACKLE",
-                "GROWL",
-                "TAIL_WHIP",
-                "HEADBUTT"
+                "MOVE_SWITCHEROO",
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_TAIL_WHIP",
+                "MOVE_HEADBUTT"
             ],
-            "5": "TAIL_WHIP",
-            "9": "HEADBUTT",
-            "13": "SAND_ATTACK",
-            "17": "ODOR_SLEUTH",
-            "23": "MUD_SPORT",
-            "29": "FURY_SWIPES",
-            "35": "COVET",
-            "41": "SLASH",
-            "47": "REST",
-            "53": "BELLY_DRUM",
-            "59": "FLING"
+            "5": "MOVE_TAIL_WHIP",
+            "9": "MOVE_HEADBUTT",
+            "13": "MOVE_SAND_ATTACK",
+            "17": "MOVE_ODOR_SLEUTH",
+            "23": "MOVE_MUD_SPORT",
+            "29": "MOVE_FURY_SWIPES",
+            "35": "MOVE_COVET",
+            "41": "MOVE_SLASH",
+            "47": "MOVE_REST",
+            "53": "MOVE_BELLY_DRUM",
+            "59": "MOVE_FLING"
         }
     }
 }

@@ -88,20 +88,20 @@
             "HM08"
         ],
         "level_up": {
-            "1": "ASTONISH",
-            "3": "MUD_SLAP",
-            "8": "POISON_STING",
-            "10": "TAUNT",
-            "15": "PURSUIT",
-            "17": "FAINT_ATTACK",
-            "22": "REVENGE",
-            "24": "SWAGGER",
-            "29": "MUD_BOMB",
-            "31": "SUCKER_PUNCH",
-            "36": "NASTY_PLOT",
-            "38": "POISON_JAB",
-            "43": "SLUDGE_BOMB",
-            "45": "FLATTER"
+            "1": "MOVE_ASTONISH",
+            "3": "MOVE_MUD_SLAP",
+            "8": "MOVE_POISON_STING",
+            "10": "MOVE_TAUNT",
+            "15": "MOVE_PURSUIT",
+            "17": "MOVE_FAINT_ATTACK",
+            "22": "MOVE_REVENGE",
+            "24": "MOVE_SWAGGER",
+            "29": "MOVE_MUD_BOMB",
+            "31": "MOVE_SUCKER_PUNCH",
+            "36": "MOVE_NASTY_PLOT",
+            "38": "MOVE_POISON_JAB",
+            "43": "MOVE_SLUDGE_BOMB",
+            "45": "MOVE_FLATTER"
         }
     },
     "evolutions": [

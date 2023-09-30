@@ -74,22 +74,22 @@
             "TM90"
         ],
         "level_up": {
-            "1": "GROWL",
-            "3": "THUNDER_WAVE",
-            "7": "QUICK_ATTACK",
-            "10": "HELPING_HAND",
-            "15": "SPARK",
-            "17": "ENCORE",
-            "21": "FAKE_TEARS",
-            "24": "COPYCAT",
-            "29": "SWIFT",
-            "31": "FAKE_TEARS",
-            "35": "CHARGE",
-            "38": "THUNDER",
-            "42": "BATON_PASS",
-            "44": "AGILITY",
-            "48": "LAST_RESORT",
-            "51": "NASTY_PLOT"
+            "1": "MOVE_GROWL",
+            "3": "MOVE_THUNDER_WAVE",
+            "7": "MOVE_QUICK_ATTACK",
+            "10": "MOVE_HELPING_HAND",
+            "15": "MOVE_SPARK",
+            "17": "MOVE_ENCORE",
+            "21": "MOVE_FAKE_TEARS",
+            "24": "MOVE_COPYCAT",
+            "29": "MOVE_SWIFT",
+            "31": "MOVE_FAKE_TEARS",
+            "35": "MOVE_CHARGE",
+            "38": "MOVE_THUNDER",
+            "42": "MOVE_BATON_PASS",
+            "44": "MOVE_AGILITY",
+            "48": "MOVE_LAST_RESORT",
+            "51": "MOVE_NASTY_PLOT"
         }
     }
 }

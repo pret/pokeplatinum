@@ -88,20 +88,20 @@
             "HM06"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "4": "HARDEN",
-            "8": "BUBBLE",
-            "13": "RECOVER",
-            "16": "REFRESH",
-            "20": "ROCK_BLAST",
-            "25": "BUBBLE_BEAM",
-            "28": "LUCKY_CHANT",
-            "32": "ANCIENT_POWER",
-            "37": "AQUA_RING",
-            "40": "SPIKE_CANNON",
-            "44": "POWER_GEM",
-            "48": "MIRROR_COAT",
-            "53": "EARTH_POWER"
+            "1": "MOVE_TACKLE",
+            "4": "MOVE_HARDEN",
+            "8": "MOVE_BUBBLE",
+            "13": "MOVE_RECOVER",
+            "16": "MOVE_REFRESH",
+            "20": "MOVE_ROCK_BLAST",
+            "25": "MOVE_BUBBLE_BEAM",
+            "28": "MOVE_LUCKY_CHANT",
+            "32": "MOVE_ANCIENT_POWER",
+            "37": "MOVE_AQUA_RING",
+            "40": "MOVE_SPIKE_CANNON",
+            "44": "MOVE_POWER_GEM",
+            "48": "MOVE_MIRROR_COAT",
+            "53": "MOVE_EARTH_POWER"
         }
     }
 }

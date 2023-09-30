@@ -89,23 +89,23 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL",
-                "MUD_SLAP",
-                "WATER_GUN"
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_MUD_SLAP",
+                "MOVE_WATER_GUN"
             ],
-            "6": "MUD_SLAP",
-            "10": "WATER_GUN",
-            "15": "BIDE",
-            "16": "MUD_SHOT",
-            "20": "FORESIGHT",
-            "25": "MUD_BOMB",
-            "31": "TAKE_DOWN",
-            "39": "MUDDY_WATER",
-            "46": "PROTECT",
-            "52": "EARTHQUAKE",
-            "61": "ENDEAVOR",
-            "69": "HAMMER_ARM"
+            "6": "MOVE_MUD_SLAP",
+            "10": "MOVE_WATER_GUN",
+            "15": "MOVE_BIDE",
+            "16": "MOVE_MUD_SHOT",
+            "20": "MOVE_FORESIGHT",
+            "25": "MOVE_MUD_BOMB",
+            "31": "MOVE_TAKE_DOWN",
+            "39": "MOVE_MUDDY_WATER",
+            "46": "MOVE_PROTECT",
+            "52": "MOVE_EARTHQUAKE",
+            "61": "MOVE_ENDEAVOR",
+            "69": "MOVE_HAMMER_ARM"
         }
     }
 }

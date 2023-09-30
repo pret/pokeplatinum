@@ -85,19 +85,19 @@
             "HM08"
         ],
         "level_up": {
-            "1": "SCRATCH",
-            "3": "DEFENSE_CURL",
-            "7": "SAND_ATTACK",
-            "9": "POISON_STING",
-            "13": "RAPID_SPIN",
-            "15": "SWIFT",
-            "19": "FURY_SWIPES",
-            "21": "ROLLOUT",
-            "25": "FURY_CUTTER",
-            "27": "SAND_TOMB",
-            "31": "SLASH",
-            "33": "GYRO_BALL",
-            "37": "SANDSTORM"
+            "1": "MOVE_SCRATCH",
+            "3": "MOVE_DEFENSE_CURL",
+            "7": "MOVE_SAND_ATTACK",
+            "9": "MOVE_POISON_STING",
+            "13": "MOVE_RAPID_SPIN",
+            "15": "MOVE_SWIFT",
+            "19": "MOVE_FURY_SWIPES",
+            "21": "MOVE_ROLLOUT",
+            "25": "MOVE_FURY_CUTTER",
+            "27": "MOVE_SAND_TOMB",
+            "31": "MOVE_SLASH",
+            "33": "MOVE_GYRO_BALL",
+            "37": "MOVE_SANDSTORM"
         }
     },
     "evolutions": [

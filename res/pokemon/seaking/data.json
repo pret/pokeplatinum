@@ -74,22 +74,22 @@
         ],
         "level_up": {
             "1": [
-                "POISON_JAB",
-                "PECK",
-                "TAIL_WHIP",
-                "WATER_SPORT",
-                "SUPERSONIC"
+                "MOVE_POISON_JAB",
+                "MOVE_PECK",
+                "MOVE_TAIL_WHIP",
+                "MOVE_WATER_SPORT",
+                "MOVE_SUPERSONIC"
             ],
-            "7": "SUPERSONIC",
-            "11": "HORN_ATTACK",
-            "17": "WATER_PULSE",
-            "21": "FLAIL",
-            "27": "AQUA_RING",
-            "31": "FURY_ATTACK",
-            "40": "WATERFALL",
-            "47": "HORN_DRILL",
-            "56": "AGILITY",
-            "63": "MEGAHORN"
+            "7": "MOVE_SUPERSONIC",
+            "11": "MOVE_HORN_ATTACK",
+            "17": "MOVE_WATER_PULSE",
+            "21": "MOVE_FLAIL",
+            "27": "MOVE_AQUA_RING",
+            "31": "MOVE_FURY_ATTACK",
+            "40": "MOVE_WATERFALL",
+            "47": "MOVE_HORN_DRILL",
+            "56": "MOVE_AGILITY",
+            "63": "MOVE_MEGAHORN"
         }
     }
 }

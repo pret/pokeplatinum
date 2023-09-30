@@ -74,18 +74,18 @@
             "HM06"
         ],
         "level_up": {
-            "1": "BITE",
-            "9": "SAND_ATTACK",
-            "17": "FAINT_ATTACK",
-            "25": "SAND_TOMB",
-            "33": "CRUNCH",
-            "41": "DIG",
-            "49": "SANDSTORM",
-            "57": "HYPER_BEAM",
-            "65": "EARTH_POWER",
-            "73": "EARTHQUAKE",
-            "81": "FEINT",
-            "89": "FISSURE"
+            "1": "MOVE_BITE",
+            "9": "MOVE_SAND_ATTACK",
+            "17": "MOVE_FAINT_ATTACK",
+            "25": "MOVE_SAND_TOMB",
+            "33": "MOVE_CRUNCH",
+            "41": "MOVE_DIG",
+            "49": "MOVE_SANDSTORM",
+            "57": "MOVE_HYPER_BEAM",
+            "65": "MOVE_EARTH_POWER",
+            "73": "MOVE_EARTHQUAKE",
+            "81": "MOVE_FEINT",
+            "89": "MOVE_FISSURE"
         }
     },
     "evolutions": [

@@ -88,22 +88,22 @@
         ],
         "level_up": {
             "1": [
-                "CONSTRICT",
-                "MINIMIZE"
+                "MOVE_CONSTRICT",
+                "MOVE_MINIMIZE"
             ],
-            "6": "ASTONISH",
-            "11": "GUST",
-            "14": "FOCUS_ENERGY",
-            "17": "PAYBACK",
-            "22": "STOCKPILE",
+            "6": "MOVE_ASTONISH",
+            "11": "MOVE_GUST",
+            "14": "MOVE_FOCUS_ENERGY",
+            "17": "MOVE_PAYBACK",
+            "22": "MOVE_STOCKPILE",
             "27": [
-                "SWALLOW",
-                "SPIT_UP"
+                "MOVE_SWALLOW",
+                "MOVE_SPIT_UP"
             ],
-            "30": "OMINOUS_WIND",
-            "33": "BATON_PASS",
-            "38": "SHADOW_BALL",
-            "43": "EXPLOSION"
+            "30": "MOVE_OMINOUS_WIND",
+            "33": "MOVE_BATON_PASS",
+            "38": "MOVE_SHADOW_BALL",
+            "43": "MOVE_EXPLOSION"
         }
     },
     "evolutions": [

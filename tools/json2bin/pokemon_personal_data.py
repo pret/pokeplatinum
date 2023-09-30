@@ -89,8 +89,8 @@ FORM_INDICES = {
 def indexer(file_path: pathlib.Path) -> int:
     name = file_path.parent.stem.upper()
     if name == '000': return 0
-    if name == '494': return 494
-    if name == '495': return 495
+    if name == 'egg': return 494
+    if name == 'bad_egg': return 495
     if file_path.parent.parent.stem == 'forms':
         species_idx = file_path.parent.parent.parent.stem.upper()
         form = file_path.parent.stem.upper()

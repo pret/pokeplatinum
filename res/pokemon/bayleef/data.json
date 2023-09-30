@@ -79,23 +79,23 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL",
-                "RAZOR_LEAF",
-                "POISON_POWDER"
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_POISON_POWDER"
             ],
-            "6": "RAZOR_LEAF",
-            "9": "POISON_POWDER",
-            "12": "SYNTHESIS",
-            "18": "REFLECT",
-            "22": "MAGICAL_LEAF",
-            "26": "NATURAL_GIFT",
-            "32": "SWEET_SCENT",
-            "36": "LIGHT_SCREEN",
-            "40": "BODY_SLAM",
-            "46": "SAFEGUARD",
-            "50": "AROMATHERAPY",
-            "54": "SOLAR_BEAM"
+            "6": "MOVE_RAZOR_LEAF",
+            "9": "MOVE_POISON_POWDER",
+            "12": "MOVE_SYNTHESIS",
+            "18": "MOVE_REFLECT",
+            "22": "MOVE_MAGICAL_LEAF",
+            "26": "MOVE_NATURAL_GIFT",
+            "32": "MOVE_SWEET_SCENT",
+            "36": "MOVE_LIGHT_SCREEN",
+            "40": "MOVE_BODY_SLAM",
+            "46": "MOVE_SAFEGUARD",
+            "50": "MOVE_AROMATHERAPY",
+            "54": "MOVE_SOLAR_BEAM"
         }
     },
     "evolutions": [

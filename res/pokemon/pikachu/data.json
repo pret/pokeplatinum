@@ -80,20 +80,20 @@
         ],
         "level_up": {
             "1": [
-                "THUNDER_SHOCK",
-                "GROWL"
+                "MOVE_THUNDER_SHOCK",
+                "MOVE_GROWL"
             ],
-            "5": "TAIL_WHIP",
-            "10": "THUNDER_WAVE",
-            "13": "QUICK_ATTACK",
-            "18": "DOUBLE_TEAM",
-            "21": "SLAM",
-            "26": "THUNDERBOLT",
-            "29": "FEINT",
-            "34": "AGILITY",
-            "37": "DISCHARGE",
-            "42": "LIGHT_SCREEN",
-            "45": "THUNDER"
+            "5": "MOVE_TAIL_WHIP",
+            "10": "MOVE_THUNDER_WAVE",
+            "13": "MOVE_QUICK_ATTACK",
+            "18": "MOVE_DOUBLE_TEAM",
+            "21": "MOVE_SLAM",
+            "26": "MOVE_THUNDERBOLT",
+            "29": "MOVE_FEINT",
+            "34": "MOVE_AGILITY",
+            "37": "MOVE_DISCHARGE",
+            "42": "MOVE_LIGHT_SCREEN",
+            "45": "MOVE_THUNDER"
         }
     },
     "evolutions": [

@@ -85,21 +85,21 @@
         ],
         "level_up": {
             "1": [
-                "NIGHT_SLASH",
-                "TACKLE",
-                "LEER",
-                "HORN_ATTACK",
-                "ENDURE"
+                "MOVE_NIGHT_SLASH",
+                "MOVE_TACKLE",
+                "MOVE_LEER",
+                "MOVE_HORN_ATTACK",
+                "MOVE_ENDURE"
             ],
-            "7": "FURY_ATTACK",
-            "13": "AERIAL_ACE",
-            "19": "BRICK_BREAK",
-            "25": "COUNTER",
-            "31": "TAKE_DOWN",
-            "37": "CLOSE_COMBAT",
-            "43": "REVERSAL",
-            "49": "FEINT",
-            "55": "MEGAHORN"
+            "7": "MOVE_FURY_ATTACK",
+            "13": "MOVE_AERIAL_ACE",
+            "19": "MOVE_BRICK_BREAK",
+            "25": "MOVE_COUNTER",
+            "31": "MOVE_TAKE_DOWN",
+            "37": "MOVE_CLOSE_COMBAT",
+            "43": "MOVE_REVERSAL",
+            "49": "MOVE_FEINT",
+            "55": "MOVE_MEGAHORN"
         }
     }
 }

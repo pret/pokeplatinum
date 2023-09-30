@@ -95,20 +95,20 @@
             "HM08"
         ],
         "level_up": {
-            "1": "LICK",
-            "5": "SUPERSONIC",
-            "9": "DEFENSE_CURL",
-            "13": "KNOCK_OFF",
-            "17": "WRAP",
-            "21": "STOMP",
-            "25": "DISABLE",
-            "29": "SLAM",
-            "33": "ROLLOUT",
-            "37": "ME_FIRST",
-            "41": "REFRESH",
-            "45": "SCREECH",
-            "49": "POWER_WHIP",
-            "53": "WRING_OUT"
+            "1": "MOVE_LICK",
+            "5": "MOVE_SUPERSONIC",
+            "9": "MOVE_DEFENSE_CURL",
+            "13": "MOVE_KNOCK_OFF",
+            "17": "MOVE_WRAP",
+            "21": "MOVE_STOMP",
+            "25": "MOVE_DISABLE",
+            "29": "MOVE_SLAM",
+            "33": "MOVE_ROLLOUT",
+            "37": "MOVE_ME_FIRST",
+            "41": "MOVE_REFRESH",
+            "45": "MOVE_SCREECH",
+            "49": "MOVE_POWER_WHIP",
+            "53": "MOVE_WRING_OUT"
         }
     },
     "evolutions": [

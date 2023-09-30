@@ -81,20 +81,20 @@
         ],
         "level_up": {
             "1": [
-                "SMOG",
-                "LEER",
-                "EMBER"
+                "MOVE_SMOG",
+                "MOVE_LEER",
+                "MOVE_EMBER"
             ],
-            "7": "EMBER",
-            "10": "SMOKESCREEN",
-            "16": "FAINT_ATTACK",
-            "19": "FIRE_SPIN",
-            "25": "CONFUSE_RAY",
-            "28": "FIRE_PUNCH",
-            "36": "LAVA_PLUME",
-            "41": "FLAMETHROWER",
-            "49": "SUNNY_DAY",
-            "54": "FIRE_BLAST"
+            "7": "MOVE_EMBER",
+            "10": "MOVE_SMOKE_SCREEN",
+            "16": "MOVE_FAINT_ATTACK",
+            "19": "MOVE_FIRE_SPIN",
+            "25": "MOVE_CONFUSE_RAY",
+            "28": "MOVE_FIRE_PUNCH",
+            "36": "MOVE_LAVA_PLUME",
+            "41": "MOVE_FLAMETHROWER",
+            "49": "MOVE_SUNNY_DAY",
+            "54": "MOVE_FIRE_BLAST"
         }
     },
     "evolutions": [

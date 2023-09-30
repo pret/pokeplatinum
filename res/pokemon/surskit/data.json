@@ -74,17 +74,17 @@
             "TM90"
         ],
         "level_up": {
-            "1": "BUBBLE",
-            "7": "QUICK_ATTACK",
-            "13": "SWEET_SCENT",
-            "19": "WATER_SPORT",
-            "25": "BUBBLE_BEAM",
-            "31": "AGILITY",
+            "1": "MOVE_BUBBLE",
+            "7": "MOVE_QUICK_ATTACK",
+            "13": "MOVE_SWEET_SCENT",
+            "19": "MOVE_WATER_SPORT",
+            "25": "MOVE_BUBBLE_BEAM",
+            "31": "MOVE_AGILITY",
             "37": [
-                "MIST",
-                "HAZE"
+                "MOVE_MIST",
+                "MOVE_HAZE"
             ],
-            "43": "BATON_PASS"
+            "43": "MOVE_BATON_PASS"
         }
     },
     "evolutions": [

@@ -1,5 +1,5 @@
 {
-    "name": "Nidoran♂",
+    "name": "Nidoran\u2642",
     "base_stats": {
         "hp": 46,
         "attack": 57,
@@ -81,20 +81,20 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "PECK"
+                "MOVE_LEER",
+                "MOVE_PECK"
             ],
-            "7": "FOCUS_ENERGY",
-            "9": "DOUBLE_KICK",
-            "13": "POISON_STING",
-            "19": "FURY_ATTACK",
-            "21": "HORN_ATTACK",
-            "25": "HELPING_HAND",
-            "31": "TOXIC_SPIKES",
-            "33": "FLATTER",
-            "37": "POISON_JAB",
-            "43": "CAPTIVATE",
-            "45": "HORN_DRILL"
+            "7": "MOVE_FOCUS_ENERGY",
+            "9": "MOVE_DOUBLE_KICK",
+            "13": "MOVE_POISON_STING",
+            "19": "MOVE_FURY_ATTACK",
+            "21": "MOVE_HORN_ATTACK",
+            "25": "MOVE_HELPING_HAND",
+            "31": "MOVE_TOXIC_SPIKES",
+            "33": "MOVE_FLATTER",
+            "37": "MOVE_POISON_JAB",
+            "43": "MOVE_CAPTIVATE",
+            "45": "MOVE_HORN_DRILL"
         }
     },
     "evolutions": [

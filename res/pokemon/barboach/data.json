@@ -73,24 +73,24 @@
             "HM07"
         ],
         "level_up": {
-            "1": "MUD_SLAP",
+            "1": "MOVE_MUD_SLAP",
             "6": [
-                "MUD_SPORT",
-                "WATER_SPORT"
+                "MOVE_MUD_SPORT",
+                "MOVE_WATER_SPORT"
             ],
-            "10": "WATER_GUN",
-            "14": "MUD_BOMB",
-            "18": "AMNESIA",
-            "22": "WATER_PULSE",
-            "26": "MAGNITUDE",
+            "10": "MOVE_WATER_GUN",
+            "14": "MOVE_MUD_BOMB",
+            "18": "MOVE_AMNESIA",
+            "22": "MOVE_WATER_PULSE",
+            "26": "MOVE_MAGNITUDE",
             "31": [
-                "REST",
-                "SNORE"
+                "MOVE_REST",
+                "MOVE_SNORE"
             ],
-            "35": "AQUA_TAIL",
-            "39": "EARTHQUAKE",
-            "43": "FUTURE_SIGHT",
-            "47": "FISSURE"
+            "35": "MOVE_AQUA_TAIL",
+            "39": "MOVE_EARTHQUAKE",
+            "43": "MOVE_FUTURE_SIGHT",
+            "47": "MOVE_FISSURE"
         }
     },
     "evolutions": [

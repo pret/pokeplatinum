@@ -82,21 +82,21 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "DEFENSE_CURL",
-                "TAIL_WHIP",
-                "WATER_GUN"
+                "MOVE_TACKLE",
+                "MOVE_DEFENSE_CURL",
+                "MOVE_TAIL_WHIP",
+                "MOVE_WATER_GUN"
             ],
-            "2": "DEFENSE_CURL",
-            "7": "TAIL_WHIP",
-            "10": "WATER_GUN",
-            "15": "ROLLOUT",
-            "20": "BUBBLE_BEAM",
-            "27": "AQUA_RING",
-            "33": "DOUBLE_EDGE",
-            "40": "RAIN_DANCE",
-            "47": "AQUA_TAIL",
-            "54": "HYDRO_PUMP"
+            "2": "MOVE_DEFENSE_CURL",
+            "7": "MOVE_TAIL_WHIP",
+            "10": "MOVE_WATER_GUN",
+            "15": "MOVE_ROLLOUT",
+            "20": "MOVE_BUBBLE_BEAM",
+            "27": "MOVE_AQUA_RING",
+            "33": "MOVE_DOUBLE_EDGE",
+            "40": "MOVE_RAIN_DANCE",
+            "47": "MOVE_AQUA_TAIL",
+            "54": "MOVE_HYDRO_PUMP"
         }
     }
 }

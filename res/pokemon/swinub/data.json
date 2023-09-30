@@ -79,21 +79,21 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "ODOR_SLEUTH"
+                "MOVE_TACKLE",
+                "MOVE_ODOR_SLEUTH"
             ],
-            "4": "MUD_SPORT",
-            "8": "POWDER_SNOW",
-            "13": "MUD_SLAP",
-            "16": "ENDURE",
-            "20": "MUD_BOMB",
-            "25": "ICY_WIND",
-            "28": "ICE_SHARD",
-            "32": "TAKE_DOWN",
-            "37": "EARTHQUAKE",
-            "40": "MIST",
-            "44": "BLIZZARD",
-            "49": "AMNESIA"
+            "4": "MOVE_MUD_SPORT",
+            "8": "MOVE_POWDER_SNOW",
+            "13": "MOVE_MUD_SLAP",
+            "16": "MOVE_ENDURE",
+            "20": "MOVE_MUD_BOMB",
+            "25": "MOVE_ICY_WIND",
+            "28": "MOVE_ICE_SHARD",
+            "32": "MOVE_TAKE_DOWN",
+            "37": "MOVE_EARTHQUAKE",
+            "40": "MOVE_MIST",
+            "44": "MOVE_BLIZZARD",
+            "49": "MOVE_AMNESIA"
         }
     },
     "evolutions": [

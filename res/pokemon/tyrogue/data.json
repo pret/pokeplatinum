@@ -73,10 +73,10 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "HELPING_HAND",
-                "FAKE_OUT",
-                "FORESIGHT"
+                "MOVE_TACKLE",
+                "MOVE_HELPING_HAND",
+                "MOVE_FAKE_OUT",
+                "MOVE_FORESIGHT"
             ]
         }
     },

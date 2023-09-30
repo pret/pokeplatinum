@@ -84,14 +84,14 @@
         ],
         "level_up": {
             "1": [
-                "BUBBLE_BEAM",
-                "HYPNOSIS",
-                "DOUBLE_SLAP",
-                "PERISH_SONG"
+                "MOVE_BUBBLE_BEAM",
+                "MOVE_HYPNOSIS",
+                "MOVE_DOUBLE_SLAP",
+                "MOVE_PERISH_SONG"
             ],
-            "27": "SWAGGER",
-            "37": "BOUNCE",
-            "48": "HYPER_VOICE"
+            "27": "MOVE_SWAGGER",
+            "37": "MOVE_BOUNCE",
+            "48": "MOVE_HYPER_VOICE"
         }
     }
 }

@@ -84,20 +84,20 @@
         ],
         "level_up": {
             "1": [
-                "QUICK_ATTACK",
-                "LEER",
-                "THUNDER_SHOCK"
+                "MOVE_QUICK_ATTACK",
+                "MOVE_LEER",
+                "MOVE_THUNDER_SHOCK"
             ],
-            "7": "THUNDER_SHOCK",
-            "10": "LOW_KICK",
-            "16": "SWIFT",
-            "19": "SHOCK_WAVE",
-            "25": "LIGHT_SCREEN",
-            "28": "THUNDER_PUNCH",
-            "37": "DISCHARGE",
-            "43": "THUNDERBOLT",
-            "52": "SCREECH",
-            "58": "THUNDER"
+            "7": "MOVE_THUNDER_SHOCK",
+            "10": "MOVE_LOW_KICK",
+            "16": "MOVE_SWIFT",
+            "19": "MOVE_SHOCK_WAVE",
+            "25": "MOVE_LIGHT_SCREEN",
+            "28": "MOVE_THUNDER_PUNCH",
+            "37": "MOVE_DISCHARGE",
+            "43": "MOVE_THUNDERBOLT",
+            "52": "MOVE_SCREECH",
+            "58": "MOVE_THUNDER"
         }
     },
     "evolutions": [

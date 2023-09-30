@@ -91,20 +91,20 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "HARDEN",
-                "CONFUSION"
+                "MOVE_TACKLE",
+                "MOVE_HARDEN",
+                "MOVE_CONFUSION"
             ],
-            "9": "ROCK_THROW",
-            "12": "HYPNOSIS",
-            "20": "ROCK_POLISH",
-            "23": "PSYWAVE",
-            "31": "EMBARGO",
-            "34": "COSMIC_POWER",
-            "42": "HEAL_BLOCK",
-            "45": "PSYCHIC",
-            "53": "FUTURE_SIGHT",
-            "56": "EXPLOSION"
+            "9": "MOVE_ROCK_THROW",
+            "12": "MOVE_HYPNOSIS",
+            "20": "MOVE_ROCK_POLISH",
+            "23": "MOVE_PSYWAVE",
+            "31": "MOVE_EMBARGO",
+            "34": "MOVE_COSMIC_POWER",
+            "42": "MOVE_HEAL_BLOCK",
+            "45": "MOVE_PSYCHIC",
+            "53": "MOVE_FUTURE_SIGHT",
+            "56": "MOVE_EXPLOSION"
         }
     }
 }

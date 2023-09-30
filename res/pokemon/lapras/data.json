@@ -86,22 +86,22 @@
         ],
         "level_up": {
             "1": [
-                "SING",
-                "GROWL",
-                "WATER_GUN"
+                "MOVE_SING",
+                "MOVE_GROWL",
+                "MOVE_WATER_GUN"
             ],
-            "4": "MIST",
-            "7": "CONFUSE_RAY",
-            "10": "ICE_SHARD",
-            "14": "WATER_PULSE",
-            "18": "BODY_SLAM",
-            "22": "RAIN_DANCE",
-            "27": "PERISH_SONG",
-            "32": "ICE_BEAM",
-            "37": "BRINE",
-            "43": "SAFEGUARD",
-            "49": "HYDRO_PUMP",
-            "55": "SHEER_COLD"
+            "4": "MOVE_MIST",
+            "7": "MOVE_CONFUSE_RAY",
+            "10": "MOVE_ICE_SHARD",
+            "14": "MOVE_WATER_PULSE",
+            "18": "MOVE_BODY_SLAM",
+            "22": "MOVE_RAIN_DANCE",
+            "27": "MOVE_PERISH_SONG",
+            "32": "MOVE_ICE_BEAM",
+            "37": "MOVE_BRINE",
+            "43": "MOVE_SAFEGUARD",
+            "49": "MOVE_HYDRO_PUMP",
+            "55": "MOVE_SHEER_COLD"
         }
     }
 }

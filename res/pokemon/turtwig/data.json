@@ -80,18 +80,18 @@
             "HM08"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "5": "WITHDRAW",
-            "9": "ABSORB",
-            "13": "RAZOR_LEAF",
-            "17": "CURSE",
-            "21": "BITE",
-            "25": "MEGA_DRAIN",
-            "29": "LEECH_SEED",
-            "33": "SYNTHESIS",
-            "37": "CRUNCH",
-            "41": "GIGA_DRAIN",
-            "45": "LEAF_STORM"
+            "1": "MOVE_TACKLE",
+            "5": "MOVE_WITHDRAW",
+            "9": "MOVE_ABSORB",
+            "13": "MOVE_RAZOR_LEAF",
+            "17": "MOVE_CURSE",
+            "21": "MOVE_BITE",
+            "25": "MOVE_MEGA_DRAIN",
+            "29": "MOVE_LEECH_SEED",
+            "33": "MOVE_SYNTHESIS",
+            "37": "MOVE_CRUNCH",
+            "41": "MOVE_GIGA_DRAIN",
+            "45": "MOVE_LEAF_STORM"
         }
     },
     "evolutions": [

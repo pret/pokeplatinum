@@ -77,20 +77,20 @@
             "HM06"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "5": "HOWL",
-            "9": "SAND_ATTACK",
-            "13": "BITE",
-            "17": "ODOR_SLEUTH",
-            "21": "ROAR",
-            "25": "SWAGGER",
-            "29": "ASSURANCE",
-            "33": "SCARY_FACE",
-            "37": "TAUNT",
-            "41": "EMBARGO",
-            "45": "TAKE_DOWN",
-            "49": "SUCKER_PUNCH",
-            "53": "CRUNCH"
+            "1": "MOVE_TACKLE",
+            "5": "MOVE_HOWL",
+            "9": "MOVE_SAND_ATTACK",
+            "13": "MOVE_BITE",
+            "17": "MOVE_ODOR_SLEUTH",
+            "21": "MOVE_ROAR",
+            "25": "MOVE_SWAGGER",
+            "29": "MOVE_ASSURANCE",
+            "33": "MOVE_SCARY_FACE",
+            "37": "MOVE_TAUNT",
+            "41": "MOVE_EMBARGO",
+            "45": "MOVE_TAKE_DOWN",
+            "49": "MOVE_SUCKER_PUNCH",
+            "53": "MOVE_CRUNCH"
         }
     },
     "evolutions": [

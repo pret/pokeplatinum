@@ -78,19 +78,19 @@
             "HM07"
         ],
         "level_up": {
-            "1": "POUND",
-            "6": "WATER_GUN",
-            "10": "ATTRACT",
-            "13": "RAIN_DANCE",
-            "17": "GUST",
-            "22": "WATER_PULSE",
-            "26": "CAPTIVATE",
-            "29": "SAFEGUARD",
-            "33": "AQUA_RING",
-            "38": "WHIRLPOOL",
-            "42": "U_TURN",
-            "45": "BOUNCE",
-            "49": "SILVER_WIND"
+            "1": "MOVE_POUND",
+            "6": "MOVE_WATER_GUN",
+            "10": "MOVE_ATTRACT",
+            "13": "MOVE_RAIN_DANCE",
+            "17": "MOVE_GUST",
+            "22": "MOVE_WATER_PULSE",
+            "26": "MOVE_CAPTIVATE",
+            "29": "MOVE_SAFEGUARD",
+            "33": "MOVE_AQUA_RING",
+            "38": "MOVE_WHIRLPOOL",
+            "42": "MOVE_U_TURN",
+            "45": "MOVE_BOUNCE",
+            "49": "MOVE_SILVER_WIND"
         }
     },
     "evolutions": [

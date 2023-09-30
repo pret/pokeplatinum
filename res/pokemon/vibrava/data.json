@@ -82,19 +82,19 @@
         ],
         "level_up": {
             "1": [
-                "SONIC_BOOM",
-                "SAND_ATTACK",
-                "FAINT_ATTACK",
-                "SAND_TOMB"
+                "MOVE_SONIC_BOOM",
+                "MOVE_SAND_ATTACK",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_SAND_TOMB"
             ],
-            "9": "SAND_ATTACK",
-            "17": "FAINT_ATTACK",
-            "25": "SAND_TOMB",
-            "33": "SUPERSONIC",
-            "35": "DRAGON_BREATH",
-            "41": "SCREECH",
-            "49": "SANDSTORM",
-            "57": "HYPER_BEAM"
+            "9": "MOVE_SAND_ATTACK",
+            "17": "MOVE_FAINT_ATTACK",
+            "25": "MOVE_SAND_TOMB",
+            "33": "MOVE_SUPERSONIC",
+            "35": "MOVE_DRAGON_BREATH",
+            "41": "MOVE_SCREECH",
+            "49": "MOVE_SANDSTORM",
+            "57": "MOVE_HYPER_BEAM"
         }
     },
     "evolutions": [

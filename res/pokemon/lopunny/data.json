@@ -88,23 +88,23 @@
         ],
         "level_up": {
             "1": [
-                "MIRROR_COAT",
-                "MAGIC_COAT",
-                "SPLASH",
-                "POUND",
-                "DEFENSE_CURL",
-                "FORESIGHT"
+                "MOVE_MIRROR_COAT",
+                "MOVE_MAGIC_COAT",
+                "MOVE_SPLASH",
+                "MOVE_POUND",
+                "MOVE_DEFENSE_CURL",
+                "MOVE_FORESIGHT"
             ],
-            "6": "ENDURE",
-            "13": "RETURN",
-            "16": "QUICK_ATTACK",
-            "23": "JUMP_KICK",
-            "26": "BATON_PASS",
-            "33": "AGILITY",
-            "36": "DIZZY_PUNCH",
-            "43": "CHARM",
-            "46": "BOUNCE",
-            "53": "HEALING_WISH"
+            "6": "MOVE_ENDURE",
+            "13": "MOVE_RETURN",
+            "16": "MOVE_QUICK_ATTACK",
+            "23": "MOVE_JUMP_KICK",
+            "26": "MOVE_BATON_PASS",
+            "33": "MOVE_AGILITY",
+            "36": "MOVE_DIZZY_PUNCH",
+            "43": "MOVE_CHARM",
+            "46": "MOVE_BOUNCE",
+            "53": "MOVE_HEALING_WISH"
         }
     }
 }

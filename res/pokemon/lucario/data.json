@@ -95,23 +95,23 @@
         ],
         "level_up": {
             "1": [
-                "DARK_PULSE",
-                "QUICK_ATTACK",
-                "FORESIGHT",
-                "DETECT",
-                "METAL_CLAW"
+                "MOVE_DARK_PULSE",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_FORESIGHT",
+                "MOVE_DETECT",
+                "MOVE_METAL_CLAW"
             ],
-            "6": "COUNTER",
-            "11": "FORCE_PALM",
-            "15": "FEINT",
-            "19": "BONE_RUSH",
-            "24": "METAL_SOUND",
-            "29": "ME_FIRST",
-            "33": "SWORDS_DANCE",
-            "37": "AURA_SPHERE",
-            "42": "CLOSE_COMBAT",
-            "47": "DRAGON_PULSE",
-            "51": "EXTREME_SPEED"
+            "6": "MOVE_COUNTER",
+            "11": "MOVE_FORCE_PALM",
+            "15": "MOVE_FEINT",
+            "19": "MOVE_BONE_RUSH",
+            "24": "MOVE_METAL_SOUND",
+            "29": "MOVE_ME_FIRST",
+            "33": "MOVE_SWORDS_DANCE",
+            "37": "MOVE_AURA_SPHERE",
+            "42": "MOVE_CLOSE_COMBAT",
+            "47": "MOVE_DRAGON_PULSE",
+            "51": "MOVE_EXTREME_SPEED"
         }
     }
 }

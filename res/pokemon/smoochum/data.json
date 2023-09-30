@@ -84,20 +84,20 @@
             "TM92"
         ],
         "level_up": {
-            "1": "POUND",
-            "5": "LICK",
-            "8": "SWEET_KISS",
-            "11": "POWDER_SNOW",
-            "15": "CONFUSION",
-            "18": "SING",
-            "21": "MEAN_LOOK",
-            "25": "FAKE_TEARS",
-            "28": "LUCKY_CHANT",
-            "31": "AVALANCHE",
-            "35": "PSYCHIC",
-            "38": "COPYCAT",
-            "41": "PERISH_SONG",
-            "45": "BLIZZARD"
+            "1": "MOVE_POUND",
+            "5": "MOVE_LICK",
+            "8": "MOVE_SWEET_KISS",
+            "11": "MOVE_POWDER_SNOW",
+            "15": "MOVE_CONFUSION",
+            "18": "MOVE_SING",
+            "21": "MOVE_MEAN_LOOK",
+            "25": "MOVE_FAKE_TEARS",
+            "28": "MOVE_LUCKY_CHANT",
+            "31": "MOVE_AVALANCHE",
+            "35": "MOVE_PSYCHIC",
+            "38": "MOVE_COPYCAT",
+            "41": "MOVE_PERISH_SONG",
+            "45": "MOVE_BLIZZARD"
         }
     },
     "evolutions": [

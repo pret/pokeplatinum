@@ -77,18 +77,18 @@
             "HM07"
         ],
         "level_up": {
-            "1": "WHIRLPOOL",
-            "6": "CONFUSION",
-            "10": "AGILITY",
-            "15": "WATER_PULSE",
-            "19": "AMNESIA",
-            "24": "AQUA_RING",
-            "28": "CAPTIVATE",
-            "33": "BATON_PASS",
-            "37": "DIVE",
-            "42": "PSYCHIC",
-            "46": "AQUA_TAIL",
-            "51": "HYDRO_PUMP"
+            "1": "MOVE_WHIRLPOOL",
+            "6": "MOVE_CONFUSION",
+            "10": "MOVE_AGILITY",
+            "15": "MOVE_WATER_PULSE",
+            "19": "MOVE_AMNESIA",
+            "24": "MOVE_AQUA_RING",
+            "28": "MOVE_CAPTIVATE",
+            "33": "MOVE_BATON_PASS",
+            "37": "MOVE_DIVE",
+            "42": "MOVE_PSYCHIC",
+            "46": "MOVE_AQUA_TAIL",
+            "51": "MOVE_HYDRO_PUMP"
         }
     }
 }

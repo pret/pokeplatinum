@@ -75,13 +75,13 @@
         ],
         "level_up": {
             "1": [
-                "THUNDER_SHOCK",
-                "CHARM"
+                "MOVE_THUNDER_SHOCK",
+                "MOVE_CHARM"
             ],
-            "5": "TAIL_WHIP",
-            "10": "THUNDER_WAVE",
-            "13": "SWEET_KISS",
-            "18": "NASTY_PLOT"
+            "5": "MOVE_TAIL_WHIP",
+            "10": "MOVE_THUNDER_WAVE",
+            "13": "MOVE_SWEET_KISS",
+            "18": "MOVE_NASTY_PLOT"
         }
     },
     "evolutions": [

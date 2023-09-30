@@ -83,18 +83,18 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "GROWL",
-                "EMBER"
+                "MOVE_SCRATCH",
+                "MOVE_GROWL",
+                "MOVE_EMBER"
             ],
-            "7": "EMBER",
-            "10": "SMOKESCREEN",
-            "17": "DRAGON_RAGE",
-            "21": "SCARY_FACE",
-            "28": "FIRE_FANG",
-            "32": "SLASH",
-            "39": "FLAMETHROWER",
-            "43": "FIRE_SPIN"
+            "7": "MOVE_EMBER",
+            "10": "MOVE_SMOKE_SCREEN",
+            "17": "MOVE_DRAGON_RAGE",
+            "21": "MOVE_SCARY_FACE",
+            "28": "MOVE_FIRE_FANG",
+            "32": "MOVE_SLASH",
+            "39": "MOVE_FLAMETHROWER",
+            "43": "MOVE_FIRE_SPIN"
         }
     },
     "evolutions": [

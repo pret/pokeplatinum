@@ -94,19 +94,19 @@
             "HM06"
         ],
         "level_up": {
-            "1": "POISON_STING",
-            "5": "SAND_ATTACK",
-            "9": "HARDEN",
-            "12": "KNOCK_OFF",
-            "16": "QUICK_ATTACK",
-            "20": "FURY_CUTTER",
-            "23": "FAINT_ATTACK",
-            "27": "SCREECH",
-            "31": "SLASH",
-            "34": "SWORDS_DANCE",
-            "38": "U_TURN",
-            "42": "X_SCISSOR",
-            "45": "GUILLOTINE"
+            "1": "MOVE_POISON_STING",
+            "5": "MOVE_SAND_ATTACK",
+            "9": "MOVE_HARDEN",
+            "12": "MOVE_KNOCK_OFF",
+            "16": "MOVE_QUICK_ATTACK",
+            "20": "MOVE_FURY_CUTTER",
+            "23": "MOVE_FAINT_ATTACK",
+            "27": "MOVE_SCREECH",
+            "31": "MOVE_SLASH",
+            "34": "MOVE_SWORDS_DANCE",
+            "38": "MOVE_U_TURN",
+            "42": "MOVE_X_SCISSOR",
+            "45": "MOVE_GUILLOTINE"
         }
     },
     "evolutions": [

@@ -81,25 +81,25 @@
         ],
         "level_up": {
             "1": [
-                "VACUUM_WAVE",
-                "QUICK_ATTACK",
-                "LEER"
+                "MOVE_VACUUM_WAVE",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_LEER"
             ],
-            "5": "FOCUS_ENERGY",
-            "9": "PURSUIT",
-            "13": "FALSE_SWIPE",
-            "17": "AGILITY",
-            "21": "WING_ATTACK",
-            "25": "FURY_CUTTER",
-            "29": "SLASH",
-            "33": "RAZOR_WIND",
-            "37": "DOUBLE_TEAM",
-            "41": "X_SCISSOR",
-            "45": "NIGHT_SLASH",
-            "49": "DOUBLE_HIT",
-            "53": "AIR_SLASH",
-            "57": "SWORDS_DANCE",
-            "61": "FEINT"
+            "5": "MOVE_FOCUS_ENERGY",
+            "9": "MOVE_PURSUIT",
+            "13": "MOVE_FALSE_SWIPE",
+            "17": "MOVE_AGILITY",
+            "21": "MOVE_WING_ATTACK",
+            "25": "MOVE_FURY_CUTTER",
+            "29": "MOVE_SLASH",
+            "33": "MOVE_RAZOR_WIND",
+            "37": "MOVE_DOUBLE_TEAM",
+            "41": "MOVE_X_SCISSOR",
+            "45": "MOVE_NIGHT_SLASH",
+            "49": "MOVE_DOUBLE_HIT",
+            "53": "MOVE_AIR_SLASH",
+            "57": "MOVE_SWORDS_DANCE",
+            "61": "MOVE_FEINT"
         }
     },
     "evolutions": [

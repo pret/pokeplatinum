@@ -91,19 +91,19 @@
             "HM06"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "3": "GROWL",
-            "5": "DEFENSE_CURL",
-            "8": "STOMP",
-            "11": "MILK_DRINK",
-            "15": "BIDE",
-            "19": "ROLLOUT",
-            "24": "BODY_SLAM",
-            "29": "ZEN_HEADBUTT",
-            "35": "CAPTIVATE",
-            "41": "GYRO_BALL",
-            "48": "HEAL_BELL",
-            "55": "WAKE_UP_SLAP"
+            "1": "MOVE_TACKLE",
+            "3": "MOVE_GROWL",
+            "5": "MOVE_DEFENSE_CURL",
+            "8": "MOVE_STOMP",
+            "11": "MOVE_MILK_DRINK",
+            "15": "MOVE_BIDE",
+            "19": "MOVE_ROLLOUT",
+            "24": "MOVE_BODY_SLAM",
+            "29": "MOVE_ZEN_HEADBUTT",
+            "35": "MOVE_CAPTIVATE",
+            "41": "MOVE_GYRO_BALL",
+            "48": "MOVE_HEAL_BELL",
+            "55": "MOVE_WAKE_UP_SLAP"
         }
     }
 }

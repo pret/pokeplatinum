@@ -97,18 +97,18 @@
             "HM08"
         ],
         "level_up": {
-            "1": "MUD_SHOT",
-            "5": "SCARY_FACE",
-            "15": "ANCIENT_POWER",
-            "20": "SLASH",
-            "30": "BULK_UP",
-            "35": "EARTHQUAKE",
-            "45": "FIRE_BLAST",
-            "50": "REST",
-            "60": "FISSURE",
-            "65": "SOLAR_BEAM",
-            "75": "EARTH_POWER",
-            "80": "ERUPTION"
+            "1": "MOVE_MUD_SHOT",
+            "5": "MOVE_SCARY_FACE",
+            "15": "MOVE_ANCIENT_POWER",
+            "20": "MOVE_SLASH",
+            "30": "MOVE_BULK_UP",
+            "35": "MOVE_EARTHQUAKE",
+            "45": "MOVE_FIRE_BLAST",
+            "50": "MOVE_REST",
+            "60": "MOVE_FISSURE",
+            "65": "MOVE_SOLAR_BEAM",
+            "75": "MOVE_EARTH_POWER",
+            "80": "MOVE_ERUPTION"
         }
     }
 }

@@ -81,21 +81,21 @@
         ],
         "level_up": {
             "1": [
-                "TAIL_WHIP",
-                "TACKLE",
-                "HELPING_HAND"
+                "MOVE_TAIL_WHIP",
+                "MOVE_TACKLE",
+                "MOVE_HELPING_HAND"
             ],
-            "8": "SAND_ATTACK",
-            "15": "WATER_GUN",
-            "22": "QUICK_ATTACK",
-            "29": "BITE",
-            "36": "AURORA_BEAM",
-            "43": "AQUA_RING",
-            "50": "LAST_RESORT",
-            "57": "HAZE",
-            "64": "ACID_ARMOR",
-            "71": "HYDRO_PUMP",
-            "78": "MUDDY_WATER"
+            "8": "MOVE_SAND_ATTACK",
+            "15": "MOVE_WATER_GUN",
+            "22": "MOVE_QUICK_ATTACK",
+            "29": "MOVE_BITE",
+            "36": "MOVE_AURORA_BEAM",
+            "43": "MOVE_AQUA_RING",
+            "50": "MOVE_LAST_RESORT",
+            "57": "MOVE_HAZE",
+            "64": "MOVE_ACID_ARMOR",
+            "71": "MOVE_HYDRO_PUMP",
+            "78": "MOVE_MUDDY_WATER"
         }
     }
 }

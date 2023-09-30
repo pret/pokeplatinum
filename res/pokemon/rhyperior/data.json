@@ -102,23 +102,23 @@
         ],
         "level_up": {
             "1": [
-                "POISON_JAB",
-                "HORN_ATTACK",
-                "TAIL_WHIP",
-                "STOMP",
-                "FURY_ATTACK"
+                "MOVE_POISON_JAB",
+                "MOVE_HORN_ATTACK",
+                "MOVE_TAIL_WHIP",
+                "MOVE_STOMP",
+                "MOVE_FURY_ATTACK"
             ],
-            "9": "STOMP",
-            "13": "FURY_ATTACK",
-            "21": "SCARY_FACE",
-            "25": "ROCK_BLAST",
-            "33": "TAKE_DOWN",
-            "37": "HORN_DRILL",
-            "42": "HAMMER_ARM",
-            "45": "STONE_EDGE",
-            "49": "EARTHQUAKE",
-            "57": "MEGAHORN",
-            "61": "ROCK_WRECKER"
+            "9": "MOVE_STOMP",
+            "13": "MOVE_FURY_ATTACK",
+            "21": "MOVE_SCARY_FACE",
+            "25": "MOVE_ROCK_BLAST",
+            "33": "MOVE_TAKE_DOWN",
+            "37": "MOVE_HORN_DRILL",
+            "42": "MOVE_HAMMER_ARM",
+            "45": "MOVE_STONE_EDGE",
+            "49": "MOVE_EARTHQUAKE",
+            "57": "MOVE_MEGAHORN",
+            "61": "MOVE_ROCK_WRECKER"
         }
     }
 }

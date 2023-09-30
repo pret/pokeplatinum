@@ -74,17 +74,17 @@
         ],
         "level_up": {
             "1": [
-                "PECK",
-                "GROWL"
+                "MOVE_PECK",
+                "MOVE_GROWL"
             ],
-            "4": "FOCUS_ENERGY",
-            "8": "QUICK_ATTACK",
-            "13": "WING_ATTACK",
-            "19": "DOUBLE_TEAM",
-            "26": "ENDEAVOR",
-            "34": "AERIAL_ACE",
-            "43": "AGILITY",
-            "53": "AIR_SLASH"
+            "4": "MOVE_FOCUS_ENERGY",
+            "8": "MOVE_QUICK_ATTACK",
+            "13": "MOVE_WING_ATTACK",
+            "19": "MOVE_DOUBLE_TEAM",
+            "26": "MOVE_ENDEAVOR",
+            "34": "MOVE_AERIAL_ACE",
+            "43": "MOVE_AGILITY",
+            "53": "MOVE_AIR_SLASH"
         }
     },
     "evolutions": [

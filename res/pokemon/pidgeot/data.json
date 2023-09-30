@@ -76,23 +76,23 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "SAND_ATTACK",
-                "GUST",
-                "QUICK_ATTACK"
+                "MOVE_TACKLE",
+                "MOVE_SAND_ATTACK",
+                "MOVE_GUST",
+                "MOVE_QUICK_ATTACK"
             ],
-            "5": "SAND_ATTACK",
-            "9": "GUST",
-            "13": "QUICK_ATTACK",
-            "17": "WHIRLWIND",
-            "22": "TWISTER",
-            "27": "FEATHER_DANCE",
-            "32": "AGILITY",
-            "38": "WING_ATTACK",
-            "44": "ROOST",
-            "50": "TAILWIND",
-            "56": "MIRROR_MOVE",
-            "62": "AIR_SLASH"
+            "5": "MOVE_SAND_ATTACK",
+            "9": "MOVE_GUST",
+            "13": "MOVE_QUICK_ATTACK",
+            "17": "MOVE_WHIRLWIND",
+            "22": "MOVE_TWISTER",
+            "27": "MOVE_FEATHER_DANCE",
+            "32": "MOVE_AGILITY",
+            "38": "MOVE_WING_ATTACK",
+            "44": "MOVE_ROOST",
+            "50": "MOVE_TAILWIND",
+            "56": "MOVE_MIRROR_MOVE",
+            "62": "MOVE_AIR_SLASH"
         }
     }
 }

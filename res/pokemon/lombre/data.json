@@ -84,17 +84,17 @@
             "HM07"
         ],
         "level_up": {
-            "1": "ASTONISH",
-            "3": "GROWL",
-            "5": "ABSORB",
-            "7": "NATURE_POWER",
-            "11": "FAKE_OUT",
-            "15": "FURY_SWIPES",
-            "19": "WATER_SPORT",
-            "25": "BUBBLE_BEAM",
-            "31": "ZEN_HEADBUTT",
-            "37": "UPROAR",
-            "45": "HYDRO_PUMP"
+            "1": "MOVE_ASTONISH",
+            "3": "MOVE_GROWL",
+            "5": "MOVE_ABSORB",
+            "7": "MOVE_NATURE_POWER",
+            "11": "MOVE_FAKE_OUT",
+            "15": "MOVE_FURY_SWIPES",
+            "19": "MOVE_WATER_SPORT",
+            "25": "MOVE_BUBBLE_BEAM",
+            "31": "MOVE_ZEN_HEADBUTT",
+            "37": "MOVE_UPROAR",
+            "45": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

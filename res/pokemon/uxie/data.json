@@ -93,19 +93,19 @@
         ],
         "level_up": {
             "1": [
-                "REST",
-                "CONFUSION"
+                "MOVE_REST",
+                "MOVE_CONFUSION"
             ],
-            "6": "IMPRISON",
-            "16": "ENDURE",
-            "21": "SWIFT",
-            "31": "YAWN",
-            "36": "FUTURE_SIGHT",
-            "46": "AMNESIA",
-            "51": "EXTRASENSORY",
-            "61": "FLAIL",
-            "66": "NATURAL_GIFT",
-            "76": "MEMENTO"
+            "6": "MOVE_IMPRISON",
+            "16": "MOVE_ENDURE",
+            "21": "MOVE_SWIFT",
+            "31": "MOVE_YAWN",
+            "36": "MOVE_FUTURE_SIGHT",
+            "46": "MOVE_AMNESIA",
+            "51": "MOVE_EXTRASENSORY",
+            "61": "MOVE_FLAIL",
+            "66": "MOVE_NATURAL_GIFT",
+            "76": "MOVE_MEMENTO"
         }
     }
 }

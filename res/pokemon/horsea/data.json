@@ -73,18 +73,18 @@
             "HM07"
         ],
         "level_up": {
-            "1": "BUBBLE",
-            "4": "SMOKESCREEN",
-            "8": "LEER",
-            "11": "WATER_GUN",
-            "14": "FOCUS_ENERGY",
-            "18": "BUBBLE_BEAM",
-            "23": "AGILITY",
-            "26": "TWISTER",
-            "30": "BRINE",
-            "35": "HYDRO_PUMP",
-            "38": "DRAGON_DANCE",
-            "42": "DRAGON_PULSE"
+            "1": "MOVE_BUBBLE",
+            "4": "MOVE_SMOKE_SCREEN",
+            "8": "MOVE_LEER",
+            "11": "MOVE_WATER_GUN",
+            "14": "MOVE_FOCUS_ENERGY",
+            "18": "MOVE_BUBBLE_BEAM",
+            "23": "MOVE_AGILITY",
+            "26": "MOVE_TWISTER",
+            "30": "MOVE_BRINE",
+            "35": "MOVE_HYDRO_PUMP",
+            "38": "MOVE_DRAGON_DANCE",
+            "42": "MOVE_DRAGON_PULSE"
         }
     },
     "evolutions": [

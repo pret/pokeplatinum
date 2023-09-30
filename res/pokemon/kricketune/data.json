@@ -78,20 +78,20 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "BIDE"
+                "MOVE_GROWL",
+                "MOVE_BIDE"
             ],
-            "10": "FURY_CUTTER",
-            "14": "LEECH_LIFE",
-            "18": "SING",
-            "22": "FOCUS_ENERGY",
-            "26": "SLASH",
-            "30": "X_SCISSOR",
-            "34": "SCREECH",
-            "38": "TAUNT",
-            "42": "NIGHT_SLASH",
-            "46": "BUG_BUZZ",
-            "50": "PERISH_SONG"
+            "10": "MOVE_FURY_CUTTER",
+            "14": "MOVE_LEECH_LIFE",
+            "18": "MOVE_SING",
+            "22": "MOVE_FOCUS_ENERGY",
+            "26": "MOVE_SLASH",
+            "30": "MOVE_X_SCISSOR",
+            "34": "MOVE_SCREECH",
+            "38": "MOVE_TAUNT",
+            "42": "MOVE_NIGHT_SLASH",
+            "46": "MOVE_BUG_BUZZ",
+            "50": "MOVE_PERISH_SONG"
         }
     }
 }

@@ -93,23 +93,23 @@
         ],
         "level_up": {
             "1": [
-                "THUNDER_FANG",
-                "ICE_FANG",
-                "FIRE_FANG",
-                "BITE",
-                "POISON_STING",
-                "LEER",
-                "KNOCK_OFF"
+                "MOVE_THUNDER_FANG",
+                "MOVE_ICE_FANG",
+                "MOVE_FIRE_FANG",
+                "MOVE_BITE",
+                "MOVE_POISON_STING",
+                "MOVE_LEER",
+                "MOVE_KNOCK_OFF"
             ],
-            "6": "KNOCK_OFF",
-            "12": "PIN_MISSILE",
-            "17": "ACUPRESSURE",
-            "23": "SCARY_FACE",
-            "28": "TOXIC_SPIKES",
-            "34": "BUG_BITE",
-            "39": "POISON_FANG",
-            "49": "CRUNCH",
-            "58": "CROSS_POISON"
+            "6": "MOVE_KNOCK_OFF",
+            "12": "MOVE_PIN_MISSILE",
+            "17": "MOVE_ACUPRESSURE",
+            "23": "MOVE_SCARY_FACE",
+            "28": "MOVE_TOXIC_SPIKES",
+            "34": "MOVE_BUG_BITE",
+            "39": "MOVE_POISON_FANG",
+            "49": "MOVE_CRUNCH",
+            "58": "MOVE_CROSS_POISON"
         }
     }
 }

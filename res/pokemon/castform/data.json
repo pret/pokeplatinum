@@ -83,18 +83,18 @@
             "TM90"
         ],
         "level_up": {
-            "1": "TACKLE",
+            "1": "MOVE_TACKLE",
             "10": [
-                "WATER_GUN",
-                "EMBER",
-                "POWDER_SNOW"
+                "MOVE_WATER_GUN",
+                "MOVE_EMBER",
+                "MOVE_POWDER_SNOW"
             ],
             "20": [
-                "RAIN_DANCE",
-                "SUNNY_DAY",
-                "HAIL"
+                "MOVE_RAIN_DANCE",
+                "MOVE_SUNNY_DAY",
+                "MOVE_HAIL"
             ],
-            "30": "WEATHER_BALL"
+            "30": "MOVE_WEATHER_BALL"
         }
     }
 }

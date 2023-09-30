@@ -74,20 +74,20 @@
         ],
         "level_up": {
             "1": [
-                "ODOR_SLEUTH",
-                "TACKLE",
-                "GROWL",
-                "DEFENSE_CURL"
+                "MOVE_ODOR_SLEUTH",
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_DEFENSE_CURL"
             ],
-            "6": "FLAIL",
-            "10": "TAKE_DOWN",
-            "15": "ROLLOUT",
-            "19": "NATURAL_GIFT",
-            "24": "SLAM",
-            "28": "ENDURE",
-            "33": "CHARM",
-            "37": "LAST_RESORT",
-            "42": "DOUBLE_EDGE"
+            "6": "MOVE_FLAIL",
+            "10": "MOVE_TAKE_DOWN",
+            "15": "MOVE_ROLLOUT",
+            "19": "MOVE_NATURAL_GIFT",
+            "24": "MOVE_SLAM",
+            "28": "MOVE_ENDURE",
+            "33": "MOVE_CHARM",
+            "37": "MOVE_LAST_RESORT",
+            "42": "MOVE_DOUBLE_EDGE"
         }
     },
     "evolutions": [

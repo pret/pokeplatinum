@@ -80,24 +80,24 @@
         ],
         "level_up": {
             "1": [
-                "NIGHT_SLASH",
-                "TRI_ATTACK",
-                "SCRATCH",
-                "SAND_ATTACK",
-                "GROWL"
+                "MOVE_NIGHT_SLASH",
+                "MOVE_TRI_ATTACK",
+                "MOVE_SCRATCH",
+                "MOVE_SAND_ATTACK",
+                "MOVE_GROWL"
             ],
-            "4": "GROWL",
-            "7": "ASTONISH",
-            "12": "MAGNITUDE",
-            "15": "MUD_SLAP",
-            "18": "DIG",
-            "23": "SUCKER_PUNCH",
-            "26": "SAND_TOMB",
-            "28": "EARTH_POWER",
-            "33": "MUD_BOMB",
-            "40": "SLASH",
-            "45": "EARTHQUAKE",
-            "50": "FISSURE"
+            "4": "MOVE_GROWL",
+            "7": "MOVE_ASTONISH",
+            "12": "MOVE_MAGNITUDE",
+            "15": "MOVE_MUD_SLAP",
+            "18": "MOVE_DIG",
+            "23": "MOVE_SUCKER_PUNCH",
+            "26": "MOVE_SAND_TOMB",
+            "28": "MOVE_EARTH_POWER",
+            "33": "MOVE_MUD_BOMB",
+            "40": "MOVE_SLASH",
+            "45": "MOVE_EARTHQUAKE",
+            "50": "MOVE_FISSURE"
         }
     }
 }

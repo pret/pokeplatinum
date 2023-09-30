@@ -91,22 +91,22 @@
             "HM06"
         ],
         "level_up": {
-            "1": "ASTONISH",
-            "6": "FAKE_TEARS",
-            "11": "BITE",
-            "16": "SWEET_SCENT",
-            "21": "VICE_GRIP",
-            "26": "FAINT_ATTACK",
-            "31": "BATON_PASS",
-            "36": "CRUNCH",
-            "41": "IRON_DEFENSE",
-            "46": "SUCKER_PUNCH",
+            "1": "MOVE_ASTONISH",
+            "6": "MOVE_FAKE_TEARS",
+            "11": "MOVE_BITE",
+            "16": "MOVE_SWEET_SCENT",
+            "21": "MOVE_VICE_GRIP",
+            "26": "MOVE_FAINT_ATTACK",
+            "31": "MOVE_BATON_PASS",
+            "36": "MOVE_CRUNCH",
+            "41": "MOVE_IRON_DEFENSE",
+            "46": "MOVE_SUCKER_PUNCH",
             "51": [
-                "STOCKPILE",
-                "SWALLOW",
-                "SPIT_UP"
+                "MOVE_STOCKPILE",
+                "MOVE_SWALLOW",
+                "MOVE_SPIT_UP"
             ],
-            "56": "IRON_HEAD"
+            "56": "MOVE_IRON_HEAD"
         }
     }
 }

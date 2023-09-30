@@ -85,22 +85,22 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "GROWL"
+                "MOVE_TACKLE",
+                "MOVE_GROWL"
             ],
-            "4": "GROWL",
-            "8": "BUBBLE",
-            "11": "WATER_SPORT",
-            "15": "PECK",
-            "16": "METAL_CLAW",
-            "19": "BUBBLE_BEAM",
-            "24": "BIDE",
-            "28": "FURY_ATTACK",
-            "33": "BRINE",
-            "37": "WHIRLPOOL",
-            "42": "MIST",
-            "46": "DRILL_PECK",
-            "51": "HYDRO_PUMP"
+            "4": "MOVE_GROWL",
+            "8": "MOVE_BUBBLE",
+            "11": "MOVE_WATER_SPORT",
+            "15": "MOVE_PECK",
+            "16": "MOVE_METAL_CLAW",
+            "19": "MOVE_BUBBLE_BEAM",
+            "24": "MOVE_BIDE",
+            "28": "MOVE_FURY_ATTACK",
+            "33": "MOVE_BRINE",
+            "37": "MOVE_WHIRLPOOL",
+            "42": "MOVE_MIST",
+            "46": "MOVE_DRILL_PECK",
+            "51": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

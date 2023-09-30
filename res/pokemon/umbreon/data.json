@@ -81,21 +81,21 @@
         ],
         "level_up": {
             "1": [
-                "TAIL_WHIP",
-                "TACKLE",
-                "HELPING_HAND"
+                "MOVE_TAIL_WHIP",
+                "MOVE_TACKLE",
+                "MOVE_HELPING_HAND"
             ],
-            "8": "SAND_ATTACK",
-            "15": "PURSUIT",
-            "22": "QUICK_ATTACK",
-            "29": "CONFUSE_RAY",
-            "36": "FAINT_ATTACK",
-            "43": "ASSURANCE",
-            "50": "LAST_RESORT",
-            "57": "MEAN_LOOK",
-            "64": "SCREECH",
-            "71": "MOONLIGHT",
-            "78": "GUARD_SWAP"
+            "8": "MOVE_SAND_ATTACK",
+            "15": "MOVE_PURSUIT",
+            "22": "MOVE_QUICK_ATTACK",
+            "29": "MOVE_CONFUSE_RAY",
+            "36": "MOVE_FAINT_ATTACK",
+            "43": "MOVE_ASSURANCE",
+            "50": "MOVE_LAST_RESORT",
+            "57": "MOVE_MEAN_LOOK",
+            "64": "MOVE_SCREECH",
+            "71": "MOVE_MOONLIGHT",
+            "78": "MOVE_GUARD_SWAP"
         }
     }
 }

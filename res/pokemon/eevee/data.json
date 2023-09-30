@@ -69,18 +69,18 @@
         ],
         "level_up": {
             "1": [
-                "TAIL_WHIP",
-                "TACKLE",
-                "HELPING_HAND"
+                "MOVE_TAIL_WHIP",
+                "MOVE_TACKLE",
+                "MOVE_HELPING_HAND"
             ],
-            "8": "SAND_ATTACK",
-            "15": "GROWL",
-            "22": "QUICK_ATTACK",
-            "29": "BITE",
-            "36": "BATON_PASS",
-            "43": "TAKE_DOWN",
-            "50": "LAST_RESORT",
-            "57": "TRUMP_CARD"
+            "8": "MOVE_SAND_ATTACK",
+            "15": "MOVE_GROWL",
+            "22": "MOVE_QUICK_ATTACK",
+            "29": "MOVE_BITE",
+            "36": "MOVE_BATON_PASS",
+            "43": "MOVE_TAKE_DOWN",
+            "50": "MOVE_LAST_RESORT",
+            "57": "MOVE_TRUMP_CARD"
         }
     },
     "evolutions": [

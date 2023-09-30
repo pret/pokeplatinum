@@ -81,22 +81,22 @@
         ],
         "level_up": {
             "1": [
-                "BITE",
-                "LEER",
-                "SANDSTORM",
-                "SCREECH"
+                "MOVE_BITE",
+                "MOVE_LEER",
+                "MOVE_SANDSTORM",
+                "MOVE_SCREECH"
             ],
-            "5": "SANDSTORM",
-            "10": "SCREECH",
-            "14": "ROCK_SLIDE",
-            "19": "SCARY_FACE",
-            "23": "THRASH",
-            "28": "DARK_PULSE",
-            "34": "PAYBACK",
-            "41": "CRUNCH",
-            "47": "EARTHQUAKE",
-            "54": "STONE_EDGE",
-            "60": "HYPER_BEAM"
+            "5": "MOVE_SANDSTORM",
+            "10": "MOVE_SCREECH",
+            "14": "MOVE_ROCK_SLIDE",
+            "19": "MOVE_SCARY_FACE",
+            "23": "MOVE_THRASH",
+            "28": "MOVE_DARK_PULSE",
+            "34": "MOVE_PAYBACK",
+            "41": "MOVE_CRUNCH",
+            "47": "MOVE_EARTHQUAKE",
+            "54": "MOVE_STONE_EDGE",
+            "60": "MOVE_HYPER_BEAM"
         }
     },
     "evolutions": [

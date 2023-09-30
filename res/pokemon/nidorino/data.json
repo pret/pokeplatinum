@@ -81,20 +81,20 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "PECK"
+                "MOVE_LEER",
+                "MOVE_PECK"
             ],
-            "7": "FOCUS_ENERGY",
-            "9": "DOUBLE_KICK",
-            "13": "POISON_STING",
-            "20": "FURY_ATTACK",
-            "23": "HORN_ATTACK",
-            "28": "HELPING_HAND",
-            "35": "TOXIC_SPIKES",
-            "38": "FLATTER",
-            "43": "POISON_JAB",
-            "50": "CAPTIVATE",
-            "58": "HORN_DRILL"
+            "7": "MOVE_FOCUS_ENERGY",
+            "9": "MOVE_DOUBLE_KICK",
+            "13": "MOVE_POISON_STING",
+            "20": "MOVE_FURY_ATTACK",
+            "23": "MOVE_HORN_ATTACK",
+            "28": "MOVE_HELPING_HAND",
+            "35": "MOVE_TOXIC_SPIKES",
+            "38": "MOVE_FLATTER",
+            "43": "MOVE_POISON_JAB",
+            "50": "MOVE_CAPTIVATE",
+            "58": "MOVE_HORN_DRILL"
         }
     },
     "evolutions": [

@@ -87,16 +87,16 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "YAWN"
+                "MOVE_SCRATCH",
+                "MOVE_YAWN"
             ],
-            "7": "ENCORE",
-            "13": "SLACK_OFF",
-            "19": "FAINT_ATTACK",
-            "25": "AMNESIA",
-            "31": "COVET",
-            "37": "COUNTER",
-            "43": "FLAIL"
+            "7": "MOVE_ENCORE",
+            "13": "MOVE_SLACK_OFF",
+            "19": "MOVE_FAINT_ATTACK",
+            "25": "MOVE_AMNESIA",
+            "31": "MOVE_COVET",
+            "37": "MOVE_COUNTER",
+            "43": "MOVE_FLAIL"
         }
     },
     "evolutions": [

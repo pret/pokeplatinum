@@ -94,23 +94,23 @@
         ],
         "level_up": {
             "1": [
-                "ASTONISH",
-                "MUD_SLAP",
-                "POISON_STING"
+                "MOVE_ASTONISH",
+                "MOVE_MUD_SLAP",
+                "MOVE_POISON_STING"
             ],
-            "3": "MUD_SLAP",
-            "8": "POISON_STING",
-            "10": "TAUNT",
-            "15": "PURSUIT",
-            "17": "FAINT_ATTACK",
-            "22": "REVENGE",
-            "24": "SWAGGER",
-            "29": "MUD_BOMB",
-            "31": "SUCKER_PUNCH",
-            "36": "NASTY_PLOT",
-            "41": "POISON_JAB",
-            "49": "SLUDGE_BOMB",
-            "54": "FLATTER"
+            "3": "MOVE_MUD_SLAP",
+            "8": "MOVE_POISON_STING",
+            "10": "MOVE_TAUNT",
+            "15": "MOVE_PURSUIT",
+            "17": "MOVE_FAINT_ATTACK",
+            "22": "MOVE_REVENGE",
+            "24": "MOVE_SWAGGER",
+            "29": "MOVE_MUD_BOMB",
+            "31": "MOVE_SUCKER_PUNCH",
+            "36": "MOVE_NASTY_PLOT",
+            "41": "MOVE_POISON_JAB",
+            "49": "MOVE_SLUDGE_BOMB",
+            "54": "MOVE_FLATTER"
         }
     }
 }

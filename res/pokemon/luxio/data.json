@@ -76,19 +76,19 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "LEER"
+                "MOVE_TACKLE",
+                "MOVE_LEER"
             ],
-            "5": "LEER",
-            "9": "CHARGE",
-            "13": "SPARK",
-            "18": "BITE",
-            "23": "ROAR",
-            "28": "SWAGGER",
-            "33": "THUNDER_FANG",
-            "38": "CRUNCH",
-            "43": "SCARY_FACE",
-            "48": "DISCHARGE"
+            "5": "MOVE_LEER",
+            "9": "MOVE_CHARGE",
+            "13": "MOVE_SPARK",
+            "18": "MOVE_BITE",
+            "23": "MOVE_ROAR",
+            "28": "MOVE_SWAGGER",
+            "33": "MOVE_THUNDER_FANG",
+            "38": "MOVE_CRUNCH",
+            "43": "MOVE_SCARY_FACE",
+            "48": "MOVE_DISCHARGE"
         }
     },
     "evolutions": [

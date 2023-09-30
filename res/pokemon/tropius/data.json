@@ -86,21 +86,21 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "GUST"
+                "MOVE_LEER",
+                "MOVE_GUST"
             ],
-            "7": "GROWTH",
-            "11": "RAZOR_LEAF",
-            "17": "STOMP",
-            "21": "SWEET_SCENT",
-            "27": "WHIRLWIND",
-            "31": "MAGICAL_LEAF",
-            "37": "BODY_SLAM",
-            "41": "SYNTHESIS",
-            "47": "AIR_SLASH",
-            "51": "SOLAR_BEAM",
-            "57": "NATURAL_GIFT",
-            "61": "LEAF_STORM"
+            "7": "MOVE_GROWTH",
+            "11": "MOVE_RAZOR_LEAF",
+            "17": "MOVE_STOMP",
+            "21": "MOVE_SWEET_SCENT",
+            "27": "MOVE_WHIRLWIND",
+            "31": "MOVE_MAGICAL_LEAF",
+            "37": "MOVE_BODY_SLAM",
+            "41": "MOVE_SYNTHESIS",
+            "47": "MOVE_AIR_SLASH",
+            "51": "MOVE_SOLAR_BEAM",
+            "57": "MOVE_NATURAL_GIFT",
+            "61": "MOVE_LEAF_STORM"
         }
     }
 }

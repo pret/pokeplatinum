@@ -80,25 +80,25 @@
         ],
         "level_up": {
             "1": [
-                "PSYBEAM",
-                "BULLET_SEED",
-                "SIGNAL_BEAM",
-                "TACKLE",
-                "BUBBLE",
-                "SUPERSONIC",
-                "BUBBLE_BEAM"
+                "MOVE_PSYBEAM",
+                "MOVE_BULLET_SEED",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_TACKLE",
+                "MOVE_BUBBLE",
+                "MOVE_SUPERSONIC",
+                "MOVE_BUBBLE_BEAM"
             ],
-            "4": "SUPERSONIC",
-            "10": "BUBBLE_BEAM",
-            "13": "HEADBUTT",
-            "19": "AGILITY",
-            "22": "WING_ATTACK",
-            "28": "WATER_PULSE",
-            "31": "TAKE_DOWN",
-            "37": "CONFUSE_RAY",
-            "40": "BOUNCE",
-            "46": "AQUA_RING",
-            "49": "HYDRO_PUMP"
+            "4": "MOVE_SUPERSONIC",
+            "10": "MOVE_BUBBLE_BEAM",
+            "13": "MOVE_HEADBUTT",
+            "19": "MOVE_AGILITY",
+            "22": "MOVE_WING_ATTACK",
+            "28": "MOVE_WATER_PULSE",
+            "31": "MOVE_TAKE_DOWN",
+            "37": "MOVE_CONFUSE_RAY",
+            "40": "MOVE_BOUNCE",
+            "46": "MOVE_AQUA_RING",
+            "49": "MOVE_HYDRO_PUMP"
         }
     }
 }

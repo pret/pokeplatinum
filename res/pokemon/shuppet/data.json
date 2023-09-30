@@ -86,20 +86,20 @@
             "TM92"
         ],
         "level_up": {
-            "1": "KNOCK_OFF",
-            "5": "SCREECH",
-            "8": "NIGHT_SHADE",
-            "13": "CURSE",
-            "16": "SPITE",
-            "20": "SHADOW_SNEAK",
-            "23": "WILL_O_WISP",
-            "28": "FAINT_ATTACK",
-            "31": "SHADOW_BALL",
-            "35": "SUCKER_PUNCH",
-            "38": "EMBARGO",
-            "43": "SNATCH",
-            "46": "GRUDGE",
-            "50": "TRICK"
+            "1": "MOVE_KNOCK_OFF",
+            "5": "MOVE_SCREECH",
+            "8": "MOVE_NIGHT_SHADE",
+            "13": "MOVE_CURSE",
+            "16": "MOVE_SPITE",
+            "20": "MOVE_SHADOW_SNEAK",
+            "23": "MOVE_WILL_O_WISP",
+            "28": "MOVE_FAINT_ATTACK",
+            "31": "MOVE_SHADOW_BALL",
+            "35": "MOVE_SUCKER_PUNCH",
+            "38": "MOVE_EMBARGO",
+            "43": "MOVE_SNATCH",
+            "46": "MOVE_GRUDGE",
+            "50": "MOVE_TRICK"
         }
     },
     "evolutions": [

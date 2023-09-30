@@ -95,19 +95,19 @@
             "HM04"
         ],
         "level_up": {
-            "1": "SING",
-            "5": "DEFENSE_CURL",
-            "9": "POUND",
-            "13": "DISABLE",
-            "17": "ROLLOUT",
-            "21": "DOUBLE_SLAP",
-            "25": "REST",
-            "29": "BODY_SLAM",
-            "33": "GYRO_BALL",
-            "37": "WAKE_UP_SLAP",
-            "41": "MIMIC",
-            "45": "HYPER_VOICE",
-            "49": "DOUBLE_EDGE"
+            "1": "MOVE_SING",
+            "5": "MOVE_DEFENSE_CURL",
+            "9": "MOVE_POUND",
+            "13": "MOVE_DISABLE",
+            "17": "MOVE_ROLLOUT",
+            "21": "MOVE_DOUBLE_SLAP",
+            "25": "MOVE_REST",
+            "29": "MOVE_BODY_SLAM",
+            "33": "MOVE_GYRO_BALL",
+            "37": "MOVE_WAKE_UP_SLAP",
+            "41": "MOVE_MIMIC",
+            "45": "MOVE_HYPER_VOICE",
+            "49": "MOVE_DOUBLE_EDGE"
         }
     },
     "evolutions": [

@@ -4,7 +4,6 @@ prebuilt_files = [
     'personal.narc',
     'pl_growtbl.narc',
     'pms.narc',
-    'wotbl.narc'
 ]
 
 foreach f : prebuilt_files

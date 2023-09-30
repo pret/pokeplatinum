@@ -81,20 +81,20 @@
             "HM06"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "4": "HARDEN",
-            "8": "MUD_SLAP",
-            "11": "HEADBUTT",
-            "15": "METAL_CLAW",
-            "18": "IRON_DEFENSE",
-            "22": "ROAR",
-            "25": "TAKE_DOWN",
-            "29": "IRON_HEAD",
-            "32": "PROTECT",
-            "36": "METAL_SOUND",
-            "39": "IRON_TAIL",
-            "43": "DOUBLE_EDGE",
-            "46": "METAL_BURST"
+            "1": "MOVE_TACKLE",
+            "4": "MOVE_HARDEN",
+            "8": "MOVE_MUD_SLAP",
+            "11": "MOVE_HEADBUTT",
+            "15": "MOVE_METAL_CLAW",
+            "18": "MOVE_IRON_DEFENSE",
+            "22": "MOVE_ROAR",
+            "25": "MOVE_TAKE_DOWN",
+            "29": "MOVE_IRON_HEAD",
+            "32": "MOVE_PROTECT",
+            "36": "MOVE_METAL_SOUND",
+            "39": "MOVE_IRON_TAIL",
+            "43": "MOVE_DOUBLE_EDGE",
+            "46": "MOVE_METAL_BURST"
         }
     },
     "evolutions": [

@@ -84,12 +84,12 @@
         ],
         "level_up": {
             "1": [
-                "POUND",
-                "CHARM"
+                "MOVE_POUND",
+                "MOVE_CHARM"
             ],
-            "5": "COPYCAT",
-            "9": "REFRESH",
-            "12": "SWEET_KISS"
+            "5": "MOVE_COPYCAT",
+            "9": "MOVE_REFRESH",
+            "12": "MOVE_SWEET_KISS"
         }
     },
     "evolutions": [

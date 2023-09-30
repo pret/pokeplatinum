@@ -88,24 +88,24 @@
         ],
         "level_up": {
             "1": [
-                "SWORDS_DANCE",
-                "TACKLE",
-                "TAIL_WHIP",
-                "QUICK_ATTACK",
-                "FOCUS_ENERGY"
+                "MOVE_SWORDS_DANCE",
+                "MOVE_TACKLE",
+                "MOVE_TAIL_WHIP",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_FOCUS_ENERGY"
             ],
-            "4": "QUICK_ATTACK",
-            "7": "FOCUS_ENERGY",
-            "10": "BITE",
-            "13": "PURSUIT",
-            "16": "HYPER_FANG",
-            "19": "SUCKER_PUNCH",
-            "20": "SCARY_FACE",
-            "24": "CRUNCH",
-            "29": "ASSURANCE",
-            "34": "SUPER_FANG",
-            "39": "DOUBLE_EDGE",
-            "44": "ENDEAVOR"
+            "4": "MOVE_QUICK_ATTACK",
+            "7": "MOVE_FOCUS_ENERGY",
+            "10": "MOVE_BITE",
+            "13": "MOVE_PURSUIT",
+            "16": "MOVE_HYPER_FANG",
+            "19": "MOVE_SUCKER_PUNCH",
+            "20": "MOVE_SCARY_FACE",
+            "24": "MOVE_CRUNCH",
+            "29": "MOVE_ASSURANCE",
+            "34": "MOVE_SUPER_FANG",
+            "39": "MOVE_DOUBLE_EDGE",
+            "44": "MOVE_ENDEAVOR"
         }
     }
 }

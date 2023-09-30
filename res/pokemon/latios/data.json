@@ -100,21 +100,21 @@
             "HM07"
         ],
         "level_up": {
-            "1": "PSYWAVE",
-            "5": "HEAL_BLOCK",
-            "10": "HELPING_HAND",
-            "15": "SAFEGUARD",
-            "20": "DRAGON_BREATH",
-            "25": "PROTECT",
-            "30": "REFRESH",
-            "35": "LUSTER_PURGE",
-            "40": "ZEN_HEADBUTT",
-            "45": "RECOVER",
-            "50": "PSYCHO_SHIFT",
-            "55": "DRAGON_DANCE",
-            "60": "MEMENTO",
-            "65": "PSYCHIC",
-            "70": "DRAGON_PULSE"
+            "1": "MOVE_PSYWAVE",
+            "5": "MOVE_HEAL_BLOCK",
+            "10": "MOVE_HELPING_HAND",
+            "15": "MOVE_SAFEGUARD",
+            "20": "MOVE_DRAGON_BREATH",
+            "25": "MOVE_PROTECT",
+            "30": "MOVE_REFRESH",
+            "35": "MOVE_LUSTER_PURGE",
+            "40": "MOVE_ZEN_HEADBUTT",
+            "45": "MOVE_RECOVER",
+            "50": "MOVE_PSYCHO_SHIFT",
+            "55": "MOVE_DRAGON_DANCE",
+            "60": "MOVE_MEMENTO",
+            "65": "MOVE_PSYCHIC",
+            "70": "MOVE_DRAGON_PULSE"
         }
     }
 }

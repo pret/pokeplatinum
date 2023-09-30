@@ -92,21 +92,21 @@
         ],
         "level_up": {
             "1": [
-                "TELEPORT",
-                "KINESIS",
-                "CONFUSION"
+                "MOVE_TELEPORT",
+                "MOVE_KINESIS",
+                "MOVE_CONFUSION"
             ],
-            "16": "CONFUSION",
-            "18": "DISABLE",
-            "22": "MIRACLE_EYE",
-            "24": "PSYBEAM",
-            "28": "REFLECT",
-            "30": "RECOVER",
-            "34": "PSYCHO_CUT",
-            "36": "ROLE_PLAY",
-            "40": "PSYCHIC",
-            "42": "FUTURE_SIGHT",
-            "46": "TRICK"
+            "16": "MOVE_CONFUSION",
+            "18": "MOVE_DISABLE",
+            "22": "MOVE_MIRACLE_EYE",
+            "24": "MOVE_PSYBEAM",
+            "28": "MOVE_REFLECT",
+            "30": "MOVE_RECOVER",
+            "34": "MOVE_PSYCHO_CUT",
+            "36": "MOVE_ROLE_PLAY",
+            "40": "MOVE_PSYCHIC",
+            "42": "MOVE_FUTURE_SIGHT",
+            "46": "MOVE_TRICK"
         }
     },
     "evolutions": [

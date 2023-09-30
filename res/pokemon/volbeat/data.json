@@ -86,20 +86,20 @@
         ],
         "level_up": {
             "1": [
-                "FLASH",
-                "TACKLE"
+                "MOVE_FLASH",
+                "MOVE_TACKLE"
             ],
-            "5": "DOUBLE_TEAM",
-            "9": "CONFUSE_RAY",
-            "13": "MOONLIGHT",
-            "17": "QUICK_ATTACK",
-            "21": "TAIL_GLOW",
-            "25": "SIGNAL_BEAM",
-            "29": "PROTECT",
-            "33": "HELPING_HAND",
-            "37": "ZEN_HEADBUTT",
-            "41": "BUG_BUZZ",
-            "45": "DOUBLE_EDGE"
+            "5": "MOVE_DOUBLE_TEAM",
+            "9": "MOVE_CONFUSE_RAY",
+            "13": "MOVE_MOONLIGHT",
+            "17": "MOVE_QUICK_ATTACK",
+            "21": "MOVE_TAIL_GLOW",
+            "25": "MOVE_SIGNAL_BEAM",
+            "29": "MOVE_PROTECT",
+            "33": "MOVE_HELPING_HAND",
+            "37": "MOVE_ZEN_HEADBUTT",
+            "41": "MOVE_BUG_BUZZ",
+            "45": "MOVE_DOUBLE_EDGE"
         }
     }
 }

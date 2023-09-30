@@ -93,25 +93,25 @@
         ],
         "level_up": {
             "1": [
-                "SUNNY_DAY",
-                "RAIN_DANCE",
-                "TACKLE",
-                "CONFUSION",
-                "HYPNOSIS",
-                "IMPRISON"
+                "MOVE_SUNNY_DAY",
+                "MOVE_RAIN_DANCE",
+                "MOVE_TACKLE",
+                "MOVE_CONFUSION",
+                "MOVE_HYPNOSIS",
+                "MOVE_IMPRISON"
             ],
-            "7": "HYPNOSIS",
-            "12": "IMPRISON",
-            "14": "CONFUSE_RAY",
-            "19": "EXTRASENSORY",
-            "26": "IRON_DEFENSE",
-            "30": "SAFEGUARD",
-            "33": "BLOCK",
-            "38": "GYRO_BALL",
-            "43": "FUTURE_SIGHT",
-            "50": "FAINT_ATTACK",
-            "61": "PAYBACK",
-            "67": "HEAL_BLOCK"
+            "7": "MOVE_HYPNOSIS",
+            "12": "MOVE_IMPRISON",
+            "14": "MOVE_CONFUSE_RAY",
+            "19": "MOVE_EXTRASENSORY",
+            "26": "MOVE_IRON_DEFENSE",
+            "30": "MOVE_SAFEGUARD",
+            "33": "MOVE_BLOCK",
+            "38": "MOVE_GYRO_BALL",
+            "43": "MOVE_FUTURE_SIGHT",
+            "50": "MOVE_FAINT_ATTACK",
+            "61": "MOVE_PAYBACK",
+            "67": "MOVE_HEAL_BLOCK"
         }
     }
 }

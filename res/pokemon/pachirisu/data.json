@@ -78,18 +78,18 @@
         ],
         "level_up": {
             "1": [
-                "GROWL",
-                "BIDE"
+                "MOVE_GROWL",
+                "MOVE_BIDE"
             ],
-            "5": "QUICK_ATTACK",
-            "9": "CHARM",
-            "13": "SPARK",
-            "17": "ENDURE",
-            "21": "SWIFT",
-            "25": "SWEET_KISS",
-            "29": "DISCHARGE",
-            "33": "SUPER_FANG",
-            "37": "LAST_RESORT"
+            "5": "MOVE_QUICK_ATTACK",
+            "9": "MOVE_CHARM",
+            "13": "MOVE_SPARK",
+            "17": "MOVE_ENDURE",
+            "21": "MOVE_SWIFT",
+            "25": "MOVE_SWEET_KISS",
+            "29": "MOVE_DISCHARGE",
+            "33": "MOVE_SUPER_FANG",
+            "37": "MOVE_LAST_RESORT"
         }
     }
 }

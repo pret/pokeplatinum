@@ -127,21 +127,21 @@
         ],
         "level_up": {
             "1": [
-                "SEISMIC_TOSS",
-                "COSMIC_POWER",
-                "NATURAL_GIFT",
-                "PUNISHMENT"
+                "MOVE_SEISMIC_TOSS",
+                "MOVE_COSMIC_POWER",
+                "MOVE_NATURAL_GIFT",
+                "MOVE_PUNISHMENT"
             ],
-            "10": "GRAVITY",
-            "20": "EARTH_POWER",
-            "30": "HYPER_VOICE",
-            "40": "EXTREME_SPEED",
-            "50": "REFRESH",
-            "60": "FUTURE_SIGHT",
-            "70": "RECOVER",
-            "80": "HYPER_BEAM",
-            "90": "PERISH_SONG",
-            "100": "JUDGMENT"
+            "10": "MOVE_GRAVITY",
+            "20": "MOVE_EARTH_POWER",
+            "30": "MOVE_HYPER_VOICE",
+            "40": "MOVE_EXTREME_SPEED",
+            "50": "MOVE_REFRESH",
+            "60": "MOVE_FUTURE_SIGHT",
+            "70": "MOVE_RECOVER",
+            "80": "MOVE_HYPER_BEAM",
+            "90": "MOVE_PERISH_SONG",
+            "100": "MOVE_JUDGMENT"
         }
     }
 }

@@ -46,16 +46,16 @@
     "learnset": {
         "tms": [],
         "level_up": {
-            "1": "SKETCH",
-            "11": "SKETCH",
-            "21": "SKETCH",
-            "31": "SKETCH",
-            "41": "SKETCH",
-            "51": "SKETCH",
-            "61": "SKETCH",
-            "71": "SKETCH",
-            "81": "SKETCH",
-            "91": "SKETCH"
+            "1": "MOVE_SKETCH",
+            "11": "MOVE_SKETCH",
+            "21": "MOVE_SKETCH",
+            "31": "MOVE_SKETCH",
+            "41": "MOVE_SKETCH",
+            "51": "MOVE_SKETCH",
+            "61": "MOVE_SKETCH",
+            "71": "MOVE_SKETCH",
+            "81": "MOVE_SKETCH",
+            "91": "MOVE_SKETCH"
         }
     }
 }

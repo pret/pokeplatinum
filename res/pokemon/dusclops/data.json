@@ -95,27 +95,27 @@
         ],
         "level_up": {
             "1": [
-                "FIRE_PUNCH",
-                "ICE_PUNCH",
-                "THUNDER_PUNCH",
-                "GRAVITY",
-                "BIND",
-                "LEER",
-                "NIGHT_SHADE",
-                "DISABLE"
+                "MOVE_FIRE_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_GRAVITY",
+                "MOVE_BIND",
+                "MOVE_LEER",
+                "MOVE_NIGHT_SHADE",
+                "MOVE_DISABLE"
             ],
-            "6": "DISABLE",
-            "9": "FORESIGHT",
-            "14": "ASTONISH",
-            "17": "CONFUSE_RAY",
-            "22": "SHADOW_SNEAK",
-            "25": "PURSUIT",
-            "30": "CURSE",
-            "33": "WILL_O_WISP",
-            "37": "SHADOW_PUNCH",
-            "43": "MEAN_LOOK",
-            "51": "PAYBACK",
-            "61": "FUTURE_SIGHT"
+            "6": "MOVE_DISABLE",
+            "9": "MOVE_FORESIGHT",
+            "14": "MOVE_ASTONISH",
+            "17": "MOVE_CONFUSE_RAY",
+            "22": "MOVE_SHADOW_SNEAK",
+            "25": "MOVE_PURSUIT",
+            "30": "MOVE_CURSE",
+            "33": "MOVE_WILL_O_WISP",
+            "37": "MOVE_SHADOW_PUNCH",
+            "43": "MOVE_MEAN_LOOK",
+            "51": "MOVE_PAYBACK",
+            "61": "MOVE_FUTURE_SIGHT"
         }
     },
     "evolutions": [

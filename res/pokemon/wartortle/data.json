@@ -81,23 +81,23 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "TAIL_WHIP",
-                "BUBBLE"
+                "MOVE_TACKLE",
+                "MOVE_TAIL_WHIP",
+                "MOVE_BUBBLE"
             ],
-            "4": "TAIL_WHIP",
-            "7": "BUBBLE",
-            "10": "WITHDRAW",
-            "13": "WATER_GUN",
-            "16": "BITE",
-            "20": "RAPID_SPIN",
-            "24": "PROTECT",
-            "28": "WATER_PULSE",
-            "32": "AQUA_TAIL",
-            "36": "SKULL_BASH",
-            "40": "IRON_DEFENSE",
-            "44": "RAIN_DANCE",
-            "48": "HYDRO_PUMP"
+            "4": "MOVE_TAIL_WHIP",
+            "7": "MOVE_BUBBLE",
+            "10": "MOVE_WITHDRAW",
+            "13": "MOVE_WATER_GUN",
+            "16": "MOVE_BITE",
+            "20": "MOVE_RAPID_SPIN",
+            "24": "MOVE_PROTECT",
+            "28": "MOVE_WATER_PULSE",
+            "32": "MOVE_AQUA_TAIL",
+            "36": "MOVE_SKULL_BASH",
+            "40": "MOVE_IRON_DEFENSE",
+            "44": "MOVE_RAIN_DANCE",
+            "48": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

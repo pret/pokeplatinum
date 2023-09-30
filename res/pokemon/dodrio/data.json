@@ -76,22 +76,22 @@
         ],
         "level_up": {
             "1": [
-                "PLUCK",
-                "PECK",
-                "GROWL",
-                "QUICK_ATTACK",
-                "RAGE"
+                "MOVE_PLUCK",
+                "MOVE_PECK",
+                "MOVE_GROWL",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_RAGE"
             ],
-            "5": "QUICK_ATTACK",
-            "10": "RAGE",
-            "14": "FURY_ATTACK",
-            "19": "PURSUIT",
-            "23": "UPROAR",
-            "28": "ACUPRESSURE",
-            "34": "TRI_ATTACK",
-            "41": "AGILITY",
-            "47": "DRILL_PECK",
-            "54": "ENDEAVOR"
+            "5": "MOVE_QUICK_ATTACK",
+            "10": "MOVE_RAGE",
+            "14": "MOVE_FURY_ATTACK",
+            "19": "MOVE_PURSUIT",
+            "23": "MOVE_UPROAR",
+            "28": "MOVE_ACUPRESSURE",
+            "34": "MOVE_TRI_ATTACK",
+            "41": "MOVE_AGILITY",
+            "47": "MOVE_DRILL_PECK",
+            "54": "MOVE_ENDEAVOR"
         }
     }
 }

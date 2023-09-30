@@ -77,21 +77,21 @@
             "HM07"
         ],
         "level_up": {
-            "1": "SPLASH",
-            "4": "GROWL",
-            "7": "WATER_GUN",
-            "11": "ROLLOUT",
-            "14": "WHIRLPOOL",
-            "17": "ASTONISH",
-            "21": "WATER_PULSE",
-            "24": "MIST",
-            "27": "REST",
-            "31": "BRINE",
-            "34": "WATER_SPOUT",
-            "37": "AMNESIA",
-            "41": "DIVE",
-            "44": "BOUNCE",
-            "47": "HYDRO_PUMP"
+            "1": "MOVE_SPLASH",
+            "4": "MOVE_GROWL",
+            "7": "MOVE_WATER_GUN",
+            "11": "MOVE_ROLLOUT",
+            "14": "MOVE_WHIRLPOOL",
+            "17": "MOVE_ASTONISH",
+            "21": "MOVE_WATER_PULSE",
+            "24": "MOVE_MIST",
+            "27": "MOVE_REST",
+            "31": "MOVE_BRINE",
+            "34": "MOVE_WATER_SPOUT",
+            "37": "MOVE_AMNESIA",
+            "41": "MOVE_DIVE",
+            "44": "MOVE_BOUNCE",
+            "47": "MOVE_HYDRO_PUMP"
         }
     },
     "evolutions": [

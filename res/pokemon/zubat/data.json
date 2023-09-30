@@ -80,17 +80,17 @@
             "HM05"
         ],
         "level_up": {
-            "1": "LEECH_LIFE",
-            "5": "SUPERSONIC",
-            "9": "ASTONISH",
-            "13": "BITE",
-            "17": "WING_ATTACK",
-            "21": "CONFUSE_RAY",
-            "25": "AIR_CUTTER",
-            "29": "MEAN_LOOK",
-            "33": "POISON_FANG",
-            "37": "HAZE",
-            "41": "AIR_SLASH"
+            "1": "MOVE_LEECH_LIFE",
+            "5": "MOVE_SUPERSONIC",
+            "9": "MOVE_ASTONISH",
+            "13": "MOVE_BITE",
+            "17": "MOVE_WING_ATTACK",
+            "21": "MOVE_CONFUSE_RAY",
+            "25": "MOVE_AIR_CUTTER",
+            "29": "MOVE_MEAN_LOOK",
+            "33": "MOVE_POISON_FANG",
+            "37": "MOVE_HAZE",
+            "41": "MOVE_AIR_SLASH"
         }
     },
     "evolutions": [

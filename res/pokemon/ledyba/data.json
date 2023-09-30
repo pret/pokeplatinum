@@ -81,21 +81,21 @@
             "TM90"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "6": "SUPERSONIC",
-            "9": "COMET_PUNCH",
+            "1": "MOVE_TACKLE",
+            "6": "MOVE_SUPERSONIC",
+            "9": "MOVE_COMET_PUNCH",
             "14": [
-                "LIGHT_SCREEN",
-                "REFLECT",
-                "SAFEGUARD"
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_REFLECT",
+                "MOVE_SAFEGUARD"
             ],
-            "17": "MACH_PUNCH",
-            "22": "BATON_PASS",
-            "25": "SILVER_WIND",
-            "30": "AGILITY",
-            "33": "SWIFT",
-            "38": "DOUBLE_EDGE",
-            "41": "BUG_BUZZ"
+            "17": "MOVE_MACH_PUNCH",
+            "22": "MOVE_BATON_PASS",
+            "25": "MOVE_SILVER_WIND",
+            "30": "MOVE_AGILITY",
+            "33": "MOVE_SWIFT",
+            "38": "MOVE_DOUBLE_EDGE",
+            "41": "MOVE_BUG_BUZZ"
         }
     },
     "evolutions": [

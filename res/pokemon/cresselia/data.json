@@ -86,19 +86,19 @@
         ],
         "level_up": {
             "1": [
-                "CONFUSION",
-                "DOUBLE_TEAM"
+                "MOVE_CONFUSION",
+                "MOVE_DOUBLE_TEAM"
             ],
-            "11": "SAFEGUARD",
-            "20": "MIST",
-            "29": "AURORA_BEAM",
-            "38": "FUTURE_SIGHT",
-            "47": "SLASH",
-            "57": "MOONLIGHT",
-            "66": "PSYCHO_CUT",
-            "75": "PSYCHO_SHIFT",
-            "84": "LUNAR_DANCE",
-            "93": "PSYCHIC"
+            "11": "MOVE_SAFEGUARD",
+            "20": "MOVE_MIST",
+            "29": "MOVE_AURORA_BEAM",
+            "38": "MOVE_FUTURE_SIGHT",
+            "47": "MOVE_SLASH",
+            "57": "MOVE_MOONLIGHT",
+            "66": "MOVE_PSYCHO_CUT",
+            "75": "MOVE_PSYCHO_SHIFT",
+            "84": "MOVE_LUNAR_DANCE",
+            "93": "MOVE_PSYCHIC"
         }
     }
 }

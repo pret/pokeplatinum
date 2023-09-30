@@ -88,20 +88,20 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "CONFUSION"
+                "MOVE_TACKLE",
+                "MOVE_CONFUSION"
             ],
-            "7": "HYPNOSIS",
-            "12": "IMPRISON",
-            "14": "CONFUSE_RAY",
-            "19": "EXTRASENSORY",
-            "26": "IRON_DEFENSE",
-            "30": "SAFEGUARD",
-            "35": "GYRO_BALL",
-            "37": "FUTURE_SIGHT",
-            "41": "FAINT_ATTACK",
-            "49": "PAYBACK",
-            "52": "HEAL_BLOCK"
+            "7": "MOVE_HYPNOSIS",
+            "12": "MOVE_IMPRISON",
+            "14": "MOVE_CONFUSE_RAY",
+            "19": "MOVE_EXTRASENSORY",
+            "26": "MOVE_IRON_DEFENSE",
+            "30": "MOVE_SAFEGUARD",
+            "35": "MOVE_GYRO_BALL",
+            "37": "MOVE_FUTURE_SIGHT",
+            "41": "MOVE_FAINT_ATTACK",
+            "49": "MOVE_PAYBACK",
+            "52": "MOVE_HEAL_BLOCK"
         }
     },
     "evolutions": [

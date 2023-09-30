@@ -87,19 +87,19 @@
         ],
         "level_up": {
             "1": [
-                "BITE",
-                "POISON_STING",
-                "LEER"
+                "MOVE_BITE",
+                "MOVE_POISON_STING",
+                "MOVE_LEER"
             ],
-            "6": "KNOCK_OFF",
-            "12": "PIN_MISSILE",
-            "17": "ACUPRESSURE",
-            "23": "SCARY_FACE",
-            "28": "TOXIC_SPIKES",
-            "34": "BUG_BITE",
-            "39": "POISON_FANG",
-            "45": "CRUNCH",
-            "50": "CROSS_POISON"
+            "6": "MOVE_KNOCK_OFF",
+            "12": "MOVE_PIN_MISSILE",
+            "17": "MOVE_ACUPRESSURE",
+            "23": "MOVE_SCARY_FACE",
+            "28": "MOVE_TOXIC_SPIKES",
+            "34": "MOVE_BUG_BITE",
+            "39": "MOVE_POISON_FANG",
+            "45": "MOVE_CRUNCH",
+            "50": "MOVE_CROSS_POISON"
         }
     },
     "evolutions": [

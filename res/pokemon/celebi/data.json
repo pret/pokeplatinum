@@ -93,21 +93,21 @@
         ],
         "level_up": {
             "1": [
-                "LEECH_SEED",
-                "CONFUSION",
-                "RECOVER",
-                "HEAL_BELL"
+                "MOVE_LEECH_SEED",
+                "MOVE_CONFUSION",
+                "MOVE_RECOVER",
+                "MOVE_HEAL_BELL"
             ],
-            "10": "SAFEGUARD",
-            "19": "MAGICAL_LEAF",
-            "28": "ANCIENT_POWER",
-            "37": "BATON_PASS",
-            "46": "NATURAL_GIFT",
-            "55": "HEAL_BLOCK",
-            "64": "FUTURE_SIGHT",
-            "73": "HEALING_WISH",
-            "82": "LEAF_STORM",
-            "91": "PERISH_SONG"
+            "10": "MOVE_SAFEGUARD",
+            "19": "MOVE_MAGICAL_LEAF",
+            "28": "MOVE_ANCIENT_POWER",
+            "37": "MOVE_BATON_PASS",
+            "46": "MOVE_NATURAL_GIFT",
+            "55": "MOVE_HEAL_BLOCK",
+            "64": "MOVE_FUTURE_SIGHT",
+            "73": "MOVE_HEALING_WISH",
+            "82": "MOVE_LEAF_STORM",
+            "91": "MOVE_PERISH_SONG"
         }
     }
 }

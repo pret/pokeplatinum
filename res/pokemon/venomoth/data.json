@@ -80,25 +80,25 @@
         ],
         "level_up": {
             "1": [
-                "SILVER_WIND",
-                "TACKLE",
-                "DISABLE",
-                "FORESIGHT",
-                "SUPERSONIC"
+                "MOVE_SILVER_WIND",
+                "MOVE_TACKLE",
+                "MOVE_DISABLE",
+                "MOVE_FORESIGHT",
+                "MOVE_SUPERSONIC"
             ],
-            "5": "SUPERSONIC",
-            "11": "CONFUSION",
-            "13": "POISON_POWDER",
-            "17": "LEECH_LIFE",
-            "23": "STUN_SPORE",
-            "25": "PSYBEAM",
-            "29": "SLEEP_POWDER",
-            "31": "GUST",
-            "37": "SIGNAL_BEAM",
-            "41": "ZEN_HEADBUTT",
-            "47": "POISON_FANG",
-            "55": "PSYCHIC",
-            "59": "BUG_BUZZ"
+            "5": "MOVE_SUPERSONIC",
+            "11": "MOVE_CONFUSION",
+            "13": "MOVE_POISON_POWDER",
+            "17": "MOVE_LEECH_LIFE",
+            "23": "MOVE_STUN_SPORE",
+            "25": "MOVE_PSYBEAM",
+            "29": "MOVE_SLEEP_POWDER",
+            "31": "MOVE_GUST",
+            "37": "MOVE_SIGNAL_BEAM",
+            "41": "MOVE_ZEN_HEADBUTT",
+            "47": "MOVE_POISON_FANG",
+            "55": "MOVE_PSYCHIC",
+            "59": "MOVE_BUG_BUZZ"
         }
     }
 }

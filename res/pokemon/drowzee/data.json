@@ -88,22 +88,22 @@
         ],
         "level_up": {
             "1": [
-                "POUND",
-                "HYPNOSIS"
+                "MOVE_POUND",
+                "MOVE_HYPNOSIS"
             ],
-            "7": "DISABLE",
-            "9": "CONFUSION",
-            "15": "HEADBUTT",
-            "18": "POISON_GAS",
-            "21": "MEDITATE",
-            "26": "PSYBEAM",
-            "29": "PSYCH_UP",
-            "32": "HEADBUTT",
-            "37": "SWAGGER",
-            "40": "PSYCHIC",
-            "43": "NASTY_PLOT",
-            "50": "ZEN_HEADBUTT",
-            "53": "FUTURE_SIGHT"
+            "7": "MOVE_DISABLE",
+            "9": "MOVE_CONFUSION",
+            "15": "MOVE_HEADBUTT",
+            "18": "MOVE_POISON_GAS",
+            "21": "MOVE_MEDITATE",
+            "26": "MOVE_PSYBEAM",
+            "29": "MOVE_PSYCH_UP",
+            "32": "MOVE_HEADBUTT",
+            "37": "MOVE_SWAGGER",
+            "40": "MOVE_PSYCHIC",
+            "43": "MOVE_NASTY_PLOT",
+            "50": "MOVE_ZEN_HEADBUTT",
+            "53": "MOVE_FUTURE_SIGHT"
         }
     },
     "evolutions": [

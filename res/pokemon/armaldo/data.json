@@ -86,21 +86,21 @@
         ],
         "level_up": {
             "1": [
-                "SCRATCH",
-                "HARDEN",
-                "MUD_SPORT",
-                "WATER_GUN"
+                "MOVE_SCRATCH",
+                "MOVE_HARDEN",
+                "MOVE_MUD_SPORT",
+                "MOVE_WATER_GUN"
             ],
-            "7": "MUD_SPORT",
-            "13": "WATER_GUN",
-            "19": "METAL_CLAW",
-            "25": "PROTECT",
-            "31": "ANCIENT_POWER",
-            "37": "FURY_CUTTER",
-            "46": "SLASH",
-            "55": "ROCK_BLAST",
-            "67": "CRUSH_CLAW",
-            "73": "X_SCISSOR"
+            "7": "MOVE_MUD_SPORT",
+            "13": "MOVE_WATER_GUN",
+            "19": "MOVE_METAL_CLAW",
+            "25": "MOVE_PROTECT",
+            "31": "MOVE_ANCIENT_POWER",
+            "37": "MOVE_FURY_CUTTER",
+            "46": "MOVE_SLASH",
+            "55": "MOVE_ROCK_BLAST",
+            "67": "MOVE_CRUSH_CLAW",
+            "73": "MOVE_X_SCISSOR"
         }
     }
 }

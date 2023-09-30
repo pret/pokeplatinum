@@ -106,26 +106,26 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "WRAP"
+                "MOVE_LEER",
+                "MOVE_WRAP"
             ],
-            "9": "NIGHT_SHADE",
-            "17": "TELEPORT",
-            "25": "KNOCK_OFF",
-            "33": "SPIKES",
-            "41": "PSYCHIC",
-            "49": "SNATCH",
-            "57": "PSYCHO_SHIFT",
-            "65": "ZEN_HEADBUTT",
+            "9": "MOVE_NIGHT_SHADE",
+            "17": "MOVE_TELEPORT",
+            "25": "MOVE_KNOCK_OFF",
+            "33": "MOVE_SPIKES",
+            "41": "MOVE_PSYCHIC",
+            "49": "MOVE_SNATCH",
+            "57": "MOVE_PSYCHO_SHIFT",
+            "65": "MOVE_ZEN_HEADBUTT",
             "73": [
-                "IRON_DEFENSE",
-                "AMNESIA"
+                "MOVE_IRON_DEFENSE",
+                "MOVE_AMNESIA"
             ],
-            "81": "RECOVER",
-            "89": "PSYCHO_BOOST",
+            "81": "MOVE_RECOVER",
+            "89": "MOVE_PSYCHO_BOOST",
             "97": [
-                "COUNTER",
-                "MIRROR_COAT"
+                "MOVE_COUNTER",
+                "MOVE_MIRROR_COAT"
             ]
         }
     }

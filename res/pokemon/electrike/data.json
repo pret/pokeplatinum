@@ -76,19 +76,19 @@
             "HM04"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "4": "THUNDER_WAVE",
-            "9": "LEER",
-            "12": "HOWL",
-            "17": "QUICK_ATTACK",
-            "20": "SPARK",
-            "25": "ODOR_SLEUTH",
-            "28": "BITE",
-            "33": "THUNDER_FANG",
-            "36": "ROAR",
-            "41": "DISCHARGE",
-            "44": "CHARGE",
-            "49": "THUNDER"
+            "1": "MOVE_TACKLE",
+            "4": "MOVE_THUNDER_WAVE",
+            "9": "MOVE_LEER",
+            "12": "MOVE_HOWL",
+            "17": "MOVE_QUICK_ATTACK",
+            "20": "MOVE_SPARK",
+            "25": "MOVE_ODOR_SLEUTH",
+            "28": "MOVE_BITE",
+            "33": "MOVE_THUNDER_FANG",
+            "36": "MOVE_ROAR",
+            "41": "MOVE_DISCHARGE",
+            "44": "MOVE_CHARGE",
+            "49": "MOVE_THUNDER"
         }
     },
     "evolutions": [

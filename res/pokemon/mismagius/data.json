@@ -91,12 +91,12 @@
         ],
         "level_up": {
             "1": [
-                "LUCKY_CHANT",
-                "MAGICAL_LEAF",
-                "GROWL",
-                "PSYWAVE",
-                "SPITE",
-                "ASTONISH"
+                "MOVE_LUCKY_CHANT",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_GROWL",
+                "MOVE_PSYWAVE",
+                "MOVE_SPITE",
+                "MOVE_ASTONISH"
             ]
         }
     }

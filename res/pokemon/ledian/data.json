@@ -87,24 +87,24 @@
         ],
         "level_up": {
             "1": [
-                "TACKLE",
-                "SUPERSONIC",
-                "COMET_PUNCH"
+                "MOVE_TACKLE",
+                "MOVE_SUPERSONIC",
+                "MOVE_COMET_PUNCH"
             ],
-            "6": "SUPERSONIC",
-            "9": "COMET_PUNCH",
+            "6": "MOVE_SUPERSONIC",
+            "9": "MOVE_COMET_PUNCH",
             "14": [
-                "LIGHT_SCREEN",
-                "REFLECT",
-                "SAFEGUARD"
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_REFLECT",
+                "MOVE_SAFEGUARD"
             ],
-            "17": "MACH_PUNCH",
-            "24": "BATON_PASS",
-            "29": "SILVER_WIND",
-            "36": "AGILITY",
-            "41": "SWIFT",
-            "48": "DOUBLE_EDGE",
-            "53": "BUG_BUZZ"
+            "17": "MOVE_MACH_PUNCH",
+            "24": "MOVE_BATON_PASS",
+            "29": "MOVE_SILVER_WIND",
+            "36": "MOVE_AGILITY",
+            "41": "MOVE_SWIFT",
+            "48": "MOVE_DOUBLE_EDGE",
+            "53": "MOVE_BUG_BUZZ"
         }
     }
 }

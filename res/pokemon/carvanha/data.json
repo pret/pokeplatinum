@@ -77,20 +77,20 @@
         ],
         "level_up": {
             "1": [
-                "LEER",
-                "BITE"
+                "MOVE_LEER",
+                "MOVE_BITE"
             ],
-            "6": "RAGE",
-            "8": "FOCUS_ENERGY",
-            "11": "SCARY_FACE",
-            "16": "ICE_FANG",
-            "18": "SCREECH",
-            "21": "SWAGGER",
-            "26": "ASSURANCE",
-            "28": "CRUNCH",
-            "31": "AQUA_JET",
-            "36": "AGILITY",
-            "38": "TAKE_DOWN"
+            "6": "MOVE_RAGE",
+            "8": "MOVE_FOCUS_ENERGY",
+            "11": "MOVE_SCARY_FACE",
+            "16": "MOVE_ICE_FANG",
+            "18": "MOVE_SCREECH",
+            "21": "MOVE_SWAGGER",
+            "26": "MOVE_ASSURANCE",
+            "28": "MOVE_CRUNCH",
+            "31": "MOVE_AQUA_JET",
+            "36": "MOVE_AGILITY",
+            "38": "MOVE_TAKE_DOWN"
         }
     },
     "evolutions": [

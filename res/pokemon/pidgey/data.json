@@ -73,19 +73,19 @@
             "HM05"
         ],
         "level_up": {
-            "1": "TACKLE",
-            "5": "SAND_ATTACK",
-            "9": "GUST",
-            "13": "QUICK_ATTACK",
-            "17": "WHIRLWIND",
-            "21": "TWISTER",
-            "25": "FEATHER_DANCE",
-            "29": "AGILITY",
-            "33": "WING_ATTACK",
-            "37": "ROOST",
-            "41": "TAILWIND",
-            "45": "MIRROR_MOVE",
-            "49": "AIR_SLASH"
+            "1": "MOVE_TACKLE",
+            "5": "MOVE_SAND_ATTACK",
+            "9": "MOVE_GUST",
+            "13": "MOVE_QUICK_ATTACK",
+            "17": "MOVE_WHIRLWIND",
+            "21": "MOVE_TWISTER",
+            "25": "MOVE_FEATHER_DANCE",
+            "29": "MOVE_AGILITY",
+            "33": "MOVE_WING_ATTACK",
+            "37": "MOVE_ROOST",
+            "41": "MOVE_TAILWIND",
+            "45": "MOVE_MIRROR_MOVE",
+            "49": "MOVE_AIR_SLASH"
         }
     },
     "evolutions": [
