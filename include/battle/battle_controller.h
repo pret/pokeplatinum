@@ -55,9 +55,54 @@ enum BattleControlSequence {
     BATTLE_CONTROL_END_WAIT,
 };
 
-void *BattleContext_New(BattleSystem *battleSys);
-int BattleController_Main(BattleSystem *battleSys, BattleContext *battleCtx);
+/**
+ * @brief Create a new BattleContext struct from the given BattleSystem.
+ * 
+ * The context itself will be initialized along with its state-counters, its AI
+ * context, the move data table, and the item data table. Memory for the new
+ * structure will always be allocated from the Battle heap.
+ * 
+ * @param battleSys 
+ * @return Address of the newly-allocated BattleContext struct.
+ */
+void* BattleContext_New(BattleSystem *battleSys);
+
+/**
+ * @brief Main executor for the battle state machine.
+ * 
+ * If the battle is deemed to not yet be complete, then a command will be
+ * loaded from the parent context struct and the respective state machine
+ * function will be invoked.
+ * 
+ * For the sequence of states in the machine, see enum BattleControlSequence.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if the battle for this state machine is complete; FALSE
+ * otherwise.
+ */
+BOOL BattleController_Main(BattleSystem *battleSys, BattleContext *battleCtx);
+
+/**
+ * @brief Free the child memory blocks allocated for a BattleContext struct.
+ * 
+ * @param battleCtx 
+ */
 void BattleContext_Free(BattleContext *battleCtx);
+
+/**
+ * @brief Determine if a move used by the attacking battler will hit its target.
+ * 
+ * This routine will account for both the standard accuracy formula and any
+ * effects which would otherwise override that formula. Move status flags will
+ * be updated with information about the move's result.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param attacker 
+ * @param defender 
+ * @param move
+ */
 void BattleController_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 
 #endif // POKEPLATINUM_BATTLE_CONTROLLER_H
