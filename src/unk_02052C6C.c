@@ -114,7 +114,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (sub_020247E0(v2->unk_0C) == 0) {
                 sub_02052FA8(v2, v3);
                 (*v4)++;
@@ -160,7 +160,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         (*v4)++;
         break;
     case 8:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02053098(v2, v3);
             sub_0203E274(v2, &(v3->unk_10));
             (*v4)++;

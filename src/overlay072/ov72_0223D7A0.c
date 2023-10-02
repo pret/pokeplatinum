@@ -188,7 +188,7 @@ int ov72_0223D920 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = 1;
         }
         break;
@@ -201,7 +201,7 @@ int ov72_0223D920 (UnkStruct_020067E8 * param0, int * param1)
         ov72_0223E8D0(&v0->unk_437C);
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
         break;

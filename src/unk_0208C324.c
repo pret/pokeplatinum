@@ -517,7 +517,7 @@ static void sub_0208C950 (UnkStruct_0208D7BC * param0)
 
 static int sub_0208C9C8 (UnkStruct_0208D7BC * param0)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         sub_02092028(param0);
         sub_0208D618(param0);
 
@@ -989,7 +989,7 @@ static u8 sub_0208D17C (UnkStruct_0208D7BC * param0)
 
 static u8 sub_0208D18C (UnkStruct_0208D7BC * param0)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         return 1;
     }
 

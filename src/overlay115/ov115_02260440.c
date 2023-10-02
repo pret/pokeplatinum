@@ -93,7 +93,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
         switch (v0->unk_78) {
         case 0:
 
-            if (sub_0200F2AC() == 1) {
+            if (ScreenWipe_Done() == 1) {
                 sub_0200F2C0();
             }
 
@@ -206,7 +206,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
     case 4:
         ov115_02260DAC(v0->unk_34, 0);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (v0->unk_44 == 0) {
                 v2 = sub_020359DC(22, NULL, 0);
 
@@ -311,7 +311,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
     case 12:
         ov115_02260F70(v0->unk_34, 1);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_020364F0(3);
             (*param1)++;
         }

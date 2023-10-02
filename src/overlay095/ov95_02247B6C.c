@@ -308,7 +308,7 @@ static int ov95_02247ED8 (UnkStruct_ov95_02247C6C * param0, int * param1)
 {
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02021D6C(param0->unk_3C[0], 1);
             sub_02021CAC(param0->unk_3C[0], 1);
             return 1;
@@ -424,7 +424,7 @@ static int ov95_02248090 (UnkStruct_ov95_02247C6C * param0, int * param1)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (ov95_0224846C(param0)) {
                 return 1;
             }

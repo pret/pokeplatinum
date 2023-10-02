@@ -238,7 +238,7 @@ int ov17_0223CDDC (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             sub_02003178(v0->unk_0C.unk_44, 0x1, 0xffff, 6, 16, 0, 0x7fff);
             sub_02003178(v0->unk_0C.unk_44, 0x2, 0xffff, 6, 16, 0, 0x7fff);
             sub_02003178(v0->unk_0C.unk_44, 0x4, 0x3fff, 6, 16, 0, 0x7fff);
@@ -278,7 +278,7 @@ int ov17_0223CDDC (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 2:
         if (v0->unk_F14 == 1) {
-            if (sub_0200F2AC() == 1) {
+            if (ScreenWipe_Done() == 1) {
                 return 1;
             }
         }

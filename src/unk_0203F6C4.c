@@ -4695,7 +4695,7 @@ static BOOL sub_02042960 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02042970 (UnkStruct_0203E724 * param0)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         return 1;
     }
 

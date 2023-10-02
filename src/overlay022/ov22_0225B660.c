@@ -138,7 +138,7 @@ int ov22_0225B738 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*param1)++;
         }
         break;
@@ -152,7 +152,7 @@ int ov22_0225B738 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 5:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
         break;

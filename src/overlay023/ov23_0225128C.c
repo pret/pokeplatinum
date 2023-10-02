@@ -629,7 +629,7 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
         v1->unk_00 = 1;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0205EB18(v0->unk_3C, 0);
 
             ov23_02251A84(1, v0);
@@ -650,7 +650,7 @@ static BOOL ov23_02251ACC (UnkStruct_020508D4 * param0)
         v1->unk_00 = 5;
         break;
     case 5:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov23_0224B2C8(v0);
             sub_0206AA30(sub_020507E4(v0->unk_0C));
             ov23_02251F94(v0);

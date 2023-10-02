@@ -377,14 +377,14 @@ int ov68_0225C798 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v2 = sub_0200F2AC();
+        v2 = ScreenWipe_Done();
 
         if (v2 == 1) {
             (*param1)++;
         }
         break;
     case 2:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             if (ov66_0222E12C(v1->unk_04) == 1) {
                 ov66_0222E2A4(v1->unk_04);
                 (*param1)++;
@@ -408,7 +408,7 @@ int ov68_0225C798 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 4:
-        v2 = sub_0200F2AC();
+        v2 = ScreenWipe_Done();
 
         if (v2 == 1) {
             ov68_0225D2A0(&v0->unk_2CC);
@@ -1191,7 +1191,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
         param0->unk_60 = 10;
         break;
     case 10:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             ov68_0225DB3C(param0, param1, param2, param5);
             param0->unk_60 = 11;
         }
@@ -1201,7 +1201,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
         param0->unk_60 = 12;
         break;
     case 12:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_60 = 13;
         }
         break;

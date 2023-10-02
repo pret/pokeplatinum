@@ -37,7 +37,7 @@ int ov117_022664BC (UnkStruct_020067E8 * param0, int * param1)
     if (v0->unk_00->unk_3D == 1) {
         switch (v0->unk_00->unk_3E) {
         case 0:
-            if (sub_0200F2AC() == 1) {
+            if (ScreenWipe_Done() == 1) {
                 sub_0200F2C0();
             }
 

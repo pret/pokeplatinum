@@ -317,7 +317,7 @@ static int ov95_022486E0 (UnkStruct_ov95_02248688 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0 = 0;
             (*param1)++;
         }
@@ -405,7 +405,7 @@ static int ov95_022487D4 (UnkStruct_ov95_02248688 * param0, int * param1)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
     }

@@ -280,7 +280,7 @@ static BOOL sub_0209A544 (UnkStruct_0209A3D0 * param0)
         param0->unk_04 = 3;
         break;
     case 3:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_04 = 4;
         }
         break;
@@ -291,7 +291,7 @@ static BOOL sub_0209A544 (UnkStruct_0209A3D0 * param0)
         }
         break;
     case 5:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             sub_0201975C(0, 0);
             sub_0201975C(4, 0);
             param0->unk_04 = 1;

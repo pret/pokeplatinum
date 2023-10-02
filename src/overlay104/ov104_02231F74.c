@@ -492,7 +492,7 @@ static void ov104_022324C8 (UnkStruct_0201CD38 * param0, void * param1)
         return;
     }
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return;
     }
 
@@ -832,7 +832,7 @@ static void ov104_0223296C (UnkStruct_0201CD38 * param0, void * param1)
         return;
     }
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return;
     }
 

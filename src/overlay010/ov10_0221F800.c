@@ -715,7 +715,7 @@ static u8 ov10_0221FD00 (UnkStruct_ov10_0221FB28 * param0)
 
 static u8 ov10_0221FE10 (UnkStruct_ov10_0221FB28 * param0)
 {
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return 0;
     }
 
@@ -841,7 +841,7 @@ static u8 ov10_02220228 (UnkStruct_ov10_0221FB28 * param0)
         sub_0200F174(0, 0, 0, 0x7fff, 6, 1, param0->unk_00->unk_24);
     }
 
-    if ((param0->unk_B76 >= 8) && (sub_0200F2AC() == 1)) {
+    if ((param0->unk_B76 >= 8) && (ScreenWipe_Done() == 1)) {
         param0->unk_B73 = 2;
         return 1;
     }
@@ -1157,7 +1157,7 @@ static u8 ov10_02220A34 (UnkStruct_ov10_0221FB28 * param0)
 
 static u8 ov10_02220A50 (UnkStruct_0201CD38 * param0, UnkStruct_ov10_0221FB28 * param1)
 {
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return 0;
     }
 

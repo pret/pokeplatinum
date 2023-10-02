@@ -556,7 +556,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
         }
         break;
     case 33:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0205AAA0(v0, 0);
             sub_0205A0D8(v0, v0->unk_24, v0->unk_50, v0->unk_84, 1, 11);
             v0->unk_34 = 34;
@@ -1049,7 +1049,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v1->unk_28++;
         }
         break;

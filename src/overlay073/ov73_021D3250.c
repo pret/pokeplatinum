@@ -126,7 +126,7 @@ int ov73_021D3280 (UnkStruct_020067E8 * param0, int * param1)
     case 3:
         ov73_021D37AC(v0);
 
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             *param1 = 4;
         }
         break;
@@ -141,7 +141,7 @@ int ov73_021D3280 (UnkStruct_020067E8 * param0, int * param1)
     case 5:
         ov73_021D37AC(v0);
 
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             ov73_021D368C(v0);
             ov73_021D35F4(v0);
             sub_02017798(NULL, NULL);

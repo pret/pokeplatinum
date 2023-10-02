@@ -1792,7 +1792,7 @@ BOOL sub_020360D0 (int param0, const void * param1)
     return sub_020359DC(param0, param1, 0);
 }
 
-BOOL sub_020360DC (int param0)
+BOOL Link_Message (int param0)
 {
     return sub_020359DC(param0, NULL, 0);
 }

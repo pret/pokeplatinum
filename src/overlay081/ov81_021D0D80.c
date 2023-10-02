@@ -332,7 +332,7 @@ static void ov81_021D115C (UnkStruct_ov81_021D1610 * param0)
 
 static int ov81_021D1174 (UnkStruct_ov81_021D1610 * param0)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         return 1;
     }
 
@@ -430,7 +430,7 @@ static int ov81_021D12E8 (UnkStruct_ov81_021D1610 * param0)
 
 static int ov81_021D1358 (UnkStruct_ov81_021D1610 * param0)
 {
-    return sub_0200F2AC();
+    return ScreenWipe_Done();
 }
 
 static void ov81_021D1360 (UnkStruct_ov81_021D1610 * param0)

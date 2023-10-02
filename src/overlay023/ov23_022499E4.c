@@ -397,7 +397,7 @@ static void ov23_02249E18 (void)
         ov23_0224AA84();
         ov23_0224DA8C();
 
-        sub_020360DC(43);
+        Link_Message(43);
 
         ov23_02244858(sub_0203608C(), 1);
         ov23_0224321C();
@@ -492,7 +492,7 @@ static void ov23_02249F7C (void)
         ov23_022499E4("\u0094\u00E9\u0096\u00A7\u008A\u00EE\u0092\u006E\u0082\u00CC\u0088\u00CA\u0092\u0075\u0082\u00AA\u0082\u00AB\u0082\u00BD");
         ov23_0224C434();
         sub_02057AE4(1);
-        sub_020360DC(31);
+        Link_Message(31);
         ov23_02249C24(ov23_0224A09C, 0);
         return;
     }

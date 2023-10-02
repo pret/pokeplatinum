@@ -109,7 +109,7 @@ int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
     case 3:
         ov120_021D1178(v0);
 
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_24 = 90 + 150;
             *param1 = 4;
         }
@@ -128,7 +128,7 @@ int ov120_021D0DB0 (UnkStruct_020067E8 * param0, int * param1)
     case 5:
         ov120_021D1178(v0);
 
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             ov120_021D116C(v0);
             ov120_021D10D4(v0);
             sub_02017798(NULL, NULL);

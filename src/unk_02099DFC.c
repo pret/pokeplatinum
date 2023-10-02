@@ -138,7 +138,7 @@ int sub_02099E38 (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 1;
         break;
     case 1:
-        if (sub_0200F2AC() == TRUE) {
+        if (ScreenWipe_Done() == TRUE) {
             *param1 = 2;
         }
         break;
@@ -149,7 +149,7 @@ int sub_02099E38 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 3:
-        if (sub_0200F2AC() == TRUE) {
+        if (ScreenWipe_Done() == TRUE) {
             sub_0209A0E0(v0);
             sub_0209A044(v0);
             sub_02017798(NULL, NULL);

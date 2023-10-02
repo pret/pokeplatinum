@@ -1211,7 +1211,7 @@ void ov23_0224C104 (int param0, int param1, void * param2, void * param3)
         ov23_0224321C();
         ov23_02244858(sub_0203608C(), 0);
 
-        sub_020360DC(43);
+        Link_Message(43);
         Unk_ov23_022577AC->unk_13D6 = 0;
         sub_02059638(1);
 
@@ -1225,7 +1225,7 @@ void ov23_0224C104 (int param0, int param1, void * param2, void * param3)
 
 void ov23_0224C198 (void)
 {
-    sub_020360DC(56);
+    Link_Message(56);
 }
 
 void ov23_0224C1A4 (int param0, int param1, void * param2, void * param3)
@@ -1289,7 +1289,7 @@ void ov23_0224C25C (int param0, int param1, void * param2, void * param3)
             Unk_ov23_022577AC->unk_12D4 = 0;
 
             sub_02059514();
-            sub_020360DC(56);
+            Link_Message(56);
             sub_02057AE4(0);
 
             ov23_0224DC24();
@@ -1596,7 +1596,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         v1->unk_0C++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (v0->unk_6C == NULL) {
                 (v1->unk_0C)++;
             }
@@ -1628,7 +1628,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         (v1->unk_0C)++;
         break;
     case 7:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             break;
         }
 

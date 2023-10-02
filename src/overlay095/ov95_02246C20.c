@@ -137,7 +137,7 @@ static const struct {
 
 int ov95_02246C20 (UnkStruct_020067E8 * param0, int * param1)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         UnkStruct_ov95_02247628 * v0;
 
         Heap_Create(3, 57, 98304);

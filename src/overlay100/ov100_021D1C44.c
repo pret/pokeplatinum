@@ -306,7 +306,7 @@ BOOL ov100_021D2428 (void * param0)
         G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
         v0->unk_00++;
     case 1:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
         v0->unk_00++;
@@ -646,7 +646,7 @@ BOOL ov100_021D2428 (void * param0)
         sub_0200F174(0, 0, 0, 0x0, 1, 1, 111);
         v0->unk_00++;
     case 21:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 

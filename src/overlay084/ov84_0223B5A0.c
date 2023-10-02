@@ -464,7 +464,7 @@ int ov84_0223B76C (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             if (v0->unk_C4->unk_65 == 2) {
                 *param1 = 16;
             } else if (v0->unk_C4->unk_65 == 1) {
@@ -557,7 +557,7 @@ int ov84_0223B76C (UnkStruct_020067E8 * param0, int * param1)
         *param1 = ov84_0223EA18(v0);
         break;
     case 24:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;

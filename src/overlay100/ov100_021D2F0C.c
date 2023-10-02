@@ -408,7 +408,7 @@ BOOL ov100_021D39E4 (void * param0)
 
     switch (v0->unk_00) {
     case 0:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 
@@ -649,7 +649,7 @@ BOOL ov100_021D39E4 (void * param0)
         }
         break;
     case 16:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 

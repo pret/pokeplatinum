@@ -292,7 +292,7 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
             sub_0200F174(0, 0, 0, 0x7fff, 6, 1, v0->unk_00);
         }
 
-        if ((sub_0200598C() == 0) && (sub_0200F2AC() == 1) && (v0->unk_4FC >= 10)) {
+        if ((sub_0200598C() == 0) && (ScreenWipe_Done() == 1) && (v0->unk_4FC >= 10)) {
             sub_020055D0(1173, 0);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -318,7 +318,7 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 6:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             if (ov77_021D21C0(&v0->unk_238, v0->unk_04, v0->unk_00) == 1) {
                 return 1;
             }
@@ -1032,7 +1032,7 @@ static BOOL ov77_021D1DF0 (UnkStruct_ov77_021D1568 * param0, UnkStruct_02018340 
         param0->unk_00 = 1;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             if (param0->unk_22A) {
                 param0->unk_22A--;
             } else {
@@ -1072,7 +1072,7 @@ static BOOL ov77_021D1DF0 (UnkStruct_ov77_021D1568 * param0, UnkStruct_02018340 
         }
         break;
     case 5:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             if (param0->unk_22A) {
                 sub_0200F174(0, 0, 0, 0x7fff, 5, 2, param2);
                 param0->unk_296 = 2;
@@ -1087,7 +1087,7 @@ static BOOL ov77_021D1DF0 (UnkStruct_ov77_021D1568 * param0, UnkStruct_02018340 
         }
         break;
     case 6:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_2A0 = 0;
             {GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);}
             param0->unk_04.unk_AC = 2;
@@ -1133,7 +1133,7 @@ static BOOL ov77_021D1DF0 (UnkStruct_ov77_021D1568 * param0, UnkStruct_02018340 
         if (param0->unk_22A) {
             param0->unk_22A--;
         } else {
-            if (sub_0200F2AC() == 1) {
+            if (ScreenWipe_Done() == 1) {
                 v0 = 1;
             }
         }

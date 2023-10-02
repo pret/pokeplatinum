@@ -2135,7 +2135,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 23:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = v3->unk_24;
         }
         break;

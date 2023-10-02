@@ -468,7 +468,7 @@ static void ov19_021D671C (UnkStruct_0201CD38 * param0, void * param1)
         v2->unk_06++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov19_021D6640(v2);
         }
         break;
@@ -492,7 +492,7 @@ static void ov19_021D6780 (UnkStruct_0201CD38 * param0, void * param1)
         v2->unk_06++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov19_021D6640(v2);
         }
         break;
@@ -515,7 +515,7 @@ static void ov19_021D67DC (UnkStruct_0201CD38 * param0, void * param1)
         v2->unk_06++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov19_021D6640(v2);
         }
         break;
@@ -1591,7 +1591,7 @@ static void ov19_021D7460 (UnkStruct_0201CD38 * param0, void * param1)
         v2->unk_06++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov19_021D6640(v2);
         }
         break;

@@ -2403,7 +2403,7 @@ static void ov23_022451C8 (UnkStruct_0201CD38 * param0, void * param1)
                 if (v0->unk_19) {
                     v0->unk_00 = 11;
                 } else {
-                    sub_020360DC(41);
+                    Link_Message(41);
                     v0->unk_00 = 8;
                 }
             }
@@ -2436,7 +2436,7 @@ static void ov23_022451C8 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_0C++;
 
         if (v0->unk_0C > 8) {
-            sub_020360DC(41);
+            Link_Message(41);
             v0->unk_00 = 8;
         }
         break;
@@ -2646,7 +2646,7 @@ void ov23_02245728 (void)
 
     v0 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_02245700));
     MI_CpuFill8(v0, 0, sizeof(UnkStruct_ov23_02245700));
-    sub_020360DC(46);
+    Link_Message(46);
 
     Unk_ov23_02257764->unk_2FC = v0;
     Unk_ov23_02257764->unk_2F8 = sub_0200D9E8(ov23_02245700, v0, 100);
@@ -2990,7 +2990,7 @@ static void ov23_02245BA8 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_1C++;
 
         if (ov23_0224495C(v0->unk_0C, 0) || (v0->unk_1C > 60)) {
-            sub_020360DC(41);
+            Link_Message(41);
             v0->unk_00 = 8;
         }
         break;
@@ -3008,7 +3008,7 @@ static void ov23_02245BA8 (UnkStruct_0201CD38 * param0, void * param1)
                 if (v0->unk_0D) {
                     v0->unk_00 = 11;
                 } else {
-                    sub_020360DC(41);
+                    Link_Message(41);
                     v0->unk_00 = 9;
                 }
             }
@@ -3171,7 +3171,7 @@ static void ov23_02245F94 (UnkStruct_0201CD38 * param0, void * param1)
             if (v0->unk_113) {
                 v0->unk_00 = 11;
             } else {
-                sub_020360DC(41);
+                Link_Message(41);
                 v0->unk_00 = 8;
             }
         }
@@ -3202,7 +3202,7 @@ static void ov23_02245F94 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_111++;
 
         if (v0->unk_111 > 8) {
-            sub_020360DC(41);
+            Link_Message(41);
             v0->unk_00 = 8;
         }
         break;
@@ -3601,7 +3601,7 @@ static void ov23_02246A80 (UnkStruct_0201CD38 * param0, void * param1)
             if (v0->unk_15E) {
                 v0->unk_00 = 11;
             } else {
-                sub_020360DC(41);
+                Link_Message(41);
                 v0->unk_00 = 8;
             }
         }
@@ -3635,7 +3635,7 @@ static void ov23_02246A80 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_15C++;
 
         if (v0->unk_15C > 8) {
-            sub_020360DC(41);
+            Link_Message(41);
             v0->unk_00 = 8;
         }
         break;
@@ -4211,7 +4211,7 @@ static void ov23_02247A8C (UnkStruct_0201CD38 * param0, void * param1)
             if (v0->unk_127) {
                 v0->unk_00 = 11;
             } else {
-                sub_020360DC(41);
+                Link_Message(41);
                 v0->unk_00 = 8;
             }
         }
@@ -4241,7 +4241,7 @@ static void ov23_02247A8C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_124++;
 
         if (v0->unk_124 > 8) {
-            sub_020360DC(41);
+            Link_Message(41);
             v0->unk_00 = 8;
         }
         break;
@@ -4507,7 +4507,7 @@ static void ov23_022480C4 (UnkStruct_0201CD38 * param0, void * param1)
             if (v0->unk_2A) {
                 v0->unk_00 = 11;
             } else {
-                sub_020360DC(41);
+                Link_Message(41);
                 v0->unk_00 = 8;
             }
         }
@@ -4537,7 +4537,7 @@ static void ov23_022480C4 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_24++;
 
         if (v0->unk_24 > 8) {
-            sub_020360DC(41);
+            Link_Message(41);
             v0->unk_00 = 8;
         }
         break;
@@ -4637,7 +4637,7 @@ static void ov23_02248418 (UnkStruct_0201CD38 * param0, void * param1)
         if (v0->unk_11) {
             v0->unk_00 = 11;
         } else {
-            sub_020360DC(41);
+            Link_Message(41);
             v0->unk_00 = 8;
         }
         break;
@@ -4659,7 +4659,7 @@ static void ov23_02248418 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_0C++;
 
         if (v0->unk_0C > 8) {
-            sub_020360DC(41);
+            Link_Message(41);
             v0->unk_00 = 8;
         }
         break;

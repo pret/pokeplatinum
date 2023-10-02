@@ -1019,7 +1019,7 @@ static int ov77_021D2E60 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         sub_0200F2C0();
     }
 
@@ -1167,7 +1167,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
         }
         break;
     case 5:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
     }
@@ -1884,7 +1884,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         }
 
         if (param2 == (785 + 5)) {
-            GF_ASSERT(sub_0200F2AC() == 1);
+            GF_ASSERT(ScreenWipe_Done() == 1);
             param1->unk_247 = (1 << 2);
             param1->unk_248 = (1 << 3);
             sub_0200F174(3, 1, 1, 0x7fff, 4, 1, 76);
@@ -1939,7 +1939,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D60E0(param1->unk_14, param2);
         ov77_021D61B8(param1->unk_14, param2);
 
-        if (sub_0200F2AC() && (param2 >= 1600)) {
+        if (ScreenWipe_Done() && (param2 >= 1600)) {
             sub_02019120(4, 0);
             ov77_021D6000(param1->unk_14, param1->unk_18);
             param1->unk_244 = 1;
@@ -1989,7 +1989,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D4B70(param1);
         ov77_021D607C(param1->unk_14);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 >= (62 * 30 - 15 - 15)) {
                 sub_0201C63C(param1->unk_10, 3, 0, 0);
                 sub_0201C63C(param1->unk_10, 3, 3, 256);
@@ -2022,7 +2022,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D4BE4(param1);
         ov77_021D4C04(param1, param2);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param1->unk_247 = (1 << 1) | (1 << 5);
             param1->unk_248 = (1 << 2) | (1 << 6);
             sub_0201C63C(param1->unk_10, 1, 0, 0);
@@ -2038,7 +2038,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D4C04(param1, param2);
         ov77_021D6470(param1->unk_14, param2);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 == (65 * 30 - 15 - 15 - 45 - 15)) {
                 sub_0201C63C(param1->unk_10, 1, 0, 0);
                 sub_0201C63C(param1->unk_10, 1, 3, 256);
@@ -2055,7 +2055,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 9:
         ov77_021D6470(param1->unk_14, param2);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0200F174(0, 1, 1, 0x7fff, 64, 1, 76);
             ov77_021D603C(param1->unk_14, 11, 0);
             ov77_021D603C(param1->unk_14, 12, 0);
@@ -2079,7 +2079,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
         ov77_021D4DC8(param1, param2);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 >= (1995 + 15)) {
                 sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
                 (*v0)++;
@@ -2089,7 +2089,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 11:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 0, 0);
             MI_CpuClear16((void *)HW_BG_PLTT, 0x200);
             sub_0200F174(3, 1, 1, 0x0, 4, 1, 76);
@@ -2099,7 +2099,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 12:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (ov77_021D6E78(param1->unk_1C, 0, param2)) {
                 sub_0200F174(0, 0, 0, 0x0, 4, 1, 76);
                 (*v0)++;
@@ -2109,7 +2109,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 13:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (1) {
                 Unk_021BF67C.unk_65 = 1;
                 GXLayers_SwapDisplay();
@@ -2123,7 +2123,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 14:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 >= (2085 + 15 + 30)) {
                 if (ov77_021D6E78(param1->unk_1C, 1, param2)) {
                     sub_0200F174(0, 0, 0, 0x0, 4, 1, 76);
@@ -2136,7 +2136,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 15:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             MI_CpuCopy16(param1->unk_240, (void *)HW_BG_PLTT, 0x200);
 
             Unk_021BF67C.unk_65 = 0;
@@ -2159,7 +2159,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 16:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0200F174(4, 1, 1, 0x0, 16, 1, 76);
             (*v0)++;
         }
@@ -2167,7 +2167,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 17:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 >= (2200 + 15)) {
                 ov77_021D4E90(param1);
             }
@@ -2184,7 +2184,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D4E90(param1);
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             Unk_021BF67C.unk_65 = 1;
             GXLayers_SwapDisplay();
             (*v0)++;
@@ -2464,7 +2464,7 @@ static void ov77_021D513C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
         break;
     case ((40 * 30 - 15) + 6):
-        GF_ASSERT(sub_0200F2AC() == 1);
+        GF_ASSERT(ScreenWipe_Done() == 1);
         ov77_021D35B8(param0);
         ov77_021D40DC(param1, 1);
         break;
@@ -2483,7 +2483,7 @@ static void ov77_021D513C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
         break;
     case ((47 * 30 - 15) + 6):
-        GF_ASSERT(sub_0200F2AC() == 1);
+        GF_ASSERT(ScreenWipe_Done() == 1);
         ov77_021D35B8(param0);
         ov77_021D40B8(param1, 2);
         sub_0200F174(3, 1, 1, 0x0, 4, 1, 76);
@@ -2569,14 +2569,14 @@ static BOOL ov77_021D5390 (UnkStruct_ov77_021D5308 * param0, const int param1)
         }
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             sub_0200F174(0, 1, 1, 0x0, 90, 1, 76);
             (*v0)++;
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*v0)++;
         }
         break;
@@ -2588,7 +2588,7 @@ static BOOL ov77_021D5390 (UnkStruct_ov77_021D5308 * param0, const int param1)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
     }

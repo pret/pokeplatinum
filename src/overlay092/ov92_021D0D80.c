@@ -402,7 +402,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 1;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             *param1 = 2;
         }
         break;
@@ -683,7 +683,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 18;
         break;
     case 18:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_BAE8 = 1;
 
             ov92_021D1B24(v0);

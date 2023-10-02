@@ -169,7 +169,7 @@ int ov74_021D0F60 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F174(3, 1, 1, 0x0, 6, 1, v0->unk_00);
         break;
     case 1:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return 0;
         }
         break;
@@ -226,7 +226,7 @@ int ov74_021D0F60 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F174(3, 0, 0, 0x0, 6, 1, v0->unk_00);
         break;
     case 7:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return 0;
         }
         break;

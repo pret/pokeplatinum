@@ -707,10 +707,10 @@ s8 Pokemon_GetFlavorAffinityOf(u32 monPersonality, int flavor);
  */
 int Pokemon_LoadLevelUpMoveIdsOf(int monSpecies, int monForm, u16 *monLevelUpMoveIDs);
 
-void sub_020776B0(Party *party);
+void Pokemon_ApplyPokerus(Party *party);
 u8 sub_02077758(Party *party, u8 param1);
 void sub_020777B4(Party *party, s32 param1);
-void sub_0207782C(Party *party);
+void Pokemon_ValidatePokerus(Party *party);
 BOOL sub_020778D8(Pokemon *mon);
 BOOL sub_020778F8(Pokemon *mon);
 

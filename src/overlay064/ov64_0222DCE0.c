@@ -1293,7 +1293,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
         param1->unk_04 = 1;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param1->unk_04 = 3;
         }
         break;
@@ -1327,7 +1327,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
         param1->unk_04++;
         break;
     case 5:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;
@@ -1337,7 +1337,7 @@ static int ov64_0222EA70 (UnkStruct_ov64_0222F038 * param0, UnkStruct_ov64_0222E
         param1->unk_04 = 7;
         break;
     case 7:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             u64 v1;
             TrainerInfo * v2;
 
@@ -1850,7 +1850,7 @@ static int ov64_0222F0C4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         param1->unk_04 = 11;
         break;
     case 11:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             ov64_0222F6E8(param0, param1, param2);
             ov64_0222E074(param1, 2, 4);
             return 1;
@@ -1866,7 +1866,7 @@ static int ov64_0222F0C4 (UnkStruct_ov64_0222F0C4 * param0, UnkStruct_ov64_0222E
         param1->unk_04 = 14;
         break;
     case 14:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param1->unk_04 = 2;
         }
         break;

@@ -113,7 +113,7 @@ int ov121_021D0E7C (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             (*param1)++;
         }
         break;
@@ -134,7 +134,7 @@ int ov121_021D0E7C (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 3:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;

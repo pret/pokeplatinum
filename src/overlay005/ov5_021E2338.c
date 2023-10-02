@@ -275,7 +275,7 @@ void ov5_021E261C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_00++;
         break;
     case 5:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_00++;
         }
         break;
@@ -333,7 +333,7 @@ void ov5_021E2748 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_00++;
         break;
     case 5:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_00++;
         }
         break;
@@ -443,7 +443,7 @@ void ov5_021E2944 (UnkStruct_0201CD38 * param0, void * param1)
         ov5_021DDE74(&v1->unk_04);
         sub_02020A50(v1->unk_04.unk_00, v1->unk_00);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_00++;
         }
         break;
@@ -496,7 +496,7 @@ void ov5_021E2A4C (UnkStruct_0201CD38 * param0, void * param1)
         ov5_021DDE74(&v1->unk_04);
         sub_02020A50(v1->unk_04.unk_00, v1->unk_00);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_00++;
         }
         break;
@@ -1039,7 +1039,7 @@ void ov5_021E31A4 (UnkStruct_0201CD38 * param0, void * param1)
         ov5_021DDE74(&v1->unk_230);
         sub_02020A50(v1->unk_230.unk_00, v1->unk_22C);
 
-        if ((v2 == 1) && (sub_0200F2AC() == 1)) {
+        if ((v2 == 1) && (ScreenWipe_Done() == 1)) {
             v0->unk_00++;
         }
 
@@ -1385,7 +1385,7 @@ void ov5_021E3AD0 (UnkStruct_0201CD38 * param0, void * param1)
         ov5_021DDE74(&v1->unk_238);
         sub_02020A50(v1->unk_238.unk_00, v1->unk_234);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_00++;
         }
 
@@ -1727,7 +1727,7 @@ void ov5_021E4260 (UnkStruct_0201CD38 * param0, void * param1)
                 v1->unk_200, &v4);
         }
 
-        if ((v2 == 1) && (sub_0200F2AC() == 1)) {
+        if ((v2 == 1) && (ScreenWipe_Done() == 1)) {
             v0->unk_00++;
         }
 
@@ -1843,7 +1843,7 @@ void ov5_021E44C0 (UnkStruct_0201CD38 * param0, void * param1)
         break;
 
     case 6:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_00++;
         }
 
@@ -2010,7 +2010,7 @@ void ov5_021E4738 (UnkStruct_0201CD38 * param0, void * param1)
         break;
 
     case 6:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_00++;
         }
 
@@ -2322,7 +2322,7 @@ void ov5_021E4E14 (UnkStruct_0201CD38 * param0, void * param1)
         break;
 
     case 6:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_04 = 0;
 
             v0->unk_00++;
@@ -2430,7 +2430,7 @@ void ov5_021E4F7C (UnkStruct_0201CD38 * param0, void * param1)
         break;
 
     case 8:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_04 = 0;
 
             v0->unk_00++;
@@ -2829,7 +2829,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
     case 14:
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param0->unk_00++;
         }
 
@@ -3307,7 +3307,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         v3.x += (-16 * FX32_ONE);
         sub_02021C50(v0->unk_2CC[3], &v3);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param0->unk_00++;
         }
 

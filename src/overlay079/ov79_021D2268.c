@@ -238,7 +238,7 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F174(0, 1, 1, 0x0, 6, 1, v0->unk_00);
         break;
     case 3:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return 0;
         }
 
@@ -251,7 +251,7 @@ int ov79_021D22E4 (UnkStruct_020067E8 * param0, int * param1)
         sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
         break;
     case 5:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             return 0;
         }
 

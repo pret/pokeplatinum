@@ -130,7 +130,7 @@ static int ov6_02247244 (UnkStruct_020508D4 * param0, UnkStruct_0203CDB0 * param
         param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_022495DC);
     }
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return 0;
     }
 
@@ -234,7 +234,7 @@ static int ov6_022473C8 (UnkStruct_020508D4 * param0, UnkStruct_0203CDB0 * param
         param2->unk_0C = sub_02065700(param2->unk_18, Unk_ov6_022495DC);
     }
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return 0;
     }
 

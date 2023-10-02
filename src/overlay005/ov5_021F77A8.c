@@ -1150,7 +1150,7 @@ static void ov5_021F81A8 (UnkStruct_0201CD38 * param0, void * param1)
         return;
     }
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return;
     }
 

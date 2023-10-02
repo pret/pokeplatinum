@@ -433,7 +433,7 @@ int ov88_0223B57C (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = 1;
 
             ov88_0223B320(v0);
@@ -457,7 +457,7 @@ int ov88_0223B57C (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_48 = 4;
             break;
         case 4:
-            if (sub_0200F2AC()) {
+            if (ScreenWipe_Done()) {
                 ov88_0223BFD8(v0);
                 ov88_0223BF7C(v0);
                 ov88_0223C44C(v0->unk_174);
@@ -488,14 +488,14 @@ int ov88_0223B57C (UnkStruct_020067E8 * param0, int * param1)
             v0->unk_48 = 7;
             break;
         case 7:
-            if (sub_0200F2AC()) {
+            if (ScreenWipe_Done()) {
                 v0->unk_48 = 1;
             }
             break;
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v1 = 1;
         }
         break;

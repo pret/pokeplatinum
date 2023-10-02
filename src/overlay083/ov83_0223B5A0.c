@@ -292,7 +292,7 @@ static int ov83_0223B78C (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         (*param2)++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return param1->unk_0C + 1;
         }
         break;
@@ -552,7 +552,7 @@ static int ov83_0223BCEC (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         (*param2)++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param0->unk_26) {
                 sub_0203632C(0);
             }
@@ -653,7 +653,7 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         (*param2)++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*param2)++;
             param1->unk_1C = (30 * 1);
         }
@@ -821,7 +821,7 @@ static int ov83_0223C258 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
         (*param2)++;
         break;
     case 3:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*param2)++;
         }
         break;

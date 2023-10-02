@@ -103,7 +103,7 @@ BOOL ov100_021D14A8 (void * param0)
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 111);
         v0->unk_00++;
     case 1:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 

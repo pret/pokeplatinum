@@ -313,7 +313,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
         param0->unk_00++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param0->unk_00++;
         }
         break;
@@ -322,7 +322,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
         param0->unk_00++;
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param0->unk_00++;
         }
         break;
@@ -374,7 +374,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
         param0->unk_00++;
         break;
     case 12:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02003A2C(param0->unk_1C, 2, param0->unk_164 ^ 0x3fff, 14, 0x0);
             sub_020039B0(param0->unk_1C, 2, param0->unk_160 * 16, 16, 0, (GX_RGB(0, 0, 0)));
             sub_0200AB4C(-14, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 1);
@@ -387,7 +387,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
         param0->unk_00++;
         break;
     case 14:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_78 = 26;
             param0->unk_00++;
         }
@@ -404,7 +404,7 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
         param0->unk_00++;
         break;
     case 17:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param0->unk_00++;
         }
         break;

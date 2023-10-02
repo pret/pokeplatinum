@@ -108,7 +108,7 @@ static int ov95_0224A020 (UnkStruct_ov95_02249FF8 * param0, int * param1)
 {
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param0->unk_10 = UnkEnum_ov95_0224A020_02 << 12;
             param0->unk_14 = UnkEnum_ov95_0224A020_00 << 12;
             param0->unk_18 = ((UnkEnum_ov95_0224A020_03 - UnkEnum_ov95_0224A020_02) << 12) / UnkEnum_ov95_0224A020_04;
@@ -127,7 +127,7 @@ static int ov95_0224A020 (UnkStruct_ov95_02249FF8 * param0, int * param1)
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
         break;

@@ -82,7 +82,7 @@ static BOOL ov62_02234AB4 (UnkStruct_0208C06C * param0)
         param0->unk_08++;
         break;
     case 1:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 
@@ -185,7 +185,7 @@ static BOOL ov62_02234CDC (UnkStruct_0208C06C * param0)
         break;
     case 1:
         if (ov62_022300BC(param0) == 1) {
-            if (sub_0200F2AC() == 1) {
+            if (ScreenWipe_Done() == 1) {
                 param0->unk_08++;
             }
         } else {

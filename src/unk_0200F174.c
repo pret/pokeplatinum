@@ -165,7 +165,7 @@ void sub_0200F27C (void)
     }
 }
 
-BOOL sub_0200F2AC (void)
+BOOL ScreenWipe_Done (void)
 {
     if (Unk_021BF474.unk_14C) {
         return 0;

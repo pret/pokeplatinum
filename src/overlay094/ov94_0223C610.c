@@ -403,7 +403,7 @@ static int ov94_0223CBA0 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_0223CBC4 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         param0->unk_2C = 5;
     }
 
@@ -412,7 +412,7 @@ static int ov94_0223CBC4 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_0223CBD8 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         param0->unk_2C = 5;
     }
 

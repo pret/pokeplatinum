@@ -459,7 +459,7 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         }
         break;
     case 9:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0203B2EC(v1, v0);
             Heap_FreeToHeap(v1);
             sub_02062C78(v0->unk_38);
@@ -474,7 +474,7 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         }
         break;
     case 11:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02050924(param0, v1->unk_22C, v1->unk_25C);
             Heap_FreeToHeap(v1);
         }
@@ -494,7 +494,7 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         sub_02062C78(v0->unk_38);
         return 1;
     case 14:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v1->unk_2A = 1;
         }
         break;
@@ -880,7 +880,7 @@ static void sub_0203B610 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return;
     }
 
