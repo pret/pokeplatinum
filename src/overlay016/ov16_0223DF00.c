@@ -1022,12 +1022,12 @@ u8 ov16_0223ED6C (BattleSystem * param0)
 
 int BattleSystem_NumSafariBalls (BattleSystem * param0)
 {
-    return param0->unk_2410;
+    return param0->safariBalls;
 }
 
 void BattleSystem_SetSafariBalls (BattleSystem * param0, int param1)
 {
-    param0->unk_2410 = param1;
+    param0->safariBalls = param1;
 }
 
 UnkStruct_020279FC * ov16_0223EDA4 (BattleSystem * param0)

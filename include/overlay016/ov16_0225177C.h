@@ -9,8 +9,25 @@
 
 void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3);
 void ov16_02251C94(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+
+/**
+ * @brief Load a script file from the specified NARC.
+ * 
+ * @param battleCtx 
+ * @param narc          Which NARC to open for the script
+ * @param file          Which file in the NARC to load
+ */
 void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
-void ov16_02251E5C(BattleContext * param0, int param1, int param2);
+
+/**
+ * @brief Load a script file from the specified NARC and invoke it as a call,
+ * returning to the previous script once finished processing.
+ * 
+ * @param battleCtx 
+ * @param narc          Which NARC to open for the script
+ * @param file          Which file in the NARC to load
+ */
+void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
 BOOL ov16_02251EF4(BattleContext * param0);
 void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);

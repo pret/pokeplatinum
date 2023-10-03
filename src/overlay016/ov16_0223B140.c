@@ -749,7 +749,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     v1->unk_190 = v0->unk_1BC;
     v1->unk_100 = v0->unk_98;
     v1->unk_10C = v0->unk_9C;
-    v1->unk_168 = v0->unk_2410;
+    v1->unk_168 = v0->safariBalls;
     v1->unk_14 = v0->resultMask & (0xc0 ^ 0xff);
     v1->unk_148 = v0->unk_2438;
     v1->unk_150 = ov16_0225B45C(v0, v0->battleCtx, 4, NULL);
@@ -1105,7 +1105,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_98 = param1->unk_100;
     param0->unk_2420 = param1->unk_13C;
     param0->unk_9C = param1->unk_10C;
-    param0->unk_2410 = param1->unk_168;
+    param0->safariBalls = param1->unk_168;
     param0->unk_23FC = param1->unk_12C;
     param0->unk_2400 = param1->unk_128;
     param0->unk_2404 = param1->unk_130;
