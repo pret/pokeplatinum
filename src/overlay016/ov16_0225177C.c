@@ -59,8 +59,8 @@ typedef struct {
 
 void BattleSystem_InitBattleMon(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02251C94(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleSystem_LoadScript(BattleContext * param0, int param1, int param2);
-void ov16_02251E5C(BattleContext * param0, int param1, int param2);
+void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
+void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
 BOOL ov16_02251EF4(BattleContext * param0);
 void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
@@ -324,7 +324,7 @@ void ov16_02251C94 (BattleSystem * param0, BattleContext * param1, int param2, i
     }
 }
 
-void BattleSystem_LoadScript (BattleContext *battleCtx, int narc, int file)
+void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file)
 {
     GF_ASSERT(NARC_GetMemberSizeByIndexPair(narc, file) < BATTLE_SCRIPT_SIZE_MAX * sizeof(u32));
 
@@ -335,20 +335,20 @@ void BattleSystem_LoadScript (BattleContext *battleCtx, int narc, int file)
     NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narc, file);
 }
 
-void ov16_02251E5C (BattleContext * param0, int param1, int param2)
+void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file)
 {
-    GF_ASSERT(NARC_GetMemberSizeByIndexPair(param1, param2) < 400 * 4);
-    GF_ASSERT(param0->scriptStackPointer < 4);
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(narc, file) < 400 * 4);
+    GF_ASSERT(battleCtx->scriptStackPointer < 4);
 
-    param0->scriptStackNarc[param0->scriptStackPointer] = param0->scriptNarc;
-    param0->scriptStackFile[param0->scriptStackPointer] = param0->scriptFile;
-    param0->scriptStackCursor[param0->scriptStackPointer] = param0->scriptCursor;
-    param0->scriptStackPointer++;
-    param0->scriptNarc = param1;
-    param0->scriptFile = param2;
-    param0->scriptCursor = 0;
+    battleCtx->scriptStackNarc[battleCtx->scriptStackPointer] = battleCtx->scriptNarc;
+    battleCtx->scriptStackFile[battleCtx->scriptStackPointer] = battleCtx->scriptFile;
+    battleCtx->scriptStackCursor[battleCtx->scriptStackPointer] = battleCtx->scriptCursor;
+    battleCtx->scriptStackPointer++;
+    battleCtx->scriptNarc = narc;
+    battleCtx->scriptFile = file;
+    battleCtx->scriptCursor = 0;
 
-    NARC_ReadWholeMemberByIndexPair(&param0->battleScript, param1, param2);
+    NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narc, file);
 }
 
 BOOL ov16_02251EF4 (BattleContext * param0)

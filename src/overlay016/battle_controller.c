@@ -30,6 +30,7 @@
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
 #include "battle/battle_message.h"
+#include "battle/battle_script.h"
 
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 #include "overlay016/struct_ov16_0224DDA8.h"
@@ -47,7 +48,6 @@
 #include "flags.h"
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
-#include "overlay016/ov16_022405FC.h"
 #include "overlay016/ov16_0225177C.h"
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_0226485C.h"
@@ -3157,7 +3157,7 @@ static BOOL BattleController_MoveStolen(BattleSystem *battleSys, BattleContext *
 
 static void BattleController_ExecScript(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleScriptEngine_Poll(battleSys, battleCtx) == TRUE) {
+    if (BattleScript_Exec(battleSys, battleCtx) == TRUE) {
         battleCtx->scriptCursor = 0;
         battleCtx->command = battleCtx->commandNext;
     }

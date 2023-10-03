@@ -115,7 +115,7 @@ struct BattleSystem {
     int unk_2404;
     u32 battleStatusMask;
     int unk_240C;
-    int unk_2410;
+    int safariBalls;
     u8 unk_2414[4];
     u32 unk_2418;
     u8 resultMask;
