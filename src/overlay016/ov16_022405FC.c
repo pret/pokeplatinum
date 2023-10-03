@@ -89,9 +89,8 @@
 #include "overlay016/ov16_02268520.h"
 #include "overlay021/ov21_021E8D48.h"
 
-typedef BOOL (* UnkFuncPtr_ov16_0226E72C)(BattleSystem *, BattleContext *);
+typedef BOOL (*BtlCmd)(BattleSystem*, BattleContext*);
 
-BOOL BattleScriptEngine_Poll(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224064C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02240664(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022406E0(BattleSystem * param0, BattleContext * param1);
@@ -347,7 +346,7 @@ static void ov16_0224B934(BattleContext * param0, u8 param1, u16 param2);
 static void ov16_02248E74(UnkStruct_0201CD38 * param0, void * param1);
 static void ov16_02249B80(UnkStruct_0201CD38 * param0, void * param1);
 
-static const UnkFuncPtr_ov16_0226E72C Unk_ov16_0226E72C[] = {
+static const BtlCmd sBattleCommands[] = {
     ov16_0224064C,
     ov16_02240664,
     ov16_022406E0,
@@ -573,17 +572,17 @@ static const UnkFuncPtr_ov16_0226E72C Unk_ov16_0226E72C[] = {
     ov16_02248AB4
 };
 
-BOOL BattleScriptEngine_Poll (BattleSystem * param0, BattleContext * param1)
+BOOL BattleScript_Exec(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL v0;
+    BOOL result;
 
     do {
-        v0 = Unk_ov16_0226E72C[param1->battleScript[param1->scriptCursor]](param0, param1);
-    } while ((param1->battleProgressFlag == 0) && ((BattleSystem_BattleType(param0) & 0x4) == 0));
+        result = sBattleCommands[battleCtx->battleScript[battleCtx->scriptCursor]](battleSys, battleCtx);
+    } while (battleCtx->battleProgressFlag == FALSE
+            && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE);
 
-    param1->battleProgressFlag = 0;
-
-    return v0;
+    battleCtx->battleProgressFlag = FALSE;
+    return result;
 }
 
 static BOOL ov16_0224064C (BattleSystem * param0, BattleContext * param1)
