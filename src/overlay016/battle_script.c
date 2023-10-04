@@ -3,6 +3,8 @@
 
 #include "data_021BF67C.h"
 
+#include "constants/battle/message_tags.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
@@ -16,7 +18,6 @@
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
-#include "overlay016/struct_ov16_02241584_decl.h"
 #include "overlay016/struct_ov16_0224B7CC_decl.h"
 #include "battle/battle_mon.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
@@ -35,7 +36,6 @@
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0208737C.h"
 #include "overlay012/struct_ov12_02237728.h"
-#include "overlay016/struct_ov16_02241584_t.h"
 #include "overlay016/struct_ov16_022431BC.h"
 #include "overlay016/struct_ov16_022431BC_1.h"
 #include "overlay016/struct_ov16_022431BC_2.h"
@@ -91,6 +91,12 @@
 #include "overlay021/ov21_021E8D48.h"
 
 typedef BOOL (*BtlCmd)(BattleSystem*, BattleContext*);
+
+typedef struct BattleMessageParams {
+    int id; //< ID of the message in the battle text bank
+    int tags; //< Tags defining what each parameter should be interpreted as
+    int params[6]; //< Params for the rendered message
+} BattleMessageParams;
 
 static BOOL ov16_0224064C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02240664(BattleSystem * param0, BattleContext * param1);
@@ -322,8 +328,8 @@ static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file);
 static void BattleScript_Call(BattleContext *battleCtx, int narc, int file);
 static void* BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *battleCtx, int var);
 static int ov16_0224A984(BattleSystem * param0, BattleContext * param1, int param2);
-static void ov16_0224ABEC(BattleContext * param0, UnkStruct_ov16_02241584 * param1);
-static void ov16_0224ACB8(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_02241584 * param2, BattleMessage * param3);
+static void BattleMessageParams_Make(BattleContext *battleCtx, BattleMessageParams *msgParams);
+static void BattleMessage_Make(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessageParams *msgParams, BattleMessage *msg);
 static int ov16_0224B3B8(BattleSystem * param0, BattleContext * param1, int param2);
 static int ov16_0224B3E8(BattleContext * param0, int param1);
 static int ov16_0224B404(BattleContext * param0, int param1);
@@ -1415,12 +1421,12 @@ static BOOL ov16_02241544 (BattleSystem * param0, BattleContext * param1)
 
 static BOOL ov16_02241584 (BattleSystem * param0, BattleContext * param1)
 {
-    UnkStruct_ov16_02241584 v0;
+    BattleMessageParams v0;
     BattleMessage v1;
 
     BattleScript_Iter(param1, 1);
-    ov16_0224ABEC(param1, &v0);
-    ov16_0224ACB8(param0, param1, &v0, &v1);
+    BattleMessageParams_Make(param1, &v0);
+    BattleMessage_Make(param0, param1, &v0, &v1);
     ov16_02265BA0(param0, param1, &v1);
 
     return 0;
@@ -1428,12 +1434,12 @@ static BOOL ov16_02241584 (BattleSystem * param0, BattleContext * param1)
 
 static BOOL ov16_022415B8 (BattleSystem * param0, BattleContext * param1)
 {
-    UnkStruct_ov16_02241584 v0;
+    BattleMessageParams v0;
     BattleMessage v1;
 
     BattleScript_Iter(param1, 1);
-    ov16_0224ABEC(param1, &v0);
-    ov16_0224ACB8(param0, param1, &v0, &v1);
+    BattleMessageParams_Make(param1, &v0);
+    BattleMessage_Make(param0, param1, &v0, &v1);
 
     v1.tags |= 0x80;
 
@@ -1452,18 +1458,18 @@ static BOOL ov16_022415F8 (BattleSystem * param0, BattleContext * param1)
 
 static BOOL ov16_02241618 (BattleSystem * param0, BattleContext * param1)
 {
-    UnkStruct_ov16_02241584 v0;
+    BattleMessageParams v0;
 
     BattleScript_Iter(param1, 1);
-    ov16_0224ABEC(param1, &v0);
-    ov16_0224ACB8(param0, param1, &v0, &param1->msgBuffer);
+    BattleMessageParams_Make(param1, &v0);
+    BattleMessage_Make(param0, param1, &v0, &param1->msgBuffer);
 
     return 0;
 }
 
 static BOOL ov16_02241644 (BattleSystem * param0, BattleContext * param1)
 {
-    UnkStruct_ov16_02241584 v0;
+    BattleMessageParams v0;
     BattleMessage v1;
     int v2;
     int v3;
@@ -1472,8 +1478,8 @@ static BOOL ov16_02241644 (BattleSystem * param0, BattleContext * param1)
 
     v2 = BattleScript_Read(param1);
 
-    ov16_0224ABEC(param1, &v0);
-    ov16_0224ACB8(param0, param1, &v0, &v1);
+    BattleMessageParams_Make(param1, &v0);
+    BattleMessage_Make(param0, param1, &v0, &v1);
 
     v1.tags |= 0x40;
     v1.battler = ov16_0224A984(param0, param1, v2);
@@ -9166,376 +9172,461 @@ static int ov16_0224A984 (BattleSystem * param0, BattleContext * param1, int par
     return v0;
 }
 
-static void ov16_0224ABEC (BattleContext * param0, UnkStruct_ov16_02241584 * param1)
+/**
+ * @brief Populate a BattleMessageParams struct from input values from the
+ * script buffer.
+ * 
+ * As a side effect, the script cursor head will be iterated forward by 2 + N,
+ * where N is the number of data values as defined by the tag value read from
+ * the script buffer.
+ * 
+ * @param battleCtx 
+ * @param[out] msgParams 
+ */
+static void BattleMessageParams_Make(BattleContext *battleCtx, BattleMessageParams *msgParams)
 {
-    int v0, v1 = 0;
+    int tagCount = 0;
 
-    param1->unk_00 = BattleScript_Read(param0);
-    param1->unk_04 = BattleScript_Read(param0);
+    msgParams->id = BattleScript_Read(battleCtx);
+    msgParams->tags = BattleScript_Read(battleCtx);
 
-    switch (param1->unk_04) {
-    case 0:
-        v1 = 0;
+    switch (msgParams->tags) {
+    case TAG_NONE:
+        tagCount = 0;
         break;
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-        v1 = 1;
+
+    case TAG_NONE_SIDE_CONSCIOUS:
+    case TAG_NICKNAME:
+    case TAG_MOVE:
+    case TAG_STAT:
+    case TAG_ITEM:
+    case TAG_NUMBER:
+    case TAG_NUMBERS:
+    case TAG_TRNAME:
+        tagCount = 1;
         break;
-    case 9:
-    case 10:
-    case 11:
-    case 12:
-    case 13:
-    case 14:
-    case 15:
+
+    case TAG_NICKNAME_NICKNAME:
+    case TAG_NICKNAME_MOVE:
+    case TAG_NICKNAME_ABILITY:
+    case TAG_NICKNAME_STAT:
+    case TAG_NICKNAME_TYPE:
+    case TAG_NICKNAME_POKE:
+    case TAG_NICKNAME_ITEM:
     case 16:
-    case 17:
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-    case 22:
-    case 23:
-    case 24:
-    case 25:
-    case 26:
-    case 27:
-    case 28:
-    case 29:
-    case 30:
-        v1 = 2;
+    case TAG_NICKNAME_NUM:
+    case TAG_NICKNAME_TRNAME:
+    case TAG_NICKNAME_BOX:
+    case TAG_MOVE_SIDE:
+    case TAG_MOVE_NICKNAME:
+    case TAG_MOVE_MOVE:
+    case TAG_ABILITY_NICKNAME:
+    case TAG_ITEM_MOVE:
+    case TAG_NUMBER_NUMBER:
+    case TAG_TRNAME_TRNAME:
+    case TAG_TRNAME_NICKNAME:
+    case TAG_TRNAME_ITEM:
+    case TAG_TRNAME_NUM:
+    case TAG_TRCLASS_TRNAME:
+        tagCount = 2;
         break;
-    case 31:
-    case 32:
-    case 33:
-    case 34:
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-    case 43:
-    case 44:
-    case 45:
-    case 46:
-    case 47:
-    case 48:
-    case 49:
-    case 50:
-    case 51:
-        v1 = 3;
+
+    case TAG_NICKNAME_NICKNAME_MOVE:
+    case TAG_NICKNAME_NICKNAME_ABILITY:
+    case TAG_NICKNAME_NICKNAME_ITEM:
+    case TAG_NICKNAME_MOVE_MOVE:
+    case TAG_NICKNAME_MOVE_NUMBER:
+    case TAG_NICKNAME_ABILITY_NICKNAME:
+    case TAG_NICKNAME_ABILITY_MOVE:
+    case TAG_NICKNAME_ABILITY_ITEM:
+    case TAG_NICKNAME_ABILITY_STAT:
+    case TAG_NICKNAME_ABILITY_TYPE:
+    case TAG_NICKNAME_ABILITY_STATUS:
+    case TAG_NICKNAME_ABILITY_NUMBER:
+    case TAG_NICKNAME_ITEM_NICKNAME:
+    case TAG_NICKNAME_ITEM_MOVE:
+    case TAG_NICKNAME_ITEM_STAT:
+    case TAG_NICKNAME_ITEM_STATUS:
+    case TAG_NICKNAME_BOX_BOX:
+    case TAG_ITEM_NICKNAME_FLAVOR:
+    case TAG_TRNAME_NICKNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_ITEM:
+        tagCount = 3;
         break;
-    case 52:
-    case 53:
-    case 54:
-    case 55:
-    case 56:
-    case 57:
-    case 58:
-    case 59:
-        v1 = 4;
+
+    case TAG_NICKNAME_ABILITY_NICKNAME_MOVE:
+    case TAG_NICKNAME_ABILITY_NICKNAME_ABILITY:
+    case TAG_NICKNAME_ABILITY_NICKNAME_STAT:
+    case TAG_NICKNAME_ITEM_NICKNAME_ITEM:
+    case TAG_TRNAME_NICKNAME_TRNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_NICKNAME:
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRNAME:
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:
+        tagCount = 4;
         break;
-    case 60:
-        v1 = 6;
+
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRCLASS_TRNAME_NICKNAME:
+        tagCount = 6;
         break;
+
     default:
         GF_ASSERT("FALSE");
         break;
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        param1->unk_08[v0] = BattleScript_Read(param0);
+    for (int i = 0; i < tagCount; i++) {
+        msgParams->params[i] = BattleScript_Read(battleCtx);
     }
 }
 
-static void ov16_0224ACB8 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_02241584 * param2, BattleMessage * param3)
+/**
+ * @brief Populate a BattleMessage struct from the input BattleMessageParams struct.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param msgParams 
+ * @param[out] msg 
+ */
+static void BattleMessage_Make(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessageParams *msgParams, BattleMessage *msg)
 {
-    param3->id = param2->unk_00;
-    param3->tags = param2->unk_04;
+    msg->id = msgParams->id;
+    msg->tags = msgParams->tags;
 
-    switch (param3->tags) {
-    case 0:
+    switch (msg->tags) {
+    case TAG_NONE:
         break;
-    case 1:
-        param3->params[0] = ov16_0224A984(param0, param1, param2->unk_08[0]);
+
+    case TAG_NONE_SIDE_CONSCIOUS:
+        msg->params[0] = ov16_0224A984(battleSys, battleCtx, msgParams->params[0]);
         break;
-    case 2:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
+
+    case TAG_NICKNAME:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
         break;
-    case 3:
-        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
+
+    case TAG_MOVE:
+        msg->params[0] = ov16_0224B3E8(battleCtx, msgParams->params[0]);
         break;
-    case 4:
-        param3->params[0] = ov16_0224B4C8(param1, param2->unk_08[0]);
+
+    case TAG_STAT:
+        msg->params[0] = ov16_0224B4C8(battleCtx, msgParams->params[0]);
         break;
-    case 5:
-        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
+
+    case TAG_ITEM:
+        msg->params[0] = ov16_0224B404(battleCtx, msgParams->params[0]);
         break;
-    case 6:
-    case 7:
-        param3->params[0] = ov16_0224B47C(param1, param2->unk_08[0]);
+
+    case TAG_NUMBER:
+    case TAG_NUMBERS:
+        msg->params[0] = ov16_0224B47C(battleCtx, msgParams->params[0]);
         break;
-    case 8:
-        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
+
+    case TAG_TRNAME:
+        msg->params[0] = ov16_0224B518(battleSys, battleCtx, msgParams->params[0]);
         break;
-    case 9:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_NICKNAME:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 10:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_MOVE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3E8(battleCtx, msgParams->params[1]);
         break;
-    case 11:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_ABILITY:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 12:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B4C8(param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_STAT:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B4C8(battleCtx, msgParams->params[1]);
         break;
-    case 13:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B488(param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_TYPE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B488(battleCtx, msgParams->params[1]);
         break;
-    case 14:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B4E0(param0, param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_POKE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B4E0(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 15:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_ITEM:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B404(battleCtx, msgParams->params[1]);
         break;
+
     case 16:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B4F8(param1, param2->unk_08[1]);
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B4F8(battleCtx, msgParams->params[1]);
         break;
-    case 17:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_NUM:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B47C(battleCtx, msgParams->params[1]);
         break;
-    case 18:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+
+    case TAG_NICKNAME_TRNAME:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 19:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = param2->unk_08[1];
+
+    case TAG_NICKNAME_BOX:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = msgParams->params[1];
         break;
-    case 20:
-        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224A984(param0, param1, param2->unk_08[1]);
+
+    case TAG_MOVE_SIDE:
+        msg->params[0] = ov16_0224B3E8(battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224A984(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 21:
-        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+
+    case TAG_MOVE_NICKNAME:
+        msg->params[0] = ov16_0224B3E8(battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 22:
-        param3->params[0] = ov16_0224B3E8(param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+
+    case TAG_MOVE_MOVE:
+        msg->params[0] = ov16_0224B3E8(battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3E8(battleCtx, msgParams->params[1]);
         break;
-    case 23:
-        param3->params[0] = ov16_0224B494(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+
+    case TAG_ABILITY_NICKNAME:
+        msg->params[0] = ov16_0224B494(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 24:
-        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
+
+    case TAG_ITEM_MOVE:
+        msg->params[0] = ov16_0224B404(battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3E8(battleCtx, msgParams->params[1]);
         break;
-    case 25:
-        param3->params[0] = ov16_0224B47C(param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+
+    case TAG_NUMBER_NUMBER:
+        msg->params[0] = ov16_0224B47C(battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B47C(battleCtx, msgParams->params[1]);
         break;
-    case 26:
-        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+
+    case TAG_TRNAME_TRNAME:
+        msg->params[0] = ov16_0224B518(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 27:
-        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
+
+    case TAG_TRNAME_NICKNAME:
+        msg->params[0] = ov16_0224B518(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 28:
-        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
+
+    case TAG_TRNAME_ITEM:
+        msg->params[0] = ov16_0224B518(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B404(battleCtx, msgParams->params[1]);
         break;
-    case 29:
-        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B47C(param1, param2->unk_08[1]);
+
+    case TAG_TRNAME_NUM:
+        msg->params[0] = ov16_0224B518(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B47C(battleCtx, msgParams->params[1]);
         break;
-    case 30:
-        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
+
+    case TAG_TRCLASS_TRNAME:
+        msg->params[0] = ov16_0224B510(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
         break;
-    case 31:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_NICKNAME_MOVE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3E8(battleCtx, msgParams->params[2]);
         break;
-    case 32:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B494(param0, param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_NICKNAME_ABILITY:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B494(battleSys, battleCtx, msgParams->params[2]);
         break;
-    case 33:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_NICKNAME_ITEM:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B404(battleCtx, msgParams->params[2]);
         break;
-    case 34:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_MOVE_MOVE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3E8(battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3E8(battleCtx, msgParams->params[2]);
         break;
-    case 35:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3E8(param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B47C(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_MOVE_NUMBER:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3E8(battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B47C(battleCtx, msgParams->params[2]);
         break;
-    case 36:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ABILITY_NICKNAME:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
         break;
-    case 37:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ABILITY_MOVE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3E8(battleCtx, msgParams->params[2]);
         break;
-    case 38:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ABILITY_ITEM:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B404(battleCtx, msgParams->params[2]);
         break;
-    case 39:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ABILITY_STAT:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B4C8(battleCtx, msgParams->params[2]);
         break;
-    case 40:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B488(param1, param2->unk_08[2]);
+        
+    case TAG_NICKNAME_ABILITY_TYPE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B488(battleCtx, msgParams->params[2]);
         break;
-    case 41:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ABILITY_STATUS:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B4D4(battleCtx, msgParams->params[2]);
         break;
-    case 42:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B47C(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ABILITY_NUMBER:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B47C(battleCtx, msgParams->params[2]);
         break;
-    case 43:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ITEM_NICKNAME:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B404(battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
         break;
-    case 44:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3E8(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ITEM_MOVE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B404(battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3E8(battleCtx, msgParams->params[2]);
         break;
-    case 45:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B4C8(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ITEM_STAT:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B404(battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B4C8(battleCtx, msgParams->params[2]);
         break;
-    case 46:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B4D4(param1, param2->unk_08[2]);
+
+    case TAG_NICKNAME_ITEM_STATUS:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B404(battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B4D4(battleCtx, msgParams->params[2]);
         break;
-    case 47:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = param2->unk_08[1];
-        param3->params[2] = param2->unk_08[2];
+
+    case TAG_NICKNAME_BOX_BOX:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = msgParams->params[1];
+        msg->params[2] = msgParams->params[2];
         break;
-    case 48:
-        param3->params[0] = ov16_0224B404(param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B504(param1, param2->unk_08[2]);
+
+    case TAG_ITEM_NICKNAME_FLAVOR:
+        msg->params[0] = ov16_0224B404(battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B504(battleCtx, msgParams->params[2]);
         break;
-    case 49:
-        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+
+    case TAG_TRNAME_NICKNAME_NICKNAME:
+        msg->params[0] = ov16_0224B518(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
         break;
-    case 50:
-        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
+
+    case TAG_TRCLASS_TRNAME_NICKNAME:
+        msg->params[0] = ov16_0224B510(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
         break;
-    case 51:
-        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B404(param1, param2->unk_08[2]);
+
+    case TAG_TRCLASS_TRNAME_ITEM:
+        msg->params[0] = ov16_0224B510(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B404(battleCtx, msgParams->params[2]);
         break;
-    case 52:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B3E8(param1, param2->unk_08[3]);
+
+    case TAG_NICKNAME_ABILITY_NICKNAME_MOVE:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B3E8(battleCtx, msgParams->params[3]);
         break;
-    case 53:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B494(param0, param1, param2->unk_08[3]);
+
+    case TAG_NICKNAME_ABILITY_NICKNAME_ABILITY:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B494(battleSys, battleCtx, msgParams->params[3]);
         break;
-    case 54:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B494(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B4C8(param1, param2->unk_08[3]);
+
+    case TAG_NICKNAME_ABILITY_NICKNAME_STAT:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B494(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B4C8(battleCtx, msgParams->params[3]);
         break;
-    case 55:
-        param3->params[0] = ov16_0224B3B8(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B404(param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B404(param1, param2->unk_08[3]);
+
+    case TAG_NICKNAME_ITEM_NICKNAME_ITEM:
+        msg->params[0] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B404(battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B404(battleCtx, msgParams->params[3]);
         break;
-    case 56:
-        param3->params[0] = ov16_0224B518(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B3B8(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B518(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
+
+    case TAG_TRNAME_NICKNAME_TRNAME_NICKNAME:
+        msg->params[0] = ov16_0224B518(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B518(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[3]);
         break;
-    case 57:
-        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B3B8(param0, param1, param2->unk_08[3]);
+
+    case TAG_TRCLASS_TRNAME_NICKNAME_NICKNAME:
+        msg->params[0] = ov16_0224B510(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[3]);
         break;
-    case 58:
-        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
+
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRNAME:
+        msg->params[0] = ov16_0224B510(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B518(battleSys, battleCtx, msgParams->params[3]);
         break;
-    case 59:
-        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B510(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B518(param0, param1, param2->unk_08[3]);
+
+    case TAG_TRCLASS_TRNAME_TRCLASS_TRNAME:
+        msg->params[0] = ov16_0224B510(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B510(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B518(battleSys, battleCtx, msgParams->params[3]);
         break;
-    case 60:
-        param3->params[0] = ov16_0224B510(param0, param1, param2->unk_08[0]);
-        param3->params[1] = ov16_0224B518(param0, param1, param2->unk_08[1]);
-        param3->params[2] = ov16_0224B3B8(param0, param1, param2->unk_08[2]);
-        param3->params[3] = ov16_0224B510(param0, param1, param2->unk_08[3]);
-        param3->params[4] = ov16_0224B518(param0, param1, param2->unk_08[4]);
-        param3->params[5] = ov16_0224B3B8(param0, param1, param2->unk_08[5]);
+
+    case TAG_TRCLASS_TRNAME_NICKNAME_TRCLASS_TRNAME_NICKNAME:
+        msg->params[0] = ov16_0224B510(battleSys, battleCtx, msgParams->params[0]);
+        msg->params[1] = ov16_0224B518(battleSys, battleCtx, msgParams->params[1]);
+        msg->params[2] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[2]);
+        msg->params[3] = ov16_0224B510(battleSys, battleCtx, msgParams->params[3]);
+        msg->params[4] = ov16_0224B518(battleSys, battleCtx, msgParams->params[4]);
+        msg->params[5] = ov16_0224B3B8(battleSys, battleCtx, msgParams->params[5]);
         break;
+
     default:
         GF_ASSERT("FALSE");
         break;

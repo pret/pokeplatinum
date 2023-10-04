@@ -3,8 +3,8 @@
 
 enum MessageTags {
     TAG_NONE = 0,
+    
     TAG_NONE_SIDE_CONSCIOUS,
-
     TAG_NICKNAME,
     TAG_MOVE,
     TAG_STAT,
