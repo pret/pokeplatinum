@@ -74,4 +74,28 @@ enum BattleScriptVars {
     BTLVAR_WAITING_BATTLERS,
 };
 
+#define BTLSCR_ATTACKER             1
+#define BTLSCR_DEFENDER             2
+#define BTLSCR_PLAYER               3
+#define BTLSCR_ENEMY                4
+#define BTLSCR_FAINTED_MON          5
+#define BTLSCR_SWITCHED_MON         6
+#define BTLSCR_SIDE_EFFECT_MON      7
+#define BTLSCR_ABILITY_MON          8
+#define BTLSCR_PLAYER_SLOT_1        9
+#define BTLSCR_ENEMY_SLOT_1         10
+#define BTLSCR_PLAYER_SLOT_2        11
+#define BTLSCR_ENEMY_SLOT_2         12
+// 13 undefined
+#define BTLSCR_MSG_ATTACKER         14
+#define BTLSCR_MSG_DEFENDER         15
+#define BTLSCR_ATTACKER_PARTNER     16
+#define BTLSCR_DEFENDER_PARTNER     17
+// 18 undefined
+#define BTLSCR_ATTACKER_ENEMY       19
+#define BTLSCR_DEFENDER_ENEMY       20
+#define BTLSCR_MSG_BATTLER_TEMP     21
+#define BTLSCR_SWITCHED_MON_AFTER   22
+#define BTLSCR_BATTLER_TEMP         (0xFF)
+
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H
