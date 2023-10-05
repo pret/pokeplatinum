@@ -103,14 +103,14 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_DeletePokemon(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02240B68(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02240C84(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02240D94(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02240F44(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022410DC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241108(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022411C0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241288(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ThrowTrainerBall(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Unused0A(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241340(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022414E0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241518(BattleSystem * param0, BattleContext * param1);
@@ -362,14 +362,14 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_ShowPokemon,
     BtlCmd_ReturnPokemon,
     BtlCmd_DeletePokemon,
-    ov16_02240B68,
-    ov16_02240C84,
-    ov16_02240D94,
-    ov16_02240F44,
-    ov16_022410DC,
-    ov16_02241108,
-    ov16_022411C0,
-    ov16_02241288,
+    BtlCmd_SetTrainerEncounter,
+    BtlCmd_ThrowTrainerBall,
+    BtlCmd_SlideTrainerOut,
+    BtlCmd_SlideTrainerIn,
+    BtlCmd_Unused0A,
+    BtlCmd_SlideHPGaugeIn,
+    BtlCmd_SlideHPGaugeInWait,
+    BtlCmd_SlideHPGaugeOut,
     ov16_02241340,
     ov16_022414E0,
     ov16_02241518,
@@ -610,9 +610,12 @@ static BOOL BtlCmd_SetupBattleUI(BattleSystem *battleSys, BattleContext *battleC
 }
 
 /**
- * @brief Set a wild encounter.
+ * @brief Set a wild Pokemon as the battle encounter.
  * 
  * This also flags the encounter as seen in the Pokedex.
+ * 
+ * Inputs:
+ * 1. the battler for whom the wild Pokemon will be set as the encounter
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -657,6 +660,9 @@ static BOOL BtlCmd_SetEncounter(BattleSystem *battleSys, BattleContext *battleCt
  * @brief Show a wild encounter.
  * 
  * This also marks eligible battlers for experience gain.
+ * 
+ * Inputs:
+ * 1. the battler who will be shown
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -761,6 +767,9 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
  * 
  * This also marks eligible battlers for experience gain.
  * 
+ * Inputs:
+ * 1. the battler who will be shown
+ * 
  * @param battleSys 
  * @param battleCtx 
  * @return FALSE
@@ -827,6 +836,7 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
 
     case BTLSCR_DEFENDER:
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
+
         if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
@@ -841,6 +851,7 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
 
     case BTLSCR_SWITCHED_MON:
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
+
         if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
@@ -859,6 +870,9 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
 
 /**
  * @brief Return a Pokemon to its Poke Ball.
+ * 
+ * Inputs:
+ * 1. the battler who will be returned to its Poke Ball
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -913,6 +927,9 @@ static BOOL BtlCmd_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleC
 /**
  * @brief Delete a Pokemon's sprite.
  * 
+ * Inputs:
+ * 1. the battler whose sprite will be deleted
+ * 
  * @param battleSys 
  * @param battleCtx 
  * @return FALSE
@@ -929,59 +946,74 @@ static BOOL BtlCmd_DeletePokemon(BattleSystem *battleSys, BattleContext *battleC
     return FALSE;
 }
 
-static BOOL ov16_02240B68 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Set a trainer as the battle encounter.
+ * 
+ * Inputs:
+ * 1. the battler for whom the trainer will be set as the encounter
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v3;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    v1 = BattleScript_Read(param1);
+    int battlerIn = BattleScript_Read(battleCtx);
 
-    switch (v1) {
+    switch (battlerIn) {
     default:
-    case 0x0:
-        if (BattleSystem_BattleType(param0) & 0x10) {
-            for (v0 = 0; v0 < v2; v0++) {
-                v3 = BattleSystem_BattlerData(param0, v0);
-
-                if (v3->unk_191 != 4) {
-                    ov16_02265124(param0, v0);
+    case BTLSCR_ALL_BATTLERS:
+        if (BattleSystem_BattleType(battleSys) & 0x10) {
+            for (i = 0; i < maxBattlers; i++) {
+                battlerData = BattleSystem_BattlerData(battleSys, i);
+                if (battlerData->unk_191 != BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+                    BattleIO_SetTrainerEncounter(battleSys, i);
                 }
             }
         } else {
-            for (v0 = 0; v0 < v2; v0++) {
-                if (((BattleSystem_BattleType(param0) & 0x8) == 0) && (BattleSystem_BattleType(param0) & 0x2) && (v0 > 1)) {
+            for (i = 0; i < maxBattlers; i++) {
+                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                        && i > 1) {
                     break;
                 }
 
-                ov16_02265124(param0, v0);
+                BattleIO_SetTrainerEncounter(battleSys, i);
             }
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 & 0x1) == 0) {
-                ov16_02265124(param0, v0);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                if (((BattleSystem_BattleType(param0) & 0x8) == 0) && (BattleSystem_BattleType(param0) & 0x2)) {
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+                BattleIO_SetTrainerEncounter(battleSys, i);
+
+                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
         }
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 & 0x1) {
-                ov16_02265124(param0, v0);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                if (((BattleSystem_BattleType(param0) & 0x8) == 0) && ((BattleSystem_BattleType(param0) & 0x10) == 0) && (BattleSystem_BattleType(param0) & 0x2)) {
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleIO_SetTrainerEncounter(battleSys, i);
+
+                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
@@ -989,54 +1021,70 @@ static BOOL ov16_02240B68 (BattleSystem * param0, BattleContext * param1)
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02240C84 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play the ball-throw animation for a battler.
+ * 
+ * Inputs:
+ * 1. the battler whose ball is to be thrown
+ * 2. the type of ball that the battler will throw
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_ThrowTrainerBall(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v4;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
+    int battlerIn = BattleScript_Read(battleCtx);
+    int ballTypeIn = BattleScript_Read(battleCtx);
 
-    switch (v1) {
+    switch (battlerIn) {
     default:
-    case 0x0:
-        for (v0 = 0; v0 < v3; v0++) {
-            if (((BattleSystem_BattleType(param0) & 0x8) == 0) && (BattleSystem_BattleType(param0) & 0x2) && (v0 > 1)) {
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                    && i > 1) {
                 break;
             }
 
-            ov16_02265154(param0, v0, v2);
+            BattleIO_ThrowTrainerBall(battleSys, i, ballTypeIn);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v3; v0++) {
-            v4 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v4->unk_191 & 0x1) == 0) {
-                ov16_02265154(param0, v0, v2);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                if (((BattleSystem_BattleType(param0) & 0x8) == 0) && (BattleSystem_BattleType(param0) & 0x2)) {
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+                BattleIO_ThrowTrainerBall(battleSys, i, ballTypeIn);
+
+                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
         }
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v3; v0++) {
-            v4 = BattleSystem_BattlerData(param0, v0);
 
-            if (v4->unk_191 & 0x1) {
-                ov16_02265154(param0, v0, v2);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                if (((BattleSystem_BattleType(param0) & 0x8) == 0) && ((BattleSystem_BattleType(param0) & 0x10) == 0) && (BattleSystem_BattleType(param0) & 0x2)) {
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleIO_ThrowTrainerBall(battleSys, i, ballTypeIn);
+
+                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
@@ -1044,345 +1092,424 @@ static BOOL ov16_02240C84 (BattleSystem * param0, BattleContext * param1)
         break;
     }
 
-    param1->battleProgressFlag = 1;
-
-    return 0;
+    battleCtx->battleProgressFlag = TRUE;
+    return FALSE;
 }
 
-static BOOL ov16_02240D94 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Slide a trainer's sprite out of view.
+ * 
+ * Inputs:
+ * 1. the battler whose sprite is to be moved
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v3;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
-    v1 = BattleScript_Read(param1);
+    BattleScript_Iter(battleCtx, 1);
+    
+    int battlerIn = BattleScript_Read(battleCtx);
 
-    switch (v1) {
+    switch (battlerIn) {
     default:
-    case 0x0:
-        for (v0 = 0; v0 < v2; v0++) {
-            if (((BattleSystem_BattleType(param0) & 0x8) == 0) && (BattleSystem_BattleType(param0) & 0x2) && (v0 > 1)) {
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                    && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                    && i > 1) {
                 break;
             }
 
-            ov16_0226518C(param0, v0);
+            BattleIO_SlideTrainerOut(battleSys, i);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 & 0x1) == 0) {
-                ov16_0226518C(param0, v0);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                if (((BattleSystem_BattleType(param0) & 0x8) == 0) && (BattleSystem_BattleType(param0) & 0x2)) {
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+                BattleIO_SlideTrainerOut(battleSys, i);
+
+                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
         }
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 & 0x1) {
-                ov16_0226518C(param0, v0);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                if (((BattleSystem_BattleType(param0) & 0x8) == 0) && ((BattleSystem_BattleType(param0) & 0x10) == 0) && (BattleSystem_BattleType(param0) & 0x2)) {
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleIO_SlideTrainerOut(battleSys, i);
+
+                if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_TAG) == FALSE
+                        && (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)) {
                     break;
                 }
             }
         }
         break;
-    case 0x9:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 == 0) || (v3->unk_191 == 2)) {
-                ov16_0226518C(param0, v0);
+    case BTLSCR_PLAYER_SLOT_1:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 == BATTLER_TYPE_SOLO_PLAYER
+                    || battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                BattleIO_SlideTrainerOut(battleSys, i);
                 break;
             }
         }
         break;
-    case 0xa:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 == 1) || (v3->unk_191 == 3)) {
-                ov16_0226518C(param0, v0);
+    case BTLSCR_ENEMY_SLOT_1:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 == BATTLER_TYPE_SOLO_ENEMY
+                    || battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                BattleIO_SlideTrainerOut(battleSys, i);
                 break;
             }
         }
         break;
-    case 0xb:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 == 4) {
-                ov16_0226518C(param0, v0);
+    case BTLSCR_PLAYER_SLOT_2:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+                BattleIO_SlideTrainerOut(battleSys, i);
                 break;
             }
         }
         break;
-    case 0xc:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 == 5) {
-                ov16_0226518C(param0, v0);
+    case BTLSCR_ENEMY_SLOT_2:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                BattleIO_SlideTrainerOut(battleSys, i);
                 break;
             }
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02240F44 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Slide a trainer's sprite into view.
+ * 
+ * Inputs:
+ * 1. the battler whose sprite is to be moved
+ * 2. the position that the trainer should be moved into (i.e. the trainer's slot
+ * on their side of the field)
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v4;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
+    int battlerIn = BattleScript_Read(battleCtx);
+    int posIn = BattleScript_Read(battleCtx);
 
-    switch (v1) {
+    switch (battlerIn) {
     default:
-    case 0x0:
-        for (v0 = 0; v0 < v3; v0++) {
-            if ((BattleSystem_BattleType(param0) & 0x2) && (v0 > 1)) {
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                    && i > 1) {
                 break;
             }
 
-            ov16_022651A8(param0, v0, v2);
+            BattleIO_SlideTrainerIn(battleSys, i, posIn);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v3; v0++) {
-            v4 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v4->unk_191 & 0x1) == 0) {
-                ov16_022651A8(param0, v0, v2);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                if (BattleSystem_BattleType(param0) & 0x2) {
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+                BattleIO_SlideTrainerIn(battleSys, i, posIn);
+
+                if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
                     break;
                 }
             }
         }
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v3; v0++) {
-            v4 = BattleSystem_BattlerData(param0, v0);
 
-            if (v4->unk_191 & 0x1) {
-                ov16_022651A8(param0, v0, v2);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
 
-                if (BattleSystem_BattleType(param0) & 0x2) {
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleIO_SlideTrainerIn(battleSys, i, posIn);
+
+                if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
                     break;
                 }
             }
         }
         break;
-    case 0x9:
-        for (v0 = 0; v0 < v3; v0++) {
-            v4 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v4->unk_191 == 0) || (v4->unk_191 == 2)) {
-                ov16_022651A8(param0, v0, v2);
+    case BTLSCR_PLAYER_SLOT_1:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 == BATTLER_TYPE_SOLO_PLAYER
+                    || battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+                BattleIO_SlideTrainerIn(battleSys, i, posIn);
                 break;
             }
         }
         break;
-    case 0xa:
-        for (v0 = 0; v0 < v3; v0++) {
-            v4 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v4->unk_191 == 1) || (v4->unk_191 == 3)) {
-                ov16_022651A8(param0, v0, v2);
+    case BTLSCR_ENEMY_SLOT_1:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 == BATTLER_TYPE_SOLO_ENEMY
+                    || battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+                BattleIO_SlideTrainerIn(battleSys, i, posIn);
                 break;
             }
         }
         break;
-    case 0xb:
-        for (v0 = 0; v0 < v3; v0++) {
-            v4 = BattleSystem_BattlerData(param0, v0);
 
-            if (v4->unk_191 == 4) {
-                ov16_022651A8(param0, v0, v2);
+    case BTLSCR_PLAYER_SLOT_2:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+                BattleIO_SlideTrainerIn(battleSys, i, posIn);
                 break;
             }
         }
         break;
-    case 0xc:
-        for (v0 = 0; v0 < v3; v0++) {
-            v4 = BattleSystem_BattlerData(param0, v0);
 
-            if (v4->unk_191 == 5) {
-                ov16_022651A8(param0, v0, v2);
+    case BTLSCR_ENEMY_SLOT_2:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+                BattleIO_SlideTrainerIn(battleSys, i, posIn);
                 break;
             }
         }
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022410DC (BattleSystem * param0, BattleContext * param1)
+static BOOL BtlCmd_Unused0A(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1 = BattleSystem_MaxBattlers(param0);
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        ov16_02266460(param0, v0);
+    for (i = 0; i < maxBattlers; i++) {
+        ov16_02266460(battleSys, i);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241108 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Slide the HP gauge in for a battler.
+ * 
+ * Inputs:
+ * 1. the battler whose HP gauge should be moved
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v3;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    v1 = BattleScript_Read(param1);
+    int battlerIn = BattleScript_Read(battleCtx);
 
-    switch (v1) {
-    case 0x0:
-        for (v0 = 0; v0 < v2; v0++) {
-            ov16_022651DC(param0, param1, v0, 0);
+    switch (battlerIn) {
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 & 0x1) == 0) {
-                ov16_022651DC(param0, param1, v0, 0);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+                BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
             }
         }
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 & 0x1) {
-                ov16_022651DC(param0, param1, v0, 0);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
             }
         }
         break;
+
     default:
-        v0 = BattleScript_Battler(param0, param1, v1);
-        ov16_022651DC(param0, param1, v0, 0);
+        i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
+        BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022411C0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Slide the HP gauge in for all battlers on a given side,
+ * delaying between them.
+ * 
+ * Inputs:
+ * 1. the side whose battlers' HP gauge should be moved
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v3;
-    u8 v4;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    v1 = BattleScript_Read(param1);
-    v4 = 0;
+    int battlerIn = BattleScript_Read(battleCtx);
+    u8 wait = 0;
 
-    switch (v1) {
-    case 0x0:
-        for (v0 = 0; v0 < v2; v0++) {
-            ov16_022651DC(param0, param1, v0, 0);
+    switch (battlerIn) {
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 & 0x1) == 0) {
-                ov16_022651DC(param0, param1, v0, v4);
-                v4 += 4;
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+                BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, wait);
+                wait += 4;
             }
         }
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 & 0x1) {
-                ov16_022651DC(param0, param1, v0, v4);
-                v4 += 4;
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, wait);
+                wait += 4;
             }
         }
         break;
+
     default:
-        v0 = BattleScript_Battler(param0, param1, v1);
-        ov16_022651DC(param0, param1, v0, v4);
+        i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
+        BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, wait);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241288 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Slide the HP gauge out for a battler.
+ * 
+ * Inputs:
+ * 1. the battler whose HP gauge should be moved
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v3;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
-    v1 = BattleScript_Read(param1);
+    BattleScript_Iter(battleCtx, 1);
+    
+    int battlerIn = BattleScript_Read(battleCtx);
 
-    switch (v1) {
-    case 0x0:
-        for (v0 = 0; v0 < v2; v0++) {
-            ov16_02265314(param0, v0);
+    switch (battlerIn) {
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            BattleIO_SlideHPGaugeOut(battleSys, i);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (((v3->unk_191 & 0x1) == 0) && ((param1->battlersSwitchingMask & FlagIndex(v0)) == 0)) {
-                ov16_02265314(param0, v0);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE
+                    && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
+                BattleIO_SlideHPGaugeOut(battleSys, i);
             }
         }
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 & 0x1) {
-                ov16_02265314(param0, v0);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleIO_SlideHPGaugeOut(battleSys, i);
             }
         }
         break;
+
     default:
-        v0 = BattleScript_Battler(param0, param1, v1);
-        ov16_02265314(param0, v0);
+        i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
+        BattleIO_SlideHPGaugeOut(battleSys, i);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241340 (BattleSystem * param0, BattleContext * param1)
