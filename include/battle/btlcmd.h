@@ -96,6 +96,6 @@ enum BattleScriptVars {
 #define BTLSCR_DEFENDER_ENEMY       20
 #define BTLSCR_MSG_BATTLER_TEMP     21
 #define BTLSCR_SWITCHED_MON_AFTER   22
-#define BTLSCR_BATTLER_TEMP         (0xFF)
+#define BTLSCR_MSG_TEMP             (0xFF)
 
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H

@@ -20,7 +20,7 @@ enum MessageTags {
     TAG_NICKNAME_TYPE,
     TAG_NICKNAME_POKE,
     TAG_NICKNAME_ITEM,
-    // 16 is indeterminate
+    TAG_NICKNAME_POFFIN,
     TAG_NICKNAME_NUM = 17,
     TAG_NICKNAME_TRNAME,
     TAG_NICKNAME_BOX,
