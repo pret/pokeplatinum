@@ -69,13 +69,13 @@
 #include "overlay016/ov16_0225177C.h"
 #include "overlay016/ov16_0226485C.h"
 
-void ov16_02264A8C(BattleSystem * param0, int param1);
-void ov16_02264AB4(BattleSystem * param0, int param1);
-void ov16_02264BB4(BattleSystem * param0, int param1);
-void ov16_02264CE8(BattleSystem * param0, int param1, int param2, int param3);
-void ov16_02264EF8(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_SetupBattleUI(BattleSystem * param0, int param1);
+void BattleIO_SetEncounter(BattleSystem * param0, int param1);
+void BattleIO_ShowEncounter(BattleSystem * param0, int param1);
+void BattleIO_ShowPokemon(BattleSystem * param0, int param1, int param2, int param3);
+void BattleIO_ReturnPokemon(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265050(BattleSystem * param0, int param1, int param2);
-void ov16_02265108(BattleSystem * param0, int param1);
+void BattleIO_DeletePokemon(BattleSystem * param0, int param1);
 void ov16_02265124(BattleSystem * param0, int param1);
 void ov16_02265154(BattleSystem * param0, int param1, int param2);
 void ov16_0226518C(BattleSystem * param0, int param1);
@@ -306,7 +306,7 @@ static void ov16_02264A04 (BattleSystem * param0, int param1, int param2, void *
     }
 }
 
-void ov16_02264A8C (BattleSystem * param0, int param1)
+void BattleIO_SetupBattleUI (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_02264A8C v0;
 
@@ -316,7 +316,7 @@ void ov16_02264A8C (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02264A8C));
 }
 
-void ov16_02264AB4 (BattleSystem * param0, int param1)
+void BattleIO_SetEncounter (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C168 v0;
     int v1;
@@ -339,7 +339,7 @@ void ov16_02264AB4 (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C168));
 }
 
-void ov16_02264BB4 (BattleSystem * param0, int param1)
+void BattleIO_ShowEncounter (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C17C v0;
     int v1;
@@ -367,7 +367,7 @@ void ov16_02264BB4 (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
 }
 
-void ov16_02264CE8 (BattleSystem * param0, int param1, int param2, int param3)
+void BattleIO_ShowPokemon (BattleSystem * param0, int param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C17C v0;
     int v1;
@@ -424,7 +424,7 @@ void ov16_02264CE8 (BattleSystem * param0, int param1, int param2, int param3)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C17C));
 }
 
-void ov16_02264EF8 (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleIO_ReturnPokemon (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_02264EF8 v0;
     int v1;
@@ -491,7 +491,7 @@ void ov16_02265050 (BattleSystem * param0, int param1, int param2)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02265050));
 }
 
-void ov16_02265108 (BattleSystem * param0, int param1)
+void BattleIO_DeletePokemon (BattleSystem * param0, int param1)
 {
     int v0 = 7;
     ov16_02264A04(param0, 1, param1, &v0, 4);

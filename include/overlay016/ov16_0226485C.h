@@ -8,13 +8,13 @@
 #include "overlay016/struct_ov16_02265BBC.h"
 
 void ov16_02264988(BattleSystem * param0, int param1);
-void ov16_02264A8C(BattleSystem * param0, int param1);
-void ov16_02264AB4(BattleSystem * param0, int param1);
-void ov16_02264BB4(BattleSystem * param0, int param1);
-void ov16_02264CE8(BattleSystem * param0, int param1, int param2, int param3);
-void ov16_02264EF8(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_SetupBattleUI(BattleSystem * param0, int param1);
+void BattleIO_SetEncounter(BattleSystem * param0, int param1);
+void BattleIO_ShowEncounter(BattleSystem * param0, int param1);
+void BattleIO_ShowPokemon(BattleSystem * param0, int param1, int param2, int param3);
+void BattleIO_ReturnPokemon(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265050(BattleSystem * param0, int param1, int param2);
-void ov16_02265108(BattleSystem * param0, int param1);
+void BattleIO_DeletePokemon(BattleSystem * param0, int param1);
 void ov16_02265124(BattleSystem * param0, int param1);
 void ov16_02265154(BattleSystem * param0, int param1, int param2);
 void ov16_0226518C(BattleSystem * param0, int param1);

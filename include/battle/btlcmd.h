@@ -74,6 +74,7 @@ enum BattleScriptVars {
     BTLVAR_WAITING_BATTLERS,
 };
 
+#define BTLSCR_ALL_BATTLERS         0
 #define BTLSCR_ATTACKER             1
 #define BTLSCR_DEFENDER             2
 #define BTLSCR_PLAYER               3

@@ -97,12 +97,12 @@ typedef struct BattleMessageParams {
     int params[6]; //< Params for the rendered message
 } BattleMessageParams;
 
-static BOOL ov16_0224064C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02240664(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022406E0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022408A0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02240A7C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02240B3C(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_SetupBattleUI(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_DeletePokemon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02240B68(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02240C84(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02240D94(BattleSystem * param0, BattleContext * param1);
@@ -356,12 +356,12 @@ static void ov16_02248E74(UnkStruct_0201CD38 * param0, void * param1);
 static void ov16_02249B80(UnkStruct_0201CD38 * param0, void * param1);
 
 static const BtlCmd sBattleCommands[] = {
-    ov16_0224064C,
-    ov16_02240664,
-    ov16_022406E0,
-    ov16_022408A0,
-    ov16_02240A7C,
-    ov16_02240B3C,
+    BtlCmd_SetupBattleUI,
+    BtlCmd_SetEncounter,
+    BtlCmd_ShowEncounter,
+    BtlCmd_ShowPokemon,
+    BtlCmd_ReturnPokemon,
+    BtlCmd_DeletePokemon,
     ov16_02240B68,
     ov16_02240C84,
     ov16_02240D94,
@@ -594,290 +594,339 @@ BOOL BattleScript_Exec(BattleSystem *battleSys, BattleContext *battleCtx)
     return result;
 }
 
-static BOOL ov16_0224064C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Setup the battle UI from our POV.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetupBattleUI(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02264A8C(param0, 0);
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_SetupBattleUI(battleSys, BATTLER_US);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02240664 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Set a wild encounter.
+ * 
+ * This also flags the encounter as seen in the Pokedex.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    v1 = BattleScript_Read(param1);
-
-    switch (v1) {
+    int battlerIn = BattleScript_Read(battleCtx);
+    switch (battlerIn) {
     default:
-    case 0x0:
-        for (v0 = 0; v0 < v2; v0++) {
-            ov16_02264AB4(param0, v0);
-            ov16_0223F938(param0, v0);
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            BattleIO_SetEncounter(battleSys, i);
+            BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
-    case 0x3:
+
+    case BTLSCR_PLAYER:
         break;
-    case 0x4:
-    {
-        BattlerData * v3;
 
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (v3->unk_191 & 0x1) {
-                ov16_02264AB4(param0, v0);
-                ov16_0223F938(param0, v0);
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleIO_SetEncounter(battleSys, i);
+                BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
-    }
-    break;
+        break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022406E0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Show a wild encounter.
+ * 
+ * This also marks eligible battlers for experience gain.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v3;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
-    v1 = BattleScript_Read(param1);
+    BattleScript_Iter(battleCtx, 1);
 
-    switch (v1) {
+    int battlerIn = BattleScript_Read(battleCtx);
+    switch (battlerIn) {
     default:
-    case 0x0:
-        for (v0 = 0; v0 < v2; v0++) {
-            ov16_02264BB4(param0, v0);
-            ov16_0223F938(param0, v0);
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            BattleIO_ShowEncounter(battleSys, i);
+            BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 & 0x1) == 0) {
-                ov16_02264BB4(param0, v0);
-                ov16_0223F938(param0, v0);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+                BattleIO_ShowEncounter(battleSys, i);
+                BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
 
-        ov16_022535F0(param0, param1, 1);
-        ov16_022535F0(param0, param1, 3);
+        BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+        BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 & 0x1) {
-                ov16_022535E0(param1, v0);
-                ov16_022535F0(param0, param1, v0);
-                ov16_02264BB4(param0, v0);
-                ov16_0223F938(param0, v0);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+                BattleSystem_NoExpGain(battleCtx, i);
+                BattleSystem_FlagExpGain(battleSys, battleCtx, i);
+                BattleIO_ShowEncounter(battleSys, i);
+                BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
         break;
-    case 0x1:
-        v3 = BattleSystem_BattlerData(param0, param1->attacker);
 
-        if ((v3->unk_191 & 0x1) == 0) {
-            ov16_022535F0(param0, param1, 1);
-            ov16_022535F0(param0, param1, 3);
+    case BTLSCR_ATTACKER:
+        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
+
+        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            ov16_022535E0(param1, param1->attacker);
-            ov16_022535F0(param0, param1, param1->attacker);
+            BattleSystem_NoExpGain(battleCtx, battleCtx->attacker);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->attacker);
         }
 
-        ov16_0223F938(param0, param1->attacker);
-        ov16_02264BB4(param0, param1->attacker);
+        BattleSystem_DexFlagSeen(battleSys, battleCtx->attacker);
+        BattleIO_ShowEncounter(battleSys, battleCtx->attacker);
         break;
-    case 0x2:
-        v3 = BattleSystem_BattlerData(param0, param1->defender);
 
-        if ((v3->unk_191 & 0x1) == 0) {
-            ov16_022535F0(param0, param1, 1);
-            ov16_022535F0(param0, param1, 3);
+    case BTLSCR_DEFENDER:
+        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
+
+        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            ov16_022535E0(param1, param1->defender);
-            ov16_022535F0(param0, param1, param1->defender);
+            BattleSystem_NoExpGain(battleCtx, battleCtx->defender);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->defender);
         }
 
-        ov16_0223F938(param0, param1->defender);
-        ov16_02264BB4(param0, param1->defender);
+        BattleSystem_DexFlagSeen(battleSys, battleCtx->defender);
+        BattleIO_ShowEncounter(battleSys, battleCtx->defender);
         break;
-    case 0x6:
-        v3 = BattleSystem_BattlerData(param0, param1->switchedMon);
 
-        if ((v3->unk_191 & 0x1) == 0) {
-            ov16_022535F0(param0, param1, 1);
-            ov16_022535F0(param0, param1, 3);
+    case BTLSCR_SWITCHED_MON:
+        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
+
+        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            ov16_022535E0(param1, param1->switchedMon);
-            ov16_022535F0(param0, param1, param1->switchedMon);
+            BattleSystem_NoExpGain(battleCtx, battleCtx->switchedMon);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->switchedMon);
         }
 
-        ov16_0223F938(param0, param1->switchedMon);
-        ov16_02264BB4(param0, param1->switchedMon);
+        BattleSystem_DexFlagSeen(battleSys, battleCtx->switchedMon);
+        BattleIO_ShowEncounter(battleSys, battleCtx->switchedMon);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022408A0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Show a Pokemon.
+ * 
+ * This also marks eligible battlers for experience gain.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v3;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    v1 = BattleScript_Read(param1);
-
-    switch (v1) {
+    int battlerIn = BattleScript_Read(battleCtx);
+    switch (battlerIn) {
     default:
-    case 0x0:
-        for (v0 = 0; v0 < v2; v0++) {
-            ov16_02264CE8(param0, v0, NULL, 0);
-            ov16_0223F938(param0, v0);
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            BattleIO_ShowPokemon(battleSys, i, NULL, 0);
+            BattleSystem_DexFlagSeen(battleSys, i);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 & 0x1) == 0) {
-                ov16_02264CE8(param0, v0, NULL, 0);
-                ov16_0223F938(param0, v0);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if ((battlerData->unk_191 & 0x1) == 0) {
+                BattleIO_ShowPokemon(battleSys, i, NULL, 0);
+                BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
 
-        ov16_022535F0(param0, param1, 1);
-        ov16_022535F0(param0, param1, 3);
+        BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+        BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if (v3->unk_191 & 0x1) {
-                ov16_022535E0(param1, v0);
-                ov16_022535F0(param0, param1, v0);
-                ov16_02264CE8(param0, v0, NULL, 0);
-                ov16_0223F938(param0, v0);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if (battlerData->unk_191 & 0x1) {
+                BattleSystem_NoExpGain(battleCtx, i);
+                BattleSystem_FlagExpGain(battleSys, battleCtx, i);
+                BattleIO_ShowPokemon(battleSys, i, NULL, 0);
+                BattleSystem_DexFlagSeen(battleSys, i);
             }
         }
         break;
-    case 0x1:
-        v3 = BattleSystem_BattlerData(param0, param1->attacker);
 
-        if ((v3->unk_191 & 0x1) == 0) {
-            ov16_022535F0(param0, param1, 1);
-            ov16_022535F0(param0, param1, 3);
+    case BTLSCR_ATTACKER:
+        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
+
+        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            ov16_022535E0(param1, param1->attacker);
-            ov16_022535F0(param0, param1, param1->attacker);
+            BattleSystem_NoExpGain(battleCtx, battleCtx->attacker);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->attacker);
         }
 
-        ov16_0223F938(param0, param1->attacker);
-        ov16_02264CE8(param0, param1->attacker, NULL, 0);
+        BattleSystem_DexFlagSeen(battleSys, battleCtx->attacker);
+        BattleIO_ShowPokemon(battleSys, battleCtx->attacker, NULL, 0);
         break;
-    case 0x2:
-        v3 = BattleSystem_BattlerData(param0, param1->defender);
 
-        if ((v3->unk_191 & 0x1) == 0) {
-            ov16_022535F0(param0, param1, 1);
-            ov16_022535F0(param0, param1, 3);
+    case BTLSCR_DEFENDER:
+        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
+        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            ov16_022535E0(param1, param1->defender);
-            ov16_022535F0(param0, param1, param1->defender);
+            BattleSystem_NoExpGain(battleCtx, battleCtx->defender);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->defender);
         }
 
-        ov16_0223F938(param0, param1->defender);
-        ov16_02264CE8(param0, param1->defender, NULL, 0);
+        BattleSystem_DexFlagSeen(battleSys, battleCtx->defender);
+        BattleIO_ShowPokemon(battleSys, battleCtx->defender, NULL, 0);
         break;
-    case 0x6:
-        v3 = BattleSystem_BattlerData(param0, param1->switchedMon);
 
-        if ((v3->unk_191 & 0x1) == 0) {
-            ov16_022535F0(param0, param1, 1);
-            ov16_022535F0(param0, param1, 3);
+    case BTLSCR_SWITCHED_MON:
+        battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
+        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
-            ov16_022535E0(param1, param1->switchedMon);
-            ov16_022535F0(param0, param1, param1->switchedMon);
+            BattleSystem_NoExpGain(battleCtx, battleCtx->switchedMon);
+            BattleSystem_FlagExpGain(battleSys, battleCtx, battleCtx->switchedMon);
         }
 
-        ov16_0223F938(param0, param1->switchedMon);
-        ov16_02264CE8(param0, param1->switchedMon, NULL, 0);
+        BattleSystem_DexFlagSeen(battleSys, battleCtx->switchedMon);
+        BattleIO_ShowPokemon(battleSys, battleCtx->switchedMon, NULL, 0);
         break;
     }
 
     return 0;
 }
 
-static BOOL ov16_02240A7C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Return a Pokemon to its Poke Ball.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2 = BattleSystem_MaxBattlers(param0);
-    BattlerData * v3;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
-    v1 = BattleScript_Read(param1);
+    BattleScript_Iter(battleCtx, 1);
+    int battlerIn = BattleScript_Read(battleCtx);
 
-    switch (v1) {
-    case 0x0:
-        for (v0 = 0; v0 < v2; v0++) {
-            ov16_02264EF8(param0, param1, v0);
+    switch (battlerIn) {
+    case BTLSCR_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            BattleIO_ReturnPokemon(battleSys, battleCtx, i);
         }
         break;
-    case 0x3:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 & 0x1) == 0) {
-                ov16_02264EF8(param0, param1, v0);
+    case BTLSCR_PLAYER:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+                BattleIO_ReturnPokemon(battleSys, battleCtx, i);
             }
         }
         break;
-    case 0x4:
-        for (v0 = 0; v0 < v2; v0++) {
-            v3 = BattleSystem_BattlerData(param0, v0);
 
-            if ((v3->unk_191 & 0x1) && ((param1->battlersSwitchingMask & FlagIndex(v0)) == 0)) {
-                ov16_02264EF8(param0, param1, v0);
+    case BTLSCR_ENEMY:
+        for (i = 0; i < maxBattlers; i++) {
+            battlerData = BattleSystem_BattlerData(battleSys, i);
+
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) && 
+                    (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
+                BattleIO_ReturnPokemon(battleSys, battleCtx, i);
             }
         }
         break;
+
     default:
-        v0 = BattleScript_Battler(param0, param1, v1);
-        ov16_02264EF8(param0, param1, v0);
+        i = BattleScript_Battler(battleSys, battleCtx, battlerIn);
+        BattleIO_ReturnPokemon(battleSys, battleCtx, i);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02240B3C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Delete a Pokemon's sprite.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_DeletePokemon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    int battlerIn = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Battler(battleSys, battleCtx, battlerIn);
 
-    v1 = BattleScript_Read(param1);
-    v0 = BattleScript_Battler(param0, param1, v1);
+    BattleIO_DeletePokemon(battleSys, battler);
 
-    ov16_02265108(param0, v0);
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02240B68 (BattleSystem * param0, BattleContext * param1)
@@ -8770,7 +8819,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 28:
-        ov16_02264CE8(v2->unk_00, v1, v2->unk_2C, 1);
+        BattleIO_ShowPokemon(v2->unk_00, v1, v2->unk_2C, 1);
         v2->unk_28 = 29;
         v2->unk_30[1] = 2;
         break;
@@ -9003,7 +9052,7 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         maxBattlers = BattleSystem_MaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
             battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
-            if (battlerData->unk_191 & BATTLER_THEM) {
+            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
                 break;
             }
         }
@@ -9039,7 +9088,7 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         maxBattlers = BattleSystem_MaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
             battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
-            if ((battlerData->unk_191 & BATTLER_THEM) == FALSE) {
+            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 break;
             }
         }

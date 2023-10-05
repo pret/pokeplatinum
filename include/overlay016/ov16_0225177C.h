@@ -39,8 +39,8 @@ void ov16_022523E8(BattleContext * param0, int param1, int param2, const void * 
 void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02252A2C(BattleMon * param0, int param1, int param2);
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
-void ov16_022535E0(BattleContext * param0, int param1);
-void ov16_022535F0(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleSystem_NoExpGain(BattleContext * param0, int param1);
+void BattleSystem_FlagExpGain(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
 BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5);
