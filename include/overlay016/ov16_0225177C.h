@@ -363,9 +363,73 @@ BOOL ov16_02259B38(BattleSystem * param0, Pokemon * param1);
 BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);
 void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
 void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
-int BattleSystem_CalcMoveDamage(BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u32 param4, u16 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-int BattleSystem_CalcDamageVariance(BattleSystem * param0, BattleContext * param1, int param2);
-int ov16_0225AEE4(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, u32 param5);
+
+/**
+ * @brief Calculate the base damage for a move using the general damage formula.
+ * 
+ * This computes the following value:
+ * 
+ *     ( ( 2 x Level     )           ( Attack  ) )
+ *     ( ( --------- + 2 ) * Power * ( ------- ) )
+ *     ( (    5          )           ( Defense ) )
+ *     ( --------------------------------------- ) * Burn * Screens * Targets * Weather * FlashFire + 2
+ *     (                   50                    )
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param move              The move being calculated
+ * @param sideConditions    State of the side conditions mask at the time of calculation
+ * @param fieldConditions   State of the field conditions mask at the time of calculation
+ * @param inPower           Input power for variable base-power moves
+ * @param inType            Input type for variable type moves (e.g. Hidden Power)
+ * @param attacker
+ * @param defender 
+ * @param criticalMul       Critical multiplier; must always be >= 1, 1 == no crit,
+ *                          2+ signifies a crit
+ * @return The computed base damage for the move
+ */
+int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
+    BattleContext *battleCtx,
+    int move,
+    u32 sideConditions,
+    u32 fieldConditions,
+    u16 inPower,
+    u8 inType,
+    u8 attacker,
+    u8 defender,
+    u8 criticalMul);
+
+/**
+ * @brief Incorporate random variance in the given damage value.
+ * 
+ * A random factor in the range of [0.85, 1] will be used to vary the output
+ * damage value, i.e., we compute the following:
+ * 
+ *     Damage = Damage * Random([0.85, 1])
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param damage 
+ * @return The varied damage value.
+ */
+int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *battleCtx, int damage);
+
+/**
+ * @brief Calculate the critical multiplier to be applied to a move's damage.
+ * 
+ * This also performs all of the calculations for if a critical hit should/can
+ * occur.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param attacker 
+ * @param defender 
+ * @param criticalStage     The existing critical hit stage for the attacker
+ * @param sideConditions    State of the side conditions mask at the time of calculation
+ * @return 1 if no critical occurs, 2 if a critical occurs, 3 if a critical
+ * occurs and the attacker also has the ability Sniper 
+ */
+int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
 BOOL ov16_0225AFF4(u16 param0);
 BOOL ov16_0225B02C(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 BOOL ov16_0225B084(BattleContext * param0, u16 param1);

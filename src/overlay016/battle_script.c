@@ -2084,7 +2084,7 @@ static BOOL ov16_02241CD0 (BattleSystem * param0, BattleContext * param1)
     if ((BattleSystem_BattleType(param0) & 0x400) || (BattleSystem_BattleStatus(param0) & 0x1)) {
         param1->criticalMul = 1;
     } else {
-        param1->criticalMul = ov16_0225AEE4(param0, param1, param1->attacker, param1->defender, param1->criticalBoosts, BattleContext_Get(param0, param1, 0, param1->defender));
+        param1->criticalMul = BattleSystem_CalcCriticalMulti(param0, param1, param1->attacker, param1->defender, param1->criticalBoosts, BattleContext_Get(param0, param1, 0, param1->defender));
     }
 
     return 0;
