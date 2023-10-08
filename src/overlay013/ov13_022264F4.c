@@ -837,7 +837,7 @@ int ov13_02227244 (UnkStruct_ov13_02227244 * param0)
 {
     int v0;
 
-    v0 = ov16_0225B45C(param0->unk_00->unk_00, BattleSystem_Context(param0->unk_00->unk_00), 2, param0->unk_00->unk_10);
+    v0 = BattleContext_Get(param0->unk_00->unk_00, BattleSystem_Context(param0->unk_00->unk_00), 2, param0->unk_00->unk_10);
     return v0;
 }
 

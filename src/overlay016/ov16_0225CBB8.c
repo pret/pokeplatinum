@@ -3569,7 +3569,7 @@ static void ov16_022610A8 (UnkStruct_0201CD38 * param0, void * param1)
     int v2;
 
     v1 = BattleSystem_Context(v0->unk_00);
-    v2 = ov16_0225B45C(v0->unk_00, v1, 11, v0->unk_0D) + 1;
+    v2 = BattleContext_Get(v0->unk_00, v1, 11, v0->unk_0D) + 1;
 
     GF_ASSERT(v2 < 5);
 

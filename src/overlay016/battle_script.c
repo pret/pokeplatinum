@@ -3,6 +3,8 @@
 
 #include "data_021BF67C.h"
 
+#include "constants/abilities.h"
+#include "constants/items.h"
 #include "constants/battle/message_tags.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -2082,7 +2084,7 @@ static BOOL ov16_02241CD0 (BattleSystem * param0, BattleContext * param1)
     if ((BattleSystem_BattleType(param0) & 0x400) || (BattleSystem_BattleStatus(param0) & 0x1)) {
         param1->criticalMul = 1;
     } else {
-        param1->criticalMul = ov16_0225AEE4(param0, param1, param1->attacker, param1->defender, param1->criticalBoosts, ov16_0225B45C(param0, param1, 0, param1->defender));
+        param1->criticalMul = ov16_0225AEE4(param0, param1, param1->attacker, param1->defender, param1->criticalBoosts, BattleContext_Get(param0, param1, 0, param1->defender));
     }
 
     return 0;
@@ -2117,7 +2119,7 @@ static BOOL ov16_02241D34 (BattleSystem * param0, BattleContext * param1)
                     }
 
                     v7 = Pokemon_GetValue(v10, MON_DATA_HELD_ITEM, NULL);
-                    v9 = ov16_0225B0FC(param1, v7, 1);
+                    v9 = BattleSystem_GetItemData(param1, v7, 1);
 
                     if (v9 == 51) {
                         v6++;
@@ -3760,7 +3762,7 @@ static BOOL ov16_022438F8 (BattleSystem * param0, BattleContext * param1)
         param1->msgBuffer.params[0] = param1->moveCur;
         param1->msgBuffer.params[1] = param1->attacker;
 
-        if (ov16_022554E0(param0, param1, 1, param1->attacker) == 2) {
+        if (BattleSystem_CountAliveBattlers(param0, param1, 1, param1->attacker) == 2) {
             param1->msgBuffer.id = 192;
         } else {
             param1->msgBuffer.id = 190;
@@ -3796,7 +3798,7 @@ static BOOL ov16_022439D8 (BattleSystem * param0, BattleContext * param1)
         param1->msgBuffer.params[0] = param1->moveCur;
         param1->msgBuffer.params[1] = param1->attacker;
 
-        if (ov16_022554E0(param0, param1, 1, param1->attacker) == 2) {
+        if (BattleSystem_CountAliveBattlers(param0, param1, 1, param1->attacker) == 2) {
             param1->msgBuffer.id = 196;
         } else {
             param1->msgBuffer.id = 194;
@@ -6513,9 +6515,9 @@ static BOOL ov16_02247950 (BattleSystem * param0, BattleContext * param1)
     v2 = BattleScript_Read(param1);
     v3 = BattleScript_VarAddress(param0, param1, v2);
     v0 = BattleScript_Battler(param0, param1, v1);
-    v4 = ov16_02258874(param1, v0);
+    v4 = Battler_HeldItem(param1, v0);
 
-    v3[0] = ov16_0225B0FC(param1, v4, 1);
+    v3[0] = BattleSystem_GetItemData(param1, v4, 1);
 
     return 0;
 }
@@ -6534,9 +6536,9 @@ static BOOL ov16_0224799C (BattleSystem * param0, BattleContext * param1)
     v2 = BattleScript_Read(param1);
     v3 = BattleScript_VarAddress(param0, param1, v2);
     v0 = BattleScript_Battler(param0, param1, v1);
-    v4 = ov16_02258874(param1, v0);
+    v4 = Battler_HeldItem(param1, v0);
 
-    v3[0] = ov16_0225B0FC(param1, v4, 2);
+    v3[0] = BattleSystem_GetItemData(param1, v4, 2);
 
     return 0;
 }

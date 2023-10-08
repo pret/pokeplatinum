@@ -576,10 +576,10 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
     v0 = param0->battleCtx;
     v2 = 0;
-    v4 = ov16_0225B45C(param0, v0, 2, param1);
+    v4 = BattleContext_Get(param0, v0, 2, param1);
 
     if ((BattleSystem_BattleType(param0) == (0x2 | 0x1)) || ((BattleSystem_BattleType(param0) & 0x10) && ((BattleSystem_BattlerSlot(param0, param1) & 0x1) == 0))) {
-        v5 = ov16_0225B45C(param0, v0, 2, BattleSystem_Partner(param0, param1));
+        v5 = BattleContext_Get(param0, v0, 2, BattleSystem_Partner(param0, param1));
 
         if (v5 == param2) {
             param1 = BattleSystem_Partner(param0, param1);
@@ -704,10 +704,10 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 22, 5)) {
-        v3 = ov16_0225B45C(param0, v0, 1, param1);
+        v3 = BattleContext_Get(param0, v0, 1, param1);
 
         if (v3 == 0) {
-            v3 = ov16_0225B45C(param0, v0, 0, param1);
+            v3 = BattleContext_Get(param0, v0, 0, param1);
             v3 |= 0x40;
             ov16_0225B540(param0, v0, 0, param1, v3);
             ov16_0225B540(param0, v0, 1, param1, 5);
@@ -965,9 +965,9 @@ u8 ov16_0223EC58 (BattleSystem * param0, int param1, u8 param2)
                 return 1;
             }
         } else {
-            v0 = ov16_0225B45C(param0, param0->battleCtx, 12, 0) & 0xffff;
+            v0 = BattleContext_Get(param0, param0->battleCtx, 12, 0) & 0xffff;
 
-            if (((ov16_0225B45C(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & FlagIndex(0))) {
+            if (((BattleContext_Get(param0, param0->battleCtx, 8, 0) == 14) && (v0 > 16)) || (param2 & FlagIndex(0))) {
                 return 0;
             } else {
                 return 1;
@@ -1017,7 +1017,7 @@ u8 ov16_0223ED60 (BattleSystem * param0)
 u8 ov16_0223ED6C (BattleSystem * param0)
 {
     GF_ASSERT(param0->battleCtx != NULL);
-    return ov16_0225B45C(param0, param0->battleCtx, 5, NULL);
+    return BattleContext_Get(param0, param0->battleCtx, 5, NULL);
 }
 
 int BattleSystem_NumSafariBalls (BattleSystem * param0)
@@ -1582,7 +1582,7 @@ u32 ov16_0223F710 (BattleSystem * param0)
 
 void BattleSystem_SetStopRecording (BattleSystem *battleSys, int flag)
 {
-    if (((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) || (battleSys->unk_2474_0) || (ov16_0225B45C(battleSys, battleSys->battleCtx, 13, 0) == 43) || (ov16_0225B45C(battleSys, battleSys->battleCtx, 14, 0) == 43)) {
+    if (((battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) || (battleSys->unk_2474_0) || (BattleContext_Get(battleSys, battleSys->battleCtx, 13, 0) == 43) || (BattleContext_Get(battleSys, battleSys->battleCtx, 14, 0) == 43)) {
         return;
     }
 
@@ -1599,7 +1599,7 @@ void BattleSystem_SetStopRecording (BattleSystem *battleSys, int flag)
 
 BOOL ov16_0223F7A4 (BattleSystem * param0)
 {
-    if (((param0->battleStatusMask & 0x10) == 0) || (param0->unk_2474_0) || (ov16_0225B45C(param0, param0->battleCtx, 13, 0) == 43) || (ov16_0225B45C(param0, param0->battleCtx, 14, 0) == 43)) {
+    if (((param0->battleStatusMask & 0x10) == 0) || (param0->unk_2474_0) || (BattleContext_Get(param0, param0->battleCtx, 13, 0) == 43) || (BattleContext_Get(param0, param0->battleCtx, 14, 0) == 43)) {
         return 0;
     }
 
@@ -1699,7 +1699,7 @@ void BattleSystem_DexFlagSeen (BattleSystem * param0, int param1)
     int v2;
 
     v0 = Battler_Type(param0->battlers[param1]);
-    v2 = ov16_0225B45C(param0, param0->battleCtx, 2, param1);
+    v2 = BattleContext_Get(param0, param0->battleCtx, 2, param1);
     v1 = ov16_0223DFAC(param0, param1, v2);
 
     if ((param0->battleType & (0x4 | 0x80)) == 0) {
@@ -1725,7 +1725,7 @@ void ov16_0223F9A0 (BattleSystem * param0, int param1)
                 Pokemon * v1;
                 int v2;
 
-                v2 = ov16_0225B45C(param0, param0->battleCtx, 2, param1);
+                v2 = BattleContext_Get(param0, param0->battleCtx, 2, param1);
                 v1 = ov16_0223DFAC(param0, param1, v2);
 
                 sub_0202736C(param0->unk_60, v1);

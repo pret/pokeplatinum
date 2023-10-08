@@ -2147,9 +2147,9 @@ static void ov14_02221C24 (BattleSystem * param0, BattleContext * param1)
     v0 = ov14_02222D34(param1, v1);
 
     if (param1->aiContext.attacker != v0) {
-        param1->aiContext.calcTemp = ov16_0225B0FC(param1, param1->aiContext.battlerHeldItems[v0], 1);
+        param1->aiContext.calcTemp = BattleSystem_GetItemData(param1, param1->aiContext.battlerHeldItems[v0], 1);
     } else {
-        param1->aiContext.calcTemp = ov16_0225B0FC(param1, param1->battleMons[v0].heldItem, 1);
+        param1->aiContext.calcTemp = BattleSystem_GetItemData(param1, param1->battleMons[v0].heldItem, 1);
     }
 }
 
@@ -3109,10 +3109,10 @@ static s32 ov14_02222E84 (BattleSystem * param0, BattleContext * param1, u16 par
     switch (param2) {
     case 363:
         if ((param6 != 103) && (param7 == 0)) {
-            v1 = ov16_0225B0FC(param1, param3, 11);
+            v1 = BattleSystem_GetItemData(param1, param3, 11);
 
             if (v1) {
-                v2 = ov16_0225B0FC(param1, param3, 12);
+                v2 = BattleSystem_GetItemData(param1, param3, 12);
             } else {
                 v2 = 0;
             }
@@ -3122,7 +3122,7 @@ static s32 ov14_02222E84 (BattleSystem * param0, BattleContext * param1, u16 par
         if ((param6 != 103) && (param7 == 0)) {
             v1 = 0;
 
-            switch (ov16_0225B0FC(param1, param3, 1)) {
+            switch (BattleSystem_GetItemData(param1, param3, 1)) {
             case 131:
                 v2 = 1;
                 break;
@@ -3760,7 +3760,7 @@ static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int pa
             v6 = 0;
             v5 = ov14_0222327C(param0, param1, param1->moveHitBattler[param2], param1->moveHit[param2]);
 
-            ov16_022552D4(param1, param1->moveHit[param2], v5, Battler_Ability(param1, param1->moveHitBattler[param2]), Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), ov16_0225B0FC(param1, Pokemon_GetValue(v9, MON_DATA_HELD_ITEM, NULL), 1), Pokemon_GetValue(v9, MON_DATA_177, NULL), Pokemon_GetValue(v9, MON_DATA_178, NULL), &v6);
+            ov16_022552D4(param1, param1->moveHit[param2], v5, Battler_Ability(param1, param1->moveHitBattler[param2]), Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), BattleSystem_GetItemData(param1, Pokemon_GetValue(v9, MON_DATA_HELD_ITEM, NULL), 1), Pokemon_GetValue(v9, MON_DATA_177, NULL), Pokemon_GetValue(v9, MON_DATA_178, NULL), &v6);
 
             if (v6 & param3) {
                 for (v1 = 0; v1 < 4; v1++) {
@@ -4009,8 +4009,8 @@ BOOL ov14_022244B0 (BattleSystem * param0, int param1)
                     v8->aiContext.usedItemType[param1 >> 1] = 0;
                     v4 = 1;
                 }
-            } else if (ov16_0225B0FC(v8, v2, 38)) {
-                v3 = ov16_0225B0FC(v8, v2, 54);
+            } else if (BattleSystem_GetItemData(v8, v2, 38)) {
+                v3 = BattleSystem_GetItemData(v8, v2, 54);
 
                 if (v3) {
                     if ((v8->battleMons[param1].curHP) && ((v8->battleMons[param1].curHP < (v8->battleMons[param1].maxHP / 4)) || ((v8->battleMons[param1].maxHP - v8->battleMons[param1].curHP) > v3))) {
@@ -4018,68 +4018,68 @@ BOOL ov14_022244B0 (BattleSystem * param0, int param1)
                         v4 = 1;
                     }
                 }
-            } else if (ov16_0225B0FC(v8, v2, 15)) {
+            } else if (BattleSystem_GetItemData(v8, v2, 15)) {
                 if (v8->battleMons[param1].status & 0x7) {
                     v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(5);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
-            } else if (ov16_0225B0FC(v8, v2, 16)) {
+            } else if (BattleSystem_GetItemData(v8, v2, 16)) {
                 if ((v8->battleMons[param1].status & 0x8) || (v8->battleMons[param1].status & 0x80)) {
                     v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(4);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
-            } else if (ov16_0225B0FC(v8, v2, 17)) {
+            } else if (BattleSystem_GetItemData(v8, v2, 17)) {
                 if (v8->battleMons[param1].status & 0x10) {
                     v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(3);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
-            } else if (ov16_0225B0FC(v8, v2, 18)) {
+            } else if (BattleSystem_GetItemData(v8, v2, 18)) {
                 if (v8->battleMons[param1].status & 0x20) {
                     v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(2);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
-            } else if (ov16_0225B0FC(v8, v2, 19)) {
+            } else if (BattleSystem_GetItemData(v8, v2, 19)) {
                 if (v8->battleMons[param1].status & 0x40) {
                     v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(1);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
-            } else if (ov16_0225B0FC(v8, v2, 20)) {
+            } else if (BattleSystem_GetItemData(v8, v2, 20)) {
                 if (v8->battleMons[param1].statusVolatile & 0x7) {
                     v8->aiContext.usedItemCondition[param1 >> 1] |= FlagIndex(0);
                     v8->aiContext.usedItemType[param1 >> 1] = 2;
                     v4 = 1;
                 }
             } else if ((v8->battleMons[param1].moveEffectsData.fakeOutTurnNumber - v8->totalTurns) >= 0) {
-                if (ov16_0225B0FC(v8, v2, 27)) {
+                if (BattleSystem_GetItemData(v8, v2, 27)) {
                     v8->aiContext.usedItemCondition[param1 >> 1] = 0x1;
                     v8->aiContext.usedItemType[param1 >> 1] = 3;
                     v4 = 1;
-                } else if (ov16_0225B0FC(v8, v2, 28)) {
+                } else if (BattleSystem_GetItemData(v8, v2, 28)) {
                     v8->aiContext.usedItemCondition[param1 >> 1] = 0x2;
                     v8->aiContext.usedItemType[param1 >> 1] = 3;
                     v4 = 1;
-                } else if (ov16_0225B0FC(v8, v2, 29)) {
+                } else if (BattleSystem_GetItemData(v8, v2, 29)) {
                     v8->aiContext.usedItemCondition[param1 >> 1] = 0x4;
                     v8->aiContext.usedItemType[param1 >> 1] = 3;
                     v4 = 1;
-                } else if (ov16_0225B0FC(v8, v2, 30)) {
+                } else if (BattleSystem_GetItemData(v8, v2, 30)) {
                     v8->aiContext.usedItemCondition[param1 >> 1] = 0x5;
                     v8->aiContext.usedItemType[param1 >> 1] = 3;
                     v4 = 1;
-                } else if (ov16_0225B0FC(v8, v2, 31)) {
+                } else if (BattleSystem_GetItemData(v8, v2, 31)) {
                     v8->aiContext.usedItemCondition[param1 >> 1] = 0x3;
                     v8->aiContext.usedItemType[param1 >> 1] = 3;
                     v4 = 1;
-                } else if (ov16_0225B0FC(v8, v2, 32)) {
+                } else if (BattleSystem_GetItemData(v8, v2, 32)) {
                     v8->aiContext.usedItemCondition[param1 >> 1] = 0x6;
                     v8->aiContext.usedItemType[param1 >> 1] = 3;
                     v4 = 1;
-                } else if ((ov16_0225B0FC(v8, v2, 22)) && ((v8->sideConditionsMask[1] & 0x40) == 0)) {
+                } else if ((BattleSystem_GetItemData(v8, v2, 22)) && ((v8->sideConditionsMask[1] & 0x40) == 0)) {
                     v8->aiContext.usedItemType[param1 >> 1] = 4;
                     v4 = 1;
                 }
