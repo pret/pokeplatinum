@@ -111,7 +111,7 @@ static BOOL BtlCmd_Unused0A(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241340(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_Wait(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022414E0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241518(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241544(BattleSystem * param0, BattleContext * param1);
@@ -370,7 +370,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_SlideHPGaugeIn,
     BtlCmd_SlideHPGaugeInWait,
     BtlCmd_SlideHPGaugeOut,
-    ov16_02241340,
+    BtlCmd_Wait,
     ov16_022414E0,
     ov16_02241518,
     ov16_02241544,
@@ -1512,17 +1512,28 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
     return FALSE;
 }
 
-static BOOL ov16_02241340 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Wait until the battle IO queue is empty.
+ * 
+ * This command ensures that all linked battlers are in sync with the present
+ * state of the battle after a given action. If any linked battler hangs in
+ * this state for 1800 frames (~30 seconds), then the link status will be set
+ * to an error state, forcing the battle to end.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (BattleIO_QueueIsEmpty(param1)) {
-        BattleScript_Iter(param1, 1);
+    if (BattleIO_QueueIsEmpty(battleCtx)) {
+        BattleScript_Iter(battleCtx, 1);
     } else {
-        BattleIO_UpdateTimeout(param1);
+        BattleIO_UpdateTimeout(battleCtx);
     }
 
-    param1->battleProgressFlag = 1;
-
-    return 0;
+    battleCtx->battleProgressFlag = TRUE;
+    return FALSE;
 }
 
 static void ov16_02241374 (BattleSystem * param0, BattleContext * param1)
