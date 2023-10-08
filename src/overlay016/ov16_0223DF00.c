@@ -203,7 +203,7 @@ void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
 void ov16_0223F8DC(BattleSystem * param0, int param1);
 u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
-void ov16_0223F938(BattleSystem * param0, int param1);
+void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL ov16_0223F9E0(BattleSystem * param0, int param1);
 void ov16_0223F9F0(void);
@@ -1692,7 +1692,7 @@ u32 ov16_0223F904 (Party * param0, TrainerInfo * param1)
     return v1;
 }
 
-void ov16_0223F938 (BattleSystem * param0, int param1)
+void BattleSystem_DexFlagSeen (BattleSystem * param0, int param1)
 {
     int v0;
     Pokemon * v1;
