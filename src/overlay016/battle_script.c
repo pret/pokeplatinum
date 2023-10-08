@@ -1514,10 +1514,10 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
 
 static BOOL ov16_02241340 (BattleSystem * param0, BattleContext * param1)
 {
-    if (ov16_02251FC8(param1)) {
+    if (BattleIO_QueueIsEmpty(param1)) {
         BattleScript_Iter(param1, 1);
     } else {
-        ov16_0225201C(param1);
+        BattleIO_UpdateTimeout(param1);
     }
 
     param1->battleProgressFlag = 1;
@@ -7985,7 +7985,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 4:
-        if (ov16_02251FC8(v2->unk_04)) {
+        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
             v2->unk_28++;
         }
         break;
@@ -8002,7 +8002,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 6:
-        if (ov16_02251FC8(v2->unk_04)) {
+        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
             {
                 int v13;
                 int v14[6] = {164, 165, 166, 168, 169, 167};
@@ -8531,7 +8531,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 3:
-        if ((ov12_022368D0(v2->unk_08, 1) == 0) && (ov16_02251FC8(v2->unk_04))) {
+        if ((ov12_022368D0(v2->unk_08, 1) == 0) && (BattleIO_QueueIsEmpty(v2->unk_04))) {
             ov12_022368C8(v2->unk_08, 3);
             v2->unk_28 = 4;
         }
@@ -8957,7 +8957,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 30:
-        if (ov16_02251FC8(v2->unk_04)) {
+        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
             {
                 BattleMessage v32;
 

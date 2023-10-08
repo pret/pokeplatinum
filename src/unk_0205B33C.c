@@ -1027,7 +1027,7 @@ int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, UnkStruct
 
     if (v1 == NULL) {
         sub_020388F4(1, 1);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
         return 0;
     }
 

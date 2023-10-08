@@ -64,8 +64,8 @@ void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
 BOOL ov16_02251EF4(BattleContext * param0);
 void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
-BOOL ov16_02251FC8(BattleContext * param0);
-void ov16_0225201C(BattleContext * param0);
+BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx);
+void BattleIO_UpdateTimeout(BattleContext *battleCtx);
 void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
 int BattleMon_Get(BattleContext * param0, int param1, int param2, void * param3);
 void ov16_022523E8(BattleContext * param0, int param1, int param2, const void * param3);
@@ -393,32 +393,31 @@ void ov16_02251F80 (BattleContext * param0, int param1, int param2, int param3)
     GF_ASSERT(v0 < 16);
 }
 
-BOOL ov16_02251FC8 (BattleContext * param0)
+BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx)
 {
-    int v0, v1, v2;
-    int v3 = 0;
+    int linkedPlayer, battler, j;
+    int sumData = 0;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        for (v1 = 0; v1 < 4; v1++) {
-            for (v2 = 0; v2 < 16; v2++) {
-                v3 += param0->ioQueue[v0][v1][v2];
+    for (linkedPlayer = 0; linkedPlayer < MAX_LINK_BATTLERS; linkedPlayer++) {
+        for (battler = 0; battler < MAX_BATTLERS; battler++) {
+            for (j = 0; j < BATTLE_IO_QUEUE_SIZE; j++) {
+                sumData += battleCtx->ioQueue[linkedPlayer][battler][j];
             }
         }
     }
 
-    if (v3 == 0) {
-        param0->linkBattleTimeout = 0;
+    if (sumData == 0) {
+        battleCtx->linkBattleTimeout = 0;
     }
 
-    return v3 == 0;
+    return sumData == 0;
 }
 
-void ov16_0225201C (BattleContext * param0)
+void BattleIO_UpdateTimeout(BattleContext *battleCtx)
 {
-    param0->linkBattleTimeout++;
-
-    if (param0->linkBattleTimeout > (60 * 30)) {
-        sub_02038AE0(1);
+    battleCtx->linkBattleTimeout++;
+    if (battleCtx->linkBattleTimeout > LINK_BATTLE_TIMEOUT) {
+        Link_SetErrorState(LINK_BATTLE_RESET_SAVEPOINT);
     }
 }
 

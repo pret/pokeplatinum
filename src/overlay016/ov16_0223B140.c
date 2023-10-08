@@ -1799,7 +1799,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
             v0->unk_1022++;
 
             if (v0->unk_1022 > (60 * 30)) {
-                sub_02038AE0(1);
+                Link_SetErrorState(1);
             }
         }
         break;
@@ -1977,7 +1977,7 @@ static BOOL ov16_0223D354 (UnkStruct_020067E8 * param0)
             v0->unk_1022++;
 
             if (v0->unk_1022 > (60 * 30)) {
-                sub_02038AE0(1);
+                Link_SetErrorState(1);
             }
         }
         break;

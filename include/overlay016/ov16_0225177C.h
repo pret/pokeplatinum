@@ -31,8 +31,28 @@ void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
 BOOL ov16_02251EF4(BattleContext * param0);
 void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
-BOOL ov16_02251FC8(BattleContext * param0);
-void ov16_0225201C(BattleContext * param0);
+
+/**
+ * @brief Determine if the Battle IO queue is empty (i.e., there are no pending
+ * actions to be executed for any players hooked into this particular battle).
+ * 
+ * As a side effect, if the queue is empty, then this routine will also set the
+ * link-battle timeout counter back to 0.
+ * 
+ * @param battleCtx 
+ * @return TRUE if the queue has no remaining actions; FALSE otherwise.
+ */
+BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx);
+
+/**
+ * @brief Increments the link-battle timeout counter.
+ * 
+ * If the counter exceeds the maximum timeout value (1800, ~= 30 seconds),
+ * then the link will be terminated with an error state.
+ * 
+ * @param battleCtx 
+ */
+void BattleIO_UpdateTimeout(BattleContext *battleCtx);
 void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
 int BattleMon_Get(BattleContext * param0, int param1, int param2, void * param3);
 void ov16_022523E8(BattleContext * param0, int param1, int param2, const void * param3);

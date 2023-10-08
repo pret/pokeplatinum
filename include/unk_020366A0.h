@@ -99,7 +99,7 @@ void sub_02038A0C(void);
 void sub_02038A1C(int param0, UnkStruct_02018340 * param1);
 void sub_02038A20(int param0);
 BOOL sub_02038AB8(void);
-BOOL sub_02038AE0(int param0);
+BOOL Link_SetErrorState(int param0);
 void sub_02038B00(void);
 void sub_02038B20(void);
 void sub_02038B40(void);
