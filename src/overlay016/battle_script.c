@@ -114,8 +114,8 @@ static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Wait(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022414E0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241518(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241544(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241584(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022415B8(BattleSystem * param0, BattleContext * param1);
@@ -329,6 +329,7 @@ static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file);
 static void BattleScript_Call(BattleContext *battleCtx, int narc, int file);
 static void* BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *battleCtx, int var);
 static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
+static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static void BattleMessageParams_Make(BattleContext *battleCtx, BattleMessageParams *msgParams);
 static void BattleMessage_Make(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessageParams *msgParams, BattleMessage *msg);
@@ -373,8 +374,8 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_SlideHPGaugeInWait,
     BtlCmd_SlideHPGaugeOut,
     BtlCmd_Wait,
-    ov16_022414E0,
-    ov16_02241518,
+    BtlCmd_CalcDamage,
+    BtlCmd_CalcMaxDamage,
     ov16_02241544,
     ov16_02241584,
     ov16_022415B8,
@@ -1538,61 +1539,104 @@ static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static void ov16_02241374 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Calculate the damage for the current move and store the result in
+ * the BattleContext struct.
+ * 
+ * Aside from the standard damage calc, this is where the following effects
+ * have their damage amplification properties applied:
+ * - Life Orb
+ * - Metronome
+ * - Me First
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-
-    if (Battler_Ability(param1, param1->attacker) == 96) {
-        v0 = 0;
-    } else if (param1->moveType) {
-        v0 = param1->moveType;
+    int moveType;
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
+        moveType = TYPE_NORMAL;
+    } else if (battleCtx->moveType) {
+        moveType = battleCtx->moveType;
     } else {
-        v0 = param1->aiContext.moveTable[param1->moveCur].type;
+        moveType = CURRENT_MOVE_DATA.type;
     }
 
-    param1->damage = BattleSystem_CalcMoveDamage(param0, param1, param1->moveCur, param1->sideConditionsMask[Battler_Side(param0, param1->defender)], param1->fieldConditionsMask, param1->movePower, v0, param1->attacker, param1->defender, param1->criticalMul);
-    param1->damage *= param1->criticalMul;
+    battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,
+            battleCtx,
+            battleCtx->moveCur,
+            battleCtx->sideConditionsMask[Battler_Side(battleSys, battleCtx->defender)],
+            battleCtx->fieldConditionsMask,
+            battleCtx->movePower,
+            moveType,
+            battleCtx->attacker,
+            battleCtx->defender,
+            battleCtx->criticalMul);
+    battleCtx->damage *= battleCtx->criticalMul;
 
-    if (Battler_HeldItemEffect(param1, param1->attacker) == 98) {
-        param1->damage = param1->damage * (100 + Battler_HeldItemPower(param1, param1->attacker, 0)) / 100;
+    if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_HP_DRAIN_ON_ATK) {
+        battleCtx->damage = battleCtx->damage * (100 + Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0)) / 100;
     }
 
-    if (Battler_HeldItemEffect(param1, param1->attacker) == 105) {
-        param1->damage = param1->damage * (10 + param1->battleMons[param1->attacker].moveEffectsData.metronomeTurns) / 10;
+    if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_BOOST_REPEATED) {
+        battleCtx->damage = battleCtx->damage * (10 + ATTACKING_MON.moveEffectsData.metronomeTurns) / 10;
     }
 
-    if (param1->battleMons[param1->attacker].moveEffectsData.meFirst) {
-        if (param1->meFirstTurnOrder == param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber) {
-            param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber--;
+    if (ATTACKING_MON.moveEffectsData.meFirst) {
+        // TODO: Document how this works after documenting the Me First behavior.
+        if (battleCtx->meFirstTurnOrder == ATTACKING_MON.moveEffectsData.meFirstTurnNumber) {
+            ATTACKING_MON.moveEffectsData.meFirstTurnNumber--;
         }
 
-        if ((param1->meFirstTurnOrder - param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber) < 2) {
-            param1->damage = param1->damage * 15 / 10;
+        if (battleCtx->meFirstTurnOrder - ATTACKING_MON.moveEffectsData.meFirstTurnNumber < 2) {
+            battleCtx->damage = battleCtx->damage * 15 / 10;
         } else {
-            param1->battleMons[param1->attacker].moveEffectsData.meFirst = 0;
+            ATTACKING_MON.moveEffectsData.meFirst = 0;
         }
     }
 }
 
-static BOOL ov16_022414E0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Calculate the damage for the current move, applying random variance
+ * to the computed value.
+ * 
+ * Side effect: battleCtx->damage will have its value set to the final damage
+ * value to be added to the target's HP.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02241374(param0, param1);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->damage = BattleSystem_CalcDamageVariance(param0, param1, param1->damage);
-    param1->damage *= -1;
+    BattleScript_CalcMoveDamage(battleSys, battleCtx);
+    battleCtx->damage = BattleSystem_CalcDamageVariance(battleSys, battleCtx, battleCtx->damage);
+    battleCtx->damage *= -1;
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241518 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Calculate the maximum damage for the current move.
+ * 
+ * Side effect: battleCtx->damage will have its value set to the final damage
+ * value to be added to the target's HP.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02241374(param0, param1);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->damage *= -1;
+    BattleScript_CalcMoveDamage(battleSys, battleCtx);
+    battleCtx->damage *= -1;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241544 (BattleSystem * param0, BattleContext * param1)
