@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 
@@ -47,8 +47,8 @@ static BOOL sub_0202260C (const UnkUnion_020225E0 * param0, u32 param1, u32 para
 
 int sub_02022644 (const UnkUnion_02022594 * param0)
 {
-    if (Unk_021BF67C.unk_62) {
-        return sub_02022594(param0, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+    if (coresys.unk_62) {
+        return sub_02022594(param0, coresys.unk_5C, coresys.unk_5E);
     }
 
     return 0xffffffff;
@@ -56,8 +56,8 @@ int sub_02022644 (const UnkUnion_02022594 * param0)
 
 int sub_02022664 (const UnkUnion_02022594 * param0)
 {
-    if (Unk_021BF67C.unk_60) {
-        return sub_02022594(param0, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+    if (coresys.touchInput) {
+        return sub_02022594(param0, coresys.unk_5C, coresys.unk_5E);
     }
 
     return 0xffffffff;
@@ -65,16 +65,16 @@ int sub_02022664 (const UnkUnion_02022594 * param0)
 
 int sub_02022684 (const UnkUnion_020225E0 * param0)
 {
-    if (Unk_021BF67C.unk_62) {
+    if (coresys.unk_62) {
         int v0;
 
         for (v0 = 0; param0[v0].val2.unk_00 != 0xff; v0++) {
             if (param0[v0].val2.unk_00 == 0xfe) {
-                if (sub_020225E0(&param0[v0], Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E)) {
+                if (sub_020225E0(&param0[v0], coresys.unk_5C, coresys.unk_5E)) {
                     return v0;
                 }
             } else {
-                if (sub_0202260C(&param0[v0], Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E)) {
+                if (sub_0202260C(&param0[v0], coresys.unk_5C, coresys.unk_5E)) {
                     return v0;
                 }
             }
@@ -86,16 +86,16 @@ int sub_02022684 (const UnkUnion_020225E0 * param0)
 
 int sub_020226DC (const UnkUnion_020225E0 * param0)
 {
-    if (Unk_021BF67C.unk_60) {
+    if (coresys.touchInput) {
         int v0;
 
         for (v0 = 0; param0[v0].val2.unk_00 != 0xff; v0++) {
             if (param0[v0].val2.unk_00 == 0xfe) {
-                if (sub_020225E0(&param0[v0], Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E)) {
+                if (sub_020225E0(&param0[v0], coresys.unk_5C, coresys.unk_5E)) {
                     return v0;
                 }
             } else {
-                if (sub_0202260C(&param0[v0], Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E)) {
+                if (sub_0202260C(&param0[v0], coresys.unk_5C, coresys.unk_5E)) {
                     return v0;
                 }
             }
@@ -107,11 +107,11 @@ int sub_020226DC (const UnkUnion_020225E0 * param0)
 
 BOOL sub_02022734 (const UnkUnion_020225E0 * param0)
 {
-    if (Unk_021BF67C.unk_62) {
+    if (coresys.unk_62) {
         if (param0->val2.unk_00 == 0xfe) {
-            return sub_020225E0(param0, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+            return sub_020225E0(param0, coresys.unk_5C, coresys.unk_5E);
         } else {
-            return sub_0202260C(param0, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+            return sub_0202260C(param0, coresys.unk_5C, coresys.unk_5E);
         }
     }
 
@@ -120,11 +120,11 @@ BOOL sub_02022734 (const UnkUnion_020225E0 * param0)
 
 BOOL sub_02022760 (const UnkUnion_020225E0 * param0)
 {
-    if (Unk_021BF67C.unk_60) {
+    if (coresys.touchInput) {
         if (param0->val2.unk_00 == 0xfe) {
-            return sub_020225E0(param0, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+            return sub_020225E0(param0, coresys.unk_5C, coresys.unk_5E);
         } else {
-            return sub_0202260C(param0, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+            return sub_0202260C(param0, coresys.unk_5C, coresys.unk_5E);
         }
     }
 
@@ -133,19 +133,19 @@ BOOL sub_02022760 (const UnkUnion_020225E0 * param0)
 
 BOOL sub_0202278C (void)
 {
-    return Unk_021BF67C.unk_62;
+    return coresys.unk_62;
 }
 
 BOOL sub_02022798 (void)
 {
-    return Unk_021BF67C.unk_60;
+    return coresys.touchInput;
 }
 
 BOOL sub_020227A4 (u32 * param0, u32 * param1)
 {
-    if (Unk_021BF67C.unk_62) {
-        *param0 = Unk_021BF67C.unk_5C;
-        *param1 = Unk_021BF67C.unk_5E;
+    if (coresys.unk_62) {
+        *param0 = coresys.unk_5C;
+        *param1 = coresys.unk_5E;
         return 1;
     }
 
@@ -154,9 +154,9 @@ BOOL sub_020227A4 (u32 * param0, u32 * param1)
 
 BOOL sub_020227C0 (u32 * param0, u32 * param1)
 {
-    if (Unk_021BF67C.unk_60) {
-        *param0 = Unk_021BF67C.unk_5C;
-        *param1 = Unk_021BF67C.unk_5E;
+    if (coresys.touchInput) {
+        *param0 = coresys.unk_5C;
+        *param1 = coresys.unk_5E;
         return 1;
     }
 

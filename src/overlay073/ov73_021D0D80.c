@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -283,18 +283,18 @@ static BOOL ov73_021D0FFC (void)
     BOOL v0 = 0;
     u16 v1, v2;
 
-    if (Unk_021BF67C.unk_60) {
-        if ((Unk_021BF67C.unk_5C < 256) && (Unk_021BF67C.unk_5E < 192)) {
-            if (Unk_021BF67C.unk_5C < 128) {
-                v1 = 128 - Unk_021BF67C.unk_5C;
+    if (coresys.touchInput) {
+        if ((coresys.unk_5C < 256) && (coresys.unk_5E < 192)) {
+            if (coresys.unk_5C < 128) {
+                v1 = 128 - coresys.unk_5C;
             } else {
-                v1 = Unk_021BF67C.unk_5C - 128;
+                v1 = coresys.unk_5C - 128;
             }
 
-            if (Unk_021BF67C.unk_5E < 100) {
-                v2 = 100 - Unk_021BF67C.unk_5E;
+            if (coresys.unk_5E < 100) {
+                v2 = 100 - coresys.unk_5E;
             } else {
-                v2 = Unk_021BF67C.unk_5E - 100;
+                v2 = coresys.unk_5E - 100;
             }
 
             if ((v1 * v1 + v2 * v2) <= 16 * 16) {
@@ -741,7 +741,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         }
         break;
     case 2:
-        if ((param2 != 0) || ((Unk_021BF67C.unk_48 & PAD_BUTTON_A) == PAD_BUTTON_A)) {
+        if ((param2 != 0) || ((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) {
             sub_0201A8FC(&param0->unk_1C);
             param0->unk_50 = 0;
             v0 = 1;
@@ -895,7 +895,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         }
         break;
     case 3:
-        if (((Unk_021BF67C.unk_48 & PAD_BUTTON_A) == PAD_BUTTON_A) || ((Unk_021BF67C.unk_48 & PAD_BUTTON_B) == PAD_BUTTON_B)) {
+        if (((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((coresys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) {
             sub_02005748(1500);
             param0->unk_54 = 4;
         }
@@ -1596,7 +1596,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         param0->unk_0C = 22;
         break;
     case 22:
-        if (Unk_021BF67C.unk_48) {
+        if (coresys.padInput) {
             param0->unk_0C = 27;
             break;
         }
@@ -1762,7 +1762,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
             param0->unk_94[1] = 0;
             {sub_02019EBC(param0->unk_18, 0);}
             param0->unk_0C = 48;
-        } else if (Unk_021BF67C.unk_48) {
+        } else if (coresys.padInput) {
             param0->unk_0C = 49;
         }
         break;
@@ -1895,7 +1895,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         }
         break;
     case 67:
-        if ((Unk_021BF67C.unk_48 & PAD_BUTTON_A) == PAD_BUTTON_A) {
+        if ((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) {
             param0->unk_7C = 6;
             param0->unk_80 = 10;
             param0->unk_78 = 2;
@@ -1908,7 +1908,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
             break;
         }
 
-        if ((Unk_021BF67C.unk_48 & PAD_KEY_LEFT) == PAD_KEY_LEFT || (Unk_021BF67C.unk_48 & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
+        if ((coresys.padInput & PAD_KEY_LEFT) == PAD_KEY_LEFT || (coresys.padInput & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
             if (param0->unk_84 == 0) {
                 param0->unk_84 = 1;
             } else {

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -93,7 +93,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     ov121_021D0FF4(v0);
     sub_0200F174(0, 1, 1, 0x0, 16, 1, 30);
 
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();

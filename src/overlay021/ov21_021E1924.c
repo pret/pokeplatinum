@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -1072,12 +1072,12 @@ static void ov21_021E2864 (UnkStruct_ov21_021E1E74 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E28A8 (UnkStruct_ov21_021E1E74 * param0)
 {
-    if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+    if (coresys.padInput & PAD_KEY_UP) {
         param0->unk_34 = 1;
         return;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+    if (coresys.padInput & PAD_KEY_DOWN) {
         param0->unk_34 = 0;
         return;
     }

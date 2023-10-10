@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -747,7 +747,7 @@ static int ov109_021D478C (UnkStruct_ov109_021D5140 * param0, int param1)
 
 static void ov109_021D47B8 (UnkStruct_ov109_021D5140 * param0)
 {
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    if (coresys.padInput & PAD_BUTTON_A) {
         if (sub_0203608C() == 0) {
             if ((ov109_021D548C() == param0->unk_10->unk_2C) && (param0->unk_10->unk_30 == 0)) {
                 u8 v0 = 1;
@@ -760,7 +760,7 @@ static void ov109_021D47B8 (UnkStruct_ov109_021D5140 * param0)
                 sub_02005748(1522);
             }
         }
-    } else if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    } else if (coresys.padInput & PAD_BUTTON_B) {
         if (sub_0203608C()) {
             if (param0->unk_10->unk_28 == 0) {
                 ov109_021D55A8(param0, 4, 0);
@@ -861,7 +861,7 @@ static int ov109_021D4980 (UnkStruct_ov109_021D5140 * param0, int param1)
 
     if (sub_0203608C()) {
         if (param0->unk_10->unk_28) {
-            if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
+            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
                 sub_02005748(1522);
             }
 
@@ -870,7 +870,7 @@ static int ov109_021D4980 (UnkStruct_ov109_021D5140 * param0, int param1)
         }
     } else {
         if (param0->unk_10->unk_30 != 0) {
-            if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
+            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
                 sub_02005748(1522);
             }
 
@@ -985,7 +985,7 @@ static int ov109_021D4B94 (UnkStruct_ov109_021D5140 * param0, int param1)
     u32 v1;
 
     if ((ov109_021D548C() != param0->unk_10->unk_2C) || (param0->unk_10->unk_30 != 0)) {
-        if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
+        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
             sub_02005748(1522);
         }
 
@@ -1061,7 +1061,7 @@ static int ov109_021D4CC8 (UnkStruct_ov109_021D5140 * param0, int param1)
 {
     void * v0;
 
-    Unk_021BF67C.unk_68 = 1;
+    coresys.unk_68 = 1;
 
     v0 = sub_0202C1B4(95);
     sub_0202B758(param0->unk_0C->unk_14.unk_18, v0, 4);
@@ -1088,7 +1088,7 @@ static int ov109_021D4D20 (UnkStruct_ov109_021D5140 * param0, int param1)
 
         param0->unk_1C.unk_00 = 0;
         param0->unk_3C4 = 0;
-        Unk_021BF67C.unk_68 = 0;
+        coresys.unk_68 = 0;
         param0->unk_10->unk_24 = 0;
     }
 
@@ -1143,7 +1143,7 @@ static int ov109_021D4E28 (UnkStruct_ov109_021D5140 * param0, int param1)
     int v0;
 
     if ((param0->unk_10->unk_2C != ov109_021D548C()) || (param0->unk_10->unk_30 != 0)) {
-        if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
+        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_KEY_UP | PAD_KEY_DOWN)) {
             sub_02005748(1522);
         }
 

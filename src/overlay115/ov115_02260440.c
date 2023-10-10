@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "overlay114/struct_ov114_0225D678_decl.h"
@@ -132,7 +132,7 @@ int ov115_0226048C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if (Unk_021BF67C.unk_44 & PAD_BUTTON_A) {
+        if (coresys.unk_44 & PAD_BUTTON_A) {
             break;
         }
 

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 #include "enums.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
@@ -267,7 +267,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
     sub_0200F174(0, 27, 27, 0x0, 6, 1, 110);
     v0->unk_94 = sub_0200D9E8(ov117_02260F7C, v0, 60000);
 
-    Unk_021BF67C.unk_65 = 1;
+    coresys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();

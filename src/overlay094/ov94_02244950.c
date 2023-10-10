@@ -3,7 +3,7 @@
 #include <dwc.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
@@ -756,7 +756,7 @@ static int ov94_02245540 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02245564 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A || Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if (coresys.padInput & PAD_BUTTON_A || coresys.padInput & PAD_BUTTON_B) {
         sub_0200DC9C(&param0->unk_F8C, 0);
         param0->unk_2C = 0;
     }

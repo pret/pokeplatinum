@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nitro/sinit.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -57,7 +57,7 @@ void ov76_0223B184 (UnkUnion_02022594 * param0, UnkStruct_0200D0F4 * param1, BOO
     }
 
     if (param2 == 1) {
-        sub_0200D4C4(param1, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+        sub_0200D4C4(param1, coresys.unk_5C, coresys.unk_5E);
         sub_0200D550(param1, &v0, &v1);
         ov76_0223B174(param0);
     } else {

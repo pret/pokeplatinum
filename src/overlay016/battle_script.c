@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "constants/abilities.h"
 #include "constants/items.h"
@@ -2049,7 +2049,7 @@ static BOOL ov16_02241984 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
 
     if ((BattleSystem_BattleType(param0) & 0x4) == 0) {
-        if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (sub_02022798())) {
+        if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || sub_02022798()) {
             param1->waitCounter = v0;
         }
     }
@@ -8344,7 +8344,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 11:
     case 13:
-        if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (sub_02022798())) {
+        if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (sub_02022798())) {
             sub_02005748(1500);
             v2->unk_28++;
         }
@@ -8880,7 +8880,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 13:
         if (ov21_021E8DEC(v2->unk_50[0])) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (coresys.padInput & PAD_BUTTON_A) {
                 v2->unk_28 = 14;
             } else if (sub_02022798()) {
                 sub_02005748(1500);

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_020797DC_decl.h"
 
@@ -255,7 +255,7 @@ int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
 {
     UnkStruct_ov19_021DF964 * v0 = &(param0->unk_74);
 
-    if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+    if (coresys.padInput & PAD_KEY_UP) {
         if (v0->unk_20) {
             v0->unk_20--;
             return -2;
@@ -265,7 +265,7 @@ int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
         }
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+    if (coresys.padInput & PAD_KEY_DOWN) {
         if (v0->unk_20 < (v0->unk_21 - 1)) {
             v0->unk_20++;
             return -2;
@@ -275,12 +275,12 @@ int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
         }
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if (coresys.padInput & PAD_BUTTON_B) {
         sub_02005748(1501);
         return -1;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    if (coresys.padInput & PAD_BUTTON_A) {
         sub_02005748(1501);
         return v0->unk_00[v0->unk_20];
     }

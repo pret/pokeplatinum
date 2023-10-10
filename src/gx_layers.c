@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nnsys.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_defs/struct_02099F80.h"
 
@@ -98,7 +98,7 @@ void GXLayers_TurnBothDispOn (void)
 
 void GXLayers_SwapDisplay (void)
 {
-    if (Unk_021BF67C.unk_65 == 0) {
+    if (coresys.unk_65 == 0) {
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
     } else {
         GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);

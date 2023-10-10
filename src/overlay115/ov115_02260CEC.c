@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
@@ -2345,7 +2345,7 @@ static void ov115_0226294C (UnkStruct_ov115_022622F8 * param0, const VecFx32 * p
 
 static void ov115_02262974 (UnkStruct_ov115_02260D78 * param0)
 {
-    if (Unk_021BF67C.unk_62 == 0) {
+    if (coresys.unk_62 == 0) {
         ov115_02262990(param0);
     } else {
         ov115_02262B70(param0);
@@ -2461,8 +2461,8 @@ static void ov115_02262B70 (UnkStruct_ov115_02260D78 * param0)
             v0.y = param0->unk_8690.unk_02[param0->unk_8690.unk_00 - 1].y;
             ov115_02262CBC(&param0->unk_20, v0);
         } else {
-            v0.x = Unk_021BF67C.unk_5C;
-            v0.y = Unk_021BF67C.unk_5E;
+            v0.x = coresys.unk_5C;
+            v0.y = coresys.unk_5E;
             ov115_02262CBC(&param0->unk_20, v0);
         }
     }
@@ -2478,8 +2478,8 @@ static BOOL ov115_02262C60 (UnkStruct_ov115_02260D78 * param0)
         return 0;
     }
 
-    v0 = 128 - Unk_021BF67C.unk_5C;
-    v1 = -96 - Unk_021BF67C.unk_5E;
+    v0 = 128 - coresys.unk_5C;
+    v1 = -96 - coresys.unk_5E;
     v2 = FX_Sqrt(((v0 * v0) + (v1 * v1)) << FX32_SHIFT) >> FX32_SHIFT;
 
     if (v2 <= (190 - -96)) {
@@ -3970,7 +3970,7 @@ static void ov115_02264BC0 (UnkStruct_ov115_02264BA0 * param0)
         return;
     }
 
-    ov115_02264BD8(param0, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+    ov115_02264BD8(param0, coresys.unk_5C, coresys.unk_5E);
 }
 
 static void ov115_02264BD8 (UnkStruct_ov115_02264BA0 * param0, s32 param1, s32 param2)

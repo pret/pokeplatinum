@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay105/struct_ov105_02246060_decl.h"
@@ -88,24 +88,24 @@ void ov105_02246080 (UnkStruct_ov105_02246060 * param0)
         return;
     }
 
-    if (Unk_021BF67C.unk_48 == 0) {
+    if (coresys.padInput == 0) {
         return;
     }
 
     if (param0->unk_01 == 2) {
-        if (Unk_021BF67C.unk_48 & PAD_KEY_LEFT) {
+        if (coresys.padInput & PAD_KEY_LEFT) {
             if (param0->unk_02 == 0) {
                 param0->unk_02 = (param0->unk_00 - 1);
             } else {
                 param0->unk_02--;
             }
-        } else if (Unk_021BF67C.unk_48 & PAD_KEY_RIGHT) {
+        } else if (coresys.padInput & PAD_KEY_RIGHT) {
             if (param0->unk_02 == (param0->unk_00 - 1)) {
                 param0->unk_02 = 0;
             } else {
                 param0->unk_02++;
             }
-        } else if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+        } else if (coresys.padInput & PAD_KEY_DOWN) {
             if (param0->unk_02 < (param0->unk_10)) {
                 param0->unk_02 = param0->unk_10;
             } else if (param0->unk_02 == (param0->unk_00 - 1)) {
@@ -113,7 +113,7 @@ void ov105_02246080 (UnkStruct_ov105_02246060 * param0)
             } else {
                 param0->unk_02++;
             }
-        } else if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+        } else if (coresys.padInput & PAD_KEY_UP) {
             if (param0->unk_02 < (param0->unk_10)) {
                 param0->unk_02 = (param0->unk_00 - 1);
             } else {
@@ -129,13 +129,13 @@ void ov105_02246080 (UnkStruct_ov105_02246060 * param0)
             v2 = PAD_KEY_UP;
         }
 
-        if (Unk_021BF67C.unk_48 & v1) {
+        if (coresys.padInput & v1) {
             param0->unk_02++;
 
             if (param0->unk_02 >= param0->unk_00) {
                 param0->unk_02 = 0;
             }
-        } else if (Unk_021BF67C.unk_48 & v2) {
+        } else if (coresys.padInput & v2) {
             if (param0->unk_02 == 0) {
                 param0->unk_02 = param0->unk_00;
             }

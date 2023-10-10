@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0203E724_decl.h"
 
@@ -274,7 +274,7 @@ BOOL sub_0204858C (UnkStruct_0203E724 * param0)
 
 BOOL sub_020485C0 (UnkStruct_0203E724 * param0)
 {
-    if (Unk_021BF67C.unk_44 & PAD_KEY_UP) {
+    if (coresys.unk_44 & PAD_KEY_UP) {
         sub_02004550(22, 1218, 1);
     } else {
         sub_02004550(22, 1218, 1);

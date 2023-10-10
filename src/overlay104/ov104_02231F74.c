@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -498,7 +498,7 @@ static void ov104_022324C8 (UnkStruct_0201CD38 * param0, void * param1)
 
     v0 = sub_02001BE0(v1->unk_B0);
 
-    if ((Unk_021BF67C.unk_4C & PAD_KEY_UP) || (Unk_021BF67C.unk_4C & PAD_KEY_DOWN) || (Unk_021BF67C.unk_4C & PAD_KEY_LEFT) || (Unk_021BF67C.unk_4C & PAD_KEY_RIGHT)) {
+    if ((coresys.unk_4C & PAD_KEY_UP) || (coresys.unk_4C & PAD_KEY_DOWN) || (coresys.unk_4C & PAD_KEY_LEFT) || (coresys.unk_4C & PAD_KEY_RIGHT)) {
         ov104_022325D8(v1);
     }
 
@@ -845,7 +845,7 @@ static void ov104_0223296C (UnkStruct_0201CD38 * param0, void * param1)
         sub_02005748(1500);
     }
 
-    if ((Unk_021BF67C.unk_4C & PAD_KEY_UP) || (Unk_021BF67C.unk_4C & PAD_KEY_DOWN) || (Unk_021BF67C.unk_4C & PAD_KEY_LEFT) || (Unk_021BF67C.unk_4C & PAD_KEY_RIGHT)) {
+    if ((coresys.unk_4C & PAD_KEY_UP) || (coresys.unk_4C & PAD_KEY_DOWN) || (coresys.unk_4C & PAD_KEY_LEFT) || (coresys.unk_4C & PAD_KEY_RIGHT)) {
         ov104_02232B2C(v2);
     }
 

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 #include "assert.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -3078,7 +3078,7 @@ static void ov16_022604C8 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_0A = 5;
         break;
     case 5:
-        if (Unk_021BF67C.unk_48 & PAD_BUTTON_START) {
+        if (coresys.padInput & PAD_BUTTON_START) {
             BattlerData * v14;
             int v15;
 

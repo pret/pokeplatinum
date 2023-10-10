@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
@@ -225,10 +225,10 @@ void ov117_02262798 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022626B0
         param1->unk_214 = 0;
         param1->unk_218 = 0;
     } else {
-        param1->unk_20C = Unk_021BF67C.unk_5C;
-        param1->unk_210 = Unk_021BF67C.unk_5E;
-        param1->unk_214 = Unk_021BF67C.unk_62;
-        param1->unk_218 = Unk_021BF67C.unk_60;
+        param1->unk_20C = coresys.unk_5C;
+        param1->unk_210 = coresys.unk_5E;
+        param1->unk_214 = coresys.unk_62;
+        param1->unk_218 = coresys.touchInput;
     }
 
     ov117_02263270(param1);

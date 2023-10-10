@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -104,7 +104,7 @@ void Underground_Init (UnkStruct_020298B0 * param0)
     RTCTime v2;
 
     sub_0201384C(&v1, &v2);
-    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + Unk_021BF67C.unk_2C));
+    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + coresys.unk_2C));
 
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_020298B0));
 

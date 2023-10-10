@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -270,13 +270,13 @@ static void sub_02072390 (UnkStruct_0201CD38 * param0, void * param1)
         sub_0206A870(v0->unk_1A4);
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if (coresys.padInput & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072518, sub_02072364);
         sub_02005748(1500);
         return;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    if (coresys.padInput & PAD_BUTTON_A) {
         sub_02005748(1500);
 
         switch (v1) {
@@ -326,13 +326,13 @@ static void sub_02072470 (UnkStruct_0201CD38 * param0, void * param1)
 
     v1 = sub_02001288(v0->unk_160);
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if (coresys.padInput & PAD_BUTTON_B) {
         sub_02072EA4(v0, sub_02072534, sub_02072370);
         sub_02005748(1500);
         return;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    if (coresys.padInput & PAD_BUTTON_A) {
         sub_02005748(1500);
 
         switch (v1) {
@@ -504,7 +504,7 @@ static void sub_020726B4 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 2:
-        if (!(Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if (!(coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             return;
         }
 
@@ -584,7 +584,7 @@ static void sub_020727F8 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 2:
-        if (!(Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if (!(coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             return;
         }
 

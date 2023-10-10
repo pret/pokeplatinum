@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02015214_decl.h"
 
@@ -75,8 +75,8 @@ BOOL ov22_02254E54 (UnkStruct_ov22_02255040 * param0, int * param1, int * param2
 
     ov22_02254F00(param0, &v1, &v2);
 
-    *param1 = Unk_021BF67C.unk_5C - v1;
-    *param2 = Unk_021BF67C.unk_5E - v2;
+    *param1 = coresys.unk_5C - v1;
+    *param2 = coresys.unk_5E - v2;
 
     for (v3 = (*param2 - 4); v3 < (*param2 + 4); v3++) {
         if (v3 >= 0) {

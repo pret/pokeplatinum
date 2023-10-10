@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 #include "assert.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -1541,7 +1541,7 @@ static int ov17_02240C90 (UnkStruct_ov17_0223F7E4 * param0)
     }
 
     if (v0->unk_00 == 0) {
-        if ((param0->unk_304 == 1) || (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
+        if ((param0->unk_304 == 1) || (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y | PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN))) {
             if (param0->unk_304 == 0) {
                 sub_02005748(1500);
             }
@@ -1702,7 +1702,7 @@ static u32 ov17_02241004 (UnkStruct_ov17_02241004 * param0, int param1, int para
     v1 = param0->unk_02;
     v0 = param0->unk_01;
 
-    if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+    if (coresys.padInput & PAD_KEY_UP) {
         param0->unk_01--;
 
         if (param0->unk_01 < 0) {
@@ -1721,7 +1721,7 @@ static u32 ov17_02241004 (UnkStruct_ov17_02241004 * param0, int param1, int para
         }
 
         v2 = PAD_KEY_UP;
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+    } else if (coresys.padInput & PAD_KEY_DOWN) {
         param0->unk_01++;
 
         if (param0->unk_01 >= param2) {
@@ -1740,7 +1740,7 @@ static u32 ov17_02241004 (UnkStruct_ov17_02241004 * param0, int param1, int para
         }
 
         v2 = PAD_KEY_DOWN;
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_LEFT) {
+    } else if (coresys.padInput & PAD_KEY_LEFT) {
         param0->unk_02--;
 
         if (param0->unk_02 < 0) {
@@ -1759,7 +1759,7 @@ static u32 ov17_02241004 (UnkStruct_ov17_02241004 * param0, int param1, int para
         }
 
         v2 = PAD_KEY_LEFT;
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_RIGHT) {
+    } else if (coresys.padInput & PAD_KEY_RIGHT) {
         param0->unk_02++;
 
         if (param0->unk_02 >= param1) {
@@ -1778,9 +1778,9 @@ static u32 ov17_02241004 (UnkStruct_ov17_02241004 * param0, int param1, int para
         }
 
         v2 = PAD_KEY_RIGHT;
-    } else if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    } else if (coresys.padInput & PAD_BUTTON_A) {
         v2 = PAD_BUTTON_A;
-    } else if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    } else if (coresys.padInput & PAD_BUTTON_B) {
         v2 = PAD_BUTTON_B;
     } else {
         return 0;

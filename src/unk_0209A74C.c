@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -92,7 +92,7 @@ void sub_0209A74C (int param0)
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();
@@ -165,7 +165,7 @@ void sub_0209A8E0 (int param0)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
     sub_02017DD4(4, 8);
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();
