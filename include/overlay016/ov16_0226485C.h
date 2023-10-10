@@ -40,7 +40,7 @@ void BattleIO_FlickerBattler(BattleSystem * param0, int param1, u32 param2);
 void BattleIO_UpdateHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265D14(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleIO_PlayFaintingSequence(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02265EAC(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void BattleIO_PlaySound(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02265ECC(BattleSystem * param0, BattleContext * param1);
 void ov16_02265EE8(BattleSystem * param0, int param1, int param2);
 void ov16_02265FB8(BattleSystem * param0, int param1, int param2);

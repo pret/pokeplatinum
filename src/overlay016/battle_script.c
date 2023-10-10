@@ -133,7 +133,7 @@ static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241A20(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241A58(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241B08(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241BC0(BattleSystem * param0, BattleContext * param1);
@@ -393,7 +393,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_FaintBattler,
     BtlCmd_PlayFaintingSequence,
     BtlCmd_WaitFrames,
-    ov16_02241A20,
+    BtlCmd_PlaySound,
     ov16_02241A58,
     ov16_02241B08,
     ov16_02241BC0,
@@ -2082,21 +2082,29 @@ static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static BOOL ov16_02241A20 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a sound originating from a particular battler.
+ * 
+ * Inputs:
+ * 1. The battler from which the sound originates. This is used for determining
+ * from which of the DS's stereo speakers to pan the sound. Enemies will have
+ * their sounds pan from the right, while allies will have their sounds pan from
+ * the left.
+ * 2. The SDAT sequence to play.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int battler = BattleScript_Read(battleCtx);
+    int sdatSeq = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    BattleIO_PlaySound(battleSys, battleCtx, sdatSeq, BattleScript_Battler(battleSys, battleCtx, battler));
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02265EAC(param0, param1, v1, v2);
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241A58 (BattleSystem * param0, BattleContext * param1)
