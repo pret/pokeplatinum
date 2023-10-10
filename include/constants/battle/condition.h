@@ -91,6 +91,10 @@
                                     | FIELD_CONDITION_SUNNY \
                                     | FIELD_CONDITION_HAILING \
                                     | FIELD_CONDITION_DEEP_FOG)
+#define FIELD_CONDITION_SOLAR_DOWN  (FIELD_CONDITION_RAINING \
+                                    | FIELD_CONDITION_SANDSTORM \
+                                    | FIELD_CONDITION_HAILING \
+                                    | FIELD_CONDITION_DEEP_FOG)
 
 #define FIELD_CONDITION_UPROAR_SHIFT        8
 #define FIELD_CONDITION_GRAVITY_SHIFT       12

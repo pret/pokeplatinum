@@ -3,6 +3,9 @@
 
 #include "constants/abilities.h"
 #include "constants/items.h"
+#include "constants/species.h"
+#include "constants/string.h"
+#include "constants/battle/battle_effects.h"
 #include "constants/battle/condition.h"
 #include "constants/battle/moves.h"
 #include "constants/battle/side_effects.h"
@@ -13,9 +16,8 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_02098700_decl.h"
+#include "struct_defs/fraction.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
-
-#include "overlay016/const_ov16_0226EBE0.h"
 
 #include "battle/battle_context.h"
 #include "battle/battle_controller.h"
@@ -43,20 +45,6 @@
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_0226485C.h"
 
-typedef struct {
-    u16 unk_00;
-    s16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    int unk_08;
-    int unk_0C;
-    u32 unk_10;
-    u8 unk_14;
-    u8 unk_15;
-    u8 unk_16;
-    u8 unk_17;
-} UnkStruct_ov16_0225A280;
-
 void BattleSystem_InitBattleMon(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02251C94(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
@@ -64,10 +52,10 @@ void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
 BOOL ov16_02251EF4(BattleContext * param0);
 void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
-BOOL ov16_02251FC8(BattleContext * param0);
-void ov16_0225201C(BattleContext * param0);
+BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx);
+void BattleIO_UpdateTimeout(BattleContext *battleCtx);
 void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
-int BattleMon_Get(BattleContext * param0, int param1, int param2, void * param3);
+int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, void *buf);
 void ov16_022523E8(BattleContext * param0, int param1, int param2, const void * param3);
 void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02252A2C(BattleMon * param0, int param1, int param2);
@@ -95,10 +83,10 @@ int Battler_SlotForMove(BattleMon * param0, u16 param1);
 int BattleSystem_CheckTypeChart(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
 void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
 BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
-u8 ov16_022554E0(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL enemyOnly, int defender);
 int BattleSystem_NicknameTag(BattleContext *battleSys, int battler);
 u16 Battler_SelectedMove(BattleContext * param0, int param1);
-int BattleSystem_CountAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability);
 BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
 BOOL ov16_0225588C(BattleSystem * param0, int param1, u8 * param2, u8 * param3, u8 * param4);
 int ov16_022558CC(u8 param0, u8 param1, u8 param2);
@@ -108,13 +96,13 @@ BOOL ov16_02255980(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL ov16_022559DC(BattleContext * param0, int param1);
 BOOL ov16_022559FC(BattleSystem * param0, BattleContext * param1);
 u8 Battler_Ability(BattleContext * param0, int param1);
-BOOL Battler_IgnorableAbility(BattleContext * param0, int param1, int param2, int param3);
+BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability);
 BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 BOOL BattleSystem_Trapped(BattleSystem * param0, BattleContext * param1, int param2, BattleMessage * param3);
 BOOL BattleSystem_TryEscape(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL Battler_CheckTruant(BattleContext * param0, int param1);
 BOOL BattleSystem_Imprisoned(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL ov16_02255F68(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL BattleSystem_AnyBattlersWithMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx, int effectMask);
 void BattleSystem_SetupLoop(BattleSystem *battleSys, BattleContext *battleCtx);
 void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1);
 BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
@@ -134,7 +122,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1,
 BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem * param0, BattleContext * param1, int param2, int * param3);
 BOOL BattleSystem_TriggerDetrimentalHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
-u16 ov16_02258874(BattleContext * param0, int param1);
+u16 Battler_HeldItem(BattleContext *battleCtx, int battler);
 BOOL Battler_MovedThisTurn(BattleContext * param0, int param1);
 BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem * param0, BattleContext * param1, int * param2);
 s32 Battler_HeldItemEffect(BattleContext * param0, int param1);
@@ -159,21 +147,21 @@ BOOL ov16_02259B38(BattleSystem * param0, Pokemon * param1);
 BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);
 void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
 void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
-int BattleSystem_CalcMoveDamage(BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u32 param4, u16 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-int BattleSystem_CalcDamageVariance(BattleSystem * param0, BattleContext * param1, int param2);
-int ov16_0225AEE4(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, u32 param5);
+int BattleSystem_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx, int move, u32 sideConditions, u32 fieldConditions, u16 inPower, u8 inType, u8 attacker, u8 defender, u8 criticalMul);
+int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *battleCtx, int damage);
+int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
 BOOL ov16_0225AFF4(u16 param0);
 BOOL ov16_0225B02C(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 BOOL ov16_0225B084(BattleContext * param0, u16 param1);
 BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
-s32 ov16_0225B0FC(BattleContext * param0, u16 param1, u16 param2);
+s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID);
 int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * param1);
 BOOL ov16_0225B1DC(BattleContext * param0, int param1, int param2);
 BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
-int ov16_0225B45C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler);
 void ov16_0225B540(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 static BOOL ov16_02254EF4(BattleContext * param0, int param1, int param2, int param3);
 static int BattleContext_SideEffect(BattleContext * param0, int param1, u32 param2);
@@ -181,7 +169,7 @@ static int ov16_0225B63C(BattleContext * param0, int param1, int param2, int par
 static BOOL ov16_022553F8(BattleContext * param0, int param1, int param2);
 static void ov16_02255448(int param0, u32 * param1);
 static BOOL ov16_0225B6C8(BattleContext * param0, int param1);
-static u8 ov16_0225B734(BattleContext * param0, int param1, int param2);
+static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonParam paramID);
 static void ov16_0225B80C(BattleContext * param0, u8 param1);
 static void ov16_0225B824(BattleContext * param0, u8 param1);
 static void ov16_0225B830(BattleContext * param0, u8 param1);
@@ -191,6 +179,8 @@ static int BattleMove_Type(BattleSystem * param0, BattleContext * param1, int pa
 int ov16_0225BA88(BattleSystem * param0, int param1);
 int ov16_0225BE28(BattleSystem * param0, int param1);
 int ov16_0225BE3C(BattleSystem * param0, BattleContext * param1, Pokemon * param2, int param3);
+
+static const Fraction sStatStageBoosts[];
 
 void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
@@ -393,32 +383,31 @@ void ov16_02251F80 (BattleContext * param0, int param1, int param2, int param3)
     GF_ASSERT(v0 < 16);
 }
 
-BOOL ov16_02251FC8 (BattleContext * param0)
+BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx)
 {
-    int v0, v1, v2;
-    int v3 = 0;
+    int linkedPlayer, battler, j;
+    int sumData = 0;
 
-    for (v0 = 0; v0 < 4; v0++) {
-        for (v1 = 0; v1 < 4; v1++) {
-            for (v2 = 0; v2 < 16; v2++) {
-                v3 += param0->ioQueue[v0][v1][v2];
+    for (linkedPlayer = 0; linkedPlayer < MAX_LINK_BATTLERS; linkedPlayer++) {
+        for (battler = 0; battler < MAX_BATTLERS; battler++) {
+            for (j = 0; j < BATTLE_IO_QUEUE_SIZE; j++) {
+                sumData += battleCtx->ioQueue[linkedPlayer][battler][j];
             }
         }
     }
 
-    if (v3 == 0) {
-        param0->linkBattleTimeout = 0;
+    if (sumData == 0) {
+        battleCtx->linkBattleTimeout = 0;
     }
 
-    return v3 == 0;
+    return sumData == 0;
 }
 
-void ov16_0225201C (BattleContext * param0)
+void BattleIO_UpdateTimeout(BattleContext *battleCtx)
 {
-    param0->linkBattleTimeout++;
-
-    if (param0->linkBattleTimeout > (60 * 30)) {
-        sub_02038AE0(1);
+    battleCtx->linkBattleTimeout++;
+    if (battleCtx->linkBattleTimeout > LINK_BATTLE_TIMEOUT) {
+        Link_SetErrorState(LINK_BATTLE_RESET_SAVEPOINT);
     }
 }
 
@@ -429,289 +418,290 @@ void BattleIO_ClearBuffer (BattleContext *battleCtx, int battler)
     }
 }
 
-int BattleMon_Get (BattleContext * param0, int param1, int param2, void * param3)
+int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, void *buf)
 {
-    BattleMon * v0;
+    BattleMon *battleMon = &battleCtx->battleMons[battler];
 
-    v0 = &param0->battleMons[param1];
+    switch (paramID) {
+    case BATTLEMON_SPECIES:
+        return battleMon->species;
 
-    switch (param2) {
-    case 0:
-        return v0->species;
-        break;
-    case 1:
-        return v0->attack;
-        break;
-    case 2:
-        return v0->defense;
-        break;
-    case 3:
-        return v0->speed;
-        break;
-    case 4:
-        return v0->spAttack;
-        break;
-    case 5:
-        return v0->spDefense;
-        break;
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-        return v0->moves[param2 - 6];
-        break;
-    case 10:
-        return v0->hpIV;
-        break;
-    case 11:
-        return v0->attackIV;
-        break;
-    case 12:
-        return v0->defenseIV;
-        break;
-    case 13:
-        return v0->speedIV;
-        break;
-    case 14:
-        return v0->spAttackIV;
-        break;
-    case 15:
-        return v0->spDefenseIV;
-        break;
-    case 16:
-        return v0->isEgg;
-        break;
-    case 17:
-        return v0->hasNickname;
-        break;
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-    case 22:
-    case 23:
-    case 24:
-    case 25:
-        return v0->statBoosts[param2 - 18];
-        break;
-    case 26:
-        return v0->ability;
-        break;
-    case 27:
-    case 28:
-        return ov16_0225B734(param0, param1, param2);
-        break;
-    case 29:
-        return v0->gender;
-        break;
-    case 30:
-        return v0->isShiny;
-        break;
-    case 31:
-    case 32:
-    case 33:
-    case 34:
-        return v0->ppCur[param2 - 31];
-        break;
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-        return v0->ppUps[param2 - 35];
-        break;
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-        return MoveTable_CalcMaxPP(v0->moves[param2 - 39], v0->ppUps[param2 - 39]);
-        break;
-    case 43:
-        return v0->level;
-        break;
-    case 44:
-        return v0->friendship;
-        break;
-    case 45:
-    {
-        int v1;
-        u16 * v2 = param3;
+    case BATTLEMON_ATTACK:
+        return battleMon->attack;
 
-        for (v1 = 0; v1 < 10 + 1; v1++) {
-            v2[v1] = v0->nickname[v1];
+    case BATTLEMON_DEFENSE:
+        return battleMon->defense;
+
+    case BATTLEMON_SPEED:
+        return battleMon->speed;
+
+    case BATTLEMON_SP_ATTACK:
+        return battleMon->spAttack;
+
+    case BATTLEMON_SP_DEFENSE:
+        return battleMon->spDefense;
+
+    case BATTLEMON_MOVE_1:
+    case BATTLEMON_MOVE_2:
+    case BATTLEMON_MOVE_3:
+    case BATTLEMON_MOVE_4:
+        return battleMon->moves[paramID - BATTLEMON_MOVE_1];
+
+    case BATTLEMON_HP_IV:
+        return battleMon->hpIV;
+
+    case BATTLEMON_ATTACK_IV:
+        return battleMon->attackIV;
+
+    case BATTLEMON_DEFENSE_IV:
+        return battleMon->defenseIV;
+
+    case BATTLEMON_SPEED_IV:
+        return battleMon->speedIV;
+
+    case BATTLEMON_SP_ATTACK_IV:
+        return battleMon->spAttackIV;
+
+    case BATTLEMON_SP_DEFENSE_IV:
+        return battleMon->spDefenseIV;
+
+    case BATTLEMON_IS_EGG:
+        return battleMon->isEgg;
+
+    case BATTLEMON_HAS_NICKNAME:
+        return battleMon->hasNickname;
+
+    case BATTLEMON_HP_STAGE:
+    case BATTLEMON_ATTACK_STAGE:
+    case BATTLEMON_DEFENSE_STAGE:
+    case BATTLEMON_SPEED_STAGE:
+    case BATTLEMON_SP_ATTACK_STAGE:
+    case BATTLEMON_SP_DEFENSE_STAGE:
+    case BATTLEMON_ACCURACY_STAGE:
+    case BATTLEMON_EVASION_STAGE:
+        return battleMon->statBoosts[paramID - BATTLEMON_HP_STAGE];
+
+    case BATTLEMON_ABILITY:
+        return battleMon->ability;
+
+    case BATTLEMON_TYPE_1:
+    case BATTLEMON_TYPE_2:
+        return Battler_MonType(battleCtx, battler, paramID);
+
+    case BATTLEMON_GENDER:
+        return battleMon->gender;
+
+    case BATTLEMON_IS_SHINY:
+        return battleMon->isShiny;
+
+    case BATTLEMON_CUR_PP_1:
+    case BATTLEMON_CUR_PP_2:
+    case BATTLEMON_CUR_PP_3:
+    case BATTLEMON_CUR_PP_4:
+        return battleMon->ppCur[paramID - BATTLEMON_CUR_PP_1];
+
+    case BATTLEMON_PP_UPS_1:
+    case BATTLEMON_PP_UPS_2:
+    case BATTLEMON_PP_UPS_3:
+    case BATTLEMON_PP_UPS_4:
+        return battleMon->ppUps[paramID - BATTLEMON_PP_UPS_1];
+
+    case BATTLEMON_MAX_PP_1:
+    case BATTLEMON_MAX_PP_2:
+    case BATTLEMON_MAX_PP_3:
+    case BATTLEMON_MAX_PP_4:
+        return MoveTable_CalcMaxPP(battleMon->moves[paramID - BATTLEMON_MAX_PP_1], battleMon->ppUps[paramID - BATTLEMON_MAX_PP_1]);
+
+    case BATTLEMON_LEVEL:
+        return battleMon->level;
+
+    case BATTLEMON_FRIENDSHIP:
+        return battleMon->friendship;
+
+    case BATTLEMON_NICKNAME:
+        {
+            int i;
+            charcode_t *nickname = buf;
+
+            for (i = 0; i < MON_NAME_LEN + 1; i++) {
+                nickname[i] = battleMon->nickname[i];
+            }
         }
-    }
-    break;
-    case 46:
-        Strbuf_CopyChars((Strbuf *)param3, v0->nickname);
         break;
-    case 47:
-        return v0->curHP;
-        break;
-    case 48:
-        return v0->maxHP;
-        break;
-    case 49:
-    {
-        int v3;
-        u16 * v4 = param3;
 
-        for (v3 = 0; v3 < 10 + 1; v3++) {
-            v4[v3] = v0->OTName[v3];
+    case BATTLEMON_NICKNAME_STRBUF:
+        Strbuf_CopyChars((Strbuf *)buf, battleMon->nickname);
+        break;
+
+    case BATTLEMON_CUR_HP:
+        return battleMon->curHP;
+
+    case BATTLEMON_MAX_HP:
+        return battleMon->maxHP;
+
+    case BATTLEMON_OT_NAME:
+        {
+            int i;
+            charcode_t *OTName = buf;
+
+            for (i = 0; i < MON_NAME_LEN + 1; i++) {
+                OTName[i] = battleMon->OTName[i];
+            }
         }
-    }
-    break;
-    case 50:
-        return v0->exp;
         break;
-    case 51:
-        return v0->pid;
-        break;
-    case 52:
-        return v0->status;
-        break;
-    case 53:
-        return v0->statusVolatile;
-        break;
-    case 54:
-        return v0->OTId;
-        break;
-    case 55:
-        return v0->heldItem;
-        break;
-    case 56:
-        return v0->timesDamaged;
-        break;
-    case 57:
-        return v0->trainerMessageFlags;
-        break;
-    case 58:
-        return v0->OTGender;
-        break;
-    case 59:
-        return v0->moveEffectsMask;
-        break;
-    case 60:
-        return v0->moveEffectsTemp;
-        break;
-    case 61:
-        return v0->moveEffectsData.disabledTurns;
-        break;
-    case 62:
-        return v0->moveEffectsData.encoredTurns;
-        break;
-    case 63:
-        return v0->moveEffectsData.chargedTurns;
-        break;
-    case 64:
-        return v0->moveEffectsData.tauntedTurns;
-        break;
-    case 65:
-        return v0->moveEffectsData.protectSuccessTurns;
-        break;
-    case 66:
-        return v0->moveEffectsData.perishSongTurns;
-        break;
-    case 67:
-        return v0->moveEffectsData.rolloutCount;
-        break;
-    case 68:
-        return v0->moveEffectsData.furyCutterCount;
-        break;
-    case 69:
-        return v0->moveEffectsData.stockpileCount;
-        break;
-    case 70:
-        return v0->moveEffectsData.stockpileDefBoosts;
-        break;
-    case 71:
-        return v0->moveEffectsData.stockpileSpDefBoosts;
-        break;
-    case 72:
-        return v0->moveEffectsData.truant;
-        break;
-    case 73:
-        return v0->moveEffectsData.flashFire;
-        break;
-    case 74:
-        return v0->moveEffectsData.lockOnTarget;
-        break;
-    case 75:
-        return v0->moveEffectsData.mimickedMoveSlot;
-        break;
-    case 76:
-        return v0->moveEffectsData.bindTarget;
-        break;
-    case 77:
-        return v0->moveEffectsData.meanLookTarget;
-        break;
-    case 78:
-        return v0->moveEffectsData.lastResortCount;
-        break;
-    case 79:
-        return v0->moveEffectsData.magnetRiseTurns;
-        break;
-    case 80:
-        return v0->moveEffectsData.healBlockTurns;
-        break;
-    case 81:
-        return v0->moveEffectsData.embargoTurns;
-        break;
-    case 82:
-        return v0->moveEffectsData.canUnburden;
-        break;
-    case 83:
-        return v0->moveEffectsData.metronomeTurns;
-        break;
-    case 84:
-        return v0->moveEffectsData.micleBerry;
-        break;
-    case 85:
-        return v0->moveEffectsData.custapBerry;
-        break;
-    case 86:
-        return v0->moveEffectsData.quickClaw;
-        break;
-    case 87:
-        return v0->moveEffectsData.rechargeTurnNumber;
-        break;
-    case 88:
-        return v0->moveEffectsData.fakeOutTurnNumber;
-        break;
-    case 89:
-        return v0->moveEffectsData.slowStartTurnNumber;
-        break;
-    case 90:
-        return v0->moveEffectsData.substituteHP;
-        break;
-    case 91:
-        return v0->moveEffectsData.transformedPID;
-        break;
-    case 92:
-        return v0->moveEffectsData.disabledMove;
-        break;
-    case 93:
-        return v0->moveEffectsData.encoredMove;
-        break;
-    case 94:
-        return v0->moveEffectsData.bindingMove;
-        break;
-    case 95:
-        return v0->moveEffectsData.itemHPRecovery;
-        break;
-    case 96:
-        return v0->slowStartAnnounced;
-        break;
-    case 97:
-        return v0->slowStartFinished;
-        break;
-    case 98:
-        return v0->formNum;
-        break;
-    case 100:
-        return BattleMon_Get(param0, param1, param0->scriptTemp, param3);
-        break;
+
+    case BATTLEMON_EXP:
+        return battleMon->exp;
+
+    case BATTLEMON_PERSONALITY:
+        return battleMon->pid;
+
+    case BATTLEMON_STATUS:
+        return battleMon->status;
+
+    case BATTLEMON_VOLATILE_STATUS:
+        return battleMon->statusVolatile;
+
+    case BATTLEMON_OT_ID:
+        return battleMon->OTId;
+
+    case BATTLEMON_HELD_ITEM:
+        return battleMon->heldItem;
+
+    case BATTLEMON_TIMES_DAMAGED:
+        return battleMon->timesDamaged;
+
+    case BATTLEMON_TRAINER_MESSAGE_FLAGS:
+        return battleMon->trainerMessageFlags;
+
+    case BATTLEMON_OT_GENDER:
+        return battleMon->OTGender;
+
+    case BATTLEMON_MOVE_EFFECTS_MASK:
+        return battleMon->moveEffectsMask;
+
+    case BATTLEMON_MOVE_EFFECTS_TEMP:
+        return battleMon->moveEffectsTemp;
+
+    case BATTLEMON_DISABLED_TURNS:
+        return battleMon->moveEffectsData.disabledTurns;
+
+    case BATTLEMON_ENCORED_TURNS:
+        return battleMon->moveEffectsData.encoredTurns;
+
+    case BATTLEMON_CHARGED_TURNS:
+        return battleMon->moveEffectsData.chargedTurns;
+
+    case BATTLEMON_TAUNTED_TURNS:
+        return battleMon->moveEffectsData.tauntedTurns;
+
+    case BATTLEMON_SUCCESSFUL_PROTECT_TURNS:
+        return battleMon->moveEffectsData.protectSuccessTurns;
+
+    case BATTLEMON_PERISH_SONG_TURNS:
+        return battleMon->moveEffectsData.perishSongTurns;
+
+    case BATTLEMON_ROLLOUT_COUNT:
+        return battleMon->moveEffectsData.rolloutCount;
+
+    case BATTLEMON_FURY_CUTTER_COUNT:
+        return battleMon->moveEffectsData.furyCutterCount;
+
+    case BATTLEMON_STOCKPILE_COUNT:
+        return battleMon->moveEffectsData.stockpileCount;
+
+    case BATTLEMON_STOCKPILE_DEF_BOOSTS:
+        return battleMon->moveEffectsData.stockpileDefBoosts;
+
+    case BATTLEMON_STOCKPILE_SPDEF_BOOSTS:
+        return battleMon->moveEffectsData.stockpileSpDefBoosts;
+
+    case BATTLEMON_TRUANT:
+        return battleMon->moveEffectsData.truant;
+
+    case BATTLEMON_FLASH_FIRE:
+        return battleMon->moveEffectsData.flashFire;
+
+    case BATTLEMON_LOCK_ON_TARGET:
+        return battleMon->moveEffectsData.lockOnTarget;
+
+    case BATTLEMON_MIMICKED_MOVE_SLOT:
+        return battleMon->moveEffectsData.mimickedMoveSlot;
+
+    case BATTLEMON_BIND_TARGET:
+        return battleMon->moveEffectsData.bindTarget;
+
+    case BATTLEMON_MEAN_LOOK_TARGET:
+        return battleMon->moveEffectsData.meanLookTarget;
+
+    case BATTLEMON_LAST_RESORT_COUNT:
+        return battleMon->moveEffectsData.lastResortCount;
+
+    case BATTLEMON_MAGNET_RISE_TURNS:
+        return battleMon->moveEffectsData.magnetRiseTurns;
+
+    case BATTLEMON_HEAL_BLOCK_TURNS:
+        return battleMon->moveEffectsData.healBlockTurns;
+
+    case BATTLEMON_EMBARGO_TURNS:
+        return battleMon->moveEffectsData.embargoTurns;
+
+    case BATTLEMON_CAN_UNBURDEN:
+        return battleMon->moveEffectsData.canUnburden;
+
+    case BATTLEMON_METRONOME_TURNS:
+        return battleMon->moveEffectsData.metronomeTurns;
+
+    case BATTLEMON_MICLE_BERRY:
+        return battleMon->moveEffectsData.micleBerry;
+
+    case BATTLEMON_CUSTAP_BERRY:
+        return battleMon->moveEffectsData.custapBerry;
+
+    case BATTLEMON_QUICK_CLAW:
+        return battleMon->moveEffectsData.quickClaw;
+
+    case BATTLEMON_RECHARGE_TURN_NUMBER:
+        return battleMon->moveEffectsData.rechargeTurnNumber;
+
+    case BATTLEMON_FAKE_OUT_TURN_NUMBER:
+        return battleMon->moveEffectsData.fakeOutTurnNumber;
+
+    case BATTLEMON_SLOW_START_TURN_NUMBER:
+        return battleMon->moveEffectsData.slowStartTurnNumber;
+
+    case BATTLEMON_SUBSTITUTE_HP:
+        return battleMon->moveEffectsData.substituteHP;
+
+    case BATTLEMON_TRANSFORMED_PERSONALITY:
+        return battleMon->moveEffectsData.transformedPID;
+
+    case BATTLEMON_DISABLED_MOVE:
+        return battleMon->moveEffectsData.disabledMove;
+
+    case BATTLEMON_ENCORED_MOVE:
+        return battleMon->moveEffectsData.encoredMove;
+
+    case BATTLEMON_BINDING_MOVE:
+        return battleMon->moveEffectsData.bindingMove;
+
+    case BATTLEMON_ITEM_HP_RECOVERY:
+        return battleMon->moveEffectsData.itemHPRecovery;
+
+    case BATTLEMON_SLOW_START_ANNOUNCED:
+        return battleMon->slowStartAnnounced;
+
+    case BATTLEMON_SLOW_START_FINISHED:
+        return battleMon->slowStartFinished;
+
+    case BATTLEMON_FORM_NUM:
+        return battleMon->formNum;
+
+    case BATTLEMON_TEMP:
+        return BattleMon_Get(battleCtx, battler, battleCtx->scriptTemp, buf);
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
@@ -1270,8 +1260,8 @@ u8 BattleSystem_CompareBattlerSpeed (BattleSystem * param0, BattleContext * para
         }
     }
 
-    v1 = param1->battleMons[param2].speed * Unk_ov16_0226EBE0[v21][0] / Unk_ov16_0226EBE0[v21][1];
-    v2 = param1->battleMons[param3].speed * Unk_ov16_0226EBE0[v22][0] / Unk_ov16_0226EBE0[v22][1];
+    v1 = param1->battleMons[param2].speed * sStatStageBoosts[v21].numerator / sStatStageBoosts[v21].denominator;
+    v2 = param1->battleMons[param3].speed * sStatStageBoosts[v22].numerator / sStatStageBoosts[v22].denominator;
 
     if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
         if (((v19 == 33) && (param1->fieldConditionsMask & 0x3)) || ((v19 == 34) && (param1->fieldConditionsMask & 0x30))) {
@@ -1284,7 +1274,7 @@ u8 BattleSystem_CompareBattlerSpeed (BattleSystem * param0, BattleContext * para
     }
 
     for (v23 = 0; v23 < NELEMS(Unk_ov16_0226EBA8); v23++) {
-        if (ov16_0225B0FC(param1, param1->battleMons[param2].heldItem, 1) == Unk_ov16_0226EBA8[v23]) {
+        if (BattleSystem_GetItemData(param1, param1->battleMons[param2].heldItem, 1) == Unk_ov16_0226EBA8[v23]) {
             v1 /= 2;
             break;
         }
@@ -1347,7 +1337,7 @@ u8 BattleSystem_CompareBattlerSpeed (BattleSystem * param0, BattleContext * para
     }
 
     for (v23 = 0; v23 < NELEMS(Unk_ov16_0226EBA8); v23++) {
-        if (ov16_0225B0FC(param1, param1->battleMons[param3].heldItem, 1) == Unk_ov16_0226EBA8[v23]) {
+        if (BattleSystem_GetItemData(param1, param1->battleMons[param3].heldItem, 1) == Unk_ov16_0226EBA8[v23]) {
             v2 /= 2;
             break;
         }
@@ -2834,33 +2824,32 @@ BOOL BattleContext_MoveFailed (BattleContext * param0, int param1)
     }
 }
 
-u8 ov16_022554E0 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL enemyOnly, int defender)
 {
-    int v0;
-    u8 v1;
-    int v2;
-
-    v1 = 0;
-    v2 = BattleSystem_MaxBattlers(param0);
-
-    switch (param2) {
-    case 0:
-        for (v0 = 0; v0 < v2; v0++) {
-            if ((v0 != param3) && (param1->battleMons[v0].curHP)) {
-                v1++;
+    u8 count = 0;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    
+    // no clue why they used a switch statement for this, but changing it to an if-else doesn't match
+    switch (enemyOnly) {
+    case FALSE:
+        for (int i = 0; i < maxBattlers; i++) {
+            if (i != defender && battleCtx->battleMons[i].curHP) {
+                count++;
             }
         }
         break;
-    case 1:
-        for (v0 = 0; v0 < v2; v0++) {
-            if ((Battler_Side(param0, v0) == Battler_Side(param0, param3)) && (param1->battleMons[v0].curHP)) {
-                v1++;
+
+    case TRUE:
+        for (int i = 0; i < maxBattlers; i++) {
+            if (Battler_Side(battleSys, i) == Battler_Side(battleSys, defender)
+                    && battleCtx->battleMons[i].curHP) {
+                count++;
             }
         }
         break;
     }
 
-    return v1;
+    return count;
 }
 
 int BattleSystem_NicknameTag (BattleContext *battleSys, int battler)
@@ -2881,90 +2870,109 @@ u16 Battler_SelectedMove (BattleContext * param0, int param1)
     return v0;
 }
 
-int BattleSystem_CountAbility (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
+int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability)
 {
-    int v0;
-    int v1;
-    int v2;
+    int result = 0;
+    int i;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    v0 = 0;
-    v2 = BattleSystem_MaxBattlers(param0);
+    switch (mode) {
+    case COUNT_ALL_BATTLERS_OUR_SIDE:
+        for (i = 0; i < maxBattlers; i++) {
+            if (Battler_Side(battleSys, i) == Battler_Side(battleSys, battler)
+                    && Battler_Ability(battleCtx, i) == ability) {
+                result++;
+            }
+        }
+        break;
+    
+    case COUNT_ALIVE_BATTLERS_OUR_SIDE:
+        for (i = 0; i < maxBattlers; i++) {
+            if (Battler_Side(battleSys, i) == Battler_Side(battleSys, battler)
+                    && battleCtx->battleMons[i].curHP
+                    && Battler_Ability(battleCtx, i) == ability) {
+                result++;
+            }
+        }
+        break;
 
-    switch (param2) {
-    case 0:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((Battler_Side(param0, v1) == Battler_Side(param0, param3)) && (Battler_Ability(param1, v1) == param4)) {
-                v0++;
+    case COUNT_ALL_BATTLERS_THEIR_SIDE:
+        for (i = 0; i < maxBattlers; i++) {
+            if (Battler_Side(battleSys, i) != Battler_Side(battleSys, battler)
+                    && Battler_Ability(battleCtx, i) == ability) {
+                result++;
             }
         }
         break;
-    case 1:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((Battler_Side(param0, v1) == Battler_Side(param0, param3)) && (param1->battleMons[v1].curHP) && (Battler_Ability(param1, v1) == param4)) {
-                v0++;
+
+    case COUNT_ALIVE_BATTLERS_THEIR_SIDE:
+        for (i = 0; i < maxBattlers; i++) {
+            if (Battler_Side(battleSys, i) != Battler_Side(battleSys, battler)
+                    && battleCtx->battleMons[i].curHP
+                    && Battler_Ability(battleCtx, i) == ability) {
+                result++;
             }
         }
         break;
-    case 2:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((Battler_Side(param0, v1) != Battler_Side(param0, param3)) && (Battler_Ability(param1, v1) == param4)) {
-                v0++;
+
+    case COUNT_ALIVE_BATTLERS_THEIR_SIDE_FLAG:
+        for (i = 0; i < maxBattlers; i++) {
+            if (Battler_Side(battleSys, i) != Battler_Side(battleSys, battler)
+                    && battleCtx->battleMons[i].curHP
+                    && Battler_Ability(battleCtx, i) == ability) {
+                result |= FlagIndex(i);
             }
         }
         break;
-    case 3:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((Battler_Side(param0, v1) != Battler_Side(param0, param3)) && (param1->battleMons[v1].curHP) && (Battler_Ability(param1, v1) == param4)) {
-                v0++;
+
+    case COUNT_ALL_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            if (Battler_Ability(battleCtx, i) == ability) {
+                result++;
             }
         }
         break;
-    case 4:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((Battler_Side(param0, v1) != Battler_Side(param0, param3)) && (param1->battleMons[v1].curHP) && (Battler_Ability(param1, v1) == param4)) {
-                v0 |= FlagIndex(v1);
+
+    case COUNT_ALL_BATTLERS_EXCEPT_ME:
+        for (i = 0; i < maxBattlers; i++) {
+            if (i != battler
+                    && Battler_Ability(battleCtx, i) == ability) {
+                result++;
             }
         }
         break;
-    case 5:
-        for (v1 = 0; v1 < v2; v1++) {
-            if (Battler_Ability(param1, v1) == param4) {
-                v0++;
-            }
-        }
-        break;
-    case 6:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((v1 != param3) && (Battler_Ability(param1, v1) == param4)) {
-                v0++;
-            }
-        }
-        break;
-    case 7:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((v1 != param3) && (Battler_Ability(param1, v1) == param4)) {
-                v0 = v1 + 1;
+
+    case COUNT_ALL_BATTLERS_EXCEPT_ME_RETURN_BATTLER:
+        for (i = 0; i < maxBattlers; i++) {
+            if (i != battler
+                    && Battler_Ability(battleCtx, i) == ability) {
+                result = i + 1;
                 break;
             }
         }
         break;
-    case 8:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((Battler_Ability(param1, v1) == param4) && (param1->battleMons[v1].curHP)) {
-                v0++;
+
+    case COUNT_ALIVE_BATTLERS:
+        for (i = 0; i < maxBattlers; i++) {
+            if (Battler_Ability(battleCtx, i) == ability
+                    && battleCtx->battleMons[i].curHP) {
+                result++;
             }
         }
         break;
-    case 9:
-        for (v1 = 0; v1 < v2; v1++) {
-            if ((v1 != param3) && (Battler_Ability(param1, v1) == param4) && (param1->battleMons[v1].curHP)) {
-                v0++;
+
+    case COUNT_ALIVE_BATTLERS_EXCEPT_ME:
+        for (i = 0; i < maxBattlers; i++) {
+            if (i != battler
+                    && Battler_Ability(battleCtx, i) == ability
+                    && battleCtx->battleMons[i].curHP) {
+                result++;
             }
         }
         break;
     }
 
-    return v0;
+    return result;
 }
 
 BOOL BattleMove_IsMultiTurn (BattleContext * param0, int param1)
@@ -3100,24 +3108,21 @@ u8 Battler_Ability (BattleContext * param0, int param1)
     }
 }
 
-BOOL Battler_IgnorableAbility (BattleContext * param0, int param1, int param2, int param3)
+BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability)
 {
-    BOOL v0;
+    BOOL result = FALSE;
 
-    v0 = 0;
-
-    if (Battler_Ability(param0, param1) != 104) {
-        if (Battler_Ability(param0, param2) == param3) {
-            v0 = 1;
+    if (Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER) {
+        if (Battler_Ability(battleCtx, defender) == ability) {
+            result = TRUE;
         }
-    } else {
-        if ((Battler_Ability(param0, param2) == param3) && (param0->selfTurnFlags[param1].moldBreakerActivated == 0)) {
-            param0->selfTurnFlags[param1].moldBreakerActivated = 1;
-            param0->battleStatusMask |= 0x800000;
-        }
+    } else if (Battler_Ability(battleCtx, defender) == ability
+            && battleCtx->selfTurnFlags[attacker].moldBreakerActivated == FALSE) {
+        battleCtx->selfTurnFlags[attacker].moldBreakerActivated = TRUE;
+        battleCtx->battleStatusMask |= SYSCTL_APPLY_MOLD_BREAKER;
     }
 
-    return v0;
+    return result;
 }
 
 BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -3344,23 +3349,19 @@ BOOL BattleSystem_Imprisoned (BattleSystem * param0, BattleContext * param1, int
     return v4;
 }
 
-BOOL ov16_02255F68 (BattleSystem * param0, BattleContext * param1, int param2)
+BOOL BattleSystem_AnyBattlersWithMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx, int effectMask)
 {
-    int v0;
-    int v1;
-    BOOL v2;
+    BOOL result = FALSE;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    v2 = 0;
-    v1 = BattleSystem_MaxBattlers(param0);
-
-    for (v0 = 0; v0 < v1; v0++) {
-        if (param1->battleMons[v0].moveEffectsMask & param2) {
-            v2 = 1;
+    for (int i = 0; i < maxBattlers; i++) {
+        if (battleCtx->battleMons[i].moveEffectsMask & effectMask) {
+            result = TRUE;
             break;
         }
     }
 
-    return v2;
+    return result;
 }
 
 void BattleSystem_SetupLoop(BattleSystem *battleSys, BattleContext *battleCtx)
@@ -3807,8 +3808,8 @@ int BattleSystem_ShowMonChecks (BattleSystem * param0, BattleContext * param1)
 
                         for (v8 = 0; v8 < v5; v8++) {
                             if ((Battler_Side(param0, v4) != Battler_Side(param0, v8)) && ((param1->battleMons[v8].statusVolatile & 0x1000000) == 0) && (param1->battleMons[v8].curHP)) {
-                                v9 += param1->battleMons[v8].defense * Unk_ov16_0226EBE0[param1->battleMons[v8].statBoosts[0x2]][0] / Unk_ov16_0226EBE0[param1->battleMons[v8].statBoosts[0x2]][1];
-                                v10 += param1->battleMons[v8].spDefense * Unk_ov16_0226EBE0[param1->battleMons[v8].statBoosts[0x5]][0] / Unk_ov16_0226EBE0[param1->battleMons[v8].statBoosts[0x5]][1];
+                                v9 += param1->battleMons[v8].defense * sStatStageBoosts[param1->battleMons[v8].statBoosts[0x2]].numerator / sStatStageBoosts[param1->battleMons[v8].statBoosts[0x2]].denominator;
+                                v10 += param1->battleMons[v8].spDefense * sStatStageBoosts[param1->battleMons[v8].statBoosts[0x5]].numerator / sStatStageBoosts[param1->battleMons[v8].statBoosts[0x5]].denominator;
                             }
                         }
 
@@ -4079,7 +4080,7 @@ int BattleSystem_ShowMonChecks (BattleSystem * param0, BattleContext * param1)
             for (v0 = 0; v0 < v5; v0++) {
                 v4 = param1->monSpeedOrder[v0];
 
-                if (ov16_0225B0FC(param1, param1->battleMons[v4].heldItem, 1) == 58) {
+                if (BattleSystem_GetItemData(param1, param1->battleMons[v4].heldItem, 1) == 58) {
                     param1->prizeMoneyMul = 2;
                 }
             }
@@ -4839,7 +4840,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
 
         if (v0 == 1) {
             param1->msgBattlerTemp = param2;
-            param1->msgItemTemp = ov16_02258874(param1, param2);
+            param1->msgItemTemp = Battler_HeldItem(param1, param2);
             BattleSystem_LoadScript(param1, 1, v1);
             param1->commandNext = param1->command;
             param1->command = 21;
@@ -4888,7 +4889,7 @@ BOOL BattleSystem_TriggerLeftovers (BattleSystem * param0, BattleContext * param
 
         if (v0 == 1) {
             param1->msgBattlerTemp = param2;
-            param1->msgItemTemp = ov16_02258874(param1, param2);
+            param1->msgItemTemp = Battler_HeldItem(param1, param2);
             BattleSystem_LoadScript(param1, 1, v1);
             param1->commandNext = param1->command;
             param1->command = 21;
@@ -5213,7 +5214,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
         }
 
         if (v0 == 1) {
-            param1->msgItemTemp = ov16_02258874(param1, param2);
+            param1->msgItemTemp = Battler_HeldItem(param1, param2);
         }
     }
 
@@ -5259,7 +5260,7 @@ BOOL BattleSystem_TriggerDetrimentalHeldItem (BattleSystem * param0, BattleConte
 
         if (v0 == 1) {
             param1->msgBattlerTemp = param2;
-            param1->msgItemTemp = ov16_02258874(param1, param2);
+            param1->msgItemTemp = Battler_HeldItem(param1, param2);
             BattleSystem_LoadScript(param1, 1, v1);
             param1->commandNext = param1->command;
             param1->command = 21;
@@ -5269,17 +5270,17 @@ BOOL BattleSystem_TriggerDetrimentalHeldItem (BattleSystem * param0, BattleConte
     return v0;
 }
 
-u16 ov16_02258874 (BattleContext * param0, int param1)
+u16 Battler_HeldItem(BattleContext *battleCtx, int battler)
 {
-    if ((Battler_Ability(param0, param1) == 103)) {
-        return 0;
+    if (Battler_Ability(battleCtx, battler) == ABILITY_KLUTZ) {
+        return ITEM_NONE;
     }
 
-    if (param0->battleMons[param1].moveEffectsData.embargoTurns) {
-        return 0;
+    if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns) {
+        return ITEM_NONE;
     }
 
-    return param0->battleMons[param1].heldItem;
+    return battleCtx->battleMons[battler].heldItem;
 }
 
 BOOL Battler_MovedThisTurn (BattleContext * param0, int param1)
@@ -5359,8 +5360,8 @@ s32 Battler_HeldItemEffect (BattleContext * param0, int param1)
 {
     u16 v0;
 
-    v0 = ov16_02258874(param0, param1);
-    return ov16_0225B0FC(param0, v0, 1);
+    v0 = Battler_HeldItem(param0, param1);
+    return BattleSystem_GetItemData(param0, v0, 1);
 }
 
 s32 Battler_HeldItemPower (BattleContext * param0, int param1, int param2)
@@ -5369,7 +5370,7 @@ s32 Battler_HeldItemPower (BattleContext * param0, int param1, int param2)
 
     switch (param2) {
     case 0:
-        v0 = ov16_02258874(param0, param1);
+        v0 = Battler_HeldItem(param0, param1);
         break;
     case 2:
         if (param0->battleMons[param1].moveEffectsData.embargoTurns) {
@@ -5380,23 +5381,23 @@ s32 Battler_HeldItemPower (BattleContext * param0, int param1, int param2)
         break;
     }
 
-    return ov16_0225B0FC(param0, v0, 2);
+    return BattleSystem_GetItemData(param0, v0, 2);
 }
 
 s32 ov16_02258B18 (BattleContext * param0, int param1)
 {
     u16 v0;
 
-    v0 = ov16_02258874(param0, param1);
-    return ov16_0225B0FC(param0, v0, 11);
+    v0 = Battler_HeldItem(param0, param1);
+    return BattleSystem_GetItemData(param0, v0, 11);
 }
 
 s32 ov16_02258B2C (BattleContext * param0, int param1)
 {
     u16 v0;
 
-    v0 = ov16_02258874(param0, param1);
-    return ov16_0225B0FC(param0, v0, 12);
+    v0 = Battler_HeldItem(param0, param1);
+    return BattleSystem_GetItemData(param0, v0, 12);
 }
 
 s32 ov16_02258B40 (BattleContext * param0, int param1)
@@ -5405,7 +5406,7 @@ s32 ov16_02258B40 (BattleContext * param0, int param1)
     int v1;
 
     v0 = param0->battleMons[param1].heldItem;
-    v1 = ov16_0225B0FC(param0, v0, 8);
+    v1 = BattleSystem_GetItemData(param0, v0, 8);
 
     return v1;
 }
@@ -5416,7 +5417,7 @@ s32 ov16_02258B58 (BattleContext * param0, int param1)
         return 0;
     }
 
-    return ov16_0225B0FC(param0, param0->battleMons[param1].heldItem, 9);
+    return BattleSystem_GetItemData(param0, param0->battleMons[param1].heldItem, 9);
 }
 
 s32 ov16_02258B80 (BattleContext * param0, int param1)
@@ -5425,7 +5426,7 @@ s32 ov16_02258B80 (BattleContext * param0, int param1)
         return 0;
     }
 
-    return ov16_0225B0FC(param0, param0->battleMons[param1].heldItem, 10);
+    return BattleSystem_GetItemData(param0, param0->battleMons[param1].heldItem, 10);
 }
 
 int BattleSystem_CanSwitch (BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -6383,573 +6384,644 @@ void BattleSystem_SwitchSlots (BattleSystem *battleSys, BattleContext *battleCtx
     battleCtx->partyOrder[battler][v0] = v1;
 }
 
-static const u8 Unk_ov16_0226EC92[][2] = {
-    {0x39, 0x6},
-    {0x44, 0x8},
-    {0x48, 0x4},
-    {0x49, 0x5},
-    {0x4A, 0xC},
-    {0x4B, 0x11},
-    {0x4C, 0x1},
-    {0x4D, 0xD},
-    {0x4E, 0xB},
-    {0x4F, 0x2},
-    {0x50, 0x3},
-    {0x51, 0xF},
-    {0x52, 0x7},
-    {0x53, 0xE},
-    {0x54, 0xA},
-    {0x55, 0x10},
-    {0x56, 0x0},
-    {0x7E, 0xA},
-    {0x7F, 0xB},
-    {0x80, 0xD},
-    {0x81, 0xC},
-    {0x82, 0xF},
-    {0x83, 0x1},
-    {0x84, 0x3},
-    {0x85, 0x4},
-    {0x86, 0x2},
-    {0x87, 0xE},
-    {0x88, 0x6},
-    {0x89, 0x5},
-    {0x8A, 0x7},
-    {0x8B, 0x10},
-    {0x8C, 0x11},
-    {0x8D, 0x8}
+typedef struct ItemEffectTypePair {
+    u8 itemEffect;
+    u8 type;
+} ItemEffectTypePair;
+
+static const ItemEffectTypePair sTypeBoostingItems[] = {
+    { HOLD_EFFECT_STRENGTHEN_BUG,      TYPE_BUG      },
+    { HOLD_EFFECT_STRENGTHEN_STEEL,    TYPE_STEEL    },
+    { HOLD_EFFECT_STRENGTHEN_GROUND,   TYPE_GROUND   },
+    { HOLD_EFFECT_STRENGTHEN_ROCK,     TYPE_ROCK     },
+    { HOLD_EFFECT_STRENGTHEN_GRASS,    TYPE_GRASS    },
+    { HOLD_EFFECT_STRENGTHEN_DARK,     TYPE_DARK     },
+    { HOLD_EFFECT_STRENGTHEN_FIGHT,    TYPE_FIGHTING },
+    { HOLD_EFFECT_STRENGTHEN_ELECTRIC, TYPE_ELECTRIC },
+    { HOLD_EFFECT_STRENGTHEN_WATER,    TYPE_WATER    },
+    { HOLD_EFFECT_STRENGTHEN_FLYING,   TYPE_FLYING   },
+    { HOLD_EFFECT_STRENGTHEN_POISON,   TYPE_POISON   },
+    { HOLD_EFFECT_STRENGTHEN_ICE,      TYPE_ICE      },
+    { HOLD_EFFECT_STRENGTHEN_GHOST,    TYPE_GHOST    },
+    { HOLD_EFFECT_STRENGTHEN_PSYCHIC,  TYPE_PSYCHIC  },
+    { HOLD_EFFECT_STRENGTHEN_FIRE,     TYPE_FIRE     },
+    { HOLD_EFFECT_STRENGTHEN_DRAGON,   TYPE_DRAGON   },
+    { HOLD_EFFECT_STRENGTHEN_NORMAL,   TYPE_NORMAL   },
+    { HOLD_EFFECT_ARCEUS_FIRE,         TYPE_FIRE     },
+    { HOLD_EFFECT_ARCEUS_WATER,        TYPE_WATER    },
+    { HOLD_EFFECT_ARCEUS_ELECTRIC,     TYPE_ELECTRIC },
+    { HOLD_EFFECT_ARCEUS_GRASS,        TYPE_GRASS    },
+    { HOLD_EFFECT_ARCEUS_ICE,          TYPE_ICE      },
+    { HOLD_EFFECT_ARCEUS_FIGHT,        TYPE_FIGHTING },
+    { HOLD_EFFECT_ARCEUS_POISON,       TYPE_POISON   },
+    { HOLD_EFFECT_ARCEUS_GROUND,       TYPE_GROUND   },
+    { HOLD_EFFECT_ARCEUS_FLYING,       TYPE_FLYING   },
+    { HOLD_EFFECT_ARCEUS_PSYCHIC,      TYPE_PSYCHIC  },
+    { HOLD_EFFECT_ARCEUS_BUG,          TYPE_BUG      },
+    { HOLD_EFFECT_ARCEUS_ROCK,         TYPE_ROCK     },
+    { HOLD_EFFECT_ARCEUS_GHOST,        TYPE_GHOST    },
+    { HOLD_EFFECT_ARCEUS_DRAGON,       TYPE_DRAGON   },
+    { HOLD_EFFECT_ARCEUS_DARK,         TYPE_DARK     },
+    { HOLD_EFFECT_ARCEUS_STEEL,        TYPE_STEEL    }
 };
 
-const u8 Unk_ov16_0226EBE0[][2] = {
-    {0xA, 0x28},
-    {0xA, 0x23},
-    {0xA, 0x1E},
-    {0xA, 0x19},
-    {0xA, 0x14},
-    {0xA, 0xF},
-    {0xA, 0xA},
-    {0xF, 0xA},
-    {0x14, 0xA},
-    {0x19, 0xA},
-    {0x1E, 0xA},
-    {0x23, 0xA},
-    {0x28, 0xA}
+static const Fraction sStatStageBoosts[] = {
+    { 10, 40 }, // -6
+    { 10, 35 }, // -5
+    { 10, 30 }, // -4
+    { 10, 25 }, // -3
+    { 10, 20 }, // -2
+    { 10, 15 }, // -1
+    { 10, 10 }, // neutral
+    { 15, 10 }, // +1
+    { 20, 10 }, // +2
+    { 25, 10 }, // +3
+    { 30, 10 }, // +4
+    { 35, 10 }, // +5
+    { 40, 10 }, // +6
 };
 
-static const u16 Unk_ov16_0226EC16[] = {
-    0x8,
-    0x7,
-    0x9,
-    0xB7,
-    0x108,
-    0x92,
-    0xDF,
-    0x167,
-    0x5,
-    0x4,
-    0x135,
-    0x145,
-    0x199,
-    0x1A2,
-    0x147
+static const u16 sPunchingMoves[] = {
+    MOVE_ICE_PUNCH,
+    MOVE_FIRE_PUNCH,
+    MOVE_THUNDER_PUNCH,
+    MOVE_MACH_PUNCH,
+    MOVE_FOCUS_PUNCH,
+    MOVE_DIZZY_PUNCH,
+    MOVE_DYNAMIC_PUNCH,
+    MOVE_HAMMER_ARM,
+    MOVE_MEGA_PUNCH,
+    MOVE_COMET_PUNCH,
+    MOVE_METEOR_MASH,
+    MOVE_SHADOW_PUNCH,
+    MOVE_DRAIN_PUNCH,
+    MOVE_BULLET_PUNCH,
+    MOVE_SKY_UPPERCUT
 };
 
-int BattleSystem_CalcMoveDamage (BattleSystem * param0, BattleContext * param1, int param2, u32 param3, u32 param4, u16 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+typedef struct DamageCalcParams {
+    u16 species;
+    s16 curHP;
+    u16 maxHP;
+    u16 _padding06;
+
+    int heldItemEffect;
+    int heldItemPower;
+
+    u32 statusMask;
+
+    u8 ability;
+    u8 gender;
+    u8 type1;
+    u8 type2;
+} DamageCalcParams;
+
+int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
+    BattleContext *battleCtx,
+    int move,
+    u32 sideConditions,
+    u32 fieldConditions,
+    u16 inPower,
+    u8 inType,
+    u8 attacker,
+    u8 defender,
+    u8 criticalMul)
 {
-    int v0;
-    s32 v1 = 0;
-    s32 v2 = 0;
-    u8 v3;
-    u8 v4;
-    u16 v5;
-    u16 v6;
-    u16 v7;
-    u16 v8;
-    s8 v9;
-    s8 v10;
-    s8 v11;
-    s8 v12;
-    u8 v13;
-    u16 v14;
-    u16 v15;
-    u32 v16;
-    UnkStruct_ov16_0225A280 v17;
-    UnkStruct_ov16_0225A280 v18;
+    // vars have to all be declared C89-style to match
+    int i;
+    s32 damage = 0;
+    s32 stageDivisor = 0;
+    u8 moveType;
+    u8 moveClass;
+    u16 attackStat;
+    u16 defenseStat;
+    u16 spAttackStat;
+    u16 spDefenseStat;
+    s8 attackStage;
+    s8 defenseStage;
+    s8 spAttackStage;
+    s8 spDefenseStage;
+    u8 attackerLevel;
+    u16 movePower;
+    u16 itemTmp;
+    u32 battleType;
+    DamageCalcParams attackerParams;
+    DamageCalcParams defenderParams;
 
-    GF_ASSERT(((param9 == 1) || (param9 > 1)));
+    GF_ASSERT(criticalMul == 1 || criticalMul > 1);
 
-    v5 = BattleMon_Get(param1, param7, 1, NULL);
-    v6 = BattleMon_Get(param1, param8, 2, NULL);
-    v7 = BattleMon_Get(param1, param7, 4, NULL);
-    v8 = BattleMon_Get(param1, param8, 5, NULL);
-    v9 = BattleMon_Get(param1, param7, 19, NULL) - 6;
-    v10 = BattleMon_Get(param1, param8, 20, NULL) - 6;
-    v11 = BattleMon_Get(param1, param7, 22, NULL) - 6;
-    v12 = BattleMon_Get(param1, param8, 23, NULL) - 6;
-    v13 = BattleMon_Get(param1, param7, 43, NULL);
+    attackStat = BattleMon_Get(battleCtx, attacker, BATTLEMON_ATTACK, NULL);
+    defenseStat = BattleMon_Get(battleCtx, defender, BATTLEMON_DEFENSE, NULL);
+    spAttackStat = BattleMon_Get(battleCtx, attacker, BATTLEMON_SP_ATTACK, NULL);
+    spDefenseStat = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE, NULL);
+    attackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_ATTACK_STAGE, NULL) - 6;
+    defenseStage = BattleMon_Get(battleCtx, defender, BATTLEMON_DEFENSE_STAGE, NULL) - 6;
+    spAttackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_SP_ATTACK_STAGE, NULL) - 6;
+    spDefenseStage = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE_STAGE, NULL) - 6;
+    attackerLevel = BattleMon_Get(battleCtx, attacker, BATTLEMON_LEVEL, NULL);
 
-    v17.unk_00 = BattleMon_Get(param1, param7, 0, NULL);
-    v18.unk_00 = BattleMon_Get(param1, param8, 0, NULL);
-    v17.unk_02 = BattleMon_Get(param1, param7, 47, NULL);
-    v18.unk_02 = BattleMon_Get(param1, param8, 47, NULL);
-    v17.unk_04 = BattleMon_Get(param1, param7, 48, NULL);
-    v18.unk_04 = BattleMon_Get(param1, param8, 48, NULL);
-    v17.unk_10 = BattleMon_Get(param1, param7, 52, NULL);
-    v18.unk_10 = BattleMon_Get(param1, param8, 52, NULL);
-    v17.unk_14 = Battler_Ability(param1, param7);
-    v18.unk_14 = Battler_Ability(param1, param8);
-    v17.unk_15 = BattleMon_Get(param1, param7, 29, NULL);
-    v18.unk_15 = BattleMon_Get(param1, param8, 29, NULL);
-    v17.unk_16 = BattleMon_Get(param1, param7, 27, NULL);
-    v18.unk_16 = BattleMon_Get(param1, param8, 27, NULL);
-    v17.unk_17 = BattleMon_Get(param1, param7, 28, NULL);
-    v18.unk_17 = BattleMon_Get(param1, param8, 28, NULL);
+    attackerParams.species = BattleMon_Get(battleCtx, attacker, BATTLEMON_SPECIES, NULL);
+    defenderParams.species = BattleMon_Get(battleCtx, defender, BATTLEMON_SPECIES, NULL);
+    attackerParams.curHP = BattleMon_Get(battleCtx, attacker, BATTLEMON_CUR_HP, NULL);
+    defenderParams.curHP = BattleMon_Get(battleCtx, defender, BATTLEMON_CUR_HP, NULL);
+    attackerParams.maxHP = BattleMon_Get(battleCtx, attacker, BATTLEMON_MAX_HP, NULL);
+    defenderParams.maxHP = BattleMon_Get(battleCtx, defender, BATTLEMON_MAX_HP, NULL);
+    attackerParams.statusMask = BattleMon_Get(battleCtx, attacker, BATTLEMON_STATUS, NULL);
+    defenderParams.statusMask = BattleMon_Get(battleCtx, defender, BATTLEMON_STATUS, NULL);
+    attackerParams.ability = Battler_Ability(battleCtx, attacker);
+    defenderParams.ability = Battler_Ability(battleCtx, defender);
+    attackerParams.gender = BattleMon_Get(battleCtx, attacker, BATTLEMON_GENDER, NULL);
+    defenderParams.gender = BattleMon_Get(battleCtx, defender, BATTLEMON_GENDER, NULL);
+    attackerParams.type1 = BattleMon_Get(battleCtx, attacker, BATTLEMON_TYPE_1, NULL);
+    defenderParams.type1 = BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL);
+    attackerParams.type2 = BattleMon_Get(battleCtx, attacker, BATTLEMON_TYPE_2, NULL);
+    defenderParams.type2 = BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL);
 
-    v15 = ov16_02258874(param1, param7);
+    itemTmp = Battler_HeldItem(battleCtx, attacker);
+    attackerParams.heldItemEffect = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT);
+    attackerParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT_PARAM);
 
-    v17.unk_08 = ov16_0225B0FC(param1, v15, 1);
-    v17.unk_0C = ov16_0225B0FC(param1, v15, 2);
-    v15 = ov16_02258874(param1, param8);
+    itemTmp = Battler_HeldItem(battleCtx, defender);
+    defenderParams.heldItemEffect = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT);
+    defenderParams.heldItemPower = BattleSystem_GetItemData(battleCtx, itemTmp, ITEM_PARAM_HOLD_EFFECT_PARAM);
 
-    v18.unk_08 = ov16_0225B0FC(param1, v15, 1);
-    v18.unk_0C = ov16_0225B0FC(param1, v15, 2);
+    battleType = BattleSystem_BattleType(battleSys);
 
-    v16 = BattleSystem_BattleType(param0);
-
-    if (param5 == 0) {
-        v14 = param1->aiContext.moveTable[param2].power;
+    // Assign power; prefer the input power (used by variable-power moves, e.g. Gyro Ball)
+    if (inPower == 0) {
+        movePower = MOVE_DATA(move).power;
     } else {
-        v14 = param5;
+        movePower = inPower;
     }
 
-    if (v17.unk_14 == 96) {
-        v3 = 0;
-    } else if (param6 == 0) {
-        v3 = param1->aiContext.moveTable[param2].type;
+    if (attackerParams.ability == ABILITY_NORMALIZE) {
+        moveType = TYPE_NORMAL;
+    } else if (inType == TYPE_NORMAL) {
+        moveType = MOVE_DATA(move).type;
     } else {
-        v3 = param6 & 0x3f;
+        moveType = inType & 0x3F;
     }
 
-    GF_ASSERT(param1->powerMul >= 10);
-    v14 = v14 * param1->powerMul / 10;
+    GF_ASSERT(battleCtx->powerMul >= 10);
+    movePower = movePower * battleCtx->powerMul / 10;
 
-    if ((param1->battleMons[param7].moveEffectsMask & 0x200) && (v3 == 13)) {
-        v14 *= 2;
+    if ((battleCtx->battleMons[attacker].moveEffectsMask & MOVE_EFFECT_CHARGE) && moveType == TYPE_ELECTRIC) {
+        movePower *= 2;
     }
 
-    if (param1->turnFlags[param7].helpingHand) {
-        v14 = v14 * 15 / 10;
+    if (battleCtx->turnFlags[attacker].helpingHand) {
+        movePower = movePower * 15 / 10;
     }
 
-    if ((v17.unk_14 == 101) && (param2 != 165) && (v14 <= 60)) {
-        v14 = v14 * 15 / 10;
+    if (attackerParams.ability == ABILITY_TECHNICIAN
+            && move != MOVE_STRUGGLE
+            && movePower <= 60) {
+        movePower = movePower * 15 / 10;
     }
 
-    v4 = param1->aiContext.moveTable[param2].class;
+    moveClass = MOVE_DATA(move).class;
 
-    if ((v17.unk_14 == 37) || (v17.unk_14 == 74)) {
-        v5 = v5 * 2;
+    if (attackerParams.ability == ABILITY_HUGE_POWER || attackerParams.ability == ABILITY_PURE_POWER) {
+        attackStat = attackStat * 2;
+    }
+    if (attackerParams.ability == ABILITY_SLOW_START
+            && BattleContext_Get(battleSys, battleCtx, BATTLECTX_TOTAL_TURNS, NULL)
+                - BattleMon_Get(battleCtx, attacker, BATTLEMON_SLOW_START_TURN_NUMBER, NULL)
+                < 5) {
+        attackStat /= 2;
     }
 
-    if ((v17.unk_14 == 112) && ((ov16_0225B45C(param0, param1, 3, NULL) - BattleMon_Get(param1, param7, 89, NULL)) < 5)) {
-        v5 /= 2;
-    }
-
-    for (v0 = 0; v0 < NELEMS(Unk_ov16_0226EC92); v0++) {
-        if ((v17.unk_08 == Unk_ov16_0226EC92[v0][0]) && (v3 == Unk_ov16_0226EC92[v0][1])) {
-            v14 = v14 * (100 + v17.unk_0C) / 100;
+    for (i = 0; i < NELEMS(sTypeBoostingItems); i++) {
+        if (attackerParams.heldItemEffect == sTypeBoostingItems[i].itemEffect
+                && moveType == sTypeBoostingItems[i].type) {
+            movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
             break;
         }
     }
 
-    if (v17.unk_08 == 55) {
-        v5 = v5 * 150 / 100;
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_CHOICE_ATK) {
+        attackStat = attackStat * 150 / 100;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_CHOICE_SPATK) {
+        spAttackStat = spAttackStat * 150 / 100;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_LATI_SPECIAL
+            && (battleType & BATTLE_TYPE_FRONTIER) == FALSE
+            && (attackerParams.species == SPECIES_LATIOS || attackerParams.species == SPECIES_LATIAS)) {
+        spAttackStat = spAttackStat * 150 / 100;
+    }
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_LATI_SPECIAL
+            && (battleType & BATTLE_TYPE_FRONTIER) == FALSE
+            && (defenderParams.species == SPECIES_LATIOS || defenderParams.species == SPECIES_LATIAS)) {
+        spDefenseStat = spDefenseStat * 150 / 100;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_CLAMPERL_SPATK
+            && attackerParams.species == SPECIES_CLAMPERL) {
+        spAttackStat *= 2;
+    }
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_CLAMPERL_SPDEF
+            && defenderParams.species == SPECIES_CLAMPERL) {
+        spDefenseStat *= 2;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_PIKA_SPATK_UP
+            && attackerParams.species == SPECIES_PIKACHU) {
+        movePower *= 2;
+    }
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_DITTO_DEF_UP
+            && defenderParams.species == SPECIES_DITTO) {
+        defenseStat *= 2;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_CUBONE_ATK_UP
+            && (attackerParams.species == SPECIES_CUBONE || attackerParams.species == SPECIES_MAROWAK)) {
+        attackStat *= 2;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_DIALGA_BOOST
+            && (moveType == TYPE_DRAGON || moveType == TYPE_STEEL)
+            && attackerParams.species == SPECIES_DIALGA) {
+        movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_PALKIA_BOOST
+            && (moveType == TYPE_DRAGON || moveType == TYPE_WATER)
+            && attackerParams.species == SPECIES_PALKIA) {
+        movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_GIRATINA_BOOST
+            && (moveType == TYPE_DRAGON || moveType == TYPE_GHOST)
+            && (BattleMon_Get(battleCtx, attacker, BATTLEMON_VOLATILE_STATUS, NULL) & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && attackerParams.species == SPECIES_GIRATINA) {
+        movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_POWER_UP_PHYS
+            && moveClass == CLASS_PHYSICAL) {
+        movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
+    }
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_POWER_UP_SPEC
+            && moveClass == CLASS_SPECIAL) {
+        movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
     }
 
-    if (v17.unk_08 == 125) {
-        v7 = v7 * 150 / 100;
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_THICK_FAT) == TRUE
+            && (moveType == TYPE_FIRE || moveType == TYPE_ICE)) {
+        movePower /= 2;
     }
 
-    if ((v17.unk_08 == 60) && ((v16 & 0x80) == 0) && ((v17.unk_00 == 381) || (v17.unk_00 == 380))) {
-        v7 = v7 * 150 / 100;
+    if (attackerParams.ability == ABILITY_HUSTLE) {
+        attackStat = attackStat * 150 / 100;
+    }
+    if (attackerParams.ability == ABILITY_GUTS && attackerParams.statusMask) {
+        attackStat = attackStat * 150 / 100;
     }
 
-    if ((v18.unk_08 == 60) && ((v16 & 0x80) == 0) && ((v18.unk_00 == 381) || (v18.unk_00 == 380))) {
-        v8 = v8 * 150 / 100;
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_MARVEL_SCALE) == TRUE
+            && defenderParams.statusMask) {
+        defenseStat = defenseStat * 150 / 100;
     }
 
-    if ((v17.unk_08 == 61) && (v17.unk_00 == 366)) {
-        v7 *= 2;
+    if (attackerParams.ability == ABILITY_PLUS
+            && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_MINUS)) {
+        spAttackStat = spAttackStat * 150 / 100;
+    }
+    if (attackerParams.ability == ABILITY_MINUS
+            && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_PLUS)) {
+        spAttackStat = spAttackStat * 150 / 100;
     }
 
-    if ((v18.unk_08 == 62) && (v18.unk_00 == 366)) {
-        v8 *= 2;
+    if (moveType == TYPE_ELECTRIC
+            && BattleSystem_AnyBattlersWithMoveEffect(battleSys, battleCtx, MOVE_EFFECT_MUD_SPORT)) {
+        movePower /= 2;
+    }
+    if (moveType == TYPE_FIRE
+            && BattleSystem_AnyBattlersWithMoveEffect(battleSys, battleCtx, MOVE_EFFECT_WATER_SPORT)) {
+        movePower /= 2;
     }
 
-    if ((v17.unk_08 == 71) && (v17.unk_00 == 25)) {
-        v14 *= 2;
+    if (moveType == TYPE_GRASS
+            && attackerParams.ability == ABILITY_OVERGROW
+            && attackerParams.curHP <= (attackerParams.maxHP / 3)) {
+        movePower = movePower * 150 / 100;
+    }
+    if (moveType == TYPE_FIRE
+            && attackerParams.ability == ABILITY_BLAZE
+            && attackerParams.curHP <= (attackerParams.maxHP / 3)) {
+        movePower = movePower * 150 / 100;
+    }
+    if (moveType == TYPE_WATER
+            && attackerParams.ability == ABILITY_TORRENT
+            && attackerParams.curHP <= (attackerParams.maxHP / 3)) {
+        movePower = movePower * 150 / 100;
+    }
+    if (moveType == TYPE_BUG
+            && attackerParams.ability == ABILITY_SWARM
+            && attackerParams.curHP <= (attackerParams.maxHP / 3)) {
+        movePower = movePower * 150 / 100;
     }
 
-    if ((v18.unk_08 == 90) && (v18.unk_00 == 132)) {
-        v6 *= 2;
+    if (moveType == TYPE_FIRE
+            && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_HEATPROOF) == TRUE) {
+        movePower /= 2;
+    }
+    if (moveType == TYPE_FIRE
+            && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_DRY_SKIN) == TRUE) {
+        movePower = movePower * 125 / 100;
     }
 
-    if ((v17.unk_08 == 91) && ((v17.unk_00 == 104) || (v17.unk_00 == 105))) {
-        v5 *= 2;
-    }
-
-    if ((v17.unk_08 == 3) && ((v3 == 16) || (v3 == 8)) && (v17.unk_00 == 483)) {
-        v14 = v14 * (100 + v17.unk_0C) / 100;
-    }
-
-    if ((v17.unk_08 == 4) && ((v3 == 16) || (v3 == 11)) && (v17.unk_00 == 484)) {
-        v14 = v14 * (100 + v17.unk_0C) / 100;
-    }
-
-    if ((v17.unk_08 == 2) && ((v3 == 16) || (v3 == 7)) && ((BattleMon_Get(param1, param7, 53, NULL) & 0x200000) == 0) && (v17.unk_00 == 487)) {
-        v14 = v14 * (100 + v17.unk_0C) / 100;
-    }
-
-    if ((v17.unk_08 == 94) && (v4 == 0)) {
-        v14 = v14 * (100 + v17.unk_0C) / 100;
-    }
-
-    if ((v17.unk_08 == 95) && (v4 == 1)) {
-        v14 = v14 * (100 + v17.unk_0C) / 100;
-    }
-
-    if ((Battler_IgnorableAbility(param1, param7, param8, 47) == 1) && ((v3 == 10) || (v3 == 15))) {
-        v14 /= 2;
-    }
-
-    if (v17.unk_14 == 55) {
-        v5 = v5 * 150 / 100;
-    }
-
-    if ((v17.unk_14 == 62) && (v17.unk_10)) {
-        v5 = v5 * 150 / 100;
-    }
-
-    if ((Battler_IgnorableAbility(param1, param7, param8, 63) == 1) && (v18.unk_10)) {
-        v6 = v6 * 150 / 100;
-    }
-
-    if ((v17.unk_14 == 57) && (BattleSystem_CountAbility(param0, param1, 1, param7, 58))) {
-        v7 = v7 * 150 / 100;
-    }
-
-    if ((v17.unk_14 == 58) && (BattleSystem_CountAbility(param0, param1, 1, param7, 57))) {
-        v7 = v7 * 150 / 100;
-    }
-
-    if ((v3 == 13) && (ov16_02255F68(param0, param1, 0x10000))) {
-        v14 /= 2;
-    }
-
-    if ((v3 == 10) && (ov16_02255F68(param0, param1, 0x20000))) {
-        v14 /= 2;
-    }
-
-    if ((v3 == 12) && (v17.unk_14 == 65) && (v17.unk_02 <= (v17.unk_04 / 3))) {
-        v14 = v14 * 150 / 100;
-    }
-
-    if ((v3 == 10) && (v17.unk_14 == 66) && (v17.unk_02 <= (v17.unk_04 / 3))) {
-        v14 = v14 * 150 / 100;
-    }
-
-    if ((v3 == 11) && (v17.unk_14 == 67) && (v17.unk_02 <= (v17.unk_04 / 3))) {
-        v14 = v14 * 150 / 100;
-    }
-
-    if ((v3 == 6) && (v17.unk_14 == 68) && (v17.unk_02 <= (v17.unk_04 / 3))) {
-        v14 = v14 * 150 / 100;
-    }
-
-    if ((v3 == 10) && (Battler_IgnorableAbility(param1, param7, param8, 85) == 1)) {
-        v14 /= 2;
-    }
-
-    if ((v3 == 10) && (Battler_IgnorableAbility(param1, param7, param8, 87) == 1)) {
-        v14 = v14 * 125 / 100;
-    }
-
-    if (v17.unk_14 == 86) {
-        v9 *= 2;
-
-        if (v9 < -6) {
-            v9 = -6;
+    if (attackerParams.ability == ABILITY_SIMPLE) {
+        attackStage *= 2;
+        if (attackStage < -6) {
+            attackStage = -6;
+        }
+        if (attackStage > 6) {
+            attackStage = 6;
         }
 
-        if (v9 > 6) {
-            v9 = 6;
+        spAttackStage *= 2;
+        if (spAttackStage < -6) {
+            spAttackStage = -6;
         }
-
-        v11 *= 2;
-
-        if (v11 < -6) {
-            v11 = -6;
-        }
-
-        if (v11 > 6) {
-            v11 = 6;
-        }
-    }
-
-    if (Battler_IgnorableAbility(param1, param7, param8, 86) == 1) {
-        v10 *= 2;
-
-        if (v10 < -6) {
-            v10 = -6;
-        }
-
-        if (v10 > 6) {
-            v10 = 6;
-        }
-
-        v12 *= 2;
-
-        if (v12 < -6) {
-            v12 = -6;
-        }
-
-        if (v12 > 6) {
-            v12 = 6;
+        if (spAttackStage > 6) {
+            spAttackStage = 6;
         }
     }
 
-    if (Battler_IgnorableAbility(param1, param7, param8, 109) == 1) {
-        v9 = 0;
-        v11 = 0;
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SIMPLE) == TRUE) {
+        defenseStage *= 2;
+        if (defenseStage < -6) {
+            defenseStage = -6;
+        }
+        if (defenseStage > 6) {
+            defenseStage = 6;
+        }
+
+        spDefenseStage *= 2;
+        if (spDefenseStage < -6) {
+            spDefenseStage = -6;
+        }
+        if (spDefenseStage > 6) {
+            spDefenseStage = 6;
+        }
     }
 
-    if (v17.unk_14 == 109) {
-        v10 = 0;
-        v12 = 0;
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_UNAWARE) == TRUE) {
+        attackStage = 0;
+        spAttackStage = 0;
     }
 
-    v9 += 6;
-    v10 += 6;
-    v11 += 6;
-    v12 += 6;
-
-    if ((v17.unk_14 == 79) && (v17.unk_15 == v18.unk_15) && (v17.unk_15 != 2) && (v18.unk_15 != 2)) {
-        v14 = v14 * 125 / 100;
+    if (attackerParams.ability == ABILITY_UNAWARE) {
+        defenseStage = 0;
+        spDefenseStage = 0;
     }
 
-    if ((v17.unk_14 == 79) && (v17.unk_15 != v18.unk_15) && (v17.unk_15 != 2) && (v18.unk_15 != 2)) {
-        v14 = v14 * 75 / 100;
+    attackStage += 6;
+    defenseStage += 6;
+    spAttackStage += 6;
+    spDefenseStage += 6;
+
+    if (attackerParams.ability == ABILITY_RIVALRY
+            && attackerParams.gender == defenderParams.gender
+            && attackerParams.gender != MON_GENDER_NONE
+            && defenderParams.gender != MON_GENDER_NONE) {
+        movePower = movePower * 125 / 100;
+    }
+    if (attackerParams.ability == ABILITY_RIVALRY
+            && attackerParams.gender != defenderParams.gender
+            && attackerParams.gender != MON_GENDER_NONE
+            && defenderParams.gender != MON_GENDER_NONE) {
+        movePower = movePower * 75 / 100;
     }
 
-    for (v0 = 0; v0 < NELEMS(Unk_ov16_0226EC16); v0++) {
-        if ((Unk_ov16_0226EC16[v0] == param2) && (v17.unk_14 == 89)) {
-            v14 = v14 * 12 / 10;
+    for (i = 0; i < NELEMS(sPunchingMoves); i++) {
+        if (sPunchingMoves[i] == move && attackerParams.ability == ABILITY_IRON_FIST) {
+            movePower = movePower * 12 / 10;
             break;
         }
     }
 
-    if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
-        if ((param4 & 0x30) && (v17.unk_14 == 94)) {
-            v7 = v7 * 15 / 10;
+    if (NO_CLOUD_NINE) {
+        if ((fieldConditions & FIELD_CONDITION_SUNNY) && attackerParams.ability == ABILITY_SOLAR_POWER) {
+            spAttackStat = spAttackStat * 15 / 10;
         }
 
-        if ((param4 & 0xc) && ((v18.unk_16 == 5) || (v18.unk_17 == 5))) {
-            v8 = v8 * 15 / 10;
+        if ((fieldConditions & FIELD_CONDITION_SANDSTORM)
+                && (defenderParams.type1 == TYPE_ROCK || defenderParams.type2 == TYPE_ROCK)) {
+            spDefenseStat = spDefenseStat * 15 / 10;
         }
 
-        if ((param4 & 0x30) && (BattleSystem_CountAbility(param0, param1, 1, param7, 122))) {
-            v5 = v5 * 15 / 10;
+        if ((fieldConditions & FIELD_CONDITION_SUNNY)
+                && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_FLOWER_GIFT)) {
+            attackStat = attackStat * 15 / 10;
         }
 
-        if ((param4 & 0x30) && (Battler_Ability(param1, param7) != 104) && (BattleSystem_CountAbility(param0, param1, 1, param8, 122))) {
-            v8 = v8 * 15 / 10;
+        if ((fieldConditions & FIELD_CONDITION_SUNNY)
+                && Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER
+                && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, defender, ABILITY_FLOWER_GIFT)) {
+            spDefenseStat = spDefenseStat * 15 / 10;
         }
     }
 
-    if (param1->aiContext.moveTable[param2].effect == 7) {
-        v6 = v6 / 2;
+    if (MOVE_DATA(move).effect == BATTLE_EFFECT_HALVE_DEFENSE) {
+        defenseStat = defenseStat / 2;
     }
 
-    if (v4 == 0) {
-        if (param9 > 1) {
-            if (v9 > 6) {
-                v1 = v5 * Unk_ov16_0226EBE0[v9][0];
-                v1 /= Unk_ov16_0226EBE0[v9][1];
+    if (moveClass == CLASS_PHYSICAL) {
+        if (criticalMul > 1) {
+            if (attackStage > 6) {
+                damage = attackStat * sStatStageBoosts[attackStage].numerator;
+                damage /= sStatStageBoosts[attackStage].denominator;
             } else {
-                v1 = v5;
+                damage = attackStat;
             }
         } else {
-            v1 = v5 * Unk_ov16_0226EBE0[v9][0];
-            v1 /= Unk_ov16_0226EBE0[v9][1];
+            damage = attackStat * sStatStageBoosts[attackStage].numerator;
+            damage /= sStatStageBoosts[attackStage].denominator;
         }
 
-        v1 *= v14;
-        v1 *= (v13 * 2 / 5 + 2);
+        damage *= movePower;
+        damage *= (attackerLevel * 2 / 5 + 2);
 
-        if (param9 > 1) {
-            if (v10 < 6) {
-                v2 = v6 * Unk_ov16_0226EBE0[v10][0];
-                v2 /= Unk_ov16_0226EBE0[v10][1];
+        if (criticalMul > 1) {
+            if (defenseStage < 6) {
+                stageDivisor = defenseStat * sStatStageBoosts[defenseStage].numerator;
+                stageDivisor /= sStatStageBoosts[defenseStage].denominator;
             } else {
-                v2 = v6;
+                stageDivisor = defenseStat;
             }
         } else {
-            v2 = v6 * Unk_ov16_0226EBE0[v10][0];
-            v2 /= Unk_ov16_0226EBE0[v10][1];
+            stageDivisor = defenseStat * sStatStageBoosts[defenseStage].numerator;
+            stageDivisor /= sStatStageBoosts[defenseStage].denominator;
         }
 
-        v1 /= v2;
-        v1 /= 50;
+        damage /= stageDivisor;
+        damage /= 50;
 
-        if ((v17.unk_10 & 0x10) && (v17.unk_14 != 62)) {
-            v1 /= 2;
+        if ((attackerParams.statusMask & MON_CONDITION_BURN) && attackerParams.ability != ABILITY_GUTS) {
+            damage /= 2;
         }
 
-        if (((param3 & 0x1) != 0) && (param9 == 1) && (param1->aiContext.moveTable[param2].effect != 186)) {
-            if ((v16 & 0x2) && (ov16_022554E0(param0, param1, 1, param8) == 2)) {
-                v1 = v1 * 2 / 3;
+        if ((sideConditions & SIDE_CONDITION_REFLECT) != FALSE
+                && criticalMul == 1
+                && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
+            if ((battleType & BATTLE_TYPE_DOUBLES)
+                    && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
+                damage = damage * 2 / 3;
             } else {
-                v1 /= 2;
+                damage /= 2;
             }
         }
-    } else if (v4 == 1) {
-        if (param9 > 1) {
-            if (v11 > 6) {
-                v1 = v7 * Unk_ov16_0226EBE0[v11][0];
-                v1 /= Unk_ov16_0226EBE0[v11][1];
+    } else if (moveClass == CLASS_SPECIAL) {
+        if (criticalMul > 1) {
+            if (spAttackStage > 6) {
+                damage = spAttackStat * sStatStageBoosts[spAttackStage].numerator;
+                damage /= sStatStageBoosts[spAttackStage].denominator;
             } else {
-                v1 = v7;
-            }
-        } else {
-            v1 = v7 * Unk_ov16_0226EBE0[v11][0];
-            v1 /= Unk_ov16_0226EBE0[v11][1];
-        }
-
-        v1 *= v14;
-        v1 *= (v13 * 2 / 5 + 2);
-
-        if (param9 > 1) {
-            if (v12 < 6) {
-                v2 = v8 * Unk_ov16_0226EBE0[v12][0];
-                v2 /= Unk_ov16_0226EBE0[v12][1];
-            } else {
-                v2 = v8;
+                damage = spAttackStat;
             }
         } else {
-            v2 = v8 * Unk_ov16_0226EBE0[v12][0];
-            v2 /= Unk_ov16_0226EBE0[v12][1];
+            damage = spAttackStat * sStatStageBoosts[spAttackStage].numerator;
+            damage /= sStatStageBoosts[spAttackStage].denominator;
         }
 
-        v1 /= v2;
-        v1 /= 50;
+        damage *= movePower;
+        damage *= (attackerLevel * 2 / 5 + 2);
 
-        if (((param3 & 0x2) != 0) && (param9 == 1) && (param1->aiContext.moveTable[param2].effect != 186)) {
-            if ((v16 & 0x2) && (ov16_022554E0(param0, param1, 1, param8) == 2)) {
-                v1 = v1 * 2 / 3;
+        if (criticalMul > 1) {
+            if (spDefenseStage < 6) {
+                stageDivisor = spDefenseStat * sStatStageBoosts[spDefenseStage].numerator;
+                stageDivisor /= sStatStageBoosts[spDefenseStage].denominator;
             } else {
-                v1 /= 2;
+                stageDivisor = spDefenseStat;
+            }
+        } else {
+            stageDivisor = spDefenseStat * sStatStageBoosts[spDefenseStage].numerator;
+            stageDivisor /= sStatStageBoosts[spDefenseStage].denominator;
+        }
+
+        damage /= stageDivisor;
+        damage /= 50;
+
+        if ((sideConditions & SIDE_CONDITION_LIGHT_SCREEN) != FALSE
+                && criticalMul == 1
+                && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
+            if ((battleType & BATTLE_TYPE_DOUBLES)
+                    && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
+                damage = damage * 2 / 3;
+            } else {
+                damage /= 2;
             }
         }
     }
 
-    if ((v16 & 0x2) && (param1->aiContext.moveTable[param2].range == 0x4) && (ov16_022554E0(param0, param1, 1, param8) == 2)) {
-        v1 = v1 * 3 / 4;
+    if ((battleType & BATTLE_TYPE_DOUBLES)
+            && MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS
+            && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
+        damage = damage * 3 / 4;
+    }
+    if ((battleType & BATTLE_TYPE_DOUBLES)
+            && MOVE_DATA(move).range == RANGE_ALL_ADJACENT
+            && BattleSystem_CountAliveBattlers(battleSys, battleCtx, FALSE, defender) >= 2) {
+        damage = damage * 3 / 4;
     }
 
-    if ((v16 & 0x2) && (param1->aiContext.moveTable[param2].range == 0x8) && (ov16_022554E0(param0, param1, 0, param8) >= 2)) {
-        v1 = v1 * 3 / 4;
-    }
-
-    if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
-        if (param4 & 0x3) {
-            switch (v3) {
-            case 10:
-                v1 /= 2;
+    if (NO_CLOUD_NINE) {
+        if (fieldConditions & FIELD_CONDITION_RAINING) {
+            switch (moveType) {
+            case TYPE_FIRE:
+                damage /= 2;
                 break;
-            case 11:
-                v1 = v1 * 15 / 10;
-                break;
-            }
-        }
-
-        if ((param4 & (3 | 12 | 192 | 32768)) && (param2 == 76)) {
-            v1 /= 2;
-        }
-
-        if (param4 & 0x30) {
-            switch (v3) {
-            case 10:
-                v1 = v1 * 15 / 10;
-                break;
-            case 11:
-                v1 /= 2;
+            case TYPE_WATER:
+                damage = damage * 15 / 10;
                 break;
             }
         }
+
+        if ((fieldConditions & FIELD_CONDITION_SOLAR_DOWN) && move == MOVE_SOLAR_BEAM) {
+            damage /= 2;
+        }
+
+        if (fieldConditions & FIELD_CONDITION_SUNNY) {
+            switch (moveType) {
+            case TYPE_FIRE:
+                damage = damage * 15 / 10;
+                break;
+            case TYPE_WATER:
+                damage /= 2;
+                break;
+            }
+        }
     }
 
-    if ((BattleMon_Get(param1, param7, 73, NULL)) && (v3 == 10)) {
-        v1 = v1 * 15 / 10;
+    if (BattleMon_Get(battleCtx, attacker, BATTLEMON_FLASH_FIRE, NULL) && moveType == TYPE_FIRE) {
+        damage = damage * 15 / 10;
     }
 
-    return v1 + 2;
+    return damage + 2;
 }
 
-int BattleSystem_CalcDamageVariance (BattleSystem * param0, BattleContext * param1, int param2)
+int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *battleCtx, int damage)
 {
-    if (param2) {
-        param2 *= (100 - (BattleSystem_RandNext(param0) % 16));
-        param2 /= 100;
+    if (damage) {
+        damage *= (100 - (BattleSystem_RandNext(battleSys) % 16));
+        damage /= 100;
 
-        if (param2 == 0) {
-            param2 = 1;
+        // Always deal at least 1 damage
+        if (damage == 0) {
+            damage = 1;
         }
     }
 
-    return param2;
+    return damage;
 }
 
-static const u8 Unk_ov16_0226EBA0[] = {
-    0x10,
-    0x8,
-    0x4,
-    0x3,
-    0x2
+// each value here is implicitly 1 / N
+static const u8 sCriticalStageRates[] = {
+    16, // neutral
+     8, // +1
+     4, // +2
+     3, // +3
+     2, // +4
 };
 
-int ov16_0225AEE4 (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, u32 param5)
+int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions)
 {
-    u16 v0;
-    u16 v1;
-    int v2;
-    u16 v3;
-    u32 v4;
-    u32 v5;
-    int v6 = 1;
-    int v7;
+    // have to declare vars C89-style to match
+    u16 effectiveCritStage;
+    u16 item;
+    int itemEffect;
+    u16 attackerSpecies;
+    u32 attackerVolStatus;
+    u32 defenderMoveEffects;
+    int criticalMul = 1;
+    int attackerAbility;
 
-    v1 = ov16_02258874(param1, param2);
-    v2 = ov16_0225B0FC(param1, v1, 1);
-    v3 = param1->battleMons[param2].species;
-    v4 = param1->battleMons[param2].statusVolatile;
-    v5 = param1->battleMons[param3].moveEffectsMask;
-    v7 = param1->battleMons[param2].ability;
-    v0 = (((v4 & 0x100000) != 0) * 2) + (v2 == 67) + param4 + (v7 == 105) + (2 * ((v2 == 89) && (v3 == 113))) + (2 * ((v2 == 92) && (v3 == 83)));
+    item = Battler_HeldItem(battleCtx, attacker);
+    itemEffect = BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HOLD_EFFECT);
+    attackerSpecies = battleCtx->battleMons[attacker].species;
+    attackerVolStatus = battleCtx->battleMons[attacker].statusVolatile;
+    defenderMoveEffects = battleCtx->battleMons[defender].moveEffectsMask;
+    attackerAbility = battleCtx->battleMons[attacker].ability;
+    effectiveCritStage = (((attackerVolStatus & VOLATILE_CONDITION_FOCUS_ENERGY) != FALSE) * 2)
+            + (itemEffect == HOLD_EFFECT_CRITRATE_UP)
+            + criticalStage
+            + (attackerAbility == ABILITY_SUPER_LUCK)
+            + (2 * (itemEffect == HOLD_EFFECT_CHANSEY_CRITRATE_UP && attackerSpecies == SPECIES_CHANSEY))
+            + (2 * (itemEffect == HOLD_EFFECT_FARFETCHD_CRITRATE_UP && attackerSpecies == SPECIES_FARFETCHD));
 
-    if (v0 > 4) {
-        v0 = 4;
+    if (effectiveCritStage > 4) {
+        effectiveCritStage = 4;
     }
 
-    if (BattleSystem_RandNext(param0) % Unk_ov16_0226EBA0[v0] == 0) {
-        if ((Battler_IgnorableAbility(param1, param2, param3, 4) == 0) && (Battler_IgnorableAbility(param1, param2, param3, 75) == 0) && ((param5 & 0x7000) == 0) && ((v5 & 0x8000) == 0)) {
-            v6 = 2;
-        }
+    if (BattleSystem_RandNext(battleSys) % sCriticalStageRates[effectiveCritStage] == 0
+            && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BATTLE_ARMOR) == FALSE
+            && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SHELL_ARMOR) == FALSE
+            && (sideConditions & SIDE_CONDITION_LUCKY_CHANT) == FALSE
+            && (defenderMoveEffects & MOVE_EFFECT_NO_CRITICAL) == FALSE) {
+        criticalMul = 2;
     }
 
-    if ((v6 == 2) && (Battler_Ability(param1, param2) == 97)) {
-        v6 = 3;
+    if (criticalMul == 2 && Battler_Ability(battleCtx, attacker) == ABILITY_SNIPER) {
+        criticalMul = 3;
     }
 
-    return v6;
+    return criticalMul;
 }
 
 static const u16 Unk_ov16_0226EC5C[] = {
@@ -7072,15 +7144,12 @@ BOOL ov16_0225B0C0 (BattleContext * param0, u16 param1)
     return v0 == NELEMS(Unk_ov16_0226EBC8);
 }
 
-s32 ov16_0225B0FC (BattleContext * param0, u16 param1, u16 param2)
+s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID)
 {
-    ItemData * v0;
-    u16 v1;
+    u16 dataID = Item_FileID(item, ITEM_FILE_TYPE_DATA);
+    ItemData *data = ItemTable_Index(battleCtx->aiContext.itemTable, dataID);
 
-    v1 = Item_FileID(param1, 0);
-    v0 = ItemTable_Index(param0->aiContext.itemTable, v1);
-
-    return Item_Get(v0, param2);
+    return Item_Get(data, paramID);
 }
 
 int BattleSystem_SideToBattler (BattleSystem * param0, BattleContext * param1, int param2)
@@ -7224,61 +7293,59 @@ BOOL BattleSystem_RecordingStopped (BattleSystem *battleSys, BattleContext *batt
     return FALSE;
 }
 
-int ov16_0225B45C (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler)
 {
-    int v0;
+    int side;
+    switch (paramID) {
+    case BATTLECTX_SIDE_CONDITIONS_MASK:
+        side = Battler_Side(battleSys, battler);
+        return battleCtx->sideConditionsMask[side];
 
-    switch (param2) {
-    case 0:
-        v0 = Battler_Side(param0, param3);
-        return param1->sideConditionsMask[v0];
-        break;
-    case 1:
-        v0 = Battler_Side(param0, param3);
-        return param1->sideConditions[v0].mistTurns;
-        break;
-    case 2:
-        return param1->selectedPartySlot[param3];
-        break;
-    case 3:
-        return param1->totalTurns;
-        break;
-    case 4:
-        return param1->levelUpMons;
-        break;
-    case 5:
-        return param1->safariEscapeCount;
-        break;
-    case 6:
-        return param1->totalFainted[param3];
-        break;
-    case 7:
-        return param1->totalDamage[param3];
-        break;
-    case 8:
-        return param1->battlerActions[param3][0];
-        break;
-    case 9:
-        return param1->aiContext.defender;
-        break;
-    case 10:
-        return param1->battlersSwitchingMask;
-        break;
-    case 11:
-        return param1->aiContext.selectedTarget[param3];
-        break;
-    case 12:
-        return param1->battlerActions[param3][2];
-        break;
-    case 13:
-        return param1->command;
-        break;
-    case 14:
-        return param1->commandNext;
-        break;
+    case BATTLECTX_SIDE_MIST_TURNS:
+        side = Battler_Side(battleSys, battler);
+        return battleCtx->sideConditions[side].mistTurns;
+
+    case BATTLECTX_SELECTED_PARTY_SLOT:
+        return battleCtx->selectedPartySlot[battler];
+
+    case BATTLECTX_TOTAL_TURNS:
+        return battleCtx->totalTurns;
+        
+    case BATTLECTX_LEVEL_UP_MONS:
+        return battleCtx->levelUpMons;
+        
+    case BATTLECTX_SAFARI_ESCAPE_COUNT:
+        return battleCtx->safariEscapeCount;
+        
+    case BATTLECTX_TOTAL_FAINTED_FOR:
+        return battleCtx->totalFainted[battler];
+        
+    case BATTLECTX_TOTAL_DAMAGE_FOR:
+        return battleCtx->totalDamage[battler];
+        
+    case BATTLECTX_ACTION_FOR:
+        return battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND];
+        
+    case BATTLECTX_AICTX_DEFENDER:
+        return battleCtx->aiContext.defender;
+        
+    case BATTLECTX_SWITCHING_MASK:
+        return battleCtx->battlersSwitchingMask;
+        
+    case BATTLECTX_AICTX_SELECTED_TARGET:
+        return battleCtx->aiContext.selectedTarget[battler];
+        
+    case BATTLECTX_ACTION_TEMP_FOR:
+        return battleCtx->battlerActions[battler][BATTLE_ACTION_TEMP_VALUE];
+        
+    case BATTLECTX_CONTROL_COMMAND:
+        return battleCtx->command;
+        
+    case BATTLECTX_NEXT_CONTROL_COMMAND:
+        return battleCtx->commandNext;
     }
 
-    GF_ASSERT(0);
+    GF_ASSERT(FALSE);
     return 0;
 }
 
@@ -7537,75 +7604,101 @@ static BOOL ov16_0225B6C8 (BattleContext * param0, int param1)
     return 1;
 }
 
-static u8 ov16_0225B734 (BattleContext * param0, int param1, int param2)
+/**
+ * @brief Get the type of the battler (e.g. Normal, Fighting, etc.).
+ * 
+ * An additional layer of logic is applied to Arceus to account for Multitype.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @param paramID   Either BATTLEMON_TYPE_1 or BATTLEMON_TYPE_2
+ * @return The battler's type
+ */
+static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonParam paramID)
 {
-    u8 v0;
-
-    if (param2 == 27) {
-        v0 = param0->battleMons[param1].type1;
-    } else if (param2 == 28) {
-        v0 = param0->battleMons[param1].type2;
+    u8 type;
+    if (paramID == BATTLEMON_TYPE_1) {
+        type = battleCtx->battleMons[battler].type1;
+    } else if (paramID == BATTLEMON_TYPE_2) {
+        type = battleCtx->battleMons[battler].type2;
     } else {
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
     }
 
-    if ((param0->battleMons[param1].species == 493) && (param0->battleMons[param1].ability == 121)) {
-        switch (ov16_0225B0FC(param0, param0->battleMons[param1].heldItem, 1)) {
-        case 126:
-            v0 = 10;
+    if (battleCtx->battleMons[battler].species == SPECIES_ARCEUS
+            && battleCtx->battleMons[battler].ability == ABILITY_MULTITYPE) {
+        switch (BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler].heldItem, ITEM_PARAM_HOLD_EFFECT)) {
+        case HOLD_EFFECT_ARCEUS_FIRE:
+            type = TYPE_FIRE;
             break;
-        case 127:
-            v0 = 11;
+
+        case HOLD_EFFECT_ARCEUS_WATER:
+            type = TYPE_WATER;
             break;
-        case 128:
-            v0 = 13;
+
+        case HOLD_EFFECT_ARCEUS_ELECTRIC:
+            type = TYPE_ELECTRIC;
             break;
-        case 129:
-            v0 = 12;
+
+        case HOLD_EFFECT_ARCEUS_GRASS:
+            type = TYPE_GRASS;
             break;
-        case 130:
-            v0 = 15;
+
+        case HOLD_EFFECT_ARCEUS_ICE:
+            type = TYPE_ICE;
             break;
-        case 131:
-            v0 = 1;
+
+        case HOLD_EFFECT_ARCEUS_FIGHT:
+            type = TYPE_FIGHTING;
             break;
-        case 132:
-            v0 = 3;
+
+        case HOLD_EFFECT_ARCEUS_POISON:
+            type = TYPE_POISON;
             break;
-        case 133:
-            v0 = 4;
+
+        case HOLD_EFFECT_ARCEUS_GROUND:
+            type = TYPE_GROUND;
             break;
-        case 134:
-            v0 = 2;
+
+        case HOLD_EFFECT_ARCEUS_FLYING:
+            type = TYPE_FLYING;
             break;
-        case 135:
-            v0 = 14;
+
+        case HOLD_EFFECT_ARCEUS_PSYCHIC:
+            type = TYPE_PSYCHIC;
             break;
-        case 136:
-            v0 = 6;
+
+        case HOLD_EFFECT_ARCEUS_BUG:
+            type = TYPE_BUG;
             break;
-        case 137:
-            v0 = 5;
+
+        case HOLD_EFFECT_ARCEUS_ROCK:
+            type = TYPE_ROCK;
             break;
-        case 138:
-            v0 = 7;
+
+        case HOLD_EFFECT_ARCEUS_GHOST:
+            type = TYPE_GHOST;
             break;
-        case 139:
-            v0 = 16;
+
+        case HOLD_EFFECT_ARCEUS_DRAGON:
+            type = TYPE_DRAGON;
             break;
-        case 140:
-            v0 = 17;
+
+        case HOLD_EFFECT_ARCEUS_DARK:
+            type = TYPE_DARK;
             break;
-        case 141:
-            v0 = 8;
+
+        case HOLD_EFFECT_ARCEUS_STEEL:
+            type = TYPE_STEEL;
             break;
+
         default:
-            v0 = 0;
+            type = TYPE_NORMAL;
             break;
         }
     }
 
-    return v0;
+    return type;
 }
 
 static void ov16_0225B80C (BattleContext * param0, u8 param1)
@@ -7902,10 +7995,10 @@ int ov16_0225BE3C (BattleSystem * param0, BattleContext * param1, Pokemon * para
 
     switch (param3) {
     case 363:
-        v0 = ov16_0225B0FC(param1, Pokemon_GetValue(param2, MON_DATA_HELD_ITEM, NULL), 12);
+        v0 = BattleSystem_GetItemData(param1, Pokemon_GetValue(param2, MON_DATA_HELD_ITEM, NULL), 12);
         break;
     case 449:
-        switch (ov16_0225B0FC(param1, Pokemon_GetValue(param2, MON_DATA_HELD_ITEM, NULL), 1)) {
+        switch (BattleSystem_GetItemData(param1, Pokemon_GetValue(param2, MON_DATA_HELD_ITEM, NULL), 1)) {
         case 131:
             v0 = 1;
             break;

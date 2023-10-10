@@ -48,8 +48,8 @@
                                 ))
 #define NO_TARGET               (NO_TARGET_SINGLE_TURN || NO_TARGET_MULTI_TURN)
 
-#define NO_CLOUD_NINE   (BattleSystem_CountAbility(battleSys, battleCtx, 8, 0, ABILITY_CLOUD_NINE) == FALSE \
-                        && BattleSystem_CountAbility(battleSys, battleCtx, 8, 0, ABILITY_AIR_LOCK) == FALSE)
+#define NO_CLOUD_NINE   (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_CLOUD_NINE) == FALSE \
+                        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_AIR_LOCK) == FALSE)
 #define WEATHER_IS_RAIN (battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING)
 #define WEATHER_IS_SAND (battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM)
 #define WEATHER_IS_SUN  (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY)

@@ -762,7 +762,7 @@ void ov5_021E8188 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                 v2->unk_00 = *v2->unk_0C;
 
                 if (!(v2->unk_00.z % (FX32_ONE * 8) == 0)) {
-                    if (sub_02038AE0(1)) {
+                    if (Link_SetErrorState(1)) {
                         return;
                     }
                 }
@@ -793,7 +793,7 @@ void ov5_021E8188 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                     }
 
                     if (!(v2->unk_00.x % (FX32_ONE * 8) == 0)) {
-                        if (sub_02038AE0(1)) {
+                        if (Link_SetErrorState(1)) {
                             return;
                         }
                     }
@@ -811,7 +811,7 @@ void ov5_021E8188 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                     }
 
                     if (!(v2->unk_00.z % (FX32_ONE * 8) == 0)) {
-                        if (sub_02038AE0(1)) {
+                        if (Link_SetErrorState(1)) {
                             return;
                         }
                     }
@@ -1794,7 +1794,7 @@ BOOL ov5_021E9580 (const UnkStruct_ov5_021E8F60 * param0, const int param1, cons
     v4 = v2 + (v3 * param0->unk_B4);
 
     if (!(v4 < param0->unk_B4 * param0->unk_B8)) {
-        if (sub_02038AE0(1)) {
+        if (Link_SetErrorState(1)) {
             return 0;
         }
     }
@@ -2315,7 +2315,7 @@ void ov5_021EA174 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                 v2->unk_00 = *v2->unk_0C;
 
                 if (!(v2->unk_00.z % (FX32_ONE * 8) == 0)) {
-                    if (sub_02038AE0(1)) {
+                    if (Link_SetErrorState(1)) {
                         return;
                     }
                 }
@@ -2346,7 +2346,7 @@ void ov5_021EA174 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                     }
 
                     if (!(v2->unk_00.x % (FX32_ONE * 8) == 0)) {
-                        if (sub_02038AE0(1)) {
+                        if (Link_SetErrorState(1)) {
                             return;
                         }
                     }
@@ -2364,7 +2364,7 @@ void ov5_021EA174 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                     }
 
                     if (!(v2->unk_00.z % (FX32_ONE * 8) == 0)) {
-                        if (sub_02038AE0(1)) {
+                        if (Link_SetErrorState(1)) {
                             return;
                         }
                     }

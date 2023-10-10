@@ -13,7 +13,7 @@
 #define MOVE_EFFECT_YAWN                    ((1 << 11) | (1 << 12))
 #define MOVE_EFFECT_IMPRISON                (1 << 13) // applied to mons which use Imprison
 #define MOVE_EFFECT_GRUDGE                  (1 << 14)
-// unused flag: 1 << 15
+#define MOVE_EFFECT_NO_CRITICAL             (1 << 15) // checked for, but never set
 #define MOVE_EFFECT_MUD_SPORT               (1 << 16)
 #define MOVE_EFFECT_WATER_SPORT             (1 << 17)
 #define MOVE_EFFECT_UNDERWATER              (1 << 18) // Dive

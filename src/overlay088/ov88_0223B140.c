@@ -2641,7 +2641,7 @@ static void ov88_0223E998 (UnkStruct_02095E80 * param0)
         param0->unk_3708++;
 
         if (param0->unk_3708 > (30 * 60)) {
-            sub_02038AE0(4);
+            Link_SetErrorState(4);
         }
     }
 }

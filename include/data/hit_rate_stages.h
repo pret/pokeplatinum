@@ -1,7 +1,4 @@
-typedef struct {
-    u8 numerator;
-    u8 denominator;
-} Fraction;
+#include "struct_defs/fraction.h"
 
 static const Fraction HitRateByStage[] = {
     {  33, 100 },

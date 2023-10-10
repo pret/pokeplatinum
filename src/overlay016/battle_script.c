@@ -3,6 +3,8 @@
 
 #include "data_021BF67C.h"
 
+#include "constants/abilities.h"
+#include "constants/items.h"
 #include "constants/battle/message_tags.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -111,9 +113,9 @@ static BOOL BtlCmd_Unused0A(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241340(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022414E0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241518(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_Wait(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241544(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241584(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022415B8(BattleSystem * param0, BattleContext * param1);
@@ -327,6 +329,7 @@ static void BattleScript_Jump(BattleContext *battleCtx, int narc, int file);
 static void BattleScript_Call(BattleContext *battleCtx, int narc, int file);
 static void* BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *battleCtx, int var);
 static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
+static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static void BattleMessageParams_Make(BattleContext *battleCtx, BattleMessageParams *msgParams);
 static void BattleMessage_Make(BattleSystem *battleSys, BattleContext *battleCtx, BattleMessageParams *msgParams, BattleMessage *msg);
@@ -370,9 +373,9 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_SlideHPGaugeIn,
     BtlCmd_SlideHPGaugeInWait,
     BtlCmd_SlideHPGaugeOut,
-    ov16_02241340,
-    ov16_022414E0,
-    ov16_02241518,
+    BtlCmd_Wait,
+    BtlCmd_CalcDamage,
+    BtlCmd_CalcMaxDamage,
     ov16_02241544,
     ov16_02241584,
     ov16_022415B8,
@@ -1512,74 +1515,128 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
     return FALSE;
 }
 
-static BOOL ov16_02241340 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Wait until the battle IO queue is empty.
+ * 
+ * This command ensures that all linked battlers are in sync with the present
+ * state of the battle after a given action. If any linked battler hangs in
+ * this state for 1800 frames (~30 seconds), then the link status will be set
+ * to an error state, forcing the battle to end.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (ov16_02251FC8(param1)) {
-        BattleScript_Iter(param1, 1);
+    if (BattleIO_QueueIsEmpty(battleCtx)) {
+        BattleScript_Iter(battleCtx, 1);
     } else {
-        ov16_0225201C(param1);
+        BattleIO_UpdateTimeout(battleCtx);
     }
 
-    param1->battleProgressFlag = 1;
-
-    return 0;
+    battleCtx->battleProgressFlag = TRUE;
+    return FALSE;
 }
 
-static void ov16_02241374 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Calculate the damage for the current move and store the result in
+ * the BattleContext struct.
+ * 
+ * Aside from the standard damage calc, this is where the following effects
+ * have their damage amplification properties applied:
+ * - Life Orb
+ * - Metronome
+ * - Me First
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ */
+static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-
-    if (Battler_Ability(param1, param1->attacker) == 96) {
-        v0 = 0;
-    } else if (param1->moveType) {
-        v0 = param1->moveType;
+    int moveType;
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
+        moveType = TYPE_NORMAL;
+    } else if (battleCtx->moveType) {
+        moveType = battleCtx->moveType;
     } else {
-        v0 = param1->aiContext.moveTable[param1->moveCur].type;
+        moveType = CURRENT_MOVE_DATA.type;
     }
 
-    param1->damage = BattleSystem_CalcMoveDamage(param0, param1, param1->moveCur, param1->sideConditionsMask[Battler_Side(param0, param1->defender)], param1->fieldConditionsMask, param1->movePower, v0, param1->attacker, param1->defender, param1->criticalMul);
-    param1->damage *= param1->criticalMul;
+    battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,
+            battleCtx,
+            battleCtx->moveCur,
+            battleCtx->sideConditionsMask[Battler_Side(battleSys, battleCtx->defender)],
+            battleCtx->fieldConditionsMask,
+            battleCtx->movePower,
+            moveType,
+            battleCtx->attacker,
+            battleCtx->defender,
+            battleCtx->criticalMul);
+    battleCtx->damage *= battleCtx->criticalMul;
 
-    if (Battler_HeldItemEffect(param1, param1->attacker) == 98) {
-        param1->damage = param1->damage * (100 + Battler_HeldItemPower(param1, param1->attacker, 0)) / 100;
+    if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_HP_DRAIN_ON_ATK) {
+        battleCtx->damage = battleCtx->damage * (100 + Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0)) / 100;
     }
 
-    if (Battler_HeldItemEffect(param1, param1->attacker) == 105) {
-        param1->damage = param1->damage * (10 + param1->battleMons[param1->attacker].moveEffectsData.metronomeTurns) / 10;
+    if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_BOOST_REPEATED) {
+        battleCtx->damage = battleCtx->damage * (10 + ATTACKING_MON.moveEffectsData.metronomeTurns) / 10;
     }
 
-    if (param1->battleMons[param1->attacker].moveEffectsData.meFirst) {
-        if (param1->meFirstTurnOrder == param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber) {
-            param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber--;
+    if (ATTACKING_MON.moveEffectsData.meFirst) {
+        // TODO: Document how this works after documenting the Me First behavior.
+        if (battleCtx->meFirstTurnOrder == ATTACKING_MON.moveEffectsData.meFirstTurnNumber) {
+            ATTACKING_MON.moveEffectsData.meFirstTurnNumber--;
         }
 
-        if ((param1->meFirstTurnOrder - param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber) < 2) {
-            param1->damage = param1->damage * 15 / 10;
+        if (battleCtx->meFirstTurnOrder - ATTACKING_MON.moveEffectsData.meFirstTurnNumber < 2) {
+            battleCtx->damage = battleCtx->damage * 15 / 10;
         } else {
-            param1->battleMons[param1->attacker].moveEffectsData.meFirst = 0;
+            ATTACKING_MON.moveEffectsData.meFirst = 0;
         }
     }
 }
 
-static BOOL ov16_022414E0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Calculate the damage for the current move, applying random variance
+ * to the computed value.
+ * 
+ * Side effect: battleCtx->damage will have its value set to the final damage
+ * value to be added to the target's HP.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02241374(param0, param1);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->damage = BattleSystem_CalcDamageVariance(param0, param1, param1->damage);
-    param1->damage *= -1;
+    BattleScript_CalcMoveDamage(battleSys, battleCtx);
+    battleCtx->damage = BattleSystem_CalcDamageVariance(battleSys, battleCtx, battleCtx->damage);
+    battleCtx->damage *= -1;
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241518 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Calculate the maximum damage for the current move.
+ * 
+ * Side effect: battleCtx->damage will have its value set to the final damage
+ * value to be added to the target's HP.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02241374(param0, param1);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->damage *= -1;
+    BattleScript_CalcMoveDamage(battleSys, battleCtx);
+    battleCtx->damage *= -1;
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241544 (BattleSystem * param0, BattleContext * param1)
@@ -2071,7 +2128,7 @@ static BOOL ov16_02241CD0 (BattleSystem * param0, BattleContext * param1)
     if ((BattleSystem_BattleType(param0) & 0x400) || (BattleSystem_BattleStatus(param0) & 0x1)) {
         param1->criticalMul = 1;
     } else {
-        param1->criticalMul = ov16_0225AEE4(param0, param1, param1->attacker, param1->defender, param1->criticalBoosts, ov16_0225B45C(param0, param1, 0, param1->defender));
+        param1->criticalMul = BattleSystem_CalcCriticalMulti(param0, param1, param1->attacker, param1->defender, param1->criticalBoosts, BattleContext_Get(param0, param1, 0, param1->defender));
     }
 
     return 0;
@@ -2106,7 +2163,7 @@ static BOOL ov16_02241D34 (BattleSystem * param0, BattleContext * param1)
                     }
 
                     v7 = Pokemon_GetValue(v10, MON_DATA_HELD_ITEM, NULL);
-                    v9 = ov16_0225B0FC(param1, v7, 1);
+                    v9 = BattleSystem_GetItemData(param1, v7, 1);
 
                     if (v9 == 51) {
                         v6++;
@@ -3749,7 +3806,7 @@ static BOOL ov16_022438F8 (BattleSystem * param0, BattleContext * param1)
         param1->msgBuffer.params[0] = param1->moveCur;
         param1->msgBuffer.params[1] = param1->attacker;
 
-        if (ov16_022554E0(param0, param1, 1, param1->attacker) == 2) {
+        if (BattleSystem_CountAliveBattlers(param0, param1, 1, param1->attacker) == 2) {
             param1->msgBuffer.id = 192;
         } else {
             param1->msgBuffer.id = 190;
@@ -3785,7 +3842,7 @@ static BOOL ov16_022439D8 (BattleSystem * param0, BattleContext * param1)
         param1->msgBuffer.params[0] = param1->moveCur;
         param1->msgBuffer.params[1] = param1->attacker;
 
-        if (ov16_022554E0(param0, param1, 1, param1->attacker) == 2) {
+        if (BattleSystem_CountAliveBattlers(param0, param1, 1, param1->attacker) == 2) {
             param1->msgBuffer.id = 196;
         } else {
             param1->msgBuffer.id = 194;
@@ -6502,9 +6559,9 @@ static BOOL ov16_02247950 (BattleSystem * param0, BattleContext * param1)
     v2 = BattleScript_Read(param1);
     v3 = BattleScript_VarAddress(param0, param1, v2);
     v0 = BattleScript_Battler(param0, param1, v1);
-    v4 = ov16_02258874(param1, v0);
+    v4 = Battler_HeldItem(param1, v0);
 
-    v3[0] = ov16_0225B0FC(param1, v4, 1);
+    v3[0] = BattleSystem_GetItemData(param1, v4, 1);
 
     return 0;
 }
@@ -6523,9 +6580,9 @@ static BOOL ov16_0224799C (BattleSystem * param0, BattleContext * param1)
     v2 = BattleScript_Read(param1);
     v3 = BattleScript_VarAddress(param0, param1, v2);
     v0 = BattleScript_Battler(param0, param1, v1);
-    v4 = ov16_02258874(param1, v0);
+    v4 = Battler_HeldItem(param1, v0);
 
-    v3[0] = ov16_0225B0FC(param1, v4, 2);
+    v3[0] = BattleSystem_GetItemData(param1, v4, 2);
 
     return 0;
 }
@@ -7985,7 +8042,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 4:
-        if (ov16_02251FC8(v2->unk_04)) {
+        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
             v2->unk_28++;
         }
         break;
@@ -8002,7 +8059,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 6:
-        if (ov16_02251FC8(v2->unk_04)) {
+        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
             {
                 int v13;
                 int v14[6] = {164, 165, 166, 168, 169, 167};
@@ -8531,7 +8588,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 3:
-        if ((ov12_022368D0(v2->unk_08, 1) == 0) && (ov16_02251FC8(v2->unk_04))) {
+        if ((ov12_022368D0(v2->unk_08, 1) == 0) && (BattleIO_QueueIsEmpty(v2->unk_04))) {
             ov12_022368C8(v2->unk_08, 3);
             v2->unk_28 = 4;
         }
@@ -8957,7 +9014,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 30:
-        if (ov16_02251FC8(v2->unk_04)) {
+        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
             {
                 BattleMessage v32;
 

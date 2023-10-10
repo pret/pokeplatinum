@@ -504,7 +504,7 @@ static int ov94_02242F98 (UnkStruct_ov94_0223FD4C * param0)
         case -2:
         case -14:
         case -15:
-            sub_02038AE0(4);
+            Link_SetErrorState(4);
             break;
         case -13:
             sub_02038A0C();
@@ -604,13 +604,13 @@ static int ov94_02243120 (UnkStruct_ov94_0223FD4C * param0)
         case -3:
         case -4:
         case -5:
-            sub_02038AE0(3);
+            Link_SetErrorState(3);
             break;
         case -12:
         case -15:
         case -2:
         case -14:
-            sub_02038AE0(4);
+            Link_SetErrorState(4);
             break;
         case -13:
             sub_02038A0C();
@@ -727,13 +727,13 @@ static int ov94_022432F4 (UnkStruct_ov94_0223FD4C * param0)
             param0->unk_2C = 33;
             break;
         case -5:
-            sub_02038AE0(3);
+            Link_SetErrorState(3);
             break;
         case -12:
         case -2:
         case -14:
         case -15:
-            sub_02038AE0(4);
+            Link_SetErrorState(4);
             break;
         case -13:
             sub_02038A0C();
@@ -975,7 +975,7 @@ static int ov94_022436F0 (UnkStruct_ov94_0223FD4C * param0)
             param0->unk_2C = 33;
             break;
         case -3:
-            sub_02038AE0(3);
+            Link_SetErrorState(3);
             break;
         case -4:
         case -12:
@@ -983,7 +983,7 @@ static int ov94_022436F0 (UnkStruct_ov94_0223FD4C * param0)
         case -15:
         case -2:
         case -14:
-            sub_02038AE0(4);
+            Link_SetErrorState(4);
             break;
         case -13:
             sub_02038A0C();
@@ -1065,13 +1065,13 @@ static int ov94_022437F4 (UnkStruct_ov94_0223FD4C * param0)
         case -4:
             ov94_0224362C(param0);
         case -5:
-            sub_02038AE0(3);
+            Link_SetErrorState(3);
             break;
         case -12:
         case -15:
         case -2:
         case -14:
-            sub_02038AE0(4);
+            Link_SetErrorState(4);
             break;
         case -13:
             sub_02038A0C();

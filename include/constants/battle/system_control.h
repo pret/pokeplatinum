@@ -16,6 +16,7 @@
 #define SYSCTL_HIT_DURING_SHADOW_FORCE  (1 << 19)
 #define SYSCTL_REUSE_LAST_MOVE          (1 << 20)
 #define SYSCTL_APPLY_SECONDARY_EFFECT   (1 << 22)
+#define SYSCTL_APPLY_MOLD_BREAKER       (1 << 23)
 #define SYSCTL_MON_FAINTED              ((1 << 24) | (1 << 25) | (1 << 26) | (1 << 27))
 #define SYSCTL_MON_SELFDESTRUCTED       ((1 << 28) | (1 << 29) | (1 << 30) | (1 << 31))
 

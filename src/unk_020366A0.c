@@ -2491,7 +2491,7 @@ BOOL sub_02038AB8 (void)
     return 0;
 }
 
-BOOL sub_02038AE0 (int param0)
+BOOL Link_SetErrorState (int param0)
 {
     if (Unk_021C07D4) {
         Unk_021C07D4->unk_59 = param0;
