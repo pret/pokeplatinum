@@ -136,7 +136,7 @@ u8 ov16_0223ED6C(BattleSystem * param0);
 int BattleSystem_NumSafariBalls(BattleSystem * param0);
 void BattleSystem_SetSafariBalls(BattleSystem * param0, int param1);
 UnkStruct_020279FC * ov16_0223EDA4(BattleSystem * param0);
-BOOL ov16_0223EDAC(BattleSystem * param0);
+BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem * param0);
 u8 ov16_0223EDF0(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);
@@ -1035,13 +1035,14 @@ UnkStruct_020279FC * ov16_0223EDA4 (BattleSystem * param0)
     return param0->unk_1B0;
 }
 
-BOOL ov16_0223EDAC (BattleSystem * param0)
+BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys)
 {
-    if ((param0->battleType & 0x4) && ((param0->battleStatusMask & 0x10) == 0)) {
-        return 1;
+    if ((battleSys->battleType & BATTLE_TYPE_LINK)
+            && (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) {
+        return TRUE;
     }
 
-    return sub_02027AF8(param0->unk_1B0) == 0;
+    return GameConfig_BattleAnimations(battleSys->unk_1B0) == 0;
 }
 
 int ov16_0223EDE0 (BattleSystem * param0)

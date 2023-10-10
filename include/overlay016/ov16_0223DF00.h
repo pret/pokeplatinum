@@ -114,7 +114,14 @@ u8 ov16_0223ED6C(BattleSystem * param0);
 int BattleSystem_NumSafariBalls(BattleSystem * param0);
 void BattleSystem_SetSafariBalls(BattleSystem * param0, int param1);
 UnkStruct_020279FC * ov16_0223EDA4(BattleSystem * param0);
-BOOL ov16_0223EDAC(BattleSystem * param0);
+
+/**
+ * @brief Check if battle animations are turned on.
+ * 
+ * @param battleSys 
+ * @return TRUE if battle animations are enabled, FALSE if not.
+ */
+BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem * param0);
 u8 ov16_0223EDF0(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);

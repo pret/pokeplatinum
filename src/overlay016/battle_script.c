@@ -5,8 +5,10 @@
 
 #include "constants/abilities.h"
 #include "constants/items.h"
+#include "constants/narc.h"
 #include "constants/battle/message_tags.h"
 #include "constants/battle/system_control.h"
+#include "constants/narc_files/battle_skill_subseq.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
@@ -123,8 +125,8 @@ static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_PrintPreparedMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241698(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241714(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022417C0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022417F4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241894(BattleSystem * param0, BattleContext * param1);
@@ -383,8 +385,8 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_PrintPreparedMessage,
     BtlCmd_PrepareMessage,
     BtlCmd_PrintSideLocalMessage,
-    ov16_02241698,
-    ov16_02241714,
+    BtlCmd_PlayMoveAnimation,
+    BtlCmd_PlayMoveAnimationA2D,
     ov16_022417C0,
     ov16_022417F4,
     ov16_02241894,
@@ -1801,67 +1803,86 @@ static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext 
     return FALSE;
 }
 
-static BOOL ov16_02241698 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a move animation, if move animations are enabled.
+ * 
+ * Inputs:
+ * 1. The location from which the animation is sourced. If the input here is
+ * BTLSCR_MSG_TEMP, then the move to load is picked from battleCtx->msgMoveTemp.
+ * Otherwise, it is picked from battleCtx->moveCur.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u16 v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inMoveSource = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (v0 == 0xff) {
-        v1 = param1->msgMoveTemp;
+    u16 move;
+    if (inMoveSource == BTLSCR_MSG_TEMP) {
+        move = battleCtx->msgMoveTemp;
     } else {
-        v1 = param1->moveCur;
+        move = battleCtx->moveCur;
     }
 
-    if ((((param1->battleStatusMask & 0x4000) == 0) && (ov16_0223EDAC(param0) == 1)) || (v1 == 144)) {
-        param1->battleStatusMask |= 0x4000;
-        ov16_02265BBC(param0, param1, v1);
+    if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AnimationsOn(battleSys) == TRUE)
+            || move == MOVE_TRANSFORM) {
+        battleCtx->battleStatusMask |= SYSCTL_PLAYED_MOVE_ANIMATION;
+        BattleIO_PlayMoveAnimation(battleSys, battleCtx, move);
     }
 
-    if (ov16_0223EDAC(param0) == 0) {
-        BattleScript_Call(param1, 1, (0 + 291));
+    if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_WAIT_MOVE_ANIMATION);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241714 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a move animation from the given attacker toward the given defender,
+ * if move animations are enabled.
+ * 
+ * Inputs:
+ * 1. The location from which the animation is sourced. If the input here is
+ * BTLSCR_MSG_TEMP, then the move to load is picked from battleCtx->msgMoveTemp.
+ * Otherwise, it is picked from battleCtx->moveCur.
+ * 2. The attacker for the move animation.
+ * 3. The defender for the move animation.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    u16 v5;
+    BattleScript_Iter(battleCtx, 1);
+    int inMoveSource = BattleScript_Read(battleCtx);
+    int inAttacker = BattleScript_Read(battleCtx);
+    int inDefender = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-
-    if (v0 == 0xff) {
-        v5 = param1->msgMoveTemp;
+    u16 move;
+    if (inMoveSource == BTLSCR_MSG_TEMP) {
+        move = battleCtx->msgMoveTemp;
     } else {
-        v5 = param1->moveCur;
+        move = battleCtx->moveCur;
     }
 
-    v3 = BattleScript_Battler(param0, param1, v1);
-    v4 = BattleScript_Battler(param0, param1, v2);
+    int attacker = BattleScript_Battler(battleSys, battleCtx, inAttacker);
+    int defender = BattleScript_Battler(battleSys, battleCtx, inDefender);
 
-    if ((((param1->battleStatusMask & 0x4000) == 0) && (ov16_0223EDAC(param0) == 1)) || (v5 == 144)) {
-        param1->battleStatusMask |= 0x4000;
-        ov16_02265BEC(param0, param1, v5, v3, v4);
+    if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AnimationsOn(battleSys) == TRUE)
+            || move == MOVE_TRANSFORM) {
+        battleCtx->battleStatusMask |= SYSCTL_PLAYED_MOVE_ANIMATION;
+        BattleIO_PlayMoveAnimationA2D(battleSys, battleCtx, move, attacker, defender);
     }
 
-    if (ov16_0223EDAC(param0) == 0) {
-        BattleScript_Call(param1, 1, (0 + 291));
+    if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_WAIT_MOVE_ANIMATION);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_022417C0 (BattleSystem * param0, BattleContext * param1)
@@ -3507,7 +3528,7 @@ static BOOL ov16_02243334 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleScript_Read(param1);
     v2 = BattleScript_Read(param1);
 
-    if ((ov16_0223EDAC(param0) == 1) || (v2 == 15) || (v2 == 16) || (v2 == 26) || (v2 == 25)) {
+    if ((BattleSystem_AnimationsOn(param0) == 1) || (v2 == 15) || (v2 == 16) || (v2 == 26) || (v2 == 25)) {
         v0 = BattleScript_Battler(param0, param1, v1);
 
         if (ov16_0225B1DC(param1, v0, v2) == 1) {
@@ -3531,7 +3552,7 @@ static BOOL ov16_02243398 (BattleSystem * param0, BattleContext * param1)
     v3 = BattleScript_Read(param1);
     v4 = BattleScript_Read(param1);
 
-    if ((ov16_0223EDAC(param0) == 1) || (v4 == 15) || (v4 == 16) || (v4 == 26) || (v4 == 25)) {
+    if ((BattleSystem_AnimationsOn(param0) == 1) || (v4 == 15) || (v4 == 16) || (v4 == 26) || (v4 == 25)) {
         v0 = BattleScript_Battler(param0, param1, v2);
         v1 = BattleScript_Battler(param0, param1, v3);
 
@@ -3557,7 +3578,7 @@ static BOOL ov16_02243424 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Battler(param0, param1, v1);
     v3 = BattleScript_VarAddress(param0, param1, v2);
 
-    if ((ov16_0223EDAC(param0) == 1) || (v2 == 15) || (v2 == 16) || (v3[0] == 26) || (v3[0] == 25)) {
+    if ((BattleSystem_AnimationsOn(param0) == 1) || (v2 == 15) || (v2 == 16) || (v3[0] == 26) || (v3[0] == 25)) {
         if (ov16_0225B1DC(param1, v0, v3[0]) == 1) {
             ov16_02265FF8(param0, param1, v0, v3[0]);
         }

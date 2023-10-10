@@ -95,8 +95,8 @@ void ov16_02265B10(BattleSystem * param0, int param1, int param2);
 void BattleIO_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int promptMsg, int yesnoType, int move, int nickname);
 void BattleIO_PrintAttackMessage(BattleSystem * param0, BattleContext * param1);
 void BattleIO_PrintMessage(BattleSystem * param0, BattleContext * param1, BattleMessage * param2);
-void ov16_02265BBC(BattleSystem * param0, BattleContext * param1, u16 param2);
-void ov16_02265BEC(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
+void BattleIO_PlayMoveAnimation(BattleSystem * param0, BattleContext * param1, u16 param2);
+void BattleIO_PlayMoveAnimationA2D(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
 void ov16_02265C1C(BattleSystem * param0, int param1, u32 param2);
 void ov16_02265C38(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265D14(BattleSystem * param0, BattleContext * param1, int param2, int param3);
@@ -965,7 +965,7 @@ void BattleIO_PrintMessage (BattleSystem * param0, BattleContext * param1, Battl
     ov16_02264A04(param0, 1, param1->attacker, param2, sizeof(BattleMessage));
 }
 
-void ov16_02265BBC (BattleSystem * param0, BattleContext * param1, u16 param2)
+void BattleIO_PlayMoveAnimation (BattleSystem * param0, BattleContext * param1, u16 param2)
 {
     UnkStruct_ov16_02265BBC v0;
 
@@ -973,7 +973,7 @@ void ov16_02265BBC (BattleSystem * param0, BattleContext * param1, u16 param2)
     ov16_02264A04(param0, 1, param1->attacker, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_02265BEC (BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4)
+void BattleIO_PlayMoveAnimationA2D (BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4)
 {
     UnkStruct_ov16_02265BBC v0;
 

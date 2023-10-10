@@ -3783,14 +3783,14 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
                         v0->unk_0E = 8;
                     } else if (((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == (0x2 | 0x1)) || (BattleSystem_BattleType(v0->unk_00) == ((0x2 | 0x1) | 0x10)))) || (v0->unk_08->unk_04->unk_11 < 1)) {
                         if (v0->unk_04->unk_1C == 23) {
-                            if (ov16_0223EDAC(v0->unk_00) == 1) {
+                            if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 17;
                             } else {
                                 sub_02005728(1516, -117);
                                 v0->unk_12 = 21;
                             }
                         } else {
-                            if (ov16_0223EDAC(v0->unk_00) == 1) {
+                            if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 25;
                             } else {
                                 sub_02005728(1516, -117);
@@ -3803,7 +3803,7 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
                     break;
                 case 0:
                     if ((((v0->unk_08->unk_04->unk_11 < 2) && ((BattleSystem_BattleType(v0->unk_00) == (0x2 | 0x1)) || (BattleSystem_BattleType(v0->unk_00) == ((0x2 | 0x1) | 0x10)))) || (v0->unk_08->unk_04->unk_11 < 1)) && (Item_LoadParam(v0->unk_04->unk_1C, 38, 5))) {
-                        if (ov16_0223EDAC(v0->unk_00) == 1) {
+                        if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                             v0->unk_12 = 17;
                         } else {
                             sub_02005728(1516, -117);
@@ -3818,14 +3818,14 @@ static void ov16_022611DC (UnkStruct_0201CD38 * param0, void * param1)
                         v0->unk_0E = 8;
                     } else {
                         if (v0->unk_04->unk_1C == 55) {
-                            if (ov16_0223EDAC(v0->unk_00) == 1) {
+                            if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 13;
                             } else {
                                 sub_02005728(1516, -117);
                                 v0->unk_12 = 15;
                             }
                         } else {
-                            if (ov16_0223EDAC(v0->unk_00) == 1) {
+                            if (BattleSystem_AnimationsOn(v0->unk_00) == 1) {
                                 v0->unk_12 = 11;
                             } else {
                                 sub_02005728(1516, -117);

@@ -13,7 +13,7 @@ void sub_02027AAC(UnkStruct_020279FC * param0, int param1);
 u8 sub_02027AC0(const UnkStruct_020279FC * param0);
 int sub_02027ADC(const UnkStruct_020279FC * param0);
 void sub_02027AE4(UnkStruct_020279FC * param0, int param1);
-int sub_02027AF8(const UnkStruct_020279FC * param0);
+int GameConfig_BattleAnimations(const UnkStruct_020279FC * param0);
 void sub_02027B00(UnkStruct_020279FC * param0, int param1);
 int sub_02027B14(const UnkStruct_020279FC * param0);
 void sub_02027B1C(UnkStruct_020279FC * param0, int param1);
