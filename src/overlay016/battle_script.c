@@ -132,7 +132,7 @@ static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241984(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241A20(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241A58(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241B08(BattleSystem * param0, BattleContext * param1);
@@ -392,7 +392,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_UpdateHPGauge,
     BtlCmd_FaintBattler,
     BtlCmd_PlayFaintingSequence,
-    ov16_02241984,
+    BtlCmd_WaitFrames,
     ov16_02241A20,
     ov16_02241A58,
     ov16_02241B08,
@@ -2040,36 +2040,46 @@ static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *
     return FALSE;
 }
 
-static BOOL ov16_02241984 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Wait a specified number of frames.
+ * 
+ * Non-Link battles can skip the wait with a button press.
+ * 
+ * Inputs:
+ * 1. The number of frames to wait at this instruction
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int frames = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
-
-    if ((BattleSystem_BattleType(param0) & 0x4) == 0) {
+    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
         if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
-            param1->waitCounter = v0;
+            battleCtx->waitCounter = frames;
         }
     }
 
-    if ((param0->battleType & 0x4) && ((param0->battleStatusMask & 0x10) == 0)) {
-        v1 = 2;
+    int inc;
+    if ((battleSys->battleType & BATTLE_TYPE_LINK) && (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) {
+        inc = 2;
     } else {
-        v1 = 1;
+        inc = 1;
     }
 
-    if (v0 > param1->waitCounter) {
-        BattleScript_Iter(param1, -2);
-        param1->waitCounter += v1;
+    // Go back through this command until the specified number of frames have elapsed
+    if (frames > battleCtx->waitCounter) {
+        BattleScript_Iter(battleCtx, -2); // jump back to the instruction
+        battleCtx->waitCounter += inc;
     } else {
-        param1->waitCounter = 0;
+        battleCtx->waitCounter = 0;
     }
 
-    param1->battleProgressFlag = 1;
-
-    return 0;
+    battleCtx->battleProgressFlag = TRUE;
+    return FALSE;
 }
 
 static BOOL ov16_02241A20 (BattleSystem * param0, BattleContext * param1)
