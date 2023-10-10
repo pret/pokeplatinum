@@ -98,7 +98,7 @@ void BattleIO_PrintMessage(BattleSystem * param0, BattleContext * param1, Battle
 void BattleIO_PlayMoveAnimation(BattleSystem * param0, BattleContext * param1, u16 param2);
 void BattleIO_PlayMoveAnimationA2D(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
 void BattleIO_FlickerBattler(BattleSystem * param0, int param1, u32 param2);
-void ov16_02265C38(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_UpdateHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265D14(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02265D98(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265EAC(BattleSystem * param0, BattleContext * param1, int param2, int param3);
@@ -545,7 +545,7 @@ void BattleIO_SlideHPGaugeIn (BattleSystem * param0, BattleContext * param1, int
     int v2;
     int v3;
 
-    v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
+    v1 = BattleSystem_PartyPokemon(param0, param2, param1->selectedPartySlot[param2]);
     v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
@@ -643,9 +643,9 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
     if (((v9 & (0x4 | 0x8)) == (0x4 | 0x8)) || ((v9 & 0x10)) || ((v9 == ((0x2 | 0x1) | 0x8 | 0x40))) || ((v9 == (((0x2 | 0x1) | 0x8 | 0x40) | 0x80)))) {
         if (Battler_Side(battleSys, battler)) {
-            v2 = ov16_0223E1C4(battleSys, 2);
+            v2 = BattleSystem_BattlerOfType(battleSys, 2);
         } else {
-            v2 = ov16_0223E1C4(battleSys, 3);
+            v2 = BattleSystem_BattlerOfType(battleSys, 3);
         }
 
         v7 = BattleSystem_Party(battleSys, v2);
@@ -671,9 +671,9 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
         }
 
         if (Battler_Side(battleSys, battler)) {
-            v2 = ov16_0223E1C4(battleSys, 4);
+            v2 = BattleSystem_BattlerOfType(battleSys, 4);
         } else {
-            v2 = ov16_0223E1C4(battleSys, 5);
+            v2 = BattleSystem_BattlerOfType(battleSys, 5);
         }
 
         v7 = BattleSystem_Party(battleSys, v2);
@@ -987,14 +987,14 @@ void BattleIO_FlickerBattler (BattleSystem * param0, int param1, u32 param2)
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02265C38 (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleIO_UpdateHPGauge (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225C35C v0;
     Pokemon * v1;
     int v2;
     int v3;
 
-    v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
+    v1 = BattleSystem_PartyPokemon(param0, param2, param1->selectedPartySlot[param2]);
     v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
@@ -1023,7 +1023,7 @@ void ov16_02265D14 (BattleSystem * param0, BattleContext * param1, int param2, i
     int v2;
     int v3;
 
-    v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
+    v1 = BattleSystem_PartyPokemon(param0, param2, param1->selectedPartySlot[param2]);
     v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
@@ -1232,7 +1232,7 @@ void BattleIO_RefreshHPGauge (BattleSystem * param0, BattleContext * param1, int
     int v2;
     int v3;
 
-    v1 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
+    v1 = BattleSystem_PartyPokemon(param0, param2, param1->selectedPartySlot[param2]);
     v2 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 

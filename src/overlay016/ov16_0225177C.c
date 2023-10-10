@@ -184,7 +184,7 @@ static const Fraction sStatStageBoosts[];
 
 void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
-    Pokemon * v0 = ov16_0223DFAC(battleSys, battler, partySlot);
+    Pokemon * v0 = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
     int v1;
     int v2;
     UnkStruct_02098700 * v3;
@@ -287,7 +287,7 @@ void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleC
 
 void ov16_02251C94 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
-    Pokemon * v0 = ov16_0223DFAC(param0, param2, param3);
+    Pokemon * v0 = BattleSystem_PartyPokemon(param0, param2, param3);
     int v1;
     int v2;
 
@@ -6121,7 +6121,7 @@ void ov16_02259A5C (BattleSystem * param0, BattleContext * param1, Pokemon * par
     int v3;
 
     v0 = BattleSystem_TrainerInfo(param0, 0);
-    v1 = ov16_0223E24C(param0);
+    v1 = BattleSystem_MapHeader(param0);
     v2 = ov16_0223E22C(param0);
 
     if (BattleSystem_BattleType(param0) & 0x200) {
@@ -6301,7 +6301,7 @@ BOOL BattleSystem_UpdateWeatherForms (BattleSystem * param0, BattleContext * par
                         v4 = param1->msgBattlerTemp ^ 1;
                     }
 
-                    Pokemon_Copy(ov16_0223DFAC(param0, v4, param1->selectedPartySlot[v4]), v3);
+                    Pokemon_Copy(BattleSystem_PartyPokemon(param0, v4, param1->selectedPartySlot[v4]), v3);
                     v5 = 0;
 
                     Pokemon_SetValue(v3, 6, &v5);
@@ -7901,7 +7901,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
         v13 = 6;
 
         for (v0 = v17; v0 < v18; v0++) {
-            v19 = ov16_0223DFAC(param0, param1, v0);
+            v19 = BattleSystem_PartyPokemon(param0, param1, v0);
             v7 = Pokemon_GetValue(v19, MON_DATA_SPECIES_EGG, NULL);
 
             if ((v7 != 0) && (v7 != 494) && (Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL)) && ((v10 & FlagIndex(v0)) == 0) && (v20->selectedPartySlot[v14] != v0) && (v20->selectedPartySlot[v15] != v0) && (v0 != v20->aiSwitchedPartySlot[v14]) && (v0 != v20->aiSwitchedPartySlot[v15])) {
@@ -7922,7 +7922,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
         }
 
         if (v13 != 6) {
-            v19 = ov16_0223DFAC(param0, param1, v13);
+            v19 = BattleSystem_PartyPokemon(param0, param1, v13);
 
             for (v0 = 0; v0 < 4; v0++) {
                 v8 = Pokemon_GetValue(v19, MON_DATA_MOVE1 + v0, NULL);
@@ -7952,7 +7952,7 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
     v13 = 6;
 
     for (v0 = v17; v0 < v18; v0++) {
-        v19 = ov16_0223DFAC(param0, param1, v0);
+        v19 = BattleSystem_PartyPokemon(param0, param1, v0);
         v7 = Pokemon_GetValue(v19, MON_DATA_SPECIES_EGG, NULL);
 
         if ((v7 != 0) && (v7 != 494) && (Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL)) && (v20->selectedPartySlot[v14] != v0) && (v20->selectedPartySlot[v15] != v0) && (v0 != v20->aiSwitchedPartySlot[v14]) && (v0 != v20->aiSwitchedPartySlot[v15])) {

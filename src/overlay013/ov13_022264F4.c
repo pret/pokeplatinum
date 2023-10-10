@@ -412,7 +412,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             Pokemon * v3;
             Strbuf* v4;
 
-            v3 = ov16_0223DFAC(v0->unk_00, v0->unk_10, v1);
+            v3 = BattleSystem_PartyPokemon(v0->unk_00, v0->unk_10, v1);
             v4 = MessageLoader_GetNewStrbuf(param0->unk_10, 46);
 
             sub_0200B5CC(param0->unk_14, 0, Pokemon_GetBoxPokemon(v3));

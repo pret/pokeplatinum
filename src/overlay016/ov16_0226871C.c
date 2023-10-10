@@ -1803,7 +1803,7 @@ static void ov16_02269668 (UnkStruct_ov16_02268A14 * param0, int param1, int par
         UnkStruct_0200D0F4 * v8;
         int v9, v10;
 
-        v7 = ov16_0223DFAC(param0->unk_00, v6->unk_01, v6->unk_02);
+        v7 = BattleSystem_PartyPokemon(param0->unk_00, v6->unk_01, v6->unk_02);
         ov16_0226A698(param0);
         v8 = ov16_0226A7A4(param0, v7, v5, v6->unk_04, v6->unk_06, v6->unk_03);
 
@@ -2164,7 +2164,7 @@ static void ov16_0226A12C (UnkStruct_ov16_02268A14 * param0, int param1, int par
                 v5 = MessageLoader_GetNewStrbuf(v2, 964);
             }
 
-            v6 = ov16_0223DFAC(param0->unk_00, v12, v0->unk_00[v12].unk_00);
+            v6 = BattleSystem_PartyPokemon(param0->unk_00, v12, v0->unk_00[v12].unk_00);
             v7 = Pokemon_GetBoxPokemon(v6);
 
             sub_0200B5CC(v8, 0, v7);
@@ -3828,7 +3828,7 @@ static int ov16_0226BEC0 (UnkStruct_ov16_02268A14 * param0, int param1)
 
     v0 = &param0->unk_6BC;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
-    v5 = ov16_0223E1C4(param0->unk_00, param0->unk_66A);
+    v5 = BattleSystem_BattlerOfType(param0->unk_00, param0->unk_66A);
     v6 = ov16_02263B0C(BattleSystem_BattlerData(param0->unk_00, v5));
 
     if (param1 == 1) {
@@ -3898,7 +3898,7 @@ static void ov16_0226C0A0 (UnkStruct_ov16_02268A14 * param0, int param1)
     UnkStruct_ov16_0226C378 * v0;
     int v1, v2, v3;
 
-    v1 = ov16_0223E1C4(param0->unk_00, param0->unk_66A);
+    v1 = BattleSystem_BattlerOfType(param0->unk_00, param0->unk_66A);
 
     if ((param1 != 3) || (param0->unk_6C1 == 0)) {
         v0 = ov16_02263B0C(BattleSystem_BattlerData(param0->unk_00, v1));
@@ -3963,7 +3963,7 @@ static int ov16_0226C1F8 (UnkStruct_ov16_02268A14 * param0, int param1)
     UnkStruct_ov16_02260C00 * v6;
     UnkStruct_ov16_0226C378 * v7;
 
-    v7 = ov16_02263B0C(BattleSystem_BattlerData(param0->unk_00, ov16_0223E1C4(param0->unk_00, param0->unk_66A)));
+    v7 = ov16_02263B0C(BattleSystem_BattlerData(param0->unk_00, BattleSystem_BattlerOfType(param0->unk_00, param0->unk_66A)));
     v0 = &param0->unk_6BC;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
     v6 = &param0->unk_1A.val2;
@@ -4020,7 +4020,7 @@ static void ov16_0226C378 (UnkStruct_ov16_02268A14 * param0, int param1)
         return;
     }
 
-    v1 = ov16_0223E1C4(param0->unk_00, param0->unk_66A);
+    v1 = BattleSystem_BattlerOfType(param0->unk_00, param0->unk_66A);
     v0 = ov16_02263B0C(BattleSystem_BattlerData(param0->unk_00, v1));
 
     for (v3 = 0; v3 < 3; v3++) {
@@ -4051,7 +4051,7 @@ static int ov16_0226C3C8 (UnkStruct_ov16_02268A14 * param0, int param1)
     int v29;
     UnkStruct_ov16_0226C378 * v30;
 
-    v30 = ov16_02263B0C(BattleSystem_BattlerData(param0->unk_00, ov16_0223E1C4(param0->unk_00, param0->unk_66A)));
+    v30 = ov16_02263B0C(BattleSystem_BattlerData(param0->unk_00, BattleSystem_BattlerOfType(param0->unk_00, param0->unk_66A)));
     v0 = &param0->unk_6BC;
     v2 = &Unk_ov16_02270670[param0->unk_66B];
 
@@ -4300,7 +4300,7 @@ static void ov16_0226C9B8 (UnkStruct_ov16_02268A14 * param0, int param1)
         return;
     }
 
-    v1 = ov16_0223E1C4(param0->unk_00, param0->unk_66A);
+    v1 = BattleSystem_BattlerOfType(param0->unk_00, param0->unk_66A);
     v0 = ov16_02263B0C(BattleSystem_BattlerData(param0->unk_00, v1));
 
     v0->unk_06 = param0->unk_66C;

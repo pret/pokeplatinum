@@ -128,8 +128,8 @@ static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext 
 static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_022417F4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241894(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022418C0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241924(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241984(BattleSystem * param0, BattleContext * param1);
@@ -355,7 +355,7 @@ static void ov16_022499C0(Party * param0, int param1, int param2, int param3);
 static int ov16_0224A724(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224B520(BattleSystem * param0, UnkStruct_ov16_0224B7CC * param1, Pokemon * param2);
 static void ov16_0224B7CC(BattleSystem * param0, UnkStruct_ov16_0224B7CC * param1);
-static void ov16_0224B850(BattleSystem * param0, BattleContext * param1, int param2);
+static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
 static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
 static void ov16_02248E74(UnkStruct_0201CD38 * param0, void * param1);
@@ -388,8 +388,8 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_PlayMoveAnimation,
     BtlCmd_PlayMoveAnimationA2D,
     BtlCmd_FlickerBattler,
-    ov16_022417F4,
-    ov16_02241894,
+    BtlCmd_UpdateHPValue,
+    BtlCmd_UpdateHPGauge,
     ov16_022418C0,
     ov16_02241924,
     ov16_02241984,
@@ -1904,50 +1904,78 @@ static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battle
     return FALSE;
 }
 
-static BOOL ov16_022417F4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the HP value for a battler according to damage stored in the
+ * battle context.
+ * 
+ * Damage to be deducted from the battler's current HP is pulled from
+ * battleCtx->hpCalcTemp.
+ * 
+ * Inputs:
+ * 1. The battler whose HP value is to be updated.
+ * 
+ * Side effects:
+ * - battleCtx->hitDamage is updated to be the damage taken, capped to the
+ * battler's current HP.
+ * - battleCtx->totalDamage for the battler accumulates the damage taken
+ * - the battler's current HP is adjusted to the new value after applying
+ * the taken damage, capped to its maximum HP (in case the damage taken
+ * results in healing, e.g. via Volt Absorb).
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    if ((param1->battleMons[v1].curHP + param1->hpCalcTemp) <= 0) {
-        param1->hitDamage = param1->battleMons[v1].curHP * -1;
+    // Cap the hit damage to the battler's current HP
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    if (battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
+        battleCtx->hitDamage = battleCtx->battleMons[battler].curHP * -1;
     } else {
-        param1->hitDamage = param1->hpCalcTemp;
+        battleCtx->hitDamage = battleCtx->hpCalcTemp;
     }
 
-    if (param1->hitDamage < 0) {
-        param1->totalDamage[v1] += (param1->hitDamage * -1);
+    // Accumulate the hit damage into this battler's total taken damage
+    if (battleCtx->hitDamage < 0) {
+        battleCtx->totalDamage[battler] += (battleCtx->hitDamage * -1);
     }
 
-    param1->battleMons[v1].curHP += param1->hpCalcTemp;
-
-    if (param1->battleMons[v1].curHP < 0) {
-        param1->battleMons[v1].curHP = 0;
-    } else if (param1->battleMons[v1].curHP > param1->battleMons[v1].maxHP) {
-        param1->battleMons[v1].curHP = param1->battleMons[v1].maxHP;
+    // Cap the battler's new HP value to their max HP (in case the temp value is positive).
+    battleCtx->battleMons[battler].curHP += battleCtx->hpCalcTemp;
+    if (battleCtx->battleMons[battler].curHP < 0) {
+        battleCtx->battleMons[battler].curHP = 0;
+    } else if (battleCtx->battleMons[battler].curHP > battleCtx->battleMons[battler].maxHP) {
+        battleCtx->battleMons[battler].curHP = battleCtx->battleMons[battler].maxHP;
     }
 
-    BattleMon_CopyToParty(param0, param1, v1);
+    BattleMon_CopyToParty(battleSys, battleCtx, battler);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241894 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the HP gauge for a battler with their new current HP.
+ * 
+ * Inputs:
+ * 1. The battler whose HP gauge is to be updated.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    BattleScript_Iter(param1, 1);
+    BattleIO_UpdateHPGauge(battleSys, battleCtx, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02265C38(param0, param1, v1);
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_022418C0 (BattleSystem * param0, BattleContext * param1)
@@ -1964,7 +1992,7 @@ static BOOL ov16_022418C0 (BattleSystem * param0, BattleContext * param1)
         param1->battleStatusMask |= (FlagIndex(v1) << 24);
         param1->totalFainted[v1]++;
 
-        ov16_0224B850(param0, param1, v1);
+        BattleScript_UpdateFriendship(param0, param1, v1);
     }
 
     return 0;
@@ -2258,7 +2286,7 @@ static BOOL ov16_02241D34 (BattleSystem * param0, BattleContext * param1)
             Pokemon * v10;
 
             for (v3 = 0; v3 < Party_GetCurrentCount(BattleSystem_Party(param0, 0)); v3++) {
-                v10 = ov16_0223DFAC(param0, 0, v3);
+                v10 = BattleSystem_PartyPokemon(param0, 0, v3);
 
                 if ((Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL))) {
                     if (param1->monsGainingExp[(param1->faintedMon >> 1) & 1] & FlagIndex(v3)) {
@@ -5320,7 +5348,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
         param1->beatUpCounter = 0;
 
         while (TRUE) {
-            v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
+            v5 = BattleSystem_PartyPokemon(param0, param1->attacker, param1->beatUpCounter);
 
             if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v5, MON_DATA_160, NULL) == 0))) {
                 break;
@@ -5330,7 +5358,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
         }
     }
 
-    v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
+    v5 = BattleSystem_PartyPokemon(param0, param1->attacker, param1->beatUpCounter);
     v2 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
     v4 = Pokemon_GetValue(v5, MON_DATA_LEVEL, NULL);
@@ -5357,7 +5385,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
 
     if (param1->beatUpCounter < v1) {
         while (TRUE) {
-            v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
+            v5 = BattleSystem_PartyPokemon(param0, param1->attacker, param1->beatUpCounter);
 
             if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v5, MON_DATA_160, NULL) == 0))) {
                 break;
@@ -5486,7 +5514,7 @@ static BOOL ov16_022461F4 (BattleSystem * param0, BattleContext * param1)
 
     for (v3 = 0; v3 < v5; v3++) {
         if (v3 != param1->selectedPartySlot[param1->attacker]) {
-            v7 = ov16_0223DFAC(param0, param1->attacker, v3);
+            v7 = BattleSystem_PartyPokemon(param0, param1->attacker, v3);
 
             if ((Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 494)) {
                 for (v4 = 0; v4 < 4; v4++) {
@@ -6544,7 +6572,7 @@ static BOOL ov16_022476F8 (BattleSystem * param0, BattleContext * param1)
     BattleScript_Iter(param1, 1);
 
     for (v1 = 0; v1 < BattleSystem_PartyCount(param0, 0); v1++) {
-        v8 = ov16_0223DFAC(param0, 0, v1);
+        v8 = BattleSystem_PartyPokemon(param0, 0, v1);
         v4 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
         v5 = Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL);
         v6 = Pokemon_GetValue(v8, MON_DATA_ABILITY, NULL);
@@ -7582,7 +7610,7 @@ static BOOL ov16_02248708 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleScript_Battler(param0, param1, v0);
 
     if ((param1->battleMons[v1].curHP) && (param1->selectedPartySlot[v1] != 6)) {
-        v3 = ov16_0223DFAC(param0, v1, param1->selectedPartySlot[v1]);
+        v3 = BattleSystem_PartyPokemon(param0, v1, param1->selectedPartySlot[v1]);
         v4 = Pokemon_GetValue(v3, MON_DATA_ABILITY, NULL);
         v5 = Pokemon_GetValue(v3, MON_DATA_160, NULL);
 
@@ -8039,7 +8067,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     v6 = 0;
 
     for (v1 = v2->unk_30[6]; v1 < BattleSystem_PartyCount(v2->unk_00, v6); v1++) {
-        v3 = ov16_0223DFAC(v2->unk_00, v6, v1);
+        v3 = BattleSystem_PartyPokemon(v2->unk_00, v6, v1);
         v9 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
         v10 = Item_LoadParam(v9, 1, 5);
 
@@ -8176,7 +8204,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
                     v15->unk_00[v0] = Pokemon_GetValue(v3, v14[v0], NULL);
                 }
 
-                sub_02075C74(v3, 0, ov16_0223E24C(v2->unk_00));
+                Pokemon_UpdateFriendship(v3, 0, BattleSystem_MapHeader(v2->unk_00));
                 Pokemon_CalcStats(v3);
 
                 if (v2->unk_04->selectedPartySlot[v6] == v1) {
@@ -8757,10 +8785,10 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         if (ov12_022368D0(v2->unk_08, 7) == 0) {
             if (--v2->unk_30[1] == 0) {
                 ov16_0223F4B0(v2->unk_00, v1);
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 if (BattleSystem_BattleType(v2->unk_00) & (0x200 | 0x400)) {
-                    v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                    v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                     ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
                     sub_02015738(ov16_0223E220(v2->unk_00), 1);
                     sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
@@ -8814,7 +8842,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 v12.unk_04 = ov16_0223E064(v2->unk_00);
                 v12.unk_08 = v5;
                 v12.unk_0C = 5;
-                v12.unk_10 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v12.unk_10 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                 v12.unk_14 = sub_0207A280(ov16_0223E068(v2->unk_00));
                 v2->unk_50[1] = sub_0201EE9C();
                 v2->unk_50[0] = ov21_021E8D48(&v12);
@@ -8862,7 +8890,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
             {
                 UnkStruct_02008A90 v14;
 
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 ov12_0223783C(v2->unk_08);
                 sub_02007DD4(v5);
@@ -8917,7 +8945,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 sub_0200F344(0, 0x0);
                 sub_0200F344(1, 0x0);
 
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                 v16 = sub_0208712C(5, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, ov16_0223EDA4(v2->unk_00));
                 v2->unk_50[1] = v16;
 
@@ -8961,7 +8989,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 int v20;
 
                 v19 = v2->unk_50[1];
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 if (v19->unk_14 == 0) {
                     Pokemon_SetValue(v3, 120, v19->unk_18);
@@ -8985,7 +9013,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 int v23;
 
                 v22 = BattleSystem_Party(v2->unk_00, 0);
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 ov16_0223F9A0(v2->unk_00, v1);
                 ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
@@ -10336,36 +10364,43 @@ static void ov16_0224B7CC (BattleSystem * param0, UnkStruct_ov16_0224B7CC * para
     sub_020127BC(param1->unk_50[0]);
 }
 
-static void ov16_0224B850 (BattleSystem * param0, BattleContext * param1, int param2)
+/**
+ * @brief Update friendship value for a fainting battler.
+ * 
+ * The highest-level battler is chosen to determine how much friendship to
+ * deduct.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param faintingBattler 
+ */
+static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler)
 {
-    Pokemon * v0;
-    u8 v1, v2;
-
-    if (Battler_Side(param0, param2)) {
+    if (Battler_Side(battleSys, faintingBattler)) {
         return;
     }
 
-    if (BattleSystem_BattleType(param0) & 0x2) {
-        v1 = ov16_0223E1C4(param0, 3);
-        v2 = ov16_0223E1C4(param0, 5);
-
-        if (param1->battleMons[v2].level > param1->battleMons[v1].level) {
-            v1 = v2;
+    u8 battler;
+    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+        battler = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
+        u8 battler2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
+        if (battleCtx->battleMons[battler2].level > battleCtx->battleMons[battler].level) {
+            battler = battler2;
         }
     } else {
-        v1 = ov16_0223E1C4(param0, 1);
+        battler = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_SOLO_ENEMY);
     }
 
-    v0 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
+    Pokemon *mon = BattleSystem_PartyPokemon(battleSys, faintingBattler, battleCtx->selectedPartySlot[faintingBattler]);
 
-    if (param1->battleMons[v1].level > param1->battleMons[param2].level) {
-        if (param1->battleMons[v1].level - param1->battleMons[param2].level >= 30) {
-            sub_02075C74(v0, 8, ov16_0223E24C(param0));
+    if (battleCtx->battleMons[battler].level > battleCtx->battleMons[faintingBattler].level) {
+        if (battleCtx->battleMons[battler].level - battleCtx->battleMons[faintingBattler].level >= 30) {
+            Pokemon_UpdateFriendship(mon, 8, BattleSystem_MapHeader(battleSys));
         } else {
-            sub_02075C74(v0, 6, ov16_0223E24C(param0));
+            Pokemon_UpdateFriendship(mon, 6, BattleSystem_MapHeader(battleSys));
         }
     } else {
-        sub_02075C74(v0, 6, ov16_0223E24C(param0));
+        Pokemon_UpdateFriendship(mon, 6, BattleSystem_MapHeader(battleSys));
     }
 }
 

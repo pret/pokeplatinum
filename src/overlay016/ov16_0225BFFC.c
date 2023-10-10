@@ -608,7 +608,7 @@ static void ov16_0225C47C (BattleSystem * param0, BattlerData * param1)
     int v1;
     Pokemon * v2;
 
-    v2 = ov16_0223DFAC(param0, param1->unk_190, v0->unk_01_0);
+    v2 = BattleSystem_PartyPokemon(param0, param1->unk_190, v0->unk_01_0);
 
     if ((v0->unk_18 & 0x200000) == 0) {
         for (v1 = 0; v1 < 4; v1++) {
@@ -676,7 +676,7 @@ static void ov16_0225C5E0 (BattleSystem * param0, BattlerData * param1)
     v3 = BattleSystem_PartyCount(param0, param1->unk_190);
 
     for (v2 = 0; v2 < v3; v2++) {
-        v1 = ov16_0223DFAC(param0, param1->unk_190, v2);
+        v1 = BattleSystem_PartyPokemon(param0, param1->unk_190, v2);
 
         if (v0->unk_01 == 104) {
             v4 = 0;

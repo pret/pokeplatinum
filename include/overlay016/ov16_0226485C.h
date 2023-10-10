@@ -37,7 +37,7 @@ void BattleIO_PrintMessage(BattleSystem * param0, BattleContext * param1, Battle
 void BattleIO_PlayMoveAnimation(BattleSystem * param0, BattleContext * param1, u16 param2);
 void BattleIO_PlayMoveAnimationA2D(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
 void BattleIO_FlickerBattler(BattleSystem * param0, int param1, u32 param2);
-void ov16_02265C38(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_UpdateHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265D14(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02265D98(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265EAC(BattleSystem * param0, BattleContext * param1, int param2, int param3);
