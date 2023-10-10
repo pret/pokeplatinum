@@ -6,6 +6,7 @@
 #include "constants/abilities.h"
 #include "constants/items.h"
 #include "constants/battle/message_tags.h"
+#include "constants/battle/system_control.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
@@ -116,12 +117,12 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
 static BOOL BtlCmd_Wait(BattleSystem * param0, BattleContext * param1);
 static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241544(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241584(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022415B8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022415F8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241618(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241644(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_PrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintPreparedMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241698(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241714(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022417C0(BattleSystem * param0, BattleContext * param1);
@@ -376,12 +377,12 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_Wait,
     BtlCmd_CalcDamage,
     BtlCmd_CalcMaxDamage,
-    ov16_02241544,
-    ov16_02241584,
-    ov16_022415B8,
-    ov16_022415F8,
-    ov16_02241618,
-    ov16_02241644,
+    BtlCmd_PrintAttackMessage,
+    BtlCmd_PrintMessage,
+    BtlCmd_PrintGlobalMessage,
+    BtlCmd_PrintPreparedMessage,
+    BtlCmd_PrepareMessage,
+    BtlCmd_PrintSideLocalMessage,
     ov16_02241698,
     ov16_02241714,
     ov16_022417C0,
@@ -1601,8 +1602,9 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
  * @brief Calculate the damage for the current move, applying random variance
  * to the computed value.
  * 
- * Side effect: battleCtx->damage will have its value set to the final damage
- * value to be added to the target's HP.
+ * Side effects:
+ * - battleCtx->damage will have its value set to the final damage value to be
+ * added to the target's HP.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -1622,8 +1624,9 @@ static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 /**
  * @brief Calculate the maximum damage for the current move.
  * 
- * Side effect: battleCtx->damage will have its value set to the final damage
- * value to be added to the target's HP.
+ * Side effects:
+ * - battleCtx->damage will have its value set to the final damage value to be
+ * added to the target's HP.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -1639,88 +1642,163 @@ static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleC
     return FALSE;
 }
 
-static BOOL ov16_02241544 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the attack message, i.e., "Cloyster used Icicle Spear!"
+ * 
+ * Side effects:
+ * - System control will be flagged to skip all future attack messages
+ * - System control will be flagged that the attack message has been shown
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    if ((param1->battleStatusMask & 0x1) == 0) {
-        ov16_02265B68(param0, param1);
+    if ((battleCtx->battleStatusMask & SYSCTL_SKIP_ATTACK_MESSAGE) == FALSE) {
+        BattleIO_PrintAttackMessage(battleSys, battleCtx);
     }
 
-    param1->battleStatusMask |= 0x1;
-    param1->battleStatusMask2 |= 0x4;
+    battleCtx->battleStatusMask |= SYSCTL_SKIP_ATTACK_MESSAGE; // don't show on future hits
+    battleCtx->battleStatusMask2 |= SYSCTL_ATTACK_MESSAGE_SHOWN;
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241584 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print a message.
+ *
+ * Inputs:
+ * 1. The ID of the message to be shown in the battle text bank.
+ * 2. A tag value specifying what varargs to expect and in what order.
+ * .. varargs to the string formatter.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleMessageParams v0;
-    BattleMessage v1;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-    BattleMessageParams_Make(param1, &v0);
-    BattleMessage_Make(param0, param1, &v0, &v1);
-    ov16_02265BA0(param0, param1, &v1);
+    BattleMessageParams msgParams;
+    BattleMessageParams_Make(battleCtx, &msgParams);
+    
+    BattleMessage msg;
+    BattleMessage_Make(battleSys, battleCtx, &msgParams, &msg);
 
-    return 0;
+    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
+
+    return FALSE;
 }
 
-static BOOL ov16_022415B8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print a global message.
+ * 
+ * This is for messages which do not pertain to any particular battler or side
+ * of the battlefield, e.g., weather continuation messages ("Rain continues to
+ * fall.", "The sandstorm rages.", etc.).
+ *
+ * Inputs:
+ * 1. The ID of the message to be shown in the battle text bank.
+ * 2. A tag value specifying what varargs to expect and in what order.
+ * .. varargs to the string formatter.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleMessageParams v0;
-    BattleMessage v1;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-    BattleMessageParams_Make(param1, &v0);
-    BattleMessage_Make(param0, param1, &v0, &v1);
+    BattleMessageParams msgParams;
+    BattleMessageParams_Make(battleCtx, &msgParams);
+    
+    BattleMessage msg;
+    BattleMessage_Make(battleSys, battleCtx, &msgParams, &msg);
 
-    v1.tags |= 0x80;
+    msg.tags |= TAG_GLOBAL_MESSAGE;
+    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
 
-    ov16_02265BA0(param0, param1, &v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022415F8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the prepared message.
+ * 
+ * This, specifically, prints the contents of battleCtx->msgBuffer.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PrintPreparedMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02265BA0(param0, param1, &param1->msgBuffer);
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_PrintMessage(battleSys, battleCtx, &battleCtx->msgBuffer);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241618 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Prepare a message for later printing.
+ *
+ * Inputs:
+ * 1. The ID of the message to be shown in the battle text bank.
+ * 2. A tag value specifying what varargs to expect and in what order.
+ * .. varargs to the string formatter.
+ * 
+ * Side effects:
+ * - The contents of the prepared message are stored in battleCtx->msgBuffer.
+ * This message can later be printed by invoking PrintPreparedMessage.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleMessageParams v0;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-    BattleMessageParams_Make(param1, &v0);
-    BattleMessage_Make(param0, param1, &v0, &param1->msgBuffer);
+    BattleMessageParams msgParams;
+    BattleMessageParams_Make(battleCtx, &msgParams);
+    BattleMessage_Make(battleSys, battleCtx, &msgParams, &battleCtx->msgBuffer);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241644 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print a side-local message.
+ *
+ * Inputs:
+ * 1. The battler on whom the message is centered.
+ * 2. The ID of the message to be shown in the battle text bank.
+ * 3. A tag value specifying what varargs to expect and in what order.
+ * .. varargs to the string formatter.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleMessageParams v0;
-    BattleMessage v1;
-    int v2;
-    int v3;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    BattleMessageParams msgParams;
+    BattleMessageParams_Make(battleCtx, &msgParams);
 
-    v2 = BattleScript_Read(param1);
+    BattleMessage msg;
+    BattleMessage_Make(battleSys, battleCtx, &msgParams, &msg);
 
-    BattleMessageParams_Make(param1, &v0);
-    BattleMessage_Make(param0, param1, &v0, &v1);
+    msg.tags |= TAG_SIDE_LOCAL_MESSAGE;
+    msg.battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
 
-    v1.tags |= 0x40;
-    v1.battler = BattleScript_Battler(param0, param1, v2);
-
-    ov16_02265BA0(param0, param1, &v1);
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241698 (BattleSystem * param0, BattleContext * param1)

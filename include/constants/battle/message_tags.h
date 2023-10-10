@@ -1,6 +1,10 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_MESSAGE_TAGS_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_MESSAGE_TAGS_H
 
+#define TAG_SIDE_LOCAL_MESSAGE  (1 << 6) // adjust the message for the side's source (e.g. "The foe's X used Y!")
+#define TAG_GLOBAL_MESSAGE      (1 << 7) // do not perform any message adjustment for a calling side
+#define TAG_IGNORE_SIDES        ~(TAG_USE_DIRECTION | TAG_SKIP_DIRECTION)
+
 enum MessageTags {
     TAG_NONE = 0,
     
