@@ -97,7 +97,7 @@ void BattleIO_PrintAttackMessage(BattleSystem * param0, BattleContext * param1);
 void BattleIO_PrintMessage(BattleSystem * param0, BattleContext * param1, BattleMessage * param2);
 void BattleIO_PlayMoveAnimation(BattleSystem * param0, BattleContext * param1, u16 param2);
 void BattleIO_PlayMoveAnimationA2D(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
-void ov16_02265C1C(BattleSystem * param0, int param1, u32 param2);
+void BattleIO_FlickerBattler(BattleSystem * param0, int param1, u32 param2);
 void ov16_02265C38(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02265D14(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02265D98(BattleSystem * param0, BattleContext * param1, int param2);
@@ -981,7 +981,7 @@ void BattleIO_PlayMoveAnimationA2D (BattleSystem * param0, BattleContext * param
     ov16_02264A04(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_02265C1C (BattleSystem * param0, int param1, u32 param2)
+void BattleIO_FlickerBattler (BattleSystem * param0, int param1, u32 param2)
 {
     int v0 = 23;
     ov16_02264A04(param0, 1, param1, &v0, 4);

@@ -127,7 +127,7 @@ static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_022417C0(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022417F4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241894(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022418C0(BattleSystem * param0, BattleContext * param1);
@@ -387,7 +387,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_PrintSideLocalMessage,
     BtlCmd_PlayMoveAnimation,
     BtlCmd_PlayMoveAnimationA2D,
-    ov16_022417C0,
+    BtlCmd_FlickerBattler,
     ov16_022417F4,
     ov16_02241894,
     ov16_022418C0,
@@ -1885,19 +1885,23 @@ static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *
     return FALSE;
 }
 
-static BOOL ov16_022417C0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Flicker a battler's sprite (e.g., when it is damaged).
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
+    BattleIO_FlickerBattler(battleSys, battler, battleCtx->moveStatusFlags);
 
-    ov16_02265C1C(param0, v1, param1->moveStatusFlags);
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_022417F4 (BattleSystem * param0, BattleContext * param1)
