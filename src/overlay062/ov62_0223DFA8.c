@@ -485,7 +485,7 @@ static BOOL ov62_0223E510 (UnkStruct_0208C06C * param0)
         ov62_0223E0FC(param0, 281, 0);
         break;
     case 6:
-        if (!sub_02022798()) {
+        if (!TouchScreen_Tapped()) {
             break;
         }
 
@@ -1926,7 +1926,7 @@ asm static BOOL ov62_022403F8 (UnkStruct_0208C06C * param0)
     str r0, [r4, #8]
     b _02240884
  _02240518:
-    bl sub_02022798
+    bl TouchScreen_Tapped
     cmp r0, #0
     bne _02240522
     b _02240884

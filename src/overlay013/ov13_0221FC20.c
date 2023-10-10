@@ -861,7 +861,7 @@ static u8 ov13_02220848 (UnkStruct_ov13_022213F0 * param0)
 
 static u8 ov13_02220864 (UnkStruct_ov13_022213F0 * param0)
 {
-    if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) || (sub_02022798() == 1)) {
+    if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) || (TouchScreen_Tapped() == 1)) {
         return param0->unk_2075;
     }
 

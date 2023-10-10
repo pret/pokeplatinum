@@ -369,7 +369,7 @@ static BOOL ov76_0223D674 (UnkStruct_ov76_0223DE00 * param0)
         int v2;
         int v3;
 
-        if (sub_02022798() == 1) {
+        if (TouchScreen_Tapped() == 1) {
             ov76_0223D4FC(param0);
             break;
         }

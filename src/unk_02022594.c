@@ -136,7 +136,7 @@ BOOL sub_0202278C (void)
     return coresys.unk_62;
 }
 
-BOOL sub_02022798 (void)
+BOOL TouchScreen_Tapped(void)
 {
     return coresys.touchInput;
 }

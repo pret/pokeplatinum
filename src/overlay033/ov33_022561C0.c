@@ -215,7 +215,7 @@ static BOOL ov33_022563D0 (UnkStruct_ov33_0225621C * param0)
 
     if (param0->unk_04.unk_4C) {
         if (((u32)(param0->unk_04.unk_50 - 16) < (u32)(207 - 16)) & ((u32)(param0->unk_04.unk_54 - 16) < (u32)(175 - 16))) {
-            param0->unk_04.unk_4E = sub_02022798();
+            param0->unk_04.unk_4E = TouchScreen_Tapped();
             return 0;
         }
 

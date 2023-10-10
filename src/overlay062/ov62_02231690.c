@@ -3688,7 +3688,7 @@ void ov62_022348FC (UnkStruct_0208C06C * param0)
 
         break;
     case 1:
-        if (sub_02022798()) {
+        if (TouchScreen_Tapped()) {
             ov62_02231B8C(param0);
             param0->unk_14.unk_4F0.unk_10++;
         }

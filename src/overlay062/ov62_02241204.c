@@ -2208,7 +2208,7 @@ static BOOL ov62_02243514 (UnkStruct_0208C06C * param0)
             param0->unk_08++;
             break;
         case 3:
-            if (!sub_02022798()) {
+            if (!TouchScreen_Tapped()) {
                 break;
             }
 
@@ -3315,7 +3315,7 @@ static BOOL ov62_02244CD4 (UnkStruct_0208C06C * param0)
             param0->unk_08++;
             break;
         case 3:
-            if (!sub_02022798()) {
+            if (!TouchScreen_Tapped()) {
                 break;
             }
 
@@ -3630,7 +3630,7 @@ static BOOL ov62_0224536C (UnkStruct_0208C06C * param0)
         }
         break;
     case 3:
-        if (!sub_02022798()) {
+        if (!TouchScreen_Tapped()) {
             break;
         }
 
@@ -4390,7 +4390,7 @@ static BOOL ov62_0224613C (UnkStruct_0208C06C * param0)
         ov62_02244AB4(param0, 281, 0);
         break;
     case 6:
-        if (!sub_02022798()) {
+        if (!TouchScreen_Tapped()) {
             break;
         }
 

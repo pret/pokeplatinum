@@ -95,7 +95,7 @@ void ov25_02255B50 (UnkStruct_ov25_02255B34 * param0)
     v1 = sub_0202278C();
 
     if (v1) {
-        v2 = sub_02022798();
+        v2 = TouchScreen_Tapped();
 
         for (v3 = 0; v3 < param0->unk_0C; v3++) {
             param0->unk_14[v3].unk_02 = param0->unk_14[v3].unk_01;
