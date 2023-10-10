@@ -130,8 +130,8 @@ static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *
 static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_022418C0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241924(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241984(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241A20(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241A58(BattleSystem * param0, BattleContext * param1);
@@ -390,8 +390,8 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_FlickerBattler,
     BtlCmd_UpdateHPValue,
     BtlCmd_UpdateHPGauge,
-    ov16_022418C0,
-    ov16_02241924,
+    BtlCmd_FaintBattler,
+    BtlCmd_PlayFaintingSequence,
     ov16_02241984,
     ov16_02241A20,
     ov16_02241A58,
@@ -1978,38 +1978,66 @@ static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleC
     return FALSE;
 }
 
-static BOOL ov16_022418C0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Flags the given battler as fainted.
+ * 
+ * Inputs:
+ * 1. The battler which is to be fainted.
+ * 
+ * Side effects:
+ * - battleCtx->faintedMon will be set to the input battler
+ * - The system's flag for the fainted battler will be flipped on
+ * - The total number of mons fainted for the battler's trainer will be
+ * incremented
+ * - The friendship of the Pokemon will be updated after fainting
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1, v2;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    if (battleCtx->battleMons[battler].curHP == 0) {
+        battleCtx->faintedMon = battler;
+        battleCtx->battleStatusMask |= (FlagIndex(battler) << SYSCTL_MON_FAINTED_SHIFT);
+        battleCtx->totalFainted[battler]++;
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    if (param1->battleMons[v1].curHP == 0) {
-        param1->faintedMon = v1;
-        param1->battleStatusMask |= (FlagIndex(v1) << 24);
-        param1->totalFainted[v1]++;
-
-        BattleScript_UpdateFriendship(param0, param1, v1);
+        BattleScript_UpdateFriendship(battleSys, battleCtx, battler);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241924 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play the fainting sequence for a fainted battler.
+ * 
+ * Side effects:
+ * - The system's flag for the fainted battler will be flipped off
+ * - The system's flag for EXP payout on the fainted battler will be
+ * flipped on
+ * - The fainted battler will have their control state skipped to
+ * MOVE_END
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02265D98(param0, param1, param1->faintedMon);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->battleStatusMask &= (FlagIndex(param1->faintedMon) << 24) ^ 0xffffffff;
-    param1->battleStatusMask2 |= FlagIndex(param1->faintedMon) << 28;
-    param1->battlerActions[param1->faintedMon][0] = 39;
+    BattleIO_PlayFaintingSequence(battleSys, battleCtx, battleCtx->faintedMon);
+    battleCtx->battleStatusMask &= (FlagIndex(battleCtx->faintedMon) << SYSCTL_MON_FAINTED_SHIFT) ^ 0xFFFFFFFF;
+    battleCtx->battleStatusMask2 |= FlagIndex(battleCtx->faintedMon) << SYSCTL_PAYOUT_EXP_SHIFT;
+    battleCtx->battlerActions[battleCtx->faintedMon][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
 
-    ov16_02254744(param0, param1, param1->faintedMon);
+    BattleSystem_CleanupFaintedMon(battleSys, battleCtx, battleCtx->faintedMon);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241984 (BattleSystem * param0, BattleContext * param1)

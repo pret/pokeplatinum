@@ -219,7 +219,21 @@ BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * par
 void BattleContext_Init(BattleContext * param0);
 void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
 void ov16_0225433C(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02254744(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Cleanup lingering state according to the given battler.
+ * 
+ * This routine will clean up any volatile status values dependent on the
+ * fainted battler (Mean Look, Attract, Bind), all move effects and single-turn
+ * flags, and extra data associated with the battler that is elsewhere in the
+ * battle context struct (e.g., buffers for Conversion 2, Sketch, and Mirror
+ * Move).
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ */
+void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void BattleSystem_SetupNextTurn(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_CheckStruggling(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int moveSlot, BattleMessage *msgOut);
