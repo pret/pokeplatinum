@@ -1563,7 +1563,7 @@ void ov13_02224144 (UnkStruct_ov13_022213F0 * param0)
 
     v1 = param0->unk_00;
     v2 = Item_Load(v1->unk_22, 0, v1->unk_0C);
-    v0 = ov16_0223DFAC(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
+    v0 = BattleSystem_PartyPokemon(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
     v4 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
     v5 = 0;
 
@@ -1660,7 +1660,7 @@ void ov13_0222449C (UnkStruct_ov13_022213F0 * param0)
     Strbuf* v2;
 
     v1 = param0->unk_00;
-    v0 = ov16_0223DFAC(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
+    v0 = BattleSystem_PartyPokemon(v1->unk_08, v1->unk_28, v1->unk_2C[v1->unk_11]);
     v2 = MessageLoader_GetNewStrbuf(param0->unk_1FA4, 95);
 
     sub_0200B5CC(param0->unk_1FA8, 0, Pokemon_GetBoxPokemon(v0));

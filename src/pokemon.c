@@ -2191,7 +2191,7 @@ static const s8 Unk_020F05A0[][3] = {
     {3, 2, 1} // ??? in unk_020933F8.c
 };
 
-void sub_02075C74(Pokemon *mon, u8 param1, u16 param2)
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2)
 {
     // TODO enum value (param 1 is method of gaining/losing friendship)
     if (param1 == 5) {

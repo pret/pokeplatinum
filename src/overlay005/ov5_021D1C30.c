@@ -961,7 +961,7 @@ static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(v3, v0);
-        sub_02075C74(v2, 5, v4);
+        Pokemon_UpdateFriendship(v2, 5, v4);
     }
 }
 

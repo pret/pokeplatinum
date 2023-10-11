@@ -61,7 +61,17 @@ Party * BattleSystem_Party(BattleSystem * param0, int param1);
  * @return Number of Pokemon in the requested battler's party.
  */
 int BattleSystem_PartyCount(BattleSystem *battleSys, int battler);
-Pokemon * ov16_0223DFAC(BattleSystem * param0, int param1, int param2);
+
+/**
+ * @brief Get a Pokemon from the given battler's party, choosing it from the
+ * given party slot.
+ * 
+ * @param battleSys 
+ * @param battler 
+ * @param slot      Index of the Pokemon in the party to retrieve.
+ * @return Pointer to the Pokemon struct in that battler's party slot.
+ */
+Pokemon* BattleSystem_PartyPokemon(BattleSystem *battleSys, int battler, int slot);
 UnkStruct_02007768 * ov16_0223E000(BattleSystem * param0);
 UnkStruct_ov12_0221FCDC * ov16_0223E008(BattleSystem * param0);
 UnkStruct_0200C6E4 * ov16_0223E010(BattleSystem * param0);
@@ -93,14 +103,22 @@ TrainerInfo * BattleSystem_TrainerInfo(BattleSystem * param0, int param1);
 UnkStruct_0207D3C0 * BattleSystem_Bag(BattleSystem * param0);
 UnkStruct_0207D99C * BattleSystem_BagCursor(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);
-int ov16_0223E1C4(BattleSystem * param0, int param1);
+
+/**
+ * @brief Get a battler of a particular type.
+ * 
+ * @param battleSys 
+ * @param type      The type of battler. 
+ * @return ID of the battler of the given type.
+ */
+int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type);
 u8 BattleSystem_BattlerSlot(BattleSystem * param0, int param1);
 u8 Battler_Side(BattleSystem * param0, int param1);
 void * ov16_0223E220(BattleSystem * param0);
 PCBoxes * ov16_0223E228(BattleSystem * param0);
 int ov16_0223E22C(BattleSystem * param0);
 int ov16_0223E240(BattleSystem * param0);
-int ov16_0223E24C(BattleSystem * param0);
+int BattleSystem_MapHeader(BattleSystem * param0);
 int BattleSystem_Partner(BattleSystem * param0, int param1);
 int ov16_0223E2A4(BattleSystem * param0, int param1, int param2);
 BOOL ov16_0223E30C(BattleSystem * param0, int param1, int param2, int param3, int param4);
@@ -114,7 +132,14 @@ u8 ov16_0223ED6C(BattleSystem * param0);
 int BattleSystem_NumSafariBalls(BattleSystem * param0);
 void BattleSystem_SetSafariBalls(BattleSystem * param0, int param1);
 UnkStruct_020279FC * ov16_0223EDA4(BattleSystem * param0);
-BOOL ov16_0223EDAC(BattleSystem * param0);
+
+/**
+ * @brief Check if battle animations are turned on.
+ * 
+ * @param battleSys 
+ * @return TRUE if battle animations are enabled, FALSE if not.
+ */
+BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem * param0);
 u8 ov16_0223EDF0(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);

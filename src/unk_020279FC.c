@@ -93,7 +93,7 @@ void sub_02027AE4 (UnkStruct_020279FC * param0, int param1)
     param0->unk_00_4 = param1;
 }
 
-int sub_02027AF8 (const UnkStruct_020279FC * param0)
+int GameConfig_BattleAnimations (const UnkStruct_020279FC * param0)
 {
     return param0->unk_00_7;
 }

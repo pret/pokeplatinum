@@ -1150,7 +1150,7 @@ static void sub_02086590 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 par
             Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
         }
 
-        sub_02075C74(param1, 4, (u16)sub_02086930(param0));
+        Pokemon_UpdateFriendship(param1, 4, (u16)sub_02086930(param0));
     }
 }
 

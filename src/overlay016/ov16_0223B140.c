@@ -978,7 +978,7 @@ static void ov16_0223C210 (BattleSystem * param0)
 
     for (v1 = 0; v1 < param0->maxBattlers; v1++) {
         v2 = BattleContext_Get(param0, v3, 2, v1);
-        v4 = ov16_0223DFAC(param0, v1, v2);
+        v4 = BattleSystem_PartyPokemon(param0, v1, v2);
         ov16_0225C038(param0, param0->battlers[v1], Pokemon_GetValue(v4, MON_DATA_POKEBALL, NULL), v2);
     }
 
@@ -1279,7 +1279,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
 
             for (v0 = 0; v0 < param0->maxBattlers; v0++) {
                 for (v1 = 0; v1 < BattleSystem_PartyCount(param0, v0); v1++) {
-                    v3 = ov16_0223DFAC(param0, v0, v1);
+                    v3 = BattleSystem_PartyPokemon(param0, v0, v1);
 
                     if (v0 == 2) {
                         if ((Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v3, MON_DATA_IS_EGG, NULL) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (v8 != v1)) {
@@ -1400,12 +1400,12 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
         if ((ov16_0223CD3C(param0->trainers[1].class) == 1) || (ov16_0223CD3C(param0->trainers[3].class) == 1)) {
             for (v0 = 0; v0 < Party_GetCurrentCount(param0->parties[0]); v0++) {
                 v3 = Party_GetPokemonBySlotIndex(param0->parties[0], v0);
-                sub_02075C74(v3, 3, param0->unk_2404);
+                Pokemon_UpdateFriendship(v3, 3, param0->unk_2404);
             }
 
             for (v0 = 0; v0 < Party_GetCurrentCount(param0->parties[2]); v0++) {
                 v3 = Party_GetPokemonBySlotIndex(param0->parties[2], v0);
-                sub_02075C74(v3, 3, param0->unk_2404);
+                Pokemon_UpdateFriendship(v3, 3, param0->unk_2404);
             }
         }
     }

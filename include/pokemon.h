@@ -480,7 +480,7 @@ u8 Pokemon_GetNatureOf(u32 monPersonality);
  */
 s8 Pokemon_GetStatAffinityOf(u8 monNature, u8 statType);
 
-void sub_02075C74(Pokemon *mon, u8 param1, u16 param2);
+void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2);
 
 /**
  * @brief Gets the gender of a Pokemon based on its species and personality value

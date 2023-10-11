@@ -393,7 +393,7 @@ static u8 ov13_0221FFDC (UnkStruct_ov13_022213F0 * param0)
         } else {
             if ((ov13_022213F0(param0, v0->unk_11) == 1) && (Item_LoadParam(v0->unk_22, 23, v0->unk_0C) == 0)) {
                 ov13_02221A54(v0->unk_08, v0->unk_22, v0->unk_33, v0->unk_0C);
-                param0->unk_04[v0->unk_11].unk_00 = ov16_0223DFAC(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
+                param0->unk_04[v0->unk_11].unk_00 = BattleSystem_PartyPokemon(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
                 v0->unk_20 = Pokemon_GetValue(param0->unk_04[v0->unk_11].unk_00, MON_DATA_CURRENT_HP, NULL);
                 v0->unk_20 -= param0->unk_04[v0->unk_11].unk_10;
                 param0->unk_2075 = 25;
@@ -883,7 +883,7 @@ static u8 ov13_022208A4 (UnkStruct_ov13_022213F0 * param0)
 
     switch (param0->unk_2078) {
     case 0:
-        param0->unk_04[v0->unk_11].unk_00 = ov16_0223DFAC(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
+        param0->unk_04[v0->unk_11].unk_00 = BattleSystem_PartyPokemon(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
         ov13_02224144(param0);
 
         if (param0->unk_2076 == 5) {
@@ -947,7 +947,7 @@ static u8 ov13_02220A4C (UnkStruct_ov13_022213F0 * param0)
 
     switch (param0->unk_2078) {
     case 0:
-        param0->unk_04[v0->unk_11].unk_00 = ov16_0223DFAC(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
+        param0->unk_04[v0->unk_11].unk_00 = BattleSystem_PartyPokemon(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11]);
 
         for (v1 = 0; v1 < 4; v1++) {
             if (param0->unk_04[v0->unk_11].unk_30[v1].unk_00 == 0) {

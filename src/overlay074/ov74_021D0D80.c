@@ -113,7 +113,7 @@ int ov74_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     memset(v0, 0, sizeof(UnkStruct_ov74_021D0D80));
 
     v0->unk_18.unk_00_0 = sub_02027AA4(v1);
-    v0->unk_18.unk_00_6 = sub_02027AF8(v1);
+    v0->unk_18.unk_00_6 = GameConfig_BattleAnimations(v1);
     v0->unk_18.unk_00_7 = sub_02027B14(v1);
     v0->unk_18.unk_00_4 = sub_02027ADC(v1);
     v0->unk_18.unk_00_8 = sub_02027B30(v1);

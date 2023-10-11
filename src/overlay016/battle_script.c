@@ -5,7 +5,10 @@
 
 #include "constants/abilities.h"
 #include "constants/items.h"
+#include "constants/narc.h"
 #include "constants/battle/message_tags.h"
+#include "constants/battle/system_control.h"
+#include "constants/narc_files/battle_skill_subseq.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
@@ -116,19 +119,19 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
 static BOOL BtlCmd_Wait(BattleSystem * param0, BattleContext * param1);
 static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241544(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241584(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022415B8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022415F8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241618(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241644(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241698(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241714(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022417C0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022417F4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241894(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022418C0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241924(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_PrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintPreparedMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241984(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241A20(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241A58(BattleSystem * param0, BattleContext * param1);
@@ -352,7 +355,7 @@ static void ov16_022499C0(Party * param0, int param1, int param2, int param3);
 static int ov16_0224A724(BattleSystem * param0, BattleContext * param1);
 static void ov16_0224B520(BattleSystem * param0, UnkStruct_ov16_0224B7CC * param1, Pokemon * param2);
 static void ov16_0224B7CC(BattleSystem * param0, UnkStruct_ov16_0224B7CC * param1);
-static void ov16_0224B850(BattleSystem * param0, BattleContext * param1, int param2);
+static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
 static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
 static void ov16_02248E74(UnkStruct_0201CD38 * param0, void * param1);
@@ -376,19 +379,19 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_Wait,
     BtlCmd_CalcDamage,
     BtlCmd_CalcMaxDamage,
-    ov16_02241544,
-    ov16_02241584,
-    ov16_022415B8,
-    ov16_022415F8,
-    ov16_02241618,
-    ov16_02241644,
-    ov16_02241698,
-    ov16_02241714,
-    ov16_022417C0,
-    ov16_022417F4,
-    ov16_02241894,
-    ov16_022418C0,
-    ov16_02241924,
+    BtlCmd_PrintAttackMessage,
+    BtlCmd_PrintMessage,
+    BtlCmd_PrintGlobalMessage,
+    BtlCmd_PrintPreparedMessage,
+    BtlCmd_PrepareMessage,
+    BtlCmd_PrintSideLocalMessage,
+    BtlCmd_PlayMoveAnimation,
+    BtlCmd_PlayMoveAnimationA2D,
+    BtlCmd_FlickerBattler,
+    BtlCmd_UpdateHPValue,
+    BtlCmd_UpdateHPGauge,
+    BtlCmd_FaintBattler,
+    BtlCmd_PlayFaintingSequence,
     ov16_02241984,
     ov16_02241A20,
     ov16_02241A58,
@@ -1601,8 +1604,9 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
  * @brief Calculate the damage for the current move, applying random variance
  * to the computed value.
  * 
- * Side effect: battleCtx->damage will have its value set to the final damage
- * value to be added to the target's HP.
+ * Side effects:
+ * - battleCtx->damage will have its value set to the final damage value to be
+ * added to the target's HP.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -1622,8 +1626,9 @@ static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 /**
  * @brief Calculate the maximum damage for the current move.
  * 
- * Side effect: battleCtx->damage will have its value set to the final damage
- * value to be added to the target's HP.
+ * Side effects:
+ * - battleCtx->damage will have its value set to the final damage value to be
+ * added to the target's HP.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -1639,246 +1644,400 @@ static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleC
     return FALSE;
 }
 
-static BOOL ov16_02241544 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the attack message, i.e., "Cloyster used Icicle Spear!"
+ * 
+ * Side effects:
+ * - System control will be flagged to skip all future attack messages
+ * - System control will be flagged that the attack message has been shown
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    if ((param1->battleStatusMask & 0x1) == 0) {
-        ov16_02265B68(param0, param1);
+    if ((battleCtx->battleStatusMask & SYSCTL_SKIP_ATTACK_MESSAGE) == FALSE) {
+        BattleIO_PrintAttackMessage(battleSys, battleCtx);
     }
 
-    param1->battleStatusMask |= 0x1;
-    param1->battleStatusMask2 |= 0x4;
+    battleCtx->battleStatusMask |= SYSCTL_SKIP_ATTACK_MESSAGE; // don't show on future hits
+    battleCtx->battleStatusMask2 |= SYSCTL_ATTACK_MESSAGE_SHOWN;
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241584 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print a message.
+ *
+ * Inputs:
+ * 1. The ID of the message to be shown in the battle text bank.
+ * 2. A tag value specifying what varargs to expect and in what order.
+ * .. varargs to the string formatter.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PrintMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleMessageParams v0;
-    BattleMessage v1;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-    BattleMessageParams_Make(param1, &v0);
-    BattleMessage_Make(param0, param1, &v0, &v1);
-    ov16_02265BA0(param0, param1, &v1);
+    BattleMessageParams msgParams;
+    BattleMessageParams_Make(battleCtx, &msgParams);
+    
+    BattleMessage msg;
+    BattleMessage_Make(battleSys, battleCtx, &msgParams, &msg);
 
-    return 0;
+    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
+
+    return FALSE;
 }
 
-static BOOL ov16_022415B8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print a global message.
+ * 
+ * This is for messages which do not pertain to any particular battler or side
+ * of the battlefield, e.g., weather continuation messages ("Rain continues to
+ * fall.", "The sandstorm rages.", etc.).
+ *
+ * Inputs:
+ * 1. The ID of the message to be shown in the battle text bank.
+ * 2. A tag value specifying what varargs to expect and in what order.
+ * .. varargs to the string formatter.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_PrintGlobalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleMessageParams v0;
-    BattleMessage v1;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-    BattleMessageParams_Make(param1, &v0);
-    BattleMessage_Make(param0, param1, &v0, &v1);
+    BattleMessageParams msgParams;
+    BattleMessageParams_Make(battleCtx, &msgParams);
+    
+    BattleMessage msg;
+    BattleMessage_Make(battleSys, battleCtx, &msgParams, &msg);
 
-    v1.tags |= 0x80;
+    msg.tags |= TAG_GLOBAL_MESSAGE;
+    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
 
-    ov16_02265BA0(param0, param1, &v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022415F8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the prepared message.
+ * 
+ * This, specifically, prints the contents of battleCtx->msgBuffer.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PrintPreparedMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02265BA0(param0, param1, &param1->msgBuffer);
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_PrintMessage(battleSys, battleCtx, &battleCtx->msgBuffer);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241618 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Prepare a message for later printing.
+ *
+ * Inputs:
+ * 1. The ID of the message to be shown in the battle text bank.
+ * 2. A tag value specifying what varargs to expect and in what order.
+ * .. varargs to the string formatter.
+ * 
+ * Side effects:
+ * - The contents of the prepared message are stored in battleCtx->msgBuffer.
+ * This message can later be printed by invoking PrintPreparedMessage.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PrepareMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleMessageParams v0;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-    BattleMessageParams_Make(param1, &v0);
-    BattleMessage_Make(param0, param1, &v0, &param1->msgBuffer);
+    BattleMessageParams msgParams;
+    BattleMessageParams_Make(battleCtx, &msgParams);
+    BattleMessage_Make(battleSys, battleCtx, &msgParams, &battleCtx->msgBuffer);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241644 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print a side-local message.
+ *
+ * Inputs:
+ * 1. The battler on whom the message is centered.
+ * 2. The ID of the message to be shown in the battle text bank.
+ * 3. A tag value specifying what varargs to expect and in what order.
+ * .. varargs to the string formatter.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PrintSideLocalMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleMessageParams v0;
-    BattleMessage v1;
-    int v2;
-    int v3;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    BattleMessageParams msgParams;
+    BattleMessageParams_Make(battleCtx, &msgParams);
 
-    v2 = BattleScript_Read(param1);
+    BattleMessage msg;
+    BattleMessage_Make(battleSys, battleCtx, &msgParams, &msg);
 
-    BattleMessageParams_Make(param1, &v0);
-    BattleMessage_Make(param0, param1, &v0, &v1);
+    msg.tags |= TAG_SIDE_LOCAL_MESSAGE;
+    msg.battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_PrintMessage(battleSys, battleCtx, &msg);
 
-    v1.tags |= 0x40;
-    v1.battler = BattleScript_Battler(param0, param1, v2);
-
-    ov16_02265BA0(param0, param1, &v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241698 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a move animation, if move animations are enabled.
+ * 
+ * Inputs:
+ * 1. The location from which the animation is sourced. If the input here is
+ * BTLSCR_MSG_TEMP, then the move to load is picked from battleCtx->msgMoveTemp.
+ * Otherwise, it is picked from battleCtx->moveCur.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayMoveAnimation(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u16 v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inMoveSource = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (v0 == 0xff) {
-        v1 = param1->msgMoveTemp;
+    u16 move;
+    if (inMoveSource == BTLSCR_MSG_TEMP) {
+        move = battleCtx->msgMoveTemp;
     } else {
-        v1 = param1->moveCur;
+        move = battleCtx->moveCur;
     }
 
-    if ((((param1->battleStatusMask & 0x4000) == 0) && (ov16_0223EDAC(param0) == 1)) || (v1 == 144)) {
-        param1->battleStatusMask |= 0x4000;
-        ov16_02265BBC(param0, param1, v1);
+    if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AnimationsOn(battleSys) == TRUE)
+            || move == MOVE_TRANSFORM) {
+        battleCtx->battleStatusMask |= SYSCTL_PLAYED_MOVE_ANIMATION;
+        BattleIO_PlayMoveAnimation(battleSys, battleCtx, move);
     }
 
-    if (ov16_0223EDAC(param0) == 0) {
-        BattleScript_Call(param1, 1, (0 + 291));
+    if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_WAIT_MOVE_ANIMATION);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241714 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a move animation from the given attacker toward the given defender,
+ * if move animations are enabled.
+ * 
+ * Inputs:
+ * 1. The location from which the animation is sourced. If the input here is
+ * BTLSCR_MSG_TEMP, then the move to load is picked from battleCtx->msgMoveTemp.
+ * Otherwise, it is picked from battleCtx->moveCur.
+ * 2. The attacker for the move animation.
+ * 3. The defender for the move animation.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayMoveAnimationA2D(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    u16 v5;
+    BattleScript_Iter(battleCtx, 1);
+    int inMoveSource = BattleScript_Read(battleCtx);
+    int inAttacker = BattleScript_Read(battleCtx);
+    int inDefender = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-
-    if (v0 == 0xff) {
-        v5 = param1->msgMoveTemp;
+    u16 move;
+    if (inMoveSource == BTLSCR_MSG_TEMP) {
+        move = battleCtx->msgMoveTemp;
     } else {
-        v5 = param1->moveCur;
+        move = battleCtx->moveCur;
     }
 
-    v3 = BattleScript_Battler(param0, param1, v1);
-    v4 = BattleScript_Battler(param0, param1, v2);
+    int attacker = BattleScript_Battler(battleSys, battleCtx, inAttacker);
+    int defender = BattleScript_Battler(battleSys, battleCtx, inDefender);
 
-    if ((((param1->battleStatusMask & 0x4000) == 0) && (ov16_0223EDAC(param0) == 1)) || (v5 == 144)) {
-        param1->battleStatusMask |= 0x4000;
-        ov16_02265BEC(param0, param1, v5, v3, v4);
+    if (((battleCtx->battleStatusMask & SYSCTL_PLAYED_MOVE_ANIMATION) == FALSE && BattleSystem_AnimationsOn(battleSys) == TRUE)
+            || move == MOVE_TRANSFORM) {
+        battleCtx->battleStatusMask |= SYSCTL_PLAYED_MOVE_ANIMATION;
+        BattleIO_PlayMoveAnimationA2D(battleSys, battleCtx, move, attacker, defender);
     }
 
-    if (ov16_0223EDAC(param0) == 0) {
-        BattleScript_Call(param1, 1, (0 + 291));
+    if (BattleSystem_AnimationsOn(battleSys) == FALSE) {
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_WAIT_MOVE_ANIMATION);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022417C0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Flicker a battler's sprite (e.g., when it is damaged).
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_FlickerBattler(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
+    BattleIO_FlickerBattler(battleSys, battler, battleCtx->moveStatusFlags);
 
-    ov16_02265C1C(param0, v1, param1->moveStatusFlags);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022417F4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the HP value for a battler according to damage stored in the
+ * battle context.
+ * 
+ * Damage to be deducted from the battler's current HP is pulled from
+ * battleCtx->hpCalcTemp.
+ * 
+ * Inputs:
+ * 1. The battler whose HP value is to be updated.
+ * 
+ * Side effects:
+ * - battleCtx->hitDamage is updated to be the damage taken, capped to the
+ * battler's current HP.
+ * - battleCtx->totalDamage for the battler accumulates the damage taken
+ * - the battler's current HP is adjusted to the new value after applying
+ * the taken damage, capped to its maximum HP (in case the damage taken
+ * results in healing, e.g. via Volt Absorb).
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    if ((param1->battleMons[v1].curHP + param1->hpCalcTemp) <= 0) {
-        param1->hitDamage = param1->battleMons[v1].curHP * -1;
+    // Cap the hit damage to the battler's current HP
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    if (battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
+        battleCtx->hitDamage = battleCtx->battleMons[battler].curHP * -1;
     } else {
-        param1->hitDamage = param1->hpCalcTemp;
+        battleCtx->hitDamage = battleCtx->hpCalcTemp;
     }
 
-    if (param1->hitDamage < 0) {
-        param1->totalDamage[v1] += (param1->hitDamage * -1);
+    // Accumulate the hit damage into this battler's total taken damage
+    if (battleCtx->hitDamage < 0) {
+        battleCtx->totalDamage[battler] += (battleCtx->hitDamage * -1);
     }
 
-    param1->battleMons[v1].curHP += param1->hpCalcTemp;
-
-    if (param1->battleMons[v1].curHP < 0) {
-        param1->battleMons[v1].curHP = 0;
-    } else if (param1->battleMons[v1].curHP > param1->battleMons[v1].maxHP) {
-        param1->battleMons[v1].curHP = param1->battleMons[v1].maxHP;
+    // Cap the battler's new HP value to their max HP (in case the temp value is positive).
+    battleCtx->battleMons[battler].curHP += battleCtx->hpCalcTemp;
+    if (battleCtx->battleMons[battler].curHP < 0) {
+        battleCtx->battleMons[battler].curHP = 0;
+    } else if (battleCtx->battleMons[battler].curHP > battleCtx->battleMons[battler].maxHP) {
+        battleCtx->battleMons[battler].curHP = battleCtx->battleMons[battler].maxHP;
     }
 
-    BattleMon_CopyToParty(param0, param1, v1);
+    BattleMon_CopyToParty(battleSys, battleCtx, battler);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241894 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the HP gauge for a battler with their new current HP.
+ * 
+ * Inputs:
+ * 1. The battler whose HP gauge is to be updated.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    BattleScript_Iter(param1, 1);
+    BattleIO_UpdateHPGauge(battleSys, battleCtx, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02265C38(param0, param1, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022418C0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Flags the given battler as fainted.
+ * 
+ * Inputs:
+ * 1. The battler which is to be fainted.
+ * 
+ * Side effects:
+ * - battleCtx->faintedMon will be set to the input battler
+ * - The system's flag for the fainted battler will be flipped on
+ * - The total number of mons fainted for the battler's trainer will be
+ * incremented
+ * - The friendship of the Pokemon will be updated after fainting
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1, v2;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    if (battleCtx->battleMons[battler].curHP == 0) {
+        battleCtx->faintedMon = battler;
+        battleCtx->battleStatusMask |= (FlagIndex(battler) << SYSCTL_MON_FAINTED_SHIFT);
+        battleCtx->totalFainted[battler]++;
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    if (param1->battleMons[v1].curHP == 0) {
-        param1->faintedMon = v1;
-        param1->battleStatusMask |= (FlagIndex(v1) << 24);
-        param1->totalFainted[v1]++;
-
-        ov16_0224B850(param0, param1, v1);
+        BattleScript_UpdateFriendship(battleSys, battleCtx, battler);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241924 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play the fainting sequence for a fainted battler.
+ * 
+ * Side effects:
+ * - The system's flag for the fainted battler will be flipped off
+ * - The system's flag for EXP payout on the fainted battler will be
+ * flipped on
+ * - The fainted battler will have their control state skipped to
+ * MOVE_END
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02265D98(param0, param1, param1->faintedMon);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->battleStatusMask &= (FlagIndex(param1->faintedMon) << 24) ^ 0xffffffff;
-    param1->battleStatusMask2 |= FlagIndex(param1->faintedMon) << 28;
-    param1->battlerActions[param1->faintedMon][0] = 39;
+    BattleIO_PlayFaintingSequence(battleSys, battleCtx, battleCtx->faintedMon);
+    battleCtx->battleStatusMask &= (FlagIndex(battleCtx->faintedMon) << SYSCTL_MON_FAINTED_SHIFT) ^ 0xFFFFFFFF;
+    battleCtx->battleStatusMask2 |= FlagIndex(battleCtx->faintedMon) << SYSCTL_PAYOUT_EXP_SHIFT;
+    battleCtx->battlerActions[battleCtx->faintedMon][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
 
-    ov16_02254744(param0, param1, param1->faintedMon);
+    BattleSystem_CleanupFaintedMon(battleSys, battleCtx, battleCtx->faintedMon);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241984 (BattleSystem * param0, BattleContext * param1)
@@ -2155,7 +2314,7 @@ static BOOL ov16_02241D34 (BattleSystem * param0, BattleContext * param1)
             Pokemon * v10;
 
             for (v3 = 0; v3 < Party_GetCurrentCount(BattleSystem_Party(param0, 0)); v3++) {
-                v10 = ov16_0223DFAC(param0, 0, v3);
+                v10 = BattleSystem_PartyPokemon(param0, 0, v3);
 
                 if ((Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL))) {
                     if (param1->monsGainingExp[(param1->faintedMon >> 1) & 1] & FlagIndex(v3)) {
@@ -3429,7 +3588,7 @@ static BOOL ov16_02243334 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleScript_Read(param1);
     v2 = BattleScript_Read(param1);
 
-    if ((ov16_0223EDAC(param0) == 1) || (v2 == 15) || (v2 == 16) || (v2 == 26) || (v2 == 25)) {
+    if ((BattleSystem_AnimationsOn(param0) == 1) || (v2 == 15) || (v2 == 16) || (v2 == 26) || (v2 == 25)) {
         v0 = BattleScript_Battler(param0, param1, v1);
 
         if (ov16_0225B1DC(param1, v0, v2) == 1) {
@@ -3453,7 +3612,7 @@ static BOOL ov16_02243398 (BattleSystem * param0, BattleContext * param1)
     v3 = BattleScript_Read(param1);
     v4 = BattleScript_Read(param1);
 
-    if ((ov16_0223EDAC(param0) == 1) || (v4 == 15) || (v4 == 16) || (v4 == 26) || (v4 == 25)) {
+    if ((BattleSystem_AnimationsOn(param0) == 1) || (v4 == 15) || (v4 == 16) || (v4 == 26) || (v4 == 25)) {
         v0 = BattleScript_Battler(param0, param1, v2);
         v1 = BattleScript_Battler(param0, param1, v3);
 
@@ -3479,7 +3638,7 @@ static BOOL ov16_02243424 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Battler(param0, param1, v1);
     v3 = BattleScript_VarAddress(param0, param1, v2);
 
-    if ((ov16_0223EDAC(param0) == 1) || (v2 == 15) || (v2 == 16) || (v3[0] == 26) || (v3[0] == 25)) {
+    if ((BattleSystem_AnimationsOn(param0) == 1) || (v2 == 15) || (v2 == 16) || (v3[0] == 26) || (v3[0] == 25)) {
         if (ov16_0225B1DC(param1, v0, v3[0]) == 1) {
             ov16_02265FF8(param0, param1, v0, v3[0]);
         }
@@ -5217,7 +5376,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
         param1->beatUpCounter = 0;
 
         while (TRUE) {
-            v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
+            v5 = BattleSystem_PartyPokemon(param0, param1->attacker, param1->beatUpCounter);
 
             if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v5, MON_DATA_160, NULL) == 0))) {
                 break;
@@ -5227,7 +5386,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
         }
     }
 
-    v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
+    v5 = BattleSystem_PartyPokemon(param0, param1->attacker, param1->beatUpCounter);
     v2 = Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL);
     v3 = Pokemon_GetValue(v5, MON_DATA_FORM, NULL);
     v4 = Pokemon_GetValue(v5, MON_DATA_LEVEL, NULL);
@@ -5254,7 +5413,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
 
     if (param1->beatUpCounter < v1) {
         while (TRUE) {
-            v5 = ov16_0223DFAC(param0, param1->attacker, param1->beatUpCounter);
+            v5 = BattleSystem_PartyPokemon(param0, param1->attacker, param1->beatUpCounter);
 
             if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v5, MON_DATA_160, NULL) == 0))) {
                 break;
@@ -5383,7 +5542,7 @@ static BOOL ov16_022461F4 (BattleSystem * param0, BattleContext * param1)
 
     for (v3 = 0; v3 < v5; v3++) {
         if (v3 != param1->selectedPartySlot[param1->attacker]) {
-            v7 = ov16_0223DFAC(param0, param1->attacker, v3);
+            v7 = BattleSystem_PartyPokemon(param0, param1->attacker, v3);
 
             if ((Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v7, MON_DATA_SPECIES_EGG, NULL) != 494)) {
                 for (v4 = 0; v4 < 4; v4++) {
@@ -6441,7 +6600,7 @@ static BOOL ov16_022476F8 (BattleSystem * param0, BattleContext * param1)
     BattleScript_Iter(param1, 1);
 
     for (v1 = 0; v1 < BattleSystem_PartyCount(param0, 0); v1++) {
-        v8 = ov16_0223DFAC(param0, 0, v1);
+        v8 = BattleSystem_PartyPokemon(param0, 0, v1);
         v4 = Pokemon_GetValue(v8, MON_DATA_SPECIES_EGG, NULL);
         v5 = Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL);
         v6 = Pokemon_GetValue(v8, MON_DATA_ABILITY, NULL);
@@ -7479,7 +7638,7 @@ static BOOL ov16_02248708 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleScript_Battler(param0, param1, v0);
 
     if ((param1->battleMons[v1].curHP) && (param1->selectedPartySlot[v1] != 6)) {
-        v3 = ov16_0223DFAC(param0, v1, param1->selectedPartySlot[v1]);
+        v3 = BattleSystem_PartyPokemon(param0, v1, param1->selectedPartySlot[v1]);
         v4 = Pokemon_GetValue(v3, MON_DATA_ABILITY, NULL);
         v5 = Pokemon_GetValue(v3, MON_DATA_160, NULL);
 
@@ -7936,7 +8095,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     v6 = 0;
 
     for (v1 = v2->unk_30[6]; v1 < BattleSystem_PartyCount(v2->unk_00, v6); v1++) {
-        v3 = ov16_0223DFAC(v2->unk_00, v6, v1);
+        v3 = BattleSystem_PartyPokemon(v2->unk_00, v6, v1);
         v9 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
         v10 = Item_LoadParam(v9, 1, 5);
 
@@ -8073,7 +8232,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
                     v15->unk_00[v0] = Pokemon_GetValue(v3, v14[v0], NULL);
                 }
 
-                sub_02075C74(v3, 0, ov16_0223E24C(v2->unk_00));
+                Pokemon_UpdateFriendship(v3, 0, BattleSystem_MapHeader(v2->unk_00));
                 Pokemon_CalcStats(v3);
 
                 if (v2->unk_04->selectedPartySlot[v6] == v1) {
@@ -8654,10 +8813,10 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         if (ov12_022368D0(v2->unk_08, 7) == 0) {
             if (--v2->unk_30[1] == 0) {
                 ov16_0223F4B0(v2->unk_00, v1);
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 if (BattleSystem_BattleType(v2->unk_00) & (0x200 | 0x400)) {
-                    v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                    v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                     ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
                     sub_02015738(ov16_0223E220(v2->unk_00), 1);
                     sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
@@ -8711,7 +8870,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 v12.unk_04 = ov16_0223E064(v2->unk_00);
                 v12.unk_08 = v5;
                 v12.unk_0C = 5;
-                v12.unk_10 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v12.unk_10 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                 v12.unk_14 = sub_0207A280(ov16_0223E068(v2->unk_00));
                 v2->unk_50[1] = sub_0201EE9C();
                 v2->unk_50[0] = ov21_021E8D48(&v12);
@@ -8759,7 +8918,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
             {
                 UnkStruct_02008A90 v14;
 
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 ov12_0223783C(v2->unk_08);
                 sub_02007DD4(v5);
@@ -8814,7 +8973,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 sub_0200F344(0, 0x0);
                 sub_0200F344(1, 0x0);
 
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
                 v16 = sub_0208712C(5, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, ov16_0223EDA4(v2->unk_00));
                 v2->unk_50[1] = v16;
 
@@ -8858,7 +9017,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 int v20;
 
                 v19 = v2->unk_50[1];
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 if (v19->unk_14 == 0) {
                     Pokemon_SetValue(v3, 120, v19->unk_18);
@@ -8882,7 +9041,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 int v23;
 
                 v22 = BattleSystem_Party(v2->unk_00, 0);
-                v3 = ov16_0223DFAC(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
 
                 ov16_0223F9A0(v2->unk_00, v1);
                 ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
@@ -10233,36 +10392,43 @@ static void ov16_0224B7CC (BattleSystem * param0, UnkStruct_ov16_0224B7CC * para
     sub_020127BC(param1->unk_50[0]);
 }
 
-static void ov16_0224B850 (BattleSystem * param0, BattleContext * param1, int param2)
+/**
+ * @brief Update friendship value for a fainting battler.
+ * 
+ * The highest-level battler is chosen to determine how much friendship to
+ * deduct.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param faintingBattler 
+ */
+static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler)
 {
-    Pokemon * v0;
-    u8 v1, v2;
-
-    if (Battler_Side(param0, param2)) {
+    if (Battler_Side(battleSys, faintingBattler)) {
         return;
     }
 
-    if (BattleSystem_BattleType(param0) & 0x2) {
-        v1 = ov16_0223E1C4(param0, 3);
-        v2 = ov16_0223E1C4(param0, 5);
-
-        if (param1->battleMons[v2].level > param1->battleMons[v1].level) {
-            v1 = v2;
+    u8 battler;
+    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+        battler = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_1);
+        u8 battler2 = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_ENEMY_SIDE_SLOT_2);
+        if (battleCtx->battleMons[battler2].level > battleCtx->battleMons[battler].level) {
+            battler = battler2;
         }
     } else {
-        v1 = ov16_0223E1C4(param0, 1);
+        battler = BattleSystem_BattlerOfType(battleSys, BATTLER_TYPE_SOLO_ENEMY);
     }
 
-    v0 = ov16_0223DFAC(param0, param2, param1->selectedPartySlot[param2]);
+    Pokemon *mon = BattleSystem_PartyPokemon(battleSys, faintingBattler, battleCtx->selectedPartySlot[faintingBattler]);
 
-    if (param1->battleMons[v1].level > param1->battleMons[param2].level) {
-        if (param1->battleMons[v1].level - param1->battleMons[param2].level >= 30) {
-            sub_02075C74(v0, 8, ov16_0223E24C(param0));
+    if (battleCtx->battleMons[battler].level > battleCtx->battleMons[faintingBattler].level) {
+        if (battleCtx->battleMons[battler].level - battleCtx->battleMons[faintingBattler].level >= 30) {
+            Pokemon_UpdateFriendship(mon, 8, BattleSystem_MapHeader(battleSys));
         } else {
-            sub_02075C74(v0, 6, ov16_0223E24C(param0));
+            Pokemon_UpdateFriendship(mon, 6, BattleSystem_MapHeader(battleSys));
         }
     } else {
-        sub_02075C74(v0, 6, ov16_0223E24C(param0));
+        Pokemon_UpdateFriendship(mon, 6, BattleSystem_MapHeader(battleSys));
     }
 }
 

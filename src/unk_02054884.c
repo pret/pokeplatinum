@@ -209,7 +209,7 @@ int sub_02054B04 (Party * param0, u16 param1)
 
                 if (v5 == 1) {
                     v1++;
-                    sub_02075C74(v4, 7, param1);
+                    Pokemon_UpdateFriendship(v4, 7, param1);
                 }
 
                 v0++;
