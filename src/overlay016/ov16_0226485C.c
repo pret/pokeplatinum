@@ -102,7 +102,7 @@ void BattleIO_UpdateHPGauge(BattleSystem * param0, BattleContext * param1, int p
 void ov16_02265D14(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleIO_PlayFaintingSequence(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleIO_PlaySound(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void ov16_02265ECC(BattleSystem * param0, BattleContext * param1);
+void BattleIO_FadeOut(BattleSystem * param0, BattleContext * param1);
 void ov16_02265EE8(BattleSystem * param0, int param1, int param2);
 void ov16_02265FB8(BattleSystem * param0, int param1, int param2);
 void ov16_02265FD8(BattleSystem * param0, int param1, int param2);
@@ -1081,7 +1081,7 @@ void BattleIO_PlaySound (BattleSystem * param0, BattleContext * param1, int para
     ov16_02264A04(param0, 1, param3, &v0, sizeof(UnkStruct_ov16_0225C398));
 }
 
-void ov16_02265ECC (BattleSystem * param0, BattleContext * param1)
+void BattleIO_FadeOut (BattleSystem * param0, BattleContext * param1)
 {
     int v0 = 28;
 

@@ -136,9 +136,9 @@ static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx)
 static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241BC0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241BDC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241BFC(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241C28(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241CD0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241D34(BattleSystem * param0, BattleContext * param1);
@@ -396,9 +396,9 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_PlaySound,
     BtlCmd_If,
     BtlCmd_IfMonData,
-    ov16_02241BC0,
-    ov16_02241BDC,
-    ov16_02241BFC,
+    BtlCmd_FadeOut,
+    BtlCmd_JumpToSub,
+    BtlCmd_JumpToBattleEffect,
     ov16_02241C28,
     ov16_02241CD0,
     ov16_02241D34,
@@ -2266,34 +2266,56 @@ static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static BOOL ov16_02241BC0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Perform a screen fade at the end of a battle to transition out of
+ * the battle UI.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02265ECC(param0, param1);
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_FadeOut(battleSys, battleCtx);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241BDC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump to a subroutine sequence, abandoning the current script.
+ * 
+ * Inputs:
+ * 1. The subroutine sequence to jump to.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int subseq = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
-    BattleScript_Jump(param1, 1, v0);
+    BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subseq);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241BFC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump to the battle effect sequence for the current move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-    v0 = param1->aiContext.moveTable[param1->moveCur].effect;
-    BattleScript_Jump(param1, 30, v0);
+    BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__BE_SEQ, CURRENT_MOVE_DATA.effect);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241C28 (BattleSystem * param0, BattleContext * param1)
