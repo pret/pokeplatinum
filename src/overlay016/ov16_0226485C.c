@@ -698,7 +698,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
             }
         }
     } else {
-        v2 = ov16_0223E2A4(battleSys, battler, 2);
+        v2 = BattleSystem_EnemyInSlot(battleSys, battler, 2);
         v7 = BattleSystem_Party(battleSys, v2);
         v6 = 0;
 

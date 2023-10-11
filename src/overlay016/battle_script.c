@@ -5802,8 +5802,8 @@ static BOOL ov16_02246688 (BattleSystem * param0, BattleContext * param1)
     BattleScript_Iter(param1, 1);
 
     v0 = BattleScript_Read(param1);
-    v6 = ov16_0223E2A4(param0, param1->attacker, 0);
-    v7 = ov16_0223E2A4(param0, param1->attacker, 2);
+    v6 = BattleSystem_EnemyInSlot(param0, param1->attacker, 0);
+    v7 = BattleSystem_EnemyInSlot(param0, param1->attacker, 2);
 
     param1->battleMons[v6].moveEffectsMask |= 0x40000000;
     param1->battleMons[v7].moveEffectsMask |= 0x40000000;

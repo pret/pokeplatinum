@@ -1901,17 +1901,17 @@ static void BattleController_TurnEnd(BattleSystem *battleSys, BattleContext *bat
 
 static void BattleController_FightCommand(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL overrideMoveChoice = FALSE;
+    BOOL randomizeTarget = FALSE;
     battleCtx->attacker = battleCtx->battlerActionOrder[battleCtx->turnOrderCounter];
 
     if (ATTACKER_TURN_FLAGS.struggling) {
         battleCtx->moveTemp = MOVE_STRUGGLE;
-        overrideMoveChoice = TRUE;
+        randomizeTarget = TRUE;
     } else if (ATTACKING_MON.moveEffectsData.encoredMove
             && ATTACKING_MON.moveEffectsData.encoredMove == ATTACKING_MON.moves[ATTACKING_MON.moveEffectsData.encoredMoveSlot]) {
         // Attacker is locked into one of its moves by Encore
         battleCtx->moveTemp = ATTACKING_MON.moveEffectsData.encoredMove;
-        overrideMoveChoice = TRUE;
+        randomizeTarget = TRUE;
     } else if (ATTACKING_MON.moveEffectsData.encoredMove
             && ATTACKING_MON.moveEffectsData.encoredMove != ATTACKING_MON.moves[ATTACKING_MON.moveEffectsData.encoredMoveSlot]) {
         // Attacker is Encored, but does not actually know the move in the Encored slot. This can
@@ -1922,7 +1922,7 @@ static void BattleController_FightCommand(BattleSystem *battleSys, BattleContext
         ATTACKING_MON.moveEffectsData.encoredMove = MOVE_NONE;
         ATTACKING_MON.moveEffectsData.encoredMoveSlot = 0;
         ATTACKING_MON.moveEffectsData.encoredTurns = 0;
-        overrideMoveChoice = TRUE;
+        randomizeTarget = TRUE;
     } else if (BattleSystem_CanPickCommand(battleCtx, battleCtx->attacker) == FALSE) {
         // Relock the attacker into its move. There should be no override here, as the attacker
         // should not have been able to choose any input.
@@ -1931,14 +1931,14 @@ static void BattleController_FightCommand(BattleSystem *battleSys, BattleContext
         // If the attacker somehow selected a move that it does not know, prefer the move that's
         // actually in the chosen slot.
         battleCtx->moveTemp = ATTACKING_MON.moves[battleCtx->moveSlot[battleCtx->attacker]];
-        overrideMoveChoice = TRUE;
+        randomizeTarget = TRUE;
     } else {
         battleCtx->moveTemp = ATTACKING_MON.moves[battleCtx->moveSlot[battleCtx->attacker]];
     }
 
     battleCtx->moveCur = battleCtx->moveTemp;
     battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
-    battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveTemp, overrideMoveChoice, 0);
+    battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveTemp, randomizeTarget, 0);
 
     BattleIO_ClearMessageBox(battleSys);
 }
@@ -2225,7 +2225,7 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
         ATTACKING_MOVE = rand2;
         battleCtx->moveTemp = ATTACKING_MON.moves[ATTACKING_MOVE];
         battleCtx->moveCur = battleCtx->moveTemp;
-        battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveTemp, 1, 0);
+        battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveTemp, TRUE, 0);
 
         if (battleCtx->defender == BATTLER_NONE) {
             ATTACKER_ACTION[BATTLE_ACTION_CHOOSE_TARGET] = BattleSystem_RandomOpponent(battleSys, battleCtx, battleCtx->attacker);

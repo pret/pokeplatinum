@@ -208,7 +208,26 @@ void BattleSystem_NoExpGain(BattleContext * param0, int param1);
 void BattleSystem_FlagExpGain(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_CheckPrimaryEffect(BattleSystem * param0, BattleContext * param1, int * param2);
 BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
-int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5);
+
+/**
+ * @brief Find the defender for the move.
+ * 
+ * The defender can be chosen at random in certain scenarios, but only while
+ * the randomize parameter is TRUE:
+ * 
+ * 1. The move's range is Me First
+ * 2. The move's range is Acupressure
+ * 3. The move is a standard single-target attack, e.g., Thunderbolt
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param attacker 
+ * @param move      The move being used
+ * @param randomize If TRUE, permit randomization of target-selection for certain moves
+ * @param inRange   An input range to prefer for the move over whatever range is set on the move data
+ * @return The chosen defender for the move
+ */
+int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 move, BOOL randomize, int inRange);
 void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
 void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
@@ -335,7 +354,21 @@ int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int 
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
 int BattleSystem_Divide(int param0, int param1);
 int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
-int BattleSystem_RandomOpponent(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Pick a random opponent for the given attacker.
+ * 
+ * In a single-battle, this will always return the lone opponent.
+ * 
+ * In a double-battle, if one of the two opponents has fainted, then the other
+ * opponent will always be chosen.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param attacker 
+ * @return A random opponent of the attacker's.
+ */
+int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL ov16_022577A4(BattleContext * param0, int param1, int param2);

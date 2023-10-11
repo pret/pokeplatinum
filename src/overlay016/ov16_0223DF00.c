@@ -124,7 +124,7 @@ int ov16_0223E22C(BattleSystem * param0);
 int ov16_0223E240(BattleSystem * param0);
 int BattleSystem_MapHeader(BattleSystem * param0);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
-int ov16_0223E2A4(BattleSystem * param0, int param1, int param2);
+int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
 BOOL ov16_0223E30C(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u32 ov16_0223EBEC(BattleSystem * param0);
 int ov16_0223EBF8(BattleSystem * param0);
@@ -543,26 +543,26 @@ int BattleSystem_Partner (BattleSystem *battleSys, int battler)
     return i;
 }
 
-int ov16_0223E2A4 (BattleSystem * param0, int param1, int param2)
+int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot)
 {
-    int v0;
-    int v1;
-    u32 v2;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v1 = BattleSystem_MaxBattlers(param0);
-    v2 = BattleSystem_BattleType(param0);
-
-    if ((v2 & 0x2) == 0) {
-        return param1 ^ 1;
+    // In double battles, return the singular opponent
+    if ((battleType & BATTLE_TYPE_DOUBLES) == FALSE) {
+        return attacker ^ 1;
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if ((v0 != param1) && ((BattleSystem_BattlerSlot(param0, v0) & 2) == param2) && (Battler_Side(param0, v0) != Battler_Side(param0, param1))) {
+    int battler;
+    for (battler = 0; battler < maxBattlers; battler++) {
+        if (battler != attacker
+                && (BattleSystem_BattlerSlot(battleSys, battler) & 2) == slot
+                && Battler_Side(battleSys, battler) != Battler_Side(battleSys, attacker)) {
             break;
         }
     }
 
-    return v0;
+    return battler;
 }
 
 BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, int param4)
