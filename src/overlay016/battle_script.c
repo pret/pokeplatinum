@@ -139,7 +139,7 @@ static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241C28(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241CD0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241D34(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241EB0(BattleSystem * param0, BattleContext * param1);
@@ -399,7 +399,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_FadeOut,
     BtlCmd_JumpToSub,
     BtlCmd_JumpToBattleEffect,
-    ov16_02241C28,
+    BtlCmd_JumpToMove,
     ov16_02241CD0,
     ov16_02241D34,
     ov16_02241EB0,
@@ -2318,32 +2318,51 @@ static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *ba
     return FALSE;
 }
 
-static BOOL ov16_02241C28 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump to the move sequence for the chosen move.
+ * 
+ * This is specifically for moves which call other moves (e.g., Assist, Me
+ * First, Metronome, Sleep Talk) by setting battleCtx->msgMoveTemp.
+ * 
+ * Inputs:
+ * 1. A flag indicating if the target is set on input. In practice, this is
+ * always FALSE in vanilla.
+ * 
+ * Side effects:
+ * 1. The system control flag to skip the attack message is turned off.
+ * 2. The system control flag signalling that the move's animation has played
+ * is turned off.
+ * 3. battleCtx->moveCur is reassigned to battleCtx->msgMoveTemp.
+ * 4. The defender is assigned for the move.
+ * 5. The battler's chosen target is reassigned to the assigned defender.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    BOOL targetIsSet = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    battleCtx->battleStatusMask &= ~SYSCTL_SKIP_ATTACK_MESSAGE;
+    battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION;
+    battleCtx->moveCur = battleCtx->msgMoveTemp;
 
-    v0 = BattleScript_Read(param1);
-
-    param1->battleStatusMask &= (0x1 ^ 0xffffffff);
-    param1->battleStatusMask &= (0x4000 ^ 0xffffffff);
-    param1->moveCur = param1->msgMoveTemp;
-
-    if (v0 == 0) {
-        param1->defender = BattleSystem_Defender(param0, param1, param1->attacker, param1->msgMoveTemp, 1, 0);
-        BattleSystem_RedirectTarget(param0, param1, param1->attacker, param1->msgMoveTemp);
-        param1->battlerActions[param1->attacker][1] = param1->defender;
+    if (targetIsSet == FALSE) {
+        battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->msgMoveTemp, TRUE, 0);
+        BattleSystem_RedirectTarget(battleSys, battleCtx, battleCtx->attacker, battleCtx->msgMoveTemp);
+        battleCtx->battlerActions[battleCtx->attacker][BATTLE_ACTION_CHOOSE_TARGET] = battleCtx->defender;
     }
 
-    if (param1->defender == 0xff) {
-        param1->commandNext = 38;
-        BattleScript_Jump(param1, 1, (0 + 281));
+    if (battleCtx->defender == BATTLER_NONE) {
+        battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+        BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
     } else {
-        BattleScript_Jump(param1, 0, param1->moveCur);
+        BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, battleCtx->moveCur);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241CD0 (BattleSystem * param0, BattleContext * param1)
