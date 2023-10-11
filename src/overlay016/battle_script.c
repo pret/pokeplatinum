@@ -140,7 +140,7 @@ static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241CD0(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_CheckCritical(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241D34(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241EB0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241EF0(BattleSystem * param0, BattleContext * param1);
@@ -400,7 +400,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_JumpToSub,
     BtlCmd_JumpToBattleEffect,
     BtlCmd_JumpToMove,
-    ov16_02241CD0,
+    BtlCmd_CheckCritical,
     ov16_02241D34,
     ov16_02241EB0,
     ov16_02241EF0,
@@ -2329,12 +2329,12 @@ static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *ba
  * always FALSE in vanilla.
  * 
  * Side effects:
- * 1. The system control flag to skip the attack message is turned off.
- * 2. The system control flag signalling that the move's animation has played
+ * - The system control flag to skip the attack message is turned off.
+ * - The system control flag signalling that the move's animation has played
  * is turned off.
- * 3. battleCtx->moveCur is reassigned to battleCtx->msgMoveTemp.
- * 4. The defender is assigned for the move.
- * 5. The battler's chosen target is reassigned to the assigned defender.
+ * - battleCtx->moveCur is reassigned to battleCtx->msgMoveTemp.
+ * - The defender is assigned for the move.
+ * - The battler's chosen target is reassigned to the assigned defender.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -2365,17 +2365,37 @@ static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static BOOL ov16_02241CD0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Check if a critical hit should occur.
+ * 
+ * If the battle is either the catching tutorial or the player's first battle,
+ * then this will always flag no critical hits.
+ * 
+ * Side effects:
+ * - battleCtx->criticalMul is set to the multiplier to be applied to the total
+ * move damage for a critical hit.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CheckCritical(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    if ((BattleSystem_BattleType(param0) & 0x400) || (BattleSystem_BattleStatus(param0) & 0x1)) {
-        param1->criticalMul = 1;
+    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_CATCH_TUTORIAL)
+            || (BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_FIRST_BATTLE)) {
+        battleCtx->criticalMul = 1;
     } else {
-        param1->criticalMul = BattleSystem_CalcCriticalMulti(param0, param1, param1->attacker, param1->defender, param1->criticalBoosts, BattleContext_Get(param0, param1, 0, param1->defender));
+        battleCtx->criticalMul = BattleSystem_CalcCriticalMulti(battleSys,
+            battleCtx,
+            battleCtx->attacker,
+            battleCtx->defender,
+            battleCtx->criticalBoosts,
+            BattleContext_Get(battleSys, battleCtx, BATTLECTX_SIDE_CONDITIONS_MASK, battleCtx->defender));
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241D34 (BattleSystem * param0, BattleContext * param1)
