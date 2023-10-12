@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020216E0_decl.h"
@@ -878,7 +878,7 @@ static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
     case 2:
     {
         int v2 = sub_0205EA78(v0->unk_0C);
-        u32 v3, v4 = Unk_021BF67C.unk_48, v5 = Unk_021BF67C.unk_44;
+        u32 v3, v4 = coresys.padInput, v5 = coresys.unk_44;
         int v6 = sub_02061308(v0->unk_0C, v4, v5);
 
         if ((v6 == -1) || (v6 == v2)) {

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
@@ -380,7 +380,7 @@ static int ov101_021D1C9C (UnkStruct_ov101_021D13C8 * param0)
 
 static int ov101_021D1CBC (UnkStruct_ov101_021D13C8 * param0)
 {
-    u32 v0 = Unk_021BF67C.unk_48;
+    u32 v0 = coresys.padInput;
 
     if ((param0->unk_7C[0] == 1) && (v0 & PAD_BUTTON_Y)) {
         param0->unk_7C[0] = 2;
@@ -817,7 +817,7 @@ static int ov101_021D22D0 (UnkStruct_ov101_021D13C8 * param0)
 
 static int ov101_021D22F0 (UnkStruct_ov101_021D13C8 * param0)
 {
-    u32 v0 = Unk_021BF67C.unk_48;
+    u32 v0 = coresys.padInput;
 
     if ((param0->unk_7C[0] == 1) && (v0 & PAD_BUTTON_Y)) {
         param0->unk_7C[0] = 2;
@@ -1184,7 +1184,7 @@ static int ov101_021D2828 (UnkStruct_ov101_021D13C8 * param0)
 
 static int ov101_021D2850 (UnkStruct_ov101_021D13C8 * param0)
 {
-    u32 v0 = Unk_021BF67C.unk_48;
+    u32 v0 = coresys.padInput;
 
     if ((param0->unk_7C[0] == 1) && (v0 & PAD_BUTTON_Y)) {
         param0->unk_7C[0] = 2;
@@ -3145,7 +3145,7 @@ static void ov101_021D4614 (UnkStruct_0201CD38 * param0, void * param1)
 
         v0 = 0x3;
 
-        if (Unk_021BF67C.unk_44 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) {
+        if (coresys.unk_44 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) {
             v0 = 0x1;
         }
 
@@ -4293,7 +4293,7 @@ UnkEnum_ov101_021D9688 ov101_021D55D4 (UnkStruct_ov101_021D13C8 * param0, UnkEnu
 
 static int ov101_021D55F8 (u32 param0)
 {
-    u32 v0 = Unk_021BF67C.unk_48 & param0;
+    u32 v0 = coresys.padInput & param0;
 
     if (v0 == param0) {
         return 2;

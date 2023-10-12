@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_berry_data_decl.h"
 
@@ -58,9 +58,9 @@ void ov83_0223F83C (UnkStruct_ov83_0223F820 * param0)
 {
     s32 v0;
 
-    if (Unk_021BF67C.unk_62) {
-        param0->unk_00 = Unk_021BF67C.unk_5C;
-        param0->unk_04 = Unk_021BF67C.unk_5E;
+    if (coresys.unk_62) {
+        param0->unk_00 = coresys.unk_5C;
+        param0->unk_04 = coresys.unk_5E;
 
         if (param0->unk_14 == 0) {
             param0->unk_08 = param0->unk_00;
@@ -71,7 +71,7 @@ void ov83_0223F83C (UnkStruct_ov83_0223F820 * param0)
     param0->unk_10 = ov83_0223F7F4(param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, 128, 96);
     param0->unk_08 = param0->unk_00;
     param0->unk_0C = param0->unk_04;
-    param0->unk_14 = Unk_021BF67C.unk_62;
+    param0->unk_14 = coresys.unk_62;
 }
 
 void ov83_0223F88C (UnkStruct_ov83_0223F88C * param0, UnkStruct_ov83_0223F820 * param1)

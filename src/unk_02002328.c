@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_defs/struct_02002328.h"
 #include "struct_defs/struct_02002D18.h"
@@ -29,7 +29,7 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
 
     switch (param0->unk_28) {
     case 0:
-        if (((Unk_021BF67C.unk_44 & (PAD_BUTTON_A | PAD_BUTTON_B)) && (v1->unk_00_4)) || ((Unk_021BF67C.unk_62) && (Unk_02101D44.unk_00_4))) {
+        if (((coresys.unk_44 & (PAD_BUTTON_A | PAD_BUTTON_B)) && (v1->unk_00_4)) || ((coresys.unk_62) && (Unk_02101D44.unk_00_4))) {
             param0->unk_2A = 0;
 
             if (param0->unk_29_0 != 0) {
@@ -41,7 +41,7 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
             (param0->unk_2A)--;
 
             if (Unk_02101D44.unk_00_0) {
-                if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((Unk_021BF67C.unk_60) && (Unk_02101D44.unk_00_4))) {
+                if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((coresys.touchInput) && (Unk_02101D44.unk_00_4))) {
                     v1->unk_00_4 = 1;
                     param0->unk_2A = 0;
                 }
@@ -323,7 +323,7 @@ void sub_02002968 (UnkStruct_0201D834 * param0)
 
 static BOOL sub_020029FC (UnkStruct_0201D834 * param0)
 {
-    if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((Unk_021BF67C.unk_60) && (Unk_02101D44.unk_00_4))) {
+    if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((coresys.touchInput) && (Unk_02101D44.unk_00_4))) {
         sub_02005748(1500);
         Unk_02101D44.unk_00_7 = 1;
         return 1;

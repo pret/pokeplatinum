@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -73,7 +73,7 @@ void ov83_0223C958 (UnkStruct_ov83_0223B784 * param0)
 
     NARC_dtor(v0);
 
-    Unk_021BF67C.unk_65 = 1;
+    coresys.unk_65 = 1;
     GXLayers_SwapDisplay();
 }
 
@@ -98,7 +98,7 @@ void ov83_0223CAA4 (UnkStruct_ov83_0223B784 * param0)
     ov83_0223CF20(param0);
 
     ov83_0223D068(param0);
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
     GXLayers_SwapDisplay();
 }
 

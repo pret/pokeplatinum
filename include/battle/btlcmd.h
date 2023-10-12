@@ -99,4 +99,14 @@ enum BattleScriptVars {
 #define BTLSCR_SWITCHED_MON_AFTER   22
 #define BTLSCR_MSG_TEMP             (0xFF)
 
+enum IfOp {
+    IFOP_EQU = 0,
+    IFOP_NEQ,
+    IFOP_LTE,
+    IFOP_GT,
+    IFOP_FLAG_SET,
+    IFOP_FLAG_NOT,
+    IFOP_AND,
+};
+
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H

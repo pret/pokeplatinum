@@ -3,7 +3,7 @@
 #include <dwc.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -368,7 +368,7 @@ int ov98_022471C8 (UnkStruct_020067E8 * param0, int * param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     sub_02002AC8(1);
@@ -1213,7 +1213,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     str r1, [r0, #0]
     b _02248670
  _022484B8:
-    ldr r1, = Unk_021BF67C
+    ldr r1, = coresys
     add r0, #0xac
     ldr r2, [r1, #0x4c]
     ldr r4, [r0, #0]
@@ -1300,7 +1300,7 @@ asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
     bl ov98_022482CC
     b _02248670
  _02248566:
-    ldr r1, = Unk_021BF67C
+    ldr r1, = coresys
     mov r2, #0x10
     ldr r1, [r1, #0x48]
     tst r2, r1
@@ -2277,7 +2277,7 @@ static int ov98_02249414 (UnkStruct_ov98_02247704 * param0)
 
 static int ov98_02249438 (UnkStruct_ov98_02247704 * param0)
 {
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A || Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if (coresys.padInput & PAD_BUTTON_A || coresys.padInput & PAD_BUTTON_B) {
         sub_0200DC9C(&param0->unk_68, 0);
         param0->unk_08 = 0;
     }

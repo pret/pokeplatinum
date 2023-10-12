@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -1047,9 +1047,9 @@ static void ov12_0222048C (UnkStruct_ov12_0221FCDC * param0)
 {
     param0->unk_89 = 1;
 
-    if (Unk_021BF67C.unk_44 & PAD_BUTTON_L) {
-        if (Unk_021BF67C.unk_44 & PAD_BUTTON_R) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_X) {
+    if (coresys.unk_44 & PAD_BUTTON_L) {
+        if (coresys.unk_44 & PAD_BUTTON_R) {
+            if (coresys.padInput & PAD_BUTTON_X) {
                 param0->unk_18 += 1;
                 param0->unk_89 = 0;
             }

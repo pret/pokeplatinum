@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -72,14 +72,14 @@ void ov22_02255094 (void)
     ov22_02255654();
     ov22_022556DC();
 
-    Unk_021BF67C.unk_65 = 1;
+    coresys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
 }
 
 void ov22_022550B4 (void)
 {
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     ov22_02255738();

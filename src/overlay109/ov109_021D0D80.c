@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -1369,7 +1369,7 @@ static int ov109_021D1A14 (UnkStruct_ov109_021D0F70 * param0)
     ov109_021D2634(param0, 11);
     sub_020364F0(202);
 
-    Unk_021BF67C.unk_68 = 1;
+    coresys.unk_68 = 1;
     param0->unk_00 = 44;
 
     return 0;
@@ -1393,7 +1393,7 @@ static int ov109_021D1AA8 (UnkStruct_ov109_021D0F70 * param0)
         param0->unk_CC->unk_14.unk_08, 2, &param0->unk_04);
 
     if (v0) {
-        Unk_021BF67C.unk_68 = 0;
+        coresys.unk_68 = 0;
         sub_0200EBA0(param0->unk_DC8);
         param0->unk_00 = 48;
     }

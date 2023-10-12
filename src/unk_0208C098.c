@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -100,7 +100,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
 
     v0 = *param0;
 
-    if (Unk_021BF67C.unk_4C & PAD_KEY_UP) {
+    if (coresys.unk_4C & PAD_KEY_UP) {
         *param0 += 1;
 
         if (*param0 > param1) {
@@ -114,7 +114,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
         return 1;
     }
 
-    if (Unk_021BF67C.unk_4C & PAD_KEY_DOWN) {
+    if (coresys.unk_4C & PAD_KEY_DOWN) {
         *param0 -= 1;
 
         if (*param0 <= 0) {
@@ -128,7 +128,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
         return 2;
     }
 
-    if (Unk_021BF67C.unk_4C & PAD_KEY_LEFT) {
+    if (coresys.unk_4C & PAD_KEY_LEFT) {
         *param0 -= 10;
 
         if (*param0 <= 0) {
@@ -142,7 +142,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
         return 2;
     }
 
-    if (Unk_021BF67C.unk_4C & PAD_KEY_RIGHT) {
+    if (coresys.unk_4C & PAD_KEY_RIGHT) {
         *param0 += 10;
 
         if (*param0 > param1) {

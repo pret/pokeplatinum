@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "overlay006/struct_ov6_02242634.h"
 
@@ -13,7 +13,7 @@ void ov6_022477B8 (const UnkStruct_ov6_02242634 * param0, const BOOL param1, int
         return;
     }
 
-    switch (Unk_021BF67C.unk_66) {
+    switch (coresys.unk_66) {
     case 1:
         (*param2) = param0->unk_88[0];
         (*param3) = param0->unk_88[1];

@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -3284,7 +3284,7 @@ static void ov62_02234440 (UnkStruct_0208C06C * param0)
         param0->unk_41D8.unk_0C = NULL;
     }
 
-    if (Unk_021BF67C.unk_65 == 0) {
+    if (coresys.unk_65 == 0) {
         param0->unk_41D8.unk_08 = param0->unk_6F4;
     } else {
         param0->unk_41D8.unk_08 = param0->unk_6F0;
@@ -3688,7 +3688,7 @@ void ov62_022348FC (UnkStruct_0208C06C * param0)
 
         break;
     case 1:
-        if (sub_02022798()) {
+        if (TouchScreen_Tapped()) {
             ov62_02231B8C(param0);
             param0->unk_14.unk_4F0.unk_10++;
         }

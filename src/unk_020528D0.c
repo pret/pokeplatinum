@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -161,7 +161,7 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
         }
         break;
     case 2:
-        if ((Unk_021BF67C.unk_48 & PAD_BUTTON_A) || (Unk_021BF67C.unk_48 & PAD_BUTTON_B)) {
+        if ((coresys.padInput & PAD_BUTTON_A) || (coresys.padInput & PAD_BUTTON_B)) {
             sub_0200F174(0, 0, 0, 0x0, 8, 1, 32);
             v0->unk_00++;
         }

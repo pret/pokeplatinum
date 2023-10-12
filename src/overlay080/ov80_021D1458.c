@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -247,7 +247,7 @@ int ov80_021D163C (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
 
-    if ((v0->unk_14 <= 1) && Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if ((v0->unk_14 <= 1) && coresys.padInput & PAD_BUTTON_B) {
         sub_02005748(1501);
         return 1;
     }
@@ -256,7 +256,7 @@ int ov80_021D163C (UnkStruct_ov80_021D2A08 * param0)
         return 0;
     }
 
-    ov80_021D18F8(param0, Unk_021BF67C.unk_44);
+    ov80_021D18F8(param0, coresys.unk_44);
 
     return 0;
 }
@@ -266,14 +266,14 @@ int ov80_021D1678 (UnkStruct_ov80_021D2A08 * param0)
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
 
     if (v0->unk_14 <= 1) {
-        if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+        if (coresys.padInput & PAD_BUTTON_A) {
             if (ov80_021D29BC(param0)) {
                 sub_02005748(1501);
                 return 1;
             }
 
             return 0;
-        } else if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+        } else if (coresys.padInput & PAD_BUTTON_B) {
             sub_02005748(1501);
             return 1;
         }
@@ -283,7 +283,7 @@ int ov80_021D1678 (UnkStruct_ov80_021D2A08 * param0)
         return 0;
     }
 
-    ov80_021D18F8(param0, Unk_021BF67C.unk_44);
+    ov80_021D18F8(param0, coresys.unk_44);
     return 0;
 }
 
@@ -291,12 +291,12 @@ int ov80_021D16D0 (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
 
-    if (Unk_021BF67C.unk_48 & (PAD_BUTTON_B)) {
+    if (coresys.padInput & (PAD_BUTTON_B)) {
         sub_02005748(1501);
         return 1;
     }
 
-    ov80_021D18F8(param0, Unk_021BF67C.unk_44);
+    ov80_021D18F8(param0, coresys.unk_44);
     return 0;
 }
 
@@ -396,7 +396,7 @@ static int ov80_021D1848 (UnkStruct_ov80_021D2A08 * param0, int param1)
 
     v1 = 0x12;
 
-    if (sub_0201C784(param0->unk_28, 5, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E, &v1) == 0) {
+    if (sub_0201C784(param0->unk_28, 5, coresys.unk_5C, coresys.unk_5E, &v1) == 0) {
         return v0;
     }
 

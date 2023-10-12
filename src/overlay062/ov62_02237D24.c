@@ -890,7 +890,7 @@ static BOOL ov62_02238B70 (UnkStruct_0208C06C * param0)
         }
         break;
     default:
-        if (((++param0->unk_0C) >= (30 * 2)) || (sub_02022798() == 1)) {
+        if (((++param0->unk_0C) >= (30 * 2)) || (TouchScreen_Tapped() == 1)) {
             param0->unk_0C = 0;
             ov62_02231B8C(param0);
             ov62_0222FB60(param0, 3);

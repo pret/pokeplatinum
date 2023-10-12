@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -581,7 +581,7 @@ static void ov23_0224F914 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 13:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (coresys.padInput & PAD_BUTTON_A) {
                 ov23_02254044(ov23_0224219C());
                 ov23_02250B34(param0, v0, 0);
                 ov23_02243204();
@@ -591,7 +591,7 @@ static void ov23_0224F914 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 14:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (coresys.padInput & PAD_BUTTON_A) {
                 UnkFuncPtr_ov23_0224F914 v2 = (UnkFuncPtr_ov23_0224F914)v0->unk_00;
 
                 v2(v0);
@@ -1533,7 +1533,7 @@ static void ov23_02250B9C (UnkStruct_0201CD38 * param0, void * param1)
         return;
     case 4:
         if (ov23_02254238(ov23_022421AC()) == 0) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (coresys.padInput & PAD_BUTTON_A) {
                 v0->unk_2AA = 2;
             }
         }

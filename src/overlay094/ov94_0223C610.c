@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
@@ -431,11 +431,11 @@ static int ov94_0223CBEC (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_0223CC28 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if (coresys.padInput & PAD_BUTTON_B) {
         ov94_0223CFD8(param0, 7, ov94_0223C4D4(param0), 0, 0xf0f);
         ov94_0223C3F4(param0, 10, 12);
         sub_02021CC8(param0->unk_E20, 0);
-    } else if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    } else if (coresys.padInput & PAD_BUTTON_A) {
         switch (param0->unk_10C) {
         case 0:
             if (param0->unk_36 == 0) {
@@ -470,13 +470,13 @@ static int ov94_0223CC28 (UnkStruct_ov94_0223FD4C * param0)
             sub_02005748(1500);
             break;
         }
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+    } else if (coresys.padInput & PAD_KEY_UP) {
         if (param0->unk_10C != 0) {
             param0->unk_10C--;
             sub_02005748(1500);
             ov94_0223C3FC(param0->unk_E20, Unk_ov94_02245A48[param0->unk_10C][0], Unk_ov94_02245A48[param0->unk_10C][1]);
         }
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+    } else if (coresys.padInput & PAD_KEY_DOWN) {
         if (param0->unk_10C < 2) {
             param0->unk_10C++;
             sub_02005748(1500);

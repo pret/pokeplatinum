@@ -281,7 +281,7 @@ static BOOL ov62_02248114 (UnkStruct_0208C06C * param0)
         }
         break;
     default:
-        if (!sub_02022798()) {
+        if (!TouchScreen_Tapped()) {
             break;
         }
 

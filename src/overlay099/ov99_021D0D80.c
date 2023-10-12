@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 #include "enums.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
@@ -163,7 +163,7 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_W0);
 
-    Unk_021BF67C.unk_65 = 1;
+    coresys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -194,7 +194,7 @@ int ov99_021D1028 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_1110 = ov99_021D3F6C(v0->unk_110C, 1);
     }
 
-    if (v0->unk_00->unk_04 && (Unk_021BF67C.unk_48 & PAD_BUTTON_START)) {
+    if (v0->unk_00->unk_04 && (coresys.padInput & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, 75);
             v0->unk_1100 = 1;

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
@@ -238,7 +238,7 @@ static void sub_0205311C (UnkStruct_0203CDB0 * param0, const UnkStruct_02049FA8 
 void sub_020531A0 (UnkStruct_0203CDB0 * param0)
 {
     GF_ASSERT(param0->unk_70 < 5);
-    Unk_021BF67C.unk_65 = param0->unk_74->unk_00_12;
+    coresys.unk_65 = param0->unk_74->unk_00_12;
 }
 
 void sub_020531C0 (UnkStruct_0203CDB0 * param0, BOOL param1)

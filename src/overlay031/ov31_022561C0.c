@@ -262,7 +262,7 @@ static BOOL ov31_0225646C (UnkStruct_ov31_02256228 * param0)
                 v1 = (v1 - 16) / 8;
 
                 if ((v0 < 24) && (v1 < 20)) {
-                    if (((param0->unk_04 != v0) || (param0->unk_08 != v1)) || (sub_02022798() == 1)) {
+                    if (((param0->unk_04 != v0) || (param0->unk_08 != v1)) || (TouchScreen_Tapped() == 1)) {
                         param0->unk_0C.unk_00[v1][v0]++;
 
                         if (param0->unk_0C.unk_00[v1][v0] > 4) {

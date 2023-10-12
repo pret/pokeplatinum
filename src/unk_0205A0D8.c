@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -288,7 +288,7 @@ static BOOL sub_0205A324 (UnkStruct_020508D4 * param0)
             v0->unk_34 = 7;
             sub_02062C30(v0->unk_24->unk_38);
             v0->unk_08(1, v0->unk_50);
-        } else if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+        } else if (coresys.padInput & PAD_BUTTON_B) {
             v0->unk_34 = 4;
             sub_020364F0(92);
             v0->unk_43 = 5;
@@ -936,17 +936,17 @@ static void sub_0205AF18 (UnkStruct_0205A0D8 * param0, int param1)
 static int sub_0205AFE4 (UnkStruct_0205A0D8 * param0)
 {
     do {
-        if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+        if (coresys.padInput & PAD_KEY_UP) {
             param0->unk_81 = ((param0->unk_81 == 0) ? (param0->unk_80 - 1) : (param0->unk_81 - 1));
             break;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+        if (coresys.padInput & PAD_KEY_DOWN) {
             param0->unk_81 = (param0->unk_81 == (param0->unk_80 - 1)) ?  0 : (param0->unk_81 + 1);
             break;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+        if (coresys.padInput & PAD_BUTTON_A) {
             sub_02005748(1500);
 
             if (param0->unk_81 < (param0->unk_80 - 1)) {
@@ -956,7 +956,7 @@ static int sub_0205AFE4 (UnkStruct_0205A0D8 * param0)
             }
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+        if (coresys.padInput & PAD_BUTTON_B) {
             sub_02005748(1500);
             return 2;
         }
@@ -1036,7 +1036,7 @@ static BOOL sub_0205B140 (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (sub_0205DA04(v1->unk_20)) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (coresys.padInput & PAD_BUTTON_A) {
                 MessageLoader_Free(v1->unk_1C);
                 sub_0200B3F0(v1->unk_18);
                 Strbuf_Free(v1->unk_00);

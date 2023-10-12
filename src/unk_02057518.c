@@ -3,7 +3,7 @@
 #include <nitro/os.h>
 #include <nnsys/g3d/glbstate.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "trainer_info.h"
@@ -498,7 +498,7 @@ static void sub_02057E68 ()
 {
     u8 v0 = 2;
 
-    if (PAD_BUTTON_B & Unk_021BF67C.unk_44) {
+    if (PAD_BUTTON_B & coresys.unk_44) {
         v0 = 1;
     }
 

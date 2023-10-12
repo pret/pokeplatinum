@@ -38,7 +38,7 @@ static int ov62_022352DC(void);
 
 static BOOL ov62_02235278 (UnkStruct_0208C06C * param0)
 {
-    if (sub_02022798() && (param0->unk_89C == 0)) {
+    if (TouchScreen_Tapped() && (param0->unk_89C == 0)) {
         ov62_02231A1C(param0);
     }
 

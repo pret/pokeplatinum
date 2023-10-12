@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -1384,7 +1384,7 @@ static void ov21_021E3C34 (UnkStruct_ov21_021E342C * param0)
 
     ov21_021E3C64(param0);
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if (coresys.padInput & PAD_BUTTON_B) {
         ov21_021E2E00(v0);
         param0->unk_2C = 1;
         sub_02005748(1501);
@@ -1429,15 +1429,15 @@ static void ov21_021E3D48 (UnkStruct_ov21_021E37B4 * param0, UnkStruct_ov21_021E
         return;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_KEY_RIGHT) {
+    if (coresys.padInput & PAD_KEY_RIGHT) {
         ov21_021D4F20(param0->unk_14, 0, 1);
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_KEY_LEFT) {
+    if (coresys.padInput & PAD_KEY_LEFT) {
         ov21_021D4F20(param0->unk_14, 0, -1);
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    if (coresys.padInput & PAD_BUTTON_A) {
         switch (ov21_021D4F7C(param0->unk_14)) {
         case 0:
             if (v0->unk_08 != 0) {
@@ -1542,11 +1542,11 @@ static void ov21_021E3EEC (UnkStruct_ov21_021E37B4 * param0, UnkStruct_ov21_021E
     }
 
     if ((param1->unk_30 == 0)) {
-        if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+        if (coresys.padInput & PAD_KEY_DOWN) {
             param1->unk_30 = 1;
         }
     } else {
-        if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+        if (coresys.padInput & PAD_KEY_UP) {
             param1->unk_30 = 0;
         }
     }

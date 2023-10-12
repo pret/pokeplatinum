@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
@@ -609,7 +609,7 @@ static BOOL ov108_02241F28 (UnkStruct_ov108_02241DB0 * param0)
         param0->unk_08 = 6;
         break;
     case 6:
-        ov108_02242964(param0, Unk_021BF67C.unk_48);
+        ov108_02242964(param0, coresys.padInput);
 
         if (sub_0203608C() == 0) {
             if (param0->unk_18 > 0) {

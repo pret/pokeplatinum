@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
@@ -335,7 +335,7 @@ void ov100_021D4C94 (UnkStruct_ov100_021D46C8 * param0, int param1)
 
 void ov100_021D4DC8 (int param0)
 {
-    Unk_021BF67C.unk_65 = param0;
+    coresys.unk_65 = param0;
     GXLayers_SwapDisplay();
 }
 

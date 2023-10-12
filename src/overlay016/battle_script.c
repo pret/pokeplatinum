@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "constants/abilities.h"
 #include "constants/items.h"
@@ -132,13 +132,13 @@ static BOOL BtlCmd_UpdateHPValue(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_UpdateHPGauge(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_FaintBattler(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241984(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241A20(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241A58(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241B08(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241BC0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241BDC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241BFC(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241C28(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241CD0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241D34(BattleSystem * param0, BattleContext * param1);
@@ -392,13 +392,13 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_UpdateHPGauge,
     BtlCmd_FaintBattler,
     BtlCmd_PlayFaintingSequence,
-    ov16_02241984,
-    ov16_02241A20,
-    ov16_02241A58,
-    ov16_02241B08,
-    ov16_02241BC0,
-    ov16_02241BDC,
-    ov16_02241BFC,
+    BtlCmd_WaitFrames,
+    BtlCmd_PlaySound,
+    BtlCmd_If,
+    BtlCmd_IfMonData,
+    BtlCmd_FadeOut,
+    BtlCmd_JumpToSub,
+    BtlCmd_JumpToBattleEffect,
     ov16_02241C28,
     ov16_02241CD0,
     ov16_02241D34,
@@ -2040,216 +2040,282 @@ static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *
     return FALSE;
 }
 
-static BOOL ov16_02241984 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Wait a specified number of frames.
+ * 
+ * Non-Link battles can skip the wait with a button press.
+ * 
+ * Inputs:
+ * 1. The number of frames to wait at this instruction
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int frames = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
-
-    if ((BattleSystem_BattleType(param0) & 0x4) == 0) {
-        if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (sub_02022798())) {
-            param1->waitCounter = v0;
+    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
+        if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
+            battleCtx->waitCounter = frames;
         }
     }
 
-    if ((param0->battleType & 0x4) && ((param0->battleStatusMask & 0x10) == 0)) {
-        v1 = 2;
+    int inc;
+    if ((battleSys->battleType & BATTLE_TYPE_LINK) && (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) {
+        inc = 2;
     } else {
-        v1 = 1;
+        inc = 1;
     }
 
-    if (v0 > param1->waitCounter) {
-        BattleScript_Iter(param1, -2);
-        param1->waitCounter += v1;
+    // Go back through this command until the specified number of frames have elapsed
+    if (frames > battleCtx->waitCounter) {
+        BattleScript_Iter(battleCtx, -2); // jump back to the instruction
+        battleCtx->waitCounter += inc;
     } else {
-        param1->waitCounter = 0;
+        battleCtx->waitCounter = 0;
     }
 
-    param1->battleProgressFlag = 1;
-
-    return 0;
+    battleCtx->battleProgressFlag = TRUE;
+    return FALSE;
 }
 
-static BOOL ov16_02241A20 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a sound originating from a particular battler.
+ * 
+ * Inputs:
+ * 1. The battler from which the sound originates. This is used for determining
+ * from which of the DS's stereo speakers to pan the sound. Enemies will have
+ * their sounds pan from the right, while allies will have their sounds pan from
+ * the left.
+ * 2. The SDAT sequence to play.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int battler = BattleScript_Read(battleCtx);
+    int sdatSeq = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    BattleIO_PlaySound(battleSys, battleCtx, sdatSeq, BattleScript_Battler(battleSys, battleCtx, battler));
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02265EAC(param0, param1, v1, v2);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241A58 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Compare a given data-value from a variable to a target static value.
+ * 
+ * Inputs:
+ * 1. The operation mode. See enum IfOp for possible values.
+ * 2. The variable whose data should be retrieved for the comparison.
+ * 3. The static value to compare against.
+ * 4. The jump-ahead value if the comparison yields TRUE.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int * v4;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int srcVar = BattleScript_Read(battleCtx);
+    int compareTo = BattleScript_Read(battleCtx);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *data = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_VarAddress(param0, param1, v1);
+    switch (op) {
+    case IFOP_EQU:
+        if (*data != compareTo) {
+            jump = 0;
+        }
+        break;
 
-    switch (v0) {
-    case 0:
-        if (v4[0] != v2) {
-            v3 = 0;
+    case IFOP_NEQ:
+        if (*data == compareTo) {
+            jump = 0;
         }
         break;
-    case 1:
-        if (v4[0] == v2) {
-            v3 = 0;
-        }
-        break;
-    case 2:
-        if (v4[0] <= v2) {
-            v3 = 0;
-        }
-        break;
-    case 3:
-        if (v4[0] > v2) {
-            v3 = 0;
-        }
-        break;
-    case 4:
-        if ((v4[0] & v2) == 0) {
-            v3 = 0;
-        }
 
-        break;
-    case 5:
-        if (v4[0] & v2) {
-            v3 = 0;
+    case IFOP_LTE:
+        if (*data <= compareTo) {
+            jump = 0;
         }
         break;
-    case 6:
-        if ((v4[0] & v2) != v2) {
-            v3 = 0;
+
+    case IFOP_GT:
+        if (*data > compareTo) {
+            jump = 0;
         }
         break;
+
+    case IFOP_FLAG_SET:
+        if ((*data & compareTo) == FALSE) {
+            jump = 0;
+        }
+        break;
+
+    case IFOP_FLAG_NOT:
+        if (*data & compareTo) {
+            jump = 0;
+        }
+        break;
+
+    case IFOP_AND:
+        if ((*data & compareTo) != compareTo) {
+            jump = 0;
+        }
+        break;
+
     default:
-        GF_ASSERT(1);
+        GF_ASSERT(TRUE);
         break;
     }
 
-    if (v3) {
-        BattleScript_Iter(param1, v3);
+    if (jump) {
+        BattleScript_Iter(battleCtx, jump);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241B08 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Compare a given data-value from a battler to a target static value.
+ * 
+ * Inputs:
+ * 1. The operation mode. See enum IfOp for possible values.
+ * 2. The battler whose data should be retrieved for the comparison.
+ * 3. The parameter to retrieve for the comparison.
+ * 4. The static value to compare against.
+ * 5. The jump-ahead value if the comparison yields TRUE.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int inBattler = BattleScript_Read(battleCtx);
+    int srcParam = BattleScript_Read(battleCtx);
+    int compareTo = BattleScript_Read(battleCtx);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int data = BattleMon_Get(battleCtx, battler, srcParam, NULL);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_Read(param1);
-    v6 = BattleScript_Battler(param0, param1, v1);
-    v5 = BattleMon_Get(param1, v6, v2, NULL);
+    switch (op) {
+    case IFOP_EQU:
+        if (data != compareTo) {
+            jump = 0;
+        }
+        break;
 
-    switch (v0) {
-    case 0:
-        if (v5 != v3) {
-            v4 = 0;
+    case IFOP_NEQ:
+        if (data == compareTo) {
+            jump = 0;
         }
         break;
-    case 1:
-        if (v5 == v3) {
-            v4 = 0;
+
+    case IFOP_LTE:
+        if (data <= compareTo) {
+            jump = 0;
         }
         break;
-    case 2:
-        if (v5 <= v3) {
-            v4 = 0;
+
+    case IFOP_GT:
+        if (data > compareTo) {
+            jump = 0;
         }
         break;
-    case 3:
-        if (v5 > v3) {
-            v4 = 0;
+
+    case IFOP_FLAG_SET:
+        if ((data & compareTo) == FALSE) {
+            jump = 0;
         }
         break;
-    case 4:
-        if ((v5 & v3) == 0) {
-            v4 = 0;
+
+    case IFOP_FLAG_NOT:
+        if (data & compareTo) {
+            jump = 0;
         }
         break;
-    case 5:
-        if (v5 & v3) {
-            v4 = 0;
+
+    case IFOP_AND:
+        if ((data & compareTo) != compareTo) {
+            jump = 0;
         }
         break;
-    case 6:
-        if ((v5 & v3) != v3) {
-            v4 = 0;
-        }
-        break;
+
     default:
-        GF_ASSERT(1);
+        GF_ASSERT(TRUE);
         break;
     }
 
-    if (v4) {
-        BattleScript_Iter(param1, v4);
+    if (jump) {
+        BattleScript_Iter(battleCtx, jump);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241BC0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Perform a screen fade at the end of a battle to transition out of
+ * the battle UI.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_FadeOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02265ECC(param0, param1);
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_FadeOut(battleSys, battleCtx);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241BDC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump to a subroutine sequence, abandoning the current script.
+ * 
+ * Inputs:
+ * 1. The subroutine sequence to jump to.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int subseq = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
-    BattleScript_Jump(param1, 1, v0);
+    BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subseq);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241BFC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump to the battle effect sequence for the current move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-    v0 = param1->aiContext.moveTable[param1->moveCur].effect;
-    BattleScript_Jump(param1, 30, v0);
+    BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__BE_SEQ, CURRENT_MOVE_DATA.effect);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241C28 (BattleSystem * param0, BattleContext * param1)
@@ -8344,7 +8410,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 11:
     case 13:
-        if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (sub_02022798())) {
+        if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (TouchScreen_Tapped())) {
             sub_02005748(1500);
             v2->unk_28++;
         }
@@ -8880,9 +8946,9 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 13:
         if (ov21_021E8DEC(v2->unk_50[0])) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (coresys.padInput & PAD_BUTTON_A) {
                 v2->unk_28 = 14;
-            } else if (sub_02022798()) {
+            } else if (TouchScreen_Tapped()) {
                 sub_02005748(1500);
                 v2->unk_28 = 14;
             }

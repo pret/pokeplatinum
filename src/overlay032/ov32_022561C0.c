@@ -157,7 +157,7 @@ static BOOL ov32_02256308 (UnkStruct_ov32_0225621C * param0)
         param0->unk_04.unk_64 = ov25_0225446C(&(param0->unk_04.unk_68), &(param0->unk_04.unk_6C));
 
         if (param0->unk_04.unk_64) {
-            param0->unk_04.unk_66 = sub_02022798();
+            param0->unk_04.unk_66 = TouchScreen_Tapped();
 
             if (param0->unk_04.unk_66) {
                 u32 v0 = ov32_02256B78(param0->unk_04.unk_68, param0->unk_04.unk_6C, param0->unk_04.unk_00);

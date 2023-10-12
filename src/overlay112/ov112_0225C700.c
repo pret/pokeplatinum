@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -393,7 +393,7 @@ int ov112_0225C7C4 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if ((Unk_021BF67C.unk_48 & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
+        if ((coresys.padInput & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
             if ((ov66_0222E12C(v1->unk_08) == 1)) {
                 ov66_0222E2A4(v1->unk_08);
             }
@@ -513,7 +513,7 @@ static void ov112_0225CA34 (UnkStruct_ov112_0225C9BC * param0, u32 param1)
     sub_02018368(&Unk_ov112_0225D834);
 
     param0->unk_00 = sub_02018340(param1);
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
 
@@ -553,7 +553,7 @@ static void ov112_0225CB60 (UnkStruct_ov112_0225C9BC * param0)
     }
 
     Heap_FreeToHeap(param0->unk_00);
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
     GXLayers_SwapDisplay();
 }
 

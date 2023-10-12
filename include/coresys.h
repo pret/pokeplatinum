@@ -1,11 +1,11 @@
-#ifndef POKEPLATINUM_STRUCT_021BF67C_H
-#define POKEPLATINUM_STRUCT_021BF67C_H
+#ifndef POKEPLATINUM_CORESYS_H
+#define POKEPLATINUM_CORESYS_H
 
 #include "functypes/funcptr_02017798.h"
 #include "struct_decls/struct_0201CD88_decl.h"
 #include "overlay023/funcptr_ov23_022537D4.h"
 
-typedef struct {
+typedef struct CoreSys {
     UnkFuncPtr_02017798 unk_00;
     void * unk_04;
     UnkFuncPtr_02017798 unk_08;
@@ -24,14 +24,14 @@ typedef struct {
     int unk_3C;
     int unk_40;
     int unk_44;
-    int unk_48;
+    int padInput;
     int unk_4C;
     int unk_50;
     int unk_54;
     int unk_58;
     u16 unk_5C;
     u16 unk_5E;
-    u16 unk_60;
+    u16 touchInput;
     u16 unk_62;
     u8 unk_64;
     u8 unk_65;
@@ -41,6 +41,8 @@ typedef struct {
     u8 padding_69[3];
     BOOL unk_6C;
     u32 * unk_70;
-} UnkStruct_021BF67C;
+} CoreSys;
 
-#endif // POKEPLATINUM_STRUCT_021BF67C_H
+extern CoreSys coresys;
+
+#endif // POKEPLATINUM_CORESYS_H

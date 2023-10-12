@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -836,7 +836,7 @@ void ov116_0226139C (UnkStruct_ov116_0226139C * param0)
     sub_0200D0B0(param0->unk_48.unk_08, param0->unk_48.unk_0C);
     sub_0200C8D4(param0->unk_48.unk_08);
 
-    Unk_021BF67C.unk_65 = 0;
+    coresys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     G3X_AlphaBlend(0);
@@ -1042,7 +1042,7 @@ static void ov116_02261494 (UnkStruct_02018340 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    Unk_021BF67C.unk_65 = 1;
+    coresys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     G2_SetBlendAlpha(0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 7, 10);

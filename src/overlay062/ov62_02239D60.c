@@ -1708,7 +1708,7 @@ static BOOL ov62_0223B980 (UnkStruct_0208C06C * param0)
         }
         break;
     case 6:
-        if (((++param0->unk_0C) >= (30 * 2)) || (sub_02022798() == 1)) {
+        if (((++param0->unk_0C) >= (30 * 2)) || (TouchScreen_Tapped() == 1)) {
             param0->unk_0C = 0;
             ov62_02231B8C(param0);
             v0->unk_2F64 = 0;

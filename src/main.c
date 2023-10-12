@@ -2,7 +2,7 @@
 #include <dwc.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 #include "assert.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
@@ -108,8 +108,8 @@ void NitroMain (void)
         }
     }
 
-    Unk_021BF67C.unk_6C = 1;
-    Unk_021BF67C.unk_30 = 0;
+    coresys.unk_6C = 1;
+    coresys.unk_30 = 0;
 
     sub_02001028();
     sub_0200AB84();
@@ -122,8 +122,8 @@ void NitroMain (void)
         sub_0200106C();
         sub_02017B9C();
 
-        if ((Unk_021BF67C.unk_38 & (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) == (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) {
-            if (Unk_021BF67C.unk_68 == 0) {
+        if ((coresys.unk_38 & (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) == (PAD_BUTTON_START | PAD_BUTTON_SELECT | PAD_BUTTON_L | PAD_BUTTON_R)) {
+            if (coresys.unk_68 == 0) {
                 sub_02000F60(0);
             }
         }
@@ -131,34 +131,34 @@ void NitroMain (void)
         if (sub_020349EC()) {
             sub_02000F30();
             sub_02000E54();
-            sub_0201CDD4(Unk_021BF67C.unk_18);
-            sub_0201CDD4(Unk_021BF67C.unk_24);
+            sub_0201CDD4(coresys.unk_18);
+            sub_0201CDD4(coresys.unk_24);
 
-            if (!Unk_021BF67C.unk_30) {
+            if (!coresys.unk_30) {
                 OS_WaitIrq(1, OS_IE_V_BLANK);
-                Unk_021BF67C.unk_2C++;
+                coresys.unk_2C++;
             }
         }
 
         sub_020137C4();
         sub_02017458();
         sub_020241CC();
-        sub_0201CDD4(Unk_021BF67C.unk_24);
+        sub_0201CDD4(coresys.unk_24);
 
         OS_WaitIrq(1, OS_IE_V_BLANK);
 
-        Unk_021BF67C.unk_2C++;
-        Unk_021BF67C.unk_30 = 0;
+        coresys.unk_2C++;
+        coresys.unk_30 = 0;
 
         sub_0200ABF0();
         sub_0200F27C();
 
-        if (Unk_021BF67C.unk_00 != NULL) {
-            Unk_021BF67C.unk_00(Unk_021BF67C.unk_04);
+        if (coresys.unk_00 != NULL) {
+            coresys.unk_00(coresys.unk_04);
         }
 
         sub_02003BD8();
-        sub_0201CDD4(Unk_021BF67C.unk_20);
+        sub_0201CDD4(coresys.unk_20);
     }
 }
 
@@ -215,11 +215,11 @@ static void sub_02000EE4 (void)
 
     OS_WaitIrq(1, OS_IE_V_BLANK);
 
-    Unk_021BF67C.unk_2C++;
-    Unk_021BF67C.unk_30 = 0;
+    coresys.unk_2C++;
+    coresys.unk_30 = 0;
 
-    if (Unk_021BF67C.unk_00 != NULL) {
-        Unk_021BF67C.unk_00(Unk_021BF67C.unk_04);
+    if (coresys.unk_00 != NULL) {
+        coresys.unk_00(coresys.unk_04);
     }
 }
 
@@ -298,7 +298,7 @@ static void sub_02000F94 (int param0, int param1)
         sub_02017B9C();
 
         if (v0 >= 30) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (coresys.padInput & PAD_BUTTON_A) {
                 break;
             }
         }
@@ -321,7 +321,7 @@ void sub_02001028 (void)
 
     sub_0201384C(&v0, &v1);
 
-    v2 = v0.year + v0.month * 0x100 * v0.day * 0x10000 + v1.hour * 0x10000 + (v1.minute + v1.second) * 0x1000000 + Unk_021BF67C.unk_2C;
+    v2 = v0.year + v0.month * 0x100 * v0.day * 0x10000 + v1.hour * 0x10000 + (v1.minute + v1.second) * 0x1000000 + coresys.unk_2C;
 
     MTRNG_SetSeed(v2);
     LCRNG_SetSeed(v2);
@@ -333,7 +333,7 @@ void sub_0200106C (void)
     PMWakeUpTrigger v2;
 
     if (PAD_DetectFold()) {
-        if (Unk_021BF67C.unk_67 == 0) {
+        if (coresys.unk_67 == 0) {
             sub_0201E630();
 
             if (CTRDG_IsPulledOut() == TRUE) {
@@ -343,7 +343,7 @@ void sub_0200106C (void)
 GOTOLABEL:
             v2 = PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD;
 
-            if (Unk_021BF67C.unk_66 && (Unk_02101D24 == FALSE)) {
+            if (coresys.unk_66 && (Unk_02101D24 == FALSE)) {
                 v2 |= PM_TRIGGER_CARTRIDGE;
             }
 

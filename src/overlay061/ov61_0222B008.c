@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "strbuf.h"
 #include "struct_decls/struct_02025E5C_decl.h"
@@ -156,7 +156,7 @@ static int ov61_0222B168 (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B
 
 static int ov61_0222B190 (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B138 * param1)
 {
-    if ((Unk_021BF67C.unk_48 & PAD_BUTTON_A) || (Unk_021BF67C.unk_48 & PAD_BUTTON_B)) {
+    if ((coresys.padInput & PAD_BUTTON_A) || (coresys.padInput & PAD_BUTTON_B)) {
         ov61_0222BB54(param0, NULL);
         return 1;
     }

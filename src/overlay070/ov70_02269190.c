@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -1941,19 +1941,19 @@ static BOOL ov70_0226AC24 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     if (param1->unk_08 == ov70_0225CCAC(param0->unk_04)) {
         u32 v4 = 4;
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+        if (coresys.padInput & PAD_KEY_UP) {
             v4 = 0;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+        if (coresys.padInput & PAD_KEY_DOWN) {
             v4 = 1;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_RIGHT) {
+        if (coresys.padInput & PAD_KEY_RIGHT) {
             v4 = 3;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_LEFT) {
+        if (coresys.padInput & PAD_KEY_LEFT) {
             v4 = 2;
         }
 

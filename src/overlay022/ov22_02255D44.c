@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
@@ -277,7 +277,7 @@ int ov22_02255E50 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 5:
-        if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) | (Unk_021BF67C.unk_60)) {
+        if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) | (coresys.touchInput)) {
             ov22_0225A628(&v0->unk_5C4, 26, 385, 48);
             sub_02002B20(0);
             (*param1)++;

@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "data_021BF67C.h"
+#include "coresys.h"
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -330,22 +330,22 @@ static int ov94_0223E09C (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_0223E0A4 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    if (coresys.padInput & PAD_BUTTON_A) {
         ov94_0223E300(param0, 16, 1, 0, 0xf0f);
         ov94_0223C3F4(param0, 3, 4);
         sub_02005748(1500);
-    } else if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    } else if (coresys.padInput & PAD_BUTTON_B) {
         param0->unk_2C = 2;
         ov94_0223C4C0(param0, 4, 0);
         sub_02005748(1500);
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_RIGHT) {
+    } else if (coresys.padInput & PAD_KEY_RIGHT) {
         if (param0->unk_10E == 0) {
             param0->unk_10E = 1;
             param0->unk_2C = 6;
 
             sub_02005748(1500);
         }
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_LEFT) {
+    } else if (coresys.padInput & PAD_KEY_LEFT) {
         if (param0->unk_10E != 0) {
             param0->unk_10E = 0;
             param0->unk_2C = 6;
