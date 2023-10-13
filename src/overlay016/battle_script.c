@@ -348,7 +348,7 @@ static int BattleMessage_TrainerClassTag(BattleSystem *battleSys, BattleContext 
 static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 
 static u32 ov16_022431BC(BattleSystem * param0, BattleContext * param1, int param2);
-static void BattleScript_CalcEffortValues(Party * param0, int param1, int param2, int param3);
+static void BattleScript_CalcEffortValues(Party *party, int slot, int species, int form);
 static int ov16_0224A724(BattleSystem * param0, BattleContext * param1);
 static void BattleScript_LoadPartyLevelUpIcon(BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2);
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem * param0, BattleScriptTaskData * param1);
@@ -8654,102 +8654,114 @@ static void ov16_02248E74 (SysTask * param0, void * param1)
     }
 }
 
-static void BattleScript_CalcEffortValues (Party * param0, int param1, int param2, int param3)
+/**
+ * @brief Compute the effort-value payout for a given party member, considering
+ * that they participating in the defeat of an opponent with the given species
+ * and form.
+ * 
+ * @param party     The Party struct
+ * @param slot      Slot in the party deserving EV payout
+ * @param species   The species of the defeated foe
+ * @param form      The form of the defeated foe
+ */
+static void BattleScript_CalcEffortValues(Party *party, int slot, int species, int form)
 {
-    int v0;
-    s16 v1 = 0;
-    u8 v2[6];
-    u16 v3;
-    u16 v4;
-    int v5;
-    int v6;
-    Pokemon * v7;
-    PokemonPersonalData * v8;
+    // must declare C89-style to match
+    int stat;
+    s16 tmp = 0;
+    u8 curEVs[6];
+    u16 sumEVs;
+    u16 item;
+    int itemEffect;
+    int itemPower;
+    Pokemon *mon;
+    PokemonPersonalData *personal;
 
-    v8 = PokemonPersonalData_FromMonForm(param2, param3, 5);
-    v7 = Party_GetPokemonBySlotIndex(param0, param1);
-    v4 = Pokemon_GetValue(v7, MON_DATA_HELD_ITEM, NULL);
-    v5 = Item_LoadParam(v4, 1, 5);
-    v6 = Item_LoadParam(v4, 2, 5);
-    v3 = 0;
+    personal = PokemonPersonalData_FromMonForm(species, form, HEAP_ID_BATTLE);
+    mon = Party_GetPokemonBySlotIndex(party, slot);
+    item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+    itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
+    itemPower = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT_PARAM, HEAP_ID_BATTLE);
+    sumEVs = 0;
 
-    for (v0 = 0; v0 < 6; v0++) {
-        v2[v0] = Pokemon_GetValue(v7, MON_DATA_HP_EV + v0, NULL);
-        v3 += v2[v0];
+    for (stat = 0; stat < STAT_MAX; stat++) {
+        curEVs[stat] = Pokemon_GetValue(mon, MON_DATA_HP_EV + stat, NULL);
+        sumEVs += curEVs[stat];
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (v3 >= 510) {
+    for (stat = 0; stat < STAT_MAX; stat++) {
+        if (sumEVs >= MAX_EVS_ALL_STATS) {
             break;
         }
 
-        switch (v0) {
-        case 0:
-            v1 = PokemonPersonalData_GetValue(v8, 10);
-
-            if (v5 == 122) {
-                v1 += v6;
+        switch (stat) {
+        case STAT_HP:
+            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_HP_YIELD);
+            if (itemEffect == HOLD_EFFECT_LVLUP_HP_EV_UP) {
+                tmp += itemPower;
             }
             break;
-        case 1:
-            v1 = PokemonPersonalData_GetValue(v8, 11);
 
-            if (v5 == 117) {
-                v1 += v6;
+        case STAT_ATTACK:
+            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_ATK_YIELD);
+            if (itemEffect == HOLD_EFFECT_LVLUP_ATK_EV_UP) {
+                tmp += itemPower;
             }
             break;
-        case 2:
-            v1 = PokemonPersonalData_GetValue(v8, 12);
 
-            if (v5 == 118) {
-                v1 += v6;
+        case STAT_DEFENSE:
+            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_DEF_YIELD);
+            if (itemEffect == HOLD_EFFECT_LVLUP_DEF_EV_UP) {
+                tmp += itemPower;
             }
             break;
-        case 3:
-            v1 = PokemonPersonalData_GetValue(v8, 13);
 
-            if (v5 == 121) {
-                v1 += v6;
+        case STAT_SPEED:
+            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_SPEED_YIELD);
+            if (itemEffect == HOLD_EFFECT_LVLUP_SPEED_EV_UP) {
+                tmp += itemPower;
             }
             break;
-        case 4:
-            v1 = PokemonPersonalData_GetValue(v8, 14);
 
-            if (v5 == 119) {
-                v1 += v6;
+        case STAT_SPECIAL_ATTACK:
+            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_SP_ATK_YIELD);
+            if (itemEffect == HOLD_EFFECT_LVLUP_SPATK_EV_UP) {
+                tmp += itemPower;
             }
             break;
-        case 5:
-            v1 = PokemonPersonalData_GetValue(v8, 15);
 
-            if (v5 == 120) {
-                v1 += v6;
+        case STAT_SPECIAL_DEFENSE:
+            tmp = PokemonPersonalData_GetValue(personal, MON_DATA_PERSONAL_EV_SP_DEF_YIELD);
+            if (itemEffect == HOLD_EFFECT_LVLUP_SPDEF_EV_UP) {
+                tmp += itemPower;
             }
             break;
         }
 
-        if (sub_02077758(param0, FlagIndex(param1))) {
-            v1 = v1 * 2;
+        if (Pokemon_HasPokerus(party, FlagIndex(slot))) {
+            tmp *= 2;
         }
 
-        if (v5 == 50) {
-            v1 = v1 * 2;
+        if (itemEffect == HOLD_EFFECT_EVS_UP_SPEED_DOWN) {
+            tmp *= 2;
         }
 
-        if (v3 + v1 > 510) {
-            v1 -= ((v3 + v1) - 510);
+        // Don't let the sum of all EVs exceed the sum max
+        if (sumEVs + tmp > MAX_EVS_ALL_STATS) {
+            tmp -= (sumEVs + tmp - MAX_EVS_ALL_STATS);
         }
 
-        if (v2[v0] + v1 > 255) {
-            v1 -= ((v2[v0] + v1) - 255);
+        // Don't let the sum of EVs for this stat exceed the stat-local max
+        if (curEVs[stat] + tmp > MAX_EVS_SINGLE_STAT) {
+            tmp -= (curEVs[stat] + tmp - MAX_EVS_SINGLE_STAT);
         }
 
-        v2[v0] += v1;
-        v3 += v1;
-        Pokemon_SetValue(v7, 13 + v0, (u8 *)&v2[v0]);
+        curEVs[stat] += tmp;
+        sumEVs += tmp;
+        Pokemon_SetValue(mon, MON_DATA_HP_EV + stat, &curEVs[stat]);
     }
 
-    PokemonPersonalData_Free(v8);
+    PokemonPersonalData_Free(personal);
 }
 
 static void ov16_02249B80 (SysTask * param0, void * param1)

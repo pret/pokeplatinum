@@ -37,11 +37,16 @@ enum PokemonStats {
     STAT_DEFENSE,
     STAT_SPEED,
     STAT_SPECIAL_ATTACK,
-    STAT_SPECIAL_DEFENSE
+    STAT_SPECIAL_DEFENSE,
+
+    STAT_MAX
 };
 
 #define MAX_PARTY_SIZE  6
 #define NUM_BOOSTABLE_STATS 8
+
+#define MAX_EVS_SINGLE_STAT 255
+#define MAX_EVS_ALL_STATS   510
 
 enum PokemonGender {
     MON_GENDER_MALE,

@@ -3657,7 +3657,7 @@ void Pokemon_ApplyPokerus(Party *party)
             }
         } while (partySlot == currentPartyCount);
 
-        if (sub_02077758(party, FlagIndex(partySlot)) == 0) {
+        if (Pokemon_HasPokerus(party, FlagIndex(partySlot)) == 0) {
             u8 monPokerus;
             do {
                 monPokerus = LCRNG_Next() & 0xff;
@@ -3676,7 +3676,7 @@ void Pokemon_ApplyPokerus(Party *party)
     }
 }
 
-u8 sub_02077758(Party *party, u8 param1)
+u8 Pokemon_HasPokerus(Party *party, u8 param1)
 {
     int partySlot = 0;
     int v1 = 1;
