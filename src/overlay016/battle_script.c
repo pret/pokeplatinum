@@ -115,7 +115,7 @@ static BOOL BtlCmd_Unused0A(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_Wait(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcMaxDamage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintAttackMessage(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -141,9 +141,9 @@ static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckCritical(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241EB0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241EF0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02241F1C(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_StartGetExpTask(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitGetExpTask(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Dummy2A(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241F34(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224200C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02242134(BattleSystem * param0, BattleContext * param1);
@@ -401,9 +401,9 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_JumpToMove,
     BtlCmd_CheckCritical,
     BtlCmd_CalcExpGain,
-    ov16_02241EB0,
-    ov16_02241EF0,
-    ov16_02241F1C,
+    BtlCmd_StartGetExpTask,
+    BtlCmd_WaitGetExpTask,
+    BtlCmd_Dummy2A,
     ov16_02241F34,
     ov16_0224200C,
     ov16_02242134,
@@ -2475,41 +2475,122 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
     return FALSE;
 }
 
-static BOOL ov16_02241EB0 (BattleSystem * param0, BattleContext * param1)
+enum {
+    SEQ_GET_EXP_START = 0,
+    SEQ_GET_EXP_WAIT_MESSAGE_PRINT,
+    SEQ_GET_EXP_WAIT_MESSAGE_DELAY,
+    SEQ_GET_EXP_GAUGE,
+    SEQ_GET_EXP_WAIT_GAUGE,
+
+    SEQ_GET_EXP_CHECK_LEVEL_UP,
+    SEQ_GET_EXP_WAIT_LEVEL_UP_EFFECT,
+    SEQ_GET_EXP_WAIT_LEVEL_UP_MESSAGE_PRINT,
+
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_LOAD_ICON,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT,
+    SEQ_GET_EXP_LEVEL_UP_CLEAR,
+
+    SEQ_GET_EXP_CHECK_LEARN_MOVE,
+    SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT,
+    SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT_WAIT,
+    SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT,
+    SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT_WAIT,
+    SEQ_GET_EXP_MAKE_IT_FORGET_PROMPT,
+    SEQ_GET_EXP_MAKE_IT_FORGET_ANSWER,
+    SEQ_GET_EXP_MAKE_IT_FORGET_WAIT,
+    SEQ_GET_EXP_MAKE_IT_FORGET_INPUT_TAKEN,
+    SEQ_GET_EXP_ONE_TWO_POOF,
+    SEQ_GET_EXP_ONE_TWO_POOF_WAIT,
+    SEQ_GET_EXP_FORGOT_HOW_TO_USE,
+    SEQ_GET_EXP_FORGOT_HOW_TO_USE_WAIT,
+    SEQ_GET_EXP_AND_DOTDOTDOT,
+    SEQ_GET_EXP_AND_DOTDOTDOT_WAIT,
+    SEQ_GET_EXP_LEARNED_MOVE,
+    SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED,
+    SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED_WAIT,
+    SEQ_GET_EXP_GIVE_UP_LEARNING_PROMPT,
+    SEQ_GET_EXP_GIVE_UP_LEARNING_ANSWER,
+    SEQ_GET_EXP_GIVE_UP_LEARNING_WAIT,
+    SEQ_GET_EXP_LEARNED_MOVE_WAIT,
+
+    SEQ_GET_EXP_CHECK_DONE,
+    SEQ_GET_EXP_DONE,
+};
+
+enum {
+    GET_EXP_MSG_INDEX = 0,
+    GET_EXP_MSG_DELAY,
+    GET_EXP_LEARNSET_INDEX,
+    GET_EXP_NEW_EXP,
+    GET_EXP_MOVE,
+    GET_EXP_MOVE_SLOT,
+    GET_EXP_PARTY_SLOT
+};
+
+/**
+ * @brief Start the experience point allocation state machine.
+ * 
+ * The kicked-off state machine is responsible for controlling the flow of
+ * events in the experience-gain UX. It will perform distribution, check for
+ * level-up events, display new stats, and prompt the player if a new move is
+ * to be learned.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_StartGetExpTask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->taskData = (BattleScriptTaskData *)Heap_AllocFromHeap(5, sizeof(BattleScriptTaskData));
-    param1->taskData->battleSys = param0;
-    param1->taskData->battleCtx = param1;
-    param1->taskData->seqNum = 0;
-    param1->taskData->tmpData[6] = 0;
+    battleCtx->taskData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleScriptTaskData));
+    battleCtx->taskData->battleSys = battleSys;
+    battleCtx->taskData->battleCtx = battleCtx;
+    battleCtx->taskData->seqNum = SEQ_GET_EXP_START;
+    battleCtx->taskData->tmpData[GET_EXP_PARTY_SLOT] = 0;
 
-    SysTask_Start(BattleScript_GetExpTask, param1->taskData, NULL);
+    SysTask_Start(BattleScript_GetExpTask, battleCtx->taskData, NULL);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241EF0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Waits until the experience-distribution task has completed.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_WaitGetExpTask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->taskData == NULL) {
-        BattleScript_Iter(param1, 1);
+    if (battleCtx->taskData == NULL) {
+        BattleScript_Iter(battleCtx, 1);
     }
 
-    param1->battleProgressFlag = 1;
+    battleCtx->battleProgressFlag = TRUE;
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02241F1C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Chomps an additional word out of the buffer.
+ * 
+ * Does nothing else.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_Dummy2A(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241F34 (BattleSystem * param0, BattleContext * param1)
@@ -8187,62 +8268,6 @@ static void* BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
 
     return NULL;
 }
-
-enum {
-    SEQ_GET_EXP_START = 0,
-    SEQ_GET_EXP_WAIT_MESSAGE_PRINT,
-    SEQ_GET_EXP_WAIT_MESSAGE_DELAY,
-    SEQ_GET_EXP_GAUGE,
-    SEQ_GET_EXP_WAIT_GAUGE,
-
-    SEQ_GET_EXP_CHECK_LEVEL_UP,
-    SEQ_GET_EXP_WAIT_LEVEL_UP_EFFECT,
-    SEQ_GET_EXP_WAIT_LEVEL_UP_MESSAGE_PRINT,
-
-    SEQ_GET_EXP_LEVEL_UP_SUMMARY_LOAD_ICON,
-    SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT,
-    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF,
-    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT,
-    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE,
-    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT,
-    SEQ_GET_EXP_LEVEL_UP_CLEAR,
-
-    SEQ_GET_EXP_CHECK_LEARN_MOVE,
-    SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT,
-    SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT_WAIT,
-    SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT,
-    SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT_WAIT,
-    SEQ_GET_EXP_MAKE_IT_FORGET_PROMPT,
-    SEQ_GET_EXP_MAKE_IT_FORGET_ANSWER,
-    SEQ_GET_EXP_MAKE_IT_FORGET_WAIT,
-    SEQ_GET_EXP_MAKE_IT_FORGET_INPUT_TAKEN,
-    SEQ_GET_EXP_ONE_TWO_POOF,
-    SEQ_GET_EXP_ONE_TWO_POOF_WAIT,
-    SEQ_GET_EXP_FORGOT_HOW_TO_USE,
-    SEQ_GET_EXP_FORGOT_HOW_TO_USE_WAIT,
-    SEQ_GET_EXP_AND_DOTDOTDOT,
-    SEQ_GET_EXP_AND_DOTDOTDOT_WAIT,
-    SEQ_GET_EXP_LEARNED_MOVE,
-    SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED,
-    SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED_WAIT,
-    SEQ_GET_EXP_GIVE_UP_LEARNING_PROMPT,
-    SEQ_GET_EXP_GIVE_UP_LEARNING_ANSWER,
-    SEQ_GET_EXP_GIVE_UP_LEARNING_WAIT,
-    SEQ_GET_EXP_LEARNED_MOVE_WAIT,
-
-    SEQ_GET_EXP_CHECK_DONE,
-    SEQ_GET_EXP_DONE,
-};
-
-enum {
-    GET_EXP_MSG_INDEX = 0,
-    GET_EXP_MSG_DELAY,
-    GET_EXP_LEARNSET_INDEX,
-    GET_EXP_NEW_EXP,
-    GET_EXP_MOVE,
-    GET_EXP_MOVE_SLOT,
-    GET_EXP_PARTY_SLOT
-};
 
 typedef struct PokemonStats {
     int stat[6];
