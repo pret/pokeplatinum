@@ -12,11 +12,11 @@
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay007/struct_ov7_0224F358.h"
 #include "overlay080/struct_ov80_021D1478_sub1.h"
-#include "overlay080/struct_ov80_021D259C.h"
+#include "overlay080/struct_town_map_footprint.h"
 #include "overlay080/struct_ov80_021D2A08.h"
-#include "overlay080/struct_ov80_021D2AF4.h"
-#include "overlay080/struct_ov80_021D2C1C.h"
-#include "overlay080/struct_ov80_021D2C5C.h"
+#include "overlay080/struct_town_map_interaction.h"
+#include "overlay080/struct_town_map_city_holder.h"
+#include "overlay080/struct_town_map_city.h"
 
 #include "unk_02002B7C.h"
 #include "unk_02005474.h"
@@ -76,8 +76,8 @@ typedef struct {
     UnkStruct_0205AA50 * unk_78;
     UnkStruct_ov80_021D1478_sub1 unk_7C;
     UnkStruct_ov80_021D1478_sub1 unk_8C;
-    UnkStruct_ov80_021D2C1C * unk_9C;
-    UnkStruct_ov80_021D2AF4 * unk_A0;
+    TownMapCityHolder * unk_9C;
+    TownMapInteraction * unk_A0;
     UnkStruct_ov80_021D2570 unk_A4;
     UnkStruct_02022550 * unk_100;
     UnkStruct_02022550 * unk_104;
@@ -113,7 +113,7 @@ int ov80_021D1550(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D159C(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D15C8(UnkStruct_ov80_021D2A08 * param0);
 int ov80_021D1610(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D1D24(UnkStruct_ov80_021D2A08 * param0, UnkStruct_ov80_021D2AF4 * param1, int param2);
+static void ov80_021D1D24(UnkStruct_ov80_021D2A08 * param0, TownMapInteraction * param1, int param2);
 static void ov80_021D1D38(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1D6C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1);
 static void ov80_021D1DF8(UnkStruct_ov80_021D2A08 * param0);
@@ -128,7 +128,7 @@ static void ov80_021D2700(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D18F8(UnkStruct_ov80_021D2A08 * param0, int param1);
 static void ov80_021D1A58(UnkStruct_ov80_021D2A08 * param0, int param1, int param2, int param3);
 static void ov80_021D1AB0(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, int param2, int param3, int param4);
-static void ov80_021D1B5C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, UnkStruct_ov80_021D2AF4 * param2);
+static void ov80_021D1B5C(UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, TownMapInteraction * param2);
 static void ov80_021D19E4(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1A30(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D1C24(UnkStruct_ov80_021D2A08 * param0);
@@ -160,7 +160,7 @@ int ov80_021D1478 (UnkStruct_ov80_021D2A08 * param0)
         ov80_021D2700(param0);
     }
 
-    ov80_021D2C1C(v0->unk_9C);
+    TownMapCityHolder_Free(v0->unk_9C);
     ov80_021D1F14(param0);
     Heap_FreeToHeap(v0);
 
@@ -189,7 +189,7 @@ int ov80_021D14A8 (UnkStruct_ov80_021D2A08 * param0)
     case 1:
         ov80_021D20DC(param0);
         ov80_021D2398(param0);
-        v0->unk_9C = ov80_021D2AF4(param0->unk_D8, param0->unk_DC, param0->unk_2C->unk_124, 20, param0->unk_04);
+        v0->unk_9C = TownMapCityHolder_New(param0->unk_D8, param0->unk_DC, param0->unk_2C->unk_124, 20, param0->unk_04);
         ov80_021D1A30(param0);
         ov80_021D19E4(param0);
         v0->unk_00 = 0;
@@ -337,7 +337,7 @@ int ov80_021D1758 (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
     UnkStruct_0205AA50 * v1;
-    UnkStruct_ov80_021D2AF4 * v2 = param0->unk_94;
+    TownMapInteraction * v2 = param0->unk_94;
     int v3 = param0->unk_90;
     u32 v4;
     u32 v5;
@@ -358,18 +358,18 @@ int ov80_021D1758 (UnkStruct_ov80_021D2A08 * param0)
     ov80_021D1B5C(param0, &(v0->unk_28[3]), v2);
     Strbuf_Clear(param0->unk_88);
     ov80_021D1A58(param0, v3, v0->unk_18, v0->unk_1C);
-    sub_0200E2A4(param0->unk_28, 4, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04, v2->unk_06, param0->unk_04);
+    sub_0200E2A4(param0->unk_28, 4, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->textBoxType, v2->icon, param0->unk_04);
 
-    if ((v2->unk_04 == 0) || (v2->unk_04 == 1)) {
+    if ((v2->textBoxType == 0) || (v2->textBoxType == 1)) {
         v1 = &v0->unk_28[1];
     } else {
         v1 = &v0->unk_28[2];
     }
 
     v0->unk_78 = v1;
-    v0->unk_15_4 = v2->unk_04;
+    v0->unk_15_4 = v2->textBoxType;
 
-    sub_0200E69C(v1, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->unk_04);
+    sub_0200E69C(v1, 1, (((((1023 - (21 * 4)) - (28 * 4)) - (28 * 14)) - (10 * 2)) - 100), (15 - 1), v2->textBoxType);
     sub_0201ADA4(v1, 15);
     sub_0201D738(v1, 1, param0->unk_88, 0, 0, 0xff, NULL);
     sub_0201A954(v1);
@@ -513,7 +513,7 @@ static void ov80_021D1A30 (UnkStruct_ov80_021D2A08 * param0)
 
     v0->unk_24 = v0->unk_20;
     v0->unk_20 = sub_02039F04((const UnkStruct_02039EBC *)param0->unk_30, v0->unk_18, v0->unk_1C);
-    v0->unk_A0 = ov80_021D2E24(param0->unk_40, v0->unk_18, v0->unk_1C, param0->unk_02);
+    v0->unk_A0 = TownMapInteractionList_GetElementFromCoordinates(param0->unk_40, v0->unk_18, v0->unk_1C, param0->unk_02);
 }
 
 static void ov80_021D1A58 (UnkStruct_ov80_021D2A08 * param0, int param1, int param2, int param3)
@@ -587,7 +587,7 @@ static void ov80_021D1AB0 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
     sub_0201A954(param1);
 }
 
-static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, UnkStruct_ov80_021D2AF4 * param2)
+static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 * param1, TownMapInteraction * param2)
 {
     u32 v0;
     u32 v1;
@@ -604,15 +604,15 @@ static void ov80_021D1B5C (UnkStruct_ov80_021D2A08 * param0, UnkStruct_0205AA50 
     v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0));
     sub_0201ADA4(param1, 0);
 
-    if ((param2->unk_08 != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_0 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_2)) {
-        v2 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->unk_08);
-        sub_0201D78C(param1, 0, v2, param2->unk_0C, param2->unk_0E, 0xff, v1, NULL);
+    if ((param2->firstParagraphMsgBank != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_0 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_2)) {
+        v2 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->firstParagraphMsgBank);
+        sub_0201D78C(param1, 0, v2, param2->firstParagraphPadding_X, param2->firstParagraphPadding_Y, 0xff, v1, NULL);
         Strbuf_Free(v2);
     }
 
-    if ((param2->unk_0A != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_4 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_6)) {
-        v3 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->unk_0A);
-        sub_0201D78C(param1, 0, v3, param2->unk_10, param2->unk_12, 0xff, v1, NULL);
+    if ((param2->secondParagraphMsgBank != 0xFFFF) && ((param0->unk_2C->unk_5C[param2->unk_16].val1_4 == 0) || param0->unk_2C->unk_5C[param2->unk_16].val1_6)) {
+        v3 = MessageLoader_GetNewStrbuf(param0->unk_84, param2->secondParagraphMsgBank);
+        sub_0201D78C(param1, 0, v3, param2->secondParagraphPadding_X, param2->secondParagraphPadding_Y, 0xff, v1, NULL);
         Strbuf_Free(v3);
     }
 }
@@ -665,7 +665,7 @@ static void ov80_021D1C24 (UnkStruct_ov80_021D2A08 * param0)
     }
 }
 
-static void ov80_021D1D24 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_ov80_021D2AF4 * param1, int param2)
+static void ov80_021D1D24 (UnkStruct_ov80_021D2A08 * param0, TownMapInteraction * param1, int param2)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
     u32 v1;
@@ -982,7 +982,7 @@ static int ov80_021D2570 (UnkStruct_ov80_021D2570 * param0, int param1, int para
 static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
-    UnkStruct_ov80_021D259C * v1;
+    TownMapFootprint * v1;
     UnkStruct_ov80_021D1744 * v2;
     int v3 = 0, v4, v5;
     static const u16 v6[4] = {0, 2, 3, 1};
@@ -999,11 +999,11 @@ static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
             break;
         }
 
-        if ((v1->unk_00 == param0->unk_20) && (v1->unk_04 == param0->unk_24)) {
+        if ((v1->xCoord == param0->unk_20) && (v1->yCoord == param0->unk_24)) {
             continue;
         }
 
-        v4 = ov80_021D2570(&(v0->unk_A4), v1->unk_00, v1->unk_04);
+        v4 = ov80_021D2570(&(v0->unk_A4), v1->xCoord, v1->yCoord);
 
         if (v4 < 0) {
             v2 = &(v0->unk_A4.unk_0C[v0->unk_A4.unk_00++]);
@@ -1011,14 +1011,14 @@ static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
             v2 = &(v0->unk_A4.unk_0C[v4]);
         }
 
-        v2->unk_00 = v1->unk_00;
-        v2->unk_04 = v1->unk_04;
+        v2->unk_00 = v1->xCoord;
+        v2->unk_04 = v1->yCoord;
 
-        if (v1->unk_08 > 3) {
+        if (v1->direction > 3) {
             v2->unk_08 = 0;
             v5 = 5;
         } else {
-            v2->unk_08 = v6[v1->unk_08];
+            v2->unk_08 = v6[v1->direction];
             v5 = 0;
         }
 
@@ -1201,16 +1201,16 @@ static void ov80_021D28EC (UnkStruct_0201CD38 * param0, void * param1)
 static int ov80_021D29BC (UnkStruct_ov80_021D2A08 * param0)
 {
     UnkStruct_ov80_021D1478 * v0 = param0->unk_34;
-    UnkStruct_ov80_021D2C5C * v1 = NULL;
+    TownMapCity * v1 = NULL;
     u8 v2 = 1;
 
     if (v0->unk_A0 == NULL) {
         return 0;
     }
 
-    v1 = ov80_021D2C5C(v0->unk_9C, v0->unk_20, v0->unk_18, v0->unk_1C);
+    v1 = TownMapCityHolder_SearchByHeaderAndCoordinates(v0->unk_9C, v0->unk_20, v0->unk_18, v0->unk_1C);
 
-    if ((v1 == NULL) || (v1->unk_14 == 0)) {
+    if ((v1 == NULL) || (v1->visited == 0)) {
         return 0;
     }
 

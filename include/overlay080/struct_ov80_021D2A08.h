@@ -9,10 +9,9 @@
 #include "strbuf.h"
 #include "struct_decls/struct_02039EBC_decl.h"
 #include "struct_defs/struct_0203D8AC.h"
-#include "overlay080/struct_ov80_021D259C.h"
-#include "overlay080/struct_ov80_021D2AF4.h"
-#include "overlay080/struct_ov80_021D2C1C.h"
-#include "overlay080/struct_ov80_021D2E10.h"
+#include "overlay080/struct_town_map_footprint.h"
+#include "overlay080/struct_town_map_interaction.h"
+#include "overlay080/struct_town_map_city_holder.h"
 
 #include <nnsys.h>
 
@@ -34,15 +33,15 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     UnkStruct_02039EBC * unk_30;
     void * unk_34;
     int (* unk_38)(struct UnkStruct_ov80_021D2A08_t *);
-    UnkStruct_ov80_021D2C1C * unk_3C;
-    UnkStruct_ov80_021D2E10 * unk_40;
-    UnkStruct_ov80_021D259C unk_44[5];
+    TownMapCityHolder * unk_3C;
+    TownMapInteractionList * unk_40;
+    TownMapFootprint unk_44[5];
     MessageLoader * unk_80;
     MessageLoader * unk_84;
     Strbuf* unk_88;
     int unk_8C;
     int unk_90;
-    UnkStruct_ov80_021D2AF4 * unk_94;
+    TownMapInteraction * unk_94;
     void * unk_98;
     void * unk_9C;
     void * unk_A0;

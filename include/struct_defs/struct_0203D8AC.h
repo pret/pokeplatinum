@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_0203D8AC_H
 
 #include "struct_defs/union_0206B878.h"
-#include "overlay080/struct_ov80_021D259C.h"
+#include "overlay080/struct_town_map_footprint.h"
 
 typedef struct {
     int unk_00;
@@ -13,7 +13,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     int unk_1C;
-    UnkStruct_ov80_021D259C unk_20[5];
+    TownMapFootprint unk_20[5];
     UnkUnion_0206B878 unk_5C[200];
     u8 unk_124[21];
     u8 unk_139;

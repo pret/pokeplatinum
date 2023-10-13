@@ -120,14 +120,14 @@ void sub_0206B70C (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1, int
     v2 = (v7->unk_00 - 2 + 6) % 6;
 
     for (v1 = 0; v1 < 5; v1++) {
-        param1->unk_20[v1].unk_00 = v7->unk_06[v2].unk_00;
-        param1->unk_20[v1].unk_04 = v7->unk_06[v2].unk_01;
+        param1->unk_20[v1].xCoord = v7->unk_06[v2].unk_00;
+        param1->unk_20[v1].yCoord = v7->unk_06[v2].unk_01;
         param1->unk_20[v1].unk_0A = v7->unk_06[v2].unk_03;
 
         if (v7->unk_06[v2].unk_02 > 3) {
-            param1->unk_20[v1].unk_08 = 3 + 1;
+            param1->unk_20[v1].direction = 3 + 1;
         } else {
-            param1->unk_20[v1].unk_08 = v7->unk_06[v2].unk_02;
+            param1->unk_20[v1].direction = v7->unk_06[v2].unk_02;
         }
 
         v2 = (v2 - 1 + 6) % 6;
