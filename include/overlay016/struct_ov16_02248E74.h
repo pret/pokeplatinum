@@ -1,8 +1,0 @@
-#ifndef POKEPLATINUM_STRUCT_OV16_02248E74_H
-#define POKEPLATINUM_STRUCT_OV16_02248E74_H
-
-typedef struct {
-    int unk_00[6];
-} PokemonStats;
-
-#endif // POKEPLATINUM_STRUCT_OV16_02248E74_H

@@ -2,8 +2,11 @@
 #include <string.h>
 
 #include "constants/abilities.h"
+#include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/narc.h"
+#include "constants/pokemon.h"
+#include "constants/sdat.h"
 #include "constants/battle/message_tags.h"
 #include "constants/battle/system_control.h"
 #include "constants/narc_files/battle_skill_subseq.h"
@@ -43,7 +46,6 @@
 #include "overlay016/struct_ov16_022431BC_1.h"
 #include "overlay016/struct_ov16_022431BC_2.h"
 #include "overlay016/struct_ov16_022431BC_3.h"
-#include "overlay016/struct_ov16_02248E74.h"
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -355,7 +357,7 @@ static void BattleScript_FreePartyLevelUpIcon(BattleSystem * param0, BattleScrip
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
 static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
-static void ov16_02248E74(SysTask * param0, void * param1);
+static void BattleScript_GetExpTask(SysTask * param0, void * param1);
 static void ov16_02249B80(SysTask * param0, void * param1);
 
 static const BtlCmd sBattleCommands[] = {
@@ -2483,7 +2485,7 @@ static BOOL ov16_02241EB0 (BattleSystem * param0, BattleContext * param1)
     param1->taskData->seqNum = 0;
     param1->taskData->tmpData[6] = 0;
 
-    SysTask_Start(ov16_02248E74, param1->taskData, NULL);
+    SysTask_Start(BattleScript_GetExpTask, param1->taskData, NULL);
 
     return 0;
 }
@@ -8186,470 +8188,594 @@ static void* BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     return NULL;
 }
 
-static void ov16_02248E74 (SysTask * param0, void * param1)
+enum {
+    SEQ_GET_EXP_START = 0,
+    SEQ_GET_EXP_WAIT_MESSAGE_PRINT,
+    SEQ_GET_EXP_WAIT_MESSAGE_DELAY,
+    SEQ_GET_EXP_GAUGE,
+    SEQ_GET_EXP_WAIT_GAUGE,
+
+    SEQ_GET_EXP_CHECK_LEVEL_UP,
+    SEQ_GET_EXP_WAIT_LEVEL_UP_EFFECT,
+    SEQ_GET_EXP_WAIT_LEVEL_UP_MESSAGE_PRINT,
+
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_LOAD_ICON,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE,
+    SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT,
+    SEQ_GET_EXP_LEVEL_UP_CLEAR,
+
+    SEQ_GET_EXP_CHECK_LEARN_MOVE,
+    SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT,
+    SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT_WAIT,
+    SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT,
+    SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT_WAIT,
+    SEQ_GET_EXP_MAKE_IT_FORGET_PROMPT,
+    SEQ_GET_EXP_MAKE_IT_FORGET_ANSWER,
+    SEQ_GET_EXP_MAKE_IT_FORGET_WAIT,
+    SEQ_GET_EXP_MAKE_IT_FORGET_INPUT_TAKEN,
+    SEQ_GET_EXP_ONE_TWO_POOF,
+    SEQ_GET_EXP_ONE_TWO_POOF_WAIT,
+    SEQ_GET_EXP_FORGOT_HOW_TO_USE,
+    SEQ_GET_EXP_FORGOT_HOW_TO_USE_WAIT,
+    SEQ_GET_EXP_AND_DOTDOTDOT,
+    SEQ_GET_EXP_AND_DOTDOTDOT_WAIT,
+    SEQ_GET_EXP_LEARNED_MOVE,
+    SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED,
+    SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED_WAIT,
+    SEQ_GET_EXP_GIVE_UP_LEARNING_PROMPT,
+    SEQ_GET_EXP_GIVE_UP_LEARNING_ANSWER,
+    SEQ_GET_EXP_GIVE_UP_LEARNING_WAIT,
+    SEQ_GET_EXP_LEARNED_MOVE_WAIT,
+
+    SEQ_GET_EXP_CHECK_DONE,
+    SEQ_GET_EXP_DONE,
+};
+
+enum {
+    GET_EXP_MSG_INDEX = 0,
+    GET_EXP_MSG_DELAY,
+    GET_EXP_LEARNSET_INDEX,
+    GET_EXP_NEW_EXP,
+    GET_EXP_MOVE,
+    GET_EXP_MOVE_SLOT,
+    GET_EXP_PARTY_SLOT
+};
+
+typedef struct PokemonStats {
+    int stat[6];
+} PokemonStats;
+
+/**
+ * @brief System task-state machine for controlling the UX flow for a battler
+ * gaining Exp. Points.
+ * 
+ * @param task 
+ * @param inData 
+ */
+static void BattleScript_GetExpTask(SysTask *task, void *inData)
 {
-    int v0;
-    int v1;
-    BattleScriptTaskData * v2 = param1;
-    Pokemon * v3;
-    BattleMessage v4;
-    int v5;
-    int v6;
-    MessageLoader * v7;
-    u32 v8;
-    int v9;
-    int v10;
+    // must declare C89-style to match
+    int i;
+    int slot;
+    BattleScriptTaskData *data = inData;
+    Pokemon *mon;
+    BattleMessage msg;
+    int battler;
+    int expBattler;
+    MessageLoader *msgLoader;
+    u32 battleType;
+    int item;
+    int itemEffect;
 
-    v7 = BattleSystem_MessageLoader(v2->battleSys);
-    v8 = BattleSystem_BattleType(v2->battleSys);
-    v5 = (v2->battleCtx->faintedMon) >> 1 & 1;
-    v6 = 0;
+    msgLoader = BattleSystem_MessageLoader(data->battleSys);
+    battleType = BattleSystem_BattleType(data->battleSys);
+    battler = data->battleCtx->faintedMon >> 1 & 1; // init to the side with the fainted mon
+    expBattler = 0;
 
-    for (v1 = v2->tmpData[6]; v1 < BattleSystem_PartyCount(v2->battleSys, v6); v1++) {
-        v3 = BattleSystem_PartyPokemon(v2->battleSys, v6, v1);
-        v9 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
-        v10 = Item_LoadParam(v9, 1, 5);
+    // Figure out which mon we're working on
+    for (slot = data->tmpData[6]; slot < BattleSystem_PartyCount(data->battleSys, expBattler); slot++) {
+        mon = BattleSystem_PartyPokemon(data->battleSys, expBattler, slot);
+        item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
 
-        if ((v10 == 51) || (v2->battleCtx->monsGainingExp[v5] & FlagIndex(v1))) {
+        // TODO: rename monsGainingExp (sideGetExpMask?)
+        if (itemEffect == HOLD_EFFECT_EXP_SHARE || (data->battleCtx->monsGainingExp[battler] & FlagIndex(slot))) {
             break;
         }
     }
 
-    if (v1 == BattleSystem_PartyCount(v2->battleSys, v6)) {
-        v2->seqNum = 38;
-    } else if ((v8 & 0x2) && ((v8 & 0x40) == 0)) {
-        if (v2->battleCtx->selectedPartySlot[2] == v1) {
-            v6 = 2;
-        }
+    if (slot == BattleSystem_PartyCount(data->battleSys, expBattler)) {
+        data->seqNum = SEQ_GET_EXP_DONE;
+    } else if ((battleType & BATTLE_TYPE_DOUBLES)
+            && (battleType & BATTLE_TYPE_AI) == FALSE
+            && data->battleCtx->selectedPartySlot[2] == slot) {
+        expBattler = 2;
     }
 
-    switch (v2->seqNum) {
-    case 0:
-    {
-        u32 v11;
-        u32 v12;
+    switch (data->seqNum) {
+    case SEQ_GET_EXP_START: {
+        item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
 
-        v9 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
-        v10 = Item_LoadParam(v9, 1, 5);
-
-        if (((v8 & 0x1) == 0) && ((v2->battleCtx->battleMons[1].curHP + v2->battleCtx->battleMons[3].curHP) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (v2->battleCtx->expJinglePlayed == 0)) {
-            Sound_PlayBGM(1127);
-            v2->battleCtx->expJinglePlayed = 1;
-            BattleSystem_SetRedHPSoundFlag(v2->battleSys, 2);
+        // Declare victory if all wild mons have been defeated
+        if ((battleType & BATTLE_TYPE_TRAINER) == FALSE
+                && data->battleCtx->battleMons[BATTLER_ENEMY_SLOT_1].curHP
+                    + data->battleCtx->battleMons[BATTLER_ENEMY_SLOT_2].curHP == 0
+                && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)
+                && data->battleCtx->expJinglePlayed == FALSE) {
+            Sound_PlayBGM(SEQ_VICTORY_WILD_POKEMON);
+            data->battleCtx->expJinglePlayed = TRUE;
+            BattleSystem_SetRedHPSoundFlag(data->battleSys, 2); // turn off
         }
 
-        v11 = 0;
-        v4.id = 1;
+        u32 totalExp = 0;
+        msg.id = 1; // "{0} gained {1} Exp. Points!"
 
-        if ((Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL) != 100)) {
-            if (v2->battleCtx->monsGainingExp[v5] & FlagIndex(v1)) {
-                v11 = v2->battleCtx->gainedExp;
+        if (Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL) && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != 100) {
+            if (data->battleCtx->monsGainingExp[battler] & FlagIndex(slot)) {
+                totalExp = data->battleCtx->gainedExp;
             }
 
-            if (v10 == 51) {
-                v11 += v2->battleCtx->sharedExp;
+            if (itemEffect == HOLD_EFFECT_EXP_SHARE) {
+                totalExp += data->battleCtx->sharedExp;
             }
 
-            if (v10 == 66) {
-                v11 = v11 * 150 / 100;
+            if (itemEffect == HOLD_EFFECT_EXP_UP) {
+                totalExp = totalExp * 150 / 100;
             }
 
-            if (v8 & 0x1) {
-                v11 = v11 * 150 / 100;
+            if (battleType & BATTLE_TYPE_TRAINER) {
+                totalExp = totalExp * 150 / 100;
             }
 
-            if (BattleSystem_PokemonIsOT(v2->battleSys, v3) == 0) {
-                if (Pokemon_GetValue(v3, MON_DATA_LANGUAGE, NULL) != Unk_020E4C44) {
-                    v11 = v11 * 170 / 100;
+            if (BattleSystem_PokemonIsOT(data->battleSys, mon) == FALSE) {
+                if (Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL) != Unk_020E4C44) {
+                    totalExp = totalExp * 170 / 100;
                 } else {
-                    v11 = v11 * 150 / 100;
+                    totalExp = totalExp * 150 / 100;
                 }
 
-                v4.id = 2;
+                msg.id = 2; // "{0} gained a boosted {1} Exp. Points!"
             }
 
-            v12 = Pokemon_GetValue(v3, MON_DATA_EXP, NULL);
-            v2->tmpData[3] = v12 - Pokemon_GetCurrentLevelBaseExp(v3);
-            v12 += v11;
+            u32 newExp = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
+            data->tmpData[3] = newExp - Pokemon_GetCurrentLevelBaseExp(mon);
+            newExp += totalExp;
 
-            if (v1 == v2->battleCtx->selectedPartySlot[v6]) {
-                v2->battleCtx->battleMons[v6].exp = v12;
+            if (slot == data->battleCtx->selectedPartySlot[expBattler]) {
+                data->battleCtx->battleMons[expBattler].exp = newExp;
             }
 
-            Pokemon_SetValue(v3, 8, (u8 *)&v12);
-            BattleScript_CalcEffortValues(BattleSystem_Party(v2->battleSys, v6), v1, v2->battleCtx->battleMons[v2->battleCtx->faintedMon].species, v2->battleCtx->battleMons[v2->battleCtx->faintedMon].formNum);
+            Pokemon_SetValue(mon, MON_DATA_EXP, &newExp);
+            BattleScript_CalcEffortValues(BattleSystem_Party(data->battleSys, expBattler),
+                    slot,
+                    data->battleCtx->battleMons[data->battleCtx->faintedMon].species,
+                    data->battleCtx->battleMons[data->battleCtx->faintedMon].formNum);
         }
 
-        if (v11) {
-            v4.tags = 17;
-            v4.params[0] = v6 | (v1 << 8);
-            v4.params[1] = v11;
-            v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-            v2->tmpData[1] = 30 / 4;
-            v2->seqNum++;
+        if (totalExp) {
+            msg.tags = TAG_NICKNAME_NUM;
+            msg.params[0] = expBattler | (slot << 8);
+            msg.params[1] = totalExp;
+            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->tmpData[GET_EXP_MSG_DELAY] = 30 / 4;
+            data->seqNum++;
         } else {
-            v2->seqNum = 37;
+            data->seqNum = SEQ_GET_EXP_CHECK_DONE;
         }
+
+        break;
     }
-    break;
-    case 1:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
-            v2->seqNum++;
+
+    case SEQ_GET_EXP_WAIT_MESSAGE_PRINT:
+        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+            data->seqNum++;
         }
         break;
-    case 2:
-        if (--v2->tmpData[1] == 0) {
-            v2->seqNum++;
+
+    case SEQ_GET_EXP_WAIT_MESSAGE_DELAY:
+        if (--data->tmpData[GET_EXP_MSG_DELAY] == 0) {
+            data->seqNum++;
         }
         break;
-    case 3:
-        if (v1 == v2->battleCtx->selectedPartySlot[v6]) {
-            BattleIO_UpdateExpGauge(v2->battleSys, v2->battleCtx, v6, v2->tmpData[3]);
-            v2->tmpData[3] = 0;
-            v2->seqNum++;
+
+    case SEQ_GET_EXP_GAUGE:
+        // Only animate the gauge for an active battler
+        if (slot == data->battleCtx->selectedPartySlot[expBattler]) {
+            BattleIO_UpdateExpGauge(data->battleSys, data->battleCtx, expBattler, data->tmpData[3]);
+            data->tmpData[GET_EXP_NEW_EXP] = 0;
+            data->seqNum++;
         } else {
-            v2->seqNum = 5;
+            data->seqNum = SEQ_GET_EXP_CHECK_LEVEL_UP;
         }
         break;
-    case 4:
-        if (BattleIO_QueueIsEmpty(v2->battleCtx)) {
-            v2->seqNum++;
+
+    case SEQ_GET_EXP_WAIT_GAUGE:
+        if (BattleIO_QueueIsEmpty(data->battleCtx)) {
+            data->seqNum++;
         }
         break;
-    case 5:
-        if (Pokemon_ShouldLevelUp(v3)) {
-            if (v2->battleCtx->selectedPartySlot[v6] == v1) {
-                BattleIO_PlayStatusEffect(v2->battleSys, v2->battleCtx, v6, 8);
-                BattleIO_PlayLevelUpAnimation(v2->battleSys, v6);
+
+    case SEQ_GET_EXP_CHECK_LEVEL_UP:
+        if (Pokemon_ShouldLevelUp(mon)) {
+            // Only play the special level-up animation for an active battler
+            if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
+                BattleIO_PlayStatusEffect(data->battleSys, data->battleCtx, expBattler, STATUS_EFFECT_LEVEL_UP);
+                BattleIO_PlayLevelUpAnimation(data->battleSys, expBattler);
             }
 
-            v2->seqNum = 6;
+            data->seqNum = SEQ_GET_EXP_WAIT_LEVEL_UP_EFFECT;
         } else {
-            v2->seqNum = 37;
+            data->seqNum = SEQ_GET_EXP_CHECK_DONE;
         }
         break;
-    case 6:
-        if (BattleIO_QueueIsEmpty(v2->battleCtx)) {
-            {
-                int v13;
-                int v14[6] = {164, 165, 166, 168, 169, 167};
-                PokemonStats * v15;
 
-                v13 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
-                v2->battleCtx->unk_17C = Heap_AllocFromHeap(5, sizeof(PokemonStats));
-                v15 = (PokemonStats *)v2->battleCtx->unk_17C;
+    case SEQ_GET_EXP_WAIT_LEVEL_UP_EFFECT:
+        if (BattleIO_QueueIsEmpty(data->battleCtx)) {
+            int statParams[STAT_MAX] = {
+                MON_DATA_MAX_HP,
+                MON_DATA_ATK,
+                MON_DATA_DEF,
+                MON_DATA_SP_ATK,
+                MON_DATA_SP_DEF,
+                MON_DATA_SPEED
+            };
+            int level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-                for (v0 = 0; v0 < 6; v0++) {
-                    v15->unk_00[v0] = Pokemon_GetValue(v3, v14[v0], NULL);
-                }
-
-                Pokemon_UpdateFriendship(v3, 0, BattleSystem_MapHeader(v2->battleSys));
-                Pokemon_CalcStats(v3);
-
-                if (v2->battleCtx->selectedPartySlot[v6] == v1) {
-                    BattleSystem_ReloadPokemon(v2->battleSys, v2->battleCtx, v6, v2->battleCtx->selectedPartySlot[v6]);
-                }
-
-                v2->battleCtx->levelUpMons |= FlagIndex(v1);
-                BattleIO_RefreshHPGauge(v2->battleSys, v2->battleCtx, v6);
-
-                v4.id = 3;
-                v4.tags = 17;
-                v4.params[0] = v6 | (v1 << 8);
-                v4.params[1] = v13;
-                v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-                v2->seqNum = 7;
+            // Cache the stats from the previous level for later
+            data->battleCtx->tmpData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(PokemonStats));
+            PokemonStats *oldStats = data->battleCtx->tmpData;
+            for (i = 0; i < STAT_MAX; i++) {
+                oldStats->stat[i] = Pokemon_GetValue(mon, statParams[i], NULL);
             }
+
+            Pokemon_UpdateFriendship(mon, 0, BattleSystem_MapHeader(data->battleSys));
+            Pokemon_CalcStats(mon);
+
+            if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
+                BattleSystem_ReloadPokemon(data->battleSys,
+                    data->battleCtx,
+                    expBattler,
+                    data->battleCtx->selectedPartySlot[expBattler]);
+            }
+
+            data->battleCtx->levelUpMons |= FlagIndex(slot);
+            BattleIO_RefreshHPGauge(data->battleSys, data->battleCtx, expBattler);
+
+            msg.id = 3; // "{0} grew to Lv. {1}!"
+            msg.tags = TAG_NICKNAME_NUM;
+            msg.params[0] = expBattler | (slot << 8);
+            msg.params[1] = level;
+            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->seqNum = SEQ_GET_EXP_WAIT_LEVEL_UP_MESSAGE_PRINT;
         }
         break;
-    case 7:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
-            v2->seqNum = 8;
-            v2->tmpData[2] = 0;
+
+    case SEQ_GET_EXP_WAIT_LEVEL_UP_MESSAGE_PRINT:
+        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == 0) {
+            data->seqNum = SEQ_GET_EXP_LEVEL_UP_SUMMARY_LOAD_ICON;
+            data->tmpData[GET_EXP_LEARNSET_INDEX] = 0;
         }
         break;
-    case 8:
-        if (v2->battleCtx->selectedPartySlot[v6] != v1) {
-            BattleScript_LoadPartyLevelUpIcon(v2->battleSys, v2, v3);
+
+    case SEQ_GET_EXP_LEVEL_UP_SUMMARY_LOAD_ICON:
+        // Load the Pokemon's Party icon if they are not the active battler
+        if (data->battleCtx->selectedPartySlot[expBattler] != slot) {
+            BattleScript_LoadPartyLevelUpIcon(data->battleSys, data, mon);
         }
 
-        v2->seqNum = 9;
+        data->seqNum = SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT;
         break;
-    case 9:
-    {
-        BGL * v16;
-        Window * v17;
-        PaletteSys * v18;
 
-        v16 = BattleSystem_BGL(v2->battleSys);
-        v17 = BattleSystem_Window(v2->battleSys, 1);
-        v18 = BattleSystem_PaletteSys(v2->battleSys);
+    case SEQ_GET_EXP_LEVEL_UP_SUMMARY_INIT: {
+        BGL *bgl = BattleSystem_BGL(data->battleSys);
+        Window *window = BattleSystem_Window(data->battleSys, 1);
+        PaletteSys *paletteSys = BattleSystem_PaletteSys(data->battleSys);
 
-        G2_SetBG0Priority(1 + 1);
-
+        G2_SetBG0Priority(1 + 1); // this is the background + 1; could do with a constant
         BGL_SetPriority(1, 1);
         BGL_SetPriority(2, 0);
 
-        BattleSystem_SetGaugePriority(v2->battleSys, 0 + 2);
+        BattleSystem_SetGaugePriority(data->battleSys, 0 + 2); // gauge's default is 0
 
-        Window_SetFrame(v16, 2, 1, 0, 5);
-        PaletteSys_LoadPalette(v18, 38, Window_FramePalette(), 5, 0, 0x20, 8 * 0x10);
-        BGL_AddWindow(v16, v17, 2, 0x11, 0x7, 14, 12, 11, (9 + 1));
-        BGL_FillWindow(v17, 0xff);
-        Window_Show(v17, 0, 1, 8);
+        Window_SetFrame(bgl, 2, 1, 0, HEAP_ID_BATTLE);
+        PaletteSys_LoadPalette(paletteSys, NARC_INDEX_GRAPHIC__PL_WINFRAME, Window_FramePalette(), HEAP_ID_BATTLE, 0, 0x20, 8 * 0x10);
+        BGL_AddWindow(bgl, window, 2, 0x11, 0x7, 14, 12, 11, (9 + 1));
+        BGL_FillWindow(window, 0xFF);
+        Window_Show(window, 0, 1, 8);
 
-        v2->seqNum = 10;
+        data->seqNum = SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF;
+        break;
     }
-    break;
-    case 10:
-    {
-        int v19[6] = {8, 1, 2, 4, 5, 3};
-        int v20[6] = {164, 165, 166, 168, 169, 167};
-        Window * v21;
-        PokemonStats * v22;
 
-        v21 = BattleSystem_Window(v2->battleSys, 1);
-        v22 = (PokemonStats *)v2->battleCtx->unk_17C;
+    case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF: {
+        int statTags[STAT_MAX] = {8, 1, 2, 4, 5, 3};
+        int statParams[STAT_MAX] = {
+            MON_DATA_MAX_HP,
+            MON_DATA_ATK,
+            MON_DATA_DEF,
+            MON_DATA_SP_ATK,
+            MON_DATA_SP_DEF,
+            MON_DATA_SPEED
+        };
+        Window *window = BattleSystem_Window(data->battleSys, 1);
+        PokemonStats *oldStats = data->battleCtx->tmpData;
 
-        for (v0 = 0; v0 < 6; v0++) {
-            v4.id = 947;
-            v4.tags = 4;
-            v4.params[0] = v19[v0];
+        for (i = 0; i < 6; i++) {
+            msg.id = 947; // stat name
+            msg.tags = TAG_STAT;
+            msg.params[0] = statTags[i];
 
-            BattleMessage_PrintToWindow(v2->battleSys, v21, v7, &v4, 0, 16 * v0, 0, 0, 0);
+            BattleMessage_PrintToWindow(data->battleSys, window, msgLoader, &msg, 0, 16 * i, 0, 0, 0);
 
-            v4.id = 948;
-            v4.tags = 7;
-            v4.params[0] = Pokemon_GetValue(v3, v20[v0], NULL) - v22->unk_00[v0];
-            v4.digits = 2;
+            msg.id = 948; // "+{0}"
+            msg.tags = TAG_NUMBERS;
+            msg.params[0] = Pokemon_GetValue(mon, statParams[i], NULL) - oldStats->stat[i];
+            msg.digits = 2;
 
-            BattleMessage_PrintToWindow(v2->battleSys, v21, v7, &v4, 80, 16 * v0, 0x2, 28, 0);
+            BattleMessage_PrintToWindow(data->battleSys, window, msgLoader, &msg, 80, 16 * i, 0x2, 28, 0);
         }
 
-        v2->seqNum = 11;
+        data->seqNum = SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT;
+        break;
     }
-    break;
-    case 12:
-    {
-        int v23[6] = {8, 1, 2, 4, 5, 3};
-        int v24[6] = {164, 165, 166, 168, 169, 167};
-        Window * v25;
-        PokemonStats * v26;
 
-        v25 = BattleSystem_Window(v2->battleSys, 1);
-        v26 = (PokemonStats *)v2->battleCtx->unk_17C;
+    case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE: {
+        int statTags[STAT_MAX] = {8, 1, 2, 4, 5, 3}; // unused, but must be kept to match
+        int statParams[STAT_MAX] = {
+            MON_DATA_MAX_HP,
+            MON_DATA_ATK,
+            MON_DATA_DEF,
+            MON_DATA_SP_ATK,
+            MON_DATA_SP_DEF,
+            MON_DATA_SPEED
+        };
+        Window *window = BattleSystem_Window(data->battleSys, 1);
 
-        BGL_WindowColor(v25, 0xf, 80, 0, 36, 96);
+        BGL_WindowColor(window, 0xF, 80, 0, 36, 96); // clear out the diff section (keep the printed stat names)
 
-        for (v0 = 0; v0 < 6; v0++) {
-            v4.id = 949;
-            v4.tags = 7;
-            v4.params[0] = Pokemon_GetValue(v3, v24[v0], NULL);
-            v4.digits = 3;
+        for (i = 0; i < STAT_MAX; i++) {
+            msg.id = 949; // just a number
+            msg.tags = TAG_NUMBERS;
+            msg.params[0] = Pokemon_GetValue(mon, statParams[i], NULL);
+            msg.digits = 3;
 
-            BattleMessage_PrintToWindow(v2->battleSys, v25, v7, &v4, 72, 16 * v0, 0x2, 36, 0);
+            BattleMessage_PrintToWindow(data->battleSys, window, msgLoader, &msg, 72, 16 * i, 0x2, 36, 0);
         }
 
-        v2->seqNum = 13;
+        data->seqNum = SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT;
+        break;
     }
-    break;
-    case 11:
-    case 13:
-        if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (TouchScreen_Tapped())) {
-            Sound_PlayEffect(1500);
-            v2->seqNum++;
+    
+    case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_DIFF_WAIT:
+    case SEQ_GET_EXP_LEVEL_UP_SUMMARY_PRINT_TRUE_WAIT:
+        if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
+            Sound_PlayEffect(SEQ_CONFIRM);
+            data->seqNum++;
         }
         break;
-    case 14:
-    {
-        Window * v27;
 
-        v27 = BattleSystem_Window(v2->battleSys, 1);
+    case SEQ_GET_EXP_LEVEL_UP_CLEAR:{
+        Window *window = BattleSystem_Window(data->battleSys, 1);
 
-        Window_Clear(v27, 0);
-        BGL_DeleteWindow(v27);
+        Window_Clear(window, 0);
+        BGL_DeleteWindow(window);
 
         G2_SetBG0Priority(1);
-
         BGL_SetPriority(1, 0);
         BGL_SetPriority(2, 1);
 
-        BattleSystem_SetGaugePriority(v2->battleSys, 0);
+        BattleSystem_SetGaugePriority(data->battleSys, 0);
 
-        if (v2->battleCtx->selectedPartySlot[v6] != v1) {
-            BattleScript_FreePartyLevelUpIcon(v2->battleSys, v2);
+        if (data->battleCtx->selectedPartySlot[expBattler] != slot) {
+            BattleScript_FreePartyLevelUpIcon(data->battleSys, data);
         }
 
-        Heap_FreeToHeap(v2->battleCtx->unk_17C);
-
-        v2->seqNum = 15;
+        Heap_FreeToHeap(data->battleCtx->tmpData);
+        data->seqNum = 15;
+        break;
     }
-    break;
-    case 15:
-    {
-        u16 v28;
-        BGL * v29 = BattleSystem_BGL(v2->battleSys);
 
-        switch (Pokemon_LevelUpMove(v3, &v2->tmpData[2], &v28)) {
-        case 0xfffe:
+    case SEQ_GET_EXP_CHECK_LEARN_MOVE: {
+        u16 move;
+        BGL *bgl = BattleSystem_BGL(data->battleSys); // unused, but must be kept to match
+
+        switch (Pokemon_LevelUpMove(mon, &data->tmpData[GET_EXP_LEARNSET_INDEX], &move)) {
+        case LEARNSET_MOVE_ALREADY_KNOWN:
+            // go to the next move possibly learnable for a given level
             break;
-        case 0x0:
-            v2->seqNum = 3;
+
+        case LEARNSET_NO_MOVE_TO_LEARN:
+            data->seqNum = SEQ_GET_EXP_GAUGE;
             break;
-        case 0xffff:
-            v2->tmpData[4] = v28;
-            v2->seqNum = 16;
+
+        case LEARNSET_ALL_SLOTS_FILLED:
+            data->tmpData[GET_EXP_MOVE] = move;
+            data->seqNum = SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT;
             break;
+
         default:
-            if (v2->battleCtx->selectedPartySlot[v6] == v1) {
-                BattleSystem_ReloadPokemon(v2->battleSys, v2->battleCtx, v6, v2->battleCtx->selectedPartySlot[v6]);
+            if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
+                BattleSystem_ReloadPokemon(data->battleSys,
+                    data->battleCtx,
+                    expBattler,
+                    data->battleCtx->selectedPartySlot[expBattler]);
             }
 
-            v4.id = 4;
-            v4.tags = 10;
-            v4.params[0] = v6 | (v1 << 8);
-            v4.params[1] = v28;
-            v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-            v2->seqNum = 36;
+            msg.id = 4; // "{0} learned {1}!"
+            msg.tags = TAG_NICKNAME_MOVE;
+            msg.params[0] = expBattler | (slot << 8);
+            msg.params[1] = move;
+            data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+            data->seqNum = SEQ_GET_EXP_LEARNED_MOVE_WAIT;
             break;
         }
+
+        break;
     }
-    break;
-    case 16:
-        v4.id = 1178;
-        v4.tags = 10;
-        v4.params[0] = v6 | (v1 << 8);
-        v4.params[1] = v2->tmpData[4];
-        v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-        v2->seqNum++;
+
+    case SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT:
+        msg.id = 1178; // "{0} wants to learn the move {1}."
+        msg.tags = TAG_NICKNAME_MOVE;
+        msg.params[0] = expBattler | (slot << 8);
+        msg.params[1] = data->tmpData[GET_EXP_MOVE];
+        data->tmpData[0] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->seqNum++;
         break;
-    case 18:
-        v4.id = 1179;
-        v4.tags = 2;
-        v4.params[0] = v6 | (v1 << 8);
-        v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-        v2->seqNum++;
+
+    case SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT:
+        msg.id = 1179; // "But {0} can't learn more than four moves."
+        msg.tags = TAG_NICKNAME;
+        msg.params[0] = expBattler | (slot << 8);
+        data->tmpData[0] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->seqNum++;
         break;
-    case 17:
-    case 19:
-    case 25:
-    case 27:
-    case 29:
-    case 32:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
-            v2->seqNum++;
+
+    case SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT_WAIT:
+    case SEQ_GET_EXP_CANT_LEARN_MORE_MOVES_PRINT_WAIT:
+    case SEQ_GET_EXP_ONE_TWO_POOF_WAIT:
+    case SEQ_GET_EXP_FORGOT_HOW_TO_USE_WAIT:
+    case SEQ_GET_EXP_AND_DOTDOTDOT_WAIT:
+    case SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED_WAIT:
+        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+            data->seqNum++;
         }
         break;
-    case 20:
-        BattleIO_ShowYesNoScreen(v2->battleSys, v2->battleCtx, v6, 1180, 1, NULL, NULL);
-        v2->seqNum++;
+
+    case SEQ_GET_EXP_MAKE_IT_FORGET_PROMPT:
+        // "Make it forget another move?"
+        BattleIO_ShowYesNoScreen(data->battleSys, data->battleCtx, expBattler, 1180, 1, NULL, NULL);
+        data->seqNum++;
         break;
-    case 21:
-        if (BattleContext_IOBufferVal(v2->battleCtx, v6)) {
-            if (BattleContext_IOBufferVal(v2->battleCtx, v6) == 0xff) {
-                v2->seqNum = 31;
+
+    case SEQ_GET_EXP_MAKE_IT_FORGET_ANSWER:
+        if (BattleContext_IOBufferVal(data->battleCtx, expBattler)) {
+            if (BattleContext_IOBufferVal(data->battleCtx, expBattler) == 0xFF) { // TODO: could use a const
+                data->seqNum = SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED;
             } else {
-                v4.id = 1183;
-                v4.tags = 0;
-                v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-                v2->seqNum = 22;
+                msg.id = 1183; // "Which move should be forgotten?"
+                msg.tags = TAG_NONE;
+                data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+                data->seqNum = 22;
             }
         }
         break;
-    case 22:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
-            BattleIO_ForgetMove(v2->battleSys, v6, v2->tmpData[4], v1);
-            v2->seqNum++;
+
+    case SEQ_GET_EXP_MAKE_IT_FORGET_WAIT:
+        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+            BattleIO_ForgetMove(data->battleSys, expBattler, data->tmpData[GET_EXP_MOVE], slot);
+            data->seqNum++;
         }
         break;
-    case 23:
-        if (BattleContext_IOBufferVal(v2->battleCtx, v6) == 0xff) {
-            v2->seqNum = 31;
-        } else if (BattleContext_IOBufferVal(v2->battleCtx, v6)) {
-            v2->tmpData[5] = v2->battleCtx->ioBuffer[v6][0] - 1;
-            v2->seqNum = 24;
+
+    case SEQ_GET_EXP_MAKE_IT_FORGET_INPUT_TAKEN:
+        if (BattleContext_IOBufferVal(data->battleCtx, expBattler) == 0xFF) {
+            data->seqNum = SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED;
+        } else if (BattleContext_IOBufferVal(data->battleCtx, expBattler)) {
+            data->tmpData[GET_EXP_MOVE_SLOT] = data->battleCtx->ioBuffer[expBattler][0] - 1;
+            data->seqNum = 24;
         }
         break;
-    case 31:
-        v4.id = 1184;
-        v4.tags = 0;
-        v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-        v2->seqNum++;
+
+    case SEQ_GET_EXP_MAKE_IT_FORGET_CANCELLED:
+        msg.id = 1184; // "Well, then..."
+        msg.tags = TAG_NONE;
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->seqNum++;
         break;
-    case 33:
-        BattleIO_ShowYesNoScreen(v2->battleSys, v2->battleCtx, v6, 1185, 2, v2->tmpData[4], NULL);
-        v2->seqNum++;
+
+    case SEQ_GET_EXP_GIVE_UP_LEARNING_PROMPT:
+        // "Should this Pokémon give up on learning this new move?"
+        BattleIO_ShowYesNoScreen(data->battleSys, data->battleCtx, expBattler, 1185, 2, data->tmpData[4], NULL);
+        data->seqNum++;
         break;
-    case 34:
-        if (BattleContext_IOBufferVal(v2->battleCtx, v6)) {
-            if (BattleContext_IOBufferVal(v2->battleCtx, v6) == 0xff) {
-                v2->seqNum = 16;
+
+    case SEQ_GET_EXP_GIVE_UP_LEARNING_ANSWER:
+        if (BattleContext_IOBufferVal(data->battleCtx, expBattler)) {
+            if (BattleContext_IOBufferVal(data->battleCtx, expBattler) == 0xFF) {
+                data->seqNum = SEQ_GET_EXP_WANTS_TO_LEARN_MOVE_PRINT;
             } else {
-                v4.id = 1188;
-                v4.tags = 10;
-                v4.params[0] = v6 | (v1 << 8);
-                v4.params[1] = v2->tmpData[4];
-                v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-                v2->seqNum = 35;
+                msg.id = 1188; // "{0} did not learn {1}."
+                msg.tags = TAG_NICKNAME_MOVE;
+                msg.params[0] = expBattler | (slot << 8);
+                msg.params[1] = data->tmpData[GET_EXP_MOVE];
+                data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+                data->seqNum = 35;
             }
         }
         break;
-    case 35:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
-            v2->seqNum = 15;
+
+    case SEQ_GET_EXP_GIVE_UP_LEARNING_WAIT:
+        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+            // Check for another move to learn
+            data->seqNum = SEQ_GET_EXP_CHECK_LEARN_MOVE;
         }
         break;
-    case 24:
-        v4.id = 1189;
-        v4.tags = 0;
-        v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-        v2->seqNum++;
-        break;
-    case 26:
-        v4.id = 1190;
-        v4.tags = 10;
-        v4.params[0] = v6 | (v1 << 8);
-        v4.params[1] = Pokemon_GetValue(v3, 54 + v2->tmpData[5], NULL);
-        v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-        v2->seqNum++;
-        break;
-    case 28:
-        v4.id = 1191;
-        v4.tags = 0;
-        v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-        v2->seqNum++;
-        break;
-    case 30:
-        v4.id = 1192;
-        v4.tags = 10;
-        v4.params[0] = v6 | (v1 << 8);
-        v4.params[1] = v2->tmpData[4];
-        v2->tmpData[0] = BattleMessage_Print(v2->battleSys, v7, &v4, BattleSystem_TextSpeed(v2->battleSys));
-        v0 = 0;
 
-        Pokemon_SetValue(v3, 62 + v2->tmpData[5], &v0);
-        Pokemon_SetMoveSlot(v3, v2->tmpData[4], v2->tmpData[5]);
+    case SEQ_GET_EXP_ONE_TWO_POOF:
+        msg.id = 1189; // "1, 2, and... ... Poof!"
+        msg.tags = TAG_NONE;
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->seqNum++;
+        break;
+    
+    case SEQ_GET_EXP_FORGOT_HOW_TO_USE:
+        msg.id = 1190; // "{0} forgot how to use {1}."
+        msg.tags = TAG_NICKNAME_MOVE;
+        msg.params[0] = expBattler | (slot << 8);
+        msg.params[1] = Pokemon_GetValue(mon, 54 + data->tmpData[5], NULL);
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->seqNum++;
+        break;
 
-        if (v2->battleCtx->selectedPartySlot[v6] == v1) {
-            BattleSystem_ReloadPokemon(v2->battleSys, v2->battleCtx, v6, v2->battleCtx->selectedPartySlot[v6]);
+    case SEQ_GET_EXP_AND_DOTDOTDOT:
+        msg.id = 1191; // "And..."
+        msg.tags = TAG_NONE;
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+        data->seqNum++;
+        break;
+    
+    case SEQ_GET_EXP_LEARNED_MOVE:
+        msg.id = 1192; // "{0} learned {1}!"
+        msg.tags = TAG_NICKNAME_MOVE;
+        msg.params[0] = expBattler | (slot << 8);
+        msg.params[1] = data->tmpData[4];
+        data->tmpData[GET_EXP_MSG_INDEX] = BattleMessage_Print(data->battleSys, msgLoader, &msg, BattleSystem_TextSpeed(data->battleSys));
+    
+        i = 0;
+        Pokemon_SetValue(mon, MON_DATA_MOVE1_PP_UPS + data->tmpData[GET_EXP_MOVE_SLOT], &i);
+        Pokemon_SetMoveSlot(mon, data->tmpData[GET_EXP_MOVE], data->tmpData[GET_EXP_MOVE_SLOT]);
+
+        if (data->battleCtx->selectedPartySlot[expBattler] == slot) {
+            BattleSystem_ReloadPokemon(data->battleSys,
+                data->battleCtx,
+                expBattler,
+                data->battleCtx->selectedPartySlot[expBattler]);
         }
 
-        v2->seqNum = 36;
+        data->seqNum = SEQ_GET_EXP_LEARNED_MOVE_WAIT;
         break;
-    case 36:
-        if (Message_Printing(v2->tmpData[0]) == 0) {
-            v2->seqNum = 15;
+
+    case SEQ_GET_EXP_LEARNED_MOVE_WAIT:
+        if (Message_Printing(data->tmpData[GET_EXP_MSG_INDEX]) == FALSE) {
+            // Check for another move to learn
+            data->seqNum = SEQ_GET_EXP_CHECK_LEARN_MOVE;
         }
         break;
-    case 37:
-        v2->battleCtx->monsGainingExp[v5] &= (FlagIndex(v1) ^ 0xffffffff);
-        v2->tmpData[6] = v1 + 1;
-        v2->seqNum = 0;
+
+    case SEQ_GET_EXP_CHECK_DONE:
+        data->battleCtx->monsGainingExp[battler] &= (FlagIndex(slot) ^ 0xFFFFFFFF); // this mon is done
+        data->tmpData[GET_EXP_PARTY_SLOT] = slot + 1;
+        data->seqNum = SEQ_GET_EXP_START; // go back to the top and get the next mon
         break;
-    case 38:
-        v2->battleCtx->taskData = NULL;
-        Heap_FreeToHeap(param1);
-        SysTask_Done(param0);
+
+    case SEQ_GET_EXP_DONE:
+        data->battleCtx->taskData = NULL;
+        Heap_FreeToHeap(inData);
+        SysTask_Done(task);
         break;
     }
 }

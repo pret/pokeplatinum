@@ -196,7 +196,7 @@ struct BattleContext {
     int meFirstTurnOrder;
 
     BattleScriptTaskData *taskData;
-    void *unk_17C;
+    void *tmpData;
     
     u32 fieldConditionsMask;
     FieldConditions fieldConditions;
