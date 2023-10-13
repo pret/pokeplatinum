@@ -25,7 +25,7 @@ struct BattlerData {
     void * unk_8C;
     u8 unk_90[256];
     u8 unk_190;
-    u8 unk_191;
+    u8 battlerType;
     u8 bootState;
     u8 unk_193;
     UnkStruct_0201CD38 * unk_194;

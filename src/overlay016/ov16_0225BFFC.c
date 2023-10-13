@@ -167,7 +167,7 @@ BattlerData * ov16_0225BFFC (BattleSystem * param0, UnkStruct_ov16_0223C2C0 * pa
     MI_CpuClearFast(v0, sizeof(BattlerData));
 
     v0->unk_190 = param1->unk_00;
-    v0->unk_191 = param1->unk_01;
+    v0->battlerType = param1->unk_01;
     v0->unk_1A0 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 5);
 
     return v0;
@@ -182,11 +182,11 @@ void ov16_0225C038 (BattleSystem * param0, BattlerData * param1, int param2, int
         return;
     }
 
-    if ((param1->unk_191 & 0x1) && ((BattleSystem_BattleType(param0) & 0x1) == 0)) {
+    if ((param1->battlerType & 0x1) && ((BattleSystem_BattleType(param0) & 0x1) == 0)) {
         return;
     }
 
-    v0.unk_00 = Unk_ov16_0226F174[param1->unk_191];
+    v0.unk_00 = Unk_ov16_0226F174[param1->battlerType];
     v0.unk_04 = 5;
     v0.unk_08 = 4;
     v0.unk_0C = param1->unk_190;
@@ -648,7 +648,7 @@ static void ov16_0225C558 (BattleSystem * param0, BattlerData * param1)
     v1 = ov16_0223E02C(param0);
 
     if (param1->bootState == 0x0) {
-        if ((v0 & 0x8) || (((v0 & 0x8) == 0) && (param1->unk_191 != 4))) {
+        if ((v0 & 0x8) || (((v0 & 0x8) == 0) && (param1->battlerType != 4))) {
             ov16_0226947C(v1, -0xd00, 0);
         }
     }
@@ -717,7 +717,7 @@ static void ov16_0225C684 (BattleSystem * param0, BattlerData * param1)
     int v3;
     int v4;
 
-    if (param1->unk_191 & 0x1) {
+    if (param1->battlerType & 0x1) {
         v4 = 2;
     } else {
         v4 = 0;
@@ -737,7 +737,7 @@ static void ov16_0225C684 (BattleSystem * param0, BattlerData * param1)
     v3 = sub_02076648(v0->unk_02, v0->unk_04, v4, v0->unk_01, v0->unk_08);
     ov16_0223F2FC(ov16_0223E0C8(param0), param1->unk_190, v3);
 
-    v3 = ov12_022384CC(param1->unk_191, 1) + v3;
+    v3 = ov12_022384CC(param1->battlerType, 1) + v3;
     sub_02007DEC(param1->unk_20, 1, v3);
 
     ov16_02266ABC(param0, param1->unk_190, v0->unk_00);

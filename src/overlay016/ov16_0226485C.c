@@ -431,7 +431,7 @@ void BattleIO_ReturnPokemon (BattleSystem * param0, BattleContext * param1, int 
     int v2;
     int v3;
 
-    if (param0->battlers[param2]->unk_191 & 0x1) {
+    if (param0->battlers[param2]->battlerType & 0x1) {
         v1 = 2;
     } else {
         v1 = 0;
@@ -472,7 +472,7 @@ void ov16_02265050 (BattleSystem * param0, int param1, int param2)
     int v1;
     int v2;
 
-    if (param0->battlers[param1]->unk_191 & 0x1) {
+    if (param0->battlers[param1]->battlerType & 0x1) {
         v1 = 2;
     } else {
         v1 = 0;

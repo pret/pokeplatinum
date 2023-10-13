@@ -141,7 +141,7 @@ static BOOL BtlCmd_JumpToSub(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpToBattleEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpToMove(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckCritical(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02241D34(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02241EB0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241EF0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02241F1C(BattleSystem * param0, BattleContext * param1);
@@ -401,7 +401,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_JumpToBattleEffect,
     BtlCmd_JumpToMove,
     BtlCmd_CheckCritical,
-    ov16_02241D34,
+    BtlCmd_CalcExpGain,
     ov16_02241EB0,
     ov16_02241EF0,
     ov16_02241F1C,
@@ -651,7 +651,7 @@ static BOOL BtlCmd_SetEncounter(BattleSystem *battleSys, BattleContext *battleCt
         for (i = 0; i < maxBattlers; i++) {
             BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleIO_SetEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
@@ -696,7 +696,7 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleIO_ShowEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
@@ -710,7 +710,7 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleSystem_NoExpGain(battleCtx, i);
                 BattleSystem_FlagExpGain(battleSys, battleCtx, i);
                 BattleIO_ShowEncounter(battleSys, i);
@@ -722,7 +722,7 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
     case BTLSCR_ATTACKER:
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
 
-        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+        if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
@@ -737,7 +737,7 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
     case BTLSCR_DEFENDER:
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
 
-        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+        if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
@@ -752,7 +752,7 @@ static BOOL BtlCmd_ShowEncounter(BattleSystem *battleSys, BattleContext *battleC
     case BTLSCR_SWITCHED_MON:
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
 
-        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+        if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
@@ -802,7 +802,7 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & 0x1) == 0) {
+            if ((battlerData->battlerType & 0x1) == 0) {
                 BattleIO_ShowPokemon(battleSys, i, NULL, 0);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
@@ -816,7 +816,7 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & 0x1) {
+            if (battlerData->battlerType & 0x1) {
                 BattleSystem_NoExpGain(battleCtx, i);
                 BattleSystem_FlagExpGain(battleSys, battleCtx, i);
                 BattleIO_ShowPokemon(battleSys, i, NULL, 0);
@@ -828,7 +828,7 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
     case BTLSCR_ATTACKER:
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->attacker);
 
-        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+        if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
@@ -843,7 +843,7 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
     case BTLSCR_DEFENDER:
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->defender);
 
-        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+        if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
@@ -858,7 +858,7 @@ static BOOL BtlCmd_ShowPokemon(BattleSystem *battleSys, BattleContext *battleCtx
     case BTLSCR_SWITCHED_MON:
         battlerData = BattleSystem_BattlerData(battleSys, battleCtx->switchedMon);
 
-        if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+        if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
             BattleSystem_FlagExpGain(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         } else {
@@ -904,7 +904,7 @@ static BOOL BtlCmd_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleC
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleIO_ReturnPokemon(battleSys, battleCtx, i);
             }
         }
@@ -914,7 +914,7 @@ static BOOL BtlCmd_ReturnPokemon(BattleSystem *battleSys, BattleContext *battleC
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) && 
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) && 
                     (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
                 BattleIO_ReturnPokemon(battleSys, battleCtx, i);
             }
@@ -978,7 +978,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
         if (BattleSystem_BattleType(battleSys) & 0x10) {
             for (i = 0; i < maxBattlers; i++) {
                 battlerData = BattleSystem_BattlerData(battleSys, i);
-                if (battlerData->unk_191 != BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+                if (battlerData->battlerType != BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
                     BattleIO_SetTrainerEncounter(battleSys, i);
                 }
             }
@@ -999,7 +999,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleIO_SetTrainerEncounter(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
@@ -1014,7 +1014,7 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleIO_SetTrainerEncounter(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
@@ -1070,7 +1070,7 @@ static BOOL BtlCmd_ThrowTrainerBall(BattleSystem *battleSys, BattleContext *batt
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleIO_ThrowTrainerBall(battleSys, i, ballTypeIn);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
@@ -1085,7 +1085,7 @@ static BOOL BtlCmd_ThrowTrainerBall(BattleSystem *battleSys, BattleContext *batt
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleIO_ThrowTrainerBall(battleSys, i, ballTypeIn);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
@@ -1140,7 +1140,7 @@ static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battl
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleIO_SlideTrainerOut(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
@@ -1155,7 +1155,7 @@ static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battl
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleIO_SlideTrainerOut(battleSys, i);
 
                 if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_2vs2) == FALSE
@@ -1171,8 +1171,8 @@ static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battl
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 == BATTLER_TYPE_SOLO_PLAYER
-                    || battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+            if (battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER
+                    || battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 BattleIO_SlideTrainerOut(battleSys, i);
                 break;
             }
@@ -1183,8 +1183,8 @@ static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battl
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 == BATTLER_TYPE_SOLO_ENEMY
-                    || battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+            if (battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY
+                    || battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
                 BattleIO_SlideTrainerOut(battleSys, i);
                 break;
             }
@@ -1195,7 +1195,7 @@ static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battl
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+            if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
                 BattleIO_SlideTrainerOut(battleSys, i);
                 break;
             }
@@ -1206,7 +1206,7 @@ static BOOL BtlCmd_SlideTrainerOut(BattleSystem *battleSys, BattleContext *battl
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+            if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
                 BattleIO_SlideTrainerOut(battleSys, i);
                 break;
             }
@@ -1257,7 +1257,7 @@ static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleIO_SlideTrainerIn(battleSys, i, posIn);
 
                 if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
@@ -1271,7 +1271,7 @@ static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleIO_SlideTrainerIn(battleSys, i, posIn);
 
                 if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
@@ -1285,8 +1285,8 @@ static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 == BATTLER_TYPE_SOLO_PLAYER
-                    || battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
+            if (battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER
+                    || battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1) {
                 BattleIO_SlideTrainerIn(battleSys, i, posIn);
                 break;
             }
@@ -1297,8 +1297,8 @@ static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 == BATTLER_TYPE_SOLO_ENEMY
-                    || battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
+            if (battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY
+                    || battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1) {
                 BattleIO_SlideTrainerIn(battleSys, i, posIn);
                 break;
             }
@@ -1309,7 +1309,7 @@ static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
+            if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
                 BattleIO_SlideTrainerIn(battleSys, i, posIn);
                 break;
             }
@@ -1320,7 +1320,7 @@ static BOOL BtlCmd_SlideTrainerIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+            if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
                 BattleIO_SlideTrainerIn(battleSys, i, posIn);
                 break;
             }
@@ -1376,7 +1376,7 @@ static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
             }
         }
@@ -1386,7 +1386,7 @@ static BOOL BtlCmd_SlideHPGaugeIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, 0);
             }
         }
@@ -1434,7 +1434,7 @@ static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *ba
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, wait);
                 wait += 4;
             }
@@ -1445,7 +1445,7 @@ static BOOL BtlCmd_SlideHPGaugeInWait(BattleSystem *battleSys, BattleContext *ba
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleIO_SlideHPGaugeIn(battleSys, battleCtx, i, wait);
                 wait += 4;
             }
@@ -1492,7 +1492,7 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE
                     && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
                 BattleIO_SlideHPGaugeOut(battleSys, i);
             }
@@ -1503,7 +1503,7 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_BattlerData(battleSys, i);
 
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 BattleIO_SlideHPGaugeOut(battleSys, i);
             }
         }
@@ -2398,73 +2398,82 @@ static BOOL BtlCmd_CheckCritical(BattleSystem *battleSys, BattleContext *battleC
     return FALSE;
 }
 
-static BOOL ov16_02241D34 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Calculate the amount of experience to be given to each participating
+ * battler.
+ * 
+ * Inputs:
+ * 1. The jump distance if no experience is to be given. i.e., the defeated
+ * battler is an ally, or the battle type explicitly forbids experience gain.
+ * 
+ * Side effects:
+ * - battleCtx->gainedExp will be updated with the amount of experience to be
+ * given to each participating battler.
+ * - battleCtx->sharedExp will be updated with the amount of experience to be
+ * given to each participating battler which was holding an Exp Share.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u32 v1 = BattleSystem_BattleType(param0);
-    BattlerData * v2 = BattleSystem_BattlerData(param0, param1->faintedMon);
+    int jump;
+    u32 battleType = BattleSystem_BattleType(battleSys);
+    BattlerData *battlerData = BattleSystem_BattlerData(battleSys, battleCtx->faintedMon);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
+    BattleScript_Iter(battleCtx, 1);
+    jump = BattleScript_Read(battleCtx);
 
-    if ((v2->unk_191 & 0x1) && ((v1 & (0x4 | 0x20 | 0x80 | 0x200)) == 0)) {
-        {
-            int v3;
-            int v4;
-            int v5 = 0;
-            int v6 = 0;
-            u16 v7;
-            u16 v8;
-            int v9;
-            Pokemon * v10;
+    if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) && (battleType & BATTLE_TYPE_NO_EXPERIENCE) == FALSE) {
+        int i;
+        int totalMonsGainingExp = 0;
+        int totalMonsWithExpShare = 0;
 
-            for (v3 = 0; v3 < Party_GetCurrentCount(BattleSystem_Party(param0, 0)); v3++) {
-                v10 = BattleSystem_PartyPokemon(param0, 0, v3);
+        for (i = 0; i < Party_GetCurrentCount(BattleSystem_Party(battleSys, BATTLER_US)); i++) {
+            Pokemon *mon = BattleSystem_PartyPokemon(battleSys, BATTLER_US, i);
 
-                if ((Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL)) && (Pokemon_GetValue(v10, MON_DATA_CURRENT_HP, NULL))) {
-                    if (param1->monsGainingExp[(param1->faintedMon >> 1) & 1] & FlagIndex(v3)) {
-                        v5++;
-                    }
-
-                    v7 = Pokemon_GetValue(v10, MON_DATA_HELD_ITEM, NULL);
-                    v9 = BattleSystem_GetItemData(param1, v7, 1);
-
-                    if (v9 == 51) {
-                        v6++;
-                    }
-                }
-            }
-
-            v8 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[param1->faintedMon].species, 9);
-            v8 = (v8 * param1->battleMons[param1->faintedMon].level) / 7;
-
-            if (v6) {
-                param1->gainedExp = (v8 / 2) / v5;
-
-                if (param1->gainedExp == 0) {
-                    param1->gainedExp = 1;
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) && Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL)) {
+                if (battleCtx->monsGainingExp[(battleCtx->faintedMon >> 1) & 1] & FlagIndex(i)) {
+                    totalMonsGainingExp++;
                 }
 
-                param1->sharedExp = (v8 / 2) / v6;
-
-                if (param1->sharedExp == 0) {
-                    param1->sharedExp = 1;
+                u16 item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+                if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HOLD_EFFECT) == HOLD_EFFECT_EXP_SHARE) {
+                    totalMonsWithExpShare++;
                 }
-            } else {
-                param1->gainedExp = v8 / v5;
-
-                if (param1->gainedExp == 0) {
-                    param1->gainedExp = 1;
-                }
-
-                param1->sharedExp = 0;
             }
         }
+
+        u16 exp = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battleCtx->faintedMon].species, MON_DATA_PERSONAL_BASE_EXP);
+        exp = (exp * battleCtx->battleMons[battleCtx->faintedMon].level) / 7;
+
+        if (totalMonsWithExpShare) {
+            battleCtx->gainedExp = (exp / 2) / totalMonsGainingExp;
+
+            if (battleCtx->gainedExp == 0) {
+                battleCtx->gainedExp = 1;
+            }
+
+            battleCtx->sharedExp = (exp / 2) / totalMonsWithExpShare;
+
+            if (battleCtx->sharedExp == 0) {
+                battleCtx->sharedExp = 1;
+            }
+        } else {
+            battleCtx->gainedExp = exp / totalMonsGainingExp;
+
+            if (battleCtx->gainedExp == 0) {
+                battleCtx->gainedExp = 1;
+            }
+
+            battleCtx->sharedExp = 0;
+        }
     } else {
-        BattleScript_Iter(param1, v0);
+        BattleScript_Iter(battleCtx, jump);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02241EB0 (BattleSystem * param0, BattleContext * param1)
@@ -7455,7 +7464,7 @@ static BOOL ov16_02248204 (BattleSystem * param0, BattleContext * param1)
         for (v1 = 0; v1 < v3; v1++) {
             v2 = BattleSystem_BattlerData(param0, v1);
 
-            if ((v2->unk_191 & 0x1) == 0) {
+            if ((v2->battlerType & 0x1) == 0) {
                 ov16_022667E8(param0, v1);
             }
         }
@@ -7464,7 +7473,7 @@ static BOOL ov16_02248204 (BattleSystem * param0, BattleContext * param1)
         for (v1 = 0; v1 < v3; v1++) {
             v2 = BattleSystem_BattlerData(param0, v1);
 
-            if (v2->unk_191 & 0x1) {
+            if (v2->battlerType & 0x1) {
                 ov16_022667E8(param0, v1);
             }
         }
@@ -7494,7 +7503,7 @@ static BOOL ov16_02248294 (BattleSystem * param0, BattleContext * param1)
         for (v1 = 0; v1 < v3; v1++) {
             v2 = BattleSystem_BattlerData(param0, v1);
 
-            if ((v2->unk_191 & 0x1) == 0) {
+            if ((v2->battlerType & 0x1) == 0) {
                 ov16_02266804(param0, v1);
             }
         }
@@ -7503,7 +7512,7 @@ static BOOL ov16_02248294 (BattleSystem * param0, BattleContext * param1)
         for (v1 = 0; v1 < v3; v1++) {
             v2 = BattleSystem_BattlerData(param0, v1);
 
-            if (v2->unk_191 & 0x1) {
+            if (v2->battlerType & 0x1) {
                 ov16_02266804(param0, v1);
             }
         }
@@ -9500,7 +9509,7 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         maxBattlers = BattleSystem_MaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
             battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
-            if (battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) {
                 break;
             }
         }
@@ -9510,7 +9519,7 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         maxBattlers = BattleSystem_MaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
             battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
-            if (battlerData->unk_191 == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 || battlerData->unk_191 == BATTLER_TYPE_SOLO_ENEMY) {
+            if (battlerData->battlerType == BATTLER_TYPE_ENEMY_SIDE_SLOT_1 || battlerData->battlerType == BATTLER_TYPE_SOLO_ENEMY) {
                 break;
             }
         }
@@ -9526,7 +9535,7 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         maxBattlers = BattleSystem_MaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
             battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
-            if (battlerData->unk_191 == expectedBattlerType) {
+            if (battlerData->battlerType == expectedBattlerType) {
                 break;
             }
         }
@@ -9536,7 +9545,7 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         maxBattlers = BattleSystem_MaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
             battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
-            if ((battlerData->unk_191 & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
                 break;
             }
         }
@@ -9546,8 +9555,8 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         maxBattlers = BattleSystem_MaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
             battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
-            if (battlerData->unk_191 == BATTLER_TYPE_PLAYER_SIDE_SLOT_1
-                    || battlerData->unk_191 == BATTLER_TYPE_SOLO_PLAYER) {
+            if (battlerData->battlerType == BATTLER_TYPE_PLAYER_SIDE_SLOT_1
+                    || battlerData->battlerType == BATTLER_TYPE_SOLO_PLAYER) {
                 break;
             }
         }
@@ -9563,7 +9572,7 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         maxBattlers = BattleSystem_MaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
             battlerData = BattleSystem_BattlerData(battleSys, battlerOut);
-            if (battlerData->unk_191 == expectedBattlerType) {
+            if (battlerData->battlerType == expectedBattlerType) {
                 break;
             }
         }

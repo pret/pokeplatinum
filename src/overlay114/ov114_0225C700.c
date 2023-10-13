@@ -258,7 +258,7 @@ typedef struct {
     u8 unk_0C[2][192];
     UnkStruct_0201CD38 * unk_18C;
     GXWndPlane unk_190;
-    GXWndPlane unk_191;
+    GXWndPlane battlerType;
     int unk_194;
 } UnkStruct_ov114_0225FAB8;
 
@@ -3681,8 +3681,8 @@ static void ov114_0225F9B8 (UnkStruct_ov114_0225FAB8 * param0, UnkStruct_ov114_0
 
     param0->unk_190 = G2_GetWndOutsidePlane();
     param0->unk_194 = GX_GetVisibleWnd() & GX_WNDMASK_W1;
-    param0->unk_191.planeMask = GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3;
-    param0->unk_191.effect = 1;
+    param0->battlerType.planeMask = GX_WND_PLANEMASK_BG0 | GX_WND_PLANEMASK_BG1 | GX_WND_PLANEMASK_BG2 | GX_WND_PLANEMASK_BG3;
+    param0->battlerType.effect = 1;
 
     sub_020177BC(ov114_0225FCF0, param0);
     sub_02021D0C(param0->unk_00[1], 2);
@@ -3819,7 +3819,7 @@ static void ov114_0225FCF0 (void * param0)
                 G2_SetWndOutsidePlane(v0->unk_190.planeMask, v0->unk_190.effect);
                 v2 |= v0->unk_194;
             } else {
-                G2_SetWndOutsidePlane(v0->unk_191.planeMask, v0->unk_191.effect);
+                G2_SetWndOutsidePlane(v0->battlerType.planeMask, v0->battlerType.effect);
                 v2 &= ~(GX_WNDMASK_W1 | v0->unk_194);
             }
 
