@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -1488,22 +1488,22 @@ static void ov88_0223CE34 (u32 * param0)
     int v0 = 0;
     int v1 = 0;
 
-    if (coresys.unk_4C & PAD_KEY_UP) {
+    if (gCoreSys.unk_4C & PAD_KEY_UP) {
         v1 = 1;
         v0++;
     }
 
-    if (coresys.unk_4C & PAD_KEY_DOWN) {
+    if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
         v1 = 2;
         v0++;
     }
 
-    if (coresys.unk_4C & PAD_KEY_LEFT) {
+    if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
         v1 = 3;
         v0++;
     }
 
-    if (coresys.unk_4C & PAD_KEY_RIGHT) {
+    if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
         v1 = 4;
         v0++;
     }
@@ -1704,7 +1704,7 @@ static void ov88_0223D140 (UnkStruct_0202CC84 * param0)
 
 static int ov88_0223D150 (UnkStruct_02095E80 * param0)
 {
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         sub_02005748(1500);
         param0->unk_88[0] = 12;
         ov88_0223BE28(param0);
@@ -1712,7 +1712,7 @@ static int ov88_0223D150 (UnkStruct_02095E80 * param0)
     } else {
         ov88_0223CE34(&param0->unk_14C[0]);
 
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             if (param0->unk_14C[0] == 0) {
                 if (param0->unk_88[0] == 12) {
                     param0->unk_226C = ov88_0223D2C4;
@@ -1813,7 +1813,7 @@ static int ov88_0223D3E0 (UnkStruct_02095E80 * param0)
 
 static int ov88_0223D434 (UnkStruct_02095E80 * param0)
 {
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         sub_02019CB8(param0->unk_174, 0, 0, 0, 0, 32, 24, 0);
         ov88_0223ECBC(&param0->unk_49C[21], 15, 1, param0->unk_184, param0->unk_178);
         param0->unk_226C = ov88_0223D150;

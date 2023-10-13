@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -560,7 +560,7 @@ static void ov5_021DC95C (UnkStruct_0201CD38 * param0, void * param1)
         sub_02005748(1500);
     }
 
-    if ((coresys.unk_4C & PAD_KEY_UP) || (coresys.unk_4C & PAD_KEY_DOWN) || (coresys.unk_4C & PAD_KEY_LEFT) || (coresys.unk_4C & PAD_KEY_RIGHT)) {
+    if ((gCoreSys.unk_4C & PAD_KEY_UP) || (gCoreSys.unk_4C & PAD_KEY_DOWN) || (gCoreSys.unk_4C & PAD_KEY_LEFT) || (gCoreSys.unk_4C & PAD_KEY_RIGHT)) {
         ov5_021DCAF4(v2);
     }
 

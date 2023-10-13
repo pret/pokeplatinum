@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 #include "assert.h"
 #include "inlines.h"
 
@@ -1166,21 +1166,21 @@ static void ov72_0223EA18 (UnkStruct_ov72_0223DB98 * param0)
 
     v0 = 0;
 
-    if ((coresys.unk_5C != 0xffff) && (coresys.unk_5E != 0xffff) && (param0->unk_5D0C != 0xffff) && (param0->unk_5D10 != 0xffff)) {
-        if (param0->unk_5D0C > coresys.unk_5C) {
-            v1 = param0->unk_5D0C - coresys.unk_5C;
+    if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5E != 0xffff) && (param0->unk_5D0C != 0xffff) && (param0->unk_5D10 != 0xffff)) {
+        if (param0->unk_5D0C > gCoreSys.unk_5C) {
+            v1 = param0->unk_5D0C - gCoreSys.unk_5C;
             param0->unk_5D04.unk_02 = -1;
         } else {
-            v1 = coresys.unk_5C - param0->unk_5D0C;
+            v1 = gCoreSys.unk_5C - param0->unk_5D0C;
             param0->unk_5D04.unk_02 = 1;
         }
 
         if ((v1 >= 3) && (v1 <= 40)) {
-            if (param0->unk_5D10 > coresys.unk_5E) {
-                v1 = param0->unk_5D10 - coresys.unk_5E;
+            if (param0->unk_5D10 > gCoreSys.unk_5E) {
+                v1 = param0->unk_5D10 - gCoreSys.unk_5E;
                 param0->unk_5D04.unk_03 = -1;
             } else {
-                v1 = coresys.unk_5E - param0->unk_5D10;
+                v1 = gCoreSys.unk_5E - param0->unk_5D10;
                 param0->unk_5D04.unk_03 = 1;
             }
 
@@ -1191,11 +1191,11 @@ static void ov72_0223EA18 (UnkStruct_ov72_0223DB98 * param0)
                 (void)0;
             }
         } else if (v1 <= 40) {
-            if (param0->unk_5D10 > coresys.unk_5E) {
-                v1 = param0->unk_5D10 - coresys.unk_5E;
+            if (param0->unk_5D10 > gCoreSys.unk_5E) {
+                v1 = param0->unk_5D10 - gCoreSys.unk_5E;
                 param0->unk_5D04.unk_03 = -1;
             } else {
-                v1 = coresys.unk_5E - param0->unk_5D10;
+                v1 = gCoreSys.unk_5E - param0->unk_5D10;
                 param0->unk_5D04.unk_03 = 1;
             }
 
@@ -1208,8 +1208,8 @@ static void ov72_0223EA18 (UnkStruct_ov72_0223DB98 * param0)
         }
     }
 
-    param0->unk_5D0C = coresys.unk_5C;
-    param0->unk_5D10 = coresys.unk_5E;
+    param0->unk_5D0C = gCoreSys.unk_5C;
+    param0->unk_5D10 = gCoreSys.unk_5E;
 }
 
 static void ov72_0223EAD8 (UnkStruct_ov72_0223EAD8 * param0)

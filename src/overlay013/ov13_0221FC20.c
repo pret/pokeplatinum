@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -861,7 +861,7 @@ static u8 ov13_02220848 (UnkStruct_ov13_022213F0 * param0)
 
 static u8 ov13_02220864 (UnkStruct_ov13_022213F0 * param0)
 {
-    if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) || (TouchScreen_Tapped() == 1)) {
+    if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) || (TouchScreen_Tapped() == 1)) {
         return param0->unk_2075;
     }
 

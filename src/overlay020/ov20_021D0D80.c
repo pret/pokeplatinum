@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "strbuf.h"
@@ -155,9 +155,9 @@ int ov20_021D0DF8 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov20_021D16E8 * v0 = sub_0200682C(param0);
 
-    v0->unk_30 = coresys.padInput;
-    v0->unk_32 = coresys.unk_44;
-    v0->unk_34 = coresys.unk_4C;
+    v0->unk_30 = gCoreSys.padInput;
+    v0->unk_32 = gCoreSys.unk_44;
+    v0->unk_34 = gCoreSys.unk_4C;
 
     sub_0202404C(v0->unk_40);
 

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
@@ -147,7 +147,7 @@ int ov102_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 4:
-        if ((((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((coresys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) || (coresys.touchInput)) {
+        if ((((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((gCoreSys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) || (gCoreSys.touchInput)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }

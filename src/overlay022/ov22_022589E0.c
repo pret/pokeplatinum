@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
 
@@ -275,9 +275,9 @@ static void ov22_02258D4C (UnkStruct_ov22_02258A48 * param0)
     int v1, v2;
 
     if (v0->unk_10 != NULL) {
-        if ((coresys.unk_5C != 0xffff) && (coresys.unk_5C != 0xffff)) {
-            v1 = coresys.unk_5C - v0->unk_14;
-            v2 = coresys.unk_5E - v0->unk_18;
+        if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5C != 0xffff)) {
+            v1 = gCoreSys.unk_5C - v0->unk_14;
+            v2 = gCoreSys.unk_5E - v0->unk_18;
 
             ov22_022595F8(v0->unk_10, v1, v2);
         }
@@ -312,12 +312,12 @@ static void ov22_02258DAC (UnkStruct_ov22_02258A48 * param0)
     int v9, v10;
 
     if (v0->unk_10 != NULL) {
-        if ((coresys.unk_5C != 0xffff) && (coresys.unk_5C != 0xffff)) {
+        if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5C != 0xffff)) {
             ov22_022596B0(v0->unk_10, &v7, &v9, &v8, &v10);
             ov22_02259698(v0->unk_10, &v1, &v2);
 
-            v3 = coresys.unk_5C - v0->unk_14;
-            v4 = coresys.unk_5E - v0->unk_18;
+            v3 = gCoreSys.unk_5C - v0->unk_14;
+            v4 = gCoreSys.unk_5E - v0->unk_18;
 
             v5 = v3 + v7;
             v6 = v4 + v8;

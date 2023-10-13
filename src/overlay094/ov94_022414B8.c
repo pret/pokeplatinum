@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
@@ -535,7 +535,7 @@ static int ov94_0224195C (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02241990 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         ov94_0223C4C0(param0, 5, 5);
         param0->unk_2C = 2;
     }

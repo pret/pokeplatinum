@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -890,7 +890,7 @@ static void ov58_021D1A80 (UnkStruct_02095EAC * param0)
     sub_02021CAC(param0->unk_23C[sub_0203608C()], 0);
 
     if (v1 != 0xffffffff) {
-        ov58_021D1A10(param0->unk_23C[sub_0203608C()], coresys.unk_5C, coresys.unk_5E);
+        ov58_021D1A10(param0->unk_23C[sub_0203608C()], gCoreSys.unk_5C, gCoreSys.unk_5E);
         sub_02021CAC(param0->unk_23C[sub_0203608C()], 1);
     }
 

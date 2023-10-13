@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -674,7 +674,7 @@ static int ov91_021D122C (UnkStruct_ov91_021D0ED8 * param0)
     u32 v0;
     u16 v1, v2;
 
-    if (coresys.padInput & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+    if (gCoreSys.padInput & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
         sub_02005748(1501);
         param0->unk_00->unk_14 ^= 1;
         ov91_021D1498(param0);

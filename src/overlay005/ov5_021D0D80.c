@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "coresys.h"
+#include "core_sys.h"
 #include "data_02100844.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
@@ -539,7 +539,7 @@ static void ov5_021D134C (UnkStruct_0203CDB0 * param0, u8 param1)
         ov5_021D15F4(param0);
     }
 
-    if (coresys.padInput & PAD_BUTTON_X) {
+    if (gCoreSys.padInput & PAD_BUTTON_X) {
         (void)0;
     }
 }

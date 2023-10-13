@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -356,7 +356,7 @@ static BOOL sub_0209A200 (UnkStruct_02099DFC * param0, u32 param1, int param2, i
         }
         break;
     case 2:
-        if ((param2 != 0) || (coresys.padInput & 1)) {
+        if ((param2 != 0) || (gCoreSys.padInput & 1)) {
             param0->unk_08 = 0;
             v0 = 1;
         }

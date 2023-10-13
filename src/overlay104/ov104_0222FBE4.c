@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -2017,7 +2017,7 @@ static BOOL ov104_02231068 (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02231078 (UnkStruct_ov104_0222E930 * param0)
 {
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
@@ -2033,7 +2033,7 @@ static BOOL ov104_02231090 (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_022310B0 (UnkStruct_ov104_0222E930 * param0)
 {
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 

@@ -4,7 +4,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "strbuf.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -465,7 +465,7 @@ static BOOL ov70_02263120 (int param0)
         break;
     }
 
-    if (coresys.unk_44 & v0) {
+    if (gCoreSys.unk_44 & v0) {
         return 1;
     }
 
@@ -905,7 +905,7 @@ static BOOL ov70_02263414 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
         ov70_02262E88(param0, 21);
         break;
     case 18:
-        if (!((sub_020057D4(1448) == 0) && (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if (!((sub_020057D4(1448) == 0) && (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)))) {
             break;
         }
 
@@ -1333,7 +1333,7 @@ static BOOL ov70_02263CC8 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
                     return 0;
                 }
 
-                if (coresys.padInput & PAD_BUTTON_A) {
+                if (gCoreSys.padInput & PAD_BUTTON_A) {
                     {
                         UnkStruct_ov70_0225CC54 * v17;
                         u32 v18;
@@ -1421,7 +1421,7 @@ static BOOL ov70_02263CC8 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
                     }
                 }
 
-                if (coresys.padInput & PAD_BUTTON_X) {
+                if (gCoreSys.padInput & PAD_BUTTON_X) {
                     if (ov70_0225E3F0(param1) == 0) {
                         ov70_0225E328(param1, ov66_0222E338(v11), 0);
                         sub_02005748(1500);
@@ -2480,7 +2480,7 @@ static BOOL ov70_02264D38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
         }
         break;
     case 2:
-        if ((coresys.padInput & PAD_BUTTON_B) || (coresys.padInput & PAD_KEY_DOWN)) {
+        if ((gCoreSys.padInput & PAD_BUTTON_B) || (gCoreSys.padInput & PAD_KEY_DOWN)) {
             ov66_0222EBC4(v4, param2);
             ov70_0225DFCC(param1);
             v0->unk_0A = 6;

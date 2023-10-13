@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -724,7 +724,7 @@ static void ov97_022343A8 (UnkStruct_ov97_02234A2C * param0)
             v1 = ov97_02234124(param0, param0->unk_E8E4, v0);
             v2 = ov97_02234148(param0, param0->unk_E8E4, v0);
             v5 = ov97_0223416C(param0, param0->unk_E8E4, v0);
-            v3 = coresys.unk_66;
+            v3 = gCoreSys.unk_66;
             v4 = GBASpeciesToDSFormId(ov97_02236DD0(v1), v5, v3);
 
             ov97_022342E4(v1, v2, v4, v0, param0->unk_20C[v0].unk_00, v6, v7);
@@ -1417,7 +1417,7 @@ static void ov97_02234DFC (UnkStruct_ov97_02234A2C * param0)
     GXLayers_SetBanks(&v0);
     ov97_02234D28(param0->unk_20);
 
-    coresys.unk_65 = 1;
+    gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     sub_0201D710();
@@ -1492,7 +1492,7 @@ static void ov97_02234F88 (UnkStruct_ov97_02234A2C * param0)
         v1 = ov97_02234124(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
         v2 = ov97_02234148(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
         v4 = ov97_0223416C(param0, param0->unk_42C[v0].unk_08, param0->unk_42C[v0].unk_04);
-        v3 = coresys.unk_66;
+        v3 = gCoreSys.unk_66;
 
         ov97_02234278(v1, v2, v4, v3, v0, param0->unk_478[v0]);
     }
@@ -1596,7 +1596,7 @@ static void ov97_022351F0 (UnkStruct_ov97_02234A2C * param0)
     sub_0201F8B4();
 
     sub_02015938(param0->unk_E8EC);
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     sub_02019044(param0->unk_20, 0);
@@ -1774,7 +1774,7 @@ static BOOL ov97_02235590 (UnkStruct_ov97_02234A2C * param0, int param1)
                 return 1;
             }
         } else {
-            if (coresys.touchInput || coresys.padInput) {
+            if (gCoreSys.touchInput || gCoreSys.padInput) {
                 sub_02002B20(0);
                 sub_02005748(1500);
                 return 1;
@@ -1935,7 +1935,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 7:
-        if (coresys.touchInput || coresys.padInput) {
+        if (gCoreSys.touchInput || gCoreSys.padInput) {
             ov97_02234CC4(v3, 0, 12, param1);
         }
         break;
@@ -2129,7 +2129,7 @@ static int ov97_022356E8 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 22:
-        if (coresys.touchInput || coresys.padInput) {
+        if (gCoreSys.touchInput || gCoreSys.padInput) {
             ov97_02234CF4(v3, 0, 24, param1);
             sub_02005748(1500);
         }

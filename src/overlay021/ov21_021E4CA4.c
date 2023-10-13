@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -631,7 +631,7 @@ static void ov21_021E530C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
             ov21_021E5E18(param2);
         }
 
-        param2->unk_38 = coresys.unk_5C;
+        param2->unk_38 = gCoreSys.unk_5C;
         param2->unk_30 = 1;
         break;
     case 1:
@@ -640,8 +640,8 @@ static void ov21_021E530C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
         }
 
         param2->unk_4C = 1;
-        param2->unk_54 = coresys.unk_5C;
-        param2->unk_58 = coresys.unk_5E;
+        param2->unk_54 = gCoreSys.unk_5C;
+        param2->unk_58 = gCoreSys.unk_5E;
         break;
     case 2:
         if (param2->unk_2C) {
@@ -663,18 +663,18 @@ static void ov21_021E537C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
     switch (param0) {
     case 0:
         if (param2->unk_30 == 1) {
-            v0 = coresys.unk_5C - param2->unk_38;
+            v0 = gCoreSys.unk_5C - param2->unk_38;
 
             if (param2->unk_34 == 0) {
                 if (12 <= v0) {
                     param2->unk_34 = 1;
-                    param2->unk_38 = coresys.unk_5C;
+                    param2->unk_38 = gCoreSys.unk_5C;
                     sub_02005748(1527);
                 }
             } else {
                 if (-12 >= v0) {
                     param2->unk_34 = 0;
-                    param2->unk_38 = coresys.unk_5C;
+                    param2->unk_38 = gCoreSys.unk_5C;
                     sub_02005748(1527);
                 }
             }
@@ -686,8 +686,8 @@ static void ov21_021E537C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
             ov21_021E5AAC(param2);
             ov21_021E5AD8(param2);
 
-            param2->unk_54 = coresys.unk_5C;
-            param2->unk_58 = coresys.unk_5E;
+            param2->unk_54 = gCoreSys.unk_5C;
+            param2->unk_58 = gCoreSys.unk_5E;
         }
         break;
     case 2:
@@ -696,11 +696,11 @@ static void ov21_021E537C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
                 param2->unk_20 = 1;
                 ov21_021E5ED8(param2, 0);
             } else {
-                if (coresys.unk_5E < (99 - -16) + 16) {
+                if (gCoreSys.unk_5E < (99 - -16) + 16) {
                     if (param2->unk_34 == 0) {
-                        ov21_021E5BE4(param2, coresys.unk_5C);
+                        ov21_021E5BE4(param2, gCoreSys.unk_5C);
                     } else {
-                        ov21_021E5C18(param2, coresys.unk_5C);
+                        ov21_021E5C18(param2, gCoreSys.unk_5C);
                     }
 
                     param2->unk_3C = 0;
@@ -1022,8 +1022,8 @@ static void ov21_021E5A44 (UnkStruct_ov21_021E51DC * param0)
 
     v1 = param0->unk_54 - 51;
     v0 = param0->unk_58 - 157;
-    v3 = coresys.unk_5C - 51;
-    v2 = coresys.unk_5E - 157;
+    v3 = gCoreSys.unk_5C - 51;
+    v2 = gCoreSys.unk_5E - 157;
     v4 = sub_0201D4CC(v1, v0, v3, v2, 0);
 
     if (MATH_IAbs(v4) < 1) {
@@ -1383,7 +1383,7 @@ static void ov21_021E5F5C (UnkStruct_ov21_021E51DC * param0, UnkStruct_ov21_021E
 {
     int v0 = ov21_021D37BC(param1->unk_04);
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         param0->unk_28 = 1;
 
         param0->unk_18[0] = 0;

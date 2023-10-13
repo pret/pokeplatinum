@@ -3,7 +3,7 @@
 #include <dwc.h>
 #include <ppwlobby/ppw_lobby.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -490,7 +490,7 @@ static void ov68_0225C9A0 (UnkStruct_ov68_0225C91C * param0, UnkStruct_020279FC 
     sub_02018368(&Unk_ov68_0225DD48);
 
     param0->unk_00 = sub_02018340(param2);
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
 
@@ -780,18 +780,18 @@ static BOOL ov68_0225CE48 (UnkStruct_ov68_0225D0F8 * param0, UnkStruct_ov68_0225
         param0->unk_28 = 5;
         break;
     case 5:
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             sub_02005748(1500);
             param0->unk_28++;
             break;
         }
 
-        if (coresys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.padInput & PAD_KEY_UP) {
             if ((param0->unk_10 - 1) >= 0) {
                 sub_02005748(1504);
                 param0->unk_10--;
             }
-        } else if (coresys.padInput & PAD_KEY_DOWN) {
+        } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
             if ((param0->unk_10 + 1) < 3) {
                 sub_02005748(1504);
                 param0->unk_10++;
@@ -1104,7 +1104,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
         param0->unk_60 = 22;
         break;
     case 2:
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             v0 = ov68_0225CBEC(param1, 0, 104);
             ov68_0225D1B4(param3, v0);
             param0->unk_62 = 3;
@@ -1153,7 +1153,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
     }
     break;
     case 6:
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             if (param0->unk_A8.unk_00 != (PPW_LOBBY_INVALID_QUESTION_NO)) {
                 param0->unk_60 = 7;
             } else {
@@ -1224,7 +1224,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
         param0->unk_60 = 22;
         break;
     case 15:
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             v0 = ov68_0225CBEC(param1, 0, 114);
             ov68_0225D1B4(param3, v0);
             param0->unk_62 = 16;
@@ -1272,7 +1272,7 @@ static BOOL ov68_0225D478 (UnkStruct_ov68_0225D388 * param0, UnkStruct_ov68_0225
     }
     break;
     case 19:
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             param0->unk_60 = 20;
         }
         break;

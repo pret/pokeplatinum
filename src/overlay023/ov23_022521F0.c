@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
@@ -717,7 +717,7 @@ static void ov23_02252E70 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 6:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (coresys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 v0->unk_2AA = 7;
             }
         }
@@ -785,7 +785,7 @@ static void ov23_02252E70 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 9:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (coresys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 if (v0->unk_2AC == 1) {
                     ov23_02252CF4(2, v0->unk_2A8);
                 } else if (v0->unk_2AC == 0) {
@@ -801,7 +801,7 @@ static void ov23_02252E70 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 10:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (coresys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 ov23_02252C9C(8);
                 v0->unk_2AA = 2;
             }
@@ -882,7 +882,7 @@ static void ov23_02252E70 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 16:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (coresys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 ov23_0225412C(ov23_022421BC(), v0->unk_27E[0]);
                 ov23_02252CE0(2, v0->unk_279[0]);
                 ov23_02252C9C(7);
@@ -899,7 +899,7 @@ static void ov23_02252E70 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 18:
         if (ov23_02254238(ov23_022421BC()) == 0) {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 ov23_02252CD4();
                 ov23_02252C78(v0);
                 ov23_02243204();

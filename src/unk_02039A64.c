@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -96,7 +96,7 @@ void sub_02039A64 (int param0, int param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
     sub_02017DD4(4, 8);
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();

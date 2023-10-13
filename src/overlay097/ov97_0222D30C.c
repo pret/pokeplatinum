@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -2178,7 +2178,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
             *param1 = 8;
         }
 
-        if ((coresys.padInput & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
+        if ((gCoreSys.padInput & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
             ov97_0222D30C(v3, 0);
             ov97_0222D2DC();
             sub_02039794();
@@ -2210,7 +2210,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        if ((coresys.padInput & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
+        if ((gCoreSys.padInput & PAD_BUTTON_B) || (--v3->unk_434 == 0)) {
             ov97_0222D2DC();
             sub_02039794();
             ov97_0222D40C(v3, -1);
@@ -2225,7 +2225,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
 
         v1 = sub_0203608C();
 
-        if ((coresys.padInput & PAD_BUTTON_B) || (--v3->unk_434 == 0) || ((v1 != 0) && (sub_02035D78(v1) == 0))) {
+        if ((gCoreSys.padInput & PAD_BUTTON_B) || (--v3->unk_434 == 0) || ((v1 != 0) && (sub_02035D78(v1) == 0))) {
             ov97_0222D30C(v3, 0);
             ov97_0222D2DC();
             sub_02039794();
@@ -2310,7 +2310,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 18;
         break;
     case 18:
-        if (coresys.padInput) {
+        if (gCoreSys.padInput) {
             sub_02005748(1500);
             ov97_0222DDD0(param0, (((1 + (18 + 12)) + 9) + 26 * 6), 0);
             *param1 = 3;
@@ -2399,7 +2399,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
         *param1 = ov97_0222E228(param0, NULL, NULL, *param1);
         break;
     case 51:
-        if (coresys.padInput) {
+        if (gCoreSys.padInput) {
             ov97_0222D444(&v3->unk_58, 0);
             *param1 = ov97_0222DA64(param0);
         }
@@ -2420,7 +2420,7 @@ static int ov97_0222F75C (UnkStruct_020067E8 * param0, int * param1)
         return 1;
         break;
     case 55:
-        if (coresys.padInput) {
+        if (gCoreSys.padInput) {
             sub_02005748(1500);
 
             if (v3->unk_8C.unk_00.unk_4E_2 == 1) {
@@ -2603,7 +2603,7 @@ static void ov97_022302F4 (UnkStruct_ov97_0222D04C * param0)
         break;
     }
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         switch (Unk_ov97_0223F1A8) {
         case 40:
         case 41:

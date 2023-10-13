@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02002F38_decl.h"
@@ -492,7 +492,7 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
         break;
     case 2:
         if (param0->unk_BBC == 1) {
-            if (coresys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 param0->unk_BB0 = 3;
             }
         }

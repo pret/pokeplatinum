@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -228,7 +228,7 @@ static BOOL ov110_021D0FD0 (UnkStruct_ov110_021D0F78 * param0)
         break;
     case 1:
 
-        if ((coresys.unk_44 & PAD_BUTTON_A) || (coresys.unk_44 & PAD_BUTTON_B)) {
+        if ((gCoreSys.unk_44 & PAD_BUTTON_A) || (gCoreSys.unk_44 & PAD_BUTTON_B)) {
             return 1;
         }
         break;

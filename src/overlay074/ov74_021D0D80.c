@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -174,7 +174,7 @@ int ov74_021D0F60 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if (((coresys.padInput & PAD_BUTTON_A) && (v0->unk_10_2 == (7 - 1))) || (coresys.padInput & PAD_BUTTON_B)) {
+        if (((gCoreSys.padInput & PAD_BUTTON_A) && (v0->unk_10_2 == (7 - 1))) || (gCoreSys.padInput & PAD_BUTTON_B)) {
             v1 = ov74_021D1B44(v0);
 
             if (v1 == 1) {
@@ -711,23 +711,23 @@ static void ov74_021D1A24 (UnkStruct_ov74_021D0D80 * param0)
     v0 = &(param0->unk_5C[param0->unk_10_2]);
 
     if (param0->unk_10_2 != 6) {
-        if (coresys.padInput & PAD_KEY_RIGHT) {
+        if (gCoreSys.padInput & PAD_KEY_RIGHT) {
             v0->unk_02 = (v0->unk_02 + 1) % v0->unk_00;
             ov74_021D17CC(param0, param0->unk_10_2);
             sub_02005748(1500);
-        } else if (coresys.padInput & PAD_KEY_LEFT) {
+        } else if (gCoreSys.padInput & PAD_KEY_LEFT) {
             v0->unk_02 = (v0->unk_02 + v0->unk_00 - 1) % v0->unk_00;
             ov74_021D17CC(param0, param0->unk_10_2);
             sub_02005748(1500);
         }
     }
 
-    if (coresys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.padInput & PAD_KEY_UP) {
         param0->unk_10_2 = (param0->unk_10_2 + 7 - 1) % 7;
         sub_0201C63C(param0->unk_14, 0, 3, -(param0->unk_10_2 * 16 + 24));
         ov74_021D1BE4(param0, param0->unk_10_2, 1);
         sub_02005748(1500);
-    } else if (coresys.padInput & PAD_KEY_DOWN) {
+    } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
         param0->unk_10_2 = (param0->unk_10_2 + 1) % 7;
         sub_0201C63C(param0->unk_14, 0, 3, -(param0->unk_10_2 * 16 + 24));
         ov74_021D1BE4(param0, param0->unk_10_2, 1);

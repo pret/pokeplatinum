@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "constants/abilities.h"
 #include "constants/items.h"
@@ -2056,7 +2056,7 @@ static BOOL BtlCmd_WaitFrames(BattleSystem *battleSys, BattleContext *battleCtx)
     int frames = BattleScript_Read(battleCtx);
 
     if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
-        if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
+        if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || TouchScreen_Tapped()) {
             battleCtx->waitCounter = frames;
         }
     }
@@ -8456,7 +8456,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     break;
     case 11:
     case 13:
-        if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (TouchScreen_Tapped())) {
+        if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (TouchScreen_Tapped())) {
             sub_02005748(1500);
             v2->seqNum++;
         }
@@ -8992,7 +8992,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 13:
         if (ov21_021E8DEC(v2->tmpPtr[0])) {
-            if (coresys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 v2->seqNum = 14;
             } else if (TouchScreen_Tapped()) {
                 sub_02005748(1500);

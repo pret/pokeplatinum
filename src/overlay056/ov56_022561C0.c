@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -607,7 +607,7 @@ static int ov56_02256A68 (UnkStruct_ov56_02256468 * param0)
             param0->unk_228 = v0 - 2;
             break;
         default:
-            if (coresys.touchInput == 0) {
+            if (gCoreSys.touchInput == 0) {
                 break;
             }
 
@@ -693,19 +693,19 @@ static int ov56_02256BC0 (UnkStruct_ov56_02256468 * param0)
 
 static void ov56_02256C84 (UnkStruct_ov56_02256468 * param0)
 {
-    if (coresys.unk_44 & PAD_BUTTON_L) {
+    if (gCoreSys.unk_44 & PAD_BUTTON_L) {
         ov56_0225718C(param0, 0);
 
-        if (coresys.unk_4C & PAD_BUTTON_L) {
+        if (gCoreSys.unk_4C & PAD_BUTTON_L) {
             if (param0->unk_2D8.unk_04 != 0) {
                 param0->unk_2D8.unk_04--;
                 sub_02005748(1509);
             }
         }
-    } else if (coresys.unk_44 & PAD_BUTTON_R) {
+    } else if (gCoreSys.unk_44 & PAD_BUTTON_R) {
         ov56_0225718C(param0, 1);
 
-        if (coresys.unk_4C & PAD_BUTTON_R) {
+        if (gCoreSys.unk_4C & PAD_BUTTON_R) {
             if (param0->unk_2D8.unk_04 < param0->unk_2D8.unk_00 - 3) {
                 param0->unk_2D8.unk_04++;
                 sub_02005748(1509);
@@ -935,10 +935,10 @@ static void ov56_0225712C (UnkStruct_ov56_02256468 * param0)
 {
     param0->unk_2EC = 0;
 
-    if (coresys.touchInput) {
+    if (gCoreSys.touchInput) {
         param0->unk_2EC = 1;
     } else {
-        if (coresys.unk_62) {
+        if (gCoreSys.unk_62) {
             param0->unk_2ED--;
 
             if (param0->unk_2ED < 0) {

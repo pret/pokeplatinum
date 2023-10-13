@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nnsys.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -911,7 +911,7 @@ static BOOL ov78_021D1978 (UnkStruct_ov78_021D107C * param0, int param1)
     case 3:
         ov78_021D1C58(param0);
 
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             ov78_021D1C98(param0, 1);
 
             sub_02005748(1500);
@@ -1085,14 +1085,14 @@ static void ov78_021D1C28 (UnkStruct_ov78_021D107C * param0)
 
 static void ov78_021D1C58 (UnkStruct_ov78_021D107C * param0)
 {
-    if (coresys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.padInput & PAD_KEY_LEFT) {
         if (param0->unk_54 - 1 >= 0) {
             param0->unk_54 -= 1;
             sub_02005748(1500);
         }
     }
 
-    if (coresys.padInput & PAD_KEY_RIGHT) {
+    if (gCoreSys.padInput & PAD_KEY_RIGHT) {
         if (param0->unk_54 + 1 < 3) {
             param0->unk_54 += 1;
             sub_02005748(1500);

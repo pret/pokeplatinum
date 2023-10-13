@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "overlay099/struct_ov99_021D2CB0.h"
 #include "overlay099/struct_ov99_021D3A40.h"
@@ -21,7 +21,7 @@ BOOL ov99_021D3DE0 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D3A40 * 
         break;
     case 1:
         if (ScreenWipe_Done() == 1) {
-            if ((param0->unk_10FC > 10080) || (coresys.padInput & PAD_BUTTON_A) || (coresys.padInput & PAD_BUTTON_START)) {
+            if ((param0->unk_10FC > 10080) || (gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_START)) {
                 sub_0200F174(0, 0, 0, 0x0, 45, 1, 75);
                 param1->unk_00++;
             }

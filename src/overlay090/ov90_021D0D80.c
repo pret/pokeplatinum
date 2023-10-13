@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
@@ -331,7 +331,7 @@ static void ov90_021D1034 (void * param0)
 
 static int ov90_021D105C (UnkStruct_ov90_021D0ECC * param0)
 {
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         sub_02005748(1500);
         return 1;
     }
@@ -377,12 +377,12 @@ static int ov90_021D1080 (UnkStruct_ov90_021D0ECC * param0)
 {
     int v0 = 0;
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         sub_02005748(1500);
         return 1;
     }
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         sub_02005748(1500);
 
         if (param0->unk_0B >= 10) {
@@ -392,26 +392,26 @@ static int ov90_021D1080 (UnkStruct_ov90_021D0ECC * param0)
         param0->unk_0D = (param0->unk_0D + 1) % 2;
         v0 = 1;
     } else {
-        if (coresys.unk_4C & PAD_KEY_UP) {
+        if (gCoreSys.unk_4C & PAD_KEY_UP) {
             v0 = inline_ov90_021D1080(param0);
 
             if (v0) {
                 sub_02005748(1500);
             }
-        } else if (coresys.unk_4C & PAD_KEY_DOWN) {
+        } else if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
             v0 = inline_ov90_021D1080_1(param0);
 
             if (v0) {
                 sub_02005748(1500);
             }
-        } else if (coresys.unk_4C & PAD_KEY_LEFT) {
+        } else if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
             param0->unk_0C = (param0->unk_0C + 2) % 3;
             v0 = 1;
 
             if (param0->unk_0B != 10) {
                 sub_02005748(1500);
             }
-        } else if (coresys.unk_4C & PAD_KEY_RIGHT) {
+        } else if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
             param0->unk_0C = (param0->unk_0C + 1) % 3;
             v0 = 1;
 

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
@@ -96,17 +96,17 @@ u32 sub_02001BE0 (UnkStruct_02001AF4 * param0)
 {
     param0->unk_1B = 0;
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         sub_02005748(1500);
         return param0->unk_00.unk_00[param0->unk_15].unk_04;
     }
 
-    if (coresys.padInput & param0->unk_10) {
+    if (gCoreSys.padInput & param0->unk_10) {
         sub_02005748(1500);
         return 0xfffffffe;
     }
 
-    if (coresys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.padInput & PAD_KEY_UP) {
         if (sub_02001DCC(param0, 0, 1500) == 1) {
             param0->unk_1B = 1;
         }
@@ -114,7 +114,7 @@ u32 sub_02001BE0 (UnkStruct_02001AF4 * param0)
         return 0xffffffff;
     }
 
-    if (coresys.padInput & PAD_KEY_DOWN) {
+    if (gCoreSys.padInput & PAD_KEY_DOWN) {
         if (sub_02001DCC(param0, 1, 1500) == 1) {
             param0->unk_1B = 2;
         }
@@ -122,7 +122,7 @@ u32 sub_02001BE0 (UnkStruct_02001AF4 * param0)
         return 0xffffffff;
     }
 
-    if (coresys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.padInput & PAD_KEY_LEFT) {
         if (sub_02001DCC(param0, 2, 1500) == 1) {
             param0->unk_1B = 3;
         }
@@ -130,7 +130,7 @@ u32 sub_02001BE0 (UnkStruct_02001AF4 * param0)
         return 0xffffffff;
     }
 
-    if (coresys.padInput & PAD_KEY_RIGHT) {
+    if (gCoreSys.padInput & PAD_KEY_RIGHT) {
         if (sub_02001DCC(param0, 3, 1500) == 1) {
             param0->unk_1B = 4;
         }
@@ -145,17 +145,17 @@ u32 sub_02001C94 (UnkStruct_02001AF4 * param0, u16 param1)
 {
     param0->unk_1B = 0;
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         sub_02005748(1500);
         return param0->unk_00.unk_00[param0->unk_15].unk_04;
     }
 
-    if (coresys.padInput & param0->unk_10) {
+    if (gCoreSys.padInput & param0->unk_10) {
         sub_02005748(1500);
         return 0xfffffffe;
     }
 
-    if (coresys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.padInput & PAD_KEY_UP) {
         if (sub_02001DCC(param0, 0, param1) == 1) {
             param0->unk_1B = 1;
         }
@@ -163,7 +163,7 @@ u32 sub_02001C94 (UnkStruct_02001AF4 * param0, u16 param1)
         return 0xffffffff;
     }
 
-    if (coresys.padInput & PAD_KEY_DOWN) {
+    if (gCoreSys.padInput & PAD_KEY_DOWN) {
         if (sub_02001DCC(param0, 1, param1) == 1) {
             param0->unk_1B = 2;
         }
@@ -171,7 +171,7 @@ u32 sub_02001C94 (UnkStruct_02001AF4 * param0, u16 param1)
         return 0xffffffff;
     }
 
-    if (coresys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.padInput & PAD_KEY_LEFT) {
         if (sub_02001DCC(param0, 2, param1) == 1) {
             param0->unk_1B = 3;
         }
@@ -179,7 +179,7 @@ u32 sub_02001C94 (UnkStruct_02001AF4 * param0, u16 param1)
         return 0xffffffff;
     }
 
-    if (coresys.padInput & PAD_KEY_RIGHT) {
+    if (gCoreSys.padInput & PAD_KEY_RIGHT) {
         if (sub_02001DCC(param0, 3, param1) == 1) {
             param0->unk_1B = 4;
         }

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
@@ -454,7 +454,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     str r0, [r4, #0xc]
     b _021D3798
  _021D3768:
-    ldr r0, = coresys
+    ldr r0, = gCoreSys
     ldr r1, [r0, #0x48]
     mov r0, #1
     and r0, r1

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -355,7 +355,7 @@ BOOL ov23_02242458 (void)
         return 0;
     }
 
-    if (coresys.touchInput) {
+    if (gCoreSys.touchInput) {
         Unk_ov23_02257748->unk_134 = 30;
 
         if (!Unk_ov23_02257748->unk_14B) {
@@ -368,13 +368,13 @@ BOOL ov23_02242458 (void)
                     return 0;
                 }
 
-                v0 = ov5_021EAFA4(coresys.unk_5C, coresys.unk_5E, Unk_ov23_02257748->unk_0C->unk_8C);
+                v0 = ov5_021EAFA4(gCoreSys.unk_5C, gCoreSys.unk_5E, Unk_ov23_02257748->unk_0C->unk_8C);
                 ov5_021E9230(v0.x, v0.z, &v2, &v3);
                 v4.unk_00 = v2;
                 v4.unk_02 = v3;
 
-                Unk_ov23_02257748->unk_18.unk_00 = coresys.unk_5C;
-                Unk_ov23_02257748->unk_18.unk_02 = coresys.unk_5E;
+                Unk_ov23_02257748->unk_18.unk_00 = gCoreSys.unk_5C;
+                Unk_ov23_02257748->unk_18.unk_02 = gCoreSys.unk_5E;
                 Unk_ov23_02257748->unk_1C.unk_00 = v2;
                 Unk_ov23_02257748->unk_1C.unk_02 = v3;
 

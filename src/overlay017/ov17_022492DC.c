@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -485,13 +485,13 @@ int ov17_02249760 (UnkStruct_ov17_022492DC * param0)
 
     if (v1 == 0xffffffff) {
         if (v3->unk_18 == Unk_ov17_02254554) {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
                 v1 = 3;
-            } else if (coresys.padInput & (PAD_BUTTON_B | PAD_KEY_DOWN)) {
+            } else if (gCoreSys.padInput & (PAD_BUTTON_B | PAD_KEY_DOWN)) {
                 v1 = 1;
-            } else if (coresys.padInput & (PAD_BUTTON_X | PAD_KEY_UP)) {
+            } else if (gCoreSys.padInput & (PAD_BUTTON_X | PAD_KEY_UP)) {
                 v1 = 0;
-            } else if (coresys.padInput & (PAD_BUTTON_Y | PAD_KEY_LEFT)) {
+            } else if (gCoreSys.padInput & (PAD_BUTTON_Y | PAD_KEY_LEFT)) {
                 v1 = 2;
             }
         }

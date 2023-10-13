@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -89,7 +89,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
         v1->unk_08++;
         break;
     case 5:
-        if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+        if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B))) {
             v1->unk_08++;
         }
         break;

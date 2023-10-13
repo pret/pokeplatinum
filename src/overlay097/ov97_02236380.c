@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 #include "pokemon.h"
 
 #include "overlay097/box_pokemon_gba.h"
@@ -1563,7 +1563,7 @@ void BoxMonGBAToBoxMon (BoxPokemonGBA * param0, BoxPokemon * param1)
     }
 
     if (BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL) == 386) {
-        switch (coresys.unk_66) {
+        switch (gCoreSys.unk_66) {
         default:
         case 2:
         case 1:

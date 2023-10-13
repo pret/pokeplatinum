@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0201CD38_decl.h"
 
@@ -513,7 +513,7 @@ BOOL sub_020349EC (void)
             Unk_021C07CC->unk_6B5++;
             Unk_021C07C5 = 0;
             sub_020347EC();
-            Unk_021C07CC->unk_654 |= (coresys.unk_44 & 0x7fff);
+            Unk_021C07CC->unk_654 |= (gCoreSys.unk_44 & 0x7fff);
             sub_02035534();
             sub_02034B50();
             Unk_021C07CC->unk_654 &= 0x8000;
@@ -1877,7 +1877,7 @@ void sub_020361BC (MATHRandContext32 * param0)
     RTCTime v2;
 
     sub_0201384C(&v1, &v2);
-    v0 = (((((((u64)v1.year * 16ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 64ULL + v2.minute) * 64ULL + (v2.second + coresys.unk_2C));
+    v0 = (((((((u64)v1.year * 16ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 64ULL + v2.minute) * 64ULL + (v2.second + gCoreSys.unk_2C));
     MATH_InitRand32(param0, v0);
 }
 

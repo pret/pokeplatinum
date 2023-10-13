@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
@@ -206,7 +206,7 @@ static BOOL ov97_0222AE64 (UnkStruct_0222AE60 * param0)
             }
         }
     } else {
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_02005748(1500);
             sub_0200DC9C(&param0->unk_158, 0);
             sub_0201A8FC(&param0->unk_158);
@@ -391,10 +391,10 @@ static BOOL ov97_0222B07C (UnkStruct_0222AE60 * param0)
         if (param0->unk_134) {
             param0->unk_134--;
         } else {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 sub_0201A8FC(&param0->unk_13C);
                 param0->unk_12C = 19;
-                param0->unk_138 = coresys.padInput;
+                param0->unk_138 = gCoreSys.padInput;
                 sub_02005748(1500);
             }
         }
@@ -1075,8 +1075,8 @@ static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
         v1->unk_124 = 10;
         break;
     case 5:
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 sub_02005748(1500);
                 v1->unk_58 = v1->unk_DC[v1->unk_54];
 
@@ -1119,11 +1119,11 @@ static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        if (coresys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.padInput & PAD_KEY_UP) {
             ov97_0222BB88(v1, -1);
         }
 
-        if (coresys.padInput & PAD_KEY_DOWN) {
+        if (gCoreSys.padInput & PAD_KEY_DOWN) {
             ov97_0222BB88(v1, 1);
         }
 

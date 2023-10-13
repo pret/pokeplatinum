@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -221,14 +221,14 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
         if (ov77_021D1A60(&v0->unk_238, v0->unk_04, v0->unk_00) == 1) {
             v0->unk_238.unk_00 = 0;
 
-            if (coresys.unk_6C == 0) {
+            if (gCoreSys.unk_6C == 0) {
                 v0->unk_4EC = 30 * 1;
                 v0->unk_238.unk_29C = 1;
                 v0->unk_238.unk_2A0 = 0;
                 *param1 = 2;
             } else {
                 v0->unk_4EC = 0;
-                coresys.unk_6C = 0;
+                gCoreSys.unk_6C = 0;
                 v0->unk_238.unk_2A0 = 1;
                 *param1 = 1;
             }
@@ -259,7 +259,7 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
 
         v0->unk_4F8++;
 
-        if (((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((coresys.padInput & PAD_BUTTON_START) == PAD_BUTTON_START)) {
+        if (((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.padInput & PAD_BUTTON_START) == PAD_BUTTON_START)) {
             v0->unk_4E8 = 1;
             sub_0200564C(0, 60);
             sub_02005844(487, 1);
@@ -268,7 +268,7 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        if (((coresys.unk_44 & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT))) {
+        if (((gCoreSys.unk_44 & (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT)) == (PAD_BUTTON_B | PAD_KEY_UP | PAD_BUTTON_SELECT))) {
             v0->unk_4E8 = 2;
             sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 6;
@@ -277,7 +277,7 @@ static int ov77_021D0E3C (UnkStruct_020067E8 * param0, int * param1)
 
         if (v0->unk_4F8 > 30 * 30) {
             v0->unk_4E8 = 3;
-            coresys.unk_6C = 1;
+            gCoreSys.unk_6C = 1;
             {GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);}
             sub_0200564C(0, 60);
             *param1 = 5;
@@ -386,7 +386,7 @@ static void ov77_021D1184 (void)
 
 static BOOL ov77_021D11A4 (void)
 {
-    if (((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((coresys.padInput & PAD_BUTTON_START) == PAD_BUTTON_START) || ((coresys.padInput & PAD_BUTTON_SELECT) == PAD_BUTTON_SELECT)) {
+    if (((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.padInput & PAD_BUTTON_START) == PAD_BUTTON_START) || ((gCoreSys.padInput & PAD_BUTTON_SELECT) == PAD_BUTTON_SELECT)) {
         return 1;
     }
 
@@ -908,7 +908,7 @@ static BOOL ov77_021D1A60 (UnkStruct_ov77_021D1568 * param0, UnkStruct_02018340 
         G3X_AntiAlias(1);
     }
 
-    coresys.unk_65 = 1;
+    gCoreSys.unk_65 = 1;
     GXLayers_SwapDisplay();
     param0->unk_04.unk_00 = 2;
 
@@ -1214,7 +1214,7 @@ static BOOL ov77_021D21C0 (UnkStruct_ov77_021D1568 * param0, UnkStruct_02018340 
     G2_BlendNone();
     G3X_EdgeMarking(0);
 
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     return 1;

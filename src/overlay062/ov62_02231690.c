@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -3284,7 +3284,7 @@ static void ov62_02234440 (UnkStruct_0208C06C * param0)
         param0->unk_41D8.unk_0C = NULL;
     }
 
-    if (coresys.unk_65 == 0) {
+    if (gCoreSys.unk_65 == 0) {
         param0->unk_41D8.unk_08 = param0->unk_6F4;
     } else {
         param0->unk_41D8.unk_08 = param0->unk_6F0;

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -341,7 +341,7 @@ static int ov81_021D1174 (UnkStruct_ov81_021D1610 * param0)
 
 static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
 {
-    if (coresys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.padInput & PAD_KEY_LEFT) {
         if (ov81_021D13CC(param0, -1) == 1) {
             return 2;
         }
@@ -349,7 +349,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         return 1;
     }
 
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
         if (ov81_021D13CC(param0, 1) == 1) {
             return 3;
         }
@@ -357,7 +357,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         return 1;
     }
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         if (param0->unk_105C != 0) {
             if (ov81_021D13CC(param0, -1) == 1) {
                 return 2;
@@ -368,7 +368,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         }
     }
 
-    if (coresys.padInput & PAD_BUTTON_START) {
+    if (gCoreSys.padInput & PAD_BUTTON_START) {
         sub_0208C120(1, 42);
         return 4;
     }

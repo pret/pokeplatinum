@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
@@ -2393,11 +2393,11 @@ static void ov23_022451C8 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 7:
-        if (coresys.unk_62) {
+        if (gCoreSys.unk_62) {
             UnkStruct_ov23_0224271C v4;
 
-            v4.unk_00 = coresys.unk_5C;
-            v4.unk_02 = coresys.unk_5E;
+            v4.unk_00 = gCoreSys.unk_5C;
+            v4.unk_02 = gCoreSys.unk_5E;
 
             if (ov23_02245064(&v4, v0->unk_10, v0)) {
                 if (v0->unk_19) {
@@ -3745,14 +3745,14 @@ static BOOL ov23_02246F20 (UnkStruct_02018340 * param0, UnkStruct_ov23_022468DC 
         return 1;
     }
 
-    if (coresys.touchInput) {
+    if (gCoreSys.touchInput) {
         for (v0 = 0; v0 < ov23_022468C0(); v0++) {
             if (param1->unk_E4[v0]) {
                 continue;
             }
 
-            v8 = coresys.unk_5C * FX32_ONE - param1->unk_44[v0].unk_00;
-            v9 = coresys.unk_5E * FX32_ONE - param1->unk_44[v0].unk_04;
+            v8 = gCoreSys.unk_5C * FX32_ONE - param1->unk_44[v0].unk_00;
+            v9 = gCoreSys.unk_5E * FX32_ONE - param1->unk_44[v0].unk_04;
             v11 = FX_Mul(v8, v8) + FX_Mul(v9, v9);
             v11 = FX_Sqrt(v11);
 
@@ -3990,9 +3990,9 @@ static BOOL ov23_02247568 (UnkStruct_02018340 * param0, UnkStruct_ov23_022471D8 
         }
         break;
     case 3:
-        if (coresys.touchInput) {
-            v7 = (coresys.unk_5C - 128) * FX32_ONE;
-            v8 = (coresys.unk_5E - param1->unk_120) * FX32_ONE;
+        if (gCoreSys.touchInput) {
+            v7 = (gCoreSys.unk_5C - 128) * FX32_ONE;
+            v8 = (gCoreSys.unk_5E - param1->unk_120) * FX32_ONE;
             v10 = FX_Mul(v7, v7) + FX_Mul(v8, v8);
             v10 = FX_Sqrt(v10);
 

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -162,7 +162,7 @@ int ov100_021D0F44 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201A8FC(&v0->unk_0C.unk_30);
 
     ov100_021D111C(&v0->unk_0C);
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     sub_02006830(param0);

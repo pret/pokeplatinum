@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "overlay062/ov62_const_funcptr_tables.h"
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
@@ -308,7 +308,7 @@ static void ov62_0222F670 (UnkStruct_02018340 * param0)
 
 void ov62_0222F824 (int param0)
 {
-    coresys.unk_65 = param0;
+    gCoreSys.unk_65 = param0;
     GXLayers_SwapDisplay();
 }
 

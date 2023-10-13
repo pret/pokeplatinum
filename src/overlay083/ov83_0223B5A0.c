@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
@@ -682,7 +682,7 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     case 4:
         param1->unk_1C--;
 
-        if ((param1->unk_1C < 0) || (coresys.touchInput) || (coresys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if ((param1->unk_1C < 0) || (gCoreSys.touchInput) || (gCoreSys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
             (*param2)++;
             break;
         }
@@ -700,7 +700,7 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     case 6:
         param1->unk_1C--;
 
-        if ((coresys.touchInput) || (param1->unk_1C < 0) || (coresys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if ((gCoreSys.touchInput) || (param1->unk_1C < 0) || (gCoreSys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
             (*param2)++;
         }
         break;
@@ -750,7 +750,7 @@ static int ov83_0223BF74 (UnkStruct_ov83_0223C344 * param0, UnkStruct_ov83_0223B
     case 10:
         param1->unk_1C--;
 
-        if ((coresys.touchInput) || (param1->unk_1C < 0) || (coresys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if ((gCoreSys.touchInput) || (param1->unk_1C < 0) || (gCoreSys.padInput & ((PAD_BUTTON_A | PAD_BUTTON_B)))) {
             if (param1->unk_1488 > 1) {
                 ov83_0223EC8C(&param1->unk_6A0, 6);
                 ov83_0223E9BC(&param1->unk_6A0);

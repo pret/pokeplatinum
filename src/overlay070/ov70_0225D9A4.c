@@ -4,7 +4,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -742,7 +742,7 @@ int ov70_0225DB90 (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     case 4:
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             (*param1) = 7;
         }
         break;
@@ -1293,7 +1293,7 @@ static void ov70_0225E4EC (UnkStruct_ov70_0225E4EC * param0, SaveData * param1, 
 
     sub_0201DBEC(32, param2);
     GXLayers_SetBanks(&Unk_ov70_0226D664);
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     {

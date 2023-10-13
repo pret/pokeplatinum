@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
@@ -1681,7 +1681,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         break;
     case 12:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_0C = 13;
                 ov23_02254044(ov23_0224219C());
                 sub_020593F4(0);
@@ -1716,7 +1716,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         return 1;
     case 8:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_0C = 13;
                 ov23_02254044(ov23_0224219C());
                 return 0;
@@ -1810,7 +1810,7 @@ static void ov23_0224CB1C (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 4:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (coresys.padInput & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 v4 = 1;
             }
         }
@@ -2371,7 +2371,7 @@ static void ov23_0224D5BC (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 1:
         if (ov23_02254238(ov23_022421AC()) == 0) {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 int v1 = v0->unk_05;
 
                 ov23_02253F40(ov23_022421AC(), 14 + v1, 0, NULL);
@@ -2381,7 +2381,7 @@ static void ov23_0224D5BC (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 2:
         if (ov23_02254238(ov23_022421AC()) == 0) {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 ov23_0224D54C(v0);
                 v0->unk_00 = 4;
                 ov23_02254044(ov23_022421AC());

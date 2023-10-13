@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -317,7 +317,7 @@ int ov67_0225C820 (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     case 10:
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             int v8;
             int v9;
 

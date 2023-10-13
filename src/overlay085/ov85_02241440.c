@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -717,7 +717,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
 {
     u32 v0;
 
-    if (coresys.unk_44 & PAD_KEY_UP) {
+    if (gCoreSys.unk_44 & PAD_KEY_UP) {
         v0 = ov85_02241EB8(param0->unk_1F8->unk_00, param0->unk_1F8->unk_08, -1);
 
         if (param0->unk_1F8->unk_08 != v0) {
@@ -737,7 +737,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
         return 1;
     }
 
-    if (coresys.unk_44 & PAD_KEY_DOWN) {
+    if (gCoreSys.unk_44 & PAD_KEY_DOWN) {
         v0 = ov85_02241EB8(param0->unk_1F8->unk_00, param0->unk_1F8->unk_08, 1);
 
         if (param0->unk_1F8->unk_08 != v0) {
@@ -757,7 +757,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
         return 1;
     }
 
-    if ((coresys.padInput & PAD_BUTTON_B) || (coresys.touchInput)) {
+    if ((gCoreSys.padInput & PAD_BUTTON_B) || (gCoreSys.touchInput)) {
         sub_0208C120(1, 36);
         return 3;
     }

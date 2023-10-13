@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "overlay087/struct_ov87_021D106C_decl.h"
@@ -82,33 +82,33 @@ int ov87_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (coresys.padInput & PAD_BUTTON_B) {
+        if (gCoreSys.padInput & PAD_BUTTON_B) {
             ov87_021D0F38(v0, 1);
             (*param1)++;
             break;
         }
 
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             v0->unk_00.unk_1C ^= 1;
             ov87_021D0F38(v0, 4);
             break;
         }
 
-        if (coresys.padInput & PAD_KEY_LEFT) {
+        if (gCoreSys.padInput & PAD_KEY_LEFT) {
             if (ov87_021D0F4C(v0)) {
                 ov87_021D0F38(v0, 3);
             }
             break;
         }
 
-        if (coresys.padInput & PAD_KEY_RIGHT) {
+        if (gCoreSys.padInput & PAD_KEY_RIGHT) {
             if (ov87_021D0F88(v0)) {
                 ov87_021D0F38(v0, 3);
             }
             break;
         }
 
-        if (coresys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.padInput & PAD_KEY_UP) {
             if (--(v0->unk_00.unk_18) < 0) {
                 if (ov87_021D0F4C(v0)) {
                     v0->unk_00.unk_18 = v0->unk_00.unk_14 - 1;
@@ -120,7 +120,7 @@ int ov87_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        if (coresys.padInput & PAD_KEY_DOWN) {
+        if (gCoreSys.padInput & PAD_KEY_DOWN) {
             if (++(v0->unk_00.unk_18) >= v0->unk_00.unk_14) {
                 if (ov87_021D0F88(v0)) {
                     ov87_021D0F38(v0, 3);

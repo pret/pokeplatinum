@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -459,8 +459,8 @@ static void ov21_021D7B8C (u32 param0, u32 param1, void * param2)
 
     switch (param1) {
     case 0:
-        v2->unk_14 = coresys.unk_5C;
-        v2->unk_18 = coresys.unk_5E;
+        v2->unk_14 = gCoreSys.unk_5C;
+        v2->unk_18 = gCoreSys.unk_5E;
         break;
     case 2:
         switch (param0) {
@@ -504,8 +504,8 @@ static void ov21_021D7B8C (u32 param0, u32 param1, void * param2)
                 }
             }
 
-            v2->unk_14 = coresys.unk_5C;
-            v2->unk_18 = coresys.unk_5E;
+            v2->unk_14 = gCoreSys.unk_5C;
+            v2->unk_18 = gCoreSys.unk_5E;
         }
 
         v2->unk_20 = 1;
@@ -835,8 +835,8 @@ static void ov21_021D8324 (UnkStruct_ov21_021D7A64 * param0)
 
     v1 = param0->unk_14 - (128 + 120);
     v0 = param0->unk_18 - (104 + -0);
-    v3 = coresys.unk_5C - (128 + 120);
-    v2 = coresys.unk_5E - (104 + -0);
+    v3 = gCoreSys.unk_5C - (128 + 120);
+    v2 = gCoreSys.unk_5E - (104 + -0);
 
     param0->unk_0C = sub_0201D4CC(v1, v0, v3, v2, 524);
     param0->unk_0C *= 10;

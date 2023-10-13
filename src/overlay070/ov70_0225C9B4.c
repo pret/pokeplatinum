@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -805,31 +805,31 @@ static void ov70_0225D310 (UnkStruct_ov70_0225CC54 * param0, UnkStruct_ov70_0225
         return;
     }
 
-    if (coresys.unk_44 & PAD_BUTTON_B) {
+    if (gCoreSys.unk_44 & PAD_BUTTON_B) {
         v3 = 3;
     } else {
         v3 = 2;
     }
 
-    if (coresys.unk_44 & PAD_KEY_UP) {
+    if (gCoreSys.unk_44 & PAD_KEY_UP) {
         if (v0 == 0) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 0, v1);
         }
-    } else if (coresys.unk_44 & PAD_KEY_DOWN) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_DOWN) {
         if (v0 == 1) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 1, v1);
         }
-    } else if (coresys.unk_44 & PAD_KEY_LEFT) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_LEFT) {
         if (v0 == 2) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 2, v1);
         }
-    } else if (coresys.unk_44 & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_RIGHT) {
         if (v0 == 3) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {

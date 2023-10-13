@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -149,7 +149,7 @@ static void ov23_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
         }
     }
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         ov23_02254044(v0);
     }
 }

@@ -3,7 +3,7 @@
 #include <dwc.h>
 
 #include "inlines.h"
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
@@ -196,7 +196,7 @@ int ov61_0222BF44 (UnkStruct_020067E8 * param0, int * param1)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 1);
 
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     sub_02002AC8(1);
@@ -853,7 +853,7 @@ static int ov61_0222CC40 (UnkStruct_ov61_0222C664 * param0)
 
 static int ov61_0222CC64 (UnkStruct_ov61_0222C664 * param0)
 {
-    if (coresys.padInput & PAD_BUTTON_A || coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_A || gCoreSys.padInput & PAD_BUTTON_B) {
         sub_0200DC9C(&param0->unk_64, 0);
         param0->unk_90 = 0;
 

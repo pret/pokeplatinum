@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0208D7BC.h"
@@ -189,7 +189,7 @@ static int sub_02092224 (UnkStruct_0208D7BC * param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (sub_0201C784(param0->unk_00, 4, coresys.unk_5C, coresys.unk_5E, &v1) == 0) {
+        if (sub_0201C784(param0->unk_00, 4, gCoreSys.unk_5C, gCoreSys.unk_5E, &v1) == 0) {
             return 0xffffffff;
         }
     }

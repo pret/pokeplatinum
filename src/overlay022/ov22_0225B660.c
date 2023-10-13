@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
@@ -87,7 +87,7 @@ int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_0C = v1->unk_08;
 
     ov22_02255094();
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
     ov22_022555D4(&v0->unk_14, 14);
 
@@ -143,7 +143,7 @@ int ov22_0225B738 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 3:
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             (*param1)++;
         }
         break;
