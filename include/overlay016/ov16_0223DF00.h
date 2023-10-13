@@ -36,6 +36,9 @@
 
 #include "enums.h"
 
+#define ENEMY_IN_SLOT_RIGHT 0
+#define ENEMY_IN_SLOT_LEFT  2
+
 UnkStruct_02018340 * ov16_0223DF00(BattleSystem * param0);
 UnkStruct_0205AA50 * ov16_0223DF04(BattleSystem * param0, int param1);
 u32 BattleSystem_BattleType(BattleSystem * param0);
@@ -120,7 +123,20 @@ int ov16_0223E22C(BattleSystem * param0);
 int ov16_0223E240(BattleSystem * param0);
 int BattleSystem_MapHeader(BattleSystem * param0);
 int BattleSystem_Partner(BattleSystem * param0, int param1);
-int ov16_0223E2A4(BattleSystem * param0, int param1, int param2);
+
+/**
+ * @brief Get the battler who is an enemy of the input attacker and occupies
+ * a particular slot on the opposing team.
+ * 
+ * If the battle is a double-battle, then this will only ever return the
+ * singular opponent.
+ * 
+ * @param battleSys 
+ * @param attacker 
+ * @param slot 
+ * @return Battler who is an enemy and in the given slot on the enemy team.
+ */
+int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
 BOOL ov16_0223E30C(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u32 BattleSystem_BattleStatus(BattleSystem * param0);
 int ov16_0223EBF8(BattleSystem * param0);

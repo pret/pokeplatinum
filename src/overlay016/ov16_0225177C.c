@@ -113,7 +113,7 @@ int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int 
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
 int BattleSystem_Divide(int param0, int param1);
 int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
-int BattleSystem_RandomOpponent(BattleSystem * param0, BattleContext * param1, int param2);
+int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL ov16_022577A4(BattleContext * param0, int param1, int param2);
@@ -1628,170 +1628,136 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
     return result;
 }
 
-int BattleSystem_Defender (BattleSystem * param0, BattleContext * param1, int param2, u16 param3, int param4, int param5)
+int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 move, BOOL randomize, int inRange)
 {
-    int v0;
-    int v1;
+    int defender = BATTLER_NONE;
 
-    v0 = 0xff;
-
-    if (param3) {
-        v1 = param1->aiContext.moveTable[param3].range;
+    int range;
+    if (move) {
+        range = MOVE_DATA(move).range;
     } else {
-        v1 = param5;
+        range = inRange;
     }
 
-    if (v1 == 0x4) {
-        {
-            int v2;
-            int v3 = BattleSystem_MaxBattlers(param0);
-            BattlerData * v4 = BattleSystem_BattlerData(param0, param2);
-            u8 v5 = Battler_Type(v4);
+    if (range == RANGE_ADJACENT_OPPONENTS) { // e.g., Acid, Blizzard
+        int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+        BattlerData *battlerData = BattleSystem_BattlerData(battleSys, attacker);
+        u8 attackerType = Battler_Type(battlerData);
 
-            for (param1->battlerCounter = 0; param1->battlerCounter < v3; param1->battlerCounter++) {
-                v2 = param1->monSpeedOrder[param1->battlerCounter];
+        // Assign the first possible living target based on speed order
+        for (battleCtx->battlerCounter = 0; battleCtx->battlerCounter < maxBattlers; battleCtx->battlerCounter++) {
+            int battler = battleCtx->monSpeedOrder[battleCtx->battlerCounter];
 
-                if (param1->battleMons[v2].curHP != 0) {
-                    v4 = BattleSystem_BattlerData(param0, v2);
-
-                    if (((v5 & 0x1) && ((Battler_Type(v4) & 0x1) == 0)) || ((v5 & 0x1) == 0) && (Battler_Type(v4) & 0x1)) {
-                        v0 = v2;
-                        break;
-                    }
-                }
-            }
-
-            if (param1->battlerCounter != v3) {
-                param1->battlerCounter++;
-            }
-        }
-    } else if (v1 == 0x8) {
-        {
-            int v6;
-            int v7;
-
-            v7 = BattleSystem_MaxBattlers(param0);
-
-            for (param1->battlerCounter = 0; param1->battlerCounter < v7; param1->battlerCounter++) {
-                v6 = param1->monSpeedOrder[param1->battlerCounter];
-
-                if (param1->battleMons[v6].curHP != 0) {
-                    if (v6 != param2) {
-                        v0 = v6;
-                        break;
-                    }
-                }
-            }
-
-            if (param1->battlerCounter != v7) {
-                param1->battlerCounter++;
-            }
-        }
-    } else if ((v1 == 0x200) && (param4 == 1)) {
-        {
-            int v8;
-
-            v8 = BattleSystem_BattleType(param0);
-
-            if ((v8 & 0x2) && ((BattleSystem_RandNext(param0) % 2) == 0)) {
-                v0 = BattleSystem_Partner(param0, param2);
-
-                if (param1->battleMons[v0].curHP == 0) {
-                    v0 = param2;
-                }
-            } else {
-                v0 = param2;
-            }
-        }
-    } else if ((v1 == 0x400) && (param4 == 1)) {
-        v0 = BattleSystem_RandomOpponent(param0, param1, param2);
-    } else if (v1 == 0x80) {
-        v0 = BattleSystem_RandomOpponent(param0, param1, param2);
-    } else if ((v1 == 0x10) || (v1 == 0x20) || (v1 == 0x1) || (v1 == 0x40)) {
-        v0 = param2;
-    } else if (v1 == 0x100) {
-        {
-            int v9;
-
-            v9 = BattleSystem_BattleType(param0);
-
-            if (v9 & 0x2) {
-                v0 = BattleSystem_Partner(param0, param2);
-            } else {
-                v0 = param2;
-            }
-        }
-    } else if (v1 == 0x200) {
-        {
-            int v10;
-
-            v10 = BattleSystem_BattleType(param0);
-
-            if (v10 & 0x2) {
-                v0 = param1->battlerActions[param2][1];
-
-                if (param1->battleMons[v0].curHP == 0) {
-                    v0 = param2;
-                }
-            } else {
-                v0 = param2;
-            }
-        }
-    } else if ((v1 == 0x2) || (param4 == 1)) {
-        {
-            int v11;
-            int v12;
-            int v13[2];
-
-            v11 = BattleSystem_BattleType(param0);
-            v12 = Battler_Side(param0, param2) ^ 1;
-            v13[0] = ov16_0223E2A4(param0, param2, 0);
-            v13[1] = ov16_0223E2A4(param0, param2, 2);
-
-            if (v11 & 0x2) {
-                if ((param1->sideConditions[v12].followMe) && (param1->battleMons[param1->sideConditions[v12].followMeUser].curHP)) {
-                    v0 = param1->sideConditions[v12].followMeUser;
-                } else if ((param1->battleMons[v13[0]].curHP) && (param1->battleMons[v13[1]].curHP)) {
-                    v12 = BattleSystem_RandNext(param0) & 1;
-                    v0 = v13[v12];
-                } else if (param1->battleMons[v13[0]].curHP) {
-                    v0 = v13[0];
-                } else if (param1->battleMons[v13[1]].curHP) {
-                    v0 = v13[1];
-                }
-            } else {
-                if (param1->battleMons[param2 ^ 1].curHP) {
-                    v0 = param2 ^ 1;
+            // Check that this battler is an enemy of the attacker
+            if (battleCtx->battleMons[battler].curHP != 0) {
+                battlerData = BattleSystem_BattlerData(battleSys, battler);
+                if (((attackerType & BATTLER_TYPE_SOLO_ENEMY) && (Battler_Type(battlerData) & BATTLER_TYPE_SOLO_ENEMY) == FALSE)
+                        || ((attackerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) && (Battler_Type(battlerData) & BATTLER_TYPE_SOLO_ENEMY)) {
+                    defender = battler;
+                    break;
                 }
             }
         }
-    } else {
-        {
-            int v14;
-            int v15;
-            int v16;
 
-            v14 = Battler_Side(param0, param2) ^ 1;
-            v15 = param1->battlerActions[param2][1];
-            v16 = BattleSystem_MaxBattlers(param0);
+        if (battleCtx->battlerCounter != maxBattlers) {
+            battleCtx->battlerCounter++;
+        }
+    } else if (range == RANGE_ALL_ADJACENT) { // e.g., Earthquake, Surf
+        int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-            if ((param1->sideConditions[v14].followMe) && (param1->battleMons[param1->sideConditions[v14].followMeUser].curHP)) {
-                v0 = param1->sideConditions[v14].followMeUser;
-            } else {
-                if (param1->battleMons[v15].curHP) {
-                    v0 = v15;
-                } else {
-                    v15 = BattleSystem_RandomOpponent(param0, param1, param2);
+        // Assign the first possible living target based on speed order
+        for (battleCtx->battlerCounter = 0; battleCtx->battlerCounter < maxBattlers; battleCtx->battlerCounter++) {
+            int battler = battleCtx->monSpeedOrder[battleCtx->battlerCounter];
 
-                    if (param1->battleMons[v15].curHP) {
-                        v0 = v15;
-                    }
-                }
+            // Only care that this battler is not the attacker
+            if (battleCtx->battleMons[battler].curHP != 0 && battler != attacker) {
+                defender = battler;
+                break;
+            }
+        }
+
+        if (battleCtx->battlerCounter != maxBattlers) {
+            battleCtx->battlerCounter++;
+        }
+    } else if (range == RANGE_USER_OR_ALLY && randomize == TRUE) { // e.g., Acupressure
+        if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                && BattleSystem_RandNext(battleSys) % 2 == 0) {
+            defender = BattleSystem_Partner(battleSys, attacker);
+            if (battleCtx->battleMons[defender].curHP == 0) {
+                defender = attacker;
+            }
+        } else {
+            defender = attacker;
+        }
+    } else if (range == RANGE_SINGLE_TARGET_ME_FIRST && randomize == TRUE) { // e.g., Me First
+        defender = BattleSystem_RandomOpponent(battleSys, battleCtx, attacker);
+    } else if (range == RANGE_OPPONENT_SIDE) { // e.g., Spikes, Stealth Rock
+        defender = BattleSystem_RandomOpponent(battleSys, battleCtx, attacker);
+    } else if (range == RANGE_USER // e.g., Swords Dance
+            || range == RANGE_USER_SIDE // e.g., Light Screen, Reflect
+            || range == RANGE_SINGLE_TARGET_SPECIAL // e.g., Counter, Mirror Coat
+            || range == RANGE_FIELD) { // e.g., Sunny Day
+        defender = attacker;
+    } else if (range == RANGE_ALLY) { // e.g., Helping Hand
+        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+            defender = BattleSystem_Partner(battleSys, attacker);
+        } else {
+            defender = attacker;
+        }
+    } else if (range == RANGE_USER_OR_ALLY) { // e.g., Acupressure
+        if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
+            defender = battleCtx->battlerActions[attacker][BATTLE_ACTION_CHOOSE_TARGET];
+            if (battleCtx->battleMons[defender].curHP == 0) {
+                defender = attacker;
+            }
+        } else {
+            defender = attacker;
+        }
+    } else if (range == RANGE_RANDOM_OPPONENT || randomize == TRUE) { // e.g., Outrage, Thrash, any other reason the move should be randomly targeted
+        int opponents[2];
+        int battleType = BattleSystem_BattleType(battleSys);
+        int enemySide = Battler_Side(battleSys, attacker) ^ 1;
+
+        opponents[0] = BattleSystem_EnemyInSlot(battleSys, attacker, ENEMY_IN_SLOT_RIGHT);
+        opponents[1] = BattleSystem_EnemyInSlot(battleSys, attacker, ENEMY_IN_SLOT_LEFT);
+
+        if (battleType & BATTLE_TYPE_DOUBLES) {
+            if (battleCtx->sideConditions[enemySide].followMe
+                    && battleCtx->battleMons[battleCtx->sideConditions[enemySide].followMeUser].curHP) {
+                // If Follow Me is active and the user is still alive, re-point all targets toward them
+                defender = battleCtx->sideConditions[enemySide].followMeUser;
+            } else if (battleCtx->battleMons[opponents[0]].curHP
+                    && battleCtx->battleMons[opponents[1]].curHP) {
+                defender = opponents[BattleSystem_RandNext(battleSys) & 1];
+            } else if (battleCtx->battleMons[opponents[0]].curHP) {
+                defender = opponents[0];
+            } else if (battleCtx->battleMons[opponents[1]].curHP) {
+                defender = opponents[1];
+            }
+        } else if (battleCtx->battleMons[attacker ^ 1].curHP) {
+            defender = attacker ^ 1;
+        }
+    } else { // the usual single-target moves, e.g., Flamethrower, Thunderbolt
+        int enemySide = Battler_Side(battleSys, attacker) ^ 1;
+        int target = battleCtx->battlerActions[attacker][BATTLE_ACTION_CHOOSE_TARGET];
+        int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+
+        if (battleCtx->sideConditions[enemySide].followMe
+                && battleCtx->battleMons[battleCtx->sideConditions[enemySide].followMeUser].curHP) {
+            // If Follow Me is active and the user is still alive, re-point all targets toward them
+            defender = battleCtx->sideConditions[enemySide].followMeUser;
+        } else if (battleCtx->battleMons[target].curHP) {
+            defender = target;
+        } else {
+            // If the original target is no longer alive, try to target their partner instead
+            target = BattleSystem_RandomOpponent(battleSys, battleCtx, attacker);
+            if (battleCtx->battleMons[target].curHP) {
+                defender = target;
             }
         }
     }
 
-    return v0;
+    return defender;
 }
 
 void BattleSystem_RedirectTarget (BattleSystem * param0, BattleContext * param1, int param2, u16 param3)
@@ -3703,8 +3669,8 @@ int BattleSystem_ShowMonChecks (BattleSystem * param0, BattleContext * param1)
 
             for (v0 = 0; v0 < v5; v0++) {
                 v4 = param1->monSpeedOrder[v0];
-                v6 = ov16_0223E2A4(param0, v4, 0);
-                v7 = ov16_0223E2A4(param0, v4, 2);
+                v6 = BattleSystem_EnemyInSlot(param0, v4, 0);
+                v7 = BattleSystem_EnemyInSlot(param0, v4, 2);
 
                 param1->msgDefender = ov16_0225B840(param0, param1, v6, v7);
 
@@ -3973,8 +3939,8 @@ int BattleSystem_ShowMonChecks (BattleSystem * param0, BattleContext * param1)
                         {
                             int v21[2];
 
-                            v21[0] = ov16_0223E2A4(param0, v4, 0);
-                            v21[1] = ov16_0223E2A4(param0, v4, 2);
+                            v21[0] = BattleSystem_EnemyInSlot(param0, v4, 0);
+                            v21[1] = BattleSystem_EnemyInSlot(param0, v4, 2);
 
                             if ((param1->battleMons[v21[0]].curHP) && (param1->battleMons[v21[0]].heldItem) && (param1->battleMons[v21[1]].curHP) && (param1->battleMons[v21[1]].heldItem)) {
                                 param1->msgItemTemp = param1->battleMons[v21[BattleSystem_RandNext(param0) & 1]].heldItem;
@@ -4123,29 +4089,27 @@ int BattleSystem_ShowMonChecks (BattleSystem * param0, BattleContext * param1)
     return v2;
 }
 
-int BattleSystem_RandomOpponent (BattleSystem * param0, BattleContext * param1, int param2)
+int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker)
 {
-    u32 v0;
-    int v1;
-    int v2[2];
-    int v3;
+    int opponents[2];
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v0 = BattleSystem_BattleType(param0);
+    int chosen;
+    if (battleType & BATTLE_TYPE_DOUBLES) {
+        opponents[0] = BattleSystem_EnemyInSlot(battleSys, attacker, ENEMY_IN_SLOT_RIGHT);
+        opponents[1] = BattleSystem_EnemyInSlot(battleSys, attacker, ENEMY_IN_SLOT_LEFT);
+        
+        int rnd = BattleSystem_RandNext(battleSys) & 1;
+        chosen = opponents[rnd];
 
-    if (v0 & 0x2) {
-        v2[0] = ov16_0223E2A4(param0, param2, 0);
-        v2[1] = ov16_0223E2A4(param0, param2, 2);
-        v3 = BattleSystem_RandNext(param0) & 1;
-        v1 = v2[v3];
-
-        if (param1->battleMons[v1].curHP == 0) {
-            v1 = v2[v3 ^ 1];
+        if (battleCtx->battleMons[chosen].curHP == 0) {
+            chosen = opponents[rnd ^ 1];
         }
     } else {
-        v1 = param2 ^ 1;
+        chosen = attacker ^ 1;
     }
 
-    return v1;
+    return chosen;
 }
 
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq)
