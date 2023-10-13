@@ -182,9 +182,9 @@ UnkStruct_ov104_0223C4CC * ov104_0223C2D4 (UnkStruct_0209B75C * param0)
 
     ov104_0223CC74(v0, v2, v4);
 
-    v0->unk_94 = sub_0200D9E8(ov104_0223C720, v0, 60000);
-    v0->unk_98 = sub_0200D9E8(ov104_0223C72C, v0, 61000);
-    v0->unk_9C = sub_0200D9E8(ov104_0223C738, v0, 80000);
+    v0->unk_94 = SysTask_Start(ov104_0223C720, v0, 60000);
+    v0->unk_98 = SysTask_Start(ov104_0223C72C, v0, 61000);
+    v0->unk_9C = SysTask_Start(ov104_0223C738, v0, 80000);
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

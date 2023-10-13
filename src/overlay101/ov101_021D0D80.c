@@ -607,7 +607,7 @@ static void ov101_021D18C0 (UnkStruct_ov101_021D13C8 * param0)
 
     v0->unk_08 = UnkEnum_ov101_021D1894_00;
     v0->unk_0C = UnkEnum_ov101_021D1894_03;
-    v0->unk_10 = sub_0200D9E8(ov101_021D18F4, param0, 144);
+    v0->unk_10 = SysTask_Start(ov101_021D18F4, param0, 144);
 }
 
 static void ov101_021D18E4 (UnkStruct_ov101_021D13C8 * param0)

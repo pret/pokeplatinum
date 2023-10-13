@@ -624,7 +624,7 @@ static int ov79_021D29B4 (UnkStruct_ov79_021D29B4 * param0, int param1, UnkFuncP
     MI_CpuClear8(v0, sizeof(UnkStruct_ov79_021D29E4));
 
     v0->unk_14 = param0;
-    v0->unk_18 = sub_0200D9E8(param2, v0, 0);
+    v0->unk_18 = SysTask_Start(param2, v0, 0);
 
     param0->unk_04++;
     return param0->unk_04;

@@ -50,7 +50,7 @@ UnkStruct_0201CD38 * ov5_021F0EB0 (UnkStruct_0203CDB0 * param0, u32 param1)
     v1->unk_10 = sub_02020A90(v1->unk_30);
     v1->unk_20 = v1->unk_10;
 
-    v0 = sub_0200D9E8(ov5_021F0F2C, v1, 0xffff);
+    v0 = SysTask_Start(ov5_021F0F2C, v1, 0xffff);
     return v0;
 }
 

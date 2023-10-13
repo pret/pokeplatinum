@@ -420,7 +420,7 @@ static void ov95_02247170 (UnkStruct_ov95_02247004 * param0)
             v0->unk_08 = 2;
             v0->unk_10 = param0->unk_F8;
             v0->unk_14 = param0->unk_FC;
-            param0->unk_C4[param0->unk_F8] = sub_0200D9E8(ov95_02247254, v0, 10);
+            param0->unk_C4[param0->unk_F8] = SysTask_Start(ov95_02247254, v0, 10);
 
             if (param0->unk_C4[param0->unk_F8]) {
                 param0->unk_F4++;

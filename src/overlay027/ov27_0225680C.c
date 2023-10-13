@@ -207,7 +207,7 @@ static void ov27_02256A18 (UnkStruct_0201CD38 * param0, void * param1)
         ov27_02256AEC(v3);
         ov27_02256B24(v3, v4);
 
-        v2->unk_84 = sub_0200D9E8(ov27_022568A8, v2, 2 + 1);
+        v2->unk_84 = SysTask_Start(ov27_022568A8, v2, 2 + 1);
 
         ov27_022568B4(v3);
 

@@ -458,7 +458,7 @@ int ov113_0225C700 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0->unk_18 = sub_0200D9E8(ov113_0225CEF0, v0, 60000);
+    v0->unk_18 = SysTask_Start(ov113_0225CEF0, v0, 60000);
 
     sub_02017798(ov113_0225CF18, v0);
 

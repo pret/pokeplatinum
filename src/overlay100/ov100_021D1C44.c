@@ -240,7 +240,7 @@ static void ov100_021D2250 (UnkStruct_ov100_021D1C98 * param0)
         param0->unk_08.unk_0C[v0].unk_28[1] = 1;
         param0->unk_08.unk_0C[v0].unk_28[2] = LCRNG_Next() % 10;
         param0->unk_08.unk_0C[v0].unk_28[3] = 0;
-        param0->unk_08.unk_0C[v0].unk_40 = sub_0200D9E8(ov100_021D4414, &param0->unk_08.unk_0C[v0], 4096);
+        param0->unk_08.unk_0C[v0].unk_40 = SysTask_Start(ov100_021D4414, &param0->unk_08.unk_0C[v0], 4096);
     }
 }
 

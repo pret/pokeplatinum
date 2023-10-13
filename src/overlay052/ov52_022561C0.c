@@ -66,7 +66,7 @@ static BOOL ov52_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
 
     if (v0 != NULL) {
         if (ov52_0225621C(v0, param1, param2, param3)) {
-            if (sub_0200D9E8(ov52_02256260, v0, 1) != NULL) {
+            if (SysTask_Start(ov52_02256260, v0, 1) != NULL) {
                 *param0 = v0;
                 return 1;
             }

@@ -291,7 +291,7 @@ UnkStruct_0201CD38 * ov5_021EF1F0 (NARC * param0, const int param1, UnkStruct_ov
     v1->unk_D0 = *param4;
     v1->unk_E8 = param5;
 
-    v0 = sub_0200D9E8(ov5_021EF05C, (void *)v1, 1);
+    v0 = SysTask_Start(ov5_021EF05C, (void *)v1, 1);
     return v0;
 }
 

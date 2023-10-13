@@ -126,7 +126,7 @@ UnkStruct_ov20_021D2128 * ov20_021D2098 (const UnkStruct_ov20_021D16E8 * param0,
 
         v0->unk_24 = sub_020095C4(128, &v0->unk_28, 35);
         v0->unk_20 = sub_02018340(35);
-        v0->unk_00 = sub_0200D9E8(ov20_021D2178, v0, 2);
+        v0->unk_00 = SysTask_Start(ov20_021D2178, v0, 2);
         v0->unk_04 = ov20_021D2170(ov20_021D217C, v0, 1);
 
         for (v1 = 0; v1 < 4; v1++) {
@@ -230,7 +230,7 @@ void ov20_021D21A0 (UnkStruct_ov20_021D2128 * param0, int param1)
             for (v2 = 0; v2 < 4; v2++) {
                 if (param0->unk_08[v2] == NULL) {
                     v1->unk_10 = v2;
-                    param0->unk_08[v2] = sub_0200D9E8(v0[param1], v1, 1);
+                    param0->unk_08[v2] = SysTask_Start(v0[param1], v1, 1);
                     break;
                 }
             }

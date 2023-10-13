@@ -720,7 +720,7 @@ static void sub_020621AC (const UnkStruct_02061830 * param0, UnkStruct_02061AB4 
         v0 += 2;
     }
 
-    v2 = sub_0200D9E8(sub_020627E8, param1, v0);
+    v2 = SysTask_Start(sub_020627E8, param1, v0);
     GF_ASSERT(v2 != NULL);
 
     sub_02062A1C(param1, v2);

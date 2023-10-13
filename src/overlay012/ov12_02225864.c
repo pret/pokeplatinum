@@ -833,7 +833,7 @@ void ov12_02226424 (UnkStruct_ov12_02226454 * param0, s16 param1, s16 param2, s1
     ov12_02225BC8(&param0->unk_00, param1, param2, param3, param4, param5);
 
     param0->unk_24 = 0;
-    sub_0200D9E8(ov12_022263DC, param0, 0);
+    SysTask_Start(ov12_022263DC, param0, 0);
 }
 
 BOOL ov12_02226454 (const UnkStruct_ov12_02226454 * param0)
@@ -1180,7 +1180,7 @@ UnkStruct_ov12_022267D4 * ov12_02226870 (UnkStruct_02002F38 * param0, int param1
     }
 
     v0->unk_00 = 1;
-    v0->unk_04 = sub_0200D9E8(ov12_022267D4, v0, param10);
+    v0->unk_04 = SysTask_Start(ov12_022267D4, v0, param10);
 
     return v0;
 }

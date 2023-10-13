@@ -203,7 +203,7 @@ u8 sub_02003178 (UnkStruct_02002F38 * param0, u16 param1, u16 param2, s8 param3,
             param0->unk_118_0 = 1;
             param0->unk_11C = 0;
 
-            sub_0200D9E8(sub_020033CC, param0, (0xffffffff - 1));
+            SysTask_Start(sub_020033CC, param0, (0xffffffff - 1));
         }
     }
 

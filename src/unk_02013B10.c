@@ -127,7 +127,7 @@ void sub_02013C10 (UnkStruct_02013BE0 * param0, u8 param1, u8 param2, u16 param3
 
     sub_02013DFC(param0->unk_60C, 192, param3, param4);
 
-    param0->unk_604 = sub_0200D9E8(sub_02013E58, param0, param8);
+    param0->unk_604 = SysTask_Start(sub_02013E58, param0, param8);
 
     MI_CpuFill32(param0->unk_00, param0->unk_794, sizeof(u32) * 192);
     MI_CpuFill32(param0->unk_300, param0->unk_794, sizeof(u32) * 192);
@@ -147,7 +147,7 @@ void sub_02013CA4 (UnkStruct_02013BE0 * param0, u8 param1, u8 param2, u16 param3
 
     sub_02013DFC(param0->unk_60C, 192, param3, param4);
 
-    param0->unk_604 = sub_0200D9E8(sub_02013F04, param0, param8);
+    param0->unk_604 = SysTask_Start(sub_02013F04, param0, param8);
 
     MI_CpuFill32(param0->unk_00, param0->unk_794, sizeof(u32) * 192);
     MI_CpuFill32(param0->unk_300, param0->unk_794, sizeof(u32) * 192);

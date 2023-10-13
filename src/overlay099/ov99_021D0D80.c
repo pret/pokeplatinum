@@ -170,7 +170,7 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    v0->unk_14 = sub_0200D9E8(ov99_021D1244, v0, 60000);
+    v0->unk_14 = SysTask_Start(ov99_021D1244, v0, 60000);
 
     sub_02017798(ov99_021D1350, v0);
     sub_02004550(14, 1186, 1);

@@ -131,7 +131,7 @@ static UnkStruct_ov104_0223DB34 * ov104_0223DA40 (UnkStruct_02018340 * param0)
         NARC_dtor(v5);
     }
 
-    v0->unk_00 = sub_0200D9E8(ov104_0223DB48, v0, (80000 - 500));
+    v0->unk_00 = SysTask_Start(ov104_0223DB48, v0, (80000 - 500));
 
     return v0;
 }
@@ -181,7 +181,7 @@ static UnkStruct_ov104_0223DC04 * ov104_0223DBB8 (UnkStruct_02002F38 * param0)
         MI_CpuCopy16(&v1[16 * 5], v0->unk_08, 3 * 16 * sizeof(u16));
     }
 
-    v0->unk_00 = sub_0200D9E8(ov104_0223DC18, v0, ((80000 - 500) + 1));
+    v0->unk_00 = SysTask_Start(ov104_0223DC18, v0, ((80000 - 500) + 1));
 
     return v0;
 }

@@ -3148,7 +3148,7 @@ static void sub_02040F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0201CD38 * para
     v0->unk_0C = param0;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
-    v0->unk_00 = sub_0200D9E8(sub_02040F5C, v0, 0);
+    v0->unk_00 = SysTask_Start(sub_02040F5C, v0, 0);
 
     return;
 }
@@ -7948,7 +7948,7 @@ static BOOL sub_020462DC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
 
-    sub_0200D9E8(sub_020462C0, v0, 128);
+    SysTask_Start(sub_020462C0, v0, 128);
     return 1;
 }
 

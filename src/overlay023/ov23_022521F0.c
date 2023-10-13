@@ -938,7 +938,7 @@ void ov23_022534A0 (UnkStruct_0203CDB0 * param0)
     v4->unk_2AA = 0;
 
     sub_02005748(1500);
-    v4->unk_04 = sub_0200D9E8(ov23_02252E70, v4, 10000);
+    v4->unk_04 = SysTask_Start(ov23_02252E70, v4, 10000);
     ov23_022431EC(v4, v4->unk_04, ov23_02251270);
 
     {

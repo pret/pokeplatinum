@@ -26,7 +26,7 @@ UnkStruct_0201CD38 * sub_0200679C (UnkFuncPtr_0201CE28 param0, int param1, u32 p
         v0 = NULL;
     }
 
-    return sub_0200D9E8(param0, v0, param2);
+    return SysTask_Start(param0, v0, param2);
 }
 
 void sub_020067D0 (UnkStruct_0201CD38 * param0)

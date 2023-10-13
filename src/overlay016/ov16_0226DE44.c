@@ -94,7 +94,7 @@ UnkStruct_ov16_0226DEEC * ov16_0226DEEC (UnkStruct_0200C6E4 * param0, UnkStruct_
     sub_0200D3F4(v0->unk_00, 0);
 
     v0->unk_14 = (192 << FX32_SHIFT);
-    v0->unk_04 = sub_0200D9E8(ov16_0226DFD8, v0, 999);
+    v0->unk_04 = SysTask_Start(ov16_0226DFD8, v0, 999);
 
     return v0;
 }

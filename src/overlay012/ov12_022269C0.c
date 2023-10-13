@@ -124,7 +124,7 @@ void ov12_02226A88 (UnkStruct_ov12_0221FCDC * param0)
     v0->unk_00 = 0;
     v0->unk_04 = param0;
 
-    sub_0200D9E8(ov12_02226A64, v0, 0x1000);
+    SysTask_Start(ov12_02226A64, v0, 0x1000);
 }
 
 static void ov12_02226AAC (UnkStruct_0201CD38 * param0, void * param1)

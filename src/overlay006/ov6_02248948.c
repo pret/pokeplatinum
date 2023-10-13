@@ -71,5 +71,5 @@ void ov6_0224899C (UnkStruct_0203CDB0 * param0, u16 * param1, u32 param2, u32 pa
     v0->unk_0C = param2;
 
     *param1 = 0;
-    sub_0200D9E8(ov6_02248948, v0, 0);
+    SysTask_Start(ov6_02248948, v0, 0);
 }

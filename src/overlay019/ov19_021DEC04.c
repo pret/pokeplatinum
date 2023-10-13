@@ -621,7 +621,7 @@ static void ov19_021DF5D0 (UnkStruct_ov19_021DEC04 * param0, NARC * param1)
     param0->unk_30 = ov19_021D785C(param0->unk_10, &v2, 128, 176 + 384, 0, NNS_G2D_VRAM_TYPE_2DSUB);
     sub_02021D6C(param0->unk_30, 3);
     sub_02021E90(param0->unk_30, 2);
-    param0->unk_380 = sub_0200D9E8(ov19_021DF930, param0, 1);
+    param0->unk_380 = SysTask_Start(ov19_021DF930, param0, 1);
 
     ov19_021DF730(param0, v3);
 }

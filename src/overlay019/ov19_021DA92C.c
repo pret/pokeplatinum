@@ -256,7 +256,7 @@ static void ov19_021DAC4C (UnkStruct_ov19_021DA9E0 * param0)
 
             v0->unk_00 = (v1->unk_0F) ? 4 : 0;
             v0->unk_08 = param0;
-            param0->unk_4C = sub_0200D9E8(ov19_021DACF8, v0, 1);
+            param0->unk_4C = SysTask_Start(ov19_021DACF8, v0, 1);
         } else {
             GF_ASSERT(0);
         }

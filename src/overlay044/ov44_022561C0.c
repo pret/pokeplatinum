@@ -63,7 +63,7 @@ static BOOL ov44_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
 
     if (v0 != NULL) {
         if (ov44_0225621C(v0, param1, param2, param3)) {
-            if (sub_0200D9E8(ov44_02256338, v0, 1) != NULL) {
+            if (SysTask_Start(ov44_02256338, v0, 1) != NULL) {
                 *param0 = v0;
                 return 1;
             }

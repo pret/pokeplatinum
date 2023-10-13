@@ -850,7 +850,7 @@ void ov19_021D9B34 (UnkStruct_ov19_021D8E00 * param0)
 {
     param0->unk_784 = 0;
 
-    if (sub_0200D9E8(ov19_021D9B78, param0, 0)) {
+    if (SysTask_Start(ov19_021D9B78, param0, 0)) {
         param0->unk_78D = 1;
         param0->unk_788 = 1;
     }
@@ -884,7 +884,7 @@ void ov19_021D9BD4 (UnkStruct_ov19_021D8E00 * param0)
 {
     param0->unk_784 = 0;
 
-    if (sub_0200D9E8(ov19_021D9C18, param0, 0)) {
+    if (SysTask_Start(ov19_021D9C18, param0, 0)) {
         param0->unk_78D = 0;
         param0->unk_788 = 1;
     }
@@ -918,7 +918,7 @@ void ov19_021D9C74 (UnkStruct_ov19_021D8E00 * param0)
 {
     param0->unk_784 = 0;
 
-    if (sub_0200D9E8(ov19_021D9CB4, param0, 0)) {
+    if (SysTask_Start(ov19_021D9CB4, param0, 0)) {
         param0->unk_788 = 1;
     }
 }

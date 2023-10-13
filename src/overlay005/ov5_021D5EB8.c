@@ -457,10 +457,10 @@ BOOL ov5_021D5F7C (UnkStruct_ov5_021D5EF8 * param0, int param1)
 
     if (v0 == 0) {
         param0->unk_0C = 0;
-        param0->unk_14 = sub_0200D9E8(ov5_021D5FE4, param0, 0);
+        param0->unk_14 = SysTask_Start(ov5_021D5FE4, param0, 0);
     } else {
         param0->unk_0C = 0;
-        param0->unk_14 = sub_0200D9E8(ov5_021D60B4, param0, 0);
+        param0->unk_14 = SysTask_Start(ov5_021D60B4, param0, 0);
     }
 
     return 1;
@@ -810,7 +810,7 @@ static void ov5_021D61D0 (UnkStruct_ov5_021D61D0 * param0)
         v3.unk_08 = 4;
 
         param0->unk_130 = sub_020218BC(&v3);
-        param0->unk_134 = sub_0200D9E8(ov5_021D6284, param0, 10);
+        param0->unk_134 = SysTask_Start(ov5_021D6284, param0, 10);
     }
 }
 
@@ -1143,7 +1143,7 @@ static BOOL ov5_021D6730 (UnkStruct_ov5_021D6594 * param0, int param1)
         return 0;
     }
 
-    v0->unk_14 = sub_0200D9E8(ov5_021D6A84, v0, 1);
+    v0->unk_14 = SysTask_Start(ov5_021D6A84, v0, 1);
     v0->unk_10 = 1;
     v0->unk_12 = 0;
 
@@ -1168,7 +1168,7 @@ static BOOL ov5_021D676C (UnkStruct_ov5_021D6594 * param0, int param1, int param
         return 0;
     }
 
-    v0->unk_08->unk_B88 = sub_0200D9E8(v0->unk_18, v0->unk_08, 4);
+    v0->unk_08->unk_B88 = SysTask_Start(v0->unk_18, v0->unk_08, 4);
 
     if (v0->unk_08->unk_B88 == NULL) {
         return 0;

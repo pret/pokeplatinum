@@ -32,7 +32,7 @@ UnkStruct_0201CD38 * ov16_0226E148 (BattleSystem * param0)
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226E148));
 
     v0->unk_00 = param0;
-    v1 = sub_0200D9E8(ov16_0226E188, v0, 1000);
+    v1 = SysTask_Start(ov16_0226E188, v0, 1000);
 
     return v1;
 }

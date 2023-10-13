@@ -1904,8 +1904,8 @@ static void ov5_021EE320 (UnkStruct_ov5_021ED0A4 * param0, int param1, int param
     param0->unk_100 = v5;
 
     v0 = sub_02062858(param0->unk_104);
-    v5->unk_18 = sub_0200D9E8(ov5_021EE030, param0, v0 + 1);
-    v5->unk_1C = sub_0200D9E8(ov5_021EE2C4, param0, v0 + 2);
+    v5->unk_18 = SysTask_Start(ov5_021EE030, param0, v0 + 1);
+    v5->unk_1C = SysTask_Start(ov5_021EE2C4, param0, v0 + 2);
     v5->unk_20 = sub_0200DA04(ov5_021EE1AC, param0, 0xff);
     v5->unk_24 = sub_0200DA3C(ov5_021EE1E8, param0, 0xff);
 }

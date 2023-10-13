@@ -133,7 +133,7 @@ static void ov47_02256684 (UnkStruct_ov47_02256634 * param0, const UnkStruct_ov4
         }
     }
 
-    param0->unk_7C = sub_0200D9E8(ov47_02256968, param0, 3);
+    param0->unk_7C = SysTask_Start(ov47_02256968, param0, 3);
 }
 
 static void ov47_022567FC (UnkStruct_ov47_02256634 * param0)

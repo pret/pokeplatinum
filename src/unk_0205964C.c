@@ -86,7 +86,7 @@ void sub_0205965C (UnkStruct_0203CDB0 * param0)
     MI_CpuFill8(Unk_021C084C, 0, sizeof(UnkStruct_0205964C));
 
     Unk_021C084C->unk_3C = 50;
-    Unk_021C084C->unk_38 = sub_0200D9E8(sub_020598C4, NULL, 10);
+    Unk_021C084C->unk_38 = SysTask_Start(sub_020598C4, NULL, 10);
     Unk_021C084C->unk_18 = param0;
     Unk_021C084C->unk_44 = NULL;
 

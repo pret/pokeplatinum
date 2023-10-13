@@ -564,7 +564,7 @@ void ov12_02236320 (UnkStruct_ov12_02235FE0 * param0)
         {
             UnkStruct_0201CD38 * v5;
 
-            v5 = sub_0200D9E8(ov12_022360A0, param0, 1000);
+            v5 = SysTask_Start(ov12_022360A0, param0, 1000);
             ov12_022360A0(v5, param0);
         }
     }
@@ -586,7 +586,7 @@ void ov12_02236384 (UnkStruct_ov12_02235FE0 * param0, UnkFuncPtr_020146F4 param1
     ov12_02220474();
     ov12_0223646C(param0, param1);
 
-    param0->unk_84 = sub_0200D9E8(ov12_022363CC, param0, 1000);
+    param0->unk_84 = SysTask_Start(ov12_022363CC, param0, 1000);
 }
 
 void ov12_022363B4 (UnkStruct_ov12_02235FE0 * param0)
@@ -684,7 +684,7 @@ static void ov12_0223646C (UnkStruct_ov12_02235FE0 * param0, UnkFuncPtr_020146F4
             GF_ASSERT(v4->unk_14 != NULL);
             v4->unk_04 = ov12_02237EA0(v4->unk_14);
 
-            sub_0200D9E8(ov12_02236430, v4, 1001);
+            SysTask_Start(ov12_02236430, v4, 1001);
         }
     }
 }
@@ -2052,7 +2052,7 @@ BallRotation * ov12_02237728 (UnkStruct_ov12_02237728 * param0)
 
     v0->unk_1C = 1;
     v0->unk_28 = 0;
-    v0->unk_CC = sub_0200D9E8(ov12_022376D0, v0, 1000);
+    v0->unk_CC = SysTask_Start(ov12_022376D0, v0, 1000);
 
     return v0;
 }

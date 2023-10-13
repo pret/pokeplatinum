@@ -267,7 +267,7 @@ static BOOL ov62_02235580 (UnkStruct_0208C06C * param0)
                 v2->unk_1C = 8;
             }
 
-            sub_0200D9E8(ov62_022354A4, v2, 8192);
+            SysTask_Start(ov62_022354A4, v2, 8192);
         }
 
         v3->unk_00 = 0;
@@ -317,7 +317,7 @@ static BOOL ov62_02235580 (UnkStruct_0208C06C * param0)
                         }
 
                         v5->unk_1C = 4;
-                        sub_0200D9E8(ov62_022354A4, v5, 8192);
+                        SysTask_Start(ov62_022354A4, v5, 8192);
                         v4++;
                     } while (v4 <= param0->unk_534.unk_1A4);
                 }
@@ -399,7 +399,7 @@ static BOOL ov62_02235854 (UnkStruct_0208C06C * param0)
             }
 
             v2->unk_1C = 4;
-            sub_0200D9E8(ov62_022354A4, v2, 8192);
+            SysTask_Start(ov62_022354A4, v2, 8192);
             v1++;
         } while (v1 <= (param0->unk_534.unk_1A4 - 1));
     }
@@ -430,7 +430,7 @@ static BOOL ov62_02235854 (UnkStruct_0208C06C * param0)
                     }
 
                     v4->unk_1C = 8;
-                    sub_0200D9E8(ov62_022354A4, v4, 8192);
+                    SysTask_Start(ov62_022354A4, v4, 8192);
                 }
 
                 v0->unk_00 = 0;

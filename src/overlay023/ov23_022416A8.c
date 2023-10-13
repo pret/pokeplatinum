@@ -564,7 +564,7 @@ void ov23_02241E6C (void)
     v0->unk_02 = 100;
 
     Unk_ov23_02257744->unk_460 = v0;
-    Unk_ov23_02257744->unk_45C = sub_0200D9E8(ov23_02241E4C, v0, 100);
+    Unk_ov23_02257744->unk_45C = SysTask_Start(ov23_02241E4C, v0, 100);
 }
 
 void ov23_02241ED0 (void)

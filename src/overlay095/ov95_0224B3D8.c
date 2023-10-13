@@ -625,7 +625,7 @@ static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, UnkStruct_0201CD38 
         ov95_02247958(v0->unk_14, &(v0->unk_24));
         ov95_02247978(v0->unk_14, &(v0->unk_34));
 
-        *param1 = sub_0200D9E8(ov95_0224BD5C, v0, 0);
+        *param1 = SysTask_Start(ov95_0224BD5C, v0, 0);
 
         if (*param1 == NULL) {
             Heap_FreeToHeap(v0);

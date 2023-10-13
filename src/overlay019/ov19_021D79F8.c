@@ -280,7 +280,7 @@ void ov19_021D7D70 (UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov19_021D4
     param0->unk_98 = 1;
     param0->unk_9C = 0;
 
-    sub_0200D9E8(ov19_021D7E24, param0, 0);
+    SysTask_Start(ov19_021D7E24, param0, 0);
     ov19_021D77C8(ov19_021D7E6C, param0, 1);
 }
 

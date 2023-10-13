@@ -205,7 +205,7 @@ void ov5_021DC1AC (UnkStruct_ov5_021DC1A4 * param0)
     ov5_021DC33C(param0);
 
     param0->unk_B8 = sub_02001B9C(&param0->unk_AC, param0->unk_96, 4);
-    param0->unk_04 = sub_0200D9E8(ov5_021DC3B0, param0, 0);
+    param0->unk_04 = SysTask_Start(ov5_021DC3B0, param0, 0);
 
     return;
 }
@@ -395,7 +395,7 @@ static void ov5_021DC530 (UnkStruct_ov5_021DC1A4 * param0, u32 param1)
     param0->unk_1BC = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_19C, 0, param0->unk_96, 4);
 
     ov5_021DCAF4(param0);
-    param0->unk_04 = sub_0200D9E8(ov5_021DC95C, param0, 0);
+    param0->unk_04 = SysTask_Start(ov5_021DC95C, param0, 0);
 
     return;
 }
@@ -430,7 +430,7 @@ void ov5_021DC600 (UnkStruct_ov5_021DC1A4 * param0, u16 * param1, u16 * param2)
 
     ov5_021DCAF4(param0);
 
-    param0->unk_04 = sub_0200D9E8(ov5_021DC95C, param0, 0);
+    param0->unk_04 = SysTask_Start(ov5_021DC95C, param0, 0);
     return;
 }
 
@@ -658,7 +658,7 @@ void ov5_021DCB24 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 * para
 
     v3->unk_AC.unk_04 = &v3->unk_08;
     sub_0201A954(&v3->unk_08);
-    v3->unk_04 = sub_0200D9E8(ov5_021DCC64, v3, 0);
+    v3->unk_04 = SysTask_Start(ov5_021DCC64, v3, 0);
 
     return;
 }
@@ -795,7 +795,7 @@ void ov5_021DCD94 (UnkStruct_ov5_021DC1A4 * param0, u8 param1)
     ov5_021DCE64(param0, param1, v1);
 
     param0->unk_B8 = sub_02001B9C(&param0->unk_AC, param0->unk_96, 4);
-    param0->unk_04 = sub_0200D9E8(ov5_021DC3B0, param0, 0);
+    param0->unk_04 = SysTask_Start(ov5_021DC3B0, param0, 0);
 
     return;
 }

@@ -1040,7 +1040,7 @@ static void ov21_021D300C (UnkStruct_ov21_021D13FC * param0)
 
 static void ov21_021D3034 (UnkStruct_ov21_021D13FC * param0)
 {
-    param0->unk_270 = sub_0200D9E8(ov21_021D3064, &param0->unk_1E0, 1);
+    param0->unk_270 = SysTask_Start(ov21_021D3064, &param0->unk_1E0, 1);
 }
 
 static void ov21_021D3054 (UnkStruct_ov21_021D13FC * param0)
@@ -1137,7 +1137,7 @@ static void ov21_021D3194 (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov21_021D31D0 (UnkStruct_ov21_021D13FC * param0)
 {
-    param0->unk_274 = sub_0200D9E8(ov21_021D3194, &param0->unk_218, 0);
+    param0->unk_274 = SysTask_Start(ov21_021D3194, &param0->unk_218, 0);
 }
 
 static void ov21_021D31F0 (UnkStruct_ov21_021D13FC * param0)

@@ -233,7 +233,7 @@ void ov23_0224DCB8 (int param0, UnkFuncPtr_ov23_0224DCB8 param1, UnkStruct_0203C
     sub_02005748(1500);
     ov23_0224DC68(v0, 0);
 
-    v0->unk_00 = sub_0200D9E8(ov23_0224E2D8, v0, 10000);
+    v0->unk_00 = SysTask_Start(ov23_0224E2D8, v0, 10000);
 }
 
 static void ov23_0224DD2C (UnkStruct_ov23_0224E280 * param0)
@@ -1298,7 +1298,7 @@ void ov23_0224F07C (int param0, int param1, UnkStruct_0203CDB0 * param2)
     ov23_02253F40(ov23_0224219C(), 22, 0, NULL);
     sub_02059624();
 
-    v0->unk_00 = sub_0200D9E8(ov23_0224EC50, v0, 10000);
+    v0->unk_00 = SysTask_Start(ov23_0224EC50, v0, 10000);
 }
 
 void ov23_0224F0F0 (int param0, int param1, void * param2, void * param3)

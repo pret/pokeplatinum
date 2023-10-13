@@ -10,7 +10,7 @@
 #include "unk_0200D9E8.h"
 #include "unk_0201CCF0.h"
 
-UnkStruct_0201CD38 * sub_0200D9E8 (UnkFuncPtr_0201CE28 param0, void * param1, u32 param2)
+UnkStruct_0201CD38 * SysTask_Start (UnkFuncPtr_0201CE28 param0, void * param1, u32 param2)
 {
     return sub_0201CE14(coresys.unk_18, param0, param1, param2);
 }

@@ -1071,7 +1071,7 @@ static void ov5_021F7F34 (UnkStruct_ov5_021F7ED8 * param0)
     ov5_021F8090(param0);
 
     param0->unk_F0 = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_D0, 0, param0->unk_C2, 4);
-    param0->unk_04 = sub_0200D9E8(ov5_021F81A8, param0, 0);
+    param0->unk_04 = SysTask_Start(ov5_021F81A8, param0, 0);
 
     return;
 }

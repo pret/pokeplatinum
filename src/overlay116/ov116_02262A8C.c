@@ -302,7 +302,7 @@ static void ov116_02262CB8 (UnkStruct_ov116_02262A8C * param0, int param1)
     v0->unk_04 = 0;
     v0->unk_2C = param0->unk_14;
 
-    sub_0200D9E8(ov116_02263158, v0, 4096);
+    SysTask_Start(ov116_02263158, v0, 4096);
 }
 
 static void ov116_02262D08 (UnkStruct_ov116_02262A8C * param0, int param1)
@@ -324,7 +324,7 @@ static void ov116_02262D08 (UnkStruct_ov116_02262A8C * param0, int param1)
     v0->unk_04 = 0;
     v0->unk_3C = param0->unk_14;
 
-    sub_0200D9E8(ov116_0226323C, v0, 4096);
+    SysTask_Start(ov116_0226323C, v0, 4096);
 }
 
 static void ov116_02262D64 (UnkStruct_ov116_02262A8C * param0, int param1)
@@ -347,7 +347,7 @@ static void ov116_02262D64 (UnkStruct_ov116_02262A8C * param0, int param1)
     v0->unk_04 = 0;
     v0->unk_3C = param0->unk_14;
 
-    sub_0200D9E8(ov116_02263434, v0, 4096);
+    SysTask_Start(ov116_02263434, v0, 4096);
 }
 
 static void ov116_02262DC0 (UnkStruct_ov116_02262A8C * param0)
@@ -368,7 +368,7 @@ static void ov116_02262DC0 (UnkStruct_ov116_02262A8C * param0)
     sub_02017240(&param0->unk_308[0].unk_88[0], 0);
     sub_02017240(&param0->unk_308[1].unk_88[0], 0);
     sub_02017240(&param0->unk_308[2].unk_88[0], 0);
-    sub_0200D9E8(ov116_02262E50, v0, 4096);
+    SysTask_Start(ov116_02262E50, v0, 4096);
 }
 
 void ov116_02262E50 (UnkStruct_0201CD38 * param0, void * param1)

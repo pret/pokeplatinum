@@ -387,7 +387,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
         sub_0201C3C0(v1->unk_00, 3);
         break;
     case 31:
-        v4->unk_500 = sub_0200D9E8(ov104_022338B4, ov104_0222E924(param0->unk_00), 5);
+        v4->unk_500 = SysTask_Start(ov104_022338B4, ov104_0222E924(param0->unk_00), 5);
         break;
     case 32:
         if (v4->unk_500 != NULL) {

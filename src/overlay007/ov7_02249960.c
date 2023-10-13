@@ -345,7 +345,7 @@ static void ov7_02249E0C (UnkStruct_ov7_02249C2C * param0)
 
     param0->unk_97 = 1;
 
-    sub_0200D9E8(ov7_0224A718, param0, 0);
+    SysTask_Start(ov7_0224A718, param0, 0);
     ov7_02249EE0(Unk_ov7_0224F5A0);
 
     {
@@ -758,7 +758,7 @@ static void ov7_0224A53C (UnkStruct_ov7_02249C2C * param0)
 {
     int v0;
 
-    sub_0200D9E8(ov7_0224A718, param0, 0);
+    SysTask_Start(ov7_0224A718, param0, 0);
     ov7_0224A5D0();
 
     if (!sub_0201A7CC(&Unk_ov7_0224F5A0->unk_30)) {
@@ -1301,7 +1301,7 @@ static void ov7_0224AD68 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     sub_0205987C();
-    sub_0200D9E8(ov7_0224ADD8, v0, 0);
+    SysTask_Start(ov7_0224ADD8, v0, 0);
 }
 
 static void ov7_0224ADD8 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1463,7 +1463,7 @@ static void ov7_0224B054 (UnkStruct_ov7_02249C2C * param0)
     sub_0200B498(param0->unk_58, 1, sub_02032EE8(1));
     ov7_02249960(57, 1);
 
-    sub_0200D9E8(ov7_0224A718, param0, 0);
+    SysTask_Start(ov7_0224A718, param0, 0);
     ov7_0224A530(ov7_0224B0E8);
 }
 
@@ -1475,7 +1475,7 @@ static void ov7_0224B08C (UnkStruct_ov7_02249C2C * param0)
 
     param0->unk_90 = sub_02035E18();
 
-    sub_0200D9E8(ov7_0224A718, param0, 0);
+    SysTask_Start(ov7_0224A718, param0, 0);
     ov7_0224A530(ov7_0224B0E8);
 
     Unk_ov7_0224F5A0->unk_96 = (30 * 3);
@@ -1603,7 +1603,7 @@ static void ov7_0224B2DC (UnkStruct_ov7_02249C2C * param0)
     ov7_02249960(5, 1);
 
     sub_020597A4();
-    sub_0200D9E8(ov7_0224B31C, param0, 0);
+    SysTask_Start(ov7_0224B31C, param0, 0);
 }
 
 static void ov7_0224B31C (UnkStruct_0201CD38 * param0, void * param1)
@@ -1629,7 +1629,7 @@ static void ov7_0224B348 (UnkStruct_ov7_02249C2C * param0)
         }
     }
 
-    sub_0200D9E8(ov7_0224B370, param0, 0);
+    SysTask_Start(ov7_0224B370, param0, 0);
 }
 
 static void ov7_0224B370 (UnkStruct_0201CD38 * param0, void * param1)

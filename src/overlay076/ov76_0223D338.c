@@ -522,7 +522,7 @@ static void ov76_0223DA00 (CellActorData * param0, FontOAM * param1)
     v0->unk_08 = param1;
 
     ov76_0223D984(v0->unk_08, 0, -1);
-    sub_0200D9E8(ov76_0223D9AC, v0, 1000);
+    SysTask_Start(ov76_0223D9AC, v0, 1000);
 }
 
 void ov76_0223DA34 (u32 param0, u32 param1, void * param2)

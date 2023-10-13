@@ -63,7 +63,7 @@ static void ov97_0222D04C (UnkStruct_ov97_0222D04C * param0)
     MI_CpuFill8(Unk_ov97_0223F1A4, 0, sizeof(UnkStruct_ov97_0223F1A4));
 
     Unk_ov97_0223F1A4->unk_24 = 50;
-    Unk_ov97_0223F1A4->unk_1C = sub_0200D9E8(ov97_0222D19C, NULL, 10);
+    Unk_ov97_0223F1A4->unk_1C = SysTask_Start(ov97_0222D19C, NULL, 10);
     Unk_ov97_0223F1A4->unk_00 = param0;
 
     sub_020361BC(&Unk_ov97_0223F1A4->unk_04);

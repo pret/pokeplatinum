@@ -1239,7 +1239,7 @@ static void ov104_0223056C (u16 param0, UnkStruct_ov104_0223C634 * param1, const
     v0->unk_08 = param4;
 
     GF_ASSERT(param1->unk_38 == NULL);
-    param1->unk_38 = sub_0200D9E8(ov104_02232B78, v0, (60000 + 100));
+    param1->unk_38 = SysTask_Start(ov104_02232B78, v0, (60000 + 100));
 }
 
 static BOOL ov104_022305B8 (UnkStruct_ov104_0222E930 * param0)
@@ -2409,7 +2409,7 @@ static BOOL ov104_02231720 (UnkStruct_ov104_02231148 * param0)
         }
 
         sub_0200AAE0(40, -16, 0, GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
-        sub_0200D9E8(ov104_022313FC, param0, 0x1000);
+        SysTask_Start(ov104_022313FC, param0, 0x1000);
 
         param0->unk_04++;
         break;
@@ -2479,7 +2479,7 @@ static BOOL ov104_02231864 (UnkStruct_ov104_02231148 * param0)
         }
 
         sub_0200AAE0(40, -16, 0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ, 1);
-        sub_0200D9E8(ov104_022313FC, param0, 0x1000);
+        SysTask_Start(ov104_022313FC, param0, 0x1000);
 
         param0->unk_04++;
         break;
@@ -2665,7 +2665,7 @@ static BOOL ov104_02231BD4 (UnkStruct_ov104_0222E930 * param0)
     v6->unk_06 = v3;
     v6->unk_09 = v4;
     v6->unk_0A = v5;
-    v6->unk_00 = sub_0200D9E8(ov104_0223319C, v6, 70000);
+    v6->unk_00 = SysTask_Start(ov104_0223319C, v6, 70000);
 
     return 0;
 }
@@ -2710,7 +2710,7 @@ static BOOL ov104_02231C70 (UnkStruct_ov104_0222E930 * param0)
     v6->unk_07 = ov104_0222FC00(param0);
     v6->unk_08 = ov104_0222FC00(param0);
     v6->unk_0A = ov104_0222FC00(param0);
-    v6->unk_00 = sub_0200D9E8(ov104_022331E8, v6, 300);
+    v6->unk_00 = SysTask_Start(ov104_022331E8, v6, 300);
 
     return 0;
 }

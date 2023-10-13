@@ -89,7 +89,7 @@ static BOOL ov28_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
     if (v0 != NULL) {
         if (ov28_02256210(v0, param3, param2)) {
             v0->unk_10 = param1;
-            sub_0200D9E8(ov28_022562CC, v0, 1);
+            SysTask_Start(ov28_022562CC, v0, 1);
             *param0 = v0;
 
             return 1;

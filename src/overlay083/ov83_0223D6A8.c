@@ -1079,7 +1079,7 @@ void ov83_0223E908 (UnkStruct_ov83_0223E824 * param0, u32 param1)
 {
     GF_ASSERT(param0->unk_2C == NULL);
 
-    param0->unk_2C = sub_0200D9E8(ov83_0223E8DC, param0, 1024);
+    param0->unk_2C = SysTask_Start(ov83_0223E8DC, param0, 1024);
     param0->unk_30 = 0;
 
     sub_0201ADA4(param0->unk_08[0], 0);

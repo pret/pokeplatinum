@@ -799,7 +799,7 @@ static void ov17_02249D50 (UnkFuncPtr_0201CE28 param0, UnkStruct_ov17_022492DC *
     GF_ASSERT(param1->unk_0C == NULL);
 
     MI_CpuClear8(&param1->unk_8C, sizeof(UnkStruct_ov17_022492DC_sub2));
-    param1->unk_0C = sub_0200D9E8(param0, param1, 1300);
+    param1->unk_0C = SysTask_Start(param0, param1, 1300);
 }
 
 static void ov17_02249D80 (UnkStruct_ov17_022492DC * param0)

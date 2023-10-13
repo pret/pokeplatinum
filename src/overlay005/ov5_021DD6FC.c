@@ -261,7 +261,7 @@ void ov5_021DD9E8 (UnkStruct_ov5_021DD9C8 * param0, const int param1, const int 
         sub_02019184(param0->unk_1C, 3, 3, 38);
 
         param0->unk_0C = 38;
-        param0->unk_08 = sub_0200D9E8(ov5_021DD8A4, param0, 0);
+        param0->unk_08 = SysTask_Start(ov5_021DD8A4, param0, 0);
         param0->unk_04 = 1;
 
         v1 = sub_02071CFC(param0->unk_3C, param0->unk_18, param0->unk_40);

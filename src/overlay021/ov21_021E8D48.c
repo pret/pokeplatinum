@@ -167,7 +167,7 @@ UnkStruct_ov21_021E8D48 * ov21_021E8D48 (const UnkStruct_ov21_021E8E0C * param0)
     ov21_021E98D8(v0->unk_08, v0->unk_0C);
     ov21_021E98F8(v0->unk_08, v0->unk_0C, 10, 15, 0, 0, 0x0);
 
-    v0->unk_224 = sub_0200D9E8(ov21_021E9828, v0, 0);
+    v0->unk_224 = SysTask_Start(ov21_021E9828, v0, 0);
 
     return v0;
 }

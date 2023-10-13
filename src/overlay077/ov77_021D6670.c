@@ -281,7 +281,7 @@ static void ov77_021D6A0C (UnkStruct_ov77_021D6A0C * param0, UnkStruct_ov77_021D
     param0->unk_00.unk_03 = 0;
     param0->unk_0C = param1->unk_00.unk_1B0;
     param0->unk_00.unk_05 = param5;
-    param0->unk_08 = sub_0200D9E8(ov77_021D6B0C, param0, 10);
+    param0->unk_08 = SysTask_Start(ov77_021D6B0C, param0, 10);
 }
 
 static void ov77_021D6A44 (UnkStruct_ov77_021D6ADC * param0, const u8 param1, const u8 param2)
@@ -312,7 +312,7 @@ static void ov77_021D6A44 (UnkStruct_ov77_021D6ADC * param0, const u8 param1, co
         sub_02021CC8(v1->unk_04, 1);
         sub_02021CAC(v1->unk_04, 1);
 
-        v1->unk_08 = sub_0200D9E8(ov77_021D6B48, v1, 20);
+        v1->unk_08 = SysTask_Start(ov77_021D6B48, v1, 20);
     }
 }
 
@@ -408,7 +408,7 @@ static void ov77_021D6BAC (UnkStruct_ov77_021D6734 * param0, const u8 param1, in
             sub_02021CAC(v2->unk_04, 0);
         }
 
-        v2->unk_08 = sub_0200D9E8(ov77_021D6C44, v2, 20);
+        v2->unk_08 = SysTask_Start(ov77_021D6C44, v2, 20);
     }
 }
 

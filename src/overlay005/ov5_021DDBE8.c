@@ -277,7 +277,7 @@ void ov5_021DDC44 (int param0, u32 param1, u32 param2, BOOL * param3, u32 param4
 
     v1 = Heap_AllocFromHeap(4, sizeof(UnkStruct_ov5_021DDC44));
     memset(v1, 0, sizeof(UnkStruct_ov5_021DDC44));
-    sub_0200D9E8(ov5_021DDC88, v1, 5);
+    SysTask_Start(ov5_021DDC88, v1, 5);
 
     v1->unk_48 = param3;
 
@@ -1487,7 +1487,7 @@ void ov5_021DEFA0 (UnkStruct_0203CDB0 * param0)
     GX_SetCapture(GX_CAPTURE_SIZE_256x192, GX_CAPTURE_MODE_AB, GX_CAPTURE_SRCA_2D3D, GX_CAPTURE_SRCB_VRAM_0x00000, GX_CAPTURE_DEST_VRAM_C_0x00000, 4, 12);
 
     sub_0200DA3C(ov5_021DF258, Unk_ov5_02202120, 1024);
-    sub_0200D9E8(ov5_021DF28C, Unk_ov5_02202120, 1024);
+    SysTask_Start(ov5_021DF28C, Unk_ov5_02202120, 1024);
 }
 
 void ov5_021DF038 (void)

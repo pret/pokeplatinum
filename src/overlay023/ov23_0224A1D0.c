@@ -318,7 +318,7 @@ static void ov23_0224A620 (int param0)
     v1->unk_04 = param0;
     v0->unk_EA[param0] = 0;
 
-    sub_0200D9E8(ov23_0224A5CC, v1, 100);
+    SysTask_Start(ov23_0224A5CC, v1, 100);
     sub_02059058(param0, 0);
 }
 

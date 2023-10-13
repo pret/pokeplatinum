@@ -648,8 +648,8 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     v0->unk_1AC = sub_0201567C(v0->unk_28, 0, 0xb, 5);
     sub_02015738(v0->unk_1AC, 1);
 
-    v0->unk_1C = sub_0200D9E8(ov16_0223CF48, v0, 60000);
-    v0->unk_20 = sub_0200D9E8(ov16_0223CF8C, v0, 50000);
+    v0->unk_1C = SysTask_Start(ov16_0223CF48, v0, 60000);
+    v0->unk_20 = SysTask_Start(ov16_0223CF8C, v0, 50000);
     v0->unk_24 = sub_0200DA04(ov16_0223D0C4, v0, 1200);
     v0->unk_2434 = -51;
 

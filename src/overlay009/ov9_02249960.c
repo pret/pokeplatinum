@@ -1518,7 +1518,7 @@ static void ov9_02249E94 (UnkStruct_ov9_02249B04 * param0)
     v0 = sub_02062858(param0->unk_00->unk_38);
     v0 += 2;
 
-    v1->unk_00 = sub_0200D9E8(ov9_02249EDC, param0, v0);
+    v1->unk_00 = SysTask_Start(ov9_02249EDC, param0, v0);
 }
 
 static void ov9_02249EC8 (UnkStruct_ov9_02249B04 * param0)
@@ -1661,7 +1661,7 @@ static void ov9_02249FF4 (UnkStruct_ov9_02249B04 * param0)
         sub_0202094C(0x681 - 0x5c1, v0->unk_00);
     }
 
-    v0->unk_3C = sub_0200D9E8(ov9_0224A0DC, param0, 0);
+    v0->unk_3C = SysTask_Start(ov9_0224A0DC, param0, 0);
 }
 
 static void ov9_0224A0C8 (UnkStruct_ov9_02249B04 * param0)
@@ -2705,7 +2705,7 @@ static void ov9_0224AEE4 (UnkStruct_ov9_02249B04 * param0, UnkStruct_ov9_0224B06
     }
 
     {
-        param1->unk_1F8 = sub_0200D9E8(ov9_0224B124, param1, 65535);
+        param1->unk_1F8 = SysTask_Start(ov9_0224B124, param1, 65535);
     }
 }
 
@@ -4597,7 +4597,7 @@ static void ov9_0224CBD8 (UnkStruct_ov9_02249B04 * param0)
     UnkStruct_ov9_0224CBD8 * v0 = &param0->unk_1CD0;
 
     v0->unk_00 = 0;
-    v0->unk_2C = sub_0200D9E8(ov9_0224CC08, param0, 1);
+    v0->unk_2C = SysTask_Start(ov9_0224CC08, param0, 1);
 }
 
 static void ov9_0224CBF8 (UnkStruct_ov9_02249B04 * param0)

@@ -401,7 +401,7 @@ void ov116_0226493C (UnkStruct_ov116_02262A8C * param0, s16 param1, s16 param2)
             sub_0200D364(param0->unk_214C[v0].unk_08[v1], ((param1 * (v0 + 1)) + (param2 * (v1 + 1))) % 3);
         }
 
-        sub_0200D9E8(ov116_022647BC, &param0->unk_214C[v0], 4096);
+        SysTask_Start(ov116_022647BC, &param0->unk_214C[v0], 4096);
         break;
     }
 }
@@ -609,7 +609,7 @@ void ov116_02264FEC (UnkStruct_ov116_02262A8C * param0, BOOL * param1)
     v0->unk_08 = 0;
     v0->unk_10 = param1;
 
-    sub_0200D9E8(ov116_022649E4, v0, 4096);
+    SysTask_Start(ov116_022649E4, v0, 4096);
 }
 
 static void ov116_0226501C (UnkStruct_ov116_02265470 * param0)
@@ -953,7 +953,7 @@ void ov116_02265470 (UnkStruct_ov116_02262A8C * param0)
         }
     }
 
-    param0->unk_20C4.unk_80 = sub_0200D9E8(ov116_0226534C, &param0->unk_20C4, 4096);
+    param0->unk_20C4.unk_80 = SysTask_Start(ov116_0226534C, &param0->unk_20C4, 4096);
 }
 
 static void ov116_022655DC (UnkStruct_ov116_022660A8 * param0)
@@ -1192,7 +1192,7 @@ static void ov116_0226591C (UnkStruct_0201CD38 * param0, void * param1)
                     sub_0200D430(v4->unk_A0[v0].unk_00, 0 + v5);
                 }
 
-                sub_0200D9E8(Unk_ov116_02267DA4[v2].unk_24, v3, 4097);
+                SysTask_Start(Unk_ov116_02267DA4[v2].unk_24, v3, 4097);
             }
         }
     } else if ((v3->unk_28 == 0) && (v3->unk_18 == 0)) {
@@ -1225,7 +1225,7 @@ void ov116_02265A1C (UnkStruct_ov116_02262A8C * param0)
         }
     }
 
-    param0->unk_2018.unk_08 = sub_0200D9E8(ov116_0226591C, &param0->unk_2018, 4096);
+    param0->unk_2018.unk_08 = SysTask_Start(ov116_0226591C, &param0->unk_2018, 4096);
 }
 
 static void ov116_02265AA4 (UnkStruct_0201CD38 * param0, void * param1)

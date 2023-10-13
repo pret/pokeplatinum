@@ -188,9 +188,9 @@ void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** para
             sub_0201E450(4);
 
             v0->unk_34 = param1;
-            v0->unk_38 = sub_0200D9E8(ov25_02253E94, v0, 4);
+            v0->unk_38 = SysTask_Start(ov25_02253E94, v0, 4);
 
-            sub_0200D9E8(ov25_02253E40, v0, 0);
+            SysTask_Start(ov25_02253E40, v0, 0);
         }
     }
 }

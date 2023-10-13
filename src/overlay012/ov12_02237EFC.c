@@ -159,7 +159,7 @@ void ov12_02238004 (UnkStruct_ov12_02238004 * param0)
 {
     param0->unk_20 = 1;
     ov12_02238054(param0, ov12_02238080);
-    param0->unk_18 = sub_0200D9E8(ov12_02238030, param0, 1000);
+    param0->unk_18 = SysTask_Start(ov12_02238030, param0, 1000);
 }
 
 BOOL ov12_0223802C (UnkStruct_ov12_02238004 * param0)

@@ -603,7 +603,7 @@ static void ov5_021DBC64 (UnkStruct_ov5_021DBA58 * param0, UnkStruct_0201CD38 * 
 
     v0->unk_08 = param0;
     v0->unk_04 = param1;
-    v0->unk_00 = sub_0200D9E8(ov5_021DBC94, v0, 0);
+    v0->unk_00 = SysTask_Start(ov5_021DBC94, v0, 0);
 
     return;
 }

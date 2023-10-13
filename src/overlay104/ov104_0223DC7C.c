@@ -644,7 +644,7 @@ static void ov104_0223E5A8 (UnkStruct_ov104_0223DD30 * param0, const UnkStruct_o
         Heap_FreeToHeap(v0);
     }
 
-    param0->unk_140 = sub_0200D9E8(ov104_0223E6BC, param0, 1100);
+    param0->unk_140 = SysTask_Start(ov104_0223E6BC, param0, 1100);
 }
 
 static void ov104_0223E6BC (UnkStruct_0201CD38 * param0, void * param1)
@@ -678,12 +678,12 @@ static void ov104_0223E6F0 (UnkStruct_ov104_0223DD30 * param0, int param1)
         v0->unk_00 = (10 * 8) << 8;
         v0->unk_04 = (10 * 8) << 8;
 
-        sub_0200D9E8(ov104_0223E740, v0, 1000);
+        SysTask_Start(ov104_0223E740, v0, 1000);
     } else {
         v0->unk_00 = ((10 * 8) - (8 * 8 + 4) / 2) << 8;
         v0->unk_04 = ((10 * 8) + (8 * 8 + 4) / 2) << 8;
 
-        sub_0200D9E8(ov104_0223E7A4, v0, 1000);
+        SysTask_Start(ov104_0223E7A4, v0, 1000);
     }
 }
 

@@ -1020,7 +1020,7 @@ void ov23_0223E9D4 (int param0, int param1, void * param2, void * param3)
 
     if ((v0[0] == sub_0203608C()) && sub_02035EE0()) {
         Unk_ov23_02257740->unk_A24 = ov23_02253F40(ov23_0224219C(), 19, 0, NULL);
-        Unk_ov23_02257740->unk_8C8 = sub_0200D9E8(ov23_0223EA38, Unk_ov23_02257740, 0);
+        Unk_ov23_02257740->unk_8C8 = SysTask_Start(ov23_0223EA38, Unk_ov23_02257740, 0);
 
         ov23_022431EC(NULL, Unk_ov23_02257740->unk_8C8, ov23_0223E99C);
         sub_020594FC();
@@ -1689,7 +1689,7 @@ static void ov23_0223F70C (UnkStruct_0203CDB0 * param0)
     ov5_021EF3FC(param0->unk_04->unk_1C);
     sub_0206AA04(sub_020507E4(param0->unk_0C));
 
-    Unk_ov23_02257740->unk_8CC = sub_0200D9E8(ov23_0223F118, v0, 100);
+    Unk_ov23_02257740->unk_8CC = SysTask_Start(ov23_0223F118, v0, 100);
 }
 
 static BOOL ov23_0223F768 (void)
@@ -2957,7 +2957,7 @@ void ov23_022412F0 (void)
     v0->unk_4E4 = 250 / 3 - 10;
 
     Unk_ov23_02257740->unk_8D0 = v0;
-    Unk_ov23_02257740->unk_8C4 = sub_0200D9E8(ov23_022412CC, v0, 100);
+    Unk_ov23_02257740->unk_8C4 = SysTask_Start(ov23_022412CC, v0, 100);
 }
 
 void ov23_02241364 (void)

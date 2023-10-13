@@ -216,7 +216,7 @@ BOOL ov19_021D61B0 (UnkStruct_ov19_021D61B0 ** param0, const UnkStruct_ov19_021D
             v2 &= ov19_021DEC04(&(v0->unk_B410), v0, v0->unk_1C4, v0->unk_1C0, v0->unk_18, ov19_021D5DE8(param2), v3);
 
             v0->unk_B414 = param2;
-            v0->unk_00 = sub_0200D9E8(ov19_021D6474, v0, 2);
+            v0->unk_00 = SysTask_Start(ov19_021D6474, v0, 2);
             v0->unk_04 = ov19_021D77C8(ov19_021D6664, v0, 1);
 
             NARC_dtor(v3);
@@ -348,7 +348,7 @@ void ov19_021D6594 (UnkStruct_ov19_021D61B0 * param0, u32 param1)
                     v1->unk_0C = param0;
                     v1->unk_10 = ((u8 *)(v1) + v0[param1].unk_04);
 
-                    param0->unk_08[v2] = sub_0200D9E8(v0[param1].unk_00, v1, 1);
+                    param0->unk_08[v2] = SysTask_Start(v0[param1].unk_00, v1, 1);
                 } else {
                     GF_ASSERT(0);
                 }

@@ -384,7 +384,7 @@ void ov23_02253834 (UnkStruct_02018340 * param0, TrainerInfo * param1, UnkFuncPt
     sub_0201A9A4(&v4->unk_08);
     sub_02005748(1533);
 
-    Unk_ov23_022577BC->unk_04 = sub_0200D9E8(ov23_0225381C, v4, 10);
+    Unk_ov23_022577BC->unk_04 = SysTask_Start(ov23_0225381C, v4, 10);
     Unk_ov23_022577BC->unk_00 = v4;
 
     MessageLoader_Free(v1);

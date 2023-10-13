@@ -779,7 +779,7 @@ static void ov75_021D1598 (UnkStruct_ov75_021D1184 * param0)
         param0->unk_14 = 0;
         param0->unk_15 = 0;
 
-        sub_0200D9E8(ov75_021D1358, param0, 0);
+        SysTask_Start(ov75_021D1358, param0, 0);
     }
 }
 

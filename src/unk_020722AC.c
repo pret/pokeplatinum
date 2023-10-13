@@ -231,7 +231,7 @@ void sub_020722AC (void * param0, int * param1)
     sub_02072F30(v0, v1, v0->unk_00);
     sub_02073130(v0);
 
-    v0->unk_08 = sub_0200D9E8(sub_02072370, v0, 0);
+    v0->unk_08 = SysTask_Start(sub_02072370, v0, 0);
 }
 
 void sub_02072334 (UnkStruct_02072334 * param0)

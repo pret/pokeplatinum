@@ -1651,7 +1651,7 @@ static UnkStruct_0201CD38 * ov5_021E0F54 (UnkStruct_0203CDB0 * param0, u32 param
         ov5_021DFB54(v0, param1);
         ov5_021DFB5C(v0);
 
-        v2 = sub_0200D9E8(ov5_021E0FF0, v4, 0xffff);
+        v2 = SysTask_Start(ov5_021E0FF0, v4, 0xffff);
         GF_ASSERT(v2 != NULL);
 
         return v2;

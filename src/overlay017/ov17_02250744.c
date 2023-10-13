@@ -429,7 +429,7 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
         sub_0200D4C4(param0->unk_10.unk_128[v1], Unk_ov17_02254BD4[v2].unk_00, Unk_ov17_02254BD4[v2].unk_02);
     }
 
-    param0->unk_10.unk_124 = sub_0200D9E8(ov17_02250F4C, param0, (50000 + 1000));
+    param0->unk_10.unk_124 = SysTask_Start(ov17_02250F4C, param0, (50000 + 1000));
 
     NARC_dtor(v3);
 }
@@ -488,7 +488,7 @@ void ov17_02250FE4 (UnkStruct_ov17_0224FCA0 * param0)
         ov17_02251070(param0);
     }
 
-    sub_0200D9E8(ov17_0225102C, v0, (50000 + 10));
+    SysTask_Start(ov17_0225102C, v0, (50000 + 10));
 }
 
 void ov17_02251020 (UnkStruct_ov17_0224FCA0 * param0)
@@ -542,7 +542,7 @@ static void ov17_02251070 (UnkStruct_ov17_0224FCA0 * param0)
 
     sub_0200D364(v1->unk_04, sub_02094E98(param0->unk_00) % 0x9);
     sub_0200D330(v1->unk_04);
-    sub_0200D9E8(ov17_02251140, v1, ((50000 + 10) + 1));
+    SysTask_Start(ov17_02251140, v1, ((50000 + 10) + 1));
 
     param0->unk_127A++;
 }
@@ -730,11 +730,11 @@ void ov17_02251598 (UnkStruct_ov17_0224FCA0 * param0, int param1, u8 * param2)
     if (param1 == 0) {
         v0->unk_08 = (192 / 2) << 8;
         v0->unk_0C = (192 / 2) << 8;
-        sub_0200D9E8(ov17_022515F4, v0, ((30000 + 10000) + 1000));
+        SysTask_Start(ov17_022515F4, v0, ((30000 + 10000) + 1000));
     } else {
         v0->unk_08 = ((192 / 2) - (12 * 8) / 2) << 8;
         v0->unk_0C = ((192 / 2) + (12 * 8) / 2) << 8;
-        sub_0200D9E8(ov17_02251688, v0, ((30000 + 10000) + 1000));
+        SysTask_Start(ov17_02251688, v0, ((30000 + 10000) + 1000));
     }
 }
 
@@ -817,11 +817,11 @@ void ov17_02251718 (UnkStruct_ov17_0224FCA0 * param0, int param1, int param2, u8
     if (param2 == 0) {
         v0->unk_08 = (256 + 80 / 2) << 8;
         v0->unk_0C = (192 / 2) << 8;
-        sub_0200D9E8(ov17_02251784, v0, 50000);
+        SysTask_Start(ov17_02251784, v0, 50000);
     } else {
         v0->unk_08 = (256 / 2) << 8;
         v0->unk_0C = (192 / 2) << 8;
-        sub_0200D9E8(ov17_022517F0, v0, 50000);
+        SysTask_Start(ov17_022517F0, v0, 50000);
     }
 }
 

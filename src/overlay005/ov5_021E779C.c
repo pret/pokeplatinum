@@ -1945,7 +1945,7 @@ UnkStruct_0201CD38 * ov5_021E976C (NARC * param0, const int param1, NNSG3dRender
     v1->unk_20 = param6;
     v1->unk_1C = 0;
 
-    v0 = sub_0200D9E8(ov5_021E964C, v1, 1);
+    v0 = SysTask_Start(ov5_021E964C, v1, 1);
     return v0;
 }
 

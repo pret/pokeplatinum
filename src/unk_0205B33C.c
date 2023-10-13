@@ -160,7 +160,7 @@ static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
 
     v2->unk_10 = NULL;
     v2->unk_14 = 40;
-    v2->unk_0C = sub_0200D9E8(sub_0205B5BC, v2, 10);
+    v2->unk_0C = SysTask_Start(sub_0205B5BC, v2, 10);
     v2->unk_00 = param0;
     v2->unk_04 = v1;
     v2->unk_08 = sub_02025E38(v1);

@@ -535,7 +535,7 @@ static void ov95_0224B274 (UnkStruct_ov95_0224AC64 * param0, UnkStruct_0201CD38 
 
         v0->unk_18 = (UnkEnum_ov95_0224B274_00 - v0->unk_0C.y) / UnkEnum_ov95_0224B274_01;
         v0->unk_04 = UnkEnum_ov95_0224B274_01;
-        *param1 = sub_0200D9E8(ov95_0224B2C8, v0, 0);
+        *param1 = SysTask_Start(ov95_0224B2C8, v0, 0);
 
         if (*param1 == NULL) {
             Heap_FreeToHeap(v0);
@@ -582,7 +582,7 @@ static void ov95_0224B324 (UnkStruct_ov95_02247958 * param0, int param1, int par
         v0->unk_10 = param3;
         v0->unk_14 = param0;
         ov95_022479AC(param0, param1);
-        *param4 = sub_0200D9E8(ov95_0224B388, v0, 0);
+        *param4 = SysTask_Start(ov95_0224B388, v0, 0);
 
         if (*param4 == NULL) {
             Heap_FreeToHeap(v0);

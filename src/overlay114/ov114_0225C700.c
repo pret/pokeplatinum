@@ -1153,14 +1153,14 @@ int ov114_0225CB74 (UnkStruct_ov114_0225CAD4 * param0)
 void ov114_0225CB8C (UnkStruct_ov114_0225CAD4 * param0)
 {
     GF_ASSERT(param0->unk_2C == NULL);
-    param0->unk_2C = sub_0200D9E8(ov114_0225FDC8, param0, 0);
+    param0->unk_2C = SysTask_Start(ov114_0225FDC8, param0, 0);
     param0->unk_04 = 1;
 }
 
 void ov114_0225CBB0 (UnkStruct_ov114_0225CAD4 * param0)
 {
     GF_ASSERT(param0->unk_2C == NULL);
-    param0->unk_2C = sub_0200D9E8(ov114_0225FF54, param0, 0);
+    param0->unk_2C = SysTask_Start(ov114_0225FF54, param0, 0);
     param0->unk_04 = 1;
 
     sub_02005748(1521);
@@ -1679,7 +1679,7 @@ static UnkStruct_ov114_0225D678 * ov114_0225D48C (const UnkStruct_ov114_0225C76C
         ov114_0225D290(&v0->unk_4C, &v0->unk_30, v0->unk_08.unk_00, v2, param2);
     }
 
-    v0->unk_650 = sub_0200D9E8(ov114_0225D688, v0, 0);
+    v0->unk_650 = SysTask_Start(ov114_0225D688, v0, 0);
     v0->unk_654 = sub_0200DA3C(ov114_0225DA0C, v0, 0);
 
     if (v0->unk_08.unk_0A) {
@@ -2540,14 +2540,14 @@ static UnkStruct_ov114_0225E854 * ov114_0225E5A8 (const UnkStruct_ov114_0225C76C
     switch (v0->unk_07) {
     case UnkEnum_ov66_022324D0_00:
     case UnkEnum_ov66_022324D0_01:
-        v0->unk_6A8 = sub_0200D9E8(ov114_0225E874, v0, 0);
+        v0->unk_6A8 = SysTask_Start(ov114_0225E874, v0, 0);
         break;
     case UnkEnum_ov66_022324D0_02:
-        v0->unk_6A8 = sub_0200D9E8(ov114_0225ED40, v0, 0);
+        v0->unk_6A8 = SysTask_Start(ov114_0225ED40, v0, 0);
         break;
     default:
         GF_ASSERT(0);
-        v0->unk_6A8 = sub_0200D9E8(ov114_0225E874, v0, 0);
+        v0->unk_6A8 = SysTask_Start(ov114_0225E874, v0, 0);
         break;
     }
 

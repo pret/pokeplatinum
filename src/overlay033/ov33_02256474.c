@@ -338,7 +338,7 @@ static void ov33_0225681C (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
     }
 
     ov33_022568B4(param0);
-    param0->unk_B0 = sub_0200D9E8(ov33_02256904, param0, 1);
+    param0->unk_B0 = SysTask_Start(ov33_02256904, param0, 1);
 }
 
 static void ov33_02256898 (UnkStruct_0201CD38 * param0, void * param1)

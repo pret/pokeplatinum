@@ -1156,7 +1156,7 @@ static void ov17_022404CC (UnkFuncPtr_0201CE28 param0, UnkStruct_ov17_0223F7E4 *
     GF_ASSERT(param1->unk_10 == NULL);
 
     MI_CpuClear8(&param1->unk_2CC, sizeof(UnkStruct_ov17_0223F7E4_sub2));
-    param1->unk_10 = sub_0200D9E8(param0, param1, 1300);
+    param1->unk_10 = SysTask_Start(param0, param1, 1300);
 }
 
 static void ov17_022404FC (UnkStruct_ov17_0223F7E4 * param0)
@@ -1363,7 +1363,7 @@ static void ov17_022408E0 (UnkFuncPtr_0201CE28 param0, UnkStruct_ov17_0223F7E4 *
     GF_ASSERT(param1->unk_14 == NULL);
 
     MI_CpuClear8(&param1->unk_2EC, sizeof(UnkStruct_ov17_02240950));
-    param1->unk_14 = sub_0200D9E8(param0, param1, 1320);
+    param1->unk_14 = SysTask_Start(param0, param1, 1320);
 }
 
 static void ov17_02240910 (UnkStruct_ov17_0223F7E4 * param0)

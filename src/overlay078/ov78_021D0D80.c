@@ -1343,7 +1343,7 @@ static void ov78_021D213C (UnkStruct_ov78_021D213C * param0, UnkStruct_020203AC 
     param0->unk_34 = param2;
     param0->unk_38 = 0;
 
-    sub_0200D9E8(ov78_021D219C, param0, 0);
+    SysTask_Start(ov78_021D219C, param0, 0);
 }
 
 static void ov78_021D219C (UnkStruct_0201CD38 * param0, void * param1)
@@ -1459,7 +1459,7 @@ static void ov78_021D23B8 (UnkStruct_ov78_021D2350 * param0)
     GF_ASSERT(param0->unk_28 == NULL);
 
     ov78_021D235C(&param0->unk_2C, (8 * FX32_ONE), 32);
-    param0->unk_28 = sub_0200D9E8(ov78_021D23E8, param0, 0);
+    param0->unk_28 = SysTask_Start(ov78_021D23E8, param0, 0);
 }
 
 static void ov78_021D23E8 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1554,7 +1554,7 @@ static void ov78_021D2514 (UnkStruct_ov78_021D2448 * param0, fx32 param1, fx32 p
 
     param0->unk_1C.unk_30 = 0;
     param0->unk_1C.unk_34 = 1;
-    param0->unk_54 = sub_0200D9E8(ov78_021D25A0, param0, 0);
+    param0->unk_54 = SysTask_Start(ov78_021D25A0, param0, 0);
 }
 
 static void ov78_021D256C (UnkStruct_ov78_021D2448 * param0)
@@ -1567,7 +1567,7 @@ static void ov78_021D256C (UnkStruct_ov78_021D2448 * param0)
         param0->unk_1C.unk_30 = param0->unk_1C.unk_00.unk_0C + param0->unk_1C.unk_34;
     }
 
-    param0->unk_54 = sub_0200D9E8(ov78_021D25A0, param0, 0);
+    param0->unk_54 = SysTask_Start(ov78_021D25A0, param0, 0);
 }
 
 static void ov78_021D25A0 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1637,7 +1637,7 @@ static void ov78_021D26B4 (UnkStruct_ov78_021D26B4 * param0, UnkStruct_02007C7C 
     param0->unk_00 = param1;
     param0->unk_04.unk_30 = 0;
     param0->unk_04.unk_34 = 1;
-    param0->unk_3C = sub_0200D9E8(ov78_021D2740, param0, 0);
+    param0->unk_3C = SysTask_Start(ov78_021D2740, param0, 0);
 }
 
 static void ov78_021D270C (UnkStruct_ov78_021D26B4 * param0)
@@ -1650,7 +1650,7 @@ static void ov78_021D270C (UnkStruct_ov78_021D26B4 * param0)
         param0->unk_04.unk_30 = param0->unk_04.unk_00.unk_0C + param0->unk_04.unk_34;
     }
 
-    param0->unk_3C = sub_0200D9E8(ov78_021D2740, param0, 0);
+    param0->unk_3C = SysTask_Start(ov78_021D2740, param0, 0);
 }
 
 static void ov78_021D2740 (UnkStruct_0201CD38 * param0, void * param1)

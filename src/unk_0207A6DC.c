@@ -119,8 +119,8 @@ void sub_0207A6DC (void * param0)
     ov16_0223F320(v1, &v2->unk_04);
     ov16_0223F32C(v1, &v3->unk_04);
 
-    sub_0200D9E8(sub_0207ACB4, v2, 0);
-    sub_0200D9E8(sub_0207AD40, v3, 0);
+    SysTask_Start(sub_0207ACB4, v2, 0);
+    SysTask_Start(sub_0207AD40, v3, 0);
 }
 
 void sub_0207A744 (void * param0)

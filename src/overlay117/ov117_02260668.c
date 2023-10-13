@@ -265,7 +265,7 @@ int ov117_02260668 (UnkStruct_020067E8 * param0, int * param1)
 
     v0->unk_D4 = ov117_022626B0(v0);
     sub_0200F174(0, 27, 27, 0x0, 6, 1, 110);
-    v0->unk_94 = sub_0200D9E8(ov117_02260F7C, v0, 60000);
+    v0->unk_94 = SysTask_Start(ov117_02260F7C, v0, 60000);
 
     coresys.unk_65 = 1;
 

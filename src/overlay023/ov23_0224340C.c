@@ -2099,7 +2099,7 @@ static void ov23_02244D80 (UnkStruct_0203CDB0 * param0, int param1, int param2, 
     v0->unk_10 = param2;
     v0->unk_18 = param3;
 
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_02244C70, v0, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_02244C70, v0, 100);
 }
 
 static void ov23_02244DE0 (int param0, BOOL param1)
@@ -2171,7 +2171,7 @@ static void ov23_02244EA4 (UnkStruct_0203CDB0 * param0, BOOL param1, int param2)
     v0->unk_19 = param1;
     v0->unk_18 = param2;
 
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_022451C8, v0, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_022451C8, v0, 100);
 }
 
 static void ov23_02244EF8 (int param0, int param1, int param2, int param3, u8 * param4)
@@ -2649,7 +2649,7 @@ void ov23_02245728 (void)
     Link_Message(46);
 
     Unk_ov23_02257764->unk_2FC = v0;
-    Unk_ov23_02257764->unk_2F8 = sub_0200D9E8(ov23_02245700, v0, 100);
+    Unk_ov23_02257764->unk_2F8 = SysTask_Start(ov23_02245700, v0, 100);
 }
 
 void ov23_02245784 (void)
@@ -2824,7 +2824,7 @@ static void ov23_02245A58 (BOOL param0)
     v1->unk_10 = 0;
 
     Unk_ov23_02257764->unk_300 = v1;
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_0224599C, v1, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_0224599C, v1, 100);
 
     sub_02059464(0x10);
 }
@@ -3033,7 +3033,7 @@ static void ov23_02245DF8 (BOOL param0, BOOL param1, int param2)
     v1->unk_0C = param2;
 
     Unk_ov23_02257764->unk_300 = v1;
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_02245BA8, v1, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_02245BA8, v1, 100);
 }
 
 static void ov23_02245E54 (int param0, BOOL param1, int param2)
@@ -3252,7 +3252,7 @@ static void ov23_022462A8 (UnkStruct_0203CDB0 * param0, BOOL param1, int param2)
     v1->unk_112 = param2;
 
     Unk_ov23_02257764->unk_300 = v1;
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_02245F94, v1, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_02245F94, v1, 100);
 }
 
 static void ov23_02246324 (void)
@@ -3652,7 +3652,7 @@ static void ov23_02246CF0 (UnkStruct_02018340 * param0, BOOL param1, int param2)
     v1->unk_15E = param1;
 
     Unk_ov23_02257764->unk_300 = v1;
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_02246A80, v1, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_02246A80, v1, 100);
 
     v1->unk_15D = param2;
 }
@@ -4260,7 +4260,7 @@ static void ov23_02247D28 (UnkStruct_02018340 * param0, BOOL param1, int param2)
     v1->unk_126 = param2;
 
     Unk_ov23_02257764->unk_300 = v1;
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_02247A8C, v1, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_02247A8C, v1, 100);
 }
 
 static void ov23_02247D78 (int param0, BOOL param1, int param2)
@@ -4556,7 +4556,7 @@ static void ov23_02248318 (UnkStruct_02018340 * param0, BOOL param1, int param2)
     v1->unk_29 = param2;
 
     Unk_ov23_02257764->unk_300 = v1;
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_022480C4, v1, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_022480C4, v1, 100);
 }
 
 static void ov23_02248364 (int param0, BOOL param1, int param2)
@@ -4678,7 +4678,7 @@ static void ov23_0224852C (UnkStruct_02018340 * param0, BOOL param1, int param2)
     v1->unk_10 = param2;
 
     Unk_ov23_02257764->unk_300 = v1;
-    Unk_ov23_02257764->unk_2F0 = sub_0200D9E8(ov23_02248418, v1, 100);
+    Unk_ov23_02257764->unk_2F0 = SysTask_Start(ov23_02248418, v1, 100);
 }
 
 static void ov23_02248570 (int param0, BOOL param1, int param2)
@@ -4893,7 +4893,7 @@ void ov23_022489F8 (UnkStruct_0203CDB0 * param0, int param1, int param2, int par
     v1->unk_14[1] = param8;
     v1->unk_14[2] = param10;
 
-    Unk_ov23_02257764->unk_2F4 = sub_0200D9E8(ov23_02248884, v1, 100);
+    Unk_ov23_02257764->unk_2F4 = SysTask_Start(ov23_02248884, v1, 100);
     sub_02059464(0x80);
 }
 
@@ -4973,7 +4973,7 @@ static void ov23_02248B3C (int param0, int param1)
         v1 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov23_02248A6C));
         MI_CpuFill8(v1, 0, sizeof(UnkStruct_ov23_02248A6C));
         Unk_ov23_02257764->unk_00[param0] = v1;
-        Unk_ov23_02257764->unk_20[param0] = sub_0200D9E8(ov23_02248A6C, v1, 100);
+        Unk_ov23_02257764->unk_20[param0] = SysTask_Start(ov23_02248A6C, v1, 100);
     } else {
         v1 = Unk_ov23_02257764->unk_00[param0];
     }

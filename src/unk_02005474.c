@@ -722,7 +722,7 @@ void sub_02005E64 (int param0, int param1)
     memset(v0, 0, sizeof(UnkStruct_02005E64));
 
     v0->unk_00 = param0;
-    v0->unk_04 = sub_0200D9E8(sub_02005EB0, v0, 0);
+    v0->unk_04 = SysTask_Start(sub_02005EB0, v0, 0);
     *v1 = v0->unk_04;
 
     return;

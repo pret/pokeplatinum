@@ -3968,7 +3968,7 @@ void ov8_0224C198 (UnkStruct_0203CDB0 * param0)
         }
     }
 
-    v2->unk_1F4 = sub_0200D9E8(ov8_0224C3B0, v2, 0);
+    v2->unk_1F4 = SysTask_Start(ov8_0224C3B0, v2, 0);
 }
 
 void ov8_0224C388 (UnkStruct_0203CDB0 * param0)
@@ -4043,7 +4043,7 @@ static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
             }
 
             v6->unk_10 = ov5_021F4840(param0->unk_00->unk_40, v5, v6->unk_08, 3);
-            v6->unk_0C = sub_0200D9E8(ov8_0224C518, v6, v3);
+            v6->unk_0C = SysTask_Start(ov8_0224C518, v6, v3);
             GF_ASSERT(v6->unk_0C);
 
             v1++;

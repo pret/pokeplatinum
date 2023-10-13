@@ -386,7 +386,7 @@ void ov76_0223BD30 (UnkStruct_ov76_0223DE00 * param0, s8 param1, int param2)
     v0->unk_16C = &param0->unk_D4.unk_184;
     *(v0->unk_16C) = 1;
 
-    sub_0200D9E8(ov76_0223BCA0, v0, 0x1000);
+    SysTask_Start(ov76_0223BCA0, v0, 0x1000);
 }
 
 UnkStruct_0207C690 * ov76_0223BE6C (void)

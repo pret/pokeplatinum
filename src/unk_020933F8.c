@@ -1043,7 +1043,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
 
     sub_02095AF0(param0);
 
-    param0->unk_164 = sub_0200D9E8(sub_02093C6C, param0, 10);
+    param0->unk_164 = SysTask_Start(sub_02093C6C, param0, 10);
 
     return 1;
 }
@@ -1067,7 +1067,7 @@ static void sub_020944E8 (UnkStruct_02095C48 * param0)
     GF_ASSERT(param0->unk_164 == NULL);
 
     param0->unk_15A = 0;
-    param0->unk_164 = sub_0200D9E8(sub_0209451C, param0, 10);
+    param0->unk_164 = SysTask_Start(sub_0209451C, param0, 10);
 }
 
 static void sub_0209451C (UnkStruct_0201CD38 * param0, void * param1)
@@ -1498,7 +1498,7 @@ void sub_02094A58 (UnkStruct_02095C48 * param0, int param1)
         }
     }
 
-    v0->unk_00 = sub_0200D9E8(sub_02094B30, param0, 100);
+    v0->unk_00 = SysTask_Start(sub_02094B30, param0, 100);
     param0->unk_19A0 = v0;
 }
 

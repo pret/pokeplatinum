@@ -1040,9 +1040,9 @@ UnkStruct_0201CD38 * ov6_02243F88 (UnkStruct_0203CDB0 * param0, u32 param1, Poke
     v1->unk_20 = param1;
 
     if (param1 == 0) {
-        v0 = sub_0200D9E8(ov6_02244004, v1, 133);
+        v0 = SysTask_Start(ov6_02244004, v1, 133);
     } else {
-        v0 = sub_0200D9E8(ov6_022443B8, v1, 133);
+        v0 = SysTask_Start(ov6_022443B8, v1, 133);
     }
 
     return v0;
@@ -2889,7 +2889,7 @@ UnkStruct_0201CD38 * ov6_02245CCC (UnkStruct_0203CDB0 * param0, int param1)
     v0->unk_14 = param0;
 
     {
-        UnkStruct_0201CD38 * v1 = sub_0200D9E8(ov6_02245D10, v0, 133);
+        UnkStruct_0201CD38 * v1 = SysTask_Start(ov6_02245D10, v0, 133);
         return v1;
     }
 }

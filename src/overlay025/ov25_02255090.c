@@ -123,7 +123,7 @@ void ov25_0225517C (const UnkStruct_ov25_0225517C * param0, u32 param1, void * p
                     v1->unk_04 = 0;
                     v1->unk_00 = param1;
                     v1->unk_10 = param3;
-                    v1->unk_14 = sub_0200D9E8(param0[v0].unk_04, v1, param5);
+                    v1->unk_14 = SysTask_Start(param0[v0].unk_04, v1, param5);
 
                     if (v1->unk_14) {
                         param0[v0].unk_04(v1->unk_14, v1);

@@ -204,7 +204,7 @@ UnkStruct_0201CD38 * sub_02065700 (UnkStruct_02061AB4 * param0, const UnkStruct_
         int v2;
 
         v2 = sub_02062858(sub_02062A40(param0)) - 1;
-        v0 = sub_0200D9E8(sub_02065788, v1, v2);
+        v0 = SysTask_Start(sub_02065788, v1, v2);
         GF_ASSERT(v0 != NULL);
     }
 

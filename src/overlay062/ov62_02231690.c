@@ -3300,7 +3300,7 @@ static void ov62_02234440 (UnkStruct_0208C06C * param0)
     sub_0208B8B8(param0->unk_41D8.unk_08, v0, v1 + v2);
     sub_0208B948(param0->unk_41D8.unk_08, v0, v1 + v2);
 
-    param0->unk_41D8.unk_0C = sub_0200D9E8(ov62_022343D8, param0, 4096);
+    param0->unk_41D8.unk_0C = SysTask_Start(ov62_022343D8, param0, 4096);
 
     if (param0->unk_41D8.unk_0C != NULL) {
         ov62_022343D8(param0->unk_41D8.unk_0C, param0);

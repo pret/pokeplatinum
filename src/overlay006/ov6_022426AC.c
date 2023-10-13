@@ -124,7 +124,7 @@ void ov6_022427F4 (UnkStruct_ov6_022426B8 * param0)
     param0->unk_1CC = 1;
     param0->unk_1D0 = 0;
 
-    sub_0200D9E8(ov6_02242860, param0, 0);
+    SysTask_Start(ov6_02242860, param0, 0);
 }
 
 void ov6_02242814 (UnkStruct_ov6_022426B8 * param0)

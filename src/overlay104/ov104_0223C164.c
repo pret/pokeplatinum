@@ -47,7 +47,7 @@ static UnkStruct_ov104_0223C188 * ov104_0223C188 (UnkStruct_02018340 * param0)
 
     v0->unk_04 = param0;
     v0->unk_08 = 0;
-    v0->unk_00 = sub_0200D9E8(ov104_0223C1BC, v0, (80000 - 500));
+    v0->unk_00 = SysTask_Start(ov104_0223C1BC, v0, (80000 - 500));
 
     return v0;
 }

@@ -349,7 +349,7 @@ static void ov32_02256A48 (UnkStruct_ov32_02256470 * param0)
     param0->unk_F8.unk_08 = 0;
     param0->unk_F8.unk_00 = param0;
     param0->unk_F8.unk_04 = param0->unk_00;
-    param0->unk_F4 = sub_0200D9E8(ov32_02256A78, &(param0->unk_F8), 1);
+    param0->unk_F4 = SysTask_Start(ov32_02256A78, &(param0->unk_F8), 1);
 }
 
 static void ov32_02256A78 (UnkStruct_0201CD38 * param0, void * param1)

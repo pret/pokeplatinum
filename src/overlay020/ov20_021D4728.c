@@ -410,7 +410,7 @@ void ov20_021D4BA4 (UnkStruct_ov20_021D4AD4 * param0)
         v0->unk_14 = v1[v2].unk_0A;
         v0->unk_16 = v1[v2].unk_0C;
 
-        param0->unk_4FC = sub_0200D9E8(ov20_021D4C40, v0, 1);
+        param0->unk_4FC = SysTask_Start(ov20_021D4C40, v0, 1);
     } else {
         param0->unk_4FC = NULL;
     }

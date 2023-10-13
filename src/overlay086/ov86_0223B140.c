@@ -1237,7 +1237,7 @@ static void ov86_0223C2CC (UnkStruct_ov86_0223B3C8 * param0, int param1, BOOL pa
     NNS_G2dInitImageProxy(&v0->unk_24[1]);
     NNS_G2dSetImageLocation(&(v0->unk_24[1]), NNS_G2D_VRAM_TYPE_2DMAIN, param1 * 2 * 3200 + 3200);
 
-    param0->unk_1C34[param3] = sub_0200D9E8(ov86_0223C398, v0, 0);
+    param0->unk_1C34[param3] = SysTask_Start(ov86_0223C398, v0, 0);
 }
 
 static void ov86_0223C398 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1281,7 +1281,7 @@ static void ov86_0223C3E4 (UnkStruct_ov86_0223B3C8 * param0, int param1, int par
     v0->unk_30 = 0;
     v0->unk_34 = 0;
 
-    param0->unk_1C34[param2] = sub_0200D9E8(ov86_0223C58C, v0, 0);
+    param0->unk_1C34[param2] = SysTask_Start(ov86_0223C58C, v0, 0);
 }
 
 static void ov86_0223C47C (UnkStruct_ov86_0223C3E4 * param0, int param1)
@@ -1486,7 +1486,7 @@ static void ov86_0223C840 (UnkStruct_ov86_0223B3C8 * param0, int param1)
         ov86_0223D264(&v2->unk_1C[v3], v0[v3].x, v1[v3], 8);
     }
 
-    param0->unk_1C34[param1] = sub_0200D9E8(ov86_0223C914, v2, 0);
+    param0->unk_1C34[param1] = SysTask_Start(ov86_0223C914, v2, 0);
 }
 
 static void ov86_0223C914 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1769,7 +1769,7 @@ static UnkStruct_0201CD38 * ov86_0223CD94 (UnkStruct_ov86_0223B3C8 * param0)
 
     G3_MtxMode(GX_MTXMODE_POSITION_VECTOR);
 
-    return sub_0200D9E8(ov86_0223CF6C, v2, 2);
+    return SysTask_Start(ov86_0223CF6C, v2, 2);
 }
 
 static void ov86_0223CF44 (UnkStruct_0201CD38 * param0)

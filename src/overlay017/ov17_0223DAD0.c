@@ -322,7 +322,7 @@ int ov17_0223DAD0 (UnkStruct_020067E8 * param0, int * param1)
     sub_02039734();
     sub_0200F174(1, 17, 37, 0x0, 6, 1, 23);
 
-    v0->unk_04 = sub_0200D9E8(ov17_0223E1FC, v0, 80000);
+    v0->unk_04 = SysTask_Start(ov17_0223E1FC, v0, 80000);
     v0->unk_1098 = 1;
 
     GXLayers_TurnBothDispOn();

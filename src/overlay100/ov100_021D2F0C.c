@@ -346,7 +346,7 @@ static void ov100_021D37B0 (UnkStruct_ov100_021D3084 * param0)
     param0->unk_1D28->unk_AC.unk_10 = &param0->unk_1D28->unk_58;
     param0->unk_1D28->unk_AC.unk_00 = 0;
 
-    sub_0200D9E8(ov100_021D36CC, &param0->unk_1D28->unk_AC, 0x1000);
+    SysTask_Start(ov100_021D36CC, &param0->unk_1D28->unk_AC, 0x1000);
 }
 
 static void ov100_021D37F4 (UnkStruct_0201CD38 * param0, void * param1)
@@ -399,7 +399,7 @@ static void ov100_021D398C (UnkStruct_ov100_021D3084 * param0, int param1, int p
         v0->unk_0C = +80;
     }
 
-    sub_0200D9E8(ov100_021D37F4, v0, 0x1000);
+    SysTask_Start(ov100_021D37F4, v0, 0x1000);
 }
 
 BOOL ov100_021D39E4 (void * param0)

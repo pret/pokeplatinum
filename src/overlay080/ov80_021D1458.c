@@ -1037,7 +1037,7 @@ static void ov80_021D259C (UnkStruct_ov80_021D2A08 * param0)
     }
 
     v0->unk_A4.unk_0A = v0->unk_A4.unk_00 - 1;
-    v0->unk_A4.unk_04 = sub_0200D9E8(ov80_021D26AC, &v0->unk_A4, 1);
+    v0->unk_A4.unk_04 = SysTask_Start(ov80_021D26AC, &v0->unk_A4, 1);
 }
 
 static void ov80_021D26AC (UnkStruct_0201CD38 * param0, void * param1)
@@ -1083,9 +1083,9 @@ static void ov80_021D273C (UnkStruct_ov80_021D2A08 * param0, int param1)
     v0->unk_08 = 0;
 
     if (param1 == 0) {
-        v0->unk_10C = sub_0200D9E8(ov80_021D2774, param0, 0);
+        v0->unk_10C = SysTask_Start(ov80_021D2774, param0, 0);
     } else {
-        v0->unk_10C = sub_0200D9E8(ov80_021D28EC, param0, 0);
+        v0->unk_10C = SysTask_Start(ov80_021D28EC, param0, 0);
     }
 }
 

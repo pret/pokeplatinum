@@ -26,7 +26,7 @@ void ov16_02264798 (BattlerData * param0, BattleSystem * param1)
     }
 
     param0->unk_198 = 180;
-    param0->unk_194 = sub_0200D9E8(ov16_02264800, param0, 1010);
+    param0->unk_194 = SysTask_Start(ov16_02264800, param0, 1010);
 }
 
 void ov16_022647D8 (BattlerData * param0)

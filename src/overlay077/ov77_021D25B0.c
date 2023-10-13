@@ -1120,7 +1120,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
         param0->unk_07 = 0;
         param0->unk_06 = 0;
         param0->unk_08 = 0;
-        param0->unk_10 = sub_0200D9E8(ov77_021D32A4, param0, 0);
+        param0->unk_10 = SysTask_Start(ov77_021D32A4, param0, 0);
         sub_02004550(1, 1172, 1);
         (*v0)++;
         break;
@@ -1129,7 +1129,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 16;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D3300, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D3300, param0, 0);
             (*v0)++;
         }
         break;
@@ -1147,7 +1147,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 0;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D3360, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D3360, param0, 0);
             (*v0)++;
         }
         break;
@@ -1156,7 +1156,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 0;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D33A8, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D33A8, param0, 0);
             (*v0)++;
         }
         break;

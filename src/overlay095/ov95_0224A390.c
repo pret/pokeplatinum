@@ -454,7 +454,7 @@ static void ov95_0224A864 (UnkStruct_ov95_0224A42C * param0, UnkStruct_ov95_0224
     ov95_02247968(param1->unk_0C, &(param1->unk_28));
     ov95_02247978(param1->unk_0C, &(param1->unk_34));
 
-    param1->unk_04 = sub_0200D9E8(ov95_0224AA70, param1, 0);
+    param1->unk_04 = SysTask_Start(ov95_0224AA70, param1, 0);
 }
 
 static BOOL ov95_0224A924 (UnkStruct_ov95_0224A848 * param0)

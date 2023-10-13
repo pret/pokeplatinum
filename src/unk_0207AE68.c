@@ -168,7 +168,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_58 = sub_0201567C(v0->unk_14, 0, 0xb, param11);
 
     sub_02015738(v0->unk_58, 1);
-    sub_0200D9E8(sub_0207B0A0, v0, 0);
+    SysTask_Start(sub_0207B0A0, v0, 0);
     sub_02002AC8(1);
     sub_02039734();
 

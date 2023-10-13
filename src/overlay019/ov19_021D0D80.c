@@ -2409,7 +2409,7 @@ static void ov19_021D38E0 (UnkStruct_ov19_021D5DF8 * param0)
             v0->unk_08[v1] = 0;
         }
 
-        sub_0200D9E8(ov19_021D3978, v0, 0);
+        SysTask_Start(ov19_021D3978, v0, 0);
     }
 }
 

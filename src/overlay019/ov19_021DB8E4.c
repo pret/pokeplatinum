@@ -481,7 +481,7 @@ static void ov19_021DC034 (UnkStruct_ov19_021DBA9C * param0, int param1)
         v1->unk_04 = 0;
         v1->unk_05 = 0;
 
-        param0->unk_DC = sub_0200D9E8(v0[param1], v1, 0);
+        param0->unk_DC = SysTask_Start(v0[param1], v1, 0);
 
         if (param0->unk_DC == NULL) {
             Heap_FreeToHeap(v1);

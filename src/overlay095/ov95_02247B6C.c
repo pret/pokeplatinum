@@ -578,7 +578,7 @@ static void ov95_02248420 (UnkStruct_ov95_02247C6C * param0)
         v0->unk_24 = 0;
         v0->unk_28 = 0;
 
-        param0->unk_7C = sub_0200D9E8(ov95_022484B0, v0, 0);
+        param0->unk_7C = SysTask_Start(ov95_022484B0, v0, 0);
     }
 }
 

@@ -159,7 +159,7 @@ UnkStruct_0201CD38 * ov5_021F09B4 (UnkStruct_0203CDB0 * param0, int param1, BOOL
     v1->unk_1C = param1;
     v1->unk_00 = param2;
 
-    v0 = sub_0200D9E8(ov5_021F0A04, v1, 128);
+    v0 = SysTask_Start(ov5_021F0A04, v1, 128);
 
     return v0;
 }

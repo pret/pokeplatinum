@@ -288,7 +288,7 @@ static void ov48_022567FC (UnkStruct_ov48_0225650C * param0)
         }
     }
 
-    param0->unk_14C = sub_0200D9E8(ov48_022569FC, param0, 3);
+    param0->unk_14C = SysTask_Start(ov48_022569FC, param0, 3);
 }
 
 static void ov48_02256920 (UnkStruct_ov48_0225650C * param0)

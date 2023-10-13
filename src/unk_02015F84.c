@@ -228,7 +228,7 @@ void sub_02015FCC (UnkStruct_02015F84 * param0, UnkStruct_02007C7C * param1, con
     param0->unk_00[v0].unk_1C5 = 0;
     param0->unk_00[v0].unk_1C6 = 28;
     param0->unk_00[v0].unk_1C7 = 0;
-    param0->unk_00[v0].unk_04 = sub_0200D9E8(sub_02016150, &param0->unk_00[v0], 0);
+    param0->unk_00[v0].unk_04 = SysTask_Start(sub_02016150, &param0->unk_00[v0], 0);
     param0->unk_00[v0].unk_54 = v2;
     param0->unk_00[v0].unk_58 = sub_020080C0(param1, 0);
     param0->unk_00[v0].unk_5C = sub_020080C0(param1, 1);

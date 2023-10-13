@@ -2634,7 +2634,7 @@ static UnkStruct_0201CD38 * ov109_021D2FE0 (UnkStruct_ov109_021D0F70 * param0, i
     memset(v1, 0, sizeof(UnkStruct_ov109_021D2FE0));
     v1->unk_14 = param0;
     v1->unk_10 = param6;
-    v0 = sub_0200D9E8(ov109_021D302C, v1, 0);
+    v0 = SysTask_Start(ov109_021D302C, v1, 0);
 
     return v0;
 }
@@ -2778,7 +2778,7 @@ static void ov109_021D31A8 (UnkStruct_ov109_021D0F70 * param0)
     v0 = &param0->unk_AB4;
     memset(v0, 0, sizeof(UnkStruct_ov109_021D31A8));
 
-    param0->unk_DB0 = sub_0200D9E8(ov109_021D3180, param0, 256);
+    param0->unk_DB0 = SysTask_Start(ov109_021D3180, param0, 256);
     GF_ASSERT(param0->unk_DB0);
 }
 
@@ -2879,7 +2879,7 @@ static void ov109_021D32DC (UnkStruct_ov109_021D0F70 * param0)
     v0 = &param0->unk_B54;
     memset(v0, 0, sizeof(UnkStruct_ov109_021D32DC));
 
-    param0->unk_DB4 = sub_0200D9E8(ov109_021D32B8, param0, 257);
+    param0->unk_DB4 = SysTask_Start(ov109_021D32B8, param0, 257);
     GF_ASSERT(param0->unk_DB4);
 }
 
@@ -2964,7 +2964,7 @@ static void ov109_021D3414 (UnkStruct_ov109_021D0F70 * param0)
     v0 = &param0->unk_BB8;
     memset(v0, 0, sizeof(UnkStruct_ov109_021D3414));
 
-    param0->unk_DB8 = sub_0200D9E8(ov109_021D33F0, param0, 258);
+    param0->unk_DB8 = SysTask_Start(ov109_021D33F0, param0, 258);
     GF_ASSERT(param0->unk_DB8);
 }
 
@@ -3065,7 +3065,7 @@ static void ov109_021D3584 (UnkStruct_ov109_021D0F70 * param0)
 
     v0 = &param0->unk_C30;
     memset(v0, 0, sizeof(UnkStruct_ov109_021D34A8));
-    param0->unk_DBC = sub_0200D9E8(ov109_021D3574, param0, 255);
+    param0->unk_DBC = SysTask_Start(ov109_021D3574, param0, 255);
 
     GF_ASSERT(param0->unk_DBC);
 }
@@ -3161,7 +3161,7 @@ static UnkStruct_0201CD38 * ov109_021D3684 (UnkStruct_ov109_021D0F70 * param0)
 
     v1->unk_10 = param0;
     {
-        UnkStruct_0201CD38 * v2 = sub_0200D9E8(ov109_021D3600, v1, 0);
+        UnkStruct_0201CD38 * v2 = SysTask_Start(ov109_021D3600, v1, 0);
 
         GF_ASSERT(v2 != NULL);
         return v2;
@@ -3222,7 +3222,7 @@ static void ov109_021D379C (UnkStruct_ov109_021D0F70 * param0)
 
     v0 = &param0->unk_C44;
     memset(v0, 0, sizeof(UnkStruct_ov109_021D3700));
-    param0->unk_DC0 = sub_0200D9E8(ov109_021D3788, param0, 259);
+    param0->unk_DC0 = SysTask_Start(ov109_021D3788, param0, 259);
     GF_ASSERT(param0->unk_DC0);
 }
 
@@ -3298,7 +3298,7 @@ static void ov109_021D3884 (UnkStruct_ov109_021D0F70 * param0)
 
     v0 = &param0->unk_C4C;
     memset(v0, 0, sizeof(UnkStruct_ov109_021D3884));
-    param0->unk_DC4 = sub_0200D9E8(ov109_021D3864, param0, 260);
+    param0->unk_DC4 = SysTask_Start(ov109_021D3864, param0, 260);
     GF_ASSERT(param0->unk_DC4);
 }
 
@@ -3374,7 +3374,7 @@ static void ov109_021D3990 (UnkStruct_ov109_021D0F70 * param0, int param1)
     v2->unk_04 = param1;
     v2->unk_08 = v1[param1];
 
-    v0 = sub_0200D9E8(ov109_021D3948, v2, 0);
+    v0 = SysTask_Start(ov109_021D3948, v2, 0);
     GF_ASSERT(v0 != NULL);
 }
 

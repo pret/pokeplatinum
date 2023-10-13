@@ -2484,7 +2484,7 @@ static BOOL ov16_02241EB0 (BattleSystem * param0, BattleContext * param1)
     param1->taskData->seqNum = 0;
     param1->taskData->tmpData[6] = 0;
 
-    sub_0200D9E8(ov16_02248E74, param1->taskData, NULL);
+    SysTask_Start(ov16_02248E74, param1->taskData, NULL);
 
     return 0;
 }
@@ -2669,7 +2669,7 @@ static BOOL ov16_0224221C (BattleSystem * param0, BattleContext * param1)
     param1->taskData->flag = v0;
     param1->taskData->ball = param1->msgItemTemp;
 
-    sub_0200D9E8(ov16_02249B80, param1->taskData, NULL);
+    SysTask_Start(ov16_02249B80, param1->taskData, NULL);
 
     return 0;
 }

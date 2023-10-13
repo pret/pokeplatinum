@@ -228,7 +228,7 @@ static UnkStruct_0201CD38 * sub_02071400 (UnkStruct_ov101_021D5D90 * param0, int
 {
     UnkStruct_0201CD38 * v0;
 
-    v0 = sub_0200D9E8(sub_02071420, param0, param1);
+    v0 = SysTask_Start(sub_02071420, param0, param1);
     GF_ASSERT(v0 != NULL);
 
     return v0;

@@ -1086,7 +1086,7 @@ void * ov16_022687C8 (NARC * param0, NARC * param1, BattleSystem * param2, int p
     }
 
     v0->unk_4C8 = sub_02012744(13, 5);
-    v0->unk_678 = sub_0200D9E8(ov16_0226BCE4, v0, 1310);
+    v0->unk_678 = SysTask_Start(ov16_0226BCE4, v0, 1310);
 
     {
         NNSG2dScreenData * v3;
@@ -1176,7 +1176,7 @@ void * ov16_022687C8 (NARC * param0, NARC * param1, BattleSystem * param2, int p
         sub_02002B4C();
         sub_02002B6C();
 
-        v0->unk_64 = sub_0200D9E8(ov16_0226BD74, v0, 55000);
+        v0->unk_64 = SysTask_Start(ov16_0226BD74, v0, 55000);
     }
 
     return v0;
@@ -1369,7 +1369,7 @@ void ov16_02268D40 (NARC * param0, UnkStruct_ov16_02268A14 * param1)
     ov16_02269218(param1);
 
     GF_ASSERT(param1->unk_08 == NULL);
-    param1->unk_08 = sub_0200D9E8(ov16_02268FCC, param1, 1300);
+    param1->unk_08 = SysTask_Start(ov16_02268FCC, param1, 1300);
 
     {
         UnkStruct_02002F38 * v3;
@@ -1677,7 +1677,7 @@ void ov16_0226947C (UnkStruct_ov16_02268A14 * param0, int param1, int param2)
     param0->unk_6B0 = param1;
     param0->unk_6B4 = param2 << 8;
 
-    sub_0200D9E8(ov16_022694A8, param0, 1200);
+    SysTask_Start(ov16_022694A8, param0, 1200);
 }
 
 static void ov16_022694A8 (UnkStruct_0201CD38 * param0, void * param1)
@@ -1732,7 +1732,7 @@ static void ov16_02269550 (UnkStruct_ov16_02268A14 * param0, int param1)
     v1->unk_0E = ((40 * 100) - v1->unk_0A) / 100;
 
     sub_02005748(1806);
-    sub_0200D9E8(ov16_0226B988, v1, 1210);
+    SysTask_Start(ov16_0226B988, v1, 1210);
 
     v0 = sub_020177BC(ov16_0226BB94, v1);
     GF_ASSERT(v0 == 1);
@@ -2563,7 +2563,7 @@ static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon 
     sub_0200D330(v4);
 
     param0->unk_60C[v5] = v4;
-    param0->unk_61C[v5] = sub_0200D9E8(ov16_0226A928, v4, 1300);
+    param0->unk_61C[v5] = SysTask_Start(ov16_0226A928, v4, 1300);
 
     return v4;
 }
@@ -3063,7 +3063,7 @@ static void ov16_0226B2BC (UnkFuncPtr_0201CE28 param0, UnkStruct_ov16_02268A14 *
     GF_ASSERT(param1->unk_0C == NULL);
 
     MI_CpuClear8(&param1->unk_67C, sizeof(UnkStruct_ov16_02268A14_sub3));
-    param1->unk_0C = sub_0200D9E8(param0, param1, 1300);
+    param1->unk_0C = SysTask_Start(param0, param1, 1300);
 }
 
 static void ov16_0226B2F0 (UnkStruct_ov16_02268A14 * param0)
@@ -3080,7 +3080,7 @@ static void inline_ov16_0226B314 (UnkFuncPtr_0201CE28 param0, UnkStruct_ov16_022
     GF_ASSERT(param1->unk_10 == NULL);
 
     MI_CpuClear8(&param1->unk_6A0, sizeof(UnkStruct_ov16_02268A14_sub4));
-    param1->unk_10 = sub_0200D9E8(param0, param1, 1320);
+    param1->unk_10 = SysTask_Start(param0, param1, 1320);
 }
 
 static void inline_ov16_0226B318_1_sub (UnkStruct_ov16_02268A14 * param0)

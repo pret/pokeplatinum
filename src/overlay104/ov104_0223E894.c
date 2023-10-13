@@ -88,7 +88,7 @@ void ov104_0223E894 (int param0, u32 param1, u32 param2, BOOL * param3, u32 para
     v1 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov104_0223E894));
     memset(v1, 0, sizeof(UnkStruct_ov104_0223E894));
 
-    sub_0200D9E8(ov104_0223E8D8, v1, 5);
+    SysTask_Start(ov104_0223E8D8, v1, 5);
 
     v1->unk_48 = param3;
 

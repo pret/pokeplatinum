@@ -182,7 +182,7 @@ static int ov23_02253E90 (UnkStruct_ov23_02253E2C * param0, BOOL param1, UnkStru
     sub_0200E060(&param0->unk_08, 1, param0->unk_42, 10);
 
     if (param1) {
-        param0->unk_20 = sub_0200D9E8(ov23_02253E40, param0, 100);
+        param0->unk_20 = SysTask_Start(ov23_02253E40, param0, 100);
     }
 
     param0->unk_44_0 = 1;

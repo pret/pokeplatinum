@@ -373,7 +373,7 @@ void ov23_0224B144 (void * param0, UnkStruct_0203CDB0 * param1)
     Unk_ov23_022577AC->unk_13CC = 72;
     Unk_ov23_022577AC->unk_13CE = 437;
     Unk_ov23_022577AC->unk_13D0 = 1;
-    Unk_ov23_022577AC->unk_04 = sub_0200D9E8(ov23_0224C5B4, NULL, 100);
+    Unk_ov23_022577AC->unk_04 = SysTask_Start(ov23_0224C5B4, NULL, 100);
 }
 
 void ov23_0224B2C8 (UnkStruct_0203CDB0 * param0)
@@ -474,7 +474,7 @@ void ov23_0224B460 (void)
     }
 
     if (Unk_ov23_022577AC->unk_04 == NULL) {
-        Unk_ov23_022577AC->unk_04 = sub_0200D9E8(ov23_0224C5B4, NULL, 100);
+        Unk_ov23_022577AC->unk_04 = SysTask_Start(ov23_0224C5B4, NULL, 100);
     }
 }
 
@@ -953,7 +953,7 @@ static void ov23_0224BC5C (UnkStruct_0203CDB0 * param0, int param1, int param2, 
     v0->unk_14 = 2;
     v0->unk_24 = param3;
     v0->unk_00 = param0;
-    v0->unk_08 = sub_0200D9E8(ov23_0224BAAC, v0, 100);
+    v0->unk_08 = SysTask_Start(ov23_0224BAAC, v0, 100);
 
     ov23_022431EC(v0, v0->unk_08, ov23_0224BA6C);
     sub_020594FC();
@@ -1188,7 +1188,7 @@ static void ov23_0224C090 (UnkStruct_0203CDB0 * param0, int param1, int param2, 
     v0->unk_29 = 0;
 
     ov23_0224DC08();
-    v0->unk_08 = sub_0200D9E8(ov23_0224BE28, v0, 100);
+    v0->unk_08 = SysTask_Start(ov23_0224BE28, v0, 100);
     ov23_022431EC(v0, v0->unk_08, ov23_0224BA6C);
 
     sub_020594FC();
@@ -1980,7 +1980,7 @@ static void ov23_0224CEC8 (void)
     v0->unk_0C = 0;
     v0->unk_10 = sub_0203608C();
     v0->unk_00 = Unk_ov23_022577AC->unk_00;
-    v0->unk_04 = sub_0200D9E8(ov23_0224CB1C, v0, 100);
+    v0->unk_04 = SysTask_Start(ov23_0224CB1C, v0, 100);
 
     ov23_022431EC(v0, v0->unk_04, ov23_0224CE94);
 }
@@ -2424,7 +2424,7 @@ void ov23_0224D6AC (int param0, int param1, void * param2, void * param3)
 
         v3->unk_00 = 0;
         v3->unk_05 = v1[1];
-        v2 = sub_0200D9E8(ov23_0224D5BC, v3, 100);
+        v2 = SysTask_Start(ov23_0224D5BC, v3, 100);
 
         ov23_022431EC(v3, v2, ov23_0224D5A8);
     } else {

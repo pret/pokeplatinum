@@ -62,7 +62,7 @@ BOOL ov30_022563EC (UnkStruct_ov30_022563EC ** param0, const UnkStruct_ov30_0225
             return 0;
         }
 
-        v0->unk_30 = sub_0200D9E8(ov30_02256460, v0, 3);
+        v0->unk_30 = SysTask_Start(ov30_02256460, v0, 3);
         *param0 = v0;
 
         return 1;

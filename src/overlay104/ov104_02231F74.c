@@ -412,7 +412,7 @@ asm void ov104_022322B0 (UnkStruct_ov104_02232B5C * param0)
     ldr r0, = ov104_022324C8
     add r1, r5, #0
     mov r2, #0
-    bl sub_0200D9E8
+    bl SysTask_Start
     str r0, [r5, #4]
     add sp, #0x14
     pop {r4, r5, pc}
@@ -713,7 +713,7 @@ asm void ov104_02232624 (UnkStruct_ov104_02232B5C * param0)
     ldr r0, = ov104_0223296C
     add r1, r5, #0
     mov r2, #0
-    bl sub_0200D9E8
+    bl SysTask_Start
     str r0, [r5, #4]
     add sp, #0x14
     pop {r4, r5, pc}

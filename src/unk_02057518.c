@@ -106,7 +106,7 @@ BOOL sub_02057524 (void * param0, UnkStruct_0203CDB0 * param1, BOOL param2)
 
     Unk_021C0848->unk_2BC = 0;
     Unk_021C0848->unk_2BF = 0;
-    Unk_021C0848->unk_50 = sub_0200D9E8(sub_02057E80, NULL, (100 + 100));
+    Unk_021C0848->unk_50 = SysTask_Start(sub_02057E80, NULL, (100 + 100));
 
     sub_02035EA8();
     sub_020578DC();
@@ -228,7 +228,7 @@ void sub_02057764 (void)
     sub_020578DC();
 
     if (Unk_021C0848->unk_50 == NULL) {
-        Unk_021C0848->unk_50 = sub_0200D9E8(sub_02057E80, NULL, (100 + 100));
+        Unk_021C0848->unk_50 = SysTask_Start(sub_02057E80, NULL, (100 + 100));
     }
 }
 

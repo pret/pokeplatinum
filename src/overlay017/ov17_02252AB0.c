@@ -77,7 +77,7 @@ UnkStruct_ov17_02252B48 * ov17_02252B48 (UnkStruct_0200C6E4 * param0, UnkStruct_
         sub_0200D3F4(v0->unk_00[v2], 0);
     }
 
-    v0->unk_14 = sub_0200D9E8(ov17_02252CB8, v0, 40000);
+    v0->unk_14 = SysTask_Start(ov17_02252CB8, v0, 40000);
     return v0;
 }
 

@@ -262,7 +262,7 @@ static void ov16_0226D2A0 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D1
     param0->unk_0C = param1;
     param0->unk_10 = param2;
     param0->unk_1A = 0;
-    param0->unk_04 = sub_0200D9E8(ov16_0226D34C, param0, 500);
+    param0->unk_04 = SysTask_Start(ov16_0226D34C, param0, 500);
 
     sub_02005748(1809);
 }
@@ -322,7 +322,7 @@ static void ov16_0226D3F8 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D2
         param0->unk_1B = 0;
     }
 
-    param0->unk_04 = sub_0200D9E8(ov16_0226D434, param0, 500);
+    param0->unk_04 = SysTask_Start(ov16_0226D434, param0, 500);
 }
 
 static void ov16_0226D434 (UnkStruct_0201CD38 * param0, void * param1)
@@ -414,10 +414,10 @@ static void ov16_0226D540 (UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnu
 
     if (param3 == UnkEnum_ov16_0226D194_1_00) {
         param0->unk_28 = 3 * param5 + 5;
-        param0->unk_04 = sub_0200D9E8(ov16_0226D654, param0, (500 + 1));
+        param0->unk_04 = SysTask_Start(ov16_0226D654, param0, (500 + 1));
     } else {
         param0->unk_28 = 0;
-        param0->unk_04 = sub_0200D9E8(ov16_0226D854, param0, (500 + 1));
+        param0->unk_04 = SysTask_Start(ov16_0226D854, param0, (500 + 1));
     }
 }
 
@@ -580,12 +580,12 @@ static void ov16_0226D938 (UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum
         param0->unk_18 = param3;
         param0->unk_28 = 3 * param1;
         param0->unk_2F = 4;
-        param0->unk_04 = sub_0200D9E8(ov16_0226D99C, param0, (500 + 1));
+        param0->unk_04 = SysTask_Start(ov16_0226D99C, param0, (500 + 1));
     } else {
         param0->unk_18 = param3;
         param0->unk_28 = 0;
         param0->unk_2F = 0;
-        param0->unk_04 = sub_0200D9E8(ov16_0226DAAC, param0, (500 + 1));
+        param0->unk_04 = SysTask_Start(ov16_0226DAAC, param0, (500 + 1));
     }
 }
 
