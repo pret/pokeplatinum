@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -211,7 +211,7 @@ typedef struct {
     s16 unk_06;
     s16 unk_08;
     s16 unk_0A;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
 } UnkStruct_ov69_0225E478;
 
 typedef struct {
@@ -372,7 +372,7 @@ static void ov69_0225E478(UnkStruct_ov69_0225E478 * param0);
 static void ov69_0225E4E8(UnkStruct_ov69_0225E478 * param0);
 static void ov69_0225E504(UnkStruct_ov69_0225E478 * param0, s16 param1, s16 param2);
 static void ov69_0225E51C(UnkStruct_ov69_0225E478 * param0, s16 param1, s16 param2);
-static void ov69_0225E534(UnkStruct_0201CD38 * param0, void * param1);
+static void ov69_0225E534(SysTask * param0, void * param1);
 static void ov69_0225E590(UnkStruct_ov69_0225E084 * param0, UnkStruct_ov69_0225D35C * param1, u32 param2);
 static void ov69_0225E61C(UnkStruct_ov69_0225E084 * param0);
 static void ov69_0225E644(UnkStruct_ov69_0225E084 * param0, u32 param1, const UnkStruct_ov69_0225E0C0 * param2, UnkStruct_ov69_0225EF54 * param3);
@@ -2449,7 +2449,7 @@ static void ov69_0225E51C (UnkStruct_ov69_0225E478 * param0, s16 param1, s16 par
     param0->unk_0A = param2;
 }
 
-static void ov69_0225E534 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov69_0225E534 (SysTask * param0, void * param1)
 {
     UnkStruct_ov69_0225E478 * v0 = param1;
 

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov20_021D3E0C_t {
     UnkStruct_02018340 * unk_0C;
     u32 unk_10;
     u32 unk_14;
-    UnkStruct_0201CD38 * unk_18;
+    SysTask * unk_18;
     UnkStruct_ov20_021D4FF0 unk_1C;
     UnkStruct_ov20_021D4E8C unk_3C;
     UnkStruct_02022550 * unk_5C;

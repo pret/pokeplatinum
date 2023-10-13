@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -27,8 +27,8 @@ typedef struct {
     UnkStruct_ov94_0223FD4C * unk_0C;
 } UnkStruct_ov94_02243FF0;
 
-static void ov94_0224400C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov94_022440FC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov94_0224400C(SysTask * param0, void * param1);
+static void ov94_022440FC(SysTask * param0, void * param1);
 static void ov94_022441A0(UnkStruct_02022550 * param0, int param1, int param2);
 static void ov94_02243FF0(UnkStruct_ov94_02243FF0 * param0, int param1);
 static void ov94_0224432C(UnkStruct_ov94_0223FD4C * param0);
@@ -99,7 +99,7 @@ static void ov94_02243FF0 (UnkStruct_ov94_02243FF0 * param0, int param1)
     sub_02021D6C(param0->unk_0C->unk_F34[0], param1 + param0->unk_08 * 7);
 }
 
-static void ov94_0224400C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov94_0224400C (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov94_02243FF0 * v1 = (UnkStruct_ov94_02243FF0 *)param1;
@@ -160,7 +160,7 @@ void ov94_022440B8 (UnkStruct_ov94_0223FD4C * param0, int param1)
     }
 }
 
-static void ov94_022440FC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov94_022440FC (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov94_02243FF0 * v1 = (UnkStruct_ov94_02243FF0 *)param1;

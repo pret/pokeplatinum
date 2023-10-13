@@ -9,7 +9,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
@@ -79,8 +79,8 @@ typedef struct {
     Strbuf* unk_70;
     UnkStruct_ov95_0224773C * unk_74;
     UnkStruct_ov95_02247958 * unk_78;
-    UnkStruct_0201CD38 * unk_7C;
-    UnkStruct_0201CD38 * unk_80;
+    SysTask * unk_7C;
+    SysTask * unk_80;
     NARC * unk_84;
 } UnkStruct_ov95_0224B4D4;
 
@@ -93,7 +93,7 @@ typedef struct {
 } UnkStruct_ov95_0224BBB0;
 
 typedef struct {
-    UnkStruct_0201CD38 ** unk_00;
+    SysTask ** unk_00;
     int unk_04;
     void * unk_08;
     int unk_0C;
@@ -124,12 +124,12 @@ static void ov95_0224BB8C(UnkStruct_ov95_0224B4D4 * param0);
 static void ov95_0224BBB0(UnkStruct_ov95_0224B4D4 * param0, int param1, int param2, int param3);
 static BOOL ov95_0224BC00(UnkStruct_ov95_0224B4D4 * param0);
 static void ov95_0224BC10(UnkStruct_ov95_0224B4D4 * param0);
-static void ov95_0224BC30(UnkStruct_0201CD38 * param0, void * param1);
-static void ov95_0224BC6C(UnkStruct_ov95_0224B4D4 * param0, UnkStruct_0201CD38 ** param1);
-static void ov95_0224BCE8(UnkStruct_0201CD38 * param0);
+static void ov95_0224BC30(SysTask * param0, void * param1);
+static void ov95_0224BC6C(UnkStruct_ov95_0224B4D4 * param0, SysTask ** param1);
+static void ov95_0224BCE8(SysTask * param0);
 static void ov95_0224BD04(void * param0);
 static void ov95_0224BD40(void * param0, fx32 param1, int param2);
-static void ov95_0224BD5C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov95_0224BD5C(SysTask * param0, void * param1);
 
 void * ov95_0224B3D8 (UnkStruct_ov95_02247628 * param0)
 {
@@ -588,7 +588,7 @@ static void ov95_0224BC10 (UnkStruct_ov95_0224B4D4 * param0)
     }
 }
 
-static void ov95_0224BC30 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_0224BC30 (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_0224BBB0 * v0 = param1;
     int v1;
@@ -604,7 +604,7 @@ static void ov95_0224BC30 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, UnkStruct_0201CD38 ** param1)
+static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, SysTask ** param1)
 {
     UnkStruct_ov95_0224BC6C * v0 = Heap_AllocFromHeap(58, sizeof(UnkStruct_ov95_0224BC6C));
 
@@ -635,7 +635,7 @@ static void ov95_0224BC6C (UnkStruct_ov95_0224B4D4 * param0, UnkStruct_0201CD38 
     }
 }
 
-static void ov95_0224BCE8 (UnkStruct_0201CD38 * param0)
+static void ov95_0224BCE8 (SysTask * param0)
 {
     if (param0) {
         UnkStruct_ov95_0224BC6C * v0 = sub_0201CED0(param0);
@@ -672,7 +672,7 @@ static void ov95_0224BD40 (void * param0, fx32 param1, int param2)
     }
 }
 
-static void ov95_0224BD5C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_0224BD5C (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_0224BC6C * v0 = param1;
 

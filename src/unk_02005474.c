@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 
 #include "unk_02003B60.h"
@@ -14,7 +14,7 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
 } UnkStruct_02005E64;
 
 BOOL sub_02005474(u16 param0);
@@ -48,7 +48,7 @@ void sub_0200592C(int param0);
 int sub_0200598C(void);
 BOOL sub_020059D0(int param0, u16 param1, int param2, int param3, int param4, u8 param5);
 void sub_02005E64(int param0, int param1);
-static void sub_02005EB0(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02005EB0(SysTask * param0, void * param1);
 void sub_02005F24(void);
 void sub_02005F4C(int param0, u16 param1, int param2, int param3, int param4, u8 param5, u8 param6);
 static BOOL sub_02006038(u16 param0, u8 param1);
@@ -704,7 +704,7 @@ static void sub_02005E4C (u16 param0, int param1, int param2)
 void sub_02005E64 (int param0, int param1)
 {
     UnkStruct_02005E64 * v0 = NULL;
-    UnkStruct_0201CD38 ** v1 = sub_02003D5C(35);
+    SysTask ** v1 = sub_02003D5C(35);
 
     if (*v1 != NULL) {
         (void)0;
@@ -728,7 +728,7 @@ void sub_02005E64 (int param0, int param1)
     return;
 }
 
-static void sub_02005EB0 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02005EB0 (SysTask * param0, void * param1)
 {
     u8 * v0 = sub_02003D5C(16);
     u8 * v1 = sub_02003D5C(17);
@@ -767,7 +767,7 @@ static void sub_02005EB0 (UnkStruct_0201CD38 * param0, void * param1)
 void sub_02005F24 ()
 {
     void * v0;
-    UnkStruct_0201CD38 ** v1 = sub_02003D5C(35);
+    SysTask ** v1 = sub_02003D5C(35);
 
     if (*v1 != NULL) {
         v0 = sub_0201CED0(*v1);

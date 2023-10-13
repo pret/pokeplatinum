@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay026/struct_ov26_02256404_decl.h"
 
@@ -26,10 +26,10 @@ struct UnkStruct_ov26_02256404_t {
 
 static void ov26_0225646C(const u16 * param0, u16 * param1);
 static void ov26_022564E4(UnkStruct_ov25_02255224 * param0);
-static void ov26_022564F8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov26_0225658C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov26_022565AC(UnkStruct_0201CD38 * param0, void * param1);
-static void ov26_022565D8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov26_022564F8(SysTask * param0, void * param1);
+static void ov26_0225658C(SysTask * param0, void * param1);
+static void ov26_022565AC(SysTask * param0, void * param1);
+static void ov26_022565D8(SysTask * param0, void * param1);
 static void ov26_022565F4(UnkStruct_ov26_02256404 * param0);
 
 BOOL ov26_02256404 (UnkStruct_ov26_02256404 ** param0, const UnkStruct_ov26_02256404_1 * param1, UnkStruct_02018340 * param2)
@@ -115,7 +115,7 @@ static void ov26_022564E4 (UnkStruct_ov25_02255224 * param0)
     ov25_02255224(v0->unk_08, param0);
 }
 
-static void ov26_022564F8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov26_022564F8 (SysTask * param0, void * param1)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -151,7 +151,7 @@ static void ov26_022564F8 (UnkStruct_0201CD38 * param0, void * param1)
     ov26_022564E4(param1);
 }
 
-static void ov26_0225658C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov26_0225658C (SysTask * param0, void * param1)
 {
     UnkStruct_ov26_02256404 * v0 = ov25_0225523C(param1);
 
@@ -160,7 +160,7 @@ static void ov26_0225658C (UnkStruct_0201CD38 * param0, void * param1)
     ov26_022564E4(param1);
 }
 
-static void ov26_022565AC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov26_022565AC (SysTask * param0, void * param1)
 {
     UnkStruct_ov26_02256404 * v0 = ov25_0225523C(param1);
 
@@ -173,7 +173,7 @@ static void ov26_022565AC (UnkStruct_0201CD38 * param0, void * param1)
     ov26_022564E4(param1);
 }
 
-static void ov26_022565D8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov26_022565D8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov26_02256404 * v0 = ov25_0225523C(param1);
 

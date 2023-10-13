@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
 
@@ -320,7 +320,7 @@ void ov76_0223BC70 (UnkStruct_ov76_0223DE00 * param0)
     }
 }
 
-static void ov76_0223BCA0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov76_0223BCA0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov76_0223BCA0 * v0 = (UnkStruct_ov76_0223BCA0 *)param1;
     BOOL v1 = 0;

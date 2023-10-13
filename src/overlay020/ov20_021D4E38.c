@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "overlay020/struct_ov20_021D4E8C.h"
 #include "overlay020/struct_ov20_021D4FF0.h"
@@ -12,9 +12,9 @@
 #include "overlay020/ov20_021D2098.h"
 #include "overlay020/ov20_021D4E38.h"
 
-static void ov20_021D4ED8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov20_021D4F74(UnkStruct_0201CD38 * param0, void * param1);
-static void ov20_021D5018(UnkStruct_0201CD38 * param0, void * param1);
+static void ov20_021D4ED8(SysTask * param0, void * param1);
+static void ov20_021D4F74(SysTask * param0, void * param1);
+static void ov20_021D5018(SysTask * param0, void * param1);
 
 void ov20_021D4E38 (UnkStruct_ov20_021D4E8C * param0, UnkStruct_02018340 * param1, u32 param2, int param3, int param4, int param5)
 {
@@ -57,7 +57,7 @@ BOOL ov20_021D4E8C (UnkStruct_ov20_021D4E8C * param0)
     return 0;
 }
 
-static void ov20_021D4ED8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov20_021D4ED8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov20_021D4E8C * v0 = param1;
 
@@ -99,7 +99,7 @@ BOOL ov20_021D4F4C (UnkStruct_ov20_021D4FF0 * param0)
     return 0;
 }
 
-static void ov20_021D4F74 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov20_021D4F74 (SysTask * param0, void * param1)
 {
     UnkStruct_ov20_021D4FF0 * v0 = param1;
     int v1, v2;
@@ -151,7 +151,7 @@ BOOL ov20_021D4FF0 (UnkStruct_ov20_021D4FF0 * param0)
     return 0;
 }
 
-static void ov20_021D5018 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov20_021D5018 (SysTask * param0, void * param1)
 {
     UnkStruct_ov20_021D4FF0 * v0 = param1;
     int v1;

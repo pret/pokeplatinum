@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -32,7 +32,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     UnkStruct_02018340 * unk_14;
     BOOL unk_18;
     UnkStruct_ov109_021D5140_sub1 unk_1C;
-    UnkStruct_0201CD38 * unk_30;
+    SysTask * unk_30;
     UnkStruct_0200B358 * unk_34;
     MessageLoader * unk_38;
     Strbuf* unk_3C[5];

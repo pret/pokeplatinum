@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_OV62_02235278_H
 #define POKEPLATINUM_OV62_02235278_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
-void ov62_022354A4(UnkStruct_0201CD38 * param0, void * param1);
+void ov62_022354A4(SysTask * param0, void * param1);
 
 #endif // POKEPLATINUM_OV62_02235278_H

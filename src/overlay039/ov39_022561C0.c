@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay039/struct_ov39_022563DC_decl.h"
@@ -35,7 +35,7 @@ static BOOL ov39_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkS
 static BOOL ov39_0225621C(UnkStruct_ov39_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
 static void ov39_02256268(UnkStruct_ov39_0225621C * param0);
 static void ov39_02256284(u32 param0, u32 param1, u32 param2, void * param3);
-static void ov39_0225628C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov39_0225628C(SysTask * param0, void * param1);
 static void ov39_022562C8(void * param0);
 static void ov39_022562D0(UnkStruct_ov39_0225621C * param0, u32 param1);
 static BOOL ov39_022562E4(UnkStruct_ov39_0225621C * param0);
@@ -113,7 +113,7 @@ static void ov39_02256284 (u32 param0, u32 param1, u32 param2, void * param3)
     v0->unk_34 = param0;
 }
 
-static void ov39_0225628C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov39_0225628C (SysTask * param0, void * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov39_0225621C *) = {
         ov39_022562E4,

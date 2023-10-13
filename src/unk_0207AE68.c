@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -69,7 +69,7 @@
 #include "unk_0208C324.h"
 
 UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
-static void sub_0207B0A0(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0207B0A0(SysTask * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
 static void sub_0207B180(UnkStruct_0207AE68 * param0);
@@ -175,7 +175,7 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     return v0;
 }
 
-static void sub_0207B0A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0207B0A0 (SysTask * param0, void * param1)
 {
     UnkStruct_0207AE68 * v0 = (UnkStruct_0207AE68 *)param1;
 

@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -63,14 +63,14 @@ typedef struct {
     s16 unk_132;
 } UnkStruct_ov12_02234BD8;
 
-static void ov12_02234750(UnkStruct_0201CD38 * param0, void * param1);
+static void ov12_02234750(SysTask * param0, void * param1);
 static void ov12_0223483C(CellActorData * param0, UnkStruct_ov12_02225F6C * param1, UnkStruct_ov12_02225F6C * param2, int param3);
 static BOOL ov12_0223489C(CellActorData * param0, UnkStruct_ov12_02225F6C * param1, UnkStruct_ov12_02225F6C * param2);
-static void ov12_02234918(UnkStruct_0201CD38 * param0, void * param1);
-static void ov12_02234B64(UnkStruct_0201CD38 * param0, void * param1);
+static void ov12_02234918(SysTask * param0, void * param1);
+static void ov12_02234B64(SysTask * param0, void * param1);
 static BOOL ov12_02234B34(CellActorData * param0, int * param1, int * param2);
 static void ov12_02234AE0(CellActorData * param0, int * param1, int * param2, int param3, int param4);
-static void ov12_02234CA8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov12_02234CA8(SysTask * param0, void * param1);
 
 void ov12_022346A4 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
 {
@@ -107,7 +107,7 @@ void ov12_022346A4 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     ov12_022201E8(v1->unk_00, ov12_02234750, v1);
 }
 
-static void ov12_02234750 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02234750 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_022346A4 * v0 = param1;
     int v1;
@@ -201,7 +201,7 @@ void ov12_022348C8 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     ov12_022201E8(v0->unk_00, ov12_02234918, v0);
 }
 
-static void ov12_02234918 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02234918 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_022348C8 * v0 = param1;
     int v1;
@@ -323,7 +323,7 @@ static BOOL ov12_02234B34 (CellActorData * param0, int * param1, int * param2)
     return 0;
 }
 
-static void ov12_02234B64 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02234B64 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02234A10 * v0 = param1;
     int v1;
@@ -384,7 +384,7 @@ static void ov12_02234C30 (UnkStruct_ov12_02234BD8 * param0)
     }
 }
 
-static void ov12_02234CA8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02234CA8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02234BD8 * v0 = param1;
     int v1;

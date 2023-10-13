@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -34,7 +34,7 @@ typedef struct {
     UnkStruct_02022550 * unk_3C[2];
     Strbuf* unk_44;
     Strbuf* unk_48;
-    UnkStruct_0201CD38 * unk_4C;
+    SysTask * unk_4C;
     u8 padding_50[4];
 } UnkStruct_ov19_021DA9E0;
 

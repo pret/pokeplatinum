@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "overlay005/struct_ov5_021E2098.h"
 
@@ -14,16 +14,16 @@ typedef struct UnkStruct_ov5_021E20E8_t {
     GXVRamLCDC unk_00;
     UnkStruct_ov5_021E2098 unk_04;
     BOOL unk_30;
-    UnkStruct_0201CD38 * unk_34;
+    SysTask * unk_34;
 } UnkStruct_ov5_021E20E8;
 
-static void ov5_021E21B8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov5_021E2178(UnkStruct_0201CD38 * param0, void * param1);
+static void ov5_021E21B8(SysTask * param0, void * param1);
+static void ov5_021E2178(SysTask * param0, void * param1);
 static void ov5_021E2218(UnkStruct_ov5_021E2098 * param0);
 
 UnkStruct_ov5_021E20E8 * ov5_021E2098 (UnkStruct_ov5_021E2098 * param0)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov5_021E20E8 * v1;
 
     v0 = sub_0200679C(ov5_021E2178, sizeof(UnkStruct_ov5_021E20E8), 5, param0->unk_28);
@@ -67,7 +67,7 @@ void ov5_021E20E8 (UnkStruct_ov5_021E20E8 ** param0, GXDispMode param1, GXBGMode
     *param0 = NULL;
 }
 
-static void ov5_021E2178 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021E2178 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021E20E8 * v0 = param1;
 
@@ -76,7 +76,7 @@ static void ov5_021E2178 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov5_021E21B8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021E21B8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021E20E8 * v0 = (UnkStruct_ov5_021E20E8 *)param1;
 

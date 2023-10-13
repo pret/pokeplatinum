@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029C68_decl.h"
@@ -159,9 +159,9 @@ static void ov22_02256BAC(UnkStruct_ov22_02255D44 * param0, const UnkStruct_0202
 static void ov22_02256BF4(UnkStruct_ov22_02255D44 * param0, int param1, int param2, UnkStruct_02095C60 * param3, const UnkStruct_020279FC * param4);
 static void ov22_02256C38(UnkStruct_ov22_02255D44 * param0);
 static void ov22_02256C48(UnkStruct_ov22_02255D44 * param0, BOOL * param1);
-static void ov22_02256C70(UnkStruct_0201CD38 * param0, void * param1);
+static void ov22_02256C70(SysTask * param0, void * param1);
 static void ov22_02256DB8(UnkStruct_ov22_02255D44 * param0, BOOL * param1);
-static void ov22_02256DE0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov22_02256DE0(SysTask * param0, void * param1);
 static BOOL ov22_02257098(UnkStruct_ov22_02256C48 * param0, int param1, int param2, int param3);
 static void ov22_02256F38(UnkStruct_02029C68 * param0, UnkStruct_ov22_02257964 * param1, const TrainerInfo * param2);
 static void ov22_02256FD8(UnkStruct_02029C88 * param0, UnkStruct_ov22_02257964 * param1, int param2, const TrainerInfo * param3);
@@ -977,7 +977,7 @@ static void ov22_02256C38 (UnkStruct_ov22_02255D44 * param0)
 
 static void ov22_02256C48 (UnkStruct_ov22_02255D44 * param0, BOOL * param1)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov22_02256C48 * v1;
 
     v0 = sub_0200679C(ov22_02256C70, sizeof(UnkStruct_ov22_02256C48), 10, 13);
@@ -988,7 +988,7 @@ static void ov22_02256C48 (UnkStruct_ov22_02255D44 * param0, BOOL * param1)
     v1->unk_0C = 0;
 }
 
-static void ov22_02256C70 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov22_02256C70 (SysTask * param0, void * param1)
 {
     UnkStruct_ov22_02256C48 * v0 = param1;
     BOOL v1;
@@ -1060,7 +1060,7 @@ static void ov22_02256C70 (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov22_02256DB8 (UnkStruct_ov22_02255D44 * param0, BOOL * param1)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov22_02256C48 * v1;
 
     v0 = sub_0200679C(ov22_02256DE0, sizeof(UnkStruct_ov22_02256C48), 10, 13);
@@ -1072,7 +1072,7 @@ static void ov22_02256DB8 (UnkStruct_ov22_02255D44 * param0, BOOL * param1)
     v1->unk_0C = 0;
 }
 
-static void ov22_02256DE0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov22_02256DE0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov22_02256C48 * v0 = param1;
     BOOL v1;

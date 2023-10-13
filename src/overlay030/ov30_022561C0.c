@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay025/struct_ov25_02255B34_decl.h"
 #include "overlay030/struct_ov30_022563EC_decl.h"
@@ -39,7 +39,7 @@ static void NitroStaticInit(void);
 static BOOL ov30_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
 static BOOL ov30_0225621C(UnkStruct_ov30_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
 static void ov30_02256298(UnkStruct_ov30_0225621C * param0);
-static void ov30_022562B0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov30_022562B0(SysTask * param0, void * param1);
 static void ov30_022562EC(void * param0);
 static void ov30_022562F4(u32 param0, u32 param1, u32 param2, void * param3);
 static void ov30_02256310(UnkStruct_ov30_0225621C * param0, u32 param1);
@@ -115,7 +115,7 @@ static void ov30_02256298 (UnkStruct_ov30_0225621C * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov30_022562B0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov30_022562B0 (SysTask * param0, void * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov30_0225621C *) = {
         ov30_02256324,

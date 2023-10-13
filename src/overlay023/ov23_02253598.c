@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
@@ -55,7 +55,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov23_02253598_t {
     UnkStruct_ov23_022537D4 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     SaveData * unk_08;
     UnkStruct_0202855C * unk_0C;
     UnkStruct_0202855C * unk_10;
@@ -64,7 +64,7 @@ typedef struct UnkStruct_ov23_02253598_t {
 };
 
 static UnkStruct_ov23_02253598 * Unk_ov23_022577BC = NULL;
-static void ov23_022537D4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov23_022537D4(SysTask * param0, void * param1);
 
 void ov23_02253598 (UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param1, SaveData * param2)
 {
@@ -322,7 +322,7 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, MessageLoader * para
     nop
 }
 
-static void ov23_022537D4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_022537D4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_022537D4 * v0 = param1;
 
@@ -345,7 +345,7 @@ static void ov23_022537D4 (UnkStruct_0201CD38 * param0, void * param1)
     Unk_ov23_022577BC->unk_00 = NULL;
 }
 
-static void ov23_0225381C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0225381C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_022537D4 * v0 = param1;
 

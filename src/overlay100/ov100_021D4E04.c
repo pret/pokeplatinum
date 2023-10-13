@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02013B10_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay005/struct_ov5_021DDF24_sub1.h"
@@ -22,8 +22,8 @@
 typedef void (* UnkFuncPtr_ov104_0223F174)(void *);
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_00;
+    SysTask * unk_04;
     BOOL unk_08;
     BOOL unk_0C;
     UnkFuncPtr_ov104_0223F174 unk_10;
@@ -43,13 +43,13 @@ typedef struct UnkStruct_ov100_021D4F9C_t {
     GXVRamLCDC unk_00;
     UnkStruct_ov100_021D4EBC unk_04;
     BOOL unk_30;
-    UnkStruct_0201CD38 * unk_34;
+    SysTask * unk_34;
 } UnkStruct_ov100_021D4F9C;
 
-static UnkStruct_0201CD38 * ov100_021D4E04(UnkStruct_ov100_021D4E3C * param0);
-static void ov100_021D4E18(UnkStruct_0201CD38 * param0, void * param1);
-static void ov100_021D4FDC(UnkStruct_0201CD38 * param0, void * param1);
-static void ov100_021D4F9C(UnkStruct_0201CD38 * param0, void * param1);
+static SysTask * ov100_021D4E04(UnkStruct_ov100_021D4E3C * param0);
+static void ov100_021D4E18(SysTask * param0, void * param1);
+static void ov100_021D4FDC(SysTask * param0, void * param1);
+static void ov100_021D4F9C(SysTask * param0, void * param1);
 static void ov100_021D503C(UnkStruct_ov100_021D4EBC * param0);
 
 static const u8 Unk_ov104_02241964[][6] = {
@@ -57,12 +57,12 @@ static const u8 Unk_ov104_02241964[][6] = {
     {0x5, 0x4, 0x3, 0x2, 0x1, 0x0}
 };
 
-static UnkStruct_0201CD38 * ov100_021D4E04 (UnkStruct_ov100_021D4E3C * param0)
+static SysTask * ov100_021D4E04 (UnkStruct_ov100_021D4E3C * param0)
 {
     return sub_0200DA04(ov100_021D4E18, param0, 1024);
 }
 
-static void ov100_021D4E18 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov100_021D4E18 (SysTask * param0, void * param1)
 {
     UnkStruct_ov100_021D4E3C * v0 = param1;
 
@@ -100,7 +100,7 @@ void ov100_021D4E70 (UnkStruct_ov100_021D4E3C * param0, u8 param1, u8 param2, u1
 
 UnkStruct_ov100_021D4F9C * ov100_021D4EBC (UnkStruct_ov100_021D4EBC * param0)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov100_021D4F9C * v1;
 
     v0 = sub_0200679C(ov100_021D4F9C, sizeof(UnkStruct_ov100_021D4F9C), 5, param0->unk_28);
@@ -144,7 +144,7 @@ void ov100_021D4F0C (UnkStruct_ov100_021D4F9C ** param0, GXDispMode param1, GXBG
     *param0 = NULL;
 }
 
-static void ov100_021D4F9C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov100_021D4F9C (SysTask * param0, void * param1)
 {
     UnkStruct_ov100_021D4F9C * v0 = param1;
 
@@ -153,7 +153,7 @@ static void ov100_021D4F9C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov100_021D4FDC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov100_021D4FDC (SysTask * param0, void * param1)
 {
     UnkStruct_ov100_021D4F9C * v0 = (UnkStruct_ov100_021D4F9C *)param1;
 

@@ -11,7 +11,7 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48_sub1.h"
@@ -33,7 +33,7 @@ typedef struct {
     UnkStruct_02012744 * unk_C4;
     UnkStruct_ov16_0223E0C8 unk_C8[4];
     UnkStruct_ov17_0223F6E8 unk_108;
-    UnkStruct_0201CD38 * unk_124;
+    SysTask * unk_124;
     CellActorData * unk_128[4];
     CellActorData * unk_138[4];
     CellActorData * unk_148[4][12];

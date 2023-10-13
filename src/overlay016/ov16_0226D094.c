@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -25,7 +25,7 @@
 
 typedef struct {
     CellActorData * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkEnum_ov16_0226D220 unk_08;
     UnkEnum_ov16_0226D194 unk_0C;
     UnkEnum_ov16_0226D194_3 unk_10;
@@ -37,7 +37,7 @@ typedef struct {
 
 typedef struct {
     CellActorData * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkEnum_ov16_0226D194 unk_08;
     UnkEnum_ov16_0226D194_3 unk_0C;
     UnkEnum_ov16_0226D194_2 unk_10;
@@ -64,12 +64,12 @@ static void ov16_0226D2A0(UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D19
 static void ov16_0226D3F8(UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D220 param1);
 static void ov16_0226D540(UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnum_ov16_0226D194 param2, UnkEnum_ov16_0226D194_1 param3, UnkEnum_ov16_0226D194_3 param4, int param5, int param6, UnkStruct_0200C6E4 * param7, UnkStruct_0200C704 * param8);
 static void ov16_0226D938(UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum_ov16_0226D194_2 param2, s16 * param3);
-static void ov16_0226D34C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226D434(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226D654(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226D854(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226D99C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226DAAC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0226D34C(SysTask * param0, void * param1);
+static void ov16_0226D434(SysTask * param0, void * param1);
+static void ov16_0226D654(SysTask * param0, void * param1);
+static void ov16_0226D854(SysTask * param0, void * param1);
+static void ov16_0226D99C(SysTask * param0, void * param1);
+static void ov16_0226DAAC(SysTask * param0, void * param1);
 static int ov16_0226DB04(int param0, UnkEnum_ov16_0226D194 param1);
 static int ov16_0226DB44(int param0);
 static UnkStruct_ov16_0226D160 * ov16_0226D160(void);
@@ -267,7 +267,7 @@ static void ov16_0226D2A0 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D1
     sub_02005748(1809);
 }
 
-static void ov16_0226D34C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D34C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D2A0 * v0 = param1;
 
@@ -325,7 +325,7 @@ static void ov16_0226D3F8 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D2
     param0->unk_04 = SysTask_Start(ov16_0226D434, param0, 500);
 }
 
-static void ov16_0226D434 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D434 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D2A0 * v0 = param1;
 
@@ -421,7 +421,7 @@ static void ov16_0226D540 (UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnu
     }
 }
 
-static void ov16_0226D654 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D654 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D540 * v0 = param1;
 
@@ -523,7 +523,7 @@ static void ov16_0226D654 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov16_0226D854 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D854 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D540 * v0 = param1;
 
@@ -589,7 +589,7 @@ static void ov16_0226D938 (UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum
     }
 }
 
-static void ov16_0226D99C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D99C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D540 * v0 = param1;
 
@@ -641,7 +641,7 @@ static void ov16_0226D99C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov16_0226DAAC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226DAAC (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D540 * v0 = param1;
 

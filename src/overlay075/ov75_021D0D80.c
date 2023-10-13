@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -111,7 +111,7 @@ static int ov75_021D1184(UnkStruct_ov75_021D1184 * param0);
 static int ov75_021D0E5C(UnkStruct_ov75_021D1184 * param0);
 static int ov75_021D0E80(UnkStruct_ov75_021D1184 * param0);
 static int ov75_021D108C(UnkStruct_ov75_021D1184 * param0);
-static void ov75_021D1358(UnkStruct_0201CD38 * param0, void * param1);
+static void ov75_021D1358(SysTask * param0, void * param1);
 static int ov75_021D13E8(UnkStruct_ov75_021D1184 * param0);
 static int ov75_021D1434(UnkStruct_ov75_021D1184 * param0);
 static void ov75_021D131C(void * param0);
@@ -485,7 +485,7 @@ static void ov75_021D131C (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov75_021D1358 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov75_021D1358 (SysTask * param0, void * param1)
 {
     UnkStruct_ov75_021D1184 * v0 = (UnkStruct_ov75_021D1184 *)param1;
 

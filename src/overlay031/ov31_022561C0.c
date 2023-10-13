@@ -5,7 +5,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay031/struct_ov31_02256554_decl.h"
@@ -43,7 +43,7 @@ static void ov31_022562EC(UnkStruct_ov31_02256228 * param0, UnkStruct_ov31_02256
 static void ov31_0225635C(UnkStruct_ov31_02256554_1 * param0);
 static void ov31_02256384(UnkStruct_ov31_02256228 * param0);
 static void ov31_022563B0(void * param0);
-static void ov31_022563CC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov31_022563CC(SysTask * param0, void * param1);
 static void ov31_02256404(void * param0);
 static void ov31_0225640C(UnkStruct_ov31_02256228 * param0, u32 param1);
 static BOOL ov31_02256420(UnkStruct_ov31_02256228 * param0);
@@ -192,7 +192,7 @@ static void ov31_022563B0 (void * param0)
     ov31_022562EC(v0, &v0->unk_0C, ov25_02254540(v0->unk_1F0));
 }
 
-static void ov31_022563CC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov31_022563CC (SysTask * param0, void * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov31_02256228 *) = {
         ov31_02256420,

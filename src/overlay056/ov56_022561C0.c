@@ -8,7 +8,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -109,7 +109,7 @@ struct UnkStruct_ov56_02256468_t {
     u8 unk_2EF;
     BOOL unk_2F0;
     u16 unk_2F4[2];
-    UnkStruct_0201CD38 * unk_2F8;
+    SysTask * unk_2F8;
 };
 
 static void ov56_02256294(UnkStruct_ov56_02256468 * param0);
@@ -143,7 +143,7 @@ static BOOL ov56_02257184(const UnkStruct_ov56_02256468 * param0);
 static void ov56_0225718C(UnkStruct_ov56_02256468 * param0, int param1);
 static void ov56_022571D0(UnkStruct_ov56_02256468 * param0);
 
-static void ov56_022561C0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov56_022561C0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov56_02256468 * v0 = param1;
     UnkStruct_02018340 * v1 = v0->unk_14;
@@ -237,7 +237,7 @@ static void ov56_022563E8 (UnkStruct_ov56_022562EC * param0)
 UnkStruct_ov56_02256468 * ov56_02256410 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_ov56_02256468 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
 
     v1 = sub_0200679C(ov56_022561C0, sizeof(UnkStruct_ov56_02256468), 4, 4);
     v0 = sub_0201CED0(v1);

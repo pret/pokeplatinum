@@ -9,7 +9,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "pokemon.h"
@@ -198,7 +198,7 @@ static BOOL ov19_021D34E4(UnkStruct_ov19_021D5DF8 * param0);
 static BOOL ov19_021D357C(UnkStruct_ov19_021D5DF8 * param0, int * param1);
 static void ov19_021D35F8(UnkStruct_ov19_021D5DF8 * param0, u32 * param1);
 static void ov19_021D38E0(UnkStruct_ov19_021D5DF8 * param0);
-static void ov19_021D3978(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021D3978(SysTask * param0, void * param1);
 static BOOL ov19_021D3AC8(BoxPokemon * param0, u16 param1);
 static void ov19_021D3B34(UnkStruct_ov19_021D5DF8 * param0, u32 * param1);
 static void ov19_021D3C28(UnkStruct_ov19_021D5DF8 * param0, u32 * param1);
@@ -2413,7 +2413,7 @@ static void ov19_021D38E0 (UnkStruct_ov19_021D5DF8 * param0)
     }
 }
 
-static void ov19_021D3978 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021D3978 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021D38E0 * v0 = param1;
     BoxPokemon * v1;

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "overlay022/struct_ov22_022597BC.h"
 #include "overlay022/struct_ov22_02259820.h"
@@ -46,12 +46,12 @@ typedef struct {
 
 static void ov22_02259980(const NNSG2dScreenData * param0, int param1);
 static void ov22_022599A0(UnkStruct_ov22_022599A0 * param0, int * param1, int * param2);
-static void ov22_02259A4C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov22_02259A4C(SysTask * param0, void * param1);
 static void ov22_02259ABC(UnkStruct_02018340 * param0, int param1, const NNSG2dScreenData * param2, int param3, int param4, int param5, int param6, int param7, int param8);
 static void ov22_02259B3C(u32 param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5);
 static void ov22_02259B8C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
-static void ov22_02259BD4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov22_02259C10(UnkStruct_0201CD38 * param0, void * param1);
+static void ov22_02259BD4(SysTask * param0, void * param1);
+static void ov22_02259C10(SysTask * param0, void * param1);
 
 void ov22_022597BC (UnkStruct_ov22_022597BC * param0, UnkStruct_ov22_022599A0 * param1)
 {
@@ -126,7 +126,7 @@ void ov22_022598A0 (UnkStruct_ov22_02259820 * param0)
 void ov22_022598F4 (UnkStruct_ov22_022597BC * param0, UnkStruct_ov22_022599A0 * param1, int param2, int param3, int param4, BOOL * param5)
 {
     UnkStruct_ov22_022598F4 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
 
     v1 = sub_0200679C(ov22_02259A4C, sizeof(UnkStruct_ov22_022598F4), 0, 13);
     v0 = sub_0201CED0(v1);
@@ -199,7 +199,7 @@ static void ov22_022599A0 (UnkStruct_ov22_022599A0 * param0, int * param1, int *
     }
 }
 
-static void ov22_02259A4C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov22_02259A4C (SysTask * param0, void * param1)
 {
     UnkStruct_ov22_022598F4 * v0 = param1;
 
@@ -259,7 +259,7 @@ static void ov22_02259B8C (u32 param0, u32 param1, int param2, u32 param3, u32 p
     sub_0200DA3C(ov22_02259C10, v0, 128);
 }
 
-static void ov22_02259BD4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov22_02259BD4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov22_02259B3C * v0 = param1;
 
@@ -271,7 +271,7 @@ static void ov22_02259BD4 (UnkStruct_0201CD38 * param0, void * param1)
     Heap_FreeToHeap(v0);
 }
 
-static void ov22_02259C10 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov22_02259C10 (SysTask * param0, void * param1)
 {
     UnkStruct_ov22_02259B8C * v0 = param1;
 

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay055/struct_ov55_0225632C_decl.h"
 
@@ -23,8 +23,8 @@ struct UnkStruct_ov55_0225632C_t {
 };
 
 static void ov55_022563B4(UnkStruct_ov25_02255224 * param0);
-static void ov55_022563C8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov55_02256468(UnkStruct_0201CD38 * param0, void * param1);
+static void ov55_022563C8(SysTask * param0, void * param1);
+static void ov55_02256468(SysTask * param0, void * param1);
 
 BOOL ov55_0225632C (UnkStruct_ov55_0225632C ** param0, const UnkStruct_ov55_0225632C_1 * param1, UnkStruct_02018340 * param2)
 {
@@ -83,7 +83,7 @@ static void ov55_022563B4 (UnkStruct_ov25_02255224 * param0)
     ov25_02255224(v0->unk_08, param0);
 }
 
-static void ov55_022563C8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov55_022563C8 (SysTask * param0, void * param1)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -119,7 +119,7 @@ static void ov55_022563C8 (UnkStruct_0201CD38 * param0, void * param1)
     ov55_022563B4(param1);
 }
 
-static void ov55_02256468 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov55_02256468 (SysTask * param0, void * param1)
 {
     UnkStruct_ov55_0225632C * v0 = ov25_0225523C(param1);
 

@@ -3,7 +3,7 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02055CBC_decl.h"
@@ -44,7 +44,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
 } UnkStruct_020562AC;
 
 static void sub_02055D14(UnkStruct_0203CDB0 * param0, UnkStruct_02055CBC * param1);

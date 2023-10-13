@@ -8,7 +8,7 @@
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "overlay083/struct_ov83_0223D4CC_decl.h"
@@ -1061,7 +1061,7 @@ static void ov83_0223E844 (UnkStruct_ov83_0223E824 * param0, u32 param1, NARC * 
     sub_0201C3C0(param0->unk_04, 1);
 }
 
-static void ov83_0223E8DC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov83_0223E8DC (SysTask * param0, void * param1)
 {
     UnkStruct_ov83_0223E824 * v0 = param1;
 

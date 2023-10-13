@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -19,7 +19,7 @@
 
 typedef struct UnkStruct_ov16_0226DEEC_t {
     CellActorData * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
@@ -38,7 +38,7 @@ UnkStruct_ov16_0226DEEC * ov16_0226DEEC(UnkStruct_0200C6E4 * param0, UnkStruct_0
 void ov16_0226DF68(UnkStruct_ov16_0226DEEC * param0);
 void ov16_0226DFB0(UnkStruct_ov16_0226DEEC * param0, int param1, int param2);
 void ov16_0226DFBC(UnkStruct_ov16_0226DEEC * param0);
-static void ov16_0226DFD8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0226DFD8(SysTask * param0, void * param1);
 static void ov16_0226E13C(UnkStruct_ov16_0226DEEC * param0);
 
 static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270AD8 = {
@@ -139,7 +139,7 @@ BOOL ov16_0226DFD4 (UnkStruct_ov16_0226DEEC * param0)
     return param0->unk_1B;
 }
 
-static void ov16_0226DFD8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226DFD8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226DEEC * v0 = param1;
 

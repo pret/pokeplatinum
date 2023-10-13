@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV101_021D2D88_H
 #define POKEPLATINUM_STRUCT_OV101_021D2D88_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay101/struct_ov101_021D13C8_decl.h"
 
 #include "enums.h"
@@ -14,7 +14,7 @@ typedef struct {
     UnkEnum_ov101_021D2BDC unk_10;
     int unk_14;
     int unk_18;
-    UnkStruct_0201CD38 * unk_1C;
+    SysTask * unk_1C;
     UnkStruct_ov101_021D13C8 * unk_20;
 } UnkStruct_ov101_021D2D88;
 

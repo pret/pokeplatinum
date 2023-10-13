@@ -3,13 +3,13 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 
-#include "functypes/funcptr_0201CE28.h"
+#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021DA384.h"
@@ -63,12 +63,12 @@ static void ov19_021DBFB0(UnkStruct_ov19_021DBA9C * param0);
 static void ov19_021DBFC4(UnkStruct_ov19_021DBA9C * param0);
 static void ov19_021DC01C(UnkStruct_ov19_021DBA9C * param0);
 static void ov19_021DC034(UnkStruct_ov19_021DBA9C * param0, int param1);
-static void ov19_021DC074(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021DC074(SysTask * param0, void * param1);
 static BOOL ov19_021DC090(UnkStruct_ov19_021DBA9C * param0);
-static void ov19_021DC0A0(UnkStruct_0201CD38 * param0, void * param1);
-static void ov19_021DC1CC(UnkStruct_0201CD38 * param0, void * param1);
-static void ov19_021DC37C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov19_021DC46C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021DC0A0(SysTask * param0, void * param1);
+static void ov19_021DC1CC(SysTask * param0, void * param1);
+static void ov19_021DC37C(SysTask * param0, void * param1);
+static void ov19_021DC46C(SysTask * param0, void * param1);
 static void ov19_021DC4F8(UnkStruct_ov19_021DBA9C * param0, u32 param1);
 static void ov19_021DC5B8(UnkStruct_ov19_021DBA9C * param0, fx32 param1);
 static void ov19_021DC5E0(UnkStruct_ov19_021DBA9C * param0);
@@ -471,7 +471,7 @@ static void ov19_021DC01C (UnkStruct_ov19_021DBA9C * param0)
 
 static void ov19_021DC034 (UnkStruct_ov19_021DBA9C * param0, int param1)
 {
-    static const UnkFuncPtr_0201CE28 v0[] = {
+    static const SysTaskFunc v0[] = {
         ov19_021DC0A0, ov19_021DC1CC,
     };
     UnkStruct_ov19_021DC034 * v1 = Heap_AllocFromHeap(10, sizeof(UnkStruct_ov19_021DC034));
@@ -489,7 +489,7 @@ static void ov19_021DC034 (UnkStruct_ov19_021DBA9C * param0, int param1)
     }
 }
 
-static void ov19_021DC074 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DC074 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC034 * v0 = (UnkStruct_ov19_021DC034 *)param1;
 
@@ -504,7 +504,7 @@ static BOOL ov19_021DC090 (UnkStruct_ov19_021DBA9C * param0)
     return param0->unk_DC == NULL;
 }
 
-static void ov19_021DC0A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DC0A0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC034 * v0 = (UnkStruct_ov19_021DC034 *)param1;
     UnkStruct_ov19_021DBA9C * v1 = v0->unk_00;
@@ -553,7 +553,7 @@ static void ov19_021DC0A0 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov19_021DC1CC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DC1CC (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC034 * v0 = (UnkStruct_ov19_021DC034 *)param1;
     UnkStruct_ov19_021DBA9C * v1 = v0->unk_00;
@@ -624,7 +624,7 @@ static void ov19_021DC374 (void * param0)
     v0->unk_DC = NULL;
 }
 
-static void ov19_021DC37C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DC37C (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC29C * v0 = param1;
 
@@ -681,7 +681,7 @@ static void ov19_021DC464 (void * param0)
     v0->unk_DC = NULL;
 }
 
-static void ov19_021DC46C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DC46C (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC29C * v0 = param1;
 

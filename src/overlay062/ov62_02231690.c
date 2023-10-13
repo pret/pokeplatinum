@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -2528,7 +2528,7 @@ void ov62_0223371C (UnkStruct_0208C06C * param0)
     }
 }
 
-static void ov62_02233750 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov62_02233750 (SysTask * param0, void * param1)
 {
     UnkStruct_ov62_02233750 * v0 = param1;
 
@@ -2551,7 +2551,7 @@ BOOL ov62_02233790 (UnkStruct_0208C06C * param0)
     return param0->unk_52C.unk_04;
 }
 
-static void ov62_02233798 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov62_02233798 (SysTask * param0, void * param1)
 {
     UnkStruct_0208C06C * v0 = param1;
 
@@ -3251,7 +3251,7 @@ void ov62_022343B8 (UnkStruct_0208C06C * param0, int param1, int param2)
     sub_0200710C(param0->unk_14.unk_00, param1, param0->unk_14.unk_10, param2, 0, 0, 0, 102);
 }
 
-static void ov62_022343D8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov62_022343D8 (SysTask * param0, void * param1)
 {
     UnkStruct_0208C06C * v0 = param1;
     s16 v1;

@@ -15,7 +15,7 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
@@ -108,7 +108,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_02002F38 * unk_0C;
     UnkStruct_02012744 * unk_10;
     UnkStruct_0207C690 * unk_14;
-    UnkStruct_0201CD38 * unk_18;
+    SysTask * unk_18;
     UnkStruct_0200C6E4 * unk_1C;
     UnkStruct_0200C704 * unk_20;
     UnkStruct_02015920 * unk_24;
@@ -150,7 +150,7 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     BOOL unk_19E0;
 } UnkStruct_ov113_0225DBCC;
 
-static void ov113_0225CEF0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov113_0225CEF0(SysTask * param0, void * param1);
 static void ov113_0225CF18(void * param0);
 static void ov113_0225CF58(UnkStruct_02018340 * param0);
 static void ov113_0225D12C(UnkStruct_02018340 * param0);
@@ -685,7 +685,7 @@ int ov113_0225CDFC (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov113_0225CEF0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov113_0225CEF0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov113_0225DBCC * v0 = param1;
 

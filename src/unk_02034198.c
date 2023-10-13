@@ -4,7 +4,7 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_02032188.h"
 #include "struct_defs/struct_020322D8.h"
@@ -58,7 +58,7 @@ typedef struct {
     UnkStruct_02032188 unk_4B0[8];
     UnkStruct_02032188 unk_510;
     UnkStruct_02032188 unk_51C[8];
-    UnkStruct_0201CD38 * unk_57C;
+    SysTask * unk_57C;
     UnkStruct_020322F8 unk_580;
     UnkStruct_020322F8 unk_5A0;
     UnkStruct_02035B6C unk_5C0[8];
@@ -104,7 +104,7 @@ typedef struct {
 } UnkStruct_021C07CC;
 
 static void sub_0203463C(void);
-static void sub_0203498C(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0203498C(SysTask * param0, void * param1);
 static void sub_02034B50(void);
 static void sub_02034DC8(void);
 static void sub_02034F68(void);
@@ -472,7 +472,7 @@ BOOL sub_02034984 (u16 param0)
     return sub_020339E8(param0);
 }
 
-static void sub_0203498C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0203498C (SysTask * param0, void * param1)
 {
     if (Unk_021C07C5) {
         sub_020353CC();

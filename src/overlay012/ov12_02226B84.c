@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_0222660C_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
@@ -442,7 +442,7 @@ static void ov12_02226B84 (UnkStruct_02007C7C * param0)
     sub_02007DEC(param0, 13, 0x100);
 }
 
-static void ov12_02226BA0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02226BA0 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov12_02226BA0 * v1 = (UnkStruct_ov12_02226BA0 *)param1;
@@ -512,7 +512,7 @@ void ov12_02226CB0 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_04.unk_04, ov12_02226BA0, v0);
 }
 
-static void ov12_02226D38 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02226D38 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02226D38 * v0 = (UnkStruct_ov12_02226D38 *)param1;
 
@@ -674,7 +674,7 @@ void ov12_02226EB0 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_1C.unk_04, ov12_02226D38, v0);
 }
 
-static void ov12_02227064 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02227064 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02227064 * v0 = (UnkStruct_ov12_02227064 *)param1;
 
@@ -838,7 +838,7 @@ void ov12_022271D8 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_1C.unk_04, ov12_02227064, v0);
 }
 
-static void ov12_02227390 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02227390 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02227390 * v0 = param1;
 
@@ -911,7 +911,7 @@ void ov12_02227408 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_04, ov12_02227390, v0);
 }
 
-static void ov12_022274E4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022274E4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_022274E4 * v0 = param1;
 
@@ -1018,7 +1018,7 @@ static BOOL ov12_0222769C (UnkStruct_ov12_02227620 * param0)
     return v0;
 }
 
-static void ov12_02227738 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02227738 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02227620 * v0 = param1;
 
@@ -1066,7 +1066,7 @@ void ov12_0222777C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     ov12_022201E8(v0->unk_00, ov12_02227738, v0);
 }
 
-static void ov12_02227808 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02227808 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02227808 * v0 = param1;
 
@@ -1105,7 +1105,7 @@ void ov12_02227828 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_00, ov12_02227808, v0);
 }
 
-static void ov12_022278D0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022278D0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_022278D0 * v0 = param1;
 
@@ -1285,7 +1285,7 @@ void ov12_0222797C (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_00, ov12_022278D0, v0);
 }
 
-static void ov12_02227B4C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02227B4C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02227B4C * v0 = param1;
     f32 v1, v2;
@@ -1404,7 +1404,7 @@ void ov12_02227CBC (UnkStruct_ov12_0221FCDC * param0)
     }
 }
 
-static void ov12_02227DE0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02227DE0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02227DE0 * v0 = param1;
 
@@ -1458,7 +1458,7 @@ void ov12_02227F30 (UnkStruct_ov12_0221FCDC * param0)
 {
     UnkStruct_ov12_02227DE0 * v0;
     UnkStruct_ov12_02235998 v1[4];
-    UnkStruct_0201CD38 * v2;
+    SysTask * v2;
     int v3;
     int v4;
 
@@ -1594,7 +1594,7 @@ void ov12_02227F30 (UnkStruct_ov12_0221FCDC * param0)
     ov12_02227DE0(v2, v0);
 }
 
-static void ov12_0222813C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222813C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222813C * v0 = param1;
 
@@ -1655,7 +1655,7 @@ void ov12_02228214 (UnkStruct_ov12_0221FCDC * param0)
     }
 }
 
-static void ov12_02228268 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02228268 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02228268 * v0 = (UnkStruct_ov12_02228268 *)param1;
 
@@ -1690,7 +1690,7 @@ void ov12_022282BC (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_3C, ov12_02228268, v0);
 }
 
-static void ov12_0222830C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222830C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222830C * v0 = (UnkStruct_ov12_0222830C *)param1;
 
@@ -1769,7 +1769,7 @@ void ov12_02228394 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v3->unk_64, ov12_0222830C, v3);
 }
 
-static void ov12_02228488 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02228488 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02228488 * v0 = (UnkStruct_ov12_02228488 *)param1;
 
@@ -1853,14 +1853,14 @@ void ov12_02228520 (UnkStruct_ov12_0221FCDC * param0)
     }
 
     {
-        UnkStruct_0201CD38 * v4;
+        SysTask * v4;
 
         v4 = ov12_022201E8(v3->unk_60, ov12_02228488, v3);
         ov12_02228488(v4, v3);
     }
 }
 
-static void ov12_0222862C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222862C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222862C * v0 = (UnkStruct_ov12_0222862C *)param1;
 
@@ -1943,7 +1943,7 @@ void ov12_022287CC (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_0C, ov12_0222862C, v0);
 }
 
-static void ov12_02228868 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02228868 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02228868 * v0 = (UnkStruct_ov12_02228868 *)param1;
 
@@ -2056,7 +2056,7 @@ void ov12_02228A0C (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_18, ov12_02228868, v0);
 }
 
-static void ov12_02228B10 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02228B10 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02228B10 * v0 = (UnkStruct_ov12_02228B10 *)param1;
 
@@ -2097,7 +2097,7 @@ void ov12_02228B40 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v1->unk_04.unk_04, ov12_02228B10, v1);
 }
 
-static void ov12_02228BD0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02228BD0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02228BD0 * v0 = (UnkStruct_ov12_02228BD0 *)param1;
 
@@ -2186,14 +2186,14 @@ void ov12_02228C6C (UnkStruct_ov12_0221FCDC * param0)
     }
 
     {
-        UnkStruct_0201CD38 * v4;
+        SysTask * v4;
 
         v4 = ov12_022201E8(v3->unk_60, ov12_02228BD0, v3);
         ov12_02228BD0(v4, v3);
     }
 }
 
-static void ov12_02228DB8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02228DB8 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov12_02228DB8 * v1 = (UnkStruct_ov12_02228DB8 *)param1;
@@ -2228,7 +2228,7 @@ void ov12_02228E00 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v1->unk_00.unk_04, ov12_02228DB8, v1);
 }
 
-static void ov12_02228E78 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02228E78 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02228E78 * v0 = (UnkStruct_ov12_02228E78 *)param1;
 
@@ -2393,7 +2393,7 @@ void ov12_022290DC (UnkStruct_ov12_0221FCDC * param0)
     }
 }
 
-static void ov12_02229184 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02229184 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02229184 * v0 = (UnkStruct_ov12_02229184 *)param1;
 
@@ -2429,7 +2429,7 @@ void ov12_022291AC (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v1->unk_00.unk_04, ov12_02229184, v1);
 }
 
-static void ov12_02229278 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02229278 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02229278 * v0 = (UnkStruct_ov12_02229278 *)param1;
 
@@ -2559,7 +2559,7 @@ static int ov12_02229454 (UnkStruct_ov12_0221FCDC * param0, int param1)
     return v0;
 }
 
-static void ov12_022294AC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022294AC (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_022294AC * v0 = (UnkStruct_ov12_022294AC *)param1;
 
@@ -2592,7 +2592,7 @@ static void ov12_022294AC (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov12_02229538 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02229538 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_022294AC * v0 = (UnkStruct_ov12_022294AC *)param1;
 
@@ -2625,7 +2625,7 @@ static void ov12_02229538 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov12_022295C4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022295C4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_022294AC * v0 = (UnkStruct_ov12_022294AC *)param1;
 
@@ -2704,7 +2704,7 @@ void ov12_02229638 (UnkStruct_ov12_0221FCDC * param0)
     }
 }
 
-static void ov12_02229738 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02229738 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov12_02229738 * v1 = (UnkStruct_ov12_02229738 *)param1;
@@ -2778,7 +2778,7 @@ void ov12_02229810 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v1->unk_2C, ov12_02229738, v1);
 }
 
-static void ov12_0222988C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222988C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222988C * v0 = param1;
 
@@ -2836,7 +2836,7 @@ void ov12_02229908 (UnkStruct_ov12_0221FCDC * param0)
     sub_0200D7FC(v0->unk_1C, 1);
 
     {
-        UnkStruct_0201CD38 * v2;
+        SysTask * v2;
 
         v2 = ov12_022201E8(v0->unk_00.unk_04, ov12_0222988C, v0);
         ov12_0222988C(v2, v0);
@@ -2915,7 +2915,7 @@ static BOOL ov12_02229A50 (UnkSPLStruct6 * param0)
     return v0;
 }
 
-static void ov12_02229A6C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02229A6C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02229980 * v0 = param1;
     BOOL v1;
@@ -3071,7 +3071,7 @@ void ov12_02229C5C (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v3->unk_3C.unk_04, ov12_02229A6C, v3);
 }
 
-static void ov12_02229DF0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02229DF0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02229980 * v0 = param1;
     BOOL v1;
@@ -3132,7 +3132,7 @@ void ov12_02229E54 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v3->unk_3C.unk_04, ov12_02229DF0, v3);
 }
 
-static void ov12_02229F9C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02229F9C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02229F9C * v0 = param1;
     BOOL v1;
@@ -3200,7 +3200,7 @@ void ov12_0222A00C (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_3C.unk_04, ov12_02229F9C, v0);
 }
 
-static void ov12_0222A178 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222A178 (SysTask * param0, void * param1)
 {
     BOOL v0;
     UnkStruct_ov12_0222A178 * v1 = (UnkStruct_ov12_0222A178 *)param1;
@@ -3287,7 +3287,7 @@ static const s16 Unk_ov12_0223A03C[] = {
     0xFF
 };
 
-static void ov12_0222A1F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222A1F4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222A1F478 * v0 = param1;
 
@@ -3397,7 +3397,7 @@ void ov12_0222A34C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222A1F4, v0);
 }
 
-static void ov12_0222A3DC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222A3DC (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222A3DC * v0 = param1;
     BOOL v1;
@@ -3451,7 +3451,7 @@ void ov12_0222A410 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222A3DC, v0);
 }
 
-static void ov12_0222A4A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222A4A0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222A4A0 * v0 = param1;
     BOOL v1;
@@ -3633,7 +3633,7 @@ static void ov12_0222A624 (UnkStruct_ov12_0222A624 * param0)
     }
 }
 
-static void ov12_0222A878 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222A878 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222A624 * v0 = param1;
 
@@ -3780,7 +3780,7 @@ void ov12_0222A8F4 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222A878, v0);
 }
 
-static void ov12_0222AB10 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222AB10 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov12_0222AB10 * v1 = (UnkStruct_ov12_0222AB10 *)param1;
@@ -3833,12 +3833,12 @@ void ov12_0222AB50 (UnkStruct_ov12_0221FCDC * param0)
     }
 
     {
-        UnkStruct_0201CD38 * v3 = ov12_022201E8(v0->unk_00.unk_04, ov12_0222AB10, v0);
+        SysTask * v3 = ov12_022201E8(v0->unk_00.unk_04, ov12_0222AB10, v0);
         ov12_0222AB10(v3, v0);
     }
 }
 
-static void ov12_0222ABBC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222ABBC (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222ABBC * v0 = (UnkStruct_ov12_0222ABBC *)param1;
 

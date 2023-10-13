@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/battle_system.h"
 #include "overlay016/struct_ov16_02268A14_decl.h"
 
@@ -21,12 +21,12 @@ typedef struct {
     s16 unk_06;
 } UnkStruct_ov16_0226E148;
 
-static void ov16_0226E188(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0226E188(SysTask * param0, void * param1);
 
-UnkStruct_0201CD38 * ov16_0226E148 (BattleSystem * param0)
+SysTask * ov16_0226E148 (BattleSystem * param0)
 {
     UnkStruct_ov16_0226E148 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
 
     v0 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0226E148));
     MI_CpuClear8(v0, sizeof(UnkStruct_ov16_0226E148));
@@ -37,7 +37,7 @@ UnkStruct_0201CD38 * ov16_0226E148 (BattleSystem * param0)
     return v1;
 }
 
-void ov16_0226E174 (UnkStruct_0201CD38 * param0)
+void ov16_0226E174 (SysTask * param0)
 {
     UnkStruct_ov16_0226E148 * v0;
 
@@ -47,7 +47,7 @@ void ov16_0226E174 (UnkStruct_0201CD38 * param0)
     sub_0200DA58(param0);
 }
 
-static void ov16_0226E188 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226E188 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226E148 * v0 = param1;
     UnkStruct_ov16_02268A14 * v1;

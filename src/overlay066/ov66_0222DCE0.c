@@ -3,7 +3,7 @@
 #include <ppwlobby/ppw_lobby.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_02230C90_decl.h"
@@ -26,10 +26,10 @@ typedef struct {
     SaveData * unk_00;
     UnkStruct_ov66_0222DFF8 * unk_04;
     UnkStruct_ov66_02230C90 * unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
 } UnkStruct_ov66_0222DD90;
 
-static void ov66_0222DDDC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov66_0222DDDC(SysTask * param0, void * param1);
 
 int ov66_0222DCE0 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -107,7 +107,7 @@ int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov66_0222DDDC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov66_0222DDDC (SysTask * param0, void * param1)
 {
     UnkStruct_ov66_0222DD90 * v0;
 

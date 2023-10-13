@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_02071330.h"
 #include "functypes/funcptr_02071330.h"
@@ -21,7 +21,7 @@ typedef struct UnkStruct_ov101_021D5D90_t {
     int unk_04;
     int unk_08;
     const void * unk_0C;
-    UnkStruct_0201CD38 * unk_10;
+    SysTask * unk_10;
     const UnkStruct_020711EC * unk_14;
     int unk_18;
     int unk_1C;
@@ -43,8 +43,8 @@ typedef struct UnkStruct_020711EC_t {
     UnkStruct_ov101_021D5D90 * unk_0C;
 } UnkStruct_020711EC;
 
-static UnkStruct_0201CD38 * sub_02071400(UnkStruct_ov101_021D5D90 * param0, int param1);
-static void sub_02071420(UnkStruct_0201CD38 * param0, void * param1);
+static SysTask * sub_02071400(UnkStruct_ov101_021D5D90 * param0, int param1);
+static void sub_02071420(SysTask * param0, void * param1);
 static UnkStruct_020711EC * sub_0207142C(int param0);
 static void sub_02071450(UnkStruct_020711EC * param0);
 static UnkStruct_ov101_021D5D90 * sub_0207145C(int param0, int param1);
@@ -57,8 +57,8 @@ static void sub_02071508(UnkStruct_ov101_021D5D90 * param0, u32 param1);
 static u32 sub_02071510(UnkStruct_ov101_021D5D90 * param0, u32 param1);
 static void sub_020715B0(UnkStruct_ov101_021D5D90 * param0, int param1);
 static void sub_020715B8(UnkStruct_ov101_021D5D90 * param0, const void * param1);
-static void sub_020715C8(UnkStruct_ov101_021D5D90 * param0, UnkStruct_0201CD38 * param1);
-static UnkStruct_0201CD38 * sub_020715CC(UnkStruct_ov101_021D5D90 * param0);
+static void sub_020715C8(UnkStruct_ov101_021D5D90 * param0, SysTask * param1);
+static SysTask * sub_020715CC(UnkStruct_ov101_021D5D90 * param0);
 static void sub_020715D0(UnkStruct_ov101_021D5D90 * param0, const UnkStruct_020711EC * param1);
 
 UnkStruct_020711EC * sub_020711EC (int param0, int param1)
@@ -90,7 +90,7 @@ UnkStruct_ov101_021D5D90 * sub_0207122C (UnkStruct_020711EC * param0, const UnkS
 {
     int v0, v1;
     UnkStruct_ov101_021D5D90 * v2;
-    UnkStruct_0201CD38 * v3;
+    SysTask * v3;
 
     v0 = 0;
     v1 = sub_020714E8(param0);
@@ -176,7 +176,7 @@ void sub_0207136C (UnkStruct_ov101_021D5D90 * param0)
     }
 
     {
-        UnkStruct_0201CD38 * v1 = sub_020715CC(param0);
+        SysTask * v1 = sub_020715CC(param0);
 
         if (v1 != NULL) {
             sub_0200DA58(v1);
@@ -224,9 +224,9 @@ void sub_020713D0 (UnkStruct_020711EC * param0)
     } while (v0);
 }
 
-static UnkStruct_0201CD38 * sub_02071400 (UnkStruct_ov101_021D5D90 * param0, int param1)
+static SysTask * sub_02071400 (UnkStruct_ov101_021D5D90 * param0, int param1)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
 
     v0 = SysTask_Start(sub_02071420, param0, param1);
     GF_ASSERT(v0 != NULL);
@@ -234,7 +234,7 @@ static UnkStruct_0201CD38 * sub_02071400 (UnkStruct_ov101_021D5D90 * param0, int
     return v0;
 }
 
-static void sub_02071420 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02071420 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D5D90 * v0;
 
@@ -419,12 +419,12 @@ int sub_020715C4 (const UnkStruct_ov101_021D5D90 * param0)
     return param0->unk_08;
 }
 
-static void sub_020715C8 (UnkStruct_ov101_021D5D90 * param0, UnkStruct_0201CD38 * param1)
+static void sub_020715C8 (UnkStruct_ov101_021D5D90 * param0, SysTask * param1)
 {
     param0->unk_10 = param1;
 }
 
-static UnkStruct_0201CD38 * sub_020715CC (UnkStruct_ov101_021D5D90 * param0)
+static SysTask * sub_020715CC (UnkStruct_ov101_021D5D90 * param0)
 {
     return param0->unk_10;
 }

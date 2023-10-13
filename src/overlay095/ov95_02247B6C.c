@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "pokemon.h"
@@ -62,8 +62,8 @@ typedef struct {
     Strbuf* unk_6C;
     UnkStruct_ov95_0224773C * unk_70;
     UnkStruct_ov95_02247958 * unk_74;
-    UnkStruct_0201CD38 * unk_78;
-    UnkStruct_0201CD38 * unk_7C;
+    SysTask * unk_78;
+    SysTask * unk_7C;
     NARC * unk_80;
 } UnkStruct_ov95_02247C6C;
 
@@ -99,12 +99,12 @@ static void ov95_02248340(UnkStruct_ov95_02247C6C * param0);
 static void ov95_02248364(UnkStruct_ov95_02247C6C * param0, int param1, int param2, int param3);
 static BOOL ov95_022483B4(UnkStruct_ov95_02247C6C * param0);
 static void ov95_022483C4(UnkStruct_ov95_02247C6C * param0);
-static void ov95_022483E4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov95_022483E4(SysTask * param0, void * param1);
 static void ov95_02248420(UnkStruct_ov95_02247C6C * param0);
 static BOOL ov95_0224846C(UnkStruct_ov95_02247C6C * param0);
 static int ov95_0224847C(UnkStruct_ov95_02247C6C * param0);
 static void ov95_02248490(UnkStruct_ov95_02247C6C * param0);
-static void ov95_022484B0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov95_022484B0(SysTask * param0, void * param1);
 
 void * ov95_02247B6C (UnkStruct_ov95_02247628 * param0)
 {
@@ -545,7 +545,7 @@ static void ov95_022483C4 (UnkStruct_ov95_02247C6C * param0)
     }
 }
 
-static void ov95_022483E4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_022483E4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02248364 * v0 = param1;
     int v1;
@@ -606,7 +606,7 @@ static void ov95_02248490 (UnkStruct_ov95_02247C6C * param0)
     }
 }
 
-static void ov95_022484B0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_022484B0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02248420 * v0 = param1;
     BOOL v1 = 0;

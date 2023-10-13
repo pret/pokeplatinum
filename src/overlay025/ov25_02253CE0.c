@@ -6,7 +6,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
@@ -92,7 +92,7 @@ typedef struct UnkStruct_ov25_02253CE0_t {
     u32 unk_2C;
     u32 unk_30;
     struct UnkStruct_ov25_02253CE0_t ** unk_34;
-    UnkStruct_0201CD38 * unk_38;
+    SysTask * unk_38;
     UnkFuncPtr_ov25_02254238 unk_3C;
     UnkFuncPtr_ov25_02254238_1 unk_40;
     UnkFuncPtr_ov25_02254274 unk_44;
@@ -108,8 +108,8 @@ typedef struct UnkStruct_ov25_02253CE0_t {
 static UnkStruct_ov25_02253CE0 * ov25_02253CE0(void);
 static BOOL ov25_02253DDC(UnkStruct_ov25_02253CE0 * param0);
 static void ov25_02253E20(UnkStruct_ov25_02253CE0 * param0);
-static void ov25_02253E40(UnkStruct_0201CD38 * param0, void * param1);
-static void ov25_02253E94(UnkStruct_0201CD38 * param0, void * param1);
+static void ov25_02253E40(SysTask * param0, void * param1);
+static void ov25_02253E94(SysTask * param0, void * param1);
 static void ov25_02253E9C(UnkStruct_ov25_02253CE0 * param0, u32 param1);
 static void ov25_02253EA4(UnkStruct_ov25_02253CE0 * param0);
 static void ov25_02253F2C(UnkStruct_ov25_02253CE0 * param0);
@@ -279,7 +279,7 @@ static void ov25_02253E20 (UnkStruct_ov25_02253CE0 * param0)
     ov25_02254754(param0->unk_1C);
 }
 
-static void ov25_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov25_02253E40 (SysTask * param0, void * param1)
 {
     static void(*const v0[])(UnkStruct_ov25_02253CE0 *) = {
         ov25_02253EA4,
@@ -310,7 +310,7 @@ static void ov25_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov25_02253E94 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov25_02253E94 (SysTask * param0, void * param1)
 {
     UnkStruct_ov25_02253CE0 * v0 = param1;
 

@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 #include "overlay095/struct_ov95_0224773C_decl.h"
@@ -57,7 +57,7 @@ enum {
 
 typedef struct {
     void * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_ov95_0224773C * unk_08;
     UnkStruct_ov95_02247958 * unk_0C;
     VecFx32 unk_10;
@@ -93,7 +93,7 @@ typedef struct {
     UnkStruct_02018340 * unk_24;
     UnkStruct_ov95_0224773C * unk_28;
     UnkStruct_ov95_02247958 * unk_2C;
-    UnkStruct_0201CD38 * unk_30;
+    SysTask * unk_30;
     UnkStruct_ov95_0224A848 unk_34;
 } UnkStruct_ov95_0224A42C;
 
@@ -111,7 +111,7 @@ static void ov95_0224A864(UnkStruct_ov95_0224A42C * param0, UnkStruct_ov95_0224A
 static BOOL ov95_0224A924(UnkStruct_ov95_0224A848 * param0);
 static void ov95_0224A934(UnkStruct_ov95_0224A848 * param0, fx32 param1, fx32 param2, fx32 param3, int param4);
 static void ov95_0224A978(UnkStruct_ov95_0224A848 * param0);
-static void ov95_0224AA70(UnkStruct_0201CD38 * param0, void * param1);
+static void ov95_0224AA70(SysTask * param0, void * param1);
 static void ov95_0224AB48(UnkStruct_ov95_0224A42C * param0);
 static void ov95_0224AB50(void * param0);
 
@@ -516,7 +516,7 @@ static void ov95_0224A978 (UnkStruct_ov95_0224A848 * param0)
     }
 }
 
-static void ov95_0224AA70 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_0224AA70 (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_0224A848 * v0 = param1;
 

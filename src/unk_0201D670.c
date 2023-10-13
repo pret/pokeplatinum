@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
-#include "functypes/funcptr_0201CE28.h"
+#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0201D670.h"
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0201D834.h"
@@ -21,8 +21,8 @@
 #include "strbuf.h"
 
 static int sub_0201D9E8(UnkStruct_0201D834 * param0);
-static void sub_0201D97C(UnkStruct_0201CD38 * param0, void * param1);
-static u8 sub_0201D67C(UnkFuncPtr_0201CE28 param0, void * param1, u32 param2);
+static void sub_0201D97C(SysTask * param0, void * param1);
+static u8 sub_0201D67C(SysTaskFunc param0, void * param1, u32 param2);
 static void sub_0201D6B0(u8 param0);
 static void sub_0201DB48(UnkStruct_0201D834 * param0);
 static void sub_0201DBD8(UnkStruct_0201D834 * param0);
@@ -36,9 +36,9 @@ void sub_0201D670 (const UnkStruct_0201D670 * param0)
     Unk_02100840 = param0;
 }
 
-static UnkStruct_0201CD38 * Unk_021C04E0[8] = {0};
+static SysTask * Unk_021C04E0[8] = {0};
 
-static u8 sub_0201D67C (UnkFuncPtr_0201CE28 param0, void * param1, u32 param2)
+static u8 sub_0201D67C (SysTaskFunc param0, void * param1, u32 param2)
 {
     int v0;
 
@@ -233,7 +233,7 @@ u8 sub_0201D834 (const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D
     }
 }
 
-static void sub_0201D97C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0201D97C (SysTask * param0, void * param1)
 {
     UnkStruct_0201D834 * v0;
     int v1;

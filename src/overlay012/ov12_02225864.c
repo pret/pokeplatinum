@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_02013B10_decl.h"
 #include "struct_decls/struct_02013BE0_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -37,8 +37,8 @@ typedef struct {
 typedef void (* UnkFuncPtr_ov12_02226490)(void *);
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_00;
+    SysTask * unk_04;
     BOOL unk_08;
     BOOL unk_0C;
     UnkFuncPtr_ov12_02226490 unk_10;
@@ -61,7 +61,7 @@ typedef struct UnkStruct_ov12_0222660C_t {
 
 typedef struct UnkStruct_ov12_022267D4_t {
     BOOL unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     int unk_08;
     u16 unk_0C;
     u16 unk_0E;
@@ -805,7 +805,7 @@ void ov12_022263A4 (UnkStruct_ov12_02225F6C * param0, int param1, int param2)
     param0->unk_04[0] *= param1;
 }
 
-static void ov12_022263DC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022263DC (SysTask * param0, void * param1)
 {
     BOOL v0;
     UnkStruct_ov12_02226454 * v1 = param1;
@@ -841,7 +841,7 @@ BOOL ov12_02226454 (const UnkStruct_ov12_02226454 * param0)
     return param0->unk_24;
 }
 
-static void ov12_02226458 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02226458 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02226490 * v0 = param1;
 
@@ -853,7 +853,7 @@ static void ov12_02226458 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov12_02226474 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02226474 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02226490 * v0 = param1;
 
@@ -1106,7 +1106,7 @@ BOOL ov12_022267A8 (int * param0, int param1, s32 param2)
     return 1;
 }
 
-static void ov12_022267D4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022267D4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_022267D4 * v0 = (UnkStruct_ov12_022267D4 *)param1;
 

@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 #include "overlay116/struct_ov116_02260490.h"
@@ -134,8 +134,8 @@ static void ov116_02262CB8(UnkStruct_ov116_02262A8C * param0, int param1);
 static void ov116_02262D08(UnkStruct_ov116_02262A8C * param0, int param1);
 static void ov116_02262D64(UnkStruct_ov116_02262A8C * param0, int param1);
 static void ov116_02262DC0(UnkStruct_ov116_02262A8C * param0);
-static void ov116_0226323C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov116_02263434(UnkStruct_0201CD38 * param0, void * param1);
+static void ov116_0226323C(SysTask * param0, void * param1);
+static void ov116_02263434(SysTask * param0, void * param1);
 static void ov116_0226377C(UnkStruct_ov116_02262A8C * param0);
 static void ov116_022637B4(UnkStruct_ov116_02262A8C * param0);
 static BOOL ov116_022637F0(UnkStruct_ov116_02262A8C * param0);
@@ -371,7 +371,7 @@ static void ov116_02262DC0 (UnkStruct_ov116_02262A8C * param0)
     SysTask_Start(ov116_02262E50, v0, 4096);
 }
 
-void ov116_02262E50 (UnkStruct_0201CD38 * param0, void * param1)
+void ov116_02262E50 (SysTask * param0, void * param1)
 {
     UnkStruct_ov116_02262DC0 * v0 = param1;
     s16 v1;
@@ -517,7 +517,7 @@ void ov116_02262E50 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void ov116_02263158 (UnkStruct_0201CD38 * param0, void * param1)
+void ov116_02263158 (SysTask * param0, void * param1)
 {
     UnkStruct_ov116_02262CB8 * v0 = param1;
     int v1 = sub_0200D3E0(v0->unk_0C);
@@ -577,7 +577,7 @@ void ov116_02263158 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov116_0226323C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_0226323C (SysTask * param0, void * param1)
 {
     UnkStruct_ov116_02262D08 * v0 = param1;
 
@@ -677,7 +677,7 @@ static void ov116_0226323C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov116_02263434 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_02263434 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov116_02262D08 * v1 = param1;

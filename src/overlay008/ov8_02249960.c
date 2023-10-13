@@ -4,7 +4,7 @@
 #include "core_sys.h"
 
 #include "message.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -287,7 +287,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
     UnkStruct_ov101_021D5D90 * unk_10;
     UnkStruct_02061AB4 * unk_14;
     UnkStruct_ov8_0224C444 * unk_18;
@@ -298,7 +298,7 @@ typedef struct UnkStruct_ov8_0224C444_t {
     UnkStruct_ov8_0224C4F8 unk_04[16];
     UnkStruct_ov8_0224C3B4 unk_1C4;
     u32 unk_1F0;
-    UnkStruct_0201CD38 * unk_1F4;
+    SysTask * unk_1F4;
 } UnkStruct_ov8_0224C444;
 
 void include_ov8_02249960(void);
@@ -324,11 +324,11 @@ static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 * param0, UnkStruct_ov8_0224B80C
 static void ov8_0224C0FC(UnkStruct_ov8_0224C098 * param0, int param1);
 static void ov8_0224C11C(UnkStruct_ov8_0224C098 * param0, int param1);
 static void ov8_0224C170(UnkStruct_ov8_0224C098 * param0, fx32 param1);
-static void ov8_0224C3B0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov8_0224C3B0(SysTask * param0, void * param1);
 static void ov8_0224C3B4(UnkStruct_ov8_0224C444 * param0);
 static void ov8_0224C444(UnkStruct_ov8_0224C444 * param0);
 static void ov8_0224C4F8(UnkStruct_ov8_0224C444 * param0);
-static void ov8_0224C518(UnkStruct_0201CD38 * param0, void * param1);
+static void ov8_0224C518(SysTask * param0, void * param1);
 
 static u8 ov8_02249960 (const u8 param0, const int param1)
 {
@@ -3982,7 +3982,7 @@ void ov8_0224C388 (UnkStruct_0203CDB0 * param0)
     param0->unk_04->unk_24 = NULL;
 }
 
-static void ov8_0224C3B0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov8_0224C3B0 (SysTask * param0, void * param1)
 {
     return;
 }
@@ -4066,7 +4066,7 @@ static void ov8_0224C4F8 (UnkStruct_ov8_0224C444 * param0)
     }
 }
 
-static void ov8_0224C518 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov8_0224C518 (SysTask * param0, void * param1)
 {
     return;
 }

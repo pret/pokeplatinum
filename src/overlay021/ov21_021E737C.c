@@ -7,7 +7,7 @@
 #include "struct_decls/struct_02015128_decl.h"
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
@@ -127,7 +127,7 @@ typedef struct {
     UnkStruct_02009DC8 * unk_24[4];
     const UnkStruct_ov21_021E9DB0 * unk_34;
     int unk_38;
-    UnkStruct_0201CD38 * unk_3C;
+    SysTask * unk_3C;
     UnkStruct_ov21_021E8084 unk_40;
     UnkStruct_ov21_021E81F8 unk_74;
     UnkStruct_ov21_021E82C8 unk_98;
@@ -169,12 +169,12 @@ static void ov21_021E7F7C(UnkStruct_ov21_021E747C * param0);
 static const UnkStruct_ov21_021E9DB0 * ov21_021E83D8(const UnkStruct_ov21_021E9DB0 * param0, int param1, int param2);
 static void ov21_021E80D4(UnkStruct_02015214 * param0, UnkStruct_02022550 * param1, UnkStruct_02022550 * param2, UnkStruct_02022550 * param3, UnkStruct_02022550 * param4, u16 param5);
 static void ov21_021E7F88(UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E747C * param1, int param2);
-static void ov21_021E7FD0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov21_021E7FD0(SysTask * param0, void * param1);
 static void ov21_021E8084(UnkStruct_ov21_021E8084 * param0);
 static void ov21_021E8188(UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E747C * param1, u16 param2, u16 param3, int param4);
-static void ov21_021E81F8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov21_021E81F8(SysTask * param0, void * param1);
 static void ov21_021E8258(UnkStruct_ov21_021E7714 * param0, s16 param1, int param2);
-static void ov21_021E82C8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov21_021E82C8(SysTask * param0, void * param1);
 static void ov21_021E8400(UnkStruct_ov21_021E7714 * param0, u8 param1, u16 param2);
 
 const static UnkStruct_ov21_021E9DB0 Unk_ov21_021E9DB0[17] = {
@@ -840,7 +840,7 @@ static void ov21_021E7F88 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     param0->unk_3C = SysTask_Start(ov21_021E7FD0, &param0->unk_40, 0);
 }
 
-static void ov21_021E7FD0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov21_021E7FD0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov21_021E8084 * v0 = (UnkStruct_ov21_021E8084 *)param1;
 
@@ -956,7 +956,7 @@ static void ov21_021E8188 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     param0->unk_3C = SysTask_Start(ov21_021E81F8, &param0->unk_74, 0);
 }
 
-static void ov21_021E81F8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov21_021E81F8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov21_021E81F8 * v0 = (UnkStruct_ov21_021E81F8 *)param1;
     BOOL v1 = 0;
@@ -1009,7 +1009,7 @@ static void ov21_021E8258 (UnkStruct_ov21_021E7714 * param0, s16 param1, int par
     param0->unk_3C = SysTask_Start(ov21_021E82C8, &param0->unk_98, 0);
 }
 
-static void ov21_021E82C8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov21_021E82C8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov21_021E82C8 * v0 = (UnkStruct_ov21_021E82C8 *)param1;
     int v1;

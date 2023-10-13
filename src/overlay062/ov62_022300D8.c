@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -510,7 +510,7 @@ void ov62_02230B9C (UnkStruct_0208C06C * param0, BOOL param1)
     }
 }
 
-void ov62_02230C28 (UnkStruct_0201CD38 * param0, void * param1)
+void ov62_02230C28 (SysTask * param0, void * param1)
 {
     UnkStruct_ov62_02230C28 * v0 = param1;
 

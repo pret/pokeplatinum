@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 
@@ -39,7 +39,7 @@ typedef struct UnkStruct_ov6_022426B8_t {
 } UnkStruct_ov6_022426B8;
 
 static void ov6_022428F8(UnkStruct_ov6_022426B8 * param0);
-static void ov6_02242860(UnkStruct_0201CD38 * param0, void * param1);
+static void ov6_02242860(SysTask * param0, void * param1);
 static void ov6_02242880(UnkStruct_02009714 * param0, UnkStruct_02009714 * param1, void * param2, void * param3);
 
 static const u8 Unk_ov6_02249030[] = {
@@ -153,7 +153,7 @@ void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
     Heap_FreeToHeap(param0->unk_24);
 }
 
-static void ov6_02242860 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov6_02242860 (SysTask * param0, void * param1)
 {
     UnkStruct_ov6_022426B8 * v0 = param1;
 

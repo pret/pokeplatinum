@@ -5,7 +5,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -51,7 +51,7 @@ typedef struct {
     BOOL unk_08;
     int unk_0C;
     BattleParams * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_14;
 } UnkStruct_ov5_021F08CC;
 
 typedef struct {
@@ -73,7 +73,7 @@ typedef struct {
     MessageLoader * unk_48;
 } UnkStruct_ov5_021F0D6C;
 
-static void ov5_021F0A04(UnkStruct_0201CD38 * param0, void * param1);
+static void ov5_021F0A04(SysTask * param0, void * param1);
 static void * ov5_021F0D1C(u32 param0);
 static int ov5_021F0D40(void);
 static int ov5_021F0D54(void);
@@ -150,9 +150,9 @@ BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-UnkStruct_0201CD38 * ov5_021F09B4 (UnkStruct_0203CDB0 * param0, int param1, BOOL param2)
+SysTask * ov5_021F09B4 (UnkStruct_0203CDB0 * param0, int param1, BOOL param2)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov5_021F0D6C * v1 = ov5_021F0D1C(sizeof(UnkStruct_ov5_021F0D6C));
 
     v1->unk_20 = param0;
@@ -164,19 +164,19 @@ UnkStruct_0201CD38 * ov5_021F09B4 (UnkStruct_0203CDB0 * param0, int param1, BOOL
     return v0;
 }
 
-int ov5_021F09D8 (UnkStruct_0201CD38 * param0)
+int ov5_021F09D8 (SysTask * param0)
 {
     UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
     return v0->unk_04;
 }
 
-int ov5_021F09E4 (UnkStruct_0201CD38 * param0)
+int ov5_021F09E4 (SysTask * param0)
 {
     UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
     return v0->unk_08;
 }
 
-void ov5_021F09F0 (UnkStruct_0201CD38 * param0)
+void ov5_021F09F0 (SysTask * param0)
 {
     UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
 
@@ -184,7 +184,7 @@ void ov5_021F09F0 (UnkStruct_0201CD38 * param0)
     sub_0200DA58(param0);
 }
 
-static void ov5_021F0A04 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021F0A04 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021F0D6C * v0 = param1;
     UnkStruct_0205E884 * v1 = v0->unk_20->unk_3C;

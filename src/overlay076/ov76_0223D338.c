@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "pokemon.h"
 
@@ -489,7 +489,7 @@ static void ov76_0223D984 (FontOAM * param0, int param1, int param2)
     }
 }
 
-static void ov76_0223D9AC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov76_0223D9AC (SysTask * param0, void * param1)
 {
     UnkStruct_ov76_0223D9AC * v0 = param1;
 

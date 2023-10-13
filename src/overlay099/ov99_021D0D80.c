@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -77,7 +77,7 @@ static const UnkStruct_ov104_02241308 Unk_ov99_021D472C = {
     0x8
 };
 
-static void ov99_021D1244(UnkStruct_0201CD38 * param0, void * param1);
+static void ov99_021D1244(SysTask * param0, void * param1);
 static void ov99_021D1350(void * param0);
 static void ov99_021D1380(UnkStruct_02018340 * param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 * param0);
@@ -294,7 +294,7 @@ int ov99_021D11A8 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov99_021D1244 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov99_021D1244 (SysTask * param0, void * param1)
 {
     UnkStruct_ov99_021D2CB0 * v0 = param1;
 

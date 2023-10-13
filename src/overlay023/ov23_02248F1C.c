@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -91,7 +91,7 @@ static void ov23_02249334(int param0[][4]);
 
 static UnkStruct_ov23_0224942C * Unk_ov23_02257768;
 
-static void ov23_02248F1C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_02248F1C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224942C * v0 = param1;
     UnkStruct_02018340 * v1 = v0->unk_1B8;
@@ -328,7 +328,7 @@ static void ov23_0224937C (int param0[][4], UnkStruct_02022550 * param1[])
 UnkStruct_ov23_0224942C * ov23_02249404 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_ov23_0224942C * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
 
     v1 = sub_0200679C(ov23_02248F1C, sizeof(UnkStruct_ov23_0224942C), 4, 4);
     v0 = sub_0201CED0(v1);

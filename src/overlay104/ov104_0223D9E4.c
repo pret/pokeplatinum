@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "unk_02002F38.h"
 #include "narc.h"
@@ -17,7 +17,7 @@
 #include "overlay104/ov104_0223D9E4.h"
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
+    SysTask * unk_00;
     UnkStruct_02018340 * unk_04;
     u16 unk_08[2][2048];
     u8 unk_2008[2][65536];
@@ -26,7 +26,7 @@ typedef struct {
 } UnkStruct_ov104_0223DB34;
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
+    SysTask * unk_00;
     UnkStruct_02002F38 * unk_04;
     u16 unk_08[3][16];
     u8 unk_68;
@@ -34,8 +34,8 @@ typedef struct {
 } UnkStruct_ov104_0223DC04;
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_00;
+    SysTask * unk_04;
     UnkStruct_02018340 * unk_08;
     int unk_0C;
     int unk_10;
@@ -53,10 +53,10 @@ typedef struct UnkStruct_ov104_0223DA28_t {
 
 static UnkStruct_ov104_0223DB34 * ov104_0223DA40(UnkStruct_02018340 * param0);
 static void ov104_0223DB34(UnkStruct_ov104_0223DB34 * param0);
-static void ov104_0223DB48(UnkStruct_0201CD38 * param0, void * param1);
+static void ov104_0223DB48(SysTask * param0, void * param1);
 static UnkStruct_ov104_0223DC04 * ov104_0223DBB8(UnkStruct_02002F38 * param0);
 static void ov104_0223DC04(UnkStruct_ov104_0223DC04 * param0);
-static void ov104_0223DC18(UnkStruct_0201CD38 * param0, void * param1);
+static void ov104_0223DC18(SysTask * param0, void * param1);
 
 static const u16 Unk_ov104_022418B0[] = {
     0x14,
@@ -142,7 +142,7 @@ static void ov104_0223DB34 (UnkStruct_ov104_0223DB34 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov104_0223DB48 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov104_0223DB48 (SysTask * param0, void * param1)
 {
     u32 v0;
     UnkStruct_ov104_0223DB34 * v1 = param1;
@@ -192,7 +192,7 @@ static void ov104_0223DC04 (UnkStruct_ov104_0223DC04 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov104_0223DC18 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov104_0223DC18 (SysTask * param0, void * param1)
 {
     UnkStruct_ov104_0223DC04 * v0 = param1;
 

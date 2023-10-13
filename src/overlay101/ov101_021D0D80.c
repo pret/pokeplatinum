@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02099F80.h"
@@ -70,7 +70,7 @@ static void ov101_021D1884(UnkStruct_ov101_021D13C8 * param0);
 static int ov101_021D18B4(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D18C0(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D18E4(UnkStruct_ov101_021D13C8 * param0);
-static void ov101_021D18F4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov101_021D18F4(SysTask * param0, void * param1);
 static void ov101_021D197C(void * param0);
 static void ov101_021D19BC(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D19D4(UnkStruct_ov101_021D13C8 * param0);
@@ -615,7 +615,7 @@ static void ov101_021D18E4 (UnkStruct_ov101_021D13C8 * param0)
     sub_0200DA58(param0->unk_424.unk_10);
 }
 
-static void ov101_021D18F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D18F4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D13C8 * v0 = param1;
     UnkStruct_ov101_021D1894 * v1 = &v0->unk_424;

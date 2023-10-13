@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -45,9 +45,9 @@ FS_EXTERN_OVERLAY(overlay11);
 FS_EXTERN_OVERLAY(overlay12);
 FS_EXTERN_OVERLAY(overlay22);
 
-static void ov17_0223F6E8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_0223F6E8(SysTask * param0, void * param1);
 static void ov17_0223F15C(void);
-static void ov17_0223F774(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_0223F774(SysTask * param0, void * param1);
 
 static const UnkStruct_ov104_0223F9E0 Unk_ov17_022531FC = {
     0x0,
@@ -393,7 +393,7 @@ void ov17_0223F6C4 (UnkStruct_ov17_0223F6E8 * param0)
     param0->unk_18 = NULL;
 }
 
-static void ov17_0223F6E8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0223F6E8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_0223F6E8 * v0 = param1;
     int v1;
@@ -436,7 +436,7 @@ BOOL ov17_0223F760 (void)
     return 0;
 }
 
-static void ov17_0223F774 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0223F774 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_0223F744 * v0 = param1;
 

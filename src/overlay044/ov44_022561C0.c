@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
@@ -43,7 +43,7 @@ static BOOL ov44_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkS
 static BOOL ov44_0225621C(UnkStruct_ov44_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
 static void ov44_02256314(UnkStruct_ov44_0225621C * param0);
 static void ov44_0225632C(u32 param0, u32 param1, u32 param2, void * param3);
-static void ov44_02256338(UnkStruct_0201CD38 * param0, void * param1);
+static void ov44_02256338(SysTask * param0, void * param1);
 static void ov44_02256374(void * param0);
 static void ov44_0225637C(UnkStruct_ov44_0225621C * param0, u32 param1);
 static BOOL ov44_02256390(UnkStruct_ov44_0225621C * param0);
@@ -137,7 +137,7 @@ static void ov44_0225632C (u32 param0, u32 param1, u32 param2, void * param3)
     v0->unk_46 = param1;
 }
 
-static void ov44_02256338 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov44_02256338 (SysTask * param0, void * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov44_0225621C *) = {
         ov44_02256390, ov44_022563D0, ov44_02256588,

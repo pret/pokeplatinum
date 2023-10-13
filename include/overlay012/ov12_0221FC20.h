@@ -8,8 +8,8 @@
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "functypes/funcptr_0201CE28.h"
+#include "struct_decls/sys_task.h"
+#include "functypes/sys_task_func.h"
 #include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02223178_decl.h"
@@ -32,11 +32,11 @@ BOOL ov12_0222016C(UnkStruct_ov12_0221FCDC * param0);
 BOOL ov12_02220188(UnkStruct_ov12_0221FCDC * param0);
 BOOL ov12_02220198(UnkStruct_ov12_0221FCDC * param0);
 BOOL ov12_022201B4(UnkStruct_ov12_0221FCDC * param0);
-UnkStruct_0201CD38 * ov12_022201CC(UnkStruct_ov12_0221FCDC * param0, UnkFuncPtr_0201CE28 param1, void * param2, u32 param3);
-UnkStruct_0201CD38 * ov12_022201E8(UnkStruct_ov12_0221FCDC * param0, UnkFuncPtr_0201CE28 param1, void * param2);
-UnkStruct_0201CD38 * ov12_02220204(UnkStruct_ov12_0221FCDC * param0, UnkFuncPtr_0201CE28 param1, void * param2, u32 param3);
-void ov12_02220220(UnkStruct_ov12_0221FCDC * param0, UnkStruct_0201CD38 * param1);
-void ov12_02220230(UnkStruct_ov12_0221FCDC * param0, UnkStruct_0201CD38 * param1);
+SysTask * ov12_022201CC(UnkStruct_ov12_0221FCDC * param0, SysTaskFunc param1, void * param2, u32 param3);
+SysTask * ov12_022201E8(UnkStruct_ov12_0221FCDC * param0, SysTaskFunc param1, void * param2);
+SysTask * ov12_02220204(UnkStruct_ov12_0221FCDC * param0, SysTaskFunc param1, void * param2, u32 param3);
+void ov12_02220220(UnkStruct_ov12_0221FCDC * param0, SysTask * param1);
+void ov12_02220230(UnkStruct_ov12_0221FCDC * param0, SysTask * param1);
 u16 ov12_02220240(UnkStruct_ov12_0221FCDC * param0);
 u16 ov12_02220248(UnkStruct_ov12_0221FCDC * param0);
 UnkStruct_02014014 * ov12_02220250(UnkStruct_ov12_0221FCDC * param0);

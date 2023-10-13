@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "core_sys.h"
-
 #include "constants/abilities.h"
 #include "constants/items.h"
 #include "constants/narc.h"
@@ -17,7 +15,6 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
@@ -51,12 +48,22 @@
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
+#include "core_sys.h"
+#include "flags.h"
+#include "heap.h"
+#include "item.h"
+#include "message.h"
+#include "move_table.h"
+#include "party.h"
+#include "pokemon.h"
+#include "strbuf.h"
+#include "trainer_info.h"
+
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006224.h"
 #include "unk_020067E8.h"
 #include "unk_0200762C.h"
-#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -64,25 +71,17 @@
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
 #include "unk_0201567C.h"
-#include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "strbuf.h"
-#include "trainer_info.h"
-#include "pokemon.h"
-#include "move_table.h"
 #include "unk_02079170.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
-#include "party.h"
 #include "unk_0207A274.h"
-#include "item.h"
 #include "unk_0208694C.h"
 #include "unk_0208C098.h"
-#include "flags.h"
 #include "overlay012/ov12_02235E94.h"
 #include "overlay016/ov16_0223B140.h"
 #include "overlay016/ov16_0223DF00.h"
@@ -356,8 +355,8 @@ static void ov16_0224B7CC(BattleSystem * param0, BattleScriptTaskData * param1);
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
 static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
-static void ov16_02248E74(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_02249B80(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_02248E74(SysTask * param0, void * param1);
+static void ov16_02249B80(SysTask * param0, void * param1);
 
 static const BtlCmd sBattleCommands[] = {
     BtlCmd_SetupBattleUI,
@@ -8187,7 +8186,7 @@ static void* BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     return NULL;
 }
 
-static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_02248E74 (SysTask * param0, void * param1)
 {
     int v0;
     int v1;
@@ -8753,7 +8752,7 @@ static void ov16_022499C0 (Party * param0, int param1, int param2, int param3)
     PokemonPersonalData_Free(v8);
 }
 
-static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_02249B80 (SysTask * param0, void * param1)
 {
     int v0;
     int v1;

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208B878.h"
@@ -24,7 +24,7 @@ typedef struct {
 } UnkStruct_0208B2DC;
 
 static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 * param4, f32 * param5, f32 param6, s16 param7);
-static void sub_0208B3D4(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0208B3D4(SysTask * param0, void * param1);
 UnkStruct_0208B878 * sub_0208B284(UnkStruct_0208B284 param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_02002F38 * param3);
 void sub_0208B6B0(UnkStruct_0208B878 * param0, int param1);
 void sub_0208B7B4(UnkStruct_0208B878 * param0);
@@ -97,7 +97,7 @@ static BOOL sub_0208B2DC (s16 param0, s16 param1, f32 param2, f32 param3, f32 * 
     return 1;
 }
 
-static void sub_0208B3D4 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0208B3D4 (SysTask * param0, void * param1)
 {
     UnkStruct_0208B878 * v0 = param1;
 

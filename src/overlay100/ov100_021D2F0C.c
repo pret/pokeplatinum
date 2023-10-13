@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
 #include "overlay100/struct_ov100_021D3084.h"
@@ -285,7 +285,7 @@ void * ov100_021D3620 (UnkStruct_ov100_021D4DD8 * param0)
     return v0;
 }
 
-static void ov100_021D36CC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov100_021D36CC (SysTask * param0, void * param1)
 {
     UnkStruct_ov100_021D36CC * v0 = param1;
 
@@ -349,7 +349,7 @@ static void ov100_021D37B0 (UnkStruct_ov100_021D3084 * param0)
     SysTask_Start(ov100_021D36CC, &param0->unk_1D28->unk_AC, 0x1000);
 }
 
-static void ov100_021D37F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov100_021D37F4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov100_021D37F4 * v0 = param1;
     f32 v1[] = {

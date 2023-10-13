@@ -2,8 +2,8 @@
 #define POKEPLATINUM_OV19_021D61B0_H
 
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "functypes/funcptr_0201CE28.h"
+#include "struct_decls/sys_task.h"
+#include "functypes/sys_task_func.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
@@ -25,7 +25,7 @@ void ov19_021D64A0(UnkStruct_ov19_021D61B0 * param0);
 void ov19_021D6594(UnkStruct_ov19_021D61B0 * param0, u32 param1);
 BOOL ov19_021D6600(UnkStruct_ov19_021D61B0 * param0, u32 param1);
 BOOL ov19_021D6628(UnkStruct_ov19_021D61B0 * param0);
-UnkStruct_0201CD38 * ov19_021D77C8(UnkFuncPtr_0201CE28 param0, void * param1, u32 param2);
+SysTask * ov19_021D77C8(SysTaskFunc param0, void * param1, u32 param2);
 NNSG2dImagePaletteProxy * ov19_021D77D0(UnkStruct_ov19_021D61B0 * param0);
 UnkStruct_ov19_021DA384 * ov19_021D77D8(UnkStruct_ov19_021D61B0 * param0);
 UnkStruct_ov19_021D8318 * ov19_021D77E0(UnkStruct_ov19_021D61B0 * param0);

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "overlay012/struct_ov12_02225F6C.h"
@@ -25,7 +25,7 @@ typedef struct {
     UnkStruct_ov12_02225F6C unk_60;
 } UnkStruct_ov12_0222E784;
 
-static void ov12_0222E784 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222E784 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222E784 * v0 = (UnkStruct_ov12_0222E784 *)param1;
 

@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "overlay019/struct_ov19_021D5DF8_decl.h"
@@ -37,10 +37,10 @@ static const struct {
     {192, 116},
 };
 
-static void ov19_021DC708(UnkStruct_0201CD38 * param0, void * param1);
-static void ov19_021DC79C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov19_021DC8E8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov19_021DCA18(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021DC708(SysTask * param0, void * param1);
+static void ov19_021DC79C(SysTask * param0, void * param1);
+static void ov19_021DC8E8(SysTask * param0, void * param1);
+static void ov19_021DCA18(SysTask * param0, void * param1);
 static void ov19_021DCD64(UnkStruct_ov19_021DC680 * param0, u32 param1);
 static void ov19_021DCDB4(UnkStruct_ov19_021DC680 * param0, VecFx32 * param1);
 static void ov19_021DCE50(UnkStruct_ov19_021DC680 * param0, fx32 param1);
@@ -115,7 +115,7 @@ BOOL ov19_021DC6F8 (UnkStruct_ov19_021DC680 * param0)
     return param0->unk_2C == 0;
 }
 
-static void ov19_021DC708 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DC708 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC680 * v0 = (UnkStruct_ov19_021DC680 *)param1;
     fx32 v1;
@@ -153,7 +153,7 @@ BOOL ov19_021DC788 (UnkStruct_ov19_021DC680 * param0)
     return 0;
 }
 
-static void ov19_021DC79C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DC79C (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC680 * v0 = (UnkStruct_ov19_021DC680 *)param1;
     fx32 v1;
@@ -211,7 +211,7 @@ void ov19_021DC834 (UnkStruct_ov19_021DC680 * param0)
     }
 }
 
-static void ov19_021DC8E8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DC8E8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC680 * v0;
     VecFx32 * v1;
@@ -265,7 +265,7 @@ BOOL ov19_021DCA08 (UnkStruct_ov19_021DC680 * param0)
     return param0->unk_2C == 0;
 }
 
-static void ov19_021DCA18 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DCA18 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DC680 * v0;
     VecFx32 v1;

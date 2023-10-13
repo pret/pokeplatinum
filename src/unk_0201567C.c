@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "unk_02002F38.h"
 #include "unk_0200679C.h"
@@ -14,7 +14,7 @@
 typedef void (* UnkFuncPtr_020157E4)(void *, u16 *);
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
+    SysTask * unk_00;
     UnkFuncPtr_020157E4 unk_04;
     UnkStruct_02002F38 * unk_08;
     u16 unk_0C[16];
@@ -25,7 +25,7 @@ typedef struct {
     u8 unk_4F;
 } UnkStruct_020157E4;
 
-static void sub_0201576C(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0201576C(SysTask * param0, void * param1);
 static u8 sub_020157E4(UnkStruct_020157E4 * param0);
 static void sub_02015840(void * param0, u16 * param1);
 static void sub_02015858(void * param0, u16 * param1);
@@ -35,7 +35,7 @@ static void sub_0201588C(void * param0, u16 * param1);
 void * sub_0201567C (UnkStruct_02002F38 * param0, u16 param1, u16 param2, u32 param3)
 {
     UnkStruct_020157E4 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
     u16 * v2;
 
     v1 = sub_0200679C(sub_0201576C, sizeof(UnkStruct_020157E4), 0, param3);
@@ -94,7 +94,7 @@ void sub_02015760 (void * param0)
     sub_020067D0(v0->unk_00);
 }
 
-static void sub_0201576C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0201576C (SysTask * param0, void * param1)
 {
     UnkStruct_020157E4 * v0 = (UnkStruct_020157E4 *)param1;
 

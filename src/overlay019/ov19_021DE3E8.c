@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
@@ -69,7 +69,7 @@ static void ov19_021DE5D4(UnkStruct_ov19_021DE3E8 * param0);
 static void ov19_021DE694(UnkStruct_ov19_021DE3E8 * param0, VecFx32 * param1, u32 * param2);
 static void ov19_021DE718(UnkStruct_ov19_021DE3E8 * param0, int param1, int param2);
 static void ov19_021DE858(UnkStruct_ov19_021DE3E8 * param0, int param1, const VecFx32 * param2, int param3, int param4);
-static void ov19_021DE8E0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021DE8E0(SysTask * param0, void * param1);
 
 BOOL ov19_021DE3E8 (UnkStruct_ov19_021DE3E8 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4)
 {
@@ -354,7 +354,7 @@ static void ov19_021DE858 (UnkStruct_ov19_021DE3E8 * param0, int param1, const V
     }
 }
 
-static void ov19_021DE8E0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DE8E0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DE858 * v0 = param1;
 

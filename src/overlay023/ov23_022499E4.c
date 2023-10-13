@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0205964C.h"
@@ -26,7 +26,7 @@
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 
-static void ov97_0222D19C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov97_0222D19C(SysTask * param0, void * param1);
 static void ov23_02249C24(UnkFuncPtr_020598EC param0, int param1);
 static void ov23_02249C34(void);
 static void ov23_02249C98(void);
@@ -224,7 +224,7 @@ BOOL ov23_02249BD4 (void)
     return 0;
 }
 
-static void ov97_0222D19C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov97_0222D19C (SysTask * param0, void * param1)
 {
     UnkStruct_0205964C * v0 = sub_0205964C();
 

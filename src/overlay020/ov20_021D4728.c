@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -45,7 +45,7 @@ typedef struct UnkStruct_ov20_021D4AD4_t {
     UnkStruct_02022550 * unk_18;
     UnkStruct_ov20_021D4B2C unk_1C;
     u16 unk_2C[8][77];
-    UnkStruct_0201CD38 * unk_4FC;
+    SysTask * unk_4FC;
 } UnkStruct_ov20_021D4AD4;
 
 typedef struct {
@@ -68,7 +68,7 @@ static void ov20_021D4A24(UnkStruct_ov20_021D4AD4 * param0, NARC * param1);
 static void ov20_021D4AD4(UnkStruct_ov20_021D4AD4 * param0);
 static void ov20_021D4AF8(UnkStruct_ov20_021D4B2C * param0, NARC * param1, u32 param2, u32 param3);
 static void ov20_021D4B2C(UnkStruct_ov20_021D4B2C * param0);
-static void ov20_021D4C40(UnkStruct_0201CD38 * param0, void * param1);
+static void ov20_021D4C40(SysTask * param0, void * param1);
 static UnkStruct_02022550 * ov20_021D4B40(UnkStruct_ov20_021D4AD4 * param0, NNSG2dImageProxy * param1, NNSG2dImagePaletteProxy * param2, UnkStruct_ov20_021D4B2C * param3, int param4, int param5, int param6, int param7);
 
 UnkStruct_ov20_021D4AD4 * ov20_021D4728 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
@@ -421,7 +421,7 @@ BOOL ov20_021D4C2C (UnkStruct_ov20_021D4AD4 * param0)
     return param0->unk_4FC == NULL;
 }
 
-static void ov20_021D4C40 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov20_021D4C40 (SysTask * param0, void * param1)
 {
     UnkStruct_ov20_021D4BA4 * v0 = param1;
 

@@ -10,7 +10,7 @@
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017294.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -26,7 +26,7 @@ typedef struct {
     UnkStruct_02018340 * unk_08;
     UnkStruct_02002F38 * unk_0C;
     UnkStruct_0207C690 * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_14;
     UnkStruct_0200C6E4 * unk_18;
     UnkStruct_0200C704 * unk_1C;
     MessageLoader * unk_20;

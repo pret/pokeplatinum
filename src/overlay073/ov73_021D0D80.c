@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -87,7 +87,7 @@ typedef struct {
     void * unk_60;
     UnkStruct_0200B358 * unk_64;
     UnkStruct_02015920 * unk_68;
-    UnkStruct_0201CD38 * unk_6C;
+    SysTask * unk_6C;
     UnkStruct_0208737C * unk_70;
     UnkStruct_0208737C * unk_74;
     int unk_78;

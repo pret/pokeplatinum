@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
@@ -34,7 +34,7 @@
 typedef struct {
     UnkStruct_0207C690 * unk_00;
     UnkStruct_020203AC * unk_04;
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_08;
     int unk_0C;
     int unk_10;
     UnkStruct_02017294 unk_14;
@@ -49,7 +49,7 @@ typedef struct {
     NNSFndAllocator unk_D8;
 } UnkStruct_ov121_021D0FF4;
 
-static void ov121_021D0F68(UnkStruct_0201CD38 * param0, void * param1);
+static void ov121_021D0F68(SysTask * param0, void * param1);
 static void ov121_021D0F7C(void * param0);
 static void ov121_021D0F94(void);
 static void ov121_021D0FF4(UnkStruct_ov121_021D0FF4 * param0);
@@ -167,7 +167,7 @@ int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov121_021D0F68 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov121_021D0F68 (SysTask * param0, void * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0 = param1;
 

@@ -16,7 +16,7 @@
 #include "struct_decls/struct_020151A4_decl.h"
 #include "struct_decls/struct_02015214_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -107,7 +107,7 @@ typedef struct {
     VecFx32 * unk_34;
     s32 unk_38;
     BOOL unk_3C;
-    UnkStruct_0201CD38 * unk_40;
+    SysTask * unk_40;
 } UnkStruct_ov78_021D213C;
 
 typedef struct {
@@ -121,7 +121,7 @@ typedef struct {
     UnkStruct_02022550 * unk_00;
     UnkStruct_02009DC8 * unk_04[6];
     VecFx32 unk_1C;
-    UnkStruct_0201CD38 * unk_28;
+    SysTask * unk_28;
     UnkStruct_ov78_021D235C unk_2C;
 } UnkStruct_ov78_021D2350;
 
@@ -142,13 +142,13 @@ typedef struct {
     NNSG2dCharacterData * unk_14;
     NNSG2dPaletteData * unk_18;
     UnkStruct_ov78_021D2448_sub1 unk_1C;
-    UnkStruct_0201CD38 * unk_54;
+    SysTask * unk_54;
 } UnkStruct_ov78_021D2448;
 
 typedef struct {
     UnkStruct_02007C7C * unk_00;
     UnkStruct_ov78_021D2448_sub1 unk_04;
-    UnkStruct_0201CD38 * unk_3C;
+    SysTask * unk_3C;
 } UnkStruct_ov78_021D26B4;
 
 typedef struct {
@@ -256,14 +256,14 @@ static void ov78_021D24E4(UnkStruct_ov78_021D2448 * param0);
 static void ov78_021D2508(UnkStruct_ov78_021D2448 * param0, BOOL param1);
 static void ov78_021D2514(UnkStruct_ov78_021D2448 * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, int param7);
 static void ov78_021D256C(UnkStruct_ov78_021D2448 * param0);
-static void ov78_021D25A0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov78_021D25A0(SysTask * param0, void * param1);
 static BOOL ov78_021D2608(UnkStruct_ov78_021D2448 * param0);
 static void ov78_021D2618(UnkStruct_ov78_021D107C * param0);
 static void ov78_021D2688(UnkStruct_ov78_021D107C * param0);
 static BOOL ov78_021D26A4(UnkStruct_ov78_021D107C * param0);
 static void ov78_021D26B4(UnkStruct_ov78_021D26B4 * param0, UnkStruct_02007C7C * param1, fx32 param2, fx32 param3, fx32 param4, fx32 param5, fx32 param6, fx32 param7, int param8);
 static void ov78_021D270C(UnkStruct_ov78_021D26B4 * param0);
-static void ov78_021D2740(UnkStruct_0201CD38 * param0, void * param1);
+static void ov78_021D2740(SysTask * param0, void * param1);
 static void ov78_021D1C58(UnkStruct_ov78_021D107C * param0);
 static void ov78_021D1C98(UnkStruct_ov78_021D107C * param0, int param1);
 static int ov78_021D1CA4(UnkStruct_ov78_021D107C * param0);
@@ -272,10 +272,10 @@ static BOOL ov78_021D2114(UnkStruct_ov78_021D2108 * param0, s32 param1);
 static void ov78_021D235C(UnkStruct_ov78_021D235C * param0, fx32 param1, int param2);
 static void ov78_021D2368(UnkStruct_ov78_021D235C * param0);
 static void ov78_021D213C(UnkStruct_ov78_021D213C * param0, UnkStruct_020203AC * param1, VecFx32 * param2);
-static void ov78_021D219C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov78_021D219C(SysTask * param0, void * param1);
 static BOOL ov78_021D2200(UnkStruct_ov78_021D213C * param0);
 static void ov78_021D23B8(UnkStruct_ov78_021D2350 * param0);
-static void ov78_021D23E8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov78_021D23E8(SysTask * param0, void * param1);
 static void ov78_021D241C(UnkStruct_ov78_021D2350 * param0);
 
 int ov78_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
@@ -1346,7 +1346,7 @@ static void ov78_021D213C (UnkStruct_ov78_021D213C * param0, UnkStruct_020203AC 
     SysTask_Start(ov78_021D219C, param0, 0);
 }
 
-static void ov78_021D219C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov78_021D219C (SysTask * param0, void * param1)
 {
     UnkStruct_ov78_021D213C * v0 = param1;
     BOOL v1;
@@ -1462,7 +1462,7 @@ static void ov78_021D23B8 (UnkStruct_ov78_021D2350 * param0)
     param0->unk_28 = SysTask_Start(ov78_021D23E8, param0, 0);
 }
 
-static void ov78_021D23E8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov78_021D23E8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov78_021D2350 * v0 = param1;
     VecFx32 v1;
@@ -1570,7 +1570,7 @@ static void ov78_021D256C (UnkStruct_ov78_021D2448 * param0)
     param0->unk_54 = SysTask_Start(ov78_021D25A0, param0, 0);
 }
 
-static void ov78_021D25A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov78_021D25A0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov78_021D2448 * v0 = param1;
     BOOL v1;
@@ -1653,7 +1653,7 @@ static void ov78_021D270C (UnkStruct_ov78_021D26B4 * param0)
     param0->unk_3C = SysTask_Start(ov78_021D2740, param0, 0);
 }
 
-static void ov78_021D2740 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov78_021D2740 (SysTask * param0, void * param1)
 {
     UnkStruct_ov78_021D26B4 * v0 = param1;
     BOOL v1;

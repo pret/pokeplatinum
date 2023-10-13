@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "overlay077/struct_ov77_021D5564_decl.h"
 #include "overlay077/struct_ov77_021D670C_decl.h"
@@ -77,7 +77,7 @@ typedef struct {
     u8 unk_07;
     u8 unk_08;
     UnkStruct_02018340 * unk_0C;
-    UnkStruct_0201CD38 * unk_10;
+    SysTask * unk_10;
     UnkStruct_ov77_021D670C * unk_14;
     u8 * unk_18;
 } UnkStruct_ov77_021D2F38;
@@ -161,10 +161,10 @@ static void ov77_021D2F0C(UnkStruct_ov77_021D2E9C * param0);
 static void ov77_021D2F38(UnkStruct_ov77_021D2F38 * param0);
 static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 * param0, const int param1);
 static void ov77_021D3234(UnkStruct_ov77_021D2E9C * param0);
-static void ov77_021D32A4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D3300(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D3360(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D33A8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov77_021D32A4(SysTask * param0, void * param1);
+static void ov77_021D3300(SysTask * param0, void * param1);
+static void ov77_021D3360(SysTask * param0, void * param1);
+static void ov77_021D33A8(SysTask * param0, void * param1);
 static void ov77_021D34A8(UnkStruct_ov77_021D2E9C * param0);
 static void ov77_021D37C0(UnkStruct_ov77_021D37C0 * param0);
 static void ov77_021D3A10(UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D37C0 * param1);
@@ -1200,7 +1200,7 @@ static void ov77_021D3234 (UnkStruct_ov77_021D2E9C * param0)
     }
 }
 
-static void ov77_021D32A4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D32A4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1221,7 +1221,7 @@ static void ov77_021D32A4 (UnkStruct_0201CD38 * param0, void * param1)
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D3300 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D3300 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1243,7 +1243,7 @@ static void ov77_021D3300 (UnkStruct_0201CD38 * param0, void * param1)
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D3360 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D3360 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1263,7 +1263,7 @@ static void ov77_021D3360 (UnkStruct_0201CD38 * param0, void * param1)
     G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D33A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D33A8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 

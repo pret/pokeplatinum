@@ -4,7 +4,7 @@
 
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "pokemon.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -60,7 +60,7 @@ typedef struct {
 static void sub_0200E130(UnkStruct_0205AA50 * param0, u16 param1);
 static void sub_0200E31C(UnkStruct_02018340 * param0, u8 param1, u16 param2, u8 param3, u16 param4, u32 param5);
 static void sub_0200E924(UnkStruct_0200E924 * param0, u32 param1);
-static void sub_0200EB20(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0200EB20(SysTask * param0, void * param1);
 static UnkStruct_0200ED50 * sub_0200ED14(UnkStruct_02018340 * param0, u8 param1, u8 param2, u8 param3, u32 param4);
 static void sub_0200ED50(UnkStruct_0200ED50 * param0, u32 param1);
 static void sub_0200ED7C(UnkStruct_0200ED50 * param0);
@@ -68,7 +68,7 @@ static void sub_0200EDD4(UnkStruct_0200ED50 * param0, u8 param1, u8 param2);
 static void sub_0200EE98(UnkStruct_ov5_021D30A8 * param0, UnkStruct_02008A90 * param1);
 static void sub_0200EE24(UnkStruct_ov5_021D30A8 * param0, u16 param1, u8 param2);
 static void sub_0200EE64(UnkStruct_ov5_021D30A8 * param0, Pokemon * param1);
-static void sub_0200EC9C(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0200EC9C(SysTask * param0, void * param1);
 static void sub_0200EF7C(UnkStruct_0200ED50 * param0, u8 param1, u16 param2);
 static void sub_0200F12C(UnkStruct_0200ED50 * param0);
 
@@ -505,7 +505,7 @@ static void sub_0200E924 (UnkStruct_0200E924 * param0, u32 param1)
     sub_02019448(param0->unk_00->unk_00, v0);
 }
 
-static void sub_0200EB20 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0200EB20 (SysTask * param0, void * param1)
 {
     UnkStruct_0200E924 * v0 = param1;
 
@@ -527,7 +527,7 @@ static void sub_0200EB20 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void sub_0200EB8C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0200EB8C (SysTask * param0, void * param1)
 {
     Heap_FreeToHeap(param1);
     sub_0200DA58(param0);
@@ -577,7 +577,7 @@ u8 * sub_0200EC48 (UnkStruct_02018340 * param0, u8 param1, u8 param2, u8 param3,
     return &v0->unk_1D3;
 }
 
-static void sub_0200EC9C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0200EC9C (SysTask * param0, void * param1)
 {
     UnkStruct_0200ED50 * v0 = param1;
 

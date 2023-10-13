@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
@@ -42,10 +42,10 @@ typedef struct UnkStruct_ov104_0223C4CC_t {
     UnkStruct_ov104_0223D3B0_1 unk_3C;
     CellActorData * unk_80[4];
     void * unk_90;
-    UnkStruct_0201CD38 * unk_94;
-    UnkStruct_0201CD38 * unk_98;
-    UnkStruct_0201CD38 * unk_9C;
-    UnkStruct_0201CD38 * unk_A0;
+    SysTask * unk_94;
+    SysTask * unk_98;
+    SysTask * unk_9C;
+    SysTask * unk_A0;
     UnkStruct_ov104_0223319C unk_A4;
     UnkStruct_ov104_022331E8 unk_B0;
     u16 unk_BC;

@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV23_0224F294_H
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "overlay023/funcptr_ov23_0224F758.h"
@@ -41,6 +41,6 @@ void ov23_02250D5C(UnkStruct_ov23_02250CD4 * param0);
 void ov23_02251044(void * param0, u32 param1);
 void * ov23_022511B0(UnkFuncPtr_ov23_0224F758 param0, UnkStruct_0203CDB0 * param1);
 void ov23_02251238(UnkStruct_ov23_02250CD4 * param0, int param1, int param2);
-void ov23_02251270(UnkStruct_0201CD38 * param0, void * param1);
+void ov23_02251270(SysTask * param0, void * param1);
 
 #endif // POKEPLATINUM_OV23_0224F294_H

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
@@ -14,7 +14,7 @@
 #include "heap.h"
 #include "unk_0201C970.h"
 
-static void sub_020170F4(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_020170F4(SysTask * param0, void * param1);
 static void sub_020173A0(UnkStruct_02017248 * param0, const UnkStruct_020170F4 * param1, void * param2, NNSFndAllocator * param3);
 static void sub_020173CC(UnkStruct_020170F4 * param0);
 
@@ -30,7 +30,7 @@ void sub_020170D8 (UnkStruct_020170F4 * param0, NARC * param1, u32 param2, u32 p
     sub_020173CC(param0);
 }
 
-static void sub_020170F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020170F4 (SysTask * param0, void * param1)
 {
     UnkStruct_020170F4 * v0 = param1;
 

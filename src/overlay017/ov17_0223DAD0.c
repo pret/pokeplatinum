@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/struct_02099F80.h"
@@ -67,7 +67,7 @@ FS_EXTERN_OVERLAY(overlay12);
 FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0223E09C(void * param0);
-static void ov17_0223E1FC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_0223E1FC(SysTask * param0, void * param1);
 static void ov17_0223E250(UnkStruct_02018340 * param0);
 static void ov17_0223E380(UnkStruct_ov17_0224DF54 * param0);
 static void ov17_0223E458(UnkStruct_ov17_0224DF54 * param0);
@@ -543,7 +543,7 @@ static void ov17_0223E18C (UnkStruct_ov17_0224DF54 * param0)
     }
 }
 
-static void ov17_0223E1FC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0223E1FC (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_0224DF54 * v0 = param1;
 

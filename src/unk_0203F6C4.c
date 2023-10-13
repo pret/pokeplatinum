@@ -8,7 +8,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
@@ -239,8 +239,8 @@
 #include <nitro/code16.h>
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_00;
+    SysTask * unk_04;
     UnkStruct_ov5_021F8E3C * unk_08;
     UnkStruct_0203CDB0 * unk_0C;
 } UnkStruct_02040F28;
@@ -751,8 +751,8 @@ static BOOL sub_0204698C(UnkStruct_0203E724 * param0);
 static BOOL sub_020469D0(UnkStruct_0203E724 * param0);
 static BOOL sub_02046A4C(UnkStruct_0203E724 * param0);
 static BOOL sub_02040F0C(UnkStruct_0203E724 * param0);
-static void sub_02040F28(UnkStruct_0203CDB0 * param0, UnkStruct_0201CD38 * param1, UnkStruct_ov5_021F8E3C * param2);
-static void sub_02040F5C(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02040F28(UnkStruct_0203CDB0 * param0, SysTask * param1, UnkStruct_ov5_021F8E3C * param2);
+static void sub_02040F5C(SysTask * param0, void * param1);
 static u32 sub_0204676C(SaveData * param0);
 
 static const u8 Unk_020EABA6[6][3] = {
@@ -3018,7 +3018,7 @@ static BOOL sub_02040D54 (UnkStruct_0203E724 * param0)
 static BOOL sub_02040D74 (UnkStruct_0203E724 * param0)
 {
     u8 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
     u8 * v2;
     UnkStruct_02061AB4 ** v3;
     UnkStruct_02061AB4 * v4;
@@ -3045,7 +3045,7 @@ static BOOL sub_02040D74 (UnkStruct_0203E724 * param0)
 static BOOL sub_02040DD8 (UnkStruct_0203E724 * param0)
 {
     u8 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
     u8 * v2;
     UnkStruct_02061AB4 ** v3;
     UnkStruct_02061AB4 * v4;
@@ -3134,7 +3134,7 @@ static BOOL sub_02040F0C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-static void sub_02040F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0201CD38 * param1, UnkStruct_ov5_021F8E3C * param2)
+static void sub_02040F28 (UnkStruct_0203CDB0 * param0, SysTask * param1, UnkStruct_ov5_021F8E3C * param2)
 {
     UnkStruct_02040F28 * v0 = NULL;
 
@@ -3153,7 +3153,7 @@ static void sub_02040F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0201CD38 * para
     return;
 }
 
-static void sub_02040F5C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02040F5C (SysTask * param0, void * param1)
 {
     UnkStruct_02040F28 * v0;
     u8 * v1;
@@ -6931,7 +6931,7 @@ static BOOL sub_0204521C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045250 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0201CD38 ** v0 = sub_0203F098(param0->unk_34, 22);
+    SysTask ** v0 = sub_0203F098(param0->unk_34, 22);
 
     *v0 = NULL;
     *v0 = ov5_021E1000(param0->unk_34);
@@ -6941,7 +6941,7 @@ static BOOL sub_02045250 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045274 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0201CD38 ** v0 = sub_0203F098(param0->unk_34, 22);
+    SysTask ** v0 = sub_0203F098(param0->unk_34, 22);
 
     ov5_021E100C(*v0);
     return 1;
@@ -7934,7 +7934,7 @@ static BOOL sub_02046294 (UnkStruct_0203E724 * param0)
     return 1;
 }
 
-static void sub_020462C0 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020462C0 (SysTask * param0, void * param1)
 {
     UnkStruct_0203CDB0 * v0 = param1;
 

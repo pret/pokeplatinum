@@ -10,7 +10,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -113,7 +113,7 @@ struct UnkStruct_02087A10_t {
     UnkStruct_02022550 * unk_390[14];
     UnkStruct_02022550 * unk_3C8[12];
     UnkStruct_02022550 * unk_3F8[2];
-    UnkStruct_0201CD38 * unk_400[7];
+    SysTask * unk_400[7];
     UnkStruct_0205AA50 unk_41C[10];
     int unk_4BC;
     int unk_4C0;
@@ -192,8 +192,8 @@ static void sub_020871B0(UnkStruct_02087A10 * param0, UnkStruct_0208737C * param
 static void sub_02088E58(UnkStruct_0205AA50 * param0, u16 param1, int param2, u32 param3, u8 * param4);
 static void sub_02088454(UnkStruct_02087A10 * param0, int param1);
 static void sub_02088F40(int param0[], UnkStruct_02022550 ** param1, int param2);
-static void sub_020879DC(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_02087CDC(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_020879DC(SysTask * param0, void * param1);
+static void sub_02087CDC(SysTask * param0, void * param1);
 static void sub_02086B30(NNSG2dCharacterData * param0, NNSG2dPaletteData * param1, int param2, int param3);
 static void sub_0208732C(int param0);
 static void sub_02087544(UnkStruct_02087A10 * param0, UnkStruct_020067E8 * param1);
@@ -1591,7 +1591,7 @@ static void sub_020877F4 (UnkStruct_02087A10 * param0, NARC * param1)
     sub_0200A5C8(param0->unk_328[1][1]);
 }
 
-static void sub_020879DC (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020879DC (SysTask * param0, void * param1)
 {
     const VecFx32 * v0;
     VecFx32 v1;
@@ -1721,7 +1721,7 @@ static void sub_02087BE4 (UnkStruct_02087A10 * param0, UnkStruct_ov115_02261520 
     }
 }
 
-static void sub_02087CDC (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02087CDC (SysTask * param0, void * param1)
 {
     UnkStruct_02087CDC * v0 = (UnkStruct_02087CDC *)param1;
     VecFx32 v1;
@@ -1779,7 +1779,7 @@ static void sub_02087D64 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * para
 
         if (param5[v0].x < -11 + 10) {
             UnkStruct_02087CDC * v4;
-            UnkStruct_0201CD38 * v5;
+            SysTask * v5;
 
             v5 = sub_0200679C(sub_02087CDC, 16, 0, 18);
             v4 = sub_0201CED0(v5);

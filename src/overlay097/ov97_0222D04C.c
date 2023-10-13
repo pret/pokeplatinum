@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -27,7 +27,7 @@ typedef void (* UnkFuncPtr_ov97_0222D0A4)(void);
 typedef struct {
     UnkStruct_ov97_0222D04C * unk_00;
     MATHRandContext32 unk_04;
-    UnkStruct_0201CD38 * unk_1C;
+    SysTask * unk_1C;
     UnkFuncPtr_ov97_0222D0A4 unk_20;
     u16 unk_24;
     u8 unk_26;
@@ -38,7 +38,7 @@ typedef struct {
     u8 unk_3C1[16];
 } UnkStruct_ov97_0223F1A4;
 
-static void ov97_0222D19C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov97_0222D19C(SysTask * param0, void * param1);
 static void ov97_0222D0B4(void);
 static void ov97_0222D0F0(void);
 static void ov97_0222D128(void);
@@ -145,7 +145,7 @@ static void ov97_0222D198 (void)
     return;
 }
 
-void ov97_0222D19C (UnkStruct_0201CD38 * param0, void * param1)
+void ov97_0222D19C (SysTask * param0, void * param1)
 {
     if (Unk_ov97_0223F1A4 == NULL) {
         sub_0200DA58(param0);

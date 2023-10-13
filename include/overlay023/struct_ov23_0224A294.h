@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV23_0224A294_H
 #define POKEPLATINUM_STRUCT_OV23_0224A294_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_02057B48.h"
@@ -17,7 +17,7 @@ typedef struct {
     UnkStruct_0205E884 * unk_08[8];
     UnkStruct_ov101_021D5D90 * unk_28[8];
     u8 unk_48[8];
-    UnkStruct_0201CD38 * unk_50;
+    SysTask * unk_50;
     UnkStruct_0203CDB0 * unk_54;
     UnkStruct_ov23_0224A294_sub1 unk_58;
     u8 unk_5A[8];

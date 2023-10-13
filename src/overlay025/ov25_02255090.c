@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 
 #include "overlay025/struct_ov25_0225517C.h"
@@ -23,7 +23,7 @@ struct UnkStruct_ov25_02255224_t {
     void * unk_08;
     void * unk_0C;
     const void * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_14;
 };
 
 static BOOL ov25_022550B0(u32 * param0, u32 param1);

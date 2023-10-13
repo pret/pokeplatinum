@@ -3,7 +3,7 @@
 
 #include "constants/battle.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -73,8 +73,8 @@ static void sub_0207AB8C(int param0, int param1, void * param2, void * param3);
 static void sub_0207AC18(int param0, int param1, void * param2, void * param3);
 static void sub_0207ACA4(int param0, int param1, void * param2, void * param3);
 static void sub_0207ADB4(int param0, int param1, void * param2, void * param3);
-static void sub_0207ACB4(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_0207AD40(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0207ACB4(SysTask * param0, void * param1);
+static void sub_0207AD40(SysTask * param0, void * param1);
 static void sub_0207AE34(int param0, int param1, void * param2, void * param3);
 static void sub_0207ADD4(TrainerInfo * param0, UnkStruct_02027F8C * param1, UnkStruct_02027F8C * param2);
 
@@ -562,7 +562,7 @@ static void sub_0207ACA4 (int param0, int param1, void * param2, void * param3)
     v0->unk_1020++;
 }
 
-void sub_0207ACB4 (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0207ACB4 (SysTask * param0, void * param1)
 {
     UnkStruct_0207ACB4 * v0 = (UnkStruct_0207ACB4 *)param1;
     u8 * v1;
@@ -605,7 +605,7 @@ void sub_0207ACB4 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void sub_0207AD40 (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0207AD40 (SysTask * param0, void * param1)
 {
     UnkStruct_0207AD40 * v0 = (UnkStruct_0207AD40 *)param1;
     u8 * v1;

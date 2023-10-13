@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -63,7 +63,7 @@ struct UnkStruct_ov19_021DEC04_t {
     void * unk_374;
     int unk_378;
     int unk_37C;
-    UnkStruct_0201CD38 * unk_380;
+    SysTask * unk_380;
 };
 
 static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 * param0);
@@ -88,7 +88,7 @@ static void ov19_021DF730(UnkStruct_ov19_021DEC04 * param0, u32 param1);
 static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF834(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 * param0, int param1);
-static void ov19_021DF930(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021DF930(SysTask * param0, void * param1);
 
 BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, MessageLoader * param5, NARC * param6)
 {
@@ -714,7 +714,7 @@ static void ov19_021DF8C8 (UnkStruct_ov19_021DEC04 * param0, int param1)
     sub_0201ACCC(v0);
 }
 
-static void ov19_021DF930 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DF930 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DEC04 * v0 = param1;
     BOOL v1 = ov19_021D5FC0(v0->unk_08);

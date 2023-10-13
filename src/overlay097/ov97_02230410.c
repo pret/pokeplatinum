@@ -12,7 +12,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02013B10_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -75,7 +75,7 @@ FS_EXTERN_OVERLAY(overlay97);
 typedef struct {
     u16 unk_00[2][768];
     UnkStruct_02013B10 * unk_C00;
-    UnkStruct_0201CD38 * unk_C04;
+    SysTask * unk_C04;
     fx32 unk_C08;
     fx32 unk_C0C;
     BOOL unk_C10;
@@ -854,7 +854,7 @@ static int ov97_02231224 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov97_02231290 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov97_02231290 (SysTask * param0, void * param1)
 {
     UnkStruct_ov97_02231318 * v0 = (UnkStruct_ov97_02231318 *)param1;
 

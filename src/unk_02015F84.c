@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_020789F4.h"
 
@@ -39,7 +39,7 @@ typedef struct UnkStruct_02016DAC_t {
 
 typedef struct UnkStruct_02016E64_t {
     UnkStruct_02007C7C * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     void * unk_08;
     u32 * unk_0C;
     BOOL unk_10;
@@ -86,7 +86,7 @@ static int sub_02016280(u32 * param0, u8 param1, u8 param2);
 static int sub_02016294(u32 * param0, u8 param1);
 static int sub_020162A0(u32 * param0);
 static void sub_02016D04(UnkStruct_02016E64 * param0, const int param1);
-static void sub_02016150(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02016150(SysTask * param0, void * param1);
 static void sub_02016188(UnkStruct_02016E64 * param0);
 static void sub_02016530(UnkStruct_02016E64 * param0);
 static void sub_02016540(UnkStruct_02016E64 * param0);
@@ -260,7 +260,7 @@ void sub_02016114 (UnkStruct_02015F84 * param0, const u8 param1)
     }
 }
 
-static void sub_02016150 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02016150 (SysTask * param0, void * param1)
 {
     UnkStruct_02016E64 * v0 = (UnkStruct_02016E64 *)(param1);
 

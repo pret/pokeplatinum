@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
@@ -37,7 +37,7 @@
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F600C.h"
 
-static void sub_0205C304(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0205C304(SysTask * param0, void * param1);
 static void sub_0205C44C(UnkStruct_0205C22C * param0, UnkStruct_0205B43C * param1, UnkStruct_02061830 * param2, UnkStruct_02027F8C * param3);
 static int sub_0205C340(UnkStruct_0205C22C * param0, int param1, WMBssDesc * param2, UnkStruct_02027F8C * param3);
 static void sub_0205C51C(UnkStruct_0205C22C * param0, UnkStruct_02061830 * param1);
@@ -108,7 +108,7 @@ void sub_0205C2E0 (UnkStruct_0205C22C * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void sub_0205C304 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0205C304 (SysTask * param0, void * param1)
 {
     UnkStruct_0205C22C * v0 = (UnkStruct_0205C22C *)param1;
     UnkStruct_0205B43C * v1 = v0->unk_00;

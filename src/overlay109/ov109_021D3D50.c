@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -97,7 +97,7 @@ static void ov109_021D5668(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D577C(UnkStruct_ov109_021D5140 * param0, NARC * param1);
 static void ov109_021D5824(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D57E0(NNSG2dCharacterData * param0[2], NNSG2dPaletteData * param1[2], int param2, int param3, int param4);
-static void ov109_021D4044(UnkStruct_0201CD38 * param0, void * param1);
+static void ov109_021D4044(SysTask * param0, void * param1);
 static int ov109_021D5854(UnkStruct_ov109_021D5140 * param0);
 static void ov109_021D5858(UnkStruct_ov109_021D5140 * param0, int param1);
 static int ov109_021D58AC(UnkStruct_ov109_021D5140 * param0, int param1);
@@ -343,7 +343,7 @@ static const u8 Unk_ov109_021D5DA6[][2] = {
     {0x0, 0xFF}
 };
 
-static void ov109_021D4044 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov109_021D4044 (SysTask * param0, void * param1)
 {
     UnkStruct_ov109_021D5140 * v0 = (UnkStruct_ov109_021D5140 *)param1;
     UnkStruct_ov109_021D5140_sub1 * v1 = &v0->unk_1C;

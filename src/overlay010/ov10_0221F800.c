@@ -14,7 +14,7 @@
 #include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_party_decl.h"
 
@@ -151,7 +151,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     BOOL unk_BC4;
 };
 
-static void ov10_0221F870(UnkStruct_0201CD38 * param0, void * param1);
+static void ov10_0221F870(SysTask * param0, void * param1);
 static void ov10_0221F900(void);
 static u8 ov10_0221FB28(UnkStruct_ov10_0221FB28 * param0);
 static u8 ov10_0221FE10(UnkStruct_ov10_0221FB28 * param0);
@@ -164,7 +164,7 @@ static u8 ov10_022203A0(UnkStruct_ov10_0221FB28 * param0);
 static u8 ov10_022203BC(UnkStruct_ov10_0221FB28 * param0);
 static u8 ov10_022204C0(UnkStruct_ov10_0221FB28 * param0);
 static u8 ov10_02220A34(UnkStruct_ov10_0221FB28 * param0);
-static u8 ov10_02220A50(UnkStruct_0201CD38 * param0, UnkStruct_ov10_0221FB28 * param1);
+static u8 ov10_02220A50(SysTask * param0, UnkStruct_ov10_0221FB28 * param1);
 static u8 ov10_022205F4(UnkStruct_ov10_0221FB28 * param0);
 static u8 ov10_02220604(UnkStruct_ov10_0221FB28 * param0);
 static u8 ov10_02220698(UnkStruct_ov10_0221FB28 * param0);
@@ -414,7 +414,7 @@ void ov10_0221F800 (UnkStruct_ov10_0221F800 * param0)
     }
 }
 
-static void ov10_0221F870 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov10_0221F870 (SysTask * param0, void * param1)
 {
     UnkStruct_ov10_0221FB28 * v0 = param1;
 
@@ -1155,7 +1155,7 @@ static u8 ov10_02220A34 (UnkStruct_ov10_0221FB28 * param0)
     return 1;
 }
 
-static u8 ov10_02220A50 (UnkStruct_0201CD38 * param0, UnkStruct_ov10_0221FB28 * param1)
+static u8 ov10_02220A50 (SysTask * param0, UnkStruct_ov10_0221FB28 * param1)
 {
     if (ScreenWipe_Done() == 0) {
         return 0;

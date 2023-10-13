@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/battle_system.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
@@ -49,7 +49,7 @@
 #include "overlay013/ov13_02228A38.h"
 #include "overlay016/ov16_0223DF00.h"
 
-static void ov13_0221FCAC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov13_0221FCAC(SysTask * param0, void * param1);
 static u8 ov13_0221FE5C(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_0221FF60(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_0222012C(UnkStruct_ov13_022213F0 * param0);
@@ -75,7 +75,7 @@ static u8 ov13_022207B8(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_022208A4(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_02220A4C(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_02220B78(UnkStruct_ov13_022213F0 * param0);
-static u8 ov13_02220BA4(UnkStruct_0201CD38 * param0, UnkStruct_ov13_022213F0 * param1);
+static u8 ov13_02220BA4(SysTask * param0, UnkStruct_ov13_022213F0 * param1);
 static u8 ov13_0222029C(UnkStruct_ov13_022213F0 * param0);
 static u8 ov13_0221FFDC(UnkStruct_ov13_022213F0 * param0);
 static void ov13_02220C0C(UnkStruct_ov13_022213F0 * param0);
@@ -198,7 +198,7 @@ void ov13_0221FC20 (UnkStruct_ov13_0221FC20 * param0)
     v0->unk_208B = BattleSystem_BattlerSlot(param0->unk_08, param0->unk_28);
 }
 
-static void ov13_0221FCAC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov13_0221FCAC (SysTask * param0, void * param1)
 {
     UnkStruct_ov13_022213F0 * v0 = (UnkStruct_ov13_022213F0 *)param1;
 
@@ -998,7 +998,7 @@ static u8 ov13_02220B78 (UnkStruct_ov13_022213F0 * param0)
     return 26;
 }
 
-static u8 ov13_02220BA4 (UnkStruct_0201CD38 * param0, UnkStruct_ov13_022213F0 * param1)
+static u8 ov13_02220BA4 (SysTask * param0, UnkStruct_ov13_022213F0 * param1)
 {
     if (sub_0200384C(param1->unk_1E4) != 0) {
         return 0;

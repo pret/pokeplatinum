@@ -3,7 +3,7 @@
 
 #include "core_sys.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay022/struct_ov22_02257964.h"
@@ -74,7 +74,7 @@ static void ov22_02258B78(UnkStruct_ov22_02258A48 * param0);
 static void ov22_02258B74(UnkStruct_ov22_02258A48 * param0);
 static void ov22_02258E5C(UnkStruct_ov22_02258A48 * param0);
 static void ov22_02258F4C(UnkStruct_ov22_02258EE4 * param0, int param1, int param2, int param3, int param4, int param5);
-static void ov22_02258FC0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov22_02258FC0(SysTask * param0, void * param1);
 
 void ov22_022589E0 (UnkStruct_ov22_02258A48 * param0, UnkStruct_ov22_02257964 * param1, UnkStruct_ov22_02257F50 * param2, UnkStruct_ov22_0225A0E4 * param3, UnkStruct_ov22_0225A428 * param4, BOOL param5)
 {
@@ -424,7 +424,7 @@ static void ov22_02258F38 (UnkStruct_ov22_02258A48 * param0, int * param1, int *
 
 static void ov22_02258F4C (UnkStruct_ov22_02258EE4 * param0, int param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov22_02258FC0 * v1;
     int v2, v3;
 
@@ -449,7 +449,7 @@ static void ov22_02258F4C (UnkStruct_ov22_02258EE4 * param0, int param1, int par
     param0->unk_30 = 0;
 }
 
-static void ov22_02258FC0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov22_02258FC0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov22_02258FC0 * v0 = param1;
     int v1, v2;

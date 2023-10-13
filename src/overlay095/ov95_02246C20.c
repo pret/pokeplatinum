@@ -5,7 +5,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -61,7 +61,7 @@ struct UnkStruct_ov95_02247628_t {
     Strbuf* unk_14;
     UnkStruct_020218BC * unk_18;
     UnkStruct_0200C738 unk_1C;
-    UnkStruct_0201CD38 * unk_1A8;
+    SysTask * unk_1A8;
     BOOL unk_1AC;
     u16 unk_1B0;
     u16 unk_1B2;
@@ -72,8 +72,8 @@ struct UnkStruct_ov95_02247628_t {
 
 struct UnkStruct_ov95_02247004_t {
     u16 unk_00[96];
-    UnkStruct_0201CD38 * unk_C0;
-    UnkStruct_0201CD38 * unk_C4[8];
+    SysTask * unk_C0;
+    SysTask * unk_C4[8];
     BOOL * unk_E4;
     BOOL unk_E8;
     int unk_EC;
@@ -101,7 +101,7 @@ struct UnkStruct_ov95_022472C4_t {
     fx32 unk_14;
     int unk_18;
     int unk_1C;
-    UnkStruct_0201CD38 * unk_20;
+    SysTask * unk_20;
 };
 
 typedef void *(* UnkFuncPtr_ov95_0224BE8C)(UnkStruct_ov95_02247628 *);
@@ -109,13 +109,13 @@ typedef BOOL (* UnkFuncPtr_ov95_0224BE8C_1)(void *, int *);
 typedef void (* UnkFuncPtr_ov95_0224BE8C_2)(void *);
 
 static BOOL ov95_02246DEC(BoxPokemon * param0);
-static void ov95_02246F0C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov95_02247060(UnkStruct_0201CD38 * param0, void * param1);
+static void ov95_02246F0C(SysTask * param0, void * param1);
+static void ov95_02247060(SysTask * param0, void * param1);
 static void ov95_02247148(UnkStruct_ov95_02247004 * param0, int param1, int param2, int param3);
 static void ov95_02247170(UnkStruct_ov95_02247004 * param0);
 static void ov95_02247224(UnkStruct_ov95_02247004 * param0, int param1);
-static void ov95_02247254(UnkStruct_0201CD38 * param0, void * param1);
-static void ov95_0224732C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov95_02247254(SysTask * param0, void * param1);
+static void ov95_0224732C(SysTask * param0, void * param1);
 static void ov95_022473A0(UnkStruct_ov95_022472C4 * param0);
 static void ov95_02247688(void);
 static void ov95_02247694(void);
@@ -264,7 +264,7 @@ int ov95_02246E7C (UnkStruct_020067E8 * param0, int * param1)
     }
 }
 
-static void ov95_02246F0C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_02246F0C (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02247628 * v0 = param1;
 
@@ -342,7 +342,7 @@ void ov95_02247018 (UnkStruct_ov95_02247004 * param0)
     }
 }
 
-static void ov95_02247060 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_02247060 (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02247004 * v0 = param1;
 
@@ -445,7 +445,7 @@ static void ov95_02247224 (UnkStruct_ov95_02247004 * param0, int param1)
     }
 }
 
-static void ov95_02247254 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_02247254 (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02247170 * v0 = param1;
 
@@ -502,7 +502,7 @@ UnkStruct_ov95_022472C4 * ov95_022472C4 (UnkStruct_02018340 * param0, fx32 param
     return v0;
 }
 
-static void ov95_0224732C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_0224732C (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_022472C4 * v0 = param1;
     fx32 v1;

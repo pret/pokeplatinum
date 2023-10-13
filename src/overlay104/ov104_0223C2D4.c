@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
@@ -65,10 +65,10 @@
 #include "overlay104/ov104_0223D768.h"
 
 static void ov104_0223C6EC(void * param0);
-static void ov104_0223C71C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov104_0223C738(UnkStruct_0201CD38 * param0, void * param1);
-static void ov104_0223C720(UnkStruct_0201CD38 * param0, void * param1);
-static void ov104_0223C72C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov104_0223C71C(SysTask * param0, void * param1);
+static void ov104_0223C738(SysTask * param0, void * param1);
+static void ov104_0223C720(SysTask * param0, void * param1);
+static void ov104_0223C72C(SysTask * param0, void * param1);
 static void ov104_0223C948(UnkStruct_02018340 * param0, int param1);
 static void ov104_0223CC74(UnkStruct_ov104_0223C4CC * param0, int param1, const TrainerInfo * param2);
 static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC * param0);
@@ -334,24 +334,24 @@ static void ov104_0223C6EC (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov104_0223C71C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov104_0223C71C (SysTask * param0, void * param1)
 {
     UnkStruct_ov104_0223C4CC * v0 = param1;
 }
 
-static void ov104_0223C720 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov104_0223C720 (SysTask * param0, void * param1)
 {
     UnkStruct_ov104_0223C4CC * v0 = param1;
     ov63_0222BE84(v0->unk_14);
 }
 
-static void ov104_0223C72C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov104_0223C72C (SysTask * param0, void * param1)
 {
     UnkStruct_ov104_0223C4CC * v0 = param1;
     ov104_0223C8E8(v0);
 }
 
-static void ov104_0223C738 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov104_0223C738 (SysTask * param0, void * param1)
 {
     UnkStruct_ov104_0223C4CC * v0 = param1;
 

@@ -3,7 +3,7 @@
 
 #include "constdata/const_020EE4B8.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
@@ -103,7 +103,7 @@ typedef struct {
     u32 unk_00;
 } UnkStruct_020667CC;
 
-static void sub_02065788(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02065788(SysTask * param0, void * param1);
 static int sub_02065910(UnkStruct_02061AB4 * param0, int param1, int param2);
 static int sub_02065924(UnkStruct_02061AB4 * param0);
 static void sub_02065930(UnkStruct_02061AB4 * param0, int param1);
@@ -190,9 +190,9 @@ void sub_020656DC (UnkStruct_02061AB4 * param0)
     sub_02062BC0(param0, 0);
 }
 
-UnkStruct_0201CD38 * sub_02065700 (UnkStruct_02061AB4 * param0, const UnkStruct_ov5_021F8E3C * param1)
+SysTask * sub_02065700 (UnkStruct_02061AB4 * param0, const UnkStruct_ov5_021F8E3C * param1)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_020EEE54 * v1;
 
     v1 = Heap_AllocFromHeapAtEnd(4, (sizeof(UnkStruct_020EEE54)));
@@ -214,7 +214,7 @@ UnkStruct_0201CD38 * sub_02065700 (UnkStruct_02061AB4 * param0, const UnkStruct_
     return v0;
 }
 
-int sub_0206574C (UnkStruct_0201CD38 * param0)
+int sub_0206574C (SysTask * param0)
 {
     UnkStruct_020EEE54 * v0;
 
@@ -222,7 +222,7 @@ int sub_0206574C (UnkStruct_0201CD38 * param0)
     return v0->unk_04;
 }
 
-void sub_02065758 (UnkStruct_0201CD38 * param0)
+void sub_02065758 (SysTask * param0)
 {
     UnkStruct_020EEE54 * v0;
 
@@ -235,7 +235,7 @@ void sub_02065758 (UnkStruct_0201CD38 * param0)
     sub_0200DA58(param0);
 }
 
-static void sub_02065788 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02065788 (SysTask * param0, void * param1)
 {
     UnkStruct_020EEE54 * v0;
 

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "overlay005/struct_ov5_021EEC68.h"
 #include "overlay005/struct_ov5_021EED38.h"
@@ -127,7 +127,7 @@ static void ov5_021EF04C (NARC * param0, UnkStruct_ov5_021EF13C * param1, const 
     NARC_ReadFile(param0, sizeof(u16) * param2->unk_14, param1->unk_0C);
 }
 
-static void ov5_021EF05C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021EF05C (SysTask * param0, void * param1)
 {
     BOOL v0;
     UnkStruct_ov5_021EF05C * v1;
@@ -269,9 +269,9 @@ void ov5_021EF1DC (UnkStruct_ov5_021EF13C * param0)
     param0->unk_0C = NULL;
 }
 
-UnkStruct_0201CD38 * ov5_021EF1F0 (NARC * param0, const int param1, UnkStruct_ov5_021EF13C * param2, int * param3, u8 ** param4, int * param5)
+SysTask * ov5_021EF1F0 (NARC * param0, const int param1, UnkStruct_ov5_021EF13C * param2, int * param3, u8 ** param4, int * param5)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov5_021EF05C * v1;
 
     v1 = Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021EF05C));
@@ -295,7 +295,7 @@ UnkStruct_0201CD38 * ov5_021EF1F0 (NARC * param0, const int param1, UnkStruct_ov
     return v0;
 }
 
-void ov5_021EF23C (UnkStruct_0201CD38 * param0)
+void ov5_021EF23C (SysTask * param0)
 {
     UnkStruct_ov5_021EF05C * v0;
 

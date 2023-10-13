@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV16_022674C4_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/battle_system.h"
 #include "overlay016/struct_ov16_022674C4_sub1.h"
@@ -12,7 +12,7 @@ typedef struct {
     CellActorData * unk_04;
     CellActorData * unk_08;
     BattleSystem * unk_0C;
-    UnkStruct_0201CD38 * unk_10;
+    SysTask * unk_10;
     UnkStruct_0205AA50 unk_14;
     u8 unk_24;
     u8 unk_25;
@@ -38,7 +38,7 @@ typedef struct {
     u8 unk_4F_2 : 1;
     u8 unk_4F_3 : 1;
     u8  : 4;
-    UnkStruct_0201CD38 * unk_50;
+    SysTask * unk_50;
     u16 unk_54;
 } UnkStruct_ov16_022674C4;
 

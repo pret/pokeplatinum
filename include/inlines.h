@@ -4,7 +4,7 @@
 #include <nitro/rtc.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_0206A8DC.h"
 
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);
-static inline void inline_ov61_0222C3B0_sub(UnkStruct_0201CD38 *, void *);
+static inline void inline_ov61_0222C3B0_sub(SysTask *, void *);
 
 static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC * param1, int param2, int param3)
 {
@@ -99,7 +99,7 @@ static inline void inline_ov61_0222C3B0_sub_1 (UnkStruct_ov61_0222C3B0 * param0)
     DC_FlushRange(param0->unk_88, (((16 << 8) / 0x300 + 2) * (4 - 1)) * 16 * sizeof(u16));
 }
 
-static inline void inline_ov61_0222C3B0_sub (UnkStruct_0201CD38 * param0, void * param1)
+static inline void inline_ov61_0222C3B0_sub (SysTask * param0, void * param1)
 {
     UnkStruct_ov61_0222C3B0 * v0 = param1;
 

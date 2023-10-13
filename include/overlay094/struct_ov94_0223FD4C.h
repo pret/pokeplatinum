@@ -11,7 +11,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -132,7 +132,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_ov94_0223FD4C_sub3 * unk_10E4;
     u16 unk_10E8;
     u16 unk_10EA;
-    UnkStruct_0201CD38 * unk_10EC;
+    SysTask * unk_10EC;
     u16 unk_10F0;
     u16 unk_10F2;
     void * unk_10F4;

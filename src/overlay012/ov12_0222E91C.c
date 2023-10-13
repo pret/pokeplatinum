@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 
@@ -92,7 +92,7 @@ typedef struct {
     UnkStruct_ov12_02235998 unk_3C;
 } UnkStruct_ov12_0222F464;
 
-static void ov12_0222E91C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222E91C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222E91C * v0 = (UnkStruct_ov12_0222E91C *)param1;
 
@@ -191,7 +191,7 @@ void ov12_0222EAA0 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222E91C, v0);
 }
 
-static void ov12_0222EC18 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222EC18 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222EC18 * v0 = (UnkStruct_ov12_0222EC18 *)param1;
 
@@ -332,7 +332,7 @@ void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222EC18, v0);
 }
 
-static void ov12_0222EE50 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222EE50 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222EE50 * v0 = param1;
 
@@ -475,14 +475,14 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
     G2_ChangeBlendAlpha(v0->unk_34, v0->unk_35);
 
     {
-        UnkStruct_0201CD38 * v14;
+        SysTask * v14;
 
         v14 = ov12_022201E8(v0->unk_00.unk_04, ov12_0222EE50, v0);
         ov12_0222EE50(v14, v0);
     }
 }
 
-static void ov12_0222F208 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222F208 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222F208 * v0 = (UnkStruct_ov12_0222F208 *)param1;
 
@@ -601,7 +601,7 @@ static void ov12_0222F44C (UnkStruct_02007C7C * param0, int param1, int param2, 
     sub_020086D4(param0, param1, 80 - param3, param2, param4);
 }
 
-static void ov12_0222F464 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222F464 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222F464 * v0 = param1;
 

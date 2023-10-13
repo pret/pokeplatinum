@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0205B43C_decl.h"
@@ -56,7 +56,7 @@ struct UnkStruct_0205B43C_t {
     UnkStruct_0203CDB0 * unk_00;
     SaveData * unk_04;
     TrainerInfo * unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
     UnkFuncPtr_0205B43C unk_10;
     int unk_14;
     u32 unk_18;
@@ -289,7 +289,7 @@ static void sub_0205B5B4 (UnkStruct_0205B43C * param0, UnkFuncPtr_0205B43C param
 
 static WMBssDesc * Unk_021C085C[16];
 
-void sub_0205B5BC (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0205B5BC (SysTask * param0, void * param1)
 {
     UnkStruct_0205B43C * v0 = (UnkStruct_0205B43C *)param1;
 

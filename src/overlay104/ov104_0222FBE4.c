@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "trainer_info.h"
@@ -2235,7 +2235,7 @@ u32 ov104_022313F4 (u16 param0, u16 param1)
     return (param1 << 16) | param0;
 }
 
-static void ov104_022313FC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov104_022313FC (SysTask * param0, void * param1)
 {
     int v0, v1;
     UnkStruct_ov104_0223F1B4 * v2;

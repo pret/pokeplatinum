@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 
@@ -276,10 +276,10 @@ struct UnkStruct_ov99_021D3E78_t {
     UnkStruct_0205AA50 * unk_28;
     MessageLoader * unk_2C;
     Strbuf* unk_30;
-    UnkStruct_0201CD38 * unk_34;
+    SysTask * unk_34;
 };
 
-static void ov99_021D4104(UnkStruct_0201CD38 * param0, void * param1);
+static void ov99_021D4104(SysTask * param0, void * param1);
 
 UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1, int param2, int param3, MessageLoader * param4)
 {
@@ -394,7 +394,7 @@ BOOL ov99_021D3F6C (UnkStruct_ov99_021D3E78 * param0, int param1)
     }
 }
 
-static void ov99_021D4104 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov99_021D4104 (SysTask * param0, void * param1)
 {
     UnkStruct_ov99_021D3E78 * v0 = param1;
 

@@ -15,7 +15,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -333,7 +333,7 @@ static void ov70_0225F8F0(UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225E
 static void ov70_0225F920(UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225E4EC * param1);
 static void ov70_0225F934(UnkStruct_ov70_0225F350 * param0, BOOL param1);
 static void ov70_0225F940(UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225E4EC * param1, u32 param2, u32 param3);
-static void ov70_0225F95C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov70_0225F95C(SysTask * param0, void * param1);
 static void ov70_0225F9BC(UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225E4EC * param1, NARC * param2, u32 param3, u32 param4);
 static void ov70_0225FA10(UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225E4EC * param1);
 static void ov70_0225FA14(UnkStruct_ov70_0225E4EC * param0, NARC * param1, u32 param2, u32 param3, u32 param4, u32 param5);
@@ -2478,7 +2478,7 @@ static void ov70_0225F940 (UnkStruct_ov70_0225F350 * param0, UnkStruct_ov70_0225
     sub_0200DA3C(ov70_0225F95C, param0, 0);
 }
 
-static void ov70_0225F95C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov70_0225F95C (SysTask * param0, void * param1)
 {
     UnkStruct_ov70_0225F350 * v0 = param1;
 

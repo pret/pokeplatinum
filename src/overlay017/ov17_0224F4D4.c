@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_02099F80.h"
 #include "overlay017/struct_ov17_0224FCA0.h"
@@ -54,7 +54,7 @@ FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0224FA24(void * param0);
 static void ov17_0224FAAC(void * param0);
-static void ov17_0224FAFC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_0224FAFC(SysTask * param0, void * param1);
 static void ov17_0224FB34(UnkStruct_02018340 * param0);
 static void ov17_0224FCA0(UnkStruct_ov17_0224FCA0 * param0);
 static void ov17_0224FE1C(UnkStruct_ov17_0224FCA0 * param0);
@@ -78,7 +78,7 @@ static int ov17_022500E8(UnkStruct_ov17_0224FCA0 * param0, UnkStruct_ov17_0224FE
 static int ov17_02250178(UnkStruct_ov17_0224FCA0 * param0, UnkStruct_ov17_0224FECC * param1);
 static int ov17_02250284(UnkStruct_ov17_0224FCA0 * param0, UnkStruct_ov17_0224FECC * param1);
 static int ov17_022503B0(UnkStruct_ov17_0224FCA0 * param0, UnkStruct_ov17_0224FECC * param1);
-static void ov17_0224FAE4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_0224FAE4(SysTask * param0, void * param1);
 
 static int(*const Unk_ov17_02254B54[])(UnkStruct_ov17_0224FCA0 *, UnkStruct_ov17_0224FECC *) = {
     ov17_0224FECC,
@@ -386,7 +386,7 @@ static void ov17_0224FAAC (void * param0)
     }
 }
 
-static void ov17_0224FAE4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0224FAE4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_0224FCA0 * v0 = param1;
 
@@ -395,7 +395,7 @@ static void ov17_0224FAE4 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov17_0224FAFC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0224FAFC (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_0224FCA0 * v0 = param1;
 

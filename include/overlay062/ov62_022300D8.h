@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV62_022300D8_H
 
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_defs/struct_0208C06C.h"
 #include "struct_decls/struct_020F3DCC_decl.h"
 #include "overlay062/struct_ov62_022307C0_sub1.h"
@@ -25,7 +25,7 @@ void ov62_02230AB8(UnkStruct_0208C06C * param0);
 void ov62_02230AF0(UnkStruct_0208C06C * param0);
 void ov62_02230B74(UnkStruct_0208C06C * param0);
 void ov62_02230B9C(UnkStruct_0208C06C * param0, BOOL param1);
-void ov62_02230C28(UnkStruct_0201CD38 * param0, void * param1);
+void ov62_02230C28(SysTask * param0, void * param1);
 void ov62_02230E68(CellActorData * param0, s16 param1, s16 param2);
 void ov62_02230E74(CellActorData * param0, s16 * param1, s16 * param2);
 void ov62_02230E80(UnkStruct_0208C06C * param0);

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV23_02241F74_H
 #define POKEPLATINUM_OV23_02241F74_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029894_decl.h"
@@ -61,7 +61,7 @@ void ov23_022430E0(u16 param0, u16 param1, u16 param2);
 u16 ov23_02243154(u16 param0);
 u16 ov23_0224318C(u16 param0);
 void ov23_022431C4(int param0, int param1, void * param2, void * param3);
-void ov23_022431EC(void * param0, UnkStruct_0201CD38 * param1, UnkFuncPtr_ov23_022431EC param2);
+void ov23_022431EC(void * param0, SysTask * param1, UnkFuncPtr_ov23_022431EC param2);
 void ov23_02243204(void);
 BOOL ov23_0224321C(void);
 BOOL ov23_02243298(int param0);

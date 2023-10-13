@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -83,17 +83,17 @@ static void ov19_021D7AF4(const UnkStruct_ov19_021D8318 * param0, int param1, u3
 static void ov19_021D7BC0(UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov19_021D4F5C * param1, int param2, BOOL param3);
 static void ov19_021D7C58(UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov19_021D4F5C * param1, int param2);
 static void ov19_021D7D00(UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov19_021D4F5C * param1, u32 param2, u32 param3, u32 param4);
-static void ov19_021D7E24(UnkStruct_0201CD38 * param0, void * param1);
-static void ov19_021D7E6C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021D7E24(SysTask * param0, void * param1);
+static void ov19_021D7E6C(SysTask * param0, void * param1);
 static void ov19_021D7F14(UnkStruct_ov19_021D8318 * param0, fx32 param1, s32 param2);
 static void ov19_021D7F9C(UnkStruct_ov19_021D8318 * param0, fx32 param1);
 static void ov19_021D803C(UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021DCD18 * param1, int param2, int param3);
 static void ov19_021D8114(UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021DCD18 * param1, int param2);
 static void ov19_021D813C(UnkStruct_ov19_021D8318 * param0, u32 param1);
 static void ov19_021D81B8(UnkStruct_ov19_021D8318 * param0, int param1, int param2, u32 param3);
-static void ov19_021D8210(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021D8210(SysTask * param0, void * param1);
 static void ov19_021D826C(void * param0);
-static void ov19_021D8274(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021D8274(SysTask * param0, void * param1);
 static void ov19_021D8318(UnkStruct_ov19_021D8318 * param0);
 static u32 ov19_021D85B4(u32 param0);
 static void ov19_021D85C4(UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021DA384 * param1, u32 param2, u32 param3, s32 param4, UnkStruct_ov19_021DCD18 * param5);
@@ -289,7 +289,7 @@ BOOL ov19_021D7E1C (UnkStruct_ov19_021D8318 * param0)
     return param0->unk_9C;
 }
 
-static void ov19_021D7E24 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021D7E24 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021D8318 * v0 = (UnkStruct_ov19_021D8318 *)param1;
 
@@ -308,7 +308,7 @@ static void ov19_021D7E24 (UnkStruct_0201CD38 * param0, void * param1)
     v0->unk_9C = 1;
 }
 
-static void ov19_021D7E6C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021D7E6C (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021D8318 * v0 = (UnkStruct_ov19_021D8318 *)param1;
     u32 v1, v2;
@@ -466,7 +466,7 @@ static void ov19_021D81B8 (UnkStruct_ov19_021D8318 * param0, int param1, int par
     }
 }
 
-static void ov19_021D8210 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021D8210 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021D81B8 * v0 = param1;
 
@@ -492,7 +492,7 @@ static void ov19_021D826C (void * param0)
 
 static int Unk_ov19_021E077C = 0;
 
-static void ov19_021D8274 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021D8274 (SysTask * param0, void * param1)
 {
     static u32 v0 = 0, v1 = 0, v2 = 0;
     static const UnkStruct_ov19_021D4F5C * v3 = NULL;

@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -51,7 +51,7 @@ typedef struct UnkStruct_ov117_02261280_t {
     Strbuf* unk_88;
     UnkStruct_02002F38 * unk_8C;
     UnkStruct_02012744 * unk_90;
-    UnkStruct_0201CD38 * unk_94;
+    SysTask * unk_94;
     UnkStruct_0207C690 * unk_98;
     UnkStruct_020203AC * unk_9C;
     UnkStruct_020203AC * unk_A0;

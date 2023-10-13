@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay028/struct_ov28_0225697C_decl.h"
 
@@ -28,20 +28,20 @@ struct UnkStruct_ov28_0225697C_t {
 };
 
 static void ov28_022569F4(UnkStruct_ov25_02255224 * param0);
-static void ov28_02256A08(UnkStruct_0201CD38 * param0, void * param1);
+static void ov28_02256A08(SysTask * param0, void * param1);
 static void ov28_02256AA4(UnkStruct_ov28_0225697C * param0);
-static void ov28_02256B24(UnkStruct_0201CD38 * param0, void * param1);
-static void ov28_02256B90(UnkStruct_0201CD38 * param0, void * param1);
-static void ov28_02256BF0(UnkStruct_0201CD38 * param0, void * param1);
-static void ov28_02256C28(UnkStruct_0201CD38 * param0, void * param1);
-static void ov28_02256C68(UnkStruct_0201CD38 * param0, void * param1);
-static void ov28_02256CA0(UnkStruct_0201CD38 * param0, void * param1);
-static void ov28_02256CE0(UnkStruct_0201CD38 * param0, void * param1);
-static void ov28_02256D20(UnkStruct_0201CD38 * param0, void * param1);
-static void ov28_02256D64(UnkStruct_0201CD38 * param0, void * param1);
+static void ov28_02256B24(SysTask * param0, void * param1);
+static void ov28_02256B90(SysTask * param0, void * param1);
+static void ov28_02256BF0(SysTask * param0, void * param1);
+static void ov28_02256C28(SysTask * param0, void * param1);
+static void ov28_02256C68(SysTask * param0, void * param1);
+static void ov28_02256CA0(SysTask * param0, void * param1);
+static void ov28_02256CE0(SysTask * param0, void * param1);
+static void ov28_02256D20(SysTask * param0, void * param1);
+static void ov28_02256D64(SysTask * param0, void * param1);
 static void ov28_02256D90(UnkStruct_02018340 * param0, const UnkStruct_ov28_0225697C_1 * param1);
 static void ov28_02256DCC(UnkStruct_02018340 * param0);
-static void ov28_02256DF0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov28_02256DF0(SysTask * param0, void * param1);
 static void ov28_02256E0C(UnkStruct_02018340 * param0, const u16 * param1);
 struct UnkStruct_ov25_02253CE0_t * sub_0203D158(void);
 
@@ -518,7 +518,7 @@ static void ov28_022569F4 (UnkStruct_ov25_02255224 * param0)
     ov25_02255224(v0->unk_08, param0);
 }
 
-static void ov28_02256A08 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256A08 (SysTask * param0, void * param1)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -576,7 +576,7 @@ static void ov28_02256AA4 (UnkStruct_ov28_0225697C * param0)
     }
 }
 
-static void ov28_02256B24 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256B24 (SysTask * param0, void * param1)
 {
     const UnkStruct_ov28_0225697C_1 * v0;
     UnkStruct_ov28_0225697C * v1;
@@ -594,7 +594,7 @@ static void ov28_02256B24 (UnkStruct_0201CD38 * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256B90 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256B90 (SysTask * param0, void * param1)
 {
     const UnkStruct_ov28_0225697C_1 * v0;
     UnkStruct_ov28_0225697C * v1;
@@ -610,7 +610,7 @@ static void ov28_02256B90 (UnkStruct_0201CD38 * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256BF0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256BF0 (SysTask * param0, void * param1)
 {
     const UnkStruct_ov28_0225697C_1 * v0;
     UnkStruct_ov28_0225697C * v1;
@@ -624,7 +624,7 @@ static void ov28_02256BF0 (UnkStruct_0201CD38 * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256C28 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256C28 (SysTask * param0, void * param1)
 {
     const UnkStruct_ov28_0225697C_1 * v0;
     UnkStruct_ov28_0225697C * v1;
@@ -639,7 +639,7 @@ static void ov28_02256C28 (UnkStruct_0201CD38 * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256C68 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256C68 (SysTask * param0, void * param1)
 {
     const UnkStruct_ov28_0225697C_1 * v0;
     UnkStruct_ov28_0225697C * v1;
@@ -653,7 +653,7 @@ static void ov28_02256C68 (UnkStruct_0201CD38 * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256CA0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256CA0 (SysTask * param0, void * param1)
 {
     const UnkStruct_ov28_0225697C_1 * v0;
     UnkStruct_ov28_0225697C * v1;
@@ -668,7 +668,7 @@ static void ov28_02256CA0 (UnkStruct_0201CD38 * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256CE0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256CE0 (SysTask * param0, void * param1)
 {
     const UnkStruct_ov28_0225697C_1 * v0;
     UnkStruct_ov28_0225697C * v1;
@@ -683,7 +683,7 @@ static void ov28_02256CE0 (UnkStruct_0201CD38 * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256D20 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256D20 (SysTask * param0, void * param1)
 {
     UnkStruct_ov28_0225697C * v0;
     u32 v1;
@@ -702,7 +702,7 @@ static void ov28_02256D20 (UnkStruct_0201CD38 * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256D64 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256D64 (SysTask * param0, void * param1)
 {
     const UnkStruct_ov28_0225697C_1 * v0;
     UnkStruct_ov28_0225697C * v1;
@@ -735,7 +735,7 @@ static void ov28_02256DCC (UnkStruct_02018340 * param0)
     ov25_02255258(v0, 3, 3, 32, 41, 40, 0);
 }
 
-static void ov28_02256DF0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov28_02256DF0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov28_0225697C * v0;
 

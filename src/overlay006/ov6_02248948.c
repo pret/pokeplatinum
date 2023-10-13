@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -41,7 +41,7 @@ static const UnkFuncPtr_ov6_0224984C Unk_ov6_0224984C[3] = {
     ov6_02248480
 };
 
-static void ov6_02248948 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov6_02248948 (SysTask * param0, void * param1)
 {
     UnkStruct_ov6_02248948 * v0 = param1;
 

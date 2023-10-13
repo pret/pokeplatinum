@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "overlay017/const_ov17_022536B4.h"
 
@@ -68,7 +68,7 @@ FS_EXTERN_OVERLAY(overlay22);
 static void ov17_0223B728(UnkStruct_02018340 * param0);
 static void ov17_0223B858(UnkStruct_ov17_02246F24 * param0);
 static void ov17_0223B884(void);
-static void ov17_0223B6F0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_0223B6F0(SysTask * param0, void * param1);
 static void ov17_0223B6BC(void * param0);
 static void ov17_0223B8C4(UnkStruct_ov17_02246F24 * param0);
 static int ov17_0223BCE8(UnkStruct_ov17_02246F24 * param0, UnkStruct_ov17_0223BCE8 * param1);
@@ -402,7 +402,7 @@ static void ov17_0223B6BC (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov17_0223B6F0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0223B6F0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_02246F24 * v0 = param1;
 

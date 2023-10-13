@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nnsys/g3d/glbstate.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
@@ -283,7 +283,7 @@ static void ov23_0224A5B0 (int param0)
     sub_0205948C(0x4);
 }
 
-static void ov23_0224A5CC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224A5CC (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224A294 * v0 = sub_02057518();
     UnkStruct_ov23_0224A5CC * v1 = param1;

@@ -4,7 +4,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay116/struct_ov116_0226139C.h"
@@ -72,29 +72,29 @@ typedef struct {
     void * unk_24;
 } UnkStruct_ov116_02267DA4;
 
-static void ov116_022647BC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov116_022647BC(SysTask * param0, void * param1);
 static inline void inline_ov116_022649E4(UnkStruct_ov116_02264FEC_sub1 * param0);
 static inline void inline_ov116_022649E4_1(UnkStruct_ov116_02264FEC_sub1 * wk, fx32 x, fx32 y);
-static void ov116_022649E4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov116_022649E4(SysTask * param0, void * param1);
 static void ov116_0226501C(UnkStruct_ov116_02265470 * param0);
 static void ov116_0226510C(UnkStruct_ov116_02265470 * param0);
 static void ov116_02265260(UnkStruct_ov116_02265470 * param0);
 static void ov116_022652F4(UnkStruct_ov116_02265470 * param0);
-static void ov116_0226534C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov116_0226534C(SysTask * param0, void * param1);
 static void ov116_022655DC(UnkStruct_ov116_022660A8 * param0);
 static void ov116_02265754(UnkStruct_ov116_022660A8 * param0);
 static int ov116_022658C8(int param0);
-static void ov116_0226591C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov116_02265AA4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov116_0226591C(SysTask * param0, void * param1);
+static void ov116_02265AA4(SysTask * param0, void * param1);
 static void ov116_02265D84(UnkStruct_ov116_02265D84 * param0);
 static BOOL ov116_02265D8C(UnkStruct_ov116_02265D84 * param0, int param1, int param2, int param3);
 static BOOL ov116_02265E64(UnkStruct_ov116_02265D84 * param0, int param1, int param2, int param3);
 static BOOL ov116_02265F1C(UnkStruct_ov116_02265D84 * param0, int param1, int param2, int param3);
 static BOOL ov116_02265FD4(UnkStruct_ov116_02265D84 * param0, int param1, int param2, int param3);
-static void ov116_022660A8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov116_0226644C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov116_022667F4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov116_02266BF0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov116_022660A8(SysTask * param0, void * param1);
+static void ov116_0226644C(SysTask * param0, void * param1);
+static void ov116_022667F4(SysTask * param0, void * param1);
+static void ov116_02266BF0(SysTask * param0, void * param1);
 BOOL ov116_0226432C(UnkStruct_ov116_0226501C * param0, int param1, int param2, int param3, int param4, f32 param5, BOOL param6);
 BOOL ov116_0226452C(UnkStruct_ov116_0226501C * param0, f32 param1);
 int ov116_02264680(UnkStruct_ov116_0226139C * param0, int param1);
@@ -307,7 +307,7 @@ BOOL ov116_02264774 (UnkStruct_ov116_0226469C * param0)
     return v1;
 }
 
-static void ov116_022647BC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_022647BC (SysTask * param0, void * param1)
 {
     UnkStruct_ov116_022647BC * v0 = param1;
     int v1;
@@ -420,7 +420,7 @@ static inline void inline_ov116_022649E4_1 (UnkStruct_ov116_02264FEC_sub1 * wk, 
     sub_0200D650(wk->unk_00, wk->unk_14 + wk->unk_0C + wk->unk_1C + wk->unk_04, wk->unk_18 + wk->unk_10 + wk->unk_20 + wk->unk_08, FX32_CONST((192 + 32)));
 }
 
-static void ov116_022649E4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_022649E4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov116_02264FEC * v0 = param1;
     UnkStruct_ov116_022649E4 * v1 = v0->unk_00->unk_14;
@@ -828,7 +828,7 @@ static void ov116_022652F4 (UnkStruct_ov116_02265470 * param0)
     }
 }
 
-static void ov116_0226534C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_0226534C (SysTask * param0, void * param1)
 {
     UnkStruct_ov116_0226534C * v0 = param1;
     UnkStruct_ov116_022649E4 * v1 = v0->unk_84;
@@ -1156,7 +1156,7 @@ static const UnkStruct_ov116_02267DA4 Unk_ov116_02267DA4[] = {
     }
 };
 
-static void ov116_0226591C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_0226591C (SysTask * param0, void * param1)
 {
     int v0;
     int v1;
@@ -1228,7 +1228,7 @@ void ov116_02265A1C (UnkStruct_ov116_02262A8C * param0)
     param0->unk_2018.unk_08 = SysTask_Start(ov116_0226591C, &param0->unk_2018, 4096);
 }
 
-static void ov116_02265AA4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_02265AA4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov116_022660A8 * v0 = param1;
     UnkStruct_ov116_02265AA4 * v1 = &v0->unk_00;
@@ -1492,7 +1492,7 @@ static BOOL ov116_02265FD4 (UnkStruct_ov116_02265D84 * param0, int param1, int p
     return 0;
 }
 
-static void ov116_022660A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_022660A8 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov116_022660A8 * v1 = param1;
@@ -1619,7 +1619,7 @@ static void ov116_022660A8 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov116_0226644C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_0226644C (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov116_022660A8 * v1 = param1;
@@ -1737,7 +1737,7 @@ static void ov116_0226644C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov116_022667F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_022667F4 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov116_022660A8 * v1 = param1;
@@ -1883,7 +1883,7 @@ static void ov116_022667F4 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov116_02266BF0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov116_02266BF0 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov116_022660A8 * v1 = param1;

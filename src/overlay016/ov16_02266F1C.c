@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
 
@@ -72,11 +72,11 @@ static void ov16_02267244(UnkStruct_ov16_022674C4 * param0);
 static void ov16_0226728C(UnkStruct_ov16_022674C4 * param0);
 static const UnkStruct_ov104_0223F9E0 * ov16_022682B0(u8 param0);
 static const UnkStruct_ov104_0223F9E0 * ov16_02268314(u8 param0);
-static void ov16_0226774C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_02268380(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0226774C(SysTask * param0, void * param1);
+static void ov16_02268380(SysTask * param0, void * param1);
 void ov16_02268470(UnkStruct_ov16_022674C4 * param0);
 void ov16_02268498(UnkStruct_ov16_022674C4 * param0);
-static void ov16_022684BC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_022684BC(SysTask * param0, void * param1);
 static void ov16_022675F8(UnkStruct_ov16_022674C4 * param0, int param1);
 
 __attribute__((aligned(4))) static const s8 Unk_ov16_0226F334[] = {
@@ -876,7 +876,7 @@ void ov16_022676A8 (UnkStruct_ov16_022674C4 * param0, int param1)
     SysTask_Start(ov16_0226774C, param0, 990);
 }
 
-static void ov16_0226774C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226774C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_022674C4 * v0 = param1;
     s16 v1, v2;
@@ -1611,7 +1611,7 @@ void ov16_0226834C (UnkStruct_ov16_022674C4 * param0, u8 * param1)
     SysTask_Start(ov16_02268380, v0, 1000);
 }
 
-static void ov16_02268380 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_02268380 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226834C * v0 = param1;
     UnkStruct_0200C704 * v1;
@@ -1691,7 +1691,7 @@ void ov16_02268498 (UnkStruct_ov16_022674C4 * param0)
     ov16_0226763C(param0, 0, 0);
 }
 
-static void ov16_022684BC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_022684BC (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_022674C4 * v0 = param1;
     int v1;

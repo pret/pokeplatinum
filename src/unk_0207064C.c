@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "pokemon.h"
 
@@ -23,7 +23,7 @@ typedef struct {
     s16 unk_0A;
     s16 unk_0C;
     Pokemon * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_14;
 } UnkStruct_0207064C;
 
 void * sub_0207064C (u32 param0, UnkStruct_0203CDB0 * param1, Pokemon * param2, u16 param3, s16 param4, s16 param5)

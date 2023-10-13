@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_020032D0.h"
 #include "struct_defs/struct_0200330C.h"
@@ -34,7 +34,7 @@ static u8 sub_0200327C(u16 param0, u16 param1);
 static void sub_02003290(UnkStruct_02002F38 * param0, u16 param1);
 static void sub_020032D0(int param0, UnkStruct_020032D0 * param1, u16 * param2);
 static void sub_0200330C(UnkStruct_0200330C * param0, u16 param1, s8 param2, u8 param3, u8 param4, u16 param5);
-static void sub_020033CC(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_020033CC(SysTask * param0, void * param1);
 static void sub_02003468(UnkStruct_02002F38 * param0);
 static void sub_02003488(UnkStruct_02002F38 * param0);
 static void sub_020034A8(UnkStruct_02002F38 * param0, u16 param1, u16 param2);
@@ -271,7 +271,7 @@ static void sub_0200330C (UnkStruct_0200330C * param0, u16 param1, s8 param2, u8
     }
 }
 
-static void sub_020033CC (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020033CC (SysTask * param0, void * param1)
 {
     UnkStruct_02002F38 * v0 = param1;
 

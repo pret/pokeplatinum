@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -59,7 +59,7 @@ typedef struct UnkStruct_ov12_02235FE0_t {
     UnkStruct_0202CA64 * unk_38[9];
     BOOL unk_5C[9];
     UnkSPLStruct6 * unk_80;
-    UnkStruct_0201CD38 * unk_84;
+    SysTask * unk_84;
     BOOL unk_88;
     NARC * unk_8C;
     int unk_90;
@@ -107,14 +107,14 @@ typedef struct BallRotation {
     UnkStruct_ov12_02225F6C unk_48[2];
     UnkStruct_ov12_02237728 unk_90;
     UnkStruct_ov12_02237C54_sub1 unk_B8;
-    UnkStruct_0201CD38 * unk_CC;
+    SysTask * unk_CC;
     UnkStruct_ov12_02236648 * unk_D0;
     UnkStruct_ov12_022267D4 * unk_D4;
     UnkStruct_ov12_02223764 * unk_D8;
     int unk_DC;
 } BallRotation;
 
-static void ov12_022363CC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov12_022363CC(SysTask * param0, void * param1);
 static void ov12_0223646C(UnkStruct_ov12_02235FE0 * param0, UnkFuncPtr_020146F4 param1);
 static void ov12_02236598(UnkSPLStruct6 * param0);
 static void ov12_022365D4(UnkSPLStruct6 * param0);
@@ -387,7 +387,7 @@ void ov12_02236030 (UnkStruct_ov12_02235FE0 * param0, const UnkStruct_ov12_02236
     }
 }
 
-static void ov12_022360A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022360A0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02235FE0 * v0 = param1;
     int v1;
@@ -562,7 +562,7 @@ void ov12_02236320 (UnkStruct_ov12_02235FE0 * param0)
         param0->unk_90 = 0;
 
         {
-            UnkStruct_0201CD38 * v5;
+            SysTask * v5;
 
             v5 = SysTask_Start(ov12_022360A0, param0, 1000);
             ov12_022360A0(v5, param0);
@@ -599,7 +599,7 @@ BOOL ov12_022363C4 (UnkStruct_ov12_02235FE0 * param0)
     return param0->unk_88;
 }
 
-static void ov12_022363CC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022363CC (SysTask * param0, void * param1)
 {
     int v0;
     BOOL v1;
@@ -635,7 +635,7 @@ void ov12_02236428 (UnkStruct_ov12_02235FE0 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov12_02236430 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02236430 (SysTask * param0, void * param1)
 {
     UnkStruct_02236430 * v0 = (UnkStruct_02236430 *)param1;
 
@@ -1980,7 +1980,7 @@ static BOOL ov12_02237694 (BallRotation * param0)
     return 1;
 }
 
-static void ov12_022376D0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_022376D0 (SysTask * param0, void * param1)
 {
     BOOL v0;
     BallRotation * v1 = (BallRotation *)param1;

@@ -5,7 +5,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -73,7 +73,7 @@ static const UnkStruct_ov17_0225442C Unk_ov17_0225442C[] = {
 };
 
 void include_ov17_022476F8(void);
-static void ov17_02247840(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_02247840(SysTask * param0, void * param1);
 
 void ov17_022476F8 (UnkStruct_ov17_022476F8 * param0, int param1)
 {
@@ -137,7 +137,7 @@ void ov17_022477B8 (UnkStruct_ov17_02247A48 * param0, int param1, int param2, fx
     sub_02005748(1761);
 }
 
-static void ov17_02247840 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_02247840 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_022477B8 * v0 = param1;
     s32 v1;

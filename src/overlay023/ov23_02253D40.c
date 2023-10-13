@@ -6,7 +6,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "overlay023/struct_ov23_02253E2C_decl.h"
@@ -31,7 +31,7 @@ typedef struct UnkStruct_ov23_02253E2C_t {
     UnkStruct_0205AA50 unk_08;
     UnkStruct_02018340 * unk_18;
     UnkStruct_ov23_02253F60 unk_1C;
-    UnkStruct_0201CD38 * unk_20;
+    SysTask * unk_20;
     MessageLoader * unk_24;
     UnkStruct_0200B358 * unk_28;
     int unk_2C;
@@ -139,7 +139,7 @@ MessageLoader * ov23_02253E3C (UnkStruct_ov23_02253E2C * param0)
     return param0->unk_24;
 }
 
-static void ov23_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_02253E40 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_02253E2C * v0 = param1;
 

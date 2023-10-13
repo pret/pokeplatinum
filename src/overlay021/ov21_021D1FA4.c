@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
@@ -60,12 +60,12 @@ static void ov21_021D2F5C(UnkStruct_ov21_021D13FC * param0, int param1);
 static void ov21_021D300C(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D3034(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D3054(UnkStruct_ov21_021D13FC * param0);
-static void ov21_021D3064(UnkStruct_0201CD38 * param0, void * param1);
+static void ov21_021D3064(SysTask * param0, void * param1);
 static void ov21_021D30D8(UnkStruct_ov21_021D2584 * param0, int param1, int param2, int param3, int param4);
 static void ov21_021D31D0(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D31F0(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D3124(UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3, int param4);
-static void ov21_021D3194(UnkStruct_0201CD38 * param0, void * param1);
+static void ov21_021D3194(SysTask * param0, void * param1);
 
 void ov21_021D1FA4 (UnkStruct_ov21_021D13FC * param0, int param1)
 {
@@ -1048,7 +1048,7 @@ static void ov21_021D3054 (UnkStruct_ov21_021D13FC * param0)
     sub_0200DA58(param0->unk_270);
 }
 
-static void ov21_021D3064 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov21_021D3064 (SysTask * param0, void * param1)
 {
     UnkStruct_ov21_021D2584 * v0 = param1;
     int v1;
@@ -1113,7 +1113,7 @@ static void ov21_021D3124 (UnkStruct_ov21_021D13FC * param0, int param1, int par
     v0->unk_54 = 1;
 }
 
-static void ov21_021D3194 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov21_021D3194 (SysTask * param0, void * param1)
 {
     UnkStruct_ov21_021D3124 * v0 = param1;
     BOOL v1;

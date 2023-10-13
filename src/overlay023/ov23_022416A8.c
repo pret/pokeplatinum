@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"
 
@@ -50,7 +50,7 @@ typedef struct {
     UnkStruct_ov23_02241974 * unk_2BC[100];
     u8 unk_44C[8];
     u8 unk_454[8];
-    UnkStruct_0201CD38 * unk_45C;
+    SysTask * unk_45C;
     UnkStruct_ov23_02241E4C * unk_460;
     UnkStruct_0203CDB0 * unk_464;
     u8 unk_468[8];
@@ -540,7 +540,7 @@ int ov23_02241DF8 (MATHRandContext16 * param0)
     return v3;
 }
 
-static void ov23_02241E4C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_02241E4C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_02241E4C * v0 = param1;
 

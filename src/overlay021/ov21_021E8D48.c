@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -95,12 +95,12 @@ typedef struct UnkStruct_ov21_021E8D48_t {
     u32 unk_218;
     u32 unk_21C;
     u32 unk_220;
-    UnkStruct_0201CD38 * unk_224;
+    SysTask * unk_224;
     UnkStruct_ov21_021E9A9C unk_228;
     BOOL unk_248;
 } UnkStruct_ov21_021E8D48;
 
-static void ov21_021E9828(UnkStruct_0201CD38 * param0, void * param1);
+static void ov21_021E9828(SysTask * param0, void * param1);
 static void ov21_021E98D8(UnkStruct_02002F38 * param0, UnkStruct_02007C7C * param1);
 static void ov21_021E98F8(UnkStruct_02002F38 * param0, UnkStruct_02007C7C * param1, int param2, int param3, int param4, int param5, int param6);
 static BOOL ov21_021E9948(UnkStruct_02002F38 * param0, UnkStruct_02007C7C * param1);
@@ -687,7 +687,7 @@ static void ov21_021E97C4 (UnkStruct_02018340 * param0, int param1, NARC * param
     sub_0201C3C0(param0, 2);
 }
 
-static void ov21_021E9828 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov21_021E9828 (SysTask * param0, void * param1)
 {
     UnkStruct_ov21_021E8D48 * v0 = param1;
     BOOL v1;

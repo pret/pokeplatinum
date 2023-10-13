@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
@@ -564,7 +564,7 @@ typedef struct {
 
 struct UnkStruct_ov5_021F7ED8_t {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_0205AA50 unk_08;
     UnkStruct_0205AA50 * unk_18;
     Strbuf* unk_1C[39];
@@ -609,7 +609,7 @@ static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 * param0);
 static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F8090(UnkStruct_ov5_021F7ED8 * param0);
 static void ov5_021F819C(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov5_021F81A8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov5_021F81A8(SysTask * param0, void * param1);
 static void ov5_021F8250(UnkStruct_ov5_021F7ED8 * param0);
 
 static const UnkStruct_ov5_02200CE4 Unk_ov5_02200CE4[] = {
@@ -1137,7 +1137,7 @@ static void ov5_021F819C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     return;
 }
 
-static void ov5_021F81A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021F81A8 (SysTask * param0, void * param1)
 {
     u16 v0;
     u32 v1;

@@ -7,7 +7,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "strbuf.h"
 #include "trainer_info.h"
@@ -72,7 +72,7 @@ static void ov117_02260DA0(void * param0);
 static UnkStruct_0207C690 * ov117_02260E14(int param0);
 static void ov117_02260E34(void);
 static void ov117_02260EB8(UnkStruct_0207C690 * param0);
-static void ov117_02260F7C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov117_02260F7C(SysTask * param0, void * param1);
 static void ov117_022610D8(UnkStruct_02018340 * param0);
 static void ov117_02261280(UnkStruct_ov117_02261280 * param0);
 static void ov117_02261574(UnkStruct_ov117_02261280 * param0);
@@ -568,7 +568,7 @@ static void ov117_02260F64 (UnkStruct_ov117_02261280 * param0)
     sub_020203B8(param0->unk_A0);
 }
 
-static void ov117_02260F7C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov117_02260F7C (SysTask * param0, void * param1)
 {
     UnkStruct_ov117_02261280 * v0 = param1;
     VecFx32 v1, v2;

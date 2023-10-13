@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -21,7 +21,7 @@
 
 typedef struct {
     void * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_0206A844 * unk_08;
     UnkStruct_0203CDB0 * unk_0C;
     UnkStruct_0205AA50 unk_10;

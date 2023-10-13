@@ -6,7 +6,7 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -92,7 +92,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_02049FA8 unk_08;
     UnkStruct_ov5_021D432C * unk_1C;
 } UnkStruct_02053AB4;
@@ -105,7 +105,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_08;
     UnkStruct_02049FA8 unk_0C;
 } UnkStruct_02053CD4;
 

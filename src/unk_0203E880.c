@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_0203EF60_decl.h"
@@ -49,7 +49,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     UnkStruct_02061AB4 * unk_14;
-    UnkStruct_0201CD38 * unk_18;
+    SysTask * unk_18;
 } UnkStruct_0203E8B0;
 
 struct UnkStruct_0203EF60_t {
@@ -80,7 +80,7 @@ struct UnkStruct_0203EF60_t {
     void * unk_A8;
     void * unk_AC;
     UnkStruct_ov101_021D5D90 * unk_B0;
-    UnkStruct_0201CD38 * unk_B4;
+    SysTask * unk_B4;
     UnkStruct_0205AA50 unk_B8;
     UnkStruct_0205AA50 unk_C8;
     UnkStruct_ov5_021E1FF4 * unk_D8;

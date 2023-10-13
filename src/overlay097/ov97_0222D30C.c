@@ -8,7 +8,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
@@ -102,7 +102,7 @@ typedef struct {
     int unk_3C;
     int unk_40;
     int unk_44;
-    UnkStruct_0201CD38 * unk_48;
+    SysTask * unk_48;
 } UnkStruct_ov97_0222EEB8;
 
 typedef struct {
@@ -151,7 +151,7 @@ static void ov97_02230224(UnkStruct_ov97_0222D04C * param0);
 static void ov97_022302F4(UnkStruct_ov97_0222D04C * param0);
 static int ov97_0222E228(UnkStruct_020067E8 * param0, UnkStruct_0205AA50 * param1, int param2, int param3);
 int ov97_02238EAC(UnkStruct_020067E8 * param0, int * param1);
-static void ov97_0222EEB8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov97_0222EEB8(SysTask * param0, void * param1);
 
 static UnkStruct_020067E8 * Unk_ov97_0223F1B0;
 
@@ -1566,7 +1566,7 @@ static BOOL ov97_0222EDC0 (s16 param0, s16 param1, f32 param2, f32 param3, f32 *
     return 1;
 }
 
-static void ov97_0222EEB8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov97_0222EEB8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov97_0222EEB8 * v0 = ( UnkStruct_ov97_0222EEB8 * )param1;
     VecFx32 v1;
@@ -1803,7 +1803,7 @@ static void ov97_0222F484 (UnkStruct_ov97_0222E398 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov97_0222F4BC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov97_0222F4BC (SysTask * param0, void * param1)
 {
     UnkStruct_ov97_0222E398 * v0 = ( UnkStruct_ov97_0222E398 * )param1;
     BOOL v1;

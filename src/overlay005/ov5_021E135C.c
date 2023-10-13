@@ -3,7 +3,7 @@
 #include <string.h>
 #include <nitro/os.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -45,7 +45,7 @@ static void ov5_021E135C (UnkStruct_ov5_021E135C * param0)
     sub_0205EA84(param0->unk_00->unk_3C, param0->unk_10);
 }
 
-static void ov5_021E139C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021E139C (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021E135C * v0 = param1;
     UnkStruct_02061AB4 * v1 = sub_0205EB3C(v0->unk_00->unk_3C);
@@ -78,7 +78,7 @@ static void ov5_021E139C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov5_021E1470 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021E1470 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021E135C * v0 = param1;
     UnkStruct_02061AB4 * v1 = sub_0205EB3C(v0->unk_00->unk_3C);

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0201CD88_decl.h"
 #include "overlay005/struct_ov5_021D1A94_decl.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
@@ -26,8 +26,8 @@ struct UnkStruct_ov5_021D1A94_t {
 
 struct UnkStruct_ov5_021D1BEC_t {
     UnkStruct_ov5_021D1A94 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_04;
+    SysTask * unk_08;
     const UnkStruct_ov6_0223E6EC * unk_0C;
     void * unk_10;
 };
@@ -72,7 +72,7 @@ void ov5_021D1B18 (UnkStruct_ov5_021D1A94 * param0)
     sub_0201CDD4(param0->unk_10);
 }
 
-static void ov5_021D1B24 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021D1B24 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021D1BEC * v0 = param1;
 
@@ -83,7 +83,7 @@ static void ov5_021D1B24 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov5_021D1B48 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021D1B48 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021D1BEC * v0 = param1;
 

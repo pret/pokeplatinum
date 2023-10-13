@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -27,7 +27,7 @@
 #include <nitro/fx/fx.h>
 
 void ov5_021DDBE8(int param0, UnkStruct_0203CDB0 * param1, BOOL * param2);
-void ov5_021DDC28(UnkStruct_ov5_021DDC28 * param0, UnkStruct_0201CD38 * param1);
+void ov5_021DDC28(UnkStruct_ov5_021DDC28 * param0, SysTask * param1);
 void ov5_021DDC44(int param0, u32 param1, u32 param2, BOOL * param3, u32 param4);
 BOOL ov5_021DDD7C(UnkStruct_ov5_021DDC28 * param0);
 void ov5_021DDD80(UnkStruct_ov5_021DDD80 * param0, int param1, int param2, int param3);

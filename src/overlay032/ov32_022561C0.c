@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
@@ -34,7 +34,7 @@ static void NitroStaticInit(void);
 static BOOL ov32_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
 static BOOL ov32_0225621C(UnkStruct_ov32_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
 static void ov32_02256264(UnkStruct_ov32_0225621C * param0);
-static void ov32_02256278(UnkStruct_0201CD38 * param0, void * param1);
+static void ov32_02256278(SysTask * param0, void * param1);
 static void ov32_022562AC(void * param0);
 static void ov32_022562B4(UnkStruct_ov32_0225621C * param0, u32 param1);
 static BOOL ov32_022562C8(UnkStruct_ov32_0225621C * param0);
@@ -92,7 +92,7 @@ static void ov32_02256264 (UnkStruct_ov32_0225621C * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov32_02256278 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov32_02256278 (SysTask * param0, void * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov32_0225621C *) = {
         ov32_022562C8,

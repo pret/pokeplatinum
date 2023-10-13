@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay095/struct_ov95_02247628_decl.h"
 
 #include "struct_defs/struct_02099F80.h"
@@ -43,7 +43,7 @@ typedef struct {
 
 static int ov95_02249FF8(UnkStruct_ov95_02249FF8 * param0, int * param1);
 static int ov95_0224A020(UnkStruct_ov95_02249FF8 * param0, int * param1);
-static void ov95_0224A0C4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov95_0224A0C4(SysTask * param0, void * param1);
 static void ov95_0224A10C(UnkStruct_ov95_02249FF8 * param0);
 static void ov95_0224A320(UnkStruct_ov95_02249FF8 * param0);
 static void ov95_0224A358(UnkStruct_02018340 * param0, int param1, int param2);
@@ -136,7 +136,7 @@ static int ov95_0224A020 (UnkStruct_ov95_02249FF8 * param0, int * param1)
     return 0;
 }
 
-static void ov95_0224A0C4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov95_0224A0C4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov95_02249FF8 * v0 = param1;
 

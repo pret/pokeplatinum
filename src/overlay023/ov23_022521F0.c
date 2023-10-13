@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -603,7 +603,7 @@ static int ov23_02252E3C (int param0, int param1, int * param2)
     return 0;
 }
 
-static void ov23_02252E70 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_02252E70 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_02250CD4 * v0 = param1;
     u32 v1 = 0xfffe;

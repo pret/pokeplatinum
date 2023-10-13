@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "battle/battle_context.h"
@@ -132,13 +132,13 @@ static void ov16_0223C2C0(BattleSystem * param0, BattleParams * param1);
 static void ov16_0223CE28(void);
 static void ov16_0223CE68(void * param0);
 static void ov16_0223CF1C(void * param0);
-static void ov16_0223CF48(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0223CF8C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0223CF48(SysTask * param0, void * param1);
+static void ov16_0223CF8C(SysTask * param0, void * param1);
 static UnkStruct_0207C690 * ov16_0223CD7C(void);
 static void ov16_0223CE20(UnkStruct_0207C690 * param0);
 static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem * param0);
-static void ov16_0223D0C4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0223D0C4(SysTask * param0, void * param1);
 static BOOL ov16_0223CD3C(u16 param0);
 static void ov16_0223DD90(BattleSystem * param0, BattleParams * param1);
 static void ov16_0223DECC(void);
@@ -1550,7 +1550,7 @@ static void ov16_0223CF1C (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov16_0223CF48 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0223CF48 (SysTask * param0, void * param1)
 {
     BattleSystem * v0 = param1;
 
@@ -1568,7 +1568,7 @@ static void ov16_0223CF48 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0223CF8C (SysTask * param0, void * param1)
 {
     BattleSystem * v0 = param1;
     BattlerData * v1;
@@ -1633,7 +1633,7 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov16_0223D0C4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0223D0C4 (SysTask * param0, void * param1)
 {
     BattleSystem * v0 = param1;
 

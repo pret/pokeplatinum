@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/cell_actor_data.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay012/struct_ov12_02223764.h"
 #include "overlay012/struct_ball_rotation_decl.h"
@@ -28,7 +28,7 @@ struct BattlerData {
     u8 battlerType;
     u8 bootState;
     u8 unk_193;
-    UnkStruct_0201CD38 * unk_194;
+    SysTask * unk_194;
     u16 unk_198;
     int unk_19C;
     NARC * unk_1A0;

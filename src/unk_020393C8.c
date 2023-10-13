@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_020E5EB4.h"
 
@@ -25,13 +25,13 @@ typedef struct UnkStruct_020393C8_t {
     u8 unk_11;
     u8 unk_12;
     const UnkStruct_020E5EB4 ** unk_14;
-    UnkStruct_0201CD38 * unk_18;
+    SysTask * unk_18;
     GXOamAttr * unk_1C;
 } UnkStruct_020393C8;
 
 static int inline inline_02039614(UnkStruct_020393C8 * param0);
 static int inline inline_02039614_1(int param0, int param1);
-static void sub_02039428(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02039428(SysTask * param0, void * param1);
 static void sub_020394D0(int param0, BOOL param1, u32 param2, u32 param3);
 static void sub_02039530(int param0, BOOL param1, u32 param2);
 static void sub_02039614(UnkStruct_020393C8 * param0);
@@ -60,7 +60,7 @@ UnkStruct_020393C8 * sub_020393C8 (u32 param0, u32 param1, int param2, int param
     return v0;
 }
 
-static void sub_02039428 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02039428 (SysTask * param0, void * param1)
 {
     UnkStruct_020393C8 * v0 = (UnkStruct_020393C8 *)param1;
     sub_02039614(v0);

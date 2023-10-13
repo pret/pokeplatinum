@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -53,7 +53,7 @@
 #include "overlay016/ov16_0225177C.h"
 #include "overlay016/ov16_0226DE44.h"
 
-static void ov13_02226590(UnkStruct_0201CD38 * param0, void * param1);
+static void ov13_02226590(SysTask * param0, void * param1);
 static u8 ov13_0222668C(UnkStruct_ov13_02227244 * param0);
 static u8 ov13_02226760(UnkStruct_ov13_02227244 * param0);
 static u8 ov13_02226838(UnkStruct_ov13_02227244 * param0);
@@ -68,7 +68,7 @@ static u8 ov13_02226C94(UnkStruct_ov13_02227244 * param0);
 static u8 ov13_02226CBC(UnkStruct_ov13_02227244 * param0);
 static u8 ov13_02226D94(UnkStruct_ov13_02227244 * param0);
 static u8 ov13_02226CD4(UnkStruct_ov13_02227244 * param0);
-static u8 ov13_02226CFC(UnkStruct_0201CD38 * param0, UnkStruct_ov13_02227244 * param1);
+static u8 ov13_02226CFC(SysTask * param0, UnkStruct_ov13_02227244 * param1);
 static void ov13_02226ED0(UnkStruct_ov13_02227244 * param0);
 static void ov13_02226F9C(UnkStruct_02018340 * param0);
 static void ov13_02226FC4(UnkStruct_ov13_02227244 * param0);
@@ -142,7 +142,7 @@ void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
     }
 }
 
-static void ov13_02226590 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov13_02226590 (SysTask * param0, void * param1)
 {
     UnkStruct_ov13_02227244 * v0 = (UnkStruct_ov13_02227244 *)param1;
 
@@ -548,7 +548,7 @@ static u8 ov13_02226CD4 (UnkStruct_ov13_02227244 * param0)
     return 14;
 }
 
-static u8 ov13_02226CFC (UnkStruct_0201CD38 * param0, UnkStruct_ov13_02227244 * param1)
+static u8 ov13_02226CFC (SysTask * param0, UnkStruct_ov13_02227244 * param1)
 {
     if (sub_0200384C(param1->unk_08) != 0) {
         return 0;
