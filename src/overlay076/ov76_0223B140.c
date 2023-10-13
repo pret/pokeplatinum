@@ -48,7 +48,7 @@ static void ov76_0223B174 (UnkUnion_02022594 * param0)
     param0->val1.unk_03 = 255;
 }
 
-void ov76_0223B184 (UnkUnion_02022594 * param0, UnkStruct_0200D0F4 * param1, BOOL param2)
+void ov76_0223B184 (UnkUnion_02022594 * param0, CellActorData * param1, BOOL param2)
 {
     s16 v0, v1;
 

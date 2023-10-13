@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -35,7 +35,7 @@ typedef struct {
     UnkStruct_0200C6E4 * unk_5A8;
     UnkStruct_0200C704 * unk_5AC;
     UnkStruct_02022550 * unk_5B0[29];
-    UnkStruct_0200D0F4 * unk_624[29];
+    CellActorData * unk_624[29];
     UnkStruct_0200C440 * unk_698;
     MessageLoader * unk_69C;
     UnkStruct_0200B358 * unk_6A0;

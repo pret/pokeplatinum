@@ -8,7 +8,13 @@
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 
-#include "overlay016/struct_ov16_0224B7CC_decl.h"
+#include "struct_decls/cell_actor_data.h"
+#include "struct_decls/font_oam.h"
+#include "struct_defs/sprite_manager_allocation.h"
+#include "struct_decls/battle_system.h"
+#include "overlay012/struct_ball_rotation_decl.h"
+
+typedef struct BattleContext BattleContext;
 
 typedef struct FieldConditions {
     u32 weatherTurns;
@@ -96,7 +102,21 @@ typedef struct MoveFailFlags {
     u32 padding00_0A : 22;
 } MoveFailFlags;
 
-typedef struct BattleContext {
+typedef struct BattleScriptTaskData {
+    BattleSystem *battleSys;
+    BattleContext *battleCtx;
+    BallRotation *ballRotation;
+    CellActorData *cellActorData[2];
+    FontOAM *fontOAM;
+    SpriteManagerAllocation spriteMgrAlloc;
+    int flag;
+    int seqNum;
+    int ball;
+    int tmpData[8];
+    void *tmpPtr[2];
+} BattleScriptTaskData;
+
+struct BattleContext {
     u8 curCommandState[MAX_BATTLERS];
     u8 nextCommandState[MAX_BATTLERS];
 
@@ -175,7 +195,7 @@ typedef struct BattleContext {
     int totalDamage[MAX_BATTLERS];
     int meFirstTurnOrder;
 
-    UnkStruct_ov16_0224B7CC *unk_178; // used for task orchestration
+    BattleScriptTaskData *taskData;
     void *unk_17C;
     
     u32 fieldConditionsMask;
@@ -188,7 +208,7 @@ typedef struct BattleContext {
     SelfTurnFlags selfTurnFlags[MAX_BATTLERS];
     MoveFailFlags moveFailFlags[MAX_BATTLERS];
 
-    AIContext aiContext;         // has the move and item data tables
+    AIContext aiContext; // has the move and item data tables
     u32 *aiScriptTemp;
     u32 aiScriptCursor;
 
@@ -289,6 +309,6 @@ typedef struct BattleContext {
 
     u32 battleProgressFlag : 1;
     u32 padding3154_01 : 31;
-} BattleContext;
+};
 
 #endif // POKEPLATINUM_BATTLE_CONTEXT_H

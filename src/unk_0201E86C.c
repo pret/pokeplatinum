@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_defs/struct_0200A328.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "overlay022/struct_ov22_022559F8.h"
 
 #include "heap.h"
@@ -408,7 +408,7 @@ void sub_0201ED1C (const NNSG2dImageProxy * param0)
     }
 }
 
-BOOL sub_0201ED94 (int param0, int param1, int param2, UnkStruct_0201EE28 * param3)
+BOOL sub_0201ED94 (int param0, int param1, int param2, SpriteManagerAllocation * param3)
 {
     u32 v0, v1;
     u32 v2, v3;
@@ -454,7 +454,7 @@ BOOL sub_0201ED94 (int param0, int param1, int param2, UnkStruct_0201EE28 * para
     return v4;
 }
 
-void sub_0201EE28 (UnkStruct_0201EE28 * param0)
+void sub_0201EE28 (SpriteManagerAllocation * param0)
 {
     int v0;
     int v1;

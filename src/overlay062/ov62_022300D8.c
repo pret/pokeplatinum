@@ -624,12 +624,12 @@ void ov62_02230C28 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void ov62_02230E68 (UnkStruct_0200D0F4 * param0, s16 param1, s16 param2)
+void ov62_02230E68 (CellActorData * param0, s16 param1, s16 param2)
 {
     sub_0200D500(param0, param1, param2, (256 * FX32_ONE));
 }
 
-void ov62_02230E74 (UnkStruct_0200D0F4 * param0, s16 * param1, s16 * param2)
+void ov62_02230E74 (CellActorData * param0, s16 * param1, s16 * param2)
 {
     sub_0200D5A0(param0, param1, param2, (256 * FX32_ONE));
 }
@@ -870,9 +870,9 @@ void ov62_022313BC (UnkStruct_0208C06C * param0)
     sub_0200D0A0(param0->unk_14.unk_08, 11924);
 }
 
-UnkStruct_0200D0F4 * ov62_022313E0 (UnkStruct_0208C06C * param0, int param1)
+CellActorData * ov62_022313E0 (UnkStruct_0208C06C * param0, int param1)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
 
     v1.unk_00 = 128;

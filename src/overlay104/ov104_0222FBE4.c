@@ -1311,7 +1311,7 @@ static BOOL ov104_0223066C (UnkStruct_ov104_0222E930 * param0)
     const u8 * v2;
     s32 v3;
     u16 v4, v5, v6, v7, v8, v9;
-    UnkStruct_0200D0F4 * v10;
+    CellActorData * v10;
 
     v3 = ov104_0222EA60(param0);
     v2 = param0->unk_1C;
@@ -1360,7 +1360,7 @@ static BOOL ov104_02230728 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_0223C4CC * v1 = sub_0209B974(v0->unk_00);
     u16 v2 = ov104_0222FC00(param0);
     u8 v3 = (*((param0)->unk_1C++));
-    UnkStruct_0200D0F4 * v4;
+    CellActorData * v4;
 
     v4 = ov104_0223D370(v1, v2);
 
@@ -1375,7 +1375,7 @@ static BOOL ov104_02230760 (UnkStruct_ov104_0222E930 * param0)
     UnkStruct_ov104_022320B4 * v0 = param0->unk_00;
     UnkStruct_ov104_0223C4CC * v1 = sub_0209B974(v0->unk_00);
     u16 v2 = ov104_0222FC00(param0);
-    UnkStruct_0200D0F4 * v3;
+    CellActorData * v3;
 
     v3 = ov104_0223D370(v1, v2);
 
@@ -1387,7 +1387,7 @@ static BOOL ov104_02230760 (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02230790 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov104_022320B4 * v1 = param0->unk_00;
     UnkStruct_ov104_0223C4CC * v2 = sub_0209B974(v1->unk_00);
     u16 v3 = ov104_0222FC00(param0);
@@ -1409,7 +1409,7 @@ static BOOL ov104_022307D8 (UnkStruct_ov104_0222E930 * param0)
 {
     u16 v0 = ov104_0222FC00(param0);
     u16 v1 = ov104_0222FC00(param0);
-    UnkStruct_0200D0F4 * v2;
+    CellActorData * v2;
     UnkStruct_ov104_0223C4CC * v3 = sub_0209B974(param0->unk_00->unk_00);
 
     v2 = ov104_0223D370(v3, v0);
@@ -1441,7 +1441,7 @@ static BOOL ov104_02230830 (UnkStruct_ov104_0222E930 * param0)
 
 static BOOL ov104_02230850 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov104_0223C4CC * v1 = sub_0209B974(param0->unk_00->unk_00);
 
     v0 = ov104_0223D370(v1, param0->unk_78[0]);

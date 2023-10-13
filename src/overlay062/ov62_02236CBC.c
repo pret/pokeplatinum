@@ -40,12 +40,12 @@ typedef struct {
     f32 unk_04[5];
     int unk_18[5];
     int unk_2C[5];
-    UnkStruct_0200D0F4 * unk_40[5];
-    UnkStruct_0200D0F4 * unk_54[5];
-    UnkStruct_0200D0F4 * unk_68[5];
-    UnkStruct_0200D0F4 * unk_7C[5];
+    CellActorData * unk_40[5];
+    CellActorData * unk_54[5];
+    CellActorData * unk_68[5];
+    CellActorData * unk_7C[5];
     int unk_90;
-    UnkStruct_0200D0F4 * unk_94[2];
+    CellActorData * unk_94[2];
     UnkStruct_ov62_022312B0 unk_9C[2];
     int unk_D4;
     int unk_D8;

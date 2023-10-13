@@ -6,9 +6,9 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -23,8 +23,8 @@ typedef struct {
     UnkUnion_02022594 unk_18[28];
     BOOL unk_88;
     UnkStruct_02012744 * unk_8C;
-    UnkStruct_02012CE0 * unk_90[2];
-    UnkStruct_0201EE28 unk_98[2];
+    FontOAM * unk_90[2];
+    SpriteManagerAllocation unk_98[2];
     UnkStruct_0205AA50 unk_B0;
 } UnkStruct_02089688_sub1;
 

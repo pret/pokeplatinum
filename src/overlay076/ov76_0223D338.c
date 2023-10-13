@@ -4,7 +4,7 @@
 #include "coresys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
@@ -59,8 +59,8 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_0200D0F4 * unk_04;
-    UnkStruct_02012CE0 * unk_08;
+    CellActorData * unk_04;
+    FontOAM * unk_08;
 } UnkStruct_ov76_0223D9AC;
 
 static BOOL ov76_0223D674(UnkStruct_ov76_0223DE00 * param0);
@@ -459,7 +459,7 @@ static BOOL ov76_0223D674 (UnkStruct_ov76_0223DE00 * param0)
     return 1;
 }
 
-void ov76_0223D94C (UnkStruct_0200D0F4 * param0, int param1)
+void ov76_0223D94C (CellActorData * param0, int param1)
 {
     switch (param1) {
     case 0:
@@ -478,7 +478,7 @@ void ov76_0223D94C (UnkStruct_0200D0F4 * param0, int param1)
     }
 }
 
-static void ov76_0223D984 (UnkStruct_02012CE0 * param0, int param1, int param2)
+static void ov76_0223D984 (FontOAM * param0, int param1, int param2)
 {
     int v0;
     int v1;
@@ -511,7 +511,7 @@ static void ov76_0223D9AC (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov76_0223DA00 (UnkStruct_0200D0F4 * param0, UnkStruct_02012CE0 * param1)
+static void ov76_0223DA00 (CellActorData * param0, FontOAM * param1)
 {
     UnkStruct_ov76_0223D9AC * v0;
 

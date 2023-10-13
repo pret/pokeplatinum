@@ -7,14 +7,14 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
 
@@ -44,8 +44,8 @@ typedef struct {
 } UnkStruct_ov104_0223E29C;
 
 typedef struct {
-    UnkStruct_02012CE0 * unk_00;
-    UnkStruct_0201EE28 unk_04;
+    FontOAM * unk_00;
+    SpriteManagerAllocation unk_04;
     u16 unk_10;
 } UnkStruct_ov104_0223E3B8;
 
@@ -106,7 +106,7 @@ typedef struct {
 typedef struct {
     s16 unk_00;
     s16 unk_02;
-    UnkStruct_0200D0F4 * unk_04[4];
+    CellActorData * unk_04[4];
     UnkStruct_ov5_021DDDBC unk_14[4];
 } UnkStruct_ov104_0223E48C;
 
@@ -115,7 +115,7 @@ typedef struct {
     UnkStruct_ov104_0223E48C unk_14;
     s32 unk_78;
     UnkStruct_ov104_0223E3B8 unk_7C;
-    UnkStruct_0200D0F4 * unk_90;
+    CellActorData * unk_90;
 } UnkStruct_ov104_0223DDE4;
 
 typedef struct {
@@ -431,9 +431,9 @@ static void ov104_0223E29C (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;
-    UnkStruct_0201EE28 v2;
+    SpriteManagerAllocation v2;
     int v3;
-    UnkStruct_02012CE0 * v4;
+    FontOAM * v4;
     UnkStruct_02018340 * v5;
     UnkStruct_0200C704 * v6;
     int v7, v8;

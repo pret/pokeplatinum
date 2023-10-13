@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_02230C28_H
 #define POKEPLATINUM_STRUCT_OV62_02230C28_H
 
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 
 typedef struct {
-    UnkStruct_0200D0F4 * unk_00[2];
+    CellActorData * unk_00[2];
     UnkStruct_0201CD38 * unk_08;
     fx32 unk_0C;
     f32 unk_10;

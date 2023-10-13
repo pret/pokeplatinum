@@ -49,7 +49,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov5_021D30A8 unk_00;
-    UnkStruct_0200D0F4 * unk_1C8;
+    CellActorData * unk_1C8;
     UnkStruct_02018340 * unk_1CC;
     u8 unk_1D0;
     u8 unk_1D1;

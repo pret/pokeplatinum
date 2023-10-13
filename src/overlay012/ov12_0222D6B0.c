@@ -36,7 +36,7 @@ typedef struct {
     UnkStruct_ov12_0221FCDC * unk_08;
     UnkStruct_0200C6E4 * unk_0C;
     UnkStruct_0200C704 * unk_10;
-    UnkStruct_0200D0F4 * unk_14[3];
+    CellActorData * unk_14[3];
     UnkStruct_ov12_02225F6C unk_20;
 } UnkStruct_ov12_0222D6B0;
 
@@ -50,10 +50,10 @@ typedef struct {
     UnkStruct_ov12_0221FCDC * unk_0C;
     UnkStruct_0200C6E4 * unk_10;
     UnkStruct_0200C704 * unk_14;
-    UnkStruct_0200D0F4 * unk_18[6];
+    CellActorData * unk_18[6];
     int unk_30;
-    UnkStruct_0200D0F4 * unk_34;
-    UnkStruct_0200D0F4 * unk_38;
+    CellActorData * unk_34;
+    CellActorData * unk_38;
     UnkStruct_ov12_02225F6C unk_3C;
     UnkStruct_ov12_02225F6C unk_60;
 } UnkStruct_ov12_0222D934;
@@ -66,7 +66,7 @@ typedef struct {
     u8 unk_0D;
     u8 unk_0E;
     u8 unk_0F;
-    UnkStruct_0200D0F4 * unk_10;
+    CellActorData * unk_10;
     UnkStruct_ov12_02225F6C unk_14;
     f32 unk_38;
     int * unk_3C;
@@ -88,8 +88,8 @@ typedef struct {
 typedef struct {
     int unk_00;
     UnkStruct_ov12_0223595C unk_04;
-    UnkStruct_0200D0F4 * unk_20;
-    UnkStruct_0200D0F4 * unk_24;
+    CellActorData * unk_20;
+    CellActorData * unk_24;
     UnkStruct_ov12_0222660C * unk_28;
     UnkStruct_ov12_02226454 unk_2C;
 } UnkStruct_ov12_0222E080;
@@ -98,7 +98,7 @@ typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     s16 unk_1C;
     s16 unk_1E[4];
-    UnkStruct_0200D0F4 * unk_28[4];
+    CellActorData * unk_28[4];
 } UnkStruct_ov12_0222E25C;
 
 typedef struct {
@@ -106,7 +106,7 @@ typedef struct {
     int unk_1C;
     s16 unk_20;
     s16 unk_22[4];
-    UnkStruct_0200D0F4 * unk_2C[4];
+    CellActorData * unk_2C[4];
     UnkStruct_ov12_022267D4 * unk_3C[6];
     int unk_54;
     int unk_58;
@@ -188,7 +188,7 @@ static void ov12_0222D6B0 (UnkStruct_0201CD38 * param0, void * param1)
     sub_0200C7EC(v1->unk_10);
 }
 
-void ov12_0222D7C0 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_0200D0F4 * param3)
+void ov12_0222D7C0 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
 {
     int v0;
     UnkStruct_ov12_0222D6B0 * v1;
@@ -409,7 +409,7 @@ static void ov12_0222D934 (UnkStruct_0201CD38 * param0, void * param1)
     sub_0200C7EC(v2->unk_14);
 }
 
-void ov12_0222DB60 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_0200D0F4 * param3)
+void ov12_0222DB60 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
 {
     int v0;
     UnkStruct_ov12_0222D934 * v1;
@@ -632,7 +632,7 @@ static const s16 Unk_ov12_0223A19A[][4] = {
     {0x50, 0x92, 0x32, 0x35}
 };
 
-void ov12_0222DEFC (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_0200D0F4 * param3)
+void ov12_0222DEFC (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
 {
     int v0;
     int v1;
@@ -656,7 +656,7 @@ void ov12_0222DEFC (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
 
     {
         s16 v4, v5;
-        UnkStruct_0200D0F4 * v6;
+        CellActorData * v6;
 
         v2->unk_14[0].unk_10 = param3;
         v0 = 0;
@@ -780,7 +780,7 @@ void ov12_0222E1A8 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_04.unk_04, ov12_0222E080, v0);
 }
 
-void ov12_0222E248 (UnkStruct_0200D0F4 * param0)
+void ov12_0222E248 (CellActorData * param0)
 {
     if (sub_0200D408(param0) == 1) {
         sub_0200D330(param0);
@@ -828,7 +828,7 @@ static void ov12_0222E25C (UnkStruct_0201CD38 * param0, void * param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222E2F8 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_0200D0F4 * param3)
+void ov12_0222E2F8 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
 {
     UnkStruct_ov12_0222E25C * v0 = NULL;
 
@@ -967,7 +967,7 @@ static void ov12_0222E390 (UnkStruct_0201CD38 * param0, void * param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222E61C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_0200D0F4 * param3)
+void ov12_0222E61C (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
 {
     UnkStruct_ov12_0222E390 * v0 = NULL;
 

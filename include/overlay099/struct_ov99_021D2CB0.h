@@ -6,7 +6,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017294.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -36,7 +36,7 @@ typedef struct {
     UnkStruct_02017294 unk_6C[2][16];
     UnkStruct_ov99_021D2CB0_sub1 unk_F6C;
     UnkStruct_ov99_021D3A40 unk_FA4;
-    UnkStruct_0200D0F4 * unk_10E0[5];
+    CellActorData * unk_10E0[5];
     u8 * unk_10F4;
     NARC * unk_10F8;
     u32 unk_10FC;

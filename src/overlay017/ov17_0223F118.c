@@ -7,14 +7,14 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
@@ -115,9 +115,9 @@ void ov17_0223F1E8 (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C704 
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;
-    UnkStruct_0201EE28 v2;
+    SpriteManagerAllocation v2;
     int v3;
-    UnkStruct_02012CE0 * v4;
+    FontOAM * v4;
     int v5, v6;
     int v7 = 0;
 

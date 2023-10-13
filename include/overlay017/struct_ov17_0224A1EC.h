@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -42,8 +42,8 @@ typedef struct {
     UnkStruct_02002F38 * unk_90;
     UnkStruct_02012744 * unk_94;
     UnkStruct_ov16_0223E0C8 unk_98[4];
-    UnkStruct_0200D0F4 * unk_D8[68];
-    UnkStruct_0200D0F4 * unk_1E8;
+    CellActorData * unk_D8[68];
+    CellActorData * unk_1E8;
     UnkStruct_0201CD38 * unk_1EC;
     UnkStruct_ov17_0224C9A4 unk_1F0;
     UnkStruct_ov17_0224C384 * unk_1FC;
@@ -52,7 +52,7 @@ typedef struct {
     UnkStruct_ov17_0224AE84 unk_290[4][16];
     UnkStruct_ov17_0224B058 unk_910;
     UnkStruct_ov17_0224A8D4 unk_92C[3];
-    UnkStruct_0200D0F4 * unk_960[3];
+    CellActorData * unk_960[3];
     UnkStruct_ov17_0223F2E4 unk_96C[3][3];
     const UnkStruct_ov17_02253084 * unk_A10;
     u8 unk_A14[4];

@@ -6,7 +6,7 @@
 
 typedef struct {
     UnkStruct_ov5_021D30A8 unk_00;
-    UnkStruct_0200D0F4 * unk_1C8[2];
+    CellActorData * unk_1C8[2];
 } UnkStruct_0206A844;
 
 #endif // POKEPLATINUM_STRUCT_0206A844_H

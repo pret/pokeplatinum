@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "pokemon.h"
 #include "overlay063/struct_ov63_0222BEC0_decl.h"
@@ -30,12 +30,12 @@ void ov104_02232CE0(UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int par
 void ov104_02232E80(UnkStruct_ov104_0223C4CC * param0, int param1);
 void ov104_02232EC0(UnkStruct_ov104_0223C4CC * param0);
 void ov104_02232F28(UnkStruct_ov104_0223C4CC * param0);
-UnkStruct_0200D0F4 * ov104_02232F4C(UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4);
-void ov104_02232FD4(UnkStruct_ov104_0223C4CC * param0, UnkStruct_0200D0F4 * param1, int param2);
+CellActorData * ov104_02232F4C(UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4);
+void ov104_02232FD4(UnkStruct_ov104_0223C4CC * param0, CellActorData * param1, int param2);
 void ov104_02232FEC(UnkStruct_ov104_0223C4CC * param0);
 void ov104_0223307C(UnkStruct_ov104_0223C4CC * param0);
-UnkStruct_0200D0F4 * ov104_022330AC(UnkStruct_ov104_0223C4CC * param0, int param1, int param2);
-void ov104_022330F0(UnkStruct_ov104_0223C4CC * param0, UnkStruct_0200D0F4 * param1);
+CellActorData * ov104_022330AC(UnkStruct_ov104_0223C4CC * param0, int param1, int param2);
+void ov104_022330F0(UnkStruct_ov104_0223C4CC * param0, CellActorData * param1);
 void ov104_022330FC(UnkStruct_ov104_0222E930 * param0, u16 * param1);
 void ov104_0223310C(UnkStruct_ov104_0222E930 * param0, u16 * param1, u32 param2);
 void ov104_0223319C(UnkStruct_0201CD38 * param0, void * param1);

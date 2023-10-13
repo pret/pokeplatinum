@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_020708E0_H
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "functypes/funcptr_02050904.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -20,7 +20,7 @@ typedef struct {
     u32 unk_2C;
     u8 unk_30[7];
     UnkStruct_ov5_021D30A8 unk_38;
-    UnkStruct_0200D0F4 * unk_200[8];
+    CellActorData * unk_200[8];
     u32 unk_220;
     u32 unk_224;
     u32 unk_228;

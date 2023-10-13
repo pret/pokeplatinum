@@ -114,7 +114,7 @@ typedef struct {
     UnkStruct_0205AA50 unk_F4;
     UnkStruct_0205AA50 unk_104[3];
     UnkStruct_ov5_021D30A8 unk_134;
-    UnkStruct_0200D0F4 * unk_2FC[2];
+    CellActorData * unk_2FC[2];
     UnkStruct_0202E8C0 * unk_304;
     UnkStruct_0202EE10 * unk_308[7];
     UnkStruct_02070050 * unk_324;

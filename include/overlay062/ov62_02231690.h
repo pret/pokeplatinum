@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -76,9 +76,9 @@ void ov62_022339DC(UnkStruct_0208C06C * param0);
 void ov62_02233A44(UnkStruct_0208C06C * param0);
 NARC * ov62_02233A68(int param0);
 void ov62_02233A74(NARC * param0);
-UnkStruct_0200D0F4 * ov62_02233A7C(UnkStruct_0208C06C * param0, NARC * param1, int param2, int param3, int param4, int param5);
-void ov62_02233B24(UnkStruct_0208C06C * param0, int param1, UnkStruct_0200D0F4 * param2);
-void ov62_02233B40(UnkStruct_0208C06C * param0, int param1, UnkStruct_0200D0F4 * param2);
+CellActorData * ov62_02233A7C(UnkStruct_0208C06C * param0, NARC * param1, int param2, int param3, int param4, int param5);
+void ov62_02233B24(UnkStruct_0208C06C * param0, int param1, CellActorData * param2);
+void ov62_02233B40(UnkStruct_0208C06C * param0, int param1, CellActorData * param2);
 BOOL ov62_02233F94(UnkStruct_0202F41C * param0);
 int ov62_02233FEC(UnkStruct_ov62_02233F74 * param0);
 void ov62_02234214(UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C * param1);

@@ -24,7 +24,7 @@
 #include "overlay016/ov16_0226D094.h"
 
 typedef struct {
-    UnkStruct_0200D0F4 * unk_00;
+    CellActorData * unk_00;
     UnkStruct_0201CD38 * unk_04;
     UnkEnum_ov16_0226D220 unk_08;
     UnkEnum_ov16_0226D194 unk_0C;
@@ -36,7 +36,7 @@ typedef struct {
 } UnkStruct_ov16_0226D2A0;
 
 typedef struct {
-    UnkStruct_0200D0F4 * unk_00;
+    CellActorData * unk_00;
     UnkStruct_0201CD38 * unk_04;
     UnkEnum_ov16_0226D194 unk_08;
     UnkEnum_ov16_0226D194_3 unk_0C;

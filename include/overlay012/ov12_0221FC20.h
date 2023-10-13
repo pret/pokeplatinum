@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -44,8 +44,8 @@ UnkStruct_02014014 * ov12_02220260(UnkStruct_ov12_0221FCDC * param0, int param1)
 UnkSPLStruct6 * ov12_0222026C(UnkStruct_ov12_0221FCDC * param0, int param1);
 UnkStruct_02018340 * ov12_02220278(UnkStruct_ov12_0221FCDC * param0);
 s32 ov12_02220280(UnkStruct_ov12_0221FCDC * param0, int param1);
-UnkStruct_0200D0F4 * ov12_02220298(UnkStruct_ov12_0221FCDC * param0, int param1);
-UnkStruct_0200D0F4 * ov12_022202C0(UnkStruct_ov12_0221FCDC * param0, int param1);
+CellActorData * ov12_02220298(UnkStruct_ov12_0221FCDC * param0, int param1);
+CellActorData * ov12_022202C0(UnkStruct_ov12_0221FCDC * param0, int param1);
 UnkStruct_0200C704 * ov12_022202EC(UnkStruct_ov12_0221FCDC * param0);
 UnkStruct_0200C704 * ov12_02220300(UnkStruct_ov12_0221FCDC * param0);
 UnkStruct_0200C6E4 * ov12_02220308(UnkStruct_ov12_0221FCDC * param0);

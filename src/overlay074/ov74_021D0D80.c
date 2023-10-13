@@ -73,7 +73,7 @@ typedef struct UnkStruct_ov74_021D0D80_t {
     u32 unk_2AC;
     UnkStruct_0200C6E4 * unk_2B0;
     UnkStruct_0200C704 * unk_2B4;
-    UnkStruct_0200D0F4 * unk_2B8;
+    CellActorData * unk_2B8;
 } UnkStruct_ov74_021D0D80;
 
 int ov74_021D0D80(UnkStruct_020067E8 * param0, int * param1);

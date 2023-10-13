@@ -623,7 +623,7 @@ static void sub_02084134 (UnkStruct_0207F248 * param0)
 {
     UnkStruct_020831B4 * v0;
     UnkStruct_02083D1C * v1;
-    UnkStruct_0200D0F4 * v2;
+    CellActorData * v2;
     s16 v3;
 
     v1 = &param0->unk_7F8;

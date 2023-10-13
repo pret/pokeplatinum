@@ -2899,10 +2899,10 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-UnkStruct_0200D0F4 *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, UnkStruct_02002F38 *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
+CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, UnkStruct_02002F38 *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
 {
     UnkStruct_ov104_0223F9E0 v0;
-    UnkStruct_0200D0F4 *v1;
+    CellActorData *v1;
     NARC *narc;
     UnkStruct_ov5_021DE5D0 v3;
     int v4 = 1;

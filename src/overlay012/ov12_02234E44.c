@@ -30,9 +30,9 @@ typedef struct {
 typedef struct {
     UnkStruct_ov12_02234E44 unk_00;
     UnkStruct_ov12_0223595C unk_18;
-    UnkStruct_0200D0F4 * unk_34;
-    UnkStruct_0200D0F4 * unk_38;
-    UnkStruct_0200D0F4 * unk_3C;
+    CellActorData * unk_34;
+    CellActorData * unk_38;
+    CellActorData * unk_3C;
     u8 unk_40;
 } UnkStruct_ov12_02234E54;
 

@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV116_02265D84_H
 #define POKEPLATINUM_STRUCT_OV116_02265D84_H
 
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "overlay116/struct_ov116_0226469C.h"
 
 typedef struct {
-    UnkStruct_0200D0F4 * unk_00;
+    CellActorData * unk_00;
     int unk_04;
     s16 unk_08;
     u8 padding_0A[6];

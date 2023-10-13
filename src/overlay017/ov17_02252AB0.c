@@ -15,7 +15,7 @@
 #include "overlay017/ov17_02252AB0.h"
 
 typedef struct UnkStruct_ov17_02252B48_t {
-    UnkStruct_0200D0F4 * unk_00[5];
+    CellActorData * unk_00[5];
     UnkStruct_0201CD38 * unk_14;
 } UnkStruct_ov17_02252B48;
 

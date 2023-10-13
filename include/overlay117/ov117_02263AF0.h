@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV117_02263AF0_H
 
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -51,12 +51,12 @@ void ov117_02265EB0(UnkStruct_ov117_02265EB0 * param0);
 void ov117_02265EC8(UnkStruct_ov117_02265EC8 * param0);
 void ov117_02265F34(UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_02265EC8 * param1);
 void ov117_02265F98(UnkStruct_ov117_02265EC8 * param0, int param1);
-UnkStruct_0200D0F4 * ov117_02266130(UnkStruct_ov117_02261280 * param0);
+CellActorData * ov117_02266130(UnkStruct_ov117_02261280 * param0);
 void ov117_02266150(UnkStruct_ov117_02261280 * param0);
 void ov117_02266210(UnkStruct_ov117_02261280 * param0);
-void ov117_02266238(UnkStruct_ov117_02261280 * param0, UnkStruct_0200D0F4 * param1);
-UnkStruct_0200D0F4 * ov117_02266244(UnkStruct_ov117_02261280 * param0);
-void ov117_02266268(UnkStruct_ov117_02261280 * param0, UnkStruct_0200D0F4 * param1);
+void ov117_02266238(UnkStruct_ov117_02261280 * param0, CellActorData * param1);
+CellActorData * ov117_02266244(UnkStruct_ov117_02261280 * param0);
+void ov117_02266268(UnkStruct_ov117_02261280 * param0, CellActorData * param1);
 BOOL ov117_02266274(UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_02266274 * param1);
 
 #endif // POKEPLATINUM_OV117_02263AF0_H

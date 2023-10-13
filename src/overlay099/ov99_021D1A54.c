@@ -57,8 +57,8 @@ typedef struct {
 
 static void ov99_021D1A54(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1B98(UnkStruct_ov99_021D2CB0 * param0);
-static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 ** param1, UnkStruct_0200D0F4 ** param2);
-static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param1, UnkStruct_0200D0F4 * param2);
+static void ov99_021D1BC4(UnkStruct_ov99_021D2CB0 * param0, CellActorData ** param1, CellActorData ** param2);
+static void ov99_021D1C9C(UnkStruct_ov99_021D2CB0 * param0, CellActorData * param1, CellActorData * param2);
 static void ov99_021D1D68(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1E6C(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1E90(UnkStruct_ov99_021D2CB0 * param0);
@@ -354,10 +354,10 @@ static void ov99_021D1B98 (UnkStruct_ov99_021D2CB0 * param0)
     sub_0200D0A0(param0->unk_1C, 10001);
 }
 
-static void ov99_021D1BC4 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 ** param1, UnkStruct_0200D0F4 ** param2)
+static void ov99_021D1BC4 (UnkStruct_ov99_021D2CB0 * param0, CellActorData ** param1, CellActorData ** param2)
 {
-    UnkStruct_0200D0F4 * v0;
-    UnkStruct_0200D0F4 * v1;
+    CellActorData * v0;
+    CellActorData * v1;
     UnkStruct_ov104_0223F9E0 v2 = Unk_ov99_021D4900;
 
     MI_CpuClear8(&param0->unk_1114, sizeof(UnkStruct_ov99_021D2CB0_sub2));
@@ -399,7 +399,7 @@ static void ov99_021D1BC4 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 
     }
 }
 
-static void ov99_021D1C9C (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param1, UnkStruct_0200D0F4 * param2)
+static void ov99_021D1C9C (UnkStruct_ov99_021D2CB0 * param0, CellActorData * param1, CellActorData * param2)
 {
     sub_0200D0F4(param1);
     sub_0200D0F4(param2);

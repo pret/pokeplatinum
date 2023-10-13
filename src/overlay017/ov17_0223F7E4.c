@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
@@ -18,7 +18,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "functypes/funcptr_0201CE28.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48.h"
@@ -79,7 +79,7 @@ typedef struct {
     s16 unk_02;
     union {
         struct {
-            UnkStruct_0200D0F4 * unk_00[3];
+            CellActorData * unk_00[3];
             const s16 * unk_0C;
             const UnkStruct_ov17_02253388 * unk_10;
             int unk_14;
@@ -104,8 +104,8 @@ typedef struct {
 } UnkStruct_ov17_0223F7E4_sub1;
 
 typedef struct {
-    UnkStruct_02012CE0 * unk_00;
-    UnkStruct_0201EE28 unk_04;
+    FontOAM * unk_00;
+    SpriteManagerAllocation unk_04;
     u16 unk_10;
 } UnkStruct_ov17_02240138;
 
@@ -136,9 +136,9 @@ typedef struct UnkStruct_ov17_0223F7E4_t {
     u16 * unk_34[2];
     UnkStruct_02012744 * unk_3C;
     UnkStruct_ov17_02240138 unk_40[12];
-    UnkStruct_0200D0F4 * unk_118[4];
-    UnkStruct_0200D0F4 * unk_128;
-    UnkStruct_0200D0F4 * unk_12C[4][6];
+    CellActorData * unk_118[4];
+    CellActorData * unk_128;
+    CellActorData * unk_12C[4][6];
     UnkStruct_ov17_0223FF38 unk_18C;
     void * unk_2C0;
     NNSG2dCharacterData * unk_2C4;
@@ -956,9 +956,9 @@ static void ov17_02240138 (UnkStruct_ov17_0223F7E4 * param0, UnkStruct_ov17_0224
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;
-    UnkStruct_0201EE28 v2;
+    SpriteManagerAllocation v2;
     int v3;
-    UnkStruct_02012CE0 * v4;
+    FontOAM * v4;
     UnkStruct_02018340 * v5;
     UnkStruct_0200C704 * v6;
     int v7, v8;

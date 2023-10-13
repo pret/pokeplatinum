@@ -1078,7 +1078,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
     UnkStruct_02002F38 * v2 = param0->unk_04;
     UnkStruct_02008A90 v3;
     void * v4;
-    UnkStruct_0200D0F4 * v5;
+    CellActorData * v5;
 
     {
         NARC * v6;
@@ -1204,9 +1204,9 @@ void ov104_02232F28 (UnkStruct_ov104_0223C4CC * param0)
     sub_0200D080(param0->unk_34.unk_04, 2000);
 }
 
-UnkStruct_0200D0F4 * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4)
+CellActorData * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int param2, int param3, int param4)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
 
     GF_ASSERT(param2 < (2008 - 2000));
@@ -1229,7 +1229,7 @@ UnkStruct_0200D0F4 * ov104_02232F4C (UnkStruct_ov104_0223C4CC * param0, Pokemon 
     return v0;
 }
 
-void ov104_02232FD4 (UnkStruct_ov104_0223C4CC * param0, UnkStruct_0200D0F4 * param1, int param2)
+void ov104_02232FD4 (UnkStruct_ov104_0223C4CC * param0, CellActorData * param1, int param2)
 {
     sub_0200D070(param0->unk_34.unk_04, 2000 + param2);
     sub_0200D0F4(param1);
@@ -1256,9 +1256,9 @@ void ov104_0223307C (UnkStruct_ov104_0223C4CC * param0)
     sub_0200D080(param0->unk_34.unk_04, 2001);
 }
 
-UnkStruct_0200D0F4 * ov104_022330AC (UnkStruct_ov104_0223C4CC * param0, int param1, int param2)
+CellActorData * ov104_022330AC (UnkStruct_ov104_0223C4CC * param0, int param1, int param2)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
 
     v1 = Unk_ov104_0223F9AC;
@@ -1273,7 +1273,7 @@ UnkStruct_0200D0F4 * ov104_022330AC (UnkStruct_ov104_0223C4CC * param0, int para
     return v0;
 }
 
-void ov104_022330F0 (UnkStruct_ov104_0223C4CC * param0, UnkStruct_0200D0F4 * param1)
+void ov104_022330F0 (UnkStruct_ov104_0223C4CC * param0, CellActorData * param1)
 {
     sub_0200D0F4(param1);
 }

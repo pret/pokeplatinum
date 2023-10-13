@@ -33,7 +33,7 @@
 
 typedef struct {
     u8 * unk_00;
-    UnkStruct_0200D0F4 * unk_04;
+    CellActorData * unk_04;
     s32 unk_08;
     s32 unk_0C;
     fx32 unk_10;

@@ -102,7 +102,7 @@ typedef struct {
     UnkStruct_02001AF4 * unk_A4;
     UnkStruct_0200C6E4 * unk_A8;
     UnkStruct_0200C704 * unk_AC;
-    UnkStruct_0200D0F4 * unk_B0[3];
+    CellActorData * unk_B0[3];
 } UnkStruct_ov75_021D1184;
 
 typedef int (* UnkFuncPtr_ov75_021D1184)(UnkStruct_ov75_021D1184 *);

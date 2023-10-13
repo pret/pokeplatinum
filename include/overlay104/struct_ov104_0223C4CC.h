@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_defs/struct_0207C690.h"
@@ -40,7 +40,7 @@ typedef struct UnkStruct_ov104_0223C4CC_t {
         UnkStruct_0200C704 * unk_04;
     } unk_34;
     UnkStruct_ov104_0223D3B0_1 unk_3C;
-    UnkStruct_0200D0F4 * unk_80[4];
+    CellActorData * unk_80[4];
     void * unk_90;
     UnkStruct_0201CD38 * unk_94;
     UnkStruct_0201CD38 * unk_98;

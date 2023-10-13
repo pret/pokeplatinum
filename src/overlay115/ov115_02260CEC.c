@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
@@ -23,7 +23,7 @@
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
 #include "struct_defs/struct_02017294.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -269,9 +269,9 @@ typedef struct {
     UnkStruct_ov19_021DA864 unk_10;
     UnkStruct_02022550 * unk_34;
     UnkStruct_0205AA50 unk_38;
-    UnkStruct_02012CE0 * unk_48;
+    FontOAM * unk_48;
     UnkStruct_02012B20 * unk_4C;
-    UnkStruct_0201EE28 unk_50;
+    SpriteManagerAllocation unk_50;
     Strbuf* unk_5C;
     UnkStruct_02009DC8 * unk_60;
     UnkStruct_ov115_02261304 unk_64;

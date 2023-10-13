@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -30,7 +30,7 @@ typedef struct {
     Strbuf* unk_40;
     UnkStruct_02002F38 * unk_44;
     UnkStruct_ov16_0223E0C8 unk_48[4];
-    UnkStruct_0200D0F4 * unk_88[8];
+    CellActorData * unk_88[8];
     UnkStruct_ov17_0223F6E8 unk_A8;
     u8 unk_C4;
 } UnkStruct_ov17_022476F8;

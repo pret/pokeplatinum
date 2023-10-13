@@ -440,10 +440,10 @@ static void ov16_02266FE4 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * par
     }
 }
 
-UnkStruct_0200D0F4 * ov16_02267060 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2)
+CellActorData * ov16_02267060 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2)
 {
     const UnkStruct_ov104_0223F9E0 * v0;
-    UnkStruct_0200D0F4 * v1;
+    CellActorData * v1;
 
     v0 = ov16_022682B0(param2);
     v1 = sub_0200CE6C(param0, param1, v0);

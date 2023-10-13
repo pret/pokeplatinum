@@ -87,7 +87,7 @@ typedef struct {
     int unk_10;
 } UnkStruct_ov12_02237C54_sub1;
 
-typedef struct UnkStruct_ov12_02237C54_t {
+typedef struct BallRotation {
     int unk_00;
     int unk_04;
     int unk_08;
@@ -102,7 +102,7 @@ typedef struct UnkStruct_ov12_02237C54_t {
     BOOL unk_24;
     BOOL unk_28;
     UnkStruct_0200C704 * unk_2C;
-    UnkStruct_0200D0F4 * unk_30;
+    CellActorData * unk_30;
     UnkStruct_ov12_02225D50 unk_34;
     UnkStruct_ov12_02225F6C unk_48[2];
     UnkStruct_ov12_02237728 unk_90;
@@ -112,22 +112,22 @@ typedef struct UnkStruct_ov12_02237C54_t {
     UnkStruct_ov12_022267D4 * unk_D4;
     UnkStruct_ov12_02223764 * unk_D8;
     int unk_DC;
-} UnkStruct_ov12_02237C54;
+} BallRotation;
 
 static void ov12_022363CC(UnkStruct_0201CD38 * param0, void * param1);
 static void ov12_0223646C(UnkStruct_ov12_02235FE0 * param0, UnkFuncPtr_020146F4 param1);
 static void ov12_02236598(UnkSPLStruct6 * param0);
 static void ov12_022365D4(UnkSPLStruct6 * param0);
-static void ov12_02237C54(UnkStruct_ov12_02237C54 * param0);
-static void ov12_02237D8C(UnkStruct_ov12_02237C54 * param0);
-static void ov12_022378A0(UnkStruct_ov12_02237C54 * param0);
-static void ov12_02237B14(UnkStruct_ov12_02237C54 * param0, s16 * param1, s16 * param2);
-static BOOL ov12_02236F24(UnkStruct_ov12_02237C54 * param0);
-static BOOL ov12_022371E4(UnkStruct_ov12_02237C54 * param0);
-static BOOL ov12_02237608(UnkStruct_ov12_02237C54 * param0);
-static BOOL ov12_02236F10(UnkStruct_ov12_02237C54 * param0);
-static BOOL ov12_02237694(UnkStruct_ov12_02237C54 * param0);
-static BOOL ov12_02237474(UnkStruct_ov12_02237C54 * param0);
+static void ov12_02237C54(BallRotation * param0);
+static void ov12_02237D8C(BallRotation * param0);
+static void ov12_022378A0(BallRotation * param0);
+static void ov12_02237B14(BallRotation * param0, s16 * param1, s16 * param2);
+static BOOL ov12_02236F24(BallRotation * param0);
+static BOOL ov12_022371E4(BallRotation * param0);
+static BOOL ov12_02237608(BallRotation * param0);
+static BOOL ov12_02236F10(BallRotation * param0);
+static BOOL ov12_02237694(BallRotation * param0);
+static BOOL ov12_02237474(BallRotation * param0);
 
 static const int Unk_ov12_0223AF00[][4] = {
     {0x120, 0x5C, 0x11F, 0x11E},
@@ -893,7 +893,7 @@ void ov12_02236780 (UnkStruct_ov12_02236648 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static BOOL(*const Unk_ov12_0223AB84[])(UnkStruct_ov12_02237C54 *) = {
+static BOOL(*const Unk_ov12_0223AB84[])(BallRotation *) = {
     ov12_02236F24,
     ov12_022371E4,
     ov12_02237608,
@@ -902,7 +902,7 @@ static BOOL(*const Unk_ov12_0223AB84[])(UnkStruct_ov12_02237C54 *) = {
     ov12_02237474
 };
 
-static BOOL ov12_02236788 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236788 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -920,7 +920,7 @@ static BOOL ov12_02236788 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_022367B0 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_022367B0 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -938,7 +938,7 @@ static BOOL ov12_022367B0 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_022367D8 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_022367D8 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -956,7 +956,7 @@ static BOOL ov12_022367D8 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236800 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236800 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -974,7 +974,7 @@ static BOOL ov12_02236800 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236828 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236828 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -992,7 +992,7 @@ static BOOL ov12_02236828 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236850 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236850 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -1010,7 +1010,7 @@ static BOOL ov12_02236850 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236878 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236878 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -1028,7 +1028,7 @@ static BOOL ov12_02236878 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_022368A0 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_022368A0 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -1046,7 +1046,7 @@ static BOOL ov12_022368A0 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL(*const Unk_ov12_0223AB9C[])(UnkStruct_ov12_02237C54 *) = {
+static BOOL(*const Unk_ov12_0223AB9C[])(BallRotation *) = {
     ov12_02236788,
     ov12_022367B0,
     ov12_022367D8,
@@ -1057,13 +1057,13 @@ static BOOL(*const Unk_ov12_0223AB9C[])(UnkStruct_ov12_02237C54 *) = {
     ov12_022368A0
 };
 
-void ov12_022368C8 (UnkStruct_ov12_02237C54 * param0, int param1)
+void ov12_022368C8 (BallRotation * param0, int param1)
 {
     param0->unk_00 = param1;
     param0->unk_04 = 0;
 }
 
-BOOL ov12_022368D0 (UnkStruct_ov12_02237C54 * param0, int param1)
+BOOL ov12_022368D0 (BallRotation * param0, int param1)
 {
     BOOL v0;
 
@@ -1071,7 +1071,7 @@ BOOL ov12_022368D0 (UnkStruct_ov12_02237C54 * param0, int param1)
     return v0;
 }
 
-static void ov12_022368E4 (UnkStruct_ov12_02237C54 * param0, int param1)
+static void ov12_022368E4 (BallRotation * param0, int param1)
 {
     param0->unk_14 = param1;
     param0->unk_08 = 0;
@@ -1079,12 +1079,12 @@ static void ov12_022368E4 (UnkStruct_ov12_02237C54 * param0, int param1)
     param0->unk_10 = 0;
 }
 
-static BOOL ov12_022368F0 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_022368F0 (BallRotation * param0)
 {
     return 1;
 }
 
-static BOOL ov12_022368F4 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_022368F4 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -1097,13 +1097,13 @@ static BOOL ov12_022368F4 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_0223690C (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_0223690C (BallRotation * param0)
 {
     ov12_022368E4(param0, 3);
     return 1;
 }
 
-static BOOL ov12_02236918 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236918 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1155,12 +1155,12 @@ static BOOL ov12_02236918 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_022369F8 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_022369F8 (BallRotation * param0)
 {
     return 1;
 }
 
-static BOOL ov12_022369FC (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_022369FC (BallRotation * param0)
 {
     BOOL v0;
 
@@ -1187,24 +1187,24 @@ static BOOL ov12_022369FC (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236A50 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236A50 (BallRotation * param0)
 {
     return 1;
 }
 
-static BOOL ov12_02236A54 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236A54 (BallRotation * param0)
 {
     ov12_022368E4(param0, 8);
     return 1;
 }
 
-static BOOL ov12_02236A60 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236A60 (BallRotation * param0)
 {
     ov12_022368E4(param0, 9);
     return 1;
 }
 
-static BOOL ov12_02236A6C (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236A6C (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1244,13 +1244,13 @@ static BOOL ov12_02236A6C (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236B14 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236B14 (BallRotation * param0)
 {
     ov12_022368E4(param0, 11);
     return 1;
 }
 
-static BOOL ov12_02236B20 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236B20 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1281,7 +1281,7 @@ static BOOL ov12_02236B20 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236B94 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236B94 (BallRotation * param0)
 {
     return 1;
 }
@@ -1318,7 +1318,7 @@ static const int Unk_ov12_0223ABE4[][2] = {
     {0x14, 0x5E9}
 };
 
-static BOOL ov12_02236B98 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236B98 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1363,12 +1363,12 @@ static BOOL ov12_02236B98 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236C34 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236C34 (BallRotation * param0)
 {
     return 1;
 }
 
-static BOOL ov12_02236C38 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236C38 (BallRotation * param0)
 {
     param0->unk_0C++;
 
@@ -1381,7 +1381,7 @@ static BOOL ov12_02236C38 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236C58 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236C58 (BallRotation * param0)
 {
     ov12_022368E4(param0, 17);
     return 1;
@@ -1393,7 +1393,7 @@ static const s16 Unk_ov12_0223AC38[][12] = {
     {-1, 0x0, 0x1, 0x1, 0x0, -1, 0x0, 0x0, 0x0, 0x0, 0x0, 0xFF}
 };
 
-static BOOL ov12_02236C64 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236C64 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1429,24 +1429,24 @@ static BOOL ov12_02236C64 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236CFC (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236CFC (BallRotation * param0)
 {
     return 1;
 }
 
-static BOOL ov12_02236D00 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236D00 (BallRotation * param0)
 {
     ov12_022368E4(param0, 20);
     return 1;
 }
 
-static BOOL ov12_02236D0C (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236D0C (BallRotation * param0)
 {
     ov12_022368E4(param0, 27);
     return 1;
 }
 
-static BOOL ov12_02236D18 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236D18 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1503,12 +1503,12 @@ static BOOL ov12_02236D18 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236E08 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236E08 (BallRotation * param0)
 {
     return 1;
 }
 
-static BOOL ov12_02236E0C (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236E0C (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1535,13 +1535,13 @@ static BOOL ov12_02236E0C (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236E70 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236E70 (BallRotation * param0)
 {
     ov12_022368E4(param0, 25);
     return 1;
 }
 
-static BOOL ov12_02236E7C (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236E7C (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1568,18 +1568,18 @@ static BOOL ov12_02236E7C (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02236F00 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236F00 (BallRotation * param0)
 {
     ov12_022368E4(param0, 27);
     return 1;
 }
 
-static BOOL ov12_02236F0C (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236F0C (BallRotation * param0)
 {
     return 0;
 }
 
-static BOOL(*const Unk_ov12_0223AC80[])(UnkStruct_ov12_02237C54 *) = {
+static BOOL(*const Unk_ov12_0223AC80[])(BallRotation *) = {
     ov12_022368F0,
     ov12_022368F4,
     ov12_0223690C,
@@ -1610,7 +1610,7 @@ static BOOL(*const Unk_ov12_0223AC80[])(UnkStruct_ov12_02237C54 *) = {
     ov12_02236F0C
 };
 
-static BOOL ov12_02236F10 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236F10 (BallRotation * param0)
 {
     BOOL v0;
 
@@ -1618,7 +1618,7 @@ static BOOL ov12_02236F10 (UnkStruct_ov12_02237C54 * param0)
     return v0;
 }
 
-static BOOL ov12_02236F24 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02236F24 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1729,7 +1729,7 @@ static BOOL ov12_02236F24 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_022371E4 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_022371E4 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1844,7 +1844,7 @@ static const int Unk_ov12_0223ABBC[][2] = {
     {0x0, 0x6}
 };
 
-static BOOL ov12_02237474 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02237474 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1926,7 +1926,7 @@ static BOOL ov12_02237474 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02237608 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02237608 (BallRotation * param0)
 {
     switch (param0->unk_08) {
     case 0:
@@ -1962,7 +1962,7 @@ static BOOL ov12_02237608 (UnkStruct_ov12_02237C54 * param0)
     return 1;
 }
 
-static BOOL ov12_02237694 (UnkStruct_ov12_02237C54 * param0)
+static BOOL ov12_02237694 (BallRotation * param0)
 {
     if (param0->unk_08 == 0xFF) {
         return 0;
@@ -1983,7 +1983,7 @@ static BOOL ov12_02237694 (UnkStruct_ov12_02237C54 * param0)
 static void ov12_022376D0 (UnkStruct_0201CD38 * param0, void * param1)
 {
     BOOL v0;
-    UnkStruct_ov12_02237C54 * v1 = (UnkStruct_ov12_02237C54 *)param1;
+    BallRotation * v1 = (BallRotation *)param1;
 
     if (v1->unk_1C == 0) {
         return;
@@ -2008,12 +2008,12 @@ static void ov12_022376D0 (UnkStruct_0201CD38 * param0, void * param1)
     sub_0200C7EC(v1->unk_2C);
 }
 
-UnkStruct_ov12_02237C54 * ov12_02237728 (UnkStruct_ov12_02237728 * param0)
+BallRotation * ov12_02237728 (UnkStruct_ov12_02237728 * param0)
 {
-    UnkStruct_ov12_02237C54 * v0 = NULL;
+    BallRotation * v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_ov12_02237C54));
-    MI_CpuClear8(v0, sizeof(UnkStruct_ov12_02237C54));
+    v0 = Heap_AllocFromHeap(param0->unk_04, sizeof(BallRotation));
+    MI_CpuClear8(v0, sizeof(BallRotation));
 
     GF_ASSERT(v0 != NULL);
 
@@ -2057,29 +2057,29 @@ UnkStruct_ov12_02237C54 * ov12_02237728 (UnkStruct_ov12_02237728 * param0)
     return v0;
 }
 
-BOOL ov12_022377F8 (UnkStruct_ov12_02237C54 * param0)
+BOOL ov12_022377F8 (BallRotation * param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_1C ? 1 : 0;
 }
 
-BOOL ov12_02237810 (UnkStruct_ov12_02237C54 * param0)
+BOOL ov12_02237810 (BallRotation * param0)
 {
     GF_ASSERT(param0 != NULL);
     return param0->unk_28 ? 1 : 0;
 }
 
-void ov12_02237828 (UnkStruct_ov12_02237C54 * param0, int param1)
+void ov12_02237828 (BallRotation * param0, int param1)
 {
     param0->unk_14 = param1;
 }
 
-BOOL ov12_0223782C (UnkStruct_ov12_02237C54 * param0, int param1)
+BOOL ov12_0223782C (BallRotation * param0, int param1)
 {
     return (param0->unk_14 == param1) ? 1 : 0;
 }
 
-void ov12_0223783C (UnkStruct_ov12_02237C54 * param0)
+void ov12_0223783C (BallRotation * param0)
 {
     int v0 = param0->unk_90.unk_04;
 
@@ -2091,7 +2091,7 @@ void ov12_0223783C (UnkStruct_ov12_02237C54 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov12_0223786C (UnkStruct_ov12_02237C54 * param0, int param1)
+void ov12_0223786C (BallRotation * param0, int param1)
 {
     param0->unk_90.unk_08 = param1;
     param0->unk_08 = 0;
@@ -2102,14 +2102,14 @@ void ov12_0223786C (UnkStruct_ov12_02237C54 * param0, int param1)
     sub_0200D550(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
 }
 
-int ov12_02237890 (UnkStruct_ov12_02237C54 * param0)
+int ov12_02237890 (BallRotation * param0)
 {
     GF_ASSERT(param0 != NULL);
 
     return param0->unk_90.unk_08;
 }
 
-static void ov12_022378A0 (UnkStruct_ov12_02237C54 * param0)
+static void ov12_022378A0 (BallRotation * param0)
 {
     sub_0200D550(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
 
@@ -2199,7 +2199,7 @@ static void ov12_022378A0 (UnkStruct_ov12_02237C54 * param0)
     param0->unk_B8.unk_08 = 20;
 }
 
-static void ov12_02237B14 (UnkStruct_ov12_02237C54 * param0, s16 * param1, s16 * param2)
+static void ov12_02237B14 (BallRotation * param0, s16 * param1, s16 * param2)
 {
     switch (param0->unk_90.unk_00) {
     case 0:
@@ -2268,7 +2268,7 @@ static void ov12_02237B14 (UnkStruct_ov12_02237C54 * param0, s16 * param1, s16 *
     }
 }
 
-static void ov12_02237C54 (UnkStruct_ov12_02237C54 * param0)
+static void ov12_02237C54 (BallRotation * param0)
 {
     int v0;
     int v1;
@@ -2313,7 +2313,7 @@ static void ov12_02237C54 (UnkStruct_ov12_02237C54 * param0)
     }
 }
 
-static void ov12_02237D8C (UnkStruct_ov12_02237C54 * param0)
+static void ov12_02237D8C (BallRotation * param0)
 {
     int v0;
     UnkStruct_ov104_0223F9E0 v1;
@@ -2344,37 +2344,37 @@ static void ov12_02237D8C (UnkStruct_ov12_02237C54 * param0)
     ov12_02220474();
 }
 
-void ov12_02237E0C (UnkStruct_ov12_02237C54 * param0, int param1)
+void ov12_02237E0C (BallRotation * param0, int param1)
 {
     sub_0200D3F4(param0->unk_30, param1);
 }
 
-void ov12_02237E18 (UnkStruct_ov12_02237C54 * param0, s16 param1, s16 param2)
+void ov12_02237E18 (BallRotation * param0, s16 param1, s16 param2)
 {
     sub_0200D4C4(param0->unk_30, param1, param2);
 }
 
-void ov12_02237E24 (UnkStruct_ov12_02237C54 * param0, u16 param1)
+void ov12_02237E24 (BallRotation * param0, u16 param1)
 {
     sub_0200D79C(param0->unk_30, param1);
 }
 
-void ov12_02237E30 (UnkStruct_ov12_02237C54 * param0, BOOL param1)
+void ov12_02237E30 (BallRotation * param0, BOOL param1)
 {
     param0->unk_24 = param1;
 }
 
-void ov12_02237E34 (UnkStruct_ov12_02237C54 * param0, int param1)
+void ov12_02237E34 (BallRotation * param0, int param1)
 {
     sub_0200D474(param0->unk_30, param1);
 }
 
-void ov12_02237E40 (UnkStruct_ov12_02237C54 * param0, int param1)
+void ov12_02237E40 (BallRotation * param0, int param1)
 {
     sub_0200D460(param0->unk_30, param1);
 }
 
-void ov12_02237E4C (UnkStruct_ov12_02237C54 * param0, int param1)
+void ov12_02237E4C (BallRotation * param0, int param1)
 {
     param0->unk_DC = param1;
 }

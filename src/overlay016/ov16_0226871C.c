@@ -14,7 +14,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
@@ -26,7 +26,7 @@
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
 #include "functypes/funcptr_0201CE28.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0209C370.h"
@@ -161,8 +161,8 @@ typedef struct {
 } UnkStruct_ov16_02268A14_sub1;
 
 typedef struct {
-    UnkStruct_02012CE0 * unk_00;
-    UnkStruct_0201EE28 unk_04;
+    FontOAM * unk_00;
+    SpriteManagerAllocation unk_04;
     u16 unk_10;
 } UnkStruct_ov16_0226A98C;
 
@@ -222,11 +222,11 @@ typedef struct UnkStruct_ov16_02268A14_t {
     UnkStruct_02012744 * unk_4C8;
     UnkStruct_ov16_0226A98C unk_4CC[13];
     UnkStruct_02012B20 * unk_5B8;
-    UnkStruct_0200D0F4 * unk_5BC[6];
-    UnkStruct_0200D0F4 * unk_5D4[6];
-    UnkStruct_0200D0F4 * unk_5EC[4];
-    UnkStruct_0200D0F4 * unk_5FC[4];
-    UnkStruct_0200D0F4 * unk_60C[4];
+    CellActorData * unk_5BC[6];
+    CellActorData * unk_5D4[6];
+    CellActorData * unk_5EC[4];
+    CellActorData * unk_5FC[4];
+    CellActorData * unk_60C[4];
     UnkStruct_0201CD38 * unk_61C[4];
     UnkStruct_ov16_02268FCC unk_62C[6];
     UnkStruct_0201CD38 * unk_664;
@@ -342,7 +342,7 @@ static void ov16_0226AAC0(UnkStruct_ov16_02268A14 * param0);
 static void ov16_0226A698(UnkStruct_ov16_02268A14 * param0);
 static void ov16_0226A718(UnkStruct_ov16_02268A14 * param0);
 static void ov16_0226A768(UnkStruct_ov16_02268A14 * param0);
-static UnkStruct_0200D0F4 * ov16_0226A7A4(UnkStruct_ov16_02268A14 * param0, Pokemon * param1, int param2, int param3, int param4, int param5);
+static CellActorData * ov16_0226A7A4(UnkStruct_ov16_02268A14 * param0, Pokemon * param1, int param2, int param3, int param4, int param5);
 static void ov16_0226A928(UnkStruct_0201CD38 * param0, void * param1);
 static void ov16_0226B988(UnkStruct_0201CD38 * param0, void * param1);
 static void ov16_0226BA88(UnkStruct_0201CD38 * param0, void * param1);
@@ -1800,7 +1800,7 @@ static void ov16_02269668 (UnkStruct_ov16_02268A14 * param0, int param1, int par
 
     if ((BattleSystem_BattleType(param0->unk_00) & (0x20 | 0x200)) == 0) {
         Pokemon * v7;
-        UnkStruct_0200D0F4 * v8;
+        CellActorData * v8;
         int v9, v10;
 
         v7 = BattleSystem_PartyPokemon(param0->unk_00, v6->unk_01, v6->unk_02);
@@ -2484,13 +2484,13 @@ static void ov16_0226A768 (UnkStruct_ov16_02268A14 * param0)
     }
 }
 
-static UnkStruct_0200D0F4 * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon * param1, int param2, int param3, int param4, int param5)
+static CellActorData * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pokemon * param1, int param2, int param3, int param4, int param5)
 {
     UnkStruct_0200C6E4 * v0;
     UnkStruct_0200C704 * v1;
     u32 v2;
     UnkStruct_ov104_0223F9E0 v3;
-    UnkStruct_0200D0F4 * v4;
+    CellActorData * v4;
     int v5;
 
     if (param2 >= 2) {
@@ -2570,7 +2570,7 @@ static UnkStruct_0200D0F4 * ov16_0226A7A4 (UnkStruct_ov16_02268A14 * param0, Pok
 
 static void ov16_0226A928 (UnkStruct_0201CD38 * param0, void * param1)
 {
-    UnkStruct_0200D0F4 * v0 = param1;
+    CellActorData * v0 = param1;
     sub_0200D330(v0);
 }
 
@@ -2616,9 +2616,9 @@ static void ov16_0226A98C (UnkStruct_ov16_02268A14 * param0, UnkStruct_ov16_0226
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;
-    UnkStruct_0201EE28 v2;
+    SpriteManagerAllocation v2;
     int v3;
-    UnkStruct_02012CE0 * v4;
+    FontOAM * v4;
     UnkStruct_02018340 * v5;
     UnkStruct_0200C704 * v6;
     int v7, v8;

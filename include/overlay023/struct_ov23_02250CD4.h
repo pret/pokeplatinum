@@ -4,7 +4,7 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "strbuf.h"
@@ -41,7 +41,7 @@ typedef struct {
     Strbuf* unk_6C;
     UnkStruct_0200B358 * unk_70;
     UnkStruct_ov5_021D30A8 unk_74;
-    UnkStruct_0200D0F4 * unk_23C[8];
+    CellActorData * unk_23C[8];
     u32 unk_25C;
     UnkFuncPtr_ov23_0224F758 unk_260;
     UnkFuncPtr_ov23_0224FE38 unk_264;

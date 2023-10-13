@@ -279,11 +279,11 @@ static void ov16_02263E7C(BattleSystem * param0, BattlerData * param1, UnkStruct
 static void ov16_022641B4(BattleSystem * param0, BattlerData * param1, BattleMessage * param2);
 static void ov16_02264270(BattleSystem * param0, BattlerData * param1, UnkStruct_ov16_0225C9F0 * param2, BattleMessage * param3);
 static void ov16_02264360(BattleSystem * param0, BattlerData * param1, BattleMessage * param2);
-static UnkStruct_0200D0F4 * ov16_022643B8(BattleSystem * param0, int param1, int param2, int param3, s16 param4, s16 param5);
+static CellActorData * ov16_022643B8(BattleSystem * param0, int param1, int param2, int param3, s16 param4, s16 param5);
 static void ov16_02264408(BattleSystem * param0, BattlerData * param1, UnkStruct_ov12_0221FCDC * param2, UnkStruct_ov16_02265BBC * param3);
 static void ov16_02264530(BattleSystem * param0, UnkStruct_ov16_02265BBC * param1, UnkStruct_ov12_022380DC * param2, int param3);
 static void ov16_022645B8(u8 * param0, u8 * param1, int param2, int param3, u16 param4);
-static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 * param0, UnkStruct_0200D0F4 * param1);
+static BOOL ov16_02264650(UnkStruct_ov16_02264650_1 * param0, CellActorData * param1);
 static void ov16_022646C8(UnkStruct_0201CD38 * param0, void * param1);
 static void ov16_02264730(BattleSystem * param0);
 static void ov16_0226474C(BattleSystem * param0);
@@ -6215,12 +6215,12 @@ static void ov16_02264360 (BattleSystem * param0, BattlerData * param1, BattleMe
     BattleSystem_SetResultFlag(param0, 0x2 | 0x80 | 0x40);
 }
 
-static UnkStruct_0200D0F4 * ov16_022643B8 (BattleSystem * param0, int param1, int param2, int param3, s16 param4, s16 param5)
+static CellActorData * ov16_022643B8 (BattleSystem * param0, int param1, int param2, int param3, s16 param4, s16 param5)
 {
     UnkStruct_0200C6E4 * v0;
     UnkStruct_0200C704 * v1;
     UnkStruct_02002F38 * v2;
-    UnkStruct_0200D0F4 * v3;
+    CellActorData * v3;
     int v4;
 
     v0 = ov16_0223E010(param0);
@@ -6346,7 +6346,7 @@ static void ov16_022645B8 (u8 * param0, u8 * param1, int param2, int param3, u16
     }
 }
 
-static BOOL ov16_02264650 (UnkStruct_ov16_02264650_1 * param0, UnkStruct_0200D0F4 * param1)
+static BOOL ov16_02264650 (UnkStruct_ov16_02264650_1 * param0, CellActorData * param1)
 {
     UnkStruct_ov16_02264650 * v0;
     int v1;

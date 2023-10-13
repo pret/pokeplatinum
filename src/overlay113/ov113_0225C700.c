@@ -12,7 +12,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -27,7 +27,7 @@
 #include "struct_defs/struct_02015958.h"
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017294.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -96,8 +96,8 @@ typedef struct {
 } UnkStruct_ov113_0225DBCC_sub1;
 
 typedef struct {
-    UnkStruct_02012CE0 * unk_00;
-    UnkStruct_0201EE28 unk_04;
+    FontOAM * unk_00;
+    SpriteManagerAllocation unk_04;
     u16 unk_10;
 } UnkStruct_ov113_0225E250;
 
@@ -133,12 +133,12 @@ typedef struct UnkStruct_ov113_0225DBCC_t {
     UnkStruct_ov113_02260818 unk_8D8[6];
     u8 unk_920;
     u8 unk_921;
-    UnkStruct_0200D0F4 * unk_924[6];
-    UnkStruct_0200D0F4 * unk_93C[6];
-    UnkStruct_0200D0F4 * unk_954[6];
-    UnkStruct_0200D0F4 * unk_96C;
-    UnkStruct_0200D0F4 * unk_970[8];
-    UnkStruct_0200D0F4 * unk_990[3];
+    CellActorData * unk_924[6];
+    CellActorData * unk_93C[6];
+    CellActorData * unk_954[6];
+    CellActorData * unk_96C;
+    CellActorData * unk_970[8];
+    CellActorData * unk_990[3];
     u16 unk_99C[8];
     u16 unk_9AC[8];
     int unk_9BC;
@@ -176,7 +176,7 @@ static void ov113_0225D5D8(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225D6F8(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225D7A4(UnkStruct_ov113_0225DBCC * param0);
 static void ov113_0225D7CC(UnkStruct_ov113_0225DBCC * param0);
-static BOOL ov113_0225D938(int param0, int param1, UnkStruct_0200D0F4 * param2, NARC * param3, NARC * param4, NNS_G2D_VRAM_TYPE param5, BOOL param6);
+static BOOL ov113_0225D938(int param0, int param1, CellActorData * param2, NARC * param3, NARC * param4, NNS_G2D_VRAM_TYPE param5, BOOL param6);
 static void ov113_0225E068(UnkStruct_ov113_0225DBCC * param0, int param1);
 static void ov113_0225E0D4(UnkStruct_ov113_0225DBCC * param0, int param1);
 static void ov113_0225E118(UnkStruct_ov113_0225DBCC * param0);
@@ -1127,7 +1127,7 @@ static void ov113_0225D7CC (UnkStruct_ov113_0225DBCC * param0)
     sub_0201C3C0(param0->unk_08, 2);
 }
 
-static BOOL ov113_0225D938 (int param0, int param1, UnkStruct_0200D0F4 * param2, NARC * param3, NARC * param4, NNS_G2D_VRAM_TYPE param5, BOOL param6)
+static BOOL ov113_0225D938 (int param0, int param1, CellActorData * param2, NARC * param3, NARC * param4, NNS_G2D_VRAM_TYPE param5, BOOL param6)
 {
     void * v0;
     NNSG2dImageProxy * v1;
@@ -1517,9 +1517,9 @@ static void ov113_0225E15C (UnkStruct_ov113_0225DBCC * param0, UnkStruct_ov113_0
 {
     UnkStruct_020127E8 v0;
     UnkStruct_0205AA50 v1;
-    UnkStruct_0201EE28 v2;
+    SpriteManagerAllocation v2;
     int v3;
-    UnkStruct_02012CE0 * v4;
+    FontOAM * v4;
     UnkStruct_02018340 * v5;
     UnkStruct_0200C704 * v6;
     int v7, v8;

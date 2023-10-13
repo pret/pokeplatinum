@@ -11,7 +11,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0201CD38_decl.h"
@@ -107,7 +107,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     UnkStruct_0205AA50 unk_10[24];
     UnkStruct_0200C6E4 * unk_190;
     UnkStruct_0200C704 * unk_194;
-    UnkStruct_0200D0F4 * unk_198[30];
+    CellActorData * unk_198[30];
     u32 unk_210;
     UnkStruct_ov10_0221FB28_sub1 unk_214[6];
     u16 unk_298[96];
@@ -116,7 +116,7 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     u16 unk_4D8[48];
     u16 unk_538[2][384];
     UnkStruct_02012744 * unk_B38;
-    UnkStruct_02012CE0 * unk_B3C[4];
+    FontOAM * unk_B3C[4];
     UnkStruct_0207C690 * unk_B4C;
     UnkStruct_02014014 * unk_B50;
     void * unk_B54;
@@ -176,7 +176,7 @@ static u8 ov10_0221FBFC(UnkStruct_ov10_0221FB28 * param0);
 static u8 ov10_022209E0(UnkStruct_ov10_0221FB28 * param0);
 static BOOL ov10_02220AD0(void);
 static void ov10_02220B00(UnkStruct_ov10_0221FB28 * param0, UnkStruct_ov104_02241308 * param1, int param2);
-static UnkStruct_0200D0F4 * ov10_02220BA0(UnkStruct_ov10_0221FB28 * param0, const u32 * param1);
+static CellActorData * ov10_02220BA0(UnkStruct_ov10_0221FB28 * param0, const u32 * param1);
 static void ov10_02220BE8(UnkStruct_ov10_0221FB28 * param0);
 static void ov10_02220C2C(UnkStruct_ov10_0221FB28 * param0);
 static void ov10_02220C64(void * param0);
@@ -1224,7 +1224,7 @@ static void ov10_02220B00 (UnkStruct_ov10_0221FB28 * param0, UnkStruct_ov104_022
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static UnkStruct_0200D0F4 * ov10_02220BA0 (UnkStruct_ov10_0221FB28 * param0, const u32 * param1)
+static CellActorData * ov10_02220BA0 (UnkStruct_ov10_0221FB28 * param0, const u32 * param1)
 {
     UnkStruct_ov104_0223F9E0 v0;
 

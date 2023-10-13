@@ -744,7 +744,7 @@ void ov12_02235918 (UnkStruct_02007C7C * param0, UnkStruct_ov12_02235350 * param
     param1->unk_02 = sub_020080C0(param0, 1);
 }
 
-void ov12_02235950 (UnkStruct_0200D0F4 * param0, UnkStruct_ov12_02235350 * param1)
+void ov12_02235950 (CellActorData * param0, UnkStruct_ov12_02235350 * param1)
 {
     sub_0200D550(param0, &(param1->unk_00), &(param1->unk_02));
 }

@@ -530,7 +530,7 @@ void ov17_0224A428 (UnkStruct_0200C704 * param0)
 
 static int ov17_0224A46C (UnkStruct_ov17_0224A1EC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, int param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     int v1;
     UnkStruct_ov104_0223F9E0 v2;
 
@@ -621,7 +621,7 @@ void ov17_0224A5F8 (UnkStruct_0200C704 * param0)
 
 void ov17_0224A61C (UnkStruct_ov17_0224A1EC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     int v1;
 
     for (v1 = 0; v1 < 3; v1++) {
@@ -678,7 +678,7 @@ void ov17_0224A7B8 (UnkStruct_ov17_0224A1EC * param0)
 
 void ov17_0224A7E0 (UnkStruct_ov17_0224A1EC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, int param3, int param4, u8 param5)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     int v1, v2, v3, v4;
     UnkStruct_ov17_0224A8D4 * v5;
 
@@ -778,7 +778,7 @@ void ov17_0224A9D4 (UnkStruct_0200C704 * param0)
 
 void ov17_0224A9F8 (UnkStruct_ov17_0224A1EC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
 
     v0 = sub_0200CE6C(param1, param2, &Unk_ov17_022547C8);
     sub_0200D324(v0->unk_00);
@@ -947,7 +947,7 @@ void ov17_0224AD4C (UnkStruct_0200C704 * param0)
 
 BOOL ov17_0224AD70 (UnkStruct_ov17_0224DF54 * param0, int param1, int param2)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     u32 v1, v2;
     UnkStruct_ov17_0224AE84 * v3;
     int v4, v5, v6;
@@ -1081,7 +1081,7 @@ void ov17_0224AFF8 (UnkStruct_0200C704 * param0)
 
 BOOL ov17_0224B01C (UnkStruct_ov17_0224DF54 * param0)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov17_0224B058 * v1;
 
     v1 = &param0->unk_14.unk_910;

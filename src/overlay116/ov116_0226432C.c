@@ -34,7 +34,7 @@
 #include "overlay116/ov116_02266FEC.h"
 
 typedef struct {
-    UnkStruct_0200D0F4 * unk_00;
+    CellActorData * unk_00;
     fx32 unk_04;
     fx32 unk_08;
     fx32 unk_0C;
@@ -680,7 +680,7 @@ static void ov116_0226510C (UnkStruct_ov116_02265470 * param0)
     s16 v1, v2;
     s16 v3[] = {188, 188, 180, 180};
     BOOL v4[4] = {1, 1, 1, 1};
-    UnkStruct_0200D0F4 * v5;
+    CellActorData * v5;
 
     if (param0->unk_04 == 0) {
         return;

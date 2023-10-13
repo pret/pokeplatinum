@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_02039EBC_decl.h"
@@ -61,7 +61,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     NNSG2dScreenData * unk_D4;
     UnkStruct_0200C6E4 * unk_D8;
     UnkStruct_0200C704 * unk_DC;
-    UnkStruct_0200D0F4 * unk_E0;
+    CellActorData * unk_E0;
 } UnkStruct_ov80_021D2A08;
 
 #endif // POKEPLATINUM_STRUCT_OV80_021D2A08_H

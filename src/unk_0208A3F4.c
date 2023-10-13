@@ -8,7 +8,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 
@@ -418,7 +418,7 @@ void sub_0208AAB4 (UnkStruct_02089688 * param0, int param1, BOOL param2)
 void sub_0208AAE4 (UnkStruct_02089688 * param0, int param1)
 {
     s16 v0, v1;
-    UnkStruct_0200D0F4 * v2;
+    CellActorData * v2;
 
     if (param1 < param0->unk_3C4) {
         return;
@@ -500,7 +500,7 @@ void sub_0208ABB4 (UnkStruct_02089688 * param0)
     }
 }
 
-static void sub_0208AC80 (UnkStruct_02012CE0 * param0, int param1, int param2)
+static void sub_0208AC80 (FontOAM * param0, int param1, int param2)
 {
     int v0;
     int v1;

@@ -144,9 +144,9 @@ void sub_0207CA44 (UnkStruct_0200C704 * param0, u32 param1, u32 param2)
     sub_0200D0A0(param0, param2);
 }
 
-UnkStruct_0200D0F4 * sub_0207CA58 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, const UnkStruct_ov104_0223F9E0 * param3)
+CellActorData * sub_0207CA58 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, const UnkStruct_ov104_0223F9E0 * param3)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
 
     v1 = *param3;
@@ -156,7 +156,7 @@ UnkStruct_0200D0F4 * sub_0207CA58 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C7
     return v0;
 }
 
-void sub_0207CA88 (UnkStruct_0200D0F4 * param0)
+void sub_0207CA88 (CellActorData * param0)
 {
     sub_0200D0F4(param0);
 }
@@ -188,7 +188,7 @@ void sub_0207CAF8 (UnkStruct_0200C704 * param0, u32 param1)
     sub_0200D070(param0, param1);
 }
 
-void sub_0207CB00 (UnkStruct_0200D0F4 * param0)
+void sub_0207CB00 (CellActorData * param0)
 {
     sub_0200D0F4(param0);
 }

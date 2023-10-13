@@ -117,7 +117,7 @@ static void ov13_02227D48 (UnkStruct_ov13_02227244 * param0, u16 param1, u16 par
     sub_02003050(param0->unk_08, 16, Item_FileID(param1, 2), param0->unk_00->unk_0C, 3, 0x20, param2 * 16);
 }
 
-static UnkStruct_0200D0F4 * ov13_02227D78 (UnkStruct_ov13_02227244 * param0, u32 param1)
+static CellActorData * ov13_02227D78 (UnkStruct_ov13_02227244 * param0, u32 param1)
 {
     UnkStruct_ov104_0223F9E0 v0;
     UnkStruct_0200C6E4 * v1;
@@ -166,7 +166,7 @@ void ov13_02227E08 (UnkStruct_ov13_02227244 * param0)
     sub_0200D0B0(v0, param0->unk_30C);
 }
 
-static void ov13_02227E48 (UnkStruct_0200D0F4 * param0, const int param1, const int param2)
+static void ov13_02227E48 (CellActorData * param0, const int param1, const int param2)
 {
     sub_0200D3F4(param0, 1);
     sub_0200D4C4(param0, param1, param2);

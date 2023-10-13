@@ -204,7 +204,7 @@ void ov99_021D439C (UnkStruct_ov99_021D2CB0 * param0, int param1, int param2, in
     sub_02019184(v0, param2, 3, v3->unk_08);
 }
 
-void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param1)
+void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, CellActorData * param1)
 {
     void * v0;
     u32 v1;

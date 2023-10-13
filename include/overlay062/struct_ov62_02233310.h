@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV62_02233310_H
 
 #include "message.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay062/struct_ov62_02233310_sub1.h"
 #include "overlay062/struct_ov62_02248CDC.h"
@@ -17,7 +17,7 @@ typedef struct {
     int unk_14;
     UnkStruct_0205AA50 unk_18;
     const UnkStruct_ov62_02248CDC * unk_28;
-    UnkStruct_0200D0F4 * unk_2C[2];
+    CellActorData * unk_2C[2];
     MessageLoader * unk_34;
     UnkStruct_ov62_02233310_sub1 unk_38;
     BOOL unk_48;

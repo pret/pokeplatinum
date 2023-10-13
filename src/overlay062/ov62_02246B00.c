@@ -749,7 +749,7 @@ void ov62_02247968 (UnkStruct_ov62_02246BF4 * param0, int param1, BOOL param2)
 void ov62_02247998 (UnkStruct_ov62_02246BF4 * param0, int param1)
 {
     s16 v0, v1;
-    UnkStruct_0200D0F4 * v2;
+    CellActorData * v2;
 
     v2 = param0->unk_00[param1].unk_0C;
     param0->unk_188[0].unk_00 = param1;

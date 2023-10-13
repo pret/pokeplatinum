@@ -60,7 +60,7 @@
 
 typedef struct {
     UnkStruct_ov12_02225F6C unk_00[9];
-    UnkStruct_0200D0F4 * unk_144[8];
+    CellActorData * unk_144[8];
     UnkStruct_02018340 * unk_164;
     int unk_168;
     BOOL * unk_16C;
@@ -100,7 +100,7 @@ void ov76_0223D16C(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223D318(UnkStruct_ov76_0223DE00 * param0);
 void ov76_0223D31C(UnkStruct_ov76_0223DE00 * param0);
 
-static void ov76_0223B870 (UnkUnion_02022594 * param0, UnkStruct_0200D0F4 * param1, int param2, int param3)
+static void ov76_0223B870 (UnkUnion_02022594 * param0, CellActorData * param1, int param2, int param3)
 {
     s16 v0, v1;
 

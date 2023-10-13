@@ -1017,9 +1017,9 @@ void ov104_0223D2CC (UnkStruct_ov104_0223C4CC * param0, u16 param1)
     }
 }
 
-UnkStruct_0200D0F4 * ov104_0223D2FC (UnkStruct_ov104_0223C4CC * param0, u16 param1, u16 param2)
+CellActorData * ov104_0223D2FC (UnkStruct_ov104_0223C4CC * param0, u16 param1, u16 param2)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
 
     GF_ASSERT(param1 < 8);
     GF_ASSERT(param0->unk_3C.unk_00[param1] == NULL);
@@ -1042,7 +1042,7 @@ void ov104_0223D348 (UnkStruct_ov104_0223C4CC * param0, u16 param1)
     param0->unk_3C.unk_00[param1] = NULL;
 }
 
-UnkStruct_0200D0F4 * ov104_0223D370 (UnkStruct_ov104_0223C4CC * param0, u16 param1)
+CellActorData * ov104_0223D370 (UnkStruct_ov104_0223C4CC * param0, u16 param1)
 {
     return param0->unk_3C.unk_00[param1];
 }
@@ -1097,7 +1097,7 @@ static void ov104_0223D498 (UnkStruct_ov104_0223C4CC * param0)
     int v0;
     NARC * v1;
     UnkStruct_ov104_0223D3B0 * v2;
-    UnkStruct_0200D0F4 * v3;
+    CellActorData * v3;
 
     v2 = sub_0209B9E0(param0->unk_08);
     v1 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_OBJ, 94);

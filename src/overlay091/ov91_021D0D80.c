@@ -76,7 +76,7 @@ typedef struct {
     UnkStruct_02001AF4 * unk_10C;
     UnkStruct_0200C6E4 * unk_110;
     UnkStruct_0200C704 * unk_114;
-    UnkStruct_0200D0F4 * unk_118[13];
+    CellActorData * unk_118[13];
     UnkStruct_02098D38 unk_14C;
     UnkStruct_020067E8 * unk_17C;
     int unk_180;

@@ -20,7 +20,6 @@
 #include "struct_decls/struct_0201CD38_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "struct_decls/struct_party_decl.h"
-#include "overlay016/struct_ov16_0224B7CC_decl.h"
 #include "overlay016/struct_ov16_0225BFFC_decl.h"
 
 #include "struct_decls/battle_system.h"
@@ -37,7 +36,7 @@
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/trainer_data.h"
 #include "struct_defs/battle_system.h"
@@ -48,7 +47,6 @@
 #include "overlay016/struct_ov16_022431BC_2.h"
 #include "overlay016/struct_ov16_022431BC_3.h"
 #include "overlay016/struct_ov16_02248E74.h"
-#include "overlay016/struct_ov16_0224B7CC_t.h"
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -353,8 +351,8 @@ static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *
 static u32 ov16_022431BC(BattleSystem * param0, BattleContext * param1, int param2);
 static void ov16_022499C0(Party * param0, int param1, int param2, int param3);
 static int ov16_0224A724(BattleSystem * param0, BattleContext * param1);
-static void ov16_0224B520(BattleSystem * param0, UnkStruct_ov16_0224B7CC * param1, Pokemon * param2);
-static void ov16_0224B7CC(BattleSystem * param0, UnkStruct_ov16_0224B7CC * param1);
+static void ov16_0224B520(BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2);
+static void ov16_0224B7CC(BattleSystem * param0, BattleScriptTaskData * param1);
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
 static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
@@ -2480,20 +2478,20 @@ static BOOL ov16_02241EB0 (BattleSystem * param0, BattleContext * param1)
 {
     BattleScript_Iter(param1, 1);
 
-    param1->unk_178 = (UnkStruct_ov16_0224B7CC *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0224B7CC));
-    param1->unk_178->unk_00 = param0;
-    param1->unk_178->unk_04 = param1;
-    param1->unk_178->unk_28 = 0;
-    param1->unk_178->unk_30[6] = 0;
+    param1->taskData = (BattleScriptTaskData *)Heap_AllocFromHeap(5, sizeof(BattleScriptTaskData));
+    param1->taskData->battleSys = param0;
+    param1->taskData->battleCtx = param1;
+    param1->taskData->seqNum = 0;
+    param1->taskData->tmpData[6] = 0;
 
-    sub_0200D9E8(ov16_02248E74, param1->unk_178, NULL);
+    sub_0200D9E8(ov16_02248E74, param1->taskData, NULL);
 
     return 0;
 }
 
 static BOOL ov16_02241EF0 (BattleSystem * param0, BattleContext * param1)
 {
-    if (param1->unk_178 == NULL) {
+    if (param1->taskData == NULL) {
         BattleScript_Iter(param1, 1);
     }
 
@@ -2664,21 +2662,21 @@ static BOOL ov16_0224221C (BattleSystem * param0, BattleContext * param1)
 
     v0 = BattleScript_Read(param1);
 
-    param1->unk_178 = (UnkStruct_ov16_0224B7CC *)Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_0224B7CC));
-    param1->unk_178->unk_00 = param0;
-    param1->unk_178->unk_04 = param1;
-    param1->unk_178->unk_28 = 0;
-    param1->unk_178->unk_24 = v0;
-    param1->unk_178->unk_2C = param1->msgItemTemp;
+    param1->taskData = (BattleScriptTaskData *)Heap_AllocFromHeap(5, sizeof(BattleScriptTaskData));
+    param1->taskData->battleSys = param0;
+    param1->taskData->battleCtx = param1;
+    param1->taskData->seqNum = 0;
+    param1->taskData->flag = v0;
+    param1->taskData->ball = param1->msgItemTemp;
 
-    sub_0200D9E8(ov16_02249B80, param1->unk_178, NULL);
+    sub_0200D9E8(ov16_02249B80, param1->taskData, NULL);
 
     return 0;
 }
 
 static BOOL ov16_0224226C (BattleSystem * param0, BattleContext * param1)
 {
-    if (param1->unk_178 == NULL) {
+    if (param1->taskData == NULL) {
         BattleScript_Iter(param1, 1);
     }
 
@@ -8193,7 +8191,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
 {
     int v0;
     int v1;
-    UnkStruct_ov16_0224B7CC * v2 = param1;
+    BattleScriptTaskData * v2 = param1;
     Pokemon * v3;
     BattleMessage v4;
     int v5;
@@ -8203,30 +8201,30 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     int v9;
     int v10;
 
-    v7 = ov16_0223E05C(v2->unk_00);
-    v8 = BattleSystem_BattleType(v2->unk_00);
-    v5 = (v2->unk_04->faintedMon) >> 1 & 1;
+    v7 = ov16_0223E05C(v2->battleSys);
+    v8 = BattleSystem_BattleType(v2->battleSys);
+    v5 = (v2->battleCtx->faintedMon) >> 1 & 1;
     v6 = 0;
 
-    for (v1 = v2->unk_30[6]; v1 < BattleSystem_PartyCount(v2->unk_00, v6); v1++) {
-        v3 = BattleSystem_PartyPokemon(v2->unk_00, v6, v1);
+    for (v1 = v2->tmpData[6]; v1 < BattleSystem_PartyCount(v2->battleSys, v6); v1++) {
+        v3 = BattleSystem_PartyPokemon(v2->battleSys, v6, v1);
         v9 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
         v10 = Item_LoadParam(v9, 1, 5);
 
-        if ((v10 == 51) || (v2->unk_04->monsGainingExp[v5] & FlagIndex(v1))) {
+        if ((v10 == 51) || (v2->battleCtx->monsGainingExp[v5] & FlagIndex(v1))) {
             break;
         }
     }
 
-    if (v1 == BattleSystem_PartyCount(v2->unk_00, v6)) {
-        v2->unk_28 = 38;
+    if (v1 == BattleSystem_PartyCount(v2->battleSys, v6)) {
+        v2->seqNum = 38;
     } else if ((v8 & 0x2) && ((v8 & 0x40) == 0)) {
-        if (v2->unk_04->selectedPartySlot[2] == v1) {
+        if (v2->battleCtx->selectedPartySlot[2] == v1) {
             v6 = 2;
         }
     }
 
-    switch (v2->unk_28) {
+    switch (v2->seqNum) {
     case 0:
     {
         u32 v11;
@@ -8235,22 +8233,22 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         v9 = Pokemon_GetValue(v3, MON_DATA_HELD_ITEM, NULL);
         v10 = Item_LoadParam(v9, 1, 5);
 
-        if (((v8 & 0x1) == 0) && ((v2->unk_04->battleMons[1].curHP + v2->unk_04->battleMons[3].curHP) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (v2->unk_04->expJinglePlayed == 0)) {
+        if (((v8 & 0x1) == 0) && ((v2->battleCtx->battleMons[1].curHP + v2->battleCtx->battleMons[3].curHP) == 0) && (Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (v2->battleCtx->expJinglePlayed == 0)) {
             Sound_PlayBGM(1127);
-            v2->unk_04->expJinglePlayed = 1;
-            BattleSystem_SetRedHPSoundFlag(v2->unk_00, 2);
+            v2->battleCtx->expJinglePlayed = 1;
+            BattleSystem_SetRedHPSoundFlag(v2->battleSys, 2);
         }
 
         v11 = 0;
         v4.id = 1;
 
         if ((Pokemon_GetValue(v3, MON_DATA_CURRENT_HP, NULL)) && (Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL) != 100)) {
-            if (v2->unk_04->monsGainingExp[v5] & FlagIndex(v1)) {
-                v11 = v2->unk_04->gainedExp;
+            if (v2->battleCtx->monsGainingExp[v5] & FlagIndex(v1)) {
+                v11 = v2->battleCtx->gainedExp;
             }
 
             if (v10 == 51) {
-                v11 += v2->unk_04->sharedExp;
+                v11 += v2->battleCtx->sharedExp;
             }
 
             if (v10 == 66) {
@@ -8261,7 +8259,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
                 v11 = v11 * 150 / 100;
             }
 
-            if (ov16_02259B38(v2->unk_00, v3) == 0) {
+            if (ov16_02259B38(v2->battleSys, v3) == 0) {
                 if (Pokemon_GetValue(v3, MON_DATA_LANGUAGE, NULL) != Unk_020E4C44) {
                     v11 = v11 * 170 / 100;
                 } else {
@@ -8272,111 +8270,111 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
             }
 
             v12 = Pokemon_GetValue(v3, MON_DATA_EXP, NULL);
-            v2->unk_30[3] = v12 - Pokemon_GetCurrentLevelBaseExp(v3);
+            v2->tmpData[3] = v12 - Pokemon_GetCurrentLevelBaseExp(v3);
             v12 += v11;
 
-            if (v1 == v2->unk_04->selectedPartySlot[v6]) {
-                v2->unk_04->battleMons[v6].exp = v12;
+            if (v1 == v2->battleCtx->selectedPartySlot[v6]) {
+                v2->battleCtx->battleMons[v6].exp = v12;
             }
 
             Pokemon_SetValue(v3, 8, (u8 *)&v12);
-            ov16_022499C0(BattleSystem_Party(v2->unk_00, v6), v1, v2->unk_04->battleMons[v2->unk_04->faintedMon].species, v2->unk_04->battleMons[v2->unk_04->faintedMon].formNum);
+            ov16_022499C0(BattleSystem_Party(v2->battleSys, v6), v1, v2->battleCtx->battleMons[v2->battleCtx->faintedMon].species, v2->battleCtx->battleMons[v2->battleCtx->faintedMon].formNum);
         }
 
         if (v11) {
             v4.tags = 17;
             v4.params[0] = v6 | (v1 << 8);
             v4.params[1] = v11;
-            v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-            v2->unk_30[1] = 30 / 4;
-            v2->unk_28++;
+            v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+            v2->tmpData[1] = 30 / 4;
+            v2->seqNum++;
         } else {
-            v2->unk_28 = 37;
+            v2->seqNum = 37;
         }
     }
     break;
     case 1:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            v2->unk_28++;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            v2->seqNum++;
         }
         break;
     case 2:
-        if (--v2->unk_30[1] == 0) {
-            v2->unk_28++;
+        if (--v2->tmpData[1] == 0) {
+            v2->seqNum++;
         }
         break;
     case 3:
-        if (v1 == v2->unk_04->selectedPartySlot[v6]) {
-            ov16_02265D14(v2->unk_00, v2->unk_04, v6, v2->unk_30[3]);
-            v2->unk_30[3] = 0;
-            v2->unk_28++;
+        if (v1 == v2->battleCtx->selectedPartySlot[v6]) {
+            ov16_02265D14(v2->battleSys, v2->battleCtx, v6, v2->tmpData[3]);
+            v2->tmpData[3] = 0;
+            v2->seqNum++;
         } else {
-            v2->unk_28 = 5;
+            v2->seqNum = 5;
         }
         break;
     case 4:
-        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
-            v2->unk_28++;
+        if (BattleIO_QueueIsEmpty(v2->battleCtx)) {
+            v2->seqNum++;
         }
         break;
     case 5:
         if (sub_02076B14(v3)) {
-            if (v2->unk_04->selectedPartySlot[v6] == v1) {
-                ov16_02265FF8(v2->unk_00, v2->unk_04, v6, 8);
-                ov16_0226614C(v2->unk_00, v6);
+            if (v2->battleCtx->selectedPartySlot[v6] == v1) {
+                ov16_02265FF8(v2->battleSys, v2->battleCtx, v6, 8);
+                ov16_0226614C(v2->battleSys, v6);
             }
 
-            v2->unk_28 = 6;
+            v2->seqNum = 6;
         } else {
-            v2->unk_28 = 37;
+            v2->seqNum = 37;
         }
         break;
     case 6:
-        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
+        if (BattleIO_QueueIsEmpty(v2->battleCtx)) {
             {
                 int v13;
                 int v14[6] = {164, 165, 166, 168, 169, 167};
                 UnkStruct_ov16_02248E74 * v15;
 
                 v13 = Pokemon_GetValue(v3, MON_DATA_LEVEL, NULL);
-                v2->unk_04->unk_17C = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_02248E74));
-                v15 = (UnkStruct_ov16_02248E74 *)v2->unk_04->unk_17C;
+                v2->battleCtx->unk_17C = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_02248E74));
+                v15 = (UnkStruct_ov16_02248E74 *)v2->battleCtx->unk_17C;
 
                 for (v0 = 0; v0 < 6; v0++) {
                     v15->unk_00[v0] = Pokemon_GetValue(v3, v14[v0], NULL);
                 }
 
-                Pokemon_UpdateFriendship(v3, 0, BattleSystem_MapHeader(v2->unk_00));
+                Pokemon_UpdateFriendship(v3, 0, BattleSystem_MapHeader(v2->battleSys));
                 Pokemon_CalcStats(v3);
 
-                if (v2->unk_04->selectedPartySlot[v6] == v1) {
-                    ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->selectedPartySlot[v6]);
+                if (v2->battleCtx->selectedPartySlot[v6] == v1) {
+                    ov16_02251C94(v2->battleSys, v2->battleCtx, v6, v2->battleCtx->selectedPartySlot[v6]);
                 }
 
-                v2->unk_04->levelUpMons |= FlagIndex(v1);
-                BattleIO_RefreshHPGauge(v2->unk_00, v2->unk_04, v6);
+                v2->battleCtx->levelUpMons |= FlagIndex(v1);
+                BattleIO_RefreshHPGauge(v2->battleSys, v2->battleCtx, v6);
 
                 v4.id = 3;
                 v4.tags = 17;
                 v4.params[0] = v6 | (v1 << 8);
                 v4.params[1] = v13;
-                v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-                v2->unk_28 = 7;
+                v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+                v2->seqNum = 7;
             }
         }
         break;
     case 7:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            v2->unk_28 = 8;
-            v2->unk_30[2] = 0;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            v2->seqNum = 8;
+            v2->tmpData[2] = 0;
         }
         break;
     case 8:
-        if (v2->unk_04->selectedPartySlot[v6] != v1) {
-            ov16_0224B520(v2->unk_00, v2, v3);
+        if (v2->battleCtx->selectedPartySlot[v6] != v1) {
+            ov16_0224B520(v2->battleSys, v2, v3);
         }
 
-        v2->unk_28 = 9;
+        v2->seqNum = 9;
         break;
     case 9:
     {
@@ -8384,16 +8382,16 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         UnkStruct_0205AA50 * v17;
         UnkStruct_02002F38 * v18;
 
-        v16 = ov16_0223DF00(v2->unk_00);
-        v17 = ov16_0223DF04(v2->unk_00, 1);
-        v18 = ov16_0223E064(v2->unk_00);
+        v16 = ov16_0223DF00(v2->battleSys);
+        v17 = ov16_0223DF04(v2->battleSys, 1);
+        v18 = ov16_0223E064(v2->battleSys);
 
         G2_SetBG0Priority(1 + 1);
 
         sub_02019060(1, 1);
         sub_02019060(2, 0);
 
-        ov16_0223F8DC(v2->unk_00, 0 + 2);
+        ov16_0223F8DC(v2->battleSys, 0 + 2);
 
         sub_0200DA60(v16, 2, 1, 0, 5);
         sub_02003050(v18, 38, sub_0200DAA0(), 5, 0, 0x20, 8 * 0x10);
@@ -8401,7 +8399,7 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         sub_0201ADA4(v17, 0xff);
         sub_0200DC48(v17, 0, 1, 8);
 
-        v2->unk_28 = 10;
+        v2->seqNum = 10;
     }
     break;
     case 10:
@@ -8411,25 +8409,25 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         UnkStruct_0205AA50 * v21;
         UnkStruct_ov16_02248E74 * v22;
 
-        v21 = ov16_0223DF04(v2->unk_00, 1);
-        v22 = (UnkStruct_ov16_02248E74 *)v2->unk_04->unk_17C;
+        v21 = ov16_0223DF04(v2->battleSys, 1);
+        v22 = (UnkStruct_ov16_02248E74 *)v2->battleCtx->unk_17C;
 
         for (v0 = 0; v0 < 6; v0++) {
             v4.id = 947;
             v4.tags = 4;
             v4.params[0] = v19[v0];
 
-            ov16_0223FB78(v2->unk_00, v21, v7, &v4, 0, 16 * v0, 0, 0, 0);
+            ov16_0223FB78(v2->battleSys, v21, v7, &v4, 0, 16 * v0, 0, 0, 0);
 
             v4.id = 948;
             v4.tags = 7;
             v4.params[0] = Pokemon_GetValue(v3, v20[v0], NULL) - v22->unk_00[v0];
             v4.digits = 2;
 
-            ov16_0223FB78(v2->unk_00, v21, v7, &v4, 80, 16 * v0, 0x2, 28, 0);
+            ov16_0223FB78(v2->battleSys, v21, v7, &v4, 80, 16 * v0, 0x2, 28, 0);
         }
 
-        v2->unk_28 = 11;
+        v2->seqNum = 11;
     }
     break;
     case 12:
@@ -8439,8 +8437,8 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         UnkStruct_0205AA50 * v25;
         UnkStruct_ov16_02248E74 * v26;
 
-        v25 = ov16_0223DF04(v2->unk_00, 1);
-        v26 = (UnkStruct_ov16_02248E74 *)v2->unk_04->unk_17C;
+        v25 = ov16_0223DF04(v2->battleSys, 1);
+        v26 = (UnkStruct_ov16_02248E74 *)v2->battleCtx->unk_17C;
 
         sub_0201AE78(v25, 0xf, 80, 0, 36, 96);
 
@@ -8450,24 +8448,24 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
             v4.params[0] = Pokemon_GetValue(v3, v24[v0], NULL);
             v4.digits = 3;
 
-            ov16_0223FB78(v2->unk_00, v25, v7, &v4, 72, 16 * v0, 0x2, 36, 0);
+            ov16_0223FB78(v2->battleSys, v25, v7, &v4, 72, 16 * v0, 0x2, 36, 0);
         }
 
-        v2->unk_28 = 13;
+        v2->seqNum = 13;
     }
     break;
     case 11:
     case 13:
         if ((coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) || (TouchScreen_Tapped())) {
             sub_02005748(1500);
-            v2->unk_28++;
+            v2->seqNum++;
         }
         break;
     case 14:
     {
         UnkStruct_0205AA50 * v27;
 
-        v27 = ov16_0223DF04(v2->unk_00, 1);
+        v27 = ov16_0223DF04(v2->battleSys, 1);
 
         sub_0200DC9C(v27, 0);
         sub_0201A8FC(v27);
@@ -8477,43 +8475,43 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         sub_02019060(1, 0);
         sub_02019060(2, 1);
 
-        ov16_0223F8DC(v2->unk_00, 0);
+        ov16_0223F8DC(v2->battleSys, 0);
 
-        if (v2->unk_04->selectedPartySlot[v6] != v1) {
-            ov16_0224B7CC(v2->unk_00, v2);
+        if (v2->battleCtx->selectedPartySlot[v6] != v1) {
+            ov16_0224B7CC(v2->battleSys, v2);
         }
 
-        Heap_FreeToHeap(v2->unk_04->unk_17C);
+        Heap_FreeToHeap(v2->battleCtx->unk_17C);
 
-        v2->unk_28 = 15;
+        v2->seqNum = 15;
     }
     break;
     case 15:
     {
         u16 v28;
-        UnkStruct_02018340 * v29 = ov16_0223DF00(v2->unk_00);
+        UnkStruct_02018340 * v29 = ov16_0223DF00(v2->battleSys);
 
-        switch (sub_0207727C(v3, &v2->unk_30[2], &v28)) {
+        switch (sub_0207727C(v3, &v2->tmpData[2], &v28)) {
         case 0xfffe:
             break;
         case 0x0:
-            v2->unk_28 = 3;
+            v2->seqNum = 3;
             break;
         case 0xffff:
-            v2->unk_30[4] = v28;
-            v2->unk_28 = 16;
+            v2->tmpData[4] = v28;
+            v2->seqNum = 16;
             break;
         default:
-            if (v2->unk_04->selectedPartySlot[v6] == v1) {
-                ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->selectedPartySlot[v6]);
+            if (v2->battleCtx->selectedPartySlot[v6] == v1) {
+                ov16_02251C94(v2->battleSys, v2->battleCtx, v6, v2->battleCtx->selectedPartySlot[v6]);
             }
 
             v4.id = 4;
             v4.tags = 10;
             v4.params[0] = v6 | (v1 << 8);
             v4.params[1] = v28;
-            v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-            v2->unk_28 = 36;
+            v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+            v2->seqNum = 36;
             break;
         }
     }
@@ -8522,16 +8520,16 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
         v4.id = 1178;
         v4.tags = 10;
         v4.params[0] = v6 | (v1 << 8);
-        v4.params[1] = v2->unk_30[4];
-        v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-        v2->unk_28++;
+        v4.params[1] = v2->tmpData[4];
+        v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+        v2->seqNum++;
         break;
     case 18:
         v4.id = 1179;
         v4.tags = 2;
         v4.params[0] = v6 | (v1 << 8);
-        v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-        v2->unk_28++;
+        v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+        v2->seqNum++;
         break;
     case 17:
     case 19:
@@ -8539,118 +8537,118 @@ static void ov16_02248E74 (UnkStruct_0201CD38 * param0, void * param1)
     case 27:
     case 29:
     case 32:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            v2->unk_28++;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            v2->seqNum++;
         }
         break;
     case 20:
-        BattleIO_ShowYesNoScreen(v2->unk_00, v2->unk_04, v6, 1180, 1, NULL, NULL);
-        v2->unk_28++;
+        BattleIO_ShowYesNoScreen(v2->battleSys, v2->battleCtx, v6, 1180, 1, NULL, NULL);
+        v2->seqNum++;
         break;
     case 21:
-        if (BattleContext_IOBufferVal(v2->unk_04, v6)) {
-            if (BattleContext_IOBufferVal(v2->unk_04, v6) == 0xff) {
-                v2->unk_28 = 31;
+        if (BattleContext_IOBufferVal(v2->battleCtx, v6)) {
+            if (BattleContext_IOBufferVal(v2->battleCtx, v6) == 0xff) {
+                v2->seqNum = 31;
             } else {
                 v4.id = 1183;
                 v4.tags = 0;
-                v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-                v2->unk_28 = 22;
+                v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+                v2->seqNum = 22;
             }
         }
         break;
     case 22:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            ov16_022664C4(v2->unk_00, v6, v2->unk_30[4], v1);
-            v2->unk_28++;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            ov16_022664C4(v2->battleSys, v6, v2->tmpData[4], v1);
+            v2->seqNum++;
         }
         break;
     case 23:
-        if (BattleContext_IOBufferVal(v2->unk_04, v6) == 0xff) {
-            v2->unk_28 = 31;
-        } else if (BattleContext_IOBufferVal(v2->unk_04, v6)) {
-            v2->unk_30[5] = v2->unk_04->ioBuffer[v6][0] - 1;
-            v2->unk_28 = 24;
+        if (BattleContext_IOBufferVal(v2->battleCtx, v6) == 0xff) {
+            v2->seqNum = 31;
+        } else if (BattleContext_IOBufferVal(v2->battleCtx, v6)) {
+            v2->tmpData[5] = v2->battleCtx->ioBuffer[v6][0] - 1;
+            v2->seqNum = 24;
         }
         break;
     case 31:
         v4.id = 1184;
         v4.tags = 0;
-        v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-        v2->unk_28++;
+        v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+        v2->seqNum++;
         break;
     case 33:
-        BattleIO_ShowYesNoScreen(v2->unk_00, v2->unk_04, v6, 1185, 2, v2->unk_30[4], NULL);
-        v2->unk_28++;
+        BattleIO_ShowYesNoScreen(v2->battleSys, v2->battleCtx, v6, 1185, 2, v2->tmpData[4], NULL);
+        v2->seqNum++;
         break;
     case 34:
-        if (BattleContext_IOBufferVal(v2->unk_04, v6)) {
-            if (BattleContext_IOBufferVal(v2->unk_04, v6) == 0xff) {
-                v2->unk_28 = 16;
+        if (BattleContext_IOBufferVal(v2->battleCtx, v6)) {
+            if (BattleContext_IOBufferVal(v2->battleCtx, v6) == 0xff) {
+                v2->seqNum = 16;
             } else {
                 v4.id = 1188;
                 v4.tags = 10;
                 v4.params[0] = v6 | (v1 << 8);
-                v4.params[1] = v2->unk_30[4];
-                v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-                v2->unk_28 = 35;
+                v4.params[1] = v2->tmpData[4];
+                v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+                v2->seqNum = 35;
             }
         }
         break;
     case 35:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            v2->unk_28 = 15;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            v2->seqNum = 15;
         }
         break;
     case 24:
         v4.id = 1189;
         v4.tags = 0;
-        v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-        v2->unk_28++;
+        v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+        v2->seqNum++;
         break;
     case 26:
         v4.id = 1190;
         v4.tags = 10;
         v4.params[0] = v6 | (v1 << 8);
-        v4.params[1] = Pokemon_GetValue(v3, 54 + v2->unk_30[5], NULL);
-        v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-        v2->unk_28++;
+        v4.params[1] = Pokemon_GetValue(v3, 54 + v2->tmpData[5], NULL);
+        v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+        v2->seqNum++;
         break;
     case 28:
         v4.id = 1191;
         v4.tags = 0;
-        v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
-        v2->unk_28++;
+        v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
+        v2->seqNum++;
         break;
     case 30:
         v4.id = 1192;
         v4.tags = 10;
         v4.params[0] = v6 | (v1 << 8);
-        v4.params[1] = v2->unk_30[4];
-        v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v7, &v4, ov16_0223EDF0(v2->unk_00));
+        v4.params[1] = v2->tmpData[4];
+        v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v7, &v4, ov16_0223EDF0(v2->battleSys));
         v0 = 0;
 
-        Pokemon_SetValue(v3, 62 + v2->unk_30[5], &v0);
-        Pokemon_SetMoveSlot(v3, v2->unk_30[4], v2->unk_30[5]);
+        Pokemon_SetValue(v3, 62 + v2->tmpData[5], &v0);
+        Pokemon_SetMoveSlot(v3, v2->tmpData[4], v2->tmpData[5]);
 
-        if (v2->unk_04->selectedPartySlot[v6] == v1) {
-            ov16_02251C94(v2->unk_00, v2->unk_04, v6, v2->unk_04->selectedPartySlot[v6]);
+        if (v2->battleCtx->selectedPartySlot[v6] == v1) {
+            ov16_02251C94(v2->battleSys, v2->battleCtx, v6, v2->battleCtx->selectedPartySlot[v6]);
         }
 
-        v2->unk_28 = 36;
+        v2->seqNum = 36;
         break;
     case 36:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            v2->unk_28 = 15;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            v2->seqNum = 15;
         }
         break;
     case 37:
-        v2->unk_04->monsGainingExp[v5] &= (FlagIndex(v1) ^ 0xffffffff);
-        v2->unk_30[6] = v1 + 1;
-        v2->unk_28 = 0;
+        v2->battleCtx->monsGainingExp[v5] &= (FlagIndex(v1) ^ 0xffffffff);
+        v2->tmpData[6] = v1 + 1;
+        v2->seqNum = 0;
         break;
     case 38:
-        v2->unk_04->unk_178 = NULL;
+        v2->battleCtx->taskData = NULL;
         Heap_FreeToHeap(param1);
         sub_0200DA58(param0);
         break;
@@ -8759,38 +8757,38 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
 {
     int v0;
     int v1;
-    UnkStruct_ov16_0224B7CC * v2 = param1;
+    BattleScriptTaskData * v2 = param1;
     Pokemon * v3;
     UnkStruct_02002F38 * v4;
     UnkStruct_02007768 * v5;
     MessageLoader * v6;
 
-    v6 = ov16_0223E05C(v2->unk_00);
-    v4 = ov16_0223E064(v2->unk_00);
-    v5 = ov16_0223E000(v2->unk_00);
+    v6 = ov16_0223E05C(v2->battleSys);
+    v4 = ov16_0223E064(v2->battleSys);
+    v5 = ov16_0223E000(v2->battleSys);
     v1 = 1;
 
-    if (v2->unk_04->battlersSwitchingMask & FlagIndex(v1)) {
+    if (v2->battleCtx->battlersSwitchingMask & FlagIndex(v1)) {
         v1 = 3;
     }
 
-    switch (v2->unk_28) {
+    switch (v2->seqNum) {
     case 0:
-        if (v2->unk_24 == 0) {
+        if (v2->flag == 0) {
             {
                 UnkStruct_ov12_02237728 v7;
 
                 v7.unk_08 = 3;
                 v7.unk_04 = 5;
                 v7.unk_0C = v1 + 20000;
-                v7.unk_10 = v2->unk_2C;
-                v7.unk_1C = ov16_0223E010(v2->unk_00);
-                v7.unk_20 = ov16_0223E064(v2->unk_00);
+                v7.unk_10 = v2->ball;
+                v7.unk_1C = ov16_0223E010(v2->battleSys);
+                v7.unk_20 = ov16_0223E064(v2->battleSys);
                 v7.unk_14 = 1;
                 v7.unk_18 = 0;
-                v7.unk_24 = v2->unk_00;
+                v7.unk_24 = v2->battleSys;
 
-                if (BattleSystem_BattleType(v2->unk_00) & 0x2) {
+                if (BattleSystem_BattleType(v2->battleSys) & 0x2) {
                     if (v1 == 1) {
                         v7.unk_00 = 16;
                     } else {
@@ -8800,147 +8798,147 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                     v7.unk_00 = 15;
                 }
 
-                v2->unk_08 = ov12_02237728(&v7);
-                v2->unk_28 = 1;
+                v2->ballRotation = ov12_02237728(&v7);
+                v2->seqNum = 1;
 
                 sub_02005748(1802);
-                v2->unk_00->unk_241E++;
-                ov12_022368C8(v2->unk_08, 0);
+                v2->battleSys->unk_241E++;
+                ov12_022368C8(v2->ballRotation, 0);
             }
         } else {
             {
                 BattlerData * v8;
 
-                v8 = BattleSystem_BattlerData(v2->unk_00, 0);
+                v8 = BattleSystem_BattlerData(v2->battleSys, 0);
 
                 if (ov12_02237890(v8->unk_84) != 4) {
-                    v2->unk_08 = v8->unk_84;
+                    v2->ballRotation = v8->unk_84;
                     v8->unk_84 = NULL;
-                    v2->unk_28 = 1;
+                    v2->seqNum = 1;
 
                     sub_02005748(1802);
-                    v2->unk_00->unk_241E++;
-                    ov12_022368C8(v2->unk_08, 0);
+                    v2->battleSys->unk_241E++;
+                    ov12_022368C8(v2->ballRotation, 0);
                 }
             }
         }
         break;
     case 1:
-        if (ov12_022368D0(v2->unk_08, 0) == 0) {
+        if (ov12_022368D0(v2->ballRotation, 0) == 0) {
             {
                 u32 v9;
 
-                v9 = BattleSystem_BattleType(v2->unk_00);
+                v9 = BattleSystem_BattleType(v2->battleSys);
 
                 if (v9 & 0x1) {
                     sub_02005728(1510, 117);
-                    ov12_022368C8(v2->unk_08, 2);
-                    v2->unk_28 = 25;
+                    ov12_022368C8(v2->ballRotation, 2);
+                    v2->seqNum = 25;
                 } else {
                     sub_02005728(1800, 117);
-                    ov12_022368C8(v2->unk_08, 1);
+                    ov12_022368C8(v2->ballRotation, 1);
 
-                    v2->unk_28 = 2;
-                    v2->unk_30[1] = 23;
+                    v2->seqNum = 2;
+                    v2->tmpData[1] = 23;
                 }
             }
         }
         break;
     case 2:
-        if (--v2->unk_30[1] == 0) {
-            ov16_02265050(v2->unk_00, v1, v2->unk_2C);
-            v2->unk_30[2] = ov16_0224A724(v2->unk_00, v2->unk_04);
+        if (--v2->tmpData[1] == 0) {
+            ov16_02265050(v2->battleSys, v1, v2->ball);
+            v2->tmpData[2] = ov16_0224A724(v2->battleSys, v2->battleCtx);
 
-            if (v2->unk_30[2] < 4) {
-                v2->unk_30[3] = v2->unk_30[2];
+            if (v2->tmpData[2] < 4) {
+                v2->tmpData[3] = v2->tmpData[2];
             } else {
-                v2->unk_30[3] = 3;
+                v2->tmpData[3] = 3;
             }
 
-            v2->unk_28 = 3;
+            v2->seqNum = 3;
         }
         break;
     case 3:
-        if ((ov12_022368D0(v2->unk_08, 1) == 0) && (BattleIO_QueueIsEmpty(v2->unk_04))) {
-            ov12_022368C8(v2->unk_08, 3);
-            v2->unk_28 = 4;
+        if ((ov12_022368D0(v2->ballRotation, 1) == 0) && (BattleIO_QueueIsEmpty(v2->battleCtx))) {
+            ov12_022368C8(v2->ballRotation, 3);
+            v2->seqNum = 4;
         }
         break;
     case 4:
-        if (ov12_022368D0(v2->unk_08, 3) == 0) {
-            v2->unk_28 = 5;
+        if (ov12_022368D0(v2->ballRotation, 3) == 0) {
+            v2->seqNum = 5;
         }
         break;
     case 5:
-        if (v2->unk_30[3] == 0) {
-            if (v2->unk_30[2] == 4) {
-                v2->unk_28 = 7;
-                v2->unk_30[1] = 12;
+        if (v2->tmpData[3] == 0) {
+            if (v2->tmpData[2] == 4) {
+                v2->seqNum = 7;
+                v2->tmpData[1] = 12;
             } else {
-                v2->unk_28 = 28;
+                v2->seqNum = 28;
             }
         } else {
-            ov12_022368C8(v2->unk_08, 4);
-            v2->unk_28 = 6;
-            v2->unk_30[1] = 12;
+            ov12_022368C8(v2->ballRotation, 4);
+            v2->seqNum = 6;
+            v2->tmpData[1] = 12;
         }
         break;
     case 6:
-        if (ov12_022368D0(v2->unk_08, 4) == 0) {
-            if (--v2->unk_30[1] == 0) {
-                v2->unk_30[3]--;
-                v2->unk_28 = 5;
+        if (ov12_022368D0(v2->ballRotation, 4) == 0) {
+            if (--v2->tmpData[1] == 0) {
+                v2->tmpData[3]--;
+                v2->seqNum = 5;
             }
         }
         break;
     case 7:
-        if (--v2->unk_30[1] == 0) {
-            ov12_022368C8(v2->unk_08, 6);
+        if (--v2->tmpData[1] == 0) {
+            ov12_022368C8(v2->ballRotation, 6);
             sub_02005728(1801, 117);
-            v2->unk_28 = 8;
+            v2->seqNum = 8;
         }
         break;
     case 8:
-        if (ov12_022368D0(v2->unk_08, 6) == 0) {
+        if (ov12_022368D0(v2->ballRotation, 6) == 0) {
             {
                 BattleMessage v10;
 
                 v10.id = 867;
                 v10.tags = 2 | 0x80;
                 v10.params[0] = v1;
-                v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v10, ov16_0223EDF0(v2->unk_00));
-                v2->unk_30[1] = 30;
-                v2->unk_28 = 9;
+                v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v6, &v10, ov16_0223EDF0(v2->battleSys));
+                v2->tmpData[1] = 30;
+                v2->seqNum = 9;
 
                 Sound_PlayBGM(1127);
-                BattleSystem_SetRedHPSoundFlag(v2->unk_00, 2);
+                BattleSystem_SetRedHPSoundFlag(v2->battleSys, 2);
             }
         }
         break;
     case 9:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            v2->unk_28 = 10;
-            ov12_022368C8(v2->unk_08, 7);
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            v2->seqNum = 10;
+            ov12_022368C8(v2->ballRotation, 7);
         }
         break;
     case 10:
-        if (ov12_022368D0(v2->unk_08, 7) == 0) {
-            if (--v2->unk_30[1] == 0) {
-                ov16_0223F4B0(v2->unk_00, v1);
-                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+        if (ov12_022368D0(v2->ballRotation, 7) == 0) {
+            if (--v2->tmpData[1] == 0) {
+                ov16_0223F4B0(v2->battleSys, v1);
+                v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
-                if (BattleSystem_BattleType(v2->unk_00) & (0x200 | 0x400)) {
-                    v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
-                    ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
-                    sub_02015738(ov16_0223E220(v2->unk_00), 1);
+                if (BattleSystem_BattleType(v2->battleSys) & (0x200 | 0x400)) {
+                    v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
+                    ov16_02259A5C(v2->battleSys, v2->battleCtx, v3);
+                    sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
-                    v2->unk_28 = 32;
-                } else if (ov16_0223F9E0(v2->unk_00, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
-                    sub_02015738(ov16_0223E220(v2->unk_00), 1);
+                    v2->seqNum = 32;
+                } else if (ov16_0223F9E0(v2->battleSys, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
+                    sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
-                    v2->unk_28 = 16;
+                    v2->seqNum = 16;
                 } else {
                     {
                         BattleMessage v11;
@@ -8948,23 +8946,23 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                         v11.id = 871;
                         v11.tags = 2 | 0x80;
                         v11.params[0] = v1;
-                        v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v11, ov16_0223EDF0(v2->unk_00));
-                        v2->unk_30[1] = 30;
-                        v2->unk_28 = 11;
+                        v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v6, &v11, ov16_0223EDF0(v2->battleSys));
+                        v2->tmpData[1] = 30;
+                        v2->seqNum = 11;
                     }
 
-                    ov16_0223F268(v2->unk_00);
+                    ov16_0223F268(v2->battleSys);
                 }
             }
         }
         break;
     case 11:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            if (--v2->unk_30[1] == 0) {
-                v2->unk_28 = 12;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            if (--v2->tmpData[1] == 0) {
+                v2->seqNum = 12;
                 sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
                 sub_0200872C(v5, 0, 16, 0, 0x0);
-                sub_02015738(ov16_0223E220(v2->unk_00), 1);
+                sub_02015738(ov16_0223E220(v2->battleSys), 1);
             }
         }
         break;
@@ -8973,37 +8971,37 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
             {
                 UnkStruct_ov21_021E8E0C v12;
 
-                ov12_0223783C(v2->unk_08);
+                ov12_0223783C(v2->ballRotation);
                 sub_02007DD4(v5);
-                ov16_0223B53C(v2->unk_00);
-                ov16_022686BC(ov16_0223E020(v2->unk_00, 0), 0);
-                ov16_022686BC(ov16_0223E020(v2->unk_00, 1), 0);
-                ov16_02263B20(BattleSystem_BattlerData(v2->unk_00, 0), 0);
+                ov16_0223B53C(v2->battleSys);
+                ov16_022686BC(ov16_0223E020(v2->battleSys, 0), 0);
+                ov16_022686BC(ov16_0223E020(v2->battleSys, 1), 0);
+                ov16_02263B20(BattleSystem_BattlerData(v2->battleSys, 0), 0);
 
-                v12.unk_00 = ov16_0223DF00(v2->unk_00);
-                v12.unk_04 = ov16_0223E064(v2->unk_00);
+                v12.unk_00 = ov16_0223DF00(v2->battleSys);
+                v12.unk_04 = ov16_0223E064(v2->battleSys);
                 v12.unk_08 = v5;
                 v12.unk_0C = 5;
-                v12.unk_10 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
-                v12.unk_14 = sub_0207A280(ov16_0223E068(v2->unk_00));
-                v2->unk_50[1] = sub_0201EE9C();
-                v2->unk_50[0] = ov21_021E8D48(&v12);
-                v2->unk_28 = 13;
+                v12.unk_10 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
+                v12.unk_14 = sub_0207A280(ov16_0223E068(v2->battleSys));
+                v2->tmpPtr[1] = sub_0201EE9C();
+                v2->tmpPtr[0] = ov21_021E8D48(&v12);
+                v2->seqNum = 13;
             }
         }
         break;
     case 13:
-        if (ov21_021E8DEC(v2->unk_50[0])) {
+        if (ov21_021E8DEC(v2->tmpPtr[0])) {
             if (coresys.padInput & PAD_BUTTON_A) {
-                v2->unk_28 = 14;
+                v2->seqNum = 14;
             } else if (TouchScreen_Tapped()) {
                 sub_02005748(1500);
-                v2->unk_28 = 14;
+                v2->seqNum = 14;
             }
 
-            if (v2->unk_28 == 14) {
+            if (v2->seqNum == 14) {
                 sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
-                ov21_021E8E04(v2->unk_50[0], 0);
+                ov21_021E8E04(v2->tmpPtr[0], 0);
             }
         }
         break;
@@ -9011,49 +9009,49 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     {
         UnkStruct_02007C7C * v13;
 
-        v13 = ov21_021E8E00(v2->unk_50[0]);
+        v13 = ov21_021E8E00(v2->tmpPtr[0]);
         sub_02008274(v13, 0, 4);
 
         if (sub_020080C0(v13, 0) >= 128) {
             sub_02007DEC(v13, 0, 128);
-            v2->unk_28 = 15;
+            v2->seqNum = 15;
         }
     }
     break;
     case 15:
-        ov21_021E8DD0(v2->unk_50[0]);
-        sub_0201EEB8(v2->unk_50[1]);
-        ov16_0223B578(v2->unk_00);
+        ov21_021E8DD0(v2->tmpPtr[0]);
+        sub_0201EEB8(v2->tmpPtr[1]);
+        ov16_0223B578(v2->battleSys);
         sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
-        v2->unk_28 = 17;
+        v2->seqNum = 17;
         break;
     case 16:
         if (sub_0200384C(v4) == 0) {
             {
                 UnkStruct_02008A90 v14;
 
-                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
-                ov12_0223783C(v2->unk_08);
+                ov12_0223783C(v2->ballRotation);
                 sub_02007DD4(v5);
-                ov16_02263B20(BattleSystem_BattlerData(v2->unk_00, 0), 0);
-                ov16_0223B53C(v2->unk_00);
-                ov16_0223B578(v2->unk_00);
+                ov16_02263B20(BattleSystem_BattlerData(v2->battleSys, 0), 0);
+                ov16_0223B53C(v2->battleSys);
+                ov16_0223B578(v2->battleSys);
                 sub_02075EF4(&v14, v3, 2);
                 sub_02007C34(v5, &v14, 128, 72, 0, 0, NULL, NULL);
                 sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 16, 0, 0x0);
                 sub_0200872C(v5, 16, 0, 0, 0x0);
 
-                v2->unk_28 = 17;
+                v2->seqNum = 17;
             }
         }
         break;
     case 17:
         if (sub_0200384C(v4) == 0) {
             {
-                v2->unk_28 = 18;
+                v2->seqNum = 18;
 
-                sub_02015738(ov16_0223E220(v2->unk_00), 0);
+                sub_02015738(ov16_0223E220(v2->battleSys), 0);
                 sub_02003858(v4, 1);
             }
         }
@@ -9062,20 +9060,20 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
     {
         int v15;
 
-        v15 = v1 | (v2->unk_04->selectedPartySlot[v1]);
-        BattleIO_ShowYesNoScreen(v2->unk_00, v2->unk_04, 0, 868, 5, NULL, v15);
-        v2->unk_28++;
+        v15 = v1 | (v2->battleCtx->selectedPartySlot[v1]);
+        BattleIO_ShowYesNoScreen(v2->battleSys, v2->battleCtx, 0, 868, 5, NULL, v15);
+        v2->seqNum++;
     }
     break;
     case 19:
-        if (BattleContext_IOBufferVal(v2->unk_04, 0)) {
-            if (BattleContext_IOBufferVal(v2->unk_04, 0) == 0xff) {
-                v2->unk_28 = 22;
+        if (BattleContext_IOBufferVal(v2->battleCtx, 0)) {
+            if (BattleContext_IOBufferVal(v2->battleCtx, 0) == 0xff) {
+                v2->seqNum = 22;
             } else {
-                sub_02015738(ov16_0223E220(v2->unk_00), 1);
+                sub_02015738(ov16_0223E220(v2->battleSys), 1);
                 sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                 sub_0200872C(v5, 0, 16, 0, 0x0);
-                v2->unk_28 = 20;
+                v2->seqNum = 20;
             }
         }
         break;
@@ -9087,30 +9085,30 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 sub_0200F344(0, 0x0);
                 sub_0200F344(1, 0x0);
 
-                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
-                v16 = sub_0208712C(5, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, ov16_0223EDA4(v2->unk_00));
-                v2->unk_50[1] = v16;
+                v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
+                v16 = sub_0208712C(5, 1, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL), 10, ov16_0223EDA4(v2->battleSys));
+                v2->tmpPtr[1] = v16;
 
-                if (BattleSystem_PartyCount(v2->unk_00, 0) < 6) {
+                if (BattleSystem_PartyCount(v2->battleSys, 0) < 6) {
                     v16->unk_44 = 0;
                 } else {
-                    v16->unk_44 = 1174 + ov16_0223F240(v2->unk_00);
+                    v16->unk_44 = 1174 + ov16_0223F240(v2->battleSys);
                 }
 
                 v16->unk_08 = Pokemon_GetValue(v3, MON_DATA_FORM, NULL);
-                v16->unk_48 = ov16_0223E228(v2->unk_00);
+                v16->unk_48 = ov16_0223E228(v2->battleSys);
                 v16->unk_10 = Pokemon_GetValue(v3, MON_DATA_GENDER, NULL);
-                v2->unk_50[0] = sub_020067E8(&Unk_020F2DAC, v16, 5);
-                v2->unk_28 = 21;
+                v2->tmpPtr[0] = sub_020067E8(&Unk_020F2DAC, v16, 5);
+                v2->seqNum = 21;
 
-                ov16_0223F414(v2->unk_00);
+                ov16_0223F414(v2->battleSys);
 
                 {
                     int v17;
                     BattlerData * v18;
 
-                    for (v17 = 0; v17 < BattleSystem_MaxBattlers(v2->unk_00); v17++) {
-                        v18 = BattleSystem_BattlerData(v2->unk_00, v17);
+                    for (v17 = 0; v17 < BattleSystem_MaxBattlers(v2->battleSys); v17++) {
+                        v18 = BattleSystem_BattlerData(v2->battleSys, v17);
 
                         if (v18->unk_18) {
                             sub_0200D0F4(v18->unk_18);
@@ -9119,30 +9117,30 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                     }
                 }
 
-                ov16_0223B3E4(v2->unk_00);
-                ov16_0223F314(v2->unk_00, 1);
+                ov16_0223B3E4(v2->battleSys);
+                ov16_0223F314(v2->battleSys, 1);
             }
         }
         break;
     case 21:
-        if (sub_02006844(v2->unk_50[0])) {
+        if (sub_02006844(v2->tmpPtr[0])) {
             {
                 UnkStruct_0208737C * v19;
                 int v20;
 
-                v19 = v2->unk_50[1];
-                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v19 = v2->tmpPtr[1];
+                v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
                 if (v19->unk_14 == 0) {
                     Pokemon_SetValue(v3, 120, v19->unk_18);
-                    ov16_0223F24C(v2->unk_00, (1 + 48));
+                    ov16_0223F24C(v2->battleSys, (1 + 48));
                 }
 
                 sub_0208716C(v19);
-                sub_02006814(v2->unk_50[0]);
-                ov16_0223F314(v2->unk_00, 2);
+                sub_02006814(v2->tmpPtr[0]);
+                ov16_0223F314(v2->battleSys, 2);
 
-                v2->unk_28 = 23;
+                v2->seqNum = 23;
             }
         }
         break;
@@ -9154,23 +9152,23 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                 Party * v22;
                 int v23;
 
-                v22 = BattleSystem_Party(v2->unk_00, 0);
-                v3 = BattleSystem_PartyPokemon(v2->unk_00, v1, v2->unk_04->selectedPartySlot[v1]);
+                v22 = BattleSystem_Party(v2->battleSys, 0);
+                v3 = BattleSystem_PartyPokemon(v2->battleSys, v1, v2->battleCtx->selectedPartySlot[v1]);
 
-                ov16_0223F9A0(v2->unk_00, v1);
-                ov16_02259A5C(v2->unk_00, v2->unk_04, v3);
-                ov16_0223EF48(v2->unk_00, v3);
-                ov16_0223EF68(v2->unk_00, v3);
-                BattleIO_IncrementRecord(v2->unk_00, 0, 0, (1 + 8));
+                ov16_0223F9A0(v2->battleSys, v1);
+                ov16_02259A5C(v2->battleSys, v2->battleCtx, v3);
+                ov16_0223EF48(v2->battleSys, v3);
+                ov16_0223EF68(v2->battleSys, v3);
+                BattleIO_IncrementRecord(v2->battleSys, 0, 0, (1 + 8));
 
                 if (Party_AddPokemon(v22, v3) == 1) {
-                    if (v2->unk_28 == 22) {
-                        sub_02015738(ov16_0223E220(v2->unk_00), 1);
+                    if (v2->seqNum == 22) {
+                        sub_02015738(ov16_0223E220(v2->battleSys), 1);
                         sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                         sub_0200872C(v5, 0, 16, 0, 0x0);
                     }
 
-                    v2->unk_28 = 32;
+                    v2->seqNum = 32;
                 } else {
                     {
                         PCBoxes * v24;
@@ -9180,7 +9178,7 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                         int v28;
                         int v29;
 
-                        v24 = ov16_0223E228(v2->unk_00);
+                        v24 = ov16_0223E228(v2->battleSys);
                         v25 = sub_0207999C(v24);
                         v26 = sub_020799A0(v24);
 
@@ -9192,30 +9190,30 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
                         }
 
                         if (Pokemon_SetGiratinaForm(v3) != -1) {
-                            ov16_0223F9A0(v2->unk_00, v1);
+                            ov16_0223F9A0(v2->battleSys, v1);
                         }
 
                         sub_020798A0(v24, v26, Pokemon_GetBoxPokemon(v3));
 
-                        if (v2->unk_28 == 22) {
+                        if (v2->seqNum == 22) {
                             if (v25 == v26) {
-                                v21.id = 1174 + ov16_0223F240(v2->unk_00);
+                                v21.id = 1174 + ov16_0223F240(v2->battleSys);
                                 v21.tags = 19 | 0x80;
                                 v21.params[0] = v1;
                                 v21.params[1] = v25;
                             } else {
-                                v21.id = 1176 + ov16_0223F240(v2->unk_00);
+                                v21.id = 1176 + ov16_0223F240(v2->battleSys);
                                 v21.tags = 47 | 0x80;
                                 v21.params[0] = v1;
                                 v21.params[1] = v25;
                                 v21.params[2] = v26;
                             }
 
-                            v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v21, ov16_0223EDF0(v2->unk_00));
-                            v2->unk_30[1] = 30;
-                            v2->unk_28 = 24;
+                            v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v6, &v21, ov16_0223EDF0(v2->battleSys));
+                            v2->tmpData[1] = 30;
+                            v2->seqNum = 24;
                         } else {
-                            v2->unk_28 = 32;
+                            v2->seqNum = 32;
                         }
                     }
                 }
@@ -9223,86 +9221,86 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 24:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            if (--v2->unk_30[1] == 0) {
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            if (--v2->tmpData[1] == 0) {
                 {
-                    sub_02015738(ov16_0223E220(v2->unk_00), 1);
+                    sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
 
-                    v2->unk_28 = 32;
+                    v2->seqNum = 32;
                 }
             }
         }
         break;
     case 25:
-        if (ov12_022368D0(v2->unk_08, 2) == 0) {
+        if (ov12_022368D0(v2->ballRotation, 2) == 0) {
             {
                 BattleMessage v30;
 
-                ov12_0223783C(v2->unk_08);
+                ov12_0223783C(v2->ballRotation);
 
                 v30.id = 859;
                 v30.tags = 0;
 
-                v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v30, ov16_0223EDF0(v2->unk_00));
-                v2->unk_30[1] = 30;
-                v2->unk_28 = 26;
+                v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v6, &v30, ov16_0223EDF0(v2->battleSys));
+                v2->tmpData[1] = 30;
+                v2->seqNum = 26;
             }
         }
         break;
     case 26:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            if (--v2->unk_30[1] == 0) {
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            if (--v2->tmpData[1] == 0) {
                 {
                     BattleMessage v31;
 
                     v31.id = 860;
                     v31.tags = 0;
-                    v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v31, ov16_0223EDF0(v2->unk_00));
-                    v2->unk_30[1] = 30;
-                    v2->unk_28 = 27;
+                    v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v6, &v31, ov16_0223EDF0(v2->battleSys));
+                    v2->tmpData[1] = 30;
+                    v2->seqNum = 27;
                 }
             }
         }
         break;
     case 27:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            if (--v2->unk_30[1] == 0) {
-                v2->unk_04->unk_178 = NULL;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            if (--v2->tmpData[1] == 0) {
+                v2->battleCtx->taskData = NULL;
                 Heap_FreeToHeap(param1);
                 sub_0200DA58(param0);
             }
         }
         break;
     case 28:
-        BattleIO_ShowPokemon(v2->unk_00, v1, v2->unk_2C, 1);
-        v2->unk_28 = 29;
-        v2->unk_30[1] = 2;
+        BattleIO_ShowPokemon(v2->battleSys, v1, v2->ball, 1);
+        v2->seqNum = 29;
+        v2->tmpData[1] = 2;
         break;
     case 29:
-        if (--v2->unk_30[1] == 0) {
-            ov12_0223783C(v2->unk_08);
-            v2->unk_28 = 30;
+        if (--v2->tmpData[1] == 0) {
+            ov12_0223783C(v2->ballRotation);
+            v2->seqNum = 30;
         }
         break;
     case 30:
-        if (BattleIO_QueueIsEmpty(v2->unk_04)) {
+        if (BattleIO_QueueIsEmpty(v2->battleCtx)) {
             {
                 BattleMessage v32;
 
-                v32.id = 863 + v2->unk_30[2];
+                v32.id = 863 + v2->tmpData[2];
                 v32.tags = 0;
-                v2->unk_30[0] = ov16_0223FB24(v2->unk_00, v6, &v32, ov16_0223EDF0(v2->unk_00));
-                v2->unk_30[1] = 30;
-                v2->unk_28 = 31;
+                v2->tmpData[0] = ov16_0223FB24(v2->battleSys, v6, &v32, ov16_0223EDF0(v2->battleSys));
+                v2->tmpData[1] = 30;
+                v2->seqNum = 31;
             }
         }
         break;
     case 31:
-        if (sub_0201D724(v2->unk_30[0]) == 0) {
-            if (--v2->unk_30[1] == 0) {
-                v2->unk_04->unk_178 = NULL;
+        if (sub_0201D724(v2->tmpData[0]) == 0) {
+            if (--v2->tmpData[1] == 0) {
+                v2->battleCtx->taskData = NULL;
                 Heap_FreeToHeap(param1);
                 sub_0200DA58(param0);
             }
@@ -9310,13 +9308,13 @@ static void ov16_02249B80 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 32:
         if (sub_0200384C(v4) == 0) {
-            if (BattleSystem_BattleType(v2->unk_00) & (0x200 | 0x400)) {
-                ov12_0223783C(v2->unk_08);
+            if (BattleSystem_BattleType(v2->battleSys) & (0x200 | 0x400)) {
+                ov12_0223783C(v2->ballRotation);
                 sub_02007DD4(v5);
             }
 
-            v2->unk_00->resultMask = 0x4;
-            v2->unk_04->unk_178 = NULL;
+            v2->battleSys->resultMask = 0x4;
+            v2->battleCtx->taskData = NULL;
 
             Heap_FreeToHeap(param1);
             sub_0200DA58(param0);
@@ -10396,7 +10394,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_0226E6F8 = {
     0x0
 };
 
-static void ov16_0224B520 (BattleSystem * param0, UnkStruct_ov16_0224B7CC * param1, Pokemon * param2)
+static void ov16_0224B520 (BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2)
 {
     UnkStruct_ov104_0223F9E0 v0;
     UnkStruct_0200C6E4 * v1;
@@ -10408,7 +10406,7 @@ static void ov16_0224B520 (BattleSystem * param0, UnkStruct_ov16_0224B7CC * para
     UnkStruct_02018340 * v8;
     UnkStruct_0205AA50 v9;
     int v10;
-    UnkStruct_0201EE28 v11;
+    SpriteManagerAllocation v11;
     UnkStruct_020127E8 v12;
     int v13;
 
@@ -10425,20 +10423,20 @@ static void ov16_0224B520 (BattleSystem * param0, UnkStruct_ov16_0224B7CC * para
     sub_0200CE0C(v1, v2, 27, 257, 1, 20013);
     sub_0200CE3C(v1, v2, 27, 258, 1, 20013);
 
-    param1->unk_0C[0] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6C4);
+    param1->cellActorData[0] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6C4);
 
-    sub_0200D330(param1->unk_0C[0]);
+    sub_0200D330(param1->cellActorData[0]);
     sub_0200D888(v1, v2, 19, sub_02079D80(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
     sub_0200CD7C(v3, 2, v1, v2, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
     sub_0200CE0C(v1, v2, 19, sub_02079FDC(), 0, 20014);
     sub_0200CE3C(v1, v2, 19, sub_02079FE8(), 0, 20014);
 
-    param1->unk_0C[1] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6F8);
+    param1->cellActorData[1] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6F8);
 
-    sub_02021F24(param1->unk_0C[1]->unk_00, sub_02079FC4(param2));
-    sub_0200D330(param1->unk_0C[1]);
+    sub_02021F24(param1->cellActorData[1]->unk_00, sub_02079FC4(param2));
+    sub_0200D330(param1->cellActorData[1]);
 
-    param1->unk_50[0] = sub_02012744(1, 5);
+    param1->tmpPtr[0] = sub_02012744(1, 5);
 
     if (Pokemon_GetValue(param2, MON_DATA_176, NULL) == 0) {
         v13 = 2;
@@ -10465,7 +10463,7 @@ static void ov16_0224B520 (BattleSystem * param0, UnkStruct_ov16_0224B7CC * para
     v10 = sub_02012898(&v9, NNS_G2D_VRAM_TYPE_2DMAIN, 5);
     sub_0201ED94(v10, 1, NNS_G2D_VRAM_TYPE_2DMAIN, &v11);
 
-    v12.unk_00 = param1->unk_50[0];
+    v12.unk_00 = param1->tmpPtr[0];
     v12.unk_04 = &v9;
     v12.unk_08 = sub_0200D9B0(v2);
     v12.unk_0C = sub_0200D04C(v2, 20016);
@@ -10478,23 +10476,23 @@ static void ov16_0224B520 (BattleSystem * param0, UnkStruct_ov16_0224B7CC * para
     v12.unk_28 = NNS_G2D_VRAM_TYPE_2DMAIN;
     v12.unk_2C = 5;
 
-    param1->unk_14 = sub_020127E8(&v12);
-    param1->unk_18 = v11;
+    param1->fontOAM = sub_020127E8(&v12);
+    param1->spriteMgrAlloc = v11;
 
-    sub_02012AC0(param1->unk_14, 1);
+    sub_02012AC0(param1->fontOAM, 1);
     sub_0201A8FC(&v9);
 }
 
-static void ov16_0224B7CC (BattleSystem * param0, UnkStruct_ov16_0224B7CC * param1)
+static void ov16_0224B7CC (BattleSystem * param0, BattleScriptTaskData * param1)
 {
     UnkStruct_0200C704 * v0;
 
     v0 = ov16_0223E018(param0);
 
-    sub_0200D0F4(param1->unk_0C[0]);
-    sub_0200D0F4(param1->unk_0C[1]);
-    sub_02012870(param1->unk_14);
-    sub_0201EE28(&param1->unk_18);
+    sub_0200D0F4(param1->cellActorData[0]);
+    sub_0200D0F4(param1->cellActorData[1]);
+    sub_02012870(param1->fontOAM);
+    sub_0201EE28(&param1->spriteMgrAlloc);
     sub_0200D070(v0, 20021);
     sub_0200D080(v0, 20016);
     sub_0200D090(v0, 20013);
@@ -10503,7 +10501,7 @@ static void ov16_0224B7CC (BattleSystem * param0, UnkStruct_ov16_0224B7CC * para
     sub_0200D080(v0, 20017);
     sub_0200D090(v0, 20014);
     sub_0200D0A0(v0, 20014);
-    sub_020127BC(param1->unk_50[0]);
+    sub_020127BC(param1->tmpPtr[0]);
 }
 
 /**
