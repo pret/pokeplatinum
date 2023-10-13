@@ -44,7 +44,7 @@ void ov16_0226E174 (SysTask * param0)
     v0 = sub_0201CED0(param0);
 
     Heap_FreeToHeap(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov16_0226E188 (SysTask * param0, void * param1)
@@ -78,7 +78,7 @@ static void ov16_0226E188 (SysTask * param0, void * param1)
     case 2:
         if (ov16_0223F7A4(v0->unk_00) == 1) {
             if (ov16_0226925C(v1) == 1) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 v0->unk_04++;
             }
         }

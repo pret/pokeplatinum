@@ -257,7 +257,7 @@ static void ov17_02251EAC (SysTask * param0, void * param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -364,7 +364,7 @@ static void ov17_02252060 (SysTask * param0, void * param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -454,7 +454,7 @@ static void ov17_0225228C (SysTask * param0, void * param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -520,7 +520,7 @@ static void ov17_022523AC (SysTask * param0, void * param1)
 
         sub_0200E060(&v0->unk_00->unk_10.unk_24[0], 0, 1, 14);
 
-        sub_0201ADA4(&v0->unk_00->unk_10.unk_24[0], 0xff);
+        BGL_FillWindow(&v0->unk_00->unk_10.unk_24[0], 0xff);
         sub_0201A954(&v0->unk_00->unk_10.unk_24[0]);
 
         {
@@ -549,7 +549,7 @@ static void ov17_022523AC (SysTask * param0, void * param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -616,7 +616,7 @@ static void ov17_02252580 (SysTask * param0, void * param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -656,7 +656,7 @@ static void ov17_0225266C (SysTask * param0, void * param1)
         ov17_02250FE4(v0->unk_00);
         ov17_02251598(v0->unk_00, 0, &v0->unk_12);
         Sound_PlayBGM(1182);
-        sub_02005748(1765);
+        Sound_PlayEffect(1765);
         v0->unk_10++;
         break;
     case 1:
@@ -699,7 +699,7 @@ static void ov17_0225266C (SysTask * param0, void * param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -759,7 +759,7 @@ static void ov17_02252858 (SysTask * param0, void * param1)
 
     switch (v0->unk_10) {
     case 0:
-        sub_02005748(1786);
+        Sound_PlayEffect(1786);
         v0->unk_10++;
         break;
     case 1:
@@ -773,7 +773,7 @@ static void ov17_02252858 (SysTask * param0, void * param1)
     case 2:
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_14[v1] > 0) {
-                sub_02005748(1787);
+                Sound_PlayEffect(1787);
                 break;
             }
         }
@@ -807,7 +807,7 @@ static void ov17_02252858 (SysTask * param0, void * param1)
     case 4:
         for (v1 = 0; v1 < 4; v1++) {
             if (v0->unk_14[v1] > 0) {
-                sub_02005748(1785);
+                Sound_PlayEffect(1785);
                 break;
             }
         }
@@ -819,7 +819,7 @@ static void ov17_02252858 (SysTask * param0, void * param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -877,7 +877,7 @@ static void ov17_022529C8 (SysTask * param0, void * param1)
     default:
         ov17_0224F26C(v0->unk_0C, &v0->unk_04, NULL, 0);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }

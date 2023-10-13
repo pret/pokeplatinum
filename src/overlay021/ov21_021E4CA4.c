@@ -607,7 +607,7 @@ static void ov21_021E5268 (u32 param0, u32 param1, void * param2)
             case 1:
                 v2->unk_28 = 2;
                 ov21_021E5E78(v2, v2->unk_64 ^ 1);
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 break;
             default:
                 break;
@@ -669,13 +669,13 @@ static void ov21_021E537C (u32 param0, UnkStruct_ov21_021E4D90 * param1, UnkStru
                 if (12 <= v0) {
                     param2->unk_34 = 1;
                     param2->unk_38 = gCoreSys.unk_5C;
-                    sub_02005748(1527);
+                    Sound_PlayEffect(1527);
                 }
             } else {
                 if (-12 >= v0) {
                     param2->unk_34 = 0;
                     param2->unk_38 = gCoreSys.unk_5C;
-                    sub_02005748(1527);
+                    Sound_PlayEffect(1527);
                 }
             }
         }
@@ -801,14 +801,14 @@ static void ov21_021E5538 (UnkStruct_ov21_021E4DA4 * param0, int param1)
     sub_0201C3C0(param0->unk_00->unk_00, 7);
     sub_02019184(param0->unk_00->unk_00, 7, 0, -48);
     sub_02019184(param0->unk_00->unk_00, 7, 3, -16);
-    sub_02019060(7, 3);
+    BGL_SetPriority(7, 3);
 }
 
 static void ov21_021E5620 (UnkStruct_ov21_021E4DA4 * param0)
 {
     sub_02019EBC(param0->unk_00->unk_00, 6);
     sub_02019EBC(param0->unk_00->unk_00, 7);
-    sub_02019060(7, 1);
+    BGL_SetPriority(7, 1);
 }
 
 static void ov21_021E5644 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E4DA4 * param1, int param2)
@@ -923,7 +923,7 @@ static void ov21_021E5898 (UnkStruct_ov21_021E5004 * param0)
 
 static void ov21_021E58B8 (UnkStruct_ov21_021E5004 * param0, UnkStruct_ov21_021E4DA4 * param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_02009DC8 * v2;
     UnkStruct_ov21_021D13FC * v3 = param1->unk_00;
@@ -1050,7 +1050,7 @@ static void ov21_021E5A44 (UnkStruct_ov21_021E51DC * param0)
 static void ov21_021E5AAC (UnkStruct_ov21_021E51DC * param0)
 {
     if ((param0->unk_5C / ((32 / 8))) != param0->unk_60) {
-        sub_02005748(1527);
+        Sound_PlayEffect(1527);
         param0->unk_60 = param0->unk_5C / ((32 / 8));
     }
 }

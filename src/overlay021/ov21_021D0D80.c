@@ -615,7 +615,7 @@ void ov21_021D154C (UnkUnion_020225E0 * param0, int param1, int param2, int para
     param0->val1.unk_03 = param4;
 }
 
-void ov21_021D1558 (UnkStruct_ov21_021D157C * param0, UnkStruct_02018340 * param1, int param2, NNSG2dScreenData * param3, int param4, int param5, int param6, int param7, int param8)
+void ov21_021D1558 (UnkStruct_ov21_021D157C * param0, BGL * param1, int param2, NNSG2dScreenData * param3, int param4, int param5, int param6, int param7, int param8)
 {
     param0->unk_00 = param1;
     param0->unk_08 = param2;
@@ -658,7 +658,7 @@ BOOL ov21_021D157C (UnkStruct_ov21_021D157C * param0)
     return 1;
 }
 
-void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3)
+void ov21_021D1650 (Window * param0, int param1, int param2, int param3)
 {
     Strbuf* v0;
     Strbuf* v1;
@@ -679,9 +679,9 @@ void ov21_021D1650 (UnkStruct_0205AA50 * param0, int param1, int param2, int par
     ov21_021D5600(v1);
 }
 
-UnkStruct_0205AA50 * ov21_021D16D8 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3)
+Window * ov21_021D16D8 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
 
     if (ov21_021D36D8(param1) == 0) {
         v0 = ov21_021D172C(param0->unk_14C, param2, param3);
@@ -692,9 +692,9 @@ UnkStruct_0205AA50 * ov21_021D16D8 (UnkStruct_ov21_021D13FC * param0, const UnkS
     return v0;
 }
 
-UnkStruct_0205AA50 * ov21_021D170C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
+Window * ov21_021D170C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
 
     v0 = ov21_021D4D6C(param0, 15, 2);
     ov21_021D1650(v0, param2, param2, param1);
@@ -702,9 +702,9 @@ UnkStruct_0205AA50 * ov21_021D170C (UnkStruct_ov21_021D4C0C * param0, int param1
     return v0;
 }
 
-UnkStruct_0205AA50 * ov21_021D172C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
+Window * ov21_021D172C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     int v1;
 
     v1 = sub_020775A4(param2);
@@ -724,7 +724,7 @@ void ov21_021D1778 (UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3
     UnkStruct_02022550 * v0;
     UnkStruct_02022550 * v1;
     UnkStruct_ov21_021D4CB8 v2;
-    UnkStruct_0205AA50 * v3;
+    Window * v3;
     UnkStruct_02009DC8 * v4;
     VecFx32 v5;
     const UnkStruct_ov21_021D37DC * v6;

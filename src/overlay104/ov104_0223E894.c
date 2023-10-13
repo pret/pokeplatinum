@@ -31,7 +31,7 @@ typedef struct {
 typedef struct UnkStruct_ov104_0223EA84_t {
     UnkStruct_ov104_0223EA38 unk_00;
     UnkStruct_ov104_0223EA38 unk_14;
-    UnkStruct_0205AA50 * unk_28;
+    Window * unk_28;
     u8 unk_2C;
     u8 unk_2D;
     u8 unk_2E;
@@ -39,7 +39,7 @@ typedef struct UnkStruct_ov104_0223EA84_t {
 } UnkStruct_ov104_0223EA84;
 
 typedef struct UnkStruct_ov104_0223EBD0_t {
-    UnkStruct_0205AA50 * unk_00;
+    Window * unk_00;
     UnkStruct_ov104_0223EA84 * unk_04[96];
     u8 unk_184;
     u8 unk_185;
@@ -76,7 +76,7 @@ typedef struct UnkStruct_ov104_0223F174_t {
 
 static void ov104_0223EA14(SysTask * param0, void * param1);
 static void ov104_0223E8D8(SysTask * param0, void * param1);
-static void ov104_0223EB44(UnkStruct_0205AA50 * param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5);
+static void ov104_0223EB44(Window * param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5);
 static SysTask * ov104_0223F05C(UnkStruct_ov104_0223F094 * param0);
 static void ov104_0223F070(SysTask * param0, void * param1);
 
@@ -150,7 +150,7 @@ static void ov104_0223E8D8 (SysTask * param0, void * param1)
             *(v0->unk_48) = 1;
         }
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         Heap_FreeToHeap(v0);
 
         return;
@@ -189,7 +189,7 @@ static void ov104_0223EA14 (SysTask * param0, void * param1)
     UnkStruct_ov104_0223E9EC * v0 = param1;
 
     ov104_0223E9CC(v0->unk_14, v0->unk_00.unk_00);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 void ov104_0223EA28 (UnkStruct_ov104_0223EA38 * param0, int param1, int param2, int param3)
@@ -234,7 +234,7 @@ void ov104_0223EA7C (UnkStruct_ov104_0223EA84 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov104_0223EA84 (UnkStruct_ov104_0223EA84 * param0, int param1, int param2, int param3, int param4, int param5, UnkStruct_0205AA50 * param6, u32 param7, u32 param8, u8 param9)
+void ov104_0223EA84 (UnkStruct_ov104_0223EA84 * param0, int param1, int param2, int param3, int param4, int param5, Window * param6, u32 param7, u32 param8, u8 param9)
 {
     GF_ASSERT(param0->unk_2E == 0);
 
@@ -275,7 +275,7 @@ BOOL ov104_0223EADC (UnkStruct_ov104_0223EA84 * param0)
     return v0;
 }
 
-static void ov104_0223EB44 (UnkStruct_0205AA50 * param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5)
+static void ov104_0223EB44 (Window * param0, s32 param1, s32 param2, s32 param3, s32 param4, u8 param5)
 {
     if ((param4 <= 0) || (param2 <= 0)) {
         return;
@@ -301,7 +301,7 @@ static void ov104_0223EB44 (UnkStruct_0205AA50 * param0, s32 param1, s32 param2,
         param2 = 256;
     }
 
-    sub_0201AE78(param0, param5, param3, param1, param4 - param3, param2 - param1);
+    BGL_WindowColor(param0, param5, param3, param1, param4 - param3, param2 - param1);
 }
 
 UnkStruct_ov104_0223EBD0 * ov104_0223EBA0 (u32 param0)
@@ -330,7 +330,7 @@ void ov104_0223EBD0 (UnkStruct_ov104_0223EBD0 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void ov104_0223EBF0 (UnkStruct_ov104_0223EBD0 * param0, u8 param1, u8 param2, UnkStruct_0205AA50 * param3, u8 param4)
+void ov104_0223EBF0 (UnkStruct_ov104_0223EBD0 * param0, u8 param1, u8 param2, Window * param3, u8 param4)
 {
     param0->unk_00 = param3;
     param0->unk_18C = param4;
@@ -569,11 +569,11 @@ static void ov104_0223F150 (UnkStruct_ov104_0223F0D8 * param0)
     GF_ASSERT(param0);
 
     if (param0->unk_04 != NULL) {
-        sub_0200DA58(param0->unk_04);
+        SysTask_Done(param0->unk_04);
     }
 
     if (param0->unk_00 != NULL) {
-        sub_0200DA58(param0->unk_00);
+        SysTask_Done(param0->unk_00);
     }
 
     sub_02013BA8();

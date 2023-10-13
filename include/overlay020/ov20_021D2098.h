@@ -18,7 +18,7 @@ void ov20_021D21A0(UnkStruct_ov20_021D2128 * param0, int param1);
 BOOL ov20_021D21F8(UnkStruct_ov20_021D2128 * param0);
 BOOL ov20_021D2210(UnkStruct_ov20_021D2128 * param0, int param1);
 u32 ov20_021D2DF4(UnkStruct_ov20_021D2128 * param0);
-UnkStruct_02018340 * ov20_021D2E04(UnkStruct_ov20_021D2128 * param0);
+BGL * ov20_021D2E04(UnkStruct_ov20_021D2128 * param0);
 UnkStruct_020218BC * ov20_021D2E08(UnkStruct_ov20_021D2128 * param0);
 void ov20_021D2E0C(UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3);
 UnkStruct_02022550 * ov20_021D2E50(UnkStruct_ov20_021D2128 * param0, UnkStruct_ov19_021DA864 * param1, u32 param2, u32 param3, u32 param4, int param5);

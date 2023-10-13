@@ -17,15 +17,15 @@ typedef struct {
     NARC * unk_00;
     UnkStruct_0200C6E4 * unk_04;
     UnkStruct_0200C704 * unk_08;
-    UnkStruct_02018340 * unk_0C;
-    UnkStruct_02002F38 * unk_10;
+    BGL * unk_0C;
+    PaletteSys * unk_10;
     UnkStruct_02023FCC * unk_14;
     UnkUnion_02022594 unk_18[28];
     BOOL unk_88;
     UnkStruct_02012744 * unk_8C;
     FontOAM * unk_90[2];
     SpriteManagerAllocation unk_98[2];
-    UnkStruct_0205AA50 unk_B0;
+    Window unk_B0;
 } UnkStruct_02089688_sub1;
 
 #endif // POKEPLATINUM_STRUCT_02089688_SUB1_H

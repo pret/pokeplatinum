@@ -36,7 +36,7 @@ static void sub_020170F4 (SysTask * param0, void * param1)
 
     sub_0201CBCC(v0->unk_0C);
     sub_0201CBB0(v0->unk_00, v0->unk_0C);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 void sub_02017110 (UnkStruct_020170F4 * param0)

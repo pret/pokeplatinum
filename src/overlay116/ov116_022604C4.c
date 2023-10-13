@@ -52,7 +52,7 @@
 #include "overlay116/ov116_02266FEC.h"
 
 static void ov116_022612CC(UnkStruct_ov116_0226139C * param0);
-static void ov116_02261494(UnkStruct_02018340 * param0);
+static void ov116_02261494(BGL * param0);
 static void ov116_022616CC(UnkStruct_ov116_0226139C * param0);
 static BOOL ov116_02261768(int param0);
 static void ov116_0226178C(UnkStruct_ov116_0226139C * param0, BOOL param1, int param2, int * param3);
@@ -311,7 +311,7 @@ static void ov116_02260A2C (UnkStruct_ov116_02262A8C * param0, u32 param1, u32 p
         }
 
         if (sub_020057D4(1394) == 0) {
-            sub_02005748(1394);
+            Sound_PlayEffect(1394);
         }
 
         param0->unk_1FBC.unk_00 = param1;
@@ -842,7 +842,7 @@ void ov116_0226139C (UnkStruct_ov116_0226139C * param0)
     G3X_AlphaBlend(0);
 }
 
-static void ov116_02261494 (UnkStruct_02018340 * param0)
+static void ov116_02261494 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
     {

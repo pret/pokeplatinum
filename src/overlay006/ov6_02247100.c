@@ -85,13 +85,13 @@ static int ov6_0224715C (UnkStruct_020508D4 * param0, UnkStruct_0203CDB0 * param
 
     switch (param2->unk_08) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         break;
     case 1:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         break;
     case 2:
-        sub_02005748(1614);
+        Sound_PlayEffect(1614);
         break;
     }
 

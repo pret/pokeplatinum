@@ -137,7 +137,7 @@ typedef struct {
     int unk_0C;
     UnkStruct_02007C7C * unk_10;
     UnkStruct_ov12_0222660C * unk_14;
-    UnkStruct_02002F38 * unk_18;
+    PaletteSys * unk_18;
     UnkStruct_ov12_02226454 unk_1C;
     int unk_44;
     CellActorData * unk_48;
@@ -377,7 +377,7 @@ typedef struct {
     int unk_94;
     int unk_98;
     UnkStruct_ov12_02226454 unk_9C;
-    UnkStruct_02002F38 * unk_C4;
+    PaletteSys * unk_C4;
     BOOL unk_C8;
     BOOL unk_CC;
 } UnkStruct_ov12_02232D38;
@@ -1033,8 +1033,8 @@ static void ov12_0223025C (SysTask * param0, void * param1)
     case 4:
         ov12_0222669C(v0->unk_18);
 
-        sub_02019060(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        sub_02019060(0, ov12_0222339C(v0->unk_00));
+        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        BGL_SetPriority(0, ov12_0222339C(v0->unk_00));
 
         sub_02019690(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
         sub_02019EBC(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
@@ -1090,8 +1090,8 @@ void ov12_022303D0 (UnkStruct_ov12_0221FCDC * param0)
     v3 = ov12_02235254(v0->unk_00, ov12_02220240(param0));
 
     if ((v3 == 3) || (v3 == 4)) {
-        sub_02019060(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        sub_02019060(0, ov12_0222339C(v0->unk_00) + 1);
+        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
+        BGL_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
     }
 
     ov12_0223025C(v2, v0);
@@ -1334,8 +1334,8 @@ static void ov12_02230994 (SysTask * param0, void * param1)
         }
         break;
     case 2:
-        sub_02019060(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        sub_02019060(0, ov12_0222339C(v0->unk_00));
+        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        BGL_SetPriority(0, ov12_0222339C(v0->unk_00));
 
         if (ov12_0222337C(v0->unk_00, ov12_02220248(v0->unk_00)) == 0) {
             sub_02007DEC(v0->unk_10, 6, 0);
@@ -1381,8 +1381,8 @@ void ov12_02230A8C (UnkStruct_ov12_0221FCDC * param0)
         sub_0200D3F4(v0->unk_48, 1);
         sub_0200D460(v0->unk_48, 2);
     } else {
-        sub_02019060(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        sub_02019060(0, ov12_0222339C(v0->unk_00) + 1);
+        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
+        BGL_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
         sub_0200D3F4(v0->unk_48, 0);
     }
 
@@ -3715,8 +3715,8 @@ static void ov12_02233BD8 (SysTask * param0, void * param1)
         ov12_022265F8(v0->unk_04);
         ov12_022265C0(v0->unk_04);
 
-        sub_02019060(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
-        sub_02019060(0, ov12_0222339C(v0->unk_00));
+        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_02223428(v0->unk_00, 1));
+        BGL_SetPriority(0, ov12_0222339C(v0->unk_00));
 
         sub_02019690(ov12_022233B0(v0->unk_00, 1), 0x4000, 0, ov12_0221FDE4(v0->unk_00));
         sub_02019EBC(ov12_02220278(v0->unk_00), ov12_022233B0(v0->unk_00, 1));
@@ -3758,8 +3758,8 @@ void ov12_02233CD4 (UnkStruct_ov12_0221FCDC * param0)
     v4 = ov12_02235254(v0->unk_00, ov12_02220248(param0));
 
     if ((v4 == 3) || (v4 == 4)) {
-        sub_02019060(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
-        sub_02019060(0, ov12_0222339C(v0->unk_00) + 1);
+        BGL_SetPriority(ov12_022233B0(v0->unk_00, 1), ov12_0222339C(v0->unk_00));
+        BGL_SetPriority(0, ov12_0222339C(v0->unk_00) + 1);
     }
 
     ov12_022201E8(v0->unk_00, ov12_02233BD8, v0);

@@ -59,14 +59,14 @@ enum {
 
 static void NitroStaticInit(void);
 
-static BOOL ov46_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
+static BOOL ov46_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
 static void ov46_0225621C(UnkStruct_ov46_0225621C * param0);
 static void ov46_0225623C(UnkStruct_ov46_0225621C * param0, u32 param1, BOOL param2);
 static void ov46_02256258(UnkStruct_ov46_0225621C * param0, u32 param1, u32 param2);
 static void ov46_02256270(UnkStruct_ov46_0225621C * param0, UnkStruct_ov46_02256270 * param1);
 static void ov46_0225628C(UnkStruct_ov46_0225621C * param0);
 static void ov46_022562D4(UnkStruct_ov46_0225621C * param0);
-static BOOL ov46_02256310(UnkStruct_ov46_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
+static BOOL ov46_02256310(UnkStruct_ov46_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
 static void ov46_022563B8(UnkStruct_ov46_0225621C * param0);
 static void ov46_022563D8(u32 param0, u32 param1, u32 param2, void * param3);
 static void ov46_02256408(SysTask * param0, void * param1);
@@ -92,7 +92,7 @@ static void NitroStaticInit (void)
     ov25_02254238(ov46_022561D4, ov46_02256458);
 }
 
-static BOOL ov46_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov46_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov46_0225621C * v0 = (UnkStruct_ov46_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov46_0225621C));
 
@@ -175,7 +175,7 @@ static void ov46_022562D4 (UnkStruct_ov46_0225621C * param0)
     ov46_0225623C(param0, 1, 0);
 }
 
-static BOOL ov46_02256310 (UnkStruct_ov46_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov46_02256310 (UnkStruct_ov46_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     static const UnkUnion_020225E0 v0[] = {
         {144, 176, 16, 80},
@@ -266,7 +266,7 @@ static void ov46_02256408 (SysTask * param0, void * param1)
 
         if (v0[v1->unk_00](v1)) {
             ov46_022563B8(v1);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             ov25_02254260(v1->unk_0C);
         }
     } else {

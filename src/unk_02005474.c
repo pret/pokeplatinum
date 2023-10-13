@@ -31,7 +31,7 @@ int sub_02005684(void);
 int sub_02005690(u16 param0);
 void sub_0200569C(void);
 void sub_020056D4(void);
-BOOL sub_02005748(u16 param0);
+BOOL Sound_PlayEffect(u16 param0);
 BOOL sub_02005770(u16 param0, int param1);
 BOOL sub_02005728(u16 param0, int param1);
 void sub_020057A4(u16 param0, int param1);
@@ -300,13 +300,13 @@ BOOL sub_02005728 (u16 param0, int param1)
 {
     int v0;
 
-    v0 = sub_02005748(param0);
+    v0 = Sound_PlayEffect(param0);
     sub_020057FC(param0, 0xffff, param1);
 
     return v0;
 }
 
-BOOL sub_02005748 (u16 param0)
+BOOL Sound_PlayEffect (u16 param0)
 {
     int v0, v1;
 
@@ -771,7 +771,7 @@ void sub_02005F24 ()
 
     if (*v1 != NULL) {
         v0 = sub_0201CED0(*v1);
-        sub_0200DA58(*v1);
+        SysTask_Done(*v1);
         Heap_FreeToHeap(v0);
     }
 

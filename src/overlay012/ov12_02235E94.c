@@ -536,7 +536,7 @@ static void ov12_022360A0 (SysTask * param0, void * param1)
         v0->unk_90 = 0xFF;
 
         NARC_dtor(v0->unk_8C);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         break;
     default:
         break;
@@ -626,7 +626,7 @@ static void ov12_022363CC (SysTask * param0, void * param1)
 
     if (v1 == 0) {
         v2->unk_88 = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -643,7 +643,7 @@ static void ov12_02236430 (SysTask * param0, void * param1)
         *(v0->unk_0C) = 1;
         sub_020146F4(v0->unk_10, 0, v0->unk_18, v0);
         sub_02014788(v0->unk_10, 1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         Heap_FreeToHeap(v0);
     } else {
         v0->unk_04--;
@@ -2087,7 +2087,7 @@ void ov12_0223783C (BallRotation * param0)
 
     sub_0200D0B0(param0->unk_90.unk_1C, param0->unk_2C);
     sub_0200D0F4(param0->unk_30);
-    sub_0200DA58(param0->unk_CC);
+    SysTask_Done(param0->unk_CC);
     Heap_FreeToHeap(param0);
 }
 

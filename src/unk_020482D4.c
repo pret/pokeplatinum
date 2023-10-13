@@ -140,7 +140,7 @@ BOOL sub_020483E0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_020483F4 (UnkStruct_0203E724 * param0)
 {
-    sub_02005748(inline_02049538(param0));
+    Sound_PlayEffect(inline_02049538(param0));
     return 0;
 }
 

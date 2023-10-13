@@ -391,7 +391,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
         break;
     case 32:
         if (v4->unk_500 != NULL) {
-            sub_0200DA58(v4->unk_500);
+            SysTask_Done(v4->unk_500);
             v4->unk_500 = NULL;
         }
         break;

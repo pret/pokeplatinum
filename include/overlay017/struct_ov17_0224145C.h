@@ -5,7 +5,7 @@
 #include "struct_decls/sys_task.h"
 
 typedef struct {
-    UnkStruct_02002F38 * unk_00;
+    PaletteSys * unk_00;
     SysTask * unk_04;
     s16 unk_08;
     u8 unk_0A;

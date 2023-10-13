@@ -18,18 +18,18 @@
 
 struct UnkStruct_ov31_02256554_t {
     const UnkStruct_ov31_02256554_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[10];
 };
 
 static void ov31_022565CC(UnkStruct_ov25_02255224 * param0);
 static void ov31_022565E0(SysTask * param0, void * param1);
-static void ov31_02256644(UnkStruct_02018340 * param0);
+static void ov31_02256644(BGL * param0);
 static void ov31_022566EC(SysTask * param0, void * param1);
 static void ov31_02256710(SysTask * param0, void * param1);
-static void ov31_0225672C(UnkStruct_02018340 * param0, const UnkStruct_ov31_02256554_1 * param1);
+static void ov31_0225672C(BGL * param0, const UnkStruct_ov31_02256554_1 * param1);
 
-BOOL ov31_02256554 (UnkStruct_ov31_02256554 ** param0, const UnkStruct_ov31_02256554_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov31_02256554 (UnkStruct_ov31_02256554 ** param0, const UnkStruct_ov31_02256554_1 * param1, BGL * param2)
 {
     UnkStruct_ov31_02256554 * v0 = (UnkStruct_ov31_02256554 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov31_02256554));
 
@@ -118,7 +118,7 @@ static void ov31_022565E0 (SysTask * param0, void * param1)
     ov31_022565CC(param1);
 }
 
-static void ov31_02256644 (UnkStruct_02018340 * param0)
+static void ov31_02256644 (BGL * param0)
 {
     u8 * v0 = Heap_AllocFromHeap(8, 0x20 * 16);
 
@@ -155,7 +155,7 @@ static void ov31_02256710 (SysTask * param0, void * param1)
     ov31_022565CC(param1);
 }
 
-static void ov31_0225672C (UnkStruct_02018340 * param0, const UnkStruct_ov31_02256554_1 * param1)
+static void ov31_0225672C (BGL * param0, const UnkStruct_ov31_02256554_1 * param1)
 {
     static const u8 v0[] = {
         4, 15, 8, 1

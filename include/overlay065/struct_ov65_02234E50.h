@@ -30,9 +30,9 @@ typedef struct {
     u8 unk_76;
     u8 unk_77;
     BOOL unk_78;
-    UnkStruct_0205AA50 unk_7C[8];
-    UnkStruct_0205AA50 unk_FC[8][2];
-    UnkStruct_0205AA50 unk_1FC;
+    Window unk_7C[8];
+    Window unk_FC[8][2];
+    Window unk_1FC;
     UnkStruct_02009DC8 * unk_20C[4];
     UnkStruct_02022550 * unk_21C[3];
     SpriteManagerAllocation unk_228;

@@ -600,7 +600,7 @@ void sub_0207ACB4 (SysTask * param0, void * param1)
     default:
     case 255:
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         break;
     }
 }
@@ -638,7 +638,7 @@ void sub_0207AD40 (SysTask * param0, void * param1)
     default:
     case 255:
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         break;
     }
 }

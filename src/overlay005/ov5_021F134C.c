@@ -97,7 +97,7 @@ static void ov5_021F1388 (UnkStruct_ov5_021F1388 * param0)
 
 static void ov5_021F13AC (UnkStruct_ov5_021F1388 * param0)
 {
-    sub_0200DA58(param0->unk_24);
+    SysTask_Done(param0->unk_24);
 }
 
 static void ov5_021F13B8 (UnkStruct_ov5_021F1388 * param0, VecFx32 * param1)

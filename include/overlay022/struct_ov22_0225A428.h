@@ -11,12 +11,12 @@
 
 typedef struct {
     UnkStruct_ov22_022597BC unk_00;
-    UnkStruct_0205AA50 * unk_2C;
+    Window * unk_2C;
     UnkStruct_020218BC * unk_30;
     UnkStruct_02009714 ** unk_34;
     UnkStruct_ov22_0225A914 unk_38;
     UnkStruct_ov22_0225AB54 unk_A0;
-    UnkStruct_0205AA50 * unk_134;
+    Window * unk_134;
     int unk_138;
     int unk_13C;
     u32 unk_140;

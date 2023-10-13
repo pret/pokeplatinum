@@ -93,8 +93,8 @@ static void VBlankIntr (void)
 
 void ErrorMessageReset_PrintErrorAndReset (void)
 {
-    UnkStruct_02018340 * bgConfig;
-    UnkStruct_0205AA50 window;
+    BGL * bgConfig;
+    Window window;
     MessageLoader * errorMsgData;
     Strbuf* errorString;
     int v4;
@@ -154,8 +154,8 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0201D710();
 
     sub_0201A8D4(bgConfig, &window, &sErrorMessageWindowTemplate);
-    sub_0201AE78(&window, 15, 0, 0, 26 * 8, 18 * 8);
-    sub_0200DC48(&window, 0, (512 - 9), 2);
+    BGL_WindowColor(&window, 15, 0, 0, 26 * 8, 18 * 8);
+    Window_Show(&window, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(errorMsgData, v4, errorString);
     sub_0201D738(&window, 0, errorString, 0, 0, 0, NULL);
     Strbuf_Free(errorString);
@@ -190,7 +190,7 @@ void ErrorMessageReset_PrintErrorAndReset (void)
     sub_0200F344(0, 0x7fff);
     sub_0200F344(1, 0x7fff);
 
-    sub_0201A8FC(&window);
+    BGL_DeleteWindow(&window);
     MessageLoader_Free(errorMsgData);
     Heap_FreeToHeap(bgConfig);
 

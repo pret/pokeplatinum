@@ -100,7 +100,7 @@ static void ov5_021E21B8 (SysTask * param0, void * param1)
 
     GX_SetGraphicsMode(v0->unk_04.unk_00, v0->unk_04.unk_04, v0->unk_04.unk_08);
     v0->unk_30 = 1;
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov5_021E2218 (UnkStruct_ov5_021E2098 * param0)

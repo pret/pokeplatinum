@@ -413,7 +413,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov94_022459F8 = {
     0x0
 };
 
-UnkStruct_02001AF4 * ov94_0223C3C0 (UnkStruct_02018340 * param0, int param1, int param2)
+UnkStruct_02001AF4 * ov94_0223C3C0 (BGL * param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 

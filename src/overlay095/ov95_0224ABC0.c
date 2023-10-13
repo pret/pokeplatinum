@@ -64,7 +64,7 @@ typedef struct {
     UnkStruct_ov95_02247628 * unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_02018340 * unk_0C;
+    BGL * unk_0C;
     UnkStruct_ov95_02247004 * unk_10;
     BOOL unk_14;
     UnkStruct_ov95_022472C4 * unk_18;
@@ -79,7 +79,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov95_0224AC64 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     int unk_08;
     fx32 unk_0C;
     fx32 unk_10;
@@ -519,7 +519,7 @@ static void ov95_0224B258 (SysTask * param0)
 
         *(v0->unk_1C) = NULL;
         ov95_022476C8(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -566,7 +566,7 @@ static void ov95_0224B308 (SysTask * param0)
         *(v0->unk_00) = NULL;
 
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -612,6 +612,6 @@ static void ov95_0224B3BC (SysTask * param0)
 
         *(v0->unk_00) = NULL;
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }

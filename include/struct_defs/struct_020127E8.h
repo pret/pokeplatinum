@@ -10,7 +10,7 @@
 
 typedef struct {
     const UnkStruct_02012744 * unk_00;
-    const UnkStruct_0205AA50 * unk_04;
+    const Window * unk_04;
     UnkStruct_020218BC * unk_08;
     const NNSG2dImagePaletteProxy * unk_0C;
     const UnkStruct_02022550 * unk_10;

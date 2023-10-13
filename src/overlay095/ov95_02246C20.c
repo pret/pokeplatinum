@@ -55,7 +55,7 @@
 struct UnkStruct_ov95_02247628_t {
     const UnkStruct_ov6_02246254 * unk_00;
     int unk_04;
-    UnkStruct_02018340 * unk_08;
+    BGL * unk_08;
     UnkStruct_0200B358 * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
@@ -93,7 +93,7 @@ typedef struct {
 } UnkStruct_ov95_02247170;
 
 struct UnkStruct_ov95_022472C4_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     volatile BOOL * unk_04;
     fx32 unk_08;
     fx32 unk_0C;
@@ -217,7 +217,7 @@ int ov95_02246E1C (UnkStruct_020067E8 * param0, int * param1)
     v0 = OS_DisableInterrupts();
     v1 = sub_0200682C(param0);
 
-    sub_0200DA58(v1->unk_1A8);
+    SysTask_Done(v1->unk_1A8);
     sub_02039794();
     sub_0200B3F0(v1->unk_0C);
     MessageLoader_Free(v1->unk_10);
@@ -337,7 +337,7 @@ void ov95_02247018 (UnkStruct_ov95_02247004 * param0)
         }
 
         *(param0->unk_E4) = 0;
-        sub_0200DA58(param0->unk_C0);
+        SysTask_Done(param0->unk_C0);
         Heap_FreeToHeap(param0);
     }
 }
@@ -348,7 +348,7 @@ static void ov95_02247060 (SysTask * param0, void * param1)
 
     if (v0->unk_E8 == 0) {
         if (--(v0->unk_F0) <= 0) {
-            sub_02005748(1710);
+            Sound_PlayEffect(1710);
             v0->unk_F0 = 30;
             ov95_02247170(v0);
         }
@@ -384,7 +384,7 @@ static void ov95_02247060 (SysTask * param0, void * param1)
         if (v0->unk_F4 == 0) {
             *(v0->unk_E4) = 0;
             Heap_FreeToHeap(v0);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
     }
 }
@@ -439,7 +439,7 @@ static void ov95_02247224 (UnkStruct_ov95_02247004 * param0, int param1)
 {
     if (param0->unk_C4[param1]) {
         Heap_FreeToHeap(sub_0201CED0(param0->unk_C4[param1]));
-        sub_0200DA58(param0->unk_C4[param1]);
+        SysTask_Done(param0->unk_C4[param1]);
         param0->unk_C4[param1] = NULL;
         param0->unk_F4--;
     }
@@ -472,7 +472,7 @@ static void ov95_02247254 (SysTask * param0, void * param1)
     }
 }
 
-UnkStruct_ov95_022472C4 * ov95_022472C4 (UnkStruct_02018340 * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, int param5, volatile BOOL * param6)
+UnkStruct_ov95_022472C4 * ov95_022472C4 (BGL * param0, fx32 param1, fx32 param2, fx32 param3, fx32 param4, int param5, volatile BOOL * param6)
 {
     UnkStruct_ov95_022472C4 * v0 = Heap_AllocFromHeap(57, sizeof(UnkStruct_ov95_022472C4));
 
@@ -532,7 +532,7 @@ static void ov95_0224732C (SysTask * param0, void * param1)
 
     if (*(v0->unk_04)) {
         ov95_022476C8(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         v0->unk_10 += v0->unk_14;
     }
@@ -674,7 +674,7 @@ UnkStruct_02022550 * ov95_022475E4 (UnkStruct_ov95_02247628 * param0, UnkStruct_
     return v0;
 }
 
-UnkStruct_02018340 * ov95_02247628 (UnkStruct_ov95_02247628 * param0)
+BGL * ov95_02247628 (UnkStruct_ov95_02247628 * param0)
 {
     return param0->unk_08;
 }

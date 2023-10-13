@@ -125,7 +125,7 @@ typedef struct {
     BOOL unk_18;
     u16 unk_1C;
     void * unk_20;
-    UnkStruct_0205AA50 unk_24;
+    Window unk_24;
     Strbuf* unk_34;
     u8 unk_38;
     UnkStruct_02001AF4 * unk_3C;
@@ -643,7 +643,7 @@ static BOOL sub_02053878 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         sub_02055644(v0, v2->unk_00);
         sub_02055974(param0);
         (v1->unk_00)++;
@@ -1194,12 +1194,12 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         switch (sub_02002114(v1->unk_3C, 11)) {
         case 0:
             sub_0200E084(&v1->unk_24, 0);
-            sub_0201A8FC(&v1->unk_24);
+            BGL_DeleteWindow(&v1->unk_24);
             v1->unk_00 = 3;
             break;
         case 0xfffffffe:
             sub_0200E084(&v1->unk_24, 0);
-            sub_0201A8FC(&v1->unk_24);
+            BGL_DeleteWindow(&v1->unk_24);
             v1->unk_00 = 5;
         }
         break;
@@ -1559,7 +1559,7 @@ static BOOL sub_02054778 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         sub_02055644(v0, v2->unk_00);
         sub_02055974(param0);
         (v1->unk_00)++;

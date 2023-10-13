@@ -9,7 +9,7 @@ typedef struct {
         const u16 * unk_00_val1;
         const Strbuf* unk_00_val2;
     };
-    UnkStruct_0205AA50 * unk_04;
+    Window * unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;

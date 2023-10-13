@@ -20,7 +20,7 @@
 #include "overlay072/struct_ov72_0223EAD8.h"
 
 struct UnkStruct_ov72_0223DB98_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     BOOL unk_04;
     UnkStruct_0202CD88 * unk_08;
     UnkStruct_020279FC * unk_0C;
@@ -40,12 +40,12 @@ struct UnkStruct_ov72_0223DB98_t {
     UnkStruct_02022550 * unk_244[14];
     UnkStruct_02022550 * unk_27C[14];
     UnkStruct_02022550 * unk_2B4[9];
-    UnkStruct_0205AA50 unk_2D8[5];
-    UnkStruct_0205AA50 unk_328;
-    UnkStruct_0205AA50 unk_338;
-    UnkStruct_0205AA50 unk_348;
-    UnkStruct_0205AA50 unk_358;
-    UnkStruct_0205AA50 * unk_368[2];
+    Window unk_2D8[5];
+    Window unk_328;
+    Window unk_338;
+    Window unk_348;
+    Window unk_358;
+    Window * unk_368[2];
     int unk_370;
     int unk_374;
     int unk_378;

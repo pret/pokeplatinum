@@ -79,7 +79,7 @@ static const UnkStruct_ov104_02241308 Unk_ov99_021D472C = {
 
 static void ov99_021D1244(SysTask * param0, void * param1);
 static void ov99_021D1350(void * param0);
-static void ov99_021D1380(UnkStruct_02018340 * param0);
+static void ov99_021D1380(BGL * param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 * param0);
@@ -89,7 +89,7 @@ static void ov99_021D1A4C(UnkStruct_0207C690 * param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 * param0);
-static void ov99_021D1580(UnkStruct_02018340 * param0);
+static void ov99_021D1580(BGL * param0);
 
 int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -264,7 +264,7 @@ int ov99_021D11A8 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov99_021D2CB0 * v0 = sub_0200682C(param0);
 
-    sub_0200DA58(v0->unk_14);
+    SysTask_Done(v0->unk_14);
 
     if (v0->unk_1108 != NULL) {
         ov99_021D1270(v0);
@@ -365,7 +365,7 @@ static void ov99_021D1350 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov99_021D1380 (UnkStruct_02018340 * param0)
+static void ov99_021D1380 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -544,7 +544,7 @@ static void ov99_021D1380 (UnkStruct_02018340 * param0)
     sub_02019120(6, 0);
 }
 
-static void ov99_021D1580 (UnkStruct_02018340 * param0)
+static void ov99_021D1580 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -677,8 +677,8 @@ static void ov99_021D1580 (UnkStruct_02018340 * param0)
 
 static void ov99_021D16E4 (UnkStruct_ov99_021D2CB0 * param0)
 {
-    sub_02003050(param0->unk_0C, 127, 85, 75, 0, 0x20, 15 * 16);
-    sub_02003050(param0->unk_0C, 127, 85, 75, 1, 0x20, 15 * 16);
+    PaletteSys_LoadPalette(param0->unk_0C, 127, 85, 75, 0, 0x20, 15 * 16);
+    PaletteSys_LoadPalette(param0->unk_0C, 127, 85, 75, 1, 0x20, 15 * 16);
 }
 
 static void ov99_021D1720 (UnkStruct_ov99_021D2CB0 * param0)

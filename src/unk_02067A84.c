@@ -450,7 +450,7 @@ static void sub_02068054 (SysTask * param0)
     v0 = sub_0201CED0(param0);
 
     Heap_FreeToHeapExplicit(4, v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void sub_0206806C (SysTask * param0, void * param1)

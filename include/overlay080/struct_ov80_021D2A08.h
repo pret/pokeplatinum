@@ -29,7 +29,7 @@ typedef struct UnkStruct_ov80_021D2A08_t {
     int unk_1C;
     int unk_20;
     int unk_24;
-    UnkStruct_02018340 * unk_28;
+    BGL * unk_28;
     UnkStruct_0203D8AC * unk_2C;
     UnkStruct_02039EBC * unk_30;
     void * unk_34;

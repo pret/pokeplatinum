@@ -33,7 +33,7 @@
 #include "unk_02089604.h"
 #include "unk_0208A3F4.h"
 
-static void sub_0208945C(UnkStruct_02018340 * param0);
+static void sub_0208945C(BGL * param0);
 static void sub_020895CC(void * param0);
 static int sub_020890F4(UnkStruct_020067E8 * param0, int * param1);
 static int sub_0208924C(UnkStruct_020067E8 * param0, int * param1);
@@ -208,7 +208,7 @@ void sub_02089438 (UnkStruct_02089438 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void sub_0208945C (UnkStruct_02018340 * param0)
+static void sub_0208945C (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
 

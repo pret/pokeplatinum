@@ -63,7 +63,7 @@ struct UnkStruct_0203EF60_t {
     u16 unk_0A;
     BOOL unk_0C;
     UnkStruct_ov5_021DC1A4 * unk_10;
-    UnkStruct_0205AA50 unk_14;
+    Window unk_14;
     UnkStruct_02001AF4 * unk_24;
     int unk_28;
     UnkStruct_02061AB4 * unk_2C;
@@ -81,8 +81,8 @@ struct UnkStruct_0203EF60_t {
     void * unk_AC;
     UnkStruct_ov101_021D5D90 * unk_B0;
     SysTask * unk_B4;
-    UnkStruct_0205AA50 unk_B8;
-    UnkStruct_0205AA50 unk_C8;
+    Window unk_B8;
+    Window unk_C8;
     UnkStruct_ov5_021E1FF4 * unk_D8;
 };
 

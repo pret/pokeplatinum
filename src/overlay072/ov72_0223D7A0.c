@@ -68,10 +68,10 @@
 static void inline_ov72_0223E2A4(UnkStruct_ov72_0223DB98 * param0, int param1);
 static void ov72_0223DA48(void * param0);
 static void ov72_0223DA70(void);
-static void ov72_0223DA90(UnkStruct_02018340 * param0);
+static void ov72_0223DA90(BGL * param0);
 static void ov72_0223DB98(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223DC34(UnkStruct_ov72_0223DB98 * param0);
-static void ov72_0223DC6C(UnkStruct_02018340 * param0);
+static void ov72_0223DC6C(BGL * param0);
 static void ov72_0223DCA8(UnkStruct_ov72_0223DB98 * param0, NARC * param1);
 static void ov72_0223DDA8(void);
 static void ov72_0223DDD8(UnkStruct_ov72_0223DB98 * param0, NARC * param1);
@@ -86,24 +86,24 @@ static int ov72_0223E458(UnkStruct_ov72_0223DB98 * param0, int param1);
 static int ov72_0223E488(UnkStruct_ov72_0223DB98 * param0, int param1);
 static int ov72_0223E590(UnkStruct_ov72_0223DB98 * param0, int param1);
 static int ov72_0223E5B0(UnkStruct_ov72_0223DB98 * param0, int param1);
-static void ov72_0223E660(UnkStruct_0205AA50 * param0, const u8 * param1, int param2, int param3, int * param4, int * param5, int param6, int param7);
+static void ov72_0223E660(Window * param0, const u8 * param1, int param2, int param3, int * param4, int * param5, int param6, int param7);
 static void ov72_0223E7D8(UnkStruct_ov72_0223E7D8 * param0, UnkStruct_ov72_0223E80C * param1);
-static void ov72_0223E80C(UnkStruct_0205AA50 * param0, UnkStruct_ov72_0223E7D8 * param1, UnkStruct_ov72_0223E80C * param2, int param3);
+static void ov72_0223E80C(Window * param0, UnkStruct_ov72_0223E7D8 * param1, UnkStruct_ov72_0223E80C * param2, int param3);
 static void ov72_0223E8CC(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223E8D0(u16 * param0);
-static void ov72_0223E910(UnkStruct_0205AA50 * param0, int param1, u32 param2, UnkStruct_ov72_0223DB98 * param3);
+static void ov72_0223E910(Window * param0, int param1, u32 param2, UnkStruct_ov72_0223DB98 * param3);
 static void ov72_0223E914(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223E930(UnkStruct_ov72_0223DB98 * param0, int param1);
 static int ov72_0223E99C(int param0);
 static void ov72_0223E388(UnkStruct_02022550 ** param0, int param1);
 static void ov72_0223E3A8(UnkStruct_02022550 ** param0, BOOL param1);
 static int ov72_0223E528(UnkStruct_ov72_0223DB98 * param0, int param1);
-static void ov72_0223E430(UnkStruct_02018340 * param0, UnkStruct_02015920 * param1);
+static void ov72_0223E430(BGL * param0, UnkStruct_02015920 * param1);
 static void ov72_0223E9B4(u8 * param0, u8 * param1);
-static void * ov72_0223E060(UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, u8 param3, const u32 param4);
+static void * ov72_0223E060(Window * param0, Strbuf *param1, int param2, u8 param3, const u32 param4);
 static void ov72_0223EA18(UnkStruct_ov72_0223DB98 * param0);
 static void ov72_0223EAD8(UnkStruct_ov72_0223EAD8 * param0);
-static void ov72_0223E5E0(UnkStruct_0205AA50 * param0, void * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
+static void ov72_0223E5E0(Window * param0, void * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 
 static int (* Unk_ov72_0223ED40[])(UnkStruct_ov72_0223DB98 *, int) = {
     NULL,
@@ -255,7 +255,7 @@ static void ov72_0223DA48 (void * param0)
 {
     sub_0201DCAC();
     sub_0200A858();
-    sub_0201C2B8((UnkStruct_02018340 *)param0);
+    sub_0201C2B8((BGL *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -278,7 +278,7 @@ static void ov72_0223DA70 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov72_0223DA90 (UnkStruct_02018340 * param0)
+static void ov72_0223DA90 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -437,7 +437,7 @@ static void ov72_0223DC34 (UnkStruct_ov72_0223DB98 * param0)
     Strbuf_Free(param0->unk_2C);
 }
 
-static void ov72_0223DC6C (UnkStruct_02018340 * param0)
+static void ov72_0223DC6C (BGL * param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -450,7 +450,7 @@ static void ov72_0223DC6C (UnkStruct_02018340 * param0)
 
 static void ov72_0223DCA8 (UnkStruct_ov72_0223DB98 * param0, NARC * param1)
 {
-    UnkStruct_02018340 * v0 = param0->unk_00;
+    BGL * v0 = param0->unk_00;
 
     sub_02007130(param1, 0, 0, 0, 16 * 2 * 3, 39);
     sub_02007130(param1, 2, 4, 0, 16 * 2 * 2, 39);
@@ -556,7 +556,7 @@ static void ov72_0223DF58 (UnkStruct_ov72_0223DB98 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void * ov72_0223E060 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, u8 param3, const u32 param4)
+static void * ov72_0223E060 (Window * param0, Strbuf *param1, int param2, u8 param3, const u32 param4)
 {
     int v0, v1;
 
@@ -570,12 +570,12 @@ static void * ov72_0223E060 (UnkStruct_0205AA50 * param0, Strbuf *param1, int pa
 
 static void ov72_0223E0A0 (UnkStruct_ov72_0223DB98 * param0, UnkStruct_020067E8 * param1)
 {
-    sub_0201A7E8(param0->unk_00, &param0->unk_338, 0, 2, 1, 27, 4, 13, 1 + (18 + 12) + 9);
-    sub_0201ADA4(&param0->unk_338, 0xf0f);
-    sub_0201A7E8(param0->unk_00, &param0->unk_328, 1, 4, 9, 24, 8, 1, 1);
-    sub_0201ADA4(&param0->unk_328, 0x202);
-    sub_0201A7E8(param0->unk_00, &param0->unk_348, 1, 26, 21, 8, 2, 2, 1 + 24 * 8);
-    sub_0201ADA4(&param0->unk_348, 0x0);
+    BGL_AddWindow(param0->unk_00, &param0->unk_338, 0, 2, 1, 27, 4, 13, 1 + (18 + 12) + 9);
+    BGL_FillWindow(&param0->unk_338, 0xf0f);
+    BGL_AddWindow(param0->unk_00, &param0->unk_328, 1, 4, 9, 24, 8, 1, 1);
+    BGL_FillWindow(&param0->unk_328, 0x202);
+    BGL_AddWindow(param0->unk_00, &param0->unk_348, 1, 26, 21, 8, 2, 2, 1 + 24 * 8);
+    BGL_FillWindow(&param0->unk_348, 0x0);
 
     {
         void * v0;
@@ -592,13 +592,13 @@ static void ov72_0223E0A0 (UnkStruct_ov72_0223DB98 * param0, UnkStruct_020067E8 
         }
     }
 
-    sub_0201A7E8(param0->unk_00, &param0->unk_358, 1, 2, 2, 28, 2, 13, ((1 + 24 * 8) + 8 * 2));
+    BGL_AddWindow(param0->unk_00, &param0->unk_358, 1, 2, 2, 28, 2, 13, ((1 + 24 * 8) + 8 * 2));
 
     {
         int v2 = sub_02002D7C(1, param0->unk_30, 0);
         int v3 = (28 * 8 - v2) / 2;
 
-        sub_0201ADA4(&param0->unk_358, 0x0);
+        BGL_FillWindow(&param0->unk_358, 0x0);
         sub_0201D78C(&param0->unk_358, 1, param0->unk_30, v3, 0, 0, (u32)(((0x1 & 0xff) << 16) | ((0x2 & 0xff) << 8) | ((0x0 & 0xff) << 0)), NULL);
     }
 
@@ -606,8 +606,8 @@ static void ov72_0223E0A0 (UnkStruct_ov72_0223DB98 * param0, UnkStruct_020067E8 
         int v4;
 
         for (v4 = 0; v4 < 5; v4++) {
-            sub_0201A7E8(param0->unk_00, &param0->unk_2D8[v4], 4, 24 / 8 + 2, 32 / 8 + v4 * 4 - 1, 10, 2, 13, 1 + v4 * (10 * 2));
-            sub_0201ADA4(&param0->unk_2D8[v4], 0);
+            BGL_AddWindow(param0->unk_00, &param0->unk_2D8[v4], 4, 24 / 8 + 2, 32 / 8 + v4 * 4 - 1, 10, 2, 13, 1 + v4 * (10 * 2));
+            BGL_FillWindow(&param0->unk_2D8[v4], 0);
         }
 
         ov72_0223E910(param0->unk_2D8, 0, (u32)(((0xe & 0xff) << 16) | ((0xd & 0xff) << 8) | ((0xf & 0xff) << 0)), param0);
@@ -619,13 +619,13 @@ static void ov72_0223E260 (UnkStruct_ov72_0223DB98 * param0)
     int v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0201A8FC(&param0->unk_2D8[v0]);
+        BGL_DeleteWindow(&param0->unk_2D8[v0]);
     }
 
-    sub_0201A8FC(&param0->unk_358);
-    sub_0201A8FC(&param0->unk_348);
-    sub_0201A8FC(&param0->unk_328);
-    sub_0201A8FC(&param0->unk_338);
+    BGL_DeleteWindow(&param0->unk_358);
+    BGL_DeleteWindow(&param0->unk_348);
+    BGL_DeleteWindow(&param0->unk_328);
+    BGL_DeleteWindow(&param0->unk_338);
 }
 
 static void ov72_0223E2A4 (UnkStruct_ov72_0223DB98 * param0)
@@ -667,7 +667,7 @@ static void ov72_0223E2A8 (UnkStruct_ov72_0223DB98 * param0)
                 ov72_0223E930(param0, 10);
                 param0->unk_370 = 2;
                 ov72_0223E3A8(param0->unk_2B4, 1);
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
             }
         } else {
             param0->unk_437E = v0;
@@ -737,7 +737,7 @@ static void ov72_0223E408 (UnkStruct_ov72_0223DB98 * param0)
     ov72_0223E80C(&param0->unk_328, param0->unk_4391, param0->unk_43E6, 0);
 }
 
-static void ov72_0223E430 (UnkStruct_02018340 * param0, UnkStruct_02015920 * param1)
+static void ov72_0223E430 (BGL * param0, UnkStruct_02015920 * param1)
 {
     UnkStruct_02015958 v0;
 
@@ -804,7 +804,7 @@ static int ov72_0223E528 (UnkStruct_ov72_0223DB98 * param0, int param1)
 
         sub_0200E084(&param0->unk_338, 1);
         sub_02015A54(param0->unk_5D00);
-        sub_0201ADA4(&param0->unk_328, 0x202);
+        BGL_FillWindow(&param0->unk_328, 0x202);
         sub_0201A954(&param0->unk_328);
         break;
     case 2:
@@ -912,7 +912,7 @@ static const u8 Unk_ov72_0223EC30[2][8][16] = {
     }
 };
 
-static void ov72_0223E5E0 (UnkStruct_0205AA50 * param0, void * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
+static void ov72_0223E5E0 (Window * param0, void * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     if (param6 < 0) {
         int v0;
@@ -947,7 +947,7 @@ static void ov72_0223E5E0 (UnkStruct_0205AA50 * param0, void * param1, int param
     sub_0201ADDC(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9);
 }
 
-static void ov72_0223E660 (UnkStruct_0205AA50 * param0, const u8 * param1, int param2, int param3, int * param4, int * param5, int param6, int param7)
+static void ov72_0223E660 (Window * param0, const u8 * param1, int param2, int param3, int * param4, int * param5, int param6, int param7)
 {
     int v0, v1, v2, v3;
     int v4 = *param4;
@@ -1018,7 +1018,7 @@ static void ov72_0223E7D8 (UnkStruct_ov72_0223E7D8 * param0, UnkStruct_ov72_0223
     }
 }
 
-static void ov72_0223E80C (UnkStruct_0205AA50 * param0, UnkStruct_ov72_0223E7D8 * param1, UnkStruct_ov72_0223E80C * param2, int param3)
+static void ov72_0223E80C (Window * param0, UnkStruct_ov72_0223E7D8 * param1, UnkStruct_ov72_0223E80C * param2, int param3)
 {
     int v0, v1, v2, v3, v4 = 0, v5, v6;
 
@@ -1076,14 +1076,14 @@ static void ov72_0223E8D0 (u16 * param0)
     GX_LoadOBJPltt((u16 *)&v1, 12 * 2, 2);
 }
 
-static void ov72_0223E910 (UnkStruct_0205AA50 * param0, int param1, u32 param2, UnkStruct_ov72_0223DB98 * param3)
+static void ov72_0223E910 (Window * param0, int param1, u32 param2, UnkStruct_ov72_0223DB98 * param3)
 {
     int v0, v1;
 
     return;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0201AE78(&param0[v0], 0, 0, 0, 10 * 8, 2 * 8);
+        BGL_WindowColor(&param0[v0], 0, 0, 0, 10 * 8, 2 * 8);
     }
 
     for (v0 = 0; v0 < 5; v0++) {
@@ -1106,7 +1106,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
     MessageLoader_GetStrbuf(param0->unk_14, param1, v0);
     sub_0200C388(param0->unk_10, param0->unk_34, v0);
     Strbuf_Free(v0);
-    sub_0201ADA4(&param0->unk_338, 0xf0f);
+    BGL_FillWindow(&param0->unk_338, 0xf0f);
     sub_0200E060(&param0->unk_338, 0, 1, 10);
 
     param0->unk_38 = sub_0201D738(&param0->unk_338, 1, param0->unk_34, 0, 0, sub_02027AC0(param0->unk_0C), NULL);
@@ -1114,7 +1114,7 @@ static void ov72_0223E930 (UnkStruct_ov72_0223DB98 * param0, int param1)
 
 static int ov72_0223E99C (int param0)
 {
-    if (sub_0201D724(param0) == 0) {
+    if (Message_Printing(param0) == 0) {
         return 1;
     }
 
@@ -1216,13 +1216,13 @@ static void ov72_0223EAD8 (UnkStruct_ov72_0223EAD8 * param0)
 {
     if ((param0->unk_00 == 0) && (param0->unk_01 == 0)) {
         if (!sub_020057D4(1690)) {
-            sub_02005748(1690);
+            Sound_PlayEffect(1690);
         }
     }
 
     if ((param0->unk_00 * param0->unk_02 < 0) || (param0->unk_01 * param0->unk_03 < 0)) {
         if (!sub_020057D4(1690)) {
-            sub_02005748(1690);
+            Sound_PlayEffect(1690);
         }
     }
 

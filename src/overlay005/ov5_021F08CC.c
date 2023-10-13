@@ -69,7 +69,7 @@ typedef struct {
     Strbuf* unk_2C;
     Strbuf* unk_30;
     UnkStruct_0200B358 * unk_34;
-    UnkStruct_0205AA50 unk_38;
+    Window unk_38;
     MessageLoader * unk_48;
 } UnkStruct_ov5_021F0D6C;
 
@@ -181,7 +181,7 @@ void ov5_021F09F0 (SysTask * param0)
     UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
 
     Heap_FreeToHeap(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov5_021F0A04 (SysTask * param0, void * param1)
@@ -222,7 +222,7 @@ static int ov5_021F0A80 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     param0->unk_10++;
 
     if (param0->unk_10 == 10) {
-        sub_02005748(1616);
+        Sound_PlayEffect(1616);
     }
 
     if (param0->unk_10 < 34) {
@@ -549,7 +549,7 @@ static int ov5_021F0E24 (UnkStruct_ov5_021F0D6C * param0)
 {
     if ((sub_0205DA04(param0->unk_28) == 1) && (ov5_021F0D54() == 1)) {
         sub_0200E084(&param0->unk_38, 0);
-        sub_0201A8FC(&param0->unk_38);
+        BGL_DeleteWindow(&param0->unk_38);
         return 1;
     }
 

@@ -130,7 +130,7 @@ void ov12_02237F98 (UnkStruct_ov12_02237F98 * param0)
             continue;
         }
 
-        sub_0200DA58(param0->unk_08[v0]->unk_18);
+        SysTask_Done(param0->unk_08[v0]->unk_18);
     }
 }
 
@@ -181,7 +181,7 @@ static void ov12_02238030 (SysTask * param0, void * param1)
     v0->unk_20 = 0;
 
     ov12_02223894(v0->unk_10);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov12_02238054 (UnkStruct_ov12_02238004 * param0, UnkFuncPtr_020146F4 param1)

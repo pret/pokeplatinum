@@ -16,7 +16,7 @@ typedef void (* UnkFuncPtr_020157E4)(void *, u16 *);
 typedef struct {
     SysTask * unk_00;
     UnkFuncPtr_020157E4 unk_04;
-    UnkStruct_02002F38 * unk_08;
+    PaletteSys * unk_08;
     u16 unk_0C[16];
     u16 unk_2C[16];
     u8 unk_4C;
@@ -32,7 +32,7 @@ static void sub_02015858(void * param0, u16 * param1);
 static void sub_02015870(void * param0, u16 * param1);
 static void sub_0201588C(void * param0, u16 * param1);
 
-void * sub_0201567C (UnkStruct_02002F38 * param0, u16 param1, u16 param2, u32 param3)
+void * sub_0201567C (PaletteSys * param0, u16 param1, u16 param2, u32 param3)
 {
     UnkStruct_020157E4 * v0;
     SysTask * v1;

@@ -117,7 +117,7 @@ typedef struct {
 typedef struct {
     u8 unk_00;
     u8 unk_01;
-    UnkStruct_02002F38 * unk_04;
+    PaletteSys * unk_04;
     UnkStruct_ov12_0221FCDC * unk_08;
     UnkStruct_ov12_022267D4 * unk_0C;
     UnkStruct_02007C7C * unk_10;
@@ -169,7 +169,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     int unk_04;
-    UnkStruct_02018340 * unk_08;
+    BGL * unk_08;
     UnkStruct_ov12_0221FCDC * unk_0C;
     UnkStruct_0200C704 * unk_10;
     UnkStruct_ov12_02235998 unk_14[4];
@@ -183,7 +183,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     UnkStruct_ov12_02235350 unk_04;
-    UnkStruct_02018340 * unk_08;
+    BGL * unk_08;
     UnkStruct_ov12_0221FCDC * unk_0C;
     UnkStruct_0200C704 * unk_10;
     UnkStruct_02007C7C * unk_14;

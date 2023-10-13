@@ -403,7 +403,7 @@ int sub_02085348 (void * param0)
 {
     UnkStruct_0207F248 * v0 = (UnkStruct_0207F248 *)param0;
 
-    if (sub_0201D724(v0->unk_B10) != 0) {
+    if (Message_Printing(v0->unk_B10) != 0) {
         return 5;
     }
 
@@ -426,7 +426,7 @@ static int sub_02085384 (void * param0)
     sub_02083014(v0, v0->unk_B11, v0->unk_704[v0->unk_B11].unk_0E_0);
     sub_02084E58(v0, v0->unk_5A4->unk_24, 0);
     sub_02082708(v0, 0xffffffff, 1);
-    sub_02005748(1516);
+    Sound_PlayEffect(1516);
 
     v0->unk_B00 = sub_02085348;
 
@@ -510,7 +510,7 @@ static int sub_020855C4 (void * param0)
 
     sub_0207F8F8(v0, v0->unk_B11);
     v0->unk_B00 = sub_02085704;
-    sub_02005748(1516);
+    Sound_PlayEffect(1516);
 
     return 5;
 }
@@ -529,7 +529,7 @@ static int sub_02085704 (void * param0)
     }
 
     sub_02082098(v0, v0->unk_B11);
-    sub_0201ADA4(&v0->unk_04[3 + v0->unk_B11 * 5], 0);
+    BGL_FillWindow(&v0->unk_04[3 + v0->unk_B11 * 5], 0);
     sub_02082058(v0, v0->unk_B11);
     sub_02082104(v0, v0->unk_B11);
 
@@ -609,7 +609,7 @@ int sub_02085804 (UnkStruct_0207F248 * param0)
         sub_02081FFC(param0, param0->unk_B11);
         sub_0207F8F8(param0, param0->unk_B11);
         sub_0208327C(param0, param0->unk_B11, 1);
-        sub_02005748(1516);
+        Sound_PlayEffect(1516);
 
         param0->unk_B0E++;
         break;
@@ -620,7 +620,7 @@ int sub_02085804 (UnkStruct_0207F248 * param0)
         param0->unk_704[param0->unk_B11].unk_06++;
 
         sub_02082098(param0, param0->unk_B11);
-        sub_0201ADA4(&param0->unk_04[3 + param0->unk_B11 * 5], 0);
+        BGL_FillWindow(&param0->unk_04[3 + param0->unk_B11 * 5], 0);
         sub_02082058(param0, param0->unk_B11);
         sub_02082104(param0, param0->unk_B11);
 
@@ -630,12 +630,12 @@ int sub_02085804 (UnkStruct_0207F248 * param0)
         }
         break;
     case 3:
-        if (sub_0201D724(param0->unk_B10) != 0) {
+        if (Message_Printing(param0->unk_B10) != 0) {
             break;
         }
 
         if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             v3 = param0->unk_B11;
             param0->unk_B11 = sub_020857C0(param0, param0->unk_B11 + 1);
 
@@ -719,9 +719,9 @@ static int sub_02085C50 (void * param0)
 
     switch (v0->unk_B13) {
     case 0:
-        if (sub_0201D724(v0->unk_B10) == 0) {
+        if (Message_Printing(v0->unk_B10) == 0) {
             if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 sub_020829DC(v0);
                 v0->unk_B13 = 1;
             }
@@ -729,14 +729,14 @@ static int sub_02085C50 (void * param0)
         break;
     case 1:
         if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_02082B58(v0);
             v0->unk_B13 = 2;
         }
         break;
     case 2:
         if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_02082C10(v0);
             v0->unk_B13 = 3;
             v0->unk_5A4->unk_34 = 0;
@@ -745,7 +745,7 @@ static int sub_02085C50 (void * param0)
     case 3:
         v1 = Party_GetPokemonBySlotIndex(v0->unk_5A4->unk_00, v0->unk_B11);
 
-        switch (sub_0207727C(v1, &v0->unk_5A4->unk_34, &v0->unk_5A4->unk_26)) {
+        switch (Pokemon_LevelUpMove(v1, &v0->unk_5A4->unk_34, &v0->unk_5A4->unk_26)) {
         case 0x0:
             v0->unk_B13 = 6;
             break;
@@ -780,9 +780,9 @@ static int sub_02085C50 (void * param0)
         }
         break;
     case 4:
-        if (sub_0201D724(v0->unk_B10) == 0) {
+        if (Message_Printing(v0->unk_B10) == 0) {
             if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 v0->unk_B13 = 3;
             }
         }
@@ -1209,7 +1209,7 @@ void sub_020866A0 (UnkStruct_0207F248 * param0, u8 param1)
         v0.unk_0B_6 = 0;
     }
 
-    sub_0200DC48(&param0->unk_04[36], 1, 1, 14);
+    Window_Show(&param0->unk_04[36], 1, 1, 14);
     param0->unk_700 = sub_02001B7C(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
 }
 
@@ -1222,14 +1222,14 @@ int sub_02086774 (UnkStruct_0207F248 * param0)
         break;
     case 0xfffffffe:
         sub_0200E084(&param0->unk_04[33], 1);
-        sub_0200DC9C(&param0->unk_04[36], 1);
+        Window_Clear(&param0->unk_04[36], 1);
         sub_02001BC4(param0->unk_700, NULL);
         sub_02013A3C(param0->unk_6FC);
         sub_020826E0(param0, 32, 1);
         return 4;
     default:
         sub_0200E084(&param0->unk_04[33], 1);
-        sub_0200DC9C(&param0->unk_04[36], 1);
+        Window_Clear(&param0->unk_04[36], 1);
         sub_02001BC4(param0->unk_700, NULL);
         sub_02013A3C(param0->unk_6FC);
 
@@ -1237,7 +1237,7 @@ int sub_02086774 (UnkStruct_0207F248 * param0)
             Pokemon * v1 = Party_GetPokemonBySlotIndex(param0->unk_5A4->unk_00, param0->unk_B11);
             sub_02084E58(param0, param0->unk_5A4->unk_24, Pokemon_GetValue(v1, MON_DATA_MOVE1 + v0, NULL));
             Bag_SubtractItem(param0->unk_5A4->unk_04, param0->unk_5A4->unk_24, 1, 12);
-            sub_02005748(1516);
+            Sound_PlayEffect(1516);
         } else {
             MessageLoader_GetStrbuf(param0->unk_69C, 105, param0->unk_6A4);
         }

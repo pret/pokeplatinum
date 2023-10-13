@@ -79,7 +79,7 @@ void ov12_0222676C(s16 param0, s16 param1, s16 param2, s16 param3, u16 * param4)
 BOOL ov12_022267A8(int * param0, int param1, s32 param2);
 BOOL ov12_02226848(UnkStruct_ov12_022267D4 * param0);
 void ov12_02226858(UnkStruct_ov12_022267D4 * param0);
-UnkStruct_ov12_022267D4 * ov12_02226870(UnkStruct_02002F38 * param0, int param1, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10);
+UnkStruct_ov12_022267D4 * ov12_02226870(PaletteSys * param0, int param1, int param2, u16 param3, u16 param4, s8 param5, s8 param6, u8 param7, u8 param8, u16 param9, int param10);
 void ov12_02226924(UnkStruct_ov12_0221FCDC * param0);
 void ov12_02226954(UnkStruct_ov12_0221FCDC * param0);
 

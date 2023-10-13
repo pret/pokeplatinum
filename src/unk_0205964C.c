@@ -103,7 +103,7 @@ void sub_020596BC (void)
         return;
     }
 
-    sub_0200DA58(Unk_021C084C->unk_38);
+    SysTask_Done(Unk_021C084C->unk_38);
 
     for (v1 = 0; v1 < 4; v1++) {
         if (Unk_021C084C->unk_00[v1]) {
@@ -211,7 +211,7 @@ void sub_020598A0 (void)
 void sub_020598C4 (SysTask * param0, void * param1)
 {
     if (Unk_021C084C == NULL) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         if (Unk_021C084C->unk_34 != NULL) {
             UnkFuncPtr_020598EC v0 = Unk_021C084C->unk_34;

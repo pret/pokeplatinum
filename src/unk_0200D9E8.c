@@ -30,7 +30,7 @@ SysTask * sub_0200DA3C (SysTaskFunc param0, void * param1, u32 param2)
     return sub_0201CE14(gCoreSys.unk_20, param0, param1, param2);
 }
 
-void sub_0200DA58 (SysTask * param0)
+void SysTask_Done (SysTask * param0)
 {
     sub_0201CEA8(param0);
 }

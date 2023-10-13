@@ -154,7 +154,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
         v0->unk_00++;
         break;
     case 10:
-        if (sub_0201D724(param0->unk_B10) == 0) {
+        if (Message_Printing(param0->unk_B10) == 0) {
             ov118_021D0F70(param0);
             param0->unk_5A4->unk_23 = 0;
             return 1;
@@ -214,12 +214,12 @@ static void ov118_021D1028 (UnkStruct_ov118_021D0FDC * param0)
         sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 2, ov118_021D10B0, param0);
-        sub_02005748(1363);
+        Sound_PlayEffect(1363);
         break;
     case 492:
         sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
-        sub_02005748(1364);
+        Sound_PlayEffect(1364);
         break;
     }
 }

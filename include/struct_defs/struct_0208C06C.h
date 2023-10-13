@@ -46,7 +46,7 @@ typedef struct {
     UnkStruct_02030A80 * unk_88C[4];
     BOOL unk_89C;
     BOOL unk_8A0;
-    UnkStruct_0205AA50 unk_8A4;
+    Window unk_8A4;
     UnkStruct_ov62_02233828 unk_8B4;
     UnkStruct_0208C06C_sub2 unk_41D8;
     SysTask * unk_41E8;

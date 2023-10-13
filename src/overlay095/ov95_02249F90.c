@@ -33,7 +33,7 @@ typedef struct {
     UnkStruct_ov95_02247628 * unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_02018340 * unk_0C;
+    BGL * unk_0C;
     fx32 unk_10;
     fx32 unk_14;
     fx32 unk_18;
@@ -46,7 +46,7 @@ static int ov95_0224A020(UnkStruct_ov95_02249FF8 * param0, int * param1);
 static void ov95_0224A0C4(SysTask * param0, void * param1);
 static void ov95_0224A10C(UnkStruct_ov95_02249FF8 * param0);
 static void ov95_0224A320(UnkStruct_ov95_02249FF8 * param0);
-static void ov95_0224A358(UnkStruct_02018340 * param0, int param1, int param2);
+static void ov95_0224A358(BGL * param0, int param1, int param2);
 
 void * ov95_02249F90 (UnkStruct_ov95_02247628 * param0)
 {
@@ -121,7 +121,7 @@ static int ov95_0224A020 (UnkStruct_ov95_02249FF8 * param0, int * param1)
         break;
     case 1:
         if (param0->unk_20) {
-            sub_02005748(1705);
+            Sound_PlayEffect(1705);
             sub_0200F174(0, 0, 0, 0x7fff, 16, 1, 58);
             (*param1)++;
         }
@@ -149,7 +149,7 @@ static void ov95_0224A0C4 (SysTask * param0, void * param1)
     } else {
         ov95_0224A358(v0->unk_0C, UnkEnum_ov95_0224A020_03, UnkEnum_ov95_0224A020_01);
         v0->unk_20 = 1;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -273,7 +273,7 @@ static void ov95_0224A320 (UnkStruct_ov95_02249FF8 * param0)
     sub_02019044(param0->unk_0C, 5);
 }
 
-static void ov95_0224A358 (UnkStruct_02018340 * param0, int param1, int param2)
+static void ov95_0224A358 (BGL * param0, int param1, int param2)
 {
     param2 &= 0x1ff;
     param1 &= 0x1ff;

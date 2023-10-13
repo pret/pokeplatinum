@@ -45,9 +45,9 @@ typedef struct {
 static void ov71_0223B620(UnkStruct_ov71_0223B620 * param0);
 static void ov71_0223B668(UnkStruct_ov71_0223B620 * param0);
 static void ov71_0223B688(void);
-static void ov71_0223B858(UnkStruct_02018340 * param0);
+static void ov71_0223B858(BGL * param0);
 static void ov71_0223B968(UnkStruct_ov71_0223B620 * param0, NARC * param1);
-static void ov71_0223BBDC(UnkStruct_02018340 * param0);
+static void ov71_0223BBDC(BGL * param0);
 static BOOL ov71_0223BC20(UnkStruct_ov71_0223B620 * param0);
 static BOOL ov71_0223BDF8(UnkStruct_ov71_0223B620 * param0);
 static BOOL ov71_0223C334(UnkStruct_ov71_0223B620 * param0, const u8 * param1);
@@ -69,11 +69,11 @@ static void ov71_0223C444(UnkStruct_ov71_0223C444 * param0);
 static void ov71_0223C44C(UnkStruct_ov71_0223C444 * param0);
 static void ov71_0223C45C(UnkStruct_ov71_0223C444 * param0);
 static void ov71_0223C4DC(const u8 * param0, u8 * param1);
-static void ov71_0223C530(UnkStruct_02018340 * param0, const int param1, const u8 * param2);
+static void ov71_0223C530(BGL * param0, const int param1, const u8 * param2);
 static void ov71_0223C594(const int param0);
 static void ov71_0223C5A4(UnkStruct_ov71_0223B620 * param0, const u8 param1);
-static int ov71_0223C60C(UnkStruct_02018340 * param0, const UnkUnion_02022594 * param1);
-static int ov71_0223C654(UnkStruct_02018340 * param0, const UnkUnion_02022594 * param1);
+static int ov71_0223C60C(BGL * param0, const UnkUnion_02022594 * param1);
+static int ov71_0223C654(BGL * param0, const UnkUnion_02022594 * param1);
 
 static const u8 Unk_ov71_0223D4B0[5] = {
     0x1,
@@ -177,7 +177,7 @@ int ov71_0223B140 (UnkStruct_020067E8 * param0, int * param1)
     sub_0201E450(4);
     sub_02004550(56, 0, 0);
     ov71_0223D324(&v0->unk_3354);
-    sub_02005748(1685);
+    Sound_PlayEffect(1685);
     ov71_0223CF0C(&v0->unk_30E4, v1);
 
     {
@@ -322,7 +322,7 @@ int ov71_0223B388 (UnkStruct_020067E8 * param0, int * param1)
                 v0->unk_337E = 0;
                 *param1 = 3;
             } else if (v1 == 4) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
 
                 sub_0200F174(1, 4, 4, 0x0, 6, 1, 25);
                 *param1 = 2;
@@ -541,7 +541,7 @@ static void ov71_0223B820 (const u8 param0, NARC * param1)
     Heap_FreeToHeap(v0);
 }
 
-static void ov71_0223B858 (UnkStruct_02018340 * param0)
+static void ov71_0223B858 (BGL * param0)
 {
     GX_SetDispSelect(GX_DISP_SELECT_SUB_MAIN);
 
@@ -759,7 +759,7 @@ static void ov71_0223B968 (UnkStruct_ov71_0223B620 * param0, NARC * param1)
     ov71_0223C4DC(param0->unk_B4->unk_68, param0->unk_B8);
 }
 
-static void ov71_0223BBDC (UnkStruct_02018340 * param0)
+static void ov71_0223BBDC (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
@@ -787,7 +787,7 @@ static BOOL ov71_0223BC20 (UnkStruct_ov71_0223B620 * param0)
         param0->unk_30C8 += 2 << (FX32_SHIFT - 6);
         param0->unk_30CC += 2 << (FX32_SHIFT - 6);
 
-        sub_02005748(1686);
+        Sound_PlayEffect(1686);
 
         param0->unk_337E++;
         break;
@@ -1247,12 +1247,12 @@ static void ov71_0223C45C (UnkStruct_ov71_0223C444 * param0)
     };
 
     if ((param0->unk_00 == 0) && (param0->unk_01 == 0)) {
-        sub_02005748(1682);
+        Sound_PlayEffect(1682);
     }
 
     if ((param0->unk_00 * param0->unk_02 < 0) || (param0->unk_01 * param0->unk_03 < 0)) {
         param0->unk_04 = (param0->unk_04 + 1) % 2;
-        sub_02005748(v0[param0->unk_04]);
+        Sound_PlayEffect(v0[param0->unk_04]);
     }
 
     param0->unk_00 = param0->unk_02;
@@ -1276,7 +1276,7 @@ static void ov71_0223C4DC (const u8 * param0, u8 * param1)
     }
 }
 
-static void ov71_0223C530 (UnkStruct_02018340 * param0, const int param1, const u8 * param2)
+static void ov71_0223C530 (BGL * param0, const int param1, const u8 * param2)
 {
     u16 * v0;
     u8 v1, v2;
@@ -1300,9 +1300,9 @@ static void ov71_0223C530 (UnkStruct_02018340 * param0, const int param1, const 
 static void ov71_0223C594 (const int param0)
 {
     if (param0 == 1) {
-        sub_02005748(1689);
+        Sound_PlayEffect(1689);
     } else {
-        sub_02005748(1689);
+        Sound_PlayEffect(1689);
     }
 }
 
@@ -1325,7 +1325,7 @@ static void ov71_0223C5A4 (UnkStruct_ov71_0223B620 * param0, const u8 param1)
     param0->unk_3382 = (param0->unk_3382 + 1) % 30;
 }
 
-static int ov71_0223C60C (UnkStruct_02018340 * param0, const UnkUnion_02022594 * param1)
+static int ov71_0223C60C (BGL * param0, const UnkUnion_02022594 * param1)
 {
     int v0 = sub_02022664(param1);
 
@@ -1344,7 +1344,7 @@ static int ov71_0223C60C (UnkStruct_02018340 * param0, const UnkUnion_02022594 *
     return v0;
 }
 
-static int ov71_0223C654 (UnkStruct_02018340 * param0, const UnkUnion_02022594 * param1)
+static int ov71_0223C654 (BGL * param0, const UnkUnion_02022594 * param1)
 {
     int v0 = sub_02022644(param1);
 

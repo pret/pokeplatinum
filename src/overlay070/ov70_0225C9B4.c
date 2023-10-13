@@ -918,7 +918,7 @@ static void ov70_0225D4CC (UnkStruct_ov70_0225CC54 * param0, UnkStruct_ov70_0225
         if (param0->unk_0C.val2.unk_10 == 0) {
             param0->unk_08++;
             param0->unk_0C.val2.unk_10 = 0;
-            sub_02005748(1615);
+            Sound_PlayEffect(1615);
         }
         break;
     case 2:
@@ -957,7 +957,7 @@ static void ov70_0225D57C (UnkStruct_ov70_0225CC54 * param0, UnkStruct_ov70_0225
         param0->unk_0C.val2.unk_10 = 0;
         param0->unk_08++;
 
-        sub_02005748(1615);
+        Sound_PlayEffect(1615);
     case 1:
     {
         BOOL v0;

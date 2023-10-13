@@ -117,7 +117,7 @@ void sub_0207C97C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NNS
     sub_0200CC9C(param0, param1, sub_0207C944(), sub_0207C920(), 0, 3, param2, param3);
 }
 
-void sub_0207C9B0 (UnkStruct_02002F38 * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, NNS_G2D_VRAM_TYPE param4, u32 param5)
+void sub_0207C9B0 (PaletteSys * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, NNS_G2D_VRAM_TYPE param4, u32 param5)
 {
     sub_0200CD7C(param0, param1, param2, param3, sub_0207C944(), sub_0207C920(), 0, 3, param4, param5);
 }

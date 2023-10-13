@@ -17,14 +17,14 @@
 
 typedef struct {
     UnkStruct_ov13_022264F4 * unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_02002F38 * unk_08;
+    BGL * unk_04;
+    PaletteSys * unk_08;
     UnkStruct_0200C440 * unk_0C;
     MessageLoader * unk_10;
     UnkStruct_0200B358 * unk_14;
     Strbuf* unk_18;
-    UnkStruct_0205AA50 unk_1C;
-    UnkStruct_0205AA50 * unk_2C;
+    Window unk_1C;
+    Window * unk_2C;
     u8 unk_30;
     u8 unk_31;
     u8 unk_32;

@@ -17,7 +17,7 @@ struct BattlerData {
     CellActorData * unk_18;
     UnkStruct_02007C7C * unk_1C;
     UnkStruct_02007C7C * unk_20;
-    UnkStruct_0205AA50 * unk_24;
+    Window * unk_24;
     UnkStruct_ov16_022674C4 unk_28;
     UnkStruct_ov16_0226C378 unk_7B;
     BallRotation * unk_84;

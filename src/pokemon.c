@@ -2899,7 +2899,7 @@ static const int Unk_020F0588[] = {
     0x1
 };
 
-CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, UnkStruct_02002F38 *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
+CellActorData *sub_02076994(UnkStruct_0200C6E4 *param0, UnkStruct_0200C704 *param1, PaletteSys *param2, int param3, int param4, int param5, int param6, int param7, int heapID)
 {
     UnkStruct_ov104_0223F9E0 v0;
     CellActorData *v1;
@@ -2987,7 +2987,7 @@ BoxPokemon *Pokemon_GetBoxPokemon(Pokemon *mon)
     return &mon->box;
 }
 
-BOOL sub_02076B14(Pokemon *mon)
+BOOL Pokemon_ShouldLevelUp(Pokemon *mon)
 {
     u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u8 monNextLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) + 1;
@@ -3413,7 +3413,7 @@ static void BoxPokemon_SetMoveSlot(BoxPokemon *boxMon, u16 moveID, u8 moveSlot)
     BoxPokemon_SetValue(boxMon, MON_DATA_MOVE1_CUR_PP + moveSlot, &moveMaxPP);
 }
 
-u16 sub_0207727C(Pokemon *mon, int *index, u16 *moveID)
+u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID)
 {
     u16 result = 0x0;
     // TODO const value?

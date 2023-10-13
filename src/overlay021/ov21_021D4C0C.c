@@ -26,7 +26,7 @@
 typedef struct UnkStruct_ov21_021D4C0C_t {
     UnkStruct_02012744 * unk_00;
     UnkStruct_020218BC * unk_04;
-    UnkStruct_02018340 * unk_08;
+    BGL * unk_08;
     UnkStruct_ov21_021D4CA0 * unk_0C;
     int unk_10;
     int unk_14;
@@ -126,9 +126,9 @@ void ov21_021D4D3C (UnkStruct_ov21_021D4C0C * param0)
     }
 }
 
-UnkStruct_0205AA50 * ov21_021D4D6C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
+Window * ov21_021D4D6C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
 
     v0 = sub_0201A778(param0->unk_14, 1);
 
@@ -138,12 +138,12 @@ UnkStruct_0205AA50 * ov21_021D4D6C (UnkStruct_ov21_021D4C0C * param0, int param1
     return v0;
 }
 
-void ov21_021D4DA0 (UnkStruct_0205AA50 * param0)
+void ov21_021D4DA0 (Window * param0)
 {
     sub_0201A928(param0, 1);
 }
 
-u32 ov21_021D4DAC (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, int param4, int param5)
+u32 ov21_021D4DAC (UnkStruct_ov21_021D4C0C * param0, Window * param1, u32 param2, u32 param3, int param4, int param5)
 {
     MessageLoader * v0;
     Strbuf* v1;
@@ -162,7 +162,7 @@ u32 ov21_021D4DAC (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1
     return v2;
 }
 
-void ov21_021D4E10 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3)
+void ov21_021D4E10 (UnkStruct_ov21_021D4C0C * param0, Window * param1, u32 param2, u32 param3)
 {
     MessageLoader * v0;
     Strbuf* v1;
@@ -183,7 +183,7 @@ void ov21_021D4E10 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param
     MessageLoader_Free(v0);
 }
 
-void ov21_021D4E80 (UnkStruct_ov21_021D4C0C * param0, UnkStruct_0205AA50 * param1, Strbuf *param2, int param3, int param4)
+void ov21_021D4E80 (UnkStruct_ov21_021D4C0C * param0, Window * param1, Strbuf *param2, int param3, int param4)
 {
     sub_0201D78C(param1, 2, param2, param3, param4, 0xff, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))), NULL);
 }

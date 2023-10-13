@@ -148,7 +148,7 @@ static void ov97_0222D198 (void)
 void ov97_0222D19C (SysTask * param0, void * param1)
 {
     if (Unk_ov97_0223F1A4 == NULL) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         if (Unk_ov97_0223F1A4->unk_20 != NULL) {
             UnkFuncPtr_ov97_0222D0A4 v0 = Unk_ov97_0223F1A4->unk_20;

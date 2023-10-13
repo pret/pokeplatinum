@@ -83,8 +83,8 @@ static int sub_0208D164(UnkStruct_0208D7BC * param0);
 static u8 sub_0208D17C(UnkStruct_0208D7BC * param0);
 static u8 sub_0208D18C(UnkStruct_0208D7BC * param0);
 static void sub_0208C638(void);
-static void sub_0208C658(UnkStruct_02018340 * param0);
-static void sub_0208C76C(UnkStruct_02018340 * param0);
+static void sub_0208C658(BGL * param0);
+static void sub_0208C76C(BGL * param0);
 static void sub_0208C7AC(UnkStruct_0208D7BC * param0, NARC * param1);
 static void sub_0208C86C(void);
 static void sub_0208C604(void * param0);
@@ -330,7 +330,7 @@ static void sub_0208C638 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_0208C658 (UnkStruct_02018340 * param0)
+static void sub_0208C658 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -450,7 +450,7 @@ static void sub_0208C658 (UnkStruct_02018340 * param0)
     sub_02019690(4, 32, 0, 19);
 }
 
-static void sub_0208C76C (UnkStruct_02018340 * param0)
+static void sub_0208C76C (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -561,33 +561,33 @@ static int sub_0208CA00 (UnkStruct_0208D7BC * param0)
     }
 
     if (gCoreSys.padInput & PAD_BUTTON_B) {
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         param0->unk_24C->unk_17 = 1;
         return 18;
     }
 
     if (gCoreSys.padInput & PAD_BUTTON_A) {
         if ((param0->unk_24C->unk_12 == 3) && (param0->unk_6A4 == 4)) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             return sub_0208E958(param0);
         }
 
         if (param0->unk_6A4 == 3) {
-            sub_02005748(1692);
+            Sound_PlayEffect(1692);
             param0->unk_6A6 = 0;
             return 3;
         } else if (param0->unk_6A4 == 5) {
-            sub_02005748(1692);
+            Sound_PlayEffect(1692);
             param0->unk_6A6 = 0;
             return 5;
         } else if (param0->unk_6A4 == 6) {
             if (param0->unk_6B1 != 0) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 param0->unk_6A6 = 0;
                 return 11;
             }
         } else if (param0->unk_6A4 == 7) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_24C->unk_17 = 1;
             return 18;
         }
@@ -641,7 +641,7 @@ static int sub_0208CB88 (UnkStruct_0208D7BC * param0)
 {
     if (gCoreSys.padInput & PAD_KEY_UP) {
         if (sub_0208DF94(param0, -1) == 1) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_0208DFF4(param0);
         }
 
@@ -650,7 +650,7 @@ static int sub_0208CB88 (UnkStruct_0208D7BC * param0)
 
     if (gCoreSys.padInput & PAD_KEY_DOWN) {
         if (sub_0208DF94(param0, 1) == 1) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_0208DFF4(param0);
         }
 
@@ -659,7 +659,7 @@ static int sub_0208CB88 (UnkStruct_0208D7BC * param0)
 
     if (gCoreSys.padInput & PAD_BUTTON_A) {
         if (param0->unk_6A5_0 == 4) {
-            sub_02005748(1692);
+            Sound_PlayEffect(1692);
             param0->unk_6A6 = 0;
 
             if (param0->unk_6A4 == 3) {
@@ -668,7 +668,7 @@ static int sub_0208CB88 (UnkStruct_0208D7BC * param0)
                 return 6;
             }
         } else if (param0->unk_24C->unk_12 != 1) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             sub_0208F310(param0);
             param0->unk_6A5_4 = param0->unk_6A5_0;
             return 8;
@@ -676,7 +676,7 @@ static int sub_0208CB88 (UnkStruct_0208D7BC * param0)
     }
 
     if (gCoreSys.padInput & PAD_BUTTON_B) {
-        sub_02005748(1692);
+        Sound_PlayEffect(1692);
         param0->unk_6A6 = 0;
 
         if (param0->unk_6A4 == 3) {
@@ -693,7 +693,7 @@ static int sub_0208CC6C (UnkStruct_0208D7BC * param0)
 {
     if (gCoreSys.padInput & PAD_KEY_UP) {
         if (sub_0208DF94(param0, -1) == 1) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_0208DFF4(param0);
         }
 
@@ -702,7 +702,7 @@ static int sub_0208CC6C (UnkStruct_0208D7BC * param0)
 
     if (gCoreSys.padInput & PAD_KEY_DOWN) {
         if (sub_0208DF94(param0, 1) == 1) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_0208DFF4(param0);
         }
 
@@ -713,20 +713,20 @@ static int sub_0208CC6C (UnkStruct_0208D7BC * param0)
         sub_02021CAC(param0->unk_41C[10], 0);
 
         if ((param0->unk_6A5_0 != 4) && (param0->unk_6A5_0 != param0->unk_6A5_4)) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             sub_0208E0DC(param0);
             sub_0208F22C(param0, param0->unk_6A5_0, param0->unk_6A5_4);
             sub_02091474(param0);
             sub_0208DFF4(param0);
         } else {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
         }
 
         return 7;
     }
 
     if (gCoreSys.padInput & PAD_BUTTON_B) {
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         sub_02021CAC(param0->unk_41C[10], 0);
         return 7;
     }
@@ -748,7 +748,7 @@ static int sub_0208CD44 (UnkStruct_0208D7BC * param0)
 
     if (gCoreSys.padInput & PAD_KEY_UP) {
         if (sub_0208DF94(param0, -1) == 1) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_0208DFF4(param0);
         }
 
@@ -757,7 +757,7 @@ static int sub_0208CD44 (UnkStruct_0208D7BC * param0)
 
     if (gCoreSys.padInput & PAD_KEY_DOWN) {
         if (sub_0208DF94(param0, 1) == 1) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_0208DFF4(param0);
         }
 
@@ -765,7 +765,7 @@ static int sub_0208CD44 (UnkStruct_0208D7BC * param0)
     }
 
     if (gCoreSys.padInput & PAD_BUTTON_A) {
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         if (param0->unk_6A5_0 != 4) {
             if ((Item_IsHMMove(param0->unk_250.unk_34[param0->unk_6A5_0]) == 1) && (param0->unk_24C->unk_18 != 0)) {
@@ -782,7 +782,7 @@ static int sub_0208CD44 (UnkStruct_0208D7BC * param0)
     }
 
     if (gCoreSys.padInput & PAD_BUTTON_B) {
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         param0->unk_24C->unk_16 = 4;
         param0->unk_24C->unk_17 = 1;
         return 18;
@@ -842,7 +842,7 @@ static int sub_0208CE98 (UnkStruct_0208D7BC * param0)
     }
 
     if (gCoreSys.padInput & (PAD_BUTTON_B | PAD_BUTTON_A)) {
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         param0->unk_6A6 = 0;
         return 12;
     }
@@ -1309,7 +1309,7 @@ static void sub_0208D898 (UnkStruct_0208D7BC * param0, s8 param1)
         return;
     }
 
-    sub_02005748(1505);
+    Sound_PlayEffect(1505);
     sub_0209219C(param0);
     sub_0208FB54(param0, 0);
     sub_0208D7EC(param0, v0);
@@ -2123,7 +2123,7 @@ static void sub_0208E794 (UnkStruct_0208D7BC * param0, s8 param1)
     }
 
     if ((v0 != param0->unk_6AF) || (v1 != param0->unk_6B0)) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 
     param0->unk_6B2 = sub_0208E904(param0, param0->unk_6AF);

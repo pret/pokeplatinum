@@ -139,8 +139,8 @@ void ov5_021D1BEC (UnkStruct_ov5_021D1BEC * param0)
         Heap_FreeToHeap(param0->unk_10);
     }
 
-    sub_0200DA58(param0->unk_04);
-    sub_0200DA58(param0->unk_08);
+    SysTask_Done(param0->unk_04);
+    SysTask_Done(param0->unk_08);
 
     MI_CpuClear32(param0, sizeof(UnkStruct_ov5_021D1BEC));
 }

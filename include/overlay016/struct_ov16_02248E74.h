@@ -3,6 +3,6 @@
 
 typedef struct {
     int unk_00[6];
-} UnkStruct_ov16_02248E74;
+} PokemonStats;
 
 #endif // POKEPLATINUM_STRUCT_OV16_02248E74_H

@@ -29,8 +29,8 @@
 #include "overlay083/ov83_0223C958.h"
 #include "overlay083/ov83_0223D6A8.h"
 
-static void ov83_0223CC30(UnkStruct_02018340 ** param0, int param1);
-static void ov83_0223CCCC(UnkStruct_02018340 ** param0);
+static void ov83_0223CC30(BGL ** param0, int param1);
+static void ov83_0223CCCC(BGL ** param0);
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CD1C(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CD28(UnkStruct_ov83_0223B784 * param0);
@@ -166,7 +166,7 @@ static void ov83_0223CC10 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov83_0223CC30 (UnkStruct_02018340 ** param0, int param1)
+static void ov83_0223CC30 (BGL ** param0, int param1)
 {
     int v0 = 0, v1;
 
@@ -186,7 +186,7 @@ static void ov83_0223CC30 (UnkStruct_02018340 ** param0, int param1)
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    sub_02019060(0, 2);
+    BGL_SetPriority(0, 2);
 
     {
         UnkStruct_ov97_0222DB78 v3[] = {
@@ -262,7 +262,7 @@ static void ov83_0223CC30 (UnkStruct_02018340 ** param0, int param1)
     }
 }
 
-static void ov83_0223CCCC (UnkStruct_02018340 ** param0)
+static void ov83_0223CCCC (BGL ** param0)
 {
     sub_02019044(*param0, 5);
     sub_02019044(*param0, 4);

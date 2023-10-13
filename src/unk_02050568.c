@@ -85,7 +85,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
         sub_0205074C(v0->unk_3C, 1);
         sub_0205075C(v0);
         sub_02056B30(param0, 3, 17, 0xffff, 0x0, 6, 1, 11);
-        sub_02005748(1657);
+        Sound_PlayEffect(1657);
         v1->unk_08++;
         break;
     case 5:
@@ -95,7 +95,7 @@ static BOOL sub_020505A0 (UnkStruct_020508D4 * param0)
         break;
     case 6:
         sub_02056B30(param0, 3, 16, 0xffff, 0x0, 6, 1, 11);
-        sub_02005748(1657);
+        Sound_PlayEffect(1657);
         v1->unk_08++;
         break;
     case 7:

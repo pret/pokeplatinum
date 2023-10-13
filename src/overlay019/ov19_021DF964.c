@@ -276,12 +276,12 @@ int ov19_021DFD2C (UnkStruct_ov19_021D4DF0 * param0)
     }
 
     if (gCoreSys.padInput & PAD_BUTTON_B) {
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         return -1;
     }
 
     if (gCoreSys.padInput & PAD_BUTTON_A) {
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         return v0->unk_00[v0->unk_20];
     }
 

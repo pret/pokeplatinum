@@ -446,7 +446,7 @@ void ov23_0224B430 (void)
     ov23_0224C6E8();
 
     if (Unk_ov23_022577AC->unk_04) {
-        sub_0200DA58(Unk_ov23_022577AC->unk_04);
+        SysTask_Done(Unk_ov23_022577AC->unk_04);
         Unk_ov23_022577AC->unk_04 = NULL;
     }
 
@@ -481,7 +481,7 @@ void ov23_0224B460 (void)
 void ov23_0224B4E4 (void)
 {
     if (Unk_ov23_022577AC->unk_04) {
-        sub_0200DA58(Unk_ov23_022577AC->unk_04);
+        SysTask_Done(Unk_ov23_022577AC->unk_04);
         Unk_ov23_022577AC->unk_04 = NULL;
     }
 
@@ -812,7 +812,7 @@ static void ov23_0224BA48 (SysTask * param0, void * param1)
         sub_02002154(v0->unk_04, 4);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(v0);
 
     ov23_02243204();
@@ -832,7 +832,7 @@ static void ov23_0224BA6C (SysTask * param0, void * param1)
     v1.unk_02 = 0;
 
     sub_020360D0(59, &v1);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(v0);
 
     ov23_02243204();
@@ -1013,7 +1013,7 @@ static int ov23_0224BD1C (int param0, BOOL param1)
     return v1;
 }
 
-static UnkStruct_02001AF4 * ov23_0224BD90 (UnkStruct_02018340 * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
+static UnkStruct_02001AF4 * ov23_0224BD90 (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
 {
     UnkStruct_02081CF4 v0;
     MessageLoader * v1 = ov23_02253E3C(ov23_0224219C());
@@ -1034,7 +1034,7 @@ static UnkStruct_02001AF4 * ov23_0224BD90 (UnkStruct_02018340 * param0, const Un
     v0.unk_0B_0 = 0;
 
     sub_0201A8D4(param0, v0.unk_04, param1);
-    sub_0200DC48(v0.unk_04, 1, param2, param3);
+    Window_Show(v0.unk_04, 1, param2, param3);
 
     return sub_02001B7C(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
 }
@@ -1592,7 +1592,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         sub_0200F2C0();
         sub_0200F174(2, 16, 18, 0x0, 6, 1, 4);
         ov23_0224942C(v0->unk_6C);
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         v1->unk_0C++;
         break;
     case 2:
@@ -1676,7 +1676,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         sub_02061550(v0->unk_3C, sub_02065838(1, 0x24), 1);
         sub_020593F4(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
-        sub_02005748(1540);
+        Sound_PlayEffect(1540);
         v1->unk_0C = 12;
         break;
     case 12:
@@ -1762,7 +1762,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
     }
         sub_020594FC();
         ov23_02254098(ov23_0224219C(), 33);
-        sub_02005748(1566);
+        Sound_PlayEffect(1566);
 
         ov5_021F58FC(sub_0205EB3C(v1->unk_3C), 0, 0, 0);
         ov23_02253F40(ov23_0224219C(), 33, 0, NULL);
@@ -1849,7 +1849,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
             ov23_0224D238();
 
             sub_020360D0(86, &v10);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             Heap_FreeToHeap(v0);
 
             ov23_02243204();
@@ -1869,7 +1869,7 @@ static void ov23_0224CB1C (SysTask * param0, void * param1)
             ov5_021F5634(v1, v6, 0, v7);
         }
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         Heap_FreeToHeap(v0);
 
         ov23_02243204();
@@ -1960,7 +1960,7 @@ static void ov23_0224CE94 (SysTask * param0, void * param1)
         sub_02002154(v0->unk_08, 4);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(v0);
 
     ov23_02243204();
@@ -2355,7 +2355,7 @@ static void ov23_0224D54C (UnkStruct_ov23_0224D54C * param0)
 static void ov23_0224D5A8 (SysTask * param0, void * param1)
 {
     Heap_FreeToHeap(param1);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov23_0224D5BC (SysTask * param0, void * param1)
@@ -2366,7 +2366,7 @@ static void ov23_0224D5BC (SysTask * param0, void * param1)
     case 0:
         sub_020594FC();
         ov23_02253F40(ov23_022421AC(), 7, 0, NULL);
-        sub_02005748(1507);
+        Sound_PlayEffect(1507);
         v0->unk_00 = 1;
         break;
     case 1:
@@ -2394,7 +2394,7 @@ static void ov23_0224D5BC (SysTask * param0, void * param1)
         break;
     case 4:
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         ov23_02243204();
         break;
     }

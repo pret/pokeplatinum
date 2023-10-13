@@ -206,12 +206,12 @@ struct UnkStruct_ov108_02241DB0_t {
     Strbuf* unk_74;
     Strbuf* unk_78[2];
     u16 unk_80[8];
-    UnkStruct_02018340 * unk_90;
-    UnkStruct_0205AA50 unk_94[2];
+    BGL * unk_90;
+    Window unk_94[2];
     UnkStruct_02081CF4 unk_B4;
     UnkStruct_02001AF4 * unk_C0;
     UnkStruct_02013A04 unk_C4[2];
-    UnkStruct_02002F38 * unk_D4;
+    PaletteSys * unk_D4;
     UnkStruct_020279FC * unk_D8;
     SaveData * unk_DC;
     UnkStruct_020304A0 * unk_E0;
@@ -250,10 +250,10 @@ static void ov108_02242344(void);
 static void ov108_0224237C(UnkStruct_ov108_02241DB0 * param0);
 static void ov108_022426B0(UnkStruct_ov108_02241DB0 * param0);
 static void ov108_02242658(UnkStruct_ov108_02241DB0 * param0);
-static void ov108_022426D4(UnkStruct_02018340 * param0);
+static void ov108_022426D4(BGL * param0);
 static void ov108_02242708(void * param0);
 static void ov108_02242740(void);
-static void ov108_02242760(UnkStruct_02018340 * param0);
+static void ov108_02242760(BGL * param0);
 static void ov108_02242828(UnkStruct_ov108_02241DB0 * param0, u32 param1);
 static void ov108_02242884(UnkStruct_ov108_02241DB0 * param0, u32 param1);
 static void ov108_022428C0(void);
@@ -550,7 +550,7 @@ static BOOL ov108_02241F28 (UnkStruct_ov108_02241DB0 * param0)
         }
 
         ov108_02242884(param0, 3);
-        sub_02005748(1545);
+        Sound_PlayEffect(1545);
 
         param0->unk_0B = 24;
         param0->unk_08 = 3;
@@ -568,7 +568,7 @@ static BOOL ov108_02241F28 (UnkStruct_ov108_02241DB0 * param0)
             }
         }
 
-        sub_02005748(1545);
+        Sound_PlayEffect(1545);
         param0->unk_0B = 24;
         param0->unk_08 = 4;
         break;
@@ -585,7 +585,7 @@ static BOOL ov108_02241F28 (UnkStruct_ov108_02241DB0 * param0)
             }
         }
 
-        sub_02005748(1545);
+        Sound_PlayEffect(1545);
 
         param0->unk_0B = 24;
         param0->unk_08 = 5;
@@ -604,7 +604,7 @@ static BOOL ov108_02241F28 (UnkStruct_ov108_02241DB0 * param0)
         }
 
         ov108_022435A8(param0->unk_338, 1);
-        sub_02005748(1572);
+        Sound_PlayEffect(1572);
         ov108_022435F4(param0->unk_3BC, 0);
         param0->unk_08 = 6;
         break;
@@ -819,7 +819,7 @@ static void ov108_0224237C (UnkStruct_ov108_02241DB0 * param0)
     u8 v0;
     u16 v1, v2, v3, v4;
     int v5, v6;
-    UnkStruct_0205AA50 * v7;
+    Window * v7;
     Pokemon * v8;
 
     param0->unk_3D0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 103);
@@ -907,7 +907,7 @@ static void ov108_022426B0 (UnkStruct_ov108_02241DB0 * param0)
     return;
 }
 
-static void ov108_022426D4 (UnkStruct_02018340 * param0)
+static void ov108_022426D4 (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
@@ -954,7 +954,7 @@ static void ov108_02242740 (void)
     return;
 }
 
-static void ov108_02242760 (UnkStruct_02018340 * param0)
+static void ov108_02242760 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -1113,7 +1113,7 @@ static void ov108_02242964 (UnkStruct_ov108_02241DB0 * param0, int param1)
             param0->unk_0D++;
         }
 
-        sub_02005748(1509);
+        Sound_PlayEffect(1509);
 
         if (param0->unk_0D >= param0->unk_2E) {
             param0->unk_0D = 0;
@@ -1345,7 +1345,7 @@ static void ov108_02242BA0 (UnkStruct_ov108_02241DB0 * param0, u8 param1)
     }
 
     ov108_022429C8(param0, v3);
-    sub_02005748(1507);
+    Sound_PlayEffect(1507);
 
     return;
 }
@@ -1625,7 +1625,7 @@ static BOOL ov108_02242FE8 (UnkStruct_ov108_02241DB0 * param0)
 static void ov108_02243008 (UnkStruct_ov108_02241DB0 * param0)
 {
     sub_020057A4(1500, 0);
-    sub_02005748(1508);
+    Sound_PlayEffect(1508);
     ov108_022435F4(param0->unk_3BC, 1);
 
     return;

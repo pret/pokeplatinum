@@ -130,7 +130,7 @@ static void ov83_0223D5CC (SysTask * param0, void * param1)
 
 static void ov83_0223D620 (UnkStruct_ov83_0223D584 * param0)
 {
-    sub_0200DA58(param0->unk_19C);
+    SysTask_Done(param0->unk_19C);
     Heap_FreeToHeap(param0);
 }
 

@@ -40,7 +40,7 @@
 
 typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_0203E0FC * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     UnkStruct_0202B370 * unk_08;
     int unk_0C;
     int unk_10;
@@ -115,14 +115,14 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_02022550 * unk_F30;
     UnkStruct_02022550 * unk_F34[8];
     UnkStruct_02022550 * unk_F54[2];
-    UnkStruct_0205AA50 unk_F5C;
-    UnkStruct_0205AA50 unk_F6C;
-    UnkStruct_0205AA50 unk_F7C;
-    UnkStruct_0205AA50 unk_F8C;
-    UnkStruct_0205AA50 unk_F9C[3];
-    UnkStruct_0205AA50 unk_FCC[13];
-    UnkStruct_0205AA50 unk_109C;
-    UnkStruct_0205AA50 unk_10AC[2];
+    Window unk_F5C;
+    Window unk_F6C;
+    Window unk_F7C;
+    Window unk_F8C;
+    Window unk_F9C[3];
+    Window unk_FCC[13];
+    Window unk_109C;
+    Window unk_10AC[2];
     UnkStruct_02013A04 * unk_10CC;
     UnkStruct_02001AF4 * unk_10D0;
     UnkStruct_02001AF4 * unk_10D4;

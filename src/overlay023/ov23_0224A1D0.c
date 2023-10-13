@@ -292,7 +292,7 @@ static void ov23_0224A5CC (SysTask * param0, void * param1)
 
     if (!sub_02035D78(v2)) {
         Heap_FreeToHeap(v1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     } else {
         v1->unk_00++;
@@ -305,7 +305,7 @@ static void ov23_0224A5CC (SysTask * param0, void * param1)
     if (v3) {
         v0->unk_EA[v2] = 1;
         Heap_FreeToHeap(v1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -387,7 +387,7 @@ static void ov23_0224A6E4 (UnkStruct_ov23_0224A570 * param0, BOOL param1, UnkStr
     }
 
     sub_0200502C(4, 1060, 60, 0, 0xff, NULL);
-    sub_02005748(1526);
+    Sound_PlayEffect(1526);
 }
 
 void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
@@ -432,7 +432,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
                 sub_020297EC(v4);
                 sub_020594FC();
                 ov23_02253F40(ov23_022421AC(), 13, 1, ov23_0224A300);
-                sub_02005748(1573);
+                Sound_PlayEffect(1573);
             } else if (v1->unk_02 == sub_0203608C()) {
                 ov23_0224A6E4(v1, 0, v4);
             }
@@ -445,7 +445,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
                 ov23_02254068(ov23_022421AC(), sub_02032EE8(v1->unk_02));
                 ov23_02253F40(ov23_022421AC(), 12, 1, ov23_0224A328);
                 Sound_PlayBGM(1061);
-                sub_02005748(1573);
+                Sound_PlayEffect(1573);
             } else if (v1->unk_02 == sub_0203608C()) {
                 ov23_0224A6E4(v1, 1, v4);
             }
@@ -485,7 +485,7 @@ void ov23_0224A77C (int param0, int param1, void * param2, void * param3)
             }
 
             sub_020594FC();
-            sub_02005748(1579);
+            Sound_PlayEffect(1579);
 
             if (v6 == sub_0202958C(v5)) {
                 ov23_02253F40(ov23_022421AC(), 7, 1, ov23_0224A300);

@@ -25,10 +25,10 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov38_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
+static BOOL ov38_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
 static void ov38_02256254(SysTask * param0, void * param1);
 static void ov38_02256288(void * param0);
-static BOOL ov38_0225621C(UnkStruct_ov38_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
+static BOOL ov38_0225621C(UnkStruct_ov38_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
 static void ov38_02256240(UnkStruct_ov38_0225621C * param0);
 static void ov38_02256290(UnkStruct_ov38_0225621C * param0, u32 param1);
 static BOOL ov38_022562A4(UnkStruct_ov38_0225621C * param0);
@@ -40,7 +40,7 @@ static void NitroStaticInit (void)
     ov25_02254238(ov38_022561D4, ov38_02256288);
 }
 
-static BOOL ov38_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov38_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov38_0225621C * v0 = (UnkStruct_ov38_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov38_0225621C));
 
@@ -58,7 +58,7 @@ static BOOL ov38_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
     return 0;
 }
 
-static BOOL ov38_0225621C (UnkStruct_ov38_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov38_0225621C (UnkStruct_ov38_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     if (ov38_0225632C(&(param0->unk_08), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -91,7 +91,7 @@ static void ov38_02256254 (SysTask * param0, void * param1)
     if (v1->unk_00 < NELEMS(v0)) {
         if (v0[v1->unk_00](v1)) {
             ov38_02256240(v1);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             ov25_02254260(v1->unk_0C);
         }
     } else {

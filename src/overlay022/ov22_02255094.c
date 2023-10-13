@@ -318,7 +318,7 @@ void ov22_0225547C (UnkStruct_ov22_0225A0E4 * param0, const UnkStruct_ov22_02255
     ov22_02255BF4(param0, param2);
 }
 
-void ov22_022554A8 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_02018340 * param1, int param2)
+void ov22_022554A8 (UnkStruct_ov22_0225A0E4 * param0, BGL * param1, int param2)
 {
     param0->unk_40 = param1;
 

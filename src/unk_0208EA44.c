@@ -648,7 +648,7 @@ void sub_0208F6A4 (UnkStruct_0208D7BC * param0)
     }
 }
 
-void sub_0208F6DC (UnkStruct_0208D7BC * param0, UnkStruct_0205AA50 * param1)
+void sub_0208F6DC (UnkStruct_0208D7BC * param0, Window * param1)
 {
     if (param1 == NULL) {
         sub_02021CAC(param0->unk_41C[47], 0);

@@ -39,5 +39,5 @@ void sub_020067D0 (SysTask * param0)
         Heap_FreeToHeap(v0);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }

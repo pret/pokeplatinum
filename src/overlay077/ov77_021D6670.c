@@ -155,7 +155,7 @@ void ov77_021D6760 (UnkStruct_ov77_021D6734 * param0)
 
     for (v0 = 0; v0 < param0->unk_00; v0++) {
         if (param0->unk_04[v0].unk_08 != NULL) {
-            sub_0200DA58(param0->unk_04[v0].unk_08);
+            SysTask_Done(param0->unk_04[v0].unk_08);
         }
     }
 
@@ -177,13 +177,13 @@ void ov77_021D67B0 (UnkStruct_ov77_021D670C * param0)
 
     for (v0 = 0; v0 < 3; v0++) {
         if (param0->unk_214[v0].unk_08 != NULL) {
-            sub_0200DA58(param0->unk_214[v0].unk_08);
+            SysTask_Done(param0->unk_214[v0].unk_08);
         }
     }
 
     for (v0 = 0; v0 < 10; v0++) {
         if (param0->unk_00.unk_1B0[v0].unk_08 != NULL) {
-            sub_0200DA58(param0->unk_00.unk_1B0[v0].unk_08);
+            SysTask_Done(param0->unk_00.unk_1B0[v0].unk_08);
         }
     }
 
@@ -344,7 +344,7 @@ static void ov77_021D6B0C (SysTask * param0, void * param1)
         v1->unk_04 = 0;
 
         if (++v1->unk_03 >= v1->unk_02) {
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             v0->unk_08 = NULL;
         }
     }
@@ -366,7 +366,7 @@ static void ov77_021D6B48 (SysTask * param0, void * param1)
     v0->unk_01++;
 
     if (v0->unk_01 >= 80) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
         sub_02021CC8(v0->unk_04, 0);
@@ -419,7 +419,7 @@ static void ov77_021D6C44 (SysTask * param0, void * param1)
     v0->unk_01++;
 
     if (v0->unk_01 >= 8) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_08 = NULL;
         v0->unk_00 = 0;
         sub_02021CC8(v0->unk_04, 0);

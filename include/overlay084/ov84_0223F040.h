@@ -6,7 +6,7 @@
 #include "overlay084/struct_ov84_0223B5A0.h"
 
 void ov84_0223F040(UnkStruct_ov84_0223B5A0 * param0);
-void ov84_0223F1DC(UnkStruct_0205AA50 * param0);
+void ov84_0223F1DC(Window * param0);
 void ov84_0223F1F8(UnkStruct_ov84_0223B5A0 * param0);
 void ov84_0223F238(UnkStruct_ov84_0223B5A0 * param0);
 void ov84_0223F25C(UnkStruct_ov84_0223B5A0 * param0);

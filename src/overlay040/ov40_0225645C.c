@@ -28,7 +28,7 @@
 
 struct UnkStruct_ov40_0225645C_t {
     const UnkStruct_ov40_0225645C_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 * unk_20;
     UnkStruct_ov25_022558C4 * unk_24[11];
@@ -55,7 +55,7 @@ static void ov40_02256848(UnkStruct_ov40_0225645C * param0, const UnkStruct_ov40
 static void ov40_02256958(UnkStruct_ov25_022558C4 ** param0, u32 param1);
 static void ov40_02256A14(UnkStruct_ov25_022558C4 * param0, u32 param1);
 
-BOOL ov40_0225645C (UnkStruct_ov40_0225645C ** param0, const UnkStruct_ov40_0225645C_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov40_0225645C (UnkStruct_ov40_0225645C ** param0, const UnkStruct_ov40_0225645C_1 * param1, BGL * param2)
 {
     UnkStruct_ov40_0225645C * v0 = (UnkStruct_ov40_0225645C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov40_0225645C));
 
@@ -83,7 +83,7 @@ void ov40_022564B8 (UnkStruct_ov40_0225645C * param0)
 {
     if (param0 != NULL) {
         ov40_02256598(param0);
-        sub_0200DA58(param0->unk_8C);
+        SysTask_Done(param0->unk_8C);
         Heap_FreeToHeap(param0);
     }
 }

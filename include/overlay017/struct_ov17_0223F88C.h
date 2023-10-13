@@ -25,15 +25,15 @@ typedef struct {
     UnkStruct_0200C6E4 * unk_18;
     UnkStruct_0200C704 * unk_1C;
     UnkStruct_ov12_0221FCDC * unk_20;
-    UnkStruct_02018340 * unk_24;
-    UnkStruct_0205AA50 unk_28[1];
+    BGL * unk_24;
+    Window unk_28[1];
     MessageLoader * unk_38;
     MessageLoader * unk_3C;
     MessageLoader * unk_40;
     MessageLoader * unk_44;
     UnkStruct_0200B358 * unk_48;
     Strbuf* unk_4C;
-    UnkStruct_02002F38 * unk_50;
+    PaletteSys * unk_50;
     UnkStruct_02012744 * unk_54;
     UnkStruct_ov16_0223E0C8 unk_58[4];
     UnkStruct_ov16_0223E0C8 unk_98;

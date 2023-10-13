@@ -99,20 +99,20 @@ void BattleIO_PlayMoveAnimation(BattleSystem * param0, BattleContext * param1, u
 void BattleIO_PlayMoveAnimationA2D(BattleSystem * param0, BattleContext * param1, u16 param2, int param3, int param4);
 void BattleIO_FlickerBattler(BattleSystem * param0, int param1, u32 param2);
 void BattleIO_UpdateHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02265D14(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void BattleIO_UpdateExpGauge(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleIO_PlayFaintingSequence(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleIO_PlaySound(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleIO_FadeOut(BattleSystem * param0, BattleContext * param1);
 void ov16_02265EE8(BattleSystem * param0, int param1, int param2);
 void ov16_02265FB8(BattleSystem * param0, int param1, int param2);
 void ov16_02265FD8(BattleSystem * param0, int param1, int param2);
-void ov16_02265FF8(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void BattleIO_PlayStatusEffect(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02266028(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 void ov16_02266058(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_0226609C(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_022660E8(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02266100(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_0226614C(BattleSystem * param0, int param1);
+void BattleIO_PlayLevelUpAnimation(BattleSystem * param0, int param1);
 void BattleIO_SetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg);
 void ov16_022661B0(BattleSystem * param0, int param1);
 void BattleIO_RefreshHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
@@ -120,7 +120,7 @@ void ov16_022662FC(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02266460(BattleSystem * param0, int param1);
 void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler);
 void ov16_02266498(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void ov16_022664C4(BattleSystem * param0, int param1, int param2, int param3);
+void BattleIO_ForgetMove(BattleSystem * param0, int param1, int param2, int param3);
 void ov16_022664F8(BattleSystem * param0, int param1, int param2, int param3);
 void ov16_0226651C(BattleSystem * param0, int param1);
 void ov16_022665AC(BattleSystem * param0, int param1);
@@ -1016,7 +1016,7 @@ void BattleIO_UpdateHPGauge (BattleSystem * param0, BattleContext * param1, int 
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C35C));
 }
 
-void ov16_02265D14 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+void BattleIO_UpdateExpGauge (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C370 v0;
     Pokemon * v1;
@@ -1134,7 +1134,7 @@ void ov16_02265FD8 (BattleSystem * param0, int param1, int param2)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3E4));
 }
 
-void ov16_02265FF8 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+void BattleIO_PlayStatusEffect (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_02265BBC v0;
 
@@ -1198,7 +1198,7 @@ void ov16_02266100 (BattleSystem * param0, BattleContext * param1, int param2)
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C430));
 }
 
-void ov16_0226614C (BattleSystem * param0, int param1)
+void BattleIO_PlayLevelUpAnimation (BattleSystem * param0, int param1)
 {
     int v0 = 36;
 
@@ -1325,7 +1325,7 @@ void ov16_02266498 (BattleSystem * param0, BattleContext * param1, int param2, i
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_02266498));
 }
 
-void ov16_022664C4 (BattleSystem * param0, int param1, int param2, int param3)
+void BattleIO_ForgetMove (BattleSystem * param0, int param1, int param2, int param3)
 {
     UnkStruct_ov16_0225C65C v0;
 

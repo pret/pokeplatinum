@@ -42,8 +42,8 @@
 
 struct BattleSystem {
     UnkStruct_0207C690 * unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_0205AA50 * unk_08;
+    BGL * unk_04;
+    Window * unk_08;
     MessageLoader * unk_0C;
     MessageLoader * unk_10;
     UnkStruct_0200B358 * unk_14;
@@ -51,7 +51,7 @@ struct BattleSystem {
     SysTask * unk_1C;
     SysTask * unk_20;
     SysTask * unk_24;
-    UnkStruct_02002F38 * unk_28;
+    PaletteSys * unk_28;
     u32 battleType;
     BattleContext *battleCtx;
     BattlerData *battlers[MAX_BATTLERS];

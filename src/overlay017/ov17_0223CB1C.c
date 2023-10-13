@@ -58,7 +58,7 @@ FS_EXTERN_OVERLAY(overlay22);
 
 static void ov17_0223D0C8(void * param0);
 static void ov17_0223D164(SysTask * param0, void * param1);
-static void ov17_0223D1B8(UnkStruct_02018340 * param0);
+static void ov17_0223D1B8(BGL * param0);
 static void ov17_0223D324(UnkStruct_ov17_02247A48 * param0);
 static void ov17_0223D390(UnkStruct_ov17_02247A48 * param0);
 static void ov17_0223D3B8(UnkStruct_ov17_02247A48 * param0, NARC * param1);
@@ -224,7 +224,7 @@ int ov17_0223CB1C (UnkStruct_020067E8 * param0, int * param1)
     sub_02004550(6, 1135, 1);
     sub_020959F4(v0->unk_00->unk_155);
     sub_02017798(ov17_0223D0C8, v0);
-    sub_02005748(1541);
+    Sound_PlayEffect(1541);
 
     return 1;
 }
@@ -243,7 +243,7 @@ int ov17_0223CDDC (UnkStruct_020067E8 * param0, int * param1)
             sub_02003178(v0->unk_0C.unk_44, 0x2, 0xffff, 6, 16, 0, 0x7fff);
             sub_02003178(v0->unk_0C.unk_44, 0x4, 0x3fff, 6, 16, 0, 0x7fff);
             sub_02003178(v0->unk_0C.unk_44, 0x8, 0xffff, 6, 16, 0, 0x7fff);
-            sub_02005748(1765);
+            Sound_PlayEffect(1765);
             *param1 = 1;
         }
         break;
@@ -301,7 +301,7 @@ int ov17_0223CF8C (UnkStruct_020067E8 * param0, int * param1)
     ov17_0223D608(v0);
 
     for (v1 = 0; v1 < 1; v1++) {
-        sub_0201A8FC(&v0->unk_0C.unk_28[v1]);
+        BGL_DeleteWindow(&v0->unk_0C.unk_28[v1]);
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
@@ -335,7 +335,7 @@ int ov17_0223CF8C (UnkStruct_020067E8 * param0, int * param1)
     Strbuf_Free(v0->unk_0C.unk_40);
     MessageLoader_Free(v0->unk_0C.unk_38);
     Heap_FreeToHeap(v0->unk_0C.unk_24);
-    sub_0200DA58(v0->unk_04);
+    SysTask_Done(v0->unk_04);
 
     ov17_0223F1E0(v0->unk_08);
 
@@ -409,7 +409,7 @@ static void ov17_0223D164 (SysTask * param0, void * param1)
     sub_02038A1C(22, v0->unk_0C.unk_24);
 }
 
-static void ov17_0223D1B8 (UnkStruct_02018340 * param0)
+static void ov17_0223D1B8 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -528,7 +528,7 @@ static void ov17_0223D1B8 (UnkStruct_02018340 * param0)
 
 static void ov17_0223D324 (UnkStruct_ov17_02247A48 * param0)
 {
-    sub_0201A7E8(param0->unk_0C.unk_24, &param0->unk_0C.unk_28[0], 1, 0x2, 0x13, 27, 4, 13, (((18 + 12) + 1)));
+    BGL_AddWindow(param0->unk_0C.unk_24, &param0->unk_0C.unk_28[0], 1, 0x2, 0x13, 27, 4, 13, (((18 + 12) + 1)));
 }
 
 static void ov17_0223D350 (void)
@@ -597,16 +597,16 @@ static void ov17_0223D4A8 (UnkStruct_ov17_02247A48 * param0, NARC * param1)
     sub_020070E8(param1, 23, param0->unk_0C.unk_24, 3, 0, 0, 1, 22);
     sub_0200710C(param1, 22, param0->unk_0C.unk_24, 3, 0, 0, 1, 22);
     sub_02019EBC(param0->unk_0C.unk_24, 1);
-    sub_02003050(param0->unk_0C.unk_44, 45, 35, 22, 0, 0, 0);
-    sub_02003050(param0->unk_0C.unk_44, 45, 36, 22, 0, 0x20, 13 * 16);
+    PaletteSys_LoadPalette(param0->unk_0C.unk_44, 45, 35, 22, 0, 0, 0);
+    PaletteSys_LoadPalette(param0->unk_0C.unk_44, 45, 36, 22, 0, 0x20, 13 * 16);
 
     v0 = sub_02027B50(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_0C.unk_24, 1, 1, 15, v0, 22);
-    sub_02003050(param0->unk_0C.unk_44, 38, sub_0200DD08(v0), 22, 0, 0x20, 14 * 16);
+    PaletteSys_LoadPalette(param0->unk_0C.unk_44, 38, sub_0200DD08(v0), 22, 0, 0x20, 14 * 16);
     sub_020070E8(param1, 24, param0->unk_0C.unk_24, 2, 0, 0, 1, 22);
     sub_0200710C(param1, 21, param0->unk_0C.unk_24, 2, 0, 0, 1, 22);
-    sub_02003050(param0->unk_0C.unk_44, 45, 37, 22, 0, 0x20, 0xc * 16);
+    PaletteSys_LoadPalette(param0->unk_0C.unk_44, 45, 37, 22, 0, 0x20, 0xc * 16);
 }
 
 static void ov17_0223D5AC (UnkStruct_ov17_02247A48 * param0)
@@ -618,7 +618,7 @@ static void ov17_0223D5B0 (UnkStruct_ov17_02247A48 * param0, NARC * param1)
 {
     sub_020070E8(param1, 19, param0->unk_0C.unk_24, 4, 0, 0, 1, 22);
     sub_0200710C(param1, 20, param0->unk_0C.unk_24, 4, 0, 0, 1, 22);
-    sub_02003050(param0->unk_0C.unk_44, 45, 34, 22, 1, 0, 0);
+    PaletteSys_LoadPalette(param0->unk_0C.unk_44, 45, 34, 22, 1, 0, 0);
 }
 
 static void ov17_0223D608 (UnkStruct_ov17_02247A48 * param0)

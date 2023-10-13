@@ -11,8 +11,8 @@
 #include "overlay005/struct_ov5_021D30A8.h"
 
 typedef struct {
-    UnkStruct_0205AA50 unk_00;
-    UnkStruct_0205AA50 unk_10;
+    Window unk_00;
+    Window unk_10;
     UnkStruct_02001AF4 * unk_20;
     UnkStruct_02013A04 * unk_24;
     u16 unk_28;

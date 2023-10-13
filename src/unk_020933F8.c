@@ -971,7 +971,7 @@ static void sub_02093C6C (SysTask * param0, void * param1)
         v0->unk_164 = NULL;
         v0->unk_15A = 0;
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1124,7 +1124,7 @@ static void sub_0209451C (SysTask * param0, void * param1)
     default:
         v0->unk_164 = NULL;
         v0->unk_15A = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1526,7 +1526,7 @@ static void sub_02094B30 (SysTask * param0, void * param1)
 
         if (v1->unk_08 > v1->unk_04[v1->unk_0A]) {
             sub_0200AAE0(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
-            sub_02005748(1528);
+            Sound_PlayEffect(1528);
             v1->unk_0A++;
             v1->unk_08 = 0;
 
@@ -1538,7 +1538,7 @@ static void sub_02094B30 (SysTask * param0, void * param1)
     default:
         Heap_FreeToHeap(v0->unk_19A0);
         v0->unk_19A0 = NULL;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }

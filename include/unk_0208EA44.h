@@ -25,7 +25,7 @@ void sub_0208F574(UnkStruct_0208D7BC * param0);
 void sub_0208F600(UnkStruct_0208D7BC * param0);
 void sub_0208F684(UnkStruct_0208D7BC * param0);
 void sub_0208F6A4(UnkStruct_0208D7BC * param0);
-void sub_0208F6DC(UnkStruct_0208D7BC * param0, UnkStruct_0205AA50 * param1);
+void sub_0208F6DC(UnkStruct_0208D7BC * param0, Window * param1);
 void sub_0208F71C(UnkStruct_0208D7BC * param0);
 void sub_0208F7A4(UnkStruct_0208D7BC * param0);
 void sub_0208F844(UnkStruct_0208D7BC * param0);

@@ -107,7 +107,7 @@ typedef struct {
 } UnkStruct_ov114_02260284;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     const UnkStruct_ov114_02260284 * unk_04;
     u32 unk_08;
 } UnkStruct_ov114_0225CEF0;
@@ -120,7 +120,7 @@ typedef struct {
 } UnkStruct_ov114_0225D084;
 
 typedef struct {
-    UnkStruct_0205AA50 unk_00[2];
+    Window unk_00[2];
     u16 unk_20[2];
     Strbuf* unk_24[2];
     void * unk_2C[2];
@@ -134,7 +134,7 @@ typedef struct {
 } UnkStruct_ov114_02260204;
 
 typedef struct {
-    UnkStruct_0205AA50 unk_00;
+    Window unk_00;
     UnkStruct_02022550 * unk_10;
     UnkStruct_02022550 * unk_14;
     u16 unk_18;
@@ -153,7 +153,7 @@ typedef struct {
 } UnkStruct_ov114_0225E0F8;
 
 typedef struct {
-    UnkStruct_0205AA50 unk_00;
+    Window unk_00;
     u32 unk_10;
     Strbuf* unk_14;
     UnkStruct_ov114_0225CBF0 unk_18;
@@ -307,10 +307,10 @@ static void ov114_0225D154(UnkStruct_ov114_0225D084 * param0, u32 param1);
 static void ov114_0225D170(UnkStruct_ov114_0225D084 * param0, u32 param1);
 static void ov114_0225D180(UnkStruct_ov114_0225D084 * param0, u32 param1);
 static void ov114_0225D190(UnkStruct_ov114_0225D084 * param0, Strbuf *param1, u32 param2);
-static void ov114_0225D1AC(UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStruct_0205AA50 * param2, u8 param3, u8 param4);
-static void ov114_0225D1C8(UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStruct_0205AA50 * param2, u8 param3, u8 param4);
-static u32 ov114_0225D218(UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStruct_0205AA50 * param2, Strbuf *param3, u32 param4);
-static void ov114_0225D254(UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStruct_0205AA50 * param2, u8 param3, u8 param4, u32 param5);
+static void ov114_0225D1AC(UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, u8 param3, u8 param4);
+static void ov114_0225D1C8(UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, u8 param3, u8 param4);
+static u32 ov114_0225D218(UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, Strbuf *param3, u32 param4);
+static void ov114_0225D254(UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, u8 param3, u8 param4, u32 param5);
 static void ov114_0225D290(UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0225CEF0 * param1, SaveData * param2, BOOL param3, u32 param4);
 static void ov114_0225D338(UnkStruct_ov114_0225D338 * param0);
 static void ov114_0225D368(UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0225D084 * param1, u32 param2, u32 param3);
@@ -911,8 +911,8 @@ UnkStruct_ov114_0225D678 * ov114_0225C82C (const UnkStruct_ov114_0225C76C * para
 
 void ov114_0225C838 (UnkStruct_ov114_0225D678 * param0)
 {
-    sub_0200DA58(param0->unk_650);
-    sub_0200DA58(param0->unk_654);
+    SysTask_Done(param0->unk_650);
+    SysTask_Done(param0->unk_654);
 
     ov114_0225DFFC(&param0->unk_348);
     ov114_0225E234(&param0->unk_230);
@@ -967,8 +967,8 @@ UnkStruct_ov114_0225E854 * ov114_0225C8F8 (const UnkStruct_ov114_0225C76C * para
 
 void ov114_0225C904 (UnkStruct_ov114_0225E854 * param0)
 {
-    sub_0200DA58(param0->unk_6A8);
-    sub_0200DA58(param0->unk_6AC);
+    SysTask_Done(param0->unk_6A8);
+    SysTask_Done(param0->unk_6AC);
 
     ov114_0225DFFC(&param0->unk_3A0);
 
@@ -1129,7 +1129,7 @@ UnkStruct_ov114_0225CAD4 * ov114_0225CAD4 (UnkStruct_020218BC * param0, u32 para
 void ov114_0225CB38 (UnkStruct_ov114_0225CAD4 * param0)
 {
     if (param0->unk_2C != NULL) {
-        sub_0200DA58(param0->unk_2C);
+        SysTask_Done(param0->unk_2C);
         param0->unk_2C = NULL;
     }
 
@@ -1163,7 +1163,7 @@ void ov114_0225CBB0 (UnkStruct_ov114_0225CAD4 * param0)
     param0->unk_2C = SysTask_Start(ov114_0225FF54, param0, 0);
     param0->unk_04 = 1;
 
-    sub_02005748(1521);
+    Sound_PlayEffect(1521);
 }
 
 BOOL ov114_0225CBE0 (const UnkStruct_ov114_0225CAD4 * param0)
@@ -1496,12 +1496,12 @@ static void ov114_0225D190 (UnkStruct_ov114_0225D084 * param0, Strbuf *param1, u
     sub_0200C388(param0->unk_04, param1, param0->unk_0C);
 }
 
-static void ov114_0225D1AC (UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStruct_0205AA50 * param2, u8 param3, u8 param4)
+static void ov114_0225D1AC (UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, u8 param3, u8 param4)
 {
     ov114_0225D254(param0, param1, param2, param3, param4, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
-static void ov114_0225D1C8 (UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStruct_0205AA50 * param2, u8 param3, u8 param4)
+static void ov114_0225D1C8 (UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, u8 param3, u8 param4)
 {
     u32 v0;
     s32 v1;
@@ -1519,7 +1519,7 @@ static void ov114_0225D1C8 (UnkStruct_ov114_0225D084 * param0, u32 param1, UnkSt
     sub_0201D78C(param2, 0, param0->unk_08, v1, param4, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 }
 
-static u32 ov114_0225D218 (UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStruct_0205AA50 * param2, Strbuf *param3, u32 param4)
+static u32 ov114_0225D218 (UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, Strbuf *param3, u32 param4)
 {
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
     sub_0200C388(param0->unk_04, param3, param0->unk_0C);
@@ -1527,7 +1527,7 @@ static u32 ov114_0225D218 (UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStr
     return sub_0201D78C(param2, 1, param3, 0, 0, param4, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 }
 
-static void ov114_0225D254 (UnkStruct_ov114_0225D084 * param0, u32 param1, UnkStruct_0205AA50 * param2, u8 param3, u8 param4, u32 param5)
+static void ov114_0225D254 (UnkStruct_ov114_0225D084 * param0, u32 param1, Window * param2, u8 param3, u8 param4, u32 param5)
 {
     MessageLoader_GetStrbuf(param0->unk_00, param1, param0->unk_0C);
     sub_0200C388(param0->unk_04, param0->unk_08, param0->unk_0C);
@@ -1554,8 +1554,8 @@ static void ov114_0225D290 (UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0
             v3 = 1;
         }
 
-        sub_0201A7E8(param1->unk_00, &param0->unk_00[v2], v1, 2, v3, 27, 4, 12, ((1 + (18 + 12))));
-        sub_0201ADA4(&param0->unk_00[v2], 0);
+        BGL_AddWindow(param1->unk_00, &param0->unk_00[v2], v1, 2, v3, 27, 4, 12, ((1 + (18 + 12))));
+        BGL_FillWindow(&param0->unk_00[v2], 0);
 
         param0->unk_24[v2] = Strbuf_Init(128, param4);
     }
@@ -1570,7 +1570,7 @@ static void ov114_0225D338 (UnkStruct_ov114_0225D338 * param0)
     for (v0 = 0; v0 < 2; v0++) {
         ov114_0225D400(param0, v0);
         Strbuf_Free(param0->unk_24[v0]);
-        sub_0201A8FC(&param0->unk_00[v0]);
+        BGL_DeleteWindow(&param0->unk_00[v0]);
     }
 
     sub_02095A24();
@@ -1588,12 +1588,12 @@ static void ov114_0225D368 (UnkStruct_ov114_0225D338 * param0, UnkStruct_ov114_0
         }
     }
 
-    if (sub_0201D724(param0->unk_20[param3])) {
+    if (Message_Printing(param0->unk_20[param3])) {
         sub_0201D730(param0->unk_20[param3]);
     }
 
     ov114_0225D474(param0, param3);
-    sub_0201ADA4(&param0->unk_00[param3], 15);
+    BGL_FillWindow(&param0->unk_00[param3], 15);
     param0->unk_20[param3] = ov114_0225D218(param1, param2, &param0->unk_00[param3], param0->unk_24[param3], 1);
     sub_0200E060(&param0->unk_00[param3], 1, 1, 13);
     sub_0201A9A4(&param0->unk_00[param3]);
@@ -1603,7 +1603,7 @@ static void ov114_0225D400 (UnkStruct_ov114_0225D338 * param0, u32 param1)
 {
     ov114_0225D474(param0, param1);
 
-    if (sub_0201D724(param0->unk_20[param1])) {
+    if (Message_Printing(param0->unk_20[param1])) {
         sub_0201D730(param0->unk_20[param1]);
     }
 
@@ -1615,7 +1615,7 @@ static BOOL ov114_0225D43C (const UnkStruct_ov114_0225D338 * param0, u32 param1)
 {
     u32 v0;
 
-    v0 = sub_0201D724(param0->unk_20[param1]);
+    v0 = Message_Printing(param0->unk_20[param1]);
 
     if (v0 == 0) {
         return 1;
@@ -1970,10 +1970,10 @@ static void ov114_0225DAC0 (UnkStruct_ov114_0225DAC0 * param0, u32 param1, u32 p
         break;
     }
 
-    sub_02019060(1, 2);
-    sub_02019060(0, 1);
-    sub_0201A7E8(param4->unk_00, &param0->unk_00, 0, 5, 1 + Unk_ov114_02260204[param1 - 1].unk_00[v0], 26, 4, 12, 513 + ((26 * 4) * param5));
-    sub_0201ADA4(&param0->unk_00, 0);
+    BGL_SetPriority(1, 2);
+    BGL_SetPriority(0, 1);
+    BGL_AddWindow(param4->unk_00, &param0->unk_00, 0, 5, 1 + Unk_ov114_02260204[param1 - 1].unk_00[v0], 26, 4, 12, 513 + ((26 * 4) * param5));
+    BGL_FillWindow(&param0->unk_00, 0);
     sub_020198E8(param4->unk_00, 1, 0, Unk_ov114_02260204[param1 - 1].unk_00[v0], 32, 6, param3->rawData, 0, Unk_ov114_02260204[param1 - 1].unk_04[param5], param3->screenWidth / 8, param3->screenHeight / 8);
 
     {
@@ -2079,7 +2079,7 @@ static void ov114_0225DDA0 (UnkStruct_ov114_0225DAC0 * param0)
     }
 
     if (sub_0201A7CC(&param0->unk_00) == 1) {
-        sub_0201A8FC(&param0->unk_00);
+        BGL_DeleteWindow(&param0->unk_00);
     }
 }
 
@@ -2112,7 +2112,7 @@ static BOOL ov114_0225DE70 (UnkStruct_ov114_0225DAC0 * param0)
 
     if (param0->unk_32 <= 0) {
         if (param0->unk_30 == 0) {
-            sub_02005748(param0->unk_34);
+            Sound_PlayEffect(param0->unk_34);
         }
 
         param0->unk_30++;
@@ -2307,8 +2307,8 @@ u32 ov114_0225E180 (u32 param0)
 
 static void ov114_0225E1A4 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0225CEF0 * param1, UnkStruct_ov114_0225D084 * param2, u32 param3, NARC * param4, u32 param5)
 {
-    sub_0201A7E8(param1->unk_00, &param0->unk_00, 1, 6, 11, 20, 10, 8, 513);
-    sub_0201ADA4(&param0->unk_00, 0);
+    BGL_AddWindow(param1->unk_00, &param0->unk_00, 1, 6, 11, 20, 10, 8, 513);
+    BGL_FillWindow(&param0->unk_00, 0);
 
     param0->unk_14 = Strbuf_Init(128, param5);
     ov114_0225D180(param2, param3);
@@ -2322,7 +2322,7 @@ static void ov114_0225E1A4 (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0
 
 static void ov114_0225E234 (UnkStruct_ov114_0225E1A4 * param0)
 {
-    sub_0201A8FC(&param0->unk_00);
+    BGL_DeleteWindow(&param0->unk_00);
     Strbuf_Free(param0->unk_14);
 }
 
@@ -2366,7 +2366,7 @@ static BOOL ov114_0225E31C (UnkStruct_ov114_0225E1A4 * param0, UnkStruct_ov114_0
         param0->unk_2C++;
 
         if (v0 == 1) {
-            sub_02005748(1385);
+            Sound_PlayEffect(1385);
 
             ov114_0225CBF0(&param0->unk_18, Unk_ov114_02260110[param0->unk_10], Unk_ov114_0226011C[param0->unk_10], Unk_ov114_02260128[param0->unk_10], 4);
             param0->unk_2E++;
@@ -3466,7 +3466,7 @@ static BOOL ov114_0225F5AC (UnkStruct_ov114_0225F578 * param0, UnkStruct_ov114_0
             break;
         }
 
-        sub_02005748(1404);
+        Sound_PlayEffect(1404);
         sub_02021CAC(param0->unk_08[(param0->unk_4A % (5 * 3))], 1);
         param0->unk_49 = 8;
         param0->unk_48++;
@@ -3759,7 +3759,7 @@ static void ov114_0225FBF0 (UnkStruct_ov114_0225FAB8 * param0)
     int v0;
 
     if (param0->unk_18C) {
-        sub_0200DA58(param0->unk_18C);
+        SysTask_Done(param0->unk_18C);
         param0->unk_18C = NULL;
     }
 
@@ -3797,7 +3797,7 @@ static void ov114_0225FCCC (SysTask * param0, void * param1)
     UnkStruct_ov114_0225FAB8 * v0 = param1;
 
     memcpy(v0->unk_0C[0], v0->unk_0C[1], 192);
-    sub_0200DA58(v0->unk_18C);
+    SysTask_Done(v0->unk_18C);
 
     v0->unk_18C = NULL;
 }
@@ -3865,19 +3865,19 @@ static void ov114_0225FDC8 (SysTask * param0, void * param1)
         if (v2 != v3) {
             switch (v3) {
             case 7:
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 break;
             case 9:
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 break;
             case 11:
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 break;
             case 13:
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 break;
             case 15:
-                sub_02005748(1603);
+                Sound_PlayEffect(1603);
                 break;
             default:
                 break;
@@ -3925,7 +3925,7 @@ static void ov114_0225FDC8 (SysTask * param0, void * param1)
         v0->unk_04 = 0;
 
         ov114_0225FBF0(&v0->unk_34);
-        sub_0200DA58(v0->unk_2C);
+        SysTask_Done(v0->unk_2C);
         v0->unk_2C = NULL;
         break;
     default:
@@ -3984,7 +3984,7 @@ static void ov114_0225FF54 (SysTask * param0, void * param1)
         v0->unk_04 = 0;
 
         ov114_0225FBF0(&v0->unk_34);
-        sub_0200DA58(v0->unk_2C);
+        SysTask_Done(v0->unk_2C);
         v0->unk_2C = NULL;
         break;
     default:

@@ -22,9 +22,9 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[11];
-    UnkStruct_0205AA50 unk_B4[1];
+    BGL * unk_00;
+    Window unk_04[11];
+    Window unk_B4[1];
     UnkStruct_0207CB08 * unk_C4;
     UnkStruct_0207D3C0 * unk_C8;
     TrainerInfo * unk_CC;

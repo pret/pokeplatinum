@@ -47,7 +47,7 @@ static void ov19_021DCE50(UnkStruct_ov19_021DC680 * param0, fx32 param1);
 static void ov19_021DCEB8(UnkStruct_ov19_021DC680 * param0, BOOL param1);
 static void ov19_021DCF50(UnkStruct_ov19_021DC680 * param0);
 
-BOOL ov19_021DC5F0 (UnkStruct_ov19_021DC680 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, NARC * param5)
+BOOL ov19_021DC5F0 (UnkStruct_ov19_021DC680 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, UnkStruct_020218BC * param4, NARC * param5)
 {
     param0->unk_00 = param1;
     param0->unk_0C = param2;
@@ -134,7 +134,7 @@ static void ov19_021DC708 (SysTask * param0, void * param1)
 
     if (v0->unk_2B == 0) {
         v0->unk_2C = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -181,7 +181,7 @@ static void ov19_021DC79C (SysTask * param0, void * param1)
 
     if (v0->unk_2B == 26) {
         v0->unk_2C = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -233,7 +233,7 @@ static void ov19_021DC8E8 (SysTask * param0, void * param1)
 
     if (++(v0->unk_2A) >= 8) {
         v0->unk_2C = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -288,7 +288,7 @@ static void ov19_021DCA18 (SysTask * param0, void * param1)
 
     if (v2) {
         v0->unk_2C = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 

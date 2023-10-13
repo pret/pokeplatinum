@@ -159,7 +159,7 @@ u8 sub_0208C15C (s16 * param0, u16 param1)
     return 0;
 }
 
-void sub_0208C210 (UnkStruct_02018340 * param0, int param1, NARC * param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
+void sub_0208C210 (BGL * param0, int param1, NARC * param2, int param3, int param4, int param5, int param6, u16 param7, u16 param8)
 {
     u32 v0;
     void * v1;

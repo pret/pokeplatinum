@@ -22,8 +22,8 @@
 #include "overlay104/struct_ov104_0223D5F0_decl.h"
 
 typedef struct UnkStruct_ov104_0223C4CC_t {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_02002F38 * unk_04;
+    BGL * unk_00;
+    PaletteSys * unk_04;
     UnkStruct_0209B75C * unk_08;
     UnkStruct_0207C690 * unk_0C;
     UnkStruct_ov104_0223D5F0 * unk_10;

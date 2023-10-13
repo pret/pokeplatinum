@@ -74,9 +74,9 @@ static BOOL ov6_02246F40 (UnkStruct_020508D4 * param0)
         ov5_021D4250(v0->unk_54, 0x1, v1->unk_01);
 
         if (v1->unk_01 == 0) {
-            sub_02005748(1554);
+            Sound_PlayEffect(1554);
         } else {
-            sub_02005748(1554);
+            Sound_PlayEffect(1554);
         }
 
         (v1->unk_02)++;
@@ -89,7 +89,7 @@ static BOOL ov6_02246F40 (UnkStruct_020508D4 * param0)
                 sub_020057A4(1554, 0);
             }
 
-            sub_02005748(1521);
+            Sound_PlayEffect(1521);
             ov5_021D42B0(v0->unk_50, v0->unk_54, 0x1);
             (v1->unk_02)++;
         }

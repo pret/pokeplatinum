@@ -24,9 +24,9 @@
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[37];
-    UnkStruct_0205AA50 unk_254[1];
+    BGL * unk_00;
+    Window unk_04[37];
+    Window unk_254[1];
     u16 unk_264[96];
     u16 unk_324[96];
     u16 unk_3E4[96];

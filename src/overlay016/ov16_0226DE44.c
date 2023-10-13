@@ -32,7 +32,7 @@ typedef struct UnkStruct_ov16_0226DEEC_t {
     u8 unk_1E;
 } UnkStruct_ov16_0226DEEC;
 
-void ov16_0226DE44(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, UnkStruct_02002F38 * param3, u32 param4, u32 param5, u32 param6, u32 param7);
+void ov16_0226DE44(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, PaletteSys * param3, u32 param4, u32 param5, u32 param6, u32 param7);
 void ov16_0226DEC4(UnkStruct_0200C704 * param0, u32 param1, u32 param2, u32 param3, u32 param4);
 UnkStruct_ov16_0226DEEC * ov16_0226DEEC(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov16_0226DF68(UnkStruct_ov16_0226DEEC * param0);
@@ -54,7 +54,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270AD8 = {
     0x0
 };
 
-void ov16_0226DE44 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, UnkStruct_02002F38 * param3, u32 param4, u32 param5, u32 param6, u32 param7)
+void ov16_0226DE44 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u32 param2, PaletteSys * param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
     NARC * v0 = NARC_ctor(NARC_INDEX_GRAPHIC__EV_POKESELECT, param2);
 
@@ -102,7 +102,7 @@ UnkStruct_ov16_0226DEEC * ov16_0226DEEC (UnkStruct_0200C6E4 * param0, UnkStruct_
 void ov16_0226DF68 (UnkStruct_ov16_0226DEEC * param0)
 {
     sub_0200D0F4(param0->unk_00);
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 

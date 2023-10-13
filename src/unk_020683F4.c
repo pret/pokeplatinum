@@ -96,7 +96,7 @@ typedef struct {
 } UnkStruct_0206851C;
 
 typedef struct {
-    UnkStruct_0205AA50 unk_00;
+    Window unk_00;
     Strbuf* unk_10;
     u16 unk_14;
     u16 unk_16;
@@ -973,7 +973,7 @@ static BOOL sub_02068F48 (UnkStruct_020508D4 * param0)
         break;
     case 2:
         sub_02062C78(v0->unk_38);
-        sub_0201A8FC(&v1->unk_00);
+        BGL_DeleteWindow(&v1->unk_00);
         Strbuf_Free(v1->unk_10);
         Heap_FreeToHeap(v1);
 

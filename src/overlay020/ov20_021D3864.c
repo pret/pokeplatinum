@@ -31,7 +31,7 @@ typedef struct UnkStruct_ov20_021D3980_t {
     UnkStruct_02022550 * unk_0C;
 } UnkStruct_ov20_021D3980;
 
-static void ov20_021D390C(UnkStruct_02018340 * param0, const UnkStruct_ov61_0222C884 * param1, u32 param2);
+static void ov20_021D390C(BGL * param0, const UnkStruct_ov61_0222C884 * param1, u32 param2);
 static void ov20_021D3980(UnkStruct_ov20_021D3980 * param0);
 
 UnkStruct_ov20_021D3980 * ov20_021D3864 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
@@ -63,7 +63,7 @@ void ov20_021D3898 (UnkStruct_ov20_021D3980 * param0, NARC * param1)
     static const UnkStruct_ov61_0222C884 v1 = {
         3, 19, 6, 10, 2, 13, 84
     };
-    UnkStruct_02018340 * v2;
+    BGL * v2;
 
     v2 = ov20_021D2E04(param0->unk_00);
 
@@ -77,15 +77,15 @@ void ov20_021D3898 (UnkStruct_ov20_021D3980 * param0, NARC * param1)
     sub_02019448(v2, 3);
 }
 
-static void ov20_021D390C (UnkStruct_02018340 * param0, const UnkStruct_ov61_0222C884 * param1, u32 param2)
+static void ov20_021D390C (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u32 param2)
 {
-    UnkStruct_0205AA50 v0;
+    Window v0;
     Strbuf* v1;
     u32 v2;
 
     sub_0201A8D4(param0, &v0, param1);
     sub_0201A9F4(&v0);
-    sub_0201ADA4(&v0, 14);
+    BGL_FillWindow(&v0, 14);
 
     v1 = MessageBank_GetNewStrbufFromNARC(26, 438, param2, 35);
     v2 = ((param1->unk_03 * 8) - sub_02002D7C(0, v1, 0)) / 2;
@@ -93,7 +93,7 @@ static void ov20_021D390C (UnkStruct_02018340 * param0, const UnkStruct_ov61_022
     sub_0201D78C(&v0, 0, v1, v2, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((14 & 0xff) << 0)), NULL);
     sub_0201ACCC(&v0);
     Strbuf_Free(v1);
-    sub_0201A8FC(&v0);
+    BGL_DeleteWindow(&v0);
 }
 
 static void ov20_021D3980 (UnkStruct_ov20_021D3980 * param0)

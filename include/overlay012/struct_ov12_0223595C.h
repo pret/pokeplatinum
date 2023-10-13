@@ -16,8 +16,8 @@ typedef struct {
     UnkStruct_0200C6E4 * unk_08;
     UnkStruct_0200C704 * unk_0C;
     UnkStruct_0200C704 * unk_10;
-    UnkStruct_02018340 * unk_14;
-    UnkStruct_02002F38 * unk_18;
+    BGL * unk_14;
+    PaletteSys * unk_18;
 } UnkStruct_ov12_0223595C;
 
 #endif // POKEPLATINUM_STRUCT_OV12_0223595C_H

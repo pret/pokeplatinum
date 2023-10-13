@@ -54,7 +54,7 @@ static void ov5_021E139C (SysTask * param0, void * param1)
     switch (v0->unk_08) {
     case 0:
         v0->unk_08 = 1;
-        sub_02005748(1615);
+        Sound_PlayEffect(1615);
     case 1:
         if (v0->unk_0C % 2) {
             ov5_021E135C(v0);
@@ -71,7 +71,7 @@ static void ov5_021E139C (SysTask * param0, void * param1)
         } else if ((v0->unk_0C > 20) && ScreenWipe_Done()) {
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         } else {
             break;
         }
@@ -96,7 +96,7 @@ static void ov5_021E1470 (SysTask * param0, void * param1)
         ov5_021ECCC8(v1);
     }
 
-        sub_02005748(1615);
+        Sound_PlayEffect(1615);
         v0->unk_08 = 1;
     case 1:
         if (v0->unk_0C % 2) {
@@ -122,7 +122,7 @@ static void ov5_021E1470 (SysTask * param0, void * param1)
             sub_0205EA84(v0->unk_00->unk_3C, 1);
             *v0->unk_04 = 1;
             Heap_FreeToHeap(v0);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
         break;
     }

@@ -84,7 +84,7 @@ int ov62_02233FEC(UnkStruct_ov62_02233F74 * param0);
 void ov62_02234214(UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C * param1);
 void ov62_02234228(UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C * param1);
 void ov62_0223427C(UnkStruct_ov62_02233F74 * param0, int param1);
-int ov62_0223429C(UnkStruct_0205AA50 * param0, Strbuf *param1);
+int ov62_0223429C(Window * param0, Strbuf *param1);
 void ov62_022342BC(UnkStruct_0208C06C * param0);
 BOOL ov62_022342CC(UnkStruct_0208C06C * param0);
 void ov62_02234314(void);

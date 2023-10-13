@@ -70,7 +70,7 @@ struct UnkStruct_ov19_021D61B0_t {
     UnkStruct_0200C738 unk_1C;
     NNSG2dImagePaletteProxy unk_1A8;
     UnkStruct_02007768 * unk_1BC;
-    UnkStruct_02018340 * unk_1C0;
+    BGL * unk_1C0;
     const UnkStruct_ov19_021D4DF0 * unk_1C4;
     UnkStruct_ov19_021DA384 unk_1C8;
     UnkStruct_ov19_021D8318 unk_494;
@@ -246,8 +246,8 @@ static void ov19_021D6474 (SysTask * param0, void * param1)
 void ov19_021D64A0 (UnkStruct_ov19_021D61B0 * param0)
 {
     sub_02017798(NULL, NULL);
-    sub_0200DA58(param0->unk_00);
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_00);
+    SysTask_Done(param0->unk_04);
 
     ov19_021DECAC(param0->unk_B410);
     ov19_021DE440(param0->unk_B40C);
@@ -396,7 +396,7 @@ static void ov19_021D6640 (UnkStruct_ov19_021D6640 * param0)
 {
     UnkStruct_ov19_021D61B0 * v0 = param0->unk_0C;
 
-    sub_0200DA58(v0->unk_08[param0->unk_04]);
+    SysTask_Done(v0->unk_08[param0->unk_04]);
     v0->unk_08[param0->unk_04] = NULL;
     Heap_FreeToHeap(param0);
 }
@@ -462,7 +462,7 @@ static void ov19_021D671C (SysTask * param0, void * param1)
 
     switch (v2->unk_06) {
     case 0:
-        sub_02005748(1549);
+        Sound_PlayEffect(1549);
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_ALL, 0x6, 0xa);
         sub_0200F174(0, 1, 1, 0x0, 8, 1, 10);
         v2->unk_06++;
@@ -548,7 +548,7 @@ static void ov19_021D6824 (SysTask * param0, void * param1)
 
         ov19_021D7B4C(&v0->unk_494, &v1->unk_40, v3, 1);
         ov19_021D7D70(&v0->unk_494, &v1->unk_40, v3);
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         v2->unk_06++;
     }
     case 3:
@@ -580,7 +580,7 @@ static void ov19_021D68E4 (SysTask * param0, void * param1)
 
     switch (v2->unk_06) {
     case 0:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         ov19_021D8F60(&(v0->unk_5E24));
         ov19_021DE7A0(v0->unk_B40C);
         v2->unk_06++;
@@ -1093,7 +1093,7 @@ static void ov19_021D6EDC (SysTask * param0, void * param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    sub_02005748(1500);
+    Sound_PlayEffect(1500);
     ov19_021DB748(&(v0->unk_6658), &(v2->unk_74));
     ov19_021D6640(v1);
 }
@@ -1108,7 +1108,7 @@ static void ov19_021D6F0C (SysTask * param0, void * param1)
     v0 = v1->unk_0C;
     v2 = v0->unk_1C4;
 
-    sub_02005748(1501);
+    Sound_PlayEffect(1501);
     ov19_021DB790(&(v0->unk_6658), &(v2->unk_74));
     ov19_021D6640(v1);
 }
@@ -1147,7 +1147,7 @@ static void ov19_021D6F78 (SysTask * param0, void * param1)
 
     switch (v1->unk_06) {
     case 0:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         ov19_021DBB70(&(v0->unk_6690));
         v1->unk_06++;
         break;
@@ -1213,7 +1213,7 @@ static void ov19_021D7028 (SysTask * param0, void * param1)
 
     switch (v1->unk_06) {
     case 0:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         ov19_021D9690(&(v0->unk_5E24));
         v1->unk_06++;
         break;
@@ -1259,7 +1259,7 @@ static void ov19_021D70E8 (SysTask * param0, void * param1)
 
     switch (v1->unk_06) {
     case 0:
-        sub_02005748(1587);
+        Sound_PlayEffect(1587);
         ov19_021D99F4(&(v0->unk_5E24));
         ov19_021DC6C8(&(v0->unk_B290));
         v1->unk_06++;
@@ -1293,7 +1293,7 @@ static void ov19_021D7138 (SysTask * param0, void * param1)
 
         v1->unk_06++;
     case 2:
-        sub_02005748(1588);
+        Sound_PlayEffect(1588);
         ov19_021DC768(&(v0->unk_B290));
         v1->unk_06++;
         break;
@@ -1586,7 +1586,7 @@ static void ov19_021D7460 (SysTask * param0, void * param1)
 
     switch (v2->unk_06) {
     case 0:
-        sub_02005748(1550);
+        Sound_PlayEffect(1550);
         sub_0200F174(0, 0, 0, 0x0, 6, 1, 10);
         v2->unk_06++;
         break;

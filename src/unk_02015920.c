@@ -23,7 +23,7 @@ typedef struct {
 } UnkStruct_02015D8C;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     u32 unk_04;
     u32 unk_08;
     u32 unk_0C[4];
@@ -36,7 +36,7 @@ typedef struct {
 } UnkStruct_02015B14;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     u32 unk_04;
     void * unk_08[4];
     NNSG2dScreenData * unk_18[4];
@@ -48,7 +48,7 @@ typedef struct {
 } UnkStruct_02015C38;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     NNSG2dCharacterData * unk_04;
     void * unk_08;
     int unk_0C;
@@ -67,7 +67,7 @@ typedef struct UnkStruct_02015920_t {
     UnkStruct_02023FCC * unk_00;
     UnkUnion_020225E0 unk_04[2];
     UnkStruct_02015C38 unk_0C[2];
-    UnkStruct_02018340 * unk_7C;
+    BGL * unk_7C;
     u32 unk_80;
     u32 unk_84;
     fx32 unk_88[4];
@@ -91,11 +91,11 @@ static void sub_02015D60(UnkStruct_02015C38 * param0);
 static void sub_02015D8C(UnkStruct_02015D8C * param0, const fx32 * param1, u32 param2);
 static void sub_02015D98(UnkStruct_02015D8C * param0, fx32 param1);
 static u32 sub_02015DA0(const UnkStruct_02015D8C * param0);
-static void sub_02015DCC(u32 param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5);
+static void sub_02015DCC(u32 param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5);
 static void sub_02015E1C(u32 param0, u32 param1, int param2, u32 param3, u32 param4, u32 param5);
 static void sub_02015E64(SysTask * param0, void * param1);
 static void sub_02015EA0(SysTask * param0, void * param1);
-static void sub_02015EE8(UnkStruct_02018340 * param0, int param1, const NNSG2dScreenData * param2, int param3, int param4);
+static void sub_02015EE8(BGL * param0, int param1, const NNSG2dScreenData * param2, int param3, int param4);
 static void sub_02015F34(const NNSG2dScreenData * param0, int param1);
 static void sub_02015F54(const NNSG2dScreenData * param0, int param1);
 
@@ -276,7 +276,7 @@ static void sub_02015C08 (u32 param0, u32 param1, void * param2)
     if (param1 == 0) {
         v0->unk_9A = param0;
 
-        sub_02005748(1508);
+        Sound_PlayEffect(1508);
     }
 }
 
@@ -365,7 +365,7 @@ static u32 sub_02015DA0 (const UnkStruct_02015D8C * param0)
     return param0->unk_04 - 1;
 }
 
-static void sub_02015DCC (u32 param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5)
+static void sub_02015DCC (u32 param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5)
 {
     UnkStruct_02015DCC * v0;
 
@@ -402,7 +402,7 @@ static void sub_02015E64 (SysTask * param0, void * param1)
     DC_FlushRange(v0->unk_04->pRawData, v0->unk_04->szByte);
 
     sub_0201958C(v0->unk_00, v0->unk_0C, v0->unk_04->pRawData, v0->unk_04->szByte, v0->unk_10);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(v0->unk_08);
     Heap_FreeToHeap(v0);
 }
@@ -419,12 +419,12 @@ static void sub_02015EA0 (SysTask * param0, void * param1)
         GXS_LoadBGPltt(v0->unk_00->pRawData, v0->unk_0C, v0->unk_10);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(v0->unk_04);
     Heap_FreeToHeap(v0);
 }
 
-static void sub_02015EE8 (UnkStruct_02018340 * param0, int param1, const NNSG2dScreenData * param2, int param3, int param4)
+static void sub_02015EE8 (BGL * param0, int param1, const NNSG2dScreenData * param2, int param3, int param4)
 {
     sub_020198E8(param0, param1, param3, param4, param2->screenWidth / 8, param2->screenHeight / 8, param2->rawData, 0, 0, param2->screenWidth / 8, param2->screenHeight / 8);
     sub_0201C3C0(param0, param1);

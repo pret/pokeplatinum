@@ -449,7 +449,7 @@ static int ov21_021E7694 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
         break;
     case 3:
         if (v3->unk_B8 == 0) {
-            sub_0200DA58(v3->unk_3C);
+            SysTask_Done(v3->unk_3C);
         }
 
         Heap_FreeToHeap(param1->unk_08);
@@ -529,7 +529,7 @@ static void ov21_021E785C (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     ov21_021E7CCC(param0);
     ov21_021E7AA0(param0, param1);
 
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
     sub_02019EBC(param1->unk_00->unk_00, 1);
 
     sub_02015240(param1->unk_0C, 0);
@@ -882,7 +882,7 @@ static void ov21_021E7FD0 (SysTask * param0, void * param1)
         ov21_021E8084(v0);
         break;
     case 5:
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         *v0->unk_30 = 1;
         break;
     }
@@ -980,7 +980,7 @@ static void ov21_021E81F8 (SysTask * param0, void * param1)
     ov21_021E80D4(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_0C, v0->unk_10, v0->unk_14);
 
     if (v1 == 1) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         *v0->unk_20 = 1;
     }
 }
@@ -1069,7 +1069,7 @@ static void ov21_021E82C8 (SysTask * param0, void * param1)
         v2.x = v0->unk_04;
         v2.y = v0->unk_08;
         sub_02021C50(v0->unk_00, &v2);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         *v0->unk_1C = 1;
         break;
     }

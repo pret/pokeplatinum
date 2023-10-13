@@ -22,8 +22,8 @@ typedef struct {
     UnkStruct_0200C6E4 * unk_04;
     UnkStruct_0200C704 * unk_08;
     u8 padding_0C[4];
-    UnkStruct_02018340 * unk_10;
-    UnkStruct_02002F38 * unk_14;
+    BGL * unk_10;
+    PaletteSys * unk_14;
     UnkStruct_02023FCC * unk_18;
     UnkUnion_02022594 unk_1C[5];
     BOOL unk_30;

@@ -2443,11 +2443,11 @@ static BOOL sub_020402B4 (UnkStruct_0203E724 * param0)
 static BOOL sub_020402FC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0205AA50 * v1 = sub_0203F098(v0, 1);
+    Window * v1 = sub_0203F098(v0, 1);
     u8 * v2 = sub_0203F098(v0, 6);
 
     sub_0200E084(v1, 0);
-    sub_0201A8FC(v1);
+    BGL_DeleteWindow(v1);
 
     *v2 = 0;
     return 0;
@@ -2456,10 +2456,10 @@ static BOOL sub_020402FC (UnkStruct_0203E724 * param0)
 static BOOL sub_0204032C (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0205AA50 * v1 = sub_0203F098(v0, 1);
+    Window * v1 = sub_0203F098(v0, 1);
     u8 * v2 = sub_0203F098(v0, 6);
 
-    sub_0201A8FC(v1);
+    BGL_DeleteWindow(v1);
 
     *v2 = 0;
     return 0;
@@ -2771,7 +2771,7 @@ static BOOL sub_02040824 (UnkStruct_0203E724 * param0)
 static BOOL sub_02040868 (UnkStruct_0203E724 * param0)
 {
     void ** v0;
-    UnkStruct_0205AA50 * v1 = sub_0203F098(param0->unk_34, 1);
+    Window * v1 = sub_0203F098(param0->unk_34, 1);
 
     v0 = sub_0203F098(param0->unk_34, 18);
     *v0 = sub_0200E7FC(v1, 1024 - (18 + 12));
@@ -3163,7 +3163,7 @@ static void sub_02040F5C (SysTask * param0, void * param1)
 
     if (sub_0206574C(v0->unk_04) == 1) {
         sub_02065758(v0->unk_04);
-        sub_0200DA58(v0->unk_00);
+        SysTask_Done(v0->unk_00);
 
         if (v0->unk_08) {
             Heap_FreeToHeap(v0->unk_08);
@@ -4950,7 +4950,7 @@ static BOOL sub_02042E64 (UnkStruct_0203E724 * param0)
     u16 v6 = inline_02049538(param0);
 
     sub_020792F8(v5, v6, *v2, 11);
-    sub_0201ADA4(sub_0203F098(v0, 1), 15);
+    BGL_FillWindow(sub_0203F098(v0, 1), 15);
 
     *v4 = sub_0205D994(sub_0203F098(v0, 1), *v2, sub_02025E44(param0->unk_34->unk_0C), 1);
     sub_0203E764(param0, sub_02040014);
@@ -7928,7 +7928,7 @@ static BOOL sub_02046294 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     Strbuf ** v1 = sub_0203F098(v0, 16);
-    UnkStruct_0205AA50 * v2 = sub_0203F098(v0, 1);
+    Window * v2 = sub_0203F098(v0, 1);
 
     ov8_0224B67C(v0, v2, param0->unk_2C, *v1);
     return 1;
@@ -7940,7 +7940,7 @@ static void sub_020462C0 (SysTask * param0, void * param1)
 
     if (v0->unk_04->unk_0C) {
         ov5_021D5F24(v0->unk_04->unk_0C, 26);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 

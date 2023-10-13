@@ -171,7 +171,7 @@ static void ov23_02242108 (void)
     }
 
     sub_02032110(NULL);
-    sub_0200DA58(Unk_ov23_02257748->unk_14);
+    SysTask_Done(Unk_ov23_02257748->unk_14);
 
     ov23_02253DD8(Unk_ov23_02257748->unk_118);
     ov23_02253DD8(Unk_ov23_02257748->unk_11C);

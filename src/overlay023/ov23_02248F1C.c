@@ -56,7 +56,7 @@ struct UnkStruct_ov23_0224942C_t {
     int unk_44[8][3];
     int unk_A4[17][4];
     UnkStruct_0203CDB0 * unk_1B4;
-    UnkStruct_02018340 * unk_1B8;
+    BGL * unk_1B8;
     UnkStruct_020218BC * unk_1BC;
     UnkStruct_0200C738 unk_1C0;
     UnkStruct_02009714 * unk_34C[4];
@@ -64,7 +64,7 @@ struct UnkStruct_ov23_0224942C_t {
     UnkStruct_ov19_021DA864 unk_36C;
     UnkStruct_02022550 * unk_390[8];
     UnkStruct_02022550 * unk_3B0[17];
-    UnkStruct_0205AA50 unk_3F4;
+    Window unk_3F4;
     int unk_404;
     int unk_408;
     int unk_40C;
@@ -73,14 +73,14 @@ struct UnkStruct_ov23_0224942C_t {
 
 int Unk_ov23_0225776C[8][2];
 
-static void ov23_0224944C(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
+static void ov23_0224944C(BGL * param0, Window * param1);
 static void ov23_02249584(UnkStruct_ov23_0224942C * param0);
 static void ov23_02249214(UnkStruct_0205E884 * const param0, int param1[][2], int param2[][3]);
 static void ov23_022491CC(int param0[][2], int param1[][3]);
 static void ov23_022492C8(int param0[][3], UnkStruct_02022550 * param1[]);
-static void ov23_0224944C(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1);
-static void ov23_02249438(UnkStruct_02018340 * param0);
-static void ov23_0224966C(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int * param2, int * param3, int * param4, UnkStruct_ov23_02249724 * param5);
+static void ov23_0224944C(BGL * param0, Window * param1);
+static void ov23_02249438(BGL * param0);
+static void ov23_0224966C(BGL * param0, Window * param1, int * param2, int * param3, int * param4, UnkStruct_ov23_02249724 * param5);
 static void ov23_02249724(UnkStruct_ov23_02249724 * param0);
 static void ov23_02249778(UnkStruct_ov23_02249724 * param0);
 static int ov23_02249844(UnkStruct_ov23_02249724 * param0, Strbuf *param1);
@@ -94,7 +94,7 @@ static UnkStruct_ov23_0224942C * Unk_ov23_02257768;
 static void ov23_02248F1C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224942C * v0 = param1;
-    UnkStruct_02018340 * v1 = v0->unk_1B8;
+    BGL * v1 = v0->unk_1B8;
     int v2;
 
     Unk_ov23_02257768 = v0;
@@ -184,7 +184,7 @@ static void ov23_02248F1C (SysTask * param0, void * param1)
 
         sub_02021964(v0->unk_1BC);
         sub_0200E084(&v0->unk_3F4, 0);
-        sub_0201A8FC(&v0->unk_3F4);
+        BGL_DeleteWindow(&v0->unk_3F4);
         sub_02019044(v1, 7);
 
         ov23_02249438(v1);
@@ -348,13 +348,13 @@ void ov23_0224942C (UnkStruct_ov23_0224942C * param0)
     }
 }
 
-static void ov23_02249438 (UnkStruct_02018340 * param0)
+static void ov23_02249438 (BGL * param0)
 {
     sub_02019044(param0, 4);
     sub_02019044(param0, 5);
 }
 
-static void ov23_0224944C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1)
+static void ov23_0224944C (BGL * param0, Window * param1)
 {
     sub_0200F344(1, 0x0);
     ov23_02249438(param0);
@@ -435,7 +435,7 @@ static void ov23_0224944C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * par
     sub_0205D8CC(4, 0);
     sub_02019690(7, 32, 0, 4);
     sub_0205D8F4(param0, param1, 7);
-    sub_0201ADA4(param1, 0);
+    BGL_FillWindow(param1, 0);
     sub_02006E84(50, 52, 4, 10 * 0x20, 4 * 0x20, 4);
     sub_0200F338(1);
 }
@@ -467,7 +467,7 @@ static void ov23_02249584 (UnkStruct_ov23_0224942C * param0)
     sub_0200A640(param0->unk_35C[1]);
 }
 
-static void ov23_0224966C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int * param2, int * param3, int * param4, UnkStruct_ov23_02249724 * param5)
+static void ov23_0224966C (BGL * param0, Window * param1, int * param2, int * param3, int * param4, UnkStruct_ov23_02249724 * param5)
 {
     Strbuf* v0;
 

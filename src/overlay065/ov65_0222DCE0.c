@@ -120,10 +120,10 @@ static u8 ov65_02234FC4(int param0);
 static BOOL ov65_02234FCC(UnkStruct_ov65_0222EBE0 * param0, int param1, int param2);
 static void ov65_0222E5E0(void * param0);
 static void ov65_0222E618(void);
-static void ov65_0222E638(UnkStruct_02018340 * param0);
+static void ov65_0222E638(BGL * param0);
 static void ov65_0222EBE0(UnkStruct_ov65_0222EBE0 * param0);
 static void ov65_0222EC2C(UnkStruct_ov65_0222EBE0 * param0);
-static void ov65_0222EC5C(UnkStruct_02018340 * param0);
+static void ov65_0222EC5C(BGL * param0);
 static void ov65_0222ECA8(UnkStruct_ov65_0222EBE0 * param0, NARC * param1);
 static void ov65_0222EDD0(void);
 static void ov65_0222EE18(UnkStruct_ov65_0222EBE0 * param0, NARC * param1);
@@ -135,12 +135,12 @@ static void ov65_022302B0(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
 static int ov65_02230164(UnkStruct_ov65_0222EBE0 * param0);
 static void ov65_02230298(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
 static UnkStruct_ov65_022354D8 * ov65_0222E8D4(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
-static void ov65_0222E90C(UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C * param1, NARC * param2, u32 param3);
+static void ov65_0222E90C(BGL * param0, UnkStruct_ov65_0222E99C * param1, NARC * param2, u32 param3);
 static void ov65_0222E99C(UnkStruct_ov65_0222E99C * param0);
-static void ov65_0222E9C0(UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5, u32 param6);
-static void ov65_0222EA38(UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5);
-static void ov65_0222EAD0(UnkStruct_0205AA50 * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4, u32 param5);
-static void ov65_0222EB1C(UnkStruct_0205AA50 * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4);
+static void ov65_0222E9C0(BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5, u32 param6);
+static void ov65_0222EA38(BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5);
+static void ov65_0222EAD0(Window * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4, u32 param5);
+static void ov65_0222EB1C(Window * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4);
 static int ov65_0222EBAC(u32 param0);
 static int ov65_0222EBB8(void);
 static void ov65_02232F90(UnkStruct_ov65_0222EBE0 * param0, u32 param1);
@@ -180,8 +180,8 @@ static void ov65_022346C4(UnkStruct_ov65_0222EBE0 * param0, Strbuf *param1, u32 
 static void ov65_02234708(UnkStruct_ov65_0222EBE0 * param0, u32 param1, u32 param2, u32 param3, u32 param4);
 static void ov65_02234788(UnkStruct_ov65_0222EBE0 * param0, u8 param1, u8 param2, u8 param3, u8 param4);
 static u32 ov65_0223484C(u32 param0, int * param1);
-static void ov65_02234900(UnkStruct_ov65_0222EBE0 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u32 param4);
-static void ov65_0223498C(UnkStruct_ov65_0222EBE0 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u32 param4);
+static void ov65_02234900(UnkStruct_ov65_0222EBE0 * param0, Window * param1, u32 param2, u32 param3, u32 param4);
+static void ov65_0223498C(UnkStruct_ov65_0222EBE0 * param0, Window * param1, u32 param2, u32 param3, u32 param4);
 static void ov65_02234A68(UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 param2);
 static void ov65_02234CFC(UnkStruct_ov65_0222EBE0 * param0);
 static void ov65_02234D6C(UnkStruct_ov65_0222EBE0 * param0);
@@ -977,7 +977,7 @@ static void ov65_0222E618 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov65_0222E638 (UnkStruct_02018340 * param0)
+static void ov65_0222E638 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -1171,10 +1171,10 @@ static void ov65_0222E638 (UnkStruct_02018340 * param0)
     sub_02019690(6, 32, 0, 54);
     sub_02019690(7, 32, 0, 54);
 
-    sub_02019060(0, 3);
-    sub_02019060(1, 1);
-    sub_02019060(3, 0);
-    sub_02019060(2, 0);
+    BGL_SetPriority(0, 3);
+    BGL_SetPriority(1, 1);
+    BGL_SetPriority(3, 0);
+    BGL_SetPriority(2, 0);
 
     G2_BlendNone();
     G2S_BlendNone();
@@ -1223,7 +1223,7 @@ static UnkStruct_ov65_022354D8 * ov65_0222E8D4 (UnkStruct_ov65_0222EBE0 * param0
     return NULL;
 }
 
-static void ov65_0222E90C (UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C * param1, NARC * param2, u32 param3)
+static void ov65_0222E90C (BGL * param0, UnkStruct_ov65_0222E99C * param1, NARC * param2, u32 param3)
 {
     sub_02007130(param2, 13, 0, 8 * 32, 2 * 32, param3);
     sub_02007130(param2, 13, 4, 13 * 32, 2 * 32, param3);
@@ -1252,7 +1252,7 @@ static void ov65_0222E99C (UnkStruct_ov65_0222E99C * param0)
     }
 }
 
-static void ov65_0222E9C0 (UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5, u32 param6)
+static void ov65_0222E9C0 (BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5, u32 param6)
 {
     int v0;
 
@@ -1264,7 +1264,7 @@ static void ov65_0222E9C0 (UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C 
     sub_0201C3C0(param0, param2);
 }
 
-static void ov65_0222EA38 (UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5)
+static void ov65_0222EA38 (BGL * param0, UnkStruct_ov65_0222E99C * param1, u32 param2, u8 param3, u8 param4, u32 param5)
 {
     u8 v0 = 0;
     u8 v1 = 0;
@@ -1330,7 +1330,7 @@ static void ov65_0222EA38 (UnkStruct_02018340 * param0, UnkStruct_ov65_0222E99C 
     ov65_0222E9C0(param0, param1, param2, param3, param4, v1, v0);
 }
 
-static void ov65_0222EAD0 (UnkStruct_0205AA50 * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4, u32 param5)
+static void ov65_0222EAD0 (Window * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4, u32 param5)
 {
     int v0;
 
@@ -1339,7 +1339,7 @@ static void ov65_0222EAD0 (UnkStruct_0205AA50 * param0, UnkStruct_ov65_0222E99C 
     sub_0201C2B4(param0, v0 + param5);
 }
 
-static void ov65_0222EB1C (UnkStruct_0205AA50 * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4)
+static void ov65_0222EB1C (Window * param0, UnkStruct_ov65_0222E99C * param1, u16 param2, u16 param3, u32 param4)
 {
     u8 v0 = 0;
     u8 v1 = 0;
@@ -1444,7 +1444,7 @@ static void ov65_0222EC2C (UnkStruct_ov65_0222EBE0 * param0)
     Strbuf_Free(param0->unk_170);
 }
 
-static void ov65_0222EC5C (UnkStruct_02018340 * param0)
+static void ov65_0222EC5C (BGL * param0)
 {
     sub_02019044(param0, 7);
     sub_02019044(param0, 6);
@@ -1459,7 +1459,7 @@ static void ov65_0222EC5C (UnkStruct_02018340 * param0)
 
 static void ov65_0222ECA8 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1)
 {
-    UnkStruct_02018340 * v0 = param0->unk_15C;
+    BGL * v0 = param0->unk_15C;
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
@@ -1532,12 +1532,12 @@ static void ov65_0222EE98 (UnkStruct_ov65_0222EBE0 * param0)
     int v0, v1;
 
     if (sub_0201A7CC(&param0->unk_350)) {
-        sub_0200DC9C(&param0->unk_350, 0);
-        sub_0201A8FC(&param0->unk_350);
+        Window_Clear(&param0->unk_350, 0);
+        BGL_DeleteWindow(&param0->unk_350);
     }
 
-    sub_0201A7E8(param0->unk_15C, &param0->unk_350, 3, 5, 1, 22, 2, 13, 512 - 18 * 3);
-    sub_0201ADA4(&param0->unk_350, 0x8000);
+    BGL_AddWindow(param0->unk_15C, &param0->unk_350, 3, 5, 1, 22, 2, 13, 512 - 18 * 3);
+    BGL_FillWindow(&param0->unk_350, 0x8000);
     MessageLoader_GetStrbuf(param0->unk_168, 21, param0->unk_178);
 
     {
@@ -1556,23 +1556,23 @@ static void ov65_0222EF4C (UnkStruct_ov65_0222EBE0 * param0)
     ov65_02232DFC(param0);
 
     if (sub_0201A7CC(&param0->unk_350)) {
-        sub_0201A8FC(&param0->unk_350);
+        BGL_DeleteWindow(&param0->unk_350);
     }
 
     if (sub_0201A7CC(&param0->unk_330)) {
-        sub_0201A8FC(&param0->unk_330);
+        BGL_DeleteWindow(&param0->unk_330);
     }
 
     if (sub_0201A7CC(&param0->unk_390)) {
-        sub_0201A8FC(&param0->unk_390);
+        BGL_DeleteWindow(&param0->unk_390);
     }
 
     if (sub_0201A7CC(&param0->unk_340)) {
-        sub_0201A8FC(&param0->unk_340);
+        BGL_DeleteWindow(&param0->unk_340);
     }
 
     if (sub_0201A7CC(&param0->unk_370)) {
-        sub_0201A8FC(&param0->unk_370);
+        BGL_DeleteWindow(&param0->unk_370);
     }
 
     if (param0->unk_150) {
@@ -1585,7 +1585,7 @@ static void ov65_0222EF4C (UnkStruct_ov65_0222EBE0 * param0)
     }
 
     if (sub_0201A7CC(&param0->unk_360)) {
-        sub_0201A8FC(&param0->unk_360);
+        BGL_DeleteWindow(&param0->unk_360);
     }
 }
 
@@ -1640,10 +1640,10 @@ static int ov65_0222F010 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov65_0222EE98(param0);
 
         if (!DWC_CheckHasProfile(sub_0202AD28(param0->unk_00))) {
-            sub_02019060(0, 3);
-            sub_02019060(1, 0);
-            sub_02019060(3, 0);
-            sub_02019060(2, 1);
+            BGL_SetPriority(0, 3);
+            BGL_SetPriority(1, 0);
+            BGL_SetPriority(3, 0);
+            BGL_SetPriority(2, 1);
 
             ov65_02232CA8(param0, 18);
 
@@ -1663,7 +1663,7 @@ static int ov65_0222F010 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_0222F164 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_02238944, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 2;
     }
@@ -1697,10 +1697,10 @@ static int ov65_0222F21C (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     if (gCoreSys.padInput & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         ov65_02232CA8(param0, 21);
-        sub_02019060(3, 0);
-        sub_02019060(2, 1);
-        sub_02019060(1, 0);
-        sub_02019060(0, 3);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(2, 1);
+        BGL_SetPriority(1, 0);
+        BGL_SetPriority(0, 3);
 
         param0->unk_184 = sub_02002054(param0->unk_15C, &Unk_ov65_02238954, ((512 - (18 + 12)) - 9), 11, 1, 54);
         param0->unk_3A8 = 4;
@@ -1718,7 +1718,7 @@ static int ov65_0222F288 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         return param1;
     } else {
         sub_0200E084(&param0->unk_360, 0);
-        sub_0201A8FC(&param0->unk_360);
+        BGL_DeleteWindow(&param0->unk_360);
 
         if (v1 == 0) {
             ov65_02232CA8(param0, 22);
@@ -1740,12 +1740,12 @@ static int ov65_0222F304 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (v1 == 0xffffffff) {
         return param1;
     } else {
-        sub_02019060(3, 0);
-        sub_02019060(2, 0);
-        sub_02019060(1, 1);
-        sub_02019060(0, 3);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(2, 0);
+        BGL_SetPriority(1, 1);
+        BGL_SetPriority(0, 3);
         sub_0200E084(&param0->unk_360, 0);
-        sub_0201A8FC(&param0->unk_360);
+        BGL_DeleteWindow(&param0->unk_360);
 
         if (v1 == 0) {
             WiFiList_Init(param0->unk_00);
@@ -1773,12 +1773,12 @@ static int ov65_0222F3DC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (v1 == 0xffffffff) {
         return param1;
     } else {
-        sub_02019060(0, 3);
-        sub_02019060(1, 1);
-        sub_02019060(3, 0);
-        sub_02019060(2, 0);
+        BGL_SetPriority(0, 3);
+        BGL_SetPriority(1, 1);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(2, 0);
         sub_0200E084(&param0->unk_360, 0);
-        sub_0201A8FC(&param0->unk_360);
+        BGL_DeleteWindow(&param0->unk_360);
 
         if (v1 == 0) {
             param0->unk_3A8 = 14;
@@ -1797,10 +1797,10 @@ static int ov65_0222F3DC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_0222F490 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    sub_02019060(0, 3);
-    sub_02019060(1, 1);
-    sub_02019060(3, 0);
-    sub_02019060(2, 0);
+    BGL_SetPriority(0, 3);
+    BGL_SetPriority(1, 1);
+    BGL_SetPriority(3, 0);
+    BGL_SetPriority(2, 0);
     param0->unk_3A8 = 15;
     return param1;
 }
@@ -1970,7 +1970,7 @@ static int ov65_0222F7AC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (gCoreSys.padInput & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         if (sub_0201A7CC(&param0->unk_360)) {
             sub_0200E084(&param0->unk_360, 0);
-            sub_0201A8FC(&param0->unk_360);
+            BGL_DeleteWindow(&param0->unk_360);
         }
 
         param0->unk_3A8 = 8;
@@ -2001,7 +2001,7 @@ static int ov65_0222F808 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (gCoreSys.padInput & (PAD_BUTTON_B | PAD_BUTTON_A)) {
         if (sub_0201A7CC(&param0->unk_360)) {
             sub_0200E084(&param0->unk_360, 0);
-            sub_0201A8FC(&param0->unk_360);
+            BGL_DeleteWindow(&param0->unk_360);
         }
 
         ov65_02232B58(param0, 88, 0);
@@ -2013,7 +2013,7 @@ static int ov65_0222F808 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_0222F868 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 12;
     }
@@ -2068,12 +2068,12 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         }
 
         if (sub_0201A7CC(&param0->unk_350)) {
-            sub_0200DC9C(&param0->unk_350, 0);
-            sub_0201A8FC(&param0->unk_350);
+            Window_Clear(&param0->unk_350, 0);
+            BGL_DeleteWindow(&param0->unk_350);
         }
 
         if (sub_0201A7CC(&param0->unk_340)) {
-            sub_0201A8FC(&param0->unk_340);
+            BGL_DeleteWindow(&param0->unk_340);
         }
 
         sub_02019EBC(param0->unk_15C, 3);
@@ -2087,7 +2087,7 @@ static int ov65_0222F90C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         param0->unk_1158 = 1;
 
         if (param0->unk_14C) {
-            sub_0201A8FC(&param0->unk_370);
+            BGL_DeleteWindow(&param0->unk_370);
             sub_02001384(param0->unk_150, NULL, NULL);
             param0->unk_150 = NULL;
             sub_02013A3C(param0->unk_14C);
@@ -2120,7 +2120,7 @@ asm static int ov65_0222FAA0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     add r4, r1, #0
     lsl r0, r0, #0x18
     lsr r0, r0, #0x18
-    bl sub_0201D724
+    bl Message_Printing
     cmp r0, #0
     beq _0222FABC
     add r0, r4, #0
@@ -2193,7 +2193,7 @@ asm static int ov65_0222FAA0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_0222FB44 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -2296,7 +2296,7 @@ static int ov65_0222FCDC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
             if (sub_0201A7CC(&param0->unk_360)) {
                 sub_0200E084(&param0->unk_360, 0);
-                sub_0201A8FC(&param0->unk_360);
+                BGL_DeleteWindow(&param0->unk_360);
             }
         }
     }
@@ -2317,7 +2317,7 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
         return;
     }
 
-    sub_0201ADA4(&param0->unk_340, 0);
+    BGL_FillWindow(&param0->unk_340, 0);
 
     v1 = TrainerInfo_Gender(v4);
 
@@ -2367,26 +2367,26 @@ static void ov65_0222FD70 (UnkStruct_ov65_0222EBE0 * param0)
 static void ov65_0222FED8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 }
 
 static void ov65_0222FEEC (UnkStruct_ov65_0222EBE0 * param0)
 {
     if (sub_0201A7CC(&param0->unk_340)) {
-        sub_0201A8FC(&param0->unk_340);
+        BGL_DeleteWindow(&param0->unk_340);
     }
 
     if (sub_0201A7CC(&param0->unk_350)) {
-        sub_0200DC9C(&param0->unk_350, 0);
-        sub_0201A8FC(&param0->unk_350);
+        Window_Clear(&param0->unk_350, 0);
+        BGL_DeleteWindow(&param0->unk_350);
     }
 
-    sub_0201A7E8(param0->unk_15C, &param0->unk_340, 3, 1, 1, 28, 2, 13, ((512 - 18 * 3) - (28 * 2)));
-    sub_0201A7E8(param0->unk_15C, &param0->unk_350, 1, 1, 1, 28, 2, 13, (((512 - (18 + 12)) - 9) - (28 * 2)));
-    sub_0201ADA4(&param0->unk_350, 15);
+    BGL_AddWindow(param0->unk_15C, &param0->unk_340, 3, 1, 1, 28, 2, 13, ((512 - 18 * 3) - (28 * 2)));
+    BGL_AddWindow(param0->unk_15C, &param0->unk_350, 1, 1, 1, 28, 2, 13, (((512 - (18 + 12)) - 9) - (28 * 2)));
+    BGL_FillWindow(&param0->unk_350, 15);
     sub_0201A9A4(&param0->unk_350);
-    sub_0200DC48(&param0->unk_350, 0, ((512 - (18 + 12)) - 9), 11);
+    Window_Show(&param0->unk_350, 0, ((512 - (18 + 12)) - 9), 11);
 }
 
 static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
@@ -2420,7 +2420,7 @@ static int ov65_0222FFAC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     sub_02019EBC(param0->unk_15C, 3);
 
     if (param0->unk_14C) {
-        sub_0201A8FC(&param0->unk_370);
+        BGL_DeleteWindow(&param0->unk_370);
         sub_02001384(param0->unk_150, NULL, NULL);
         param0->unk_150 = NULL;
         sub_02013A3C(param0->unk_14C);
@@ -2546,9 +2546,9 @@ static int ov65_02230164 (UnkStruct_ov65_0222EBE0 * param0)
         ov65_022336C4(param0);
 
         if (v6 == 1) {
-            sub_02005748(1615);
+            Sound_PlayEffect(1615);
         } else if (v7 == 1) {
-            sub_02005748(1615);
+            Sound_PlayEffect(1615);
         }
     }
 
@@ -2615,7 +2615,7 @@ static int ov65_022302C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
                     ov65_02232B58(param0, 91, 0);
                 }
 
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 ov65_0222FD70(param0);
                 param0->unk_3A8 = 20;
                 ov65_02232F90(param0, 54);
@@ -2640,7 +2640,7 @@ static int ov65_022302C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     v1 = ov65_0223012C(param0);
 
     if ((0 != v1) && (param0->unk_3D0 != -1)) {
-        sub_02005748(1572);
+        Sound_PlayEffect(1572);
         param0->unk_3A8 = 48;
         return param1;
     }
@@ -2669,7 +2669,7 @@ static int ov65_022302C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (param0->unk_3D0 == -1) {
         if (gCoreSys.padInput & PAD_BUTTON_B) {
             if (ov65_0222DDFC(v4)) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 param0->unk_3A8 = 39;
                 ov65_02232F90(param0, 54);
                 return param1;
@@ -2684,7 +2684,7 @@ static int ov65_022302C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     case 0:
         return param1;
     case 1:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         if (ov65_0222DDFC(v4)) {
             param0->unk_3A8 = 39;
@@ -2699,7 +2699,7 @@ static int ov65_022302C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov65_02232F90(param0, 54);
         return param1;
     case 3:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         if (ov65_0222DDFC(v4)) {
             ov65_022355B0(&param0->unk_3EC);
@@ -2717,7 +2717,7 @@ static int ov65_022302C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         return param1;
         break;
     case 2:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         if (ov65_0222DDFC(v4)) {
             param0->unk_3A8 = 39;
@@ -2741,7 +2741,7 @@ static int ov65_022305EC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     if (0 != ov65_02230140(param0)) {
         param0->unk_3A8 = 19;
         ov65_0223503C(param0);
-    } else if (sub_0201D724(param0->unk_180) == 0) {
+    } else if (Message_Printing(param0->unk_180) == 0) {
         param0->unk_3A8 = 19;
 
         ov65_0223503C(param0);
@@ -2837,7 +2837,7 @@ static int ov65_022307B0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         return param1;
     }
 
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         if (gCoreSys.padInput & (PAD_BUTTON_B | PAD_BUTTON_A)) {
             ov65_02232DFC(param0);
             param0->unk_3A8 = 24;
@@ -2905,7 +2905,7 @@ static int ov65_022309D0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         return param1;
     }
 
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         sub_0202B13C(param0->unk_00, ov4_021D2388());
 
         param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
@@ -2967,7 +2967,7 @@ static int ov65_02230AF8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov65_02232E58(param0, 16);
     }
 
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         param0->unk_3BC = 30;
         return param1;
     }
@@ -2998,7 +2998,7 @@ static int ov65_02230AF8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_02230BB4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -3020,7 +3020,7 @@ static int ov65_02230C04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         return param1;
     }
 
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         param0->unk_3BC = 30;
         return param1;
     }
@@ -3094,7 +3094,7 @@ static int ov65_02230D20 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
     ov65_022355FC(&param0->unk_3EC);
 
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 41;
     }
@@ -3294,12 +3294,12 @@ static int ov65_02230E04 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (sub_0201A7CC(&param0->unk_380)) {
-        sub_0200DC9C(&param0->unk_380, 0);
-        sub_0201A8FC(&param0->unk_380);
+        Window_Clear(&param0->unk_380, 0);
+        BGL_DeleteWindow(&param0->unk_380);
     }
 
-    sub_0201A7E8(param0->unk_15C, &param0->unk_380, 2, 16, 3, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
-    sub_0200DC48(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
+    BGL_AddWindow(param0->unk_15C, &param0->unk_380, 2, 16, 3, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
+    Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
     v2.unk_00 = param0->unk_154;
     v2.unk_0C = &param0->unk_380;
@@ -3322,11 +3322,11 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     ov65_022355FC(&param0->unk_3EC);
 
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         if (0 != ov65_02230140(param0)) {
             param0->unk_3A8 = 19;
-            sub_0200DC9C(&param0->unk_380, 0);
-            sub_0201A8FC(&param0->unk_380);
+            Window_Clear(&param0->unk_380, 0);
+            BGL_DeleteWindow(&param0->unk_380);
             sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
             sub_02013A3C(param0->unk_154);
             ov65_02232DFC(param0);
@@ -3347,10 +3347,10 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
     case 0xfffffffe:
         param0->unk_3A8 = 19;
         ov65_02232DFC(param0);
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         break;
     default:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         if ((v0 == 19) && (v2 != 0)) {
             if (v2 == 1) {
@@ -3369,8 +3369,8 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
             ov65_02232B58(param0, 103, 0);
             param0->unk_3A8 = 29;
         } else if ((v0 == 0) || (v0 == 1) || (v0 == 29)) {
-            sub_0200DC9C(&param0->unk_380, 0);
-            sub_0201A8FC(&param0->unk_380);
+            Window_Clear(&param0->unk_380, 0);
+            BGL_DeleteWindow(&param0->unk_380);
             sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
             sub_02013A3C(param0->unk_154);
             ov65_0223128C(param0, v0);
@@ -3404,8 +3404,8 @@ static int ov65_02230FBC (UnkStruct_ov65_0222EBE0 * param0, int param1)
         break;
     }
 
-    sub_0200DC9C(&param0->unk_380, 0);
-    sub_0201A8FC(&param0->unk_380);
+    Window_Clear(&param0->unk_380, 0);
+    BGL_DeleteWindow(&param0->unk_380);
     sub_02001384(param0->unk_158, NULL, &param0->unk_3D4);
     sub_02013A3C(param0->unk_154);
 
@@ -3487,12 +3487,12 @@ static int ov65_0223128C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     }
 
     if (sub_0201A7CC(&param0->unk_380)) {
-        sub_0200DC9C(&param0->unk_380, 0);
-        sub_0201A8FC(&param0->unk_380);
+        Window_Clear(&param0->unk_380, 0);
+        BGL_DeleteWindow(&param0->unk_380);
     }
 
-    sub_0201A7E8(param0->unk_15C, &param0->unk_380, 2, 16, 9, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
-    sub_0200DC48(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
+    BGL_AddWindow(param0->unk_15C, &param0->unk_380, 2, 16, 9, 15, v1 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)) - v1 * 2);
+    Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
     v2.unk_00 = param0->unk_154;
     v2.unk_0C = &param0->unk_380;
@@ -3512,15 +3512,15 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (0 != ov65_02230140(param0)) {
         param0->unk_3A8 = 19;
-        sub_0200DC9C(&param0->unk_380, 0);
-        sub_0201A8FC(&param0->unk_380);
+        Window_Clear(&param0->unk_380, 0);
+        BGL_DeleteWindow(&param0->unk_380);
         sub_02001384(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
         sub_02013A3C(param0->unk_154);
         ov65_02232DFC(param0);
         return param1;
     }
 
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -3530,11 +3530,11 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     case 0xffffffff:
         return param1;
     case 0xfffffffe:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         param0->unk_3A8 = 36;
         break;
     default:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         ov65_02232E58(param0, v0);
         param0->unk_3A8 = 19;
         ov65_02232DFC(param0);
@@ -3559,8 +3559,8 @@ static int ov65_02231440 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov65_0223500C(param0, v1);
     }
 
-    sub_0200DC9C(&param0->unk_380, 0);
-    sub_0201A8FC(&param0->unk_380);
+    Window_Clear(&param0->unk_380, 0);
+    BGL_DeleteWindow(&param0->unk_380);
     sub_02001384(param0->unk_158, NULL, &param0->unk_3D6[param0->unk_3DC]);
     sub_02013A3C(param0->unk_154);
 
@@ -3717,7 +3717,7 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         }
     }
 
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -3762,8 +3762,8 @@ static int ov65_022316F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
             }
         }
 
-        sub_0201A7E8(param0->unk_15C, &param0->unk_380, 2, 16, 11 + ((3 - v6) * 2), 15, v6 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
-        sub_0200DC48(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
+        BGL_AddWindow(param0->unk_15C, &param0->unk_380, 2, 16, 11 + ((3 - v6) * 2), 15, v6 * 2, 13, ((((((512 - (18 + 12)) - 9) - 10) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+        Window_Show(&param0->unk_380, 1, ((512 - (18 + 12)) - 9), 11);
 
         v7.unk_00 = param0->unk_154;
         v7.unk_0C = &param0->unk_380;
@@ -3879,8 +3879,8 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     v7 = ov65_0222E8D4(param0, v2);
 
     if (sub_020383E8()) {
-        sub_0200DC9C(&param0->unk_380, 0);
-        sub_0201A8FC(&param0->unk_380);
+        Window_Clear(&param0->unk_380, 0);
+        BGL_DeleteWindow(&param0->unk_380);
         sub_02001384(param0->unk_158, NULL, NULL);
         sub_02013A3C(param0->unk_154);
 
@@ -3918,11 +3918,11 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         return param1;
 
     case 0xfffffffe:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         param0->unk_3A8 = 19;
         break;
     default:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         if (v0 == 1) {
             param0->unk_3A8 = 19;
@@ -4043,8 +4043,8 @@ static int ov65_02231A98 (UnkStruct_ov65_0222EBE0 * param0, int param1)
         ov65_02232DFC(param0);
     }
 
-    sub_0200DC9C(&param0->unk_380, 0);
-    sub_0201A8FC(&param0->unk_380);
+    Window_Clear(&param0->unk_380, 0);
+    BGL_DeleteWindow(&param0->unk_380);
     sub_02001384(param0->unk_158, NULL, NULL);
     sub_02013A3C(param0->unk_154);
 
@@ -4331,7 +4331,7 @@ static int ov65_02232358 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static BOOL ov65_02232390 (UnkStruct_ov65_0222EBE0 * param0)
 {
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         return 1;
     }
 
@@ -4428,7 +4428,7 @@ static int ov65_02232558 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_02232564 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -4456,7 +4456,7 @@ static int ov65_022325AC (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_022325C4 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 58;
     }
@@ -4469,7 +4469,7 @@ static int ov65_02232608 (UnkStruct_ov65_0222EBE0 * param0, int param1)
     int v0;
     int v1 = sub_02002114(param0->unk_184, 54);
 
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -4498,7 +4498,7 @@ static int ov65_02232608 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_02232698 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -4520,7 +4520,7 @@ static int ov65_02232698 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
 static int ov65_022326F0 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 {
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -4543,7 +4543,7 @@ static int ov65_02232734 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     sub_020388F4(0, 1);
 
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 62;
     }
@@ -4556,7 +4556,7 @@ static int ov65_0223278C (UnkStruct_ov65_0222EBE0 * param0, int param1)
     int v0;
     int v1;
 
-    if (sub_0201D724(param0->unk_180) != 0) {
+    if (Message_Printing(param0->unk_180) != 0) {
         return param1;
     }
 
@@ -4623,7 +4623,7 @@ static int ov65_0223288C (UnkStruct_ov65_0222EBE0 * param0, int param1)
         }
     }
 
-    if (sub_0201D724(param0->unk_180) == 0) {
+    if (Message_Printing(param0->unk_180) == 0) {
         param0->unk_184 = sub_02002100(param0->unk_15C, &Unk_ov65_0223894C, ((512 - (18 + 12)) - 9), 11, 54);
         param0->unk_3A8 = 64;
     }
@@ -4744,22 +4744,22 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
 
     if (sub_0201A7CC(&param0->unk_360)) {
         sub_0200E084(&param0->unk_360, 0);
-        sub_0201A8FC(&param0->unk_360);
+        BGL_DeleteWindow(&param0->unk_360);
     }
 
     if (sub_0201A7CC(&param0->unk_330)) {
         sub_0200E084(&param0->unk_330, 0);
-        sub_0201A8FC(&param0->unk_330);
+        BGL_DeleteWindow(&param0->unk_330);
     }
 
     if (param0->unk_180 != 8) {
-        if (sub_0201D724(param0->unk_180) != 0) {
+        if (Message_Printing(param0->unk_180) != 0) {
             sub_0201D730(param0->unk_180);
             param0->unk_180 = 8;
         }
     }
 
-    sub_0201A7E8(param0->unk_15C, &param0->unk_330, 2, 2, 19, 27, 4, 12, (((512 - (18 + 12)) - 73) - (27 * 4)));
+    BGL_AddWindow(param0->unk_15C, &param0->unk_330, 2, 2, 19, 27, 4, 12, (((512 - (18 + 12)) - 73) - (27 * 4)));
 
     if (param2) {
         MessageLoader_GetStrbuf(param0->unk_16C, param1, param0->unk_170);
@@ -4768,7 +4768,7 @@ static void ov65_02232B58 (UnkStruct_ov65_0222EBE0 * param0, int param1, BOOL pa
     }
 
     sub_0200C388(param0->unk_164, param0->unk_174, param0->unk_170);
-    sub_0201ADA4(&param0->unk_330, 15);
+    BGL_FillWindow(&param0->unk_330, 15);
     sub_0200E060(&param0->unk_330, 1, (512 - (18 + 12)), 10);
     sub_02002AC8(1);
     sub_02002AE4(0);
@@ -4784,27 +4784,27 @@ static void ov65_02232CA8 (UnkStruct_ov65_0222EBE0 * param0, int param1)
 
     if (sub_0201A7CC(&param0->unk_360)) {
         sub_0200E084(&param0->unk_360, 0);
-        sub_0201A8FC(&param0->unk_360);
+        BGL_DeleteWindow(&param0->unk_360);
     }
 
     if (sub_0201A7CC(&param0->unk_330)) {
         sub_0200E084(&param0->unk_330, 0);
-        sub_0201A8FC(&param0->unk_330);
+        BGL_DeleteWindow(&param0->unk_330);
     }
 
     if (param0->unk_180 != 8) {
-        if (sub_0201D724(param0->unk_180) != 0) {
+        if (Message_Printing(param0->unk_180) != 0) {
             sub_0201D730(param0->unk_180);
             param0->unk_180 = 8;
         }
     }
 
-    sub_0201A7E8(param0->unk_15C, &param0->unk_360, 2, 4, 4, 23, 16, 12, (((512 - (18 + 12)) - 9) - (23 * 16)));
+    BGL_AddWindow(param0->unk_15C, &param0->unk_360, 2, 4, 4, 23, 16, 12, (((512 - (18 + 12)) - 9) - (23 * 16)));
     MessageLoader_GetStrbuf(param0->unk_16C, param1, param0->unk_170);
     sub_0200C388(param0->unk_164, param0->unk_174, param0->unk_170);
 
-    sub_0201ADA4(&param0->unk_360, 15);
-    sub_0200DC48(&param0->unk_360, 1, ((512 - (18 + 12)) - 9), 11);
+    BGL_FillWindow(&param0->unk_360, 15);
+    Window_Show(&param0->unk_360, 1, ((512 - (18 + 12)) - 9), 11);
 
     param0->unk_180 = sub_0201D738(&param0->unk_360, 1, param0->unk_174, 0, 0, 0xff, NULL);
     sub_0201A9A4(&param0->unk_360);
@@ -4826,7 +4826,7 @@ static void ov65_02232DFC (UnkStruct_ov65_0222EBE0 * param0)
     ov65_02232F50(param0);
 
     if (param0->unk_180 != 8) {
-        if (sub_0201D724(param0->unk_180) != 0) {
+        if (Message_Printing(param0->unk_180) != 0) {
             sub_0201D730(param0->unk_180);
             param0->unk_180 = 8;
         }
@@ -4834,7 +4834,7 @@ static void ov65_02232DFC (UnkStruct_ov65_0222EBE0 * param0)
 
     if (sub_0201A7CC(&param0->unk_330)) {
         sub_0200E084(&param0->unk_330, 0);
-        sub_0201A8FC(&param0->unk_330);
+        BGL_DeleteWindow(&param0->unk_330);
     }
 }
 
@@ -4911,7 +4911,7 @@ static void ov65_02232F50 (UnkStruct_ov65_0222EBE0 * param0)
 
         if (sub_0201A7CC(&param0->unk_330)) {
             sub_0200E084(&param0->unk_330, 0);
-            sub_0201A8FC(&param0->unk_330);
+            BGL_DeleteWindow(&param0->unk_330);
         }
     }
 }
@@ -5007,7 +5007,7 @@ static u32 ov65_022330C0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
         if (param0->unk_BE0.unk_70 != (v0 - 3)) {
             param0->unk_BE0.unk_70 = (v0 - 3);
 
-            sub_02005748(1505);
+            Sound_PlayEffect(1505);
             ov65_022336D4(param0);
 
             param0->unk_BE0.unk_75 = 1;
@@ -5046,10 +5046,10 @@ static u32 ov65_022330C0 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
             param0->unk_BE0.unk_73 = 0;
 
             ov65_02234DA0(param0);
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
         } else {
             if (v2 != 0) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 ov65_0223327C(param0, v2);
                 ov65_02233874(param0, param1);
             }
@@ -5140,7 +5140,7 @@ static void ov65_022332C4 (u32 param0, u32 param1, void * param2)
     switch (param1) {
     case 0:
         v0->unk_BE0.unk_71 = v1;
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         break;
     default:
         break;
@@ -5178,20 +5178,20 @@ static void ov65_022332FC (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
         v3 = v0 % 4;
 
         sub_0201A7A0(&param0->unk_BE0.unk_7C[v0]);
-        sub_0201A7E8(param0->unk_15C, &param0->unk_BE0.unk_7C[v0], 5, 4 + (16 * v2), 1 + (6 * v3), 9, 3, 15, 1 + ((9 * 3) * v0));
-        sub_0201ADA4(&param0->unk_BE0.unk_7C[v0], 0);
+        BGL_AddWindow(param0->unk_15C, &param0->unk_BE0.unk_7C[v0], 5, 4 + (16 * v2), 1 + (6 * v3), 9, 3, 15, 1 + ((9 * 3) * v0));
+        BGL_FillWindow(&param0->unk_BE0.unk_7C[v0], 0);
         sub_0201A9A4(&param0->unk_BE0.unk_7C[v0]);
 
         for (v1 = 0; v1 < 2; v1++) {
             sub_0201A7A0(&param0->unk_BE0.unk_FC[v0][v1]);
-            sub_0201A7E8(param0->unk_15C, &param0->unk_BE0.unk_FC[v0][v1], 5, 1 + (16 * v2) + (v1 * 12), 1 + (6 * v3), 2, 3, 13, ((((9 * 3) * 8) + 1) + 1) + ((2 * 3) * ((v0 * 2) + v1)));
-            sub_0201ADA4(&param0->unk_BE0.unk_FC[v0][v1], 0);
+            BGL_AddWindow(param0->unk_15C, &param0->unk_BE0.unk_FC[v0][v1], 5, 1 + (16 * v2) + (v1 * 12), 1 + (6 * v3), 2, 3, 13, ((((9 * 3) * 8) + 1) + 1) + ((2 * 3) * ((v0 * 2) + v1)));
+            BGL_FillWindow(&param0->unk_BE0.unk_FC[v0][v1], 0);
             sub_0201A9A4(&param0->unk_BE0.unk_FC[v0][v1]);
         }
     }
 
-    sub_0201A7E8(param0->unk_15C, &param0->unk_BE0.unk_1FC, 7, 1, 1, 30, 21, 15, 1);
-    sub_0201ADA4(&param0->unk_BE0.unk_1FC, 0);
+    BGL_AddWindow(param0->unk_15C, &param0->unk_BE0.unk_1FC, 7, 1, 1, 30, 21, 15, 1);
+    BGL_FillWindow(&param0->unk_BE0.unk_1FC, 0);
     sub_0201A9A4(&param0->unk_BE0.unk_1FC);
 
     ov65_02234A68(param0, param1, param2);
@@ -5204,14 +5204,14 @@ static void ov65_02233570 (UnkStruct_ov65_0222EBE0 * param0)
     ov65_02234CFC(param0);
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_0201A8FC(&param0->unk_BE0.unk_7C[v0]);
+        BGL_DeleteWindow(&param0->unk_BE0.unk_7C[v0]);
 
         for (v1 = 0; v1 < 2; v1++) {
-            sub_0201A8FC(&param0->unk_BE0.unk_FC[v0][v1]);
+            BGL_DeleteWindow(&param0->unk_BE0.unk_FC[v0][v1]);
         }
     }
 
-    sub_0201A8FC(&param0->unk_BE0.unk_1FC);
+    BGL_DeleteWindow(&param0->unk_BE0.unk_1FC);
     Heap_FreeToHeap(param0->unk_BE0.unk_04);
 
     for (v0 = 0; v0 < 7; v0++) {
@@ -5340,11 +5340,11 @@ static void ov65_0223370C (UnkStruct_ov65_0222EBE0 * param0)
                 ov65_02234900(param0, &param0->unk_BE0.unk_7C[v0], v6, v7, v0);
                 ov65_0223498C(param0, param0->unk_BE0.unk_FC[v0], v6, v7, v0);
             } else {
-                sub_0201ADA4(&param0->unk_BE0.unk_7C[v0], 0);
+                BGL_FillWindow(&param0->unk_BE0.unk_7C[v0], 0);
                 sub_0201A9A4(&param0->unk_BE0.unk_7C[v0]);
 
                 for (v1 = 0; v1 < 2; v1++) {
-                    sub_0201ADA4(&param0->unk_BE0.unk_FC[v0][v1], 0);
+                    BGL_FillWindow(&param0->unk_BE0.unk_FC[v0][v1], 0);
                     sub_0201A9A4(&param0->unk_BE0.unk_FC[v0][v1]);
                 }
             }
@@ -5386,7 +5386,7 @@ static void ov65_02233874 (UnkStruct_ov65_0222EBE0 * param0, u32 param1)
         ov65_02234628(param0);
     }
 
-    sub_0201ADA4(&param0->unk_BE0.unk_1FC, 0x0);
+    BGL_FillWindow(&param0->unk_BE0.unk_1FC, 0x0);
 
     v0[param0->unk_BE0.unk_74](param0, param1);
 
@@ -6559,13 +6559,13 @@ static u32 ov65_0223484C (u32 param0, int * param1)
     return v0;
 }
 
-static void ov65_02234900 (UnkStruct_ov65_0222EBE0 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u32 param4)
+static void ov65_02234900 (UnkStruct_ov65_0222EBE0 * param0, Window * param1, u32 param2, u32 param3, u32 param4)
 {
     int v0;
     int v1;
     int v2;
 
-    sub_0201ADA4(param1, 0);
+    BGL_FillWindow(param1, 0);
 
     v2 = Unk_ov65_02238934[param3];
     v0 = sub_0202AD2C(param0->unk_00, param2 - 1, 8);
@@ -6584,7 +6584,7 @@ static void ov65_02234900 (UnkStruct_ov65_0222EBE0 * param0, UnkStruct_0205AA50 
     sub_0201A9A4(param1);
 }
 
-static void ov65_0223498C (UnkStruct_ov65_0222EBE0 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3, u32 param4)
+static void ov65_0223498C (UnkStruct_ov65_0222EBE0 * param0, Window * param1, u32 param2, u32 param3, u32 param4)
 {
     int v0;
     int v1;
@@ -6597,7 +6597,7 @@ static void ov65_0223498C (UnkStruct_ov65_0222EBE0 * param0, UnkStruct_0205AA50 
     v0 = Unk_ov65_02238934[param3];
 
     for (v1 = 0; v1 < 2; v1++) {
-        sub_0201ADA4(&param1[v1], 0);
+        BGL_FillWindow(&param1[v1], 0);
 
         if (v1 == 0) {
             ov65_0222EB1C(&param1[v1], &param0->unk_BD0, 0, v0, v4);
@@ -6646,7 +6646,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     BOOL v0;
     int v1;
     UnkStruct_ov19_021DA864 v2;
-    UnkStruct_0205AA50 v3;
+    Window v3;
     Strbuf* v4;
     UnkStruct_02012B20 * v5;
     int v6;
@@ -6748,7 +6748,7 @@ static void ov65_02234A68 (UnkStruct_ov65_0222EBE0 * param0, NARC * param1, u32 
     param0->unk_BE0.unk_234 = sub_02012B60(&v7, v5);
 
     sub_02012B48(v5);
-    sub_0201A8FC(&v3);
+    BGL_DeleteWindow(&v3);
     sub_02002C60(2);
 
     param0->unk_BE0.unk_244 = sub_02023FCC(Unk_ov65_0223895C, 3, ov65_02234E40, param0, param2);

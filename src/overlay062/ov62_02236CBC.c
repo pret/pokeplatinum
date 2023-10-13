@@ -88,10 +88,10 @@ static void ov62_02236CBC (UnkStruct_0208C06C * param0, int param1)
 static void ov62_02236CF8 (UnkStruct_0208C06C * param0, int param1)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
 
     sub_0200CC3C(v2, v3, v0, 50, 0, param1, 11924);
     sub_0200CE24(v2, v3, v0, 28, 0, 11924);
@@ -136,10 +136,10 @@ static void ov62_02236E14 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
     NARC * v1 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v2 = param0->unk_14.unk_10;
+    BGL * v2 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v3 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v4 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v5 = param0->unk_14.unk_14;
+    PaletteSys * v5 = param0->unk_14.unk_14;
 
     sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 6, 0, 0, 0, 102);
     sub_0200710C(v1, 68, v2, 6, 0, 0, 0, 102);
@@ -222,10 +222,10 @@ static void ov62_022370D4 (u16 * param0, u16 param1, u16 param2)
 static void ov62_0223712C (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02236CBC * v0 = param0->unk_860;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
     int v5;
     int v6[5];
 
@@ -244,7 +244,7 @@ static void ov62_0223712C (UnkStruct_0208C06C * param0)
             int v8[] = {0, 1, 4, 3, 2};
 
             if (v6[v5] == 2) {
-                UnkStruct_02002F38 * v9 = param0->unk_14.unk_14;
+                PaletteSys * v9 = param0->unk_14.unk_14;
                 u16 * v10;
 
                 v10 = sub_0200316C(v9, 2);
@@ -263,10 +263,10 @@ static void ov62_022371CC (UnkStruct_0208C06C * param0)
     int v2[4 + 1];
     int v3[5];
     UnkStruct_ov62_02236CBC * v4 = param0->unk_860;
-    UnkStruct_02018340 * v5 = param0->unk_14.unk_10;
+    BGL * v5 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v6 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v7 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v8 = param0->unk_14.unk_14;
+    PaletteSys * v8 = param0->unk_14.unk_14;
     UnkStruct_ov104_0223F9E0 v9;
 
     v9.unk_00 = 0;
@@ -600,7 +600,7 @@ static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
         sub_02019EBC(param0->unk_14.unk_10, 6);
         ov62_022315C8(&v0->unk_D4, &v0->unk_D8, 0);
         ov62_02231560(&v0->unk_D4, &v0->unk_D8, 0, 0, GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG1, 0);
-        sub_02005748(1377);
+        Sound_PlayEffect(1377);
         param0->unk_08++;
     } else {
         v0 = param0->unk_860;
@@ -627,7 +627,7 @@ static BOOL ov62_02237884 (UnkStruct_0208C06C * param0)
         ov62_0223376C(param0, 0);
         sub_0208B9E0(param0->unk_6F0, 0);
         ov62_02234314();
-        sub_02019060(6, 2);
+        BGL_SetPriority(6, 2);
         ov62_02236E14(param0);
         sub_02003A2C(param0->unk_14.unk_14, 3, 0xC | 0x10, v0->unk_00, param0->unk_14.unk_44);
         param0->unk_08++;
@@ -681,7 +681,7 @@ static BOOL ov62_02237AC0 (UnkStruct_0208C06C * param0)
 
         if (v3) {
             if ((v1 > 10 * 8) && (v1 < 22 * 8) && (v2 > 19 * 8) && (v2 < 22 * 8)) {
-                sub_02005748(1379);
+                Sound_PlayEffect(1379);
                 ov62_0222FB60(param0, 2);
             }
         }
@@ -697,7 +697,7 @@ static BOOL ov62_02237B00 (UnkStruct_0208C06C * param0)
     switch (param0->unk_08) {
     case 0:
         if (v0->unk_00 == 0) {
-            sub_02005748(1378);
+            Sound_PlayEffect(1378);
         }
         if (v0->unk_00 != 16) {
             v0->unk_00 += 2;

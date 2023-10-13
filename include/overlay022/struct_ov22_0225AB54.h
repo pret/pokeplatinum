@@ -11,7 +11,7 @@
 typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
     UnkStruct_02022550 * unk_10[2];
-    UnkStruct_0205AA50 * unk_18;
+    Window * unk_18;
     int unk_1C;
     int unk_20;
     SysTask * unk_24;

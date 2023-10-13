@@ -111,7 +111,7 @@ typedef struct {
 } UnkStruct_ov65_02237908;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     UnkStruct_0200B358 * unk_04;
     MessageLoader * unk_08;
     Strbuf* unk_0C;
@@ -125,11 +125,11 @@ typedef struct {
     UnkStruct_ov63_0222BE18 * unk_1B8;
     UnkStruct_ov63_0222CD2C * unk_1BC;
     UnkStruct_ov65_02237908 unk_1C0[4];
-    UnkStruct_0205AA50 unk_1F0;
-    UnkStruct_0205AA50 unk_200;
-    UnkStruct_0205AA50 unk_210;
-    UnkStruct_0205AA50 unk_220;
-    UnkStruct_0205AA50 unk_230;
+    Window unk_1F0;
+    Window unk_200;
+    Window unk_210;
+    Window unk_220;
+    Window unk_230;
     UnkStruct_02001AF4 * unk_240;
     void * unk_244;
     NNSG2dScreenData * unk_248;
@@ -766,19 +766,19 @@ static void ov65_02236A28 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     sub_0200DD0C(param0->unk_00, 1, 1, 2, v0, param2);
     sub_0200DAA4(param0->unk_00, 1, (1 + (18 + 12)), 3, 0, param2);
     sub_0200DAA4(param0->unk_00, 2, (0 + (24 * 2)), 4, 0, param2);
-    sub_0201A7E8(param0->unk_00, &param0->unk_1F0, 1, 2, 19, 27, 4, 1, ((1 + (18 + 12)) + 9));
-    sub_0201ADA4(&param0->unk_1F0, 15);
+    BGL_AddWindow(param0->unk_00, &param0->unk_1F0, 1, 2, 19, 27, 4, 1, ((1 + (18 + 12)) + 9));
+    BGL_FillWindow(&param0->unk_1F0, 15);
     sub_0200E060(&param0->unk_1F0, 1, 1, 2);
-    sub_0201A7E8(param0->unk_00, &param0->unk_200, 1, 1, 1, 27, 2, 1, (((1 + (18 + 12)) + 9) + (27 * 4)));
-    sub_0201ADA4(&param0->unk_200, 15);
-    sub_0200DC48(&param0->unk_200, 1, (1 + (18 + 12)), 3);
-    sub_0201A7E8(param0->unk_00, &param0->unk_210, 1, 2, 16, 28, 2, 1, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)));
-    sub_0201ADA4(&param0->unk_210, 0);
-    sub_0201A7E8(param0->unk_00, &param0->unk_220, 1, 1, 5, 20, 8, 1, (((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)) + (28 * 2)));
-    sub_0201ADA4(&param0->unk_220, 15);
-    sub_0200DC48(&param0->unk_220, 1, (1 + (18 + 12)), 3);
-    sub_0201A7E8(param0->unk_00, &param0->unk_230, 1, 23, 5, 7, 5, 1, ((((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)) + (28 * 2)) + (20 * 8)));
-    sub_0201ADA4(&param0->unk_230, 15);
+    BGL_AddWindow(param0->unk_00, &param0->unk_200, 1, 1, 1, 27, 2, 1, (((1 + (18 + 12)) + 9) + (27 * 4)));
+    BGL_FillWindow(&param0->unk_200, 15);
+    Window_Show(&param0->unk_200, 1, (1 + (18 + 12)), 3);
+    BGL_AddWindow(param0->unk_00, &param0->unk_210, 1, 2, 16, 28, 2, 1, ((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)));
+    BGL_FillWindow(&param0->unk_210, 0);
+    BGL_AddWindow(param0->unk_00, &param0->unk_220, 1, 1, 5, 20, 8, 1, (((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)) + (28 * 2)));
+    BGL_FillWindow(&param0->unk_220, 15);
+    Window_Show(&param0->unk_220, 1, (1 + (18 + 12)), 3);
+    BGL_AddWindow(param0->unk_00, &param0->unk_230, 1, 23, 5, 7, 5, 1, ((((((1 + (18 + 12)) + 9) + (27 * 4)) + (27 * 2)) + (28 * 2)) + (20 * 8)));
+    BGL_FillWindow(&param0->unk_230, 15);
 }
 
 static void ov65_02236B90 (UnkStruct_ov65_02236840 * param0, u32 param1)
@@ -786,14 +786,14 @@ static void ov65_02236B90 (UnkStruct_ov65_02236840 * param0, u32 param1)
     ov65_02236F38(param0);
 
     sub_0200E084(&param0->unk_1F0, 0);
-    sub_0201A8FC(&param0->unk_1F0);
-    sub_0200DC9C(&param0->unk_200, 0);
-    sub_0201A8FC(&param0->unk_200);
-    sub_0201A8FC(&param0->unk_210);
-    sub_0200DC9C(&param0->unk_220, 0);
-    sub_0201A8FC(&param0->unk_220);
-    sub_0200DC9C(&param0->unk_230, 0);
-    sub_0201A8FC(&param0->unk_230);
+    BGL_DeleteWindow(&param0->unk_1F0);
+    Window_Clear(&param0->unk_200, 0);
+    BGL_DeleteWindow(&param0->unk_200);
+    BGL_DeleteWindow(&param0->unk_210);
+    Window_Clear(&param0->unk_220, 0);
+    BGL_DeleteWindow(&param0->unk_220);
+    Window_Clear(&param0->unk_230, 0);
+    BGL_DeleteWindow(&param0->unk_230);
 
     if (param0->unk_240 != NULL) {
         sub_02002154(param0->unk_240, param1);
@@ -906,13 +906,13 @@ static void ov65_02236E50 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     int v1;
 
     if (param0->unk_14 != 0xff) {
-        if (sub_0201D724(param0->unk_14) != 0) {
+        if (Message_Printing(param0->unk_14) != 0) {
             sub_0201D730(param0->unk_14);
             param0->unk_14 = 0xff;
         }
     }
 
-    sub_0201ADA4(&param0->unk_1F0, 15);
+    BGL_FillWindow(&param0->unk_1F0, 15);
     v0 = Strbuf_Init(256, param4);
 
     MessageLoader_GetStrbuf(param0->unk_08, param2, v0);
@@ -938,7 +938,7 @@ static BOOL ov65_02236EF8 (UnkStruct_ov65_02236840 * param0)
             return 0;
         }
     } else {
-        if (sub_0201D724(param0->unk_14) == 0) {
+        if (Message_Printing(param0->unk_14) == 0) {
             if (param0->unk_14 != 0xff) {
                 param0->unk_14 = 0xff;
             }
@@ -955,14 +955,14 @@ static BOOL ov65_02236EF8 (UnkStruct_ov65_02236840 * param0)
 static void ov65_02236F38 (UnkStruct_ov65_02236840 * param0)
 {
     if (param0->unk_14 != 0xff) {
-        if (sub_0201D724(param0->unk_14) != 0) {
+        if (Message_Printing(param0->unk_14) != 0) {
             sub_0201D730(param0->unk_14);
         }
 
         param0->unk_14 = 0xff;
     }
 
-    sub_0201ADA4(&param0->unk_1F0, 15);
+    BGL_FillWindow(&param0->unk_1F0, 15);
     sub_0201A9A4(&param0->unk_1F0);
 
     param0->unk_15 = 0;
@@ -982,9 +982,9 @@ static void ov65_02236F70 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
     MessageLoader_GetStrbuf(param0->unk_08, 131, v0);
     sub_0200C388(param0->unk_04, v1, v0);
 
-    sub_0201ADA4(&param0->unk_230, 15);
+    BGL_FillWindow(&param0->unk_230, 15);
     sub_0201D78C(&param0->unk_230, 0, v1, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
-    sub_0200DC48(&param0->unk_230, 1, (1 + (18 + 12)), 3);
+    Window_Show(&param0->unk_230, 1, (1 + (18 + 12)), 3);
     sub_0201A9A4(&param0->unk_230);
 
     Strbuf_Free(v0);
@@ -993,7 +993,7 @@ static void ov65_02236F70 (UnkStruct_ov65_02236840 * param0, const UnkStruct_020
 
 static void ov65_02237018 (UnkStruct_ov65_02236840 * param0)
 {
-    sub_0200DC9C(&param0->unk_230, 1);
+    Window_Clear(&param0->unk_230, 1);
     sub_0201AD10(&param0->unk_230);
 }
 
@@ -1033,7 +1033,7 @@ static void ov65_0223709C (UnkStruct_ov65_022367A8 * param0, UnkStruct_ov65_0223
 
     MessageLoader_GetStrbuf(param1->unk_08, 129, v0);
     sub_0200C388(param1->unk_04, v1, v0);
-    sub_0201AE78(&param1->unk_220, 15, 0, param3 * (2 * 8), (20 * 8), (2 * 8));
+    BGL_WindowColor(&param1->unk_220, 15, 0, param3 * (2 * 8), (20 * 8), (2 * 8));
     sub_0201D78C(&param1->unk_220, 0, v1, 0, param3 * (2 * 8), 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
 
     ov65_02237284(param1, param2, param3, 0, param4);
@@ -1068,7 +1068,7 @@ static void ov65_0223709C (UnkStruct_ov65_022367A8 * param0, UnkStruct_ov65_0223
 
 static void ov65_022371FC (UnkStruct_ov65_02236840 * param0, const UnkStruct_0207DE04 * param1, int param2, u32 param3)
 {
-    sub_0201AE78(&param0->unk_220, 15, 0, param2 * (2 * 8), (20 * 8), (2 * 8));
+    BGL_WindowColor(&param0->unk_220, 15, 0, param2 * (2 * 8), (20 * 8), (2 * 8));
     sub_020198E8(param0->unk_00, 2, 18, 5 + param2 * 2, 2, 2, param0->unk_248->rawData, 0 * 2, 0, param0->unk_248->screenWidth / 8, param0->unk_248->screenHeight / 8);
     sub_0201C3C0(param0->unk_00, 2);
     sub_0201A9A4(&param0->unk_220);
@@ -1709,7 +1709,7 @@ static BOOL ov65_02237AC0 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
 
     do {
         if (gCoreSys.padInput & PAD_BUTTON_A) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
 
             if (ov65_02237450(param0) == 0) {
                 param0->unk_00.unk_05 = 6;
@@ -1726,20 +1726,20 @@ static BOOL ov65_02237AC0 (UnkStruct_ov65_022367A8 * param0, UnkStruct_0207DE04 
         }
 
         if (gCoreSys.padInput & PAD_BUTTON_B) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_00.unk_05 = 22;
             break;
         }
 
         if (param0->unk_00.unk_06 != 0xff) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_00.unk_05 = 3;
             break;
         }
 
         if (gCoreSys.padInput & PAD_BUTTON_X) {
             param0->unk_00.unk_05 = 30;
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             break;
         }
     } while (0);

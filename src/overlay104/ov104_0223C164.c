@@ -12,22 +12,22 @@
 
 typedef struct {
     SysTask * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u16 unk_08;
     u16 unk_0A;
 } UnkStruct_ov104_0223C188;
 
 struct UnkStruct_ov104_0223C23C_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     UnkStruct_ov104_0223C188 * unk_04;
 };
 
-UnkStruct_ov104_0223C23C * ov104_0223C164(UnkStruct_02018340 * param0);
-static UnkStruct_ov104_0223C188 * ov104_0223C188(UnkStruct_02018340 * param0);
+UnkStruct_ov104_0223C23C * ov104_0223C164(BGL * param0);
+static UnkStruct_ov104_0223C188 * ov104_0223C188(BGL * param0);
 static void ov104_0223C1BC(SysTask * param0, void * param1);
 static void ov104_0223C208(u16 * param0, u8 param1);
 
-UnkStruct_ov104_0223C23C * ov104_0223C164 (UnkStruct_02018340 * param0)
+UnkStruct_ov104_0223C23C * ov104_0223C164 (BGL * param0)
 {
     UnkStruct_ov104_0223C23C * v0;
 
@@ -38,7 +38,7 @@ UnkStruct_ov104_0223C23C * ov104_0223C164 (UnkStruct_02018340 * param0)
     return v0;
 }
 
-static UnkStruct_ov104_0223C188 * ov104_0223C188 (UnkStruct_02018340 * param0)
+static UnkStruct_ov104_0223C188 * ov104_0223C188 (BGL * param0)
 {
     UnkStruct_ov104_0223C188 * v0;
 
@@ -108,7 +108,7 @@ void ov104_0223C23C (UnkStruct_ov104_0223C23C * param0)
 
 static void ov104_0223C250 (UnkStruct_ov104_0223C188 * param0)
 {
-    sub_0200DA58(param0->unk_00);
+    SysTask_Done(param0->unk_00);
     Heap_FreeToHeap(param0);
 
     return;

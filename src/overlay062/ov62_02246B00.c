@@ -454,7 +454,7 @@ void ov62_0224730C (u32 param0, u32 param1, void * param2)
                 v0->unk_29C.unk_04 = v0->unk_00[param0].unk_04;
             }
 
-            sub_02005748(1379);
+            Sound_PlayEffect(1379);
         } else {
             if (param0 == 22) {
                 v0->unk_188[1].unk_14.unk_00 = 0;
@@ -476,7 +476,7 @@ void ov62_0224730C (u32 param0, u32 param1, void * param2)
                     return;
                 }
 
-                sub_02005748(1379);
+                Sound_PlayEffect(1379);
 
                 v1 = v0->unk_188[0].unk_00;
                 v0->unk_00[v1].unk_00 = param0 - 12 + 1;
@@ -510,10 +510,10 @@ void ov62_0224730C (u32 param0, u32 param1, void * param2)
                 }
             } else {
                 if (param0 == 22) {
-                    sub_02005748(1379);
+                    Sound_PlayEffect(1379);
                     ov62_02247160(v0);
                 } else {
-                    sub_02005748(1379);
+                    Sound_PlayEffect(1379);
                     ov62_022470A8(v0);
                 }
             }
@@ -584,10 +584,10 @@ int ov62_02247540 (UnkStruct_ov62_02246BF4 * param0, int param1)
 void ov62_02247574 (UnkStruct_ov62_02246BF4 * param0)
 {
     NARC * v0;
-    UnkStruct_02018340 * v1;
+    BGL * v1;
     UnkStruct_0200C6E4 * v2;
     UnkStruct_0200C704 * v3;
-    UnkStruct_02002F38 * v4;
+    PaletteSys * v4;
 
     v2 = param0->unk_220.unk_04;
     v3 = param0->unk_220.unk_08;
@@ -641,7 +641,7 @@ void ov62_02247754 (UnkStruct_ov62_02246BF4 * param0)
     UnkStruct_ov104_0223F9E0 v3;
     UnkStruct_0200C6E4 * v4;
     UnkStruct_0200C704 * v5;
-    UnkStruct_02002F38 * v6;
+    PaletteSys * v6;
 
     v4 = param0->unk_220.unk_04;
     v5 = param0->unk_220.unk_08;
@@ -686,7 +686,7 @@ void ov62_0224784C (UnkStruct_ov62_02246BF4 * param0)
     UnkStruct_ov104_0223F9E0 v0;
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
-    UnkStruct_02002F38 * v3;
+    PaletteSys * v3;
 
     v1 = param0->unk_220.unk_04;
     v2 = param0->unk_220.unk_08;

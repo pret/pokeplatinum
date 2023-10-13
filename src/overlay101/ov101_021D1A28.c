@@ -292,7 +292,7 @@ static int ov101_021D1B40 (UnkStruct_ov101_021D13C8 * param0)
         param0->unk_45C += 3;
         param0->unk_00 = 2;
 
-        sub_02005748(1517);
+        Sound_PlayEffect(1517);
         ov101_021D5244(param0);
         ov101_021D5010(param0);
 
@@ -360,7 +360,7 @@ static int ov101_021D1BD0 (UnkStruct_ov101_021D13C8 * param0)
     param0->unk_6C = 0;
     param0->unk_00 = 4;
 
-    sub_02005748(1518);
+    Sound_PlayEffect(1518);
 
     return 1;
 }
@@ -392,7 +392,7 @@ static int ov101_021D1CBC (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 0);
         ov101_021D2BF4(param0, 0);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     } else if ((param0->unk_7C[1] == 1) && (v0 & PAD_BUTTON_B)) {
         param0->unk_7C[1] = 2;
 
@@ -404,7 +404,7 @@ static int ov101_021D1CBC (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 1);
         ov101_021D2BF4(param0, 1);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     } else if ((param0->unk_7C[2] == 1) && (v0 & PAD_BUTTON_A)) {
         param0->unk_7C[2] = 2;
         ov101_021D5858(param0, PAD_BUTTON_A);
@@ -415,7 +415,7 @@ static int ov101_021D1CBC (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 2);
         ov101_021D2BF4(param0, 2);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     }
 
     if ((param0->unk_7C[0] == 2) && (param0->unk_7C[1] == 2) && (param0->unk_7C[2] == 2)) {
@@ -734,7 +734,7 @@ static int ov101_021D2198 (UnkStruct_ov101_021D13C8 * param0)
         param0->unk_45C += 3;
         param0->unk_00 = 27;
 
-        sub_02005748(1517);
+        Sound_PlayEffect(1517);
         ov101_021D5244(param0);
         ov101_021D5010(param0);
 
@@ -796,7 +796,7 @@ static int ov101_021D2228 (UnkStruct_ov101_021D13C8 * param0)
     param0->unk_6C = 0;
     param0->unk_00 = 29;
 
-    sub_02005748(1518);
+    Sound_PlayEffect(1518);
 
     return 1;
 }
@@ -830,7 +830,7 @@ static int ov101_021D22F0 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 0);
         ov101_021D2BF4(param0, 0);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     } else if ((param0->unk_7C[1] == 1) && (v0 & PAD_BUTTON_B)) {
         param0->unk_7C[1] = 2;
         ov101_021D5858(param0, PAD_BUTTON_B);
@@ -841,7 +841,7 @@ static int ov101_021D22F0 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 1);
         ov101_021D2BF4(param0, 1);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     } else if ((param0->unk_7C[2] == 1) && (v0 & PAD_BUTTON_A)) {
         param0->unk_7C[2] = 2;
         ov101_021D5858(param0, PAD_BUTTON_A);
@@ -852,7 +852,7 @@ static int ov101_021D22F0 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 2);
         ov101_021D2BF4(param0, 2);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     }
 
     if ((param0->unk_7C[0] == 2) && (param0->unk_7C[1] == 2) && (param0->unk_7C[2] == 2)) {
@@ -1090,7 +1090,7 @@ static int ov101_021D269C (UnkStruct_ov101_021D13C8 * param0)
 
         param0->unk_00 = 45;
 
-        sub_02005748(1517);
+        Sound_PlayEffect(1517);
         ov101_021D5244(param0);
         ov101_021D4FB8(param0, UnkEnum_ov101_021D4F58_00);
 
@@ -1141,7 +1141,7 @@ static int ov101_021D2738 (UnkStruct_ov101_021D13C8 * param0)
     param0->unk_6C = 0;
     param0->unk_00 = 47;
 
-    sub_02005748(1518);
+    Sound_PlayEffect(1518);
 
     if ((param0->unk_24 == 0) && (param0->unk_28 == 0)) {
         if (ov101_021D44C4(param0) == 1) {
@@ -1197,7 +1197,7 @@ static int ov101_021D2850 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 0);
         ov101_021D2BF4(param0, 0);
-        sub_02005748(1525);
+        Sound_PlayEffect(1525);
     } else if ((param0->unk_7C[1] == 1) && (v0 & PAD_BUTTON_B)) {
         param0->unk_7C[1] = 2;
         ov101_021D5858(param0, PAD_BUTTON_B);
@@ -1209,7 +1209,7 @@ static int ov101_021D2850 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 1);
         ov101_021D2BF4(param0, 1);
-        sub_02005748(1525);
+        Sound_PlayEffect(1525);
     } else if ((param0->unk_7C[2] == 1) && (v0 & PAD_BUTTON_A)) {
         param0->unk_7C[2] = 2;
         ov101_021D5858(param0, PAD_BUTTON_A);
@@ -1221,7 +1221,7 @@ static int ov101_021D2850 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 2);
         ov101_021D2BF4(param0, 2);
-        sub_02005748(1525);
+        Sound_PlayEffect(1525);
     }
 
     if ((param0->unk_7C[0] == 2) && (param0->unk_7C[1] == 2) && (param0->unk_7C[2] == 2)) {
@@ -1514,7 +1514,7 @@ static void ov101_021D2BC0 (UnkStruct_ov101_021D13C8 * param0)
     u32 v0 = 0;
 
     do {
-        sub_0200DA58(param0->unk_B4[v0].unk_1C); v0++;
+        SysTask_Done(param0->unk_B4[v0].unk_1C); v0++;
     } while (v0 < 3);
 }
 
@@ -3078,7 +3078,7 @@ static void ov101_021D45C4 (UnkStruct_ov101_021D13C8 * param0)
 
 static void ov101_021D45E8 (UnkStruct_ov101_021D13C8 * param0)
 {
-    sub_0200DA58(param0->unk_120.unk_10);
+    SysTask_Done(param0->unk_120.unk_10);
 }
 
 static void ov101_021D45F8 (UnkStruct_ov101_021D13C8 * param0)
@@ -3114,7 +3114,7 @@ static void ov101_021D4614 (SysTask * param0, void * param1)
         v1->unk_00++;
     case 3:
         if (ov101_021D55F8(PAD_BUTTON_X) || (v2->unk_64 == 0)) {
-            sub_02005748(1581);
+            Sound_PlayEffect(1581);
             v2->unk_60 += v2->unk_64;
 
             if (v2->unk_60 >= 50000) {
@@ -3159,7 +3159,7 @@ static void ov101_021D4614 (SysTask * param0, void * param1)
                 v2->unk_60 = 50000;
             }
 
-            sub_02005748(1581);
+            Sound_PlayEffect(1581);
 
             if (v2->unk_08 == 1) {
                 v2->unk_14++;
@@ -3202,7 +3202,7 @@ static void ov101_021D4764 (UnkStruct_ov101_021D13C8 * param0)
 static void ov101_021D4788 (UnkStruct_ov101_021D13C8 * param0)
 {
     UnkStruct_ov101_021D4764 * v0 = &param0->unk_13C;
-    sub_0200DA58(v0->unk_24);
+    SysTask_Done(v0->unk_24);
 }
 
 static void ov101_021D4798 (UnkStruct_ov101_021D13C8 * param0, u32 param1)
@@ -4165,7 +4165,7 @@ static void ov101_021D53F8 (UnkStruct_ov101_021D13C8 * param0, int param1)
     v0->unk_0C = param0;
 
     SysTask_Start(ov101_021D54EC, v0, 143);
-    sub_02005748(1520);
+    Sound_PlayEffect(1520);
 }
 
 static void ov101_021D542C (SysTask * param0, void * param1)
@@ -4189,7 +4189,7 @@ static void ov101_021D542C (SysTask * param0, void * param1)
 
     if ((v5 == 16) || (v0->unk_0C->unk_00 == 63)) {
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -4214,7 +4214,7 @@ static void ov101_021D548C (SysTask * param0, void * param1)
 
     if ((v5 == 16) || (v0->unk_0C->unk_00 == 63)) {
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -4228,7 +4228,7 @@ static void ov101_021D54EC (SysTask * param0, void * param1)
 
     if (v0->unk_0C->unk_00 == 63) {
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -4264,7 +4264,7 @@ static void ov101_021D54EC (SysTask * param0, void * param1)
 
         if (v5 == 0) {
             Heap_FreeToHeap(v0);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
     }
 }

@@ -100,7 +100,7 @@ static BOOL sub_0206C120 (UnkStruct_020508D4 * param0)
             ov6_022426C0(v1->unk_00, v4);
             ov6_022427F4(v1->unk_00);
             v1->unk_0E = 0;
-            sub_02005748(1657);
+            Sound_PlayEffect(1657);
             sub_02056B30(param0, 3, 17, 0xffff, 0x0, 6, 1, 11);
             v1->unk_0C = 5;
         } else {
@@ -116,7 +116,7 @@ static BOOL sub_0206C120 (UnkStruct_020508D4 * param0)
         if ((v1->unk_0E >= 60) || (gCoreSys.padInput & PAD_BUTTON_A)) {
             ov6_02242A94(v1->unk_0D, v1->unk_04);
             v1->unk_08 = ov6_02242AEC(v1->unk_04);
-            sub_02005748(1657);
+            Sound_PlayEffect(1657);
             sub_02056B30(param0, 3, 16, 0xffff, 0x0, 6, 1, 11);
             v1->unk_0C = 6;
         }

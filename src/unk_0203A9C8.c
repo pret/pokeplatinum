@@ -315,7 +315,7 @@ void sub_0203AB00 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_020708E0 * v0;
 
-    sub_02005748(1533);
+    Sound_PlayEffect(1533);
     v0 = sub_0203ABB4();
 
     v0->unk_228 = 0;
@@ -486,8 +486,8 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
     case 13:
         sub_0203B2EC(v1, v0);
         sub_0203B078(v1);
-        sub_0200DC9C(&v1->unk_00, 1);
-        sub_0201A8FC(&v1->unk_00);
+        Window_Clear(&v1->unk_00, 1);
+        BGL_DeleteWindow(&v1->unk_00);
         sub_0203B200(param0);
         sub_0201C3C0(v0->unk_08, 3);
         Heap_FreeToHeap(v1);
@@ -520,9 +520,9 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1 = sub_02050A64(param0);
     v5 = sub_0203AFCC(v1, v1->unk_30);
 
-    sub_0201A7E8(v0->unk_08, &v1->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+    BGL_AddWindow(v0->unk_08, &v1->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
     sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
-    sub_0200DC48(&v1->unk_00, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Show(&v1->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
 
@@ -660,10 +660,10 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
         return;
     }
 
-    sub_0201A7E8(v0->unk_08, &v1->unk_10, 3, 1, 1, 12, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4))));
+    BGL_AddWindow(v0->unk_08, &v1->unk_10, 3, 1, 1, 12, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4))));
     sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
-    sub_0200DC48(&v1->unk_10, 1, 1024 - (18 + 12) - 9, 11);
-    sub_0201ADA4(&v1->unk_10, 15);
+    Window_Show(&v1->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    BGL_FillWindow(&v1->unk_10, 15);
 
     v2 = MessageLoader_Init(0, 26, 367, 11);
 
@@ -711,8 +711,8 @@ static void sub_0203B200 (UnkStruct_020508D4 * param0)
         return;
     }
 
-    sub_0200DC9C(&v1->unk_10, 1);
-    sub_0201A8FC(&v1->unk_10);
+    Window_Clear(&v1->unk_10, 1);
+    BGL_DeleteWindow(&v1->unk_10);
 }
 
 static BOOL sub_0203B244 (UnkStruct_020508D4 * param0)
@@ -888,7 +888,7 @@ static void sub_0203B610 (UnkStruct_020508D4 * param0)
     v1 = sub_02050A64(param0);
 
     sub_0203B078(v1);
-    sub_0201A8FC(&v1->unk_00);
+    BGL_DeleteWindow(&v1->unk_00);
     sub_0203B200(param0);
 
     v1->unk_22C(param0);
@@ -1441,9 +1441,9 @@ static BOOL sub_0203BF38 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v0 = sub_02050A64(param0);
 
     sub_0203B078(v0);
-    sub_0200DC9C(&v0->unk_00, 1);
+    Window_Clear(&v0->unk_00, 1);
     sub_0201C3C0(v0->unk_00.unk_00, v0->unk_00.unk_04);
-    sub_0201A8FC(&v0->unk_00);
+    BGL_DeleteWindow(&v0->unk_00);
     sub_0203B200(param0);
 
     v0->unk_2A = 4;
@@ -1605,9 +1605,9 @@ static BOOL sub_0203C164 (UnkStruct_020508D4 * param0)
     v1 = sub_02050A64(param0);
 
     sub_0203B078(v1);
-    sub_0200DC9C(&v1->unk_00, 1);
+    Window_Clear(&v1->unk_00, 1);
     sub_0201C3C0(v1->unk_00.unk_00, v1->unk_00.unk_04);
-    sub_0201A8FC(&v1->unk_00);
+    BGL_DeleteWindow(&v1->unk_00);
     sub_0203B200(param0);
 
     if (sub_0206AE5C(sub_020507E4(v0->unk_0C)) == 1) {

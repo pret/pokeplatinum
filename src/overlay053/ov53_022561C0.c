@@ -33,8 +33,8 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov53_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
-static BOOL ov53_0225621C(UnkStruct_ov53_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
+static BOOL ov53_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov53_0225621C(UnkStruct_ov53_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
 static void ov53_022562B8(UnkStruct_ov53_0225621C * param0);
 static void ov53_022562D0(SysTask * param0, void * param1);
 static void ov53_0225630C(void * param0);
@@ -49,7 +49,7 @@ static void NitroStaticInit (void)
     ov25_02254238(ov53_022561D4, ov53_0225630C);
 }
 
-static BOOL ov53_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov53_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov53_0225621C * v0 = (UnkStruct_ov53_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov53_0225621C));
 
@@ -67,7 +67,7 @@ static BOOL ov53_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
     return 0;
 }
 
-static BOOL ov53_0225621C (UnkStruct_ov53_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov53_0225621C (UnkStruct_ov53_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     static const UnkUnion_020225E0 v0[] = {
         {
@@ -146,7 +146,7 @@ static void ov53_022562D0 (SysTask * param0, void * param1)
 
         if (v0[v1->unk_00](v1)) {
             ov53_022562B8(v1);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             ov25_02254260(v1->unk_30);
         }
     } else {

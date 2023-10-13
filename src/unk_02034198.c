@@ -451,7 +451,7 @@ void sub_020348C4 (void)
         sub_02032A70();
 
         Unk_021C07C5 = 0;
-        sub_0200DA58(Unk_021C07CC->unk_57C);
+        SysTask_Done(Unk_021C07CC->unk_57C);
         Unk_021C07CC->unk_57C = NULL;
 
         Heap_FreeToHeap(Unk_021C07CC->unk_490);

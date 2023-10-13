@@ -25,7 +25,7 @@
 
 struct UnkStruct_ov34_02256540_t {
     const UnkStruct_ov34_02256540_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[10];
     UnkStruct_ov25_022555E8 * unk_30;
     UnkStruct_ov25_022558C4 * unk_34;
@@ -48,7 +48,7 @@ static void ov34_022569A0(UnkStruct_ov34_02256540 * param0, const UnkStruct_ov34
 static BOOL ov34_022569DC(UnkStruct_ov34_02256540 * param0);
 static void ov34_022569E8(UnkStruct_ov34_02256540 * param0);
 
-BOOL ov34_02256540 (UnkStruct_ov34_02256540 ** param0, const UnkStruct_ov34_02256540_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov34_02256540 (UnkStruct_ov34_02256540 ** param0, const UnkStruct_ov34_02256540_1 * param1, BGL * param2)
 {
     UnkStruct_ov34_02256540 * v0 = (UnkStruct_ov34_02256540 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov34_02256540));
 

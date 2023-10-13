@@ -35,7 +35,7 @@ void ov16_022647D8 (BattlerData * param0)
         return;
     }
 
-    sub_0200DA58(param0->unk_194);
+    SysTask_Done(param0->unk_194);
 
     param0->unk_194 = NULL;
     param0->unk_198 = 0;

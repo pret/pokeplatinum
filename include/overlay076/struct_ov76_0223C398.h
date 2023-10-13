@@ -27,9 +27,9 @@ typedef struct {
     BOOL unk_04;
     UnkStruct_0200C6E4 * unk_08;
     UnkStruct_0200C704 * unk_0C;
-    UnkStruct_02018340 * unk_10;
-    UnkStruct_02002F38 * unk_14;
-    UnkStruct_0205AA50 unk_18[11];
+    BGL * unk_10;
+    PaletteSys * unk_14;
+    Window unk_18[11];
     UnkStruct_02013A04 * unk_C8;
     UnkStruct_02001AF4 * unk_CC;
     UnkStruct_02007768 * unk_D0;

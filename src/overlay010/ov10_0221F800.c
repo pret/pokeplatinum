@@ -102,9 +102,9 @@ typedef struct {
 typedef struct UnkStruct_ov10_0221FB28_t {
     UnkStruct_ov10_0221F800 * unk_00;
     const UnkFuncPtr_ov10_02222AD0 * unk_04;
-    UnkStruct_02002F38 * unk_08;
-    UnkStruct_02018340 * unk_0C;
-    UnkStruct_0205AA50 unk_10[24];
+    PaletteSys * unk_08;
+    BGL * unk_0C;
+    Window unk_10[24];
     UnkStruct_0200C6E4 * unk_190;
     UnkStruct_0200C704 * unk_194;
     CellActorData * unk_198[30];
@@ -136,8 +136,8 @@ typedef struct UnkStruct_ov10_0221FB28_t {
     u8 unk_B76;
     u16 unk_B78;
     u16 unk_B7A;
-    UnkStruct_0205AA50 unk_B7C;
-    UnkStruct_0205AA50 unk_B8C;
+    Window unk_B7C;
+    Window unk_B8C;
     GXBG0As unk_B9C;
     MessageLoader * unk_BA0;
     UnkStruct_0200B358 * unk_BA4;
@@ -504,7 +504,7 @@ static void ov10_0221F930 (UnkStruct_ov10_0221FB28 * param0)
             MessageLoader_GetStrbuf(param0->unk_BA0, 1, param0->unk_BA8);
         }
 
-        sub_0201AE78(&param0->unk_B8C, 15, 0, 0, 27 * 8, 4 * 8);
+        BGL_WindowColor(&param0->unk_B8C, 15, 0, 0, 27 * 8, 4 * 8);
         sub_0200E060(&param0->unk_B8C, 0, 1, 15);
 
         param0->unk_BAC = sub_0201D738(&param0->unk_B8C, 1, param0->unk_BA8, 0, 0, 0, NULL);
@@ -778,9 +778,9 @@ static u8 ov10_02220014 (UnkStruct_ov10_0221FB28 * param0)
 
     if (param0->unk_B76 == 0) {
         if (param0->unk_00->unk_28 == 1) {
-            sub_02005748(1813);
+            Sound_PlayEffect(1813);
         } else {
-            sub_02005748(2130);
+            Sound_PlayEffect(2130);
         }
     }
 
@@ -847,7 +847,7 @@ static u8 ov10_02220228 (UnkStruct_ov10_0221FB28 * param0)
     }
 
     if (param0->unk_B76 == 0) {
-        sub_02005748(1817);
+        Sound_PlayEffect(1817);
     }
 
     sub_0201C63C(param0->unk_0C, 3, 1, 16);
@@ -916,7 +916,7 @@ static u8 ov10_022203BC (UnkStruct_ov10_0221FB28 * param0)
     ov10_02221440(param0, 3, Unk_ov10_02222A7C[param0->unk_B76][1], 0);
 
     if (param0->unk_B76 == 0) {
-        sub_02005748(2131);
+        Sound_PlayEffect(2131);
     }
 
     if (param0->unk_B76 == 5) {
@@ -944,7 +944,7 @@ static u8 ov10_022204C0 (UnkStruct_ov10_0221FB28 * param0)
     ov10_02221440(param0, 3, -Unk_ov10_02222A7C[param0->unk_B76][1], 0);
 
     if (param0->unk_B76 == 0) {
-        sub_02005748(2131);
+        Sound_PlayEffect(2131);
     }
 
     if (param0->unk_B76 == 5) {
@@ -988,7 +988,7 @@ static u8 ov10_02220604 (UnkStruct_ov10_0221FB28 * param0)
 
 static u8 ov10_02220698 (UnkStruct_ov10_0221FB28 * param0)
 {
-    sub_02005748(1818);
+    Sound_PlayEffect(1818);
     sub_0200D3F4(param0->unk_198[12], 1);
     sub_0200D3F4(param0->unk_198[13], 1);
     sub_0200D364(param0->unk_198[12], 0);
@@ -998,7 +998,7 @@ static u8 ov10_02220698 (UnkStruct_ov10_0221FB28 * param0)
 
 static u8 ov10_022206D8 (UnkStruct_ov10_0221FB28 * param0)
 {
-    sub_02005748(1818);
+    Sound_PlayEffect(1818);
     sub_0200D3F4(param0->unk_198[12], 1);
     param0->unk_B75 = 64;
     return 1;
@@ -1040,7 +1040,7 @@ static u8 ov10_02220700 (UnkStruct_ov10_0221FB28 * param0)
 
         if (v0 == 2) {
             MessageLoader_GetStrbuf(param0->unk_BA0, 6, param0->unk_BA8);
-            sub_02005748(1563);
+            Sound_PlayEffect(1563);
         } else if (v0 == 3) {
             MessageLoader_GetStrbuf(param0->unk_BA0, 7, param0->unk_BA8);
         } else {
@@ -1048,7 +1048,7 @@ static u8 ov10_02220700 (UnkStruct_ov10_0221FB28 * param0)
         }
 
         ov10_02222A48(param0);
-        sub_0201AE78(&param0->unk_B7C, 15, 0, 0, 27 * 8, 4 * 8);
+        BGL_WindowColor(&param0->unk_B7C, 15, 0, 0, 27 * 8, 4 * 8);
 
         param0->unk_BAC = sub_0201D738(&param0->unk_B7C, 1, param0->unk_BA8, 0, 0, 0, NULL);
     }
@@ -1123,7 +1123,7 @@ static u8 ov10_0222094C (UnkStruct_ov10_0221FB28 * param0)
     }
 
     sub_0200387C(param0->unk_08, 1);
-    sub_02005748(1819);
+    Sound_PlayEffect(1819);
     param0->unk_B75 = 64;
     return 1;
 }
@@ -1131,7 +1131,7 @@ static u8 ov10_0222094C (UnkStruct_ov10_0221FB28 * param0)
 static u8 ov10_022209E0 (UnkStruct_ov10_0221FB28 * param0)
 {
     if (param0->unk_B76 == 0) {
-        sub_02005748(1817);
+        Sound_PlayEffect(1817);
     }
 
     if (param0->unk_B76 == 16) {
@@ -1395,11 +1395,11 @@ static void ov10_02220C94 (UnkStruct_ov10_0221FB28 * param0, GXBG0As param1, int
 static void ov10_02220DCC (UnkStruct_ov10_0221FB28 * param0)
 {
     if (param0->unk_B7C.unk_0C != NULL) {
-        sub_0201A8FC(&param0->unk_B7C);
+        BGL_DeleteWindow(&param0->unk_B7C);
     }
 
     if (param0->unk_B8C.unk_0C != NULL) {
-        sub_0201A8FC(&param0->unk_B8C);
+        BGL_DeleteWindow(&param0->unk_B8C);
     }
 }
 
@@ -1461,8 +1461,8 @@ static void ov10_02220F1C (UnkStruct_ov10_0221FB28 * param0)
     sub_02003070(param0->unk_08, 0, 14 * 16, 0x20 * 1);
     sub_02002E7C(0, 13 * 0x20, param0->unk_00->unk_24);
     sub_02003070(param0->unk_08, 0, 13 * 16, 0x20 * 1);
-    sub_0201A7E8(param0->unk_0C, &param0->unk_B7C, 0, 0x2, 0x13, 27, 4, 13, ((1 + (18 + 12)) + 9));
-    sub_0201A7E8(param0->unk_0C, &param0->unk_B8C, 0, 0x2, 0x13, 27, 4, 13, ((1 + (18 + 12)) + 9));
+    BGL_AddWindow(param0->unk_0C, &param0->unk_B7C, 0, 0x2, 0x13, 27, 4, 13, ((1 + (18 + 12)) + 9));
+    BGL_AddWindow(param0->unk_0C, &param0->unk_B8C, 0, 0x2, 0x13, 27, 4, 13, ((1 + (18 + 12)) + 9));
 }
 
 static void ov10_02221004 (void)
@@ -1571,7 +1571,7 @@ static void ov10_022212AC (UnkStruct_ov10_0221FB28 * param0)
 
 static void ov10_0222130C (UnkStruct_ov10_0221FB28 * param0, u32 param1, Strbuf *param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_020127E8 v1;
 
     v0 = &param0->unk_10[0];
@@ -1595,7 +1595,7 @@ static void ov10_0222130C (UnkStruct_ov10_0221FB28 * param0, u32 param1, Strbuf 
     param0->unk_B3C[param1] = sub_020127E8(&v1);
 
     sub_02012A60(param0->unk_B3C[param1], 0);
-    sub_0201A8FC(v0);
+    BGL_DeleteWindow(v0);
 }
 
 static void ov10_022213B8 (UnkStruct_ov10_0221FB28 * param0)
@@ -2249,14 +2249,14 @@ static void ov10_022223E8 (UnkStruct_ov10_0221FB28 * param0)
     u32 v0;
 
     for (v0 = 0; v0 < 24; v0++) {
-        sub_0201A8FC(&param0->unk_10[v0]);
+        BGL_DeleteWindow(&param0->unk_10[v0]);
     }
 }
 
 static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
 {
     Pokemon * v0;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     Strbuf* v2;
 
     v1 = &param0->unk_10[param5 * 4 + 0];
@@ -2287,7 +2287,7 @@ static void ov10_02222400 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
 
 static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = &param0->unk_10[param5 * 4 + 1];
@@ -2297,7 +2297,7 @@ static void ov10_022224F0 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
 
 static void ov10_02222528 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
     u32 v2;
     int v3, v4;
@@ -2313,7 +2313,7 @@ static void ov10_02222528 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * par
 
 static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     u32 v1;
 
     v0 = &param0->unk_10[param1 * 4 + 3];
@@ -2339,24 +2339,24 @@ static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
 
     v1 = sub_0208C0BC(param0->unk_214[param1].unk_06, param0->unk_214[param1].unk_08, 48);
 
-    sub_0201AE78(v0, 10, 0, 2, v1, 1);
-    sub_0201AE78(v0, 9, 0, 3, v1, 2);
-    sub_0201AE78(v0, 10, 0, 5, v1, 1);
+    BGL_WindowColor(v0, 10, 0, 2, v1, 1);
+    BGL_WindowColor(v0, 9, 0, 3, v1, 2);
+    BGL_WindowColor(v0, 10, 0, 5, v1, 1);
 }
 
 static void ov10_02222684 (UnkStruct_ov10_0221FB28 * param0, MessageLoader * param1, UnkStruct_0200C440 * param2, UnkStruct_0200B358 * param3, Strbuf *param4, u32 param5)
 {
     Pokemon * v0;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     Strbuf* v2;
     u32 v3;
 
     v1 = &param0->unk_10[param5 * 4];
 
-    sub_0201ADA4(&v1[0], 0);
-    sub_0201ADA4(&v1[1], 0);
-    sub_0201ADA4(&v1[2], 0);
-    sub_0201ADA4(&v1[3], 0);
+    BGL_FillWindow(&v1[0], 0);
+    BGL_FillWindow(&v1[1], 0);
+    BGL_FillWindow(&v1[2], 0);
+    BGL_FillWindow(&v1[3], 0);
 
     ov10_02222400(param0, param1, param2, param3, param4, param5);
     ov10_022224F0(param0, param1, param2, param3, param4, param5);
@@ -2482,7 +2482,7 @@ static void ov10_022227A4 (UnkStruct_ov10_0221F800 * param0)
 
 static void ov10_022229D4 (UnkStruct_ov10_0221FB28 * param0)
 {
-    sub_0201AE78(&param0->unk_B7C, 15, 0, 0, 27 * 8, 4 * 8);
+    BGL_WindowColor(&param0->unk_B7C, 15, 0, 0, 27 * 8, 4 * 8);
     sub_0200E060(&param0->unk_B7C, 0, 1, 15);
 }
 

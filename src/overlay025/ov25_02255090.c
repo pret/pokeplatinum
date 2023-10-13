@@ -147,7 +147,7 @@ void ov25_02255224 (u32 * param0, UnkStruct_ov25_02255224 * param1)
 {
     ov25_022550F0(param0, param1->unk_00);
 
-    sub_0200DA58(param1->unk_14);
+    SysTask_Done(param1->unk_14);
     Heap_FreeToHeap(param1);
 }
 
@@ -294,7 +294,7 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
     }
 }
 
-void ov25_02255440 (UnkStruct_02018340 * param0, u32 param1, u32 param2)
+void ov25_02255440 (BGL * param0, u32 param1, u32 param2)
 {
     u16 v0[4];
     u32 v1;

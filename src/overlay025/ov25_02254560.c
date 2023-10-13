@@ -50,7 +50,7 @@ struct UnkStruct_ov25_02254560_t {
     UnkStruct_ov25_022555E8 * unk_1CC;
     SysTask * unk_1D0;
     UnkStruct_ov25_02254DD8 unk_1D4;
-    UnkStruct_02018340 * unk_1F8;
+    BGL * unk_1F8;
     UnkStruct_ov25_0225424C * unk_1FC;
     u16 unk_200[256];
     u16 unk_400[16];
@@ -144,7 +144,7 @@ UnkStruct_ov25_022555E8 * ov25_02254664 (void)
     return v0->unk_1CC;
 }
 
-UnkStruct_02018340 * ov25_02254674 (void)
+BGL * ov25_02254674 (void)
 {
     UnkStruct_ov25_02254560 * v0 = ov25_02254418();
     return v0->unk_1F8;
@@ -207,7 +207,7 @@ void ov25_02254754 (UnkStruct_ov25_02254560 * param0)
         }
 
         if (param0->unk_1D0) {
-            sub_0200DA58(param0->unk_1D0);
+            SysTask_Done(param0->unk_1D0);
         }
 
         Heap_FreeToHeap(param0);
@@ -499,7 +499,7 @@ static void ov25_02254CA8 (SysTask * param0, void * param1)
     UnkStruct_ov25_02254560 * v0 = ov25_0225523C(param1);
 
     ov25_02254C54(param1, v0->unk_6C, 0);
-    sub_02005748(1649);
+    Sound_PlayEffect(1649);
 }
 
 static void ov25_02254CCC (SysTask * param0, void * param1)
@@ -507,7 +507,7 @@ static void ov25_02254CCC (SysTask * param0, void * param1)
     UnkStruct_ov25_02254560 * v0 = ov25_0225523C(param1);
 
     ov25_02254C54(param1, v0->unk_12C, 1);
-    sub_02005748(1649);
+    Sound_PlayEffect(1649);
 }
 
 static void ov25_02254CF4 (SysTask * param0, void * param1)
@@ -527,7 +527,7 @@ static void ov25_02254D24 (SysTask * param0, void * param1)
     UnkStruct_ov25_02254560 * v0 = ov25_0225523C(param1);
 
     ov25_02254C54(param1, v0->unk_AC, 0);
-    sub_02005748(1647);
+    Sound_PlayEffect(1647);
 }
 
 static void ov25_02254D48 (SysTask * param0, void * param1)
@@ -535,7 +535,7 @@ static void ov25_02254D48 (SysTask * param0, void * param1)
     UnkStruct_ov25_02254560 * v0 = ov25_0225523C(param1);
 
     ov25_02254C54(param1, v0->unk_16C, 1);
-    sub_02005748(1647);
+    Sound_PlayEffect(1647);
 }
 
 static void ov25_02254D70 (SysTask * param0, void * param1)

@@ -43,7 +43,7 @@ u8 ov107_02249CAC (SaveData * param0, u8 param1, u8 param2)
 void ov107_02249CE0 (u32 param0, u16 param1)
 {
     if (param0 != 0xffffffff) {
-        sub_02005748(param1);
+        Sound_PlayEffect(param1);
     }
 
     return;

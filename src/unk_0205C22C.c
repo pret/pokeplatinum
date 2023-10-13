@@ -102,7 +102,7 @@ void sub_0205C2C8 (UnkStruct_0205C22C * param0)
 
 void sub_0205C2E0 (UnkStruct_0205C22C * param0)
 {
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     sub_0205C970(param0->unk_478);
     Heap_Destroy(89);
     Heap_FreeToHeap(param0);
@@ -372,7 +372,7 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, UnkStruct_02061AB4 * para
         return;
     }
 
-    sub_02005748(1615);
+    Sound_PlayEffect(1615);
     sub_02061AD4(param1, param0->unk_08);
     sub_0205C680(param0, 0);
     sub_02063340(param1, v0, v1, v2, 1);

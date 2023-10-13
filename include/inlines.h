@@ -50,7 +50,7 @@ static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC 
 static inline void inline_ov61_0222C160 (UnkStruct_ov61_0222C3B0 * param0)
 {
     if (param0->unk_00 != NULL) {
-        sub_0200DA58(param0->unk_00);
+        SysTask_Done(param0->unk_00);
         param0->unk_00 = NULL;
         param0->unk_04 = 0;
     }

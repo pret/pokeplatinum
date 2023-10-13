@@ -90,7 +90,7 @@ void ov94_02243FA8 (UnkStruct_ov94_0223FD4C * param0, int param1)
         v0->unk_0C = param0;
 
         ov94_02243FF0(v0, 0);
-        sub_02005748(1583);
+        Sound_PlayEffect(1583);
     }
 }
 
@@ -135,7 +135,7 @@ static void ov94_0224400C (SysTask * param0, void * param1)
         ov94_022441A0(v2->unk_F34[0], 128, v1->unk_04);
         break;
     case 3:
-        sub_02005748(1549);
+        Sound_PlayEffect(1549);
         v1->unk_0C->unk_10F0 = 1;
         sub_020067D0(param0);
         break;
@@ -156,7 +156,7 @@ void ov94_022440B8 (UnkStruct_ov94_0223FD4C * param0, int param1)
         v0->unk_0C = param0;
 
         ov94_02243FF0(v0, 5);
-        sub_02005748(1550);
+        Sound_PlayEffect(1550);
     }
 }
 
@@ -182,7 +182,7 @@ static void ov94_022440FC (SysTask * param0, void * param1)
         if (!sub_02021FD0(v2->unk_F34[0])) {
             ov94_02243FF0(v1, 0);
             v1->unk_00 = 2;
-            sub_02005748(1584);
+            Sound_PlayEffect(1584);
         }
         break;
     case 2:
@@ -242,7 +242,7 @@ void ov94_02244234 (UnkStruct_ov94_0223FD4C * param0, int param1, int param2)
     int v0;
 
     if ((param1 != 0) && (param2 == 1)) {
-        sub_02005748(1615);
+        Sound_PlayEffect(1615);
     }
 
     for (v0 = 0; v0 < 7; v0++) {

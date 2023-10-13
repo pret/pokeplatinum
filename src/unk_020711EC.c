@@ -138,7 +138,7 @@ UnkStruct_ov101_021D5D90 * sub_0207122C (UnkStruct_020711EC * param0, const UnkS
     sub_020715C8(v2, v3);
 
     if (sub_02071520(v2) == 0) {
-        sub_0200DA58(v3);
+        SysTask_Done(v3);
         sub_02071490(v2);
         return NULL;
     }
@@ -179,7 +179,7 @@ void sub_0207136C (UnkStruct_ov101_021D5D90 * param0)
         SysTask * v1 = sub_020715CC(param0);
 
         if (v1 != NULL) {
-            sub_0200DA58(v1);
+            SysTask_Done(v1);
         }
     }
 

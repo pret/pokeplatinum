@@ -70,7 +70,7 @@ static u8 ov13_02226D94(UnkStruct_ov13_02227244 * param0);
 static u8 ov13_02226CD4(UnkStruct_ov13_02227244 * param0);
 static u8 ov13_02226CFC(SysTask * param0, UnkStruct_ov13_02227244 * param1);
 static void ov13_02226ED0(UnkStruct_ov13_02227244 * param0);
-static void ov13_02226F9C(UnkStruct_02018340 * param0);
+static void ov13_02226F9C(BGL * param0);
 static void ov13_02226FC4(UnkStruct_ov13_02227244 * param0);
 static void ov13_022270B8(UnkStruct_ov13_02227244 * param0);
 static void ov13_022270F8(UnkStruct_ov13_02227244 * param0);
@@ -117,8 +117,8 @@ void ov13_022264F4 (UnkStruct_ov13_022264F4 * param0)
     memset(v0, 0, sizeof(UnkStruct_ov13_02227244));
 
     v0->unk_00 = param0;
-    v0->unk_04 = ov16_0223DF00(param0->unk_00);
-    v0->unk_08 = ov16_0223E064(param0->unk_00);
+    v0->unk_04 = BattleSystem_BGL(param0->unk_00);
+    v0->unk_08 = BattleSystem_PaletteSys(param0->unk_00);
     v0->unk_114A = 0;
 
     {
@@ -258,14 +258,14 @@ static u8 ov13_02226760 (UnkStruct_ov13_02227244 * param0)
         case 1:
         case 2:
         case 3:
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_114D = (u8)v0;
             param0->unk_114B = 5;
             ov13_0222880C(param0, 0 + v0 - 0, 0);
             return 11;
         case 4:
             if (param0->unk_00->unk_20 != 0) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 param0->unk_114D = param0->unk_00->unk_1F;
                 param0->unk_114B = 6;
                 ov13_02227A7C(param0);
@@ -274,7 +274,7 @@ static u8 ov13_02226760 (UnkStruct_ov13_02227244 * param0)
             }
             break;
         case 5:
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_00->unk_1C = 0;
             param0->unk_00->unk_1E = 4;
             ov13_0222880C(param0, 5, 0);
@@ -308,7 +308,7 @@ static u8 ov13_02226838 (UnkStruct_ov13_02227244 * param0)
         case 4:
         case 5:
             if (ov13_02227BA8(param0, v0) != 0) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 param0->unk_00->unk_27[param0->unk_114D] = (u8)v0;
                 param0->unk_114B = 6;
                 ov13_0222880C(param0, 6 + v0, 0);
@@ -317,7 +317,7 @@ static u8 ov13_02226838 (UnkStruct_ov13_02227244 * param0)
             break;
         case 6:
             if (param0->unk_1154[param0->unk_114D] != 0) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 param0->unk_114B = 7;
                 param0->unk_114E = -1;
                 ov13_0222880C(param0, 12, 0);
@@ -326,7 +326,7 @@ static u8 ov13_02226838 (UnkStruct_ov13_02227244 * param0)
             break;
         case 7:
             if (param0->unk_1154[param0->unk_114D] != 0) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 param0->unk_114B = 7;
                 param0->unk_114E = 1;
                 ov13_0222880C(param0, 13, 0);
@@ -334,7 +334,7 @@ static u8 ov13_02226838 (UnkStruct_ov13_02227244 * param0)
             }
             break;
         case 8:
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_114B = 4;
             ov13_0222880C(param0, 14, 0);
             return 11;
@@ -384,13 +384,13 @@ static u8 ov13_022269C0 (UnkStruct_ov13_02227244 * param0)
 
         switch (v0) {
         case 0:
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_00->unk_1C = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
             param0->unk_00->unk_1E = param0->unk_114D;
             ov13_0222880C(param0, 15, 0);
             return ov13_02226A5C(param0);
         case 1:
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_114B = 5;
             ov13_0222880C(param0, 16, 0);
             return 11;
@@ -517,7 +517,7 @@ static u8 ov13_02226C6C (UnkStruct_ov13_02227244 * param0)
 
 static u8 ov13_02226C7C (UnkStruct_ov13_02227244 * param0)
 {
-    if (sub_0201D724(param0->unk_32) == 0) {
+    if (Message_Printing(param0->unk_32) == 0) {
         return 10;
     }
 
@@ -593,7 +593,7 @@ static u8 ov13_02226D94 (UnkStruct_ov13_02227244 * param0)
     case 0:
 
         if (ov16_0226DFD4(param0->unk_38) == 1) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_114D = 2;
             param0->unk_114B = 12;
             ov13_0222880C(param0, 2, 0);
@@ -610,7 +610,7 @@ static u8 ov13_02226D94 (UnkStruct_ov13_02227244 * param0)
         break;
     case 2:
         if (ov16_0226DFD4(param0->unk_38) == 1) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_00->unk_27[param0->unk_114D] = 0;
             param0->unk_114B = 12;
             ov13_0222880C(param0, 6, 0);
@@ -627,7 +627,7 @@ static u8 ov13_02226D94 (UnkStruct_ov13_02227244 * param0)
         break;
     case 4:
         if (ov16_0226DFD4(param0->unk_38) == 1) {
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             param0->unk_00->unk_1C = ov13_02227BA8(param0, param0->unk_00->unk_27[param0->unk_114D]);
             param0->unk_00->unk_1E = param0->unk_114D;
             ov13_0222880C(param0, 15, 0);
@@ -722,7 +722,7 @@ static void ov13_02226ED0 (UnkStruct_ov13_02227244 * param0)
     sub_0201C3C0(param0->unk_04, 4);
 }
 
-static void ov13_02226F9C (UnkStruct_02018340 * param0)
+static void ov13_02226F9C (BGL * param0)
 {
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_OBJ, 0);
     sub_02019044(param0, 4);
@@ -752,14 +752,14 @@ static void ov13_02226FC4 (UnkStruct_ov13_02227244 * param0)
     }
 
     NARC_dtor(v0);
-    sub_02003050(param0->unk_08, 77, 3, param0->unk_00->unk_0C, 1, 0x20 * 12, 0);
-    sub_02003050(param0->unk_08, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
+    PaletteSys_LoadPalette(param0->unk_08, 77, 3, param0->unk_00->unk_0C, 1, 0x20 * 12, 0);
+    PaletteSys_LoadPalette(param0->unk_08, 14, 7, param0->unk_00->unk_0C, 1, 0x20, 15 * 16);
 
     {
         int v4 = ov16_0223EDE0(param0->unk_00->unk_00);
 
         sub_02006E3C(38, sub_0200DD04(v4), param0->unk_04, 4, 1024 - (18 + 12), 0, 0, param0->unk_00->unk_0C);
-        sub_02003050(param0->unk_08, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
+        PaletteSys_LoadPalette(param0->unk_08, 38, sub_0200DD08(v4), param0->unk_00->unk_0C, 1, 0x20, 14 * 16);
     }
 }
 

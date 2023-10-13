@@ -25,7 +25,7 @@
 
 struct UnkStruct_ov30_022563EC_t {
     const UnkStruct_ov30_022563EC_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[10];
     SysTask * unk_30;
     UnkStruct_ov25_02255958 unk_34;
@@ -43,7 +43,7 @@ static void ov30_022565B0(UnkStruct_ov30_022563EC * param0);
 static BOOL ov30_022565F4(UnkStruct_ov30_022563EC * param0);
 static void ov30_02256658(UnkStruct_ov30_022563EC * param0);
 
-BOOL ov30_022563EC (UnkStruct_ov30_022563EC ** param0, const UnkStruct_ov30_022563EC_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov30_022563EC (UnkStruct_ov30_022563EC ** param0, const UnkStruct_ov30_022563EC_1 * param1, BGL * param2)
 {
     UnkStruct_ov30_022563EC * v0 = (UnkStruct_ov30_022563EC *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov30_022563EC));
 
@@ -77,7 +77,7 @@ void ov30_02256444 (UnkStruct_ov30_022563EC * param0)
         ov30_02256658(param0);
 
         if (param0->unk_30) {
-            sub_0200DA58(param0->unk_30);
+            SysTask_Done(param0->unk_30);
         }
 
         Heap_FreeToHeap(param0);

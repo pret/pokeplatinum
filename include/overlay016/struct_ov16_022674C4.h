@@ -13,7 +13,7 @@ typedef struct {
     CellActorData * unk_08;
     BattleSystem * unk_0C;
     SysTask * unk_10;
-    UnkStruct_0205AA50 unk_14;
+    Window unk_14;
     u8 unk_24;
     u8 unk_25;
     u8 unk_26;

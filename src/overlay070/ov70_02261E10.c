@@ -669,7 +669,7 @@ static void ov70_02262968 (UnkStruct_ov70_02261E10 * param0, UnkStruct_ov70_0226
 
     if (v1 == 1) {
         ov70_022629DC(param0, param1);
-        sub_02005748(1445);
+        Sound_PlayEffect(1445);
     }
 }
 
@@ -685,7 +685,7 @@ static void ov70_022629AC (UnkStruct_ov70_02261E10 * param0, UnkStruct_ov70_0226
 
     if (v0 == 1) {
         ov70_022629DC(param0, param1);
-        sub_02005748(1449);
+        Sound_PlayEffect(1449);
     }
 }
 

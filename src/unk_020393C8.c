@@ -125,7 +125,7 @@ void sub_02039434 (UnkStruct_020393C8 * param0, int param1)
 
 void sub_02039440 (UnkStruct_020393C8 * param0)
 {
-    sub_0200DA58(param0->unk_18);
+    SysTask_Done(param0->unk_18);
     inline_02039440((GXOamAttr *)(HW_OAM));
 
     if (param0->unk_12) {

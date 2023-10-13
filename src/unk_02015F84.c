@@ -250,7 +250,7 @@ BOOL sub_020160F4 (UnkStruct_02015F84 * param0, const u8 param1)
 void sub_02016114 (UnkStruct_02015F84 * param0, const u8 param1)
 {
     if (param0->unk_00[param1].unk_04 != NULL) {
-        sub_0200DA58(param0->unk_00[param1].unk_04);
+        SysTask_Done(param0->unk_00[param1].unk_04);
 
         param0->unk_00[param1].unk_04 = NULL;
         param0->unk_00[param1].unk_20 = 1;
@@ -274,7 +274,7 @@ static void sub_02016150 (SysTask * param0, void * param1)
         v0->unk_20 = 1;
         v0->unk_10 = 0;
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         Heap_FreeToHeap(v0->unk_08);
     }

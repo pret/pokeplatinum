@@ -160,7 +160,7 @@ void sub_02013D38 (UnkStruct_02013BE0 * param0)
     GF_ASSERT(param0);
 
     if (param0->unk_604) {
-        sub_0200DA58(param0->unk_604);
+        SysTask_Done(param0->unk_604);
         param0->unk_604 = NULL;
 
         v0 = sub_02013B54(param0->unk_600);

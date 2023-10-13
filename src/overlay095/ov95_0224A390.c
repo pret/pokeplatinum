@@ -90,7 +90,7 @@ typedef struct {
     BOOL unk_0C;
     UnkStruct_ov95_02247568 unk_10;
     UnkStruct_02022550 * unk_20[1];
-    UnkStruct_02018340 * unk_24;
+    BGL * unk_24;
     UnkStruct_ov95_0224773C * unk_28;
     UnkStruct_ov95_02247958 * unk_2C;
     SysTask * unk_30;
@@ -198,7 +198,7 @@ static int ov95_0224A464 (UnkStruct_ov95_0224A42C * param0, int * param1)
         break;
     case 1:
         if (sub_02021FD0(param0->unk_20[0]) == 0) {
-            sub_02005748(1707);
+            Sound_PlayEffect(1707);
             ov95_0224A864(param0, &(param0->unk_34));
             ov95_022479A8(param0->unk_2C, 1);
             (*param1)++;
@@ -414,7 +414,7 @@ static void ov95_0224A848 (UnkStruct_ov95_0224A848 * param0)
 static void ov95_0224A850 (UnkStruct_ov95_0224A848 * param0)
 {
     if (param0->unk_04) {
-        sub_0200DA58(param0->unk_04);
+        SysTask_Done(param0->unk_04);
         param0->unk_04 = NULL;
     }
 }
@@ -561,7 +561,7 @@ static void ov95_0224AA70 (SysTask * param0, void * param1)
     case 3:
         if (++(v0->unk_70) > 8) {
             v0->unk_04 = NULL;
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
         break;
     }

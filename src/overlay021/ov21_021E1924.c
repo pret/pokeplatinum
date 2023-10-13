@@ -531,7 +531,7 @@ static void ov21_021E1E8C (u32 param0, u32 param1, void * param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 0);
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 }
             }
             break;
@@ -546,7 +546,7 @@ static void ov21_021E1E8C (u32 param0, u32 param1, void * param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 1);
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 }
             }
             break;
@@ -561,7 +561,7 @@ static void ov21_021E1E8C (u32 param0, u32 param1, void * param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 2);
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 }
             }
             break;
@@ -576,7 +576,7 @@ static void ov21_021E1E8C (u32 param0, u32 param1, void * param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 3);
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 }
             }
             break;
@@ -591,7 +591,7 @@ static void ov21_021E1E8C (u32 param0, u32 param1, void * param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 4);
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 }
             }
             break;
@@ -606,7 +606,7 @@ static void ov21_021E1E8C (u32 param0, u32 param1, void * param2)
 
                 if (v3) {
                     ov21_021E27C0(v2, v1, v2->unk_10, 5);
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 }
             }
             break;
@@ -782,7 +782,7 @@ static void ov21_021E2458 (UnkStruct_ov21_021E2588 * param0)
 
 static void ov21_021E2478 (UnkStruct_ov21_021E2588 * param0, UnkStruct_ov21_021E1A90 * param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_02009DC8 * v2;
     UnkStruct_ov21_021D13FC * v3 = param1->unk_00;
@@ -1065,7 +1065,7 @@ static void ov21_021E2864 (UnkStruct_ov21_021E1E74 * param0, UnkStruct_ov21_021E
         if (v0 == 1) {
             ov21_021E275C(param0, param1, param0->unk_10);
             ov21_021E2968(param0, param1);
-            sub_02005748(1675);
+            Sound_PlayEffect(1675);
         }
     }
 }

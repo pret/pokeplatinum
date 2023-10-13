@@ -75,7 +75,7 @@ UnkStruct_0200112C * sub_0200112C (const UnkStruct_ov84_02240FA8 * param0, u16 p
     }
 
     sub_02014A40(v0->unk_24, (u32)((((v0->unk_00.unk_17_4) & 0xff) << 16) | (((v0->unk_00.unk_18_4) & 0xff) << 8) | (((v0->unk_00.unk_18_0) & 0xff) << 0)));
-    sub_0201ADA4(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
+    BGL_FillWindow(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
     sub_02001688(v0, v0->unk_28, 0, v0->unk_00.unk_12);
     sub_02001720(v0);
     sub_02001AD8(v0, 1);
@@ -165,7 +165,7 @@ void sub_02001384 (UnkStruct_0200112C * param0, u16 * param1, u16 * param2)
 
 void sub_020013AC (UnkStruct_0200112C * param0)
 {
-    sub_0201ADA4(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
+    BGL_FillWindow(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
     sub_02001688(param0, param0->unk_28, 0, param0->unk_00.unk_12);
     sub_02001720(param0);
     sub_0201A954(param0->unk_00.unk_0C);
@@ -380,7 +380,7 @@ static void sub_02001778 (UnkStruct_0200112C * param0, u16 param1)
     switch (param0->unk_00.unk_1A_15) {
     case 0:
         v0 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
-        sub_0201AE78(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
+        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
         break;
     case 1:
     case 2:
@@ -473,7 +473,7 @@ static void sub_02001900 (UnkStruct_0200112C * param0, u8 param1, u8 param2)
     u16 v1;
 
     if (param1 >= param0->unk_00.unk_12) {
-        sub_0201ADA4(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
+        BGL_FillWindow(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
         sub_02001688(param0, param0->unk_28, 0, param0->unk_00.unk_12);
         return;
     }
@@ -486,11 +486,11 @@ static void sub_02001900 (UnkStruct_0200112C * param0, u8 param1, u8 param2)
 
         v1 = (u16)(param0->unk_00.unk_12 * v0 + param0->unk_00.unk_17_0);
 
-        sub_0201AE78(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, v1, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)(sub_0201C298(param0->unk_00.unk_0C) * 8 - v1));
+        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, v1, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)(sub_0201C298(param0->unk_00.unk_0C) * 8 - v1));
     } else {
         sub_0201C04C(param0->unk_00.unk_0C, 0, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));
         sub_02001688(param0, (u16)(param0->unk_28 + (param0->unk_00.unk_12 - param1)), (u16)(param0->unk_00.unk_12 - param1), (u16)param1);
-        sub_0201AE78(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, 0, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)param0->unk_00.unk_17_0);
+        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, 0, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)param0->unk_00.unk_17_0);
     }
 }
 

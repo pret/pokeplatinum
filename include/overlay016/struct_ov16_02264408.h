@@ -11,8 +11,8 @@
 
 typedef struct {
     UnkStruct_0200C6E4 * unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_02002F38 * unk_08;
+    BGL * unk_04;
+    PaletteSys * unk_08;
     UnkStruct_ov16_0223E0C8 * unk_0C[4];
     u8 unk_1C[4];
     UnkStruct_02007C7C * unk_20[4];

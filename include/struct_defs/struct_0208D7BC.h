@@ -18,9 +18,9 @@
 #include "struct_defs/struct_02098D38.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[36];
-    UnkStruct_0205AA50 * unk_244;
+    BGL * unk_00;
+    Window unk_04[36];
+    Window * unk_244;
     u32 unk_248;
     UnkStruct_02098D38 * unk_24C;
     UnkStruct_0208D1D4 unk_250;

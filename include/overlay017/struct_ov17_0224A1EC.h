@@ -34,12 +34,12 @@ typedef struct {
     UnkStruct_02007C7C * unk_48[4];
     UnkStruct_0200C6E4 * unk_58;
     UnkStruct_0200C704 * unk_5C;
-    UnkStruct_02018340 * unk_60;
-    UnkStruct_0205AA50 unk_64[2];
+    BGL * unk_60;
+    Window unk_64[2];
     MessageLoader * unk_84;
     UnkStruct_0200B358 * unk_88;
     Strbuf* unk_8C;
-    UnkStruct_02002F38 * unk_90;
+    PaletteSys * unk_90;
     UnkStruct_02012744 * unk_94;
     UnkStruct_ov16_0223E0C8 unk_98[4];
     CellActorData * unk_D8[68];

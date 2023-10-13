@@ -72,8 +72,8 @@ typedef struct {
     int unk_04;
     int unk_08;
     int unk_0C;
-    UnkStruct_0205AA50 unk_10[12];
-    UnkStruct_0205AA50 unk_D0[12];
+    Window unk_10[12];
+    Window unk_D0[12];
     int unk_190;
     int unk_194;
     UnkStruct_ov62_022312B0 unk_198[2];
@@ -250,14 +250,14 @@ static BOOL ov62_02237DB8 (UnkStruct_0208C06C * param0)
         sub_02003A2C(param0->unk_14.unk_14, 1, 0x2, v0->unk_08, param0->unk_14.unk_44);
         break;
     case 1:
-        sub_02019060(0, 0);
-        sub_02019060(2, 0);
-        sub_02019060(1, 3);
-        sub_02019060(3, 2);
-        sub_02019060(4, 0);
-        sub_02019060(6, 1);
-        sub_02019060(5, 3);
-        sub_02019060(7, 2);
+        BGL_SetPriority(0, 0);
+        BGL_SetPriority(2, 0);
+        BGL_SetPriority(1, 3);
+        BGL_SetPriority(3, 2);
+        BGL_SetPriority(4, 0);
+        BGL_SetPriority(6, 1);
+        BGL_SetPriority(5, 3);
+        BGL_SetPriority(7, 2);
         sub_0208B9E0(param0->unk_6F0, 0);
         param0->unk_08++;
         break;
@@ -374,14 +374,14 @@ static BOOL ov62_022380B0 (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_02019060(0, 1);
-        sub_02019060(1, 3);
-        sub_02019060(2, 2);
-        sub_02019060(3, 1);
-        sub_02019060(4, 1);
-        sub_02019060(5, 3);
-        sub_02019060(6, 2);
-        sub_02019060(7, 1);
+        BGL_SetPriority(0, 1);
+        BGL_SetPriority(1, 3);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 1);
+        BGL_SetPriority(4, 1);
+        BGL_SetPriority(5, 3);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
@@ -403,7 +403,7 @@ static BOOL ov62_022380B0 (UnkStruct_0208C06C * param0)
             sub_02019EBC(param0->unk_14.unk_10, 3);
             sub_02019EBC(param0->unk_14.unk_10, 7);
             sub_02019184(param0->unk_14.unk_10, 2, 0, 0);
-            sub_02019060(2, 0);
+            BGL_SetPriority(2, 0);
             param0->unk_08++;
         }
 
@@ -416,7 +416,7 @@ static BOOL ov62_022380B0 (UnkStruct_0208C06C * param0)
         ov62_02231AAC(param0, 286);
         v0->unk_2DC = sub_02030A80(102);
         sub_02030AA0(v0->unk_2DC, param0->unk_830);
-        sub_02005748(1381);
+        Sound_PlayEffect(1381);
         param0->unk_08++;
         break;
     case 3:
@@ -435,7 +435,7 @@ static BOOL ov62_022380B0 (UnkStruct_0208C06C * param0)
         } else {
             sub_020057A4(1381, 0);
             ov62_02233704(param0, 47);
-            sub_02005748(1375);
+            Sound_PlayEffect(1375);
 
             param0->unk_08++;
         }
@@ -466,7 +466,7 @@ static BOOL ov62_022380B0 (UnkStruct_0208C06C * param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                sub_02019060(2, 0);
+                BGL_SetPriority(2, 0);
                 ov62_0223956C();
             }
 
@@ -498,14 +498,14 @@ static BOOL ov62_022383E4 (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_02019060(0, 1);
-        sub_02019060(1, 3);
-        sub_02019060(2, 2);
-        sub_02019060(3, 1);
-        sub_02019060(4, 1);
-        sub_02019060(5, 3);
-        sub_02019060(6, 2);
-        sub_02019060(7, 1);
+        BGL_SetPriority(0, 1);
+        BGL_SetPriority(1, 3);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 1);
+        BGL_SetPriority(4, 1);
+        BGL_SetPriority(5, 3);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
@@ -554,7 +554,7 @@ static BOOL ov62_022383E4 (UnkStruct_0208C06C * param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                sub_02019060(2, 0);
+                BGL_SetPriority(2, 0);
                 ov62_0223956C();
             }
 
@@ -749,14 +749,14 @@ static BOOL ov62_0223896C (UnkStruct_0208C06C * param0)
 
     switch (param0->unk_08) {
     case 0:
-        sub_02019060(0, 1);
-        sub_02019060(1, 3);
-        sub_02019060(2, 2);
-        sub_02019060(3, 1);
-        sub_02019060(4, 1);
-        sub_02019060(5, 3);
-        sub_02019060(6, 2);
-        sub_02019060(7, 1);
+        BGL_SetPriority(0, 1);
+        BGL_SetPriority(1, 3);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 1);
+        BGL_SetPriority(4, 1);
+        BGL_SetPriority(5, 3);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 1);
 
         {
             Heap_FreeToHeap(v0->unk_230.unk_08);
@@ -804,7 +804,7 @@ static BOOL ov62_0223896C (UnkStruct_0208C06C * param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                sub_02019060(2, 0);
+                BGL_SetPriority(2, 0);
                 ov62_0223956C();
             }
 
@@ -846,7 +846,7 @@ static BOOL ov62_02238B70 (UnkStruct_0208C06C * param0)
         sub_0208B9E0(param0->unk_6F0, 1);
         sub_0208BA08(param0->unk_6F0, 24, 24);
         ov62_02231AAC(param0, 287);
-        sub_02005748(1381);
+        Sound_PlayEffect(1381);
         param0->unk_08++;
         break;
     case 1:
@@ -866,7 +866,7 @@ static BOOL ov62_02238B70 (UnkStruct_0208C06C * param0)
             ov62_0222FB60(param0, 3);
         } else {
             sub_020057A4(1381, 0);
-            sub_02005748(1375);
+            Sound_PlayEffect(1375);
             param0->unk_08++;
         }
         break;
@@ -1024,7 +1024,7 @@ static BOOL ov62_02238F24 (UnkStruct_0208C06C * param0)
             if (v0->unk_228) {
                 ov22_0225B020(v0->unk_228);
                 ov62_0222F834(param0);
-                sub_02019060(2, 0);
+                BGL_SetPriority(2, 0);
                 v0->unk_228 = NULL;
                 ov62_0223956C();
             }
@@ -1069,7 +1069,7 @@ static BOOL ov62_0223900C (UnkStruct_0208C06C * param0)
                 if (v0->unk_228) {
                     ov22_0225B020(v0->unk_228);
                     ov62_0222F834(param0);
-                    sub_02019060(2, 0);
+                    BGL_SetPriority(2, 0);
                     v0->unk_228 = NULL;
                     ov62_0223956C();
                 }
@@ -1161,7 +1161,7 @@ static BOOL ov62_0223921C (UnkStruct_0208C06C * param0)
                 if (v0->unk_228) {
                     ov22_0225B020(v0->unk_228);
                     ov62_0222F834(param0);
-                    sub_02019060(2, 0);
+                    BGL_SetPriority(2, 0);
                     v0->unk_228 = NULL;
                     ov62_0223956C();
                 }
@@ -1235,19 +1235,19 @@ static void ov62_02239424 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
 
     sub_0201ACF4(&v0->unk_D0[0]);
-    sub_0201A8FC(&v0->unk_D0[0]);
+    BGL_DeleteWindow(&v0->unk_D0[0]);
 }
 
 static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     Strbuf* v2;
     int v3;
 
     v1 = &v0->unk_D0[0];
 
-    sub_0201ADA4(v1, 0x0);
+    BGL_FillWindow(v1, 0x0);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);
@@ -1260,12 +1260,12 @@ static void ov62_02239440 (UnkStruct_0208C06C * param0, int param1)
 static void ov62_02239498 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02237D24 * v0 = param0->unk_860;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     int v2 = 1;
 
     v1 = &v0->unk_D0[0];
     sub_0201A7A0(v1);
-    sub_0201A7E8(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
+    BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
 
     ov62_02239440(param0, 121);
 }
@@ -1391,10 +1391,10 @@ asm static void ov62_02239724 (UnkStruct_0208C06C * param0)
     ldr r0, [r5, #0x24]
     ldr r1, [sp, #0x20]
     mov r2, #2
-    bl sub_0201A7E8
+    bl BGL_AddWindow
     ldr r0, [sp, #0x20]
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r0, #0x66
     bl ov62_02231690
     str r0, [sp, #0x18]
@@ -1526,10 +1526,10 @@ asm static void ov62_02239854 (UnkStruct_0208C06C * param0, int param1)
     ldr r0, [r5, #0x24]
     ldr r1, [sp, #0x20]
     mov r2, #2
-    bl sub_0201A7E8
+    bl BGL_AddWindow
     ldr r0, [sp, #0x20]
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r0, #0x66
     bl ov62_02231690
     str r0, [sp, #0x18]
@@ -1753,7 +1753,7 @@ static void ov62_02239BAC (u32 param0, u32 param1, void * param2)
         return;
     }
     if (ov62_02239984(v0, param0) == 0) {
-        sub_02005748(1380);
+        Sound_PlayEffect(1380);
         return;
     }
 
@@ -1814,10 +1814,10 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
     ldr r0, [sp, #0x14]
     ldr r3, [sp, #0x24]
     ldr r0, [r0, #0x24]
-    bl sub_0201A7E8
+    bl BGL_AddWindow
     add r0, r4, #0
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     ldr r0, [sp, #0x14]
     add r1, r7, #0
     ldr r0, [r0, #0x48]
@@ -1890,13 +1890,13 @@ asm static void ov62_02239BD8 (UnkStruct_0208C06C * param0)
 static void ov62_02239CE8 (UnkStruct_0208C06C * param0)
 {
     u32 v0;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     UnkStruct_ov62_02237D24 * v2 = param0->unk_860;
 
     for (v0 = 0; v0 < 9; v0++) {
         v1 = &v2->unk_D0[v0];
         sub_0201ACF4(v1);
-        sub_0201A8FC(v1);
+        BGL_DeleteWindow(v1);
     }
 }
 
@@ -1906,7 +1906,7 @@ static void ov62_02239D0C (UnkStruct_0208C06C * param0)
 
     if (sub_0201A7CC(&v0->unk_10[0]) == 1) {
         sub_0201ACF4(&v0->unk_10[0]);
-        sub_0201A8FC(&v0->unk_10[0]);
+        BGL_DeleteWindow(&v0->unk_10[0]);
     }
 }
 

@@ -790,7 +790,7 @@ static void ov70_02269510 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         sub_02005770(param2, 5);
     } else {
         if (ov70_0225CE70(param1->unk_08) == 0) {
-            sub_02005748(param2);
+            Sound_PlayEffect(param2);
         }
     }
 }

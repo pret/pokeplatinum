@@ -106,7 +106,7 @@ static const u16 Unk_ov19_021E0138[] = {
     9, 10,
 };
 
-BOOL ov19_021D79F8 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4)
+BOOL ov19_021D79F8 (UnkStruct_ov19_021D8318 * param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, UnkStruct_020218BC * param4)
 {
     param0->unk_00 = param2->unk_40.unk_00;
     param0->unk_01 = 11;
@@ -208,7 +208,7 @@ static void ov19_021D7C58 (UnkStruct_ov19_021D8318 * param0, const UnkStruct_ov1
         NNSG2dCharacterData * v1;
 
         if (NNS_G2dGetUnpackedBGCharacterData(v0, &v1)) {
-            UnkStruct_0205AA50 * v2;
+            Window * v2;
 
             v2 = sub_0201A778(10, 1);
 
@@ -304,7 +304,7 @@ static void ov19_021D7E24 (SysTask * param0, void * param1)
 
     v0->unk_0C = v0->unk_14;
     v0->unk_00 = ov19_021D5E68(v0->unk_58F8);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     v0->unk_9C = 1;
 }
 
@@ -330,7 +330,7 @@ static void ov19_021D7E6C (SysTask * param0, void * param1)
     } else {
         sub_02019184(v0->unk_58F4, 3, 0, v0->unk_14);
         ov19_021D870C(v0, v0->unk_A8[v2]);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -479,7 +479,7 @@ static void ov19_021D8210 (SysTask * param0, void * param1)
             v0->unk_0A = 2;
         } else {
             ov19_021D79B8(v0, ov19_021D826C, v0->unk_00);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
     }
 }
@@ -513,7 +513,7 @@ static void ov19_021D8274 (SysTask * param0, void * param1)
     case 2:
         v4->unk_A3 = 0;
         Unk_ov19_021E077C = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         break;
     }
 }

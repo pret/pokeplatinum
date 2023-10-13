@@ -377,7 +377,7 @@ static void ov19_021D9088 (SysTask * param0, void * param1)
         sub_02021D6C(v0->unk_10, 9);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 void ov19_021D9230 (UnkStruct_ov19_021D8E00 * param0)
@@ -434,7 +434,7 @@ static void ov19_021D928C (SysTask * param0, void * param1)
         ov19_021D9E04(v0, &v1);
         v0->unk_784 = 255;
         v0->unk_78E = 1;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -500,7 +500,7 @@ static void ov19_021D93D0 (SysTask * param0, void * param1)
         v0->unk_784 = 255;
         v0->unk_78E = 1;
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -605,7 +605,7 @@ static void ov19_021D9600 (SysTask * param0, void * param1)
 
         sub_02021C50(v0->unk_00, &v1);
         ov19_021D79B8(param1, ov19_021D95F4, v0->unk_28);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -667,7 +667,7 @@ static void ov19_021D9718 (SysTask * param0, void * param1)
             v2.y = v0->unk_770 << FX32_SHIFT;
             ov19_021D9E04(v0, &v2);
             v0->unk_788 = 0;
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
     }
     break;
@@ -719,7 +719,7 @@ static void ov19_021D9894 (SysTask * param0, void * param1)
         v1.y = v0->unk_770 << FX32_SHIFT;
         ov19_021D9E04(v0, &v1);
         v0->unk_788 = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -875,7 +875,7 @@ static void ov19_021D9B78 (SysTask * param0, void * param1)
         if (ov19_021DE9A8(v0->unk_760)) {
             sub_02021D6C(v0->unk_04, 2);
             v0->unk_788 = 0;
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
     }
 }
@@ -909,7 +909,7 @@ static void ov19_021D9C18 (SysTask * param0, void * param1)
         if (ov19_021DEA64(v0->unk_760)) {
             sub_02021D6C(v0->unk_04, 0);
             v0->unk_788 = 0;
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
     }
 }
@@ -942,7 +942,7 @@ static void ov19_021D9CB4 (SysTask * param0, void * param1)
         if (ov19_021DEB08(v0->unk_760)) {
             sub_02021D6C(v0->unk_04, 2);
             v0->unk_788 = 0;
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
     }
 }

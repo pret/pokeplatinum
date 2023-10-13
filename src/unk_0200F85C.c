@@ -1688,7 +1688,7 @@ static void sub_02010624 (SysTask * param0, void * param1)
         memcpy(v1->unk_00, v1->unk_300, sizeof(short) * 2 * 192);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void sub_02010658 (int param0, UnkStruct_02010658 * param1, int param2)
@@ -1765,7 +1765,7 @@ static void sub_020107AC (SysTask * param0, void * param1)
         memcpy(v0->unk_00[v1].unk_C0, v0->unk_00[v1].unk_00, sizeof(u8) * 192);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static inline void inline_020107D8_sub (int param0, BOOL param1, int param2)

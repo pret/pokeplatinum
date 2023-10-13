@@ -394,7 +394,7 @@ void ov116_02262E50 (SysTask * param0, void * param1)
     }
 
     if ((ScreenWipe_Done() == 0) || (v0->unk_78->unk_2C.unk_00 == 1)) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         Heap_FreeToHeap(v0);
         return;
     }
@@ -419,7 +419,7 @@ void ov116_02262E50 (SysTask * param0, void * param1)
             }
         }
 
-        sub_02005748(1547);
+        Sound_PlayEffect(1547);
 
         v0->unk_08 = 0;
         v0->unk_00++;
@@ -472,7 +472,7 @@ void ov116_02262E50 (SysTask * param0, void * param1)
 
         if (v10[0] && v10[1]) {
             if (v0->unk_04 == 0) {
-                sub_02005748(1585);
+                Sound_PlayEffect(1585);
             }
             v0->unk_00++;
         }
@@ -481,7 +481,7 @@ void ov116_02262E50 (SysTask * param0, void * param1)
     case 3:
         if (v0->unk_04 == 0) {
             if (v0->unk_08 == (((30 * 3)) - 82)) {
-                sub_02005748(1397);
+                Sound_PlayEffect(1397);
             }
 
             if ((++v0->unk_08) >= (((30 * 3)) - 50)) {
@@ -496,7 +496,7 @@ void ov116_02262E50 (SysTask * param0, void * param1)
         if (v0->unk_04 == 0) {
             if ((++v0->unk_08) >= (((30 * 3)) - 45)) {
                 *v0->unk_0C = 0;
-                sub_02005748(1547);
+                Sound_PlayEffect(1547);
                 v0->unk_00 = 0;
                 v0->unk_04++;
             }
@@ -509,7 +509,7 @@ void ov116_02262E50 (SysTask * param0, void * param1)
                 }
 
                 v0->unk_10->unk_1E0.z = (0 * FX32_ONE);
-                sub_0200DA58(param0);
+                SysTask_Done(param0);
                 Heap_FreeToHeap(v0);
             }
         }
@@ -523,7 +523,7 @@ void ov116_02263158 (SysTask * param0, void * param1)
     int v1 = sub_0200D3E0(v0->unk_0C);
 
     if ((ScreenWipe_Done() == 0) || (v0->unk_2C->unk_2C.unk_00 == 1)) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         Heap_FreeToHeap(v0);
         return;
     }
@@ -569,7 +569,7 @@ void ov116_02263158 (SysTask * param0, void * param1)
             }
         } else {
             if ((++v0->unk_08) >= 10) {
-                sub_0200DA58(param0);
+                SysTask_Done(param0);
                 Heap_FreeToHeap(v0);
             }
         }
@@ -583,7 +583,7 @@ static void ov116_0226323C (SysTask * param0, void * param1)
 
     if ((ScreenWipe_Done() == 0) || (v0->unk_3C->unk_2C.unk_00 == 1)) {
         v0->unk_30 = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -672,7 +672,7 @@ static void ov116_0226323C (SysTask * param0, void * param1)
 
         v0->unk_30 = 0;
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         break;
     }
 }
@@ -695,7 +695,7 @@ static void ov116_02263434 (SysTask * param0, void * param1)
 
         v1->unk_30 = 0;
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -792,7 +792,7 @@ static void ov116_02263434 (SysTask * param0, void * param1)
         sub_020171A0(&v3->unk_88[1], &v1->unk_3C->unk_24);
 
         v1->unk_30 = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
 
         break;
     }
@@ -982,7 +982,7 @@ void ov116_02263B30 (UnkStruct_ov116_02262A8C * param0)
 
             ov116_02262D64(param0, param0->unk_00);
             ov116_022637B4(param0);
-            sub_02005748(1396);
+            Sound_PlayEffect(1396);
         }
 
         ov116_02263DE8(param0);
@@ -1077,7 +1077,7 @@ void ov116_02263BA0 (UnkStruct_ov116_02262A8C * param0)
 
             if (v0 != 0) {
                 if (sub_020057D4(1394) == 0) {
-                    sub_02005748(1394);
+                    Sound_PlayEffect(1394);
                 }
 
                 ov116_0226493C(param0, v0, v1);

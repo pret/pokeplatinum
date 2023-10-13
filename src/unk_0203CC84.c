@@ -380,7 +380,7 @@ struct UnkStruct_ov25_02253CE0_t * sub_0203D158 (void)
     return Unk_021C07DC->unk_04->unk_14;
 }
 
-UnkStruct_02018340 * sub_0203D170 (void * param0)
+BGL * sub_0203D170 (void * param0)
 {
     UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param0;
     return v0->unk_08;

@@ -47,7 +47,7 @@ static u16 ov104_0223BB10(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BB60(UnkStruct_ov104_0223BA10 * param0);
 u16 ov104_0223BC24(u16 param0);
 void sub_02052894(BattleParams * param0);
-void ov104_0223BB84(UnkStruct_02018340 * param0, UnkStruct_ov104_0223BA10 * param1, u32 param2);
+void ov104_0223BB84(BGL * param0, UnkStruct_ov104_0223BA10 * param1, u32 param2);
 static void ov104_0223BBC4(u16 * param0, u16 param1);
 
 static const struct {
@@ -382,7 +382,7 @@ u16 ov104_0223BB60 (UnkStruct_ov104_0223BA10 * param0)
     return v0;
 }
 
-void ov104_0223BB84 (UnkStruct_02018340 * param0, UnkStruct_ov104_0223BA10 * param1, u32 param2)
+void ov104_0223BB84 (BGL * param0, UnkStruct_ov104_0223BA10 * param1, u32 param2)
 {
     int v0;
     u16 v1[30];

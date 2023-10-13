@@ -12,7 +12,7 @@ int sub_02005690(u16 param0);
 void sub_0200569C(void);
 void sub_020056D4(void);
 BOOL sub_02005728(u16 param0, int param1);
-BOOL sub_02005748(u16 param0);
+BOOL Sound_PlayEffect(u16 param0);
 BOOL sub_02005770(u16 param0, int param1);
 void sub_020057A4(u16 param0, int param1);
 void sub_020057AC(int param0, int param1);

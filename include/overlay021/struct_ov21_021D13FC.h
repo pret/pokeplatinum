@@ -18,8 +18,8 @@
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04;
+    BGL * unk_00;
+    Window unk_04;
     UnkStruct_0200C738 unk_14;
     UnkStruct_020218BC * unk_138;
     UnkStruct_02009714 * unk_13C[4];

@@ -350,7 +350,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
 
     if (param0->unk_00_2) {
         if (sub_0203A9C8(param1) == 1) {
-            sub_02005748(1533);
+            Sound_PlayEffect(1533);
             sub_0203A9E0(param1);
             return 1;
         }
@@ -448,7 +448,7 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
     }
 
     if (param0->unk_00_2) {
-        sub_02005748(1533);
+        Sound_PlayEffect(1533);
         sub_0203AABC(param1);
         return 1;
     }
@@ -509,7 +509,7 @@ BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * p
         if (sub_02035E18() > 1) {
             (void)0;
         } else {
-            sub_02005748(1533);
+            Sound_PlayEffect(1533);
             sub_0203AA78(param1);
             sub_0205BEA8(4);
             sub_02036BA0();
@@ -585,7 +585,7 @@ int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
     }
 
     if (param0->unk_00_2) {
-        sub_02005748(1533);
+        Sound_PlayEffect(1533);
         sub_0203A9E0(param1);
         return 1;
     }

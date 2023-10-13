@@ -111,10 +111,10 @@ void ov17_0223F1E0 (UnkStruct_0207C690 * param0)
     sub_020242C4(param0);
 }
 
-void ov17_0223F1E8 (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C704 * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
+void ov17_0223F1E8 (int param0, BGL * param1, UnkStruct_0200C704 * param2, UnkStruct_02012744 * param3, UnkStruct_ov17_0223F2E4 * param4, const Strbuf *param5, int param6, u32 param7, int param8, int param9, int param10, int param11, int param12, int param13, int param14)
 {
     UnkStruct_020127E8 v0;
-    UnkStruct_0205AA50 v1;
+    Window v1;
     SpriteManagerAllocation v2;
     int v3;
     FontOAM * v4;
@@ -165,7 +165,7 @@ void ov17_0223F1E8 (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C704 
     }
 
     sub_020128C4(v4, param10, param11);
-    sub_0201A8FC(&v1);
+    BGL_DeleteWindow(&v1);
 
     param4->unk_00 = v4;
     param4->unk_04 = v2;
@@ -314,7 +314,7 @@ void ov17_0223F374 (UnkStruct_02095C48 * param0)
     }
 }
 
-void ov17_0223F560 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02002F38 * param2, int param3, int param4, int param5, int param6)
+void ov17_0223F560 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, PaletteSys * param2, int param3, int param4, int param5, int param6)
 {
     if (param3 != -1) {
         sub_0200CBDC(param0, param1, 46, 73, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
@@ -389,7 +389,7 @@ void ov17_0223F6C4 (UnkStruct_ov17_0223F6E8 * param0)
         sub_0200D0F4(param0->unk_00[v0]);
     }
 
-    sub_0200DA58(param0->unk_18);
+    SysTask_Done(param0->unk_18);
     param0->unk_18 = NULL;
 }
 
@@ -403,7 +403,7 @@ static void ov17_0223F6E8 (SysTask * param0, void * param1)
     }
 }
 
-UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, UnkStruct_02002F38 * param1, const u16 * param2, int param3, int param4, u32 param5)
+UnkStruct_ov17_0223F744 * ov17_0223F70C (int param0, PaletteSys * param1, const u16 * param2, int param3, int param4, u32 param5)
 {
     UnkStruct_ov17_0223F744 * v0;
 
@@ -423,7 +423,7 @@ void ov17_0223F744 (UnkStruct_ov17_0223F744 * param0)
 {
     GF_ASSERT(param0->unk_00 != NULL);
 
-    sub_0200DA58(param0->unk_00);
+    SysTask_Done(param0->unk_00);
     Heap_FreeToHeap(param0);
 }
 
@@ -448,7 +448,7 @@ static void ov17_0223F774 (SysTask * param0, void * param1)
 
     if (v0->unk_08 > v0->unk_0C[v0->unk_11]) {
         sub_0200AAE0(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
-        sub_02005748(1528);
+        Sound_PlayEffect(1528);
 
         v0->unk_08 = 0;
         v0->unk_11++;

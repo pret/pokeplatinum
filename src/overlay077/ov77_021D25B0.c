@@ -76,7 +76,7 @@ typedef struct {
     u8 unk_06;
     u8 unk_07;
     u8 unk_08;
-    UnkStruct_02018340 * unk_0C;
+    BGL * unk_0C;
     SysTask * unk_10;
     UnkStruct_ov77_021D670C * unk_14;
     u8 * unk_18;
@@ -94,7 +94,7 @@ typedef struct {
     u8 unk_08;
     u8 unk_09;
     int unk_0C;
-    UnkStruct_02018340 * unk_10;
+    BGL * unk_10;
     UnkStruct_ov77_021D5564 * unk_14;
     UnkStruct_ov77_021D6734 * unk_18;
     UnkStruct_ov77_021D6CFC * unk_1C;
@@ -127,7 +127,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     fx32 unk_04;
-    UnkStruct_02018340 * unk_08;
+    BGL * unk_08;
     UnkStruct_ov77_021D5308_sub1 unk_0C;
 } UnkStruct_ov77_021D5308;
 
@@ -135,7 +135,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     BOOL unk_08;
-    UnkStruct_02018340 * unk_0C;
+    BGL * unk_0C;
     UnkStruct_0207C690 * unk_10;
     u32 unk_14;
     UnkStruct_ov77_021D2F38 unk_18;
@@ -1195,7 +1195,7 @@ static void ov77_021D3234 (UnkStruct_ov77_021D2E9C * param0)
 
     if (param0->unk_18.unk_10 != NULL) {
         GF_ASSERT(param0->unk_08);
-        sub_0200DA58(param0->unk_18.unk_10);
+        SysTask_Done(param0->unk_18.unk_10);
         param0->unk_18.unk_10 = NULL;
     }
 }
@@ -1212,7 +1212,7 @@ static void ov77_021D32A4 (SysTask * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1233,7 +1233,7 @@ static void ov77_021D3300 (SysTask * param0, void * param1)
     }
 
     if (v0->unk_06 == 0) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
         *(v0->unk_18) = 1;
@@ -1255,7 +1255,7 @@ static void ov77_021D3360 (SysTask * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1275,7 +1275,7 @@ static void ov77_021D33A8 (SysTask * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1549,7 +1549,7 @@ static void ov77_021D3A10 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     sub_02018898(param1->unk_10, 3, 0, GX_BG_COLORMODE_16);
 
     G2_SetBG0Priority(0);
-    sub_02019060(1, 3);
+    BGL_SetPriority(1, 3);
 
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
@@ -1647,12 +1647,12 @@ static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
         sub_02019184(param0->unk_10, 6, 3, 256);
         sub_02019184(param0->unk_10, 7, 3, 256);
 
-        sub_02019060(1, 1);
-        sub_02019060(2, 2);
-        sub_02019060(3, 0);
-        sub_02019060(5, 1);
-        sub_02019060(6, 2);
-        sub_02019060(7, 0);
+        BGL_SetPriority(1, 1);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(5, 1);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 0);
     } else {
         sub_02019184(param0->unk_10, 1, 3, 256);
         sub_02019184(param0->unk_10, 2, 3, 256);
@@ -1661,12 +1661,12 @@ static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
         sub_02019184(param0->unk_10, 6, 3, 0);
         sub_02019184(param0->unk_10, 7, 3, 0);
 
-        sub_02019060(1, 1);
-        sub_02019060(2, 2);
-        sub_02019060(3, 0);
-        sub_02019060(5, 1);
-        sub_02019060(6, 2);
-        sub_02019060(7, 0);
+        BGL_SetPriority(1, 1);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(5, 1);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 0);
     }
 
     ov77_021D636C(param0->unk_14, 0);
@@ -2410,7 +2410,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
 
         {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 7, 16 - 7);
-            sub_02019060(1, 0);
+            BGL_SetPriority(1, 0);
             sub_02019120(1, 1);
         }
     } else if (param1 < ((47 * 30 - 15) + 6)) {

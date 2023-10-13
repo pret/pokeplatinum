@@ -70,7 +70,7 @@ static void sub_020738D8 (SysTask * param0, void * param1)
     UnkStruct_02073838 * v0 = param1;
 
     sub_020738C0(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 void sub_020738EC (UnkStruct_02073838 * param0)

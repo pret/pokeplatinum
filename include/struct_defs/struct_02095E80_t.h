@@ -63,7 +63,7 @@ struct UnkStruct_02095E80_t {
     u32 unk_154[2][3];
     int unk_16C;
     int unk_170;
-    UnkStruct_02018340 * unk_174;
+    BGL * unk_174;
     UnkStruct_0200B358 * unk_178;
     UnkStruct_0200B358 * unk_17C;
     UnkStruct_0200B358 * unk_180;
@@ -84,7 +84,7 @@ struct UnkStruct_02095E80_t {
     UnkStruct_02022550 * unk_464[6];
     UnkStruct_02022550 * unk_47C;
     SysTask * unk_480[7];
-    UnkStruct_0205AA50 unk_49C[34];
+    Window unk_49C[34];
     UnkStruct_02001AF4 * unk_6BC;
     UnkStruct_02013A04 * unk_6C0;
     UnkStruct_02001AF4 * unk_6C4;
@@ -129,7 +129,7 @@ struct UnkStruct_02095E80_t {
     MessageLoader * unk_36D0;
     UnkStruct_02013A04 * unk_36D4;
     UnkStruct_0200112C * unk_36D8;
-    UnkStruct_0205AA50 unk_36DC;
+    Window unk_36DC;
     UnkStruct_0202B370 * unk_36EC;
     int unk_36F0;
     int unk_36F4;

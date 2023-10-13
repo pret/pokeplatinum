@@ -477,7 +477,7 @@ static void sub_0200F728 (SysTask * param0, void * param1)
     UnkStruct_0200F6D8 * v0 = (UnkStruct_0200F6D8 *)param1;
 
     sub_0200F634(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_0C);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(param1);
 }
 
@@ -486,7 +486,7 @@ static void sub_0200F748 (SysTask * param0, void * param1)
     UnkStruct_0200F704 * v0 = (UnkStruct_0200F704 *)param1;
 
     sub_0200F6AC(v0->unk_00, v0->unk_04);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(param1);
 }
 
@@ -526,7 +526,7 @@ static void sub_0200F7A0 (SysTask * param0, void * param1)
     UnkStruct_0200F7A0 * v0 = param1;
 
     sub_0200F44C(v0->unk_10, 0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void sub_0200F7B4 (UnkStruct_0200F7A0 * param0)

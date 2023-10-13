@@ -47,7 +47,7 @@ typedef struct {
     UnkStruct_ov22_0225B1BC * unk_10;
     UnkStruct_ov22_0225A0E4 unk_14;
     UnkStruct_02022550 * unk_1FC;
-    UnkStruct_0205AA50 * unk_200;
+    Window * unk_200;
 } UnkStruct_ov22_0225B85C;
 
 static void ov22_0225B848(void * param0);
@@ -246,24 +246,24 @@ static void ov22_0225BA40 (UnkStruct_ov22_0225B85C * param0)
 {
     param0->unk_200 = sub_0201A778(14, 1);
 
-    sub_0201A7E8(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
+    BGL_AddWindow(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
     sub_02002E7C(0, 5 * 32, 14);
-    sub_02019060(3, 0);
-    sub_02019060(0, 2);
-    sub_02019060(1, 1);
+    BGL_SetPriority(3, 0);
+    BGL_SetPriority(0, 2);
+    BGL_SetPriority(1, 1);
     sub_02019184(param0->unk_14.unk_40, 3, 3, 0);
 }
 
 static void ov22_0225BAA8 (UnkStruct_ov22_0225B85C * param0)
 {
     sub_0201ACF4(param0->unk_200);
-    sub_0201A8FC(param0->unk_200);
+    BGL_DeleteWindow(param0->unk_200);
     sub_0201A928(param0->unk_200, 1);
 }
 
 static void ov22_0225BAD0 (UnkStruct_ov22_0225B85C * param0)
 {
-    sub_0201ADA4(param0->unk_200, 0);
+    BGL_FillWindow(param0->unk_200, 0);
 
     if (param0->unk_0C == 0) {
         ov22_0225BB00(param0);

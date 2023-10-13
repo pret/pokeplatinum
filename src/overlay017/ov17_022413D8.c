@@ -438,7 +438,7 @@ void ov17_02241494 (UnkStruct_ov17_0224145C * param0)
 {
     GF_ASSERT(param0->unk_0B == 0);
 
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 
@@ -547,7 +547,7 @@ void ov17_022416E4 (UnkStruct_ov17_0223F88C * param0)
     param0->unk_98.unk_00 = NULL;
 }
 
-static CellActorData * ov17_02241720 (UnkStruct_02002F38 * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, const UnkStruct_020954F0 * param3, int param4, NARC * param5)
+static CellActorData * ov17_02241720 (PaletteSys * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, const UnkStruct_020954F0 * param3, int param4, NARC * param5)
 {
     CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
@@ -602,7 +602,7 @@ static void ov17_02241814 (UnkStruct_0200C704 * param0, CellActorData * param1, 
     sub_0200D0A0(param0, 33001 + param2);
 }
 
-static void ov17_02241854 (UnkStruct_02002F38 * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, NARC * param3)
+static void ov17_02241854 (PaletteSys * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, NARC * param3)
 {
     u32 v0, v1, v2;
 
@@ -670,7 +670,7 @@ void ov17_0224197C (UnkStruct_ov17_0223F88C * param0)
     ov17_02241908(param0->unk_1C);
 }
 
-void ov17_022419AC (UnkStruct_02002F38 * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, NARC * param3)
+void ov17_022419AC (PaletteSys * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, NARC * param3)
 {
     u32 v0, v1, v2;
 
@@ -722,16 +722,16 @@ void ov17_02241A8C (UnkStruct_ov17_0223F88C * param0, int param1, int param2)
 
     switch (param2) {
     case 0:
-        sub_02005748(1761);
+        Sound_PlayEffect(1761);
         break;
     case 1:
-        sub_02005748(1759);
+        Sound_PlayEffect(1759);
         break;
     case 2:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         break;
     case 3:
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         break;
     }
 }
@@ -826,7 +826,7 @@ static void ov17_02241C2C (SysTask * param0, void * param1)
     default:
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -863,7 +863,7 @@ static void ov17_02241CF0 (SysTask * param0, void * param1)
     default:
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -972,7 +972,7 @@ void ov17_02241F34 (UnkStruct_ov17_0223F88C * param0, int param1, int param2, in
         }
     }
 
-    sub_02005748(1761);
+    Sound_PlayEffect(1761);
     sub_02004F7C(1761, 0xffff, 64 * (v0 - 1));
 }
 
@@ -1026,7 +1026,7 @@ static void ov17_0224207C (SysTask * param0, void * param1)
     default:
         sub_0200D6A4(v0->unk_00, 0);
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1157,9 +1157,9 @@ static void ov17_022422B8 (SysTask * param0, void * param1)
     default:
         sub_0200D0F4(v0->unk_04);
         sub_0200D3F4(v0->unk_08, 1);
-        sub_02005748(1760);
+        Sound_PlayEffect(1760);
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -1325,7 +1325,7 @@ static void ov17_02242720 (SysTask * param0, void * param1)
         ov17_022413D8();
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1364,7 +1364,7 @@ static void ov17_02242884 (SysTask * param0, void * param1)
     G2_ChangeBlendAlpha(v0->unk_08 >> 8, v0->unk_0A >> 8);
 
     if (v1 > 0) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1507,7 +1507,7 @@ static void ov17_0224290C (UnkStruct_ov17_02246F24 * param0, int param1, const U
 
 void ov17_02242DA8 (UnkStruct_ov17_02246F24 * param0)
 {
-    sub_0201ADA4(&param0->unk_0C.unk_28[0], 0xff);
+    BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
     sub_0201A954(&param0->unk_0C.unk_28[0]);
 }
 
@@ -1530,7 +1530,7 @@ static void ov17_02242DC0 (UnkStruct_ov17_02246F24 * param0, MessageLoader * par
     ov17_0224290C(param0, param3, param4, param5);
 
     sub_0200C388(param0->unk_0C.unk_48, param0->unk_0C.unk_4C, v0);
-    sub_0201ADA4(&param0->unk_0C.unk_28[0], 0xff);
+    BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_210 = sub_0201D738(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_4C, 0, 0, v1, NULL);
 
@@ -1573,7 +1573,7 @@ int ov17_02242ECC (UnkStruct_ov17_02246F24 * param0)
         return 0;
     }
 
-    return sub_0201D724(param0->unk_0C.unk_210);
+    return Message_Printing(param0->unk_0C.unk_210);
 }
 
 void ov17_02242EE4 (UnkStruct_ov17_02246F24 * param0, int param1)
@@ -1746,7 +1746,7 @@ static void ov17_022431E8 (SysTask * param0, void * param1)
             break;
         }
 
-        sub_02005748(1765);
+        Sound_PlayEffect(1765);
         sub_02004AD4(1765, v0->unk_04);
         v0->unk_08++;
     case 1:
@@ -1814,7 +1814,7 @@ static void ov17_022431E8 (SysTask * param0, void * param1)
 
         *(v0->unk_10) = 1;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1923,12 +1923,12 @@ static void ov17_022434E0 (SysTask * param0, void * param1)
         break;
     default:
         sub_0200D3F4(v0->unk_08, 0);
-        sub_02005748(1505);
+        Sound_PlayEffect(1505);
         ov17_022414B0(v0->unk_04);
 
         (*(v0->unk_0C))--;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1949,7 +1949,7 @@ UnkStruct_ov17_0224365C * ov17_0224365C (UnkStruct_ov17_02246F24 * param0, int p
 
 void ov17_02243690 (UnkStruct_ov17_0224365C * param0)
 {
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
 }
 
@@ -2018,7 +2018,7 @@ static void ov17_02243750 (SysTask * param0, void * param1)
         v0->unk_1C = v1 << 8;
         v0->unk_20 = v2 << 8;
 
-        sub_02005748(2041);
+        Sound_PlayEffect(2041);
         v0->unk_0E++;
     case 1:
         v0->unk_0C += 0x800;
@@ -2052,7 +2052,7 @@ static void ov17_02243750 (SysTask * param0, void * param1)
                     v0->unk_18 = -v0->unk_18;
                 }
             }
-            sub_02005748(1770);
+            Sound_PlayEffect(1770);
             v0->unk_0E++;
         }
         break;
@@ -2069,10 +2069,10 @@ static void ov17_02243750 (SysTask * param0, void * param1)
         break;
     default:
         sub_0200D3F4(v0->unk_04, 0);
-        sub_02005748(1505);
+        Sound_PlayEffect(1505);
         (*(v0->unk_08))--;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }

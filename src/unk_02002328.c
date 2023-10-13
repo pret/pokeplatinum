@@ -188,7 +188,7 @@ int sub_02002328 (UnkStruct_0201D834 * param0)
     case 2:
         if (sub_02002A80(param0)) {
             sub_02002968(param0);
-            sub_0201ADA4(param0->unk_00.unk_04, param0->unk_00.unk_16);
+            BGL_FillWindow(param0->unk_00.unk_04, param0->unk_00.unk_16);
 
             param0->unk_00.unk_0C = param0->unk_00.unk_0A;
             param0->unk_00.unk_0E = param0->unk_00.unk_0B;
@@ -324,7 +324,7 @@ void sub_02002968 (UnkStruct_0201D834 * param0)
 static BOOL sub_020029FC (UnkStruct_0201D834 * param0)
 {
     if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) || ((gCoreSys.touchInput) && (Unk_02101D44.unk_00_4))) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         Unk_02101D44.unk_00_7 = 1;
         return 1;
     }

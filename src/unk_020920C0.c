@@ -203,7 +203,7 @@ u8 sub_0209228C (UnkStruct_0208D7BC * param0)
 
     switch (param0->unk_6AD) {
     case 0:
-        sub_02005748(1508);
+        Sound_PlayEffect(1508);
         sub_0209219C(param0);
         sub_0209212C(param0, &v0[param0->unk_6AE], 2);
         sub_0201C3C0(param0->unk_00, 4);

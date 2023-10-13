@@ -232,7 +232,7 @@ void sub_02065758 (SysTask * param0)
 
     sub_020656AC(v0->unk_0C);
     Heap_FreeToHeapExplicit(4, v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void sub_02065788 (SysTask * param0, void * param1)
@@ -843,7 +843,7 @@ static void sub_02065E0C (UnkStruct_02061AB4 * param0, int param1, fx32 param2, 
     sub_02062BC8(param0);
 
     if (param7) {
-        sub_02005748(param7);
+        Sound_PlayEffect(param7);
     }
 }
 
@@ -915,7 +915,7 @@ static int sub_02065EA0 (UnkStruct_02061AB4 * param0)
     sub_02062B68(param0);
     sub_02062A0C(param0, 0x0);
     sub_02062BC8(param0);
-    sub_02005748(1607);
+    Sound_PlayEffect(1607);
 
     return 1;
 }
@@ -2039,7 +2039,7 @@ static int sub_02067068 (UnkStruct_02061AB4 * param0)
     sub_02062B68(param0);
     sub_02062A0C(param0, 0x0);
     sub_02062BC8(param0);
-    sub_02005748(1607);
+    Sound_PlayEffect(1607);
 
     return 1;
 }

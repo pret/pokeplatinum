@@ -11,7 +11,7 @@ typedef struct {
     UnkStruct_0202F41C * unk_04;
     u8 padding_08[4];
     CellActorData * unk_0C[12];
-    UnkStruct_0205AA50 unk_3C[8];
+    Window unk_3C[8];
 } UnkStruct_ov62_02233F74;
 
 #endif // POKEPLATINUM_STRUCT_OV62_02233F74_H

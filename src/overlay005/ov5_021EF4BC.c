@@ -77,7 +77,7 @@ void ov5_021EF518 (UnkStruct_ov5_021EF4F8 * param0)
     param0->unk_00 = 1;
     param0->unk_08 = 0;
 
-    sub_02005748(1552);
+    Sound_PlayEffect(1552);
 }
 
 static void ov5_021EF5A8 (SysTask * param0, void * param1)
@@ -203,13 +203,13 @@ static void ov5_021EF710 (UnkStruct_ov5_021EF4F8 * param0)
     ov5_021EF43C(param0->unk_314);
     param0->unk_314 = NULL;
 
-    sub_0200DA58(param0->unk_31C);
+    SysTask_Done(param0->unk_31C);
     param0->unk_31C = NULL;
 
-    sub_0200DA58(param0->unk_320);
+    SysTask_Done(param0->unk_320);
     param0->unk_320 = NULL;
 
-    sub_0200DA58(param0->unk_324);
+    SysTask_Done(param0->unk_324);
     param0->unk_324 = NULL;
     param0->unk_00 = 0;
 }

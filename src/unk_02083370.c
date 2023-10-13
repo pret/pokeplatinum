@@ -117,11 +117,11 @@ u32 sub_02083370 (u8 param0)
 
 void sub_0208337C (UnkStruct_0207F248 * param0)
 {
-    sub_0200DC9C(&param0->unk_254[0], 1);
+    Window_Clear(&param0->unk_254[0], 1);
     sub_0201AD10(&param0->unk_254[0]);
     sub_02001BC4(param0->unk_700, NULL);
     sub_02013A3C(param0->unk_6FC);
-    sub_0201A8FC(&param0->unk_254[0]);
+    BGL_DeleteWindow(&param0->unk_254[0]);
 }
 
 static void sub_020833BC (UnkStruct_0207F248 * param0, int * param1)
@@ -146,7 +146,7 @@ static void sub_020833BC (UnkStruct_0207F248 * param0, int * param1)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    sub_0200DC48(&param0->unk_04[35], 1, 1, 14);
+    Window_Show(&param0->unk_04[35], 1, 1, 14);
 
     param0->unk_700 = sub_02001B7C(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
@@ -168,7 +168,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
     int v2 = 17;
     UnkStruct_0203CDB0 * v3;
 
-    sub_0200DC9C(&param0->unk_04[35], 1);
+    Window_Clear(&param0->unk_04[35], 1);
     sub_02001BC4(param0->unk_700, NULL);
     sub_02013A3C(param0->unk_6FC);
 
@@ -209,7 +209,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
     }
 
     sub_0200E060(&param0->unk_04[34], 1, (1 + 9), 15);
-    sub_0201ADA4(&param0->unk_04[34], 15);
+    BGL_FillWindow(&param0->unk_04[34], 15);
     sub_0208274C(param0);
 
     *param1 = v2;
@@ -217,7 +217,7 @@ static void sub_020834B0 (UnkStruct_0207F248 * param0, int * param1)
 
 int sub_02083658 (UnkStruct_0207F248 * param0)
 {
-    if (sub_0201D724(param0->unk_B10) == 0) {
+    if (Message_Printing(param0->unk_B10) == 0) {
         if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             sub_020826E0(param0, 29, 1);
@@ -231,7 +231,7 @@ int sub_02083658 (UnkStruct_0207F248 * param0)
 
 int sub_020836A8 (UnkStruct_0207F248 * param0)
 {
-    if (sub_0201D724(param0->unk_B10) == 0) {
+    if (Message_Printing(param0->unk_B10) == 0) {
         if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             sub_020819B4(param0);
@@ -274,7 +274,7 @@ static void sub_02083700 (UnkStruct_0207F248 * param0, int * param1)
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 0;
 
-    sub_0200DC48(&param0->unk_04[35], 1, 1, 14);
+    Window_Show(&param0->unk_04[35], 1, 1, 14);
 
     param0->unk_700 = sub_02001B7C(&v0, 8, 0, 0, 12, PAD_BUTTON_B);
     *param1 = 15;
@@ -291,7 +291,7 @@ static void sub_020837C0 (UnkStruct_0207F248 * param0, int * param1)
 
 static void sub_020837F4 (UnkStruct_0207F248 * param0, int * param1)
 {
-    sub_0200DC9C(&param0->unk_04[35], 1);
+    Window_Clear(&param0->unk_04[35], 1);
     sub_02001BC4(param0->unk_700, NULL);
     sub_02013A3C(param0->unk_6FC);
     sub_02082708(param0, 43, 1);
@@ -514,7 +514,7 @@ BOOL sub_02083D1C (UnkStruct_0207F248 * param0)
 
     switch (v0->unk_305) {
     case 0:
-        sub_02005748(1696);
+        Sound_PlayEffect(1696);
         v0->unk_305 = 1;
         break;
     case 1:
@@ -533,7 +533,7 @@ BOOL sub_02083D1C (UnkStruct_0207F248 * param0)
         break;
     case 2:
         sub_02084134(param0);
-        sub_02005748(1696);
+        Sound_PlayEffect(1696);
         v0->unk_305 = 3;
         break;
     case 3:

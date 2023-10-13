@@ -161,7 +161,7 @@ static void ov6_02242860 (SysTask * param0, void * param1)
         sub_020219F8(v0->unk_38);
     } else {
         v0->unk_1D0 = 1;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 

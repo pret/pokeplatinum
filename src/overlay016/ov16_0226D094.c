@@ -125,7 +125,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270A1C[] = {
     0x32
 };
 
-void ov16_0226D094 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02002F38 * param2)
+void ov16_0226D094 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, PaletteSys * param2)
 {
     NARC * v0;
 
@@ -264,7 +264,7 @@ static void ov16_0226D2A0 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D1
     param0->unk_1A = 0;
     param0->unk_04 = SysTask_Start(ov16_0226D34C, param0, 500);
 
-    sub_02005748(1809);
+    Sound_PlayEffect(1809);
 }
 
 static void ov16_0226D34C (SysTask * param0, void * param1)
@@ -303,7 +303,7 @@ static void ov16_0226D34C (SysTask * param0, void * param1)
         }
         break;
     default:
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
@@ -373,7 +373,7 @@ static void ov16_0226D434 (SysTask * param0, void * param1)
         break;
     default:
         ov16_0223F9F0();
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
@@ -445,7 +445,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
 
             if (v0->unk_1C <= v0->unk_24 << 8) {
                 v0->unk_1C = v0->unk_24 << 8;
-                sub_02005748(v0->unk_2A);
+                Sound_PlayEffect(v0->unk_2A);
                 v0->unk_2C++;
             }
 
@@ -517,7 +517,7 @@ static void ov16_0226D654 (SysTask * param0, void * param1)
         break;
     default:
         sub_02021E50(v0->unk_00->unk_00, 0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
@@ -564,7 +564,7 @@ static void ov16_0226D854 (SysTask * param0, void * param1)
         }
         break;
     default:
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
@@ -635,7 +635,7 @@ static void ov16_0226D99C (SysTask * param0, void * param1)
     case 100:
     default:
         sub_0200D3EC(v0->unk_00->unk_00, 0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
@@ -658,7 +658,7 @@ static void ov16_0226DAAC (SysTask * param0, void * param1)
     case 100:
     default:
         sub_0200D3EC(v0->unk_00->unk_00, 0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }

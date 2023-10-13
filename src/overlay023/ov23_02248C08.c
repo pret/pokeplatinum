@@ -77,7 +77,7 @@ static void ov23_02248CA4 (u16 param0, u16 param1, UnkStruct_ov23_02248D20 * par
         int v2 = sub_02001504(param2->unk_0C, 7);
         u8 v3 = sub_02001504(param2->unk_0C, 9);
         int v4 = (v0 - param0) * v3 + sub_02001504(param2->unk_0C, 8);
-        UnkStruct_0205AA50 * v5 = (UnkStruct_0205AA50 *)sub_02001504(param2->unk_0C, 18);
+        Window * v5 = (Window *)sub_02001504(param2->unk_0C, 18);
 
         sub_02014A58(param2->unk_10, v5, v2, v4);
     }
@@ -100,7 +100,7 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
             ov23_02248CA4(v1, v2, param0);
 
             if ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_SELECT)) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
 
                 if (v1 + v2 == v8 - 1) {
                     return 0xffffffff;
@@ -164,7 +164,7 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
             }
         } else {
             if (gCoreSys.padInput & PAD_BUTTON_SELECT) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
 
                 if (v1 + v2 == v8 - 1) {
                     return 0xffffffff;
@@ -187,17 +187,17 @@ u32 ov23_02248D20 (UnkStruct_ov23_02248D20 * param0)
     sub_020014D0(v0, &param0->unk_20);
 
     if (v3 != param0->unk_20) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 
     switch (v6) {
     case 0xffffffff:
         break;
     case 0xfffffffe:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         break;
     default:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         break;
     }
 

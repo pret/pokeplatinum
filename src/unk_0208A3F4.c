@@ -69,10 +69,10 @@ void sub_0208A3F4 (UnkStruct_02089688 * param0)
 void sub_0208A490 (UnkStruct_02089688 * param0)
 {
     NARC * v0;
-    UnkStruct_02018340 * v1;
+    BGL * v1;
     UnkStruct_0200C6E4 * v2;
     UnkStruct_0200C704 * v3;
-    UnkStruct_02002F38 * v4;
+    PaletteSys * v4;
 
     v2 = param0->unk_2C0.unk_04;
     v3 = param0->unk_2C0.unk_08;
@@ -82,11 +82,11 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
 
     sub_020070E8(v0, 12, v1, 1, 0, 0, 0, 101);
     sub_0200710C(v0, 14, v1, 1, 0, 0, 0, 101);
-    sub_02003050(v4, 159, 13, 101, 0, 0x20 * 1, 0);
+    PaletteSys_LoadPalette(v4, 159, 13, 101, 0, 0x20 * 1, 0);
 
     sub_020070E8(v0, 15, v1, 5, 0, 0, 0, 101);
     sub_0200710C(v0, 17, v1, 5, 0, 0, 0, 101);
-    sub_02003050(v4, 159, 16, 101, 1, 0x20 * 1, 0);
+    PaletteSys_LoadPalette(v4, 159, 16, 101, 1, 0x20 * 1, 0);
 
     sub_0200CDC4(v4, 2, v2, v3, v0, 1, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
     sub_0200CC3C(v2, v3, v0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1000);
@@ -107,8 +107,8 @@ void sub_0208A490 (UnkStruct_02089688 * param0)
         int v5 = sub_02027B50(param0->unk_38C.unk_20);
 
         sub_0200DD0C(v1, 4, 1, 10, v5, 101);
-        sub_02003050(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);
-        sub_02003050(v4, 14, 7, 101, 1, 0x20, 12 * 16);
+        PaletteSys_LoadPalette(v4, 38, sub_0200DD08(v5), 101, 1, 0x20, 11 * 16);
+        PaletteSys_LoadPalette(v4, 14, 7, 101, 1, 0x20, 12 * 16);
     }
 }
 
@@ -133,7 +133,7 @@ void sub_0208A6CC (UnkStruct_02089688 * param0)
     }
 
     sub_0208AFE8(param0);
-    sub_0201A8FC(&param0->unk_2C0.unk_B0);
+    BGL_DeleteWindow(&param0->unk_2C0.unk_B0);
 }
 
 extern void _u32_div_f(void);
@@ -305,7 +305,7 @@ void sub_0208A8A0 (UnkStruct_02089688 * param0)
     UnkStruct_ov104_0223F9E0 v0;
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
-    UnkStruct_02002F38 * v3;
+    PaletteSys * v3;
 
     v1 = param0->unk_2C0.unk_04;
     v2 = param0->unk_2C0.unk_08;
@@ -361,7 +361,7 @@ void sub_0208A9BC (UnkStruct_02089688 * param0)
     UnkStruct_ov104_0223F9E0 v0;
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
-    UnkStruct_02002F38 * v3;
+    PaletteSys * v3;
 
     v1 = param0->unk_2C0.unk_04;
     v2 = param0->unk_2C0.unk_08;
@@ -707,7 +707,7 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     int v4;
     int v5;
     MessageLoader * v6;
-    UnkStruct_0205AA50 v7;
+    Window v7;
 
     v6 = MessageLoader_Init(0, 26, 212, 101);
     v3 = MessageLoader_GetNewStrbuf(v6, 2 + param1);
@@ -746,30 +746,30 @@ void sub_0208B090 (UnkStruct_02089688 * param0, int param1, int param2, int para
     sub_02012AC0(param0->unk_2C0.unk_90[param1], param4);
     Strbuf_Free(v3);
     MessageLoader_Free(v6);
-    sub_0201A8FC(&v7);
+    BGL_DeleteWindow(&v7);
 }
 
-void sub_0208B1C4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
+void sub_0208B1C4 (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     sub_0201A7A0(param1);
-    sub_0201A7E8(param0, param1, param2, param3, param4, param5, param6, 12, param7);
+    BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, 12, param7);
     sub_0200E060(param1, 1, 1, 11);
-    sub_0201ADA4(param1, 15);
+    BGL_FillWindow(param1, 15);
     sub_0201A954(param1);
     sub_0208B230(param1, param8);
 }
 
-void sub_0208B230 (UnkStruct_0205AA50 * param0, int param1)
+void sub_0208B230 (Window * param0, int param1)
 {
     MessageLoader * v0;
     Strbuf* v1;
 
-    sub_0201ADA4(param0, 15);
+    BGL_FillWindow(param0, 15);
 
     v0 = MessageLoader_Init(0, 26, 212, 101);
     v1 = MessageLoader_GetNewStrbuf(v0, param1);
 
-    sub_0201ADA4(param0, 15);
+    BGL_FillWindow(param0, 15);
     sub_0201D738(param0, 1, v1, 0, 0, 0, NULL);
     sub_0201A954(param0);
 

@@ -33,7 +33,7 @@ typedef struct {
 
 struct UnkStruct_ov27_0225680C_t {
     const UnkStruct_ov27_0225680C_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[10];
     NNSG2dOamManagerInstance * unk_30;
     UnkStruct_ov25_02255958 unk_34;
@@ -58,12 +58,12 @@ static void ov27_02256D00(SysTask * param0, void * param1);
 static void ov27_02256D80(SysTask * param0, void * param1);
 static void ov27_02256E1C(SysTask * param0, void * param1);
 static BOOL ov27_02256E90(UnkStruct_ov27_02256E90 * param0, u32 param1);
-static void ov27_02256EC4(UnkStruct_02018340 * param0, u32 param1);
+static void ov27_02256EC4(BGL * param0, u32 param1);
 static void ov27_02256F24(SysTask * param0, void * param1);
 static void ov27_02256F7C(UnkStruct_ov27_0225680C * param0);
 struct UnkStruct_ov25_02253CE0_t * sub_0203D158(void);
 
-BOOL ov27_0225680C (UnkStruct_ov27_0225680C ** param0, const UnkStruct_ov27_0225680C_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov27_0225680C (UnkStruct_ov27_0225680C ** param0, const UnkStruct_ov27_0225680C_1 * param1, BGL * param2)
 {
     UnkStruct_ov27_0225680C * v0 = (UnkStruct_ov27_0225680C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov27_0225680C));
 
@@ -536,7 +536,7 @@ static BOOL ov27_02256E90 (UnkStruct_ov27_02256E90 * param0, u32 param1)
     return 0;
 }
 
-static void ov27_02256EC4 (UnkStruct_02018340 * param0, u32 param1)
+static void ov27_02256EC4 (BGL * param0, u32 param1)
 {
     u16 * v0;
     u32 v1, v2;
@@ -570,7 +570,7 @@ static void ov27_02256F24 (SysTask * param0, void * param1)
         ov25_022559B0(&(v0->unk_34));
         ov25_022559B0(&(v0->unk_48));
         sub_02019044(v0->unk_04, 6);
-        sub_0200DA58(v0->unk_84);
+        SysTask_Done(v0->unk_84);
         v0->unk_84 = NULL;
         ov27_02256A04(param1);
         break;

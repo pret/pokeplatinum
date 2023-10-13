@@ -55,13 +55,13 @@ typedef struct {
     u8 unk_07;
     u16 unk_08;
     u16 unk_0A;
-    UnkStruct_02018340 * unk_0C;
-    UnkStruct_0205AA50 unk_10[16];
+    BGL * unk_0C;
+    Window unk_10[16];
     MessageLoader * unk_110;
     UnkStruct_0200B358 * unk_114;
     Strbuf* unk_118;
     Strbuf* unk_11C;
-    UnkStruct_02002F38 * unk_120;
+    PaletteSys * unk_120;
     const UnkStruct_020279FC * unk_124;
     SaveData * unk_128;
     UnkStruct_0203068C * unk_12C;
@@ -75,16 +75,16 @@ static BOOL ov110_021D0FD0(UnkStruct_ov110_021D0F78 * param0);
 static BOOL ov110_021D1000(UnkStruct_ov110_021D0F78 * param0);
 static void ov110_021D1048(void * param0);
 static void ov110_021D1078(void);
-static void ov110_021D1098(UnkStruct_02018340 * param0);
+static void ov110_021D1098(BGL * param0);
 static void ov110_021D1180(UnkStruct_ov110_021D0F78 * param0);
-static void ov110_021D11CC(UnkStruct_02018340 * param0);
+static void ov110_021D11CC(BGL * param0);
 static void ov110_021D1200(UnkStruct_ov110_021D0F78 * param0, int * param1, int param2);
 static u8 ov110_021D1208(u8 param0);
 static void ov110_021D123C(UnkStruct_ov110_021D0F78 * param0, u32 param1);
 static void ov110_021D128C(void);
 static void ov110_021D12C0(UnkStruct_ov110_021D0F78 * param0, u32 param1);
-static u8 ov110_021D1324(UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205AA50 * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov110_021D13CC(UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205AA50 * param1, int param2, u8 param3);
+static u8 ov110_021D1324(UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9);
+static u8 ov110_021D13CC(UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3);
 static void ov110_021D13F0(UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2);
 static void ov110_021D140C(UnkStruct_ov110_021D0F78 * param0);
 static void ov110_021D1468(UnkStruct_ov110_021D0F78 * param0);
@@ -289,7 +289,7 @@ static void ov110_021D1078 (void)
     return;
 }
 
-static void ov110_021D1098 (UnkStruct_02018340 * param0)
+static void ov110_021D1098 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -393,7 +393,7 @@ static void ov110_021D1180 (UnkStruct_ov110_021D0F78 * param0)
     return;
 }
 
-static void ov110_021D11CC (UnkStruct_02018340 * param0)
+static void ov110_021D11CC (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
@@ -482,7 +482,7 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
     return;
 }
 
-asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205AA50 * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x10
@@ -497,7 +497,7 @@ asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205A
     add r1, sp, #0x18
     ldrb r1, [r1, #0x1c]
     add r0, r6, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
  _021D1342:
     mov r2, #0x11
     lsl r2, r2, #4
@@ -568,7 +568,7 @@ asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205A
     pop {r3, r4, r5, r6, r7, pc}
 }
 
-asm static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205AA50 * param1, int param2, u8 param3)
+asm static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3)
 {
     push {r4, r5, lr}
     sub sp, #0x1c
@@ -635,7 +635,7 @@ asm static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1036,7 +1036,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     add r5, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1249,7 +1249,7 @@ asm static void ov110_021D19F4 (UnkStruct_ov110_021D0F78 * param0)
     add r5, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1492,7 +1492,7 @@ asm static void ov110_021D1C40 (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1646,7 +1646,7 @@ asm static void ov110_021D1DBC (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1777,7 +1777,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1

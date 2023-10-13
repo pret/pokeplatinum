@@ -187,7 +187,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             break;
         }
 
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         ov70_02262E8C(param0);
         break;
     case 2:
@@ -346,7 +346,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
 
         if (v0->unk_14 == 0) {
             if (gCoreSys.padInput & PAD_BUTTON_B) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
 
                 if (ov66_02233374() == 0) {
                     v1->unk_00 = 6;

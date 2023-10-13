@@ -47,11 +47,11 @@ static BOOL ov62_02235278 (UnkStruct_0208C06C * param0)
 
         switch (v0) {
         case 1:
-            sub_02005748(1379);
+            Sound_PlayEffect(1379);
             ov62_0222FB60(param0, 7);
             return 0;
         case 2:
-            sub_02005748(1379);
+            Sound_PlayEffect(1379);
             ov62_0222FB60(param0, 8);
             return 0;
         default:
@@ -220,7 +220,7 @@ void ov62_022354A4 (SysTask * param0, void * param1)
     break;
     default:
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         break;
     }
 }

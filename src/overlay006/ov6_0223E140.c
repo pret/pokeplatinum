@@ -264,9 +264,9 @@ static void ov6_0223E140(UnkStruct_ov6_0223E140 * param0);
 static void ov6_0223E198(UnkStruct_ov6_0223E140 * param0);
 static u32 ov6_0223E1AC(const UnkStruct_ov6_0223E140 * param0);
 static void ov6_0223E1B0(void);
-static void ov6_0223E1D0(UnkStruct_02018340 * param0);
-static void ov6_0223E2AC(UnkStruct_02018340 * param0);
-static void ov6_0223E2A4(UnkStruct_02018340 * param0);
+static void ov6_0223E1D0(BGL * param0);
+static void ov6_0223E2AC(BGL * param0);
+static void ov6_0223E2A4(BGL * param0);
 static UnkStruct_ov5_021E20E8 * ov6_0223E2BC(int param0, int param1);
 static void ov6_0223E2E8(UnkStruct_ov6_0223E140 * param0);
 static void ov6_0223E234(UnkStruct_ov6_0223E140 * param0);
@@ -374,7 +374,7 @@ static void ov6_0223E1B0 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov6_0223E1D0 (UnkStruct_02018340 * param0)
+static void ov6_0223E1D0 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -431,7 +431,7 @@ static void ov6_0223E25C (SysTask * param0, void * param1)
     ov6_0223E2A4(v0->unk_00->unk_08);
     ov6_0223E1D0(v0->unk_00->unk_08);
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov6_0223E280 (SysTask * param0, void * param1)
@@ -441,15 +441,15 @@ static void ov6_0223E280 (SysTask * param0, void * param1)
     GXLayers_SetBanks(&v0->unk_04);
     ov6_0223E2A4(v0->unk_00->unk_08);
     ov6_0223E2AC(v0->unk_00->unk_08);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov6_0223E2A4 (UnkStruct_02018340 * param0)
+static void ov6_0223E2A4 (BGL * param0)
 {
     ov5_021D143C(param0);
 }
 
-static void ov6_0223E2AC (UnkStruct_02018340 * param0)
+static void ov6_0223E2AC (BGL * param0)
 {
     ov5_021D1434(param0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -493,7 +493,7 @@ static void ov6_0223E2FC (SysTask * param0, void * param1)
     UnkStruct_ov6_0223E140 * v0 = param1;
 
     ov5_021E20E8(&v0->unk_2C, GX_DISPMODE_GRAPHICS, GX_BGMODE_0, GX_BG0_AS_3D);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov6_0223E318 (UnkStruct_0203CDB0 * param0, u32 param1, BOOL param2)
@@ -580,7 +580,7 @@ static BOOL ov6_0223E408 (UnkStruct_020508D4 * param0)
 
         if (v1->unk_04 <= 0) {
             v1->unk_0C++;
-            sub_02005748(1628);
+            Sound_PlayEffect(1628);
         }
         break;
     case 3:
@@ -1632,7 +1632,7 @@ static void ov6_0223FAF8 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
         break;
     case 1:
         if (ov6_0223F9F4(v0)) {
-            sub_02005748(1750);
+            Sound_PlayEffect(1750);
             v0->unk_20 = 0;
             v0->unk_00++;
         } else {
@@ -1878,7 +1878,7 @@ void ov6_0223FE1C (UnkStruct_ov6_0223FDE4 * param0, fx32 param1, fx32 param2, u3
 
     param0->unk_48 = param4;
 
-    sub_02005748(1749);
+    Sound_PlayEffect(1749);
 }
 
 void ov6_0223FE9C (UnkStruct_ov6_0223FDE4 * param0)
@@ -1995,7 +1995,7 @@ void ov6_02240000 (UnkStruct_ov6_02240000 * param0, u32 param1, u32 param2, u32 
 {
     if (param0->unk_1C != 3) {
         if (param0->unk_20 != NULL) {
-            sub_0200DA58(param0->unk_20);
+            SysTask_Done(param0->unk_20);
             param0->unk_20 = NULL;
         }
     }
@@ -2010,7 +2010,7 @@ void ov6_02240000 (UnkStruct_ov6_02240000 * param0, u32 param1, u32 param2, u32 
     GX_SetMasterBrightness(param0->unk_00.unk_00);
 
     param0->unk_20 = sub_0200DA3C(ov6_02240064, param0, 1024);
-    sub_02005748(1748);
+    Sound_PlayEffect(1748);
 }
 
 int ov6_02240060 (const UnkStruct_ov6_02240000 * param0)
@@ -2074,12 +2074,12 @@ UnkStruct_ov6_022401B8 * ov6_02240104 (u32 param0, UnkStruct_0203CDB0 * param1)
     ov6_02240260(&v0->unk_34, v0->unk_11C, &v0->unk_10C);
 
     {
-        UnkStruct_02018340 * v1 = sub_0203D170(v0->unk_04);
+        BGL * v1 = sub_0203D170(v0->unk_04);
 
         sub_02006E3C(172, 74, v1, 2, 0, 0, 0, param0);
         sub_02006E60(172, 76, v1, 2, 0, 0, 0, param0);
         sub_02006E84(172, 75, 0, 0x20 * 6, 0x20, param0);
-        sub_02019060(2, 1);
+        BGL_SetPriority(2, 1);
 
         v0->unk_34.unk_00 = 0;
         v0->unk_34.unk_04 = 31;
@@ -2833,7 +2833,7 @@ void ov6_02240C44 (UnkStruct_ov6_02240C44 * param0, u32 param1)
     ov6_0223FDCC(&param0->unk_00, v0.x, v0.y, v0.z);
     ov6_0223FDC4(&param0->unk_00, 1);
 
-    sub_02005748(1752);
+    Sound_PlayEffect(1752);
 }
 
 BOOL ov6_02240C7C (UnkStruct_ov6_02240C44 * param0)

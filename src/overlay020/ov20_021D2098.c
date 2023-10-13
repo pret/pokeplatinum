@@ -48,7 +48,7 @@ typedef struct UnkStruct_ov20_021D2128_t {
     SysTask * unk_08[4];
     const UnkStruct_ov20_021D16E8 * unk_18;
     const UnkStruct_020998EC * unk_1C;
-    UnkStruct_02018340 * unk_20;
+    BGL * unk_20;
     UnkStruct_020218BC * unk_24;
     UnkStruct_0200C738 unk_28;
     NNSG2dImageProxy unk_1B4[2];
@@ -146,12 +146,12 @@ void ov20_021D2128 (UnkStruct_ov20_021D2128 * param0)
 
         for (v0 = 0; v0 < 4; v0++) {
             if (param0->unk_08[v0]) {
-                sub_0200DA58(param0->unk_08[v0]);
+                SysTask_Done(param0->unk_08[v0]);
             }
         }
 
-        sub_0200DA58(param0->unk_00);
-        sub_0200DA58(param0->unk_04);
+        SysTask_Done(param0->unk_00);
+        SysTask_Done(param0->unk_04);
 
         sub_0200A878();
         sub_02021964(param0->unk_24);
@@ -272,7 +272,7 @@ BOOL ov20_021D2210 (UnkStruct_ov20_021D2128 * param0, int param1)
 
 static void ov20_021D2238 (UnkStruct_ov20_021D2238 * param0)
 {
-    sub_0200DA58(param0->unk_00->unk_08[param0->unk_10]);
+    SysTask_Done(param0->unk_00->unk_08[param0->unk_10]);
     param0->unk_00->unk_08[param0->unk_10] = NULL;
     Heap_FreeToHeap(param0);
 }
@@ -961,7 +961,7 @@ u32 ov20_021D2DF4 (UnkStruct_ov20_021D2128 * param0)
     return ov20_021D3574(param0->unk_244);
 }
 
-UnkStruct_02018340 * ov20_021D2E04 (UnkStruct_ov20_021D2128 * param0)
+BGL * ov20_021D2E04 (UnkStruct_ov20_021D2128 * param0)
 {
     return param0->unk_20;
 }

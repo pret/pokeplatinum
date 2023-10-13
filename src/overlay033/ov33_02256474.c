@@ -54,7 +54,7 @@ typedef struct {
 
 struct UnkStruct_ov33_02256474_t {
     const UnkStruct_ov33_02256474_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[10];
     UnkStruct_ov25_022555E8 * unk_30;
     UnkStruct_ov25_02255958 unk_34;
@@ -116,7 +116,7 @@ static void ov33_022570E8(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33
 static void ov33_0225718C(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33_02256474_1 * param1, int param2);
 static void ov33_022572A0(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33_02256474_1 * param1);
 
-BOOL ov33_02256474 (UnkStruct_ov33_02256474 ** param0, const UnkStruct_ov33_02256474_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov33_02256474 (UnkStruct_ov33_02256474 ** param0, const UnkStruct_ov33_02256474_1 * param1, BGL * param2)
 {
     UnkStruct_ov33_02256474 * v0 = (UnkStruct_ov33_02256474 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov33_02256474));
 
@@ -163,7 +163,7 @@ void ov33_022564F0 (UnkStruct_ov33_02256474 * param0)
         ov25_022559B0(&param0->unk_48);
 
         if (param0->unk_B0 != NULL) {
-            sub_0200DA58(param0->unk_B0);
+            SysTask_Done(param0->unk_B0);
         }
 
         Heap_FreeToHeap(param0);

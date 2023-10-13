@@ -29,7 +29,7 @@ typedef struct UnkStruct_ov109_021D5140_t {
     int unk_08;
     UnkStruct_0209C194 * unk_0C;
     UnkStruct_0209BDF8 * unk_10;
-    UnkStruct_02018340 * unk_14;
+    BGL * unk_14;
     BOOL unk_18;
     UnkStruct_ov109_021D5140_sub1 unk_1C;
     SysTask * unk_30;
@@ -49,11 +49,11 @@ typedef struct UnkStruct_ov109_021D5140_t {
     UnkStruct_ov19_021DA864 unk_278;
     UnkStruct_02022550 * unk_29C[14];
     UnkStruct_02022550 * unk_2D4[14];
-    UnkStruct_0205AA50 unk_30C[5];
-    UnkStruct_0205AA50 unk_35C;
-    UnkStruct_0205AA50 unk_36C;
-    UnkStruct_0205AA50 unk_37C;
-    UnkStruct_0205AA50 * unk_38C[2];
+    Window unk_30C[5];
+    Window unk_35C;
+    Window unk_36C;
+    Window unk_37C;
+    Window * unk_38C[2];
     UnkStruct_02001AF4 * unk_394;
     void * unk_398[2];
     NNSG2dCharacterData * unk_3A0[2];

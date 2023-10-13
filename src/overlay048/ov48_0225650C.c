@@ -32,7 +32,7 @@
 
 struct UnkStruct_ov48_0225650C_t {
     const UnkStruct_ov48_0225650C_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 * unk_20;
     UnkStruct_ov25_022558C4 * unk_24;
@@ -56,7 +56,7 @@ static void ov48_02256920(UnkStruct_ov48_0225650C * param0);
 static void ov48_02256984(UnkStruct_ov48_0225650C * param0);
 static void ov48_022569FC(SysTask * param0, void * param1);
 
-BOOL ov48_0225650C (UnkStruct_ov48_0225650C ** param0, const UnkStruct_ov48_0225650C_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov48_0225650C (UnkStruct_ov48_0225650C ** param0, const UnkStruct_ov48_0225650C_1 * param1, BGL * param2)
 {
     UnkStruct_ov48_0225650C * v0 = (UnkStruct_ov48_0225650C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov48_0225650C));
 
@@ -156,18 +156,18 @@ static void ov48_022565A8 (SysTask * param0, void * param1)
 
 static void ov48_02256650 (UnkStruct_ov48_0225650C * param0, u32 param1)
 {
-    UnkStruct_0205AA50 v0;
+    Window v0;
     Strbuf* v1;
 
     v1 = MessageBank_GetNewStrbufFromNARC(26, 459, 0, 8);
 
     if (v1) {
-        sub_0201A7E8(param0->unk_04, &v0, 6, 18, 20, 8, 2, 0, param1);
-        sub_0201ADA4(&v0, 4);
+        BGL_AddWindow(param0->unk_04, &v0, 6, 18, 20, 8, 2, 0, param1);
+        BGL_FillWindow(&v0, 4);
         sub_0201D78C(&v0, 0, v1, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((8 & 0xff) << 8) | ((4 & 0xff) << 0)), NULL);
         sub_0201A9F4(&v0);
         sub_0201ACCC(&v0);
-        sub_0201A8FC(&v0);
+        BGL_DeleteWindow(&v0);
         Strbuf_Free(v1);
     }
 }
@@ -312,7 +312,7 @@ static void ov48_02256984 (UnkStruct_ov48_0225650C * param0)
     int v0;
 
     if (param0->unk_14C) {
-        sub_0200DA58(param0->unk_14C);
+        SysTask_Done(param0->unk_14C);
         param0->unk_14C = NULL;
     }
 

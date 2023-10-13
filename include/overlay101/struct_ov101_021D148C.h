@@ -8,7 +8,7 @@
 typedef struct {
     MessageLoader * unk_00;
     UnkStruct_0200B358 * unk_04;
-    UnkStruct_0205AA50 unk_08[1];
+    Window unk_08[1];
     void * unk_18;
 } UnkStruct_ov101_021D148C;
 

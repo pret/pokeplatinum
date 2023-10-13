@@ -36,7 +36,7 @@ int ov80_021D0E50(UnkStruct_020067E8 * param0, int * param1);
 static void ov80_021D0E68(void * param0);
 static void ov80_021D0EA8(void);
 static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D1088(UnkStruct_ov80_021D2A08 * param0, UnkStruct_02018340 * param1);
+static void ov80_021D1088(UnkStruct_ov80_021D2A08 * param0, BGL * param1);
 static void ov80_021D1158(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D12D8(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 * param0);
@@ -279,7 +279,7 @@ static void ov80_021D1068 (UnkStruct_ov80_021D2A08 * param0)
     ov80_021D2AE0(param0);
 }
 
-static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_02018340 * param1)
+static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
 {
     int v0, v1;
 

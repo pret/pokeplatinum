@@ -38,7 +38,7 @@
 #include "strbuf.h"
 
 typedef struct {
-    UnkStruct_0205AA50 unk_00;
+    Window unk_00;
     u16 unk_10;
     u16 unk_12;
 } UnkStruct_ov104_0223E29C;
@@ -74,10 +74,10 @@ typedef struct {
     int unk_04;
     int unk_08;
     void * unk_0C;
-    UnkStruct_02018340 * unk_10;
+    BGL * unk_10;
     UnkStruct_0200C6E4 * unk_14;
     UnkStruct_0200C704 * unk_18;
-    UnkStruct_02002F38 * unk_1C;
+    PaletteSys * unk_1C;
     u16 * unk_20;
     NARC * unk_24;
     s16 unk_28;
@@ -130,7 +130,7 @@ typedef struct {
     u8 unk_0B;
 } UnkStruct_ov104_0224191C;
 
-void ov104_0223DC7C(int param0, UnkStruct_02018340 * param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, UnkStruct_02002F38 * param4, u16 * param5, s16 param6, s16 param7);
+void ov104_0223DC7C(int param0, BGL * param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, PaletteSys * param4, u16 * param5, s16 param6, s16 param7);
 static void ov104_0223DD30(UnkStruct_ov104_0223DD30 * param0, SysTask * param1);
 static void ov104_0223DD5C(SysTask * param0, void * param1);
 static void ov104_0223DDB4(SysTask * param0, void * param1);
@@ -186,7 +186,7 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov104_022418E8 = {
     0x0
 };
 
-void ov104_0223DC7C (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, UnkStruct_02002F38 * param4, u16 * param5, s16 param6, s16 param7)
+void ov104_0223DC7C (int param0, BGL * param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, PaletteSys * param4, u16 * param5, s16 param6, s16 param7)
 {
     SysTask * v0;
     UnkStruct_ov104_0223DD30 * v1;
@@ -221,8 +221,8 @@ void ov104_0223DC7C (int param0, UnkStruct_02018340 * param1, UnkStruct_0200C6E4
 
 static void ov104_0223DD30 (UnkStruct_ov104_0223DD30 * param0, SysTask * param1)
 {
-    sub_0200DA58(param0->unk_140);
-    sub_0200DA58(param0->unk_34);
+    SysTask_Done(param0->unk_140);
+    SysTask_Done(param0->unk_34);
     NARC_dtor(param0->unk_24);
     Heap_FreeToHeapExplicit(94, param0->unk_0C);
     sub_020067D0(param1);
@@ -430,11 +430,11 @@ static BOOL ov104_0223DDE4 (UnkStruct_ov104_0223DD30 * param0, u32 param1, const
 static void ov104_0223E29C (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0223E3B8 * param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9, UnkStruct_ov104_0223E29C * param10)
 {
     UnkStruct_020127E8 v0;
-    UnkStruct_0205AA50 v1;
+    Window v1;
     SpriteManagerAllocation v2;
     int v3;
     FontOAM * v4;
-    UnkStruct_02018340 * v5;
+    BGL * v5;
     UnkStruct_0200C704 * v6;
     int v7, v8;
 
@@ -486,7 +486,7 @@ static void ov104_0223E29C (UnkStruct_ov104_0223DD30 * param0, UnkStruct_ov104_0
     sub_020128C4(v4, param7, param8);
 
     if (param10 == NULL) {
-        sub_0201A8FC(&v1);
+        BGL_DeleteWindow(&v1);
     }
 
     param1->unk_00 = v4;
@@ -628,7 +628,7 @@ static void ov104_0223E5A8 (UnkStruct_ov104_0223DD30 * param0, const UnkStruct_o
     G2_SetWnd0Position(0, 0, 0, 0);
     G2_SetWnd1Position(0, 0, 0, 0);
 
-    sub_02003050(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
+    PaletteSys_LoadPalette(param0->unk_1C, 112, param1->unk_08, 94, 0, 0x20, 12 * 16);
     sub_020070E8(param0->unk_24, param1->unk_09, param0->unk_10, 1, 0, 0, 0, 94);
     sub_0200710C(param0->unk_24, param1->unk_0A, param0->unk_10, 1, 0, 0, 0, 94);
     sub_02019E2C(param0->unk_10, 1, 0, 0, 32, 32, 12);
@@ -713,7 +713,7 @@ static void ov104_0223E740 (SysTask * param0, void * param1)
         break;
     default:
         v0->unk_08 = 1;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -744,7 +744,7 @@ static void ov104_0223E7A4 (SysTask * param0, void * param1)
         break;
     default:
         v0->unk_08 = 1;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }

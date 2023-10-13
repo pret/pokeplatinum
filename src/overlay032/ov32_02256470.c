@@ -43,12 +43,12 @@ typedef struct {
 
 struct UnkStruct_ov32_02256470_t {
     const UnkStruct_ov32_02256470_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     UnkStruct_ov25_022555E8 * unk_08;
     u32 unk_0C[10];
     u32 unk_34;
     u32 unk_38;
-    UnkStruct_0205AA50 unk_3C[6];
+    Window unk_3C[6];
     UnkStruct_ov25_022558C4 * unk_9C[6];
     UnkStruct_ov25_022558C4 * unk_B4[6];
     UnkStruct_ov25_02255958 unk_CC;
@@ -61,8 +61,8 @@ struct UnkStruct_ov32_02256470_t {
 static void ov32_02256574(UnkStruct_ov25_02255224 * param0);
 static void ov32_02256588(SysTask * param0, void * param1);
 static void ov32_02256648(UnkStruct_ov32_02256470 * param0, const UnkStruct_ov32_02256470_1 * param1, u32 param2);
-static void ov32_022566E0(UnkStruct_0205AA50 * param0, UnkStruct_ov32_02256470 * param1);
-static void ov32_0225682C(UnkStruct_0205AA50 * param0, u32 param1);
+static void ov32_022566E0(Window * param0, UnkStruct_ov32_02256470 * param1);
+static void ov32_0225682C(Window * param0, u32 param1);
 static u32 ov32_0225686C(u32 param0, u32 param1);
 static void ov32_02256898(UnkStruct_ov32_02256470 * param0, const UnkStruct_ov32_02256470_1 * param1);
 static void ov32_0225692C(UnkStruct_ov32_02256470 * param0, const UnkStruct_ov32_02256470_1 * param1);
@@ -84,7 +84,7 @@ static const struct {
     {0xA0, 0x84}
 };
 
-BOOL ov32_02256470 (UnkStruct_ov32_02256470 ** param0, const UnkStruct_ov32_02256470_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov32_02256470 (UnkStruct_ov32_02256470 ** param0, const UnkStruct_ov32_02256470_1 * param1, BGL * param2)
 {
     UnkStruct_ov32_02256470 * v0 = (UnkStruct_ov32_02256470 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov32_02256470));
 
@@ -122,7 +122,7 @@ void ov32_02256508 (UnkStruct_ov32_02256470 * param0)
         ov25_022559B0(&param0->unk_E0);
 
         if (param0->unk_F4) {
-            sub_0200DA58(param0->unk_F4);
+            SysTask_Done(param0->unk_F4);
         }
 
         Heap_FreeToHeap(param0);
@@ -219,7 +219,7 @@ static void ov32_02256648 (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
 
     for (v1 = 0; v1 < param1->unk_00; v1++) {
         sub_0201A7A0(&(param0->unk_3C[v1]));
-        sub_0201A7E8(param0->unk_04, &(param0->unk_3C[v1]), 6, v0[v1].unk_00, v0[v1].unk_02, 8, 1, 0, param2 + v1 * 8);
+        BGL_AddWindow(param0->unk_04, &(param0->unk_3C[v1]), 6, v0[v1].unk_00, v0[v1].unk_02, 8, 1, 0, param2 + v1 * 8);
         sub_0201A9F4(&(param0->unk_3C[v1]));
 
         ov32_022566E0(&(param0->unk_3C[v1]), param0);
@@ -229,7 +229,7 @@ static void ov32_02256648 (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
     param0->unk_38 = param1->unk_00;
 }
 
-static void ov32_022566E0 (UnkStruct_0205AA50 * param0, UnkStruct_ov32_02256470 * param1)
+static void ov32_022566E0 (Window * param0, UnkStruct_ov32_02256470 * param1)
 {
     sub_02019CB8(param1->unk_04, 6, 1, param0->unk_05 - 1, param0->unk_06 - 1, 1, 1, 0);
     sub_02019CB8(param1->unk_04, 6, 2, param0->unk_05, param0->unk_06 - 1, param0->unk_07, 1, 0);
@@ -243,12 +243,12 @@ static void ov32_022566E0 (UnkStruct_0205AA50 * param0, UnkStruct_ov32_02256470 
     sub_02019CB8(param1->unk_04, 6, 3073, param0->unk_05 + param0->unk_07, param0->unk_06 + param0->unk_08, 1, 1, 0);
 }
 
-static void ov32_0225682C (UnkStruct_0205AA50 * param0, u32 param1)
+static void ov32_0225682C (Window * param0, u32 param1)
 {
-    sub_0201AE78(param0, 4, 0, 0, 64, 8);
+    BGL_WindowColor(param0, 4, 0, 0, 64, 8);
 
     if (param1) {
-        sub_0201AE78(param0, 15, 0, 0, param1, 8);
+        BGL_WindowColor(param0, 15, 0, 0, param1, 8);
     }
 
     sub_0201ACCC(param0);
@@ -449,7 +449,7 @@ static void ov32_02256BD4 (UnkStruct_ov32_02256470 * param0)
     }
 
     for (v0 = 0; v0 < param0->unk_38; v0++) {
-        sub_0201A8FC(&(param0->unk_3C[v0]));
+        BGL_DeleteWindow(&(param0->unk_3C[v0]));
     }
 
     param0->unk_38 = 0;

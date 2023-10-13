@@ -461,7 +461,7 @@ s8 sub_0200CD0C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC 
     return -1;
 }
 
-u8 sub_0200CD7C (UnkStruct_02002F38 * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, int param4, int param5, int param6, int param7, int param8, int param9)
+u8 sub_0200CD7C (PaletteSys * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     int v0;
 
@@ -474,7 +474,7 @@ u8 sub_0200CD7C (UnkStruct_02002F38 * param0, int param1, UnkStruct_0200C6E4 * p
     return v0;
 }
 
-u8 sub_0200CDC4 (UnkStruct_02002F38 * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, NARC * param4, int param5, int param6, int param7, int param8, int param9)
+u8 sub_0200CDC4 (PaletteSys * param0, int param1, UnkStruct_0200C6E4 * param2, UnkStruct_0200C704 * param3, NARC * param4, int param5, int param6, int param7, int param8, int param9)
 {
     int v0;
 

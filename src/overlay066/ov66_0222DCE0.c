@@ -87,7 +87,7 @@ int ov66_0222DD90 (UnkStruct_020067E8 * param0, int * param1)
 
     v0 = sub_0200682C(param0);
 
-    sub_0200DA58(v0->unk_0C);
+    SysTask_Done(v0->unk_0C);
     sub_02017798(NULL, NULL);
     sub_020177A4();
 

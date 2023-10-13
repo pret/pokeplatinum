@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/cell_actor_data.h"
 
-void ov104_0223D768(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, UnkStruct_02002F38 * param3, u16 param4);
+void ov104_0223D768(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, NARC * param2, PaletteSys * param3, u16 param4);
 void ov104_0223D7EC(UnkStruct_0200C704 * param0, u16 param1);
 CellActorData * ov104_0223D828(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, u16 param2);
 void ov104_0223D858(CellActorData * param0);

@@ -18,11 +18,11 @@ void ov104_0223EA28(UnkStruct_ov104_0223EA38 * param0, int param1, int param2, i
 BOOL ov104_0223EA38(UnkStruct_ov104_0223EA38 * param0);
 UnkStruct_ov104_0223EA84 * ov104_0223EA64(u32 param0);
 void ov104_0223EA7C(UnkStruct_ov104_0223EA84 * param0);
-void ov104_0223EA84(UnkStruct_ov104_0223EA84 * param0, int param1, int param2, int param3, int param4, int param5, UnkStruct_0205AA50 * param6, u32 param7, u32 param8, u8 param9);
+void ov104_0223EA84(UnkStruct_ov104_0223EA84 * param0, int param1, int param2, int param3, int param4, int param5, Window * param6, u32 param7, u32 param8, u8 param9);
 BOOL ov104_0223EADC(UnkStruct_ov104_0223EA84 * param0);
 UnkStruct_ov104_0223EBD0 * ov104_0223EBA0(u32 param0);
 void ov104_0223EBD0(UnkStruct_ov104_0223EBD0 * param0);
-void ov104_0223EBF0(UnkStruct_ov104_0223EBD0 * param0, u8 param1, u8 param2, UnkStruct_0205AA50 * param3, u8 param4);
+void ov104_0223EBF0(UnkStruct_ov104_0223EBD0 * param0, u8 param1, u8 param2, Window * param3, u8 param4);
 BOOL ov104_0223EC34(UnkStruct_ov104_0223EBD0 * param0);
 BOOL ov104_0223EE44(UnkStruct_ov104_0223EBD0 * param0);
 void ov104_0223F094(UnkStruct_ov104_0223F094 * param0, u32 param1);

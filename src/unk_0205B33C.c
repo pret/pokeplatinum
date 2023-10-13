@@ -294,7 +294,7 @@ void sub_0205B5BC (SysTask * param0, void * param1)
     UnkStruct_0205B43C * v0 = (UnkStruct_0205B43C *)param1;
 
     if (v0 == NULL) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         int v1;
         WMBssDesc * v2;
@@ -407,7 +407,7 @@ static void sub_0205B754 (UnkStruct_0205B43C * param0)
         return;
     }
 
-    sub_0200DA58(param0->unk_0C);
+    SysTask_Done(param0->unk_0C);
     Heap_FreeToHeap(param0);
     Heap_Destroy(31);
 }

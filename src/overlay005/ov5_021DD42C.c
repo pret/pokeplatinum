@@ -28,7 +28,7 @@ typedef struct {
     Strbuf* unk_00;
     Strbuf* unk_04;
     UnkStruct_0200B358 * unk_08;
-    UnkStruct_0205AA50 * unk_0C;
+    Window * unk_0C;
     u8 * unk_10;
     u8 * unk_14;
 } UnkStruct_ov5_021DD648;
@@ -142,7 +142,7 @@ static void ov5_021DD610 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021DD648 * 
         *(param1->unk_10) = 1;
     }
 
-    sub_0201ADA4(param1->unk_0C, 15);
+    BGL_FillWindow(param1->unk_0C, 15);
 }
 
 static void ov5_021DD648 (UnkStruct_ov5_021DD648 * param0, const MessageLoader * param1, u32 param2)

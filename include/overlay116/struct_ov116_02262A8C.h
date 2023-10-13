@@ -44,8 +44,8 @@ typedef struct {
     UnkStruct_ov116_0226501C unk_1DA4;
     VecFx32 unk_1FB0;
     UnkStruct_ov116_02262A8C_sub1 unk_1FBC;
-    UnkStruct_0205AA50 unk_1FC8;
-    UnkStruct_0205AA50 unk_1FD8[4];
+    Window unk_1FC8;
+    Window unk_1FD8[4];
     UnkStruct_ov116_022660A8 unk_2018;
     UnkStruct_ov116_0226534C unk_20C4;
     UnkStruct_ov116_022647BC unk_214C[8];

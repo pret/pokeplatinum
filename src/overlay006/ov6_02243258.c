@@ -279,9 +279,9 @@ static void ov6_02244D34(UnkStruct_02022550 * param0);
 static UnkStruct_02022550 * ov6_02244D4C(UnkStruct_ov6_02243FFC * param0, const VecFx32 * param1, int param2, int param3);
 static void ov6_02244DB4(UnkStruct_ov6_02243FFC * param0);
 static void ov6_02244E54(NARC * param0, u32 param1, NNSG2dPaletteData ** param2);
-static void ov6_02244E7C(UnkStruct_02018340 * param0, NARC * param1, u32 param2, NNSG2dCharacterData ** param3);
-static void ov6_02244EB4(UnkStruct_02018340 * param0, NARC * param1, u32 param2, NNSG2dScreenData ** param3);
-static void ov6_02244F20(UnkStruct_02018340 * param0);
+static void ov6_02244E7C(BGL * param0, NARC * param1, u32 param2, NNSG2dCharacterData ** param3);
+static void ov6_02244EB4(BGL * param0, NARC * param1, u32 param2, NNSG2dScreenData ** param3);
+static void ov6_02244F20(BGL * param0);
 static void ov6_02244F2C(UnkStruct_ov6_02243FFC * param0);
 static void ov6_02244F50(UnkStruct_ov6_02243FFC * param0);
 static void ov6_02244F58(UnkStruct_ov6_02243FFC * param0);
@@ -1059,7 +1059,7 @@ void ov6_02243FC8 (SysTask * param0)
     UnkStruct_ov6_02243FFC * v0 = sub_0201CED0(param0);
 
     ov6_02243FFC(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static UnkStruct_ov6_02243FFC * ov6_02243FDC (UnkStruct_0203CDB0 * param0)
@@ -1461,7 +1461,7 @@ static int ov6_02244518 (UnkStruct_ov6_02243FFC * param0)
         return 0;
     }
 
-    sub_02005748(1609);
+    Sound_PlayEffect(1609);
 
     param0->unk_54 = 0x800;
     param0->unk_14 = 2;
@@ -1587,7 +1587,7 @@ static void ov6_02244674 (UnkStruct_ov6_02243FFC * param0)
 static void ov6_0224469C (UnkStruct_ov6_02243FFC * param0)
 {
     if (param0->unk_278 != NULL) {
-        sub_0200DA58(param0->unk_278);
+        SysTask_Done(param0->unk_278);
         param0->unk_278 = NULL;
     }
 }
@@ -1655,7 +1655,7 @@ static void ov6_02244734 (SysTask * param0, void * param1)
         }
 
         v1->unk_26C = 1;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -1681,7 +1681,7 @@ static void ov6_022447EC (SysTask * param0, void * param1)
     if (v0->unk_268 == 1) {
         sub_02009D4C(v1);
         v0->unk_26C = 1;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -1953,7 +1953,7 @@ static void ov6_02244E54 (NARC * param0, u32 param1, NNSG2dPaletteData ** param2
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244E7C (UnkStruct_02018340 * param0, NARC * param1, u32 param2, NNSG2dCharacterData ** param3)
+static void ov6_02244E7C (BGL * param0, NARC * param1, u32 param2, NNSG2dCharacterData ** param3)
 {
     void * v0;
 
@@ -1964,7 +1964,7 @@ static void ov6_02244E7C (UnkStruct_02018340 * param0, NARC * param1, u32 param2
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244EB4 (UnkStruct_02018340 * param0, NARC * param1, u32 param2, NNSG2dScreenData ** param3)
+static void ov6_02244EB4 (BGL * param0, NARC * param1, u32 param2, NNSG2dScreenData ** param3)
 {
     void * v0;
 
@@ -1980,7 +1980,7 @@ static void ov6_02244EB4 (UnkStruct_02018340 * param0, NARC * param1, u32 param2
     Heap_FreeToHeap(v0);
 }
 
-static void ov6_02244F20 (UnkStruct_02018340 * param0)
+static void ov6_02244F20 (BGL * param0)
 {
     sub_02019EBC(param0, 3);
 }
@@ -2039,7 +2039,7 @@ static void ov6_02244FB4 (UnkStruct_ov6_02243FFC * param0)
 {
     GF_ASSERT(param0->unk_27C != NULL);
 
-    sub_0200DA58(param0->unk_27C);
+    SysTask_Done(param0->unk_27C);
     GX_SetVisibleWnd(GX_WNDMASK_NONE);
 }
 
@@ -2905,7 +2905,7 @@ void ov6_02245CFC (SysTask * param0)
     UnkStruct_ov6_02249270 * v0 = sub_0201CED0(param0);
 
     Heap_FreeToHeap(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov6_02245D10 (SysTask * param0, void * param1)

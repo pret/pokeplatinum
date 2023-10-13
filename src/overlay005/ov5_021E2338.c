@@ -378,7 +378,7 @@ static void ov5_021E28B0 (UnkStruct_ov5_021E2878 * param0, u32 param1)
 
 static void ov5_021E28CC (UnkStruct_ov5_021E2878 * param0)
 {
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     sub_02013D38(param0->unk_00);
     sub_02013D74(param0->unk_00);
 }
@@ -560,7 +560,7 @@ typedef struct {
     UnkStruct_ov5_021DDD80 unk_21C[3];
     UnkStruct_ov5_021DE6BC * unk_258[3];
     BOOL unk_264[3];
-    UnkStruct_0205AA50 * unk_270;
+    Window * unk_270;
     UnkStruct_ov5_021E2878 unk_274;
     BOOL unk_280;
     UnkStruct_020203AC * unk_284;
@@ -588,7 +588,7 @@ typedef struct {
     UnkStruct_ov5_021DDD80 unk_1E0[3];
     UnkStruct_ov5_021DDD80 unk_21C[3];
     BOOL unk_258[3];
-    UnkStruct_0205AA50 * unk_264;
+    Window * unk_264;
     UnkStruct_ov5_021DE928 * unk_268;
     UnkStruct_020203AC * unk_26C;
     UnkStruct_ov5_021DDE14 unk_270;
@@ -1111,7 +1111,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1->unk_270 = sub_0201A778(4, 1);
-        sub_0201A7E8(v0->unk_10->unk_08, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
+        BGL_AddWindow(v0->unk_10->unk_08, v1->unk_270, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v6 = 0;
@@ -1119,7 +1119,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
             sub_0201972C(3, &v6, sizeof(short), 2 * 15);
         }
 
-        sub_0201ADA4(v1->unk_270, 0);
+        BGL_FillWindow(v1->unk_270, 0);
         sub_0201A9A4(v1->unk_270);
 
         v0->unk_00++;
@@ -1243,7 +1243,7 @@ void ov5_021E3560 (SysTask * param0, void * param1)
         ov5_021DE4AC(&v1->unk_00);
 
         sub_0201ACF4(v1->unk_270);
-        sub_0201A8FC(v1->unk_270);
+        BGL_DeleteWindow(v1->unk_270);
         sub_0201A928(v1->unk_270, 1);
 
         sub_02019690(3, 32, 0, 4);
@@ -1443,7 +1443,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
 
         v1->unk_264 = sub_0201A778(4, 1);
-        sub_0201A7E8(v0->unk_10->unk_08, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
+        BGL_AddWindow(v0->unk_10->unk_08, v1->unk_264, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v6 = 0;
@@ -1451,7 +1451,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
             sub_0201972C(3, &v6, sizeof(short), 2 * 15);
         }
 
-        sub_0201ADA4(v1->unk_264, 0);
+        BGL_FillWindow(v1->unk_264, 0);
         sub_0201A9A4(v1->unk_264);
 
         v1->unk_268 = ov5_021DE8F8(4);
@@ -1590,7 +1590,7 @@ void ov5_021E3D8C (SysTask * param0, void * param1)
         ov5_021DE928(v1->unk_268);
 
         sub_0201ACF4(v1->unk_264);
-        sub_0201A8FC(v1->unk_264);
+        BGL_DeleteWindow(v1->unk_264);
         sub_0201A928(v1->unk_264, 1);
 
         sub_02019690(3, 32, 0, 4);
@@ -1903,7 +1903,7 @@ typedef struct {
 } UnkStruct_ov5_021E4738;
 
 typedef struct {
-    UnkStruct_0205AA50 * unk_00;
+    Window * unk_00;
     UnkStruct_ov5_021DEC18 * unk_04;
     UnkStruct_ov5_021DE47C unk_08;
     UnkStruct_ov5_021DE5A4 unk_1A8;
@@ -2090,7 +2090,7 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
         v1->unk_04 = ov5_021DEBEC(4);
 
         v1->unk_00 = sub_0201A778(4, 1);
-        sub_0201A7E8(v0->unk_10->unk_08, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);
+        BGL_AddWindow(v0->unk_10->unk_08, v1->unk_00, 3, 0, 0, 32, 32, 0, 0);
 
         {
             GXRgb v3 = 0;
@@ -2098,7 +2098,7 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
             sub_0201972C(3, &v3, sizeof(short), 2 * 15);
         }
 
-        sub_0201ADA4(v1->unk_00, 0);
+        BGL_FillWindow(v1->unk_00, 0);
         sub_0201A9A4(v1->unk_00);
 
         v0->unk_00++;
@@ -2174,7 +2174,7 @@ void ov5_021E4B3C (SysTask * param0, void * param1)
         ov5_021DE4AC(&v1->unk_08);
 
         sub_0201ACF4(v1->unk_00);
-        sub_0201A8FC(v1->unk_00);
+        BGL_DeleteWindow(v1->unk_00);
         sub_0201A928(v1->unk_00, 1);
 
         sub_02019690(3, 32, 0, 4);
@@ -2530,7 +2530,7 @@ typedef struct {
     UnkStruct_ov5_021E5128 unk_250;
     UnkStruct_ov5_021E52A8_sub1 unk_2B4;
     UnkStruct_ov5_021E52A8_sub2 unk_2BC;
-    UnkStruct_0205AA50 unk_2E0;
+    Window unk_2E0;
     BOOL unk_2F0;
     s32 unk_2F4;
     s32 unk_2F8;
@@ -2547,7 +2547,7 @@ typedef struct {
     VecFx32 unk_2DC;
     VecFx32 unk_2E8;
     UnkStruct_ov5_021E5128 unk_2F4;
-    UnkStruct_0205AA50 unk_358;
+    Window unk_358;
     u32 unk_368;
     s32 unk_36C;
     s32 unk_370;
@@ -2659,8 +2659,8 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         sub_02007130(param0->unk_20, 11, 0, 2 * 0x20, 0x20, param1);
 
         GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-        sub_0201A7E8(param0->unk_10->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
-        sub_0201ADA4(&v0->unk_2E0, 0);
+        BGL_AddWindow(param0->unk_10->unk_08, &v0->unk_2E0, 2, 0, 10, 16, 2, 2, 1);
+        BGL_FillWindow(&v0->unk_2E0, 0);
         v7 = ov5_021E5240(param2->unk_04, param1);
         sub_0201D78C(&v0->unk_2E0, 0, v7, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         Strbuf_Free(v7);
@@ -2790,7 +2790,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
             sub_0201C63C(param0->unk_10->unk_08, 2, 0, -((v0->unk_00.unk_00 >> FX32_SHIFT) + -92));
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
-            sub_02019060(2, 0);
+            BGL_SetPriority(2, 0);
             param0->unk_00++;
         }
 
@@ -2848,7 +2848,7 @@ static BOOL ov5_021E52A8 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         ov5_021DE5A4(&v0->unk_44, &v0->unk_1E4[1]);
         ov5_021DE4AC(&v0->unk_44);
 
-        sub_0201A8FC(&v0->unk_2E0);
+        BGL_DeleteWindow(&v0->unk_2E0);
 
         GX_SetVisibleWnd(GX_WNDMASK_NONE);
 
@@ -3112,8 +3112,8 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
             sub_02007130(param0->unk_20, 11, 0, 2 * 0x20, 0x20, param1);
 
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
-            sub_0201A7E8(param0->unk_10->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
-            sub_0201ADA4(&v0->unk_358, 0);
+            BGL_AddWindow(param0->unk_10->unk_08, &v0->unk_358, 2, 21, 13, 11, 2, 2, 1);
+            BGL_FillWindow(&v0->unk_358, 0);
             v9 = ov5_021E5240(param2->unk_06, param1);
             sub_0201D78C(&v0->unk_358, 0, v9, 0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             Strbuf_Free(v9);
@@ -3203,7 +3203,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
         ov5_021DDD80(&v0->unk_48, 16, 0, 6);
 
         ov5_021DF17C(4);
-        sub_02019060(0, 1);
+        BGL_SetPriority(0, 1);
 
         param0->unk_00++;
         break;
@@ -3322,7 +3322,7 @@ static BOOL ov5_021E5890 (UnkStruct_ov5_021DDC28 * param0, u32 param1, const Unk
 
         ov5_021E519C(&v0->unk_2F4);
 
-        sub_0201A8FC(&v0->unk_358);
+        BGL_DeleteWindow(&v0->unk_358);
 
         for (v5 = 0; v5 < 4; v5++) {
             sub_02021BD4(v0->unk_2CC[v5]);

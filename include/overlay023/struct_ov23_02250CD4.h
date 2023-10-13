@@ -24,9 +24,9 @@ typedef struct {
     SysTask * unk_04;
     UnkStruct_0206A844 * unk_08;
     UnkStruct_0203CDB0 * unk_0C;
-    UnkStruct_0205AA50 unk_10;
-    UnkStruct_0205AA50 unk_20;
-    UnkStruct_0205AA50 unk_30;
+    Window unk_10;
+    Window unk_20;
+    Window unk_30;
     UnkStruct_02013A04 * unk_40;
     UnkStruct_02013A04 * unk_44;
     UnkStruct_0200112C * unk_48;

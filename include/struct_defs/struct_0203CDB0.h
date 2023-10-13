@@ -47,7 +47,7 @@
 typedef struct UnkStruct_0203CDB0_t {
     UnkStruct_0203CDB0_sub1 * unk_00;
     UnkStruct_0203CDB0_sub2 * unk_04;
-    UnkStruct_02018340 * unk_08;
+    BGL * unk_08;
     SaveData * unk_0C;
     UnkStruct_020508D4 * unk_10;
     UnkStruct_0203A3E8 * unk_14;

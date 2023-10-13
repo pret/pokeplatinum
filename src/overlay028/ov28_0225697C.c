@@ -21,7 +21,7 @@
 
 struct UnkStruct_ov28_0225697C_t {
     const UnkStruct_ov28_0225697C_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[10];
     u16 unk_30[14];
     u16 unk_4C[17][32];
@@ -39,10 +39,10 @@ static void ov28_02256CA0(SysTask * param0, void * param1);
 static void ov28_02256CE0(SysTask * param0, void * param1);
 static void ov28_02256D20(SysTask * param0, void * param1);
 static void ov28_02256D64(SysTask * param0, void * param1);
-static void ov28_02256D90(UnkStruct_02018340 * param0, const UnkStruct_ov28_0225697C_1 * param1);
-static void ov28_02256DCC(UnkStruct_02018340 * param0);
+static void ov28_02256D90(BGL * param0, const UnkStruct_ov28_0225697C_1 * param1);
+static void ov28_02256DCC(BGL * param0);
 static void ov28_02256DF0(SysTask * param0, void * param1);
-static void ov28_02256E0C(UnkStruct_02018340 * param0, const u16 * param1);
+static void ov28_02256E0C(BGL * param0, const u16 * param1);
 struct UnkStruct_ov25_02253CE0_t * sub_0203D158(void);
 
 static const u16 Unk_ov28_022578F8[32] = {
@@ -459,7 +459,7 @@ static const struct {
     {0x10, 0x6, 0x8, 0x4}
 };
 
-BOOL ov28_0225697C (UnkStruct_ov28_0225697C ** param0, const UnkStruct_ov28_0225697C_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov28_0225697C (UnkStruct_ov28_0225697C ** param0, const UnkStruct_ov28_0225697C_1 * param1, BGL * param2)
 {
     UnkStruct_ov28_0225697C * v0 = (UnkStruct_ov28_0225697C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov28_0225697C));
 
@@ -715,7 +715,7 @@ static void ov28_02256D64 (SysTask * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256D90 (UnkStruct_02018340 * param0, const UnkStruct_ov28_0225697C_1 * param1)
+static void ov28_02256D90 (BGL * param0, const UnkStruct_ov28_0225697C_1 * param1)
 {
     u16 * v0;
 
@@ -729,7 +729,7 @@ static void ov28_02256D90 (UnkStruct_02018340 * param0, const UnkStruct_ov28_022
     }
 }
 
-static void ov28_02256DCC (UnkStruct_02018340 * param0)
+static void ov28_02256DCC (BGL * param0)
 {
     u16 * v0 = sub_02019FE4(param0, 6);
     ov25_02255258(v0, 3, 3, 32, 41, 40, 0);
@@ -744,7 +744,7 @@ static void ov28_02256DF0 (SysTask * param0, void * param1)
     ov28_022569F4(param1);
 }
 
-static void ov28_02256E0C (UnkStruct_02018340 * param0, const u16 * param1)
+static void ov28_02256E0C (BGL * param0, const u16 * param1)
 {
     u32 v0, v1, v2;
     u16 * v3;

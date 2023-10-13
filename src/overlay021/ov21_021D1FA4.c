@@ -44,8 +44,8 @@
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D4EE4.h"
 
-static void ov21_021D2830(UnkStruct_02018340 * param0, int param1);
-static void ov21_021D299C(UnkStruct_02018340 * param0);
+static void ov21_021D2830(BGL * param0, int param1);
+static void ov21_021D299C(BGL * param0);
 static void ov21_021D29D0(UnkStruct_ov21_021D13FC * param0, int param1);
 static void ov21_021D2A00(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D2A0C(UnkStruct_ov21_021D13FC * param0, int param1);
@@ -502,7 +502,7 @@ void * ov21_021D26E8 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
     return v0;
 }
 
-u32 ov21_021D2724 (UnkStruct_ov21_021D13FC * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 ov21_021D2724 (UnkStruct_ov21_021D13FC * param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void * v0 = ov21_021D26E8(param0, param1, param6, param7);
 
@@ -596,7 +596,7 @@ void * ov21_021D2808 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
     return v0;
 }
 
-static void ov21_021D2830 (UnkStruct_02018340 * param0, int param1)
+static void ov21_021D2830 (BGL * param0, int param1)
 {
     {
         UnkStruct_ov97_0222DB78 v0 = {
@@ -642,7 +642,7 @@ static void ov21_021D2830 (UnkStruct_02018340 * param0, int param1)
         sub_02019EBC(param0, 2);
     }
 
-    sub_02019060(0, 2);
+    BGL_SetPriority(0, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     {
@@ -734,7 +734,7 @@ static void ov21_021D2830 (UnkStruct_02018340 * param0, int param1)
     }
 }
 
-static void ov21_021D299C (UnkStruct_02018340 * param0)
+static void ov21_021D299C (BGL * param0)
 {
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);
@@ -746,14 +746,14 @@ static void ov21_021D299C (UnkStruct_02018340 * param0)
 
 static void ov21_021D29D0 (UnkStruct_ov21_021D13FC * param0, int param1)
 {
-    sub_0201A7E8(param0->unk_00, &param0->unk_04, 1, 0, 0, 32, 32, 0, 0);
-    sub_0201ADA4(&param0->unk_04, 0);
+    BGL_AddWindow(param0->unk_00, &param0->unk_04, 1, 0, 0, 32, 32, 0, 0);
+    BGL_FillWindow(&param0->unk_04, 0);
     sub_0201A954(&param0->unk_04);
 }
 
 static void ov21_021D2A00 (UnkStruct_ov21_021D13FC * param0)
 {
-    sub_0201A8FC(&param0->unk_04);
+    BGL_DeleteWindow(&param0->unk_04);
 }
 
 static void ov21_021D2A0C (UnkStruct_ov21_021D13FC * param0, int param1)
@@ -1045,7 +1045,7 @@ static void ov21_021D3034 (UnkStruct_ov21_021D13FC * param0)
 
 static void ov21_021D3054 (UnkStruct_ov21_021D13FC * param0)
 {
-    sub_0200DA58(param0->unk_270);
+    SysTask_Done(param0->unk_270);
 }
 
 static void ov21_021D3064 (SysTask * param0, void * param1)
@@ -1142,6 +1142,6 @@ static void ov21_021D31D0 (UnkStruct_ov21_021D13FC * param0)
 
 static void ov21_021D31F0 (UnkStruct_ov21_021D13FC * param0)
 {
-    sub_0200DA58(param0->unk_274);
+    SysTask_Done(param0->unk_274);
     param0->unk_274 = NULL;
 }

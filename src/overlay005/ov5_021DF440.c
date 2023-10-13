@@ -705,7 +705,7 @@ static void ov5_021DFAC0 (SysTask * param0, void * param1)
 
     sub_02022E38(v0->unk_08, v0->unk_04);
     v0->unk_00 = 1;
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov5_021DFADC (SysTask * param0, void * param1)
@@ -715,7 +715,7 @@ static void ov5_021DFADC (SysTask * param0, void * param1)
     if (v0->unk_00 == 1) {
         sub_02022EA0(v0->unk_08, v0->unk_04);
         ov5_021DF554(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 

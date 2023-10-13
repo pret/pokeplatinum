@@ -84,7 +84,7 @@ void ov100_021D4E3C (UnkStruct_ov100_021D4E3C * param0, u32 param1)
 
 void ov100_021D4E58 (UnkStruct_ov100_021D4E3C * param0)
 {
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     sub_02013D38(param0->unk_00);
     sub_02013D74(param0->unk_00);
 }
@@ -178,7 +178,7 @@ static void ov100_021D4FDC (SysTask * param0, void * param1)
     GX_SetGraphicsMode(v0->unk_04.unk_00, v0->unk_04.unk_04, v0->unk_04.unk_08);
 
     v0->unk_30 = 1;
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov100_021D503C (UnkStruct_ov100_021D4EBC * param0)

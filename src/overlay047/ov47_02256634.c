@@ -26,7 +26,7 @@
 
 struct UnkStruct_ov47_02256634_t {
     const UnkStruct_ov47_02256634_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 * unk_20;
     UnkStruct_ov25_022558C4 * unk_24[6];
@@ -44,7 +44,7 @@ static void ov47_022568BC(SysTask * param0, void * param1);
 static void ov47_0225694C(SysTask * param0, void * param1);
 static void ov47_02256968(SysTask * param0, void * param1);
 
-BOOL ov47_02256634 (UnkStruct_ov47_02256634 ** param0, const UnkStruct_ov47_02256634_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov47_02256634 (UnkStruct_ov47_02256634 ** param0, const UnkStruct_ov47_02256634_1 * param1, BGL * param2)
 {
     UnkStruct_ov47_02256634 * v0 = (UnkStruct_ov47_02256634 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov47_02256634));
 
@@ -140,7 +140,7 @@ static void ov47_022567FC (UnkStruct_ov47_02256634 * param0)
 {
     int v0;
 
-    sub_0200DA58(param0->unk_7C);
+    SysTask_Done(param0->unk_7C);
 
     for (v0 = 0; v0 < 6; v0++) {
         if (param0->unk_24[v0]) {

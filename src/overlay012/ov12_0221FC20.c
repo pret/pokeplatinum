@@ -125,8 +125,8 @@ typedef struct UnkStruct_ov12_0221FCDC_t {
     s32 unk_90[10];
     UnkFuncPtr_ov12_02239EEC unk_B8;
     UnkStruct_ov12_02223178 * unk_BC;
-    UnkStruct_02018340 * unk_C0;
-    UnkStruct_02002F38 * unk_C4;
+    BGL * unk_C0;
+    PaletteSys * unk_C4;
     UnkStruct_0200C704 * unk_C8[4];
     CellActorData * unk_D8[10];
     UnkStruct_ov104_0223F9E0 unk_100;
@@ -198,7 +198,7 @@ typedef struct {
 } UnkStruct_ov12_022224F8;
 
 typedef struct UnkStruct_ov12_022222D4_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     s16 unk_04;
     s16 unk_06;
     s16 unk_08;
@@ -223,7 +223,7 @@ typedef struct UnkStruct_ov12_0222118C_t {
 } UnkStruct_ov12_0222118C;
 
 typedef struct UnkStruct_ov12_022211D8_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     UnkStruct_ov12_0222118C_sub1 unk_04;
 } UnkStruct_ov12_022211D8;
 
@@ -421,7 +421,7 @@ static void ov12_0221FCA4 (u8 param0, UnkStruct_ov12_0221FCDC * param1, SysTask 
         break;
     }
 
-    sub_0200DA58(param2);
+    SysTask_Done(param2);
 }
 
 UnkStruct_ov12_0221FCDC * ov12_0221FCDC (int param0)
@@ -739,7 +739,7 @@ UnkSPLStruct6 * ov12_0222026C (UnkStruct_ov12_0221FCDC * param0, int param1)
     return v0;
 }
 
-UnkStruct_02018340 * ov12_02220278 (UnkStruct_ov12_0221FCDC * param0)
+BGL * ov12_02220278 (UnkStruct_ov12_0221FCDC * param0)
 {
     return param0->unk_C0;
 }
@@ -829,7 +829,7 @@ static void ov12_0222035C (SysTask * param0, void * param1)
         }
 
         Heap_FreeToHeap(v1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -900,7 +900,7 @@ static BOOL ov12_0222040C (UnkStruct_ov12_02220314 * param0)
     param0->unk_04 = 0;
     param0->unk_18--;
 
-    sub_02005748(param0->unk_1A);
+    Sound_PlayEffect(param0->unk_1A);
     sub_020057FC(param0->unk_1A, 0xffff, param0->unk_14);
 
     if (param0->unk_18 == 0) {
@@ -917,7 +917,7 @@ static BOOL ov12_0222044C (UnkStruct_ov12_02220314 * param0)
     v0 = 1;
 
     if ((param0->unk_03--) == 0) {
-        sub_02005748(param0->unk_1A);
+        Sound_PlayEffect(param0->unk_1A);
         sub_020057FC(param0->unk_1A, 0xffff, param0->unk_14);
 
         v0 = 0;
@@ -1333,10 +1333,10 @@ static void ov12_02220798 (UnkStruct_ov12_0221FCDC * param0)
         ov17_022413D8();
     }
 
-    sub_02019060(0, param0->unk_19C[0]);
-    sub_02019060(1, param0->unk_19C[1]);
-    sub_02019060(2, param0->unk_19C[2]);
-    sub_02019060(3, param0->unk_19C[3]);
+    BGL_SetPriority(0, param0->unk_19C[0]);
+    BGL_SetPriority(1, param0->unk_19C[1]);
+    BGL_SetPriority(2, param0->unk_19C[2]);
+    BGL_SetPriority(3, param0->unk_19C[3]);
 
     sub_02019184(param0->unk_C0, 2, 0, 0);
     sub_02019184(param0->unk_C0, 2, 3, 0);
@@ -1996,13 +1996,13 @@ void ov12_02221238 (UnkStruct_ov12_0221FCDC * param0, int param1)
 {
     if (param1 == 4) {
         if (param0->unk_174 != NULL) {
-            sub_0200DA58(param0->unk_174->unk_04.unk_08);
+            SysTask_Done(param0->unk_174->unk_04.unk_08);
             Heap_FreeToHeap(param0->unk_174);
             param0->unk_174 = NULL;
         }
     } else {
         if (param0->unk_160[param1] != NULL) {
-            sub_0200DA58(param0->unk_160[param1]->unk_04.unk_08);
+            SysTask_Done(param0->unk_160[param1]->unk_04.unk_08);
             Heap_FreeToHeap(param0->unk_160[param1]);
             param0->unk_160[param1] = NULL;
         }
@@ -2057,7 +2057,7 @@ static void ov12_0222128C (UnkStruct_ov12_0221FCDC * param0)
 
     sub_02019120(2, 0);
     sub_0201958C(param0->unk_C0, 2, v0, (10 * 10 * ((8 / 2) * 8)), 0);
-    sub_02003050(param0->unk_C4, v4, v5, param0->unk_00, 0, 0, (8 * 16));
+    PaletteSys_LoadPalette(param0->unk_C4, v4, v5, param0->unk_00, 0, 0, (8 * 16));
     sub_0200710C(param0->unk_1A0[0], v6, param0->unk_C0, 2, 0, 0, 0, param0->unk_00);
 
     if (v2 == 1) {
@@ -2087,7 +2087,7 @@ static void ov12_0222128C (UnkStruct_ov12_0221FCDC * param0)
     }
 
     sub_02019120(2, 1);
-    sub_02019060(2, ov12_0222339C(param0));
+    BGL_SetPriority(2, ov12_0222339C(param0));
 }
 
 static void ov12_02221424 (UnkStruct_ov12_0221FCDC * param0)
@@ -2244,7 +2244,7 @@ static void ov12_02221580 (UnkStruct_ov12_0221FCDC * param0)
         v19 = sub_02021F9C(v1->unk_00);
         v20 = sub_0201FAB4(v19, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        sub_02003050(param0->unk_C4, v8, v9, param0->unk_00, 2, 0x20, v20 * 16);
+        PaletteSys_LoadPalette(param0->unk_C4, v8, v9, param0->unk_00, 2, 0x20, v20 * 16);
     }
 
     GF_ASSERT(param0->unk_138[v5] == NULL);
@@ -2304,7 +2304,7 @@ static void ov12_02221810 (SysTask * param0, void * param1)
     UnkStruct_ov12_02221810 * v0 = param1;
 
     if (v0->unk_0C == 0) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -2530,7 +2530,7 @@ static BOOL ov12_02221A54 (UnkStruct_ov12_02221BBC * param0, UnkStruct_ov12_0221
 static void ov12_02221AA8 (UnkStruct_ov12_02221BBC * param0, UnkStruct_ov12_0221FCDC * param1, int param2, int param3)
 {
     sub_02006E3C(7, ov12_022234E4(param3, 0), param1->unk_C0, param2, 0, 0, 1, param1->unk_00);
-    sub_02003050(param1->unk_C4, 7, ov12_022234E4(param3, 1), param1->unk_00, 0, 0x20, (9 * 16));
+    PaletteSys_LoadPalette(param1->unk_C4, 7, ov12_022234E4(param3, 1), param1->unk_00, 0, 0x20, (9 * 16));
     sub_02019EBC(param1->unk_C0, param2);
 
     {
@@ -2648,8 +2648,8 @@ static BOOL ov12_02221C50 (SysTask * param0, UnkStruct_ov12_02221BBC * param1)
             int v0 = ov12_02223428(param1->unk_48, 2);
             int v1 = ov12_02223428(param1->unk_48, 1);
 
-            sub_02019060(3, v0);
-            sub_02019060(2, v0);
+            BGL_SetPriority(3, v0);
+            BGL_SetPriority(2, v0);
         }
         sub_02019120(2, 1);
 
@@ -2717,8 +2717,8 @@ static BOOL ov12_02221D50 (SysTask * param0, UnkStruct_ov12_02221BBC * param1)
         int v0 = ov12_02223428(param1->unk_48, 2);
         int v1 = ov12_02223428(param1->unk_48, 1);
 
-        sub_02019060(3, v0);
-        sub_02019060(2, v0);
+        BGL_SetPriority(3, v0);
+        BGL_SetPriority(2, v0);
 
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG2, GX_BLEND_PLANEMASK_BG3, param1->unk_09, param1->unk_0A);
         ov12_02221B64(param1);
@@ -2769,7 +2769,7 @@ static BOOL ov12_02221D50 (SysTask * param0, UnkStruct_ov12_02221BBC * param1)
             ov12_02223488(param1->unk_48);
         } else {
             sub_02006E3C(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
-            sub_02003050(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->unk_00, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
+            PaletteSys_LoadPalette(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->unk_00, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
         }
 
         sub_02006E60(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
@@ -2873,7 +2873,7 @@ static BOOL ov12_0222206C (SysTask * param0, UnkStruct_ov12_02221BBC * param1)
             ov12_02223488(param1->unk_48);
         } else {
             sub_02006E3C(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_04, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
-            sub_02003050(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->unk_00, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
+            PaletteSys_LoadPalette(param1->unk_48->unk_C4, param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_08, param1->unk_48->unk_00, 0, param1->unk_48->unk_180.unk_14 * 0x20, param1->unk_48->unk_180.unk_10);
         }
 
         sub_02006E60(param1->unk_48->unk_180.unk_00, param1->unk_48->unk_180.unk_0C, param1->unk_48->unk_C0, 3, 0, 0, 1, param1->unk_48->unk_00);
@@ -2929,7 +2929,7 @@ static void ov12_022222D4 (SysTask * param0, void * param1)
 
     if (v0->unk_18 == 1) {
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -3055,7 +3055,7 @@ static void ov12_022224F8 (SysTask * param0, void * param1)
         ov12_022265C0(v4->unk_1C->unk_C0);
         Heap_FreeToHeap(v4->unk_1C);
         Heap_FreeToHeap(v4);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -3079,7 +3079,7 @@ void ov12_02222590 (UnkStruct_ov12_0221FCDC * param0, int param1)
 {
     int v0 = ov12_02223428(param0, 2);
 
-    sub_02019060(param1, v0);
+    BGL_SetPriority(param1, v0);
     sub_02019120(param1, 0);
 
     if (ov12_0221FDD4(param0) == 1) {
@@ -3104,7 +3104,7 @@ void ov12_02222664 (UnkStruct_ov12_0221FCDC * param0, int param1)
 {
     int v0 = ov12_02223428(param0, 1);
 
-    sub_02019060(param1, v0);
+    BGL_SetPriority(param1, v0);
 
     if (ov12_0221FDD4(param0) == 1) {
         sub_02018898(param0->unk_C0, param1, 2, GX_BG_CHARBASE_0x0c000);
@@ -3139,7 +3139,7 @@ static void ov12_022226F4 (SysTask * param0, void * param1)
         v0->unk_48->unk_178 = 0;
 
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -3315,7 +3315,7 @@ static void ov12_02222950 (UnkStruct_ov12_0221FCDC * param0)
     v0 = inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    sub_02005748(v0);
+    Sound_PlayEffect(v0);
 }
 
 static void ov12_02222968 (UnkStruct_ov12_0221FCDC * param0)
@@ -3345,7 +3345,7 @@ static void ov12_02222984 (UnkStruct_ov12_0221FCDC * param0)
 
     v1 = ov12_0222317C(param0, v1);
 
-    sub_02005748(v0);
+    Sound_PlayEffect(v0);
     sub_020057FC(v0, 0xffff, v1);
 }
 
@@ -3391,7 +3391,7 @@ static void ov12_022229D8 (UnkStruct_ov12_0221FCDC * param0)
     v0->unk_0C = ov12_0222317C(param0, v0->unk_0C);
     v0->unk_10 = ov12_02223234(v0->unk_08, v0->unk_0C, v0->unk_10);
 
-    sub_02005748(v0->unk_1A);
+    Sound_PlayEffect(v0->unk_1A);
     sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
 
     ov12_02220344(param0, v0);
@@ -3422,7 +3422,7 @@ static void ov12_02222A78 (UnkStruct_ov12_0221FCDC * param0)
     v0->unk_03 = (u8)inline_ov12_022204C4(param0->unk_18);
     param0->unk_18 += 1;
 
-    sub_02005748(v0->unk_1A);
+    Sound_PlayEffect(v0->unk_1A);
     sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
 
     ov12_02220344(param0, v0);
@@ -3457,7 +3457,7 @@ static void ov12_02222AF0 (UnkStruct_ov12_0221FCDC * param0)
     v0->unk_0C = ov12_0222317C(param0, v0->unk_0C);
     v0->unk_10 = ov12_0222317C(param0, v0->unk_10);
 
-    sub_02005748(v0->unk_1A);
+    Sound_PlayEffect(v0->unk_1A);
     sub_020057FC(v0->unk_1A, 0xffff, v0->unk_08);
 
     ov12_02220344(param0, v0);
@@ -3987,7 +3987,7 @@ UnkStruct_02007C7C * ov12_022232FC (UnkStruct_ov12_0221FCDC * param0, int param1
     }
 }
 
-UnkStruct_02002F38 * ov12_0222332C (UnkStruct_ov12_0221FCDC * param0)
+PaletteSys * ov12_0222332C (UnkStruct_ov12_0221FCDC * param0)
 {
     return param0->unk_C4;
 }
@@ -4207,7 +4207,7 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (BattleSystem * param0, int param1, int 
     v2->unk_04 = param2;
     v2->unk_08.unk_00 = ov16_0223E010(param0);
     v2->unk_08.unk_04 = ov16_0223E018(param0);
-    v2->unk_08.unk_08 = ov16_0223E064(param0);
+    v2->unk_08.unk_08 = BattleSystem_PaletteSys(param0);
 
     {
         for (v0 = 0; v0 < 4; v0++) {
@@ -4336,7 +4336,7 @@ UnkStruct_ov12_02223764 * ov12_022234F8 (BattleSystem * param0, int param1, int 
                     v18 = sub_02021F9C(v10->unk_00);
                     v19 = sub_0201FAB4(v18, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-                    sub_02003050(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);
+                    PaletteSys_LoadPalette(v2->unk_08.unk_08, v6, v7, v2->unk_00, 2, 0x20, v19 * 16);
                 }
             }
         }

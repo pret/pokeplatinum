@@ -383,7 +383,7 @@ static BOOL ov5_021DB8D8 (UnkStruct_020508D4 * param0)
         break;
     case 2:
         v3->unk_11C = ov5_021E1014(v3->unk_04);
-        sub_02005748(1568);
+        Sound_PlayEffect(1568);
         sub_0206B0F8(v3->unk_08, 0);
         ov5_021DBA54(v3, 3);
         break;
@@ -620,7 +620,7 @@ static void ov5_021DBC94 (SysTask * param0, void * param1)
         v0->unk_08->unk_112--;
 
         sub_02065758(v0->unk_04);
-        sub_0200DA58(v0->unk_00);
+        SysTask_Done(v0->unk_00);
         Heap_FreeToHeapExplicit(4, param1);
     }
 

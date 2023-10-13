@@ -119,8 +119,8 @@ typedef struct {
     UnkStruct_ov79_021D3820 unk_40;
     UnkStruct_0209903C * unk_5C;
     UnkStruct_0209916C * unk_60[2];
-    UnkStruct_02018340 * unk_68;
-    UnkStruct_0205AA50 unk_6C;
+    BGL * unk_68;
+    Window unk_6C;
     UnkStruct_0200C6E4 * unk_7C;
     UnkStruct_ov79_021D29B4 unk_80;
 } UnkStruct_ov79_021D2928;
@@ -487,7 +487,7 @@ static void ov79_021D270C (UnkStruct_ov79_021D2928 * param0)
     };
 
     sub_0201A8D4(param0->unk_68, &(param0->unk_6C), &v0);
-    sub_0201ADA4(&param0->unk_6C, ((0 << 4) | 0));
+    BGL_FillWindow(&param0->unk_6C, ((0 << 4) | 0));
     sub_0200DD0C(param0->unk_68, 1, 1, 14, param0->unk_10->unk_0B, param0->unk_00);
     sub_02002E98(0, 15 * 32, param0->unk_00);
 }
@@ -495,7 +495,7 @@ static void ov79_021D270C (UnkStruct_ov79_021D2928 * param0)
 static void ov79_021D2754 (UnkStruct_ov79_021D2928 * param0)
 {
     sub_0201ACF4(&param0->unk_6C);
-    sub_0201A8FC(&param0->unk_6C);
+    BGL_DeleteWindow(&param0->unk_6C);
 }
 
 static void ov79_021D2768 (UnkStruct_ov79_021D2928 * param0)
@@ -632,7 +632,7 @@ static int ov79_021D29B4 (UnkStruct_ov79_021D29B4 * param0, int param1, SysTaskF
 
 static int ov79_021D29E4 (UnkStruct_ov79_021D29E4 * param0)
 {
-    sub_0200DA58(param0->unk_18);
+    SysTask_Done(param0->unk_18);
     param0->unk_14->unk_04--;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov79_021D29E4));
@@ -735,7 +735,7 @@ static int ov79_021D2B84 (UnkStruct_ov79_021D2928 * param0, UnkStruct_ov79_021D2
 static int ov79_021D2B94 (UnkStruct_ov79_021D2928 * param0)
 {
     sub_0200E060(&param0->unk_6C, 1, 1, 14);
-    sub_0201ADA4(&param0->unk_6C, ((15 << 4) | 15));
+    BGL_FillWindow(&param0->unk_6C, ((15 << 4) | 15));
     Strbuf_Clear(param0->unk_1C.unk_04);
     sub_0200B48C(param0->unk_1C.unk_00, 0, param0->unk_30.unk_0C, 2, 1, GAME_LANGUAGE);
     sub_0200C388(param0->unk_1C.unk_00, param0->unk_1C.unk_04, param0->unk_1C.unk_08[param0->unk_30.unk_09]);
@@ -748,7 +748,7 @@ static int ov79_021D2B94 (UnkStruct_ov79_021D2928 * param0)
 
 static int ov79_021D2C08 (UnkStruct_ov79_021D2928 * param0)
 {
-    if (sub_0201D724(param0->unk_0C)) {
+    if (Message_Printing(param0->unk_0C)) {
         return 7;
     }
 

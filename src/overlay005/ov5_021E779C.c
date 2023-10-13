@@ -1922,7 +1922,7 @@ static void ov5_021E964C (SysTask * param0, void * param1)
     case 5:
         *v1->unk_20 = 0;
         Heap_FreeToHeap((void *)(param1));
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }

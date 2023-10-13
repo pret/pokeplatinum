@@ -568,7 +568,7 @@ static void ov21_021DE44C (u32 param0, u32 param1, void * param2)
     switch (param1) {
     case 0:
         ov21_021E33B4(v1->unk_08, 1);
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         v2->unk_20 = 1;
         v2->unk_08 = gCoreSys.unk_5C - v2->unk_00;

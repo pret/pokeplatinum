@@ -23,14 +23,14 @@
 typedef struct {
     UnkStruct_0203E274 * unk_00;
     BOOL unk_04;
-    UnkStruct_02018340 * unk_08;
-    UnkStruct_02002F38 * unk_0C;
+    BGL * unk_08;
+    PaletteSys * unk_0C;
     UnkStruct_0207C690 * unk_10;
     SysTask * unk_14;
     UnkStruct_0200C6E4 * unk_18;
     UnkStruct_0200C704 * unk_1C;
     MessageLoader * unk_20;
-    UnkStruct_0205AA50 * unk_24;
+    Window * unk_24;
     UnkStruct_020203AC * unk_28;
     UnkStruct_020170F4 unk_2C[4];
     UnkStruct_02017294 unk_6C[2][16];

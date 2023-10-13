@@ -11,8 +11,8 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[4];
+    BGL * unk_00;
+    Window unk_04[4];
     UnkStruct_0202B628 * unk_44;
     TrainerInfo * unk_48;
     SaveData * unk_4C;

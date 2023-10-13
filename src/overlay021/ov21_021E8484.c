@@ -570,7 +570,7 @@ static void ov21_021E8B34 (UnkStruct_ov21_021E8794 * param0)
 
 static void ov21_021E8B40 (UnkStruct_ov21_021E8794 * param0, UnkStruct_ov21_021E8584 * param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_02009DC8 * v2;
     UnkStruct_ov21_021D13FC * v3 = param1->unk_00;

@@ -69,7 +69,7 @@ static void ov104_0223C71C(SysTask * param0, void * param1);
 static void ov104_0223C738(SysTask * param0, void * param1);
 static void ov104_0223C720(SysTask * param0, void * param1);
 static void ov104_0223C72C(SysTask * param0, void * param1);
-static void ov104_0223C948(UnkStruct_02018340 * param0, int param1);
+static void ov104_0223C948(BGL * param0, int param1);
 static void ov104_0223CC74(UnkStruct_ov104_0223C4CC * param0, int param1, const TrainerInfo * param2);
 static void ov104_0223CEEC(UnkStruct_ov104_0223C4CC * param0);
 static void ov104_0223CB80(UnkStruct_ov104_0223C4CC * param0);
@@ -234,10 +234,10 @@ void ov104_0223C4CC (UnkStruct_ov104_0223C4CC * param0)
     sub_02002FA0(param0->unk_04, 3);
     sub_02002F54(param0->unk_04);
     Heap_FreeToHeap(param0->unk_00);
-    sub_0200DA58(param0->unk_94);
-    sub_0200DA58(param0->unk_98);
-    sub_0200DA58(param0->unk_9C);
-    sub_0200DA58(param0->unk_A0);
+    SysTask_Done(param0->unk_94);
+    SysTask_Done(param0->unk_98);
+    SysTask_Done(param0->unk_9C);
+    SysTask_Done(param0->unk_A0);
 
     ov104_0223CFEC(param0->unk_0C);
 
@@ -451,7 +451,7 @@ static void ov104_0223C8E8 (UnkStruct_ov104_0223C4CC * param0)
     }
 }
 
-static void ov104_0223C948 (UnkStruct_02018340 * param0, int param1)
+static void ov104_0223C948 (BGL * param0, int param1)
 {
     int v0;
 
@@ -616,8 +616,8 @@ static void ov104_0223C948 (UnkStruct_02018340 * param0, int param1)
 
 static void ov104_0223CB80 (UnkStruct_ov104_0223C4CC * param0)
 {
-    sub_02003050(param0->unk_04, 14, 6, 94, 0, 0x20, 14 * 16);
-    sub_02003050(param0->unk_04, 14, 7, 94, 0, 0x20, 13 * 16);
+    PaletteSys_LoadPalette(param0->unk_04, 14, 6, 94, 0, 0x20, 14 * 16);
+    PaletteSys_LoadPalette(param0->unk_04, 14, 7, 94, 0, 0x20, 13 * 16);
 
     {
         UnkStruct_ov104_02230BE4 * v0;
@@ -640,7 +640,7 @@ static void ov104_0223CC10 (UnkStruct_ov104_0223C4CC * param0)
 
     sub_020070E8(v0, 125, param0->unk_00, 4, 0, 0, 1, 94);
     sub_0200710C(v0, 126, param0->unk_00, 4, 0, 0, 1, 94);
-    sub_02003050(param0->unk_04, 150, 171, 94, 1, 0x20, 0 * 16);
+    PaletteSys_LoadPalette(param0->unk_04, 150, 171, 94, 1, 0x20, 0 * 16);
     NARC_dtor(v0);
 }
 
@@ -707,7 +707,7 @@ static void ov104_0223CC74 (UnkStruct_ov104_0223C4CC * param0, int param1, const
         sub_020070E8(v3, ov104_0222EA90(param1, 7), param0->unk_00, 3, 0, 0, 1, 94);
 
         if (v4 == GX_BGMODE_0) {
-            sub_02003050(param0->unk_04, v2, ov104_0222EA90(param1, 8), 94, 0, ((10 - 0 + 1) * 0x20), 0 * 16);
+            PaletteSys_LoadPalette(param0->unk_04, v2, ov104_0222EA90(param1, 8), 94, 0, ((10 - 0 + 1) * 0x20), 0 * 16);
         } else {
             NNSG2dPaletteData * v5;
             void * v6;

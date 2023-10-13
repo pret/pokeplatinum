@@ -133,7 +133,7 @@ typedef struct {
     UnkStruct_ov95_02247568 unk_0C;
     UnkStruct_02022550 * unk_1C[20][2];
     u32 unk_BC;
-    UnkStruct_02018340 * unk_C0;
+    BGL * unk_C0;
     UnkStruct_ov95_02247004 * unk_C4;
     BOOL unk_C8;
     UnkStruct_ov95_022472C4 * unk_CC;
@@ -158,7 +158,7 @@ typedef struct {
 typedef struct {
     UnkStruct_ov95_02248688 * unk_00;
     UnkStruct_ov95_02248E5C unk_04;
-    UnkStruct_02018340 * unk_154;
+    BGL * unk_154;
     fx32 unk_158;
     fx32 unk_15C;
     fx32 unk_160;
@@ -252,7 +252,7 @@ void ov95_022485FC (void * param0)
         ov95_02248DC4(v1);
 
         if (v1->unk_160) {
-            sub_0200DA58(v1->unk_160);
+            SysTask_Done(v1->unk_160);
         }
 
         if (v1->unk_164) {
@@ -395,7 +395,7 @@ static int ov95_022487D4 (UnkStruct_ov95_02248688 * param0, int * param1)
     case 3:
         if (param0->unk_08 < 40) {
             if (++(param0->unk_08) == 40) {
-                sub_02005748(1712);
+                Sound_PlayEffect(1712);
             }
         }
 
@@ -668,7 +668,7 @@ static void ov95_02248E00 (SysTask * param0, void * param1)
         sub_02019120(3, 0);
         sub_02019120(7, 1);
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -735,7 +735,7 @@ static void ov95_02248F94 (SysTask * param0)
         UnkStruct_ov95_02248E5C * v0 = sub_0201CED0(param0);
 
         *(v0->unk_00) = NULL;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -788,7 +788,7 @@ static void ov95_022490A4 (SysTask * param0)
         *(v0->unk_168) = NULL;
         ov95_02248F94(v0->unk_16C);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -818,7 +818,7 @@ static void ov95_02249118 (SysTask * param0, void * param1)
     } else {
         ov95_022479AC(v0->unk_10, v0->unk_08 >> 12);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 

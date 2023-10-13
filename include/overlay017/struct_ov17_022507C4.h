@@ -24,12 +24,12 @@ typedef struct {
     UnkStruct_02007C7C * unk_08[4];
     UnkStruct_0200C6E4 * unk_18;
     UnkStruct_0200C704 * unk_1C;
-    UnkStruct_02018340 * unk_20;
-    UnkStruct_0205AA50 unk_24[9];
+    BGL * unk_20;
+    Window unk_24[9];
     MessageLoader * unk_B4;
     UnkStruct_0200B358 * unk_B8;
     Strbuf* unk_BC;
-    UnkStruct_02002F38 * unk_C0;
+    PaletteSys * unk_C0;
     UnkStruct_02012744 * unk_C4;
     UnkStruct_ov16_0223E0C8 unk_C8[4];
     UnkStruct_ov17_0223F6E8 unk_108;

@@ -6,7 +6,7 @@
 #include "overlay065/struct_ov65_02235130_decl.h"
 #include "overlay065/struct_ov65_022354D8.h"
 
-void ov65_02235060(UnkStruct_ov65_02235130 * param0, u32 param1, NARC * param2, UnkStruct_02018340 * param3, u32 param4, u32 param5);
+void ov65_02235060(UnkStruct_ov65_02235130 * param0, u32 param1, NARC * param2, BGL * param3, u32 param4, u32 param5);
 void ov65_02235130(UnkStruct_ov65_02235130 * param0);
 BOOL ov65_02235194(const UnkStruct_ov65_02235130 * param0);
 u32 ov65_02235198(UnkStruct_ov65_02235130 * param0);

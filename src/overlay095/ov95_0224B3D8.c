@@ -73,8 +73,8 @@ typedef struct {
     UnkStruct_02007C10 unk_18[10];
     UnkStruct_02022550 * unk_40[2];
     UnkStruct_ov95_02247568 unk_48;
-    UnkStruct_02018340 * unk_58;
-    UnkStruct_0205AA50 unk_5C;
+    BGL * unk_58;
+    Window unk_5C;
     Strbuf* unk_6C;
     Strbuf* unk_70;
     UnkStruct_ov95_0224773C * unk_74;
@@ -173,7 +173,7 @@ void ov95_0224B438 (void * param0)
         }
 
         sub_02019044(v0->unk_58, 1);
-        sub_0201A8FC(&(v0->unk_5C));
+        BGL_DeleteWindow(&(v0->unk_5C));
 
         if (v0->unk_14) {
             sub_02007DC8(v0->unk_14);
@@ -298,8 +298,8 @@ static int ov95_0224B520 (UnkStruct_ov95_0224B4D4 * param0, int * param1)
     sub_02019CB8(param0->unk_58, 1, 0x0, 0, 0, 32, 32, 0);
     sub_0200DD0C(param0->unk_58, 1, 109, 2, ov95_02247674(param0->unk_00), 58);
 
-    sub_0201A7E8(param0->unk_58, &(param0->unk_5C), 1, 2, 19, 27, 4, 1, 1);
-    sub_0201ADA4(&(param0->unk_5C), 0xf);
+    BGL_AddWindow(param0->unk_58, &(param0->unk_5C), 1, 2, 19, 27, 4, 1, 1);
+    BGL_FillWindow(&(param0->unk_5C), 0xf);
     sub_02006E84(14, 7, 0, 1 * 0x20, 0x20, 58);
     sub_02019448(param0->unk_58, 1);
 
@@ -435,7 +435,7 @@ static int ov95_0224B81C (UnkStruct_ov95_0224B4D4 * param0, int * param1)
 
             MessageLoader_GetStrbuf(v4, 3, param0->unk_6C);
             sub_0200C388(v5, param0->unk_70, param0->unk_6C);
-            sub_0201ADA4(&(param0->unk_5C), 0xf);
+            BGL_FillWindow(&(param0->unk_5C), 0xf);
             sub_0201D738(&(param0->unk_5C), 1, param0->unk_70, 0, 0, 0xff, NULL);
             sub_0201ACCC(&(param0->unk_5C));
             param0->unk_08 = 0;
@@ -583,7 +583,7 @@ static void ov95_0224BC10 (UnkStruct_ov95_0224B4D4 * param0)
 {
     if (param0->unk_7C) {
         ov95_022476C8(sub_0201CED0(param0->unk_7C));
-        sub_0200DA58(param0->unk_7C);
+        SysTask_Done(param0->unk_7C);
         param0->unk_7C = NULL;
     }
 }
@@ -642,7 +642,7 @@ static void ov95_0224BCE8 (SysTask * param0)
 
         *(v0->unk_00) = NULL;
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -707,7 +707,7 @@ static void ov95_0224BD5C (SysTask * param0, void * param1)
         ov95_02247968(v0->unk_14, &(v0->unk_24));
 
         if (v0->unk_24.y < UnkEnum_ov95_0224BD5C_02) {
-            sub_02005748(1510);
+            Sound_PlayEffect(1510);
             v0->unk_30 *= -1;
 
             ov95_0224BBB0(v0->unk_08, 0, 16, 8);

@@ -119,7 +119,7 @@ int ov121_021D0E7C (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 1:
         if (v0->unk_10 == 15) {
-            sub_02005748(1491);
+            Sound_PlayEffect(1491);
         }
 
         v0->unk_10++;
@@ -149,7 +149,7 @@ int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0 = sub_0200682C(param0);
 
-    sub_0200DA58(v0->unk_08);
+    SysTask_Done(v0->unk_08);
 
     ov121_021D1184(v0);
     ov121_021D1068(v0);

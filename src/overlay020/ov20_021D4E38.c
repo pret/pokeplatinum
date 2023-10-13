@@ -16,7 +16,7 @@ static void ov20_021D4ED8(SysTask * param0, void * param1);
 static void ov20_021D4F74(SysTask * param0, void * param1);
 static void ov20_021D5018(SysTask * param0, void * param1);
 
-void ov20_021D4E38 (UnkStruct_ov20_021D4E8C * param0, UnkStruct_02018340 * param1, u32 param2, int param3, int param4, int param5)
+void ov20_021D4E38 (UnkStruct_ov20_021D4E8C * param0, BGL * param1, u32 param2, int param3, int param4, int param5)
 {
     param0->unk_00 = param1;
     param0->unk_04 = param2;
@@ -45,7 +45,7 @@ BOOL ov20_021D4E8C (UnkStruct_ov20_021D4E8C * param0)
         break;
     case 1:
         if (param0->unk_18 == 0) {
-            sub_0200DA58(param0->unk_1C);
+            SysTask_Done(param0->unk_1C);
             param0->unk_1A++;
             return 1;
         }
@@ -87,7 +87,7 @@ BOOL ov20_021D4F4C (UnkStruct_ov20_021D4FF0 * param0)
     switch (param0->unk_18) {
     case 0:
         if (param0->unk_14 == 0) {
-            sub_0200DA58(param0->unk_1C);
+            SysTask_Done(param0->unk_1C);
             param0->unk_18++;
             return 1;
         }
@@ -139,7 +139,7 @@ BOOL ov20_021D4FF0 (UnkStruct_ov20_021D4FF0 * param0)
     switch (param0->unk_18) {
     case 0:
         if (param0->unk_14 == 0) {
-            sub_0200DA58(param0->unk_1C);
+            SysTask_Done(param0->unk_1C);
             param0->unk_18++;
             return 1;
         }

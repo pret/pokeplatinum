@@ -170,7 +170,7 @@ void sub_020576CC (BOOL param0)
             sub_02057DB8(v0, 0, param0);
         }
 
-        sub_0200DA58(Unk_021C0848->unk_50);
+        SysTask_Done(Unk_021C0848->unk_50);
 
         if (Unk_021C0848->unk_04) {
             ov23_02249938(Unk_021C0848->unk_04);
@@ -236,7 +236,7 @@ void sub_020578B0 (void)
 {
     if (Unk_021C0848->unk_50) {
         sub_02057E80(NULL, NULL);
-        sub_0200DA58(Unk_021C0848->unk_50);
+        SysTask_Done(Unk_021C0848->unk_50);
     }
 
     Unk_021C0848->unk_50 = NULL;

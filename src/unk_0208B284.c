@@ -25,7 +25,7 @@ typedef struct {
 
 static BOOL sub_0208B2DC(s16 param0, s16 param1, f32 param2, f32 param3, f32 * param4, f32 * param5, f32 param6, s16 param7);
 static void sub_0208B3D4(SysTask * param0, void * param1);
-UnkStruct_0208B878 * sub_0208B284(UnkStruct_0208B284 param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_02002F38 * param3);
+UnkStruct_0208B878 * sub_0208B284(UnkStruct_0208B284 param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, PaletteSys * param3);
 void sub_0208B6B0(UnkStruct_0208B878 * param0, int param1);
 void sub_0208B7B4(UnkStruct_0208B878 * param0);
 void sub_0208B830(UnkStruct_0208B878 * param0);
@@ -41,7 +41,7 @@ static const int Unk_020F2FB0[] = {
     97, 98, 99, 100, 101, 128, 133,
 };
 
-UnkStruct_0208B878 * sub_0208B284 (UnkStruct_0208B284 param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_02002F38 * param3)
+UnkStruct_0208B878 * sub_0208B284 (UnkStruct_0208B284 param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, PaletteSys * param3)
 {
     UnkStruct_0208B878 * v0;
 
@@ -176,7 +176,7 @@ void sub_0208B63C (UnkStruct_0208B878 * param0, int param1)
     NARC * v0;
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
-    UnkStruct_02002F38 * v3;
+    PaletteSys * v3;
 
     v1 = param0->unk_00.unk_04;
     v2 = param0->unk_00.unk_08;
@@ -194,7 +194,7 @@ void sub_0208B6B0 (UnkStruct_0208B878 * param0, int param1)
     NARC * v0;
     UnkStruct_0200C6E4 * v1;
     UnkStruct_0200C704 * v2;
-    UnkStruct_02002F38 * v3;
+    PaletteSys * v3;
     int v4 = 22222 + param0->unk_10.unk_08;
 
     v1 = param0->unk_00.unk_04;
@@ -230,7 +230,7 @@ void sub_0208B7B4 (UnkStruct_0208B878 * param0)
     UnkStruct_ov104_0223F9E0 v1;
     UnkStruct_0200C6E4 * v2;
     UnkStruct_0200C704 * v3;
-    UnkStruct_02002F38 * v4;
+    PaletteSys * v4;
 
     v2 = param0->unk_00.unk_04;
     v3 = param0->unk_00.unk_08;
@@ -365,7 +365,7 @@ BOOL sub_0208B988 (UnkStruct_0208B878 * param0)
         param0->unk_E4++;
         break;
     case 1:
-        sub_0200DA58(param0->unk_F4);
+        SysTask_Done(param0->unk_F4);
         param0->unk_E4++;
         break;
     default:

@@ -192,7 +192,7 @@ void ov16_0225C038 (BattleSystem * param0, BattlerData * param1, int param2, int
     v0.unk_0C = param1->unk_190;
     v0.unk_10 = param2;
     v0.unk_1C = ov16_0223E010(param0);
-    v0.unk_20 = ov16_0223E064(param0);
+    v0.unk_20 = BattleSystem_PaletteSys(param0);
     v0.unk_18 = 0;
     v0.unk_14 = 1;
 
@@ -834,11 +834,11 @@ static void ov16_0225C8E0 (BattleSystem * param0, BattlerData * param1)
 {
     UnkStruct_0200C6E4 * v0;
     UnkStruct_0200C704 * v1;
-    UnkStruct_02002F38 * v2;
+    PaletteSys * v2;
 
     v0 = ov16_0223E010(param0);
     v1 = ov16_0223E018(param0);
-    v2 = ov16_0223E064(param0);
+    v2 = BattleSystem_PaletteSys(param0);
 
     ov16_0226D094(v0, v1, v2);
     ov16_02266ABC(param0, param1->unk_190, 52);
@@ -998,9 +998,9 @@ static void ov16_0225CA74 (BattleSystem * param0, BattlerData * param1)
 
 static void ov16_0225CB80 (BattleSystem * param0, BattlerData * param1)
 {
-    UnkStruct_0205AA50 * v0 = ov16_0223DF04(param0, 0);
+    Window * v0 = BattleSystem_Window(param0, 0);
 
-    sub_0201ADA4(v0, 0xff);
+    BGL_FillWindow(v0, 0xff);
     sub_0201ACCC(v0);
 
     ov16_02266ABC(param0, param1->unk_190, 66);

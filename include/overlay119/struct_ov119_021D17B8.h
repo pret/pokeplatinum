@@ -15,12 +15,12 @@
 #include "overlay119/struct_ov119_021D14DC.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_02002F38 * unk_04;
+    BGL * unk_00;
+    PaletteSys * unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
-    UnkStruct_0205AA50 unk_14[2];
+    Window unk_14[2];
     UnkStruct_0207C690 * unk_34;
     UnkStruct_02007768 * unk_38;
     NARC * unk_3C;

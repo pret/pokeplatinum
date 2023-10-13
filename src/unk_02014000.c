@@ -464,7 +464,7 @@ static void sub_020145A0 (SysTask * param0, void * param1)
     UnkStruct_02014014 * v0 = param1;
 
     sub_02014560(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 void sub_020145B4 (NNSGfdTexKey param0)

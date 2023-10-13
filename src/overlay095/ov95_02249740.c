@@ -94,7 +94,7 @@ typedef struct {
     BOOL unk_0C;
     UnkStruct_ov95_02247568 unk_10;
     UnkStruct_02022550 * unk_20[1];
-    UnkStruct_02018340 * unk_24;
+    BGL * unk_24;
     UnkStruct_ov95_0224773C * unk_28;
     UnkStruct_ov95_02247958 * unk_2C;
     SysTask * unk_30;
@@ -212,7 +212,7 @@ static int ov95_02249840 (UnkStruct_ov95_022497D8 * param0, int * param1)
         break;
     case 1:
         if (++(param0->unk_08) > 10) {
-            sub_02005748(1708);
+            Sound_PlayEffect(1708);
             ov95_02249C44(param0, &(param0->unk_34));
             ov95_022479A8(param0->unk_2C, 1);
             (*param1)++;
@@ -220,7 +220,7 @@ static int ov95_02249840 (UnkStruct_ov95_022497D8 * param0, int * param1)
         break;
     case 2:
         if (ov95_02249CF0(&(param0->unk_34))) {
-            sub_02005748(1709);
+            Sound_PlayEffect(1709);
             sub_02021D6C(param0->unk_20[0], 3);
             sub_02021CAC(param0->unk_20[0], 1);
             (*param1)++;
@@ -439,7 +439,7 @@ static void ov95_02249C28 (UnkStruct_ov95_02249C28 * param0)
 static void ov95_02249C30 (UnkStruct_ov95_02249C28 * param0)
 {
     if (param0->unk_04) {
-        sub_0200DA58(param0->unk_04);
+        SysTask_Done(param0->unk_04);
         param0->unk_04 = NULL;
     }
 }
@@ -582,7 +582,7 @@ static void ov95_02249E04 (SysTask * param0, void * param1)
     case 4:
         if (++(v0->unk_64) > 8) {
             v0->unk_04 = NULL;
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
         break;
     }
@@ -612,6 +612,6 @@ static void ov95_02249F38 (SysTask * param0, void * param1)
         ov95_02247AC0(v0->unk_28, &v1);
         GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }

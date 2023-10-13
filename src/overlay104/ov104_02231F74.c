@@ -74,8 +74,8 @@
 typedef struct UnkStruct_ov104_02232B5C_t {
     UnkStruct_ov104_022320B4 * unk_00;
     SysTask * unk_04;
-    UnkStruct_0205AA50 unk_08;
-    UnkStruct_0205AA50 * unk_18;
+    Window unk_08;
+    Window * unk_18;
     Strbuf* unk_1C[28];
     MessageLoader * unk_8C;
     UnkStruct_0200B358 * unk_90;
@@ -174,14 +174,14 @@ static void ov104_02231FC4 (UnkStruct_ov104_022320B4 * param0)
     UnkStruct_ov104_0223C4CC * v0 = ov104_0222E924(param0);
 
     if (param0->unk_5A == 0) {
-        sub_0201A7E8(
+        BGL_AddWindow(
             v0->unk_00, &param0->unk_64, 1, 2, 19, 27, 4, 13, (((1024 - (18 + 12)) - 9) - (27 * 4)));
-        sub_0201ADA4(&param0->unk_64, 15);
+        BGL_FillWindow(&param0->unk_64, 15);
         sub_0200E060(&param0->unk_64, 0, (1024 - (18 + 12)), 11);
 
         param0->unk_5A = 1;
     } else {
-        sub_0201ADA4(&param0->unk_64, 15);
+        BGL_FillWindow(&param0->unk_64, 15);
     }
 }
 
@@ -204,7 +204,7 @@ void ov104_02232088 (UnkStruct_ov104_022320B4 * param0)
     GF_ASSERT(param0->unk_5A == 1);
 
     sub_0200E084(&param0->unk_64, 0);
-    sub_0201A8FC(&param0->unk_64);
+    BGL_DeleteWindow(&param0->unk_64);
 
     param0->unk_5A = 0;
 }
@@ -385,13 +385,13 @@ asm void ov104_022322B0 (UnkStruct_ov104_02232B5C * param0)
     ldrb r3, [r3]
     ldr r0, [r4, #0]
     add r1, #8
-    bl sub_0201A7E8
+    bl BGL_AddWindow
     add r0, r5, #0
     ldr r2, = 0x3D9
     add r0, #8
     mov r1, #1
     mov r3, #0xc
-    bl sub_0200DC48
+    bl Window_Show
     add r0, r5, #0
     bl ov104_02232454
     ldr r2, [r5, #0]
@@ -528,11 +528,11 @@ static void ov104_02232570 (UnkStruct_ov104_02232B5C * param0)
 {
     int v0;
 
-    sub_02005748(1500);
+    Sound_PlayEffect(1500);
 
     sub_02001BC4(param0->unk_B0, NULL);
-    sub_0200DC9C(param0->unk_A4.unk_04, 0);
-    sub_0201A8FC(param0->unk_A4.unk_04);
+    Window_Clear(param0->unk_A4.unk_04, 0);
+    BGL_DeleteWindow(param0->unk_A4.unk_04);
 
     for (v0 = 0; v0 < 28; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);
@@ -542,7 +542,7 @@ static void ov104_02232570 (UnkStruct_ov104_02232B5C * param0)
         MessageLoader_Free(param0->unk_8C);
     }
 
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
     return;
 }
@@ -642,7 +642,7 @@ asm void ov104_02232624 (UnkStruct_ov104_02232B5C * param0)
     ldrb r3, [r3]
     ldr r0, [r4, #0]
     add r1, #8
-    bl sub_0201A7E8
+    bl BGL_AddWindow
     b _022326FE
  _022326B0:
     add r2, r5, #0
@@ -683,14 +683,14 @@ asm void ov104_02232624 (UnkStruct_ov104_02232B5C * param0)
     ldrb r3, [r3]
     ldr r0, [r4, #0]
     add r1, #8
-    bl sub_0201A7E8
+    bl BGL_AddWindow
  _022326FE:
     add r0, r5, #0
     ldr r2, = 0x3D9
     add r0, #8
     mov r1, #1
     mov r3, #0xc
-    bl sub_0200DC48
+    bl Window_Show
     add r0, r5, #0
     bl ov104_02232830
     ldr r3, [r5, #0]
@@ -842,7 +842,7 @@ static void ov104_0223296C (SysTask * param0, void * param1)
     sub_020014D0(v2->unk_1B4, &v2->unk_2D4);
 
     if (v0 != v2->unk_2D4) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 
     if ((gCoreSys.unk_4C & PAD_KEY_UP) || (gCoreSys.unk_4C & PAD_KEY_DOWN) || (gCoreSys.unk_4C & PAD_KEY_LEFT) || (gCoreSys.unk_4C & PAD_KEY_RIGHT)) {
@@ -857,7 +857,7 @@ static void ov104_0223296C (SysTask * param0, void * param1)
             break;
         case 0xfffffffe:
             if (v2->unk_97_0 == 1) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 *v2->unk_A0 = 0xfffe;
 
                 ov104_02232A58(param1, 1);
@@ -865,7 +865,7 @@ static void ov104_0223296C (SysTask * param0, void * param1)
 
             break;
         default:
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             *v2->unk_A0 = v1;
 
             ov104_02232A58(param1, 1);
@@ -881,12 +881,12 @@ static void ov104_02232A58 (UnkStruct_ov104_02232B5C * param0, u8 param1)
     int v0;
 
     if (param1 == 1) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 
     sub_02001384(param0->unk_1B4, NULL, NULL);
-    sub_0200DC9C(param0->unk_194.unk_0C, 0);
-    sub_0201A8FC(&param0->unk_08);
+    Window_Clear(param0->unk_194.unk_0C, 0);
+    BGL_DeleteWindow(&param0->unk_08);
 
     for (v0 = 0; v0 < 28; v0++) {
         Strbuf_Free(param0->unk_1C[v0]);
@@ -896,7 +896,7 @@ static void ov104_02232A58 (UnkStruct_ov104_02232B5C * param0, u8 param1)
         MessageLoader_Free(param0->unk_8C);
     }
 
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
     return;
 }
@@ -906,7 +906,7 @@ static void ov104_02232AC4 (UnkStruct_ov104_02232B5C * param0, u16 param1, u32 p
     Strbuf* v0 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
     Strbuf* v1 = Strbuf_Init((40 * 2), param0->unk_00->unk_34);
 
-    sub_0201ADA4(param0->unk_18, 15);
+    BGL_FillWindow(param0->unk_18, 15);
 
     MessageLoader_GetStrbuf(param0->unk_8C, param1, v0);
 
@@ -1051,7 +1051,7 @@ void ov104_02232B78 (SysTask * param0, void * param1)
             (*(v0->unk_08))--;
             v0->unk_14->unk_38 = NULL;
             Heap_FreeToHeap(v0);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             return;
         }
         break;
@@ -1075,7 +1075,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
 {
     UnkStruct_0200C6E4 * v0 = param0->unk_34.unk_00;
     UnkStruct_0200C704 * v1 = param0->unk_34.unk_04;
-    UnkStruct_02002F38 * v2 = param0->unk_04;
+    PaletteSys * v2 = param0->unk_04;
     UnkStruct_02008A90 v3;
     void * v4;
     CellActorData * v5;
@@ -1139,7 +1139,7 @@ void ov104_02232CE0 (UnkStruct_ov104_0223C4CC * param0, Pokemon * param1, int pa
         v12 = sub_02021F9C(v5->unk_00);
         v13 = sub_0201FAB4(v12, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-        sub_02003050(v2, v3.unk_00, v3.unk_04, param2, 2, 0x20, v13 * 16);
+        PaletteSys_LoadPalette(v2, v3.unk_00, v3.unk_04, param2, 2, 0x20, v13 * 16);
 
         if (param8 > 0) {
             sub_020039B0(v2, 2, v13 * 16, 16, param8, param9);
@@ -1306,7 +1306,7 @@ void ov104_0223310C (UnkStruct_ov104_0222E930 * param0, u16 * param1, u32 param2
 
 static BOOL ov104_02233184 (UnkStruct_ov104_0222E930 * param0)
 {
-    if (sub_0201D724(param0->unk_00->unk_50) == 0) {
+    if (Message_Printing(param0->unk_00->unk_50) == 0) {
         return 1;
     }
 
@@ -1324,7 +1324,7 @@ void ov104_0223319C (SysTask * param0, void * param1)
         v0->unk_0A--;
 
         if (v0->unk_0A < 0) {
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             MI_CpuClear8(v0, sizeof(UnkStruct_ov104_0223319C));
             return;
         }
@@ -1348,7 +1348,7 @@ void ov104_022331E8 (SysTask * param0, void * param1)
             GX_SetVisibleWnd(GX_WNDMASK_NONE);
         }
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         MI_CpuClear8(v0, sizeof(UnkStruct_ov104_022331E8));
         return;
     } else {

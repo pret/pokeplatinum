@@ -24,7 +24,7 @@
 
 struct UnkStruct_ov50_02256510_t {
     const UnkStruct_ov50_02256510_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[6];
     UnkStruct_ov25_022555E8 * unk_20;
     UnkStruct_ov25_022558C4 * unk_24;
@@ -39,12 +39,12 @@ static void ov50_0225664C(SysTask * param0, void * param1);
 static void ov50_022566F0(SysTask * param0, void * param1);
 static void ov50_02256714(SysTask * param0, void * param1);
 static void ov50_0225675C(UnkStruct_ov50_02256510 * param0, const UnkStruct_ov50_02256510_1 * param1);
-static void ov50_022567A8(UnkStruct_02018340 * param0, u16 param1, u32 param2);
+static void ov50_022567A8(BGL * param0, u16 param1, u32 param2);
 static void ov50_022567F4(UnkStruct_ov50_02256510 * param0, const UnkStruct_ov50_02256510_1 * param1);
-static void ov50_0225683C(UnkStruct_02018340 * param0, u32 param1);
-static void ov50_02256894(UnkStruct_02018340 * param0, u32 param1, u32 param2);
+static void ov50_0225683C(BGL * param0, u32 param1);
+static void ov50_02256894(BGL * param0, u32 param1, u32 param2);
 
-BOOL ov50_02256510 (UnkStruct_ov50_02256510 ** param0, const UnkStruct_ov50_02256510_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov50_02256510 (UnkStruct_ov50_02256510 ** param0, const UnkStruct_ov50_02256510_1 * param1, BGL * param2)
 {
     UnkStruct_ov50_02256510 * v0 = (UnkStruct_ov50_02256510 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov50_02256510));
 
@@ -221,7 +221,7 @@ static void ov50_0225675C (UnkStruct_ov50_02256510 * param0, const UnkStruct_ov5
     }
 }
 
-static void ov50_022567A8 (UnkStruct_02018340 * param0, u16 param1, u32 param2)
+static void ov50_022567A8 (BGL * param0, u16 param1, u32 param2)
 {
     u32 v0, v1;
 
@@ -243,7 +243,7 @@ static void ov50_022567F4 (UnkStruct_ov50_02256510 * param0, const UnkStruct_ov5
     }
 }
 
-static void ov50_0225683C (UnkStruct_02018340 * param0, u32 param1)
+static void ov50_0225683C (BGL * param0, u32 param1)
 {
     static const u16 v0[12] = {
         0x0, 0x4, 0x8, 0x18, 0x1c, 0x20, 0x30, 0x34, 0x38, 0x48, 0x4c, 0x50
@@ -260,7 +260,7 @@ static void ov50_0225683C (UnkStruct_02018340 * param0, u32 param1)
     }
 }
 
-static void ov50_02256894 (UnkStruct_02018340 * param0, u32 param1, u32 param2)
+static void ov50_02256894 (BGL * param0, u32 param1, u32 param2)
 {
     static const u16 v0[2][10] = {
         {0x60, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69},

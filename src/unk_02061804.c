@@ -1472,7 +1472,7 @@ SysTask * sub_02062A24 (const UnkStruct_02061AB4 * param0)
 
 void sub_02062A2C (const UnkStruct_02061AB4 * param0)
 {
-    sub_0200DA58(sub_02062A24(param0));
+    SysTask_Done(sub_02062A24(param0));
 }
 
 void sub_02062A38 (UnkStruct_02061AB4 * param0, const UnkStruct_02061830 * param1)

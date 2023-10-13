@@ -103,7 +103,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov12_0221FCDC * unk_00;
-    UnkStruct_02002F38 * unk_04;
+    PaletteSys * unk_04;
 } UnkStruct_ov12_02227808;
 
 typedef struct {
@@ -319,7 +319,7 @@ typedef struct {
     int unk_1C;
     int unk_20;
     int unk_24;
-    UnkStruct_02018340 * unk_28;
+    BGL * unk_28;
     UnkStruct_ov12_0221FCDC * unk_2C;
     UnkStruct_0200C704 * unk_30;
     UnkStruct_ov12_02235998 unk_34[4];
@@ -652,7 +652,7 @@ void ov12_02226EB0 (UnkStruct_ov12_0221FCDC * param0)
         int v2 = ov12_02220280(param0, 0);
 
         sub_02006E3C(7, ov12_022234E4(v2, 0), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
-        sub_02003050(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
+        PaletteSys_LoadPalette(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
         sub_02019EBC(v0->unk_1C.unk_14, 2);
 
         {
@@ -816,7 +816,7 @@ void ov12_022271D8 (UnkStruct_ov12_0221FCDC * param0)
         int v2 = ov12_02220280(param0, 0);
 
         sub_02006E3C(7, ov12_022234E4(v2, 0), v0->unk_1C.unk_14, 2, 0, 0, 1, ov12_0221FDE4(param0));
-        sub_02003050(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
+        PaletteSys_LoadPalette(v0->unk_1C.unk_18, 7, ov12_022234E4(v2, 1), ov12_0221FDE4(param0), 0, 0x20, (9 * 16));
         sub_02019EBC(v0->unk_1C.unk_14, 2);
 
         {

@@ -248,7 +248,7 @@ static void ov5_021DFBF4 (UnkStruct_0205E884 * param0)
         sub_0205EC00(param0, NULL);
     }
 
-    sub_02005748(1560);
+    Sound_PlayEffect(1560);
 }
 
 static void ov5_021DFC3C (UnkStruct_0205E884 * param0)
@@ -539,7 +539,7 @@ static BOOL ov5_021DFFBC (UnkStruct_020508D4 * param0)
 
             v3 = sub_02065838(v0->unk_04, 0x20);
             sub_02065638(v1, v3);
-            sub_02005748(1575);
+            Sound_PlayEffect(1575);
         }
 
         v0->unk_00++;
@@ -858,7 +858,7 @@ static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
 
     switch (v0->unk_00) {
     case 0:
-        sub_02005748(1617);
+        Sound_PlayEffect(1617);
         v0->unk_00++;
     case 1:
         if (sub_020655F4(v1) == 0) {
@@ -868,7 +868,7 @@ static BOOL ov5_021E0560 (UnkStruct_020508D4 * param0)
         }
 
         if (v0->unk_04 >= 5) {
-            sub_02005748(1618);
+            Sound_PlayEffect(1618);
             sub_0205EFF0(v0->unk_0C, 1);
             ov5_021E1134(v0);
             return 1;
@@ -959,7 +959,7 @@ static int ov5_021E06A8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205E884 * param
 
         ov5_021EC7F0(v1);
         sub_02061AF4(v1);
-        sub_02005748(1627);
+        Sound_PlayEffect(1627);
     }
 
     return 0;
@@ -1049,7 +1049,7 @@ static int ov5_021E07FC (UnkStruct_ov5_021F9B54 * param0)
     param0->unk_18 = ov5_021F28F4(param0->unk_14, v0, v1, param0->unk_04, 0);
     param0->unk_2C = ov6_0224892C(param0->unk_0C);
 
-    sub_02005748(1575);
+    Sound_PlayEffect(1575);
     param0->unk_00++;
 
     return(0);
@@ -1214,7 +1214,7 @@ static int ov5_021E0A1C (UnkStruct_ov5_021F9B10 * param0)
 static int ov5_021E0A44 (UnkStruct_ov5_021F9B10 * param0)
 {
     if (ov5_021E1050(&param0->unk_40) == 1) {
-        sub_02005748(1613);
+        Sound_PlayEffect(1613);
         param0->unk_00++;
     }
 
@@ -1339,7 +1339,7 @@ static int ov5_021E0BEC (UnkStruct_ov5_021F9B10 * param0)
 static int ov5_021E0C10 (UnkStruct_ov5_021F9B10 * param0)
 {
     if (ov5_021E1050(&param0->unk_40) == 1) {
-        sub_02005748(1613);
+        Sound_PlayEffect(1613);
         param0->unk_00++;
     }
 
@@ -1671,7 +1671,7 @@ static void ov5_021E0FC0 (SysTask * param0)
 
         ov5_021DFB90(v1);
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 

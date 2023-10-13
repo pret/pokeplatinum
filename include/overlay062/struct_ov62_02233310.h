@@ -15,7 +15,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     int unk_14;
-    UnkStruct_0205AA50 unk_18;
+    Window unk_18;
     const UnkStruct_ov62_02248CDC * unk_28;
     CellActorData * unk_2C[2];
     MessageLoader * unk_34;

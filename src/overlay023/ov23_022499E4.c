@@ -229,7 +229,7 @@ static void ov97_0222D19C (SysTask * param0, void * param1)
     UnkStruct_0205964C * v0 = sub_0205964C();
 
     if (v0 == NULL) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         if (v0->unk_34 != NULL) {
             UnkFuncPtr_020598EC v1 = v0->unk_34;

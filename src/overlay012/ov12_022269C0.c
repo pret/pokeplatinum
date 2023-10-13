@@ -109,7 +109,7 @@ static void ov12_02226A64 (SysTask * param0, void * param1)
         v0->unk_00++;
         break;
     case 1:
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         Heap_FreeToHeap(v0);
         break;
     }

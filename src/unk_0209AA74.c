@@ -77,8 +77,8 @@ static const UnkStruct_ov61_0222C884 Unk_020F8B20 = {
 
 void sub_0209AA74 (int param0, int param1)
 {
-    UnkStruct_02018340 * v0;
-    UnkStruct_0205AA50 v1;
+    BGL * v0;
+    Window v1;
     MessageLoader * v2;
     Strbuf* v3;
     int v4;
@@ -127,8 +127,8 @@ void sub_0209AA74 (int param0, int param1)
 
     sub_0201D710();
     sub_0201A8D4(v0, &v1, &Unk_020F8B20);
-    sub_0201AE78(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    sub_0200DC48(&v1, 0, (512 - 9), 2);
+    BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
+    Window_Show(&v1, 0, (512 - 9), 2);
     MessageLoader_GetStrbuf(v2, v4, v3);
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
     Strbuf_Free(v3);
@@ -142,7 +142,7 @@ void sub_0209AA74 (int param0, int param1)
         OS_WaitIrq(1, OS_IE_V_BLANK);
     }
 
-    sub_0201A8FC(&v1);
+    BGL_DeleteWindow(&v1);
     MessageLoader_Free(v2);
     sub_02019120(0, 0);
     sub_02019120(1, 0);
