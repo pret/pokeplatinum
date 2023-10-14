@@ -15,16 +15,16 @@
 
 UnkStruct_02098700 * sub_0207A2A8 (int param0)
 {
-    UnkStruct_02098700 * v0 = sub_02098700(param0);
+    UnkStruct_02098700 * v0 = Pokedex_HeightWeightData(param0);
 
-    sub_0209872C(v0, 0, param0);
+    Pokedex_HeightWeightData_Load(v0, 0, param0);
     return v0;
 }
 
 void sub_0207A2C0 (UnkStruct_02098700 * param0)
 {
-    sub_020987BC(param0);
-    sub_02098718(param0);
+    Pokedex_HeightWeightData_Release(param0);
+    Pokedex_HeightWeightData_Free(param0);
 }
 
 BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const UnkStruct_02098700 * param2)
@@ -73,7 +73,7 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const Un
     v1 = sub_02026074(param0, 7) * 10;
 
     if (v1 != 0) {
-        v3 = sub_02098828(param2, v0);
+        v3 = Pokedex_HeightWeightData_Weight(param2, v0);
 
         if (v1 > 0) {
             if (v3 < v1) {

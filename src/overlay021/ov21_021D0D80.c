@@ -143,7 +143,7 @@ int ov21_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
         u32 v4;
 
         v4 = sub_0202756C(v1->unk_00, 487, 0);
-        sub_02098988(v4);
+        Pokedex_SetupGiratina(v4);
     }
 
     sub_02017798(ov21_021D0F04, v0);

@@ -143,7 +143,7 @@ void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * para
 u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
 BOOL Battler_BehindSubstitute(BattleContext * param0, int param1);
 BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
-BOOL BattleSystem_PokemonIsOT(BattleSystem * param0, Pokemon * param1);
+BOOL BattleSystem_PokemonWasTraded(BattleSystem * param0, Pokemon * param1);
 BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);
 void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
 void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
@@ -259,14 +259,14 @@ void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleC
     battleCtx->battleMons[battler].OTGender = Pokemon_GetValue(v0, MON_DATA_OT_GENDER, 0);
     battleCtx->battleMons[battler].capturedBall = Pokemon_GetValue(v0, MON_DATA_POKEBALL, 0);
 
-    sub_02098988(battleCtx->battleMons[battler].formNum);
-    v3 = sub_02098700(5);
-    sub_0209872C(v3, 0, 5);
+    Pokedex_SetupGiratina(battleCtx->battleMons[battler].formNum);
+    v3 = Pokedex_HeightWeightData(5);
+    Pokedex_HeightWeightData_Load(v3, 0, 5);
 
-    battleCtx->battleMons[battler].weight = sub_02098828(v3, battleCtx->battleMons[battler].species);
+    battleCtx->battleMons[battler].weight = Pokedex_HeightWeightData_Weight(v3, battleCtx->battleMons[battler].species);
 
-    sub_020987BC(v3);
-    sub_02098718(v3);
+    Pokedex_HeightWeightData_Release(v3);
+    Pokedex_HeightWeightData_Free(v3);
     Pokemon_GetValue(v0, MON_DATA_117, &battleCtx->battleMons[battler].nickname[0]);
     Pokemon_GetValue(v0, MON_DATA_144, &battleCtx->battleMons[battler].OTName[0]);
 
