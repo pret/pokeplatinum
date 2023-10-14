@@ -99,7 +99,7 @@ enum BattleScriptVars {
 #define BTLSCR_SWITCHED_MON_AFTER   22
 #define BTLSCR_MSG_TEMP             (0xFF)
 
-enum IfOp {
+enum OpCode {
     IFOP_EQU = 0,
     IFOP_NEQ,
     IFOP_LTE,
@@ -107,6 +107,21 @@ enum IfOp {
     IFOP_FLAG_SET,
     IFOP_FLAG_NOT,
     IFOP_AND,
+
+    VALOP_SET,
+    VALOP_ADD,
+    VALOP_SUB,
+    VALOP_FLAG_ON,
+    VALOP_FLAG_OFF,
+    VALOP_MUL,
+    VALOP_DIV,
+    VALOP_LSH,
+    VALOP_RSH,
+    VALOP_FLAG_INDEX,
+    VALOP_GET,
+    VALOP_SUB_TO_ZERO,
+    VALOP_XOR,
+    VALOP_AND,
 };
 
 enum StatusEffect {
@@ -114,3 +129,4 @@ enum StatusEffect {
 };
 
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H
+

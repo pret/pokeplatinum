@@ -150,8 +150,8 @@ static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_0224221C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224226C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242298(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224230C(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02242400(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02242A14(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02242B38(BattleSystem * param0, BattleContext * param1);
@@ -410,8 +410,8 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_JumpIfAnySwitches,
     ov16_0224221C,
     ov16_0224226C,
-    ov16_02242298,
-    ov16_0224230C,
+    BtlCmd_SetupMultiHit,
+    BtlCmd_SetVarValue,
     ov16_02242400,
     ov16_02242A14,
     ov16_02242B38,
@@ -2110,7 +2110,7 @@ static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
  * @brief Compare a given data-value from a variable to a target static value.
  * 
  * Inputs:
- * 1. The operation mode. See enum IfOp for possible values.
+ * 1. The operation mode. See enum OpCode for possible values.
  * 2. The variable whose data should be retrieved for the comparison.
  * 3. The static value to compare against.
  * 4. The jump-ahead value if the comparison yields TRUE.
@@ -2188,7 +2188,7 @@ static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
  * @brief Compare a given data-value from a battler to a target static value.
  * 
  * Inputs:
- * 1. The operation mode. See enum IfOp for possible values.
+ * 1. The operation mode. See enum OpCode for possible values.
  * 2. The battler whose data should be retrieved for the comparison.
  * 3. The parameter to retrieve for the comparison.
  * 4. The static value to compare against.
@@ -2809,84 +2809,128 @@ static BOOL ov16_0224226C (BattleSystem * param0, BattleContext * param1)
     return 0;
 }
 
-static BOOL ov16_02242298 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Setup the initial state for a multi-hit move (e.g., Spike Cannon,
+ * Twineedle, Triple Kick).
+ * 
+ * Inputs:
+ * 1. The number of hits to apply to the move. If this value is passed as 0,
+ * then a number of hits will be generated from 2 through 5. If the attacker
+ * has Skill Link, then the generated number of hits will always be 5.
+ * 2. The flags to set for the move, which control how to evaluate successive
+ * hits. The relevant flags of note are:
+ *   - SYSCTL_SKIP_OBEDIENCE_CHECK -> do not check for obedience after the first hit
+ *   - SYSCTL_SKIP_STATUS_CHECK -> do not try to break the move after the first hit
+ *   - SYSCTL_SKIP_PP_DECREMENT -> do not deduct additional PP after the first hit
+ *   - SYSCTL_SKIP_IMMUNITY_TRIGGERS -> do not repeat the check for immunity abilities
+ *   - SYSCTL_SKIP_ACCURACY_CHECK -> do not check accuracy after the first hit
+ *   - SYSCTL_SKIP_ACCURACY_OVERRIDES -> same as SYSCTL_SKIP_ACCURACY_CHECK
+ *   - SYSCTL_SKIP_STOLEN_CHECK -> do not check for the move to be stolen after the first hit
+ * 
+ * In practice, there are two variants of flags submitted to this command call:
+ * 1. Triple Kick, which omits the SYSCTL_SKIP_ACCURACY_CHECK flag
+ * 2. All other multi-hit moves, which include the SYSCTL_SKIP_ACCURACY_CHECK flag
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int hits = BattleScript_Read(battleCtx);
+    int flags = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-
-    if (param1->multiHitNumHits == 0) {
-        if (v0 == 0) {
-            if (Battler_Ability(param1, param1->attacker) == 92) {
-                v0 = 5;
+    if (battleCtx->multiHitNumHits == 0) {
+        if (hits == 0) {
+            if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
+                hits = 5;
             } else {
-                if ((v0 = BattleSystem_RandNext(param0) & 3) < 2) {
-                    v0 += 2;
-                } else {
-                    v0 = (BattleSystem_RandNext(param0) & 3) + 2;
+                hits = BattleSystem_RandNext(battleSys) & 3;
+                if (hits < 2) { // 2 or 3 hits
+                    hits += 2;
+                } else { // 4 or 5 hits
+                    hits = (BattleSystem_RandNext(battleSys) & 3) + 2;
                 }
             }
         }
 
-        param1->multiHitCounter = v0;
-        param1->multiHitNumHits = v0;
-        param1->multiHitAccuracyCheck = v1;
+        battleCtx->multiHitCounter = hits;
+        battleCtx->multiHitNumHits = hits;
+        battleCtx->multiHitAccuracyCheck = flags;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224230C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the value of a variable using an operation applied to itself
+ * and a static source value.
+ * 
+ * Inputs:
+ * 1. The operation to apply; see enum OpCode for possible values.
+ * 2. ID of the variable to target as a source operand and the destination.
+ * 3. A static source value to use as the second operand.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int * v3;
-    u32 v4;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int dstVar = BattleScript_Read(battleCtx);
+    int srcVal = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *var = BattleScript_VarAddress(battleSys, battleCtx, dstVar);
+    u32 mask;
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_VarAddress(param0, param1, v1);
+    switch (op) {
+    case VALOP_SET:
+        *var = srcVal;
+        break;
 
-    switch (v0) {
-    case ((6 + 1) + 0):
-        v3[0] = v2;
+    case VALOP_ADD:
+        *var += srcVal;
         break;
-    case ((6 + 1) + 1):
-        v3[0] += v2;
+        
+    case VALOP_SUB:
+        *var -= srcVal;
         break;
-    case ((6 + 1) + 2):
-        v3[0] -= v2;
+
+    case VALOP_FLAG_ON:
+        *var |= srcVal;
         break;
-    case ((6 + 1) + 3):
-        v3[0] |= v2;
+
+    case VALOP_FLAG_OFF:
+        *var &= FLAG_NEGATE(srcVal);
         break;
-    case ((6 + 1) + 4):
-        v3[0] &= (v2 ^ 0xffffffff);
+
+    case VALOP_MUL:
+        *var *= srcVal;
         break;
-    case ((6 + 1) + 5):
-        v3[0] *= v2;
+
+    case VALOP_DIV:
+        *var /= srcVal;
         break;
-    case ((6 + 1) + 6):
-        v3[0] /= v2;
+
+    case VALOP_LSH:
+        *var = *var << srcVal;
         break;
-    case ((6 + 1) + 7):
-        v3[0] = v3[0] << v2;
+
+    case VALOP_RSH:
+        mask = *var;
+        mask = mask >> srcVal;
+        *var = mask;
         break;
-    case ((6 + 1) + 8):
-        v4 = v3[0];
-        v4 = v4 >> v2;
-        v3[0] = v4;
+
+    case VALOP_FLAG_INDEX:
+        *var = FlagIndex(srcVal);
         break;
-    case ((6 + 1) + 9):
-        v3[0] = FlagIndex(v2);
+
+    case VALOP_GET:
+        GF_ASSERT(FALSE);
         break;
     case ((6 + 1) + 10):
         GF_ASSERT(0);
@@ -2894,22 +2938,27 @@ static BOOL ov16_0224230C (BattleSystem * param0, BattleContext * param1)
     case ((6 + 1) + 11):
         v3[0] -= v2;
 
-        if (v3[0] < 0) {
-            v3[0] = 0;
+    case VALOP_SUB_TO_ZERO:
+        *var -= srcVal;
+        if (*var < 0) {
+            *var = 0;
         }
         break;
-    case ((6 + 1) + 12):
-        v3[0] ^= v2;
+
+    case VALOP_XOR:
+        *var ^= srcVal;
         break;
-    case ((6 + 1) + 13):
-        v3[0] &= v2;
+
+    case VALOP_AND:
+        *var &= srcVal;
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02242400 (BattleSystem * param0, BattleContext * param1)
@@ -10773,3 +10822,4 @@ static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item)
 {
     battleCtx->aiContext.battlerHeldItems[battler] = item;
 }
+
