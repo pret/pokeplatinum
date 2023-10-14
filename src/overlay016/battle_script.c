@@ -146,8 +146,8 @@ static BOOL BtlCmd_WaitGetExpTask(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_Dummy2A(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ShowPartyList(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_WaitPartyList(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02242134(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022421D4(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_0224221C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224226C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02242298(BattleSystem * param0, BattleContext * param1);
@@ -406,8 +406,8 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_Dummy2A,
     BtlCmd_ShowPartyList,
     BtlCmd_WaitPartyList,
-    ov16_02242134,
-    ov16_022421D4,
+    BtlCmd_Switch,
+    BtlCmd_JumpIfAnySwitches,
     ov16_0224221C,
     ov16_0224226C,
     ov16_02242298,
@@ -2692,61 +2692,90 @@ static BOOL BtlCmd_WaitPartyList(BattleSystem *battleSys, BattleContext *battleC
     return FALSE;
 }
 
-static BOOL ov16_02242134 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Switch a battler for another.
+ * 
+ * Inputs:
+ * 1. The battler who is switching
+ * 
+ * Side effects:
+ * - Flips the switching flag off for the battler status flags
+ * - Flips the battler-specific flag off for the switching mask
+ * - Updates the selected and switched party slot values
+ * - Caches the enemy's current HP value in battleCtx->hpTemp
+ * - Invokes InitBattleMon, SwitchSlots, and UpdateAfterSwitch; refer to the
+ * docs for those routines for more detailed information
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int battler;
 
-    BattleScript_Iter(param1, 1);
-    v1 = BattleScript_Read(param1);
-
-    switch (v1) {
+    switch (inBattler) {
     default:
         break;
-    case 0x1:
-        v0 = param1->attacker;
+
+    case BTLSCR_ATTACKER:
+        battler = battleCtx->attacker;
         break;
-    case 0x6:
-        v0 = param1->switchedMon;
+
+    case BTLSCR_SWITCHED_MON:
+        battler = battleCtx->switchedMon;
         break;
-    case 0x12:
-        v0 = param1->defender;
+
+    case BTLSCR_FORCED_OUT:
+        battler = battleCtx->defender;
         break;
     }
 
-    param1->battlerStatusFlags[v0] &= 0x1 ^ 0xffffffff;
-    param1->battlersSwitchingMask &= (FlagIndex(v0) ^ 0xffffffff);
-    param1->selectedPartySlot[v0] = param1->switchedPartySlot[v0];
-    param1->switchedPartySlot[v0] = 6;
+    battleCtx->battlerStatusFlags[battler] &= ~BATTLER_STATUS_SWITCHING;
+    battleCtx->battlersSwitchingMask &= FLAG_NEGATE(FlagIndex(battler));
+    battleCtx->selectedPartySlot[battler] = battleCtx->switchedPartySlot[battler];
+    battleCtx->switchedPartySlot[battler] = MAX_PARTY_SIZE;
 
-    BattleSystem_InitBattleMon(param0, param1, v0, param1->selectedPartySlot[v0]);
-    BattleSystem_SwitchSlots(param0, param1, v0, param1->selectedPartySlot[v0]);
+    BattleSystem_InitBattleMon(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
+    BattleSystem_SwitchSlots(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
 
-    param1->hpTemp = param1->battleMons[1].curHP;
+    // cache the enemy's current HP (used for force-out moves like Whirlwind?)
+    battleCtx->hpTemp = battleCtx->battleMons[BATTLER_ENEMY_SLOT_1].curHP;
 
-    BattleSystem_UpdateAfterSwitch(param0, param1, v0);
+    BattleSystem_UpdateAfterSwitch(battleSys, battleCtx, battler);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022421D4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump to the designated address if any battlers are switching.
+ * 
+ * Inputs:
+ * 1. The jump distance
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1 = BattleSystem_MaxBattlers(param0);
-    int v2;
+    int i; // must declare here to match
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    BattleScript_Iter(param1, 1);
-    v2 = BattleScript_Read(param1);
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if (param1->battlerStatusFlags[v0] & 0x1) {
-            param1->switchedMon = v0;
-            BattleScript_Iter(param1, v2);
+    for (i = 0; i < maxBattlers; i++) {
+        if (battleCtx->battlerStatusFlags[i] & BATTLER_STATUS_SWITCHING) {
+            battleCtx->switchedMon = i;
+            BattleScript_Iter(battleCtx, jump);
             break;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_0224221C (BattleSystem * param0, BattleContext * param1)

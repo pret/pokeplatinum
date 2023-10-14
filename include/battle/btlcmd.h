@@ -92,7 +92,7 @@ enum BattleScriptVars {
 #define BTLSCR_MSG_DEFENDER         15
 #define BTLSCR_ATTACKER_PARTNER     16
 #define BTLSCR_DEFENDER_PARTNER     17
-// 18 undefined
+#define BTLSCR_FORCED_OUT           18
 #define BTLSCR_ATTACKER_ENEMY       19
 #define BTLSCR_DEFENDER_ENEMY       20
 #define BTLSCR_MSG_BATTLER_TEMP     21
