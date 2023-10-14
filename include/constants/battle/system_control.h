@@ -28,8 +28,10 @@
 #define SYSCTL_MAGIC_COAT_REFLECTED     (1 << 3)
 #define SYSCTL_UTURN_ACTIVE             (1 << 4)
 #define SYSCTL_MOVE_SUCCEEDED           (1 << 6) // this only reflects that the move is executed, not whether it hit or missed
+#define SYSCTL_LINK_WAITING             ((1 << 24) | (1 << 25) | (1 << 26) | (1 << 27))
 #define SYSCTL_PAYOUT_EXP               ((1 << 28) | (1 << 29) | (1 << 30) | (1 << 31))
 
+#define SYSCTL_LINK_WAITING_SHIFT       24
 #define SYSCTL_PAYOUT_EXP_SHIFT         28
 
 #define SYSCTL_SKIP_OBEDIENCE_CHECK     (1 << 0)

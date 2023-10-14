@@ -4877,33 +4877,33 @@ static void BattleSystem_RecordCommand (BattleSystem *battleSys, BattleContext *
         if (battleCtx->battlerActions[v0][0] != 39) {
             if (battleCtx->recordedCommandFlags[v0] & 0x1) {
                 v2 = (battleCtx->battlerActions[v0][0] - 13) + 1;
-                ov16_0223F500(battleSys, v0, v2);
+                BattleSystem_Record(battleSys, v0, v2);
             }
 
             switch (battleCtx->battlerActions[v0][0]) {
             case 13:
                 if (battleCtx->recordedCommandFlags[v0] & 0x2) {
                     v2 = battleCtx->battlerActions[v0][2];
-                    ov16_0223F500(battleSys, v0, v2);
+                    BattleSystem_Record(battleSys, v0, v2);
                 }
 
                 if (battleCtx->recordedCommandFlags[v0] & 0x4) {
                     v2 = battleCtx->battlerActions[v0][1] + 1;
-                    ov16_0223F500(battleSys, v0, v2);
+                    BattleSystem_Record(battleSys, v0, v2);
                 }
                 break;
             case 14:
                 v2 = battleCtx->battlerActions[v0][2] & 0xff;
-                ov16_0223F500(battleSys, v0, v2);
+                BattleSystem_Record(battleSys, v0, v2);
                 v2 = (battleCtx->battlerActions[v0][2] & 0xff00) >> 16;
-                ov16_0223F500(battleSys, v0, v2);
+                BattleSystem_Record(battleSys, v0, v2);
                 break;
             case 15:
                 v2 = battleCtx->battlerActions[v0][2] + 1;
-                ov16_0223F500(battleSys, v0, v2);
+                BattleSystem_Record(battleSys, v0, v2);
                 break;
             case 16:
-                ov16_0223F500(battleSys, v0, 1);
+                BattleSystem_Record(battleSys, v0, 1);
                 break;
             default:
                 break;
