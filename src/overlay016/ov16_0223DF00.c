@@ -77,8 +77,8 @@
 #include "overlay016/ov16_0226871C.h"
 #include "overlay016/ov16_0226E148.h"
 
-UnkStruct_02018340 * ov16_0223DF00(BattleSystem * param0);
-UnkStruct_0205AA50 * ov16_0223DF04(BattleSystem * param0, int param1);
+BGL * BattleSystem_BGL(BattleSystem * param0);
+Window * BattleSystem_Window(BattleSystem * param0, int param1);
 u32 BattleSystem_BattleType(BattleSystem * param0);
 BattleContext * BattleSystem_Context(BattleSystem * param0);
 BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
@@ -94,9 +94,9 @@ UnkStruct_ov16_02268520 * ov16_0223E020(BattleSystem * param0, int param1);
 UnkStruct_ov16_02268A14 * ov16_0223E02C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E04C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E054(BattleSystem * param0);
-MessageLoader * ov16_0223E05C(BattleSystem * param0);
+MessageLoader * BattleSystem_MessageLoader(BattleSystem * param0);
 MessageLoader * ov16_0223E060(BattleSystem * param0);
-UnkStruct_02002F38 * ov16_0223E064(BattleSystem * param0);
+PaletteSys * BattleSystem_PaletteSys(BattleSystem * param0);
 UnkStruct_02026324 * ov16_0223E068(BattleSystem * param0);
 u8 * ov16_0223E06C(BattleSystem * param0);
 u8 * ov16_0223E074(BattleSystem * param0);
@@ -138,7 +138,7 @@ void BattleSystem_SetSafariBalls(BattleSystem * param0, int param1);
 UnkStruct_020279FC * ov16_0223EDA4(BattleSystem * param0);
 BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem * param0);
-u8 ov16_0223EDF0(BattleSystem * param0);
+u8 BattleSystem_TextSpeed(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);
 UnkStruct_02015F84 * ov16_0223EE28(BattleSystem * param0);
 UnkStruct_0202CC84 * ov16_0223EE30(BattleSystem * param0, int param1);
@@ -201,15 +201,15 @@ u8 ov16_0223F810(BattleSystem * param0, int param1);
 void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
-void ov16_0223F8DC(BattleSystem * param0, int param1);
+void BattleSystem_SetGaugePriority(BattleSystem * param0, int param1);
 u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
 void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL ov16_0223F9E0(BattleSystem * param0, int param1);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
-u8 ov16_0223FB24(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
-u8 ov16_0223FB78(BattleSystem * param0, UnkStruct_0205AA50 * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
+u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
+u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 static void ov16_0223FBE8(BattleSystem * param0, BattleMessage * param1);
 static void ov16_0223FDE4(BattleSystem * param0, BattleMessage * param1);
 static void ov16_02240584(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2);
@@ -231,12 +231,12 @@ static void ov16_0224055C(BattleSystem * param0, u32 param1, int param2);
 static void ov16_02240574(BattleSystem * param0, u32 param1, int param2);
 static u8 ov16_0223F6D4(u8 * param0, u8 * param1, u16 * param2);
 
-UnkStruct_02018340 * ov16_0223DF00 (BattleSystem * param0)
+BGL * BattleSystem_BGL (BattleSystem * param0)
 {
     return param0->unk_04;
 }
 
-UnkStruct_0205AA50 * ov16_0223DF04 (BattleSystem * param0, int param1)
+Window * BattleSystem_Window (BattleSystem * param0, int param1)
 {
     return &param0->unk_08[param1];
 }
@@ -349,7 +349,7 @@ UnkStruct_0200C440 * ov16_0223E054 (BattleSystem * param0)
     return param0->unk_1A8;
 }
 
-MessageLoader * ov16_0223E05C (BattleSystem * param0)
+MessageLoader * BattleSystem_MessageLoader (BattleSystem * param0)
 {
     return param0->unk_0C;
 }
@@ -359,7 +359,7 @@ MessageLoader * ov16_0223E060 (BattleSystem * param0)
     return param0->unk_10;
 }
 
-UnkStruct_02002F38 * ov16_0223E064 (BattleSystem * param0)
+PaletteSys * BattleSystem_PaletteSys (BattleSystem * param0)
 {
     return param0->unk_28;
 }
@@ -1051,7 +1051,7 @@ int ov16_0223EDE0 (BattleSystem * param0)
     return sub_02027B50(param0->unk_1B0);
 }
 
-u8 ov16_0223EDF0 (BattleSystem * param0)
+u8 BattleSystem_TextSpeed (BattleSystem * param0)
 {
     if ((param0->battleType & 0x4) && ((param0->battleStatusMask & 0x10) == 0)) {
         return 1;
@@ -1664,7 +1664,7 @@ void ov16_0223F8AC (BattleSystem * param0, UnkStruct_02007C7C ** param1)
     }
 }
 
-void ov16_0223F8DC (BattleSystem * param0, int param1)
+void BattleSystem_SetGaugePriority (BattleSystem * param0, int param1)
 {
     int v0;
     UnkStruct_ov16_022674C4 * v1;
@@ -1748,7 +1748,7 @@ void ov16_0223F9F0 (void)
 
 u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int param4)
 {
-    UnkStruct_0205AA50 * v0 = ov16_0223DF04(param0, 0);
+    Window * v0 = BattleSystem_Window(param0, 0);
     int v1;
 
     if (param0->battleType & 0x80) {
@@ -1762,7 +1762,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
                     v2 = sub_02014B34(&param0->trainers[param2].unk_2C, 5);
                 }
 
-                sub_0201ADA4(v0, 0xff);
+                BGL_FillWindow(v0, 0xff);
                 v1 = sub_0201D738(v0, 1, v2, 0, 0, param4, ov16_022405A4);
                 Strbuf_Free(v2);
             }
@@ -1795,7 +1795,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
                 v3 = MessageLoader_Init(0, 26, v6, 5);
                 v4 = MessageLoader_GetNewStrbuf(v3, v5);
 
-                sub_0201ADA4(v0, 0xff);
+                BGL_FillWindow(v0, 0xff);
 
                 v1 = sub_0201D738(v0, 1, v4, 0, 0, param4, ov16_022405A4);
                 Strbuf_Free(v4);
@@ -1804,27 +1804,27 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
         }
     } else {
         sub_020792F8(param1, param3, param0->msgBuffer, 5);
-        sub_0201ADA4(v0, 0xff);
+        BGL_FillWindow(v0, 0xff);
         v1 = sub_0201D738(v0, 1, param0->msgBuffer, 0, 0, param4, ov16_022405A4);
     }
 
     return v1;
 }
 
-u8 ov16_0223FB24 (BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3)
+u8 BattleMessage_Print (BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3)
 {
-    UnkStruct_0205AA50 * v0 = ov16_0223DF04(param0, 0);
+    Window * v0 = BattleSystem_Window(param0, 0);
 
     ov16_0223FBE8(param0, param2);
     ov16_0223FDE4(param0, param2);
     ov16_02240584(param0, param1, param2);
 
-    sub_0201ADA4(v0, 0xff);
+    BGL_FillWindow(v0, 0xff);
 
     return sub_0201D738(v0, 1, param0->msgBuffer, 0, 0, param3, ov16_022405A4);
 }
 
-u8 ov16_0223FB78 (BattleSystem * param0, UnkStruct_0205AA50 * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8)
+u8 BattleMessage_PrintToWindow (BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8)
 {
     int v0;
 
@@ -1833,7 +1833,7 @@ u8 ov16_0223FB78 (BattleSystem * param0, UnkStruct_0205AA50 * param1, MessageLoa
     ov16_02240584(param0, param2, param3);
 
     if (param6 & 0x1) {
-        sub_0201ADA4(param1, 0xff);
+        BGL_FillWindow(param1, 0xff);
     }
 
     if (param6 & 0x2) {
@@ -2393,7 +2393,7 @@ static BOOL ov16_022405A4 (UnkStruct_0201D738 * param0, u16 param1)
         sub_02006150(1156);
         break;
     case 4:
-        sub_02005748(1510);
+        Sound_PlayEffect(1510);
         break;
     case 5:
         sub_02006150(1155);

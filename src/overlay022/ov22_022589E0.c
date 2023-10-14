@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay022/struct_ov22_02257964.h"
@@ -74,7 +74,7 @@ static void ov22_02258B78(UnkStruct_ov22_02258A48 * param0);
 static void ov22_02258B74(UnkStruct_ov22_02258A48 * param0);
 static void ov22_02258E5C(UnkStruct_ov22_02258A48 * param0);
 static void ov22_02258F4C(UnkStruct_ov22_02258EE4 * param0, int param1, int param2, int param3, int param4, int param5);
-static void ov22_02258FC0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov22_02258FC0(SysTask * param0, void * param1);
 
 void ov22_022589E0 (UnkStruct_ov22_02258A48 * param0, UnkStruct_ov22_02257964 * param1, UnkStruct_ov22_02257F50 * param2, UnkStruct_ov22_0225A0E4 * param3, UnkStruct_ov22_0225A428 * param4, BOOL param5)
 {
@@ -177,7 +177,7 @@ static void ov22_02258A48 (UnkStruct_ov22_02258A48 * param0)
             break;
         }
 
-        sub_02005748(v7);
+        Sound_PlayEffect(v7);
         ov22_02259040(v0);
     }
 }
@@ -224,14 +224,14 @@ static void ov22_02258BB8 (UnkStruct_ov22_02258A48 * param0)
                 v9 = v0->unk_1C;
                 v10 = v0->unk_1E;
 
-                sub_02005748(1667);
+                Sound_PlayEffect(1667);
                 ov22_0225A628(v0->unk_0C, 26, 385, 3);
                 ov22_02258F4C(v0, 4, v9, v10, v0->unk_10->unk_04, v0->unk_21);
             } else {
                 ov22_02257B10(v0->unk_04);
                 ov22_02255360();
                 v0->unk_30 = 0;
-                sub_02005748(1514);
+                Sound_PlayEffect(1514);
             }
         } else {
             UnkStruct_ov22_02255040 * v12 = v0->unk_10->unk_00;
@@ -252,10 +252,10 @@ static void ov22_02258BB8 (UnkStruct_ov22_02258A48 * param0)
                     v10 = v0->unk_1E;
                 }
 
-                sub_02005748(1667);
+                Sound_PlayEffect(1667);
             } else {
                 ov22_02259648(v0->unk_10, &v9, &v10);
-                sub_02005748(1515);
+                Sound_PlayEffect(1515);
             }
 
             if (v0->unk_20 == 1) {
@@ -275,9 +275,9 @@ static void ov22_02258D4C (UnkStruct_ov22_02258A48 * param0)
     int v1, v2;
 
     if (v0->unk_10 != NULL) {
-        if ((coresys.unk_5C != 0xffff) && (coresys.unk_5C != 0xffff)) {
-            v1 = coresys.unk_5C - v0->unk_14;
-            v2 = coresys.unk_5E - v0->unk_18;
+        if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5C != 0xffff)) {
+            v1 = gCoreSys.unk_5C - v0->unk_14;
+            v2 = gCoreSys.unk_5E - v0->unk_18;
 
             ov22_022595F8(v0->unk_10, v1, v2);
         }
@@ -297,7 +297,7 @@ static void ov22_02258D7C (UnkStruct_ov22_02258A48 * param0)
 
         v0->unk_30 = 0;
 
-        sub_02005748(1515);
+        Sound_PlayEffect(1515);
         ov22_02258EE4(v0);
     }
 }
@@ -312,12 +312,12 @@ static void ov22_02258DAC (UnkStruct_ov22_02258A48 * param0)
     int v9, v10;
 
     if (v0->unk_10 != NULL) {
-        if ((coresys.unk_5C != 0xffff) && (coresys.unk_5C != 0xffff)) {
+        if ((gCoreSys.unk_5C != 0xffff) && (gCoreSys.unk_5C != 0xffff)) {
             ov22_022596B0(v0->unk_10, &v7, &v9, &v8, &v10);
             ov22_02259698(v0->unk_10, &v1, &v2);
 
-            v3 = coresys.unk_5C - v0->unk_14;
-            v4 = coresys.unk_5E - v0->unk_18;
+            v3 = gCoreSys.unk_5C - v0->unk_14;
+            v4 = gCoreSys.unk_5E - v0->unk_18;
 
             v5 = v3 + v7;
             v6 = v4 + v8;
@@ -424,7 +424,7 @@ static void ov22_02258F38 (UnkStruct_ov22_02258A48 * param0, int * param1, int *
 
 static void ov22_02258F4C (UnkStruct_ov22_02258EE4 * param0, int param1, int param2, int param3, int param4, int param5)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov22_02258FC0 * v1;
     int v2, v3;
 
@@ -449,7 +449,7 @@ static void ov22_02258F4C (UnkStruct_ov22_02258EE4 * param0, int param1, int par
     param0->unk_30 = 0;
 }
 
-static void ov22_02258FC0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov22_02258FC0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov22_02258FC0 * v0 = param1;
     int v1, v2;

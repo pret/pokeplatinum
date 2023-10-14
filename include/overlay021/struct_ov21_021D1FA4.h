@@ -6,7 +6,7 @@
 
 typedef struct {
     UnkStruct_020218BC * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     int unk_08;
     int unk_0C;
 } UnkStruct_ov21_021D1FA4;

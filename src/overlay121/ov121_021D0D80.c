@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
 #include "struct_defs/struct_020170F4.h"
@@ -34,7 +34,7 @@
 typedef struct {
     UnkStruct_0207C690 * unk_00;
     UnkStruct_020203AC * unk_04;
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_08;
     int unk_0C;
     int unk_10;
     UnkStruct_02017294 unk_14;
@@ -49,7 +49,7 @@ typedef struct {
     NNSFndAllocator unk_D8;
 } UnkStruct_ov121_021D0FF4;
 
-static void ov121_021D0F68(UnkStruct_0201CD38 * param0, void * param1);
+static void ov121_021D0F68(SysTask * param0, void * param1);
 static void ov121_021D0F7C(void * param0);
 static void ov121_021D0F94(void);
 static void ov121_021D0FF4(UnkStruct_ov121_021D0FF4 * param0);
@@ -93,7 +93,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     ov121_021D0FF4(v0);
     sub_0200F174(0, 1, 1, 0x0, 16, 1, 30);
 
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
@@ -101,7 +101,7 @@ int ov121_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_02002AE4(0);
     sub_02002B20(0);
 
-    v0->unk_08 = sub_0200D9E8(ov121_021D0F68, v0, 60000);
+    v0->unk_08 = SysTask_Start(ov121_021D0F68, v0, 60000);
     sub_02017798(ov121_021D0F7C, v0);
 
     return 1;
@@ -119,7 +119,7 @@ int ov121_021D0E7C (UnkStruct_020067E8 * param0, int * param1)
         break;
     case 1:
         if (v0->unk_10 == 15) {
-            sub_02005748(1491);
+            Sound_PlayEffect(1491);
         }
 
         v0->unk_10++;
@@ -149,7 +149,7 @@ int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0 = sub_0200682C(param0);
 
-    sub_0200DA58(v0->unk_08);
+    SysTask_Done(v0->unk_08);
 
     ov121_021D1184(v0);
     ov121_021D1068(v0);
@@ -167,7 +167,7 @@ int ov121_021D0F14 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov121_021D0F68 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov121_021D0F68 (SysTask * param0, void * param1)
 {
     UnkStruct_ov121_021D0FF4 * v0 = param1;
 

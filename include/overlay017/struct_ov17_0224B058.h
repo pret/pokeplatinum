@@ -1,12 +1,12 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_0224B058_H
 #define POKEPLATINUM_STRUCT_OV17_0224B058_H
 
-#include "struct_decls/struct_0200D0F4_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/cell_actor_data.h"
+#include "struct_decls/sys_task.h"
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
-    UnkStruct_0200D0F4 * unk_04;
+    SysTask * unk_00;
+    CellActorData * unk_04;
     s32 unk_08;
     s32 unk_0C;
     s32 unk_10;

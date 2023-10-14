@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
@@ -32,10 +32,10 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     MessageLoader * unk_08;
     int unk_0C;
-    UnkStruct_0205AA50 unk_10;
+    Window unk_10;
     int unk_20;
     int unk_24;
 } UnkStruct_ov73_021D342C;
@@ -403,7 +403,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     add r0, #0x10
     add r2, r1, #0
     add r3, r1, #0
-    bl sub_0201AE78
+    bl BGL_WindowColor
     add r0, r6, #0
     add r1, r5, #0
     add r2, r0, #0
@@ -454,7 +454,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     str r0, [r4, #0xc]
     b _021D3798
  _021D3768:
-    ldr r0, = coresys
+    ldr r0, = gCoreSys
     ldr r1, [r0, #0x48]
     mov r0, #1
     and r0, r1
@@ -471,7 +471,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
  _021D3782:
     add r0, r4, #0
     add r0, #0x10
-    bl sub_0201A8FC
+    bl BGL_DeleteWindow
     ldr r0, [r4, #4]
     mov r1, #2
     bl sub_02019EBC

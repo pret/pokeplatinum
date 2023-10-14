@@ -4,9 +4,9 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_decls/struct_0209B75C_decl.h"
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
@@ -22,8 +22,8 @@
 #include "overlay104/struct_ov104_0223D5F0_decl.h"
 
 typedef struct UnkStruct_ov104_0223C4CC_t {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_02002F38 * unk_04;
+    BGL * unk_00;
+    PaletteSys * unk_04;
     UnkStruct_0209B75C * unk_08;
     UnkStruct_0207C690 * unk_0C;
     UnkStruct_ov104_0223D5F0 * unk_10;
@@ -40,12 +40,12 @@ typedef struct UnkStruct_ov104_0223C4CC_t {
         UnkStruct_0200C704 * unk_04;
     } unk_34;
     UnkStruct_ov104_0223D3B0_1 unk_3C;
-    UnkStruct_0200D0F4 * unk_80[4];
+    CellActorData * unk_80[4];
     void * unk_90;
-    UnkStruct_0201CD38 * unk_94;
-    UnkStruct_0201CD38 * unk_98;
-    UnkStruct_0201CD38 * unk_9C;
-    UnkStruct_0201CD38 * unk_A0;
+    SysTask * unk_94;
+    SysTask * unk_98;
+    SysTask * unk_9C;
+    SysTask * unk_A0;
     UnkStruct_ov104_0223319C unk_A4;
     UnkStruct_ov104_022331E8 unk_B0;
     u16 unk_BC;

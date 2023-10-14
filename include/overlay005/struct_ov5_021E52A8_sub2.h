@@ -6,7 +6,7 @@
 #include <nitro/fx/fx.h>
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     MtxFx22 unk_04;
     u32 unk_14;
     int unk_18;

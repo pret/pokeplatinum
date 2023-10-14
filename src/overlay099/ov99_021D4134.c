@@ -153,7 +153,7 @@ BOOL ov99_021D425C (UnkStruct_ov99_021D2CB0 * param0, s32 param1)
 
 void ov99_021D439C (UnkStruct_ov99_021D2CB0 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_02018340 * v0 = param0->unk_08;
+    BGL * v0 = param0->unk_08;
     NNSG2dPaletteData * v1;
     void * v2;
     const UnkStruct_ov99_021D5394 * v3;
@@ -204,7 +204,7 @@ void ov99_021D439C (UnkStruct_ov99_021D2CB0 * param0, int param1, int param2, in
     sub_02019184(v0, param2, 3, v3->unk_08);
 }
 
-void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param1)
+void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, CellActorData * param1)
 {
     void * v0;
     u32 v1;

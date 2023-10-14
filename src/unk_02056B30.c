@@ -261,7 +261,7 @@ static BOOL sub_02056DE4 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_04) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
 
         sub_020558AC(param0);
         (v1->unk_04)++;
@@ -365,7 +365,7 @@ static BOOL sub_02056F1C (UnkStruct_020508D4 * param0)
         }
         break;
     case 2:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         ov5_021D1744(0);
         (v1->unk_04)++;
         break;

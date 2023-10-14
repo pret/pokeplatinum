@@ -5,11 +5,11 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "functypes/funcptr_0201CE28.h"
+#include "struct_decls/sys_task.h"
+#include "functypes/sys_task_func.h"
 #include "struct_decls/battle_system.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_02223178_decl.h"
@@ -32,20 +32,20 @@ BOOL ov12_0222016C(UnkStruct_ov12_0221FCDC * param0);
 BOOL ov12_02220188(UnkStruct_ov12_0221FCDC * param0);
 BOOL ov12_02220198(UnkStruct_ov12_0221FCDC * param0);
 BOOL ov12_022201B4(UnkStruct_ov12_0221FCDC * param0);
-UnkStruct_0201CD38 * ov12_022201CC(UnkStruct_ov12_0221FCDC * param0, UnkFuncPtr_0201CE28 param1, void * param2, u32 param3);
-UnkStruct_0201CD38 * ov12_022201E8(UnkStruct_ov12_0221FCDC * param0, UnkFuncPtr_0201CE28 param1, void * param2);
-UnkStruct_0201CD38 * ov12_02220204(UnkStruct_ov12_0221FCDC * param0, UnkFuncPtr_0201CE28 param1, void * param2, u32 param3);
-void ov12_02220220(UnkStruct_ov12_0221FCDC * param0, UnkStruct_0201CD38 * param1);
-void ov12_02220230(UnkStruct_ov12_0221FCDC * param0, UnkStruct_0201CD38 * param1);
+SysTask * ov12_022201CC(UnkStruct_ov12_0221FCDC * param0, SysTaskFunc param1, void * param2, u32 param3);
+SysTask * ov12_022201E8(UnkStruct_ov12_0221FCDC * param0, SysTaskFunc param1, void * param2);
+SysTask * ov12_02220204(UnkStruct_ov12_0221FCDC * param0, SysTaskFunc param1, void * param2, u32 param3);
+void ov12_02220220(UnkStruct_ov12_0221FCDC * param0, SysTask * param1);
+void ov12_02220230(UnkStruct_ov12_0221FCDC * param0, SysTask * param1);
 u16 ov12_02220240(UnkStruct_ov12_0221FCDC * param0);
 u16 ov12_02220248(UnkStruct_ov12_0221FCDC * param0);
 UnkStruct_02014014 * ov12_02220250(UnkStruct_ov12_0221FCDC * param0);
 UnkStruct_02014014 * ov12_02220260(UnkStruct_ov12_0221FCDC * param0, int param1);
 UnkSPLStruct6 * ov12_0222026C(UnkStruct_ov12_0221FCDC * param0, int param1);
-UnkStruct_02018340 * ov12_02220278(UnkStruct_ov12_0221FCDC * param0);
+BGL * ov12_02220278(UnkStruct_ov12_0221FCDC * param0);
 s32 ov12_02220280(UnkStruct_ov12_0221FCDC * param0, int param1);
-UnkStruct_0200D0F4 * ov12_02220298(UnkStruct_ov12_0221FCDC * param0, int param1);
-UnkStruct_0200D0F4 * ov12_022202C0(UnkStruct_ov12_0221FCDC * param0, int param1);
+CellActorData * ov12_02220298(UnkStruct_ov12_0221FCDC * param0, int param1);
+CellActorData * ov12_022202C0(UnkStruct_ov12_0221FCDC * param0, int param1);
 UnkStruct_0200C704 * ov12_022202EC(UnkStruct_ov12_0221FCDC * param0);
 UnkStruct_0200C704 * ov12_02220300(UnkStruct_ov12_0221FCDC * param0);
 UnkStruct_0200C6E4 * ov12_02220308(UnkStruct_ov12_0221FCDC * param0);
@@ -69,7 +69,7 @@ int ov12_022232D0(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232E0(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_022232EC(UnkStruct_ov12_0221FCDC * param0, int param1);
 UnkStruct_02007C7C * ov12_022232FC(UnkStruct_ov12_0221FCDC * param0, int param1);
-UnkStruct_02002F38 * ov12_0222332C(UnkStruct_ov12_0221FCDC * param0);
+PaletteSys * ov12_0222332C(UnkStruct_ov12_0221FCDC * param0);
 int ov12_02223334(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_02223344(UnkStruct_ov12_0221FCDC * param0, int param1);
 int ov12_02223354(UnkStruct_ov12_0221FCDC * param0, int param1);

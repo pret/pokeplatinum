@@ -5,7 +5,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_02008A90.h"
@@ -33,7 +33,7 @@
 
 typedef struct {
     u8 * unk_00;
-    UnkStruct_0200D0F4 * unk_04;
+    CellActorData * unk_04;
     s32 unk_08;
     s32 unk_0C;
     fx32 unk_10;
@@ -73,7 +73,7 @@ static const UnkStruct_ov17_0225442C Unk_ov17_0225442C[] = {
 };
 
 void include_ov17_022476F8(void);
-static void ov17_02247840(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_02247840(SysTask * param0, void * param1);
 
 void ov17_022476F8 (UnkStruct_ov17_022476F8 * param0, int param1)
 {
@@ -133,11 +133,11 @@ void ov17_022477B8 (UnkStruct_ov17_02247A48 * param0, int param1, int param2, fx
     v0->unk_00 = &param0->unk_4F7;
     param0->unk_4F7++;
 
-    sub_0200D9E8(ov17_02247840, v0, 50000);
-    sub_02005748(1761);
+    SysTask_Start(ov17_02247840, v0, 50000);
+    Sound_PlayEffect(1761);
 }
 
-static void ov17_02247840 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_02247840 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_022477B8 * v0 = param1;
     s32 v1;
@@ -160,7 +160,7 @@ static void ov17_02247840 (UnkStruct_0201CD38 * param0, void * param1)
         sub_0200D0F4(v0->unk_04);
         (*(v0->unk_00))--;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -219,7 +219,7 @@ static void ov17_02247990 (UnkStruct_ov17_02247A48 * param0, MessageLoader * par
     ov17_0224792C(param0, param3, param4);
 
     sub_0200C388(param0->unk_0C.unk_3C, param0->unk_0C.unk_40, v0);
-    sub_0201ADA4(&param0->unk_0C.unk_28[0], 0xff);
+    BGL_FillWindow(&param0->unk_0C.unk_28[0], 0xff);
 
     param0->unk_0C.unk_C4 = sub_0201D738(&param0->unk_0C.unk_28[0], 1, param0->unk_0C.unk_40, 0, 0, v1, NULL);
     Strbuf_Free(v0);
@@ -239,7 +239,7 @@ void ov17_02247A08 (UnkStruct_ov17_02247A48 * param0, u32 param1, const UnkStruc
 
 int ov17_02247A3C (UnkStruct_ov17_02247A48 * param0)
 {
-    return sub_0201D724(param0->unk_0C.unk_C4);
+    return Message_Printing(param0->unk_0C.unk_C4);
 }
 
 void include_ov17_022476F8 (void)

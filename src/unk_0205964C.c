@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_party_decl.h"
@@ -32,7 +32,7 @@
 #include "overlay007/ov7_02249960.h"
 #include "overlay023/ov23_02241F74.h"
 
-static void sub_020598C4(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_020598C4(SysTask * param0, void * param1);
 static void sub_020598EC(UnkFuncPtr_020598EC param0, int param1);
 static void sub_020598FC(void);
 static void sub_02059920(void);
@@ -86,7 +86,7 @@ void sub_0205965C (UnkStruct_0203CDB0 * param0)
     MI_CpuFill8(Unk_021C084C, 0, sizeof(UnkStruct_0205964C));
 
     Unk_021C084C->unk_3C = 50;
-    Unk_021C084C->unk_38 = sub_0200D9E8(sub_020598C4, NULL, 10);
+    Unk_021C084C->unk_38 = SysTask_Start(sub_020598C4, NULL, 10);
     Unk_021C084C->unk_18 = param0;
     Unk_021C084C->unk_44 = NULL;
 
@@ -103,7 +103,7 @@ void sub_020596BC (void)
         return;
     }
 
-    sub_0200DA58(Unk_021C084C->unk_38);
+    SysTask_Done(Unk_021C084C->unk_38);
 
     for (v1 = 0; v1 < 4; v1++) {
         if (Unk_021C084C->unk_00[v1]) {
@@ -208,10 +208,10 @@ void sub_020598A0 (void)
     sub_020598EC(sub_0205A018, 5);
 }
 
-void sub_020598C4 (UnkStruct_0201CD38 * param0, void * param1)
+void sub_020598C4 (SysTask * param0, void * param1)
 {
     if (Unk_021C084C == NULL) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         if (Unk_021C084C->unk_34 != NULL) {
             UnkFuncPtr_020598EC v0 = Unk_021C084C->unk_34;

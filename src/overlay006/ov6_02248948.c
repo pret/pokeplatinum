@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -41,7 +41,7 @@ static const UnkFuncPtr_ov6_0224984C Unk_ov6_0224984C[3] = {
     ov6_02248480
 };
 
-static void ov6_02248948 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov6_02248948 (SysTask * param0, void * param1)
 {
     UnkStruct_ov6_02248948 * v0 = param1;
 
@@ -55,7 +55,7 @@ static void ov6_02248948 (UnkStruct_0201CD38 * param0, void * param1)
         Unk_ov6_02249834[v0->unk_0C](v0->unk_00);
         *v0->unk_04 = 1;
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         break;
     }
 }
@@ -71,5 +71,5 @@ void ov6_0224899C (UnkStruct_0203CDB0 * param0, u16 * param1, u32 param2, u32 pa
     v0->unk_0C = param2;
 
     *param1 = 0;
-    sub_0200D9E8(ov6_02248948, v0, 0);
+    SysTask_Start(ov6_02248948, v0, 0);
 }

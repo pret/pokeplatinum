@@ -3,7 +3,7 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02026218_decl.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "pokemon.h"
@@ -34,10 +34,10 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov40_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
-static BOOL ov40_0225621C(UnkStruct_ov40_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
+static BOOL ov40_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov40_0225621C(UnkStruct_ov40_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
 static void ov40_0225625C(UnkStruct_ov40_0225621C * param0);
-static void ov40_02256270(UnkStruct_0201CD38 * param0, void * param1);
+static void ov40_02256270(SysTask * param0, void * param1);
 static void ov40_022562A4(void * param0);
 static void ov40_022562AC(UnkStruct_ov40_0225621C * param0, u32 param1);
 static BOOL ov40_022562C0(UnkStruct_ov40_0225621C * param0);
@@ -51,13 +51,13 @@ static void NitroStaticInit (void)
     ov25_02254238(ov40_022561D4, ov40_022562A4);
 }
 
-static BOOL ov40_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov40_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov40_0225621C * v0 = (UnkStruct_ov40_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov40_0225621C));
 
     if (v0 != NULL) {
         if (ov40_0225621C(v0, param1, param2, param3)) {
-            if (sub_0200D9E8(ov40_02256270, v0, 1) != NULL) {
+            if (SysTask_Start(ov40_02256270, v0, 1) != NULL) {
                 *param0 = v0;
                 return 1;
             }
@@ -69,7 +69,7 @@ static BOOL ov40_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
     return 0;
 }
 
-static BOOL ov40_0225621C (UnkStruct_ov40_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov40_0225621C (UnkStruct_ov40_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     param0->unk_30 = sub_02026310(ov25_02254544(param1));
 
@@ -93,7 +93,7 @@ static void ov40_0225625C (UnkStruct_ov40_0225621C * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov40_02256270 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov40_02256270 (SysTask * param0, void * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov40_0225621C *) = {
         ov40_022562C0,
@@ -106,7 +106,7 @@ static void ov40_02256270 (UnkStruct_0201CD38 * param0, void * param1)
     if (v1->unk_00 < NELEMS(v0)) {
         if (v0[v1->unk_00](v1)) {
             ov40_0225625C(v1);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             ov25_02254260(v1->unk_2C);
         }
     } else {

@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02061830_sub1_decl.h"
 
 #include "overlay005/const_ov5_021FB97C.h"
@@ -86,7 +86,7 @@ typedef struct UnkStruct_02061AB4_t {
     int unk_A8;
     u16 unk_AC;
     u16 unk_AE;
-    UnkStruct_0201CD38 * unk_B0;
+    SysTask * unk_B0;
     const UnkStruct_02061830 * unk_B4;
     UnkFuncPtr_020EDF0C unk_B8;
     UnkFuncPtr_020EDF0C_1 unk_BC;
@@ -137,7 +137,7 @@ static void sub_02062660(UnkStruct_02061AB4 * param0);
 static void sub_02062670(UnkStruct_02061AB4 * param0);
 static void sub_020626D0(UnkStruct_02061AB4 * param0, const UnkStruct_020619DC * param1, int param2);
 static void sub_02062714(UnkStruct_02061AB4 * param0, int param1, const UnkStruct_020619DC * param2);
-static void sub_020627E8(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_020627E8(SysTask * param0, void * param1);
 static void sub_02062804(UnkStruct_02061AB4 * param0);
 static UnkStruct_02061830 * sub_0206281C(const UnkStruct_02061830 * param0);
 static void sub_02062828(UnkStruct_02061830 * param0);
@@ -711,7 +711,7 @@ static UnkStruct_02061AB4 * sub_02062154 (const UnkStruct_02061830 * param0, int
 static void sub_020621AC (const UnkStruct_02061830 * param0, UnkStruct_02061AB4 * param1)
 {
     int v0, v1;
-    UnkStruct_0201CD38 * v2;
+    SysTask * v2;
 
     v0 = sub_02062858(param0);
     v1 = sub_02062948(param1);
@@ -720,7 +720,7 @@ static void sub_020621AC (const UnkStruct_02061830 * param0, UnkStruct_02061AB4 
         v0 += 2;
     }
 
-    v2 = sub_0200D9E8(sub_020627E8, param1, v0);
+    v2 = SysTask_Start(sub_020627E8, param1, v0);
     GF_ASSERT(v2 != NULL);
 
     sub_02062A1C(param1, v2);
@@ -1084,7 +1084,7 @@ int sub_020627B4 (const UnkStruct_02061AB4 * param0, int param1, int param2, int
     return sub_02062764(param0, param2, param3);
 }
 
-static void sub_020627E8 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020627E8 (SysTask * param0, void * param1)
 {
     UnkStruct_02061AB4 * v0 = (UnkStruct_02061AB4 *)param1;
 
@@ -1460,19 +1460,19 @@ u32 sub_02062A14 (const UnkStruct_02061AB4 * param0)
     return param0->unk_A0;
 }
 
-void sub_02062A1C (UnkStruct_02061AB4 * param0, UnkStruct_0201CD38 * param1)
+void sub_02062A1C (UnkStruct_02061AB4 * param0, SysTask * param1)
 {
     param0->unk_B0 = param1;
 }
 
-UnkStruct_0201CD38 * sub_02062A24 (const UnkStruct_02061AB4 * param0)
+SysTask * sub_02062A24 (const UnkStruct_02061AB4 * param0)
 {
     return param0->unk_B0;
 }
 
 void sub_02062A2C (const UnkStruct_02061AB4 * param0)
 {
-    sub_0200DA58(sub_02062A24(param0));
+    SysTask_Done(sub_02062A24(param0));
 }
 
 void sub_02062A38 (UnkStruct_02061AB4 * param0, const UnkStruct_02061830 * param1)

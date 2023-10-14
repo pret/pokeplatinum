@@ -54,7 +54,7 @@ typedef struct UnkStruct_ov5_021F0468_t {
     s16 unk_0E;
 } UnkStruct_ov5_021F0468;
 
-static void ov5_021F0260(UnkStruct_02018340 * param0);
+static void ov5_021F0260(BGL * param0);
 static void ov5_021F02B8(UnkStruct_ov5_021F02B8 * param0, int param1, int param2, int param3);
 static BOOL ov5_021F02C8(UnkStruct_ov5_021F02B8 * param0);
 
@@ -67,9 +67,9 @@ static void ov5_021F007C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 
     ov5_021F02B8(&v0->unk_28, 0, 8, 19);
 
-    sub_02019060(2, 0);
+    BGL_SetPriority(2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
-    sub_02005748(1608);
+    Sound_PlayEffect(1608);
 }
 
 static void ov5_021F00BC (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * param1, void * param2)
@@ -120,9 +120,9 @@ static void ov5_021F013C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
 
     G2_SetBlendAlpha((GX_PLANEMASK_BG2), GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BD, 0, 16 - 0);
 
-    sub_02019060(2, 0);
+    BGL_SetPriority(2, 0);
     GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
-    sub_02005748(1608);
+    Sound_PlayEffect(1608);
 }
 
 static void ov5_021F0188 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * param1, void * param2)
@@ -246,7 +246,7 @@ BOOL ov5_021F0254 (UnkStruct_ov5_021D1BEC * param0)
     return v0->unk_3C;
 }
 
-static void ov5_021F0260 (UnkStruct_02018340 * param0)
+static void ov5_021F0260 (BGL * param0)
 {
     GXRgb v0 = (GX_RGB(31, 10, 23));
     u8 * v1;
@@ -461,7 +461,7 @@ BOOL ov5_021F0488 (UnkStruct_020508D4 * param0)
 
         v1->unk_0C = 2;
 
-        sub_02019060(2, 0);
+        BGL_SetPriority(2, 0);
         GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 1);
         break;
     case 2:
@@ -522,11 +522,11 @@ BOOL ov5_021F0488 (UnkStruct_020508D4 * param0)
             if (v1->unk_08 == 0) {
                 GXLayers_EngineAToggleLayers((GX_PLANEMASK_BG2), 0);
                 G2_BlendNone();
-                sub_02019060(2, 3);
+                BGL_SetPriority(2, 3);
 
                 sub_02019EBC(v0->unk_08, 2);
             } else {
-                sub_02019060(2, 1);
+                BGL_SetPriority(2, 1);
             }
 
             v1->unk_0C = 8;

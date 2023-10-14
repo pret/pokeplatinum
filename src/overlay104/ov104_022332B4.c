@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "pokemon.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
@@ -56,7 +56,7 @@ BOOL ov104_022338E0(UnkStruct_ov104_0222E930 * param0);
 BOOL ov104_022338FC(UnkStruct_ov104_0222E930 * param0);
 BOOL ov104_0223392C(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_0223394C(UnkStruct_ov104_0222E930 * param0);
-void ov104_022338B4(UnkStruct_0201CD38 * param0, void * param1);
+void ov104_022338B4(SysTask * param0, void * param1);
 BOOL ov104_0223397C(UnkStruct_ov104_0222E930 * param0);
 static void ov104_02233478(void * param0);
 
@@ -387,11 +387,11 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
         sub_0201C3C0(v1->unk_00, 3);
         break;
     case 31:
-        v4->unk_500 = sub_0200D9E8(ov104_022338B4, ov104_0222E924(param0->unk_00), 5);
+        v4->unk_500 = SysTask_Start(ov104_022338B4, ov104_0222E924(param0->unk_00), 5);
         break;
     case 32:
         if (v4->unk_500 != NULL) {
-            sub_0200DA58(v4->unk_500);
+            SysTask_Done(v4->unk_500);
             v4->unk_500 = NULL;
         }
         break;
@@ -442,7 +442,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
     return 0;
 }
 
-void ov104_022338B4 (UnkStruct_0201CD38 * param0, void * param1)
+void ov104_022338B4 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov104_0223C4CC * v1 = param1;

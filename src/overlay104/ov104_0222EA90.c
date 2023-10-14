@@ -423,9 +423,9 @@ static void ov104_0222EBD8 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 {
     *param1 = ov104_0223D9E4(param0->unk_00, param0->unk_04);
 
-    sub_02019060(0, 1);
-    sub_02019060(2, 2);
-    sub_02019060(3, 3);
+    BGL_SetPriority(0, 1);
+    BGL_SetPriority(2, 2);
+    BGL_SetPriority(3, 3);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 
     return;
@@ -449,9 +449,9 @@ static void ov104_0222EC1C (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 
 static void ov104_0222EC20 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 {
-    sub_02019060(0, 1);
-    sub_02019060(2, 2);
-    sub_02019060(3, 3);
+    BGL_SetPriority(0, 1);
+    BGL_SetPriority(2, 2);
+    BGL_SetPriority(3, 3);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
@@ -466,8 +466,8 @@ static void ov104_0222EC58 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 
 static void ov104_0222EC5C (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 {
-    sub_02019060(2, 3);
-    sub_02019060(3, 2);
+    BGL_SetPriority(2, 3);
+    BGL_SetPriority(3, 2);
     return;
 }
 
@@ -501,10 +501,10 @@ static void ov104_0222ECA0 (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 
 static void ov104_0222ECAC (UnkStruct_ov104_0223C4CC * param0, void ** param1)
 {
-    sub_02019060(1, 0);
-    sub_02019060(0, 2);
-    sub_02019060(2, 2);
-    sub_02019060(3, 3);
+    BGL_SetPriority(1, 0);
+    BGL_SetPriority(0, 2);
+    BGL_SetPriority(2, 2);
+    BGL_SetPriority(3, 3);
 
     G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG0, GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 20, 20);
     return;

@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 #include "enums.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -77,9 +77,9 @@ static const UnkStruct_ov104_02241308 Unk_ov99_021D472C = {
     0x8
 };
 
-static void ov99_021D1244(UnkStruct_0201CD38 * param0, void * param1);
+static void ov99_021D1244(SysTask * param0, void * param1);
 static void ov99_021D1350(void * param0);
-static void ov99_021D1380(UnkStruct_02018340 * param0);
+static void ov99_021D1380(BGL * param0);
 static void ov99_021D1720(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1918(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D19A0(UnkStruct_ov99_021D2CB0 * param0);
@@ -89,7 +89,7 @@ static void ov99_021D1A4C(UnkStruct_0207C690 * param0);
 static void ov99_021D16E4(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1270(UnkStruct_ov99_021D2CB0 * param0);
 static void ov99_021D1314(UnkStruct_ov99_021D2CB0 * param0);
-static void ov99_021D1580(UnkStruct_02018340 * param0);
+static void ov99_021D1580(BGL * param0);
 
 int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -163,14 +163,14 @@ int ov99_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisibleWnd(GX_WNDMASK_W0);
     GXS_SetVisibleWnd(GX_WNDMASK_W0);
 
-    coresys.unk_65 = 1;
+    gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 
-    v0->unk_14 = sub_0200D9E8(ov99_021D1244, v0, 60000);
+    v0->unk_14 = SysTask_Start(ov99_021D1244, v0, 60000);
 
     sub_02017798(ov99_021D1350, v0);
     sub_02004550(14, 1186, 1);
@@ -194,7 +194,7 @@ int ov99_021D1028 (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_1110 = ov99_021D3F6C(v0->unk_110C, 1);
     }
 
-    if (v0->unk_00->unk_04 && (coresys.padInput & PAD_BUTTON_START)) {
+    if (v0->unk_00->unk_04 && (gCoreSys.padInput & PAD_BUTTON_START)) {
         if ((v0->unk_1100 == 0) && (v0->unk_1101 < 6)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, 75);
             v0->unk_1100 = 1;
@@ -264,7 +264,7 @@ int ov99_021D11A8 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov99_021D2CB0 * v0 = sub_0200682C(param0);
 
-    sub_0200DA58(v0->unk_14);
+    SysTask_Done(v0->unk_14);
 
     if (v0->unk_1108 != NULL) {
         ov99_021D1270(v0);
@@ -294,7 +294,7 @@ int ov99_021D11A8 (UnkStruct_020067E8 * param0, int * param1)
     return 1;
 }
 
-static void ov99_021D1244 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov99_021D1244 (SysTask * param0, void * param1)
 {
     UnkStruct_ov99_021D2CB0 * v0 = param1;
 
@@ -365,7 +365,7 @@ static void ov99_021D1350 (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov99_021D1380 (UnkStruct_02018340 * param0)
+static void ov99_021D1380 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -544,7 +544,7 @@ static void ov99_021D1380 (UnkStruct_02018340 * param0)
     sub_02019120(6, 0);
 }
 
-static void ov99_021D1580 (UnkStruct_02018340 * param0)
+static void ov99_021D1580 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
     GXLayers_DisableEngineBLayers();
@@ -677,8 +677,8 @@ static void ov99_021D1580 (UnkStruct_02018340 * param0)
 
 static void ov99_021D16E4 (UnkStruct_ov99_021D2CB0 * param0)
 {
-    sub_02003050(param0->unk_0C, 127, 85, 75, 0, 0x20, 15 * 16);
-    sub_02003050(param0->unk_0C, 127, 85, 75, 1, 0x20, 15 * 16);
+    PaletteSys_LoadPalette(param0->unk_0C, 127, 85, 75, 0, 0x20, 15 * 16);
+    PaletteSys_LoadPalette(param0->unk_0C, 127, 85, 75, 1, 0x20, 15 * 16);
 }
 
 static void ov99_021D1720 (UnkStruct_ov99_021D2CB0 * param0)

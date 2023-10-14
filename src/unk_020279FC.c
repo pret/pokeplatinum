@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -48,14 +48,14 @@ void sub_02027A68 (SaveData * param0, int param1)
 
     switch (param1) {
     case 1:
-        coresys.unk_34 = 1;
+        gCoreSys.unk_34 = 1;
         break;
     case 2:
-        coresys.unk_34 = 3;
+        gCoreSys.unk_34 = 3;
         break;
     case 0:
     default:
-        coresys.unk_34 = 0;
+        gCoreSys.unk_34 = 0;
         break;
     }
 }

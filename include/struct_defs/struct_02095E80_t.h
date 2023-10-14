@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -63,7 +63,7 @@ struct UnkStruct_02095E80_t {
     u32 unk_154[2][3];
     int unk_16C;
     int unk_170;
-    UnkStruct_02018340 * unk_174;
+    BGL * unk_174;
     UnkStruct_0200B358 * unk_178;
     UnkStruct_0200B358 * unk_17C;
     UnkStruct_0200B358 * unk_180;
@@ -83,8 +83,8 @@ struct UnkStruct_02095E80_t {
     UnkStruct_02022550 * unk_434[12];
     UnkStruct_02022550 * unk_464[6];
     UnkStruct_02022550 * unk_47C;
-    UnkStruct_0201CD38 * unk_480[7];
-    UnkStruct_0205AA50 unk_49C[34];
+    SysTask * unk_480[7];
+    Window unk_49C[34];
     UnkStruct_02001AF4 * unk_6BC;
     UnkStruct_02013A04 * unk_6C0;
     UnkStruct_02001AF4 * unk_6C4;
@@ -129,7 +129,7 @@ struct UnkStruct_02095E80_t {
     MessageLoader * unk_36D0;
     UnkStruct_02013A04 * unk_36D4;
     UnkStruct_0200112C * unk_36D8;
-    UnkStruct_0205AA50 unk_36DC;
+    Window unk_36DC;
     UnkStruct_0202B370 * unk_36EC;
     int unk_36F0;
     int unk_36F4;

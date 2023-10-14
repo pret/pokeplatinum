@@ -109,4 +109,8 @@ enum IfOp {
     IFOP_AND,
 };
 
+enum StatusEffect {
+    STATUS_EFFECT_LEVEL_UP = 8,
+};
+
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H

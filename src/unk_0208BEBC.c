@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
@@ -134,7 +134,7 @@ static int sub_0208BF6C (UnkStruct_020067E8 * param0, int * param1)
         ov62_0222F514(v0);
         Heap_Destroy(102);
         Overlay_UnloadByID(FS_OVERLAY_ID(overlay62));
-        coresys.unk_65 = 0;
+        gCoreSys.unk_65 = 0;
         GXLayers_SwapDisplay();
 
         return 1;

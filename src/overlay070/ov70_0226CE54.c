@@ -282,11 +282,11 @@ static void ov70_0226D24C (BOOL param0, BOOL param1, BOOL param2, u32 param3)
             if (param2) {
                 sub_02005770(param3, 5);
             } else {
-                sub_02005748(param3);
+                Sound_PlayEffect(param3);
             }
         }
     } else {
-        sub_02005748(param3);
+        Sound_PlayEffect(param3);
     }
 }
 

@@ -2,11 +2,11 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -92,7 +92,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_02049FA8 unk_08;
     UnkStruct_ov5_021D432C * unk_1C;
 } UnkStruct_02053AB4;
@@ -105,7 +105,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_08;
     UnkStruct_02049FA8 unk_0C;
 } UnkStruct_02053CD4;
 
@@ -125,7 +125,7 @@ typedef struct {
     BOOL unk_18;
     u16 unk_1C;
     void * unk_20;
-    UnkStruct_0205AA50 unk_24;
+    Window unk_24;
     Strbuf* unk_34;
     u8 unk_38;
     UnkStruct_02001AF4 * unk_3C;
@@ -238,7 +238,7 @@ static void sub_0205311C (UnkStruct_0203CDB0 * param0, const UnkStruct_02049FA8 
 void sub_020531A0 (UnkStruct_0203CDB0 * param0)
 {
     GF_ASSERT(param0->unk_70 < 5);
-    coresys.unk_65 = param0->unk_74->unk_00_12;
+    gCoreSys.unk_65 = param0->unk_74->unk_00_12;
 }
 
 void sub_020531C0 (UnkStruct_0203CDB0 * param0, BOOL param1)
@@ -643,7 +643,7 @@ static BOOL sub_02053878 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         sub_02055644(v0, v2->unk_00);
         sub_02055974(param0);
         (v1->unk_00)++;
@@ -1194,12 +1194,12 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         switch (sub_02002114(v1->unk_3C, 11)) {
         case 0:
             sub_0200E084(&v1->unk_24, 0);
-            sub_0201A8FC(&v1->unk_24);
+            BGL_DeleteWindow(&v1->unk_24);
             v1->unk_00 = 3;
             break;
         case 0xfffffffe:
             sub_0200E084(&v1->unk_24, 0);
-            sub_0201A8FC(&v1->unk_24);
+            BGL_DeleteWindow(&v1->unk_24);
             v1->unk_00 = 5;
         }
         break;
@@ -1559,7 +1559,7 @@ static BOOL sub_02054778 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         sub_02055644(v0, v2->unk_00);
         sub_02055974(param0);
         (v1->unk_00)++;

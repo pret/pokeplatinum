@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
@@ -94,7 +94,7 @@ typedef struct {
 } UnkStruct_ov97_0223DFB0;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     SaveData * unk_04;
     UnkStruct_02026324 * unk_08;
     TrainerInfo * unk_0C;
@@ -117,7 +117,7 @@ typedef struct {
     int unk_50;
     int unk_54;
     int unk_58;
-    UnkStruct_0205AA50 unk_5C[8];
+    Window unk_5C[8];
     int unk_DC[8];
     int unk_FC[8];
     fx32 unk_11C;
@@ -128,11 +128,11 @@ typedef struct {
     int unk_130;
     int unk_134;
     int unk_138;
-    UnkStruct_0205AA50 unk_13C;
+    Window unk_13C;
     int unk_14C;
     int unk_150;
     BOOL unk_154[1];
-    UnkStruct_0205AA50 unk_158;
+    Window unk_158;
     UnkStruct_02022550 * unk_168[2];
     int unk_170;
 } UnkStruct_0222AE60;
@@ -206,10 +206,10 @@ static BOOL ov97_0222AE64 (UnkStruct_0222AE60 * param0)
             }
         }
     } else {
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_02005748(1500);
-            sub_0200DC9C(&param0->unk_158, 0);
-            sub_0201A8FC(&param0->unk_158);
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            Sound_PlayEffect(1500);
+            Window_Clear(&param0->unk_158, 0);
+            BGL_DeleteWindow(&param0->unk_158);
         }
 
         return 1;
@@ -391,11 +391,11 @@ static BOOL ov97_0222B07C (UnkStruct_0222AE60 * param0)
         if (param0->unk_134) {
             param0->unk_134--;
         } else {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-                sub_0201A8FC(&param0->unk_13C);
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+                BGL_DeleteWindow(&param0->unk_13C);
                 param0->unk_12C = 19;
-                param0->unk_138 = coresys.padInput;
-                sub_02005748(1500);
+                param0->unk_138 = gCoreSys.padInput;
+                Sound_PlayEffect(1500);
             }
         }
         break;
@@ -540,7 +540,7 @@ static void ov97_0222B4FC (UnkStruct_0222AE60 * param0, int param1, int param2)
     sub_02019448(param0->unk_00, 2);
 }
 
-static void ov97_0222B53C (UnkStruct_0205AA50 * param0, MessageLoader * param1, UnkStruct_0200B358 * param2, u32 param3, u32 param4, int param5)
+static void ov97_0222B53C (Window * param0, MessageLoader * param1, UnkStruct_0200B358 * param2, u32 param3, u32 param4, int param5)
 {
     int v0, v1;
     Strbuf* v2;
@@ -613,7 +613,7 @@ static BOOL ov97_0222B5C0 (void * param0, int param1, UnkStruct_ov97_02237808 * 
         ov97_0222B53C(param2->unk_10, v5, v4, v7, 18, 16 * 4);
     }
 
-    sub_0200DC48(param2->unk_10, 0, param2->unk_38, param2->unk_3C);
+    Window_Show(param2->unk_10, 0, param2->unk_38, param2->unk_3C);
 
     v6->unk_DC[param1] = Unk_ov97_0223E014[param1].unk_00;
 
@@ -780,7 +780,7 @@ static BOOL ov97_0222B9BC (UnkStruct_0222AE60 * param0)
             if (param0->unk_DC[v2]) {
                 sub_0201C2AC(v1.unk_10, 3);
                 sub_0201C2B0(v1.unk_10, v3);
-                sub_0200DC48(v1.unk_10, 0, v1.unk_38, v1.unk_3C);
+                Window_Show(v1.unk_10, 0, v1.unk_38, v1.unk_3C);
 
                 if (param0->unk_FC[v2]) {
                     ov97_0222B4AC(param0, 26, v3, param0->unk_FC[v2]);
@@ -816,10 +816,10 @@ static void ov97_0222BAD8 (UnkStruct_0222AE60 * param0, int param1)
         }
 
         if (v0 == param1) {
-            sub_0200DC48(&param0->unk_5C[v0], 1, (1 + 9), 3);
+            Window_Show(&param0->unk_5C[v0], 1, (1 + 9), 3);
             sub_02019E2C(param0->unk_00, 0, sub_0201C29C(&param0->unk_5C[v0]), sub_0201C2A0(&param0->unk_5C[v0]), sub_0201C294(&param0->unk_5C[v0]), sub_0201C298(&param0->unk_5C[v0]), 0);
         } else {
-            sub_0200DC48(&param0->unk_5C[v0], 1, 1, 2);
+            Window_Show(&param0->unk_5C[v0], 1, 1, 2);
             sub_02019E2C(param0->unk_00, 0, sub_0201C29C(&param0->unk_5C[v0]), sub_0201C2A0(&param0->unk_5C[v0]), sub_0201C294(&param0->unk_5C[v0]), sub_0201C298(&param0->unk_5C[v0]), 1);
         }
     }
@@ -847,7 +847,7 @@ static void ov97_0222BB88 (UnkStruct_0222AE60 * param0, int param1)
         }
 
         if (param0->unk_DC[v0]) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             break;
         }
     }
@@ -915,7 +915,7 @@ static void ov97_0222BC9C (UnkStruct_020067E8 * param0)
     for (v0 = 0; v0 < (sizeof(Unk_ov97_0223E014) / sizeof(UnkStruct_ov97_0223E014)); v0++) {
         if (v1->unk_5C[v0].unk_00) {
             sub_0201ACF4(&v1->unk_5C[v0]);
-            sub_0201A8FC(&v1->unk_5C[v0]);
+            BGL_DeleteWindow(&v1->unk_5C[v0]);
         }
     }
 
@@ -975,7 +975,7 @@ static void ov97_0222BD48 (void * param0)
 {
     sub_0201DCAC();
     sub_0200A858();
-    sub_0201C2B8((UnkStruct_02018340 *)param0);
+    sub_0201C2B8((BGL *)param0);
 
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
@@ -1075,9 +1075,9 @@ static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
         v1->unk_124 = 10;
         break;
     case 5:
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            if (coresys.padInput & PAD_BUTTON_A) {
-                sub_02005748(1500);
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
+                Sound_PlayEffect(1500);
                 v1->unk_58 = v1->unk_DC[v1->unk_54];
 
                 if (v1->unk_58 == 5) {
@@ -1090,7 +1090,7 @@ static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
                     }
                 }
             } else {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 v1->unk_58 = 0;
                 ov97_02237784(1);
             }
@@ -1119,11 +1119,11 @@ static int ov97_0222BE24 (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        if (coresys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.padInput & PAD_KEY_UP) {
             ov97_0222BB88(v1, -1);
         }
 
-        if (coresys.padInput & PAD_KEY_DOWN) {
+        if (gCoreSys.padInput & PAD_KEY_DOWN) {
             ov97_0222BB88(v1, 1);
         }
 

@@ -1,21 +1,21 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_020127E8.h"
-#include "functypes/funcptr_0201CE28.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "functypes/sys_task_func.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48.h"
@@ -55,7 +55,7 @@ typedef struct {
 } UnkStruct_ov17_02254630;
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
+    SysTask * unk_00;
     u8 * unk_04;
     void * unk_08;
     u8 * unk_0C;
@@ -70,7 +70,7 @@ typedef struct {
         struct {
             UnkStruct_ov17_02249B30 * unk_00;
             const UnkStruct_ov17_02254630 * unk_04[3];
-            UnkStruct_0200D0F4 * unk_10[3];
+            CellActorData * unk_10[3];
             u32 unk_1C[3];
             int unk_28;
             u16 unk_2C;
@@ -87,8 +87,8 @@ typedef struct {
 } UnkStruct_ov17_022492DC_sub1;
 
 typedef struct {
-    UnkStruct_02012CE0 * unk_00;
-    UnkStruct_0201EE28 unk_04;
+    FontOAM * unk_00;
+    SpriteManagerAllocation unk_04;
     u16 unk_10;
 } UnkStruct_ov17_02249BC4;
 
@@ -96,7 +96,7 @@ typedef struct UnkStruct_ov17_022492DC_t {
     UnkStruct_02095C48 * unk_00;
     UnkStruct_ov17_0224A1EC * unk_04;
     void * unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
     UnkStruct_ov17_022492DC_sub1 unk_10;
     UnkStruct_02012744 * unk_18;
     UnkStruct_ov17_02249BC4 unk_1C[6];
@@ -143,12 +143,12 @@ static int ov17_02249A0C(UnkStruct_ov17_022492DC * param0, int param1);
 static BOOL ov17_02249B30(UnkStruct_ov17_02249B30 * param0);
 static void ov17_02249B54(UnkStruct_ov17_02249B30 * param0);
 static void ov17_02249D3C(UnkStruct_ov17_022492DC * param0, int param1);
-static void ov17_02249D50(UnkFuncPtr_0201CE28 param0, UnkStruct_ov17_022492DC * param1);
+static void ov17_02249D50(SysTaskFunc param0, UnkStruct_ov17_022492DC * param1);
 static void ov17_02249D80(UnkStruct_ov17_022492DC * param0);
-static void ov17_02249DA0(UnkStruct_0201CD38 * param0, void * param1);
-static void ov17_0224A038(UnkStruct_0201CD38 * param0, void * param1);
-static void ov17_0224A088(UnkStruct_0201CD38 * param0, void * param1);
-static void ov17_0224A0C8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_02249DA0(SysTask * param0, void * param1);
+static void ov17_0224A038(SysTask * param0, void * param1);
+static void ov17_0224A088(SysTask * param0, void * param1);
+static void ov17_0224A0C8(SysTask * param0, void * param1);
 static void ov17_022498F4(UnkStruct_ov17_022492DC * param0);
 static void ov17_02249BC4(UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_02249BC4 * param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9);
 static void ov17_02249CD0(UnkStruct_ov17_022492DC * param0);
@@ -291,7 +291,7 @@ static void * ov17_022492DC (void)
     return v0;
 }
 
-void ov17_02249300 (UnkStruct_02018340 * param0)
+void ov17_02249300 (BGL * param0)
 {
     int v0;
 
@@ -303,7 +303,7 @@ void ov17_02249300 (UnkStruct_02018340 * param0)
     }
 }
 
-void ov17_02249358 (UnkStruct_02018340 * param0)
+void ov17_02249358 (BGL * param0)
 {
     int v0;
 
@@ -416,7 +416,7 @@ void ov17_02249640 (UnkStruct_ov17_022492DC * param0, int param1, int param2, vo
 {
     const UnkStruct_ov17_02254578 * v0, * v1;
     int v2;
-    UnkStruct_02018340 * v3;
+    BGL * v3;
     UnkStruct_0200C6E4 * v4;
     UnkStruct_0200C704 * v5;
 
@@ -437,7 +437,7 @@ void ov17_02249640 (UnkStruct_ov17_022492DC * param0, int param1, int param2, vo
 
     {
         for (v2 = 0; v2 < 4; v2++) {
-            sub_02019060(4 + v2, v0->unk_0C_val2[v2]);
+            BGL_SetPriority(4 + v2, v0->unk_0C_val2[v2]);
         }
     }
 
@@ -485,13 +485,13 @@ int ov17_02249760 (UnkStruct_ov17_022492DC * param0)
 
     if (v1 == 0xffffffff) {
         if (v3->unk_18 == Unk_ov17_02254554) {
-            if (coresys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
                 v1 = 3;
-            } else if (coresys.padInput & (PAD_BUTTON_B | PAD_KEY_DOWN)) {
+            } else if (gCoreSys.padInput & (PAD_BUTTON_B | PAD_KEY_DOWN)) {
                 v1 = 1;
-            } else if (coresys.padInput & (PAD_BUTTON_X | PAD_KEY_UP)) {
+            } else if (gCoreSys.padInput & (PAD_BUTTON_X | PAD_KEY_UP)) {
                 v1 = 0;
-            } else if (coresys.padInput & (PAD_BUTTON_Y | PAD_KEY_LEFT)) {
+            } else if (gCoreSys.padInput & (PAD_BUTTON_Y | PAD_KEY_LEFT)) {
                 v1 = 2;
             }
         }
@@ -683,11 +683,11 @@ static void ov17_02249B54 (UnkStruct_ov17_02249B30 * param0)
 static void ov17_02249BC4 (UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_02249BC4 * param1, const Strbuf *param2, int param3, u32 param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_020127E8 v0;
-    UnkStruct_0205AA50 v1;
-    UnkStruct_0201EE28 v2;
+    Window v1;
+    SpriteManagerAllocation v2;
     int v3;
-    UnkStruct_02012CE0 * v4;
-    UnkStruct_02018340 * v5;
+    FontOAM * v4;
+    BGL * v5;
     UnkStruct_0200C704 * v6;
     int v7, v8;
 
@@ -737,7 +737,7 @@ static void ov17_02249BC4 (UnkStruct_ov17_022492DC * param0, UnkStruct_ov17_0224
 
     sub_02012AC0(v4, param5);
     sub_020128C4(v4, param7, param8);
-    sub_0201A8FC(&v1);
+    BGL_DeleteWindow(&v1);
 
     param1->unk_00 = v4;
     param1->unk_04 = v2;
@@ -794,27 +794,27 @@ static void ov17_02249D3C (UnkStruct_ov17_022492DC * param0, int param1)
     }
 }
 
-static void ov17_02249D50 (UnkFuncPtr_0201CE28 param0, UnkStruct_ov17_022492DC * param1)
+static void ov17_02249D50 (SysTaskFunc param0, UnkStruct_ov17_022492DC * param1)
 {
     GF_ASSERT(param1->unk_0C == NULL);
 
     MI_CpuClear8(&param1->unk_8C, sizeof(UnkStruct_ov17_022492DC_sub2));
-    param1->unk_0C = sub_0200D9E8(param0, param1, 1300);
+    param1->unk_0C = SysTask_Start(param0, param1, 1300);
 }
 
 static void ov17_02249D80 (UnkStruct_ov17_022492DC * param0)
 {
     if (param0->unk_0C != NULL) {
-        sub_0200DA58(param0->unk_0C);
+        SysTask_Done(param0->unk_0C);
         param0->unk_0C = NULL;
         MI_CpuClear8(&param0->unk_8C, sizeof(UnkStruct_ov17_022492DC_sub2));
     }
 }
 
-static void ov17_02249DA0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_02249DA0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_022492DC * v0 = param1;
-    UnkStruct_02018340 * v1;
+    BGL * v1;
     int v2, v3;
     int v4;
 
@@ -914,7 +914,7 @@ static void ov17_02249DA0 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov17_0224A038 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0224A038 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_022492DC * v0 = param1;
     const UnkStruct_ov17_02254578 * v1;
@@ -930,10 +930,10 @@ static void ov17_0224A038 (UnkStruct_0201CD38 * param0, void * param1)
         }
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov17_0224A088 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0224A088 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_022492DC * v0 = param1;
 
@@ -942,16 +942,16 @@ static void ov17_0224A088 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_88 = 0xffff;
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov17_0224A0C8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0224A0C8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_02249B30 * v0 = param1;
 
     ov17_02249B54(v0);
     v0->unk_00 = NULL;
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 void ov17_0224A0E0 (UnkStruct_ov17_022492DC * param0, u16 param1, u8 param2)

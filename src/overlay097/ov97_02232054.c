@@ -35,7 +35,7 @@ void ov97_02232054 (void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov97_02232074 (UnkStruct_02018340 * param0)
+void ov97_02232074 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {

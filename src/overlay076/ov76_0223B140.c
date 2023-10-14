@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nitro/sinit.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
@@ -48,7 +48,7 @@ static void ov76_0223B174 (UnkUnion_02022594 * param0)
     param0->val1.unk_03 = 255;
 }
 
-void ov76_0223B184 (UnkUnion_02022594 * param0, UnkStruct_0200D0F4 * param1, BOOL param2)
+void ov76_0223B184 (UnkUnion_02022594 * param0, CellActorData * param1, BOOL param2)
 {
     s16 v0, v1;
 
@@ -57,7 +57,7 @@ void ov76_0223B184 (UnkUnion_02022594 * param0, UnkStruct_0200D0F4 * param1, BOO
     }
 
     if (param2 == 1) {
-        sub_0200D4C4(param1, coresys.unk_5C, coresys.unk_5E);
+        sub_0200D4C4(param1, gCoreSys.unk_5C, gCoreSys.unk_5E);
         sub_0200D550(param1, &v0, &v1);
         ov76_0223B174(param0);
     } else {
@@ -178,7 +178,7 @@ void ov76_0223B36C (UnkStruct_ov76_0223DE00 * param0, u8 param1, u8 param2)
     int v1;
     UnkStruct_0200C6E4 * v2;
     UnkStruct_0200C704 * v3;
-    UnkStruct_02002F38 * v4;
+    PaletteSys * v4;
 
     v2 = param0->unk_D4.unk_08;
     v3 = param0->unk_D4.unk_0C;
@@ -279,7 +279,7 @@ BOOL ov76_0223B52C (UnkStruct_ov76_0223DE00 * param0, u8 param1)
     UnkStruct_ov104_0223F9E0 v3;
     UnkStruct_0200C6E4 * v4;
     UnkStruct_0200C704 * v5;
-    UnkStruct_02002F38 * v6;
+    PaletteSys * v6;
 
     v4 = param0->unk_D4.unk_08;
     v5 = param0->unk_D4.unk_0C;

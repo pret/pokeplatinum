@@ -9,7 +9,7 @@
 #include "struct_defs/struct_02095C60.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     UnkStruct_020218BC * unk_04;
     UnkStruct_02009714 ** unk_08;
     const UnkStruct_020279FC * unk_0C;

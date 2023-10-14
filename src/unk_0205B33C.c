@@ -4,7 +4,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0205B43C_decl.h"
@@ -56,7 +56,7 @@ struct UnkStruct_0205B43C_t {
     UnkStruct_0203CDB0 * unk_00;
     SaveData * unk_04;
     TrainerInfo * unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
     UnkFuncPtr_0205B43C unk_10;
     int unk_14;
     u32 unk_18;
@@ -160,7 +160,7 @@ static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
 
     v2->unk_10 = NULL;
     v2->unk_14 = 40;
-    v2->unk_0C = sub_0200D9E8(sub_0205B5BC, v2, 10);
+    v2->unk_0C = SysTask_Start(sub_0205B5BC, v2, 10);
     v2->unk_00 = param0;
     v2->unk_04 = v1;
     v2->unk_08 = sub_02025E38(v1);
@@ -289,12 +289,12 @@ static void sub_0205B5B4 (UnkStruct_0205B43C * param0, UnkFuncPtr_0205B43C param
 
 static WMBssDesc * Unk_021C085C[16];
 
-void sub_0205B5BC (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0205B5BC (SysTask * param0, void * param1)
 {
     UnkStruct_0205B43C * v0 = (UnkStruct_0205B43C *)param1;
 
     if (v0 == NULL) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         int v1;
         WMBssDesc * v2;
@@ -407,7 +407,7 @@ static void sub_0205B754 (UnkStruct_0205B43C * param0)
         return;
     }
 
-    sub_0200DA58(param0->unk_0C);
+    SysTask_Done(param0->unk_0C);
     Heap_FreeToHeap(param0);
     Heap_Destroy(31);
 }

@@ -12,13 +12,13 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     u8 padding_04[4];
     const UnkStruct_ov19_021D4DF0 * unk_08;
     UnkStruct_ov19_021D61B0 * unk_0C;
     MessageLoader * unk_10;
     MessageLoader * unk_14;
-    UnkStruct_0205AA50 * unk_18;
+    Window * unk_18;
     u16 unk_1C;
     u16 unk_1E;
     int unk_20;

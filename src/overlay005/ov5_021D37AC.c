@@ -905,7 +905,7 @@ void ov5_021D4278 (UnkStruct_ov5_021D41B4 * const param0, const int param1, cons
     v1 = ov5_021D409C(v0, param2);
 
     if (param3 != 0) {
-        sub_02005748(param3);
+        Sound_PlayEffect(param3);
     }
 
     ov5_021D3E40(v1, 0);

@@ -6,13 +6,13 @@
 #include "unk_02018340.h"
 #include "overlay021/ov21_021D517C.h"
 
-static void ov21_021D5248(UnkStruct_0205AA50 * param0, u8 * param1, u16 param2, u16 param3, int param4, int param5, u8 param6, u8 param7);
+static void ov21_021D5248(Window * param0, u8 * param1, u16 param2, u16 param3, int param4, int param5, u8 param6, u8 param7);
 static void ov21_021D52A0(u8 * param0, int param1, int param2, int param3, int param4);
 static int ov21_021D52D4(u8 * param0, int param1, int param2, int param3, int param4);
 static void ov21_021D5304(u8 * param0, int * param1, int param2, int param3, int param4, int param5);
 static int ov21_021D5424(int param0);
 
-void ov21_021D517C (UnkStruct_0205AA50 * param0, u8 * param1, u16 param2, u16 param3, u8 param4, u8 * param5, u8 param6, u8 param7, u16 param8, u16 param9)
+void ov21_021D517C (Window * param0, u8 * param1, u16 param2, u16 param3, u8 param4, u8 * param5, u8 param6, u8 param7, u16 param8, u16 param9)
 {
     int v0, v1;
 
@@ -34,7 +34,7 @@ void ov21_021D5214 (u8 * param0, u8 param1, u8 param2)
     }
 }
 
-static void ov21_021D5248 (UnkStruct_0205AA50 * param0, u8 * param1, u16 param2, u16 param3, int param4, int param5, u8 param6, u8 param7)
+static void ov21_021D5248 (Window * param0, u8 * param1, u16 param2, u16 param3, int param4, int param5, u8 param6, u8 param7)
 {
     int v0;
     int v1;

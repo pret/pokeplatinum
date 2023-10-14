@@ -2,7 +2,7 @@
 #include <string.h>
 #include <nnsys.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_020149F0_decl.h"
@@ -75,7 +75,7 @@ UnkStruct_0200112C * sub_0200112C (const UnkStruct_ov84_02240FA8 * param0, u16 p
     }
 
     sub_02014A40(v0->unk_24, (u32)((((v0->unk_00.unk_17_4) & 0xff) << 16) | (((v0->unk_00.unk_18_4) & 0xff) << 8) | (((v0->unk_00.unk_18_0) & 0xff) << 0)));
-    sub_0201ADA4(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
+    BGL_FillWindow(v0->unk_00.unk_0C, v0->unk_00.unk_18_0);
     sub_02001688(v0, v0->unk_28, 0, v0->unk_00.unk_12);
     sub_02001720(v0);
     sub_02001AD8(v0, 1);
@@ -90,15 +90,15 @@ u32 sub_02001288 (UnkStruct_0200112C * param0)
 
     param0->unk_2F = 0;
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         return param0->unk_00.unk_00[param0->unk_28 + param0->unk_2A].unk_04;
     }
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         return 0xfffffffe;
     }
 
-    if (coresys.unk_4C & PAD_KEY_UP) {
+    if (gCoreSys.unk_4C & PAD_KEY_UP) {
         if (sub_02001A18(param0, 1, 1, 0) == 0) {
             param0->unk_2F = 1;
         }
@@ -106,7 +106,7 @@ u32 sub_02001288 (UnkStruct_0200112C * param0)
         return 0xffffffff;
     }
 
-    if (coresys.unk_4C & PAD_KEY_DOWN) {
+    if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
         if (sub_02001A18(param0, 1, 1, 1) == 0) {
             param0->unk_2F = 2;
         }
@@ -121,12 +121,12 @@ u32 sub_02001288 (UnkStruct_0200112C * param0)
         v1 = 0;
         break;
     case 1:
-        v0 = (coresys.unk_4C & PAD_KEY_LEFT);
-        v1 = (coresys.unk_4C & PAD_KEY_RIGHT);
+        v0 = (gCoreSys.unk_4C & PAD_KEY_LEFT);
+        v1 = (gCoreSys.unk_4C & PAD_KEY_RIGHT);
         break;
     case 2:
-        v0 = (coresys.unk_4C & PAD_BUTTON_L);
-        v1 = (coresys.unk_4C & PAD_BUTTON_R);
+        v0 = (gCoreSys.unk_4C & PAD_BUTTON_L);
+        v1 = (gCoreSys.unk_4C & PAD_BUTTON_R);
         break;
     }
 
@@ -165,7 +165,7 @@ void sub_02001384 (UnkStruct_0200112C * param0, u16 * param1, u16 * param2)
 
 void sub_020013AC (UnkStruct_0200112C * param0)
 {
-    sub_0201ADA4(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
+    BGL_FillWindow(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
     sub_02001688(param0, param0->unk_28, 0, param0->unk_00.unk_12);
     sub_02001720(param0);
     sub_0201A954(param0->unk_00.unk_0C);
@@ -380,7 +380,7 @@ static void sub_02001778 (UnkStruct_0200112C * param0, u16 param1)
     switch (param0->unk_00.unk_1A_15) {
     case 0:
         v0 = sub_02002DF8(param0->unk_00.unk_1A_9, 1) + param0->unk_00.unk_1A_3;
-        sub_0201AE78(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
+        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, param0->unk_00.unk_16, (u16)(param1 * v0 + param0->unk_00.unk_17_0), 8, 16);
         break;
     case 1:
     case 2:
@@ -473,7 +473,7 @@ static void sub_02001900 (UnkStruct_0200112C * param0, u8 param1, u8 param2)
     u16 v1;
 
     if (param1 >= param0->unk_00.unk_12) {
-        sub_0201ADA4(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
+        BGL_FillWindow(param0->unk_00.unk_0C, param0->unk_00.unk_18_0);
         sub_02001688(param0, param0->unk_28, 0, param0->unk_00.unk_12);
         return;
     }
@@ -486,11 +486,11 @@ static void sub_02001900 (UnkStruct_0200112C * param0, u8 param1, u8 param2)
 
         v1 = (u16)(param0->unk_00.unk_12 * v0 + param0->unk_00.unk_17_0);
 
-        sub_0201AE78(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, v1, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)(sub_0201C298(param0->unk_00.unk_0C) * 8 - v1));
+        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, v1, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)(sub_0201C298(param0->unk_00.unk_0C) * 8 - v1));
     } else {
         sub_0201C04C(param0->unk_00.unk_0C, 0, (u8)(param1 * v0), (u8)((param0->unk_00.unk_18_0 << 4) | param0->unk_00.unk_18_0));
         sub_02001688(param0, (u16)(param0->unk_28 + (param0->unk_00.unk_12 - param1)), (u16)(param0->unk_00.unk_12 - param1), (u16)param1);
-        sub_0201AE78(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, 0, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)param0->unk_00.unk_17_0);
+        BGL_WindowColor(param0->unk_00.unk_0C, (u8)param0->unk_00.unk_18_0, 0, 0, (u16)(sub_0201C294(param0->unk_00.unk_0C) * 8), (u16)param0->unk_00.unk_17_0);
     }
 }
 

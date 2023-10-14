@@ -6,7 +6,7 @@
 
 typedef struct {
     const UnkStruct_02013A04 * unk_00;
-    UnkStruct_0205AA50 * unk_04;
+    Window * unk_04;
     u8 unk_08;
     u8 unk_09;
     u8 unk_0A;

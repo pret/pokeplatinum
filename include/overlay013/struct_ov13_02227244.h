@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -17,14 +17,14 @@
 
 typedef struct {
     UnkStruct_ov13_022264F4 * unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_02002F38 * unk_08;
+    BGL * unk_04;
+    PaletteSys * unk_08;
     UnkStruct_0200C440 * unk_0C;
     MessageLoader * unk_10;
     UnkStruct_0200B358 * unk_14;
     Strbuf* unk_18;
-    UnkStruct_0205AA50 unk_1C;
-    UnkStruct_0205AA50 * unk_2C;
+    Window unk_1C;
+    Window * unk_2C;
     u8 unk_30;
     u8 unk_31;
     u8 unk_32;
@@ -32,7 +32,7 @@ typedef struct {
     UnkStruct_ov16_0226DEEC * unk_38;
     BagItem unk_3C[5][36];
     UnkStruct_0200C704 * unk_30C;
-    UnkStruct_0200D0F4 * unk_310[6];
+    CellActorData * unk_310[6];
     u16 unk_328[3][144];
     u16 unk_688[4][130];
     u16 unk_A98[3][25];

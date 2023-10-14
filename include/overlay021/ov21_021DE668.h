@@ -11,8 +11,8 @@ void ov21_021DE668(UnkStruct_ov21_021E68F4 * param0, UnkStruct_ov21_021D0F60 * p
 void ov21_021DE6C0(UnkStruct_ov21_021E68F4 * param0);
 BOOL ov21_021DE6D4(UnkStruct_ov21_021DE6D4 * param0, int param1);
 BOOL ov21_021DE6D8(UnkStruct_ov21_021DE6D4 * param0, int param1);
-void ov21_021DEB8C(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4);
+void ov21_021DEB8C(Window * param0, int param1, int param2, int param3, u32 param4);
 int ov21_021DF180(int param0);
-UnkStruct_0205AA50 * ov21_021DF30C(UnkStruct_ov21_021D4C0C * param0, int param1, int param2);
+Window * ov21_021DF30C(UnkStruct_ov21_021D4C0C * param0, int param1, int param2);
 
 #endif // POKEPLATINUM_OV21_021DE668_H

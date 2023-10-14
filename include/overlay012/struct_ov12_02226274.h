@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV12_02226274_H
 #define POKEPLATINUM_STRUCT_OV12_02226274_H
 
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "overlay012/struct_ov12_02225F6C.h"
 #include "overlay012/funcptr_ov12_02226274.h"
 
@@ -10,7 +10,7 @@ typedef struct {
     s16 unk_02;
     UnkStruct_ov12_02225F6C unk_04[4];
     UnkFuncPtr_ov12_02226274 unk_94;
-    UnkStruct_0200D0F4 * unk_98[4];
+    CellActorData * unk_98[4];
     u16 unk_A8;
     u16 unk_AA;
     u8 unk_AC;

@@ -355,7 +355,7 @@ static void ov21_021E638C (UnkStruct_ov21_021E6274 * param0, UnkStruct_ov21_021E
     ov21_021E65EC(param0);
     ov21_021E64D4(param0, param1);
 
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
     sub_02019EBC(param1->unk_00->unk_00, 1);
 
     ov21_021E6844(param1);

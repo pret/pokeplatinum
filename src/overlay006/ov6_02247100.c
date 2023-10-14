@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -29,9 +29,9 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_0201CD38 * unk_0C;
-    UnkStruct_0201CD38 * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_0C;
+    SysTask * unk_10;
+    SysTask * unk_14;
     UnkStruct_02061AB4 * unk_18;
     UnkStruct_0203CDB0 * unk_1C;
     Pokemon * unk_20;
@@ -85,13 +85,13 @@ static int ov6_0224715C (UnkStruct_020508D4 * param0, UnkStruct_0203CDB0 * param
 
     switch (param2->unk_08) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         break;
     case 1:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         break;
     case 2:
-        sub_02005748(1614);
+        Sound_PlayEffect(1614);
         break;
     }
 

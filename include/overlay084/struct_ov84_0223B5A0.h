@@ -9,7 +9,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -22,9 +22,9 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[11];
-    UnkStruct_0205AA50 unk_B4[1];
+    BGL * unk_00;
+    Window unk_04[11];
+    Window unk_B4[1];
     UnkStruct_0207CB08 * unk_C4;
     UnkStruct_0207D3C0 * unk_C8;
     TrainerInfo * unk_CC;
@@ -32,7 +32,7 @@ typedef struct {
     NARC * unk_D4;
     UnkStruct_0200C6E4 * unk_D8;
     UnkStruct_0200C704 * unk_DC;
-    UnkStruct_0200D0F4 * unk_E0[12];
+    CellActorData * unk_E0[12];
     UnkStruct_0200C440 * unk_110;
     MessageLoader * unk_114;
     UnkStruct_0200B358 * unk_118;

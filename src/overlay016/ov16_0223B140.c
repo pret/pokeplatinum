@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/battle_system.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "battle/battle_context.h"
@@ -124,21 +124,21 @@ static BOOL ov16_0223DD10(UnkStruct_020067E8 * param0);
 static void ov16_0223D10C(UnkStruct_020067E8 * param0, BattleParams * param1);
 static BOOL ov16_0223D354(UnkStruct_020067E8 * param0);
 static void ov16_0223D7B4(UnkStruct_020067E8 * param0);
-static void ov16_0223C004(BattleSystem * param0, UnkStruct_02018340 * param1);
+static void ov16_0223C004(BattleSystem * param0, BGL * param1);
 static void ov16_0223C210(BattleSystem * param0);
-static void ov16_0223C288(UnkStruct_02018340 * param0);
+static void ov16_0223C288(BGL * param0);
 static void ov16_0223C2BC(BattleSystem * param0);
 static void ov16_0223C2C0(BattleSystem * param0, BattleParams * param1);
 static void ov16_0223CE28(void);
 static void ov16_0223CE68(void * param0);
 static void ov16_0223CF1C(void * param0);
-static void ov16_0223CF48(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0223CF8C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0223CF48(SysTask * param0, void * param1);
+static void ov16_0223CF8C(SysTask * param0, void * param1);
 static UnkStruct_0207C690 * ov16_0223CD7C(void);
 static void ov16_0223CE20(UnkStruct_0207C690 * param0);
 static void ov16_0223CD9C(void);
 static void ov16_0223DD4C(BattleSystem * param0);
-static void ov16_0223D0C4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0223D0C4(SysTask * param0, void * param1);
 static BOOL ov16_0223CD3C(u16 param0);
 static void ov16_0223DD90(BattleSystem * param0, BattleParams * param1);
 static void ov16_0223DECC(void);
@@ -323,7 +323,7 @@ void ov16_0223B3E4 (BattleSystem * param0)
 {
     sub_02017798(NULL, NULL);
     ov16_02268A14(param0->unk_198);
-    sub_0201A8FC(&param0->unk_08[0]);
+    BGL_DeleteWindow(&param0->unk_08[0]);
 
     ov16_0223C288(param0->unk_04);
     ov16_0223C2BC(param0);
@@ -375,7 +375,7 @@ void ov16_0223B430 (BattleSystem * param0)
 
 void ov16_0223B53C (BattleSystem * param0)
 {
-    sub_0201A8FC(&param0->unk_08[0]);
+    BGL_DeleteWindow(&param0->unk_08[0]);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
     sub_02019044(param0->unk_04, 1);
@@ -457,9 +457,9 @@ void ov16_0223B578 (BattleSystem * param0)
 
         sub_0200E218(param0->unk_04, 1, 1, 10, v1, 5);
         sub_02006E3C(7, 3 + param0->unk_2400, param0->unk_04, 3, 0, 0, 1, 5);
-        sub_02003050(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
-        sub_02003050(param0->unk_28, 38, sub_0200DD08(v1), 5, 0, 0x20, 10 * 0x10);
-        sub_02003050(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
+        PaletteSys_LoadPalette(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
+        PaletteSys_LoadPalette(param0->unk_28, 38, sub_0200DD08(v1), 5, 0, 0x20, 10 * 0x10);
+        PaletteSys_LoadPalette(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
         sub_02006E60(7, 2, param0->unk_04, 3, 0, 0, 1, 5);
     }
 
@@ -478,8 +478,8 @@ void ov16_0223B578 (BattleSystem * param0)
 
     param0->unk_23FB_1 = 1;
 
-    sub_0201A7E8(param0->unk_04, param0->unk_08, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
-    sub_0201ADA4(param0->unk_08, 0xff);
+    BGL_AddWindow(param0->unk_04, param0->unk_08, 1, 0x2, 0x13, 27, 4, 0xb, (18 + 12) + 1);
+    BGL_FillWindow(param0->unk_08, 0xff);
     sub_0200E060(&param0->unk_08[0], 0, 1, 10);
 
     ov16_0223DD4C(param0);
@@ -579,8 +579,8 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
 
     ov16_0223C004(v0, v0->unk_04);
 
-    sub_0201A7E8(v0->unk_04, &v0->unk_08[0], 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
-    sub_0201ADA4(&v0->unk_08[0], 0xff);
+    BGL_AddWindow(v0->unk_04, &v0->unk_08[0], 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    BGL_FillWindow(&v0->unk_08[0], 0xff);
     sub_0200E060(&v0->unk_08[0], 0, 1, 10);
 
     v0->unk_90 = sub_0200C6E4(5);
@@ -648,8 +648,8 @@ static void ov16_0223B790 (UnkStruct_020067E8 * param0)
     v0->unk_1AC = sub_0201567C(v0->unk_28, 0, 0xb, 5);
     sub_02015738(v0->unk_1AC, 1);
 
-    v0->unk_1C = sub_0200D9E8(ov16_0223CF48, v0, 60000);
-    v0->unk_20 = sub_0200D9E8(ov16_0223CF8C, v0, 50000);
+    v0->unk_1C = SysTask_Start(ov16_0223CF48, v0, 60000);
+    v0->unk_20 = SysTask_Start(ov16_0223CF8C, v0, 50000);
     v0->unk_24 = sub_0200DA04(ov16_0223D0C4, v0, 1200);
     v0->unk_2434 = -51;
 
@@ -797,8 +797,8 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     Heap_FreeToHeap(v0->unk_220);
     sub_0200C560(v0->unk_1A4);
     sub_02002C60(2);
-    sub_0200DA58(v0->unk_1C);
-    sub_0200DA58(v0->unk_20);
+    SysTask_Done(v0->unk_1C);
+    SysTask_Done(v0->unk_20);
     sub_0201E530();
 
     ov16_0223CE20(v0->unk_00);
@@ -828,7 +828,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     }
 }
 
-static void ov16_0223C004 (BattleSystem * param0, UnkStruct_02018340 * param1)
+static void ov16_0223C004 (BattleSystem * param0, BGL * param1)
 {
     GXLayers_DisableEngineALayers();
     sub_0200F338(0);
@@ -942,9 +942,9 @@ static void ov16_0223C004 (BattleSystem * param0, UnkStruct_02018340 * param1)
 
         sub_0200E218(param1, 1, 1, 10, v3, 5);
         sub_02006E3C(7, 3 + param0->unk_2400, param1, 3, 0, 0, 1, 5);
-        sub_02003050(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
-        sub_02003050(param0->unk_28, 38, sub_0200DD08(v3), 5, 0, 0x20, 10 * 0x10);
-        sub_02003050(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
+        PaletteSys_LoadPalette(param0->unk_28, 7, 172 + (param0->unk_2400 * 3) + ov16_0223EC04(param0), 5, 0, 0, 0);
+        PaletteSys_LoadPalette(param0->unk_28, 38, sub_0200DD08(v3), 5, 0, 0x20, 10 * 0x10);
+        PaletteSys_LoadPalette(param0->unk_28, 14, 7, 5, 0, 0x20, 0xb * 0x10);
         sub_02006E60(7, 2, param1, 3, 0, 0, 1, 5);
     }
 
@@ -985,7 +985,7 @@ static void ov16_0223C210 (BattleSystem * param0)
     ov16_0223DECC();
 }
 
-static void ov16_0223C288 (UnkStruct_02018340 * param0)
+static void ov16_0223C288 (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -1550,7 +1550,7 @@ static void ov16_0223CF1C (void * param0)
     OS_SetIrqCheckFlag(OS_IE_V_BLANK);
 }
 
-static void ov16_0223CF48 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0223CF48 (SysTask * param0, void * param1)
 {
     BattleSystem * v0 = param1;
 
@@ -1568,7 +1568,7 @@ static void ov16_0223CF48 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0223CF8C (SysTask * param0, void * param1)
 {
     BattleSystem * v0 = param1;
     BattlerData * v1;
@@ -1611,7 +1611,7 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if ((v5) && (ov16_0223F450(v0) == 0)) {
-        sub_02005748(1796);
+        Sound_PlayEffect(1796);
         BattleSystem_SetRedHPSoundFlag(v0, 1);
         ov16_0223F48C(v0, 4);
     } else if ((v5 == 0) && (ov16_0223F450(v0))) {
@@ -1624,7 +1624,7 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
 
         if (sub_020057D4(1796) == 0) {
             if (--v7 == 0) {
-                sub_02005748(1796);
+                Sound_PlayEffect(1796);
                 ov16_0223F48C(v0, 4);
             } else {
                 ov16_0223F48C(v0, v7);
@@ -1633,7 +1633,7 @@ static void ov16_0223CF8C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov16_0223D0C4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0223D0C4 (SysTask * param0, void * param1)
 {
     BattleSystem * v0 = param1;
 
@@ -1641,7 +1641,7 @@ static void ov16_0223D0C4 (UnkStruct_0201CD38 * param0, void * param1)
     sub_02019184(v0->unk_04, 1, 3, v0->unk_2434);
 
     if (v0->unk_2434 == 0) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -1733,15 +1733,15 @@ static void ov16_0223D10C (UnkStruct_020067E8 * param0, BattleParams * param1)
         v4 = sub_02027B50(param1->unk_108);
 
         sub_0200E218(v0->unk_04, 1, 1, 10, v4, 5);
-        sub_02003050(v0->unk_0C, 14, 7, 5, 0, 0x20, 0xb * 0x10);
-        sub_02003050(v0->unk_0C, 38, sub_0200DD08(v4), 5, 0, 0x20, 10 * 0x10);
+        PaletteSys_LoadPalette(v0->unk_0C, 14, 7, 5, 0, 0x20, 0xb * 0x10);
+        PaletteSys_LoadPalette(v0->unk_0C, 38, sub_0200DD08(v4), 5, 0, 0x20, 10 * 0x10);
         sub_020038B0(v0->unk_0C, 0, 0, 0x0, 0, 256);
     }
 
     GXLayers_TurnBothDispOn();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);
-    sub_0201A7E8(v0->unk_04, v0->unk_08, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
-    sub_0201ADA4(v0->unk_08, 0xff);
+    BGL_AddWindow(v0->unk_04, v0->unk_08, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    BGL_FillWindow(v0->unk_08, 0xff);
     sub_0200E060(v0->unk_08, 0, 1, 10);
 
     {

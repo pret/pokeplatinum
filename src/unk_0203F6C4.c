@@ -2,13 +2,13 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_02025CCC_decl.h"
@@ -239,8 +239,8 @@
 #include <nitro/code16.h>
 
 typedef struct {
-    UnkStruct_0201CD38 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_00;
+    SysTask * unk_04;
     UnkStruct_ov5_021F8E3C * unk_08;
     UnkStruct_0203CDB0 * unk_0C;
 } UnkStruct_02040F28;
@@ -751,8 +751,8 @@ static BOOL sub_0204698C(UnkStruct_0203E724 * param0);
 static BOOL sub_020469D0(UnkStruct_0203E724 * param0);
 static BOOL sub_02046A4C(UnkStruct_0203E724 * param0);
 static BOOL sub_02040F0C(UnkStruct_0203E724 * param0);
-static void sub_02040F28(UnkStruct_0203CDB0 * param0, UnkStruct_0201CD38 * param1, UnkStruct_ov5_021F8E3C * param2);
-static void sub_02040F5C(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02040F28(UnkStruct_0203CDB0 * param0, SysTask * param1, UnkStruct_ov5_021F8E3C * param2);
+static void sub_02040F5C(SysTask * param0, void * param1);
 static u32 sub_0204676C(SaveData * param0);
 
 static const u8 Unk_020EABA6[6][3] = {
@@ -2351,7 +2351,7 @@ static BOOL sub_02040180 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02040190 (UnkStruct_0203E724 * param0)
 {
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
@@ -2367,7 +2367,7 @@ static BOOL sub_020401A8 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_020401D0 (UnkStruct_0203E724 * param0)
 {
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
@@ -2388,19 +2388,19 @@ static BOOL sub_020401F4 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02040204 (UnkStruct_0203E724 * param0)
 {
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
-    if (coresys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.padInput & PAD_KEY_UP) {
         sub_0205EA84(param0->unk_34->unk_3C, 0);
-    } else if (coresys.padInput & PAD_KEY_DOWN) {
+    } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
         sub_0205EA84(param0->unk_34->unk_3C, 1);
-    } else if (coresys.padInput & PAD_KEY_LEFT) {
+    } else if (gCoreSys.padInput & PAD_KEY_LEFT) {
         sub_0205EA84(param0->unk_34->unk_3C, 2);
-    } else if (coresys.padInput & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
         sub_0205EA84(param0->unk_34->unk_3C, 3);
-    } else if (coresys.padInput & PAD_BUTTON_X) {
+    } else if (gCoreSys.padInput & PAD_BUTTON_X) {
         sub_0203F0C0(param0->unk_34);
     } else {
         return 0;
@@ -2417,11 +2417,11 @@ static BOOL sub_02040284 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02040294 (UnkStruct_0203E724 * param0)
 {
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         return 1;
     }
 
-    if (coresys.padInput & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+    if (gCoreSys.padInput & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
         return 1;
     }
 
@@ -2443,11 +2443,11 @@ static BOOL sub_020402B4 (UnkStruct_0203E724 * param0)
 static BOOL sub_020402FC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0205AA50 * v1 = sub_0203F098(v0, 1);
+    Window * v1 = sub_0203F098(v0, 1);
     u8 * v2 = sub_0203F098(v0, 6);
 
     sub_0200E084(v1, 0);
-    sub_0201A8FC(v1);
+    BGL_DeleteWindow(v1);
 
     *v2 = 0;
     return 0;
@@ -2456,10 +2456,10 @@ static BOOL sub_020402FC (UnkStruct_0203E724 * param0)
 static BOOL sub_0204032C (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
-    UnkStruct_0205AA50 * v1 = sub_0203F098(v0, 1);
+    Window * v1 = sub_0203F098(v0, 1);
     u8 * v2 = sub_0203F098(v0, 6);
 
-    sub_0201A8FC(v1);
+    BGL_DeleteWindow(v1);
 
     *v2 = 0;
     return 0;
@@ -2651,13 +2651,13 @@ static BOOL sub_02040670 (UnkStruct_0203E724 * param0)
         return 1;
     }
 
-    if (coresys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.padInput & PAD_KEY_UP) {
         v4 = 0;
-    } else if (coresys.padInput & PAD_KEY_DOWN) {
+    } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
         v4 = 1;
-    } else if (coresys.padInput & PAD_KEY_LEFT) {
+    } else if (gCoreSys.padInput & PAD_KEY_LEFT) {
         v4 = 2;
-    } else if (coresys.padInput & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
         v4 = 3;
     }
 
@@ -2668,7 +2668,7 @@ static BOOL sub_02040670 (UnkStruct_0203E724 * param0)
         return 1;
     }
 
-    if (coresys.padInput & PAD_BUTTON_X) {
+    if (gCoreSys.padInput & PAD_BUTTON_X) {
         sub_0201D730(*v1);
         *v2 = 1;
         return 1;
@@ -2693,18 +2693,18 @@ static BOOL sub_02040730 (UnkStruct_0203E724 * param0)
     u16 * v1 = sub_0203F118(v0, param0->unk_18[0]);
     int v2 = 0xffff;
 
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         *v1 = 0;
         return 1;
     }
 
-    if (coresys.padInput & PAD_KEY_UP) {
+    if (gCoreSys.padInput & PAD_KEY_UP) {
         v2 = 0;
-    } else if (coresys.padInput & PAD_KEY_DOWN) {
+    } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
         v2 = 1;
-    } else if (coresys.padInput & PAD_KEY_LEFT) {
+    } else if (gCoreSys.padInput & PAD_KEY_LEFT) {
         v2 = 2;
-    } else if (coresys.padInput & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
         v2 = 3;
     }
 
@@ -2714,7 +2714,7 @@ static BOOL sub_02040730 (UnkStruct_0203E724 * param0)
         return 1;
     }
 
-    if (coresys.padInput & PAD_BUTTON_X) {
+    if (gCoreSys.padInput & PAD_BUTTON_X) {
         *v1 = 1;
         return 1;
     }
@@ -2771,7 +2771,7 @@ static BOOL sub_02040824 (UnkStruct_0203E724 * param0)
 static BOOL sub_02040868 (UnkStruct_0203E724 * param0)
 {
     void ** v0;
-    UnkStruct_0205AA50 * v1 = sub_0203F098(param0->unk_34, 1);
+    Window * v1 = sub_0203F098(param0->unk_34, 1);
 
     v0 = sub_0203F098(param0->unk_34, 18);
     *v0 = sub_0200E7FC(v1, 1024 - (18 + 12));
@@ -3018,7 +3018,7 @@ static BOOL sub_02040D54 (UnkStruct_0203E724 * param0)
 static BOOL sub_02040D74 (UnkStruct_0203E724 * param0)
 {
     u8 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
     u8 * v2;
     UnkStruct_02061AB4 ** v3;
     UnkStruct_02061AB4 * v4;
@@ -3045,7 +3045,7 @@ static BOOL sub_02040D74 (UnkStruct_0203E724 * param0)
 static BOOL sub_02040DD8 (UnkStruct_0203E724 * param0)
 {
     u8 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
     u8 * v2;
     UnkStruct_02061AB4 ** v3;
     UnkStruct_02061AB4 * v4;
@@ -3134,7 +3134,7 @@ static BOOL sub_02040F0C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-static void sub_02040F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0201CD38 * param1, UnkStruct_ov5_021F8E3C * param2)
+static void sub_02040F28 (UnkStruct_0203CDB0 * param0, SysTask * param1, UnkStruct_ov5_021F8E3C * param2)
 {
     UnkStruct_02040F28 * v0 = NULL;
 
@@ -3148,12 +3148,12 @@ static void sub_02040F28 (UnkStruct_0203CDB0 * param0, UnkStruct_0201CD38 * para
     v0->unk_0C = param0;
     v0->unk_04 = param1;
     v0->unk_08 = param2;
-    v0->unk_00 = sub_0200D9E8(sub_02040F5C, v0, 0);
+    v0->unk_00 = SysTask_Start(sub_02040F5C, v0, 0);
 
     return;
 }
 
-static void sub_02040F5C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02040F5C (SysTask * param0, void * param1)
 {
     UnkStruct_02040F28 * v0;
     u8 * v1;
@@ -3163,7 +3163,7 @@ static void sub_02040F5C (UnkStruct_0201CD38 * param0, void * param1)
 
     if (sub_0206574C(v0->unk_04) == 1) {
         sub_02065758(v0->unk_04);
-        sub_0200DA58(v0->unk_00);
+        SysTask_Done(v0->unk_00);
 
         if (v0->unk_08) {
             Heap_FreeToHeap(v0->unk_08);
@@ -4950,7 +4950,7 @@ static BOOL sub_02042E64 (UnkStruct_0203E724 * param0)
     u16 v6 = inline_02049538(param0);
 
     sub_020792F8(v5, v6, *v2, 11);
-    sub_0201ADA4(sub_0203F098(v0, 1), 15);
+    BGL_FillWindow(sub_0203F098(v0, 1), 15);
 
     *v4 = sub_0205D994(sub_0203F098(v0, 1), *v2, sub_02025E44(param0->unk_34->unk_0C), 1);
     sub_0203E764(param0, sub_02040014);
@@ -5588,7 +5588,7 @@ static BOOL sub_02043A4C (UnkStruct_0203E724 * param0)
     u16 * v0 = sub_0203F118(param0->unk_34, param0->unk_18[0]);
     u32 v1 = sub_0205B91C(param0->unk_34->unk_7C);
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         v1 = sub_0205B9EC(param0->unk_34->unk_7C, 8);
 
         if (v1) {
@@ -6931,7 +6931,7 @@ static BOOL sub_0204521C (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045250 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0201CD38 ** v0 = sub_0203F098(param0->unk_34, 22);
+    SysTask ** v0 = sub_0203F098(param0->unk_34, 22);
 
     *v0 = NULL;
     *v0 = ov5_021E1000(param0->unk_34);
@@ -6941,7 +6941,7 @@ static BOOL sub_02045250 (UnkStruct_0203E724 * param0)
 
 static BOOL sub_02045274 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0201CD38 ** v0 = sub_0203F098(param0->unk_34, 22);
+    SysTask ** v0 = sub_0203F098(param0->unk_34, 22);
 
     ov5_021E100C(*v0);
     return 1;
@@ -7198,7 +7198,7 @@ static BOOL sub_020456E8 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = coresys.unk_66;
+    *v0 = gCoreSys.unk_66;
     return 1;
 }
 
@@ -7928,19 +7928,19 @@ static BOOL sub_02046294 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
     Strbuf ** v1 = sub_0203F098(v0, 16);
-    UnkStruct_0205AA50 * v2 = sub_0203F098(v0, 1);
+    Window * v2 = sub_0203F098(v0, 1);
 
     ov8_0224B67C(v0, v2, param0->unk_2C, *v1);
     return 1;
 }
 
-static void sub_020462C0 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020462C0 (SysTask * param0, void * param1)
 {
     UnkStruct_0203CDB0 * v0 = param1;
 
     if (v0->unk_04->unk_0C) {
         ov5_021D5F24(v0->unk_04->unk_0C, 26);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -7948,7 +7948,7 @@ static BOOL sub_020462DC (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_34;
 
-    sub_0200D9E8(sub_020462C0, v0, 128);
+    SysTask_Start(sub_020462C0, v0, 128);
     return 1;
 }
 
@@ -8225,11 +8225,11 @@ static BOOL sub_0204666C (UnkStruct_0203E724 * param0)
 
     *v0 = 0;
 
-    if (coresys.unk_44 & PAD_BUTTON_A) {
+    if (gCoreSys.unk_44 & PAD_BUTTON_A) {
         *v0 = 1;
     }
 
-    if (coresys.unk_44 & PAD_BUTTON_B) {
+    if (gCoreSys.unk_44 & PAD_BUTTON_B) {
         *v0 = 1;
     }
 

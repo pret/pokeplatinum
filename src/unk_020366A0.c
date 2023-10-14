@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "trainer_info.h"
@@ -2449,7 +2449,7 @@ void sub_02038A0C (void)
     }
 }
 
-void sub_02038A1C (int param0, UnkStruct_02018340 * param1)
+void sub_02038A1C (int param0, BGL * param1)
 {
     return;
 }
@@ -2463,7 +2463,7 @@ void sub_02038A20 (int param0)
                 if (!sub_020389D8()) {
                     sub_0200569C();
                     sub_02024850(Unk_021C07D4->unk_28);
-                    coresys.unk_64 = 1;
+                    gCoreSys.unk_64 = 1;
 
                     if (Unk_021C07D4->unk_59 == 3) {
                         sub_020389C4(3);

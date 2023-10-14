@@ -12,8 +12,8 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[11];
+    BGL * unk_00;
+    Window unk_04[11];
     UnkStruct_02072014 * unk_B4;
     u8 unk_B8[12288];
     void * unk_30B8;

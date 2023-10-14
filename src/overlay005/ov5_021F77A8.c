@@ -7,7 +7,7 @@
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "pokemon.h"
@@ -564,9 +564,9 @@ typedef struct {
 
 struct UnkStruct_ov5_021F7ED8_t {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
-    UnkStruct_0205AA50 unk_08;
-    UnkStruct_0205AA50 * unk_18;
+    SysTask * unk_04;
+    Window unk_08;
+    Window * unk_18;
     Strbuf* unk_1C[39];
     MessageLoader * unk_B8;
     UnkStruct_0200B358 * unk_BC;
@@ -602,14 +602,14 @@ static u16 ov5_021F7A4C(u16 param0);
 static u8 ov5_021F7A74(Pokemon * param0, u8 param1);
 static u16 ov5_021F7B60(Pokemon * param0, u16 param1);
 static void ov5_021F7E10(UnkStruct_ov5_021F7ED8 * param0, MessageLoader * param1);
-static void ov5_021F7E18(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, UnkStruct_0205AA50 * param8, MessageLoader * param9);
-UnkStruct_ov5_021F7ED8 * ov5_021F7ED8(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, UnkStruct_0205AA50 * param7, MessageLoader * param8);
+static void ov5_021F7E18(UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, Window * param8, MessageLoader * param9);
+UnkStruct_ov5_021F7ED8 * ov5_021F7ED8(UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, Window * param7, MessageLoader * param8);
 void ov5_021F7F2C(UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F7F34(UnkStruct_ov5_021F7ED8 * param0);
 static void ov5_021F7FF8(UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 param3);
 static void ov5_021F8090(UnkStruct_ov5_021F7ED8 * param0);
 static void ov5_021F819C(UnkStruct_0200112C * param0, u32 param1, u8 param2);
-static void ov5_021F81A8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov5_021F81A8(SysTask * param0, void * param1);
 static void ov5_021F8250(UnkStruct_ov5_021F7ED8 * param0);
 
 static const UnkStruct_ov5_02200CE4 Unk_ov5_02200CE4[] = {
@@ -1002,7 +1002,7 @@ static void ov5_021F7E10 (UnkStruct_ov5_021F7ED8 * param0, MessageLoader * param
     return;
 }
 
-static void ov5_021F7E18 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, UnkStruct_0205AA50 * param8, MessageLoader * param9)
+static void ov5_021F7E18 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F7ED8 * param1, u8 param2, u8 param3, u8 param4, u8 param5, u16 * param6, UnkStruct_0200B358 * param7, Window * param8, MessageLoader * param9)
 {
     int v0;
 
@@ -1035,7 +1035,7 @@ static void ov5_021F7E18 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021F7ED8 * 
     return;
 }
 
-UnkStruct_ov5_021F7ED8 * ov5_021F7ED8 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, UnkStruct_0205AA50 * param7, MessageLoader * param8)
+UnkStruct_ov5_021F7ED8 * ov5_021F7ED8 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u8 param3, u8 param4, u16 * param5, UnkStruct_0200B358 * param6, Window * param7, MessageLoader * param8)
 {
     UnkStruct_ov5_021F7ED8 * v0;
     int v1;
@@ -1061,17 +1061,17 @@ void ov5_021F7F2C (UnkStruct_ov5_021F7ED8 * param0, u32 param1, u32 param2, u32 
 static void ov5_021F7F34 (UnkStruct_ov5_021F7ED8 * param0)
 {
     if (param0->unk_C7 > 8) {
-        sub_0201A7E8(param0->unk_00->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, 8 * 2, 13, 1);
+        BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, 8 * 2, 13, 1);
     } else {
-        sub_0201A7E8(param0->unk_00->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
+        BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_08, 3, param0->unk_C4, param0->unk_C5, 11, param0->unk_C7 * 2, 13, 1);
     }
 
     sub_0200DAA4(param0->unk_00->unk_08, 3, 1024 - (18 + 12) - 9, 11, 0, 4);
-    sub_0200DC48(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
     ov5_021F8090(param0);
 
     param0->unk_F0 = sub_0200112C((const UnkStruct_ov84_02240FA8 *)&param0->unk_D0, 0, param0->unk_C2, 4);
-    param0->unk_04 = sub_0200D9E8(ov5_021F81A8, param0, 0);
+    param0->unk_04 = SysTask_Start(ov5_021F81A8, param0, 0);
 
     return;
 }
@@ -1137,7 +1137,7 @@ static void ov5_021F819C (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     return;
 }
 
-static void ov5_021F81A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021F81A8 (SysTask * param0, void * param1)
 {
     u16 v0;
     u32 v1;
@@ -1160,7 +1160,7 @@ static void ov5_021F81A8 (UnkStruct_0201CD38 * param0, void * param1)
     sub_020014D0(v2->unk_F0, &v2->unk_27E);
 
     if (v0 != v2->unk_27E) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 
     switch (v1) {
@@ -1168,14 +1168,14 @@ static void ov5_021F81A8 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 0xfffffffe:
         if (v2->unk_C3_0 == 1) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             *v2->unk_CC = 0xfffe;
 
             ov5_021F8250(param1);
         }
         break;
     default:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         *v2->unk_CC = v1;
         ov5_021F8250(param1);
         break;
@@ -1188,10 +1188,10 @@ static void ov5_021F8250 (UnkStruct_ov5_021F7ED8 * param0)
 {
     int v0;
 
-    sub_02005748(1500);
+    Sound_PlayEffect(1500);
     sub_02001384(param0->unk_F0, NULL, NULL);
-    sub_0200DC9C(param0->unk_D0.unk_0C, 0);
-    sub_0201A8FC(&param0->unk_08);
+    Window_Clear(param0->unk_D0.unk_0C, 0);
+    BGL_DeleteWindow(&param0->unk_08);
 
     for (v0 = 0; v0 < ((NELEMS(Unk_ov5_02200CE4)) + 1); v0++) {
         Strbuf_Free(param0->unk_1C[v0]);
@@ -1201,7 +1201,7 @@ static void ov5_021F8250 (UnkStruct_ov5_021F7ED8 * param0)
         MessageLoader_Free(param0->unk_B8);
     }
 
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     Heap_FreeToHeap(param0);
 
     return;

@@ -625,7 +625,7 @@ static void ov21_021DD2B8 (UnkStruct_ov21_021DD420 * param0)
 
 static void ov21_021DD2E0 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021DCAE0 * param1, const UnkStruct_ov21_021DCACC * param2, int param3)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_02009DC8 * v2;
     UnkStruct_ov21_021D13FC * v3 = param1->unk_00;
@@ -801,7 +801,7 @@ static BOOL ov21_021DD5E4 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
 
 static void ov21_021DD668 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021DCAE0 * param1, int param2)
 {
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
 
     param0->unk_7F4 = ov21_021D2808(param1->unk_00, 30, 1, &param0->unk_7F8, param2);
     param0->unk_7FC = ov21_021D2808(param1->unk_00, 31, 1, &param0->unk_800, param2);
@@ -811,7 +811,7 @@ static void ov21_021DD668 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021D
 
 static void ov21_021DD6C0 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021DCAE0 * param1)
 {
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
     sub_02019EBC(param1->unk_00->unk_00, 1);
     Heap_FreeToHeap(param0->unk_7F4);
 
@@ -1096,7 +1096,7 @@ static u8 * ov21_021DD908 (u32 param0, const UnkStruct_ov21_021DCACC * param1, u
 
 static void ov21_021DD964 (UnkStruct_ov21_021DD420 * param0, UnkStruct_ov21_021DCAE0 * param1)
 {
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
 
     ov21_021D517C(&param1->unk_00->unk_04, param0->unk_800->pRawData, param0->unk_800->W * 8, param0->unk_800->H * 8, 5, param0->unk_470, 30, 30, 89, 30);
     ov21_021D517C(&param1->unk_00->unk_04, param0->unk_7F8->pRawData, param0->unk_7F8->W * 8, param0->unk_7F8->H * 8, 5, param0->unk_EC, 30, 30, 89, 30);

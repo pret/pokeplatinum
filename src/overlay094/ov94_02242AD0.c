@@ -54,8 +54,8 @@
 #include "overlay094/ov94_02243EF8.h"
 #include "overlay094/ov94_02244950.h"
 
-static void ov94_02242B54(UnkStruct_02018340 * param0);
-static void ov94_02242C80(UnkStruct_02018340 * param0);
+static void ov94_02242B54(BGL * param0);
+static void ov94_02242C80(BGL * param0);
 static void ov94_02242CAC(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02242D38(UnkStruct_ov94_0223FD4C * param0);
 static void ov94_02242D74(UnkStruct_ov94_0223FD4C * param0);
@@ -191,7 +191,7 @@ int ov94_02242B34 (UnkStruct_ov94_0223FD4C * param0, int param1)
     return 1;
 }
 
-static void ov94_02242B54 (UnkStruct_02018340 * param0)
+static void ov94_02242B54 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -316,7 +316,7 @@ static void ov94_02242B54 (UnkStruct_02018340 * param0)
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_OBJ, 1);
 }
 
-static void ov94_02242C80 (UnkStruct_02018340 * param0)
+static void ov94_02242C80 (BGL * param0)
 {
     sub_02019044(param0, 5);
     sub_02019044(param0, 4);
@@ -327,7 +327,7 @@ static void ov94_02242C80 (UnkStruct_02018340 * param0)
 
 static void ov94_02242CAC (UnkStruct_ov94_0223FD4C * param0)
 {
-    UnkStruct_02018340 * v0 = param0->unk_04;
+    BGL * v0 = param0->unk_04;
 
     sub_02006E84(104, 0, 0, 0, 16 * 3 * 2, 62);
     sub_02002E98(0, 13 * 0x20, 62);
@@ -347,13 +347,13 @@ static void ov94_02242CAC (UnkStruct_ov94_0223FD4C * param0)
 
 static void ov94_02242D38 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_0201A7E8(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
-    sub_0201ADA4(&param0->unk_F5C, 0x0);
+    BGL_AddWindow(param0->unk_04, &param0->unk_F5C, 0, 2, 19, 27, 4, 13, ((1 + (18 + 12)) + 9));
+    BGL_FillWindow(&param0->unk_F5C, 0x0);
 }
 
 static void ov94_02242D74 (UnkStruct_ov94_0223FD4C * param0)
 {
-    sub_0201A8FC(&param0->unk_F5C);
+    BGL_DeleteWindow(&param0->unk_F5C);
 }
 
 static void ov94_02242D84 (UnkStruct_ov94_0223FD4C * param0)
@@ -1240,7 +1240,7 @@ static int ov94_02243A90 (UnkStruct_ov94_0223FD4C * param0)
 
 static int ov94_02243AE8 (UnkStruct_ov94_0223FD4C * param0)
 {
-    if (sub_0201D724(param0->unk_BE0) == 0) {
+    if (Message_Printing(param0->unk_BE0) == 0) {
         param0->unk_2C = param0->unk_30;
     }
 

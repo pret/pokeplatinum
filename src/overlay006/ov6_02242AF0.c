@@ -219,7 +219,7 @@ static BOOL ov6_02242C5C (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (v1->unk_08 == 4) {
-            sub_02005748(1755);
+            Sound_PlayEffect(1755);
         }
 
         (v1->unk_05)++;
@@ -264,7 +264,7 @@ static BOOL ov6_02242D94 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02242B58 * 
         if ((param1->unk_06 < 7 - 1) && ((param3->z - ((FX32_ONE * 16) / 2)) / (FX32_ONE * 16) <= param1->unk_10)) {
             if (++(param1->unk_07) >= Unk_ov6_02249034[param1->unk_06]) {
                 if (param1->unk_06 == 0) {
-                    sub_02005748(1754);
+                    Sound_PlayEffect(1754);
                 }
 
                 param1->unk_06++;
@@ -277,7 +277,7 @@ static BOOL ov6_02242D94 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02242B58 * 
         if ((param1->unk_06 < 7 - 1) && ((param3->z - ((FX32_ONE * 16) / 2)) / (FX32_ONE * 16) >= param1->unk_10)) {
             if (++(param1->unk_07) >= Unk_ov6_02249034[param1->unk_06]) {
                 if (param1->unk_06 == 0) {
-                    sub_02005748(1754);
+                    Sound_PlayEffect(1754);
                 }
 
                 param1->unk_06++;
@@ -312,14 +312,14 @@ static BOOL ov6_02242E60 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02242B58 * 
 
                 if ((param1->unk_06 < 7 - 1) && (sub_0205EAC8(param0->unk_3C) > param1->unk_10)) {
                     if (param1->unk_06 == 0) {
-                        sub_02005748(1753);
+                        Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
                 } else if (sub_0205EAC8(param0->unk_3C) <= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
-                            sub_02005748(1754);
+                            Sound_PlayEffect(1754);
                         }
 
                         param1->unk_06--;
@@ -332,14 +332,14 @@ static BOOL ov6_02242E60 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02242B58 * 
 
                 if ((param1->unk_06 < 7 - 1) && (sub_0205EAC8(param0->unk_3C) < param1->unk_10)) {
                     if (param1->unk_06 == 0) {
-                        sub_02005748(1753);
+                        Sound_PlayEffect(1753);
                     }
 
                     param1->unk_06++;
                 } else if (sub_0205EAC8(param0->unk_3C) >= param1->unk_10) {
                     if (param1->unk_06 != 0) {
                         if (param1->unk_06 == 7 - 1) {
-                            sub_02005748(1754);
+                            Sound_PlayEffect(1754);
                         }
 
                         param1->unk_06--;

@@ -8,7 +8,7 @@
 #include "overlay063/struct_ov63_0222BB38_decl.h"
 #include "overlay064/struct_ov64_022302EC.h"
 
-UnkStruct_ov63_0222AE60 * ov63_0222AE60(UnkStruct_020218BC * param0, UnkStruct_02002F38 * param1, u32 param2, u32 param3);
+UnkStruct_ov63_0222AE60 * ov63_0222AE60(UnkStruct_020218BC * param0, PaletteSys * param1, u32 param2, u32 param3);
 void ov63_0222AF14(UnkStruct_ov63_0222AE60 * param0);
 void ov63_0222AF94(UnkStruct_ov63_0222AE60 * param0, u32 param1, u32 param2, int param3, u32 param4);
 void ov63_0222AFD0(UnkStruct_ov63_0222AE60 * param0, u32 param1);

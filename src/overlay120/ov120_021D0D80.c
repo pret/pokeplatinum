@@ -24,10 +24,10 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     MessageLoader * unk_08;
     int unk_0C;
-    UnkStruct_0205AA50 unk_10;
+    Window unk_10;
     int unk_20;
     int unk_24;
 } UnkStruct_ov120_021D0F24;

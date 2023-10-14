@@ -185,7 +185,7 @@ void sub_0209621C (int param0, int param1, void * param2, void * param3)
     ov59_021D2204(v0, 25, param0);
 
     sub_020388F4(1, 1);
-    sub_02005748(1624);
+    Sound_PlayEffect(1624);
 }
 
 void sub_02096264 (int param0, int param1, void * param2, void * param3)

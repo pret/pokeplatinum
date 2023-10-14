@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "overlay077/struct_ov77_021D5564_decl.h"
 #include "overlay077/struct_ov77_021D670C_decl.h"
@@ -76,8 +76,8 @@ typedef struct {
     u8 unk_06;
     u8 unk_07;
     u8 unk_08;
-    UnkStruct_02018340 * unk_0C;
-    UnkStruct_0201CD38 * unk_10;
+    BGL * unk_0C;
+    SysTask * unk_10;
     UnkStruct_ov77_021D670C * unk_14;
     u8 * unk_18;
 } UnkStruct_ov77_021D2F38;
@@ -94,7 +94,7 @@ typedef struct {
     u8 unk_08;
     u8 unk_09;
     int unk_0C;
-    UnkStruct_02018340 * unk_10;
+    BGL * unk_10;
     UnkStruct_ov77_021D5564 * unk_14;
     UnkStruct_ov77_021D6734 * unk_18;
     UnkStruct_ov77_021D6CFC * unk_1C;
@@ -127,7 +127,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     fx32 unk_04;
-    UnkStruct_02018340 * unk_08;
+    BGL * unk_08;
     UnkStruct_ov77_021D5308_sub1 unk_0C;
 } UnkStruct_ov77_021D5308;
 
@@ -135,7 +135,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     BOOL unk_08;
-    UnkStruct_02018340 * unk_0C;
+    BGL * unk_0C;
     UnkStruct_0207C690 * unk_10;
     u32 unk_14;
     UnkStruct_ov77_021D2F38 unk_18;
@@ -161,10 +161,10 @@ static void ov77_021D2F0C(UnkStruct_ov77_021D2E9C * param0);
 static void ov77_021D2F38(UnkStruct_ov77_021D2F38 * param0);
 static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 * param0, const int param1);
 static void ov77_021D3234(UnkStruct_ov77_021D2E9C * param0);
-static void ov77_021D32A4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D3300(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D3360(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D33A8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov77_021D32A4(SysTask * param0, void * param1);
+static void ov77_021D3300(SysTask * param0, void * param1);
+static void ov77_021D3360(SysTask * param0, void * param1);
+static void ov77_021D33A8(SysTask * param0, void * param1);
 static void ov77_021D34A8(UnkStruct_ov77_021D2E9C * param0);
 static void ov77_021D37C0(UnkStruct_ov77_021D37C0 * param0);
 static void ov77_021D3A10(UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D37C0 * param1);
@@ -868,7 +868,7 @@ static void ov77_021D2B38 (void * param0)
     UnkStruct_ov77_021D37C0 * v2 = &v1->unk_34;
 
     if (v2->unk_25B == 1) {
-        coresys.unk_65 = 1;
+        gCoreSys.unk_65 = 1;
 
         GXLayers_SwapDisplay();
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -957,7 +957,7 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_08 = 0;
     v0->unk_2A8 = 0;
 
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
     v0->unk_14 = LCRNG_GetSeed();
 
@@ -970,9 +970,9 @@ static int ov77_021D2D94 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
 
-    if ((v0->unk_2A8) && ((coresys.padInput & PAD_BUTTON_A) || (coresys.padInput & PAD_BUTTON_START))) {
+    if ((v0->unk_2A8) && ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
-        coresys.unk_6C = 0;
+        gCoreSys.unk_6C = 0;
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
     }
@@ -1120,7 +1120,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
         param0->unk_07 = 0;
         param0->unk_06 = 0;
         param0->unk_08 = 0;
-        param0->unk_10 = sub_0200D9E8(ov77_021D32A4, param0, 0);
+        param0->unk_10 = SysTask_Start(ov77_021D32A4, param0, 0);
         sub_02004550(1, 1172, 1);
         (*v0)++;
         break;
@@ -1129,7 +1129,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 16;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D3300, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D3300, param0, 0);
             (*v0)++;
         }
         break;
@@ -1147,7 +1147,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 0;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D3360, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D3360, param0, 0);
             (*v0)++;
         }
         break;
@@ -1156,7 +1156,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 0;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D33A8, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D33A8, param0, 0);
             (*v0)++;
         }
         break;
@@ -1195,12 +1195,12 @@ static void ov77_021D3234 (UnkStruct_ov77_021D2E9C * param0)
 
     if (param0->unk_18.unk_10 != NULL) {
         GF_ASSERT(param0->unk_08);
-        sub_0200DA58(param0->unk_18.unk_10);
+        SysTask_Done(param0->unk_18.unk_10);
         param0->unk_18.unk_10 = NULL;
     }
 }
 
-static void ov77_021D32A4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D32A4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1212,7 +1212,7 @@ static void ov77_021D32A4 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1221,7 +1221,7 @@ static void ov77_021D32A4 (UnkStruct_0201CD38 * param0, void * param1)
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D3300 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D3300 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1233,7 +1233,7 @@ static void ov77_021D3300 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if (v0->unk_06 == 0) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
         *(v0->unk_18) = 1;
@@ -1243,7 +1243,7 @@ static void ov77_021D3300 (UnkStruct_0201CD38 * param0, void * param1)
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D3360 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D3360 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1255,7 +1255,7 @@ static void ov77_021D3360 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1263,7 +1263,7 @@ static void ov77_021D3360 (UnkStruct_0201CD38 * param0, void * param1)
     G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D33A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D33A8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1275,7 +1275,7 @@ static void ov77_021D33A8 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1353,7 +1353,7 @@ static void ov77_021D34A8 (UnkStruct_ov77_021D2E9C * param0)
     ov77_021D6CFC(param0->unk_34.unk_1C);
     param0->unk_34.unk_10 = param0->unk_0C;
 
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1549,7 +1549,7 @@ static void ov77_021D3A10 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     sub_02018898(param1->unk_10, 3, 0, GX_BG_COLORMODE_16);
 
     G2_SetBG0Priority(0);
-    sub_02019060(1, 3);
+    BGL_SetPriority(1, 3);
 
     v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
@@ -1639,7 +1639,7 @@ static void ov77_021D3D4C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
 
 static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
 {
-    if (coresys.unk_65 == 0) {
+    if (gCoreSys.unk_65 == 0) {
         sub_02019184(param0->unk_10, 1, 3, 0);
         sub_02019184(param0->unk_10, 2, 3, 0);
         sub_02019184(param0->unk_10, 3, 3, 0);
@@ -1647,12 +1647,12 @@ static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
         sub_02019184(param0->unk_10, 6, 3, 256);
         sub_02019184(param0->unk_10, 7, 3, 256);
 
-        sub_02019060(1, 1);
-        sub_02019060(2, 2);
-        sub_02019060(3, 0);
-        sub_02019060(5, 1);
-        sub_02019060(6, 2);
-        sub_02019060(7, 0);
+        BGL_SetPriority(1, 1);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(5, 1);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 0);
     } else {
         sub_02019184(param0->unk_10, 1, 3, 256);
         sub_02019184(param0->unk_10, 2, 3, 256);
@@ -1661,12 +1661,12 @@ static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
         sub_02019184(param0->unk_10, 6, 3, 0);
         sub_02019184(param0->unk_10, 7, 3, 0);
 
-        sub_02019060(1, 1);
-        sub_02019060(2, 2);
-        sub_02019060(3, 0);
-        sub_02019060(5, 1);
-        sub_02019060(6, 2);
-        sub_02019060(7, 0);
+        BGL_SetPriority(1, 1);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(5, 1);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 0);
     }
 
     ov77_021D636C(param0->unk_14, 0);
@@ -2065,7 +2065,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
             ov77_021D603C(param1->unk_14, 16, 1);
             ov77_021D636C(param1->unk_14, 0);
             ov77_021D3B5C(param0, param1);
-            coresys.unk_65 = 0;
+            gCoreSys.unk_65 = 0;
             GXLayers_SwapDisplay();
             ov77_021D3DC4(param1);
             param1->unk_246 = 1;
@@ -2111,7 +2111,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
 
         if (ScreenWipe_Done()) {
             if (1) {
-                coresys.unk_65 = 1;
+                gCoreSys.unk_65 = 1;
                 GXLayers_SwapDisplay();
                 ov77_021D3DC4(param1);
 
@@ -2139,7 +2139,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         if (ScreenWipe_Done()) {
             MI_CpuCopy16(param1->unk_240, (void *)HW_BG_PLTT, 0x200);
 
-            coresys.unk_65 = 0;
+            gCoreSys.unk_65 = 0;
             GXLayers_SwapDisplay();
 
             ov77_021D3D4C(param0, param1);
@@ -2185,7 +2185,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
         if (ScreenWipe_Done()) {
-            coresys.unk_65 = 1;
+            gCoreSys.unk_65 = 1;
             GXLayers_SwapDisplay();
             (*v0)++;
         }
@@ -2410,7 +2410,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
 
         {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 7, 16 - 7);
-            sub_02019060(1, 0);
+            BGL_SetPriority(1, 0);
             sub_02019120(1, 1);
         }
     } else if (param1 < ((47 * 30 - 15) + 6)) {

@@ -43,7 +43,7 @@ typedef struct {
     UnkStruct_ov62_02233F74 unk_9C;
     UnkStruct_ov62_022312B0 unk_158[1];
     UnkStruct_02023FCC * unk_174[1];
-    UnkStruct_0205AA50 unk_178[2];
+    Window unk_178[2];
     int unk_198;
 } UnkStruct_ov62_02235E64;
 
@@ -120,14 +120,14 @@ static BOOL ov62_02235EBC (UnkStruct_0208C06C * param0)
         ov62_02234540(param0, 1);
         ov62_02231454(param0);
         ov62_02234540(param0, 0);
-        sub_02019060(0, 0);
-        sub_02019060(1, 3);
-        sub_02019060(2, 0);
-        sub_02019060(3, 2);
-        sub_02019060(4, 0);
-        sub_02019060(5, 3);
-        sub_02019060(6, 1);
-        sub_02019060(7, 2);
+        BGL_SetPriority(0, 0);
+        BGL_SetPriority(1, 3);
+        BGL_SetPriority(2, 0);
+        BGL_SetPriority(3, 2);
+        BGL_SetPriority(4, 0);
+        BGL_SetPriority(5, 3);
+        BGL_SetPriority(6, 1);
+        BGL_SetPriority(7, 2);
         sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 3, 0, 0, 0, 102);
         sub_020070E8(param0->unk_14.unk_00, 62, param0->unk_14.unk_10, 7, 0, 0, 0, 102);
         param0->unk_08++;
@@ -286,15 +286,15 @@ static const UnkUnion_02022594 Unk_ov62_02248C14[] = {
 static void ov62_022362B8 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02235E64 * v0 = param0->unk_860;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     Strbuf* v2;
     int v3 = 1;
     int v4;
 
     v1 = &v0->unk_178[0];
     sub_0201A7A0(v1);
-    sub_0201A7E8(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
-    sub_0201ADA4(v1, 0x0);
+    BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 4, 6, 10, 2, 14, v3);
+    BGL_FillWindow(v1, 0x0);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 130);
     v4 = ov62_0223429C(v1, v2);
@@ -307,8 +307,8 @@ static void ov62_022362B8 (UnkStruct_0208C06C * param0)
     v1 = &v0->unk_178[1];
 
     sub_0201A7A0(v1);
-    sub_0201A7E8(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
-    sub_0201ADA4(v1, 0x0);
+    BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 18, 6, 10, 2, 14, v3);
+    BGL_FillWindow(v1, 0x0);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 131);
     v4 = ov62_0223429C(v1, v2);
@@ -323,9 +323,9 @@ static void ov62_02236398 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02235E64 * v0 = param0->unk_860;
 
     sub_0201ACF4(&v0->unk_178[0]);
-    sub_0201A8FC(&v0->unk_178[0]);
+    BGL_DeleteWindow(&v0->unk_178[0]);
     sub_0201ACF4(&v0->unk_178[1]);
-    sub_0201A8FC(&v0->unk_178[1]);
+    BGL_DeleteWindow(&v0->unk_178[1]);
 }
 
 static BOOL ov62_022363CC (UnkStruct_0208C06C * param0)
@@ -693,12 +693,12 @@ static void ov62_02236B2C (UnkStruct_0208C06C * param0)
 static void ov62_02236B64 (UnkStruct_0208C06C * param0)
 {
     UnkStruct_ov62_02235E64 * v0 = param0->unk_860;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     int v2 = 1;
 
     v1 = &v0->unk_178[0];
     sub_0201A7A0(v1);
-    sub_0201A7E8(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
+    BGL_AddWindow(param0->unk_14.unk_10, v1, 6, 8, 3, 16, 2, 14, v2);
     ov62_02236BC8(param0, 121);
 }
 
@@ -707,19 +707,19 @@ static void ov62_02236BA8 (UnkStruct_0208C06C * param0)
     UnkStruct_ov62_02235E64 * v0 = param0->unk_860;
 
     sub_0201ACF4(&v0->unk_178[0]);
-    sub_0201A8FC(&v0->unk_178[0]);
+    BGL_DeleteWindow(&v0->unk_178[0]);
 }
 
 static void ov62_02236BC8 (UnkStruct_0208C06C * param0, int param1)
 {
     UnkStruct_ov62_02235E64 * v0 = param0->unk_860;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     Strbuf* v2;
     int v3;
 
     v1 = &v0->unk_178[0];
 
-    sub_0201ADA4(v1, 0x0);
+    BGL_FillWindow(v1, 0x0);
 
     v2 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, param1);
     v3 = ov62_0223429C(v1, v2);

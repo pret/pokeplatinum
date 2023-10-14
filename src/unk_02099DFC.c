@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -43,9 +43,9 @@ typedef struct {
     int unk_08;
     int unk_0C;
     Strbuf* unk_10;
-    UnkStruct_02018340 * unk_14;
+    BGL * unk_14;
     MessageLoader * unk_18;
-    UnkStruct_0205AA50 unk_1C;
+    Window unk_1C;
     UnkStruct_02001AF4 * unk_2C;
     SaveData * unk_30;
     void * unk_34;
@@ -256,12 +256,12 @@ static void sub_0209A098 (UnkStruct_02099DFC * param0)
     sub_0201D710();
     param0->unk_08 = 0;
     sub_0201A8D4(param0->unk_14, &param0->unk_1C, &Unk_020F89E4);
-    sub_0201AE78(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
+    BGL_WindowColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
 }
 
 static void sub_0209A0E0 (UnkStruct_02099DFC * param0)
 {
-    sub_0201A8FC(&param0->unk_1C);
+    BGL_DeleteWindow(&param0->unk_1C);
     MessageLoader_Free(param0->unk_18);
 }
 
@@ -335,7 +335,7 @@ static BOOL sub_0209A200 (UnkStruct_02099DFC * param0, u32 param1, int param2, i
 
     switch (param0->unk_08) {
     case 0:
-        sub_0201AE78(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
+        BGL_WindowColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
         sub_0200E060(&param0->unk_1C, 0, 512 - (18 + 12), 2);
 
         param0->unk_10 = Strbuf_Init(0x400, param0->unk_00);
@@ -350,13 +350,13 @@ static BOOL sub_0209A200 (UnkStruct_02099DFC * param0, u32 param1, int param2, i
         param0->unk_08++;
         break;
     case 1:
-        if (!(sub_0201D724(param0->unk_0C))) {
+        if (!(Message_Printing(param0->unk_0C))) {
             Strbuf_Free(param0->unk_10);
             param0->unk_08++;
         }
         break;
     case 2:
-        if ((param2 != 0) || (coresys.padInput & 1)) {
+        if ((param2 != 0) || (gCoreSys.padInput & 1)) {
             param0->unk_08 = 0;
             v0 = 1;
         }

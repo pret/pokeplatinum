@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -72,14 +72,14 @@ void ov22_02255094 (void)
     ov22_02255654();
     ov22_022556DC();
 
-    coresys.unk_65 = 1;
+    gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
 }
 
 void ov22_022550B4 (void)
 {
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     ov22_02255738();
@@ -318,7 +318,7 @@ void ov22_0225547C (UnkStruct_ov22_0225A0E4 * param0, const UnkStruct_ov22_02255
     ov22_02255BF4(param0, param2);
 }
 
-void ov22_022554A8 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_02018340 * param1, int param2)
+void ov22_022554A8 (UnkStruct_ov22_0225A0E4 * param0, BGL * param1, int param2)
 {
     param0->unk_40 = param1;
 

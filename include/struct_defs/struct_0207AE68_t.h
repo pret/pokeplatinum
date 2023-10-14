@@ -24,12 +24,12 @@
 #include "struct_defs/struct_02098D38.h"
 
 struct UnkStruct_0207AE68_t {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 * unk_04;
+    BGL * unk_00;
+    Window * unk_04;
     MessageLoader * unk_08;
     UnkStruct_0200B358 * unk_0C;
     Strbuf* unk_10;
-    UnkStruct_02002F38 * unk_14;
+    PaletteSys * unk_14;
     UnkStruct_02007768 * unk_18;
     UnkStruct_02007C7C * unk_1C[2];
     Party * unk_24;

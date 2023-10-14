@@ -99,7 +99,7 @@ static void ov21_021E18A0(UnkStruct_ov21_021E0D7C * param0, int param1, int para
 static void ov21_021E18DC(UnkStruct_ov21_021E0D7C * param0, int param1, int param2, int param3);
 static void ov21_021E136C(UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E0D7C * param1, const UnkStruct_ov21_021E0D68 * param2, int param3);
 static void ov21_021E14BC(UnkStruct_ov21_021E14D4 * param0);
-static UnkStruct_0205AA50 * ov21_021E1460(UnkStruct_ov21_021E0D7C * param0, int param1, int param2);
+static Window * ov21_021E1460(UnkStruct_ov21_021E0D7C * param0, int param1, int param2);
 static void ov21_021E127C(UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E0D7C * param1, int param2);
 static void ov21_021E1328(UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E0D7C * param1);
 static void ov21_021E11DC(UnkStruct_ov21_021E0D7C * param0, const UnkStruct_ov21_021E0D68 * param1, int param2);
@@ -387,7 +387,7 @@ static void ov21_021E0F4C (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
 static void ov21_021E0F94 (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E0D7C * param1)
 {
     ov21_021E14BC(param0);
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
 
     ov21_021E1328(param0, param1);
     sub_02019EBC(param1->unk_00->unk_00, 1);
@@ -527,7 +527,7 @@ static void ov21_021E136C (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
     UnkStruct_ov83_0223D9A8 v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3 = ov21_021D37BC(param2->unk_04);
-    UnkStruct_0205AA50 * v4;
+    Window * v4;
     UnkStruct_ov21_021D4CB8 v5;
     UnkStruct_02009DC8 * v6;
 
@@ -568,9 +568,9 @@ static void ov21_021E136C (UnkStruct_ov21_021E14D4 * param0, UnkStruct_ov21_021E
     ov21_021D4DA0(v4);
 }
 
-static UnkStruct_0205AA50 * ov21_021E1460 (UnkStruct_ov21_021E0D7C * param0, int param1, int param2)
+static Window * ov21_021E1460 (UnkStruct_ov21_021E0D7C * param0, int param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = ov21_021D4D6C(param0->unk_00->unk_14C, 18, 2);

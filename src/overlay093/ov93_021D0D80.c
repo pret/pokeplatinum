@@ -150,7 +150,7 @@ int ov93_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02005748(1756);
+        Sound_PlayEffect(1756);
         (*param1)++;
         break;
     case 1:

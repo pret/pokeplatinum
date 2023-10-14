@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -483,14 +483,14 @@ static void ov21_021DE358 (UnkStruct_ov21_021DDE4C * param0, UnkStruct_ov21_021D
 {
     s32 v0;
 
-    if (coresys.unk_62) {
+    if (gCoreSys.unk_62) {
         return;
     }
 
     if ((ov21_021E33BC(param1->unk_08) == 1) && (ov21_021D3998(param1->unk_04) == 2)) {
         v0 = ov21_021DCA28(param1->unk_00);
 
-        if (coresys.padInput & PAD_KEY_LEFT) {
+        if (gCoreSys.padInput & PAD_KEY_LEFT) {
             v0--;
 
             if (v0 < 0) {
@@ -500,7 +500,7 @@ static void ov21_021DE358 (UnkStruct_ov21_021DDE4C * param0, UnkStruct_ov21_021D
             ov21_021DCA30(param1->unk_00, v0);
             ov21_021DE5A4(param0, param1);
             param0->unk_24 = 1;
-        } else if (coresys.padInput & PAD_KEY_RIGHT) {
+        } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
             v0++;
 
             if (v0 >= 3) {
@@ -522,9 +522,9 @@ static void ov21_021DE3D0 (UnkStruct_ov21_021DDE4C * param0, UnkStruct_ov21_021D
     param0->unk_24 = 0;
 
     if (param0->unk_20) {
-        if (coresys.unk_62) {
-            param0->unk_00 = coresys.unk_5C - param0->unk_08;
-            param0->unk_04 = coresys.unk_5E - param0->unk_0C;
+        if (gCoreSys.unk_62) {
+            param0->unk_00 = gCoreSys.unk_5C - param0->unk_08;
+            param0->unk_04 = gCoreSys.unk_5E - param0->unk_0C;
 
             if (param0->unk_00 < 24) {
                 param0->unk_00 = 24;
@@ -568,11 +568,11 @@ static void ov21_021DE44C (u32 param0, u32 param1, void * param2)
     switch (param1) {
     case 0:
         ov21_021E33B4(v1->unk_08, 1);
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         v2->unk_20 = 1;
-        v2->unk_08 = coresys.unk_5C - v2->unk_00;
-        v2->unk_0C = coresys.unk_5E - v2->unk_04;
+        v2->unk_08 = gCoreSys.unk_5C - v2->unk_00;
+        v2->unk_0C = gCoreSys.unk_5E - v2->unk_04;
         break;
     default:
         break;

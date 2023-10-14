@@ -216,7 +216,7 @@ static void ov6_0224825C (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     NARC_dtor(v2);
 
     ov6_022480BC(param1->unk_3C, &v0->unk_00.unk_00);
-    sub_02005748(1611);
+    Sound_PlayEffect(1611);
 
     v0->unk_EC = 0;
 }
@@ -297,7 +297,7 @@ static void ov6_02248340 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     NARC_dtor(v2);
 
     ov6_022480BC(param1->unk_3C, &v0->unk_00.unk_00);
-    sub_02005748(1610);
+    Sound_PlayEffect(1610);
 
     v0->unk_EC = 0;
 }
@@ -316,7 +316,7 @@ static void ov6_022483A0 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     ov6_02248140(&v0->unk_00, v2, 8, 4, 4, &v0->unk_DC);
     ov6_02248050(param1->unk_38, 0, &v0->unk_00.unk_00);
 
-    sub_02005748(1610);
+    Sound_PlayEffect(1610);
     NARC_dtor(v2);
 
     v0->unk_EC = 0;
@@ -419,7 +419,7 @@ static void ov6_02248498 (UnkStruct_ov5_021D1BEC * param0, UnkStruct_0203CDB0 * 
     ov6_02248124(param1->unk_3C, &v0->unk_00[0].unk_00);
 
     NARC_dtor(v2);
-    sub_02005748(1613);
+    Sound_PlayEffect(1613);
 
     v0->unk_1C8 = 0;
 }
@@ -516,7 +516,7 @@ static void ov6_02248610 (UnkStruct_ov6_022486B4 * param0, UnkStruct_0205E884 * 
     }
 
     sub_02017348(&param0->unk_00, 1);
-    sub_02005748(1575);
+    Sound_PlayEffect(1575);
 }
 
 static void ov6_02248678 (UnkStruct_ov6_022486B4 * param0)

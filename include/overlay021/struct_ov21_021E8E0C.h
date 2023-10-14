@@ -7,8 +7,8 @@
 #include "pokemon.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_02002F38 * unk_04;
+    BGL * unk_00;
+    PaletteSys * unk_04;
     UnkStruct_02007768 * unk_08;
     int unk_0C;
     Pokemon * unk_10;

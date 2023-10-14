@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02099F80.h"
@@ -55,8 +55,8 @@ static void ov101_021D0F94(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D0F9C(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D107C(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D1098(void);
-static void ov101_021D10B8(UnkStruct_02018340 * param0);
-static void ov101_021D11A4(UnkStruct_02018340 * param0);
+static void ov101_021D10B8(BGL * param0);
+static void ov101_021D11A4(BGL * param0);
 static void ov101_021D11D0(void);
 static void ov101_021D121C(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D150C(void);
@@ -70,7 +70,7 @@ static void ov101_021D1884(UnkStruct_ov101_021D13C8 * param0);
 static int ov101_021D18B4(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D18C0(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D18E4(UnkStruct_ov101_021D13C8 * param0);
-static void ov101_021D18F4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov101_021D18F4(SysTask * param0, void * param1);
 static void ov101_021D197C(void * param0);
 static void ov101_021D19BC(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D19D4(UnkStruct_ov101_021D13C8 * param0);
@@ -263,7 +263,7 @@ static void ov101_021D1098 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov101_021D10B8 (UnkStruct_02018340 * param0)
+static void ov101_021D10B8 (BGL * param0)
 {
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
@@ -364,7 +364,7 @@ static void ov101_021D10B8 (UnkStruct_02018340 * param0)
     }
 }
 
-static void ov101_021D11A4 (UnkStruct_02018340 * param0)
+static void ov101_021D11A4 (BGL * param0)
 {
     sub_02019044(param0, 0);
     sub_02019044(param0, 1);
@@ -454,7 +454,7 @@ void ov101_021D1458 (UnkStruct_ov101_021D13C8 * param0)
 
     for (v0 = 0; v0 < 1; v0++) {
         sub_0201ACF4(&v1->unk_08[v0]);
-        sub_0201A8FC(&v1->unk_08[v0]);
+        BGL_DeleteWindow(&v1->unk_08[v0]);
     }
 
     MessageLoader_Free(v1->unk_00);
@@ -467,7 +467,7 @@ void ov101_021D148C (UnkStruct_ov101_021D13C8 * param0, u32 param1)
     UnkStruct_ov101_021D148C * v0 = &param0->unk_408;
 
     sub_0200E060(&v0->unk_08[0], 1, (1 + (18 + 12)), 14);
-    sub_0201ADA4(&v0->unk_08[0], 15);
+    BGL_FillWindow(&v0->unk_08[0], 15);
     MessageLoader_GetStrbuf(v0->unk_00, param1, v0->unk_18);
     sub_0201D738(&v0->unk_08[0], 1, v0->unk_18, 0, 0, 0xff, NULL);
     sub_0201A9A4(&v0->unk_08[0]);
@@ -478,7 +478,7 @@ void ov101_021D14E4 (UnkStruct_ov101_021D13C8 * param0)
     UnkStruct_ov101_021D148C * v0 = &param0->unk_408;
 
     sub_0200E084(&v0->unk_08[0], 1);
-    sub_0201ADA4(&v0->unk_08[0], 0);
+    BGL_FillWindow(&v0->unk_08[0], 0);
     sub_0201A9A4(&v0->unk_08[0]);
 }
 
@@ -607,15 +607,15 @@ static void ov101_021D18C0 (UnkStruct_ov101_021D13C8 * param0)
 
     v0->unk_08 = UnkEnum_ov101_021D1894_00;
     v0->unk_0C = UnkEnum_ov101_021D1894_03;
-    v0->unk_10 = sub_0200D9E8(ov101_021D18F4, param0, 144);
+    v0->unk_10 = SysTask_Start(ov101_021D18F4, param0, 144);
 }
 
 static void ov101_021D18E4 (UnkStruct_ov101_021D13C8 * param0)
 {
-    sub_0200DA58(param0->unk_424.unk_10);
+    SysTask_Done(param0->unk_424.unk_10);
 }
 
-static void ov101_021D18F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D18F4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D13C8 * v0 = param1;
     UnkStruct_ov101_021D1894 * v1 = &v0->unk_424;

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -459,8 +459,8 @@ static void ov21_021D7B8C (u32 param0, u32 param1, void * param2)
 
     switch (param1) {
     case 0:
-        v2->unk_14 = coresys.unk_5C;
-        v2->unk_18 = coresys.unk_5E;
+        v2->unk_14 = gCoreSys.unk_5C;
+        v2->unk_18 = gCoreSys.unk_5E;
         break;
     case 2:
         switch (param0) {
@@ -504,8 +504,8 @@ static void ov21_021D7B8C (u32 param0, u32 param1, void * param2)
                 }
             }
 
-            v2->unk_14 = coresys.unk_5C;
-            v2->unk_18 = coresys.unk_5E;
+            v2->unk_14 = gCoreSys.unk_5C;
+            v2->unk_18 = gCoreSys.unk_5E;
         }
 
         v2->unk_20 = 1;
@@ -524,7 +524,7 @@ static void ov21_021D7C64 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
     ov21_021D7E80(param0, param1, param2, param3);
     ov21_021D8018(param0, param1, param2, param3);
 
-    sub_02019060(7, 3);
+    BGL_SetPriority(7, 3);
 }
 
 static void ov21_021D7CAC (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D77E8 * param1, int param2)
@@ -534,14 +534,14 @@ static void ov21_021D7CAC (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D
     ov21_021D7E3C(param0, param1);
     ov21_021D828C(param1, param2);
 
-    sub_02019060(7, 1);
+    BGL_SetPriority(7, 1);
 }
 
 static void ov21_021D7CD8 (UnkStruct_ov21_021D77E8 * param0, const UnkStruct_ov21_021D77D4 * param1, int param2)
 {
     void * v0;
     NNSG2dScreenData * v1;
-    UnkStruct_02018340 * v2 = param0->unk_00->unk_00;
+    BGL * v2 = param0->unk_00->unk_00;
 
     ov21_021D276C(param0->unk_00, 0, 4, 0, 0, param2);
 
@@ -676,7 +676,7 @@ static void ov21_021D7FEC (UnkStruct_ov21_021D7C64 * param0)
 
 static void ov21_021D8018 (UnkStruct_ov21_021D7C64 * param0, UnkStruct_ov21_021D77E8 * param1, const UnkStruct_ov21_021D77D4 * param2, int param3)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_02009DC8 * v2;
     UnkStruct_ov21_021D13FC * v3 = param1->unk_00;
@@ -765,7 +765,7 @@ static void ov21_021D820C (UnkStruct_ov21_021D77E8 * param0, int param1)
 {
     void * v0;
     NNSG2dScreenData * v1;
-    UnkStruct_02018340 * v2 = param0->unk_00->unk_00;
+    BGL * v2 = param0->unk_00->unk_00;
 
     ov21_021D2724(param0->unk_00, 27, v2, 7, 0, 0, 1, param1);
 
@@ -780,7 +780,7 @@ static void ov21_021D820C (UnkStruct_ov21_021D77E8 * param0, int param1)
 
 static void ov21_021D828C (UnkStruct_ov21_021D77E8 * param0, int param1)
 {
-    UnkStruct_02018340 * v0 = param0->unk_00->unk_00;
+    BGL * v0 = param0->unk_00->unk_00;
 
     sub_02019690(7, 64, 0, param1);
     sub_02019EBC(v0, 7);
@@ -797,7 +797,7 @@ static void ov21_021D82A8 (UnkStruct_ov21_021D7A64 * param0, UnkStruct_ov21_021D
                 ov21_021D8530(param0, param1);
             } else {
                 param1->unk_1C->unk_0C = (64 * 10);
-                sub_02005748(1675);
+                Sound_PlayEffect(1675);
             }
         } else {
             param1->unk_1C->unk_08 = 0;
@@ -835,8 +835,8 @@ static void ov21_021D8324 (UnkStruct_ov21_021D7A64 * param0)
 
     v1 = param0->unk_14 - (128 + 120);
     v0 = param0->unk_18 - (104 + -0);
-    v3 = coresys.unk_5C - (128 + 120);
-    v2 = coresys.unk_5E - (104 + -0);
+    v3 = gCoreSys.unk_5C - (128 + 120);
+    v2 = gCoreSys.unk_5E - (104 + -0);
 
     param0->unk_0C = sub_0201D4CC(v1, v0, v3, v2, 524);
     param0->unk_0C *= 10;

@@ -120,7 +120,7 @@ void ov13_02227334 (UnkStruct_ov13_02227244 * param0)
     u32 v0;
 
     sub_0201A928(param0->unk_2C, param0->unk_30);
-    sub_0201A8FC(&param0->unk_1C);
+    BGL_DeleteWindow(&param0->unk_1C);
 }
 
 void ov13_02227350 (UnkStruct_ov13_02227244 * param0, u32 param1)
@@ -140,7 +140,7 @@ void ov13_02227350 (UnkStruct_ov13_02227244 * param0, u32 param1)
 
 static void ov13_02227374 (UnkStruct_ov13_02227244 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
     u32 v2;
     u32 v3;
@@ -160,7 +160,7 @@ static void ov13_022273CC (UnkStruct_ov13_02227244 * param0)
     u32 v0;
 
     for (v0 = 0; v0 < 5; v0++) {
-        sub_0201ADA4(&param0->unk_2C[v0], 0);
+        BGL_FillWindow(&param0->unk_2C[v0], 0);
     }
 
     ov13_02227374(param0, 0, 0, 2, 8, ((u32)(((3 & 0xff) << 16) | ((2 & 0xff) << 8) | ((1 & 0xff) << 0))));
@@ -190,14 +190,14 @@ static const u32 Unk_ov13_02229AB0[][2] = {
 
 static void ov13_022274A8 (UnkStruct_ov13_02227244 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
     u32 v2;
     u32 v3;
 
     v0 = &param0->unk_2C[param3];
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
 
     if (param0->unk_3C[param0->unk_114D][param1].item != 0) {
         v1 = MessageLoader_GetNewStrbuf(param0->unk_10, Unk_ov13_02229AB0[param2][0]);
@@ -218,11 +218,11 @@ static void ov13_022274A8 (UnkStruct_ov13_02227244 * param0, u32 param1, u32 par
 static void ov13_0222754C (UnkStruct_ov13_02227244 * param0, u32 param1, u32 param2, u32 param3, u32 param4, u32 param5, u32 param6)
 {
     Strbuf* v0;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
 
     v1 = &param0->unk_2C[param3];
 
-    sub_0201ADA4(v1, 0);
+    BGL_FillWindow(v1, 0);
 
     if (param0->unk_3C[param0->unk_114D][param1].quantity != 0) {
         v0 = MessageLoader_GetNewStrbuf(param0->unk_10, Unk_ov13_02229AB0[param2][1]);
@@ -268,12 +268,12 @@ void ov13_02227650 (UnkStruct_ov13_02227244 * param0)
 
 void ov13_02227698 (UnkStruct_ov13_02227244 * param0)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
     u32 v2;
     u32 v3;
 
-    sub_0201ADA4(&param0->unk_2C[25], 0);
+    BGL_FillWindow(&param0->unk_2C[25], 0);
 
     v0 = &param0->unk_2C[25];
     v1 = MessageLoader_GetNewStrbuf(param0->unk_10, 28);
@@ -301,7 +301,7 @@ void ov13_02227698 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_022277C8 (UnkStruct_ov13_02227244 * param0)
 {
-    sub_0201ADA4(&param0->unk_2C[24], 0);
+    BGL_FillWindow(&param0->unk_2C[24], 0);
 
     switch (param0->unk_114D) {
     case 0:
@@ -330,7 +330,7 @@ static void ov13_02227888 (UnkStruct_ov13_02227244 * param0)
 
 static void ov13_022278A0 (UnkStruct_ov13_02227244 * param0, u32 param1)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = &param0->unk_2C[0];
@@ -338,7 +338,7 @@ static void ov13_022278A0 (UnkStruct_ov13_02227244 * param0, u32 param1)
 
     sub_0200B70C(param0->unk_14, 0, param0->unk_3C[param0->unk_114D][param1].item);
     sub_0200C388(param0->unk_14, param0->unk_18, v1);
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
     sub_0201D78C(v0, 0, param0->unk_18, 0, 0, 0xff, (((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)))), NULL);
     Strbuf_Free(v1);
     sub_0201A9A4(v0);
@@ -346,7 +346,7 @@ static void ov13_022278A0 (UnkStruct_ov13_02227244 * param0, u32 param1)
 
 static void ov13_02227910 (UnkStruct_ov13_02227244 * param0, u32 param1)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = &param0->unk_2C[2];
@@ -364,7 +364,7 @@ static void ov13_02227974 (UnkStruct_ov13_02227244 * param0)
     u32 v1;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0201ADA4(&param0->unk_2C[v0], 0);
+        BGL_FillWindow(&param0->unk_2C[v0], 0);
     }
 
     v1 = param0->unk_00->unk_2C[param0->unk_114D] * 6 + param0->unk_00->unk_27[param0->unk_114D];
@@ -378,12 +378,12 @@ static void ov13_02227974 (UnkStruct_ov13_02227244 * param0)
 void ov13_022279F4 (UnkStruct_ov13_02227244 * param0)
 {
     sub_0200E060(&param0->unk_1C, 1, 1024 - (18 + 12), 14);
-    sub_0201ADA4(&param0->unk_1C, 15);
+    BGL_FillWindow(&param0->unk_1C, 15);
     ov13_02227A1C(param0);
 }
 
 void ov13_02227A1C (UnkStruct_ov13_02227244 * param0)
 {
     sub_02002AC8(1);
-    param0->unk_32 = sub_0201D738(&param0->unk_1C, 1, param0->unk_18, 0, 0, ov16_0223EDF0(param0->unk_00->unk_00), NULL);
+    param0->unk_32 = sub_0201D738(&param0->unk_1C, 1, param0->unk_18, 0, 0, BattleSystem_TextSpeed(param0->unk_00->unk_00), NULL);
 }

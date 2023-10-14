@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -479,14 +479,14 @@ static void ov21_021E6E04 (u32 param0, u32 param1, void * param2)
         switch (param0) {
         case 0:
             if (v1->unk_04 != 0) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 v1->unk_04 = 0;
                 *v1->unk_00 |= (1 << 0);
             }
             break;
         case 1:
             if (v1->unk_04 != 1) {
-                sub_02005748(1501);
+                Sound_PlayEffect(1501);
                 v1->unk_04 = 1;
                 *v1->unk_00 |= (1 << 1);
             }
@@ -606,7 +606,7 @@ static void ov21_021E70BC (UnkStruct_ov21_021E6C60 * param0)
 
 static void ov21_021E70D4 (UnkStruct_ov21_021E6C60 * param0, UnkStruct_ov21_021E6A34 * param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_02009DC8 * v2;
     UnkStruct_ov21_021D13FC * v3 = param1->unk_00;
@@ -733,7 +733,7 @@ static void ov21_021E728C (UnkStruct_ov21_021E6C60 * param0, UnkStruct_ov21_021E
 
 static void ov21_021E72E8 (UnkStruct_ov21_021E6DAC * param0, UnkStruct_ov21_021E6A20 * param1)
 {
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         if (param1->unk_04 == 1) {
             param1->unk_04 = 0;
             *param1->unk_00 |= (1 << 0);
@@ -744,7 +744,7 @@ static void ov21_021E72E8 (UnkStruct_ov21_021E6DAC * param0, UnkStruct_ov21_021E
             param0->unk_10[1] = 2;
         }
 
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
     }
 }
 

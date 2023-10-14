@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -68,9 +68,9 @@ static void ov65_022358F8(UnkStruct_ov65_022358CC * param0, u32 param1, NARC * p
 static void ov65_02235900(UnkStruct_ov65_022358CC * param0);
 static void ov65_02235908(UnkStruct_ov65_022358CC * param0, u32 param1);
 static void ov65_02235910(UnkStruct_ov65_022358CC * param0);
-static void ov65_02235918(UnkStruct_02018340 * param0, u32 param1);
-static void ov65_0223591C(UnkStruct_02018340 * param0);
-static void ov65_02235920(UnkStruct_02018340 * param0, u32 param1, NARC * param2);
+static void ov65_02235918(BGL * param0, u32 param1);
+static void ov65_0223591C(BGL * param0);
+static void ov65_02235920(BGL * param0, u32 param1, NARC * param2);
 static BOOL ov65_02235BE8(UnkStruct_ov65_02235130 * param0);
 static void ov65_02235960(UnkStruct_ov65_022358CC * param0, u32 param1, NARC * param2);
 static void ov65_02235A60(UnkStruct_ov65_022358CC * param0);
@@ -130,7 +130,7 @@ static const u16 Unk_ov65_02238BC8[2] = {
     0x2
 };
 
-void ov65_02235060 (UnkStruct_ov65_02235130 * param0, u32 param1, NARC * param2, UnkStruct_02018340 * param3, u32 param4, u32 param5)
+void ov65_02235060 (UnkStruct_ov65_02235130 * param0, u32 param1, NARC * param2, BGL * param3, u32 param4, u32 param5)
 {
     UnkStruct_ov63_0222CC3C v0;
     u32 v1;
@@ -199,12 +199,12 @@ u32 ov65_02235198 (UnkStruct_ov65_02235130 * param0)
         if (v0 == 1) {
             ov65_02235B30(param0);
 
-            if (coresys.unk_44 & PAD_KEY_DOWN) {
+            if (gCoreSys.unk_44 & PAD_KEY_DOWN) {
                 return 1;
             }
         }
 
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             if (ov65_02235254(param0) > 0) {
                 return 2;
             } else if (ov65_02235654(param0) == 1) {
@@ -628,17 +628,17 @@ static void ov65_02235910 (UnkStruct_ov65_022358CC * param0)
     ov65_02235B14(param0);
 }
 
-static void ov65_02235918 (UnkStruct_02018340 * param0, u32 param1)
+static void ov65_02235918 (BGL * param0, u32 param1)
 {
     return;
 }
 
-static void ov65_0223591C (UnkStruct_02018340 * param0)
+static void ov65_0223591C (BGL * param0)
 {
     return;
 }
 
-static void ov65_02235920 (UnkStruct_02018340 * param0, u32 param1, NARC * param2)
+static void ov65_02235920 (BGL * param0, u32 param1, NARC * param2)
 {
     sub_02007130(param2, 30, 0, 0, 8 * 32, param1);
     sub_0201975C(0, 0);
@@ -987,7 +987,7 @@ static BOOL ov65_02236044 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov65_0223
         return 0;
     }
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         v4 = ov65_022357A8(param0, param1, v0);
 
         if (v4 != NULL) {
@@ -1005,31 +1005,31 @@ static BOOL ov65_02236044 (UnkStruct_ov65_02235130 * param0, UnkStruct_ov65_0223
         return 0;
     }
 
-    if (coresys.unk_44 & PAD_BUTTON_B) {
+    if (gCoreSys.unk_44 & PAD_BUTTON_B) {
         v3 = 3;
     } else {
         v3 = 2;
     }
 
-    if (coresys.unk_44 & PAD_KEY_UP) {
+    if (gCoreSys.unk_44 & PAD_KEY_UP) {
         if (v0 == 0) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 0, v1);
         }
-    } else if (coresys.unk_44 & PAD_KEY_DOWN) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_DOWN) {
         if (v0 == 1) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 1, v1);
         }
-    } else if (coresys.unk_44 & PAD_KEY_LEFT) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_LEFT) {
         if (v0 == 2) {
             ov65_02236230(param0, v3, v0, v1);
         } else {
             ov65_02236230(param0, 1, 2, v1);
         }
-    } else if (coresys.unk_44 & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_RIGHT) {
         if (v0 == 3) {
             ov65_02236230(param0, v3, v0, v1);
         } else {

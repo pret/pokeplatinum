@@ -6,7 +6,7 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     NNSG2dScreenData * unk_04;
     int unk_08;
     int unk_0C;

@@ -41,11 +41,11 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
 {
     Strbuf* v0;
     int v1;
-    UnkStruct_0205AA50 * v2 = &param0->unk_8A4;
+    Window * v2 = &param0->unk_8A4;
 
     sub_0201A7A0(v2);
-    sub_0201A7E8(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
-    sub_0201ADA4(v2, 0x0);
+    BGL_AddWindow(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
+    BGL_FillWindow(v2, 0x0);
 
     v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 192);
     v1 = ov62_0223429C(v2, v0);
@@ -59,7 +59,7 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
 static void ov62_02234A90 (UnkStruct_0208C06C * param0)
 {
     sub_0201ACF4(&param0->unk_8A4);
-    sub_0201A8FC(&param0->unk_8A4);
+    BGL_DeleteWindow(&param0->unk_8A4);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
@@ -90,7 +90,7 @@ static BOOL ov62_02234AB4 (UnkStruct_0208C06C * param0)
         sub_0208B8B8(param0->unk_6F4, 256 / 2, 192 + 24);
         sub_0208B9E0(param0->unk_6F4, 1);
         sub_0208B8B0(param0->unk_6F4, 1);
-        sub_02005748(1374);
+        Sound_PlayEffect(1374);
         param0->unk_08++;
         break;
     case 2:
@@ -178,7 +178,7 @@ static BOOL ov62_02234CDC (UnkStruct_0208C06C * param0)
             break;
         }
 
-        sub_02005748(1371);
+        Sound_PlayEffect(1371);
 
         param0->unk_0C = 16;
         param0->unk_08++;

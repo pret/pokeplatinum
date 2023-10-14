@@ -48,8 +48,8 @@ typedef struct {
     UnkStruct_0200112C * unk_04;
     Strbuf* unk_08;
     Strbuf* unk_0C;
-    UnkStruct_0205AA50 unk_10;
-    UnkStruct_0205AA50 unk_20;
+    Window unk_10;
+    Window unk_20;
     UnkStruct_0203CDB0 * unk_30;
     SaveData * unk_34;
     UnkStruct_0200B358 * unk_38;
@@ -139,7 +139,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov5_021FAF00 = {
 
 static BOOL ov5_021EA9BC (UnkStruct_ov5_021EAE78 * param0)
 {
-    if (sub_0201D724(param0->unk_40) == 0) {
+    if (Message_Printing(param0->unk_40) == 0) {
         param0->unk_44 = sub_02002100(param0->unk_30->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 3;
     }
@@ -179,7 +179,7 @@ static BOOL ov5_021EA9F8 (UnkStruct_ov5_021EAE78 * param0)
 
 static BOOL ov5_021EAA6C (UnkStruct_ov5_021EAE78 * param0)
 {
-    if (sub_0201D724(param0->unk_40) == 0) {
+    if (Message_Printing(param0->unk_40) == 0) {
         param0->unk_44 = sub_02002100(param0->unk_30->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 5;
     }
@@ -211,7 +211,7 @@ static BOOL ov5_021EAAA8 (UnkStruct_ov5_021EAE78 * param0)
 
 static BOOL ov5_021EAAEC (UnkStruct_ov5_021EAE78 * param0)
 {
-    if (sub_0201D724(param0->unk_40) == 0) {
+    if (Message_Printing(param0->unk_40) == 0) {
         param0->unk_44 = sub_02002100(param0->unk_30->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 7;
     }
@@ -270,8 +270,8 @@ static BOOL ov5_021EAB58 (UnkStruct_ov5_021EAE78 * param0)
 
     param0->unk_00 = sub_02013A04(v2 + 1, 4);
 
-    sub_0201A7E8(param0->unk_30->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
-    sub_0200DC48(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
+    BGL_AddWindow(param0->unk_30->unk_08, &param0->unk_20, 3, 19, 1, 12, v3 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (10 * (v3 + 2) * 2));
+    Window_Show(&param0->unk_20, 1, 1024 - (18 + 12) - 9, 11);
 
     {
         MessageLoader * v4;
@@ -314,14 +314,14 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
     case 0xffffffff:
         return 0;
     case 0xfffffffe:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         v0 = sub_02032EE8(param0->unk_8C);
         sub_0200B498(param0->unk_38, 0, v0);
         ov5_021EAE78(param0, 59);
         param0->unk_48 = 6;
         break;
     default:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         param0->unk_90 = v1;
 
         {
@@ -338,8 +338,8 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
         break;
     }
 
-    sub_0200DC9C(&param0->unk_20, 0);
-    sub_0201A8FC(&param0->unk_20);
+    Window_Clear(&param0->unk_20, 0);
+    BGL_DeleteWindow(&param0->unk_20);
     sub_02001384(param0->unk_04, NULL, NULL);
     sub_02013A3C(param0->unk_00);
 
@@ -348,7 +348,7 @@ static BOOL ov5_021EAC44 (UnkStruct_ov5_021EAE78 * param0)
 
 static BOOL ov5_021EACFC (UnkStruct_ov5_021EAE78 * param0)
 {
-    if (sub_0201D724(param0->unk_40) == 0) {
+    if (Message_Printing(param0->unk_40) == 0) {
         param0->unk_44 = sub_02002100(param0->unk_30->unk_08, &Unk_ov5_021FAF00, 1024 - (18 + 12) - 9, 11, 4);
         param0->unk_48 = 11;
     }
@@ -440,7 +440,7 @@ static BOOL ov5_021EADB4 (UnkStruct_020508D4 * param0)
 static void ov5_021EAE78 (UnkStruct_ov5_021EAE78 * param0, int param1)
 {
     if (sub_0201A7CC(&param0->unk_10)) {
-        sub_0201A8FC(&param0->unk_10);
+        BGL_DeleteWindow(&param0->unk_10);
     }
 
     MessageLoader_GetStrbuf(param0->unk_3C, param1, param0->unk_08);
@@ -469,7 +469,7 @@ static void ov5_021EAF1C (UnkStruct_ov5_021EAE78 * param0)
     Strbuf_Free(param0->unk_08);
 
     if (sub_0201A7CC(&param0->unk_10)) {
-        sub_0201A8FC(&param0->unk_10);
+        BGL_DeleteWindow(&param0->unk_10);
     }
 }
 
@@ -495,6 +495,6 @@ void ov5_021EAF50 (UnkStruct_0203CDB0 * param0)
 static void ov5_021EAF90 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 }

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -24,11 +24,11 @@
 #include <nnsys.h>
 
 struct UnkStruct_020961E8_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     BOOL unk_04;
     UnkStruct_0203DE34 * unk_08;
     UnkStruct_ov59_021D109C unk_0C;
-    UnkStruct_0201CD38 * unk_20;
+    SysTask * unk_20;
     UnkStruct_0200B358 * unk_24;
     MessageLoader * unk_28;
     Strbuf* unk_2C[5];
@@ -45,11 +45,11 @@ struct UnkStruct_020961E8_t {
     UnkStruct_ov19_021DA864 unk_268;
     UnkStruct_02022550 * unk_28C[14];
     UnkStruct_02022550 * unk_2C4[14];
-    UnkStruct_0205AA50 unk_2FC[5];
-    UnkStruct_0205AA50 unk_34C;
-    UnkStruct_0205AA50 unk_35C;
-    UnkStruct_0205AA50 unk_36C;
-    UnkStruct_0205AA50 * unk_37C[2];
+    Window unk_2FC[5];
+    Window unk_34C;
+    Window unk_35C;
+    Window unk_36C;
+    Window * unk_37C[2];
     UnkStruct_02001AF4 * unk_384;
     void * unk_388[2];
     NNSG2dCharacterData * unk_390[2];

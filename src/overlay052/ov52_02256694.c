@@ -3,7 +3,7 @@
 
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
@@ -32,9 +32,9 @@
 
 struct UnkStruct_ov52_02256694_t {
     const UnkStruct_ov52_02256694_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[6];
-    UnkStruct_0205AA50 unk_20;
+    Window unk_20;
     UnkStruct_ov25_022555E8 * unk_30;
     UnkStruct_ov25_022558C4 * unk_34[4];
     UnkStruct_ov25_02255958 unk_44;
@@ -45,21 +45,21 @@ struct UnkStruct_ov52_02256694_t {
 static void ov52_0225670C(UnkStruct_ov52_02256694 * param0, const UnkStruct_ov52_02256694_1 * param1);
 static void ov52_0225677C(UnkStruct_ov52_02256694 * param0);
 static void ov52_022567E0(UnkStruct_ov25_02255224 * param0);
-static void ov52_022567F4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov52_022568B4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov52_022568D8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov52_0225691C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov52_02256968(UnkStruct_0201CD38 * param0, void * param1);
-static void ov52_022569B4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov52_02256A00(UnkStruct_0201CD38 * param0, void * param1);
-static void ov52_02256A58(UnkStruct_0201CD38 * param0, void * param1);
+static void ov52_022567F4(SysTask * param0, void * param1);
+static void ov52_022568B4(SysTask * param0, void * param1);
+static void ov52_022568D8(SysTask * param0, void * param1);
+static void ov52_0225691C(SysTask * param0, void * param1);
+static void ov52_02256968(SysTask * param0, void * param1);
+static void ov52_022569B4(SysTask * param0, void * param1);
+static void ov52_02256A00(SysTask * param0, void * param1);
+static void ov52_02256A58(SysTask * param0, void * param1);
 static void ov52_02256A7C(UnkStruct_ov52_02256694 * param0);
 static void ov52_02256B10(UnkStruct_ov52_02256694 * param0);
 static void ov52_02256B64(UnkStruct_ov52_02256694 * param0);
 static void ov52_02256BDC(UnkStruct_ov52_02256694 * param0);
 static void ov52_02256C64(UnkStruct_ov52_02256694 * param0, const UnkStruct_ov52_02256694_1 * param1);
 
-BOOL ov52_02256694 (UnkStruct_ov52_02256694 ** param0, const UnkStruct_ov52_02256694_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov52_02256694 (UnkStruct_ov52_02256694 ** param0, const UnkStruct_ov52_02256694_1 * param1, BGL * param2)
 {
     UnkStruct_ov52_02256694 * v0 = (UnkStruct_ov52_02256694 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov52_02256694));
 
@@ -185,7 +185,7 @@ static void ov52_022567E0 (UnkStruct_ov25_02255224 * param0)
     ov25_02255224(v0->unk_08, param0);
 }
 
-static void ov52_022567F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov52_022567F4 (SysTask * param0, void * param1)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -218,7 +218,7 @@ static void ov52_022567F4 (UnkStruct_0201CD38 * param0, void * param1)
     sub_02006E60(12, 95, v2->unk_04, 6, 0, 0, 1, 8);
     ov25_022546B8(0, 0);
 
-    sub_0201A7E8(v2->unk_04, &v2->unk_20, 6, 2, 2, 24, 20, 0, v5);
+    BGL_AddWindow(v2->unk_04, &v2->unk_20, 6, 2, 2, 24, 20, 0, v5);
     sub_0201A9F4(&v2->unk_20);
 
     ov52_02256A7C(v2);
@@ -230,17 +230,17 @@ static void ov52_022567F4 (UnkStruct_0201CD38 * param0, void * param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_022568B4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov52_022568B4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov52_02256694 * v0 = ov25_0225523C(param1);
 
-    sub_0201A8FC(&v0->unk_20);
+    BGL_DeleteWindow(&v0->unk_20);
     sub_02019044(v0->unk_04, 6);
 
     ov52_022567E0(param1);
 }
 
-static void ov52_022568D8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov52_022568D8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov52_02256694 * v0 = ov25_0225523C(param1);
 
@@ -254,7 +254,7 @@ static void ov52_022568D8 (UnkStruct_0201CD38 * param0, void * param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_0225691C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov52_0225691C (SysTask * param0, void * param1)
 {
     UnkStruct_ov52_02256694 * v0 = ov25_0225523C(param1);
 
@@ -269,7 +269,7 @@ static void ov52_0225691C (UnkStruct_0201CD38 * param0, void * param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_02256968 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov52_02256968 (SysTask * param0, void * param1)
 {
     UnkStruct_ov52_02256694 * v0 = ov25_0225523C(param1);
 
@@ -283,7 +283,7 @@ static void ov52_02256968 (UnkStruct_0201CD38 * param0, void * param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_022569B4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov52_022569B4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov52_02256694 * v0 = ov25_0225523C(param1);
 
@@ -297,7 +297,7 @@ static void ov52_022569B4 (UnkStruct_0201CD38 * param0, void * param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_02256A00 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov52_02256A00 (SysTask * param0, void * param1)
 {
     UnkStruct_ov52_02256694 * v0 = ov25_0225523C(param1);
     const UnkStruct_ov52_02256694_1 * v1 = ov25_02255240(param1);
@@ -313,7 +313,7 @@ static void ov52_02256A00 (UnkStruct_0201CD38 * param0, void * param1)
     ov52_022567E0(param1);
 }
 
-static void ov52_02256A58 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov52_02256A58 (SysTask * param0, void * param1)
 {
     UnkStruct_ov52_02256694 * v0 = ov25_0225523C(param1);
     const UnkStruct_ov52_02256694_1 * v1 = ov25_02255240(param1);
@@ -326,7 +326,7 @@ static void ov52_02256A7C (UnkStruct_ov52_02256694 * param0)
 {
     u32 v0;
 
-    sub_0201ADA4(&param0->unk_20, 4);
+    BGL_FillWindow(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 0, param0->unk_5C);
 
     v0 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
@@ -348,7 +348,7 @@ static void ov52_02256A7C (UnkStruct_ov52_02256694 * param0)
 
 static void ov52_02256B10 (UnkStruct_ov52_02256694 * param0)
 {
-    sub_0201ADA4(&param0->unk_20, 4);
+    BGL_FillWindow(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 1, param0->unk_5C);
 
     {
@@ -363,7 +363,7 @@ static void ov52_02256B64 (UnkStruct_ov52_02256694 * param0)
 {
     u32 v0;
 
-    sub_0201ADA4(&param0->unk_20, 4);
+    BGL_FillWindow(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 2, param0->unk_5C);
 
     v0 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;
@@ -381,7 +381,7 @@ asm static void ov52_02256BDC (UnkStruct_ov52_02256694 * param0)
     add r4, r0, #0
     add r0, #0x20
     mov r1, #4
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     ldr r0, [r4, #0x58]
     ldr r2, [r4, #0x5c]
     mov r1, #2
@@ -444,7 +444,7 @@ static void ov52_02256C64 (UnkStruct_ov52_02256694 * param0, const UnkStruct_ov5
     u32 v1;
     int v2;
 
-    sub_0201ADA4(&param0->unk_20, 4);
+    BGL_FillWindow(&param0->unk_20, 4);
     MessageLoader_GetStrbuf(param0->unk_58, 5, param0->unk_5C);
 
     v1 = ((24 * 8) - sub_02002D7C(0, param0->unk_5C, 0)) / 2;

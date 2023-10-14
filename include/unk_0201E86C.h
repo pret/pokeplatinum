@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_0201E86C_H
 
 #include "struct_defs/struct_0200A328.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "overlay022/struct_ov22_022559F8.h"
 
 #include <nitro/gx.h>
@@ -23,8 +23,8 @@ NNSG2dImageProxy * sub_0201EBDC(int param0);
 NNSG2dImageProxy * sub_0201EC00(int param0, u32 param1);
 NNSG2dImageProxy * sub_0201EC84(const NNSG2dImageProxy * param0);
 void sub_0201ED1C(const NNSG2dImageProxy * param0);
-BOOL sub_0201ED94(int param0, int param1, int param2, UnkStruct_0201EE28 * param3);
-void sub_0201EE28(UnkStruct_0201EE28 * param0);
+BOOL sub_0201ED94(int param0, int param1, int param2, SpriteManagerAllocation * param3);
+void sub_0201EE28(SpriteManagerAllocation * param0);
 void * sub_0201EE9C(void);
 void sub_0201EEB8(void * param0);
 void sub_0201F460(void);

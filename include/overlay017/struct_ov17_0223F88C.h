@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "strbuf.h"
@@ -25,26 +25,26 @@ typedef struct {
     UnkStruct_0200C6E4 * unk_18;
     UnkStruct_0200C704 * unk_1C;
     UnkStruct_ov12_0221FCDC * unk_20;
-    UnkStruct_02018340 * unk_24;
-    UnkStruct_0205AA50 unk_28[1];
+    BGL * unk_24;
+    Window unk_28[1];
     MessageLoader * unk_38;
     MessageLoader * unk_3C;
     MessageLoader * unk_40;
     MessageLoader * unk_44;
     UnkStruct_0200B358 * unk_48;
     Strbuf* unk_4C;
-    UnkStruct_02002F38 * unk_50;
+    PaletteSys * unk_50;
     UnkStruct_02012744 * unk_54;
     UnkStruct_ov16_0223E0C8 unk_58[4];
     UnkStruct_ov16_0223E0C8 unk_98;
-    UnkStruct_0200D0F4 * unk_A8[3];
-    UnkStruct_0200D0F4 * unk_B4[3];
-    UnkStruct_0200D0F4 * unk_C0;
-    UnkStruct_0200D0F4 * unk_C4[4][6];
-    UnkStruct_0200D0F4 * unk_124[3][5];
-    UnkStruct_0200D0F4 * unk_160[4];
-    UnkStruct_0200D0F4 * unk_170[3];
-    UnkStruct_0200D0F4 * unk_17C;
+    CellActorData * unk_A8[3];
+    CellActorData * unk_B4[3];
+    CellActorData * unk_C0;
+    CellActorData * unk_C4[4][6];
+    CellActorData * unk_124[3][5];
+    CellActorData * unk_160[4];
+    CellActorData * unk_170[3];
+    CellActorData * unk_17C;
     UnkStruct_ov17_0223F2E4 unk_180[4];
     UnkStruct_ov17_0223F2E4 unk_1C8[4];
     u8 unk_210;

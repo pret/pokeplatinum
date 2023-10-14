@@ -3,7 +3,7 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -47,11 +47,11 @@ static BOOL ov62_02235278 (UnkStruct_0208C06C * param0)
 
         switch (v0) {
         case 1:
-            sub_02005748(1379);
+            Sound_PlayEffect(1379);
             ov62_0222FB60(param0, 7);
             return 0;
         case 2:
-            sub_02005748(1379);
+            Sound_PlayEffect(1379);
             ov62_0222FB60(param0, 8);
             return 0;
         default:
@@ -179,7 +179,7 @@ static BOOL ov62_02235478 (UnkStruct_0208C06C * param0)
     return 0;
 }
 
-void ov62_022354A4 (UnkStruct_0201CD38 * param0, void * param1)
+void ov62_022354A4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov62_022354A4 * v0 = param1;
 
@@ -220,7 +220,7 @@ void ov62_022354A4 (UnkStruct_0201CD38 * param0, void * param1)
     break;
     default:
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         break;
     }
 }
@@ -267,7 +267,7 @@ static BOOL ov62_02235580 (UnkStruct_0208C06C * param0)
                 v2->unk_1C = 8;
             }
 
-            sub_0200D9E8(ov62_022354A4, v2, 8192);
+            SysTask_Start(ov62_022354A4, v2, 8192);
         }
 
         v3->unk_00 = 0;
@@ -317,7 +317,7 @@ static BOOL ov62_02235580 (UnkStruct_0208C06C * param0)
                         }
 
                         v5->unk_1C = 4;
-                        sub_0200D9E8(ov62_022354A4, v5, 8192);
+                        SysTask_Start(ov62_022354A4, v5, 8192);
                         v4++;
                     } while (v4 <= param0->unk_534.unk_1A4);
                 }
@@ -399,7 +399,7 @@ static BOOL ov62_02235854 (UnkStruct_0208C06C * param0)
             }
 
             v2->unk_1C = 4;
-            sub_0200D9E8(ov62_022354A4, v2, 8192);
+            SysTask_Start(ov62_022354A4, v2, 8192);
             v1++;
         } while (v1 <= (param0->unk_534.unk_1A4 - 1));
     }
@@ -430,7 +430,7 @@ static BOOL ov62_02235854 (UnkStruct_0208C06C * param0)
                     }
 
                     v4->unk_1C = 8;
-                    sub_0200D9E8(ov62_022354A4, v4, 8192);
+                    SysTask_Start(ov62_022354A4, v4, 8192);
                 }
 
                 v0->unk_00 = 0;

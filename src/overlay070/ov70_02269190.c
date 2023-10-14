@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -790,7 +790,7 @@ static void ov70_02269510 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
         sub_02005770(param2, 5);
     } else {
         if (ov70_0225CE70(param1->unk_08) == 0) {
-            sub_02005748(param2);
+            Sound_PlayEffect(param2);
         }
     }
 }
@@ -1941,19 +1941,19 @@ static BOOL ov70_0226AC24 (UnkStruct_ov70_02269204 * param0, UnkStruct_ov70_0226
     if (param1->unk_08 == ov70_0225CCAC(param0->unk_04)) {
         u32 v4 = 4;
 
-        if (coresys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.padInput & PAD_KEY_UP) {
             v4 = 0;
         }
 
-        if (coresys.padInput & PAD_KEY_DOWN) {
+        if (gCoreSys.padInput & PAD_KEY_DOWN) {
             v4 = 1;
         }
 
-        if (coresys.padInput & PAD_KEY_RIGHT) {
+        if (gCoreSys.padInput & PAD_KEY_RIGHT) {
             v4 = 3;
         }
 
-        if (coresys.padInput & PAD_KEY_LEFT) {
+        if (gCoreSys.padInput & PAD_KEY_LEFT) {
             v4 = 2;
         }
 

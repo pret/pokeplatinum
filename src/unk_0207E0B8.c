@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -97,8 +97,8 @@ static int sub_0207E750(UnkStruct_0207F248 * param0);
 static int sub_02080BF4(UnkStruct_0207F248 * param0);
 static void sub_0207E898(void * param0);
 static void sub_0207E8C0(void);
-static void sub_0207E918(UnkStruct_02018340 * param0);
-static void sub_0207EA24(UnkStruct_02018340 * param0);
+static void sub_0207E918(BGL * param0);
+static void sub_0207EA24(BGL * param0);
 static void sub_0207EB6C(UnkStruct_0207F248 * param0, NARC * param1);
 static UnkStruct_0207F248 * sub_0207ECC0(UnkStruct_020067E8 * param0);
 static void sub_0207EE14(UnkStruct_0207F248 * param0);
@@ -567,7 +567,7 @@ static int sub_0207E634 (UnkStruct_0207F248 * param0)
         break;
     case 0xfffffffe:
         sub_0200E084(&param0->unk_04[33], 1);
-        sub_0200DC9C(&param0->unk_04[35], 1);
+        Window_Clear(&param0->unk_04[35], 1);
         sub_0201AD10(&param0->unk_04[35]);
         sub_02001BC4(param0->unk_700, NULL);
         sub_02013A3C(param0->unk_6FC);
@@ -591,7 +591,7 @@ static int sub_0207E634 (UnkStruct_0207F248 * param0)
 
 static int sub_0207E6C0 (UnkStruct_0207F248 * param0)
 {
-    if (sub_0201D724(param0->unk_B10) == 0) {
+    if (Message_Printing(param0->unk_B10) == 0) {
         return param0->unk_B0E;
     }
 
@@ -600,8 +600,8 @@ static int sub_0207E6C0 (UnkStruct_0207F248 * param0)
 
 static int sub_0207E6E4 (UnkStruct_0207F248 * param0)
 {
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-        sub_02005748(1500);
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        Sound_PlayEffect(1500);
         return 32;
     }
 
@@ -716,7 +716,7 @@ static void sub_0207E8C0 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void sub_0207E8E0 (UnkStruct_02018340 * param0)
+static void sub_0207E8E0 (BGL * param0)
 {
     UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -738,7 +738,7 @@ static void sub_0207E8E0 (UnkStruct_02018340 * param0)
     sub_02019EBC(param0, 0);
 }
 
-static void sub_0207E918 (UnkStruct_02018340 * param0)
+static void sub_0207E918 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -862,7 +862,7 @@ static void sub_0207E918 (UnkStruct_02018340 * param0)
     sub_02019690(4, 32, 0, 12);
 }
 
-static void sub_0207EA24 (UnkStruct_02018340 * param0)
+static void sub_0207EA24 (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_OBJ, 0);
@@ -1434,13 +1434,13 @@ static u8 sub_0207FA24 (UnkStruct_0207F248 * param0)
 
     v1 = 4;
 
-    if (coresys.unk_4C & PAD_KEY_UP) {
+    if (gCoreSys.unk_4C & PAD_KEY_UP) {
         v1 = 0;
-    } else if (coresys.unk_4C & PAD_KEY_DOWN) {
+    } else if (gCoreSys.unk_4C & PAD_KEY_DOWN) {
         v1 = 1;
-    } else if (coresys.unk_4C & PAD_KEY_LEFT) {
+    } else if (gCoreSys.unk_4C & PAD_KEY_LEFT) {
         v1 = 2;
-    } else if (coresys.unk_4C & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.unk_4C & PAD_KEY_RIGHT) {
         v1 = 3;
     }
 
@@ -1483,7 +1483,7 @@ static u8 sub_0207FA24 (UnkStruct_0207F248 * param0)
 
             sub_02080500(param0, v4, 0);
             sub_02080500(param0, param0->unk_B11, 1);
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
 
             if (v4 < 6) {
                 sub_02080A50(param0, v4, 0);
@@ -1567,7 +1567,7 @@ static u8 sub_0207FC94 (UnkStruct_0207F248 * param0)
         param0->unk_B0C = 1;
         param0->unk_B0D = param0->unk_B11;
 
-        sub_02005748(1508);
+        Sound_PlayEffect(1508);
 
         if ((v3 != 6) && (v3 != 7)) {
             param0->unk_B12 = v3;
@@ -1635,49 +1635,49 @@ static u8 sub_0207FE98 (UnkStruct_0207F248 * param0)
 {
     u8 v0;
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         if (param0->unk_B11 == 6) {
             return 4;
         } else if (param0->unk_B11 == 7) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
 
             if (param0->unk_B0F_7 == 0) {
                 return 3;
             }
         } else if ((param0->unk_5A4->unk_20 == 3) || (param0->unk_5A4->unk_20 == 19)) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             return 0;
         } else if ((param0->unk_5A4->unk_20 == 20) || (param0->unk_5A4->unk_20 == 14)) {
             if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 return 0;
             } else {
-                sub_02005748(1522);
+                Sound_PlayEffect(1522);
                 return 5;
             }
         } else if (param0->unk_5A4->unk_20 == 15) {
             if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 sub_0207FFC8(param0);
                 return 0;
             } else {
-                sub_02005748(1522);
+                Sound_PlayEffect(1522);
                 return 5;
             }
         } else if (param0->unk_5A4->unk_20 == 21) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_0207FFC8(param0);
             return 0;
         } else {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             sub_0207FFC8(param0);
             return 0;
         }
     }
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             param0->unk_B11 = 7;
             return 3;
         }
@@ -1688,7 +1688,7 @@ static u8 sub_0207FE98 (UnkStruct_0207F248 * param0)
     if (v0 == 2) {
         if ((param0->unk_5A4->unk_20 == 20) || (param0->unk_5A4->unk_20 == 14) || (param0->unk_5A4->unk_20 == 15)) {
             if (param0->unk_704[param0->unk_B11].unk_10 != 0) {
-                sub_02005748(1522);
+                Sound_PlayEffect(1522);
                 return 5;
             }
         }
@@ -2044,8 +2044,8 @@ static u8 sub_020805E4 (UnkStruct_0207F248 * param0)
 {
     u8 v0;
 
-    if (coresys.padInput & PAD_BUTTON_A) {
-        sub_02005748(1500);
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
+        Sound_PlayEffect(1500);
 
         if ((param0->unk_B11 >= 6) || (param0->unk_B11 == param0->unk_B0F_0)) {
             sub_02083B88(param0);
@@ -2056,8 +2056,8 @@ static u8 sub_020805E4 (UnkStruct_0207F248 * param0)
         }
     }
 
-    if (coresys.padInput & PAD_BUTTON_B) {
-        sub_02005748(1500);
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
+        Sound_PlayEffect(1500);
         sub_02083B88(param0);
         return 3;
     }
@@ -2105,7 +2105,7 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
             }
 
             param0->unk_B0E = 23;
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 24;
         }
     }
@@ -2129,17 +2129,17 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
         }
             sub_02082708(param0, 0xffffffff, 1);
             param0->unk_B0E = 23;
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 24;
         case 2:
             sub_02082708(param0, 182, 1);
             param0->unk_B0E = 23;
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 24;
         case 3:
             sub_02082708(param0, 183, 1);
             param0->unk_B0E = 23;
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 24;
         }
     }
@@ -2151,12 +2151,12 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
         case 1:
             sub_02082708(param0, 182, 1);
             param0->unk_B0E = 23;
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 24;
         case 2:
             sub_02082708(param0, 183, 1);
             param0->unk_B0E = 23;
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 24;
         }
     }
@@ -2168,7 +2168,7 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
         case 1:
             sub_02082708(param0, 201, 1);
             param0->unk_B0E = 23;
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 24;
         }
     }
@@ -2180,13 +2180,13 @@ static int sub_02080670 (UnkStruct_0207F248 * param0)
         case 1:
             sub_02082708(param0, 182, 1);
             param0->unk_B0E = 23;
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 24;
         }
     }
 
     param0->unk_5A4->unk_23 = 0;
-    sub_02005748(1500);
+    Sound_PlayEffect(1500);
     return 32;
 }
 
@@ -2320,7 +2320,7 @@ static int sub_02080AD8 (UnkStruct_0207F248 * param0)
     if (v0 != 0xffffffff) {
         u16 v1 = 0xfffe;
 
-        if (sub_0201C784(param0->unk_00, 4, coresys.unk_5C, coresys.unk_5E, &v1) == 0) {
+        if (sub_0201C784(param0->unk_00, 4, gCoreSys.unk_5C, gCoreSys.unk_5E, &v1) == 0) {
             return 0xffffffff;
         }
     }
@@ -2376,15 +2376,15 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
 {
     switch (param0->unk_B14[1]) {
     case 0:
-        if (coresys.padInput & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             if (param0->unk_B11 >= 6) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 sub_02083B88(param0);
                 return 1;
             } else {
                 switch (sub_02080ECC(param0)) {
                 case 0:
-                    sub_02005748(1516);
+                    Sound_PlayEffect(1516);
                     sub_0200D414(param0->unk_5B0[6], 1);
 
                     if (param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06 < param0->unk_B14[0]) {
@@ -2395,18 +2395,18 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
                     param0->unk_B14[2] = 0;
                     break;
                 case 1:
-                    sub_02005748(1500);
+                    Sound_PlayEffect(1500);
                     param0->unk_B14[1] = 1;
                     return 24;
                 case 2:
-                    sub_02005748(1522);
+                    Sound_PlayEffect(1522);
                     return 30;
                 }
             }
         }
 
-        if (coresys.padInput & PAD_BUTTON_B) {
-            sub_02005748(1500);
+        if (gCoreSys.padInput & PAD_BUTTON_B) {
+            Sound_PlayEffect(1500);
             sub_02083B88(param0);
             return 1;
         }
@@ -2418,7 +2418,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
             } else {
                 switch (sub_02080ECC(param0)) {
                 case 0:
-                    sub_02005748(1516);
+                    Sound_PlayEffect(1516);
                     sub_0200D414(param0->unk_5B0[6], 1);
 
                     if (param0->unk_704[param0->unk_B11].unk_08 - param0->unk_704[param0->unk_B11].unk_06 < param0->unk_B14[0]) {
@@ -2432,15 +2432,15 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
                     param0->unk_B14[1] = 1;
                     return 24;
                 case 2:
-                    sub_02005748(1522);
+                    Sound_PlayEffect(1522);
                     return 30;
                 }
             }
         }
         break;
     case 1:
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_02005748(1500);
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            Sound_PlayEffect(1500);
             sub_0200E084(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
             sub_020826E0(param0, 36, 1);
@@ -2449,7 +2449,7 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
         break;
     case 2:
         if (sub_02080F3C(param0, param0->unk_B0F_0, -1) == 1) {
-            sub_02005748(1516);
+            Sound_PlayEffect(1516);
             param0->unk_B14[1] = 3;
             param0->unk_B14[2] = 0;
         }
@@ -2479,8 +2479,8 @@ static int sub_02080BF4 (UnkStruct_0207F248 * param0)
         }
         break;
     case 4:
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_02005748(1500);
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            Sound_PlayEffect(1500);
             sub_0200E084(&param0->unk_04[34], 1);
             sub_0200D414(param0->unk_5B0[6], 0);
             sub_02083B88(param0);
@@ -2517,7 +2517,7 @@ static BOOL sub_02080F3C (UnkStruct_0207F248 * param0, u8 param1, s8 param2)
     param0->unk_B14[2]++;
 
     sub_02082098(param0, param1);
-    sub_0201ADA4(&param0->unk_04[3 + param1 * 5], 0);
+    BGL_FillWindow(&param0->unk_04[3 + param1 * 5], 0);
     sub_02082058(param0, param1);
     sub_02082104(param0, param1);
 
@@ -2538,27 +2538,27 @@ static u8 sub_02080FD0 (UnkStruct_0207F248 * param0)
 {
     u8 v0;
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         if (param0->unk_B11 == 7) {
             if (param0->unk_B0F_7 == 0) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 return 3;
             }
         } else {
             if (param0->unk_704[param0->unk_B11].unk_10 == 0) {
-                sub_02005748(1500);
+                Sound_PlayEffect(1500);
                 return 0;
             } else {
-                sub_02005748(1522);
+                Sound_PlayEffect(1522);
             }
         }
 
         return 5;
     }
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         if (param0->unk_B0F_7 == 0) {
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             param0->unk_B11 = 7;
             return 3;
         }
@@ -2570,7 +2570,7 @@ static u8 sub_02080FD0 (UnkStruct_0207F248 * param0)
 
     if (v0 == 2) {
         if (param0->unk_704[param0->unk_B11].unk_10 != 0) {
-            sub_02005748(1522);
+            Sound_PlayEffect(1522);
             return 5;
         }
     }
@@ -2645,7 +2645,7 @@ static u8 sub_020811F4 (UnkStruct_0207F248 * param0)
 static int sub_02081224 (UnkStruct_0207F248 * param0)
 {
     Pokemon * v0;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     int v2 = -1, v3;
     UnkStruct_0203CDB0 * v4;
 
@@ -2700,7 +2700,7 @@ static int sub_02081224 (UnkStruct_0207F248 * param0)
     }
 
     sub_0200E060(v1, 1, (1 + 9), 15);
-    sub_0201ADA4(v1, 15);
+    BGL_FillWindow(v1, 15);
     sub_0208274C(param0);
 
     return v2;
@@ -2745,8 +2745,8 @@ static void sub_020814A8 (UnkStruct_0207F248 * param0, Pokemon * param1, u32 par
 
 static int sub_0208150C (UnkStruct_0207F248 * param0)
 {
-    if (sub_0201D724(param0->unk_B10) == 0) {
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (Message_Printing(param0->unk_B10) == 0) {
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             return sub_0208170C(param0);
         }
     }
@@ -2756,8 +2756,8 @@ static int sub_0208150C (UnkStruct_0207F248 * param0)
 
 static int sub_0208153C (UnkStruct_0207F248 * param0)
 {
-    if (sub_0201D724(param0->unk_B10) == 0) {
-        if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (Message_Printing(param0->unk_B10) == 0) {
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             sub_0200E084(&param0->unk_04[34], 1);
             sub_020819B4(param0);
             return 13;
@@ -2780,7 +2780,7 @@ static int sub_02081578 (UnkStruct_0207F248 * param0)
 
 static int sub_02081594 (UnkStruct_0207F248 * param0)
 {
-    if (sub_0201D724(param0->unk_B10) == 0) {
+    if (Message_Printing(param0->unk_B10) == 0) {
         sub_020827EC(param0);
         return 10;
     }
@@ -2796,7 +2796,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
     case 0:
     {
         Pokemon * v2;
-        UnkStruct_0205AA50 * v3;
+        Window * v3;
         u32 v4;
         u32 v5;
 
@@ -2830,7 +2830,7 @@ static int sub_020815B8 (UnkStruct_0207F248 * param0)
             }
         }
 
-        sub_0201ADA4(v3, 15);
+        BGL_FillWindow(v3, 15);
         sub_0208274C(param0);
     }
         return v0;
@@ -2858,7 +2858,7 @@ static int sub_0208170C (UnkStruct_0207F248 * param0)
 static int sub_02081760 (UnkStruct_0207F248 * param0)
 {
     Pokemon * v0;
-    UnkStruct_0205AA50 * v1;
+    Window * v1;
     u32 v2;
     u32 v3;
     int v4, v5;
@@ -2887,7 +2887,7 @@ static int sub_02081760 (UnkStruct_0207F248 * param0)
     }
 
     sub_0200E060(v1, 1, (1 + 9), 15);
-    sub_0201ADA4(v1, 15);
+    BGL_FillWindow(v1, 15);
     sub_0208274C(param0);
 
     if (param0->unk_5A4->unk_20 == 12) {

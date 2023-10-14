@@ -276,15 +276,15 @@ static void sub_0205F3B8 (UnkStruct_0205E884 * param0)
         }
 
         if ((sub_020640D4(v0, v2) == 1) || (sub_0205DFAC(v2) == 1)) {
-            sub_02005748(1353);
+            Sound_PlayEffect(1353);
         }
 
         if (sub_0205DE5C(v2) == 1) {
-            sub_02005748(1601);
+            Sound_PlayEffect(1601);
         }
 
         if (sub_0205DB78(v2) == 1) {
-            sub_02005748(1602);
+            Sound_PlayEffect(1602);
         }
 
         if (sub_0205DB6C(v2) == 1) {
@@ -292,7 +292,7 @@ static void sub_0205F3B8 (UnkStruct_0205E884 * param0)
         }
 
         if ((sub_0205DCE0(v2) == 1) && (sub_0205DCF0(v2) != 1)) {
-            sub_02005748(1621);
+            Sound_PlayEffect(1621);
         }
 
         {
@@ -300,7 +300,7 @@ static void sub_0205F3B8 (UnkStruct_0205E884 * param0)
 
             if (sub_020613D8(v5) == 0) {
                 if ((sub_0205DAD4(v2) == 1) || (sub_0205DAD4(v1) == 1)) {
-                    sub_02005748(1619);
+                    Sound_PlayEffect(1619);
                 }
             }
         }
@@ -564,7 +564,7 @@ static int sub_0205F808 (UnkStruct_0205E884 * param0, int param1)
     UnkStruct_02061AB4 * v1 = sub_0205EB3C(param0);
     int v2 = sub_0206299C(v1);
 
-    sub_02005748(1620);
+    Sound_PlayEffect(1620);
 
     if (v2 == 0) {
         if ((sub_0205EB74(param0) == 0x1) && (sub_0205EBB8(param0) >= 3)) {
@@ -621,7 +621,7 @@ static int sub_0205F95C (UnkStruct_0205E884 * param0, int param1)
     int v1 = sub_0206299C(v0);
 
     if (sub_0205EC88(param0) == 1) {
-        sub_02005748(1622);
+        Sound_PlayEffect(1622);
         sub_02060B64(param0, v0, 0x5f, 2);
     } else {
         sub_02060B64(param0, v0, 0x5d, 3);
@@ -639,7 +639,7 @@ static int sub_0205F9AC (UnkStruct_0205E884 * param0, int param1)
     int v1 = sub_0206299C(v0);
 
     if (sub_0205EC88(param0) == 1) {
-        sub_02005748(1622);
+        Sound_PlayEffect(1622);
         sub_02060B64(param0, v0, 0x5e, 2);
     } else {
         sub_02060B64(param0, v0, 0x5c, 2);
@@ -933,7 +933,7 @@ static void sub_0205FDC8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                sub_02005748(1537);
+                Sound_PlayEffect(1537);
             }
 
             sub_02062994(param1, param2);
@@ -970,7 +970,7 @@ static void sub_0205FDC8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                sub_02005748(1537);
+                Sound_PlayEffect(1537);
             }
 
             sub_02062994(param1, param2);
@@ -1015,7 +1015,7 @@ static void sub_0205FECC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
         } else if (v0 != 0) {
             v1 = 0x1c;
             v2 = 1;
-            sub_02005748(1537);
+            Sound_PlayEffect(1537);
             sub_02062994(param1, param2);
         } else {
             UnkStruct_0205EC34 * v7;
@@ -1041,7 +1041,7 @@ static void sub_0205FECC (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
         } else {
             v1 = 0x1c;
             v2 = 1;
-            sub_02005748(1537);
+            Sound_PlayEffect(1537);
             sub_02062994(param1, param2);
         }
     }
@@ -1062,7 +1062,7 @@ static void sub_0206000C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
         if (v0 != 0) {
             v1 = param8[param2];
             v2 = 1;
-            sub_02005748(1537);
+            Sound_PlayEffect(1537);
             sub_02062994(param1, param9[param2]);
         } else {
             UnkStruct_0205EC34 * v3;
@@ -1089,7 +1089,7 @@ static void sub_0206000C (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
             v1 = param8[param2];
             v2 = 1;
 
-            sub_02005748(1537);
+            Sound_PlayEffect(1537);
             sub_02062994(param1, param9[param2]);
         }
     }
@@ -1199,9 +1199,9 @@ static void sub_02060324 (UnkStruct_0205E884 * param0, u16 param1)
             sub_0205EC78(param0, v1);
 
             if (v1 == 0) {
-                sub_02005748(1564);
+                Sound_PlayEffect(1564);
             } else {
-                sub_02005748(1561);
+                Sound_PlayEffect(1561);
             }
         }
     }
@@ -1388,7 +1388,7 @@ static void sub_02060570 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                sub_02005748(1537);
+                Sound_PlayEffect(1537);
             }
 
             sub_02062994(param1, param2);
@@ -1453,7 +1453,7 @@ static void sub_020606C8 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
         v1 = 1;
 
         if ((v0 & (1 << 3)) == 0) {
-            sub_02005748(1537);
+            Sound_PlayEffect(1537);
         }
 
         sub_02062994(param1, param2);
@@ -1589,7 +1589,7 @@ static void sub_020608E4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                sub_02005748(1537);
+                Sound_PlayEffect(1537);
             }
 
             sub_02062994(param1, param2);
@@ -1608,7 +1608,7 @@ static void sub_020608E4 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
             v2 = 1;
 
             if ((v0 & (1 << 3)) == 0) {
-                sub_02005748(1537);
+                Sound_PlayEffect(1537);
             }
 
             sub_02062994(param1, param2);
@@ -1672,7 +1672,7 @@ static void sub_02060AA0 (UnkStruct_0205E884 * param0, UnkStruct_02061AB4 * para
         v2 = sub_02065838(param2, 0x1c);
 
         if ((v0 & (1 << 3)) == 0) {
-            sub_02005748(1537);
+            Sound_PlayEffect(1537);
         }
 
         sub_02062994(param1, param2);
@@ -2300,7 +2300,7 @@ u32 sub_0206147C (UnkStruct_0205E884 * param0, u16 param1, u16 param2, int param
             v0 = 0x1c;
 
             if ((v4 & (1 << 3)) == 0) {
-                sub_02005748(1537);
+                Sound_PlayEffect(1537);
             }
         } else {
             switch (param3) {

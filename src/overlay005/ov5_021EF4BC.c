@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02013B10_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay005/struct_ov5_021EF3BC_decl.h"
 #include "overlay005/struct_ov5_021EF43C_decl.h"
 
@@ -23,14 +23,14 @@ typedef struct UnkStruct_ov5_021EF4F8_t {
     UnkStruct_ov5_021EF3BC * unk_310;
     UnkStruct_ov5_021EF43C * unk_314;
     BOOL unk_318;
-    UnkStruct_0201CD38 * unk_31C;
-    UnkStruct_0201CD38 * unk_320;
-    UnkStruct_0201CD38 * unk_324;
+    SysTask * unk_31C;
+    SysTask * unk_320;
+    SysTask * unk_324;
 } UnkStruct_ov5_021EF4F8;
 
-static void ov5_021EF5A8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov5_021EF6B0(UnkStruct_0201CD38 * param0, void * param1);
-static void ov5_021EF6E4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov5_021EF5A8(SysTask * param0, void * param1);
+static void ov5_021EF6B0(SysTask * param0, void * param1);
+static void ov5_021EF6E4(SysTask * param0, void * param1);
 static void ov5_021EF634(UnkStruct_ov5_021EF4F8 * param0);
 static void ov5_021EF66C(u16 * param0, int param1, int param2);
 static void ov5_021EF6C0(UnkStruct_ov5_021EF43C * param0, void * param1);
@@ -67,7 +67,7 @@ void ov5_021EF518 (UnkStruct_ov5_021EF4F8 * param0)
     GF_ASSERT(param0->unk_00 == 0);
 
     param0->unk_314 = ov5_021EF418(param0->unk_310, ov5_021EF6C0, param0);
-    param0->unk_31C = sub_0200D9E8(ov5_021EF5A8, param0, 1024);
+    param0->unk_31C = SysTask_Start(ov5_021EF5A8, param0, 1024);
     param0->unk_320 = sub_0200DA04(ov5_021EF6B0, param0, 1024);
     param0->unk_324 = sub_0200DA04(ov5_021EF6E4, param0, 1024);
 
@@ -77,10 +77,10 @@ void ov5_021EF518 (UnkStruct_ov5_021EF4F8 * param0)
     param0->unk_00 = 1;
     param0->unk_08 = 0;
 
-    sub_02005748(1552);
+    Sound_PlayEffect(1552);
 }
 
-static void ov5_021EF5A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021EF5A8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021EF4F8 * v0 = param1;
     u16 * v1;
@@ -161,7 +161,7 @@ static void ov5_021EF66C (u16 * param0, int param1, int param2)
     }
 }
 
-static void ov5_021EF6B0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021EF6B0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021EF4F8 * v0 = param1;
 
@@ -184,7 +184,7 @@ static void ov5_021EF6CC (UnkStruct_ov5_021EF4F8 * param0)
     }
 }
 
-static void ov5_021EF6E4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021EF6E4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021EF4F8 * v0 = param1;
     ov5_021EF6F0(v0);
@@ -203,13 +203,13 @@ static void ov5_021EF710 (UnkStruct_ov5_021EF4F8 * param0)
     ov5_021EF43C(param0->unk_314);
     param0->unk_314 = NULL;
 
-    sub_0200DA58(param0->unk_31C);
+    SysTask_Done(param0->unk_31C);
     param0->unk_31C = NULL;
 
-    sub_0200DA58(param0->unk_320);
+    SysTask_Done(param0->unk_320);
     param0->unk_320 = NULL;
 
-    sub_0200DA58(param0->unk_324);
+    SysTask_Done(param0->unk_324);
     param0->unk_324 = NULL;
     param0->unk_00 = 0;
 }

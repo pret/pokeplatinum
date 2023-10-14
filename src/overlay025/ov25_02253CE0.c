@@ -6,7 +6,7 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
@@ -92,12 +92,12 @@ typedef struct UnkStruct_ov25_02253CE0_t {
     u32 unk_2C;
     u32 unk_30;
     struct UnkStruct_ov25_02253CE0_t ** unk_34;
-    UnkStruct_0201CD38 * unk_38;
+    SysTask * unk_38;
     UnkFuncPtr_ov25_02254238 unk_3C;
     UnkFuncPtr_ov25_02254238_1 unk_40;
     UnkFuncPtr_ov25_02254274 unk_44;
     void * unk_48;
-    UnkStruct_02018340 * unk_4C;
+    BGL * unk_4C;
     NNSG2dOamManagerInstance * unk_50;
     SaveData * unk_54;
     UnkStruct_02056B24 * unk_58;
@@ -108,8 +108,8 @@ typedef struct UnkStruct_ov25_02253CE0_t {
 static UnkStruct_ov25_02253CE0 * ov25_02253CE0(void);
 static BOOL ov25_02253DDC(UnkStruct_ov25_02253CE0 * param0);
 static void ov25_02253E20(UnkStruct_ov25_02253CE0 * param0);
-static void ov25_02253E40(UnkStruct_0201CD38 * param0, void * param1);
-static void ov25_02253E94(UnkStruct_0201CD38 * param0, void * param1);
+static void ov25_02253E40(SysTask * param0, void * param1);
+static void ov25_02253E94(SysTask * param0, void * param1);
 static void ov25_02253E9C(UnkStruct_ov25_02253CE0 * param0, u32 param1);
 static void ov25_02253EA4(UnkStruct_ov25_02253CE0 * param0);
 static void ov25_02253F2C(UnkStruct_ov25_02253CE0 * param0);
@@ -165,7 +165,7 @@ static UnkStruct_ov25_02253CE0 * ov25_02253CE0 (void)
     return sub_0203D158();
 }
 
-void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, UnkStruct_02018340 * param3, NNSG2dOamManagerInstance * param4)
+void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4)
 {
     UnkStruct_ov25_02253CE0 * v0;
 
@@ -188,9 +188,9 @@ void ov25_02253CE8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** para
             sub_0201E450(4);
 
             v0->unk_34 = param1;
-            v0->unk_38 = sub_0200D9E8(ov25_02253E94, v0, 4);
+            v0->unk_38 = SysTask_Start(ov25_02253E94, v0, 4);
 
-            sub_0200D9E8(ov25_02253E40, v0, 0);
+            SysTask_Start(ov25_02253E40, v0, 0);
         }
     }
 }
@@ -272,14 +272,14 @@ static BOOL ov25_02253DDC (UnkStruct_ov25_02253CE0 * param0)
 
 static void ov25_02253E20 (UnkStruct_ov25_02253CE0 * param0)
 {
-    sub_0200DA58(param0->unk_38);
+    SysTask_Done(param0->unk_38);
 
     ov25_022542C8(param0);
     ov25_022541BC(param0);
     ov25_02254754(param0->unk_1C);
 }
 
-static void ov25_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov25_02253E40 (SysTask * param0, void * param1)
 {
     static void(*const v0[])(UnkStruct_ov25_02253CE0 *) = {
         ov25_02253EA4,
@@ -304,13 +304,13 @@ static void ov25_02253E40 (UnkStruct_0201CD38 * param0, void * param1)
 
         ov25_02253E20(v1);
         Heap_FreeToHeap(v1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         Heap_Destroy(7);
         Heap_Destroy(8);
     }
 }
 
-static void ov25_02253E94 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov25_02253E94 (SysTask * param0, void * param1)
 {
     UnkStruct_ov25_02253CE0 * v0 = param1;
 
@@ -655,7 +655,7 @@ static void ov25_022542E4 (u32 param0, u32 param1, u32 param2, void * param3)
     if (param0 == 2) {
         if (ov25_0225450C(v0)) {
             if (param2 == 1) {
-                sub_02005748(1646);
+                Sound_PlayEffect(1646);
             }
         }
     } else {
@@ -737,7 +737,7 @@ void ov25_02254424 (u32 param0)
     UnkStruct_ov25_02253CE0 * v0 = ov25_02253CE0();
 
     if ((v0->unk_05 == 0) && (ov25_0225450C(v0) == 0)) {
-        sub_02005748(param0);
+        Sound_PlayEffect(param0);
     }
 }
 

@@ -46,7 +46,7 @@
 #include "overlay016/ov16_0226485C.h"
 
 void BattleSystem_InitBattleMon(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void ov16_02251C94(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void BattleSystem_ReloadPokemon(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
 void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
 BOOL ov16_02251EF4(BattleContext * param0);
@@ -143,7 +143,7 @@ void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * para
 u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
 BOOL Battler_BehindSubstitute(BattleContext * param0, int param1);
 BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
-BOOL ov16_02259B38(BattleSystem * param0, Pokemon * param1);
+BOOL BattleSystem_PokemonIsOT(BattleSystem * param0, Pokemon * param1);
 BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);
 void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
 void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
@@ -285,7 +285,7 @@ void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleC
     }
 }
 
-void ov16_02251C94 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+void BattleSystem_ReloadPokemon (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     Pokemon * v0 = BattleSystem_PartyPokemon(param0, param2, param3);
     int v1;
@@ -6128,7 +6128,7 @@ BOOL BattleSystem_TrainerIsOT (BattleSystem * param0, BattleContext * param1)
     return 0;
 }
 
-BOOL ov16_02259B38 (BattleSystem * param0, Pokemon * param1)
+BOOL BattleSystem_PokemonIsOT (BattleSystem * param0, Pokemon * param1)
 {
     TrainerInfo * v0;
     u32 v1;

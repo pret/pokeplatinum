@@ -22,15 +22,15 @@
 #include <dwc.h>
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     SaveData * unk_04;
     UnkStruct_020279FC * unk_08;
     UnkStruct_0200B358 * unk_0C;
     MessageLoader * unk_10;
     Strbuf* unk_14;
-    UnkStruct_0205AA50 unk_18;
-    UnkStruct_0205AA50 unk_28[3];
-    UnkStruct_0205AA50 unk_58;
+    Window unk_18;
+    Window unk_28[3];
+    Window unk_58;
     int unk_68;
     int unk_6C;
     int unk_70;
@@ -75,7 +75,7 @@ typedef struct {
     int unk_26D4;
     DWCErrorType unk_26D8;
     BOOL (* unk_26DC)(void);
-    UnkStruct_0205AA50 unk_26E0;
+    Window unk_26E0;
     UnkUnion_ov97_0222D2B0 unk_26F0;
     void (* unk_2A48)(void *);
     int unk_2A4C;

@@ -15,7 +15,7 @@
 
 #include <nnsys.h>
 
-void ov25_02253CE8(UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, UnkStruct_02018340 * param3, NNSG2dOamManagerInstance * param4);
+void ov25_02253CE8(UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4);
 void ov25_02253D5C(UnkStruct_ov25_02253CE0 * param0);
 BOOL ov25_02253D70(UnkStruct_ov25_02253CE0 * param0);
 void ov25_02253D7C(UnkStruct_ov25_02253CE0 * param0, int param1, u32 param2);

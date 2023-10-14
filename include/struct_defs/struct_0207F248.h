@@ -7,7 +7,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
@@ -24,9 +24,9 @@
 #include "overlay118/struct_ov118_021D0FDC_decl.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[37];
-    UnkStruct_0205AA50 unk_254[1];
+    BGL * unk_00;
+    Window unk_04[37];
+    Window unk_254[1];
     u16 unk_264[96];
     u16 unk_324[96];
     u16 unk_3E4[96];
@@ -35,7 +35,7 @@ typedef struct {
     UnkStruct_0200C6E4 * unk_5A8;
     UnkStruct_0200C704 * unk_5AC;
     UnkStruct_02022550 * unk_5B0[29];
-    UnkStruct_0200D0F4 * unk_624[29];
+    CellActorData * unk_624[29];
     UnkStruct_0200C440 * unk_698;
     MessageLoader * unk_69C;
     UnkStruct_0200B358 * unk_6A0;

@@ -8,7 +8,7 @@
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -49,27 +49,27 @@ static const u8 Unk_ov62_022488A8[][5] = {
 void ov62_022300D8 (UnkStruct_0208C06C * param0)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
 
     if (param0->unk_00 == 0) {
         sub_020070E8(v0, 67, v1, 1, 0, 0, 0, 102);
         sub_020070E8(v0, 67, v1, 5, 0, 0, 0, 102);
         sub_0200710C(v0, 69, v1, 5, 0, 0, 0, 102);
-        sub_02003050(v4, 162, ov62_02231710(param0, 3), 102, 0, 0x20 * (8 + 1), 0);
-        sub_02003050(v4, 162, ov62_02231710(param0, 3), 102, 1, 0x20 * (8 + 1), 0);
-        sub_02003050(v4, 162, ov62_02231710(param0, 0), 102, 0, 0x20, 14 * 16);
-        sub_02003050(v4, 162, ov62_02231710(param0, 0), 102, 1, 0x20, 14 * 16);
+        PaletteSys_LoadPalette(v4, 162, ov62_02231710(param0, 3), 102, 0, 0x20 * (8 + 1), 0);
+        PaletteSys_LoadPalette(v4, 162, ov62_02231710(param0, 3), 102, 1, 0x20 * (8 + 1), 0);
+        PaletteSys_LoadPalette(v4, 162, ov62_02231710(param0, 0), 102, 0, 0x20, 14 * 16);
+        PaletteSys_LoadPalette(v4, 162, ov62_02231710(param0, 0), 102, 1, 0x20, 14 * 16);
     } else {
         sub_020070E8(v0, 54, v1, 1, 0, 0, 0, 102);
         sub_020070E8(v0, 54, v1, 5, 0, 0, 0, 102);
         sub_0200710C(v0, 55, v1, 5, 0, 0, 0, 102);
-        sub_02003050(v4, 162, 53, 102, 0, 0x20 * (8 + 1), 0);
-        sub_02003050(v4, 162, 53, 102, 1, 0x20 * (8 + 1), 0);
-        sub_02003050(v4, 162, 52, 102, 0, 0x20, 14 * 16);
-        sub_02003050(v4, 162, 52, 102, 1, 0x20, 14 * 16);
+        PaletteSys_LoadPalette(v4, 162, 53, 102, 0, 0x20 * (8 + 1), 0);
+        PaletteSys_LoadPalette(v4, 162, 53, 102, 1, 0x20 * (8 + 1), 0);
+        PaletteSys_LoadPalette(v4, 162, 52, 102, 0, 0x20, 14 * 16);
+        PaletteSys_LoadPalette(v4, 162, 52, 102, 1, 0x20, 14 * 16);
     }
 
     sub_0200710C(v0, 70, v1, 5, 0, 0, 0, 102);
@@ -80,10 +80,10 @@ void ov62_022300D8 (UnkStruct_0208C06C * param0)
 void ov62_022302A8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
     int v5 = 2;
 
     if (param2) {
@@ -97,10 +97,10 @@ void ov62_022302A8 (UnkStruct_0208C06C * param0, int param1, BOOL param2)
 void ov62_022302F0 (UnkStruct_0208C06C * param0, int param1)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
     int v5 = 1;
 
     sub_020070E8(v0, 45, v1, param1, 0, 0, 0, 102);
@@ -110,10 +110,10 @@ void ov62_022302F0 (UnkStruct_0208C06C * param0, int param1)
 void ov62_02230330 (UnkStruct_0208C06C * param0)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
 
     if (param0->unk_00 == 0) {
         sub_0200CDC4(v4, 2, v2, v3, v0, ov62_02231710(param0, 2), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 9999);
@@ -136,7 +136,7 @@ void ov62_02230464 (UnkStruct_0208C06C * param0)
     UnkStruct_ov104_0223F9E0 v0;
     UnkStruct_0200C6E4 * v1 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v2 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v3 = param0->unk_14.unk_14;
+    PaletteSys * v3 = param0->unk_14.unk_14;
 
     v0.unk_00 = 0;
     v0.unk_02 = 0;
@@ -248,17 +248,17 @@ void ov62_0223069C (UnkStruct_0208C06C * param0)
     int v0;
 
     for (v0 = 0; v0 < ((3 * 2)); v0++) {
-        sub_0200DA58(param0->unk_6F8[v0].unk_08);
+        SysTask_Done(param0->unk_6F8[v0].unk_08);
     }
 }
 
 void ov62_022306B8 (UnkStruct_0208C06C * param0)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
     int v5;
     int v6;
     int v7;
@@ -355,7 +355,7 @@ void ov62_0223088C (UnkStruct_0208C06C * param0)
     UnkStruct_ov104_0223F9E0 v2;
     UnkStruct_0200C6E4 * v3 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v4 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v5 = param0->unk_14.unk_14;
+    PaletteSys * v5 = param0->unk_14.unk_14;
 
     v2.unk_00 = 42;
     v2.unk_02 = (25 + (36 * 4) + (16 * (5 - (param0->unk_534.unk_1AC)))) + 32;
@@ -510,7 +510,7 @@ void ov62_02230B9C (UnkStruct_0208C06C * param0, BOOL param1)
     }
 }
 
-void ov62_02230C28 (UnkStruct_0201CD38 * param0, void * param1)
+void ov62_02230C28 (SysTask * param0, void * param1)
 {
     UnkStruct_ov62_02230C28 * v0 = param1;
 
@@ -624,12 +624,12 @@ void ov62_02230C28 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void ov62_02230E68 (UnkStruct_0200D0F4 * param0, s16 param1, s16 param2)
+void ov62_02230E68 (CellActorData * param0, s16 param1, s16 param2)
 {
     sub_0200D500(param0, param1, param2, (256 * FX32_ONE));
 }
 
-void ov62_02230E74 (UnkStruct_0200D0F4 * param0, s16 * param1, s16 * param2)
+void ov62_02230E74 (CellActorData * param0, s16 * param1, s16 * param2)
 {
     sub_0200D5A0(param0, param1, param2, (256 * FX32_ONE));
 }
@@ -641,7 +641,7 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
     Strbuf* v3;
     int v4;
     MessageLoader * v5;
-    UnkStruct_0205AA50 v6;
+    Window v6;
     UnkStruct_ov62_022307C0_sub1 * v7[2];
     int v8[2] = {NNS_G2D_VRAM_TYPE_2DMAIN, NNS_G2D_VRAM_TYPE_2DSUB};
     int v9[2] = {9999, 10000};
@@ -676,7 +676,7 @@ void ov62_02230E80 (UnkStruct_0208C06C * param0)
             v7[v11]->unk_14 = sub_02012B60(&v2, v7[v11]->unk_18);
 
             sub_02012AC0(v7[v11]->unk_14, (2 - 1));
-            sub_0201A8FC(&v6);
+            BGL_DeleteWindow(&v6);
             sub_020129D0(v7[v11]->unk_14, 0);
         }
     }
@@ -686,7 +686,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
 {
     Strbuf* v0;
     MessageLoader * v1;
-    UnkStruct_0205AA50 v2;
+    Window v2;
     UnkStruct_0200B358 * v3;
     Strbuf* v4;
     Strbuf* v5;
@@ -734,7 +734,7 @@ void ov62_02230FC8 (UnkStruct_0208C06C * param0, UnkStruct_ov62_022307C0_sub1 * 
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param1->unk_14, param1->unk_18, &v2, 102);
     Strbuf_Free(v0);
-    sub_0201A8FC(&v2);
+    BGL_DeleteWindow(&v2);
 }
 
 void ov62_0223113C (UnkStruct_0208C06C * param0)
@@ -761,7 +761,7 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
     Strbuf* v3;
     int v4;
     MessageLoader * v5;
-    UnkStruct_0205AA50 v6;
+    Window v6;
     int v7 = 9999;
 
     if (param2 == NNS_G2D_VRAM_TYPE_2DSUB) {
@@ -793,7 +793,7 @@ void ov62_0223118C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
     param0->unk_0C = sub_02012B60(&v2, param0->unk_10);
 
     sub_02012AC0(param0->unk_0C, (2 - 1));
-    sub_0201A8FC(&v6);
+    BGL_DeleteWindow(&v6);
     sub_020129D0(param0->unk_0C, 0);
 }
 
@@ -801,7 +801,7 @@ void ov62_0223124C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
 {
     Strbuf* v0;
     MessageLoader * v1;
-    UnkStruct_0205AA50 v2;
+    Window v2;
 
     v1 = param1->unk_34;
     v0 = MessageLoader_GetNewStrbuf(v1, param2);
@@ -811,7 +811,7 @@ void ov62_0223124C (UnkStruct_ov62_022312B0 * param0, UnkStruct_ov62_0223118C * 
     sub_0201D78C(&v2, 0, v0, 0, 0, 0xff, ((u32)(((14 & 0xff) << 16) | ((13 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     sub_02012BE0(param0->unk_0C, param0->unk_10, &v2, 102);
     Strbuf_Free(v0);
-    sub_0201A8FC(&v2);
+    BGL_DeleteWindow(&v2);
 }
 
 void ov62_022312B0 (UnkStruct_ov62_022312B0 * param0)
@@ -824,10 +824,10 @@ void ov62_022312B0 (UnkStruct_ov62_022312B0 * param0)
 void ov62_022312CC (UnkStruct_0208C06C * param0, int param1)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
 
     sub_0200CC3C(v2, v3, v0, 49, 0, param1, 11924);
     sub_0200CE24(v2, v3, v0, 26, 0, 11924);
@@ -837,10 +837,10 @@ void ov62_022312CC (UnkStruct_0208C06C * param0, int param1)
 void ov62_0223131C (UnkStruct_0208C06C * param0, int param1)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
 
     sub_0200CC3C(v2, v3, v0, 122, 0, param1, 11924);
     sub_0200CE24(v2, v3, v0, 123, 0, 11924);
@@ -850,10 +850,10 @@ void ov62_0223131C (UnkStruct_0208C06C * param0, int param1)
 void ov62_0223136C (UnkStruct_0208C06C * param0, int param1)
 {
     NARC * v0 = param0->unk_14.unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_14.unk_10;
+    BGL * v1 = param0->unk_14.unk_10;
     UnkStruct_0200C6E4 * v2 = param0->unk_14.unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_14.unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_14.unk_14;
+    PaletteSys * v4 = param0->unk_14.unk_14;
     int v5 = 30;
     int v6 = 32;
     int v7 = 31;
@@ -870,9 +870,9 @@ void ov62_022313BC (UnkStruct_0208C06C * param0)
     sub_0200D0A0(param0->unk_14.unk_08, 11924);
 }
 
-UnkStruct_0200D0F4 * ov62_022313E0 (UnkStruct_0208C06C * param0, int param1)
+CellActorData * ov62_022313E0 (UnkStruct_0208C06C * param0, int param1)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
 
     v1.unk_00 = 128;

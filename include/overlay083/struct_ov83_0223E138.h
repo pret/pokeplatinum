@@ -10,9 +10,9 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_0205AA50 * unk_08;
-    UnkStruct_0205AA50 * unk_0C;
+    BGL * unk_04;
+    Window * unk_08;
+    Window * unk_0C;
     int unk_10;
     int unk_14;
     UnkStruct_ov83_0223DEA0 * unk_18;

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_defs/struct_0201AE08.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
@@ -17,10 +17,10 @@
 
 typedef struct {
     UnkStruct_ov19_021D61B0 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     UnkStruct_020218BC * unk_08;
     const UnkStruct_ov19_021D4DF0 * unk_0C;
-    UnkStruct_0205AA50 * unk_10;
+    Window * unk_10;
     void * unk_14;
     NNSG2dCharacterData * unk_18;
     void * unk_1C;
@@ -35,7 +35,7 @@ typedef struct {
     UnkStruct_02022550 * unk_48[18];
     UnkStruct_02022550 * unk_90;
     u32 unk_94[18];
-    UnkStruct_0201CD38 * unk_DC;
+    SysTask * unk_DC;
     s32 unk_E0;
     u16 unk_E4[8][48];
     u8 unk_3E4[18][1024];

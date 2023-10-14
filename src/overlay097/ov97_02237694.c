@@ -57,7 +57,7 @@
 #include "overlay097/ov97_02237694.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     BOOL unk_04;
     int unk_08;
     int unk_0C;
@@ -105,7 +105,7 @@ void * ov97_022376C4 (UnkStruct_020067E8 * param0, int param1, int param2, int p
     return v0;
 }
 
-void ov97_022376FC (UnkStruct_02018340 * param0, int param1, u8 param2, u32 param3, u32 param4)
+void ov97_022376FC (BGL * param0, int param1, u8 param2, u32 param3, u32 param4)
 {
     UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -179,7 +179,7 @@ void ov97_022377F0 (int * param0)
     }
 }
 
-void ov97_02237808 (UnkStruct_ov97_02237808 * param0, UnkStruct_0205AA50 * param1, int param2, int param3, int param4, int param5)
+void ov97_02237808 (UnkStruct_ov97_02237808 * param0, Window * param1, int param2, int param3, int param4, int param5)
 {
     memset(param0, 0, sizeof(UnkStruct_ov97_02237808));
 
@@ -232,7 +232,7 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
         param0->unk_4C = param1;
 
         if (param0->unk_08 == 1) {
-            sub_0201ADA4(param0->unk_10, param0->unk_48);
+            BGL_FillWindow(param0->unk_10, param0->unk_48);
         }
 
         if (param0->unk_4C != -1) {
@@ -272,12 +272,12 @@ static int ov97_02237870 (UnkStruct_ov97_02237808 * param0, int param1)
     return v0;
 }
 
-int ov97_0223795C (UnkStruct_02018340 * param0, UnkStruct_ov97_02237808 * param1, int param2, int param3, int param4)
+int ov97_0223795C (BGL * param0, UnkStruct_ov97_02237808 * param1, int param2, int param3, int param4)
 {
     int v0;
 
     if (param1->unk_10->unk_00 == NULL) {
-        sub_0201A7E8(param0, param1->unk_10, param1->unk_2C, param2, param3, param1->unk_18, param1->unk_1C, param1->unk_30, param1->unk_28);
+        BGL_AddWindow(param0, param1->unk_10, param1->unk_2C, param2, param3, param1->unk_18, param1->unk_1C, param1->unk_30, param1->unk_28);
         v0 = ov97_02237870(param1, param4);
     } else {
         if (param2 != -1) {
@@ -293,7 +293,7 @@ int ov97_0223795C (UnkStruct_02018340 * param0, UnkStruct_ov97_02237808 * param1
 
     if (param1->unk_04 == 1) {
         if (param1->unk_00 == 0) {
-            sub_0200DC48(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
+            Window_Show(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
         } else {
             sub_0200E060(param1->unk_10, 0, param1->unk_38, param1->unk_3C);
         }
@@ -670,7 +670,7 @@ static void ov97_02238174 (void * param0)
     sub_02006E84(116, 29, 4, 16 * 2 * 8, 16 * 2 * 6, v0->unk_08);
 }
 
-void ov97_02238194 (UnkStruct_02018340 * param0, UnkStruct_0202DF40 * param1)
+void ov97_02238194 (BGL * param0, UnkStruct_0202DF40 * param1)
 {
     int v0, v1;
     UnkStruct_ov97_0223F550 * v2 = &Unk_ov97_0223F550;
@@ -794,7 +794,7 @@ void ov97_022383C4 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     switch (param2) {
     case 0:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         break;
     case 1:
         break;

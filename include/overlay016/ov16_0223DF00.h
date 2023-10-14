@@ -39,8 +39,8 @@
 #define ENEMY_IN_SLOT_RIGHT 0
 #define ENEMY_IN_SLOT_LEFT  2
 
-UnkStruct_02018340 * ov16_0223DF00(BattleSystem * param0);
-UnkStruct_0205AA50 * ov16_0223DF04(BattleSystem * param0, int param1);
+BGL * BattleSystem_BGL(BattleSystem * param0);
+Window * BattleSystem_Window(BattleSystem * param0, int param1);
 u32 BattleSystem_BattleType(BattleSystem * param0);
 BattleContext * BattleSystem_Context(BattleSystem * param0);
 BattlerData * BattleSystem_BattlerData(BattleSystem * param0, int param1);
@@ -85,9 +85,9 @@ UnkStruct_ov16_0226D160 * ov16_0223E034(BattleSystem * param0, UnkEnum_ov16_0226
 void ov16_0223E040(BattleSystem * param0, UnkEnum_ov16_0226D194 param1, UnkStruct_ov16_0226D160 * param2);
 UnkStruct_0200C440 * ov16_0223E04C(BattleSystem * param0);
 UnkStruct_0200C440 * ov16_0223E054(BattleSystem * param0);
-MessageLoader * ov16_0223E05C(BattleSystem * param0);
+MessageLoader * BattleSystem_MessageLoader(BattleSystem * param0);
 MessageLoader * ov16_0223E060(BattleSystem * param0);
-UnkStruct_02002F38 * ov16_0223E064(BattleSystem * param0);
+PaletteSys * BattleSystem_PaletteSys(BattleSystem * param0);
 UnkStruct_02026324 * ov16_0223E068(BattleSystem * param0);
 u8 * ov16_0223E06C(BattleSystem * param0);
 u8 * ov16_0223E074(BattleSystem * param0);
@@ -157,7 +157,7 @@ UnkStruct_020279FC * ov16_0223EDA4(BattleSystem * param0);
  */
 BOOL BattleSystem_AnimationsOn(BattleSystem *battleSys);
 int ov16_0223EDE0(BattleSystem * param0);
-u8 ov16_0223EDF0(BattleSystem * param0);
+u8 BattleSystem_TextSpeed(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);
 UnkStruct_02015F84 * ov16_0223EE28(BattleSystem * param0);
 UnkStruct_0202CC84 * ov16_0223EE30(BattleSystem * param0, int param1);
@@ -222,14 +222,14 @@ u8 ov16_0223F810(BattleSystem * param0, int param1);
 void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
-void ov16_0223F8DC(BattleSystem * param0, int param1);
+void BattleSystem_SetGaugePriority(BattleSystem * param0, int param1);
 u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
 void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL ov16_0223F9E0(BattleSystem * param0, int param1);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
-u8 ov16_0223FB24(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
-u8 ov16_0223FB78(BattleSystem * param0, UnkStruct_0205AA50 * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
+u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
+u8 BattleMessage_PrintToWindow(BattleSystem * param0, Window * param1, MessageLoader * param2, BattleMessage * param3, int param4, int param5, int param6, int param7, int param8);
 
 #endif // POKEPLATINUM_OV16_0223DF00_H

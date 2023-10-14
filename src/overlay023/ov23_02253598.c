@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
@@ -45,7 +45,7 @@ typedef int (* UnkFuncPtr_ov23_022576EC)(const UnkStruct_0202855C *);
 typedef struct {
     UnkFuncPtr_ov23_02253834 unk_00;
     void * unk_04;
-    UnkStruct_0205AA50 unk_08;
+    Window unk_08;
     UnkStruct_02013A04 * unk_18;
     UnkStruct_0200112C * unk_1C;
     UnkFuncPtr_ov23_0224DCB8 unk_20;
@@ -55,7 +55,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov23_02253598_t {
     UnkStruct_ov23_022537D4 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     SaveData * unk_08;
     UnkStruct_0202855C * unk_0C;
     UnkStruct_0202855C * unk_10;
@@ -64,7 +64,7 @@ typedef struct UnkStruct_ov23_02253598_t {
 };
 
 static UnkStruct_ov23_02253598 * Unk_ov23_022577BC = NULL;
-static void ov23_022537D4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov23_022537D4(SysTask * param0, void * param1);
 
 void ov23_02253598 (UnkStruct_ov23_02253598 * param0, UnkStruct_0202855C * param1, SaveData * param2)
 {
@@ -120,7 +120,7 @@ static UnkFuncPtr_ov23_022576EC Unk_ov23_022576EC[] = {
     sub_020295B8
 };
 
-asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3)
+asm static void ov23_0225360C (Window * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x20
@@ -322,13 +322,13 @@ asm static void ov23_0225360C (UnkStruct_0205AA50 * param0, MessageLoader * para
     nop
 }
 
-static void ov23_022537D4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_022537D4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_022537D4 * v0 = param1;
 
-    sub_0200DC9C(&v0->unk_08, 0);
+    Window_Clear(&v0->unk_08, 0);
     sub_0201ACF4(&v0->unk_08);
-    sub_0201A8FC(&v0->unk_08);
+    BGL_DeleteWindow(&v0->unk_08);
 
     {
         UnkFuncPtr_ov23_02253834 v1 = v0->unk_00;
@@ -339,22 +339,22 @@ static void ov23_022537D4 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     Heap_FreeToHeap(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 
     Unk_ov23_022577BC->unk_04 = NULL;
     Unk_ov23_022577BC->unk_00 = NULL;
 }
 
-static void ov23_0225381C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0225381C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_022537D4 * v0 = param1;
 
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
         ov23_022537D4(param0, param1);
     }
 }
 
-void ov23_02253834 (UnkStruct_02018340 * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834 param2, void * param3, BOOL param4)
+void ov23_02253834 (BGL * param0, TrainerInfo * param1, UnkFuncPtr_ov23_02253834 param2, void * param3, BOOL param4)
 {
     UnkStruct_0202855C * v0;
     MessageLoader * v1;
@@ -367,11 +367,11 @@ void ov23_02253834 (UnkStruct_02018340 * param0, TrainerInfo * param1, UnkFuncPt
     v4->unk_00 = param2;
     v4->unk_04 = param3;
 
-    sub_0201A7E8(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
-    sub_0200DC48(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    BGL_AddWindow(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
+    Window_Show(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     v1 = MessageLoader_Init(0, 26, 640, 4);
-    sub_0201ADA4(&v4->unk_08, 15);
+    BGL_FillWindow(&v4->unk_08, 15);
 
     if (param4) {
         v0 = Unk_ov23_022577BC->unk_0C;
@@ -382,9 +382,9 @@ void ov23_02253834 (UnkStruct_02018340 * param0, TrainerInfo * param1, UnkFuncPt
     ov23_0225360C(&v4->unk_08, v1, param1, v0);
 
     sub_0201A9A4(&v4->unk_08);
-    sub_02005748(1533);
+    Sound_PlayEffect(1533);
 
-    Unk_ov23_022577BC->unk_04 = sub_0200D9E8(ov23_0225381C, v4, 10);
+    Unk_ov23_022577BC->unk_04 = SysTask_Start(ov23_0225381C, v4, 10);
     Unk_ov23_022577BC->unk_00 = v4;
 
     MessageLoader_Free(v1);
@@ -474,7 +474,7 @@ void ov23_02253A00 (UnkStruct_0202855C * param0, int param1)
     ov23_02253F40(ov23_022421BC(), param1, 1, ov23_022539F8);
 }
 
-static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
+static void ov23_02253A78 (Window * param0, MessageLoader * param1, TrainerInfo * param2, const UnkStruct_0202855C * param3, const UnkStruct_020298B0 * param4)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -537,7 +537,7 @@ static void ov23_02253A78 (UnkStruct_0205AA50 * param0, MessageLoader * param1, 
     sub_0200B3F0(v0);
 }
 
-void * ov23_02253C64 (UnkStruct_02018340 * param0, TrainerInfo * param1, UnkStruct_020298B0 * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
+void * ov23_02253C64 (BGL * param0, TrainerInfo * param1, UnkStruct_020298B0 * param2, UnkFuncPtr_ov23_02253834 param3, void * param4)
 {
     UnkStruct_0202855C * v0;
     MessageLoader * v1;
@@ -550,16 +550,16 @@ void * ov23_02253C64 (UnkStruct_02018340 * param0, TrainerInfo * param1, UnkStru
     v4->unk_00 = param3;
     v4->unk_04 = param4;
 
-    sub_0201A7E8(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
-    sub_0200DC48(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    BGL_AddWindow(param0, &v4->unk_08, 3, 4, 2, 24, 19, 13, 1);
+    Window_Show(&v4->unk_08, 1, 1024 - (18 + 12) - 9, 11);
 
     v1 = MessageLoader_Init(0, 26, 639, 4);
-    sub_0201ADA4(&v4->unk_08, 15);
+    BGL_FillWindow(&v4->unk_08, 15);
 
     v0 = Unk_ov23_022577BC->unk_0C;
     ov23_02253A78(&v4->unk_08, v1, param1, v0, param2);
 
-    sub_02005748(1533);
+    Sound_PlayEffect(1533);
     sub_0201A9A4(&v4->unk_08);
     MessageLoader_Free(v1);
 
@@ -570,9 +570,9 @@ void ov23_02253D10 (void * param0)
 {
     UnkStruct_ov23_022537D4 * v0 = param0;
 
-    sub_0200DC9C(&v0->unk_08, 0);
+    Window_Clear(&v0->unk_08, 0);
     sub_0201ACF4(&v0->unk_08);
-    sub_0201A8FC(&v0->unk_08);
+    BGL_DeleteWindow(&v0->unk_08);
 
     {
         UnkFuncPtr_ov23_02253834 v1 = v0->unk_00;

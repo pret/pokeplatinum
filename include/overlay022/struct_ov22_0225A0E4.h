@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_0202298C * unk_34;
     NNSG2dCharacterData ** unk_38;
     int unk_3C;
-    UnkStruct_02018340 * unk_40;
+    BGL * unk_40;
     UnkStruct_020218BC * unk_44;
     UnkStruct_02009714 * unk_48[4];
     UnkStruct_0200C738 unk_58;

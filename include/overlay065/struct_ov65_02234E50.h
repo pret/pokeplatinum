@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_decls/font_oam.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_decls/struct_02023FCC_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -30,13 +30,13 @@ typedef struct {
     u8 unk_76;
     u8 unk_77;
     BOOL unk_78;
-    UnkStruct_0205AA50 unk_7C[8];
-    UnkStruct_0205AA50 unk_FC[8][2];
-    UnkStruct_0205AA50 unk_1FC;
+    Window unk_7C[8];
+    Window unk_FC[8][2];
+    Window unk_1FC;
     UnkStruct_02009DC8 * unk_20C[4];
     UnkStruct_02022550 * unk_21C[3];
-    UnkStruct_0201EE28 unk_228;
-    UnkStruct_02012CE0 * unk_234;
+    SpriteManagerAllocation unk_228;
+    FontOAM * unk_234;
     u32 unk_238;
     u32 unk_23C;
     u32 unk_240;

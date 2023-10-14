@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
@@ -84,8 +84,8 @@ static void sub_02039814 (void)
 
 void sub_02039834 (int param0, int param1, int param2)
 {
-    UnkStruct_02018340 * v0;
-    UnkStruct_0205AA50 v1;
+    BGL * v0;
+    Window v1;
     MessageLoader * v2;
     Strbuf* v3;
     Strbuf* v4;
@@ -133,7 +133,7 @@ void sub_02039834 (int param0, int param1, int param2)
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();
@@ -160,8 +160,8 @@ void sub_02039834 (int param0, int param1, int param2)
     v5 = sub_0200B358(param0);
 
     sub_0201A8D4(v0, &v1, &Unk_020E5EC8);
-    sub_0201AE78(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    sub_0200DC48(&v1, 0, (512 - 9), 2);
+    BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
+    Window_Show(&v1, 0, (512 - 9), 2);
 
     sub_0200B60C(v5, 0, param2, 5, 2, 1);
     MessageLoader_GetStrbuf(v2, v6, v4);
@@ -175,7 +175,7 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0200F338(1);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
-    sub_0201A8FC(&v1);
+    BGL_DeleteWindow(&v1);
     MessageLoader_Free(v2);
     sub_0200B3F0(v5);
     Heap_FreeToHeap(v0);

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "message.h"
@@ -40,9 +40,9 @@ typedef struct {
     int unk_04;
     SaveData * unk_08;
     TrainerInfo * unk_0C;
-    UnkStruct_02018340 * unk_10;
-    UnkStruct_0205AA50 unk_14;
-    UnkStruct_0205AA50 unk_24;
+    BGL * unk_10;
+    Window unk_14;
+    Window unk_24;
     MessageLoader * unk_34;
     UnkStruct_0200B358 * unk_38;
     s16 unk_3C;
@@ -147,7 +147,7 @@ int ov102_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 4:
-        if ((((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((coresys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) || (coresys.touchInput)) {
+        if ((((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((gCoreSys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) || (gCoreSys.touchInput)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }
@@ -321,18 +321,18 @@ static void ov102_021D1174 (UnkStruct_ov102_021D0F8C * param0)
     v0.unk_00 = 0;
 
     sub_0201A8D4(param0->unk_10, &param0->unk_14, &v0);
-    sub_0201AE78(&param0->unk_14, 0, 0, 0, 32 * 8, 24 * 8);
+    BGL_WindowColor(&param0->unk_14, 0, 0, 0, 32 * 8, 24 * 8);
 
     v0.unk_00 = 4;
 
     sub_0201A8D4(param0->unk_10, &param0->unk_24, &v0);
-    sub_0201AE78(&param0->unk_24, 0, 0, 0, 32 * 8, 24 * 8);
+    BGL_WindowColor(&param0->unk_24, 0, 0, 0, 32 * 8, 24 * 8);
 }
 
 static void ov102_021D1204 (UnkStruct_ov102_021D0F8C * param0)
 {
-    sub_0201A8FC(&param0->unk_24);
-    sub_0201A8FC(&param0->unk_14);
+    BGL_DeleteWindow(&param0->unk_24);
+    BGL_DeleteWindow(&param0->unk_14);
     sub_0200B3F0(param0->unk_38);
     MessageLoader_Free(param0->unk_34);
 }

@@ -2,9 +2,9 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_02032188.h"
 #include "struct_defs/struct_020322D8.h"
@@ -58,7 +58,7 @@ typedef struct {
     UnkStruct_02032188 unk_4B0[8];
     UnkStruct_02032188 unk_510;
     UnkStruct_02032188 unk_51C[8];
-    UnkStruct_0201CD38 * unk_57C;
+    SysTask * unk_57C;
     UnkStruct_020322F8 unk_580;
     UnkStruct_020322F8 unk_5A0;
     UnkStruct_02035B6C unk_5C0[8];
@@ -104,7 +104,7 @@ typedef struct {
 } UnkStruct_021C07CC;
 
 static void sub_0203463C(void);
-static void sub_0203498C(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0203498C(SysTask * param0, void * param1);
 static void sub_02034B50(void);
 static void sub_02034DC8(void);
 static void sub_02034F68(void);
@@ -451,7 +451,7 @@ void sub_020348C4 (void)
         sub_02032A70();
 
         Unk_021C07C5 = 0;
-        sub_0200DA58(Unk_021C07CC->unk_57C);
+        SysTask_Done(Unk_021C07CC->unk_57C);
         Unk_021C07CC->unk_57C = NULL;
 
         Heap_FreeToHeap(Unk_021C07CC->unk_490);
@@ -472,7 +472,7 @@ BOOL sub_02034984 (u16 param0)
     return sub_020339E8(param0);
 }
 
-static void sub_0203498C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0203498C (SysTask * param0, void * param1)
 {
     if (Unk_021C07C5) {
         sub_020353CC();
@@ -513,7 +513,7 @@ BOOL sub_020349EC (void)
             Unk_021C07CC->unk_6B5++;
             Unk_021C07C5 = 0;
             sub_020347EC();
-            Unk_021C07CC->unk_654 |= (coresys.unk_44 & 0x7fff);
+            Unk_021C07CC->unk_654 |= (gCoreSys.unk_44 & 0x7fff);
             sub_02035534();
             sub_02034B50();
             Unk_021C07CC->unk_654 &= 0x8000;
@@ -1877,7 +1877,7 @@ void sub_020361BC (MATHRandContext32 * param0)
     RTCTime v2;
 
     sub_0201384C(&v1, &v2);
-    v0 = (((((((u64)v1.year * 16ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 64ULL + v2.minute) * 64ULL + (v2.second + coresys.unk_2C));
+    v0 = (((((((u64)v1.year * 16ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 64ULL + v2.minute) * 64ULL + (v2.second + gCoreSys.unk_2C));
     MATH_InitRand32(param0, v0);
 }
 

@@ -10,7 +10,7 @@
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -42,16 +42,16 @@
 
 struct BattleSystem {
     UnkStruct_0207C690 * unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_0205AA50 * unk_08;
+    BGL * unk_04;
+    Window * unk_08;
     MessageLoader * unk_0C;
     MessageLoader * unk_10;
     UnkStruct_0200B358 * unk_14;
     Strbuf *msgBuffer;
-    UnkStruct_0201CD38 * unk_1C;
-    UnkStruct_0201CD38 * unk_20;
-    UnkStruct_0201CD38 * unk_24;
-    UnkStruct_02002F38 * unk_28;
+    SysTask * unk_1C;
+    SysTask * unk_20;
+    SysTask * unk_24;
+    PaletteSys * unk_28;
     u32 battleType;
     BattleContext *battleCtx;
     BattlerData *battlers[MAX_BATTLERS];
@@ -140,7 +140,7 @@ struct BattleSystem {
     int unk_2464[4];
     u32 unk_2474_0 : 1;
     u32 unk_2474_1 : 31;
-    UnkStruct_0201CD38 *playbackStopButton;
+    SysTask *playbackStopButton;
     u8 unk_247C[4];
 };
 

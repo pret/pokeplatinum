@@ -349,7 +349,7 @@ static int ov21_021DF958 (void * param0, UnkStruct_ov21_021E6B20 * param1, const
             ov21_021E0094(v2, v1);
             ov21_021E0C10(v2);
             v1->unk_04 = 1;
-            sub_02005748(1675);
+            Sound_PlayEffect(1675);
             param1->unk_00++;
         }
         break;
@@ -1058,7 +1058,7 @@ static void ov21_021E0944 (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021D
 
 static void ov21_021E09A4 (UnkStruct_ov21_021DFFF8 * param0, UnkStruct_ov21_021DF858 * param1, const UnkStruct_ov21_021DF844 * param2, int param3, int param4, int param5, int param6, int param7)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3;

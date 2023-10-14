@@ -544,7 +544,7 @@ static const UnkUnion_02022594 Unk_ov113_02260D4C[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, UnkStruct_0205AA50 param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
+void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
 {
     const UnkStruct_ov66_0222E71C * v0;
     TrainerInfo * v1;
@@ -591,7 +591,7 @@ void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, UnkStr
     v3 = Strbuf_Init(v5, 118);
 
     sub_0200C388(param1, v3, v2);
-    sub_0201ADA4(&param2[v7], 0x0);
+    BGL_FillWindow(&param2[v7], 0x0);
 
     if (ov66_0222E924(param3, v8) == 1) {
         v9 = (u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((0 & 0xff) << 0));
@@ -607,7 +607,7 @@ void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, UnkStr
     Heap_FreeToHeap(v1);
 }
 
-void ov113_02260714 (UnkStruct_0205AA50 param0[], u32 param1)
+void ov113_02260714 (Window param0[], u32 param1)
 {
     if (param1 >= 8) {
         GF_ASSERT(0);

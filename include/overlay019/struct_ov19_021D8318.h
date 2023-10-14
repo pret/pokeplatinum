@@ -39,7 +39,7 @@ typedef struct {
     int unk_585C;
     u16 unk_5860[9][16];
     UnkStruct_ov19_021DA384 * unk_58F0;
-    UnkStruct_02018340 * unk_58F4;
+    BGL * unk_58F4;
     const UnkStruct_ov19_021D4DF0 * unk_58F8;
     UnkStruct_ov19_021D61B0 * unk_58FC;
 } UnkStruct_ov19_021D8318;

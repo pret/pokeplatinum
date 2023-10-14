@@ -31,17 +31,26 @@
 /**
  * @brief Pokemon Stats
  */
-enum PokemonStats {
+enum {
     STAT_HP = 0,
     STAT_ATTACK,
     STAT_DEFENSE,
     STAT_SPEED,
     STAT_SPECIAL_ATTACK,
-    STAT_SPECIAL_DEFENSE
+    STAT_SPECIAL_DEFENSE,
+
+    STAT_MAX
 };
 
 #define MAX_PARTY_SIZE  6
 #define NUM_BOOSTABLE_STATS 8
+
+#define MAX_EVS_SINGLE_STAT 255
+#define MAX_EVS_ALL_STATS   510
+
+#define LEARNSET_NO_MOVE_TO_LEARN   0
+#define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
+#define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
 
 enum PokemonGender {
     MON_GENDER_MALE,

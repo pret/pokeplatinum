@@ -14,7 +14,7 @@ typedef struct {
     int unk_14;
     int unk_18;
     UnkStruct_0200C6E4 * unk_1C;
-    UnkStruct_02002F38 * unk_20;
+    PaletteSys * unk_20;
     BattleSystem * unk_24;
 } UnkStruct_ov12_02237728;
 

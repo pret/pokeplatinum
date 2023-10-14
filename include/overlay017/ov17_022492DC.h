@@ -6,8 +6,8 @@
 #include "overlay017/struct_ov17_022492DC_decl.h"
 #include "overlay017/struct_ov17_0224A1EC.h"
 
-void ov17_02249300(UnkStruct_02018340 * param0);
-void ov17_02249358(UnkStruct_02018340 * param0);
+void ov17_02249300(BGL * param0);
+void ov17_02249358(BGL * param0);
 void * ov17_02249380(UnkStruct_02095C48 * param0, UnkStruct_ov17_0224A1EC * param1);
 void ov17_022493A4(UnkStruct_ov17_022492DC * param0);
 void ov17_022493C4(UnkStruct_ov17_022492DC * param0);

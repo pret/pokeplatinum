@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -47,7 +47,7 @@ typedef BOOL (* UnkFuncPtr_ov100_021D5130_2)(void *);
 static void ov100_021D0FA0(UnkStruct_ov100_021D46C8 * param0);
 static void ov100_021D1034(UnkStruct_ov100_021D46C8 * param0);
 static void ov100_021D111C(UnkStruct_ov100_021D46C8 * param0);
-static void ov100_021D1208(UnkStruct_02018340 * param0);
+static void ov100_021D1208(BGL * param0);
 static void ov100_021D13B4(void * param0);
 
 int ov100_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
@@ -72,17 +72,17 @@ int ov100_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     sub_02005454(1);
 
     {
-        UnkStruct_0205AA50 * v1 = &v0->unk_0C.unk_30;
+        Window * v1 = &v0->unk_0C.unk_30;
         int v2 = sub_02027B50(v0->unk_D0->unk_04);
 
         sub_0201A7A0(v1);
-        sub_0201A7E8(v0->unk_0C.unk_0C, v1, 1, 2, 19, 27, 4, 14, 1);
-        sub_0201ADA4(v1, 0xFF);
+        BGL_AddWindow(v0->unk_0C.unk_0C, v1, 1, 2, 19, 27, 4, 14, 1);
+        BGL_FillWindow(v1, 0xFF);
         sub_0201A954(v1);
 
         sub_0200DD0C(v0->unk_0C.unk_0C, 1, 500, 15, v2, 111);
-        sub_02003050(v0->unk_0C.unk_10, 38, sub_0200DD08(v2), 111, 0, 0x20, 15 * 16);
-        sub_02003050(v0->unk_0C.unk_10, 14, 7, 111, 0, 0x20, 14 * 16);
+        PaletteSys_LoadPalette(v0->unk_0C.unk_10, 38, sub_0200DD08(v2), 111, 0, 0x20, 15 * 16);
+        PaletteSys_LoadPalette(v0->unk_0C.unk_10, 14, 7, 111, 0, 0x20, 14 * 16);
         sub_0200E060(v1, 0, 500, 15);
 
         ov100_021D4788(&v0->unk_0C);
@@ -159,10 +159,10 @@ int ov100_021D0F44 (UnkStruct_020067E8 * param0, int * param1)
     sub_020177A4();
     sub_0200E084(&v0->unk_0C.unk_30, 1);
     sub_0201ACF4(&v0->unk_0C.unk_30);
-    sub_0201A8FC(&v0->unk_0C.unk_30);
+    BGL_DeleteWindow(&v0->unk_0C.unk_30);
 
     ov100_021D111C(&v0->unk_0C);
-    coresys.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     sub_02006830(param0);
@@ -280,7 +280,7 @@ static void ov100_021D111C (UnkStruct_ov100_021D46C8 * param0)
     G3X_AlphaBlend(0);
 }
 
-static void ov100_021D1208 (UnkStruct_02018340 * param0)
+static void ov100_021D1208 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
 

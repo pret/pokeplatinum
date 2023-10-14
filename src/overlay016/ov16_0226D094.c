@@ -9,7 +9,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -24,8 +24,8 @@
 #include "overlay016/ov16_0226D094.h"
 
 typedef struct {
-    UnkStruct_0200D0F4 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    CellActorData * unk_00;
+    SysTask * unk_04;
     UnkEnum_ov16_0226D220 unk_08;
     UnkEnum_ov16_0226D194 unk_0C;
     UnkEnum_ov16_0226D194_3 unk_10;
@@ -36,8 +36,8 @@ typedef struct {
 } UnkStruct_ov16_0226D2A0;
 
 typedef struct {
-    UnkStruct_0200D0F4 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    CellActorData * unk_00;
+    SysTask * unk_04;
     UnkEnum_ov16_0226D194 unk_08;
     UnkEnum_ov16_0226D194_3 unk_0C;
     UnkEnum_ov16_0226D194_2 unk_10;
@@ -64,12 +64,12 @@ static void ov16_0226D2A0(UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D19
 static void ov16_0226D3F8(UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D220 param1);
 static void ov16_0226D540(UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnum_ov16_0226D194 param2, UnkEnum_ov16_0226D194_1 param3, UnkEnum_ov16_0226D194_3 param4, int param5, int param6, UnkStruct_0200C6E4 * param7, UnkStruct_0200C704 * param8);
 static void ov16_0226D938(UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum_ov16_0226D194_2 param2, s16 * param3);
-static void ov16_0226D34C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226D434(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226D654(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226D854(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226D99C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov16_0226DAAC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov16_0226D34C(SysTask * param0, void * param1);
+static void ov16_0226D434(SysTask * param0, void * param1);
+static void ov16_0226D654(SysTask * param0, void * param1);
+static void ov16_0226D854(SysTask * param0, void * param1);
+static void ov16_0226D99C(SysTask * param0, void * param1);
+static void ov16_0226DAAC(SysTask * param0, void * param1);
 static int ov16_0226DB04(int param0, UnkEnum_ov16_0226D194 param1);
 static int ov16_0226DB44(int param0);
 static UnkStruct_ov16_0226D160 * ov16_0226D160(void);
@@ -125,7 +125,7 @@ __attribute__((aligned(4))) static const u16 Unk_ov16_02270A1C[] = {
     0x32
 };
 
-void ov16_0226D094 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02002F38 * param2)
+void ov16_0226D094 (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, PaletteSys * param2)
 {
     NARC * v0;
 
@@ -262,12 +262,12 @@ static void ov16_0226D2A0 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D1
     param0->unk_0C = param1;
     param0->unk_10 = param2;
     param0->unk_1A = 0;
-    param0->unk_04 = sub_0200D9E8(ov16_0226D34C, param0, 500);
+    param0->unk_04 = SysTask_Start(ov16_0226D34C, param0, 500);
 
-    sub_02005748(1809);
+    Sound_PlayEffect(1809);
 }
 
-static void ov16_0226D34C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D34C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D2A0 * v0 = param1;
 
@@ -303,7 +303,7 @@ static void ov16_0226D34C (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     default:
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
@@ -322,10 +322,10 @@ static void ov16_0226D3F8 (UnkStruct_ov16_0226D2A0 * param0, UnkEnum_ov16_0226D2
         param0->unk_1B = 0;
     }
 
-    param0->unk_04 = sub_0200D9E8(ov16_0226D434, param0, 500);
+    param0->unk_04 = SysTask_Start(ov16_0226D434, param0, 500);
 }
 
-static void ov16_0226D434 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D434 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D2A0 * v0 = param1;
 
@@ -373,7 +373,7 @@ static void ov16_0226D434 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     default:
         ov16_0223F9F0();
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
@@ -414,14 +414,14 @@ static void ov16_0226D540 (UnkStruct_ov16_0226D540 * param0, s8 * param1, UnkEnu
 
     if (param3 == UnkEnum_ov16_0226D194_1_00) {
         param0->unk_28 = 3 * param5 + 5;
-        param0->unk_04 = sub_0200D9E8(ov16_0226D654, param0, (500 + 1));
+        param0->unk_04 = SysTask_Start(ov16_0226D654, param0, (500 + 1));
     } else {
         param0->unk_28 = 0;
-        param0->unk_04 = sub_0200D9E8(ov16_0226D854, param0, (500 + 1));
+        param0->unk_04 = SysTask_Start(ov16_0226D854, param0, (500 + 1));
     }
 }
 
-static void ov16_0226D654 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D654 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D540 * v0 = param1;
 
@@ -445,7 +445,7 @@ static void ov16_0226D654 (UnkStruct_0201CD38 * param0, void * param1)
 
             if (v0->unk_1C <= v0->unk_24 << 8) {
                 v0->unk_1C = v0->unk_24 << 8;
-                sub_02005748(v0->unk_2A);
+                Sound_PlayEffect(v0->unk_2A);
                 v0->unk_2C++;
             }
 
@@ -517,13 +517,13 @@ static void ov16_0226D654 (UnkStruct_0201CD38 * param0, void * param1)
         break;
     default:
         sub_02021E50(v0->unk_00->unk_00, 0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
 }
 
-static void ov16_0226D854 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D854 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D540 * v0 = param1;
 
@@ -564,7 +564,7 @@ static void ov16_0226D854 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     default:
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
@@ -580,16 +580,16 @@ static void ov16_0226D938 (UnkStruct_ov16_0226D540 * param0, int param1, UnkEnum
         param0->unk_18 = param3;
         param0->unk_28 = 3 * param1;
         param0->unk_2F = 4;
-        param0->unk_04 = sub_0200D9E8(ov16_0226D99C, param0, (500 + 1));
+        param0->unk_04 = SysTask_Start(ov16_0226D99C, param0, (500 + 1));
     } else {
         param0->unk_18 = param3;
         param0->unk_28 = 0;
         param0->unk_2F = 0;
-        param0->unk_04 = sub_0200D9E8(ov16_0226DAAC, param0, (500 + 1));
+        param0->unk_04 = SysTask_Start(ov16_0226DAAC, param0, (500 + 1));
     }
 }
 
-static void ov16_0226D99C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226D99C (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D540 * v0 = param1;
 
@@ -635,13 +635,13 @@ static void ov16_0226D99C (UnkStruct_0201CD38 * param0, void * param1)
     case 100:
     default:
         sub_0200D3EC(v0->unk_00->unk_00, 0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }
 }
 
-static void ov16_0226DAAC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226DAAC (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226D540 * v0 = param1;
 
@@ -658,7 +658,7 @@ static void ov16_0226DAAC (UnkStruct_0201CD38 * param0, void * param1)
     case 100:
     default:
         sub_0200D3EC(v0->unk_00->unk_00, 0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         return;
     }

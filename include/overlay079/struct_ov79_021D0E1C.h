@@ -35,7 +35,7 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     u8 unk_1E;
     u8 unk_1F;
     UnkStruct_0203D9B8 * unk_20;
-    UnkStruct_02018340 * unk_24;
+    BGL * unk_24;
     UnkStruct_020158A8 * unk_28;
     MessageLoader * unk_2C;
     UnkStruct_ov79_021D0E1C_sub1 unk_30;
@@ -52,7 +52,7 @@ typedef struct UnkStruct_ov79_021D0E1C_t {
     void * unk_DC;
     NNSG2dScreenData * unk_E0;
     NNSG2dScreenData * unk_E4;
-    UnkStruct_0205AA50 unk_E8[13];
+    Window unk_E8[13];
     UnkStruct_0200C6E4 * unk_1B8;
     UnkStruct_0200C704 * unk_1BC;
     UnkStruct_02022550 * unk_1C0[3];

@@ -14,8 +14,8 @@ typedef struct {
     u32 unk_04;
 } UnkStruct_ov110_021D2278;
 
-void ov110_021D2124(UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, u8 param2);
-void ov110_021D216C(UnkStruct_0205AA50 * param0, u8 param1);
+void ov110_021D2124(BGL * param0, Window * param1, u8 param2);
+void ov110_021D216C(Window * param0, u8 param1);
 
 static const UnkStruct_ov61_0222C884 Unk_ov110_021D22A0[] = {
     {0x0, 0x2, 0x2, 0x1E, 0x2, 0xD, 0x1},
@@ -67,7 +67,7 @@ static const UnkStruct_ov110_021D2278 Unk_ov110_021D2278[5] = {
     {Unk_ov110_021D22D8, 0x9}
 };
 
-void ov110_021D2124 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, u8 param2)
+void ov110_021D2124 (BGL * param0, Window * param1, u8 param2)
 {
     u8 v0;
     const UnkStruct_ov61_0222C884 * v1 = Unk_ov110_021D2278[param2].unk_00;
@@ -75,19 +75,19 @@ void ov110_021D2124 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, u
 
     for (v0 = 0; v0 < v2; v0++) {
         sub_0201A8D4(param0, &param1[v0], &v1[v0]);
-        sub_0201ADA4(&param1[v0], 0);
+        BGL_FillWindow(&param1[v0], 0);
     }
 
     return;
 }
 
-void ov110_021D216C (UnkStruct_0205AA50 * param0, u8 param1)
+void ov110_021D216C (Window * param0, u8 param1)
 {
     u16 v0;
     u32 v1 = Unk_ov110_021D2278[param1].unk_04;
 
     for (v0 = 0; v0 < v1; v0++) {
-        sub_0201A8FC(&param0[v0]);
+        BGL_DeleteWindow(&param0[v0]);
     }
 
     return;

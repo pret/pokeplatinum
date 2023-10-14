@@ -2,7 +2,7 @@
 #define POKEPLATINUM_UNK_02061804_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
 #include "struct_decls/struct_020619DC_decl.h"
@@ -103,8 +103,8 @@ void sub_02062A04(UnkStruct_02061AB4 * param0, int param1);
 int sub_02062A08(const UnkStruct_02061AB4 * param0);
 void sub_02062A0C(UnkStruct_02061AB4 * param0, u32 param1);
 u32 sub_02062A14(const UnkStruct_02061AB4 * param0);
-void sub_02062A1C(UnkStruct_02061AB4 * param0, UnkStruct_0201CD38 * param1);
-UnkStruct_0201CD38 * sub_02062A24(const UnkStruct_02061AB4 * param0);
+void sub_02062A1C(UnkStruct_02061AB4 * param0, SysTask * param1);
+SysTask * sub_02062A24(const UnkStruct_02061AB4 * param0);
 void sub_02062A2C(const UnkStruct_02061AB4 * param0);
 void sub_02062A38(UnkStruct_02061AB4 * param0, const UnkStruct_02061830 * param1);
 const UnkStruct_02061830 * sub_02062A40(const UnkStruct_02061AB4 * param0);

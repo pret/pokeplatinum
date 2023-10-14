@@ -108,7 +108,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     s16 v1;
     u32 v2;
     UnkStruct_0209916C * v3;
-    UnkStruct_0200D0F4 * v4 = NULL;
+    CellActorData * v4 = NULL;
     UnkStruct_ov115_02261520 v5;
     UnkStruct_02009DC8 * v6;
 
@@ -134,7 +134,7 @@ UnkStruct_0209916C * sub_0209916C (UnkStruct_0209903C * param0, int param1, u16 
     sub_020099D4(param0->unk_1A4[1], param0->unk_1B4[1]->unk_00[v1], 88, 3 + param1, 0, param0->unk_00);
     sub_0200A6B8(param0->unk_1B4[1]->unk_00[v1]);
 
-    v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_0200D0F4));
+    v4 = Heap_AllocFromHeap(param0->unk_00, sizeof(CellActorData));
 
     v4->unk_08 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_02009508));
     v4->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_00, sizeof(UnkStruct_ov19_021DA864));

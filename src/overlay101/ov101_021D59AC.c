@@ -3,7 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
@@ -161,8 +161,8 @@ typedef struct {
 
 static void ov101_021D630C(UnkStruct_ov101_021D630C * param0, UnkEnum_ov101_021D5814 param1);
 static void ov101_021D63A4(UnkStruct_ov101_021D13C8 * param0);
-static void ov101_021D63BC(UnkStruct_0201CD38 * param0, void * param1);
-static void ov101_021D63E8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov101_021D63BC(SysTask * param0, void * param1);
+static void ov101_021D63E8(SysTask * param0, void * param1);
 static void ov101_021D6410(UnkStruct_ov101_021D13C8 * param0, UnkStruct_ov101_021D8544 * param1, const VecFx32 * param2);
 static void ov101_021D65F4(UnkStruct_ov101_021D65F4 * param0);
 static void ov101_021D7D94(UnkStruct_ov101_021D7D94 * param0);
@@ -530,7 +530,7 @@ static int ov101_021D5E84 (UnkStruct_ov101_021D630C * param0)
     sub_02021C50(param0->unk_3C.unk_04, &v0);
     sub_02021D6C(param0->unk_3C.unk_04, 0);
     sub_02021E50(param0->unk_3C.unk_04, 0);
-    sub_02005748(1572);
+    Sound_PlayEffect(1572);
 
     param0->unk_04++;
     return 0;
@@ -586,7 +586,7 @@ static int ov101_021D5F70 (UnkStruct_ov101_021D630C * param0)
     sub_02021DE0(param0->unk_3C.unk_04);
     sub_02021CC8(param0->unk_3C.unk_04, 1);
 
-    sub_02005748(1744);
+    Sound_PlayEffect(1744);
     param0->unk_04++;
 
     return 0;
@@ -785,7 +785,7 @@ static int(*const * const Unk_ov101_021D9294[UnkEnum_ov101_021D5D90_07])(UnkStru
 
 static void ov101_021D630C (UnkStruct_ov101_021D630C * param0, UnkEnum_ov101_021D5814 param1)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov101_021D13C8 * v1 = param0->unk_38;
     const UnkStruct_ov101_021D93D4 * v2;
 
@@ -809,7 +809,7 @@ static void ov101_021D63A4 (UnkStruct_ov101_021D13C8 * param0)
     ov101_021D8358(param0->unk_450, 2, 2, 2, 2);
 }
 
-static void ov101_021D63BC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D63BC (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D630C * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_38;
@@ -819,10 +819,10 @@ static void ov101_021D63BC (UnkStruct_0201CD38 * param0, void * param1)
 
     v0->unk_0C = 1;
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov101_021D63E8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D63E8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D630C * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_38;
@@ -830,7 +830,7 @@ static void ov101_021D63E8 (UnkStruct_0201CD38 * param0, void * param1)
     if (v0->unk_0C == 1) {
         ov101_021D8254(v1->unk_450, 2);
         v0->unk_0C = 2;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -930,7 +930,7 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9150 = {
     ov101_021D659C
 };
 
-static void ov101_021D65A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D65A0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D65F4 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_10;
@@ -940,10 +940,10 @@ static void ov101_021D65A0 (UnkStruct_0201CD38 * param0, void * param1)
 
     v0->unk_0C = 1;
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov101_021D65CC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D65CC (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D65F4 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_10;
@@ -951,13 +951,13 @@ static void ov101_021D65CC (UnkStruct_0201CD38 * param0, void * param1)
     if (v0->unk_0C == 1) {
         ov101_021D8254(v1->unk_450, 3);
         v0->unk_0C = 2;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
 static void ov101_021D65F4 (UnkStruct_ov101_021D65F4 * param0)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov101_021D13C8 * v1 = param0->unk_10;
 
     ov101_021D80E4(v1->unk_450, (NNS_G2D_VRAM_TYPE_2DSUB), v1->unk_438, 44, 3);
@@ -975,7 +975,7 @@ static void ov101_021D65F4 (UnkStruct_ov101_021D65F4 * param0)
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9164;
 static int(*const * const Unk_ov101_021D9330[UnkEnum_ov101_021D679C_09])(UnkStruct_ov101_021D66D0 *);
 
-static void ov101_021D667C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D667C (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D66D0 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_20;
@@ -984,10 +984,10 @@ static void ov101_021D667C (UnkStruct_0201CD38 * param0, void * param1)
     ov101_021D8220(v1->unk_450, 4);
 
     v0->unk_10 = 1;
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov101_021D66A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D66A8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D66D0 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_20;
@@ -996,13 +996,13 @@ static void ov101_021D66A8 (UnkStruct_0201CD38 * param0, void * param1)
         ov101_021D8254(v1->unk_450, 4);
 
         v0->unk_10 = 2;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
 static void ov101_021D66D0 (UnkStruct_ov101_021D66D0 * param0)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov101_021D13C8 * v1 = param0->unk_20;
     const UnkStruct_ov101_021D93D4 * v2 = &Unk_ov101_021D93A4[param0->unk_18];
 
@@ -1192,7 +1192,7 @@ static int ov101_021D6994 (UnkStruct_ov101_021D66D0 * param0)
     sub_02021D6C(param0->unk_24.unk_04, 1);
     sub_02021CE4(param0->unk_24.unk_04, 0);
     sub_02021CC8(param0->unk_24.unk_04, 0);
-    sub_02005748(1745);
+    Sound_PlayEffect(1745);
 
     param0->unk_08++;
     return 0;
@@ -1388,7 +1388,7 @@ static int(*const * const Unk_ov101_021D9330[UnkEnum_ov101_021D679C_09])(UnkStru
 
 static const UnkStruct_ov101_021D86B0 Unk_ov101_021D9178;
 
-static void ov101_021D6D10 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D6D10 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D6D10 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_2C;
@@ -1398,10 +1398,10 @@ static void ov101_021D6D10 (UnkStruct_0201CD38 * param0, void * param1)
 
     v0->unk_10 = 1;
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov101_021D6D3C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D6D3C (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D6D10 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_2C;
@@ -1409,13 +1409,13 @@ static void ov101_021D6D3C (UnkStruct_0201CD38 * param0, void * param1)
     if (v0->unk_10 = 1) {
         ov101_021D8254(v1->unk_450, 5);
         v0->unk_10 = 2;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
 static void ov101_021D6D68 (UnkStruct_ov101_021D6D10 * param0)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov101_021D13C8 * v1 = param0->unk_2C;
 
     ov101_021D80E4(v1->unk_450, (NNS_G2D_VRAM_TYPE_2DSUB), v1->unk_438, 56, 5);
@@ -2435,17 +2435,17 @@ static const UnkStruct_ov101_021D86B0 Unk_ov101_021D91B4 = {
     sub_020715FC
 };
 
-static void ov101_021D7D4C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D7D4C (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D7D94 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_44;
 
     ov101_021D814C(v1->unk_450, 10);
     v0->unk_08 = 1;
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov101_021D7D6C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D7D6C (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D7D94 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_44;
@@ -2453,13 +2453,13 @@ static void ov101_021D7D6C (UnkStruct_0201CD38 * param0, void * param1)
     if (v0->unk_08 == 1) {
         ov101_021D8180(v1->unk_450, 10);
         v0->unk_08 = 2;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
 static void ov101_021D7D94 (UnkStruct_ov101_021D7D94 * param0)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov101_021D13C8 * v1 = param0->unk_44;
 
     if (param0->unk_18 == 0) {

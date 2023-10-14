@@ -22,7 +22,7 @@ BOOL ov104_0223911C(UnkStruct_ov104_0222E930 * param0);
 
 BOOL ov104_02239080 (UnkStruct_ov104_0222E930 * param0)
 {
-    sub_02005748(ov104_0222FC00(param0));
+    Sound_PlayEffect(ov104_0222FC00(param0));
     return 0;
 }
 

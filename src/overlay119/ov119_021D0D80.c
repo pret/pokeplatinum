@@ -122,7 +122,7 @@ void ov119_021D0E78 (void)
     sub_02014000();
 }
 
-void ov119_021D0EB8 (UnkStruct_02018340 * param0)
+void ov119_021D0EB8 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -287,27 +287,27 @@ void ov119_021D1048 (void)
     sub_0200F174(0, 0, 0, 0x0, 6, 1, 71);
 }
 
-void ov119_021D1068 (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1, int param2)
+void ov119_021D1068 (BGL * param0, PaletteSys * param1, int param2)
 {
     int v0 = 71;
 
     sub_0200DD0C(param0, 1, 20, 15, param2, v0);
-    sub_02003050(param1, 38, sub_0200DD08(param2), v0, 0, 0x20, 12 * 16);
+    PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), v0, 0, 0x20, 12 * 16);
     sub_0200DAA4(param0, 1, (20 + (18 + 12)), 13, 0, v0);
-    sub_02003050(param1, 38, sub_0200DAA0(), v0, 0, 0x20, 13 * 16);
-    sub_02003050(param1, 14, 7, v0, 0, 0x20, 14 * 16);
+    PaletteSys_LoadPalette(param1, 38, Window_FramePalette(), v0, 0, 0x20, 13 * 16);
+    PaletteSys_LoadPalette(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
 
-void ov119_021D10F0 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
+void ov119_021D10F0 (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     sub_0201A7A0(param1);
-    sub_0201A7E8(param0, param1, param2, param3, param4, param5, param6, param8, param7);
+    BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, param8, param7);
     sub_0200E060(param1, 1, 20, 12);
-    sub_0201ADA4(param1, 15);
+    BGL_FillWindow(param1, 15);
     sub_0201A954(param1);
 }
 
-int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, int param3)
+int ov119_021D1158 (Window * param0, int param1, Pokemon * param2, int param3)
 {
     int v0;
     Strbuf* v1;
@@ -316,7 +316,7 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, i
     BoxPokemon * v4;
     MessageLoader * v5;
 
-    sub_0201ADA4(param0, 15);
+    BGL_FillWindow(param0, 15);
 
     v5 = MessageLoader_Init(0, 26, 357, 71);
     v3 = sub_0200B358(71);
@@ -337,12 +337,12 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, i
     return v0;
 }
 
-void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * param1, UnkStruct_0205AA50 * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
+void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, BGL * param1, Window * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_02081CF4 v0;
 
     sub_0201A7A0(param2);
-    sub_0201A7E8(param1, param2, param3, param4, param5, param6, param7, param9, param8);
+    BGL_AddWindow(param1, param2, param3, param4, param5, param6, param7, param9, param8);
 
     param0->unk_04.unk_44 = sub_02013A04(2, 71);
 
@@ -369,26 +369,26 @@ void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * par
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 1;
 
-    sub_0200DC48(param2, 1, (20 + (18 + 12)), 13);
+    Window_Show(param2, 1, (20 + (18 + 12)), 13);
     param0->unk_04.unk_48 = sub_02001B7C(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
 }
 
 void ov119_021D12CC (UnkStruct_ov119_021D0FD0 * param0)
 {
-    sub_0200DC9C(&param0->unk_04.unk_14[1], 1);
+    Window_Clear(&param0->unk_04.unk_14[1], 1);
     sub_0201ACF4(&param0->unk_04.unk_14[1]);
-    sub_0201A8FC(&param0->unk_04.unk_14[1]);
+    BGL_DeleteWindow(&param0->unk_04.unk_14[1]);
     sub_02001BC4(param0->unk_04.unk_48, NULL);
     sub_02013A3C(param0->unk_04.unk_44);
 }
 
-void ov119_021D12F8 (UnkStruct_0205AA50 * param0)
+void ov119_021D12F8 (Window * param0)
 {
     sub_0201ACF4(param0);
-    sub_0201A8FC(param0);
+    BGL_DeleteWindow(param0);
 }
 
-void ov119_021D1308 (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1)
+void ov119_021D1308 (BGL * param0, PaletteSys * param1)
 {
     int v0 = 118;
     int v1 = 0;
@@ -399,10 +399,10 @@ void ov119_021D1308 (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1)
 
     sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
     sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
-    sub_02003050(param1, v0, v3, v5, 0, 0x20 * 2, 0);
+    PaletteSys_LoadPalette(param1, v0, v3, v5, 0, 0x20 * 2, 0);
 }
 
-void ov119_021D135C (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1)
+void ov119_021D135C (BGL * param0, PaletteSys * param1)
 {
     int v0 = 12;
     int v1 = 10;
@@ -413,7 +413,7 @@ void ov119_021D135C (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1)
 
     sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
     sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
-    sub_02003050(param1, v0, v3, v5, 1, 0x20 * 1, 0);
+    PaletteSys_LoadPalette(param1, v0, v3, v5, 1, 0x20 * 1, 0);
 }
 
 static u32 ov119_021D13B4 (u32 param0, BOOL param1)
@@ -538,7 +538,7 @@ void ov119_021D1514 (UnkStruct_ov119_021D0FD0 * param0)
 {
     UnkStruct_0200C6E4 * v0;
     UnkStruct_0200C704 * v1;
-    UnkStruct_02002F38 * v2;
+    PaletteSys * v2;
     int v3[][4] = {
         {4, 9, 3, 2},
         {4, 9, 3, 2}

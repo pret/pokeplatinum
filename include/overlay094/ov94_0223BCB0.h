@@ -13,7 +13,7 @@ int ov94_0223BCB0(UnkStruct_020067E8 * param0, int * param1);
 int ov94_0223BE2C(UnkStruct_020067E8 * param0, int * param1);
 int ov94_0223BF54(UnkStruct_020067E8 * param0, int * param1);
 void ov94_0223C300(UnkStruct_ov115_02261520 * param0, UnkStruct_ov94_0223FD4C * param1, UnkStruct_ov19_021DA864 * param2, int param3);
-UnkStruct_02001AF4 * ov94_0223C3C0(UnkStruct_02018340 * param0, int param1, int param2);
+UnkStruct_02001AF4 * ov94_0223C3C0(BGL * param0, int param1, int param2);
 void ov94_0223C3F4(UnkStruct_ov94_0223FD4C * param0, int param1, int param2);
 void ov94_0223C3FC(UnkStruct_02022550 * param0, int param1, int param2);
 int ov94_0223C4B4(void);

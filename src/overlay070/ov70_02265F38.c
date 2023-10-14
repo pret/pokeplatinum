@@ -4,7 +4,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "strbuf.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
@@ -187,7 +187,7 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             break;
         }
 
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         ov70_02262E8C(param0);
         break;
     case 2:
@@ -345,8 +345,8 @@ BOOL ov70_02265F38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         }
 
         if (v0->unk_14 == 0) {
-            if (coresys.padInput & PAD_BUTTON_B) {
-                sub_02005748(1500);
+            if (gCoreSys.padInput & PAD_BUTTON_B) {
+                Sound_PlayEffect(1500);
 
                 if (ov66_02233374() == 0) {
                     v1->unk_00 = 6;
@@ -831,7 +831,7 @@ BOOL ov70_022669FC (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
     }
     break;
     case 1:
-        if ((coresys.padInput & PAD_BUTTON_A) || (coresys.padInput & PAD_KEY_RIGHT) || (coresys.padInput & PAD_KEY_LEFT) || (coresys.padInput & PAD_KEY_DOWN)) {
+        if ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_KEY_RIGHT) || (gCoreSys.padInput & PAD_KEY_LEFT) || (gCoreSys.padInput & PAD_KEY_DOWN)) {
             ov70_02266CB0(&v0->unk_00, param1);
             ov70_0225DFEC(param1);
 

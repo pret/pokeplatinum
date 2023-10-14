@@ -26,7 +26,7 @@
 
 struct UnkStruct_ov96_0223BF40_t {
     UnkStruct_0206BC70 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     int unk_08;
     int unk_0C;
     int unk_10;
@@ -68,13 +68,13 @@ struct UnkStruct_ov96_0223BF40_t {
     UnkStruct_ov19_021DA864 unk_DE8;
     UnkStruct_ov19_021DA864 unk_E0C;
     UnkStruct_02022550 * unk_E30[2];
-    UnkStruct_0205AA50 unk_E38;
-    UnkStruct_0205AA50 unk_E48;
-    UnkStruct_0205AA50 unk_E58;
-    UnkStruct_0205AA50 unk_E68;
-    UnkStruct_0205AA50 unk_E78;
-    UnkStruct_0205AA50 unk_E88[3];
-    UnkStruct_0205AA50 unk_EB8[11];
+    Window unk_E38;
+    Window unk_E48;
+    Window unk_E58;
+    Window unk_E68;
+    Window unk_E78;
+    Window unk_E88[3];
+    Window unk_EB8[11];
     UnkStruct_02001AF4 * unk_F68;
     void * unk_F6C;
     int unk_F70;

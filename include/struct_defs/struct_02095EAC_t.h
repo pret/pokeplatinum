@@ -20,7 +20,7 @@
 #include "overlay058/struct_ov58_021D2820.h"
 
 struct UnkStruct_02095EAC_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     BOOL unk_04;
     UnkStruct_0203DDFC * unk_08;
     UnkStruct_0200B358 * unk_0C;
@@ -38,11 +38,11 @@ struct UnkStruct_02095EAC_t {
     UnkStruct_02022550 * unk_23C[14];
     UnkStruct_02022550 * unk_274[14];
     UnkStruct_02022550 * unk_2AC[12];
-    UnkStruct_0205AA50 unk_2DC[5];
-    UnkStruct_0205AA50 unk_32C;
-    UnkStruct_0205AA50 unk_33C;
-    UnkStruct_0205AA50 unk_34C;
-    UnkStruct_0205AA50 * unk_35C[2];
+    Window unk_2DC[5];
+    Window unk_32C;
+    Window unk_33C;
+    Window unk_34C;
+    Window * unk_35C[2];
     int unk_364;
     int unk_368;
     int unk_36C;

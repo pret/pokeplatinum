@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
@@ -37,18 +37,18 @@ typedef struct UnkStruct_ov20_021D3E0C_t {
     UnkStruct_ov20_021D2128 * unk_00;
     const UnkStruct_ov20_021D16E8 * unk_04;
     const UnkStruct_020998EC * unk_08;
-    UnkStruct_02018340 * unk_0C;
+    BGL * unk_0C;
     u32 unk_10;
     u32 unk_14;
-    UnkStruct_0201CD38 * unk_18;
+    SysTask * unk_18;
     UnkStruct_ov20_021D4FF0 unk_1C;
     UnkStruct_ov20_021D4E8C unk_3C;
     UnkStruct_02022550 * unk_5C;
 } UnkStruct_ov20_021D3E0C;
 
-static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 * param1, u32 param2);
-static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 * param1, u32 param2);
-static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 * param1, u32 param2);
+static u32 ov20_021D3B74(UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2);
+static u32 ov20_021D3C78(UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2);
+static u32 ov20_021D3D44(UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2);
 static void ov20_021D3E0C(UnkStruct_ov20_021D3E0C * param0);
 
 UnkStruct_ov20_021D3E0C * ov20_021D3A54 (UnkStruct_ov20_021D2128 * param0, const UnkStruct_ov20_021D16E8 * param1, const UnkStruct_020998EC * param2)
@@ -77,7 +77,7 @@ void ov20_021D3A80 (UnkStruct_ov20_021D3E0C * param0)
 
 void ov20_021D3A98 (UnkStruct_ov20_021D3E0C * param0, NARC * param1)
 {
-    UnkStruct_02018340 * v0;
+    BGL * v0;
     u32 v1;
 
     v0 = ov20_021D2E04(param0->unk_00);
@@ -103,10 +103,10 @@ void ov20_021D3A98 (UnkStruct_ov20_021D3E0C * param0, NARC * param1)
     sub_02019448(v0, 1);
 }
 
-static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 * param1, u32 param2)
+static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2)
 {
     int v0, v1, v2;
-    UnkStruct_0205AA50 v3;
+    Window v3;
     MessageLoader * v4;
     Strbuf* v5;
     u32 v6, v7;
@@ -132,8 +132,8 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
 
         GF_ASSERT(param2 < (1024 - 18));
 
-        sub_0201A7E8(param1, &v3, 1, v1, v2, 9, 2, 11, param2);
-        sub_0201ADA4(&v3, 15);
+        BGL_AddWindow(param1, &v3, 1, v1, v2, 9, 2, 11, param2);
+        BGL_FillWindow(&v3, 15);
 
         v7 = ((9 * 8) - sub_02002D7C(0, v5, 0)) / 2;
 
@@ -141,7 +141,7 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         sub_0201A9F4(&v3);
         sub_0201ACCC(&v3);
         Strbuf_Free(v5);
-        sub_0201A8FC(&v3);
+        BGL_DeleteWindow(&v3);
 
         param2 += 18;
         v1 += (9 + 1);
@@ -152,20 +152,20 @@ static u32 ov20_021D3B74 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     return param2;
 }
 
-static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 * param1, u32 param2)
+static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2)
 {
-    UnkStruct_0205AA50 v0;
+    Window v0;
     Strbuf* v1;
     u32 v2, v3, v4, v5, v6;
 
     GF_ASSERT(param2 < (1024 - 200));
 
-    sub_0201A7E8(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
+    BGL_AddWindow(param1, &v0, 1, 34, 10, 25, 8, 11, param2);
     param2 += 200;
 
     v1 = Strbuf_Init(4, 35);
 
-    sub_0201ADA4(&v0, 15);
+    BGL_FillWindow(&v0, 15);
 
     v3 = ov20_021D5044();
 
@@ -186,12 +186,12 @@ static u32 ov20_021D3C78 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     sub_0201A9F4(&v0);
 
     Strbuf_Free(v1);
-    sub_0201A8FC(&v0);
+    BGL_DeleteWindow(&v0);
 
     return param2;
 }
 
-static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 * param1, u32 param2)
+static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, BGL * param1, u32 param2)
 {
     static const struct {
         u16 unk_00;
@@ -200,7 +200,7 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
         {12, 21},
         {44, 21},
     };
-    UnkStruct_0205AA50 v1;
+    Window v1;
     MessageLoader * v2;
     Strbuf* v3;
     int v4, v5;
@@ -212,12 +212,12 @@ static u32 ov20_021D3D44 (UnkStruct_ov20_021D3E0C * param0, UnkStruct_02018340 *
     for (v4 = 0; v4 < NELEMS(v0); v4++) {
         GF_ASSERT(param2 < (1024 - 16));
 
-        sub_0201A7E8(param1, &v1, 1, v0[v4].unk_00, v0[v4].unk_02, 8, 2, 11, param2);
-        sub_0201ADA4(&v1, 15);
+        BGL_AddWindow(param1, &v1, 1, v0[v4].unk_00, v0[v4].unk_02, 8, 2, 11, param2);
+        BGL_FillWindow(&v1, 15);
         sub_0201D78C(&v1, 0, v3, v5, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
         sub_0201A9F4(&v1);
         sub_0201ACCC(&v1);
-        sub_0201A8FC(&v1);
+        BGL_DeleteWindow(&v1);
 
         param2 += 16;
     }

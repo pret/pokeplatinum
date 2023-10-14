@@ -120,7 +120,7 @@ BOOL ov100_021D14A8 (void * param0)
         break;
     case 3:
         if (v0->unk_04 == v3[v0->unk_08]) {
-            sub_02005748(1479);
+            Sound_PlayEffect(1479);
         }
 
         if (v0->unk_04 == v2[v0->unk_08]) {
@@ -232,16 +232,16 @@ static void ov100_021D17B4 (UnkStruct_ov100_021D1808 * param0)
 static void ov100_021D1808 (UnkStruct_ov100_021D1808 * param0)
 {
     NARC * v0 = param0->unk_7C4->unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_7C4->unk_0C;
+    BGL * v1 = param0->unk_7C4->unk_0C;
     UnkStruct_0200C6E4 * v2 = param0->unk_7C4->unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_7C4->unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_7C4->unk_10;
+    PaletteSys * v4 = param0->unk_7C4->unk_10;
     int v5 = 50000;
 
     sub_020070E8(v0, 70, v1, 5, 0, 0, 0, 111);
     sub_0200710C(v0, 72, v1, 5, 0, 0, 0, 111);
     sub_0200710C(v0, 73, v1, 4, 0, 0, 0, 111);
-    sub_02003050(v4, 172, 71, 111, 1, 0x20 * 2, 0);
+    PaletteSys_LoadPalette(v4, 172, 71, 111, 1, 0x20 * 2, 0);
 
     {
         const u16 v6[] = {0x421};
@@ -277,8 +277,8 @@ static void ov100_021D1A24 (UnkStruct_ov100_021D1808 * param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_0200DA58(param0->unk_0C.unk_0C[v0].unk_40);
-        sub_0200DA58(param0->unk_0C.unk_D4[v0].unk_40);
+        SysTask_Done(param0->unk_0C.unk_0C[v0].unk_40);
+        SysTask_Done(param0->unk_0C.unk_D4[v0].unk_40);
         sub_0200D0F4(param0->unk_0C.unk_0C[v0].unk_00);
         sub_0200D0F4(param0->unk_0C.unk_D4[v0].unk_00);
     }
@@ -288,10 +288,10 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
 {
     int v0;
     NARC * v1 = param0->unk_7C4->unk_00;
-    UnkStruct_02018340 * v2 = param0->unk_7C4->unk_0C;
+    BGL * v2 = param0->unk_7C4->unk_0C;
     UnkStruct_0200C6E4 * v3 = param0->unk_7C4->unk_04;
     UnkStruct_0200C704 * v4 = param0->unk_7C4->unk_08;
-    UnkStruct_02002F38 * v5 = param0->unk_7C4->unk_10;
+    PaletteSys * v5 = param0->unk_7C4->unk_10;
     UnkStruct_ov104_0223F9E0 v6;
 
     v6.unk_00 = 0;
@@ -330,7 +330,7 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
         param0->unk_0C.unk_D4[v0].unk_28[1] = 1;
         param0->unk_0C.unk_D4[v0].unk_28[2] = LCRNG_Next() % 10;
         param0->unk_0C.unk_D4[v0].unk_28[3] = 0;
-        param0->unk_0C.unk_D4[v0].unk_40 = sub_0200D9E8(ov100_021D4438, &param0->unk_0C.unk_D4[v0], 4096 - 1);
+        param0->unk_0C.unk_D4[v0].unk_40 = SysTask_Start(ov100_021D4438, &param0->unk_0C.unk_D4[v0], 4096 - 1);
     }
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -363,6 +363,6 @@ static void ov100_021D1A54 (UnkStruct_ov100_021D1808 * param0)
         param0->unk_0C.unk_0C[v0].unk_28[1] = 1;
         param0->unk_0C.unk_0C[v0].unk_28[2] = LCRNG_Next() % 10;
         param0->unk_0C.unk_0C[v0].unk_28[3] = 0;
-        param0->unk_0C.unk_0C[v0].unk_40 = sub_0200D9E8(ov100_021D4438, &param0->unk_0C.unk_0C[v0], 4096);
+        param0->unk_0C.unk_0C[v0].unk_40 = SysTask_Start(ov100_021D4438, &param0->unk_0C.unk_0C[v0], 4096);
     }
 }

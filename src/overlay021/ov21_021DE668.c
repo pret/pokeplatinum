@@ -89,9 +89,9 @@ static void ov21_021DE9A4(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE
 static void ov21_021DEA0C(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1);
 static void ov21_021DEA44(UnkStruct_ov21_021DE760 * param0, int param1);
 static void ov21_021DEB58(UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov21_021DE6D4 * param1, int param2);
-static void ov21_021DEC2C(UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3);
-static void ov21_021DEC80(UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3);
-static void ov21_021DECD4(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4);
+static void ov21_021DEC2C(Window * param0, int param1, int param2, u32 param3);
+static void ov21_021DEC80(Window * param0, int param1, int param2, u32 param3);
+static void ov21_021DECD4(Window * param0, int param1, int param2, int param3, u32 param4);
 static void ov21_021DED24(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1, const UnkStruct_ov21_021DE6D4 * param2, int param3);
 static void ov21_021DED68(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1);
 static void ov21_021DED7C(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1, int param2, int param3);
@@ -385,7 +385,7 @@ static void ov21_021DEA0C (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 {
     ov21_021DF35C(param0);
 
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
 
     ov21_021DED68(param0, param1);
     ov21_021DF1F8(param0);
@@ -430,7 +430,7 @@ static void ov21_021DEB58 (UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov2
     ov21_021DEB8C(&param0->unk_00->unk_04, v0, param2, param1->unk_18, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
-void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
+void ov21_021DEB8C (Window * param0, int param1, int param2, int param3, u32 param4)
 {
     Strbuf* v0 = Strbuf_Init(64, param2);
     MessageLoader * v1 = MessageLoader_Init(0, 26, 697, param2);
@@ -448,7 +448,7 @@ void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int par
     ov21_021DECD4(param0, param2, param1, param3, param4);
 }
 
-static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
+static void ov21_021DEC2C (Window * param0, int param1, int param2, u32 param3)
 {
     Strbuf* v0 = Strbuf_Init(64, param1);
     MessageLoader * v1;
@@ -463,7 +463,7 @@ static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, 
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
+static void ov21_021DEC80 (Window * param0, int param1, int param2, u32 param3)
 {
     Strbuf* v0 = Strbuf_Init(64, param1);
     MessageLoader * v1;
@@ -478,7 +478,7 @@ static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, 
     MessageLoader_Free(v1);
 }
 
-static void ov21_021DECD4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
+static void ov21_021DECD4 (Window * param0, int param1, int param2, int param3, u32 param4)
 {
     Strbuf* v0 = ov21_021D56BC(param2, GAME_LANGUAGE, param3, param1);
     u32 v1 = sub_02002EB4(0, v0, 0);
@@ -749,7 +749,7 @@ static void ov21_021DF214 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
     UnkStruct_ov83_0223D9A8 v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3 = ov21_021D37BC(param2->unk_04);
-    UnkStruct_0205AA50 * v4;
+    Window * v4;
     UnkStruct_ov21_021D4CB8 v5;
     UnkStruct_02009DC8 * v6;
 
@@ -790,9 +790,9 @@ static void ov21_021DF214 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
     ov21_021D4DA0(v4);
 }
 
-UnkStruct_0205AA50 * ov21_021DF30C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
+Window * ov21_021DF30C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = ov21_021D4D6C(param0, 18, 2);

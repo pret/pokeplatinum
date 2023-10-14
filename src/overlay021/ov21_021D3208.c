@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -584,12 +584,12 @@ BOOL ov21_021D3954 (const UnkStruct_ov21_021D3320 * param0)
 
 void ov21_021D3960 (UnkStruct_ov21_021D3320 * param0)
 {
-    if (coresys.unk_62) {
+    if (gCoreSys.unk_62) {
         param0->unk_1758 = 0;
         return;
     }
 
-    if (coresys.padInput) {
+    if (gCoreSys.padInput) {
         if (param0->unk_1758 == 0) {
             param0->unk_1758 = 1;
         } else {

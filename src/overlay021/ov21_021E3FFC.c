@@ -114,7 +114,7 @@ static void ov21_021E4ABC(UnkStruct_ov21_021E4360 * param0, UnkStruct_ov21_021E4
 static void ov21_021E4A28(UnkStruct_ov21_021E4360 * param0, UnkStruct_ov21_021E4108 * param1, const UnkStruct_ov21_021E4898 * param2);
 static void ov21_021E48B0(UnkStruct_ov21_021E4360 * param0, UnkStruct_ov21_021E4108 * param1, const SNDWaveData * param2, int param3, int param4, int param5, int param6, int param7, int * param8);
 static void ov21_021E49D0(UnkStruct_ov21_021E4108 * param0, int param1, int param2, int param3, int param4, int * param5);
-static void ov21_021E495C(UnkStruct_0205AA50 * param0, u8 param1, int param2, int param3, int * param4);
+static void ov21_021E495C(Window * param0, u8 param1, int param2, int param3, int * param4);
 static void ov21_021E4C68(UnkStruct_ov21_021E4898 * param0, UnkStruct_ov21_021E40F4 * param1);
 static void ov21_021E4AF4(UnkStruct_ov21_021E4360 * param0);
 static void ov21_021E4B10(UnkStruct_ov21_021E4360 * param0, const UnkStruct_ov21_021E4898 * param1);
@@ -534,7 +534,7 @@ static void ov21_021E45FC (UnkStruct_ov21_021E4108 * param0, const UnkStruct_ov2
 static void ov21_021E4664 (UnkStruct_ov21_021E4108 * param0)
 {
     sub_0201C63C(param0->unk_00->unk_00, 1, 0, 0);
-    sub_0201AE78(&param0->unk_00->unk_04, 0, 0, 0, 256, 192);
+    BGL_WindowColor(&param0->unk_00->unk_04, 0, 0, 0, 256, 192);
     sub_02019EBC(param0->unk_00->unk_00, 1);
     sub_0201C2B4(&param0->unk_00->unk_04, 0);
 }
@@ -633,7 +633,7 @@ static void ov21_021E48B0 (UnkStruct_ov21_021E4360 * param0, UnkStruct_ov21_021E
     int v2;
     int v3;
 
-    sub_0201AE78(&param1->unk_00->unk_04, 0, param6, param7 - 32, 1 * (param5), 32 * 2);
+    BGL_WindowColor(&param1->unk_00->unk_04, 0, param6, param7 - 32, 1 * (param5), 32 * 2);
 
     v3 = param4 - param3;
 
@@ -648,7 +648,7 @@ static void ov21_021E48B0 (UnkStruct_ov21_021E4360 * param0, UnkStruct_ov21_021E
     }
 }
 
-static void ov21_021E495C (UnkStruct_0205AA50 * param0, u8 param1, int param2, int param3, int * param4)
+static void ov21_021E495C (Window * param0, u8 param1, int param2, int param3, int * param4)
 {
     int v0;
     int v1;
@@ -679,7 +679,7 @@ static void ov21_021E495C (UnkStruct_0205AA50 * param0, u8 param1, int param2, i
     v2++;
     v2 *= 1;
 
-    sub_0201AE78(param0, 6, param2, v1, 1, v2);
+    BGL_WindowColor(param0, 6, param2, v1, 1, v2);
 
     *param4 = v0;
 }
@@ -688,7 +688,7 @@ static void ov21_021E49D0 (UnkStruct_ov21_021E4108 * param0, int param1, int par
 {
     int v0;
 
-    sub_0201AE78(&param0->unk_00->unk_04, 0, param3, param4 - 32, 1 * (param2 - param1), 32 * 2);
+    BGL_WindowColor(&param0->unk_00->unk_04, 0, param3, param4 - 32, 1 * (param2 - param1), 32 * 2);
 
     for (v0 = param1; v0 < param2; v0++) {
         ov21_021E495C(&param0->unk_00->unk_04, 0, param3, param4, param5);

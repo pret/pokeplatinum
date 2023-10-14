@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/union_02022594_020225E0.h"
 #include "overlay022/struct_ov22_0225500C.h"
@@ -58,7 +58,7 @@ static void ov22_022584E0(UnkStruct_ov22_02257F50 * param0, int param1);
 static void ov22_022585E8(UnkStruct_ov22_02257F50 * param0, UnkStruct_ov22_02255040 * param1, int param2, int param3);
 static void ov22_02258610(int param0, int * param1, int * param2);
 static void ov22_0225864C(UnkStruct_ov22_02257F50 * param0, int param1, int param2, int param3, int param4);
-static void ov22_022586C4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov22_022586C4(SysTask * param0, void * param1);
 static void ov22_0225882C(UnkStruct_ov22_02259560 * param0, UnkStruct_ov22_0225886C * param1, int param2);
 static UnkStruct_ov22_0225886C * ov22_02258844(UnkStruct_ov22_0225886C * param0, int param1);
 static void ov22_0225886C(UnkStruct_ov22_0225886C * param0, int param1);
@@ -608,7 +608,7 @@ static void ov22_02258610 (int param0, int * param1, int * param2)
 
 static void ov22_0225864C (UnkStruct_ov22_02257F50 * param0, int param1, int param2, int param3, int param4)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov22_022586C4 * v1;
 
     v0 = sub_0200679C(ov22_022586C4, sizeof(UnkStruct_ov22_022586C4), 0, 13);
@@ -631,7 +631,7 @@ static void ov22_0225864C (UnkStruct_ov22_02257F50 * param0, int param1, int par
     param0->unk_00.unk_3C = 1;
 }
 
-static void ov22_022586C4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov22_022586C4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov22_022586C4 * v0 = param1;
     int v1;

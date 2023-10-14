@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02014014_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "functypes/funcptr_020146F4.h"
 #include "overlay012/struct_ov12_02237EFC.h"
@@ -23,7 +23,7 @@ typedef struct UnkStruct_ov12_02238004_t {
     UnkStruct_ov12_02237F38 unk_08;
     UnkStruct_02014014 * unk_10;
     UnkSPLStruct6 * unk_14;
-    UnkStruct_0201CD38 * unk_18;
+    SysTask * unk_18;
     int unk_1C;
     BOOL unk_20;
 } UnkStruct_ov12_02238004;
@@ -34,7 +34,7 @@ typedef struct UnkStruct_ov12_02237F98_t {
     UnkStruct_ov12_02238004 * unk_08[16];
 } UnkStruct_ov12_02237F98;
 
-static void ov12_02238030(UnkStruct_0201CD38 * param0, void * param1);
+static void ov12_02238030(SysTask * param0, void * param1);
 static void ov12_02238054(UnkStruct_ov12_02238004 * param0, UnkFuncPtr_020146F4 param1);
 static void ov12_02238080(UnkSPLStruct6 * param0);
 static int ov12_02238088(int param0);
@@ -130,7 +130,7 @@ void ov12_02237F98 (UnkStruct_ov12_02237F98 * param0)
             continue;
         }
 
-        sub_0200DA58(param0->unk_08[v0]->unk_18);
+        SysTask_Done(param0->unk_08[v0]->unk_18);
     }
 }
 
@@ -159,7 +159,7 @@ void ov12_02238004 (UnkStruct_ov12_02238004 * param0)
 {
     param0->unk_20 = 1;
     ov12_02238054(param0, ov12_02238080);
-    param0->unk_18 = sub_0200D9E8(ov12_02238030, param0, 1000);
+    param0->unk_18 = SysTask_Start(ov12_02238030, param0, 1000);
 }
 
 BOOL ov12_0223802C (UnkStruct_ov12_02238004 * param0)
@@ -167,7 +167,7 @@ BOOL ov12_0223802C (UnkStruct_ov12_02238004 * param0)
     return param0->unk_20;
 }
 
-static void ov12_02238030 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02238030 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02238004 * v0 = (UnkStruct_ov12_02238004 *)param1;
     int v1 = 0;
@@ -181,7 +181,7 @@ static void ov12_02238030 (UnkStruct_0201CD38 * param0, void * param1)
     v0->unk_20 = 0;
 
     ov12_02223894(v0->unk_10);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void ov12_02238054 (UnkStruct_ov12_02238004 * param0, UnkFuncPtr_020146F4 param1)

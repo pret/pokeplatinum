@@ -19,8 +19,8 @@
 #include "unk_0202CBE4.h"
 #include "overlay071/ov71_0223C69C.h"
 
-static void ov71_0223CD64(UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
-static void ov71_0223CDB0(UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4);
+static void ov71_0223CD64(Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7);
+static void ov71_0223CDB0(Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4);
 
 static const UnkStruct_ov61_0222C884 Unk_ov71_0223D670[] = {
     {0x7, 0x2, 0x4, 0x11, 0x2, 0xF, 0x6F},
@@ -36,7 +36,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov71_0223D670[] = {
     {0x7, 0x2, 0xB, 0x1C, 0x2, 0xF, 0x1A1}
 };
 
-void ov71_0223C69C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1)
+void ov71_0223C69C (BGL * param0, Window * param1)
 {
     u8 v0;
     const UnkStruct_ov61_0222C884 * v1 = Unk_ov71_0223D670;
@@ -48,12 +48,12 @@ void ov71_0223C69C (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1)
     sub_020196C0(param0, 7, 0, 1, 0);
 }
 
-void ov71_0223C6D4 (UnkStruct_0205AA50 * param0)
+void ov71_0223C6D4 (Window * param0)
 {
     u16 v0;
 
     for (v0 = 0; v0 < 11; v0++) {
-        sub_0201A8FC(&param0[v0]);
+        BGL_DeleteWindow(&param0[v0]);
     }
 }
 
@@ -71,19 +71,19 @@ static const int Unk_ov71_0223D644[] = {
     0xA
 };
 
-void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * param1)
+void ov71_0223C6F0 (Window * param0, const UnkStruct_02072014 * param1)
 {
     u8 v0;
     MessageLoader * v1;
     Strbuf* v2;
 
-    sub_0201AE78(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
-    sub_0201AE78(&param0[1], 0, 0, 0, 17 * 8, 2 * 8);
-    sub_0201AE78(&param0[2], 0, 0, 0, 17 * 8, 2 * 8);
-    sub_0201AE78(&param0[3], 0, 0, 0, 17 * 8, 2 * 8);
-    sub_0201AE78(&param0[4], 0, 0, 0, 17 * 8, 2 * 8);
-    sub_0201AE78(&param0[5], 0, 0, 0, 28 * 8, 2 * 8);
-    sub_0201AE78(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
+    BGL_WindowColor(&param0[0], 0, 0, 0, 17 * 8, 2 * 8);
+    BGL_WindowColor(&param0[1], 0, 0, 0, 17 * 8, 2 * 8);
+    BGL_WindowColor(&param0[2], 0, 0, 0, 17 * 8, 2 * 8);
+    BGL_WindowColor(&param0[3], 0, 0, 0, 17 * 8, 2 * 8);
+    BGL_WindowColor(&param0[4], 0, 0, 0, 17 * 8, 2 * 8);
+    BGL_WindowColor(&param0[5], 0, 0, 0, 28 * 8, 2 * 8);
+    BGL_WindowColor(&param0[6], 0, 0, 0, 28 * 8, 2 * 8);
 
     v1 = MessageLoader_Init(0, 26, 616, 25);
     v2 = Strbuf_Init(32, 25);
@@ -169,7 +169,7 @@ void ov71_0223C6F0 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     MessageLoader_Free(v1);
 }
 
-asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * param1)
+asm void ov71_0223CA28 (Window * param0, const UnkStruct_02072014 * param1)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x18
@@ -184,7 +184,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     add r0, #0x70
     add r2, r1, #0
     add r3, r1, #0
-    bl sub_0201AE78
+    bl BGL_WindowColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -194,7 +194,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     add r0, #0x80
     add r2, r1, #0
     add r3, r1, #0
-    bl sub_0201AE78
+    bl BGL_WindowColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -204,7 +204,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     add r0, #0x90
     add r2, r1, #0
     add r3, r1, #0
-    bl sub_0201AE78
+    bl BGL_WindowColor
     mov r1, #0
     mov r0, #0xe0
     str r0, [sp]
@@ -214,7 +214,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     add r0, #0xa0
     add r2, r1, #0
     add r3, r1, #0
-    bl sub_0201AE78
+    bl BGL_WindowColor
     mov r2, #0x9a
     mov r0, #0
     mov r1, #0x1a
@@ -523,7 +523,7 @@ asm void ov71_0223CA28 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * 
     pop {r3, r4, r5, r6, r7, pc}
 }
 
-void ov71_0223CD44 (UnkStruct_0205AA50 * param0, const u8 param1, const u8 param2)
+void ov71_0223CD44 (Window * param0, const u8 param1, const u8 param2)
 {
     u8 v0;
 
@@ -532,7 +532,7 @@ void ov71_0223CD44 (UnkStruct_0205AA50 * param0, const u8 param1, const u8 param
     }
 }
 
-static void ov71_0223CD64 (UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7)
+static void ov71_0223CD64 (Window * param0, const u32 param1, const u32 param2, const u32 param3, Strbuf *param4, const u32 param5, const u8 param6, const int param7)
 {
     u32 v0;
 
@@ -541,7 +541,7 @@ static void ov71_0223CD64 (UnkStruct_0205AA50 * param0, const u32 param1, const 
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
 
-static void ov71_0223CDB0 (UnkStruct_0205AA50 * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4)
+static void ov71_0223CDB0 (Window * param0, const u32 param1, const u32 param2, const u32 param3, const Strbuf *param4)
 {
     u32 v0;
 
@@ -549,7 +549,7 @@ static void ov71_0223CDB0 (UnkStruct_0205AA50 * param0, const u32 param1, const 
     sub_0201D78C(param0, 0, param4, param1 - (v0 + param2), param3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
 }
 
-void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * param1, Strbuf *param2)
+void ov71_0223CDE8 (Window * param0, const UnkStruct_02072014 * param1, Strbuf *param2)
 {
     int v0;
 
@@ -561,7 +561,7 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
         v0 = 999;
     }
 
-    sub_0201AE78(&param0[5], 0, 184, 0, 40, 2 * 8);
+    BGL_WindowColor(&param0[5], 0, 184, 0, 40, 2 * 8);
 
     {
         u32 v1;
@@ -584,12 +584,12 @@ void ov71_0223CDE8 (UnkStruct_0205AA50 * param0, const UnkStruct_02072014 * para
     }
 }
 
-void ov71_0223CECC (UnkStruct_0205AA50 * param0, const BOOL param1, Strbuf *param2)
+void ov71_0223CECC (Window * param0, const BOOL param1, Strbuf *param2)
 {
     if (param1) {
         sub_0201D78C(param0, 0, param2, (207 - 2), 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)))), NULL);
     } else {
-        sub_0201AE78(param0, 0, (207 - 2), 0, 5, 2 * 8);
+        BGL_WindowColor(param0, 0, (207 - 2), 0, 5, 2 * 8);
         sub_0201A954(param0);
     }
 }

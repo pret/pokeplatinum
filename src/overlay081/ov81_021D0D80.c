@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -38,8 +38,8 @@
 
 static void ov81_021D0F00(void * param0);
 static void ov81_021D0F20(void);
-static void ov81_021D0F40(UnkStruct_02018340 * param0);
-static void ov81_021D101C(UnkStruct_02018340 * param0);
+static void ov81_021D0F40(BGL * param0);
+static void ov81_021D101C(BGL * param0);
 static void ov81_021D1050(UnkStruct_ov81_021D1610 * param0);
 static void ov81_021D1130(UnkStruct_ov81_021D1610 * param0);
 static void ov81_021D115C(UnkStruct_ov81_021D1610 * param0);
@@ -183,7 +183,7 @@ static void ov81_021D0F20 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov81_021D0F40 (UnkStruct_02018340 * param0)
+static void ov81_021D0F40 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -279,7 +279,7 @@ static void ov81_021D0F40 (UnkStruct_02018340 * param0)
     sub_02019690(1, 32, 0, 42);
 }
 
-static void ov81_021D101C (UnkStruct_02018340 * param0)
+static void ov81_021D101C (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
     sub_02019044(param0, 3);
@@ -341,7 +341,7 @@ static int ov81_021D1174 (UnkStruct_ov81_021D1610 * param0)
 
 static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
 {
-    if (coresys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.padInput & PAD_KEY_LEFT) {
         if (ov81_021D13CC(param0, -1) == 1) {
             return 2;
         }
@@ -349,7 +349,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         return 1;
     }
 
-    if (coresys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
         if (ov81_021D13CC(param0, 1) == 1) {
             return 3;
         }
@@ -357,7 +357,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         return 1;
     }
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         if (param0->unk_105C != 0) {
             if (ov81_021D13CC(param0, -1) == 1) {
                 return 2;
@@ -368,7 +368,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         }
     }
 
-    if (coresys.padInput & PAD_BUTTON_START) {
+    if (gCoreSys.padInput & PAD_BUTTON_START) {
         sub_0208C120(1, 42);
         return 4;
     }
@@ -385,7 +385,7 @@ static int ov81_021D120C (UnkStruct_ov81_021D1610 * param0)
         param0->unk_105C--;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
         param0->unk_105E = 1;
-        sub_02005748(1681);
+        Sound_PlayEffect(1681);
         break;
     case 1:
         if (ov81_021D14E0(param0) == 1) {
@@ -413,7 +413,7 @@ static int ov81_021D12E8 (UnkStruct_ov81_021D1610 * param0)
         param0->unk_105C++;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
         param0->unk_105E = 1;
-        sub_02005748(1681);
+        Sound_PlayEffect(1681);
         break;
     case 1:
         if (ov81_021D156C(param0) == 1) {
@@ -524,10 +524,10 @@ static u8 ov81_021D14E0 (UnkStruct_ov81_021D1610 * param0)
     param0->unk_105F++;
 
     if (param0->unk_105F == 9) {
-        sub_02019060(param0->unk_1064, 0);
-        sub_02019060(param0->unk_1063, 1);
-        sub_02019060(param0->unk_1062, 2);
-        sub_02019060(param0->unk_1061, 3);
+        BGL_SetPriority(param0->unk_1064, 0);
+        BGL_SetPriority(param0->unk_1063, 1);
+        BGL_SetPriority(param0->unk_1062, 2);
+        BGL_SetPriority(param0->unk_1061, 3);
         return 1;
     }
 
@@ -541,10 +541,10 @@ static u8 ov81_021D156C (UnkStruct_ov81_021D1610 * param0)
     ov81_021D140C(param0, param0->unk_1063, param0->unk_105C);
 
     if (param0->unk_105F == 1) {
-        sub_02019060(param0->unk_1064, 0);
-        sub_02019060(param0->unk_1063, 1);
-        sub_02019060(param0->unk_1062, 2);
-        sub_02019060(param0->unk_1061, 3);
+        BGL_SetPriority(param0->unk_1064, 0);
+        BGL_SetPriority(param0->unk_1063, 1);
+        BGL_SetPriority(param0->unk_1062, 2);
+        BGL_SetPriority(param0->unk_1061, 3);
     }
 
     param0->unk_105F++;

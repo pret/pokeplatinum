@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -716,7 +716,7 @@ static void ov21_021E326C (UnkStruct_ov21_021E326C * param0)
 
 static void ov21_021E3270 (UnkStruct_ov21_021E2BBC * param0, UnkStruct_ov21_021E326C * param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     UnkStruct_ov21_021D4CB8 v1;
     UnkStruct_ov21_021D13FC * v2 = param0->unk_00;
     int v3;
@@ -1139,38 +1139,38 @@ static void ov21_021E37CC (u32 param0, u32 param1, void * param2)
         switch (param0) {
         case 5:
             ov21_021E2E00(v3);
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             break;
         case 0:
             if (v3->unk_08 != 0) {
                 ov21_021E3C18(v1, 0, v3->unk_08);
                 ov21_021E3E8C(v2, v1);
-                sub_02005748(1675);
+                Sound_PlayEffect(1675);
             }
             break;
         case 1:
             if (v3->unk_08 != 1) {
                 ov21_021E3C18(v1, 1, v3->unk_08);
                 ov21_021E3E8C(v2, v1);
-                sub_02005748(1675);
+                Sound_PlayEffect(1675);
             }
             break;
         case 2:
             if (v3->unk_08 != 2) {
                 ov21_021E3C18(v1, 2, v3->unk_08);
                 ov21_021E3E8C(v2, v1);
-                sub_02005748(1675);
+                Sound_PlayEffect(1675);
             }
             break;
         case 3:
             if (v3->unk_08 != 3) {
                 if (ov21_021E3C18(v1, 3, v3->unk_08)) {
                     ov21_021E3E8C(v2, v1);
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 } else {
                     if (v2->unk_10 == 0) {
                         if (v3->unk_08 != 2) {
-                            sub_02005748(1501);
+                            Sound_PlayEffect(1501);
                         }
 
                         v2->unk_10 = 1;
@@ -1182,12 +1182,12 @@ static void ov21_021E37CC (u32 param0, u32 param1, void * param2)
             if (v3->unk_08 != 4) {
                 if (ov21_021E3C18(v1, 4, v3->unk_08)) {
                     ov21_021E3E8C(v2, v1);
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 } else {
                     if (v2->unk_10 == 0) {
                         if (ov21_021D3954(v3->unk_04) == 1) {
                             if (v3->unk_08 != 2) {
-                                sub_02005748(1501);
+                                Sound_PlayEffect(1501);
                             }
                         }
 
@@ -1384,10 +1384,10 @@ static void ov21_021E3C34 (UnkStruct_ov21_021E342C * param0)
 
     ov21_021E3C64(param0);
 
-    if (coresys.padInput & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         ov21_021E2E00(v0);
         param0->unk_2C = 1;
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         return;
     }
 }
@@ -1429,45 +1429,45 @@ static void ov21_021E3D48 (UnkStruct_ov21_021E37B4 * param0, UnkStruct_ov21_021E
         return;
     }
 
-    if (coresys.padInput & PAD_KEY_RIGHT) {
+    if (gCoreSys.padInput & PAD_KEY_RIGHT) {
         ov21_021D4F20(param0->unk_14, 0, 1);
     }
 
-    if (coresys.padInput & PAD_KEY_LEFT) {
+    if (gCoreSys.padInput & PAD_KEY_LEFT) {
         ov21_021D4F20(param0->unk_14, 0, -1);
     }
 
-    if (coresys.padInput & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         switch (ov21_021D4F7C(param0->unk_14)) {
         case 0:
             if (v0->unk_08 != 0) {
                 ov21_021E3C18(param1, 0, v0->unk_08);
                 param1->unk_0C[0] = 2;
-                sub_02005748(1675);
+                Sound_PlayEffect(1675);
             }
             break;
         case 1:
             if (v0->unk_08 != 1) {
                 ov21_021E3C18(param1, 1, v0->unk_08);
                 param1->unk_0C[1] = 2;
-                sub_02005748(1675);
+                Sound_PlayEffect(1675);
             }
             break;
         case 2:
             if (v0->unk_08 != 2) {
                 ov21_021E3C18(param1, 2, v0->unk_08);
                 param1->unk_0C[2] = 2;
-                sub_02005748(1675);
+                Sound_PlayEffect(1675);
             }
             break;
         case 3:
             if (v0->unk_08 != 3) {
                 if (ov21_021E3C18(param1, 3, v0->unk_08)) {
                     param1->unk_0C[3] = 2;
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 } else {
                     if (v0->unk_08 != 2) {
-                        sub_02005748(1501);
+                        Sound_PlayEffect(1501);
                     }
                 }
             }
@@ -1476,10 +1476,10 @@ static void ov21_021E3D48 (UnkStruct_ov21_021E37B4 * param0, UnkStruct_ov21_021E
             if (v0->unk_08 != 4) {
                 if (ov21_021E3C18(param1, 4, v0->unk_08)) {
                     param1->unk_0C[4] = 2;
-                    sub_02005748(1675);
+                    Sound_PlayEffect(1675);
                 } else {
                     if (v0->unk_08 != 2) {
-                        sub_02005748(1501);
+                        Sound_PlayEffect(1501);
                     }
                 }
             }
@@ -1488,7 +1488,7 @@ static void ov21_021E3D48 (UnkStruct_ov21_021E37B4 * param0, UnkStruct_ov21_021E
             ov21_021E2E00(v0);
             param1->unk_2C = 1;
             param1->unk_0C[5] = 2;
-            sub_02005748(1501);
+            Sound_PlayEffect(1501);
             break;
         }
     }
@@ -1542,11 +1542,11 @@ static void ov21_021E3EEC (UnkStruct_ov21_021E37B4 * param0, UnkStruct_ov21_021E
     }
 
     if ((param1->unk_30 == 0)) {
-        if (coresys.padInput & PAD_KEY_DOWN) {
+        if (gCoreSys.padInput & PAD_KEY_DOWN) {
             param1->unk_30 = 1;
         }
     } else {
-        if (coresys.padInput & PAD_KEY_UP) {
+        if (gCoreSys.padInput & PAD_KEY_UP) {
             param1->unk_30 = 0;
         }
     }

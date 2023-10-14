@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
@@ -10,7 +10,7 @@
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -72,10 +72,10 @@ typedef struct {
     int unk_0C;
     int unk_10;
     UnkStruct_020067E8 * unk_14;
-    UnkStruct_02018340 * unk_18;
-    UnkStruct_0205AA50 unk_1C;
+    BGL * unk_18;
+    Window unk_1C;
     int unk_2C;
-    UnkStruct_0205AA50 unk_30;
+    Window unk_30;
     UnkStruct_0200112C * unk_40;
     UnkStruct_02013A04 * unk_44;
     int unk_48;
@@ -87,7 +87,7 @@ typedef struct {
     void * unk_60;
     UnkStruct_0200B358 * unk_64;
     UnkStruct_02015920 * unk_68;
-    UnkStruct_0201CD38 * unk_6C;
+    SysTask * unk_6C;
     UnkStruct_0208737C * unk_70;
     UnkStruct_0208737C * unk_74;
     int unk_78;
@@ -283,18 +283,18 @@ static BOOL ov73_021D0FFC (void)
     BOOL v0 = 0;
     u16 v1, v2;
 
-    if (coresys.touchInput) {
-        if ((coresys.unk_5C < 256) && (coresys.unk_5E < 192)) {
-            if (coresys.unk_5C < 128) {
-                v1 = 128 - coresys.unk_5C;
+    if (gCoreSys.touchInput) {
+        if ((gCoreSys.unk_5C < 256) && (gCoreSys.unk_5E < 192)) {
+            if (gCoreSys.unk_5C < 128) {
+                v1 = 128 - gCoreSys.unk_5C;
             } else {
-                v1 = coresys.unk_5C - 128;
+                v1 = gCoreSys.unk_5C - 128;
             }
 
-            if (coresys.unk_5E < 100) {
-                v2 = 100 - coresys.unk_5E;
+            if (gCoreSys.unk_5E < 100) {
+                v2 = 100 - gCoreSys.unk_5E;
             } else {
-                v2 = coresys.unk_5E - 100;
+                v2 = gCoreSys.unk_5E - 100;
             }
 
             if ((v1 * v1 + v2 * v2) <= 16 * 16) {
@@ -714,7 +714,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
     switch (param0->unk_50) {
     case 0:
         sub_0201A8D4(param0->unk_18, &param0->unk_1C, &Unk_ov72_021D37EC);
-        sub_0201AE78(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
+        BGL_WindowColor(&param0->unk_1C, 15, 0, 0, 27 * 8, 4 * 8);
         sub_0200E060(&param0->unk_1C, 0, (0x400 - ((18 + 12))), 4);
         sub_02002AC8(1);
         sub_02002AE4(0);
@@ -735,14 +735,14 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         param0->unk_50 = 1;
         break;
     case 1:
-        if (!(sub_0201D724(param0->unk_58))) {
+        if (!(Message_Printing(param0->unk_58))) {
             Strbuf_Free(param0->unk_5C);
             param0->unk_50 = 2;
         }
         break;
     case 2:
-        if ((param2 != 0) || ((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) {
-            sub_0201A8FC(&param0->unk_1C);
+        if ((param2 != 0) || ((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) {
+            BGL_DeleteWindow(&param0->unk_1C);
             param0->unk_50 = 0;
             v0 = 1;
         }
@@ -754,7 +754,7 @@ static BOOL ov73_021D1510 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
 static void ov73_021D1634 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 }
 
@@ -810,7 +810,7 @@ static BOOL ov73_021D1648 (UnkStruct_ov73_021D1058 * param0, int param1, int par
 
         param0->unk_40 = sub_0200112C(&v1, 0, 0, param0->unk_00);
 
-        sub_0200DC48(v1.unk_0C, 1, ((0x400 - ((18 + 12))) - 9), 3);
+        Window_Show(v1.unk_0C, 1, ((0x400 - ((18 + 12))) - 9), 3);
         sub_0201A954(&param0->unk_30);
 
         param0->unk_2C = 1;
@@ -826,11 +826,11 @@ static BOOL ov73_021D1648 (UnkStruct_ov73_021D1058 * param0, int param1, int par
             break;
         }
 
-        sub_0200DC9C(&param0->unk_30, 0);
-        sub_0201A8FC(&param0->unk_30);
+        Window_Clear(&param0->unk_30, 0);
+        BGL_DeleteWindow(&param0->unk_30);
         sub_02001384(param0->unk_40, NULL, NULL);
         sub_02013A3C(param0->unk_44);
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
 
         param0->unk_2C = 0;
         v0 = 1;
@@ -862,7 +862,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             }
 
             sub_0201A8D4(param0->unk_18, &param0->unk_1C, &v1);
-            sub_0201AE78(&param0->unk_1C, 0, 0, 0, 24 * 8, 24 * 8);
+            BGL_WindowColor(&param0->unk_1C, 0, 0, 0, 24 * 8, 24 * 8);
             sub_0201D78C(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         } else {
             v1 = Unk_ov72_021D37E4;
@@ -878,7 +878,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
             }
 
             sub_0201A8D4(param0->unk_18, &param0->unk_1C, &v1);
-            sub_0201AE78(&param0->unk_1C, 0, 0, 0, 24 * 8, 24 * 8);
+            BGL_WindowColor(&param0->unk_1C, 0, 0, 0, 24 * 8, 24 * 8);
             sub_0201D78C(&param0->unk_1C, 0, param0->unk_5C, 0, 0, 0, (u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         }
 
@@ -895,8 +895,8 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         }
         break;
     case 3:
-        if (((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((coresys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) {
-            sub_02005748(1500);
+        if (((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) || ((gCoreSys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) {
+            Sound_PlayEffect(1500);
             param0->unk_54 = 4;
         }
         break;
@@ -906,7 +906,7 @@ static BOOL ov73_021D1784 (UnkStruct_ov73_021D1058 * param0, u32 param1, int par
         }
         break;
     case 5:
-        sub_0201A8FC(&param0->unk_1C);
+        BGL_DeleteWindow(&param0->unk_1C);
         sub_02019EBC(param0->unk_18, 0);
         param0->unk_54 = 0;
         v0 = 1;
@@ -1312,7 +1312,7 @@ static BOOL ov73_021D200C (UnkStruct_ov73_021D1058 * param0, int * param1)
     case 0:
         sub_02019184(param0->unk_18, 2, 0, 0);
         sub_02019184(param0->unk_18, 2, 3, (-8 * 13));
-        sub_02019060(2, 0);
+        BGL_SetPriority(2, 0);
         sub_02019120(5, 1);
 
         param0->unk_94[5] = 0;
@@ -1434,7 +1434,7 @@ static BOOL ov73_021D200C (UnkStruct_ov73_021D1058 * param0, int * param1)
 
 static void ov73_021D230C (UnkStruct_ov73_021D1058 * param0)
 {
-    sub_02019060(2, 1);
+    BGL_SetPriority(2, 1);
 }
 
 static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
@@ -1596,7 +1596,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         param0->unk_0C = 22;
         break;
     case 22:
-        if (coresys.padInput) {
+        if (gCoreSys.padInput) {
             param0->unk_0C = 27;
             break;
         }
@@ -1762,7 +1762,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
             param0->unk_94[1] = 0;
             {sub_02019EBC(param0->unk_18, 0);}
             param0->unk_0C = 48;
-        } else if (coresys.padInput) {
+        } else if (gCoreSys.padInput) {
             param0->unk_0C = 49;
         }
         break;
@@ -1774,7 +1774,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
                 int v3[] = {33, 34, 0xffff};
 
                 if (v3[param0->unk_94[0]] == 0xffff) {
-                    sub_02005748(1798);
+                    Sound_PlayEffect(1798);
 
                     param0->unk_0C = 50;
                 } else {
@@ -1895,7 +1895,7 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
         }
         break;
     case 67:
-        if ((coresys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) {
+        if ((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A) {
             param0->unk_7C = 6;
             param0->unk_80 = 10;
             param0->unk_78 = 2;
@@ -1908,14 +1908,14 @@ static BOOL ov73_021D2318 (UnkStruct_ov73_021D1058 * param0)
             break;
         }
 
-        if ((coresys.padInput & PAD_KEY_LEFT) == PAD_KEY_LEFT || (coresys.padInput & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
+        if ((gCoreSys.padInput & PAD_KEY_LEFT) == PAD_KEY_LEFT || (gCoreSys.padInput & PAD_KEY_RIGHT) == PAD_KEY_RIGHT) {
             if (param0->unk_84 == 0) {
                 param0->unk_84 = 1;
             } else {
                 param0->unk_84 = 0;
             }
 
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
         }
 
         ov73_021D1DE8(param0);

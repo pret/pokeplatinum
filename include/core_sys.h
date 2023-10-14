@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_CORESYS_H
-#define POKEPLATINUM_CORESYS_H
+#ifndef POKEPLATINUM_CORE_SYS_H
+#define POKEPLATINUM_CORE_SYS_H
 
 #include "functypes/funcptr_02017798.h"
 #include "struct_decls/struct_0201CD88_decl.h"
@@ -43,6 +43,6 @@ typedef struct CoreSys {
     u32 * unk_70;
 } CoreSys;
 
-extern CoreSys coresys;
+extern CoreSys gCoreSys;
 
-#endif // POKEPLATINUM_CORESYS_H
+#endif // POKEPLATINUM_CORE_SYS_H

@@ -4,7 +4,7 @@
 #include "assert.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
@@ -83,7 +83,7 @@ u16 sub_02094E98(UnkStruct_02095C48 * param0);
 BOOL sub_020943B0(UnkStruct_02095C48 * param0);
 BOOL sub_020944CC(UnkStruct_02095C48 * param0);
 BOOL sub_020944D4(UnkStruct_02095C48 * param0);
-static void sub_02093C6C(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02093C6C(SysTask * param0, void * param1);
 UnkStruct_02095C48 * sub_02093800(const UnkStruct_02093800 * param0);
 void sub_02093AD4(UnkStruct_02095C48 * param0);
 void sub_02094630(UnkStruct_02095C48 * param0, int param1, UnkStruct_0200B358 * param2, u32 param3);
@@ -94,9 +94,9 @@ static BOOL sub_020935EC(UnkStruct_020508D4 * param0);
 void sub_02093BBC(UnkStruct_02095C48 * param0);
 void sub_02093C54(UnkStruct_02095C48 * param0);
 static void sub_020944E8(UnkStruct_02095C48 * param0);
-static void sub_0209451C(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0209451C(SysTask * param0, void * param1);
 static void sub_02094EB4(UnkStruct_02095C48 * param0, int param1, UnkStruct_ov6_02248DD8 * param2);
-static void sub_02094B30(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02094B30(SysTask * param0, void * param1);
 static int sub_02093B2C(Pokemon * param0, int param1);
 static void sub_020939E0(UnkStruct_02095C48 * param0, int param1, int param2);
 
@@ -618,7 +618,7 @@ void sub_02093C54 (UnkStruct_02095C48 * param0)
     param0->unk_199C = NULL;
 }
 
-static void sub_02093C6C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02093C6C (SysTask * param0, void * param1)
 {
     UnkStruct_02095C48 * v0 = param1;
 
@@ -971,7 +971,7 @@ static void sub_02093C6C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_164 = NULL;
         v0->unk_15A = 0;
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1043,7 +1043,7 @@ BOOL sub_020943B0 (UnkStruct_02095C48 * param0)
 
     sub_02095AF0(param0);
 
-    param0->unk_164 = sub_0200D9E8(sub_02093C6C, param0, 10);
+    param0->unk_164 = SysTask_Start(sub_02093C6C, param0, 10);
 
     return 1;
 }
@@ -1067,10 +1067,10 @@ static void sub_020944E8 (UnkStruct_02095C48 * param0)
     GF_ASSERT(param0->unk_164 == NULL);
 
     param0->unk_15A = 0;
-    param0->unk_164 = sub_0200D9E8(sub_0209451C, param0, 10);
+    param0->unk_164 = SysTask_Start(sub_0209451C, param0, 10);
 }
 
-static void sub_0209451C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0209451C (SysTask * param0, void * param1)
 {
     UnkStruct_02095C48 * v0 = param1;
 
@@ -1124,7 +1124,7 @@ static void sub_0209451C (UnkStruct_0201CD38 * param0, void * param1)
     default:
         v0->unk_164 = NULL;
         v0->unk_15A = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -1498,7 +1498,7 @@ void sub_02094A58 (UnkStruct_02095C48 * param0, int param1)
         }
     }
 
-    v0->unk_00 = sub_0200D9E8(sub_02094B30, param0, 100);
+    v0->unk_00 = SysTask_Start(sub_02094B30, param0, 100);
     param0->unk_19A0 = v0;
 }
 
@@ -1511,7 +1511,7 @@ BOOL sub_02094B1C (UnkStruct_02095C48 * param0)
     return 0;
 }
 
-static void sub_02094B30 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02094B30 (SysTask * param0, void * param1)
 {
     UnkStruct_02095C48 * v0 = param1;
     UnkStruct_02094A58 * v1 = v0->unk_19A0;
@@ -1526,7 +1526,7 @@ static void sub_02094B30 (UnkStruct_0201CD38 * param0, void * param1)
 
         if (v1->unk_08 > v1->unk_04[v1->unk_0A]) {
             sub_0200AAE0(6, 0, 4, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 1);
-            sub_02005748(1528);
+            Sound_PlayEffect(1528);
             v1->unk_0A++;
             v1->unk_08 = 0;
 
@@ -1538,7 +1538,7 @@ static void sub_02094B30 (UnkStruct_0201CD38 * param0, void * param1)
     default:
         Heap_FreeToHeap(v0->unk_19A0);
         v0->unk_19A0 = NULL;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }

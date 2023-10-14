@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "coresys.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "strbuf.h"
 #include "trainer_info.h"
 #include "struct_decls/struct_02029894_decl.h"
@@ -65,11 +65,11 @@ typedef struct {
 
 typedef struct {
     void * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkFuncPtr_ov23_022431EC unk_08;
     UnkStruct_0203CDB0 * unk_0C;
     UnkStruct_ov23_02253598 * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_14;
     UnkStruct_ov23_0224271C unk_18;
     UnkStruct_ov23_0224271C unk_1C;
     UnkStruct_ov23_02257748_sub1 unk_20[20];
@@ -121,7 +121,7 @@ typedef struct {
 } UnkStruct_ov23_02243360;
 
 static void ov23_022433F4(int param0);
-static void ov23_02243310(UnkStruct_0201CD38 * param0, void * param1);
+static void ov23_02243310(SysTask * param0, void * param1);
 
 static UnkStruct_ov23_02257748 * Unk_ov23_02257748 = NULL;
 
@@ -156,7 +156,7 @@ static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, UnkStruct_0203CDB0 
     }
 
     sub_0206A9F4(sub_020507E4(Unk_ov23_02257748->unk_0C->unk_0C));
-    Unk_ov23_02257748->unk_14 = sub_0200D9E8(ov23_02243310, NULL, 0);
+    Unk_ov23_02257748->unk_14 = SysTask_Start(ov23_02243310, NULL, 0);
     sub_02032110(ov23_022433F4);
 }
 
@@ -171,7 +171,7 @@ static void ov23_02242108 (void)
     }
 
     sub_02032110(NULL);
-    sub_0200DA58(Unk_ov23_02257748->unk_14);
+    SysTask_Done(Unk_ov23_02257748->unk_14);
 
     ov23_02253DD8(Unk_ov23_02257748->unk_118);
     ov23_02253DD8(Unk_ov23_02257748->unk_11C);
@@ -355,7 +355,7 @@ BOOL ov23_02242458 (void)
         return 0;
     }
 
-    if (coresys.touchInput) {
+    if (gCoreSys.touchInput) {
         Unk_ov23_02257748->unk_134 = 30;
 
         if (!Unk_ov23_02257748->unk_14B) {
@@ -368,13 +368,13 @@ BOOL ov23_02242458 (void)
                     return 0;
                 }
 
-                v0 = ov5_021EAFA4(coresys.unk_5C, coresys.unk_5E, Unk_ov23_02257748->unk_0C->unk_8C);
+                v0 = ov5_021EAFA4(gCoreSys.unk_5C, gCoreSys.unk_5E, Unk_ov23_02257748->unk_0C->unk_8C);
                 ov5_021E9230(v0.x, v0.z, &v2, &v3);
                 v4.unk_00 = v2;
                 v4.unk_02 = v3;
 
-                Unk_ov23_02257748->unk_18.unk_00 = coresys.unk_5C;
-                Unk_ov23_02257748->unk_18.unk_02 = coresys.unk_5E;
+                Unk_ov23_02257748->unk_18.unk_00 = gCoreSys.unk_5C;
+                Unk_ov23_02257748->unk_18.unk_02 = gCoreSys.unk_5E;
                 Unk_ov23_02257748->unk_1C.unk_00 = v2;
                 Unk_ov23_02257748->unk_1C.unk_02 = v3;
 
@@ -1155,7 +1155,7 @@ void ov23_022431C4 (int param0, int param1, void * param2, void * param3)
     }
 }
 
-void ov23_022431EC (void * param0, UnkStruct_0201CD38 * param1, UnkFuncPtr_ov23_022431EC param2)
+void ov23_022431EC (void * param0, SysTask * param1, UnkFuncPtr_ov23_022431EC param2)
 {
     Unk_ov23_02257748->unk_00 = param0;
     Unk_ov23_02257748->unk_04 = param1;
@@ -1224,7 +1224,7 @@ BOOL ov23_02243298 (int param0)
     return 1;
 }
 
-static void ov23_02243310 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_02243310 (SysTask * param0, void * param1)
 {
     ov23_02254250(Unk_ov23_02257748->unk_118);
     ov23_02254250(Unk_ov23_02257748->unk_11C);
