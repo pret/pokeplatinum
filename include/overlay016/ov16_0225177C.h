@@ -141,8 +141,35 @@ enum CountAbilityMode {
     COUNT_ALIVE_BATTLERS_EXCEPT_ME, //< Count all alive battlers except for me which have the ability
 };
 
-void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCtx, int param2, int param3);
-void BattleSystem_ReloadPokemon(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+/**
+ * @brief Initialize a BattleMon from the Pokemon in the given battler's party,
+ * from the given party slot.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler whose party will be read from
+ * @param partySlot The slot in the party to retrieve
+ */
+void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
+
+/**
+ * @brief Reload a BattleMon from the given battler's party, from the given
+ * party slot.
+ * 
+ * Specifically, this will only reload the following fields:
+ * 
+ * - battle stats (attack, defense, etc.)
+ * - level
+ * - friendship
+ * - move known in each slot
+ * - total experience
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler whose party will be read from
+ * @param partySlot The slot in the party to retrieve
+ */
+void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 
 /**
  * @brief Load a script file from the specified NARC.
@@ -237,7 +264,22 @@ int ov16_02253F7C(BattleContext * param0, int param1);
 BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
 void BattleContext_Init(BattleContext * param0);
 void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
-void ov16_0225433C(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Update relevant buffers for a battler after a switch.
+ * 
+ * This handles all of the logic for what effects are zero'd out due to a
+ * switch, as well as what effects are transferred across a switch due to
+ * Baton Pass.
+ * 
+ * This routine will update the battler's chosen command to be MOVE_END, which
+ * functionally ends their turn.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The switching battler
+ */
+void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
 /**
  * @brief Cleanup lingering state according to the given battler.
@@ -409,6 +451,16 @@ BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
 BOOL BattleSystem_PokemonIsOT(BattleSystem * param0, Pokemon * param1);
 BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);
 void ov16_0225A1B0(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Switch the party order by swapping the battler in the given party slot
+ * with an active slot.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler who is switching
+ * @param partySlot The party slot which should be moved to an active slot
+ */
 void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 
 /**

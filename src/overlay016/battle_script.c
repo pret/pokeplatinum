@@ -2724,7 +2724,7 @@ static BOOL ov16_02242134 (BattleSystem * param0, BattleContext * param1)
 
     param1->hpTemp = param1->battleMons[1].curHP;
 
-    ov16_0225433C(param0, param1, v0);
+    BattleSystem_UpdateAfterSwitch(param0, param1, v0);
 
     return 0;
 }
@@ -5585,7 +5585,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
         while (TRUE) {
             v5 = BattleSystem_PartyPokemon(param0, param1->attacker, param1->beatUpCounter);
 
-            if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v5, MON_DATA_160, NULL) == 0))) {
+            if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v5, MON_DATA_STATUS_CONDITION, NULL) == 0))) {
                 break;
             }
 
@@ -5622,7 +5622,7 @@ static BOOL ov16_02245D68 (BattleSystem * param0, BattleContext * param1)
         while (TRUE) {
             v5 = BattleSystem_PartyPokemon(param0, param1->attacker, param1->beatUpCounter);
 
-            if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v5, MON_DATA_160, NULL) == 0))) {
+            if ((param1->beatUpCounter == param1->selectedPartySlot[param1->attacker]) || ((Pokemon_GetValue(v5, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v5, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v5, MON_DATA_STATUS_CONDITION, NULL) == 0))) {
                 break;
             }
 
@@ -7847,7 +7847,7 @@ static BOOL ov16_02248708 (BattleSystem * param0, BattleContext * param1)
     if ((param1->battleMons[v1].curHP) && (param1->selectedPartySlot[v1] != 6)) {
         v3 = BattleSystem_PartyPokemon(param0, v1, param1->selectedPartySlot[v1]);
         v4 = Pokemon_GetValue(v3, MON_DATA_ABILITY, NULL);
-        v5 = Pokemon_GetValue(v3, MON_DATA_160, NULL);
+        v5 = Pokemon_GetValue(v3, MON_DATA_STATUS_CONDITION, NULL);
 
         if ((param1->battleMons[v1].ability != 30) && (ov16_022577A4(param1, v4, v5) == 0)) {
             BattleScript_Iter(param1, v2);

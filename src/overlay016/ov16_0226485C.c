@@ -622,7 +622,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
         if ((v5) && (v5 != 494)) {
             if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
-                if (Pokemon_GetValue(v8, MON_DATA_160, NULL)) {
+                if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                     v0.unk_08[0][v6] = 3;
                 } else {
                     v0.unk_08[0][v6] = 1;
@@ -657,7 +657,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
             if ((v5) && (v5 != 494)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_160, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -685,7 +685,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
             if ((v5) && (v5 != 494)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_160, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -708,7 +708,7 @@ void BattleIO_SetCommandSelection (BattleSystem *battleSys, BattleContext *battl
 
             if ((v5) && (v5 != 494)) {
                 if (Pokemon_GetValue(v8, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v8, MON_DATA_160, NULL)) {
+                    if (Pokemon_GetValue(v8, MON_DATA_STATUS_CONDITION, NULL)) {
                         v0.unk_08[1][v6] = 3;
                     } else {
                         v0.unk_08[1][v6] = 1;
@@ -1749,7 +1749,7 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
 
             if ((v3) && (v3 != 494)) {
                 if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_160, NULL)) {
+                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
                         param2->unk_02[v4] = 3;
                     } else {
                         param2->unk_02[v4] = 1;
@@ -1771,7 +1771,7 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
 
             if ((v3) && (v3 != 494)) {
                 if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_160, NULL)) {
+                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
                         param2->unk_02[v4] = 3;
                     } else {
                         param2->unk_02[v4] = 1;
@@ -1799,7 +1799,7 @@ static void ov16_02266CF0 (BattleSystem * param0, BattleContext * param1, UnkStr
 
             if ((v3) && (v3 != 494)) {
                 if (Pokemon_GetValue(v7, MON_DATA_CURRENT_HP, NULL)) {
-                    if (Pokemon_GetValue(v7, MON_DATA_160, NULL)) {
+                    if (Pokemon_GetValue(v7, MON_DATA_STATUS_CONDITION, NULL)) {
                         param2->unk_02[v4] = 3;
                     } else {
                         param2->unk_02[v4] = 1;

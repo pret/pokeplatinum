@@ -2029,7 +2029,7 @@ static void ov5_021E62C4 (Party * param0, int param1, UnkStruct_02026218 * param
     TrainerInfo * v6 = sub_02025E38(param3);
 
     v2 = TrainerInfo_Name(v6);
-    Pokemon_GetValue(v1, MON_DATA_117, v3);
+    Pokemon_GetValue(v1, MON_DATA_NICKNAME, v3);
 
     if (ov5_021E62B0(Pokemon_GetBoxPokemon(v1))) {
         Pokemon_GetValue(v1, MON_DATA_170, sub_02026230(v4));
@@ -2969,7 +2969,7 @@ void ov5_021E7308 (UnkStruct_02026310 * param0, u32 param1, u32 param2, u32 para
     if (v3 != 2) {
         v4 = BoxPokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
-        if (((v4 == 29) || (v4 == 32)) && (BoxPokemon_GetValue(v1, MON_DATA_77, NULL) == 0)) {
+        if (((v4 == 29) || (v4 == 32)) && (BoxPokemon_GetValue(v1, MON_DATA_HAS_NICKNAME, NULL) == 0)) {
             v3 = 2;
         }
     }

@@ -1312,7 +1312,7 @@ static int ov88_0223C8AC (UnkStruct_ov88_0223C8AC * param0, Party * param1, int 
 {
     if ((param0->unk_00 == 29) || (param0->unk_00 == 32)) {
         Pokemon * v0 = Party_GetPokemonBySlotIndex(param1, param2);
-        int v1 = Pokemon_GetValue(v0, MON_DATA_77, NULL);
+        int v1 = Pokemon_GetValue(v0, MON_DATA_HAS_NICKNAME, NULL);
 
         if (v1 == 0) {
             return 2;
@@ -2547,7 +2547,7 @@ static void ov88_0223E7F0 (UnkStruct_0202B628 * param0, Pokemon * param1)
     TrainerInfo * v1 = sub_02032EE8(sub_0203608C() ^ 1);
     u16 v2[10 + 1];
 
-    Pokemon_GetValue(param1, MON_DATA_117, v2);
+    Pokemon_GetValue(param1, MON_DATA_NICKNAME, v2);
     v0 = sub_0202C11C((u16 *)TrainerInfo_Name(v1), TrainerInfo_Gender(v1), v2, Pokemon_GetGender(param1), 26);
     sub_0202B758(param0, v0, 4);
 }

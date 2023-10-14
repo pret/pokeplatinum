@@ -1019,7 +1019,7 @@ static void sub_0204ACFC (UnkStruct_ov104_0223A348_sub2 * param0, Pokemon * para
     param0->unk_20 = Pokemon_GetValue(param1, MON_DATA_ABILITY, NULL);
     param0->unk_21 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
 
-    Pokemon_GetValue(param1, MON_DATA_117, param0->unk_22);
+    Pokemon_GetValue(param1, MON_DATA_NICKNAME, param0->unk_22);
 }
 
 static void sub_0204AE20 (UnkStruct_0204AFC4 * param0, SaveData * param1, int param2)

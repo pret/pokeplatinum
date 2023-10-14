@@ -9,6 +9,7 @@
 #define SYSCTL_FIRST_OF_MULTI_TURN      (1 << 5) // this could be a charge-up move or Bide
 #define SYSCTL_SKIP_SPRITE_BLINK        (1 << 6)
 #define SYSCTL_TRY_SYNCHRONIZE_STATUS   (1 << 7)
+#define SYSCTL_BATON_PASS               (1 << 8)
 #define SYSCTL_LAST_OF_MULTI_TURN       (1 << 9)
 #define SYSCTL_NONSTANDARD_ACC_CHECK    (1 << 10) // used by Future Sight and OHKO moves
 #define SYSCTL_MOVE_HIT                 (1 << 13) // this indicates that the move hit its target(s)

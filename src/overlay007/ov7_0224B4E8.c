@@ -54,7 +54,7 @@ typedef struct {
     Window unk_54;
     UnkStruct_0200B358 * unk_64;
     MessageLoader * unk_68;
-    UnkStruct_02098700 * unk_6C;
+    HeightWeightData * unk_6C;
     u16 * unk_70;
     int unk_74;
     u16 unk_78;

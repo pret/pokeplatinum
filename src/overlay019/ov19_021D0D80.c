@@ -4153,8 +4153,8 @@ static void ov19_021D58AC (UnkStruct_ov19_021D4DF0 * param0, BoxPokemon * param1
     v2 = PokemonPersonalData_FromMonSpecies(v0->unk_04, 9);
     v0->unk_0A = PokemonPersonalData_GetLevelAt(v2, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_EXP, NULL));
     v0->unk_0B = BoxPokemon_GetValue(param1, MON_DATA_11, NULL);
-    v0->unk_0C = BoxPokemon_GetValue(param1, MON_DATA_177, NULL);
-    v0->unk_0D = BoxPokemon_GetValue(param1, MON_DATA_178, NULL);
+    v0->unk_0C = BoxPokemon_GetValue(param1, MON_DATA_TYPE_1, NULL);
+    v0->unk_0D = BoxPokemon_GetValue(param1, MON_DATA_TYPE_2, NULL);
 
     if ((v0->unk_0F == 0) && BoxPokemon_GetValue(param1, MON_DATA_176, NULL)) {
         v0->unk_0E = PokemonPersonalData_GetGenderOf(v2, v0->unk_04, BoxPokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL));
@@ -4296,8 +4296,8 @@ static void ov19_021D5BE8 (UnkStruct_ov19_021D4DF0 * param0, u16 param1, UnkStru
 
         if (v2 == 493) {
             BoxPokemon_SetArceusForm(v0->unk_00);
-            v0->unk_0C = BoxPokemon_GetValue(v0->unk_00, MON_DATA_177, NULL);
-            v0->unk_0D = BoxPokemon_GetValue(v0->unk_00, MON_DATA_178, NULL);
+            v0->unk_0C = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_1, NULL);
+            v0->unk_0D = BoxPokemon_GetValue(v0->unk_00, MON_DATA_TYPE_2, NULL);
         } else if (v2 == 487) {
             int v3;
 

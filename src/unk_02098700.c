@@ -11,14 +11,14 @@
 
 
 
-typedef struct UnkStruct_02098700_t {
+typedef struct HeightWeightData {
     int * unk_00;
     int * unk_04;
     short * unk_08;
     short * unk_0C;
     short * unk_10;
     short * unk_14;
-} UnkStruct_02098700;
+} HeightWeightData;
 
 static int * sub_020988C8(NARC * param0, int param1);
 static int * sub_020988D8(NARC * param0, int param1);
@@ -27,17 +27,17 @@ static void sub_02098910(NARC * param0, short ** param1, short ** param2, int pa
 static void sub_02098938(NARC * param0, short ** param1, short ** param2, int param3);
 static void sub_02098960(NARC * param0, short ** param1, short ** param2, int param3);
 
-UnkStruct_02098700 * Pokedex_HeightWeightData (int param0)
+HeightWeightData * Pokedex_HeightWeightData (int param0)
 {
-    UnkStruct_02098700 * v0;
+    HeightWeightData * v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02098700));
-    memset(v0, 0, sizeof(UnkStruct_02098700));
+    v0 = Heap_AllocFromHeap(param0, sizeof(HeightWeightData));
+    memset(v0, 0, sizeof(HeightWeightData));
 
     return v0;
 }
 
-void Pokedex_HeightWeightData_Free (UnkStruct_02098700 * param0)
+void Pokedex_HeightWeightData_Free (HeightWeightData * param0)
 {
     GF_ASSERT(param0);
 
@@ -45,7 +45,7 @@ void Pokedex_HeightWeightData_Free (UnkStruct_02098700 * param0)
     param0 = NULL;
 }
 
-void Pokedex_HeightWeightData_Load (UnkStruct_02098700 * param0, int param1, int param2)
+void Pokedex_HeightWeightData_Load (HeightWeightData * param0, int param1, int param2)
 {
     NARC * v0;
     u32 v1;
@@ -71,7 +71,7 @@ void Pokedex_HeightWeightData_Load (UnkStruct_02098700 * param0, int param1, int
     NARC_dtor(v0);
 }
 
-void Pokedex_HeightWeightData_Release (UnkStruct_02098700 * param0)
+void Pokedex_HeightWeightData_Release (HeightWeightData * param0)
 {
     GF_ASSERT(param0->unk_00);
     GF_ASSERT(param0->unk_04);
@@ -92,42 +92,42 @@ void Pokedex_HeightWeightData_Release (UnkStruct_02098700 * param0)
     param0->unk_14 = NULL;
 }
 
-int sub_02098808 (const UnkStruct_02098700 * param0, int param1)
+int sub_02098808 (const HeightWeightData * param0, int param1)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_00);
     return param0->unk_00[param1];
 }
 
-int Pokedex_HeightWeightData_Weight (const UnkStruct_02098700 * param0, int param1)
+int Pokedex_HeightWeightData_Weight (const HeightWeightData * param0, int param1)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_04);
     return param0->unk_04[param1];
 }
 
-short sub_02098848 (const UnkStruct_02098700 * param0, int param1)
+short sub_02098848 (const HeightWeightData * param0, int param1)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_08);
     return param0->unk_08[param1];
 }
 
-short sub_02098868 (const UnkStruct_02098700 * param0, int param1)
+short sub_02098868 (const HeightWeightData * param0, int param1)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_0C);
     return param0->unk_0C[param1];
 }
 
-short sub_02098888 (const UnkStruct_02098700 * param0, int param1)
+short sub_02098888 (const HeightWeightData * param0, int param1)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_10);
     return param0->unk_10[param1];
 }
 
-short sub_020988A8 (const UnkStruct_02098700 * param0, int param1)
+short sub_020988A8 (const HeightWeightData * param0, int param1)
 {
     GF_ASSERT(param0);
     GF_ASSERT(param0->unk_14);

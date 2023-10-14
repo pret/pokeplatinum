@@ -1401,7 +1401,7 @@ static void ov94_02243E48 (UnkStruct_0202B628 * param0, UnkStruct_ov94_0223BA88 
     u16 v1[10 + 1];
     Pokemon * v2 = (Pokemon *)param1->unk_00.unk_00;
 
-    Pokemon_GetValue(v2, MON_DATA_117, v1);
+    Pokemon_GetValue(v2, MON_DATA_NICKNAME, v1);
     v0 = sub_0202C1EC(param1->unk_10C, param1->unk_F6, v1, Pokemon_GetGender(v2), 62);
     sub_0202B758(param0, v0, 4);
 }

@@ -387,8 +387,8 @@ BOOL sub_0204D7D4 (UnkStruct_0203E724 * param0)
     u16 v4 = inline_02049538(param0);
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v4);
-    *v2 = Pokemon_GetValue(v1, MON_DATA_177, NULL);
-    *v3 = Pokemon_GetValue(v1, MON_DATA_178, NULL);
+    *v2 = Pokemon_GetValue(v1, MON_DATA_TYPE_1, NULL);
+    *v3 = Pokemon_GetValue(v1, MON_DATA_TYPE_2, NULL);
 
     return 0;
 }

@@ -198,7 +198,7 @@ int sub_02054B04 (Party * param0, u16 param1)
         v4 = Party_GetPokemonBySlotIndex(param0, v2);
 
         if (sub_02054884(v4)) {
-            if (Pokemon_GetValue(v4, MON_DATA_160, NULL) & (0x80 | 0x8)) {
+            if (Pokemon_GetValue(v4, MON_DATA_STATUS_CONDITION, NULL) & (0x80 | 0x8)) {
                 u32 v5 = Pokemon_GetValue(v4, MON_DATA_CURRENT_HP, NULL);
 
                 if (v5 > 1) {
@@ -228,7 +228,7 @@ int sub_02054B04 (Party * param0, u16 param1)
 
 BOOL sub_02054B94 (Pokemon * param0)
 {
-    if ((Pokemon_GetValue(param0, MON_DATA_160, NULL) & (0x80 | 0x8)) && (Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL) == 1)) {
+    if ((Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL) & (0x80 | 0x8)) && (Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL) == 1)) {
         u32 v0 = 0;
 
         Pokemon_SetValue(param0, 160, &v0);

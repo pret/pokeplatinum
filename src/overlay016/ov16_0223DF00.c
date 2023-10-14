@@ -593,7 +593,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     v6 = 0;
 
     if (Item_LoadParam(param4, 15, 5)) {
-        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL);
 
         if (v3 & 0x7) {
             v3 &= (0x7 ^ 0xffffffff);
@@ -613,7 +613,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 16, 5)) {
-        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL);
 
         if (v3 & 0xf88) {
             v3 &= ((0x8 | 0x80 | 0xf00) ^ 0xffffffff);
@@ -630,7 +630,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 17, 5)) {
-        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL);
 
         if (v3 & 0x10) {
             v3 &= (0x10 ^ 0xffffffff);
@@ -647,7 +647,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 18, 5)) {
-        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL);
 
         if (v3 & 0x20) {
             v3 &= (0x20 ^ 0xffffffff);
@@ -664,7 +664,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
     }
 
     if (Item_LoadParam(param4, 19, 5)) {
-        v3 = Pokemon_GetValue(v1, MON_DATA_160, NULL);
+        v3 = Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL);
 
         if (v3 & 0x40) {
             v3 &= (0x40 ^ 0xffffffff);

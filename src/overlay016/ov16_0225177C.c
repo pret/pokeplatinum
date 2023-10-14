@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/abilities.h"
+#include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/species.h"
 #include "constants/string.h"
@@ -45,8 +46,8 @@
 #include "overlay016/ov16_0225CBB8.h"
 #include "overlay016/ov16_0226485C.h"
 
-void BattleSystem_InitBattleMon(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-void BattleSystem_ReloadPokemon(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
+void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
 void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
 BOOL ov16_02251EF4(BattleContext * param0);
@@ -74,7 +75,7 @@ int ov16_02253F7C(BattleContext * param0, int param1);
 BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
 void BattleContext_Init(BattleContext * param0);
 void BattleContext_InitCounters(BattleSystem * param0, BattleContext * param1);
-void ov16_0225433C(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void BattleSystem_SetupNextTurn(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_CheckStruggling(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
@@ -182,135 +183,129 @@ int ov16_0225BE3C(BattleSystem * param0, BattleContext * param1, Pokemon * param
 
 static const Fraction sStatStageBoosts[];
 
-void BattleSystem_InitBattleMon (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
+void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
-    Pokemon * v0 = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
-    int v1;
-    int v2;
-    UnkStruct_02098700 * v3;
+    Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
 
-    battleCtx->battleMons[battler].species = Pokemon_GetValue(v0, MON_DATA_SPECIES, 0);
-    battleCtx->battleMons[battler].attack = Pokemon_GetValue(v0, MON_DATA_ATK, 0);
-    battleCtx->battleMons[battler].defense = Pokemon_GetValue(v0, MON_DATA_DEF, 0);
-    battleCtx->battleMons[battler].speed = Pokemon_GetValue(v0, MON_DATA_SPEED, 0);
-    battleCtx->battleMons[battler].spAttack = Pokemon_GetValue(v0, MON_DATA_SP_ATK, 0);
-    battleCtx->battleMons[battler].spDefense = Pokemon_GetValue(v0, MON_DATA_SP_DEF, 0);
+    battleCtx->battleMons[battler].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
+    battleCtx->battleMons[battler].defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
+    battleCtx->battleMons[battler].speed = Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
+    battleCtx->battleMons[battler].spAttack = Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL);
+    battleCtx->battleMons[battler].spDefense = Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
 
-    for (v1 = 0; v1 < 4; v1++) {
-        battleCtx->battleMons[battler].moves[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1 + v1, 0);
-        battleCtx->battleMons[battler].ppCur[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1_CUR_PP + v1, 0);
-        battleCtx->battleMons[battler].ppUps[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1_PP_UPS + v1, 0);
+    int i;
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        battleCtx->battleMons[battler].moves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
+        battleCtx->battleMons[battler].ppCur[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + i, NULL);
+        battleCtx->battleMons[battler].ppUps[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
     }
 
-    battleCtx->battleMons[battler].hpIV = Pokemon_GetValue(v0, MON_DATA_HP_IV, 0);
-    battleCtx->battleMons[battler].attackIV = Pokemon_GetValue(v0, MON_DATA_ATK_IV, 0);
-    battleCtx->battleMons[battler].defenseIV = Pokemon_GetValue(v0, MON_DATA_DEF_IV, 0);
-    battleCtx->battleMons[battler].speedIV = Pokemon_GetValue(v0, MON_DATA_SPEED_IV, 0);
-    battleCtx->battleMons[battler].spAttackIV = Pokemon_GetValue(v0, MON_DATA_SPATK_IV, 0);
-    battleCtx->battleMons[battler].spDefenseIV = Pokemon_GetValue(v0, MON_DATA_SPDEF_IV, 0);
-    battleCtx->battleMons[battler].isEgg = Pokemon_GetValue(v0, MON_DATA_IS_EGG, 0);
-    battleCtx->battleMons[battler].hasNickname = Pokemon_GetValue(v0, MON_DATA_77, 0);
+    battleCtx->battleMons[battler].hpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL);
+    battleCtx->battleMons[battler].attackIV = Pokemon_GetValue(mon, MON_DATA_ATK_IV, NULL);
+    battleCtx->battleMons[battler].defenseIV = Pokemon_GetValue(mon, MON_DATA_DEF_IV, NULL);
+    battleCtx->battleMons[battler].speedIV = Pokemon_GetValue(mon, MON_DATA_SPEED_IV, NULL);
+    battleCtx->battleMons[battler].spAttackIV = Pokemon_GetValue(mon, MON_DATA_SPATK_IV, NULL);
+    battleCtx->battleMons[battler].spDefenseIV = Pokemon_GetValue(mon, MON_DATA_SPDEF_IV, NULL);
+    battleCtx->battleMons[battler].isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+    battleCtx->battleMons[battler].hasNickname = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
-    if ((battleCtx->battleStatusMask & 0x100) == 0) {
-        for (v1 = 0; v1 < 0x8; v1++) {
-            battleCtx->battleMons[battler].statBoosts[v1] = 6;
+    if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE) {
+        for (i = 0; i < BATTLE_STAT_MAX; i++) {
+            battleCtx->battleMons[battler].statBoosts[i] = 6;
         }
     }
 
-    battleCtx->battleMons[battler].weatherAbilityAnnounced = 0;
-    battleCtx->battleMons[battler].intimidateAnnounced = 0;
-    battleCtx->battleMons[battler].traceAnnounced = 0;
-    battleCtx->battleMons[battler].downloadAnnounced = 0;
-    battleCtx->battleMons[battler].anticipationAnnounced = 0;
-    battleCtx->battleMons[battler].forewarnAnnounced = 0;
-    battleCtx->battleMons[battler].slowStartAnnounced = 0;
-    battleCtx->battleMons[battler].slowStartFinished = 0;
-    battleCtx->battleMons[battler].friskAnnounced = 0;
-    battleCtx->battleMons[battler].moldBreakerAnnounced = 0;
-    battleCtx->battleMons[battler].pressureAnnounced = 0;
-    battleCtx->battleMons[battler].type1 = Pokemon_GetValue(v0, MON_DATA_177, 0);
-    battleCtx->battleMons[battler].type2 = Pokemon_GetValue(v0, MON_DATA_178, 0);
-    battleCtx->battleMons[battler].gender = Pokemon_GetGender(v0);
-    battleCtx->battleMons[battler].isShiny = Pokemon_IsShiny(v0);
+    battleCtx->battleMons[battler].weatherAbilityAnnounced = FALSE;
+    battleCtx->battleMons[battler].intimidateAnnounced = FALSE;
+    battleCtx->battleMons[battler].traceAnnounced = FALSE;
+    battleCtx->battleMons[battler].downloadAnnounced = FALSE;
+    battleCtx->battleMons[battler].anticipationAnnounced = FALSE;
+    battleCtx->battleMons[battler].forewarnAnnounced = FALSE;
+    battleCtx->battleMons[battler].slowStartAnnounced = FALSE;
+    battleCtx->battleMons[battler].slowStartFinished = FALSE;
+    battleCtx->battleMons[battler].friskAnnounced = FALSE;
+    battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
+    battleCtx->battleMons[battler].pressureAnnounced = FALSE;
+    battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+    battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+    battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
+    battleCtx->battleMons[battler].isShiny = Pokemon_IsShiny(mon);
 
-    if (BattleSystem_BattleType(battleSys) & (0x20 | 0x200)) {
-        battleCtx->battleMons[battler].ability = 0;
-        battleCtx->battleMons[battler].status = 0;
-        battleCtx->battleMons[battler].heldItem = 0;
+    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) {
+        battleCtx->battleMons[battler].ability = ABILITY_NONE;
+        battleCtx->battleMons[battler].status = MON_CONDITION_NONE;
+        battleCtx->battleMons[battler].heldItem = ITEM_NONE;
     } else {
-        battleCtx->battleMons[battler].ability = Pokemon_GetValue(v0, MON_DATA_ABILITY, 0);
-        battleCtx->battleMons[battler].status = Pokemon_GetValue(v0, MON_DATA_160, 0);
-        battleCtx->battleMons[battler].heldItem = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, 0);
+        battleCtx->battleMons[battler].ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+        battleCtx->battleMons[battler].status = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+        battleCtx->battleMons[battler].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     }
 
-    if ((BattleSystem_BattleType(battleSys) & (0x20 | 0x200)) && (Battler_Side(battleSys, battler) == 0)) {
+    if ((BattleSystem_BattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) && Battler_Side(battleSys, battler) == BATTLER_US) {
         battleCtx->battleMons[battler].formNum = 0;
     } else {
-        battleCtx->battleMons[battler].formNum = Pokemon_GetValue(v0, MON_DATA_FORM, 0);
+        battleCtx->battleMons[battler].formNum = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     }
 
-    battleCtx->battleMons[battler].level = Pokemon_GetValue(v0, MON_DATA_LEVEL, 0);
-    battleCtx->battleMons[battler].friendship = Pokemon_GetValue(v0, MON_DATA_FRIENDSHIP, 0);
-    battleCtx->battleMons[battler].curHP = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, 0);
-    battleCtx->battleMons[battler].maxHP = Pokemon_GetValue(v0, MON_DATA_MAX_HP, 0);
-    battleCtx->battleMons[battler].exp = Pokemon_GetValue(v0, MON_DATA_EXP, 0);
-    battleCtx->battleMons[battler].pid = Pokemon_GetValue(v0, MON_DATA_PERSONALITY, 0);
-    battleCtx->battleMons[battler].OTId = Pokemon_GetValue(v0, MON_DATA_OT_ID, 0);
-    battleCtx->battleMons[battler].OTGender = Pokemon_GetValue(v0, MON_DATA_OT_GENDER, 0);
-    battleCtx->battleMons[battler].capturedBall = Pokemon_GetValue(v0, MON_DATA_POKEBALL, 0);
+    battleCtx->battleMons[battler].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    battleCtx->battleMons[battler].friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
+    battleCtx->battleMons[battler].curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    battleCtx->battleMons[battler].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
+    battleCtx->battleMons[battler].exp = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
+    battleCtx->battleMons[battler].pid = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    battleCtx->battleMons[battler].OTId = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
+    battleCtx->battleMons[battler].OTGender = Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
+    battleCtx->battleMons[battler].capturedBall = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
 
     Pokedex_SetupGiratina(battleCtx->battleMons[battler].formNum);
-    v3 = Pokedex_HeightWeightData(5);
-    Pokedex_HeightWeightData_Load(v3, 0, 5);
 
-    battleCtx->battleMons[battler].weight = Pokedex_HeightWeightData_Weight(v3, battleCtx->battleMons[battler].species);
+    HeightWeightData *heightWeightData = Pokedex_HeightWeightData(HEAP_ID_BATTLE);
+    Pokedex_HeightWeightData_Load(heightWeightData, 0, HEAP_ID_BATTLE);
 
-    Pokedex_HeightWeightData_Release(v3);
-    Pokedex_HeightWeightData_Free(v3);
-    Pokemon_GetValue(v0, MON_DATA_117, &battleCtx->battleMons[battler].nickname[0]);
-    Pokemon_GetValue(v0, MON_DATA_144, &battleCtx->battleMons[battler].OTName[0]);
+    battleCtx->battleMons[battler].weight = Pokedex_HeightWeightData_Weight(heightWeightData, battleCtx->battleMons[battler].species);
+
+    Pokedex_HeightWeightData_Release(heightWeightData);
+    Pokedex_HeightWeightData_Free(heightWeightData);
+    Pokemon_GetValue(mon, MON_DATA_NICKNAME, battleCtx->battleMons[battler].nickname);
+    Pokemon_GetValue(mon, MON_DATA_OTNAME, battleCtx->battleMons[battler].OTName);
 
     battleCtx->battleMons[battler].timesDamaged = 0;
     battleCtx->battleMons[battler].trainerMessageFlags = 0;
 
-    v2 = Battler_Side(battleSys, battler);
-
-    if (battleCtx->sideConditions[v2].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battler])) {
-        battleCtx->battleMons[battler].heldItem = 0;
-        battleCtx->battleMons[battler].moveEffectsData.canUnburden = 0;
-    } else {
-        if (battleCtx->battleMons[battler].heldItem) {
-            battleCtx->battleMons[battler].moveEffectsData.canUnburden = 1;
-        }
+    int side = Battler_Side(battleSys, battler);
+    if (battleCtx->sideConditions[side].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battler])) {
+        battleCtx->battleMons[battler].heldItem = ITEM_NONE;
+        battleCtx->battleMons[battler].moveEffectsData.canUnburden = FALSE;
+    } else if (battleCtx->battleMons[battler].heldItem) {
+        battleCtx->battleMons[battler].moveEffectsData.canUnburden = TRUE;
     }
 }
 
-void BattleSystem_ReloadPokemon (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
-    Pokemon * v0 = BattleSystem_PartyPokemon(param0, param2, param3);
-    int v1;
-    int v2;
+    Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, partySlot);
 
-    param1->battleMons[param2].attack = Pokemon_GetValue(v0, MON_DATA_ATK, 0);
-    param1->battleMons[param2].defense = Pokemon_GetValue(v0, MON_DATA_DEF, 0);
-    param1->battleMons[param2].speed = Pokemon_GetValue(v0, MON_DATA_SPEED, 0);
-    param1->battleMons[param2].spAttack = Pokemon_GetValue(v0, MON_DATA_SP_ATK, 0);
-    param1->battleMons[param2].spDefense = Pokemon_GetValue(v0, MON_DATA_SP_DEF, 0);
-    param1->battleMons[param2].level = Pokemon_GetValue(v0, MON_DATA_LEVEL, 0);
-    param1->battleMons[param2].friendship = Pokemon_GetValue(v0, MON_DATA_FRIENDSHIP, 0);
-    param1->battleMons[param2].curHP = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, 0);
-    param1->battleMons[param2].maxHP = Pokemon_GetValue(v0, MON_DATA_MAX_HP, 0);
+    battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
+    battleCtx->battleMons[battler].defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
+    battleCtx->battleMons[battler].speed = Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
+    battleCtx->battleMons[battler].spAttack = Pokemon_GetValue(mon, MON_DATA_SP_ATK, NULL);
+    battleCtx->battleMons[battler].spDefense = Pokemon_GetValue(mon, MON_DATA_SP_DEF, NULL);
+    battleCtx->battleMons[battler].level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    battleCtx->battleMons[battler].friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
+    battleCtx->battleMons[battler].curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+    battleCtx->battleMons[battler].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
 
-    if ((param1->battleMons[param2].statusVolatile & 0x200000) == 0) {
-        for (v1 = 0; v1 < 4; v1++) {
-            if ((param1->battleMons[param2].moveEffectsData.mimickedMoveSlot & FlagIndex(v1)) == 0) {
-                param1->battleMons[param2].moves[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1 + v1, 0);
-                param1->battleMons[param2].ppCur[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1_CUR_PP + v1, 0);
-                param1->battleMons[param2].ppUps[v1] = Pokemon_GetValue(v0, MON_DATA_MOVE1_PP_UPS + v1, 0);
+    if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if ((battleCtx->battleMons[battler].moveEffectsData.mimickedMoveSlot & FlagIndex(i)) == FALSE) {
+                battleCtx->battleMons[battler].moves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
+                battleCtx->battleMons[battler].ppCur[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_CUR_PP + i, NULL);
+                battleCtx->battleMons[battler].ppUps[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
             }
         }
 
-        param1->battleMons[param2].exp = Pokemon_GetValue(v0, MON_DATA_EXP, 0);
+        battleCtx->battleMons[battler].exp = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
     }
 }
 
@@ -2080,110 +2075,120 @@ void BattleContext_InitCounters (BattleSystem * param0, BattleContext * param1)
     param1->safariEscapeCount = 6;
 }
 
-void ov16_0225433C (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    int v0;
-    int v1;
-    u32 v2;
-    u8 * v3;
-    MoveEffectsData v4;
+    // declare C89-style to match
+    int i, maxBattlers;
+    u32 battleType;
+    u8 *addr;
+    MoveEffectsData moveEffects;
 
-    v4 = param1->battleMons[param2].moveEffectsData;
-    v1 = BattleSystem_MaxBattlers(param0);
-    v2 = BattleSystem_BattleType(param0);
+    moveEffects = battleCtx->battleMons[battler].moveEffectsData;
+    maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    battleType = BattleSystem_BattleType(battleSys);
 
-    param1->battlerActions[param2][0] = 39;
+    // Forcefully end the battler's turn after the replacement
+    battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
 
-    if ((param1->battleStatusMask & 0x100) == 0) {
-        for (v0 = 0; v0 < v1; v0++) {
-            if ((param1->battleMons[v0].statusVolatile & 0x4000000) && (param1->battleMons[v0].moveEffectsData.meanLookTarget == param2)) {
-                param1->battleMons[v0].statusVolatile &= (0x4000000 ^ 0xffffffff);
+    if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE) {
+        // Clear any Mean Look or Lock On effects from other active battlers
+        for (i = 0; i < maxBattlers; i++) {
+            if ((battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_MEAN_LOOK)
+                    && (battleCtx->battleMons[i].moveEffectsData.meanLookTarget == battler)) {
+                battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_MEAN_LOOK;
             }
 
-            if ((param1->battleMons[v0].moveEffectsMask & 0x18) && (param1->battleMons[v0].moveEffectsData.lockOnTarget == param2)) {
-                param1->battleMons[v0].moveEffectsMask &= (0x18 ^ 0xffffffff);
-                param1->battleMons[v0].moveEffectsData.lockOnTarget = 0;
+            if ((battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_LOCK_ON)
+                    && (battleCtx->battleMons[i].moveEffectsData.lockOnTarget == battler)) {
+                battleCtx->battleMons[i].moveEffectsMask &= ~MOVE_EFFECT_LOCK_ON;
+                battleCtx->battleMons[i].moveEffectsData.lockOnTarget = 0;
             }
         }
 
-        param1->battleMons[param2].statusVolatile = 0;
-        param1->battleMons[param2].moveEffectsMask = 0;
+        battleCtx->battleMons[battler].statusVolatile = VOLATILE_CONDITION_NONE;
+        battleCtx->battleMons[battler].moveEffectsMask = MOVE_EFFECT_NONE;
     } else {
-        param1->battleMons[param2].statusVolatile &= (0x100000 | 0x4000000 | 0x7 | 0x10000000 | 0x1000000);
-        param1->battleMons[param2].moveEffectsMask &= (3 | 4 | 24 | 32 | 1024 | 65536 | 0x20000 | 0x8000 | 0x800000 | 0x1000000 | 0x200000 | 0x4000000 | 0x2000000 | 0x8000000);
+        // Baton Pass maintains Focus Energy, Mean Look, Confusion, Curse, Substitute,
+        // and a variety of move effects (see constants/battle/moves.h)
+        battleCtx->battleMons[battler].statusVolatile &= VOLATILE_CONDITION_BATON_PASSED;
+        battleCtx->battleMons[battler].moveEffectsMask &= MOVE_EFFECT_BATON_PASSED;
 
-        for (v0 = 0; v0 < v1; v0++) {
-            if ((param1->battleMons[v0].moveEffectsMask & 0x18) && (param1->battleMons[v0].moveEffectsData.lockOnTarget == param2)) {
-                param1->battleMons[v0].moveEffectsMask &= (0x18 ^ 0xffffffff);
-                param1->battleMons[v0].moveEffectsMask |= (0x8 * 2);
+        for (i = 0; i < maxBattlers; i++) {
+            if ((battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_LOCK_ON)
+                    && battleCtx->battleMons[i].moveEffectsData.lockOnTarget == battler) {
+                // When transferring Lock On due to Baton Pass, its effect timer is refreshed
+                battleCtx->battleMons[i].moveEffectsMask &= ~MOVE_EFFECT_LOCK_ON;
+                battleCtx->battleMons[i].moveEffectsMask |= MOVE_EFFECT_LOCK_ON_INITIAL_DURATION;
             }
         }
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if (param1->battleMons[v0].statusVolatile & (FlagIndex(param2) << 16)) {
-            param1->battleMons[v0].statusVolatile &= ((FlagIndex(param2) << 16) ^ 0xffffffff);
+    // Clear the effects of Attract and Bind sourced from the replaced battler
+    for (i = 0; i < maxBattlers; i++) {
+        if (battleCtx->battleMons[i].statusVolatile & (FlagIndex(battler) << VOLATILE_CONDITION_ATTRACT_SHIFT)) {
+            battleCtx->battleMons[i].statusVolatile &= FLAG_NEGATE(FlagIndex(battler) << VOLATILE_CONDITION_ATTRACT_SHIFT);
         }
 
-        if ((param1->battleMons[v0].statusVolatile & 0xe000) && (param1->battleMons[v0].moveEffectsData.bindTarget == param2)) {
-            param1->battleMons[v0].statusVolatile &= (0xe000 ^ 0xffffffff);
+        if ((battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_BIND)
+                && battleCtx->battleMons[i].moveEffectsData.bindTarget == battler) {
+            battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_BIND;
         }
     }
 
-    v3 = (u8 *)&param1->battleMons[param2].moveEffectsData;
-
-    for (v0 = 0; v0 < sizeof(MoveEffectsData); v0++) {
-        v3[v0] = 0;
+    // Clear all move effects for the battler
+    addr = (u8 *)&battleCtx->battleMons[battler].moveEffectsData; // doesn't match with &moveEffectsData
+    for (i = 0; i < sizeof(MoveEffectsData); i++) {
+        addr[i] = 0;
     }
 
-    if (param1->battleStatusMask & 0x100) {
-        param1->battleMons[param2].moveEffectsData.substituteHP = v4.substituteHP;
-        param1->battleMons[param2].moveEffectsData.lockOnTarget = v4.lockOnTarget;
-        param1->battleMons[param2].moveEffectsData.perishSongTurns = v4.perishSongTurns;
-        param1->battleMons[param2].moveEffectsData.meanLookTarget = v4.meanLookTarget;
-        param1->battleMons[param2].moveEffectsData.magnetRiseTurns = v4.magnetRiseTurns;
-        param1->battleMons[param2].moveEffectsData.embargoTurns = v4.embargoTurns;
-        param1->battleMons[param2].moveEffectsData.healBlockTurns = v4.healBlockTurns;
+    // Update the move effects for Baton Pass, if applicable
+    if (battleCtx->battleStatusMask & SYSCTL_BATON_PASS) {
+        battleCtx->battleMons[battler].moveEffectsData.substituteHP = moveEffects.substituteHP;
+        battleCtx->battleMons[battler].moveEffectsData.lockOnTarget = moveEffects.lockOnTarget;
+        battleCtx->battleMons[battler].moveEffectsData.perishSongTurns = moveEffects.perishSongTurns;
+        battleCtx->battleMons[battler].moveEffectsData.meanLookTarget = moveEffects.meanLookTarget;
+        battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns = moveEffects.magnetRiseTurns;
+        battleCtx->battleMons[battler].moveEffectsData.embargoTurns = moveEffects.embargoTurns;
+        battleCtx->battleMons[battler].moveEffectsData.healBlockTurns = moveEffects.healBlockTurns;
     }
 
-    param1->battleMons[param2].moveEffectsData.fakeOutTurnNumber = param1->totalTurns + 1;
-    param1->battleMons[param2].moveEffectsData.slowStartTurnNumber = param1->totalTurns + 1;
-    param1->battleMons[param2].moveEffectsData.truant = (param1->totalTurns + 1) & 1;
-    param1->moveProtect[param2] = 0;
-    param1->moveHit[param2] = 0;
-    param1->moveHitBattler[param2] = 0xff;
-    param1->moveHitType[param2] = 0;
-    param1->movePrevByBattler[param2] = 0;
-    param1->moveCopied[param2] = 0;
-    param1->moveCopiedHit[param2][0] = 0;
-    param1->moveCopiedHit[param2][1] = 0;
-    param1->moveCopiedHit[param2][2] = 0;
-    param1->moveCopiedHit[param2][3] = 0;
-    param1->moveSketched[param2] = 0;
-    param1->conversion2Move[param2] = 0;
-    param1->conversion2Battler[param2] = 0;
-    param1->conversion2Type[param2] = 0;
-    param1->metronomeMove[param2] = 0;
-    param1->fieldConditionsMask &= ((FlagIndex(param2) << 8) ^ 0xffffffff);
+    battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber = battleCtx->totalTurns + 1;
+    battleCtx->battleMons[battler].moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
+    battleCtx->battleMons[battler].moveEffectsData.truant = (battleCtx->totalTurns + 1) & 1;
+    battleCtx->moveProtect[battler] = MOVE_NONE;
+    battleCtx->moveHit[battler] = MOVE_NONE;
+    battleCtx->moveHitBattler[battler] = BATTLER_NONE;
+    battleCtx->moveHitType[battler] = MOVE_NONE;
+    battleCtx->movePrevByBattler[battler] = MOVE_NONE;
+    battleCtx->moveCopied[battler] = MOVE_NONE;
+    battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
+    battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
+    battleCtx->moveCopiedHit[battler][2] = MOVE_NONE;
+    battleCtx->moveCopiedHit[battler][3] = MOVE_NONE;
+    battleCtx->moveSketched[battler] = MOVE_NONE;
+    battleCtx->conversion2Move[battler] = MOVE_NONE;
+    battleCtx->conversion2Battler[battler] = MOVE_NONE;
+    battleCtx->conversion2Type[battler] = MOVE_NONE;
+    battleCtx->metronomeMove[battler] = MOVE_NONE;
+    battleCtx->fieldConditionsMask &= FLAG_NEGATE(FlagIndex(battler) << FIELD_CONDITION_UPROAR_SHIFT);
 
-    if (param1->battleMons[param2].moveEffectsMask & 0x800000) {
-        v0 = param1->battleMons[param2].attack;
-
-        param1->battleMons[param2].attack = param1->battleMons[param2].defense;
-        param1->battleMons[param2].defense = v0;
+    if (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_POWER_TRICK) {
+        i = battleCtx->battleMons[battler].attack;
+        battleCtx->battleMons[battler].attack = battleCtx->battleMons[battler].defense;
+        battleCtx->battleMons[battler].defense = i;
     }
 
-    for (v0 = 0; v0 < v1; v0++) {
-        if ((v0 != param2) && (Battler_Side(param0, v0) != Battler_Side(param0, param2))) {
-            param1->moveCopied[v0] = 0;
+    for (i = 0; i < maxBattlers; i++) {
+        if (i != battler && Battler_Side(battleSys, i) != Battler_Side(battleSys, battler)) {
+            battleCtx->moveCopied[i] = MOVE_NONE;
         }
 
-        param1->moveCopiedHit[v0][param2] = 0;
+        battleCtx->moveCopiedHit[i][battler] = MOVE_NONE;
     }
 
-    BattleAI_ClearKnownMoves(param1, param2);
-    BattleAI_ClearKnownAbility(param1, param2);
-    BattleAI_ClearKnownItem(param1, param2);
+    BattleAI_ClearKnownMoves(battleCtx, battler);
+    BattleAI_ClearKnownAbility(battleCtx, battler);
+    BattleAI_ClearKnownItem(battleCtx, battler);
 }
 
 void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -6141,7 +6146,7 @@ BOOL BattleSystem_PokemonIsOT (BattleSystem * param0, Pokemon * param1)
     v2 = TrainerInfo_Gender(v0);
     v3 = TrainerInfo_Name(v0);
 
-    Pokemon_GetValue(param1, MON_DATA_144, &v4[0]);
+    Pokemon_GetValue(param1, MON_DATA_OTNAME, &v4[0]);
 
     if ((v1 == Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL)) && (v2 == Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL)) && (GF_strncmp(v3, &v4[0], 7) == 0)) {
         return 1;
@@ -6311,37 +6316,37 @@ void ov16_0225A1B0 (BattleSystem * param0, BattleContext * param1)
     }
 }
 
-void BattleSystem_SwitchSlots (BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
+void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
-    int v0;
-    int v1;
-    int v2;
-    u32 v3;
+    // declare C89-style to match
+    int i;
+    int tmp;
+    int targetSlot;
+    u32 battleType = BattleSystem_BattleType(battleSys);
 
-    v3 = BattleSystem_BattleType(battleSys);
-
-    if (((v3 & 0x2) && ((v3 & (0x8 | 0x10)) == 0)) || ((v3 & 0x10) && ((BattleSystem_BattlerSlot(battleSys, battler) & 0x1) == 0))) {
-        if ((BattleSystem_BattlerSlot(battleSys, battler) == 4) || (BattleSystem_BattlerSlot(battleSys, battler) == 5)) {
-            v2 = 1;
+    if (((battleType & BATTLE_TYPE_DOUBLES) && (battleType & BATTLE_TYPE_2vs2_TAG) == FALSE)
+            || ((battleType & BATTLE_TYPE_TAG) && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_TYPE_SOLO_ENEMY) == FALSE)) {
+        if (BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2
+                || BattleSystem_BattlerSlot(battleSys, battler) == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+            targetSlot = 1;
         } else {
-            v2 = 0;
+            targetSlot = 0;
         }
 
         battler &= 1;
     } else {
-        v2 = 0;
+        targetSlot = 0;
     }
 
-    for (v0 = 0; v0 < 6; v0++) {
-        if (battleCtx->partyOrder[battler][v0] == partySlot) {
+    for (i = 0; i < MAX_PARTY_SIZE; i++) {
+        if (battleCtx->partyOrder[battler][i] == partySlot) {
             break;
         }
     }
 
-    v1 = battleCtx->partyOrder[battler][v2];
-
-    battleCtx->partyOrder[battler][v2] = battleCtx->partyOrder[battler][v0];
-    battleCtx->partyOrder[battler][v0] = v1;
+    tmp = battleCtx->partyOrder[battler][targetSlot];
+    battleCtx->partyOrder[battler][targetSlot] = battleCtx->partyOrder[battler][i];
+    battleCtx->partyOrder[battler][i] = tmp;
 }
 
 typedef struct ItemEffectTypePair {
@@ -7883,8 +7888,8 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
             if ((v7 != 0) && (v7 != 494) && (Pokemon_GetValue(v19, MON_DATA_CURRENT_HP, NULL)) && ((v10 & FlagIndex(v0)) == 0) && (v20->selectedPartySlot[v14] != v0) && (v20->selectedPartySlot[v15] != v0) && (v0 != v20->aiSwitchedPartySlot[v14]) && (v0 != v20->aiSwitchedPartySlot[v15])) {
                 v3 = BattleMon_Get(v20, v2, 27, NULL);
                 v4 = BattleMon_Get(v20, v2, 28, NULL);
-                v5 = Pokemon_GetValue(v19, MON_DATA_177, NULL);
-                v6 = Pokemon_GetValue(v19, MON_DATA_178, NULL);
+                v5 = Pokemon_GetValue(v19, MON_DATA_TYPE_1, NULL);
+                v6 = Pokemon_GetValue(v19, MON_DATA_TYPE_2, NULL);
                 v11 = ov16_022558CC(v5, v3, v4);
                 v11 += ov16_022558CC(v6, v3, v4);
 

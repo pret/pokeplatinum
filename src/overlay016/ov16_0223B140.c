@@ -1393,7 +1393,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
 
     if (param0->battleType & 0x200) {
         v3 = Party_GetPokemonBySlotIndex(param0->parties[1], 0);
-        Pokemon_GetValue(v3, MON_DATA_144, (u8 *)&param0->trainers[1].unk_14);
+        Pokemon_GetValue(v3, MON_DATA_OTNAME, (u8 *)&param0->trainers[1].unk_14);
     }
 
     if (param0->battleType & 0x1) {

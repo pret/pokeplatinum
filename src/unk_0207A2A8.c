@@ -13,21 +13,21 @@
 #include "unk_0207A2A8.h"
 #include "unk_02098700.h"
 
-UnkStruct_02098700 * sub_0207A2A8 (int param0)
+HeightWeightData * sub_0207A2A8 (int param0)
 {
-    UnkStruct_02098700 * v0 = Pokedex_HeightWeightData(param0);
+    HeightWeightData * v0 = Pokedex_HeightWeightData(param0);
 
     Pokedex_HeightWeightData_Load(v0, 0, param0);
     return v0;
 }
 
-void sub_0207A2C0 (UnkStruct_02098700 * param0)
+void sub_0207A2C0 (HeightWeightData * param0)
 {
     Pokedex_HeightWeightData_Release(param0);
     Pokedex_HeightWeightData_Free(param0);
 }
 
-BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const UnkStruct_02098700 * param2)
+BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const HeightWeightData * param2)
 {
     u16 v0 = (u16)Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     int v1, v2, v3;
@@ -97,7 +97,7 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const Un
     return 1;
 }
 
-int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const UnkStruct_02098700 * param2, u8 * param3)
+int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const HeightWeightData * param2, u8 * param3)
 {
     Pokemon * v0;
     int v1, v2 = 0, v3, v4, v5 = 0;
@@ -204,7 +204,7 @@ static BOOL sub_0207A514 (u16 * param0, u16 * param1, u16 * param2, int param3, 
     return 0;
 }
 
-int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const UnkStruct_02098700 * param2)
+int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const HeightWeightData * param2)
 {
     Pokemon * v0;
     int v1, v2, v3, v4, v5 = 0;

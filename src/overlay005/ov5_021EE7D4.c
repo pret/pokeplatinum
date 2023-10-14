@@ -82,12 +82,12 @@ static u32 ov5_021EE8A8 (u16 param0, u16 param1)
     u32 v3;
     u64 v4;
     u8 v5;
-    UnkStruct_02098700 * v6;
+    HeightWeightData * v6;
 
     v6 = Pokedex_HeightWeightData(4);
     Pokedex_HeightWeightData_Load(v6, 0, 4);
 
-    v3 = sub_02098808((const UnkStruct_02098700 *)v6, param0);
+    v3 = sub_02098808((const HeightWeightData *)v6, param0);
     Pokedex_HeightWeightData_Release(v6);
     Pokedex_HeightWeightData_Free(v6);
 

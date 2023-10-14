@@ -505,7 +505,7 @@ static void sub_0206CEA4 (UnkStruct_0200B358 * param0, int param1, u16 param2)
 
 static void sub_0206CED0 (int param0, Pokemon * param1, u8 * param2, u16 * param3)
 {
-    *param2 = Pokemon_GetValue(param1, MON_DATA_77, NULL);
+    *param2 = Pokemon_GetValue(param1, MON_DATA_HAS_NICKNAME, NULL);
 
     if (*param2) {
         Strbuf* v0 = Strbuf_Init(64, param0);
@@ -538,7 +538,7 @@ void sub_0206CF48 (TVBroadcast * param0, Pokemon * param1, int param2)
     v0->unk_1E = Pokemon_GetNature(param1);
 
     sub_0206CE38(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
-    v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_77, NULL);
+    v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_HAS_NICKNAME, NULL);
 
     sub_0206CED0(param2, param1, &v0->unk_07, v0->unk_08);
     sub_02025C84(27);
@@ -613,7 +613,7 @@ void sub_0206D048 (TVBroadcast * param0, Pokemon * param1)
 
     v0->unk_00 = 1;
     sub_0206CE38(param1, &v0->unk_02, &v0->unk_04, &v0->unk_05, &v0->unk_06);
-    v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_77, NULL);
+    v0->unk_07 = Pokemon_GetValue(param1, MON_DATA_HAS_NICKNAME, NULL);
 
     sub_0206CED0(11, param1, &v0->unk_07, v0->unk_08);
     sub_02025C84(27);

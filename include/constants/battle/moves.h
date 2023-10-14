@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_MOVES_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_MOVES_H
 
+#define MOVE_EFFECT_NONE                    0
 #define MOVE_EFFECT_LEECH_SEED_RECIPIENT    ((1 << 0) | (1 << 1)) // each bit defines which opponent receives the healing effect
 #define MOVE_EFFECT_LEECH_SEED              (1 << 2)
 #define MOVE_EFFECT_LOCK_ON                 ((1 << 3) | (1 << 4)) // counter for the number of Lock On turns remaining
@@ -34,9 +35,25 @@
                                             | MOVE_EFFECT_UNDERGROUND \
                                             | MOVE_EFFECT_UNDERWATER \
                                             | MOVE_EFFECT_SHADOW_FORCE)
+#define MOVE_EFFECT_BATON_PASSED            (MOVE_EFFECT_LEECH_SEED_RECIPIENT \
+                                            | MOVE_EFFECT_LEECH_SEED \
+                                            | MOVE_EFFECT_LOCK_ON \
+                                            | MOVE_EFFECT_PERISH_SONG \
+                                            | MOVE_EFFECT_INGRAIN \
+                                            | MOVE_EFFECT_MUD_SPORT \
+                                            | MOVE_EFFECT_WATER_SPORT \
+                                            | MOVE_EFFECT_NO_CRITICAL \
+                                            | MOVE_EFFECT_POWER_TRICK \
+                                            | MOVE_EFFECT_AQUA_RING \
+                                            | MOVE_EFFECT_ABILITY_SUPPRESSED \
+                                            | MOVE_EFFECT_EMBARGO \
+                                            | MOVE_EFFECT_HEAL_BLOCK \
+                                            | MOVE_EFFECT_MAGNET_RISE)
 
 #define MOVE_EFFECT_LOCK_ON_SHIFT   3
 #define MOVE_EFFECT_YAWN_SHIFT      11
+
+#define MOVE_EFFECT_LOCK_ON_INITIAL_DURATION    (1 << (MOVE_EFFECT_LOCK_ON_SHIFT + 1))
 
 #define MOVE_STATUS_MISSED              (1 << 0)
 #define MOVE_STATUS_SUPER_EFFECTIVE     (1 << 1)
