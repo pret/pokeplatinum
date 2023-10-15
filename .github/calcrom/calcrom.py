@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import json
 import struct
 import argparse
@@ -41,7 +43,6 @@ class CLI(argparse.Namespace):
                 for seg in nef.iter_segments()
                 if seg['p_memsz'] != 0
             )
-            print(programs)
         for command in commands:
             cmdstr = command['command']
             if 'mwrap mwasmarm' in cmdstr:
