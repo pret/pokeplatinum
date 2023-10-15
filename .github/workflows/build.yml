@@ -40,7 +40,7 @@ jobs:
         env:
           arm9name: build/
         run: |
-          .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL" "$GITHUB_WORKSPACE/build/main.nef.xMAP"
+          .github/calcrom/webhook.sh "$CALCROM_WEBHOOK_URL"
         continue-on-error: true
 
       - name: Post error archive
