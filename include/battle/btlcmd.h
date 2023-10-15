@@ -126,6 +126,9 @@ enum OpCode {
 
 enum StatusEffect {
     STATUS_EFFECT_LEVEL_UP = 8,
+
+    STATUS_EFFECT_STAGE_UP = 12,
+    STATUS_EFFECT_STAGE_DOWN,
 };
 
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H
