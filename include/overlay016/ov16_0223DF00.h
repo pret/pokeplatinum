@@ -207,7 +207,7 @@ void ov16_0223F4B0(BattleSystem * param0, int param1);
 u16 BattleSystem_RandNext(BattleSystem * param0);
 u32 ov16_0223F4E8(BattleSystem * param0);
 void ov16_0223F4F4(BattleSystem * param0, u32 param1);
-void ov16_0223F500(BattleSystem * param0, int param1, u8 param2);
+void BattleSystem_Record(BattleSystem * param0, int param1, u8 param2);
 BOOL ov16_0223F530(BattleSystem * param0, int param1, u8 * param2);
 u8 ov16_0223F58C(BattleSystem * param0, u8 * param1);
 void ov16_0223F638(BattleSystem * param0, u16 param1, u8 * param2);

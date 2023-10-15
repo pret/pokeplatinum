@@ -422,7 +422,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
                 sub_0202CFEC(param0->unk_50, 22);
                 sub_02056A48(param0->unk_54, Pokemon_GetBoxPokemon(param0->unk_28));
 
-                if (Pokemon_GetValue(param0->unk_28, MON_DATA_77, NULL) == 0) {
+                if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
                     Pokemon_SetValue(param0->unk_28, 179, NULL);
                 }
 

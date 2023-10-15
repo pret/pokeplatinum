@@ -55,6 +55,8 @@
 #define WEATHER_IS_SUN  (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY)
 #define WEATHER_IS_HAIL (battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING)
 
+#define FLAG_NEGATE(flag)   ((flag) ^ 0xFFFFFFFF)
+
 enum {
     BATTLE_STAT_HP,
     BATTLE_STAT_ATTACK,

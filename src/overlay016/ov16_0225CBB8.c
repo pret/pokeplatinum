@@ -4010,7 +4010,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         v18->unk_2C = Pokemon_GetValue(v19, MON_DATA_MAX_HP, NULL);
         v18->unk_30 = v0->unk_08->unk_04->unk_20;
 
-        if (Pokemon_GetValue(v19, MON_DATA_160, NULL) == 0) {
+        if (Pokemon_GetValue(v19, MON_DATA_STATUS_CONDITION, NULL) == 0) {
             v18->unk_4A = 0;
         }
 
@@ -4074,7 +4074,7 @@ static void ov16_022611DC (SysTask * param0, void * param1)
         v34 = v0->unk_08->unk_04->unk_2C[v0->unk_08->unk_04->unk_11];
         v33 = BattleSystem_PartyPokemon(v0->unk_00, v28, v34);
 
-        if (Pokemon_GetValue(v33, MON_DATA_160, NULL) == 0) {
+        if (Pokemon_GetValue(v33, MON_DATA_STATUS_CONDITION, NULL) == 0) {
             v27->unk_4A = 0;
         }
 

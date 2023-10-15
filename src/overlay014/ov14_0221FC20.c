@@ -1556,7 +1556,7 @@ static void ov14_022211AC (BattleSystem * param0, BattleContext * param1)
     for (v2 = 0; v2 < BattleSystem_PartyCount(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v1, MON_DATA_160, NULL) & v7)) {
+        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && (Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL) & v7)) {
             ov14_02222D24(param1, v8);
             return;
         }
@@ -1593,7 +1593,7 @@ static void ov14_022212A0 (BattleSystem * param0, BattleContext * param1)
     for (v2 = 0; v2 < BattleSystem_PartyCount(param0, v3); v2++) {
         v1 = Party_GetPokemonBySlotIndex(v0, v2);
 
-        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && ((Pokemon_GetValue(v1, MON_DATA_160, NULL) & v7) == 0)) {
+        if ((v2 != v4) && (v2 != v5) && (Pokemon_GetValue(v1, MON_DATA_CURRENT_HP, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) != 494) && ((Pokemon_GetValue(v1, MON_DATA_STATUS_CONDITION, NULL) & v7) == 0)) {
             ov14_02222D24(param1, v8);
             return;
         }
@@ -3760,7 +3760,7 @@ static BOOL ov14_02223E10 (BattleSystem * param0, BattleContext * param1, int pa
             v6 = 0;
             v5 = ov14_0222327C(param0, param1, param1->moveHitBattler[param2], param1->moveHit[param2]);
 
-            ov16_022552D4(param1, param1->moveHit[param2], v5, Battler_Ability(param1, param1->moveHitBattler[param2]), Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), BattleSystem_GetItemData(param1, Pokemon_GetValue(v9, MON_DATA_HELD_ITEM, NULL), 1), Pokemon_GetValue(v9, MON_DATA_177, NULL), Pokemon_GetValue(v9, MON_DATA_178, NULL), &v6);
+            ov16_022552D4(param1, param1->moveHit[param2], v5, Battler_Ability(param1, param1->moveHitBattler[param2]), Pokemon_GetValue(v9, MON_DATA_ABILITY, NULL), BattleSystem_GetItemData(param1, Pokemon_GetValue(v9, MON_DATA_HELD_ITEM, NULL), 1), Pokemon_GetValue(v9, MON_DATA_TYPE_1, NULL), Pokemon_GetValue(v9, MON_DATA_TYPE_2, NULL), &v6);
 
             if (v6 & param3) {
                 for (v1 = 0; v1 < 4; v1++) {

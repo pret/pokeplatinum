@@ -213,7 +213,7 @@ static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
         param0->unk_04[v1].unk_06 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
         param0->unk_04[v1].unk_08 = Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
         param0->unk_04[v1].unk_0A = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
-        param0->unk_04[v1].unk_0C = (Pokemon_GetValue(v0, MON_DATA_160, NULL) != 0);
+        param0->unk_04[v1].unk_0C = (Pokemon_GetValue(v0, MON_DATA_STATUS_CONDITION, NULL) != 0);
         param0->unk_04[v1].unk_0E = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
         param0->unk_04[v1].unk_0F = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 

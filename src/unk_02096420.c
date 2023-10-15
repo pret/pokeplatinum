@@ -31,7 +31,7 @@ u8 sub_02096420 (Pokemon * param0, u16 param1, u16 param2, u32 param3)
         return 0;
     }
 
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_160, NULL);
+    v1[0] = Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL);
 
     if (Item_Get(v0, 15) != 0) {
         if ((v1[0] & 0x7) != 0) {
@@ -282,7 +282,7 @@ u8 sub_02096954 (Pokemon * param0, u16 param1, u16 param2, u16 param3, u32 param
     v2 = 0;
     v3 = 0;
 
-    v1[0] = Pokemon_GetValue(param0, MON_DATA_160, NULL);
+    v1[0] = Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL);
     v1[1] = v1[0];
 
     if (Item_Get(v0, 15) != 0) {

@@ -291,7 +291,7 @@ static int ov21_021E74A0 (UnkStruct_ov21_021E6A68 * param0, void * param1)
     param0->unk_08 = v1;
 
     v4 = ov21_021D37BC(v0->unk_00);
-    v2 = sub_02098828(v0->unk_00->unk_1748, v4);
+    v2 = Pokedex_HeightWeightData_Weight(v0->unk_00->unk_1748, v4);
 
     if (ov21_021D3920(v0->unk_00) == 0) {
         v3 = 380;

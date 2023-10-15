@@ -60,7 +60,7 @@ typedef struct {
     u8 unk_B12;
     u8 unk_B13;
     u16 unk_B14[6];
-    UnkStruct_02098700 * unk_B20;
+    HeightWeightData * unk_B20;
     UnkStruct_ov118_021D0FDC * unk_B24;
     UnkStruct_0207C690 * unk_B28;
 } UnkStruct_0207F248;

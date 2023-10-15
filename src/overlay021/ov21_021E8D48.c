@@ -157,9 +157,9 @@ UnkStruct_ov21_021E8D48 * ov21_021E8D48 (const UnkStruct_ov21_021E8E0C * param0)
         v2 = Pokemon_GetValue(param0->unk_10, MON_DATA_FORM, NULL);
 
         if (v1 == 487) {
-            sub_02098988(v2);
+            Pokedex_SetupGiratina(v2);
         } else {
-            sub_02098988(1);
+            Pokedex_SetupGiratina(1);
         }
     }
 

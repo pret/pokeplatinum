@@ -536,7 +536,7 @@ static u32 Pokemon_GetDataInternal(Pokemon *mon, enum PokemonDataParam param, vo
     u32 result = 0;
 
     switch (param) {
-    case MON_DATA_160:
+    case MON_DATA_STATUS_CONDITION:
         result = mon->party.unk_00;
         break;
     case MON_DATA_LEVEL:
@@ -801,7 +801,7 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
             result = monDataBlockB->isEgg;
         }
         break;
-    case MON_DATA_77:
+    case MON_DATA_HAS_NICKNAME:
         result = monDataBlockB->unk_10_31;
         break;
     case MON_DATA_78:
@@ -859,7 +859,7 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_114:
         result = monDataBlockB->unk_1A;
         break;
-    case MON_DATA_117:
+    case MON_DATA_NICKNAME:
         if (boxMon->invalidData) {
             // TODO confirm this should be SPECIES_BAD_EGG (lines up with checksum failure check but not throughly checked this call tree)
             MessageLoader_GetSpeciesName(SPECIES_BAD_EGG, 0, dest);
@@ -919,7 +919,7 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
         result = ((monDataBlockC->unk_18 & (bitMask << param - MON_DATA_123)) != 0);
         break;
     }
-    case MON_DATA_144:
+    case MON_DATA_OTNAME:
         u16 *v8 = dest;
 
         for (result = 0; result < 7; result++) {
@@ -995,8 +995,8 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
             result = 1;
         }
         break;
-    case MON_DATA_177:
-    case MON_DATA_178:
+    case MON_DATA_TYPE_1:
+    case MON_DATA_TYPE_2:
         // TODO enum values
         if (monDataBlockA->species == SPECIES_ARCEUS && monDataBlockA->ability == 121) {
             result = Pokemon_GetArceusTypeOf(Item_LoadParam(monDataBlockA->heldItem, 1, 0));
@@ -1044,7 +1044,7 @@ static void Pokemon_SetDataInternal(Pokemon *mon, enum PokemonDataParam param, c
     u8 *u8Value = value;
 
     switch (param) {
-    case MON_DATA_160:
+    case MON_DATA_STATUS_CONDITION:
         mon->party.unk_00 = u32Value[0];
         break;
     case MON_DATA_LEVEL:
@@ -1281,7 +1281,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_IS_EGG:
         monDataBlockB->isEgg = u8Value[0];
         break;
-    case MON_DATA_77:
+    case MON_DATA_HAS_NICKNAME:
         monDataBlockB->unk_10_31 = u8Value[0];
         break;
     case MON_DATA_78:
@@ -1348,7 +1348,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         MessageLoader_GetSpeciesName(monDataBlockA->species, 0, &v10[0]);
         monDataBlockB->unk_10_31 = sub_0200220C(v10, &u16Value[0]);
     }
-    case MON_DATA_117:
+    case MON_DATA_NICKNAME:
         for (int i = 0; i < NELEMS(monDataBlockC->unk_00); i++) {
             monDataBlockC->unk_00[i] = u16Value[i];
         }
@@ -1403,7 +1403,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         }
         break;
     }
-    case MON_DATA_144:
+    case MON_DATA_OTNAME:
         for (int i = 0; i < NELEMS(monDataBlockD->unk_00); i++) {
             monDataBlockD->unk_00[i] = u16Value[i];
         }
@@ -1476,8 +1476,8 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockB->spDefIV = (u32Value[0] >> 25) & 0x1f;
         break;
     case MON_DATA_176:
-    case MON_DATA_177:
-    case MON_DATA_178:
+    case MON_DATA_TYPE_1:
+    case MON_DATA_TYPE_2:
         break;
     case MON_DATA_179:
     {
@@ -1526,7 +1526,7 @@ static void Pokemon_IncreaseDataInternal(Pokemon *mon, enum PokemonDataParam par
             mon->party.unk_06 += value;
         }
         break;
-    case MON_DATA_160:
+    case MON_DATA_STATUS_CONDITION:
     case MON_DATA_LEVEL:
     case MON_DATA_162:
     case MON_DATA_MAX_HP:
@@ -1748,7 +1748,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_MOVE3:
     case MON_DATA_MOVE4:
     case MON_DATA_IS_EGG:
-    case MON_DATA_77:
+    case MON_DATA_HAS_NICKNAME:
     case MON_DATA_78:
     case MON_DATA_79:
     case MON_DATA_80:
@@ -1786,7 +1786,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_FORM:
     case MON_DATA_113:
     case MON_DATA_114:
-    case MON_DATA_117:
+    case MON_DATA_NICKNAME:
     case MON_DATA_119:
     case MON_DATA_120:
     case MON_DATA_121:
@@ -1812,7 +1812,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_141:
     case MON_DATA_142:
     case MON_DATA_143:
-    case MON_DATA_144:
+    case MON_DATA_OTNAME:
     case MON_DATA_145:
     case MON_DATA_146:
     case MON_DATA_147:
@@ -1830,8 +1830,8 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_159:
     case MON_DATA_COMBINED_IVS:
     case MON_DATA_176:
-    case MON_DATA_177:
-    case MON_DATA_178:
+    case MON_DATA_TYPE_1:
+    case MON_DATA_TYPE_2:
     case MON_DATA_179:
     default:
         GF_ASSERT(0);
@@ -3524,7 +3524,7 @@ void Pokemon_FromBoxPokemon(BoxPokemon *boxMon, Pokemon *mon)
         mon->box.partyDecrypted = TRUE;
     }
 
-    Pokemon_SetValue(mon, MON_DATA_160, &zero);
+    Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &zero);
     Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &zero);
     Pokemon_SetValue(mon, MON_DATA_MAX_HP, &zero);
 
@@ -3953,7 +3953,7 @@ BOOL Pokemon_CanShayminSkyForm(Pokemon *mon)
 {
     u32 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     u32 monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    u32 v2 = Pokemon_GetValue(mon, MON_DATA_160, NULL);
+    u32 v2 = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
     u32 monCurrentHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
     u32 monFatefulEncounter = Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL);
 
@@ -4150,7 +4150,7 @@ void sub_02077E64(Pokemon *mon, TrainerInfo *param1, int monPokeball, int param3
         Pokemon_SetValue(mon, MON_DATA_CURRENT_HP, &monMaxHP);
 
         monMaxHP = 0;
-        Pokemon_SetValue(mon, MON_DATA_160, &monMaxHP);
+        Pokemon_SetValue(mon, MON_DATA_STATUS_CONDITION, &monMaxHP);
     }
 }
 

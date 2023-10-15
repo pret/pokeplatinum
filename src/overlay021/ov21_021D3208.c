@@ -90,12 +90,12 @@ void ov21_021D3208 (UnkStruct_ov21_021D3320 * param0, UnkStruct_ov21_021D3208 * 
     param0->unk_174C = TrainerInfo_GameCode(param1->unk_04);
     param0->unk_1750 = TrainerInfo_Gender(param1->unk_04);
     param0->unk_1754 = TrainerInfo_NameNewStrbuf(param1->unk_04, param2);
-    param0->unk_1748 = sub_02098700(param2);
+    param0->unk_1748 = Pokedex_HeightWeightData(param2);
 
     if (param0->unk_1750 == 0) {
-        sub_0209872C(param0->unk_1748, 0, param2);
+        Pokedex_HeightWeightData_Load(param0->unk_1748, 0, param2);
     } else {
-        sub_0209872C(param0->unk_1748, 1, param2);
+        Pokedex_HeightWeightData_Load(param0->unk_1748, 1, param2);
     }
 
     param0->unk_1760 = param1->unk_0C;
@@ -107,8 +107,8 @@ void ov21_021D3208 (UnkStruct_ov21_021D3320 * param0, UnkStruct_ov21_021D3208 * 
 void ov21_021D3320 (UnkStruct_ov21_021D3320 * param0)
 {
     Strbuf_Free(param0->unk_1754);
-    sub_020987BC(param0->unk_1748);
-    sub_02098718(param0->unk_1748);
+    Pokedex_HeightWeightData_Release(param0->unk_1748);
+    Pokedex_HeightWeightData_Free(param0->unk_1748);
 
     param0->unk_1748 = NULL;
 }

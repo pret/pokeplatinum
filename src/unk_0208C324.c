@@ -1053,8 +1053,8 @@ static void sub_0208D200 (UnkStruct_0208D7BC * param0, Pokemon * param1, UnkStru
 
     param2->unk_13_0 = Pokemon_GetGender(param1);
     param2->unk_13_2 = (u8)Pokemon_GetValue(param1, MON_DATA_POKEBALL, NULL);
-    param2->unk_10 = (u8)Pokemon_GetValue(param1, MON_DATA_177, NULL);
-    param2->unk_11 = (u8)Pokemon_GetValue(param1, MON_DATA_178, NULL);
+    param2->unk_10 = (u8)Pokemon_GetValue(param1, MON_DATA_TYPE_1, NULL);
+    param2->unk_11 = (u8)Pokemon_GetValue(param1, MON_DATA_TYPE_2, NULL);
     param2->unk_14 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
     param2->unk_18 = Pokemon_GetValue(param1, MON_DATA_EXP, NULL);
     param2->unk_44 = (u8)Pokemon_GetValue(param1, MON_DATA_OT_GENDER, NULL);
@@ -2215,7 +2215,7 @@ u32 sub_0208E9EC (void)
 
 u32 sub_0208E9F0 (Pokemon * param0)
 {
-    u32 v0 = Pokemon_GetValue(param0, MON_DATA_160, NULL);
+    u32 v0 = Pokemon_GetValue(param0, MON_DATA_STATUS_CONDITION, NULL);
 
     if (Pokemon_GetValue(param0, MON_DATA_CURRENT_HP, NULL) == 0) {
         return 6;

@@ -4598,7 +4598,7 @@ static BOOL sub_02042718 (UnkStruct_0203E724 * param0)
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v2->unk_0C), v3);
 
-    Pokemon_GetValue(v1, MON_DATA_117, v0);
+    Pokemon_GetValue(v1, MON_DATA_NICKNAME, v0);
     sub_0203DFE8(param0->unk_28, 1, Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL), 10, v3, v0, inline_0204FCAC(param0));
 
     return 1;

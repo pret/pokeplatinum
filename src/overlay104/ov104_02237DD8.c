@@ -596,7 +596,7 @@ static int ov104_02238584 (UnkStruct_ov104_0223BFFC * param0, Party * param1, Pa
             v1++;
         }
 
-        if (Pokemon_GetValue(v5, MON_DATA_160, NULL) != 0) {
+        if (Pokemon_GetValue(v5, MON_DATA_STATUS_CONDITION, NULL) != 0) {
             v2++;
         }
     }
@@ -615,7 +615,7 @@ static int ov104_02238584 (UnkStruct_ov104_0223BFFC * param0, Party * param1, Pa
                 v1++;
             }
 
-            if (Pokemon_GetValue(v5, MON_DATA_160, NULL) != 0) {
+            if (Pokemon_GetValue(v5, MON_DATA_STATUS_CONDITION, NULL) != 0) {
                 v2++;
             }
         }
@@ -1132,8 +1132,8 @@ static void ov104_02238C18 (UnkStruct_ov104_0223BFFC * param0, Party * param1, u
 
     for (v0 = 0; v0 < param2; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param1, v0);
-        v3 = Pokemon_GetValue(v6, MON_DATA_177, NULL);
-        v4 = Pokemon_GetValue(v6, MON_DATA_178, NULL);
+        v3 = Pokemon_GetValue(v6, MON_DATA_TYPE_1, NULL);
+        v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
         v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
 
         if ((v3 == 3) || (v4 == 3) || (v3 == 8) || (v4 == 8) || (v5 == 17)) {
@@ -1161,8 +1161,8 @@ static void ov104_02238C9C (UnkStruct_ov104_0223BFFC * param0, Party * param1, u
 
     for (v0 = 0; v0 < param2; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param1, v0);
-        v3 = Pokemon_GetValue(v6, MON_DATA_177, NULL);
-        v4 = Pokemon_GetValue(v6, MON_DATA_178, NULL);
+        v3 = Pokemon_GetValue(v6, MON_DATA_TYPE_1, NULL);
+        v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
         v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
 
         if ((v3 == 4) || (v4 == 4) || (v5 == 7)) {
@@ -1190,8 +1190,8 @@ static void ov104_02238D14 (UnkStruct_ov104_0223BFFC * param0, Party * param1, u
 
     for (v0 = 0; v0 < param2; v0++) {
         v6 = Party_GetPokemonBySlotIndex(param1, v0);
-        v3 = Pokemon_GetValue(v6, MON_DATA_177, NULL);
-        v4 = Pokemon_GetValue(v6, MON_DATA_178, NULL);
+        v3 = Pokemon_GetValue(v6, MON_DATA_TYPE_1, NULL);
+        v4 = Pokemon_GetValue(v6, MON_DATA_TYPE_2, NULL);
         v5 = Pokemon_GetValue(v6, MON_DATA_ABILITY, NULL);
 
         if ((v3 == 10) || (v4 == 10) || (v5 == 41)) {
@@ -1256,8 +1256,8 @@ static void ov104_02238E08 (UnkStruct_ov104_0223BFFC * param0, Party * param1, u
 
     for (v1 = 0; v1 < param2; v1++) {
         v7 = Party_GetPokemonBySlotIndex(param1, v0);
-        v4 = Pokemon_GetValue(v7, MON_DATA_177, NULL);
-        v5 = Pokemon_GetValue(v7, MON_DATA_178, NULL);
+        v4 = Pokemon_GetValue(v7, MON_DATA_TYPE_1, NULL);
+        v5 = Pokemon_GetValue(v7, MON_DATA_TYPE_2, NULL);
         v6 = Pokemon_GetValue(v7, MON_DATA_ABILITY, NULL);
 
         if ((v4 == 15) || (v5 == 15) || (v6 == 40)) {

@@ -160,8 +160,8 @@ static void sub_0205642C (UnkStruct_0203CDB0 * param0, UnkStruct_020564B4 * para
 
         param1->unk_00[v0].unk_03 = v1[3];
         param1->unk_00[v0].unk_04 = v1[2];
-        param1->unk_00[v0].unk_06 = Pokemon_GetValue(v3, MON_DATA_177, NULL);
-        param1->unk_00[v0].unk_07 = Pokemon_GetValue(v3, MON_DATA_178, NULL);
+        param1->unk_00[v0].unk_06 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
+        param1->unk_00[v0].unk_07 = Pokemon_GetValue(v3, MON_DATA_TYPE_2, NULL);
     }
 
     Heap_FreeToHeap(v3);

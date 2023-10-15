@@ -77,7 +77,7 @@ void ov62_02248408 (BattleRecording * param0, BattleParams * param1, int param2)
 
             MI_CpuClear16(v8, sizeof(u16) * v9);
 
-            Pokemon_GetValue(v13, MON_DATA_117, v8);
+            Pokemon_GetValue(v13, MON_DATA_NICKNAME, v8);
             Strbuf_Clear(v6);
             Strbuf_CopyChars(v6, v8);
 

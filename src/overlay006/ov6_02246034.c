@@ -40,7 +40,7 @@ void ov6_02246034 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 
     if (v4 != NULL) {
         v0 = (u16)(Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL));
-        v1 = (u8)(Pokemon_GetValue(v6, MON_DATA_160, NULL));
+        v1 = (u8)(Pokemon_GetValue(v6, MON_DATA_STATUS_CONDITION, NULL));
 
         if (((param1->unk_14 == 0x1) && (v0 == 0))) {
             sub_0202D914(&v4);

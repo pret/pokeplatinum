@@ -424,7 +424,7 @@ void ov104_02236848 (UnkStruct_ov104_0223BA10 * param0, u8 param1)
         v4[0] = Pokemon_GetValue(v11, MON_DATA_MOVE4_CUR_PP, NULL);
         sub_02030308(param0->unk_08, 3, v0, 3, v4);
 
-        v6[0] = Pokemon_GetValue(v11, MON_DATA_160, NULL);
+        v6[0] = Pokemon_GetValue(v11, MON_DATA_STATUS_CONDITION, NULL);
         sub_02030308(param0->unk_08, 4, v0, 0, v6);
 
         v5[0] = Pokemon_GetValue(v11, MON_DATA_HELD_ITEM, NULL);
@@ -602,7 +602,7 @@ int ov104_02236D10 (UnkStruct_ov104_0223BA10 * param0)
                 }
             }
 
-            if (Pokemon_GetValue(v9, MON_DATA_160, NULL) == 0) {
+            if (Pokemon_GetValue(v9, MON_DATA_STATUS_CONDITION, NULL) == 0) {
                 v10[4]++;
             }
         } else {
