@@ -1,4 +1,6 @@
-#!/bin/bash -ex
+#!/bin/bash
+
+set -euxo pipefail
 
 # Only run this script if it's the main branch build.
 if [[ "$GITHUB_REF" != "refs/heads/main" || "$GITHUB_EVENT_NAME" != "push" ]]; then
