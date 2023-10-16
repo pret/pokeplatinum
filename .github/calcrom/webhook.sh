@@ -8,6 +8,7 @@ if [[ "$GITHUB_REF" != "refs/heads/main" || "$GITHUB_EVENT_NAME" != "push" ]]; t
 fi
 
 url="$1"
+build_name="platinum.us"
 
 output=$(${GITHUB_WORKSPACE}/.github/calcrom/calcrom.py ${GITHUB_WORKSPACE}/build | sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g')
 curl -d "{\"username\": \"$CALCROM_DISCORD_WEBHOOK_USERNAME\", \"avatar_url\": \"$CALCROM_DISCORD_WEBHOOK_AVATAR_URL\", \"content\":\"\`\`\`$build_name progress:\\n$output\`\`\`\"}" -H "Content-Type: application/json" -X POST $url
