@@ -7,7 +7,9 @@
 #include "constants/narc.h"
 #include "constants/pokemon.h"
 #include "constants/sdat.h"
+#include "constants/battle/condition.h"
 #include "constants/battle/message_tags.h"
+#include "constants/battle/side_effects.h"
 #include "constants/battle/system_control.h"
 #include "constants/narc_files/battle_skill_subseq.h"
 
@@ -150,9 +152,9 @@ static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_0224221C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_0224226C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242298(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224230C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242400(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02242A14(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02242B38(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02242B74(BattleSystem * param0, BattleContext * param1);
@@ -410,9 +412,9 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_JumpIfAnySwitches,
     ov16_0224221C,
     ov16_0224226C,
-    ov16_02242298,
-    ov16_0224230C,
-    ov16_02242400,
+    BtlCmd_SetupMultiHit,
+    BtlCmd_SetVarValue,
+    BtlCmd_ChangeStatStage,
     ov16_02242A14,
     ov16_02242B38,
     ov16_02242B74,
@@ -2110,7 +2112,7 @@ static BOOL BtlCmd_PlaySound(BattleSystem *battleSys, BattleContext *battleCtx)
  * @brief Compare a given data-value from a variable to a target static value.
  * 
  * Inputs:
- * 1. The operation mode. See enum IfOp for possible values.
+ * 1. The operation mode. See enum OpCode for possible values.
  * 2. The variable whose data should be retrieved for the comparison.
  * 3. The static value to compare against.
  * 4. The jump-ahead value if the comparison yields TRUE.
@@ -2188,7 +2190,7 @@ static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
  * @brief Compare a given data-value from a battler to a target static value.
  * 
  * Inputs:
- * 1. The operation mode. See enum IfOp for possible values.
+ * 1. The operation mode. See enum OpCode for possible values.
  * 2. The battler whose data should be retrieved for the comparison.
  * 3. The parameter to retrieve for the comparison.
  * 4. The static value to compare against.
@@ -2809,296 +2811,371 @@ static BOOL ov16_0224226C (BattleSystem * param0, BattleContext * param1)
     return 0;
 }
 
-static BOOL ov16_02242298 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Setup the initial state for a multi-hit move (e.g., Spike Cannon,
+ * Twineedle, Triple Kick).
+ * 
+ * Inputs:
+ * 1. The number of hits to apply to the move. If this value is passed as 0,
+ * then a number of hits will be generated from 2 through 5. If the attacker
+ * has Skill Link, then the generated number of hits will always be 5.
+ * 2. The flags to set for the move, which control how to evaluate successive
+ * hits. The relevant flags of note are:
+ *   - SYSCTL_SKIP_OBEDIENCE_CHECK -> do not check for obedience after the first hit
+ *   - SYSCTL_SKIP_STATUS_CHECK -> do not try to break the move after the first hit
+ *   - SYSCTL_SKIP_PP_DECREMENT -> do not deduct additional PP after the first hit
+ *   - SYSCTL_SKIP_IMMUNITY_TRIGGERS -> do not repeat the check for immunity abilities
+ *   - SYSCTL_SKIP_ACCURACY_CHECK -> do not check accuracy after the first hit
+ *   - SYSCTL_SKIP_ACCURACY_OVERRIDES -> same as SYSCTL_SKIP_ACCURACY_CHECK
+ *   - SYSCTL_SKIP_STOLEN_CHECK -> do not check for the move to be stolen after the first hit
+ * 
+ * In practice, there are two variants of flags submitted to this command call:
+ * 1. Triple Kick, which omits the SYSCTL_SKIP_ACCURACY_CHECK flag
+ * 2. All other multi-hit moves, which include the SYSCTL_SKIP_ACCURACY_CHECK flag
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int hits = BattleScript_Read(battleCtx);
+    int flags = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-
-    if (param1->multiHitNumHits == 0) {
-        if (v0 == 0) {
-            if (Battler_Ability(param1, param1->attacker) == 92) {
-                v0 = 5;
+    if (battleCtx->multiHitNumHits == 0) {
+        if (hits == 0) {
+            if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
+                hits = 5;
             } else {
-                if ((v0 = BattleSystem_RandNext(param0) & 3) < 2) {
-                    v0 += 2;
-                } else {
-                    v0 = (BattleSystem_RandNext(param0) & 3) + 2;
+                hits = BattleSystem_RandNext(battleSys) & 3;
+                if (hits < 2) { // 2 or 3 hits
+                    hits += 2;
+                } else { // 4 or 5 hits
+                    hits = (BattleSystem_RandNext(battleSys) & 3) + 2;
                 }
             }
         }
 
-        param1->multiHitCounter = v0;
-        param1->multiHitNumHits = v0;
-        param1->multiHitAccuracyCheck = v1;
+        battleCtx->multiHitCounter = hits;
+        battleCtx->multiHitNumHits = hits;
+        battleCtx->multiHitAccuracyCheck = flags;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224230C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the value of a variable using an operation applied to itself
+ * and a static source value.
+ * 
+ * Inputs:
+ * 1. The operation to apply; see enum OpCode for possible values.
+ * 2. ID of the variable to target as a source operand and the destination.
+ * 3. A static source value to use as the second operand.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int * v3;
-    u32 v4;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int dstVar = BattleScript_Read(battleCtx);
+    int srcVal = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *var = BattleScript_VarAddress(battleSys, battleCtx, dstVar);
+    u32 mask;
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_VarAddress(param0, param1, v1);
+    switch (op) {
+    case VALOP_SET:
+        *var = srcVal;
+        break;
 
-    switch (v0) {
-    case ((6 + 1) + 0):
-        v3[0] = v2;
+    case VALOP_ADD:
+        *var += srcVal;
         break;
-    case ((6 + 1) + 1):
-        v3[0] += v2;
+        
+    case VALOP_SUB:
+        *var -= srcVal;
         break;
-    case ((6 + 1) + 2):
-        v3[0] -= v2;
-        break;
-    case ((6 + 1) + 3):
-        v3[0] |= v2;
-        break;
-    case ((6 + 1) + 4):
-        v3[0] &= (v2 ^ 0xffffffff);
-        break;
-    case ((6 + 1) + 5):
-        v3[0] *= v2;
-        break;
-    case ((6 + 1) + 6):
-        v3[0] /= v2;
-        break;
-    case ((6 + 1) + 7):
-        v3[0] = v3[0] << v2;
-        break;
-    case ((6 + 1) + 8):
-        v4 = v3[0];
-        v4 = v4 >> v2;
-        v3[0] = v4;
-        break;
-    case ((6 + 1) + 9):
-        v3[0] = FlagIndex(v2);
-        break;
-    case ((6 + 1) + 10):
-        GF_ASSERT(0);
-        break;
-    case ((6 + 1) + 11):
-        v3[0] -= v2;
 
-        if (v3[0] < 0) {
-            v3[0] = 0;
+    case VALOP_FLAG_ON:
+        *var |= srcVal;
+        break;
+
+    case VALOP_FLAG_OFF:
+        *var &= FLAG_NEGATE(srcVal);
+        break;
+
+    case VALOP_MUL:
+        *var *= srcVal;
+        break;
+
+    case VALOP_DIV:
+        *var /= srcVal;
+        break;
+
+    case VALOP_LSH:
+        *var = *var << srcVal;
+        break;
+
+    case VALOP_RSH:
+        mask = *var;
+        mask = mask >> srcVal;
+        *var = mask;
+        break;
+
+    case VALOP_FLAG_INDEX:
+        *var = FlagIndex(srcVal);
+        break;
+
+    case VALOP_GET:
+        GF_ASSERT(FALSE);
+        break;
+
+    case VALOP_SUB_TO_ZERO:
+        *var -= srcVal;
+        if (*var < 0) {
+            *var = 0;
         }
         break;
-    case ((6 + 1) + 12):
-        v3[0] ^= v2;
+
+    case VALOP_XOR:
+        *var ^= srcVal;
         break;
-    case ((6 + 1) + 13):
-        v3[0] &= v2;
+
+    case VALOP_AND:
+        *var &= srcVal;
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242400 (BattleSystem * param0, BattleContext * param1)
+static inline BOOL AbilityBlocksSpecificStatReduction(BattleContext *battleCtx, int statOffset, int ability, int stat)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    BattleMon *v6 = &param1->battleMons[param1->sideEffectMon];
+    return Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ability) == TRUE
+            && BATTLE_STAT_ATTACK + statOffset == stat;
+}
 
-    BattleScript_Iter(param1, 1);
+static inline void SetupNicknameStatMsg(BattleContext *battleCtx, int msgID, int statOffset)
+{
+    battleCtx->msgBuffer.id = msgID;
+    battleCtx->msgBuffer.tags = TAG_NICKNAME_STAT;
+    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+    battleCtx->msgBuffer.params[1] = BATTLE_STAT_ATTACK + statOffset;
+}
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v5 = 0;
+static inline void SetupNicknameAbilityStatMsg(BattleContext *battleCtx, int msgID, int statOffset)
+{
+    battleCtx->msgBuffer.id = msgID;
+    battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_STAT;
+    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+    battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->sideEffectMon].ability;
+    battleCtx->msgBuffer.params[2] = BATTLE_STAT_ATTACK + statOffset;
+}
 
-    param1->battleStatusMask &= (0x20000 ^ 0xffffffff);
+static inline void SetupNicknameAbilityNicknameAbilityMsg(BattleContext *battleCtx, int msgID)
+{
+    battleCtx->msgBuffer.id = msgID;
+    battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_NICKNAME_ABILITY;
+    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+    battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->sideEffectMon].ability;
+    battleCtx->msgBuffer.params[2] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
+    battleCtx->msgBuffer.params[3] = battleCtx->battleMons[battleCtx->attacker].ability;
+}
 
-    if (param1->sideEffectParam >= 0x2e) {
-        v3 = param1->sideEffectParam - 0x2e;
-        v4 = -2;
-        param1->scriptTemp = 13;
-    } else if (param1->sideEffectParam >= 0x27) {
-        v3 = param1->sideEffectParam - 0x27;
-        v4 = 2;
-        param1->scriptTemp = 12;
-    } else if (param1->sideEffectParam >= 0x16) {
-        v3 = param1->sideEffectParam - 0x16;
-        v4 = -1;
-        param1->scriptTemp = 13;
+/**
+ * @brief Try to change the stat stage for a target battler.
+ * 
+ * This handles all of the logic related to whether or not a stat stage change
+ * can be applied given the target's ability, volatile condition (i.e., Mist or
+ * Substitute), current stat stage, etc.
+ * 
+ * Inputs:
+ * 1. How far ahead to jump if there is no change to the stage.
+ * 2. How far ahead to jump if the change is blocked.
+ * 3. How far ahead to jump if the change is blocked by Substitute.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int jumpNoChange;
+    int jumpBlocked;
+    int jumpBlockedBySubstitute;
+    int statOffset;
+    int stageChange;
+    int result;
+    BattleMon *mon = &battleCtx->battleMons[battleCtx->sideEffectMon];
+
+    BattleScript_Iter(battleCtx, 1);
+
+    jumpNoChange = BattleScript_Read(battleCtx);
+    jumpBlocked = BattleScript_Read(battleCtx);
+    jumpBlockedBySubstitute = BattleScript_Read(battleCtx);
+    result = 0;
+
+    battleCtx->battleStatusMask &= ~SYSCTL_FAIL_STAT_STAGE_CHANGE;
+
+    if (battleCtx->sideEffectParam >= MOVE_SIDE_EFFECT_ATTACK_DOWN_2_STAGES) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SIDE_EFFECT_ATTACK_DOWN_2_STAGES;
+        stageChange = -2;
+        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_DOWN;
+    } else if (battleCtx->sideEffectParam >= MOVE_SIDE_EFFECT_ATTACK_UP_2_STAGES) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SIDE_EFFECT_ATTACK_UP_2_STAGES;
+        stageChange = 2;
+        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_UP;
+    } else if (battleCtx->sideEffectParam >= MOVE_SIDE_EFFECT_ATTACK_DOWN_1_STAGE) {
+        statOffset = battleCtx->sideEffectParam - MOVE_SIDE_EFFECT_ATTACK_DOWN_1_STAGE;
+        stageChange = -1;
+        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_DOWN;
     } else {
-        v3 = param1->sideEffectParam - 0xf;
-        v4 = 1;
-        param1->scriptTemp = 12;
+        statOffset = battleCtx->sideEffectParam - MOVE_SIDE_EFFECT_ATTACK_UP_1_STAGE;
+        stageChange = 1;
+        battleCtx->scriptTemp = STATUS_EFFECT_STAGE_UP;
     }
 
-    if (v4 > 0) {
-        if (v6->statBoosts[0x1 + v3] == 12) {
-            param1->battleStatusMask |= 0x20000;
+    if (stageChange > 0) {
+        if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == 12) {
+            battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-            if ((param1->sideEffectType == 2) || (param1->sideEffectType == 3)) {
-                BattleScript_Iter(param1, v1);
+            if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT
+                    || battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                BattleScript_Iter(battleCtx, jumpBlocked);
             } else {
-                param1->msgBuffer.id = 142;
-                param1->msgBuffer.tags = 12;
-                param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                param1->msgBuffer.params[1] = 0x1 + v3;
-
-                BattleScript_Iter(param1, v0);
+                SetupNicknameStatMsg(battleCtx, 142, statOffset); // "{0}'s {1} won't go higher!"
+                BattleScript_Iter(battleCtx, jumpNoChange);
             }
         } else {
-            if (param1->sideEffectType == 3) {
-                param1->msgBuffer.id = 622;
-                param1->msgBuffer.tags = 39;
-                param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
-                param1->msgBuffer.params[2] = 0x1 + v3;
-            } else if (param1->sideEffectType == 5) {
-                param1->msgBuffer.id = 756;
-                param1->msgBuffer.tags = 45;
-                param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                param1->msgBuffer.params[1] = param1->msgItemTemp;
-                param1->msgBuffer.params[2] = 0x1 + v3;
+            if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                SetupNicknameAbilityStatMsg(battleCtx, 622, statOffset); // "{0}'s {1} raised its {2}!"
+            } else if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_HELD_ITEM) {
+                battleCtx->msgBuffer.id = 756; // "The {0} raised {1}'s {2}!"
+                battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM_STAT;
+                battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+                battleCtx->msgBuffer.params[1] = battleCtx->msgItemTemp;
+                battleCtx->msgBuffer.params[2] = BATTLE_STAT_ATTACK + statOffset;
             } else {
-                param1->msgBuffer.id = (v4 == 1 ? 750 : 753);
-                param1->msgBuffer.tags = 12;
-                param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                param1->msgBuffer.params[1] = 0x1 + v3;
+                // "{0}'s {1} rose!" or "{0}'s {1} sharply rose!"
+                SetupNicknameStatMsg(battleCtx, stageChange == 1 ? 750 : 753, statOffset);
             }
 
-            v6->statBoosts[0x1 + v3] += v4;
+            mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] += stageChange;
 
-            if (v6->statBoosts[0x1 + v3] > 12) {
-                v6->statBoosts[0x1 + v3] = 12;
+            if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] > 12) {
+                mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = 12;
             }
         }
     } else {
-        if ((param1->sideEffectFlags & 0x8000000) == 0) {
-            if (param1->attacker != param1->sideEffectMon) {
-                if (param1->sideConditions[Battler_Side(param0, param1->sideEffectMon)].mistTurns) {
-                    param1->msgBuffer.id = 273;
-                    param1->msgBuffer.tags = 2;
-                    param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                    v5 = 1;
-                } else if ((Battler_IgnorableAbility(param1, param1->attacker, param1->sideEffectMon, 29) == 1) || (Battler_IgnorableAbility(param1, param1->attacker, param1->sideEffectMon, 73) == 1)) {
-                    if (param1->sideEffectType == 3) {
-                        param1->msgBuffer.id = 727;
-                        param1->msgBuffer.tags = 53;
-                        param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                        param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
-                        param1->msgBuffer.params[2] = BattleSystem_NicknameTag(param1, param1->attacker);
-                        param1->msgBuffer.params[3] = param1->battleMons[param1->attacker].ability;
+        if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
+            if (battleCtx->attacker != battleCtx->sideEffectMon) {
+                if (battleCtx->sideConditions[Battler_Side(battleSys, battleCtx->sideEffectMon)].mistTurns) {
+                    battleCtx->msgBuffer.id = 273; // "{0} is protected by Mist!"
+                    battleCtx->msgBuffer.tags = TAG_NICKNAME;
+                    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+
+                    result = 1;
+                } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CLEAR_BODY) == TRUE
+                        || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_WHITE_SMOKE) == TRUE) {
+                    if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, 727); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
-                        param1->msgBuffer.id = 669;
-                        param1->msgBuffer.tags = 11;
-                        param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                        param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
+                        battleCtx->msgBuffer.id = 669; // "{0}'s {1} prevents stat loss!"
+                        battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY;
+                        battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+                        battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->sideEffectMon].ability;
                     }
 
-                    v5 = 1;
-                } else if (((Battler_IgnorableAbility(param1, param1->attacker, param1->sideEffectMon, 51) == 1) && ((0x1 + v3) == 0x6)) || ((Battler_IgnorableAbility(param1, param1->attacker, param1->sideEffectMon, 52) == 1) && ((0x1 + v3) == 0x1))) {
-                    if (param1->sideEffectType == 3) {
-                        param1->msgBuffer.id = 727;
-                        param1->msgBuffer.tags = 53;
-                        param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                        param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
-                        param1->msgBuffer.params[2] = BattleSystem_NicknameTag(param1, param1->attacker);
-                        param1->msgBuffer.params[3] = param1->battleMons[param1->attacker].ability;
+                    result = 1;
+                } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
+                        || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)) {
+                    if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                        SetupNicknameAbilityNicknameAbilityMsg(battleCtx, 727); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
-                        param1->msgBuffer.id = 704;
-                        param1->msgBuffer.tags = 39;
-                        param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                        param1->msgBuffer.params[1] = param1->battleMons[param1->sideEffectMon].ability;
-                        param1->msgBuffer.params[2] = 0x1 + v3;
+                        SetupNicknameAbilityStatMsg(battleCtx, 704, statOffset); // "{0}'s {1} prevents {2} loss!"
                     }
 
-                    v5 = 1;
-                } else if (v6->statBoosts[0x1 + v3] == 0) {
-                    param1->battleStatusMask |= 0x20000;
+                    result = 1;
+                } else if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == 0) {
+                    battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-                    if ((param1->sideEffectType == 2) || (param1->sideEffectType == 3)) {
-                        BattleScript_Iter(param1, v1);
-                        return 0;
+                    if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT
+                            || battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                        BattleScript_Iter(battleCtx, jumpBlocked);
+
+                        return FALSE;
                     } else {
-                        param1->msgBuffer.id = 145;
-                        param1->msgBuffer.tags = 12;
-                        param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                        param1->msgBuffer.params[1] = 0x1 + v3;
-                        BattleScript_Iter(param1, v0);
-                        return 0;
+                        SetupNicknameStatMsg(battleCtx, 145, statOffset); // "{0}'s {1} won't go lower!"
+                        BattleScript_Iter(battleCtx, jumpNoChange);
+
+                        return FALSE;
                     }
-                } else if ((Battler_IgnorableAbility(param1, param1->attacker, param1->sideEffectMon, 19) == 1) && (param1->sideEffectType == 2)) {
-                    v5 = 1;
-                } else if (param1->battleMons[param1->sideEffectMon].statusVolatile & 0x1000000) {
-                    v5 = 2;
+                } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SHIELD_DUST) == TRUE
+                        && battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT) {
+                    result = 1;
+                } else if (battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
+                    result = 2;
                 }
-            } else if (v6->statBoosts[0x1 + v3] == 0) {
-                param1->battleStatusMask |= 0x20000;
+            } else if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == 0) {
+                battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
-                if ((param1->sideEffectType == 2) || (param1->sideEffectType == 3)) {
-                    BattleScript_Iter(param1, v1);
-                    return 0;
+                if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT
+                        || battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+                    BattleScript_Iter(battleCtx, jumpBlocked);
+
+                    return FALSE;
                 } else {
-                    param1->msgBuffer.id = 145;
-                    param1->msgBuffer.tags = 12;
-                    param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-                    param1->msgBuffer.params[1] = 0x1 + v3;
-                    BattleScript_Iter(param1, v0);
-                    return 0;
+                    SetupNicknameStatMsg(battleCtx, 145, statOffset); // "{0}'s {1} won't go lower!"
+                    BattleScript_Iter(battleCtx, jumpNoChange);
+
+                    return FALSE;
                 }
             }
 
-            if ((v5 == 2) && (param1->sideEffectType == 1)) {
-                BattleScript_Iter(param1, v2);
-                return 0;
-            } else if ((v5) && (param1->sideEffectType == 2)) {
-                BattleScript_Iter(param1, v1);
-                return 0;
-            } else if (v5) {
-                BattleScript_Iter(param1, v0);
-                return 0;
+            if (result == 2 && battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_DIRECT) {
+                BattleScript_Iter(battleCtx, jumpBlockedBySubstitute);
+
+                return FALSE;
+            } else if (result && battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_INDIRECT) {
+                BattleScript_Iter(battleCtx, jumpBlocked);
+
+                return FALSE;
+            } else if (result) {
+                BattleScript_Iter(battleCtx, jumpNoChange);
+
+                return FALSE;
             }
         }
 
-        if (param1->sideEffectType == 3) {
-            param1->msgBuffer.id = 662;
-            param1->msgBuffer.tags = 54;
-            param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->attacker);
-            param1->msgBuffer.params[1] = param1->battleMons[param1->attacker].ability;
-            param1->msgBuffer.params[2] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-            param1->msgBuffer.params[3] = 0x1 + v3;
+        if (battleCtx->sideEffectType == SIDE_EFFECT_SOURCE_ABILITY) {
+            battleCtx->msgBuffer.id = 662; // "{0}'s {1} cuts {2}'s {3}!"
+            battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_NICKNAME_STAT;
+            battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
+            battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->attacker].ability;
+            battleCtx->msgBuffer.params[2] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+            battleCtx->msgBuffer.params[3] = BATTLE_STAT_ATTACK + statOffset;
         } else {
-            param1->msgBuffer.id = ((v4 == -1) ? 762 : 765);
-            param1->msgBuffer.tags = 12;
-            param1->msgBuffer.params[0] = BattleSystem_NicknameTag(param1, param1->sideEffectMon);
-            param1->msgBuffer.params[1] = 0x1 + v3;
+            // "{0}'s {1} fell!" or "{0}'s {1} harshly fell!"
+            SetupNicknameStatMsg(battleCtx, stageChange == -1 ? 762 : 765, statOffset);
         }
 
-        v6->statBoosts[0x1 + v3] += v4;
+        mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] += stageChange;
 
-        if (v6->statBoosts[0x1 + v3] < 0) {
-            v6->statBoosts[0x1 + v3] = 0;
+        if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] < 0) {
+            mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = 0;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02242A14 (BattleSystem * param0, BattleContext * param1)
@@ -10773,3 +10850,4 @@ static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item)
 {
     battleCtx->aiContext.battlerHeldItems[battler] = item;
 }
+
