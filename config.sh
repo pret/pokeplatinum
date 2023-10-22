@@ -48,11 +48,15 @@ if [ "$(uname -s)" = "Linux" ]; then
         native_file="native_unix.ini"
         cross_file="cross_unix.ini"
     fi
+elif [ "$(uname -s)" = "Darwin" ]; then
+    native_file="native_unix.ini"
+    cross_file="cross_unix.ini"
 else
     native_file="native.ini"
     cross_file="cross.ini"
 fi
 
+touch "$build/.mwconfig"
 export MWCONFIG="$(realpath -- "$build/.mwconfig")"
 
 if [ "$native_file" = "native_unix.ini" ]; then

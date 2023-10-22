@@ -219,7 +219,7 @@ pokeplatinum_nds = custom_target('pokeplatinum.us.nds',
 ############################################################
 ###                        TESTS                         ###
 ############################################################
-sha1sum = find_program('sha1sum', native: true)
+sha1sum = find_program(['sha1sum', 'shasum'], native: true)
 
 test('SBIN Checksums',
     sha1sum,

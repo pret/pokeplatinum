@@ -91,6 +91,27 @@ You now have the choice between two different environments to use to build the p
 
 Continue with the [building instructions](#Downloading_the_repository)
 
+## Mac OSX (<= 10.14)
+
+Apple bundles a number of the requisite utilities into Xcode Command Line Tools; to install these, run:
+
+```
+xcode-select --install
+```
+
+You will also need the following packages:
+
+* meson (>= 1.2.0)
+* wine (to run the mwcc executables)
+
+These can be installed using Homebrew; if you do not have Homebrew installed, refer to the instructions [here](https://brew.sh/). Once Homebrew is installed, run:
+
+```
+brew update
+brew install meson 
+brew install --cask wine-stable
+```
+
 ## Linux
 
 Building the ROM requires the following packages. If you cannot find one or more of these using your package distribution, it may be under a different name.
