@@ -2085,8 +2085,8 @@ static void BattleController_SafariBaitCommand(BattleSystem *battleSys, BattleCo
     battleCtx->scriptTemp = BattleSystem_RandNext(battleSys) % 10;
 
     // TODO: This 12 could use with a constant
-    if (battleCtx->safariCatchCount < 12) {
-        battleCtx->safariCatchCount++;
+    if (battleCtx->safariCatchStage < 12) {
+        battleCtx->safariCatchStage++;
     }
 
     if (battleCtx->scriptTemp != 0) {
@@ -2113,8 +2113,8 @@ static void BattleController_SafariRockCommand(BattleSystem *battleSys, BattleCo
     if (battleCtx->scriptTemp != 0) {
         battleCtx->msgTemp = 1;
 
-        if (battleCtx->safariCatchCount) {
-            battleCtx->safariCatchCount--;
+        if (battleCtx->safariCatchStage) {
+            battleCtx->safariCatchStage--;
         }
     }
 }

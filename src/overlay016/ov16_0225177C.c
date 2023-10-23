@@ -2071,7 +2071,7 @@ void BattleContext_InitCounters (BattleSystem * param0, BattleContext * param1)
         param1->battlersSwitchingMask |= FlagIndex(3);
     }
 
-    param1->safariCatchCount = 6;
+    param1->safariCatchStage = 6;
     param1->safariEscapeCount = 6;
 }
 
