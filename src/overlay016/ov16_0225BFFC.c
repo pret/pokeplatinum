@@ -175,7 +175,7 @@ BattlerData * ov16_0225BFFC (BattleSystem * param0, UnkStruct_ov16_0223C2C0 * pa
 
 void ov16_0225C038 (BattleSystem * param0, BattlerData * param1, int param2, int param3)
 {
-    UnkStruct_ov12_02237728 v0;
+    BallThrow v0;
     s16 v1, v2;
 
     if (BattleSystem_BattleType(param0) & (0x20 | 0x200)) {
@@ -186,15 +186,15 @@ void ov16_0225C038 (BattleSystem * param0, BattlerData * param1, int param2, int
         return;
     }
 
-    v0.unk_00 = Unk_ov16_0226F174[param1->battlerType];
-    v0.unk_04 = 5;
-    v0.unk_08 = 4;
-    v0.unk_0C = param1->unk_190;
-    v0.unk_10 = param2;
-    v0.unk_1C = ov16_0223E010(param0);
-    v0.unk_20 = BattleSystem_PaletteSys(param0);
-    v0.unk_18 = 0;
-    v0.unk_14 = 1;
+    v0.type = Unk_ov16_0226F174[param1->battlerType];
+    v0.heapID = 5;
+    v0.mode = 4;
+    v0.target = param1->unk_190;
+    v0.ballID = param2;
+    v0.cellActorSys = ov16_0223E010(param0);
+    v0.paletteSys = BattleSystem_PaletteSys(param0);
+    v0.surface = 0;
+    v0.bgPrio = 1;
 
     param1->unk_84 = ov12_02237728(&v0);
 

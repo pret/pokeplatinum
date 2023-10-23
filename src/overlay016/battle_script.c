@@ -9057,26 +9057,26 @@ static void ov16_02249B80 (SysTask * param0, void * param1)
     case 0:
         if (v2->flag == 0) {
             {
-                UnkStruct_ov12_02237728 v7;
+                BallThrow v7;
 
-                v7.unk_08 = 3;
-                v7.unk_04 = 5;
-                v7.unk_0C = v1 + 20000;
-                v7.unk_10 = v2->ball;
-                v7.unk_1C = ov16_0223E010(v2->battleSys);
-                v7.unk_20 = BattleSystem_PaletteSys(v2->battleSys);
-                v7.unk_14 = 1;
-                v7.unk_18 = 0;
-                v7.unk_24 = v2->battleSys;
+                v7.mode = 3;
+                v7.heapID = 5;
+                v7.target = v1 + 20000;
+                v7.ballID = v2->ball;
+                v7.cellActorSys = ov16_0223E010(v2->battleSys);
+                v7.paletteSys = BattleSystem_PaletteSys(v2->battleSys);
+                v7.bgPrio = 1;
+                v7.surface = 0;
+                v7.battleSys = v2->battleSys;
 
                 if (BattleSystem_BattleType(v2->battleSys) & 0x2) {
                     if (v1 == 1) {
-                        v7.unk_00 = 16;
+                        v7.type = 16;
                     } else {
-                        v7.unk_00 = 17;
+                        v7.type = 17;
                     }
                 } else {
-                    v7.unk_00 = 15;
+                    v7.type = 15;
                 }
 
                 v2->ballRotation = ov12_02237728(&v7);

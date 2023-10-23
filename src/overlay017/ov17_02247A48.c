@@ -1027,15 +1027,15 @@ static void ov17_02248A24 (SysTask * param0, void * param1)
         break;
     case 1:
     {
-        UnkStruct_ov12_02237728 v1;
+        BallThrow v1;
 
-        v1.unk_00 = 14;
-        v1.unk_04 = 22;
-        v1.unk_08 = 0;
-        v1.unk_0C = 0;
-        v1.unk_1C = v0->unk_00->unk_0C.unk_1C;
-        v1.unk_20 = v0->unk_00->unk_0C.unk_44;
-        v1.unk_14 = 1;
+        v1.type = 14;
+        v1.heapID = 22;
+        v1.mode = 0;
+        v1.target = 0;
+        v1.cellActorSys = v0->unk_00->unk_0C.unk_1C;
+        v1.paletteSys = v0->unk_00->unk_0C.unk_44;
+        v1.bgPrio = 1;
 
         v0->unk_04 = ov12_02237728(&v1);
     }

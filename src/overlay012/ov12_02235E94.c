@@ -105,7 +105,7 @@ typedef struct BallRotation {
     CellActorData * unk_30;
     UnkStruct_ov12_02225D50 unk_34;
     UnkStruct_ov12_02225F6C unk_48[2];
-    UnkStruct_ov12_02237728 unk_90;
+    BallThrow unk_90;
     UnkStruct_ov12_02237C54_sub1 unk_B8;
     SysTask * unk_CC;
     UnkStruct_ov12_02236648 * unk_D0;
@@ -1111,14 +1111,14 @@ static BOOL ov12_02236918 (BallRotation * param0)
         {
             UnkStruct_ov12_02236690 v0;
 
-            v0.unk_04 = param0->unk_90.unk_10;
-            v0.unk_08 = param0->unk_90.unk_04;
+            v0.unk_04 = param0->unk_90.ballID;
+            v0.unk_08 = param0->unk_90.heapID;
             v0.unk_0C = 0xFF;
             v0.unk_10 = 0;
 
             sub_0200D550(param0->unk_30, &v0.unk_00, &v0.unk_02);
 
-            param0->unk_D8 = ov12_02223764(param0->unk_90.unk_24, param0->unk_90.unk_04);
+            param0->unk_D8 = ov12_02223764(param0->unk_90.battleSys, param0->unk_90.heapID);
             param0->unk_D0 = ov12_02236690(&v0);
         }
         param0->unk_08++;
@@ -1213,13 +1213,13 @@ static BOOL ov12_02236A6C (BallRotation * param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.unk_20, 0x4, 1 << v0, -1, 0, 12, 0x37F);
+        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -1, 0, 12, 0x37F);
 
         param0->unk_08++;
     }
     break;
     case 1:
-        if (sub_0200384C(param0->unk_90.unk_20) != 0) {
+        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1227,13 +1227,13 @@ static BOOL ov12_02236A6C (BallRotation * param0)
             int v1;
 
             v1 = sub_0200D43C(param0->unk_30);
-            sub_02003178(param0->unk_90.unk_20, 0x4, 1 << v1, -1, 12, 0, 0x37F);
+            sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v1, -1, 12, 0, 0x37F);
         }
 
         param0->unk_08++;
         break;
     default:
-        if (sub_0200384C(param0->unk_90.unk_20) != 0) {
+        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1455,21 +1455,21 @@ static BOOL ov12_02236D18 (BallRotation * param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.unk_20, 0x4, 1 << v0, -5, 0, 10, 0x0);
+        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 0, 10, 0x0);
 
         param0->unk_08++;
     }
     break;
     case 1:
-        if (sub_0200384C(param0->unk_90.unk_20) != 0) {
+        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
         {
             UnkStruct_ov12_02236690 v1;
 
-            v1.unk_04 = param0->unk_90.unk_10;
-            v1.unk_08 = param0->unk_90.unk_04;
+            v1.unk_04 = param0->unk_90.ballID;
+            v1.unk_08 = param0->unk_90.heapID;
             v1.unk_0C = ov12_02235FB4(v1.unk_04);
             v1.unk_10 = 0;
 
@@ -1492,7 +1492,7 @@ static BOOL ov12_02236D18 (BallRotation * param0)
     }
     break;
     default:
-        if (sub_0200384C(param0->unk_90.unk_20) != 0) {
+        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1516,12 +1516,12 @@ static BOOL ov12_02236E0C (BallRotation * param0)
         int v0;
 
         v0 = sub_0200D43C(param0->unk_30);
-        sub_02003178(param0->unk_90.unk_20, 0x4, 1 << v0, -5, 10, 0, 0x0);
+        sub_02003178(param0->unk_90.paletteSys, 0x4, 1 << v0, -5, 10, 0, 0x0);
     }
         param0->unk_08++;
         break;
     case 1:
-        if (sub_0200384C(param0->unk_90.unk_20) != 0) {
+        if (sub_0200384C(param0->unk_90.paletteSys) != 0) {
             break;
         }
 
@@ -1631,7 +1631,7 @@ static BOOL ov12_02236F24 (BallRotation * param0)
         {
             int v0;
 
-            if (ov12_02235EB0(param0->unk_90.unk_00) == 1) {
+            if (ov12_02235EB0(param0->unk_90.type) == 1) {
                 v0 = (LCRNG_Next() % 20) + 10;
 
                 sub_0200D7C0(param0->unk_30, 0x2000 * v0);
@@ -1639,26 +1639,26 @@ static BOOL ov12_02236F24 (BallRotation * param0)
         }
         break;
     case 1:
-        if (ov12_02235EB0(param0->unk_90.unk_00) == 1) {
+        if (ov12_02235EB0(param0->unk_90.type) == 1) {
             sub_0200D7C0(param0->unk_30, 0x2000);
 
             if (param0->unk_B8.unk_0C > ((param0->unk_B8.unk_08 / 2) + 10)) {
                 sub_0200D7C0(param0->unk_30, 0x2000);
             }
 
-            if (ov12_02235EF0(param0->unk_90.unk_00) == 1) {
+            if (ov12_02235EF0(param0->unk_90.type) == 1) {
                 if (param0->unk_B8.unk_0C == ((param0->unk_B8.unk_08 / 2) + 10)) {
                     int v1;
 
                     v1 = sub_0200D43C(param0->unk_30);
-                    param0->unk_D4 = ov12_02226870(param0->unk_90.unk_20, param0->unk_90.unk_04, 2, v1 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+                    param0->unk_D4 = ov12_02226870(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v1 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
                 }
             }
         }
 
         param0->unk_B8.unk_0C++;
 
-        if ((param0->unk_90.unk_00 >= 6) && (param0->unk_90.unk_00 <= 8)) {
+        if ((param0->unk_90.type >= 6) && (param0->unk_90.type <= 8)) {
             if ((param0->unk_B8.unk_0C > (param0->unk_B8.unk_08 / 2)) && (param0->unk_B8.unk_0C < ((param0->unk_B8.unk_08 / 2) + 5))) {
                 break;
             }
@@ -1670,7 +1670,7 @@ static BOOL ov12_02236F24 (BallRotation * param0)
         }
         break;
     case 2:
-        if ((ov12_02235EF0(param0->unk_90.unk_00) == 1) && (param0->unk_D4 != NULL)) {
+        if ((ov12_02235EF0(param0->unk_90.type) == 1) && (param0->unk_D4 != NULL)) {
             if (ov12_02226848(param0->unk_D4) == 1) {
                 break;
             }
@@ -1680,12 +1680,12 @@ static BOOL ov12_02236F24 (BallRotation * param0)
 
             return 0;
         } else {
-            if (param0->unk_90.unk_00 >= 15) {
+            if (param0->unk_90.type >= 15) {
                 param0->unk_28 = 1;
                 return 0;
             }
 
-            if (param0->unk_90.unk_10 == (0xFF + 18)) {
+            if (param0->unk_90.ballID == (0xFF + 18)) {
                 sub_02005728(2024, 117);
             }
 
@@ -1703,9 +1703,9 @@ static BOOL ov12_02236F24 (BallRotation * param0)
             {
                 int v2;
 
-                if ((param0->unk_90.unk_00 != 12) && (param0->unk_90.unk_00 != 13)) {
+                if ((param0->unk_90.type != 12) && (param0->unk_90.type != 13)) {
                     v2 = sub_0200D43C(param0->unk_30);
-                    param0->unk_D4 = ov12_02226870(param0->unk_90.unk_20, param0->unk_90.unk_04, 2, v2 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+                    param0->unk_D4 = ov12_02226870(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v2 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
                 }
             }
             param0->unk_28 = 1;
@@ -1715,7 +1715,7 @@ static BOOL ov12_02236F24 (BallRotation * param0)
             break;
         }
 
-        if ((param0->unk_90.unk_00 != 12) && (param0->unk_90.unk_00 != 13)) {
+        if ((param0->unk_90.type != 12) && (param0->unk_90.type != 13)) {
             if (ov12_02226848(param0->unk_D4) == 1) {
                 break;
             }
@@ -1742,7 +1742,7 @@ static BOOL ov12_022371E4 (BallRotation * param0)
         {
             int v0;
 
-            if (ov12_02235EB0(param0->unk_90.unk_00) == 1) {
+            if (ov12_02235EB0(param0->unk_90.type) == 1) {
                 v0 = (LCRNG_Next() % 20) + 10;
 
                 sub_0200D7C0(param0->unk_30, 0x2000 * v0);
@@ -1750,26 +1750,26 @@ static BOOL ov12_022371E4 (BallRotation * param0)
         }
         break;
     case 1:
-        if (ov12_02235EB0(param0->unk_90.unk_00) == 1) {
+        if (ov12_02235EB0(param0->unk_90.type) == 1) {
             sub_0200D7C0(param0->unk_30, 0x2000);
 
             if (param0->unk_B8.unk_0C > ((param0->unk_B8.unk_08 / 2) + 10)) {
                 sub_0200D7C0(param0->unk_30, 0x2000);
             }
 
-            if (ov12_02235EF0(param0->unk_90.unk_00) == 1) {
+            if (ov12_02235EF0(param0->unk_90.type) == 1) {
                 if (param0->unk_B8.unk_0C == ((param0->unk_B8.unk_08 / 2) + 10)) {
                     int v1;
 
                     v1 = sub_0200D43C(param0->unk_30);
-                    param0->unk_D4 = ov12_02226870(param0->unk_90.unk_20, param0->unk_90.unk_04, 2, v1 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+                    param0->unk_D4 = ov12_02226870(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v1 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
                 }
             }
         }
 
         param0->unk_B8.unk_0C++;
 
-        if ((param0->unk_90.unk_00 >= 6) && (param0->unk_90.unk_00 <= 8)) {
+        if ((param0->unk_90.type >= 6) && (param0->unk_90.type <= 8)) {
             if ((param0->unk_B8.unk_0C > (param0->unk_B8.unk_08 / 2)) && (param0->unk_B8.unk_0C < ((param0->unk_B8.unk_08 / 2) + 5))) {
                 break;
             }
@@ -1781,7 +1781,7 @@ static BOOL ov12_022371E4 (BallRotation * param0)
         }
         break;
     case 2:
-        if ((ov12_02235EF0(param0->unk_90.unk_00) == 1) && (param0->unk_D4 != NULL)) {
+        if ((ov12_02235EF0(param0->unk_90.type) == 1) && (param0->unk_D4 != NULL)) {
             if (ov12_02226848(param0->unk_D4) == 1) {
                 break;
             }
@@ -1791,7 +1791,7 @@ static BOOL ov12_022371E4 (BallRotation * param0)
 
             return 0;
         } else {
-            if (param0->unk_90.unk_00 >= 15) {
+            if (param0->unk_90.type >= 15) {
                 param0->unk_28 = 1;
 
                 return 0;
@@ -1814,7 +1814,7 @@ static BOOL ov12_022371E4 (BallRotation * param0)
                 int v2;
 
                 v2 = sub_0200D43C(param0->unk_30);
-                param0->unk_D4 = ov12_02226870(param0->unk_90.unk_20, param0->unk_90.unk_04, 2, v2 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
+                param0->unk_D4 = ov12_02226870(param0->unk_90.paletteSys, param0->unk_90.heapID, 2, v2 * 16, 16, -2, 2, 0, 14, 0xFFFF, 1002);
             }
 
             param0->unk_28 = 1;
@@ -1871,8 +1871,8 @@ static BOOL ov12_02237474 (BallRotation * param0)
     {
         UnkStruct_ov12_02236690 v0;
 
-        v0.unk_04 = param0->unk_90.unk_10;
-        v0.unk_08 = param0->unk_90.unk_04;
+        v0.unk_04 = param0->unk_90.ballID;
+        v0.unk_08 = param0->unk_90.heapID;
         v0.unk_0C = 0xFF;
         v0.unk_10 = 1;
 
@@ -1995,7 +1995,7 @@ static void ov12_022376D0 (SysTask * param0, void * param1)
         return;
     }
 
-    v0 = Unk_ov12_0223AB84[v1->unk_90.unk_08](v1);
+    v0 = Unk_ov12_0223AB84[v1->unk_90.mode](v1);
 
     if (v0 == 0) {
         v1->unk_1C = 0;
@@ -2008,11 +2008,11 @@ static void ov12_022376D0 (SysTask * param0, void * param1)
     sub_0200C7EC(v1->unk_2C);
 }
 
-BallRotation * ov12_02237728 (UnkStruct_ov12_02237728 * param0)
+BallRotation * ov12_02237728 (BallThrow * param0)
 {
     BallRotation * v0 = NULL;
 
-    v0 = Heap_AllocFromHeap(param0->unk_04, sizeof(BallRotation));
+    v0 = Heap_AllocFromHeap(param0->heapID, sizeof(BallRotation));
     MI_CpuClear8(v0, sizeof(BallRotation));
 
     GF_ASSERT(v0 != NULL);
@@ -2025,9 +2025,9 @@ BallRotation * ov12_02237728 (UnkStruct_ov12_02237728 * param0)
     v0->unk_18 = 0;
     v0->unk_00 = 0;
     v0->unk_04 = 0;
-    v0->unk_2C = sub_0200C704(v0->unk_90.unk_1C);
+    v0->unk_2C = sub_0200C704(v0->unk_90.cellActorSys);
     v0->unk_DC = 0;
-    v0->unk_24 = ov12_02235F2C(v0->unk_90.unk_00);
+    v0->unk_24 = ov12_02235F2C(v0->unk_90.type);
     v0->unk_B8.unk_0C = 0;
     v0->unk_20 = 16;
     v0->unk_21 = 0;
@@ -2081,11 +2081,11 @@ BOOL ov12_0223782C (BallRotation * param0, int param1)
 
 void ov12_0223783C (BallRotation * param0)
 {
-    int v0 = param0->unk_90.unk_04;
+    int v0 = param0->unk_90.heapID;
 
     GF_ASSERT(param0 != NULL);
 
-    sub_0200D0B0(param0->unk_90.unk_1C, param0->unk_2C);
+    sub_0200D0B0(param0->unk_90.cellActorSys, param0->unk_2C);
     sub_0200D0F4(param0->unk_30);
     SysTask_Done(param0->unk_CC);
     Heap_FreeToHeap(param0);
@@ -2093,7 +2093,7 @@ void ov12_0223783C (BallRotation * param0)
 
 void ov12_0223786C (BallRotation * param0, int param1)
 {
-    param0->unk_90.unk_08 = param1;
+    param0->unk_90.mode = param1;
     param0->unk_08 = 0;
     param0->unk_0C = 0;
     param0->unk_10 = 0;
@@ -2106,14 +2106,14 @@ int ov12_02237890 (BallRotation * param0)
 {
     GF_ASSERT(param0 != NULL);
 
-    return param0->unk_90.unk_08;
+    return param0->unk_90.mode;
 }
 
 static void ov12_022378A0 (BallRotation * param0)
 {
     sub_0200D550(param0->unk_30, &param0->unk_B8.unk_00, &param0->unk_B8.unk_02);
 
-    switch (param0->unk_90.unk_00) {
+    switch (param0->unk_90.type) {
     case 0:
     case 1:
     case 2:
@@ -2201,7 +2201,7 @@ static void ov12_022378A0 (BallRotation * param0)
 
 static void ov12_02237B14 (BallRotation * param0, s16 * param1, s16 * param2)
 {
-    switch (param0->unk_90.unk_00) {
+    switch (param0->unk_90.type) {
     case 0:
         ov12_02225864(0, 0, param1, param2);
         (*param2) += (32 + 8);
@@ -2275,10 +2275,10 @@ static void ov12_02237C54 (BallRotation * param0)
     int v2;
     int v3;
 
-    sub_0200C7C0(param0->unk_90.unk_1C, param0->unk_2C, 10);
+    sub_0200C7C0(param0->unk_90.cellActorSys, param0->unk_2C, 10);
 
-    if (param0->unk_90.unk_18 == 0) {
-        sub_0200964C(sub_0200C738(param0->unk_90.unk_1C), 0, ((192 + 80) << FX32_SHIFT));
+    if (param0->unk_90.surface == 0) {
+        sub_0200964C(sub_0200C738(param0->unk_90.cellActorSys), 0, ((192 + 80) << FX32_SHIFT));
     }
 
     {
@@ -2292,23 +2292,23 @@ static void ov12_02237C54 (BallRotation * param0)
         v5.val1[4] = 0;
         v5.val1[5] = 0;
 
-        sub_0200CB30(param0->unk_90.unk_1C, param0->unk_2C, &v5);
+        sub_0200CB30(param0->unk_90.cellActorSys, param0->unk_2C, &v5);
     }
 
-    v0 = ov12_02235FC8(param0->unk_90.unk_10, 0);
-    v1 = ov12_02235FC8(param0->unk_90.unk_10, 1);
-    v2 = ov12_02235FC8(param0->unk_90.unk_10, 2);
-    v3 = ov12_02235FC8(param0->unk_90.unk_10, 3);
+    v0 = ov12_02235FC8(param0->unk_90.ballID, 0);
+    v1 = ov12_02235FC8(param0->unk_90.ballID, 1);
+    v2 = ov12_02235FC8(param0->unk_90.ballID, 2);
+    v3 = ov12_02235FC8(param0->unk_90.ballID, 3);
 
     {
         NARC * v6;
 
-        v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_90.unk_04);
+        v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param0->unk_90.heapID);
 
-        sub_0200CC3C(param0->unk_90.unk_1C, param0->unk_2C, v6, v0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_90.unk_0C + 6000);
-        sub_0200CDC4(param0->unk_90.unk_20, 2, param0->unk_90.unk_1C, param0->unk_2C, v6, v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param0->unk_90.unk_0C + 6000);
-        sub_0200CE24(param0->unk_90.unk_1C, param0->unk_2C, v6, v2, 1, param0->unk_90.unk_0C + 6000);
-        sub_0200CE54(param0->unk_90.unk_1C, param0->unk_2C, v6, v3, 1, param0->unk_90.unk_0C + 6000);
+        sub_0200CC3C(param0->unk_90.cellActorSys, param0->unk_2C, v6, v0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, param0->unk_90.target + 6000);
+        sub_0200CDC4(param0->unk_90.paletteSys, 2, param0->unk_90.cellActorSys, param0->unk_2C, v6, v1, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param0->unk_90.target + 6000);
+        sub_0200CE24(param0->unk_90.cellActorSys, param0->unk_2C, v6, v2, 1, param0->unk_90.target + 6000);
+        sub_0200CE54(param0->unk_90.cellActorSys, param0->unk_2C, v6, v3, 1, param0->unk_90.target + 6000);
         NARC_dtor(v6);
     }
 }
@@ -2326,14 +2326,14 @@ static void ov12_02237D8C (BallRotation * param0)
     v1.unk_08 = 0;
     v1.unk_0C = 0;
     v1.unk_10 = 1;
-    v1.unk_2C = param0->unk_90.unk_14;
+    v1.unk_2C = param0->unk_90.bgPrio;
     v1.unk_30 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        v1.unk_14[v0] = param0->unk_90.unk_0C + 6000;
+        v1.unk_14[v0] = param0->unk_90.target + 6000;
     }
 
-    param0->unk_30 = sub_0200CE6C(param0->unk_90.unk_1C, param0->unk_2C, &v1);
+    param0->unk_30 = sub_0200CE6C(param0->unk_90.cellActorSys, param0->unk_2C, &v1);
 
     sub_0200D3F4(param0->unk_30, 1);
     sub_0200D6A4(param0->unk_30, 2);

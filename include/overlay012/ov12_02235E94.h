@@ -24,7 +24,7 @@ BOOL ov12_02236764(UnkStruct_ov12_02236648 * param0);
 void ov12_02236780(UnkStruct_ov12_02236648 * param0);
 void ov12_022368C8(BallRotation * param0, int param1);
 BOOL ov12_022368D0(BallRotation * param0, int param1);
-BallRotation * ov12_02237728(UnkStruct_ov12_02237728 * param0);
+BallRotation * ov12_02237728(BallThrow * param0);
 BOOL ov12_022377F8(BallRotation * param0);
 BOOL ov12_02237810(BallRotation * param0);
 void ov12_02237828(BallRotation * param0, int param1);
