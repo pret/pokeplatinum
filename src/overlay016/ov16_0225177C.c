@@ -2071,7 +2071,7 @@ void BattleContext_InitCounters (BattleSystem * param0, BattleContext * param1)
         param1->battlersSwitchingMask |= FlagIndex(3);
     }
 
-    param1->safariCatchCount = 6;
+    param1->safariCatchStage = 6;
     param1->safariEscapeCount = 6;
 }
 
@@ -6087,7 +6087,7 @@ void ov16_02259A5C (BattleSystem * param0, BattleContext * param1, Pokemon * par
 
     v0 = BattleSystem_TrainerInfo(param0, 0);
     v1 = BattleSystem_MapHeader(param0);
-    v2 = ov16_0223E22C(param0);
+    v2 = BattleSystem_Terrain(param0);
 
     if (BattleSystem_BattleType(param0) & 0x200) {
         v3 = Pokemon_GetValue(param2, MON_DATA_POKEBALL, NULL);

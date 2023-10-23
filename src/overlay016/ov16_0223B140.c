@@ -741,8 +741,8 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     sub_02015760(v0->unk_1AC);
     sub_0207D3EC(v0->unk_58, v1->unk_E0);
     Heap_FreeToHeap(v0->unk_58);
-    sub_02026338(v0->unk_60, v1->unk_E8);
-    Heap_FreeToHeap(v0->unk_60);
+    sub_02026338(v0->pokedex, v1->unk_E8);
+    Heap_FreeToHeap(v0->pokedex);
 
     v1->unk_EC = v0->unk_64;
     v1->unk_E4 = v0->unk_5C;
@@ -969,7 +969,7 @@ static void ov16_0223C210 (BattleSystem * param0)
     BattleContext * v3;
     Pokemon * v4;
 
-    v0 = ov16_0223E22C(param0);
+    v0 = BattleSystem_Terrain(param0);
 
     ov16_022686CC(&param0->unk_17C[0], param0, 0, v0);
     ov16_022686CC(&param0->unk_17C[1], param0, 1, v0);
@@ -1094,8 +1094,8 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_58 = sub_0207D3C0(5);
 
     sub_0207D3EC(param1->unk_E0, param0->unk_58);
-    param0->unk_60 = sub_02026324(5);
-    sub_02026338(param1->unk_E8, param0->unk_60);
+    param0->pokedex = sub_02026324(5);
+    sub_02026338(param1->unk_E8, param0->pokedex);
 
     param0->unk_64 = param1->unk_EC;
     param0->unk_1B0 = param1->unk_108;
@@ -1106,10 +1106,10 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->unk_2420 = param1->unk_13C;
     param0->unk_9C = param1->unk_10C;
     param0->safariBalls = param1->unk_168;
-    param0->unk_23FC = param1->unk_12C;
+    param0->terrain = param1->unk_12C;
     param0->unk_2400 = param1->unk_128;
     param0->unk_2404 = param1->unk_130;
-    param0->unk_240C = param1->unk_138;
+    param0->time = param1->unk_138;
     param0->unk_2418 = param1->unk_16C;
     param0->unk_2424 = param1->unk_140;
     param0->unk_242C = param1->unk_144;

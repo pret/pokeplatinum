@@ -11,6 +11,7 @@
 #include "constants/battle/message_tags.h"
 #include "constants/battle/side_effects.h"
 #include "constants/battle/system_control.h"
+#include "constants/battle/terrain.h"
 #include "constants/narc_files/battle_skill_subseq.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -43,6 +44,7 @@
 #include "struct_defs/trainer_data.h"
 #include "struct_defs/battle_system.h"
 #include "struct_defs/struct_0208737C.h"
+#include "struct_defs/fraction.h"
 #include "overlay012/struct_ov12_02237728.h"
 #include "overlay016/struct_ov16_022431BC.h"
 #include "overlay016/struct_ov16_022431BC_1.h"
@@ -353,7 +355,7 @@ static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *
 
 static u32 ov16_022431BC(BattleSystem * param0, BattleContext * param1, int param2);
 static void BattleScript_CalcEffortValues(Party *party, int slot, int species, int form);
-static int ov16_0224A724(BattleSystem * param0, BattleContext * param1);
+static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleScript_LoadPartyLevelUpIcon(BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2);
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem * param0, BattleScriptTaskData * param1);
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
@@ -7090,7 +7092,7 @@ static BOOL ov16_022479E8 (BattleSystem * param0, BattleContext * param1)
         return 0;
     }
 
-    v1 = ov16_0223E22C(param0);
+    v1 = BattleSystem_Terrain(param0);
 
     if (v1 > 12) {
         v1 = 12;
@@ -7130,7 +7132,7 @@ static BOOL ov16_02247A80 (BattleSystem * param0, BattleContext * param1)
     int v0;
 
     BattleScript_Iter(param1, 1);
-    v0 = ov16_0223E22C(param0);
+    v0 = BattleSystem_Terrain(param0);
 
     if (v0 > 12) {
         v0 = 12;
@@ -7163,7 +7165,7 @@ static BOOL ov16_02247AB0 (BattleSystem * param0, BattleContext * param1)
 
     BattleScript_Iter(param1, 1);
 
-    v0 = ov16_0223E22C(param0);
+    v0 = BattleSystem_Terrain(param0);
 
     if (v0 > 12) {
         v0 = 12;
@@ -9057,26 +9059,26 @@ static void ov16_02249B80 (SysTask * param0, void * param1)
     case 0:
         if (v2->flag == 0) {
             {
-                UnkStruct_ov12_02237728 v7;
+                BallThrow v7;
 
-                v7.unk_08 = 3;
-                v7.unk_04 = 5;
-                v7.unk_0C = v1 + 20000;
-                v7.unk_10 = v2->ball;
-                v7.unk_1C = ov16_0223E010(v2->battleSys);
-                v7.unk_20 = BattleSystem_PaletteSys(v2->battleSys);
-                v7.unk_14 = 1;
-                v7.unk_18 = 0;
-                v7.unk_24 = v2->battleSys;
+                v7.mode = 3;
+                v7.heapID = 5;
+                v7.target = v1 + 20000;
+                v7.ballID = v2->ball;
+                v7.cellActorSys = ov16_0223E010(v2->battleSys);
+                v7.paletteSys = BattleSystem_PaletteSys(v2->battleSys);
+                v7.bgPrio = 1;
+                v7.surface = 0;
+                v7.battleSys = v2->battleSys;
 
                 if (BattleSystem_BattleType(v2->battleSys) & 0x2) {
                     if (v1 == 1) {
-                        v7.unk_00 = 16;
+                        v7.type = 16;
                     } else {
-                        v7.unk_00 = 17;
+                        v7.type = 17;
                     }
                 } else {
-                    v7.unk_00 = 15;
+                    v7.type = 15;
                 }
 
                 v2->ballRotation = ov12_02237728(&v7);
@@ -9128,7 +9130,7 @@ static void ov16_02249B80 (SysTask * param0, void * param1)
     case 2:
         if (--v2->tmpData[1] == 0) {
             ov16_02265050(v2->battleSys, v1, v2->ball);
-            v2->tmpData[2] = ov16_0224A724(v2->battleSys, v2->battleCtx);
+            v2->tmpData[2] = BattleScript_CalcCatchShakes(v2->battleSys, v2->battleCtx);
 
             if (v2->tmpData[2] < 4) {
                 v2->tmpData[3] = v2->tmpData[2];
@@ -9215,7 +9217,7 @@ static void ov16_02249B80 (SysTask * param0, void * param1)
                     sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
                     v2->seqNum = 32;
-                } else if (ov16_0223F9E0(v2->battleSys, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
+                } else if (BattleSystem_CaughtSpecies(v2->battleSys, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
@@ -9604,140 +9606,156 @@ static void ov16_02249B80 (SysTask * param0, void * param1)
     }
 }
 
-static const u8 Unk_ov16_0226E570[] = {
-    0x14,
-    0xF,
-    0xA,
-    0xF
+static const u8 sBasicBallMod[] = {
+    20, // ITEM_ULTRA_BALL
+    15, // ITEM_GREAT_BALL 
+    10, // ITEM_POKE_BALL
+    15, // ITEM_SAFARI_BALL
 };
 
-static const u8 Unk_ov16_0226E638[][2] = {
-    {0xA, 0x28},
-    {0xA, 0x23},
-    {0xA, 0x1E},
-    {0xA, 0x19},
-    {0xA, 0x14},
-    {0xA, 0xF},
-    {0xA, 0xA},
-    {0xF, 0xA},
-    {0x14, 0xA},
-    {0x19, 0xA},
-    {0x1E, 0xA},
-    {0x23, 0xA},
-    {0x28, 0xA}
+static const struct Fraction sSafariCatchRate[] = {
+    { 10, 40 },
+    { 10, 35 },
+    { 10, 30 },
+    { 10, 25 },
+    { 10, 20 },
+    { 10, 15 },
+    { 10, 10 },
+    { 15, 10 },
+    { 20, 10 },
+    { 25, 10 },
+    { 30, 10 },
+    { 35, 10 },
+    { 40, 10 }
 };
 
-static int ov16_0224A724 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Computes the number of times that a Poke Ball will "shake" when
+ * attempting to capture a wild Pokemon.
+ * 
+ * This is, effectively, the capture formula. It performs all computations which
+ * factor into whether a given Pokemon will be caught or not, including the wild
+ * Pokemon's species, the type of ball being used, and Safari Zone mechanics.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return The number of times that a Poke Ball will shake during a capture
+ * attempt. 4 shakes is defined as a successful capture.
+ */
+static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u32 v1;
-    u32 v2;
-    u32 v3;
-    u32 v4;
-    int v5;
-    int v6;
-
-    if (BattleSystem_BattleType(param0) & (0x200 | 0x400)) {
+    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_ALWAYS_CATCH) {
         return 4;
     }
 
-    if (param1->msgItemTemp == 5) {
-        v3 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[param1->defender].species, 8);
-        v3 = v3 * Unk_ov16_0226E638[param1->safariCatchCount][0] / Unk_ov16_0226E638[param1->safariCatchCount][1];
+    u32 speciesMod;
+    if (battleCtx->msgItemTemp == ITEM_SAFARI_BALL) {
+        speciesMod = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battleCtx->defender].species, MON_DATA_PERSONAL_CATCH_RATE);
+        speciesMod = speciesMod * sSafariCatchRate[battleCtx->safariCatchStage].numerator / sSafariCatchRate[battleCtx->safariCatchStage].denominator;
     } else {
-        v3 = PokemonPersonalData_GetSpeciesValue(param1->battleMons[param1->defender].species, 8);
+        speciesMod = PokemonPersonalData_GetSpeciesValue(battleCtx->battleMons[battleCtx->defender].species, MON_DATA_PERSONAL_CATCH_RATE);
     }
 
-    v4 = 10;
-    v5 = BattleMon_Get(param1, param1->defender, 27, NULL);
-    v6 = BattleMon_Get(param1, param1->defender, 28, NULL);
+    u32 ballMod = 10;
+    int type1 = BattleMon_Get(battleCtx, battleCtx->defender, BATTLEMON_TYPE_1, NULL);
+    int type2 = BattleMon_Get(battleCtx, battleCtx->defender, BATTLEMON_TYPE_2, NULL);
 
-    if (param1->msgItemTemp > 5) {
-        switch (param1->msgItemTemp) {
-        case 6:
-            if ((v5 == 11) || (v6 == 11) || (v5 == 6) || (v6 == 6)) {
-                v4 = 30;
+    if (battleCtx->msgItemTemp > ITEM_SAFARI_BALL) {
+        switch (battleCtx->msgItemTemp) {
+        case ITEM_NET_BALL:
+            if (type1 == TYPE_WATER || type2 == TYPE_WATER
+                    || type1 == TYPE_BUG || type2 == TYPE_BUG) {
+                ballMod = 30;
             }
             break;
-        case 7:
-            if (ov16_0223E22C(param0) == 7) {
-                v4 = 35;
+
+        case ITEM_DIVE_BALL:
+            if (BattleSystem_Terrain(battleSys) == TERRAIN_WATER) {
+                ballMod = 35;
             }
             break;
-        case 8:
-            if (param1->battleMons[param1->defender].level < 40) {
-                v4 = 40 - param1->battleMons[param1->defender].level;
 
-                if (v4 < 10) {
-                    v4 = 10;
+        case ITEM_NEST_BALL:
+            if (battleCtx->battleMons[battleCtx->defender].level < 40) {
+                ballMod = 40 - battleCtx->battleMons[battleCtx->defender].level;
+
+                if (ballMod < 10) {
+                    ballMod = 10;
                 }
             }
             break;
-        case 9:
-            if (ov16_0223F9E0(param0, param1->battleMons[param1->defender].species) == 1) {
-                v4 = 30;
-            }
-            break;
-        case 10:
-            v4 = 10 + param1->totalTurns;
 
-            if (v4 > 40) {
-                v4 = 40;
+        case ITEM_REPEAT_BALL:
+            if (BattleSystem_CaughtSpecies(battleSys, battleCtx->battleMons[battleCtx->defender].species) == TRUE) {
+                ballMod = 30;
             }
             break;
-        case 13:
-            if ((ov16_0223EBF8(param0) == 3) || (ov16_0223EBF8(param0) == 4) || (ov16_0223E22C(param0) == 5)) {
-                v4 = 35;
+
+        case ITEM_TIMER_BALL:
+            ballMod = 10 + battleCtx->totalTurns;
+            if (ballMod > 40) {
+                ballMod = 40;
             }
             break;
-        case 15:
-            if (param1->totalTurns < 1) {
-                v4 = 40;
+
+        case ITEM_DUSK_BALL:
+            if (BattleSystem_Time(battleSys) == TIME_NIGHT
+                    || BattleSystem_Time(battleSys) == TIME_MIDNIGHT
+                    || BattleSystem_Terrain(battleSys) == TERRAIN_CAVE) {
+                ballMod = 35;
+            }
+            break;
+
+        case ITEM_QUICK_BALL:
+            if (battleCtx->totalTurns < 1) {
+                ballMod = 40;
             }
             break;
         }
     } else {
-        v4 = Unk_ov16_0226E570[param1->msgItemTemp - 2];
+        ballMod = sBasicBallMod[battleCtx->msgItemTemp - ITEM_ULTRA_BALL];
     }
 
-    v1 = ((v3 * v4) / 10) * (param1->battleMons[param1->defender].maxHP * 3 - param1->battleMons[param1->defender].curHP * 2) / (param1->battleMons[param1->defender].maxHP * 3);
+    u32 catchRate = (speciesMod * ballMod / 10)
+            * (battleCtx->battleMons[battleCtx->defender].maxHP * 3 - battleCtx->battleMons[battleCtx->defender].curHP * 2)
+            / (battleCtx->battleMons[battleCtx->defender].maxHP * 3);
 
-    if (param1->battleMons[param1->defender].status & (0x7 | 0x20)) {
-        v1 *= 2;
+    if (battleCtx->battleMons[battleCtx->defender].status & (MON_CONDITION_SLEEP | MON_CONDITION_FREEZE)) {
+        catchRate *= 2;
     }
 
-    if (param1->battleMons[param1->defender].status & (0x8 | 0x40 | 0x10 | 0x80)) {
-        v1 = v1 * 15 / 10;
+    if (battleCtx->battleMons[battleCtx->defender].status & (MON_CONDITION_POISON | MON_CONDITION_BURN | MON_CONDITION_PARALYSIS | MON_CONDITION_TOXIC)) {
+        catchRate = catchRate * 15 / 10;
     }
 
-    if (v1 >= 255) {
-        v0 = 4;
+    int shakes;
+    if (catchRate >= 0xFF) {
+        shakes = 4;
     } else {
-        v2 = (255 << 16) / v1;
-
-        CP_SetSqrt32(v2);
+        u32 sqrtRate = (0xFF << 16) / catchRate;
+        CP_SetSqrt32(sqrtRate);
         CP_WaitSqrt();
 
-        v2 = CP_GetSqrtResult32();
-
-        CP_SetSqrt32(v2);
+        sqrtRate = CP_GetSqrtResult32();
+        CP_SetSqrt32(sqrtRate);
         CP_WaitSqrt();
 
-        v1 = CP_GetSqrtResult32();
-        v1 = (65535 << 4) / v1;
+        catchRate = CP_GetSqrtResult32();
+        catchRate = (0xFFFF << 4) / catchRate;
 
-        for (v0 = 0; v0 < 4; v0++) {
-            if (BattleSystem_RandNext(param0) >= v1) {
+        for (shakes = 0; shakes < 4; shakes++) {
+            if (BattleSystem_RandNext(battleSys) >= catchRate) {
                 break;
             }
         }
 
-        if (param1->msgItemTemp == 1) {
-            v0 = 4;
+        if (battleCtx->msgItemTemp == ITEM_MASTER_BALL) {
+            shakes = 4;
         }
     }
 
-    return v0;
+
+    return shakes;
 }
 
 /**

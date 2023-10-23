@@ -413,7 +413,7 @@ u32 sub_0202D034 (UnkStruct_0202CD88 * param0)
 
 void sub_0202D040 (UnkStruct_0202CD88 * param0, const UnkStruct_02026324 * param1, u16 const param2)
 {
-    if (!sub_02026F9C(param1, param2)) {
+    if (!Pokedex_CaughtSpecies(param1, param2)) {
         sub_0202CFEC(param0, 22);
     }
 }

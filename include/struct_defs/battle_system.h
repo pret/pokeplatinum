@@ -1,6 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 #define POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 
+#include "constants/battle/terrain.h"
+#include "constants/time.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "message.h"
@@ -59,7 +62,7 @@ struct BattleSystem {
     TrainerInfo * unk_48[4];
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
-    UnkStruct_02026324 * unk_60;
+    UnkStruct_02026324 *pokedex;
     PCBoxes * unk_64;
     Party *parties[4];
     UnkStruct_0202CC84 * unk_78[4];
@@ -110,11 +113,11 @@ struct BattleSystem {
     u8 unk_23FB_2 : 1;
     u8 unk_23FB_3 : 2;
     u8 unk_23FB_5 : 3;
-    int unk_23FC;
+    enum Terrain terrain;
     int unk_2400;
     int unk_2404;
     u32 battleStatusMask;
-    int unk_240C;
+    enum Time time;
     int safariBalls;
     u8 unk_2414[4];
     u32 unk_2418;

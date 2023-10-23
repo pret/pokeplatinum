@@ -2016,21 +2016,21 @@ static void ov16_0225F0C0 (SysTask * param0, void * param1)
     switch (v0->unk_83) {
     case 0:
     {
-        UnkStruct_ov12_02237728 v2;
+        BallThrow v2;
 
-        v2.unk_00 = Unk_ov16_0226F174[v0->unk_82];
-        v2.unk_04 = 5;
-        v2.unk_0C = v0->unk_81;
-        v2.unk_10 = v0->unk_8E;
-        v2.unk_1C = ov16_0223E010(v0->unk_00);
-        v2.unk_20 = BattleSystem_PaletteSys(v0->unk_00);
-        v2.unk_14 = 1;
-        v2.unk_18 = 0;
+        v2.type = Unk_ov16_0226F174[v0->unk_82];
+        v2.heapID = 5;
+        v2.target = v0->unk_81;
+        v2.ballID = v0->unk_8E;
+        v2.cellActorSys = ov16_0223E010(v0->unk_00);
+        v2.paletteSys = BattleSystem_PaletteSys(v0->unk_00);
+        v2.bgPrio = 1;
+        v2.surface = 0;
 
         if (v0->unk_94 == 1) {
-            v2.unk_08 = 1;
+            v2.mode = 1;
         } else {
-            v2.unk_08 = 0;
+            v2.mode = 0;
         }
 
         v0->unk_0C = ov12_02237728(&v2);
@@ -2271,33 +2271,33 @@ static void ov16_0225F764 (SysTask * param0, void * param1)
     case 4:
         if (v0->unk_6A & 0x1) {
             {
-                UnkStruct_ov12_02237728 v5;
+                BallThrow v5;
 
-                v5.unk_00 = Unk_ov16_0226F174[v0->unk_6A];
-                v5.unk_04 = 5;
-                v5.unk_08 = 5;
-                v5.unk_0C = v0->unk_69;
-                v5.unk_10 = v0->unk_6E;
-                v5.unk_1C = ov16_0223E010(v0->unk_00);
-                v5.unk_20 = BattleSystem_PaletteSys(v0->unk_00);
-                v5.unk_14 = 1;
-                v5.unk_18 = 0;
+                v5.type = Unk_ov16_0226F174[v0->unk_6A];
+                v5.heapID = 5;
+                v5.mode = 5;
+                v5.target = v0->unk_69;
+                v5.ballID = v0->unk_6E;
+                v5.cellActorSys = ov16_0223E010(v0->unk_00);
+                v5.paletteSys = BattleSystem_PaletteSys(v0->unk_00);
+                v5.bgPrio = 1;
+                v5.surface = 0;
                 v0->unk_0C = ov12_02237728(&v5);
             }
         } else {
             {
-                UnkStruct_ov12_02237728 v6;
+                BallThrow v6;
                 int v7[] = {0, 1, 2, 3, 4, 5};
 
-                v6.unk_00 = v7[v0->unk_6A];
-                v6.unk_04 = 5;
-                v6.unk_08 = 5;
-                v6.unk_0C = v0->unk_69;
-                v6.unk_10 = v0->unk_6E;
-                v6.unk_1C = ov16_0223E010(v0->unk_00);
-                v6.unk_20 = BattleSystem_PaletteSys(v0->unk_00);
-                v6.unk_14 = 1;
-                v6.unk_18 = 0;
+                v6.type = v7[v0->unk_6A];
+                v6.heapID = 5;
+                v6.mode = 5;
+                v6.target = v0->unk_69;
+                v6.ballID = v0->unk_6E;
+                v6.cellActorSys = ov16_0223E010(v0->unk_00);
+                v6.paletteSys = BattleSystem_PaletteSys(v0->unk_00);
+                v6.bgPrio = 1;
+                v6.surface = 0;
                 v0->unk_0C = ov12_02237728(&v6);
             }
         }
@@ -2605,39 +2605,39 @@ static void ov16_0225FD5C (SysTask * param0, void * param1)
             v0->unk_0A = 1;
         } else {
             {
-                UnkStruct_ov12_02237728 v6;
+                BallThrow v6;
 
                 switch (v0->unk_10) {
                 default:
                 case 1:
-                    v6.unk_00 = 15;
+                    v6.type = 15;
                     v0->unk_18 = 3;
-                    v6.unk_10 = 5;
+                    v6.ballID = 5;
                     break;
                 case 2:
-                    v6.unk_00 = 12;
+                    v6.type = 12;
                     v0->unk_18 = 0;
-                    v6.unk_10 = (0xFF + 18);
+                    v6.ballID = (0xFF + 18);
                     break;
                 case 3:
-                    v6.unk_00 = 13;
+                    v6.type = 13;
                     v0->unk_18 = 0;
-                    v6.unk_10 = (0xFF + 19);
+                    v6.ballID = (0xFF + 19);
                     break;
                 case 4:
-                    v6.unk_00 = 15;
+                    v6.type = 15;
                     v0->unk_18 = 3;
-                    v6.unk_10 = (0xFF + 17);
+                    v6.ballID = (0xFF + 17);
                     break;
                 }
 
-                v6.unk_04 = 5;
-                v6.unk_08 = 4;
-                v6.unk_0C = v0->unk_09;
-                v6.unk_1C = ov16_0223E010(v0->unk_00);
-                v6.unk_20 = BattleSystem_PaletteSys(v0->unk_00);
-                v6.unk_18 = 0;
-                v6.unk_24 = v0->unk_00;
+                v6.heapID = 5;
+                v6.mode = 4;
+                v6.target = v0->unk_09;
+                v6.cellActorSys = ov16_0223E010(v0->unk_00);
+                v6.paletteSys = BattleSystem_PaletteSys(v0->unk_00);
+                v6.surface = 0;
+                v6.battleSys = v0->unk_00;
 
                 v0->unk_04->unk_84 = ov12_02237728(&v6);
 
@@ -5195,7 +5195,7 @@ static void  ov16_02263014 (SysTask * param0, void * param1)
 
     v1 = BattleSystem_BGL(v0->unk_00);
     v2 = BattleSystem_PaletteSys(v0->unk_00);
-    v3 = ov16_0223E22C(v0->unk_00);
+    v3 = BattleSystem_Terrain(v0->unk_00);
     v4 = Unk_ov16_0226F1D0[ov16_0223E240(v0->unk_00)];
 
     v0->unk_15++;

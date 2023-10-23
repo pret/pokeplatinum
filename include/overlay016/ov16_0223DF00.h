@@ -1,6 +1,9 @@
 #ifndef POKEPLATINUM_OV16_0223DF00_H
 #define POKEPLATINUM_OV16_0223DF00_H
 
+#include "constants/battle/terrain.h"
+#include "constants/time.h"
+
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
@@ -119,7 +122,14 @@ u8 BattleSystem_BattlerSlot(BattleSystem * param0, int param1);
 u8 Battler_Side(BattleSystem * param0, int param1);
 void * ov16_0223E220(BattleSystem * param0);
 PCBoxes * ov16_0223E228(BattleSystem * param0);
-int ov16_0223E22C(BattleSystem * param0);
+
+/**
+ * @brief Get the terrain type for the battle.
+ * 
+ * @param battleSys 
+ * @return The battle's terrain.
+ */
+enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
 int ov16_0223E240(BattleSystem * param0);
 int BattleSystem_MapHeader(BattleSystem * param0);
 int BattleSystem_Partner(BattleSystem * param0, int param1);
@@ -139,7 +149,14 @@ int BattleSystem_Partner(BattleSystem * param0, int param1);
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
 BOOL ov16_0223E30C(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u32 BattleSystem_BattleStatus(BattleSystem * param0);
-int ov16_0223EBF8(BattleSystem * param0);
+
+/**
+ * @brief Get the time of day.
+ * 
+ * @param battleSys 
+ * @return The time of day (e.g., morning, day, night)
+ */
+enum Time BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem * param0);
 u8 ov16_0223EC58(BattleSystem * param0, int param1, u8 param2);
 u16 ov16_0223ECC4(BattleParams * param0, int * param1, int * param2);
@@ -226,7 +243,16 @@ void BattleSystem_SetGaugePriority(BattleSystem * param0, int param1);
 u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
 void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
-BOOL ov16_0223F9E0(BattleSystem * param0, int param1);
+
+/**
+ * @brief Checks if the player has previously caught a member of this species.
+ * 
+ * @param battleSys 
+ * @param species 
+ * @return TRUE if the player has previously caught a member of the given species,
+ * FALSE if not.
+ */
+BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);

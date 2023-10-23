@@ -855,17 +855,17 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
             }
 
             {
-                UnkStruct_ov12_02237728 v0;
+                BallThrow v0;
 
-                v0.unk_00 = 1;
-                v0.unk_04 = 53;
-                v0.unk_08 = 0;
-                v0.unk_0C = 0xFF;
-                v0.unk_14 = 0;
-                v0.unk_18 = 1;
-                v0.unk_1C = param0->unk_D4.unk_08;
-                v0.unk_20 = param0->unk_D4.unk_14;
-                v0.unk_10 = Pokemon_GetValue(param0->unk_428, MON_DATA_POKEBALL, NULL);
+                v0.type = 1;
+                v0.heapID = 53;
+                v0.mode = 0;
+                v0.target = 0xFF;
+                v0.bgPrio = 0;
+                v0.surface = 1;
+                v0.cellActorSys = param0->unk_D4.unk_08;
+                v0.paletteSys = param0->unk_D4.unk_14;
+                v0.ballID = Pokemon_GetValue(param0->unk_428, MON_DATA_POKEBALL, NULL);
 
                 param0->unk_D4.unk_158 = ov12_02237728(&v0);
                 param0->unk_3DC++;
@@ -945,17 +945,17 @@ static BOOL ov76_0223DF94 (UnkStruct_ov76_0223DE00 * param0)
 
             param0->unk_3E0 = 0;
             {
-                UnkStruct_ov12_02237728 v5;
+                BallThrow v5;
 
-                v5.unk_00 = 1;
-                v5.unk_04 = 53;
-                v5.unk_08 = 5;
-                v5.unk_0C = 0xFF;
-                v5.unk_14 = 0;
-                v5.unk_18 = 1;
-                v5.unk_1C = param0->unk_D4.unk_08;
-                v5.unk_20 = param0->unk_D4.unk_14;
-                v5.unk_10 = Pokemon_GetValue(param0->unk_428, MON_DATA_POKEBALL, NULL);
+                v5.type = 1;
+                v5.heapID = 53;
+                v5.mode = 5;
+                v5.target = 0xFF;
+                v5.bgPrio = 0;
+                v5.surface = 1;
+                v5.cellActorSys = param0->unk_D4.unk_08;
+                v5.paletteSys = param0->unk_D4.unk_14;
+                v5.ballID = Pokemon_GetValue(param0->unk_428, MON_DATA_POKEBALL, NULL);
 
                 param0->unk_D4.unk_158 = ov12_02237728(&v5);
 

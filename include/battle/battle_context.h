@@ -286,7 +286,7 @@ struct BattleContext {
     int flingTemp;
     int flingScript;
 
-    u8 safariCatchCount;
+    u8 safariCatchStage;
     u8 safariEscapeCount;
     u8 runAttempts;
     u8 battleEndFlag;

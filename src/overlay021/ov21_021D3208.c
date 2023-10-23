@@ -629,7 +629,7 @@ static void ov21_021D39E4 (u16 * param0, int * param1, const u16 * param2, int p
                 if (param6 == 1) {
                     break;
                 } else {
-                    if (sub_02026F9C(param7, param2[v0])) {
+                    if (Pokedex_CaughtSpecies(param7, param2[v0])) {
                         break;
                     }
                 }
@@ -650,7 +650,7 @@ static void ov21_021D3A60 (UnkStruct_ov21_021D3A60 * param0, const UnkStruct_020
     param0->unk_F6C = 0;
 
     for (v0 = 0; v0 < param3; v0++) {
-        if (sub_02026F9C(param1, param2[v0])) {
+        if (Pokedex_CaughtSpecies(param1, param2[v0])) {
             param0->unk_00[param0->unk_F6C].unk_04 = 2;
         } else {
             param0->unk_00[param0->unk_F6C].unk_04 = 1;

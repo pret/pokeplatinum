@@ -18,7 +18,7 @@ BOOL sub_02026EF4(const UnkStruct_02026324 * param0);
 BOOL sub_02026F0C(const UnkStruct_02026324 * param0);
 u16 sub_02026F20(const UnkStruct_02026324 * param0);
 u16 sub_02026F58(const UnkStruct_02026324 * param0);
-BOOL sub_02026F9C(const UnkStruct_02026324 * param0, u16 param1);
+BOOL Pokedex_CaughtSpecies(const UnkStruct_02026324 * param0, u16 param1);
 BOOL sub_02026FE8(const UnkStruct_02026324 * param0, u16 param1);
 u32 sub_0202702C(const UnkStruct_02026324 * param0, u8 param1);
 u32 sub_02027058(const UnkStruct_02026324 * param0, u16 param1, int param2);
