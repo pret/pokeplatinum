@@ -10,6 +10,9 @@ msgenc_exe = executable('msgenc',
         'Gmm.cpp',
         'pugixml.cpp'
     ],
-    cpp_args: '-DNDEBUG',
+    cpp_args: [
+        '-DNDEBUG',
+        '-std=c++17'
+    ],
     native: true
 )

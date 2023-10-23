@@ -5,6 +5,9 @@ csv2bin_exe = executable('csv2bin',
         'Manifest.cpp',
         'Options.cpp'
     ],
-    cpp_args: '-DNDEBUG',
+    cpp_args: [
+        '-DNDEBUG',
+        '-std=c++17'
+    ],
     native: true
 )
