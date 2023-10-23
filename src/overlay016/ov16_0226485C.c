@@ -564,7 +564,7 @@ void BattleIO_SlideHPGaugeIn (BattleSystem * param0, BattleContext * param1, int
 
     v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
     v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_07_7 = ov16_0223F9E0(param0, param1->battleMons[param2].species);
+    v0.unk_07_7 = BattleSystem_CaughtSpecies(param0, param1->battleMons[param2].species);
     v0.unk_10 = BattleSystem_NumSafariBalls(param0);
     v0.unk_14 = param3;
 
@@ -1251,7 +1251,7 @@ void BattleIO_RefreshHPGauge (BattleSystem * param0, BattleContext * param1, int
 
     v0.unk_08 = param1->battleMons[param2].exp - Pokemon_GetSpeciesBaseExpAt(v2, v3);
     v0.unk_0C = Pokemon_GetSpeciesBaseExpAt(v2, v3 + 1) - Pokemon_GetSpeciesBaseExpAt(v2, v3);
-    v0.unk_07_7 = ov16_0223F9E0(param0, param1->battleMons[param2].species);
+    v0.unk_07_7 = BattleSystem_CaughtSpecies(param0, param1->battleMons[param2].species);
     v0.unk_10 = BattleSystem_NumSafariBalls(param0);
 
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C468));
@@ -1676,7 +1676,7 @@ void ov16_02266B78 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov1
     param2->unk_16 = param6;
     param2->unk_4C = param3;
     param2->unk_50 = param4;
-    param2->unk_54 = ov16_0223E22C(param0);
+    param2->unk_54 = BattleSystem_Terrain(param0);
 
     if (param1 != NULL) {
         param2->unk_04 = param1->damage;

@@ -772,7 +772,7 @@ u16 sub_02026DD0 (const UnkStruct_02026324 * param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= 493; v0++) {
-        if (sub_02026F9C(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             v1++;
         }
     }
@@ -815,7 +815,7 @@ u16 sub_02026E64 (const UnkStruct_02026324 * param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= 493; v0++) {
-        if (sub_02026F9C(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             if (sub_020775A4(v0) != 0) {
                 v1++;
             }
@@ -878,7 +878,7 @@ u16 sub_02026F20 (const UnkStruct_02026324 * param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= 493; v0++) {
-        if (sub_02026F9C(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             if (sub_02026D44(v0) == 1) {
                 v1++;
             }
@@ -911,7 +911,7 @@ u16 sub_02026F58 (const UnkStruct_02026324 * param0)
     return v1;
 }
 
-BOOL sub_02026F9C (const UnkStruct_02026324 * param0, u16 param1)
+BOOL Pokedex_CaughtSpecies (const UnkStruct_02026324 * param0, u16 param1)
 {
     inline_02026DD0(param0);
 

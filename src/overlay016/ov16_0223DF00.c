@@ -120,14 +120,14 @@ u8 BattleSystem_BattlerSlot(BattleSystem *battleSys, int battler);
 u8 Battler_Side(BattleSystem * param0, int param1);
 void * ov16_0223E220(BattleSystem * param0);
 PCBoxes * ov16_0223E228(BattleSystem * param0);
-int ov16_0223E22C(BattleSystem * param0);
+enum Terrain BattleSystem_Terrain(BattleSystem *battleSys);
 int ov16_0223E240(BattleSystem * param0);
 int BattleSystem_MapHeader(BattleSystem * param0);
 int BattleSystem_Partner(BattleSystem *battleSys, int battler);
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
 BOOL ov16_0223E30C(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u32 ov16_0223EBEC(BattleSystem * param0);
-int ov16_0223EBF8(BattleSystem * param0);
+enum Time BattleSystem_Time(BattleSystem *battleSys);
 int ov16_0223EC04(BattleSystem * param0);
 u8 ov16_0223EC58(BattleSystem * param0, int param1, u8 param2);
 u16 ov16_0223ECC4(BattleParams * param0, int * param1, int * param2);
@@ -205,7 +205,7 @@ void BattleSystem_SetGaugePriority(BattleSystem * param0, int param1);
 u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
 void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
-BOOL ov16_0223F9E0(BattleSystem * param0, int param1);
+BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
 void ov16_0223F9F0(void);
 u8 ov16_0223F9FC(BattleSystem * param0, int param1, int param2, int param3, int param4);
 u8 BattleMessage_Print(BattleSystem * param0, MessageLoader * param1, BattleMessage * param2, int param3);
@@ -366,7 +366,7 @@ PaletteSys * BattleSystem_PaletteSys (BattleSystem * param0)
 
 UnkStruct_02026324 * ov16_0223E068 (BattleSystem * param0)
 {
-    return param0->unk_60;
+    return param0->pokedex;
 }
 
 u8 * ov16_0223E06C (BattleSystem * param0)
@@ -505,13 +505,13 @@ PCBoxes * ov16_0223E228 (BattleSystem * param0)
     return param0->unk_64;
 }
 
-int ov16_0223E22C (BattleSystem * param0)
+enum Terrain BattleSystem_Terrain(BattleSystem *battleSys)
 {
-    if ((param0->unk_23FC > 24) || (param0->unk_23FC < 0)) {
-        return 24;
+    if (battleSys->terrain > TERRAIN_MAX || battleSys->terrain < TERRAIN_PLAIN) {
+        return TERRAIN_MAX;
     }
 
-    return param0->unk_23FC;
+    return battleSys->terrain;
 }
 
 int ov16_0223E240 (BattleSystem * param0)
@@ -918,9 +918,9 @@ u32 BattleSystem_BattleStatus (BattleSystem *battleSys)
     return battleSys->battleStatusMask;
 }
 
-int ov16_0223EBF8 (BattleSystem * param0)
+enum Time BattleSystem_Time(BattleSystem *battleSys)
 {
-    return param0->unk_240C;
+    return battleSys->time;
 }
 
 int ov16_0223EC04 (BattleSystem * param0)
@@ -934,7 +934,7 @@ int ov16_0223EC04 (BattleSystem * param0)
     case 3:
     case 4:
     case 5:
-        switch (param0->unk_240C) {
+        switch (param0->time) {
         case 0:
         case 1:
             v0 = 0;
@@ -1096,7 +1096,7 @@ void ov16_0223EE70 (BattleSystem * param0)
         v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES_EGG, NULL);
 
         if ((v3 == 412) && (param0->unk_2414[0] & FlagIndex(v0))) {
-            switch (ov16_0223E22C(param0)) {
+            switch (BattleSystem_Terrain(param0)) {
             default:
             case 2:
                 v1 = 0;
@@ -1706,12 +1706,12 @@ void BattleSystem_DexFlagSeen (BattleSystem * param0, int param1)
 
     if ((param0->battleType & (0x4 | 0x80)) == 0) {
         if ((v0 & 0x1) || (param0->battleType == (0x2 | 0x8 | 0x40)) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-            sub_020272A4(param0->unk_60, v1);
+            sub_020272A4(param0->pokedex, v1);
         }
     }
 
     if (((v0 & 0x1) == 0) && (Pokemon_GetValue(v1, MON_DATA_SPECIES_EGG, NULL) == 412)) {
-        sub_0202736C(param0->unk_60, v1);
+        sub_0202736C(param0->pokedex, v1);
     }
 }
 
@@ -1730,15 +1730,15 @@ void ov16_0223F9A0 (BattleSystem * param0, int param1)
                 v2 = BattleContext_Get(param0, param0->battleCtx, 2, param1);
                 v1 = BattleSystem_PartyPokemon(param0, param1, v2);
 
-                sub_0202736C(param0->unk_60, v1);
+                sub_0202736C(param0->pokedex, v1);
             }
         }
     }
 }
 
-BOOL ov16_0223F9E0 (BattleSystem * param0, int param1)
+BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species)
 {
-    return sub_02026F9C(param0->unk_60, param1);
+    return Pokedex_CaughtSpecies(battleSys->pokedex, species);
 }
 
 void ov16_0223F9F0 (void)

@@ -5195,7 +5195,7 @@ static void  ov16_02263014 (SysTask * param0, void * param1)
 
     v1 = BattleSystem_BGL(v0->unk_00);
     v2 = BattleSystem_PaletteSys(v0->unk_00);
-    v3 = ov16_0223E22C(v0->unk_00);
+    v3 = BattleSystem_Terrain(v0->unk_00);
     v4 = Unk_ov16_0226F1D0[ov16_0223E240(v0->unk_00)];
 
     v0->unk_15++;

@@ -7090,7 +7090,7 @@ static BOOL ov16_022479E8 (BattleSystem * param0, BattleContext * param1)
         return 0;
     }
 
-    v1 = ov16_0223E22C(param0);
+    v1 = BattleSystem_Terrain(param0);
 
     if (v1 > 12) {
         v1 = 12;
@@ -7130,7 +7130,7 @@ static BOOL ov16_02247A80 (BattleSystem * param0, BattleContext * param1)
     int v0;
 
     BattleScript_Iter(param1, 1);
-    v0 = ov16_0223E22C(param0);
+    v0 = BattleSystem_Terrain(param0);
 
     if (v0 > 12) {
         v0 = 12;
@@ -7163,7 +7163,7 @@ static BOOL ov16_02247AB0 (BattleSystem * param0, BattleContext * param1)
 
     BattleScript_Iter(param1, 1);
 
-    v0 = ov16_0223E22C(param0);
+    v0 = BattleSystem_Terrain(param0);
 
     if (v0 > 12) {
         v0 = 12;
@@ -9215,7 +9215,7 @@ static void ov16_02249B80 (SysTask * param0, void * param1)
                     sub_02003178(v4, (0x1 | 0x2 | 0x4 | 0x8), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
                     v2->seqNum = 32;
-                } else if (ov16_0223F9E0(v2->battleSys, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
+                } else if (BattleSystem_CaughtSpecies(v2->battleSys, Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL))) {
                     sub_02015738(ov16_0223E220(v2->battleSys), 1);
                     sub_02003178(v4, (0x1 | 0x4), 0xffff, 1, 0, 16, 0x0);
                     sub_0200872C(v5, 0, 16, 0, 0x0);
@@ -9660,7 +9660,7 @@ static int ov16_0224A724 (BattleSystem * param0, BattleContext * param1)
             }
             break;
         case 7:
-            if (ov16_0223E22C(param0) == 7) {
+            if (BattleSystem_Terrain(param0) == 7) {
                 v4 = 35;
             }
             break;
@@ -9674,7 +9674,7 @@ static int ov16_0224A724 (BattleSystem * param0, BattleContext * param1)
             }
             break;
         case 9:
-            if (ov16_0223F9E0(param0, param1->battleMons[param1->defender].species) == 1) {
+            if (BattleSystem_CaughtSpecies(param0, param1->battleMons[param1->defender].species) == 1) {
                 v4 = 30;
             }
             break;
@@ -9686,7 +9686,7 @@ static int ov16_0224A724 (BattleSystem * param0, BattleContext * param1)
             }
             break;
         case 13:
-            if ((ov16_0223EBF8(param0) == 3) || (ov16_0223EBF8(param0) == 4) || (ov16_0223E22C(param0) == 5)) {
+            if ((BattleSystem_Time(param0) == 3) || (BattleSystem_Time(param0) == 4) || (BattleSystem_Terrain(param0) == 5)) {
                 v4 = 35;
             }
             break;
