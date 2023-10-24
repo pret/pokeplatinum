@@ -153,8 +153,8 @@ static BOOL BtlCmd_ShowPartyList(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_WaitPartyList(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_0224221C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224226C(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_StartCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -363,7 +363,7 @@ static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext
 static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
 static void BattleScript_GetExpTask(SysTask * param0, void * param1);
-static void ov16_02249B80(SysTask * param0, void * param1);
+static void BattleScript_CatchMonTask(SysTask * param0, void * param1);
 
 static const BtlCmd sBattleCommands[] = {
     BtlCmd_SetupBattleUI,
@@ -413,8 +413,8 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_WaitPartyList,
     BtlCmd_Switch,
     BtlCmd_JumpIfAnySwitches,
-    ov16_0224221C,
-    ov16_0224226C,
+    BtlCmd_StartCatchMonTask,
+    BtlCmd_WaitCatchMonTask,
     BtlCmd_SetupMultiHit,
     BtlCmd_SetVarValue,
     BtlCmd_ChangeStatStage,
@@ -2783,35 +2783,53 @@ static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *bat
     return FALSE;
 }
 
-static BOOL ov16_0224221C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Start the Pokemon capture state machine.
+ * 
+ * The kicked-off state machine is responsible for controlling the flow of
+ * events in the capture UX. It will calculate the capture rate, show the
+ * correct number of shakes, etc.
+ * 
+ * Inputs:
+ * 1. Whether or not the capture is in the Great Marsh.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_StartCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    BOOL safariCapture = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    battleCtx->taskData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleScriptTaskData));
+    battleCtx->taskData->battleSys = battleSys;
+    battleCtx->taskData->battleCtx = battleCtx;
+    battleCtx->taskData->seqNum = 0;
+    battleCtx->taskData->flag = safariCapture;
+    battleCtx->taskData->ball = battleCtx->msgItemTemp;
 
-    v0 = BattleScript_Read(param1);
+    SysTask_Start(BattleScript_CatchMonTask, battleCtx->taskData, NULL);
 
-    param1->taskData = (BattleScriptTaskData *)Heap_AllocFromHeap(5, sizeof(BattleScriptTaskData));
-    param1->taskData->battleSys = param0;
-    param1->taskData->battleCtx = param1;
-    param1->taskData->seqNum = 0;
-    param1->taskData->flag = v0;
-    param1->taskData->ball = param1->msgItemTemp;
-
-    SysTask_Start(ov16_02249B80, param1->taskData, NULL);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224226C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Waits until the Pokemon capture task has completed.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_WaitCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->taskData == NULL) {
-        BattleScript_Iter(param1, 1);
+    if (battleCtx->taskData == NULL) {
+        BattleScript_Iter(battleCtx, 1);
     }
 
-    param1->battleProgressFlag = 1;
+    battleCtx->battleProgressFlag = TRUE;
 
-    return 0;
+    return FALSE;
 }
 
 /**
@@ -9189,7 +9207,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
     PokemonPersonalData_Free(personal);
 }
 
-static void ov16_02249B80 (SysTask * param0, void * param1)
+static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
 {
     int v0;
     int v1;
