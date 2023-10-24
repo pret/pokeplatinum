@@ -110,7 +110,7 @@ typedef struct BattleMon {
     u16 OTName[TRAINER_NAME_LEN + 1];
 
     u32 exp;
-    u32 pid;
+    u32 personality;
     u32 status;
     u32 statusVolatile;
     u32 OTId;

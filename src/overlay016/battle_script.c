@@ -5093,7 +5093,7 @@ static BOOL ov16_02244D60 (BattleSystem * param0, BattleContext * param1)
     param1->battleMons[param1->attacker].statusVolatile |= 0x200000;
     param1->battleMons[param1->attacker].moveEffectsData.disabledMove = 0;
     param1->battleMons[param1->attacker].moveEffectsData.disabledTurns = 0;
-    param1->battleMons[param1->attacker].moveEffectsData.transformedPID = param1->battleMons[param1->defender].pid;
+    param1->battleMons[param1->attacker].moveEffectsData.transformedPID = param1->battleMons[param1->defender].personality;
     param1->battleMons[param1->attacker].moveEffectsData.transformedGender = param1->battleMons[param1->defender].gender;
     param1->battleMons[param1->attacker].moveEffectsData.mimickedMoveSlot = 0;
     param1->battleMons[param1->attacker].moveEffectsData.lastResortCount = 0;

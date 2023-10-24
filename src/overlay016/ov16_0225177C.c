@@ -253,7 +253,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].curHP = Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
     battleCtx->battleMons[battler].maxHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
     battleCtx->battleMons[battler].exp = Pokemon_GetValue(mon, MON_DATA_EXP, NULL);
-    battleCtx->battleMons[battler].pid = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+    battleCtx->battleMons[battler].personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
     battleCtx->battleMons[battler].OTId = Pokemon_GetValue(mon, MON_DATA_OT_ID, NULL);
     battleCtx->battleMons[battler].OTGender = Pokemon_GetValue(mon, MON_DATA_OT_GENDER, NULL);
     battleCtx->battleMons[battler].capturedBall = Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL);
@@ -549,7 +549,7 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
         return battleMon->exp;
 
     case BATTLEMON_PERSONALITY:
-        return battleMon->pid;
+        return battleMon->personality;
 
     case BATTLEMON_STATUS:
         return battleMon->status;
@@ -839,7 +839,7 @@ void ov16_022523E8 (BattleContext * param0, int param1, int param2, const void *
         v6->exp = v1[0];
         break;
     case 51:
-        v6->pid = v1[0];
+        v6->personality = v1[0];
         break;
     case 52:
         v6->status = v1[0];
@@ -1106,7 +1106,7 @@ void ov16_02252A2C (BattleMon * param0, int param1, int param2)
         param0->exp += param2;
         break;
     case 51:
-        param0->pid += param2;
+        param0->personality += param2;
         break;
     case 61:
         param0->moveEffectsData.disabledTurns += param2;
@@ -4608,7 +4608,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 0;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 0) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 0) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4622,7 +4622,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 1;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 1) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 1) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4636,7 +4636,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 2;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 2) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 2) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4650,7 +4650,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 3;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 3) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 3) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -4664,7 +4664,7 @@ BOOL BattleSystem_TriggerHeldItem (BattleSystem * param0, BattleContext * param1
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 4;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 4) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 4) == -1) {
                     v1 = (0 + 207);
                 } else {
                     v1 = (0 + 198);
@@ -5017,7 +5017,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 0;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 0) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 0) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -5031,7 +5031,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 1;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 1) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 1) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -5045,7 +5045,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 2;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 2) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 2) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -5059,7 +5059,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 3;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 3) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 3) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -5073,7 +5073,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus (BattleSystem * param0, BattleContext 
                 param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param2].maxHP, v3);
                 param1->msgTemp = 4;
 
-                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].pid, 4) == -1) {
+                if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param2].personality, 4) == -1) {
                     param3[0] = (0 + 207);
                 } else {
                     param3[0] = (0 + 198);
@@ -5559,7 +5559,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 0;
 
-            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 0) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].personality, 0) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5573,7 +5573,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 1;
 
-            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 1) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].personality, 1) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5587,7 +5587,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 2;
 
-            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 2) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].personality, 2) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5601,7 +5601,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 3;
 
-            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 3) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].personality, 3) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5615,7 +5615,7 @@ BOOL ov16_02258CB4 (BattleSystem * param0, BattleContext * param1, int param2)
             param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[param1->attacker].maxHP, v3);
             param1->msgTemp = 4;
 
-            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].pid, 4) == -1) {
+            if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->attacker].personality, 4) == -1) {
                 v1 = (0 + 207);
             } else {
                 v1 = (0 + 198);
@@ -5838,7 +5838,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 0;
 
-        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 0) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].personality, 0) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5848,7 +5848,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 1;
 
-        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 1) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].personality, 1) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5858,7 +5858,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 2;
 
-        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 2) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].personality, 2) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5868,7 +5868,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 3;
 
-        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 3) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].personality, 3) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
@@ -5878,7 +5878,7 @@ BOOL ov16_02259204 (BattleSystem * param0, BattleContext * param1, int param2)
         param1->flingTemp = BattleSystem_Divide(param1->battleMons[param1->defender].maxHP, v2);
         param1->msgTemp = 4;
 
-        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].pid, 4) == -1) {
+        if (Pokemon_GetFlavorAffinityOf(param1->battleMons[param1->defender].personality, 4) == -1) {
             param1->flingScript = (0 + 207);
         } else {
             param1->flingScript = (0 + 198);
