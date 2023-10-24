@@ -24,7 +24,7 @@
 // unused flag: 1 << 7
 #define VOLATILE_CONDITION_BIDE         ((1 << 8) | (1 << 9)) // counter for the number of Bide turns remaining
 #define VOLATILE_CONDITION_THRASH       ((1 << 10) | (1 << 11)) // counter for the number of Thrash turns remaining
-#define VOLATILE_CONDITION_CHARGE_TURN  (1 << 12)
+#define VOLATILE_CONDITION_MOVE_LOCKED  (1 << 12)
 #define VOLATILE_CONDITION_BIND         ((1 << 13) | (1 << 14) | (1 << 15)) // counter for the number of Bind turns remaining
 #define VOLATILE_CONDITION_ATTRACT      ((1 << 16) | (1 << 17) | (1 << 18) | (1 << 19)) // each bit here defines which battlers the mon is infatuated with
 #define VOLATILE_CONDITION_FOCUS_ENERGY (1 << 20)

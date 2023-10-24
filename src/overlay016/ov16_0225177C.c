@@ -69,8 +69,8 @@ int BattleSystem_Defender(BattleSystem * param0, BattleContext * param1, int par
 void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
 void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02253EF0(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleSystem_BreakMultiTurn(BattleSystem * param0, BattleContext * param1, int param2);
+void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 int ov16_02253F7C(BattleContext * param0, int param1);
 BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
 void BattleContext_Init(BattleContext * param0);
@@ -153,7 +153,7 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
 BOOL ov16_0225AFF4(u16 param0);
 BOOL ov16_0225B02C(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
-BOOL ov16_0225B084(BattleContext * param0, u16 param1);
+BOOL BattleSystem_CanEncoreMove(BattleContext *battleCtx, u16 move);
 BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
 s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID);
 int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
@@ -1915,19 +1915,19 @@ void BattleMon_CopyToParty (BattleSystem * param0, BattleContext * param1, int p
     ov16_022662FC(param0, param1, param2);
 }
 
-void ov16_02253EF0 (BattleSystem * param0, BattleContext * param1, int param2)
+void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    param1->battleMons[param2].statusVolatile |= 0x1000;
-    param1->moveLockedInto[param2] = param1->moveCur;
+    battleCtx->battleMons[battler].statusVolatile |= VOLATILE_CONDITION_MOVE_LOCKED;
+    battleCtx->moveLockedInto[battler] = battleCtx->moveCur;
 }
 
-void BattleSystem_BreakMultiTurn (BattleSystem * param0, BattleContext * param1, int param2)
+void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    param1->battleMons[param2].statusVolatile &= (0x1000 ^ 0xffffffff);
-    param1->battleMons[param2].statusVolatile &= (0x300 ^ 0xffffffff);
-    param1->battleMons[param2].moveEffectsMask &= ((0x40 ^ 0xffffffff) & (0x80 ^ 0xffffffff) & (0x40000 ^ 0xffffffff) & (0x20000000 ^ 0xffffffff));
-    param1->battleMons[param2].moveEffectsData.rolloutCount = 0;
-    param1->battleMons[param2].moveEffectsData.furyCutterCount = 0;
+    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_MOVE_LOCKED;
+    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_BIDE;
+    battleCtx->battleMons[battler].moveEffectsMask &= ~MOVE_EFFECT_SEMI_INVULNERABLE;
+    battleCtx->battleMons[battler].moveEffectsData.rolloutCount = 0;
+    battleCtx->battleMons[battler].moveEffectsData.furyCutterCount = 0;
 }
 
 int ov16_02253F7C (BattleContext * param0, int param1)
@@ -2343,7 +2343,7 @@ void BattleSystem_SetupNextTurn (BattleSystem * param0, BattleContext * param1)
         }
 
         if ((param1->battleMons[v0].status & 0x7) && (param1->battleMons[v0].statusVolatile & 0x1000)) {
-            BattleSystem_BreakMultiTurn(param0, param1, v0);
+            Battler_UnlockMoveChoice(param0, param1, v0);
         }
 
         if ((param1->battleMons[v0].status & 0x7) && (param1->battleMons[v0].statusVolatile & 0xc00)) {
@@ -7122,30 +7122,25 @@ BOOL ov16_0225B02C (BattleSystem * param0, BattleContext * param1, int param2, u
     return Unk_ov16_0226EC5C[v0] == 0xffff;
 }
 
-static const u16 Unk_ov16_0226EBB0[] = {
-    0x90,
-    0x66,
-    0xA6,
-    0x77,
-    0xE3,
-    0xA5
+static const u16 sCannotEncoreMoves[] = {
+    MOVE_TRANSFORM,
+    MOVE_MIMIC,
+    MOVE_SKETCH,
+    MOVE_MIRROR_MOVE,
+    MOVE_ENCORE,
+    MOVE_STRUGGLE
 };
 
-BOOL ov16_0225B084 (BattleContext * param0, u16 param1)
+BOOL BattleSystem_CanEncoreMove(BattleContext *battleCtx, u16 move)
 {
-    int v0;
-
-    v0 = 0;
-
-    while (v0 < NELEMS(Unk_ov16_0226EBB0)) {
-        if (param0->aiContext.moveTable[Unk_ov16_0226EBB0[v0]].effect == param0->aiContext.moveTable[param1].effect) {
+    int i;
+    for (i = 0; i < NELEMS(sCannotEncoreMoves); i++) {
+        if (MOVE_DATA(sCannotEncoreMoves[i]).effect == MOVE_DATA(move).effect) {
             break;
         }
-
-        v0++;
     }
 
-    return v0 == NELEMS(Unk_ov16_0226EBB0);
+    return i == NELEMS(sCannotEncoreMoves);
 }
 
 static const u16 Unk_ov16_0226EBC8[] = {

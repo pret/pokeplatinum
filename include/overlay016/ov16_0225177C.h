@@ -267,8 +267,27 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
 void BattleSystem_RedirectTarget(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 BOOL BattleMove_TriggerRedirectionAbilities(BattleSystem * param0, BattleContext * param1);
 void BattleMon_CopyToParty(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02253EF0(BattleSystem * param0, BattleContext * param1, int param2);
-void BattleSystem_BreakMultiTurn(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Locks the battler into their current move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ */
+void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Unlocks the battler's future move choices.
+ * 
+ * This will also, as a convenience, toggle off the flags for Bide and semi-
+ * invulnerable moves and reset the counters for Rollout and Fury Cutter.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ */
+void Battler_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 int ov16_02253F7C(BattleContext * param0, int param1);
 BOOL BattleSystem_CheckTrainerMessage(BattleSystem * param0, BattleContext * param1);
 void BattleContext_Init(BattleContext * param0);
@@ -540,7 +559,15 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
 BOOL ov16_0225AFF4(u16 param0);
 BOOL ov16_0225B02C(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
-BOOL ov16_0225B084(BattleContext * param0, u16 param1);
+
+/**
+ * @brief Check if a given move can be Encored.
+ * 
+ * @param battleCtx 
+ * @param move 
+ * @return TRUE if the move can be Encored, FALSE otherwise.
+ */
+BOOL BattleSystem_CanEncoreMove(BattleContext *battleCtx, u16 move);
 BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
 
 /**

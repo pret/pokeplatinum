@@ -2328,7 +2328,7 @@ static BOOL BattleController_DecrementPP(BattleSystem *battleSys, BattleContext 
         }
     } else if (ATTACKING_MON.ppCur[moveSlot] == 0
             && (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN) == FALSE
-            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_CHARGE_TURN) == FALSE
+            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED) == FALSE
             && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_THRASH) == FALSE
             && MON_IS_UPROARING(battleCtx->attacker) == FALSE
             && moveSlot < LEARNED_MOVES_MAX) {
@@ -2371,7 +2371,7 @@ static BOOL BattleController_HasNoTarget(BattleSystem *battleSys, BattleContext 
             && result == FALSE
             && solarMove == FALSE
             && Battler_HeldItemEffect(battleCtx, battleCtx->attacker) != HOLD_EFFECT_CHARGE_SKIP
-            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_CHARGE_TURN) == FALSE) {
+            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED) == FALSE) {
         battleCtx->defender = battleCtx->attacker;
     }
 
@@ -3051,7 +3051,7 @@ static int BattleController_CheckMoveHitOverrides(BattleSystem *battleSys, Battl
             && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
             && (move != MOVE_CURSE || BattleSystem_IsGhostCurse(battleCtx, move, attacker) == TRUE) // Ghost-Curse can be Protected
             && (BattleMove_IsMultiTurn(battleCtx, move) == FALSE || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN))) {
-        BattleSystem_BreakMultiTurn(battleSys, battleCtx, attacker);
+        Battler_UnlockMoveChoice(battleSys, battleCtx, attacker);
         battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
         return 0;
     }

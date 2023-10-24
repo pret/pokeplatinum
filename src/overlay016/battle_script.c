@@ -3589,7 +3589,7 @@ static BOOL ov16_02242F8C (BattleSystem * param0, BattleContext * param1)
         }
     }
 
-    if ((v1) && (ov16_0225B084(param1, v1) == 1)) {
+    if ((v1) && (BattleSystem_CanEncoreMove(param1, v1) == 1)) {
         param1->battleStatusMask &= (0x1 ^ 0xffffffff);
         param1->battleStatusMask &= (0x4000 ^ 0xffffffff);
         param1->moveCur = v1;
@@ -3640,7 +3640,7 @@ static BOOL ov16_022430F4 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
     v1 = BattleScript_Battler(param0, param1, v0);
 
-    ov16_02253EF0(param0, param1, v1);
+    Battler_LockMoveChoice(param0, param1, v1);
 
     return 0;
 }
@@ -3655,7 +3655,7 @@ static BOOL ov16_02243120 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
     v1 = BattleScript_Battler(param0, param1, v0);
 
-    BattleSystem_BreakMultiTurn(param0, param1, v1);
+    Battler_UnlockMoveChoice(param0, param1, v1);
 
     return 0;
 }
@@ -4631,7 +4631,7 @@ static BOOL ov16_02244208 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
     v1 = Battler_SlotForMove(&param1->battleMons[param1->defender], param1->movePrevByBattler[param1->defender]);
 
-    if (ov16_0225B084(param1, param1->movePrevByBattler[param1->defender]) == 0) {
+    if (BattleSystem_CanEncoreMove(param1, param1->movePrevByBattler[param1->defender]) == 0) {
         v1 = 4;
     }
 
@@ -5332,12 +5332,12 @@ static BOOL ov16_0224544C (BattleSystem * param0, BattleContext * param1)
     param1->selfTurnFlags[param1->attacker].repeatedMoveCount = param1->battleMons[param1->attacker].moveEffectsData.rolloutCount;
 
     if ((param1->battleMons[param1->attacker].statusVolatile & 0x1000) == 0) {
-        ov16_02253EF0(param0, param1, param1->attacker);
+        Battler_LockMoveChoice(param0, param1, param1->attacker);
         param1->battleMons[param1->attacker].moveEffectsData.rolloutCount = 5;
     }
 
     if (--param1->battleMons[param1->attacker].moveEffectsData.rolloutCount == 0) {
-        BattleSystem_BreakMultiTurn(param0, param1, param1->attacker);
+        Battler_UnlockMoveChoice(param0, param1, param1->attacker);
     }
 
     param1->movePower = param1->aiContext.moveTable[param1->moveCur].power;
