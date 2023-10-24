@@ -124,6 +124,11 @@ enum OpCode {
     VALOP_AND,
 };
 
+enum CheckAbilityOp {
+    CHECK_ABILITY_HAVE,
+    CHECK_ABILITY_NONE,
+};
+
 enum StatusEffect {
     STATUS_EFFECT_LEVEL_UP = 8,
 
