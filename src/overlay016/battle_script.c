@@ -3292,7 +3292,7 @@ static BOOL ov16_02242B74 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleScript_Read(param1);
     v2 = BattleScript_Battler(param0, param1, v0);
 
-    ov16_02265EE8(param0, v2, v1);
+    BattleIO_ToggleVanish(param0, v2, v1);
 
     return 0;
 }
@@ -3672,7 +3672,7 @@ static BOOL ov16_0224314C (BattleSystem * param0, BattleContext * param1)
     v1 = BattleScript_Read(param1);
     v2 = BattleScript_Battler(param0, param1, v0);
 
-    ov16_02265FB8(param0, v2, v1);
+    BattleIO_SetStatusIcon(param0, v2, v1);
 
     return 0;
 }
@@ -3689,7 +3689,7 @@ static BOOL ov16_02243184 (BattleSystem * param0, BattleContext * param1)
     v1 = BattleScript_Read(param1);
     v2 = BattleScript_Battler(param0, param1, v0);
 
-    ov16_02265FD8(param0, v2, v1);
+    BattleIO_TrainerMessage(param0, v2, v1);
 
     return 0;
 }
@@ -4032,7 +4032,7 @@ static BOOL ov16_0224355C (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
     v1 = BattleScript_Battler(param0, param1, v0);
 
-    ov16_02265FD8(param0, v1, param1->msgTemp);
+    BattleIO_TrainerMessage(param0, v1, param1->msgTemp);
 
     return 0;
 }
