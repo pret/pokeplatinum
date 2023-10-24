@@ -57,7 +57,7 @@ BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx);
 void BattleIO_UpdateTimeout(BattleContext *battleCtx);
 void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
 int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, void *buf);
-void ov16_022523E8(BattleContext * param0, int param1, int param2, const void * param3);
+void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam param, const void *buf);
 void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02252A2C(BattleMon * param0, int param1, int param2);
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
@@ -703,290 +703,355 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
     return 0;
 }
 
-void ov16_022523E8 (BattleContext * param0, int param1, int param2, const void * param3)
+void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, const void *buf)
 {
-    int v0;
-    u32 * v1 = (u32 *)param3;
-    u16 * v2 = (u16 *)param3;
-    s16 * v3 = (s16 *)param3;
-    u8 * v4 = (u8 *)param3;
-    s8 * v5 = (s8 *)param3;
-    BattleMon * v6 = &param0->battleMons[param1];
+    BattleMon *mon = &battleCtx->battleMons[battler];
 
-    switch (param2) {
-    case 0:
-        v6->species = v2[0];
+    switch (paramID) {
+    case BATTLEMON_SPECIES:
+        mon->species = *(u16 *)buf;
         break;
-    case 1:
-        v6->attack = v2[0];
-        break;
-    case 2:
-        v6->defense = v2[0];
-        break;
-    case 3:
-        v6->speed = v2[0];
-        break;
-    case 4:
-        v6->spAttack = v2[0];
-        break;
-    case 5:
-        v6->spDefense = v2[0];
-        break;
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-        v6->moves[param2 - 6] = v2[0];
-        break;
-    case 10:
-        v6->hpIV = v4[0];
-        break;
-    case 11:
-        v6->attackIV = v4[0];
-        break;
-    case 12:
-        v6->defenseIV = v4[0];
-        break;
-    case 13:
-        v6->speedIV = v4[0];
-        break;
-    case 14:
-        v6->spAttackIV = v4[0];
-        break;
-    case 15:
-        v6->spDefenseIV = v4[0];
-        break;
-    case 16:
-        v6->isEgg = v4[0];
-        break;
-    case 17:
-        v6->hasNickname = v4[0];
-        break;
-    case 18:
-    case 19:
-    case 20:
-    case 21:
-    case 22:
-    case 23:
-    case 24:
-    case 25:
-        v6->statBoosts[param2 - 18] = v5[0];
-        break;
-    case 26:
-        v6->ability = v4[0];
-        break;
-    case 27:
-        v6->type1 = v4[0];
-        break;
-    case 28:
-        v6->type2 = v4[0];
-        break;
-    case 29:
-        v6->gender = v4[0];
-        break;
-    case 30:
-        v6->isShiny = v4[0];
-        break;
-    case 31:
-    case 32:
-    case 33:
-    case 34:
-        v6->ppCur[param2 - 31] = v4[0];
-        break;
-    case 35:
-    case 36:
-    case 37:
-    case 38:
-        v6->ppUps[param2 - 35] = v4[0];
-        break;
-    case 39:
-    case 40:
-    case 41:
-    case 42:
-        GF_ASSERT(0);
-        break;
-    case 43:
-        v6->level = v4[0];
-        break;
-    case 44:
-        v6->friendship = v4[0];
-        break;
-    case 45:
-    {
-        int v7;
 
-        for (v7 = 0; v7 < 10 + 1; v7++) {
-            v6->nickname[v7] = v2[v7];
+    case BATTLEMON_ATTACK:
+        mon->attack = *(u16 *)buf;
+        break;
+
+    case BATTLEMON_DEFENSE:
+        mon->defense = *(u16 *)buf;
+        break;
+
+    case BATTLEMON_SPEED:
+        mon->speed = *(u16 *)buf;
+        break;
+
+    case BATTLEMON_SP_ATTACK:
+        mon->spAttack = *(u16 *)buf;
+        break;
+
+    case BATTLEMON_SP_DEFENSE:
+        mon->spDefense = *(u16 *)buf;
+        break;
+
+    case BATTLEMON_MOVE_1:
+    case BATTLEMON_MOVE_2:
+    case BATTLEMON_MOVE_3:
+    case BATTLEMON_MOVE_4:
+        mon->moves[paramID - BATTLEMON_MOVE_1] = *(u16 *)buf;
+        break;
+
+    case BATTLEMON_HP_IV:
+        mon->hpIV = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_ATTACK_IV:
+        mon->attackIV = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_DEFENSE_IV:
+        mon->defenseIV = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_SPEED_IV:
+        mon->speedIV = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_SP_ATTACK_IV:
+        mon->spAttackIV = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_SP_DEFENSE_IV:
+        mon->spDefenseIV = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_IS_EGG:
+        mon->isEgg = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_HAS_NICKNAME:
+        mon->hasNickname = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_HP_STAGE:
+    case BATTLEMON_ATTACK_STAGE:
+    case BATTLEMON_DEFENSE_STAGE:
+    case BATTLEMON_SPEED_STAGE:
+    case BATTLEMON_SP_ATTACK_STAGE:
+    case BATTLEMON_SP_DEFENSE_STAGE:
+    case BATTLEMON_ACCURACY_STAGE:
+    case BATTLEMON_EVASION_STAGE:
+        mon->statBoosts[paramID - BATTLEMON_HP_STAGE] = *(s8 *)buf;
+        break;
+
+    case BATTLEMON_ABILITY:
+        mon->ability = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_TYPE_1:
+        mon->type1 = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_TYPE_2:
+        mon->type2 = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_GENDER:
+        mon->gender = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_IS_SHINY:
+        mon->isShiny = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_CUR_PP_1:
+    case BATTLEMON_CUR_PP_2:
+    case BATTLEMON_CUR_PP_3:
+    case BATTLEMON_CUR_PP_4:
+        mon->ppCur[paramID - BATTLEMON_CUR_PP_1] = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_PP_UPS_1:
+    case BATTLEMON_PP_UPS_2:
+    case BATTLEMON_PP_UPS_3:
+    case BATTLEMON_PP_UPS_4:
+        mon->ppUps[paramID - BATTLEMON_PP_UPS_1] = *(u8 *)buf;
+        break;
+        
+    case BATTLEMON_MAX_PP_1:
+    case BATTLEMON_MAX_PP_2:
+    case BATTLEMON_MAX_PP_3:
+    case BATTLEMON_MAX_PP_4:
+        GF_ASSERT(FALSE);
+        break;
+
+    case BATTLEMON_LEVEL:
+        mon->level = *(u8 *)buf;
+        break;
+
+    case BATTLEMON_FRIENDSHIP:
+        mon->friendship = *(u8 *)buf;
+        break;
+        
+    case BATTLEMON_NICKNAME:
+        for (int i = 0; i < MON_NAME_LEN + 1; i++) {
+            mon->nickname[i] = ((u16 *)buf)[i];
         }
-    }
-    break;
-    case 47:
-        v6->curHP = v3[0];
         break;
-    case 48:
-        v6->maxHP = v2[0];
-        break;
-    case 49:
-    {
-        int v8;
 
-        for (v8 = 0; v8 < 10 + 1; v8++) {
-            v6->OTName[v8] = v2[v8];
+    case BATTLEMON_CUR_HP:
+        mon->curHP = *(s16 *)buf;
+        break;
+
+    case BATTLEMON_MAX_HP:
+        mon->maxHP = *(u16 *)buf;
+        break;
+
+    case BATTLEMON_OT_NAME:
+        for (int i = 0; i < MON_NAME_LEN + 1; i++) {
+            mon->OTName[i] = ((u16 *)buf)[i];
         }
-    }
-    break;
-    case 50:
-        v6->exp = v1[0];
         break;
-    case 51:
-        v6->personality = v1[0];
+
+    case BATTLEMON_EXP:
+        mon->exp = *(u32 *)buf;
         break;
-    case 52:
-        v6->status = v1[0];
+
+    case BATTLEMON_PERSONALITY:
+        mon->personality = *(u32 *)buf;
         break;
-    case 53:
-        v6->statusVolatile = v1[0];
+    
+    case BATTLEMON_STATUS:
+        mon->status = *(u32 *)buf;
         break;
-    case 54:
-        v6->OTId = v1[0];
+
+    case BATTLEMON_VOLATILE_STATUS:
+        mon->statusVolatile = *(u32 *)buf;
         break;
-    case 55:
-        v6->heldItem = v2[0];
+
+    case BATTLEMON_OT_ID:
+        mon->OTId = *(u32 *)buf;
         break;
-    case 56:
-        v6->timesDamaged = v4[0];
+
+    case BATTLEMON_HELD_ITEM:
+        mon->heldItem = *(u16 *)buf;
         break;
-    case 57:
-        v6->trainerMessageFlags = v4[0];
+
+    case BATTLEMON_TIMES_DAMAGED:
+        mon->timesDamaged = *(u8 *)buf;
         break;
-    case 58:
-        v6->OTGender = v4[0];
+
+    case BATTLEMON_TRAINER_MESSAGE_FLAGS:
+        mon->trainerMessageFlags = *(u8 *)buf;
         break;
-    case 59:
-        v6->moveEffectsMask = v1[0];
+
+    case BATTLEMON_OT_GENDER:
+        mon->OTGender = *(u8 *)buf;
         break;
-    case 60:
-        v6->moveEffectsTemp = v1[0];
+    case BATTLEMON_MOVE_EFFECTS_MASK:
+        mon->moveEffectsMask = *(u32 *)buf;
         break;
-    case 61:
-        v6->moveEffectsData.disabledTurns = v4[0];
+
+    case BATTLEMON_MOVE_EFFECTS_TEMP:
+        mon->moveEffectsTemp = *(u32 *)buf;
         break;
-    case 62:
-        v6->moveEffectsData.encoredTurns = v4[0];
+
+    case BATTLEMON_DISABLED_TURNS:
+        mon->moveEffectsData.disabledTurns = *(u8 *)buf;
         break;
-    case 63:
-        v6->moveEffectsData.chargedTurns = v4[0];
+
+    case BATTLEMON_ENCORED_TURNS:
+        mon->moveEffectsData.encoredTurns = *(u8 *)buf;
         break;
-    case 64:
-        v6->moveEffectsData.tauntedTurns = v4[0];
+
+    case BATTLEMON_CHARGED_TURNS:
+        mon->moveEffectsData.chargedTurns = *(u8 *)buf;
         break;
-    case 65:
-        v6->moveEffectsData.protectSuccessTurns = v4[0];
+
+    case BATTLEMON_TAUNTED_TURNS:
+        mon->moveEffectsData.tauntedTurns = *(u8 *)buf;
         break;
-    case 66:
-        v6->moveEffectsData.perishSongTurns = v4[0];
+
+    case BATTLEMON_SUCCESSFUL_PROTECT_TURNS:
+        mon->moveEffectsData.protectSuccessTurns = *(u8 *)buf;
         break;
-    case 67:
-        v6->moveEffectsData.rolloutCount = v4[0];
+
+    case BATTLEMON_PERISH_SONG_TURNS:
+        mon->moveEffectsData.perishSongTurns = *(u8 *)buf;
         break;
-    case 68:
-        v6->moveEffectsData.furyCutterCount = v4[0];
+
+    case BATTLEMON_ROLLOUT_COUNT:
+        mon->moveEffectsData.rolloutCount = *(u8 *)buf;
         break;
-    case 69:
-        v6->moveEffectsData.stockpileCount = v4[0];
+
+    case BATTLEMON_FURY_CUTTER_COUNT:
+        mon->moveEffectsData.furyCutterCount = *(u8 *)buf;
         break;
-    case 70:
-        v6->moveEffectsData.stockpileDefBoosts = v4[0];
+
+    case BATTLEMON_STOCKPILE_COUNT:
+        mon->moveEffectsData.stockpileCount = *(u8 *)buf;
         break;
-    case 71:
-        v6->moveEffectsData.stockpileSpDefBoosts = v4[0];
+
+    case BATTLEMON_STOCKPILE_DEF_BOOSTS:
+        mon->moveEffectsData.stockpileDefBoosts = *(u8 *)buf;
         break;
-    case 72:
-        v6->moveEffectsData.truant = v4[0];
+
+    case BATTLEMON_STOCKPILE_SPDEF_BOOSTS:
+        mon->moveEffectsData.stockpileSpDefBoosts = *(u8 *)buf;
         break;
-    case 73:
-        v6->moveEffectsData.flashFire = v4[0];
+
+    case BATTLEMON_TRUANT:
+        mon->moveEffectsData.truant = *(u8 *)buf;
         break;
-    case 74:
-        v6->moveEffectsData.lockOnTarget = v4[0];
+
+    case BATTLEMON_FLASH_FIRE:
+        mon->moveEffectsData.flashFire = *(u8 *)buf;
         break;
-    case 75:
-        v6->moveEffectsData.mimickedMoveSlot = v4[0];
+
+    case BATTLEMON_LOCK_ON_TARGET:
+        mon->moveEffectsData.lockOnTarget = *(u8 *)buf;
         break;
-    case 76:
-        v6->moveEffectsData.bindTarget = v4[0];
+
+    case BATTLEMON_MIMICKED_MOVE_SLOT:
+        mon->moveEffectsData.mimickedMoveSlot = *(u8 *)buf;
         break;
-    case 77:
-        v6->moveEffectsData.meanLookTarget = v4[0];
+
+    case BATTLEMON_BIND_TARGET:
+        mon->moveEffectsData.bindTarget = *(u8 *)buf;
         break;
-    case 78:
-        v6->moveEffectsData.lastResortCount = v4[0];
+
+    case BATTLEMON_MEAN_LOOK_TARGET:
+        mon->moveEffectsData.meanLookTarget = *(u8 *)buf;
         break;
-    case 79:
-        v6->moveEffectsData.magnetRiseTurns = v4[0];
+
+    case BATTLEMON_LAST_RESORT_COUNT:
+        mon->moveEffectsData.lastResortCount = *(u8 *)buf;
         break;
-    case 80:
-        v6->moveEffectsData.healBlockTurns = v4[0];
+
+    case BATTLEMON_MAGNET_RISE_TURNS:
+        mon->moveEffectsData.magnetRiseTurns = *(u8 *)buf;
         break;
-    case 81:
-        v6->moveEffectsData.embargoTurns = v4[0];
+
+    case BATTLEMON_HEAL_BLOCK_TURNS:
+        mon->moveEffectsData.healBlockTurns = *(u8 *)buf;
         break;
-    case 82:
-        v6->moveEffectsData.canUnburden = v4[0];
+
+    case BATTLEMON_EMBARGO_TURNS:
+        mon->moveEffectsData.embargoTurns = *(u8 *)buf;
         break;
-    case 83:
-        v6->moveEffectsData.metronomeTurns = v4[0];
+
+    case BATTLEMON_CAN_UNBURDEN:
+        mon->moveEffectsData.canUnburden = *(u8 *)buf;
         break;
-    case 84:
-        v6->moveEffectsData.micleBerry = v4[0];
+
+    case BATTLEMON_METRONOME_TURNS:
+        mon->moveEffectsData.metronomeTurns = *(u8 *)buf;
         break;
-    case 85:
-        v6->moveEffectsData.custapBerry = v4[0];
+
+    case BATTLEMON_MICLE_BERRY:
+        mon->moveEffectsData.micleBerry = *(u8 *)buf;
         break;
-    case 86:
-        v6->moveEffectsData.quickClaw = v4[0];
+
+    case BATTLEMON_CUSTAP_BERRY:
+        mon->moveEffectsData.custapBerry = *(u8 *)buf;
         break;
-    case 87:
-        v6->moveEffectsData.rechargeTurnNumber = v1[0];
+
+    case BATTLEMON_QUICK_CLAW:
+        mon->moveEffectsData.quickClaw = *(u8 *)buf;
         break;
-    case 88:
-        v6->moveEffectsData.fakeOutTurnNumber = v1[0];
+
+    case BATTLEMON_RECHARGE_TURN_NUMBER:
+        mon->moveEffectsData.rechargeTurnNumber = *(u32 *)buf;
         break;
-    case 89:
-        v6->moveEffectsData.slowStartTurnNumber = v1[0];
+
+    case BATTLEMON_FAKE_OUT_TURN_NUMBER:
+        mon->moveEffectsData.fakeOutTurnNumber = *(u32 *)buf;
         break;
-    case 90:
-        v6->moveEffectsData.substituteHP = v1[0];
+
+    case BATTLEMON_SLOW_START_TURN_NUMBER:
+        mon->moveEffectsData.slowStartTurnNumber = *(u32 *)buf;
         break;
-    case 91:
-        v6->moveEffectsData.transformedPID = v1[0];
+
+    case BATTLEMON_SUBSTITUTE_HP:
+        mon->moveEffectsData.substituteHP = *(u32 *)buf;
         break;
-    case 92:
-        v6->moveEffectsData.disabledMove = v2[0];
+
+    case BATTLEMON_TRANSFORMED_PERSONALITY:
+        mon->moveEffectsData.transformedPID = *(u32 *)buf;
         break;
-    case 93:
-        v6->moveEffectsData.encoredMove = v2[0];
+
+    case BATTLEMON_DISABLED_MOVE:
+        mon->moveEffectsData.disabledMove = *(u16 *)buf;
         break;
-    case 94:
-        v6->moveEffectsData.bindingMove = v2[0];
+
+    case BATTLEMON_ENCORED_MOVE:
+        mon->moveEffectsData.encoredMove = *(u16 *)buf;
         break;
-    case 95:
-        v6->moveEffectsData.itemHPRecovery = v1[0];
+
+    case BATTLEMON_BINDING_MOVE:
+        mon->moveEffectsData.bindingMove = *(u16 *)buf;
         break;
-    case 96:
-        v6->slowStartAnnounced = v4[0];
+
+    case BATTLEMON_ITEM_HP_RECOVERY:
+        mon->moveEffectsData.itemHPRecovery = *(u32 *)buf;
         break;
-    case 97:
-        v6->slowStartFinished = v4[0];
+
+    case BATTLEMON_SLOW_START_ANNOUNCED:
+        mon->slowStartAnnounced = *(u8 *)buf;
         break;
-    case 98:
-        v6->formNum = v4[0];
+
+    case BATTLEMON_SLOW_START_FINISHED:
+        mon->slowStartFinished = *(u8 *)buf;
         break;
-    case 100:
-        ov16_022523E8(param0, param1, param0->scriptTemp, param3);
+
+    case BATTLEMON_FORM_NUM:
+        mon->formNum = *(u8 *)buf;
         break;
+
+    case BATTLEMON_TEMP:
+        BattleMon_Set(battleCtx, battler, battleCtx->scriptTemp, buf);
+        break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

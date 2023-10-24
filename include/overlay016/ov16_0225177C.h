@@ -227,7 +227,16 @@ void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
  * presented via outBuf
  */
 int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, void *buf);
-void ov16_022523E8(BattleContext * param0, int param1, int param2, const void * param3);
+
+/**
+ * @brief Set a data field value for a given battler.
+ * 
+ * @param battleCtx 
+ * @param battler       The requested battler
+ * @param paramID       ID of the field to retrieve from the battler
+ * @param buf           Buffer input for the value to be set
+ */
+void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, const void *buf);
 void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02252A2C(BattleMon * param0, int param1, int param2);
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);

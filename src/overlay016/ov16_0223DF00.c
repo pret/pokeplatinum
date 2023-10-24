@@ -602,10 +602,10 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = BattleMon_Get(v0, param1, 52, NULL);
                 v3 &= (0x7 ^ 0xffffffff);
-                ov16_022523E8(v0, param1, 52, &v3);
+                BattleMon_Set(v0, param1, 52, &v3);
                 v3 = BattleMon_Get(v0, param1, 53, NULL);
                 v3 &= (0x8000000 ^ 0xffffffff);
-                ov16_022523E8(v0, param1, 53, &v3);
+                BattleMon_Set(v0, param1, 53, &v3);
             }
 
             v2 = 1;
@@ -622,7 +622,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = BattleMon_Get(v0, param1, 52, NULL);
                 v3 &= ((0x8 | 0x80 | 0xf00) ^ 0xffffffff);
-                ov16_022523E8(v0, param1, 52, &v3);
+                BattleMon_Set(v0, param1, 52, &v3);
             }
 
             v2 = 1;
@@ -639,7 +639,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = BattleMon_Get(v0, param1, 52, NULL);
                 v3 &= (0x10 ^ 0xffffffff);
-                ov16_022523E8(v0, param1, 52, &v3);
+                BattleMon_Set(v0, param1, 52, &v3);
             }
 
             v2 = 1;
@@ -656,7 +656,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = BattleMon_Get(v0, param1, 52, NULL);
                 v3 &= (0x20 ^ 0xffffffff);
-                ov16_022523E8(v0, param1, 52, &v3);
+                BattleMon_Set(v0, param1, 52, &v3);
             }
 
             v2 = 1;
@@ -673,7 +673,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
             if ((v4 == param2) || (v5 == param2)) {
                 v3 = BattleMon_Get(v0, param1, 52, NULL);
                 v3 &= (0x40 ^ 0xffffffff);
-                ov16_022523E8(v0, param1, 52, &v3);
+                BattleMon_Set(v0, param1, 52, &v3);
             }
 
             v2 = 1;
@@ -686,7 +686,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
             if (v3 & 0x7) {
                 v3 &= (0x7 ^ 0xffffffff);
-                ov16_022523E8(v0, param1, 53, &v3);
+                BattleMon_Set(v0, param1, 53, &v3);
                 v2 = 1;
             }
         }
@@ -698,7 +698,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
             if (v3 & 0xf0000) {
                 v3 &= (0xf0000 ^ 0xffffffff);
-                ov16_022523E8(v0, param1, 53, &v3);
+                BattleMon_Set(v0, param1, 53, &v3);
                 v2 = 1;
             }
         }
@@ -776,7 +776,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
             if ((v3 & 0x100000) == 0) {
                 v3 |= 0x100000;
-                ov16_022523E8(v0, param1, 53, &v3);
+                BattleMon_Set(v0, param1, 53, &v3);
                 v2 = 1;
             }
         }
@@ -856,7 +856,7 @@ BOOL ov16_0223E30C (BattleSystem * param0, int param1, int param2, int param3, i
 
             if (!Item_LoadParam(param4, 23, 5)) {
                 if (Battler_Side(param0, param1)) {
-                    ov16_022523E8(v0, param1, 95, &v3);
+                    BattleMon_Set(v0, param1, 95, &v3);
                 } else {
                     if ((v4 == param2) || (v5 == param2)) {
                         ov16_02252A14(v0, param1, 47, v3);

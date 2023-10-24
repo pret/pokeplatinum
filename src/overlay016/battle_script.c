@@ -3257,7 +3257,7 @@ static BOOL ov16_02242A14 (BattleSystem * param0, BattleContext * param1)
         BattleAI_SetAbility(param1, v4, v5);
     }
 
-    ov16_022523E8(param1, v4, v2, (u8 *)&v5);
+    BattleMon_Set(param1, v4, v2, (u8 *)&v5);
     BattleMon_CopyToParty(param0, param1, v4);
 
     return 0;
@@ -3521,7 +3521,7 @@ static BOOL ov16_02242DBC (BattleSystem * param0, BattleContext * param1)
             BattleAI_SetAbility(param1, v4, v5);
         }
 
-        ov16_022523E8(param1, v4, v2, (u8 *)&v5);
+        BattleMon_Set(param1, v4, v2, (u8 *)&v5);
         BattleMon_CopyToParty(param0, param1, v4);
     }
 
