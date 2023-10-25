@@ -153,3 +153,11 @@ To build the rom, run:
 
 If everything works, then the following ROM should be built:
 - [build/pokeplatinum.us.nds](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=3541) `sha1: ce81046eda7d232513069519cb2085349896dec7`
+
+# 4. Docker
+
+A Dockerfile is provided for your convenience. To begin, setup docker on your local machine following the instructions at https://docker.io. Then, run
+
+    ./clean.sh
+    docker build . -t oret/pokeplatinum
+    docker run -w /rom -v .:/rom pret/pokeplatinum sh -c "./config.sh && ./build.sh"
