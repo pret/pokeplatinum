@@ -108,7 +108,7 @@ These can be installed using Homebrew; if you do not have Homebrew installed, re
 
 ```
 brew update
-brew install meson 
+brew install meson
 brew install --cask wine-stable
 ```
 
@@ -156,8 +156,8 @@ If everything works, then the following ROM should be built:
 
 # 4. Docker
 
-A Dockerfile is provided for your convenience. To begin, setup docker on your local machine following the instructions at https://docker.io. Then, run
+A Dockerfile is provided for your convenience. To begin, setup docker on your local machine following the instructions at https://docs.docker.com/desktop/. Then, run
 
     ./clean.sh
-    docker build . -t oret/pokeplatinum
+    docker build . -t pret/pokeplatinum
     docker run -w /rom -v .:/rom pret/pokeplatinum sh -c "./config.sh && ./build.sh"
