@@ -184,8 +184,8 @@ static BOOL BtlCmd_PrintBattleStartMessage(BattleSystem *battleSys, BattleContex
 static BOOL BtlCmd_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02243708(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022437D4(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022438A8(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022438F8(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022439D8(BattleSystem * param0, BattleContext * param1);
@@ -444,8 +444,8 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_PrintLeadMonMessage,
     BtlCmd_PreparedTrainerMessage,
     BtlCmd_TryConversion,
-    ov16_02243708,
-    ov16_022437D4,
+    BtlCmd_IfVar,
+    BtlCmd_IfMonDataVar,
     ov16_022438A8,
     ov16_022438F8,
     ov16_022439D8,
@@ -2147,13 +2147,13 @@ static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
         }
         break;
 
-    case IFOP_LTE:
+    case IFOP_GT:
         if (*data <= compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case IFOP_LTE:
         if (*data > compareTo) {
             jump = 0;
         }
@@ -2228,13 +2228,13 @@ static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx)
         }
         break;
 
-    case IFOP_LTE:
+    case IFOP_GT:
         if (data <= compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case IFOP_LTE:
         if (data > compareTo) {
             jump = 0;
         }
@@ -4354,140 +4354,164 @@ static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleC
     return FALSE;
 }
 
-static BOOL ov16_02243708 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Compare a given data-value from a variable to a target variable's value.
+ * 
+ * Inputs:
+ * 1. The operation mode. See enum OpCode for possible values.
+ * 3. The variable whose data will be used on the left-hand side of the comparison.
+ * 3. The variable whose data will be used on the right-hand side of the comparison.
+ * 4. The jump-ahead value if the comparison yields TRUE.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    u32 * v4;
-    u32 * v5;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int lhsVar = BattleScript_Read(battleCtx);
+    int rhsVar = BattleScript_Read(battleCtx);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    u32 *lhs = BattleScript_VarAddress(battleSys, battleCtx, lhsVar);
+    u32 *rhs = BattleScript_VarAddress(battleSys, battleCtx, rhsVar);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_VarAddress(param0, param1, v1);
-    v5 = BattleScript_VarAddress(param0, param1, v2);
+    switch (op) {
+    case IFOP_EQU:
+        if (*lhs != *rhs) {
+            jump = 0;
+        }
+        break;
 
-    switch (v0) {
-    case 0:
-        if (v4[0] != v5[0]) {
-            v3 = 0;
+    case IFOP_NEQ:
+        if (*lhs == *rhs) {
+            jump = 0;
         }
         break;
-    case 1:
-        if (v4[0] == v5[0]) {
-            v3 = 0;
+
+    case IFOP_GT:
+        if (*lhs <= *rhs) {
+            jump = 0;
         }
         break;
-    case 2:
-        if (v4[0] <= v5[0]) {
-            v3 = 0;
+
+    case IFOP_LTE:
+        if (*lhs > *rhs) {
+            jump = 0;
         }
         break;
-    case 3:
-        if (v4[0] > v5[0]) {
-            v3 = 0;
+
+    case IFOP_FLAG_SET:
+        if ((*lhs & *rhs) == FALSE) {
+            jump = 0;
         }
         break;
-    case 4:
-        if ((v4[0] & v5[0]) == 0) {
-            v3 = 0;
+
+    case IFOP_FLAG_NOT:
+        if (*lhs & *rhs) {
+            jump = 0;
         }
         break;
-    case 5:
-        if (v4[0] & v5[0]) {
-            v3 = 0;
+
+    case IFOP_AND:
+        if ((*lhs & *rhs) != *rhs) {
+            jump = 0;
         }
         break;
-    case 6:
-        if ((v4[0] & v5[0]) != v5[0]) {
-            v3 = 0;
-        }
-        break;
+
     default:
-        GF_ASSERT(1);
+        GF_ASSERT(TRUE);
         break;
     }
 
-    if (v3) {
-        BattleScript_Iter(param1, v3);
+    if (jump) {
+        BattleScript_Iter(battleCtx, jump);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022437D4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Compare a given data-value from a battler to a target variable's value.
+ * 
+ * Inputs:
+ * 1. The operation mode. See enum OpCode for possible values.
+ * 2. The battler whose data should be retrieved for the left-hand side of the comparison.
+ * 3. The parameter to use for the left-hand side of the comparison.
+ * 4. The variable whose data will be used on the right-hand side of the comparison.
+ * 5. The jump-ahead value if the comparison yields TRUE.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    u32 v5;
-    u32 * v6;
-    int v7;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Read(battleCtx);
+    int paramID = BattleScript_Read(battleCtx);
+    int rhsVar = BattleScript_Read(battleCtx);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    u32 lhs = BattleMon_Get(battleCtx, BattleScript_Battler(battleSys, battleCtx, battler), paramID, NULL);
+    u32 *rhs = BattleScript_VarAddress(battleSys, battleCtx, rhsVar);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_Read(param1);
-    v7 = BattleScript_Battler(param0, param1, v1);
-    v5 = BattleMon_Get(param1, v7, v2, NULL);
-    v6 = BattleScript_VarAddress(param0, param1, v3);
+    switch (op) {
+    case IFOP_EQU:
+        if (lhs != *rhs) {
+            jump = 0;
+        }
+        break;
+        
+    case IFOP_NEQ:
+        if (lhs == *rhs) {
+            jump = 0;
+        }
+        break;
 
-    switch (v0) {
-    case 0:
-        if (v5 != v6[0]) {
-            v4 = 0;
+    case IFOP_GT:
+        if (lhs <= *rhs) {
+            jump = 0;
         }
         break;
-    case 1:
-        if (v5 == v6[0]) {
-            v4 = 0;
+
+    case IFOP_LTE:
+        if (lhs > *rhs) {
+            jump = 0;
         }
         break;
-    case 2:
-        if (v5 <= v6[0]) {
-            v4 = 0;
+
+    case IFOP_FLAG_SET:
+        if ((lhs & *rhs) == FALSE) {
+            jump = 0;
         }
         break;
-    case 3:
-        if (v5 > v6[0]) {
-            v4 = 0;
+
+    case IFOP_FLAG_NOT:
+        if (lhs & *rhs) {
+            jump = 0;
         }
         break;
-    case 4:
-        if ((v5 & v6[0]) == 0) {
-            v4 = 0;
+
+    case IFOP_AND:
+        if ((lhs & *rhs) != *rhs) {
+            jump = 0;
         }
         break;
-    case 5:
-        if (v5 & v6[0]) {
-            v4 = 0;
-        }
-        break;
-    case 6:
-        if ((v5 & v6[0]) != v6[0]) {
-            v4 = 0;
-        }
-        break;
+
     default:
-        GF_ASSERT(1);
+        GF_ASSERT(TRUE);
         break;
     }
 
-    if (v4) {
-        BattleScript_Iter(param1, v4);
+    if (jump) {
+        BattleScript_Iter(battleCtx, jump);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_022438A8 (BattleSystem * param0, BattleContext * param1)

@@ -102,8 +102,8 @@ enum BattleScriptVars {
 enum OpCode {
     IFOP_EQU = 0,
     IFOP_NEQ,
-    IFOP_LTE,
     IFOP_GT,
+    IFOP_LTE,
     IFOP_FLAG_SET,
     IFOP_FLAG_NOT,
     IFOP_AND,
