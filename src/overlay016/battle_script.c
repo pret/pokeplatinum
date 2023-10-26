@@ -183,7 +183,7 @@ static BOOL BtlCmd_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *b
 static BOOL BtlCmd_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_0224358C(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02243708(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022437D4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022438A8(BattleSystem * param0, BattleContext * param1);
@@ -443,7 +443,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_PrintBattleStartMessage,
     BtlCmd_PrintLeadMonMessage,
     BtlCmd_PreparedTrainerMessage,
-    ov16_0224358C,
+    BtlCmd_TryConversion,
     ov16_02243708,
     ov16_022437D4,
     ov16_022438A8,
@@ -4276,70 +4276,82 @@ static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext
     return FALSE;
 }
 
-static BOOL ov16_0224358C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to execute the Conversion effect.
+ * 
+ * Inputs:
+ * 1. The jump-distance if the process fails for whatever reason.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
-    int v2;
-    int v3;
+    int numMoves, i, moveType; // must declare these here to match
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    v2 = BattleScript_Read(param1);
-
-    if (Battler_Ability(param1, param1->attacker) == 121) {
-        BattleScript_Iter(param1, v2);
-        return 0;
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MULTITYPE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        return FALSE;
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param1->battleMons[param1->attacker].moves[v0] == 0) {
+    for (numMoves = 0; numMoves < 4; numMoves++) {
+        if (ATTACKING_MON.moves[numMoves] == MOVE_NONE) {
             break;
         }
     }
 
-    for (v1 = 0; v1 < v0; v1++) {
-        if (param1->battleMons[param1->attacker].moves[v1] != 160) {
-            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].type;
+    // First, check if there are any non-Conversion moves which have a type different from the
+    // source Pokemon's types.
+    for (i = 0; i < numMoves; i++) {
+        if (ATTACKING_MON.moves[i] == MOVE_CONVERSION) {
+            continue;
+        }
 
-            if (v3 == 9) {
-                if ((BattleMon_Get(param1, param1->attacker, 27, NULL) == 7) || (BattleMon_Get(param1, param1->attacker, 28, NULL) == 7)) {
-                    v3 = 7;
-                } else {
-                    v3 = 0;
-                }
+        moveType = MOVE_DATA(ATTACKING_MON.moves[i]).type;
+        if (moveType == TYPE_MYSTERY) {
+            if (MON_HAS_TYPE(battleCtx->attacker, TYPE_GHOST)) {
+                moveType = TYPE_GHOST;
+            } else {
+                moveType = TYPE_NORMAL;
             }
+        }
 
-            if ((v3 != BattleMon_Get(param1, param1->attacker, 27, NULL)) && (v3 != BattleMon_Get(param1, param1->attacker, 28, NULL))) {
-                break;
-            }
+        if (MON_IS_NOT_TYPE(battleCtx->attacker, moveType)) {
+            break;
         }
     }
 
-    if (v1 == v0) {
-        BattleScript_Iter(param1, v2);
+    if (i == numMoves) { // no such moves
+        BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
         do {
+            // Get a random non-Conversion move
             do {
-                v1 = BattleSystem_RandNext(param0) % v0;
-            } while (param1->battleMons[param1->attacker].moves[v1] == 160);
+                i = BattleSystem_RandNext(battleSys) % numMoves;
+            } while (ATTACKING_MON.moves[i] == MOVE_CONVERSION);
 
-            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].type;
+            moveType = MOVE_DATA(ATTACKING_MON.moves[i]).type;
 
-            if (v3 == 9) {
-                if ((BattleMon_Get(param1, param1->attacker, 27, NULL) == 7) || (BattleMon_Get(param1, param1->attacker, 28, NULL) == 7)) {
-                    v3 = 7;
+            // Handle Curse as a Ghost-type move for Ghost-type Pokemon
+            if (moveType == TYPE_MYSTERY) {
+                if (MON_HAS_TYPE(battleCtx->attacker, TYPE_GHOST)) {
+                    moveType = TYPE_GHOST;
                 } else {
-                    v3 = 0;
+                    moveType = TYPE_NORMAL;
                 }
             }
-        } while ((v3 == BattleMon_Get(param1, param1->attacker, 27, NULL)) || (v3 == BattleMon_Get(param1, param1->attacker, 28, NULL)));
+        } while (MON_HAS_TYPE(battleCtx->attacker, moveType));
 
-        param1->battleMons[param1->attacker].type1 = v3;
-        param1->battleMons[param1->attacker].type2 = v3;
-        param1->msgTemp = v3;
+        ATTACKING_MON.type1 = moveType;
+        ATTACKING_MON.type2 = moveType;
+        battleCtx->msgTemp = moveType;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02243708 (BattleSystem * param0, BattleContext * param1)
