@@ -1,0 +1,118 @@
+{
+    "name": "Rayquaza",
+    "base_stats": {
+        "hp": 105,
+        "attack": 150,
+        "defense": 90,
+        "speed": 95,
+        "special_attack": 150,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_DRAGON",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 220,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_AIR_LOCK",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM02",
+            "TM03",
+            "TM05",
+            "TM06",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM50",
+            "TM52",
+            "TM53",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM65",
+            "TM68",
+            "TM71",
+            "TM72",
+            "TM73",
+            "TM74",
+            "TM75",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM02",
+            "HM03",
+            "HM04",
+            "HM06",
+            "HM07"
+        ],
+        "level_up": {
+            "1": "MOVE_TWISTER",
+            "5": "MOVE_SCARY_FACE",
+            "15": "MOVE_ANCIENT_POWER",
+            "20": "MOVE_DRAGON_CLAW",
+            "30": "MOVE_DRAGON_DANCE",
+            "35": "MOVE_CRUNCH",
+            "45": "MOVE_FLY",
+            "50": "MOVE_REST",
+            "60": "MOVE_EXTREME_SPEED",
+            "65": "MOVE_HYPER_BEAM",
+            "75": "MOVE_DRAGON_PULSE",
+            "80": "MOVE_OUTRAGE"
+        }
+    }
+}

@@ -1,0 +1,102 @@
+{
+    "name": "Hitmonlee",
+    "base_stats": {
+        "hp": 50,
+        "attack": 120,
+        "defense": 53,
+        "speed": 87,
+        "special_attack": 35,
+        "special_defense": 110
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 139,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "MALE_ONLY",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "HUMAN_LIKE",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_LIMBER",
+        "ABILITY_RECKLESS"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM71",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_REVENGE",
+                "MOVE_DOUBLE_KICK"
+            ],
+            "5": "MOVE_MEDITATE",
+            "9": "MOVE_ROLLING_KICK",
+            "13": "MOVE_JUMP_KICK",
+            "17": "MOVE_BRICK_BREAK",
+            "21": "MOVE_FOCUS_ENERGY",
+            "25": "MOVE_FEINT",
+            "29": "MOVE_HI_JUMP_KICK",
+            "33": "MOVE_MIND_READER",
+            "37": "MOVE_FORESIGHT",
+            "41": "MOVE_BLAZE_KICK",
+            "45": "MOVE_ENDURE",
+            "49": "MOVE_MEGA_KICK",
+            "53": "MOVE_CLOSE_COMBAT",
+            "57": "MOVE_REVERSAL"
+        }
+    }
+}

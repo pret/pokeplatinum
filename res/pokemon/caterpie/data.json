@@ -1,0 +1,63 @@
+{
+    "name": "Caterpie",
+    "base_stats": {
+        "hp": 45,
+        "attack": 30,
+        "defense": 35,
+        "speed": 45,
+        "special_attack": 20,
+        "special_defense": 20
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_BUG"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 53,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SHIELD_DUST",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_STRING_SHOT"
+            ],
+            "15": "MOVE_BUG_BITE"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            7,
+            "SPECIES_METAPOD"
+        ]
+    ]
+}

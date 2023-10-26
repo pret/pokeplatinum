@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay016/struct_ov16_02268520.h"
@@ -181,7 +181,7 @@ void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
     int v9;
     NARC * v10;
 
-    v10 = NARC_ctor(27, 5);
+    v10 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 5);
     v0 = ov16_0223E010(param0->unk_04);
     v1 = ov16_0223E018(param0->unk_04);
     v9 = ov16_0223EC04(param0->unk_04);
@@ -204,8 +204,8 @@ void ov16_02268520 (UnkStruct_ov16_02268520 * param0)
     }
 
     sub_0200CC3C(v0, v1, v10, v3, 1, NNS_G2D_VRAM_TYPE_2DMAIN, v4);
-    sub_0200CDC4(ov16_0223E064(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
-    sub_02003050(ov16_0223E064(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
+    sub_0200CDC4(BattleSystem_PaletteSys(param0->unk_04), 2, v0, v1, v10, Unk_ov16_02270134[param0->unk_09][v9], 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 20009);
+    PaletteSys_LoadPalette(BattleSystem_PaletteSys(param0->unk_04), 27, Unk_ov16_02270134[param0->unk_09][v9], 5, 0, 0x20, 0x7 * 0x10);
     sub_0200CE24(v0, v1, v10, v5, 1, v6);
     sub_0200CE54(v0, v1, v10, v7, 1, v8);
     NARC_dtor(v10);
@@ -267,7 +267,7 @@ void ov16_022686BC (UnkStruct_ov16_02268520 * param0, int param1)
     sub_0200D3F4(param0->unk_00, param1);
 }
 
-void ov16_022686CC (UnkStruct_ov16_02268520 * param0, UnkStruct_0207ADB4 * param1, u16 param2, int param3)
+void ov16_022686CC (UnkStruct_ov16_02268520 * param0, BattleSystem * param1, u16 param2, int param3)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_ov16_02268520));
 

@@ -153,7 +153,7 @@ BOOL ov99_021D425C (UnkStruct_ov99_021D2CB0 * param0, s32 param1)
 
 void ov99_021D439C (UnkStruct_ov99_021D2CB0 * param0, int param1, int param2, int param3)
 {
-    UnkStruct_02018340 * v0 = param0->unk_08;
+    BGL * v0 = param0->unk_08;
     NNSG2dPaletteData * v1;
     void * v2;
     const UnkStruct_ov99_021D5394 * v3;
@@ -204,7 +204,7 @@ void ov99_021D439C (UnkStruct_ov99_021D2CB0 * param0, int param1, int param2, in
     sub_02019184(v0, param2, 3, v3->unk_08);
 }
 
-void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param1)
+void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, CellActorData * param1)
 {
     void * v0;
     u32 v1;
@@ -235,8 +235,8 @@ void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param
 
             if (param0->unk_1114.unk_02 == 0) {
                 if (param0->unk_1114.unk_06 % 3 == 0) {
-                    if (sub_0201D2E8() & 1) {
-                        param0->unk_1114.unk_00 = sub_0201D2E8() % 10;
+                    if (LCRNG_Next() & 1) {
+                        param0->unk_1114.unk_00 = LCRNG_Next() % 10;
                         param0->unk_1114.unk_06++;
                     } else {
                         param0->unk_1114.unk_00 = 40;
@@ -257,7 +257,7 @@ void ov99_021D44CC (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_0200D0F4 * param
         if (param0->unk_1114.unk_04 != -1) {
             param0->unk_1114.unk_04++;
 
-            if ((param0->unk_1114.unk_04 > 16) && (sub_0201D2E8() % 5 == 0)) {
+            if ((param0->unk_1114.unk_04 > 16) && (LCRNG_Next() % 5 == 0)) {
                 v1 = 1;
                 param0->unk_1114.unk_04 = -1;
             } else {

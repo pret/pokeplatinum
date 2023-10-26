@@ -3,6 +3,8 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 
+#include "constants/narc.h"
+
 /*
  * The NARC struct wraps NitroSDK type FSFile and manages the important
  * offsets to the FATB and the FIMG chunks within the file.

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="10899" />
+	<row id="pl_msg_00000166_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I once dreamed of becoming a Gym\nLeader...\rThough that dream never came true,\nI got to live with Pokémon all\fthis time.\rIt’s been a blessed life.</language>
+	</row>
+	<row id="pl_msg_00000166_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow, you’re really cool!\nYou have seven Gym Badges!\rAll you need is one more to challenge\nthe Pokémon League.</language>
+	</row>
+	<row id="pl_msg_00000166_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow! You’re awesomely cool!\nYou have all eight Gym Badges!\rNow, you have to challenge the\nPokémon League!</language>
+	</row>
+	<row id="pl_msg_00000166_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">To make up for the lack of space, the\ncity built roads out of solar panels.\rThose solar panels provide us with\nclean energy, and they’re good roads.\rIt’s a symbol of Sunyshore’s will to\nsurvive, I think.</language>
+	</row>
+	<row id="pl_msg_00000166_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you want to hear me play my guitar?\nOr do we battle?</language>
+	</row>
+	<row id="pl_msg_00000166_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your spirit’s vibes...\nYou’ve got rock in your veins!\r</language>
+	</row>
+	<row id="pl_msg_00000166_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My guitar...\nIt lies broken and weeping...</language>
+	</row>
+	<row id="pl_msg_00000166_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">For Trainers, Pokémon!\rFor my girl, sweet kisses!\rThat’s the perfect world for this\nguitarist!</language>
+	</row>
+</body>

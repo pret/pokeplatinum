@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54306" />
+	<row id="pl_msg_00000184_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hold it!\nDon’t go off without me!\rYou’re challenging the Pokémon League,\naren’t you?\rThat’s why I’m here, too.\rLet’s see who’s more worthy of making\nthe challenge with a battle!\r</language>
+	</row>
+	<row id="pl_msg_00000184_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: I guess I’m not ready\nfor the Pokémon League if I’m losing\fto you!\rDarn it!\nYou watch, though!\rI’ll get tougher and win my way\nthrough the Pokémon League!\rBecause I’m going to become the\nChampion, the toughest Trainer!\r{STRVAR_1 3, 1, 0}! You’d better not lose to\nanyone before me!\r</language>
+	</row>
+	<row id="pl_msg_00000184_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let me confirm that you are qualified\nto challenge the Pokémon League.\rSo! Let us examine the Gym Badges\nyou gathered from Sinnoh.\rOreburgh City’s Coal Badge!\rEterna City’s Forest Badge!\rHearthome City’s Relic Badge!\rVeilstone City’s Cobble Badge!\rPastoria City’s Fen Badge!\rCanalave City’s Mine Badge!\rSnowpoint City’s Icicle Badge!\rAnd...\nSunyshore City’s Beacon Badge!\r</language>
+	</row>
+	<row id="pl_msg_00000184_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Very well!\rTrainer, you’ve indeed collected\nall the Gym Badges of Sinnoh!\rDemonstrate the power that brought\nyou here and go for glory!</language>
+	</row>
+	<row id="pl_msg_00000184_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You will be facing the Elite Four\nof the Pokémon League.\rIf you can’t beat all four of them\nin a row, you have to start from\fthe first one again.</language>
+	</row>
+	<row id="pl_msg_00000184_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It doesn’t matter if the going is slow.\rNor does it matter how many challenges\nit takes.\rI’m never giving up!\nNot until I beat the Elite Four!</language>
+	</row>
+	<row id="pl_msg_00000184_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is the Pokémon League?\nDon’t take my word for it.\rTake the challenge and experience it\nfor yourself!</language>
+	</row>
+</body>

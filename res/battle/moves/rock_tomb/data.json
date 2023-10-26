@@ -1,0 +1,22 @@
+{
+    "name": "Rock Tomb",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ROCK",
+    "power": 50,
+    "accuracy": 80,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_LOWER_SPEED_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": 2,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

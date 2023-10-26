@@ -1,0 +1,95 @@
+{
+    "name": "Shuckle",
+    "base_stats": {
+        "hp": 20,
+        "attack": 10,
+        "defense": 230,
+        "speed": 5,
+        "special_attack": 10,
+        "special_defense": 230
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 80,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_ORAN_BERRY",
+        "rare": "ITEM_ORAN_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_STURDY",
+        "ABILITY_GLUTTONY"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM20",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM36",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM69",
+            "TM70",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_WITHDRAW",
+                "MOVE_CONSTRICT",
+                "MOVE_BIDE"
+            ],
+            "9": "MOVE_ENCORE",
+            "14": "MOVE_SAFEGUARD",
+            "22": "MOVE_WRAP",
+            "27": "MOVE_REST",
+            "35": "MOVE_GASTRO_ACID",
+            "40": "MOVE_BUG_BITE",
+            "48": "MOVE_POWER_TRICK"
+        }
+    }
+}

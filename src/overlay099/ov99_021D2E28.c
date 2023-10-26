@@ -44,7 +44,7 @@ static void ov99_021D2ED8(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2
 static void ov99_021D2FA8(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2E28 * param1);
 static void ov99_021D32D8(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2E28 * param1);
 static void ov99_021D330C(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2E28 * param1);
-static void ov99_021D2FD4(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2E28 * param1, UnkStruct_0200D0F4 * param2, int param3);
+static void ov99_021D2FD4(UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2E28 * param1, CellActorData * param2, int param3);
 
 static const UnkStruct_ov99_021D4BDC Unk_ov99_021D4BDC[] = {
     {
@@ -156,7 +156,7 @@ static void ov99_021D2FA8 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D
     }
 }
 
-static void ov99_021D2FD4 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2E28 * param1, UnkStruct_0200D0F4 * param2, int param3)
+static void ov99_021D2FD4 (UnkStruct_ov99_021D2CB0 * param0, UnkStruct_ov99_021D2E28 * param1, CellActorData * param2, int param3)
 {
     UnkStruct_ov99_021D2FD4 * v0 = &param1->unk_94[param3];
     const UnkStruct_ov99_021D4BDC * v1 = &Unk_ov99_021D4BDC[param3];

@@ -3,13 +3,13 @@
 
 #include "inlines.h"
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_0202631C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020986CC.h"
 
 typedef struct UnkStruct_02026324_t {
@@ -34,7 +34,7 @@ typedef struct UnkStruct_02026324_t {
     u16 unk_322;
 } UnkStruct_02026324;
 
-int sub_0202631C (void)
+int Pokedex_SaveSize (void)
 {
     return sizeof(UnkStruct_02026324);
 }
@@ -44,7 +44,7 @@ UnkStruct_02026324 * sub_02026324 (u32 param0)
     UnkStruct_02026324 * v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02026324));
-    sub_02026D6C(v0);
+    Pokedex_Init(v0);
 
     return v0;
 }
@@ -464,7 +464,7 @@ static BOOL sub_020268D8 (const UnkStruct_02026324 * param0, u32 param1)
 
 static void sub_020268FC (UnkStruct_02026324 * param0, u16 param1, Pokemon * param2)
 {
-    u8 v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+    u8 v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
     u32 v1;
 
     if (param1 == 386) {
@@ -571,38 +571,38 @@ static void sub_02026A60 (UnkStruct_02026324 * param0, u16 param1, Pokemon * par
 
     switch (param1) {
     case 201:
-        v0 = sub_02076AF8(param2);
+        v0 = Pokemon_GetForm(param2);
         sub_0202643C(param0, v0);
         break;
     case 412:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020267B8(param0, param1, v0);
         break;
     case 413:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020267B8(param0, param1, v0);
         break;
     case 422:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 423:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 386:
         sub_020268FC(param0, param1, param2);
         break;
     case 492:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 487:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_020265E8(param0, param1, v0);
         break;
     case 479:
-        v0 = GetMonData(param2, MON_DATA_FORM, NULL);
+        v0 = Pokemon_GetValue(param2, MON_DATA_FORM, NULL);
         sub_02026A00(param0, param1, v0);
         break;
     default:
@@ -630,7 +630,7 @@ static u32 sub_02026BAC (const UnkStruct_02026324 * param0, u16 param1, int para
     u32 v0, v1;
     u32 v2;
 
-    if (sub_020759F0(param1, 18) == 255) {
+    if (PokemonPersonalData_GetSpeciesValue(param1, 18) == 255) {
         if (param2 == 0) {
             return 2;
         } else {
@@ -743,7 +743,7 @@ static BOOL sub_02026D68 (u16 param0)
     return 1;
 }
 
-void sub_02026D6C (UnkStruct_02026324 * param0)
+void Pokedex_Init (UnkStruct_02026324 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026324));
 
@@ -772,7 +772,7 @@ u16 sub_02026DD0 (const UnkStruct_02026324 * param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= 493; v0++) {
-        if (sub_02026F9C(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             v1++;
         }
     }
@@ -815,7 +815,7 @@ u16 sub_02026E64 (const UnkStruct_02026324 * param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= 493; v0++) {
-        if (sub_02026F9C(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             if (sub_020775A4(v0) != 0) {
                 v1++;
             }
@@ -878,7 +878,7 @@ u16 sub_02026F20 (const UnkStruct_02026324 * param0)
     v1 = 0;
 
     for (v0 = 1; v0 <= 493; v0++) {
-        if (sub_02026F9C(param0, v0) == 1) {
+        if (Pokedex_CaughtSpecies(param0, v0) == 1) {
             if (sub_02026D44(v0) == 1) {
                 v1++;
             }
@@ -911,7 +911,7 @@ u16 sub_02026F58 (const UnkStruct_02026324 * param0)
     return v1;
 }
 
-BOOL sub_02026F9C (const UnkStruct_02026324 * param0, u16 param1)
+BOOL Pokedex_CaughtSpecies (const UnkStruct_02026324 * param0, u16 param1)
 {
     inline_02026DD0(param0);
 
@@ -1069,9 +1069,9 @@ u32 sub_02027288 (const UnkStruct_02026324 * param0)
 
 void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
 {
-    u16 v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
-    u32 v1 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    u32 v2 = sub_02075D6C(param1);
+    u16 v0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    u32 v1 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+    u32 v2 = Pokemon_GetGender(param1);
     u32 v3;
 
     inline_02026DD0(param0);
@@ -1097,10 +1097,10 @@ void sub_020272A4 (UnkStruct_02026324 * param0, Pokemon * param1)
 
 void sub_0202736C (UnkStruct_02026324 * param0, Pokemon * param1)
 {
-    u16 v0 = GetMonData(param1, MON_DATA_SPECIES, NULL);
-    u32 v1 = GetMonData(param1, MON_DATA_LANGUAGE, NULL);
-    u32 v2 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    u32 v3 = sub_02075D6C(param1);
+    u16 v0 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    u32 v1 = Pokemon_GetValue(param1, MON_DATA_LANGUAGE, NULL);
+    u32 v2 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+    u32 v3 = Pokemon_GetGender(param1);
     u32 v4;
 
     inline_02026DD0(param0);
@@ -1187,11 +1187,11 @@ void sub_02027540 (UnkStruct_02026324 * param0)
     param0->unk_31A = 1;
 }
 
-UnkStruct_02026324 * sub_02027560 (UnkStruct_021C0794 * param0)
+UnkStruct_02026324 * sub_02027560 (SaveData * param0)
 {
     UnkStruct_02026324 * v0;
 
-    v0 = sub_020245BC(param0, 7);
+    v0 = SaveData_Get(param0, 7);
     return v0;
 }
 

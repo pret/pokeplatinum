@@ -3,24 +3,23 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0203E724_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203E724_t.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_0203CC84.h"
 #include "unk_0203E724.h"
@@ -31,12 +30,12 @@
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
 #include "unk_02071CFC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "item.h"
 #include "unk_020923C0.h"
-#include "unk_0209739C.h"
+#include "berry_data.h"
 
 #include <nitro/code16.h>
 
@@ -139,7 +138,7 @@ BOOL sub_02047660 (UnkStruct_0203E724 * param0)
     u16 v3 = inline_02049538(param0);
     u16 v4;
 
-    v4 = GetMoveFromTMOrHMItemID(v3);
+    v4 = Item_MoveForTMHM(v3);
     sub_0200B630(*v1, v2, v4);
 
     return 0;
@@ -219,7 +218,7 @@ BOOL sub_02047818 (UnkStruct_0203E724 * param0)
 {
     BoxPokemon * v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    UnkStruct_020797DC * v2 = sub_02024420(v1->unk_0C);
+    PCBoxes * v2 = SaveData_PCBoxes(v1->unk_0C);
     UnkStruct_0200B358 ** v3 = sub_0203F098(v1, 15);
     u8 v4 = (*((param0)->unk_08++));
     u16 v5 = inline_02049538(param0);
@@ -260,11 +259,11 @@ BOOL sub_020478E4 (UnkStruct_0203E724 * param0)
 {
     int v0;
     UnkStruct_0203CDB0 * v1 = param0->unk_34;
-    UnkStruct_02025E6C * v2 = sub_02025E38(sub_0203D174(param0->unk_34));
+    TrainerInfo * v2 = sub_02025E38(sub_0203D174(param0->unk_34));
     UnkStruct_0200B358 ** v3 = sub_0203F098(v1, 15);
     u8 v4 = (*((param0)->unk_08++));
 
-    v0 = sub_0205CA14(sub_02025F30(v2), sub_02025F8C(v2), 2);
+    v0 = sub_0205CA14(TrainerInfo_Gender(v2), TrainerInfo_Appearance(v2), 2);
     sub_0200B998(*v3, v4, v0);
 
     return 0;
@@ -288,13 +287,13 @@ BOOL sub_02047930 (UnkStruct_0203E724 * param0)
 
 static Strbuf* sub_02047998 (u16 param0, u32 param1)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 412, param1);
-    v1 = sub_0200B1EC(v0, param0);
+    v0 = MessageLoader_Init(1, 26, 412, param1);
+    v1 = MessageLoader_GetNewStrbuf(v0, param0);
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     return v1;
 }
 
@@ -390,7 +389,7 @@ BOOL sub_02047BB8 (UnkStruct_0203E724 * param0)
     u8 v1 = (*((param0)->unk_08++));
     u16 v2 = inline_02049538(param0);
     u16 v3 = inline_02049538(param0);
-    Strbuf* v4 = sub_0209742C(v2 - 149, 32);
+    Strbuf* v4 = BerryData_AllocAndGetName(v2 - 149, 32);
 
     sub_0200B48C(*v0, v1, v4, 0, (v3 < 2 ? 1 : 0), GAME_LANGUAGE);
     Strbuf_Free(v4);
@@ -446,7 +445,7 @@ BOOL sub_02047D00 (UnkStruct_0203E724 * param0)
     u16 v6;
 
     v1 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v4);
-    v6 = GetMonData(v1, MON_DATA_MOVE1 + v5, NULL);
+    v6 = Pokemon_GetValue(v1, MON_DATA_MOVE1 + v5, NULL);
 
     sub_0200B630(*v2, v3, v6);
     return 0;

@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50539" />
+	<row id="pl_msg_00000338_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 50, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000338_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Tower</language>
+	</row>
+	<row id="pl_msg_00000338_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Count up</language>
+	</row>
+	<row id="pl_msg_00000338_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rec Contest</language>
+	</row>
+	<row id="pl_msg_00000338_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle</language>
+	</row>
+	<row id="pl_msg_00000338_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Others</language>
+	</row>
+	<row id="pl_msg_00000338_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max No. of Single win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max No. of Double win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max No. of Multi win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max-CMulti straight wins</language>
+	</row>
+	<row id="pl_msg_00000338_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max No. of Wi-Fi win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Single win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Double win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Multi win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CMulti straight wins</language>
+	</row>
+	<row id="pl_msg_00000338_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Wi-Fi win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Challenge Single</language>
+	</row>
+	<row id="pl_msg_00000338_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Challenge Double</language>
+	</row>
+	<row id="pl_msg_00000338_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Challenge Multi</language>
+	</row>
+	<row id="pl_msg_00000338_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Challenge CMulti</language>
+	</row>
+	<row id="pl_msg_00000338_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Challenge Wi-Fi</language>
+	</row>
+	<row id="pl_msg_00000338_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Battle Tower challenge</language>
+	</row>
+	<row id="pl_msg_00000338_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Battle Tower win streak</language>
+	</row>
+	<row id="pl_msg_00000338_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Single-Stage</language>
+	</row>
+	<row id="pl_msg_00000338_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Double-Stage</language>
+	</row>
+	<row id="pl_msg_00000338_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Multi-Stage</language>
+	</row>
+	<row id="pl_msg_00000338_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CMulti-Stage</language>
+	</row>
+	<row id="pl_msg_00000338_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wifi-Stage</language>
+	</row>
+	<row id="pl_msg_00000338_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">WiFi Ranking</language>
+	</row>
+	<row id="pl_msg_00000338_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">arrive-cload</language>
+	</row>
+	<row id="pl_msg_00000338_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">arrive-c10</language>
+	</row>
+	<row id="pl_msg_00000338_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl</language>
+	</row>
+	<row id="pl_msg_00000338_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira</language>
+	</row>
+	<row id="pl_msg_00000338_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley</language>
+	</row>
+	<row id="pl_msg_00000338_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Marley</language>
+	</row>
+	<row id="pl_msg_00000338_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck</language>
+	</row>
+	<row id="pl_msg_00000338_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sum of money spent</language>
+	</row>
+	<row id="pl_msg_00000338_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Slot jackpot</language>
+	</row>
+	<row id="pl_msg_00000338_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Steps</language>
+	</row>
+	<row id="pl_msg_00000338_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Entry</language>
+	</row>
+	<row id="pl_msg_00000338_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Entry Wireless communication</language>
+	</row>
+	<row id="pl_msg_00000338_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wins</language>
+	</row>
+	<row id="pl_msg_00000338_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Wireless contest wins</language>
+	</row>
+	<row id="pl_msg_00000338_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Get Ribbon</language>
+	</row>
+	<row id="pl_msg_00000338_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Selfdestruct used</language>
+	</row>
+	<row id="pl_msg_00000338_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Explosion used</language>
+	</row>
+	<row id="pl_msg_00000338_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of useless move used</language>
+	</row>
+	<row id="pl_msg_00000338_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Friend Pokémon fainted</language>
+	</row>
+	<row id="pl_msg_00000338_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Friend Pokémon damaged</language>
+	</row>
+	<row id="pl_msg_00000338_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of times failed to run</language>
+	</row>
+	<row id="pl_msg_00000338_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of foe Pokémon ran</language>
+	</row>
+	<row id="pl_msg_00000338_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Pokémon captured</language>
+	</row>
+	<row id="pl_msg_00000338_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Wireless Trade</language>
+	</row>
+	<row id="pl_msg_00000338_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Wireless Wins</language>
+	</row>
+	<row id="pl_msg_00000338_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Wireless Losses</language>
+	</row>
+	<row id="pl_msg_00000338_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Wireless Draws</language>
+	</row>
+	<row id="pl_msg_00000338_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of WiFi Trade</language>
+	</row>
+	<row id="pl_msg_00000338_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of WiFi Wins</language>
+	</row>
+	<row id="pl_msg_00000338_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Wi-Fi Losses</language>
+	</row>
+	<row id="pl_msg_00000338_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Wi-Fi Draws</language>
+	</row>
+	<row id="pl_msg_00000338_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Pokémon fainted</language>
+	</row>
+	<row id="pl_msg_00000338_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Hall of Fame</language>
+	</row>
+	<row id="pl_msg_00000338_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Fishing screw-up</language>
+	</row>
+	<row id="pl_msg_00000338_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of successful Fishing</language>
+	</row>
+	<row id="pl_msg_00000338_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Berries planted</language>
+	</row>
+	<row id="pl_msg_00000338_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Pokémon encounter</language>
+	</row>
+	<row id="pl_msg_00000338_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Trainer battles</language>
+	</row>
+	<row id="pl_msg_00000338_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Hatched Egg</language>
+	</row>
+	<row id="pl_msg_00000338_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Pokémon taken to Day Care</language>
+	</row>
+	<row id="pl_msg_00000338_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Pokémon evolution</language>
+	</row>
+	<row id="pl_msg_00000338_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of Jump used</language>
+	</row>
+	<row id="pl_msg_00000338_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No. of battles done at Battleground</language>
+	</row>
+	<row id="pl_msg_00000338_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer ID</language>
+	</row>
+	<row id="pl_msg_00000338_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Default Name ID</language>
+	</row>
+	<row id="pl_msg_00000338_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Language Code</language>
+	</row>
+</body>

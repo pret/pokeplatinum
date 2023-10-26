@@ -1,0 +1,110 @@
+{
+    "name": "Linoone",
+    "base_stats": {
+        "hp": 78,
+        "attack": 70,
+        "defense": 61,
+        "speed": 100,
+        "special_attack": 50,
+        "special_defense": 61
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 128,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_ORAN_BERRY",
+        "rare": "ITEM_SITRUS_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_PICKUP",
+        "ABILITY_GLUTTONY"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_WHITE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM65",
+            "TM68",
+            "TM73",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM03",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_SWITCHEROO",
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_TAIL_WHIP",
+                "MOVE_HEADBUTT"
+            ],
+            "5": "MOVE_TAIL_WHIP",
+            "9": "MOVE_HEADBUTT",
+            "13": "MOVE_SAND_ATTACK",
+            "17": "MOVE_ODOR_SLEUTH",
+            "23": "MOVE_MUD_SPORT",
+            "29": "MOVE_FURY_SWIPES",
+            "35": "MOVE_COVET",
+            "41": "MOVE_SLASH",
+            "47": "MOVE_REST",
+            "53": "MOVE_BELLY_DRUM",
+            "59": "MOVE_FLING"
+        }
+    }
+}

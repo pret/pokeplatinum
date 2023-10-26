@@ -3,15 +3,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0223177C_decl.h"
 
@@ -34,7 +34,7 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -98,13 +98,13 @@ typedef struct {
     u16 unk_04;
     u16 unk_06;
     Strbuf* unk_08;
-    UnkStruct_0205AA50 unk_0C;
+    Window unk_0C;
     UnkStruct_ov112_0225D180 unk_1C;
 } UnkStruct_ov112_0225D44C;
 
 typedef struct {
     UnkStruct_ov112_0225D44C unk_00[3];
-    UnkStruct_0205AA50 unk_60[3];
+    Window unk_60[3];
     Strbuf* unk_90;
     void * unk_94;
     NNSG2dPaletteData * unk_98;
@@ -119,12 +119,12 @@ typedef struct {
 } UnkStruct_ov112_0225D73C;
 
 typedef struct {
-    UnkStruct_0205AA50 unk_00[4];
+    Window unk_00[4];
     UnkStruct_ov112_0225D73C unk_40[4];
 } UnkStruct_ov112_0225D6DC;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     UnkStruct_020218BC * unk_04;
     UnkStruct_0200C738 unk_08;
     UnkStruct_02009714 * unk_194[4];
@@ -180,7 +180,7 @@ static void ov112_0225D44C(UnkStruct_ov112_0225D44C * param0);
 static void ov112_0225D460(UnkStruct_ov112_0225D44C * param0, const Strbuf *param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4);
 static void ov112_0225D4DC(UnkStruct_ov112_0225D44C * param0);
 static BOOL ov112_0225D4E4(UnkStruct_ov112_0225D44C * param0);
-static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C * param0, UnkStruct_0205AA50 * param1);
+static void ov112_0225D4F8(const UnkStruct_ov112_0225D44C * param0, Window * param1);
 static void ov112_0225D57C(UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov112_0225C9BC * param1, u32 param2);
 static void ov112_0225D6DC(UnkStruct_ov112_0225D6DC * param0);
 static void ov112_0225D700(UnkStruct_ov112_0225D6DC * param0);
@@ -386,14 +386,14 @@ int ov112_0225C7C4 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 1:
-        v2 = sub_0200F2AC();
+        v2 = ScreenWipe_Done();
 
         if (v2 == 1) {
             (*param1)++;
         }
         break;
     case 2:
-        if ((Unk_021BF67C.unk_48 & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
+        if ((gCoreSys.padInput & PAD_BUTTON_B) || (ov66_0222E12C(v1->unk_08) == 1) || (ov66_02231760() == 1)) {
             if ((ov66_0222E12C(v1->unk_08) == 1)) {
                 ov66_0222E2A4(v1->unk_08);
             }
@@ -423,7 +423,7 @@ int ov112_0225C7C4 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 4:
-        v2 = sub_0200F2AC();
+        v2 = ScreenWipe_Done();
 
         if (v2 == 1) {
             return 1;
@@ -478,7 +478,7 @@ static void ov112_0225C970 (UnkStruct_ov112_0225C970 * param0, const UnkStruct_o
 
 static void ov112_0225C9BC (UnkStruct_ov112_0225C9BC * param0, u32 param1)
 {
-    param0->unk_1A4 = NARC_ctor(169, param1);
+    param0->unk_1A4 = NARC_ctor(NARC_INDEX_GRAPHIC__LOBBY_NEWS, param1);
 
     sub_0201DBEC(48, param1);
     GXLayers_SetBanks(&Unk_ov112_0225D858);
@@ -513,7 +513,7 @@ static void ov112_0225CA34 (UnkStruct_ov112_0225C9BC * param0, u32 param1)
     sub_02018368(&Unk_ov112_0225D834);
 
     param0->unk_00 = sub_02018340(param1);
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
 
@@ -553,7 +553,7 @@ static void ov112_0225CB60 (UnkStruct_ov112_0225C9BC * param0)
     }
 
     Heap_FreeToHeap(param0->unk_00);
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 }
 
@@ -972,8 +972,8 @@ static void ov112_0225D1EC (UnkStruct_ov112_0225D2D0 * param0, UnkStruct_ov112_0
     for (v0 = 0; v0 < 3; v0++) {
         ov112_0225D408(&param0->unk_00[v0], param1, v0, param2);
 
-        sub_0201A7E8(param1->unk_00, &param0->unk_60[v0], 3, 1, Unk_ov112_0225D804[v0], 30, 2, 7 + v0, 0x300 + ((30 * 2) * v0));
-        sub_0201ADA4(&param0->unk_60[v0], 0);
+        BGL_AddWindow(param1->unk_00, &param0->unk_60[v0], 3, 1, Unk_ov112_0225D804[v0], 30, 2, 7 + v0, 0x300 + ((30 * 2) * v0));
+        BGL_FillWindow(&param0->unk_60[v0], 0);
         sub_0201A9A4(&param0->unk_60[v0]);
     }
 
@@ -993,7 +993,7 @@ static void ov112_0225D2D0 (UnkStruct_ov112_0225D2D0 * param0)
     Strbuf_Free(param0->unk_90);
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_0201A8FC(&param0->unk_60[v0]);
+        BGL_DeleteWindow(&param0->unk_60[v0]);
         ov112_0225D44C(&param0->unk_00[v0]);
     }
 }
@@ -1059,13 +1059,13 @@ static void ov112_0225D408 (UnkStruct_ov112_0225D44C * param0, UnkStruct_ov112_0
     param0->unk_08 = Strbuf_Init(256, param3);
     param0->unk_01 = 7 + param2;
 
-    sub_0201A7E8(param1->unk_00, &param0->unk_0C, 3, 0, 0, 180, 2, 7, 0);
+    BGL_AddWindow(param1->unk_00, &param0->unk_0C, 3, 0, 0, 180, 2, 7, 0);
 }
 
 static void ov112_0225D44C (UnkStruct_ov112_0225D44C * param0)
 {
     Strbuf_Free(param0->unk_08);
-    sub_0201A8FC(&param0->unk_0C);
+    BGL_DeleteWindow(&param0->unk_0C);
 }
 
 static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const Strbuf *param1, u32 param2, const UnkStruct_ov112_0225D180 * param3, const NNSG2dPaletteData * param4)
@@ -1080,7 +1080,7 @@ static void ov112_0225D460 (UnkStruct_ov112_0225D44C * param0, const Strbuf *par
 
     GF_ASSERT((180 * 8) >= param0->unk_06);
 
-    sub_0201ADA4(&param0->unk_0C, 0);
+    BGL_FillWindow(&param0->unk_0C, 0);
     sub_0201D738(&param0->unk_0C, 1, param0->unk_08, 0, 0, 0xff, NULL);
 
     param0->unk_1C = *param3;
@@ -1105,7 +1105,7 @@ static BOOL ov112_0225D4E4 (UnkStruct_ov112_0225D44C * param0)
     return v0;
 }
 
-static void ov112_0225D4F8 (const UnkStruct_ov112_0225D44C * param0, UnkStruct_0205AA50 * param1)
+static void ov112_0225D4F8 (const UnkStruct_ov112_0225D44C * param0, Window * param1)
 {
     s32 v0;
     s32 v1;
@@ -1128,7 +1128,7 @@ static void ov112_0225D4F8 (const UnkStruct_ov112_0225D44C * param0, UnkStruct_0
         }
     }
 
-    sub_0201AE78(param1, 0, 0, 0, 255, 2 * 8);
+    BGL_WindowColor(param1, 0, 0, 0, 255, 2 * 8);
     sub_0201AE08(param1, param0->unk_0C.unk_0C, v2, 0, 180 * 8, 2 * 8, v1, 0, v3, 2 * 8, 15);
     sub_0201A9A4(param1);
 }
@@ -1147,7 +1147,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r3, [sp, #0x1c]
     mov r0, #0
     mov r1, #0x1a
-    bl sub_0200B144
+    bl MessageLoader_Init
     str r0, [sp, #0x38]
     ldr r1, [sp, #0x1c]
     mov r0, #0x80
@@ -1186,14 +1186,14 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r0, [sp, #0x18]
     ldrb r3, [r5]
     ldr r0, [r0, #0]
-    bl sub_0201A7E8
+    bl BGL_AddWindow
     ldr r0, [sp, #0x14]
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     ldr r0, [sp, #0x38]
     ldr r1, [sp, #0x3c]
     ldr r2, [sp, #0x34]
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     ldr r0, [sp, #0x34]
     bl Strbuf_NumLines
     str r0, [sp, #0x30]
@@ -1288,7 +1288,7 @@ asm static void ov112_0225D57C (UnkStruct_ov112_0225D6DC * param0, UnkStruct_ov1
     ldr r0, [sp, #0x34]
     bl Strbuf_Free
     ldr r0, [sp, #0x38]
-    bl sub_0200B190
+    bl MessageLoader_Free
     add sp, #0x40
     pop {r3, r4, r5, r6, r7, pc}
     nop
@@ -1299,7 +1299,7 @@ static void ov112_0225D6DC (UnkStruct_ov112_0225D6DC * param0)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        sub_0201A8FC(&param0->unk_00[v0]);
+        BGL_DeleteWindow(&param0->unk_00[v0]);
         ov112_0225D75C(&param0->unk_40[v0]);
     }
 }
@@ -1353,7 +1353,7 @@ static void ov112_0225D784 (UnkStruct_ov112_0225D73C * param0)
     }
 
     if (param0->unk_02 == 0) {
-        sub_02005748(param0->unk_08);
+        Sound_PlayEffect(param0->unk_08);
     }
 
     if (param0->unk_02 < 2) {

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="1039" />
+	<row id="pl_msg_00000115_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I have something for your Pokémon\nto hold. Take this {STRVAR_1 8, 0, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000115_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 8, 0, 0} should be held by\na Pokémon in battles.\rThe holder regains HP a little every\ntime it inflicts damage.\rThat was given to me when I was on\nvacation, but I already had one.</language>
+	</row>
+	<row id="pl_msg_00000115_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Pippi!</language>
+	</row>
+</body>

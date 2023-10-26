@@ -1,22 +1,22 @@
 #ifndef POKEPLATINUM_STRUCT_OV81_021D1610_H
 #define POKEPLATINUM_STRUCT_OV81_021D1610_H
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B628_decl.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[4];
+    BGL * unk_00;
+    Window unk_04[4];
     UnkStruct_0202B628 * unk_44;
-    UnkStruct_02025E6C * unk_48;
-    UnkStruct_021C0794 * unk_4C;
-    UnkStruct_0200B144 * unk_50;
+    TrainerInfo * unk_48;
+    SaveData * unk_4C;
+    MessageLoader * unk_50;
     UnkStruct_0200B358 * unk_54;
     Strbuf* unk_58;
     u16 unk_5C[1024];

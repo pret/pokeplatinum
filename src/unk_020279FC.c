@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -38,7 +38,7 @@ void sub_02027A1C (UnkStruct_020279FC * param0)
     param0->unk_02_2 = 0;
 }
 
-void sub_02027A68 (UnkStruct_021C0794 * param0, int param1)
+void sub_02027A68 (SaveData * param0, int param1)
 {
     UnkStruct_020279FC * v0;
 
@@ -48,14 +48,14 @@ void sub_02027A68 (UnkStruct_021C0794 * param0, int param1)
 
     switch (param1) {
     case 1:
-        Unk_021BF67C.unk_34 = 1;
+        gCoreSys.unk_34 = 1;
         break;
     case 2:
-        Unk_021BF67C.unk_34 = 3;
+        gCoreSys.unk_34 = 3;
         break;
     case 0:
     default:
-        Unk_021BF67C.unk_34 = 0;
+        gCoreSys.unk_34 = 0;
         break;
     }
 }
@@ -93,7 +93,7 @@ void sub_02027AE4 (UnkStruct_020279FC * param0, int param1)
     param0->unk_00_4 = param1;
 }
 
-int sub_02027AF8 (const UnkStruct_020279FC * param0)
+int GameConfig_BattleAnimations (const UnkStruct_020279FC * param0)
 {
     return param0->unk_00_7;
 }

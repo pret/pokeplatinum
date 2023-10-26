@@ -2,15 +2,15 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207CB08_decl.h"
@@ -43,7 +43,7 @@
 #include "unk_020041CC.h"
 #include "unk_02005474.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -58,7 +58,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
 #include "unk_0202B604.h"
@@ -90,7 +90,7 @@
 #include "unk_0207064C.h"
 #include "unk_0207070C.h"
 #include "unk_02071D40.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"
@@ -315,7 +315,7 @@ void sub_0203AB00 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_020708E0 * v0;
 
-    sub_02005748(1533);
+    Sound_PlayEffect(1533);
     v0 = sub_0203ABB4();
 
     v0->unk_228 = 0;
@@ -459,7 +459,7 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         }
         break;
     case 9:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0203B2EC(v1, v0);
             Heap_FreeToHeap(v1);
             sub_02062C78(v0->unk_38);
@@ -474,7 +474,7 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
         }
         break;
     case 11:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02050924(param0, v1->unk_22C, v1->unk_25C);
             Heap_FreeToHeap(v1);
         }
@@ -486,15 +486,15 @@ static BOOL sub_0203AC44 (UnkStruct_020508D4 * param0)
     case 13:
         sub_0203B2EC(v1, v0);
         sub_0203B078(v1);
-        sub_0200DC9C(&v1->unk_00, 1);
-        sub_0201A8FC(&v1->unk_00);
+        Window_Clear(&v1->unk_00, 1);
+        BGL_DeleteWindow(&v1->unk_00);
         sub_0203B200(param0);
         sub_0201C3C0(v0->unk_08, 3);
         Heap_FreeToHeap(v1);
         sub_02062C78(v0->unk_38);
         return 1;
     case 14:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v1->unk_2A = 1;
         }
         break;
@@ -512,7 +512,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_0200B144 * v2;
+    MessageLoader * v2;
     UnkStruct_02081CF4 v3;
     u32 v4, v5;
 
@@ -520,11 +520,11 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1 = sub_02050A64(param0);
     v5 = sub_0203AFCC(v1, v1->unk_30);
 
-    sub_0201A7E8(v0->unk_08, &v1->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
+    BGL_AddWindow(v0->unk_08, &v1->unk_00, 3, 20, 1, 11, v5 * 3, 12, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (11 * 22)));
     sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
-    sub_0200DC48(&v1->unk_00, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Show(&v1->unk_00, 1, 1024 - (18 + 12) - 9, 11);
 
-    v2 = sub_0200B144(0, 26, 367, 11);
+    v2 = MessageLoader_Init(0, 26, 367, 11);
 
     v1->unk_24 = sub_02013A04(v5, 11);
     v1->unk_28 = 0;
@@ -537,7 +537,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
 
             v6 = sub_0200B358(11);
             v7 = Strbuf_Init(8, 11);
-            v8 = sub_0200B1EC(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
+            v8 = MessageLoader_GetNewStrbuf(v2, Unk_020EA05C[v1->unk_30[v4]][0]);
 
             sub_0200B498(v6, 0, sub_02025E38(v0->unk_0C));
             sub_0200C388(v6, v7, v8);
@@ -556,7 +556,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     }
 
     v0->unk_90 = v1->unk_30[v1->unk_28];
-    sub_0200B190(v2);
+    MessageLoader_Free(v2);
 
     v3.unk_00 = v1->unk_24;
     v3.unk_04 = &v1->unk_00;
@@ -575,7 +575,7 @@ static void sub_0203ADFC (UnkStruct_020508D4 * param0)
     v1->unk_20 = sub_02001AF4(&v3, 28, 4, v1->unk_28, 11, PAD_BUTTON_B | PAD_BUTTON_X);
 
     sub_0201A9A4(&v1->unk_00);
-    sub_0203B318(v1, v1->unk_30, v5, sub_02025F30(sub_02025E38(v0->unk_0C)));
+    sub_0203B318(v1, v1->unk_30, v5, TrainerInfo_Gender(sub_02025E38(v0->unk_0C)));
 }
 
 static u32 sub_0203AFCC (UnkStruct_020708E0 * param0, u8 * param1)
@@ -643,7 +643,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_0200B144 * v2;
+    MessageLoader * v2;
     UnkStruct_0200B358 * v3;
     Strbuf* v4;
     Strbuf* v5;
@@ -660,17 +660,17 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
         return;
     }
 
-    sub_0201A7E8(v0->unk_08, &v1->unk_10, 3, 1, 1, 12, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4))));
+    BGL_AddWindow(v0->unk_08, &v1->unk_10, 3, 1, 1, 12, 4, 13, ((((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4))));
     sub_0200DAA4(v0->unk_08, 3, 1024 - (18 + 12) - 9, 11, 1, 11);
-    sub_0200DC48(&v1->unk_10, 1, 1024 - (18 + 12) - 9, 11);
-    sub_0201ADA4(&v1->unk_10, 15);
+    Window_Show(&v1->unk_10, 1, 1024 - (18 + 12) - 9, 11);
+    BGL_FillWindow(&v1->unk_10, 15);
 
-    v2 = sub_0200B144(0, 26, 367, 11);
+    v2 = MessageLoader_Init(0, 26, 367, 11);
 
     if (v6 == 0) {
-        v5 = sub_0200B1EC(v2, 9);
+        v5 = MessageLoader_GetNewStrbuf(v2, 9);
     } else {
-        v5 = sub_0200B1EC(v2, 10);
+        v5 = MessageLoader_GetNewStrbuf(v2, 10);
     }
 
     sub_0201D738(&v1->unk_10, 0, v5, 0, 0, 0xff, NULL);
@@ -678,7 +678,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
 
     v3 = sub_0200B358(11);
     v4 = Strbuf_Init(32, 11);
-    v5 = sub_0200B1EC(v2, 11);
+    v5 = MessageLoader_GetNewStrbuf(v2, 11);
 
     if (v6 == 0) {
         u16 * v7 = sub_0203A784(sub_0203A790(v0->unk_0C));
@@ -695,7 +695,7 @@ static void sub_0203B094 (UnkStruct_020508D4 * param0)
     Strbuf_Free(v4);
     Strbuf_Free(v5);
     sub_0200B3F0(v3);
-    sub_0200B190(v2);
+    MessageLoader_Free(v2);
     sub_0201A9A4(&v1->unk_10);
 }
 
@@ -711,8 +711,8 @@ static void sub_0203B200 (UnkStruct_020508D4 * param0)
         return;
     }
 
-    sub_0200DC9C(&v1->unk_10, 1);
-    sub_0201A8FC(&v1->unk_10);
+    Window_Clear(&v1->unk_10, 1);
+    BGL_DeleteWindow(&v1->unk_10);
 }
 
 static BOOL sub_0203B244 (UnkStruct_020508D4 * param0)
@@ -777,7 +777,7 @@ static void sub_0203B318 (UnkStruct_020708E0 * param0, u8 * param1, u32 param2, 
 
     ov5_021D3190(&param0->unk_38, &v0, (7 + 1), 11);
 
-    v2 = NARC_ctor(66, 11);
+    v2 = NARC_ctor(NARC_INDEX_GRAPHIC__MENU_GRA, 11);
 
     ov5_021D32E8(&param0->unk_38, v2, 5, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
     ov5_021D3374(&param0->unk_38, v2, 1, 0, 13528);
@@ -880,7 +880,7 @@ static void sub_0203B610 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         return;
     }
 
@@ -888,7 +888,7 @@ static void sub_0203B610 (UnkStruct_020508D4 * param0)
     v1 = sub_02050A64(param0);
 
     sub_0203B078(v1);
-    sub_0201A8FC(&v1->unk_00);
+    BGL_DeleteWindow(&v1->unk_00);
     sub_0203B200(param0);
 
     v1->unk_22C(param0);
@@ -936,7 +936,7 @@ static BOOL sub_0203B6A4 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v1;
     UnkStruct_ov21_021D0D80 * v2;
     UnkStruct_02026324 * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
     UnkStruct_020507E4 * v5;
 
     v0 = sub_02050A60(param0);
@@ -1114,7 +1114,7 @@ BOOL sub_0203B7C0 (UnkStruct_020508D4 * param0)
     {
         UnkStruct_02097728 * v8;
 
-        v8 = sub_0203D920(v0, 2, v2->unk_22, sub_0207D2F0(v2->unk_24), 11);
+        v8 = sub_0203D920(v0, 2, v2->unk_22, Item_MailNumber(v2->unk_24), 11);
         v1->unk_25C = v8;
 
         if (v2->unk_20 == 10) {
@@ -1297,7 +1297,7 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
         v4.unk_04 = sub_0207CB94(v2);
         v4.unk_06 = sub_0207CBA4(v2);
         v4.unk_00 = param0;
-        v5 = Item_GetAttribute(v4.unk_04, 6, 11);
+        v5 = Item_LoadParam(v4.unk_04, 6, 11);
         v3 = (UnkFuncPtr_0203BC5C)sub_020683F4(0, v5);
         v3(&v4, &v1->unk_230);
     }
@@ -1341,11 +1341,11 @@ static BOOL sub_0203BC5C (UnkStruct_020508D4 * param0)
 
         Heap_FreeToHeap(v1->unk_260);
 
-        if ((Item_IsMail(v10) == 1) && (GetMonData(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
+        if ((Item_IsMail(v10) == 1) && (Pokemon_GetValue(v8, MON_DATA_HELD_ITEM, NULL) == 0)) {
             UnkStruct_02097728 * v11;
             UnkStruct_0203C540 * v12;
 
-            v11 = sub_0203D920(v0, 2, v9, sub_0207D2F0(v10), 11);
+            v11 = sub_0203D920(v0, 2, v9, Item_MailNumber(v10), 11);
             v1->unk_25C = v11;
             v1->unk_260 = sub_0203C540(v10, 0, (u8)v9);
             sub_0203B674(v1, sub_0203C558);
@@ -1441,9 +1441,9 @@ static BOOL sub_0203BF38 (UnkStruct_020508D4 * param0)
     UnkStruct_020708E0 * v0 = sub_02050A64(param0);
 
     sub_0203B078(v0);
-    sub_0200DC9C(&v0->unk_00, 1);
+    Window_Clear(&v0->unk_00, 1);
     sub_0201C3C0(v0->unk_00.unk_00, v0->unk_00.unk_04);
-    sub_0201A8FC(&v0->unk_00);
+    BGL_DeleteWindow(&v0->unk_00);
     sub_0203B200(param0);
 
     v0->unk_2A = 4;
@@ -1605,9 +1605,9 @@ static BOOL sub_0203C164 (UnkStruct_020508D4 * param0)
     v1 = sub_02050A64(param0);
 
     sub_0203B078(v1);
-    sub_0200DC9C(&v1->unk_00, 1);
+    Window_Clear(&v1->unk_00, 1);
     sub_0201C3C0(v1->unk_00.unk_00, v1->unk_00.unk_04);
-    sub_0201A8FC(&v1->unk_00);
+    BGL_DeleteWindow(&v1->unk_00);
     sub_0203B200(param0);
 
     if (sub_0206AE5C(sub_020507E4(v0->unk_0C)) == 1) {
@@ -1698,7 +1698,7 @@ static void sub_0203C2D8 (UnkStruct_020508D4 * param0, u16 param1)
     v6 = 0;
 
     for (v3 = 0; v3 < 64; v3++) {
-        param1 = sub_0207D354(v3);
+        param1 = Item_ForBerryNumber(v3);
 
         if (sub_0207D688(v2, param1, 1, 11) == 1) {
             sub_02097320(v1->unk_25C, param1, 0);

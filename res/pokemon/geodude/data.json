@@ -1,0 +1,109 @@
+{
+    "name": "Geodude",
+    "base_stats": {
+        "hp": 40,
+        "attack": 80,
+        "defense": 100,
+        "speed": 20,
+        "special_attack": 30,
+        "special_defense": 30
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 73,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_EVERSTONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_ROCK_HEAD",
+        "ABILITY_STURDY"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM56",
+            "TM58",
+            "TM64",
+            "TM69",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "4": "MOVE_MUD_SPORT",
+            "8": "MOVE_ROCK_POLISH",
+            "11": "MOVE_ROCK_THROW",
+            "15": "MOVE_MAGNITUDE",
+            "18": "MOVE_SELFDESTRUCT",
+            "22": "MOVE_ROLLOUT",
+            "25": "MOVE_ROCK_BLAST",
+            "29": "MOVE_EARTHQUAKE",
+            "32": "MOVE_EXPLOSION",
+            "36": "MOVE_DOUBLE_EDGE",
+            "39": "MOVE_STONE_EDGE"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            25,
+            "SPECIES_GRAVELER"
+        ]
+    ]
+}

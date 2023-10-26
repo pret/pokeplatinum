@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208BE5C.h"
@@ -20,7 +20,7 @@
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -32,10 +32,10 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_0200B144 * unk_08;
+    BGL * unk_04;
+    MessageLoader * unk_08;
     int unk_0C;
-    UnkStruct_0205AA50 unk_10;
+    Window unk_10;
     int unk_20;
     int unk_24;
 } UnkStruct_ov73_021D342C;
@@ -126,7 +126,7 @@ int ov73_021D3280 (UnkStruct_020067E8 * param0, int * param1)
     case 3:
         ov73_021D37AC(v0);
 
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             *param1 = 4;
         }
         break;
@@ -141,7 +141,7 @@ int ov73_021D3280 (UnkStruct_020067E8 * param0, int * param1)
     case 5:
         ov73_021D37AC(v0);
 
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             ov73_021D368C(v0);
             ov73_021D35F4(v0);
             sub_02017798(NULL, NULL);
@@ -335,7 +335,7 @@ static void ov73_021D35F4 (UnkStruct_ov73_021D342C * param0)
 
 static void ov73_021D366C (UnkStruct_ov73_021D342C * param0)
 {
-    param0->unk_08 = sub_0200B144(1, 26, 607, param0->unk_00);
+    param0->unk_08 = MessageLoader_Init(1, 26, 607, param0->unk_00);
 
     sub_0201D710();
     param0->unk_0C = 0;
@@ -343,7 +343,7 @@ static void ov73_021D366C (UnkStruct_ov73_021D342C * param0)
 
 static void ov73_021D368C (UnkStruct_ov73_021D342C * param0)
 {
-    sub_0200B190(param0->unk_08);
+    MessageLoader_Free(param0->unk_08);
 }
 
 static const UnkStruct_ov61_0222C884 Unk_ov72_021D3A38 = {
@@ -387,7 +387,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     ldr r0, [r4, #8]
     add r1, r7, #0
     add r2, r5, #0
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     add r1, r4, #0
     ldr r0, [r4, #4]
     ldr r2, = Unk_ov72_021D3A38
@@ -403,7 +403,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     add r0, #0x10
     add r2, r1, #0
     add r3, r1, #0
-    bl sub_0201AE78
+    bl BGL_WindowColor
     add r0, r6, #0
     add r1, r5, #0
     add r2, r0, #0
@@ -454,7 +454,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
     str r0, [r4, #0xc]
     b _021D3798
  _021D3768:
-    ldr r0, = Unk_021BF67C
+    ldr r0, = gCoreSys
     ldr r1, [r0, #0x48]
     mov r0, #1
     and r0, r1
@@ -471,7 +471,7 @@ asm static BOOL ov73_021D3698 (UnkStruct_ov73_021D342C * param0, int param1, int
  _021D3782:
     add r0, r4, #0
     add r0, #0x10
-    bl sub_0201A8FC
+    bl BGL_DeleteWindow
     ldr r0, [r4, #4]
     mov r1, #2
     bl sub_02019EBC

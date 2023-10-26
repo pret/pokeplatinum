@@ -1,0 +1,209 @@
+{
+    "land_rate": 30,
+    "land_encounters": [
+        {
+            "level": 3,
+            "species": "SPECIES_SHINX"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_BIDOOF"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_STARLY"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_KRICKETOT"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_SHINX"
+        },
+        {
+            "level": 3,
+            "species": "SPECIES_BIDOOF"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_STARLY"
+        },
+        {
+            "level": 4,
+            "species": "SPECIES_BIDOOF"
+        },
+        {
+            "level": 2,
+            "species": "SPECIES_STARLY"
+        },
+        {
+            "level": 2,
+            "species": "SPECIES_BIDOOF"
+        },
+        {
+            "level": 2,
+            "species": "SPECIES_STARLY"
+        },
+        {
+            "level": 2,
+            "species": "SPECIES_BIDOOF"
+        }
+    ],
+    "swarms": [
+        "SPECIES_ZIGZAGOON",
+        "SPECIES_ZIGZAGOON"
+    ],
+    "morning": [
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
+    ],
+    "night": [
+        "SPECIES_KRICKETOT",
+        "SPECIES_BIDOOF"
+    ],
+    "radar": [
+        "SPECIES_SENTRET",
+        "SPECIES_SENTRET",
+        "SPECIES_SENTRET",
+        "SPECIES_SENTRET"
+    ],
+    "rate_form0": 0,
+    "rate_form1": 0,
+    "rate_form2": 0,
+    "rate_form3": 0,
+    "rate_form4": 0,
+    "unown_table": 0,
+    "ruby": [
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
+    ],
+    "sapphire": [
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
+    ],
+    "emerald": [
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
+    ],
+    "firered": [
+        "SPECIES_GROWLITHE",
+        "SPECIES_GROWLITHE"
+    ],
+    "leafgreen": [
+        "SPECIES_STARLY",
+        "SPECIES_BIDOOF"
+    ],
+    "surf_rate": 0,
+    "surf_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ],
+    "old_rod_rate": 0,
+    "old_rod_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ],
+    "good_rod_rate": 0,
+    "good_rod_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ],
+    "super_rod_rate": 0,
+    "super_rod_encounters": [
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        },
+        {
+            "level_max": 0,
+            "level_min": 0,
+            "species": "SPECIES_NONE"
+        }
+    ]
+}

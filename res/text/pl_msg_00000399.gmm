@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18411" />
+	<row id="pl_msg_00000399_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: All right!\nWe’re at the lake!\rGet ready, because we’re capturing\nthat legendary Pokémon.\rTrust me on this one. It’s here.\nIt even says so on the sign!\r</language>
+	</row>
+	<row id="pl_msg_00000399_00001" index="1">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000399_00002" index="2">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000399_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lake Verity Ahead\rAccording to legend, this lake is home\nto the Pokémon said to be “The Being of\fEmotion.”\rIt is because of this Pokémon that\npeople can experience sorrow and joy.</language>
+	</row>
+</body>

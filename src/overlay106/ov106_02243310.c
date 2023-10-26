@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
 #include "overlay022/struct_ov22_022559F8.h"
@@ -54,7 +54,7 @@ void ov106_02243310 (UnkStruct_ov106_02243310 * param0, Pokemon * param1)
     param0->unk_1A0[0][2] = sub_02009918(param0->unk_190[2], 151, 14, 1, 0, 2, 98);
 
     param0->unk_1A0[0][3] = sub_02009918(param0->unk_190[3], 151, 13, 1, 0, 3, 98);
-    v1 = NARC_ctor(19, 98);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 98);
 
     param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, sub_02079D80(param1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 98);
     param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 19, sub_02079FD0(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 98);

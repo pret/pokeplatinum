@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="12299" />
+	<row id="pl_msg_00000022_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Room Results</language>
+	</row>
+	<row id="pl_msg_00000022_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Multi Battle Room Results</language>
+	</row>
+	<row id="pl_msg_00000022_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wi-Fi Battle Room Results</language>
+	</row>
+	<row id="pl_msg_00000022_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Single{COLOR 3} {COLOR 2}\n{COLOR 1}Record{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Multi{COLOR 3} {COLOR 0}\n{COLOR 1}Record{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Current{COLOR 3} {COLOR 0}\n{COLOR 1}Rank{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Double{COLOR 3} {COLOR 0}\n{COLOR 1}Record{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Link{COLOR 3} {COLOR 0}\n{COLOR 1}Record{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Wi-Fi{COLOR 0}\n{COLOR 1}Record{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}PREV{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}CURRENT{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}RECORD{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}RANK{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Win streak: {COLOR 2}{STRVAR_1 53, 0, 0}{COLOR 0} </language>
+	</row>
+	<row id="pl_msg_00000022_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 51, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rank {STRVAR_1 51, 0, 0}, Battle Room {STRVAR_1 52, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LIST OF LEADERS</language>
+	</row>
+	<row id="pl_msg_00000022_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000022_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 36, 0, 0}\n{STRVAR_1 37, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 36, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000022_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Home country\nunregistered</language>
+	</row>
+	<row id="pl_msg_00000022_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Plato</language>
+	</row>
+	<row id="pl_msg_00000022_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Plato</language>
+	</row>
+</body>

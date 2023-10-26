@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV71_0223B620_H
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02072014.h"
 #include "overlay071/struct_ov71_0223C444.h"
@@ -12,8 +12,8 @@
 #include <nnsys.h>
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[11];
+    BGL * unk_00;
+    Window unk_04[11];
     UnkStruct_02072014 * unk_B4;
     u8 unk_B8[12288];
     void * unk_30B8;

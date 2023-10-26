@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202855C.h"
@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020244AC.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202854C.h"
 
 static void sub_02028B48(UnkStruct_020298B0 * param0, int param1, int param2);
@@ -73,7 +73,7 @@ u16 Unk_02100920[] = {
     0x139
 };
 
-int sub_0202854C (void)
+int Underground_SaveSize (void)
 {
     return sizeof(UnkStruct_020298B0);
 }
@@ -97,14 +97,14 @@ UnkStruct_0202855C * sub_0202855C (u32 param0)
     return v0;
 }
 
-void sub_02028574 (UnkStruct_020298B0 * param0)
+void Underground_Init (UnkStruct_020298B0 * param0)
 {
     u32 v0 = 0;
     RTCDate v1;
     RTCTime v2;
 
     sub_0201384C(&v1, &v2);
-    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + Unk_021BF67C.unk_2C));
+    v0 = (((((((u32)v1.year * 32ULL + v1.month) * 32ULL) + v1.day) * 32ULL + v2.hour) * 32ULL + v2.minute) * 32ULL + (v2.second + gCoreSys.unk_2C));
 
     MI_CpuFill8(param0, 0, sizeof(UnkStruct_020298B0));
 
@@ -164,7 +164,7 @@ static int sub_02028638 (UnkStruct_020298B0 * param0)
     return -1;
 }
 
-void sub_02028658 (UnkStruct_021C0794 * param0, int param1)
+void sub_02028658 (SaveData * param0, int param1)
 {
     UnkStruct_020298B0 * v0 = sub_020298B0(param0);
     MATHRandContext16 v1;
@@ -199,11 +199,11 @@ void sub_02028658 (UnkStruct_021C0794 * param0, int param1)
         }
     }
 
-    v0->unk_90 = sub_0201D30C(v0->unk_90 + param1);
+    v0->unk_90 = ARNG_Next(v0->unk_90 + param1);
     v0->unk_9AC_0 = 1;
 }
 
-void sub_02028758 (UnkStruct_021C0794 * param0, s32 param1, BOOL param2)
+void sub_02028758 (SaveData * param0, s32 param1, BOOL param2)
 {
     UnkStruct_020298B0 * v0 = sub_020298B0(param0);
 
@@ -218,7 +218,7 @@ void sub_02028758 (UnkStruct_021C0794 * param0, s32 param1, BOOL param2)
     }
 }
 
-void sub_0202878C (UnkStruct_021C0794 * param0)
+void sub_0202878C (SaveData * param0)
 {
     UnkStruct_020298B0 * v0 = sub_020298B0(param0);
 
@@ -235,7 +235,7 @@ void sub_0202878C (UnkStruct_021C0794 * param0)
     }
 }
 
-void sub_020287E0 (UnkStruct_021C0794 * param0)
+void sub_020287E0 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0 = sub_020298B0(param0);
 
@@ -244,7 +244,7 @@ void sub_020287E0 (UnkStruct_021C0794 * param0)
     }
 }
 
-void sub_020287F8 (UnkStruct_021C0794 * param0)
+void sub_020287F8 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0 = sub_020298B0(param0);
 
@@ -253,7 +253,7 @@ void sub_020287F8 (UnkStruct_021C0794 * param0)
     }
 }
 
-BOOL sub_02028810 (UnkStruct_021C0794 * param0)
+BOOL sub_02028810 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0 = sub_020298B0(param0);
 
@@ -269,23 +269,23 @@ void sub_02028828 (UnkStruct_020298B0 * param0)
     param0->unk_99 = 1;
 }
 
-void sub_02028830 (UnkStruct_020298B0 * param0, const UnkStruct_02025E6C * param1)
+void sub_02028830 (UnkStruct_020298B0 * param0, const TrainerInfo * param1)
 {
     int v0 = param0->unk_10A;
     int v1;
 
     for (v1 = 0; v1 < 5; v1++) {
-        if (param0->unk_9C[v1] == sub_02025F20(param1)) {
+        if (param0->unk_9C[v1] == TrainerInfo_ID(param1)) {
             return;
         }
     }
 
     GF_ASSERT(v0 < 5);
-    MI_CpuCopy8(sub_02025EF0(param1), param0->unk_B0[v0], (sizeof(u16) * (7 + 1)));
+    MI_CpuCopy8(TrainerInfo_Name(param1), param0->unk_B0[v0], (sizeof(u16) * (7 + 1)));
 
-    param0->unk_9C[v0] = sub_02025F20(param1);
-    param0->unk_100[v0] = sub_02025FD8(param1);
-    param0->unk_105[v0] = sub_02025FCC(param1);
+    param0->unk_9C[v0] = TrainerInfo_ID(param1);
+    param0->unk_100[v0] = TrainerInfo_RegionCode(param1);
+    param0->unk_105[v0] = TrainerInfo_GameCode(param1);
     param0->unk_10A++;
 
     if (param0->unk_10A >= 5) {
@@ -293,11 +293,11 @@ void sub_02028830 (UnkStruct_020298B0 * param0, const UnkStruct_02025E6C * param
     }
 }
 
-UnkStruct_02025E6C * sub_020288C8 (const UnkStruct_020298B0 * param0, int param1, int param2)
+TrainerInfo * sub_020288C8 (const UnkStruct_020298B0 * param0, int param1, int param2)
 {
     int v0 = (sizeof(u16) * (7 + 1));
     int v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     int v3 = param0->unk_10A - param2 - 1;
 
     if (v3 < 0) {
@@ -305,12 +305,12 @@ UnkStruct_02025E6C * sub_020288C8 (const UnkStruct_020298B0 * param0, int param1
     }
 
     if (param0->unk_B0[v3][0] != 0) {
-        v2 = sub_02025E6C(param1);
+        v2 = TrainerInfo_New(param1);
 
-        sub_02025EC0(v2, param0->unk_B0[v3]);
-        sub_02025FD0(v2, param0->unk_105[v3]);
-        sub_02025FDC(v2, param0->unk_100[v3]);
-        sub_02025F1C(v2, param0->unk_9C[v3]);
+        TrainerInfo_SetName(v2, param0->unk_B0[v3]);
+        TrainerInfo_SetGameCode(v2, param0->unk_105[v3]);
+        TrainerInfo_SetRegionCode(v2, param0->unk_100[v3]);
+        TrainerInfo_SetID(v2, param0->unk_9C[v3]);
 
         return v2;
     }
@@ -1361,19 +1361,19 @@ BOOL sub_0202988C (const UnkStruct_02029894 * param0)
     return param0->unk_91;
 }
 
-UnkStruct_02029894 * sub_02029894 (UnkStruct_021C0794 * param0)
+UnkStruct_02029894 * sub_02029894 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = sub_020245BC(param0, 12);
+    v0 = SaveData_Get(param0, 12);
     return &v0->unk_00;
 }
 
-UnkStruct_0202855C * sub_020298A0 (UnkStruct_021C0794 * param0)
+UnkStruct_0202855C * sub_020298A0 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = sub_020245BC(param0, 12);
+    v0 = SaveData_Get(param0, 12);
     return &v0->unk_00.unk_50;
 }
 
@@ -1382,10 +1382,10 @@ UnkStruct_0202855C * sub_020298AC (UnkStruct_02029894 * param0)
     return &param0->unk_50;
 }
 
-UnkStruct_020298B0 * sub_020298B0 (UnkStruct_021C0794 * param0)
+UnkStruct_020298B0 * sub_020298B0 (SaveData * param0)
 {
     UnkStruct_020298B0 * v0;
 
-    v0 = sub_020245BC(param0, 12);
+    v0 = SaveData_Get(param0, 12);
     return v0;
 }

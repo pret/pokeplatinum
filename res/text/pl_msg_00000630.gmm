@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="1161" />
+	<row id="pl_msg_00000630_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLOSE</language>
+	</row>
+	<row id="pl_msg_00000630_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Move Trap ↑</language>
+	</row>
+	<row id="pl_msg_00000630_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Move Trap →</language>
+	</row>
+	<row id="pl_msg_00000630_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Move Trap ↓</language>
+	</row>
+	<row id="pl_msg_00000630_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Move Trap ←</language>
+	</row>
+	<row id="pl_msg_00000630_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hurl Trap ↑</language>
+	</row>
+	<row id="pl_msg_00000630_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hurl Trap →</language>
+	</row>
+	<row id="pl_msg_00000630_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hurl Trap ↓</language>
+	</row>
+	<row id="pl_msg_00000630_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hurl Trap ←</language>
+	</row>
+	<row id="pl_msg_00000630_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Warp Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi-Warp Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hole Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pit Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reverse Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Confuse Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Run Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fade Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Slow Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Smoke Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Big Smoke Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rock Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rockfall Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Foam Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bubble Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alert Trap 1</language>
+	</row>
+	<row id="pl_msg_00000630_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alert Trap 2</language>
+	</row>
+	<row id="pl_msg_00000630_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alert Trap 3</language>
+	</row>
+	<row id="pl_msg_00000630_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alert Trap 4</language>
+	</row>
+	<row id="pl_msg_00000630_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Leaf Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flower Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ember Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fire Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Radar Trap</language>
+	</row>
+	<row id="pl_msg_00000630_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Digger Drill</language>
+	</row>
+	<row id="pl_msg_00000630_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLOSE</language>
+	</row>
+	<row id="pl_msg_00000630_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends the\nvictim flying upward.</language>
+	</row>
+	<row id="pl_msg_00000630_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends the\nvictim flying to the right.</language>
+	</row>
+	<row id="pl_msg_00000630_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends the\nvictim flying downward.</language>
+	</row>
+	<row id="pl_msg_00000630_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends the\nvictim flying to the left.</language>
+	</row>
+	<row id="pl_msg_00000630_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends the\nvictim flying far upward.</language>
+	</row>
+	<row id="pl_msg_00000630_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends the\nvictim flying far to the right.</language>
+	</row>
+	<row id="pl_msg_00000630_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends the\nvictim flying far downward.</language>
+	</row>
+	<row id="pl_msg_00000630_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends the\nvictim flying far to the left.</language>
+	</row>
+	<row id="pl_msg_00000630_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap warps the\nvictim far away.</language>
+	</row>
+	<row id="pl_msg_00000630_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap warps the\nvictim far, far away.</language>
+	</row>
+	<row id="pl_msg_00000630_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A pit opens up underneath the Trap\nto immobilize the victim.</language>
+	</row>
+	<row id="pl_msg_00000630_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A huge pit opens up underneath the\nTrap to immobilize the victim.</language>
+	</row>
+	<row id="pl_msg_00000630_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap reverses the\nvictim’s movements.</language>
+	</row>
+	<row id="pl_msg_00000630_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap scrambles the\nvictim’s movements.</language>
+	</row>
+	<row id="pl_msg_00000630_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap makes the\nvictim run.</language>
+	</row>
+	<row id="pl_msg_00000630_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap makes the\nvictim invisible.</language>
+	</row>
+	<row id="pl_msg_00000630_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap slows the\nvictim’s foot speed.</language>
+	</row>
+	<row id="pl_msg_00000630_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trap that releases obscuring smoke.\nThe smoke can be rubbed away.</language>
+	</row>
+	<row id="pl_msg_00000630_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trap that releases billowing smoke.\nThe smoke can be rubbed away.</language>
+	</row>
+	<row id="pl_msg_00000630_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trap that makes blocking boulders.\nBreak the boulders to get free.</language>
+	</row>
+	<row id="pl_msg_00000630_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trap that makes Big Boulders.\nBreak the boulders to get free.</language>
+	</row>
+	<row id="pl_msg_00000630_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trap that releases bubbles.\nPop the bubbles to get free.</language>
+	</row>
+	<row id="pl_msg_00000630_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trap that releases a mass of\nbubbles. Pop them to get free.</language>
+	</row>
+	<row id="pl_msg_00000630_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends \ngreetings to everyone near you.</language>
+	</row>
+	<row id="pl_msg_00000630_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap sends\nfarewells to everyone near you.</language>
+	</row>
+	<row id="pl_msg_00000630_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap tells all nearby\nthat you are going to the Union Room.</language>
+	</row>
+	<row id="pl_msg_00000630_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this Trap alerts everyone\nto gather around you.</language>
+	</row>
+	<row id="pl_msg_00000630_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Trap releases immobilizing leaves.\nBlow the leaves away to get free.</language>
+	</row>
+	<row id="pl_msg_00000630_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Trap releases many flowers.\nBlow the flowers away to get free.</language>
+	</row>
+	<row id="pl_msg_00000630_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Trap releases immobilizing embers.\nBlow the embers away to get free.</language>
+	</row>
+	<row id="pl_msg_00000630_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Trap releases billowing flames.\nBlow the flames away to get free.</language>
+	</row>
+	<row id="pl_msg_00000630_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stepping on this renders the Radar\nuseless for a while.</language>
+	</row>
+	<row id="pl_msg_00000630_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A single-use drill to drill a hole in\nthe wall for your Secret Base.</language>
+	</row>
+	<row id="pl_msg_00000630_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Close the Bag.</language>
+	</row>
+</body>

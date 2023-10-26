@@ -150,7 +150,7 @@ int ov93_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        sub_02005748(1756);
+        Sound_PlayEffect(1756);
         (*param1)++;
         break;
     case 1:
@@ -161,7 +161,7 @@ int ov93_021D0E70 (UnkStruct_020067E8 * param0, int * param1)
                 sub_0208C120(1, 72);
             }
         } else {
-            if (sub_0200F2AC()) {
+            if (ScreenWipe_Done()) {
                 return 1;
             }
         }
@@ -244,7 +244,7 @@ static void ov93_021D102C (UnkStruct_ov93_021D102C * param0)
     void * v2;
     NARC * v3;
 
-    v3 = NARC_ctor(120, 72);
+    v3 = NARC_ctor(NARC_INDEX_ARC__SHIP_DEMO, 72);
     Heap_FndInitAllocatorForExpHeap(&param0->unk_70, 72, 4);
 
     param0->unk_5C = NARC_AllocAndReadWholeMember(v3, Unk_ov93_021D15A0[param0->unk_9C].unk_00, 72);

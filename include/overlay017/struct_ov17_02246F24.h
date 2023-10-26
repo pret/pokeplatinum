@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV17_02246F24_H
 #define POKEPLATINUM_STRUCT_OV17_02246F24_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02095C48.h"
 #include "overlay017/struct_ov17_0223BCE8.h"
@@ -13,7 +13,7 @@
 
 typedef struct {
     UnkStruct_02095C48 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_0207C690 * unk_08;
     UnkStruct_ov17_0223F88C unk_0C;
     UnkStruct_ov17_022472F8 unk_220;

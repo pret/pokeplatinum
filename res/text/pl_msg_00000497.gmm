@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="24307" />
+	<row id="pl_msg_00000497_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep: Pokémon are quite easy\nfor me to read.\rI need only to see their footprints,\nand their innermost thoughts are\frevealed to me!\rOh?\nYou are skeptical of my claim?\rThen, let your {STRVAR_1 0, 0, 0} walk\nin front of me, right here.\rFrom its footprints, I will determine\nhow it feels about you.\r</language>
+	</row>
+	<row id="pl_msg_00000497_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep: Do you want to check\nthe feelings of your Pokémon again?\rThen, let your {STRVAR_1 0, 0, 0} walk\nin front of me, right here.\rFrom its footprints, I will determine\nhow it feels about you.\r</language>
+	</row>
+	<row id="pl_msg_00000497_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep: ...And that is what\nyour {STRVAR_1 0, 0, 0} thinks of you.</language>
+	</row>
+	<row id="pl_msg_00000497_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep: ...Hmmm... {STRVAR_1 0, 0, 0}\ndoesn’t leave any footprints.\rIt’s somewhat difficult for me to\ndetermine what its thoughts are.</language>
+	</row>
+	<row id="pl_msg_00000497_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep: ...Hmm... {STRVAR_1 0, 0, 0}\nhappens to be quite the silent type!</language>
+	</row>
+	<row id="pl_msg_00000497_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep: ...And that is what\nyour {STRVAR_1 0, 0, 0} thinks of you.\rI must say, your {STRVAR_1 0, 0, 0} and\nyou share a very close bond.\fThis is for you.\r</language>
+	</row>
+	<row id="pl_msg_00000497_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep: ...Hmmm... {STRVAR_1 0, 0, 0}\ndoesn’t leave any footprints.\rIt’s somewhat difficult for me to\ndetermine what its thoughts are.\rHowever, your {STRVAR_1 0, 0, 0} and\nyou obviously share a close bond.\fThis is for you.\r</language>
+	</row>
+	<row id="pl_msg_00000497_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dr. Footstep: ...Hmm... {STRVAR_1 0, 0, 0}\nhappens to be quite the silent type!\rHowever, your {STRVAR_1 0, 0, 0} and\nyou obviously share a close bond.\fThis is for you.\r</language>
+	</row>
+	<row id="pl_msg_00000497_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} received\nthe Footprint Ribbon.\r</language>
+	</row>
+	<row id="pl_msg_00000497_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} put the Footprint Ribbon\non {STRVAR_1 0, 0, 0}.</language>
+	</row>
+	<row id="pl_msg_00000497_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aww... {STRVAR_1 3, 1, 0} only plays with\nother Pokémon...\r{STRVAR_1 1, 2, 0} feels neglected...\rMaybe {STRVAR_1 3, 1, 0} doesn’t like\n{STRVAR_1 1, 2, 0} very much?\r{STRVAR_1 1, 2, 0} will try harder for\n{STRVAR_1 3, 1, 0}.\rPlease be nicer to me!\r</language>
+	</row>
+	<row id="pl_msg_00000497_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Others say there are people who\naren’t very nice to Pokémon.\rI wonder about {STRVAR_1 3, 1, 0}...\rWill {STRVAR_1 3, 1, 0} look after\n{STRVAR_1 1, 2, 0} nicely?\rWill I get to go all over with this\nTrainer?\rCan we be... Friends?\r</language>
+	</row>
+	<row id="pl_msg_00000497_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This adventure with {STRVAR_1 3, 1, 0}\nis lots of fun.\r{STRVAR_1 1, 2, 0} gets to go places where\nI can’t go by myself.\rI get to battle Pokémon I’ve never\never seen before.\rI’m gonna get stronger and stronger\nfor {STRVAR_1 3, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000497_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0} make\na perfectly matched combo!\rI’ve seen all sorts of people\nso far...\rBut {STRVAR_1 3, 1, 0} understands\n{STRVAR_1 1, 2, 0}’s feelings most!\rI’m a little hungry...\nYou can tell, right?\r</language>
+	</row>
+	<row id="pl_msg_00000497_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If I said there can be friendship\nbetween Pokémon and people, will\f{STRVAR_1 0, 0, 0}’s friends understand?\rBut if you see {STRVAR_1 3, 1, 0} and\n{STRVAR_1 1, 2, 0}, you will understand.\rBecause {STRVAR_1 3, 1, 0} and\n{STRVAR_1 1, 2, 0} are friends!\r</language>
+	</row>
+	<row id="pl_msg_00000497_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 2, 0} is bored...\nPlay with me more, more...\r{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0},\nlet’s play nicer...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gonna go with {STRVAR_1 3, 1, 0} all over\nthe place...\rBe nice to {STRVAR_1 1, 2, 0}...\nWarm and cuddly...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 2, 0} get strong, make\n{STRVAR_1 3, 1, 0} happy.\rRound ones, square ones,\ntriangle ones, wobbly ones...\r{STRVAR_1 1, 2, 0} wants to see different\nkinds of Pokémon...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 2, 0} and {STRVAR_1 3, 1, 0}\nmake a friendly combo.\r{STRVAR_1 3, 1, 0}’s feelings, {STRVAR_1 1, 2, 0}\ncan understand.\r{STRVAR_1 1, 2, 0}’s feelings, {STRVAR_1 3, 1, 0}\nunderstands!\r</language>
+	</row>
+	<row id="pl_msg_00000497_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} makes {STRVAR_1 1, 2, 0}\nvery proud!\r{STRVAR_1 0, 0, 0} boasts to friends\nabout {STRVAR_1 3, 1, 0}!\r{STRVAR_1 3, 1, 0} and {STRVAR_1 1, 2, 0} are\nbest of friends!\r</language>
+	</row>
+	<row id="pl_msg_00000497_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Why does {STRVAR_1 3, 1, 0} use only\nother Pokémon?\rAm I not needed much?\rWould I have been better off if\nI remained in the wild?\rNo, I should give this Trainer\na little more of a chance...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Humans can’t understand the cries\nof Pokémon, nor our feelings.\rHowever, there are some among us\nthat understand human speech...\rHehehe, {STRVAR_1 3, 1, 0}, you’re not bad\nfor a human.\r</language>
+	</row>
+	<row id="pl_msg_00000497_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If a Pokémon were to travel alone,\nit would be limited as to where\fit could go.\rBut traveling with a human, a Pokémon\nwould be able to travel farther afield\fto more distant cities and lands.\rTraveling with {STRVAR_1 3, 1, 0} has been\nrewarding and reassuring.\rAnd very entertaining...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Some wild Pokémon frown upon others\nfor traveling with humans.\rThey jeer that the caught Pokémon\nhave “forgotten the wild.”\rBut that view is mistaken.\rThey have just never met a Trainer\nwho could be a great partner.\rA great partner like {STRVAR_1 3, 1, 0},\nin other words...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} is...\nA remarkable human and Trainer.\rThat I can always perform the best\nany {STRVAR_1 0, 0, 0} possibly can...\rI attribute that entirely to my\npartner {STRVAR_1 3, 1, 0}.\rWhen we travel, I can see wild\nPokémon eyeing us enviously...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Does {STRVAR_1 3, 1, 0} intend to ignore\nme forever?\rGive me more opportunities for me\nto shine...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If a Pokémon is treated as a friend,\nit will return the sentiments.\rWe grow fonder of humans that treat\nus with kindness...\rDoes {STRVAR_1 3, 1, 0} even like\n{STRVAR_1 1, 2, 0}?\r</language>
+	</row>
+	<row id="pl_msg_00000497_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did {STRVAR_1 1, 2, 0} get stronger?\nWho is responsible for making me so?\rIs it {STRVAR_1 3, 1, 0}’s doing?\nIs the Trainer owed my thanks?\r</language>
+	</row>
+	<row id="pl_msg_00000497_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} and {STRVAR_1 1, 2, 0} are\nalike in some ways.\rIn humanspeak, we match up well.\nDoes {STRVAR_1 3, 1, 0} think so, too?\r</language>
+	</row>
+	<row id="pl_msg_00000497_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} is very impressive,\nespecially for a human.\rThe Trainer lets {STRVAR_1 1, 2, 0} use\nevery bit of power properly.\rIt is a shame that {STRVAR_1 3, 1, 0} is\nonly a human...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 3, 1, 0}...\nWhat is that Trainer thinking?\rWhy make me join the team, then call\nupon me for nothing?\rAm I considered useless?\nIs the Trainer regretting having me?\rDoes the Trainer dare disrespect\nthis {STRVAR_1 0, 0, 0} so easily?\r</language>
+	</row>
+	<row id="pl_msg_00000497_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I have little understanding of\n{STRVAR_1 3, 1, 0} as a human...\r{STRVAR_1 3, 1, 0} may not be too bad,\nconsidering that I, an oft-shunned\f{STRVAR_1 0, 0, 0}, am one of the team...\rThat said, I don’t intend to be all\ncheerful around {STRVAR_1 3, 1, 0}...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Our kind prefers to lurk in dark\nand dank places...\rBut being with {STRVAR_1 3, 1, 0}, even\nbright and festive places seem less\fthreatening...\r{STRVAR_1 3, 1, 0} has a strange\ncharisma...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Not for a moment did I think I would\nbe traveling with a human...\rIf my {STRVAR_1 0, 0, 0} friends were to\nsee me now, they would be shocked.\rOr would they be envious of me...?\r</language>
+	</row>
+	<row id="pl_msg_00000497_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 3, 1, 0} is the most\nimpressive of humans.\rIt takes a lot to make me,\n{STRVAR_1 1, 2, 0}, sunny and cheerful!\rAs a show of affection, I should\nchomp down on the Trainer’s neck...\rHahaha... Have no fear...\nI was merely joking...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wooooooh...\n{STRVAR_1 1, 2, 0} has nothing to do...\rKeep me too bored, and I’m liable\nto sneak up and bite...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is there any human that would grow\nto like us {STRVAR_1 0, 0, 0}?\rWell? Does {STRVAR_1 3, 1, 0} like\n{STRVAR_1 1, 2, 0}?\r{STRVAR_1 1, 2, 0} doesn’t like...\nWell, no, maybe not...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} treats me, {STRVAR_1 1, 2, 0},\nnicely without being scared.\rBut {STRVAR_1 1, 2, 0} will be even scarier\nfrom now on.\rThat’s what we {STRVAR_1 0, 0, 0} do...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 2, 0} is starting to forget\na little about being in the wild...\rBut {STRVAR_1 1, 2, 0} isn’t feeling sad.\nIt’s never boring with {STRVAR_1 3, 1, 0}...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are no Pokémon that dislike\nhumans...\rOnly humans that dislike Pokémon...\rWe {STRVAR_1 0, 0, 0} are especially\nshunned...\rBut {STRVAR_1 3, 1, 0} always treats me\nas a friend and partner...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrrr... Hunh?\nThis is... Where?\r{STRVAR_1 3, 1, 0}’s house, is this?\nIt’s not? Hnurrr...\rIf you don’t need me for anything,\ncan I go back to my Ball?\rHnurrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr... Me? Uhm...\nI like to sleep most the time.\fOh, I like to eat, too. That’s next.\rBut what I really like is to think.\nI’m a very deep thinker.\rWhen I think about the future of the\n{STRVAR_1 0, 0, 0} species...\r...Hnurrr...hunh?\nOh, I forget where the time goes.\rHnurrrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr... Me? Uhm...\nThere are lots of kinds of moves.\rI like those Dark-type moves,\noh, and Dragon-type moves, too...\rHow would they be for this\n{STRVAR_1 0, 0, 0}?\rWill they be for me?\nOr a no, no, no sort of thing?\rHnurrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr... I don’t know how to begin\nsaying this...\rI liked living quietly before I met\n{STRVAR_1 3, 1, 0}. Sssh.\rBut I’m getting to like traveling\nwith {STRVAR_1 3, 1, 0}.\rI think I’m getting sort of funky.\nDo you think I’m sort of funky?\rNo? No funk for me?\nHnurrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr... Me? Uhm...\nOther Pokémon, they say to me...\r“You’re not thinking, are you?”\nHow insulting they should say so.\rIt isn’t true what they say.\nThink, think, think, I do that.\rAll the time, I think hard how to help\n{STRVAR_1 3, 1, 0}. I concentrate!\rHnurrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr... I did not know that?\nI really don’t? What is this?\fI don’t know what to say?\fHnurrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr... Well, I...\nI think I’m motivated.\fAs motivated as the average.\fBut it’s not so simple as that.\fHnurrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr... How should I say this?\nWe both look out for each other.\fThat’s what we try to do, I think.\fThat is for the best.\fHnurrrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr... How do I say?\nHow should I describe us?\rWe are the sound of both hands\nclapping.\r{STRVAR_1 3, 1, 0} and I are together\nin synchronicity like twins.\rHnurrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hnurrr...\nWhat is left to say, I say?\rWe have come so far now, where can\nwe go but to see this through?\rHall of Fame...\nWords so sweet fall from my mouth.\rHnurrr...\r</language>
+	</row>
+	<row id="pl_msg_00000497_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sssshhnnn...\n...\f...Ssshhhnnn...\f...\fSsshhhnnn...\f...\r</language>
+	</row>
+</body>

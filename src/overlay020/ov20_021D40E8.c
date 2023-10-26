@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D16E8_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
@@ -29,9 +29,9 @@ typedef struct UnkStruct_ov20_021D4210_t {
     UnkStruct_ov20_021D2128 * unk_00;
     const UnkStruct_ov20_021D16E8 * unk_04;
     const UnkStruct_020998EC * unk_08;
-    UnkStruct_02018340 * unk_0C;
-    UnkStruct_0205AA50 unk_10;
-    UnkStruct_0205AA50 unk_20;
+    BGL * unk_0C;
+    Window unk_10;
+    Window unk_20;
     UnkStruct_02022550 * unk_30;
     UnkStruct_02022550 * unk_34;
     UnkStruct_02022550 * unk_38;
@@ -60,8 +60,8 @@ UnkStruct_ov20_021D4210 * ov20_021D40E8 (UnkStruct_ov20_021D2128 * param0, const
     v0->unk_0C = ov20_021D2E04(param0);
     v0->unk_3C = Strbuf_Init(32, 35);
 
-    sub_0201A7E8(v0->unk_0C, &v0->unk_10, 2, 4, 0, 26, 32, 12, 1);
-    sub_0201A7E8(v0->unk_0C, &v0->unk_20, 2, 0, 0, 12, 4, 12, 1);
+    BGL_AddWindow(v0->unk_0C, &v0->unk_10, 2, 4, 0, 26, 32, 12, 1);
+    BGL_AddWindow(v0->unk_0C, &v0->unk_20, 2, 0, 0, 12, 4, 12, 1);
 
     v0->unk_30 = NULL;
     v0->unk_34 = NULL;
@@ -88,14 +88,14 @@ void ov20_021D4164 (UnkStruct_ov20_021D4210 * param0)
         Strbuf_Free(param0->unk_3C);
     }
 
-    sub_0201A8FC(&(param0->unk_20));
-    sub_0201A8FC(&(param0->unk_10));
+    BGL_DeleteWindow(&(param0->unk_20));
+    BGL_DeleteWindow(&(param0->unk_10));
     Heap_FreeToHeap(param0);
 }
 
 void ov20_021D41A8 (UnkStruct_ov20_021D4210 * param0)
 {
-    UnkStruct_02018340 * v0;
+    BGL * v0;
     u32 v1;
 
     v0 = ov20_021D2E04(param0->unk_00);
@@ -103,7 +103,7 @@ void ov20_021D41A8 (UnkStruct_ov20_021D4210 * param0)
     sub_02019690(2, 0x20, 0 * 0x20, 35);
     sub_02019CB8(v0, 2, 0, 0, 0, 32, 32, 12);
 
-    sub_0201ADA4(&param0->unk_10, 0);
+    BGL_FillWindow(&param0->unk_10, 0);
     sub_0201A9F4(&param0->unk_10);
     sub_0201ACCC(&param0->unk_10);
     sub_02019448(v0, 2);
@@ -136,7 +136,7 @@ void ov20_021D4294 (UnkStruct_ov20_021D4210 * param0)
 {
     u32 v0, v1, v2;
 
-    sub_0201ADA4(&param0->unk_10, 0);
+    BGL_FillWindow(&param0->unk_10, 0);
     ov20_021D4638(param0);
 
     v0 = ov20_021D1FE4(param0->unk_04);
@@ -308,10 +308,10 @@ static void ov20_021D45AC (UnkStruct_ov20_021D4210 * param0, int param1)
     }
 
     if (v0 < v1) {
-        sub_0201AE78(&param0->unk_10, 0, 0, v0, 26 * 8, (v1 - v0));
+        BGL_WindowColor(&param0->unk_10, 0, 0, v0, 26 * 8, (v1 - v0));
     } else {
-        sub_0201AE78(&param0->unk_10, 0, 0, v0, 26 * 8, 256 - v0);
-        sub_0201AE78(&param0->unk_10, 0, 0, 0, 26 * 8, v1);
+        BGL_WindowColor(&param0->unk_10, 0, 0, v0, 26 * 8, 256 - v0);
+        BGL_WindowColor(&param0->unk_10, 0, 0, 0, 26 * 8, v1);
     }
 }
 
@@ -332,7 +332,7 @@ static void ov20_021D4658 (UnkStruct_ov20_021D4210 * param0, u32 param1, u32 par
     } else {
         u32 v0 = 256 - param2;
 
-        sub_0201ADA4(&param0->unk_20, 0);
+        BGL_FillWindow(&param0->unk_20, 0);
         sub_0201D78C(&param0->unk_20, 0, param0->unk_3C, 0, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         sub_0201ADDC(&param0->unk_10, param0->unk_20.unk_0C, 0, 0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, param2, 12 * 8, v0);
         sub_0201ADDC(&param0->unk_10, param0->unk_20.unk_0C, 0, v0, 12 * 8, 2 * 8, 0 + (param1 & 1) * 112, 0, 12 * 8, (2 * 8) - v0);

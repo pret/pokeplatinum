@@ -1,15 +1,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/pokemon.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
+#include "pokemon.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
 #include "constdata/const_020EA358.h"
 
 #include "struct_defs/struct_0208BE5C.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0202FF4C.h"
 #include "unk_02051D8C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -56,7 +56,7 @@ BOOL ov104_022338E0(UnkStruct_ov104_0222E930 * param0);
 BOOL ov104_022338FC(UnkStruct_ov104_0222E930 * param0);
 BOOL ov104_0223392C(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_0223394C(UnkStruct_ov104_0222E930 * param0);
-void ov104_022338B4(UnkStruct_0201CD38 * param0, void * param1);
+void ov104_022338B4(SysTask * param0, void * param1);
 BOOL ov104_0223397C(UnkStruct_ov104_0222E930 * param0);
 static void ov104_02233478(void * param0);
 
@@ -133,7 +133,7 @@ BOOL ov104_02233324 (UnkStruct_ov104_0222E930 * param0)
 BOOL ov104_0223338C (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_ov104_0223ADA0 * v0;
-    UnkStruct_ov6_02240D5C * v1;
+    BattleParams * v1;
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
     v1 = v0->unk_4FC;
@@ -146,7 +146,7 @@ BOOL ov104_0223338C (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_022333B4 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_ov6_02240D5C * v0;
+    BattleParams * v0;
     UnkStruct_ov104_0223ADA0 * v1;
     UnkStruct_ov104_02230BE4 * v2 = sub_0209B970(param0->unk_00->unk_00);
 
@@ -305,9 +305,9 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
         *v15 = v4->unk_3F0[v13].unk_04[v14];
         break;
     case 17:
-        v3 = AllocMonZeroed(11);
+        v3 = Pokemon_New(11);
         ov104_0222DF40(&v4->unk_3F0[v13], v3, ov104_0223ADA0(v4));
-        *v15 = GetMonData(v3, MON_DATA_177, NULL);
+        *v15 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
         Heap_FreeToHeap(v3);
         break;
     case 18:
@@ -317,13 +317,13 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
             v0[v10] = 0;
         }
 
-        v3 = AllocMonZeroed(11);
+        v3 = Pokemon_New(11);
 
         for (v10 = 0; v10 < v5; v10++) {
             ov104_0222DF40(&v4->unk_3F0[v10], v3, ov104_0223ADA0(v4));
 
-            v7 = GetMonData(v3, MON_DATA_177, NULL);
-            v8 = GetMonData(v3, MON_DATA_178, NULL);
+            v7 = Pokemon_GetValue(v3, MON_DATA_TYPE_1, NULL);
+            v8 = Pokemon_GetValue(v3, MON_DATA_TYPE_2, NULL);
 
             if (v7 == v8) {
                 v8 = 0xff;
@@ -387,11 +387,11 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
         sub_0201C3C0(v1->unk_00, 3);
         break;
     case 31:
-        v4->unk_500 = sub_0200D9E8(ov104_022338B4, ov104_0222E924(param0->unk_00), 5);
+        v4->unk_500 = SysTask_Start(ov104_022338B4, ov104_0222E924(param0->unk_00), 5);
         break;
     case 32:
         if (v4->unk_500 != NULL) {
-            sub_0200DA58(v4->unk_500);
+            SysTask_Done(v4->unk_500);
             v4->unk_500 = NULL;
         }
         break;
@@ -404,7 +404,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
 
         for (v10 = 0; v10 < v6; v10++) {
             v3 = Party_GetPokemonBySlotIndex(v4->unk_4D4, v10);
-            sub_0200B538(param0->unk_00->unk_44, v10, sub_02076B10(v3));
+            sub_0200B538(param0->unk_00->unk_44, v10, Pokemon_GetBoxPokemon(v3));
         }
         break;
     case 35:
@@ -442,7 +442,7 @@ BOOL ov104_022334DC (UnkStruct_ov104_0222E930 * param0)
     return 0;
 }
 
-void ov104_022338B4 (UnkStruct_0201CD38 * param0, void * param1)
+void ov104_022338B4 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov104_0223C4CC * v1 = param1;

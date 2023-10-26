@@ -2,7 +2,7 @@
 #include <nitro/wvr.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 
 #include "struct_defs/struct_02014A84.h"
 #include "struct_defs/struct_0202610C.h"
@@ -12,7 +12,7 @@
 #include "unk_02014A84.h"
 #include "unk_02017728.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202602C.h"
 #include "unk_02030EE0.h"
 #include "unk_0203266C.h"
@@ -32,7 +32,7 @@ typedef struct {
     int unk_14F4;
     u8 unk_14F8;
     u8 unk_14F9;
-    UnkStruct_02025E6C * unk_14FC;
+    TrainerInfo * unk_14FC;
     UnkStruct_0202610C * unk_1500;
     u32 unk_1504;
     u32 unk_1508;
@@ -68,7 +68,7 @@ static UnkStruct_021C07C0 * Unk_021C07C0 = NULL;
 static u16 Unk_021C07B8 = 0;
 static volatile int Unk_021C07BC;
 
-void sub_02033200 (UnkStruct_02025E6C * param0, BOOL param1)
+void sub_02033200 (TrainerInfo * param0, BOOL param1)
 {
     int v0;
 
@@ -534,7 +534,7 @@ int sub_0203394C (void)
     return v0;
 }
 
-void sub_020339AC (int param0, UnkStruct_02025E6C * param1)
+void sub_020339AC (int param0, TrainerInfo * param1)
 {
     int v0, v1;
     UnkStruct_0203330C * v2;
@@ -544,7 +544,7 @@ void sub_020339AC (int param0, UnkStruct_02025E6C * param1)
     for (v0 = 0; v0 < 16; ++v0) {
         if (Unk_021C07C0->unk_14C8[v0] != 0) {
             if (param0 == v1) {
-                sub_02025E80(sub_02033FB0(v0), param1);
+                TrainerInfo_Copy(sub_02033FB0(v0), param1);
                 return;
             }
 
@@ -602,7 +602,7 @@ void sub_02033A5C (void)
 static void sub_02033AA8 (void)
 {
     u8 v0[6];
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     UnkStruct_0203330C * v2;
     UnkStruct_02034168 * v3;
     int v4 = sub_0203895C();
@@ -613,13 +613,13 @@ static void sub_02033AA8 (void)
         v2 = (UnkStruct_0203330C *)Unk_021C07C0->unk_150C;
 
         GF_ASSERT(32 >= sub_0202602C());
-        GF_ASSERT(32 == sub_02025E68());
+        GF_ASSERT(32 == TrainerInfo_Size());
         GF_ASSERT(WM_SIZE_USER_GAMEINFO >= MATH_MAX(sizeof(UnkStruct_02034168), sizeof(UnkStruct_0203330C)));
 
-        MI_CpuCopy8(v1, v2->unk_10, sub_02025E68());
+        MI_CpuCopy8(v1, v2->unk_10, TrainerInfo_Size());
         MI_CpuCopy8(Unk_021C07C0->unk_1500, v2->unk_30, sub_0202602C());
 
-        v2->unk_00 = sub_02025F20(v1);
+        v2->unk_00 = TrainerInfo_ID(v1);
         v2->unk_04 = sub_0203895C();
         v2->unk_05 = sub_02038974();
 
@@ -629,7 +629,7 @@ static void sub_02033AA8 (void)
     } else {
         v3 = (UnkStruct_02034168 *)Unk_021C07C0->unk_150C;
 
-        v3->unk_00 = sub_02025F20(v1);
+        v3->unk_00 = TrainerInfo_ID(v1);
         v3->unk_04 = sub_0203895C();
         v3->unk_05 = sub_02038974();
 
@@ -885,14 +885,14 @@ UnkStruct_0203330C * sub_02033F6C (int param0)
     return NULL;
 }
 
-UnkStruct_02025E6C * sub_02033F9C (void)
+TrainerInfo * sub_02033F9C (void)
 {
     return Unk_021C07C0->unk_14FC;
 }
 
-UnkStruct_02025E6C * sub_02033FB0 (int param0)
+TrainerInfo * sub_02033FB0 (int param0)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     UnkStruct_0203330C * v1;
 
     if (Unk_021C07C0->unk_14C8[param0] == 0) {
@@ -900,7 +900,7 @@ UnkStruct_02025E6C * sub_02033FB0 (int param0)
     }
 
     v1 = (UnkStruct_0203330C *)Unk_021C07C0->unk_188[param0].gameInfo.userGameInfo;
-    v0 = (UnkStruct_02025E6C *)&v1->unk_10[0];
+    v0 = (TrainerInfo *)&v1->unk_10[0];
 
     return v0;
 }

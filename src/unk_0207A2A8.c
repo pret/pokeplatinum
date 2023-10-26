@@ -1,35 +1,35 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_02098700_decl.h"
 
 #include "struct_defs/struct_0202610C.h"
 
 #include "unk_0202602C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A2A8.h"
 #include "unk_02098700.h"
 
-UnkStruct_02098700 * sub_0207A2A8 (int param0)
+HeightWeightData * sub_0207A2A8 (int param0)
 {
-    UnkStruct_02098700 * v0 = sub_02098700(param0);
+    HeightWeightData * v0 = Pokedex_HeightWeightData(param0);
 
-    sub_0209872C(v0, 0, param0);
+    Pokedex_HeightWeightData_Load(v0, 0, param0);
     return v0;
 }
 
-void sub_0207A2C0 (UnkStruct_02098700 * param0)
+void sub_0207A2C0 (HeightWeightData * param0)
 {
-    sub_020987BC(param0);
-    sub_02098718(param0);
+    Pokedex_HeightWeightData_Release(param0);
+    Pokedex_HeightWeightData_Free(param0);
 }
 
-BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const UnkStruct_02098700 * param2)
+BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const HeightWeightData * param2)
 {
-    u16 v0 = (u16)GetMonData(param1, MON_DATA_SPECIES, NULL);
+    u16 v0 = (u16)Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     int v1, v2, v3;
 
     if (param0 == NULL) {
@@ -38,11 +38,11 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const Un
 
     v1 = sub_02026074(param0, 2);
 
-    if (GetMonData(param1, MON_DATA_161, NULL) > v1) {
+    if (Pokemon_GetValue(param1, MON_DATA_LEVEL, NULL) > v1) {
         return 0;
     }
 
-    if (GetMonData(param1, MON_DATA_IS_EGG, NULL) != 0) {
+    if (Pokemon_GetValue(param1, MON_DATA_IS_EGG, NULL) != 0) {
         return 0;
     }
 
@@ -73,7 +73,7 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const Un
     v1 = sub_02026074(param0, 7) * 10;
 
     if (v1 != 0) {
-        v3 = sub_02098828(param2, v0);
+        v3 = Pokedex_HeightWeightData_Weight(param2, v0);
 
         if (v1 > 0) {
             if (v3 < v1) {
@@ -97,7 +97,7 @@ BOOL sub_0207A2D0 (const UnkStruct_0202610C * param0, Pokemon * param1, const Un
     return 1;
 }
 
-int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const UnkStruct_02098700 * param2, u8 * param3)
+int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const HeightWeightData * param2, u8 * param3)
 {
     Pokemon * v0;
     int v1, v2 = 0, v3, v4, v5 = 0;
@@ -132,10 +132,10 @@ int sub_0207A3AC (const UnkStruct_0202610C * param0, Party * param1, const UnkSt
                 return 5;
             }
 
-            v6[v4] = (u16)GetMonData(v0, MON_DATA_SPECIES, NULL);
-            v7[v4] = (u16)GetMonData(v0, MON_DATA_HELD_ITEM, NULL);
+            v6[v4] = (u16)Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+            v7[v4] = (u16)Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
 
-            v5 += GetMonData(v0, MON_DATA_161, NULL);
+            v5 += Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
         }
     }
 
@@ -204,7 +204,7 @@ static BOOL sub_0207A514 (u16 * param0, u16 * param1, u16 * param2, int param3, 
     return 0;
 }
 
-int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const UnkStruct_02098700 * param2)
+int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const HeightWeightData * param2)
 {
     Pokemon * v0;
     int v1, v2, v3, v4, v5 = 0;
@@ -218,8 +218,8 @@ int sub_0207A594 (const UnkStruct_0202610C * param0, Party * param1, const UnkSt
 
     for (v4 = 0; v4 < v2; v4++) {
         v0 = Party_GetPokemonBySlotIndex(param1, v4);
-        v6[v4] = (u16)GetMonData(v0, MON_DATA_SPECIES, NULL);
-        v7[v4] = GetMonData(v0, MON_DATA_161, NULL);
+        v6[v4] = (u16)Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+        v7[v4] = Pokemon_GetValue(v0, MON_DATA_LEVEL, NULL);
 
         if (sub_0207A2D0(param0, v0, param2) == 0) {
             v6[v4] = 0;

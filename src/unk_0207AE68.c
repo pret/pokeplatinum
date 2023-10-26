@@ -1,15 +1,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -38,7 +38,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -61,7 +61,7 @@
 #include "unk_0202CD50.h"
 #include "unk_020393C8.h"
 #include "unk_02056720.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207AE68.h"
 #include "unk_0207C63C.h"
@@ -69,13 +69,13 @@
 #include "unk_0208C324.h"
 
 UnkStruct_0207AE68 * sub_0207AE68(Party * param0, Pokemon * param1, int param2, UnkStruct_020279FC * param3, int param4, UnkStruct_02026324 * param5, UnkStruct_0207D3C0 * param6, UnkStruct_0202CD88 * param7, UnkStruct_02056B24 * param8, int param9, int param10, int param11);
-static void sub_0207B0A0(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0207B0A0(SysTask * param0, void * param1);
 BOOL sub_0207B0D0(UnkStruct_0207AE68 * param0);
 void sub_0207B0E0(UnkStruct_0207AE68 * param0);
 static void sub_0207B180(UnkStruct_0207AE68 * param0);
 static void sub_0207C028(UnkStruct_0207AE68 * param0);
-static void sub_0207C1CC(UnkStruct_0207AE68 * param0, UnkStruct_02018340 * param1);
-static void sub_0207C460(UnkStruct_02018340 * param0);
+static void sub_0207C1CC(UnkStruct_0207AE68 * param0, BGL * param1);
+static void sub_0207C460(BGL * param0);
 static void sub_0207C498(UnkStruct_0207AE68 * param0);
 static void sub_0207C520(void * param0);
 static u8 sub_0207C584(UnkStruct_0207AE68 * param0, int param1);
@@ -112,11 +112,11 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
 
     v0->unk_24 = param0;
     v0->unk_28 = param1;
-    v0->unk_60 = GetMonData(param1, MON_DATA_SPECIES, NULL);
-    v0->unk_86 = GetMonData(param1, MON_DATA_FORM, NULL);
+    v0->unk_60 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    v0->unk_86 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
     v0->unk_62 = param2;
     v0->unk_5C = param11;
-    v0->unk_80 = NARC_ctor(147, param11);
+    v0->unk_80 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param11);
 
     sub_02078A4C(v0->unk_80, &(v0->unk_84), v0->unk_60, 1);
     sub_02078A4C(v0->unk_80, &(v0->unk_85), v0->unk_62, 1);
@@ -138,15 +138,15 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     sub_0207C664();
     sub_0207C730();
     sub_0207C1CC(v0, v0->unk_00);
-    sub_0201A7E8(v0->unk_00, v0->unk_04, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
-    sub_0201ADA4(v0->unk_04, 0xff);
+    BGL_AddWindow(v0->unk_00, v0->unk_04, 1, 2, 0x13, 27, 4, 11, ((18 + 12) + 1));
+    BGL_FillWindow(v0->unk_04, 0xff);
     sub_0200E060(v0->unk_04, 0, 1, 10);
 
     v0->unk_18 = sub_0200762C(param11);
     v0->unk_44 = sub_02015F84(param11, 1, 0);
     v0->unk_67 = 0;
     v0->unk_66 = 2;
-    v0->unk_08 = sub_0200B144(1, 26, 368, param11);
+    v0->unk_08 = MessageLoader_Init(1, 26, 368, param11);
     v0->unk_0C = sub_0200B358(param11);
     v0->unk_10 = Strbuf_Init((2 * 160), param11);
     v0->unk_3C = Heap_AllocFromHeap(param11, sizeof(UnkStruct_02098D38));
@@ -168,14 +168,14 @@ UnkStruct_0207AE68 * sub_0207AE68 (Party * param0, Pokemon * param1, int param2,
     v0->unk_58 = sub_0201567C(v0->unk_14, 0, 0xb, param11);
 
     sub_02015738(v0->unk_58, 1);
-    sub_0200D9E8(sub_0207B0A0, v0, 0);
+    SysTask_Start(sub_0207B0A0, v0, 0);
     sub_02002AC8(1);
     sub_02039734();
 
     return v0;
 }
 
-static void sub_0207B0A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0207B0A0 (SysTask * param0, void * param1)
 {
     UnkStruct_0207AE68 * v0 = (UnkStruct_0207AE68 *)param1;
 
@@ -185,7 +185,7 @@ static void sub_0207B0A0 (UnkStruct_0201CD38 * param0, void * param1)
     sub_020241BC(GX_SORTMODE_MANUAL, GX_BUFFERMODE_Z);
 
     if (v0->unk_67) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
@@ -211,7 +211,7 @@ void sub_0207B0E0 (UnkStruct_0207AE68 * param0)
     sub_02015FB8(param0->unk_44);
     sub_020242C4(param0->unk_34);
     sub_0207C460(param0->unk_00);
-    sub_0200B190(param0->unk_08);
+    MessageLoader_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_0C);
     Heap_FreeToHeap(param0->unk_10);
     Heap_FreeToHeap(param0->unk_3C);
@@ -250,7 +250,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         }
     }
 
-    if ((param0->unk_7C & 0x1) && (param0->unk_64 == 8) && (Unk_021BF67C.unk_48 & PAD_BUTTON_B)) {
+    if ((param0->unk_7C & 0x1) && (param0->unk_64 == 8) && (gCoreSys.padInput & PAD_BUTTON_B)) {
         sub_02003178(param0->unk_14, ((0x1 | 0x2 | 0x4 | 0x8)), (0xc00 ^ 0xffff), 0, 0, 16, 0x7fff);
         param0->unk_64 = 41;
     }
@@ -279,7 +279,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         }
         break;
     case 3:
-        if (sub_0201D724(param0->unk_65) == 0) {
+        if (Message_Printing(param0->unk_65) == 0) {
             param0->unk_64 = 4;
         }
         break;
@@ -295,7 +295,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             }
 
             sub_0200590C(param0->unk_60, param0->unk_84, param0->unk_86);
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
 
             if (param0->unk_7C & 0x2) {
                 param0->unk_65 = sub_0207C584(param0, 917);
@@ -307,7 +307,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         }
         break;
     case 5:
-        if ((sub_0201D724(param0->unk_65) == 0) && (sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[0]) == 0)) {
+        if ((Message_Printing(param0->unk_65) == 0) && (sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[0]) == 0)) {
             sub_02015738(param0->unk_58, 1);
             sub_02005474(1141);
             param0->unk_66 = 20;
@@ -328,7 +328,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
                 sub_020086FC(param0->unk_1C[1], 0, 16, 4, 0x7fff);
 
                 GF_ASSERT(Heap_FndGetTotalFreeSizeForExpHeap(param0->unk_5C) > 0x8000);
-                sub_02005748(1529);
+                Sound_PlayEffect(1529);
             }
             param0->unk_66 = 40;
             param0->unk_64++;
@@ -347,7 +347,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             sub_0207C8C4(param0->unk_30, 8);
             sub_0207C8C4(param0->unk_30, 9);
             sub_0207C8C4(param0->unk_30, 11);
-            sub_02005748(1530);
+            Sound_PlayEffect(1530);
             param0->unk_70 = 0x10;
             param0->unk_71 = 8;
             param0->unk_64++;
@@ -365,7 +365,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             sub_02007DEC(param0->unk_1C[0], 13, 0x0);
             sub_02007DEC(param0->unk_1C[1], 12, 0x100);
             sub_02007DEC(param0->unk_1C[1], 13, 0x100);
-            sub_02005748(1531);
+            Sound_PlayEffect(1531);
             param0->unk_70 = 0;
             param0->unk_66 = 8;
             param0->unk_64++;
@@ -382,7 +382,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
                 sub_0207C8C4(param0->unk_30, 12);
                 sub_02003178(param0->unk_14, ((0x1 | 0x2 | 0x4 | 0x8)), (0xc00 ^ 0xffff), 4, 16, 0, 0x7fff);
                 sub_0200872C(param0->unk_18, 16, 0, 3, 0x7fff);
-                sub_02005748(1532);
+                Sound_PlayEffect(1532);
                 param0->unk_64++;
             }
         }
@@ -404,26 +404,26 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         break;
     case 11:
         if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[1]) == 0)) {
-            sub_02074B30(param0->unk_28, 5, (u8 *)&param0->unk_62);
-            sub_0207803C(param0->unk_28);
-            sub_0207418C(param0->unk_28);
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
-            sub_0200B538(param0->unk_0C, 1, sub_02076B10(param0->unk_28));
+            Pokemon_SetValue(param0->unk_28, 5, (u8 *)&param0->unk_62);
+            Pokemon_CalcAbility(param0->unk_28);
+            Pokemon_CalcLevelAndStats(param0->unk_28);
+            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+            sub_0200B538(param0->unk_0C, 1, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 918);
             param0->unk_66 = 40;
             param0->unk_64++;
         }
         break;
     case 12:
-        if (sub_0201D724(param0->unk_65) == 0) {
+        if (Message_Printing(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 sub_0202736C(param0->unk_48, param0->unk_28);
                 sub_0202CF28(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
-                sub_02056A48(param0->unk_54, sub_02076B10(param0->unk_28));
+                sub_02056A48(param0->unk_54, Pokemon_GetBoxPokemon(param0->unk_28));
 
-                if (GetMonData(param0->unk_28, MON_DATA_77, NULL) == 0) {
-                    sub_02074B30(param0->unk_28, 179, NULL);
+                if (Pokemon_GetValue(param0->unk_28, MON_DATA_HAS_NICKNAME, NULL) == 0) {
+                    Pokemon_SetValue(param0->unk_28, 179, NULL);
                 }
 
                 param0->unk_64++;
@@ -434,7 +434,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     {
         u16 v3;
 
-        switch (sub_0207727C(param0->unk_28, &param0->unk_68, &v3)) {
+        switch (Pokemon_LevelUpMove(param0->unk_28, &param0->unk_68, &v3)) {
         case 0xfffe:
             break;
         case 0x0:
@@ -445,7 +445,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
             param0->unk_64 = 14;
             break;
         default:
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             sub_0200B630(param0->unk_0C, 1, v3);
             param0->unk_65 = sub_0207C584(param0, 4);
             param0->unk_66 = 30;
@@ -455,14 +455,14 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     }
     break;
     case 14:
-        sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1193);
         param0->unk_66 = 30;
         param0->unk_64++;
         break;
     case 16:
-        sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         param0->unk_65 = sub_0207C584(param0, 1194);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -479,7 +479,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     case 28:
     case 30:
     case 33:
-        if (sub_0201D724(param0->unk_65) == 0) {
+        if (Message_Printing(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 param0->unk_64++;
             }
@@ -562,7 +562,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
     case 35:
         switch (sub_02002114(param0->unk_40, param0->unk_5C)) {
         case 0:
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
             param0->unk_65 = sub_0207C584(param0, 1198);
             param0->unk_66 = 30;
@@ -575,7 +575,7 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         break;
         break;
     case 36:
-        if (sub_0201D724(param0->unk_65) == 0) {
+        if (Message_Printing(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 param0->unk_64 = 13;
             }
@@ -587,8 +587,8 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         param0->unk_64++;
         break;
     case 27:
-        sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
-        sub_0200B630(param0->unk_0C, 1, GetMonData(param0->unk_28, 54 + param0->unk_6E, NULL));
+        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
+        sub_0200B630(param0->unk_0C, 1, Pokemon_GetValue(param0->unk_28, 54 + param0->unk_6E, NULL));
         param0->unk_65 = sub_0207C584(param0, 1200);
         param0->unk_66 = 30;
         param0->unk_64++;
@@ -599,17 +599,17 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         param0->unk_64++;
         break;
     case 31:
-        sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+        sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
         sub_0200B630(param0->unk_0C, 1, param0->unk_6C);
         param0->unk_65 = sub_0207C584(param0, 1202);
         param0->unk_66 = 0;
-        sub_02074B30(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
-        sub_02077230(param0->unk_28, param0->unk_6C, param0->unk_6E);
+        Pokemon_SetValue(param0->unk_28, 62 + param0->unk_6E, &param0->unk_66);
+        Pokemon_SetMoveSlot(param0->unk_28, param0->unk_6C, param0->unk_6E);
         param0->unk_66 = 30;
         param0->unk_64 = 37;
         break;
     case 37:
-        if (sub_0201D724(param0->unk_65) == 0) {
+        if (Message_Printing(param0->unk_65) == 0) {
             param0->unk_64++;
         }
         break;
@@ -668,14 +668,14 @@ static void sub_0207B180 (UnkStruct_0207AE68 * param0)
         break;
     case 43:
         if ((sub_0200598C() == 0) && (sub_020160F4(param0->unk_44, 0) == 1) && (sub_02007C24(param0->unk_1C[0]) == 0)) {
-            sub_0200B5CC(param0->unk_0C, 0, sub_02076B10(param0->unk_28));
+            sub_0200B5CC(param0->unk_0C, 0, Pokemon_GetBoxPokemon(param0->unk_28));
             param0->unk_65 = sub_0207C584(param0, 919);
             param0->unk_66 = 20;
             param0->unk_64++;
         }
         break;
     case 44:
-        if (sub_0201D724(param0->unk_65) == 0) {
+        if (Message_Printing(param0->unk_65) == 0) {
             if (--param0->unk_66 == 0) {
                 sub_02003178(param0->unk_14, ((0x1 | 0x2 | 0x4 | 0x8)), 0xffff, 1, 0, 16, 0x0);
                 sub_0200872C(param0->unk_18, 0, 16, 0, 0x0);
@@ -705,56 +705,56 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
                 UnkStruct_0202818C * v3;
                 UnkStruct_0202CA28 v4;
 
-                v1 = AllocMonZeroed(param0->unk_5C);
-                sub_020775EC(param0->unk_28, v1);
+                v1 = Pokemon_New(param0->unk_5C);
+                Pokemon_Copy(param0->unk_28, v1);
 
                 v2 = 292;
-                sub_02074B30(v1, 5, &v2);
+                Pokemon_SetValue(v1, 5, &v2);
 
                 v2 = 4;
-                sub_02074B30(v1, 155, &v2);
+                Pokemon_SetValue(v1, 155, &v2);
 
                 v2 = 0;
-                sub_02074B30(v1, 6, &v2);
-                sub_02074B30(v1, 11, &v2);
+                Pokemon_SetValue(v1, 6, &v2);
+                Pokemon_SetValue(v1, 11, &v2);
 
                 for (v0 = 25; v0 < 53 + 1; v0++) {
-                    sub_02074B30(v1, v0, &v2);
+                    Pokemon_SetValue(v1, v0, &v2);
                 }
 
                 for (v0 = 78; v0 < 109 + 1; v0++) {
-                    sub_02074B30(v1, v0, &v2);
+                    Pokemon_SetValue(v1, v0, &v2);
                 }
 
                 for (v0 = 123; v0 < 143 + 1; v0++) {
-                    sub_02074B30(v1, v0, &v2);
+                    Pokemon_SetValue(v1, v0, &v2);
                 }
 
-                sub_02074B30(v1, 179, NULL);
-                sub_02074B30(v1, 77, &v2);
-                sub_02074B30(v1, 160, &v2);
+                Pokemon_SetValue(v1, 179, NULL);
+                Pokemon_SetValue(v1, 77, &v2);
+                Pokemon_SetValue(v1, 160, &v2);
 
                 v3 = sub_0202818C(param0->unk_5C);
-                sub_02074B30(v1, 170, v3);
+                Pokemon_SetValue(v1, 170, v3);
                 Heap_FreeToHeap(v3);
-                sub_02074B30(v1, 162, &v2);
+                Pokemon_SetValue(v1, 162, &v2);
 
                 MI_CpuClearFast(&v4, sizeof(UnkStruct_0202CA28));
 
-                sub_02074B30(v1, 171, (UnkStruct_0202CA28 *)&v4);
-                sub_0207803C(v1);
+                Pokemon_SetValue(v1, 171, (UnkStruct_0202CA28 *)&v4);
+                Pokemon_CalcAbility(v1);
 
-                v0 = sub_02075D6C(v1);
-                sub_02074B30(v1, 111, &v0);
+                v0 = Pokemon_GetGender(v1);
+                Pokemon_SetValue(v1, 111, &v0);
 
-                sub_0207418C(v1);
+                Pokemon_CalcLevelAndStats(v1);
                 Party_AddPokemon(param0->unk_24, v1);
                 sub_0202736C(param0->unk_48, v1);
                 sub_0202CF28(param0->unk_50, (1 + 11));
                 sub_0202CFEC(param0->unk_50, 22);
-                sub_02056A48(param0->unk_54, sub_02076B10(v1));
+                sub_02056A48(param0->unk_54, Pokemon_GetBoxPokemon(v1));
                 Heap_FreeToHeap(v1);
-                sub_0207D60C(param0->unk_4C, 4, 1, param0->unk_5C);
+                Bag_SubtractItem(param0->unk_4C, 4, 1, param0->unk_5C);
             }
         }
         break;
@@ -762,12 +762,12 @@ static void sub_0207C028 (UnkStruct_0207AE68 * param0)
     case 18:
     case 19:
         v0 = 0;
-        sub_02074B30(param0->unk_28, 6, &v0);
+        Pokemon_SetValue(param0->unk_28, 6, &v0);
         break;
     }
 }
 
-static void sub_0207C1CC (UnkStruct_0207AE68 * param0, UnkStruct_02018340 * param1)
+static void sub_0207C1CC (UnkStruct_0207AE68 * param0, BGL * param1)
 {
     GXLayers_DisableEngineALayers();
 
@@ -900,11 +900,11 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, UnkStruct_02018340 * para
         sub_0200E218(param1, 1, 1, 10, v4, param0->unk_5C);
         sub_02006E3C(v5, v6, param1, v9, 0, 0, 1, param0->unk_5C);
         sub_02006E60(v5, v7, param1, v9, 0, 0, 1, param0->unk_5C);
-        sub_02003050(param0->unk_14, v5, v8, param0->unk_5C, 0, 0x20 * 2, 0);
-        sub_02003050(param0->unk_14, 38, sub_0200DD08(v4), param0->unk_5C, 0, 0x20, 10 * 0x10);
-        sub_02003050(param0->unk_14, 14, 7, param0->unk_5C, 0, 0x20, 0xb * 0x10);
-        sub_0200DA60(param0->unk_00, 2, 1, 0, param0->unk_5C);
-        sub_02003050(param0->unk_14, 38, sub_0200DAA0(), param0->unk_5C, 0, 0x20, 8 * 0x10);
+        PaletteSys_LoadPalette(param0->unk_14, v5, v8, param0->unk_5C, 0, 0x20 * 2, 0);
+        PaletteSys_LoadPalette(param0->unk_14, 38, sub_0200DD08(v4), param0->unk_5C, 0, 0x20, 10 * 0x10);
+        PaletteSys_LoadPalette(param0->unk_14, 14, 7, param0->unk_5C, 0, 0x20, 0xb * 0x10);
+        Window_SetFrame(param0->unk_00, 2, 1, 0, param0->unk_5C);
+        PaletteSys_LoadPalette(param0->unk_14, 38, Window_FramePalette(), param0->unk_5C, 0, 0x20, 8 * 0x10);
     }
 
     {
@@ -916,7 +916,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, UnkStruct_02018340 * para
 
         sub_02006E3C(v10, v11, param1, v14, 0, 0, 1, param0->unk_5C);
         sub_02006E60(v10, v12, param1, v14, 0, 0, 1, param0->unk_5C);
-        sub_02003050(param0->unk_14, v10, v13, param0->unk_5C, 1, 0x20 * 1, 0);
+        PaletteSys_LoadPalette(param0->unk_14, v10, v13, param0->unk_5C, 1, 0x20 * 1, 0);
     }
 
     GX_SetVisibleWnd(GX_WNDMASK_W0);
@@ -934,7 +934,7 @@ static void sub_0207C1CC (UnkStruct_0207AE68 * param0, UnkStruct_02018340 * para
     sub_02017798(sub_0207C520, param0);
 }
 
-static void sub_0207C460 (UnkStruct_02018340 * param0)
+static void sub_0207C460 (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 0);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 0);
@@ -952,11 +952,11 @@ static void sub_0207C498 (UnkStruct_0207AE68 * param0)
     sub_02075EF4(&v0, param0->unk_28, 2);
 
     param0->unk_1C[0] = sub_02007C34(param0->unk_18, &v0, 128, 80, 0, 0, NULL, NULL);
-    v1 = AllocMonZeroed(param0->unk_5C);
+    v1 = Pokemon_New(param0->unk_5C);
 
-    sub_020775EC(param0->unk_28, v1);
-    sub_02074B30(v1, 5, (u8 *)&param0->unk_62);
-    sub_0207418C(v1);
+    Pokemon_Copy(param0->unk_28, v1);
+    Pokemon_SetValue(v1, 5, (u8 *)&param0->unk_62);
+    Pokemon_CalcLevelAndStats(v1);
     sub_02075EF4(&v0, v1, 2);
     Heap_FreeToHeap(v1);
 
@@ -984,11 +984,11 @@ static u8 sub_0207C584 (UnkStruct_0207AE68 * param0, int param1)
 {
     Strbuf* v0;
 
-    v0 = sub_0200B1EC(param0->unk_08, param1);
+    v0 = MessageLoader_GetNewStrbuf(param0->unk_08, param1);
 
     sub_0200C388(param0->unk_0C, param0->unk_10, v0);
     Heap_FreeToHeap(v0);
-    sub_0201ADA4(param0->unk_04, 0xff);
+    BGL_FillWindow(param0->unk_04, 0xff);
 
     return sub_0201D738(param0->unk_04, 1, param0->unk_10, 0, 0, sub_02027AC0(param0->unk_2C), sub_0207C5CC);
 }
@@ -1010,7 +1010,7 @@ static BOOL sub_0207C5CC (UnkStruct_0201D738 * param0, u16 param1)
         sub_02006150(1156);
         break;
     case 4:
-        sub_02005748(1510);
+        Sound_PlayEffect(1510);
         break;
     case 5:
         sub_02006150(1155);

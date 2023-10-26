@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "overlay100/struct_ov100_021D4104.h"
 
@@ -153,7 +153,7 @@ static void ov100_021D42B0 (UnkStruct_ov100_021D4104 * param0)
     if (v3 == 0) {
         param0->unk_28[2]++;
         param0->unk_28[2] %= NELEMS(v2);
-        param0->unk_28[2] = sub_0201D2E8() % NELEMS(v2);
+        param0->unk_28[2] = LCRNG_Next() % NELEMS(v2);
         param0->unk_0C = 3;
     }
 
@@ -172,8 +172,8 @@ static void ov100_021D4318 (UnkStruct_ov100_021D4104 * param0)
     if (param0->unk_20 < 12) {
         param0->unk_24++;
         param0->unk_24 %= 3;
-        param0->unk_28[0] = (sub_0201D2E8() % param0->unk_24) + 1;
-        param0->unk_28[1] = (sub_0201D2E8() % param0->unk_24) + 1;
+        param0->unk_28[0] = (LCRNG_Next() % param0->unk_24) + 1;
+        param0->unk_28[1] = (LCRNG_Next() % param0->unk_24) + 1;
         param0->unk_0C = 2;
     }
 
@@ -207,7 +207,7 @@ static void ov100_021D43BC (UnkStruct_ov100_021D4104 * param0)
     sub_0200D474(param0->unk_00, param0->unk_14);
 }
 
-void ov100_021D4414 (UnkStruct_0201CD38 * param0, void * param1)
+void ov100_021D4414 (SysTask * param0, void * param1)
 {
     UnkStruct_ov100_021D4104 * v0 = param1;
 
@@ -217,7 +217,7 @@ void ov100_021D4414 (UnkStruct_0201CD38 * param0, void * param1)
     sub_0200D33C(v0->unk_00);
 }
 
-void ov100_021D4438 (UnkStruct_0201CD38 * param0, void * param1)
+void ov100_021D4438 (SysTask * param0, void * param1)
 {
     UnkStruct_ov100_021D4104 * v0 = param1;
 

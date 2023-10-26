@@ -1,0 +1,23 @@
+{
+    "name": "Sand Tomb",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GROUND",
+    "power": 15,
+    "accuracy": 70,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_BIND_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 21,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

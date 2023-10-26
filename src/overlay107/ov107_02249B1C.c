@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 
 #include "overlay107/struct_ov107_02249954.h"
@@ -134,8 +134,8 @@ void ov107_02249C60 (UnkStruct_ov107_02249B8C * param0, u16 param1, u16 param2)
     ov107_02249BB8(param0, param1, param2);
     ov107_02249BAC(param0, 1);
 
-    sub_02005748(1507);
-    sub_02005748(1622);
+    Sound_PlayEffect(1507);
+    Sound_PlayEffect(1622);
 
     return;
 }

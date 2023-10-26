@@ -5,7 +5,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay007/struct_ov7_0224BEFC_decl.h"
 
-UnkStruct_ov7_0224BEFC * ov7_0224BE9C(u32 param0, UnkStruct_021C0794 * param1, UnkStruct_02018340 * param2);
+UnkStruct_ov7_0224BEFC * ov7_0224BE9C(u32 param0, SaveData * param1, BGL * param2);
 void ov7_0224BEFC(UnkStruct_ov7_0224BEFC * param0);
 BOOL ov7_0224BF2C(UnkStruct_ov7_0224BEFC * param0);
 

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -262,7 +262,7 @@ void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
 
     if (v2) {
         sub_0205F490(param0->unk_3C);
-        ov5_021D1CAC(&v1, param0, Unk_021BF67C.unk_48, Unk_021BF67C.unk_44);
+        ov5_021D1CAC(&v1, param0, gCoreSys.padInput, gCoreSys.unk_44);
     }
 
     v0 = param0->unk_70;
@@ -313,7 +313,7 @@ void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
                 ov5_021E0EEC(param0->unk_3C);
                 ov5_021EA714(param0, 0, 1);
             } else {
-                if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+                if (gCoreSys.padInput & PAD_BUTTON_A) {
                     ov5_021DDA78(param0->unk_04->unk_08);
                 }
 
@@ -339,7 +339,7 @@ void sub_0203CF5C (UnkStruct_0203CDB0 * param0)
                 ov5_021E0EEC(param0->unk_3C);
                 ov5_021EA714(param0, 0, 1);
             } else {
-                if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+                if (gCoreSys.padInput & PAD_BUTTON_A) {
                     ov5_021DDA78(param0->unk_04->unk_08);
                 }
 
@@ -380,13 +380,13 @@ struct UnkStruct_ov25_02253CE0_t * sub_0203D158 (void)
     return Unk_021C07DC->unk_04->unk_14;
 }
 
-UnkStruct_02018340 * sub_0203D170 (void * param0)
+BGL * sub_0203D170 (void * param0)
 {
     UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param0;
     return v0->unk_08;
 }
 
-UnkStruct_021C0794 * sub_0203D174 (void * param0)
+SaveData * sub_0203D174 (void * param0)
 {
     return ((UnkStruct_0203CDB0 *)param0)->unk_0C;
 }

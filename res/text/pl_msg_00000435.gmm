@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="4216" />
+	<row id="pl_msg_00000435_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Day-Care Couple</language>
+	</row>
+	<row id="pl_msg_00000435_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Link trade</language>
+	</row>
+	<row id="pl_msg_00000435_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Link trade</language>
+	</row>
+	<row id="pl_msg_00000435_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Kanto</language>
+	</row>
+	<row id="pl_msg_00000435_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Johto</language>
+	</row>
+	<row id="pl_msg_00000435_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hoenn</language>
+	</row>
+	<row id="pl_msg_00000435_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sinnoh</language>
+	</row>
+	<row id="pl_msg_00000435_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">----</language>
+	</row>
+	<row id="pl_msg_00000435_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Distant land</language>
+	</row>
+	<row id="pl_msg_00000435_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Traveling Man</language>
+	</row>
+	<row id="pl_msg_00000435_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley</language>
+	</row>
+	<row id="pl_msg_00000435_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia</language>
+	</row>
+	<row id="pl_msg_00000435_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mystery Zone</language>
+	</row>
+</body>

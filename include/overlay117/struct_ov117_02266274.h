@@ -1,10 +1,10 @@
 #ifndef POKEPLATINUM_STRUCT_OV117_02266274_H
 #define POKEPLATINUM_STRUCT_OV117_02266274_H
 
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 
 typedef struct {
-    UnkStruct_0200D0F4 * unk_00;
+    CellActorData * unk_00;
     s16 unk_04;
     s16 unk_06;
     s16 unk_08;

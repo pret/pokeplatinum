@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025CCC_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -20,12 +20,12 @@
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_0202C858.h"
 #include "unk_02030A80.h"
 #include "unk_0205C980.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020996D0.h"
 
 UnkStruct_02030A80 * sub_02030A80 (int param0)
@@ -43,9 +43,9 @@ void sub_02030A98 (UnkStruct_02030A80 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
+void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E38(param1);
+    TrainerInfo * v0 = sub_02025E38(param1);
     UnkStruct_0202C878 * v1 = sub_0202C878(param1);
     UnkStruct_02025CCC * v2 = sub_02025CCC(param1);
     const UnkStruct_0202783C * v3 = sub_02027848(param1);
@@ -57,10 +57,10 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
 
     sub_02027914(v3, &v4, &v5, &v6);
     MI_CpuClear8(param0, sizeof(UnkStruct_02030A80));
-    sub_020021B0(param0->unk_00, sub_02025EF0(v0));
+    GF_strcpy(param0->unk_00, TrainerInfo_Name(v0));
 
-    param0->unk_10 = sub_02025F20(v0);
-    param0->unk_14 = sub_02025F30(v0);
+    param0->unk_10 = TrainerInfo_ID(v0);
+    param0->unk_14 = TrainerInfo_Gender(v0);
     param0->unk_1C = v4;
     param0->unk_1B_1 = v5;
     param0->unk_1B_0 = v6;
@@ -74,7 +74,7 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, UnkStruct_021C0794 * param1)
     sub_02027938(v3, &param0->unk_20_val1);
 
     param0->unk_15 = v8.birthday.month;
-    param0->unk_16 = sub_0205CA14(sub_02025F30(v0), sub_02025F8C(v0), 0);
+    param0->unk_16 = sub_0205CA14(TrainerInfo_Gender(v0), TrainerInfo_Appearance(v0), 0);
     param0->unk_19 = GAME_VERSION;
     param0->unk_1A = GAME_LANGUAGE;
     param0->unk_7C.unk_00 = sub_0202486C(param1, param0, sizeof(UnkStruct_02030A80) - (sizeof(UnkStruct_0202F298_sub1)));
@@ -112,7 +112,7 @@ int sub_02030BCC (const UnkStruct_02030A80 * param0)
         return 0;
     }
 
-    return SanitizeFormId(param0->unk_1C, param0->unk_1B_1);
+    return Pokemon_SanitizeFormId(param0->unk_1C, param0->unk_1B_1);
 }
 
 int sub_02030BEC (const UnkStruct_02030A80 * param0)

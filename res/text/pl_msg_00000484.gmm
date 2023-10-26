@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54005" />
+	<row id="pl_msg_00000484_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy, traveler!\rSome of our customers are rowdy\ntypes that want to battle.\rDo what you will with them.\nI don’t mind.</language>
+	</row>
+	<row id="pl_msg_00000484_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How are ya doing?\nWhatcha having?\rCourse, all we ever have is\nMoomoo Milk.\rMoomoo Milk, $500 a bottle.\rWould you like to add some to your\ntraveling supplies?</language>
+	</row>
+	<row id="pl_msg_00000484_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here’s your Moomoo Milk.\nEnjoy.\r</language>
+	</row>
+	<row id="pl_msg_00000484_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nYour Bag’s full, sweetie.</language>
+	</row>
+	<row id="pl_msg_00000484_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh!\nYou don’t have the money, sweetie.</language>
+	</row>
+	<row id="pl_msg_00000484_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right, then.\rI should tell you, it’s not that we\ncan only get Moomoo Milk. No.\rWe choose to serve only Moomoo Milk.\nWe’re very particular about it.</language>
+	</row>
+	<row id="pl_msg_00000484_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Get your Moomoo Milk by the dozen.\nThat’s of course twelve to a dozen.\r</language>
+	</row>
+	<row id="pl_msg_00000484_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">1 BOTTLE</language>
+	</row>
+	<row id="pl_msg_00000484_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">1 DOZEN</language>
+	</row>
+	<row id="pl_msg_00000484_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO THANKS</language>
+	</row>
+	<row id="pl_msg_00000484_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Youngster, you’ve seen the\nPSYDUCK huddled outside?\rPSYDUCK are Pokémon that suffer from\nchronic headaches...\rI’m afraid we’ll have to wait for them\nto get better.</language>
+	</row>
+	<row id="pl_msg_00000484_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, well! So I hear you’ve relieved\nthe PSYDUCK of their headaches.\rThe person who gave you the\nSecretPotion must be quite the Trainer!</language>
+	</row>
+</body>

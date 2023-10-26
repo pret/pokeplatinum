@@ -1,0 +1,5 @@
+[wrap-git]
+url = https://github.com/red031000/nitrogfx.git
+revision = head
+depth = 1
+patch_directory = nitrogfx_patch

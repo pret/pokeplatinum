@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 
@@ -22,7 +22,7 @@
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -42,15 +42,15 @@
 #include "unk_020553DC.h"
 #include "unk_02055808.h"
 #include "unk_02070428.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 typedef struct {
     int unk_00;
     UnkStruct_0203CDB0 * unk_04;
-    UnkStruct_02018340 * unk_08;
-    UnkStruct_0205AA50 unk_0C;
-    UnkStruct_0200B144 * unk_1C;
+    BGL * unk_08;
+    Window unk_0C;
+    MessageLoader * unk_1C;
     UnkStruct_0200B358 * unk_20;
 } UnkStruct_02052AA4;
 
@@ -68,7 +68,7 @@ static const UnkStruct_ov61_0222C884 Unk_020EC2F0 = {
     0x1
 };
 
-static void sub_020528D0 (UnkStruct_02018340 * param0)
+static void sub_020528D0 (BGL * param0)
 {
     static const UnkStruct_02099F80 v0 = {
         GX_VRAM_BG_128_B,
@@ -128,7 +128,7 @@ static void sub_02052914 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * para
 
     sub_020528D0(v0->unk_08);
 
-    v0->unk_1C = sub_0200B144(1, 26, 373, 11);
+    v0->unk_1C = MessageLoader_Init(1, 26, 373, 11);
     v0->unk_20 = sub_0200B358(11);
 
     sub_0201A8D4(v0->unk_08, &v0->unk_0C, &Unk_020EC2F0);
@@ -156,27 +156,27 @@ static BOOL sub_020529C4 (UnkStruct_020508D4 * param0)
         v0->unk_00++;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_00++;
         }
         break;
     case 2:
-        if ((Unk_021BF67C.unk_48 & PAD_BUTTON_A) || (Unk_021BF67C.unk_48 & PAD_BUTTON_B)) {
+        if ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_B)) {
             sub_0200F174(0, 0, 0, 0x0, 8, 1, 32);
             v0->unk_00++;
         }
         break;
     case 3:
-        if (sub_0200F2AC()) {
-            sub_0201ADA4(&v0->unk_0C, 0);
+        if (ScreenWipe_Done()) {
+            BGL_FillWindow(&v0->unk_0C, 0);
             v0->unk_00++;
         }
         break;
     case 4:
         sub_0200E084(&v0->unk_0C, 0);
-        sub_0201A8FC(&v0->unk_0C);
+        BGL_DeleteWindow(&v0->unk_0C);
         sub_0200B3F0(v0->unk_20);
-        sub_0200B190(v0->unk_1C);
+        MessageLoader_Free(v0->unk_1C);
         sub_02019044(v0->unk_08, 3);
         Heap_FreeToHeap(v0->unk_08);
         Heap_FreeToHeap(v0);
@@ -192,8 +192,8 @@ static void sub_02052AA4 (UnkStruct_02052AA4 * param0, u16 param1, u8 param2, u8
     Strbuf* v0 = Strbuf_Init(1024, 11);
     Strbuf* v1 = Strbuf_Init(1024, 11);
 
-    sub_0201ADA4(&param0->unk_0C, 0);
-    sub_0200B1B8(param0->unk_1C, param1, v0);
+    BGL_FillWindow(&param0->unk_0C, 0);
+    MessageLoader_GetStrbuf(param0->unk_1C, param1, v0);
     sub_0200C388(param0->unk_20, v1, v0);
 
     {
@@ -220,7 +220,7 @@ BOOL sub_02052B2C (UnkStruct_020508D4 * param0)
     case 0:
     {
         if ((v0 != NULL) && (v0->unk_0C != NULL)) {
-            sub_02077A9C(Party_GetFromSavedata(v0->unk_0C), 0);
+            Party_SetGiratinaForm(Party_GetFromSavedata(v0->unk_0C), 0);
         }
     }
 

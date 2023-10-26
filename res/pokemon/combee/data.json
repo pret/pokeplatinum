@@ -1,0 +1,63 @@
+{
+    "name": "Combee",
+    "base_stats": {
+        "hp": 30,
+        "attack": 30,
+        "defense": 42,
+        "speed": 70,
+        "special_attack": 30,
+        "special_defense": 42
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 63,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_HONEY",
+        "rare": "ITEM_HONEY"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_HONEY_GATHER",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": [
+                "MOVE_SWEET_SCENT",
+                "MOVE_GUST"
+            ],
+            "13": "MOVE_BUG_BITE"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_FEMALE",
+            21,
+            "SPECIES_VESPIQUEN"
+        ]
+    ]
+}

@@ -27,7 +27,7 @@
 #include "unk_0201D670.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay100/ov100_021D1C44.h"
 #include "overlay100/ov100_021D400C.h"
 #include "overlay100/ov100_021D44C0.h"
@@ -73,16 +73,16 @@ static void ov100_021D1C44 (UnkStruct_020203AC * param0, VecFx32 * param1)
 static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
 {
     NARC * v0 = param0->unk_1EBC->unk_00;
-    UnkStruct_02018340 * v1 = param0->unk_1EBC->unk_0C;
+    BGL * v1 = param0->unk_1EBC->unk_0C;
     UnkStruct_0200C6E4 * v2 = param0->unk_1EBC->unk_04;
     UnkStruct_0200C704 * v3 = param0->unk_1EBC->unk_08;
-    UnkStruct_02002F38 * v4 = param0->unk_1EBC->unk_10;
+    PaletteSys * v4 = param0->unk_1EBC->unk_10;
     int v5 = 50000;
 
     sub_020070E8(v0, 18, v1, 5, 0, 0, 0, 111);
     sub_0200710C(v0, 20, v1, 5, 0, 0, 0, 111);
-    sub_02003050(v4, 172, 19, 111, 1, 0x20 * 2, 0);
-    sub_02003050(v4, 172, 19, 111, 0, 0x20 * 2, 0);
+    PaletteSys_LoadPalette(v4, 172, 19, 111, 1, 0x20 * 2, 0);
+    PaletteSys_LoadPalette(v4, 172, 19, 111, 0, 0x20 * 2, 0);
 
     sub_0200CDC4(v4, 3, v2, v3, v0, 50, 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, v5);
     sub_0200CE24(v2, v3, v0, 48, 0, v5);
@@ -170,7 +170,7 @@ static void ov100_021D1C98 (UnkStruct_ov100_021D1C98 * param0)
     ov100_021D4AC8(&param0->unk_1A0.unk_10DC[1], 42, param0->unk_1EBC->unk_00);
     sub_02017348(&param0->unk_1A0.unk_10DC[1].unk_00, 0);
 
-    if (sub_02025F30(param0->unk_1EC0->unk_08) != 1) {
+    if (TrainerInfo_Gender(param0->unk_1EC0->unk_08) != 1) {
         ov100_021D4AC8(&param0->unk_1A0.unk_13EC[0], 61, param0->unk_1EBC->unk_00);
         ov100_021D4B4C(0, &param0->unk_1A0.unk_13EC[0], 62, param0->unk_1EBC->unk_00, &param0->unk_1EBC->unk_1C);
     } else {
@@ -197,10 +197,10 @@ static void ov100_021D2250 (UnkStruct_ov100_021D1C98 * param0)
 {
     int v0;
     NARC * v1 = param0->unk_1EBC->unk_00;
-    UnkStruct_02018340 * v2 = param0->unk_1EBC->unk_0C;
+    BGL * v2 = param0->unk_1EBC->unk_0C;
     UnkStruct_0200C6E4 * v3 = param0->unk_1EBC->unk_04;
     UnkStruct_0200C704 * v4 = param0->unk_1EBC->unk_08;
-    UnkStruct_02002F38 * v5 = param0->unk_1EBC->unk_10;
+    PaletteSys * v5 = param0->unk_1EBC->unk_10;
     UnkStruct_ov104_0223F9E0 v6;
 
     v6.unk_00 = 0;
@@ -238,9 +238,9 @@ static void ov100_021D2250 (UnkStruct_ov100_021D1C98 * param0)
         param0->unk_08.unk_0C[v0].unk_24 = v0;
         param0->unk_08.unk_0C[v0].unk_28[0] = 1;
         param0->unk_08.unk_0C[v0].unk_28[1] = 1;
-        param0->unk_08.unk_0C[v0].unk_28[2] = sub_0201D2E8() % 10;
+        param0->unk_08.unk_0C[v0].unk_28[2] = LCRNG_Next() % 10;
         param0->unk_08.unk_0C[v0].unk_28[3] = 0;
-        param0->unk_08.unk_0C[v0].unk_40 = sub_0200D9E8(ov100_021D4414, &param0->unk_08.unk_0C[v0], 4096);
+        param0->unk_08.unk_0C[v0].unk_40 = SysTask_Start(ov100_021D4414, &param0->unk_08.unk_0C[v0], 4096);
     }
 }
 
@@ -249,7 +249,7 @@ static void ov100_021D2324 (UnkStruct_ov100_021D1C98 * param0)
     int v0;
 
     for (v0 = 0; v0 < 3; v0++) {
-        sub_0200DA58(param0->unk_08.unk_0C[v0].unk_40);
+        SysTask_Done(param0->unk_08.unk_0C[v0].unk_40);
         sub_0200D0F4(param0->unk_08.unk_0C[v0].unk_00);
     }
 }
@@ -306,7 +306,7 @@ BOOL ov100_021D2428 (void * param0)
         G2S_SetBlendBrightness((GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), v0->unk_1EBC->unk_50.unk_03);
         v0->unk_00++;
     case 1:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
         v0->unk_00++;
@@ -334,7 +334,7 @@ BOOL ov100_021D2428 (void * param0)
         }
         break;
     case 4:
-        if (sub_0201D724(v0->unk_1EBC->unk_40)) {
+        if (Message_Printing(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -372,7 +372,7 @@ BOOL ov100_021D2428 (void * param0)
         v0->unk_04 = 0;
         break;
     case 7:
-        if (sub_0201D724(v0->unk_1EBC->unk_40)) {
+        if (Message_Printing(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -382,7 +382,7 @@ BOOL ov100_021D2428 (void * param0)
         v0->unk_00++;
         break;
     case 8:
-        if (sub_0201D724(v0->unk_1EBC->unk_40)) {
+        if (Message_Printing(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -423,7 +423,7 @@ BOOL ov100_021D2428 (void * param0)
         }
         break;
     case 9:
-        if (sub_0201D724(v0->unk_1EBC->unk_40)) {
+        if (Message_Printing(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -455,7 +455,7 @@ BOOL ov100_021D2428 (void * param0)
     case 11:
         v0->unk_1A0.unk_10DC[0].unk_160 = 1;
         sub_02017348(&v0->unk_1A0.unk_10DC[0].unk_00, 1);
-        sub_0200549C(1214);
+        Sound_PlayBGM(1214);
         sub_02004550(63, 0, 0);
         v0->unk_00++;
         break;
@@ -465,7 +465,7 @@ BOOL ov100_021D2428 (void * param0)
         }
 
         if ((v0->unk_04 == 15) || (v0->unk_04 == 45) || (v0->unk_04 == 75) || (v0->unk_04 == 95) || (v0->unk_04 == 115) || (v0->unk_04 == 130) || (v0->unk_04 == 145)) {
-            sub_02005748(1477);
+            Sound_PlayEffect(1477);
             sub_02004F7C(1477, 0xffff, (v0->unk_04 / 30 * 32) + (v0->unk_04 % 32 * 10));
         }
 
@@ -507,7 +507,7 @@ BOOL ov100_021D2428 (void * param0)
         v0->unk_04++;
 
         if (v0->unk_04 == 1) {
-            sub_02005748(1478);
+            Sound_PlayEffect(1478);
         }
 
         if (v0->unk_04 == 20) {
@@ -544,7 +544,7 @@ BOOL ov100_021D2428 (void * param0)
         }
         break;
     case 16:
-        if (sub_0201D724(v0->unk_1EBC->unk_40)) {
+        if (Message_Printing(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -578,7 +578,7 @@ BOOL ov100_021D2428 (void * param0)
         }
         break;
     case 18:
-        if (sub_0201D724(v0->unk_1EBC->unk_40)) {
+        if (Message_Printing(v0->unk_1EBC->unk_40)) {
             break;
         }
 
@@ -586,7 +586,7 @@ BOOL ov100_021D2428 (void * param0)
             ov100_021D4788(v0->unk_1EBC);
         }
 
-        sub_0200549C(1215);
+        Sound_PlayBGM(1215);
 
         v0->unk_1A0.unk_934[4].unk_160 = 1;
 
@@ -621,7 +621,7 @@ BOOL ov100_021D2428 (void * param0)
         }
 
         if (v0->unk_1A0.unk_934[4].unk_160 == 0) {
-            if (sub_0201D724(v0->unk_1EBC->unk_40)) {
+            if (Message_Printing(v0->unk_1EBC->unk_40)) {
                 sub_0201D730(v0->unk_1EBC->unk_40);
             }
 
@@ -646,7 +646,7 @@ BOOL ov100_021D2428 (void * param0)
         sub_0200F174(0, 0, 0, 0x0, 1, 1, 111);
         v0->unk_00++;
     case 21:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 

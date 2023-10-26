@@ -4,13 +4,13 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/box_pokemon.h"
+#include "strbuf.h"
+#include "pokemon.h"
 #include "overlay019/struct_ov19_021D61B0_decl.h"
 #include "overlay019/struct_ov19_021DEC04_decl.h"
 
@@ -23,7 +23,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -40,7 +40,7 @@ struct UnkStruct_ov19_021DEC04_t {
     BOOL unk_00;
     UnkStruct_ov19_021D61B0 * unk_04;
     const UnkStruct_ov19_021D4DF0 * unk_08;
-    UnkStruct_02018340 * unk_0C;
+    BGL * unk_0C;
     UnkStruct_020218BC * unk_10;
     UnkStruct_ov19_021DA384 * unk_14;
     u32 unk_18[2];
@@ -52,10 +52,10 @@ struct UnkStruct_ov19_021DEC04_t {
     NNSG2dCellDataBank * unk_60;
     void * unk_64;
     NNSG2dAnimBankData * unk_68;
-    UnkStruct_0200B144 * unk_6C;
-    UnkStruct_0200B144 * unk_70;
+    MessageLoader * unk_6C;
+    MessageLoader * unk_70;
     Strbuf* unk_74;
-    UnkStruct_0205AA50 unk_78[7];
+    Window unk_78[7];
     u8 unk_E8[640];
     NNSG2dScreenData * unk_368;
     NNSG2dScreenData * unk_36C;
@@ -63,7 +63,7 @@ struct UnkStruct_ov19_021DEC04_t {
     void * unk_374;
     int unk_378;
     int unk_37C;
-    UnkStruct_0201CD38 * unk_380;
+    SysTask * unk_380;
 };
 
 static void ov19_021DEEFC(UnkStruct_ov19_021DEC04 * param0);
@@ -78,7 +78,7 @@ static void ov19_021DF178(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF250(UnkStruct_ov19_021DEC04 * param0, int param1);
 static void ov19_021DF270(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF2A8(UnkStruct_ov19_021DEC04 * param0);
-static inline u32 inline_ov19_021DF3AC(UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2);
+static inline u32 inline_ov19_021DF3AC(Window * param0, u32 param1, const Strbuf *param2);
 static void ov19_021DF2E0(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF394(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF3AC(UnkStruct_ov19_021DEC04 * param0, int param1);
@@ -88,9 +88,9 @@ static void ov19_021DF730(UnkStruct_ov19_021DEC04 * param0, u32 param1);
 static void ov19_021DF7D0(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF834(UnkStruct_ov19_021DEC04 * param0);
 static void ov19_021DF8C8(UnkStruct_ov19_021DEC04 * param0, int param1);
-static void ov19_021DF930(UnkStruct_0201CD38 * param0, void * param1);
+static void ov19_021DF930(SysTask * param0, void * param1);
 
-BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, UnkStruct_02018340 * param3, UnkStruct_020218BC * param4, UnkStruct_0200B144 * param5, NARC * param6)
+BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 * param1, const UnkStruct_ov19_021D4DF0 * param2, BGL * param3, UnkStruct_020218BC * param4, MessageLoader * param5, NARC * param6)
 {
     if (ov19_021D5E08(param2) != 4) {
         *param0 = NULL;
@@ -107,7 +107,7 @@ BOOL ov19_021DEC04 (UnkStruct_ov19_021DEC04 ** param0, UnkStruct_ov19_021D61B0 *
             v0->unk_370 = sub_020071D0(param6, 7, 1, &(v0->unk_368), 10);
             v0->unk_374 = sub_020071D0(param6, 8, 1, &(v0->unk_36C), 10);
             v0->unk_6C = param5;
-            v0->unk_70 = sub_0200B144(1, 26, 647, 10);
+            v0->unk_70 = MessageLoader_Init(1, 26, 647, 10);
             v0->unk_74 = Strbuf_Init(32, 10);
             v0->unk_380 = NULL;
             *param0 = v0;
@@ -123,7 +123,7 @@ void ov19_021DECAC (UnkStruct_ov19_021DEC04 * param0)
     if (param0) {
         Heap_FreeToHeap(param0->unk_370);
         Heap_FreeToHeap(param0->unk_374);
-        sub_0200B190(param0->unk_70);
+        MessageLoader_Free(param0->unk_70);
         ov19_021DF7D0(param0);
         ov19_021DF03C(param0);
         Strbuf_Free(param0->unk_74);
@@ -287,8 +287,8 @@ static void ov19_021DEFC8 (UnkStruct_ov19_021DEC04 * param0)
     }
 
     ov19_021DF2E0(param0);
-    sub_0201ADA4(&param0->unk_78[0], 0);
-    sub_0201ADA4(&param0->unk_78[1], 0);
+    BGL_FillWindow(&param0->unk_78[0], 0);
+    BGL_FillWindow(&param0->unk_78[1], 0);
 
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
         sub_0201ACCC(&param0->unk_78[0 + v1]);
@@ -303,7 +303,7 @@ static void ov19_021DF03C (UnkStruct_ov19_021DEC04 * param0)
 
     for (v0 = 0; v0 < 7; v0++) {
         if (param0->unk_78[v0].unk_0C) {
-            sub_0201A8FC(&(param0->unk_78[v0]));
+            BGL_DeleteWindow(&(param0->unk_78[v0]));
         }
     }
 }
@@ -365,7 +365,7 @@ static void ov19_021DF108 (UnkStruct_ov19_021DEC04 * param0)
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
         sub_0201A8D4(param0->unk_0C, &param0->unk_78[3 + v1], &v0[v1]);
         sub_0201A9F4(&param0->unk_78[3 + v1]);
-        sub_0201ADA4(&param0->unk_78[3 + v1], 0);
+        BGL_FillWindow(&param0->unk_78[3 + v1], 0);
     }
 }
 
@@ -376,7 +376,7 @@ static void ov19_021DF140 (UnkStruct_ov19_021DEC04 * param0)
     for (v0 = 3; v0 <= 4; v0++) {
         if (param0->unk_78[v0].unk_0C) {
             sub_0201AA3C(&(param0->unk_78[v0]));
-            sub_0201A8FC(&(param0->unk_78[v0]));
+            BGL_DeleteWindow(&(param0->unk_78[v0]));
             param0->unk_78[v0].unk_0C = NULL;
         }
     }
@@ -452,7 +452,7 @@ static void ov19_021DF270 (UnkStruct_ov19_021DEC04 * param0)
     for (v1 = 0; v1 < NELEMS(v0); v1++) {
         sub_0201A8D4(param0->unk_0C, &param0->unk_78[5 + v1], &v0[v1]);
         sub_0201A9F4(&param0->unk_78[5 + v1]);
-        sub_0201ADA4(&param0->unk_78[5 + v1], 0);
+        BGL_FillWindow(&param0->unk_78[5 + v1], 0);
     }
 }
 
@@ -463,13 +463,13 @@ static void ov19_021DF2A8 (UnkStruct_ov19_021DEC04 * param0)
     for (v0 = 5; v0 <= 6; v0++) {
         if (param0->unk_78[v0].unk_0C) {
             sub_0201AA3C(&(param0->unk_78[v0]));
-            sub_0201A8FC(&(param0->unk_78[v0]));
+            BGL_DeleteWindow(&(param0->unk_78[v0]));
             param0->unk_78[v0].unk_0C = NULL;
         }
     }
 }
 
-static inline u32 inline_ov19_021DF3AC (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2)
+static inline u32 inline_ov19_021DF3AC (Window * param0, u32 param1, const Strbuf *param2)
 {
     return ((param0->unk_07 * 8) - sub_02002D7C(param1, param2, 0)) / 2;
 }
@@ -479,20 +479,20 @@ static void ov19_021DF2E0 (UnkStruct_ov19_021DEC04 * param0)
     static const u16 v0[] = {
         35, 36, 37, 38, 39, 40, 41, 42,
     };
-    UnkStruct_0205AA50 * v1 = &param0->unk_78[2];
+    Window * v1 = &param0->unk_78[2];
     int v2;
 
-    sub_0201ADA4(v1, 0);
+    BGL_FillWindow(v1, 0);
 
     switch (ov19_021D5FA4(param0->unk_08)) {
     case 0:
         for (v2 = 0; v2 < NELEMS(v0); v2++) {
-            sub_0200B1B8(param0->unk_6C, v0[v2], param0->unk_74);
+            MessageLoader_GetStrbuf(param0->unk_6C, v0[v2], param0->unk_74);
             sub_0201D78C(v1, 0, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0 + 16 * v2, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         }
         break;
     case 2:
-        sub_0200B1B8(param0->unk_6C, 43, param0->unk_74);
+        MessageLoader_GetStrbuf(param0->unk_6C, 43, param0->unk_74);
         sub_0201D78C(v1, 0, param0->unk_74, inline_ov19_021DF3AC(v1, 0, param0->unk_74), 0, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         break;
     }
@@ -502,15 +502,15 @@ static void ov19_021DF2E0 (UnkStruct_ov19_021DEC04 * param0)
 
 static void ov19_021DF394 (UnkStruct_ov19_021DEC04 * param0)
 {
-    UnkStruct_0205AA50 * v0 = &param0->unk_78[2];
+    Window * v0 = &param0->unk_78[2];
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
     sub_0201ACCC(v0);
 }
 
 static void ov19_021DF3AC (UnkStruct_ov19_021DEC04 * param0, int param1)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     const UnkStruct_ov19_021D5FAC * v1;
     BOOL v2, v3, v4;
 
@@ -520,7 +520,7 @@ static void ov19_021DF3AC (UnkStruct_ov19_021DEC04 * param0, int param1)
     v3 = ov19_021D5F9C(param0->unk_08) == param1;
     v4 = ov19_021D5FB8(param0->unk_08, param1);
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
 
     if (((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
         int v5;
@@ -535,7 +535,7 @@ static void ov19_021DF3AC (UnkStruct_ov19_021DEC04 * param0, int param1)
                 sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), (1 + v5) * 16, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
             }
         } else {
-            sub_0200B1B8(param0->unk_6C, 44, param0->unk_74);
+            MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->unk_74);
 
             for (v5 = 0; v5 < 8; v5++) {
                 sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), v5 * 16, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
@@ -548,7 +548,7 @@ static void ov19_021DF3AC (UnkStruct_ov19_021DEC04 * param0, int param1)
 
 static void ov19_021DF4D0 (UnkStruct_ov19_021DEC04 * param0, int param1)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     const UnkStruct_ov19_021D5FAC * v1;
     BOOL v2, v3, v4;
 
@@ -558,7 +558,7 @@ static void ov19_021DF4D0 (UnkStruct_ov19_021DEC04 * param0, int param1)
     v3 = (ov19_021D5F9C(param0->unk_08) == param1);
     v4 = ov19_021D5FB8(param0->unk_08, param1);
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
 
     if (((v2 == 1) && (v3 == 1)) || ((v3 == 0) && (v4 == 1))) {
         int v5;
@@ -566,12 +566,12 @@ static void ov19_021DF4D0 (UnkStruct_ov19_021DEC04 * param0, int param1)
         if (v1->unk_06 == 0) {
             for (v5 = 0; v5 < 4; v5++) {
                 if (v1->unk_20[v5]) {
-                    sub_0200B1B8(param0->unk_70, v1->unk_20[v5], param0->unk_74);
+                    MessageLoader_GetStrbuf(param0->unk_70, v1->unk_20[v5], param0->unk_74);
                     sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
                 }
             }
         } else {
-            sub_0200B1B8(param0->unk_6C, 44, param0->unk_74);
+            MessageLoader_GetStrbuf(param0->unk_6C, 44, param0->unk_74);
 
             for (v5 = 0; v5 < 4; v5++) {
                 sub_0201D78C(v0, 0, param0->unk_74, inline_ov19_021DF3AC(v0, 0, param0->unk_74), 4 + 24 * v5, 0xff, (u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
@@ -621,7 +621,7 @@ static void ov19_021DF5D0 (UnkStruct_ov19_021DEC04 * param0, NARC * param1)
     param0->unk_30 = ov19_021D785C(param0->unk_10, &v2, 128, 176 + 384, 0, NNS_G2D_VRAM_TYPE_2DSUB);
     sub_02021D6C(param0->unk_30, 3);
     sub_02021E90(param0->unk_30, 2);
-    param0->unk_380 = sub_0200D9E8(ov19_021DF930, param0, 1);
+    param0->unk_380 = SysTask_Start(ov19_021DF930, param0, 1);
 
     ov19_021DF730(param0, v3);
 }
@@ -656,7 +656,7 @@ static void ov19_021DF7D0 (UnkStruct_ov19_021DEC04 * param0)
     int v0, v1;
 
     if (param0->unk_380) {
-        sub_0200DA58(param0->unk_380);
+        SysTask_Done(param0->unk_380);
     }
 
     for (v0 = 0; v0 < 2; v0++) {
@@ -699,12 +699,12 @@ static void ov19_021DF834 (UnkStruct_ov19_021DEC04 * param0)
 
 static void ov19_021DF8C8 (UnkStruct_ov19_021DEC04 * param0, int param1)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
 
     param1 = ov19_021D5F9C(param0->unk_08);
     v0 = &(param0->unk_78[0 + param1]);
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
 
     if (ov19_021D5E34(param0->unk_08)) {
         const UnkStruct_ov19_021D5FAC * v1 = ov19_021D5FAC(param0->unk_08, param1);
@@ -714,7 +714,7 @@ static void ov19_021DF8C8 (UnkStruct_ov19_021DEC04 * param0, int param1)
     sub_0201ACCC(v0);
 }
 
-static void ov19_021DF930 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov19_021DF930 (SysTask * param0, void * param1)
 {
     UnkStruct_ov19_021DEC04 * v0 = param1;
     BOOL v1 = ov19_021D5FC0(v0->unk_08);

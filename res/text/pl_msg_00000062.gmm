@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="62482" />
+	<row id="pl_msg_00000062_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Um...\nWho did you say I was again?\r...\n...\rOh, yes, I remember now!\nI’m the Move Deleter!\r</language>
+	</row>
+	<row id="pl_msg_00000062_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve come to make me force your\nPokémon to forget some moves?</language>
+	</row>
+	<row id="pl_msg_00000062_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokémon should forget a move?\r</language>
+	</row>
+	<row id="pl_msg_00000062_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Remember me if there are moves that\nneed to be forgotten.</language>
+	</row>
+	<row id="pl_msg_00000062_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Pokémon knows only one move,\nso it can’t be forgotten...\r</language>
+	</row>
+	<row id="pl_msg_00000062_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What? That’s an Egg.\nNo Egg should know any moves.\r</language>
+	</row>
+	<row id="pl_msg_00000062_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, then.\nWhich move should be forgotten?\r</language>
+	</row>
+	<row id="pl_msg_00000062_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hm! The move {STRVAR_1 6, 0, 0}?\nShould that move be forgotten?</language>
+	</row>
+	<row id="pl_msg_00000062_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It worked perfectly!\rYour Pokémon has forgotten the move\n{STRVAR_1 6, 0, 0} completely.</language>
+	</row>
+</body>

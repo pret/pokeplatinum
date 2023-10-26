@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="35842" />
+	<row id="pl_msg_00000128_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Keira: Oh! My hero!\r</language>
+	</row>
+	<row id="pl_msg_00000128_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: Oh, hi, {STRVAR_1 3, 0, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Keira: Wait! No! Really?!\nJohanna is your mom?\fSo you might be a Contest star?!\r</language>
+	</row>
+	<row id="pl_msg_00000128_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: Oh, I don’t know about that.\rI’ve never spoken to {STRVAR_1 3, 0, 0}\nabout Contests.\rI’m surprised you two know each\nother, though.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Keira: Oh, yes, that’s right!\rI need to thank you for earlier.\nPlease take this Accessory.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Keira: Put that Accessory on your\nPokémon before a Contest.\rIt will lend a nice touch of\nsophistication and glamour.\rI’m a Contest Judge, so come join us\nfor a different kind of fun.\rIf you’re unsure of yourself,\nwe also offer practice sessions.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, Johanna, I’ll see you!\r</language>
+	</row>
+	<row id="pl_msg_00000128_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: Were you surprised to see me,\n{STRVAR_1 3, 0, 0}?\rI got bored, so I came out to\nHearthome for a little vacation.\rI’m just as surprised to see you\nhere, my dear!\rBut are you serious about entering\nContests? Not dressed that way!\rWhen your Pokémon is all dressed up,\nyou can’t be dressed your usual way.\rPut this on for a little glamour.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} obtained\na Tuxedo!</language>
+	</row>
+	<row id="pl_msg_00000128_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} obtained\na Dress!</language>
+	</row>
+	<row id="pl_msg_00000128_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: I’m sure it will look good\non you. After all, I chose it.\rGo enjoy the Contests, honey!\rContests will give you a different\nlook at the many charms of Pokémon.\rIt should be an eye-opening\nexperience for you. Bye now!\r</language>
+	</row>
+	<row id="pl_msg_00000128_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes?\nI beg your pardon?\rAh, oui, Contests you are here for?\nI hope very much you enjoy them.\rIncidentally, Fantina, the Gym Leader\nof Hearthome, is also a Contestant.\rShe is, how do you say, très\nfantastique!\rFantina being myself, of course!\rMmm, let me see...\nYou also seem to be très strong.\rEnfin, so it shall be.\nI wait for you at the Gym!\r</language>
+	</row>
+	<row id="pl_msg_00000128_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re going to enter Contests?\nBut I don’t see a Poffin Case.\rIt could be tough for you to win\nContests without it.\rBut if you’re determined to enter,\ndon’t let me stop you.\rIt wouldn’t hurt to get in some\npractice at the counter on the right.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re going to enter Contests?\nAnd, yup, you have a Poffin Case.\rLet me gift you with this fabulously\nwonderful Poffin!\r</language>
+	</row>
+	<row id="pl_msg_00000128_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\na Mild Poffin!</language>
+	</row>
+	<row id="pl_msg_00000128_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Mild Poffin was put away\nin the Poffin Case.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Feed that Poffin to a Pokémon you’re\ngoing to enter in Contests.\rOh, and a word of advice.\nGo take a run at the Contests!\rThe best way to get ready is to\nget some practice first.\rYou can take practice sessions at\nthe counter on the right.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Feed that Poffin to a Pokémon you’re\ngoing to enter in Contests.\rOh, and a word of advice for you.\nGo take a run at the Contests!\rHowever, the best way to get ready\nis to get some practice first.\rYou can take practice sessions at\nthe counter on the right.</language>
+	</row>
+	<row id="pl_msg_00000128_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Like everything else, the basics are\nimportant.\rIt takes practice to win Contests!</language>
+	</row>
+	<row id="pl_msg_00000128_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, no.\nYour Poffin Case’s full.</language>
+	</row>
+	<row id="pl_msg_00000128_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, no.\nYour Poffin Case is full.\fI’ll give it to you another time.\rOh, and a word of advice.\nGo take a run at the Contests!\r...That isn’t much of a strategy.\nYou might want some practice first.\rYou can take practice sessions at\nthe counter on the right.\r</language>
+	</row>
+	<row id="pl_msg_00000128_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Pokémon fed Poffins does\nbetter in Visual Evaluations.\rI’d better learn how to cook\ndelicious Poffins at the Poffin House!</language>
+	</row>
+	<row id="pl_msg_00000128_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Contest has three parts: Visual!\nDance! And Acting!\rThe Contestants get graded in those\ncategories, dohoho!</language>
+	</row>
+	<row id="pl_msg_00000128_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They put up photos of the winners!</language>
+	</row>
+	<row id="pl_msg_00000128_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a photo frame for a Pokémon\nportrait.</language>
+	</row>
+</body>

@@ -6,6 +6,6 @@
 
 void sub_0203D178(UnkStruct_02049FA8 * param0);
 void sub_0203D190(UnkStruct_02049FA8 * param0);
-void sub_0203D1A8(UnkStruct_021C0794 * param0);
+void sub_0203D1A8(SaveData * param0);
 
 #endif // POKEPLATINUM_UNK_0203D178_H

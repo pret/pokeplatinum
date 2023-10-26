@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="45872" />
+	<row id="pl_msg_00000379_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Good morning. You must be\n{STRVAR_1 3, 0, 0}.\rI’ve received a gift for you.\nHere you go!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Good day. You must be\n{STRVAR_1 3, 0, 0}.\rI’ve received a gift for you.\nHere you go!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Good evening. You must be\n{STRVAR_1 3, 0, 0}.\rI’ve received a gift for you.\nHere you go!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I haven’t received any other gifts\nfor you.\rWe look forward to your next visit.</language>
+	</row>
+	<row id="pl_msg_00000379_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your party is full, I’m afraid.\nI can’t give this to you yet.</language>
+	</row>
+	<row id="pl_msg_00000379_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Another {STRVAR_1 8, 0, 0}? You already\nhave too many to accept any more.</language>
+	</row>
+	<row id="pl_msg_00000379_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">To accept this, you need to make\nroom for decoration goods.</language>
+	</row>
+	<row id="pl_msg_00000379_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\n{COLOR 101}{STRVAR_1 0, 1, 0}{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\na {COLOR 1}Pokémon Egg{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe gift {COLOR 1}{STRVAR_1 8, 1, 0}{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received the\n{COLOR 1}{STRVAR_1 26, 1, 0} Rules{COLOR 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000379_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe gift {COLOR 1}{STRVAR_1 10, 1, 0}{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe gift {COLOR 1}{STRVAR_1 31, 1, 0}{COLOR 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000379_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe {COLOR 1}MANAPHY Egg{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\na {COLOR 1}Member’s Card{COLOR 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000379_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\n{COLOR 1}Oak’s Letter{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nan {COLOR 1}Azure Flute{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\na {COLOR 1}Secret Key{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit.</language>
+	</row>
+	<row id="pl_msg_00000379_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received the Pokétch\napp {COLOR 1}{STRVAR_1 24, 1, 0}{COLOR 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000379_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Uh-oh. {STRVAR_1 3, 0, 0}, you haven’t\nobtained a Pokétch yet.\rI can’t give you this app if you don’t\nhave a Pokétch.</language>
+	</row>
+	<row id="pl_msg_00000379_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} was awarded\nthe {COLOR 1}{STRVAR_1 39, 1, 0}{COLOR 0}!\rThe {STRVAR_1 39, 1, 0}\nwas given to {STRVAR_1 1, 2, 0}.\r</language>
+	</row>
+</body>

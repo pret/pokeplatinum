@@ -1,0 +1,3 @@
+0,0,
+data/ug_boygirl.NCGR,0,3,
+e,e,e,e,

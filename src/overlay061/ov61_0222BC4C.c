@@ -28,7 +28,7 @@
 
 #include "unk_020244AC.h"
 #include "overlay061/ov61_0222BC4C.h"
-#include "library/global_terminal.h"
+#include "gds.h"
 
 int ov61_0222BC4C (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B960 * param1)
 {

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="25710" />
+	<row id="pl_msg_00000322_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a statue of a Pokémon.\nIt seems to exude power...\rFrom somewhere, something spoke out.\r“With our Master, upon every lighted\ntile you must tread.”</language>
+	</row>
+	<row id="pl_msg_00000322_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Something changed in the air...\rAn indescribable power is emanating\nfrom the Pokémon statue...</language>
+	</row>
+	<row id="pl_msg_00000322_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ji-ji-ze-ji-zoh.\r</language>
+	</row>
+	<row id="pl_msg_00000322_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon statue has stopped\nemanating power.</language>
+	</row>
+	<row id="pl_msg_00000322_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a statue of a Pokémon.\nIt seems to exude power...\rFrom somewhere, something spoke out.\r“The human in the company of our\nMaster, pay heed...\r“Become stronger you must.\nSo much the others cannot but notice.”</language>
+	</row>
+</body>

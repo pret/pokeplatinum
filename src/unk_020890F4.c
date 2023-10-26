@@ -2,7 +2,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -33,7 +33,7 @@
 #include "unk_02089604.h"
 #include "unk_0208A3F4.h"
 
-static void sub_0208945C(UnkStruct_02018340 * param0);
+static void sub_0208945C(BGL * param0);
 static void sub_020895CC(void * param0);
 static int sub_020890F4(UnkStruct_020067E8 * param0, int * param1);
 static int sub_0208924C(UnkStruct_020067E8 * param0, int * param1);
@@ -64,7 +64,7 @@ static int sub_020890F4 (UnkStruct_020067E8 * param0, int * param1)
     GX_SetVisiblePlane(0);
     GXS_SetVisiblePlane(0);
 
-    v0->unk_2C0.unk_00 = NARC_ctor(159, 101);
+    v0->unk_2C0.unk_00 = NARC_ctor(NARC_INDEX_ARC__CODEIN_GRA, 101);
     v0->unk_2C0.unk_0C = sub_02018340(101);
     v0->unk_2C0.unk_10 = sub_02002F38(101);
 
@@ -208,7 +208,7 @@ void sub_02089438 (UnkStruct_02089438 * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void sub_0208945C (UnkStruct_02018340 * param0)
+static void sub_0208945C (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -349,7 +349,7 @@ static void sub_0208945C (UnkStruct_02018340 * param0)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG3, 0);
     }
 
-    Unk_021BF67C.unk_65 = 1;
+    gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_OBJ, 1);

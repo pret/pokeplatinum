@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0208C06C_H
 #define POKEPLATINUM_STRUCT_0208C06C_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0202F41C_decl.h"
 #include "struct_decls/struct_02030A80_decl.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -31,7 +31,7 @@ typedef struct {
     UnkStruct_ov62_02230C28 unk_6F8[6];
     const UnkStruct_020F3DCC * unk_818;
     const UnkStruct_020F3DCC * unk_81C[5];
-    UnkStruct_021C0794 * unk_830;
+    SaveData * unk_830;
     u16 unk_834;
     u16 unk_836;
     UnkStruct_0208C06C_sub1 unk_838;
@@ -46,10 +46,10 @@ typedef struct {
     UnkStruct_02030A80 * unk_88C[4];
     BOOL unk_89C;
     BOOL unk_8A0;
-    UnkStruct_0205AA50 unk_8A4;
+    Window unk_8A4;
     UnkStruct_ov62_02233828 unk_8B4;
     UnkStruct_0208C06C_sub2 unk_41D8;
-    UnkStruct_0201CD38 * unk_41E8;
+    SysTask * unk_41E8;
 } UnkStruct_0208C06C;
 
 #endif // POKEPLATINUM_STRUCT_0208C06C_H

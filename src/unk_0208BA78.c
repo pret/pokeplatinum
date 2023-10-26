@@ -18,7 +18,7 @@
 #include "struct_defs/struct_0208BA84.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_0208C06C.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include "unk_020041CC.h"
 #include "game_overlay.h"
@@ -43,8 +43,8 @@ typedef struct {
     int unk_00;
     int unk_04;
     UnkStruct_020067E8 * unk_08;
-    UnkStruct_021C0794 * unk_0C;
-    UnkStruct_ov6_02240D5C * unk_10;
+    SaveData * unk_0C;
+    BattleParams * unk_10;
     UnkStruct_0208C06C * unk_14;
     UnkStruct_0208BA84 unk_18;
     UnkStruct_0203CDB0 * unk_28;
@@ -78,7 +78,7 @@ void sub_0208BA84 (UnkStruct_0208BA84 * param0, BOOL param1, int param2)
     param0->unk_04 = param2;
 }
 
-static void sub_0208BA8C (UnkStruct_021C0794 * param0, int param1, u32 param2)
+static void sub_0208BA8C (SaveData * param0, int param1, u32 param2)
 {
     UnkStruct_0202B628 * v0 = sub_0202B628(param0);
     void * v1 = sub_0202C244(param1, param2);
@@ -295,7 +295,7 @@ static BOOL sub_0208BC8C (UnkStruct_0208BC3C * param0, int param1)
         sub_0200544C(1, 127);
         sub_02005464(1);
 
-        if (sub_0208BE80(param0->unk_10->unk_28[1].unk_01) == 1) {
+        if (sub_0208BE80(param0->unk_10->trainerData[1].class) == 1) {
             sub_02004550(5, 1202, 1);
         } else {
             sub_02004550(5, 1119, 1);

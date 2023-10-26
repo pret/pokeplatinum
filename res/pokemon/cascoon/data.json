@@ -1,0 +1,60 @@
+{
+    "name": "Cascoon",
+    "base_stats": {
+        "hp": 50,
+        "attack": 35,
+        "defense": 55,
+        "speed": 15,
+        "special_attack": 25,
+        "special_defense": 25
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_BUG"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 72,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SHED_SKIN",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": "MOVE_HARDEN",
+            "7": "MOVE_HARDEN"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            10,
+            "SPECIES_DUSTOX"
+        ]
+    ]
+}

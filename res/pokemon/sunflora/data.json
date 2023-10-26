@@ -1,0 +1,98 @@
+{
+    "name": "Sunflora",
+    "base_stats": {
+        "hp": 75,
+        "attack": 75,
+        "defense": 55,
+        "speed": 30,
+        "special_attack": 105,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 146,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "GRASS",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_CHLOROPHYLL",
+        "ABILITY_SOLAR_POWER"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM19",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_ABSORB",
+                "MOVE_POUND",
+                "MOVE_GROWTH"
+            ],
+            "5": "MOVE_MEGA_DRAIN",
+            "9": "MOVE_INGRAIN",
+            "13": "MOVE_GRASS_WHISTLE",
+            "17": "MOVE_LEECH_SEED",
+            "21": "MOVE_BULLET_SEED",
+            "25": "MOVE_WORRY_SEED",
+            "29": "MOVE_RAZOR_LEAF",
+            "33": "MOVE_PETAL_DANCE",
+            "37": "MOVE_SUNNY_DAY",
+            "41": "MOVE_SOLAR_BEAM",
+            "43": "MOVE_LEAF_STORM"
+        }
+    }
+}

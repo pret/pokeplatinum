@@ -2,9 +2,9 @@
 #define POKEPLATINUM_OV19_021D0D80_H
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_020797DC_decl.h"
 #include "overlay019/struct_ov19_021D4DF0.h"
 #include "overlay019/struct_ov19_021D4F5C.h"
@@ -17,7 +17,7 @@ int ov19_021D0DEC(UnkStruct_020067E8 * param0, int * param1);
 int ov19_021D0E58(UnkStruct_020067E8 * param0, int * param1);
 BOOL ov19_021D3B18(const UnkStruct_ov19_021D5DF8 * param0);
 BOOL ov19_021D3B20(const UnkStruct_ov19_021D5DF8 * param0);
-UnkStruct_0200B144 * ov19_021D5DE8(const UnkStruct_ov19_021D5DF8 * param0);
+MessageLoader * ov19_021D5DE8(const UnkStruct_ov19_021D5DF8 * param0);
 const UnkStruct_0200B358 * ov19_021D5DF0(const UnkStruct_ov19_021D5DF8 * param0);
 int ov19_021D5DF8(const UnkStruct_ov19_021D5DF8 * param0);
 u32 ov19_021D5E08(const UnkStruct_ov19_021D4DF0 * param0);
@@ -34,7 +34,7 @@ u32 ov19_021D5E68(const UnkStruct_ov19_021D4DF0 * param0);
 const UnkStruct_ov19_021D5BAC * ov19_021D5E70(const UnkStruct_ov19_021D4DF0 * param0);
 u32 ov19_021D5E74(const UnkStruct_ov19_021D4DF0 * param0);
 const UnkStruct_ov19_021D4F5C * ov19_021D5E8C(const UnkStruct_ov19_021D4DF0 * param0);
-const UnkStruct_020797DC * ov19_021D5E90(const UnkStruct_ov19_021D4DF0 * param0);
+const PCBoxes * ov19_021D5E90(const UnkStruct_ov19_021D4DF0 * param0);
 u32 ov19_021D5E94(const UnkStruct_ov19_021D4DF0 * param0);
 BoxPokemon * ov19_021D5E9C(const UnkStruct_ov19_021D4DF0 * param0);
 u32 ov19_021D5EA0(const UnkStruct_ov19_021D4DF0 * param0);

@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="47895" />
+	<row id="pl_msg_00000542_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of\nsmall pink hearts.</language>
+	</row>
+	<row id="pl_msg_00000542_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of\nbig pink hearts.</language>
+	</row>
+	<row id="pl_msg_00000542_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of\nsmall black hearts.</language>
+	</row>
+	<row id="pl_msg_00000542_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of\nbig black hearts.</language>
+	</row>
+	<row id="pl_msg_00000542_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases pink hearts that\nfloat up a little.</language>
+	</row>
+	<row id="pl_msg_00000542_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases pink hearts that\nfloat up.</language>
+	</row>
+	<row id="pl_msg_00000542_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a few popping yellow\nstars.</language>
+	</row>
+	<row id="pl_msg_00000542_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases many popping yellow\nstars.</language>
+	</row>
+	<row id="pl_msg_00000542_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a few popping blue\nstars.</language>
+	</row>
+	<row id="pl_msg_00000542_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases many popping blue\nstars.</language>
+	</row>
+	<row id="pl_msg_00000542_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a few popping stars\nin changing colors.</language>
+	</row>
+	<row id="pl_msg_00000542_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases many popping stars\nin changing colors.</language>
+	</row>
+	<row id="pl_msg_00000542_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases white lines that\nspread out.</language>
+	</row>
+	<row id="pl_msg_00000542_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases yellow lines that\nspread out.</language>
+	</row>
+	<row id="pl_msg_00000542_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases black lines that\nspread out.</language>
+	</row>
+	<row id="pl_msg_00000542_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases blue lines that\nspread out.</language>
+	</row>
+	<row id="pl_msg_00000542_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a towering cloud of\nwhite smoke.</language>
+	</row>
+	<row id="pl_msg_00000542_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a towering cloud of\nblack smoke.</language>
+	</row>
+	<row id="pl_msg_00000542_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of white\nsmoke.</language>
+	</row>
+	<row id="pl_msg_00000542_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of black\nsmoke.</language>
+	</row>
+	<row id="pl_msg_00000542_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases yellow bolts of\nelectricity upward.</language>
+	</row>
+	<row id="pl_msg_00000542_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases green bolts of\nelectricity upward.</language>
+	</row>
+	<row id="pl_msg_00000542_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases yellow bolts of\nelectricity downward.</language>
+	</row>
+	<row id="pl_msg_00000542_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases green bolts of\nelectricity downward.</language>
+	</row>
+	<row id="pl_msg_00000542_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a small number of\nblue bubbles.</language>
+	</row>
+	<row id="pl_msg_00000542_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases many blue bubbles.\n</language>
+	</row>
+	<row id="pl_msg_00000542_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a small number of\npink bubbles.</language>
+	</row>
+	<row id="pl_msg_00000542_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases many pink bubbles.\n</language>
+	</row>
+	<row id="pl_msg_00000542_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a small amount of\norange flames.</language>
+	</row>
+	<row id="pl_msg_00000542_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a lot of orange\nflames.</language>
+	</row>
+	<row id="pl_msg_00000542_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a small amount of\nblue flames.</language>
+	</row>
+	<row id="pl_msg_00000542_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a lot of blue\nflames.</language>
+	</row>
+	<row id="pl_msg_00000542_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of red\nconfetti.</language>
+	</row>
+	<row id="pl_msg_00000542_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of blue\nconfetti.</language>
+	</row>
+	<row id="pl_msg_00000542_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of yellow\nconfetti.</language>
+	</row>
+	<row id="pl_msg_00000542_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a cloud of white\nconfetti.</language>
+	</row>
+	<row id="pl_msg_00000542_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a shower of pink\nflower petals.</language>
+	</row>
+	<row id="pl_msg_00000542_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases pink flower\npetals.</language>
+	</row>
+	<row id="pl_msg_00000542_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a shower of purple\nflower petals.</language>
+	</row>
+	<row id="pl_msg_00000542_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases purple flower\npetals.</language>
+	</row>
+	<row id="pl_msg_00000542_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases a shower of yellow\nflower petals.</language>
+	</row>
+	<row id="pl_msg_00000542_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This Seal releases yellow flower\npetals.</language>
+	</row>
+	<row id="pl_msg_00000542_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A green Seal featuring a treble clef\ndesign.</language>
+	</row>
+	<row id="pl_msg_00000542_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A red Seal featuring a musical note\ndesign.</language>
+	</row>
+	<row id="pl_msg_00000542_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An orange Seal featuring a musical\nnote design.</language>
+	</row>
+	<row id="pl_msg_00000542_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A yellow Seal featuring a musical\nnote design.</language>
+	</row>
+	<row id="pl_msg_00000542_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A blue Seal featuring a musical\nnote design.</language>
+	</row>
+	<row id="pl_msg_00000542_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A lime green Seal featuring a musical\nnote design.</language>
+	</row>
+	<row id="pl_msg_00000542_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A navy blue Seal featuring a musical\nnote design.</language>
+	</row>
+	<row id="pl_msg_00000542_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A special Seal that makes a\nspectacular splash.</language>
+	</row>
+	<row id="pl_msg_00000542_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A special Seal that explodes in a\nspectacular fashion.</language>
+	</row>
+	<row id="pl_msg_00000542_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A special Seal that releases pretty\nsparkles.</language>
+	</row>
+</body>

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "overlay013/struct_ov13_02228A50_decl.h"
 #include "overlay016/struct_ov16_0226DC24_decl.h"
@@ -93,11 +93,11 @@ static u8 ov13_02228ACC (UnkStruct_ov13_02228A50 * param0)
         return 1;
     }
 
-    if (Unk_021BF67C.unk_48 & ((PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT) | PAD_BUTTON_B | PAD_BUTTON_A)) {
+    if (gCoreSys.padInput & ((PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT) | PAD_BUTTON_B | PAD_BUTTON_A)) {
         param0->unk_08 = 1;
 
         ov16_0226DD7C(param0->unk_00, param0->unk_04[param0->unk_09].unk_00, param0->unk_04[param0->unk_09].unk_02, param0->unk_04[param0->unk_09].unk_01, param0->unk_04[param0->unk_09].unk_03);
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 
     return 0;
@@ -141,16 +141,16 @@ u32 ov13_02228B64 (UnkStruct_ov13_02228A50 * param0)
         return 0xffffffff;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+    if (gCoreSys.padInput & PAD_KEY_UP) {
         v4 = sub_0201E028(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, 0);
         v5 = 0;
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+    } else if (gCoreSys.padInput & PAD_KEY_DOWN) {
         v4 = sub_0201E028(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, 1);
         v5 = 1;
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_LEFT) {
+    } else if (gCoreSys.padInput & PAD_KEY_LEFT) {
         v4 = sub_0201E028(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, 2);
         v5 = 2;
-    } else if (Unk_021BF67C.unk_48 & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.padInput & PAD_KEY_RIGHT) {
         v4 = sub_0201E028(param0->unk_04, NULL, NULL, NULL, NULL, param0->unk_09, 3);
         v5 = 3;
     } else {
@@ -199,18 +199,18 @@ u32 ov13_02228B64 (UnkStruct_ov13_02228A50 * param0)
             param0->unk_09 = v4;
 
             ov16_0226DD7C(param0->unk_00, v0, v2, v1, v3);
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
         }
 
         return 0xffffffff;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+    if (gCoreSys.padInput & PAD_BUTTON_A) {
         return param0->unk_09;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
-        sub_02005748(1501);
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
+        Sound_PlayEffect(1501);
         return 0xfffffffe;
     }
 

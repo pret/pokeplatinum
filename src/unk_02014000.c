@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 
 #include "functypes/funcptr_02014014.h"
@@ -13,7 +13,7 @@
 #include "struct_defs/struct_02014910.h"
 #include "struct_defs/struct_02014970.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "narc.h"
 #include "unk_0200D9E8.h"
@@ -94,7 +94,7 @@ static void * sub_0201446C(u32 param0);
 static void * sub_02014498(u32 param0);
 static inline void * Particle_LocalAlloc(UnkStruct_02014014 * param0, u32 param1);
 static void sub_02014560(UnkStruct_02014014 * param0);
-static void sub_020145A0(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_020145A0(SysTask * param0, void * param1);
 
 void sub_0201411C(UnkStruct_02014014 * param0);
 void sub_02014718(UnkStruct_02014014 * param0);
@@ -459,12 +459,12 @@ static void sub_02014560 (UnkStruct_02014014 * param0)
     }
 }
 
-static void sub_020145A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020145A0 (SysTask * param0, void * param1)
 {
     UnkStruct_02014014 * v0 = param1;
 
     sub_02014560(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 void sub_020145B4 (NNSGfdTexKey param0)

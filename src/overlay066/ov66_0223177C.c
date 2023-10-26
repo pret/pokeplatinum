@@ -3,10 +3,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 
 #include "overlay066/struct_ov66_02231428.h"
 #include "overlay066/struct_ov66_0223185C.h"
@@ -20,11 +20,11 @@
 #include "overlay066/struct_ov66_02231B80.h"
 #include "overlay066/struct_ov66_02232068.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay066/ov66_0223177C.h"
 
 typedef struct {
@@ -83,15 +83,15 @@ static UnkStruct_ov66_02231FB0 * ov66_02231F68(UnkStruct_ov66_02231E94 * param0,
 static void ov66_02231FB0(UnkStruct_ov66_02231FB0 * param0, UnkStruct_ov66_02231FB0 * param1);
 static void ov66_02231FC0(UnkStruct_ov66_02231E94 * param0, UnkStruct_ov66_02231FB0 * param1);
 static void ov66_02231FE8(UnkStruct_ov66_02231E94 * param0, UnkStruct_ov66_02231FB0 * param1);
-static void ov66_02231FFC(UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 param2, u32 param3, const UnkStruct_02025E6C * param4, const UnkStruct_02025E6C * param5, const UnkStruct_02025E6C * param6, const UnkStruct_02025E6C * param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14);
-static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5);
-static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5);
-static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5);
-static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5);
-static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5);
-static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5);
-static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5);
-static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5);
+static void ov66_02231FFC(UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 param2, u32 param3, const TrainerInfo * param4, const TrainerInfo * param5, const TrainerInfo * param6, const TrainerInfo * param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14);
+static BOOL ov66_02232068(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
+static BOOL ov66_022320BC(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
+static BOOL ov66_0223211C(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
+static BOOL ov66_02232258(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
+static BOOL ov66_022322B8(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
+static BOOL ov66_02232330(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
+static BOOL ov66_022323A0(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
+static BOOL ov66_022323C4(UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5);
 static u32 ov66_0223245C(const UnkStruct_ov66_02231FB0 * param0, u32 param1);
 static u32 ov66_0223246C(const UnkStruct_ov66_02231FB0 * param0, u32 param1);
 static u32 ov66_0223247C(const UnkStruct_ov66_02231FB0 * param0, u32 param1);
@@ -410,11 +410,11 @@ int ov66_02231C78 (const UnkStruct_ov66_0223177C * param0)
 BOOL ov66_02231C94 (const UnkStruct_ov66_0223177C * param0, const UnkStruct_ov66_02232068 * param1, int param2, Strbuf *param3, u32 param4)
 {
     UnkStruct_0200B358 * v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     UnkStruct_ov66_02231FB0 * v2;
     BOOL v3;
 
-    static BOOL(*const v4[])(UnkStruct_ov66_02231FB0 *, const UnkStruct_ov66_02232068 *, UnkStruct_0200B358 *, UnkStruct_0200B144 *, Strbuf *, u32) = {
+    static BOOL(*const v4[])(UnkStruct_ov66_02231FB0 *, const UnkStruct_ov66_02232068 *, UnkStruct_0200B358 *, MessageLoader *, Strbuf *, u32) = {
         ov66_02232068,
         ov66_022320BC,
         ov66_0223211C,
@@ -429,7 +429,7 @@ BOOL ov66_02231C94 (const UnkStruct_ov66_0223177C * param0, const UnkStruct_ov66
     GF_ASSERT(ov66_02231C60(param0));
 
     v2 = param0->unk_5C.unk_188.unk_2C;
-    v1 = sub_0200B144(1, 26, 653, param4);
+    v1 = MessageLoader_Init(1, 26, 653, param4);
     v0 = sub_0200B358(param4);
 
     if (v2->unk_00 < 9) {
@@ -438,7 +438,7 @@ BOOL ov66_02231C94 (const UnkStruct_ov66_0223177C * param0, const UnkStruct_ov66
         v3 = 0;
     }
 
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
     sub_0200B3F0(v0);
 
     return v3;
@@ -702,7 +702,7 @@ static void ov66_02231FE8 (UnkStruct_ov66_02231E94 * param0, UnkStruct_ov66_0223
     param1->unk_2C = NULL;
 }
 
-static void ov66_02231FFC (UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 param2, u32 param3, const UnkStruct_02025E6C * param4, const UnkStruct_02025E6C * param5, const UnkStruct_02025E6C * param6, const UnkStruct_02025E6C * param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14)
+static void ov66_02231FFC (UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 param2, u32 param3, const TrainerInfo * param4, const TrainerInfo * param5, const TrainerInfo * param6, const TrainerInfo * param7, u16 param8, u16 param9, u16 param10, u16 param11, u32 param12, u32 param13, u32 param14)
 {
     GF_ASSERT(param14 < 9);
     param0->unk_00 = param14;
@@ -717,30 +717,30 @@ static void ov66_02231FFC (UnkStruct_ov66_02231FB0 * param0, u32 param1, u32 par
     param0->unk_20[3] = param11;
 
     if (param4) {
-        sub_02025EF4(param4, param0->unk_10[0]);
+        TrainerInfo_NameStrbuf(param4, param0->unk_10[0]);
     }
 
     if (param5) {
-        sub_02025EF4(param5, param0->unk_10[1]);
+        TrainerInfo_NameStrbuf(param5, param0->unk_10[1]);
     }
 
     if (param6) {
-        sub_02025EF4(param6, param0->unk_10[2]);
+        TrainerInfo_NameStrbuf(param6, param0->unk_10[2]);
     }
 
     if (param7) {
-        sub_02025EF4(param7, param0->unk_10[3]);
+        TrainerInfo_NameStrbuf(param7, param0->unk_10[3]);
     }
 }
 
-static BOOL ov66_02232068 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5)
+static BOOL ov66_02232068 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5)
 {
     Strbuf* v0;
 
     sub_0200B48C(param2, 0, param0->unk_10[0], 0, 1, Unk_020E4C44);
     sub_0200B48C(param2, 1, param0->unk_10[1], 0, 1, Unk_020E4C44);
 
-    v0 = sub_0200B1EC(param3, 7);
+    v0 = MessageLoader_GetNewStrbuf(param3, 7);
 
     sub_0200C388(param2, param4, v0);
     Strbuf_Free(v0);
@@ -748,7 +748,7 @@ static BOOL ov66_02232068 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     return 1;
 }
 
-static BOOL ov66_022320BC (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5)
+static BOOL ov66_022320BC (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5)
 {
     Strbuf* v0;
 
@@ -756,7 +756,7 @@ static BOOL ov66_022320BC (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     sub_0200B48C(param2, 1, param0->unk_10[1], 0, 1, Unk_020E4C44);
     sub_0200C120(param2, 2, param0->unk_04[0]);
 
-    v0 = sub_0200B1EC(param3, 8);
+    v0 = MessageLoader_GetNewStrbuf(param3, 8);
 
     sub_0200C388(param2, param4, v0);
     Strbuf_Free(v0);
@@ -764,7 +764,7 @@ static BOOL ov66_022320BC (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     return 1;
 }
 
-static BOOL ov66_0223211C (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5)
+static BOOL ov66_0223211C (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5)
 {
     Strbuf* v0;
 
@@ -796,12 +796,12 @@ static BOOL ov66_0223211C (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
             return 0;
         }
 
-        v0 = sub_0200B1EC(param3, v1);
+        v0 = MessageLoader_GetNewStrbuf(param3, v1);
     } else {
         sub_0200B48C(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
         sub_0200B60C(param2, 2, 4 - param0->unk_04[1], 1, 1, 1);
 
-        v0 = sub_0200B1EC(param3, 5);
+        v0 = MessageLoader_GetNewStrbuf(param3, 5);
     }
 
     sub_0200C388(param2, param4, v0);
@@ -810,7 +810,7 @@ static BOOL ov66_0223211C (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     return 1;
 }
 
-static BOOL ov66_02232258 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5)
+static BOOL ov66_02232258 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5)
 {
     Strbuf* v0;
 
@@ -818,7 +818,7 @@ static BOOL ov66_02232258 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     sub_0200B48C(param2, 1, param0->unk_10[0], 0, 1, Unk_020E4C44);
     sub_0200B60C(param2, 2, 8 - param0->unk_04[1], 1, 1, 1);
 
-    v0 = sub_0200B1EC(param3, 9);
+    v0 = MessageLoader_GetNewStrbuf(param3, 9);
 
     sub_0200C388(param2, param4, v0);
     Strbuf_Free(v0);
@@ -826,7 +826,7 @@ static BOOL ov66_02232258 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     return 1;
 }
 
-static BOOL ov66_022322B8 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5)
+static BOOL ov66_022322B8 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5)
 {
     Strbuf* v0;
     int v1;
@@ -842,7 +842,7 @@ static BOOL ov66_022322B8 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
         sub_0200C0B0(param2, param0->unk_04[0], UnkEnum_ov66_022324D0_06);
     }
 
-    v0 = sub_0200B1EC(param3, 10 + (4 - param0->unk_04[0]));
+    v0 = MessageLoader_GetNewStrbuf(param3, 10 + (4 - param0->unk_04[0]));
 
     sub_0200C388(param2, param4, v0);
     Strbuf_Free(v0);
@@ -850,7 +850,7 @@ static BOOL ov66_022322B8 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     return 1;
 }
 
-static BOOL ov66_02232330 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5)
+static BOOL ov66_02232330 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5)
 {
     Strbuf* v0;
     u32 v1;
@@ -877,7 +877,7 @@ static BOOL ov66_02232330 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
         return 0;
     }
 
-    v0 = sub_0200B1EC(param3, v1);
+    v0 = MessageLoader_GetNewStrbuf(param3, v1);
 
     sub_0200C388(param2, param4, v0);
     Strbuf_Free(v0);
@@ -885,7 +885,7 @@ static BOOL ov66_02232330 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     return 1;
 }
 
-static BOOL ov66_022323A0 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5)
+static BOOL ov66_022323A0 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5)
 {
     if (param0->unk_04[0] >= 20) {
         return 0;
@@ -895,12 +895,12 @@ static BOOL ov66_022323A0 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
         return 0;
     }
 
-    sub_0200B1B8(param3, 21, param4);
+    MessageLoader_GetStrbuf(param3, 21, param4);
 
     return 1;
 }
 
-static BOOL ov66_022323C4 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, UnkStruct_0200B144 * param3, Strbuf *param4, u32 param5)
+static BOOL ov66_022323C4 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov66_02232068 * param1, UnkStruct_0200B358 * param2, MessageLoader * param3, Strbuf *param4, u32 param5)
 {
     Strbuf* v0;
     u32 v1;
@@ -923,9 +923,9 @@ static BOOL ov66_022323C4 (UnkStruct_ov66_02231FB0 * param0, const UnkStruct_ov6
     }
 
     if ((param0->unk_04[0] == UnkEnum_ov66_022324D0_00) || (param0->unk_04[0] == UnkEnum_ov66_022324D0_01)) {
-        v0 = sub_0200B1EC(param3, v4[param0->unk_04[1] - 1]);
+        v0 = MessageLoader_GetNewStrbuf(param3, v4[param0->unk_04[1] - 1]);
     } else {
-        v0 = sub_0200B1EC(param3, v3[param0->unk_04[1] - 1]);
+        v0 = MessageLoader_GetNewStrbuf(param3, v3[param0->unk_04[1] - 1]);
     }
 
     sub_0200C388(param2, param4, v0);

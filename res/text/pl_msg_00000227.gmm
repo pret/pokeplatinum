@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="1026" />
+	<row id="pl_msg_00000227_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, my name’s Cheryl.\nAnd you are...?\rOK, so your name is {STRVAR_1 3, 0, 0}.\nI’m sincerely glad to meet you.\r{STRVAR_1 3, 0, 0}, may I ask a big favor\nof you?\rI want to get through this forest,\nbut I’m afraid of doing it alone.\rI’ve heard that there is a sinister\ngroup of people called Team Galactic\fabout.\rI think there’d be safety in numbers.\nPlease, may I go through with you?\r</language>
+	</row>
+	<row id="pl_msg_00000227_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} decided to go with\nCheryl!</language>
+	</row>
+	<row id="pl_msg_00000227_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: I’ll keep your Pokémon\nin perfect health.</language>
+	</row>
+	<row id="pl_msg_00000227_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: Oh, hi, {STRVAR_1 3, 0, 0}!\nI’ve been waiting like I said.\rLet’s get through this forest\ntogether.\r</language>
+	</row>
+	<row id="pl_msg_00000227_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: Oh? Are you going back?\nI’ll wait here for you, then.\r</language>
+	</row>
+	<row id="pl_msg_00000227_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: Oh! There’s the exit!\nI’m so relieved... We finally got here.\rI would’ve never been able to get\nthrough this by myself.\rThank you so much, {STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000227_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is my token of appreciation.\nPlease accept it!\r</language>
+	</row>
+	<row id="pl_msg_00000227_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m sure we’ll meet again somewhere!\nBye for now!\r</language>
+	</row>
+	<row id="pl_msg_00000227_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheryl: There is an Old Chateau ahead.\rNo one lives there now.\nThey say it’s haunted.</language>
+	</row>
+	<row id="pl_msg_00000227_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m searching for bug Pokémon so I can\nwin at the Eterna Gym.\rBug Pokémon are great, you know?\nThey grow really fast!</language>
+	</row>
+	<row id="pl_msg_00000227_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The rock is covered in moss.\nIt feels pleasantly cool.</language>
+	</row>
+	<row id="pl_msg_00000227_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Hiya! Were you intrigued\nby the rumors going around, too?\r</language>
+	</row>
+	<row id="pl_msg_00000227_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know, people’ve been talking about\nthe ghost Pokémon of the Old Chateau.\rI’ve been hearing rumors about\nsinister shadows, too.\r</language>
+	</row>
+	<row id="pl_msg_00000227_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I should check it out myself, but\ngoing in there is...\r...Well, you know, being that I’m\na Gym Leader, I’m always busy.\rSo, since I’m so busy, I can’t go in.\nIt’s not because I’m s-scared!\rS-so, good luck with your\ninvestigation!\r</language>
+	</row>
+	<row id="pl_msg_00000227_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Eterna Forest\nWhere Time Flows Eternally</language>
+	</row>
+	<row id="pl_msg_00000227_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips!\rIn forests and caves, there are many\nitems on the ground that cannot be\fseen in the murky darkness.\rTake the time to search carefully!</language>
+	</row>
+</body>

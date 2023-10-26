@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50210" />
+	<row id="pl_msg_00000042_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, hello, darlings.\nIsn’t my Pokétch quite fetching?\rIt’s the latest design that just came\nout. I obtained it instantly, of course.\rA Trainer would be simply lost without\na Pokétch, after all.</language>
+	</row>
+	<row id="pl_msg_00000042_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Piika pi!</language>
+	</row>
+	<row id="pl_msg_00000042_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PACHIRISU: Pachipachii?</language>
+	</row>
+	<row id="pl_msg_00000042_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, your Pokémon is quite adorable!\rHere, try making it hold this\n{STRVAR_1 8, 0, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000042_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Pokémon holding that Quick Claw can\nsometimes attack first, even if it is\fnormally a little bit slow.\rThere are other items that are only\nuseful when given to a Pokémon.\rTry finding other items that you can\nmake your Pokémon hold.\r...I sound like I’m a teacher or\nsomething.</language>
+	</row>
+</body>

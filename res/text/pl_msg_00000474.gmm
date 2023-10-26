@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="40576" />
+	<row id="pl_msg_00000474_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is odd... I heard there were two\ncaves on Route 206.\rBut I can only find one entrance.</language>
+	</row>
+	<row id="pl_msg_00000474_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 206\nEterna City</language>
+	</row>
+	<row id="pl_msg_00000474_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 206\nOreburgh City</language>
+	</row>
+</body>

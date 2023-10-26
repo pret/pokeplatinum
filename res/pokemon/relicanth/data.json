@@ -1,0 +1,104 @@
+{
+    "name": "Relicanth",
+    "base_stats": {
+        "hp": 100,
+        "attack": 90,
+        "defense": 130,
+        "speed": 55,
+        "special_attack": 45,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 25,
+    "base_exp_reward": 198,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_DEEPSEASCALE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 40,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "WATER_1",
+        "WATER_2"
+    ],
+    "abilities": [
+        "ABILITY_SWIFT_SWIM",
+        "ABILITY_ROCK_HEAD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM04",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM55",
+            "TM58",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM76",
+            "TM77",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM06",
+            "HM07"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_HARDEN"
+            ],
+            "8": "MOVE_WATER_GUN",
+            "15": "MOVE_ROCK_TOMB",
+            "22": "MOVE_YAWN",
+            "29": "MOVE_TAKE_DOWN",
+            "36": "MOVE_MUD_SPORT",
+            "43": "MOVE_ANCIENT_POWER",
+            "50": "MOVE_DOUBLE_EDGE",
+            "57": "MOVE_DIVE",
+            "64": "MOVE_REST",
+            "71": "MOVE_HYDRO_PUMP",
+            "78": "MOVE_HEAD_SMASH"
+        }
+    }
+}

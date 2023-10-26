@@ -1,0 +1,106 @@
+{
+    "name": "Armaldo",
+    "base_stats": {
+        "hp": 75,
+        "attack": 125,
+        "defense": 100,
+        "speed": 45,
+        "special_attack": 70,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_BUG"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 199,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 30,
+    "base_friendship": 70,
+    "exp_rate": "ERRATIC",
+    "egg_groups": [
+        "WATER_3",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_BATTLE_ARMOR",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM54",
+            "TM58",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM01",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_SCRATCH",
+                "MOVE_HARDEN",
+                "MOVE_MUD_SPORT",
+                "MOVE_WATER_GUN"
+            ],
+            "7": "MOVE_MUD_SPORT",
+            "13": "MOVE_WATER_GUN",
+            "19": "MOVE_METAL_CLAW",
+            "25": "MOVE_PROTECT",
+            "31": "MOVE_ANCIENT_POWER",
+            "37": "MOVE_FURY_CUTTER",
+            "46": "MOVE_SLASH",
+            "55": "MOVE_ROCK_BLAST",
+            "67": "MOVE_CRUSH_CLAW",
+            "73": "MOVE_X_SCISSOR"
+        }
+    }
+}

@@ -1,0 +1,112 @@
+{
+    "name": "Snorlax",
+    "base_stats": {
+        "hp": 160,
+        "attack": 110,
+        "defense": 65,
+        "speed": 30,
+        "special_attack": 65,
+        "special_defense": 110
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 25,
+    "base_exp_reward": 154,
+    "ev_yields": {
+        "hp": 2,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_LEFTOVERS",
+        "rare": "ITEM_LEFTOVERS"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 40,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "MONSTER"
+    ],
+    "abilities": [
+        "ABILITY_IMMUNITY",
+        "ABILITY_THICK_FAT"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLACK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM03",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM67",
+            "TM68",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": "MOVE_TACKLE",
+            "4": "MOVE_DEFENSE_CURL",
+            "9": "MOVE_AMNESIA",
+            "12": "MOVE_LICK",
+            "17": "MOVE_BELLY_DRUM",
+            "20": "MOVE_YAWN",
+            "25": "MOVE_REST",
+            "28": [
+                "MOVE_SNORE",
+                "MOVE_SLEEP_TALK"
+            ],
+            "33": "MOVE_BODY_SLAM",
+            "36": "MOVE_BLOCK",
+            "41": "MOVE_ROLLOUT",
+            "44": "MOVE_CRUNCH",
+            "49": "MOVE_GIGA_IMPACT"
+        }
+    }
+}

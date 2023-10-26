@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="29766" />
+	<row id="pl_msg_00000318_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MESPRIT: Piih!\r</language>
+	</row>
+	<row id="pl_msg_00000318_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">UXIE: Piih!\r</language>
+	</row>
+	<row id="pl_msg_00000318_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">AZELF: Piiuw!\r</language>
+	</row>
+	<row id="pl_msg_00000318_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: This place...\nIt seems to be a giant puzzle.\rMaybe GIRATINA wants to test those\nthat visit here?\rIt appears as if we can’t go on unless\nwe solve the puzzle.\rThere were some boulders that could\nbe moved...\rAnd there are several odd pits on\nthe floor...\rThe Pokémon of the lakes seem eager to\nshow us something...</language>
+	</row>
+	<row id="pl_msg_00000318_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: I guess the Pokémon of the\nlakes must have gone home.\rI understand they can keep balance\nagainst either PALKIA or DIALGA.\rDoes it mean they can’t do that with\nGIRATINA?\r...Oops.\nThis is no time for idle chitchat.\r</language>
+	</row>
+	<row id="pl_msg_00000318_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Call it a Trainer’s intuition,\nbut we’re getting close.\rLet’s go on!</language>
+	</row>
+	<row id="pl_msg_00000318_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At the bottom of the pit is a space\nthat a boulder might fit into...</language>
+	</row>
+</body>

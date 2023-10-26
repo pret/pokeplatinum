@@ -12,7 +12,7 @@
 #include "unk_02018340.h"
 #include "overlay024/ov24_02253CE0.h"
 
-void ov24_02253CE0 (UnkStruct_02018340 * param0)
+void ov24_02253CE0 (BGL * param0)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -44,7 +44,7 @@ void ov24_02253CE0 (UnkStruct_02018340 * param0)
     {
         NARC * v1;
 
-        v1 = NARC_ctor(12, 8);
+        v1 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 8);
 
         sub_020070E8(v1, 10, param0, 4, 0, 0, 1, 8);
         sub_0200710C(v1, 11, param0, 4, 0, 0, 1, 8);
@@ -56,13 +56,13 @@ void ov24_02253CE0 (UnkStruct_02018340 * param0)
     GXS_SetVisiblePlane(GX_PLANEMASK_BG0);
 }
 
-void ov24_02253DA4 (UnkStruct_02018340 * param0)
+void ov24_02253DA4 (BGL * param0)
 {
     sub_02019044(param0, 4);
     Heap_Destroy(8);
 }
 
-BOOL ov24_02253DB4 (UnkStruct_02018340 * param0)
+BOOL ov24_02253DB4 (BGL * param0)
 {
     return 1;
 }

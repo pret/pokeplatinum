@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_02073838.h"
 #include "struct_defs/struct_02073974.h"
@@ -65,18 +65,18 @@ void sub_020738C0 (UnkStruct_02073838 * param0)
     param0->unk_00 = 1;
 }
 
-static void sub_020738D8 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020738D8 (SysTask * param0, void * param1)
 {
     UnkStruct_02073838 * v0 = param1;
 
     sub_020738C0(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 void sub_020738EC (UnkStruct_02073838 * param0)
 {
     {
-        UnkStruct_0201CD38 * v0 = sub_0200DA04(sub_020738D8, param0, 0xffff);
+        SysTask * v0 = sub_0200DA04(sub_020738D8, param0, 0xffff);
         GF_ASSERT(v0 != NULL);
     }
 }

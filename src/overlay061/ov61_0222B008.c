@@ -2,9 +2,9 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E5C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_020797DC_decl.h"
@@ -24,7 +24,7 @@
 #include "overlay062/struct_ov62_0223D518_sub1_sub1.h"
 #include "overlay062/struct_ov62_02241130.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"
@@ -36,7 +36,7 @@
 #include "overlay061/ov61_0222B008.h"
 #include "overlay061/ov61_0222BC4C.h"
 #include "overlay062/ov62_02248408.h"
-#include "library/global_terminal.h"
+#include "gds.h"
 
 typedef int (* UnkFuncPtr_ov61_0222E48C)(UnkStruct_ov62_022349A8 *, UnkStruct_ov61_0222B138 *);
 
@@ -95,7 +95,7 @@ int ov61_0222B008 (UnkStruct_ov62_022349A8 * param0, const UnkStruct_ov62_022411
 
     MI_CpuClear8(param0->unk_3B4, ov61_0222DE8C(-1));
 
-    param0->unk_3F4 = sub_0200B144(0, 26, 695, param1->unk_04);
+    param0->unk_3F4 = MessageLoader_Init(0, 26, 695, param1->unk_04);
     param0->unk_3F8 = sub_0200B358(param1->unk_04);
     param0->unk_3FC = Strbuf_Init((16 * 8 * 2), param1->unk_04);
     param0->unk_18C = ov61_0222BBF0(param1->unk_04);
@@ -120,7 +120,7 @@ void ov61_0222B0F0 (UnkStruct_ov62_022349A8 * param0)
 
     Strbuf_Free(param0->unk_3FC);
     sub_0200B3F0(param0->unk_3F8);
-    sub_0200B190(param0->unk_3F4);
+    MessageLoader_Free(param0->unk_3F4);
     Heap_FreeToHeap(param0->unk_3B4);
     ov61_0222BC40();
     Heap_FreeToHeap(param0->unk_18C);
@@ -156,7 +156,7 @@ static int ov61_0222B168 (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B
 
 static int ov61_0222B190 (UnkStruct_ov62_022349A8 * param0, UnkStruct_ov61_0222B138 * param1)
 {
-    if ((Unk_021BF67C.unk_48 & PAD_BUTTON_A) || (Unk_021BF67C.unk_48 & PAD_BUTTON_B)) {
+    if ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_B)) {
         ov61_0222BB54(param0, NULL);
         return 1;
     }
@@ -191,7 +191,7 @@ int ov61_0222B1FC (UnkStruct_ov62_022349A8 * param0, int param1)
     return 1;
 }
 
-int ov61_0222B224 (UnkStruct_ov62_022349A8 * param0, int param1, UnkStruct_02030A80 * param2, const UnkStruct_020797DC * param3, int param4)
+int ov61_0222B224 (UnkStruct_ov62_022349A8 * param0, int param1, UnkStruct_02030A80 * param2, const PCBoxes * param3, int param4)
 {
     if (ov61_0222BBBC(param0) == 0) {
         return 0;
@@ -261,7 +261,7 @@ int ov61_0222B338 (UnkStruct_ov62_022349A8 * param0, UnkStruct_02030A80 * param1
         return 0;
     }
 
-    GF_ASSERT((sub_0202F1D4() - sizeof(u32)) == sizeof(UnkStruct_ov62_022349A8_sub3_sub3));
+    GF_ASSERT((BattleRecording_SaveSize() - sizeof(u32)) == sizeof(UnkStruct_ov62_022349A8_sub3_sub3));
     GF_ASSERT(sizeof(UnkStruct_ov61_0222AFC0) == sizeof(UnkStruct_02030A80));
 
     param0->unk_190.unk_00_val4 = (UnkStruct_ov62_022349A8_sub3_sub3 *)sub_0202F27C();
@@ -757,7 +757,7 @@ static void ov61_0222BB60 (UnkStruct_ov62_022349A8 * param0, int param1, int par
     }
 
     sub_0200B60C(param0->unk_3F8, 0, param2, 5, 2, 1);
-    v1 = sub_0200B1EC(param0->unk_3F4, v0);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_3F4, v0);
     sub_0200C388(param0->unk_3F8, param0->unk_3FC, v1);
     Strbuf_Free(v1);
     ov61_0222BB54(param0, param0->unk_3FC);

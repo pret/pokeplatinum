@@ -6,7 +6,7 @@
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay021/struct_ov21_021D4EE4_decl.h"
@@ -39,13 +39,13 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay021/ov21_021D1FA4.h"
 #include "overlay021/ov21_021D4C0C.h"
 #include "overlay021/ov21_021D4EE4.h"
 
-static void ov21_021D2830(UnkStruct_02018340 * param0, int param1);
-static void ov21_021D299C(UnkStruct_02018340 * param0);
+static void ov21_021D2830(BGL * param0, int param1);
+static void ov21_021D299C(BGL * param0);
 static void ov21_021D29D0(UnkStruct_ov21_021D13FC * param0, int param1);
 static void ov21_021D2A00(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D2A0C(UnkStruct_ov21_021D13FC * param0, int param1);
@@ -60,19 +60,19 @@ static void ov21_021D2F5C(UnkStruct_ov21_021D13FC * param0, int param1);
 static void ov21_021D300C(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D3034(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D3054(UnkStruct_ov21_021D13FC * param0);
-static void ov21_021D3064(UnkStruct_0201CD38 * param0, void * param1);
+static void ov21_021D3064(SysTask * param0, void * param1);
 static void ov21_021D30D8(UnkStruct_ov21_021D2584 * param0, int param1, int param2, int param3, int param4);
 static void ov21_021D31D0(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D31F0(UnkStruct_ov21_021D13FC * param0);
 static void ov21_021D3124(UnkStruct_ov21_021D13FC * param0, int param1, int param2, int param3, int param4);
-static void ov21_021D3194(UnkStruct_0201CD38 * param0, void * param1);
+static void ov21_021D3194(SysTask * param0, void * param1);
 
 void ov21_021D1FA4 (UnkStruct_ov21_021D13FC * param0, int param1)
 {
     UnkStruct_ov84_0223BA5C v0;
     UnkStruct_ov21_021D1FA4 v1;
 
-    param0->unk_278 = NARC_ctor(69, param1);
+    param0->unk_278 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__ZUKAN__ZUKAN, param1);
     param0->unk_00 = sub_02018340(param1);
 
     v0.unk_00 = GX_DISPMODE_GRAPHICS;
@@ -175,7 +175,7 @@ void ov21_021D2188 (UnkStruct_ov21_021D13FC * param0, int param1, int param2, in
     }
 
     if (param2 == -1) {
-        param2 = sub_02075DAC(param1, 0);
+        param2 = Pokemon_GetGenderOf(param1, 0);
     }
 
     sub_02075FB4(&v0, param1, param2, param3, param4, param5, param6);
@@ -502,7 +502,7 @@ void * ov21_021D26E8 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
     return v0;
 }
 
-u32 ov21_021D2724 (UnkStruct_ov21_021D13FC * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 ov21_021D2724 (UnkStruct_ov21_021D13FC * param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void * v0 = ov21_021D26E8(param0, param1, param6, param7);
 
@@ -596,7 +596,7 @@ void * ov21_021D2808 (UnkStruct_ov21_021D13FC * param0, u32 param1, BOOL param2,
     return v0;
 }
 
-static void ov21_021D2830 (UnkStruct_02018340 * param0, int param1)
+static void ov21_021D2830 (BGL * param0, int param1)
 {
     {
         UnkStruct_ov97_0222DB78 v0 = {
@@ -642,7 +642,7 @@ static void ov21_021D2830 (UnkStruct_02018340 * param0, int param1)
         sub_02019EBC(param0, 2);
     }
 
-    sub_02019060(0, 2);
+    BGL_SetPriority(0, 2);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
 
     {
@@ -734,7 +734,7 @@ static void ov21_021D2830 (UnkStruct_02018340 * param0, int param1)
     }
 }
 
-static void ov21_021D299C (UnkStruct_02018340 * param0)
+static void ov21_021D299C (BGL * param0)
 {
     sub_02019044(param0, 1);
     sub_02019044(param0, 2);
@@ -746,14 +746,14 @@ static void ov21_021D299C (UnkStruct_02018340 * param0)
 
 static void ov21_021D29D0 (UnkStruct_ov21_021D13FC * param0, int param1)
 {
-    sub_0201A7E8(param0->unk_00, &param0->unk_04, 1, 0, 0, 32, 32, 0, 0);
-    sub_0201ADA4(&param0->unk_04, 0);
+    BGL_AddWindow(param0->unk_00, &param0->unk_04, 1, 0, 0, 32, 32, 0, 0);
+    BGL_FillWindow(&param0->unk_04, 0);
     sub_0201A954(&param0->unk_04);
 }
 
 static void ov21_021D2A00 (UnkStruct_ov21_021D13FC * param0)
 {
-    sub_0201A8FC(&param0->unk_04);
+    BGL_DeleteWindow(&param0->unk_04);
 }
 
 static void ov21_021D2A0C (UnkStruct_ov21_021D13FC * param0, int param1)
@@ -1040,15 +1040,15 @@ static void ov21_021D300C (UnkStruct_ov21_021D13FC * param0)
 
 static void ov21_021D3034 (UnkStruct_ov21_021D13FC * param0)
 {
-    param0->unk_270 = sub_0200D9E8(ov21_021D3064, &param0->unk_1E0, 1);
+    param0->unk_270 = SysTask_Start(ov21_021D3064, &param0->unk_1E0, 1);
 }
 
 static void ov21_021D3054 (UnkStruct_ov21_021D13FC * param0)
 {
-    sub_0200DA58(param0->unk_270);
+    SysTask_Done(param0->unk_270);
 }
 
-static void ov21_021D3064 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov21_021D3064 (SysTask * param0, void * param1)
 {
     UnkStruct_ov21_021D2584 * v0 = param1;
     int v1;
@@ -1113,7 +1113,7 @@ static void ov21_021D3124 (UnkStruct_ov21_021D13FC * param0, int param1, int par
     v0->unk_54 = 1;
 }
 
-static void ov21_021D3194 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov21_021D3194 (SysTask * param0, void * param1)
 {
     UnkStruct_ov21_021D3124 * v0 = param1;
     BOOL v1;
@@ -1137,11 +1137,11 @@ static void ov21_021D3194 (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov21_021D31D0 (UnkStruct_ov21_021D13FC * param0)
 {
-    param0->unk_274 = sub_0200D9E8(ov21_021D3194, &param0->unk_218, 0);
+    param0->unk_274 = SysTask_Start(ov21_021D3194, &param0->unk_218, 0);
 }
 
 static void ov21_021D31F0 (UnkStruct_ov21_021D13FC * param0)
 {
-    sub_0200DA58(param0->unk_274);
+    SysTask_Done(param0->unk_274);
     param0->unk_274 = NULL;
 }

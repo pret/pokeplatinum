@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="59108" />
+	<row id="pl_msg_00000360_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Look! These are Poké Balls!\nThere is a Pokémon in each one!\r</language>
+	</row>
+	<row id="pl_msg_00000360_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 3}Tiny Leaf Pokémon TURTWIG{COLOR 0}!\nWill you take this Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000360_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}Chimp Pokémon CHIMCHAR{COLOR 0}!\nDo you choose this Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000360_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 2}Penguin Pokémon{COLOR 0} {COLOR 2}PIPLUP{COLOR 0}!\nIs this Pokémon the one for you?</language>
+	</row>
+	<row id="pl_msg_00000360_00004" index="4">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000360_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000360_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000360_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now choose!\nWhich Pokémon will it be?</language>
+	</row>
+</body>

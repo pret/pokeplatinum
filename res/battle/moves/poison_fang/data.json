@@ -1,0 +1,23 @@
+{
+    "name": "Poison Fang",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_POISON",
+    "power": 50,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_BADLY_POISON_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": 4,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

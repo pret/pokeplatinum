@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="51888" />
+	<row id="pl_msg_00000024_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aww, man.\nI wasted money on some Poké Balls.\rI should’ve lowered the HP of wild\nPokémon more before throwing them.</language>
+	</row>
+	<row id="pl_msg_00000024_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The one thing you must remember is to\npack some Potions.\rIf all your Pokémon faint, it’ll be\nlights out for you, too!</language>
+	</row>
+	<row id="pl_msg_00000024_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Potions are important, but sometimes,\nit’s better to simply avoid battles.\rIf you want to avoid wild Pokémon for a\nwhile, just use a Repel.\rAfter all, if you don’t battle, your\nPokémon can’t lose HP.</language>
+	</row>
+</body>

@@ -3,9 +3,8 @@
 #include <nitro/sinit.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "struct_decls/sys_task.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay025/struct_ov25_0225424C_decl.h"
 #include "overlay032/struct_ov32_02256470_decl.h"
@@ -15,7 +14,7 @@
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02022594.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "party.h"
 #include "overlay025/ov25_02253CE0.h"
@@ -32,10 +31,10 @@ typedef struct {
 
 static void NitroStaticInit(void);
 
-static BOOL ov32_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
-static BOOL ov32_0225621C(UnkStruct_ov32_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3);
+static BOOL ov32_022561D4(void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
+static BOOL ov32_0225621C(UnkStruct_ov32_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3);
 static void ov32_02256264(UnkStruct_ov32_0225621C * param0);
-static void ov32_02256278(UnkStruct_0201CD38 * param0, void * param1);
+static void ov32_02256278(SysTask * param0, void * param1);
 static void ov32_022562AC(void * param0);
 static void ov32_022562B4(UnkStruct_ov32_0225621C * param0, u32 param1);
 static BOOL ov32_022562C8(UnkStruct_ov32_0225621C * param0);
@@ -48,13 +47,13 @@ static void NitroStaticInit (void)
     ov25_02254238(ov32_022561D4, ov32_022562AC);
 }
 
-static BOOL ov32_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov32_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     UnkStruct_ov32_0225621C * v0 = (UnkStruct_ov32_0225621C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov32_0225621C));
 
     if (v0 != NULL) {
         if (ov32_0225621C(v0, param1, param2, param3)) {
-            if (sub_0200D9E8(ov32_02256278, v0, 1) != NULL) {
+            if (SysTask_Start(ov32_02256278, v0, 1) != NULL) {
                 *param0 = v0;
                 return 1;
             }
@@ -66,7 +65,7 @@ static BOOL ov32_022561D4 (void ** param0, UnkStruct_ov25_0225424C * param1, Unk
     return 0;
 }
 
-static BOOL ov32_0225621C (UnkStruct_ov32_0225621C * param0, UnkStruct_ov25_0225424C * param1, UnkStruct_02018340 * param2, u32 param3)
+static BOOL ov32_0225621C (UnkStruct_ov32_0225621C * param0, UnkStruct_ov25_0225424C * param1, BGL * param2, u32 param3)
 {
     if (ov32_02256470(&(param0->unk_74), &(param0->unk_04), param2)) {
         param0->unk_00 = 0;
@@ -93,7 +92,7 @@ static void ov32_02256264 (UnkStruct_ov32_0225621C * param0)
     Heap_FreeToHeap(param0);
 }
 
-static void ov32_02256278 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov32_02256278 (SysTask * param0, void * param1)
 {
     static BOOL(*const v0[])(UnkStruct_ov32_0225621C *) = {
         ov32_022562C8,
@@ -106,7 +105,7 @@ static void ov32_02256278 (UnkStruct_0201CD38 * param0, void * param1)
     if (v1->unk_00 < NELEMS(v0)) {
         if (v0[v1->unk_00](v1)) {
             ov32_02256264(v1);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             ov25_02254260(v1->unk_78);
         }
     } else {
@@ -158,7 +157,7 @@ static BOOL ov32_02256308 (UnkStruct_ov32_0225621C * param0)
         param0->unk_04.unk_64 = ov25_0225446C(&(param0->unk_04.unk_68), &(param0->unk_04.unk_6C));
 
         if (param0->unk_04.unk_64) {
-            param0->unk_04.unk_66 = sub_02022798();
+            param0->unk_04.unk_66 = TouchScreen_Tapped();
 
             if (param0->unk_04.unk_66) {
                 u32 v0 = ov32_02256B78(param0->unk_04.unk_68, param0->unk_04.unk_6C, param0->unk_04.unk_00);
@@ -207,17 +206,17 @@ static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
 
     for (v1 = 0; v1 < param0->unk_00; v1++) {
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
-        v2 = sub_02073C88(v0);
+        v2 = Pokemon_EnterDecryptionContext(v0);
 
         param0->unk_04[v1].unk_00 = sub_02079D40((const BoxPokemon *)v0);
-        param0->unk_04[v1].unk_04 = GetMonData(v0, MON_DATA_SPECIES, NULL);
-        param0->unk_04[v1].unk_06 = GetMonData(v0, MON_DATA_163, NULL);
-        param0->unk_04[v1].unk_08 = GetMonData(v0, MON_DATA_164, NULL);
-        param0->unk_04[v1].unk_0A = GetMonData(v0, MON_DATA_HELD_ITEM, NULL);
-        param0->unk_04[v1].unk_0C = (GetMonData(v0, MON_DATA_160, NULL) != 0);
-        param0->unk_04[v1].unk_0E = GetMonData(v0, MON_DATA_IS_EGG, NULL);
-        param0->unk_04[v1].unk_0F = GetMonData(v0, MON_DATA_FORM, NULL);
+        param0->unk_04[v1].unk_04 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
+        param0->unk_04[v1].unk_06 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
+        param0->unk_04[v1].unk_08 = Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
+        param0->unk_04[v1].unk_0A = Pokemon_GetValue(v0, MON_DATA_HELD_ITEM, NULL);
+        param0->unk_04[v1].unk_0C = (Pokemon_GetValue(v0, MON_DATA_STATUS_CONDITION, NULL) != 0);
+        param0->unk_04[v1].unk_0E = Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL);
+        param0->unk_04[v1].unk_0F = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
-        sub_02073CD4(v0, v2);
+        Pokemon_ExitDecryptionContext(v0, v2);
     }
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="17411" />
+	<row id="pl_msg_00000027_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, hi!\rI’m the president of the Pokétch\nCompany!\r</language>
+	</row>
+	<row id="pl_msg_00000027_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m developing a new Pokétch app,\nbut it’s not quite done.\rMy guess is that it will be ready\nwhen you get a Gym Badge.</language>
+	</row>
+	<row id="pl_msg_00000027_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, hi!\nYour patience is rewarded!\rI’ve developed a new Pokétch app!\r</language>
+	</row>
+	<row id="pl_msg_00000027_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s the Memo Pad!\nIt’s... Well, it is what it is!</language>
+	</row>
+	<row id="pl_msg_00000027_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m developing a new Pokétch app,\nbut it’s not quite done.\rMy guess is that it will be ready\nwhen you get three Gym Badges.</language>
+	</row>
+	<row id="pl_msg_00000027_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, hi!\nYour patience is rewarded!\rI’ve developed another new Pokétch\napp!\r</language>
+	</row>
+	<row id="pl_msg_00000027_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Having a map constantly displayed\nis convenient, no?\rYou can also mark things, so it’s\nthat much more useful.</language>
+	</row>
+	<row id="pl_msg_00000027_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m developing a new Pokétch app,\nbut it’s not quite done.\rMy guess is that it will be ready\nwhen you get five Gym Badges.</language>
+	</row>
+	<row id="pl_msg_00000027_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, hi!\nYour patience is rewarded!\rI’ve developed yet another new\nPokétch app!\r</language>
+	</row>
+	<row id="pl_msg_00000027_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I think it will be useful to know how\nmany people are communicating, like\fin the Union Room.</language>
+	</row>
+	<row id="pl_msg_00000027_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m developing a new Pokétch app,\nbut it’s not quite done.\rMy guess is that it will be ready\nwhen you get seven Gym Badges.</language>
+	</row>
+	<row id="pl_msg_00000027_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, hi!\nYour patience is rewarded!\rI’ve developed still yet another new\nPokétch app!\r</language>
+	</row>
+	<row id="pl_msg_00000027_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Check type matchups so you can make\nall your attacks super effective!\rYou’ll become stronger than ever!</language>
+	</row>
+	<row id="pl_msg_00000027_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yup, all sorts of people will give\nyou Pokétch apps.\rEveryone gets super happy that way!</language>
+	</row>
+	<row id="pl_msg_00000027_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So, yup, what to do?\rDo you think I should solicit new\nPokétch ideas?</language>
+	</row>
+	<row id="pl_msg_00000027_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you can be sure I will keep\ndeveloping Pokétch apps.\rJust like Pokémon, my Pokétch is\nsomething that evolves!</language>
+	</row>
+	<row id="pl_msg_00000027_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Pokétch Company.\rWe’re actually a family-run business,\nso we’re not very impressive.</language>
+	</row>
+	<row id="pl_msg_00000027_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, do you watch TV?\n“Pokétch Detective” is a great show.\rSeeing that program compels me to use\nmy Pokétch more!</language>
+	</row>
+</body>

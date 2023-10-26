@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV104_0223B5C0_H
 
 #include "struct_decls/struct_02030114_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0223A348.h"
@@ -30,7 +30,7 @@ typedef struct {
     u8 unk_6F4;
     u8 unk_6F5;
     UnkStruct_02030114 * unk_6F8;
-    UnkStruct_021C0794 * unk_6FC;
+    SaveData * unk_6FC;
     void * unk_700;
     u8 unk_704[4][9];
     u16 unk_728[2];

@@ -2,14 +2,14 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
 #include "constdata/const_020EA358.h"
 
 #include "struct_defs/struct_0208BE5C.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
@@ -19,11 +19,11 @@
 #include "unk_020041CC.h"
 #include "heap.h"
 #include "gx_layers.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02030108.h"
 #include "unk_02051D8C.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0209B6F8.h"
 #include "unk_0209BA80.h"
@@ -125,7 +125,7 @@ BOOL ov104_022348BC (UnkStruct_ov104_0222E930 * param0)
     v4->unk_05 = v3->unk_6F5;
     v4->unk_14 = &v3->unk_D84[0];
 
-    sub_0207A008(v4->unk_0C);
+    Party_Init(v4->unk_0C);
 
     v1 = Party_GetFromSavedata(v5->unk_08);
     v2 = Party_GetPokemonBySlotIndex(v1, v3->unk_260[0]);
@@ -146,7 +146,7 @@ BOOL ov104_022348BC (UnkStruct_ov104_0222E930 * param0)
 BOOL ov104_02234994 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_ov104_0223B5C0 * v0;
-    UnkStruct_ov6_02240D5C * v1;
+    BattleParams * v1;
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
     v1 = v0->unk_700;
@@ -159,7 +159,7 @@ BOOL ov104_02234994 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_022349B8 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_ov6_02240D5C * v0;
+    BattleParams * v0;
     UnkStruct_ov104_0223B5C0 * v1;
     UnkStruct_ov104_02230BE4 * v2 = sub_0209B970(param0->unk_00->unk_00);
 
@@ -258,7 +258,7 @@ BOOL ov104_02234A1C (UnkStruct_ov104_0222E930 * param0)
 
         for (v7 = 0; v7 < v5; v7++) {
             v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[v7]);
-            sub_02074B30(v1, 6, &v3->unk_728[v7]);
+            Pokemon_SetValue(v1, 6, &v3->unk_728[v7]);
         }
         break;
     case 28:
@@ -297,7 +297,7 @@ BOOL ov104_02234A1C (UnkStruct_ov104_0222E930 * param0)
     case 15:
         v2 = Party_GetFromSavedata(v0->unk_08);
         v1 = Party_GetPokemonBySlotIndex(v2, v3->unk_260[0]);
-        *v11 = GetMonData(v1, MON_DATA_SPECIES, NULL);
+        *v11 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
         break;
     case 35:
         ov104_022356A0(v3);
@@ -404,7 +404,7 @@ BOOL ov104_02234D50 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     u16 v1;
     Party * v2;
     Pokemon * v3;
@@ -414,10 +414,10 @@ BOOL ov104_02234D6C (UnkStruct_ov104_0222E930 * param0)
     v4 = sub_0209B978(param0->unk_00->unk_00);
     v2 = Party_GetFromSavedata(v5->unk_08);
     v3 = Party_GetPokemonBySlotIndex(v2, v4->unk_260[0]);
-    v1 = GetMonData(v3, MON_DATA_SPECIES, NULL);
+    v1 = Pokemon_GetValue(v3, MON_DATA_SPECIES, NULL);
 
     if (v4->unk_04 == 0) {
-        v0 = sub_0202440C(v5->unk_08);
+        v0 = SaveData_TVBroadcast(v5->unk_08);
         sub_0206D048(v0, v3);
     }
 

@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV107_02249B1C_H
 #define POKEPLATINUM_OV107_02249B1C_H
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay107/struct_ov107_02249954.h"
 #include "overlay107/struct_ov107_02249B8C_decl.h"
 

@@ -4,9 +4,9 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 #include "overlay021/struct_ov21_021D4C0C_decl.h"
 
@@ -29,14 +29,14 @@
 #include "unk_020093B4.h"
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_02012744.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D0D80.h"
 #include "overlay021/ov21_021D1F90.h"
@@ -89,9 +89,9 @@ static void ov21_021DE9A4(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE
 static void ov21_021DEA0C(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1);
 static void ov21_021DEA44(UnkStruct_ov21_021DE760 * param0, int param1);
 static void ov21_021DEB58(UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov21_021DE6D4 * param1, int param2);
-static void ov21_021DEC2C(UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3);
-static void ov21_021DEC80(UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3);
-static void ov21_021DECD4(UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4);
+static void ov21_021DEC2C(Window * param0, int param1, int param2, u32 param3);
+static void ov21_021DEC80(Window * param0, int param1, int param2, u32 param3);
+static void ov21_021DECD4(Window * param0, int param1, int param2, int param3, u32 param4);
 static void ov21_021DED24(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1, const UnkStruct_ov21_021DE6D4 * param2, int param3);
 static void ov21_021DED68(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1);
 static void ov21_021DED7C(UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021DE760 * param1, int param2, int param3);
@@ -385,7 +385,7 @@ static void ov21_021DEA0C (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
 {
     ov21_021DF35C(param0);
 
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
 
     ov21_021DED68(param0, param1);
     ov21_021DF1F8(param0);
@@ -430,55 +430,55 @@ static void ov21_021DEB58 (UnkStruct_ov21_021DE760 * param0, const UnkStruct_ov2
     ov21_021DEB8C(&param0->unk_00->unk_04, v0, param2, param1->unk_18, ((u32)(((2 & 0xff) << 16) | ((1 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
-void ov21_021DEB8C (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
+void ov21_021DEB8C (Window * param0, int param1, int param2, int param3, u32 param4)
 {
     Strbuf* v0 = Strbuf_Init(64, param2);
-    UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 697, param2);
+    MessageLoader * v1 = MessageLoader_Init(0, 26, 697, param2);
 
-    sub_0200B1B8(v1, 9, v0);
+    MessageLoader_GetStrbuf(v1, 9, v0);
     sub_0201D78C(param0, 0, v0, 152, 88, 0, param4, NULL);
 
-    sub_0200B1B8(v1, 10, v0);
+    MessageLoader_GetStrbuf(v1, 10, v0);
     sub_0201D78C(param0, 0, v0, 152, 104, 0, param4, NULL);
     Strbuf_Free(v0);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
 
     ov21_021DEC2C(param0, param2, param1, param4);
     ov21_021DEC80(param0, param2, param1, param4);
     ov21_021DECD4(param0, param2, param1, param3, param4);
 }
 
-static void ov21_021DEC2C (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
+static void ov21_021DEC2C (Window * param0, int param1, int param2, u32 param3)
 {
     Strbuf* v0 = Strbuf_Init(64, param1);
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     int v2;
 
     v2 = sub_020989D0();
-    v1 = sub_0200B144(0, 26, v2, param1);
+    v1 = MessageLoader_Init(0, 26, v2, param1);
 
-    sub_0200B1B8(v1, param2, v0);
+    MessageLoader_GetStrbuf(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 88, 0, param3, NULL);
     Strbuf_Free(v0);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
 }
 
-static void ov21_021DEC80 (UnkStruct_0205AA50 * param0, int param1, int param2, u32 param3)
+static void ov21_021DEC80 (Window * param0, int param1, int param2, u32 param3)
 {
     Strbuf* v0 = Strbuf_Init(64, param1);
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     int v2;
 
     v2 = sub_020989C4();
-    v1 = sub_0200B144(0, 26, v2, param1);
+    v1 = MessageLoader_Init(0, 26, v2, param1);
 
-    sub_0200B1B8(v1, param2, v0);
+    MessageLoader_GetStrbuf(v1, param2, v0);
     sub_0201D78C(param0, 0, v0, 184, 104, 0, param3, NULL);
     Strbuf_Free(v0);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
 }
 
-static void ov21_021DECD4 (UnkStruct_0205AA50 * param0, int param1, int param2, int param3, u32 param4)
+static void ov21_021DECD4 (Window * param0, int param1, int param2, int param3, u32 param4)
 {
     Strbuf* v0 = ov21_021D56BC(param2, GAME_LANGUAGE, param3, param1);
     u32 v1 = sub_02002EB4(0, v0, 0);
@@ -641,8 +641,8 @@ static void ov21_021DF098 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
     int v4, v5;
     int v6 = ov21_021D33D4(param2->unk_04, v3);
 
-    v4 = sub_020759CC(v3, v6, 6);
-    v5 = sub_020759CC(v3, v6, 7);
+    v4 = PokemonPersonalData_GetFormValue(v3, v6, 6);
+    v5 = PokemonPersonalData_GetFormValue(v3, v6, 7);
     v4 = ov21_021DF180(v4);
     v5 = ov21_021DF180(v5);
 
@@ -749,7 +749,7 @@ static void ov21_021DF214 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
     UnkStruct_ov83_0223D9A8 v1;
     UnkStruct_ov21_021D13FC * v2 = param1->unk_00;
     int v3 = ov21_021D37BC(param2->unk_04);
-    UnkStruct_0205AA50 * v4;
+    Window * v4;
     UnkStruct_ov21_021D4CB8 v5;
     UnkStruct_02009DC8 * v6;
 
@@ -790,9 +790,9 @@ static void ov21_021DF214 (UnkStruct_ov21_021DF374 * param0, UnkStruct_ov21_021D
     ov21_021D4DA0(v4);
 }
 
-UnkStruct_0205AA50 * ov21_021DF30C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
+Window * ov21_021DF30C (UnkStruct_ov21_021D4C0C * param0, int param1, int param2)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = ov21_021D4D6C(param0, 18, 2);

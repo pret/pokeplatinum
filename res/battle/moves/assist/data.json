@@ -1,0 +1,19 @@
+{
+    "name": "Assist",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_USE_RANDOM_ALLY_MOVE",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET_SPECIAL",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 14,
+        "type": "CONTEST_TYPE_BEAUTY"
+    }
+}

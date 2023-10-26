@@ -1,0 +1,115 @@
+{
+    "name": "Grovyle",
+    "base_stats": {
+        "hp": 50,
+        "attack": 65,
+        "defense": 45,
+        "speed": 95,
+        "special_attack": 85,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 141,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_OVERGROW",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM54",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_POUND",
+                "MOVE_LEER",
+                "MOVE_ABSORB",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "6": "MOVE_ABSORB",
+            "11": "MOVE_QUICK_ATTACK",
+            "16": "MOVE_FURY_CUTTER",
+            "17": "MOVE_PURSUIT",
+            "23": "MOVE_SCREECH",
+            "29": "MOVE_LEAF_BLADE",
+            "35": "MOVE_AGILITY",
+            "41": "MOVE_SLAM",
+            "47": "MOVE_DETECT",
+            "53": "MOVE_FALSE_SWIPE",
+            "59": "MOVE_LEAF_STORM"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            36,
+            "SPECIES_SCEPTILE"
+        ]
+    ]
+}

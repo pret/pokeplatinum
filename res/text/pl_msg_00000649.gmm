@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="45494" />
+	<row id="pl_msg_00000649_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lighting Event</language>
+	</row>
+	<row id="pl_msg_00000649_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fireworks Event</language>
+	</row>
+	<row id="pl_msg_00000649_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Parade</language>
+	</row>
+</body>

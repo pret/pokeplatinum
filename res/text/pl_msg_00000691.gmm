@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="7517" />
+	<row id="pl_msg_00000691_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">None</language>
+	</row>
+	<row id="pl_msg_00000691_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Central Federal District</language>
+	</row>
+	<row id="pl_msg_00000691_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Far Eastern Federal District </language>
+	</row>
+	<row id="pl_msg_00000691_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Northwestern Federal District</language>
+	</row>
+	<row id="pl_msg_00000691_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volga Federal District </language>
+	</row>
+	<row id="pl_msg_00000691_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Siberian Federal District</language>
+	</row>
+	<row id="pl_msg_00000691_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Southern Federal District</language>
+	</row>
+	<row id="pl_msg_00000691_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Urals Federal District </language>
+	</row>
+</body>

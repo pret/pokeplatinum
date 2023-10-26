@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "unk_020244AC.h"
 #include "unk_02056720.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 
 typedef struct UnkStruct_02056B24_t {
@@ -37,12 +37,12 @@ typedef struct UnkStruct_02056B24_t {
     } unk_B8[12];
 } UnkStruct_02056B24;
 
-int sub_02056720 (void)
+int Poketch_SaveSize (void)
 {
     return sizeof(UnkStruct_02056B24);
 }
 
-void sub_02056728 (UnkStruct_02056B24 * param0)
+void Poketch_Init (UnkStruct_02056B24 * param0)
 {
     int v0;
 
@@ -302,9 +302,9 @@ void sub_02056A48 (UnkStruct_02056B24 * param0, const BoxPokemon * param1)
         v0 = 12 - 1;
     }
 
-    param0->unk_B8[v0].unk_00 = sub_02074570((BoxPokemon *)param1, MON_DATA_SPECIES, NULL);
+    param0->unk_B8[v0].unk_00 = BoxPokemon_GetValue((BoxPokemon *)param1, MON_DATA_SPECIES, NULL);
     param0->unk_B8[v0].unk_02 = sub_02079E44(param1);
-    param0->unk_B8[v0].unk_04 = sub_02074570((BoxPokemon *)param1, MON_DATA_FORM, NULL);
+    param0->unk_B8[v0].unk_04 = BoxPokemon_GetValue((BoxPokemon *)param1, MON_DATA_FORM, NULL);
 }
 
 int sub_02056AAC (const UnkStruct_02056B24 * param0)
@@ -337,10 +337,10 @@ u32 sub_02056AFC (const UnkStruct_02056B24 * param0, int param1)
     return param0->unk_B8[param1].unk_04;
 }
 
-UnkStruct_02056B24 * sub_02056B24 (UnkStruct_021C0794 * param0)
+UnkStruct_02056B24 * sub_02056B24 (SaveData * param0)
 {
     UnkStruct_02056B24 * v0;
 
-    v0 = sub_020245BC(param0, 5);
+    v0 = SaveData_Get(param0, 5);
     return v0;
 }

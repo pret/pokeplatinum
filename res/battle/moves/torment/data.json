@@ -1,0 +1,23 @@
+{
+    "name": "Torment",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_DARK",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "MOVE_EFFECT_TORMENT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 16,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

@@ -13,7 +13,7 @@
 #include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_020131EC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay012/ov12_022380BC.h"
 
 static void ov12_022380DC(UnkStruct_ov12_022380DC * param0, int param1, int param2, int param3);
@@ -110,7 +110,7 @@ static void ov12_022380DC (UnkStruct_ov12_022380DC * param0, int param1, int par
     sub_02007DEC(param0->unk_18[param0->unk_00], 1, v8 + v11);
 
     if (v4 == 2) {
-        NARC * v13 = NARC_ctor(147, param3);
+        NARC * v13 = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, param3);
 
         sub_02078A80(v13, &v9, v2);
         sub_02078AA4(v13, &v10, v2);
@@ -193,7 +193,7 @@ void ov12_02238390 (UnkStruct_ov12_022380DC * param0, int param1)
     param0->unk_08[param0->unk_00]->unk_04 = v0.unk_00;
     param0->unk_08[param0->unk_00]->unk_08 = v0.unk_04;
 
-    NARC_ReadWholeMemberByIndexPair(&v4, 121, v3);
+    NARC_ReadWholeMemberByIndexPair(&v4, NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O, v3);
     param0->unk_08[param0->unk_00]->unk_0C = v4;
     v2 = ov12_022384CC(param0->unk_4C[param0->unk_00], 1) + param0->unk_08[param0->unk_00]->unk_0C;
 

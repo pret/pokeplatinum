@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="44018" />
+	<row id="pl_msg_00000068_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yay! I got a Pal Pad at the\nPokémon Wi-Fi Club downstairs!</language>
+	</row>
+	<row id="pl_msg_00000068_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Switch on the PC at any Pokémon\nCenter.\rConnect to “Someone’s PC” and access\nthe Pokémon Storage System.\rThat’s all you need to do to store\nor bring out your Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000068_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmmm...!\rWhat is your favorite kind of Trainer?\nCan you tell me?\r</language>
+	</row>
+	<row id="pl_msg_00000068_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which kind of Trainer would you like\nto be?</language>
+	</row>
+	<row id="pl_msg_00000068_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 14, 0, 0} is the kind of Trainer\nyou want to be?</language>
+	</row>
+	<row id="pl_msg_00000068_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see! So {STRVAR_1 14, 0, 0} is the kind\nof Trainer you like.\rIf that’s the case, others may come\nto see you in the same way.\r</language>
+	</row>
+	<row id="pl_msg_00000068_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, then I’ll just talk to you later!</language>
+	</row>
+	<row id="pl_msg_00000068_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello! You’ve been mistaken for\n{STRVAR_1 14, 0, 0}, haven’t you?\rBut I think you can also pass for\na different kind of Trainer.\rSo, how about telling me what kind of\nTrainer that you like?\r</language>
+	</row>
+	<row id="pl_msg_00000068_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmmm!\nWhat, or who, is this Team Galactic?!\rThey make wonderful claims of a dream\nenergy source on one hand...\rBut rumor has it, they steal Pokémon\nfrom others by force.\rIt’s a mystery! They’re mysterious!\nIsn’t anyone investigating them?</language>
+	</row>
+	<row id="pl_msg_00000068_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmmm!\nWhat, or who, is this Team Galactic?!\rLately, they’ve renounced such acts\nas stealing Pokémon.\rThey’re still involved in developing \ndream energies, but ethically now.</language>
+	</row>
+	<row id="pl_msg_00000068_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know how you can battle a friend\nusing wireless communications?\rWell now, you can capture it as a Battle\nVideo using a Vs. Recorder!</language>
+	</row>
+	<row id="pl_msg_00000068_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cool!\nYou have a Vs. Recorder!\rSo, did you go to the Global Terminal in\nJubilife City? Did ya? Did ya?</language>
+	</row>
+	<row id="pl_msg_00000068_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, I’m Grace, the Idol! I’m just back\nfrom a show in Oreburgh Mine!\rSo, shall we battle?</language>
+	</row>
+	<row id="pl_msg_00000068_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll let you join my fan club if you can\nbeat me!\r</language>
+	</row>
+	<row id="pl_msg_00000068_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You won’t accept my challenge?!\nBut I’m an Idol...</language>
+	</row>
+	<row id="pl_msg_00000068_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, that’s me and my Pokémon!\nI hope you’ll support us!\rJust so you know, our latest single is\ntitled “Jigglin’ Pokémon Wub”!</language>
+	</row>
+</body>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="24606" />
+	<row id="pl_msg_00000236_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dodogyuuun!\r</language>
+	</row>
+	<row id="pl_msg_00000236_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ARCEUS disappeared from sight...</language>
+	</row>
+</body>

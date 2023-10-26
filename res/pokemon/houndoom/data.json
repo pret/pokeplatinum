@@ -1,0 +1,109 @@
+{
+    "name": "Houndoom",
+    "base_stats": {
+        "hp": 75,
+        "attack": 90,
+        "defense": 50,
+        "speed": 95,
+        "special_attack": 110,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 204,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_EARLY_BIRD",
+        "ABILITY_FLASH_FIRE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLACK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM27",
+            "TM30",
+            "TM32",
+            "TM35",
+            "TM36",
+            "TM38",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM49",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM63",
+            "TM66",
+            "TM68",
+            "TM78",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_THUNDER_FANG",
+                "MOVE_LEER",
+                "MOVE_EMBER",
+                "MOVE_HOWL",
+                "MOVE_SMOG"
+            ],
+            "4": "MOVE_HOWL",
+            "9": "MOVE_SMOG",
+            "14": "MOVE_ROAR",
+            "17": "MOVE_BITE",
+            "22": "MOVE_ODOR_SLEUTH",
+            "28": "MOVE_BEAT_UP",
+            "32": "MOVE_FIRE_FANG",
+            "38": "MOVE_FAINT_ATTACK",
+            "44": "MOVE_EMBARGO",
+            "48": "MOVE_FLAMETHROWER",
+            "54": "MOVE_CRUNCH",
+            "60": "MOVE_NASTY_PLOT"
+        }
+    }
+}

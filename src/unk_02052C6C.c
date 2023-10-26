@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -22,7 +22,7 @@
 #include "overlay097/struct_ov97_0222DB78.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -32,10 +32,10 @@
 #include "unk_02018340.h"
 #include "gx_layers.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202CD50.h"
 #include "unk_0202DF8C.h"
@@ -56,7 +56,7 @@ typedef struct {
     BOOL unk_00;
     UnkStruct_0203E234 unk_04;
     UnkStruct_0203E274 unk_10;
-    UnkStruct_0205AA50 unk_1C;
+    Window unk_1C;
     Strbuf* unk_2C;
     void * unk_30;
     int unk_34;
@@ -72,22 +72,22 @@ static BOOL sub_02052FFC(UnkStruct_0205300C * param0);
 
 static void sub_02052C6C (UnkStruct_0203CDB0 * param0, BOOL param1)
 {
-    UnkStruct_0202DF8C * v0;
+    HallOfFame * v0;
     Party * v1;
     RTCDate v2;
     int v3;
 
-    v0 = sub_0202444C(param0->unk_0C, 11, &v3);
+    v0 = SaveData_HallOfFame(param0->unk_0C, 11, &v3);
 
     if ((v3 != 1) || !param1) {
-        sub_0202DF94(v0);
+        HallOfFame_Init(v0);
     }
 
     v1 = Party_GetFromSavedata(param0->unk_0C);
 
     sub_020138A4(&v2);
     sub_0202DFA8(v0, v1, &v2);
-    sub_02024458(param0->unk_0C, v0);
+    SaveData_SaveHallOfFame(param0->unk_0C, v0);
     Heap_FreeToHeap(v0);
 }
 
@@ -114,7 +114,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (sub_020247E0(v2->unk_0C) == 0) {
                 sub_02052FA8(v2, v3);
                 (*v4)++;
@@ -143,7 +143,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
     break;
     case 5:
         if (sub_02052FFC(v3)) {
-            sub_02005748(1563);
+            Sound_PlayEffect(1563);
             v3->unk_38 = 18;
             (*v4)++;
         }
@@ -160,7 +160,7 @@ static BOOL sub_02052CBC (UnkStruct_020508D4 * param0)
         (*v4)++;
         break;
     case 8:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02053098(v2, v3);
             sub_0203E274(v2, &(v3->unk_10));
             (*v4)++;
@@ -184,7 +184,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     UnkStruct_0203CDB0 * v0;
     UnkStruct_02049FA8 * v1, * v2;
     UnkStruct_020507E4 * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v4;
     UnkStruct_0205300C * v5;
     UnkStruct_0202CD88 * v6;
     Party * v7;
@@ -200,7 +200,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     v5->unk_04.unk_00 = sub_02025E38(v0->unk_0C);
     v5->unk_04.unk_04 = Party_GetFromSavedata(v0->unk_0C);
     v5->unk_04.unk_08 = sub_02025E5C(v0->unk_0C);
-    v5->unk_10.unk_00 = sub_02025F30(sub_02025E38(v0->unk_0C));
+    v5->unk_10.unk_00 = TrainerInfo_Gender(sub_02025E38(v0->unk_0C));
     v5->unk_10.unk_04 = sub_0206A954(v3);
     v5->unk_10.unk_08 = sub_02027560(v0->unk_0C);
 
@@ -215,7 +215,7 @@ void sub_02052E58 (UnkStruct_020508D4 * param0)
     sub_0203D190(v2);
     sub_0206AD9C(v3);
     sub_0206A944(v3);
-    sub_02025FE0(v4);
+    TrainerInfo_SetMainStoryCleared(v4);
 
     v6 = sub_0202CD88(v0->unk_0C);
 
@@ -279,7 +279,7 @@ static void sub_02052FA8 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
 {
     UnkStruct_020279FC * v0 = sub_02025E44(param0->unk_0C);
 
-    param1->unk_2C = sub_0200B010(26, 213, 15, 32);
+    param1->unk_2C = MessageBank_GetNewStrbufFromNARC(26, 213, 15, 32);
 
     sub_0205D8F4(param0->unk_08, &param1->unk_1C, 3);
     sub_0205D944(&param1->unk_1C, v0);
@@ -302,7 +302,7 @@ static void sub_0205300C (UnkStruct_0205300C * param0)
 
 static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * param1, int param2)
 {
-    UnkStruct_0200B144 * v0 = sub_0200B144(1, 26, 213, 4);
+    MessageLoader * v0 = MessageLoader_Init(1, 26, 213, 4);
 
     if (param2 == 2) {
         UnkStruct_0200B358 * v1;
@@ -312,10 +312,10 @@ static void sub_02053028 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
         param1->unk_2C = sub_0200B29C(v1, v0, 16, 4);
         sub_0200B3F0(v1);
     } else {
-        param1->unk_2C = sub_0200B1EC(v0, 18);
+        param1->unk_2C = MessageLoader_GetNewStrbuf(v0, 18);
     }
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     param1->unk_34 = sub_0205D994(&param1->unk_1C, param1->unk_2C, sub_02025E44(param0->unk_0C), 1);
 }
 
@@ -326,7 +326,7 @@ static void sub_02053098 (UnkStruct_0203CDB0 * param0, UnkStruct_0205300C * para
     }
 
     if (sub_0201A7CC(&param1->unk_1C)) {
-        sub_0201A8FC(&param1->unk_1C);
+        BGL_DeleteWindow(&param1->unk_1C);
     }
 
     sub_02019044(param0->unk_08, 3);

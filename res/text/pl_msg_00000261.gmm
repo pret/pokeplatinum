@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50102" />
+	<row id="pl_msg_00000261_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: This is it!\nStark Mountain!\rNow we need to get deep inside.\nLet’s do this!\r</language>
+	</row>
+	<row id="pl_msg_00000261_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: Yeah, but...\nCan that old guy really take over?\fCan he replace Master Cyrus?\r</language>
+	</row>
+	<row id="pl_msg_00000261_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Yeah, I hear you...\rThat elder Charon is a Commander,\nbut he can’t replace Master Cyrus.\r...Maybe this is a good time for me to\nbe done with this Team Galactic thing...\r</language>
+	</row>
+	<row id="pl_msg_00000261_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Whew! The air outside, it is\ndelicious, yes!\r...Gweh! Gah! Geff! Bleah!\rI have inhaled the volcanic ash by\nthe lungful!\r</language>
+	</row>
+	<row id="pl_msg_00000261_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now, you two.\nThis is what they were after.\rThe Magma Stone.\rMoving this is said to awaken the\nPokémon HEATRAN.\rThe old tales say that its awakening,\nit will make Stark Mountain erupt.\r...But I have moved it. It is here.\nWill this cause the eruption?!\r</language>
+	</row>
+	<row id="pl_msg_00000261_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Hey, don’t sweat it, stranger.\rGive me that Magma Stone.\nI’ll go put it back for you.\r</language>
+	</row>
+	<row id="pl_msg_00000261_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: That boy, he has quite the\nenergy, yes?\r{STRVAR_1 3, 0, 0}, I should tell you why\nI have arrived here.\rAfter we parted at the Mt. Coronet,\nI investigated their hideout.\rI uncovered Charon’s plot, which led\nme to a stakeout of this place.\rThat Charon is now securely within our\ncustody.\rIt is safe to say the Team Galactic is\na threat no longer.\rThat being said, it looks like my work\nhere is finally finished.\r</language>
+	</row>
+	<row id="pl_msg_00000261_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Hey, stranger!\nI put the Magma Stone where it belongs.\rIt’ll be OK now.\nHEATRAN won’t wake up. Probably.\rBut, hey, {STRVAR_1 3, 0, 0}!\nYou’re an amazing Trainer!\rSwing by my place later.\nIt’s in the Survival Area.\rBe seeing you, stranger, {STRVAR_1 3, 0, 0}!\nBye-bye!\r</language>
+	</row>
+	<row id="pl_msg_00000261_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: I, also, will take my leave.\r“The more wonderful the meeting, the\nsadder the parting.”\rThat is a quote I have heard many years\nago in a foreign land.\rIts meaning...\nI understand it better now.\rFarewell, {STRVAR_1 3, 0, 0}, my friend!\nLong may you cherish Pokémon!\r</language>
+	</row>
+	<row id="pl_msg_00000261_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stark Mountain\nEruption Zone!</language>
+	</row>
+</body>

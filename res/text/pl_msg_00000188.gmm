@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54274" />
+	<row id="pl_msg_00000188_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, you timed your arrival well.\rI’ve just finished reading a book,\nyou see.\rAllow me to introduce myself.\rI am Lucian.\nI am a user of the Psychic type.\rI must say, you’ve already proven\nyourself to be outstanding by coming\fthis far.\rThey say I am the toughest of the\nElite Four.\rI’m afraid I will have to go all out\nagainst you to live up to that\freputation.\r</language>
+	</row>
+	<row id="pl_msg_00000188_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Congratulations.\nYou’ve now beaten the Elite Four.\rHowever, that doesn’t mean you’re\ndone with the Pokémon League.\rThere remains the Champion.\rI should warn you--the Champion is\nfar stronger than the Elite Four.\rNow, go on. Step through the\ndoorway to your final battle.</language>
+	</row>
+	<row id="pl_msg_00000188_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll be reading books until the next\nchallenger arrives.\rThat will calm my nerves, so that\nI may deal with all situations without\fpanicking.</language>
+	</row>
+</body>

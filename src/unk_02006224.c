@@ -85,7 +85,7 @@ BOOL sub_0200629C (const UnkStruct_0202CC84 * param0, u32 param1, int param2, in
     sub_02006350();
     sub_02004BCC(14);
 
-    v0 = (sub_0201D2E8() % 8192);
+    v0 = (LCRNG_Next() % 8192);
     sub_0202CCB4(v3, sub_0202CCB0(param0));
 
     {

@@ -1,0 +1,106 @@
+{
+    "name": "Gyarados",
+    "base_stats": {
+        "hp": 95,
+        "attack": 125,
+        "defense": 79,
+        "speed": 81,
+        "special_attack": 60,
+        "special_defense": 100
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 214,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 5,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "WATER_2",
+        "DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_INTIMIDATE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 60,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM05",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM55",
+            "TM58",
+            "TM59",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM72",
+            "TM73",
+            "TM78",
+            "TM79",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM04",
+            "HM06",
+            "HM07"
+        ],
+        "level_up": {
+            "1": "MOVE_THRASH",
+            "20": "MOVE_BITE",
+            "23": "MOVE_DRAGON_RAGE",
+            "26": "MOVE_LEER",
+            "29": "MOVE_TWISTER",
+            "32": "MOVE_ICE_FANG",
+            "35": "MOVE_AQUA_TAIL",
+            "38": "MOVE_RAIN_DANCE",
+            "41": "MOVE_HYDRO_PUMP",
+            "44": "MOVE_DRAGON_DANCE",
+            "47": "MOVE_HYPER_BEAM"
+        }
+    }
+}

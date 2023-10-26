@@ -2,16 +2,16 @@
 #define POKEPLATINUM_STRUCT_OV117_02261280_H
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
@@ -44,14 +44,14 @@ typedef struct UnkStruct_ov117_02261280_t {
     int unk_20;
     UnkStruct_0200C6E4 * unk_24;
     UnkStruct_0200C704 * unk_28;
-    UnkStruct_02018340 * unk_2C;
-    UnkStruct_0205AA50 unk_30[5];
-    UnkStruct_0200B144 * unk_80;
+    BGL * unk_2C;
+    Window unk_30[5];
+    MessageLoader * unk_80;
     UnkStruct_0200B358 * unk_84;
     Strbuf* unk_88;
-    UnkStruct_02002F38 * unk_8C;
+    PaletteSys * unk_8C;
     UnkStruct_02012744 * unk_90;
-    UnkStruct_0201CD38 * unk_94;
+    SysTask * unk_94;
     UnkStruct_0207C690 * unk_98;
     UnkStruct_020203AC * unk_9C;
     UnkStruct_020203AC * unk_A0;

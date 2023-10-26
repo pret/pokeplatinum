@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="17411" />
+	<row id="pl_msg_00000036_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can see the rankings of people\nin your group here.\rIt makes me try even harder ’cause\nI can’t stand losing to my friends!</language>
+	</row>
+	<row id="pl_msg_00000036_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">These rankings are nifty!\rI’m going to make a group and\ncompete with all my best friends!</language>
+	</row>
+	<row id="pl_msg_00000036_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry, I’m still fine-tuning this\nthingy here.</language>
+	</row>
+</body>

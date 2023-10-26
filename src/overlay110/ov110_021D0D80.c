@@ -1,15 +1,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0202D750_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 #include "struct_decls/struct_020308A0_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -55,15 +55,15 @@ typedef struct {
     u8 unk_07;
     u16 unk_08;
     u16 unk_0A;
-    UnkStruct_02018340 * unk_0C;
-    UnkStruct_0205AA50 unk_10[16];
-    UnkStruct_0200B144 * unk_110;
+    BGL * unk_0C;
+    Window unk_10[16];
+    MessageLoader * unk_110;
     UnkStruct_0200B358 * unk_114;
     Strbuf* unk_118;
     Strbuf* unk_11C;
-    UnkStruct_02002F38 * unk_120;
+    PaletteSys * unk_120;
     const UnkStruct_020279FC * unk_124;
-    UnkStruct_021C0794 * unk_128;
+    SaveData * unk_128;
     UnkStruct_0203068C * unk_12C;
 } UnkStruct_ov110_021D0F78;
 
@@ -75,16 +75,16 @@ static BOOL ov110_021D0FD0(UnkStruct_ov110_021D0F78 * param0);
 static BOOL ov110_021D1000(UnkStruct_ov110_021D0F78 * param0);
 static void ov110_021D1048(void * param0);
 static void ov110_021D1078(void);
-static void ov110_021D1098(UnkStruct_02018340 * param0);
+static void ov110_021D1098(BGL * param0);
 static void ov110_021D1180(UnkStruct_ov110_021D0F78 * param0);
-static void ov110_021D11CC(UnkStruct_02018340 * param0);
+static void ov110_021D11CC(BGL * param0);
 static void ov110_021D1200(UnkStruct_ov110_021D0F78 * param0, int * param1, int param2);
 static u8 ov110_021D1208(u8 param0);
 static void ov110_021D123C(UnkStruct_ov110_021D0F78 * param0, u32 param1);
 static void ov110_021D128C(void);
 static void ov110_021D12C0(UnkStruct_ov110_021D0F78 * param0, u32 param1);
-static u8 ov110_021D1324(UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205AA50 * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9);
-static u8 ov110_021D13CC(UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205AA50 * param1, int param2, u8 param3);
+static u8 ov110_021D1324(UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9);
+static u8 ov110_021D13CC(UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3);
 static void ov110_021D13F0(UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2);
 static void ov110_021D140C(UnkStruct_ov110_021D0F78 * param0);
 static void ov110_021D1468(UnkStruct_ov110_021D0F78 * param0);
@@ -133,7 +133,7 @@ int ov110_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 
     ov110_021D1180(v1);
 
-    v1->unk_110 = sub_0200B144(1, 26, 16, 114);
+    v1->unk_110 = MessageLoader_Init(1, 26, 16, 114);
     v1->unk_114 = sub_0200B358(114);
     v1->unk_118 = Strbuf_Init(800, 114);
     v1->unk_11C = Strbuf_Init(800, 114);
@@ -182,7 +182,7 @@ int ov110_021D0EF0 (UnkStruct_020067E8 * param0, int * param1)
 
     v1->unk_120 = NULL;
 
-    sub_0200B190(v1->unk_110);
+    MessageLoader_Free(v1->unk_110);
     sub_0200B3F0(v1->unk_114);
     Strbuf_Free(v1->unk_118);
     Strbuf_Free(v1->unk_11C);
@@ -209,7 +209,7 @@ static BOOL ov110_021D0F78 (UnkStruct_ov110_021D0F78 * param0)
         param0->unk_04++;
         break;
     case 2:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;
@@ -228,7 +228,7 @@ static BOOL ov110_021D0FD0 (UnkStruct_ov110_021D0F78 * param0)
         break;
     case 1:
 
-        if ((Unk_021BF67C.unk_44 & PAD_BUTTON_A) || (Unk_021BF67C.unk_44 & PAD_BUTTON_B)) {
+        if ((gCoreSys.unk_44 & PAD_BUTTON_A) || (gCoreSys.unk_44 & PAD_BUTTON_B)) {
             return 1;
         }
         break;
@@ -247,7 +247,7 @@ static BOOL ov110_021D1000 (UnkStruct_ov110_021D0F78 * param0)
         param0->unk_04++;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
 
@@ -289,7 +289,7 @@ static void ov110_021D1078 (void)
     return;
 }
 
-static void ov110_021D1098 (UnkStruct_02018340 * param0)
+static void ov110_021D1098 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -393,7 +393,7 @@ static void ov110_021D1180 (UnkStruct_ov110_021D0F78 * param0)
     return;
 }
 
-static void ov110_021D11CC (UnkStruct_02018340 * param0)
+static void ov110_021D11CC (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3 | GX_PLANEMASK_OBJ, 0);
@@ -445,7 +445,7 @@ static void ov110_021D123C (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(150, 114);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__FRONTIER_GRAPHIC__FRONTIER_BG, 114);
 
     sub_020070E8(v0, 124, param0->unk_0C, param1, 0, 0, 1, 114);
     sub_0200710C(v0, 123, param0->unk_0C, param1, 0, 0, 1, 114);
@@ -472,7 +472,7 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(12, 114);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__POKETCH, 114);
 
     sub_020070E8(v0, 10, param0->unk_0C, param1, 0, 0, 1, 114);
     sub_0200710C(v0, 11, param0->unk_0C, param1, 0, 0, 1, 114);
@@ -482,7 +482,7 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
     return;
 }
 
-asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205AA50 * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
     push {r3, r4, r5, r6, r7, lr}
     sub sp, #0x10
@@ -497,7 +497,7 @@ asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205A
     add r1, sp, #0x18
     ldrb r1, [r1, #0x1c]
     add r0, r6, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
  _021D1342:
     mov r2, #0x11
     lsl r2, r2, #4
@@ -505,7 +505,7 @@ asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205A
     add r2, #0xc
     ldr r2, [r5, r2]
     add r1, r7, #0
-    bl sub_0200B1B8
+    bl MessageLoader_GetStrbuf
     mov r2, #0x45
     lsl r2, r2, #2
     add r1, r2, #4
@@ -568,7 +568,7 @@ asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205A
     pop {r3, r4, r5, r6, r7, pc}
 }
 
-asm static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, UnkStruct_0205AA50 * param1, int param2, u8 param3)
+asm static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3)
 {
     push {r4, r5, lr}
     sub sp, #0x1c
@@ -635,7 +635,7 @@ asm static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1036,7 +1036,7 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
     add r5, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1229,13 +1229,13 @@ asm static void ov110_021D1808 (UnkStruct_ov110_021D0F78 * param0)
 
 static void ov110_021D19B0 (UnkStruct_ov110_021D0F78 * param0)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     Strbuf* v1;
 
-    v0 = sub_0200B144(1, 26, 412, 114);
-    v1 = sub_0200B1EC(v0, param0->unk_08);
+    v0 = MessageLoader_Init(1, 26, 412, 114);
+    v1 = MessageLoader_GetNewStrbuf(v0, param0->unk_08);
 
-    sub_0200B190(v0);
+    MessageLoader_Free(v0);
     sub_0200B48C(param0->unk_114, 0, v1, 0, 0, GAME_LANGUAGE);
     Strbuf_Free(v1);
 
@@ -1249,7 +1249,7 @@ asm static void ov110_021D19F4 (UnkStruct_ov110_021D0F78 * param0)
     add r5, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1492,7 +1492,7 @@ asm static void ov110_021D1C40 (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1646,7 +1646,7 @@ asm static void ov110_021D1DBC (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1
@@ -1777,7 +1777,7 @@ asm static void ov110_021D1ED8 (UnkStruct_ov110_021D0F78 * param0)
     add r4, r0, #0
     add r0, #0x10
     mov r1, #0
-    bl sub_0201ADA4
+    bl BGL_FillWindow
     mov r1, #0
     str r1, [sp]
     mov r0, #1

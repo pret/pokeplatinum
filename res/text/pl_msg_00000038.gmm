@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50194" />
+	<row id="pl_msg_00000038_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon are wonderful, deeply\nmysterious creatures.\rBut to Trainers, the key thing is to do\nbattle with their Pokémon.\rThat’s what it boils down to.</language>
+	</row>
+	<row id="pl_msg_00000038_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello there, Trainer!\rIf you get stumped and don’t know\nwhat to do...\rTalk to people!\nTalk to everyone you see!\rGo places!\nGo wherever you can!\rYou’ll find many new places by\ndoing just that.</language>
+	</row>
+	<row id="pl_msg_00000038_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PACHIRISU: Kukkuuh!</language>
+	</row>
+</body>

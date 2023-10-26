@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="2287" />
+	<row id="pl_msg_00000383_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Ah, {STRVAR_1 3, 0, 0}!\rYou’ve come to show me the progress\nyou’ve made on your Pokédex?</language>
+	</row>
+	<row id="pl_msg_00000383_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm...\rYou’ve spotted {STRVAR_1 52, 0, 0} Pokémon in\nSinnoh...\r</language>
+	</row>
+	<row id="pl_msg_00000383_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s wrong?\rYou’re not suggesting you’ve seen so\nfew that you’re afraid to show me?</language>
+	</row>
+	<row id="pl_msg_00000383_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000383_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see!\rYou’ve met all the Pokémon there\nare in Sinnoh!\r{STRVAR_1 3, 0, 0}, I need to see you\nat my lab. I’ll be waiting!</language>
+	</row>
+	<row id="pl_msg_00000383_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see!\rYou’ve met all the Pokémon there\nare in Sinnoh!</language>
+	</row>
+	<row id="pl_msg_00000383_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Look harder for wild Pokémon.\rDon’t be afraid of going into tall\ngrass.</language>
+	</row>
+	<row id="pl_msg_00000383_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your pace is picking up.\nThings can only get better!</language>
+	</row>
+	<row id="pl_msg_00000383_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Be persistent when you’re searching\nfor Pokémon that appear only in\fcertain places.</language>
+	</row>
+	<row id="pl_msg_00000383_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you using fishing rods?\rPokémon that live underwater need to\nbe caught by fishing.</language>
+	</row>
+	<row id="pl_msg_00000383_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Remember, it’s important to make the\nPokémon you’ve caught evolve.</language>
+	</row>
+	<row id="pl_msg_00000383_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon don’t just hide in tall grass.\rYou can find many others in caves and\nseas.</language>
+	</row>
+	<row id="pl_msg_00000383_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Trainers that challenge you to\nbattle have Pokémon, obviously.\rThey may have rare ones with them,\nand that can add to your Pokédex.</language>
+	</row>
+	<row id="pl_msg_00000383_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Some Pokémon appear only in the\nmorning and some only at night.\rI know it’s a challenge, but I urge you\nto keep searching.</language>
+	</row>
+	<row id="pl_msg_00000383_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantastic! Your effort is helping us\nunderstand what evolving involves.\rYour Pokédex doesn’t have long to go\nnow.</language>
+	</row>
+	<row id="pl_msg_00000383_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m simply astounded by the huge\nvariety of Pokémon in Sinnoh.\rThis will help my studies immensely!\nSincerely, thank you!</language>
+	</row>
+	<row id="pl_msg_00000383_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokédex is well on the way to\nbeing filled up.\rThis Pokédex can be considered a\njournal of your adventure.</language>
+	</row>
+	<row id="pl_msg_00000383_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re not far from seeing every\nPokémon there is to see in Sinnoh!</language>
+	</row>
+	<row id="pl_msg_00000383_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: Ah, {STRVAR_1 3, 0, 0}!\rYou’ve come to show me how\nyour Pokédex is coming along?</language>
+	</row>
+	<row id="pl_msg_00000383_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: Ah, {STRVAR_1 3, 0, 0}!\rYou’ve come to show me how\nyour Pokédex is coming along?</language>
+	</row>
+	<row id="pl_msg_00000383_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmhm...\nYou’ve caught {STRVAR_1 52, 0, 0} so far...\r</language>
+	</row>
+	<row id="pl_msg_00000383_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I see...\rCome see me if you’d like me to have\na look at your Pokédex.</language>
+	</row>
+	<row id="pl_msg_00000383_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They say there are at least 400\nspecies of Pokémon nationwide.\rIf you’re planning to catch them all,\nyou’d better be a committed Trainer.</language>
+	</row>
+	<row id="pl_msg_00000383_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hm! Little by little, you’re filling\nthe Pokédex with complete\fdata on Pokémon you’ve gotten.\rKeep up the good work!</language>
+	</row>
+	<row id="pl_msg_00000383_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here’s a tip on catching Pokémon\nin the wild.\rMinimize their HP before you throw\nyour Poké Ball to catch them.</language>
+	</row>
+	<row id="pl_msg_00000383_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Remember: If you can’t catch them,\nyou can always trade for them.\rAs soon as you trade, the Pokémon’s\ndata is added to the Pokédex.\rThat’s why you should seek out as many\ntrades as possible.</language>
+	</row>
+	<row id="pl_msg_00000383_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you visited the Great Marsh?\rSome Pokémon only appear in places\nsuch as that.</language>
+	</row>
+	<row id="pl_msg_00000383_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">As you know, there are Pokémon\nthat eventually evolve.\rThat’s an important thing to consider\nwhen you’re filling your Pokédex.</language>
+	</row>
+	<row id="pl_msg_00000383_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve proven yourself capable.\nThere’s nothing to worry about.\rKeep catching Pokémon the way you’ve\nbeen doing so far.</language>
+	</row>
+	<row id="pl_msg_00000383_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you aware that there is more than\none style of evolution?\rThere are some Pokémon that evolve by\nbecoming friends with the Trainer.</language>
+	</row>
+	<row id="pl_msg_00000383_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Apparently, there are some Pokémon\nthat appear in swarms on occasion.\rDon’t miss out on these massive\noutbreaks of Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000383_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Amazing! You’ve already gotten over\n300 Pokémon!\rThat’s already a major achievement,\nbut I know you’re capable of more!</language>
+	</row>
+	<row id="pl_msg_00000383_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Some wild Pokémon only appear during\ncertain times of the day.\rYou’ll need to look for Pokémon\naround the clock.</language>
+	</row>
+	<row id="pl_msg_00000383_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve been getting reports of\ndifferent Pokémon sightings.\rBy different, I mean Pokémon that\naren’t native to the Sinnoh region.\rYou should perhaps go back to\nareas you’ve already scoured.\rYou may end up seeing Pokémon\nthat weren’t there before.</language>
+	</row>
+	<row id="pl_msg_00000383_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, have you visited\nthe Pal Park recently?\rThere still may be Pokémon that are\nrarely seen in Sinnoh.</language>
+	</row>
+	<row id="pl_msg_00000383_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, have you visited\nthe Pal Park recently?\rThere still may be Pokémon that are\nrarely seen in Sinnoh.</language>
+	</row>
+	<row id="pl_msg_00000383_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hm! Your Pokédex is getting closer\nto completion.\rHave you ever considered a career\nas a Pokémon professor?</language>
+	</row>
+	<row id="pl_msg_00000383_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm... You’ve caught quite the\nimpressive collection of Pokémon.\rYou’ve obviously had to employ many\nmeans to seek them all out.\rIf you have a Poké Radar, keep an eye\nout for rustling tall grass.</language>
+	</row>
+	<row id="pl_msg_00000383_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can only marvel at the diversity\nof Pokémon.\rI’m still very much in awe of\nthem.</language>
+	</row>
+	<row id="pl_msg_00000383_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Good, good, you’re getting close to\ncompleting the Pokédex.\rI’m looking forward to seeing its\ncompletion.\rWhen that happens, your views about\nPokémon will likely have changed!</language>
+	</row>
+	<row id="pl_msg_00000383_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm... You are so very close to\ncompleting your Pokédex.\rThink about what’s missing.\nRecall what you’ve overlooked.\rYou’re so close--please finish the\nPokédex!</language>
+	</row>
+	<row id="pl_msg_00000383_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}!\nYou’ve finally done it!\rYou’ve finally completed\nthe National Pokédex!\rThis is better than meeting any\nexotic Pokémon for the first time!\rI feel blessed to have become friends\nwith a Trainer like you!\rSincerely, I thank you from the\nbottom of my heart!</language>
+	</row>
+	<row id="pl_msg_00000383_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}!\nYou’ve finally done it!\rYou’ve finally completed\nthe National Pokédex!\rThis is better than meeting any\nexotic Pokémon for the first time!\rI feel blessed to have become friends\nwith a Trainer like you!\rSincerely, I thank you from the\nbottom of my heart!</language>
+	</row>
+	<row id="pl_msg_00000383_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Accessed Professor Rowan’s PC.\r</language>
+	</row>
+	<row id="pl_msg_00000383_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Accessed Professor Oak’s PC.\r</language>
+	</row>
+</body>

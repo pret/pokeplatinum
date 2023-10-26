@@ -16,7 +16,7 @@
 #include "unk_020041CC.h"
 #include "unk_020067E8.h"
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
 #include "heap.h"
@@ -36,7 +36,7 @@ int ov80_021D0E50(UnkStruct_020067E8 * param0, int * param1);
 static void ov80_021D0E68(void * param0);
 static void ov80_021D0EA8(void);
 static int ov80_021D0EC8(UnkStruct_ov80_021D2A08 * param0);
-static void ov80_021D1088(UnkStruct_ov80_021D2A08 * param0, UnkStruct_02018340 * param1);
+static void ov80_021D1088(UnkStruct_ov80_021D2A08 * param0, BGL * param1);
 static void ov80_021D1158(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D12D8(UnkStruct_ov80_021D2A08 * param0);
 static void ov80_021D0FF4(UnkStruct_ov80_021D2A08 * param0);
@@ -222,8 +222,8 @@ static int ov80_021D0EC8 (UnkStruct_ov80_021D2A08 * param0)
 
         param0->unk_18 = param0->unk_20;
         param0->unk_1C = param0->unk_24;
-        param0->unk_80 = sub_0200B144(1, 26, 433, param0->unk_04);
-        param0->unk_84 = sub_0200B144(1, 26, 615, param0->unk_04);
+        param0->unk_80 = MessageLoader_Init(1, 26, 433, param0->unk_04);
+        param0->unk_84 = MessageLoader_Init(1, 26, 615, param0->unk_04);
         param0->unk_88 = Strbuf_Init(22, param0->unk_04);
         param0->unk_30 = sub_02039EBC(param0->unk_04);
         param0->unk_40 = ov80_021D2D70("data/tmap_block.dat", param0->unk_04);
@@ -269,8 +269,8 @@ static void ov80_021D0FF4 (UnkStruct_ov80_021D2A08 * param0)
     ov80_021D2E10(param0->unk_40);
     sub_02039EF0(param0->unk_30);
     Strbuf_Free(param0->unk_88);
-    sub_0200B190(param0->unk_84);
-    sub_0200B190(param0->unk_80);
+    MessageLoader_Free(param0->unk_84);
+    MessageLoader_Free(param0->unk_80);
 }
 
 static void ov80_021D1068 (UnkStruct_ov80_021D2A08 * param0)
@@ -279,7 +279,7 @@ static void ov80_021D1068 (UnkStruct_ov80_021D2A08 * param0)
     ov80_021D2AE0(param0);
 }
 
-static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, UnkStruct_02018340 * param1)
+static void ov80_021D1088 (UnkStruct_ov80_021D2A08 * param0, BGL * param1)
 {
     int v0, v1;
 
@@ -443,7 +443,7 @@ static void ov80_021D1158 (UnkStruct_ov80_021D2A08 * param0)
     NARC * v3;
 
     v2 = 17;
-    v3 = NARC_ctor(17, param0->unk_04);
+    v3 = NARC_ctor(NARC_INDEX_GRAPHIC__TMAP_GRA, param0->unk_04);
 
     sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 19, 1, 0, 0, 0);
     sub_0208C210(param0->unk_28, param0->unk_04, v3, v2, 20, 6, 0, 0, 0);
@@ -500,7 +500,7 @@ static int ov80_021D1354 (UnkStruct_ov80_021D2A08 * param0)
 
 static int ov80_021D138C (UnkStruct_ov80_021D2A08 * param0)
 {
-    if (!sub_0200F2AC()) {
+    if (!ScreenWipe_Done()) {
         return 3;
     }
 
@@ -520,7 +520,7 @@ static int ov80_021D13A0 (UnkStruct_ov80_021D2A08 * param0)
 
 static int ov80_021D13DC (UnkStruct_ov80_021D2A08 * param0)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_NONE, 31, 0);
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);

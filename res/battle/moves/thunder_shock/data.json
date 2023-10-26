@@ -1,0 +1,22 @@
+{
+    "name": "ThunderShock",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 40,
+    "accuracy": 100,
+    "pp": 30,
+    "effect": {
+        "type": "MOVE_EFFECT_PARALYZE_HIT",
+        "chance": 10
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": 5,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

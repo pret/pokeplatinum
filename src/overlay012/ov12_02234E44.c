@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
@@ -30,9 +30,9 @@ typedef struct {
 typedef struct {
     UnkStruct_ov12_02234E44 unk_00;
     UnkStruct_ov12_0223595C unk_18;
-    UnkStruct_0200D0F4 * unk_34;
-    UnkStruct_0200D0F4 * unk_38;
-    UnkStruct_0200D0F4 * unk_3C;
+    CellActorData * unk_34;
+    CellActorData * unk_38;
+    CellActorData * unk_3C;
     u8 unk_40;
 } UnkStruct_ov12_02234E54;
 
@@ -63,14 +63,14 @@ static void ov12_02234E54 (UnkStruct_ov12_02234E54 * param0, int param1)
     v0 = ov12_0221FDE4(param0->unk_18.unk_04);
     v1 = ov12_02223428(param0->unk_18.unk_04, 3);
 
-    sub_02019060(param1, v1);
+    BGL_SetPriority(param1, v1);
     sub_02006E3C(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][0], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
-    sub_02003050(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, (8 * 16));
+    PaletteSys_LoadPalette(param0->unk_18.unk_18, param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][1], v0, 0, 0x20, (8 * 16));
     sub_02019EBC(param0->unk_18.unk_14, param1);
     sub_02006E60(param0->unk_00.unk_00, Unk_ov12_0223A1D8[param0->unk_00.unk_04][2], param0->unk_18.unk_14, param1, 0, 0, 1, v0);
 }
 
-static void ov12_02234EF0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_02234EF0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_02234E54 * v0 = (UnkStruct_ov12_02234E54 *)param1;
 

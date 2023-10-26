@@ -3,8 +3,8 @@
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_0203EF60_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
@@ -24,7 +24,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
@@ -49,7 +49,7 @@ typedef struct {
     int unk_0C;
     int unk_10;
     UnkStruct_02061AB4 * unk_14;
-    UnkStruct_0201CD38 * unk_18;
+    SysTask * unk_18;
 } UnkStruct_0203E8B0;
 
 struct UnkStruct_0203EF60_t {
@@ -63,7 +63,7 @@ struct UnkStruct_0203EF60_t {
     u16 unk_0A;
     BOOL unk_0C;
     UnkStruct_ov5_021DC1A4 * unk_10;
-    UnkStruct_0205AA50 unk_14;
+    Window unk_14;
     UnkStruct_02001AF4 * unk_24;
     int unk_28;
     UnkStruct_02061AB4 * unk_2C;
@@ -80,9 +80,9 @@ struct UnkStruct_0203EF60_t {
     void * unk_A8;
     void * unk_AC;
     UnkStruct_ov101_021D5D90 * unk_B0;
-    UnkStruct_0201CD38 * unk_B4;
-    UnkStruct_0205AA50 unk_B8;
-    UnkStruct_0205AA50 unk_C8;
+    SysTask * unk_B4;
+    Window unk_B8;
+    Window unk_C8;
     UnkStruct_ov5_021E1FF4 * unk_D8;
 };
 
@@ -516,7 +516,7 @@ static UnkStruct_0203EF60 * sub_0203EA28 ()
 
 static void sub_0203EA50 (UnkStruct_0203E724 * param0)
 {
-    sub_0200B190(param0->unk_2C);
+    MessageLoader_Free(param0->unk_2C);
     Heap_FreeToHeap(param0->unk_30);
     Heap_FreeToHeap(param0);
 
@@ -680,10 +680,10 @@ static u16 sub_0203EB20 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * param
 
 static void sub_0203EF14 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * param1, int param2, u32 param3)
 {
-    u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(10, param2, 11);
+    u8 * v0 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, param2, 11);
 
     param1->unk_30 = (u8 *)v0;
-    param1->unk_2C = sub_0200B144(1, 26, param3, 11);
+    param1->unk_2C = MessageLoader_Init(1, 26, param3, 11);
 
     return;
 }
@@ -693,7 +693,7 @@ static void sub_0203EF38 (UnkStruct_0203CDB0 * param0, UnkStruct_0203E724 * para
     u8 * v0 = sub_0203F0FC(param0->unk_1C->unk_00);
 
     param1->unk_30 = (u8 *)v0;
-    param1->unk_2C = sub_0200B144(1, 26, sub_0203F110(param0->unk_1C->unk_00), 11);
+    param1->unk_2C = MessageLoader_Init(1, 26, sub_0203F110(param0->unk_1C->unk_00), 11);
 
     return;
 }
@@ -853,7 +853,7 @@ static void sub_0203F0E4 (UnkStruct_0203E724 * param0, u16 param1)
 
 static void * sub_0203F0FC (int param0)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(10, MapHeader_GetScriptsArchiveID(param0), 11);
+    return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, MapHeader_GetScriptsArchiveID(param0), 11);
 }
 
 static u32 sub_0203F110 (int param0)
@@ -1017,23 +1017,23 @@ void sub_0203F310 (UnkStruct_0203CDB0 * param0)
 {
     u8 v0;
 
-    v0 = (sub_0201D2E8() % (NELEMS(Unk_02100AE0)));
+    v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
     if (param0->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
         sub_0203F1B0(param0, (730 + Unk_02100AE0[v0][1]));
     }
 
-    v0 = (sub_0201D2E8() % (NELEMS(Unk_02100AE0)));
+    v0 = (LCRNG_Next() % (NELEMS(Unk_02100AE0)));
 
     if (param0->unk_1C->unk_00 != Unk_02100AE0[v0][0]) {
         sub_0203F1B0(param0, (730 + Unk_02100AE0[v0][1]));
     }
 
     if (param0->unk_1C->unk_00 != 256) {
-        v0 = (sub_0201D2E8() % (NELEMS(Unk_02100AD4)));
+        v0 = (LCRNG_Next() % (NELEMS(Unk_02100AD4)));
         sub_0203F1B0(param0, (730 + Unk_02100AD4[v0]));
 
-        v0 = (sub_0201D2E8() % (NELEMS(Unk_02100AD4)));
+        v0 = (LCRNG_Next() % (NELEMS(Unk_02100AD4)));
         sub_0203F1B0(param0, (730 + Unk_02100AD4[v0]));
     }
 

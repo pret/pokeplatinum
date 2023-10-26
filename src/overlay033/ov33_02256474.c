@@ -2,11 +2,11 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay025/struct_ov25_022555E8_decl.h"
 #include "overlay025/struct_ov25_022558C4_decl.h"
@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D15C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay025/ov25_02254560.h"
@@ -54,14 +54,14 @@ typedef struct {
 
 struct UnkStruct_ov33_02256474_t {
     const UnkStruct_ov33_02256474_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[10];
     UnkStruct_ov25_022555E8 * unk_30;
     UnkStruct_ov25_02255958 unk_34;
     UnkStruct_ov25_02255958 unk_48;
     VecFx32 unk_5C[6];
     VecFx32 unk_A4;
-    UnkStruct_0201CD38 * unk_B0;
+    SysTask * unk_B0;
     void * unused_B4[6];
     int unk_CC[6];
     u32 unk_E4;
@@ -83,14 +83,14 @@ static inline void inline_ov33_0225681C(UnkStruct_ov33_02256474_sub1 * param0);
 static inline BOOL inline_ov33_022572A0(const VecFx32 * param0);
 static inline void inline_ov33_022572A0_1(VecFx32 * param0);
 static void ov33_02256584(UnkStruct_ov25_02255224 * param0);
-static void ov33_02256598(UnkStruct_0201CD38 * param0, void * param1);
+static void ov33_02256598(SysTask * param0, void * param1);
 static void ov33_02256634(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33_02256474_1 * param1);
 static void ov33_022567D4(VecFx32 * param0);
 static void ov33_0225681C(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33_02256474_1 * param1);
-static void ov33_02256898(UnkStruct_0201CD38 * param0, void * param1);
+static void ov33_02256898(SysTask * param0, void * param1);
 static void ov33_022568B4(UnkStruct_ov33_02256474 * param0);
 static void ov33_022568F4(UnkStruct_ov33_02256474 * param0, int param1);
-static void ov33_02256904(UnkStruct_0201CD38 * param0, void * param1);
+static void ov33_02256904(SysTask * param0, void * param1);
 static u32 ov33_022569C0(UnkStruct_ov33_02256474 * param0);
 static BOOL ov33_02256A14(u32 param0, u32 param1, u32 param2, const VecFx32 * param3);
 static void ov33_02256A44(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33_02256474_1 * param1);
@@ -116,7 +116,7 @@ static void ov33_022570E8(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33
 static void ov33_0225718C(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33_02256474_1 * param1, int param2);
 static void ov33_022572A0(UnkStruct_ov33_02256474 * param0, const UnkStruct_ov33_02256474_1 * param1);
 
-BOOL ov33_02256474 (UnkStruct_ov33_02256474 ** param0, const UnkStruct_ov33_02256474_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov33_02256474 (UnkStruct_ov33_02256474 ** param0, const UnkStruct_ov33_02256474_1 * param1, BGL * param2)
 {
     UnkStruct_ov33_02256474 * v0 = (UnkStruct_ov33_02256474 *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov33_02256474));
 
@@ -163,7 +163,7 @@ void ov33_022564F0 (UnkStruct_ov33_02256474 * param0)
         ov25_022559B0(&param0->unk_48);
 
         if (param0->unk_B0 != NULL) {
-            sub_0200DA58(param0->unk_B0);
+            SysTask_Done(param0->unk_B0);
         }
 
         Heap_FreeToHeap(param0);
@@ -198,7 +198,7 @@ static void ov33_02256584 (UnkStruct_ov25_02255224 * param0)
     ov25_02255224(v0->unk_08, param0);
 }
 
-static void ov33_02256598 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov33_02256598 (SysTask * param0, void * param1)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -253,7 +253,7 @@ static void ov33_02256634 (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
     ov25_02255360(1);
     sub_02006EC0(12, 35, 1, ((4 * 4 * 2) * 6) * 0x20, 0, 1, 8);
 
-    v1 = NARC_ctor(19, 8);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 8);
 
     if (v1) {
         UnkStruct_ov25_02255810 v2;
@@ -293,7 +293,7 @@ static void ov33_02256634 (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
                 GF_ASSERT(0);
             }
 
-            param0->unk_134[v5].unk_30 = sub_020759CC(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 28);
+            param0->unk_134[v5].unk_30 = PokemonPersonalData_GetFormValue(param1->unk_04[v5].unk_04, param1->unk_04[v5].unk_08, 28);
             param0->unk_134[v5].unk_31 = 0;
             param0->unk_134[v5].unk_32 = 0;
 
@@ -309,8 +309,8 @@ static void ov33_022567D4 (VecFx32 * param0)
 {
     fx32 v0, v1;
 
-    v0 = (-32 + (sub_0201D35C() & 63)) * FX32_ONE;
-    v1 = (-32 + (sub_0201D35C() & 63)) * FX32_ONE;
+    v0 = (-32 + (MTRNG_Next() & 63)) * FX32_ONE;
+    v1 = (-32 + (MTRNG_Next() & 63)) * FX32_ONE;
 
     VEC_Set(param0, v0, v1, 0);
     VEC_Normalize(param0, param0);
@@ -338,10 +338,10 @@ static void ov33_0225681C (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
     }
 
     ov33_022568B4(param0);
-    param0->unk_B0 = sub_0200D9E8(ov33_02256904, param0, 1);
+    param0->unk_B0 = SysTask_Start(ov33_02256904, param0, 1);
 }
 
-static void ov33_02256898 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov33_02256898 (SysTask * param0, void * param1)
 {
     UnkStruct_ov33_02256474 * v0 = ov25_0225523C(param1);
 
@@ -370,7 +370,7 @@ static void ov33_022568F4 (UnkStruct_ov33_02256474 * param0, int param1)
     param0->unk_E8 = 0;
 }
 
-static void ov33_02256904 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov33_02256904 (SysTask * param0, void * param1)
 {
     static void(*const v0[])(UnkStruct_ov33_02256474 *, const UnkStruct_ov33_02256474_1 *) = {
         ov33_02256A44,
@@ -513,7 +513,7 @@ static void ov33_02256B08 (UnkStruct_ov33_02256474 * param0, const UnkStruct_ov3
 
 static void ov33_02256B3C (const char * param0, ...)
 {
-    if (Unk_021BF67C.unk_44 & PAD_BUTTON_B) {
+    if (gCoreSys.unk_44 & PAD_BUTTON_B) {
         va_list v0;
         va_start(v0, param0);
         va_end(v0);

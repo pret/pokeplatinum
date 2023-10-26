@@ -1,0 +1,106 @@
+{
+    "name": "Magcargo",
+    "base_stats": {
+        "hp": 50,
+        "attack": 50,
+        "defense": 120,
+        "speed": 30,
+        "special_attack": 80,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 154,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "AMORPHOUS",
+        "AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_MAGMA_ARMOR",
+        "ABILITY_FLAME_BODY"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM33",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM64",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_YAWN",
+                "MOVE_SMOG",
+                "MOVE_EMBER",
+                "MOVE_ROCK_THROW"
+            ],
+            "8": "MOVE_EMBER",
+            "11": "MOVE_ROCK_THROW",
+            "16": "MOVE_HARDEN",
+            "23": "MOVE_RECOVER",
+            "26": "MOVE_ANCIENT_POWER",
+            "31": "MOVE_AMNESIA",
+            "40": "MOVE_LAVA_PLUME",
+            "45": "MOVE_ROCK_SLIDE",
+            "52": "MOVE_BODY_SLAM",
+            "61": "MOVE_FLAMETHROWER",
+            "66": "MOVE_EARTH_POWER"
+        }
+    }
+}

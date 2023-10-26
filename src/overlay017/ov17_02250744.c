@@ -5,9 +5,9 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "message.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02095C48.h"
@@ -22,7 +22,7 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
@@ -34,7 +34,7 @@
 #include "unk_020218BC.h"
 #include "strbuf.h"
 #include "unk_020279FC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
@@ -64,7 +64,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov17_0224FCA0 * unk_00;
-    UnkStruct_0200D0F4 * unk_04;
+    CellActorData * unk_04;
     s32 unk_08;
     s32 unk_0C;
     s16 unk_10;
@@ -75,25 +75,25 @@ typedef struct {
 } UnkStruct_ov17_02251070;
 
 static void ov17_022507F0(UnkStruct_ov17_0224FCA0 * param0, int param1, const UnkStruct_ov17_022508E4 * param2);
-static void ov17_022508E4(UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4);
+static void ov17_022508E4(UnkStruct_ov17_0224FCA0 * param0, MessageLoader * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4);
 void ov17_02250744(UnkStruct_ov17_0224FCA0 * param0);
 void ov17_022507C4(UnkStruct_ov17_022507C4 * param0);
 void ov17_02250968(UnkStruct_ov17_0224FCA0 * param0, u32 param1, const UnkStruct_ov17_022508E4 * param2);
 int ov17_0225099C(UnkStruct_ov17_0224FCA0 * param0);
 void ov17_02250DB0(UnkStruct_ov17_0224FCA0 * param0);
 void ov17_02250EFC(UnkStruct_ov17_0224FCA0 * param0);
-static void ov17_02250F4C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_02250F4C(SysTask * param0, void * param1);
 void ov17_02250F68(UnkStruct_ov17_0224FCA0 * param0, NARC * param1);
 void ov17_02250FBC(UnkStruct_ov17_0224FCA0 * param0);
 void ov17_0225122C(UnkStruct_ov17_0224FCA0 * param0, NARC * param1);
 void ov17_022512E0(UnkStruct_ov17_0224FCA0 * param0);
-static void ov17_022515F4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov17_02251688(UnkStruct_0201CD38 * param0, void * param1);
-static void ov17_02251784(UnkStruct_0201CD38 * param0, void * param1);
-static void ov17_022517F0(UnkStruct_0201CD38 * param0, void * param1);
-static void ov17_0225102C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_022515F4(SysTask * param0, void * param1);
+static void ov17_02251688(SysTask * param0, void * param1);
+static void ov17_02251784(SysTask * param0, void * param1);
+static void ov17_022517F0(SysTask * param0, void * param1);
+static void ov17_0225102C(SysTask * param0, void * param1);
 static void ov17_02251070(UnkStruct_ov17_0224FCA0 * param0);
-static void ov17_02251140(UnkStruct_0201CD38 * param0, void * param1);
+static void ov17_02251140(SysTask * param0, void * param1);
 
 __attribute__((aligned(4))) static const s16 Unk_ov17_02254BF4[4][3] = {
     {0x2C, 0x46, 0xFFFFFFFFFFFFFE00},
@@ -226,12 +226,12 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
         break;
     case 2:
         sub_0200B48C(param0->unk_10.unk_B8, 0, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        sub_0200B5CC(param0->unk_10.unk_B8, 1, sub_02076B10(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        sub_0200B5CC(param0->unk_10.unk_B8, 1, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     case 3:
         sub_0200B60C(param0->unk_10.unk_B8, 0, param2->unk_04, 1, 0, 1);
         sub_0200B48C(param0->unk_10.unk_B8, 1, param0->unk_00->unk_00.unk_D8[param2->unk_00], param0->unk_00->unk_00.unk_F8[param2->unk_00], 1, GAME_LANGUAGE);
-        sub_0200B5CC(param0->unk_10.unk_B8, 2, sub_02076B10(param0->unk_10.unk_00->unk_00[param2->unk_00]));
+        sub_0200B5CC(param0->unk_10.unk_B8, 2, Pokemon_GetBoxPokemon(param0->unk_10.unk_00->unk_00[param2->unk_00]));
         break;
     default:
         GF_ASSERT(FALSE);
@@ -239,7 +239,7 @@ static void ov17_022507F0 (UnkStruct_ov17_0224FCA0 * param0, int param1, const U
     }
 }
 
-static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4)
+static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, MessageLoader * param1, u32 param2, int param3, const UnkStruct_ov17_022508E4 * param4)
 {
     Strbuf* v0;
     int v1;
@@ -250,11 +250,11 @@ static void ov17_022508E4 (UnkStruct_ov17_0224FCA0 * param0, UnkStruct_0200B144 
         v1 = 1;
     }
 
-    v0 = sub_0200B1EC(param1, param2);
+    v0 = MessageLoader_GetNewStrbuf(param1, param2);
     ov17_022507F0(param0, param3, param4);
 
     sub_0200C388(param0->unk_10.unk_B8, param0->unk_10.unk_BC, v0);
-    sub_0201ADA4(&param0->unk_10.unk_24[0], 0xff);
+    BGL_FillWindow(&param0->unk_10.unk_24[0], 0xff);
 
     param0->unk_10.unk_388 = sub_0201D738(&param0->unk_10.unk_24[0], 1, param0->unk_10.unk_BC, 0, 0, v1, NULL);
 
@@ -275,7 +275,7 @@ void ov17_02250968 (UnkStruct_ov17_0224FCA0 * param0, u32 param1, const UnkStruc
 
 int ov17_0225099C (UnkStruct_ov17_0224FCA0 * param0)
 {
-    return sub_0201D724(param0->unk_10.unk_388);
+    return Message_Printing(param0->unk_10.unk_388);
 }
 
 void ov17_022509AC (UnkStruct_ov17_0224FCA0 * param0)
@@ -283,18 +283,18 @@ void ov17_022509AC (UnkStruct_ov17_0224FCA0 * param0)
     int v0;
     NARC * v1;
 
-    v1 = NARC_ctor(45, 24);
+    v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
     sub_020070E8(v1, 23, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 22, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_02019EBC(param0->unk_10.unk_20, 1);
-    sub_02003050(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
-    sub_02003050(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
+    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 35, 24, 0, 0, 0);
+    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
     v0 = sub_02027B50(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
-    sub_02003050(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
+    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
     sub_02019EBC(param0->unk_10.unk_20, 2);
     NARC_dtor(v1);
 }
@@ -321,19 +321,19 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
     int v0;
     NARC * v1;
 
-    v1 = NARC_ctor(45, 24);
+    v1 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_BG, 24);
 
     sub_020070E8(v1, 27, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 25, param0->unk_10.unk_20, 3, 0, 0, 1, 24);
     sub_0200710C(v1, 26, param0->unk_10.unk_20, 2, 0, 0, 1, 24);
     sub_02019EBC(param0->unk_10.unk_20, 1);
-    sub_02003050(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
-    sub_02003050(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
+    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 39, 24, 0, 0, 0);
+    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 45, 36, 24, 0, 0x20, 13 * 16);
 
     v0 = sub_02027B50(param0->unk_00->unk_196C);
 
     sub_0200DD0C(param0->unk_10.unk_20, 1, 1, 15, v0, 24);
-    sub_02003050(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
+    PaletteSys_LoadPalette(param0->unk_10.unk_C0, 38, sub_0200DD08(v0), 24, 0, 0x20, 14 * 16);
 
     {
         Strbuf* v2;
@@ -343,9 +343,9 @@ void ov17_02250B00 (UnkStruct_ov17_0224FCA0 * param0)
 
         for (v3 = 0; v3 < 4; v3++) {
             v4 = param0->unk_39A.unk_30[v3];
-            GetMonData(param0->unk_10.unk_00->unk_00[v4], MON_DATA_119, v2);
-            sub_0201ADA4(&param0->unk_10.unk_24[1 + v3], 0x0);
-            sub_0201ADA4(&param0->unk_10.unk_24[5 + v3], 0x0);
+            Pokemon_GetValue(param0->unk_10.unk_00->unk_00[v4], MON_DATA_119, v2);
+            BGL_FillWindow(&param0->unk_10.unk_24[1 + v3], 0x0);
+            BGL_FillWindow(&param0->unk_10.unk_24[5 + v3], 0x0);
             sub_0201D78C(&param0->unk_10.unk_24[1 + v3], 0, v2, 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_0201D78C(&param0->unk_10.unk_24[5 + v3], 0, param0->unk_00->unk_00.unk_D8[v4], 0, 3, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         }
@@ -378,7 +378,7 @@ void ov17_02250D28 (UnkStruct_ov17_0224FCA0 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(46, 24);
+    v0 = NARC_ctor(NARC_INDEX_CONTEST__GRAPHIC__CONTEST_OBJ, 24);
 
     sub_0200CDC4(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v0, 10, 0, 4, NNS_G2D_VRAM_TYPE_2DMAIN, 33001);
 
@@ -405,7 +405,7 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
     int v1, v2;
     NARC * v3;
 
-    v3 = NARC_ctor(19, 24);
+    v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 24);
 
     sub_0200CDC4(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33003);
     sub_0200CE24(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, sub_02079FDC(), 0, 33002);
@@ -429,7 +429,7 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
         sub_0200D4C4(param0->unk_10.unk_128[v1], Unk_ov17_02254BD4[v2].unk_00, Unk_ov17_02254BD4[v2].unk_02);
     }
 
-    param0->unk_10.unk_124 = sub_0200D9E8(ov17_02250F4C, param0, (50000 + 1000));
+    param0->unk_10.unk_124 = SysTask_Start(ov17_02250F4C, param0, (50000 + 1000));
 
     NARC_dtor(v3);
 }
@@ -447,10 +447,10 @@ void ov17_02250EFC (UnkStruct_ov17_0224FCA0 * param0)
         sub_0200D0F4(param0->unk_10.unk_128[v0]);
     }
 
-    sub_0200DA58(param0->unk_10.unk_124);
+    SysTask_Done(param0->unk_10.unk_124);
 }
 
-static void ov17_02250F4C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_02250F4C (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_0224FCA0 * v0 = param1;
     int v1;
@@ -488,7 +488,7 @@ void ov17_02250FE4 (UnkStruct_ov17_0224FCA0 * param0)
         ov17_02251070(param0);
     }
 
-    sub_0200D9E8(ov17_0225102C, v0, (50000 + 10));
+    SysTask_Start(ov17_0225102C, v0, (50000 + 10));
 }
 
 void ov17_02251020 (UnkStruct_ov17_0224FCA0 * param0)
@@ -496,13 +496,13 @@ void ov17_02251020 (UnkStruct_ov17_0224FCA0 * param0)
     param0->unk_1279 = 1;
 }
 
-static void ov17_0225102C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_0225102C (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_02250FE4 * v0 = param1;
 
     if (v0->unk_00->unk_1279 == 1) {
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -518,7 +518,7 @@ static void ov17_0225102C (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov17_02251070 (UnkStruct_ov17_0224FCA0 * param0)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov17_02251070 * v1;
     s32 v2, v3;
 
@@ -542,12 +542,12 @@ static void ov17_02251070 (UnkStruct_ov17_0224FCA0 * param0)
 
     sub_0200D364(v1->unk_04, sub_02094E98(param0->unk_00) % 0x9);
     sub_0200D330(v1->unk_04);
-    sub_0200D9E8(ov17_02251140, v1, ((50000 + 10) + 1));
+    SysTask_Start(ov17_02251140, v1, ((50000 + 10) + 1));
 
     param0->unk_127A++;
 }
 
-static void ov17_02251140 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_02251140 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_02251070 * v0 = param1;
 
@@ -555,7 +555,7 @@ static void ov17_02251140 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_00->unk_127A--;
         sub_0200D0F4(v0->unk_04);
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -614,7 +614,7 @@ void ov17_0225131C (UnkStruct_ov17_0224FCA0 * param0, int param1, int param2)
 {
     sub_0200D364(param0->unk_10.unk_138[param1], param2);
     sub_0200D3F4(param0->unk_10.unk_138[param1], 1);
-    sub_02005748(1501);
+    Sound_PlayEffect(1501);
 }
 
 void ov17_02251344 (UnkStruct_ov17_0224FCA0 * param0, NARC * param1)
@@ -636,7 +636,7 @@ void ov17_022513C0 (UnkStruct_ov17_0224FCA0 * param0)
 void ov17_022513F4 (UnkStruct_ov17_0224FCA0 * param0, int param1, int param2, int param3, int param4)
 {
     int v0;
-    UnkStruct_0200D0F4 ** v1;
+    CellActorData ** v1;
     int v2;
     int v3, v4, v5, v6, v7, v8;
 
@@ -730,15 +730,15 @@ void ov17_02251598 (UnkStruct_ov17_0224FCA0 * param0, int param1, u8 * param2)
     if (param1 == 0) {
         v0->unk_08 = (192 / 2) << 8;
         v0->unk_0C = (192 / 2) << 8;
-        sub_0200D9E8(ov17_022515F4, v0, ((30000 + 10000) + 1000));
+        SysTask_Start(ov17_022515F4, v0, ((30000 + 10000) + 1000));
     } else {
         v0->unk_08 = ((192 / 2) - (12 * 8) / 2) << 8;
         v0->unk_0C = ((192 / 2) + (12 * 8) / 2) << 8;
-        sub_0200D9E8(ov17_02251688, v0, ((30000 + 10000) + 1000));
+        SysTask_Start(ov17_02251688, v0, ((30000 + 10000) + 1000));
     }
 }
 
-static void ov17_022515F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_022515F4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_02251598 * v0 = param1;
 
@@ -765,12 +765,12 @@ static void ov17_022515F4 (UnkStruct_0201CD38 * param0, void * param1)
     default:
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
 
-static void ov17_02251688 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_02251688 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_02251598 * v0 = param1;
 
@@ -797,7 +797,7 @@ static void ov17_02251688 (UnkStruct_0201CD38 * param0, void * param1)
     default:
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
@@ -817,15 +817,15 @@ void ov17_02251718 (UnkStruct_ov17_0224FCA0 * param0, int param1, int param2, u8
     if (param2 == 0) {
         v0->unk_08 = (256 + 80 / 2) << 8;
         v0->unk_0C = (192 / 2) << 8;
-        sub_0200D9E8(ov17_02251784, v0, 50000);
+        SysTask_Start(ov17_02251784, v0, 50000);
     } else {
         v0->unk_08 = (256 / 2) << 8;
         v0->unk_0C = (192 / 2) << 8;
-        sub_0200D9E8(ov17_022517F0, v0, 50000);
+        SysTask_Start(ov17_022517F0, v0, 50000);
     }
 }
 
-static void ov17_02251784 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_02251784 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_02251718 * v0 = param1;
 
@@ -847,12 +847,12 @@ static void ov17_02251784 (UnkStruct_0201CD38 * param0, void * param1)
     default:
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
 
-static void ov17_022517F0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov17_022517F0 (SysTask * param0, void * param1)
 {
     UnkStruct_ov17_02251718 * v0 = param1;
 
@@ -873,7 +873,7 @@ static void ov17_022517F0 (UnkStruct_0201CD38 * param0, void * param1)
         sub_02007DEC(v0->unk_00, 6, 1);
         *(v0->unk_04) = 1;
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }

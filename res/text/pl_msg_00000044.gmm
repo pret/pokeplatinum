@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50218" />
+	<row id="pl_msg_00000044_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can trade Pokémon around the world\nusing Nintendo WFC...\rJust hearing that name gets my heart\nracing!</language>
+	</row>
+	<row id="pl_msg_00000044_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The world you can reach with\nNintendo WFC...\fI can’t tell if it’s huge or small.</language>
+	</row>
+</body>

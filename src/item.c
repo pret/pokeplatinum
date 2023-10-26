@@ -1,31 +1,27 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-
-#include "struct_defs/struct_0207CDEC.h"
-#include "struct_defs/struct_0207D3B0.h"
-
-#include "struct_defs/struct_0207D0B0.h"
-
-#include "narc.h"
-#include "unk_0200AC5C.h"
-#include "heap.h"
-#include "item.h"
-
+#include "constants/items.h"
 #include "constants/moves.h"
 
+#include "struct_defs/struct_0207CDEC.h"
+
+#include "heap.h"
+#include "item.h"
+#include "message.h"
+#include "narc.h"
+#include "strbuf.h"
+
 typedef struct {
-    u16 dataArchiveID;
-    u16 imageArchiveID;
-    u16 palArchiveID;
+    u16 dataID;
+    u16 iconID;
+    u16 paletteID;
     u16 gen3ID;
-} UnkStruct_020F0CC4;
+} ItemArchiveIDs;
 
-static s32 sub_0207D0B0(UnkStruct_0207D0B0 * param0, u16 param1);
+static s32 ItemPartyParam_Get(ItemPartyParam * partyParam, enum ItemDataParam attributeID);
 
-const UnkStruct_020F0CC4 sItemNarcIDs[] = {
+const ItemArchiveIDs sItemArchiveIDs[] = {
 	{ 0x0, 0x2C3, 0x2C4, 0x0 },
 	{ 0x1, 0x2, 0x3, 0x1 },
 	{ 0x2, 0x4, 0x5, 0x2 },
@@ -496,7 +492,7 @@ const UnkStruct_020F0CC4 sItemNarcIDs[] = {
 	{ 0x1BD, 0x2C1, 0x2C2, 0x15F }
 };
 
-static const u16 sMovesTMHM[] = {
+static const u16 sTMHMMoves[] = {
     MOVE_FOCUS_PUNCH,                  // TM01
     MOVE_DRAGON_CLAW,                  // TM02
     MOVE_WATER_PULSE,                  // TM03
@@ -600,381 +596,374 @@ static const u16 sMovesTMHM[] = {
 };
 
 const u16 sMailItemIDs[] = {
-	0x89,
-	0x8A,
-	0x8B,
-	0x8C,
-	0x8D,
-	0x8E,
-	0x8F,
-	0x90,
-	0x91,
-	0x92,
-	0x93,
-	0x94
+	ITEM_GRASS_MAIL,
+	ITEM_FLAME_MAIL,
+	ITEM_BUBBLE_MAIL,
+	ITEM_BLOOM_MAIL,
+	ITEM_TUNNEL_MAIL,
+	ITEM_STEEL_MAIL,
+	ITEM_HEART_MAIL,
+	ITEM_SNOW_MAIL,
+	ITEM_SPACE_MAIL,
+	ITEM_AIR_MAIL,
+	ITEM_MOSAIC_MAIL,
+	ITEM_BRICK_MAIL
 };
 
 const u16 sBerryItemIDs[] = {
-	0x95,
-	0x96,
-	0x97,
-	0x98,
-	0x99,
-	0x9A,
-	0x9B,
-	0x9C,
-	0x9D,
-	0x9E,
-	0x9F,
-	0xA0,
-	0xA1,
-	0xA2,
-	0xA3,
-	0xA4,
-	0xA5,
-	0xA6,
-	0xA7,
-	0xA8,
-	0xA9,
-	0xAA,
-	0xAB,
-	0xAC,
-	0xAD,
-	0xAE,
-	0xAF,
-	0xB0,
-	0xB1,
-	0xB2,
-	0xB3,
-	0xB4,
-	0xB5,
-	0xB6,
-	0xB7,
-	0xB8,
-	0xB9,
-	0xBA,
-	0xBB,
-	0xBC,
-	0xBD,
-	0xBE,
-	0xBF,
-	0xC0,
-	0xC1,
-	0xC2,
-	0xC3,
-	0xC4,
-	0xC5,
-	0xC6,
-	0xC7,
-	0xC8,
-	0xC9,
-	0xCA,
-	0xCB,
-	0xCC,
-	0xCD,
-	0xCE,
-	0xCF,
-	0xD0,
-	0xD1,
-	0xD2,
-	0xD3,
-	0xD4
+	ITEM_CHERI_BERRY,
+	ITEM_CHESTO_BERRY,
+	ITEM_PECHA_BERRY,
+	ITEM_RAWST_BERRY,
+	ITEM_ASPEAR_BERRY,
+	ITEM_LEPPA_BERRY,
+	ITEM_ORAN_BERRY,
+	ITEM_PERSIM_BERRY,
+	ITEM_LUM_BERRY,
+	ITEM_SITRUS_BERRY,
+	ITEM_FIGY_BERRY,
+	ITEM_WIKI_BERRY,
+	ITEM_MAGO_BERRY,
+	ITEM_AGUAV_BERRY,
+	ITEM_IAPAPA_BERRY,
+	ITEM_RAZZ_BERRY,
+	ITEM_BLUK_BERRY,
+	ITEM_NANAB_BERRY,
+	ITEM_WEPEAR_BERRY,
+	ITEM_PINAP_BERRY,
+	ITEM_POMEG_BERRY,
+	ITEM_KELPSY_BERRY,
+	ITEM_QUALOT_BERRY,
+	ITEM_HONDEW_BERRY,
+	ITEM_GREPA_BERRY,
+	ITEM_TAMATO_BERRY,
+	ITEM_CORNN_BERRY,
+	ITEM_MAGOST_BERRY,
+	ITEM_RABUTA_BERRY,
+	ITEM_NOMEL_BERRY,
+	ITEM_SPELON_BERRY,
+	ITEM_PAMTRE_BERRY,
+	ITEM_WATMEL_BERRY,
+	ITEM_DURIN_BERRY,
+	ITEM_BELUE_BERRY,
+	ITEM_OCCA_BERRY,
+	ITEM_PASSHO_BERRY,
+	ITEM_WACAN_BERRY,
+	ITEM_RINDO_BERRY,
+	ITEM_YACHE_BERRY,
+	ITEM_CHOPLE_BERRY,
+	ITEM_KEBIA_BERRY,
+	ITEM_SHUCA_BERRY,
+	ITEM_COBA_BERRY,
+	ITEM_PAYAPA_BERRY,
+	ITEM_TANGA_BERRY,
+	ITEM_CHARTI_BERRY,
+	ITEM_KASIB_BERRY,
+	ITEM_HABAN_BERRY,
+	ITEM_COLBUR_BERRY,
+	ITEM_BABIRI_BERRY,
+	ITEM_CHILAN_BERRY,
+	ITEM_LIECHI_BERRY,
+	ITEM_GANLON_BERRY,
+	ITEM_SALAC_BERRY,
+	ITEM_PETAYA_BERRY,
+	ITEM_APICOT_BERRY,
+	ITEM_LANSAT_BERRY,
+	ITEM_STARF_BERRY,
+	ITEM_ENIGMA_BERRY,
+	ITEM_MICLE_BERRY,
+	ITEM_CUSTAP_BERRY,
+	ITEM_JABOCA_BERRY,
+	ITEM_ROWAP_BERRY
 };
 
-void sub_0207CDEC (void * param0, u16 param1, u16 param2)
+void Item_MoveInPocket(void *pocket, u16 srcSlot, u16 dstSlot)
 {
-    UnkStruct_0207CDEC * v0;
-    UnkStruct_0207CDEC v1;
-    s16 v2;
-
-    if (param1 == param2) {
+    if (srcSlot == dstSlot) {
         return;
     }
 
-    v0 = (UnkStruct_0207CDEC *)param0;
-    v1 = v0[param1];
+    BagItem *items = (BagItem *)pocket;
+    BagItem item = items[srcSlot];
+    s16 i; // must be here to match
+    if (dstSlot > srcSlot) {
+		// Moving the item down in the pocket list
+        dstSlot -= 1;
 
-    if (param2 > param1) {
-        param2 -= 1;
-
-        for (v2 = (s16)param1; v2 < (s16)param2; v2++) {
-            v0[v2] = v0[v2 + 1];
+		// Bubble all the other items upward
+        for (i = (s16)srcSlot; i < (s16)dstSlot; i++) {
+            items[i] = items[i + 1];
         }
     } else {
-        for (v2 = (s16)param1; v2 > (s16)param2; v2--) {
-            v0[v2] = v0[v2 - 1];
+		// Moving the item up in the pocket list
+		// Sift all the other items downward
+        for (i = (s16)srcSlot; i > (s16)dstSlot; i--) {
+            items[i] = items[i - 1];
         }
     }
 
-    v0[param2] = v1;
+    items[dstSlot] = item;
 }
 
-u16 sub_0207CE78 (u16 param0, u16 param1)
+u16 Item_FileID(u16 item, enum ItemFileType type)
 {
-    switch (param1) {
-    case 0:
-        if ((param0 == 0) || (param0 == 0xffff)) {
+    switch (type) {
+    case ITEM_FILE_TYPE_DATA:
+        if (item == ITEM_NONE || item == ITEM_RETURN_ID) {
             break;
         }
 
-        return sItemNarcIDs[param0].dataArchiveID;
-    case 1:
-        if (param0 == 0) {
+        return sItemArchiveIDs[item].dataID;
+    case ITEM_FILE_TYPE_ICON:
+        if (item == ITEM_NONE) {
             return 707;
         }
 
-        if (param0 == 0xffff) {
+        if (item == ITEM_RETURN_ID) {
             return 709;
         }
 
-        return sItemNarcIDs[param0].imageArchiveID;
-    case 2:
-        if (param0 == 0) {
+        return sItemArchiveIDs[item].iconID;
+    case ITEM_FILE_TYPE_PALETTE:
+        if (item == 0) {
             return 708;
         }
 
-        if (param0 == 0xffff) {
+        if (item == ITEM_RETURN_ID) {
             return 710;
         }
 
-        return sItemNarcIDs[param0].palArchiveID;
-    case 3:
-        if ((param0 == 0) || (param0 == 0xffff)) {
+        return sItemArchiveIDs[item].paletteID;
+    case ITEM_FILE_TYPE_GBA:
+        if (item == ITEM_NONE || item == ITEM_RETURN_ID) {
             break;
         }
 
-        return sItemNarcIDs[param0].gen3ID;
+        return sItemArchiveIDs[item].gen3ID;
     }
 
     return 0;
 }
 
-u16 sub_0207CF10 (u16 param0)
+u16 Item_FromGBAID(u16 gbaID)
 {
-    u16 v0;
-
-    for (v0 = 1; v0 <= 467; v0++) {
-        if (param0 == sItemNarcIDs[v0].gen3ID) {
-            return v0;
+    for (u16 i = 1; i <= NUM_ITEMS; i++) {
+        if (gbaID == sItemArchiveIDs[i].gen3ID) {
+            return i;
         }
     }
 
-    return 0;
+    return ITEM_NONE;
 }
 
-u16 Item_GetIndexOfIconNCER (void)
+u16 Item_IconNCERFile (void)
 {
     return 1;
 }
 
-u16 Item_GetIndexOfIconNANR (void)
+u16 Item_IconNANRFile (void)
 {
     return 0;
 }
 
-void * Item_LoadDataOrGFX (u16 itemID, u16 attributeID, u32 heapID)
+void* Item_Load(u16 item, enum ItemFileType type, u32 heapID)
 {
-    if (itemID > 467) {
-        itemID = 0;
+    if (item > NUM_ITEMS) {
+        item = ITEM_NONE;
     }
 
-    switch (attributeID) {
-    case 0:
-        return NARC_AllocAndReadWholeMemberByIndexPair(15, sItemNarcIDs[itemID].dataArchiveID, heapID);
-    case 1:
-        return NARC_AllocAndReadWholeMemberByIndexPair(16, sItemNarcIDs[itemID].imageArchiveID, heapID);
-    case 2:
-        return NARC_AllocAndReadWholeMemberByIndexPair(16, sItemNarcIDs[itemID].palArchiveID, heapID);
+    switch (type) {
+    case ITEM_FILE_TYPE_DATA:
+        return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, sItemArchiveIDs[item].dataID, heapID);
+    case ITEM_FILE_TYPE_ICON:
+        return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, sItemArchiveIDs[item].iconID, heapID);
+    case ITEM_FILE_TYPE_PALETTE:
+        return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, sItemArchiveIDs[item].paletteID, heapID);
     }
 
     return NULL;
 }
 
-void Item_GetNameIntoString (Strbuf* dest, u16 itemID, u32 heapID)
+void Item_LoadName(Strbuf *dst, u16 item, u32 heapID)
 {
-    UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 392, heapID);
+    MessageLoader *msgData = MessageLoader_Init(1, 26, 392, heapID);
 
-    sub_0200B1B8(msgData, itemID, dest);
-    sub_0200B190(msgData);
+    MessageLoader_GetStrbuf(msgData, item, dst);
+    MessageLoader_Free(msgData);
 }
 
-void Item_GetDescriptionIntoString (Strbuf* dest, u16 itemID, u16 heapID)
+void Item_LoadDescription(Strbuf *dst, u16 item, u16 heapID)
 {
-    UnkStruct_0200B144 * msgData = sub_0200B144(1, 26, 391, heapID);
+    MessageLoader *msgData = MessageLoader_Init(1, 26, 391, heapID);
 
-    sub_0200B1B8(msgData, itemID, dest);
-    sub_0200B190(msgData);
+    MessageLoader_GetStrbuf(msgData, item, dst);
+    MessageLoader_Free(msgData);
 }
 
-s32 Item_GetAttribute (u16 itemID, u16 attributeID, u32 heapID)
+s32 Item_LoadParam(u16 item, enum ItemDataParam param, u32 heapID)
 {
-    UnkStruct_0207D3B0 * v0;
-    s32 v1;
+    ItemData *itemData = (ItemData *)Item_Load(item, 0, heapID);
+    s32 val = Item_Get(itemData, param);
+    Heap_FreeToHeapExplicit(heapID, itemData);
 
-    v0 = (UnkStruct_0207D3B0 *)Item_LoadDataOrGFX(itemID, 0, heapID);
-    v1 = Item_GetAttributeFromStruct(v0, attributeID);
-    Heap_FreeToHeapExplicit(heapID, v0);
-
-    return v1;
+    return val;
 }
 
-s32 Item_GetAttributeFromStruct (UnkStruct_0207D3B0 * itemData, u16 attributeID)
+s32 Item_Get(ItemData *itemData, enum ItemDataParam param)
+{
+    switch (param) {
+    case ITEM_PARAM_PRICE:
+        return (s32)itemData->price;
+    case ITEM_PARAM_HOLD_EFFECT:
+        return (s32)itemData->holdEffect;
+    case ITEM_PARAM_HOLD_EFFECT_PARAM:
+        return (s32)itemData->holdEffectParam;
+    case ITEM_PARAM_PREVENT_TOSS:
+        return (s32)itemData->preventToss;
+    case ITEM_PARAM_IS_SELECTABLE:
+        return (s32)itemData->isSelectable;
+    case ITEM_PARAM_FIELD_POCKET:
+        return (s32)itemData->fieldPocket;
+    case ITEM_PARAM_FIELD_USE_FUNC:
+        return (s32)itemData->fieldUseFunc;
+    case ITEM_PARAM_BATTLE_USE_FUNC:
+        return (s32)itemData->battleUseFunc;
+    case ITEM_PARAM_PLUCK_EFFECT:
+        return (s32)itemData->pluckEffect;
+    case ITEM_PARAM_FLING_EFFECT:
+        return (s32)itemData->flingEffect;
+    case ITEM_PARAM_FLING_POWER:
+        return (s32)itemData->flingPower;
+    case ITEM_PARAM_NATURAL_GIFT_POWER:
+        return (s32)itemData->naturalGiftPower;
+    case ITEM_PARAM_NATURAL_GIFT_TYPE:
+        return (s32)itemData->naturalGiftType;
+    case ITEM_PARAM_BATTLE_POCKET:
+        return (s32)itemData->battlePocket;
+    case ITEM_PARAM_PARTY_USE:
+        return (s32)itemData->partyUse;
+    default:
+        switch (itemData->partyUse) {
+        case FALSE:
+            return itemData->dummy;
+        case TRUE:
+            return ItemPartyParam_Get(&itemData->partyUseParam, param);
+        }
+    }
+
+    return 0;
+}
+
+static s32 ItemPartyParam_Get(ItemPartyParam * partyParam, enum ItemDataParam attributeID)
 {
     switch (attributeID) {
-    case 0:
-        return (s32)itemData->unk_00;
-    case 1:
-        return (s32)itemData->unk_02;
-    case 2:
-        return (s32)itemData->unk_03;
-    case 3:
-        return (s32)itemData->unk_08_5;
-    case 4:
-        return (s32)itemData->unk_08_6;
-    case 5:
-        return (s32)itemData->unk_08_7;
-    case 6:
-        return (s32)itemData->unk_0A;
-    case 7:
-        return (s32)itemData->unk_0B;
-    case 8:
-        return (s32)itemData->unk_04;
-    case 9:
-        return (s32)itemData->unk_05;
-    case 10:
-        return (s32)itemData->unk_06;
-    case 11:
-        return (s32)itemData->unk_07;
-    case 12:
-        return (s32)itemData->unk_08_0;
-    case 13:
-        return (s32)itemData->unk_08_11;
-    case 14:
-        return (s32)itemData->unk_0C;
-    default:
-        switch (itemData->unk_0C) {
-        case 0:
-            return (s32)itemData->unk_0E[0];
-        case 1:
-            return sub_0207D0B0((UnkStruct_0207D0B0 *)itemData->unk_0E, attributeID);
-        }
+    case ITEM_PARAM_HEAL_SLEEP:
+        return (s32)partyParam->healSleep;
+    case ITEM_PARAM_HEAL_POISON:
+        return (s32)partyParam->healPoison;
+    case ITEM_PARAM_HEAL_BURN:
+        return (s32)partyParam->healBurn;
+    case ITEM_PARAM_HEAL_FREEZE:
+        return (s32)partyParam->healFreeze;
+    case ITEM_PARAM_HEAL_PARALYSIS:
+        return (s32)partyParam->healParalysis;
+    case ITEM_PARAM_HEAL_CONFUSION:
+        return (s32)partyParam->healConfusion;
+    case ITEM_PARAM_HEAL_ATTRACT:
+        return (s32)partyParam->healAttract;
+    case ITEM_PARAM_GUARD_SPEC:
+        return (s32)partyParam->guardSpec;
+    case ITEM_PARAM_REVIVE:
+        return (s32)partyParam->revive;
+    case ITEM_PARAM_REVIVE_ALL:
+        return (s32)partyParam->reviveAll;
+    case ITEM_PARAM_LEVEL_UP:
+        return (s32)partyParam->levelUp;
+    case ITEM_PARAM_EVOLVE:
+        return (s32)partyParam->evolve;
+    case ITEM_PARAM_ATK_STAGES:
+        return (s32)partyParam->atkStages;
+    case ITEM_PARAM_DEF_STAGES:
+        return (s32)partyParam->defStages;
+    case ITEM_PARAM_SPATK_STAGES:
+        return (s32)partyParam->spatkStages;
+    case ITEM_PARAM_SPDEF_STAGES:
+        return (s32)partyParam->spdefStages;
+    case ITEM_PARAM_SPEED_STAGES:
+        return (s32)partyParam->speedStages;
+    case ITEM_PARAM_ACC_STAGES:
+        return (s32)partyParam->accStages;
+    case ITEM_PARAM_CRIT_STAGES:
+        return (s32)partyParam->critStages;
+    case ITEM_PARAM_PP_UP:
+        return (s32)partyParam->ppUp;
+    case ITEM_PARAM_PP_MAX:
+        return (s32)partyParam->ppMax;
+    case ITEM_PARAM_PP_RESTORE:
+        return (s32)partyParam->ppRestore;
+    case ITEM_PARAM_PP_RESTORE_ALL:
+        return (s32)partyParam->ppRestoreAll;
+    case ITEM_PARAM_HP_RESTORE:
+        return (s32)partyParam->hpRestore;
+    case ITEM_PARAM_GIVE_HP_EVS:
+        return (s32)partyParam->giveHPEVs;
+    case ITEM_PARAM_GIVE_ATK_EVS:
+        return (s32)partyParam->giveAtkEVs;
+    case ITEM_PARAM_GIVE_DEF_EVS:
+        return (s32)partyParam->giveDefEVs;
+    case ITEM_PARAM_GIVE_SPEED_EVS:
+        return (s32)partyParam->giveSpeedEVs;
+    case ITEM_PARAM_GIVE_SPATK_EVS:
+        return (s32)partyParam->giveSpAtkEVs;
+    case ITEM_PARAM_GIVE_SPDEF_EVS:
+        return (s32)partyParam->giveSpDefEVs;
+    case ITEM_PARAM_GIVE_FRIENDSHIP_LOW:
+        return (s32)partyParam->giveFriendshipLow;
+    case ITEM_PARAM_GIVE_FRIENDSHIP_MED:
+        return (s32)partyParam->giveFriendshipMed;
+    case ITEM_PARAM_GIVE_FRIENDSHIP_HIGH:
+        return (s32)partyParam->giveFriendshipHigh;
+    case ITEM_PARAM_HP_EVS:
+        return (s32)partyParam->hpEVs;
+    case ITEM_PARAM_ATK_EVS:
+        return (s32)partyParam->atkEVs;
+    case ITEM_PARAM_DEF_EVS:
+        return (s32)partyParam->defEVs;
+    case ITEM_PARAM_SPEED_EVS:
+        return (s32)partyParam->speedEVs;
+    case ITEM_PARAM_SPATK_EVS:
+        return (s32)partyParam->spatkEVs;
+    case ITEM_PARAM_SPDEF_EVS:
+        return (s32)partyParam->spdefEVs;
+    case ITEM_PARAM_HP_RESTORED:
+        return (s32)partyParam->hpRestored;
+    case ITEM_PARAM_PP_RESTORED:
+        return (s32)partyParam->ppRestored;
+    case ITEM_PARAM_FRIENDSHIP_LOW:
+        return (s32)partyParam->friendshipLow;
+    case ITEM_PARAM_FRIENDSHIP_MED:
+        return (s32)partyParam->friendshipMed;
+    case ITEM_PARAM_FRIENDSHIP_HIGH:
+        return (s32)partyParam->friendshipHigh;
     }
 
     return 0;
 }
 
-static s32 sub_0207D0B0 (UnkStruct_0207D0B0 * param0, u16 param1)
+const u16 Item_MoveForTMHM(u16 item)
 {
-    switch (param1) {
-    case 15:
-        return (s32)param0->unk_00_0;
-    case 16:
-        return (s32)param0->unk_00_1;
-    case 17:
-        return (s32)param0->unk_00_2;
-    case 18:
-        return (s32)param0->unk_00_3;
-    case 19:
-        return (s32)param0->unk_00_4;
-    case 20:
-        return (s32)param0->unk_00_5;
-    case 21:
-        return (s32)param0->unk_00_6;
-    case 22:
-        return (s32)param0->unk_00_7;
-    case 23:
-        return (s32)param0->unk_01_0;
-    case 24:
-        return (s32)param0->unk_01_1;
-    case 25:
-        return (s32)param0->unk_01_2;
-    case 26:
-        return (s32)param0->unk_01_3;
-    case 27:
-        return (s32)param0->unk_01_4;
-    case 28:
-        return (s32)param0->unk_02_0;
-    case 29:
-        return (s32)param0->unk_02_4;
-    case 30:
-        return (s32)param0->unk_03_0;
-    case 31:
-        return (s32)param0->unk_03_4;
-    case 32:
-        return (s32)param0->unk_04_0;
-    case 33:
-        return (s32)param0->unk_04_4;
-    case 34:
-        return (s32)param0->unk_04_6;
-    case 35:
-        return (s32)param0->unk_04_7;
-    case 36:
-        return (s32)param0->unk_05_0;
-    case 37:
-        return (s32)param0->unk_05_1;
-    case 38:
-        return (s32)param0->unk_05_2;
-    case 39:
-        return (s32)param0->unk_05_3;
-    case 40:
-        return (s32)param0->unk_05_4;
-    case 41:
-        return (s32)param0->unk_05_5;
-    case 42:
-        return (s32)param0->unk_05_6;
-    case 43:
-        return (s32)param0->unk_05_7;
-    case 44:
-        return (s32)param0->unk_06_0;
-    case 45:
-        return (s32)param0->unk_06_1;
-    case 46:
-        return (s32)param0->unk_06_2;
-    case 47:
-        return (s32)param0->unk_06_3;
-    case 48:
-        return (s32)param0->unk_07;
-    case 49:
-        return (s32)param0->unk_08;
-    case 50:
-        return (s32)param0->unk_09;
-    case 51:
-        return (s32)param0->unk_0A;
-    case 52:
-        return (s32)param0->unk_0B;
-    case 53:
-        return (s32)param0->unk_0C;
-    case 54:
-        return (s32)param0->unk_0D;
-    case 55:
-        return (s32)param0->unk_0E;
-    case 56:
-        return (s32)param0->unk_0F;
-    case 57:
-        return (s32)param0->unk_10;
-    case 58:
-        return (s32)param0->unk_11;
+    if (item < ITEM_TM01 || item > ITEM_HM08) {
+        return MOVE_NONE;
     }
 
-    return 0;
+    item -= ITEM_TM01;
+    return sTMHMMoves[item];
 }
 
-const u16 GetMoveFromTMOrHMItemID (u16 itemID)
+u8 Item_IsHMMove(u16 move)
 {
-    if ((itemID < 328) || (itemID > 427)) {
-        return 0;
-    }
-
-    itemID -= 328;
-    return sMovesTMHM[itemID];
-}
-
-u8 Item_IsMoveHM (u16 moveID)
-{
-    u8 v0;
-
-    for (v0 = 0; v0 < 8; v0++) {
-        if (sMovesTMHM[92 + v0] == moveID) {
+    for (u8 i = 0; i < 8; i++) {
+        if (sTMHMMoves[92 + i] == move) {
             return TRUE;
         }
     }
@@ -982,21 +971,19 @@ u8 Item_IsMoveHM (u16 moveID)
     return FALSE;
 }
 
-u8 Item_GetTMOrHMNumberFromID (u16 itemID)
+u8 Item_TMHMNumber(u16 item)
 {
-    if ((itemID < 328) || (itemID > 427)) {
-        return 0;
+    if (item < ITEM_TM01 || item > ITEM_HM08) {
+        return ITEM_NONE;
     }
 
-    return itemID - 328;
+    return item - ITEM_TM01;
 }
 
-u8 Item_IsMail (u16 itemID)
+u8 Item_IsMail(u16 item)
 {
-    u32 i;
-
-    for (i = 0; i < 12; i++) {
-        if (sMailItemIDs[i] == itemID) {
+    for (u32 i = 0; i < NUM_MAILS; i++) {
+        if (sMailItemIDs[i] == item) {
             return TRUE;
         }
     }
@@ -1004,34 +991,30 @@ u8 Item_IsMail (u16 itemID)
     return FALSE;
 }
 
-u8 sub_0207D2F0 (u16 param0)
+u8 Item_MailNumber(u16 item)
 {
-    u32 i;
-
-    for (i = 0; i < 12; i++) {
-        if (sMailItemIDs[i] == param0) {
-            return (u8)i;
+    for (u32 i = 0; i < NUM_MAILS; i++) {
+        if (sMailItemIDs[i] == item) {
+            return i;
         }
     }
 
-    return 0;
+    return ITEM_NONE;
 }
 
-u16 sub_0207D310 (u8 param0)
+u16 Item_ForMailNumber(u8 mail)
 {
-    if (param0 >= 12) {
-        return 0;
+    if (mail >= NUM_MAILS) {
+        return ITEM_NONE;
     }
 
-    return sMailItemIDs[param0];
+    return sMailItemIDs[mail];
 }
 
-u8 Item_IsBerry (u16 itemID)
+u8 Item_IsBerry(u16 item)
 {
-    u32 i;
-
-    for (i = 0; i < 64; i++) {
-        if (sBerryItemIDs[i] == itemID) {
+    for (u32 i = 0; i < NUM_BERRIES; i++) {
+        if (sBerryItemIDs[i] == item) {
             return TRUE;
         }
     }
@@ -1039,45 +1022,39 @@ u8 Item_IsBerry (u16 itemID)
     return FALSE;
 }
 
-u8 sub_0207D344 (u16 param0)
+u8 Item_BerryNumber(u16 item)
 {
-    if (param0 < 149) {
-        return 0xff;
+    if (item < ITEM_CHERI_BERRY) {
+        return 0xFF;
     }
 
-    return param0 - 149;
+    return item - ITEM_CHERI_BERRY;
 }
 
-u16 sub_0207D354 (u8 param0)
+u16 Item_ForBerryNumber(u8 berry)
 {
-	if (param0 >= 64) {
-        return 0xffff;
+	if (berry >= NUM_BERRIES) {
+        return ITEM_RETURN_ID;
     }
 
-    return sBerryItemIDs[param0];
+    return sBerryItemIDs[berry];
 }
 
-u8 Item_IsHerbalMedicine (u16 itemID)
-{	
-	if ((itemID == 34) || (itemID == 35) || (itemID == 36) || (itemID == 37)) {
-        return TRUE;
-    }
-
-    return FALSE;
-}
-
-void * sub_0207D388 (int param0)
+u8 Item_IsHerbalMedicine(u16 item)
 {
-    int v0 = sub_0207CE78(467, 0);
-    return NARC_AllocAndReadFromMemberByIndexPair(15, 0, param0, 0, 36 * v0);
+	return item == ITEM_ENERGYPOWDER
+			|| item == ITEM_ENERGY_ROOT
+			|| item == ITEM_HEAL_POWDER
+			|| item == ITEM_REVIVAL_HERB;
 }
 
-UnkStruct_0207D3B0 * sub_0207D3B0 (UnkStruct_0207D3B0 * param0, u16 param1)
+void* ItemTable_Load(int heapID)
 {
-    u8 * v0;
+    int maxItem = Item_FileID(NUM_ITEMS, ITEM_FILE_TYPE_DATA);
+    return NARC_AllocAndReadFromMemberByIndexPair(NARC_INDEX_ITEMTOOL__ITEMDATA__PL_ITEM_DATA, 0, heapID, 0, sizeof(ItemData) * maxItem);
+}
 
-    v0 = (u8 *)param0;
-    v0 += param1 * 36;
-
-    return (UnkStruct_0207D3B0 *)v0;
+ItemData* ItemTable_Index(ItemData *itemTable, u16 index)
+{
+    return (ItemData *)((u8 *)itemTable + index * sizeof(ItemData));
 }

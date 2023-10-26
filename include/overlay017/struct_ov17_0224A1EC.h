@@ -4,15 +4,15 @@
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095C48_sub1.h"
 #include "overlay016/struct_ov16_0223E0C8.h"
@@ -34,17 +34,17 @@ typedef struct {
     UnkStruct_02007C7C * unk_48[4];
     UnkStruct_0200C6E4 * unk_58;
     UnkStruct_0200C704 * unk_5C;
-    UnkStruct_02018340 * unk_60;
-    UnkStruct_0205AA50 unk_64[2];
-    UnkStruct_0200B144 * unk_84;
+    BGL * unk_60;
+    Window unk_64[2];
+    MessageLoader * unk_84;
     UnkStruct_0200B358 * unk_88;
     Strbuf* unk_8C;
-    UnkStruct_02002F38 * unk_90;
+    PaletteSys * unk_90;
     UnkStruct_02012744 * unk_94;
     UnkStruct_ov16_0223E0C8 unk_98[4];
-    UnkStruct_0200D0F4 * unk_D8[68];
-    UnkStruct_0200D0F4 * unk_1E8;
-    UnkStruct_0201CD38 * unk_1EC;
+    CellActorData * unk_D8[68];
+    CellActorData * unk_1E8;
+    SysTask * unk_1EC;
     UnkStruct_ov17_0224C9A4 unk_1F0;
     UnkStruct_ov17_0224C384 * unk_1FC;
     UnkStruct_ov17_0224ABFC unk_200[4];
@@ -52,7 +52,7 @@ typedef struct {
     UnkStruct_ov17_0224AE84 unk_290[4][16];
     UnkStruct_ov17_0224B058 unk_910;
     UnkStruct_ov17_0224A8D4 unk_92C[3];
-    UnkStruct_0200D0F4 * unk_960[3];
+    CellActorData * unk_960[3];
     UnkStruct_ov17_0223F2E4 unk_96C[3][3];
     const UnkStruct_ov17_02253084 * unk_A10;
     u8 unk_A14[4];

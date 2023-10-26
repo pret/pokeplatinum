@@ -45,7 +45,7 @@ void sub_02036030(int param0, int param1, void * param2, void * param3);
 void sub_02036058(int param0, int param1, void * param2, void * param3);
 u16 sub_0203608C(void);
 BOOL sub_020360D0(int param0, const void * param1);
-BOOL sub_020360DC(int param0);
+BOOL Link_Message(int param0);
 BOOL sub_020360E8(void);
 BOOL sub_020360F0(void);
 u16 sub_02036128(u16 param0);

@@ -1,25 +1,25 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -50,8 +50,8 @@ typedef struct {
     u32 unk_04;
     BOOL unk_08;
     int unk_0C;
-    UnkStruct_ov6_02240D5C * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    BattleParams * unk_10;
+    SysTask * unk_14;
 } UnkStruct_ov5_021F08CC;
 
 typedef struct {
@@ -69,11 +69,11 @@ typedef struct {
     Strbuf* unk_2C;
     Strbuf* unk_30;
     UnkStruct_0200B358 * unk_34;
-    UnkStruct_0205AA50 unk_38;
-    UnkStruct_0200B144 * unk_48;
+    Window unk_38;
+    MessageLoader * unk_48;
 } UnkStruct_ov5_021F0D6C;
 
-static void ov5_021F0A04(UnkStruct_0201CD38 * param0, void * param1);
+static void ov5_021F0A04(SysTask * param0, void * param1);
 static void * ov5_021F0D1C(u32 param0);
 static int ov5_021F0D40(void);
 static int ov5_021F0D54(void);
@@ -120,7 +120,7 @@ BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
 
             if (v2 == 1) {
                 {
-                    Pokemon * v3 = Party_GetPokemonBySlotIndex(v1->unk_10->unk_04[1], 0);
+                    Pokemon * v3 = Party_GetPokemonBySlotIndex(v1->unk_10->parties[1], 0);
                     sub_0206D340(v0, 1, v1->unk_04, v3);
                 }
 
@@ -150,41 +150,41 @@ BOOL ov5_021F08F8 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-UnkStruct_0201CD38 * ov5_021F09B4 (UnkStruct_0203CDB0 * param0, int param1, BOOL param2)
+SysTask * ov5_021F09B4 (UnkStruct_0203CDB0 * param0, int param1, BOOL param2)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov5_021F0D6C * v1 = ov5_021F0D1C(sizeof(UnkStruct_ov5_021F0D6C));
 
     v1->unk_20 = param0;
     v1->unk_1C = param1;
     v1->unk_00 = param2;
 
-    v0 = sub_0200D9E8(ov5_021F0A04, v1, 128);
+    v0 = SysTask_Start(ov5_021F0A04, v1, 128);
 
     return v0;
 }
 
-int ov5_021F09D8 (UnkStruct_0201CD38 * param0)
+int ov5_021F09D8 (SysTask * param0)
 {
     UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
     return v0->unk_04;
 }
 
-int ov5_021F09E4 (UnkStruct_0201CD38 * param0)
+int ov5_021F09E4 (SysTask * param0)
 {
     UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
     return v0->unk_08;
 }
 
-void ov5_021F09F0 (UnkStruct_0201CD38 * param0)
+void ov5_021F09F0 (SysTask * param0)
 {
     UnkStruct_ov5_021F0D6C * v0 = sub_0201CED0(param0);
 
     Heap_FreeToHeap(v0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov5_021F0A04 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021F0A04 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021F0D6C * v0 = param1;
     UnkStruct_0205E884 * v1 = v0->unk_20->unk_3C;
@@ -222,7 +222,7 @@ static int ov5_021F0A80 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
     param0->unk_10++;
 
     if (param0->unk_10 == 10) {
-        sub_02005748(1616);
+        Sound_PlayEffect(1616);
     }
 
     if (param0->unk_10 < 34) {
@@ -241,7 +241,7 @@ static int ov5_021F0A80 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * p
 
 static int ov5_021F0AB8 (UnkStruct_ov5_021F0D6C * param0, UnkStruct_0205E884 * param1, UnkStruct_02061AB4 * param2)
 {
-    param0->unk_14 = ((sub_0201D2E8() % 4) + 1) * 30;
+    param0->unk_14 = ((LCRNG_Next() % 4) + 1) * 30;
     param0->unk_18 = Unk_ov5_021FFA00[param0->unk_1C];
     param0->unk_0C = 4;
 
@@ -489,7 +489,7 @@ static void * ov5_021F0D1C (u32 param0)
 
 static int ov5_021F0D40 (void)
 {
-    if ((Unk_021BF67C.unk_48 & PAD_BUTTON_A)) {
+    if ((gCoreSys.padInput & PAD_BUTTON_A)) {
         return 1;
     }
 
@@ -498,7 +498,7 @@ static int ov5_021F0D40 (void)
 
 static int ov5_021F0D54 (void)
 {
-    if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B))) {
+    if ((gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B))) {
         return 1;
     }
 
@@ -509,7 +509,7 @@ static void ov5_021F0D6C (UnkStruct_ov5_021F0D6C * param0)
 {
     UnkStruct_0203CDB0 * v0 = param0->unk_20;
 
-    param0->unk_48 = sub_0200B144(1, 26, 213, 4);
+    param0->unk_48 = MessageLoader_Init(1, 26, 213, 4);
     param0->unk_2C = Strbuf_Init(0x400, 4);
     param0->unk_30 = Strbuf_Init(0x400, 4);
     param0->unk_34 = sub_0200B368(8, 64, 4);
@@ -520,7 +520,7 @@ static void ov5_021F0DA4 (UnkStruct_ov5_021F0D6C * param0)
     sub_0200B3F0(param0->unk_34);
     Strbuf_Free(param0->unk_2C);
     Strbuf_Free(param0->unk_30);
-    sub_0200B190(param0->unk_48);
+    MessageLoader_Free(param0->unk_48);
 }
 
 static void ov5_021F0DC4 (UnkStruct_ov5_021F0D6C * param0)
@@ -538,7 +538,7 @@ static void ov5_021F0DE8 (UnkStruct_ov5_021F0D6C * param0, u32 param1)
     {
         UnkStruct_0203CDB0 * v0 = param0->unk_20;
 
-        sub_0200B1B8(param0->unk_48, param1, param0->unk_30);
+        MessageLoader_GetStrbuf(param0->unk_48, param1, param0->unk_30);
         sub_0200C388(param0->unk_34, param0->unk_2C, param0->unk_30);
 
         param0->unk_28 = sub_0205D994(&param0->unk_38, param0->unk_2C, sub_02025E44(v0->unk_0C), 1);
@@ -549,7 +549,7 @@ static int ov5_021F0E24 (UnkStruct_ov5_021F0D6C * param0)
 {
     if ((sub_0205DA04(param0->unk_28) == 1) && (ov5_021F0D54() == 1)) {
         sub_0200E084(&param0->unk_38, 0);
-        sub_0201A8FC(&param0->unk_38);
+        BGL_DeleteWindow(&param0->unk_38);
         return 1;
     }
 

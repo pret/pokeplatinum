@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="62547" />
+	<row id="pl_msg_00000277_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: {STRVAR_1 3, 0, 0}, I’m glad to see\nyou here.\rIf you don’t mind, let’s team up.\nThe Pokémon seem to be restless.\r</language>
+	</row>
+	<row id="pl_msg_00000277_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} decided to go with\nRiley!</language>
+	</row>
+	<row id="pl_msg_00000277_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: If your Pokémon get hurt,\nI’ll heal them up.</language>
+	</row>
+	<row id="pl_msg_00000277_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Hi, {STRVAR_1 3, 0, 0}.\nLet’s team up.\fThe Pokémon seem to be restless.\r</language>
+	</row>
+	<row id="pl_msg_00000277_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: ...Are you going back?\rI’ll be hanging around here.\nIt would be good if you came back.\r</language>
+	</row>
+	<row id="pl_msg_00000277_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: I get it now. You’re\nresponsible for agitating the Pokémon.\rI don’t care what good reason you may\nhave, but I don’t want you bringing\fany trouble into the mine.\r</language>
+	</row>
+	<row id="pl_msg_00000277_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: We’re Team Galactic!\nWe’ll take all the Pokémon we want!\fIsn’t that right, partner?\r</language>
+	</row>
+	<row id="pl_msg_00000277_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: You said it, brother!\nSo that’s what we’re gonna do!\rWe’re abducting all the Pokémon from\nthis rusted-out Iron Island!\r</language>
+	</row>
+	<row id="pl_msg_00000277_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: To share in all the joys and\nall the sorrows...\rThat is how all the Trainers and\nPokémon live in Sinnoh!\rI won’t allow anyone to defy that\ncode of ethics!\rCome on, {STRVAR_1 3, 0, 0}!\nThis is one battle we can’t lose!\r</language>
+	</row>
+	<row id="pl_msg_00000277_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Stop! I said stop!\nYour combination is so sick!\fThe both of you, and your Pokémon...\rLet’s beat it, partner!\r</language>
+	</row>
+	<row id="pl_msg_00000277_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: You said it, brother!\rWe don’t even know what Team \nGalactic’s big plan is anyway!\r</language>
+	</row>
+	<row id="pl_msg_00000277_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Thanks.\nYou really helped me out.\rListen, I have a Pokémon Egg\nhere.\rWould you take it with you?</language>
+	</row>
+	<row id="pl_msg_00000277_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Thanks!\rI’d like you to show the Pokémon\nthat’s inside the Egg all sorts\fof new places.\r</language>
+	</row>
+	<row id="pl_msg_00000277_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Thank you...\rBut you don’t have room to take\nanother Pokémon.\rAll right, then.\nI’ll wait here for you.</language>
+	</row>
+	<row id="pl_msg_00000277_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: I hope you’ll accept it as\na token of our friendship.\r</language>
+	</row>
+	<row id="pl_msg_00000277_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Spending time with you was\nvery enjoyable.\rI intend to test my skills in other\nplaces from now on.\rLet’s meet again!\nTake care on the way out.</language>
+	</row>
+	<row id="pl_msg_00000277_00016" index="16">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000277_00017" index="17">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000277_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Haha, I’d have to agree.\rPeople training here would be those\nwith too much time on their hands.</language>
+	</row>
+	<row id="pl_msg_00000277_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: This used to be a fairly\nthriving ore mine once upon a time.\rI guess the steel ore’s played out.\nThere’s only Pokémon here now.</language>
+	</row>
+	<row id="pl_msg_00000277_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Have you met Byron?\nThe Leader of Canalave Gym?\rHe’s asked me to become a Gym Leader,\nbut there’s his son Roark to consider.</language>
+	</row>
+	<row id="pl_msg_00000277_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: Imagine what it would be like\nfor a Steel-type Pokémon user to\fbattle a Steel type.\rWould that be like battling yourself,\nI wonder?\rI mean, it’s a lot harder to defeat\none’s self than anyone else.</language>
+	</row>
+	<row id="pl_msg_00000277_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Riley: What’s going on here, though?\nThe native Pokémon are restless...\rI don’t like this...\nLet’s hurry.</language>
+	</row>
+</body>

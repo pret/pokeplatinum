@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18315" />
+	<row id="pl_msg_00000143_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hi, {STRVAR_1 3, 0, 0}!\nPlease, can you help me?\rSome Team Galactic goons took my\nPokédex away from me.\rI need your help to get it back.\rI’ll be waiting in front of the\nwarehouses. Please come!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey! {STRVAR_1 3, 0, 0}!\nListen, I need your help...\rSome Team Galactic goons grabbed my\nPokédex and won’t give it back.\fI sure could use your help.\rI’ll be waiting in front of the\nwarehouses. Please come!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 0, 0}, are you going\nto take the Gym challenge?\rGee, you keep getting tougher and\ntougher, don’t you?\rMe? Well, I went shopping at the\ndepartment store, and...\rI mean, well, of course I’ve been\nworking on my Pokédex, but...\r</language>
+	</row>
+	<row id="pl_msg_00000143_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey! {STRVAR_1 3, 0, 0}, are you\ngoing to take on the Gym Leader?\rWow, you just keep getting tougher\nand tougher.\rMe? Well, I took a look in the\nGame Corner, and...\rI mean, yeah, of course I’ve been\nworking on my Pokédex, but...\rAnyway, keep it up!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The ring is my roiling sea. ♫\nThe towering waves shaped me.\rCrash! Crash! Crasher Wake!\nCrash! Crash! Crasher Wake!\rI’m the tidal wave of power to wash\nyou away!\rPut out the fire, Crasher Wake!\nRun from electricity, Crasher Wake!\rAh, ah, aaaah!\nThe ring is my sea. ♫\r</language>
+	</row>
+	<row id="pl_msg_00000143_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, dude and young lady!\nYou’re challenging the Gym Leader,\fare you?\rLet me tell you now, she’s young, but\nshe’s a born genius.\rI tried training with her, and I was\nstunned by how tough she was!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whoops!\nI’d better tell you who I am!\rI’m the triple-threat Gym Leader in\nPokémon, wrestling, and song.\rI’m Crasher Wake of Pastoria Gym!\nWe’ll meet again!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: ...\r</language>
+	</row>
+	<row id="pl_msg_00000143_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So, uh, {STRVAR_1 3, 0, 0}.\nGood luck on your Gym challenge.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: ...\r</language>
+	</row>
+	<row id="pl_msg_00000143_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So, uh, yeah, {STRVAR_1 3, 0, 0}.\nGood luck with the Pokémon Gym.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Hey, you!\nYeah, you!\rThis is Team Galactic’s warehouse!\nIt ain’t no playground for kids!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Hey, you!\nYeah, you!\rThis is Team Galactic’s warehouse!\nIt ain’t no playground for kids!</language>
+	</row>
+	<row id="pl_msg_00000143_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: This is the awesome Team\nGalactic’s awesome warehouse!\rA little kid like you should be playing\nat the Pokémon Gym.\rAfter all, the Gym Leader happens to\nbe a kid just like you!</language>
+	</row>
+	<row id="pl_msg_00000143_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: What? Now you’ve brought\nyour buddy along so you can get your\fPokédex back?\rWe’ll be just as happy to send both\nof you crying home to your mommies!</language>
+	</row>
+	<row id="pl_msg_00000143_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: You’re trying to get the\nPokédex back from us?\rNot when we, Team Galactic, can make\nso much better use of it!\rBut, OK, guarding the warehouse\ndoes get boring!\rWe’ll take you on two-on-two!</language>
+	</row>
+	<row id="pl_msg_00000143_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Aww, that stinks!\nOur Pokémon are chumps!\rWe should get new ones from\nheadquarters.\rHumph! Who cares about some\nPokédex anyway?\rTeam Galactic’s going to own\nall the Pokémon in the world...\fNo, in the universe!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There! Take it!\nTake your Pokédex!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: Those things we had in\nthe warehouse’ve already been moved\fto Pastoria City anyway...\rSo, we’ll say “You’ll get yours!”\nAnd run like the grunts we are.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Hi, {STRVAR_1 3, 0, 0}!\nPlease, can you help me?\rDo you remember Team Galactic?\nThose horrible people?\rThey tried to steal Prof. Rowan’s\nresearch results in Jubilife, remember?\rI ran into them, and they took away my\nPokédex.\rPlease, I need your help.\nTeam up and battle with me!</language>
+	</row>
+	<row id="pl_msg_00000143_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: You and your Pokémon together\nwith me and my Pokémon...\rUnited like this, our dream team\nhas no chance of losing!\rI’m not letting those bad people get\naway with their dirty deeds!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: I’ll be waiting.\nPlease get ready and come quickly.</language>
+	</row>
+	<row id="pl_msg_00000143_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: What’s going on?\rWhy is Team Galactic out in the\nstreets like they own the place?\r</language>
+	</row>
+	<row id="pl_msg_00000143_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 0, 0}, thank you,\nsincerely.\rI would’ve been lost without my\nPokédex.\rIt’s indispensable for helping Prof.\nRowan with his studies.\rSo, {STRVAR_1 3, 0, 0}, what are you going\nto do now?\rI’m thinking of going to the Pokémon\nMansion on Route 212.\rI hear they show rare Pokémon to\nvisitors there.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey! {STRVAR_1 3, 0, 0}!\nListen, I need your help...\rRemember those Team Galactic goons?\rThe guys who tried to take Prof.\nRowan’s research results in Jubilife?\rI ran into them, and they ripped off my\nPokédex!\rWill you team up with me to take\nthem on?</language>
+	</row>
+	<row id="pl_msg_00000143_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: You and your Pokémon together\nwith me and my Pokémon...\rOur dream team’s not going to lose.\nNot with the way we work together!\rI’m not letting those criminals get\naway with this!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: I’ll be waiting!\nGet ready and come quick!</language>
+	</row>
+	<row id="pl_msg_00000143_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: What’s going on here?\rWhy is Team Galactic out in the\nstreets like they own the place?\r</language>
+	</row>
+	<row id="pl_msg_00000143_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: {STRVAR_1 3, 0, 0}, thanks,\nhonestly.\rI’m useless without my Pokédex.\rI have to have it for helping Prof.\nRowan with his studies.\rSo, {STRVAR_1 3, 0, 0}, what are your plans\nnow?\rI think I’m off to the Pokémon Mansion\non Route 212.\rThey say they show off rare Pokémon to\nvisitors.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Have no fear, I have come\nrunning.\rI heard of children feuding with the\nTeam Galactic.\rIt turns out, of course, to be you.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Oh...\nIt’s that funny man from Jubilife...\r</language>
+	</row>
+	<row id="pl_msg_00000143_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hey...\nIt’s that weirdo from Jubilife.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: You insult me to my face?\nHow very uncouth of you.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: I’m terribly sorry.\rTeam Galactic took my Pokédex, so I was\nvery irritated...\rI just blurted it out...\r...I should be going now.\nBe wary of Team Galactic.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Oh, sorry. Honestly.\rI was upset from having my Pokédex\nripped off by Team Galactic.\rI didn’t even think when I spoke up.\rI’ll be going now.\nUh... Watch out for Team Galactic.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: It is of no matter.\rOf more interest is the criminal\nbehavior of the Team Galactic.\rThey attempt to steal the belongings of\na child?\rThe scale of their criminality, it seems\nrather minuscule.\rThe triviality of their action makes\nthem more sinister, perhaps.\rTheir warehouse needs investigation.\nCome with me, and we’ll take a look!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There!\nWould you look at those antennae?\rI don’t know what they do, but those\nare some mighty impressive antennae!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey!\nIt’s you!\rI bet you don’t remember me, but\nI sure remember you!\rBecause of you, they took my CLEFAIRY\naway...\rMy partner called it quits and went\nback to his old country...\rWaah! I know nothing! I don’t know\nanything about any Storage Key!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah-hah!\nYou leave this to me!\rThe Storage Key for entering the Team\nGalactic hideout, I have right here.\rA frontal assault, it is not possible.\nBut we can enter their hideout.\rWell? Will you enter the hideout?\nYou have your reasons, yes?</language>
+	</row>
+	<row id="pl_msg_00000143_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Very well.\nInside the Team Galactic warehouse.\fWe will meet there.\rPrepare the best you can.\nI shall join you shortly.\r</language>
+	</row>
+	<row id="pl_msg_00000143_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: ...Yes, I see your point.\rSneaking into the hideout of the Team\nGalactic...it is daunting.</language>
+	</row>
+	<row id="pl_msg_00000143_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: {STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We have the Hidden Machine that teaches\nFly stored in the warehouse.\rThey said I can use it if I show them\nthat I deserve it.</language>
+	</row>
+	<row id="pl_msg_00000143_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yeah, Team Galactic is hiding all sorts\nof good stuff in their warehouse.\rI hear they even have a Hidden\nMachine in there!</language>
+	</row>
+	<row id="pl_msg_00000143_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Game Corner is dangerous!\rWhy is it dangerous?\nIt’s so fun, I lose track of time!</language>
+	</row>
+	<row id="pl_msg_00000143_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I got a TM as a prize from the\nGame Corner.\rI used it on my Pokémon right away!</language>
+	</row>
+	<row id="pl_msg_00000143_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene is Veilstone’s Gym Leader.\nThen, there’s Wake in Pastoria...\rThey’re way too tough for me.\nI can’t even come close to them.</language>
+	</row>
+	<row id="pl_msg_00000143_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I came to this city just so I could\ngo shopping at the department store.\rBut with all these rock walls around,\nthis place feels kind of cold.</language>
+	</row>
+	<row id="pl_msg_00000143_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I bought a new parasol.\rBut I don’t want it to get rained on,\nso I watch the TV weather reports.</language>
+	</row>
+	<row id="pl_msg_00000143_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you know where one might find\na Coin Case?\rI heard that there’s a clown giving\n’em away, but...</language>
+	</row>
+	<row id="pl_msg_00000143_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Veilstone is the city of stone.\nWe even have meteorites!\rThis has nothing to do with anything,\nbut take this Technical Machine!\r</language>
+	</row>
+	<row id="pl_msg_00000143_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If someone uses Embargo on your\nPokémon, it becomes impossible to\fuse any items on it.\rAnyway, enjoy your visit to Veilstone,\nthe city of...well, stone.</language>
+	</row>
+	<row id="pl_msg_00000143_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Salut, Trainer!\nTu aimes les Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000143_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Moi aussi!\nC’est génial!</language>
+	</row>
+	<row id="pl_msg_00000143_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">J’ai du mal à te croire...\nIl n’y a qu’à vous regarder!</language>
+	</row>
+	<row id="pl_msg_00000143_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A man spoke to me in a foreign language.\nHe really surprised me!\rI think he was asking if I liked Pokémon\nor something.</language>
+	</row>
+	<row id="pl_msg_00000143_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a mysterious meteorite that\nfell from the stars...</language>
+	</row>
+	<row id="pl_msg_00000143_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Touching the meteorite boosted\nthe Speed of a certain Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000143_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Touching the meteorite heightened\nthe defensive capabilities of\fa certain Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000143_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Touching the meteorite heightened\nthe offensive capabilities of\fa certain Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000143_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Touching the meteorite balanced out\nthe attributes of a certain Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000143_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Veilstone City\nHewn from Rock</language>
+	</row>
+	<row id="pl_msg_00000143_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Veilstone City Pokémon Gym\nLeader: Maylene\fThe Barefoot, Fighting Genius!</language>
+	</row>
+	<row id="pl_msg_00000143_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Galactic Warehouse\nNO TRESPASSING!</language>
+	</row>
+	<row id="pl_msg_00000143_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Galactic Veilstone Building\nWe Dream of the Universe!</language>
+	</row>
+	<row id="pl_msg_00000143_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Veilstone Department Store\nA Shop Full of Dreams!</language>
+	</row>
+	<row id="pl_msg_00000143_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Veilstone Game Corner\nAim for an Explosion of Luck!</language>
+	</row>
+	<row id="pl_msg_00000143_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Prize Exchange\nCoins Exchanged for Prizes!</language>
+	</row>
+	<row id="pl_msg_00000143_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Visit Beautiful Lake Valor!\nRight off Rt. 214!</language>
+	</row>
+</body>

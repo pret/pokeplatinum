@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="27313" />
+	<row id="pl_msg_00000193_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What items should Pokémon hold?\nIt’s an important question.\rHere’s something else to think about.\r</language>
+	</row>
+	<row id="pl_msg_00000193_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Should one enhance a Pokémon’s strong\npoint?\rOr cover for a weakness instead?\rIt’s a dilemma that comes up every time\nI let a Pokémon hold an item.</language>
+	</row>
+	<row id="pl_msg_00000193_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An item that guarantees you won’t\never lose a battle...\rThey don’t sell anything like that.</language>
+	</row>
+</body>

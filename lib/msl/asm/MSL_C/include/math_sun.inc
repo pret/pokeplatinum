@@ -1,2 +1,0 @@
-.public frexp
-.public ldexp

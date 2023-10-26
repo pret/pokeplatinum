@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="21522" />
+	<row id="pl_msg_00000169_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you gone underground lately?\rDepending on where you go down, you\nend up in different places.\rThat’s why I use my Explorer Kit in as\nmany places as I can.</language>
+	</row>
+	<row id="pl_msg_00000169_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Spheres found in the underground\ntunnels are like gems.\rYou can obtain goodies by trading\nthe Spheres away.</language>
+	</row>
+	<row id="pl_msg_00000169_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you bury Spheres, they grow\na little every day.\rThey’re really weird that way.\rOh, right! I’d better dig mine up!\nI forgot I had some buried!</language>
+	</row>
+	<row id="pl_msg_00000169_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Get Flags from your friends to make\nyour Secret Base better.\rTry to hide your Secret Base, and\nget good at discovering your\ffriends’ bases.</language>
+	</row>
+	<row id="pl_msg_00000169_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Go underground and have fun down\nthere. Make it an adventure!</language>
+	</row>
+	<row id="pl_msg_00000169_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Some underground Traps need to be\ndefused by touch or by using the\fmicrophone!</language>
+	</row>
+	<row id="pl_msg_00000169_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Underground Man in Eterna and\nByron of Canalave are related.\rAdd Byron’s son Roark, and you have\na trio of dedicated diggers.</language>
+	</row>
+</body>

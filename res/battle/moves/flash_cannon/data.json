@@ -1,0 +1,23 @@
+{
+    "name": "Flash Cannon",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_STEEL",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_LOWER_SP_DEF_HIT",
+        "chance": 10
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 17,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="13379" />
+	<row id="pl_msg_00000294_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What do you want?\nYou’re investigating the explosion?\rBah, it doesn’t matter who you are.\nIt’s too late to make any difference.\rThings are going to get really\ninteresting now.\rAll the legendary Pokémon are going\nto be brought to our HQ in Veilstone!</language>
+	</row>
+	<row id="pl_msg_00000294_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Even Team Galactic has no use for\nMAGIKARP! Worthless, all of them!</language>
+	</row>
+	<row id="pl_msg_00000294_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hahaha!\nNext stop, Lake Verity!\rThe closest civilization is that hick\ntown called Twinleaf!\rWe can roll in there completely\nunopposed!</language>
+	</row>
+	<row id="pl_msg_00000294_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A MAGIKARP is weakly flopping about...</language>
+	</row>
+</body>

@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -13,13 +13,13 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020329E0.h"
 #include "unk_02034198.h"
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
 #include "unk_02061804.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay004/ov4_021D0D80.h"
 
@@ -61,7 +61,7 @@ int sub_0205E658(u8 param0);
 int sub_0205E680(u8 param0);
 int sub_0205E6A8(u32 param0);
 u8 sub_0205E6B8(void);
-u8 sub_0205E6D8(UnkStruct_021C0794 * param0);
+u8 sub_0205E6D8(SaveData * param0);
 int sub_0205E700(u8 param0);
 int sub_0205E728(u8 param0);
 int sub_0205E750(u8 param0);
@@ -241,7 +241,7 @@ u16 sub_0205E0E4 (u16 param0, u16 param1)
     }
 }
 
-u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
+u16 sub_0205E1B4 (SaveData * param0)
 {
     Pokemon * v0;
     u16 v1, v2;
@@ -251,7 +251,7 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     for (v1 = 0; v1 < v2; v1++) {
         v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0), v1);
 
-        if (GetMonData(v0, MON_DATA_IS_EGG, NULL) == 0) {
+        if (Pokemon_GetValue(v0, MON_DATA_IS_EGG, NULL) == 0) {
             return v1;
         }
     }
@@ -259,7 +259,7 @@ u16 sub_0205E1B4 (UnkStruct_021C0794 * param0)
     return 0;
 }
 
-BOOL HasAllLegendaryTitansInParty (UnkStruct_021C0794 * param0)
+BOOL HasAllLegendaryTitansInParty (SaveData * param0)
 {
     int v0, v1, v2, v3 = 0;
     Party * v4;
@@ -270,7 +270,7 @@ BOOL HasAllLegendaryTitansInParty (UnkStruct_021C0794 * param0)
     v2 = Party_GetCurrentCount(v4);
 
     for (v0 = 0; v0 < v2; v0++) {
-        v6[v0] = GetMonData(Party_GetPokemonBySlotIndex(v4, v0), MON_DATA_SPECIES, NULL);
+        v6[v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v4, v0), MON_DATA_SPECIES, NULL);
     }
 
     for (v0 = 0; v0 < 3; v0++) {
@@ -715,17 +715,17 @@ int sub_0205E6A8 (u32 param0)
 
 u8 sub_0205E6B8 (void)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
 
     v0 = sub_02032EE8(sub_0203608C() ^ 1);
     GF_ASSERT(v0 != NULL);
 
-    return sub_02025FCC(v0);
+    return TrainerInfo_GameCode(v0);
 }
 
-u8 sub_0205E6D8 (UnkStruct_021C0794 * param0)
+u8 sub_0205E6D8 (SaveData * param0)
 {
-    if (sub_02025FCC(sub_02025E38(param0)) == 0) {
+    if (TrainerInfo_GameCode(sub_02025E38(param0)) == 0) {
         return 1;
     }
 

@@ -3,10 +3,10 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/pokemon.h"
+#include "strbuf.h"
+#include "pokemon.h"
 
+#include "pokemon.h"
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_020951B0.h"
 #include "struct_defs/struct_020954F0.h"
@@ -19,13 +19,13 @@
 #include "narc.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_020131EC.h"
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "unk_020298BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 
@@ -421,7 +421,7 @@ void sub_02094F04 (UnkStruct_02095C48 * param0, int param1, int param2, int para
     }
 
     v9 = sub_02006FE8(90, 0, 0, param1, 1);
-    v6 = NARC_GetMemberSizeByIndexPair(90, 0) / sizeof(UnkStruct_ov6_02248BE8);
+    v6 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 0) / sizeof(UnkStruct_ov6_02248BE8);
     v2 = Heap_AllocFromHeapAtEnd(param1, v6 + 1);
 
     if ((param6 == 1) && (param7 == 1)) {
@@ -628,23 +628,23 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
 
     for (v0 = 0; v0 < 4; v0++) {
         v1 = param0->unk_0C[v0];
-        sub_02074B30(param1, 54 + v0, &v1);
+        Pokemon_SetValue(param1, 54 + v0, &v1);
     }
 
     {
         Strbuf* v3, * v4;
-        UnkStruct_0200B144 * v5;
+        MessageLoader * v5;
 
-        v5 = sub_0200B144(1, 26, 205, param2);
-        v3 = sub_0200B1EC(v5, param0->unk_16);
-        v4 = sub_0200B1EC(v5, param0->unk_18);
+        v5 = MessageLoader_Init(1, 26, 205, param2);
+        v3 = MessageLoader_GetNewStrbuf(v5, param0->unk_16);
+        v4 = MessageLoader_GetNewStrbuf(v5, param0->unk_18);
 
-        sub_02074B30(param1, 119, v3);
-        sub_02074B30(param1, 145, v4);
+        Pokemon_SetValue(param1, 119, v3);
+        Pokemon_SetValue(param1, 145, v4);
 
         Strbuf_Free(v3);
         Strbuf_Free(v4);
-        sub_0200B190(v5);
+        MessageLoader_Free(v5);
     }
 
     {
@@ -657,12 +657,12 @@ void sub_02095380 (const UnkStruct_ov6_02248BE8 * param0, Pokemon * param1, int 
         v10 = param0->unk_1E;
         v11 = param0->unk_1F;
 
-        sub_02074B30(param1, 19, &v6);
-        sub_02074B30(param1, 20, &v7);
-        sub_02074B30(param1, 21, &v8);
-        sub_02074B30(param1, 22, &v9);
-        sub_02074B30(param1, 23, &v10);
-        sub_02074B30(param1, 24, &v11);
+        Pokemon_SetValue(param1, 19, &v6);
+        Pokemon_SetValue(param1, 20, &v7);
+        Pokemon_SetValue(param1, 21, &v8);
+        Pokemon_SetValue(param1, 22, &v9);
+        Pokemon_SetValue(param1, 23, &v10);
+        Pokemon_SetValue(param1, 24, &v11);
     }
 }
 
@@ -697,7 +697,7 @@ void sub_020954F0 (UnkStruct_02095C48 * param0, int param1, int param2, int para
     u8 * v7, * v8;
 
     v6 = sub_02006FE8(90, 1, 0, param1, 1);
-    v5 = NARC_GetMemberSizeByIndexPair(90, 1) / sizeof(UnkStruct_020954F0);
+    v5 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_CONTEST__DATA__CONTEST_DATA, 1) / sizeof(UnkStruct_020954F0);
     v7 = Heap_AllocFromHeapAtEnd(param1, v5 + 1);
     v8 = Heap_AllocFromHeapAtEnd(param1, v5 + 1);
 
@@ -1053,7 +1053,7 @@ u32 sub_02095A74 (int param0, int param1)
     u32 v2;
 
     if ((param0 == 3) || (param1 == 1)) {
-        return sub_0201D2E8() % 12;
+        return LCRNG_Next() % 12;
     }
 
     MI_CpuClear8(v0, 12);
@@ -1074,5 +1074,5 @@ u32 sub_02095A74 (int param0, int param1)
         v0[v1++] = 8;
     }
 
-    return v0[sub_0201D2E8() % v1];
+    return v0[LCRNG_Next() % v1];
 }

@@ -1,0 +1,112 @@
+{
+    "name": "Metagross",
+    "base_stats": {
+        "hp": 80,
+        "attack": 135,
+        "defense": 130,
+        "speed": 70,
+        "special_attack": 95,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_STEEL",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 210,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 3,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_METAL_COAT"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 40,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_CLEAR_BODY",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM33",
+            "TM36",
+            "TM37",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM58",
+            "TM64",
+            "TM68",
+            "TM69",
+            "TM70",
+            "TM74",
+            "TM76",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM01",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_MAGNET_RISE",
+                "MOVE_TAKE_DOWN",
+                "MOVE_METAL_CLAW",
+                "MOVE_CONFUSION"
+            ],
+            "20": [
+                "MOVE_METAL_CLAW",
+                "MOVE_CONFUSION"
+            ],
+            "24": "MOVE_SCARY_FACE",
+            "28": "MOVE_PURSUIT",
+            "32": "MOVE_BULLET_PUNCH",
+            "36": "MOVE_PSYCHIC",
+            "40": "MOVE_IRON_DEFENSE",
+            "44": "MOVE_AGILITY",
+            "45": "MOVE_HAMMER_ARM",
+            "53": "MOVE_METEOR_MASH",
+            "62": "MOVE_ZEN_HEADBUTT",
+            "71": "MOVE_HYPER_BEAM"
+        }
+    }
+}

@@ -3,14 +3,14 @@
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017294.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_defs/struct_0203E274.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -23,20 +23,20 @@
 typedef struct {
     UnkStruct_0203E274 * unk_00;
     BOOL unk_04;
-    UnkStruct_02018340 * unk_08;
-    UnkStruct_02002F38 * unk_0C;
+    BGL * unk_08;
+    PaletteSys * unk_0C;
     UnkStruct_0207C690 * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_14;
     UnkStruct_0200C6E4 * unk_18;
     UnkStruct_0200C704 * unk_1C;
-    UnkStruct_0200B144 * unk_20;
-    UnkStruct_0205AA50 * unk_24;
+    MessageLoader * unk_20;
+    Window * unk_24;
     UnkStruct_020203AC * unk_28;
     UnkStruct_020170F4 unk_2C[4];
     UnkStruct_02017294 unk_6C[2][16];
     UnkStruct_ov99_021D2CB0_sub1 unk_F6C;
     UnkStruct_ov99_021D3A40 unk_FA4;
-    UnkStruct_0200D0F4 * unk_10E0[5];
+    CellActorData * unk_10E0[5];
     u8 * unk_10F4;
     NARC * unk_10F8;
     u32 unk_10FC;

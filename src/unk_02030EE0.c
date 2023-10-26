@@ -398,13 +398,13 @@ static BOOL sub_02031320 (void)
 
     if (v1 == 0x8000) {
         sub_02030EF4(WM_ERRCODE_ILLEGAL_STATE);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
         return 0;
     }
 
     if (v1 == 0) {
         sub_02030EF4(22);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
         return 0;
     }
 
@@ -903,7 +903,7 @@ BOOL sub_0203195C (void)
     if (v0 == 24) {
         sub_02030EF4(24);
         sub_02030EE0(9);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
         return 0;
     }
 
@@ -927,7 +927,7 @@ static u16 sub_020319F8 (u16 param0)
         sub_02030EF4(WM_ERRCODE_ILLEGAL_STATE);
 
         sub_02030EE0(9);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
 
         return WM_ERRCODE_ILLEGAL_STATE;
     }
@@ -936,7 +936,7 @@ static u16 sub_020319F8 (u16 param0)
         sub_02030EF4(22);
 
         sub_02030EE0(9);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
 
         return 24;
     }
@@ -968,7 +968,7 @@ static void sub_02031A74 (void * param0)
         sub_02030EF4(v2->errcode);
 
         sub_02030EE0(9);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
 
         return;
     }
@@ -1119,7 +1119,7 @@ static void sub_02031CBC (void * param0)
         sub_02030EF4(v1->errcode);
 
         sub_02030EE0(10);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
 
         return;
     }
@@ -1130,7 +1130,7 @@ static void sub_02031CBC (void * param0)
         sub_02030EF4(v0);
 
         sub_02030EE0(10);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
 
         return;
     }

@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="25643" />
+	<row id="pl_msg_00000079_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello! Welcome to the Oreburgh\nMining Museum!</language>
+	</row>
+	<row id="pl_msg_00000079_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, hello!\nHow are you?\rI study Pokémon Fossils!\nMe! Right here and now!\r</language>
+	</row>
+	<row id="pl_msg_00000079_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You have a Fossil for me, yes?\nShall I turn it into a Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000079_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Fossil should I turn back\ninto a Pokémon? Choose! Now!</language>
+	</row>
+	<row id="pl_msg_00000079_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, I will do that! Turn that Fossil\nback into a Pokémon, surely I will!</language>
+	</row>
+	<row id="pl_msg_00000079_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t wish that I extract any\nPokémon from a Fossil. Fine, then!</language>
+	</row>
+	<row id="pl_msg_00000079_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I am in the process of extracting\nyour Pokémon from a Fossil.\rYou go outside, yes, please. Now!\nTime alone is what I now need. NOW!!!</language>
+	</row>
+	<row id="pl_msg_00000079_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You were gone too long!\nYou kept us waiting! Unacceptable!\rThis is your {STRVAR_1 0, 0, 0}!\nYou be good to it, OK!\r</language>
+	</row>
+	<row id="pl_msg_00000079_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe {STRVAR_1 0, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000079_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Give a nickname to the {STRVAR_1 0, 1, 0}\nyou received?</language>
+	</row>
+	<row id="pl_msg_00000079_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But, no, I cannot do this!\nYou have too many Pokémon with you!\rI must hold it for you, so come back,\nyou, and take it away, please.</language>
+	</row>
+	<row id="pl_msg_00000079_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If it is a Fossil that you obtain,\nbring it to me if you must.</language>
+	</row>
+	<row id="pl_msg_00000079_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">On the verge of a breakthrough, I am,\nto achieve extraction from Fossils.\rFrom Fossils I can extract Pokémon,\nbut not yet, not yet.</language>
+	</row>
+	<row id="pl_msg_00000079_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whoa! So this is coal?\nI never expected something this big!\rAnd that color!\nIt really is as black as they say!</language>
+	</row>
+	<row id="pl_msg_00000079_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow! The Pokémon that carried this\nmust be terribly strong!</language>
+	</row>
+	<row id="pl_msg_00000079_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, how about that!\rThe Oreburgh Mine extends under\nthe seafloor!</language>
+	</row>
+	<row id="pl_msg_00000079_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a little far from here, but there\nis a city called Eterna City.\rI’ve heard a curious person named the\nUnderground Man lives there.\rWith a name like that, he must be an\nauthority on the Underground.</language>
+	</row>
+	<row id="pl_msg_00000079_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mining must take a strong mind, not\njust a tough body.\rThink about it. You’re in darkness,\ndigging desperately through rock.</language>
+	</row>
+	<row id="pl_msg_00000079_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The history of Oreburgh Mine...\rYou could call it a history of effort and\nfriendship between people and Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000079_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How Coal Is Made   1\r“In a time long before history,\nvegetative matter was swept along\rby rain and rivers. It came to be\nburied under the ground.”</language>
+	</row>
+	<row id="pl_msg_00000079_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How Coal Is Made   2\r“The buried plant matter was\nforced ever deeper under the ground\rdue to tremors and fissures caused\nby the shifting landmasses.”</language>
+	</row>
+	<row id="pl_msg_00000079_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How Coal Is Made   3\r“Deep under the ground, the\nplant matter was subjected to heavy\rpressure and the heat of magma.\nIt gradually turned into coal.”</language>
+	</row>
+	<row id="pl_msg_00000079_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Samples of coal from different regions\nare displayed.</language>
+	</row>
+	<row id="pl_msg_00000079_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The box contains categorized samples\nof coal.</language>
+	</row>
+	<row id="pl_msg_00000079_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Different kinds of lamps are\ndisplayed.\rThey appear to have been worn\non someone’s head while underground.</language>
+	</row>
+	<row id="pl_msg_00000079_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Badly scarred wooden tools are\ndisplayed.\rThey apparently dug out coal using\nthese tools in the olden days.</language>
+	</row>
+	<row id="pl_msg_00000079_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The everyday items and tools of\npast mine workers are displayed.</language>
+	</row>
+</body>

@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -22,7 +22,7 @@
 #include "overlay023/funcptr_ov23_022431EC.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -65,11 +65,11 @@ typedef struct {
 
 typedef struct {
     void * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkFuncPtr_ov23_022431EC unk_08;
     UnkStruct_0203CDB0 * unk_0C;
     UnkStruct_ov23_02253598 * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_14;
     UnkStruct_ov23_0224271C unk_18;
     UnkStruct_ov23_0224271C unk_1C;
     UnkStruct_ov23_02257748_sub1 unk_20[20];
@@ -121,7 +121,7 @@ typedef struct {
 } UnkStruct_ov23_02243360;
 
 static void ov23_022433F4(int param0);
-static void ov23_02243310(UnkStruct_0201CD38 * param0, void * param1);
+static void ov23_02243310(SysTask * param0, void * param1);
 
 static UnkStruct_ov23_02257748 * Unk_ov23_02257748 = NULL;
 
@@ -156,7 +156,7 @@ static void ov23_02241F74 (UnkStruct_ov23_02257748 * param0, UnkStruct_0203CDB0 
     }
 
     sub_0206A9F4(sub_020507E4(Unk_ov23_02257748->unk_0C->unk_0C));
-    Unk_ov23_02257748->unk_14 = sub_0200D9E8(ov23_02243310, NULL, 0);
+    Unk_ov23_02257748->unk_14 = SysTask_Start(ov23_02243310, NULL, 0);
     sub_02032110(ov23_022433F4);
 }
 
@@ -171,7 +171,7 @@ static void ov23_02242108 (void)
     }
 
     sub_02032110(NULL);
-    sub_0200DA58(Unk_ov23_02257748->unk_14);
+    SysTask_Done(Unk_ov23_02257748->unk_14);
 
     ov23_02253DD8(Unk_ov23_02257748->unk_118);
     ov23_02253DD8(Unk_ov23_02257748->unk_11C);
@@ -218,7 +218,7 @@ void ov23_022421EC (void)
     ov23_02254210(Unk_ov23_02257748->unk_128);
 }
 
-BOOL ov23_0224223C (UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, int param2, Strbuf *param3)
+BOOL ov23_0224223C (TrainerInfo * param0, TrainerInfo * param1, int param2, Strbuf *param3)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -229,7 +229,7 @@ BOOL ov23_0224223C (UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, in
 
         sub_0200B498(v0, 0, param0);
         sub_0200B498(v0, 1, param1);
-        sub_0200B1B8(ov23_02253E3C(ov23_0224219C()), param2, v1);
+        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
         sub_0200C388(v0, param3, v1);
         Strbuf_Free(v1);
         sub_0200B3F0(v0);
@@ -240,7 +240,7 @@ BOOL ov23_0224223C (UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, in
     return 0;
 }
 
-BOOL ov23_022422A8 (UnkStruct_02025E6C * param0, int param1, int param2, Strbuf *param3)
+BOOL ov23_022422A8 (TrainerInfo * param0, int param1, int param2, Strbuf *param3)
 {
     UnkStruct_0200B358 * v0;
     Strbuf* v1;
@@ -250,7 +250,7 @@ BOOL ov23_022422A8 (UnkStruct_02025E6C * param0, int param1, int param2, Strbuf 
         v1 = Strbuf_Init((50 * 2), 4);
 
         sub_0200B498(v0, param1, param0);
-        sub_0200B1B8(ov23_02253E3C(ov23_0224219C()), param2, v1);
+        MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), param2, v1);
         sub_0200C388(v0, param3, v1);
         Strbuf_Free(v1);
         sub_0200B3F0(v0);
@@ -266,8 +266,8 @@ static BOOL ov23_02242308 (Strbuf *param0)
     int v0;
     UnkStruct_0200B358 * v1;
     Strbuf* v2;
-    UnkStruct_02025E6C * v3;
-    UnkStruct_02025E6C * v4;
+    TrainerInfo * v3;
+    TrainerInfo * v4;
 
     if (!Unk_ov23_02257748) {
         return 0;
@@ -355,7 +355,7 @@ BOOL ov23_02242458 (void)
         return 0;
     }
 
-    if (Unk_021BF67C.unk_60) {
+    if (gCoreSys.touchInput) {
         Unk_ov23_02257748->unk_134 = 30;
 
         if (!Unk_ov23_02257748->unk_14B) {
@@ -368,13 +368,13 @@ BOOL ov23_02242458 (void)
                     return 0;
                 }
 
-                v0 = ov5_021EAFA4(Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E, Unk_ov23_02257748->unk_0C->unk_8C);
+                v0 = ov5_021EAFA4(gCoreSys.unk_5C, gCoreSys.unk_5E, Unk_ov23_02257748->unk_0C->unk_8C);
                 ov5_021E9230(v0.x, v0.z, &v2, &v3);
                 v4.unk_00 = v2;
                 v4.unk_02 = v3;
 
-                Unk_ov23_02257748->unk_18.unk_00 = Unk_021BF67C.unk_5C;
-                Unk_ov23_02257748->unk_18.unk_02 = Unk_021BF67C.unk_5E;
+                Unk_ov23_02257748->unk_18.unk_00 = gCoreSys.unk_5C;
+                Unk_ov23_02257748->unk_18.unk_02 = gCoreSys.unk_5E;
                 Unk_ov23_02257748->unk_1C.unk_00 = v2;
                 Unk_ov23_02257748->unk_1C.unk_02 = v3;
 
@@ -560,7 +560,7 @@ void ov23_022427DC (int param0, UnkFuncPtr_ov23_022427DC param1)
 void ov23_022427F8 (void)
 {
     if (0 == sub_020593CC(sub_0203608C())) {
-        sub_020360DC(27);
+        Link_Message(27);
         sub_0203572C();
     }
 }
@@ -885,7 +885,7 @@ BOOL ov23_02242D60 (Strbuf *param0)
     return 0;
 }
 
-UnkStruct_02029894 * ov23_02242E10 (UnkStruct_021C0794 * param0)
+UnkStruct_02029894 * ov23_02242E10 (SaveData * param0)
 {
     if (!Unk_ov23_02257748) {
         return NULL;
@@ -1064,7 +1064,7 @@ void ov23_02243038 (int param0)
             v1 = Strbuf_Init((50 * 2), 11);
 
             sub_0200B498(v0, 0, sub_02032EE8(param0));
-            sub_0200B1B8(ov23_02253E3C(ov23_0224219C()), 115, v1);
+            MessageLoader_GetStrbuf(ov23_02253E3C(ov23_0224219C()), 115, v1);
             sub_0200C388(v0, Unk_ov23_02257748->unk_DC[param0], v1);
             Strbuf_Free(v1);
             sub_0200B3F0(v0);
@@ -1150,12 +1150,12 @@ void ov23_022431C4 (int param0, int param1, void * param2, void * param3)
 
     if (v1 == sub_0203608C()) {
         ov23_022534A0(Unk_ov23_02257748->unk_0C);
-        sub_020360DC(25);
+        Link_Message(25);
         sub_020594FC();
     }
 }
 
-void ov23_022431EC (void * param0, UnkStruct_0201CD38 * param1, UnkFuncPtr_ov23_022431EC param2)
+void ov23_022431EC (void * param0, SysTask * param1, UnkFuncPtr_ov23_022431EC param2)
 {
     Unk_ov23_02257748->unk_00 = param0;
     Unk_ov23_02257748->unk_04 = param1;
@@ -1224,7 +1224,7 @@ BOOL ov23_02243298 (int param0)
     return 1;
 }
 
-static void ov23_02243310 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_02243310 (SysTask * param0, void * param1)
 {
     ov23_02254250(Unk_ov23_02257748->unk_118);
     ov23_02254250(Unk_ov23_02257748->unk_11C);

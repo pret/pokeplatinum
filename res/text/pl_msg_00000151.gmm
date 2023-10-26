@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="9231" />
+	<row id="pl_msg_00000151_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello.\nMay I help you with anything?</language>
+	</row>
+	<row id="pl_msg_00000151_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, {STRVAR_1 3, 0, 0}.\nMay I help you with anything?</language>
+	</row>
+	<row id="pl_msg_00000151_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please enjoy yourself.</language>
+	</row>
+	<row id="pl_msg_00000151_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Yellow Cushion is popular for its\nperfect balance of soft and firm.</language>
+	</row>
+	<row id="pl_msg_00000151_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You would be surprised at how many\ncustomers buy Cupboards.</language>
+	</row>
+	<row id="pl_msg_00000151_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The BUIZEL Doll is very popular due\nto its nautical image.</language>
+	</row>
+	<row id="pl_msg_00000151_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let me think... The MANTYKE Doll has\nbeen a hot seller recently.</language>
+	</row>
+	<row id="pl_msg_00000151_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you encounter a wild Pokémon,\nchuck a Quick Ball right off the bat!\rIf it’s taking a long time to catch,\nthe situation calls for a Timer Ball!</language>
+	</row>
+	<row id="pl_msg_00000151_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That boy doesn’t have any Pokémon,\nbut he says he’s training his image!</language>
+	</row>
+	<row id="pl_msg_00000151_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We need another copy of the game so I\ncan challenge my papa!</language>
+	</row>
+	<row id="pl_msg_00000151_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">B1F: Food &amp; Produce\r1F: Trainers’ Zone\r2F: Battle Collection\r3F: TM Corner\r4F: Poké Dolls &amp; Goods\r5F: Rooftop Plaza</language>
+	</row>
+</body>

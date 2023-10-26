@@ -10,7 +10,7 @@
 #include <ppwlobby/ppw_lobby.h>
 #include "enums.h"
 
-void ov66_022324F0(u32 param0, UnkStruct_021C0794 * param1, u32 param2, const UnkStruct_ov66_022324F0 * param3, void * param4);
+void ov66_022324F0(u32 param0, SaveData * param1, u32 param2, const UnkStruct_ov66_022324F0 * param3, void * param4);
 void ov66_02232598(void);
 UnkEnum_ov66_0223287C ov66_022325D8(void);
 PPW_LOBBY_ERROR ov66_022326DC(void);

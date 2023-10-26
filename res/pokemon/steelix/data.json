@@ -1,0 +1,116 @@
+{
+    "name": "Steelix",
+    "base_stats": {
+        "hp": 75,
+        "attack": 85,
+        "defense": 200,
+        "speed": 30,
+        "special_attack": 55,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_STEEL",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 25,
+    "base_exp_reward": 196,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_METAL_COAT"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_ROCK_HEAD",
+        "ABILITY_STURDY"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM59",
+            "TM64",
+            "TM66",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM77",
+            "TM78",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM01",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_THUNDER_FANG",
+                "MOVE_ICE_FANG",
+                "MOVE_FIRE_FANG",
+                "MOVE_MUD_SPORT",
+                "MOVE_TACKLE",
+                "MOVE_HARDEN",
+                "MOVE_BIND"
+            ],
+            "6": "MOVE_SCREECH",
+            "9": "MOVE_ROCK_THROW",
+            "14": "MOVE_RAGE",
+            "17": "MOVE_ROCK_TOMB",
+            "22": "MOVE_SANDSTORM",
+            "25": "MOVE_SLAM",
+            "30": "MOVE_ROCK_POLISH",
+            "33": "MOVE_DRAGON_BREATH",
+            "38": "MOVE_CURSE",
+            "41": "MOVE_IRON_TAIL",
+            "46": "MOVE_CRUNCH",
+            "49": "MOVE_DOUBLE_EDGE",
+            "54": "MOVE_STONE_EDGE"
+        }
+    }
+}

@@ -1,0 +1,102 @@
+{
+    "name": "Regigigas",
+    "base_stats": {
+        "hp": 110,
+        "attack": 160,
+        "defense": 110,
+        "speed": 100,
+        "special_attack": 80,
+        "special_defense": 110
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 220,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 3,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_SLOW_START",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_WHITE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM72",
+            "TM73",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_FIRE_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_KNOCK_OFF",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_FORESIGHT"
+            ],
+            "25": "MOVE_REVENGE",
+            "50": "MOVE_ZEN_HEADBUTT",
+            "75": "MOVE_CRUSH_GRIP",
+            "100": "MOVE_GIGA_IMPACT"
+        }
+    }
+}

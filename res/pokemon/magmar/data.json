@@ -1,0 +1,107 @@
+{
+    "name": "Magmar",
+    "base_stats": {
+        "hp": 65,
+        "attack": 95,
+        "defense": 57,
+        "speed": 93,
+        "special_attack": 100,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 167,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_MAGMARIZER"
+    },
+    "gender_ratio": "FEMALE_25",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "HUMAN_LIKE",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_FLAME_BODY",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM29",
+            "TM31",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM50",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM61",
+            "TM68",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_SMOG",
+                "MOVE_LEER",
+                "MOVE_EMBER"
+            ],
+            "7": "MOVE_EMBER",
+            "10": "MOVE_SMOKE_SCREEN",
+            "16": "MOVE_FAINT_ATTACK",
+            "19": "MOVE_FIRE_SPIN",
+            "25": "MOVE_CONFUSE_RAY",
+            "28": "MOVE_FIRE_PUNCH",
+            "36": "MOVE_LAVA_PLUME",
+            "41": "MOVE_FLAMETHROWER",
+            "49": "MOVE_SUNNY_DAY",
+            "54": "MOVE_FIRE_BLAST"
+        }
+    },
+    "evolutions": [
+        [
+            "TRADE_WITH_ITEM",
+            "ITEM_MAGMARIZER",
+            "SPECIES_MAGMORTAR"
+        ]
+    ]
+}

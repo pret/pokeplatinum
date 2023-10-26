@@ -1,0 +1,118 @@
+{
+    "name": "Claydol",
+    "base_stats": {
+        "hp": 60,
+        "attack": 70,
+        "defense": 105,
+        "speed": 75,
+        "special_attack": 70,
+        "special_defense": 120
+    },
+    "types": [
+        "TYPE_GROUND",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 189,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_LEVITATE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLACK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM33",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM48",
+            "TM57",
+            "TM58",
+            "TM64",
+            "TM67",
+            "TM68",
+            "TM69",
+            "TM70",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "TM92",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TELEPORT",
+                "MOVE_CONFUSION",
+                "MOVE_HARDEN",
+                "MOVE_RAPID_SPIN"
+            ],
+            "3": "MOVE_HARDEN",
+            "5": "MOVE_RAPID_SPIN",
+            "7": "MOVE_MUD_SLAP",
+            "11": "MOVE_PSYBEAM",
+            "15": "MOVE_ROCK_TOMB",
+            "19": "MOVE_SELFDESTRUCT",
+            "25": "MOVE_ANCIENT_POWER",
+            "31": "MOVE_POWER_TRICK",
+            "36": "MOVE_HYPER_BEAM",
+            "40": "MOVE_SANDSTORM",
+            "51": "MOVE_COSMIC_POWER",
+            "62": "MOVE_EARTH_POWER",
+            "73": "MOVE_HEAL_BLOCK",
+            "86": "MOVE_EXPLOSION"
+        }
+    }
+}

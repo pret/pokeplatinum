@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_02095C48_H
 #define POKEPLATINUM_STRUCT_02095C48_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/sys_task.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202A750_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_02094A58.h"
 #include "struct_defs/struct_02095C48_sub1.h"
@@ -24,16 +24,16 @@ typedef struct {
     u8 unk_15B;
     int unk_15C;
     int padding_160;
-    UnkStruct_0201CD38 * unk_164;
+    SysTask * unk_164;
     u8 unk_168[4][256];
     u8 unk_568;
     u8 unk_569[1024];
     u8 unk_969[4][1024];
     u8 padding_1969[3];
     const UnkStruct_020279FC * unk_196C;
-    UnkStruct_021C0794 * unk_1970;
+    SaveData * unk_1970;
     Pokemon * unk_1974;
-    const UnkStruct_02025E6C * unk_1978;
+    const TrainerInfo * unk_1978;
     u8 unk_197C;
     u8 unk_197D;
     u8 unk_197E;

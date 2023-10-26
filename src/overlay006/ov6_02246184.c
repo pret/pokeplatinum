@@ -1,10 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "overlay006/struct_ov6_02246204_decl.h"
 
@@ -12,15 +8,15 @@
 #include "overlay006/struct_ov6_02246254.h"
 
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202F180.h"
 #include "map_header.h"
 #include "unk_020559DC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_02092494.h"
 #include "overlay006/ov6_02246184.h"
@@ -51,7 +47,7 @@ typedef struct {
 typedef struct UnkStruct_ov6_02246204_t {
     UnkStruct_ov6_0224630C * unk_00;
     Pokemon * unk_04;
-    UnkStruct_02025E6C * unk_08;
+    TrainerInfo * unk_08;
     u32 unk_0C;
     u32 unk_10;
 };
@@ -73,16 +69,16 @@ UnkStruct_ov6_02246204 * ov6_02246184 (u32 param0, u32 param1)
     v0->unk_00 = sub_02006FE8(115, param1, 0, param0, 0);
     v0->unk_10 = param0;
     v0->unk_0C = param1;
-    v0->unk_04 = AllocMonZeroed(param0);
-    v0->unk_08 = sub_02025E6C(param0);
+    v0->unk_04 = Pokemon_New(param0);
+    v0->unk_08 = TrainerInfo_New(param0);
 
-    sub_02025E8C(v0->unk_08);
+    TrainerInfo_Init(v0->unk_08);
     v1 = ov6_022462E4(param0, 4 + param1);
 
     Strbuf_ToChars(v1, v2, 128);
     Strbuf_Free(v1);
-    sub_02025EC0(v0->unk_08, v2);
-    sub_02025F2C(v0->unk_08, v0->unk_00->unk_40);
+    TrainerInfo_SetName(v0->unk_08, v2);
+    TrainerInfo_SetGender(v0->unk_08, v0->unk_00->unk_40);
 
     return v0;
 }
@@ -122,15 +118,15 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
     int v4;
 
     v1 = Party_GetPokemonBySlotIndex(v0, param2);
-    v3 = GetMonData(v1, MON_DATA_161, NULL);
+    v3 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
 
     ov6_0224630C(param1->unk_04, param1->unk_00, v3, param1->unk_0C, param1->unk_10, param0->unk_1C->unk_00);
 
-    sub_020775EC(v1, param4);
-    sub_020775EC(param1->unk_04, param5);
+    Pokemon_Copy(v1, param4);
+    Pokemon_Copy(param1->unk_04, param5);
 
-    param3->unk_00 = sub_02076B10(param4);
-    param3->unk_04 = sub_02076B10(param5);
+    param3->unk_00 = Pokemon_GetBoxPokemon(param4);
+    param3->unk_04 = Pokemon_GetBoxPokemon(param5);
     param3->unk_08 = param1->unk_08;
     param3->unk_10 = 1;
     param3->unk_14 = sub_02025E44(param0->unk_0C);
@@ -149,10 +145,10 @@ void ov6_02246254 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02246204 * param1,
 static Strbuf* ov6_022462E4 (u32 param0, u32 param1)
 {
     Strbuf* v0;
-    UnkStruct_0200B144 * v1 = sub_0200B144(0, 26, 370, param0);
+    MessageLoader * v1 = MessageLoader_Init(0, 26, 370, param0);
 
-    v0 = sub_0200B1EC(v1, param1);
-    sub_0200B190(v1);
+    v0 = MessageLoader_GetNewStrbuf(v1, param1);
+    MessageLoader_Free(v1);
     return v0;
 }
 
@@ -166,36 +162,36 @@ static void ov6_0224630C (Pokemon * param0, UnkStruct_ov6_0224630C * param1, u32
 
     v0 = ov6_022462E4(param4, param3);
 
-    sub_02074B30(param0, 119, v0);
+    Pokemon_SetValue(param0, 119, v0);
     Strbuf_Free(v0);
 
     v1 = 1;
 
-    sub_02074B30(param0, 77, &v1);
-    sub_02074B30(param0, 70, &param1->unk_04);
-    sub_02074B30(param0, 71, &param1->unk_08);
-    sub_02074B30(param0, 72, &param1->unk_0C);
-    sub_02074B30(param0, 73, &param1->unk_10);
-    sub_02074B30(param0, 74, &param1->unk_14);
-    sub_02074B30(param0, 75, &param1->unk_18);
-    sub_02074B30(param0, 19, &param1->unk_24);
-    sub_02074B30(param0, 20, &param1->unk_28);
-    sub_02074B30(param0, 21, &param1->unk_2C);
-    sub_02074B30(param0, 22, &param1->unk_30);
-    sub_02074B30(param0, 23, &param1->unk_34);
-    sub_02074B30(param0, 6, &param1->unk_3C);
+    Pokemon_SetValue(param0, 77, &v1);
+    Pokemon_SetValue(param0, 70, &param1->unk_04);
+    Pokemon_SetValue(param0, 71, &param1->unk_08);
+    Pokemon_SetValue(param0, 72, &param1->unk_0C);
+    Pokemon_SetValue(param0, 73, &param1->unk_10);
+    Pokemon_SetValue(param0, 74, &param1->unk_14);
+    Pokemon_SetValue(param0, 75, &param1->unk_18);
+    Pokemon_SetValue(param0, 19, &param1->unk_24);
+    Pokemon_SetValue(param0, 20, &param1->unk_28);
+    Pokemon_SetValue(param0, 21, &param1->unk_2C);
+    Pokemon_SetValue(param0, 22, &param1->unk_30);
+    Pokemon_SetValue(param0, 23, &param1->unk_34);
+    Pokemon_SetValue(param0, 6, &param1->unk_3C);
 
     v0 = ov6_022462E4(param4, 4 + param3);
 
-    sub_02074B30(param0, 145, v0);
+    Pokemon_SetValue(param0, 145, v0);
     Strbuf_Free(v0);
-    sub_02074B30(param0, 157, &param1->unk_40);
-    sub_02074B30(param0, 12, &param1->unk_48);
+    Pokemon_SetValue(param0, 157, &param1->unk_40);
+    Pokemon_SetValue(param0, 12, &param1->unk_48);
 
     v2 = sub_0203A138(param5);
 
     sub_0209304C(param0, NULL, 1, v2, param4);
-    sub_0207418C(param0);
+    Pokemon_CalcLevelAndStats(param0);
 
-    GF_ASSERT(sub_02075E0C(param0) == 0);
+    GF_ASSERT(Pokemon_IsShiny(param0) == 0);
 }

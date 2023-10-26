@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="21518" />
+	<row id="pl_msg_00000243_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you’re walking on boggy parts,\nsometimes you get sucked down.\rPokémon may appear while you’re\nstruggling to get out, too.</language>
+	</row>
+	<row id="pl_msg_00000243_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Great Marsh Area 4</language>
+	</row>
+</body>

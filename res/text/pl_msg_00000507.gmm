@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="39556" />
+	<row id="pl_msg_00000507_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Oh, {STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000507_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Um, are you maybe on your way to\nSnowpoint City?\rThat’s where I’m going, too.\rIf I use Fly, I can get there instantly,\nbut I’m walking for my training.\rI have no problem with this.\rI’m used to the cold because I go\nbarefoot and lightly dressed.\r...Achoo!\rOh, that was nothing.\nReally, I’m not cold at all.\rI’ll be going now.\nPlease take care!\r</language>
+	</row>
+	<row id="pl_msg_00000507_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m using the Dowsing Machine on\nmy Pokétch.\rI’m looking for things buried under\nthe snow.</language>
+	</row>
+	<row id="pl_msg_00000507_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The boulder is encrusted with ice.\nIt is bone chilling to touch.</language>
+	</row>
+	<row id="pl_msg_00000507_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 217\nLake Acuity</language>
+	</row>
+</body>

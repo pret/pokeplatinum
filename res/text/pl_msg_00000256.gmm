@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="33839" />
+	<row id="pl_msg_00000256_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The flowers that grow in the fields\nhere are special.\rDo you see how they’re more vivid\nthan flowers elsewhere in Sinnoh?\rYou can thank Pokémon for that.</language>
+	</row>
+	<row id="pl_msg_00000256_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you put Honey on a tree, check\nback later to see if it’s rustling.\rIf it is, it’s quite often a rare\nPokémon.\rIt gets my hopes up if I see that\nhappening.</language>
+	</row>
+</body>

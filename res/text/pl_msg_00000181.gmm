@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50203" />
+	<row id="pl_msg_00000181_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, hello. Would you like to hear\na trendy saying?</language>
+	</row>
+	<row id="pl_msg_00000181_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Very well...\rThe trendy thing to say for you\nwould be...\r{STRVAR_1 28, 0, 0}!\rThat’s a trendy sort of thing\nto say.</language>
+	</row>
+	<row id="pl_msg_00000181_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, come on now. With an attitude like\nthat, you’ll fall behind the times!</language>
+	</row>
+	<row id="pl_msg_00000181_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I hope you’ll use trendy sayings\nin a trendy way.</language>
+	</row>
+	<row id="pl_msg_00000181_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, hello. Are you using trendy\nsayings?</language>
+	</row>
+	<row id="pl_msg_00000181_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000181_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000181_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Share colored Shards with me, and I’ll\nteach your Pokémon some moves.\rWant me to teach a move?</language>
+	</row>
+	<row id="pl_msg_00000181_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Be seeing you, then!</language>
+	</row>
+	<row id="pl_msg_00000181_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokémon will it be?\r</language>
+	</row>
+	<row id="pl_msg_00000181_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are no moves that can be taught\nto this Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000181_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t have enough Shards.</language>
+	</row>
+	<row id="pl_msg_00000181_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Teach which move to\n{STRVAR_1 1, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000181_00013" index="13">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000181_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000181_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} learned\n{STRVAR_1 6, 1, 0}.</language>
+	</row>
+	<row id="pl_msg_00000181_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} is trying to learn\n{STRVAR_1 6, 1, 0}.\rBut {STRVAR_1 1, 0, 0} can’t learn more\nthan four moves.\rDelete an older move to make\nroom for {STRVAR_1 6, 1, 0}?</language>
+	</row>
+	<row id="pl_msg_00000181_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stop trying to teach\n{STRVAR_1 6, 1, 0}?</language>
+	</row>
+	<row id="pl_msg_00000181_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} did not learn the\nmove {STRVAR_1 6, 1, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000181_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 6, 1, 0} is the move that\nyou want forgotten?</language>
+	</row>
+	<row id="pl_msg_00000181_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">1{PAUSE 20}, 2{PAUSE 20}, and{PAUSE 20}... {PAUSE 20}... Poof!</language>
+	</row>
+	<row id="pl_msg_00000181_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} forgot\n{STRVAR_1 6, 1, 0}.\rAnd...</language>
+	</row>
+	<row id="pl_msg_00000181_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 1, 0, 0} learned\n{STRVAR_1 6, 1, 0}.</language>
+	</row>
+	<row id="pl_msg_00000181_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s beyond my ability to teach moves\nto an Egg!</language>
+	</row>
+</body>

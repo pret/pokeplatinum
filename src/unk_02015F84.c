@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_020789F4.h"
 
@@ -39,7 +39,7 @@ typedef struct UnkStruct_02016DAC_t {
 
 typedef struct UnkStruct_02016E64_t {
     UnkStruct_02007C7C * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     void * unk_08;
     u32 * unk_0C;
     BOOL unk_10;
@@ -86,7 +86,7 @@ static int sub_02016280(u32 * param0, u8 param1, u8 param2);
 static int sub_02016294(u32 * param0, u8 param1);
 static int sub_020162A0(u32 * param0);
 static void sub_02016D04(UnkStruct_02016E64 * param0, const int param1);
-static void sub_02016150(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02016150(SysTask * param0, void * param1);
 static void sub_02016188(UnkStruct_02016E64 * param0);
 static void sub_02016530(UnkStruct_02016E64 * param0);
 static void sub_02016540(UnkStruct_02016E64 * param0);
@@ -221,14 +221,14 @@ void sub_02015FCC (UnkStruct_02015F84 * param0, UnkStruct_02007C7C * param1, con
         param0->unk_00[v0].unk_1C4 = 0;
     }
 
-    param0->unk_00[v0].unk_08 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(94, param0->unk_00[v0].unk_14, param0->unk_04);
+    param0->unk_00[v0].unk_08 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_POKEANIME__PL_POKE_ANM, param0->unk_00[v0].unk_14, param0->unk_04);
     param0->unk_00[v0].unk_0C = (u32 *)param0->unk_00[v0].unk_08;
     param0->unk_00[v0].unk_1C = 0;
     param0->unk_00[v0].unk_20 = 0;
     param0->unk_00[v0].unk_1C5 = 0;
     param0->unk_00[v0].unk_1C6 = 28;
     param0->unk_00[v0].unk_1C7 = 0;
-    param0->unk_00[v0].unk_04 = sub_0200D9E8(sub_02016150, &param0->unk_00[v0], 0);
+    param0->unk_00[v0].unk_04 = SysTask_Start(sub_02016150, &param0->unk_00[v0], 0);
     param0->unk_00[v0].unk_54 = v2;
     param0->unk_00[v0].unk_58 = sub_020080C0(param1, 0);
     param0->unk_00[v0].unk_5C = sub_020080C0(param1, 1);
@@ -250,7 +250,7 @@ BOOL sub_020160F4 (UnkStruct_02015F84 * param0, const u8 param1)
 void sub_02016114 (UnkStruct_02015F84 * param0, const u8 param1)
 {
     if (param0->unk_00[param1].unk_04 != NULL) {
-        sub_0200DA58(param0->unk_00[param1].unk_04);
+        SysTask_Done(param0->unk_00[param1].unk_04);
 
         param0->unk_00[param1].unk_04 = NULL;
         param0->unk_00[param1].unk_20 = 1;
@@ -260,7 +260,7 @@ void sub_02016114 (UnkStruct_02015F84 * param0, const u8 param1)
     }
 }
 
-static void sub_02016150 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02016150 (SysTask * param0, void * param1)
 {
     UnkStruct_02016E64 * v0 = (UnkStruct_02016E64 *)(param1);
 
@@ -274,7 +274,7 @@ static void sub_02016150 (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_20 = 1;
         v0->unk_10 = 0;
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_04 = NULL;
         Heap_FreeToHeap(v0->unk_08);
     }

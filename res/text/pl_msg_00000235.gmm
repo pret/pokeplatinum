@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="24594" />
+	<row id="pl_msg_00000235_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: No...!\r</language>
+	</row>
+	<row id="pl_msg_00000235_00001" index="1">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00002" index="2">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: I’m sorry I took so long.\rI think I finally found the answer\nfrom studying the myths.\rWhen this world was made, DIALGA and\nPALKIA appeared.\rApparently, there was one more Pokémon\nthat appeared at the same time.\rA Pokémon with as much power as DIALGA\nand PALKIA...\rBut also one whose name was never to\nbe spoken--GIRATINA!\rIt’s said to lurk in another world...\nA world on the opposite side of ours...\rThat’s what the shadow was.\nIt must have been GIRATINA.\r</language>
+	</row>
+	<row id="pl_msg_00000235_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The pillars are distorting...\rIt’s because of that portal.\nIt’s joined us to the other world.\rIf it’s not closed, the distortion\nwill spread to Sinnoh and beyond...\rOur world will be destroyed...\r</language>
+	</row>
+	<row id="pl_msg_00000235_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Are you ready?\nWe have to chase Cyrus!</language>
+	</row>
+	<row id="pl_msg_00000235_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: We have to hurry!\r</language>
+	</row>
+	<row id="pl_msg_00000235_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: You need to get ready?\nI’ll wait here.</language>
+	</row>
+	<row id="pl_msg_00000235_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mars: M-Master Cyrus?!\nWhere did he go?!</language>
+	</row>
+	<row id="pl_msg_00000235_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jupiter: That shadow...\nWhat was it...?!</language>
+	</row>
+	<row id="pl_msg_00000235_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Without anyone to guide us, we can only\npanic aimlessly...</language>
+	</row>
+	<row id="pl_msg_00000235_00012" index="12">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00013" index="13">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00015" index="15">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00016" index="16">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00017" index="17">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000235_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An overwhelming feeling of time\nemanates powerfully from this rift...\rWhere does it lead to?</language>
+	</row>
+	<row id="pl_msg_00000235_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An overwhelming feeling of space\nemanates powerfully from this rift...\rWhere does it lead to?</language>
+	</row>
+</body>

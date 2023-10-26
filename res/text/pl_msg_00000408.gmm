@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="8124" />
+	<row id="pl_msg_00000408_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MAILBOX</language>
+	</row>
+	<row id="pl_msg_00000408_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">READ</language>
+	</row>
+	<row id="pl_msg_00000408_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ERASE</language>
+	</row>
+	<row id="pl_msg_00000408_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GIVE</language>
+	</row>
+	<row id="pl_msg_00000408_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000408_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXX</language>
+	</row>
+	<row id="pl_msg_00000408_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What would you like to do with\n{STRVAR_1 3, 0, 0}’s Mail?</language>
+	</row>
+	<row id="pl_msg_00000408_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The message will be lost.\nIs that OK?</language>
+	</row>
+	<row id="pl_msg_00000408_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The message was erased.\rLet a Pokémon hold this Mail?</language>
+	</row>
+	<row id="pl_msg_00000408_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Mail’s message was erased,\nand it was put in the Bag.</language>
+	</row>
+	<row id="pl_msg_00000408_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Bag is full...\nThe Mail was discarded.</language>
+	</row>
+	<row id="pl_msg_00000408_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stopped making the Pokémon\nhold Mail.</language>
+	</row>
+</body>

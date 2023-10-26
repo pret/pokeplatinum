@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18407" />
+	<row id="pl_msg_00000401_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Pant...pant...\r...Why am I running like this anyway?!\rThat new world...\nThe new universe that our boss was\ftalking about...\rIt’s making me giddy thinking about it...\nWhen we use this thing...\r</language>
+	</row>
+	<row id="pl_msg_00000401_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gweh! You were eavesdropping!\nI was only talking to myself!\rYou’re persistent, too...\nI’m pooped out from all the running...\rBut, I’m not...\nGoing to battle you...\r</language>
+	</row>
+	<row id="pl_msg_00000401_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aww, no...\nYou’re still on my tail...?\fThe lake’s within sight...\rYou leave me no choice...\nMy Pokémon will KO you...\r</language>
+	</row>
+	<row id="pl_msg_00000401_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can’t battle anymore...\nI’m running on fumes...\rI’ll have to give this to the\nCommander...\rI wish...\nI got to use it at the lake...\r</language>
+	</row>
+	<row id="pl_msg_00000401_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Oh, hello, long time no see!\nHow is your Pokédex filling up?\rI came to research the folklore\nabout the lake, but...\rWell, it doesn’t appear as if the\nlake is open to the public now.\rHave you heard the folklore about it?\rThey say there is an island inside\nthe lake.\rAnd inside that island is a mirage\nof a Pokémon.\rNo one must enter the chamber\nof that Pokémon...\rOh, that’s right! I had to talk to you\nabout something else...\r</language>
+	</row>
+	<row id="pl_msg_00000401_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}: Hey, {STRVAR_1 3, 0, 0}!\nWhere’d that Galactic goon run off to?\r</language>
+	</row>
+	<row id="pl_msg_00000401_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Huh?\nIs this your older sister?\rNo? She isn’t?\nOh, OK.\r</language>
+	</row>
+	<row id="pl_msg_00000401_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That explosion in the Great Marsh?\nIt wasn’t anything serious.\rMr. Wake told me to tell you that.\rBut that Team Galactic... Wow! Are they\nout of control or what?\rNext time I see them, I’ll teach them\na lesson they won’t forget!\rSee you around!\r</language>
+	</row>
+	<row id="pl_msg_00000401_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: He’s your friend?\rHe’s more impatient than he is\nenergetic, isn’t he?\r</language>
+	</row>
+	<row id="pl_msg_00000401_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: So, getting back to what I\nstarted saying earlier...\rHave you seen the group of PSYDUCK\non Route 210?</language>
+	</row>
+	<row id="pl_msg_00000401_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Yes, that’s right.\nBy the café on Route 210.\rYou’ve seen that group of PSYDUCK\nhuddled with their heads in their,\fuh, hands...?\r</language>
+	</row>
+	<row id="pl_msg_00000401_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: You haven’t seen them?\nBy the café on Route 210.\rThere’s a group of PSYDUCK huddled\nwith their heads in their, uh,\fhands...?\r</language>
+	</row>
+	<row id="pl_msg_00000401_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Anyway, what you should do is use\nthis medicine on the PSYDUCK.\rYou’re working on a Pokédex, so it\nwould be worthwhile for you.\r</language>
+	</row>
+	<row id="pl_msg_00000401_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: I went on a big adventure\nwith a Pokédex when I was younger.\rI hope you get to meet every kind\nof Pokémon there is to see.\rIt may help you with the secret of\nthe mirage Pokémon.\rSee you later!\r</language>
+	</row>
+	<row id="pl_msg_00000401_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They say there’s a legendary Pokémon\nin this lake.\rI aim to capture it on film like I’ve\ndone before.\rIt was me who filmed that red GYARADOS\nat Lake of Rage.</language>
+	</row>
+	<row id="pl_msg_00000401_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon of the lake won’t come out\nif it senses people.\rWe’re lying in ambush for it here.</language>
+	</row>
+	<row id="pl_msg_00000401_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stop, stop!\nYes, you!\rSunyshore City, which is down this\nroad, had a major blackout!\rCrews are working on restoring\npower, but the road’s closed now.\r</language>
+	</row>
+	<row id="pl_msg_00000401_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stop, stop!\nYes, you!\rSunyshore City, which is down this\nroad, had a major blackout!\rCrews are working on restoring\npower, but the road’s closed now.</language>
+	</row>
+	<row id="pl_msg_00000401_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What am I to do...?\rI’ve gone and dropped my Suite\nKey somewhere again...\rThe hotel people won’t be happy with\nme...\rI’m sure I had it when I left the\nreception counter earlier...\rIf I only had the Pokétch app Dowsing\nMachine, it would be so easy to find...</language>
+	</row>
+	<row id="pl_msg_00000401_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What am I to do...?\rI’ve gone and dropped my Suite\nKey somewhere again...\rOh!\nThat’s my Suite Key!\rYou found it for me?\nOh, that’s sweet of you! Thank you!\r</language>
+	</row>
+	<row id="pl_msg_00000401_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Seven Stars Restaurant\nMore Flavor Than You Can Wish For</language>
+	</row>
+</body>

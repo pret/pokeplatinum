@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="25039" />
+	<row id="pl_msg_00000623_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Pokémon Center.\nAlways by your side.</language>
+	</row>
+	<row id="pl_msg_00000623_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Pokémon Mart.\nWhere smiling faces gather.</language>
+	</row>
+	<row id="pl_msg_00000623_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: The preceding program has\nbeen brought to you by Jubilife TV!</language>
+	</row>
+	<row id="pl_msg_00000623_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: For better treatment of\nPokémon--Trainers’ School.</language>
+	</row>
+	<row id="pl_msg_00000623_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Where there is Pokétch,\nthere is joy.</language>
+	</row>
+	<row id="pl_msg_00000623_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Add to your smiles!\nNew Pokétch apps are available now!\rDrop by the Pokétch Company\nin Jubilife City today!</language>
+	</row>
+	<row id="pl_msg_00000623_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Let us color your life.\nPick a Peck of Colors Flower Shop.</language>
+	</row>
+	<row id="pl_msg_00000623_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Third gear! Fourth gear!\nShift it up, down, all the way around!\rFor the latest in Bicycles, look up\nRad Rickshaw’s Cycle Shop!</language>
+	</row>
+	<row id="pl_msg_00000623_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: The pinnacle of beauty!\nOverflowing elegance!\rShockingly emotional!\nHearthome City Contests!</language>
+	</row>
+	<row id="pl_msg_00000623_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Enjoy a relaxing time\nalone with that special Pokémon...\rHearthome’s Amity Square.</language>
+	</row>
+	<row id="pl_msg_00000623_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Visit the Veilstone\nDepartment Store.\rYou’re guaranteed to find smiles!</language>
+	</row>
+	<row id="pl_msg_00000623_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Line up the slots,\nand rack up some Coins!\rVeilstone Game Corner.\nIs there a winner in you?</language>
+	</row>
+	<row id="pl_msg_00000623_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Your Pokémon raised with\nlove at Solaceon’s Pokémon Day Care.</language>
+	</row>
+	<row id="pl_msg_00000623_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: A different class.\nHotel Grand Lake.</language>
+	</row>
+	<row id="pl_msg_00000623_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: A nature preserve where\nexotic Pokémon roam.\rPastoria City’s Great Marsh\nSafari Game.</language>
+	</row>
+	<row id="pl_msg_00000623_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Want to see some snow?\nVisit the snowbound Snowpoint City!</language>
+	</row>
+	<row id="pl_msg_00000623_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Sunyshore’s hot spot!\nSinnoh’s kitchen!\rCome sample our wares!\nSunyshore Market.</language>
+	</row>
+	<row id="pl_msg_00000623_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Link with the world and join\nnew circles of friends!\rGTS--the Global Trade Station.\nAt the Global Terminal in Jubilife City.</language>
+	</row>
+	<row id="pl_msg_00000623_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Pokémon! Pokémon!\nWe’re full of Pokémon at the Pal Park!</language>
+	</row>
+	<row id="pl_msg_00000623_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: High-speed ferry service\nto and from the Battle Zone!\rDeparting daily from Snowpoint\nCity!</language>
+	</row>
+	<row id="pl_msg_00000623_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: An endless challenge for\nTrainers and Pokémon alike...\rThe Battle Zone--a towering hurdle\nfor all Trainers!</language>
+	</row>
+	<row id="pl_msg_00000623_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Sublimely sophisticated...\nThe Ribbon Syndicate--members only.</language>
+	</row>
+	<row id="pl_msg_00000623_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Our peace for your world.\nTeam Galactic.</language>
+	</row>
+	<row id="pl_msg_00000623_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Find peace in our world!\nTeam Galactic.</language>
+	</row>
+	<row id="pl_msg_00000623_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Meet friends and Pokémon\nusing DS Wireless Communications.\rUnion Rooms are one escalator ride\nup at any Pokémon Center!</language>
+	</row>
+	<row id="pl_msg_00000623_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Meet friends and Pokémon\nover Nintendo WFC.\rWi-Fi Clubs are one escalator ride\ndown at any Pokémon Center!</language>
+	</row>
+	<row id="pl_msg_00000623_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: If what you seek is the\nbest in battling...\rThe Battle Tower has the greatest\nbattles you will ever experience.\rFace it alone or with a friend.\nIt is your destiny to choose.</language>
+	</row>
+	<row id="pl_msg_00000623_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Do you know the true\nface of the Battle Tower?\rThe doors are thrown open to\nthe world!\rEvery Trainer on the planet can\nbecome your opponent!\rHow will you fare against the world?</language>
+	</row>
+	<row id="pl_msg_00000623_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: To the distant seas beyond\nreach by surfing!\rHigh-speed ferry S.S. Spiral.\nBon voyage in safety!</language>
+	</row>
+	<row id="pl_msg_00000623_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: The place where your\nfavorite Pokémon can be no. 1...\rBask in the limelight of life!\nThe Battle Hall!\rIt’s up to you to make your Pokémon\nshine.</language>
+	</row>
+	<row id="pl_msg_00000623_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Castle Points!\nCollect them and use them!\rThe battle’s on long before the\nPokémon fight! Battle Castle!</language>
+	</row>
+	<row id="pl_msg_00000623_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Life is random.\nEverything is pure chance.\rAll you have is yourself and your\nPokémon to believe in.\rThe Battle Arcade: Will the next step\nlead up? Or down?</language>
+	</row>
+	<row id="pl_msg_00000623_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Do you know how to get the\nmost out of your Pokémon?\rTake your knowledge to the limit!\nThe Battle Factory!\rNot knowing is no excuse!\nThe Battle Factory! Bring it!</language>
+	</row>
+	<row id="pl_msg_00000623_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: The Global Terminal.\nJubilife’s new landmark.\rCome touch the world, and let the\nworld know you.\rYou can trade Pokémon at the\nGlobal Trade Station, too.</language>
+	</row>
+	<row id="pl_msg_00000623_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Commercial: Come on! Come on!\nEveryone gathers at the Wi-Fi Plaza.\rWelcome! Welcome!\nEveryone plays at the Wi-Fi Plaza.</language>
+	</row>
+</body>

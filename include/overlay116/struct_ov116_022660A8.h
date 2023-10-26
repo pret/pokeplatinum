@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV116_022660A8_H
 #define POKEPLATINUM_STRUCT_OV116_022660A8_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay116/struct_ov116_0226469C.h"
 #include "overlay116/struct_ov116_022649E4.h"
 #include "overlay116/struct_ov116_02265AA4.h"
@@ -9,7 +9,7 @@
 typedef struct {
     UnkStruct_ov116_02265AA4 unk_00;
     u8 padding_04[4];
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_08;
     int * unk_0C;
     int * unk_10;
     int * unk_14;

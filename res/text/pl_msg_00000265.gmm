@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50211" />
+	<row id="pl_msg_00000265_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: ...This place?!\r</language>
+	</row>
+	<row id="pl_msg_00000265_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s the Sendoff Spring...\rIt’s said to somehow lead to the great\nbeyond...\rAnd GIRATINA was said to live in a world\non the opposite side of ours...\r</language>
+	</row>
+	<row id="pl_msg_00000265_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! I’m sincerely sorry!\nIt’s very rude of me!\r{STRVAR_1 3, 0, 0}, you’re incredible!\nYou really are a fantastic Trainer!\rLet me say this on behalf of all Sinnoh:\n{STRVAR_1 3, 0, 0}, thank you!\rOh! That’s right!\nYou have to go tell Prof. Rowan!\rHe was very worried about you.\nYou should visit him at his lab.</language>
+	</row>
+	<row id="pl_msg_00000265_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: You have to go tell Prof.\nRowan about this at his lab.\rHe was very worried about you.</language>
+	</row>
+	<row id="pl_msg_00000265_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Sigh...\nI wish I could have battled GIRATINA.\rOh, don’t mind me.\nI’m only musing out loud.\rYou deserve the glory and all the\nthanks for what you did.</language>
+	</row>
+</body>

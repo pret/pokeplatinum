@@ -1,0 +1,953 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="61106" />
+	<row id="pl_msg_00000217_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00001" index="1">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00002" index="2">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Contest Hall.\rI can help you with registering\nfor a Super Contest.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to enter a Pokémon\nin a Contest?</language>
+	</row>
+	<row id="pl_msg_00000217_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What would you like to know about?</language>
+	</row>
+	<row id="pl_msg_00000217_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Contest Hall!\rThis is the reception counter for\nlinked Super Contests.\rYou may join a group of friends to\nenter your Pokémon in the same\fSuper Contest over a link.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ENTER</language>
+	</row>
+	<row id="pl_msg_00000217_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">INFO</language>
+	</row>
+	<row id="pl_msg_00000217_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000217_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your participation\nanother time!</language>
+	</row>
+	<row id="pl_msg_00000217_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to\nenter a link Contest?</language>
+	</row>
+	<row id="pl_msg_00000217_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Two to four players may compete\nusing wireless communications.\rFirst, choose the Contest you wish\nto enter.\rNext, make sure the other people in\nyour group choose the same Contest.\rThen, the players each choose a\nPokémon to enter the Contest, and\fthat’s it for registration!\rAfter that, the Contest starts in\nthe usual way.\rWe hope you’ll try it out.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Pokémon Super Contest involves\nfour Trainers.\rEach one enters a Pokémon to\ncompete against the others.\rJudging is conducted in three\ncategories: Visual, Dance, and\fActing.\rThe Pokémon scoring the highest in\nthe three categories is the winner.\rIf this is your first time, it is\nrecommended you try some practice\fsessions before entering a Contest.\rThe registration counter for practice\nsessions is at the far right.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the Visual Competition, Pokémon\nare rated on their appearance.\rScoring is based on votes cast by\nthe audience.\rFor details, please inquire at the\npractice counter on the right.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the Dance Competition, the Pokémon\nwill get to show off their footwork.\rTry to put on coordinated dance\nperformances with everyone!\rFor details, please inquire at the\npractice counter on the right.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the Acting Competition, the\nPokémon will perform their moves in\ffront of Judges.\rTry to get your Pokémon to put on\nperformances that stand out from the\frest of the pack!\rFor details, please inquire at the\npractice counter on the right.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are five Contests in all:\nCool, Beauty, Cute, Smart, and Tough.\rBe sure to choose the Contest that\nbest suits the Pokémon you want to\fenter with.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are four different ranks to\nthe Pokémon Super Contests.\rThe four ranks are Normal, Great,\nUltra, and Master.\rThe Normal Rank is open for entry\nby any Pokémon.\rA Pokémon winning a Normal Rank\nContest may move up to the Great\fRank in the same category.\rLikewise, win a Great Contest and\nbecome eligible for the Ultra Rank.\rAn Ultra Rank winner may move up to\nthe Master Rank in the same way.\rA Master Rank winner may enter\nMaster Rank Contests as often as\fthe Trainer wishes.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokémon would you like to\nenter?\r</language>
+	</row>
+	<row id="pl_msg_00000217_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please choose\na Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK! Your Pokémon has been accepted\nfor entry!\rYour entry number is {STRVAR_1 50, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your participation\nanother time!</language>
+	</row>
+	<row id="pl_msg_00000217_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ENTER</language>
+	</row>
+	<row id="pl_msg_00000217_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">INFO</language>
+	</row>
+	<row id="pl_msg_00000217_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000217_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which rank would you like to\nchallenge?</language>
+	</row>
+	<row id="pl_msg_00000217_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Contest would you like to\nchallenge?</language>
+	</row>
+	<row id="pl_msg_00000217_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to cancel your entry?</language>
+	</row>
+	<row id="pl_msg_00000217_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000217_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000217_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONTEST BASICS</language>
+	</row>
+	<row id="pl_msg_00000217_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TYPES OF CONTESTS</language>
+	</row>
+	<row id="pl_msg_00000217_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONTEST RANKS</language>
+	</row>
+	<row id="pl_msg_00000217_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000217_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">WHAT’S A CONTEST?</language>
+	</row>
+	<row id="pl_msg_00000217_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">VISUAL COMPETITION</language>
+	</row>
+	<row id="pl_msg_00000217_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DANCE COMPETITION</language>
+	</row>
+	<row id="pl_msg_00000217_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ACTING COMPETITION</language>
+	</row>
+	<row id="pl_msg_00000217_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000217_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NORMAL RANK</language>
+	</row>
+	<row id="pl_msg_00000217_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GREAT RANK</language>
+	</row>
+	<row id="pl_msg_00000217_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ULTRA RANK</language>
+	</row>
+	<row id="pl_msg_00000217_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MASTER RANK</language>
+	</row>
+	<row id="pl_msg_00000217_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000217_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">COOL CONTEST</language>
+	</row>
+	<row id="pl_msg_00000217_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BEAUTY CONTEST</language>
+	</row>
+	<row id="pl_msg_00000217_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CUTE CONTEST</language>
+	</row>
+	<row id="pl_msg_00000217_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SMART CONTEST</language>
+	</row>
+	<row id="pl_msg_00000217_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TOUGH CONTEST</language>
+	</row>
+	<row id="pl_msg_00000217_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000217_00052" index="52">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00053" index="53">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00054" index="54">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00055" index="55">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00056" index="56">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00057" index="57">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00058" index="58">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00059" index="59">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00060" index="60">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00061" index="61">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00062" index="62">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00063" index="63">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Contest will start right away.\nThis way, please!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00065" index="65">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} changed into the tuxedo.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} changed into the dress.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Right this way, please!\nGood luck!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: We are about to get under way with\nthis {STRVAR_1 35, 0, 0} Pokémon\f{STRVAR_1 34, 1, 0}!\rI’m Dexter, and I’ll be serving as\nthe MC and as one of the Judges!\rThe results will be announced at the\nend, so please bear with me!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let me introduce our contestants!\rEntry number 1!\nHere’s {STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Next, it’s entry number 2!\n{STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Entry number 3!\n{STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">And last but not least, entry\nnumber 4! {STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s begin by having everyone get in\nproper attire for evaluations.\rContestants, dress up your Pokémon\nfor the Visual Competition!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00075" index="75">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dexter: Congratulations!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s recognize our winner!\n{STRVAR_1 3, 0, 0}’s {STRVAR_1 1, 1, 0}!\rOur winner is awarded the\n{STRVAR_1 39, 2, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next\nContest challenge!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We expect great things from the\nwinning team of {STRVAR_1 3, 0, 0} and\f{STRVAR_1 1, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Congratulations!\nHere is your prize!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00081" index="81">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for participating.\nWe look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00083" index="83">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00084" index="84">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00085" index="85">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00086" index="86">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00087" index="87">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00088" index="88">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00089" index="89">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00090" index="90">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000217_00091" index="91">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00092" index="92">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00093" index="93">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000217_00094" index="94">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00095" index="95">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00096" index="96">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000217_00097" index="97">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00098" index="98">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00099" index="99">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00100" index="100">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00101" index="101">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00102" index="102">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00103" index="103">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00104" index="104">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00105" index="105">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00106" index="106">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00107" index="107">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00108" index="108">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00109" index="109">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00110" index="110">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi! This is the registration counter\nfor practice sessions.\rYou may practice in the categories\nof Visual, Dance, and Acting.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to join a practice\nsession?</language>
+	</row>
+	<row id="pl_msg_00000217_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PRACTICE</language>
+	</row>
+	<row id="pl_msg_00000217_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">INFO</language>
+	</row>
+	<row id="pl_msg_00000217_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000217_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What would you like to know about?</language>
+	</row>
+	<row id="pl_msg_00000217_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">VISUAL</language>
+	</row>
+	<row id="pl_msg_00000217_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DANCE</language>
+	</row>
+	<row id="pl_msg_00000217_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ACTING</language>
+	</row>
+	<row id="pl_msg_00000217_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PRACTICE</language>
+	</row>
+	<row id="pl_msg_00000217_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000217_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Contest involves judging in three\ncategories: Visual, Dance, and Acting.\rHere you may practice each of these\ncategories before you actually enter\fa real Contest.\rThere’s just one thing. Your Pokémon\nmust know at least two moves.\rOtherwise, it will not qualify for our\nSuper Contests.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OVERALL FLOW</language>
+	</row>
+	<row id="pl_msg_00000217_00126" index="126">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONDITION POINTS</language>
+	</row>
+	<row id="pl_msg_00000217_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DRESS-UP POINTS</language>
+	</row>
+	<row id="pl_msg_00000217_00128" index="128">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000217_00130" index="130">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Judging here is based on the visual\nappeal of Pokémon.\rScoring is based on voting by the\naudience.\rThe more popular the Pokémon, the\nhigher its score!\rThe Pokémon are scored in two\ncategories: Condition Points and\fDress-Up Points.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00131" index="131">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Condition Points are scored on\nthe Pokémon’s condition in one of\ffive categories.\rThe five conditions are: Cool, Beauty,\nCute, Smart, and Tough.\rThese conditions can be enhanced by\nfeeding Poffins to your Pokémon.\rIf the audience likes what they see,\n{COLOR 1}♡{COLOR 0} marks will appear.\rObviously, the more {COLOR 1}♡{COLOR 0} marks there\nare, the more popular the Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00132" index="132">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dress-Up Points are awarded for\nfashionably dressing up your Pokémon\fwith Accessories.\rBefore you begin, you will be given\na fashion theme.\rYour dressed-up Pokémon will be\nscored on how well it matches the\fassigned theme.\rThe audience’s approval will appear\nas pink {COLOR 1}♡{COLOR 0} marks.\rBe sure to position the Accessories\nproperly and attach them firmly.\fThey won’t stay on otherwise.\rThere is a time limit of 60 seconds.\rGet your Pokémon dressed up within\nthat time.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00133" index="133">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00134" index="134">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00135" index="135">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OVERALL FLOW</language>
+	</row>
+	<row id="pl_msg_00000217_00136" index="136">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BACKUP DANCER</language>
+	</row>
+	<row id="pl_msg_00000217_00137" index="137">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MAIN DANCER</language>
+	</row>
+	<row id="pl_msg_00000217_00138" index="138">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PANEL</language>
+	</row>
+	<row id="pl_msg_00000217_00139" index="139">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000217_00140" index="140">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In a Dance Competition, the four\ncontestants take on different parts.\rOne becomes the main dancer, and the\nremaining three are backup dancers.\rThe main dancer scores points by\nperforming inspired dance steps\fthat the others can’t copy.\rThe backup dancers earn high scores\nby duplicating the dance steps\flaid down by the main dancer.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00141" index="141">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon will first appear as\na backup dancer.\rMake it dance using the same timing\nas the main dancer.\rUse the castanets to show your\nPokémon which direction the main\fdancer turned.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00142" index="142">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The main dancer rotates with a\nbackup dancer so everyone gets\fa turn.\rWhen your Pokémon is the main dancer,\nshow it how to dance!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00143" index="143">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The melody will be shown playing on\nthe red and blue panels.\rThe panel colors show who should be\ndancing.\rThe main dancer can dance while the\nmelody is in the blue panels.\rBackup dancers must dance only\nduring the red panels.\rThe dancers must perform the\nrequired number of dance steps\fduring their time slots.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00144" index="144">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00145" index="145">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OVERALL FLOW</language>
+	</row>
+	<row id="pl_msg_00000217_00146" index="146">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONTEST MOVES</language>
+	</row>
+	<row id="pl_msg_00000217_00147" index="147">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">JUDGES</language>
+	</row>
+	<row id="pl_msg_00000217_00148" index="148">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">VOLTAGE</language>
+	</row>
+	<row id="pl_msg_00000217_00149" index="149">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000217_00150" index="150">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the Acting Competition, four\nPokémon will perform their moves for\four panel of Judges.\rThe more a Pokémon stands out, the\nhigher it scores.\rEach Pokémon will get the chance to\nperform four times.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00151" index="151">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Every move has one or more {COLOR 1}♡{COLOR 0} marks\nthat indicate the acting score.\rThe more {COLOR 1}♡{COLOR 0} marks obtained, the\nhigher the Pokémon scores.\rHowever, Pokémon are not permitted\nto perform the same move two turns\fin a row.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00152" index="152">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are three Judges in all.\rYou get to choose which one you want\nto judge your Pokémon.\rTry not to have your Pokémon scored\nby the same Judge as other Pokémon\fso it can stand out more.\rIf your Pokémon leaves a strong\nimpression, it will be rated highly,\fearning it more {COLOR 1}♡{COLOR 0} marks.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00153" index="153">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Voltage shows the excitement level\nof the Judges.\rIn a Cool Contest, if a Pokémon uses\na Cool move, Voltage goes up.\rHowever, if a Cute or Smart move is\nperformed, the Voltage goes down.\rIf the Voltage reaches 5 points, the\nPokémon earns bonus points.\rIf the Special Judge in the center\nwas chosen, 8 bonus points are\fawarded when the Voltage peaks.\rFor the other Judges, 5 bonus points\nare awarded.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00154" index="154">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00155" index="155">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">VISUAL PRACTICE</language>
+	</row>
+	<row id="pl_msg_00000217_00156" index="156">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DANCE PRACTICE</language>
+	</row>
+	<row id="pl_msg_00000217_00157" index="157">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ACTING PRACTICE</language>
+	</row>
+	<row id="pl_msg_00000217_00158" index="158">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000217_00159" index="159">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00160" index="160">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Contest would you like to\nchallenge?</language>
+	</row>
+	<row id="pl_msg_00000217_00161" index="161">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">COOL</language>
+	</row>
+	<row id="pl_msg_00000217_00162" index="162">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BEAUTY</language>
+	</row>
+	<row id="pl_msg_00000217_00163" index="163">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CUTE</language>
+	</row>
+	<row id="pl_msg_00000217_00164" index="164">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SMART</language>
+	</row>
+	<row id="pl_msg_00000217_00165" index="165">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TOUGH</language>
+	</row>
+	<row id="pl_msg_00000217_00166" index="166">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000217_00167" index="167">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00168" index="168">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00169" index="169">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00170" index="170">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00171" index="171">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00172" index="172">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00173" index="173">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00174" index="174">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00175" index="175">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokémon would you like to\nenter?\r</language>
+	</row>
+	<row id="pl_msg_00000217_00176" index="176">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please choose a Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00177" index="177">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, your Pokémon has been registered\nfor a practice session.\rIts entry number is {STRVAR_1 50, 0, 0}.\nThe practice will start right away.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00178" index="178">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Right this way, please.\nGood luck!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00179" index="179">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon will be evaluated by the\naudience.\rYou can enhance its condition by\nfeeding it Poffins.\rYou will also need to dress up your\nPokémon using Accessories.\rWould you like to enter a practice\nsession?</language>
+	</row>
+	<row id="pl_msg_00000217_00180" index="180">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000217_00181" index="181">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000217_00182" index="182">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00183" index="183">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, let me show you in.\nRight this way, please.\r</language>
+	</row>
+	<row id="pl_msg_00000217_00184" index="184">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks for participating!\nYour Pokémon was quite popular!\fIt’s ready for a real Contest!\rOr, would you like to practice again?</language>
+	</row>
+	<row id="pl_msg_00000217_00185" index="185">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for participating!\nIt’s too bad how things turned out...\rMay I suggest feeding Poffins to your\nPokémon to improve its condition?\rYou should also use Accessories\nmatched to the dress-up themes to\fboost your Pokémon’s appeal.\rWould you like to practice again?</language>
+	</row>
+	<row id="pl_msg_00000217_00186" index="186">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000217_00187" index="187">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000217_00188" index="188">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00189" index="189">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00190" index="190">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000217_00191" index="191">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00192" index="192">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00193" index="193">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00194" index="194">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks for participating!\nYour Pokémon danced quite well!\fIt’s ready for a real Contest!\rOr, would you like to practice dancing\nagain?</language>
+	</row>
+	<row id="pl_msg_00000217_00195" index="195">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for participating!\nIt’s too bad how things turned out...\rThe key is to remember which ways\nthe main dancer turned, then make\fthe same moves at the same time.\rWould you like to practice dancing\nagain?</language>
+	</row>
+	<row id="pl_msg_00000217_00196" index="196">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000217_00197" index="197">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000217_00198" index="198">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00199" index="199">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00200" index="200">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000217_00201" index="201">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00202" index="202">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00203" index="203">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00204" index="204">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks for participating!\rYour Pokémon attracted a good deal\nof attention!\rRemember, there are five kinds of\nContests: Cool, Beauty, Cute, Smart,\fand Tough.\rYou can enter your Pokémon in\nContests that best suit them.\rTry getting your Pokémon to stand\nout in these Contests!\rWould you like to practice again?</language>
+	</row>
+	<row id="pl_msg_00000217_00205" index="205">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for participating!\nIt’s too bad how things turned out...\rA key point is choosing which Judge\nyou want to check your Pokémon’s\fperformance.\rIf your Pokémon performs for a Judge\nwho hasn’t been chosen by another\fPokémon, it will score higher.\rPick a Judge who will look only\nat your Pokémon... Aim for that!\rWould you like to practice again?</language>
+	</row>
+	<row id="pl_msg_00000217_00206" index="206">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XX</language>
+	</row>
+	<row id="pl_msg_00000217_00207" index="207">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXX</language>
+	</row>
+	<row id="pl_msg_00000217_00208" index="208">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000217_00209" index="209">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What would you like to know about?</language>
+	</row>
+	<row id="pl_msg_00000217_00210" index="210">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Communicating. Please stand by...</language>
+	</row>
+	<row id="pl_msg_00000217_00211" index="211">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Right this way, please!\nGood luck!\r</language>
+	</row>
+	<row id="pl_msg_00000217_00212" index="212">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DS Wireless Communications will\nbe launched.</language>
+	</row>
+	<row id="pl_msg_00000217_00213" index="213">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000217_00214" index="214">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000217_00215" index="215">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to cancel your entry?</language>
+	</row>
+	<row id="pl_msg_00000217_00216" index="216">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000217_00217" index="217">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000217_00218" index="218">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We look forward to your next visit!</language>
+	</row>
+	<row id="pl_msg_00000217_00219" index="219">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">One person in the group needs to\nchoose “BECOME LEADER.”\rEveryone else must choose\n“JOIN GROUP.”</language>
+	</row>
+</body>

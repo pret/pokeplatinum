@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18718" />
+	<row id="pl_msg_00000341_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Set Camera</language>
+	</row>
+	<row id="pl_msg_00000341_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Swaying grass</language>
+	</row>
+	<row id="pl_msg_00000341_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Height Check B</language>
+	</row>
+	<row id="pl_msg_00000341_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Height Check G</language>
+	</row>
+	<row id="pl_msg_00000341_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Camera</language>
+	</row>
+	<row id="pl_msg_00000341_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Change player’s height</language>
+	</row>
+	<row id="pl_msg_00000341_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Camera Info</language>
+	</row>
+	<row id="pl_msg_00000341_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Camera List</language>
+	</row>
+	<row id="pl_msg_00000341_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Zone Camera List</language>
+	</row>
+	<row id="pl_msg_00000341_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Animation</language>
+	</row>
+	<row id="pl_msg_00000341_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fishing</language>
+	</row>
+	<row id="pl_msg_00000341_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Travelling Pokémon</language>
+	</row>
+	<row id="pl_msg_00000341_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon mass outbreak</language>
+	</row>
+	<row id="pl_msg_00000341_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Safari</language>
+	</row>
+	<row id="pl_msg_00000341_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GBA</language>
+	</row>
+	<row id="pl_msg_00000341_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Distance</language>
+	</row>
+	<row id="pl_msg_00000341_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">X-axis</language>
+	</row>
+	<row id="pl_msg_00000341_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Y-axis</language>
+	</row>
+	<row id="pl_msg_00000341_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Z-axis</language>
+	</row>
+	<row id="pl_msg_00000341_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Perspective</language>
+	</row>
+	<row id="pl_msg_00000341_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Type</language>
+	</row>
+	<row id="pl_msg_00000341_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PER</language>
+	</row>
+	<row id="pl_msg_00000341_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ORT</language>
+	</row>
+	<row id="pl_msg_00000341_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Near</language>
+	</row>
+	<row id="pl_msg_00000341_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Distant</language>
+	</row>
+	<row id="pl_msg_00000341_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LOOK-X</language>
+	</row>
+	<row id="pl_msg_00000341_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LOOK-Y</language>
+	</row>
+	<row id="pl_msg_00000341_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LOOK-Z</language>
+	</row>
+	<row id="pl_msg_00000341_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">X</language>
+	</row>
+	<row id="pl_msg_00000341_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">O</language>
+	</row>
+	<row id="pl_msg_00000341_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BLOCK</language>
+	</row>
+	<row id="pl_msg_00000341_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">LOCAL</language>
+	</row>
+	<row id="pl_msg_00000341_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">HEIGHT</language>
+	</row>
+	<row id="pl_msg_00000341_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trigger</language>
+	</row>
+	<row id="pl_msg_00000341_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chain</language>
+	</row>
+	<row id="pl_msg_00000341_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Info</language>
+	</row>
+	<row id="pl_msg_00000341_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Records</language>
+	</row>
+	<row id="pl_msg_00000341_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ロッド</language>
+	</row>
+	<row id="pl_msg_00000341_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">100%</language>
+	</row>
+	<row id="pl_msg_00000341_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Special point</language>
+	</row>
+	<row id="pl_msg_00000341_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Info</language>
+	</row>
+	<row id="pl_msg_00000341_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Location change</language>
+	</row>
+	<row id="pl_msg_00000341_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Entry</language>
+	</row>
+	<row id="pl_msg_00000341_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MESPRIT</language>
+	</row>
+	<row id="pl_msg_00000341_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CRESSELIA</language>
+	</row>
+	<row id="pl_msg_00000341_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DARKRAI</language>
+	</row>
+	<row id="pl_msg_00000341_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MOLTRES</language>
+	</row>
+	<row id="pl_msg_00000341_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ZAPDOS</language>
+	</row>
+	<row id="pl_msg_00000341_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ARTICUNO</language>
+	</row>
+	<row id="pl_msg_00000341_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Start</language>
+	</row>
+	<row id="pl_msg_00000341_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Zone info</language>
+	</row>
+	<row id="pl_msg_00000341_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now ON</language>
+	</row>
+	<row id="pl_msg_00000341_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now OFF</language>
+	</row>
+	<row id="pl_msg_00000341_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">None</language>
+	</row>
+	<row id="pl_msg_00000341_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sapphire</language>
+	</row>
+	<row id="pl_msg_00000341_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ruby</language>
+	</row>
+	<row id="pl_msg_00000341_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Emerald</language>
+	</row>
+	<row id="pl_msg_00000341_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Red</language>
+	</row>
+	<row id="pl_msg_00000341_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Green</language>
+	</row>
+</body>

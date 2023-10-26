@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F1E88.h"
@@ -26,7 +26,7 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "poffin.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_0208C324.h"
@@ -95,7 +95,7 @@ const UnkStruct_0208BE5C Unk_020F6890 = {
     0xFFFFFFFF
 };
 
-UnkStruct_0203D9B8 * sub_020989DC (UnkStruct_021C0794 * param0, int param1)
+UnkStruct_0203D9B8 * sub_020989DC (SaveData * param0, int param1)
 {
     UnkStruct_0203D9B8 * v0;
     Poffin * v1;
@@ -504,14 +504,14 @@ void sub_02098EF8 (Poffin * param0, Pokemon * param1)
     u8 v8[7];
     u8 v9[7];
 
-    v2 = sub_02075BCC(param1);
+    v2 = Pokemon_GetNature(param1);
     v4 = Unk_020F685C[v2][0];
     v5 = Unk_020F685C[v2][1];
 
     Poffin_StoreAttributesToArray(param0, v8);
 
     for (v0 = 0; v0 < 6; v0++) {
-        v7[v0] = GetMonData(param1, MON_DATA_COOL + v0, NULL);
+        v7[v0] = Pokemon_GetValue(param1, MON_DATA_COOL + v0, NULL);
     }
 
     v1 = 0;
@@ -534,13 +534,13 @@ void sub_02098EF8 (Poffin * param0, Pokemon * param1)
             v7[v0] = 255;
         }
 
-        sub_02074B30(param1, 19 + v0, &v7[v0]);
+        Pokemon_SetValue(param1, 19 + v0, &v7[v0]);
     }
 
-    v3 = GetMonData(param1, MON_DATA_FRIENDSHIP, NULL);
+    v3 = Pokemon_GetValue(param1, MON_DATA_FRIENDSHIP, NULL);
 
     if (v3 < 255) {
         ++v3;
-        sub_02074B30(param1, 9, &v3);
+        Pokemon_SetValue(param1, 9, &v3);
     }
 }

@@ -5,13 +5,13 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 
 typedef struct {
-    UnkStruct_ov6_02240D5C * unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_0205AA50 * unk_08;
-    UnkStruct_02002F38 * unk_0C;
+    BattleParams * unk_00;
+    BGL * unk_04;
+    Window * unk_08;
+    PaletteSys * unk_0C;
     UnkStruct_02027F8C * unk_10[4];
     u8 unk_20[0x1000];
     u8 unk_1020;

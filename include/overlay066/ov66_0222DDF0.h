@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_OV66_0222DDF0_H
 #define POKEPLATINUM_OV66_0222DDF0_H
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E294.h"
@@ -17,7 +17,7 @@
 #include "enums.h"
 #include <ppwlobby/ppw_lobby.h>
 
-UnkStruct_ov66_0222DFF8 * ov66_0222DDF0(UnkStruct_021C0794 * param0, u32 param1);
+UnkStruct_ov66_0222DFF8 * ov66_0222DDF0(SaveData * param0, u32 param1);
 void ov66_0222DEEC(UnkStruct_ov66_0222DFF8 * param0);
 void ov66_0222DF58(UnkStruct_ov66_0222DFF8 * param0);
 void ov66_0222DFF4(UnkStruct_ov66_0222DFF8 * param0);
@@ -30,7 +30,7 @@ BOOL ov66_0222E02C(UnkStruct_ov66_0222DFF8 * param0, u32 param1);
 BOOL ov66_0222E058(UnkStruct_ov66_0222DFF8 * param0, u32 param1);
 BOOL ov66_0222E084(UnkStruct_ov66_0222DFF8 * param0, int param1);
 BOOL ov66_0222E09C(UnkStruct_ov66_0222DFF8 * param0, u32 param1);
-UnkStruct_021C0794 * ov66_0222E0C4(UnkStruct_ov66_0222DFF8 * param0);
+SaveData * ov66_0222E0C4(UnkStruct_ov66_0222DFF8 * param0);
 BOOL ov66_0222E0C8(const UnkStruct_ov66_0222DFF8 * param0);
 BOOL ov66_0222E0DC(const UnkStruct_ov66_0222DFF8 * param0);
 BOOL ov66_0222E0F4(const UnkStruct_ov66_0222DFF8 * param0);
@@ -68,7 +68,7 @@ void ov66_0222E500(UnkStruct_ov66_0222DFF8 * param0, int param1, s32 param2);
 void ov66_0222E528(UnkStruct_ov66_0222DFF8 * param0, u32 param1);
 void ov66_0222E56C(UnkStruct_ov66_0222DFF8 * param0, int param1, int param2);
 void ov66_0222E5D8(UnkStruct_ov66_0222DFF8 * param0, u32 param1, u32 param2);
-void ov66_0222E640(const UnkStruct_ov66_0222E71C * param0, UnkStruct_02025E6C * param1, u32 param2);
+void ov66_0222E640(const UnkStruct_ov66_0222E71C * param0, TrainerInfo * param1, u32 param2);
 u32 ov66_0222E71C(const UnkStruct_ov66_0222E71C * param0);
 int ov66_0222E728(const UnkStruct_ov66_0222E71C * param0, u32 param1);
 s32 ov66_0222E760(const UnkStruct_ov66_0222E71C * param0, u32 param1);
@@ -87,7 +87,7 @@ u32 ov66_0222E8C4(const UnkStruct_ov66_0222E71C * param0);
 BOOL ov66_0222E8D8(const UnkStruct_ov66_0222E71C * param0);
 int ov66_0222E8E8(const UnkStruct_ov66_0222E71C * param0, u32 param1);
 void ov66_0222E908(const UnkStruct_ov66_0222E71C * param0, UnkStruct_ov66_0222E908 * param1);
-UnkStruct_02025E6C * ov66_0222E918(const UnkStruct_ov66_0222DFF8 * param0);
+TrainerInfo * ov66_0222E918(const UnkStruct_ov66_0222DFF8 * param0);
 BOOL ov66_0222E924(const UnkStruct_ov66_0222DFF8 * param0, u32 param1);
 void ov66_0222E934(const UnkStruct_ov66_0222DFF8 * param0, UnkStruct_ov66_02232068 * param1);
 BOOL ov66_0222E944(const UnkStruct_ov66_0222DFF8 * param0, u32 param1);

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="37955" />
+	<row id="pl_msg_00000273_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone calls me the Ruin Maniac.\nI don’t care what they call me.\rI’ll just keep on chipping away at\nthe rock wall little by little.\rDo you know why? I’m a Ruin Maniac\nwho is fascinated by the UNOWN.\rI know it’s a little sudden, but\nhow about you and me have a race?\rYou go and catch the UNOWN,\nand I’ll keep digging away.\rWe’ll have a race to see who can\nget done faster.</language>
+	</row>
+	<row id="pl_msg_00000273_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone calls me the Ruin Maniac.\nI don’t care what they call me.\rI’ll just go on chipping away at\nthe rock wall little by little.\rDo you know why? I’m a Ruin Maniac\nwho is fascinated by the UNOWN.\rWell, I need to bear down and dig\nthrough the bedrock now.\rI want to search out some rare UNOWN.\rIt’s going to be messy.\nYou’d better go outside.</language>
+	</row>
+</body>

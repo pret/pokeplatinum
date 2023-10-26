@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="47768" />
+	<row id="pl_msg_00000644_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 230\nFight Area</language>
+	</row>
+	<row id="pl_msg_00000644_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hold it right there, Trainer!\rIf you’re in the Fight Area, you’ve got\nto visit the Battle Frontier.\rYou don’t earn Exp. Points, and your\nPokédex isn’t updated there.\rIt’s a place solely for Trainers to\nhone their own skills.</language>
+	</row>
+	<row id="pl_msg_00000644_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy, Trainer!\nYou have a Pokédex, do you?\rHere’s my advice: go out and\nchallenge other Trainers!\rThey’ll often have different Pokémon,\nso your Pokédex should fill up fast!</language>
+	</row>
+</body>

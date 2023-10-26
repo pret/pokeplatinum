@@ -1,14 +1,14 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203E53C.h"
@@ -23,7 +23,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020067E8.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -38,12 +38,12 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_021C0794 * unk_08;
-    UnkStruct_02025E6C * unk_0C;
-    UnkStruct_02018340 * unk_10;
-    UnkStruct_0205AA50 unk_14;
-    UnkStruct_0205AA50 unk_24;
-    UnkStruct_0200B144 * unk_34;
+    SaveData * unk_08;
+    TrainerInfo * unk_0C;
+    BGL * unk_10;
+    Window unk_14;
+    Window unk_24;
+    MessageLoader * unk_34;
     UnkStruct_0200B358 * unk_38;
     s16 unk_3C;
     int unk_40;
@@ -124,7 +124,7 @@ int ov102_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 1;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_40 = 0;
             *param1 = 2;
         }
@@ -147,13 +147,13 @@ int ov102_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 4:
-        if ((((Unk_021BF67C.unk_48 & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((Unk_021BF67C.unk_48 & PAD_BUTTON_B) == PAD_BUTTON_B)) || (Unk_021BF67C.unk_60)) {
+        if ((((gCoreSys.padInput & PAD_BUTTON_A) == PAD_BUTTON_A)) || (((gCoreSys.padInput & PAD_BUTTON_B) == PAD_BUTTON_B)) || (gCoreSys.touchInput)) {
             sub_0200F174(0, 0, 0, 0x0, 6, 1, v0->unk_00);
             *param1 = 5;
         }
         break;
     case 5:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v1 = 1;
         }
         break;
@@ -315,26 +315,26 @@ static void ov102_021D1174 (UnkStruct_ov102_021D0F8C * param0)
 
     sub_0201D710();
 
-    param0->unk_34 = sub_0200B144(1, 26, 1, param0->unk_00);
+    param0->unk_34 = MessageLoader_Init(1, 26, 1, param0->unk_00);
     param0->unk_38 = sub_0200B358(param0->unk_00);
 
     v0.unk_00 = 0;
 
     sub_0201A8D4(param0->unk_10, &param0->unk_14, &v0);
-    sub_0201AE78(&param0->unk_14, 0, 0, 0, 32 * 8, 24 * 8);
+    BGL_WindowColor(&param0->unk_14, 0, 0, 0, 32 * 8, 24 * 8);
 
     v0.unk_00 = 4;
 
     sub_0201A8D4(param0->unk_10, &param0->unk_24, &v0);
-    sub_0201AE78(&param0->unk_24, 0, 0, 0, 32 * 8, 24 * 8);
+    BGL_WindowColor(&param0->unk_24, 0, 0, 0, 32 * 8, 24 * 8);
 }
 
 static void ov102_021D1204 (UnkStruct_ov102_021D0F8C * param0)
 {
-    sub_0201A8FC(&param0->unk_24);
-    sub_0201A8FC(&param0->unk_14);
+    BGL_DeleteWindow(&param0->unk_24);
+    BGL_DeleteWindow(&param0->unk_14);
     sub_0200B3F0(param0->unk_38);
-    sub_0200B190(param0->unk_34);
+    MessageLoader_Free(param0->unk_34);
 }
 
 static void ov102_021D1224 (UnkStruct_ov102_021D0F8C * param0)
@@ -403,7 +403,7 @@ static void ov102_021D1420 (UnkStruct_ov102_021D0F8C * param0)
     {
         Strbuf* v1 = Strbuf_Init(0x200, param0->unk_00);
 
-        sub_0200B1B8(param0->unk_34, 0, v1);
+        MessageLoader_GetStrbuf(param0->unk_34, 0, v1);
         sub_0200B498(param0->unk_38, 0, param0->unk_0C);
         sub_0200C388(param0->unk_38, v0, v1);
         sub_0201D78C(&param0->unk_14, 0, v0, 48, 32, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
@@ -419,12 +419,12 @@ static void ov102_021D1420 (UnkStruct_ov102_021D0F8C * param0)
             v2 = 2;
         }
 
-        sub_0200B1B8(param0->unk_34, v2, v0);
+        MessageLoader_GetStrbuf(param0->unk_34, v2, v0);
         sub_0201D78C(&param0->unk_14, 0, v0, 64, 64, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         sub_0201D78C(&param0->unk_24, 0, v0, 64, 64, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }
     {
-        sub_0200B1B8(param0->unk_34, 3, v0);
+        MessageLoader_GetStrbuf(param0->unk_34, 3, v0);
         sub_0201D78C(&param0->unk_14, 0, v0, 138, 144, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
         sub_0201D78C(&param0->unk_24, 0, v0, 138, 144, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
     }

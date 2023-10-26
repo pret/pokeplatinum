@@ -1,0 +1,105 @@
+{
+    "name": "Suicune",
+    "base_stats": {
+        "hp": 100,
+        "attack": 75,
+        "defense": 115,
+        "speed": 85,
+        "special_attack": 90,
+        "special_defense": 115
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 215,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 80,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM04",
+            "TM05",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM33",
+            "TM37",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM55",
+            "TM58",
+            "TM68",
+            "TM72",
+            "TM77",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM03",
+            "HM06",
+            "HM07",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_BITE",
+                "MOVE_LEER"
+            ],
+            "8": "MOVE_BUBBLE_BEAM",
+            "15": "MOVE_RAIN_DANCE",
+            "22": "MOVE_GUST",
+            "29": "MOVE_AURORA_BEAM",
+            "36": "MOVE_MIST",
+            "43": "MOVE_MIRROR_COAT",
+            "50": "MOVE_ICE_FANG",
+            "57": "MOVE_TAILWIND",
+            "64": "MOVE_EXTRASENSORY",
+            "71": "MOVE_HYDRO_PUMP",
+            "78": "MOVE_CALM_MIND",
+            "85": "MOVE_BLIZZARD"
+        }
+    }
+}

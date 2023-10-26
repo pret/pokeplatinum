@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="17598" />
+	<row id="pl_msg_00000621_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello!\nI’m with Jubilife TV!\rMay I hit you up for a quick\ninterview?</language>
+	</row>
+	<row id="pl_msg_00000621_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, that’s too bad.\nI hope you can oblige another time!</language>
+	</row>
+	<row id="pl_msg_00000621_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for sharing your thoughts\nwith us.\rWe’ll be featuring this interview in\nan upcoming TV program.\rPlease do tune in and see how you\nlook on TV!</language>
+	</row>
+	<row id="pl_msg_00000621_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000621_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rSo, may I hear about your Battle Tower\nchallenge?\rCan you tell me what you’re feeling now?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000621_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rYour {STRVAR_1 0, 0, 0} is quite appealing,\nisn’t it?\rMay I have your comment on your\n{STRVAR_1 0, 0, 0}?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000621_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rMay I ask you which Pokétch app you\nuse the most?\r...The {STRVAR_1 24, 0, 0}...\nI see!\rMay I have your comment on\nthe {STRVAR_1 24, 0, 0}?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rSo, may I hear about your Contest\nchallenge?\rCan you tell me what you’re feeling\nnow?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00010" index="10">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000621_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rMay I have your comment on the finished\nphotograph?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rPlease select your favorite Pokémon\ntype from this list.\r</language>
+	</row>
+	<row id="pl_msg_00000621_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rCan you describe your feelings about\npreparing Poffins?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000621_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rI’d like to hear about your stroll\nwith your {STRVAR_1 0, 0, 0}.\rCan you tell me what you’re feeling\nnow?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rHow do you think your {STRVAR_1 0, 0, 0}\nfeels now?\rCan you tell me what you think?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rIf you were to become a Gym Leader,\nwhat would you name your Gym?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rIf you had to compare your mother to a\nPokémon, what kind would it be?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rWhat would you consider to be the\nthird most important thing in your life?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rLet’s imagine that you’ve slept in, and\nyou’re running to make an appointment.\rYou dash around a corner and collide\nwith someone.\rWhat sort of person would this be?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much!\nLet’s not waste any time...\rYou partnered with the Trainer\n{STRVAR_1 3, 0, 0} for a Multi Battle.\rHow would you describe this Trainer?\r</language>
+	</row>
+	<row id="pl_msg_00000621_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Normal</language>
+	</row>
+	<row id="pl_msg_00000621_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fire</language>
+	</row>
+	<row id="pl_msg_00000621_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Water</language>
+	</row>
+	<row id="pl_msg_00000621_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Electric</language>
+	</row>
+	<row id="pl_msg_00000621_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grass</language>
+	</row>
+	<row id="pl_msg_00000621_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ice</language>
+	</row>
+	<row id="pl_msg_00000621_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fighting</language>
+	</row>
+	<row id="pl_msg_00000621_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Poison</language>
+	</row>
+	<row id="pl_msg_00000621_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ground</language>
+	</row>
+	<row id="pl_msg_00000621_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flying</language>
+	</row>
+	<row id="pl_msg_00000621_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Psychic</language>
+	</row>
+	<row id="pl_msg_00000621_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bug</language>
+	</row>
+	<row id="pl_msg_00000621_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rock</language>
+	</row>
+	<row id="pl_msg_00000621_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ghost</language>
+	</row>
+	<row id="pl_msg_00000621_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dragon</language>
+	</row>
+	<row id="pl_msg_00000621_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dark</language>
+	</row>
+	<row id="pl_msg_00000621_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Steel</language>
+	</row>
+</body>

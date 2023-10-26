@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="22265" />
+	<row id="pl_msg_00000375_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome! This is the Global Trade\nStation, or GTS for short.\rWe enable the trading of Pokémon with\npeople worldwide over Nintendo WFC.\rWould you like to do a global\nPokémon trade?</language>
+	</row>
+	<row id="pl_msg_00000375_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello!\nWelcome to the GTS!\rWould you like to do a global\nPokémon trade over Nintendo WFC?</language>
+	</row>
+	<row id="pl_msg_00000375_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may trade Pokémon one of two\nways at the GTS.\rYou may offer a Pokémon for trade,\nor search among offered Pokémon.\rShould I describe things in greater\ndetail?</language>
+	</row>
+	<row id="pl_msg_00000375_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You will be asked to put up the\nPokémon you are offering to trade.\rAt that time, you will be asked what\nPokémon you would like in return.\rIf another player offers your desired\nPokémon in return for your offered\fPokémon, the trade will go through.\rShould I explain anything else?</language>
+	</row>
+	<row id="pl_msg_00000375_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may search among the Pokémon\nthat are offered by other Trainers.\rThey will all identify what Pokémon\ntheir Trainers want back in return.\rIf you find one that you want, you\nmust provide us with the kind of\fPokémon wanted in return.\rShould I explain anything else?</language>
+	</row>
+	<row id="pl_msg_00000375_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to make a global\nPokémon trade?</language>
+	</row>
+	<row id="pl_msg_00000375_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please do visit again.</language>
+	</row>
+	<row id="pl_msg_00000375_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I hope you enjoy your visit\nto the GTS!</language>
+	</row>
+	<row id="pl_msg_00000375_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s a big globe, eh?\rWhere do I live on it now?\nLet’s see if I can point it out...</language>
+	</row>
+	<row id="pl_msg_00000375_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They say if you communicate with\nsomeone, their location is\frecorded on this giant globe.</language>
+	</row>
+	<row id="pl_msg_00000375_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All I need to do is leave a Pokémon\nhere to trade.\rWho knows, it might be traded while\nI’m asleep tonight.</language>
+	</row>
+	<row id="pl_msg_00000375_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can easily trade Pokémon with\nPokémon fans from around the world.\rIsn’t that something?</language>
+	</row>
+	<row id="pl_msg_00000375_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can register where you live on\nthis giant globe.\rOnce you do, your location will\nbe displayed to anyone you\fcommunicate with.</language>
+	</row>
+	<row id="pl_msg_00000375_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is Nintendo WFC something\neven I can use easily?\rIf it is really that easy, I’d love\nto trade Pokémon, too!</language>
+	</row>
+</body>

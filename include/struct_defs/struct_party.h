@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_PARTY_H
 #define POKEPLATINUM_STRUCT_PARTY_H
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 typedef struct Party {
     int capacity;

@@ -6,21 +6,20 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_defs/struct_0203E0FC.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_defs/struct_02098D38.h"
 #include "overlay006/struct_ov6_02246254.h"
@@ -41,7 +40,7 @@
 
 typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_0203E0FC * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     UnkStruct_0202B370 * unk_08;
     int unk_0C;
     int unk_10;
@@ -78,7 +77,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     BoxPokemon * unk_114;
     int unk_118;
     int unk_11C;
-    UnkStruct_02025E6C * unk_120;
+    TrainerInfo * unk_120;
     UnkStruct_ov94_0223FD4C_sub1 unk_124;
     UnkStruct_ov94_0223BA88 unk_12C;
     UnkStruct_ov94_0223BA88 unk_250[7];
@@ -89,11 +88,11 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_ov94_0223BA88_sub3 unk_B80;
     int unk_B88;
     UnkStruct_0200B358 * unk_B8C;
-    UnkStruct_0200B144 * unk_B90;
-    UnkStruct_0200B144 * unk_B94;
-    UnkStruct_0200B144 * unk_B98;
-    UnkStruct_0200B144 * unk_B9C;
-    UnkStruct_0200B144 * unk_BA0;
+    MessageLoader * unk_B90;
+    MessageLoader * unk_B94;
+    MessageLoader * unk_B98;
+    MessageLoader * unk_B9C;
+    MessageLoader * unk_BA0;
     Strbuf* unk_BA4;
     Strbuf* unk_BA8;
     Strbuf* unk_BAC;
@@ -116,14 +115,14 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_02022550 * unk_F30;
     UnkStruct_02022550 * unk_F34[8];
     UnkStruct_02022550 * unk_F54[2];
-    UnkStruct_0205AA50 unk_F5C;
-    UnkStruct_0205AA50 unk_F6C;
-    UnkStruct_0205AA50 unk_F7C;
-    UnkStruct_0205AA50 unk_F8C;
-    UnkStruct_0205AA50 unk_F9C[3];
-    UnkStruct_0205AA50 unk_FCC[13];
-    UnkStruct_0205AA50 unk_109C;
-    UnkStruct_0205AA50 unk_10AC[2];
+    Window unk_F5C;
+    Window unk_F6C;
+    Window unk_F7C;
+    Window unk_F8C;
+    Window unk_F9C[3];
+    Window unk_FCC[13];
+    Window unk_109C;
+    Window unk_10AC[2];
     UnkStruct_02013A04 * unk_10CC;
     UnkStruct_02001AF4 * unk_10D0;
     UnkStruct_02001AF4 * unk_10D4;
@@ -133,7 +132,7 @@ typedef struct UnkStruct_ov94_0223FD4C_t {
     UnkStruct_ov94_0223FD4C_sub3 * unk_10E4;
     u16 unk_10E8;
     u16 unk_10EA;
-    UnkStruct_0201CD38 * unk_10EC;
+    SysTask * unk_10EC;
     u16 unk_10F0;
     u16 unk_10F2;
     void * unk_10F4;

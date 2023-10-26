@@ -2,20 +2,20 @@
 #include <string.h>
 
 #include "struct_decls/struct_0202440C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay104/struct_ov104_0222E930_decl.h"
 
 #include "constdata/const_020EA358.h"
 
 #include "struct_defs/struct_0204AFC4.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay104/struct_ov104_0222E930_t.h"
 #include "overlay104/struct_ov104_02230BE4.h"
 #include "overlay104/struct_ov104_022320B4_t.h"
 
 #include "unk_020041CC.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_0202CD50.h"
 #include "unk_02034198.h"
 #include "unk_020363E8.h"
@@ -40,11 +40,11 @@ BOOL ov104_0223939C(UnkStruct_ov104_0222E930 * param0);
 BOOL ov104_02239400(UnkStruct_ov104_0222E930 * param0);
 static BOOL ov104_0223942C(UnkStruct_ov104_0222E930 * param0);
 static u16 ov104_0223927C(UnkStruct_0204AFC4 * param0, u8 param1);
-static BOOL ov104_02239464(UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4 * param1, UnkStruct_021C0794 * param2, u16 param3, u16 param4);
+static BOOL ov104_02239464(UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4 * param1, SaveData * param2, u16 param3, u16 param4);
 
 BOOL ov104_02239130 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_0202440C * v0;
+    TVBroadcast * v0;
     Pokemon * v1;
     UnkStruct_0204AFC4 * v2;
     int v3, v4;
@@ -63,7 +63,7 @@ BOOL ov104_02239130 (UnkStruct_ov104_0222E930 * param0)
         break;
     case (30 + 16):
         *v7 = sub_0204AA04(v2);
-        v0 = sub_0202440C(v8->unk_08);
+        v0 = SaveData_TVBroadcast(v8->unk_08);
         sub_0206D0C8(v0, *v7);
         sub_0202CF70(sub_0202CD88(v8->unk_08), (1 + 67), *v7);
         break;
@@ -189,7 +189,7 @@ BOOL ov104_02239300 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_02239314 (UnkStruct_ov104_0222E930 * param0)
 {
-    UnkStruct_ov6_02240D5C * v0;
+    BattleParams * v0;
     UnkStruct_0204AFC4 * v1;
     UnkStruct_ov104_02230BE4 * v2 = sub_0209B970(param0->unk_00->unk_00);
 
@@ -207,7 +207,7 @@ BOOL ov104_02239314 (UnkStruct_ov104_0222E930 * param0)
 BOOL ov104_02239364 (UnkStruct_ov104_0222E930 * param0)
 {
     UnkStruct_0204AFC4 * v0;
-    UnkStruct_ov6_02240D5C * v1;
+    BattleParams * v1;
     u16 * v2;
 
     v0 = sub_0209B978(param0->unk_00->unk_00);
@@ -276,7 +276,7 @@ static BOOL ov104_0223942C (UnkStruct_ov104_0222E930 * param0)
     return 0;
 }
 
-static BOOL ov104_02239464 (UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4 * param1, UnkStruct_021C0794 * param2, u16 param3, u16 param4)
+static BOOL ov104_02239464 (UnkStruct_ov104_0222E930 * param0, UnkStruct_0204AFC4 * param1, SaveData * param2, u16 param3, u16 param4)
 {
     u16 * v0;
     const void * v1;

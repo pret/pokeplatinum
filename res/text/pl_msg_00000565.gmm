@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="5126" />
+	<row id="pl_msg_00000565_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor: Well, well, look who’s here.\r{STRVAR_1 3, 0, 0}, was it?\nLet’s have a look at your Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\rHmm...\nI see...\rThis Pokémon seems to be rather\nhappy.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well well!\rYou’ve made your Pokémon evolve\nalready?!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hm!\rEntrusting you with that {STRVAR_1 0, 0, 0}\nwas no mistake, it seems!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor: Well, would you like to give\nit a nickname?</language>
+	</row>
+	<row id="pl_msg_00000565_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor: Hmm, OK, I see...\nAnd you’re happy with that nickname?</language>
+	</row>
+	<row id="pl_msg_00000565_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor: When I first saw you two \nabout to step into the tall grass\fwithout Pokémon, I was shocked.\rI was astounded by these foolhardy\nchildren.\rBut now, you’ve astounded me in an\nentirely different way.\rAlready, there is a bond growing\nbetween you and that Pokémon.\rI feel privileged to have met you.\rI’m sure {STRVAR_1 0, 0, 0} feels the same\nway about you.\rThat’s why I’ll ask you to cherish that\n{STRVAR_1 0, 0, 0} of yours.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: I’m so glad that you’re kind\ntoward Pokémon!\rIf you weren’t, I’d have to...\nOh, I just can’t say it...\r</language>
+	</row>
+	<row id="pl_msg_00000565_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Boy, am I glad you’re kind\ntoward Pokémon.\rIf you weren’t, well...\nI don’t even want to think about it.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor: Er-hem!\nLet’s move on to the main topic.\rThere is something I want you to do\nfor me.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Allow me to properly introduce myself\nfirst.\rMy name, as you know, is Rowan.\nI study Pokémon.\rFirst of all, I want to know exactly\nwhat kinds of Pokémon live in the\fSinnoh region.\rTo do so, it is necessary to collect\ndata using the Pokédex.\rThis is what I wish to ask of you.\rI want to entrust you with this\nPokédex.\rWill you use it to record data on all\nthe Pokémon in Sinnoh for me?</language>
+	</row>
+	<row id="pl_msg_00000565_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: ...\r...\r...\r...\rI can stand here without speaking for\nhours. I’m a very patient man.\rLet me ask you again, {STRVAR_1 3, 0, 0}.\rI want to entrust you with this\nPokédex.\rWill you use it to record data on all\nthe Pokémon in Sinnoh for me?</language>
+	</row>
+	<row id="pl_msg_00000565_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm!\rGood answer!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} obtained\nthe {COLOR 1}Pokédex{COLOR 0}!</language>
+	</row>
+	<row id="pl_msg_00000565_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: That Pokédex is a very\nhigh-tech device.\rIt will automatically record data on\nevery kind of Pokémon you encounter.\r{STRVAR_1 3, 0, 0}, I ask that you go\neverywhere and meet every kind of\fPokémon in this region!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: I’ve got one, too!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: I’ve got the same kind of\nPokédex as you.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: When you walked up Route 201\nwith your Pokémon, what did you feel?\rI’ve lived for 60 long years.\nEven now, I get a thrill when\rI’m with a Pokémon.\rNow, you should know that there are\ncountless Pokémon in this world.\rThat means there are just as many\nthrills waiting for you out there!\rNow go!\r{STRVAR_1 3, 0, 0}, your grand adventure\nbegins right now!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Go on!\r{STRVAR_1 3, 0, 0}, your grand adventure\nawaits you!</language>
+	</row>
+	<row id="pl_msg_00000565_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: The Pokémon that I met for\nthe first time was {STRVAR_1 0, 1, 0}!\rIf you would have chosen {STRVAR_1 0, 1, 0}\non Route 201, we’d have the same\fPokémon now!\rNot that it matters, but...\rAnyway, I’m Dawn.\rI also help the professor add pages\nto the Pokédex.\rSo, in a sense, I’m just like you.\rI just got a little head start on you,\nthat’s all.\rI’ll be happy to teach you things.\nGlad to meet you, {STRVAR_1 3, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: The professor asked me to help,\nso I’m filling the Pokédex pages, too.\rThat makes us comrades working toward\nthe same goal.\rI’ll teach you stuff later, OK?\r</language>
+	</row>
+	<row id="pl_msg_00000565_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m {STRVAR_1 3, 0, 0}’s father.\rI’ll be happy to assist you on your\nquest for the professor.\rHahaha. Eh...\nI’m sure we can count on you!</language>
+	</row>
+	<row id="pl_msg_00000565_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor Rowan invented a new\nPokédex while working alongside a\fprofessor from the Kanto region.\rOh, my name is Roseanne.\rIt’s an honor to be an assistant to\nour professor!</language>
+	</row>
+	<row id="pl_msg_00000565_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Adventure Rule No. 1\nThe X Button opens the menu.</language>
+	</row>
+	<row id="pl_msg_00000565_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Adventure Rule No. 2\nRecord your progress with SAVE.</language>
+	</row>
+	<row id="pl_msg_00000565_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s crammed full of books with all\nsorts of Pokémon information.</language>
+	</row>
+	<row id="pl_msg_00000565_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s a lot of reference material\nand research reports on Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000565_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Ah, {STRVAR_1 3, 0, 0}!\rYou’ve come to show me your\nprogress on the Pokédex?\r</language>
+	</row>
+	<row id="pl_msg_00000565_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm...\rSo, you’ve seen {STRVAR_1 52, 0, 0} Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s wrong?\rYou’re not going to tell me you’ve\nseen too few to bother showing me?</language>
+	</row>
+	<row id="pl_msg_00000565_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Excellent work, {STRVAR_1 3, 0, 0}!\rThe Pokémon of the Sinnoh region are\nbeing added to your Pokédex.\rThis will certainly help with my studies\nof Pokémon evolution...\r</language>
+	</row>
+	<row id="pl_msg_00000565_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm! {STRVAR_1 3, 0, 0}, I’ve been\nwaiting to see you!\rYou’ve met every kind of Pokémon\nthere is in the Sinnoh region!\rThis will help immensely with my\nstudies on Pokémon evolution...\r</language>
+	</row>
+	<row id="pl_msg_00000565_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: Greetings, Professor Rowan!\nIt’s been a very long time!\rI’ll tell you, Sinnoh certainly is\na long trip from Kanto.\rOf course, if it means meeting new\nPokémon, there’s no distance too\fgreat for the likes of us to travel.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Oh! If it isn’t my old\ncolleague, Professor Oak!\rI should have expected as much from\nthe world’s authority on Pokémon!\rWe always used to joke, “Where\nthere are Pokémon, you’ll find Oak!”\rIt’s good to see that hasn’t changed\none bit!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor Oak, let me introduce you\nto my young assistant.\rThis youngster has filled every page\nof the Sinnoh Pokédex for me.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: Ah, well, very glad to meet you!\nAs you’ve heard, my name is Oak.\rI’ve been hearing a great deal about\nyou from Professor Rowan lately.\rHe’s been exuberant in praise about\na fantastic young Trainer.\rI see that you live up to--no--that\nyou’ve surpassed his praise.\rYou’ve also got an impeccable sense\nof timing.\rYou see, I had an errand to run for\nProfessor Rowan on my visit here.\rHe’d asked me to bring the data\nfor the National Pokédex, you see.\rSo, since you’re here, let me upgrade\nyour Pokédex with the National Mode.\rAfter all, there are many kinds of\nPokémon in this world of ours!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}’s Pokédex was upgraded\nwith the National Mode!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: I’m afraid it won’t be easy to\ncomplete the National Pokédex.\rHowever, I’m sure you will make an\nhonest attempt on our behalf!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Have no fear, {STRVAR_1 3, 0, 0}\nwill get the job done.\rBy the way, Professor Oak, what\ncompelled you to visit this region?\r</language>
+	</row>
+	<row id="pl_msg_00000565_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oak: Ah, yes. I’ve heard that the\nPal Park is now open.\rIf I remember correctly, it’s at the\nend of Route 221.\rThe Pal Park has a special system\nthat attracts every imaginable kind\fof Pokémon from every region.\rI’ve come to make certain that\nsystem is operating properly.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, you should make an\neffort to visit the Pal Park, too.\rOops! I’ll be late for my meeting if\nI don’t get going!\rOK, it was a pleasure seeing the both\nof you! Bye, now!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, you should make an\neffort to visit the Pal Park, too.\rOops! I’ll be late for my meeting if\nI don’t get going!\rOK, it was a pleasure seeing the both\nof you! Bye, now!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Off he goes, as busy as\never...\r</language>
+	</row>
+	<row id="pl_msg_00000565_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now, {STRVAR_1 3, 0, 0}...\rI have a gift here as your reward\nfor completing the Sinnoh Pokédex.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: That’s the Pokémon Radar,\nor just Poké Radar for short.\rUse it, and it will indicate grass\npatches where Pokémon are lurking.\rI’d prepared that to help my field\nassistants put together the Sinnoh\fPokédex, but you took care of that!\rI’m sure it will be useful for your\ngoal of filling the National Pokédex.</language>
+	</row>
+	<row id="pl_msg_00000565_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: The world is immense.\nThere are many more Pokémon.\rThat means there are many more\nthrills for you to seek and enjoy!</language>
+	</row>
+	<row id="pl_msg_00000565_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} checked the PC.\rThe screen is filled with special terms\nand academic writing that is impossible\fto figure out.</language>
+	</row>
+	<row id="pl_msg_00000565_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Research materials are carefully\ntucked away.</language>
+	</row>
+	<row id="pl_msg_00000565_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The refrigerator is filled with\ntasty sweets! Mmm...</language>
+	</row>
+	<row id="pl_msg_00000565_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s really quite something!\rImagine... Cataloging every kind of\nPokémon in the Sinnoh region!\rAnd in complete contrast, there’s\n{STRVAR_1 3, 0, 0}...\rAnyway, you’ve been great for the\nprof’s Pokémon-evolution research!</language>
+	</row>
+	<row id="pl_msg_00000565_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes, that’s correct.\rProfessor Rowan has been studying\nPokédex systems with Professor Oak.\rProfessor Oak is Professor Rowan’s\njunior in terms of seniority.</language>
+	</row>
+	<row id="pl_msg_00000565_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: {STRVAR_1 3, 1, 0}!\nYou’ve come back!\rYou... You leave me speechless!\rYou’ve done it!\nYou really have done it!\rNever has my heart pounded this hard\nfor so long in my 60 years of living!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: The professor did a lot of\nchecking up after you left.\rHe was really worried about you,\n{STRVAR_1 3, 1, 0}...\rHe contacted acquaintances looking for\nhelp, and...\r{STRVAR_1 3, 1, 0}, I’m glad to see you safe!\nWelcome back!\r</language>
+	</row>
+	<row id="pl_msg_00000565_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: After you left, the professor\ndid a lot of checking around.\rHe got really worried about you,\n{STRVAR_1 3, 1, 0}.\rHe got in touch with people he knows\nto rustle up help...\rYou didn’t need it, {STRVAR_1 3, 1, 0}.\nI’m glad to see you back safe, too.\r</language>
+	</row>
+	<row id="pl_msg_00000565_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Oh, yes, there was something\nI had to tell you.\rThe three Pokémon of the lakes appear\nto have returned to their homes.\rSo, tell me.\nHow are things going for you?\rThe Pokédex...?\rHm! A total of {STRVAR_1 52, 1, 0}!\n...And the number of Badges?\rWell! You’ve got seven already!\nThat only leaves Sunyshore’s Gym.\rHm! You’ve come this far.\nWhy not obtain Sunyshore’s Badge?\rAnd why not challenge the Pokémon\nLeague?\rThat will broaden your horizons\nfurther than ever before.\rNot to mention the opportunities to\nmeet even more Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000565_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Oh, yes, {STRVAR_1 3, 0, 0}.\rIf you see Cynthia, please give her \nmy best regards.</language>
+	</row>
+	<row id="pl_msg_00000565_00056" index="56">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000565_00057" index="57">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000565_00058" index="58">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000565_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I... I’m stunned by your greatness!\rI feel as shaken and inspired as when\nmy child was born!\rOh, how wonderful it is to be alive!</language>
+	</row>
+	<row id="pl_msg_00000565_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hearing what was happening from the\nprofessor gave me shivers.\rBut he strongly stated that you will\nmake everything all right.\rI believed that you would make it, and\nhere you are!</language>
+	</row>
+</body>

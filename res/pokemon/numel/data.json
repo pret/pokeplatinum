@@ -1,0 +1,102 @@
+{
+    "name": "Numel",
+    "base_stats": {
+        "hp": 60,
+        "attack": 60,
+        "defense": 40,
+        "speed": 35,
+        "special_attack": 65,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 88,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_RAWST_BERRY",
+        "rare": "ITEM_RAWST_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_OBLIVIOUS",
+        "ABILITY_SIMPLE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_GROWL",
+                "MOVE_TACKLE"
+            ],
+            "5": "MOVE_EMBER",
+            "11": "MOVE_MAGNITUDE",
+            "15": "MOVE_FOCUS_ENERGY",
+            "21": "MOVE_TAKE_DOWN",
+            "25": "MOVE_AMNESIA",
+            "31": "MOVE_LAVA_PLUME",
+            "35": "MOVE_EARTH_POWER",
+            "41": "MOVE_EARTHQUAKE",
+            "45": "MOVE_FLAMETHROWER",
+            "51": "MOVE_DOUBLE_EDGE"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            33,
+            "SPECIES_CAMERUPT"
+        ]
+    ]
+}

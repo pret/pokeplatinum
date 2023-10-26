@@ -1,0 +1,113 @@
+{
+    "name": "Marowak",
+    "base_stats": {
+        "hp": 60,
+        "attack": 80,
+        "defense": 110,
+        "speed": 45,
+        "special_attack": 50,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_GROUND",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 124,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_THICK_CLUB"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MONSTER",
+        "MONSTER"
+    ],
+    "abilities": [
+        "ABILITY_ROCK_HEAD",
+        "ABILITY_LIGHTNING_ROD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM52",
+            "TM54",
+            "TM56",
+            "TM58",
+            "TM68",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_GROWL",
+                "MOVE_TAIL_WHIP",
+                "MOVE_BONE_CLUB",
+                "MOVE_HEADBUTT"
+            ],
+            "3": "MOVE_TAIL_WHIP",
+            "7": "MOVE_BONE_CLUB",
+            "11": "MOVE_HEADBUTT",
+            "13": "MOVE_LEER",
+            "17": "MOVE_FOCUS_ENERGY",
+            "21": "MOVE_BONEMERANG",
+            "23": "MOVE_RAGE",
+            "27": "MOVE_FALSE_SWIPE",
+            "33": "MOVE_THRASH",
+            "37": "MOVE_FLING",
+            "43": "MOVE_BONE_RUSH",
+            "49": "MOVE_ENDEAVOR",
+            "53": "MOVE_DOUBLE_EDGE"
+        }
+    }
+}

@@ -21,7 +21,7 @@ u16 sub_0206B054(UnkStruct_020507E4 * param0);
 u16 sub_0206B064(UnkStruct_020507E4 * param0);
 u16 sub_0206B08C(UnkStruct_020507E4 * param0);
 void sub_0206B558(UnkStruct_020507E4 * param0, u16 param1);
-void sub_0206B514(UnkStruct_021C0794 * param0);
+void sub_0206B514(SaveData * param0);
 static u8 sub_0206B4A4(UnkStruct_020507E4 * param0);
 
 static BOOL sub_0206AFE0 (UnkStruct_020507E4 * param0, u16 param1, u16 param2)
@@ -253,13 +253,13 @@ void sub_0206B2C8 (UnkStruct_020507E4 * param0)
 {
     u16 v0, v1;
 
-    v0 = sub_0201D2E8();
-    v1 = sub_0201D2E8();
+    v0 = LCRNG_Next();
+    v1 = LCRNG_Next();
 
     sub_0206B280(param0, (v1 << 16) | v0);
 }
 
-void sub_0206B2E4 (UnkStruct_021C0794 * param0, u16 param1)
+void sub_0206B2E4 (SaveData * param0, u16 param1)
 {
     UnkStruct_020507E4 * v0 = sub_020507E4(param0);
     u32 v1;
@@ -280,12 +280,12 @@ BOOL sub_0206B324 (UnkStruct_020507E4 * param0, u16 param1)
     return sub_0206AFE0(param0, (17 + (((0 + 0x4000) + 32) + 16)), param1);
 }
 
-void sub_0206B334 (UnkStruct_021C0794 * param0)
+void sub_0206B334 (SaveData * param0)
 {
     UnkStruct_020507E4 * v0 = sub_020507E4(param0);
     u32 v1;
 
-    v1 = (sub_0201D2E8() % 98) + 2;
+    v1 = (LCRNG_Next() % 98) + 2;
     sub_0206B324(v0, v1);
 }
 
@@ -436,17 +436,17 @@ static u8 sub_0206B4A4 (UnkStruct_020507E4 * param0)
         v3 = 0;
     }
 
-    v2 = (sub_0201D2E8() % 100);
+    v2 = (LCRNG_Next() % 100);
 
     if (v2 > Unk_020EFA70[v3]) {
         return 0xff;
     }
 
-    v2 = (sub_0201D2E8() % Unk_020EFA6C[v3]);
+    v2 = (LCRNG_Next() % Unk_020EFA6C[v3]);
     return v2;
 }
 
-void sub_0206B514 (UnkStruct_021C0794 * param0)
+void sub_0206B514 (SaveData * param0)
 {
     u32 v0;
     UnkStruct_020507E4 * v1 = sub_020507E4(param0);
@@ -465,7 +465,7 @@ void sub_0206B514 (UnkStruct_021C0794 * param0)
 void sub_0206B558 (UnkStruct_020507E4 * param0, u16 param1)
 {
     sub_0206AFE0(param0, (30 + (((0 + 0x4000) + 32) + 16)), param1);
-    sub_0206AFE0(param0, (42 + (((0 + 0x4000) + 32) + 16)), (sub_0201D2E8() % 5));
+    sub_0206AFE0(param0, (42 + (((0 + 0x4000) + 32) + 16)), (LCRNG_Next() % 5));
 }
 
 u16 sub_0206B588 (UnkStruct_020507E4 * param0)

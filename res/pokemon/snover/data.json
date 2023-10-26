@@ -1,0 +1,106 @@
+{
+    "name": "Snover",
+    "base_stats": {
+        "hp": 60,
+        "attack": 62,
+        "defense": 50,
+        "speed": 40,
+        "special_attack": 62,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_ICE"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 131,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NEVERMELTICE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_SNOW_WARNING",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_WHITE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM09",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM27",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM58",
+            "TM70",
+            "TM72",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_POWDER_SNOW",
+                "MOVE_LEER"
+            ],
+            "5": "MOVE_RAZOR_LEAF",
+            "9": "MOVE_ICY_WIND",
+            "13": "MOVE_GRASS_WHISTLE",
+            "17": "MOVE_SWAGGER",
+            "21": "MOVE_MIST",
+            "26": "MOVE_ICE_SHARD",
+            "31": "MOVE_INGRAIN",
+            "36": "MOVE_WOOD_HAMMER",
+            "41": "MOVE_BLIZZARD",
+            "46": "MOVE_SHEER_COLD"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            40,
+            "SPECIES_ABOMASNOW"
+        ]
+    ]
+}

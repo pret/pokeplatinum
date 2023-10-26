@@ -1,0 +1,792 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="17438" />
+	<row id="pl_msg_00000602_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The original owner’s furniture is gone,\nand I didn’t buy any.\rSo, yeah, I know, it’s barren.\nStill, not bad, eh?\rBut anyway, I feel kind of bad just\nimposing the place on you for nothing.\rI’ll tell you what, order a Table from\nthis order form.\rThat’ll do as my thanks to you!</language>
+	</row>
+	<row id="pl_msg_00000602_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Go ahead, order a Table from this\norder form!</language>
+	</row>
+	<row id="pl_msg_00000602_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whoa, whoa!\nDon’t go yet!\rNot until you order a Table from this\norder form!\r</language>
+	</row>
+	<row id="pl_msg_00000602_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for waiting!\nI’m delivering your order!\rWe hope you’ll keep ordering quality\nfurnishings from us!\r</language>
+	</row>
+	<row id="pl_msg_00000602_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The furniture place’s service is great.\nThey’re real eager for business.\rLook, they left another order form on\nthe Table they delivered.\rAnyway, I’m finally rid of this Villa\nthanks to you.\rNow I can go back to traveling\nlike I always wanted.\r</language>
+	</row>
+	<row id="pl_msg_00000602_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for waiting!\nI’m delivering your order!\r</language>
+	</row>
+	<row id="pl_msg_00000602_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for waiting!\nI’m delivering your order!\rAlso, and I hate to say this, but...\nWell, the truth of the matter is...\rWe’re completely out of furniture that\nwe could sell you...\rThank you so very, very much for your\nlong-standing patronage and support!\r</language>
+	</row>
+	<row id="pl_msg_00000602_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\nYou got yourself a Villa now?\rWoohoo, that’s wicked awesome!\nYou must be rich! Gimme something!\rOK, this is what I’m gonna do.\nI’ll tell everybody you got a Villa!\r</language>
+	</row>
+	<row id="pl_msg_00000602_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Wow, {STRVAR_1 3, 1, 0}, this sofa is\nso sumptuous!\rYou know, I think we have similar\ntastes, {STRVAR_1 3, 1, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000602_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Is this sofa to your taste,\n{STRVAR_1 3, 1, 0}?\rI can’t get comfortable sitting on\nsomething this expensive looking.\r</language>
+	</row>
+	<row id="pl_msg_00000602_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm, that’s rather a good\nBookshelf.\rThe curved surfaces describe sublime\nlines of an indefinable charm.\rHere, allow me to give you this book\nI’ve been reading as a gift.\r</language>
+	</row>
+	<row id="pl_msg_00000602_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Oh, hey! A Houseplant!\rIt’s really nice!\nMaybe I’ll get some for my Gym...\rThe green coloring and the aroma...\nIt’s very nice.\r</language>
+	</row>
+	<row id="pl_msg_00000602_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: Oh...?\nThis is a good piano.\rI love the sound a piano makes.\nI savor every note with my entire being.\rIt’s not only my ears; my spirit hears\nthe music it makes...\rEhehe, I made myself cringe saying\nthat.\r</language>
+	</row>
+	<row id="pl_msg_00000602_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Too slooooow!\rYou keep me waiting all the time!\nI’m fining you...$1 billion!</language>
+	</row>
+	<row id="pl_msg_00000602_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: So, anyway, how are\nthings at the Battle Frontier?\rMe? You know I’m on top of it.\nI lose at the Tower sometimes, but...</language>
+	</row>
+	<row id="pl_msg_00000602_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Oh, yeah, the other day\nat the Battle Tower...\rAww, never mind!\nI’m not telling you I battled my daddy!</language>
+	</row>
+	<row id="pl_msg_00000602_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: This is a cool place you\nhave here.\rI’ve kind of got to like it, so I’ll drop\nin for no reason at all from now on!</language>
+	</row>
+	<row id="pl_msg_00000602_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: You know, I’ve been\nthinking lately...\rIf we didn’t meet Prof. Rowan then,\nwhat would we be doing now?</language>
+	</row>
+	<row id="pl_msg_00000602_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 1, 0}, are you going to\ncollect furniture now?\rAre you maybe the type who can’t bear\nto use Technical Machines?\rThe sort of person who ends up making\na collection of them?</language>
+	</row>
+	<row id="pl_msg_00000602_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: I had no idea that you can get\na Villa as a gift.\rWho knows what can happen in life?</language>
+	</row>
+	<row id="pl_msg_00000602_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: I’m envious of you having your\nown place.\rI have to share a bedroom with my\nlittle sister!</language>
+	</row>
+	<row id="pl_msg_00000602_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Sigh...\rTo be with that special someone in a\nwonderful Villa like this...\rI think it’s a nice dream to have.</language>
+	</row>
+	<row id="pl_msg_00000602_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: You run into so many Pokémon in\nthe Battle Zone. It’s a bit much.\rSo, {STRVAR_1 3, 1, 0}, please let me catch\na little rest.</language>
+	</row>
+	<row id="pl_msg_00000602_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: {STRVAR_1 3, 1, 0}, are you collecting\nfurniture, too, now?\rAre you one of those people who can’t\nstand to use Technical Machines?\rOne of those types that end up with\na TM collection out of hoarding?</language>
+	</row>
+	<row id="pl_msg_00000602_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: You could get a Villa as a\ngift? I did not know that.\rI wish someone’d give me a Villa.\rThat way, I’d be able to assist the\nprofessor even more!</language>
+	</row>
+	<row id="pl_msg_00000602_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: The Battle Zone’s intense and\nfun, huh?\rSo many different kinds of Pokémon,\nand Trainers of every variety...\rI’d like to go to even more places.</language>
+	</row>
+	<row id="pl_msg_00000602_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Having this Villa must be\nconvenient.\rIt must be useful for checking up on\nthe Pokémon in the Battle Zone.</language>
+	</row>
+	<row id="pl_msg_00000602_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: You can find so many different\nkinds of Pokémon in the Battle Zone.\r{STRVAR_1 3, 1, 0}, you don’t mind if I rest\nfor a bit, do you?</language>
+	</row>
+	<row id="pl_msg_00000602_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm!\nHow are things going for you lately?\rEven if you manage to see every kind\nof Pokémon, that’s not the end.\rIt would be impossible to know all about\nthem based on sightings alone.\rThere’s much to be learned from\ntraveling with Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000602_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm!\nYou seem well.\rIncidentally, did you know there are\nsome Pokémon that evolve only at\fspecific locations?\rFor example, several Pokémon evolve by\nleveling up in Mt. Coronet.\rThe variations of evolution...\nHow many could there be?</language>
+	</row>
+	<row id="pl_msg_00000602_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm!\nYou seem well.\rIncidentally, did you know there are\nsome Pokémon that require the use of\fspecific items to evolve?\rMAGMAR and ELECTABUZZ are examples\nof such Pokémon.\rI never imagined that there would be\nnew patterns of evolution.\rThe variations of evolution...\nHow many could there be?</language>
+	</row>
+	<row id="pl_msg_00000602_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hm!\nYou look well.\rIt’s commonly accepted that Pokémon\nevolve to grow more powerful.\rThere must be other reasons than that.\nI would like to know during my lifetime.</language>
+	</row>
+	<row id="pl_msg_00000602_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hmm...\rThis place feels like the home I shared\nwith a friend long ago.\rIt has the same sort of atmosphere.</language>
+	</row>
+	<row id="pl_msg_00000602_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: Oh, {STRVAR_1 3, 1, 0}!\nI’d heard from {STRVAR_1 3, 0, 0}, but...\rThis is quite grand for a Villa.\nThis makes me happy, dear!\fI’ll have a fun place to visit!</language>
+	</row>
+	<row id="pl_msg_00000602_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: {STRVAR_1 3, 1, 0}, this Villa, if I\nwere to give it a grade...\rIt would earn a perfect score!\nIt makes me happy just being here.</language>
+	</row>
+	<row id="pl_msg_00000602_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: If it were me, I would put that\npiece of furniture over there...\rOops, sorry.\nThis is your place, {STRVAR_1 3, 1, 0}.</language>
+	</row>
+	<row id="pl_msg_00000602_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: It must make you happy collecting\nthe furniture.\rBut I’m wondering: do you collect\nAccessories?\rEven if you don’t enter Contests, it’s\nfun to dress up Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000602_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom: I think Contests and home designs\nsay a lot about the person.\rIf the person’s character shines\nthrough, I think people respond to it.</language>
+	</row>
+	<row id="pl_msg_00000602_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: The Underground extends\neven underneath the Resort Area.\rI wonder... If I really tried, would\nI be able to extend it to even places\flike Kanto and Johto?</language>
+	</row>
+	<row id="pl_msg_00000602_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: If it were me, I would display\nthe things I dig up.\rYou know, from places like the mine and\nthe Underground.\rI would turn the place into my personal\nmuseum.</language>
+	</row>
+	<row id="pl_msg_00000602_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: If it were me, I’d like to put\na Fossil over there.\rYou don’t think so? No?\nI think a Fossil would match this decor.</language>
+	</row>
+	<row id="pl_msg_00000602_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: This place feels different from\nan underground Secret Base.\rThat reminds me: what color is your\nunderground Flag now?</language>
+	</row>
+	<row id="pl_msg_00000602_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roark: What I think about while digging\nunderground...\rWhat did the Pokémon see before they\nbecame Fossils?\rI’d love to go back and see them as\nthey were back then.</language>
+	</row>
+	<row id="pl_msg_00000602_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Sigh... This is so dreamy...\nThe Resort Area’s a nice place.\rOf course, Eterna is a good place, too.\nWe have the huge forest, first of all.</language>
+	</row>
+	<row id="pl_msg_00000602_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: I know it’s a little abrupt,\nbut don’t you think Grass-type Pokémon\fsmell nice?\rIt makes me happy just being around\nthem.</language>
+	</row>
+	<row id="pl_msg_00000602_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: I could tell you ten good\nthings about Grass-type Pokémon.\rWhich kind of Pokémon can you say\ngood things about?\rOoh, maybe ten won’t be enough.</language>
+	</row>
+	<row id="pl_msg_00000602_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: Do you remember those rumors\nabout the Old Chateau?\rThey say there really were ghost\nPokémon there in the old days.\r...That’s so scary.\nWhat if they suddenly came back?</language>
+	</row>
+	<row id="pl_msg_00000602_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gardenia: ...I’m in a dilemma now.\rYou see, I don’t like ghost Pokémon\nvery much.\rBut, what if...\rWhat if there was a Grass-type ghost\nPokémon? What then?</language>
+	</row>
+	<row id="pl_msg_00000602_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: Oh, c’est fantastique!\nThis is where you practice dancing, non?</language>
+	</row>
+	<row id="pl_msg_00000602_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: Whenever and wherever, dance,\ndance, dance!\rIf you dance all the time, the dancing\nat the Contests, they become\fchallenges no longer.</language>
+	</row>
+	<row id="pl_msg_00000602_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: Ooh la la!\nThis is very nice!\rIt is often that I come to the Resort\nArea also.\rIt is because the Ribbon Syndicate, it\nis here.\rTherefore, I will visit your Villa\noften also!</language>
+	</row>
+	<row id="pl_msg_00000602_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: Ooh la la!\nI have an inspiration!\rThe combination of moves for a Contest,\nit has come to me in a flash!\rVery well! We shall meet at the Contest\nHall, yes?</language>
+	</row>
+	<row id="pl_msg_00000602_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fantina: You!\rHave you met Dahlia?\nShe of the Battle Arcade?\rThat woman! The way she dances!\nEspecially the way she wiggles!\fOoh la la! I love her style!</language>
+	</row>
+	<row id="pl_msg_00000602_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: {STRVAR_1 3, 1, 0}, please hear how\nmy training is going.\rThanks to my training, it doesn’t feel\nso cold to be in deep snow!\rWell, just a little...</language>
+	</row>
+	<row id="pl_msg_00000602_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: {STRVAR_1 3, 1, 0}, please hear how\nmy training is going.\rThanks to my training, my handwriting\nhas improved tenfold!\r...Yes. It has absolutely nothing to do\nwith how strong I am as a Gym Leader.</language>
+	</row>
+	<row id="pl_msg_00000602_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: {STRVAR_1 3, 1, 0}, please hear how\nmy training is going.\rThanks to my training, I can tell how\nstrong my opponent is beforehand.\rOh, yes, {STRVAR_1 3, 1, 0}, you’re\nridiculously tough.</language>
+	</row>
+	<row id="pl_msg_00000602_00058" index="58">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: {STRVAR_1 3, 1, 0}, please hear how\nmy training is going.\rThanks to my training, I’m beginning to\nunderstand the feelings of Pokémon.\rIt lets me choose moves with much more\nconfidence!</language>
+	</row>
+	<row id="pl_msg_00000602_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: {STRVAR_1 3, 1, 0}, please hear how\nmy training is going.\rLately, my father has been overseeing\nmy training!\rWell, only when he wins at the Game\nCorner, but...\rI’m still delighted he does this with me!</language>
+	</row>
+	<row id="pl_msg_00000602_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: Hey!\n{STRVAR_1 3, 0, 0} told me to come.\rThis is some spread you’ve got here!\nIt’s spectacular, yeah!\rHow would I put it now...?\rIt’s, uh, spectacular!\nIt is what it is!</language>
+	</row>
+	<row id="pl_msg_00000602_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: Mmmmm...!\nListen, you!\rHow would you like to decorate these\npremises with my trophies?\rNo, scrap that thought!\nHow about a wrestling ring?</language>
+	</row>
+	<row id="pl_msg_00000602_00062" index="62">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: I’ve been thinking, though.\rThat pal of yours, {STRVAR_1 3, 0, 0}, and\nPalmer are father and son all right.\rI mean, just seeing them, they’re\nhilariously alike.\rTheir overall atmosphere and their\nmannerisms and such...\rSeeing them cracks me up.</language>
+	</row>
+	<row id="pl_msg_00000602_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: ...This place here...\nYou don’t have a microphone handy?\rHow am I supposed to perform my\nsignature song, I’d like to know?\rAh, ah, ah.\nThe ring is my roiling sea. ♫</language>
+	</row>
+	<row id="pl_msg_00000602_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: I was meaning to ask you, by the\nway...\rYou’re tuning in to my wrestling\nmatches on TV, aren’t you?\rIn wrestling, you always have to be\naware of what the other guy’s doing.\rThat’s the same as Pokémon battling,\nwouldn’t you say?\rSo, what I’m saying is, watch me wrestle\nif you want to get better at battling!</language>
+	</row>
+	<row id="pl_msg_00000602_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Gwahahahaha!\rI spent a long time living on Iron\nIsland.\rA place this fancy, I feel a little out\nof place.\rDon’t get me wrong, it’s a great place.\nIt’s nothing like my son’s!</language>
+	</row>
+	<row id="pl_msg_00000602_00066" index="66">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Well...\rI have to admit I’m not very interested\nin furniture and the like.\rMy interests run more to things like\ndigging tools, obviously.\rThe shapes of Pokémon fangs and claws\nare interesting, too.</language>
+	</row>
+	<row id="pl_msg_00000602_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Digging underneath Iron Island\nwas a good time in my life.\rWorking alongside Pokémon constantly\nfor iron ore...\rBut that’s all in the past.\rThe young people today should find\ntheir own paths to happiness.</language>
+	</row>
+	<row id="pl_msg_00000602_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: Roark is still a boy, but at the\nsame time, he’s a man in his own right.\rThat’s why our opinions clash at times,\nand why we break out in battle.\rGwahahaha!\nYou weren’t supposed to hear that!\fForget I said it!</language>
+	</row>
+	<row id="pl_msg_00000602_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Byron: You’re acquainted with a fellow\nnamed Riley, aren’t you?\rHe’s a mystifying sort, that one.\rI have no idea how old he is, to tell you\nthe truth.</language>
+	</row>
+	<row id="pl_msg_00000602_00070" index="70">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Giving you an Icicle Badge made\nme think.\rIt made me realize this one thing.\rI don’t have to act cool out of\ncharacter. I just have to be me!</language>
+	</row>
+	<row id="pl_msg_00000602_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: In a battle, when both sides\nare down to their last Pokémon...\rWhat do you think about then?\rI put all my trust in that Pokémon\nand cheer it on.\rThat’s all you can do!</language>
+	</row>
+	<row id="pl_msg_00000602_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Whew...\nThe Resort Area is pretty warm.\fMaybe Candice is overdressed?</language>
+	</row>
+	<row id="pl_msg_00000602_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: This furniture...\nOh, I get it... It’s like this...\rOh, please don’t mind me.</language>
+	</row>
+	<row id="pl_msg_00000602_00074" index="74">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Candice: Why does the Snowpoint Gym\nLeader have to guard that icy temple\fanyway?</language>
+	</row>
+	<row id="pl_msg_00000602_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: I was told by Flint that we’re\nmeeting here.\r...That’s funny.\nYou haven’t heard anything about it?</language>
+	</row>
+	<row id="pl_msg_00000602_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Every one of my Pokémon are\ntop class in potential.\rThey’re all potential game breakers!</language>
+	</row>
+	<row id="pl_msg_00000602_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Oh, yeah.\nI decided not to join the Elite Four.\rI got an earful about not renovating\nthe Pokémon League building.\rWell, no. I’d rather be a Gym Leader\nwhere I could meet ordinary folks.</language>
+	</row>
+	<row id="pl_msg_00000602_00078" index="78">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: My ELECTIVIRE is a force of\nnature to be reckoned with.\rNo, don’t get me started.\nI’ll tell you another time.</language>
+	</row>
+	<row id="pl_msg_00000602_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Hmm...\rThis place gives me ideas about how\nI can renovate my Gym.</language>
+	</row>
+	<row id="pl_msg_00000602_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: I think I could get to like\nthis atmosphere.\rIt gives me an idea about the kind of\nperson that lives here.\rYes... An honest person who loves\nPokémon...</language>
+	</row>
+	<row id="pl_msg_00000602_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: It’s so relaxing here...\rSigh...\nI don’t want to go home.\rIt’s a complete mess with all my\nresearch papers strewn about.\rMy house?\rEven the region is a secret!</language>
+	</row>
+	<row id="pl_msg_00000602_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: What’s necessary to become\nstronger?\rI think it’s important to never lose\nyour love of Pokémon.\rThat’s all I can say because that’s\nhow it was for me...</language>
+	</row>
+	<row id="pl_msg_00000602_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: The Spear Pillar...\nThe Distortion World...\rDid the people in the distant past see\nthe same things as us?\rCould that be what led them to leave\nthe cave painting of Celestic Town?</language>
+	</row>
+	<row id="pl_msg_00000602_00084" index="84">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: When you are facing a Trainer\nin a battle, you can learn everything\fabout them.\rWhat Pokémon they have.\nWhat moves they’ve taught.\fWhat items they make Pokémon hold.\rThere’s no need for words then.\rThat’s why I’d like you to come see me\nagain at the Pokémon League.</language>
+	</row>
+	<row id="pl_msg_00000602_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: Hey, you!\rYou used my prize money to buy this\nfurniture, didn’t you?\rSo, I’ve got a right to lounge here,\nam I right?</language>
+	</row>
+	<row id="pl_msg_00000602_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: My relationship to Flint?\nThere’s no love lost, that’s for sure.</language>
+	</row>
+	<row id="pl_msg_00000602_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: Hey, listen, you!\rIf that Volkner tries to sell you on\nElectric-type Pokémon, ignore him!\rYou have to go with Fire-type Pokémon.\nIt’s the way of the future!</language>
+	</row>
+	<row id="pl_msg_00000602_00088" index="88">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: When I got my first Gym Badge,\nI used the move Thunderbolt.\rEver since, I’ve stuck with the Electric\ntype even as I got better.\rI do it because I don’t want to ever\nforget how happy I was when I won.\rIncidentally, Flint’s fascination with\nthe Fire type is only from his name.\rSomeone told him that a flint is what’s\nused to spark a fire, and that was it.</language>
+	</row>
+	<row id="pl_msg_00000602_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: ...Volkner.\rVolkner: What?\rFlint: Let’s say I’m in a battle, OK?\nWhat if I didn’t use my Poké Balls?\rInstead, I can have my guys come in\nand out of my Afro to battle.\rThat’d bewilder the other guy, huh?\nWouldn’t that be hilarious?\rVolkner: ...Maybe.\nDon’t ruin things for others, though.</language>
+	</row>
+	<row id="pl_msg_00000602_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: Hmm...\rVolkner: What’s wrong?\nYou’re looking serious for a change.\rFlint: It’s this place.\nYou know how drab the League is?\rDon’t you think the place should be\nmore, you know, festive?\rWith more decorations, awards, and\nthings like that?\rVolkner: Don’t start! That will make\nmy Gym stand out less.</language>
+	</row>
+	<row id="pl_msg_00000602_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: Say, hey, Volkner.\nWhat do you say we battle here?\rVolkner: ...Are you kidding?\rThat’s why you Elite Four are called\nirresponsible.\rFlint: What, we are?\rVolkner: Well, at least you are.\nI tell everyone you’re irresponsible.</language>
+	</row>
+	<row id="pl_msg_00000602_00092" index="92">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: What makes a Gym Leader a\ngood one?\rCandice: Gee, I wouldn’t know.\nThat’s a tough question.\r...Maybe we should ask Gardenia\nsometime.</language>
+	</row>
+	<row id="pl_msg_00000602_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: ...You know those Accessories\nfor Pokémon?\rWould it be funny if someone were to\nwear those?\rCandice: What is it, Maylene?\nDid you want some Accessories?\fI’ll give you some of my favorites.\rMaylene: ...!\nTh-thank you so much!</language>
+	</row>
+	<row id="pl_msg_00000602_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: ...Candice?\rCandice: Yes?\rMaylene: Oh, sorry, it’s nothing!\nI didn’t say anything!\rCandice: Giggle...\nI like lounging here.\r</language>
+	</row>
+	<row id="pl_msg_00000602_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: Candice, what does it mean to\nbe strong?\rCandice: I can’t answer that!\rLet’s go look for that answer\ntogether.\rWe’ve got Pokémon and {STRVAR_1 3, 1, 0} on\nour side, after all.\rMaylene: Yes, please!</language>
+	</row>
+	<row id="pl_msg_00000602_00096" index="96">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Maylene: ...This is delicious!\rCandice: Then have some more.\rMaylene: Yes, please.\rCandice: There’s plenty to drink.\nYou’re a growing girl!</language>
+	</row>
+	<row id="pl_msg_00000602_00097" index="97">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00098" index="98">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The table’s subtle curves accentuate\nits distinctive presence.</language>
+	</row>
+	<row id="pl_msg_00000602_00100" index="100">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A big sofa with a wonderful sense\nof presence.</language>
+	</row>
+	<row id="pl_msg_00000602_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A smaller sofa with a wonderful sense\nof presence.</language>
+	</row>
+	<row id="pl_msg_00000602_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A canopied bed for deep, relaxing\nsleep.</language>
+	</row>
+	<row id="pl_msg_00000602_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A small night table for the bedside.</language>
+	</row>
+	<row id="pl_msg_00000602_00104" index="104">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A TV featuring the latest technology.</language>
+	</row>
+	<row id="pl_msg_00000602_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An audio system that maximally draws\nout the charms of music.</language>
+	</row>
+	<row id="pl_msg_00000602_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The shelves are lined with books left\nby Prof. Rowan.</language>
+	</row>
+	<row id="pl_msg_00000602_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An attractive rack that looks good with\nor without things on it.</language>
+	</row>
+	<row id="pl_msg_00000602_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All houseplants give off the fragrance\nof life.</language>
+	</row>
+	<row id="pl_msg_00000602_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A thin-bodied PC made for the design\nconscious.</language>
+	</row>
+	<row id="pl_msg_00000602_00110" index="110">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A handmade music box with a soothing\nmelody.</language>
+	</row>
+	<row id="pl_msg_00000602_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An almost lifelike Pokémon statue.\nIt would be nice to have a pair.</language>
+	</row>
+	<row id="pl_msg_00000602_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An almost lifelike Pokémon statue.\nIt would be nice to have a pair.</language>
+	</row>
+	<row id="pl_msg_00000602_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Even playing a simple scale will tell you\nthis is a special piano.</language>
+	</row>
+	<row id="pl_msg_00000602_00114" index="114">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A guest set that exemplifies the\nmeaning of comfort.</language>
+	</row>
+	<row id="pl_msg_00000602_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A clock that teaches the beauty of\nprecisely marking time.</language>
+	</row>
+	<row id="pl_msg_00000602_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A breathtaking masterpiece that no\nwords can ever do justice.</language>
+	</row>
+	<row id="pl_msg_00000602_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An exquisitely designed tea set for\nluxuriantly elegant times.</language>
+	</row>
+	<row id="pl_msg_00000602_00118" index="118">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Light makes the glass gleam, and the\nglass dazzlingly reflects the light.</language>
+	</row>
+	<row id="pl_msg_00000602_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0} opened the order form.\r</language>
+	</row>
+	<row id="pl_msg_00000602_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which furniture would\nyou like to order?</language>
+	</row>
+	<row id="pl_msg_00000602_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Order the chosen\nfurniture?</language>
+	</row>
+	<row id="pl_msg_00000602_00122" index="122">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve already bought one.</language>
+	</row>
+	<row id="pl_msg_00000602_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t have enough money.</language>
+	</row>
+	<row id="pl_msg_00000602_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is the list of purchased furniture.</language>
+	</row>
+	<row id="pl_msg_00000602_00125" index="125">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00126" index="126">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00127" index="127">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00128" index="128">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00129" index="129">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00130" index="130">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00131" index="131">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00132" index="132">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00133" index="133">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00134" index="134">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00135" index="135">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00136" index="136">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00137" index="137">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00138" index="138">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00139" index="139">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00140" index="140">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00141" index="141">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00142" index="142">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00143" index="143">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00144" index="144">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00145" index="145">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00146" index="146">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00147" index="147">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00148" index="148">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000602_00149" index="149">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Table{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00150" index="150">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Big Sofa{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00151" index="151">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Small Sofa{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00152" index="152">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bed{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00153" index="153">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Night Table{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00154" index="154">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TV{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00155" index="155">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Audio System{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00156" index="156">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bookshelf{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00157" index="157">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rack{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00158" index="158">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Houseplant{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00159" index="159">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PC Desk{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00160" index="160">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Music Box{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00161" index="161">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Bust{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00162" index="162">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Bust{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00163" index="163">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Piano{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00164" index="164">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Guest Set{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00165" index="165">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wall Clock{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00166" index="166">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Masterpiece{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00167" index="167">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tea Set{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00168" index="168">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chandelier{CURSOR_X 96}{STRVAR_1 55, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000602_00169" index="169">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Table{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00170" index="170">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Big Sofa{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00171" index="171">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Small Sofa{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00172" index="172">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bed{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00173" index="173">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Night Table{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00174" index="174">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TV{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00175" index="175">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Audio System{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00176" index="176">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bookshelf{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00177" index="177">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rack{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00178" index="178">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Houseplant{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00179" index="179">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PC Desk{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00180" index="180">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Music Box{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00181" index="181">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Bust{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00182" index="182">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Bust{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00183" index="183">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Piano{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00184" index="184">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Guest Set{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00185" index="185">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wall Clock{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00186" index="186">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Masterpiece{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00187" index="187">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tea Set{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00188" index="188">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chandelier{CURSOR_X 100}------</language>
+	</row>
+	<row id="pl_msg_00000602_00189" index="189">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Table</language>
+	</row>
+</body>

@@ -5,7 +5,7 @@
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 
 typedef struct {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     UnkStruct_ov66_0222DFF8 * unk_04;
     int unk_08;
 } UnkStruct_ov66_02231374;

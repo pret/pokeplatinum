@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02099F80.h"
@@ -16,7 +16,7 @@
 
 #include "unk_02002B7C.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -84,9 +84,9 @@ static void sub_02039814 (void)
 
 void sub_02039834 (int param0, int param1, int param2)
 {
-    UnkStruct_02018340 * v0;
-    UnkStruct_0205AA50 v1;
-    UnkStruct_0200B144 * v2;
+    BGL * v0;
+    Window v1;
+    MessageLoader * v2;
     Strbuf* v3;
     Strbuf* v4;
     UnkStruct_0200B358 * v5;
@@ -133,7 +133,7 @@ void sub_02039834 (int param0, int param1, int param2)
     GXS_SetVisiblePlane(0);
 
     sub_02017DD4(4, 8);
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     G2_BlendNone();
@@ -153,18 +153,18 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0201975C(0, 0x6c21);
     sub_0201975C(4, 0x6c21);
 
-    v2 = sub_0200B144(1, 26, 214, param0);
+    v2 = MessageLoader_Init(1, 26, 214, param0);
     v3 = Strbuf_Init(0x180, param0);
     v4 = Strbuf_Init(0x180, param0);
     sub_0201D710();
     v5 = sub_0200B358(param0);
 
     sub_0201A8D4(v0, &v1, &Unk_020E5EC8);
-    sub_0201AE78(&v1, 15, 0, 0, 26 * 8, 18 * 8);
-    sub_0200DC48(&v1, 0, (512 - 9), 2);
+    BGL_WindowColor(&v1, 15, 0, 0, 26 * 8, 18 * 8);
+    Window_Show(&v1, 0, (512 - 9), 2);
 
     sub_0200B60C(v5, 0, param2, 5, 2, 1);
-    sub_0200B1B8(v2, v6, v4);
+    MessageLoader_GetStrbuf(v2, v6, v4);
     sub_0200C388(v5, v3, v4);
 
     sub_0201D738(&v1, 0, v3, 0, 0, 0, NULL);
@@ -175,8 +175,8 @@ void sub_02039834 (int param0, int param1, int param2)
     sub_0200F338(1);
     sub_0200AB4C(0, (GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD), 3);
 
-    sub_0201A8FC(&v1);
-    sub_0200B190(v2);
+    BGL_DeleteWindow(&v1);
+    MessageLoader_Free(v2);
     sub_0200B3F0(v5);
     Heap_FreeToHeap(v0);
 }

@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="17299" />
+	<row id="pl_msg_00000192_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Oh, hey, {STRVAR_1 3, 1, 0}!\nWhat took you so long?\fI’m fining you $100 million!\rActually, never mind the fine.\nCome with me, will ya?\r</language>
+	</row>
+	<row id="pl_msg_00000192_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 1, 0}, I tried to\nget into the Battle Frontier,\fwhich happens to be right here.\rThen these guys came along and got in\nmy face about it.\rLike, they’re saying they want to test\nme if I’m good enough and all that.\rLike, as if I need to prove anything.\nSo, let’s team up.\rLike we did at the Spear Pillar.\nLet’s show those guys how good we are!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Yeah, that’s what I’m\ntalking about!\rSo there’s an Elite Four and a Gym\nLeader. We can whoop ’em!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey, seriously, can I say\nsomething?\rWhat’s all that about?\nToss me a bone here!\rCome on, I’m stuck here.\nI need your help!</language>
+	</row>
+	<row id="pl_msg_00000192_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Come on, let’s show them\nhow tough we really are!</language>
+	</row>
+	<row id="pl_msg_00000192_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: Yo, Trainer!\nIt’s been too long, amigo!\rNow I don’t know what your pal speedy\nthere’s been spouting...\rBut we’re not doing this out of spite\nor anything bad natured like that.\rThe Battle Frontier behind us is where\nthe best Trainers gather.\rWe’re being kind enough to let you\nsee if you’re up to the challenge!\rYou really ought to be grateful!</language>
+	</row>
+	<row id="pl_msg_00000192_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: You only want to go into the\nFrontier, don’t you?\rI’m sorry about my friend.\nHe’s off on his own thing...</language>
+	</row>
+	<row id="pl_msg_00000192_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: This situation just cooks!\nThe drama and tension sizzles!\rFlint, the fiery master of fire Pokémon,\nis going to put you to the test!\fLet Flint see how hot your spirit burns!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: I don’t know how I managed to\nget myself into this, but...\rShow me the skills that got you through\nthe Pokémon League!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: ...\n...\r...\n...\r...\n...\r</language>
+	</row>
+	<row id="pl_msg_00000192_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Hey! Don’t burn out on us!\nNow you’re just getting in the way.\r</language>
+	</row>
+	<row id="pl_msg_00000192_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Volkner: Hahaha!\nThat was a blast!\rOur combination came up short, but\nyou’re also a lot tougher as well.\rPromise me we’ll do this again.\nI’ll see to taking this husk home.\r</language>
+	</row>
+	<row id="pl_msg_00000192_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: See?\nI got a lot tougher, yeah?\rOK, I’m off to the Fronti...\r</language>
+	</row>
+	<row id="pl_msg_00000192_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Thud!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000192_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s this all about?!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What the...\r{SIZE 200}...Daddy?!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000192_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Palmer: Huh? Ah!\rIf it isn’t {STRVAR_1 3, 0, 0}!\nYou’ve grown all sturdy!\rAnd {STRVAR_1 3, 1, 0}, too! I haven’t\nseen you in a long time, either!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, your mother told me\nyou’d gone off to the Battle Zone.\rSo I had to come running looking for\nyou.\rSo, are you two going to take the\nBattle Frontier challenge?\rThe Frontier has five facilities that\nare all dedicated to battling.\rEach one has a unique set of rules,\nso they’re all different.\rOf course, you have to be good to win\nat any of them.\rAnyway, I’m satisfied to see that\nyou’re both doing well.\rI’ll go back to my usual place in the\nBattle Tower.\rI’ll be looking forward to your\nchallenge.\r</language>
+	</row>
+	<row id="pl_msg_00000192_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: My dad is cool, huh?\nI mean, when it gets right down to it.\fYou think so too, right?\rHe’s a Frontier Brain, after all.\nHe’s the Tower Tycoon!\rI want to be cool like my dad!\r{STRVAR_1 3, 1, 0}, that’s the one reason\nI decided to become a Trainer!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ooh, what am I going to do?\rShould I make the challenge now?\nOr do I train some more?\r</language>
+	</row>
+	<row id="pl_msg_00000192_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK! I’ve decided!\nI’m going to get tougher! By a lot!\rI finally made it here!\nThere’s no need for haste now.\r</language>
+	</row>
+	<row id="pl_msg_00000192_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Who are you guys?\rWhat makes an Elite Four and a Gym\nLeader want to take you on?</language>
+	</row>
+	<row id="pl_msg_00000192_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, hey.\nI just watched you two battle.\rYou’re something special, aren’t you?\nBeating an Elite Four like that.\rOh, right, howdy.\nThe name’s Buck.\rI’m usually training at the Survival\nArea or Stark Mountain.\rYou should come up there.\nYou’ll get toughened up for sure!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Anyways, howdy, I’m Buck.\nSheesh, that punk can’t beat me.\rSo, do you know that zippity-doodah\nof a Trainer?\rYou should chase after that guy\nand tell him not to underestimate\fthe volcano.\rOh, but you know what?\rYou’d better shape up at the\nBattle Tower first, too.\rI don’t like your chances of getting\nto the volcano, otherwise.\rBe seeing you!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can learn a lot by watching other\nTrainers battle.\rI can’t wait to cast my eyes on a battle\nwith an Elite Four and a Gym Leader!</language>
+	</row>
+	<row id="pl_msg_00000192_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can’t believe I’m going to see a\nbattle involving the best Trainers!\rThat’s what I get for living right in\nfront of the Frontier.\rI must be lucky!</language>
+	</row>
+	<row id="pl_msg_00000192_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s a lot to think about in any\ntwo-on-two battle.\rIt puts the focus on the Trainer’s\nknowledge and skills.</language>
+	</row>
+	<row id="pl_msg_00000192_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are Volkner and Flint really good\nfriends?\rI’ve heard all they ever do is argue\nand bicker.</language>
+	</row>
+	<row id="pl_msg_00000192_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An Elite Four and a Gym Leader...\nThat combination’s intriguing!</language>
+	</row>
+	<row id="pl_msg_00000192_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy, Trainer!\nYou have a Pokédex, do you?\rThe person who gave you that must be\nwaiting for you to fill it completely.</language>
+	</row>
+	<row id="pl_msg_00000192_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy, Trainer!\nHave you been to the Battle Frontier?\rIt’s a good place to learn about the\nintricacies of battling.\rLike how certain Pokémon can battle\nwith certain moves and so on.</language>
+	</row>
+	<row id="pl_msg_00000192_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The way the Battle Tower looms...\rIt really is a wall that stands\nbefore every Trainer.</language>
+	</row>
+	<row id="pl_msg_00000192_00032" index="32">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000192_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve battled many Trainers over\nthe years.\rI’ve gained some confidence in my\nskill levels, too.\rBut the world is still a huge place.\nIt’s not easy to win in life!</language>
+	</row>
+	<row id="pl_msg_00000192_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Because of the volcano, the land\naround here is craggy.\rThe rough terrain and all the ups\nand downs make it hard to hike.</language>
+	</row>
+	<row id="pl_msg_00000192_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon League’s Elite Four\ncome here sometimes!</language>
+	</row>
+	<row id="pl_msg_00000192_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon are from Sinnoh,\naren’t they?\rThey’re not what we’re used to\nseeing around here.</language>
+	</row>
+	<row id="pl_msg_00000192_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s no end to becoming tough!\rI just made that up, but it sounds\nkind of cool, huh?</language>
+	</row>
+	<row id="pl_msg_00000192_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s up? Do you want to sail to\nSnowpoint City?</language>
+	</row>
+	<row id="pl_msg_00000192_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aye, right!\nIt’s anchors aweigh, then!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, right. You’d rather just fly\neverywhere in some big hurry.</language>
+	</row>
+	<row id="pl_msg_00000192_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whenever I go to a new place, I get\nexcited over what I might discover.\rBut places I’ve visited before...\rEven those places thrill me with\nnew discoveries!</language>
+	</row>
+	<row id="pl_msg_00000192_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm!\nA Super Rod is really good!\rWouldn’t you agree?</language>
+	</row>
+	<row id="pl_msg_00000192_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm!\nWe’re of identical minds!\rHmm!\nTake this {STRVAR_1 8, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wherever there’s water, try your\nluck at fishing.</language>
+	</row>
+	<row id="pl_msg_00000192_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Don’t you like to fish?</language>
+	</row>
+	<row id="pl_msg_00000192_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s that?\nAny advice for fishing?\rWell, I’ll tell you.\nIt’s all about the rod and technique!</language>
+	</row>
+	<row id="pl_msg_00000192_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fight Area\nBattles Galore</language>
+	</row>
+	<row id="pl_msg_00000192_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Frontier Ahead\nAim to Win Glory with Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000192_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 225 Ahead\nA Road of Challenges</language>
+	</row>
+	<row id="pl_msg_00000192_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\rYou’re not the only one who’s getting\ntougher, you know!\rI’ll prove it to you!\nGet ready to battle!\r</language>
+	</row>
+	<row id="pl_msg_00000192_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: ...!\nIt’s OK, though.\r{STRVAR_1 3, 1, 0}, the tougher you get,\nthe tougher we can get, too.\rThere’s no end to Pokémon.\nThat’s what I’m saying, {STRVAR_1 3, 1, 0}.</language>
+	</row>
+</body>

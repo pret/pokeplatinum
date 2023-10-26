@@ -31,7 +31,7 @@ BOOL sub_0204E7B4 (UnkStruct_0203E724 * param0)
     u16 v2 = inline_02049538(param0);
     u16 * v3 = inline_0204FCAC(param0);
 
-    *v3 = sub_0207D60C(sub_0207D990(v0->unk_0C), v1, v2, 4);
+    *v3 = Bag_SubtractItem(sub_0207D990(v0->unk_0C), v1, v2, 4);
     return 0;
 }
 
@@ -83,7 +83,7 @@ BOOL sub_0204E934 (UnkStruct_0203E724 * param0)
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 
-    *v2 = (u16)Item_GetAttribute(v1, 5, 11);
+    *v2 = (u16)Item_LoadParam(v1, 5, 11);
     return 0;
 }
 

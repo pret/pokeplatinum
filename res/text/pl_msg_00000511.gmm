@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="61163" />
+	<row id="pl_msg_00000511_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Route 218 up ahead is a great fishing\nhole that’s almost unknown to people.</language>
+	</row>
+	<row id="pl_msg_00000511_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes, sir!\nAn Old Rod is a good thing!\rYou think so too, am I right?</language>
+	</row>
+	<row id="pl_msg_00000511_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes! Good answer!\nWe can be friends!\rHere you go.\nThat’s my {STRVAR_1 8, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000511_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You should fish wherever there is\na body of water.\rOh, and by the way, did you need\nany tips on using that fishing rod?</language>
+	</row>
+	<row id="pl_msg_00000511_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, really?\nYou don’t like to fish?</language>
+	</row>
+	<row id="pl_msg_00000511_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">First, you face any body of water,\nthen you use your fishing rod.\rNext, you focus!\nIf a Pokémon bites, “!” appears.\fThat’s your cue to reel it in!</language>
+	</row>
+	<row id="pl_msg_00000511_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you’re fishing for Pokémon,\nthe first hurdle is getting a bite.\rWhen you reel the Pokémon in, you’ve\ngot to battle it.\rSo, fishing gives you twice the fun!</language>
+	</row>
+</body>

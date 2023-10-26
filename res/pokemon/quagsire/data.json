@@ -1,0 +1,110 @@
+{
+    "name": "Quagsire",
+    "base_stats": {
+        "hp": 95,
+        "attack": 85,
+        "defense": 85,
+        "speed": 35,
+        "special_attack": 65,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 137,
+    "ev_yields": {
+        "hp": 2,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "WATER_1",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_DAMP",
+        "ABILITY_WATER_ABSORB"
+    ],
+    "great_marsh_flee_rate": 60,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM36",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM71",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM04",
+            "HM06",
+            "HM07"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_WATER_GUN",
+                "MOVE_TAIL_WHIP",
+                "MOVE_MUD_SPORT"
+            ],
+            "5": "MOVE_MUD_SPORT",
+            "9": "MOVE_MUD_SHOT",
+            "15": "MOVE_SLAM",
+            "19": "MOVE_MUD_BOMB",
+            "24": "MOVE_AMNESIA",
+            "31": "MOVE_YAWN",
+            "36": "MOVE_EARTHQUAKE",
+            "41": "MOVE_RAIN_DANCE",
+            "48": [
+                "MOVE_MIST",
+                "MOVE_HAZE"
+            ],
+            "53": "MOVE_MUDDY_WATER"
+        }
+    }
+}

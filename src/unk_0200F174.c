@@ -3,7 +3,7 @@
 
 #include "enums.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200F600.h"
 #include "functypes/funcptr_0200F634.h"
@@ -54,8 +54,8 @@ static void sub_0200F46C(UnkStruct_0200F46C * param0);
 static void sub_0200F814(UnkStruct_0200F46C * param0);
 static void sub_0200F600(UnkStruct_0200F600 * param0);
 static void sub_0200F61C(void * param0);
-static void sub_0200F728(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_0200F748(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0200F728(SysTask * param0, void * param1);
+static void sub_0200F748(SysTask * param0, void * param1);
 static BOOL sub_0200F4C4(UnkStruct_0200F4C4 * param0, UnkStruct_0200F7A0 * param1, UnkStruct_0200F7A0 * param2);
 static void sub_0200F534(BOOL * param0, UnkStruct_0200F7A0 * param1);
 static BOOL sub_0200F550(UnkStruct_0200F7A0 * param0);
@@ -66,7 +66,7 @@ static u16 sub_0200F768(UnkStruct_0200F46C * param0, u16 param1);
 static u16 sub_0200F77C(const UnkStruct_0200F46C * param0);
 static void sub_0200F7E4(UnkStruct_0200F7A0 * param0);
 static void sub_0200F7B4(UnkStruct_0200F7A0 * param0);
-static void sub_0200F7A0(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0200F7A0(SysTask * param0, void * param1);
 
 const static UnkFuncPtr_0200F6D8 Unk_020E5074[] = {
     sub_0200F85C,
@@ -165,7 +165,7 @@ void sub_0200F27C (void)
     }
 }
 
-BOOL sub_0200F2AC (void)
+BOOL ScreenWipe_Done (void)
 {
     if (Unk_021BF474.unk_14C) {
         return 0;
@@ -472,21 +472,21 @@ void sub_0200F704 (UnkStruct_0200F600 * param0, int param1, int param2)
     sub_0200DA3C(sub_0200F748, v0, 1024);
 }
 
-static void sub_0200F728 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0200F728 (SysTask * param0, void * param1)
 {
     UnkStruct_0200F6D8 * v0 = (UnkStruct_0200F6D8 *)param1;
 
     sub_0200F634(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_0C);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(param1);
 }
 
-static void sub_0200F748 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0200F748 (SysTask * param0, void * param1)
 {
     UnkStruct_0200F704 * v0 = (UnkStruct_0200F704 *)param1;
 
     sub_0200F6AC(v0->unk_00, v0->unk_04);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(param1);
 }
 
@@ -521,12 +521,12 @@ static u16 sub_0200F77C (const UnkStruct_0200F46C * param0)
     return param0->unk_150;
 }
 
-static void sub_0200F7A0 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0200F7A0 (SysTask * param0, void * param1)
 {
     UnkStruct_0200F7A0 * v0 = param1;
 
     sub_0200F44C(v0->unk_10, 0);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void sub_0200F7B4 (UnkStruct_0200F7A0 * param0)

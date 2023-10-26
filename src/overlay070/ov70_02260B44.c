@@ -200,7 +200,7 @@ void ov70_02260CE4 (UnkStruct_ov70_02260BB8 * param0, int param1, int param2, u3
     param0->unk_126 = param1;
 
     v1 = ov70_022613F4(param1, param2, param3);
-    v0 = NARC_ctor(175, param3);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_LOBBY, param3);
 
     Heap_FndInitAllocatorForExpHeap(&param0->unk_494, param4, 4);
 
@@ -449,11 +449,11 @@ void ov70_0226111C (UnkStruct_ov70_02260BB8 * param0, UnkStruct_ov70_022610B8 * 
             break;
         case 5:
             param1->unk_C0[param2] = 0;
-            param1->unk_CD[param2] = sub_0201D35C() % param1->unk_CC;
+            param1->unk_CD[param2] = MTRNG_Next() % param1->unk_CC;
             break;
         case 6:
             param1->unk_C0[param2] = 0;
-            param1->unk_CD[param2] = sub_0201D35C() % param1->unk_CC;
+            param1->unk_CD[param2] = MTRNG_Next() % param1->unk_CC;
             break;
         }
 
@@ -1059,7 +1059,7 @@ static void ov70_02261C60 (UnkStruct_ov70_02260BB8 * param0, UnkStruct_ov70_0226
                     v1 = ov70_02261498(&param1->unk_C0[v0], &param1->unk_7C[v0], param1->unk_DC);
 
                     if (v1 == 1) {
-                        param1->unk_CD[v0] = sub_0201D35C() % param1->unk_CC;
+                        param1->unk_CD[v0] = MTRNG_Next() % param1->unk_CC;
                         param1->unk_C0[v0] = 0;
                     }
 

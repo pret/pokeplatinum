@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="36554" />
+	<row id="pl_msg_00000475_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000475_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cycling Road is open only to cyclists.\nYou must be on a Bicycle.\r</language>
+	</row>
+	<row id="pl_msg_00000475_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Learn how to shift gears, and you’ll\nbe able to ride anywhere.</language>
+	</row>
+	<row id="pl_msg_00000475_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s a Bicycle without this?\rYou’ve got to have a Flag!\nIt’s a Pokémon Accessory!\r</language>
+	</row>
+	<row id="pl_msg_00000475_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Go through Mt. Coronet from here,\nand you can get to Hearthome City.\rHearthome is where they hold Pokémon\nContests.\rYou should dress up your Pokémon for\nContests with your Accessories.</language>
+	</row>
+</body>

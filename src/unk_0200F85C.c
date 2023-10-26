@@ -4,7 +4,7 @@
 #include "inlines.h"
 #include "enums.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200F600.h"
 #include "struct_defs/struct_0200F7A0.h"
@@ -303,14 +303,14 @@ static void sub_02010588(UnkStruct_02010588 * param0, int param1, int param2, in
 static void sub_020105EC(UnkStruct_02010588 * param0);
 static void sub_020105F4(UnkStruct_02010588 * param0);
 static UnkStruct_02010FC0 * sub_02010604(UnkStruct_02010588 * param0, int param1);
-static void sub_02010624(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02010624(SysTask * param0, void * param1);
 static void sub_020106A8(UnkStruct_02010658 * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9);
 static void sub_02010710(UnkStruct_02010658 * param0, int param1, int param2, int param3);
 static void sub_02010728(UnkStruct_0201076C * param0, int param1, int param2, int param3, int param4);
 static void sub_0201076C(UnkStruct_0201076C * param0);
 static void sub_02010784(UnkStruct_0200F600 * param0, UnkStruct_0201076C * param1, u32 param2);
 static void sub_0201079C(UnkStruct_0200F600 * param0, UnkStruct_0201076C * param1, u32 param2);
-static void sub_020107AC(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_020107AC(SysTask * param0, void * param1);
 static void sub_020107D8(void * param0);
 static void sub_02010238(UnkStruct_0200F7A0 * param0, int param1);
 static BOOL sub_020102D8(UnkStruct_0200F7A0 * param0);
@@ -1677,7 +1677,7 @@ static UnkStruct_02010FC0 * sub_02010604 (UnkStruct_02010588 * param0, int param
     return param0->unk_00 + param1;
 }
 
-static void sub_02010624 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02010624 (SysTask * param0, void * param1)
 {
     UnkStruct_02010588 * v0 = (UnkStruct_02010588 *)param1;
     UnkStruct_02010FC0 * v1;
@@ -1688,7 +1688,7 @@ static void sub_02010624 (UnkStruct_0201CD38 * param0, void * param1)
         memcpy(v1->unk_00, v1->unk_300, sizeof(short) * 2 * 192);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static void sub_02010658 (int param0, UnkStruct_02010658 * param1, int param2)
@@ -1756,7 +1756,7 @@ static void sub_0201079C (UnkStruct_0200F600 * param0, UnkStruct_0201076C * para
     sub_0200F704(param0, param1->unk_309, param2);
 }
 
-static void sub_020107AC (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020107AC (SysTask * param0, void * param1)
 {
     UnkStruct_0201076C * v0 = param1;
     int v1;
@@ -1765,7 +1765,7 @@ static void sub_020107AC (UnkStruct_0201CD38 * param0, void * param1)
         memcpy(v0->unk_00[v1].unk_C0, v0->unk_00[v1].unk_00, sizeof(u8) * 192);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
 static inline void inline_020107D8_sub (int param0, BOOL param1, int param2)

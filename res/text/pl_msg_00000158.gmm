@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="42042" />
+	<row id="pl_msg_00000158_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A myth says that Mt. Coronet parted\nSinnoh into halves.\rSeeing the Pokémon SHELLOS makes me\nthink maybe the myth is real.</language>
+	</row>
+	<row id="pl_msg_00000158_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If there are people who desire to\nsee them, Pokémon will appear in\fmany different guises.</language>
+	</row>
+	<row id="pl_msg_00000158_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BUNEARY: Nii nii!</language>
+	</row>
+</body>

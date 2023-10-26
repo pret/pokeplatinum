@@ -1,0 +1,107 @@
+{
+    "name": "Venusaur",
+    "base_stats": {
+        "hp": 80,
+        "attack": 82,
+        "defense": 83,
+        "speed": 80,
+        "special_attack": 100,
+        "special_defense": 100
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 208,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_OVERGROW",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_GROWL",
+                "MOVE_LEECH_SEED",
+                "MOVE_VINE_WHIP"
+            ],
+            "3": "MOVE_GROWL",
+            "7": "MOVE_LEECH_SEED",
+            "9": "MOVE_VINE_WHIP",
+            "13": [
+                "MOVE_POISON_POWDER",
+                "MOVE_SLEEP_POWDER"
+            ],
+            "15": "MOVE_TAKE_DOWN",
+            "20": "MOVE_RAZOR_LEAF",
+            "23": "MOVE_SWEET_SCENT",
+            "28": "MOVE_GROWTH",
+            "31": "MOVE_DOUBLE_EDGE",
+            "32": "MOVE_PETAL_DANCE",
+            "39": "MOVE_WORRY_SEED",
+            "45": "MOVE_SYNTHESIS",
+            "53": "MOVE_SOLAR_BEAM"
+        }
+    }
+}

@@ -25,7 +25,7 @@ UnkStruct_ov66_02231428 ov66_02234EA8 (u16 param0, u8 param1, UnkStruct_ov66_022
     UnkStruct_ov66_02231428 v4;
     NARC * v5;
 
-    v5 = NARC_ctor(102, param3);
+    v5 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH_PLACE, param3);
 
     ov66_02234F2C(v5, param3, 219, 3, &v0);
     ov66_02234F2C(v5, param3, param0, param1, &v1);

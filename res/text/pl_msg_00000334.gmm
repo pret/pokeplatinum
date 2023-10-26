@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="28283" />
+	<row id="pl_msg_00000334_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Can’t be seen</language>
+	</row>
+	<row id="pl_msg_00000334_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Close</language>
+	</row>
+	<row id="pl_msg_00000334_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Town Map</language>
+	</row>
+	<row id="pl_msg_00000334_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TMapNrm</language>
+	</row>
+	<row id="pl_msg_00000334_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TMapJump</language>
+	</row>
+	<row id="pl_msg_00000334_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TMapBG</language>
+	</row>
+	<row id="pl_msg_00000334_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mail</language>
+	</row>
+	<row id="pl_msg_00000334_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Create</language>
+	</row>
+	<row id="pl_msg_00000334_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Look</language>
+	</row>
+	<row id="pl_msg_00000334_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Poffin Case</language>
+	</row>
+	<row id="pl_msg_00000334_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Poffin</language>
+	</row>
+	<row id="pl_msg_00000334_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Poffin Max</language>
+	</row>
+	<row id="pl_msg_00000334_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No Poffin</language>
+	</row>
+	<row id="pl_msg_00000334_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Poffin Cooking</language>
+	</row>
+	<row id="pl_msg_00000334_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cook alone</language>
+	</row>
+	<row id="pl_msg_00000334_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Script</language>
+	</row>
+	<row id="pl_msg_00000334_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Tower</language>
+	</row>
+	<row id="pl_msg_00000334_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">synchronize random seeds</language>
+	</row>
+	<row id="pl_msg_00000334_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Clear Room F</language>
+	</row>
+	<row id="pl_msg_00000334_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Max Records</language>
+	</row>
+	<row id="pl_msg_00000334_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">wifi dummy data</language>
+	</row>
+	<row id="pl_msg_00000334_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BP500</language>
+	</row>
+	<row id="pl_msg_00000334_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BP9998</language>
+	</row>
+</body>

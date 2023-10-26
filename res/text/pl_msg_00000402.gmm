@@ -1,0 +1,1002 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="5120" />
+	<row id="pl_msg_00000402_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At our restaurant, you can enjoy\nmore than just exquisite dining.\rYou may also partake in battles.\nBon appetit!</language>
+	</row>
+	<row id="pl_msg_00000402_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I am so sorry.\nWe are now closed.\fPlease do visit while we are open.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Before we make our toast, I’d hoped\nfor a battle...\rHowever, you seem to be short\na Pokémon for that.</language>
+	</row>
+	<row id="pl_msg_00000402_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you want to have a battle with us,\nyou’ll need to bring more Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000402_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">With someone as beautiful as you for\nmy model, I am sure to paint\fa masterpiece!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is it?\nDo you wish for a battle?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Though we lost our battle...\nA toast to your beauty, that no\fpainting could ever hope to capture!</language>
+	</row>
+	<row id="pl_msg_00000402_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">He said he’d treat me to a dinner\nhere if I agreed to model for him.\rSo, I came along, but I haven’t\nmade up my mind yet.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I can’t decide, I battle\nto make the decision!</language>
+	</row>
+	<row id="pl_msg_00000402_00010" index="10">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve decided to model for him.\nThat’s given me an appetite!</language>
+	</row>
+	<row id="pl_msg_00000402_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is no price too high for the\nsake of my art...\rThat said, my oh my, these meals\nlook awfully pricey...\r</language>
+	</row>
+	<row id="pl_msg_00000402_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is it?\nAre you feeling hungry, too?\rOh, I see, that’s not it!\nYou wanted a battle!</language>
+	</row>
+	<row id="pl_msg_00000402_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My hors d’oeuvres have gone cold...</language>
+	</row>
+	<row id="pl_msg_00000402_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I have to slow down on eating these\ndelicious hors d’oeuvres.\rI don’t want to be all bloated by\nthe time the main dish comes.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’d like a light battle to work up\nmy appetite.\rWould you care to join us?</language>
+	</row>
+	<row id="pl_msg_00000402_00018" index="18">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The hors d’oeuvres haven’t grown\ncold...\rThese are supposed to be served\nchilled!</language>
+	</row>
+	<row id="pl_msg_00000402_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The worth of a meal isn’t determined\nmerely by its flavor.\rPresentation, that is, color and\nplacement, is vital.\rIn other words, a fine meal can be\nlikened to the finest work of art...\r</language>
+	</row>
+	<row id="pl_msg_00000402_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">And in Pokémon battles, I also hope\nto see beauty.\rYou do agree with me, yes?</language>
+	</row>
+	<row id="pl_msg_00000402_00022" index="22">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The meals prepared here are not\nmerely tasty, they are also healthy.\rDiners need not worry about ruining\ntheir figures eating here.</language>
+	</row>
+	<row id="pl_msg_00000402_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Today’s main dish is scrumptiously\ndelicious!\rIf I can keep eating this food,\nI’ll model anytime I can!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I feel guilty just eating all this\ndelicious food like this.\rI’ll join in the battle, too!</language>
+	</row>
+	<row id="pl_msg_00000402_00026" index="26">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The models of great paintings were\noften rather plump.\rThat means I can keep eating without\nobsessing over my figure!</language>
+	</row>
+	<row id="pl_msg_00000402_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you want to challenge us, bring\nsome more Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000402_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you want to battle us, you have\nto have at least two Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000402_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Actually, my father happens to be\nthe chef here.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is it? A battle?\nBahaha... You think you can beat me?</language>
+	</row>
+	<row id="pl_msg_00000402_00032" index="32">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’ve lost, but let’s make a toast\nto our future together anyway!</language>
+	</row>
+	<row id="pl_msg_00000402_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, my!\nYour father is the chef here?\rHow wonderful!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I haven’t told him, but my father owns\nthe hotel and restaurant...\rOh, but that’s beside the point.\nWould you care for a battle?</language>
+	</row>
+	<row id="pl_msg_00000402_00036" index="36">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s make a toast to the prosperity\nof the restaurant!</language>
+	</row>
+	<row id="pl_msg_00000402_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I have to hand it to my father--\nthese hors d’oeuvres are delicious!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Are you maybe asking me for\na battle?\rWell, certainly!\nI never back down from a challenge!</language>
+	</row>
+	<row id="pl_msg_00000402_00040" index="40">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Finally. Now we can go about enjoying\nour meal without disruption.</language>
+	</row>
+	<row id="pl_msg_00000402_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes! This meal is good enough to\nserve at the hotel.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please don’t tell my date that my\nfather owns the restaurant.\rI’ll have a battle with you if you\nkeep your mouth shut.</language>
+	</row>
+	<row id="pl_msg_00000402_00044" index="44">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My date did his best, but you were\nbetter than the both of us.</language>
+	</row>
+	<row id="pl_msg_00000402_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fufufu, my date’s really enjoying\nmy dad’s cooking.\rShe has a dreamy expression after\nevery bite!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m feeling great!\nSure, I’ll have a battle with you.\rThat’s why you approached us, right?</language>
+	</row>
+	<row id="pl_msg_00000402_00048" index="48">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My prowess as a Trainer isn’t up to\nsnuff...\rIt’s not like my father’s scrumptious\ncooking...</language>
+	</row>
+	<row id="pl_msg_00000402_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This succulent flavor!\nIt reminds me of a world trip I took.\rMy father and I traveled everywhere\ndining at only the best restaurants.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eating this fabulous meal has really\nlifted my spirits.\rJoin us for a battle?</language>
+	</row>
+	<row id="pl_msg_00000402_00052" index="52">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your father’s cooking has a very\nmagical quality to it.\rIt seems to perk people up with\nenergy.</language>
+	</row>
+	<row id="pl_msg_00000402_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If your intention is to test your\nskill on us, I daresay you ought to\fbring at least another Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000402_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you’re offering to do battle\nwith us? How nice of you.\rUnfortunately, you simply cannot\nbattle us both with just one Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000402_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let me propose a toast to many\nmore happy years together.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00057" index="57">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Since I took my retirement, I’ve been\ntraveling with my wife.\rWe both enjoy searching for delicious\ndining experiences.\rYou seem to enjoy battling with\nPokémon. Am I right?</language>
+	</row>
+	<row id="pl_msg_00000402_00058" index="58">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00059" index="59">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, so much for that. Let’s try to\nenjoy the rest of our meal.</language>
+	</row>
+	<row id="pl_msg_00000402_00060" index="60">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">To our health, welfare, and to fine\ndining! Cheers!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00061" index="61">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A toast before a meal helps stimulate\nthe appetite, I find.\rBut that’s neither here nor there.\nYou wanted a battle, surely?</language>
+	</row>
+	<row id="pl_msg_00000402_00062" index="62">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00063" index="63">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gourmet dining in restaurants and\nexhilarating Pokémon battles...\rThere is so much contentment in my\nlife!</language>
+	</row>
+	<row id="pl_msg_00000402_00064" index="64">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm!\nNow, this is special!\rIt appears as if it were only grazed\nwith fire, but in reality, much\fcare has gone into its preparation!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00065" index="65">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you get to be an accomplished\ngourmet like myself, one can tell at\fa glance if a dish is delicious or not.\rYou would battle against such\na discerning gourmet?</language>
+	</row>
+	<row id="pl_msg_00000402_00066" index="66">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00067" index="67">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, so much for that.\rWe’ll keep a stiff upper lip and look\nforward to enjoying the main course.</language>
+	</row>
+	<row id="pl_msg_00000402_00068" index="68">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">These hors d’oeuvres are simply\ndivine!\rThey tell me that I can expect the\nmain course to be fantastic!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00069" index="69">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I thought the main course arrived\nalready...\rYou’re a Trainer seeking battle?</language>
+	</row>
+	<row id="pl_msg_00000402_00070" index="70">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00071" index="71">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The hors d’oeuvres were most\nexcellent!</language>
+	</row>
+	<row id="pl_msg_00000402_00072" index="72">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm!\nThe chef flambeed this to perfection!\rThe rich aromas and flavors fill my\nmouth with joy!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00073" index="73">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re throwing down a challenge\nin the middle of our meal?\rI would say you’re a very dedicated\nTrainer, especially for one so young!</language>
+	</row>
+	<row id="pl_msg_00000402_00074" index="74">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00075" index="75">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah... I’m very satisfied with our\nmeal and our battle.</language>
+	</row>
+	<row id="pl_msg_00000402_00076" index="76">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...!\nThis sauce!\rIt’s a spicy sauce in Hoenn style\nmade from grated Cheri Berries!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00077" index="77">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to sample a bite?\r...\nOh, right. Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000402_00078" index="78">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00079" index="79">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battling is fine, of course.\rBut for me, I would rather be out\nenjoying good meals.</language>
+	</row>
+	<row id="pl_msg_00000402_00080" index="80">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you want to battle us, you\nhave to have two Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000402_00081" index="81">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Don’t you have two Pokémon?\nWe’ll have to battle another time!</language>
+	</row>
+	<row id="pl_msg_00000402_00082" index="82">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alison, um, I, er...\nThank you for coming today...\rShould we make a toast?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00083" index="83">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">She’s the girl from the Pokémon-goods\nshop I go to all the time.\rWe’re incredibly happy together.\nWould you like to battle us?</language>
+	</row>
+	<row id="pl_msg_00000402_00084" index="84">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00085" index="85">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, no, I’m sorry we lost.\nAlison, you’re not upset?</language>
+	</row>
+	<row id="pl_msg_00000402_00086" index="86">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fufu... Eugene, you act so different\nfrom the way you do at the shop.\rYou’re surprisingly shy.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00087" index="87">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I work at a Pokémon-goods shop\nbecause I love Pokémon.\rThe job lets me be with Pokémon\nall day long.\rIt naturally made me pretty decent\nat battling. Want to try me?</language>
+	</row>
+	<row id="pl_msg_00000402_00088" index="88">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00089" index="89">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I don’t worry much about winning\nor losing.\rI keep my Pokémon with me because\nI love them!</language>
+	</row>
+	<row id="pl_msg_00000402_00090" index="90">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If my Pokémon buddies hear I went\non a date with you, Alison...\rThey’re probably going to hate me\nfor it...\r</language>
+	</row>
+	<row id="pl_msg_00000402_00091" index="91">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you Alison’s fan, too?</language>
+	</row>
+	<row id="pl_msg_00000402_00092" index="92">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00093" index="93">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Alison, seeing your smiling face...\rI can’t tell if these appetizers\nare delicious or not!</language>
+	</row>
+	<row id="pl_msg_00000402_00094" index="94">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry? What? Date?\rUm... Eugene...\nYou are a valued customer and all...\r</language>
+	</row>
+	<row id="pl_msg_00000402_00095" index="95">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Even though I said that, I admit\nthe invitation was flattering.\rSo I accepted his invitation.\rI’ll let my Pokémon decide for my fickle\nheart. Let’s battle?</language>
+	</row>
+	<row id="pl_msg_00000402_00096" index="96">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00097" index="97">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know, it is true what they say.\nThere is no evil among Pokémon fans!\rThat goes for you and Eugene!</language>
+	</row>
+	<row id="pl_msg_00000402_00098" index="98">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looks like our main course is here.\nPlease, enjoy yourself.\rI’ve got the bill covered today!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00099" index="99">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll defeat you and collect the\nprize money!</language>
+	</row>
+	<row id="pl_msg_00000402_00100" index="100">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00101" index="101">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My wallet’s empty after paying the\nprize money...\rOh, no, it’s OK! No need to worry!\nI still have my secret stash of cash!</language>
+	</row>
+	<row id="pl_msg_00000402_00102" index="102">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eugene, I think you’re a little\nawkward, but you’re very earnest.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00103" index="103">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If I team up with my date, it could\nbe an interesting combination.\rI think we could battle in an intriguing\nmanner. Do you?</language>
+	</row>
+	<row id="pl_msg_00000402_00104" index="104">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00105" index="105">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The meal was delicious, and our battle\nwas so much fun.\rI really insist that we split the bill.</language>
+	</row>
+	<row id="pl_msg_00000402_00106" index="106">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you have two Pokémon, I’ll take\nyou on with my mom.</language>
+	</row>
+	<row id="pl_msg_00000402_00107" index="107">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m willing to have a battle with\nmy son, my pride and joy.\rBut you must bring more Pokémon\nthan that.</language>
+	</row>
+	<row id="pl_msg_00000402_00108" index="108">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What should I have today?\nJuice, ice cream, cake, and, and...\r</language>
+	</row>
+	<row id="pl_msg_00000402_00109" index="109">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, hi, Trainer!\rWant to battle Pokémon with us\nbefore we have a yummy meal?</language>
+	</row>
+	<row id="pl_msg_00000402_00110" index="110">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00111" index="111">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I don’t get it. Grown-ups always have\na toast before eating.\rWhat’s that for?\nAnd I don’t see any bread?</language>
+	</row>
+	<row id="pl_msg_00000402_00112" index="112">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My dear, Mommy is so proud of you\nfor doing so well on your test.\rYou may order anything you like.\nIt’s your reward, dearest!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00113" index="113">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did you know? My boy is not only a\ngenius at school, but he’s also\fa Pokémon prodigy!\rWould you like to challenge us and\nsee?</language>
+	</row>
+	<row id="pl_msg_00000402_00114" index="114">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00115" index="115">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I wish to propose a toast.\rMay my darling Esteban get another\n100% on a test!</language>
+	</row>
+	<row id="pl_msg_00000402_00116" index="116">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow, they bring out things one dish\nat a time!\rIt’s not like how it is at home!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00117" index="117">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I do my homework while eating.\nI can battle anytime!</language>
+	</row>
+	<row id="pl_msg_00000402_00118" index="118">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00119" index="119">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re going to eat this delicious\nstuff now. Bye-bye!</language>
+	</row>
+	<row id="pl_msg_00000402_00120" index="120">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This restaurant is the talk of the\ntown for the delicious food.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00121" index="121">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I beg your pardon?\nYou want a battle now?\rWell, that’s all right.\nIt’s not as if I dislike it.</language>
+	</row>
+	<row id="pl_msg_00000402_00122" index="122">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00123" index="123">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for letting my dear son\nexperience an invaluable lesson.</language>
+	</row>
+	<row id="pl_msg_00000402_00124" index="124">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do mothers and fathers go off to\neat like this?\rI mean without taking their kids\nalong.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00125" index="125">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But that’s OK.\rIt’s way more fun for me to battle\nthan go eat fancy dinners!</language>
+	</row>
+	<row id="pl_msg_00000402_00126" index="126">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00127" index="127">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mom, you gotta make me this at home!</language>
+	</row>
+	<row id="pl_msg_00000402_00128" index="128">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is a special occasion, Esteban.\rThis is to celebrate your great\ngrades!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00129" index="129">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? A battle, you say?\nWell, certainly. Why not?</language>
+	</row>
+	<row id="pl_msg_00000402_00130" index="130">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00131" index="131">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is the dessert coming soon?</language>
+	</row>
+	<row id="pl_msg_00000402_00132" index="132">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My daughter and I always battle\ntogether, none of that one-on-one.</language>
+	</row>
+	<row id="pl_msg_00000402_00133" index="133">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can go against you with Papa.\nPlease bring more Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000402_00134" index="134">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here’s a toast for Mom.\nMay she always be healthy!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00135" index="135">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My wife’s in the hospital waiting for\nthe baby to arrive.\rSince I can’t cook, I came here with\nmy daughter.\rHow would you like a battle with\nus before we eat?</language>
+	</row>
+	<row id="pl_msg_00000402_00136" index="136">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00137" index="137">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The house will be a lot noisier when\nthe baby comes home with Mommy.</language>
+	</row>
+	<row id="pl_msg_00000402_00138" index="138">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I wonder what Mommy will bring home?\nA baby boy? A baby girl?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00139" index="139">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A boy will be a brother, and a girl\nwill be a sister.\rI’m going to be the older sister,\nso I should get better at Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000402_00140" index="140">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00141" index="141">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Little babies cry like Pokémon!\nPiyaaaah!</language>
+	</row>
+	<row id="pl_msg_00000402_00142" index="142">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow... Look at these appetizers.\nThis is just so extravagant.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00143" index="143">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m no cook, I’ll admit that freely.\rBut battling Pokémon... There’s\nsomething I’m comfortable with.</language>
+	</row>
+	<row id="pl_msg_00000402_00144" index="144">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00145" index="145">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s get over the sting of this loss\nby enjoying this delicious meal!</language>
+	</row>
+	<row id="pl_msg_00000402_00146" index="146">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow!\nThis food looks really fancy!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00147" index="147">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Papa is a rotten cook, so we can\ngo out and eat good food like this!\rDid you come to this restaurant to\nbattle Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000402_00148" index="148">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00149" index="149">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve never eaten anything like this\nbefore.</language>
+	</row>
+	<row id="pl_msg_00000402_00150" index="150">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here’s the main dish!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00151" index="151">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is it?\nDid you want to battle with us?</language>
+	</row>
+	<row id="pl_msg_00000402_00152" index="152">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00153" index="153">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jocelyn, I hope the new baby will be\nas kindhearted as you.</language>
+	</row>
+	<row id="pl_msg_00000402_00154" index="154">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I wish Mommy were here to eat with\nus...\r</language>
+	</row>
+	<row id="pl_msg_00000402_00155" index="155">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mommy gave me my Pokémon.\nWant to see how tough they are?</language>
+	</row>
+	<row id="pl_msg_00000402_00156" index="156">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00157" index="157">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Next time, let’s come with everyone.\nThe baby, too!</language>
+	</row>
+	<row id="pl_msg_00000402_00158" index="158">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yeah? What’s up?\nDid you want to be on TV, too?\rOh, right, sorry!\nYou wanted to battle!\rYou’ll be battling the two of us.\nYou need at least two Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000402_00159" index="159">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you want an autograph, you’ll\nhave to wait till we finish filming.\rOh, and if you want to battle,\nbring two Pokémon, OK?</language>
+	</row>
+	<row id="pl_msg_00000402_00160" index="160">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s start with a shot of the\ndrinks as a camera test.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00161" index="161">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hunh? You’re inviting us to battle at\na time like this?</language>
+	</row>
+	<row id="pl_msg_00000402_00162" index="162">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00163" index="163">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, man...\nOur drinks are lukewarm now.</language>
+	</row>
+	<row id="pl_msg_00000402_00164" index="164">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Today’s featured drink is freshly\nsqueezed juice made from ripened\fPecha Berries picked this morning!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00165" index="165">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pardon?\nPokémon?\rOK, a quick one before we do any\nfilming for the show.</language>
+	</row>
+	<row id="pl_msg_00000402_00166" index="166">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00167" index="167">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you think we should rehearse this\none more time?\rToday’s featured drink is freshly\nsqueezed...</language>
+	</row>
+	<row id="pl_msg_00000402_00168" index="168">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, these appetizers sure do look\ndelicious.\rWill someone bring me a mist spray\nso they look even fresher?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00169" index="169">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks, that was quick!\r...Wait, where’s the mist spray?\nOh, you want a battle?\rWhatever, then.\nI’m up for your challenge!</language>
+	</row>
+	<row id="pl_msg_00000402_00170" index="170">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00171" index="171">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Photographing food isn’t easy.\nIt’s actually very technical.</language>
+	</row>
+	<row id="pl_msg_00000402_00172" index="172">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">These look fabulous, too.\nWe need the camera to zoom in more!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00173" index="173">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please don’t talk to me while we’re\nfilming!\rOh, actually, hold on.\rA Trainer barges in on our\nfine-dining experience...\rI like that!\nIt adds drama to our story!</language>
+	</row>
+	<row id="pl_msg_00000402_00174" index="174">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00175" index="175">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Darling Darryl, are you ready?\rWhen I take a bite, I want\na close-up of my lips, all right?</language>
+	</row>
+	<row id="pl_msg_00000402_00176" index="176">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whoa...\nSo this is the main dish? Yowza!\rLet’s get this filming done quick\nso I can chow down, too!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00177" index="177">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve been sniffing around a lot...\nAre you messing with our filming?</language>
+	</row>
+	<row id="pl_msg_00000402_00178" index="178">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00179" index="179">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, no... Everything’s gone cold while\nwe were battling...</language>
+	</row>
+	<row id="pl_msg_00000402_00180" index="180">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chomp!\rMmm... This is...\nLight, and yet rich flavored...\fIt delectably melts away...\fA hint of an aftertaste, yet crisp...\fNeither too sweet nor too bitter...\fMy words can’t do this justice!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00181" index="181">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s not easy trying to describe\nfood while you’re eating.\rBut I can battle anytime during\nfilming!</language>
+	</row>
+	<row id="pl_msg_00000402_00182" index="182">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00183" index="183">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you know what the most important\nthing is for gourmet reporting?\rIt’s a...thesaurus-like vocabulary!</language>
+	</row>
+	<row id="pl_msg_00000402_00184" index="184">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll only say this once, so listen\nclosely. I’ll even say it slowly.\rTo battle against two Trainers, you\nneed two or more Pokémon.\rNow if you were to bring more\nPokémon, I could consider a battle...</language>
+	</row>
+	<row id="pl_msg_00000402_00185" index="185">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you’ll have to bring more Pokémon\nthan that to battle us!</language>
+	</row>
+	<row id="pl_msg_00000402_00186" index="186">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">And another brilliant day on the\nmarkets! A toast to my Lady Luck!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00187" index="187">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Since I’ve been with her, I’ve been\nriding a hot streak on the markets.\rI’m surfing on a wave of good luck!\nYou’re sure you want to battle us?</language>
+	</row>
+	<row id="pl_msg_00000402_00188" index="188">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00189" index="189">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is just a minor setback.\nI can easily make up for this!</language>
+	</row>
+	<row id="pl_msg_00000402_00190" index="190">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ooh! All your stocks went up again?\nYou haven’t guessed wrong yet!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00191" index="191">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My boyfriend’s a stock-market\nwizard!\rDid you know? Someone that lucky also\nhappens to make a tough Trainer.\rAre you willing to try your luck\nagainst that?</language>
+	</row>
+	<row id="pl_msg_00000402_00192" index="192">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00193" index="193">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s just one loss. We can make that\nback with a big win next time!</language>
+	</row>
+	<row id="pl_msg_00000402_00194" index="194">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s no need for technique.\rYou just have to read what’s in your\nopponent’s heart.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00195" index="195">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I say “heart,” I don’t mean\nwhat that person’s thinking.\rIt’s about how they want to be\nperceived.\rDo you... Would you like me to think\nof you as a tough Trainer?</language>
+	</row>
+	<row id="pl_msg_00000402_00196" index="196">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00197" index="197">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I had a bad feeling about this\nTrainer...</language>
+	</row>
+	<row id="pl_msg_00000402_00198" index="198">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No, really? Ooeeeh! That is so neat!\nHow can you tell these things?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00199" index="199">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My boyfriend could tell that deep\ndown, I’m actually a frightened and\flonely child!\rI don’t think I could ever lose with\nhim. Want to try?</language>
+	</row>
+	<row id="pl_msg_00000402_00200" index="200">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00201" index="201">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s amazing that you predicted you\nwould lose!</language>
+	</row>
+	<row id="pl_msg_00000402_00202" index="202">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s savor this extravagant meal\nand think of what it represents.\rWe can use that as motivation to\nkeep winning at life!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00203" index="203">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Personally, I think there are two\nkinds of people.\rThose who face up to challenges\nand those who duck and cover.\rYou’re the type who accepts\nchallenges, am I right?</language>
+	</row>
+	<row id="pl_msg_00000402_00204" index="204">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00205" index="205">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If I had the power of premonition,\nI’d be a terror on the markets.\rBut you know that’s not really\npossible.</language>
+	</row>
+	<row id="pl_msg_00000402_00206" index="206">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How can you guess right about\neverything all the time?\rDo you really have the power of\npremonition?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00207" index="207">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m convinced that he has some\nextrasensory power or something.\rI’m teaming up with a guy like that.\nAre you sure you want to do this?</language>
+	</row>
+	<row id="pl_msg_00000402_00208" index="208">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00209" index="209">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If it’s not premonition, did you...\nMaybe come from the future?</language>
+	</row>
+	<row id="pl_msg_00000402_00210" index="210">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">One Pokémon is insufficient if you\nwant to battle against us.</language>
+	</row>
+	<row id="pl_msg_00000402_00211" index="211">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you’d bring two or more Pokémon,\nwe could have a battle with you.</language>
+	</row>
+	<row id="pl_msg_00000402_00212" index="212">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm... This beverage’s coloration\nborders on the positively toxic...\rHowever, my analysis indicates that it\nis composed of natural ingredients.\r</language>
+	</row>
+	<row id="pl_msg_00000402_00213" index="213">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is it?\nYou are?\r...\n...Oh, yes, a Trainer.</language>
+	</row>
+	<row id="pl_msg_00000402_00214" index="214">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00215" index="215">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The results of that battle are\ninsignificant. Let’s drink up.</language>
+	</row>
+	<row id="pl_msg_00000402_00216" index="216">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, dear!\nI wish you wouldn’t!\rWe’re at a fancy restaurant, and you\nwant to analyze what’s served?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00217" index="217">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, you’re a Trainer?</language>
+	</row>
+	<row id="pl_msg_00000402_00218" index="218">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00219" index="219">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cheers, dear!\rPlease don’t start analyzing what\nwe just drank!</language>
+	</row>
+	<row id="pl_msg_00000402_00220" index="220">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Interesting...\nThese hors d’oeuvres are fascinating.\rPlant fiber 20%, iron 5%, protein 35%.\nCurious and curiouser...\r</language>
+	</row>
+	<row id="pl_msg_00000402_00221" index="221">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What is it now? Do you want me to\nanalyze your skill level?</language>
+	</row>
+	<row id="pl_msg_00000402_00222" index="222">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00223" index="223">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I feel compelled to analyze that\nwhich is unknown to me.\rBy defining its composition, I feel\nreassured in my knowledge.</language>
+	</row>
+	<row id="pl_msg_00000402_00224" index="224">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, dear, must you go on that way?\nIt takes the magic out of a meal.\rI wish you wouldn’t think about your\nresearch while we’re out eating!\r</language>
+	</row>
+	<row id="pl_msg_00000402_00225" index="225">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My husband never ceases to amaze\nme with his dedication to research.\rWould you care to have a battle\nwith us?</language>
+	</row>
+	<row id="pl_msg_00000402_00226" index="226">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00227" index="227">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you were to ask me, I would\nrather not know about what I don’t\funderstand. It’s simpler that way.</language>
+	</row>
+	<row id="pl_msg_00000402_00228" index="228">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">By my calculations, the main dish\nshould have arrived by now.\rPerhaps the thermal setting is too\nlow to prepare the food efficiently?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00229" index="229">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You there!\nLet’s battle to consume time!</language>
+	</row>
+	<row id="pl_msg_00000402_00230" index="230">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00231" index="231">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They brought the main course while\nwe were battling...\rThe calorie content appears to be\nalarmingly high.</language>
+	</row>
+	<row id="pl_msg_00000402_00232" index="232">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There isn’t any point getting\nimpatient over the food, dear.\rIsn’t this the sort of situation\nthat you brought your Pokémon for?\r</language>
+	</row>
+	<row id="pl_msg_00000402_00233" index="233">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, what good timing!\rWould you join us for a quick\nbattle?</language>
+	</row>
+	<row id="pl_msg_00000402_00234" index="234">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000402_00235" index="235">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, dear, if we take in too many\ncalories, we can always work them off\fby battling!</language>
+	</row>
+</body>

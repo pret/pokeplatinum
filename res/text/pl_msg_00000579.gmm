@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="29726" />
+	<row id="pl_msg_00000579_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Pokémon has a \n{STRVAR_1 7, 0, 0} nature?\rDid you know that a Pokémon’s nature\ndetermines how it will grow?</language>
+	</row>
+	<row id="pl_msg_00000579_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This area had many Pokémon from\nthe olden days.\rThey say there were big Pokémon\nranches ’round these parts.</language>
+	</row>
+</body>

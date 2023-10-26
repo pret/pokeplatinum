@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="57042" />
+	<row id="pl_msg_00000501_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The reservations were full up,\nbut they managed to get us in here.\rWe’re finally alone, the two of us,\nif you’d leave, that is.\rThis is something we don’t need\nanymore. Will you take it?\r</language>
+	</row>
+	<row id="pl_msg_00000501_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve always relied on the old\nCoin Toss to make any decision.\rIt gives me courage because I’m not\naccountable for my decisions.</language>
+	</row>
+	<row id="pl_msg_00000501_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Coin Toss is why we ended up in\nthis musty, old, and stinky suite...</language>
+	</row>
+	<row id="pl_msg_00000501_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We wanted to be together alone so\nwe could talk without being disturbed.\rWe really need this time together,\njust the two of us.</language>
+	</row>
+</body>

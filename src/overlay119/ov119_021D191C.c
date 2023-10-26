@@ -17,7 +17,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay119/ov119_021D0D80.h"
 #include "overlay119/ov119_021D191C.h"
 
@@ -75,7 +75,7 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D1028();
         param0->unk_60++;
     case 2:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             sub_0200569C();
             sub_02004550(13, 1141, 1);
             param0->unk_60++;
@@ -137,8 +137,8 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
                 int v7;
                 int v8;
 
-                v7 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
-                v8 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
+                v7 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+                v8 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
                 sub_02005844(v7, v8);
                 param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 0, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
             }
@@ -160,14 +160,14 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
 
         param0->unk_60++;
     case 10:
-        if (sub_0201D724(param0->unk_04.unk_08) != 0) {
+        if (Message_Printing(param0->unk_04.unk_08) != 0) {
             break;
         }
 
         param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 1, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
         param0->unk_60++;
     case 11:
-        if (sub_0201D724(param0->unk_04.unk_08) != 0) {
+        if (Message_Printing(param0->unk_04.unk_08) != 0) {
             break;
         }
 
@@ -216,7 +216,7 @@ static BOOL ov119_021D1930 (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D1048();
         param0->unk_60++;
     case 16:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_60++;
         }
         break;
@@ -270,7 +270,7 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D1028();
         param0->unk_60++;
     case 2:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             sub_02004550(13, 1141, 1);
             param0->unk_60++;
         }
@@ -287,8 +287,8 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
                 int v3;
                 int v4;
 
-                v3 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
-                v4 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
+                v3 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+                v4 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_FORM, NULL);
                 sub_02005844(v3, v4);
                 param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 0, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
             }
@@ -317,14 +317,14 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
 
         param0->unk_60++;
     case 10:
-        if (sub_0201D724(param0->unk_04.unk_08) != 0) {
+        if (Message_Printing(param0->unk_04.unk_08) != 0) {
             break;
         }
 
         param0->unk_04.unk_08 = ov119_021D1158(&param0->unk_04.unk_14[0], 1, param0->unk_00->unk_0C.unk_00, param0->unk_04.unk_0C);
         param0->unk_60++;
     case 11:
-        if (sub_0201D724(param0->unk_04.unk_08) != 0) {
+        if (Message_Printing(param0->unk_04.unk_08) != 0) {
             break;
         }
 
@@ -373,7 +373,7 @@ static BOOL ov119_021D1BD0 (UnkStruct_ov119_021D0FD0 * param0)
         ov119_021D1048();
         param0->unk_60++;
     case 16:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_60++;
         }
         break;
@@ -402,7 +402,7 @@ static BOOL ov119_021D1E38 (UnkStruct_ov119_021D0FD0 * param0)
         break;
     case 1:
         if ((++param0->unk_64) >= 25) {
-            sub_02005748(1812);
+            Sound_PlayEffect(1812);
 
             param0->unk_68++;
         }
@@ -434,7 +434,7 @@ static BOOL ov119_021D1E80 (UnkStruct_ov119_021D0FD0 * param0)
         v0 = ov119_021D176C(param0, 0);
 
         if (v0 == 2) {
-            sub_02005748(1812);
+            Sound_PlayEffect(1812);
 
             sub_0200D3CC(param0->unk_74, 2);
             param0->unk_68++;
@@ -474,7 +474,7 @@ static BOOL ov119_021D1EF0 (UnkStruct_ov119_021D0FD0 * param0)
         v0 = ov119_021D176C(param0, 1);
 
         if (v0 == 1) {
-            sub_02005748(1812);
+            Sound_PlayEffect(1812);
             sub_0200D3CC(param0->unk_74, 3);
             ov119_021D14DC(param0->unk_04.unk_40, 0);
         }
@@ -511,7 +511,7 @@ static BOOL ov119_021D1F48 (UnkStruct_ov119_021D0FD0 * param0)
         v0 = ov119_021D176C(param0, 2);
 
         if (v0 == 1) {
-            sub_02005748(1812);
+            Sound_PlayEffect(1812);
 
             sub_0200D3CC(param0->unk_74, 4);
             ov119_021D14DC(param0->unk_04.unk_40, 1);
@@ -552,7 +552,7 @@ static BOOL ov119_021D1FAC (UnkStruct_ov119_021D0FD0 * param0)
 
         if (v0 == 1) {
             sub_0200D3CC(param0->unk_74, 5);
-            sub_02005748(1799);
+            Sound_PlayEffect(1799);
             ov119_021D14DC(param0->unk_04.unk_40, 2);
             ov119_021D14DC(param0->unk_04.unk_40, 3);
         }
@@ -664,13 +664,13 @@ static BOOL ov119_021D21BC (UnkStruct_ov119_021D0FD0 * param0)
     case 1:
         switch (param0->unk_64) {
         case 25:
-            sub_02005748(2054);
+            Sound_PlayEffect(2054);
             break;
         case 80:
-            sub_02005748(1962);
+            Sound_PlayEffect(1962);
             break;
         case 142:
-            sub_02005748(2069);
+            Sound_PlayEffect(2069);
             break;
         }
 

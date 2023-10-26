@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_020973A8_decl.h"
+#include "struct_decls/struct_berry_data_decl.h"
 
 #include "struct_defs/struct_0202A93C.h"
 #include "overlay083/struct_ov83_0223DB4C_sub1.h"
@@ -23,7 +23,7 @@
 #include "unk_0201D15C.h"
 #include "unk_0201E3BC.h"
 #include "poffin.h"
-#include "unk_0209739C.h"
+#include "berry_data.h"
 #include "overlay083/ov83_0223F7F4.h"
 
 s32 ov83_0223F7F4 (int param0, int param1, int param2, int param3, int param4, int param5)
@@ -58,9 +58,9 @@ void ov83_0223F83C (UnkStruct_ov83_0223F820 * param0)
 {
     s32 v0;
 
-    if (Unk_021BF67C.unk_62) {
-        param0->unk_00 = Unk_021BF67C.unk_5C;
-        param0->unk_04 = Unk_021BF67C.unk_5E;
+    if (gCoreSys.unk_62) {
+        param0->unk_00 = gCoreSys.unk_5C;
+        param0->unk_04 = gCoreSys.unk_5E;
 
         if (param0->unk_14 == 0) {
             param0->unk_08 = param0->unk_00;
@@ -71,7 +71,7 @@ void ov83_0223F83C (UnkStruct_ov83_0223F820 * param0)
     param0->unk_10 = ov83_0223F7F4(param0->unk_00, param0->unk_04, param0->unk_08, param0->unk_0C, 128, 96);
     param0->unk_08 = param0->unk_00;
     param0->unk_0C = param0->unk_04;
-    param0->unk_14 = Unk_021BF67C.unk_62;
+    param0->unk_14 = gCoreSys.unk_62;
 }
 
 void ov83_0223F88C (UnkStruct_ov83_0223F88C * param0, UnkStruct_ov83_0223F820 * param1)
@@ -344,7 +344,7 @@ void ov83_0223FBBC (UnkStruct_ov83_0223FBA4 * param0, int param1, s32 param2, BO
     }
 
     if (param0->unk_04 < 0) {
-        v1 = sub_0201D35C();
+        v1 = MTRNG_Next();
         v2 = (v1 % 5);
 
         if (v2 <= param0->unk_08) {
@@ -669,7 +669,7 @@ static int ov83_0223FFA8 (u32 param0, u32 param1)
 
 void ov83_0223FFD4 (UnkStruct_ov83_0223FDB0 * param0, Poffin * param1, const UnkStruct_ov83_0223FE50 * param2, u32 param3, u32 param4)
 {
-    UnkStruct_020973A8 * v0;
+    BerryData * v0;
     int v1, v2;
     const UnkStruct_ov83_0223DB4C_sub1 * v3 = param2->unk_34.unk_00;
     s32 v4[5] = {0, 0, 0, 0, 0};
@@ -691,7 +691,7 @@ void ov83_0223FFD4 (UnkStruct_ov83_0223FDB0 * param0, Poffin * param1, const Unk
 
     for (v1 = 0; v1 < param3; v1++) {
         v17 = param2->unk_130[v1];
-        v0 = sub_020973C8(v3[v17].unk_00, param4);
+        v0 = BerryData_LoadDataByItemID(v3[v17].unk_00, param4);
 
         v8 = 0;
 
@@ -708,10 +708,10 @@ void ov83_0223FFD4 (UnkStruct_ov83_0223FDB0 * param0, Poffin * param1, const Unk
         }
 
         for (v2 = 0; v2 < 5; v2++) {
-            v4[v2] += sub_020973D4(v0, 5 + v2);
+            v4[v2] += BerryData_GetAttribute(v0, 5 + v2);
         }
 
-        v5 += sub_020973D4(v0, 10);
+        v5 += BerryData_GetAttribute(v0, 10);
 
         Heap_FreeToHeap(v0);
     }

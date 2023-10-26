@@ -69,7 +69,7 @@ static void sub_0203A3E8 (UnkStruct_0203A3E8 * param0, int param1)
     int v0;
 
     v0 = MapHeader_GetEventsArchiveID(param1);
-    GF_ASSERT(NARC_GetMemberSizeByIndexPair(32, v0) < sizeof(param0->unk_20));
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(NARC_INDEX_FIELDDATA__EVENTDATA__ZONE_EVENT, v0) < sizeof(param0->unk_20));
     NARC_ReadWholeMemberByIndexPair(param0->unk_20, 32, v0);
 }
 
@@ -300,9 +300,9 @@ static void sub_0203A64C (UnkStruct_0203A3E8 * param0, int param1)
     v0 = MapHeader_GetMapScriptArchiveID(param1);
 
     MI_CpuClearFast(param0->unk_820, sizeof(param0->unk_820));
-    GF_ASSERT(NARC_GetMemberSizeByIndexPair(10, v0) < sizeof(param0->unk_820));
+    GF_ASSERT(NARC_GetMemberSizeByIndexPair(NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, v0) < sizeof(param0->unk_820));
 
-    NARC_ReadWholeMemberByIndexPair(param0->unk_820, 10, v0);
+    NARC_ReadWholeMemberByIndexPair(param0->unk_820, NARC_INDEX_FIELDDATA__SCRIPT__SCR_SEQ, v0);
 }
 
 void * sub_0203A68C (const UnkStruct_0203CDB0 * param0)

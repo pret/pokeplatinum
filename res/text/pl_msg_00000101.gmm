@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="5163" />
+	<row id="pl_msg_00000101_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000101_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cycling Road is only for Bicycles!\rPlease get on your Bicycle!\r</language>
+	</row>
+	<row id="pl_msg_00000101_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Learn how to shift gears, and you’ll\nbe able to ride anywhere.</language>
+	</row>
+	<row id="pl_msg_00000101_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, long time, no see!\rOh? You look puzzled.\nYou’re wondering who I am.\rI’m Professor Rowan’s assistant and\n{STRVAR_1 3, 1, 0}’s father.\rI’ve come a long way to help you on\nyour adventure at the professor’s\fbehest.\r{STRVAR_1 3, 0, 0}, let me ask you,\nhow many Pokémon have you met?\r</language>
+	</row>
+	<row id="pl_msg_00000101_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}, long time, no see!\rOh? You look puzzled.\nYou’re wondering who I am.\rI’m Professor Rowan’s assistant and\n{STRVAR_1 3, 1, 0}’s father.\rI’ve come a long way to help you on\nyour adventure at the professor’s\fbehest.\r{STRVAR_1 3, 0, 0}, let me ask you,\nhow many Pokémon have you met?\r</language>
+	</row>
+	<row id="pl_msg_00000101_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, my!\nYou’ve met {STRVAR_1 52, 1, 0} Pokémon!\rWonderful! Yes, bravo!\nProfessor Rowan should be delighted!\rHere is something for you!\r</language>
+	</row>
+	<row id="pl_msg_00000101_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Pokémon holding an Exp. Share will get\nsome of the Exp. Points from battle.\rIt will get Exp. Points even if it didn’t\nactually battle.\rTherefore, it should be held by a\nPokémon you want to raise quickly.\rAlso, a Pokémon you get in a trade may\ndisobey you if it is too high in level.\rDon’t worry, though. It will obey if\nyou have enough Gym Badges.</language>
+	</row>
+	<row id="pl_msg_00000101_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve met only {STRVAR_1 52, 1, 0} Pokémon?\rHmm...\nYou’ve got to find at least 35.\rIf you can’t, it will be tough to\ncomplete the Sinnoh Pokédex.</language>
+	</row>
+</body>

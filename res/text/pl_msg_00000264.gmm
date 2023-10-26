@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54315" />
+	<row id="pl_msg_00000264_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Charon: ...Cyrus disappeared.\nMars and Jupiter quit.\rSaturn said he would look after what\nremains of Team Galactic.\rBut he won’t join me.\nSo foolish of him!\rSo very foolish of the rest of them!\nThrowing away Team Galactic!\rAfter all the effort we took as a team\nto make it grow...\rThat power could have made us rich\nbeyond imagination.\rBut, enough of that.\nThe Magma Stone will be mine.\r</language>
+	</row>
+	<row id="pl_msg_00000264_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Hey, you! Team Galactic!\nWhat’s going on here?!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Charon: Eh? What’s this, then?\nChased me here, have you?\rI like seeing children try their best,\nbut too bad for you--you’re too late.\rWith this Magma Stone I will let awaken\nthe legendary HEATRAN!\rI will control the volcano’s eruptions\nto extort money by the millions!\rFear me! For I am Charon!\nThe boss of the reborn Team Galactic!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">???: Go, go, go!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Charon: No! The Magma Stone!\rWhat?! What is going on?!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">???: Excellent work, CROAGUNK!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Pah!\rDisguising myself as a boulder for\nstakeout was not easy!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now, old-timer, the International Police\ncordially requests your cooperation.\rI am sure you have much to tell us\nabout the new Team Galactic.\rWith Cyrus, Mars, and Jupiter gone,\nyou are all that is left.\r</language>
+	</row>
+	<row id="pl_msg_00000264_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Hey!\nIt’s the International Police!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: Yeah!\nIt’s the International Police all right!\rThere’s only one thing to be done!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Run away!\nGrunt 2: Run away!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Charon: Gah... What a mess...\r...Uh, International Police?\nWhat are you saying? I know nothing!\rA new Team Galactic?\nExtorting with HEATRAN?\rMerely the blathering of this harmless\nold man! All said in jest!\rBesides, among Team Galactic’s\nCommanders, I was the most junior...\r</language>
+	</row>
+	<row id="pl_msg_00000264_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: You can tell us all about it.\nWe have plenty of time.\rOh, no, no. No resisting arrest.\nYou can’t win three-on-one, no?\rOK, Officers, over here, if you\nwill.\r</language>
+	</row>
+	<row id="pl_msg_00000264_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: He is an old man.\nThis heat cannot be good for him.\rQuickly, take him somewhere cool.\nYes, the cooler will do!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: {STRVAR_1 3, 0, 0}!\rAnd you, unfamiliar boy!\nI wish to say something.\rFirst, it is too hot!\nLet us exit this environment!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gwogobo gwobobobo!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">HEATRAN disappeared into\nthe volcano...</language>
+	</row>
+	<row id="pl_msg_00000264_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Oof!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buck: Whoa! Wow!\rHehehe! That was wicked!\nThe volcano’s in shock from that!\rIt might be so shocked, it’ll erupt!\nNah, that can’t happen!\rSee ya, {STRVAR_1 3, 1, 0}!\nSay hi to that zippity Trainer buddy!\r</language>
+	</row>
+	<row id="pl_msg_00000264_00019" index="19">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+</body>

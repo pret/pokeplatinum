@@ -2,20 +2,16 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
-
 #include "struct_defs/struct_0208BE5C.h"
 #include "overlay094/struct_ov94_0223BA88.h"
 #include "overlay094/struct_ov94_0223FD4C.h"
 
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202DA40.h"
 #include "unk_02056720.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "unk_0207AE68.h"
@@ -25,7 +21,7 @@
 
 FS_EXTERN_OVERLAY(overlay95);
 
-static UnkStruct_02025E6C * ov94_02244870(UnkStruct_ov94_0223BA88 * param0);
+static TrainerInfo * ov94_02244870(UnkStruct_ov94_0223BA88 * param0);
 static Pokemon * ov94_022448AC(UnkStruct_ov94_0223FD4C * param0, int param1);
 static void ov94_022448E8(UnkStruct_ov94_0223FD4C * param0);
 
@@ -38,11 +34,11 @@ static const UnkStruct_0208BE5C Unk_ov94_0224636C = {
 
 int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
 {
-    param0->unk_1104 = AllocMonZeroed(62);
+    param0->unk_1104 = Pokemon_New(62);
 
     switch (param0->unk_24) {
     case 7:
-        param0->unk_E8.unk_00 = (BoxPokemon *)sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00);
+        param0->unk_E8.unk_00 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00);
         param0->unk_E8.unk_04 = param0->unk_E8.unk_00;
         param0->unk_120 = ov94_02244870(&param0->unk_12C);
         param0->unk_E8.unk_08 = param0->unk_120;
@@ -50,7 +46,7 @@ int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
         param0->unk_E8.unk_10 = 2;
         break;
     case 8:
-        param0->unk_E8.unk_04 = (BoxPokemon *)sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00);
+        param0->unk_E8.unk_04 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00);
         param0->unk_E8.unk_00 = param0->unk_E8.unk_04;
         param0->unk_120 = ov94_02244870(&param0->unk_12C);
         param0->unk_E8.unk_08 = param0->unk_120;
@@ -58,9 +54,9 @@ int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
         param0->unk_E8.unk_10 = 4;
         break;
     case 10:
-        param0->unk_E8.unk_04 = sub_02076B10((Pokemon *)param0->unk_12C.unk_00.unk_00);
+        param0->unk_E8.unk_04 = Pokemon_GetBoxPokemon((Pokemon *)param0->unk_12C.unk_00.unk_00);
         sub_0202DA70(param0->unk_00->unk_00, param0->unk_1104);
-        param0->unk_E8.unk_00 = sub_02076B10(param0->unk_1104);
+        param0->unk_E8.unk_00 = Pokemon_GetBoxPokemon(param0->unk_1104);
         param0->unk_120 = ov94_02244870(&param0->unk_12C);
         param0->unk_E8.unk_08 = param0->unk_120;
         param0->unk_E8.unk_0C = 3;
@@ -68,8 +64,8 @@ int ov94_022444C8 (UnkStruct_ov94_0223FD4C * param0, int param1)
         break;
     case 9:
         sub_0202DA70(param0->unk_00->unk_00, param0->unk_1104);
-        param0->unk_E8.unk_00 = sub_02076B10(param0->unk_1104);
-        param0->unk_E8.unk_04 = (BoxPokemon *)sub_02076B10((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00);
+        param0->unk_E8.unk_00 = Pokemon_GetBoxPokemon(param0->unk_1104);
+        param0->unk_E8.unk_04 = (BoxPokemon *)Pokemon_GetBoxPokemon((Pokemon *)param0->unk_250[param0->unk_11C].unk_00.unk_00);
         param0->unk_120 = ov94_02244870(&param0->unk_250[param0->unk_11C]);
         param0->unk_E8.unk_08 = param0->unk_120;
         param0->unk_E8.unk_0C = 3;
@@ -95,7 +91,7 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
 
             if (param0->unk_24 == 9) {
                 Pokemon * v1 = ov94_022448AC(param0, param0->unk_24);
-                int v2 = GetMonData(v1, MON_DATA_HELD_ITEM, NULL);
+                int v2 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
                 int v3;
                 int v4;
 
@@ -110,12 +106,12 @@ int ov94_02244678 (UnkStruct_ov94_0223FD4C * param0, int param1)
                 }
             } else if ((param0->unk_24 == 8) || (param0->unk_24 == 10)) {
                 Pokemon * v1 = ov94_022448AC(param0, param0->unk_24);
-                Pokemon * v5 = AllocMonZeroed(62);
+                Pokemon * v5 = Pokemon_New(62);
 
                 sub_0202DA70(param0->unk_00->unk_00, v5);
 
-                if ((GetMonData(v1, MON_DATA_SPECIES, NULL) != GetMonData(v5, MON_DATA_SPECIES, NULL)) || (GetMonData(v1, MON_DATA_PERSONALITY, NULL) != GetMonData(v5, MON_DATA_PERSONALITY, NULL))) {
-                    int v6 = GetMonData(v1, MON_DATA_HELD_ITEM, NULL);
+                if ((Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL) != Pokemon_GetValue(v5, MON_DATA_SPECIES, NULL)) || (Pokemon_GetValue(v1, MON_DATA_PERSONALITY, NULL) != Pokemon_GetValue(v5, MON_DATA_PERSONALITY, NULL))) {
+                    int v6 = Pokemon_GetValue(v1, MON_DATA_HELD_ITEM, NULL);
                     int v7;
                     int v8;
 
@@ -163,14 +159,14 @@ int ov94_0224484C (UnkStruct_ov94_0223FD4C * param0, int param1)
     return 1;
 }
 
-static UnkStruct_02025E6C * ov94_02244870 (UnkStruct_ov94_0223BA88 * param0)
+static TrainerInfo * ov94_02244870 (UnkStruct_ov94_0223BA88 * param0)
 {
-    UnkStruct_02025E6C * v0 = sub_02025E6C(62);
+    TrainerInfo * v0 = TrainerInfo_New(62);
 
-    sub_02025E8C(v0);
-    sub_02025EC0(v0, param0->unk_10C);
-    sub_02025FD0(v0, param0->unk_122);
-    sub_02025FDC(v0, param0->unk_123);
+    TrainerInfo_Init(v0);
+    TrainerInfo_SetName(v0, param0->unk_10C);
+    TrainerInfo_SetGameCode(v0, param0->unk_122);
+    TrainerInfo_SetRegionCode(v0, param0->unk_123);
 
     return v0;
 }
@@ -194,12 +190,12 @@ static void ov94_022448E8 (UnkStruct_ov94_0223FD4C * param0)
     Pokemon * v0 = ov94_022448AC(param0, param0->unk_24);
 
     if (param0->unk_124.unk_00 == 18) {
-        sub_020775EC(v0, Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_124.unk_04));
+        Pokemon_Copy(v0, Party_GetPokemonBySlotIndex(param0->unk_00->unk_08, param0->unk_124.unk_04));
     } else {
         int v1 = 0, v2 = 0;
 
         sub_02079968(param0->unk_00->unk_0C, param0->unk_124.unk_00, param0->unk_124.unk_04);
         sub_020799F0(param0->unk_00->unk_0C, &v1, &v2);
-        sub_020798A0(param0->unk_00->unk_0C, v1, sub_02076B10(v0));
+        sub_020798A0(param0->unk_00->unk_0C, v1, Pokemon_GetBoxPokemon(v0));
     }
 }

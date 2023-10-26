@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="14693" />
+	<row id="pl_msg_00000165_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...All right, challenger.\rIt’s not often, but some Trainers\nmanage to come and challenge me.\rBut they’ve all been boring battles.\nI didn’t break a sweat beating them.\r...Sigh...\nI’m Volkner, the Gym Leader.\rThey say I’m the top Gym Leader in\nSinnoh, but...\rAnyway, I guess we’d better get this\ndone.\rI hope you’re the Trainer who’ll make\nme remember how fun it is to battle!\r</language>
+	</row>
+	<row id="pl_msg_00000165_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Hehehe.\rHahahah!\r...That was the most fun I’ve had\nin a battle since...I don’t know when!\rIt’s also made me excited to know\nyou and your team will keep battling\fto greater heights!\rThis is your eighth Gym Badge.\nYou’ve earned this!\r</language>
+	</row>
+	<row id="pl_msg_00000165_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe Beacon Badge from Volkner.</language>
+	</row>
+	<row id="pl_msg_00000165_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Beacon Badge lets you use\nthe hidden move Waterfall even when\fyou’re not in a battle.\rWaterfall happens to be key if you’re\ngoing to the Pokémon League.\rAlso, because you’ve collected all\neight Badges, any Pokémon at any\flevel will now obey you without fail.\rI want you to take this, too.\r</language>
+	</row>
+	<row id="pl_msg_00000165_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s inside that {STRVAR_1 8, 0, 0}\nis the move {STRVAR_1 6, 1, 0}.\rIt may raise Special Attack if it\nlands. It’s electrifying!</language>
+	</row>
+	<row id="pl_msg_00000165_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your next step is the Pokémon\nLeague challenge.\rIt’s time for you to cross the sea\nand win your way through the\fgauntlet that is Victory Road.\rDemonstrate to the Pokémon League\nyour mastery of your team.\rAgainst you, even the Elite Four will\nbe pushed to fend off your challenge!</language>
+	</row>
+</body>

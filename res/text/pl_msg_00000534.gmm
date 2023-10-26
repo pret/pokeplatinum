@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="46504" />
+	<row id="pl_msg_00000534_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{COLOR 1}{STRVAR_1 4, 0, 0}{COLOR 0}</language>
+	</row>
+	<row id="pl_msg_00000534_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PLAYER:</language>
+	</row>
+	<row id="pl_msg_00000534_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BADGES:</language>
+	</row>
+	<row id="pl_msg_00000534_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéDEX:</language>
+	</row>
+	<row id="pl_msg_00000534_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TIME:</language>
+	</row>
+	<row id="pl_msg_00000534_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000534_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 50, 2, 0}</language>
+	</row>
+	<row id="pl_msg_00000534_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 52, 3, 0}</language>
+	</row>
+	<row id="pl_msg_00000534_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 52, 4, 0}:{STRVAR_1 51, 5, 0}</language>
+	</row>
+</body>

@@ -3,13 +3,13 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026310_decl.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0203A55C.h"
@@ -21,7 +21,7 @@
 
 #include "unk_02005474.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020261E4.h"
 #include "unk_0202CD50.h"
 #include "unk_02030EE0.h"
@@ -55,7 +55,7 @@
 #include "unk_0206A8DC.h"
 #include "unk_0206AFE0.h"
 #include "unk_02071B10.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay005/ov5_021D1C30.h"
 #include "overlay005/ov5_021DB888.h"
@@ -350,7 +350,7 @@ int ov5_021D1DA4 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
 
     if (param0->unk_00_2) {
         if (sub_0203A9C8(param1) == 1) {
-            sub_02005748(1533);
+            Sound_PlayEffect(1533);
             sub_0203A9E0(param1);
             return 1;
         }
@@ -448,7 +448,7 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
     }
 
     if (param0->unk_00_2) {
-        sub_02005748(1533);
+        Sound_PlayEffect(1533);
         sub_0203AABC(param1);
         return 1;
     }
@@ -459,7 +459,7 @@ BOOL ov5_021D219C (UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * param1)
 static int ov5_021D2274 (void)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v1 = 0;
 
@@ -509,7 +509,7 @@ BOOL ov5_021D2298 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * p
         if (sub_02035E18() > 1) {
             (void)0;
         } else {
-            sub_02005748(1533);
+            Sound_PlayEffect(1533);
             sub_0203AA78(param1);
             sub_0205BEA8(4);
             sub_02036BA0();
@@ -585,7 +585,7 @@ int ov5_021D2368 (const UnkStruct_ov5_021D1CAC * param0, UnkStruct_0203CDB0 * pa
     }
 
     if (param0->unk_00_2) {
-        sub_02005748(1533);
+        Sound_PlayEffect(1533);
         sub_0203A9E0(param1);
         return 1;
     }
@@ -745,12 +745,12 @@ u16 ov5_021D271C (UnkStruct_0203CDB0 * param0, u8 param1)
     }
 
     if (sub_0205EB74(param0->unk_3C) != 0x2) {
-        UnkStruct_02025E6C * v1 = sub_02025E38(param0->unk_0C);
+        TrainerInfo * v1 = sub_02025E38(param0->unk_0C);
         u32 v2 = sub_02061760(param0->unk_3C);
 
         if (ov5_021E0118(param0->unk_3C, v2, param1)
 
-            && sub_02025F34(v1, 3)) {
+            && TrainerInfo_HasBadge(v1, 3)) {
             if (sub_020549A0(Party_GetFromSavedata(param0->unk_0C), 57) != 0xff) {
                 return 10004;
             }
@@ -961,7 +961,7 @@ static void ov5_021D2B54 (UnkStruct_0203CDB0 * param0)
 
     for (v0 = 0; v0 < v1; v0++) {
         v2 = Party_GetPokemonBySlotIndex(v3, v0);
-        sub_02075C74(v2, 5, v4);
+        Pokemon_UpdateFriendship(v2, 5, v4);
     }
 }
 

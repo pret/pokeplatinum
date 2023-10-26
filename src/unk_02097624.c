@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02028430_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
@@ -19,7 +19,7 @@
 #include "unk_02025E08.h"
 #include "unk_02028124.h"
 #include "unk_0202CD50.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "item.h"
 #include "unk_0209747C.h"
 #include "overlay020/ov20_021D0D80.h"
@@ -41,10 +41,10 @@ typedef struct {
 static int sub_02097944(UnkStruct_020067E8 * param0, int * param1);
 static int sub_020979A8(UnkStruct_020067E8 * param0, int * param1);
 static int sub_02097AF8(UnkStruct_020067E8 * param0, int * param1);
-UnkStruct_02097728 * sub_02097624(UnkStruct_021C0794 * param0, int param1, u8 param2, u8 param3, int param4);
-UnkStruct_02097728 * sub_0209767C(UnkStruct_021C0794 * param0, int param1, u16 param2, int param3);
-UnkStruct_02097728 * sub_020976BC(UnkStruct_021C0794 * param0, Pokemon * param1, int param2);
-UnkStruct_02097728 * sub_020976F4(UnkStruct_021C0794 * param0, u8 param1, int param2);
+UnkStruct_02097728 * sub_02097624(SaveData * param0, int param1, u8 param2, u8 param3, int param4);
+UnkStruct_02097728 * sub_0209767C(SaveData * param0, int param1, u16 param2, int param3);
+UnkStruct_02097728 * sub_020976BC(SaveData * param0, Pokemon * param1, int param2);
+UnkStruct_02097728 * sub_020976F4(SaveData * param0, u8 param1, int param2);
 BOOL sub_02097728(UnkStruct_02097728 * param0);
 int sub_0209772C(UnkStruct_02097728 * param0, int param1, u8 param2);
 int sub_02097750(UnkStruct_02097728 * param0, Pokemon * param1);
@@ -62,7 +62,7 @@ const UnkStruct_0208BE5C Unk_020F64B0 = {
     0xFFFFFFFF
 };
 
-UnkStruct_02097728 * sub_02097624 (UnkStruct_021C0794 * param0, int param1, u8 param2, u8 param3, int param4)
+UnkStruct_02097728 * sub_02097624 (SaveData * param0, int param1, u8 param2, u8 param3, int param4)
 {
     UnkStruct_02097728 * v0;
     UnkStruct_02028430 * v1;
@@ -88,7 +88,7 @@ UnkStruct_02097728 * sub_02097624 (UnkStruct_021C0794 * param0, int param1, u8 p
     return v0;
 }
 
-UnkStruct_02097728 * sub_0209767C (UnkStruct_021C0794 * param0, int param1, u16 param2, int param3)
+UnkStruct_02097728 * sub_0209767C (SaveData * param0, int param1, u16 param2, int param3)
 {
     UnkStruct_02097728 * v0;
     UnkStruct_02028430 * v1;
@@ -109,7 +109,7 @@ UnkStruct_02097728 * sub_0209767C (UnkStruct_021C0794 * param0, int param1, u16 
     return v0;
 }
 
-UnkStruct_02097728 * sub_020976BC (UnkStruct_021C0794 * param0, Pokemon * param1, int param2)
+UnkStruct_02097728 * sub_020976BC (SaveData * param0, Pokemon * param1, int param2)
 {
     UnkStruct_02097728 * v0;
 
@@ -120,11 +120,11 @@ UnkStruct_02097728 * sub_020976BC (UnkStruct_021C0794 * param0, Pokemon * param1
     v0->unk_10 = param0;
     v0->unk_14 = sub_0202818C(param2);
 
-    GetMonData(param1, MON_DATA_170, v0->unk_14);
+    Pokemon_GetValue(param1, MON_DATA_170, v0->unk_14);
     return v0;
 }
 
-UnkStruct_02097728 * sub_020976F4 (UnkStruct_021C0794 * param0, u8 param1, int param2)
+UnkStruct_02097728 * sub_020976F4 (SaveData * param0, u8 param1, int param2)
 {
     UnkStruct_02097728 * v0;
 
@@ -160,7 +160,7 @@ int sub_02097750 (UnkStruct_02097728 * param0, Pokemon * param1)
         return 0;
     }
 
-    sub_02074B30(param1, 170, param0->unk_14);
+    Pokemon_SetValue(param1, 170, param0->unk_14);
     return 1;
 }
 
@@ -187,11 +187,11 @@ int sub_02097788 (UnkStruct_02028430 * param0, Pokemon * param1, int param2)
 
     v2 = sub_0202818C(param2);
 
-    GetMonData(param1, MON_DATA_170, v2);
+    Pokemon_GetValue(param1, MON_DATA_170, v2);
     sub_02028480(param0, 0, v0, v2);
     sub_02028124(v2);
-    sub_02074B30(param1, 170, v2);
-    sub_02074B30(param1, 6, &v1);
+    Pokemon_SetValue(param1, 170, v2);
+    Pokemon_SetValue(param1, 6, &v1);
     Heap_FreeToHeap(v2);
 
     return v0;
@@ -208,10 +208,10 @@ int sub_020977E4 (UnkStruct_02028430 * param0, u16 param1, Pokemon * param2, int
         return 0xFFFFFFFF;
     }
 
-    v0 = sub_0207D310(sub_02028314(v1));
+    v0 = Item_ForMailNumber(sub_02028314(v1));
 
-    sub_02074B30(param2, 170, v1);
-    sub_02074B30(param2, 6, &v0);
+    Pokemon_SetValue(param2, 170, v1);
+    Pokemon_SetValue(param2, 6, &v0);
     sub_02028470(param0, 0, param1);
     Heap_FreeToHeap(v1);
 

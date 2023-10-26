@@ -3,8 +3,8 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/pokemon.h"
+#include "strbuf.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
@@ -20,7 +20,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_020298BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay022/ov22_02259098.h"
 
 typedef struct UnkStruct_0202A138_t {
@@ -124,12 +124,12 @@ static void sub_020298D8 (UnkStruct_020298D8 * param0, u8 * param1, u8 * param2,
 
 static void sub_0202992C (UnkStruct_0202A138 * param0, Pokemon * param1, u8 param2, u8 param3, s8 param4)
 {
-    param0->unk_08 = GetMonData(param1, MON_DATA_SPECIES, NULL);
-    GetMonData(param1, MON_DATA_117, param0->unk_0A);
+    param0->unk_08 = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
+    Pokemon_GetValue(param1, MON_DATA_NICKNAME, param0->unk_0A);
 
-    param0->unk_00 = GetMonData(param1, MON_DATA_PERSONALITY, NULL);
-    param0->unk_04 = GetMonData(param1, MON_DATA_OT_ID, NULL);
-    param0->unk_33 = GetMonData(param1, MON_DATA_FORM, NULL);
+    param0->unk_00 = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
+    param0->unk_04 = Pokemon_GetValue(param1, MON_DATA_OT_ID, NULL);
+    param0->unk_33 = Pokemon_GetValue(param1, MON_DATA_FORM, NULL);
 
     param0->unk_31 = param2;
     param0->unk_32 = param3;
@@ -154,8 +154,8 @@ static void sub_020299C0 (UnkStruct_0202A138 * param0, const Strbuf *param1, int
 static void sub_020299D8 (const UnkStruct_0202A138 * param0, Pokemon * param1)
 {
     sub_02073D80(param1, param0->unk_08, 0, 0, 1, param0->unk_00, 1, param0->unk_04);
-    sub_02074B30(param1, 117, param0->unk_0A);
-    sub_02074B30(param1, 112, &param0->unk_33);
+    Pokemon_SetValue(param1, 117, param0->unk_0A);
+    Pokemon_SetValue(param1, 112, &param0->unk_33);
 }
 
 static void sub_02029A18 (UnkStruct_0202A150 * param0, u8 param1, u8 param2, u8 param3, u8 param4)
@@ -311,7 +311,7 @@ static void sub_02029BD8 (Pokemon * param0, u8 * param1, u8 * param2)
     *param2 += (5 * 8);
 }
 
-void sub_02029BFC (UnkStruct_0202A750 * param0)
+void ImageClip_Init (UnkStruct_0202A750 * param0)
 {
     int v0;
 
@@ -326,7 +326,7 @@ void sub_02029BFC (UnkStruct_0202A750 * param0)
     sub_02029BB0(&param0->unk_7A4);
 }
 
-int sub_02029C58 (void)
+int ImageClip_SaveSize (void)
 {
     return sizeof(UnkStruct_0202A750);
 }
@@ -984,11 +984,11 @@ void sub_0202A6A8 (u8 param0, int param1, UnkStruct_0202A750 * param2, const voi
     }
 }
 
-UnkStruct_0202A750 * sub_0202A750 (UnkStruct_021C0794 * param0)
+UnkStruct_0202A750 * sub_0202A750 (SaveData * param0)
 {
     UnkStruct_0202A750 * v0 = NULL;
 
-    v0 = sub_020245BC(param0, 14);
+    v0 = SaveData_Get(param0, 14);
     return v0;
 }
 

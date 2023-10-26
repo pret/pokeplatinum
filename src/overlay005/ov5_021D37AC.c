@@ -169,8 +169,8 @@ UnkStruct_ov5_021D3CAC * ov5_021D38B8 (void)
 
     Heap_FndInitAllocatorForExpHeap(&v1->unk_00, 4, 4);
 
-    v1->unk_2B0 = NARC_ctor(110, 4);
-    v1->unk_2B4 = NARC_ctor(111, 4);
+    v1->unk_2B0 = NARC_ctor(NARC_INDEX_ARC__BM_ANIME, 4);
+    v1->unk_2B4 = NARC_ctor(NARC_INDEX_ARC__BM_ANIME_LIST, 4);
 
     return v1;
 }
@@ -905,7 +905,7 @@ void ov5_021D4278 (UnkStruct_ov5_021D41B4 * const param0, const int param1, cons
     v1 = ov5_021D409C(v0, param2);
 
     if (param3 != 0) {
-        sub_02005748(param3);
+        Sound_PlayEffect(param3);
     }
 
     ov5_021D3E40(v1, 0);

@@ -12,7 +12,7 @@
 #include "struct_defs/struct_0205EC34.h"
 
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0203A6DC.h"
 #include "unk_0204E3CC.h"
@@ -70,7 +70,7 @@ BOOL sub_0204E45C (UnkStruct_0203E724 * param0)
     u16 * v1 = inline_0204FCAC(param0);
 
     GF_ASSERT(v0 < 8);
-    * v1 = sub_02025F34(sub_02025E38(param0->unk_34->unk_0C), v0);
+    * v1 = TrainerInfo_HasBadge(sub_02025E38(param0->unk_34->unk_0C), v0);
 
     return 0;
 }
@@ -80,7 +80,7 @@ BOOL sub_0204E4A4 (UnkStruct_0203E724 * param0)
     u16 v0 = inline_02049538(param0);
 
     GF_ASSERT(v0 < 8);
-    sub_02025F48(sub_02025E38(param0->unk_34->unk_0C), v0);
+    TrainerInfo_SetBadge(sub_02025E38(param0->unk_34->unk_0C), v0);
 
     return 0;
 }
@@ -110,7 +110,7 @@ BOOL sub_0204E504 (UnkStruct_0203E724 * param0)
     u16 * v2 = inline_0204FCAC(param0);
 
     for (v0 = 0, v1 = 0; v0 < 8; v0++) {
-        if (sub_02025F34(sub_02025E38(param0->unk_34->unk_0C), Unk_020EC064[v0]) == 1) {
+        if (TrainerInfo_HasBadge(sub_02025E38(param0->unk_34->unk_0C), Unk_020EC064[v0]) == 1) {
             v1++;
         }
     }

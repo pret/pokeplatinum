@@ -1,0 +1,106 @@
+{
+    "name": "Piplup",
+    "base_stats": {
+        "hp": 53,
+        "attack": 51,
+        "defense": 53,
+        "speed": 40,
+        "special_attack": 61,
+        "special_defense": 56
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 66,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "WATER_1",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_TORRENT",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM55",
+            "TM56",
+            "TM58",
+            "TM76",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM88",
+            "TM90",
+            "HM01",
+            "HM03",
+            "HM05",
+            "HM07"
+        ],
+        "level_up": {
+            "1": "MOVE_POUND",
+            "4": "MOVE_GROWL",
+            "8": "MOVE_BUBBLE",
+            "11": "MOVE_WATER_SPORT",
+            "15": "MOVE_PECK",
+            "18": "MOVE_BUBBLE_BEAM",
+            "22": "MOVE_BIDE",
+            "25": "MOVE_FURY_ATTACK",
+            "29": "MOVE_BRINE",
+            "32": "MOVE_WHIRLPOOL",
+            "36": "MOVE_MIST",
+            "39": "MOVE_DRILL_PECK",
+            "43": "MOVE_HYDRO_PUMP"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            16,
+            "SPECIES_PRINPLUP"
+        ]
+    ]
+}

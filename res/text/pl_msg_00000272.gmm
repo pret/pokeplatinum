@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="42051" />
+	<row id="pl_msg_00000272_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m Mira...\rI was catching Pokémon, and then\nI got lost...\rI’m so scared...\rPlease!\nPlease take me to the exit!\r</language>
+	</row>
+	<row id="pl_msg_00000272_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} decided to go with\nMira!</language>
+	</row>
+	<row id="pl_msg_00000272_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: I’ll keep your Pokémon healthy\nall the time!</language>
+	</row>
+	<row id="pl_msg_00000272_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer, your name is {STRVAR_1 3, 0, 0}?\rMy name is Mira.\nI like your name!\r</language>
+	</row>
+	<row id="pl_msg_00000272_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: Oh! {STRVAR_1 3, 0, 0}...\nI waited... A long time...\r</language>
+	</row>
+	<row id="pl_msg_00000272_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: Oh! There’s the exit!\rI want to get tougher so I\nwon’t be such a scaredy-cat.\r{STRVAR_1 3, 0, 0}, bye-bye!\nThank you!\r</language>
+	</row>
+	<row id="pl_msg_00000272_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000272_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000272_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000272_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: I like helpful Pokémon moves\nlike Growl and Minimize.\rThose kinds of moves are my\nfavorites.</language>
+	</row>
+	<row id="pl_msg_00000272_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: This cave...\nIt’s so easy to get confused.\rDo you know where we are?</language>
+	</row>
+	<row id="pl_msg_00000272_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mira: {STRVAR_1 3, 0, 0}, did you get to be\nso good because you’re always with\fyour Pokémon?\rYes! That has to be it!\nMira will try like you!</language>
+	</row>
+</body>

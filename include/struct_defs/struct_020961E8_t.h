@@ -4,15 +4,15 @@
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_0203DE34.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020961E8_sub1.h"
@@ -24,13 +24,13 @@
 #include <nnsys.h>
 
 struct UnkStruct_020961E8_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     BOOL unk_04;
     UnkStruct_0203DE34 * unk_08;
     UnkStruct_ov59_021D109C unk_0C;
-    UnkStruct_0201CD38 * unk_20;
+    SysTask * unk_20;
     UnkStruct_0200B358 * unk_24;
-    UnkStruct_0200B144 * unk_28;
+    MessageLoader * unk_28;
     Strbuf* unk_2C[5];
     Strbuf* unk_40;
     Strbuf* unk_44;
@@ -45,11 +45,11 @@ struct UnkStruct_020961E8_t {
     UnkStruct_ov19_021DA864 unk_268;
     UnkStruct_02022550 * unk_28C[14];
     UnkStruct_02022550 * unk_2C4[14];
-    UnkStruct_0205AA50 unk_2FC[5];
-    UnkStruct_0205AA50 unk_34C;
-    UnkStruct_0205AA50 unk_35C;
-    UnkStruct_0205AA50 unk_36C;
-    UnkStruct_0205AA50 * unk_37C[2];
+    Window unk_2FC[5];
+    Window unk_34C;
+    Window unk_35C;
+    Window unk_36C;
+    Window * unk_37C[2];
     UnkStruct_02001AF4 * unk_384;
     void * unk_388[2];
     NNSG2dCharacterData * unk_390[2];
@@ -60,7 +60,7 @@ struct UnkStruct_020961E8_t {
     int unk_3B0;
     int unk_3B4;
     u8 unk_3B8[8][2];
-    UnkStruct_02025E6C * unk_3C8[5][2];
+    TrainerInfo * unk_3C8[5][2];
     int unk_3F0[5];
     int unk_404;
     u16 unk_408;
@@ -71,7 +71,7 @@ struct UnkStruct_020961E8_t {
     UnkStruct_ov59_021D30E0 unk_418;
     UnkStruct_ov59_021D30E0 unk_FD8[5];
     int unk_4A98;
-    UnkStruct_021C0794 * unk_4A9C;
+    SaveData * unk_4A9C;
     int unk_4AA0;
     u8 unk_4AA4;
     volatile int unk_4AA8;

@@ -1,0 +1,113 @@
+{
+    "name": "Solrock",
+    "base_stats": {
+        "hp": 70,
+        "attack": 95,
+        "defense": 85,
+        "speed": 70,
+        "special_attack": 55,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 150,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SUN_STONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_LEVITATE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM33",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM48",
+            "TM50",
+            "TM57",
+            "TM58",
+            "TM61",
+            "TM63",
+            "TM64",
+            "TM67",
+            "TM68",
+            "TM69",
+            "TM70",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "TM92"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_HARDEN",
+                "MOVE_CONFUSION"
+            ],
+            "9": "MOVE_ROCK_THROW",
+            "12": "MOVE_FIRE_SPIN",
+            "20": "MOVE_ROCK_POLISH",
+            "23": "MOVE_PSYWAVE",
+            "31": "MOVE_EMBARGO",
+            "34": "MOVE_COSMIC_POWER",
+            "42": "MOVE_HEAL_BLOCK",
+            "45": "MOVE_ROCK_SLIDE",
+            "53": "MOVE_SOLAR_BEAM",
+            "56": "MOVE_EXPLOSION"
+        }
+    }
+}

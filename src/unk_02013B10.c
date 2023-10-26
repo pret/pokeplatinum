@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "unk_0200D9E8.h"
 #include "unk_02013B10.h"
@@ -18,7 +18,7 @@ typedef struct UnkStruct_02013BE0_t {
     u32 unk_00[192];
     u32 unk_300[192];
     UnkStruct_02013B10 * unk_600;
-    UnkStruct_0201CD38 * unk_604;
+    SysTask * unk_604;
     BOOL unk_608;
     s16 unk_60C[192];
     u8 unk_78C;
@@ -31,8 +31,8 @@ typedef struct UnkStruct_02013BE0_t {
 
 static void sub_02013FC8(void);
 static void sub_02013FD0(const UnkStruct_02013BE0 * param0);
-static void sub_02013E58(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_02013F04(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_02013E58(SysTask * param0, void * param1);
+static void sub_02013F04(SysTask * param0, void * param1);
 
 UnkStruct_02013B10 * sub_02013B10 (int param0, void * param1, void * param2)
 {
@@ -127,7 +127,7 @@ void sub_02013C10 (UnkStruct_02013BE0 * param0, u8 param1, u8 param2, u16 param3
 
     sub_02013DFC(param0->unk_60C, 192, param3, param4);
 
-    param0->unk_604 = sub_0200D9E8(sub_02013E58, param0, param8);
+    param0->unk_604 = SysTask_Start(sub_02013E58, param0, param8);
 
     MI_CpuFill32(param0->unk_00, param0->unk_794, sizeof(u32) * 192);
     MI_CpuFill32(param0->unk_300, param0->unk_794, sizeof(u32) * 192);
@@ -147,7 +147,7 @@ void sub_02013CA4 (UnkStruct_02013BE0 * param0, u8 param1, u8 param2, u16 param3
 
     sub_02013DFC(param0->unk_60C, 192, param3, param4);
 
-    param0->unk_604 = sub_0200D9E8(sub_02013F04, param0, param8);
+    param0->unk_604 = SysTask_Start(sub_02013F04, param0, param8);
 
     MI_CpuFill32(param0->unk_00, param0->unk_794, sizeof(u32) * 192);
     MI_CpuFill32(param0->unk_300, param0->unk_794, sizeof(u32) * 192);
@@ -160,7 +160,7 @@ void sub_02013D38 (UnkStruct_02013BE0 * param0)
     GF_ASSERT(param0);
 
     if (param0->unk_604) {
-        sub_0200DA58(param0->unk_604);
+        SysTask_Done(param0->unk_604);
         param0->unk_604 = NULL;
 
         v0 = sub_02013B54(param0->unk_600);
@@ -222,7 +222,7 @@ void sub_02013DFC (s16 * param0, u32 param1, u16 param2, fx32 param3)
     }
 }
 
-static void sub_02013E58 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02013E58 (SysTask * param0, void * param1)
 {
     UnkStruct_02013BE0 * v0 = param1;
     int v1;
@@ -254,7 +254,7 @@ static void sub_02013E58 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void sub_02013F04 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02013F04 (SysTask * param0, void * param1)
 {
     UnkStruct_02013BE0 * v0 = param1;
     int v1;

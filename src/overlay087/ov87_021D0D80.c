@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "overlay087/struct_ov87_021D106C_decl.h"
@@ -19,7 +19,7 @@
 typedef struct UnkStruct_ov87_021D0D80_t {
     UnkStruct_ov87_021D12C0 unk_00;
     UnkStruct_ov87_021D106C * unk_C8;
-    UnkStruct_0202DF8C * unk_CC;
+    HallOfFame * unk_CC;
     int unk_D0;
     int unk_D4;
     BOOL unk_D8;
@@ -28,9 +28,9 @@ typedef struct UnkStruct_ov87_021D0D80_t {
 static void ov87_021D0F38(UnkStruct_ov87_021D0D80 * param0, int param1);
 static BOOL ov87_021D0F4C(UnkStruct_ov87_021D0D80 * param0);
 static BOOL ov87_021D0F88(UnkStruct_ov87_021D0D80 * param0);
-static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C * param1);
+static void ov87_021D0FC4(UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1);
 static void ov87_021D1000(UnkStruct_ov87_021D12C0 * param0);
-static void ov87_021D101C(UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C * param1, int param2);
+static void ov87_021D101C(UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1, int param2);
 
 int ov87_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -82,33 +82,33 @@ int ov87_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+        if (gCoreSys.padInput & PAD_BUTTON_B) {
             ov87_021D0F38(v0, 1);
             (*param1)++;
             break;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             v0->unk_00.unk_1C ^= 1;
             ov87_021D0F38(v0, 4);
             break;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_LEFT) {
+        if (gCoreSys.padInput & PAD_KEY_LEFT) {
             if (ov87_021D0F4C(v0)) {
                 ov87_021D0F38(v0, 3);
             }
             break;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_RIGHT) {
+        if (gCoreSys.padInput & PAD_KEY_RIGHT) {
             if (ov87_021D0F88(v0)) {
                 ov87_021D0F38(v0, 3);
             }
             break;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_UP) {
+        if (gCoreSys.padInput & PAD_KEY_UP) {
             if (--(v0->unk_00.unk_18) < 0) {
                 if (ov87_021D0F4C(v0)) {
                     v0->unk_00.unk_18 = v0->unk_00.unk_14 - 1;
@@ -120,7 +120,7 @@ int ov87_021D0E2C (UnkStruct_020067E8 * param0, int * param1)
             break;
         }
 
-        if (Unk_021BF67C.unk_48 & PAD_KEY_DOWN) {
+        if (gCoreSys.padInput & PAD_KEY_DOWN) {
             if (++(v0->unk_00.unk_18) >= v0->unk_00.unk_14) {
                 if (ov87_021D0F88(v0)) {
                     ov87_021D0F38(v0, 3);
@@ -165,7 +165,7 @@ static BOOL ov87_021D0F88 (UnkStruct_ov87_021D0D80 * param0)
     return 1;
 }
 
-static void ov87_021D0FC4 (UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C * param1)
+static void ov87_021D0FC4 (UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1)
 {
     int v0;
 
@@ -189,7 +189,7 @@ static void ov87_021D1000 (UnkStruct_ov87_021D12C0 * param0)
     }
 }
 
-static void ov87_021D101C (UnkStruct_ov87_021D12C0 * param0, UnkStruct_0202DF8C * param1, int param2)
+static void ov87_021D101C (UnkStruct_ov87_021D12C0 * param0, HallOfFame * param1, int param2)
 {
     int v0;
 

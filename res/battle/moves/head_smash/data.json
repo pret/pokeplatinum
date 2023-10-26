@@ -1,0 +1,25 @@
+{
+    "name": "Head Smash",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ROCK",
+    "power": 150,
+    "accuracy": 80,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_RECOIL_HALF",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK",
+        "MOVE_FLAG_HIDE_SHADOWS"
+    ],
+    "contest": {
+        "effect": 22,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

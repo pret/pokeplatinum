@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="24299" />
+	<row id="pl_msg_00000496_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Footprints are left in the sand\nwhen you walk on a beach.\rPokémon seem to enjoy leaving\nfootprints as much as people.</language>
+	</row>
+	<row id="pl_msg_00000496_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Listen, do you know about the Battle\nFrontier?</language>
+	</row>
+	<row id="pl_msg_00000496_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I guess you’re someone who’s in the\nknow.\rI hear it’s a fun place with facilities\nfor battling through under different\fsets of rules.</language>
+	</row>
+	<row id="pl_msg_00000496_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I guess you’re someone who’s kind of\nout of the loop.\rI hear it’s a fun place with facilities\nfor battling consecutively under\fdifferent sets of rules.</language>
+	</row>
+</body>

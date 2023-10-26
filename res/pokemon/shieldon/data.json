@@ -1,0 +1,112 @@
+{
+    "name": "Shieldon",
+    "base_stats": {
+        "hp": 30,
+        "attack": 42,
+        "defense": 118,
+        "speed": 30,
+        "special_attack": 42,
+        "special_defense": 88
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 99,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 30,
+    "base_friendship": 70,
+    "exp_rate": "ERRATIC",
+    "egg_groups": [
+        "MONSTER",
+        "MONSTER"
+    ],
+    "abilities": [
+        "ABILITY_STURDY",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM69",
+            "TM71",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_PROTECT"
+            ],
+            "6": "MOVE_TAUNT",
+            "10": "MOVE_METAL_SOUND",
+            "15": "MOVE_TAKE_DOWN",
+            "19": "MOVE_IRON_DEFENSE",
+            "24": "MOVE_SWAGGER",
+            "28": "MOVE_ANCIENT_POWER",
+            "33": "MOVE_ENDURE",
+            "37": "MOVE_METAL_BURST",
+            "43": "MOVE_IRON_HEAD"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            30,
+            "SPECIES_BASTIODON"
+        ]
+    ]
+}

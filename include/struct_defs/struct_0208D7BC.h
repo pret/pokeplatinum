@@ -2,15 +2,15 @@
 #define POKEPLATINUM_STRUCT_0208D7BC_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208D1D4.h"
 #include "struct_defs/struct_0208D7BC_sub1.h"
@@ -18,9 +18,9 @@
 #include "struct_defs/struct_02098D38.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[36];
-    UnkStruct_0205AA50 * unk_244;
+    BGL * unk_00;
+    Window unk_04[36];
+    Window * unk_244;
     u32 unk_248;
     UnkStruct_02098D38 * unk_24C;
     UnkStruct_0208D1D4 unk_250;
@@ -32,14 +32,14 @@ typedef struct {
     UnkStruct_0200C6E4 * unk_414;
     UnkStruct_0200C704 * unk_418;
     UnkStruct_02022550 * unk_41C[77];
-    UnkStruct_0200D0F4 * unk_550[77];
+    CellActorData * unk_550[77];
     UnkStruct_0200C440 * unk_684;
-    UnkStruct_0200B144 * unk_688;
-    UnkStruct_0200B144 * unk_68C;
+    MessageLoader * unk_688;
+    MessageLoader * unk_68C;
     UnkStruct_0200B358 * unk_690;
     Strbuf* unk_694;
     Strbuf* unk_698;
-    UnkStruct_0200B144 * unk_69C;
+    MessageLoader * unk_69C;
     NARC * unk_6A0;
     s8 unk_6A4;
     u8 unk_6A5_0 : 4;

@@ -35,7 +35,7 @@ static const int Unk_020E4CA8[] = {
     1000000000,
 };
 
-u16 * sub_020021B0 (u16 * param0, const u16 * param1)
+u16 * GF_strcpy (u16 * param0, const u16 * param1)
 {
     while (*param1 != 0xffff) {
         *param0 = *param1;
@@ -58,7 +58,7 @@ u16 * sub_020021D0 (u16 * param0, const u16 * param1, u32 param2)
     return &param0[param2];
 }
 
-u32 sub_020021F0 (const u16 * param0)
+u32 GF_strlen (const u16 * param0)
 {
     u32 v0 = 0;
 
@@ -83,7 +83,7 @@ BOOL sub_0200220C (const u16 * param0, const u16 * param1)
     return 1;
 }
 
-BOOL sub_02002238 (const u16 * param0, const u16 * param1, u32 param2)
+BOOL GF_strncmp (const u16 * param0, const u16 * param1, u32 param2)
 {
     while (*param0 == *param1) {
         if (param2 == 0) {

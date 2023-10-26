@@ -26,7 +26,7 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C * param0);
 void ov17_022416E4(UnkStruct_ov17_0223F88C * param0);
 void ov17_02241928(UnkStruct_ov17_0223F88C * param0, UnkStruct_02095C48 * param1, NARC * param2);
 void ov17_0224197C(UnkStruct_ov17_0223F88C * param0);
-void ov17_022419AC(UnkStruct_02002F38 * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, NARC * param3);
+void ov17_022419AC(PaletteSys * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, NARC * param3);
 void ov17_02241A00(UnkStruct_0200C704 * param0);
 void ov17_02241A24(UnkStruct_ov17_0223F88C * param0);
 void ov17_02241A64(UnkStruct_ov17_0223F88C * param0);

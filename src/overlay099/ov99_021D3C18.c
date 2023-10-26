@@ -101,12 +101,12 @@ static BOOL ov99_021D3D50 (UnkStruct_ov99_021D3C18 * param0)
     if ((param0->unk_05 == 0) && (param0->unk_06 == 16)) {
         if (param0->unk_08 == (GX_BLEND_PLANEMASK_BG2)) {
             sub_02019120(2, 0);
-            sub_02019060(2, 3);
-            sub_02019060(3, 2);
+            BGL_SetPriority(2, 3);
+            BGL_SetPriority(3, 2);
         } else {
             sub_02019120(3, 0);
-            sub_02019060(2, 2);
-            sub_02019060(3, 3);
+            BGL_SetPriority(2, 2);
+            BGL_SetPriority(3, 3);
         }
 
         return 1;

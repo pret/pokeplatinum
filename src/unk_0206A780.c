@@ -55,7 +55,7 @@ UnkStruct_0206A844 * sub_0206A780 (int param0)
 
     ov5_021D3190(&v2->unk_00, &v0, 2, 11);
 
-    v3 = NARC_ctor(85, param0);
+    v3 = NARC_ctor(NARC_INDEX_GRAPHIC__FLD_COMACT, param0);
 
     ov5_021D32E8(&v2->unk_00, v3, 0, 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 13528);
     ov5_021D3374(&v2->unk_00, v3, 2, 0, 13528);

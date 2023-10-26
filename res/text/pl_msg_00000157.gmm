@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="42018" />
+	<row id="pl_msg_00000157_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You there.\nWatch this Coin.\r</language>
+	</row>
+	<row id="pl_msg_00000157_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Spin, spin, spin, spin, spin...\r</language>
+	</row>
+	<row id="pl_msg_00000157_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now, which hand is that Coin in?\nMy left or right?</language>
+	</row>
+	<row id="pl_msg_00000157_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Boo! Poor show!\nI challenge you to challenge it again!</language>
+	</row>
+	<row id="pl_msg_00000157_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bravo!\nA winner is you!\rFor our winner, I have here...\nA Coin Case!\r</language>
+	</row>
+	<row id="pl_msg_00000157_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Me, I am but a tearful clown.\nThough I smile, I cry inside.</language>
+	</row>
+	<row id="pl_msg_00000157_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are many magicians in the world.\nYou know, the performance artists?\rDon’t you think that maybe, say,\nfive percent are actually psychics?</language>
+	</row>
+</body>

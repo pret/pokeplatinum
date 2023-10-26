@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="13391" />
+	<row id="pl_msg_00000295_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The mission is proceeding without\na hitch. The boss should be pleased.\rEverything is for everyone, and\nfor the good of Team Galactic!\r</language>
+	</row>
+	<row id="pl_msg_00000295_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I recognize your face!\rYou’re the child who raided the Team\nGalactic building in Eterna!\rHumph! Mars should be ashamed of\nherself, being beaten by a child.\rBut anything and anyone that opposes\nTeam Galactic must be crushed!\rEven the very thought of opposition\nwill not be tolerated!\r</language>
+	</row>
+	<row id="pl_msg_00000295_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gah! Even I, a Commander, only\nmanaged to buy us time?\rBut that’s fine.\rA child like you will never be able to\nstem the flow of time!\rTeam Galactic will get the three\nlegendary Pokémon of the lakes!\rWith their power, we will create an\nentirely new universe!\rYou will bear witness, as you are\nhelpless to stop us!\r</language>
+	</row>
+	<row id="pl_msg_00000295_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000295_00004" index="4">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000295_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000295_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A MAGIKARP is weakly flopping about...</language>
+	</row>
+</body>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50062" />
+	<row id="pl_msg_00000269_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Kyuu uuhn.\r</language>
+	</row>
+	<row id="pl_msg_00000269_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SHAYMIN disappeared among\nthe flowers...</language>
+	</row>
+</body>

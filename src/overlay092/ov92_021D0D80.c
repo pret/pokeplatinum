@@ -1,18 +1,18 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0202C878_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -36,7 +36,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -87,15 +87,15 @@ typedef struct {
     UnkStruct_0202C878 * unk_04;
     UnkStruct_020279FC * unk_08;
     UnkStruct_ov92_021D1B24_sub1 unk_0C;
-    UnkStruct_02018340 * unk_B810;
-    UnkStruct_0205AA50 unk_B814;
-    UnkStruct_0205AA50 unk_B824;
-    UnkStruct_0205AA50 unk_B834;
-    UnkStruct_0205AA50 unk_B844;
+    BGL * unk_B810;
+    Window unk_B814;
+    Window unk_B824;
+    Window unk_B834;
+    Window unk_B844;
     UnkStruct_0200112C * unk_B854;
     UnkStruct_02013A04 * unk_B858;
     UnkStruct_02001AF4 * unk_B85C;
-    UnkStruct_0200B144 * unk_B860;
+    MessageLoader * unk_B860;
     int unk_B864;
     int unk_B868;
     Strbuf* unk_B86C;
@@ -155,8 +155,8 @@ static int  ov92_021D16F8(int param0);
 static void ov92_021D1700(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D1818(int param0, int param1, int * param2, int * param3, int * param4, int * param5);
 static BOOL ov92_021D1B70(UnkStruct_ov92_021D1B24 * param0, u32 param1, int param2);
-static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 * param0, UnkStruct_0205AA50 * param1, const UnkStruct_ov61_0222C884 * param2, const UnkStruct_ov84_02240FA8 * param3, const UnkStruct_ov92_021D2958 * param4);
-static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 * param0, UnkStruct_0205AA50 * param1, const UnkStruct_ov61_0222C884 * param2, const UnkStruct_ov84_02240FA8 * param3, u32 param4, const u8 * param5, u32 param6);
+static void ov92_021D1C4C(UnkStruct_ov92_021D1B24 * param0, Window * param1, const UnkStruct_ov61_0222C884 * param2, const UnkStruct_ov84_02240FA8 * param3, const UnkStruct_ov92_021D2958 * param4);
+static void ov92_021D1CF4(UnkStruct_ov92_021D1B24 * param0, Window * param1, const UnkStruct_ov61_0222C884 * param2, const UnkStruct_ov84_02240FA8 * param3, u32 param4, const u8 * param5, u32 param6);
 static void ov92_021D1DB4(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D1DEC(UnkStruct_ov92_021D1B24 * param0);
 static void ov92_021D1EBC(UnkStruct_ov92_021D1B24 * param0, int param1, int param2);
@@ -342,7 +342,7 @@ int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     }
 
     {
-        UnkStruct_021C0794 * v2 = sub_02006840(param0);
+        SaveData * v2 = sub_02006840(param0);
 
         v0->unk_04 = sub_0202C878(v2);
         v0->unk_BB14 = sub_0202C8C0(v0->unk_04);
@@ -364,7 +364,7 @@ int ov92_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_BACC = sub_020203AC(v0->unk_00);
     v0->unk_BAE8 = 0;
 
-    Unk_021BF67C.unk_65 = 1;
+    gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
     sub_02017DD4(4, 8);
@@ -385,8 +385,8 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        v0->unk_B860 = sub_0200B144(1, 26, 356, v0->unk_00);
-        v2 = NARC_ctor(129, v0->unk_00);
+        v0->unk_B860 = MessageLoader_Init(1, 26, 356, v0->unk_00);
+        v2 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH, v0->unk_00);
 
         ov92_021D2150(v0, v2);
         ov92_021D1888(v0, v2);
@@ -402,7 +402,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 1;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             *param1 = 2;
         }
         break;
@@ -430,7 +430,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         }
 
         ov92_021D1DB4(v0);
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
 
         switch (v3) {
         default:
@@ -489,7 +489,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         }
 
         ov92_021D1DB4(v0);
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
 
         if (v5 != 0xfffffffe) {
             v5 = sub_02099780(0)[v5];
@@ -535,7 +535,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         }
 
         ov92_021D1DB4(v0);
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
 
         if (v7 != 0xfffffffe) {
             u32 v8 = sub_020996D4(v0->unk_BB1C);
@@ -598,8 +598,8 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         ov92_021D22B0(v0);
         ov92_021D2334(v0);
 
-        sub_0201AE78(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200DC48(&v0->unk_B834, 0, ((512 - ((18 + 12))) - 9), 7);
+        BGL_WindowColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
+        Window_Show(&v0->unk_B834, 0, ((512 - ((18 + 12))) - 9), 7);
 
         if (v0->unk_BB14 != 0) {
             ov92_021D1DEC(v0);
@@ -616,10 +616,10 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         u16 v10 = v0->unk_BAD8;
         ov92_021D1700(v0);
 
-        if ((Unk_021BF67C.unk_48 & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
-            sub_0200DC9C(&v0->unk_B834, 0);
-            sub_02005748(1501);
-            sub_0201AE78(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
+        if ((gCoreSys.padInput & PAD_BUTTON_B) || (v0->unk_BAF8 & PAD_BUTTON_B)) {
+            Window_Clear(&v0->unk_B834, 0);
+            Sound_PlayEffect(1501);
+            BGL_WindowColor(&v0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
 
             if (v0->unk_BB14 == 0) {
                 v0->unk_BAE8 = 2;
@@ -629,17 +629,17 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
                 *param1 = 17;
             }
         } else {
-            if ((Unk_021BF67C.unk_48 & PAD_BUTTON_X) && (v0->unk_BB28 == 0)) {
+            if ((gCoreSys.padInput & PAD_BUTTON_X) && (v0->unk_BB28 == 0)) {
                 v0->unk_BB28 = 1;
                 ov92_021D1F90(v0);
 
                 if (v0->unk_BB28 == 1) {
-                    sub_02005748(1501);
+                    Sound_PlayEffect(1501);
                 }
                 break;
             }
 
-            if ((Unk_021BF67C.unk_48 & (PAD_BUTTON_X | PAD_BUTTON_A | PAD_BUTTON_B)) && (v0->unk_BB28 == 1)) {
+            if ((gCoreSys.padInput & (PAD_BUTTON_X | PAD_BUTTON_A | PAD_BUTTON_B)) && (v0->unk_BB28 == 1)) {
                 v0->unk_BB28 = 0;
                 ov92_021D1F90(v0);
                 break;
@@ -648,7 +648,7 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
             {
                 BOOL v11;
 
-                v11 = ov92_021D2460(v0, Unk_021BF67C.unk_48, Unk_021BF67C.unk_44);
+                v11 = ov92_021D2460(v0, gCoreSys.padInput, gCoreSys.unk_44);
 
                 if ((v11 == 1) && (v0->unk_BB28 == 1)) {
                     v0->unk_BB28 = 0;
@@ -660,9 +660,9 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
                 *param1 = 16;
 
                 if (v0->unk_BAD8 == 0) {
-                    sub_02005748(1474);
+                    Sound_PlayEffect(1474);
                 } else {
-                    sub_02005748(1474);
+                    Sound_PlayEffect(1474);
                 }
             }
         }
@@ -683,12 +683,12 @@ int ov92_021D0EB8 (UnkStruct_020067E8 * param0, int * param1)
         *param1 = 18;
         break;
     case 18:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             v0->unk_BAE8 = 1;
 
             ov92_021D1B24(v0);
             ov92_021D2210(v0);
-            sub_0200B190(v0->unk_B860);
+            MessageLoader_Free(v0->unk_B860);
             (*param1) = 0;
             v1 = 1;
         }
@@ -717,7 +717,7 @@ int ov92_021D1478 (UnkStruct_020067E8 * param0, int * param1)
     sub_02006830(param0);
     Heap_Destroy(v1);
 
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     return 1;
 }
@@ -754,7 +754,7 @@ static void ov92_021D1510 (void)
 
 static void ov92_021D1530 (UnkStruct_ov92_021D1B24 * param0)
 {
-    NARC * v0 = NARC_ctor(102, param0->unk_00);
+    NARC * v0 = NARC_ctor(NARC_INDEX_APPLICATION__WIFI_EARTH__WIFI_EARTH_PLACE, param0->unk_00);
 
     param0->unk_0C.unk_00 = 0;
 
@@ -856,8 +856,8 @@ static void ov92_021D1700 (UnkStruct_ov92_021D1B24 * param0)
 
     param0->unk_BAF8 = 0;
 
-    if (Unk_021BF67C.unk_60) {
-        if ((Unk_021BF67C.unk_5C >= (25 * 8)) && (Unk_021BF67C.unk_5C <= ((25 + 6) * 8)) && (Unk_021BF67C.unk_5E >= (21 * 8)) && (Unk_021BF67C.unk_5E <= ((21 + 2) * 8))) {
+    if (gCoreSys.touchInput) {
+        if ((gCoreSys.unk_5C >= (25 * 8)) && (gCoreSys.unk_5C <= ((25 + 6) * 8)) && (gCoreSys.unk_5E >= (21 * 8)) && (gCoreSys.unk_5E <= ((21 + 2) * 8))) {
             param0->unk_BAF8 = PAD_BUTTON_B;
             return;
         } else {
@@ -866,13 +866,13 @@ static void ov92_021D1700 (UnkStruct_ov92_021D1B24 * param0)
             param0->unk_BB0C = 0;
             param0->unk_BB10 = 0;
             param0->unk_BAF8 = 0;
-            param0->unk_BB00 = Unk_021BF67C.unk_5C;
-            param0->unk_BB04 = Unk_021BF67C.unk_5E;
+            param0->unk_BB00 = gCoreSys.unk_5C;
+            param0->unk_BB04 = gCoreSys.unk_5E;
             param0->unk_BB10 = 4;
         }
     }
 
-    if (Unk_021BF67C.unk_62) {
+    if (gCoreSys.unk_62) {
         switch (param0->unk_BAFC) {
         case 0:
             if (!param0->unk_BB10) {
@@ -885,8 +885,8 @@ static void ov92_021D1700 (UnkStruct_ov92_021D1B24 * param0)
             param0->unk_BAF8 = v0 | v2;
             param0->unk_BB08 = v1;
             param0->unk_BB0C = v3;
-            param0->unk_BB00 = Unk_021BF67C.unk_5C;
-            param0->unk_BB04 = Unk_021BF67C.unk_5E;
+            param0->unk_BB00 = gCoreSys.unk_5C;
+            param0->unk_BB04 = gCoreSys.unk_5E;
             break;
         }
     } else {
@@ -908,8 +908,8 @@ static void ov92_021D1818 (int param0, int param1, int * param2, int * param3, i
     int v2 = 0;
     int v3 = 0;
 
-    if (Unk_021BF67C.unk_5C != 0xffff) {
-        v2 = Unk_021BF67C.unk_5C - param0;
+    if (gCoreSys.unk_5C != 0xffff) {
+        v2 = gCoreSys.unk_5C - param0;
 
         if (v2 < 0) {
             v2 ^= -1;
@@ -925,8 +925,8 @@ static void ov92_021D1818 (int param0, int param1, int * param2, int * param3, i
     *param2 = v0;
     *param3 = v2;
 
-    if (Unk_021BF67C.unk_5E != 0xffff) {
-        v3 = Unk_021BF67C.unk_5E - param1;
+    if (gCoreSys.unk_5E != 0xffff) {
+        v3 = gCoreSys.unk_5E - param1;
 
         if (v3 < 0) {
             v3 ^= -1;
@@ -957,7 +957,7 @@ static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
     sub_02019690(6, 32, 0, param0->unk_00);
     sub_0201975C(6, 0x4753);
     sub_0201A8D4(param0->unk_B810, &param0->unk_B814, &Unk_ov92_021D2934);
-    sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
+    BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
     sub_0200E060(&param0->unk_B814, 0, (512 - ((18 + 12))), 6);
 
     param0->unk_B864 = 0;
@@ -990,8 +990,8 @@ static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
         }
 
         sub_0201A8D4(param0->unk_B810, &param0->unk_B834, &Unk_ov92_021D2924);
-        sub_0201AE78(&param0->unk_B834, 15, 0, 0, 27 * 8, 4 * 8);
-        sub_0200B1B8(param0->unk_B860, 12, v0);
+        BGL_WindowColor(&param0->unk_B834, 15, 0, 0, 27 * 8, 4 * 8);
+        MessageLoader_GetStrbuf(param0->unk_B860, 12, v0);
 
         {
             u32 v5;
@@ -1007,8 +1007,8 @@ static void ov92_021D1888 (UnkStruct_ov92_021D1B24 * param0, NARC * param1)
 
 static void ov92_021D1B24 (UnkStruct_ov92_021D1B24 * param0)
 {
-    sub_0201A8FC(&param0->unk_B834);
-    sub_0201A8FC(&param0->unk_B814);
+    BGL_DeleteWindow(&param0->unk_B834);
+    BGL_DeleteWindow(&param0->unk_B814);
     sub_02019044(param0->unk_B810, 2);
     sub_02019044(param0->unk_B810, 6);
     sub_02019044(param0->unk_B810, 3);
@@ -1021,20 +1021,20 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
 
     switch (param0->unk_B864) {
     case 0:
-        sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
+        BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 4 * 8);
         param0->unk_B86C = Strbuf_Init(0x400, param0->unk_00);
-        sub_0200B1B8(param0->unk_B860, param1, param0->unk_B86C);
+        MessageLoader_GetStrbuf(param0->unk_B860, param1, param0->unk_B86C);
         param0->unk_B868 = sub_0201D738(&param0->unk_B814, 1, param0->unk_B86C, 0, 0, sub_02027AC0(param0->unk_08), NULL);
         param0->unk_B864 = 1;
         break;
     case 1:
-        if (!(sub_0201D724(param0->unk_B868))) {
+        if (!(Message_Printing(param0->unk_B868))) {
             Strbuf_Free(param0->unk_B86C);
             param0->unk_B864 = 2;
         }
         break;
     case 2:
-        if ((param2 != 0) || (Unk_021BF67C.unk_48 & PAD_BUTTON_A)) {
+        if ((param2 != 0) || (gCoreSys.padInput & PAD_BUTTON_A)) {
             param0->unk_B864 = 0;
             v0 = 1;
         }
@@ -1046,11 +1046,11 @@ static BOOL ov92_021D1B70 (UnkStruct_ov92_021D1B24 * param0, u32 param1, int par
 static void ov92_021D1C38 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 }
 
-static void ov92_021D1C4C (UnkStruct_ov92_021D1B24 * param0, UnkStruct_0205AA50 * param1, const UnkStruct_ov61_0222C884 * param2, const UnkStruct_ov84_02240FA8 * param3, const UnkStruct_ov92_021D2958 * param4)
+static void ov92_021D1C4C (UnkStruct_ov92_021D1B24 * param0, Window * param1, const UnkStruct_ov61_0222C884 * param2, const UnkStruct_ov84_02240FA8 * param3, const UnkStruct_ov92_021D2958 * param4)
 {
     UnkStruct_ov84_02240FA8 v0;
     int v1;
@@ -1068,25 +1068,25 @@ static void ov92_021D1C4C (UnkStruct_ov92_021D1B24 * param0, UnkStruct_0205AA50 
     v0.unk_04 = ov92_021D1C38;
     param0->unk_B854 = sub_0200112C(&v0, 0, 0, param0->unk_00);
 
-    sub_0200DC48(v0.unk_0C, 1, ((512 - ((18 + 12))) - 9), 7);
+    Window_Show(v0.unk_0C, 1, ((512 - ((18 + 12))) - 9), 7);
     sub_0201A954(param1);
 }
 
-static void ov92_021D1CF4 (UnkStruct_ov92_021D1B24 * param0, UnkStruct_0205AA50 * param1, const UnkStruct_ov61_0222C884 * param2, const UnkStruct_ov84_02240FA8 * param3, u32 param4, const u8 * param5, u32 param6)
+static void ov92_021D1CF4 (UnkStruct_ov92_021D1B24 * param0, Window * param1, const UnkStruct_ov61_0222C884 * param2, const UnkStruct_ov84_02240FA8 * param3, u32 param4, const u8 * param5, u32 param6)
 {
     UnkStruct_ov84_02240FA8 v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     int v2;
 
     sub_0201A8D4(param0->unk_B810, param1, param2);
-    v1 = sub_0200B144(0, 26, param4, param0->unk_00);
+    v1 = MessageLoader_Init(0, 26, param4, param0->unk_00);
     param0->unk_B858 = sub_02013A04(param6, param0->unk_00);
 
     for (v2 = 0; v2 < param6; v2++) {
         sub_02013A4C(param0->unk_B858, v1, param5[v2], v2);
     }
 
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
 
     v0 = *param3;
     v0.unk_00 = param0->unk_B858;
@@ -1096,14 +1096,14 @@ static void ov92_021D1CF4 (UnkStruct_ov92_021D1B24 * param0, UnkStruct_0205AA50 
 
     param0->unk_B854 = sub_0200112C(&v0, 0, 0, param0->unk_00);
 
-    sub_0200DC48(v0.unk_0C, 1, ((512 - ((18 + 12))) - 9), 7);
+    Window_Show(v0.unk_0C, 1, ((512 - ((18 + 12))) - 9), 7);
     sub_0201A954(param1);
 }
 
 static void ov92_021D1DB4 (UnkStruct_ov92_021D1B24 * param0)
 {
-    sub_0200DC9C(&param0->unk_B824, 0);
-    sub_0201A8FC(&param0->unk_B824);
+    Window_Clear(&param0->unk_B824, 0);
+    BGL_DeleteWindow(&param0->unk_B824);
     sub_02001384(param0->unk_B854, NULL, NULL);
     sub_02013A3C(param0->unk_B858);
 }
@@ -1114,13 +1114,13 @@ static void ov92_021D1DEC (UnkStruct_ov92_021D1B24 * param0)
     Strbuf* v1 = Strbuf_Init(0x400, param0->unk_00);
 
     sub_0201A8D4(param0->unk_B810, &param0->unk_B844, &Unk_ov92_021D291C);
-    sub_0201AE78(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
-    sub_0200DC48(&param0->unk_B844, 0, ((512 - ((18 + 12))) - 9), 7);
+    BGL_WindowColor(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
+    Window_Show(&param0->unk_B844, 0, ((512 - ((18 + 12))) - 9), 7);
 
     sub_0200BDD0(param0->unk_B870, 0, param0->unk_BB14);
     sub_0200BE08(param0->unk_B870, 1, param0->unk_BB14, param0->unk_BB18);
 
-    sub_0200B1B8(param0->unk_B860, 13, v1);
+    MessageLoader_GetStrbuf(param0->unk_B860, 13, v1);
     sub_0200C388(param0->unk_B870, v0, v1);
 
     sub_0201D738(&param0->unk_B844, 0, v0, 0, 0, 0, NULL);
@@ -1137,8 +1137,8 @@ static void ov92_021D1EBC (UnkStruct_ov92_021D1B24 * param0, int param1, int par
     Strbuf* v1 = Strbuf_Init(64, param0->unk_00);
 
     sub_0201A8D4(param0->unk_B810, &param0->unk_B844, &Unk_ov92_021D291C);
-    sub_0201AE78(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
-    sub_0200DC48(&param0->unk_B844, 0, ((512 - ((18 + 12))) - 9), 7);
+    BGL_WindowColor(&param0->unk_B844, 15, 0, 0, 27 * 8, 6 * 8);
+    Window_Show(&param0->unk_B844, 0, ((512 - ((18 + 12))) - 9), 7);
 
     ov92_021D27E8(param1, param2, v0, v1, param0->unk_00);
 
@@ -1154,8 +1154,8 @@ static void ov92_021D1EBC (UnkStruct_ov92_021D1B24 * param0, int param1, int par
 
 static void ov92_021D1F74 (UnkStruct_ov92_021D1B24 * param0)
 {
-    sub_0200DC9C(&param0->unk_B844, 0);
-    sub_0201A8FC(&param0->unk_B844);
+    Window_Clear(&param0->unk_B844, 0);
+    BGL_DeleteWindow(&param0->unk_B844);
 }
 
 static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
@@ -1164,8 +1164,8 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
         {
             Strbuf* v0 = Strbuf_Init(0x400, param0->unk_00);
 
-            sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
-            sub_0200B1B8(param0->unk_B860, 14, v0);
+            BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
+            MessageLoader_GetStrbuf(param0->unk_B860, 14, v0);
             sub_0201D738(&param0->unk_B814, 1, v0, 0, 0, 0, NULL);
             Strbuf_Free(v0);
         }
@@ -1207,7 +1207,7 @@ static void ov92_021D1F90 (UnkStruct_ov92_021D1B24 * param0)
                 Strbuf* v12 = Strbuf_Init(64, param0->unk_00);
                 Strbuf* v13 = Strbuf_Init(64, param0->unk_00);
 
-                sub_0201AE78(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
+                BGL_WindowColor(&param0->unk_B814, 15, 0, 0, 27 * 8, 6 * 8);
                 ov92_021D27E8(param0->unk_0C.unk_04[v8].unk_2A, param0->unk_0C.unk_04[v8].unk_2C, v12, v13, param0->unk_00);
 
                 if (param0->unk_0C.unk_04[v8].unk_2C != 0) {
@@ -1516,14 +1516,14 @@ static void ov92_021D26D0 (UnkStruct_ov92_021D1B24 * param0)
 
 BOOL ov92_021D27E8 (int param0, int param1, Strbuf *param2, Strbuf *param3, int param4)
 {
-    UnkStruct_0200B144 * v0;
+    MessageLoader * v0;
     int v1 = ov92_021D16F8(param0);
     BOOL v2;
 
-    v0 = sub_0200B144(0, 26, 694, param4);
+    v0 = MessageLoader_Init(0, 26, 694, param4);
 
-    sub_0200B1B8(v0, param0, param2);
-    sub_0200B190(v0);
+    MessageLoader_GetStrbuf(v0, param0, param2);
+    MessageLoader_Free(v0);
 
     if (v1 == 0) {
         v1 = 1;
@@ -1533,10 +1533,10 @@ BOOL ov92_021D27E8 (int param0, int param1, Strbuf *param2, Strbuf *param3, int 
         v2 = 1;
     }
 
-    v0 = sub_0200B144(0, 26, sub_0209972C(v1), param4);
+    v0 = MessageLoader_Init(0, 26, sub_0209972C(v1), param4);
 
-    sub_0200B1B8(v0, param1, param3);
-    sub_0200B190(v0);
+    MessageLoader_GetStrbuf(v0, param1, param3);
+    MessageLoader_Free(v0);
 
     return v2;
 }

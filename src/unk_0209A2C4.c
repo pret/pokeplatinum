@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0203CC84.h"
@@ -21,7 +21,7 @@
 #include "unk_02000C88.h"
 #include "unk_02002B7C.h"
 #include "unk_020067E8.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -41,11 +41,11 @@ typedef struct {
     int unk_0C;
     int unk_10;
     Strbuf* unk_14;
-    UnkStruct_02018340 * unk_18;
-    UnkStruct_0200B144 * unk_1C;
-    UnkStruct_0205AA50 unk_20;
+    BGL * unk_18;
+    MessageLoader * unk_1C;
+    Window unk_20;
     UnkStruct_02001AF4 * unk_30;
-    UnkStruct_021C0794 * unk_34;
+    SaveData * unk_34;
     void * unk_38;
     u32 unk_3C;
 } UnkStruct_0209A3D0;
@@ -218,18 +218,18 @@ static void sub_0209A490 (UnkStruct_0209A3D0 * param0)
 
 static void sub_0209A4E4 (UnkStruct_0209A3D0 * param0)
 {
-    param0->unk_1C = sub_0200B144(1, 26, 406, param0->unk_00);
+    param0->unk_1C = MessageLoader_Init(1, 26, 406, param0->unk_00);
     sub_0201D710();
     param0->unk_0C = 0;
 
     sub_0201A8D4(param0->unk_18, &param0->unk_20, &Unk_020F8A58);
-    sub_0201AE78(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
+    BGL_WindowColor(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
 }
 
 static void sub_0209A530 (UnkStruct_0209A3D0 * param0)
 {
-    sub_0201A8FC(&param0->unk_20);
-    sub_0200B190(param0->unk_1C);
+    BGL_DeleteWindow(&param0->unk_20);
+    MessageLoader_Free(param0->unk_1C);
 }
 
 static BOOL sub_0209A544 (UnkStruct_0209A3D0 * param0)
@@ -280,7 +280,7 @@ static BOOL sub_0209A544 (UnkStruct_0209A3D0 * param0)
         param0->unk_04 = 3;
         break;
     case 3:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_04 = 4;
         }
         break;
@@ -291,7 +291,7 @@ static BOOL sub_0209A544 (UnkStruct_0209A3D0 * param0)
         }
         break;
     case 5:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             sub_0201975C(0, 0);
             sub_0201975C(4, 0);
             param0->unk_04 = 1;
@@ -311,11 +311,11 @@ static BOOL sub_0209A688 (UnkStruct_0209A3D0 * param0, u32 param1, int param2, i
 
     switch (param0->unk_0C) {
     case 0:
-        sub_0201AE78(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
+        BGL_WindowColor(&param0->unk_20, 15, 0, 0, 27 * 8, 4 * 8);
         sub_0200E060(&param0->unk_20, 0, 512 - (18 + 12), 2);
 
         param0->unk_14 = Strbuf_Init(0x400, param0->unk_00);
-        sub_0200B1B8(param0->unk_1C, param1, param0->unk_14);
+        MessageLoader_GetStrbuf(param0->unk_1C, param1, param0->unk_14);
         param0->unk_10 = sub_0201D738(&param0->unk_20, 1, param0->unk_14, 0, 0, param3, NULL);
 
         if (param3 == 0) {
@@ -326,13 +326,13 @@ static BOOL sub_0209A688 (UnkStruct_0209A3D0 * param0, u32 param1, int param2, i
         param0->unk_0C++;
         break;
     case 1:
-        if (!(sub_0201D724(param0->unk_10))) {
+        if (!(Message_Printing(param0->unk_10))) {
             Strbuf_Free(param0->unk_14);
             param0->unk_0C++;
         }
         break;
     case 2:
-        if ((param2 != 0) || (Unk_021BF67C.unk_48 & PAD_BUTTON_A)) {
+        if ((param2 != 0) || (gCoreSys.padInput & PAD_BUTTON_A)) {
             param0->unk_0C = 0;
             v0 = 1;
         }

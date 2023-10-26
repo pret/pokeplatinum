@@ -24,7 +24,7 @@
 #include "unk_0209BA80.h"
 #include "overlay104/ov104_02239C58.h"
 
-UnkStruct_0209BBA4 * ov104_02239C58(UnkStruct_021C0794 * param0);
+UnkStruct_0209BBA4 * ov104_02239C58(SaveData * param0);
 void ov104_02239C7C(UnkStruct_0209BBA4 * param0);
 BOOL ov104_02239C88(UnkStruct_0209BBA4 * param0, u16 param1, u16 param2, u16 param3);
 void ov104_02239CD0(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, u16 param2);
@@ -33,7 +33,7 @@ static void ov104_02239F38(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * par
 static void ov104_02239FB0(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3);
 static void ov104_0223A090(UnkStruct_0209B75C * param0, UnkStruct_0209BBA4 * param1, UnkStruct_0203CDB0 * param2, int param3);
 
-UnkStruct_0209BBA4 * ov104_02239C58 (UnkStruct_021C0794 * param0)
+UnkStruct_0209BBA4 * ov104_02239C58 (SaveData * param0)
 {
     static UnkStruct_0209BBA4 * v0;
 

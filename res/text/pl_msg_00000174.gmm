@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54347" />
+	<row id="pl_msg_00000174_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\n...\r...So, you’re the latest challenger\nup against the Sunyshore Gym...\r</language>
+	</row>
+	<row id="pl_msg_00000174_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right, I’ve decided!\rIf I find you to be weak, I’m going to\nchallenge the Pokémon League.\rI’m all done with renovating the Gym,\nso I don’t need to be here.\rMore than anything, I want to have\nbattles that can thrill me again.\r</language>
+	</row>
+	<row id="pl_msg_00000174_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">As the toughest Gym Leader in Sinnoh,\nI’m going to unleash everything in\fmy arsenal on you.\r</language>
+	</row>
+	<row id="pl_msg_00000174_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} took a look through\nthe binoculars.\r</language>
+	</row>
+	<row id="pl_msg_00000174_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Vista Lighthouse represents\nsafety and protection to us Sailors.</language>
+	</row>
+	<row id="pl_msg_00000174_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I love how far away you can see with\nthe binoculars.\rI’m going to go that far away with\nmy Pokémon one day!</language>
+	</row>
+	<row id="pl_msg_00000174_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000174_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000174_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000174_00009" index="9">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000174_00010" index="10">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000174_00011" index="11">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000174_00012" index="12">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000174_00013" index="13">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+</body>

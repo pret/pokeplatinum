@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="9219" />
+	<row id="pl_msg_00000154_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Prof. Rowan: Hmm... Rage Candy Bars\nare too popular, it seems.\r</language>
+	</row>
+	<row id="pl_msg_00000154_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, {STRVAR_1 3, 0, 0}, it’s you.\rDoes life continue to thrill you?\nIt does for me.\rFor example, I recently discovered\nsome Pokémon evolve only in certain\flocations.\rWhen I learned that, I felt thrilled!</language>
+	</row>
+	<row id="pl_msg_00000154_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I didn’t expect to find paradise in the\ndepartment store’s basement.\rI got carried away and bought up all\nthe Rage Candy Bars!</language>
+	</row>
+	<row id="pl_msg_00000154_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m hopeless at cooking Poffins, so I\nbuy them here.\rI wish I could feed my babies Poffins\nthat I made myself, though.</language>
+	</row>
+	<row id="pl_msg_00000154_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pay attention, please.\rThe flavors of Poffins affect the\ncondition of Pokémon.\rSpicy Poffins enhance coolness.\rDry Poffins enhance beauty.\rSweet Poffins enhance cuteness.\rBitter Poffins enhance smartness.\rAnd Sour Poffins enhance toughness.\rSigh...\nPoffins are wonderful, aren’t they?</language>
+	</row>
+	<row id="pl_msg_00000154_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the basement--the food and\nproduce section.\rWe offer a fine and pleasing selection\nof Pokémon food and treats.</language>
+	</row>
+	<row id="pl_msg_00000154_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you ever planted Berries, then\npromptly forgotten about them?\rIf that’s you, we have Berries on sale,\ntoo.</language>
+	</row>
+	<row id="pl_msg_00000154_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello!\nRage Candy Bars...\rI’m all sold out.\nI’m terribly sorry.</language>
+	</row>
+	<row id="pl_msg_00000154_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, there.\rWould you like some Lava Cookies?\nThey’re $200 each.</language>
+	</row>
+	<row id="pl_msg_00000154_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here you go, one Lava Cookie.\nThank you.</language>
+	</row>
+	<row id="pl_msg_00000154_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here you go, ten Lava Cookies.\nThank you very much.</language>
+	</row>
+	<row id="pl_msg_00000154_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m sorry, but you’ve got no more\nroom.</language>
+	</row>
+	<row id="pl_msg_00000154_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m sorry, but you don’t have enough\nmoney.</language>
+	</row>
+	<row id="pl_msg_00000154_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please come again.</language>
+	</row>
+	<row id="pl_msg_00000154_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">1</language>
+	</row>
+	<row id="pl_msg_00000154_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">10</language>
+	</row>
+	<row id="pl_msg_00000154_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No, thanks.</language>
+	</row>
+	<row id="pl_msg_00000154_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello!\nI sell Poffins.\rThe ones I sell go for $6,400 each.\nWould you like one?</language>
+	</row>
+	<row id="pl_msg_00000154_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Poffin would you like?</language>
+	</row>
+	<row id="pl_msg_00000154_00019" index="19">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000154_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you very much.\nPlease do shop with us again.</language>
+	</row>
+	<row id="pl_msg_00000154_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m so sorry, but you don’t have\nenough money.</language>
+	</row>
+	<row id="pl_msg_00000154_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh...\nYour Poffin Case is already full.</language>
+	</row>
+	<row id="pl_msg_00000154_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please come again.</language>
+	</row>
+	<row id="pl_msg_00000154_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m so sorry.\rWe can’t sell Poffins if you don’t have\na Poffin Case for them.</language>
+	</row>
+	<row id="pl_msg_00000154_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Spicy-Dry Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Spicy-Sweet Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Spicy-Bitter Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Spicy-Sour Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dry-Sweet Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dry-Bitter Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dry-Sour Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sweet-Bitter Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sweet-Sour Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bitter-Sour Poffin</language>
+	</row>
+	<row id="pl_msg_00000154_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No, thanks.</language>
+	</row>
+	<row id="pl_msg_00000154_00036" index="36">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000154_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">B1F: Food &amp; Produce\r1F: Trainers’ Zone\r2F: Battle Collection\r3F: TM Corner\r4F: Poké Dolls &amp; Goods\r5F: Rooftop Plaza</language>
+	</row>
+</body>

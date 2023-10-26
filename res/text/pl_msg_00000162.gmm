@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18359" />
+	<row id="pl_msg_00000162_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yo!\nFellow Trainer!\rYour Pokémon are secure inside their\nPoké Balls, but there’s no masking\fthat aura of serious toughness!\rOops, sorry, I should introduce\nmyself.\rThe name’s Flint! I’m one of\nthe Pokémon League’s Elite Four!\r</language>
+	</row>
+	<row id="pl_msg_00000162_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I just had this idea.\nMaybe you can pull it off.\rIt’s about this town’s Gym Leader.\rHe’s really lost his enthusiasm lately\nbecause there’ve been so few good\fchallengers worth his time.\rHe’s been so bored, he spends all his\ntime renovating the Gym.\rAnd then the blackout happened...\nThat sure didn’t help lift his mood.\rYou know where I’m going with this,\ndon’t you?\rI need you to give him a battle\nthat’s so hot, it will reignite his\fpassion for battling.\rI’m counting on you, hotshot!\r</language>
+	</row>
+	<row id="pl_msg_00000162_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: Yo! Hiya!\nHe hasn’t come back yet.\rWhen he does, you know what you’ve\ngotta do.\rGive him a battle that’s so hot, it\nwill reignite his passion for battling!\rI’m counting on you, hotshot!</language>
+	</row>
+	<row id="pl_msg_00000162_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Flint: Yo! Hiya!\nHe’s finally come back!\rHe seemed to be feeling upbeat, too.\rI have a hunch that he recognized\nyour toughness right away.\rI bet he’s getting excited over\nthe thought of battling you.\rRemember what you have to do,\nhotshot.\rGive him a battle that’s so hot, it\nwill reignite his passion for battling!\rAll right, hotshot! I’ll be waiting at\nthe Pokémon League!\r</language>
+	</row>
+	<row id="pl_msg_00000162_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Er...um... M-my name is Jasmine,\nand I’m a Gym Leader.\rOh, I’m sorry, not the Gym Leader\nof this town...\rI’m a Gym Leader in the Johto\nregion...\r...Er...um...\nIt would be nice if you knew about\fthe Johto region...\r</language>
+	</row>
+	<row id="pl_msg_00000162_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, if you don’t have the Gym Badge,\nyou’ll be forced to turn back.</language>
+	</row>
+	<row id="pl_msg_00000162_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This isn’t much, but...\r</language>
+	</row>
+	<row id="pl_msg_00000162_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...That Hidden Machine...\nIt contains Waterfall.\rIf you use it, you can get to the\nPokémon League.\r...Um... I... I don’t know how I should\nsay this, but good luck.\r</language>
+	</row>
+	<row id="pl_msg_00000162_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jasmine: ...This city makes me feel\nat home somehow.\rIt’s next to the sea, and there’s\na lighthouse...\r</language>
+	</row>
+	<row id="pl_msg_00000162_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jasmine: ...I came from very far away\nbecause I wanted to get stronger.\rOn the way, I met all sorts of \npeople with their Pokémon...\rThey all looked like they were having\nfun. I felt happy seeing it.</language>
+	</row>
+	<row id="pl_msg_00000162_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey!\n{STRVAR_1 3, 1, 0}!\rWhat the...\rYou went and got all eight Gym Badges\nof Sinnoh!\rAww, you...\nThat’s wicked! I envy you!\rBut don’t think you’ve won!\r</language>
+	</row>
+	<row id="pl_msg_00000162_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Because I’m going to be the toughest\nTrainer ever! You watch me!\rBefore I was dreaming.\nI just wanted to be like my dad.\rNow, things are different.\rI thought about what being a Trainer\ninvolves.\rI thought about what Pokémon are.\rWe’re going to get tougher one step at\na time!\r</language>
+	</row>
+	<row id="pl_msg_00000162_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m not going to challenge you to a\nbattle now.\rI hate to say it, but I know you’re\ntougher than me.\rBut not a whole lot tougher.\nJust a little.\rOur difference is about a yard?\rNah, not even an inch.\r...What I’m trying to say is that I will\ncatch up to you in no time.\rIf you don’t hurry to the Pokémon\nLeague, I’ll leave you in my wake!\r</language>
+	</row>
+	<row id="pl_msg_00000162_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Jasmine: ...Was that your friend?\rSeeing how you two got along made me\nhappy somehow.\rIt must be wonderful having a friend\nlike that.\rA person that you can share anything\nand everything with.\rA person you can compete with\nwithout fighting.\r...Um, it made me feel sort of warm\nseeing you two.\rIt may seem odd, but I’d like you to\nhave this as my thanks.\r</language>
+	</row>
+	<row id="pl_msg_00000162_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000162_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That giant rock...\nIsn’t it really a Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000162_00016" index="16">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000162_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Gym Leader uses too much\nelectricity!\rHe needs to think about the city’s\npower needs, too!</language>
+	</row>
+	<row id="pl_msg_00000162_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The city uses a lot of electricity,\nespecially the lighthouse and the Gym.\rThey finally decided to turn all the\ncity’s roads into giant solar panels.\rSunyshore is the Sunshine City, so\nthe system works perfectly.</language>
+	</row>
+	<row id="pl_msg_00000162_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is a major port town.\nAnd...\rIt’s the gateway to the Pokémon\nLeague.</language>
+	</row>
+	<row id="pl_msg_00000162_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whatever the environment, people\nand Pokémon adapt to live there.\rThat’s what we all do to survive.</language>
+	</row>
+	<row id="pl_msg_00000162_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunyshore City\nSolar Powered!</language>
+	</row>
+	<row id="pl_msg_00000162_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunyshore City Pokémon Gym\nLeader: Volkner\fThe Shining, Shocking Star</language>
+	</row>
+	<row id="pl_msg_00000162_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Vista Lighthouse\nThe Beacon That Lights Sinnoh</language>
+	</row>
+	<row id="pl_msg_00000162_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunyshore Market\nA Selection of the World’s Seals</language>
+	</row>
+	<row id="pl_msg_00000162_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Julia’s House\nDelightful Ribbons for Pokémon</language>
+	</row>
+	<row id="pl_msg_00000162_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a blank sign painted white.</language>
+	</row>
+	<row id="pl_msg_00000162_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Rock\nSunyshore’s Heritage Site</language>
+	</row>
+</body>

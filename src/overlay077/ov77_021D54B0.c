@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -524,7 +524,7 @@ void ov77_021D6290 (UnkStruct_ov77_021D5564 * param0, fx32 param1)
     VecFx32 v1;
     int v2, v3;
 
-    if (Unk_021BF67C.unk_65 == 0) {
+    if (gCoreSys.unk_65 == 0) {
         v2 = 13;
         v3 = 15;
     } else {
@@ -563,7 +563,7 @@ void ov77_021D636C (UnkStruct_ov77_021D5564 * param0, int param1)
     VecFx32 v1;
 
     if (param1 == 0) {
-        if (Unk_021BF67C.unk_65 == 0) {
+        if (gCoreSys.unk_65 == 0) {
             sub_02021F24(param0->unk_250[13], 0);
             sub_02021F24(param0->unk_250[14], 0);
             sub_02021F24(param0->unk_250[15], 1);

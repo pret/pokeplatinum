@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18335" />
+	<row id="pl_msg_00000054_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Whoops!\nHey, {STRVAR_1 3, 1, 0}!\rYou’re going to challenge the Gym\nLeader up past here, eh?\rSomeone should check to see if you’re\nready for this challenge!\rThat someone is me!\nWith my brand-new Gym Badge!\r</language>
+	</row>
+	<row id="pl_msg_00000054_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Yeah, yeah, you’re just\na bit better than me, as usual.\rBut listen up!\rLet me tell you who’s going to take on\nthe Pokémon League and become the\fChampion.\rYou guessed right!\nIt’s going to be me!\rAnyway, you should go to Iron Island\nand toughen up some more.\rYeah, train at Iron Island! That’s what\nI did before going to the Gym!\r</language>
+	</row>
+	<row id="pl_msg_00000054_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey! That’s the Mine\nBadge! Good going!\rYou’re tough enough to consider\nbecoming the Pokémon Champ.\rOf course, I’m tougher, so it’s\nnot going to actually happen.\rAnyway, {STRVAR_1 3, 1, 0}, come with\nme to the library.\r</language>
+	</row>
+	<row id="pl_msg_00000054_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey, you’re here!\nFinally!\rOh, but what the...\rAww, you haven’t gone to Iron Island,\nhave you?\rYou didn’t get the HM Strength, did\nyou?\rAww, sheesh! I’ll wait here for you!\nHurry up and go already!</language>
+	</row>
+	<row id="pl_msg_00000054_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Too slow!\rCome on!\nLet’s move it!\r</language>
+	</row>
+	<row id="pl_msg_00000054_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: ...That tremor...\nThat wasn’t a natural occurrence.\r</language>
+	</row>
+	<row id="pl_msg_00000054_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, hey! Old dude and kids!\nDid you hear?!\rThey’re saying there was a huge\nexplosion at Lake Valor!\rBut, I hear everything’s fine now.\nI guess it was just a lot of noise.\r</language>
+	</row>
+	<row id="pl_msg_00000054_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Gramps!\rI’m going!\nI have a bad feeling about this!\r</language>
+	</row>
+	<row id="pl_msg_00000054_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: ...That {STRVAR_1 3, 0, 0}...\nCan’t sit still...\r{STRVAR_1 3, 1, 0}, I don’t like to demand,\nbut I need you at Lake Valor.\rIt’s impossible for things to be OK.\nNot after an explosion like that.\rBut I have no idea what is taking\nplace...\rBut before you go, let me stress:\ndon’t get in over your head.\rWe will try to join you as soon as\nwe inspect Lake Verity.\r</language>
+	</row>
+	<row id="pl_msg_00000054_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: ...{STRVAR_1 3, 0, 0}, you’ll be OK,\nno matter what, right?</language>
+	</row>
+	<row id="pl_msg_00000054_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Lake Valor...\nI wonder what happened?</language>
+	</row>
+	<row id="pl_msg_00000054_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: We’re going off to Lake Verity\nfirst...\rDon’t do anything rash if something\ndoes happen.</language>
+	</row>
+	<row id="pl_msg_00000054_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: We’re going to investigate\nLake Verity before we join you.\rDon’t try to be a hero if anything\ncrazy happens.</language>
+	</row>
+	<row id="pl_msg_00000054_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Hmm...\rWhat is taking place at Lake\nValor... You must find out!\rBut before you go, let me stress:\ndon’t get in over your head.\rWe will try to join you as soon as\nwe inspect Lake Verity.</language>
+	</row>
+	<row id="pl_msg_00000054_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s up?\nYour clothes look damp.\rMaybe you took the boat to Iron Island\nto get a Hidden Machine, right?</language>
+	</row>
+	<row id="pl_msg_00000054_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The tremor earlier was no quake.\nIt seems it was a mysterious explosion!</language>
+	</row>
+	<row id="pl_msg_00000054_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to Canalave City, the Canal\nCity!\rIn the old days, this port used to\nbe a hub of cargo transportation.</language>
+	</row>
+	<row id="pl_msg_00000054_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What was that tremor?\nI thought Mt. Coronet erupted!</language>
+	</row>
+	<row id="pl_msg_00000054_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s a really impatient-looking boy\nhanging out in front of the library.\rHe’s so jittery, just seeing him makes\nme feel twitchy.</language>
+	</row>
+	<row id="pl_msg_00000054_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m going to study at the library.\rI’ve taken an interest in the subject\nof time and space.</language>
+	</row>
+	<row id="pl_msg_00000054_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An explosion at Lake Valor?\nBut there isn’t anything there?</language>
+	</row>
+	<row id="pl_msg_00000054_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My PSYDUCK is very close to me.\nThat makes its Return move powerful!</language>
+	</row>
+	<row id="pl_msg_00000054_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">E-even PS-PSYDUCK’s Future Sight\ncouldn’t foretell that tremor!</language>
+	</row>
+	<row id="pl_msg_00000054_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PSYDUCK: Gua?</language>
+	</row>
+	<row id="pl_msg_00000054_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PSYDUCK: Gua! Gua! Gwa?\nGuaa! Guuagwa?!</language>
+	</row>
+	<row id="pl_msg_00000054_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Gym Leader and Trainers of this Gym\noften go out to Iron Island.\rThey not only train their Pokémon,\nbut they work out as well.</language>
+	</row>
+	<row id="pl_msg_00000054_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m flabbergasted!\nWhat could explode at Lake Valor?</language>
+	</row>
+	<row id="pl_msg_00000054_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you wanna set sail?</language>
+	</row>
+	<row id="pl_msg_00000054_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Anchors aweigh!\r</language>
+	</row>
+	<row id="pl_msg_00000054_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You just tell me whenever you need\nto set sail!</language>
+	</row>
+	<row id="pl_msg_00000054_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ahoy! You just go on and tell me\nwhenever you want to set sail again!</language>
+	</row>
+	<row id="pl_msg_00000054_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...You....\nYou’re going to Fullmoon Island for us?</language>
+	</row>
+	<row id="pl_msg_00000054_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re both counting on you!\rOnly you can awaken my son from his\nawful nightmare...\rPlease, I need the Lunar Wing from\nFullmoon Island to awaken him!\rI went, but I failed to find it...\r</language>
+	</row>
+	<row id="pl_msg_00000054_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you need to get ready?\rI’ll be waiting here.\nWe’re desperate for your help.</language>
+	</row>
+	<row id="pl_msg_00000054_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That Lunar Wing...\nPlease! Take it to my son...</language>
+	</row>
+	<row id="pl_msg_00000054_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve been asleep for a long,\nlong time... What happened to you?\rAnd what were you doing here?\nNo one’s lived here for fifty years.\r</language>
+	</row>
+	<row id="pl_msg_00000054_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Canalave City\nCargo Port</language>
+	</row>
+	<row id="pl_msg_00000054_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Canalave City Pokémon Gym\nLeader: Byron\fThe Man with the Steel Body!</language>
+	</row>
+	<row id="pl_msg_00000054_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Canalave Library</language>
+	</row>
+	<row id="pl_msg_00000054_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sailor Eldritch’s House</language>
+	</row>
+	<row id="pl_msg_00000054_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Canalave Dock</language>
+	</row>
+	<row id="pl_msg_00000054_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Harbor Inn...\nThe text is too faded to read.</language>
+	</row>
+	<row id="pl_msg_00000054_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Harbor Inn\nA Roost for Restless Sailors\r“Enjoy sweet dreams in our\nsumptuous beds!”</language>
+	</row>
+	<row id="pl_msg_00000054_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is tightly shut.\nIt appears impossible to open.</language>
+	</row>
+</body>

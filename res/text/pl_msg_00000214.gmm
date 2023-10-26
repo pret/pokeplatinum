@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="28344" />
+	<row id="pl_msg_00000214_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000214_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A communication error has occurred.\n\nIf you were in the Union Room, you\nwill be returned there.\nIn all other cases, you will be\nreturned to wherever you last\nsaved.\nPlease press the A Button.</language>
+	</row>
+	<row id="pl_msg_00000214_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An error occurred while attempting\nto communicate. ({STRVAR_1 54, 0, 0})\nPlease turn off the power, restart\nthis DS system, and try again.\n\nIf this message keeps appearing,\nplease contact Nintendo\nConsumer Service.</language>
+	</row>
+	<row id="pl_msg_00000214_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A communication error has occurred.\n\nYou will be returned to the title\nscreen.\nPlease press the A Button.</language>
+	</row>
+	<row id="pl_msg_00000214_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Either the GTS is experiencing high\ntraffic volumes or the service is down.\nPlease wait a while and try again.\n\nYou have been disconnected from\nNintendo Wi-Fi Connection.\nPlease press the A Button.</language>
+	</row>
+	<row id="pl_msg_00000214_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">An error occurred while attempting\nto communicate.\nPlease turn off the power, restart\nthis DS system, and try again.\n\nIf this message keeps appearing,\nplease contact Nintendo\nConsumer Service.</language>
+	</row>
+	<row id="pl_msg_00000214_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A communication error has occurred.\n\nYou have been disconnected from\nNintendo Wi-Fi Connection.\nYou will be returned to wherever\nyou last saved.\nPlease press the A Button.</language>
+	</row>
+	<row id="pl_msg_00000214_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A communication error has occurred.\n\nYou have been disconnected from\nNintendo Wi-Fi Connection.\nYou will be returned to the title\nscreen.\nPlease press the A Button.</language>
+	</row>
+</body>

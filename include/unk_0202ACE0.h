@@ -1,14 +1,14 @@
 #ifndef POKEPLATINUM_UNK_0202ACE0_H
 #define POKEPLATINUM_UNK_0202ACE0_H
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0202B370_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include <dwc.h>
 
-int sub_0202ACE0(void);
-void sub_0202ACE8(UnkStruct_0202B370 * param0);
+int WiFiList_SaveSize(void);
+void WiFiList_Init(UnkStruct_0202B370 * param0);
 DWCUserData * sub_0202AD28(UnkStruct_0202B370 * param0);
 u32 sub_0202AD2C(UnkStruct_0202B370 * param0, int param1, int param2);
 void sub_0202AE2C(UnkStruct_0202B370 * param0, int param1, int param2, u32 param3);
@@ -29,6 +29,6 @@ void sub_0202B1F8(UnkStruct_0202B370 * param0, int param1, int param2);
 void sub_0202B220(UnkStruct_0202B370 * param0, int param1, int param2);
 void sub_0202B248(UnkStruct_0202B370 * param0, int param1, int param2);
 void sub_0202B270(UnkStruct_0202B370 * param0, int param1, int param2);
-UnkStruct_0202B370 * sub_0202B370(UnkStruct_021C0794 * param0);
+UnkStruct_0202B370 * sub_0202B370(SaveData * param0);
 
 #endif // POKEPLATINUM_UNK_0202ACE0_H

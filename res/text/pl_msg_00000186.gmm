@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54322" />
+	<row id="pl_msg_00000186_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, well.\rYou’re quite the adorable Trainer,\nbut you’ve also got a spine.\rAhaha!\nI’m Bertha.\rI have a preference for Ground-type\nPokémon.\rWell, would you show this old lady\nhow much you’ve learned?\r</language>
+	</row>
+	<row id="pl_msg_00000186_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re quite something, youngster.\rI like how you and your Pokémon\nearned the win by working as one.\rThat’s what makes you so strong.\rAhahaha! I think that you can\ngo as far as you want.</language>
+	</row>
+	<row id="pl_msg_00000186_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Trainer in the next room is a\nmuch more formidable opponent.\rYou really must have your wits\nabout you.\rHowever, I think you can go as far\nas you desire. Ahahaha!</language>
+	</row>
+</body>

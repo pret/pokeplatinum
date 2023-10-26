@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="7923" />
+	<row id="pl_msg_00000509_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...A person...?\n...A rare sight...\r...Thank you for visiting...\n...A gift...\r</language>
+	</row>
+	<row id="pl_msg_00000509_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...The Spell Tag...\nIt intensifies Ghost-type moves...\fMay it serve you well...</language>
+	</row>
+</body>

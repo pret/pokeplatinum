@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -54,7 +54,7 @@ BOOL sub_02048614 (UnkStruct_0203E724 * param0)
     int * v2;
     int * v3;
     int * v4;
-    UnkStruct_0201CD38 ** v5;
+    SysTask ** v5;
     UnkStruct_02061AB4 ** v6;
     UnkStruct_0205E884 * v7;
     UnkStruct_0203CDB0 * v8 = param0->unk_34;
@@ -86,7 +86,7 @@ BOOL sub_02048614 (UnkStruct_0203E724 * param0)
 
 BOOL sub_020486E0 (UnkStruct_0203E724 * param0)
 {
-    UnkStruct_0201CD38 ** v0;
+    SysTask ** v0;
     u16 v1 = inline_02049538(param0);
     u16 * v2 = inline_0204FCAC(param0);
 

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="14702" />
+	<row id="pl_msg_00000087_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You kept me waiting!\rI’m Eterna’s Gym Leader, Gardenia,\nthe Grass-type master!\rWhen I first saw you, I was convinced\nyou’d find your way to me.\rMy hunch was right on the money.\nYou have a winning aura about you.\rSo, anyway, this will be fun.\nLet’s have our battle!\r</language>
+	</row>
+	<row id="pl_msg_00000087_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I might’ve said it before, but you’re\nreally tough!\rWasn’t it hard for you to raise your\nPokémon to be so good?\rI guess that’s a measure of how much\nyou love your Pokémon.\rIn recognition of that, I proudly\ngrant you this!\r</language>
+	</row>
+	<row id="pl_msg_00000087_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received the\nForest Badge from Gardenia!</language>
+	</row>
+	<row id="pl_msg_00000087_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">With the Forest Badge, your Pokémon\ncan use the hidden move Cut outside\fof battle.\rNow that you have two Gym Badges,\nall Pokémon you received in trades\fwill obey you up to Lv. 30.\rI’ve also got something else.\nIt’s a gift from me!\r</language>
+	</row>
+	<row id="pl_msg_00000087_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 8, 0, 0} contains\nthe move {STRVAR_1 6, 1, 0}.\rIt’s one of my favorite moves.\rThe heavier the foe, the more\ndamage this move will cause.</language>
+	</row>
+	<row id="pl_msg_00000087_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yup! If there’s one thing I can tell\nabout you, it’s this!\rYou and your Pokémon are gonna get\neven tougher, and I mean seriously!</language>
+	</row>
+	<row id="pl_msg_00000087_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome!\nWithout further ado, let’s go!\r</language>
+	</row>
+	<row id="pl_msg_00000087_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This gym’s floral clock...\nYou can walk on its hands.\fThat’s how you get to the next Trainer.</language>
+	</row>
+	<row id="pl_msg_00000087_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My Grass-type Pokémon can dole out\nsome serious special attacks...\rI won’t let you win...easily!\r</language>
+	</row>
+	<row id="pl_msg_00000087_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Every time you beat a Trainer, the\nfloral clock moves.\rThe fountain also stops if I lose.\rIt’s so you can go to the Pokémon\nCenter during your challenge.</language>
+	</row>
+	<row id="pl_msg_00000087_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can’t win when you’re distracted by\nthe lovely aromas of Pokémon!\r</language>
+	</row>
+	<row id="pl_msg_00000087_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The floral clock moves, and time\nflows...\rThere’s only our Gym Leader left.\nGo on, don’t be afraid!</language>
+	</row>
+	<row id="pl_msg_00000087_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The fountain’s water level dropped!\rIt’s possible to walk across the\nfountain now!</language>
+	</row>
+	<row id="pl_msg_00000087_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nHow’s it going, Champ-to-be?\rActually, that’s what I said to some\nboy who zipped in here earlier, too!\rThe Gym Leader, Gardenia, is a user\nof Grass-type Pokémon.\rIt should be obvious, but Grass-type\nPokémon really hate fire.\rThey’re also at a huge disadvantage\nagainst the Flying type, too.\rOh, wait a second. I should tell you\nabout the Gym itself first.\rYou can’t challenge the Gym Leader\nuntil you beat all the Gym’s Trainers.\rIt’s a bit challenging, but just think\nof it as good training and go for it!</language>
+	</row>
+	<row id="pl_msg_00000087_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! {STRVAR_1 3, 0, 0}!\nYou’ve beaten the Gym Leader!\rYour Pokémon look much tougher than\nwhen they went in, too!\rAt least that’s how I see it!</language>
+	</row>
+	<row id="pl_msg_00000087_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eterna City Pokémon Gym\nLeader: Gardenia\rCertified Trainers:\n{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000087_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eterna City Pokémon Gym\nLeader: Gardenia\rCertified Trainers:\n{STRVAR_1 3, 0, 0}\f{STRVAR_1 3, 1, 0}</language>
+	</row>
+</body>

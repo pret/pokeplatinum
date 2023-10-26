@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_0203E724_decl.h"
 
@@ -61,7 +61,7 @@ BOOL sub_020482FC (UnkStruct_0203E724 * param0)
 {
     u16 v0 = sub_0203E838(param0);
 
-    sub_0200549C(v0);
+    Sound_PlayBGM(v0);
     return 0;
 }
 
@@ -78,7 +78,7 @@ BOOL sub_02048320 (UnkStruct_0203E724 * param0)
     int v0 = param0->unk_34->unk_1C->unk_00;
     u16 v1 = sub_020554A4(param0->unk_34, v0);
 
-    sub_0200549C(v1);
+    Sound_PlayBGM(v1);
     return 0;
 }
 
@@ -140,7 +140,7 @@ BOOL sub_020483E0 (UnkStruct_0203E724 * param0)
 
 BOOL sub_020483F4 (UnkStruct_0203E724 * param0)
 {
-    sub_02005748(inline_02049538(param0));
+    Sound_PlayEffect(inline_02049538(param0));
     return 0;
 }
 
@@ -274,7 +274,7 @@ BOOL sub_0204858C (UnkStruct_0203E724 * param0)
 
 BOOL sub_020485C0 (UnkStruct_0203E724 * param0)
 {
-    if (Unk_021BF67C.unk_44 & PAD_KEY_UP) {
+    if (gCoreSys.unk_44 & PAD_KEY_UP) {
         sub_02004550(22, 1218, 1);
     } else {
         sub_02004550(22, 1218, 1);

@@ -3,11 +3,11 @@
 
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 #include "struct_defs/struct_020279FC.h"
@@ -57,69 +57,69 @@ static const u16 Unk_ov88_0223F170[][2] = {
     {0x14, 0xA}
 };
 
-void ov88_0223E9C4 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, UnkStruct_020279FC * param2)
+void ov88_0223E9C4 (BGL * param0, Window * param1, UnkStruct_020279FC * param2)
 {
     int v0;
 
-    sub_0201A7E8(param0, &param1[0], 1, 2, 1, 10, 2, 8, 1);
-    sub_0201ADA4(&param1[0], 0);
+    BGL_AddWindow(param0, &param1[0], 1, 2, 1, 10, 2, 8, 1);
+    BGL_FillWindow(&param1[0], 0);
 
-    sub_0201A7E8(param0, &param1[1], 1, 20, 1, 10, 2, 8, (1 + (10 * 2)));
-    sub_0201ADA4(&param1[1], 0);
+    BGL_AddWindow(param0, &param1[1], 1, 20, 1, 10, 2, 8, (1 + (10 * 2)));
+    BGL_FillWindow(&param1[1], 0);
 
-    sub_0201A7E8(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
-    sub_0201ADA4(&param1[6], 0);
+    BGL_AddWindow(param0, &param1[6], 1, 26, 21, 5, 2, 8, ((1 + (10 * 2)) + (10 * 2)));
+    BGL_FillWindow(&param1[6], 0);
 
     sub_0200DD0C(param0, 0, (512 - (9 + (18 + 12))), 10, sub_02027B50(param2), 26);
     sub_0200DAA4(param0, 0, (512 - 9), 11, 0, 26);
 
-    sub_0201A7E8(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);
-    sub_0201ADA4(&param1[21], 0);
-    sub_0201A7E8(param0, &param1[22], 0, 2, 19, 14, 4, 13, (20 * 2));
-    sub_0201ADA4(&param1[22], 0);
-    sub_0201A7E8(param0, &param1[23], 0, 2, 19, 27, 4, 13, (14 * 4));
-    sub_0201ADA4(&param1[23], 0);
+    BGL_AddWindow(param0, &param1[21], 0, 2, 21, 20, 2, 13, 1);
+    BGL_FillWindow(&param1[21], 0);
+    BGL_AddWindow(param0, &param1[22], 0, 2, 19, 14, 4, 13, (20 * 2));
+    BGL_FillWindow(&param1[22], 0);
+    BGL_AddWindow(param0, &param1[23], 0, 2, 19, 27, 4, 13, (14 * 4));
+    BGL_FillWindow(&param1[23], 0);
 
-    sub_0201A7E8(param0, &param1[24], 0, 20, 17, 11, 6, 13, ((14 * 4) + (27 * 4)));
-    sub_0201ADA4(&param1[24], 0);
-    sub_0201A7E8(param0, &param1[25], 0, 20, 19, 11, 4, 13, (((14 * 4) + (27 * 4)) + (11 * 6)));
-    sub_0201ADA4(&param1[25], 0);
+    BGL_AddWindow(param0, &param1[24], 0, 20, 17, 11, 6, 13, ((14 * 4) + (27 * 4)));
+    BGL_FillWindow(&param1[24], 0);
+    BGL_AddWindow(param0, &param1[25], 0, 20, 19, 11, 4, 13, (((14 * 4) + (27 * 4)) + (11 * 6)));
+    BGL_FillWindow(&param1[25], 0);
 
     for (v0 = 0; v0 < 14; v0++) {
-        sub_0201A7E8(param0, &param1[7 + v0], 1, Unk_ov88_0223F170[v0][0], Unk_ov88_0223F170[v0][1], 8, 2, 8, (((1 + (10 * 2)) + (10 * 2)) + (5 * 2)) + v0 * (8 * 2));
-        sub_0201ADA4(&param1[7 + v0], 0);
+        BGL_AddWindow(param0, &param1[7 + v0], 1, Unk_ov88_0223F170[v0][0], Unk_ov88_0223F170[v0][1], 8, 2, 8, (((1 + (10 * 2)) + (10 * 2)) + (5 * 2)) + v0 * (8 * 2));
+        BGL_FillWindow(&param1[7 + v0], 0);
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_0201A7E8(param0, &param1[26 + v0], 4, Unk_ov88_0223F1A8[v0][0], Unk_ov88_0223F1A8[v0][1], Unk_ov88_0223F1A8[v0][2], Unk_ov88_0223F1A8[v0][3], 8, Unk_ov88_0223F1A8[v0][4]);
-        sub_0201ADA4(&param1[26 + v0], 0);
+        BGL_AddWindow(param0, &param1[26 + v0], 4, Unk_ov88_0223F1A8[v0][0], Unk_ov88_0223F1A8[v0][1], Unk_ov88_0223F1A8[v0][2], Unk_ov88_0223F1A8[v0][3], 8, Unk_ov88_0223F1A8[v0][4]);
+        BGL_FillWindow(&param1[26 + v0], 0);
     }
 }
 
-void ov88_0223EC04 (UnkStruct_0205AA50 * param0)
+void ov88_0223EC04 (Window * param0)
 {
     int v0;
 
     for (v0 = 0; v0 < 14; v0++) {
-        sub_0201A8FC(&param0[7 + v0]);
+        BGL_DeleteWindow(&param0[7 + v0]);
     }
 
     for (v0 = 0; v0 < 8; v0++) {
-        sub_0201A8FC(&param0[26 + v0]);
+        BGL_DeleteWindow(&param0[26 + v0]);
     }
 
-    sub_0201A8FC(&param0[0]);
-    sub_0201A8FC(&param0[1]);
-    sub_0201A8FC(&param0[6]);
+    BGL_DeleteWindow(&param0[0]);
+    BGL_DeleteWindow(&param0[1]);
+    BGL_DeleteWindow(&param0[6]);
 
-    sub_0201A8FC(&param0[21]);
-    sub_0201A8FC(&param0[22]);
-    sub_0201A8FC(&param0[23]);
-    sub_0201A8FC(&param0[24]);
-    sub_0201A8FC(&param0[25]);
+    BGL_DeleteWindow(&param0[21]);
+    BGL_DeleteWindow(&param0[22]);
+    BGL_DeleteWindow(&param0[23]);
+    BGL_DeleteWindow(&param0[24]);
+    BGL_DeleteWindow(&param0[25]);
 }
 
-void ov88_0223EC78 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, u32 param3, int param4, int param5)
+void ov88_0223EC78 (Window * param0, Strbuf *param1, int param2, u32 param3, int param4, int param5)
 {
     int v0 = 0;
 
@@ -135,7 +135,7 @@ void ov88_0223EC78 (UnkStruct_0205AA50 * param0, Strbuf *param1, int param2, u32
     sub_0201D78C(param0, 0, param1, v0, param5, param3, (u32)(((11 & 0xff) << 16) | ((12 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 }
 
-int ov88_0223ECBC (UnkStruct_0205AA50 * param0, int param1, int param2, UnkStruct_0200B144 * param3, UnkStruct_0200B358 * param4)
+int ov88_0223ECBC (Window * param0, int param1, int param2, MessageLoader * param3, UnkStruct_0200B358 * param4)
 {
     Strbuf* v0;
     int v1;
@@ -145,10 +145,10 @@ int ov88_0223ECBC (UnkStruct_0205AA50 * param0, int param1, int param2, UnkStruc
     if (param2 == 1) {
         sub_0200E060(param0, 0, (512 - (9 + (18 + 12))), 10);
     } else {
-        sub_0200DC48(param0, 0, (512 - 9), 11);
+        Window_Show(param0, 0, (512 - 9), 11);
     }
 
-    sub_0201ADA4(param0, 15);
+    BGL_FillWindow(param0, 15);
     v1 = sub_0201D78C(param0, param2, v0, 0, 0, 0, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)), NULL);
     Strbuf_Free(v0);
 
@@ -165,7 +165,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov88_0223F148 = {
     0x112
 };
 
-u32 ov88_0223ED2C (UnkStruct_02018340 * param0, UnkStruct_02001AF4 ** param1, int * param2)
+u32 ov88_0223ED2C (BGL * param0, UnkStruct_02001AF4 ** param1, int * param2)
 {
     u32 v0 = 0xffffffff;
 
@@ -185,9 +185,9 @@ u32 ov88_0223ED2C (UnkStruct_02018340 * param0, UnkStruct_02001AF4 ** param1, in
     return v0;
 }
 
-void ov88_0223ED80 (UnkStruct_0205AA50 * param0)
+void ov88_0223ED80 (Window * param0)
 {
-    sub_0200DC48(param0, 0, (512 - 9), 11);
+    Window_Show(param0, 0, (512 - 9), 11);
 }
 
 static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
@@ -212,14 +212,14 @@ static const UnkStruct_ov84_02240FA8 Unk_ov88_0223F150 = {
     NULL
 };
 
-UnkStruct_0200112C * ov88_0223ED94 (UnkStruct_02013A04 * param0, int param1, UnkStruct_0205AA50 * param2, UnkStruct_02018340 * param3)
+UnkStruct_0200112C * ov88_0223ED94 (UnkStruct_02013A04 * param0, int param1, Window * param2, BGL * param3)
 {
     UnkStruct_0200112C * v0;
     UnkStruct_ov84_02240FA8 v1;
     int v2 = 5;
 
-    sub_0201A7E8(param3, param2, 0, 19, 1, 12, v2 * 2, 13, (512 - (9 + (18 + 12))) - (10 * (v2 + 2) * 2));
-    sub_0200DC48(param2, 0, (512 - 9), 11);
+    BGL_AddWindow(param3, param2, 0, 19, 1, 12, v2 * 2, 13, (512 - (9 + (18 + 12))) - (10 * (v2 + 2) * 2));
+    Window_Show(param2, 0, (512 - 9), 11);
 
     v1 = Unk_ov88_0223F150;
     v1.unk_10 = param1 + 1;
@@ -235,6 +235,6 @@ UnkStruct_0200112C * ov88_0223ED94 (UnkStruct_02013A04 * param0, int param1, Unk
 static void ov88_0223EE14 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     if (param2 == 0) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 }

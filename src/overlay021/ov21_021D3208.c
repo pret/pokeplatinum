@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
 
 #include "overlay021/struct_ov21_021D3208.h"
@@ -14,7 +14,7 @@
 #include "unk_02006E3C.h"
 #include "heap.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"
@@ -87,15 +87,15 @@ void ov21_021D3208 (UnkStruct_ov21_021D3320 * param0, UnkStruct_ov21_021D3208 * 
     ov21_021D3434(param0, param1->unk_1C);
     ov21_021D344C(param0, param1->unk_20);
 
-    param0->unk_174C = sub_02025FCC(param1->unk_04);
-    param0->unk_1750 = sub_02025F30(param1->unk_04);
-    param0->unk_1754 = sub_02025F04(param1->unk_04, param2);
-    param0->unk_1748 = sub_02098700(param2);
+    param0->unk_174C = TrainerInfo_GameCode(param1->unk_04);
+    param0->unk_1750 = TrainerInfo_Gender(param1->unk_04);
+    param0->unk_1754 = TrainerInfo_NameNewStrbuf(param1->unk_04, param2);
+    param0->unk_1748 = Pokedex_HeightWeightData(param2);
 
     if (param0->unk_1750 == 0) {
-        sub_0209872C(param0->unk_1748, 0, param2);
+        Pokedex_HeightWeightData_Load(param0->unk_1748, 0, param2);
     } else {
-        sub_0209872C(param0->unk_1748, 1, param2);
+        Pokedex_HeightWeightData_Load(param0->unk_1748, 1, param2);
     }
 
     param0->unk_1760 = param1->unk_0C;
@@ -107,8 +107,8 @@ void ov21_021D3208 (UnkStruct_ov21_021D3320 * param0, UnkStruct_ov21_021D3208 * 
 void ov21_021D3320 (UnkStruct_ov21_021D3320 * param0)
 {
     Strbuf_Free(param0->unk_1754);
-    sub_020987BC(param0->unk_1748);
-    sub_02098718(param0->unk_1748);
+    Pokedex_HeightWeightData_Release(param0->unk_1748);
+    Pokedex_HeightWeightData_Free(param0->unk_1748);
 
     param0->unk_1748 = NULL;
 }
@@ -584,12 +584,12 @@ BOOL ov21_021D3954 (const UnkStruct_ov21_021D3320 * param0)
 
 void ov21_021D3960 (UnkStruct_ov21_021D3320 * param0)
 {
-    if (Unk_021BF67C.unk_62) {
+    if (gCoreSys.unk_62) {
         param0->unk_1758 = 0;
         return;
     }
 
-    if (Unk_021BF67C.unk_48) {
+    if (gCoreSys.padInput) {
         if (param0->unk_1758 == 0) {
             param0->unk_1758 = 1;
         } else {
@@ -629,7 +629,7 @@ static void ov21_021D39E4 (u16 * param0, int * param1, const u16 * param2, int p
                 if (param6 == 1) {
                     break;
                 } else {
-                    if (sub_02026F9C(param7, param2[v0])) {
+                    if (Pokedex_CaughtSpecies(param7, param2[v0])) {
                         break;
                     }
                 }
@@ -650,7 +650,7 @@ static void ov21_021D3A60 (UnkStruct_ov21_021D3A60 * param0, const UnkStruct_020
     param0->unk_F6C = 0;
 
     for (v0 = 0; v0 < param3; v0++) {
-        if (sub_02026F9C(param1, param2[v0])) {
+        if (Pokedex_CaughtSpecies(param1, param2[v0])) {
             param0->unk_00[param0->unk_F6C].unk_04 = 2;
         } else {
             param0->unk_00[param0->unk_F6C].unk_04 = 1;

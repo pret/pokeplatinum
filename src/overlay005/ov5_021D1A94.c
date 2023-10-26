@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0201CD88_decl.h"
 #include "overlay005/struct_ov5_021D1A94_decl.h"
 #include "overlay005/struct_ov5_021D1BEC_decl.h"
@@ -26,8 +26,8 @@ struct UnkStruct_ov5_021D1A94_t {
 
 struct UnkStruct_ov5_021D1BEC_t {
     UnkStruct_ov5_021D1A94 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_04;
+    SysTask * unk_08;
     const UnkStruct_ov6_0223E6EC * unk_0C;
     void * unk_10;
 };
@@ -72,7 +72,7 @@ void ov5_021D1B18 (UnkStruct_ov5_021D1A94 * param0)
     sub_0201CDD4(param0->unk_10);
 }
 
-static void ov5_021D1B24 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021D1B24 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021D1BEC * v0 = param1;
 
@@ -83,7 +83,7 @@ static void ov5_021D1B24 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-static void ov5_021D1B48 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021D1B48 (SysTask * param0, void * param1)
 {
     UnkStruct_ov5_021D1BEC * v0 = param1;
 
@@ -101,7 +101,7 @@ UnkStruct_ov5_021D1BEC * ov5_021D1B6C (UnkStruct_ov5_021D1A94 * param0, const Un
 
     for (v1 = param0->unk_0C, v0 = 0; v0 < param0->unk_08; v1++, v0++) {
         if (v1->unk_04 == NULL) {
-            v1->unk_04 = sub_0200D9E8(ov5_021D1B24, v1, param1->unk_00);
+            v1->unk_04 = SysTask_Start(ov5_021D1B24, v1, param1->unk_00);
             v1->unk_08 = sub_0201CE14(param0->unk_10, ov5_021D1B48, v1, param1->unk_00);
             v1->unk_00 = param0;
             v1->unk_0C = param1;
@@ -139,8 +139,8 @@ void ov5_021D1BEC (UnkStruct_ov5_021D1BEC * param0)
         Heap_FreeToHeap(param0->unk_10);
     }
 
-    sub_0200DA58(param0->unk_04);
-    sub_0200DA58(param0->unk_08);
+    SysTask_Done(param0->unk_04);
+    SysTask_Done(param0->unk_08);
 
     MI_CpuClear32(param0, sizeof(UnkStruct_ov5_021D1BEC));
 }

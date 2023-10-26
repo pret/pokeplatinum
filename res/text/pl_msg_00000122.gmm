@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="1075" />
+	<row id="pl_msg_00000122_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Contests are interesting, but the\nruins of Solaceon Town are as well...</language>
+	</row>
+	<row id="pl_msg_00000122_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry, the gate’s closed for a while.\nWe’re on location for a TV shoot.</language>
+	</row>
+	<row id="pl_msg_00000122_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I traveled a long way to take part\nin these Contests.</language>
+	</row>
+	<row id="pl_msg_00000122_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000122_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve given my Pokémon lots of Poffins.\rI’m confident that we’ll win our share\nof Contests.</language>
+	</row>
+	<row id="pl_msg_00000122_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s a Day Care in Solaceon Town\nthat raises Pokémon for you.</language>
+	</row>
+</body>

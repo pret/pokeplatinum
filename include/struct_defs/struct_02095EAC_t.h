@@ -3,15 +3,15 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02015920_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_0203DDFC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02095EAC_sub1.h"
@@ -20,11 +20,11 @@
 #include "overlay058/struct_ov58_021D2820.h"
 
 struct UnkStruct_02095EAC_t {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     BOOL unk_04;
     UnkStruct_0203DDFC * unk_08;
     UnkStruct_0200B358 * unk_0C;
-    UnkStruct_0200B144 * unk_10;
+    MessageLoader * unk_10;
     Strbuf* unk_14[5];
     Strbuf* unk_28;
     Strbuf* unk_2C;
@@ -38,11 +38,11 @@ struct UnkStruct_02095EAC_t {
     UnkStruct_02022550 * unk_23C[14];
     UnkStruct_02022550 * unk_274[14];
     UnkStruct_02022550 * unk_2AC[12];
-    UnkStruct_0205AA50 unk_2DC[5];
-    UnkStruct_0205AA50 unk_32C;
-    UnkStruct_0205AA50 unk_33C;
-    UnkStruct_0205AA50 unk_34C;
-    UnkStruct_0205AA50 * unk_35C[2];
+    Window unk_2DC[5];
+    Window unk_32C;
+    Window unk_33C;
+    Window unk_34C;
+    Window * unk_35C[2];
     int unk_364;
     int unk_368;
     int unk_36C;
@@ -53,7 +53,7 @@ struct UnkStruct_02095EAC_t {
     int unk_380;
     int unk_384;
     u8 unk_388[8][2];
-    UnkStruct_02025E6C * unk_398[8][2];
+    TrainerInfo * unk_398[8][2];
     u8 unk_3D8[16384];
     u16 unk_43D8;
     u8 unk_43DA;

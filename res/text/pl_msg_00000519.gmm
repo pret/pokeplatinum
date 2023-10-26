@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="20115" />
+	<row id="pl_msg_00000519_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I had a dream!\nIt was a wonderful dream!\rI dreamt that a Trainer would bring\nme a giant REMORAID!</language>
+	</row>
+	<row id="pl_msg_00000519_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I had a dream!\nIt was a wonderful dream!\rI dreamt that a Trainer would bring\nme a giant REMORAID!\rOh, my gosh!\nThat dream was no dream!\rH-how big of a REMORAID did you\nbring me?!\r</language>
+	</row>
+	<row id="pl_msg_00000519_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} inches...\nThis REMORAID is {STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} inches...\r...I think you did better than in\nmy dream!\rI’d like you to have this.\r</language>
+	</row>
+	<row id="pl_msg_00000519_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you!\nI really enjoyed this.\rI think I’ll dream of an even bigger\nREMORAID tonight.</language>
+	</row>
+	<row id="pl_msg_00000519_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} inches...\nAm I experiencing deja vu?\fI distinctly remember this size...</language>
+	</row>
+	<row id="pl_msg_00000519_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This REMORAID was {STRVAR_1 52, 0, 0}.{STRVAR_1 50, 1, 0} inches.\rI know a genius who brought me\na REMORAID that was {STRVAR_1 52, 2, 0}.{STRVAR_1 50, 3, 0} inches...</language>
+	</row>
+	<row id="pl_msg_00000519_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wha...\nWhat do you think you’re showing me?\rDid you even listen to what I had\nto say?</language>
+	</row>
+	<row id="pl_msg_00000519_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your Bag’s jammed full...\nI can’t give you this...</language>
+	</row>
+	<row id="pl_msg_00000519_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, what? Why would you deny me\nthe chance to measure your REMORAID?</language>
+	</row>
+</body>

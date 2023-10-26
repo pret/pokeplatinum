@@ -1,11 +1,11 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "message.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02027860_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -31,7 +31,7 @@
 #include "overlay008/struct_ov8_02249FB8.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
 #include "heap.h"
@@ -39,7 +39,7 @@
 #include "unk_0201D15C.h"
 #include "unk_02020020.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
 #include "unk_0203A378.h"
@@ -185,8 +185,8 @@ typedef struct {
     UnkStruct_ov8_0224AF00 * unk_18;
     UnkStruct_ov8_0224B28C unk_1C;
     u32 unk_40;
-    UnkStruct_0205AA50 * unk_44;
-    UnkStruct_0200B144 * unk_48;
+    Window * unk_44;
+    MessageLoader * unk_48;
     Strbuf* unk_4C;
 } UnkStruct_ov8_0224B67C;
 
@@ -287,7 +287,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
     UnkStruct_ov101_021D5D90 * unk_10;
     UnkStruct_02061AB4 * unk_14;
     UnkStruct_ov8_0224C444 * unk_18;
@@ -298,7 +298,7 @@ typedef struct UnkStruct_ov8_0224C444_t {
     UnkStruct_ov8_0224C4F8 unk_04[16];
     UnkStruct_ov8_0224C3B4 unk_1C4;
     u32 unk_1F0;
-    UnkStruct_0201CD38 * unk_1F4;
+    SysTask * unk_1F4;
 } UnkStruct_ov8_0224C444;
 
 void include_ov8_02249960(void);
@@ -324,11 +324,11 @@ static BOOL ov8_0224C0C8(UnkStruct_ov8_0224C098 * param0, UnkStruct_ov8_0224B80C
 static void ov8_0224C0FC(UnkStruct_ov8_0224C098 * param0, int param1);
 static void ov8_0224C11C(UnkStruct_ov8_0224C098 * param0, int param1);
 static void ov8_0224C170(UnkStruct_ov8_0224C098 * param0, fx32 param1);
-static void ov8_0224C3B0(UnkStruct_0201CD38 * param0, void * param1);
+static void ov8_0224C3B0(SysTask * param0, void * param1);
 static void ov8_0224C3B4(UnkStruct_ov8_0224C444 * param0);
 static void ov8_0224C444(UnkStruct_ov8_0224C444 * param0);
 static void ov8_0224C4F8(UnkStruct_ov8_0224C444 * param0);
-static void ov8_0224C518(UnkStruct_0201CD38 * param0, void * param1);
+static void ov8_0224C518(SysTask * param0, void * param1);
 
 static u8 ov8_02249960 (const u8 param0, const int param1)
 {
@@ -744,7 +744,7 @@ static void ov8_02249F14 (const u8 param0, UnkStruct_ov5_021D3CAC * param1)
     ov5_021D3E40(v0, 0);
     ov5_021D3E44(v0);
 
-    sub_02005748(1626);
+    Sound_PlayEffect(1626);
 }
 
 void include_ov8_02249960 (void)
@@ -789,7 +789,7 @@ static BOOL ov8_0224A018 (UnkStruct_020508D4 * param0)
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(v1->unk_3C, 0);
-        sub_02005748(1553);
+        Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
     case 1:
@@ -817,7 +817,7 @@ static BOOL ov8_0224A018 (UnkStruct_020508D4 * param0)
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 10), v1->unk_A0);
         sub_0205ED48(v1->unk_3C, 1);
-        sub_02005748(1562);
+        Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;
     case 3:
@@ -837,7 +837,7 @@ static BOOL ov8_0224A0E8 (UnkStruct_020508D4 * param0)
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(v1->unk_3C, 0);
-        sub_02005748(1553);
+        Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
     case 1:
@@ -864,7 +864,7 @@ static BOOL ov8_0224A0E8 (UnkStruct_020508D4 * param0)
     case 2:
         ov5_021EF388(0, (FX32_ONE * 16 * 0), v1->unk_A0);
         sub_0205ED48(v1->unk_3C, 1);
-        sub_02005748(1562);
+        Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;
     case 3:
@@ -1354,7 +1354,7 @@ static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
     switch (v2->unk_00) {
     case 0:
         sub_0205ED2C(v1->unk_3C, 0);
-        sub_02005748(1553);
+        Sound_PlayEffect(1553);
         (v2->unk_00)++;
         break;
     case 1:
@@ -1399,7 +1399,7 @@ static BOOL ov8_0224A4FC (UnkStruct_020508D4 * param0)
     break;
     case 2:
         sub_0205ED48(v1->unk_3C, 1);
-        sub_02005748(1562);
+        Sound_PlayEffect(1562);
         (v2->unk_00)++;
         break;
     case 3:
@@ -1426,7 +1426,7 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
         if (sub_020655F4(v1) == 1) {
             sub_02065638(v1, 0x49);
 
-            sub_02005748(1553);
+            Sound_PlayEffect(1553);
             (v3->unk_00)++;
         }
         break;
@@ -1482,7 +1482,7 @@ static BOOL ov8_0224A620 (UnkStruct_020508D4 * param0)
     case 3:
         if (sub_02065684(v1) == 1) {
             sub_020656AC(v1);
-            sub_02005748(1562);
+            Sound_PlayEffect(1562);
             (v3->unk_00)++;
         }
         break;
@@ -1510,7 +1510,7 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
         if (sub_020655F4(v1) == 1) {
             sub_02065638(v1, 0x49);
 
-            sub_02005748(1553);
+            Sound_PlayEffect(1553);
             (v3->unk_00)++;
         }
         break;
@@ -1572,7 +1572,7 @@ static BOOL ov8_0224A770 (UnkStruct_020508D4 * param0)
 
         if (sub_02065684(v8) == 1) {
             sub_020656AC(v8);
-            sub_02005748(1562);
+            Sound_PlayEffect(1562);
             (v3->unk_00)++;
         }
     }
@@ -2225,7 +2225,7 @@ void ov8_0224AD34 (UnkStruct_0203CDB0 * param0, const u8 param1)
         v3->unk_00 = v4;
         v1->unk_13 = v4;
 
-        sub_02005748(1599);
+        Sound_PlayEffect(1599);
         sub_02050944(param0->unk_10, ov8_0224ADE8, v0);
     }
 }
@@ -2833,7 +2833,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
         }
 
         v2->unk_04 = 0;
-        sub_02005748(1355);
+        Sound_PlayEffect(1355);
         v2->unk_00++;
     case 3:
         if (v3->unk_00 == 4) {
@@ -2862,7 +2862,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
 
         if (v0 == 1) {
             sub_020057A4(1355, 0);
-            sub_02005748(1507);
+            Sound_PlayEffect(1507);
             v2->unk_00++;
         }
         break;
@@ -2926,7 +2926,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
                 ov5_021F416C(v1, 0);
             }
 
-            sub_02005748(1593);
+            Sound_PlayEffect(1593);
             v2->unk_00++;
         }
         break;
@@ -2938,7 +2938,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
             v2->unk_00++;
 
             sub_020057A4(1593, 0);
-            sub_0200B1B8(v2->unk_48, 12, v2->unk_4C);
+            MessageLoader_GetStrbuf(v2->unk_48, 12, v2->unk_4C);
             sub_0205D8F4(v1->unk_08, v2->unk_44, 3);
             sub_0200E084(v2->unk_44, 0);
             sub_0205D944(v2->unk_44, sub_02025E44(v1->unk_0C));
@@ -2953,13 +2953,13 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
 
         v2->unk_00++;
     case 12:
-        if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             int v9 = sub_0205EABC(v1->unk_3C);
             int v10 = sub_0205EAC8(v1->unk_3C);
 
             ov8_0224B240(&v2->unk_1C, v9, v10);
             sub_0200E084(v2->unk_44, 0);
-            sub_0201A8FC(v2->unk_44);
+            BGL_DeleteWindow(v2->unk_44);
             v2->unk_04 = 0;
             v2->unk_00 = 5;
             break;
@@ -2969,7 +2969,7 @@ static BOOL ov8_0224B3D4 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-BOOL ov8_0224B67C (UnkStruct_0203CDB0 * param0, UnkStruct_0205AA50 * param1, UnkStruct_0200B144 * param2, Strbuf *param3)
+BOOL ov8_0224B67C (UnkStruct_0203CDB0 * param0, Window * param1, MessageLoader * param2, Strbuf *param3)
 {
     UnkStruct_02027860 * v0;
     UnkStruct_02071BD0 * v1;
@@ -3353,7 +3353,7 @@ static BOOL ov8_0224BAF4 (UnkStruct_020508D4 * param0)
         if (sub_020655F4(v0) == 1) {
             sub_02065638(v0, sub_02065838(v2->unk_08, 0x28));
             ov5_021F4698(v2->unk_34->unk_08.unk_0C, v2->unk_08, 0);
-            sub_02005748(1367);
+            Sound_PlayEffect(1367);
             v2->unk_00++;
         }
         break;
@@ -3427,7 +3427,7 @@ static int ov8_0224BBD0 (UnkStruct_ov8_0224C098 * param0)
         }
     }
 
-    sub_02005748(1367);
+    Sound_PlayEffect(1367);
 
     param0->unk_00 = 2;
     return 1;
@@ -3448,7 +3448,7 @@ static int ov8_0224BC48 (UnkStruct_ov8_0224C098 * param0)
         v0 /= param0->unk_1C * 16 / 2;
         ov5_021F4714(param0->unk_34->unk_08.unk_0C, v0);
         param0->unk_00 = 3;
-        sub_02005748(1356);
+        Sound_PlayEffect(1356);
     }
 
     return 0;
@@ -3495,8 +3495,8 @@ static int ov8_0224BCA8 (UnkStruct_ov8_0224C098 * param0)
             sub_02064208(v0->unk_08.unk_08);
             ov5_021F4714(v0->unk_08.unk_0C, FX32_ONE);
             sub_020057A4(1356, 0);
-            sub_02005748(1367);
-            sub_02005748(1357);
+            Sound_PlayEffect(1367);
+            Sound_PlayEffect(1357);
 
             if ((v1 & (1 << 1)) == 0) {
                 if (param0->unk_18 == 1) {
@@ -3525,7 +3525,7 @@ static int ov8_0224BDD0 (UnkStruct_ov8_0224C098 * param0)
         param0->unk_04 = 0;
         param0->unk_00 = 5;
         ov5_021F44A4(param0->unk_38->unk_08.unk_0C);
-        sub_02005748(1578);
+        Sound_PlayEffect(1578);
     }
 
     return 0;
@@ -3929,14 +3929,14 @@ void ov8_0224C198 (UnkStruct_0203CDB0 * param0)
 
             if (v6 != 2) {
                 const u8 * v9 = Unk_ov8_0224C6F8[v6];
-                int v10 = sub_0201D35C() % v8->unk_08;
+                int v10 = MTRNG_Next() % v8->unk_08;
 
                 v1->unk_02 = v10 + v8->unk_04;
 
                 do {
                     do {
-                        v1->unk_04 = sub_0201D35C() % v8->unk_14;
-                        v1->unk_06 = sub_0201D35C() % v8->unk_18;
+                        v1->unk_04 = MTRNG_Next() % v8->unk_14;
+                        v1->unk_06 = MTRNG_Next() % v8->unk_18;
                     } while (v9[(v1->unk_06 * v8->unk_14) + v1->unk_04] == 1);
 
                     v1->unk_04 += v8->unk_0C;
@@ -3968,21 +3968,21 @@ void ov8_0224C198 (UnkStruct_0203CDB0 * param0)
         }
     }
 
-    v2->unk_1F4 = sub_0200D9E8(ov8_0224C3B0, v2, 0);
+    v2->unk_1F4 = SysTask_Start(ov8_0224C3B0, v2, 0);
 }
 
 void ov8_0224C388 (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_ov8_0224C444 * v0 = param0->unk_04->unk_24;
 
-    sub_0200DA58(v0->unk_1F4);
+    SysTask_Done(v0->unk_1F4);
     ov8_0224C4F8(v0);
     Heap_FreeToHeap(v0);
 
     param0->unk_04->unk_24 = NULL;
 }
 
-static void ov8_0224C3B0 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov8_0224C3B0 (SysTask * param0, void * param1)
 {
     return;
 }
@@ -4001,7 +4001,7 @@ static void ov8_0224C3B4 (UnkStruct_ov8_0224C444 * param0)
 
     {
         char v2 = 109;
-        BOOL v3 = sub_02025F34(sub_02025E38(param0->unk_00->unk_0C), 4);
+        BOOL v3 = TrainerInfo_HasBadge(sub_02025E38(param0->unk_00->unk_0C), 4);
 
         if (v3 == 1) {
             v2 = 91;
@@ -4043,7 +4043,7 @@ static void ov8_0224C444 (UnkStruct_ov8_0224C444 * param0)
             }
 
             v6->unk_10 = ov5_021F4840(param0->unk_00->unk_40, v5, v6->unk_08, 3);
-            v6->unk_0C = sub_0200D9E8(ov8_0224C518, v6, v3);
+            v6->unk_0C = SysTask_Start(ov8_0224C518, v6, v3);
             GF_ASSERT(v6->unk_0C);
 
             v1++;
@@ -4060,13 +4060,13 @@ static void ov8_0224C4F8 (UnkStruct_ov8_0224C444 * param0)
 
     for (v0 = 0; v0 < 16; v0++, v1++) {
         if (v1->unk_00) {
-            sub_0200DA58(v1->unk_0C);
+            SysTask_Done(v1->unk_0C);
             v1->unk_00 = 0;
         }
     }
 }
 
-static void ov8_0224C518 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov8_0224C518 (SysTask * param0, void * param1)
 {
     return;
 }

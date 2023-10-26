@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="25606" />
+	<row id="pl_msg_00000585_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Where are you from?\r...\rHm, Twinleaf Town, you say.\nIsn’t that close to Lake Verity?\rThat lake is said to be home to MESPRIT,\n“The Being of Emotion.”\rThat Pokémon may well be watching\nover you.\rWould you like to know more about\nMESPRIT?</language>
+	</row>
+	<row id="pl_msg_00000585_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MESPRIT is the legendary Pokémon\nthat symbolizes the emotions.\rBeside it are also UXIE, “The Being of\nKnowledge,” and AZELF, “The Being of\fWillpower.”\rThese three Pokémon are said to have\nstrong and compassionate spirits.\rThe power of their spirits maintains\nthe natural balance of Sinnoh.</language>
+	</row>
+	<row id="pl_msg_00000585_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hahaha!\nWell, of course you wouldn’t.\rIt’s a tale from so long ago.\nIt’s no wonder you weren’t interested.</language>
+	</row>
+	<row id="pl_msg_00000585_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Using the move Surf, you’ll be able to\ngo to places that were inaccessible.\rYou’d be surprised where you can go.</language>
+	</row>
+	<row id="pl_msg_00000585_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Celestic Town is the oldest town in\nall of Sinnoh.\rThe town was founded to honor\nPokémon from the distant past.\rOr at least that’s the legend...</language>
+	</row>
+	<row id="pl_msg_00000585_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, hello!\nYou look good.\rI did some research of my own since\nthat spot of trouble last time.\rMt. Coronet’s acting up had me very\nconcerned, too.\rWell, this is what I found in the shrine.\rIt’s a book, and it’s quite old.\nLet me read a bit for you.\r“The bearer of the shining Adamant Orb\nsummons DIALGA to the Spear Pillar.\r“The guardian Pokémon of time will\nanswer the call.\r“The bearer of the shining Lustrous\nOrb summons PALKIA to the Spear Pillar.\r“The Pokémon that binds the spatial\ndimensions will answer the call.”\rIt seems the people of long ago met\nboth DIALGA and PALKIA, the Pokémon\fof time and space.</language>
+	</row>
+	<row id="pl_msg_00000585_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“PALKIA, the Pokémon that binds the\nspatial dimensions,” it is written...\r</language>
+	</row>
+	<row id="pl_msg_00000585_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“DIALGA, the guardian Pokémon of\ntime,” it is written...\r</language>
+	</row>
+	<row id="pl_msg_00000585_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000585_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My big sister is studying the myths\nof Sinnoh.\rShe wants to know how people and\nPokémon interacted in the days of\fmyths.\rWere things different back then?\nOr were they the same as now?\rShe says that’s the focus of her\nresearch.</language>
+	</row>
+	<row id="pl_msg_00000585_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s hard to tell for sure, but it’s\nprobably an invaluable scroll.</language>
+	</row>
+	<row id="pl_msg_00000585_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s an old book.\n{STRVAR_1 3, 0, 0} began reading it.\r“When that Pokémon was born,\nintelligence bloomed among us,\fenriching our lives.\r“When that Pokémon was born,\nemotions bloomed among us,\fgiving us joy and sorrow.\r“When that Pokémon was born,\nwillpower bloomed among us,\fspurring us into action...”</language>
+	</row>
+</body>

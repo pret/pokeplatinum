@@ -5,7 +5,7 @@
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0203E348.h"
 #include "struct_defs/struct_02099F80.h"
@@ -23,7 +23,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_0200DA60.h"
@@ -55,8 +55,8 @@ static void ov101_021D0F94(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D0F9C(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D107C(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D1098(void);
-static void ov101_021D10B8(UnkStruct_02018340 * param0);
-static void ov101_021D11A4(UnkStruct_02018340 * param0);
+static void ov101_021D10B8(BGL * param0);
+static void ov101_021D11A4(BGL * param0);
 static void ov101_021D11D0(void);
 static void ov101_021D121C(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D150C(void);
@@ -70,7 +70,7 @@ static void ov101_021D1884(UnkStruct_ov101_021D13C8 * param0);
 static int ov101_021D18B4(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D18C0(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D18E4(UnkStruct_ov101_021D13C8 * param0);
-static void ov101_021D18F4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov101_021D18F4(SysTask * param0, void * param1);
 static void ov101_021D197C(void * param0);
 static void ov101_021D19BC(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D19D4(UnkStruct_ov101_021D13C8 * param0);
@@ -121,7 +121,7 @@ int ov101_021D0E40 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*param1)++;
         }
         break;
@@ -133,7 +133,7 @@ int ov101_021D0E40 (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
         (*param1)++;
@@ -263,7 +263,7 @@ static void ov101_021D1098 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov101_021D10B8 (UnkStruct_02018340 * param0)
+static void ov101_021D10B8 (BGL * param0)
 {
     GX_SetDispSelect(GX_DISP_SELECT_MAIN_SUB);
 
@@ -364,7 +364,7 @@ static void ov101_021D10B8 (UnkStruct_02018340 * param0)
     }
 }
 
-static void ov101_021D11A4 (UnkStruct_02018340 * param0)
+static void ov101_021D11A4 (BGL * param0)
 {
     sub_02019044(param0, 0);
     sub_02019044(param0, 1);
@@ -437,7 +437,7 @@ void ov101_021D13C8 (UnkStruct_ov101_021D13C8 * param0)
     sub_0200DD0C(param0->unk_43C, 0, (1 + (18 + 12)), 14, param0->unk_4C4, 79);
     sub_02002E98(0, 15 * 32, 79);
 
-    v1->unk_00 = sub_0200B144(0, 26, 544, 79);
+    v1->unk_00 = MessageLoader_Init(0, 26, 544, 79);
     v1->unk_04 = sub_0200B358(79);
 
     for (v0 = 0; v0 < 1; v0++) {
@@ -454,10 +454,10 @@ void ov101_021D1458 (UnkStruct_ov101_021D13C8 * param0)
 
     for (v0 = 0; v0 < 1; v0++) {
         sub_0201ACF4(&v1->unk_08[v0]);
-        sub_0201A8FC(&v1->unk_08[v0]);
+        BGL_DeleteWindow(&v1->unk_08[v0]);
     }
 
-    sub_0200B190(v1->unk_00);
+    MessageLoader_Free(v1->unk_00);
     sub_0200B3F0(v1->unk_04);
     Strbuf_Free(v1->unk_18);
 }
@@ -467,8 +467,8 @@ void ov101_021D148C (UnkStruct_ov101_021D13C8 * param0, u32 param1)
     UnkStruct_ov101_021D148C * v0 = &param0->unk_408;
 
     sub_0200E060(&v0->unk_08[0], 1, (1 + (18 + 12)), 14);
-    sub_0201ADA4(&v0->unk_08[0], 15);
-    sub_0200B1B8(v0->unk_00, param1, v0->unk_18);
+    BGL_FillWindow(&v0->unk_08[0], 15);
+    MessageLoader_GetStrbuf(v0->unk_00, param1, v0->unk_18);
     sub_0201D738(&v0->unk_08[0], 1, v0->unk_18, 0, 0, 0xff, NULL);
     sub_0201A9A4(&v0->unk_08[0]);
 }
@@ -478,7 +478,7 @@ void ov101_021D14E4 (UnkStruct_ov101_021D13C8 * param0)
     UnkStruct_ov101_021D148C * v0 = &param0->unk_408;
 
     sub_0200E084(&v0->unk_08[0], 1);
-    sub_0201ADA4(&v0->unk_08[0], 0);
+    BGL_FillWindow(&v0->unk_08[0], 0);
     sub_0201A9A4(&v0->unk_08[0]);
 }
 
@@ -607,15 +607,15 @@ static void ov101_021D18C0 (UnkStruct_ov101_021D13C8 * param0)
 
     v0->unk_08 = UnkEnum_ov101_021D1894_00;
     v0->unk_0C = UnkEnum_ov101_021D1894_03;
-    v0->unk_10 = sub_0200D9E8(ov101_021D18F4, param0, 144);
+    v0->unk_10 = SysTask_Start(ov101_021D18F4, param0, 144);
 }
 
 static void ov101_021D18E4 (UnkStruct_ov101_021D13C8 * param0)
 {
-    sub_0200DA58(param0->unk_424.unk_10);
+    SysTask_Done(param0->unk_424.unk_10);
 }
 
-static void ov101_021D18F4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D18F4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D13C8 * v0 = param1;
     UnkStruct_ov101_021D1894 * v1 = &v0->unk_424;
@@ -667,7 +667,7 @@ void * ov101_021D1998 (u32 param0)
 
 static void ov101_021D19BC (UnkStruct_ov101_021D13C8 * param0)
 {
-    param0->unk_438 = NARC_ctor(133, 79);
+    param0->unk_438 = NARC_ctor(NARC_INDEX_DATA__SLOT, 79);
 }
 
 static void ov101_021D19D4 (UnkStruct_ov101_021D13C8 * param0)

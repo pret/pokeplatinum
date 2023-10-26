@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="1099" />
+	<row id="pl_msg_00000123_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well, now, you’re a Trainer?\rThat makes you both papa and mama\nto your Pokémon.\rYou know how having Pokémon around\nleads to new discoveries?\rIt’s the same for parents and kids.\nI’m always learning from my kids.</language>
+	</row>
+	<row id="pl_msg_00000123_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Kuufu fuu!</language>
+	</row>
+	<row id="pl_msg_00000123_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Babies and Pokémon get along\nperfectly together.\rWhen babies take naps, Pokémon go\nto sleep right next to them.</language>
+	</row>
+	<row id="pl_msg_00000123_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I get bigger, I’m going to be\na Trainer, too!</language>
+	</row>
+	<row id="pl_msg_00000123_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I grow up, I want to become\na Pokémon coordinator.</language>
+	</row>
+	<row id="pl_msg_00000123_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...My sisters make so much noise, no\none even notices me.</language>
+	</row>
+	<row id="pl_msg_00000123_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, wow, you’re a Pokémon Trainer.\rHaving lots of Pokémon around is\na lot of responsibility.\rBut that also comes with a lot\nof fun!</language>
+	</row>
+	<row id="pl_msg_00000123_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000123_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Pikapii?</language>
+	</row>
+</body>

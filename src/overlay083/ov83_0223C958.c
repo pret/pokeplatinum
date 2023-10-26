@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
@@ -15,7 +15,7 @@
 
 #include "narc.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_02015064.h"
 #include "heap.h"
@@ -29,8 +29,8 @@
 #include "overlay083/ov83_0223C958.h"
 #include "overlay083/ov83_0223D6A8.h"
 
-static void ov83_0223CC30(UnkStruct_02018340 ** param0, int param1);
-static void ov83_0223CCCC(UnkStruct_02018340 ** param0);
+static void ov83_0223CC30(BGL ** param0, int param1);
+static void ov83_0223CCCC(BGL ** param0);
 static void ov83_0223CCF8(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CD1C(UnkStruct_ov83_0223B784 * param0);
 static void ov83_0223CD28(UnkStruct_ov83_0223B784 * param0);
@@ -48,7 +48,7 @@ void ov83_0223C958 (UnkStruct_ov83_0223B784 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(122, param0->unk_00);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NUTMIXER, param0->unk_00);
 
     ov83_0223CE9C(param0);
     ov83_0223CC30(&(param0->unk_20), param0->unk_00);
@@ -73,7 +73,7 @@ void ov83_0223C958 (UnkStruct_ov83_0223B784 * param0)
 
     NARC_dtor(v0);
 
-    Unk_021BF67C.unk_65 = 1;
+    gCoreSys.unk_65 = 1;
     GXLayers_SwapDisplay();
 }
 
@@ -98,7 +98,7 @@ void ov83_0223CAA4 (UnkStruct_ov83_0223B784 * param0)
     ov83_0223CF20(param0);
 
     ov83_0223D068(param0);
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 }
 
@@ -166,7 +166,7 @@ static void ov83_0223CC10 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov83_0223CC30 (UnkStruct_02018340 ** param0, int param1)
+static void ov83_0223CC30 (BGL ** param0, int param1)
 {
     int v0 = 0, v1;
 
@@ -186,7 +186,7 @@ static void ov83_0223CC30 (UnkStruct_02018340 ** param0, int param1)
     }
 
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0, 1);
-    sub_02019060(0, 2);
+    BGL_SetPriority(0, 2);
 
     {
         UnkStruct_ov97_0222DB78 v3[] = {
@@ -262,7 +262,7 @@ static void ov83_0223CC30 (UnkStruct_02018340 ** param0, int param1)
     }
 }
 
-static void ov83_0223CCCC (UnkStruct_02018340 ** param0)
+static void ov83_0223CCCC (BGL ** param0)
 {
     sub_02019044(*param0, 5);
     sub_02019044(*param0, 4);
@@ -378,27 +378,27 @@ static void ov83_0223CF2C (UnkStruct_ov83_0223B784 * param0)
 {
     int v0;
 
-    param0->unk_15E0.unk_00 = sub_0200B144(0, 26, 464, param0->unk_00);
+    param0->unk_15E0.unk_00 = MessageLoader_Init(0, 26, 464, param0->unk_00);
     param0->unk_15E0.unk_04 = sub_0200B368(4, 64, param0->unk_00);
     param0->unk_15E0.unk_08 = Strbuf_Init(64, param0->unk_00);
-    param0->unk_15E0.unk_0C = sub_0200B1EC(param0->unk_15E0.unk_00, 0);
-    param0->unk_15E0.unk_10 = sub_0200B1EC(param0->unk_15E0.unk_00, 1);
-    param0->unk_15E0.unk_14 = sub_0200B1EC(param0->unk_15E0.unk_00, 2);
-    param0->unk_15E0.unk_18 = sub_0200B1EC(param0->unk_15E0.unk_00, 20);
-    param0->unk_15E0.unk_1C = sub_0200B1EC(param0->unk_15E0.unk_00, 21);
-    param0->unk_15E0.unk_20 = sub_0200B1EC(param0->unk_15E0.unk_00, 22);
-    param0->unk_15E0.unk_24 = sub_0200B1EC(param0->unk_15E0.unk_00, 23);
-    param0->unk_15E0.unk_28 = sub_0200B1EC(param0->unk_15E0.unk_00, 24);
-    param0->unk_15E0.unk_2C = sub_0200B1EC(param0->unk_15E0.unk_00, 25);
-    param0->unk_15E0.unk_30 = sub_0200B1EC(param0->unk_15E0.unk_00, 8);
-    param0->unk_15E0.unk_34 = sub_0200B1EC(param0->unk_15E0.unk_00, 9);
+    param0->unk_15E0.unk_0C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 0);
+    param0->unk_15E0.unk_10 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 1);
+    param0->unk_15E0.unk_14 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 2);
+    param0->unk_15E0.unk_18 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 20);
+    param0->unk_15E0.unk_1C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 21);
+    param0->unk_15E0.unk_20 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 22);
+    param0->unk_15E0.unk_24 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 23);
+    param0->unk_15E0.unk_28 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 24);
+    param0->unk_15E0.unk_2C = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 25);
+    param0->unk_15E0.unk_30 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 8);
+    param0->unk_15E0.unk_34 = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 9);
 
     for (v0 = 0; v0 < 5; v0++) {
-        param0->unk_15E0.unk_38[v0] = sub_0200B1EC(param0->unk_15E0.unk_00, 3 + v0);
+        param0->unk_15E0.unk_38[v0] = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 3 + v0);
     }
 
     for (v0 = 0; v0 < 10; v0++) {
-        param0->unk_15E0.unk_4C[v0] = sub_0200B1EC(param0->unk_15E0.unk_00, 10 + v0);
+        param0->unk_15E0.unk_4C[v0] = MessageLoader_GetNewStrbuf(param0->unk_15E0.unk_00, 10 + v0);
     }
 }
 
@@ -428,5 +428,5 @@ static void ov83_0223D068 (UnkStruct_ov83_0223B784 * param0)
 
     Strbuf_Free(param0->unk_15E0.unk_08);
     sub_0200B3F0(param0->unk_15E0.unk_04);
-    sub_0200B190(param0->unk_15E0.unk_00);
+    MessageLoader_Free(param0->unk_15E0.unk_00);
 }

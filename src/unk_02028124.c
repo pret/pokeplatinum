@@ -1,8 +1,6 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02025E6C_decl.h"
-#include "struct_defs/pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -16,9 +14,9 @@
 #include "heap.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02028124.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 #include "party.h"
 
@@ -89,12 +87,12 @@ void sub_020281A0 (UnkStruct_0202818C * param0, UnkStruct_0202818C * param1)
     MI_CpuCopy8(param0, param1, sizeof(UnkStruct_0202818C));
 }
 
-void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_021C0794 * param3)
+void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, SaveData * param3)
 {
     u8 v0, v1, v2, v3;
     u16 v4;
     u32 v5, v6, v7;
-    UnkStruct_02025E6C * v8;
+    TrainerInfo * v8;
     Party * v9;
     Pokemon * v10;
 
@@ -104,17 +102,17 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, UnkStruct_
     v9 = Party_GetFromSavedata(param3);
     v8 = sub_02025E38(param3);
 
-    sub_020021B0(param0->unk_08, sub_02025EF0(v8));
+    GF_strcpy(param0->unk_08, TrainerInfo_Name(v8));
 
-    param0->unk_04 = (u8)sub_02025F30(v8);
-    param0->unk_00 = sub_02025F20(v8);
+    param0->unk_04 = (u8)TrainerInfo_Gender(v8);
+    param0->unk_00 = TrainerInfo_ID(v8);
     param0->unk_1E = 0;
 
     for (v0 = param2, v1 = 0; v0 < Party_GetCurrentCount(v9); v0++) {
         v10 = Party_GetPokemonBySlotIndex(v9, v0);
-        v4 = GetMonData(v10, MON_DATA_SPECIES, NULL);
-        v6 = GetMonData(v10, MON_DATA_IS_EGG, NULL);
-        v7 = GetMonData(v10, MON_DATA_FORM, NULL);
+        v4 = Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL);
+        v6 = Pokemon_GetValue(v10, MON_DATA_IS_EGG, NULL);
+        v7 = Pokemon_GetValue(v10, MON_DATA_FORM, NULL);
         v5 = sub_02079D80(v10);
         v2 = sub_02079EDC(v4, v7, v6);
 
@@ -236,17 +234,17 @@ void sub_0202841C (UnkStruct_0202818C * param0, UnkStruct_02014A84 * param1, u8 
     sub_02014CC0(&param0->unk_20[param2], param1);
 }
 
-UnkStruct_02028430 * sub_02028430 (UnkStruct_021C0794 * param0)
+UnkStruct_02028430 * sub_02028430 (SaveData * param0)
 {
-    return sub_020245BC(param0, 15);
+    return SaveData_Get(param0, 15);
 }
 
-int sub_0202843C (void)
+int Mail_SaveSize (void)
 {
     return sizeof(UnkStruct_0202818C) * 20;
 }
 
-void sub_02028444 (UnkStruct_02028430 * param0)
+void Mail_Init (UnkStruct_02028430 * param0)
 {
     int v0 = 0;
 

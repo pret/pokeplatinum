@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="30287" />
+	<row id="pl_msg_00000004_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Delete all saved data?</language>
+	</row>
+	<row id="pl_msg_00000004_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Once data has been deleted,\nthere is no way to recover it.\rDelete the saved data anyway?</language>
+	</row>
+	<row id="pl_msg_00000004_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Deleting all data.\nDon’t turn off the power.</language>
+	</row>
+</body>

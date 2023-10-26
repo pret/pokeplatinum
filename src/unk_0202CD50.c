@@ -24,12 +24,12 @@ typedef struct UnkStruct_0202CD88_t {
 static void sub_0202CD94(UnkStruct_0202CD88 * param0, int param1);
 static void sub_0202CDC0(UnkStruct_0202CD88 * param0, int param1);
 
-int sub_0202CD50 (void)
+int GameRecord_SaveSize (void)
 {
     return sizeof(UnkStruct_0202CD88);
 }
 
-void sub_0202CD58 (UnkStruct_0202CD88 * param0)
+void GameRecord_Init (UnkStruct_0202CD88 * param0)
 {
     MI_CpuClear32(param0, sizeof(UnkStruct_0202CD88));
     param0->unk_1B8.unk_02 = OS_GetVBlankCount() | (OS_GetVBlankCount() << 8);
@@ -37,9 +37,9 @@ void sub_0202CD58 (UnkStruct_0202CD88 * param0)
     sub_0202CD94(param0, (0 + 1));
 }
 
-UnkStruct_0202CD88 * sub_0202CD88 (UnkStruct_021C0794 * param0)
+UnkStruct_0202CD88 * sub_0202CD88 (SaveData * param0)
 {
-    return sub_020245BC(param0, 20);
+    return SaveData_Get(param0, 20);
 }
 
 static void sub_0202CD94 (UnkStruct_0202CD88 * param0, int param1)
@@ -49,7 +49,7 @@ static void sub_0202CD94 (UnkStruct_0202CD88 * param0, int param1)
     }
 
     param0->unk_1B8.unk_00 = sub_0201D5B8(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32)) & 0xffff;
-    sub_0201D5D4(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
+    EncryptData(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
 }
 
 static void sub_0202CDC0 (UnkStruct_0202CD88 * param0, int param1)
@@ -58,7 +58,7 @@ static void sub_0202CDC0 (UnkStruct_0202CD88 * param0, int param1)
         return;
     }
 
-    sub_0201D600(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
+    DecryptData(&param0->unk_00[1], sizeof(UnkStruct_0202CD88) - sizeof(UnkStruct_0202CD88_sub1) - sizeof(u32), param0->unk_1B8.unk_00 + (param0->unk_1B8.unk_02 << 16));
 }
 
 static u32 sub_0202CDE0 (const UnkStruct_0202CD88 * param0, int param1)
@@ -413,7 +413,7 @@ u32 sub_0202D034 (UnkStruct_0202CD88 * param0)
 
 void sub_0202D040 (UnkStruct_0202CD88 * param0, const UnkStruct_02026324 * param1, u16 const param2)
 {
-    if (!sub_02026F9C(param1, param2)) {
+    if (!Pokedex_CaughtSpecies(param1, param2)) {
         sub_0202CFEC(param0, 22);
     }
 }

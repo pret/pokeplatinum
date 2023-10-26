@@ -1,0 +1,116 @@
+{
+    "name": "Medicham",
+    "base_stats": {
+        "hp": 60,
+        "attack": 60,
+        "defense": 75,
+        "speed": 80,
+        "special_attack": 60,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 153,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "HUMAN_LIKE",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_PURE_POWER",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM04",
+            "TM06",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM33",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM52",
+            "TM53",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM67",
+            "TM68",
+            "TM70",
+            "TM77",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_FIRE_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BIDE",
+                "MOVE_MEDITATE",
+                "MOVE_CONFUSION",
+                "MOVE_DETECT"
+            ],
+            "4": "MOVE_MEDITATE",
+            "8": "MOVE_CONFUSION",
+            "11": "MOVE_DETECT",
+            "15": "MOVE_HIDDEN_POWER",
+            "18": "MOVE_MIND_READER",
+            "22": "MOVE_FEINT",
+            "25": "MOVE_CALM_MIND",
+            "29": "MOVE_FORCE_PALM",
+            "32": "MOVE_HI_JUMP_KICK",
+            "36": "MOVE_PSYCH_UP",
+            "42": "MOVE_POWER_TRICK",
+            "49": "MOVE_REVERSAL",
+            "55": "MOVE_RECOVER"
+        }
+    }
+}

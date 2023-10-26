@@ -1,8 +1,8 @@
 #ifndef POKEPLATINUM_STRUCT_OV79_021D38D0_H
 #define POKEPLATINUM_STRUCT_OV79_021D38D0_H
 
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/pokemon.h"
+#include "strbuf.h"
+#include "pokemon.h"
 
 typedef struct {
     Pokemon * unk_00;

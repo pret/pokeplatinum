@@ -3,7 +3,7 @@
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 
 #include "overlay025/struct_ov25_0225517C.h"
@@ -23,7 +23,7 @@ struct UnkStruct_ov25_02255224_t {
     void * unk_08;
     void * unk_0C;
     const void * unk_10;
-    UnkStruct_0201CD38 * unk_14;
+    SysTask * unk_14;
 };
 
 static BOOL ov25_022550B0(u32 * param0, u32 param1);
@@ -123,7 +123,7 @@ void ov25_0225517C (const UnkStruct_ov25_0225517C * param0, u32 param1, void * p
                     v1->unk_04 = 0;
                     v1->unk_00 = param1;
                     v1->unk_10 = param3;
-                    v1->unk_14 = sub_0200D9E8(param0[v0].unk_04, v1, param5);
+                    v1->unk_14 = SysTask_Start(param0[v0].unk_04, v1, param5);
 
                     if (v1->unk_14) {
                         param0[v0].unk_04(v1->unk_14, v1);
@@ -147,7 +147,7 @@ void ov25_02255224 (u32 * param0, UnkStruct_ov25_02255224 * param1)
 {
     ov25_022550F0(param0, param1->unk_00);
 
-    sub_0200DA58(param1->unk_14);
+    SysTask_Done(param1->unk_14);
     Heap_FreeToHeap(param1);
 }
 
@@ -274,7 +274,7 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
     v2 = Heap_AllocFromHeap(8, v1[param3]);
 
     if (v2) {
-        NARC * v3 = NARC_ctor(19, 8);
+        NARC * v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 8);
 
         if (v3) {
             NNSG2dCharacterData * v4;
@@ -294,7 +294,7 @@ void ov25_022553A0 (u32 param0, const u32 * param1, u32 param2, BOOL param3)
     }
 }
 
-void ov25_02255440 (UnkStruct_02018340 * param0, u32 param1, u32 param2)
+void ov25_02255440 (BGL * param0, u32 param1, u32 param2)
 {
     u16 v0[4];
     u32 v1;

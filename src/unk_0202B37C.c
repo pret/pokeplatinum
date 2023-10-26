@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202B4A0.h"
@@ -15,7 +15,7 @@
 
 UnkStruct_0202B4A0 * Unk_021C079C;
 
-int sub_0202B37C (void)
+int RandomGroup_SaveSize (void)
 {
     return sizeof(UnkStruct_0202B4A0);
 }
@@ -25,7 +25,7 @@ void sub_0202B384 (UnkStruct_0202B4A0 * param0, int param1, int param2)
     param0->unk_00[param2] = param0->unk_00[param1];
 }
 
-void sub_0202B3A8 (UnkStruct_0202B4A0 * param0)
+void RandomGroup_Init (UnkStruct_0202B4A0 * param0)
 {
     int v0;
 
@@ -45,7 +45,7 @@ void sub_0202B3D8 (UnkStruct_0202B4A0 * param0, u32 param1)
 
     for (v0 = 0; v0 < 6; v0++) {
         for (v1 = 0; v1 < param1; v1++) {
-            param0->unk_00[v0].unk_28 = sub_0201D30C(param0->unk_00[v0].unk_28);
+            param0->unk_00[v0].unk_28 = ARNG_Next(param0->unk_00[v0].unk_28);
         }
     }
 }
@@ -58,7 +58,7 @@ u32 sub_0202B400 (UnkStruct_0202B4A0 * param0, int param1)
 void sub_0202B40C (UnkStruct_0202B4A0 * param0, int param1, u32 param2)
 {
     param0->unk_00[param1].unk_24 = param2;
-    param0->unk_00[param1].unk_28 = sub_0201D30C(param2);
+    param0->unk_00[param1].unk_28 = ARNG_Next(param2);
 }
 
 u32 sub_0202B428 (UnkStruct_0202B4A0 * param0)
@@ -108,9 +108,9 @@ void sub_0202B494 (UnkStruct_0202B4A0 * param0, int param1, int param2)
     param0->unk_00[param1].unk_21 = param2;
 }
 
-UnkStruct_0202B4A0 * sub_0202B4A0 (UnkStruct_021C0794 * param0)
+UnkStruct_0202B4A0 * sub_0202B4A0 (SaveData * param0)
 {
-    return (UnkStruct_0202B4A0 *)sub_020245BC(param0, 17);
+    return (UnkStruct_0202B4A0 *)SaveData_Get(param0, 17);
 }
 
 BOOL sub_0202B4AC (const UnkStruct_0202B4A0 * param0, int param1)
@@ -141,7 +141,7 @@ BOOL sub_0202B4D8 (const UnkStruct_0202B4A0 * param0, const u16 * param1)
     for (v0 = 0; v0 < 6; v0++) {
         v1 = &param0->unk_00[v0];
 
-        if (!sub_02002238(param1, v1->unk_00, 7 + 1)) {
+        if (!GF_strncmp(param1, v1->unk_00, 7 + 1)) {
             return 1;
         }
     }
@@ -166,11 +166,11 @@ BOOL sub_0202B530 (const UnkStruct_0202B510 * param0, const UnkStruct_0202B510 *
 {
     int v0;
 
-    if (sub_02002238(param0->unk_10, param1->unk_10, 7 + 1)) {
+    if (GF_strncmp(param0->unk_10, param1->unk_10, 7 + 1)) {
         return 0;
     }
 
-    if (sub_02002238(param0->unk_00, param1->unk_00, 7 + 1)) {
+    if (GF_strncmp(param0->unk_00, param1->unk_00, 7 + 1)) {
         return 0;
     }
 

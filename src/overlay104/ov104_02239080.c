@@ -22,7 +22,7 @@ BOOL ov104_0223911C(UnkStruct_ov104_0222E930 * param0);
 
 BOOL ov104_02239080 (UnkStruct_ov104_0222E930 * param0)
 {
-    sub_02005748(ov104_0222FC00(param0));
+    Sound_PlayEffect(ov104_0222FC00(param0));
     return 0;
 }
 
@@ -72,7 +72,7 @@ static BOOL ov104_022390F8 (UnkStruct_ov104_0222E930 * param0)
 
 BOOL ov104_0223910C (UnkStruct_ov104_0222E930 * param0)
 {
-    sub_0200549C(ov104_0222EA48(param0));
+    Sound_PlayBGM(ov104_0222EA48(param0));
     return 0;
 }
 

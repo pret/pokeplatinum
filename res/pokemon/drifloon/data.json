@@ -1,0 +1,116 @@
+{
+    "name": "Drifloon",
+    "base_stats": {
+        "hp": 90,
+        "attack": 50,
+        "defense": 34,
+        "speed": 70,
+        "special_attack": 60,
+        "special_defense": 44
+    },
+    "types": [
+        "TYPE_GHOST",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 125,
+    "base_exp_reward": 127,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 30,
+    "base_friendship": 70,
+    "exp_rate": "FLUCTUATING",
+    "egg_groups": [
+        "AMORPHOUS",
+        "AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_AFTERMATH",
+        "ABILITY_UNBURDEN"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM48",
+            "TM57",
+            "TM58",
+            "TM61",
+            "TM62",
+            "TM63",
+            "TM64",
+            "TM66",
+            "TM67",
+            "TM70",
+            "TM73",
+            "TM74",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_CONSTRICT",
+                "MOVE_MINIMIZE"
+            ],
+            "6": "MOVE_ASTONISH",
+            "11": "MOVE_GUST",
+            "14": "MOVE_FOCUS_ENERGY",
+            "17": "MOVE_PAYBACK",
+            "22": "MOVE_STOCKPILE",
+            "27": [
+                "MOVE_SWALLOW",
+                "MOVE_SPIT_UP"
+            ],
+            "30": "MOVE_OMINOUS_WIND",
+            "33": "MOVE_BATON_PASS",
+            "38": "MOVE_SHADOW_BALL",
+            "43": "MOVE_EXPLOSION"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            28,
+            "SPECIES_DRIFBLIM"
+        ]
+    ]
+}

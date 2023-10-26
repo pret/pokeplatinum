@@ -1,0 +1,104 @@
+{
+    "name": "Paras",
+    "base_stats": {
+        "hp": 35,
+        "attack": 70,
+        "defense": 55,
+        "speed": 25,
+        "special_attack": 45,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 70,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_TINYMUSHROOM",
+        "rare": "ITEM_BIG_MUSHROOM"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_EFFECT_SPORE",
+        "ABILITY_DRY_SKIN"
+    ],
+    "great_marsh_flee_rate": 120,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM36",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM53",
+            "TM54",
+            "TM58",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM06"
+        ],
+        "level_up": {
+            "1": "MOVE_SCRATCH",
+            "6": [
+                "MOVE_STUN_SPORE",
+                "MOVE_POISON_POWDER"
+            ],
+            "11": "MOVE_LEECH_LIFE",
+            "17": "MOVE_SPORE",
+            "22": "MOVE_SLASH",
+            "27": "MOVE_GROWTH",
+            "33": "MOVE_GIGA_DRAIN",
+            "38": "MOVE_AROMATHERAPY",
+            "43": "MOVE_X_SCISSOR"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            24,
+            "SPECIES_PARASECT"
+        ]
+    ]
+}

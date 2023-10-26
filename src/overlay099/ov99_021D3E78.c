@@ -1,16 +1,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 #include "overlay099/struct_ov99_021D3E78_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002B7C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200D9E8.h"
 #include "heap.h"
 #include "unk_02018340.h"
@@ -271,17 +271,17 @@ struct UnkStruct_ov99_021D3E78_t {
     BOOL unk_14;
     BOOL unk_18;
     int unk_1C;
-    UnkStruct_02018340 * unk_20;
-    UnkStruct_0205AA50 * unk_24;
-    UnkStruct_0205AA50 * unk_28;
-    UnkStruct_0200B144 * unk_2C;
+    BGL * unk_20;
+    Window * unk_24;
+    Window * unk_28;
+    MessageLoader * unk_2C;
     Strbuf* unk_30;
-    UnkStruct_0201CD38 * unk_34;
+    SysTask * unk_34;
 };
 
-static void ov99_021D4104(UnkStruct_0201CD38 * param0, void * param1);
+static void ov99_021D4104(SysTask * param0, void * param1);
 
-UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1, int param2, int param3, UnkStruct_0200B144 * param4)
+UnkStruct_ov99_021D3E78 * ov99_021D3E78 (BGL * param0, int param1, int param2, int param3, MessageLoader * param4)
 {
     UnkStruct_ov99_021D3E78 * v0 = Heap_AllocFromHeap(75, sizeof(UnkStruct_ov99_021D3E78));
 
@@ -299,13 +299,13 @@ UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1
         v0->unk_30 = Strbuf_Init(256, 75);
         v0->unk_24 = sub_0201A778(75, 1);
 
-        sub_0201A7E8(param0, v0->unk_24, param2, 0, 0, 32, 32, param3, 0);
-        sub_0201ADA4(v0->unk_24, 0x0);
+        BGL_AddWindow(param0, v0->unk_24, param2, 0, 0, 32, 32, param3, 0);
+        BGL_FillWindow(v0->unk_24, 0x0);
         sub_0201A9F4(v0->unk_24);
         sub_0201A954(v0->unk_24);
 
         v0->unk_28 = sub_0201A778(75, 1);
-        sub_0201A7E8(param0, v0->unk_28, param2, 0, 0, 32, 2, param3, 0);
+        BGL_AddWindow(param0, v0->unk_28, param2, 0, 0, 32, 2, param3, 0);
         v0->unk_34 = sub_0200DA3C(ov99_021D4104, v0, 0);
     }
 
@@ -315,12 +315,12 @@ UnkStruct_ov99_021D3E78 * ov99_021D3E78 (UnkStruct_02018340 * param0, int param1
 void ov99_021D3F38 (UnkStruct_ov99_021D3E78 * param0)
 {
     if (param0->unk_34) {
-        sub_0200DA58(param0->unk_34);
+        SysTask_Done(param0->unk_34);
     }
 
     Strbuf_Free(param0->unk_30);
-    sub_0201A8FC(param0->unk_24);
-    sub_0201A8FC(param0->unk_28);
+    BGL_DeleteWindow(param0->unk_24);
+    BGL_DeleteWindow(param0->unk_28);
     Heap_FreeToHeap(param0->unk_24);
     Heap_FreeToHeap(param0->unk_28);
     Heap_FreeToHeap(param0);
@@ -337,7 +337,7 @@ BOOL ov99_021D3F6C (UnkStruct_ov99_021D3E78 * param0, int param1)
             if (v0 >= Unk_ov99_021D4CE4[param0->unk_0C].unk_02) {
                 int v1, v2;
 
-                sub_0200B1B8(param0->unk_2C, Unk_ov99_021D4CE4[param0->unk_0C].unk_00, param0->unk_30);
+                MessageLoader_GetStrbuf(param0->unk_2C, Unk_ov99_021D4CE4[param0->unk_0C].unk_00, param0->unk_30);
 
                 if (Unk_ov99_021D4CE4[param0->unk_0C].unk_04) {
                     v1 = (256 - sub_02002D7C(0, param0->unk_30, 0)) / 2;
@@ -349,7 +349,7 @@ BOOL ov99_021D3F6C (UnkStruct_ov99_021D3E78 * param0, int param1)
                 sub_0201D78C(param0->unk_24, 0, param0->unk_30, v1, v2, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
                 if (v2 > (256 - 16)) {
-                    sub_0201ADA4(param0->unk_28, 0x0);
+                    BGL_FillWindow(param0->unk_28, 0x0);
                     sub_0201D78C(param0->unk_28, 0, param0->unk_30, v1, 0, 0xff, (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0)), NULL);
 
                     v2 = 16 - (v2 - (256 - 16));
@@ -370,15 +370,15 @@ BOOL ov99_021D3F6C (UnkStruct_ov99_021D3E78 * param0, int param1)
             int v3 = Unk_ov99_021D4CE4[param0->unk_10].unk_02 & 0xff;
 
             if (v3 <= (256 - 16)) {
-                sub_0201AE78(param0->unk_24, 0x0, 0, v3, 32 * 8, 16);
+                BGL_WindowColor(param0->unk_24, 0x0, 0, v3, 32 * 8, 16);
             } else {
                 int v4, v5;
 
                 v4 = 16 - (v3 - (256 - 16));
                 v5 = 16 - v4;
 
-                sub_0201AE78(param0->unk_24, 0x0, 0, v3, 32 * 8, v4);
-                sub_0201AE78(param0->unk_24, 0x0, 0, 0, 32 * 8, v5);
+                BGL_WindowColor(param0->unk_24, 0x0, 0, v3, 32 * 8, v4);
+                BGL_WindowColor(param0->unk_24, 0x0, 0, 0, 32 * 8, v5);
             }
 
             param0->unk_18 = 1;
@@ -394,7 +394,7 @@ BOOL ov99_021D3F6C (UnkStruct_ov99_021D3E78 * param0, int param1)
     }
 }
 
-static void ov99_021D4104 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov99_021D4104 (SysTask * param0, void * param1)
 {
     UnkStruct_ov99_021D3E78 * v0 = param1;
 

@@ -1,0 +1,23 @@
+{
+    "name": "Brine",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_WATER",
+    "power": 65,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_DOUBLE_POWER_WHEN_BELOW_HALF",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 4,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

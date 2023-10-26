@@ -1,0 +1,112 @@
+{
+    "name": "Sentret",
+    "base_stats": {
+        "hp": 35,
+        "attack": 46,
+        "defense": 34,
+        "speed": 20,
+        "special_attack": 35,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 57,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_ORAN_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_RUN_AWAY",
+        "ABILITY_KEEN_EYE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM03",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM24",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM65",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM01",
+            "HM03"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_SCRATCH",
+                "MOVE_FORESIGHT"
+            ],
+            "4": "MOVE_DEFENSE_CURL",
+            "7": "MOVE_QUICK_ATTACK",
+            "13": "MOVE_FURY_SWIPES",
+            "16": "MOVE_HELPING_HAND",
+            "19": "MOVE_FOLLOW_ME",
+            "25": "MOVE_SLAM",
+            "28": "MOVE_REST",
+            "31": "MOVE_SUCKER_PUNCH",
+            "36": "MOVE_AMNESIA",
+            "39": "MOVE_BATON_PASS",
+            "42": "MOVE_ME_FIRST",
+            "47": "MOVE_HYPER_VOICE"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            15,
+            "SPECIES_FURRET"
+        ]
+    ]
+}

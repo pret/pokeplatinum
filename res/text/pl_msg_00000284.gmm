@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54347" />
+	<row id="pl_msg_00000284_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The locked doors only open with\na special key.\rNow, if I was a comedy relief sort\nof bad guy, I’d tell you...\rBut I really don’t know!</language>
+	</row>
+	<row id="pl_msg_00000284_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is locked.\nA special key is needed.</language>
+	</row>
+	<row id="pl_msg_00000284_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is locked.\nA special key is needed.\rUse the Galactic Key?</language>
+	</row>
+	<row id="pl_msg_00000284_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door opened.</language>
+	</row>
+	<row id="pl_msg_00000284_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Team Galactic credo!\nEverything belongs to Team Galactic!\rLook beyond the world--space will\nbecome Team Galactic’s!</language>
+	</row>
+</body>

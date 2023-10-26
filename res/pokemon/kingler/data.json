@@ -1,0 +1,107 @@
+{
+    "name": "Kingler",
+    "base_stats": {
+        "hp": 55,
+        "attack": 130,
+        "defense": 115,
+        "speed": 75,
+        "special_attack": 50,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 206,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "WATER_3",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_HYPER_CUTTER",
+        "ABILITY_SHELL_ARMOR"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": true
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM54",
+            "TM55",
+            "TM56",
+            "TM58",
+            "TM68",
+            "TM75",
+            "TM78",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM03",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_MUD_SPORT",
+                "MOVE_BUBBLE",
+                "MOVE_VICE_GRIP"
+            ],
+            "5": "MOVE_VICE_GRIP",
+            "9": "MOVE_LEER",
+            "11": "MOVE_HARDEN",
+            "15": "MOVE_BUBBLE_BEAM",
+            "19": "MOVE_MUD_SHOT",
+            "21": "MOVE_METAL_CLAW",
+            "25": "MOVE_STOMP",
+            "32": "MOVE_PROTECT",
+            "37": "MOVE_GUILLOTINE",
+            "44": "MOVE_SLAM",
+            "51": "MOVE_BRINE",
+            "56": "MOVE_CRABHAMMER",
+            "63": "MOVE_FLAIL"
+        }
+    }
+}

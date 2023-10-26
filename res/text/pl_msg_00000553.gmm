@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="11018" />
+	<row id="pl_msg_00000553_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas</language>
+	</row>
+	<row id="pl_msg_00000553_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn</language>
+	</row>
+</body>

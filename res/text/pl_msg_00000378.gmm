@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="2094" />
+	<row id="pl_msg_00000378_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oreburgh Gym</language>
+	</row>
+	<row id="pl_msg_00000378_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eterna Gym</language>
+	</row>
+	<row id="pl_msg_00000378_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pastoria Gym</language>
+	</row>
+	<row id="pl_msg_00000378_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Veilstone Gym</language>
+	</row>
+	<row id="pl_msg_00000378_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hearthome Gym</language>
+	</row>
+	<row id="pl_msg_00000378_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Snowpoint Gym</language>
+	</row>
+	<row id="pl_msg_00000378_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Canalave Gym</language>
+	</row>
+	<row id="pl_msg_00000378_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sunyshore Gym</language>
+	</row>
+</body>

@@ -13,21 +13,21 @@ typedef struct UnkStruct_020507E4_t {
 
 static u8 Unk_021C07F4[8] = {};
 
-int sub_020507CC (void)
+int FieldEvents_SaveSize (void)
 {
     return sizeof(UnkStruct_020507E4);
 }
 
-void sub_020507D4 (UnkStruct_020507E4 * param0)
+void FieldEvents_Init (UnkStruct_020507E4 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_020507E4));
 }
 
-UnkStruct_020507E4 * sub_020507E4 (UnkStruct_021C0794 * param0)
+UnkStruct_020507E4 * sub_020507E4 (SaveData * param0)
 {
     UnkStruct_020507E4 * v0;
 
-    v0 = (UnkStruct_020507E4 *)sub_020245BC(param0, 4);
+    v0 = (UnkStruct_020507E4 *)SaveData_Get(param0, 4);
     return v0;
 }
 

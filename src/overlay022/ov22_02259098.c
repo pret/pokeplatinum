@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02007768_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/union_02022594_020225E0.h"
@@ -16,7 +16,7 @@
 #include "unk_0200762C.h"
 #include "heap.h"
 #include "unk_02022594.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_02259098.h"
 
@@ -42,7 +42,7 @@ void ov22_022590C0 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Po
 
 void ov22_022590D4 (UnkStruct_020298D8 * param0, UnkStruct_02007768 * param1, Pokemon * param2, UnkStruct_02008A90 * param3, int param4, BOOL param5)
 {
-    int v0 = GetMonData(param2, MON_DATA_SPECIES, NULL);
+    int v0 = Pokemon_GetValue(param2, MON_DATA_SPECIES, NULL);
 
     sub_02075F00(param3, param2, 2);
     param0->unk_00 = sub_02007C34(param1, param3, 192, 56, 0, 0, NULL, NULL);
@@ -158,8 +158,8 @@ BOOL ov22_02259278 (UnkStruct_020298D8 * param0, int * param1, int * param2, NNS
     v3 -= (v1 / 2);
     v4 -= (v2 / 2);
 
-    *param1 = Unk_021BF67C.unk_5C - v3;
-    *param2 = Unk_021BF67C.unk_5E - v4;
+    *param1 = gCoreSys.unk_5C - v3;
+    *param2 = gCoreSys.unk_5E - v4;
 
     v0 = ov22_02255420(param3, *param1, *param2, 0);
 

@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "struct_defs/union_02022594_020225E0.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "overlay021/struct_ov21_021D0D80_1.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
@@ -50,12 +50,12 @@ void ov21_021D144C(UnkStruct_02022550 * param0, int param1);
 void ov21_021D1498(UnkStruct_02022550 * param0, UnkStruct_ov21_021D4CA0 * param1, int param2);
 void ov21_021D1524(UnkStruct_02022550 * param0, UnkStruct_ov21_021D4CA0 * param1, int param2, int param3, int param4);
 void ov21_021D154C(UnkUnion_020225E0 * param0, int param1, int param2, int param3, int param4);
-void ov21_021D1558(UnkStruct_ov21_021D157C * param0, UnkStruct_02018340 * param1, int param2, NNSG2dScreenData * param3, int param4, int param5, int param6, int param7, int param8);
+void ov21_021D1558(UnkStruct_ov21_021D157C * param0, BGL * param1, int param2, NNSG2dScreenData * param3, int param4, int param5, int param6, int param7, int param8);
 BOOL ov21_021D157C(UnkStruct_ov21_021D157C * param0);
-void ov21_021D1650(UnkStruct_0205AA50 * param0, int param1, int param2, int param3);
-UnkStruct_0205AA50 * ov21_021D16D8(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3);
-UnkStruct_0205AA50 * ov21_021D170C(UnkStruct_ov21_021D4C0C * param0, int param1, int param2);
-UnkStruct_0205AA50 * ov21_021D172C(UnkStruct_ov21_021D4C0C * param0, int param1, int param2);
+void ov21_021D1650(Window * param0, int param1, int param2, int param3);
+Window * ov21_021D16D8(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3);
+Window * ov21_021D170C(UnkStruct_ov21_021D4C0C * param0, int param1, int param2);
+Window * ov21_021D172C(UnkStruct_ov21_021D4C0C * param0, int param1, int param2);
 void ov21_021D1778(UnkStruct_ov21_021D13FC * param0, const UnkStruct_ov21_021D3320 * param1, int param2, int param3, fx32 param4, fx32 param5);
 void ov21_021D1848(UnkStruct_ov21_021D13FC * param0, int param1, int param2);
 void ov21_021D1858(UnkStruct_ov21_021D22F8 * param0, int param1, int param2);

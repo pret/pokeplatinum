@@ -1,13 +1,13 @@
 #ifndef POKEPLATINUM_UNK_0200D9E8_H
 #define POKEPLATINUM_UNK_0200D9E8_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "functypes/funcptr_0201CE28.h"
+#include "struct_decls/sys_task.h"
+#include "functypes/sys_task_func.h"
 
-UnkStruct_0201CD38 * sub_0200D9E8(UnkFuncPtr_0201CE28 param0, void * param1, u32 param2);
-UnkStruct_0201CD38 * sub_0200DA04(UnkFuncPtr_0201CE28 param0, void * param1, u32 param2);
-UnkStruct_0201CD38 * sub_0200DA20(UnkFuncPtr_0201CE28 param0, void * param1, u32 param2);
-UnkStruct_0201CD38 * sub_0200DA3C(UnkFuncPtr_0201CE28 param0, void * param1, u32 param2);
-void sub_0200DA58(UnkStruct_0201CD38 * param0);
+SysTask * SysTask_Start(SysTaskFunc param0, void * param1, u32 param2);
+SysTask * sub_0200DA04(SysTaskFunc param0, void * param1, u32 param2);
+SysTask * sub_0200DA20(SysTaskFunc param0, void * param1, u32 param2);
+SysTask * sub_0200DA3C(SysTaskFunc param0, void * param1, u32 param2);
+void SysTask_Done(SysTask * param0);
 
 #endif // POKEPLATINUM_UNK_0200D9E8_H

@@ -6,7 +6,7 @@
 #include "overlay084/struct_ov84_0223B5A0.h"
 
 void ov84_0223F040(UnkStruct_ov84_0223B5A0 * param0);
-void ov84_0223F1DC(UnkStruct_0205AA50 * param0);
+void ov84_0223F1DC(Window * param0);
 void ov84_0223F1F8(UnkStruct_ov84_0223B5A0 * param0);
 void ov84_0223F238(UnkStruct_ov84_0223B5A0 * param0);
 void ov84_0223F25C(UnkStruct_ov84_0223B5A0 * param0);
@@ -18,8 +18,8 @@ void ov84_0223F584(UnkStruct_ov84_0223B5A0 * param0, u16 param1);
 void ov84_0223F7D4(UnkStruct_ov84_0223B5A0 * param0);
 void ov84_0223F800(UnkStruct_ov84_0223B5A0 * param0);
 void ov84_0223F81C(UnkStruct_ov84_0223B5A0 * param0, u16 param1, u16 param2, u32 param3);
-void ov84_0223F8D0(UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param1, u32 param2);
-void ov84_0223F94C(UnkStruct_ov84_0223B5A0 * param0, UnkStruct_0207CDEC * param1, u32 param2);
+void ov84_0223F8D0(UnkStruct_ov84_0223B5A0 * param0, BagItem * param1, u32 param2);
+void ov84_0223F94C(UnkStruct_ov84_0223B5A0 * param0, BagItem * param1, u32 param2);
 void ov84_0223F9F0(UnkStruct_ov84_0223B5A0 * param0, u32 param1);
 void ov84_0223FA44(UnkStruct_ov84_0223B5A0 * param0, u32 param1);
 void ov84_0223FA88(UnkStruct_ov84_0223B5A0 * param0);

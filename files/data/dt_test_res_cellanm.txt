@@ -1,3 +1,0 @@
-3,0,
-data/ug_hero.NANR,0,
-e,e,e,e,

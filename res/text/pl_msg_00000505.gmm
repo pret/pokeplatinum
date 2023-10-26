@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="39552" />
+	<row id="pl_msg_00000505_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can’t ride a Bike on snow.\nIt’s too dangerous.</language>
+	</row>
+	<row id="pl_msg_00000505_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 216\nMt. Coronet</language>
+	</row>
+	<row id="pl_msg_00000505_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Snowbound Lodge\nA Warm Bed and Little Else</language>
+	</row>
+</body>

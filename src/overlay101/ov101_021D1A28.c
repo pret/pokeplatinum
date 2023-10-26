@@ -3,9 +3,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay101/struct_ov101_021D5D90_decl.h"
 
 #include "overlay101/const_ov101_021D9580.h"
@@ -106,7 +106,7 @@ static void ov101_021D2BC0(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D2BDC(UnkStruct_ov101_021D13C8 * param0, UnkEnum_ov101_021D2BDC param1);
 static void ov101_021D2BF4(UnkStruct_ov101_021D13C8 * param0, UnkEnum_ov101_021D2BDC param1);
 static int ov101_021D2C04(UnkStruct_ov101_021D13C8 * param0, UnkEnum_ov101_021D2BDC param1);
-static void ov101_021D2C10(UnkStruct_0201CD38 * param0, void * param1);
+static void ov101_021D2C10(SysTask * param0, void * param1);
 static int ov101_021D2D88(UnkStruct_ov101_021D2D88 * param0, UnkStruct_ov101_021D13C8 * param1);
 static int ov101_021D2DC0(UnkStruct_ov101_021D2D88 * param0, UnkStruct_ov101_021D13C8 * param1);
 static int ov101_021D2DE0(UnkStruct_ov101_021D2D88 * param0, UnkStruct_ov101_021D13C8 * param1);
@@ -151,7 +151,7 @@ static void ov101_021D45C4(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D45E8(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D45F8(UnkStruct_ov101_021D13C8 * param0);
 static int ov101_021D460C(UnkStruct_ov101_021D13C8 * param0);
-static void ov101_021D4614(UnkStruct_0201CD38 * param0, void * param1);
+static void ov101_021D4614(SysTask * param0, void * param1);
 static void ov101_021D4714(UnkStruct_ov101_021D4714 * param0);
 static void ov101_021D4764(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D4788(UnkStruct_ov101_021D13C8 * param0);
@@ -194,10 +194,10 @@ static int ov101_021D58C0(UnkStruct_ov101_021D13C8 * param0);
 static void ov101_021D58F4(UnkStruct_ov101_021D13C8 * param0, UnkEnum_ov101_021D2BDC param1);
 static void ov101_021D5938(UnkStruct_ov101_021D13C8 * param0, UnkEnum_ov101_021D2BDC param1);
 static u32 ov101_021D597C(UnkStruct_ov101_021D13C8 * param0);
-static void ov101_021D4824(UnkStruct_0201CD38 * param0, void * param1);
-static void ov101_021D542C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov101_021D548C(UnkStruct_0201CD38 * param0, void * param1);
-static void ov101_021D54EC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov101_021D4824(SysTask * param0, void * param1);
+static void ov101_021D542C(SysTask * param0, void * param1);
+static void ov101_021D548C(SysTask * param0, void * param1);
+static void ov101_021D54EC(SysTask * param0, void * param1);
 
 static const UnkStruct_ov101_021D87A8 Unk_ov101_021D87A8[6];
 static const int Unk_ov101_021D8740[3][2];
@@ -228,7 +228,7 @@ static void ov101_021D1A68 (UnkStruct_ov101_021D13C8 * param0)
     fx32 v2;
 
     for (v0 = 0; v0 < 3; v0++) {
-        v1 = (int)sub_0201D2E8() % 21;
+        v1 = (int)LCRNG_Next() % 21;
         param0->unk_A8[v0] = v1;
         param0->unk_90[v0] = (FX32_ONE * ((21 * 32))) - ((FX32_ONE * ((v1) * 32)));
         param0->unk_90[v0] %= (FX32_ONE * ((21 * 32)));
@@ -292,7 +292,7 @@ static int ov101_021D1B40 (UnkStruct_ov101_021D13C8 * param0)
         param0->unk_45C += 3;
         param0->unk_00 = 2;
 
-        sub_02005748(1517);
+        Sound_PlayEffect(1517);
         ov101_021D5244(param0);
         ov101_021D5010(param0);
 
@@ -360,7 +360,7 @@ static int ov101_021D1BD0 (UnkStruct_ov101_021D13C8 * param0)
     param0->unk_6C = 0;
     param0->unk_00 = 4;
 
-    sub_02005748(1518);
+    Sound_PlayEffect(1518);
 
     return 1;
 }
@@ -380,7 +380,7 @@ static int ov101_021D1C9C (UnkStruct_ov101_021D13C8 * param0)
 
 static int ov101_021D1CBC (UnkStruct_ov101_021D13C8 * param0)
 {
-    u32 v0 = Unk_021BF67C.unk_48;
+    u32 v0 = gCoreSys.padInput;
 
     if ((param0->unk_7C[0] == 1) && (v0 & PAD_BUTTON_Y)) {
         param0->unk_7C[0] = 2;
@@ -392,7 +392,7 @@ static int ov101_021D1CBC (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 0);
         ov101_021D2BF4(param0, 0);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     } else if ((param0->unk_7C[1] == 1) && (v0 & PAD_BUTTON_B)) {
         param0->unk_7C[1] = 2;
 
@@ -404,7 +404,7 @@ static int ov101_021D1CBC (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 1);
         ov101_021D2BF4(param0, 1);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     } else if ((param0->unk_7C[2] == 1) && (v0 & PAD_BUTTON_A)) {
         param0->unk_7C[2] = 2;
         ov101_021D5858(param0, PAD_BUTTON_A);
@@ -415,7 +415,7 @@ static int ov101_021D1CBC (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 2);
         ov101_021D2BF4(param0, 2);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     }
 
     if ((param0->unk_7C[0] == 2) && (param0->unk_7C[1] == 2) && (param0->unk_7C[2] == 2)) {
@@ -734,7 +734,7 @@ static int ov101_021D2198 (UnkStruct_ov101_021D13C8 * param0)
         param0->unk_45C += 3;
         param0->unk_00 = 27;
 
-        sub_02005748(1517);
+        Sound_PlayEffect(1517);
         ov101_021D5244(param0);
         ov101_021D5010(param0);
 
@@ -796,7 +796,7 @@ static int ov101_021D2228 (UnkStruct_ov101_021D13C8 * param0)
     param0->unk_6C = 0;
     param0->unk_00 = 29;
 
-    sub_02005748(1518);
+    Sound_PlayEffect(1518);
 
     return 1;
 }
@@ -817,7 +817,7 @@ static int ov101_021D22D0 (UnkStruct_ov101_021D13C8 * param0)
 
 static int ov101_021D22F0 (UnkStruct_ov101_021D13C8 * param0)
 {
-    u32 v0 = Unk_021BF67C.unk_48;
+    u32 v0 = gCoreSys.padInput;
 
     if ((param0->unk_7C[0] == 1) && (v0 & PAD_BUTTON_Y)) {
         param0->unk_7C[0] = 2;
@@ -830,7 +830,7 @@ static int ov101_021D22F0 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 0);
         ov101_021D2BF4(param0, 0);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     } else if ((param0->unk_7C[1] == 1) && (v0 & PAD_BUTTON_B)) {
         param0->unk_7C[1] = 2;
         ov101_021D5858(param0, PAD_BUTTON_B);
@@ -841,7 +841,7 @@ static int ov101_021D22F0 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 1);
         ov101_021D2BF4(param0, 1);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     } else if ((param0->unk_7C[2] == 1) && (v0 & PAD_BUTTON_A)) {
         param0->unk_7C[2] = 2;
         ov101_021D5858(param0, PAD_BUTTON_A);
@@ -852,7 +852,7 @@ static int ov101_021D22F0 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 2);
         ov101_021D2BF4(param0, 2);
-        sub_02005748(1574);
+        Sound_PlayEffect(1574);
     }
 
     if ((param0->unk_7C[0] == 2) && (param0->unk_7C[1] == 2) && (param0->unk_7C[2] == 2)) {
@@ -1090,7 +1090,7 @@ static int ov101_021D269C (UnkStruct_ov101_021D13C8 * param0)
 
         param0->unk_00 = 45;
 
-        sub_02005748(1517);
+        Sound_PlayEffect(1517);
         ov101_021D5244(param0);
         ov101_021D4FB8(param0, UnkEnum_ov101_021D4F58_00);
 
@@ -1141,7 +1141,7 @@ static int ov101_021D2738 (UnkStruct_ov101_021D13C8 * param0)
     param0->unk_6C = 0;
     param0->unk_00 = 47;
 
-    sub_02005748(1518);
+    Sound_PlayEffect(1518);
 
     if ((param0->unk_24 == 0) && (param0->unk_28 == 0)) {
         if (ov101_021D44C4(param0) == 1) {
@@ -1184,7 +1184,7 @@ static int ov101_021D2828 (UnkStruct_ov101_021D13C8 * param0)
 
 static int ov101_021D2850 (UnkStruct_ov101_021D13C8 * param0)
 {
-    u32 v0 = Unk_021BF67C.unk_48;
+    u32 v0 = gCoreSys.padInput;
 
     if ((param0->unk_7C[0] == 1) && (v0 & PAD_BUTTON_Y)) {
         param0->unk_7C[0] = 2;
@@ -1197,7 +1197,7 @@ static int ov101_021D2850 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 0);
         ov101_021D2BF4(param0, 0);
-        sub_02005748(1525);
+        Sound_PlayEffect(1525);
     } else if ((param0->unk_7C[1] == 1) && (v0 & PAD_BUTTON_B)) {
         param0->unk_7C[1] = 2;
         ov101_021D5858(param0, PAD_BUTTON_B);
@@ -1209,7 +1209,7 @@ static int ov101_021D2850 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 1);
         ov101_021D2BF4(param0, 1);
-        sub_02005748(1525);
+        Sound_PlayEffect(1525);
     } else if ((param0->unk_7C[2] == 1) && (v0 & PAD_BUTTON_A)) {
         param0->unk_7C[2] = 2;
         ov101_021D5858(param0, PAD_BUTTON_A);
@@ -1221,7 +1221,7 @@ static int ov101_021D2850 (UnkStruct_ov101_021D13C8 * param0)
 
         ov101_021D58F4(param0, 2);
         ov101_021D2BF4(param0, 2);
-        sub_02005748(1525);
+        Sound_PlayEffect(1525);
     }
 
     if ((param0->unk_7C[0] == 2) && (param0->unk_7C[1] == 2) && (param0->unk_7C[2] == 2)) {
@@ -1504,7 +1504,7 @@ static void ov101_021D2B8C (UnkStruct_ov101_021D13C8 * param0)
         v1->unk_00 = 0;
         v1->unk_10 = v0;
         v1->unk_20 = param0;
-        v1->unk_1C = sub_0200D9E8(ov101_021D2C10, &param0->unk_B4[v0], 129 + v0);
+        v1->unk_1C = SysTask_Start(ov101_021D2C10, &param0->unk_B4[v0], 129 + v0);
         v1++; v0++;
     } while (v0 < 3);
 }
@@ -1514,7 +1514,7 @@ static void ov101_021D2BC0 (UnkStruct_ov101_021D13C8 * param0)
     u32 v0 = 0;
 
     do {
-        sub_0200DA58(param0->unk_B4[v0].unk_1C); v0++;
+        SysTask_Done(param0->unk_B4[v0].unk_1C); v0++;
     } while (v0 < 3);
 }
 
@@ -1534,7 +1534,7 @@ static int ov101_021D2C04 (UnkStruct_ov101_021D13C8 * param0, UnkEnum_ov101_021D
     return param0->unk_B4[param1].unk_04;
 }
 
-static void ov101_021D2C10 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D2C10 (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D2D88 * v0 = param1;
     UnkStruct_ov101_021D13C8 * v1 = v0->unk_20;
@@ -2738,7 +2738,7 @@ static fx32 ov101_021D4024 (UnkStruct_ov101_021D13C8 * param0, UnkEnum_ov101_021
 
 static u32 ov101_021D405C (UnkStruct_ov101_021D13C8 * param0)
 {
-    u32 v0 = ((u32)sub_0201D2E8()) % 100;
+    u32 v0 = ((u32)LCRNG_Next()) % 100;
     return v0;
 }
 
@@ -3063,7 +3063,7 @@ static UnkEnum_ov101_021D4550 ov101_021D4550 (UnkStruct_ov101_021D13C8 * param0)
 
 static void ov101_021D45B0 (UnkStruct_ov101_021D13C8 * param0)
 {
-    param0->unk_34 = sub_0201D2E8() % 6;
+    param0->unk_34 = LCRNG_Next() % 6;
 }
 
 static void ov101_021D45C4 (UnkStruct_ov101_021D13C8 * param0)
@@ -3073,12 +3073,12 @@ static void ov101_021D45C4 (UnkStruct_ov101_021D13C8 * param0)
     v0->unk_00 = 0;
     v0->unk_04 = 0;
     v0->unk_0C = param0;
-    v0->unk_10 = sub_0200D9E8(ov101_021D4614, v0, 138);
+    v0->unk_10 = SysTask_Start(ov101_021D4614, v0, 138);
 }
 
 static void ov101_021D45E8 (UnkStruct_ov101_021D13C8 * param0)
 {
-    sub_0200DA58(param0->unk_120.unk_10);
+    SysTask_Done(param0->unk_120.unk_10);
 }
 
 static void ov101_021D45F8 (UnkStruct_ov101_021D13C8 * param0)
@@ -3093,7 +3093,7 @@ static int ov101_021D460C (UnkStruct_ov101_021D13C8 * param0)
     return param0->unk_120.unk_04;
 }
 
-static void ov101_021D4614 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D4614 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov101_021D4714 * v1 = param1;
@@ -3114,7 +3114,7 @@ static void ov101_021D4614 (UnkStruct_0201CD38 * param0, void * param1)
         v1->unk_00++;
     case 3:
         if (ov101_021D55F8(PAD_BUTTON_X) || (v2->unk_64 == 0)) {
-            sub_02005748(1581);
+            Sound_PlayEffect(1581);
             v2->unk_60 += v2->unk_64;
 
             if (v2->unk_60 >= 50000) {
@@ -3145,7 +3145,7 @@ static void ov101_021D4614 (UnkStruct_0201CD38 * param0, void * param1)
 
         v0 = 0x3;
 
-        if (Unk_021BF67C.unk_44 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) {
+        if (gCoreSys.unk_44 & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_X | PAD_BUTTON_Y)) {
             v0 = 0x1;
         }
 
@@ -3159,7 +3159,7 @@ static void ov101_021D4614 (UnkStruct_0201CD38 * param0, void * param1)
                 v2->unk_60 = 50000;
             }
 
-            sub_02005748(1581);
+            Sound_PlayEffect(1581);
 
             if (v2->unk_08 == 1) {
                 v2->unk_14++;
@@ -3196,13 +3196,13 @@ static void ov101_021D4764 (UnkStruct_ov101_021D13C8 * param0)
     v0->unk_00 = 0;
     v0->unk_04 = 0;
     v0->unk_20 = param0;
-    v0->unk_24 = sub_0200D9E8(ov101_021D4824, v0, 132);
+    v0->unk_24 = SysTask_Start(ov101_021D4824, v0, 132);
 }
 
 static void ov101_021D4788 (UnkStruct_ov101_021D13C8 * param0)
 {
     UnkStruct_ov101_021D4764 * v0 = &param0->unk_13C;
-    sub_0200DA58(v0->unk_24);
+    SysTask_Done(v0->unk_24);
 }
 
 static void ov101_021D4798 (UnkStruct_ov101_021D13C8 * param0, u32 param1)
@@ -3240,7 +3240,7 @@ static void ov101_021D47F0 (UnkStruct_ov101_021D13C8 * param0)
     sub_0207136C(param0->unk_13C.unk_44);
 }
 
-static void ov101_021D4824 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D4824 (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov101_021D4764 * v1 = param1;
@@ -4141,7 +4141,7 @@ static void ov101_021D53B0 (UnkStruct_ov101_021D13C8 * param0)
     v0->unk_04 = 0;
     v0->unk_0C = param0;
 
-    sub_0200D9E8(ov101_021D542C, v0, 143);
+    SysTask_Start(ov101_021D542C, v0, 143);
 }
 
 static void ov101_021D53D4 (UnkStruct_ov101_021D13C8 * param0)
@@ -4152,7 +4152,7 @@ static void ov101_021D53D4 (UnkStruct_ov101_021D13C8 * param0)
     v0->unk_04 = 0;
     v0->unk_0C = param0;
 
-    sub_0200D9E8(ov101_021D548C, v0, 143);
+    SysTask_Start(ov101_021D548C, v0, 143);
 }
 
 static void ov101_021D53F8 (UnkStruct_ov101_021D13C8 * param0, int param1)
@@ -4164,11 +4164,11 @@ static void ov101_021D53F8 (UnkStruct_ov101_021D13C8 * param0, int param1)
     v0->unk_04 = (FX32_ONE * 8);
     v0->unk_0C = param0;
 
-    sub_0200D9E8(ov101_021D54EC, v0, 143);
-    sub_02005748(1520);
+    SysTask_Start(ov101_021D54EC, v0, 143);
+    Sound_PlayEffect(1520);
 }
 
-static void ov101_021D542C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D542C (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D53B0 * v0 = param1;
     UnkStruct_ov101_021D4F58 * v1 = &v0->unk_0C->unk_184;
@@ -4189,11 +4189,11 @@ static void ov101_021D542C (UnkStruct_0201CD38 * param0, void * param1)
 
     if ((v5 == 16) || (v0->unk_0C->unk_00 == 63)) {
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
-static void ov101_021D548C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D548C (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D53B0 * v0 = param1;
     UnkStruct_ov101_021D4F58 * v1 = &v0->unk_0C->unk_184;
@@ -4214,11 +4214,11 @@ static void ov101_021D548C (UnkStruct_0201CD38 * param0, void * param1)
 
     if ((v5 == 16) || (v0->unk_0C->unk_00 == 63)) {
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
-static void ov101_021D54EC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov101_021D54EC (SysTask * param0, void * param1)
 {
     UnkStruct_ov101_021D53B0 * v0 = param1;
     UnkStruct_ov101_021D4F58 * v1 = &v0->unk_0C->unk_184;
@@ -4228,7 +4228,7 @@ static void ov101_021D54EC (UnkStruct_0201CD38 * param0, void * param1)
 
     if (v0->unk_0C->unk_00 == 63) {
         Heap_FreeToHeap(v0);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -4264,7 +4264,7 @@ static void ov101_021D54EC (UnkStruct_0201CD38 * param0, void * param1)
 
         if (v5 == 0) {
             Heap_FreeToHeap(v0);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
         }
     }
 }
@@ -4293,7 +4293,7 @@ UnkEnum_ov101_021D9688 ov101_021D55D4 (UnkStruct_ov101_021D13C8 * param0, UnkEnu
 
 static int ov101_021D55F8 (u32 param0)
 {
-    u32 v0 = Unk_021BF67C.unk_48 & param0;
+    u32 v0 = gCoreSys.padInput & param0;
 
     if (v0 == param0) {
         return 2;

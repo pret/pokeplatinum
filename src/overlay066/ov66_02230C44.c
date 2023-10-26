@@ -23,7 +23,7 @@
 #include "game_overlay.h"
 #include "unk_020067E8.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_02230C44.h"
 #include "overlay067/ov67_0225C700.h"
@@ -58,7 +58,7 @@ typedef struct UnkStruct_ov66_02230C90_t {
     u8 unk_39;
     u16 unk_3A;
     UnkStruct_ov66_0222DFF8 * unk_3C;
-    UnkStruct_021C0794 * unk_40;
+    SaveData * unk_40;
     UnkStruct_ov66_0222DCE0_sub1 * unk_44;
 } UnkStruct_ov66_02230C90;
 
@@ -115,7 +115,7 @@ static void ov66_022313E8(UnkStruct_ov66_02230E4C * param0);
 static void ov66_022313F4(UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1);
 static int ov66_02231404(UnkStruct_ov66_02230C90 * param0, UnkStruct_ov66_02230E4C * param1);
 
-UnkStruct_ov66_02230C90 * ov66_02230C44 (BOOL param0, UnkStruct_021C0794 * param1, UnkStruct_ov66_0222DCE0_sub1 * param2, UnkStruct_ov66_0222DFF8 * param3, u32 param4)
+UnkStruct_ov66_02230C90 * ov66_02230C44 (BOOL param0, SaveData * param1, UnkStruct_ov66_0222DCE0_sub1 * param2, UnkStruct_ov66_0222DFF8 * param3, u32 param4)
 {
     UnkStruct_ov66_02230C90 * v0;
 
@@ -281,7 +281,7 @@ static void ov66_02230DA0 (UnkStruct_ov66_02230DBC * param0, u32 param1)
     int v0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_20[v0] = sub_02025E6C(param1);
+        param0->unk_20[v0] = TrainerInfo_New(param1);
     }
 }
 

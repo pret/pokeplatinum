@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="15060" />
+	<row id="pl_msg_00000001_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PLAYER: {STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000001_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This document certifies that\nyou have made the great\nachievement of meeting all\nthe Pokémon in Sinnoh.</language>
+	</row>
+	<row id="pl_msg_00000001_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This document certifies\nthat you have successfully\ncompleted your\nNational Pokédex.</language>
+	</row>
+	<row id="pl_msg_00000001_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">GAME FREAK</language>
+	</row>
+</body>

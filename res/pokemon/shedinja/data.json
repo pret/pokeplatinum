@@ -1,0 +1,97 @@
+{
+    "name": "Shedinja",
+    "base_stats": {
+        "hp": 1,
+        "attack": 90,
+        "defense": 45,
+        "speed": 40,
+        "special_attack": 30,
+        "special_defense": 30
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_GHOST"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 95,
+    "ev_yields": {
+        "hp": 2,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "ERRATIC",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_WONDER_GUARD",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM37",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM46",
+            "TM54",
+            "TM58",
+            "TM61",
+            "TM65",
+            "TM68",
+            "TM70",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM90",
+            "HM01"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_SCRATCH",
+                "MOVE_HARDEN"
+            ],
+            "5": "MOVE_LEECH_LIFE",
+            "9": "MOVE_SAND_ATTACK",
+            "14": "MOVE_FURY_SWIPES",
+            "19": "MOVE_MIND_READER",
+            "25": "MOVE_SPITE",
+            "31": "MOVE_CONFUSE_RAY",
+            "38": "MOVE_SHADOW_SNEAK",
+            "45": "MOVE_GRUDGE",
+            "52": "MOVE_HEAL_BLOCK",
+            "59": "MOVE_SHADOW_BALL"
+        }
+    }
+}

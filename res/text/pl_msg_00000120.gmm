@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="33826" />
+	<row id="pl_msg_00000120_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hearthome City is a great place.\rEvery year, it gets voted the most\ndesirable place to live in Sinnoh.</language>
+	</row>
+	<row id="pl_msg_00000120_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you say Hearthome City, I only\nsay this: Pokémon Contests!\rI’m going to enter my darling\nPokémon in them!</language>
+	</row>
+	<row id="pl_msg_00000120_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Pippii?!</language>
+	</row>
+</body>

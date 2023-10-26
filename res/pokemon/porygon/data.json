@@ -1,0 +1,112 @@
+{
+    "name": "Porygon",
+    "base_stats": {
+        "hp": 65,
+        "attack": 60,
+        "defense": 70,
+        "speed": 40,
+        "special_attack": 85,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 130,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_TRACE",
+        "ABILITY_DOWNLOAD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PINK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM46",
+            "TM57",
+            "TM58",
+            "TM67",
+            "TM68",
+            "TM70",
+            "TM73",
+            "TM77",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM90",
+            "TM92"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_CONVERSION_2",
+                "MOVE_TACKLE",
+                "MOVE_CONVERSION",
+                "MOVE_SHARPEN"
+            ],
+            "7": "MOVE_PSYBEAM",
+            "12": "MOVE_AGILITY",
+            "18": "MOVE_RECOVER",
+            "23": "MOVE_MAGNET_RISE",
+            "29": "MOVE_SIGNAL_BEAM",
+            "34": "MOVE_RECYCLE",
+            "40": "MOVE_DISCHARGE",
+            "45": "MOVE_LOCK_ON",
+            "51": "MOVE_TRI_ATTACK",
+            "56": "MOVE_MAGIC_COAT",
+            "62": "MOVE_ZAP_CANNON"
+        }
+    },
+    "evolutions": [
+        [
+            "TRADE_WITH_ITEM",
+            "ITEM_UPGRADE",
+            "SPECIES_PORYGON2"
+        ]
+    ]
+}

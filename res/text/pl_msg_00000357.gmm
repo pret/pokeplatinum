@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="48102" />
+	<row id="pl_msg_00000357_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 0, 0, 0} hatched from the Egg!</language>
+	</row>
+	<row id="pl_msg_00000357_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to nickname the newly\nhatched {STRVAR_1 0, 0, 0}?</language>
+	</row>
+	<row id="pl_msg_00000357_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes</language>
+	</row>
+	<row id="pl_msg_00000357_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No</language>
+	</row>
+</body>

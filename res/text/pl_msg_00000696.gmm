@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="41388" />
+	<row id="pl_msg_00000696_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Press the X Button over a color dot\nto display the player’s location.</language>
+	</row>
+	<row id="pl_msg_00000696_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000696_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PLACE NAME</language>
+	</row>
+	<row id="pl_msg_00000696_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 36, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000696_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 37, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000696_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Exit the Visitor Profiles?</language>
+	</row>
+</body>

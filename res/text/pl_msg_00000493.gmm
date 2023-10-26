@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="37243" />
+	<row id="pl_msg_00000493_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can zip across fallen logs like\nbridges on your Bike.</language>
+	</row>
+	<row id="pl_msg_00000493_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Am I stuck in the bog?\rOf course not. How silly!\nThis is a full-body mud pack.\rIf it weren’t, I would be squirming\nand struggling to get out!</language>
+	</row>
+	<row id="pl_msg_00000493_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve been to the Great Marsh?\nHow about the Pokémon Mansion?\rWherever I go, I get to meet new and\ndifferent Pokémon.\rI feel so privileged and happy about\nthat.</language>
+	</row>
+	<row id="pl_msg_00000493_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re on constant patrol.\nIt’s safe here, even at night.</language>
+	</row>
+	<row id="pl_msg_00000493_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 212\nPastoria City</language>
+	</row>
+	<row id="pl_msg_00000493_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Shards Wanted\nPokémon Moves Taught</language>
+	</row>
+	<row id="pl_msg_00000493_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips\rIf you get stuck in the bog, you can\ncount on being there a while.\rThere’s no need to panic.\nJust struggle and squirm for a bit.\rBicycles cannot be ridden on marshy\nground, incidentally.</language>
+	</row>
+</body>

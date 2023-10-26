@@ -1,0 +1,24 @@
+{
+    "name": "Trump Card",
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_NORMAL",
+    "power": 1,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_HIGHER_POWER_WHEN_LOW_PP",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 21,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "overlay077/struct_ov77_021D5564_decl.h"
 #include "overlay077/struct_ov77_021D670C_decl.h"
@@ -76,8 +76,8 @@ typedef struct {
     u8 unk_06;
     u8 unk_07;
     u8 unk_08;
-    UnkStruct_02018340 * unk_0C;
-    UnkStruct_0201CD38 * unk_10;
+    BGL * unk_0C;
+    SysTask * unk_10;
     UnkStruct_ov77_021D670C * unk_14;
     u8 * unk_18;
 } UnkStruct_ov77_021D2F38;
@@ -94,7 +94,7 @@ typedef struct {
     u8 unk_08;
     u8 unk_09;
     int unk_0C;
-    UnkStruct_02018340 * unk_10;
+    BGL * unk_10;
     UnkStruct_ov77_021D5564 * unk_14;
     UnkStruct_ov77_021D6734 * unk_18;
     UnkStruct_ov77_021D6CFC * unk_1C;
@@ -127,7 +127,7 @@ typedef struct {
     u8 unk_02;
     u8 unk_03;
     fx32 unk_04;
-    UnkStruct_02018340 * unk_08;
+    BGL * unk_08;
     UnkStruct_ov77_021D5308_sub1 unk_0C;
 } UnkStruct_ov77_021D5308;
 
@@ -135,7 +135,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     BOOL unk_08;
-    UnkStruct_02018340 * unk_0C;
+    BGL * unk_0C;
     UnkStruct_0207C690 * unk_10;
     u32 unk_14;
     UnkStruct_ov77_021D2F38 unk_18;
@@ -161,10 +161,10 @@ static void ov77_021D2F0C(UnkStruct_ov77_021D2E9C * param0);
 static void ov77_021D2F38(UnkStruct_ov77_021D2F38 * param0);
 static BOOL ov77_021D30D0(UnkStruct_ov77_021D2F38 * param0, const int param1);
 static void ov77_021D3234(UnkStruct_ov77_021D2E9C * param0);
-static void ov77_021D32A4(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D3300(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D3360(UnkStruct_0201CD38 * param0, void * param1);
-static void ov77_021D33A8(UnkStruct_0201CD38 * param0, void * param1);
+static void ov77_021D32A4(SysTask * param0, void * param1);
+static void ov77_021D3300(SysTask * param0, void * param1);
+static void ov77_021D3360(SysTask * param0, void * param1);
+static void ov77_021D33A8(SysTask * param0, void * param1);
 static void ov77_021D34A8(UnkStruct_ov77_021D2E9C * param0);
 static void ov77_021D37C0(UnkStruct_ov77_021D37C0 * param0);
 static void ov77_021D3A10(UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D37C0 * param1);
@@ -868,7 +868,7 @@ static void ov77_021D2B38 (void * param0)
     UnkStruct_ov77_021D37C0 * v2 = &v1->unk_34;
 
     if (v2->unk_25B == 1) {
-        Unk_021BF67C.unk_65 = 1;
+        gCoreSys.unk_65 = 1;
 
         GXLayers_SwapDisplay();
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 1);
@@ -957,11 +957,11 @@ static int ov77_021D2D08 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_08 = 0;
     v0->unk_2A8 = 0;
 
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
-    v0->unk_14 = sub_0201D2D0();
+    v0->unk_14 = LCRNG_GetSeed();
 
-    sub_0201D2DC(0);
+    LCRNG_SetSeed(0);
 
     return 1;
 }
@@ -970,9 +970,9 @@ static int ov77_021D2D94 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
 
-    if ((v0->unk_2A8) && ((Unk_021BF67C.unk_48 & PAD_BUTTON_A) || (Unk_021BF67C.unk_48 & PAD_BUTTON_START))) {
+    if ((v0->unk_2A8) && ((gCoreSys.padInput & PAD_BUTTON_A) || (gCoreSys.padInput & PAD_BUTTON_START))) {
         v0->unk_08 = 1;
-        Unk_021BF67C.unk_6C = 0;
+        gCoreSys.unk_6C = 0;
         sub_0200F344(0, 0x0);
         sub_0200F344(1, 0x0);
     }
@@ -1019,11 +1019,11 @@ static int ov77_021D2E60 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov77_021D2E9C * v0 = sub_0200682C(param0);
 
-    if (sub_0200F2AC() == 0) {
+    if (ScreenWipe_Done() == 0) {
         sub_0200F2C0();
     }
 
-    sub_0201D2DC(v0->unk_14);
+    LCRNG_SetSeed(v0->unk_14);
     sub_02006830(param0);
     Heap_Destroy(76);
     sub_02000EC4(FS_OVERLAY_ID(overlay77), &Unk_ov77_021D742C);
@@ -1120,7 +1120,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
         param0->unk_07 = 0;
         param0->unk_06 = 0;
         param0->unk_08 = 0;
-        param0->unk_10 = sub_0200D9E8(ov77_021D32A4, param0, 0);
+        param0->unk_10 = SysTask_Start(ov77_021D32A4, param0, 0);
         sub_02004550(1, 1172, 1);
         (*v0)++;
         break;
@@ -1129,7 +1129,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 16;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D3300, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D3300, param0, 0);
             (*v0)++;
         }
         break;
@@ -1147,7 +1147,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 0;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D3360, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D3360, param0, 0);
             (*v0)++;
         }
         break;
@@ -1156,7 +1156,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
             param0->unk_07 = 0;
             param0->unk_06 = 0;
             param0->unk_08 = 0;
-            param0->unk_10 = sub_0200D9E8(ov77_021D33A8, param0, 0);
+            param0->unk_10 = SysTask_Start(ov77_021D33A8, param0, 0);
             (*v0)++;
         }
         break;
@@ -1167,7 +1167,7 @@ static BOOL ov77_021D30D0 (UnkStruct_ov77_021D2F38 * param0, const int param1)
         }
         break;
     case 5:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
     }
@@ -1195,12 +1195,12 @@ static void ov77_021D3234 (UnkStruct_ov77_021D2E9C * param0)
 
     if (param0->unk_18.unk_10 != NULL) {
         GF_ASSERT(param0->unk_08);
-        sub_0200DA58(param0->unk_18.unk_10);
+        SysTask_Done(param0->unk_18.unk_10);
         param0->unk_18.unk_10 = NULL;
     }
 }
 
-static void ov77_021D32A4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D32A4 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1212,7 +1212,7 @@ static void ov77_021D32A4 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1221,7 +1221,7 @@ static void ov77_021D32A4 (UnkStruct_0201CD38 * param0, void * param1)
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D3300 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D3300 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1233,7 +1233,7 @@ static void ov77_021D3300 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if (v0->unk_06 == 0) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
         *(v0->unk_18) = 1;
@@ -1243,7 +1243,7 @@ static void ov77_021D3300 (UnkStruct_0201CD38 * param0, void * param1)
     G2S_SetBlendAlpha((GX_BLEND_PLANEMASK_BG1), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D3360 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D3360 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1255,7 +1255,7 @@ static void ov77_021D3360 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1263,7 +1263,7 @@ static void ov77_021D3360 (UnkStruct_0201CD38 * param0, void * param1)
     G2_SetBlendAlpha((GX_BLEND_PLANEMASK_BG2), (GX_BLEND_PLANEMASK_BG3), v0->unk_06, 16);
 }
 
-static void ov77_021D33A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov77_021D33A8 (SysTask * param0, void * param1)
 {
     UnkStruct_ov77_021D2F38 * v0 = param1;
 
@@ -1275,7 +1275,7 @@ static void ov77_021D33A8 (UnkStruct_0201CD38 * param0, void * param1)
     }
 
     if (v0->unk_06 >= 16) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         v0->unk_10 = NULL;
         v0->unk_08 = 1;
     }
@@ -1353,7 +1353,7 @@ static void ov77_021D34A8 (UnkStruct_ov77_021D2E9C * param0)
     ov77_021D6CFC(param0->unk_34.unk_1C);
     param0->unk_34.unk_10 = param0->unk_0C;
 
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
 
     for (v0 = 0; v0 < 4; v0++) {
@@ -1483,7 +1483,7 @@ static void ov77_021D37C0 (UnkStruct_ov77_021D37C0 * param0)
     u8 v0;
     NARC * v1;
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     {
         sub_02007148(v1, 96, 0, 0x20 * 0xc, 0x20 * 0xc, 0x20 * 2, 76);
@@ -1497,7 +1497,7 @@ static void ov77_021D37C0 (UnkStruct_ov77_021D37C0 * param0)
         {
             NARC * v2;
 
-            v2 = NARC_ctor(65, 76);
+            v2 = NARC_ctor(NARC_INDEX_DATA__WEATHER_SYS, 76);
 
             sub_020070E8(v2, 56, param0->unk_10, 1, 0, 0, 0, 76);
             sub_0200710C(v2, 57, param0->unk_10, 1, 0, 0, 0, 76);
@@ -1549,9 +1549,9 @@ static void ov77_021D3A10 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     sub_02018898(param1->unk_10, 3, 0, GX_BG_COLORMODE_16);
 
     G2_SetBG0Priority(0);
-    sub_02019060(1, 3);
+    BGL_SetPriority(1, 3);
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     sub_02007130(v1, 68, 0, 0, 0, 76);
 
@@ -1582,7 +1582,7 @@ static void ov77_021D3B5C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
 
     ov77_021D2828(param0);
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     sub_02007130(v1, 72, 0, 0, 0, 76);
     sub_02007130(v1, 72, 4, 0, 0, 76);
@@ -1627,7 +1627,7 @@ static void ov77_021D3D4C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
 
     ov77_021D2900(param0);
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     sub_020070E8(v1, 79, param1->unk_10, 0, 0, 0, 0, 76);
     sub_0200710C(v1, 80, param1->unk_10, 0, 0, 0, 0, 76);
@@ -1639,7 +1639,7 @@ static void ov77_021D3D4C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
 
 static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
 {
-    if (Unk_021BF67C.unk_65 == 0) {
+    if (gCoreSys.unk_65 == 0) {
         sub_02019184(param0->unk_10, 1, 3, 0);
         sub_02019184(param0->unk_10, 2, 3, 0);
         sub_02019184(param0->unk_10, 3, 3, 0);
@@ -1647,12 +1647,12 @@ static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
         sub_02019184(param0->unk_10, 6, 3, 256);
         sub_02019184(param0->unk_10, 7, 3, 256);
 
-        sub_02019060(1, 1);
-        sub_02019060(2, 2);
-        sub_02019060(3, 0);
-        sub_02019060(5, 1);
-        sub_02019060(6, 2);
-        sub_02019060(7, 0);
+        BGL_SetPriority(1, 1);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(5, 1);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 0);
     } else {
         sub_02019184(param0->unk_10, 1, 3, 256);
         sub_02019184(param0->unk_10, 2, 3, 256);
@@ -1661,12 +1661,12 @@ static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
         sub_02019184(param0->unk_10, 6, 3, 0);
         sub_02019184(param0->unk_10, 7, 3, 0);
 
-        sub_02019060(1, 1);
-        sub_02019060(2, 2);
-        sub_02019060(3, 0);
-        sub_02019060(5, 1);
-        sub_02019060(6, 2);
-        sub_02019060(7, 0);
+        BGL_SetPriority(1, 1);
+        BGL_SetPriority(2, 2);
+        BGL_SetPriority(3, 0);
+        BGL_SetPriority(5, 1);
+        BGL_SetPriority(6, 2);
+        BGL_SetPriority(7, 0);
     }
 
     ov77_021D636C(param0->unk_14, 0);
@@ -1674,7 +1674,7 @@ static void ov77_021D3DC4 (UnkStruct_ov77_021D37C0 * param0)
 
 static void ov77_021D3EDC (UnkStruct_ov77_021D37C0 * param0, int param1)
 {
-    param0->unk_20.unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(128, Unk_ov77_021D7458[param1], 76);
+    param0->unk_20.unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_DEMO__TITLE__OP_DEMO, Unk_ov77_021D7458[param1], 76);
     param0->unk_20.unk_04 = NNS_G3dGetTex((NNSG3dResFileHeader *)param0->unk_20.unk_00);
 
     {
@@ -1709,7 +1709,7 @@ static void ov77_021D3F24 (UnkStruct_ov77_021D37C0 * param0, int param1, int par
         param3 = 6;
     }
 
-    v1 = NARC_ctor(128, 76);
+    v1 = NARC_ctor(NARC_INDEX_DEMO__TITLE__OP_DEMO, 76);
 
     for (v0 = param2; v0 < param3; v0++) {
         if (Unk_ov77_021D779C[param1][v0] == 0) {
@@ -1884,7 +1884,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         }
 
         if (param2 == (785 + 5)) {
-            GF_ASSERT(sub_0200F2AC() == 1);
+            GF_ASSERT(ScreenWipe_Done() == 1);
             param1->unk_247 = (1 << 2);
             param1->unk_248 = (1 << 3);
             sub_0200F174(3, 1, 1, 0x7fff, 4, 1, 76);
@@ -1939,7 +1939,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D60E0(param1->unk_14, param2);
         ov77_021D61B8(param1->unk_14, param2);
 
-        if (sub_0200F2AC() && (param2 >= 1600)) {
+        if (ScreenWipe_Done() && (param2 >= 1600)) {
             sub_02019120(4, 0);
             ov77_021D6000(param1->unk_14, param1->unk_18);
             param1->unk_244 = 1;
@@ -1989,7 +1989,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D4B70(param1);
         ov77_021D607C(param1->unk_14);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 >= (62 * 30 - 15 - 15)) {
                 sub_0201C63C(param1->unk_10, 3, 0, 0);
                 sub_0201C63C(param1->unk_10, 3, 3, 256);
@@ -2022,7 +2022,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D4BE4(param1);
         ov77_021D4C04(param1, param2);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             param1->unk_247 = (1 << 1) | (1 << 5);
             param1->unk_248 = (1 << 2) | (1 << 6);
             sub_0201C63C(param1->unk_10, 1, 0, 0);
@@ -2038,7 +2038,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D4C04(param1, param2);
         ov77_021D6470(param1->unk_14, param2);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 == (65 * 30 - 15 - 15 - 45 - 15)) {
                 sub_0201C63C(param1->unk_10, 1, 0, 0);
                 sub_0201C63C(param1->unk_10, 1, 3, 256);
@@ -2055,7 +2055,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 9:
         ov77_021D6470(param1->unk_14, param2);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0200F174(0, 1, 1, 0x7fff, 64, 1, 76);
             ov77_021D603C(param1->unk_14, 11, 0);
             ov77_021D603C(param1->unk_14, 12, 0);
@@ -2065,7 +2065,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
             ov77_021D603C(param1->unk_14, 16, 1);
             ov77_021D636C(param1->unk_14, 0);
             ov77_021D3B5C(param0, param1);
-            Unk_021BF67C.unk_65 = 0;
+            gCoreSys.unk_65 = 0;
             GXLayers_SwapDisplay();
             ov77_021D3DC4(param1);
             param1->unk_246 = 1;
@@ -2079,7 +2079,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
         ov77_021D4DC8(param1, param2);
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 >= (1995 + 15)) {
                 sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
                 (*v0)++;
@@ -2089,7 +2089,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 11:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_NONE, GX_BLEND_PLANEMASK_BG3 | GX_BLEND_PLANEMASK_BG2 | GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_OBJ | GX_BLEND_PLANEMASK_BD, 0, 0);
             MI_CpuClear16((void *)HW_BG_PLTT, 0x200);
             sub_0200F174(3, 1, 1, 0x0, 4, 1, 76);
@@ -2099,7 +2099,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 12:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (ov77_021D6E78(param1->unk_1C, 0, param2)) {
                 sub_0200F174(0, 0, 0, 0x0, 4, 1, 76);
                 (*v0)++;
@@ -2109,9 +2109,9 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 13:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (1) {
-                Unk_021BF67C.unk_65 = 1;
+                gCoreSys.unk_65 = 1;
                 GXLayers_SwapDisplay();
                 ov77_021D3DC4(param1);
 
@@ -2123,7 +2123,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 14:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 >= (2085 + 15 + 30)) {
                 if (ov77_021D6E78(param1->unk_1C, 1, param2)) {
                     sub_0200F174(0, 0, 0, 0x0, 4, 1, 76);
@@ -2136,10 +2136,10 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 15:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             MI_CpuCopy16(param1->unk_240, (void *)HW_BG_PLTT, 0x200);
 
-            Unk_021BF67C.unk_65 = 0;
+            gCoreSys.unk_65 = 0;
             GXLayers_SwapDisplay();
 
             ov77_021D3D4C(param0, param1);
@@ -2159,7 +2159,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 16:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_0200F174(4, 1, 1, 0x0, 16, 1, 76);
             (*v0)++;
         }
@@ -2167,7 +2167,7 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
     case 17:
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (param2 >= (2200 + 15)) {
                 ov77_021D4E90(param1);
             }
@@ -2184,8 +2184,8 @@ static BOOL ov77_021D4230 (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         ov77_021D4E90(param1);
         ov77_021D6290(param1->unk_14, (16 << FX32_SHIFT));
 
-        if (sub_0200F2AC()) {
-            Unk_021BF67C.unk_65 = 1;
+        if (ScreenWipe_Done()) {
+            gCoreSys.unk_65 = 1;
             GXLayers_SwapDisplay();
             (*v0)++;
         }
@@ -2410,7 +2410,7 @@ static void ov77_021D4F38 (UnkStruct_ov77_021D37C0 * param0, const int param1)
 
         {
             G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG0 | GX_BLEND_PLANEMASK_BD, 7, 16 - 7);
-            sub_02019060(1, 0);
+            BGL_SetPriority(1, 0);
             sub_02019120(1, 1);
         }
     } else if (param1 < ((47 * 30 - 15) + 6)) {
@@ -2464,7 +2464,7 @@ static void ov77_021D513C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
         break;
     case ((40 * 30 - 15) + 6):
-        GF_ASSERT(sub_0200F2AC() == 1);
+        GF_ASSERT(ScreenWipe_Done() == 1);
         ov77_021D35B8(param0);
         ov77_021D40DC(param1, 1);
         break;
@@ -2483,7 +2483,7 @@ static void ov77_021D513C (UnkStruct_ov77_021D2E9C * param0, UnkStruct_ov77_021D
         sub_0200F174(3, 0, 0, 0x0, 4, 1, 76);
         break;
     case ((47 * 30 - 15) + 6):
-        GF_ASSERT(sub_0200F2AC() == 1);
+        GF_ASSERT(ScreenWipe_Done() == 1);
         ov77_021D35B8(param0);
         ov77_021D40B8(param1, 2);
         sub_0200F174(3, 1, 1, 0x0, 4, 1, 76);
@@ -2569,14 +2569,14 @@ static BOOL ov77_021D5390 (UnkStruct_ov77_021D5308 * param0, const int param1)
         }
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
             sub_0200F174(0, 1, 1, 0x0, 90, 1, 76);
             (*v0)++;
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*v0)++;
         }
         break;
@@ -2588,7 +2588,7 @@ static BOOL ov77_021D5390 (UnkStruct_ov77_021D5308 * param0, const int param1)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
     }

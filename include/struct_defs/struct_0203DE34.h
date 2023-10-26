@@ -8,7 +8,7 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 typedef struct {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     UnkStruct_0205C22C * unk_04;
     UnkStruct_020279FC * unk_08;
     UnkStruct_0202CD88 * unk_0C;

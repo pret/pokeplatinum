@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02030114_decl.h"
 #include "struct_decls/struct_0203026C_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0204B184.h"
@@ -20,14 +20,14 @@
 #include "unk_020507CC.h"
 #include "unk_0205DFC4.h"
 #include "unk_0206AFE0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "overlay104/ov104_0222DCE0.h"
 #include "overlay104/ov104_0222ECE8.h"
 #include "overlay104/ov104_02234DB4.h"
 #include "overlay104/ov104_0223AF58.h"
 
-UnkStruct_ov104_0223B5C0 * ov104_02234DB4(UnkStruct_021C0794 * param0, u16 param1, u8 param2, u8 param3, u8 param4);
+UnkStruct_ov104_0223B5C0 * ov104_02234DB4(SaveData * param0, u16 param1, u8 param2, u8 param3, u8 param4);
 void ov104_022350B0(UnkStruct_ov104_0223B5C0 * param0, u16 param1);
 static void ov104_022350B8(UnkStruct_ov104_0223B5C0 * param0);
 void ov104_02235190(UnkStruct_ov104_0223B5C0 * param0);
@@ -35,8 +35,8 @@ void ov104_022351CC(UnkStruct_ov104_0223B5C0 * param0, void * param1);
 u16 ov104_02235208(void * param0, u8 param1);
 void ov104_0223520C(UnkStruct_ov104_0223B5C0 * param0, u16 * param1);
 BOOL ov104_02235534(UnkStruct_ov104_0223B5C0 * param0, u16 param1, u16 param2);
-static u16 ov104_022355C0(UnkStruct_021C0794 * param0, u8 param1, u8 param2, u16 * param3, u16 * param4);
-static void ov104_02235620(UnkStruct_021C0794 * param0, u8 param1, u8 param2, u8 param3);
+static u16 ov104_022355C0(SaveData * param0, u8 param1, u8 param2, u16 * param3, u16 * param4);
+static void ov104_02235620(SaveData * param0, u8 param1, u8 param2, u8 param3);
 void ov104_022356A0(UnkStruct_ov104_0223B5C0 * param0);
 static u16 ov104_02235704(UnkStruct_ov104_0223B5C0 * param0);
 void ov104_0223526C(UnkStruct_ov104_0223B5C0 * param0, u8 param1);
@@ -47,7 +47,7 @@ void ov104_022354F4(UnkStruct_ov104_0223B5C0 * param0);
 void ov104_02235518(UnkStruct_ov104_0223B5C0 * param0);
 u16 ov104_02235578(UnkStruct_ov104_0223B5C0 * param0);
 
-UnkStruct_ov104_0223B5C0 * ov104_02234DB4 (UnkStruct_021C0794 * param0, u16 param1, u8 param2, u8 param3, u8 param4)
+UnkStruct_ov104_0223B5C0 * ov104_02234DB4 (SaveData * param0, u16 param1, u8 param2, u8 param3, u8 param4)
 {
     UnkStruct_02030114 * v0;
     UnkStruct_0203026C * v1;
@@ -63,7 +63,7 @@ UnkStruct_ov104_0223B5C0 * ov104_02234DB4 (UnkStruct_021C0794 * param0, u16 para
     v10->unk_6FC = param0;
     v10->unk_00 = 11;
     v10->unk_264 = sub_02079FF4(11);
-    v10->unk_D8C = AllocMonZeroed(11);
+    v10->unk_D8C = Pokemon_New(11);
 
     v0 = v10->unk_6F8;
     v1 = sub_0203026C(param0);
@@ -114,7 +114,7 @@ UnkStruct_ov104_0223B5C0 * ov104_02234DB4 (UnkStruct_021C0794 * param0, u16 para
 
     for (v5 = 0; v5 < v4; v5++) {
         v9 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v10->unk_6FC), v10->unk_260[v5]);
-        v10->unk_728[v5] = GetMonData(v9, MON_DATA_HELD_ITEM, NULL);
+        v10->unk_728[v5] = Pokemon_GetValue(v9, MON_DATA_HELD_ITEM, NULL);
     }
 
     v10->unk_10 = 0;
@@ -186,7 +186,7 @@ static void ov104_022350B8 (UnkStruct_ov104_0223B5C0 * param0)
     }
 
     v6 = Party_GetPokemonBySlotIndex(param0->unk_264, 0);
-    ov104_0223B0C8(1, param0->unk_6F4, v0, param0->unk_05, GetMonData(v6, MON_DATA_SPECIES, NULL), param0->unk_268, v3);
+    ov104_0223B0C8(1, param0->unk_6F4, v0, param0->unk_05, Pokemon_GetValue(v6, MON_DATA_SPECIES, NULL), param0->unk_268, v3);
 
     return;
 }
@@ -267,7 +267,7 @@ void ov104_0223526C (UnkStruct_ov104_0223B5C0 * param0, u8 param1)
     sub_0203012C(param0->unk_6F8, 1);
 
     v10 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_6FC), param0->unk_260[0]);
-    v9 = GetMonData(v10, MON_DATA_SPECIES, NULL);
+    v9 = Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL);
     v8 = sub_02030698(v4, sub_0205E55C(param0->unk_04), sub_0205E6A8(sub_0205E55C(param0->unk_04)));
     v1[0] = param0->unk_05;
 
@@ -313,7 +313,7 @@ void ov104_0223526C (UnkStruct_ov104_0223B5C0 * param0, u8 param1)
         sub_02030140(param0->unk_6F8, 4, v0, 0, v2);
     }
 
-    sub_020306E4(v4, sub_0205E55C(param0->unk_04), sub_0205E6A8(sub_0205E55C(param0->unk_04)), GetMonData(v10, MON_DATA_SPECIES, NULL));
+    sub_020306E4(v4, sub_0205E55C(param0->unk_04), sub_0205E6A8(sub_0205E55C(param0->unk_04)), Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL));
     return;
 }
 
@@ -424,7 +424,7 @@ u16 ov104_02235578 (UnkStruct_ov104_0223B5C0 * param0)
     return v0;
 }
 
-static u16 ov104_022355C0 (UnkStruct_021C0794 * param0, u8 param1, u8 param2, u16 * param3, u16 * param4)
+static u16 ov104_022355C0 (SaveData * param0, u8 param1, u8 param2, u16 * param3, u16 * param4)
 {
     u16 v0;
 
@@ -441,7 +441,7 @@ static u16 ov104_022355C0 (UnkStruct_021C0794 * param0, u8 param1, u8 param2, u1
     }
 }
 
-static void ov104_02235620 (UnkStruct_021C0794 * param0, u8 param1, u8 param2, u8 param3)
+static void ov104_02235620 (SaveData * param0, u8 param1, u8 param2, u8 param3)
 {
     u8 v0;
     u8 v1;

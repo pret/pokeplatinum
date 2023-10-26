@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "overlay063/struct_ov63_0222BCE8_decl.h"
 #include "overlay063/struct_ov63_0222BE18_decl.h"
@@ -712,7 +712,7 @@ static u8 ov70_0225D194 (const u8 * param0, u32 param1)
 {
     int v0;
 
-    v0 = sub_0201D35C() % param1;
+    v0 = MTRNG_Next() % param1;
     return param0[v0];
 }
 
@@ -805,31 +805,31 @@ static void ov70_0225D310 (UnkStruct_ov70_0225CC54 * param0, UnkStruct_ov70_0225
         return;
     }
 
-    if (Unk_021BF67C.unk_44 & PAD_BUTTON_B) {
+    if (gCoreSys.unk_44 & PAD_BUTTON_B) {
         v3 = 3;
     } else {
         v3 = 2;
     }
 
-    if (Unk_021BF67C.unk_44 & PAD_KEY_UP) {
+    if (gCoreSys.unk_44 & PAD_KEY_UP) {
         if (v0 == 0) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 0, v1);
         }
-    } else if (Unk_021BF67C.unk_44 & PAD_KEY_DOWN) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_DOWN) {
         if (v0 == 1) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 1, v1);
         }
-    } else if (Unk_021BF67C.unk_44 & PAD_KEY_LEFT) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_LEFT) {
         if (v0 == 2) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
             ov70_0225D17C(param1, 1, 2, v1);
         }
-    } else if (Unk_021BF67C.unk_44 & PAD_KEY_RIGHT) {
+    } else if (gCoreSys.unk_44 & PAD_KEY_RIGHT) {
         if (v0 == 3) {
             ov70_0225D17C(param1, v3, v0, v1);
         } else {
@@ -918,7 +918,7 @@ static void ov70_0225D4CC (UnkStruct_ov70_0225CC54 * param0, UnkStruct_ov70_0225
         if (param0->unk_0C.val2.unk_10 == 0) {
             param0->unk_08++;
             param0->unk_0C.val2.unk_10 = 0;
-            sub_02005748(1615);
+            Sound_PlayEffect(1615);
         }
         break;
     case 2:
@@ -957,7 +957,7 @@ static void ov70_0225D57C (UnkStruct_ov70_0225CC54 * param0, UnkStruct_ov70_0225
         param0->unk_0C.val2.unk_10 = 0;
         param0->unk_08++;
 
-        sub_02005748(1615);
+        Sound_PlayEffect(1615);
     case 1:
     {
         BOOL v0;

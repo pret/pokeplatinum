@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02039E30_decl.h"
 #include "overlay005/struct_ov5_021D3CAC_decl.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
@@ -47,8 +47,8 @@ typedef struct {
 
 typedef struct {
     UnkStruct_ov5_021E79A8 * unk_00[2];
-    UnkStruct_0201CD38 * unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_08;
+    SysTask * unk_0C;
     UnkStruct_ov5_021E80BC unk_10;
     int unk_18[2];
     u8 unk_20[2];
@@ -142,9 +142,9 @@ typedef struct {
     u32 unk_24;
 } UnkStruct_ov5_021E9640;
 
-static UnkStruct_0201CD38 * ov5_021E976C(NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4, BOOL * param5, int * param6);
+static SysTask * ov5_021E976C(NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4, BOOL * param5, int * param6);
 static NNSG3dResMdl * ov5_021E97AC(NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4);
-static void ov5_021E9640(UnkStruct_0201CD38 * param0);
+static void ov5_021E9640(SysTask * param0);
 static void ov5_021E8F60(UnkStruct_ov5_021E8F60 * param0);
 static void ov5_021E8E28(UnkStruct_ov5_021E8F60 * param0, const int param1, const int param2, const int param3, const int param4, const int param5);
 static void ov5_021E8ECC(UnkStruct_ov5_021E8F60 * param0, const int param1, const int param2, const int param3, const int param4, const int param5);
@@ -445,7 +445,7 @@ static void ov5_021E7BAC (NARC * param0, const int param1, UnkStruct_ov5_021E7BA
         NARC_ReadFromMember(param0, param1, 0, v2, v0);
     } else {
         GF_ASSERT(FALSE);
-        v0 = NARC_AllocAtEndAndReadFromMemberByIndexPair(67, param1, 4, 0, v2);
+        v0 = NARC_AllocAtEndAndReadFromMemberByIndexPair(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, param1, 4, 0, v2);
     }
 
     v1 = &((int *)(v0))[0];
@@ -762,7 +762,7 @@ void ov5_021E8188 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                 v2->unk_00 = *v2->unk_0C;
 
                 if (!(v2->unk_00.z % (FX32_ONE * 8) == 0)) {
-                    if (sub_02038AE0(1)) {
+                    if (Link_SetErrorState(1)) {
                         return;
                     }
                 }
@@ -793,7 +793,7 @@ void ov5_021E8188 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                     }
 
                     if (!(v2->unk_00.x % (FX32_ONE * 8) == 0)) {
-                        if (sub_02038AE0(1)) {
+                        if (Link_SetErrorState(1)) {
                             return;
                         }
                     }
@@ -811,7 +811,7 @@ void ov5_021E8188 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                     }
 
                     if (!(v2->unk_00.z % (FX32_ONE * 8) == 0)) {
-                        if (sub_02038AE0(1)) {
+                        if (Link_SetErrorState(1)) {
                             return;
                         }
                     }
@@ -1566,7 +1566,7 @@ UnkStruct_ov5_021E8F60 * ov5_021E9084 (UnkStruct_02039E30 * param0, UnkStruct_ov
 
     v0->unk_A4 = 0;
     v0->unk_A8 = 2;
-    v0->unk_EC = NARC_ctor(67, 4);
+    v0->unk_EC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, 4);
     v0->unk_F0 = NULL;
 
     return v0;
@@ -1794,7 +1794,7 @@ BOOL ov5_021E9580 (const UnkStruct_ov5_021E8F60 * param0, const int param1, cons
     v4 = v2 + (v3 * param0->unk_B4);
 
     if (!(v4 < param0->unk_B4 * param0->unk_B8)) {
-        if (sub_02038AE0(1)) {
+        if (Link_SetErrorState(1)) {
             return 0;
         }
     }
@@ -1832,7 +1832,7 @@ void ov5_021E9630 (UnkStruct_ov5_021E8F60 * param0, UnkFuncPtr_ov5_021E9630 para
     param0->unk_F4 = param2;
 }
 
-static void ov5_021E9640 (UnkStruct_0201CD38 * param0)
+static void ov5_021E9640 (SysTask * param0)
 {
     UnkStruct_ov5_021E9640 * v0;
 
@@ -1840,7 +1840,7 @@ static void ov5_021E9640 (UnkStruct_0201CD38 * param0)
     v0->unk_1C = 1;
 }
 
-static void ov5_021E964C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov5_021E964C (SysTask * param0, void * param1)
 {
     int v0;
     UnkStruct_ov5_021E9640 * v1;
@@ -1922,14 +1922,14 @@ static void ov5_021E964C (UnkStruct_0201CD38 * param0, void * param1)
     case 5:
         *v1->unk_20 = 0;
         Heap_FreeToHeap((void *)(param1));
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 }
 
-UnkStruct_0201CD38 * ov5_021E976C (NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4, BOOL * param5, int * param6)
+SysTask * ov5_021E976C (NARC * param0, const int param1, NNSG3dRenderObj * param2, NNSG3dResFileHeader ** param3, NNSG3dResTex * param4, BOOL * param5, int * param6)
 {
-    UnkStruct_0201CD38 * v0;
+    SysTask * v0;
     UnkStruct_ov5_021E9640 * v1;
 
     v1 = (UnkStruct_ov5_021E9640 *)Heap_AllocFromHeapAtEnd(4, sizeof(UnkStruct_ov5_021E9640));
@@ -1945,7 +1945,7 @@ UnkStruct_0201CD38 * ov5_021E976C (NARC * param0, const int param1, NNSG3dRender
     v1->unk_20 = param6;
     v1->unk_1C = 0;
 
-    v0 = sub_0200D9E8(ov5_021E964C, v1, 1);
+    v0 = SysTask_Start(ov5_021E964C, v1, 1);
     return v0;
 }
 
@@ -2010,7 +2010,7 @@ UnkStruct_ov5_021E8F60 * ov5_021E9830 (UnkStruct_02039E30 * param0, UnkStruct_ov
     v0->unk_EC = param2;
 
     if (param2 == NULL) {
-        v0->unk_EC = NARC_ctor(67, 4);
+        v0->unk_EC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, 4);
     }
 
     return v0;
@@ -2034,7 +2034,7 @@ void ov5_021E98C8 (UnkStruct_ov5_021E8F60 * param0, UnkStruct_02039E30 * param1,
     param0->unk_EC = param3;
 
     if (param3 == NULL) {
-        param0->unk_EC = NARC_ctor(67, 4);
+        param0->unk_EC = NARC_ctor(NARC_INDEX_FIELDDATA__LAND_DATA__LAND_DATA, 4);
     }
 }
 
@@ -2315,7 +2315,7 @@ void ov5_021EA174 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                 v2->unk_00 = *v2->unk_0C;
 
                 if (!(v2->unk_00.z % (FX32_ONE * 8) == 0)) {
-                    if (sub_02038AE0(1)) {
+                    if (Link_SetErrorState(1)) {
                         return;
                     }
                 }
@@ -2346,7 +2346,7 @@ void ov5_021EA174 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                     }
 
                     if (!(v2->unk_00.x % (FX32_ONE * 8) == 0)) {
-                        if (sub_02038AE0(1)) {
+                        if (Link_SetErrorState(1)) {
                             return;
                         }
                     }
@@ -2364,7 +2364,7 @@ void ov5_021EA174 (UnkStruct_0203CDB0 * param0, UnkStruct_ov5_021E8F60 * param1)
                     }
 
                     if (!(v2->unk_00.z % (FX32_ONE * 8) == 0)) {
-                        if (sub_02038AE0(1)) {
+                        if (Link_SetErrorState(1)) {
                             return;
                         }
                     }

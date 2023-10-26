@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50234" />
+	<row id="pl_msg_00000046_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome! This is the Global Trade\nStation, or GTS for short.\rWe enable the trading of Pokémon with\npeople worldwide over Nintendo WFC.\rWould you like to do a global\nPokémon trade?</language>
+	</row>
+	<row id="pl_msg_00000046_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello!\nWelcome to the GTS!\rWould you like to do a global Pokémon\ntrade over Nintendo Wi-Fi Connection?</language>
+	</row>
+	<row id="pl_msg_00000046_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may trade Pokémon one of two\nways at the GTS.\rYou may offer a Pokémon for trade,\nor search among offered Pokémon.\rShould I describe things in greater\ndetail?</language>
+	</row>
+	<row id="pl_msg_00000046_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You will be asked to put up the\nPokémon you are offering to trade.\rAt that time, you will be asked what\nPokémon you would like in return.\rIf another player offers your desired\nPokémon in return for your offered\fPokémon, the trade will go through.\rShould I explain anything else?</language>
+	</row>
+	<row id="pl_msg_00000046_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You may search among the Pokémon\nthat are offered by other Trainers.\rThey will all identify what Pokémon\ntheir Trainers want back in return.\rIf you find one that you want, you\nmust provide us with the kind of\fPokémon wanted in return.\rShould I explain anything else?</language>
+	</row>
+	<row id="pl_msg_00000046_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to make a global\nPokémon trade?</language>
+	</row>
+	<row id="pl_msg_00000046_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please do visit again.</language>
+	</row>
+	<row id="pl_msg_00000046_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I hope you enjoy your visit\nto the GTS!\r</language>
+	</row>
+	<row id="pl_msg_00000046_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Uh-oh!\rI’m sorry, but your team and all\nyour PC Boxes are full.\rIf you wish to use the GTS, you must\nhave room on your team or in a PC Box.</language>
+	</row>
+	<row id="pl_msg_00000046_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Uh-oh!\nYou only have one Pokémon with you.\rIf you wish to use the GTS, you must\nhave at least two Pokémon with you.\rPlease come back with more Pokémon\non your team.</language>
+	</row>
+	<row id="pl_msg_00000046_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s a big globe, eh?\rWhere do I live on it now?\nLet’s see if I can point it out...</language>
+	</row>
+	<row id="pl_msg_00000046_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They say if you communicate with\nsomeone, their location is\frecorded on this giant globe.</language>
+	</row>
+	<row id="pl_msg_00000046_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All I need to do is leave a Pokémon\nhere to trade.\rWho knows, it might be traded while\nI’m asleep tonight.</language>
+	</row>
+	<row id="pl_msg_00000046_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can easily trade Pokémon with\nPokémon fans around the world.\rIsn’t that something?</language>
+	</row>
+	<row id="pl_msg_00000046_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can register where you live on\nthis giant globe.\rOnce you do, you can show your location\nto anyone you communicate with.</language>
+	</row>
+	<row id="pl_msg_00000046_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is Nintendo WFC something even I\ncan use easily?\rIf it is really that easy, I’d love\nto trade Pokémon, too!</language>
+	</row>
+	<row id="pl_msg_00000046_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This week, I’ll do it!\rI really want to make the Top 8 of the\nrankings.</language>
+	</row>
+	<row id="pl_msg_00000046_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Global Terminal has three floors.\rYou use warp panels for getting from\none floor to another.\rA blue panel takes you to the GTS on\nthe ground floor.\rTake a green panel to the studios for\nBox Data and Dress-Up Data on 2F.\rTake a pink warp panel to the third\nfloor for the Battle Video Gallery.</language>
+	</row>
+	<row id="pl_msg_00000046_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your favorite is {STRVAR_1 0, 0, 0},\nisn’t it?</language>
+	</row>
+	<row id="pl_msg_00000046_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your favorite is that Egg, isn’t it?</language>
+	</row>
+	<row id="pl_msg_00000046_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes, I was right!\nI thought so!</language>
+	</row>
+	<row id="pl_msg_00000046_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Oh? Your favorite really is\n{STRVAR_1 0, 0, 0}, isn’t it?</language>
+	</row>
+	<row id="pl_msg_00000046_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Oh? Your favorite really is that Egg,\nisn’t it?</language>
+	</row>
+	<row id="pl_msg_00000046_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I want to know everyone’s favorite\nkinds of Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000046_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, have you visited the Dress-Up\nData Studio?\rHave you put yours on exhibit?\nOr do you only look at other entries?\rWhether you’re an exhibitor or viewer,\nI have a Backdrop for you!\r</language>
+	</row>
+	<row id="pl_msg_00000046_00025" index="25">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000046_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you want to use that Backdrop,\nplease go to the fitting room on the\fsecond floor of Jubilife TV.</language>
+	</row>
+	<row id="pl_msg_00000046_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please share your dreamy Dress-Up\nData with everyone!</language>
+	</row>
+	<row id="pl_msg_00000046_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Obtained a Backdrop for use in\nJubilife TV’s fitting room.</language>
+	</row>
+	<row id="pl_msg_00000046_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yo, yo, yo!\rWanna let the world know about you?\nThen you gotta tell me, yo!</language>
+	</row>
+	<row id="pl_msg_00000046_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yo, I know all I need to know about\nyou now.\rIf you want to change your message,\nI’m the guy to see, yo!</language>
+	</row>
+	<row id="pl_msg_00000046_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yo! You don’t have anything you want\nto say?\rIf you want to change your message,\nI’m the guy to see, yo!</language>
+	</row>
+	<row id="pl_msg_00000046_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are several portal machines here\nat the Global Terminal.\rYou must set your Vs. Recorder in\nthe machines for communication.\rPlease do give the machines a try, as\nthey guide you through the operation.</language>
+	</row>
+	<row id="pl_msg_00000046_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Global Terminal!\rHere, you may join the huge community\nof Trainers worldwide.\rYou may view the records of Trainers\nlike yourself from around the world.\rYou may also trade Pokémon with the\nworld’s Trainers.</language>
+	</row>
+	<row id="pl_msg_00000046_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Connect to Nintendo Wi-Fi Connection\nand examine the Trainer Rankings?</language>
+	</row>
+	<row id="pl_msg_00000046_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Rankings is a team-based\nranking system for Trainers around\fthe world.\rThe Trainers will be divided into several\ngroups and ranked in many categories.\rIf you join, your Trainer achievements\nare automatically sent to your team.\rIn other words, what you do as a\nTrainer can help your team’s standings.\rBeware!\rIf you enter a ranking category more\nthan once, only the points earned from\fyour previous report will be tallied.\r</language>
+	</row>
+	<row id="pl_msg_00000046_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Connect to Nintendo Wi-Fi Connection\nand examine the Battle Video Rankings?</language>
+	</row>
+	<row id="pl_msg_00000046_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Video Rankings is a gallery of\npopular Battle Videos.\rStudy many classic battles and sharpen\nyour own Trainer skills.\r</language>
+	</row>
+	<row id="pl_msg_00000046_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">USE</language>
+	</row>
+	<row id="pl_msg_00000046_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">INFO</language>
+	</row>
+	<row id="pl_msg_00000046_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000046_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The green panel leads to the studios\nfor Box Data and Dress-Up Data on 2F.\rThe pink panel leads to the Battle\nVideo Gallery on 3F.</language>
+	</row>
+	<row id="pl_msg_00000046_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, have you visited the Dress-Up\nData Studio?\rHave you put yours on exhibit?\nOr do you only look at other entries?\rIf you had a Fashion Case, I could give\nyou something nice.</language>
+	</row>
+</body>

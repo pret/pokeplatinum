@@ -1,9 +1,0 @@
-.public FX_DivS32
-.public G2x_SetBlendBrightness_
-.public G2x_ChangeBlendBrightness_
-.public ov18_0224426C
-.public ov18_022443EC
-.public ov18_02245068
-.public ov18_0224508C
-.public ov18_02246304
-.public ov18_022463AC

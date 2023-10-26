@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="62498" />
+	<row id="pl_msg_00000064_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m going to be a Sailor like my\ndaddy!\rHe’s a real man among men!\nEven the sea doesn’t scare him!\rOh, but a Gym Leader’d be cool, too!\nByron is so awesome!</language>
+	</row>
+	<row id="pl_msg_00000064_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The little boy is thrashing about\nin his sleep.\rHe appears to be in torment...\nHe is muttering something...\r“DAR...\nDARK...is watching...me...”</language>
+	</row>
+	<row id="pl_msg_00000064_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The little boy is thrashing about\nin his sleep.\r{STRVAR_1 3, 0, 0}’s Lunar Wing began\nto glow...\rThe boy’s sleeping face became\nuntroubled and serene!\r</language>
+	</row>
+	<row id="pl_msg_00000064_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The little boy woke up!</language>
+	</row>
+	<row id="pl_msg_00000064_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I couldn’t wake up...\nI saw it...\rIt was a scary dream...\nIt was a dark place...\fAnd there was a dark Pokémon...\rBut, Daddy, Mommy...\nI could always hear your voices...</language>
+	</row>
+	<row id="pl_msg_00000064_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, my gosh!\nYou’re awake!\rOh, my son...\nI... I don’t know what to say...\r</language>
+	</row>
+	<row id="pl_msg_00000064_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you!\nWe’ll never forget you!\r</language>
+	</row>
+	<row id="pl_msg_00000064_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Seeing you back to normal makes\nme feel great!\rI’ve regained my spirit as a Sailor!\nCome sail with me later!\r</language>
+	</row>
+	<row id="pl_msg_00000064_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Our boy has too much energy!\n...That’s the best way to be!</language>
+	</row>
+	<row id="pl_msg_00000064_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I never thought our boy would fall into\nthis endless nightmare...\rIt’s happened in the past in\nCanalave...\rThere were people who never woke\nup from their nightmares...\r...That is, until they were awoken using\nsomething called the Lunar Wing.\rMy husband went to find a Lunar Wing\non Fullmoon Island, but he failed...\rDoes it take a Trainer to do that?\nWe feel so frustrated by this...</language>
+	</row>
+	<row id="pl_msg_00000064_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you! We can’t thank you\nenough, but thank you!</language>
+	</row>
+</body>

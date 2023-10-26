@@ -4,8 +4,8 @@
 #include "inlines.h"
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202B4A0_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -16,7 +16,7 @@
 #include "unk_0201D15C.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202B37C.h"
 #include "unk_0203D1B8.h"
 #include "unk_0203E724.h"
@@ -28,7 +28,7 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
 {
     UnkStruct_0200B358 ** v0 = sub_0203F098(param0->unk_34, 15);
     UnkStruct_0202B4A0 * v1 = sub_0202B4A0(param0->unk_34->unk_0C);
-    UnkStruct_021C0794 * v2 = param0->unk_34->unk_0C;
+    SaveData * v2 = param0->unk_34->unk_0C;
 
     switch (sub_0203E838(param0)) {
     case 0:
@@ -98,13 +98,13 @@ BOOL sub_02048BD0 (UnkStruct_0203E724 * param0)
     case 6:
     {
         Strbuf* v14 = Strbuf_Init(64, 32);
-        UnkStruct_02025E6C * v15 = sub_02025E38(param0->unk_34->unk_0C);
+        TrainerInfo * v15 = sub_02025E38(param0->unk_34->unk_0C);
 
-        sub_02025EF4(v15, v14);
+        TrainerInfo_NameStrbuf(v15, v14);
         sub_0202B444(v1, 0, 1, v14);
-        sub_0202B470(v1, 0, sub_02025F30(v15));
+        sub_0202B470(v1, 0, TrainerInfo_Gender(v15));
         sub_0202B494(v1, 0, GAME_LANGUAGE);
-        sub_0202B40C(v1, 0, sub_0201D35C());
+        sub_0202B40C(v1, 0, MTRNG_Next());
         Strbuf_Free(v14);
         sub_0202B384(v1, 0, 1);
         sub_0206D424(param0->unk_34);

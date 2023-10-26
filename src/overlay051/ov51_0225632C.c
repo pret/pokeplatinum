@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay051/struct_ov51_0225632C_decl.h"
 
@@ -19,15 +19,15 @@
 
 struct UnkStruct_ov51_0225632C_t {
     const UnkStruct_ov51_0225632C_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[10];
 };
 
 static void ov51_022563A4(UnkStruct_ov25_02255224 * param0);
-static void ov51_022563B8(UnkStruct_0201CD38 * param0, void * param1);
-static void ov51_02256458(UnkStruct_0201CD38 * param0, void * param1);
+static void ov51_022563B8(SysTask * param0, void * param1);
+static void ov51_02256458(SysTask * param0, void * param1);
 
-BOOL ov51_0225632C (UnkStruct_ov51_0225632C ** param0, const UnkStruct_ov51_0225632C_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov51_0225632C (UnkStruct_ov51_0225632C ** param0, const UnkStruct_ov51_0225632C_1 * param1, BGL * param2)
 {
     UnkStruct_ov51_0225632C * v0 = (UnkStruct_ov51_0225632C *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov51_0225632C));
 
@@ -80,7 +80,7 @@ static void ov51_022563A4 (UnkStruct_ov25_02255224 * param0)
     ov25_02255224(v0->unk_08, param0);
 }
 
-static void ov51_022563B8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov51_022563B8 (SysTask * param0, void * param1)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -116,7 +116,7 @@ static void ov51_022563B8 (UnkStruct_0201CD38 * param0, void * param1)
     ov51_022563A4(param1);
 }
 
-static void ov51_02256458 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov51_02256458 (SysTask * param0, void * param1)
 {
     UnkStruct_ov51_0225632C * v0 = ov25_0225523C(param1);
 

@@ -1,0 +1,102 @@
+{
+    "name": "Happiny",
+    "base_stats": {
+        "hp": 100,
+        "attack": 5,
+        "defense": 5,
+        "speed": 30,
+        "special_attack": 15,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 130,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_OVAL_STONE",
+        "rare": "ITEM_LUCKY_PUNCH"
+    },
+    "gender_ratio": "FEMALE_ONLY",
+    "hatch_cycles": 40,
+    "base_friendship": 140,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_NATURAL_CURE",
+        "ABILITY_SERENE_GRACE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PINK",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM11",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM67",
+            "TM70",
+            "TM73",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM86",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_POUND",
+                "MOVE_CHARM"
+            ],
+            "5": "MOVE_COPYCAT",
+            "9": "MOVE_REFRESH",
+            "12": "MOVE_SWEET_KISS"
+        }
+    },
+    "evolutions": [
+        [
+            "USE_ITEM_DAY",
+            "ITEM_OVAL_STONE",
+            "SPECIES_CHANSEY"
+        ]
+    ]
+}

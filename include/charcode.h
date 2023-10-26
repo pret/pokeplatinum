@@ -2,7 +2,8 @@
 #define POKEPLATINUM_CHARCODE_H
 
 enum {
-    CHAR_JP_SPACE = 0x0001,
+    CHAR_EMPTY = 0,
+    CHAR_JP_SPACE,
 
     CHAR_JP_0 = 0x00A2,
     CHAR_JP_1,

@@ -4,9 +4,9 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 #include "overlay070/struct_ov70_0225C894_decl.h"
@@ -465,7 +465,7 @@ static BOOL ov70_02263120 (int param0)
         break;
     }
 
-    if (Unk_021BF67C.unk_44 & v0) {
+    if (gCoreSys.unk_44 & v0) {
         return 1;
     }
 
@@ -555,7 +555,7 @@ static void ov70_02263270 (UnkStruct_ov70_02263270 * param0)
     param0->unk_00 = 0;
     param0->unk_04 = 0;
     param0->unk_05 = 1;
-    param0->unk_06 = sub_0201D35C() % 4;
+    param0->unk_06 = MTRNG_Next() % 4;
     param0->unk_07 = 1;
 }
 
@@ -584,7 +584,7 @@ static fx32 ov70_02263290 (UnkStruct_ov70_02263270 * param0)
             if (param0->unk_07 == 1) {
                 param0->unk_04 = 0;
                 param0->unk_05 = 1;
-                param0->unk_06 = sub_0201D35C() % 4;
+                param0->unk_06 = MTRNG_Next() % 4;
             } else {
                 param0->unk_05 = 0;
             }
@@ -759,7 +759,7 @@ static BOOL ov70_02263414 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
         case 0:
             v0->unk_28 = 0;
             v8 = 1;
@@ -798,7 +798,7 @@ static BOOL ov70_02263414 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
             ov70_02262E88(param0, 12);
             ov66_0222E56C(v3, v0->unk_28, v0->unk_2A);
             ov70_0225E390(param1);
-            sub_02005748(1509);
+            Sound_PlayEffect(1509);
             break;
         case 1:
             ov70_0225E1F8(param1);
@@ -828,7 +828,7 @@ static BOOL ov70_02263414 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
         case 0xffffffff:
             break;
         case 0xfffffffe:
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
         case 0:
             v0->unk_2A = 0;
             v12 = 1;
@@ -867,7 +867,7 @@ static BOOL ov70_02263414 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
             ov70_02262E88(param0, 20);
             ov66_0222E56C(v3, v0->unk_28, v0->unk_2A);
             ov70_0225E390(param1);
-            sub_02005748(1509);
+            Sound_PlayEffect(1509);
             break;
         case 1:
             ov70_0225E1F8(param1);
@@ -879,7 +879,7 @@ static BOOL ov70_02263414 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
     }
     break;
     case 16:
-        sub_02005748(1448);
+        Sound_PlayEffect(1448);
         ov70_0225E430(param1);
         ov70_0225E234(param1, param2, 0);
         ov70_0225E29C(param1, v0->unk_02, 1);
@@ -905,11 +905,11 @@ static BOOL ov70_02263414 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
         ov70_02262E88(param0, 21);
         break;
     case 18:
-        if (!((sub_020057D4(1448) == 0) && (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)))) {
+        if (!((sub_020057D4(1448) == 0) && (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)))) {
             break;
         }
 
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
 
         v4 = ov70_0225E20C(param1, 1, 4);
         ov70_0225DF8C(param1, v4);
@@ -1333,7 +1333,7 @@ static BOOL ov70_02263CC8 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
                     return 0;
                 }
 
-                if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+                if (gCoreSys.padInput & PAD_BUTTON_A) {
                     {
                         UnkStruct_ov70_0225CC54 * v17;
                         u32 v18;
@@ -1421,10 +1421,10 @@ static BOOL ov70_02263CC8 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
                     }
                 }
 
-                if (Unk_021BF67C.unk_48 & PAD_BUTTON_X) {
+                if (gCoreSys.padInput & PAD_BUTTON_X) {
                     if (ov70_0225E3F0(param1) == 0) {
                         ov70_0225E328(param1, ov66_0222E338(v11), 0);
-                        sub_02005748(1500);
+                        Sound_PlayEffect(1500);
                     } else {
                         u32 v25;
 
@@ -1432,7 +1432,7 @@ static BOOL ov70_02263CC8 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
 
                         if (v25 == param2) {
                             ov70_0225E3D0(param1);
-                            sub_02005748(1500);
+                            Sound_PlayEffect(1500);
                         }
                     }
 
@@ -1478,7 +1478,7 @@ static BOOL ov70_02264150 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
     }
 
         ov66_0222E3E4(ov70_0225DEE8(param1), 11);
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
 
         {
             Strbuf* v2;
@@ -2388,7 +2388,7 @@ static BOOL ov70_02264C9C (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
         }
 
         ov70_0225DF8C(param1, v0);
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         ov70_02262E8C(param0);
     }
     break;
@@ -2480,7 +2480,7 @@ static BOOL ov70_02264D38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
         }
         break;
     case 2:
-        if ((Unk_021BF67C.unk_48 & PAD_BUTTON_B) || (Unk_021BF67C.unk_48 & PAD_KEY_DOWN)) {
+        if ((gCoreSys.padInput & PAD_BUTTON_B) || (gCoreSys.padInput & PAD_KEY_DOWN)) {
             ov66_0222EBC4(v4, param2);
             ov70_0225DFCC(param1);
             v0->unk_0A = 6;
@@ -2498,7 +2498,7 @@ static BOOL ov70_02264D38 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
                 ov70_02260B3C(v3);
                 ov70_0225D030(v0->unk_0C, 0);
                 ov70_0225D06C(v0->unk_0C, 1);
-                sub_02005748(1450);
+                Sound_PlayEffect(1450);
                 ov70_0225E410(param1);
 
                 v0->unk_0A = 3;
@@ -3051,7 +3051,7 @@ static BOOL ov70_02265840 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225
                 ov70_0225CCB4(v0->unk_00, v5);
             }
 
-            sub_02005748(1615);
+            Sound_PlayEffect(1615);
 
             ov70_0225D084(v0->unk_00, 1);
             ov70_02262E88(param0, 2);

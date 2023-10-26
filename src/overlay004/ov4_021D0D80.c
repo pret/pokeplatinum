@@ -26,7 +26,7 @@ typedef struct {
     DWCFriendsMatchControl unk_104;
     DWCUserData * unk_F08;
     DWCInetControl unk_F0C;
-    UnkStruct_021C0794 * unk_F6C;
+    SaveData * unk_F6C;
     void * unk_F70;
     void * unk_F74[4];
     void * unk_F84;
@@ -101,7 +101,7 @@ static void ov4_021D24AC(int param0, void * param1);
 
 static UnkStruct_ov4_0221A400 * Unk_ov4_0221A400 = NULL;
 
-int ov4_021D0D80 (UnkStruct_021C0794 * param0, int param1, int param2, int param3)
+int ov4_021D0D80 (SaveData * param0, int param1, int param2, int param3)
 {
     void * v0;
 
@@ -516,7 +516,7 @@ static void ov4_021D1650 (DWCError param0, int param1, void * param2)
         v0 = DWC_UpdateServersAsync(NULL, ov4_021D171C, Unk_ov4_0221A400->unk_F08, ov4_021D1740, param2, ov4_021D1744, param2);
 
         if (v0 == 0) {
-            sub_02038AE0(1);
+            Link_SetErrorState(1);
             return;
         }
 
@@ -753,7 +753,7 @@ void * ov4_021D1AA0 (DWCAllocType param0, u32 param1, int param2)
     }
 
     if (v0 == NULL) {
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
         OS_RestoreInterrupts(v1);
 
         return NULL;
@@ -779,7 +779,7 @@ void ov4_021D1B04 (DWCAllocType param0, void * param1, u32 param2)
 
     if (v1 == 16) {
         if (Unk_ov4_0221A400->unk_F8C == NULL) {
-            sub_02038AE0(1);
+            Link_SetErrorState(1);
             return;
         }
 
@@ -1550,7 +1550,7 @@ void ov4_021D2618 (BOOL param0, int param1)
 
         if (Unk_ov4_0221A400->unk_F8C != NULL) {
             if (NNS_FndGetTotalFreeSizeForExpHeap(Unk_ov4_0221A400->unk_F90) != Unk_ov4_0221A400->unk_F94) {
-                sub_02038AE0(1);
+                Link_SetErrorState(1);
                 return;
             }
 

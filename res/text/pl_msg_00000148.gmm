@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="9243" />
+	<row id="pl_msg_00000148_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the fabulous Veilstone\nDepartment Store.</language>
+	</row>
+	<row id="pl_msg_00000148_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This department store knows how to\nensure customer satisfaction.\rThey really look after you once you\nbecome a regular customer.</language>
+	</row>
+	<row id="pl_msg_00000148_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I like the formal air of a luxury\ndepartment store.</language>
+	</row>
+	<row id="pl_msg_00000148_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I made an Accessory modeled after\nthe Pokémon of a Trainer I met.\rWould you like one?\r</language>
+	</row>
+	<row id="pl_msg_00000148_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a {STRVAR_1 31, 0, 0}.\rIt will give your Pokémon a\ndifferent look for Contests.</language>
+	</row>
+	<row id="pl_msg_00000148_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Discover a new you!\nVeilstone Department Store</language>
+	</row>
+	<row id="pl_msg_00000148_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">B1F: Food &amp; Produce\r1F: Trainers’ Zone\r2F: Battle Collection\r3F: TM Corner\r4F: Poké Dolls &amp; Goods\r5F: Rooftop Plaza</language>
+	</row>
+</body>

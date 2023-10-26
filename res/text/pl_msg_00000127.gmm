@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="3083" />
+	<row id="pl_msg_00000127_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi!\nLet’s get cooking!\rHere’s my advice on cooking tasty\nPoffins for your Pokémon crew!\rIn the beginning, while it’s still\na batter, swirl it gently and avoid\fspillage.\rWhen it starts to harden, churn it\nfast in big circles!\rAt the end, make a wish for it to\nturn scrumptious and whirl it!</language>
+	</row>
+	<row id="pl_msg_00000127_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you got some Berries?\rTo make delicious Poffins, the key\ningredient is a rare Berry.\rAnd, the more cooks you have,\nthe more delicious the Poffin!</language>
+	</row>
+	<row id="pl_msg_00000127_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eating good food makes people and\nPokémon more energetic and happy.\rIn that sense, we’re exactly alike.</language>
+	</row>
+	<row id="pl_msg_00000127_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At the Wi-Fi Club, I can cook up Poffins\nwith my friends!</language>
+	</row>
+</body>

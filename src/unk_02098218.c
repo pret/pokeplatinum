@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "constdata/const_020F2DAC.h"
 #include "constdata/const_020F67FC.h"
@@ -37,7 +37,7 @@
 #include "unk_0203CC84.h"
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_0208694C.h"
 #include "unk_02092494.h"
 #include "unk_02098218.h"
@@ -78,7 +78,7 @@ static int sub_02098218 (UnkStruct_020067E8 * param0, int * param1)
     v1->unk_04.unk_10 = sub_02027B50(v1->unk_00->unk_0C.unk_04);
     v1->unk_04.unk_34 = ov119_021D0DD4();
     v1->unk_04.unk_38 = sub_0200762C(71);
-    v1->unk_04.unk_3C = NARC_ctor(147, 71);
+    v1->unk_04.unk_3C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 71);
     v1->unk_04.unk_00 = sub_02018340(71);
 
     sub_0201DBEC(64, 71);
@@ -113,14 +113,14 @@ static int sub_02098304 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             (*param1)++;
         }
 
         {
             int v1;
 
-            v1 = GetMonData(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+            v1 = Pokemon_GetValue(v0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
 
             sub_02078A4C(v0->unk_04.unk_3C, &v0->unk_6C, v1, 1);
 
@@ -147,7 +147,7 @@ static int sub_02098304 (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     default:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
 
@@ -218,15 +218,15 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
 
         {
             Pokemon * v2 = v0->unk_0C.unk_00;
-            UnkStruct_02025E6C * v3 = sub_02025E38(sub_0203D174(v1));
+            TrainerInfo * v3 = sub_02025E38(sub_0203D174(v1));
             int v4 = 6;
             int v5 = sub_0203A138(v1->unk_1C->unk_00);
             int v6 = 11;
             int v7 = 0;
 
-            sub_02074B30(v2, 76, &v7);
+            Pokemon_SetValue(v2, 76, &v7);
             sub_0209304C(v2, v3, v4, v5, v6);
-            sub_02074B30(v2, 179, NULL);
+            Pokemon_SetValue(v2, 179, NULL);
         }
 
         {
@@ -245,18 +245,18 @@ static BOOL sub_0209843C (UnkStruct_020508D4 * param0)
         UnkStruct_0203CDB0 * v8 = sub_02050A60(param0);
         int v9;
 
-        v9 = GetMonData(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
+        v9 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_SPECIES, 0);
 
         v0->unk_08 = sub_0208712C(11, 1, v9, 10, sub_02025E44(sub_0203D174(v8)));
-        v0->unk_08->unk_10 = GetMonData(v0->unk_0C.unk_00, MON_DATA_111, NULL);
-        v0->unk_08->unk_08 = GetMonData(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
+        v0->unk_08->unk_10 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_GENDER, NULL);
+        v0->unk_08->unk_08 = Pokemon_GetValue(v0->unk_0C.unk_00, MON_DATA_FORM, NULL);
         sub_02050A38(param0, &Unk_020F2DAC, v0->unk_08);
         v0->unk_00++;
     }
     break;
     case 4:
         if (v0->unk_08->unk_14 == 0) {
-            sub_02074B30(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
+            Pokemon_SetValue(v0->unk_0C.unk_00, 120, v0->unk_08->unk_18);
 
             {
                 UnkStruct_0203CDB0 * v10 = sub_02050A60(param0);

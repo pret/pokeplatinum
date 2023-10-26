@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="29814" />
+	<row id="pl_msg_00000317_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: ...The shadowy Pokémon isn’t\nhere.\rIt abandoned me here, then disappeared\nsomewhere farther down...\rWas it content merely to interfere\nwith my plan...?\rIncidentally, do you understand the\nconcept of genes?</language>
+	</row>
+	<row id="pl_msg_00000317_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...If it’s true, you’ve impressed me.\r</language>
+	</row>
+	<row id="pl_msg_00000317_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...No, of course, you wouldn’t.\r</language>
+	</row>
+	<row id="pl_msg_00000317_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Genes can be considered the blueprints\nof all life-forms.\rThat includes humans and Pokémon alike.\rGenes are contained in a DNA strand.\rA DNA strand consists of two chains\nof opposing characteristics in a spiral.\rIf one of the chains were to be broken,\nthe other could replicate it.\rOne or the other cannot exist without\nits opposite.\rDo you understand where I am going\nwith this?\rThis is a bizarre world.\nTime doesn’t flow.\fSpace isn’t stable.\rOnly that shadowy Pokémon lives\nhere.\rThis world is the opposite of our \nworld--our world I wish to change.\rIt is like the two chains composing a\nstrand of DNA.\rThe two worlds must be balancing each\nother to remain in existence.\rWithout the one, the other cannot\nexist.\rThe shadowy Pokémon must play a role in\nkeeping the worlds in balance.\rThat is why it must have interfered\nand brought me here.\r</language>
+	</row>
+	<row id="pl_msg_00000317_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The shadowy Pokémon must have made\nthis bizarre world.\rThat’s why trying to change our world\ndisturbed it and made it reveal itself.\rBut that is all irrelevant.\rWhat matters is defeating that Pokémon\nand making this world disappear.\rI won’t allow it to interfere with me\nagain.\rWith it gone, neither world will be able\nto revert to its original state...\r</language>
+	</row>
+</body>

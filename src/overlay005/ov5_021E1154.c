@@ -61,7 +61,7 @@ static void ov5_021E11B0 (UnkStruct_0203CDB0 * param0, UnkStruct_0205E884 * para
     v0->unk_10 = param1;
     v0->unk_00 = param2;
 
-    sub_02005748(1624);
+    Sound_PlayEffect(1624);
     sub_02050904(param0, ov5_021E120C, v0);
 }
 

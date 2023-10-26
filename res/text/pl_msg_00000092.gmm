@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="5147" />
+	<row id="pl_msg_00000092_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Hello! It is me! Me!\nHahaha! I have startled you, yes?\rI am, after all, an officer of the\nInternational Police.\rIt is only natural that I be a master of\ndisguise.\r</language>
+	</row>
+	<row id="pl_msg_00000092_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...Incidentally, you are a first-rate\nTrainer. Of that, I am very aware.\rI therefore think you will be OK, but\nI must warn you to be careful anyway.\rAlso, a word of advice.\rThis building, it has two stairs.\nOne of them, a trap it must be.\rBut the crooks of Team Galactic, they\ndo not appear, how shall I say, smart.\rThere should be an easy way to tell\nthe stairs apart!\r</language>
+	</row>
+	<row id="pl_msg_00000092_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Now, I have been conducting\nmy investigation into Team Galactic.\rBut I have no clue as to who they are\nor what it is they wish to do.\rThe minions, they appear ignorant of\nthe intentions of their boss.\rAlso, a word of advice.\rThis building, it has two stairs.\nOne of them, a trap it must be.\rBut the crooks of Team Galactic, they\ndo not appear, how shall I say, smart.\rThere should be an easy way to tell\nthe stairs apart!</language>
+	</row>
+	<row id="pl_msg_00000092_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to Team Galactic. Are you\nhere to donate your Pokémon?\rWhat? You’re not?\nThen kindly get off our property!\rDo we have to bring the pain like we\ndid with the Cycle Shop manager?</language>
+	</row>
+	<row id="pl_msg_00000092_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">As a group, Team Galactic has its sights\nset on the stars, not on this world!</language>
+	</row>
+	<row id="pl_msg_00000092_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The path you chose leads to glory.</language>
+	</row>
+	<row id="pl_msg_00000092_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} used the {STRVAR_1 8, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000092_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s the entrance to a secret room!</language>
+	</row>
+</body>

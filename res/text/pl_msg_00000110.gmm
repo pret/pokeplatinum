@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="39283" />
+	<row id="pl_msg_00000110_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Question: 3 times 13 is?\nAnswer: ←39 ↑93 →33</language>
+	</row>
+	<row id="pl_msg_00000110_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Correct!\nCongratulations!</language>
+	</row>
+	<row id="pl_msg_00000110_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please answer the quiz!</language>
+	</row>
+</body>

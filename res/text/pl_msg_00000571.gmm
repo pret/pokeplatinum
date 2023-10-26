@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="44594" />
+	<row id="pl_msg_00000571_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you’ve got Pokémon with you,\nit’s safe for even a kid like you\fto go off traveling alone.</language>
+	</row>
+	<row id="pl_msg_00000571_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I had a battle the other day, and my\nPokémon’s HP got low.\rI thought we were done for.\rAnd then, all of a sudden, my Pokémon\nate the Berry it was holding! Whew!</language>
+	</row>
+	<row id="pl_msg_00000571_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’ve been problems with the\nelectric power lately.\rIs there some trouble at the Valley\nWindworks?</language>
+	</row>
+	<row id="pl_msg_00000571_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a long way from here to Eterna\nCity.\rYou should be prepared for a long\njourney.</language>
+	</row>
+	<row id="pl_msg_00000571_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Po-Po-Pokémon!\rI want to become more like a PIKACHU!\nWill you battle me?</language>
+	</row>
+	<row id="pl_msg_00000571_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pi-Pikachu!\r</language>
+	</row>
+	<row id="pl_msg_00000571_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pi-Pikachu!</language>
+	</row>
+	<row id="pl_msg_00000571_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can make static electricity, but I’m\nnot very much like a Pokémon yet.\rDon’t give up, me!\nBecome a Pokémon, me!</language>
+	</row>
+</body>

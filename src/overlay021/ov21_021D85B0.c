@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay021/struct_ov21_021D0F60_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
@@ -393,7 +393,7 @@ static int ov21_021D8804 (UnkStruct_ov21_021E6A68 * param0, void * param1)
             v0->unk_30 = 2;
             v0->unk_34 = 32;
 
-            sub_02005748(1535);
+            Sound_PlayEffect(1535);
         }
         break;
     case 2:
@@ -541,7 +541,7 @@ static void ov21_021D8A7C (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
 {
     sub_02019EBC(param1->unk_00->unk_00, 2);
     sub_02019EBC(param1->unk_00->unk_00, 1);
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
     sub_0201C2B4(&param1->unk_00->unk_04, 7);
 
     ov21_021D8C00(param1);
@@ -558,8 +558,8 @@ static void ov21_021D8A7C (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
     ov21_021D9240(param1, param2->unk_1C, param4);
     ov21_021D924C(param0, param2->unk_20);
 
-    sub_02019060(1, 1);
-    sub_02019060(2, 0);
+    BGL_SetPriority(1, 1);
+    BGL_SetPriority(2, 0);
 }
 
 static void ov21_021D8B40 (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D879C * param1)
@@ -569,10 +569,10 @@ static void ov21_021D8B40 (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
     ov21_021D8BEC(param0, param1);
 
     sub_02019EBC(param1->unk_00->unk_00, 1);
-    sub_0201ADA4(&param1->unk_00->unk_04, 0);
+    BGL_FillWindow(&param1->unk_00->unk_04, 0);
     sub_0201C2B4(&param1->unk_00->unk_04, 0);
-    sub_02019060(1, 0);
-    sub_02019060(2, 1);
+    BGL_SetPriority(1, 0);
+    BGL_SetPriority(2, 1);
 }
 
 static void ov21_021D8B8C (UnkStruct_ov21_021D879C * param0, const UnkStruct_ov21_021D8788 * param1, int param2)
@@ -686,7 +686,7 @@ static void ov21_021D8DD4 (UnkStruct_ov21_021D879C * param0, int param1, int par
     Strbuf* v1;
     int v2;
 
-    sub_0201AE78(&v0->unk_04, 0, 24, 8, 208, 32);
+    BGL_WindowColor(&v0->unk_04, 0, 24, 8, 208, 32);
 
     switch (param1) {
     case 0:
@@ -721,7 +721,7 @@ static void ov21_021D8E68 (UnkStruct_ov21_021D879C * param0, int param1)
     UnkStruct_ov21_021D13FC * v0 = param0->unk_00;
     Strbuf* v1;
 
-    sub_0201AE78(&v0->unk_04, 0, 24, 8, 208, 32);
+    BGL_WindowColor(&v0->unk_04, 0, 24, 8, 208, 32);
 
     v1 = ov21_021D1CE0(93, param1);
 
@@ -832,7 +832,7 @@ static void ov21_021D9054 (UnkStruct_ov21_021D879C * param0, int param1, int par
     Strbuf* v1;
     int v2;
 
-    sub_0201AE78(&v0->unk_04, 0, 88, 52, 80, 16);
+    BGL_WindowColor(&v0->unk_04, 0, 88, 52, 80, 16);
 
     v2 = 81 + param1;
     v1 = ov21_021D1CE0(v2, param2);
@@ -852,7 +852,7 @@ static void ov21_021D90B4 (UnkStruct_ov21_021D879C * param0, int param1, int par
     int v2;
     int v3;
 
-    sub_0201AE78(&v0->unk_04, 0, 88, 77, 80, 16);
+    BGL_WindowColor(&v0->unk_04, 0, 88, 77, 80, 16);
 
     switch (param1) {
     case 0:
@@ -904,7 +904,7 @@ static void ov21_021D915C (UnkStruct_ov21_021D879C * param0, int param1, int par
     int v2;
     int v3;
 
-    sub_0201AE78(&v0->unk_04, 0, 88, param3, 80, 16);
+    BGL_WindowColor(&v0->unk_04, 0, 88, param3, 80, 16);
 
     switch (param1) {
     case 0:
@@ -1064,7 +1064,7 @@ static void ov21_021D9390 (UnkStruct_ov21_021D9320 * param0, UnkStruct_ov21_021D
         ov21_021D93F4(param1, param3);
     } else if (param2->unk_34 == 0) {
         sub_02021CAC(param0->unk_58, 0);
-        sub_0201ADA4(&param1->unk_00->unk_04, 0);
+        BGL_FillWindow(&param1->unk_00->unk_04, 0);
         sub_0201A9A4(&param1->unk_00->unk_04);
     }
 
@@ -1081,7 +1081,7 @@ static void ov21_021D93F4 (UnkStruct_ov21_021D879C * param0, int param1)
     Strbuf* v1;
     int v2;
 
-    sub_0201ADA4(&param0->unk_00->unk_04, 0);
+    BGL_FillWindow(&param0->unk_00->unk_04, 0);
 
     v1 = ov21_021D1CE0(94, param1);
 
@@ -1092,15 +1092,15 @@ static void ov21_021D93F4 (UnkStruct_ov21_021D879C * param0, int param1)
     }
 
     Strbuf_Free(v1);
-    sub_02019060(1, 0);
-    sub_02019060(2, 1);
+    BGL_SetPriority(1, 0);
+    BGL_SetPriority(2, 1);
 }
 
 static void ov21_021D9454 (UnkStruct_ov21_021D879C * param0, UnkStruct_ov21_021D9320 * param1, int param2)
 {
-    sub_02019060(1, 1);
-    sub_02019060(2, 0);
-    sub_0201ADA4(&param0->unk_00->unk_04, 0);
+    BGL_SetPriority(1, 1);
+    BGL_SetPriority(2, 0);
+    BGL_FillWindow(&param0->unk_00->unk_04, 0);
 
     ov21_021D8F98(param0, param1->unk_00, param2);
     ov21_021D8DD4(param0, param1->unk_00, param2);

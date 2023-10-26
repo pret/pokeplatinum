@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="2963" />
+	<row id="pl_msg_00000183_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The objective is to reach the Pokémon\nLeague.\rStay focused and never lose sight of\nthat goal.\rIt will sustain you as you fight through\nthe long and arduous Victory Road.</language>
+	</row>
+	<row id="pl_msg_00000183_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Victory Road confuses me.\nI should draw up a map.</language>
+	</row>
+</body>

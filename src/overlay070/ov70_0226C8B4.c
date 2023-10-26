@@ -302,7 +302,7 @@ static void ov70_0226CAD4 (UnkStruct_ov70_0226C914 * param0, u32 param1)
         if (Unk_ov70_0226E6FC[param0->unk_0C.val3.unk_00].unk_00 < param1) {
             ov70_0226278C(param0->unk_04, Unk_ov70_0226E6FC[param0->unk_0C.val3.unk_00].unk_04);
             ov70_022625D8(param0->unk_04, Unk_ov70_0226E6FC[param0->unk_0C.val3.unk_00].unk_04);
-            sub_02005748(1437);
+            Sound_PlayEffect(1437);
 
             param0->unk_0C.val3.unk_00++;
         }
@@ -398,7 +398,7 @@ static void ov70_0226CBB4 (u32 param0, UnkStruct_ov70_0226CBB4 * param1)
 static void ov70_0226CC3C (UnkStruct_ov70_0226C914 * param0)
 {
     if (param0->unk_09 == 0) {
-        sub_02005748(1438);
+        Sound_PlayEffect(1438);
         param0->unk_09 = 1;
     }
 }

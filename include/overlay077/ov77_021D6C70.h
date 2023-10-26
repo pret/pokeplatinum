@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02014014_decl.h"
 #include "overlay077/struct_ov77_021D6CFC_decl.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 const int ov77_021D6CB8(void);
 UnkStruct_02014014 * ov77_021D6CBC(UnkStruct_ov77_021D6CFC * param0);

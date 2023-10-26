@@ -10,14 +10,14 @@
 #include "unk_0202D7A8.h"
 #include "overlay006/ov6_022475B0.h"
 
-void ov6_022475B0 (UnkStruct_021C0794 * param0)
+void ov6_022475B0 (SaveData * param0)
 {
     u16 v0;
     u16 v1, v2;
     int v3[2];
     int * v4;
 
-    v4 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 8, 4);
+    v4 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, 4);
 
     sub_0202DA10(param0, &v1, &v2);
 
@@ -45,7 +45,7 @@ void ov6_022475B0 (UnkStruct_021C0794 * param0)
     Heap_FreeToHeap(v4);
 }
 
-int ov6_02247624 (UnkStruct_021C0794 * param0)
+int ov6_02247624 (SaveData * param0)
 {
     int v0;
     int * v1;
@@ -55,7 +55,7 @@ int ov6_02247624 (UnkStruct_021C0794 * param0)
 
     GF_ASSERT(v2 != 0xffff);
 
-    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 8, 4);
+    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 8, 4);
     v0 = v1[v2];
 
     Heap_FreeToHeap(v1);

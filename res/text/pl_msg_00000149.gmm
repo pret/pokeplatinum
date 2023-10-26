@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="9239" />
+	<row id="pl_msg_00000149_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello.\nMay I help you with anything?</language>
+	</row>
+	<row id="pl_msg_00000149_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, {STRVAR_1 3, 0, 0}.\nMay I help you with anything?</language>
+	</row>
+	<row id="pl_msg_00000149_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please enjoy yourself.</language>
+	</row>
+	<row id="pl_msg_00000149_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you care for a Protein?\nIt’s a drink that boosts Attack.</language>
+	</row>
+	<row id="pl_msg_00000149_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">May I suggest a Carbos? It’s a drink\nthat boosts the base Speed stat.</language>
+	</row>
+	<row id="pl_msg_00000149_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you need to make sure attacks hit\nthe target hard... Dire Hit is for you.</language>
+	</row>
+	<row id="pl_msg_00000149_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If your Pokémon has trouble with aim,\ntry treating it to an X Accuracy.</language>
+	</row>
+	<row id="pl_msg_00000149_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Where can I find matching dresses for\nmyself and my dear Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000149_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m going to give an HP Up to\nmy KRICKETOT.\rThis is going to raise its HP, huh?</language>
+	</row>
+	<row id="pl_msg_00000149_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m getting the Carbos!\nI should get a Protein instead, maybe.\fBut Iron’s not bad, either.</language>
+	</row>
+	<row id="pl_msg_00000149_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re giving away a Pokétch app for\nfree as a promotion.\rI can give you the Counter app\nover the counter. Would you like it?</language>
+	</row>
+	<row id="pl_msg_00000149_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, here you go.\nGo forth and count!\r</language>
+	</row>
+	<row id="pl_msg_00000149_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I hope that Counter app I gave you\nis useful.</language>
+	</row>
+	<row id="pl_msg_00000149_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re not interested? I’ll be here\nif you change your mind.</language>
+	</row>
+	<row id="pl_msg_00000149_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">B1F: Food &amp; Produce\r1F: Trainers’ Zone\r2F: Battle Collection\r3F: TM Corner\r4F: Poké Dolls &amp; Goods\r5F: Rooftop Plaza</language>
+	</row>
+</body>

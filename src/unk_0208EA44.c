@@ -15,7 +15,7 @@
 #include "unk_0201DBEC.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "move_table.h"
 #include "unk_02079D40.h"
 #include "unk_0207C908.h"
@@ -350,7 +350,7 @@ static void sub_0208EF0C (UnkStruct_0208D7BC * param0)
             continue;
         }
 
-        sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_GetMoveAttribute(param0->unk_250.unk_34[v0], 3));
+        sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_TYPE));
     }
 
     sub_0208F71C(param0);
@@ -383,13 +383,13 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
                 continue;
             }
 
-            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_GetMoveAttribute(param0->unk_250.unk_34[v0], 3));
+            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_TYPE));
             sub_0200D3EC(param0->unk_41C[13 + v0], 1);
             sub_0200D494(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->unk_24C->unk_18 != 0) {
-            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_GetMoveAttribute(param0->unk_24C->unk_18, 3));
+            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_TYPE));
             sub_0200D3EC(param0->unk_41C[13 + 4], 1);
             sub_0200D494(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
@@ -404,13 +404,13 @@ void sub_0208EF58 (UnkStruct_0208D7BC * param0)
                 continue;
             }
 
-            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_GetMoveAttribute(param0->unk_250.unk_34[v0], 11) + 18);
+            sub_0208F194(param0, 13 + v0, 5 + v0, MoveTable_LoadParam(param0->unk_250.unk_34[v0], MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             sub_0200D3EC(param0->unk_41C[13 + v0], 1);
             sub_0200D494(param0->unk_41C[13 + v0], 151, 42 + v0 * 32);
         }
 
         if (param0->unk_24C->unk_18 != 0) {
-            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_GetMoveAttribute(param0->unk_24C->unk_18, 11) + 18);
+            sub_0208F194(param0, 13 + 4, 5 + 4, MoveTable_LoadParam(param0->unk_24C->unk_18, MOVEATTRIBUTE_CONTEST_TYPE) + 18);
             sub_0200D3EC(param0->unk_41C[13 + 4], 1);
             sub_0200D494(param0->unk_41C[13 + 4], 151, 42 + 4 * 32);
         }
@@ -463,7 +463,7 @@ void sub_0208F22C (UnkStruct_0208D7BC * param0, u8 param1, u8 param2)
 
 void sub_0208F294 (UnkStruct_0208D7BC * param0, u32 param1)
 {
-    u32 v0 = MoveTable_GetMoveAttribute(param1, 1);
+    u32 v0 = MoveTable_LoadParam(param1, MOVEATTRIBUTE_CLASS);
 
     sub_0200D948(param0->unk_414, param0->unk_418, sub_0207CAC0(), sub_0207CA90(v0), 1, 10);
     sub_0200D414(param0->unk_41C[18], sub_0207CAA8(v0) + 3);
@@ -648,7 +648,7 @@ void sub_0208F6A4 (UnkStruct_0208D7BC * param0)
     }
 }
 
-void sub_0208F6DC (UnkStruct_0208D7BC * param0, UnkStruct_0205AA50 * param1)
+void sub_0208F6DC (UnkStruct_0208D7BC * param0, Window * param1)
 {
     if (param1 == NULL) {
         sub_02021CAC(param0->unk_41C[47], 0);
@@ -672,7 +672,7 @@ void sub_0208F71C (UnkStruct_0208D7BC * param0)
 
     sub_0200D948(param0->unk_414, param0->unk_418, 19, v1, 0, 11);
     sub_0200D414(param0->unk_41C[19], sub_02079EDC(param0->unk_250.unk_0C, param0->unk_250.unk_4E, param0->unk_250.unk_50_28) + 7);
-    sub_02021D0C(param0->unk_41C[19], (sub_020759CC(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1));
+    sub_02021D0C(param0->unk_41C[19], (PokemonPersonalData_GetFormValue(param0->unk_250.unk_0C, param0->unk_250.unk_4E, 28) ^ 1));
 }
 
 void sub_0208F7A4 (UnkStruct_0208D7BC * param0)

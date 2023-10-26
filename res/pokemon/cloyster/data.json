@@ -1,0 +1,91 @@
+{
+    "name": "Cloyster",
+    "base_stats": {
+        "hp": 50,
+        "attack": 95,
+        "defense": 180,
+        "speed": 70,
+        "special_attack": 85,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_ICE"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 203,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_PEARL",
+        "rare": "ITEM_BIG_PEARL"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "WATER_3",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_SHELL_ARMOR",
+        "ABILITY_SKILL_LINK"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM55",
+            "TM58",
+            "TM64",
+            "TM66",
+            "TM68",
+            "TM72",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM03"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_WITHDRAW",
+                "MOVE_SUPERSONIC",
+                "MOVE_AURORA_BEAM",
+                "MOVE_PROTECT"
+            ],
+            "28": "MOVE_SPIKES",
+            "40": "MOVE_SPIKE_CANNON"
+        }
+    }
+}

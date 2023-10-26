@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="9314" />
+	<row id="pl_msg_00000303_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Exchange Service\nCorner!\rWe can exchange your BP\nfor fabulous items.\r</language>
+	</row>
+	<row id="pl_msg_00000303_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which prize would you like in\nexchange for your BP?</language>
+	</row>
+	<row id="pl_msg_00000303_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve chosen the {STRVAR_1 8, 0, 0}.\nIs that correct?</language>
+	</row>
+	<row id="pl_msg_00000303_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here is your prize!\r</language>
+	</row>
+	<row id="pl_msg_00000303_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m so sorry...\nYou don’t have enough BP...\r</language>
+	</row>
+	<row id="pl_msg_00000303_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry, your Bag has no room for\nthis {STRVAR_1 8, 0, 0}...\r</language>
+	</row>
+	<row id="pl_msg_00000303_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you for visiting.\rPlease visit us again when you have\nsaved up BP.</language>
+	</row>
+	<row id="pl_msg_00000303_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’ve chosen {STRVAR_1 8, 0, 0},\n{STRVAR_1 6, 1, 0}. Is that correct?</language>
+	</row>
+	<row id="pl_msg_00000303_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What to get today...\nPerhaps a Technical Machine will do.</language>
+	</row>
+	<row id="pl_msg_00000303_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What I most care about is the\ncrushing power of my darling Pokémon.\rAre there any prizes that would\nhelp them get more power?</language>
+	</row>
+	<row id="pl_msg_00000303_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How’s it going?\rIf things aren’t going well, why not\ngrab some prizes here?\rIt might toughen up your Pokémon\njust enough to do better.</language>
+	</row>
+	<row id="pl_msg_00000303_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gramma, Gramma!\nI went and traded!\rYou can have this, Gramma!\r</language>
+	</row>
+	<row id="pl_msg_00000303_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, what is it, dear?\nOh, a Sludge Bomb...\rWhy, thank you so much, dear.\rYou’re such a cute, tough, and kind\ngirl...\rI feel blessed to have a grandchild\nlike you...</language>
+	</row>
+	<row id="pl_msg_00000303_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did you see that little girl with her\ngrandmother upstairs?\rThat girl is a little terror in battle.\nYou never can judge people!</language>
+	</row>
+	<row id="pl_msg_00000303_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This building is so grand...\nWhy does it need to be so?</language>
+	</row>
+	<row id="pl_msg_00000303_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Exchange Service\nCorner!\rWould you like to trade in your BP for\nsome prizes?</language>
+	</row>
+</body>

@@ -28,7 +28,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
@@ -40,7 +40,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "unk_02033200.h"
 #include "unk_020797C8.h"
@@ -124,11 +124,11 @@ int ov94_0223BCB0 (UnkStruct_020067E8 * param0, int * param1)
         }
 
         v0->unk_B8C = sub_0200B368(11, 64, 62);
-        v0->unk_B90 = sub_0200B144(0, 26, 671, 62);
-        v0->unk_B98 = sub_0200B144(0, 26, 674, 62);
-        v0->unk_B9C = sub_0200B144(0, 26, 695, 62);
-        v0->unk_B94 = sub_0200B144(0, 26, 412, 62);
-        v0->unk_BA0 = sub_0200B144(0, 26, 694, 62);
+        v0->unk_B90 = MessageLoader_Init(0, 26, 671, 62);
+        v0->unk_B98 = MessageLoader_Init(0, 26, 674, 62);
+        v0->unk_B9C = MessageLoader_Init(0, 26, 695, 62);
+        v0->unk_B94 = MessageLoader_Init(0, 26, 412, 62);
+        v0->unk_BA0 = MessageLoader_Init(0, 26, 694, 62);
 
         sub_02017DD4(4, 8);
 
@@ -176,7 +176,7 @@ int ov94_0223BE2C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = 3;
         }
         break;
@@ -184,10 +184,10 @@ int ov94_0223BE2C (UnkStruct_020067E8 * param0, int * param1)
         *param1 = (*Unk_ov94_0224674C[v0->unk_14][1])(v0, *param1);
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (v0->unk_104) {
                 ov94_0223C4E0(v0);
-                ov94_02243EF8(v0, sub_02025F30(v0->unk_00->unk_1C));
+                ov94_02243EF8(v0, TrainerInfo_Gender(v0->unk_00->unk_1C));
                 ov94_02244234(v0, v0->unk_118, 0);
                 ov94_0223D068(v0);
                 v0->unk_104 = 0;
@@ -221,11 +221,11 @@ int ov94_0223BF54 (UnkStruct_020067E8 * param0, int * param1)
 
     ov94_0223C508(v0);
 
-    sub_0200B190(v0->unk_B94);
-    sub_0200B190(v0->unk_B9C);
-    sub_0200B190(v0->unk_B98);
-    sub_0200B190(v0->unk_B90);
-    sub_0200B190(v0->unk_BA0);
+    MessageLoader_Free(v0->unk_B94);
+    MessageLoader_Free(v0->unk_B9C);
+    MessageLoader_Free(v0->unk_B98);
+    MessageLoader_Free(v0->unk_B90);
+    MessageLoader_Free(v0->unk_BA0);
     sub_0200B3F0(v0->unk_B8C);
 
     ov94_0223C0A0(v0);
@@ -322,7 +322,7 @@ static void ov94_0223C0D4 (UnkStruct_ov94_0223FD4C * param0)
     int v0;
     NARC * v1;
 
-    v1 = NARC_ctor(104, 62);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 62);
 
     NNS_G2dInitOamManagerModule();
     sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 62);
@@ -413,7 +413,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov94_022459F8 = {
     0x0
 };
 
-UnkStruct_02001AF4 * ov94_0223C3C0 (UnkStruct_02018340 * param0, int param1, int param2)
+UnkStruct_02001AF4 * ov94_0223C3C0 (BGL * param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 

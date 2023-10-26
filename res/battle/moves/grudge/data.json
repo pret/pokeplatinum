@@ -1,0 +1,19 @@
+{
+    "name": "Grudge",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GHOST",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_REMOVE_ALL_PP_ON_DEFEAT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 10,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

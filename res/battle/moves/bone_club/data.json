@@ -1,0 +1,23 @@
+{
+    "name": "Bone Club",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GROUND",
+    "power": 65,
+    "accuracy": 85,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_FLINCH_HIT",
+        "chance": 10
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_HIDE_HP_BARS"
+    ],
+    "contest": {
+        "effect": 5,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

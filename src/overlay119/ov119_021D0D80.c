@@ -2,16 +2,15 @@
 #include <string.h>
 
 #include "struct_decls/struct_02002F38_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "strbuf.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_02007C10.h"
 #include "struct_defs/struct_02008A90.h"
@@ -31,13 +30,13 @@
 #include "overlay119/struct_ov119_021D17B8.h"
 #include "overlay119/struct_ov119_021D1930.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02001AF4.h"
 #include "unk_02002F38.h"
 #include "unk_02006E3C.h"
 #include "unk_0200762C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200DA60.h"
@@ -53,7 +52,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay119/ov119_021D0D80.h"
 
 void ov119_021D0D80(void);
@@ -123,7 +122,7 @@ void ov119_021D0E78 (void)
     sub_02014000();
 }
 
-void ov119_021D0EB8 (UnkStruct_02018340 * param0)
+void ov119_021D0EB8 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -288,49 +287,49 @@ void ov119_021D1048 (void)
     sub_0200F174(0, 0, 0, 0x0, 6, 1, 71);
 }
 
-void ov119_021D1068 (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1, int param2)
+void ov119_021D1068 (BGL * param0, PaletteSys * param1, int param2)
 {
     int v0 = 71;
 
     sub_0200DD0C(param0, 1, 20, 15, param2, v0);
-    sub_02003050(param1, 38, sub_0200DD08(param2), v0, 0, 0x20, 12 * 16);
+    PaletteSys_LoadPalette(param1, 38, sub_0200DD08(param2), v0, 0, 0x20, 12 * 16);
     sub_0200DAA4(param0, 1, (20 + (18 + 12)), 13, 0, v0);
-    sub_02003050(param1, 38, sub_0200DAA0(), v0, 0, 0x20, 13 * 16);
-    sub_02003050(param1, 14, 7, v0, 0, 0x20, 14 * 16);
+    PaletteSys_LoadPalette(param1, 38, Window_FramePalette(), v0, 0, 0x20, 13 * 16);
+    PaletteSys_LoadPalette(param1, 14, 7, v0, 0, 0x20, 14 * 16);
 }
 
-void ov119_021D10F0 (UnkStruct_02018340 * param0, UnkStruct_0205AA50 * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
+void ov119_021D10F0 (BGL * param0, Window * param1, int param2, int param3, int param4, int param5, int param6, int param7, int param8)
 {
     sub_0201A7A0(param1);
-    sub_0201A7E8(param0, param1, param2, param3, param4, param5, param6, param8, param7);
+    BGL_AddWindow(param0, param1, param2, param3, param4, param5, param6, param8, param7);
     sub_0200E060(param1, 1, 20, 12);
-    sub_0201ADA4(param1, 15);
+    BGL_FillWindow(param1, 15);
     sub_0201A954(param1);
 }
 
-int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, int param3)
+int ov119_021D1158 (Window * param0, int param1, Pokemon * param2, int param3)
 {
     int v0;
     Strbuf* v1;
     Strbuf* v2;
     UnkStruct_0200B358 * v3;
     BoxPokemon * v4;
-    UnkStruct_0200B144 * v5;
+    MessageLoader * v5;
 
-    sub_0201ADA4(param0, 15);
+    BGL_FillWindow(param0, 15);
 
-    v5 = sub_0200B144(0, 26, 357, 71);
+    v5 = MessageLoader_Init(0, 26, 357, 71);
     v3 = sub_0200B358(71);
-    v1 = sub_0200B1EC(v5, param1);
+    v1 = MessageLoader_GetNewStrbuf(v5, param1);
     v2 = Strbuf_Init(255, 71);
-    v4 = sub_02076B10(param2);
+    v4 = Pokemon_GetBoxPokemon(param2);
 
     sub_0200B538(v3, 0, v4);
     sub_0200C388(v3, v2, v1);
 
     v0 = sub_0201D738(param0, 1, v2, 0, 0, param3, NULL);
 
-    sub_0200B190(v5);
+    MessageLoader_Free(v5);
     Strbuf_Free(v2);
     Strbuf_Free(v1);
     sub_0200B3F0(v3);
@@ -338,27 +337,27 @@ int ov119_021D1158 (UnkStruct_0205AA50 * param0, int param1, Pokemon * param2, i
     return v0;
 }
 
-void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * param1, UnkStruct_0205AA50 * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
+void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, BGL * param1, Window * param2, int param3, int param4, int param5, int param6, int param7, int param8, int param9)
 {
     UnkStruct_02081CF4 v0;
 
     sub_0201A7A0(param2);
-    sub_0201A7E8(param1, param2, param3, param4, param5, param6, param7, param9, param8);
+    BGL_AddWindow(param1, param2, param3, param4, param5, param6, param7, param9, param8);
 
     param0->unk_04.unk_44 = sub_02013A04(2, 71);
 
     {
         int v1;
         Strbuf* v2;
-        UnkStruct_0200B144 * v3 = sub_0200B144(0, 26, 357, 71);
+        MessageLoader * v3 = MessageLoader_Init(0, 26, 357, 71);
 
         for (v1 = 0; v1 < 2; v1++) {
-            v2 = sub_0200B1EC(v3, 2 + v1);
+            v2 = MessageLoader_GetNewStrbuf(v3, 2 + v1);
             sub_02013A6C(param0->unk_04.unk_44, v2, v1);
             Strbuf_Free(v2);
         }
 
-        sub_0200B190(v3);
+        MessageLoader_Free(v3);
     }
 
     v0.unk_00 = param0->unk_04.unk_44;
@@ -370,26 +369,26 @@ void ov119_021D11E4 (UnkStruct_ov119_021D0FD0 * param0, UnkStruct_02018340 * par
     v0.unk_0B_4 = 0;
     v0.unk_0B_6 = 1;
 
-    sub_0200DC48(param2, 1, (20 + (18 + 12)), 13);
+    Window_Show(param2, 1, (20 + (18 + 12)), 13);
     param0->unk_04.unk_48 = sub_02001B7C(&v0, 8, 0, 0, 71, PAD_BUTTON_B);
 }
 
 void ov119_021D12CC (UnkStruct_ov119_021D0FD0 * param0)
 {
-    sub_0200DC9C(&param0->unk_04.unk_14[1], 1);
+    Window_Clear(&param0->unk_04.unk_14[1], 1);
     sub_0201ACF4(&param0->unk_04.unk_14[1]);
-    sub_0201A8FC(&param0->unk_04.unk_14[1]);
+    BGL_DeleteWindow(&param0->unk_04.unk_14[1]);
     sub_02001BC4(param0->unk_04.unk_48, NULL);
     sub_02013A3C(param0->unk_04.unk_44);
 }
 
-void ov119_021D12F8 (UnkStruct_0205AA50 * param0)
+void ov119_021D12F8 (Window * param0)
 {
     sub_0201ACF4(param0);
-    sub_0201A8FC(param0);
+    BGL_DeleteWindow(param0);
 }
 
-void ov119_021D1308 (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1)
+void ov119_021D1308 (BGL * param0, PaletteSys * param1)
 {
     int v0 = 118;
     int v1 = 0;
@@ -400,10 +399,10 @@ void ov119_021D1308 (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1)
 
     sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
     sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
-    sub_02003050(param1, v0, v3, v5, 0, 0x20 * 2, 0);
+    PaletteSys_LoadPalette(param1, v0, v3, v5, 0, 0x20 * 2, 0);
 }
 
-void ov119_021D135C (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1)
+void ov119_021D135C (BGL * param0, PaletteSys * param1)
 {
     int v0 = 12;
     int v1 = 10;
@@ -414,7 +413,7 @@ void ov119_021D135C (UnkStruct_02018340 * param0, UnkStruct_02002F38 * param1)
 
     sub_02006E3C(v0, v1, param0, v4, 0, 0, 1, v5);
     sub_02006E60(v0, v2, param0, v4, 0, 0, 1, v5);
-    sub_02003050(param1, v0, v3, v5, 1, 0x20 * 1, 0);
+    PaletteSys_LoadPalette(param1, v0, v3, v5, 1, 0x20 * 1, 0);
 }
 
 static u32 ov119_021D13B4 (u32 param0, BOOL param1)
@@ -539,7 +538,7 @@ void ov119_021D1514 (UnkStruct_ov119_021D0FD0 * param0)
 {
     UnkStruct_0200C6E4 * v0;
     UnkStruct_0200C704 * v1;
-    UnkStruct_02002F38 * v2;
+    PaletteSys * v2;
     int v3[][4] = {
         {4, 9, 3, 2},
         {4, 9, 3, 2}
@@ -759,13 +758,13 @@ void ov119_021D1858 (UnkStruct_ov119_021D0FD0 * param0)
     int v4;
 
     v2 = param0->unk_00->unk_0C.unk_00;
-    v3 = GetMonData(v2, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetValue(v2, MON_DATA_SPECIES, NULL);
     v4 = sub_020765AC(v2, 2);
 
     {
         int v5 = 0;
 
-        sub_02074B30(v2, 76, &v5);
+        Pokemon_SetValue(v2, 76, &v5);
     }
 
     sub_02075EF4(&v0, v2, 2);
@@ -779,8 +778,8 @@ void ov119_021D18C0 (UnkStruct_ov119_021D0FD0 * param0)
     int v0;
     int v1;
 
-    v0 = GetMonData(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
-    v1 = sub_02075BCC(param0->unk_00->unk_0C.unk_00);
+    v0 = Pokemon_GetValue(param0->unk_00->unk_0C.unk_00, MON_DATA_SPECIES, NULL);
+    v1 = Pokemon_GetNature(param0->unk_00->unk_0C.unk_00);
 
     sub_02007B98(param0->unk_70, 1);
     sub_020789F4(param0->unk_04.unk_3C, param0->unk_04.unk_54, param0->unk_70, v0, 2, 0, 0);

@@ -4,16 +4,16 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02001AF4_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_0207CB08_decl.h"
@@ -22,22 +22,22 @@
 #include "overlay084/struct_ov84_0223C920.h"
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[11];
-    UnkStruct_0205AA50 unk_B4[1];
+    BGL * unk_00;
+    Window unk_04[11];
+    Window unk_B4[1];
     UnkStruct_0207CB08 * unk_C4;
     UnkStruct_0207D3C0 * unk_C8;
-    UnkStruct_02025E6C * unk_CC;
+    TrainerInfo * unk_CC;
     UnkStruct_020279FC * unk_D0;
     NARC * unk_D4;
     UnkStruct_0200C6E4 * unk_D8;
     UnkStruct_0200C704 * unk_DC;
-    UnkStruct_0200D0F4 * unk_E0[12];
+    CellActorData * unk_E0[12];
     UnkStruct_0200C440 * unk_110;
-    UnkStruct_0200B144 * unk_114;
+    MessageLoader * unk_114;
     UnkStruct_0200B358 * unk_118;
-    UnkStruct_0200B144 * unk_11C;
-    UnkStruct_0200B144 * unk_120;
+    MessageLoader * unk_11C;
+    MessageLoader * unk_120;
     Strbuf* unk_124[12];
     UnkStruct_02013A04 * unk_154;
     UnkStruct_02001AF4 * unk_158;

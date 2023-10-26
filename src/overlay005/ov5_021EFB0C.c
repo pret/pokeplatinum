@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "overlay005/struct_ov5_021E1608_decl.h"
 #include "overlay005/struct_ov5_021E1890_decl.h"
 
@@ -15,7 +15,7 @@
 #include "narc.h"
 #include "heap.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202D7A8.h"
 #include "unk_02039C80.h"
 #include "unk_02054D00.h"
@@ -164,8 +164,8 @@ void ov5_021EFBDC (UnkStruct_0203CDB0 * param0)
     v2->unk_00 = (24 * 60);
 
     {
-        UnkStruct_02025E6C * v4 = sub_02025E38(param0->unk_0C);
-        v3 = ov5_021EFF4C(sub_02025F20(v4), v0);
+        TrainerInfo * v4 = sub_02025E38(param0->unk_0C);
+        v3 = ov5_021EFF4C(TrainerInfo_ID(v4), v0);
     }
 
     if (sub_0202D844(v1) == v0) {
@@ -477,9 +477,9 @@ int ov5_021EFFE4 (UnkStruct_0203CDB0 * param0)
         v4 = sub_0202D84C(v0, v3);
 
         if ((GAME_VERSION == 10) || (GAME_VERSION == 12)) {
-            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, Unk_ov5_021FF5A8[v4->unk_05], 4);
+            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, Unk_ov5_021FF5A8[v4->unk_05], 4);
         } else {
-            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, dummy[v4->unk_05], 4);
+            v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, dummy[v4->unk_05], 4);
         }
 
         v2 = v1[v4->unk_04];

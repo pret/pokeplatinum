@@ -10,7 +10,7 @@ typedef struct {
     NARC * unk_00;
     UnkStruct_0200C6E4 * unk_04;
     UnkStruct_0200C704 * unk_08;
-    UnkStruct_02002F38 * unk_0C;
+    PaletteSys * unk_0C;
 } UnkStruct_0208B878_sub1;
 
 #endif // POKEPLATINUM_STRUCT_0208B878_SUB1_H

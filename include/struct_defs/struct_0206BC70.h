@@ -13,7 +13,7 @@ typedef struct {
     UnkStruct_0202D750 * unk_00;
     UnkStruct_0202D764 * unk_04;
     UnkStruct_02025CCC * unk_08;
-    UnkStruct_021C0794 * unk_0C;
+    SaveData * unk_0C;
     UnkStruct_020279FC * unk_10;
     DWCUserData * unk_14;
     int unk_18;

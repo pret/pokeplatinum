@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="25602" />
+	<row id="pl_msg_00000230_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">According to one theory, Mt. Coronet\nis where the Sinnoh region began.\r</language>
+	</row>
+	<row id="pl_msg_00000230_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...In a newly created world...\rA world where only time flowed and\nspace expanded...\fThere should have been no strife.\r</language>
+	</row>
+	<row id="pl_msg_00000230_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But what became of that world?\rBecause the human spirit is weak and\nincomplete, strife has spread...\rThis world is being ruined by it...\rI find this state of affairs to be\ndeplorable...\r</language>
+	</row>
+</body>

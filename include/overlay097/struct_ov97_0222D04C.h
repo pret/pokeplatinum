@@ -4,14 +4,14 @@
 #include "struct_decls/struct_0200112C_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_defs/struct_0200C738.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -22,15 +22,15 @@
 #include <dwc.h>
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    BGL * unk_00;
+    SaveData * unk_04;
     UnkStruct_020279FC * unk_08;
     UnkStruct_0200B358 * unk_0C;
-    UnkStruct_0200B144 * unk_10;
+    MessageLoader * unk_10;
     Strbuf* unk_14;
-    UnkStruct_0205AA50 unk_18;
-    UnkStruct_0205AA50 unk_28[3];
-    UnkStruct_0205AA50 unk_58;
+    Window unk_18;
+    Window unk_28[3];
+    Window unk_58;
     int unk_68;
     int unk_6C;
     int unk_70;
@@ -75,7 +75,7 @@ typedef struct {
     int unk_26D4;
     DWCErrorType unk_26D8;
     BOOL (* unk_26DC)(void);
-    UnkStruct_0205AA50 unk_26E0;
+    Window unk_26E0;
     UnkUnion_ov97_0222D2B0 unk_26F0;
     void (* unk_2A48)(void *);
     int unk_2A4C;

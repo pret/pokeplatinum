@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="34966" />
+	<row id="pl_msg_00000420_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey!\rCan you tell me how you feel right\nbefore a match?\rHow you feel when you win or lose?\nWhat it would be like to be number one?</language>
+	</row>
+	<row id="pl_msg_00000420_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, how do you feel when\nyou’re about to begin a match?\r</language>
+	</row>
+	<row id="pl_msg_00000420_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How do you feel when you win\na match?\r</language>
+	</row>
+	<row id="pl_msg_00000420_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How do you feel when you lose a match?\r</language>
+	</row>
+	<row id="pl_msg_00000420_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Last question: describe how you’d feel\nif you became number one.\r</language>
+	</row>
+	<row id="pl_msg_00000420_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hunh? You changed your mind?\nI guess you’re fickle.</language>
+	</row>
+	<row id="pl_msg_00000420_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you!\nCan you answer another question?</language>
+	</row>
+	<row id="pl_msg_00000420_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gotcha! Thanks!</language>
+	</row>
+	<row id="pl_msg_00000420_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gotcha! Thanks!\nOK, {STRVAR_1 28, 0, 0}...</language>
+	</row>
+	<row id="pl_msg_00000420_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Before battle</language>
+	</row>
+	<row id="pl_msg_00000420_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Upon winning</language>
+	</row>
+	<row id="pl_msg_00000420_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Upon losing</language>
+	</row>
+	<row id="pl_msg_00000420_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Becoming No. 1</language>
+	</row>
+	<row id="pl_msg_00000420_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Not saying</language>
+	</row>
+	<row id="pl_msg_00000420_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yes</language>
+	</row>
+	<row id="pl_msg_00000420_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No</language>
+	</row>
+</body>

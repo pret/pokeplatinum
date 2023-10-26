@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="52142" />
+	<row id="pl_msg_00000300_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Should we sail back to Canalave?</language>
+	</row>
+	<row id="pl_msg_00000300_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aye, aye!\nAnchors aweigh!\r</language>
+	</row>
+	<row id="pl_msg_00000300_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right, then. Tell me if you’d like\nto return to Canalave.</language>
+	</row>
+</body>

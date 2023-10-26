@@ -1,21 +1,21 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02012744_decl.h"
 #include "struct_decls/struct_02012B20_decl.h"
-#include "struct_decls/struct_02012CE0_decl.h"
+#include "struct_decls/font_oam.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay114/struct_ov114_0225CAD4_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
@@ -23,7 +23,7 @@
 #include "struct_defs/struct_020170F4.h"
 #include "struct_defs/struct_02017248.h"
 #include "struct_defs/struct_02017294.h"
-#include "struct_defs/struct_0201EE28.h"
+#include "struct_defs/sprite_manager_allocation.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_02099F80.h"
@@ -52,7 +52,7 @@
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_02012744.h"
@@ -71,7 +71,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_02024220.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020363E8.h"
 #include "overlay114/ov114_0225C700.h"
 #include "overlay115/ov115_02260CEC.h"
@@ -89,7 +89,7 @@ typedef struct {
     u32 unk_00;
     s32 unk_04;
     s32 unk_08;
-    UnkStruct_0205AA50 unk_0C;
+    Window unk_0C;
 } UnkStruct_ov115_022617E8;
 
 typedef struct {
@@ -268,10 +268,10 @@ typedef struct {
     UnkStruct_02009DC8 * unk_00[4];
     UnkStruct_ov19_021DA864 unk_10;
     UnkStruct_02022550 * unk_34;
-    UnkStruct_0205AA50 unk_38;
-    UnkStruct_02012CE0 * unk_48;
+    Window unk_38;
+    FontOAM * unk_48;
     UnkStruct_02012B20 * unk_4C;
-    UnkStruct_0201EE28 unk_50;
+    SpriteManagerAllocation unk_50;
     Strbuf* unk_5C;
     UnkStruct_02009DC8 * unk_60;
     UnkStruct_ov115_02261304 unk_64;
@@ -290,9 +290,9 @@ typedef struct {
 } UnkStruct_ov115_022658E0;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
+    BGL * unk_00;
     UnkStruct_0200B358 * unk_04;
-    UnkStruct_0200B144 * unk_08;
+    MessageLoader * unk_08;
     Strbuf* unk_0C;
     Strbuf* unk_10;
     u16 unk_14;
@@ -815,11 +815,11 @@ BOOL ov115_02260DAC (UnkStruct_ov115_02260D78 * param0, u32 param1)
         param0->unk_1AB4.unk_4E8.unk_08--;
 
         if (param0->unk_1AB4.unk_4E8.unk_08 == 50) {
-            sub_02005748(1562);
+            Sound_PlayEffect(1562);
         }
 
         if (param0->unk_1AB4.unk_4E8.unk_08 == 20) {
-            sub_02005748(1598);
+            Sound_PlayEffect(1598);
         }
 
         ov115_02264214(&param0->unk_1AB4.unk_524, (FX32_CONST(1.0)));
@@ -836,7 +836,7 @@ BOOL ov115_02260DAC (UnkStruct_ov115_02260D78 * param0, u32 param1)
         break;
     case 5:
         ov115_02261A10(&param0->unk_1AB4.unk_4E8, &param0->unk_1AB4);
-        sub_02005748(1501);
+        Sound_PlayEffect(1501);
         param0->unk_1AB4.unk_4E8.unk_00 = 6;
         break;
     case 6:
@@ -1442,12 +1442,12 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
 
     memset(param0, 0, sizeof(UnkStruct_ov115_022617E8));
 
-    sub_0201A7E8(param1->unk_00, &param0->unk_0C, 1, 2, 19, 28, 4, 5, ((1 + 9)));
-    sub_0201AE78(&param0->unk_0C, 15, 0, 0, 28 * 8, 4 * 8);
+    BGL_AddWindow(param1->unk_00, &param0->unk_0C, 1, 2, 19, 28, 4, 5, ((1 + 9)));
+    BGL_WindowColor(&param0->unk_0C, 15, 0, 0, 28 * 8, 4 * 8);
 
     v0 = Strbuf_Init(128, param6);
 
-    sub_0200B1B8(param1->unk_08, 0, v0);
+    MessageLoader_GetStrbuf(param1->unk_08, 0, v0);
     sub_0201D78C(&param0->unk_0C, 0, v0, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0))), NULL);
     Strbuf_Free(v0);
     sub_020070E8(param5, 18, param1->unk_00, 2, 0, 0, 0, param6);
@@ -1457,7 +1457,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
     {
         int v2;
         s32 v3, v4;
-        UnkStruct_0205AA50 v5;
+        Window v5;
         u32 v6;
         Strbuf* v7;
         u32 v8;
@@ -1465,7 +1465,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
         u32 v10;
 
         sub_0201A7A0(&v5);
-        sub_0201A7E8(param1->unk_00, &v5, 2, 0, 0, 8, 2, 5, 256);
+        BGL_AddWindow(param1->unk_00, &v5, 2, 0, 0, 8, 2, 5, 256);
 
         v6 = 256;
         v7 = Strbuf_Init(128, param6);
@@ -1476,7 +1476,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
                 v4 = Unk_ov115_02265CA4[param4][param3 - 1][v2].unk_04;
 
                 sub_02019E2C(param1->unk_00, 2, v3 - 1, v4 - 1, 10, 4, 0 + v2);
-                sub_0201ADA4(&v5, 15);
+                BGL_FillWindow(&v5, 15);
 
                 if (param2->unk_18[v2] == 1) {
                     v8 = ((u32)(((5 & 0xff) << 16) | ((6 & 0xff) << 8) | ((15 & 0xff) << 0)));
@@ -1484,7 +1484,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
                     v8 = ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((15 & 0xff) << 0)));
                 }
 
-                sub_02025EF4(param2->unk_08[v2], v7);
+                TrainerInfo_NameStrbuf(param2->unk_08[v2], v7);
                 sub_0201C2AC(&v5, v3);
                 sub_0201C2B0(&v5, v4);
 
@@ -1497,7 +1497,7 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
         }
 
         Strbuf_Free(v7);
-        sub_0201A8FC(&v5);
+        BGL_DeleteWindow(&v5);
     }
 
     param0->unk_04 = 0;
@@ -1508,12 +1508,12 @@ static void ov115_022617E8 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
 
 static void ov115_02261A04 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_02261ADC * param1)
 {
-    sub_0201A8FC(&param0->unk_0C);
+    BGL_DeleteWindow(&param0->unk_0C);
 }
 
 static void ov115_02261A10 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_02261ADC * param1)
 {
-    sub_0200DC48(&param0->unk_0C, 0, 1, 4);
+    Window_Show(&param0->unk_0C, 0, 1, 4);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG1, 1);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 1);
     ov114_0225CB8C(param1->unk_754);
@@ -1534,7 +1534,7 @@ static BOOL ov115_02261A3C (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_0
 
 static void ov115_02261A54 (UnkStruct_ov115_022617E8 * param0, UnkStruct_ov115_02261ADC * param1)
 {
-    sub_0200DC9C(&param0->unk_0C, 1);
+    Window_Clear(&param0->unk_0C, 1);
     sub_0201AD10(&param0->unk_0C);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
@@ -2000,16 +2000,16 @@ static void ov115_02262354 (UnkStruct_ov115_02260D78 * param0, UnkStruct_ov115_0
 
         switch (param0->unk_1C) {
         case 0:
-            sub_02005748(1386);
-            sub_02005748(1387);
+            Sound_PlayEffect(1386);
+            Sound_PlayEffect(1387);
             break;
         case 1:
-            sub_02005748(1386);
-            sub_02005748(1388);
+            Sound_PlayEffect(1386);
+            Sound_PlayEffect(1388);
             break;
         default:
-            sub_02005748(1386);
-            sub_02005748(1389);
+            Sound_PlayEffect(1386);
+            Sound_PlayEffect(1389);
             break;
         }
 
@@ -2033,7 +2033,7 @@ static void ov115_02262354 (UnkStruct_ov115_02260D78 * param0, UnkStruct_ov115_0
             v3 = 1;
 
             if (v5 == 1) {
-                sub_02005748(1826);
+                Sound_PlayEffect(1826);
             }
 
             ov115_022626BC(param1, param0, 1);
@@ -2180,7 +2180,7 @@ static void ov115_022626E0 (UnkStruct_ov115_022622F8 * param0, UnkStruct_ov115_0
         param0->unk_04.unk_04.z = -param0->unk_04.unk_04.z;
 
         if (param4) {
-            v3 = sub_0201D35C();
+            v3 = MTRNG_Next();
 
             if (MATH_ABS(param0->unk_04.unk_04.x) <= MATH_ABS(param0->unk_04.unk_04.z)) {
                 v1 = FX_Mul(param0->unk_04.unk_04.z, (FX32_CONST(1.0f)));
@@ -2345,7 +2345,7 @@ static void ov115_0226294C (UnkStruct_ov115_022622F8 * param0, const VecFx32 * p
 
 static void ov115_02262974 (UnkStruct_ov115_02260D78 * param0)
 {
-    if (Unk_021BF67C.unk_62 == 0) {
+    if (gCoreSys.unk_62 == 0) {
         ov115_02262990(param0);
     } else {
         ov115_02262B70(param0);
@@ -2418,7 +2418,7 @@ static void ov115_02262990 (UnkStruct_ov115_02260D78 * param0)
             }
 
             ov115_022621DC(param0, &v0, 1);
-            sub_02005748(1616);
+            Sound_PlayEffect(1616);
         }
     } else {
         v6 = 1;
@@ -2461,8 +2461,8 @@ static void ov115_02262B70 (UnkStruct_ov115_02260D78 * param0)
             v0.y = param0->unk_8690.unk_02[param0->unk_8690.unk_00 - 1].y;
             ov115_02262CBC(&param0->unk_20, v0);
         } else {
-            v0.x = Unk_021BF67C.unk_5C;
-            v0.y = Unk_021BF67C.unk_5E;
+            v0.x = gCoreSys.unk_5C;
+            v0.y = gCoreSys.unk_5E;
             ov115_02262CBC(&param0->unk_20, v0);
         }
     }
@@ -2478,8 +2478,8 @@ static BOOL ov115_02262C60 (UnkStruct_ov115_02260D78 * param0)
         return 0;
     }
 
-    v0 = 128 - Unk_021BF67C.unk_5C;
-    v1 = -96 - Unk_021BF67C.unk_5E;
+    v0 = 128 - gCoreSys.unk_5C;
+    v1 = -96 - gCoreSys.unk_5E;
     v2 = FX_Sqrt(((v0 * v0) + (v1 * v1)) << FX32_SHIFT) >> FX32_SHIFT;
 
     if (v2 <= (190 - -96)) {
@@ -2671,7 +2671,7 @@ static void ov115_02262FB4 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
 
     memset(param0, 0, sizeof(UnkStruct_ov115_02263130));
 
-    v0 = NARC_ctor(171, param2);
+    v0 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__WIFI_LOBBY_MINIGAME__WLMNGM_TOOL, param2);
 
     {
         param0->unk_00[0] = sub_02009A4C(param1->unk_1AC[0], v0, 21, 0, 120, NNS_G2D_VRAM_TYPE_2DSUB, param2);
@@ -2759,7 +2759,7 @@ static BOOL ov115_02263150 (UnkStruct_ov115_02263130 * param0, UnkStruct_ov115_0
             case 10:
                 if (param0->unk_3B == 0) {
                     ov115_022613F8(param1, 128, 96, 128, 64, 2);
-                    sub_02005748(1616);
+                    Sound_PlayEffect(1616);
                     param0->unk_3B = 1;
                 }
                 break;
@@ -2915,7 +2915,7 @@ static void ov115_022633FC (UnkStruct_ov115_02260D78 * param0, u32 param1)
     ov115_02263990(&param0->unk_1AB4, param1);
     ov115_02263BCC(&param0->unk_1AB4, param1);
 
-    v0 = NARC_ctor(158, param1);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__BUCKET, param1);
 
     ov115_02263A74(&param0->unk_1AB4, v0, param1);
     ov115_02264E48(&param0->unk_1AB4.unk_204, &param0->unk_1AB4, v0, param0->unk_10, param0->unk_14, param1, &param0->unk_1AB4.unk_6BBC);
@@ -3263,7 +3263,7 @@ static void ov115_02263B78 (UnkStruct_ov115_02261ADC * param0)
 static void ov115_02263BCC (UnkStruct_ov115_02261ADC * param0, u32 param1)
 {
     param0->unk_04 = sub_0200B358(param1);
-    param0->unk_08 = sub_0200B144(0, 26, 407, param1);
+    param0->unk_08 = MessageLoader_Init(0, 26, 407, param1);
     param0->unk_0C = Strbuf_Init(128, param1);
     param0->unk_10 = Strbuf_Init(128, param1);
 }
@@ -3272,7 +3272,7 @@ static void ov115_02263C04 (UnkStruct_ov115_02261ADC * param0)
 {
     Strbuf_Free(param0->unk_10);
     Strbuf_Free(param0->unk_0C);
-    sub_0200B190(param0->unk_08);
+    MessageLoader_Free(param0->unk_08);
     sub_0200B3F0(param0->unk_04);
 }
 
@@ -3970,7 +3970,7 @@ static void ov115_02264BC0 (UnkStruct_ov115_02264BA0 * param0)
         return;
     }
 
-    ov115_02264BD8(param0, Unk_021BF67C.unk_5C, Unk_021BF67C.unk_5E);
+    ov115_02264BD8(param0, gCoreSys.unk_5C, gCoreSys.unk_5E);
 }
 
 static void ov115_02264BD8 (UnkStruct_ov115_02264BA0 * param0, s32 param1, s32 param2)
@@ -4371,7 +4371,7 @@ static void ov115_022653F4 (UnkStruct_ov115_02261ADC * param0, s16 param1, u16 p
 
         v1 += 4;
 
-        sub_02019060(v1, (2 - v0));
+        BGL_SetPriority(v1, (2 - v0));
 
         if (v0 == 0) {
             sub_02019E2C(param0->unk_00, v1, 0, 0, 32, 32, 2 + (param2 * 2));
@@ -4455,7 +4455,7 @@ static void ov115_02265478 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
         param0->unk_48 = sub_02012B60(&v4, param0->unk_4C);
 
         sub_020129D0(param0->unk_48, 0);
-        sub_0201A8FC(&param0->unk_38);
+        BGL_DeleteWindow(&param0->unk_38);
     }
 
     ov115_02261304(&param0->unk_64, (-FX32_CONST(64)), (FX32_CONST(32)), (FX32_CONST(36)), 8);
@@ -4495,7 +4495,7 @@ static void ov115_02265700 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
         sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
         sub_0201D78C(&param0->unk_38, 0, param0->unk_5C, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
         sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
-        sub_0201A8FC(&param0->unk_38);
+        BGL_DeleteWindow(&param0->unk_38);
     }
 
     sub_020129D0(param0->unk_48, 1);
@@ -4524,7 +4524,7 @@ static void ov115_022657A8 (UnkStruct_ov115_02265788 * param0, UnkStruct_ov115_0
             sub_0201A870(param1->unk_00, &param0->unk_38, 3, 2, 0, 0);
             sub_0201D78C(&param0->unk_38, 0, param0->unk_5C, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
             sub_02012BE0(param0->unk_48, param0->unk_4C, &param0->unk_38, param0->unk_9C);
-            sub_0201A8FC(&param0->unk_38);
+            BGL_DeleteWindow(&param0->unk_38);
         }
 
         param0->unk_96 = 0;
@@ -4588,7 +4588,7 @@ static void ov115_022658E0 (UnkStruct_ov115_022658E0 * param0)
     param0->unk_00 = 0;
     param0->unk_02 = 1;
     param0->unk_03 = 0;
-    sub_02005748(1390);
+    Sound_PlayEffect(1390);
 }
 
 static void ov115_022658F8 (UnkStruct_ov115_022658E0 * param0, UnkStruct_ov115_02264FA0 * param1, UnkStruct_ov115_02263DF8 * param2)
@@ -4615,7 +4615,7 @@ static void ov115_022658F8 (UnkStruct_ov115_022658E0 * param0, UnkStruct_ov115_0
         sub_02004FA8(7, v1);
 
         if (12 == param0->unk_03) {
-            sub_02005748(1391);
+            Sound_PlayEffect(1391);
         }
 
         if (param0->unk_03 >= 58) {

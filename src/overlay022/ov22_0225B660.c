@@ -1,17 +1,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029C88_decl.h"
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "overlay022/struct_ov22_0225B1BC_decl.h"
 
 #include "struct_defs/struct_02041DC8.h"
@@ -22,7 +21,7 @@
 #include "unk_02002B7C.h"
 #include "unk_020067E8.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -34,7 +33,7 @@
 #include "strbuf.h"
 #include "unk_0202419C.h"
 #include "unk_020298BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02094EDC.h"
 #include "overlay022/ov22_02255094.h"
 #include "overlay022/ov22_0225AF8C.h"
@@ -48,7 +47,7 @@ typedef struct {
     UnkStruct_ov22_0225B1BC * unk_10;
     UnkStruct_ov22_0225A0E4 unk_14;
     UnkStruct_02022550 * unk_1FC;
-    UnkStruct_0205AA50 * unk_200;
+    Window * unk_200;
 } UnkStruct_ov22_0225B85C;
 
 static void ov22_0225B848(void * param0);
@@ -88,7 +87,7 @@ int ov22_0225B660 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_0C = v1->unk_08;
 
     ov22_02255094();
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
     GXLayers_SwapDisplay();
     ov22_022555D4(&v0->unk_14, 14);
 
@@ -139,12 +138,12 @@ int ov22_0225B738 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             (*param1)++;
         }
         break;
     case 3:
-        if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
             (*param1)++;
         }
         break;
@@ -153,7 +152,7 @@ int ov22_0225B738 (UnkStruct_020067E8 * param0, int * param1)
         (*param1)++;
         break;
     case 5:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             return 1;
         }
         break;
@@ -247,24 +246,24 @@ static void ov22_0225BA40 (UnkStruct_ov22_0225B85C * param0)
 {
     param0->unk_200 = sub_0201A778(14, 1);
 
-    sub_0201A7E8(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
+    BGL_AddWindow(param0->unk_14.unk_40, param0->unk_200, 3, 0, 18, 32, 6, 5, 1);
     sub_02002E7C(0, 5 * 32, 14);
-    sub_02019060(3, 0);
-    sub_02019060(0, 2);
-    sub_02019060(1, 1);
+    BGL_SetPriority(3, 0);
+    BGL_SetPriority(0, 2);
+    BGL_SetPriority(1, 1);
     sub_02019184(param0->unk_14.unk_40, 3, 3, 0);
 }
 
 static void ov22_0225BAA8 (UnkStruct_ov22_0225B85C * param0)
 {
     sub_0201ACF4(param0->unk_200);
-    sub_0201A8FC(param0->unk_200);
+    BGL_DeleteWindow(param0->unk_200);
     sub_0201A928(param0->unk_200, 1);
 }
 
 static void ov22_0225BAD0 (UnkStruct_ov22_0225B85C * param0)
 {
-    sub_0201ADA4(param0->unk_200, 0);
+    BGL_FillWindow(param0->unk_200, 0);
 
     if (param0->unk_0C == 0) {
         ov22_0225BB00(param0);
@@ -284,9 +283,9 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     UnkStruct_0200B358 * v5;
     Strbuf* v6;
     Strbuf* v7;
-    UnkStruct_0200B144 * v8;
+    MessageLoader * v8;
 
-    v8 = sub_0200B144(0, 26, 385, 13);
+    v8 = MessageLoader_Init(0, 26, 385, 13);
     GF_ASSERT(v8);
     v5 = sub_0200B358(13);
 
@@ -310,7 +309,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     sub_0200BE48(v5, 0, v4);
 
     v7 = Strbuf_Init(200, 13);
-    v6 = sub_0200B1EC(v8, 45);
+    v6 = MessageLoader_GetNewStrbuf(v8, 45);
     sub_0200C388(v5, v7, v6);
 
     v3 = sub_02002D7C(0, v7, 0);
@@ -320,7 +319,7 @@ static void ov22_0225BB00 (UnkStruct_ov22_0225B85C * param0)
     sub_0201D78C(param0->unk_200, 0, v7, v1, v2, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v7);
     Strbuf_Free(v6);
-    sub_0200B190(v8);
+    MessageLoader_Free(v8);
     sub_0200B3F0(v5);
 }
 
@@ -333,7 +332,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     int v4;
     Pokemon * v5;
     BoxPokemon * v6;
-    UnkStruct_0200B144 * v7;
+    MessageLoader * v7;
     int v8, v9;
     int v10;
 
@@ -350,16 +349,16 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0202A524(param0->unk_04, v2);
     sub_0200B48C(v1, 3, v2, v4, 1, GAME_LANGUAGE);
 
-    v5 = AllocMonZeroed(13);
+    v5 = Pokemon_New(13);
     sub_0202A560(param0->unk_04, v5);
-    v6 = sub_02076B10(v5);
+    v6 = Pokemon_GetBoxPokemon(v5);
     sub_0200B5CC(v1, 4, v6);
     Heap_FreeToHeap(v5);
 
-    v7 = sub_0200B144(0, 26, 385, 13);
+    v7 = MessageLoader_Init(0, 26, 385, 13);
     GF_ASSERT(v7);
 
-    v3 = sub_0200B1EC(v7, 43);
+    v3 = MessageLoader_GetNewStrbuf(v7, 43);
     sub_0200C388(v1, v2, v3);
     Strbuf_Free(v3);
     v10 = sub_02002D7C(0, v2, 0);
@@ -367,7 +366,7 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     v9 = 7;
     sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
-    v3 = sub_0200B1EC(v7, 44);
+    v3 = MessageLoader_GetNewStrbuf(v7, 44);
     sub_0200C388(v1, v2, v3);
     Strbuf_Free(v3);
     v10 = sub_02002D7C(0, v2, 0);
@@ -376,6 +375,6 @@ static void ov22_0225BC18 (UnkStruct_ov22_0225B85C * param0)
     sub_0201D78C(param0->unk_200, 0, v2, v8, v9, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
 
     Strbuf_Free(v2);
-    sub_0200B190(v7);
+    MessageLoader_Free(v7);
     sub_0200B3F0(v1);
 }

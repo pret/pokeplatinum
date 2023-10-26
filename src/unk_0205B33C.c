@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02014EC4_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -18,7 +18,7 @@
 #include "struct_defs/struct_0205B4F8.h"
 #include "struct_defs/struct_02072014.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200D9E8.h"
 #include "unk_02014A84.h"
@@ -26,7 +26,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202B604.h"
 #include "unk_020329E0.h"
 #include "unk_02033200.h"
@@ -54,9 +54,9 @@ typedef struct {
 
 struct UnkStruct_0205B43C_t {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_021C0794 * unk_04;
-    UnkStruct_02025E6C * unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SaveData * unk_04;
+    TrainerInfo * unk_08;
+    SysTask * unk_0C;
     UnkFuncPtr_0205B43C unk_10;
     int unk_14;
     u32 unk_18;
@@ -145,7 +145,7 @@ void sub_0205B388 (UnkStruct_0203CDB0 * param0)
 static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
 {
     void * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     UnkStruct_0205B43C * v2 = NULL;
 
     if (param0->unk_7C != NULL) {
@@ -160,7 +160,7 @@ static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
 
     v2->unk_10 = NULL;
     v2->unk_14 = 40;
-    v2->unk_0C = sub_0200D9E8(sub_0205B5BC, v2, 10);
+    v2->unk_0C = SysTask_Start(sub_0205B5BC, v2, 10);
     v2->unk_00 = param0;
     v2->unk_04 = v1;
     v2->unk_08 = sub_02025E38(v1);
@@ -225,7 +225,7 @@ static void sub_0205B4B0 (UnkStruct_0205B43C * param0)
 static int sub_0205B4D4 (void)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
 
     v1 = 0;
 
@@ -289,12 +289,12 @@ static void sub_0205B5B4 (UnkStruct_0205B43C * param0, UnkFuncPtr_0205B43C param
 
 static WMBssDesc * Unk_021C085C[16];
 
-void sub_0205B5BC (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0205B5BC (SysTask * param0, void * param1)
 {
     UnkStruct_0205B43C * v0 = (UnkStruct_0205B43C *)param1;
 
     if (v0 == NULL) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         int v1;
         WMBssDesc * v2;
@@ -407,7 +407,7 @@ static void sub_0205B754 (UnkStruct_0205B43C * param0)
         return;
     }
 
-    sub_0200DA58(param0->unk_0C);
+    SysTask_Done(param0->unk_0C);
     Heap_FreeToHeap(param0);
     Heap_Destroy(31);
 }
@@ -426,7 +426,7 @@ static UnkStruct_0205B4F8 * Unk_021C0854;
 
 int sub_0205B780 (UnkStruct_0205B43C * param0, int param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     UnkStruct_0203330C * v1;
     UnkStruct_0205B4F8 * v2;
 
@@ -477,7 +477,7 @@ int sub_0205B780 (UnkStruct_0205B43C * param0, int param1)
 
 int sub_0205B804 (UnkStruct_0205B43C * param0, int param1, u16 param2)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     UnkStruct_0203330C * v1;
     UnkStruct_0205B4F8 * v2;
 
@@ -691,7 +691,7 @@ void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
 {
     UnkStruct_0203CDB0 * v0 = (UnkStruct_0203CDB0 *)param3;
     UnkStruct_02072014 * v1 = (UnkStruct_02072014 *)param2;
-    UnkStruct_02025E6C * v2 = sub_02032EE8(sub_0203608C() ^ 1);
+    TrainerInfo * v2 = sub_02032EE8(sub_0203608C() ^ 1);
     void * v3;
 
     {
@@ -706,7 +706,7 @@ void sub_0205BA08 (int param0, int param1, void * param2, void * param3)
     v1->unk_66A = 1;
 
     if (param0 != sub_0203608C()) {
-        v3 = sub_0202C0EC((u16 *)sub_02025EF0(v2), sub_02025F30(v2), 31);
+        v3 = sub_0202C0EC((u16 *)TrainerInfo_Name(v2), TrainerInfo_Gender(v2), 31);
         sub_0202B758(v0->unk_9C, v3, 4);
     }
 }
@@ -899,7 +899,7 @@ static int sub_0205BAC0 (int param0)
 static int sub_0205BAE8 (UnkStruct_0205B43C * param0, int param1)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
+    TrainerInfo * v2;
     UnkStruct_0203330C * v3;
     UnkStruct_0205B4F8 * v4;
 
@@ -926,7 +926,7 @@ static int sub_0205BAE8 (UnkStruct_0205B43C * param0, int param1)
         v0 = v4->unk_18[(param1 - 10) % 4];
         v0 = v0 >> 7;
     } else {
-        v0 = sub_02025F30(v2);
+        v0 = TrainerInfo_Gender(v2);
     }
 
     switch (v4->unk_1C) {
@@ -935,27 +935,27 @@ static int sub_0205BAE8 (UnkStruct_0205B43C * param0, int param1)
         return Unk_020ED548[v0];
         break;
     case 5:
-        return Unk_020ED560[sub_0201D2E8() % 2][v0];
+        return Unk_020ED560[LCRNG_Next() % 2][v0];
         break;
     case 6:
-        return Unk_020ED620[sub_0201D2E8() % 4][v0];
+        return Unk_020ED620[LCRNG_Next() % 4][v0];
         break;
     case 7:
-        return Unk_020ED550[sub_0201D2E8() % 2][v0];
+        return Unk_020ED550[LCRNG_Next() % 2][v0];
         break;
     case 8:
     case 1:
-        return Unk_020ED600[sub_0201D2E8() % 4][v0];
+        return Unk_020ED600[LCRNG_Next() % 4][v0];
         break;
     case 9:
     case 2:
-        return Unk_020ED640[sub_0201D2E8() % 4][v0];
+        return Unk_020ED640[LCRNG_Next() % 4][v0];
         break;
     case 10:
     case 3:
     case 12:
     case 13:
-        return Unk_020ED660[sub_0201D2E8() % 4][v0];
+        return Unk_020ED660[LCRNG_Next() % 4][v0];
         break;
     }
 
@@ -1015,7 +1015,7 @@ static int sub_0205BCD4 (int param0, int param1, UnkStruct_0200B358 * param2)
 int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, UnkStruct_0200B358 * param3)
 {
     int v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     param1--;
 
@@ -1027,11 +1027,11 @@ int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, UnkStruct
 
     if (v1 == NULL) {
         sub_020388F4(1, 1);
-        sub_02038AE0(1);
+        Link_SetErrorState(1);
         return 0;
     }
 
-    v0 = sub_02025F30(v1);
+    v0 = TrainerInfo_Gender(v1);
 
     switch (param2) {
     case 1:
@@ -1098,18 +1098,18 @@ int sub_0205BCF4 (UnkStruct_0205B43C * param0, int param1, int param2, UnkStruct
 u8 sub_0205BE38 (void)
 {
     u8 v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
 
     v1 = sub_02032EE8(sub_0203608C() ^ 1);
     GF_ASSERT(v1 != NULL);
-    v0 = sub_02025FCC(v1);
+    v0 = TrainerInfo_GameCode(v1);
 
     return v0;
 }
 
 static void sub_0205BE58 (UnkStruct_0205B4F8 * param0, int param1)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     int v1, v2 = 0;
 
     for (v1 = 1; v1 < 4 + 1; v1++) {
@@ -1119,8 +1119,8 @@ static void sub_0205BE58 (UnkStruct_0205B4F8 * param0, int param1)
 
         if (v0 != NULL) {
             if (sub_0203608C() == 0) {
-                param0->unk_00[v3] = sub_02025F20(v0);
-                param0->unk_18[v3] = sub_02025F8C(v0) | (sub_02025F30(v0) << 7);
+                param0->unk_00[v3] = TrainerInfo_ID(v0);
+                param0->unk_18[v3] = TrainerInfo_Appearance(v0) | (TrainerInfo_Gender(v0) << 7);
             }
         } else {
             param0->unk_00[v3] = 0;
@@ -1219,8 +1219,8 @@ int sub_0205BF44 (UnkStruct_0205B43C * param0, UnkStruct_0200B358 * param1)
     }
 
     if (sub_02014C80(&param0->unk_178) != 4) {
-        int v4 = sub_02025F8C(param0->unk_08);
-        int v5 = sub_02025F30(param0->unk_08);
+        int v4 = TrainerInfo_Appearance(param0->unk_08);
+        int v5 = TrainerInfo_Gender(param0->unk_08);
 
         sub_0200B960(param1, 0, sub_0205CA14(v5, v4, 2));
 
@@ -1270,11 +1270,11 @@ UnkStruct_02014A84 * sub_0205C028 (UnkStruct_0205B43C * param0)
     return &param0->unk_178;
 }
 
-void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, UnkStruct_02025E6C * param3, UnkStruct_02014EC4 * param4)
+void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, TrainerInfo * param3, UnkStruct_02014EC4 * param4)
 {
-    UnkStruct_02025E6C * v0;
+    TrainerInfo * v0;
     Strbuf* v1;
-    UnkStruct_0200B144 * v2 = sub_0200B144(1, 26, 635, 4);
+    MessageLoader * v2 = MessageLoader_Init(1, 26, 635, 4);
     int v3, v4;
 
     param2--;
@@ -1286,14 +1286,14 @@ void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, UnkStruc
     }
 
     if (v0 == NULL) {
-        sub_0200B190(v2);
+        MessageLoader_Free(v2);
         return;
     }
 
     sub_0200B498(param0, 0, v0);
     sub_0200B498(param0, 1, param3);
 
-    v3 = sub_02025FD8(v0);
+    v3 = TrainerInfo_RegionCode(v0);
 
     if ((v3 >= 1) && (v3 <= 7)) {
         static const int v5[] = {
@@ -1329,11 +1329,11 @@ void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, UnkStruc
         v4 = 217;
     }
 
-    v1 = sub_0200B1EC(v2, v4);
+    v1 = MessageLoader_GetNewStrbuf(v2, v4);
 
     sub_0200B48C(param0, 2, v1, 0, 1, v3);
     Heap_FreeToHeap(v1);
-    sub_0200B190(v2);
+    MessageLoader_Free(v2);
 }
 
 void sub_0205C12C (UnkStruct_02014A84 * param0)
@@ -1373,7 +1373,7 @@ void * sub_0205C17C (UnkStruct_0205B43C * param0)
     param0->unk_188[0] = sub_02071F04(0);
     param0->unk_188[1] = sub_02071F04(0);
 
-    sub_02071D40(0, 0, 0, sub_0205CA14(sub_02025F30(param0->unk_08), sub_02025F8C(param0->unk_08), 0), param0->unk_00, param0->unk_184);
+    sub_02071D40(0, 0, 0, sub_0205CA14(TrainerInfo_Gender(param0->unk_08), TrainerInfo_Appearance(param0->unk_08), 0), param0->unk_00, param0->unk_184);
 
     return (void *)param0->unk_188[sub_0203608C() ^ 1];
 }

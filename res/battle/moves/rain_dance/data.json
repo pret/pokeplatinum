@@ -1,0 +1,19 @@
+{
+    "name": "Rain Dance",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_WATER",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_WEATHER_RAIN",
+        "chance": 0
+    },
+    "range": "RANGE_FIELD",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_TOUGH"
+    }
+}

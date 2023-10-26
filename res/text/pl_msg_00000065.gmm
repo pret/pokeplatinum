@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18331" />
+	<row id="pl_msg_00000065_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hunh?\rOh, it’s you, {STRVAR_1 3, 1, 0}!\nYou finally got here?\fYou’re slow like always.\rBut anyway, the Gym Leader’s tough!\nLike, seriously serious!\rIf the Gym Leader’s this tough,\nI wonder how he compares to my dad...\rHuh?\nI just drifted there.\rAnyway, the Gym Leader’s gone off\nto the coal mine.\rIf you want to take on the Gym Leader,\nyou’d better go off to the mine!</language>
+	</row>
+	<row id="pl_msg_00000065_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: I told you, the Gym\nLeader went down to the Oreburgh Mine.\rIf you want to take the Gym challenge,\nyou have to go down to the mine.</language>
+	</row>
+	<row id="pl_msg_00000065_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Thud!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000065_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Whoops! {STRVAR_1 3, 1, 0}!\nYou got the Gym Badge, huh?\rEterna City is the next place with\na Gym that gives away Badges, right?\r</language>
+	</row>
+	<row id="pl_msg_00000065_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So, yeah, I went to Route 207, but\nyou can’t go there without a Bicycle.\rI made my team battle and toughened\nthem up, so it wasn’t a waste.\r</language>
+	</row>
+	<row id="pl_msg_00000065_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So, I’m going back to Jubilife City.\nNext stop, the Eterna Gym Badge!\rTen seconds before I dash!\rNine...\rBah! Who’s got time to count?!\r</language>
+	</row>
+	<row id="pl_msg_00000065_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Howdy, Trainer!\rHuh? Uh-oh!\nYou don’t have a single Gym Badge?\rYou’d better do something about that!\nI’ll take you to the Pokémon Gym.\r</language>
+	</row>
+	<row id="pl_msg_00000065_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Huh?\nThere’s someone there.</language>
+	</row>
+	<row id="pl_msg_00000065_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is that guy in front of the Gym\nyour friend?\rHe’s sort of twitchy and impatient.</language>
+	</row>
+	<row id="pl_msg_00000065_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, hi, you’re back!\nThe Gym Leader’s waiting for you.</language>
+	</row>
+	<row id="pl_msg_00000065_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Can I see your Trainer Case?\rIt’s got the Gym Badge you just\nwon, right?</language>
+	</row>
+	<row id="pl_msg_00000065_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Gym Leader went off to work in\nthe mine.</language>
+	</row>
+	<row id="pl_msg_00000065_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Gym Leader is young, but he’s\nthe mine’s safety supervisor.\rHe’s an expert in more than just one\nfield!</language>
+	</row>
+	<row id="pl_msg_00000065_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone’s proud of the mine.\rThey’re digging for coal under the\nsea as we speak...\rIt’s amazing how they do it!</language>
+	</row>
+	<row id="pl_msg_00000065_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Up ahead there’s a huge mountain\nthat towers above everything.\rIt divides Sinnoh into two distinct\nhalves.</language>
+	</row>
+	<row id="pl_msg_00000065_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you seen the vents?\nThey release steam from down below.</language>
+	</row>
+	<row id="pl_msg_00000065_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">These vents exchange the hot air\ndown below with the fresh air outside.\rLooking down them gives me the urge\nto start yelling into ’em! Hello!</language>
+	</row>
+	<row id="pl_msg_00000065_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s no question. This is hard,\nhard work.\rBut working alongside Pokémon...\nIt gives me a boost somehow.\rHere, take one of these.\r</language>
+	</row>
+	<row id="pl_msg_00000065_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Feeling hale and hearty puts a smile\non my face. And that makes me happy.</language>
+	</row>
+	<row id="pl_msg_00000065_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This pile of dirty sand is called\na slag heap.\rIt’s the waste from sorting coal.</language>
+	</row>
+	<row id="pl_msg_00000065_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Chop, chop, MACHOP!\nChop, chop away on rocks! ~♫</language>
+	</row>
+	<row id="pl_msg_00000065_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">TMs are single use only, but HMs\ncan be used over and over.\rIt’s tricky trying to decide which\nPokémon should learn what moves.</language>
+	</row>
+	<row id="pl_msg_00000065_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I run around with my Running\nShoes on, I’m the center of attention!\r...At least that’s what it feels like.\nThere’s always someone looking at me.</language>
+	</row>
+	<row id="pl_msg_00000065_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Natural time capsules buried many,\nmany years ago...\rThat’s what Fossils are.</language>
+	</row>
+	<row id="pl_msg_00000065_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MACHOP: Macho! Chopo!</language>
+	</row>
+	<row id="pl_msg_00000065_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MACHOP: Pigyooh!</language>
+	</row>
+	<row id="pl_msg_00000065_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MACHOP: Gwooh! Gogogooh!</language>
+	</row>
+	<row id="pl_msg_00000065_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oreburgh City\nCity of Energy</language>
+	</row>
+	<row id="pl_msg_00000065_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oreburgh City Pokémon Gym\nLeader: Roark\f“Call me Roark the Rock!”</language>
+	</row>
+	<row id="pl_msg_00000065_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oreburgh Mining Museum\n“Coal Mining and You!”</language>
+	</row>
+	<row id="pl_msg_00000065_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oreburgh Mine\nBeware of Busy Pokémon!</language>
+	</row>
+</body>

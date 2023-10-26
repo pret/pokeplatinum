@@ -1,9 +1,0 @@
-.public __msl_assertion_failed
-.public memcpy
-.public sprintf
-.public strlen
-.public strchr
-.public atoi
-.public ov4_021EAF1C
-.public SOC_GetHostByName
-.public SOC_InetNtoA

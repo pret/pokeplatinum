@@ -17,7 +17,7 @@ typedef struct UnkStruct_ov65_02235130_t {
     u32 unk_04;
     u32 unk_08;
     BOOL unk_0C;
-    UnkStruct_02018340 * unk_10;
+    BGL * unk_10;
     UnkStruct_ov65_022358CC unk_14;
     UnkStruct_ov65_022354D8 unk_1F0[48];
     UnkStruct_ov65_022354D8 * unk_730;

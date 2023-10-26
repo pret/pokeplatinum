@@ -9,8 +9,8 @@
 #include "heap.h"
 #include "unk_02018340.h"
 
-static u32 sub_020072D0(void * param0, UnkStruct_02018340 * param1, u32 param2, u32 param3, u32 param4);
-static void sub_02007314(void * param0, UnkStruct_02018340 * param1, u32 param2, u32 param3, u32 param4);
+static u32 sub_020072D0(void * param0, BGL * param1, u32 param2, u32 param3, u32 param4);
+static void sub_02007314(void * param0, BGL * param1, u32 param2, u32 param3, u32 param4);
 static u32 sub_02007374(void * param0, int param1, u32 param2, u32 param3);
 static void sub_020073BC(void * param0, int param1, u32 param2, u32 param3, u32 param4);
 static void sub_0200749C(void * param0, NNS_G2D_VRAM_TYPE param1, u32 param2, NNSG2dImagePaletteProxy * param3);
@@ -22,13 +22,13 @@ static void * sub_020075D8(void * param0, NNSG2dPaletteData ** param1);
 static void * sub_020075F4(void * param0, NNSG2dCellDataBank ** param1);
 static void * sub_02007610(void * param0, NNSG2dAnimBankData ** param1);
 
-u32 sub_02006E3C (u32 param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 sub_02006E3C (u32 param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void * v0 = sub_02006FE8(param0, param1, param6, param7, 0);
     return sub_020072D0(v0, param2, param3, param4, param5);
 }
 
-void sub_02006E60 (u32 param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+void sub_02006E60 (u32 param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void * v0 = sub_02006FE8(param0, param1, param6, param7, 1);
     sub_02007314(v0, param2, param3, param4, param5);
@@ -179,13 +179,13 @@ void * sub_02007068 (u32 param0, u32 param1, BOOL param2, u32 param3, int param4
     return v0;
 }
 
-u32 sub_020070E8 (NARC * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+u32 sub_020070E8 (NARC * param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void * v0 = sub_0200723C(param0, param1, param6, param7, 0);
     return sub_020072D0(v0, param2, param3, param4, param5);
 }
 
-void sub_0200710C (NARC * param0, u32 param1, UnkStruct_02018340 * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
+void sub_0200710C (NARC * param0, u32 param1, BGL * param2, u32 param3, u32 param4, u32 param5, BOOL param6, u32 param7)
 {
     void * v0 = sub_0200723C(param0, param1, param6, param7, 1);
     sub_02007314(v0, param2, param3, param4, param5);
@@ -291,7 +291,7 @@ void * sub_02007250 (NARC * param0, u32 param1, BOOL param2, u32 param3, int par
     return v0;
 }
 
-static u32 sub_020072D0 (void * param0, UnkStruct_02018340 * param1, u32 param2, u32 param3, u32 param4)
+static u32 sub_020072D0 (void * param0, BGL * param1, u32 param2, u32 param3, u32 param4)
 {
     if (param0 != NULL) {
         NNSG2dCharacterData * v0;
@@ -310,7 +310,7 @@ static u32 sub_020072D0 (void * param0, UnkStruct_02018340 * param1, u32 param2,
     return param4;
 }
 
-static void sub_02007314 (void * param0, UnkStruct_02018340 * param1, u32 param2, u32 param3, u32 param4)
+static void sub_02007314 (void * param0, BGL * param1, u32 param2, u32 param3, u32 param4)
 {
     if (param0 != NULL) {
         NNSG2dScreenData * v0;

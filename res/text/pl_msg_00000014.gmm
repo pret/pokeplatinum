@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="17467" />
+	<row id="pl_msg_00000014_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Recruitment Message arrived\nfrom a Pokémon Ranger.\n\nYou may receive a {COLOR 1}MANAPHY Egg{COLOR 0}\nfrom the Pokémon Ranger!\n\nOn the next screen, select\n{COLOR 1}LINK WITH POKéMON RANGER{COLOR 0}.\nPress the A Button to advance.</language>
+	</row>
+	<row id="pl_msg_00000014_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Mystery Gift signal has\nbeen located!\n\nYou may receive a Mystery Gift!\n\nAt the next screen, select\n{COLOR 1}Mystery Gift{COLOR 0}.\nPress the A Button to advance.</language>
+	</row>
+	<row id="pl_msg_00000014_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Recruitment Message arrived\nfrom a Pokémon Ranger.\n\nHowever, to communicate with the\nPokémon Ranger, you must get\nfarther into your adventure and\nobtain a Pokédex first.\nPress the A Button to advance.</language>
+	</row>
+	<row id="pl_msg_00000014_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Mystery Gift signal has\nbeen located.\n\nHowever, to receive a Mystery\nGift, you must get farther into\nyour adventure and obtain a\nPokédex first.\nPress the A Button to advance.</language>
+	</row>
+	<row id="pl_msg_00000014_00004" index="4">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000014_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">\n{COLOR 1}WARNING!\n{COLOR 0}There is already another saved game\nfile. If you start an adventure now,\nyou will not be able to save it.\nPress Up + SELECT + B Button on\nthe title screen if you want to erase\nthe current saved game file.\n\nA Button: Begin adventure\nB Button: Return to the menu</language>
+	</row>
+</body>

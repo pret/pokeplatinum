@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
 
@@ -22,7 +22,7 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay006/ov6_022426AC.h"
 
 typedef struct UnkStruct_ov6_022426B8_t {
@@ -39,7 +39,7 @@ typedef struct UnkStruct_ov6_022426B8_t {
 } UnkStruct_ov6_022426B8;
 
 static void ov6_022428F8(UnkStruct_ov6_022426B8 * param0);
-static void ov6_02242860(UnkStruct_0201CD38 * param0, void * param1);
+static void ov6_02242860(SysTask * param0, void * param1);
 static void ov6_02242880(UnkStruct_02009714 * param0, UnkStruct_02009714 * param1, void * param2, void * param3);
 
 static const u8 Unk_ov6_02249030[] = {
@@ -73,7 +73,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
         int v2;
         u8 v3;
 
-        v3 = sub_020759F0(param1, 18);
+        v3 = PokemonPersonalData_GetSpeciesValue(param1, 18);
 
         switch (v3) {
         case 0:
@@ -86,7 +86,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
             v2 = 2;
             break;
         default:
-            if (sub_0201D2E8() % 2) {
+            if (LCRNG_Next() % 2) {
                 v2 = 0;
             } else {
                 v2 = 1;
@@ -97,7 +97,7 @@ void ov6_022426C0 (UnkStruct_ov6_022426B8 * param0, const int param1)
     }
 
     param0->unk_38 = sub_020095C4(1, &param0->unk_3C, 4);
-    v1 = NARC_ctor(97, 4);
+    v1 = NARC_ctor(NARC_INDEX_DATA__FIELD_CUTIN, 4);
 
     for (v0 = 0; v0 < 4; v0++) {
         param0->unk_00[v0] = sub_02009714(Unk_ov6_02249030[v0], v0, 4);
@@ -124,7 +124,7 @@ void ov6_022427F4 (UnkStruct_ov6_022426B8 * param0)
     param0->unk_1CC = 1;
     param0->unk_1D0 = 0;
 
-    sub_0200D9E8(ov6_02242860, param0, 0);
+    SysTask_Start(ov6_02242860, param0, 0);
 }
 
 void ov6_02242814 (UnkStruct_ov6_022426B8 * param0)
@@ -153,7 +153,7 @@ void ov6_02242828 (UnkStruct_ov6_022426B8 * param0)
     Heap_FreeToHeap(param0->unk_24);
 }
 
-static void ov6_02242860 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov6_02242860 (SysTask * param0, void * param1)
 {
     UnkStruct_ov6_022426B8 * v0 = param1;
 
@@ -161,7 +161,7 @@ static void ov6_02242860 (UnkStruct_0201CD38 * param0, void * param1)
         sub_020219F8(v0->unk_38);
     } else {
         v0->unk_1D0 = 1;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 

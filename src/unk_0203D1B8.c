@@ -2,8 +2,8 @@
 #include <string.h>
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202783C_decl.h"
 #include "struct_decls/struct_02029C68_decl.h"
 #include "struct_decls/struct_02029D04_decl.h"
@@ -13,7 +13,7 @@
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_0207AE68_decl.h"
 #include "struct_decls/struct_0207D3C0_decl.h"
@@ -62,7 +62,7 @@
 #include "struct_defs/struct_02098C44.h"
 #include "struct_defs/struct_02098D38.h"
 #include "struct_defs/struct_020997B8.h"
-#include "overlay006/struct_ov6_02240D5C.h"
+#include "overlay006/battle_params.h"
 #include "overlay006/struct_ov6_02246254.h"
 #include "overlay088/struct_ov88_0223C370.h"
 #include "overlay090/struct_ov90_021D0D80.h"
@@ -72,11 +72,11 @@
 #include "heap.h"
 #include "unk_0201D15C.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_020244AC.h"
 #include "unk_02025CB0.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020277A4.h"
 #include "unk_020279FC.h"
@@ -108,7 +108,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206B70C.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207AE68.h"
@@ -238,7 +238,7 @@ typedef struct {
 } UnkStruct_0203E35C;
 
 static void sub_0203DF68(UnkStruct_020508D4 * param0);
-static u8 sub_0203E484(UnkStruct_021C0794 * param0, u8 param1);
+static u8 sub_0203E484(SaveData * param0, u8 param1);
 
 static int sub_0203D1B8 (UnkStruct_020067E8 * param0, int * param1)
 {
@@ -267,7 +267,7 @@ const UnkStruct_0208BE5C Unk_020EA358 = {
     FS_OVERLAY_ID(overlay16)
 };
 
-void sub_0203D1D4 (UnkStruct_0203CDB0 * param0, UnkStruct_ov6_02240D5C * param1)
+void sub_0203D1D4 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
 {
     sub_0203CD84(param0, &Unk_020EA358, param1);
 }
@@ -591,7 +591,7 @@ void * sub_0203D644 (UnkStruct_0203CDB0 * param0, int param1)
 UnkStruct_02098D38 * sub_0203D670 (UnkStruct_0203CDB0 * param0, int param1, int param2)
 {
     UnkStruct_02098D38 * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
     static const u8 v2[] = {
         0, 1, 2, 4, 3, 5, 6, 7, 8
     };
@@ -761,7 +761,7 @@ void sub_0203D884 (UnkStruct_0203CDB0 * param0, UnkStruct_0203D8AC * param1)
 void * sub_0203D8AC (UnkStruct_0203CDB0 * param0)
 {
     UnkStruct_0203D8AC * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     int v2 = 0, v3 = 0;
     sub_0203A76C(sub_0203A790(param0->unk_0C));
 
@@ -871,7 +871,7 @@ void sub_0203D9D8 (UnkStruct_0203CDB0 * param0, UnkStruct_ov90_021D0D80 * param1
     sub_0203CD84(param0, &v0, param1);
 }
 
-static UnkStruct_0203DA00 * sub_0203DA00 (int param0, UnkStruct_021C0794 * param1, int param2, BOOL * param3, BOOL param4)
+static UnkStruct_0203DA00 * sub_0203DA00 (int param0, SaveData * param1, int param2, BOOL * param3, BOOL param4)
 {
     UnkStruct_0203DA00 * v0;
     Pokemon * v1;
@@ -930,7 +930,7 @@ static BOOL sub_0203DA64 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_0203DAC0 (UnkStruct_020508D4 * param0, u16 * param1, UnkStruct_021C0794 * param2, u16 param3, u16 param4)
+void sub_0203DAC0 (UnkStruct_020508D4 * param0, u16 * param1, SaveData * param2, u16 param3, u16 param4)
 {
     UnkStruct_0203DA64 * v0;
 
@@ -995,7 +995,7 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 *
 {
     param0->unk_04 = sub_02025E38(param1->unk_0C);
     param0->unk_08 = Party_GetFromSavedata(param1->unk_0C);
-    param0->unk_0C = sub_020245BC(param1->unk_0C, 9);
+    param0->unk_0C = SaveData_Get(param1->unk_0C, 9);
     param0->unk_14 = sub_0202C878(param1->unk_0C);
     param0->unk_18 = sub_02025E44(param1->unk_0C);
     param0->unk_24 = sub_02027560(param1->unk_0C);
@@ -1003,9 +1003,9 @@ static void sub_0203DB38 (UnkStruct_ov88_0223C370 * param0, UnkStruct_0203CDB0 *
     param0->unk_10 = param1->unk_0C;
     param0->unk_1C = param1->unk_9C;
     param0->unk_20 = sub_0202CD88(param1->unk_0C);
-    param0->unk_38 = Heap_AllocFromHeap(32, sub_02025E68());
-    param0->unk_3C = Heap_AllocFromHeap(32, sub_02076AF0());
-    param0->unk_40 = Heap_AllocFromHeap(32, sub_02076AF0());
+    param0->unk_38 = Heap_AllocFromHeap(32, TrainerInfo_Size());
+    param0->unk_3C = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
+    param0->unk_40 = Heap_AllocFromHeap(32, Pokemon_GetStructSize());
     param0->unk_00 = param1;
     param0->unk_34 = 0;
 }
@@ -1060,8 +1060,8 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
         break;
     case 4:
         v2->unk_48.unk_08 = v2->unk_04.unk_38;
-        v2->unk_48.unk_00 = sub_02076B10(v2->unk_04.unk_3C);
-        v2->unk_48.unk_04 = sub_02076B10(v2->unk_04.unk_40);
+        v2->unk_48.unk_00 = Pokemon_GetBoxPokemon(v2->unk_04.unk_3C);
+        v2->unk_48.unk_04 = Pokemon_GetBoxPokemon(v2->unk_04.unk_40);
         v2->unk_48.unk_14 = sub_02025E44(v1->unk_0C);
         v2->unk_48.unk_10 = 1;
 
@@ -1089,7 +1089,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
         break;
     case 5:
     {
-        int v3 = GetMonData(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
+        int v3 = Pokemon_GetValue(v2->unk_04.unk_40, MON_DATA_HELD_ITEM, NULL);
         int v4;
         int v5;
 
@@ -1104,7 +1104,7 @@ BOOL sub_0203DBF0 (UnkStruct_020508D4 * param0)
     break;
     case 6:
         if (sub_0207B0D0(v2->unk_60)) {
-            sub_020775EC(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
+            Pokemon_Copy(v2->unk_04.unk_40, Party_GetPokemonBySlotIndex(v2->unk_04.unk_08, v2->unk_04.unk_2C));
             sub_0207B0E0(v2->unk_60);
             Heap_Destroy(26);
             v2->unk_00 = 7;
@@ -1186,12 +1186,12 @@ const UnkStruct_0208BE5C Unk_020EA238 = {
     FS_OVERLAY_ID(overlay64)
 };
 
-void sub_0203DE78 (UnkStruct_0203CDB0 * param0, UnkStruct_021C0794 * param1)
+void sub_0203DE78 (UnkStruct_0203CDB0 * param0, SaveData * param1)
 {
     sub_0203CD84(param0, &Unk_020EA238, param1);
 }
 
-void sub_0203DE88 (UnkStruct_0203CDB0 * param0, UnkStruct_021C0794 * param1)
+void sub_0203DE88 (UnkStruct_0203CDB0 * param0, SaveData * param1)
 {
     sub_0203CD84(param0, &Unk_020F2FCC, param0);
 }
@@ -1255,8 +1255,8 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
     switch (v1->unk_0C->unk_00) {
     case 0:
     {
-        UnkStruct_02025E6C * v2 = sub_02025E38(v0->unk_0C);
-        sub_02025EC0(v2, v1->unk_0C->unk_1C);
+        TrainerInfo * v2 = sub_02025E38(v0->unk_0C);
+        TrainerInfo_SetName(v2, v1->unk_0C->unk_1C);
     }
     break;
     case 1:
@@ -1265,7 +1265,7 @@ static void sub_0203DF68 (UnkStruct_020508D4 * param0)
         int v4;
 
         v3 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v0->unk_0C), v1->unk_04);
-        sub_02074B30(v3, 118, (u8 *)&v1->unk_0C->unk_1C);
+        Pokemon_SetValue(v3, 118, (u8 *)&v1->unk_0C->unk_1C);
     }
     break;
     case 5:
@@ -1300,8 +1300,8 @@ void sub_0203DFE8 (UnkStruct_020508D4 * param0, int param1, int param2, int para
     switch (param1) {
     case 1:
         v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(v1->unk_0C), v2->unk_04);
-        v2->unk_0C->unk_10 = GetMonData(v0, MON_DATA_111, NULL);
-        v2->unk_0C->unk_08 = GetMonData(v0, MON_DATA_FORM, NULL);
+        v2->unk_0C->unk_10 = Pokemon_GetValue(v0, MON_DATA_GENDER, NULL);
+        v2->unk_0C->unk_08 = Pokemon_GetValue(v0, MON_DATA_FORM, NULL);
 
         if (param5 != NULL) {
             Strbuf_CopyChars(v2->unk_10, param5);
@@ -1396,8 +1396,8 @@ void sub_0203E0FC (UnkStruct_0203CDB0 * param0, int param1)
 
     v0->unk_00 = sub_0202DA40(param0->unk_0C);
     v0->unk_04 = sub_02025CCC(param0->unk_0C);
-    v0->unk_08 = sub_020245BC(param0->unk_0C, 2);
-    v0->unk_0C = sub_02024420(param0->unk_0C);
+    v0->unk_08 = SaveData_Get(param0->unk_0C, 2);
+    v0->unk_0C = SaveData_PCBoxes(param0->unk_0C);
     v0->unk_10 = sub_02027560(param0->unk_0C);
     v0->unk_14 = sub_0202B370(param0->unk_0C);
     v0->unk_18 = sub_0202C878(param0->unk_0C);
@@ -1479,10 +1479,10 @@ void * sub_0203E244 (UnkStruct_0203CDB0 * param0)
     static const UnkStruct_0208BE5C v0 = {
         ov87_021D0D80, ov87_021D0E2C, ov87_021D0DFC, FS_OVERLAY_ID(overlay87),
     };
-    UnkStruct_0202DF8C * v1;
+    HallOfFame * v1;
     int v2;
 
-    v1 = sub_0202444C(param0->unk_0C, 11, &v2);
+    v1 = SaveData_HallOfFame(param0->unk_0C, 11, &v2);
 
     if (v2 == 2) {
         Heap_FreeToHeap(v1);
@@ -1632,7 +1632,7 @@ void sub_0203E414 (UnkStruct_020508D4 * param0, int param1)
     sub_02050944(param0, sub_0203E35C, v2);
 }
 
-static u8 sub_0203E484 (UnkStruct_021C0794 * param0, u8 param1)
+static u8 sub_0203E484 (SaveData * param0, u8 param1)
 {
     static const u8 v0[12] = {
         0, 5, 1, 1, 4, 4, 2, 2, 2, 3, 3, 3,
@@ -1642,21 +1642,21 @@ static u8 sub_0203E484 (UnkStruct_021C0794 * param0, u8 param1)
     u8 v3[12];
     u8 v4, v5, v6, v7;
 
-    v2 = sub_0201D2D0();
+    v2 = LCRNG_GetSeed();
 
-    sub_0201D2DC(sub_0202B428(v1));
+    LCRNG_SetSeed(sub_0202B428(v1));
     MI_CpuCopy8(v0, v3, sizeof(v3));
 
     for (v4 = 0; v4 < 12; v4++) {
         for (v5 = v4 + 1; v5 < 12; v5++) {
-            v6 = sub_0201D2E8() % 12;
+            v6 = LCRNG_Next() % 12;
             v7 = v3[v4];
             v3[v4] = v3[v6];
             v3[v6] = v7;
         }
     }
 
-    sub_0201D2DC(v2);
+    LCRNG_SetSeed(v2);
     return v3[param1];
 }
 
@@ -1735,7 +1735,7 @@ UnkStruct_02098C44 * sub_0203E598 (UnkStruct_0203CDB0 * param0, int param1, int 
     v0->unk_04 = sub_0207D990(param0->unk_0C);
     v0->unk_08 = sub_02028430(param0->unk_0C);
     v0->unk_0C = sub_02025E44(param0->unk_0C);
-    v0->unk_10 = sub_0202440C(param0->unk_0C);
+    v0->unk_10 = SaveData_TVBroadcast(param0->unk_0C);
     v0->unk_18 = NULL;
     v0->unk_21 = 0;
     v0->unk_20 = 5;

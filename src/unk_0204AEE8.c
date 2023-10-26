@@ -3,12 +3,12 @@
 
 #include "assert.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -21,19 +21,20 @@
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
 #include "narc.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202D05C.h"
 #include "unk_02034198.h"
 #include "unk_02049D08.h"
 #include "unk_0204AEE8.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
+#include "flags.h"
 
 static BOOL sub_0204B470(UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * param1, u16 param2, UnkStruct_ov104_0223A348_sub2 * param3, u8 param4, u16 * param5, u16 * param6, UnkStruct_0204B404 * param7, int param8);
 static void * sub_0204B630(u16 param0, int param1);
@@ -105,19 +106,19 @@ static const u16 Unk_020EBD98[][2] = {
     {0x16, 0x47}
 };
 
-UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 param2, u8 param3, u8 * param4)
+UnkStruct_0200B358 * sub_0204AEE8 (SaveData * param0, u16 param1, u16 param2, u8 param3, u8 * param4)
 {
     u8 v0;
     u16 v1;
     Strbuf* v2, * v3;
     UnkStruct_02026324 * v4;
     UnkStruct_0200B358 * v5;
-    UnkStruct_0200B144 * v6;
+    MessageLoader * v6;
 
     v2 = Strbuf_Init(12 + 2, 4);
     v3 = Strbuf_Init(2, 4);
     v4 = sub_02027560(param0);
-    v6 = sub_0200B144(1, 26, 412, 4);
+    v6 = MessageLoader_Init(1, 26, 412, 4);
     v5 = sub_0200B368(18 + 1, 12 + 2, 4);
 
     sub_0200B60C(v5, 0, param1, 1, 0, 1);
@@ -126,13 +127,13 @@ UnkStruct_0200B358 * sub_0204AEE8 (UnkStruct_021C0794 * param0, u16 param1, u16 
         v1 = sub_02078824(v0);
 
         if (sub_02026FE8(v4, v1)) {
-            sub_0200B1B8(v6, v1, v2);
+            MessageLoader_GetStrbuf(v6, v1, v2);
             sub_0200B48C(v5, (*param4) + 1, v2, param2, param3, GAME_LANGUAGE);
             (*param4)++;
         }
     }
 
-    sub_0200B190(v6);
+    MessageLoader_Free(v6);
     Strbuf_Free(v3);
     Strbuf_Free(v2);
 
@@ -199,18 +200,18 @@ u16 sub_0204B044 (UnkStruct_0203CDB0 * param0, const u16 * param1)
     return 0;
 }
 
-void sub_0204B060 (UnkStruct_0204AFC4 * param0, UnkStruct_021C0794 * param1)
+void sub_0204B060 (UnkStruct_0204AFC4 * param0, SaveData * param1)
 {
     int v0;
     Party * v1;
     Pokemon * v2;
-    UnkStruct_02025E6C * v3 = sub_02025E38(param1);
+    TrainerInfo * v3 = sub_02025E38(param1);
 
-    param0->unk_83E[0] = sub_02025F30(v3);
+    param0->unk_83E[0] = TrainerInfo_Gender(v3);
     v1 = Party_GetFromSavedata(param1);
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_83E[1 + v0] = GetMonData(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), MON_DATA_SPECIES, NULL);
+        param0->unk_83E[1 + v0] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(v1, param0->unk_2A[v0]), MON_DATA_SPECIES, NULL);
     }
 
     param0->unk_83E[3] = sub_0202D3B4(param0->unk_74, 3, 0);
@@ -282,7 +283,7 @@ u16 sub_0204B0F0 (UnkStruct_0204AFC4 * param0, u8 param1, u8 param2, int param3)
 static UnkStruct_0204B184 * sub_0204B184 (UnkStruct_ov104_0223A348 * param0, u16 param1, int param2)
 {
     UnkStruct_0204B184 * v0;
-    UnkStruct_0200B144 * v1 = sub_0200B144(1, 26, 21, param2);
+    MessageLoader * v1 = MessageLoader_Init(1, 26, 21, param2);
     Strbuf* v2;
 
     MI_CpuClear8(param0, sizeof(UnkStruct_ov104_0223A348));
@@ -294,11 +295,11 @@ static UnkStruct_0204B184 * sub_0204B184 (UnkStruct_ov104_0223A348 * param0, u16
     param0->unk_00.unk_18[1] = param1 * 3;
     param0->unk_00.unk_04 = v0->unk_00;
 
-    v2 = sub_0200B1EC(v1, param1);
+    v2 = MessageLoader_GetNewStrbuf(v1, param1);
 
     Strbuf_ToChars(v2, &param0->unk_00.unk_08[0], 8);
     Strbuf_Free(v2);
-    sub_0200B190(v1);
+    MessageLoader_Free(v1);
 
     return v0;
 }
@@ -345,7 +346,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     if (param4 == 0) {
         do {
             v2 = (sub_0204AEC0(param0) | sub_0204AEC0(param0) << 16);
-        } while ((v4.unk_0B != GetNatureFromPersonality(v2)) || (sub_02075E38(param3, v2) == 1));
+        } while ((v4.unk_0B != Pokemon_GetNatureOf(v2)) || (Pokemon_IsPersonalityShiny(param3, v2) == 1));
 
         param1->unk_10 = v2;
     } else {
@@ -363,7 +364,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     v1 = 0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & sub_020787CC(v0)) {
+        if (v4.unk_0A & FlagIndex(v0)) {
             v1++;
         }
     }
@@ -375,7 +376,7 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     }
 
     for (v0 = 0; v0 < 6; v0++) {
-        if (v4.unk_0A & sub_020787CC(v0)) {
+        if (v4.unk_0A & FlagIndex(v0)) {
             param1->unk_18_val2[v0] = v1;
         }
     }
@@ -383,20 +384,20 @@ static u32 sub_0204B1E8 (UnkStruct_0204AFC4 * param0, UnkStruct_ov104_0223A348_s
     param1->unk_1E_val2 = 0;
     param1->unk_1F = Unk_020E4C44;
 
-    v0 = sub_020759F0(param1->unk_00_val1_0, 25);
+    v0 = PokemonPersonalData_GetSpeciesValue(param1->unk_00_val1_0, 25);
 
     if (v0) {
         if (param1->unk_10 & 1) {
             param1->unk_20 = v0;
         } else {
-            param1->unk_20 = sub_020759F0(param1->unk_00_val1_0, 24);
+            param1->unk_20 = PokemonPersonalData_GetSpeciesValue(param1->unk_00_val1_0, 24);
         }
     } else {
-        param1->unk_20 = sub_020759F0(param1->unk_00_val1_0, 24);
+        param1->unk_20 = PokemonPersonalData_GetSpeciesValue(param1->unk_00_val1_0, 24);
     }
 
     param1->unk_21 = v3;
-    sub_0200B274(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
+    MessageLoader_GetSpeciesName(param1->unk_00_val1_0, param8, &(param1->unk_22[0]));
 
     return v2;
 }
@@ -539,10 +540,10 @@ static BOOL sub_0204B470 (UnkStruct_0204AFC4 * param0, UnkStruct_0204B184 * para
 
 static void * sub_0204B630 (u16 param0, int param1)
 {
-    return NARC_AllocAndReadWholeMemberByIndexPair(178, param0, param1);
+    return NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDTR, param0, param1);
 }
 
 static void sub_0204B640 (UnkStruct_0204B1E8 * param0, int param1)
 {
-    NARC_ReadWholeMemberByIndexPair(param0, 179, param1);
+    NARC_ReadWholeMemberByIndexPair(param0, NARC_INDEX_BATTLE__B_PL_TOWER__PL_BTDPM, param1);
 }

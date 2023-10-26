@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_02027854_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02055CBC_decl.h"
@@ -44,7 +44,7 @@ typedef struct {
     int unk_00;
     int unk_04;
     int unk_08;
-    UnkStruct_0201CD38 * unk_0C;
+    SysTask * unk_0C;
 } UnkStruct_020562AC;
 
 static void sub_02055D14(UnkStruct_0203CDB0 * param0, UnkStruct_02055CBC * param1);
@@ -401,7 +401,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
         v1->unk_08 = 0;
         v1->unk_00 = 2;
     case 2:
-        if (Unk_021BF67C.unk_44 & PAD_KEY_LEFT) {
+        if (gCoreSys.unk_44 & PAD_KEY_LEFT) {
             UnkStruct_02061AB4 * v2 = sub_02056074(v0, 2);
 
             if ((v2 == NULL) || !sub_020560E4(v2)) {
@@ -412,7 +412,7 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
                 v1->unk_00 = 3;
                 break;
             }
-        } else if (Unk_021BF67C.unk_44 & PAD_KEY_RIGHT) {
+        } else if (gCoreSys.unk_44 & PAD_KEY_RIGHT) {
             UnkStruct_02061AB4 * v2 = sub_02056074(v0, 3);
 
             if ((v2 == NULL) || !sub_020560E4(v2)) {
@@ -423,11 +423,11 @@ static BOOL sub_02056124 (UnkStruct_020508D4 * param0)
                 v1->unk_00 = 3;
                 break;
             }
-        } else if ((Unk_021BF67C.unk_44 & PAD_KEY_UP) && (v1->unk_04 == 1)) {
+        } else if ((gCoreSys.unk_44 & PAD_KEY_UP) && (v1->unk_04 == 1)) {
             sub_0205EA84(v0->unk_3C, 0);
             v1->unk_00 = 4;
             break;
-        } else if ((Unk_021BF67C.unk_44 & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
+        } else if ((gCoreSys.unk_44 & PAD_KEY_DOWN) && (v1->unk_04 == 0)) {
             v1->unk_00 = 4;
             break;
         }

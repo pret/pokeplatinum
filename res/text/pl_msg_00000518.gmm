@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="20107" />
+	<row id="pl_msg_00000518_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Pikachuu!</language>
+	</row>
+	<row id="pl_msg_00000518_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Pikaah!</language>
+	</row>
+	<row id="pl_msg_00000518_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Pika pika?</language>
+	</row>
+	<row id="pl_msg_00000518_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Pi! Pikachu!</language>
+	</row>
+	<row id="pl_msg_00000518_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU: Pii! Kaahchu!</language>
+	</row>
+	<row id="pl_msg_00000518_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Eehehe! I’m going for the Pokémon\nChampionship with only PIKACHU!</language>
+	</row>
+</body>

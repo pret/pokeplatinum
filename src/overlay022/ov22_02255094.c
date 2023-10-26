@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
@@ -72,14 +72,14 @@ void ov22_02255094 (void)
     ov22_02255654();
     ov22_022556DC();
 
-    Unk_021BF67C.unk_65 = 1;
+    gCoreSys.unk_65 = 1;
 
     GXLayers_SwapDisplay();
 }
 
 void ov22_022550B4 (void)
 {
-    Unk_021BF67C.unk_65 = 0;
+    gCoreSys.unk_65 = 0;
 
     GXLayers_SwapDisplay();
     ov22_02255738();
@@ -94,7 +94,7 @@ void ov22_022550D4 (UnkStruct_ov22_0225A0E4 * param0)
         718, 118, 19, 14
     };
 
-    param0->unk_5C = NARC_ctor(25, 14);
+    param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
 
     ov22_02255748(param0, &v0);
     ov22_02255C24(param0, 14, 0x2800, 0x20);
@@ -318,7 +318,7 @@ void ov22_0225547C (UnkStruct_ov22_0225A0E4 * param0, const UnkStruct_ov22_02255
     ov22_02255BF4(param0, param2);
 }
 
-void ov22_022554A8 (UnkStruct_ov22_0225A0E4 * param0, UnkStruct_02018340 * param1, int param2)
+void ov22_022554A8 (UnkStruct_ov22_0225A0E4 * param0, BGL * param1, int param2)
 {
     param0->unk_40 = param1;
 
@@ -402,7 +402,7 @@ void ov22_0225553C (UnkStruct_ov22_0225A0E4 * param0, int param1, int param2, u1
 
 void ov22_022555D4 (UnkStruct_ov22_0225A0E4 * param0, int param1)
 {
-    param0->unk_5C = NARC_ctor(25, 14);
+    param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, 14);
     ov22_022559F8(param0);
     param0->unk_40 = sub_02018340(14);
     ov22_02255860(param0);

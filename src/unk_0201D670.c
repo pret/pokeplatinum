@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 
-#include "functypes/funcptr_0201CE28.h"
+#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0201D670.h"
 #include "struct_defs/struct_0201D738.h"
 #include "struct_defs/struct_0201D834.h"
@@ -21,8 +21,8 @@
 #include "strbuf.h"
 
 static int sub_0201D9E8(UnkStruct_0201D834 * param0);
-static void sub_0201D97C(UnkStruct_0201CD38 * param0, void * param1);
-static u8 sub_0201D67C(UnkFuncPtr_0201CE28 param0, void * param1, u32 param2);
+static void sub_0201D97C(SysTask * param0, void * param1);
+static u8 sub_0201D67C(SysTaskFunc param0, void * param1, u32 param2);
 static void sub_0201D6B0(u8 param0);
 static void sub_0201DB48(UnkStruct_0201D834 * param0);
 static void sub_0201DBD8(UnkStruct_0201D834 * param0);
@@ -36,9 +36,9 @@ void sub_0201D670 (const UnkStruct_0201D670 * param0)
     Unk_02100840 = param0;
 }
 
-static UnkStruct_0201CD38 * Unk_021C04E0[8] = {0};
+static SysTask * Unk_021C04E0[8] = {0};
 
-static u8 sub_0201D67C (UnkFuncPtr_0201CE28 param0, void * param1, u32 param2)
+static u8 sub_0201D67C (SysTaskFunc param0, void * param1, u32 param2)
 {
     int v0;
 
@@ -70,7 +70,7 @@ static void sub_0201D6B0 (u8 param0)
             Heap_FreeToHeap(v0);
         }
 
-        sub_0200DA58(Unk_021C04E0[param0]);
+        SysTask_Done(Unk_021C04E0[param0]);
         Unk_021C04E0[param0] = NULL;
     }
 }
@@ -89,7 +89,7 @@ void sub_0201D710 (void)
     }
 }
 
-u8 sub_0201D724 (u8 param0)
+u8 Message_Printing (u8 param0)
 {
     return sub_0201D6F8(param0);
 }
@@ -99,7 +99,7 @@ void sub_0201D730 (u8 param0)
     sub_0201D6B0(param0);
 }
 
-u8 sub_0201D738 (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, UnkFuncPtr_0201D834 param6)
+u8 sub_0201D738 (Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, UnkFuncPtr_0201D834 param6)
 {
     UnkStruct_0201D738 v0;
 
@@ -123,7 +123,7 @@ u8 sub_0201D738 (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2, 
     return sub_0201D834(&v0, param5, param6);
 }
 
-u8 sub_0201D78C (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, UnkFuncPtr_0201D834 param7)
+u8 sub_0201D78C (Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, UnkFuncPtr_0201D834 param7)
 {
     UnkStruct_0201D738 v0;
 
@@ -147,7 +147,7 @@ u8 sub_0201D78C (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2, 
     return sub_0201D834(&v0, param5, param7);
 }
 
-u8 sub_0201D7E0 (UnkStruct_0205AA50 * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkFuncPtr_0201D834 param9)
+u8 sub_0201D7E0 (Window * param0, u32 param1, const Strbuf *param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8, UnkFuncPtr_0201D834 param9)
 {
     UnkStruct_0201D738 v0;
 
@@ -233,7 +233,7 @@ u8 sub_0201D834 (const UnkStruct_0201D738 * param0, u32 param1, UnkFuncPtr_0201D
     }
 }
 
-static void sub_0201D97C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0201D97C (SysTask * param0, void * param1)
 {
     UnkStruct_0201D834 * v0;
     int v1;
@@ -388,7 +388,7 @@ static u8 * sub_0201DB50 (void)
 
 void sub_0201DB8C (UnkStruct_0201D834 * param0, u16 param1, u16 param2, u16 param3)
 {
-    UnkStruct_0205AA50 * v0 = param0->unk_00.unk_04;
+    Window * v0 = param0->unk_00.unk_04;
     u8 * v1;
 
     if (param0->unk_30 == NULL) {

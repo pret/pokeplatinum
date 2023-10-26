@@ -1,10 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_defs/pokemon.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "unk_02079D40.h"
 
 const u8 Unk_020F0780[] = {
@@ -559,19 +558,19 @@ u32 sub_02079D40 (const BoxPokemon * param0)
     u32 v3;
     u32 v4;
 
-    v2 = sub_02073D20((BoxPokemon *)param0);
-    v0 = sub_02074570((BoxPokemon *)param0, MON_DATA_SPECIES, NULL);
-    v4 = sub_02074570((BoxPokemon *)param0, MON_DATA_IS_EGG, NULL);
+    v2 = BoxPokemon_EnterDecryptionContext((BoxPokemon *)param0);
+    v0 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_SPECIES, NULL);
+    v4 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_IS_EGG, NULL);
     v3 = sub_02079E44((BoxPokemon *)param0);
     v1 = sub_02079D8C(v0, v4, v3);
 
-    sub_02073D48((BoxPokemon *)param0, v2);
+    BoxPokemon_ExitDecryptionContext((BoxPokemon *)param0, v2);
     return v1;
 }
 
 u32 sub_02079D80 (Pokemon * param0)
 {
-    return sub_02079D40((const BoxPokemon *)sub_02076B10(param0));
+    return sub_02079D40((const BoxPokemon *)Pokemon_GetBoxPokemon(param0));
 }
 
 u32 sub_02079D8C (u32 param0, u32 param1, u32 param2)
@@ -584,7 +583,7 @@ u32 sub_02079D8C (u32 param0, u32 param1, u32 param2)
         }
     }
 
-    param2 = SanitizeFormId(param0, param2);
+    param2 = Pokemon_SanitizeFormId(param0, param2);
 
     if (param2 != 0) {
         if (param0 == 386) {
@@ -635,11 +634,11 @@ u16 sub_02079E44 (const BoxPokemon * param0)
 {
     u32 v0;
 
-    v0 = sub_02074570((BoxPokemon *)param0, MON_DATA_SPECIES_EGG, NULL);
+    v0 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_SPECIES_EGG, NULL);
 
     switch (v0) {
     case 201:
-        return sub_02076B00((BoxPokemon *)param0);
+        return BoxPokemon_GetForm((BoxPokemon *)param0);
     case 386:
     case 412:
     case 413:
@@ -648,7 +647,7 @@ u16 sub_02079E44 (const BoxPokemon * param0)
     case 487:
     case 492:
     case 479:
-        return sub_02074570((BoxPokemon *)param0, MON_DATA_FORM, NULL);
+        return BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_FORM, NULL);
     default:
         return 0;
     }
@@ -698,19 +697,19 @@ const u8 sub_02079F84 (const BoxPokemon * param0)
     u32 v2;
     u32 v3;
 
-    v0 = sub_02073D20((BoxPokemon *)param0);
+    v0 = BoxPokemon_EnterDecryptionContext((BoxPokemon *)param0);
     v2 = sub_02079E44(param0);
-    v1 = sub_02074570((BoxPokemon *)param0, MON_DATA_SPECIES, NULL);
-    v3 = sub_02074570((BoxPokemon *)param0, MON_DATA_IS_EGG, NULL);
+    v1 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_SPECIES, NULL);
+    v3 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_IS_EGG, NULL);
 
-    sub_02073D48((BoxPokemon *)param0, v0);
+    BoxPokemon_ExitDecryptionContext((BoxPokemon *)param0, v0);
 
     return sub_02079EDC(v1, v2, v3);
 }
 
 const u8 sub_02079FC4 (Pokemon * param0)
 {
-    return sub_02079F84((const BoxPokemon *)sub_02076B10(param0));
+    return sub_02079F84((const BoxPokemon *)Pokemon_GetBoxPokemon(param0));
 }
 
 u32 sub_02079FD0 (void)

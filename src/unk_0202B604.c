@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202BC58.h"
@@ -14,7 +14,7 @@
 #include "unk_0201378C.h"
 #include "heap.h"
 #include "unk_020244AC.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202B604.h"
 #include "unk_0202CBE4.h"
 #include "map_header.h"
@@ -73,7 +73,7 @@ static void sub_0202C528(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202C54C(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202C5A4(u8 * param0, UnkStruct_0202BFCC * param1);
 static void sub_0202C5AC(u8 * param0, UnkStruct_0202BFCC * param1);
-static u8 sub_0202C6CC(UnkStruct_02025E6C * param0, u32 param1);
+static u8 sub_0202C6CC(TrainerInfo * param0, u32 param1);
 static u8 sub_0202C78C(u32 param0);
 
 static const UnkStruct_020E5B90 Unk_020E5B90[] = {
@@ -117,7 +117,7 @@ static const UnkStruct_020E5B50 Unk_020E5B50[] = {
     {0x140, 0x9A, 0x7}
 };
 
-int sub_0202B604 (void)
+int Journal_SaveSize (void)
 {
     return sizeof(UnkStruct_0202B628) * 10;
 }
@@ -127,14 +127,14 @@ static void sub_0202B60C (UnkStruct_0202B628 * param0)
     memset(param0, 0, sizeof(UnkStruct_0202B628));
 }
 
-void sub_0202B618 (UnkStruct_0202B628 * param0)
+void Journal_Init (UnkStruct_0202B628 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0202B628) * 10);
 }
 
-UnkStruct_0202B628 * sub_0202B628 (UnkStruct_021C0794 * param0)
+UnkStruct_0202B628 * sub_0202B628 (SaveData * param0)
 {
-    return sub_020245BC(param0, 18);
+    return SaveData_Get(param0, 18);
 }
 
 UnkStruct_0202B628 * sub_0202B634 (UnkStruct_0202B628 * param0, BOOL param1)
@@ -1279,7 +1279,7 @@ static void sub_0202C5AC (u8 * param0, UnkStruct_0202BFCC * param1)
     param1->unk_01_0 = param0[1];
 }
 
-void sub_0202C5C4 (UnkStruct_02025E6C * param0, UnkStruct_0202B628 * param1, u32 param2, u32 param3, u32 param4)
+void sub_0202C5C4 (TrainerInfo * param0, UnkStruct_0202B628 * param1, u32 param2, u32 param3, u32 param4)
 {
     void * v0;
     u32 v1;
@@ -1338,13 +1338,13 @@ u32 sub_0202C6A4 (u32 param0)
     return 0;
 }
 
-static u8 sub_0202C6CC (UnkStruct_02025E6C * param0, u32 param1)
+static u8 sub_0202C6CC (TrainerInfo * param0, u32 param1)
 {
     u8 v0;
 
     for (v0 = 0; v0 < NELEMS(Unk_020E5B50); v0++) {
         if (Unk_020E5B50[v0].unk_04 == param1) {
-            if (sub_02025F34(param0, Unk_020E5B50[v0].unk_06) == 0) {
+            if (TrainerInfo_HasBadge(param0, Unk_020E5B50[v0].unk_06) == 0) {
                 return v0;
             }
 

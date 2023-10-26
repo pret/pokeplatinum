@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="32995" />
+	<row id="pl_msg_00000415_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00001" index="1">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00002" index="2">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00003" index="3">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00004" index="4">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00005" index="5">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DJ: Wa-hey!\rThis is the Battle Tower Corner going\nout to battle maniacs nationwide!\rToday, we look at {STRVAR_1 3, 1, 0}, who\nracked up {STRVAR_1 52, 0, 0} straight wins at\fthe Battle Tower!\rLet’s hear what that brave\nTrainer had to say about it.\rTake it away, {STRVAR_1 3, 1, 0}!\r“{STRVAR_1 28, 2, 0}!”\rWa-hey! Bravo!\rYou can tell the Trainer’s loving\nthat {STRVAR_1 52, 0, 0}-win streak!\rAll right, gang, come on down to\nthe Battle Tower and get down!\rKeep it real! Wa-hey!</language>
+	</row>
+	<row id="pl_msg_00000415_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">DJ: Wa-hey!\rThis is the Battle Tower Corner going\nout to battle maniacs nationwide!\rToday, we look at {STRVAR_1 3, 1, 0}, who\nmissed getting {STRVAR_1 52, 0, 0} straight wins at\fthe Battle Tower!\rLet’s hear what that brokenhearted\nTrainer had to say about it.\rTake it away, {STRVAR_1 3, 1, 0}!\r“{STRVAR_1 28, 2, 0}!”\rWa-hey! That’s real hurting!\rThe harsh realities of battling are\nlaid bare, and they’re not pretty!\rAll right, gang, come on down to\nthe Battle Tower and get down!\rKeep it real! Wa-hey!</language>
+	</row>
+	<row id="pl_msg_00000415_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Hello, this is Your Pokémon\nCorner.\rToday, we look at {STRVAR_1 3, 0, 0}’s\nbeloved {STRVAR_1 0, 1, 0} {STRVAR_1 1, 2, 0}.\rTo {STRVAR_1 3, 0, 0}, {STRVAR_1 1, 2, 0} is said\nto be “{STRVAR_1 28, 3, 0}”!\rOK, viewers, keep showing us the\nPokémon that are your pride and joy!\rLet’s meet again!</language>
+	</row>
+	<row id="pl_msg_00000415_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Hello, this is Your Pokémon\nCorner.\rToday, we look at {STRVAR_1 3, 0, 0}’s\nbeloved {STRVAR_1 0, 1, 0}.\rTo {STRVAR_1 3, 0, 0}, this {STRVAR_1 0, 1, 0} is\nsaid to be “{STRVAR_1 28, 3, 0}”!\rOK, viewers, keep showing us the\nPokémon that are your pride and joy!\rLet’s meet again!</language>
+	</row>
+	<row id="pl_msg_00000415_00012" index="12">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00013" index="13">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00015" index="15">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Sorry to keep you waiting.\nIt’s time for The Pokétch Watch!\rToday, we examine {STRVAR_1 3, 0, 0}’s\nfavorite Pokétch app.\rThe app {STRVAR_1 3, 0, 0} likes best is\nthe {STRVAR_1 24, 1, 0}.\rAsked why, the Trainer replied,\n“{STRVAR_1 28, 2, 0}.”\rCredit to you, {STRVAR_1 3, 0, 0}.\nWhat a cool and calculated choice.\rWhy not be like {STRVAR_1 3, 0, 0} and\nshow off your coolness with the\f{STRVAR_1 24, 1, 0} app too?\rSee you again next time...</language>
+	</row>
+	<row id="pl_msg_00000415_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: We’re bringing you this live\nfrom the Contest Hall!\rThe atmosphere is charged with the\nfervent passion of Trainers with high\fhopes for their prized Pokémon!\rOh! Here come some contestants!\nThey’ve just finished a Contest!\rLet’s hit them up for an impromptu\ninterview!\rReporter: Hello! Jubilife TV!\nWas this {STRVAR_1 0, 0, 0} in a Contest?\rOh, you entered a {STRVAR_1 35, 2, 0}\n{STRVAR_1 34, 1, 0}?\rAnd you placed...?\n...No. {STRVAR_1 50, 3, 0}.\rHow do you feel about this result?\r{STRVAR_1 3, 4, 0}: “{STRVAR_1 28, 5, 0}.”\rReporter: I see!\nThanks for your time!\rThat’s it for my report from the\nContest Hall!</language>
+	</row>
+	<row id="pl_msg_00000415_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: We’re bringing you this live\nfrom the Contest Hall!\rThe atmosphere is charged with the\nfervent passion of Trainers with high\fhopes for their prized Pokémon!\rOh! Here come some contestants!\nThey’ve just finished a Contest!\rOh, wow, there’s this Contest’s\nwinner!\rLet’s hit the winner up for an\nimpromptu interview!\rReporter: Hello! Jubilife TV!\nCongratulations on your win!\rThis {STRVAR_1 0, 0, 0} won the\n{STRVAR_1 35, 2, 0}\f{STRVAR_1 34, 1, 0}?\rHow do you feel about this result?\r{STRVAR_1 3, 4, 0}: “{STRVAR_1 28, 5, 0}.”\rReporter: I see!\nThanks for your time!\rThat’s it for my report from the\nContest Hall!</language>
+	</row>
+	<row id="pl_msg_00000415_00019" index="19">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Thanks for tuning in to the\nRight-On Photo Corner!\rAudience: Right on!\rMC: Today’s photo features\n{STRVAR_1 3, 0, 0}’s {STRVAR_1 0, 1, 0}.\rIs everyone good with that?\rAudience: Right on!\rMC: Here it is, then!\n{STRVAR_1 3, 0, 0}’s photo!\rAudience: Right on!\rMC: I’m up with that call!\nThis is a beauty of a photo!\rIt captures the easily overlooked\ncharm of their {STRVAR_1 0, 1, 0}.\rAudience: Right on!\rMC: We also got {STRVAR_1 3, 0, 0}’s\nword about the thoughts behind\fthe photo.\rThe Trainer replied,\n“{STRVAR_1 28, 2, 0}.”\rAudience: Owooooh!\rMC: If someone puts up another photo,\nI’d like to cover it on this show.\rWhat do you say to that, folks?\rAudience: Right on!</language>
+	</row>
+	<row id="pl_msg_00000415_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Normal type as their favorite.\rSo, what sort of personality likes\nthe Normal type?\rOur experts say they are cheerful\nbut actually quite shy.\rThey tend to be boisterous and\nfun loving in a group.\rBut they clam up if you get them\nalone with another person.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Fire type as their favorite.\rSo, what sort of personality likes\nthe Fire type?\rOur experts say they tend to be\nvery self-reliant.\rIf their friends are depressed,\nthey’re the first to cheer them up.\rBut if they are hurting, they will\ntry to deal with it themselves.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Water type as their favorite.\rSo, what sort of personality likes\nthe Water type?\rOur experts say they tend to be very\nsure of their own values.\rThey are not easily swayed by fashion\nmovements or trends.\rThey tend to stick loyally with\nwhatever they like.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Electric type as their favorite.\rSo, what sort of personality likes\nthe Electric type?\rOur experts say they tend to be\nvery fashion conscious.\rThey may appear to be nonchalant\nabout things, but don’t be fooled.\rThey tend to be particular about\naesthetics down to even their clothes\fhangers and what erasers they use.\rDid this analysis sound good\nto you?</language>
+	</row>
+	<row id="pl_msg_00000415_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Grass type as their favorite.\rSo, what sort of personality likes\nthe Grass type?\rOur experts say they march to the\nbeat of their own drummer.\rThey are self-motivated and capable\nof finishing projects on their own.\rHowever, they have trouble deciding\nwhen a job is done well enough.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Ice type as their favorite.\rSo, what sort of personality likes\nthe Ice type?\rOur experts say they tend to be\npure of heart and well intentioned.\rThey work selflessly to help friends\nthat are dear to them.\rHowever, they may also become upset\nif their efforts go unnoticed.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Fighting type as their favorite.\rSo, what sort of personality likes\nthe Fighting type?\rOur experts say they tend to be\ndreamy-eyed romantics.\rThey are very loyal to ideas and\nthings that they hold dear.\rThey constantly try to reinvent\nthemselves to chase their dreams.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Poison type as their favorite.\rSo, what sort of personality likes\nthe Poison type?\rOur experts say they tend to be\nsensitive and compassionate.\rThey know how to cheer up people\nwho are feeling down.\rBut they also know when to give\npeople some space.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Ground type as their favorite.\rSo, what sort of personality likes\nthe Ground type?\rOur experts say they are people\nthat love fun things.\rThey are always alert to things that\nsound entertaining, even those that\faren’t appealing to themselves.\rTheir rooms are easily identifiable\nby stacks of books, games, etc.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Flying type as their favorite.\rSo, what sort of personality likes\nthe Flying type?\rOur experts say they tend to be smart\nbut quite modest.\rWhen solving problems in groups, they\ncome up with solutions first.\rHowever, they will only give out hints\nto make it appear as if the group came\fup with the solution.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Psychic type as their favorite.\rSo, what sort of personality likes\nthe Psychic type?\rOur experts say they tend to be very\nupbeat and happy.\rIf they battle friends, battling itself\nmakes them happy.\rThey can thank their opponents with\na smile regardless of the outcome.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Bug type as their favorite.\rSo, what sort of personality likes\nthe Bug type?\rOur experts say they tend to be\nenthusiastic and happy.\rIf they find something they like, they\nwill try to popularize it.\rThey won’t think twice before taking\nhours to explain their hobbies.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Rock type as their favorite.\rSo, what sort of personality likes\nthe Rock type?\rOur experts say they are calm,\ncollected, and supportive.\rThey remain calm and optimistic even\nwhen others are panicking.\rThey can be counted on to provide\nsure support in tight situations.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Ghost type as their favorite.\rSo, what sort of personality likes\nthe Ghost type?\rOur experts say they tend to be\nfun-loving types.\rIf something makes them happy, they’d\nrather not tell others about it.\rInstead, they’ll try to replicate the\nexperience for their friends.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Dragon type as their favorite.\rSo, what sort of personality likes\nthe Dragon type?\rOur experts say they tend to be\ntimid and shy.\rThey’re thoughtful enough to buy\nbirthday gifts for friends.\r...But they would rather leave the\ngifts at the friend’s door.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Dark type as their favorite.\rSo, what sort of personality likes\nthe Dark type?\rOur experts say they tend to be very\nparticular about their likes.\rThey have well-defined tastes in\nmusic, books, movies, and so on.\rThey can be entertained by their\nfavorite things over and over.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Announcer: It’s the Street Corner\nPersonality Checkup!\r{STRVAR_1 3, 0, 0} is our featured Trainer\ntoday.\rIn our interview, our Trainer picked\nthe Steel type as their favorite.\rSo, what sort of personality likes\nthe Steel type?\rOur experts say they tend to be\nmiracle makers.\rThey are dreamers that go to sleep\nwith their heads filled with everything\fthey hope to achieve.\rThe miraculous part is how they make\none of their dreams come true.\rDid this analysis sound good to you?</language>
+	</row>
+	<row id="pl_msg_00000415_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s the Three Cheers for Poffin\nCorner! How do you do?\rWe bring you the Poffin Maniac as our\nreturning guest.\rPoffin Maniac: How do you do?\rMC: Today, we have a Poffin stirred,\nnot shaken, by {STRVAR_1 3, 0, 0}.\rPoffin Maniac: Oh!\n{STRVAR_1 9, 1, 0}, yeah!\rEating this would be like stuffing my\nmouth with a Poffin jewelry box!\rMC: Upon seeing the finished Poffin,\n{STRVAR_1 3, 0, 0} had this to say:\f“{STRVAR_1 28, 2, 0}!”\rPoffin Maniac: Oh, I’d dearly love to\neat one of those!\rMC: Viewers, take a cue from\n{STRVAR_1 3, 0, 0} and get cooking!\rBack next time with more mouthwatering\nPoffins!</language>
+	</row>
+	<row id="pl_msg_00000415_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s the Three Cheers for Poffin\nCorner! How do you do?\rWe bring you the Poffin Maniac as our\nreturning guest.\rPoffin Maniac: How do you do?\rMC: Today, we have a Poffin stirred,\nnot shaken, by {STRVAR_1 3, 0, 0}.\rPoffin Maniac: Oh!\n{STRVAR_1 9, 1, 0}, yeah!\rEating this would be like having\na Poffin orchestra in my mouth!\rMC: Upon seeing the finished Poffin,\n{STRVAR_1 3, 0, 0} had this to say:\f“{STRVAR_1 28, 2, 0}!”\rPoffin Maniac: Oh, I’d dearly love to\neat one of those!\rMC: Viewers, take a cue from\n{STRVAR_1 3, 0, 0} and get cooking!\rBack next time with more mouthwatering\nPoffins!</language>
+	</row>
+	<row id="pl_msg_00000415_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s the Three Cheers for Poffin\nCorner! How do you do?\rWe bring you the Poffin Maniac as our\nreturning guest.\rPoffin Maniac: How do you do?\rMC: Today, we have a Poffin stirred,\nnot shaken, by {STRVAR_1 3, 0, 0}.\rPoffin Maniac: Oh!\n{STRVAR_1 9, 1, 0}, yeah!\rEating this would be like having\na Poffin trampoline in my mouth!\rMC: Upon seeing the finished Poffin,\n{STRVAR_1 3, 0, 0} had this to say:\f“{STRVAR_1 28, 2, 0}!”\rPoffin Maniac: Oh, I’d dearly love to\neat one of those!\rMC: Viewers, take a cue from\n{STRVAR_1 3, 0, 0} and get cooking!\rBack next time with more mouthwatering\nPoffins!</language>
+	</row>
+	<row id="pl_msg_00000415_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s the Three Cheers for Poffin\nCorner! How do you do?\rWe bring you the Poffin Maniac as our\nreturning guest.\rPoffin Maniac: How do you do?\rMC: Today, we have a Poffin stirred,\nnot shaken, by {STRVAR_1 3, 0, 0}.\rPoffin Maniac: Oh!\n{STRVAR_1 9, 1, 0}, yeah!\rI didn’t prepare a comment for\nthis unexpected outcome!\rMC: Upon seeing the finished Poffin,\n{STRVAR_1 3, 0, 0} had this to say:\f“{STRVAR_1 28, 2, 0}!”\rPoffin Maniac: Oh, I’d dearly love to\neat one of those!\rMC: Viewers, take a cue from\n{STRVAR_1 3, 0, 0} and get cooking!\rBack next time with more mouthwatering\nPoffins!</language>
+	</row>
+	<row id="pl_msg_00000415_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: It’s the Three Cheers for Poffin\nCorner! How do you do?\rWe bring you the Poffin Maniac as our\nreturning guest.\rPoffin Maniac: How do you do?\rMC: Today, we have a Poffin stirred,\nnot shaken, by {STRVAR_1 3, 0, 0}.\rPoffin Maniac: Oh!\n{STRVAR_1 9, 1, 0}, yeah!\rEating this would be like having\nNintendo WFC in my mouth!\rMC: Upon seeing the finished Poffin,\n{STRVAR_1 3, 0, 0} had this to say:\f“{STRVAR_1 28, 2, 0}!”\rPoffin Maniac: Oh, I’d dearly love to\neat one of those!\rMC: Viewers, take a cue from\n{STRVAR_1 3, 0, 0} and get cooking!\rBack next time with more mouthwatering\nPoffins!</language>
+	</row>
+	<row id="pl_msg_00000415_00043" index="43">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000415_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Hello, ladies and gentlemen.\nI trust you’ve been well.\rThank you for joining me in the\nAmity Square Watch.\rToday, I wish to cast your eyes upon\n{STRVAR_1 3, 0, 0}’s stroll.\rI’m sure you’ll agree it’s most\nenchantingly endearing.\r{STRVAR_1 3, 0, 0} strolled with\ntrusted partner {STRVAR_1 0, 1, 0}.\rThey walked, and they walked, and\nstill they walked...\r{STRVAR_1 0, 1, 0} so enjoyed the time,\nit sought out items like a pretty\f{STRVAR_1 31, 3, 0}.\r{STRVAR_1 3, 0, 0} and {STRVAR_1 0, 1, 0} had\na simply scintillating time together.\r{STRVAR_1 3, 0, 0} described their feelings\ntogether as, “{STRVAR_1 28, 5, 0}.”\rBonding with Pokémon...\nIt makes me feel warm all over.\rUntil next time, adieu.</language>
+	</row>
+	<row id="pl_msg_00000415_00045" index="45">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Hello, ladies and gentlemen.\nI trust you’ve been well.\rThank you for joining me in the\nAmity Square Watch.\rToday, I wish to cast your eyes upon\n{STRVAR_1 3, 0, 0}’s stroll.\rI’m sure you’ll agree it’s most\nenchantingly endearing.\r{STRVAR_1 3, 0, 0} strolled with\ntrusted partner {STRVAR_1 0, 1, 0}.\rThey walked, and they walked, and\nstill they walked...\r{STRVAR_1 3, 0, 0} and {STRVAR_1 0, 1, 0} had\na simply scintillating time together.\r{STRVAR_1 3, 0, 0} described their feeling\ntogether as, “{STRVAR_1 28, 5, 0}.”\rBonding with Pokémon...\nIt makes me feel warm all over.\rUntil next time, adieu.</language>
+	</row>
+	<row id="pl_msg_00000415_00046" index="46">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">MC: Hello, ladies and gentlemen.\nI trust you’ve been well.\rThank you for joining me in the\nAmity Square Watch.\rToday, I wish to cast your eyes upon\n{STRVAR_1 3, 0, 0}’s stroll.\rI’m sure you’ll agree it’s most\nenchantingly endearing.\r{STRVAR_1 3, 0, 0} strolled with\ntrusted partner {STRVAR_1 0, 1, 0}.\rThey walked, and they walked, and\nstill they walked...\r{STRVAR_1 0, 1, 0} so enjoyed the time,\nit sought out items like a tasty\f{STRVAR_1 8, 3, 0} to please the Trainer.\r{STRVAR_1 3, 0, 0} and {STRVAR_1 0, 1, 0} had\na simply scintillating time together.\r{STRVAR_1 3, 0, 0} described their feeling\ntogether as, “{STRVAR_1 28, 5, 0}.”\rBonding with Pokémon...\nIt makes me feel warm all over.\rUntil next time, adieu.</language>
+	</row>
+	<row id="pl_msg_00000415_00047" index="47">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: The Battle Frontier\nFrontline News!\rWe bring you this report from the\nBattle Hall.\rToday, I have before me an astounding\nTrainer who managed a 50-win streak!\rIt’s {STRVAR_1 3, 0, 0} and the {STRVAR_1 0, 1, 0}\n{STRVAR_1 1, 2, 0}!\rCongratulations, {STRVAR_1 3, 0, 0}.\nYou seem suitably happy!\rHow do you suppose your {STRVAR_1 1, 2, 0}\nfeels now?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 3, 0}.\rReporter: ...I ...I see!\nThat’s how a tough Trainer’s Pokémon\fthinks.\rI hope {STRVAR_1 1, 2, 0} will keep winning\nwith {STRVAR_1 28, 3, 0} power!\rThat’s all for now!</language>
+	</row>
+	<row id="pl_msg_00000415_00048" index="48">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: It’s begun!\nIn-Your-Face Interview!\rToday, we get in the face of\n{STRVAR_1 3, 0, 0} for our interview.\r{STRVAR_1 3, 0, 0}, let’s just imagine you\nbeing a Gym Leader.\rWhat would you name that Gym?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 1, 0} Gym.\rReporter: Well, how about that!\nSee you again on our next broadcast!</language>
+	</row>
+	<row id="pl_msg_00000415_00049" index="49">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: It’s begun!\nIn-Your-Face Interview!\rToday, we get in the face of\n{STRVAR_1 3, 0, 0} for our interview.\r{STRVAR_1 3, 0, 0}, if you had to compare\nyour mother to a Pokémon, what would\fshe be?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 1, 0}.\rReporter: Well, how about that!\nSee you again on our next broadcast!</language>
+	</row>
+	<row id="pl_msg_00000415_00050" index="50">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: It’s begun!\nIn-Your-Face Interview!\rToday, we get in the face of\n{STRVAR_1 3, 0, 0} for our interview.\r{STRVAR_1 3, 0, 0}, what would you say is the\nthird most important thing in your life?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 1, 0}.\rReporter: Well, how about that!\nSee you again on our next broadcast!</language>
+	</row>
+	<row id="pl_msg_00000415_00051" index="51">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: It’s begun!\nIn-Your-Face Interview!\rToday, we get in the face of\n{STRVAR_1 3, 0, 0} for our interview.\r{STRVAR_1 3, 0, 0}, imagine you slept in\nand are running to make an appointment.\rYou turn a corner and run into someone.\nWhat kind of person is it?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 1, 0}.\rReporter: Well, how about that!\nSee you again on our next broadcast!</language>
+	</row>
+	<row id="pl_msg_00000415_00052" index="52">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: The Battle Frontier\nFrontline News!\rWe bring you this report from the\nBattle Tower.\rToday, we came to see two friends\nmaking their challenge together.\rOh! It appears that they’ve just\nfinished.\r{STRVAR_1 3, 0, 0} has just waved bye to\n{STRVAR_1 3, 1, 0}, their friend and partner.\r{STRVAR_1 3, 0, 0}! You seem to make a good\ncombination with {STRVAR_1 3, 1, 0}.\rCan you describe {STRVAR_1 3, 1, 0} for us?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\rReporter: I see!\rThat’s the kind of image one gets from\na deeply trusted friend.\rThank you so much!\nThat’s all for now!</language>
+	</row>
+	<row id="pl_msg_00000415_00053" index="53">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: The Battle Frontier\nFrontline News!\rWe bring you this report from the\nBattle Castle.\rToday, we came to see two friends\nmaking their challenge together.\rOh! It appears that they’ve just\nfinished.\r{STRVAR_1 3, 0, 0} has just waved bye to\n{STRVAR_1 3, 1, 0}, their friend and partner.\r{STRVAR_1 3, 0, 0}! You seem to make a good\ncombination with {STRVAR_1 3, 1, 0}.\rCan you describe {STRVAR_1 3, 1, 0} for us?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\rReporter: I see!\rThat’s the kind of image one gets from\na deeply trusted friend.\rThank you so much!\nThat’s all for now!</language>
+	</row>
+	<row id="pl_msg_00000415_00054" index="54">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: The Battle Frontier\nFrontline News!\rWe bring you this report from the\nBattle Hall.\rToday, we came to see two friends\nmaking their challenge together.\rOh! It appears that they’ve just\nfinished.\r{STRVAR_1 3, 0, 0} has just waved bye to\n{STRVAR_1 3, 1, 0}, their friend and partner.\r{STRVAR_1 3, 0, 0}! You seem to make a good\ncombination with {STRVAR_1 3, 1, 0}.\rCan you describe {STRVAR_1 3, 1, 0} for us?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\rReporter: I see!\rThat’s the kind of image one gets from\na deeply trusted friend.\rThank you so much!\nThat’s all for now!</language>
+	</row>
+	<row id="pl_msg_00000415_00055" index="55">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: The Battle Frontier\nFrontline News!\rWe bring you this report from the\nBattle Factory.\rToday, we came to see two friends\nmaking their challenge together.\rOh! It appears that they’ve just\nfinished.\r{STRVAR_1 3, 0, 0} has just waved bye to\n{STRVAR_1 3, 1, 0}, their friend and partner.\r{STRVAR_1 3, 0, 0}! You seem to make a good\ncombination with {STRVAR_1 3, 1, 0}.\rCan you describe {STRVAR_1 3, 1, 0} for us?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\rReporter: I see!\rThat’s the kind of image one gets from\na deeply trusted friend.\rThank you so much!\nThat’s all for now!</language>
+	</row>
+	<row id="pl_msg_00000415_00056" index="56">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter: The Battle Frontier\nFrontline News!\rWe bring you this report from the\nBattle Arcade.\rToday, we came to see two friends\nmaking their challenge together.\rOh! It appears that they’ve just\nfinished.\r{STRVAR_1 3, 0, 0} has just waved bye to\n{STRVAR_1 3, 1, 0}, their friend and partner.\r{STRVAR_1 3, 0, 0}! You seem to make a good\ncombination with {STRVAR_1 3, 1, 0}.\rCan you describe {STRVAR_1 3, 1, 0} for us?\r{STRVAR_1 3, 0, 0}: {STRVAR_1 28, 2, 0}.\rReporter: I see!\rThat’s the kind of image one gets from\na deeply trusted friend.\rThank you so much!\nThat’s all for now!</language>
+	</row>
+</body>

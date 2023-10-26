@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="5144" />
+	<row id="pl_msg_00000403_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks for helping me out.\nHere’s something for your trouble!\r</language>
+	</row>
+	<row id="pl_msg_00000403_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Blow the White Flute if you want to\nattract more wild Pokémon.\rIt’s a rare glass flute you can only\nget in the Hoenn region.</language>
+	</row>
+</body>

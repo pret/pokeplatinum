@@ -15,7 +15,7 @@
 
 #include <nnsys.h>
 
-void ov25_02253CE8(UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, UnkStruct_021C0794 * param2, UnkStruct_02018340 * param3, NNSG2dOamManagerInstance * param4);
+void ov25_02253CE8(UnkStruct_0203CDB0 * param0, UnkStruct_ov25_02253CE0 ** param1, SaveData * param2, BGL * param3, NNSG2dOamManagerInstance * param4);
 void ov25_02253D5C(UnkStruct_ov25_02253CE0 * param0);
 BOOL ov25_02253D70(UnkStruct_ov25_02253CE0 * param0);
 void ov25_02253D7C(UnkStruct_ov25_02253CE0 * param0, int param1, u32 param2);
@@ -36,7 +36,7 @@ BOOL ov25_02254534(const UnkStruct_ov25_0225424C * param0);
 BOOL ov25_02254538(const UnkStruct_ov25_0225424C * param0);
 UnkStruct_0203CDB0 * ov25_0225453C(const UnkStruct_ov25_0225424C * param0);
 UnkStruct_02056B24 * ov25_02254540(const UnkStruct_ov25_0225424C * param0);
-UnkStruct_021C0794 * ov25_02254544(const UnkStruct_ov25_0225424C * param0);
+SaveData * ov25_02254544(const UnkStruct_ov25_0225424C * param0);
 int ov25_02254548(const UnkStruct_ov25_0225424C * param0);
 
 #endif // POKEPLATINUM_OV25_02253CE0_H

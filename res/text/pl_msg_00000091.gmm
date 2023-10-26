@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="5123" />
+	<row id="pl_msg_00000091_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks for rescuing me!\nThis is something to show my thanks!\rIt’s the latest model Bicycle!\nYou must take it. I insist!\r</language>
+	</row>
+	<row id="pl_msg_00000091_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s the latest model, so I’ll read\nthe operating manual to you.\r“Press the B Button to shift up\nor down.”\rIn third gear, you can’t go all that\nfast, but it’s easier to control.\rIn fourth gear, it gets harder to\nsteer and stop, but it’s fast! Really!</language>
+	</row>
+	<row id="pl_msg_00000091_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Pip piih!</language>
+	</row>
+	<row id="pl_msg_00000091_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The manager’s gone off to the Team\nGalactic building and hasn’t returned.\rI wonder what’s holding him up?</language>
+	</row>
+	<row id="pl_msg_00000091_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What was Team Galactic trying to do\nwith other people’s Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000091_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a manual on the latest\nmodel Bicycle.\rThird gear for steering.\nFourth gear for all-out speed!\rChange gears with the B Button for\nexhilarating cycling!</language>
+	</row>
+	<row id="pl_msg_00000091_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s a catalog from the Hoenn region\non its popular Bikes...\rMach Bike--a folding Bike built solely\nfor blazing speed!\rAcro Bike--a folding Bike designed for\nstunts like jumps and wheelies!</language>
+	</row>
+</body>

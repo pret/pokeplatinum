@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="29698" />
+	<row id="pl_msg_00000229_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: Well, hello!\nIt’s not often I get a visitor here.\rI tried to make the ironworks run\nbetter with the moving floor tiles.\rBut no one was happy about it! They\nsaid the moving floor made them dizzy!\rBut you don’t want to listen to me\nwhine. Here’s a souvenir!\r</language>
+	</row>
+	<row id="pl_msg_00000229_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: My ironworks makes iron by\nremoving impurities from iron ore.\rIn the process, we find a variety of\ncolored Shards.\rIf you’d like, we can trade Star Pieces\nfor these Shards.</language>
+	</row>
+	<row id="pl_msg_00000229_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: My ironworks makes iron by\nremoving impurities from iron ore.\rIn the process, we find a variety of\ncolored Shards.\rIf you’d like, we can trade Star Pieces\nfor these Shards?</language>
+	</row>
+	<row id="pl_msg_00000229_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: Do you have any Star Pieces?\nYou can trade them for various Shards.</language>
+	</row>
+	<row id="pl_msg_00000229_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: Are you interested?\nWant to trade Star Pieces for Shards?</language>
+	</row>
+	<row id="pl_msg_00000229_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: I see you’ve got many Star\nPieces.\rWould you like to trade ten of them?</language>
+	</row>
+	<row id="pl_msg_00000229_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: There you are--\nred, blue, yellow, and green.\fShards in different colors!\r</language>
+	</row>
+	<row id="pl_msg_00000229_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: You’re not trading?!</language>
+	</row>
+	<row id="pl_msg_00000229_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mr. Fuego: My ironworks would be\nnothing if there were no iron.\rThat’s why I’m always thankful for\nnature supplying me with iron.</language>
+	</row>
+</body>

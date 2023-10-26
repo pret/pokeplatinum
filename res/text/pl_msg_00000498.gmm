@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="57082" />
+	<row id="pl_msg_00000498_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, hello. You wish to stay a night?\nAh, but you’ve no reservations.\rI’m afraid we are totally booked.\nYou may rest a while, if you wish.\r</language>
+	</row>
+	<row id="pl_msg_00000498_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’ve restored your Pokémon\nto full health.\rWe hope to see you again!</language>
+	</row>
+	<row id="pl_msg_00000498_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This hotel is so romantic...\rI hope a knight on a Pokémon will\nsweep me away for a honeymoon here!</language>
+	</row>
+	<row id="pl_msg_00000498_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Ah, my friend, it is you!\nYes, I am at this hotel now.\rI am interviewing the people to see \nif they have seen anyone suspicious.\rI would like your assistance.\nGo search outside, if you will.\rThe suspect, he may have already\nslipped away ahead unnoticed.</language>
+	</row>
+	<row id="pl_msg_00000498_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Looker: Is that so?\nThe champion of Hoenn has stayed here?\rBut that is of no importance!\rA suspicion-arousing character, yes,\nbut your bragging is not necessary!\r</language>
+	</row>
+	<row id="pl_msg_00000498_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Inside the hotel, I will search.\nYou, I ask to search outside.\rThe suspect, he may have already\nslipped away ahead unnoticed.</language>
+	</row>
+</body>

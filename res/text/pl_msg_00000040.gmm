@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50202" />
+	<row id="pl_msg_00000040_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I give my Pokémon nicknames,\nit’s like they’re my very own.\rIt gives me a warm and fuzzy feeling!</language>
+	</row>
+</body>

@@ -2,10 +2,10 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "overlay023/struct_ov23_022542D8_decl.h"
 #include "overlay023/struct_ov23_02254594_decl.h"
@@ -19,7 +19,7 @@
 
 #include "unk_0200112C.h"
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_02013A04.h"
@@ -36,8 +36,8 @@
 
 typedef struct UnkStruct_ov23_022542D8_t {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_0205AA50 unk_04;
-    UnkStruct_0205AA50 unk_14;
+    Window unk_04;
+    Window unk_14;
     UnkStruct_02013A04 * unk_24;
     UnkStruct_0200112C * unk_28;
     Strbuf* unk_2C;
@@ -51,8 +51,8 @@ typedef struct UnkStruct_ov23_022542D8_t {
 typedef struct UnkStruct_ov23_02254594_t {
     UnkStruct_0203CDB0 * unk_00;
     UnkStruct_0206A844 * unk_04;
-    UnkStruct_0205AA50 unk_08;
-    UnkStruct_0205AA50 unk_18;
+    Window unk_08;
+    Window unk_18;
     UnkStruct_02013A04 * unk_28;
     UnkStruct_ov23_02248D20 * unk_2C;
     UnkStruct_0200112C * unk_30;
@@ -166,26 +166,26 @@ static void ov23_0225437C (UnkStruct_ov23_022542D8 * param0)
     v1 = 12 * v4 * 2;
     v2 = 7 * (1 * 2);
 
-    sub_0201A7E8(param0->unk_00->unk_08, &param0->unk_04, 3, 19, 3, 12, v4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v1));
-    sub_0201A7E8(param0->unk_00->unk_08, &param0->unk_14, 3, 1, 1, 7, (1 * 2), 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v1 + v2));
+    BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_04, 3, 19, 3, 12, v4 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v1));
+    BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_14, 3, 1, 1, 7, (1 * 2), 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v1 + v2));
 
-    sub_0200DC48(&param0->unk_04, 1, 1024 - (18 + 12) - 9, 11);
-    sub_0200DC48(&param0->unk_14, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Show(&param0->unk_04, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Show(&param0->unk_14, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v5;
+        MessageLoader * v5;
         int v6;
         const int v7[3 + 1] = {
             1, 2, 3, 4,
         };
 
-        v5 = sub_0200B144(0, 26, 637, 4);
+        v5 = MessageLoader_Init(0, 26, 637, 4);
 
         {
             Strbuf* v8;
 
-            sub_0201ADA4(&param0->unk_14, 15);
-            v8 = sub_0200B1EC(v5, 0);
+            BGL_FillWindow(&param0->unk_14, 15);
+            v8 = MessageLoader_GetNewStrbuf(v5, 0);
             sub_0201D738(&param0->unk_14, 0, v8, 0, 0, 0xff, NULL);
             Strbuf_Free(v8);
         }
@@ -194,7 +194,7 @@ static void ov23_0225437C (UnkStruct_ov23_022542D8 * param0)
             sub_02013A4C(param0->unk_24, v5, v7[v6], v6);
         }
 
-        sub_0200B190(v5);
+        MessageLoader_Free(v5);
     }
 
     v0 = Unk_ov23_02256B3C;
@@ -226,17 +226,17 @@ static void ov23_022544C0 (UnkStruct_ov23_022542D8 * param0)
     case 0xffffffff:
         return;
     case 0xfffffffe:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         param0->unk_3C = v0;
         param0->unk_38 = 2;
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         break;
     default:
     {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         param0->unk_3C = v0;
         param0->unk_38 = 2;
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
     break;
     }
@@ -248,12 +248,12 @@ static void ov23_0225451C (UnkStruct_ov23_022542D8 * param0)
 {
     ov23_02254044(ov23_022421CC());
 
-    sub_0200DC9C(&param0->unk_14, 1);
+    Window_Clear(&param0->unk_14, 1);
     sub_02001384(param0->unk_28, param0->unk_30, param0->unk_34);
-    sub_0200DC9C(&param0->unk_04, 1);
+    Window_Clear(&param0->unk_04, 1);
     sub_0201C3C0(param0->unk_04.unk_00, param0->unk_04.unk_04);
-    sub_0201A8FC(&param0->unk_04);
-    sub_0201A8FC(&param0->unk_14);
+    BGL_DeleteWindow(&param0->unk_04);
+    BGL_DeleteWindow(&param0->unk_14);
     sub_02013A3C(param0->unk_24);
 }
 
@@ -351,13 +351,13 @@ static void ov23_0225461C (UnkStruct_ov23_02254594 * param0)
     case 0xfffffffe:
         param0->unk_44 = 0xfffffffe;
         param0->unk_42 = 2;
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         break;
     default:
     {
         param0->unk_44 = v1;
         param0->unk_42 = 2;
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
     break;
     }
@@ -408,34 +408,34 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
     v2 = 12 * 7 * 2;
     v3 = 8 * (2 * 2);
 
-    sub_0201A7E8(param0->unk_00->unk_08, &param0->unk_08, 3, 19, 3, 12, v5 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v2));
-    sub_0201A7E8(param0->unk_00->unk_08, &param0->unk_18, 3, 1, 1, 8, (2 * 2), 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v2 + v3));
-    sub_0200DC48(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
-    sub_0200DC48(&param0->unk_18, 1, 1024 - (18 + 12) - 9, 11);
+    BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_08, 3, 19, 3, 12, v5 * 2, 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v2));
+    BGL_AddWindow(param0->unk_00->unk_08, &param0->unk_18, 3, 1, 1, 8, (2 * 2), 13, (((1024 - (18 + 12) - 9 - (32 * 8)) - (18 + 12 + 24)) - (27 * 4)) - (v2 + v3));
+    Window_Show(&param0->unk_08, 1, 1024 - (18 + 12) - 9, 11);
+    Window_Show(&param0->unk_18, 1, 1024 - (18 + 12) - 9, 11);
 
     {
-        UnkStruct_0200B144 * v6;
+        MessageLoader * v6;
         int v7 = 0;
         int v8;
         BOOL v9;
         int v10;
         u8 v11;
 
-        v6 = sub_0200B144(0, 26, 626, 4);
+        v6 = MessageLoader_Init(0, 26, 626, 4);
 
         {
-            UnkStruct_0200B144 * v12;
+            MessageLoader * v12;
             Strbuf* v13;
             Strbuf* v14;
             Strbuf* v15;
             UnkStruct_0200B358 * v16;
 
-            v12 = sub_0200B144(0, 26, 637, 4);
+            v12 = MessageLoader_Init(0, 26, 637, 4);
 
-            sub_0201ADA4(&param0->unk_18, 15);
+            BGL_FillWindow(&param0->unk_18, 15);
 
-            v13 = sub_0200B1EC(v12, 9);
-            v14 = sub_0200B1EC(v12, 10);
+            v13 = MessageLoader_GetNewStrbuf(v12, 9);
+            v14 = MessageLoader_GetNewStrbuf(v12, 10);
             v15 = Strbuf_Init(6, 4);
 
             sub_0201D738(&param0->unk_18, 0, v13, 0, 0, 0xff, NULL);
@@ -451,7 +451,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
             Strbuf_Free(v14);
             Strbuf_Free(v15);
 
-            sub_0200B190(v12);
+            MessageLoader_Free(v12);
         }
 
         for (v7 = 0; v7 < v4; v7++) {
@@ -471,7 +471,7 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
         v10 = (v7 << 1) + 1;
 
         sub_02013A4C(param0->unk_28, v6, 277, v10);
-        sub_0200B190(v6);
+        MessageLoader_Free(v6);
     }
 
     ov23_02253DFC(ov23_022421DC(), 626, 0);
@@ -502,13 +502,13 @@ static void ov23_022546E0 (UnkStruct_ov23_02254594 * param0)
 static void ov23_02254958 (UnkStruct_ov23_02254594 * param0)
 {
     ov23_02254044(ov23_022421DC());
-    sub_0200DC9C(&param0->unk_18, 1);
+    Window_Clear(&param0->unk_18, 1);
     ov23_02248EF8(param0->unk_2C, param0->unk_38, param0->unk_3C);
 
-    sub_0200DC9C(&param0->unk_08, 1);
+    Window_Clear(&param0->unk_08, 1);
     sub_0201C3C0(param0->unk_08.unk_00, param0->unk_08.unk_04);
-    sub_0201A8FC(&param0->unk_08);
-    sub_0201A8FC(&param0->unk_18);
+    BGL_DeleteWindow(&param0->unk_08);
+    BGL_DeleteWindow(&param0->unk_18);
     sub_02013A3C(param0->unk_28);
     sub_0206A844(param0->unk_04);
 }
@@ -540,7 +540,7 @@ static void ov23_022549EC (UnkStruct_ov23_022542D8 * param0)
     sub_020014D0(param0->unk_28, &param0->unk_40);
 
     if (v0 != param0->unk_40) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 
     return;

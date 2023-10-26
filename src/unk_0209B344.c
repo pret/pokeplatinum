@@ -86,7 +86,7 @@ static BOOL sub_0209B3C4 (UnkStruct_020508D4 * param0)
         }
         break;
     case 3:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (sub_02097528(v0->unk_10)) {
                 *v0->unk_20 = 0;
                 v0->unk_18 = 4;

@@ -61,7 +61,7 @@ void sub_02055868 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_02055898 (UnkStruct_020508D4 * param0)
 {
-    if (sub_0200F2AC()) {
+    if (ScreenWipe_Done()) {
         return 1;
     }
 

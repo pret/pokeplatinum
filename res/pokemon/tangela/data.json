@@ -1,0 +1,111 @@
+{
+    "name": "Tangela",
+    "base_stats": {
+        "hp": 65,
+        "attack": 55,
+        "defense": 115,
+        "speed": 60,
+        "special_attack": 100,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 166,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "GRASS",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_CHLOROPHYLL",
+        "ABILITY_LEAF_GUARD"
+    ],
+    "great_marsh_flee_rate": 90,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM32",
+            "TM33",
+            "TM34",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM53",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_INGRAIN",
+                "MOVE_CONSTRICT"
+            ],
+            "5": "MOVE_SLEEP_POWDER",
+            "8": "MOVE_ABSORB",
+            "12": "MOVE_GROWTH",
+            "15": "MOVE_POISON_POWDER",
+            "19": "MOVE_VINE_WHIP",
+            "22": "MOVE_BIND",
+            "26": "MOVE_MEGA_DRAIN",
+            "29": "MOVE_STUN_SPORE",
+            "33": "MOVE_ANCIENT_POWER",
+            "36": "MOVE_KNOCK_OFF",
+            "40": "MOVE_NATURAL_GIFT",
+            "43": "MOVE_SLAM",
+            "47": "MOVE_TICKLE",
+            "50": "MOVE_WRING_OUT",
+            "54": "MOVE_POWER_WHIP"
+        }
+    },
+    "evolutions": [
+        [
+            "KNOW_MOVE",
+            "ANCIENT_POWER",
+            "SPECIES_TANGROWTH"
+        ]
+    ]
+}

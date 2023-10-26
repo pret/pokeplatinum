@@ -1,0 +1,103 @@
+{
+    "name": "Finneon",
+    "base_stats": {
+        "hp": 49,
+        "attack": 49,
+        "defense": 56,
+        "speed": 66,
+        "special_attack": 49,
+        "special_defense": 61
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 90,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_RINDO_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "ERRATIC",
+    "egg_groups": [
+        "WATER_2",
+        "WATER_2"
+    ],
+    "abilities": [
+        "ABILITY_SWIFT_SWIM",
+        "ABILITY_STORM_DRAIN"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM55",
+            "TM58",
+            "TM62",
+            "TM66",
+            "TM70",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM03",
+            "HM05",
+            "HM07"
+        ],
+        "level_up": {
+            "1": "MOVE_POUND",
+            "6": "MOVE_WATER_GUN",
+            "10": "MOVE_ATTRACT",
+            "13": "MOVE_RAIN_DANCE",
+            "17": "MOVE_GUST",
+            "22": "MOVE_WATER_PULSE",
+            "26": "MOVE_CAPTIVATE",
+            "29": "MOVE_SAFEGUARD",
+            "33": "MOVE_AQUA_RING",
+            "38": "MOVE_WHIRLPOOL",
+            "42": "MOVE_U_TURN",
+            "45": "MOVE_BOUNCE",
+            "49": "MOVE_SILVER_WIND"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            31,
+            "SPECIES_LUMINEON"
+        ]
+    ]
+}

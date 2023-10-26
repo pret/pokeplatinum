@@ -11,7 +11,7 @@
 #include "struct_defs/struct_02055BA8.h"
 
 #include "unk_0201378C.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025CB0.h"
 #include "unk_0202854C.h"
 #include "unk_0202B37C.h"
@@ -27,7 +27,7 @@
 #include "unk_0206B9D8.h"
 #include "unk_0206C2D0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 static void sub_02055AC0(UnkStruct_0203CDB0 * param0, s32 param1);
@@ -139,7 +139,7 @@ static void sub_02055B64 (UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime
     sub_02028758(param0->unk_0C, param1, sub_02055C40(param0));
 
     {
-        UnkStruct_0202440C * v0 = sub_0202440C(param0->unk_0C);
+        TVBroadcast * v0 = SaveData_TVBroadcast(param0->unk_0C);
         sub_0202E324(v0, param1, param2->minute);
     }
 
@@ -147,7 +147,7 @@ static void sub_02055B64 (UnkStruct_0203CDB0 * param0, s32 param1, const RTCTime
         Party * v1;
 
         v1 = Party_GetFromSavedata(param0->unk_0C);
-        sub_02077BD8(v1, param1, param2);
+        Party_SetShayminForm(v1, param1, param2);
     }
 }
 

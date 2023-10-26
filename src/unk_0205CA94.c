@@ -3,15 +3,15 @@
 
 #include "struct_decls/struct_02009714_decl.h"
 #include "struct_decls/struct_02009F38_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_020218BC_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 
 #include "struct_defs/struct_02009508.h"
 #include "struct_defs/struct_02009CFC.h"
 #include "struct_defs/struct_0200C738.h"
-#include "functypes/funcptr_0201CE28.h"
+#include "functypes/sys_task_func.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "overlay115/struct_ov115_02261520.h"
 
@@ -28,7 +28,7 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0205CA94.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
@@ -78,12 +78,12 @@ typedef struct {
     int unk_10;
 } UnkStruct_0205D4A4;
 
-static void sub_0205CA94(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_0205CBFC(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_0205CD3C(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_0205CE7C(UnkStruct_0201CD38 * param0, void * param1);
-static UnkStruct_0205D274 * sub_0205D050(UnkFuncPtr_0201CE28 func, UnkStruct_0203CDB0 * param1, u32 param2);
-static void sub_0205D080(UnkStruct_0201CD38 * param0, UnkStruct_0205D274 * param1);
+static void sub_0205CA94(SysTask * param0, void * param1);
+static void sub_0205CBFC(SysTask * param0, void * param1);
+static void sub_0205CD3C(SysTask * param0, void * param1);
+static void sub_0205CE7C(SysTask * param0, void * param1);
+static UnkStruct_0205D274 * sub_0205D050(SysTaskFunc func, UnkStruct_0203CDB0 * param1, u32 param2);
+static void sub_0205D080(SysTask * param0, UnkStruct_0205D274 * param1);
 void sub_0205D094(UnkStruct_0205D094 * param0, int param1, u32 param2);
 static void sub_0205D0AC(UnkStruct_0205D094 * param0);
 static void sub_0205D274(UnkStruct_0205D274 * param0, UnkStruct_0205D3AC * param1, int param2);
@@ -124,7 +124,7 @@ const static u8 Unk_020ED8B0[4] = {
     NNS_G2D_VRAM_TYPE_2DMAIN
 };
 
-void sub_0205CA94 (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0205CA94 (SysTask * param0, void * param1)
 {
     UnkStruct_0205D274 * v0 = (UnkStruct_0205D274 *)param1;
     int v1[2];
@@ -169,7 +169,7 @@ void sub_0205CA94 (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 3:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_1E4++;
         }
         break;
@@ -187,7 +187,7 @@ void sub_0205CA94 (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void sub_0205CBFC (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0205CBFC (SysTask * param0, void * param1)
 {
     UnkStruct_0205D274 * v0 = (UnkStruct_0205D274 *)param1;
     int v1;
@@ -211,15 +211,15 @@ void sub_0205CBFC (UnkStruct_0201CD38 * param0, void * param1)
         GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG1, 0);
         sub_0205D274(v0, &v0->unk_1C0[0], 2);
         sub_0200F174(0, 1, 1, 0x0, 6, 1, 4);
-        sub_02005748(1583);
+        Sound_PlayEffect(1583);
         v0->unk_1E0 = 1;
         v0->unk_1E4++;
         break;
     case 2:
         v1 = v0->unk_1C0[0].unk_0C(&v0->unk_1C0[0]);
 
-        if ((v1 == 0) && (sub_0200F2AC())) {
-            sub_02005748(1585);
+        if ((v1 == 0) && (ScreenWipe_Done())) {
+            Sound_PlayEffect(1585);
             v0->unk_1E4++;
             v0->unk_1E8 = -255;
         }
@@ -243,7 +243,7 @@ void sub_0205CBFC (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void sub_0205CD3C (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0205CD3C (SysTask * param0, void * param1)
 {
     UnkStruct_0205D274 * v0 = (UnkStruct_0205D274 *)param1;
     int v1;
@@ -262,7 +262,7 @@ void sub_0205CD3C (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 1:
         sub_0205D274(v0, &v0->unk_1C0[0], 3);
-        sub_02005748(1584);
+        Sound_PlayEffect(1584);
         v0->unk_1E0 = 1;
         v0->unk_1E4++;
         break;
@@ -288,7 +288,7 @@ void sub_0205CD3C (UnkStruct_0201CD38 * param0, void * param1)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v0->unk_1E8 = 0;
             v0->unk_1E4++;
         }
@@ -305,7 +305,7 @@ void sub_0205CD3C (UnkStruct_0201CD38 * param0, void * param1)
     }
 }
 
-void sub_0205CE7C (UnkStruct_0201CD38 * param0, void * param1)
+void sub_0205CE7C (SysTask * param0, void * param1)
 {
     UnkStruct_0205D274 * v0 = (UnkStruct_0205D274 *)param1;
     int v1[2];
@@ -331,8 +331,8 @@ void sub_0205CE7C (UnkStruct_0201CD38 * param0, void * param1)
         v0->unk_1E4++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
-            sub_02005748(1586);
+        if (ScreenWipe_Done()) {
+            Sound_PlayEffect(1586);
             v0->unk_1E4++;
         }
         break;
@@ -395,24 +395,24 @@ void sub_0205CFDC (UnkStruct_0203CDB0 * param0, int param1, BOOL * param2)
     v0->unk_00 = param0;
 }
 
-UnkStruct_0205D274 * sub_0205D050 (UnkFuncPtr_0201CE28 func, UnkStruct_0203CDB0 * param1, u32 param2)
+UnkStruct_0205D274 * sub_0205D050 (SysTaskFunc func, UnkStruct_0203CDB0 * param1, u32 param2)
 {
     UnkStruct_0205D274 * v0;
-    UnkStruct_0201CD38 * v1;
+    SysTask * v1;
     int v2;
-    UnkStruct_02025E6C * v3;
+    TrainerInfo * v3;
 
     v1 = sub_0200679C(func, sizeof(UnkStruct_0205D274), 5, 4);
     v0 = sub_0201CED0(v1);
     v3 = sub_02025E38(param1->unk_0C);
-    v2 = sub_02025F30(v3);
+    v2 = TrainerInfo_Gender(v3);
 
     sub_0205D094(&v0->unk_04, v2, param2);
 
     return v0;
 }
 
-void sub_0205D080 (UnkStruct_0201CD38 * param0, UnkStruct_0205D274 * param1)
+void sub_0205D080 (SysTask * param0, UnkStruct_0205D274 * param1)
 {
     sub_0205D0AC(&param1->unk_04);
     sub_020067D0(param0);

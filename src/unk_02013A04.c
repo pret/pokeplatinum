@@ -1,13 +1,13 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_02013A04_t.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_02013A04.h"
 #include "heap.h"
 #include "strbuf.h"
@@ -39,14 +39,14 @@ void sub_02013A3C (UnkStruct_02013A04 * param0)
     Heap_FreeToHeap(param0);
 }
 
-void sub_02013A4C (UnkStruct_02013A04 * param0, const UnkStruct_0200B144 * param1, u32 param2, u32 param3)
+void sub_02013A4C (UnkStruct_02013A04 * param0, const MessageLoader * param1, u32 param2, u32 param3)
 {
     u32 v0;
 
     param0 = sub_02013AAC(param0, &v0);
 
     if (param0) {
-        param0->unk_00 = sub_0200B1EC(param1, param2);
+        param0->unk_00 = MessageLoader_GetNewStrbuf(param1, param2);
         param0->unk_04 = param3;
     }
 }

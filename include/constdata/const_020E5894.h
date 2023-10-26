@@ -1,8 +1,0 @@
-#ifndef POKEPLATINUM_CONST_020E5894_H
-#define POKEPLATINUM_CONST_020E5894_H
-
-#include "struct_defs/struct_020251A4.h"
-
-extern const UnkStruct_020251A4 Unk_020E5894[];
-
-#endif // POKEPLATINUM_CONST_020E5894_H

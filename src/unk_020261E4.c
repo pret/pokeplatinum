@@ -4,11 +4,11 @@
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_0202818C.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 
 #include "unk_020244AC.h"
 #include "unk_020261E4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 typedef struct UnkStruct_02026224_t {
     UnkStruct_0202818C unk_00;
@@ -30,17 +30,17 @@ typedef struct UnkStruct_02026310_t {
     u8 unk_DC;
 } UnkStruct_02026310;
 
-int sub_020261E4 (void)
+int Daycare_SaveSize (void)
 {
     return sizeof(UnkStruct_02026310);
 }
 
-void sub_020261EC (UnkStruct_02026310 * param0)
+void Daycare_Init (UnkStruct_02026310 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_02026310));
 
-    ZeroBoxMonData(&param0->unk_00[0].unk_00);
-    ZeroBoxMonData(&param0->unk_00[1].unk_00);
+    BoxPokemon_Init(&param0->unk_00[0].unk_00);
+    BoxPokemon_Init(&param0->unk_00[1].unk_00);
 
     param0->unk_D8 = 0;
     param0->unk_DC = 0;
@@ -114,8 +114,8 @@ BOOL sub_02026280 (UnkStruct_02026310 * param0)
 {
     int v0, v1;
 
-    v0 = sub_02074570(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
-    v1 = sub_02074570(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
+    v0 = BoxPokemon_GetValue(&param0->unk_00[0].unk_00, MON_DATA_LANGUAGE, NULL);
+    v1 = BoxPokemon_GetValue(&param0->unk_00[1].unk_00, MON_DATA_LANGUAGE, NULL);
 
     if (v0 != v1) {
         return 1;
@@ -147,15 +147,15 @@ void sub_020262C0 (UnkStruct_02026224 * param0)
 
 void sub_020262F4 (UnkStruct_02026218 * param0)
 {
-    ZeroBoxMonData(&param0->unk_00);
+    BoxPokemon_Init(&param0->unk_00);
     param0->unk_68 = 0;
     sub_020262C0(&param0->unk_08);
 }
 
-UnkStruct_02026310 * sub_02026310 (UnkStruct_021C0794 * param0)
+UnkStruct_02026310 * sub_02026310 (SaveData * param0)
 {
     UnkStruct_02026310 * v0;
 
-    v0 = sub_020245BC(param0, 8);
+    v0 = SaveData_Get(param0, 8);
     return v0;
 }

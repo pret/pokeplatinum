@@ -1,0 +1,21 @@
+{
+    "name": "Heal Order",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_BUG",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "MOVE_EFFECT_RESTORE_HALF_HP",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_SNATCH"
+    ],
+    "contest": {
+        "effect": 8,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

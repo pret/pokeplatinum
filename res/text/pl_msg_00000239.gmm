@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="21506" />
+	<row id="pl_msg_00000239_00000" index="0">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000239_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Great Marsh Area 1</language>
+	</row>
+</body>

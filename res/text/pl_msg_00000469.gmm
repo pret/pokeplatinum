@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="2430" />
+	<row id="pl_msg_00000469_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are boulders blocking the way\ninside the cavern...\rI think a Pokémon’s hidden move will be\nable to smash those boulders, though.</language>
+	</row>
+	<row id="pl_msg_00000469_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 204\nJubilife City</language>
+	</row>
+	<row id="pl_msg_00000469_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ravaged Path</language>
+	</row>
+</body>

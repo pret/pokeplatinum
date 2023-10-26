@@ -5,7 +5,7 @@
 #include "overlay084/struct_ov84_0223BE5C.h"
 
 typedef struct UnkStruct_0207CB08_t {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     UnkStruct_ov84_0223BE5C unk_04[8];
     u8 unk_64;
     u8 unk_65;

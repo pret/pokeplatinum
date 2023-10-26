@@ -1,0 +1,112 @@
+{
+    "name": "Grimer",
+    "base_stats": {
+        "hp": 80,
+        "attack": 80,
+        "defense": 50,
+        "speed": 25,
+        "special_attack": 40,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 90,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NUGGET"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "AMORPHOUS",
+        "AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_STENCH",
+        "ABILITY_STICKY_HOLD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM35",
+            "TM36",
+            "TM38",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM64",
+            "TM66",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM04"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_POISON_GAS",
+                "MOVE_POUND"
+            ],
+            "4": "MOVE_HARDEN",
+            "7": "MOVE_MUD_SLAP",
+            "12": "MOVE_DISABLE",
+            "17": "MOVE_MINIMIZE",
+            "20": "MOVE_SLUDGE",
+            "23": "MOVE_MUD_BOMB",
+            "28": "MOVE_FLING",
+            "33": "MOVE_SCREECH",
+            "36": "MOVE_SLUDGE_BOMB",
+            "39": "MOVE_ACID_ARMOR",
+            "44": "MOVE_GUNK_SHOT",
+            "49": "MOVE_MEMENTO"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            38,
+            "SPECIES_MUK"
+        ]
+    ]
+}

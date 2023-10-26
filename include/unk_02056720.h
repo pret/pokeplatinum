@@ -2,11 +2,11 @@
 #define POKEPLATINUM_UNK_02056720_H
 
 #include "struct_decls/struct_02056B24_decl.h"
-#include "struct_defs/box_pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_02056720(void);
-void sub_02056728(UnkStruct_02056B24 * param0);
+int Poketch_SaveSize(void);
+void Poketch_Init(UnkStruct_02056B24 * param0);
 void sub_020567D0(UnkStruct_02056B24 * param0);
 BOOL sub_020567E0(UnkStruct_02056B24 * param0);
 BOOL sub_020567E8(UnkStruct_02056B24 * param0, int param1);
@@ -33,6 +33,6 @@ void sub_02056A48(UnkStruct_02056B24 * param0, const BoxPokemon * param1);
 int sub_02056AAC(const UnkStruct_02056B24 * param0);
 void sub_02056AC8(const UnkStruct_02056B24 * param0, int param1, int * param2, int * param3);
 u32 sub_02056AFC(const UnkStruct_02056B24 * param0, int param1);
-UnkStruct_02056B24 * sub_02056B24(UnkStruct_021C0794 * param0);
+UnkStruct_02056B24 * sub_02056B24(SaveData * param0);
 
 #endif // POKEPLATINUM_UNK_02056720_H

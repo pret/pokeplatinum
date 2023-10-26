@@ -113,7 +113,7 @@ void sub_0206C784 (UnkStruct_0203CDB0 * param0, const u8 param1, const u8 param2
                 v0->unk_00 = 1;
 
                 sub_0206CBA0(param0);
-                sub_02005748(1757);
+                Sound_PlayEffect(1757);
             } else {
                 v0->unk_00 = 0;
             }
@@ -193,7 +193,7 @@ static BOOL sub_0206C964 (UnkStruct_020508D4 * param0)
             if (sub_0206CB8C(&v1->unk_10, &v1->unk_14, &v1->unk_02)) {
                 ov5_021D4250(v0->unk_54, 1, 0);
                 ov5_021D4250(v0->unk_54, 2, 0);
-                sub_02005748(1758);
+                Sound_PlayEffect(1758);
             }
         } else {
             if ((ov5_021D42F0(v0->unk_54, 1)) && (ov5_021D42F0(v0->unk_54, 2)) && v2) {
@@ -208,7 +208,7 @@ static BOOL sub_0206C964 (UnkStruct_020508D4 * param0)
         v1->unk_00 = 3;
         break;
     case 3:
-        if (!sub_0200F2AC() || (sub_02005684() != 0)) {
+        if (!ScreenWipe_Done() || (sub_02005684() != 0)) {
             return 0;
         }
 

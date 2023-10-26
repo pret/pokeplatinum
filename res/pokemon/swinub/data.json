@@ -1,0 +1,106 @@
+{
+    "name": "Swinub",
+    "base_stats": {
+        "hp": 50,
+        "attack": 50,
+        "defense": 40,
+        "speed": 50,
+        "special_attack": 30,
+        "special_defense": 30
+    },
+    "types": [
+        "TYPE_ICE",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 225,
+    "base_exp_reward": 78,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_OBLIVIOUS",
+        "ABILITY_SNOW_CLOAK"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM33",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_ODOR_SLEUTH"
+            ],
+            "4": "MOVE_MUD_SPORT",
+            "8": "MOVE_POWDER_SNOW",
+            "13": "MOVE_MUD_SLAP",
+            "16": "MOVE_ENDURE",
+            "20": "MOVE_MUD_BOMB",
+            "25": "MOVE_ICY_WIND",
+            "28": "MOVE_ICE_SHARD",
+            "32": "MOVE_TAKE_DOWN",
+            "37": "MOVE_EARTHQUAKE",
+            "40": "MOVE_MIST",
+            "44": "MOVE_BLIZZARD",
+            "49": "MOVE_AMNESIA"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            33,
+            "SPECIES_PILOSWINE"
+        ]
+    ]
+}

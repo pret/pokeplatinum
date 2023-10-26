@@ -111,7 +111,7 @@ static BOOL ov6_02246C9C (UnkStruct_020508D4 * param0)
         v11.y = v1->unk_00.y + Unk_ov6_0224989C[v1->unk_0D].y;
         v11.z = v1->unk_00.z + Unk_ov6_0224989C[v1->unk_0D].z;
 
-        sub_02005748(1534);
+        Sound_PlayEffect(1534);
 
         v1->unk_10[v1->unk_0D] = ov5_021E19CC(v0->unk_A4, v0->unk_30, 517, &v11, &v12, v0->unk_50);
 

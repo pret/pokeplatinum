@@ -1,0 +1,67 @@
+{
+    "name": "Burmy",
+    "base_stats": {
+        "hp": 40,
+        "attack": 29,
+        "defense": 45,
+        "speed": 36,
+        "special_attack": 29,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_BUG"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 61,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SHED_SKIN",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": "MOVE_PROTECT",
+            "10": "MOVE_TACKLE",
+            "15": "MOVE_BUG_BITE",
+            "20": "MOVE_HIDDEN_POWER"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_FEMALE",
+            20,
+            "SPECIES_WORMADAM"
+        ],
+        [
+            "LEVEL_MALE",
+            20,
+            "SPECIES_MOTHIM"
+        ]
+    ]
+}

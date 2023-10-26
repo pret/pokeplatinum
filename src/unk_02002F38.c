@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_020032D0.h"
 #include "struct_defs/struct_0200330C.h"
@@ -21,7 +21,7 @@ typedef struct UnkStruct_02002F38_t {
     u16 unk_11A_15 : 1;
     u8 unk_11C;
     u8 unk_11D[3];
-} UnkStruct_02002F38;
+} PaletteSys;
 
 typedef struct {
     u16 unk_00_0 : 5;
@@ -31,40 +31,40 @@ typedef struct {
 } UnkStruct_0200393C;
 
 static u8 sub_0200327C(u16 param0, u16 param1);
-static void sub_02003290(UnkStruct_02002F38 * param0, u16 param1);
+static void sub_02003290(PaletteSys * param0, u16 param1);
 static void sub_020032D0(int param0, UnkStruct_020032D0 * param1, u16 * param2);
 static void sub_0200330C(UnkStruct_0200330C * param0, u16 param1, s8 param2, u8 param3, u8 param4, u16 param5);
-static void sub_020033CC(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_02003468(UnkStruct_02002F38 * param0);
-static void sub_02003488(UnkStruct_02002F38 * param0);
-static void sub_020034A8(UnkStruct_02002F38 * param0, u16 param1, u16 param2);
-static void sub_02003504(UnkStruct_02002F38 * param0, u16 param1, u16 param2);
+static void sub_020033CC(SysTask * param0, void * param1);
+static void sub_02003468(PaletteSys * param0);
+static void sub_02003488(PaletteSys * param0);
+static void sub_020034A8(PaletteSys * param0, u16 param1, u16 param2);
+static void sub_02003504(PaletteSys * param0, u16 param1, u16 param2);
 static void sub_02003560(u16 * param0, u16 * param1, UnkStruct_0200330C * param2, u32 param3);
-static void sub_020035EC(UnkStruct_02002F38 * param0, u8 param1, UnkStruct_0200330C * param2);
+static void sub_020035EC(PaletteSys * param0, u8 param1, UnkStruct_0200330C * param2);
 
-UnkStruct_02002F38 * sub_02002F38 (int param0)
+PaletteSys * sub_02002F38 (int param0)
 {
-    UnkStruct_02002F38 * v0;
+    PaletteSys * v0;
 
-    v0 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_02002F38));
-    MI_CpuClear8(v0, sizeof(UnkStruct_02002F38));
+    v0 = Heap_AllocFromHeap(param0, sizeof(PaletteSys));
+    MI_CpuClear8(v0, sizeof(PaletteSys));
 
     return v0;
 }
 
-void sub_02002F54 (UnkStruct_02002F38 * param0)
+void sub_02002F54 (PaletteSys * param0)
 {
     Heap_FreeToHeap(param0);
 }
 
-void sub_02002F5C (UnkStruct_02002F38 * param0, int param1, void * param2, void * param3, u32 param4)
+void sub_02002F5C (PaletteSys * param0, int param1, void * param2, void * param3, u32 param4)
 {
     param0->unk_00[param1].unk_00 = (u16 *)param2;
     param0->unk_00[param1].unk_04 = (u16 *)param3;
     param0->unk_00[param1].unk_08 = param4;
 }
 
-void sub_02002F70 (UnkStruct_02002F38 * param0, int param1, u32 param2, u32 param3)
+void sub_02002F70 (PaletteSys * param0, int param1, u32 param2, u32 param3)
 {
     void * v0;
     void * v1;
@@ -75,19 +75,19 @@ void sub_02002F70 (UnkStruct_02002F38 * param0, int param1, u32 param2, u32 para
     sub_02002F5C(param0, param1, v0, v1, param2);
 }
 
-void sub_02002FA0 (UnkStruct_02002F38 * param0, int param1)
+void sub_02002FA0 (PaletteSys * param0, int param1)
 {
     Heap_FreeToHeap(param0->unk_00[param1].unk_00);
     Heap_FreeToHeap(param0->unk_00[param1].unk_04);
 }
 
-void sub_02002FBC (UnkStruct_02002F38 * param0, const void * param1, int param2, u16 param3, u16 param4)
+void sub_02002FBC (PaletteSys * param0, const void * param1, int param2, u16 param3, u16 param4)
 {
     MI_CpuCopy16(param1, (void *)&param0->unk_00[param2].unk_00[param3], (u32)param4);
     MI_CpuCopy16(param1, (void *)&param0->unk_00[param2].unk_04[param3], (u32)param4);
 }
 
-void sub_02002FEC (UnkStruct_02002F38 * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6, u16 param7)
+void sub_02002FEC (PaletteSys * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6, u16 param7)
 {
     NNSG2dPaletteData * v0;
     void * v1;
@@ -105,12 +105,12 @@ void sub_02002FEC (UnkStruct_02002F38 * param0, u32 param1, u32 param2, u32 para
     Heap_FreeToHeap(v1);
 }
 
-void sub_02003050 (UnkStruct_02002F38 * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6)
+void PaletteSys_LoadPalette (PaletteSys * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6)
 {
     sub_02002FEC(param0, param1, param2, param3, param4, param5, param6, 0);
 }
 
-void sub_02003070 (UnkStruct_02002F38 * param0, int param1, u16 param2, u32 param3)
+void sub_02003070 (PaletteSys * param0, int param1, u16 param2, u32 param3)
 {
     u16 * v0;
 
@@ -153,23 +153,23 @@ void sub_020030E4 (u32 param0, u32 param1, u32 param2, u32 param3, u16 param4, v
     Heap_FreeToHeap(v1);
 }
 
-void sub_02003120 (UnkStruct_02002F38 * param0, int param1, u16 param2, int param3, u16 param4, u16 param5)
+void sub_02003120 (PaletteSys * param0, int param1, u16 param2, int param3, u16 param4, u16 param5)
 {
     MI_CpuCopy16((void *)&param0->unk_00[param1].unk_00[param2], (void *)&param0->unk_00[param3].unk_00[param4], param5);
     MI_CpuCopy16((void *)&param0->unk_00[param1].unk_00[param2], (void *)&param0->unk_00[param3].unk_04[param4], param5);
 }
 
-u16 * sub_02003164 (UnkStruct_02002F38 * param0, int param1)
+u16 * sub_02003164 (PaletteSys * param0, int param1)
 {
     return param0->unk_00[param1].unk_00;
 }
 
-u16 * sub_0200316C (UnkStruct_02002F38 * param0, int param1)
+u16 * sub_0200316C (PaletteSys * param0, int param1)
 {
     return param0->unk_00[param1].unk_04;
 }
 
-u8 sub_02003178 (UnkStruct_02002F38 * param0, u16 param1, u16 param2, s8 param3, u8 param4, u8 param5, u16 param6)
+u8 sub_02003178 (PaletteSys * param0, u16 param1, u16 param2, s8 param3, u8 param4, u8 param5, u16 param6)
 {
     u16 v0;
     u8 v1;
@@ -203,7 +203,7 @@ u8 sub_02003178 (UnkStruct_02002F38 * param0, u16 param1, u16 param2, s8 param3,
             param0->unk_118_0 = 1;
             param0->unk_11C = 0;
 
-            sub_0200D9E8(sub_020033CC, param0, (0xffffffff - 1));
+            SysTask_Start(sub_020033CC, param0, (0xffffffff - 1));
         }
     }
 
@@ -219,7 +219,7 @@ static u8 sub_0200327C (u16 param0, u16 param1)
     return 0;
 }
 
-static void sub_02003290 (UnkStruct_02002F38 * param0, u16 param1)
+static void sub_02003290 (PaletteSys * param0, u16 param1)
 {
     if (sub_0200327C(param0->unk_11A_0, param1) == 1) {
         return;
@@ -271,16 +271,16 @@ static void sub_0200330C (UnkStruct_0200330C * param0, u16 param1, s8 param2, u8
     }
 }
 
-static void sub_020033CC (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020033CC (SysTask * param0, void * param1)
 {
-    UnkStruct_02002F38 * v0 = param1;
+    PaletteSys * v0 = param1;
 
     if (v0->unk_11C == 1) {
         v0->unk_11C = 0;
         v0->unk_11A_0 = 0;
         v0->unk_118_2 = 0;
         v0->unk_11A_14 = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         return;
     }
 
@@ -295,11 +295,11 @@ static void sub_020033CC (UnkStruct_0201CD38 * param0, void * param1)
 
     if (v0->unk_118_2 == 0) {
         v0->unk_11A_14 = 0;
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     }
 }
 
-static void sub_02003468 (UnkStruct_02002F38 * param0)
+static void sub_02003468 (PaletteSys * param0)
 {
     u8 v0, v1;
 
@@ -308,7 +308,7 @@ static void sub_02003468 (UnkStruct_02002F38 * param0)
     }
 }
 
-static void sub_02003488 (UnkStruct_02002F38 * param0)
+static void sub_02003488 (PaletteSys * param0)
 {
     u8 v0, v1;
 
@@ -317,7 +317,7 @@ static void sub_02003488 (UnkStruct_02002F38 * param0)
     }
 }
 
-static void sub_020034A8 (UnkStruct_02002F38 * param0, u16 param1, u16 param2)
+static void sub_020034A8 (PaletteSys * param0, u16 param1, u16 param2)
 {
     if (sub_0200327C(param0->unk_118_2, param1) == 0) {
         return;
@@ -333,7 +333,7 @@ static void sub_020034A8 (UnkStruct_02002F38 * param0, u16 param1, u16 param2)
     sub_02003504(param0, param1, param2);
 }
 
-static void sub_02003504 (UnkStruct_02002F38 * param0, u16 param1, u16 param2)
+static void sub_02003504 (PaletteSys * param0, u16 param1, u16 param2)
 {
     u32 v0;
 
@@ -362,7 +362,7 @@ static void sub_02003560 (u16 * param0, u16 * param1, UnkStruct_0200330C * param
     }
 }
 
-static void sub_020035EC (UnkStruct_02002F38 * param0, u8 param1, UnkStruct_0200330C * param2)
+static void sub_020035EC (PaletteSys * param0, u8 param1, UnkStruct_0200330C * param2)
 {
     s16 v0;
 
@@ -391,7 +391,7 @@ static void sub_020035EC (UnkStruct_02002F38 * param0, u8 param1, UnkStruct_0200
     }
 }
 
-void sub_02003694 (UnkStruct_02002F38 * param0)
+void sub_02003694 (PaletteSys * param0)
 {
     if ((param0->unk_11A_15 == 0) && (param0->unk_118_0 != 1)) {
         return;
@@ -482,23 +482,23 @@ void sub_02003694 (UnkStruct_02002F38 * param0)
     }
 }
 
-u16 sub_0200384C (UnkStruct_02002F38 * param0)
+u16 sub_0200384C (PaletteSys * param0)
 {
     return param0->unk_118_2;
 }
 
-void sub_02003858 (UnkStruct_02002F38 * param0, int param1)
+void sub_02003858 (PaletteSys * param0, int param1)
 {
     param0->unk_11A_15 = param1;
 }
 
-void sub_0200387C (UnkStruct_02002F38 * param0, u8 param1)
+void sub_0200387C (PaletteSys * param0, u8 param1)
 {
     param0->unk_118_0 = param1 & 0x1;
     param0->unk_118_2 = 0xFFFFFFFF;
 }
 
-void sub_020038B0 (UnkStruct_02002F38 * param0, int param1, int param2, u16 param3, u16 param4, u16 param5)
+void sub_020038B0 (PaletteSys * param0, int param1, int param2, u16 param3, u16 param4, u16 param5)
 {
     GF_ASSERT(param5 * sizeof(u16) <= param0->unk_00[param1].unk_08);
 
@@ -511,7 +511,7 @@ void sub_020038B0 (UnkStruct_02002F38 * param0, int param1, int param2, u16 para
     }
 }
 
-u16 sub_02003910 (UnkStruct_02002F38 * param0, int param1, int param2, u16 param3)
+u16 sub_02003910 (PaletteSys * param0, int param1, int param2, u16 param3)
 {
     if (param2 == 1) {
         return param0->unk_00[param1].unk_00[param3];
@@ -544,7 +544,7 @@ void sub_0200393C (const u16 * param0, u16 * param1, u16 param2, u8 param3, u16 
     }
 }
 
-void sub_020039B0 (UnkStruct_02002F38 * param0, int param1, u16 param2, u16 param3, u8 param4, u16 param5)
+void sub_020039B0 (PaletteSys * param0, int param1, u16 param2, u16 param3, u8 param4, u16 param5)
 {
     GF_ASSERT(param0->unk_00[param1].unk_00 != NULL && param0->unk_00[param1].unk_04 != NULL);
     sub_0200393C(&param0->unk_00[param1].unk_00[param2], &param0->unk_00[param1].unk_04[param2], param3, param4, param5);
@@ -564,7 +564,7 @@ void sub_020039F8 (const u16 * param0, u16 * param1, u16 param2, u8 param3, u16 
     }
 }
 
-void sub_02003A2C (UnkStruct_02002F38 * param0, int param1, u16 param2, u8 param3, u16 param4)
+void sub_02003A2C (PaletteSys * param0, int param1, u16 param2, u8 param3, u16 param4)
 {
     int v0 = 0;
 
@@ -613,7 +613,7 @@ void sub_02003A8C (u16 * param0, int param1, int param2, int param3, int param4)
     }
 }
 
-void sub_02003B08 (UnkStruct_02002F38 * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6, int param7, int param8, int param9)
+void sub_02003B08 (PaletteSys * param0, u32 param1, u32 param2, u32 param3, int param4, u32 param5, u16 param6, int param7, int param8, int param9)
 {
     NNSG2dPaletteData * v0;
     void * v1;

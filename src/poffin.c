@@ -88,7 +88,7 @@ static void MakePoffinFoul (Poffin * poffin, u8 param1)
     v0 = 0;
 
     do {
-        v1 = sub_0201D2E8() % 5;
+        v1 = LCRNG_Next() % 5;
 
         if (poffin->attributes[v1 + 1] != 0) {
             continue;
@@ -225,17 +225,17 @@ u8 Poffin_CalcLevel (Poffin * poffin)
     return level;
 }
 
-UnkStruct_0202AB28 * Poffin_GetSavedataBlock (UnkStruct_021C0794 * savedata)
+UnkStruct_0202AB28 * Poffin_GetSavedataBlock (SaveData * savedata)
 {
-    return sub_020245BC(savedata, 16);
+    return SaveData_Get(savedata, 16);
 }
 
-int Poffin_GetSizeOfSavedataBlock (void)
+int Poffin_SaveSize (void)
 {
     return sizeof(Poffin) * 100;
 }
 
-void sub_0202AB3C (UnkStruct_0202AB28 * param0)
+void Poffin_Init (UnkStruct_0202AB28 * param0)
 {
     int i = 0;
 

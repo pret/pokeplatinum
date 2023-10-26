@@ -5,7 +5,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0200D0F4.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -17,12 +17,12 @@
 #include "overlay016/ov16_0226DB7C.h"
 
 typedef struct UnkStruct_ov16_0226DC24_t {
-    UnkStruct_0200D0F4 * unk_00[5];
-    UnkStruct_0201CD38 * unk_14;
+    CellActorData * unk_00[5];
+    SysTask * unk_14;
 } UnkStruct_ov16_0226DC24;
 
-static void ov16_0226DE10(UnkStruct_0201CD38 * param0, void * param1);
-void ov16_0226DB7C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02002F38 * param2, int param3, u32 param4, u32 param5, u32 param6, u32 param7);
+static void ov16_0226DE10(SysTask * param0, void * param1);
+void ov16_0226DB7C(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, PaletteSys * param2, int param3, u32 param4, u32 param5, u32 param6, u32 param7);
 void ov16_0226DBFC(UnkStruct_0200C704 * param0, u32 param1, u32 param2, u32 param3, u32 param4);
 UnkStruct_ov16_0226DC24 * ov16_0226DC24(UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, int param2, u32 param3, u32 param4, u32 param5, u32 param6, u32 param7, u32 param8);
 void ov16_0226DCA8(UnkStruct_ov16_0226DC24 * param0);
@@ -42,11 +42,11 @@ static const UnkStruct_ov104_0223F9E0 Unk_ov16_02270AA4 = {
     0x0
 };
 
-void ov16_0226DB7C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, UnkStruct_02002F38 * param2, int param3, u32 param4, u32 param5, u32 param6, u32 param7)
+void ov16_0226DB7C (UnkStruct_0200C6E4 * param0, UnkStruct_0200C704 * param1, PaletteSys * param2, int param3, u32 param4, u32 param5, u32 param6, u32 param7)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(27, param3);
+    v0 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, param3);
 
     sub_0200CDC4(param2, 3, param0, param1, v0, 80, 0, 1, NNS_G2D_VRAM_TYPE_2DSUB, param5);
     sub_0200CC3C(param0, param1, v0, 250, 1, NNS_G2D_VRAM_TYPE_2DSUB, param4);
@@ -85,7 +85,7 @@ UnkStruct_ov16_0226DC24 * ov16_0226DC24 (UnkStruct_0200C6E4 * param0, UnkStruct_
         sub_0200D3F4(v0->unk_00[v2], 0);
     }
 
-    v0->unk_14 = sub_0200D9E8(ov16_0226DE10, v0, 40000);
+    v0->unk_14 = SysTask_Start(ov16_0226DE10, v0, 40000);
     return v0;
 }
 
@@ -97,7 +97,7 @@ void ov16_0226DCA8 (UnkStruct_ov16_0226DC24 * param0)
         sub_0200D0F4(param0->unk_00[v0]);
     }
 
-    sub_0200DA58(param0->unk_14);
+    SysTask_Done(param0->unk_14);
     Heap_FreeToHeap(param0);
 }
 
@@ -156,7 +156,7 @@ void ov16_0226DE04 (UnkStruct_ov16_0226DC24 * param0)
     sub_0200D3F4(param0->unk_00[4], 0);
 }
 
-static void ov16_0226DE10 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov16_0226DE10 (SysTask * param0, void * param1)
 {
     UnkStruct_ov16_0226DC24 * v0 = param1;
     int v1;

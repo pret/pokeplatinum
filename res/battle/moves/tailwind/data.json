@@ -1,0 +1,21 @@
+{
+    "name": "Tailwind",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FLYING",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 30,
+    "effect": {
+        "type": "MOVE_EFFECT_DOUBLE_SPEED_3_TURNS",
+        "chance": 0
+    },
+    "range": "RANGE_USER_SIDE",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_SNATCH"
+    ],
+    "contest": {
+        "effect": 1,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

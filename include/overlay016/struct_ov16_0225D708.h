@@ -1,11 +1,11 @@
 #ifndef POKEPLATINUM_STRUCT_OV16_0225D708_H
 #define POKEPLATINUM_STRUCT_OV16_0225D708_H
 
-#include "struct_decls/struct_0207ADB4_decl.h"
+#include "struct_decls/battle_system.h"
 #include "overlay016/struct_ov16_0225C29C_sub1.h"
 
 typedef struct {
-    UnkStruct_0207ADB4 * unk_00;
+    BattleSystem * unk_00;
     void * unk_04;
     int unk_08;
     u8 unk_0C;

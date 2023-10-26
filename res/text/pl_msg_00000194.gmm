@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="35762" />
+	<row id="pl_msg_00000194_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Frontier’s as tough as they\nsay...\rNone of the facilities are cakewalks,\nthat’s for sure.</language>
+	</row>
+	<row id="pl_msg_00000194_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The best Trainers from around the\ncountry...\rNo, the best Trainers from around\nthe world gather at the Battle Zone.</language>
+	</row>
+	<row id="pl_msg_00000194_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">To toughen myself!\nTo toughen my Pokémon!\fFor that alone, I have come!</language>
+	</row>
+	<row id="pl_msg_00000194_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re doing a feature on tough Trainers\nin the Battle Zone.\rThat’s where you come in.\nWe need you to battle us!</language>
+	</row>
+	<row id="pl_msg_00000194_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter Kinsey’s live interview!\r</language>
+	</row>
+	<row id="pl_msg_00000194_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t have to be shy.\nWe can obscure your face if we have to.</language>
+	</row>
+	<row id="pl_msg_00000194_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I go after interviews like my favorite\nPokémon move--I tackle them!\rOf course, I don’t use Tackle in\nbattles, though.</language>
+	</row>
+	<row id="pl_msg_00000194_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Expert Trainer spotted!\nWill you let us battle with you?</language>
+	</row>
+	<row id="pl_msg_00000194_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Great! Great!\nYou guys are great!\r</language>
+	</row>
+	<row id="pl_msg_00000194_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Want to see how good you are before\nyou go off to the Battle Frontier?</language>
+	</row>
+	<row id="pl_msg_00000194_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The combination of you and your Pokémon\nwill tear up the Battle Tower!</language>
+	</row>
+</body>

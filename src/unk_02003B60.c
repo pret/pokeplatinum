@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02003D54_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0202CC84_decl.h"
 
 #include "struct_defs/struct_020052C8.h"
@@ -48,7 +48,7 @@ struct UnkStruct_02003D54_t {
     const SNDWaveData * unk_BCD88;
     void * unk_BCD8C;
     int unk_BCD90;
-    UnkStruct_0201CD38 * unk_BCD94;
+    SysTask * unk_BCD94;
     UnkStruct_0202CC84 * unk_BCD98;
     UnkStruct_0202CC84 * unk_BCD9C[4];
     int unk_BCDAC[2];
@@ -168,7 +168,7 @@ static void sub_02003C64 (void)
         if (sub_02005684() == 0) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
-                sub_0200549C(v1->unk_BCD5A);
+                Sound_PlayBGM(v1->unk_BCD5A);
             }
         }
         break;
@@ -176,7 +176,7 @@ static void sub_02003C64 (void)
         if (sub_02005684() == 0) {
             if (sub_02004FEC() == 0) {
                 sub_020041B4();
-                sub_0200549C(v1->unk_BCD5A);
+                Sound_PlayBGM(v1->unk_BCD5A);
                 sub_0200560C(127, v1->unk_BCD54, 0);
             }
         }

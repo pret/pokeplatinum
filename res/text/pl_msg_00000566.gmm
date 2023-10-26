@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="5150" />
+	<row id="pl_msg_00000566_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ah, so that Rowan fellow is back?\nHe’s quite the remarkable man.\rHe’s been studying Pokémon since way,\nway back.\rMy son and grandchild help Rowan\nwith his studies now.</language>
+	</row>
+	<row id="pl_msg_00000566_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, my!\nYou’ve got a National Pokédex?\fHow fantastic is that?!\rRowan should be delighted.\nIt will greatly help his research.\rBut, young Trainer...\nYou should know this.\rIn this world, there are 300...\nNo, 400...\rNo, no, no! There’re a lot more\nkinds of Pokémon than that!</language>
+	</row>
+	<row id="pl_msg_00000566_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Who are you?\r...\rOh...\nYou’re {STRVAR_1 3, 0, 0}?\rHey, you’re doing that Pokédex thingy\nfor the professor!\rWow! That’s the same as my big\nsister! Go for it!</language>
+	</row>
+	<row id="pl_msg_00000566_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Who are you?\r...\rOh...\nYou’re {STRVAR_1 3, 0, 0}?\rYou’re doing that Pokédex thingy\nfor the professor!\rWow! That’s the same as my big\nbrother! Go for it!</language>
+	</row>
+	<row id="pl_msg_00000566_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, hi, {STRVAR_1 3, 0, 0}!\rThere was news on TV saying there\nis a massive outbreak of Pokémon!\rThat’d be great for filling up your\nPokédex!</language>
+	</row>
+	<row id="pl_msg_00000566_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let me see...\nWhat did that news say now...?\r{STRVAR_1 4, 1, 0}! They said there’s\na whole bunch of {STRVAR_1 0, 2, 0} there!\r{STRVAR_1 3, 0, 0}, you have to hurry!\rI want you to do better than my\nsister Dawn!</language>
+	</row>
+	<row id="pl_msg_00000566_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let me see...\nWhat did that news say now...?\r{STRVAR_1 4, 1, 0}! They said there’s\na whole bunch of {STRVAR_1 0, 2, 0} there!\r{STRVAR_1 3, 0, 0}, you have to hurry!\rI want you to do better than my\nbrother Lucas!</language>
+	</row>
+</body>

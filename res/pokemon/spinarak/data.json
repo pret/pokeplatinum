@@ -1,0 +1,100 @@
+{
+    "name": "Spinarak",
+    "base_stats": {
+        "hp": 40,
+        "attack": 60,
+        "defense": 40,
+        "speed": 30,
+        "special_attack": 40,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 54,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SWARM",
+        "ABILITY_INSOMNIA"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM28",
+            "TM29",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM70",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_POISON_STING",
+                "MOVE_STRING_SHOT"
+            ],
+            "5": "MOVE_SCARY_FACE",
+            "8": "MOVE_CONSTRICT",
+            "12": "MOVE_LEECH_LIFE",
+            "15": "MOVE_NIGHT_SHADE",
+            "19": "MOVE_SHADOW_SNEAK",
+            "22": "MOVE_FURY_SWIPES",
+            "26": "MOVE_SUCKER_PUNCH",
+            "29": "MOVE_SPIDER_WEB",
+            "33": "MOVE_AGILITY",
+            "36": "MOVE_PIN_MISSILE",
+            "40": "MOVE_PSYCHIC",
+            "43": "MOVE_POISON_JAB"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            22,
+            "SPECIES_ARIADOS"
+        ]
+    ]
+}

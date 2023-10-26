@@ -1,0 +1,106 @@
+{
+    "name": "Hitmonchan",
+    "base_stats": {
+        "hp": 50,
+        "attack": 105,
+        "defense": 79,
+        "speed": 76,
+        "special_attack": 35,
+        "special_defense": 110
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 140,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "MALE_ONLY",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "HUMAN_LIKE",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_KEEN_EYE",
+        "ABILITY_IRON_FIST"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM06",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM71",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_REVENGE",
+                "MOVE_COMET_PUNCH"
+            ],
+            "6": "MOVE_AGILITY",
+            "11": "MOVE_PURSUIT",
+            "16": [
+                "MOVE_MACH_PUNCH",
+                "MOVE_BULLET_PUNCH"
+            ],
+            "21": "MOVE_FEINT",
+            "26": "MOVE_VACUUM_WAVE",
+            "31": [
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "36": "MOVE_SKY_UPPERCUT",
+            "41": "MOVE_MEGA_PUNCH",
+            "46": "MOVE_DETECT",
+            "51": "MOVE_COUNTER",
+            "56": "MOVE_CLOSE_COMBAT"
+        }
+    }
+}

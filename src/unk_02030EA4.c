@@ -11,22 +11,22 @@ typedef struct UnkStruct_02030EC4_t {
     u32 unk_04;
 } UnkStruct_02030EC4;
 
-int sub_02030EA4 (void)
+int WiFiQuestion_SaveSize (void)
 {
     return sizeof(UnkStruct_02030EC4);
 }
 
-void sub_02030EA8 (UnkStruct_02030EC4 * param0)
+void WiFiQuestion_Init (UnkStruct_02030EC4 * param0)
 {
-    MI_CpuFill32(param0, 0, sub_02030EA4());
+    MI_CpuFill32(param0, 0, WiFiQuestion_SaveSize());
     param0->unk_00 = 0xffffffff;
 }
 
-UnkStruct_02030EC4 * sub_02030EC4 (UnkStruct_021C0794 * param0)
+UnkStruct_02030EC4 * sub_02030EC4 (SaveData * param0)
 {
     UnkStruct_02030EC4 * v0;
 
-    v0 = sub_020245BC(param0, 36);
+    v0 = SaveData_Get(param0, 36);
     return v0;
 }
 

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="3819" />
+	<row id="pl_msg_00000506_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yahoo! This lodge’s seen better days,\nbut relax, make yourself at home!</language>
+	</row>
+	<row id="pl_msg_00000506_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK! You and your Pokémon are healthy,\nchipper, and good to go!</language>
+	</row>
+	<row id="pl_msg_00000506_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">As you can see, the lodge is beat up.\rYou can do as you like--leave right \naway, or nap in the bed.\n</language>
+	</row>
+	<row id="pl_msg_00000506_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I don’t have Thick Fat like some\nPokémon.\rThat’s why I’m bundled up in layers of\nthick clothes.\rIncidentally, do you know what the\nability Thick Fat does?\rIt halves the damage taken from Ice-\nand Fire-type moves.</language>
+	</row>
+	<row id="pl_msg_00000506_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a bed...\nWant to take a rest?</language>
+	</row>
+	<row id="pl_msg_00000506_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} quickly fell asleep\nin the bed...\r</language>
+	</row>
+	<row id="pl_msg_00000506_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} and the Pokémon\nbecame fully healed from the rest!</language>
+	</row>
+</body>

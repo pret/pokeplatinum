@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "overlay104/struct_ov104_022320B4_decl.h"
@@ -115,7 +115,7 @@ int sub_0209B75C (UnkStruct_020067E8 * param0, int * param1)
         }
 
         if (ov104_0222E6A8(v0->unk_14) == 1) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+            if (gCoreSys.padInput & PAD_BUTTON_B) {
                 *param1 = 2;
             }
         }

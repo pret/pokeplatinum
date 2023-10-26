@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="53200" />
+	<row id="pl_msg_00000576_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Someone gave me a Seal Case.\nNow, I’m off to a Pokémon Center.\rYou see, you need to use a PC to put\nSeals on your Poké Balls.</language>
+	</row>
+	<row id="pl_msg_00000576_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you’re not totally happy with Repel,\nconsider moving up to a Super Repel.</language>
+	</row>
+</body>

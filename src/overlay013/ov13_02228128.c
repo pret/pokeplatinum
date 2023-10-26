@@ -388,7 +388,7 @@ static void ov13_0222872C (UnkStruct_ov13_02227244 * param0, u8 param1, u8 param
 
 static void ov13_022287A4 (UnkStruct_ov13_02227244 * param0, u8 param1, u8 param2)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     u8 v1;
 
     if ((param1 >= 6) && (param1 <= 11)) {

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="62503" />
+	<row id="pl_msg_00000582_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon in this town’s ruins look\nlike some kind of strange alphabet.\rI think they’re really neat.\nI’m too small to catch them, though.\rInstead, I play with Seals to try\nreading those weird letters.\rIf you can give me Pokémon that look\nlike letters, I’ll give you some Seals.</language>
+	</row>
+	<row id="pl_msg_00000582_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, that {STRVAR_1 0, 0, 0} looks just like\nmy Seals!\rI’ll give you a bunch of Seals that\nlook like it.\r</language>
+	</row>
+	<row id="pl_msg_00000582_00002" index="2">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000582_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I wanted to give you some Seals,\nbut you don’t have a Seal Case!\rYou should talk to my mom!</language>
+	</row>
+	<row id="pl_msg_00000582_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The {STRVAR_1 10, 0, 0} were\nput away in the Seal Case.</language>
+	</row>
+	<row id="pl_msg_00000582_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can customize Poké Balls by\naffixing Seals on them.\rOh, you don’t have a Seal Case?\nWell, here you go!\r</language>
+	</row>
+	<row id="pl_msg_00000582_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Next, some Seals.\nHere you go!\r</language>
+	</row>
+	<row id="pl_msg_00000582_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ll explain how the Seals work.\nYou’ll need a Pokémon Center PC.\rFirst, select your PC, then check the\nheading “Ball Capsules” in the\fPC menu.\rNext, choose a Capsule and apply\nSeals to it as you wish.\rWhen you’re done, put the Capsule\non a Poké Ball.\rYou can see the results when you use\nthat Pokémon in battle.</language>
+	</row>
+</body>

@@ -6,17 +6,17 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02015F84_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_0202CD88_decl.h"
 #include "struct_decls/struct_02056B24_decl.h"
 #include "struct_defs/struct_0205AA50.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_defs/struct_0207C690.h"
 #include "struct_defs/struct_0207C8C4.h"
@@ -24,12 +24,12 @@
 #include "struct_defs/struct_02098D38.h"
 
 struct UnkStruct_0207AE68_t {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 * unk_04;
-    UnkStruct_0200B144 * unk_08;
+    BGL * unk_00;
+    Window * unk_04;
+    MessageLoader * unk_08;
     UnkStruct_0200B358 * unk_0C;
     Strbuf* unk_10;
-    UnkStruct_02002F38 * unk_14;
+    PaletteSys * unk_14;
     UnkStruct_02007768 * unk_18;
     UnkStruct_02007C7C * unk_1C[2];
     Party * unk_24;

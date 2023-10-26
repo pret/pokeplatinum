@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="51868" />
+	<row id="pl_msg_00000343_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Move Pokémon</language>
+	</row>
+	<row id="pl_msg_00000343_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Move Items</language>
+	</row>
+	<row id="pl_msg_00000343_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Compare Pokémon</language>
+	</row>
+	<row id="pl_msg_00000343_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Get Pokétch</language>
+	</row>
+	<row id="pl_msg_00000343_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Vocabulary system 1</language>
+	</row>
+	<row id="pl_msg_00000343_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Vocabulary system 2</language>
+	</row>
+	<row id="pl_msg_00000343_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Vocabulary system (sentence)</language>
+	</row>
+	<row id="pl_msg_00000343_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Current full</language>
+	</row>
+	<row id="pl_msg_00000343_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Box full</language>
+	</row>
+	<row id="pl_msg_00000343_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All words &amp; phrases</language>
+	</row>
+	<row id="pl_msg_00000343_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trade demo</language>
+	</row>
+	<row id="pl_msg_00000343_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hall of Fame demo</language>
+	</row>
+	<row id="pl_msg_00000343_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hall of Fame (PC)</language>
+	</row>
+	<row id="pl_msg_00000343_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ENDING</language>
+	</row>
+	<row id="pl_msg_00000343_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ABCDEFGHIJKLMNOPQRS\nTUVWXYZ!?</language>
+	</row>
+</body>

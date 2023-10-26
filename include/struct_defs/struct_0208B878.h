@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0208B878_H
 #define POKEPLATINUM_STRUCT_0208B878_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_defs/struct_0208B284.h"
 #include "struct_defs/struct_0208B878_sub1.h"
 #include "struct_defs/struct_0208B878_sub2.h"
@@ -14,7 +14,7 @@ typedef struct {
     int unk_E8;
     int unk_EC;
     BOOL unk_F0;
-    UnkStruct_0201CD38 * unk_F4;
+    SysTask * unk_F4;
     int unk_F8;
     int unk_FC;
     int unk_100;

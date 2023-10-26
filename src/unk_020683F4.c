@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_02061AB4_decl.h"
@@ -28,7 +28,7 @@
 #include "heap.h"
 #include "unk_02018340.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "unk_0202631C.h"
 #include "unk_02028124.h"
@@ -96,7 +96,7 @@ typedef struct {
 } UnkStruct_0206851C;
 
 typedef struct {
-    UnkStruct_0205AA50 unk_00;
+    Window unk_00;
     Strbuf* unk_10;
     u16 unk_14;
     u16 unk_16;
@@ -346,7 +346,7 @@ static void sub_02068630 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
     v2->unk_0C = sub_02025E44(v0->unk_0C);
-    v2->unk_10 = sub_0202440C(v0->unk_0C);
+    v2->unk_10 = SaveData_TVBroadcast(v0->unk_0C);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
     v2->unk_20 = 5;
@@ -605,7 +605,7 @@ static void sub_02068A34 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_1C = v0;
     v2->unk_24 = param0->unk_04;
     v2->unk_22 = param0->unk_06;
-    v2->unk_26 = GetMoveFromTMOrHMItemID(param0->unk_04);
+    v2->unk_26 = Item_MoveForTMHM(param0->unk_04);
 
     sub_0203CD84(v0, &Unk_020F1E88, v2);
     v1->unk_25C = v2;
@@ -620,7 +620,7 @@ static void sub_02068ACC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
 
     v0 = sub_02050A60(param0->unk_00);
     v1 = sub_02050A64(param0->unk_00);
-    v2 = sub_0203D94C(v0, 3, sub_0207D2F0(param0->unk_04), 11);
+    v2 = sub_0203D94C(v0, 3, Item_MailNumber(param0->unk_04), 11);
 
     v1->unk_260 = sub_0203C540(param0->unk_04, 3, 0);
     v1->unk_25C = v2;
@@ -812,7 +812,7 @@ static void sub_02068CF0 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v1->unk_25C = v2;
     v1->unk_2A = 10;
 
-    sub_0207D60C(sub_0207D990(v0->unk_0C), param0->unk_04, 1, 11);
+    Bag_SubtractItem(sub_0207D990(v0->unk_0C), param0->unk_04, 1, 11);
 }
 
 static void sub_02068D48 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 * param1)
@@ -965,7 +965,7 @@ static BOOL sub_02068F48 (UnkStruct_020508D4 * param0)
         break;
     case 1:
         if (sub_0205DA04(v1->unk_14) == 1) {
-            if (Unk_021BF67C.unk_48 & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_KEY_UP | PAD_KEY_DOWN | PAD_KEY_LEFT | PAD_KEY_RIGHT | PAD_BUTTON_A | PAD_BUTTON_B)) {
                 sub_0200E084(&v1->unk_00, 0);
                 v1->unk_16++;
             }
@@ -973,7 +973,7 @@ static BOOL sub_02068F48 (UnkStruct_020508D4 * param0)
         break;
     case 2:
         sub_02062C78(v0->unk_38);
-        sub_0201A8FC(&v1->unk_00);
+        BGL_DeleteWindow(&v1->unk_00);
         Strbuf_Free(v1->unk_10);
         Heap_FreeToHeap(v1);
 
@@ -999,7 +999,7 @@ static void sub_02068FEC (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v2->unk_04 = sub_0207D990(v0->unk_0C);
     v2->unk_08 = sub_02028430(v0->unk_0C);
     v2->unk_0C = sub_02025E44(v0->unk_0C);
-    v2->unk_10 = sub_0202440C(v0->unk_0C);
+    v2->unk_10 = SaveData_TVBroadcast(v0->unk_0C);
     v2->unk_18 = &v1->unk_24C;
     v2->unk_21 = 0;
     v2->unk_20 = 16;
@@ -1025,7 +1025,7 @@ static void sub_02069080 (UnkStruct_02068630 * param0, const UnkStruct_020684D0 
     v1->unk_25C = NULL;
     v1->unk_2A = 10;
 
-    sub_0207D60C(sub_0207D990(v0->unk_0C), param0->unk_04, 1, 11);
+    Bag_SubtractItem(sub_0207D990(v0->unk_0C), param0->unk_04, 1, 11);
 }
 
 static u32 sub_020690C4 (const UnkStruct_020684D0 * param0)
@@ -1154,7 +1154,7 @@ BOOL sub_02069238 (UnkStruct_0203CDB0 * param0)
     }
 
     v3 = (u16)sub_0207D3FC(sub_0207D990(param0->unk_0C));
-    v4 = (u16)Item_GetAttribute(v3, 6, 11);
+    v4 = (u16)Item_LoadParam(v3, 6, 11);
     v2 = (UnkFuncPtr_02069238)sub_020683F4(2, v4);
     v1 = (UnkFuncPtr_020EF79C)sub_020683F4(1, v4);
 
@@ -1217,7 +1217,7 @@ static BOOL sub_0206932C (UnkStruct_020508D4 * param0)
         v1->unk_2A = 1;
         break;
     case 1:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             v1->unk_24 = v1->unk_20(v0);
             v1->unk_2A = 2;
         }
@@ -1246,7 +1246,7 @@ static BOOL sub_0206932C (UnkStruct_020508D4 * param0)
         }
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             sub_02062C78(v0->unk_38);
             Heap_FreeToHeap(v1);
             return 1;

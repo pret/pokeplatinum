@@ -4,7 +4,7 @@
 #include <string.h>
 #include <dwc.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 #include "overlay070/struct_ov70_0225CA20_decl.h"
@@ -569,7 +569,7 @@ BOOL ov70_02266E9C (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             ov70_0225D030(v8, 0);
             ov70_0225D060(v8, v12);
             ov70_02262EEC(v2, v11, 0);
-            sub_02005748(1508);
+            Sound_PlayEffect(1508);
             ov66_0222E3E4(v1, 9);
 
             if (v13 == 1) {
@@ -832,7 +832,7 @@ BOOL ov70_02266E9C (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         }
         break;
     case 17:
-        sub_02005748(1448);
+        Sound_PlayEffect(1448);
         ov70_02262E88(param0, 18);
         break;
     case 18:
@@ -1169,7 +1169,7 @@ BOOL ov70_02267A44 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             v7 = ov66_0222EE1C(v1);
             v8 = ov70_02268B50(v0, v1, v7);
 
-            sub_02005748(1508);
+            Sound_PlayEffect(1508);
             ov66_0222E3E4(v1, 9);
 
             if (v8 == 1) {
@@ -1348,7 +1348,7 @@ BOOL ov70_02267A44 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
         ov70_02268BA4(v0, 128, 13, param0, 30);
         break;
     case 13:
-        sub_02005748(1448);
+        Sound_PlayEffect(1448);
         ov70_0225E234(param1, v0->unk_03, 0);
 
         v4 = ov70_02268AAC(param1, v0->unk_03, 514);
@@ -1601,7 +1601,7 @@ BOOL ov70_02268390 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
     case 0:
         v0 = ov70_02262E3C(param0, sizeof(UnkStruct_ov70_02268390));
 
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
 
         if (ov66_0222E12C(v2) == 1) {
             ov70_02262E88(param0, 2);
@@ -1679,7 +1679,7 @@ BOOL ov70_02268390 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             v4 = 1;
             break;
         case 0xfffffffe:
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
         case 7:
             ov70_02262E88(param0, 22);
             v4 = 1;
@@ -1726,7 +1726,7 @@ BOOL ov70_02268390 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             v6 = 1;
             break;
         case 0xfffffffe:
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
         case 3:
             ov70_02262E88(param0, 4);
             v6 = 1;
@@ -1806,7 +1806,7 @@ BOOL ov70_02268390 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
             v8 = 1;
             break;
         case 0xfffffffe:
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
         case 3:
             ov70_02262E88(param0, 4);
             v8 = 1;
@@ -1887,7 +1887,7 @@ BOOL ov70_0226889C (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
 
     switch (ov70_02262E84(param0)) {
     case 0:
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
 
         if (ov66_0222E12C(v1) == 0) {
             if (ov66_0222E170(v1) == 1) {
@@ -2337,7 +2337,7 @@ static void ov70_02268EEC (UnkStruct_ov70_02268E44 * param0, UnkStruct_ov70_0225
             }
         } else {
             do {
-                v1 = sub_0201D35C() % param2;
+                v1 = MTRNG_Next() % param2;
                 v2 = v1;
                 v4 = ov70_0225E064(param1, v2);
             } while (v4 == 1);

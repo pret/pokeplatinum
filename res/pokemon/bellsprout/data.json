@@ -1,0 +1,99 @@
+{
+    "name": "Bellsprout",
+    "base_stats": {
+        "hp": 50,
+        "attack": 75,
+        "defense": 35,
+        "speed": 40,
+        "special_attack": 70,
+        "special_defense": 30
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 84,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "GRASS",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_CHLOROPHYLL",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM53",
+            "TM58",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01"
+        ],
+        "level_up": {
+            "1": "MOVE_VINE_WHIP",
+            "7": "MOVE_GROWTH",
+            "11": "MOVE_WRAP",
+            "13": "MOVE_SLEEP_POWDER",
+            "15": "MOVE_POISON_POWDER",
+            "17": "MOVE_STUN_SPORE",
+            "23": "MOVE_ACID",
+            "27": "MOVE_KNOCK_OFF",
+            "29": "MOVE_SWEET_SCENT",
+            "35": "MOVE_GASTRO_ACID",
+            "39": "MOVE_RAZOR_LEAF",
+            "41": "MOVE_SLAM",
+            "47": "MOVE_WRING_OUT"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            21,
+            "SPECIES_WEEPINBELL"
+        ]
+    ]
+}

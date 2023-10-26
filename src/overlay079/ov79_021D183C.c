@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200112C_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0203D9B8.h"
 #include "struct_defs/struct_020989DC.h"
@@ -89,7 +89,7 @@ static void ov79_021D1850 (UnkStruct_ov79_021D0E1C * param0, Strbuf *param1, u8 
         sub_0200E060(&param0->unk_E8[2], 1, 1, 14);
     }
 
-    sub_0201AE78(&(param0->unk_E8[2]), ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
+    BGL_WindowColor(&(param0->unk_E8[2]), ((15 << 4) | 15), 0, 0, 27 * 8, 4 * 8);
     sub_02002AC8(1);
     sub_02002AE4(0);
 
@@ -195,7 +195,7 @@ void ov79_021D196C (UnkStruct_ov79_021D0E1C * param0)
 
 void ov79_021D1AB8 (UnkStruct_ov79_021D0E1C * param0, BOOL param1)
 {
-    sub_0201AE78(&(param0->unk_E8[0]), ((0 << 4) | 0), 0, 0, 22 * 8, 12 * 8);
+    BGL_WindowColor(&(param0->unk_E8[0]), ((0 << 4) | 0), 0, 0, 22 * 8, 12 * 8);
 
     if (param1) {
         sub_0201ACF4(&param0->unk_E8[0]);
@@ -252,7 +252,7 @@ void ov79_021D1C44 (UnkStruct_ov79_021D0E1C * param0, u8 param1)
     int v0;
     u32 v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
 
-    sub_02005748(1508);
+    Sound_PlayEffect(1508);
 
     if (param0->unk_14 != 0xFFFF) {
         if (param1 == param0->unk_1B) {
@@ -271,7 +271,7 @@ void ov79_021D1C44 (UnkStruct_ov79_021D0E1C * param0, u8 param1)
     param0->unk_20->unk_04 = param0->unk_20->unk_06 = 0;
 
     ov79_021D196C(param0);
-    sub_0201AE78(&(param0->unk_E8[6]), ((0 << 4) | 0), 0, 0, 20 * 8, 3 * 8);
+    BGL_WindowColor(&(param0->unk_E8[6]), ((0 << 4) | 0), 0, 0, 20 * 8, 3 * 8);
 
     if (param0->unk_1B == 5) {
         sub_0201A954(&param0->unk_E8[6]);
@@ -323,7 +323,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
     v1 = (u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((0 & 0xff) << 0)));
 
     if (!param2) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 
     sub_020014DC(param0, &v2, &v3);
@@ -341,7 +341,7 @@ static void ov79_021D1D94 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
         sub_02021CAC(v0->unk_1C0[2], 0);
     }
 
-    sub_0201AE78(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);
+    BGL_WindowColor(&(v0->unk_E8[1]), ((0 << 4) | 0), 0, 0, 10 * 8, 2 * 8);
 
     if (param1 == 0xFF) {
         ov79_021D1D20(v0, NULL);
@@ -383,7 +383,7 @@ void ov79_021D1ED8 (UnkStruct_ov79_021D0E1C * param0)
     param0->unk_A4.unk_1C = (void *)param0;
     param0->unk_A4.unk_10 = 3;
 
-    sub_0200DC48(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
+    Window_Show(&param0->unk_E8[3], 1, 1 + 18 + 12, 15);
 
     param0->unk_C8 = sub_0200112C(&param0->unk_A4, 0, 0, param0->unk_00);
 }
@@ -392,7 +392,7 @@ void ov79_021D1F60 (UnkStruct_ov79_021D0E1C * param0)
 {
     u16 v0, v1;
 
-    sub_0200DC9C(&(param0->unk_E8[3]), 0);
+    Window_Clear(&(param0->unk_E8[3]), 0);
     sub_0201ACF4(&param0->unk_E8[3]);
 
     sub_02001384(param0->unk_C8, &v1, &v0);
@@ -405,7 +405,7 @@ void ov79_021D1F60 (UnkStruct_ov79_021D0E1C * param0)
 static void ov79_021D1FA8 (UnkStruct_0200112C * param0, u32 param1, u8 param2)
 {
     if (!param2) {
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
     }
 }
 

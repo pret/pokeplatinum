@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "overlay062/ov62_const_funcptr_tables.h"
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_0202783C_decl.h"
@@ -23,7 +23,7 @@
 #include "narc.h"
 #include "unk_0200762C.h"
 #include "unk_020093B4.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200D9E8.h"
 #include "unk_02012744.h"
@@ -47,7 +47,7 @@
 #include "overlay062/ov62_02231690.h"
 #include "overlay062/ov62_0224112C.h"
 
-static void ov62_0222F670(UnkStruct_02018340 * param0);
+static void ov62_0222F670(BGL * param0);
 static void ov62_0222F848(UnkStruct_0208C06C * param0);
 
 void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
@@ -60,7 +60,7 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
     GXS_SetVisiblePlane(0);
     sub_0201DBEC(4, 102);
 
-    param0->unk_14.unk_00 = NARC_ctor(162, 102);
+    param0->unk_14.unk_00 = NARC_ctor(NARC_INDEX_RESOURCE__ENG__BATT_REC__BATT_REC_GRA, 102);
     param0->unk_14.unk_10 = sub_02018340(102);
     param0->unk_14.unk_14 = sub_02002F38(102);
     param0->unk_14.unk_4C = sub_02024220(102, 0, 1, 0, 4, NULL);
@@ -133,8 +133,8 @@ void ov62_0222F2C0 (UnkStruct_0208C06C * param0)
 
     {
         param0->unk_14.unk_3C = sub_02012744((5 * 2) + 10, 102);
-        param0->unk_14.unk_34 = sub_0200B144(0, 26, 10, 102);
-        param0->unk_14.unk_38 = sub_0200B144(0, 26, 20, 102);
+        param0->unk_14.unk_34 = MessageLoader_Init(0, 26, 10, 102);
+        param0->unk_14.unk_38 = MessageLoader_Init(0, 26, 20, 102);
     }
 
     ov62_022338A8(param0);
@@ -174,7 +174,7 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
     }
 
     NARC_dtor(param0->unk_14.unk_00);
-    sub_0200DA58(param0->unk_41E8);
+    SysTask_Done(param0->unk_41E8);
     sub_0200D0B0(param0->unk_14.unk_04, param0->unk_14.unk_08);
     sub_0200C8D4(param0->unk_14.unk_04);
     sub_02039794();
@@ -203,8 +203,8 @@ void ov62_0222F514 (UnkStruct_0208C06C * param0)
 
     {
         sub_020127BC(param0->unk_14.unk_3C);
-        sub_0200B190(param0->unk_14.unk_34);
-        sub_0200B190(param0->unk_14.unk_38);
+        MessageLoader_Free(param0->unk_14.unk_34);
+        MessageLoader_Free(param0->unk_14.unk_38);
     }
 
     sub_020242C4(param0->unk_14.unk_4C);
@@ -230,7 +230,7 @@ static const UnkStruct_ov97_0222DB78 Unk_ov62_02248820[] = {
     {0x0, 0x0, 0x800, 0x0, 0x1, GX_BG_COLORMODE_16, GX_BG_SCRBASE_0xd800, GX_BG_CHARBASE_0x00000, GX_BG_EXTPLTT_01, 0x1, 0x0, 0x0, 0x0}
 };
 
-static void ov62_0222F670 (UnkStruct_02018340 * param0)
+static void ov62_0222F670 (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
 
@@ -308,7 +308,7 @@ static void ov62_0222F670 (UnkStruct_02018340 * param0)
 
 void ov62_0222F824 (int param0)
 {
-    Unk_021BF67C.unk_65 = param0;
+    gCoreSys.unk_65 = param0;
     GXLayers_SwapDisplay();
 }
 
@@ -619,9 +619,9 @@ BOOL ov62_0222FD3C (UnkStruct_0208C06C * param0)
     }
 
     if (v1 == 0) {
-        sub_02005748(1380);
+        Sound_PlayEffect(1380);
     } else {
-        sub_02005748(1379);
+        Sound_PlayEffect(1379);
     }
 
     return v1;

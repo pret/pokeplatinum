@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_02025E5C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay005/struct_ov5_021E1FF4_decl.h"
@@ -16,7 +16,7 @@
 #include "struct_defs/struct_0205AA50.h"
 
 #include "unk_02002B7C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -26,7 +26,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_0202CBE4.h"
 #include "unk_020366A0.h"
@@ -39,7 +39,7 @@
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_02025E6C * unk_08;
+    TrainerInfo * unk_08;
     UnkStruct_02025E5C * unk_0C;
 } UnkStruct_ov5_021E1D20;
 
@@ -47,10 +47,10 @@ struct UnkStruct_ov5_021E1FF4_t {
     UnkStruct_0203CDB0 * unk_00;
     int unk_04;
     u8 unk_08;
-    UnkStruct_02018340 * unk_0C;
-    UnkStruct_0205AA50 * unk_10;
+    BGL * unk_0C;
+    Window * unk_10;
     UnkStruct_0200B358 * unk_14;
-    UnkStruct_0200B144 * unk_18;
+    MessageLoader * unk_18;
     UnkStruct_ov5_021E1D20 unk_1C;
     int unk_2C;
     int unk_30;
@@ -75,7 +75,7 @@ static const int Unk_ov5_021F9CBC[] = {
 
 static void ov5_021E1D20 (UnkStruct_ov5_021E1D20 * param0, const UnkStruct_0203CDB0 * param1)
 {
-    UnkStruct_021C0794 * v0 = param1->unk_0C;
+    SaveData * v0 = param1->unk_0C;
     UnkStruct_02049FA8 * v1 = sub_0203A720(sub_0203A790(v0));
     UnkStruct_02026324 * v2 = sub_02027560(v0);
 
@@ -97,7 +97,7 @@ static void ov5_021E1D6C (UnkStruct_0200B358 * param0, const UnkStruct_ov5_021E1
 
     sub_0200B8C8(param0, 0, param1->unk_04);
     sub_0200B498(param0, 1, param1->unk_08);
-    sub_0200B60C(param0, 2, sub_02025F58(param1->unk_08), 1, 0, 1);
+    sub_0200B60C(param0, 2, TrainerInfo_BadgeCount(param1->unk_08), 1, 0, 1);
 
     if (param1->unk_00 >= 100) {
         v0 = 3;
@@ -157,7 +157,7 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
         }
 
         v2 += v3;
-        v0 = sub_0200B1EC(param0->unk_18, Unk_ov5_021F9CCC[v4]);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_18, Unk_ov5_021F9CCC[v4]);
 
         sub_0201D738(param0->unk_10, 0, v0, 0, v2, 0xff, NULL);
         Strbuf_Free(v0);
@@ -172,20 +172,20 @@ static void ov5_021E1E20 (const UnkStruct_ov5_021E1FF4 * param0)
 
 void ov5_021E1F04 (UnkStruct_ov5_021E1FF4 * param0)
 {
-    param0->unk_10 = Heap_AllocFromHeap(param0->unk_04, sizeof(UnkStruct_0205AA50));
+    param0->unk_10 = Heap_AllocFromHeap(param0->unk_04, sizeof(Window));
 
-    sub_0201A7E8(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
+    BGL_AddWindow(param0->unk_0C, param0->unk_10, param0->unk_08, 1, 1, param0->unk_2C, param0->unk_30, 13, 393);
     sub_0200DAA4(param0->unk_0C, param0->unk_08, 985, 11, 0, param0->unk_04);
-    sub_0201ADA4(param0->unk_10, sub_02002DF8(0, 6));
+    BGL_FillWindow(param0->unk_10, sub_02002DF8(0, 6));
 
     ov5_021E1E20(param0);
-    sub_0200DC48(param0->unk_10, 0, 985, 11);
+    Window_Show(param0->unk_10, 0, 985, 11);
 }
 
 void ov5_021E1F7C (UnkStruct_ov5_021E1FF4 * param0)
 {
-    sub_0200DC9C(param0->unk_10, 0);
-    sub_0201A8FC(param0->unk_10);
+    Window_Clear(param0->unk_10, 0);
+    BGL_DeleteWindow(param0->unk_10);
     Heap_FreeToHeap(param0->unk_10);
 }
 
@@ -200,7 +200,7 @@ UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (UnkStruct_0203CDB0 * param0, int param1, 
     v0->unk_08 = param2;
     v0->unk_0C = param0->unk_08;
     v0->unk_14 = sub_0200B358(param1);
-    v0->unk_18 = sub_0200B144(1, 26, 534, param1);
+    v0->unk_18 = MessageLoader_Init(1, 26, 534, param1);
 
     ov5_021E1D20(&v0->unk_1C, v0->unk_00);
     ov5_021E1D6C(v0->unk_14, &v0->unk_1C);
@@ -213,7 +213,7 @@ UnkStruct_ov5_021E1FF4 * ov5_021E1F98 (UnkStruct_0203CDB0 * param0, int param1, 
 
 void ov5_021E1FF4 (UnkStruct_ov5_021E1FF4 * param0)
 {
-    sub_0200B190(param0->unk_18);
+    MessageLoader_Free(param0->unk_18);
     sub_0200B3F0(param0->unk_14);
     Heap_FreeToHeap(param0);
 }

@@ -1,0 +1,107 @@
+{
+    "name": "Yanma",
+    "base_stats": {
+        "hp": 65,
+        "attack": 65,
+        "defense": 45,
+        "speed": 95,
+        "special_attack": 75,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 147,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_WIDE_LENS"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "BUG",
+        "BUG"
+    ],
+    "abilities": [
+        "ABILITY_SPEED_BOOST",
+        "ABILITY_COMPOUND_EYES"
+    ],
+    "great_marsh_flee_rate": 120,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM51",
+            "TM58",
+            "TM62",
+            "TM70",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_FORESIGHT"
+            ],
+            "6": "MOVE_QUICK_ATTACK",
+            "11": "MOVE_DOUBLE_TEAM",
+            "14": "MOVE_SONIC_BOOM",
+            "17": "MOVE_DETECT",
+            "22": "MOVE_SUPERSONIC",
+            "27": "MOVE_UPROAR",
+            "30": "MOVE_PURSUIT",
+            "33": "MOVE_ANCIENT_POWER",
+            "38": "MOVE_HYPNOSIS",
+            "43": "MOVE_WING_ATTACK",
+            "46": "MOVE_SCREECH",
+            "49": "MOVE_U_TURN",
+            "54": "MOVE_AIR_SLASH",
+            "57": "MOVE_BUG_BUZZ"
+        }
+    },
+    "evolutions": [
+        [
+            "KNOW_MOVE",
+            "ANCIENT_POWER",
+            "SPECIES_YANMEGA"
+        ]
+    ]
+}

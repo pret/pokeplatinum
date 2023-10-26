@@ -5,15 +5,15 @@
 
 #include "struct_decls/struct_02014014_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/pokemon.h"
+#include "strbuf.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_0207F248.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_02005474.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_02014000.h"
 #include "heap.h"
@@ -24,7 +24,7 @@
 #include "unk_0202419C.h"
 #include "unk_0202631C.h"
 #include "unk_0203CC84.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207E0B8.h"
 #include "unk_020819DC.h"
@@ -78,16 +78,16 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
     switch (v0->unk_00) {
     case 0:
     {
-        v0->unk_0C = GetMonData(v1, MON_DATA_SPECIES, NULL);
+        v0->unk_0C = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
 
         switch (v0->unk_0C) {
         case 487:
-            sub_02077A00(v1);
+            Pokemon_SetGiratinaForm(v1);
             v0->unk_08 = 65;
             v0->unk_10 = 0;
             break;
         case 492:
-            SetShayminForm(v1, 1);
+            Pokemon_SetShayminForm(v1, 1);
             v0->unk_08 = 35;
             v0->unk_10 = 1;
             break;
@@ -144,9 +144,9 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
     {
         Strbuf* v2;
 
-        v2 = sub_0200B1EC(param0->unk_69C, 202);
+        v2 = MessageLoader_GetNewStrbuf(param0->unk_69C, 202);
 
-        sub_0200B5CC(param0->unk_6A0, 0, sub_02076B10(v1));
+        sub_0200B5CC(param0->unk_6A0, 0, Pokemon_GetBoxPokemon(v1));
         sub_0200C388(param0->unk_6A0, param0->unk_6A4, v2);
         Strbuf_Free(v2);
         sub_02082708(param0, 0xffffffff, 1);
@@ -154,7 +154,7 @@ int ov118_021D0DBC (UnkStruct_0207F248 * param0)
         v0->unk_00++;
         break;
     case 10:
-        if (sub_0201D724(param0->unk_B10) == 0) {
+        if (Message_Printing(param0->unk_B10) == 0) {
             ov118_021D0F70(param0);
             param0->unk_5A4->unk_23 = 0;
             return 1;
@@ -214,12 +214,12 @@ static void ov118_021D1028 (UnkStruct_ov118_021D0FDC * param0)
         sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 2, ov118_021D10B0, param0);
-        sub_02005748(1363);
+        Sound_PlayEffect(1363);
         break;
     case 492:
         sub_020146F4(param0->unk_18, 0, ov118_021D10B0, param0);
         sub_020146F4(param0->unk_18, 1, ov118_021D10B0, param0);
-        sub_02005748(1364);
+        Sound_PlayEffect(1364);
         break;
     }
 }

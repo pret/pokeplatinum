@@ -1,0 +1,106 @@
+{
+    "name": "Gulpin",
+    "base_stats": {
+        "hp": 70,
+        "attack": 43,
+        "defense": 53,
+        "speed": 40,
+        "special_attack": 43,
+        "special_defense": 53
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 225,
+    "base_exp_reward": 75,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_BIG_PEARL"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "FLUCTUATING",
+    "egg_groups": [
+        "AMORPHOUS",
+        "AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_LIQUID_OOZE",
+        "ABILITY_STICKY_HOLD"
+    ],
+    "great_marsh_flee_rate": 120,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM13",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM49",
+            "TM58",
+            "TM64",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM85",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": "MOVE_POUND",
+            "6": "MOVE_YAWN",
+            "9": "MOVE_POISON_GAS",
+            "14": "MOVE_SLUDGE",
+            "17": "MOVE_AMNESIA",
+            "23": "MOVE_ENCORE",
+            "28": "MOVE_TOXIC",
+            "34": [
+                "MOVE_STOCKPILE",
+                "MOVE_SPIT_UP",
+                "MOVE_SWALLOW"
+            ],
+            "39": "MOVE_SLUDGE_BOMB",
+            "44": "MOVE_GASTRO_ACID",
+            "49": "MOVE_WRING_OUT",
+            "54": "MOVE_GUNK_SHOT"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            26,
+            "SPECIES_SWALOT"
+        ]
+    ]
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18403" />
+	<row id="pl_msg_00000405_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}!\nWhat, you finally come along now?\fSlooow! Way too slow!\rListen, {STRVAR_1 3, 1, 0}.\nSee how the rocks are all lumpy here?\rYou can’t climb those rocks until you\nget the Snowpoint Gym Badge.\rAnyway, I’m off.\nTeam Galactic! I’m coming for you!\r</language>
+	</row>
+	<row id="pl_msg_00000405_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’re here to make sure Snowpoint’s\nGym Leader doesn’t disturb us!</language>
+	</row>
+	<row id="pl_msg_00000405_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re here to see the lake Pokémon,\ntoo?\rYou must be bored to fight your\nway through the snow to get here...</language>
+	</row>
+	<row id="pl_msg_00000405_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Standing guard is a very important\nassignment!\rI’ll make this a success and earn\nmyself a CLEFAIRY!</language>
+	</row>
+	<row id="pl_msg_00000405_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon of the three lakes\nappear to be connected somehow.\rWhen they blew up Lake Valor, a cavern\nappeared in the middle of this lake!</language>
+	</row>
+	<row id="pl_msg_00000405_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lake Acuity ahead</language>
+	</row>
+</body>

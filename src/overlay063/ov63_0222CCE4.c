@@ -23,7 +23,7 @@ static int ov63_0222D0C4(const UnkStruct_ov63_0222BB38 * param0, int param1);
 static void ov63_0222D0E0(const UnkStruct_ov63_0222CE44 * param0, s16 * param1, s16 * param2);
 static void ov63_0222D110(UnkStruct_ov63_0222CE44 * param0, int param1, int param2);
 
-UnkStruct_ov63_0222CD2C * ov63_0222CCE4 (UnkStruct_020218BC * param0, UnkStruct_02002F38 * param1, u32 param2, u32 param3, u32 param4)
+UnkStruct_ov63_0222CD2C * ov63_0222CCE4 (UnkStruct_020218BC * param0, PaletteSys * param1, u32 param2, u32 param3, u32 param4)
 {
     UnkStruct_ov63_0222CD2C * v0;
 
@@ -40,7 +40,7 @@ UnkStruct_ov63_0222CD2C * ov63_0222CCE4 (UnkStruct_020218BC * param0, UnkStruct_
     return v0;
 }
 
-UnkStruct_ov63_0222CD2C * ov63_0222CD2C (UnkStruct_020218BC * param0, UnkStruct_02002F38 * param1, u32 param2, u32 param3, int param4, u32 param5, u32 param6)
+UnkStruct_ov63_0222CD2C * ov63_0222CD2C (UnkStruct_020218BC * param0, PaletteSys * param1, u32 param2, u32 param3, int param4, u32 param5, u32 param6)
 {
     UnkStruct_ov63_0222CD2C * v0;
 

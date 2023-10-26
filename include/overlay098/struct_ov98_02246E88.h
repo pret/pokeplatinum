@@ -2,7 +2,7 @@
 #define POKEPLATINUM_STRUCT_OV98_02246E88_H
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay096/struct_ov96_0223B574.h"
@@ -13,7 +13,7 @@
 
 typedef struct {
     UnkStruct_020067E8 * unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_020279FC * unk_08;
     void * unk_0C;
     NNSFndHeapHandle unk_10;

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="12640" />
+	<row id="pl_msg_00000539_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The battery isn’t charged enough.\rNumber of steps required to fully\ncharge the battery: {STRVAR_1 51, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000539_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are no Trainers within range\nwho can battle...\rLet’s try using it somewhere else.</language>
+	</row>
+	<row id="pl_msg_00000539_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The other Trainers don’t appear\nto be ready for battle.\rLet’s wait till later.</language>
+	</row>
+</body>

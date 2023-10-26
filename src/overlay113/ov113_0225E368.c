@@ -32,7 +32,7 @@
 #include "unk_0201C970.h"
 #include "unk_0201D15C.h"
 #include "unk_02020020.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay113/ov113_0225E368.h"
 #include "overlay113/ov113_02260620.h"
 
@@ -1036,7 +1036,7 @@ static u8 ov113_0225EEF8 (const UnkStruct_ov113_02260818 * param0)
 {
     u8 v0;
 
-    v0 = GetNatureFromPersonality(param0->unk_04);
+    v0 = Pokemon_GetNatureOf(param0->unk_04);
     return Unk_ov113_02260D30[v0];
 }
 
@@ -1824,7 +1824,7 @@ static BOOL ov113_0225FE30 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     case 0:
         v0->unk_00 = sub_02020A90(param2);
         v0->unk_06++;
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
     case 1:
         sub_02020A78(((-FX32_ONE * 50) / 30), param2);
         v0->unk_04++;
@@ -1864,7 +1864,7 @@ static BOOL ov113_0225FEE0 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
 
     switch (v0->unk_0C) {
     case 0:
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
         v0->unk_0C++;
     case 1:
         v0->unk_0D++;
@@ -1916,7 +1916,7 @@ static BOOL ov113_0225FF8C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_00 = sub_02020A94(param2);
         v0->unk_08 = v0->unk_00.unk_02;
         v0->unk_0E++;
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
     case 1:
         v1.unk_02 += (-0x2000 / 2);
         v0->unk_08 += (-0x2000 / 2);
@@ -1959,7 +1959,7 @@ static BOOL ov113_02260064 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_00 = sub_02020A94(param2);
         v0->unk_08 = v0->unk_00.unk_02;
         v0->unk_0E++;
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
     case 1:
         v1.unk_02 += (0x2000 / 2);
         v0->unk_08 += (0x2000 / 2);
@@ -2001,7 +2001,7 @@ static BOOL ov113_0226013C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     case 0:
         v0->unk_00 = sub_02020A94(param2);
         v0->unk_08 = v0->unk_00.unk_00;
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
         v0->unk_0E++;
     case 1:
         v1.unk_00 += (0x2000 / 3);
@@ -2048,7 +2048,7 @@ static BOOL ov113_02260218 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     case 0:
         v0->unk_00 = sub_02020A94(param2);
         v0->unk_0D++;
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
     case 1:
         v0->unk_08 += 0x18000;
 
@@ -2082,7 +2082,7 @@ static BOOL ov113_022602E4 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
     case 0:
         v0->unk_00 = sub_02020A90(param2);
         v0->unk_06++;
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
     case 1:
         sub_02020A78(((FX32_ONE * 50) / 30), param2);
         v0->unk_04++;
@@ -2126,7 +2126,7 @@ static BOOL ov113_02260394 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_0C = sub_02020ABC(param2);
         v0->unk_00 = sub_02020AAC(param2);
         v0->unk_1D++;
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
     case 1:
         v0->unk_18 += 0x20000;
 
@@ -2165,7 +2165,7 @@ static BOOL ov113_0226046C (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_0C = sub_02020ABC(param2);
         v0->unk_00 = sub_02020AAC(param2);
         v0->unk_1D++;
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
     case 1:
         v0->unk_18 += 0x20000;
 
@@ -2204,7 +2204,7 @@ static BOOL ov113_02260544 (UnkStruct_ov113_0225EB20 * param0, UnkStruct_ov113_0
         v0->unk_08 = v0->unk_00.unk_00;
         v0->unk_0E++;
 
-        sub_02005748(1470);
+        Sound_PlayEffect(1470);
     case 1:
         v1.unk_00 += (-0x2000 / 3);
         v0->unk_08 += (-0x2000 / 3);

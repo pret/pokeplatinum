@@ -48,7 +48,7 @@ BOOL sub_0204CE1C (UnkStruct_0203E724 * ctx)
     u16 *result = inline_0204FCAC(ctx);
     u16 species = inline_02049538(ctx);
 
-    rand = sub_0201D2E8() % 100;
+    rand = LCRNG_Next() % 100;
 
     if (rand < 15) {
         j = 0;
@@ -138,7 +138,7 @@ BOOL sub_0204CF68 (UnkStruct_0203E724 * param0)
 {
     u16 * v0 = inline_0204FCAC(param0);
 
-    *v0 = (sub_0201D2E8() % (NELEMS(Unk_020EBF64)));
+    *v0 = (LCRNG_Next() % (NELEMS(Unk_020EBF64)));
     return 0;
 }
 

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="4881" />
+	<row id="pl_msg_00000606_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">too spicy</language>
+	</row>
+	<row id="pl_msg_00000606_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">too dry</language>
+	</row>
+	<row id="pl_msg_00000606_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">too sweet</language>
+	</row>
+	<row id="pl_msg_00000606_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">too bitter</language>
+	</row>
+	<row id="pl_msg_00000606_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">too sour</language>
+	</row>
+</body>

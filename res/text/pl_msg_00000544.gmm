@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="27003" />
+	<row id="pl_msg_00000544_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t have three Coins.\nYou cannot play right now.</language>
+	</row>
+	<row id="pl_msg_00000544_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You have 50,000 Coins now.\nYou cannot hold any more.</language>
+	</row>
+	<row id="pl_msg_00000544_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You have no Coins.\nYou cannot play now.</language>
+	</row>
+</body>

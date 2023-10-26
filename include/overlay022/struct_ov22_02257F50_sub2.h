@@ -13,7 +13,7 @@ typedef struct {
     UnkStruct_02015128 ** unk_04;
     UnkStruct_020151A4 ** unk_08;
     u8 * unk_0C;
-    UnkStruct_02018340 * unk_10;
+    BGL * unk_10;
     UnkStruct_ov22_02254DE0 * unk_14;
     UnkStruct_ov22_022597BC unk_18;
     UnkStruct_ov22_02254DE0 * unk_44;

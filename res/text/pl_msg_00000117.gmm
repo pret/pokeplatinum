@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="1051" />
+	<row id="pl_msg_00000117_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello, hello!\nHow, I say, do you do?\rI am the Pokémon Fan Club Chairman!\nIndeed, yes I am!\rWhen you wish to treat your Pokémon\nto a treat, what, I say, do you do?\rIf I may say so, and I will, I feed\nPoffins to my Pokémon!\rAnd why, I say, would I do that?\rBecause the giving of Poffins is\na way of expressing your love!\rFor example! If I were to give a\nSweet Poffin, the Pokémon eating it\fwould become more cute!\rFor example! A Spicy Poffin will add\nto the coolness of a Pokémon!\rIn such ways I say that Poffins have\nnothing but goodness for Pokémon!\rTherefore!\rI declare this Poffin Case to be\na gift from me to you!\r</language>
+	</row>
+	<row id="pl_msg_00000117_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I urge you to fill it with Poffins\nand be generous in dispensing them\fto your Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000117_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Nationwide, there are other fan\nclubs, but we are number one!\rAnd why are we number one?\nBecause I brag more than anyone!\rBut now I can’t brag as much...\rPeople started complaining, so\nI’ve had to curtail my bragging...</language>
+	</row>
+	<row id="pl_msg_00000117_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Pokémon Fan Club!\nOh, your {STRVAR_1 0, 0, 0}...\r</language>
+	</row>
+	<row id="pl_msg_00000117_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It simply adores you!\nWhy, I feel like I’m intruding!</language>
+	</row>
+	<row id="pl_msg_00000117_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s very friendly toward you.\nI can tell you treat it kindly.</language>
+	</row>
+	<row id="pl_msg_00000117_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s quite friendly to you.\nIt must be happy being with you.</language>
+	</row>
+	<row id="pl_msg_00000117_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s warming up to you.\nThat’s my impression.</language>
+	</row>
+	<row id="pl_msg_00000117_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s feeling neutral toward you.\nIt’s up to you to change that.</language>
+	</row>
+	<row id="pl_msg_00000117_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm...\nIt seems to dislike you a little.</language>
+	</row>
+	<row id="pl_msg_00000117_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, my... I think this one really\nhasn’t taken too kindly to you.</language>
+	</row>
+	<row id="pl_msg_00000117_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PSYDUCK: Gua gwah?!</language>
+	</row>
+	<row id="pl_msg_00000117_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BUNEARY: Kukuuh.</language>
+	</row>
+	<row id="pl_msg_00000117_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Pip piiih!</language>
+	</row>
+</body>

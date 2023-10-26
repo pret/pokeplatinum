@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="33827" />
+	<row id="pl_msg_00000255_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Enough arguing!\nHand over that sweet Honey!\r</language>
+	</row>
+	<row id="pl_msg_00000255_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: Do as we say!\nTeam Galactic will have that Honey!\rWe must have it to attract Pokémon\nin great numbers!\r</language>
+	</row>
+	<row id="pl_msg_00000255_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: Hey! This kid is a witness!\nWhat’ll we do?\r</language>
+	</row>
+	<row id="pl_msg_00000255_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: We don’t need the brat\nrunning off to get help...\rThe solution’s simple!\nWe ensure the brat stays quiet!\r</language>
+	</row>
+	<row id="pl_msg_00000255_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: This is so lame...\nThey’re going to dock my pay!\r</language>
+	</row>
+	<row id="pl_msg_00000255_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 2: I’m up next!\nHeheheh...\rBattling you right after my cohort\nweakened you gives me the edge!\r</language>
+	</row>
+	<row id="pl_msg_00000255_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt 1: This brat’s tough!\nLike, really, really tough!\rTougher than I can put into words,\nand I know a lot of words!\rWe’re done for here... Let’s get back\nto the Valley Windworks.\r</language>
+	</row>
+	<row id="pl_msg_00000255_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, what’s this thing?\nThey seem to have forgotten it...\rIt’s a Works Key...\nIt must be for the Valley Windworks!\rIt’s of no use to me.\nYou may as well have it.\r</language>
+	</row>
+	<row id="pl_msg_00000255_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thank you!\nYou surely saved me.\rThose goons were trying to rob me\nof my sweet, sweet Honey.\rThey sure were weird, though.\nYou saw how they were dressed.\rWhat they were saying didn’t make\na whole lot of sense, either.\rOh! I need to thank you!\nThis sweet, sweet Honey!\fGo on, take a whole lot!\r</language>
+	</row>
+	<row id="pl_msg_00000255_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Slather that Honey on a sweet-smelling\ntree. It might attract Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000255_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to buy some Honey for\nattracting Pokémon? Just $100 each!</language>
+	</row>
+	<row id="pl_msg_00000255_00011" index="11">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000255_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, too bad!\nSeems to me your Bag’s full.\rYou can’t hold any more Honey, a shame\nthough it is.</language>
+	</row>
+	<row id="pl_msg_00000255_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oopsy!\nYou don’t have enough money.</language>
+	</row>
+	<row id="pl_msg_00000255_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oopsy!\nWell, come again.</language>
+	</row>
+	<row id="pl_msg_00000255_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">X 1</language>
+	</row>
+	<row id="pl_msg_00000255_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">X 10</language>
+	</row>
+	<row id="pl_msg_00000255_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO THANKS</language>
+	</row>
+	<row id="pl_msg_00000255_00018" index="18">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+</body>

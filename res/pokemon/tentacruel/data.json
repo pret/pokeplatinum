@@ -1,0 +1,102 @@
+{
+    "name": "Tentacruel",
+    "base_stats": {
+        "hp": 80,
+        "attack": 70,
+        "defense": 65,
+        "speed": 100,
+        "special_attack": 80,
+        "special_defense": 120
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 205,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_POISON_BARB"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "WATER_3",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_CLEAR_BODY",
+        "ABILITY_LIQUID_OOZE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM55",
+            "TM58",
+            "TM66",
+            "TM68",
+            "TM75",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM03",
+            "HM07"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_POISON_STING",
+                "MOVE_SUPERSONIC",
+                "MOVE_CONSTRICT"
+            ],
+            "5": "MOVE_SUPERSONIC",
+            "8": "MOVE_CONSTRICT",
+            "12": "MOVE_ACID",
+            "15": "MOVE_TOXIC_SPIKES",
+            "19": "MOVE_BUBBLE_BEAM",
+            "22": "MOVE_WRAP",
+            "26": "MOVE_BARRIER",
+            "29": "MOVE_WATER_PULSE",
+            "36": "MOVE_POISON_JAB",
+            "42": "MOVE_SCREECH",
+            "49": "MOVE_HYDRO_PUMP",
+            "55": "MOVE_WRING_OUT"
+        }
+    }
+}

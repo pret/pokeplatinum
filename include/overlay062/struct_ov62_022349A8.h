@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_STRUCT_OV62_022349A8_H
 #define POKEPLATINUM_STRUCT_OV62_022349A8_H
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_021C0794_decl.h"
 #include "overlay061/struct_ov61_0222B138.h"
 #include "overlay061/struct_ov61_0222B920.h"
@@ -14,7 +14,7 @@
 #include "overlay062/struct_ov62_0223CAA4.h"
 
 typedef struct {
-    UnkStruct_021C0794 * unk_00;
+    SaveData * unk_00;
     UnkFuncPtr_ov62_022349A8 unk_04;
     void * unk_08;
     UnkStruct_ov62_022349A8_sub1 unk_0C;
@@ -39,7 +39,7 @@ typedef struct {
     int unk_3E8;
     int unk_3EC;
     int unk_3F0;
-    UnkStruct_0200B144 * unk_3F4;
+    MessageLoader * unk_3F4;
     UnkStruct_0200B358 * unk_3F8;
     Strbuf* unk_3FC;
     UnkStruct_ov61_0222B920 unk_400;

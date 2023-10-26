@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="50255" />
+	<row id="pl_msg_00000292_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Ah, {STRVAR_1 3, 0, 0}!\nWhat timing!\rThose Team Galactic scoundrels are\nafter the legendary Pokémon!\rYou’ve got to help Dawn!</language>
+	</row>
+	<row id="pl_msg_00000292_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: Ah, {STRVAR_1 3, 0, 0}!\nWhat timing!\rThose Team Galactic scoundrels are\nafter the legendary Pokémon!\r{STRVAR_1 3, 0, 0}, help us!\nYou’ve got to help Lucas!</language>
+	</row>
+	<row id="pl_msg_00000292_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: How dare you!\nYou misguided thugs!\r</language>
+	</row>
+	<row id="pl_msg_00000292_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}!\nDawn needs your help!</language>
+	</row>
+	<row id="pl_msg_00000292_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: How dare you!\nYou misguided thugs!\r</language>
+	</row>
+	<row id="pl_msg_00000292_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}!\nLucas needs your help!</language>
+	</row>
+	<row id="pl_msg_00000292_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ow! Ouch!\nWhat’s with this old-timer?</language>
+	</row>
+	<row id="pl_msg_00000292_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 0, 0}!\nIt’s T-Team Galactic!\rThey’re taking the Pokémon of the\nlake...\rI...\nI couldn’t beat this person...</language>
+	</row>
+	<row id="pl_msg_00000292_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: It’s Team Galactic!\nThey took the Pokémon of the lake...\rThis woman...\nI lost to her, but just barely!</language>
+	</row>
+	<row id="pl_msg_00000292_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mars: That face...!\nIt brings back bad memories!\rI’m talking about the windworks!\rI caught a whole lot of trouble\nfor that little incident.\rWhat’s with that look on your face?\nYou do remember me, don’t you?\rFine, whatever.\nI’ll tell you who I am again!\rI’m Mars, one of Team Galactic’s\nCommanders.\rSo, what is it? Are you some\nlovey-dovey couple to the rescue?\rNot a chance! Not even a teeny one!\nYou’re all going down!\r</language>
+	</row>
+	<row id="pl_msg_00000292_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I lost again...\rSo, first the windworks, and now\nLake Verity that I owe you for!\rThis shouldn’t be happening to Team\nGalactic’s Commander...\r...Calm down, Mars...\nI’ve done my part in all of this...\rMy mission was to transport the\nlake’s Pokémon to our HQ...\r...That’s right! I accomplished my\nmission without a problem!\r</language>
+	</row>
+	<row id="pl_msg_00000292_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team! We’re pulling out!\nThe boss is waiting at the HQ!\r</language>
+	</row>
+	<row id="pl_msg_00000292_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon of the three lakes are\nconnected somehow.\rThanks to Saturn’s grandstanding at\nLake Valor, a cavern appeared here.\rIt was the cavern where the Pokémon\nMESPRIT slept.\rMESPRIT appeared, too, probably to\ngo help its friends.\rThat worked out well for us.\nIt was super easy to catch.\rSo, now we’ve got them all:\nMESPRIT, “The Being of Emotion.”\fAZELF, “The Being of Willpower.”\fUXIE, “The Being of Intelligence.”\rNow that we have them all...\rYou can look forward to what plans\nTeam Galactic has for them!\r</language>
+	</row>
+	<row id="pl_msg_00000292_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: I see...\nThis also occurred at Lake Valor...\rAnother legendary Pokémon was taken\naway by Team Galactic...\rBoth of you went up against\nfull-fledged criminals...\rThe fact that you’re unharmed is\nreason enough to celebrate.\r...But what about {STRVAR_1 3, 0, 0}?\rWhat is happening at Lake Acuity?\nIs {STRVAR_1 3, 0, 0} safe?</language>
+	</row>
+	<row id="pl_msg_00000292_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: {STRVAR_1 3, 0, 0}, I need you to\ngo to Lake Acuity right away.\rI’m worried about {STRVAR_1 3, 1, 0}.</language>
+	</row>
+	<row id="pl_msg_00000292_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: {STRVAR_1 3, 0, 0}, what is Team\nGalactic up to?\rAre the abducted Pokémon of the\nlakes going to be OK?</language>
+	</row>
+	<row id="pl_msg_00000292_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: {STRVAR_1 3, 0, 0}, what’s Team\nGalactic up to?\rThey’d better not harm the Pokémon\nthey took from the lakes...</language>
+	</row>
+</body>

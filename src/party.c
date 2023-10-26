@@ -3,12 +3,12 @@
 
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_defs/struct_party.h"
 
 #include "heap.h"
 #include "unk_020244AC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
 #define PARTY_ASSERT_SLOT(party, slot) {        \
@@ -17,7 +17,7 @@
     GF_ASSERT(slot < (party)->capacity);        \
 }
 
-int Party_sizeof (void)
+int Party_SaveSize (void)
 {
     return sizeof(Party);
 }
@@ -27,12 +27,12 @@ Party * sub_02079FF4 (u32 param0)
     Party * v0;
 
     v0 = Heap_AllocFromHeap(param0, sizeof(Party));
-    sub_0207A008(v0);
+    Party_Init(v0);
 
     return v0;
 }
 
-void sub_0207A008 (Party * param0)
+void Party_Init (Party * param0)
 {
     Party_InitWithCapacity(param0, 6);
 }
@@ -48,7 +48,7 @@ void Party_InitWithCapacity (Party * party, int capacity)
     party->capacity = capacity;
 
     for (i = 0; i < 6; i++) {
-        ZeroMonData(&party->pokemon[i]);
+        Pokemon_Init(&party->pokemon[i]);
     }
 }
 
@@ -75,7 +75,7 @@ BOOL Party_RemovePokemonBySlotIndex (Party * party, int slot)
         party->pokemon[i] = party->pokemon[i + 1];
     }
 
-    ZeroMonData(&party->pokemon[i]);
+    Pokemon_Init(&party->pokemon[i]);
     party->currentCount--;
 
     return TRUE;
@@ -103,7 +103,7 @@ void sub_0207A128 (Party * party, int slot, Pokemon * param2)
 
     PARTY_ASSERT_SLOT(party, slot);
 
-    v0 = GetMonData(&(party->pokemon[slot]), MON_DATA_172, NULL) - GetMonData(param2, MON_DATA_172, NULL);
+    v0 = Pokemon_GetValue(&(party->pokemon[slot]), MON_DATA_172, NULL) - Pokemon_GetValue(param2, MON_DATA_172, NULL);
     party->pokemon[slot] = *param2;
     party->currentCount += v0;
 }
@@ -136,7 +136,7 @@ BOOL Party_HasSpecies (const Party * party, int species)
     int i;
 
     for (i = 0; i < party->currentCount; i++) {
-        if (GetMonData((Pokemon *)&party->pokemon[i], MON_DATA_SPECIES, NULL) == species) {
+        if (Pokemon_GetValue((Pokemon *)&party->pokemon[i], MON_DATA_SPECIES, NULL) == species) {
             break;
         }
     }
@@ -144,10 +144,10 @@ BOOL Party_HasSpecies (const Party * party, int species)
     return i != party->currentCount;
 }
 
-Party * Party_GetFromSavedata (UnkStruct_021C0794 * param0)
+Party * Party_GetFromSavedata (SaveData * param0)
 {
     Party * v0;
 
-    v0 = (Party *)sub_020245BC(param0, 2);
+    v0 = (Party *)SaveData_Get(param0, 2);
     return v0;
 }

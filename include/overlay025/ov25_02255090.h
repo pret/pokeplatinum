@@ -21,6 +21,6 @@ void ov25_02255290(u16 * param0, u32 param1);
 void ov25_02255308(u32 param0, u32 param1);
 void ov25_02255360(u32 param0);
 void ov25_022553A0(u32 param0, const u32 * param1, u32 param2, BOOL param3);
-void ov25_02255440(UnkStruct_02018340 * param0, u32 param1, u32 param2);
+void ov25_02255440(BGL * param0, u32 param1, u32 param2);
 
 #endif // POKEPLATINUM_OV25_02255090_H

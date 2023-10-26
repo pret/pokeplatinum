@@ -1,0 +1,19 @@
+{
+    "name": "Sunny Day",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FIRE",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "MOVE_EFFECT_WEATHER_SUN",
+        "chance": 0
+    },
+    "range": "RANGE_FIELD",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_CUTE"
+    }
+}

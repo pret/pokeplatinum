@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="11980" />
+	<row id="pl_msg_00000335_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Connection List</language>
+	</row>
+	<row id="pl_msg_00000335_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Long name</language>
+	</row>
+	<row id="pl_msg_00000335_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Delete notation</language>
+	</row>
+	<row id="pl_msg_00000335_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Microphone</language>
+	</row>
+	<row id="pl_msg_00000335_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Name</language>
+	</row>
+	<row id="pl_msg_00000335_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Signature</language>
+	</row>
+	<row id="pl_msg_00000335_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record 8k</language>
+	</row>
+	<row id="pl_msg_00000335_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record 4k</language>
+	</row>
+	<row id="pl_msg_00000335_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record 2k</language>
+	</row>
+	<row id="pl_msg_00000335_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record 1750</language>
+	</row>
+	<row id="pl_msg_00000335_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record 1500</language>
+	</row>
+	<row id="pl_msg_00000335_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record 1250</language>
+	</row>
+	<row id="pl_msg_00000335_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record 1k</language>
+	</row>
+	<row id="pl_msg_00000335_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Record 500</language>
+	</row>
+	<row id="pl_msg_00000335_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Play</language>
+	</row>
+	<row id="pl_msg_00000335_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">End</language>
+	</row>
+	<row id="pl_msg_00000335_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wi-Fi</language>
+	</row>
+	<row id="pl_msg_00000335_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Create Friend code</language>
+	</row>
+	<row id="pl_msg_00000335_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Enter Friend code</language>
+	</row>
+	<row id="pl_msg_00000335_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">World Trade</language>
+	</row>
+	<row id="pl_msg_00000335_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wi-Fi Tower down</language>
+	</row>
+	<row id="pl_msg_00000335_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Day Care 1,000 steps</language>
+	</row>
+	<row id="pl_msg_00000335_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Day Care 10,000 steps</language>
+	</row>
+	<row id="pl_msg_00000335_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Set Egg</language>
+	</row>
+	<row id="pl_msg_00000335_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hatch Egg</language>
+	</row>
+</body>

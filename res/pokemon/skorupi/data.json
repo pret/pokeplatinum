@@ -1,0 +1,112 @@
+{
+    "name": "Skorupi",
+    "base_stats": {
+        "hp": 40,
+        "attack": 50,
+        "defense": 90,
+        "speed": 65,
+        "special_attack": 30,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_BUG"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 114,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_POISON_BARB"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "BUG",
+        "WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_BATTLE_ARMOR",
+        "ABILITY_SNIPER"
+    ],
+    "great_marsh_flee_rate": 120,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM36",
+            "TM39",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM54",
+            "TM56",
+            "TM58",
+            "TM66",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM79",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_BITE",
+                "MOVE_POISON_STING",
+                "MOVE_LEER"
+            ],
+            "6": "MOVE_KNOCK_OFF",
+            "12": "MOVE_PIN_MISSILE",
+            "17": "MOVE_ACUPRESSURE",
+            "23": "MOVE_SCARY_FACE",
+            "28": "MOVE_TOXIC_SPIKES",
+            "34": "MOVE_BUG_BITE",
+            "39": "MOVE_POISON_FANG",
+            "45": "MOVE_CRUNCH",
+            "50": "MOVE_CROSS_POISON"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            40,
+            "SPECIES_DRAPION"
+        ]
+    ]
+}

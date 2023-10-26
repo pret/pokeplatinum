@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02006C24_decl.h"
 #include "struct_decls/struct_02009DC8_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "overlay019/struct_ov19_021DA864.h"
@@ -66,17 +66,17 @@ void ov107_02249604 (UnkStruct_ov107_02249954 * param0, Party * param1, u8 param
     param0->unk_1A0[0][2] = sub_02009918(param0->unk_190[2], 151, 17, 1, 0, 2, 100);
     param0->unk_1A0[0][3] = sub_02009918(param0->unk_190[3], 151, 16, 1, 0, 3, 100);
 
-    v1 = NARC_ctor(16, 100);
+    v1 = NARC_ctor(NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, 100);
 
-    param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, sub_0207CE78(0, 1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
-    param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 16, sub_0207CE78(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
-    param0->unk_1A0[1][2] = sub_02009BC4(param0->unk_190[2], v1, Item_GetIndexOfIconNCER(), 0, 1, 2, 100);
-    param0->unk_1A0[1][3] = sub_02009BC4(param0->unk_190[3], v1, Item_GetIndexOfIconNANR(), 0, 1, 3, 100);
+    param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, Item_FileID(0, 1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
+    param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 16, Item_FileID(0, 2), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
+    param0->unk_1A0[1][2] = sub_02009BC4(param0->unk_190[2], v1, Item_IconNCERFile(), 0, 1, 2, 100);
+    param0->unk_1A0[1][3] = sub_02009BC4(param0->unk_190[3], v1, Item_IconNANRFile(), 0, 1, 3, 100);
 
     NARC_dtor(v1);
     ov107_02249A70(param0);
 
-    v1 = NARC_ctor(19, 100);
+    v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 100);
 
     param0->unk_1A0[3][1] = sub_020098B8(param0->unk_190[1], 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);
     param0->unk_1A0[3][2] = sub_02009BC4(param0->unk_190[2], v1, sub_02079FD8(), 0, 3, 2, 100);
@@ -186,7 +186,7 @@ void ov107_022499BC (UnkStruct_ov107_02249954 * param0, u16 param1)
 
     v0 = sub_02009DC8(param0->unk_190[0], 1);
 
-    sub_02009968(param0->unk_190[0], v0, 16, sub_0207CE78(param1, 1), 0, 100);
+    sub_02009968(param0->unk_190[0], v0, 16, Item_FileID(param1, 1), 0, 100);
     sub_0200A4C0(v0);
 
     return;
@@ -198,7 +198,7 @@ void ov107_022499FC (UnkStruct_ov107_02249954 * param0, u16 param1)
 
     v0 = sub_02009DC8(param0->unk_190[1], 1);
 
-    sub_020099D4(param0->unk_190[1], v0, 16, sub_0207CE78(param1, 2), 0, 100);
+    sub_020099D4(param0->unk_190[1], v0, 16, Item_FileID(param1, 2), 0, 100);
     sub_0200A6B8(v0);
 
     return;
@@ -226,7 +226,7 @@ static void ov107_02249A70 (UnkStruct_ov107_02249954 * param0)
     NARC * v0;
     u32 v1;
 
-    v0 = NARC_ctor(20, 100);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__PL_PLIST_GRA, 100);
 
     param0->unk_1A0[2][0] = sub_02009A4C(param0->unk_190[0], v0, sub_02081930(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 100);
     param0->unk_1A0[2][1] = sub_020098B8(param0->unk_190[1], 20, sub_02081934(), 0, 2, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 100);

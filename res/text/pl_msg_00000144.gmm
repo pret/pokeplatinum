@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="22894" />
+	<row id="pl_msg_00000144_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello.\nI’m pleased to meet you.\rI’m Maylene, and I’m the Gym\nLeader.\rI don’t really know what it means to\nbe strong, or how I got to be the\fGym Leader.\rBut I will do the best I can as the\nGym Leader.\rI take battling very seriously.\nWhenever you’re ready!\r</language>
+	</row>
+	<row id="pl_msg_00000144_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...OK.\nYou win.\rThat was a tough loss.\nI learned a lot from it.\rPlease, accept this Gym Badge.\r</language>
+	</row>
+	<row id="pl_msg_00000144_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe Cobble Badge from Maylene.</language>
+	</row>
+	<row id="pl_msg_00000144_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Um... I should explain about that\nofficial Pokémon League Gym Badge.\rWith it, you can use the hidden move Fly\noutside of battle.\rOh, and since you now have four Gym\nBadges, Pokémon obtained in trades\fwill obey you up to Lv. 50.\rOh, and please take this as well.\r</language>
+	</row>
+	<row id="pl_msg_00000144_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 8, 0, 0} contains the move\n{STRVAR_1 6, 1, 0}.\rUm... That move inflicts damage,\nand it robs the target’s HP.</language>
+	</row>
+	<row id="pl_msg_00000144_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gee, I’m hungry...\rOh, sorry, it’s nothing.\nI didn’t say anything.\r{STRVAR_1 3, 0, 0}, I can’t explain what\nit means to be strong.\rI don’t know how much effort goes\ninto being strong...\rBut being with Pokémon lets us\nkeep making the effort, doesn’t it?</language>
+	</row>
+	<row id="pl_msg_00000144_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, there!\nHow’s it going, Champ-to-be?\rThe Gym Leader is a user of\nFighting-type Pokémon.\rShe’d be a terror against Normal-type\nPokémon.\rBut! And it’s a big but!\nJust between you and me...\rMaylene, the Gym Leader, said Flying-\nand Psychic-type Pokémon could be\freal trouble for her!\rIf you want to battle her, smack the\npunching bags along the rails.\rYou have to hit those bags hard!</language>
+	</row>
+	<row id="pl_msg_00000144_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! {STRVAR_1 3, 0, 0}!\nYou’ve beaten the Gym Leader!\rOf course, I thought you’d win.</language>
+	</row>
+	<row id="pl_msg_00000144_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Veilstone City Pokémon Gym\nLeader: Maylene\rCertified Trainers:\n{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000144_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Veilstone City Pokémon Gym\nLeader: Maylene\rCertified Trainers:\n{STRVAR_1 3, 0, 0}\f{STRVAR_1 3, 1, 0}</language>
+	</row>
+	<row id="pl_msg_00000144_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A good deed for every day.</language>
+	</row>
+	<row id="pl_msg_00000144_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Treasure every encounter,\nfor it is unique.</language>
+	</row>
+	<row id="pl_msg_00000144_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">One day at a time.</language>
+	</row>
+</body>

@@ -1,0 +1,105 @@
+{
+    "name": "Roselia",
+    "base_stats": {
+        "hp": 50,
+        "attack": 60,
+        "defense": 45,
+        "speed": 65,
+        "special_attack": 100,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 150,
+    "base_exp_reward": 152,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_POISON_BARB"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "FAIRY",
+        "GRASS"
+    ],
+    "abilities": [
+        "ABILITY_NATURAL_CURE",
+        "ABILITY_POISON_POINT"
+    ],
+    "great_marsh_flee_rate": 60,
+    "sprite": {
+        "color": "MON_COLOR_GREEN",
+        "flip_sprite": true
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM09",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM30",
+            "TM32",
+            "TM36",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM58",
+            "TM70",
+            "TM75",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM01"
+        ],
+        "level_up": {
+            "1": "MOVE_ABSORB",
+            "4": "MOVE_GROWTH",
+            "7": "MOVE_POISON_STING",
+            "10": "MOVE_STUN_SPORE",
+            "13": "MOVE_MEGA_DRAIN",
+            "16": "MOVE_LEECH_SEED",
+            "19": "MOVE_MAGICAL_LEAF",
+            "22": "MOVE_GRASS_WHISTLE",
+            "25": "MOVE_GIGA_DRAIN",
+            "28": "MOVE_TOXIC_SPIKES",
+            "31": "MOVE_SWEET_SCENT",
+            "34": "MOVE_INGRAIN",
+            "37": "MOVE_TOXIC",
+            "40": "MOVE_PETAL_DANCE",
+            "43": "MOVE_AROMATHERAPY",
+            "46": "MOVE_SYNTHESIS"
+        }
+    },
+    "evolutions": [
+        [
+            "USE_ITEM",
+            "ITEM_SHINY_STONE",
+            "SPECIES_ROSERADE"
+        ]
+    ]
+}

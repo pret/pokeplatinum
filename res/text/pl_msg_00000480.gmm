@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="40636" />
+	<row id="pl_msg_00000480_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Where departed Pokémon sleep...\nThis is the Lost Tower.</language>
+	</row>
+	<row id="pl_msg_00000480_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a broken, crumbling tower\nmade of stone...</language>
+	</row>
+	<row id="pl_msg_00000480_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is a broken, crumbling tower\nmade of stone...\rThere seems to be a spot that would\nbe a perfect fit for the Odd Keystone.\rWould you like to use the Odd\nKeystone?</language>
+	</row>
+	<row id="pl_msg_00000480_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} pushed the Odd Keystone\ninto the stone tower.\rThe stone tower has been restored!\n“Hallowed Tower” is written on it.</language>
+	</row>
+	<row id="pl_msg_00000480_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s the Hallowed Tower.\rIt appears to have been built\nmany years ago.</language>
+	</row>
+	<row id="pl_msg_00000480_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s the Hallowed Tower.\rIts stones appear to have shifted...</language>
+	</row>
+	<row id="pl_msg_00000480_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s the Hallowed Tower.\r...Is that crying coming from inside\nthe tower?</language>
+	</row>
+	<row id="pl_msg_00000480_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s the Hallowed Tower.\r...Is the tower shaking ever so\nslightly?</language>
+	</row>
+	<row id="pl_msg_00000480_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s the Hallowed Tower.\rThere is some sort of presence...\nIt appears ready to emerge!</language>
+	</row>
+	<row id="pl_msg_00000480_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yulaaah!\r</language>
+	</row>
+	<row id="pl_msg_00000480_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm!\n{STRVAR_1 8, 0, 0} is really good!\rWouldn’t you agree?</language>
+	</row>
+	<row id="pl_msg_00000480_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm!\nWe’re of identical minds!\rHmm!\nTake this {STRVAR_1 8, 0, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000480_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Try fishing wherever there is\na body of water.\rOh, incidentally, do you need me to\nexplain how to use that fishing rod?</language>
+	</row>
+	<row id="pl_msg_00000480_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You don’t like to fish?</language>
+	</row>
+	<row id="pl_msg_00000480_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">First, you face any body of water,\nthen you use your fishing rod.\rNext, you must focus!\nIf a Pokémon bites, “!” appears.\fThat’s your cue to reel it in!</language>
+	</row>
+	<row id="pl_msg_00000480_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you’re fishing for Pokémon,\nthe first hurdle is getting a bite.\rWhen you start to reel that Pokémon\nin, you’ve got to battle it.\rSo, fishing gives you twice the fun!</language>
+	</row>
+	<row id="pl_msg_00000480_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you jog every morning?\nWell, I do!</language>
+	</row>
+	<row id="pl_msg_00000480_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I was jogging the other day,\na wild Pokémon chased after me.\rI swear, I ran on top of the water!\nI was so freaked out!</language>
+	</row>
+	<row id="pl_msg_00000480_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 209\nHearthome City</language>
+	</row>
+	<row id="pl_msg_00000480_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 209\nSolaceon Town</language>
+	</row>
+	<row id="pl_msg_00000480_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips\rYou may register one of the Key\nItems in your Bag for instant use.\rSimply press the Y Button to use the\nregistered item instantly.</language>
+	</row>
+</body>

@@ -69,7 +69,7 @@ void sub_02095CFC (int param0, int param1, void * param2, void * param3)
         memcpy((void *)v1->unk_2274, param2, (236 * 6 + 4 * 2));
         v1->unk_58++;
 
-        if ((v1->unk_58) * (236 * 6 + 4 * 2) >= Party_sizeof()) {
+        if ((v1->unk_58) * (236 * 6 + 4 * 2) >= Party_SaveSize()) {
             if (sub_0203608C() == 1) {
                 ov88_0223D058(v1, 27, 0);
             } else {

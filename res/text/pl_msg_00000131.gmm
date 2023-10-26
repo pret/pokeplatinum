@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18319" />
+	<row id="pl_msg_00000131_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grr... The package hasn’t arrived\nfrom the Veilstone warehouse yet...\rI have to wait here until then?\nI’m going batty from this wait...\rOh, man, I wish I could do something\nthat involved lots of explosives!\rYup, this is going to be a smashing\njob for Team Galactic...</language>
+	</row>
+	<row id="pl_msg_00000131_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grr...\nThis is so annoying...\rWhat is it, you? Oh, some kid with\nonly three Gym Badges.\rLittle rascals like you should know\nto stay out of Team Galactic’s way!\r...Now, this package from Veilstone...\nWhere should I set it off...?\rYup, this is going to be a smashing\njob for Team Galactic...</language>
+	</row>
+	<row id="pl_msg_00000131_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Whoops!\rHehehe! I’m not always going to plow\ninto you every time we meet!\rSo how’s it going, {STRVAR_1 3, 1, 0}?\nBuffing up your Pokémon, eh?\rI’ll test you and your Pokémon out\nto see how buff and tough you are!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Heh, yeah, maybe you\ndid get a bit tougher since last time.\rThat even shocked me a bit, so yeah,\nI got beat ’cause I was careless.\rSo, hey, what was that Team Galactic\nguy all freaking out about?\rI don’t know what he’s up to, but\nyou should chase him down!\rIf you’re not a Pokémon, and you run\nlike that... You’re a bad guy.\rAll right, {STRVAR_1 3, 1, 0}!\nNext time, I’m not holding back!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Oh, hey, {STRVAR_1 3, 1, 0}.\nYou’re out of luck, though.\rThe Gym Leader, Crasher Wake, I mean\nMr. Wake’s gone off to Veilstone.\rThey said he had a practice match with\nVeilstone’s Gym Leader Maylene.\rSheesh!\nI ended up missing him completely!</language>
+	</row>
+	<row id="pl_msg_00000131_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Whoops!\rHehehe! I’m not always going to plow\ninto you every time we meet!\rSo how’s it going, {STRVAR_1 3, 1, 0}?\nBuffing up your Pokémon, eh?\rI’ll test you and your Pokémon out\nto see how buff and tough you are!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Heh, yeah, maybe you\ndid get a bit tougher since last time.\rThat even shocked me a bit, so yeah,\nI got beat ’cause I was careless.\rOh, yeah, I joined Mr. Wake as an\napprentice!\rLike, I want my own theme song!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Oh, hey!\nYou got the Gym Badge here, huh?\rWhat’d I tell you? Mr. Wake--I mean,\nthe master--is pretty awesome, hey?\r</language>
+	</row>
+	<row id="pl_msg_00000131_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: What’s this racket, then?\nOh, it’s you two.\r</language>
+	</row>
+	<row id="pl_msg_00000131_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Oh, Master!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: ...Listen, kid.\nI know your father. I won’t deny that.\rBut I don’t recall ever taking you on\nas an apprentice. Not in the least.\r</language>
+	</row>
+	<row id="pl_msg_00000131_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Besides, you two don’t need me.\rYou can become strong on your own\nwithout being my apprentice.\r</language>
+	</row>
+	<row id="pl_msg_00000131_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: It doesn’t matter.\nI made you my master! I decided!\rBut forget that!\nThere’s trouble brewing!\rThere’s a Team Galactic goon in front \nof the Observatory Gate.\rHe said something about using a bomb!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: WHAAAAT?!\rNo one messes with Pastoria!\nNot on my watch!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey!\nMaster! Wait!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Does my new outfit look\ngood or what? CROAGUNK’s where it’s at.</language>
+	</row>
+	<row id="pl_msg_00000131_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Why are you talking to\nme from there?!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey!\rWhat am I, chopped liver?\nDon’t forget I’m here, too!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: So, where’s this Galac...\r</language>
+	</row>
+	<row id="pl_msg_00000131_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}DDDOOOMMM!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000131_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt: Fweh! That was rough.\r</language>
+	</row>
+	<row id="pl_msg_00000131_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: YOU!\nWhat’ve you done?!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Grunt: What’ve I done, you’re asking?\nWell, technically speaking, it wasn’t me.\rThe package that arrived, see, that\nwas a bomb, named the Galactic Bomb.\rMe, I was told to push the button.\nSo I did. Like, “Poink!”\rOh, that’s right! Mustn’t forget!\nThe test results need reporting!\rCheerio, then!\nYou daft codger, your mask’s absurd!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wake: The Great Marsh is invaluable...\r</language>
+	</row>
+	<row id="pl_msg_00000131_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You two! Do NOT follow me!\nDon’t let anyone else in, either!\rThere’d be big trouble if there’s any\nof that bomb left!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: Hey! {STRVAR_1 3, 1, 0}!\nYou go after that Galactic goon!\rI’m staying here like Master said!\nGotta keep others from going in!\rDon’t let that Galactic guy get away!</language>
+	</row>
+	<row id="pl_msg_00000131_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What’s the matter?!\nWhy aren’t you gone already?!\rGo after that Galactic goon!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What’s the matter?!\nWhy aren’t you gone already?!\rGo after that Galactic goon!</language>
+	</row>
+	<row id="pl_msg_00000131_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What’s with you?\nStop chasing after me, you.\rI’ve half a mind to pulverize you with\nmy Pokémon!\rBut I have to be on my way to the\nlake ASAP! So, you’re lucky! I’m out!\rAll right, do I make myself clear?\nDon’t you dare follow me!\r</language>
+	</row>
+	<row id="pl_msg_00000131_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here where I am standing, I’m\nsmack-dab in the middle of town.</language>
+	</row>
+	<row id="pl_msg_00000131_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I study rare Pokémon that appear\nonly in the Great Marsh.</language>
+	</row>
+	<row id="pl_msg_00000131_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Some Trainers deliberately prevent\ntheir Pokémon from evolving.\rThey wait until the Pokémon levels up\nand learns certain moves.</language>
+	</row>
+	<row id="pl_msg_00000131_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m visiting here to see the Great\nMarsh.\rI’m staying at the lakeside hotel.</language>
+	</row>
+	<row id="pl_msg_00000131_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pastoria’s Gym Leader is awesome with\nhis water attacks.\rYou’ll know what I mean when you\nchallenge him.</language>
+	</row>
+	<row id="pl_msg_00000131_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wasn’t the Pastoria Gym Leader kind of\nawesome in all sorts of ways?\rBut don’t judge him by the way he looks\nand acts.\rI hear he enters professional\nwrestling matches for prize money.\rThat money goes to help people and\nPokémon in trouble.</language>
+	</row>
+	<row id="pl_msg_00000131_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Great Marsh keeps the weather\ncool in the summertime.\rThis is a good town for Water-type\nPokémon.</language>
+	</row>
+	<row id="pl_msg_00000131_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CLEFAIRY: Fiiih?!</language>
+	</row>
+	<row id="pl_msg_00000131_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re just like a totally impatient\nboy I met earlier.\rJust like you, he was very close with\nhis Pokémon.\rHey, thanks for making me smile!\nThis might put a smile on your face.\rTry dressing up a Pokémon with\nthis {STRVAR_1 31, 0, 0}.\r</language>
+	</row>
+	<row id="pl_msg_00000131_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Someone gave me a Berry, so I\nplanted it and grew some more.\rThen, I took the Berries and cooked\nthem into Poffins.\rAll the work is worth it when I see\nhow happy they make my Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000131_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can’t use the hidden move Surf until\nI beat the local Gym Leader.</language>
+	</row>
+	<row id="pl_msg_00000131_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Have you been to the Pokémon Mansion?\nIt’s on Route 212.\rThe owner, Mr. Backlot, likes to brag\nabout his herd of rare Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000131_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pastoria City\nThe Marsh City</language>
+	</row>
+	<row id="pl_msg_00000131_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pastoria City Pokémon Gym\nLeader: Crasher Wake\fThe Torrential Masked Master!</language>
+	</row>
+	<row id="pl_msg_00000131_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pastoria Great Marsh\nObservatory Gate</language>
+	</row>
+	<row id="pl_msg_00000131_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Try the Safari Game in\nPastoria’s Great Marsh!</language>
+	</row>
+</body>

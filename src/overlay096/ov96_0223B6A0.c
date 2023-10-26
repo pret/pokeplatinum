@@ -27,7 +27,7 @@
 #include "unk_02009714.h"
 #include "unk_0200A328.h"
 #include "unk_0200A784.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -95,9 +95,9 @@ int ov96_0223B6A0 (UnkStruct_020067E8 * param0, int * param1)
         }
 
         v0->unk_BCC = sub_0200B368(11, 32, 68);
-        v0->unk_BD0 = sub_0200B144(0, 26, 670, 68);
-        v0->unk_BD4 = sub_0200B144(0, 26, 674, 68);
-        v0->unk_BD8 = sub_0200B144(0, 26, 695, 68);
+        v0->unk_BD0 = MessageLoader_Init(0, 26, 670, 68);
+        v0->unk_BD4 = MessageLoader_Init(0, 26, 674, 68);
+        v0->unk_BD8 = MessageLoader_Init(0, 26, 695, 68);
 
         sub_02017DD4(4, 8);
         ov96_0223B980(v0, param0);
@@ -144,7 +144,7 @@ int ov96_0223B7F8 (UnkStruct_020067E8 * param0, int * param1)
         *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][0])(v0, *param1);
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = 3;
         }
         break;
@@ -152,7 +152,7 @@ int ov96_0223B7F8 (UnkStruct_020067E8 * param0, int * param1)
         *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][1])(v0, *param1);
         break;
     case 4:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             *param1 = (*Unk_ov96_0223DCD4[v0->unk_10][2])(v0, *param1);
         }
         break;
@@ -179,9 +179,9 @@ int ov96_0223B8CC (UnkStruct_020067E8 * param0, int * param1)
 
     ov96_0223BC8C(v0);
 
-    sub_0200B190(v0->unk_BD8);
-    sub_0200B190(v0->unk_BD4);
-    sub_0200B190(v0->unk_BD0);
+    MessageLoader_Free(v0->unk_BD8);
+    MessageLoader_Free(v0->unk_BD4);
+    MessageLoader_Free(v0->unk_BD0);
     sub_0200B3F0(v0->unk_BCC);
 
     ov96_0223B99C(v0);
@@ -258,7 +258,7 @@ static void ov96_0223B9D0 (UnkStruct_ov96_0223BF40 * param0)
     int v0;
     NARC * v1;
 
-    v1 = NARC_ctor(104, 68);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__WORLDTRADE, 68);
 
     NNS_G2dInitOamManagerModule();
     sub_0200A784(0, 126, 0, 32, 0, 126, 0, 32, 68);
@@ -335,7 +335,7 @@ static const UnkStruct_ov61_0222C884 Unk_ov96_0223DA78 = {
     0x0
 };
 
-UnkStruct_02001AF4 * ov96_0223BBC8 (UnkStruct_02018340 * param0, int param1, int param2)
+UnkStruct_02001AF4 * ov96_0223BBC8 (BGL * param0, int param1, int param2)
 {
     UnkStruct_ov61_0222C884 v0;
 

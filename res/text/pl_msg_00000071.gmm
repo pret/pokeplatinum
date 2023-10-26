@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="25615" />
+	<row id="pl_msg_00000071_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Giving nicknames to Pokémon is\nthe way to go.\rIt makes you feel as if they’re your\nvery own.</language>
+	</row>
+	<row id="pl_msg_00000071_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">But he named our PSYDUCK “Yellow”\njust because of its color...\rI don’t understand the logic behind\nthat at all.</language>
+	</row>
+	<row id="pl_msg_00000071_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you catching Pokémon?\nHere, take this if you’d like.\r</language>
+	</row>
+	<row id="pl_msg_00000071_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Dusk Ball is a Poké Ball designed\nfor use in darkness.\rIt works better if you use it at\nnight or in a cave.</language>
+	</row>
+	<row id="pl_msg_00000071_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yellow: Duuuck?</language>
+	</row>
+</body>

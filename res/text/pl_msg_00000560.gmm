@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="9262" />
+	<row id="pl_msg_00000560_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Did you hear?\rThe Pokémon Professor returned\nto the next town over.\rThey say he was gone for four long\nyears.\rI wonder if he found some amazing\nPokémon while he was gone?</language>
+	</row>
+	<row id="pl_msg_00000560_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Well! Professor Rowan gave you a\nPokédex, did he?</language>
+	</row>
+	<row id="pl_msg_00000560_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Listen, listen, {STRVAR_1 3, 0, 0}.\nI want a cute Pokémon!</language>
+	</row>
+	<row id="pl_msg_00000560_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Listen, listen, {STRVAR_1 3, 0, 0}.\rDo you think I can be friends with\nPokémon like you are?</language>
+	</row>
+</body>

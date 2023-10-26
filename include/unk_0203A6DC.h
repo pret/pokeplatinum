@@ -9,10 +9,10 @@
 #include "struct_defs/struct_0205EC34.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-int sub_0203A6DC(void);
-int sub_0203A6E0(void);
-void sub_0203A6E8(UnkStruct_0203A79C * param0);
-void sub_0203A6F8(UnkStruct_0203A790 * param0);
+int FieldPlayerState_SaveSize(void);
+int FieldOWState_SaveSize(void);
+void FieldOWState_Init(UnkStruct_0203A79C * param0);
+void FieldPlayerState_Init(UnkStruct_0203A790 * param0);
 UnkStruct_02049FA8 * sub_0203A720(UnkStruct_0203A790 * param0);
 UnkStruct_02049FA8 * sub_0203A724(UnkStruct_0203A790 * param0);
 UnkStruct_02049FA8 * sub_0203A728(UnkStruct_0203A790 * param0);
@@ -31,8 +31,8 @@ UnkStruct_0205EC34 * sub_0203A780(UnkStruct_0203A790 * param0);
 u16 * sub_0203A784(UnkStruct_0203A790 * param0);
 u16 * sub_0203A788(UnkStruct_0203A790 * param0);
 u16 * sub_0203A78C(UnkStruct_0203A790 * param0);
-UnkStruct_0203A790 * sub_0203A790(UnkStruct_021C0794 * param0);
-UnkStruct_0203A79C * sub_0203A79C(UnkStruct_021C0794 * param0);
+UnkStruct_0203A790 * sub_0203A790(SaveData * param0);
+UnkStruct_0203A79C * sub_0203A79C(SaveData * param0);
 void sub_0203A7A8(UnkStruct_0203CDB0 * param0);
 void sub_0203A7C0(UnkStruct_0203CDB0 * param0);
 

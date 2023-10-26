@@ -3,7 +3,7 @@
 
 #include "overlay062/ov62_const_funcptr_tables.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_0208C06C.h"
@@ -12,7 +12,7 @@
 #include "unk_02002F38.h"
 #include "unk_02005474.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200C6E4.h"
 #include "unk_0200F174.h"
 #include "unk_02012744.h"
@@ -41,13 +41,13 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
 {
     Strbuf* v0;
     int v1;
-    UnkStruct_0205AA50 * v2 = &param0->unk_8A4;
+    Window * v2 = &param0->unk_8A4;
 
     sub_0201A7A0(v2);
-    sub_0201A7E8(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
-    sub_0201ADA4(v2, 0x0);
+    BGL_AddWindow(param0->unk_14.unk_10, v2, 2, 8, 16, 16, 2, 14, 300);
+    BGL_FillWindow(v2, 0x0);
 
-    v0 = sub_0200B1EC(param0->unk_14.unk_34, 192);
+    v0 = MessageLoader_GetNewStrbuf(param0->unk_14.unk_34, 192);
     v1 = ov62_0223429C(v2, v0);
 
     sub_0201D78C(v2, 0, v0, v1, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((14 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
@@ -59,7 +59,7 @@ static void ov62_02234A10 (UnkStruct_0208C06C * param0)
 static void ov62_02234A90 (UnkStruct_0208C06C * param0)
 {
     sub_0201ACF4(&param0->unk_8A4);
-    sub_0201A8FC(&param0->unk_8A4);
+    BGL_DeleteWindow(&param0->unk_8A4);
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG2, 0);
 }
 
@@ -82,7 +82,7 @@ static BOOL ov62_02234AB4 (UnkStruct_0208C06C * param0)
         param0->unk_08++;
         break;
     case 1:
-        if (sub_0200F2AC() == 0) {
+        if (ScreenWipe_Done() == 0) {
             break;
         }
 
@@ -90,7 +90,7 @@ static BOOL ov62_02234AB4 (UnkStruct_0208C06C * param0)
         sub_0208B8B8(param0->unk_6F4, 256 / 2, 192 + 24);
         sub_0208B9E0(param0->unk_6F4, 1);
         sub_0208B8B0(param0->unk_6F4, 1);
-        sub_02005748(1374);
+        Sound_PlayEffect(1374);
         param0->unk_08++;
         break;
     case 2:
@@ -178,14 +178,14 @@ static BOOL ov62_02234CDC (UnkStruct_0208C06C * param0)
             break;
         }
 
-        sub_02005748(1371);
+        Sound_PlayEffect(1371);
 
         param0->unk_0C = 16;
         param0->unk_08++;
         break;
     case 1:
         if (ov62_022300BC(param0) == 1) {
-            if (sub_0200F2AC() == 1) {
+            if (ScreenWipe_Done() == 1) {
                 param0->unk_08++;
             }
         } else {

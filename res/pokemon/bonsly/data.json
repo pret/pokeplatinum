@@ -1,0 +1,102 @@
+{
+    "name": "Bonsly",
+    "base_stats": {
+        "hp": 50,
+        "attack": 80,
+        "defense": 95,
+        "speed": 10,
+        "special_attack": 10,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 68,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_STURDY",
+        "ABILITY_ROCK_HEAD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM04",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM21",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM64",
+            "TM69",
+            "TM76",
+            "TM77",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_FAKE_TEARS",
+                "MOVE_COPYCAT"
+            ],
+            "6": "MOVE_FLAIL",
+            "9": "MOVE_LOW_KICK",
+            "14": "MOVE_ROCK_THROW",
+            "17": "MOVE_MIMIC",
+            "22": "MOVE_BLOCK",
+            "25": "MOVE_FAINT_ATTACK",
+            "30": "MOVE_ROCK_TOMB",
+            "33": "MOVE_ROCK_SLIDE",
+            "38": "MOVE_SLAM",
+            "41": "MOVE_SUCKER_PUNCH",
+            "46": "MOVE_DOUBLE_EDGE"
+        }
+    },
+    "evolutions": [
+        [
+            "KNOW_MOVE",
+            "MIMIC",
+            "SPECIES_SUDOWOODO"
+        ]
+    ]
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="53789" />
+	<row id="pl_msg_00000008_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EDIT</language>
+	</row>
+	<row id="pl_msg_00000008_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">QUIT</language>
+	</row>
+	<row id="pl_msg_00000008_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SET</language>
+	</row>
+	<row id="pl_msg_00000008_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">REMOVE</language>
+	</row>
+	<row id="pl_msg_00000008_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SHIFT</language>
+	</row>
+	<row id="pl_msg_00000008_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONFIRM</language>
+	</row>
+	<row id="pl_msg_00000008_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CANCEL</language>
+	</row>
+	<row id="pl_msg_00000008_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Choose a capsule.</language>
+	</row>
+	<row id="pl_msg_00000008_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What would you like to do?</language>
+	</row>
+	<row id="pl_msg_00000008_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The capsule was removed.</language>
+	</row>
+	<row id="pl_msg_00000008_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Switch with which capsule?</language>
+	</row>
+	<row id="pl_msg_00000008_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The capsules were switched.</language>
+	</row>
+	<row id="pl_msg_00000008_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Finished editing the capsule.</language>
+	</row>
+	<row id="pl_msg_00000008_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Confirming...</language>
+	</row>
+	<row id="pl_msg_00000008_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Quit without changing the capsule\ndesign?</language>
+	</row>
+	<row id="pl_msg_00000008_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There’s no more room!</language>
+	</row>
+	<row id="pl_msg_00000008_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are no Seals left.</language>
+	</row>
+</body>

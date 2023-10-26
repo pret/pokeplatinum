@@ -1,15 +1,15 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_02013A04_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
@@ -90,7 +90,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_ov23_0224B144 unk_08[17];
     UnkStruct_ov23_0224B144 * unk_A00;
     u32 unk_A04[17][32];
@@ -127,7 +127,7 @@ typedef struct {
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
     UnkStruct_02001AF4 * unk_04;
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_08;
     int unk_0C;
     int unk_10;
     int unk_14;
@@ -146,7 +146,7 @@ typedef struct {
 
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_02001AF4 * unk_08;
     int unk_0C;
     u8 unk_10;
@@ -191,7 +191,7 @@ static BOOL ov23_0224B79C(int param0, int param1);
 static void ov23_0224B844(int param0, int param1, BOOL param2);
 static void ov23_0224D238(void);
 static void ov23_0224C6AC(int param0);
-static void ov23_0224C5B4(UnkStruct_0201CD38 * param0, void * param1);
+static void ov23_0224C5B4(SysTask * param0, void * param1);
 static void ov23_0224DC08(void);
 static void ov23_0224DC24(void);
 
@@ -373,7 +373,7 @@ void ov23_0224B144 (void * param0, UnkStruct_0203CDB0 * param1)
     Unk_ov23_022577AC->unk_13CC = 72;
     Unk_ov23_022577AC->unk_13CE = 437;
     Unk_ov23_022577AC->unk_13D0 = 1;
-    Unk_ov23_022577AC->unk_04 = sub_0200D9E8(ov23_0224C5B4, NULL, 100);
+    Unk_ov23_022577AC->unk_04 = SysTask_Start(ov23_0224C5B4, NULL, 100);
 }
 
 void ov23_0224B2C8 (UnkStruct_0203CDB0 * param0)
@@ -446,7 +446,7 @@ void ov23_0224B430 (void)
     ov23_0224C6E8();
 
     if (Unk_ov23_022577AC->unk_04) {
-        sub_0200DA58(Unk_ov23_022577AC->unk_04);
+        SysTask_Done(Unk_ov23_022577AC->unk_04);
         Unk_ov23_022577AC->unk_04 = NULL;
     }
 
@@ -474,14 +474,14 @@ void ov23_0224B460 (void)
     }
 
     if (Unk_ov23_022577AC->unk_04 == NULL) {
-        Unk_ov23_022577AC->unk_04 = sub_0200D9E8(ov23_0224C5B4, NULL, 100);
+        Unk_ov23_022577AC->unk_04 = SysTask_Start(ov23_0224C5B4, NULL, 100);
     }
 }
 
 void ov23_0224B4E4 (void)
 {
     if (Unk_ov23_022577AC->unk_04) {
-        sub_0200DA58(Unk_ov23_022577AC->unk_04);
+        SysTask_Done(Unk_ov23_022577AC->unk_04);
         Unk_ov23_022577AC->unk_04 = NULL;
     }
 
@@ -804,7 +804,7 @@ BOOL ov23_0224B8E0 (int param0, int param1, int param2)
     return 0;
 }
 
-static void ov23_0224BA48 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224BA48 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224BA48 * v0 = param1;
 
@@ -812,13 +812,13 @@ static void ov23_0224BA48 (UnkStruct_0201CD38 * param0, void * param1)
         sub_02002154(v0->unk_04, 4);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(v0);
 
     ov23_02243204();
 }
 
-static void ov23_0224BA6C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224BA6C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224BA48 * v0 = param1;
     UnkStruct_ov23_0224B730 v1;
@@ -832,14 +832,14 @@ static void ov23_0224BA6C (UnkStruct_0201CD38 * param0, void * param1)
     v1.unk_02 = 0;
 
     sub_020360D0(59, &v1);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(v0);
 
     ov23_02243204();
     ov23_0224DC24();
 }
 
-static void ov23_0224BAAC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224BAAC (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224BA48 * v0 = param1;
     UnkStruct_0203CDB0 * v1 = v0->unk_00;
@@ -953,7 +953,7 @@ static void ov23_0224BC5C (UnkStruct_0203CDB0 * param0, int param1, int param2, 
     v0->unk_14 = 2;
     v0->unk_24 = param3;
     v0->unk_00 = param0;
-    v0->unk_08 = sub_0200D9E8(ov23_0224BAAC, v0, 100);
+    v0->unk_08 = SysTask_Start(ov23_0224BAAC, v0, 100);
 
     ov23_022431EC(v0, v0->unk_08, ov23_0224BA6C);
     sub_020594FC();
@@ -1013,10 +1013,10 @@ static int ov23_0224BD1C (int param0, BOOL param1)
     return v1;
 }
 
-static UnkStruct_02001AF4 * ov23_0224BD90 (UnkStruct_02018340 * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
+static UnkStruct_02001AF4 * ov23_0224BD90 (BGL * param0, const UnkStruct_ov61_0222C884 * param1, u16 param2, u8 param3, u32 param4)
 {
     UnkStruct_02081CF4 v0;
-    UnkStruct_0200B144 * v1 = ov23_02253E3C(ov23_0224219C());
+    MessageLoader * v1 = ov23_02253E3C(ov23_0224219C());
     UnkStruct_02013A04 * v2;
 
     v2 = sub_02013A04(2, param4);
@@ -1034,12 +1034,12 @@ static UnkStruct_02001AF4 * ov23_0224BD90 (UnkStruct_02018340 * param0, const Un
     v0.unk_0B_0 = 0;
 
     sub_0201A8D4(param0, v0.unk_04, param1);
-    sub_0200DC48(v0.unk_04, 1, param2, param3);
+    Window_Show(v0.unk_04, 1, param2, param3);
 
     return sub_02001B7C(&v0, 8, 0, 0, param4, PAD_BUTTON_B);
 }
 
-static void ov23_0224BE28 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224BE28 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224BA48 * v0 = param1;
     UnkStruct_0203CDB0 * v1 = v0->unk_00;
@@ -1188,7 +1188,7 @@ static void ov23_0224C090 (UnkStruct_0203CDB0 * param0, int param1, int param2, 
     v0->unk_29 = 0;
 
     ov23_0224DC08();
-    v0->unk_08 = sub_0200D9E8(ov23_0224BE28, v0, 100);
+    v0->unk_08 = SysTask_Start(ov23_0224BE28, v0, 100);
     ov23_022431EC(v0, v0->unk_08, ov23_0224BA6C);
 
     sub_020594FC();
@@ -1211,7 +1211,7 @@ void ov23_0224C104 (int param0, int param1, void * param2, void * param3)
         ov23_0224321C();
         ov23_02244858(sub_0203608C(), 0);
 
-        sub_020360DC(43);
+        Link_Message(43);
         Unk_ov23_022577AC->unk_13D6 = 0;
         sub_02059638(1);
 
@@ -1225,7 +1225,7 @@ void ov23_0224C104 (int param0, int param1, void * param2, void * param3)
 
 void ov23_0224C198 (void)
 {
-    sub_020360DC(56);
+    Link_Message(56);
 }
 
 void ov23_0224C1A4 (int param0, int param1, void * param2, void * param3)
@@ -1289,7 +1289,7 @@ void ov23_0224C25C (int param0, int param1, void * param2, void * param3)
             Unk_ov23_022577AC->unk_12D4 = 0;
 
             sub_02059514();
-            sub_020360DC(56);
+            Link_Message(56);
             sub_02057AE4(0);
 
             ov23_0224DC24();
@@ -1449,7 +1449,7 @@ static void ov23_0224C588 (int param0, int param1, int param2, int param3)
     Unk_ov23_022577AC->unk_1308[param3] = param1;
 }
 
-static void ov23_0224C5B4 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224C5B4 (SysTask * param0, void * param1)
 {
     int v0, v1, v2, v3, v4, v5;
 
@@ -1592,11 +1592,11 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         sub_0200F2C0();
         sub_0200F174(2, 16, 18, 0x0, 6, 1, 4);
         ov23_0224942C(v0->unk_6C);
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         v1->unk_0C++;
         break;
     case 2:
-        if (sub_0200F2AC()) {
+        if (ScreenWipe_Done()) {
             if (v0->unk_6C == NULL) {
                 (v1->unk_0C)++;
             }
@@ -1628,7 +1628,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         (v1->unk_0C)++;
         break;
     case 7:
-        if (!sub_0200F2AC()) {
+        if (!ScreenWipe_Done()) {
             break;
         }
 
@@ -1676,12 +1676,12 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         sub_02061550(v0->unk_3C, sub_02065838(1, 0x24), 1);
         sub_020593F4(1);
         ov23_02253F40(ov23_0224219C(), 68, 0, NULL);
-        sub_02005748(1540);
+        Sound_PlayEffect(1540);
         v1->unk_0C = 12;
         break;
     case 12:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_0C = 13;
                 ov23_02254044(ov23_0224219C());
                 sub_020593F4(0);
@@ -1716,7 +1716,7 @@ static BOOL ov23_0224C790 (UnkStruct_020508D4 * param0)
         return 1;
     case 8:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 v1->unk_0C = 13;
                 ov23_02254044(ov23_0224219C());
                 return 0;
@@ -1743,7 +1743,7 @@ static void ov23_0224CAF0 (UnkStruct_0203CDB0 * param0, int param1, int param2, 
     }
 }
 
-static void ov23_0224CB1C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224CB1C (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224CB1C * v0 = param1;
     UnkStruct_0203CDB0 * v1 = v0->unk_00;
@@ -1762,7 +1762,7 @@ static void ov23_0224CB1C (UnkStruct_0201CD38 * param0, void * param1)
     }
         sub_020594FC();
         ov23_02254098(ov23_0224219C(), 33);
-        sub_02005748(1566);
+        Sound_PlayEffect(1566);
 
         ov5_021F58FC(sub_0205EB3C(v1->unk_3C), 0, 0, 0);
         ov23_02253F40(ov23_0224219C(), 33, 0, NULL);
@@ -1810,7 +1810,7 @@ static void ov23_0224CB1C (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 4:
         if (ov23_02254238(ov23_0224219C()) == 0) {
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 v4 = 1;
             }
         }
@@ -1849,7 +1849,7 @@ static void ov23_0224CB1C (UnkStruct_0201CD38 * param0, void * param1)
             ov23_0224D238();
 
             sub_020360D0(86, &v10);
-            sub_0200DA58(param0);
+            SysTask_Done(param0);
             Heap_FreeToHeap(v0);
 
             ov23_02243204();
@@ -1869,7 +1869,7 @@ static void ov23_0224CB1C (UnkStruct_0201CD38 * param0, void * param1)
             ov5_021F5634(v1, v6, 0, v7);
         }
 
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         Heap_FreeToHeap(v0);
 
         ov23_02243204();
@@ -1950,7 +1950,7 @@ void ov23_0224CD80 (int param0, int param1, void * param2, void * param3)
     sub_02035B48(87, &v8);
 }
 
-static void ov23_0224CE94 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224CE94 (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224CB1C * v0 = param1;
 
@@ -1960,7 +1960,7 @@ static void ov23_0224CE94 (UnkStruct_0201CD38 * param0, void * param1)
         sub_02002154(v0->unk_08, 4);
     }
 
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
     Heap_FreeToHeap(v0);
 
     ov23_02243204();
@@ -1980,7 +1980,7 @@ static void ov23_0224CEC8 (void)
     v0->unk_0C = 0;
     v0->unk_10 = sub_0203608C();
     v0->unk_00 = Unk_ov23_022577AC->unk_00;
-    v0->unk_04 = sub_0200D9E8(ov23_0224CB1C, v0, 100);
+    v0->unk_04 = SysTask_Start(ov23_0224CB1C, v0, 100);
 
     ov23_022431EC(v0, v0->unk_04, ov23_0224CE94);
 }
@@ -2034,8 +2034,8 @@ void ov23_0224CF18 (int param0, int param1, void * param2, void * param3)
 BOOL ov23_0224D020 (Strbuf *param0)
 {
     int v0, v1;
-    UnkStruct_02025E6C * v2;
-    UnkStruct_02025E6C * v3;
+    TrainerInfo * v2;
+    TrainerInfo * v3;
 
     if (!Unk_ov23_022577AC) {
         return 0;
@@ -2092,7 +2092,7 @@ BOOL ov23_0224D020 (Strbuf *param0)
     return 0;
 }
 
-UnkStruct_02029894 * ov23_0224D130 (UnkStruct_021C0794 * param0)
+UnkStruct_02029894 * ov23_0224D130 (SaveData * param0)
 {
     if (Unk_ov23_022577AC) {
         if (Unk_ov23_022577AC->unk_A00) {
@@ -2352,13 +2352,13 @@ static void ov23_0224D54C (UnkStruct_ov23_0224D54C * param0)
     ov5_021E19CC(Unk_ov23_022577AC->unk_00->unk_A4, Unk_ov23_022577AC->unk_00->unk_30, 317 + param0->unk_05, &v0, NULL, Unk_ov23_022577AC->unk_00->unk_50);
 }
 
-static void ov23_0224D5A8 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224D5A8 (SysTask * param0, void * param1)
 {
     Heap_FreeToHeap(param1);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void ov23_0224D5BC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov23_0224D5BC (SysTask * param0, void * param1)
 {
     UnkStruct_ov23_0224D54C * v0 = param1;
 
@@ -2366,12 +2366,12 @@ static void ov23_0224D5BC (UnkStruct_0201CD38 * param0, void * param1)
     case 0:
         sub_020594FC();
         ov23_02253F40(ov23_022421AC(), 7, 0, NULL);
-        sub_02005748(1507);
+        Sound_PlayEffect(1507);
         v0->unk_00 = 1;
         break;
     case 1:
         if (ov23_02254238(ov23_022421AC()) == 0) {
-            if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 int v1 = v0->unk_05;
 
                 ov23_02253F40(ov23_022421AC(), 14 + v1, 0, NULL);
@@ -2381,7 +2381,7 @@ static void ov23_0224D5BC (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 2:
         if (ov23_02254238(ov23_022421AC()) == 0) {
-            if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
                 ov23_0224D54C(v0);
                 v0->unk_00 = 4;
                 ov23_02254044(ov23_022421AC());
@@ -2394,7 +2394,7 @@ static void ov23_0224D5BC (UnkStruct_0201CD38 * param0, void * param1)
         break;
     case 4:
         Heap_FreeToHeap(param1);
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
         ov23_02243204();
         break;
     }
@@ -2415,7 +2415,7 @@ void ov23_0224D6AC (int param0, int param1, void * param2, void * param3)
 {
     int v0;
     u8 * v1 = param2;
-    UnkStruct_0201CD38 * v2;
+    SysTask * v2;
 
     if (v1[0] == sub_0203608C()) {
         UnkStruct_ov23_0224D54C * v3 = Heap_AllocFromHeap(11, sizeof(UnkStruct_ov23_0224D54C));
@@ -2424,7 +2424,7 @@ void ov23_0224D6AC (int param0, int param1, void * param2, void * param3)
 
         v3->unk_00 = 0;
         v3->unk_05 = v1[1];
-        v2 = sub_0200D9E8(ov23_0224D5BC, v3, 100);
+        v2 = SysTask_Start(ov23_0224D5BC, v3, 100);
 
         ov23_022431EC(v3, v2, ov23_0224D5A8);
     } else {

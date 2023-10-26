@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54176" />
+	<row id="pl_msg_00000367_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéDEX</language>
+	</row>
+	<row id="pl_msg_00000367_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">POKéMON</language>
+	</row>
+	<row id="pl_msg_00000367_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BAG</language>
+	</row>
+	<row id="pl_msg_00000367_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}</language>
+	</row>
+	<row id="pl_msg_00000367_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SAVE</language>
+	</row>
+	<row id="pl_msg_00000367_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OPTIONS</language>
+	</row>
+	<row id="pl_msg_00000367_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">EXIT</language>
+	</row>
+	<row id="pl_msg_00000367_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CHAT</language>
+	</row>
+	<row id="pl_msg_00000367_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">RETIRE</language>
+	</row>
+	<row id="pl_msg_00000367_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">SAFARI BALLS</language>
+	</row>
+	<row id="pl_msg_00000367_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PARK BALLS</language>
+	</row>
+	<row id="pl_msg_00000367_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Stock: {STRVAR_1 51, 0, 0}</language>
+	</row>
+</body>

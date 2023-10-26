@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="9267" />
+	<row id="pl_msg_00000159_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re a Trainer, aren’t you?\rYou see, there’s this Pokémon I’d like\nsomeone to look after.\rIt’s a Pokémon called PORYGON.\nI found it near Team Galactic’s building.\rI’m no Trainer, so can you take it off\nmy hands?</language>
+	</row>
+	<row id="pl_msg_00000159_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re a Trainer, aren’t you?\rYou see, there’s this Pokémon I’d like\nsomeone to look after.\rIt’s a Pokémon called PORYGON.\nCan you take it off my hands?</language>
+	</row>
+	<row id="pl_msg_00000159_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Excellent! Thanks!\nThat’ll make the PORYGON happy, too.\rI suspect it ran away from those Team\nGalactic goons.\r</language>
+	</row>
+	<row id="pl_msg_00000159_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} accepted the PORYGON!\r</language>
+	</row>
+	<row id="pl_msg_00000159_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to give a nickname\nto the PORYGON you received?</language>
+	</row>
+	<row id="pl_msg_00000159_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Thanks!\r...But, oops, you already have a whole\nteam of Pokémon with you.\rIf you want this PORYGON, you’d better\nput one in a PC Box first.</language>
+	</row>
+	<row id="pl_msg_00000159_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Is that so...\rI’ll look after it for a while. Please\ncome see me if you change your mind.</language>
+	</row>
+	<row id="pl_msg_00000159_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic’s building bugs me so\nmuch, I can’t sleep well.\rIt’s so bizarre, like a robot that’s\nabout to start moving.</language>
+	</row>
+	<row id="pl_msg_00000159_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Those thorny things on the building...\nThe way it moves meaninglessly...\rI don’t understand their idea of \n“awesomely fashionable” at all.\rStill, Team Galactic does seem to have\na huge supply of energy.</language>
+	</row>
+</body>

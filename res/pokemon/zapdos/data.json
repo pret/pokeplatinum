@@ -1,0 +1,103 @@
+{
+    "name": "Zapdos",
+    "base_stats": {
+        "hp": 90,
+        "attack": 90,
+        "defense": 85,
+        "speed": 100,
+        "special_attack": 125,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 216,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 80,
+    "base_friendship": 35,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "UNDISCOVERED",
+        "UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM32",
+            "TM34",
+            "TM37",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM47",
+            "TM51",
+            "TM57",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM73",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM90",
+            "HM02",
+            "HM05",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_PECK",
+                "MOVE_THUNDER_SHOCK"
+            ],
+            "8": "MOVE_THUNDER_WAVE",
+            "15": "MOVE_DETECT",
+            "22": "MOVE_PLUCK",
+            "29": "MOVE_ANCIENT_POWER",
+            "36": "MOVE_CHARGE",
+            "43": "MOVE_AGILITY",
+            "50": "MOVE_DISCHARGE",
+            "57": "MOVE_ROOST",
+            "64": "MOVE_LIGHT_SCREEN",
+            "71": "MOVE_DRILL_PECK",
+            "78": "MOVE_THUNDER",
+            "85": "MOVE_RAIN_DANCE"
+        }
+    }
+}

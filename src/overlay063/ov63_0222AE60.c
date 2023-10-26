@@ -50,7 +50,7 @@ typedef struct {
 
 typedef struct UnkStruct_ov63_0222AE60_t {
     UnkStruct_020218BC * unk_00;
-    UnkStruct_02002F38 * unk_04;
+    PaletteSys * unk_04;
     UnkStruct_ov63_0222BB38 * unk_08;
     u32 unk_0C;
     UnkStruct_ov63_0222BB38_sub1 unk_10[151];
@@ -302,7 +302,7 @@ static const u8 Unk_ov63_0222D904[10] = {
     0x0
 };
 
-UnkStruct_ov63_0222AE60 * ov63_0222AE60 (UnkStruct_020218BC * param0, UnkStruct_02002F38 * param1, u32 param2, u32 param3)
+UnkStruct_ov63_0222AE60 * ov63_0222AE60 (UnkStruct_020218BC * param0, PaletteSys * param1, u32 param2, u32 param3)
 {
     UnkStruct_ov63_0222AE60 * v0;
     int v1;
@@ -312,8 +312,8 @@ UnkStruct_ov63_0222AE60 * ov63_0222AE60 (UnkStruct_020218BC * param0, UnkStruct_
 
     v0->unk_00 = param0;
     v0->unk_04 = param1;
-    v0->unk_2294[0] = NARC_ctor(146, param3);
-    v0->unk_2294[1] = NARC_ctor(153, param3);
+    v0->unk_2294[0] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI2DCHAR, param3);
+    v0->unk_2294[1] = NARC_ctor(NARC_INDEX_GRAPHIC__WIFI_UNIONOBJ, param3);
 
     for (v1 = 0; v1 < 2; v1++) {
         v0->unk_2280[v1] = sub_02009714((151 + 1), v1, param3);

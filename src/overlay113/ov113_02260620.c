@@ -1,10 +1,10 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay066/struct_ov66_0222E71C_decl.h"
 
@@ -13,14 +13,14 @@
 #include "overlay113/struct_ov113_02260818.h"
 #include "overlay113/struct_ov113_02260D90.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "heap.h"
 #include "unk_02018340.h"
 #include "unk_0201D670.h"
 #include "unk_02022594.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "overlay066/ov66_0222DDF0.h"
 #include "overlay066/ov66_022324F0.h"
 #include "overlay113/ov113_02260620.h"
@@ -544,10 +544,10 @@ static const UnkUnion_02022594 Unk_ov113_02260D4C[] = {
     {0xFF, 0x0, 0x0, 0x0}
 };
 
-void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, UnkStruct_0205AA50 param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
+void ov113_02260620 (MessageLoader * param0, UnkStruct_0200B358 * param1, Window param2[], UnkStruct_ov66_0222DFF8 * param3, s32 param4)
 {
     const UnkStruct_ov66_0222E71C * v0;
-    UnkStruct_02025E6C * v1;
+    TrainerInfo * v1;
     Strbuf* v2;
     Strbuf* v3;
     Strbuf* v4;
@@ -579,19 +579,19 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
         return;
     }
 
-    v1 = sub_02025E6C(118);
+    v1 = TrainerInfo_New(118);
     ov66_0222E640(v0, v1, 118);
 
-    v4 = sub_02025F04(v1, 118);
-    v6 = sub_02025F30(v1);
+    v4 = TrainerInfo_NameNewStrbuf(v1, 118);
+    v6 = TrainerInfo_Gender(v1);
 
     sub_0200B48C(param1, 0, v4, v6, 1, GAME_LANGUAGE);
 
-    v2 = sub_0200B1EC(param0, 0);
+    v2 = MessageLoader_GetNewStrbuf(param0, 0);
     v3 = Strbuf_Init(v5, 118);
 
     sub_0200C388(param1, v3, v2);
-    sub_0201ADA4(&param2[v7], 0x0);
+    BGL_FillWindow(&param2[v7], 0x0);
 
     if (ov66_0222E924(param3, v8) == 1) {
         v9 = (u32)(((7 & 0xff) << 16) | ((8 & 0xff) << 8) | ((0 & 0xff) << 0));
@@ -607,7 +607,7 @@ void ov113_02260620 (UnkStruct_0200B144 * param0, UnkStruct_0200B358 * param1, U
     Heap_FreeToHeap(v1);
 }
 
-void ov113_02260714 (UnkStruct_0205AA50 param0[], u32 param1)
+void ov113_02260714 (Window param0[], u32 param1)
 {
     if (param1 >= 8) {
         GF_ASSERT(0);

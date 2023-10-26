@@ -3,14 +3,14 @@
 
 #include "struct_decls/struct_02007768_decl.h"
 #include "struct_decls/struct_02007C7C_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 
 #include "struct_defs/struct_02008A90.h"
 
 #include "unk_0200762C.h"
 #include "gx_layers.h"
 #include "unk_0202419C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 
 void ov105_02245CD0(void);
 void ov105_02245D50(UnkStruct_02007768 * param0);

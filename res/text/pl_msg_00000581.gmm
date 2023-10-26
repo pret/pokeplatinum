@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="29742" />
+	<row id="pl_msg_00000581_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Every so often, an Egg will be found\nat the Pokémon Day Care.\rAnd they’re found without anyone\nknowing how they got there.\rIt’s an enduring mystery.\nIs someone leaving them there?</language>
+	</row>
+	<row id="pl_msg_00000581_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">They say no one has ever seen\na Pokémon actually lay an Egg.\rSo, it hasn’t been proven that\nPokémon actually lay Eggs.</language>
+	</row>
+</body>

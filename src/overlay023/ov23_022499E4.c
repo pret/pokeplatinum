@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0205964C.h"
@@ -26,7 +26,7 @@
 #include "overlay023/ov23_0224A1D0.h"
 #include "overlay023/ov23_0224B05C.h"
 
-static void ov97_0222D19C(UnkStruct_0201CD38 * param0, void * param1);
+static void ov97_0222D19C(SysTask * param0, void * param1);
 static void ov23_02249C24(UnkFuncPtr_020598EC param0, int param1);
 static void ov23_02249C34(void);
 static void ov23_02249C98(void);
@@ -224,12 +224,12 @@ BOOL ov23_02249BD4 (void)
     return 0;
 }
 
-static void ov97_0222D19C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov97_0222D19C (SysTask * param0, void * param1)
 {
     UnkStruct_0205964C * v0 = sub_0205964C();
 
     if (v0 == NULL) {
-        sub_0200DA58(param0);
+        SysTask_Done(param0);
     } else {
         if (v0->unk_34 != NULL) {
             UnkFuncPtr_020598EC v1 = v0->unk_34;
@@ -397,7 +397,7 @@ static void ov23_02249E18 (void)
         ov23_0224AA84();
         ov23_0224DA8C();
 
-        sub_020360DC(43);
+        Link_Message(43);
 
         ov23_02244858(sub_0203608C(), 1);
         ov23_0224321C();
@@ -492,7 +492,7 @@ static void ov23_02249F7C (void)
         ov23_022499E4("\u0094\u00E9\u0096\u00A7\u008A\u00EE\u0092\u006E\u0082\u00CC\u0088\u00CA\u0092\u0075\u0082\u00AA\u0082\u00AB\u0082\u00BD");
         ov23_0224C434();
         sub_02057AE4(1);
-        sub_020360DC(31);
+        Link_Message(31);
         ov23_02249C24(ov23_0224A09C, 0);
         return;
     }

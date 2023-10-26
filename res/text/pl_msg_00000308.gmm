@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="52134" />
+	<row id="pl_msg_00000308_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Tower... Its height is a symbol\nof its challenge to Trainers.</language>
+	</row>
+	<row id="pl_msg_00000308_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All the places in the Battle Frontier\nlet you team up with a friend!</language>
+	</row>
+	<row id="pl_msg_00000308_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I don’t think it’s good enough for an\nIdol to just be cute, sing, and dance.\rI should learn more about Pokémon so\nI can attract the Poké maniacs.</language>
+	</row>
+	<row id="pl_msg_00000308_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I get to battle with the world’s best\nin do-or-die situations here.</language>
+	</row>
+	<row id="pl_msg_00000308_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The most important person in the Battle\nCastle is a lady.\rLady, like a princess, I mean.</language>
+	</row>
+	<row id="pl_msg_00000308_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What makes me the most happy being\na Trainer?\rThe fact that Pokémon will always be\nwith me!</language>
+	</row>
+	<row id="pl_msg_00000308_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Behind every Pokémon, there is a\nstory. Isn’t that right, dear?</language>
+	</row>
+	<row id="pl_msg_00000308_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Like a Pokémon and Trainer, we have\nbeen together for a long time.\rEventually, we will be parted...\rUntil then, I will cherish the time we\nhave, dearest.</language>
+	</row>
+	<row id="pl_msg_00000308_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">People expect so much from a maid.\nCooking, cleaning, and laundry...\rNot to mention being good at training\nPokémon!</language>
+	</row>
+	<row id="pl_msg_00000308_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">To be strong is to be weak.\nTo be weak is to be strong.\rI was told that a long time ago.\nNot that I have any clue what it means.</language>
+	</row>
+	<row id="pl_msg_00000308_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are those who love battling from\ndeep in the cockles of their hearts.\rThe people that gather here?\nThat would be them.</language>
+	</row>
+	<row id="pl_msg_00000308_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I wonder how many years it’s been since\nI first met a Pokémon?\rHow much time has passed for you and\nyour Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000308_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainers can command Pokémon to\nuse moves in battle with confidence.\rThey can do that because Trainers\nbelieve in their Pokémon.\rIn turn, Pokémon repay that trust\nby using moves the best they can.\rThis may seem obvious, but it’s actually\nincredibly amazing!</language>
+	</row>
+	<row id="pl_msg_00000308_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I treat every battle as if it were my\nlast.\rGoing into battle willing to accept\na loss? Unforgivable!\rBut losing is also inevitable.\nA good Trainer learns from it.</language>
+	</row>
+	<row id="pl_msg_00000308_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon’s type!\rThe moves to be learned!\rThe items to be held!\rIf your aim is to be no. 1 here,\nyou can’t overlook a single detail.</language>
+	</row>
+	<row id="pl_msg_00000308_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know, when I lose, the first thing\nI do is look for who to blame.\rLike, the opponent cheated, or I was\nunlucky, or it’s my Pokémon’s fault...\rBut I know I shouldn’t do that.\nI won’t get better unless I change.</language>
+	</row>
+	<row id="pl_msg_00000308_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There are five facilities in the Battle\nFrontier.\rAt every one, you can win your way\nthrough to challenge the boss.\rI think they’re called Brains, and\nthey’re out-of-this-world tough!</language>
+	</row>
+	<row id="pl_msg_00000308_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I know it’s no revelation now, but...\nThe way of Pokémon is deep.</language>
+	</row>
+	<row id="pl_msg_00000308_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At the Battle Factory, you have to\nkeep winning with rental Pokémon.\rIt’s a real test of your knowledge.\nIt’s perfect for a student like me!</language>
+	</row>
+	<row id="pl_msg_00000308_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Battle Hall is where I want to be.\rEven the MAGIKARP I caught fishing\nhas a shot at no. 1!</language>
+	</row>
+	<row id="pl_msg_00000308_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My inflatable tube lets me ride out\nthe ebbs and flows of life.</language>
+	</row>
+	<row id="pl_msg_00000308_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Exchange Service\nCorner!\rWould you like to trade in your BP for\nsome prizes?</language>
+	</row>
+	<row id="pl_msg_00000308_00022" index="22">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000308_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Welcome to the Exchange Service\nCorner!\rWould you like to trade in your BP for\nsome prizes?</language>
+	</row>
+	<row id="pl_msg_00000308_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Tower\nNever Lose! Keep Winning!</language>
+	</row>
+	<row id="pl_msg_00000308_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Hall\nLet Each Pokémon Seek No. 1</language>
+	</row>
+	<row id="pl_msg_00000308_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Castle\nManage Battles with Castle Points </language>
+	</row>
+	<row id="pl_msg_00000308_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Arcade\nWhere Events Sway Outcomes</language>
+	</row>
+	<row id="pl_msg_00000308_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Battle Factory\nWin Consecutively with Rental Pokémon</language>
+	</row>
+	<row id="pl_msg_00000308_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A Trainer who just caught a Pokémon.\nThat’s what this statue represents.</language>
+	</row>
+	<row id="pl_msg_00000308_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">“Boastful of Capture”...\nThat seems to be the title.</language>
+	</row>
+	<row id="pl_msg_00000308_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This...!\nA scale model of the Battle Frontier.</language>
+	</row>
+</body>

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 #include "inlines.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
@@ -56,7 +56,7 @@ typedef struct UnkStruct_ov117_022626B0_t {
     int unk_228;
     int unk_22C;
     fx32 unk_230;
-    UnkStruct_0200D0F4 * unk_234;
+    CellActorData * unk_234;
     int unk_238;
     int unk_23C;
     int unk_240;
@@ -104,9 +104,9 @@ void ov117_02262D4C(BOOL param0, BOOL param1);
 void ov117_02262D98();
 static void ov117_022638D8(UnkStruct_ov117_02261280 * param0);
 static void ov117_022639BC(UnkStruct_ov117_02261280 * param0);
-static UnkStruct_0200D0F4 * ov117_02263A00(UnkStruct_ov117_02261280 * param0);
-static void ov117_02263A6C(UnkStruct_ov117_022626B0 * param0, UnkStruct_0200D0F4 * param1);
-static void ov117_02263AE4(UnkStruct_0200D0F4 * param0);
+static CellActorData * ov117_02263A00(UnkStruct_ov117_02261280 * param0);
+static void ov117_02263A6C(UnkStruct_ov117_022626B0 * param0, CellActorData * param1);
+static void ov117_02263AE4(CellActorData * param0);
 
 static const fx16 Unk_ov117_02266B12[3 * 6] = {
     0x0,
@@ -225,10 +225,10 @@ void ov117_02262798 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022626B0
         param1->unk_214 = 0;
         param1->unk_218 = 0;
     } else {
-        param1->unk_20C = Unk_021BF67C.unk_5C;
-        param1->unk_210 = Unk_021BF67C.unk_5E;
-        param1->unk_214 = Unk_021BF67C.unk_62;
-        param1->unk_218 = Unk_021BF67C.unk_60;
+        param1->unk_20C = gCoreSys.unk_5C;
+        param1->unk_210 = gCoreSys.unk_5E;
+        param1->unk_214 = gCoreSys.unk_62;
+        param1->unk_218 = gCoreSys.touchInput;
     }
 
     ov117_02263270(param1);
@@ -266,7 +266,7 @@ void ov117_02262798 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_022626B0
                 if (v1 == 1) {
                     param1->unk_268 = 8;
                     param1->unk_275 = 0;
-                    sub_02005748(1398);
+                    Sound_PlayEffect(1398);
                 }
             } else {
                 ov117_02262CE8(param1);
@@ -331,16 +331,16 @@ static void ov117_022629E0 (UnkStruct_ov117_02261280 * param0, UnkStruct_ov117_0
 {
     if ((param3 == 1) && (param1->unk_244 >= 98)) {
         ov117_02261600(param0, 0);
-        sub_02005748(1402);
+        Sound_PlayEffect(1402);
     } else if (param1->unk_244 >= 98) {
         (void)0;
     } else {
         if (param1->unk_0C[0].unk_00.unk_04 < param1->unk_0C[0].unk_10.unk_04) {
             ov117_02261600(param0, 2);
-            sub_02005748(1400);
+            Sound_PlayEffect(1400);
         } else if (param1->unk_0C[0].unk_00.unk_04 > param1->unk_0C[0].unk_10.unk_04) {
             ov117_02261600(param0, 1);
-            sub_02005748(1400);
+            Sound_PlayEffect(1400);
         }
     }
 }
@@ -406,7 +406,7 @@ static void ov117_02262A70 (UnkStruct_ov117_022626B0 * param0)
 
 static void ov117_02262B98 (UnkStruct_ov117_022626B0 * param0)
 {
-    param0->unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(173, 29, 110);
+    param0->unk_00 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 29, 110);
     param0->unk_04 = NNS_G3dGetTex(param0->unk_00);
 
     sub_0201CBCC(param0->unk_04);
@@ -681,7 +681,7 @@ static int ov117_0226334C (UnkStruct_ov117_022626B0 * param0)
         }
 
         if ((param0->unk_23C != -1) && (param0->unk_210 > param0->unk_23C) && (sub_020057D4(1399) == 0)) {
-            sub_02005748(1399);
+            Sound_PlayEffect(1399);
             param0->unk_274 = 1;
         }
 
@@ -918,7 +918,7 @@ static void ov117_022638D8 (UnkStruct_ov117_02261280 * param0)
 {
     NARC * v0;
 
-    v0 = NARC_ctor(173, 110);
+    v0 = NARC_ctor(NARC_INDEX_APPLICATION__BALLOON__GRAPHIC__BALLOON_GRA, 110);
 
     sub_0200CDC4(param0->unk_8C, 2, param0->unk_24, param0->unk_28, v0, 58, 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 10005);
     sub_0200CC3C(param0->unk_24, param0->unk_28, v0, 55, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 10003);
@@ -935,9 +935,9 @@ static void ov117_022639BC (UnkStruct_ov117_02261280 * param0)
     sub_0200D080(param0->unk_28, 10005);
 }
 
-static UnkStruct_0200D0F4 * ov117_02263A00 (UnkStruct_ov117_02261280 * param0)
+static CellActorData * ov117_02263A00 (UnkStruct_ov117_02261280 * param0)
 {
-    UnkStruct_0200D0F4 * v0;
+    CellActorData * v0;
     UnkStruct_ov104_0223F9E0 v1;
 
     v1 = Unk_ov117_02266B38;
@@ -949,7 +949,7 @@ static UnkStruct_0200D0F4 * ov117_02263A00 (UnkStruct_ov117_02261280 * param0)
     return v0;
 }
 
-static void ov117_02263A6C (UnkStruct_ov117_022626B0 * param0, UnkStruct_0200D0F4 * param1)
+static void ov117_02263A6C (UnkStruct_ov117_022626B0 * param0, CellActorData * param1)
 {
     int v0;
 
@@ -964,7 +964,7 @@ static void ov117_02263A6C (UnkStruct_ov117_022626B0 * param0, UnkStruct_0200D0F
     sub_0200D324(param1->unk_00);
 }
 
-static void ov117_02263AE4 (UnkStruct_0200D0F4 * param0)
+static void ov117_02263AE4 (CellActorData * param0)
 {
     sub_0200D0F4(param0);
 }

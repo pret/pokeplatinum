@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="17303" />
+	<row id="pl_msg_00000182_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon League\nThe Pinnacle of Trainerdom!</language>
+	</row>
+	<row id="pl_msg_00000182_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon League Ahead</language>
+	</row>
+	<row id="pl_msg_00000182_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Victory Road Ahead</language>
+	</row>
+</body>

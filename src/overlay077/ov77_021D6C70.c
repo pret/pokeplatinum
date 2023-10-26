@@ -8,7 +8,7 @@
 
 #include "struct_defs/struct_02008A90.h"
 
-#include "library/spl.h"
+#include "spl.h"
 
 #include "unk_0200762C.h"
 #include "unk_0201378C.h"
@@ -16,7 +16,7 @@
 #include "heap.h"
 #include "unk_02020020.h"
 #include "unk_0202419C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay077/ov77_021D6C70.h"
 
 typedef struct UnkStruct_ov77_021D6CFC_t {

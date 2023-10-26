@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_02018340_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay025/struct_ov25_02255224_decl.h"
 #include "overlay039/struct_ov39_022563DC_decl.h"
 
@@ -19,18 +19,18 @@
 
 struct UnkStruct_ov39_022563DC_t {
     const UnkStruct_ov39_022563DC_1 * unk_00;
-    UnkStruct_02018340 * unk_04;
+    BGL * unk_04;
     u32 unk_08[6];
 };
 
 static void ov39_02256454(UnkStruct_ov25_02255224 * param0);
-static void ov39_02256468(UnkStruct_0201CD38 * param0, void * param1);
-static void ov39_02256518(UnkStruct_0201CD38 * param0, void * param1);
-static void ov39_02256534(UnkStruct_0201CD38 * param0, void * param1);
-static void ov39_02256568(UnkStruct_0201CD38 * param0, void * param1);
+static void ov39_02256468(SysTask * param0, void * param1);
+static void ov39_02256518(SysTask * param0, void * param1);
+static void ov39_02256534(SysTask * param0, void * param1);
+static void ov39_02256568(SysTask * param0, void * param1);
 static void ov39_0225659C(UnkStruct_ov39_022563DC * param0, u32 param1, BOOL param2, BOOL param3);
 
-BOOL ov39_022563DC (UnkStruct_ov39_022563DC ** param0, const UnkStruct_ov39_022563DC_1 * param1, UnkStruct_02018340 * param2)
+BOOL ov39_022563DC (UnkStruct_ov39_022563DC ** param0, const UnkStruct_ov39_022563DC_1 * param1, BGL * param2)
 {
     UnkStruct_ov39_022563DC * v0 = (UnkStruct_ov39_022563DC *)Heap_AllocFromHeap(8, sizeof(UnkStruct_ov39_022563DC));
 
@@ -85,7 +85,7 @@ static void ov39_02256454 (UnkStruct_ov25_02255224 * param0)
     ov25_02255224(v0->unk_08, param0);
 }
 
-static void ov39_02256468 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov39_02256468 (SysTask * param0, void * param1)
 {
     static const UnkStruct_ov97_0222DB78 v0 = {
         0,
@@ -130,7 +130,7 @@ static void ov39_02256468 (UnkStruct_0201CD38 * param0, void * param1)
     ov39_02256454(param1);
 }
 
-static void ov39_02256518 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov39_02256518 (SysTask * param0, void * param1)
 {
     UnkStruct_ov39_022563DC * v0 = ov25_0225523C(param1);
 
@@ -138,7 +138,7 @@ static void ov39_02256518 (UnkStruct_0201CD38 * param0, void * param1)
     ov39_02256454(param1);
 }
 
-static void ov39_02256534 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov39_02256534 (SysTask * param0, void * param1)
 {
     UnkStruct_ov39_022563DC * v0 = ov25_0225523C(param1);
     const UnkStruct_ov39_022563DC_1 * v1 = ov25_02255240(param1);
@@ -148,7 +148,7 @@ static void ov39_02256534 (UnkStruct_0201CD38 * param0, void * param1)
     ov39_02256454(param1);
 }
 
-static void ov39_02256568 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov39_02256568 (SysTask * param0, void * param1)
 {
     UnkStruct_ov39_022563DC * v0 = ov25_0225523C(param1);
     const UnkStruct_ov39_022563DC_1 * v1 = ov25_02255240(param1);

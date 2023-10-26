@@ -4,7 +4,7 @@
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_0202440C_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "constdata/const_020F1E88.h"
@@ -34,7 +34,7 @@
 #include "gx_layers.h"
 #include "unk_02023FCC.h"
 #include "unk_02024220.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "unk_02028124.h"
@@ -42,7 +42,7 @@
 #include "unk_020508D4.h"
 #include "unk_02055808.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
 #include "unk_02097B18.h"
@@ -63,7 +63,7 @@ typedef struct {
     UnkStruct_02097F38_sub1 * unk_04;
     UnkStruct_02097F18 * unk_08;
     UnkStruct_02098C44 * unk_0C;
-    UnkStruct_021C0794 * unk_10;
+    SaveData * unk_10;
     int unk_14;
 } UnkStruct_02097F38;
 
@@ -93,8 +93,8 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
     v0->unk_D4.unk_15C = ov76_0223BE6C();
     v1 = sub_02006840(param0);
     v0->unk_00 = v1;
-    v0->unk_42C = NARC_ctor(147, 53);
-    v0->unk_428 = AllocMonZeroed(53);
+    v0->unk_42C = NARC_ctor(NARC_INDEX_POKETOOL__POKE_EDIT__PL_POKE_DATA, 53);
+    v0->unk_428 = Pokemon_New(53);
     v0->unk_D4.unk_00 = 0xFF;
     v0->unk_418.unk_00 = 0;
 
@@ -136,7 +136,7 @@ static int sub_02097B18 (UnkStruct_020067E8 * param0, int * param1)
                 continue;
             }
 
-            v5 = GetMonData(v0->unk_00->unk_04[v4], MON_DATA_162, 0);
+            v5 = Pokemon_GetValue(v0->unk_00->unk_04[v4], MON_DATA_162, 0);
 
             if (v5 != 0) {
                 v0->unk_04[v5 - 1].unk_00 = v4;
@@ -196,7 +196,7 @@ static int sub_02097D30 (UnkStruct_020067E8 * param0, int * param1)
 
     switch (*param1) {
     case 0:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             *param1 = 1;
         }
         break;
@@ -214,7 +214,7 @@ static int sub_02097D30 (UnkStruct_020067E8 * param0, int * param1)
     }
     break;
     case 2:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             return 1;
         }
         break;
@@ -389,7 +389,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
         Pokemon * v8;
         UnkStruct_0202CA28 * v9;
         UnkStruct_0202CA64 * v10;
-        UnkStruct_0202440C * v11;
+        TVBroadcast * v11;
         int v12;
         int v13;
 
@@ -398,14 +398,14 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
         if (v7->unk_22 != 7) {
             v8 = sub_02097F00(v0->unk_08, v7->unk_22);
 
-            sub_02074B30(v8, 162, (u8 *)&v13);
-            sub_02074B30(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
+            Pokemon_SetValue(v8, 162, (u8 *)&v13);
+            Pokemon_SetValue(v8, 171, sub_0202CA28(v1->unk_20, v13 - 1));
 
             v9 = sub_0202CA28(v1->unk_20, v13 - 1);
             v10 = sub_0202CA64(v9, 0);
             v12 = sub_0202CA7C(v10);
             v12 = sub_02098164(v12);
-            v11 = sub_0202440C(v2->unk_0C);
+            v11 = SaveData_TVBroadcast(v2->unk_0C);
 
             sub_0206D9B4(v11, v8, v12);
         }
@@ -426,7 +426,7 @@ static BOOL sub_02097F38 (UnkStruct_020508D4 * param0)
     return 0;
 }
 
-void sub_020980DC (UnkStruct_020508D4 * param0, UnkStruct_021C0794 * param1)
+void sub_020980DC (UnkStruct_020508D4 * param0, SaveData * param1)
 {
     UnkStruct_02097F38 * v0 = Heap_AllocFromHeapAtEnd(11, sizeof(UnkStruct_02097F38));
 

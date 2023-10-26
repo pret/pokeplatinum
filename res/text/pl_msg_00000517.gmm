@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="38544" />
+	<row id="pl_msg_00000517_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The only items you ever throw are\nPoké Balls!\rBut is that true?!\nI want people to think about that.\rThat’s why I give away the Technical\nMachine Fling.\r</language>
+	</row>
+	<row id="pl_msg_00000517_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Using that move, the Pokémon hurls\nwhatever item it’s holding at the foe.\rThe move’s effect depends on what\nitem is hurled.\rRemember, the move Fling fails if the\nPokémon isn’t holding anything.</language>
+	</row>
+	<row id="pl_msg_00000517_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When I first started fishing, catching\nanything made me happy.\rBut those days are long gone now...\rNow I get annoyed if I can’t beat my\nrecord by even an inch...</language>
+	</row>
+	<row id="pl_msg_00000517_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I can’t explain it.\nI get more easily agitated at night.</language>
+	</row>
+	<row id="pl_msg_00000517_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 222\nHotel Grand Lake</language>
+	</row>
+	<row id="pl_msg_00000517_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 222\nSunyshore City</language>
+	</row>
+	<row id="pl_msg_00000517_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">PIKACHU Fan Club\nPikapikapikah! Pikapika?</language>
+	</row>
+	<row id="pl_msg_00000517_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Size Contest\nBig Pokémon Wanted!</language>
+	</row>
+</body>

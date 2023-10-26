@@ -1,0 +1,102 @@
+{
+    "name": "Torkoal",
+    "base_stats": {
+        "hp": 70,
+        "attack": 85,
+        "defense": 140,
+        "speed": 20,
+        "special_attack": 85,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 161,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_WHITE_SMOKE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM35",
+            "TM36",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM64",
+            "TM68",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": "MOVE_EMBER",
+            "4": "MOVE_SMOG",
+            "7": "MOVE_WITHDRAW",
+            "12": "MOVE_CURSE",
+            "17": "MOVE_FIRE_SPIN",
+            "20": "MOVE_SMOKE_SCREEN",
+            "23": "MOVE_RAPID_SPIN",
+            "28": "MOVE_FLAMETHROWER",
+            "33": "MOVE_BODY_SLAM",
+            "36": "MOVE_PROTECT",
+            "39": "MOVE_LAVA_PLUME",
+            "44": "MOVE_IRON_DEFENSE",
+            "49": "MOVE_AMNESIA",
+            "52": "MOVE_FLAIL",
+            "55": "MOVE_HEAT_WAVE"
+        }
+    }
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="63468" />
+	<row id="pl_msg_00000633_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite color</language>
+	</row>
+	<row id="pl_msg_00000633_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite sport</language>
+	</row>
+	<row id="pl_msg_00000633_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite place</language>
+	</row>
+	<row id="pl_msg_00000633_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite class</language>
+	</row>
+	<row id="pl_msg_00000633_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Least favorite class</language>
+	</row>
+	<row id="pl_msg_00000633_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite thing</language>
+	</row>
+	<row id="pl_msg_00000633_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite personality</language>
+	</row>
+	<row id="pl_msg_00000633_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Most wanted thing</language>
+	</row>
+	<row id="pl_msg_00000633_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Own dream</language>
+	</row>
+	<row id="pl_msg_00000633_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Food I want now</language>
+	</row>
+	<row id="pl_msg_00000633_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Favorite Pokémon</language>
+	</row>
+	<row id="pl_msg_00000633_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Holiday activity</language>
+	</row>
+</body>

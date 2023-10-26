@@ -1,0 +1,97 @@
+{
+    "name": "Dodrio",
+    "base_stats": {
+        "hp": 60,
+        "attack": 110,
+        "defense": 70,
+        "speed": 100,
+        "special_attack": 60,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 158,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SHARP_BEAK"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FLYING",
+        "FLYING"
+    ],
+    "abilities": [
+        "ABILITY_RUN_AWAY",
+        "ABILITY_EARLY_BIRD"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM27",
+            "TM32",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM51",
+            "TM58",
+            "TM66",
+            "TM68",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM88",
+            "TM90",
+            "HM02"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_PLUCK",
+                "MOVE_PECK",
+                "MOVE_GROWL",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_RAGE"
+            ],
+            "5": "MOVE_QUICK_ATTACK",
+            "10": "MOVE_RAGE",
+            "14": "MOVE_FURY_ATTACK",
+            "19": "MOVE_PURSUIT",
+            "23": "MOVE_UPROAR",
+            "28": "MOVE_ACUPRESSURE",
+            "34": "MOVE_TRI_ATTACK",
+            "41": "MOVE_AGILITY",
+            "47": "MOVE_DRILL_PECK",
+            "54": "MOVE_ENDEAVOR"
+        }
+    }
+}

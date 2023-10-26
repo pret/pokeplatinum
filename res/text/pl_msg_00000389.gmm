@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="62160" />
+	<row id="pl_msg_00000389_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hello there!\nIt’s so very nice to meet you!\rWelcome to the world of Pokémon!\r</language>
+	</row>
+	<row id="pl_msg_00000389_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My name is Rowan.\rHowever, everyone just calls me\nthe Pokémon Professor.\rBefore I go any further, is this\nyour first adventure?\rIf you need advice, I’m certainly\ncapable of giving it.\r</language>
+	</row>
+	<row id="pl_msg_00000389_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Moves the main character.\nAlso used to choose various\nheadings and selections.\n\nUsed to confirm a choice, check\nthings, chat, and scroll text.\n\nUsed to exit, cancel a choice,\nand cancel a mode.</language>
+	</row>
+	<row id="pl_msg_00000389_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Press to open the menu.\n\nPress to use an item, such\nas a Bicycle, that has been\nregistered in advance.</language>
+	</row>
+	<row id="pl_msg_00000389_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The lower screen is called\nthe Touch Screen.\n\nThe Touch Screen will display\na variety of touch buttons\ndepending on the situation.</language>
+	</row>
+	<row id="pl_msg_00000389_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If this mark is shown in the\nmessage window, there are active\nbuttons you can touch on the\nTouch Screen below.</language>
+	</row>
+	<row id="pl_msg_00000389_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{YESNO 0}</language>
+	</row>
+	<row id="pl_msg_00000389_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you understand everything\nso far?{YESNO 0}</language>
+	</row>
+	<row id="pl_msg_00000389_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please touch a button on the\nTouch Screen below.{YESNO 0}</language>
+	</row>
+	<row id="pl_msg_00000389_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to know more about\nanything else?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You are about to enter a world\nwhere you will embark on a grand\nadventure of your very own.</language>
+	</row>
+	<row id="pl_msg_00000389_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Speak to people and check things\nwherever you go, be it in towns,\nroads, or caves.\nGather information and hints from\nevery possible source.</language>
+	</row>
+	<row id="pl_msg_00000389_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">New paths will open to you when\nyou help people in need, overcome\nchallenges, and solve mysteries.</language>
+	</row>
+	<row id="pl_msg_00000389_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">At times, you will be challenged\nby others to a battle.\nAt other times, wild creatures\nmay stand in your way.\n\nBy overcoming such hurdles,\nyou will gain great power.</language>
+	</row>
+	<row id="pl_msg_00000389_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">However, your adventure is not\nsolely about becoming powerful.</language>
+	</row>
+	<row id="pl_msg_00000389_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">On your travels, we hope that\nyou will meet countless people\nand, through them, achieve\npersonal growth.\n\nThis is the most important\nobjective of this adventure.</language>
+	</row>
+	<row id="pl_msg_00000389_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This world is widely inhabited by\ncreatures known as Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000389_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Here, I have a Poké Ball.\rTouch the button on the middle of\nthe Poké Ball, if you’d please.{YESNO 0}</language>
+	</row>
+	<row id="pl_msg_00000389_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">No, no! Not that button!\nThe button on the Poké Ball.{YESNO 0}</language>
+	</row>
+	<row id="pl_msg_00000389_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We humans live alongside Pokémon\nas friends.\rAt times we play together,\nand at other times we\fwork together.\rSome people use their Pokémon\nto battle and develop\fcloser bonds with them.\rWhat do I do?\rI conduct research so that we may\nlearn more about Pokémon.\r</language>
+	</row>
+	<row id="pl_msg_00000389_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Now, why don’t you tell me\na little bit about yourself?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are you a boy?\nOr are you a girl?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right, so you’re a boy?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right, so you’re a girl?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tell me, what is your name?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your name is {STRVAR_1 3, 0, 0}?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your name is {STRVAR_1 3, 0, 0}?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK...\nSo, you’re {STRVAR_1 3, 0, 0}?\rA fine name that is!\rNow, this boy here...\nI believe he’s your friend.\r</language>
+	</row>
+	<row id="pl_msg_00000389_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">What might his name be?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 1, 0}, is it?\nThat’s your friend’s name?\r</language>
+	</row>
+	<row id="pl_msg_00000389_00030" index="30">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right, {STRVAR_1 3, 0, 0}, the time\nhas come.\rYour very own tale of grand\nadventure is about to unfold.\rOn your journey, you will meet\ncountless Pokémon and people.\rI’m sure that along the way you will\ndiscover many things, perhaps even\fsomething about yourself.\rNow, go on, leap into the world of\nPokémon!\r</language>
+	</row>
+	<row id="pl_msg_00000389_00031" index="31">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">CONTROL INFO</language>
+	</row>
+	<row id="pl_msg_00000389_00032" index="32">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ADVENTURE INFO</language>
+	</row>
+	<row id="pl_msg_00000389_00033" index="33">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO INFO NEEDED</language>
+	</row>
+	<row id="pl_msg_00000389_00034" index="34">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">YES</language>
+	</row>
+	<row id="pl_msg_00000389_00035" index="35">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">NO</language>
+	</row>
+	<row id="pl_msg_00000389_00036" index="36">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">New name!</language>
+	</row>
+	<row id="pl_msg_00000389_00037" index="37">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Barry</language>
+	</row>
+	<row id="pl_msg_00000389_00038" index="38">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Nolan</language>
+	</row>
+	<row id="pl_msg_00000389_00039" index="39">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Roy</language>
+	</row>
+	<row id="pl_msg_00000389_00040" index="40">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Gavin</language>
+	</row>
+	<row id="pl_msg_00000389_00041" index="41">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Clint</language>
+	</row>
+	<row id="pl_msg_00000389_00042" index="42">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Ralph</language>
+	</row>
+	<row id="pl_msg_00000389_00043" index="43">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lewis</language>
+	</row>
+	<row id="pl_msg_00000389_00044" index="44">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Tommy</language>
+	</row>
+</body>

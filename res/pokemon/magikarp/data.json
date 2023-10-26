@@ -1,0 +1,61 @@
+{
+    "name": "Magikarp",
+    "base_stats": {
+        "hp": 20,
+        "attack": 10,
+        "defense": 55,
+        "speed": 80,
+        "special_attack": 15,
+        "special_defense": 20
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 20,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 5,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "WATER_2",
+        "DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_SWIFT_SWIM",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 90,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [],
+        "level_up": {
+            "1": "MOVE_SPLASH",
+            "15": "MOVE_TACKLE",
+            "30": "MOVE_FLAIL"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            20,
+            "SPECIES_GYARADOS"
+        ]
+    ]
+}

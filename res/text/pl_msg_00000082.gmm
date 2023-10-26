@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="58422" />
+	<row id="pl_msg_00000082_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Oreburgh Mine is operated\nwith the utmost care.\rWe avoid causing any damage to\nthe natural habitats of Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000082_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wow... Your Pokémon’s eyes are\ntwinkling brightly!\rSeeing that makes me happy!\nHere, I want you to have this!\r</language>
+	</row>
+	<row id="pl_msg_00000082_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know how Pokémon stay inside\ntheir Poké Balls?\rI try to think about what would be\nthe best Poké Balls for them.</language>
+	</row>
+	<row id="pl_msg_00000082_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Coal is carried out of Oreburgh Mine on\na fully automated system.\rMachines do all the work automatically.\nSo, it’s all very easy.</language>
+	</row>
+</body>

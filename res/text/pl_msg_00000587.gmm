@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="58391" />
+	<row id="pl_msg_00000587_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Mt. Coronet towers at the center\nof Sinnoh.\rIn a way, it’s the closest place to\nthe sky, and to space, in this region.</language>
+	</row>
+	<row id="pl_msg_00000587_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If I climb on top of Mt. Coronet,\nwill I be able to see all of Sinnoh?</language>
+	</row>
+</body>

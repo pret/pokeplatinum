@@ -1,0 +1,8 @@
+[wrap-git]
+url = https://github.com/Nomura-RH/libvct.git
+revision = head
+depth = 1
+directory = libvct-1.3.1
+
+[provide]
+dependency_names = libvct

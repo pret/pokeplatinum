@@ -3,8 +3,8 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_defs/pokemon.h"
+#include "strbuf.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 
 #include "struct_defs/struct_0202DF8C.h"
@@ -14,22 +14,22 @@
 
 #include "strbuf.h"
 #include "unk_0202DF8C.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 
-static int inline inline_0202E1A8(const UnkStruct_0202DF8C * param0, int param1);
+static int inline inline_0202E1A8(const HallOfFame * param0, int param1);
 
-int sub_0202DF8C (void)
+int HallOfFame_SaveSize (void)
 {
-    return sizeof(UnkStruct_0202DF8C);
+    return sizeof(HallOfFame);
 }
 
-void sub_0202DF94 (UnkStruct_0202DF8C * param0)
+void HallOfFame_Init (HallOfFame * param0)
 {
-    MI_CpuClear32(param0, sizeof(UnkStruct_0202DF8C));
+    MI_CpuClear32(param0, sizeof(HallOfFame));
 }
 
-void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCDate * param2)
+void sub_0202DFA8 (HallOfFame * param0, const Party * param1, const RTCDate * param2)
 {
     UnkStruct_0202DFA8 * v0;
     Pokemon * v1;
@@ -52,24 +52,24 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
 
     for (v4 = 0, v5 = 0; v4 < v3; v4++) {
         v1 = Party_GetPokemonBySlotIndex(param1, v4);
-        v6 = sub_02073C88(v1);
+        v6 = Pokemon_EnterDecryptionContext(v1);
 
-        if (GetMonData(v1, MON_DATA_IS_EGG, NULL) == 0) {
-            v0->unk_00[v5].unk_00 = GetMonData(v1, MON_DATA_SPECIES, NULL);
-            v0->unk_00[v5].unk_02 = GetMonData(v1, MON_DATA_161, NULL);
-            v0->unk_00[v5].unk_03 = GetMonData(v1, MON_DATA_FORM, NULL);
-            v0->unk_00[v5].unk_04 = GetMonData(v1, MON_DATA_PERSONALITY, NULL);
-            v0->unk_00[v5].unk_08 = GetMonData(v1, MON_DATA_OT_ID, NULL);
-            v0->unk_00[v5].unk_32[0] = GetMonData(v1, MON_DATA_MOVE1, NULL);
-            v0->unk_00[v5].unk_32[1] = GetMonData(v1, MON_DATA_MOVE2, NULL);
-            v0->unk_00[v5].unk_32[2] = GetMonData(v1, MON_DATA_MOVE3, NULL);
-            v0->unk_00[v5].unk_32[3] = GetMonData(v1, MON_DATA_MOVE4, NULL);
+        if (Pokemon_GetValue(v1, MON_DATA_IS_EGG, NULL) == 0) {
+            v0->unk_00[v5].unk_00 = Pokemon_GetValue(v1, MON_DATA_SPECIES, NULL);
+            v0->unk_00[v5].unk_02 = Pokemon_GetValue(v1, MON_DATA_LEVEL, NULL);
+            v0->unk_00[v5].unk_03 = Pokemon_GetValue(v1, MON_DATA_FORM, NULL);
+            v0->unk_00[v5].unk_04 = Pokemon_GetValue(v1, MON_DATA_PERSONALITY, NULL);
+            v0->unk_00[v5].unk_08 = Pokemon_GetValue(v1, MON_DATA_OT_ID, NULL);
+            v0->unk_00[v5].unk_32[0] = Pokemon_GetValue(v1, MON_DATA_MOVE1, NULL);
+            v0->unk_00[v5].unk_32[1] = Pokemon_GetValue(v1, MON_DATA_MOVE2, NULL);
+            v0->unk_00[v5].unk_32[2] = Pokemon_GetValue(v1, MON_DATA_MOVE3, NULL);
+            v0->unk_00[v5].unk_32[3] = Pokemon_GetValue(v1, MON_DATA_MOVE4, NULL);
 
             if (v2) {
-                GetMonData(v1, MON_DATA_119, v2);
+                Pokemon_GetValue(v1, MON_DATA_119, v2);
                 Strbuf_ToChars(v2, v0->unk_00[v5].unk_0C, 11);
 
-                GetMonData(v1, MON_DATA_145, v2);
+                Pokemon_GetValue(v1, MON_DATA_145, v2);
                 Strbuf_ToChars(v2, v0->unk_00[v5].unk_22, 8);
             } else {
                 v0->unk_00[v5].unk_0C[0] = 0xffff;
@@ -79,7 +79,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
             v5++;
         }
 
-        sub_02073CD4(v1, v6);
+        Pokemon_ExitDecryptionContext(v1, v6);
     }
 
     v0->unk_168 = param2->year;
@@ -97,7 +97,7 @@ void sub_0202DFA8 (UnkStruct_0202DF8C * param0, const Party * param1, const RTCD
     }
 }
 
-u32 sub_0202E148 (const UnkStruct_0202DF8C * param0)
+u32 sub_0202E148 (const HallOfFame * param0)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -109,7 +109,7 @@ u32 sub_0202E148 (const UnkStruct_0202DF8C * param0)
     return param0->unk_2AAC;
 }
 
-u32 sub_0202E174 (const UnkStruct_0202DF8C * param0, int param1)
+u32 sub_0202E174 (const HallOfFame * param0, int param1)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -118,7 +118,7 @@ u32 sub_0202E174 (const UnkStruct_0202DF8C * param0, int param1)
     return param0->unk_2AAC - param1;
 }
 
-u32 sub_0202E1A8 (const UnkStruct_0202DF8C * param0, int param1)
+u32 sub_0202E1A8 (const HallOfFame * param0, int param1)
 {
     u32 v0;
 
@@ -137,7 +137,7 @@ u32 sub_0202E1A8 (const UnkStruct_0202DF8C * param0, int param1)
     return v0;
 }
 
-void sub_0202E1F4 (const UnkStruct_0202DF8C * param0, int param1, int param2, UnkStruct_ov87_021D1640 * param3)
+void sub_0202E1F4 (const HallOfFame * param0, int param1, int param2, UnkStruct_ov87_021D1640 * param3)
 {
     const UnkStruct_0202E1F4 * v0;
     int v1;
@@ -163,7 +163,7 @@ void sub_0202E1F4 (const UnkStruct_0202DF8C * param0, int param1, int param2, Un
     }
 }
 
-void sub_0202E274 (const UnkStruct_0202DF8C * param0, int param1, RTCDate * param2)
+void sub_0202E274 (const HallOfFame * param0, int param1, RTCDate * param2)
 {
     GF_ASSERT(param0 != NULL);
     GF_ASSERT(param0->unk_2AA8 < 30);
@@ -177,7 +177,7 @@ void sub_0202E274 (const UnkStruct_0202DF8C * param0, int param1, RTCDate * para
     param2->week = 0;
 }
 
-static int inline inline_0202E1A8 (const UnkStruct_0202DF8C * param0, int param1)
+static int inline inline_0202E1A8 (const HallOfFame * param0, int param1)
 {
     int v0 = (param0->unk_2AA8 - 1 - param1);
 

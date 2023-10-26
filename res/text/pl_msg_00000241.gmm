@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="21526" />
+	<row id="pl_msg_00000241_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon you see here are different\nfrom day to day. Don’t you think so?</language>
+	</row>
+	<row id="pl_msg_00000241_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Great Marsh Area 2</language>
+	</row>
+</body>

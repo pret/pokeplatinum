@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="13355" />
+	<row id="pl_msg_00000140_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Everyone calls me the Pokémon\nMove Maniac. I prefer Move Tutor.\rI know every move that Pokémon learn\nwhile they’re leveling up, and I can\fteach Pokémon those moves.\rI can teach a move to a Pokémon\nof yours if you’d like.\rI’ll do it if you’ll trade me\na Heart Scale.\r</language>
+	</row>
+	<row id="pl_msg_00000140_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! That’s it! That’s an honest-to-\ngoodness Heart Scale!\rLet me guess, you want me to teach\none of your Pokémon a move?\r</language>
+	</row>
+	<row id="pl_msg_00000140_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If any of your Pokémon needs to learn a\nmove, come back with a Heart Scale.</language>
+	</row>
+	<row id="pl_msg_00000140_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which Pokémon needs tutoring?\r</language>
+	</row>
+	<row id="pl_msg_00000140_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which move should I teach?\r</language>
+	</row>
+	<row id="pl_msg_00000140_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sorry...\rThere isn’t any move I can teach\nthat Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000140_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hunh?\rDon’t you think it’d be tough for\nan Egg to learn a move?</language>
+	</row>
+	<row id="pl_msg_00000140_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00009" index="9">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00010" index="10">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00011" index="11">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00012" index="12">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00013" index="13">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00015" index="15">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000140_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 3, 0} handed over\n{STRVAR_1 8, 4, 0} in exchange.</language>
+	</row>
+	<row id="pl_msg_00000140_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I often go to Solaceon Town for my big\nbrother.\rThe newspaper there gives me Heart\nScales for running errands.</language>
+	</row>
+</body>

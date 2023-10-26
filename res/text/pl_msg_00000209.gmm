@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="23702" />
+	<row id="pl_msg_00000209_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All right, thanks for your patience!\nLet’s begin the Visual Competition!\r</language>
+	</row>
+	<row id="pl_msg_00000209_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dexter: Entry number 1!\n{STRVAR_1 3, 0, 0}!\r{STRVAR_1 3, 0, 0} has entered the Contest\nwith {STRVAR_1 0, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000209_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dexter: Entry number 2!\n{STRVAR_1 3, 0, 0}!\r{STRVAR_1 3, 0, 0} enters our Contest with\n{STRVAR_1 0, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000209_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dexter: Entry number 3!\n{STRVAR_1 3, 0, 0}!\r{STRVAR_1 3, 0, 0} is in the Contest with\n{STRVAR_1 0, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000209_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dexter: Entry number 4!\n{STRVAR_1 3, 0, 0}!\r{STRVAR_1 3, 0, 0}’s Contest hopes ride\nwith {STRVAR_1 0, 1, 0}!\r</language>
+	</row>
+	<row id="pl_msg_00000209_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Dance Competition is next!\nIs everyone up and ready for this?!\r</language>
+	</row>
+	<row id="pl_msg_00000209_00006" index="6">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00007" index="7">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00008" index="8">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00009" index="9">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00010" index="10">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00011" index="11">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00012" index="12">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00013" index="13">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00014" index="14">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00015" index="15">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00016" index="16">
+		<attribute name="window_context_name">garbage</attribute>
+		<language name="English"></language>
+		<language name="日本語">XXXXXXXXXXXXXXXXXXXXX</language>
+	</row>
+	<row id="pl_msg_00000209_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, let’s watch the reactions of the\naudience toward the Pokémon involved\fin this practice session!\rI’ll pass over the MC duties to\nDexter and call this a rehearsal!\fDexter: Sure thing! I’ve got it!\r</language>
+	</row>
+</body>

@@ -1,0 +1,100 @@
+{
+    "name": "Electrode",
+    "base_stats": {
+        "hp": 60,
+        "attack": 50,
+        "defense": 70,
+        "speed": 140,
+        "special_attack": 80,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_ELECTRIC"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 150,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "NO_GENDER",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_SOUNDPROOF",
+        "ABILITY_STATIC"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_RED",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM32",
+            "TM34",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM46",
+            "TM57",
+            "TM58",
+            "TM64",
+            "TM68",
+            "TM70",
+            "TM73",
+            "TM74",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_CHARGE",
+                "MOVE_TACKLE",
+                "MOVE_SONIC_BOOM",
+                "MOVE_SPARK"
+            ],
+            "5": "MOVE_TACKLE",
+            "8": "MOVE_SONIC_BOOM",
+            "12": "MOVE_SPARK",
+            "15": "MOVE_ROLLOUT",
+            "19": "MOVE_SCREECH",
+            "22": "MOVE_LIGHT_SCREEN",
+            "26": "MOVE_CHARGE_BEAM",
+            "29": "MOVE_SELFDESTRUCT",
+            "35": "MOVE_SWIFT",
+            "40": "MOVE_MAGNET_RISE",
+            "46": "MOVE_GYRO_BALL",
+            "51": "MOVE_EXPLOSION",
+            "57": "MOVE_MIRROR_COAT"
+        }
+    }
+}

@@ -3,10 +3,10 @@
 #include <nitro/os.h>
 #include <nnsys/g3d/glbstate.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/sys_task.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_0202855C_decl.h"
 #include "struct_decls/struct_020298B0_decl.h"
 #include "struct_decls/struct_0205E884_decl.h"
@@ -21,7 +21,7 @@
 
 #include "unk_0200D9E8.h"
 #include "heap.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202854C.h"
 #include "unk_0202CD50.h"
 #include "unk_020329E0.h"
@@ -52,8 +52,8 @@ static BOOL sub_020586A8(int param0, int param1, int param2, int param3);
 static void sub_02057BC4(void * param0);
 static void sub_02057C2C(void * param0);
 static void sub_02057C8C(u8 param0);
-static void sub_0205820C(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_02057E80(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0205820C(SysTask * param0, void * param1);
+static void sub_02057E80(SysTask * param0, void * param1);
 static void sub_02057EF8(void * param0);
 static void sub_020587C0(int param0);
 static void sub_020591A8(void);
@@ -106,7 +106,7 @@ BOOL sub_02057524 (void * param0, UnkStruct_0203CDB0 * param1, BOOL param2)
 
     Unk_021C0848->unk_2BC = 0;
     Unk_021C0848->unk_2BF = 0;
-    Unk_021C0848->unk_50 = sub_0200D9E8(sub_02057E80, NULL, (100 + 100));
+    Unk_021C0848->unk_50 = SysTask_Start(sub_02057E80, NULL, (100 + 100));
 
     sub_02035EA8();
     sub_020578DC();
@@ -170,7 +170,7 @@ void sub_020576CC (BOOL param0)
             sub_02057DB8(v0, 0, param0);
         }
 
-        sub_0200DA58(Unk_021C0848->unk_50);
+        SysTask_Done(Unk_021C0848->unk_50);
 
         if (Unk_021C0848->unk_04) {
             ov23_02249938(Unk_021C0848->unk_04);
@@ -228,7 +228,7 @@ void sub_02057764 (void)
     sub_020578DC();
 
     if (Unk_021C0848->unk_50 == NULL) {
-        Unk_021C0848->unk_50 = sub_0200D9E8(sub_02057E80, NULL, (100 + 100));
+        Unk_021C0848->unk_50 = SysTask_Start(sub_02057E80, NULL, (100 + 100));
     }
 }
 
@@ -236,7 +236,7 @@ void sub_020578B0 (void)
 {
     if (Unk_021C0848->unk_50) {
         sub_02057E80(NULL, NULL);
-        sub_0200DA58(Unk_021C0848->unk_50);
+        SysTask_Done(Unk_021C0848->unk_50);
     }
 
     Unk_021C0848->unk_50 = NULL;
@@ -273,7 +273,7 @@ void sub_020579BC (int param0)
     Unk_021C0848->unk_290[param0] = NULL;
 
     if (Unk_021C0848->unk_290[v0]) {
-        sub_02025E80(Unk_021C0848->unk_290[v0], (UnkStruct_02025E6C *)&Unk_021C0848->unk_14A[v0].unk_00);
+        TrainerInfo_Copy(Unk_021C0848->unk_290[v0], (TrainerInfo *)&Unk_021C0848->unk_14A[v0].unk_00);
     }
 
     Unk_021C0848->unk_14A[param0].unk_20 = 0xff;
@@ -400,7 +400,7 @@ static void sub_02057C8C (u8 param0)
     }
 
     {
-        UnkStruct_02025E6C * v3 = sub_02032EE8(param0);
+        TrainerInfo * v3 = sub_02032EE8(param0);
 
         if (v3 == NULL) {
             (void)0;
@@ -420,11 +420,11 @@ static void sub_02057C8C (u8 param0)
             {
                 int v5 = 0;
 
-                if (0 == sub_02025FCC(v3)) {
+                if (0 == TrainerInfo_GameCode(v3)) {
                     v5 = 1;
                 }
 
-                v2 = sub_0205E7D0(Unk_021C0848->unk_54->unk_38, Unk_021C0848->unk_A2[param0].unk_00, Unk_021C0848->unk_A2[param0].unk_02, Unk_021C0848->unk_A2[param0].unk_04, 0x0, sub_02025F30(v3), v5, NULL);
+                v2 = sub_0205E7D0(Unk_021C0848->unk_54->unk_38, Unk_021C0848->unk_A2[param0].unk_00, Unk_021C0848->unk_A2[param0].unk_02, Unk_021C0848->unk_A2[param0].unk_04, 0x0, TrainerInfo_Gender(v3), v5, NULL);
             }
 
             GF_ASSERT(v2);
@@ -498,14 +498,14 @@ static void sub_02057E68 ()
 {
     u8 v0 = 2;
 
-    if (PAD_BUTTON_B & Unk_021BF67C.unk_44) {
+    if (PAD_BUTTON_B & gCoreSys.unk_44) {
         v0 = 1;
     }
 
     sub_02035E5C(v0);
 }
 
-static void sub_02057E80 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02057E80 (SysTask * param0, void * param1)
 {
     int v0;
 
@@ -729,7 +729,7 @@ static int sub_020581E0 (int param0)
     return v0[param0];
 }
 
-static void sub_0205820C (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0205820C (SysTask * param0, void * param1)
 {
     u16 v0;
     u8 v1;

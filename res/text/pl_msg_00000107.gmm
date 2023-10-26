@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18993" />
+	<row id="pl_msg_00000107_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The item Revive is something I could\nuse now.\rBut I’ve only got two Gym Badges, so\nI can’t buy any yet...</language>
+	</row>
+	<row id="pl_msg_00000107_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Do you know Amity Square?\nIt’s a happy and cheerful place.\rYou can find Accessories there you\ncan’t buy in Poké Marts.</language>
+	</row>
+</body>

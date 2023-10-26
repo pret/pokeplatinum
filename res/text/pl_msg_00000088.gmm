@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="14690" />
+	<row id="pl_msg_00000088_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You kept me waiting!\rI’m Eterna’s Gym Leader, Gardenia,\nthe Grass-type master!\rWhen I first saw you, I was convinced\nyou’d find your way to me.\rMy hunch was right on the money.\nYou have a winning aura about you.\rSo, anyway, this will be fun.\nLet’s have our battle!\r</language>
+	</row>
+	<row id="pl_msg_00000088_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I might’ve said it before, but you’re\nreally tough!\rWasn’t it hard for you to raise your\nPokémon to be so good?\rI guess that’s a measure of how much\nyou love your Pokémon.\rIn recognition of that, I proudly\ngrant you this!\r</language>
+	</row>
+	<row id="pl_msg_00000088_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} received\nthe Forest Badge from Gardenia!</language>
+	</row>
+	<row id="pl_msg_00000088_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">With the Forest Badge, your Pokémon\ncan use the hidden move Cut outside\fof battle.\rNow that you have two Gym Badges,\nall Pokémon you received in trades\fwill obey you up to Lv. 30.\rI’ve also got something else.\nIt’s a gift from me!\r</language>
+	</row>
+	<row id="pl_msg_00000088_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That {STRVAR_1 8, 0, 0} contains\nthe move {STRVAR_1 6, 1, 0}.\rIt’s one of my favorite moves.\rThe heavier the foe, the more\ndamage this move will cause.</language>
+	</row>
+	<row id="pl_msg_00000088_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yup! If there’s one thing I can tell\nabout you, it’s this!\rYou and your Pokémon are gonna get\neven tougher, and I mean seriously!</language>
+	</row>
+	<row id="pl_msg_00000088_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">How did you know where to find me?\nLet’s have our battle!\r</language>
+	</row>
+	<row id="pl_msg_00000088_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, the next Trainer is at the end,\npast the two boulders...I think.</language>
+	</row>
+	<row id="pl_msg_00000088_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">My Grass-type Pokémon can dole out\nsome serious special attacks...\rI won’t let you win...easily!\r</language>
+	</row>
+	<row id="pl_msg_00000088_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, that’s right...\nA hint about the next Trainer...\rIn the middle of three trees.\nThat’s it for my hint. Good luck.</language>
+	</row>
+	<row id="pl_msg_00000088_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Even when you try to conceal it, you\ncan’t hide the aroma of flowers.\r</language>
+	</row>
+	<row id="pl_msg_00000088_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Your next opponent is beside four\nflowers.</language>
+	</row>
+	<row id="pl_msg_00000088_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Giggle! You found me!\nOf course I’ll battle you!\r</language>
+	</row>
+	<row id="pl_msg_00000088_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Giggle! There’s only our Gym Leader\nleft. Go on, don’t be afraid!</language>
+	</row>
+</body>

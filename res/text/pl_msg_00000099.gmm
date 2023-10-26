@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="37914" />
+	<row id="pl_msg_00000099_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I gathered up a lot of Berries, so\nI’m trading them in for Accessories.\rNext stop, Hearthome City!\nI’m taking the Contest challenge!</language>
+	</row>
+	<row id="pl_msg_00000099_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Badges from Gyms, or Contest wins...\nThere’s more than just one way to\rbe a winner, it seems.\nHere’s hoping you’ll find something\rin which you can be the victor.</language>
+	</row>
+	<row id="pl_msg_00000099_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hahaha! I’ve got you now!\nI’m gonna take your Flag!</language>
+	</row>
+	<row id="pl_msg_00000099_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can’t catch me!\nI set some Traps!</language>
+	</row>
+</body>

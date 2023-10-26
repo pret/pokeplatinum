@@ -8,12 +8,12 @@
 #include "unk_020244AC.h"
 #include "unk_0202F108.h"
 
-int sub_0202F108 (void)
+int Contest_SaveSize (void)
 {
     return sizeof(UnkStruct_0202F10C);
 }
 
-void sub_0202F10C (UnkStruct_0202F10C * param0)
+void Contest_Init (UnkStruct_0202F10C * param0)
 {
     int v0, v1;
 
@@ -26,11 +26,11 @@ void sub_0202F10C (UnkStruct_0202F10C * param0)
     sub_02025C84(33);
 }
 
-void sub_0202F134 (UnkStruct_021C0794 * param0, int param1, int param2)
+void sub_0202F134 (SaveData * param0, int param1, int param2)
 {
     UnkStruct_0202F10C * v0;
 
-    v0 = sub_020245BC(param0, 33);
+    v0 = SaveData_Get(param0, 33);
 
     if (v0->unk_00[param1][param2] < 9999) {
         v0->unk_00[param1][param2]++;
@@ -39,12 +39,12 @@ void sub_0202F134 (UnkStruct_021C0794 * param0, int param1, int param2)
     sub_02025C84(33);
 }
 
-u16 sub_0202F160 (UnkStruct_021C0794 * param0, int param1, int param2)
+u16 sub_0202F160 (SaveData * param0, int param1, int param2)
 {
     UnkStruct_0202F10C * v0;
 
-    v0 = sub_020245BC(param0, 33);
-    sub_02025C48(33);
+    v0 = SaveData_Get(param0, 33);
+    SaveData_CRC(33);
 
     return v0->unk_00[param1][param2];
 }

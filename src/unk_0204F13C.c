@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020308A0_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -43,7 +43,7 @@
 #include "unk_0204FA34.h"
 #include "unk_020508D4.h"
 #include "unk_0205DFC4.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_0207A274.h"
 #include "unk_0207D3B8.h"
@@ -67,7 +67,7 @@ enum {
 };
 
 BOOL sub_0204F13C(UnkStruct_0203E724 * param0);
-static BOOL sub_0204F268(u16 param0, UnkStruct_021C0794 * param1);
+static BOOL sub_0204F268(u16 param0, SaveData * param1);
 BOOL sub_0204F360(UnkStruct_0203E724 * param0);
 
 BOOL sub_0204F398(UnkStruct_0203E724 * param0);
@@ -155,7 +155,7 @@ BOOL sub_0204F13C (UnkStruct_0203E724 * param0)
     return 0;
 }
 
-static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
+static BOOL sub_0204F268 (u16 param0, SaveData * param1)
 {
     u8 v0, v1, v2, v3;
     u16 v4, v5;
@@ -176,10 +176,10 @@ static BOOL sub_0204F268 (u16 param0, UnkStruct_021C0794 * param1)
 
     for (v0 = 0, v2 = 0; v0 < v3; v0++) {
         v7 = Party_GetPokemonBySlotIndex(v6, v0);
-        v4 = GetMonData(v7, MON_DATA_SPECIES, NULL);
-        v5 = GetMonData(v7, MON_DATA_161, NULL);
+        v4 = Pokemon_GetValue(v7, MON_DATA_SPECIES, NULL);
+        v5 = Pokemon_GetValue(v7, MON_DATA_LEVEL, NULL);
 
-        if (GetMonData(v7, MON_DATA_IS_EGG, NULL) != 0) {
+        if (Pokemon_GetValue(v7, MON_DATA_IS_EGG, NULL) != 0) {
             continue;
         }
 
@@ -409,7 +409,7 @@ static int sub_0204F5D8 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param
 static int sub_0204F628 (UnkStruct_0204F470 * param0, UnkStruct_0203CDB0 * param1, int param2)
 {
     UnkStruct_02098D38 * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
 
     static const u8 v2[] = {
         0,
@@ -527,7 +527,7 @@ BOOL sub_0204F6D8 (UnkStruct_0203E724 * param0)
 {
     int v0;
     int v1;
-    UnkStruct_020308A0 * v2;
+    BattleFrontierStage * v2;
     UnkStruct_0203068C * v3;
     u32 v4, v5, v6;
     u16 v7, v8;
@@ -622,7 +622,7 @@ BOOL sub_0204F8A8(UnkStruct_0203E724 * param0);
 BOOL sub_0204F8A8 (UnkStruct_0203E724 * param0)
 {
     int v0;
-    UnkStruct_020308A0 * v1;
+    BattleFrontierStage * v1;
     u32 v2, v3, v4;
     UnkStruct_0203CDB0 * v5 = param0->unk_34;
     u16 * v6 = inline_0204FCAC(param0);
@@ -672,7 +672,7 @@ BOOL sub_0204F950 (UnkStruct_0203E724 * param0)
 {
     int v0;
     int v1;
-    UnkStruct_020308A0 * v2;
+    BattleFrontierStage * v2;
     UnkStruct_0203068C * v3;
     u32 v4, v5;
     UnkStruct_0203CDB0 * v6 = param0->unk_34;

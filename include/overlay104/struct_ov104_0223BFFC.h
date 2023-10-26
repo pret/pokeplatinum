@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_OV104_0223BFFC_H
 #define POKEPLATINUM_STRUCT_OV104_0223BFFC_H
 
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_020304A0_decl.h"
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -10,7 +10,7 @@
 
 typedef struct {
     int unk_00;
-    UnkStruct_021C0794 * unk_04;
+    SaveData * unk_04;
     UnkStruct_020304A0 * unk_08;
     void * unk_0C;
     u8 unk_10;
@@ -30,10 +30,10 @@ typedef struct {
     int unk_28;
     u8 unk_2C[3];
     u8 unk_2F;
-    UnkStruct_0200D0F4 * unk_30[4];
-    UnkStruct_0200D0F4 * unk_40[4];
-    UnkStruct_0200D0F4 * unk_50[4];
-    UnkStruct_0200D0F4 * unk_60[4];
+    CellActorData * unk_30[4];
+    CellActorData * unk_40[4];
+    CellActorData * unk_50[4];
+    CellActorData * unk_60[4];
     Party * unk_70;
     Party * unk_74;
     u16 unk_78[14];

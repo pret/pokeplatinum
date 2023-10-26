@@ -1,0 +1,101 @@
+{
+    "name": "Farfetch\u2019d",
+    "base_stats": {
+        "hp": 52,
+        "attack": 65,
+        "defense": 55,
+        "speed": 60,
+        "special_attack": 58,
+        "special_defense": 62
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 94,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_STICK"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FLYING",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_KEEN_EYE",
+        "ABILITY_INNER_FOCUS"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM32",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM51",
+            "TM54",
+            "TM58",
+            "TM75",
+            "TM77",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM90",
+            "HM01",
+            "HM02",
+            "HM05"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_POISON_JAB",
+                "MOVE_PECK",
+                "MOVE_SAND_ATTACK",
+                "MOVE_LEER",
+                "MOVE_FURY_CUTTER"
+            ],
+            "7": "MOVE_FURY_ATTACK",
+            "9": "MOVE_KNOCK_OFF",
+            "13": "MOVE_AERIAL_ACE",
+            "19": "MOVE_SLASH",
+            "21": "MOVE_AIR_CUTTER",
+            "25": "MOVE_SWORDS_DANCE",
+            "31": "MOVE_AGILITY",
+            "33": "MOVE_NIGHT_SLASH",
+            "37": "MOVE_AIR_SLASH",
+            "43": "MOVE_FEINT",
+            "45": "MOVE_FALSE_SWIPE"
+        }
+    }
+}

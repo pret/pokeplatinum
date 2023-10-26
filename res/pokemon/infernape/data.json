@@ -1,0 +1,119 @@
+{
+    "name": "Infernape",
+    "base_stats": {
+        "hp": 76,
+        "attack": 104,
+        "defense": 71,
+        "speed": 108,
+        "special_attack": 104,
+        "special_defense": 71
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 209,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "FIELD",
+        "HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_BLAZE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BROWN",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM04",
+            "TM05",
+            "TM06",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM39",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM61",
+            "TM65",
+            "TM68",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM86",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_SCRATCH",
+                "MOVE_LEER",
+                "MOVE_EMBER",
+                "MOVE_TAUNT"
+            ],
+            "7": "MOVE_EMBER",
+            "9": "MOVE_TAUNT",
+            "14": "MOVE_MACH_PUNCH",
+            "17": "MOVE_FURY_SWIPES",
+            "21": "MOVE_FLAME_WHEEL",
+            "29": "MOVE_FEINT",
+            "33": "MOVE_PUNISHMENT",
+            "41": "MOVE_CLOSE_COMBAT",
+            "45": "MOVE_FIRE_SPIN",
+            "53": "MOVE_CALM_MIND",
+            "57": "MOVE_FLARE_BLITZ"
+        }
+    }
+}

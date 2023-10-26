@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="17479" />
+	<row id="pl_msg_00000051_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Wi: We come from faraway land.\nI come see the Pokémon I trade.\rI worry if it growing properly.</language>
+	</row>
+	<row id="pl_msg_00000051_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Fi: I like look at Pokémon I get\nfrom friend in trade.\rIt make me remember my friend!</language>
+	</row>
+	<row id="pl_msg_00000051_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can trade Pokémon with people\naround the world on Nintendo WFC...\rJust hearing that gets my heart\nracing. Such exciting times!</language>
+	</row>
+	<row id="pl_msg_00000051_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When you connect with people on\nNintendo WFC, it’s hard to\ftell if the world’s big or small.</language>
+	</row>
+</body>

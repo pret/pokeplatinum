@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="11187" />
+	<row id="pl_msg_00000026_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know how Pokémon have types like\nWater, Fire, and Grass?\rWell, all types have strengths and\nweaknesses against other types.</language>
+	</row>
+	<row id="pl_msg_00000026_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">In the Union Room upstairs, you can\nchat and trade with other people.\rAnd that’s not all you can do.\nCheck it out!</language>
+	</row>
+	<row id="pl_msg_00000026_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You can still catch a Pokémon if you\nalready have six traveling with you.\rIt automatically gets sent to the PC\nnetwork in Pokémon Centers.\rKnowing that, I can keep on catching\nmore and more Pokémon!\rIt’ll make it more fun to check\nthe PC in any Pokémon Center!</language>
+	</row>
+	<row id="pl_msg_00000026_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, can we feature you in a news piece\nwe’re doing?\rAll you have to do is battle with me.\nWill you do that?</language>
+	</row>
+	<row id="pl_msg_00000026_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Reporter Kinsey’s live interview!\r</language>
+	</row>
+	<row id="pl_msg_00000026_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Unbelievable! Press coverage denied!\nI find you intriguing, too...</language>
+	</row>
+	<row id="pl_msg_00000026_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">To get people to open up, we approach\nthem honestly with no hidden tricks.\rIt’s like the relationship between\nPokémon and Trainers, isn’t it?</language>
+	</row>
+	<row id="pl_msg_00000026_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’ve spotted a charismatic Trainer!\nIs it OK to go for the scoop?</language>
+	</row>
+	<row id="pl_msg_00000026_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">As a professional cameraman, I always\ngo for the best shot!\r</language>
+	</row>
+	<row id="pl_msg_00000026_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s a downer...\rI thought I’d found a Trainer and\nPokémon who’d shine on camera.</language>
+	</row>
+	<row id="pl_msg_00000026_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The lively expressions on you and your\nPokémon’s faces...\rIt sure makes for some great TV!</language>
+	</row>
+	<row id="pl_msg_00000026_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Are we all ready to have some fun?\nI sure am! Aren’t you having fun?!\fLet’s make it fun! OK?!</language>
+	</row>
+	<row id="pl_msg_00000026_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, how shall we do this?\nShall we do something fantastical?\r</language>
+	</row>
+	<row id="pl_msg_00000026_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, how shall I say this...?\nIt makes me all lonely, I say...</language>
+	</row>
+	<row id="pl_msg_00000026_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">A clown’s makeup is a face that’s\ncrying while laughing. Mwahahah!\rIt defines what we do!</language>
+	</row>
+</body>

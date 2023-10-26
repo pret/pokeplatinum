@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="18215" />
+	<row id="pl_msg_00000561_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Oh! There you are!\nPlease, come with me!\fThe professor is waiting!\r</language>
+	</row>
+	<row id="pl_msg_00000561_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This is it!\nOur Pokémon Research Lab!\rLet’s go...\r</language>
+	</row>
+	<row id="pl_msg_00000561_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Hi! I’ve been waiting for you!\nPlease, come with me.\fThe prof’s waiting to see you.\r</language>
+	</row>
+	<row id="pl_msg_00000561_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">See? This is our Pokémon Research\nLab.\rWe’ll just go ahead and...\r</language>
+	</row>
+	<row id="pl_msg_00000561_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}Thud!!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000561_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}: What the...\rOh, it’s you, {STRVAR_1 3, 1, 0}!\rThat old guy... He’s not scary so\nmuch as he is totally out there!\rAww, it doesn’t matter, {STRVAR_1 3, 1, 0}.\nI’m out of here. See you later!\r</language>
+	</row>
+	<row id="pl_msg_00000561_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Wow, what was that?\rYour friend sure seems to be really\nimpatient.\rWell, anyway...\nLet’s go inside.\r</language>
+	</row>
+	<row id="pl_msg_00000561_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: What was that?!\rYour friend always seems to be\nin such a rush.\rAnyway...\nLet’s go in.\r</language>
+	</row>
+	<row id="pl_msg_00000561_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{SIZE 200}{STRVAR_1 3, 0, 0}!{SIZE 100}\r</language>
+	</row>
+	<row id="pl_msg_00000561_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: I have something good here.\nYou should take this as well.\r</language>
+	</row>
+	<row id="pl_msg_00000561_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rowan: That is a Technical Machine.\nThat one contains the move Return.\rUsing a Technical Machine, or TM for\nshort, teaches a move instantly to\fa Pokémon.\rBear in mind, however, that a TM is\nsingle-use only.\rThe move Return gains power the more\nfriendly your Pokémon is with you.\rIt’s up to you, of course, if you want\nto use that TM or not.\rI’ll send you off with the wish that\nyour journey will be fun.\r</language>
+	</row>
+	<row id="pl_msg_00000561_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Dawn: Oh, wow.\nI didn’t know the professor had TMs.\rWas he a Trainer when he was\nyoung...?\r</language>
+	</row>
+	<row id="pl_msg_00000561_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Lucas: Well, I’ll be...\nThe professor had TMs...?\rNext thing, he’ll tell me he battled\nwhen he was young.\r</language>
+	</row>
+	<row id="pl_msg_00000561_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, {STRVAR_1 3, 1, 0}, I’ll act as\nyour mentor.\rI’ve got a bit more experience than\nyou as a Trainer and as the professor’s\fassistant.\rOK, follow me!\r</language>
+	</row>
+	<row id="pl_msg_00000561_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This building with the red roof is\nthe Pokémon Center.\rIt’s the place that heals Pokémon\nthat have been hurt in battle.\rYou can find a Pokémon Center in\nmost towns.\r</language>
+	</row>
+	<row id="pl_msg_00000561_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The building with the blue roof over\nhere is the Poké Mart.\rIt’s a shop where you can buy and\nsell items and medicine.\r{STRVAR_1 3, 0, 0}, since you’re a novice\nTrainer, you won’t be able to buy\fmany kinds of merchandise.\rDon’t let it bother you!\r</language>
+	</row>
+	<row id="pl_msg_00000561_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, that’s right!\n{STRVAR_1 3, 0, 0}...\rDon’t you need to let your family\nknow that you’re going to be helping\fProf. Rowan with the Pokédex?\rYou may need to go far away, so I\nthink you should let someone know.\rOh, but before you go, heal up your\nPokémon at the Pokémon Center.\rIt will be a lot less scary that way.\nOK, bye now!\r</language>
+	</row>
+	<row id="pl_msg_00000561_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, {STRVAR_1 3, 1, 0}!\nI want to show you a few things.\fSo, follow me!\r</language>
+	</row>
+	<row id="pl_msg_00000561_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">This building with the red roof is\nthe Pokémon Center.\rYou can get your Pokémon healed if\nit’s been hurt in battle.\rYou’ll find a Pokémon Center in most\ntowns.\r</language>
+	</row>
+	<row id="pl_msg_00000561_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Over here, the building with the blue\nroof is the Poké Mart.\rIt’s a shop where you can buy and\nsell all sorts of items.\r{STRVAR_1 3, 0, 0}, since you’re a rookie\nTrainer, you won’t be able to buy\fvery much stuff.\rDon’t worry about it, OK?\r</language>
+	</row>
+	<row id="pl_msg_00000561_00020" index="20">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, yeah, right!\n{STRVAR_1 3, 0, 0}...\rYou should let your family know\nyou’re helping Prof. Rowan put\ftogether his Pokédex.\rSometimes, you have to go far away,\nso you should let someone know.\rOh, but first, go heal up your\nPokémon at the Pokémon Center.\rYou’ll be safe then.\nOK, be seeing you!\r</language>
+	</row>
+	<row id="pl_msg_00000561_00021" index="21">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, wow!\nPokémon are so cool!\rYou can make yours battle and make\nthem stronger!\rI wish I had some!\nIt’s so cool!</language>
+	</row>
+	<row id="pl_msg_00000561_00022" index="22">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That thing you have!\rIt’s a Pokédex, isn’t it?!\rYou’re off to see all kinds of\nPokémon now! Lucky you!</language>
+	</row>
+	<row id="pl_msg_00000561_00023" index="23">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">So I don’t forget what’s happened,\ntill now, I’d better save this...\rThere!\nNow I can take a break.</language>
+	</row>
+	<row id="pl_msg_00000561_00024" index="24">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Professor Rowan’s come back to town!\rIt must be, like, four years since\nhe left.\rThey say he was doing his research\nsomewhere else all this time.</language>
+	</row>
+	<row id="pl_msg_00000561_00025" index="25">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Sandgem Town\nTown of Sand!</language>
+	</row>
+	<row id="pl_msg_00000561_00026" index="26">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Pokémon Research Lab</language>
+	</row>
+	<row id="pl_msg_00000561_00027" index="27">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0}’s House</language>
+	</row>
+	<row id="pl_msg_00000561_00028" index="28">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">All Your Item Needs Fulfilled!\nPokémon Mart</language>
+	</row>
+	<row id="pl_msg_00000561_00029" index="29">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Heal Your Pokémon!\nPokémon Center</language>
+	</row>
+</body>

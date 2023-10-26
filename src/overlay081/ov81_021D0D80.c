@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
@@ -20,7 +20,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200F174.h"
 #include "unk_02017728.h"
@@ -29,7 +29,7 @@
 #include "gx_layers.h"
 #include "strbuf.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202B604.h"
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
@@ -38,8 +38,8 @@
 
 static void ov81_021D0F00(void * param0);
 static void ov81_021D0F20(void);
-static void ov81_021D0F40(UnkStruct_02018340 * param0);
-static void ov81_021D101C(UnkStruct_02018340 * param0);
+static void ov81_021D0F40(BGL * param0);
+static void ov81_021D101C(BGL * param0);
 static void ov81_021D1050(UnkStruct_ov81_021D1610 * param0);
 static void ov81_021D1130(UnkStruct_ov81_021D1610 * param0);
 static void ov81_021D115C(UnkStruct_ov81_021D1610 * param0);
@@ -70,7 +70,7 @@ static const u8 Unk_ov81_021D33E8[9][32] = {
 int ov81_021D0D80 (UnkStruct_020067E8 * param0, int * param1)
 {
     UnkStruct_ov81_021D1610 * v0;
-    UnkStruct_021C0794 * v1;
+    SaveData * v1;
 
     sub_02017798(NULL, NULL);
     sub_020177A4();
@@ -183,7 +183,7 @@ static void ov81_021D0F20 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov81_021D0F40 (UnkStruct_02018340 * param0)
+static void ov81_021D0F40 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -279,7 +279,7 @@ static void ov81_021D0F40 (UnkStruct_02018340 * param0)
     sub_02019690(1, 32, 0, 42);
 }
 
-static void ov81_021D101C (UnkStruct_02018340 * param0)
+static void ov81_021D101C (BGL * param0)
 {
     GXLayers_DisableEngineALayers();
     sub_02019044(param0, 3);
@@ -294,9 +294,9 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
     u16 * v0;
     NARC * v1;
 
-    v1 = NARC_ctor(80, 42);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__F_NOTE_GRA, 42);
 
-    if (sub_02025F30(param0->unk_48) == 0) {
+    if (TrainerInfo_Gender(param0->unk_48) == 0) {
         sub_020070E8(v1, 2, param0->unk_00, 2, 0, 0, 0, 42);
         sub_0200710C(v1, 0, param0->unk_00, 2, 0, 0, 0, 42);
         sub_02007130(v1, 4, 0, 0, 0, 42);
@@ -318,21 +318,21 @@ static void ov81_021D1050 (UnkStruct_ov81_021D1610 * param0)
 
 static void ov81_021D1130 (UnkStruct_ov81_021D1610 * param0)
 {
-    param0->unk_50 = sub_0200B144(0, 26, 366, 42);
+    param0->unk_50 = MessageLoader_Init(0, 26, 366, 42);
     param0->unk_54 = sub_0200B358(42);
     param0->unk_58 = Strbuf_Init(128, 42);
 }
 
 static void ov81_021D115C (UnkStruct_ov81_021D1610 * param0)
 {
-    sub_0200B190(param0->unk_50);
+    MessageLoader_Free(param0->unk_50);
     sub_0200B3F0(param0->unk_54);
     Strbuf_Free(param0->unk_58);
 }
 
 static int ov81_021D1174 (UnkStruct_ov81_021D1610 * param0)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         return 1;
     }
 
@@ -341,7 +341,7 @@ static int ov81_021D1174 (UnkStruct_ov81_021D1610 * param0)
 
 static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
 {
-    if (Unk_021BF67C.unk_48 & PAD_KEY_LEFT) {
+    if (gCoreSys.padInput & PAD_KEY_LEFT) {
         if (ov81_021D13CC(param0, -1) == 1) {
             return 2;
         }
@@ -349,7 +349,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         return 1;
     }
 
-    if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
+    if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_KEY_RIGHT)) {
         if (ov81_021D13CC(param0, 1) == 1) {
             return 3;
         }
@@ -357,7 +357,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         return 1;
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_B) {
+    if (gCoreSys.padInput & PAD_BUTTON_B) {
         if (param0->unk_105C != 0) {
             if (ov81_021D13CC(param0, -1) == 1) {
                 return 2;
@@ -368,7 +368,7 @@ static int ov81_021D1188 (UnkStruct_ov81_021D1610 * param0)
         }
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_START) {
+    if (gCoreSys.padInput & PAD_BUTTON_START) {
         sub_0208C120(1, 42);
         return 4;
     }
@@ -385,7 +385,7 @@ static int ov81_021D120C (UnkStruct_ov81_021D1610 * param0)
         param0->unk_105C--;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
         param0->unk_105E = 1;
-        sub_02005748(1681);
+        Sound_PlayEffect(1681);
         break;
     case 1:
         if (ov81_021D14E0(param0) == 1) {
@@ -413,7 +413,7 @@ static int ov81_021D12E8 (UnkStruct_ov81_021D1610 * param0)
         param0->unk_105C++;
         ov81_021D164C(param0, param0->unk_1060 ^ 1);
         param0->unk_105E = 1;
-        sub_02005748(1681);
+        Sound_PlayEffect(1681);
         break;
     case 1:
         if (ov81_021D156C(param0) == 1) {
@@ -430,7 +430,7 @@ static int ov81_021D12E8 (UnkStruct_ov81_021D1610 * param0)
 
 static int ov81_021D1358 (UnkStruct_ov81_021D1610 * param0)
 {
-    return sub_0200F2AC();
+    return ScreenWipe_Done();
 }
 
 static void ov81_021D1360 (UnkStruct_ov81_021D1610 * param0)
@@ -524,10 +524,10 @@ static u8 ov81_021D14E0 (UnkStruct_ov81_021D1610 * param0)
     param0->unk_105F++;
 
     if (param0->unk_105F == 9) {
-        sub_02019060(param0->unk_1064, 0);
-        sub_02019060(param0->unk_1063, 1);
-        sub_02019060(param0->unk_1062, 2);
-        sub_02019060(param0->unk_1061, 3);
+        BGL_SetPriority(param0->unk_1064, 0);
+        BGL_SetPriority(param0->unk_1063, 1);
+        BGL_SetPriority(param0->unk_1062, 2);
+        BGL_SetPriority(param0->unk_1061, 3);
         return 1;
     }
 
@@ -541,10 +541,10 @@ static u8 ov81_021D156C (UnkStruct_ov81_021D1610 * param0)
     ov81_021D140C(param0, param0->unk_1063, param0->unk_105C);
 
     if (param0->unk_105F == 1) {
-        sub_02019060(param0->unk_1064, 0);
-        sub_02019060(param0->unk_1063, 1);
-        sub_02019060(param0->unk_1062, 2);
-        sub_02019060(param0->unk_1061, 3);
+        BGL_SetPriority(param0->unk_1064, 0);
+        BGL_SetPriority(param0->unk_1063, 1);
+        BGL_SetPriority(param0->unk_1062, 2);
+        BGL_SetPriority(param0->unk_1061, 3);
     }
 
     param0->unk_105F++;

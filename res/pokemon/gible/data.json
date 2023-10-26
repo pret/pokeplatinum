@@ -1,0 +1,105 @@
+{
+    "name": "Gible",
+    "base_stats": {
+        "hp": 58,
+        "attack": 70,
+        "defense": 45,
+        "speed": 42,
+        "special_attack": 40,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_DRAGON",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 67,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_HABAN_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 40,
+    "base_friendship": 70,
+    "exp_rate": "SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_SAND_VEIL",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM02",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM59",
+            "TM65",
+            "TM71",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": "MOVE_TACKLE",
+            "3": "MOVE_SAND_ATTACK",
+            "7": "MOVE_DRAGON_RAGE",
+            "13": "MOVE_SANDSTORM",
+            "15": "MOVE_TAKE_DOWN",
+            "19": "MOVE_SAND_TOMB",
+            "25": "MOVE_SLASH",
+            "27": "MOVE_DRAGON_CLAW",
+            "31": "MOVE_DIG",
+            "37": "MOVE_DRAGON_RUSH"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            24,
+            "SPECIES_GABITE"
+        ]
+    ]
+}

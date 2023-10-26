@@ -20,7 +20,7 @@ void sub_02059D0C(int param0, int param1, void * param2, void * param3);
 BOOL sub_02059D2C(void);
 void sub_02059EAC(int param0, int param1, void * param2, void * param3);
 u8 * sub_02059EBC(int param0, void * param1, int param2);
-UnkStruct_02029894 * sub_0205A080(UnkStruct_021C0794 * param0);
+UnkStruct_02029894 * sub_0205A080(SaveData * param0);
 void sub_0205A0A0(void);
 void sub_0205A0BC(void);
 

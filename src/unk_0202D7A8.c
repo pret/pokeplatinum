@@ -13,17 +13,17 @@
 #include "unk_020244AC.h"
 #include "unk_0202D7A8.h"
 
-int sub_0202D7A8 (void)
+int SpecialEncounter_SaveSize (void)
 {
     return sizeof(UnkStruct_0202D7B0);
 }
 
-void sub_0202D7B0 (UnkStruct_0202D7B0 * param0)
+void SpecialEncounter_Init (UnkStruct_0202D7B0 * param0)
 {
     memset(param0, 0, sizeof(UnkStruct_0202D7B0));
 
-    param0->unk_00 = sub_0201D35C();
-    param0->unk_04 = sub_0201D35C();
+    param0->unk_00 = MTRNG_Next();
+    param0->unk_04 = MTRNG_Next();
     param0->unk_08.unk_00 = 0;
     param0->unk_08.unk_04 = 0xffff;
     param0->unk_08.unk_06 = 0xffff;
@@ -73,9 +73,9 @@ UnkStruct_020698E4 * sub_0202D830 (UnkStruct_0202D7B0 * param0)
     return &(param0->unk_BC);
 }
 
-UnkStruct_0202D7B0 * sub_0202D834 (UnkStruct_021C0794 * param0)
+UnkStruct_0202D7B0 * sub_0202D834 (SaveData * param0)
 {
-    return sub_020245BC(param0, 25);
+    return SaveData_Get(param0, 25);
 }
 
 UnkStruct_0202D844 * sub_0202D840 (UnkStruct_0202D7B0 * param0)
@@ -101,7 +101,7 @@ UnkStruct_0202D84C * sub_0202D84C (const u8 param0, UnkStruct_0202D844 * param1)
     return v0;
 }
 
-void sub_0202D854 (UnkStruct_021C0794 * param0, const int param1)
+void sub_0202D854 (SaveData * param0, const int param1)
 {
     int v0;
     UnkStruct_0202D844 * v1;
@@ -124,7 +124,7 @@ void sub_0202D854 (UnkStruct_021C0794 * param0, const int param1)
     }
 }
 
-void sub_0202D884 (UnkStruct_021C0794 * param0)
+void sub_0202D884 (SaveData * param0)
 {
     UnkStruct_0202D7B0 * v0;
 
@@ -275,7 +275,7 @@ u8 sub_0202DA04 (UnkStruct_0202D7B0 * param0)
     return param0->unk_151;
 }
 
-void sub_0202DA10 (UnkStruct_021C0794 * param0, u16 * param1, u16 * param2)
+void sub_0202DA10 (SaveData * param0, u16 * param1, u16 * param2)
 {
     UnkStruct_0202D7B0 * v0 = sub_0202D834(param0);
 
@@ -283,7 +283,7 @@ void sub_0202DA10 (UnkStruct_021C0794 * param0, u16 * param1, u16 * param2)
     (*param2) = v0->unk_08.unk_06;
 }
 
-void sub_0202DA24 (UnkStruct_021C0794 * param0, const u16 param1)
+void sub_0202DA24 (SaveData * param0, const u16 param1)
 {
     UnkStruct_0202D7B0 * v0 = sub_0202D834(param0);
 

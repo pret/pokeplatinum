@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
@@ -39,12 +39,12 @@ typedef struct UnkStruct_0202783C_t {
     UnkStruct_0202783C_sub1 unk_6DC;
 } UnkStruct_0202783C;
 
-int sub_020277A4 (void)
+int MiscSaveBlock_SaveSize (void)
 {
     return sizeof(UnkStruct_0202783C);
 }
 
-void sub_020277AC (UnkStruct_0202783C * param0)
+void MiscSaveBlock_Init (UnkStruct_0202783C * param0)
 {
     MI_CpuClearFast(param0, sizeof(UnkStruct_0202783C));
 
@@ -70,29 +70,29 @@ void sub_020277AC (UnkStruct_0202783C * param0)
     }
 }
 
-UnkStruct_0202783C * sub_0202783C (UnkStruct_021C0794 * param0)
+UnkStruct_0202783C * sub_0202783C (SaveData * param0)
 {
-    return sub_020245BC(param0, 10);
+    return SaveData_Get(param0, 10);
 }
 
-const UnkStruct_0202783C * sub_02027848 (const UnkStruct_021C0794 * param0)
+const UnkStruct_0202783C * sub_02027848 (const SaveData * param0)
 {
     return sub_020245E0(param0, 10);
 }
 
-UnkStruct_02027854 * sub_02027854 (UnkStruct_021C0794 * param0)
+UnkStruct_02027854 * sub_02027854 (SaveData * param0)
 {
     UnkStruct_0202783C * v0;
 
-    v0 = sub_020245BC(param0, 10);
+    v0 = SaveData_Get(param0, 10);
     return v0->unk_00;
 }
 
-UnkStruct_02027860 * sub_02027860 (UnkStruct_021C0794 * param0)
+UnkStruct_02027860 * sub_02027860 (SaveData * param0)
 {
     UnkStruct_0202783C * v0;
 
-    v0 = sub_020245BC(param0, 10);
+    v0 = SaveData_Get(param0, 10);
     return &v0->unk_680;
 }
 

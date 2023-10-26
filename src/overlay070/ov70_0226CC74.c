@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "overlay066/struct_ov66_0222DFF8_decl.h"
 #include "overlay070/struct_ov70_0225CA20_decl.h"
 #include "overlay070/struct_ov70_0225CC54_decl.h"
@@ -38,7 +38,7 @@ BOOL ov70_0226CC74 (UnkStruct_ov70_02263344 * param0, UnkStruct_ov70_0225DEE8 * 
     switch (ov70_02262E84(param0)) {
     case 0:
         v0 = ov70_02262E3C(param0, sizeof(UnkStruct_ov70_0226CC74));
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
 
         {
             u32 v6;

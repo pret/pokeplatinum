@@ -91,16 +91,16 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
     NARC * v0;
     UnkStruct_ov5_021EF7A0 * v1 = param0->unk_C20;
 
-    NARC_ReadWholeMemberByIndexPair(&param0->unk_C18, 42, v1->unk_00);
+    NARC_ReadWholeMemberByIndexPair(&param0->unk_C18, NARC_INDEX_FIELDDATA__AREADATA__AREA_DATA, v1->unk_00);
 
-    param0->unk_C24 = NARC_AllocAndReadWholeMemberByIndexPair(43, param0->unk_C18.unk_00, 4);
+    param0->unk_C24 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__AREADATA__AREA_BUILD_MODEL__AREA_BUILD, param0->unk_C18.unk_00, 4);
     v1->unk_08 = param0->unk_C24[0];
 
     GF_ASSERT(v1->unk_08 < 768);
 
     param0->unk_C0C = NULL;
-    param0->unk_C04 = NARC_AllocAndReadWholeMemberByIndexPair(44, param0->unk_C18.unk_02, 4);
-    param0->unk_C08 = NARC_AllocAndReadWholeMemberByIndexPair(71, param0->unk_C18.unk_00, 4);
+    param0->unk_C04 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__AREADATA__AREA_MAP_TEX__MAP_TEX_SET, param0->unk_C18.unk_02, 4);
+    param0->unk_C08 = NARC_AllocAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__AREADATA__AREA_BUILD_MODEL__AREABM_TEXSET, param0->unk_C18.unk_00, 4);
     param0->unk_C0C = NNS_G3dGetTex((NNSG3dResFileHeader *)param0->unk_C04);
 
     if (v1->unk_08 != 0) {
@@ -137,7 +137,7 @@ void ov5_021EF7A0 (UnkStruct_ov5_021EF76C * param0)
         param0->unk_C14 = NULL;
     }
 
-    v0 = NARC_ctor(40, 4);
+    v0 = NARC_ctor(NARC_INDEX_FIELDDATA__BUILD_MODEL__BUILD_MODEL, 4);
 
     {
         int v5;

@@ -1,0 +1,109 @@
+{
+    "name": "Rattata",
+    "base_stats": {
+        "hp": 30,
+        "attack": 56,
+        "defense": 35,
+        "speed": 72,
+        "special_attack": 25,
+        "special_defense": 35
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 57,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_CHILAN_BERRY"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_RUN_AWAY",
+        "ABILITY_GUTS"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_PURPLE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM27",
+            "TM28",
+            "TM30",
+            "TM32",
+            "TM34",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM57",
+            "TM58",
+            "TM73",
+            "TM78",
+            "TM82",
+            "TM83",
+            "TM86",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM90",
+            "HM01",
+            "HM06"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_TAIL_WHIP"
+            ],
+            "4": "MOVE_QUICK_ATTACK",
+            "7": "MOVE_FOCUS_ENERGY",
+            "10": "MOVE_BITE",
+            "13": "MOVE_PURSUIT",
+            "16": "MOVE_HYPER_FANG",
+            "19": "MOVE_SUCKER_PUNCH",
+            "22": "MOVE_CRUNCH",
+            "25": "MOVE_ASSURANCE",
+            "28": "MOVE_SUPER_FANG",
+            "31": "MOVE_DOUBLE_EDGE",
+            "34": "MOVE_ENDEAVOR"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            20,
+            "SPECIES_RATICATE"
+        ]
+    ]
+}

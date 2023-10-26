@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="33858" />
+	<row id="pl_msg_00000126_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hiya!\nOh, you’re a Trainer!\rThat means you’re using Pokémon Boxes!\nI love meeting end users!\rOh, what’s up?\nWhy that astonished look?\rOh, right, sorry!\nThere I go running my mouth again!\rMy name’s Bebe!\rYou know the PC Pokémon Boxes?\nI’m the system administrator!\rI know this is out of the blue, but do\nyou want a Pokémon named EEVEE?</language>
+	</row>
+	<row id="pl_msg_00000126_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bebe: So, how about it?\nDo you want that Pokémon EEVEE?</language>
+	</row>
+	<row id="pl_msg_00000126_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bebe: Here you go!\rThat EEVEE, I got it from a good friend\nin Johto who has a whole lot of them.\rWho knows how many EEVEE he’s raised\nover the years.\rSorry, that doesn’t mean anything to\nyou.\rPlease, be good to it!\r</language>
+	</row>
+	<row id="pl_msg_00000126_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} accepted the EEVEE!\r</language>
+	</row>
+	<row id="pl_msg_00000126_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Would you like to give a nickname\nto the EEVEE that Bebe gave you?</language>
+	</row>
+	<row id="pl_msg_00000126_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bebe: Here you go!\rWait, I can’t do that! You can’t take\nany more Pokémon with you!\rRight about now, my Pokémon Boxes\ncome in handy!</language>
+	</row>
+	<row id="pl_msg_00000126_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bebe: Oh, OK...\nGuess I’ll have to raise it myself.</language>
+	</row>
+	<row id="pl_msg_00000126_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bebe: My buddy Bill developed the\nbasic Pokémon Box storage system.\rI tinkered with it here and there to\nmake it easier to use.</language>
+	</row>
+	<row id="pl_msg_00000126_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Bebe: Oh? Now that’s a National Pokédex\nI’m seeing. Good for you!\rYou’ll be using my Pokémon Boxes a\nwhole lot more if you’ve got that.\rWell, I always thought a good Trainer\nought to juggle Boxes smartly, though.\fI shouldn’t be the one to say so.</language>
+	</row>
+</body>

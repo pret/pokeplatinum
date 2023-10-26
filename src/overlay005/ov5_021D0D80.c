@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "core_sys.h"
 #include "data_02100844.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
@@ -104,8 +104,8 @@ struct UnkStruct_ov5_021D1A68_t {
     int unk_02[24];
 };
 
-static void ov5_021D1444(UnkStruct_02018340 * param0);
-static void ov5_021D1524(UnkStruct_02018340 * param0);
+static void ov5_021D1444(BGL * param0);
+static void ov5_021D1524(BGL * param0);
 static void ov5_021D154C(void);
 static void ov5_021D1570(void);
 static void ov5_021D1578(UnkStruct_ov5_021D5894 * param0);
@@ -539,7 +539,7 @@ static void ov5_021D134C (UnkStruct_0203CDB0 * param0, u8 param1)
         ov5_021D15F4(param0);
     }
 
-    if (Unk_021BF67C.unk_48 & PAD_BUTTON_X) {
+    if (gCoreSys.padInput & PAD_BUTTON_X) {
         (void)0;
     }
 }
@@ -579,17 +579,17 @@ static void ov5_021D1414 (void)
     GXLayers_SetBanks(&v0);
 }
 
-void ov5_021D1434 (UnkStruct_02018340 * param0)
+void ov5_021D1434 (BGL * param0)
 {
     ov5_021D1444(param0);
 }
 
-void ov5_021D143C (UnkStruct_02018340 * param0)
+void ov5_021D143C (BGL * param0)
 {
     ov5_021D1524(param0);
 }
 
-static void ov5_021D1444 (UnkStruct_02018340 * param0)
+static void ov5_021D1444 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -675,7 +675,7 @@ static void ov5_021D1444 (UnkStruct_02018340 * param0)
     }
 }
 
-static void ov5_021D1524 (UnkStruct_02018340 * param0)
+static void ov5_021D1524 (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     sub_02019044(param0, 1);
@@ -958,7 +958,7 @@ static UnkStruct_ov5_021D1A68 * ov5_021D1A14 (int param0, int param1)
     UnkStruct_ov5_021D1A68 * v2;
 
     v2 = Heap_AllocFromHeap(param0, sizeof(UnkStruct_ov5_021D1A68));
-    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(96, param1, param0);
+    v1 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_FIELDDATA__MM_LIST__MOVE_MODEL_LIST, param1, param0);
 
     for (v0 = 0; v0 < 24; v0++) {
         v2->unk_02[v0] = 0xffff;

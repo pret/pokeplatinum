@@ -1,0 +1,110 @@
+{
+    "name": "Typhlosion",
+    "base_stats": {
+        "hp": 78,
+        "attack": 84,
+        "defense": 78,
+        "speed": 100,
+        "special_attack": 109,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 209,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "FIELD",
+        "FIELD"
+    ],
+    "abilities": [
+        "ABILITY_BLAZE",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_YELLOW",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM01",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM21",
+            "TM22",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM50",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM61",
+            "TM65",
+            "TM68",
+            "TM74",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_GYRO_BALL",
+                "MOVE_TACKLE",
+                "MOVE_LEER",
+                "MOVE_SMOKE_SCREEN",
+                "MOVE_EMBER"
+            ],
+            "4": "MOVE_SMOKE_SCREEN",
+            "10": "MOVE_EMBER",
+            "13": "MOVE_QUICK_ATTACK",
+            "20": "MOVE_FLAME_WHEEL",
+            "24": "MOVE_DEFENSE_CURL",
+            "31": "MOVE_SWIFT",
+            "35": "MOVE_LAVA_PLUME",
+            "42": "MOVE_FLAMETHROWER",
+            "46": "MOVE_ROLLOUT",
+            "53": "MOVE_DOUBLE_EDGE",
+            "57": "MOVE_ERUPTION"
+        }
+    }
+}

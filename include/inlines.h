@@ -4,7 +4,7 @@
 #include <nitro/rtc.h>
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_0203E724_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_0206A8DC.h"
 
 static inline void inline_ov61_0222C3B0_sub_1(UnkStruct_ov61_0222C3B0 *);
-static inline void inline_ov61_0222C3B0_sub(UnkStruct_0201CD38 *, void *);
+static inline void inline_ov61_0222C3B0_sub(SysTask *, void *);
 
 static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC * param1, int param2, int param3)
 {
@@ -50,7 +50,7 @@ static inline void inline_ov61_0222C3B0 (UnkStruct_ov61_0222C3B0 * param0, NARC 
 static inline void inline_ov61_0222C160 (UnkStruct_ov61_0222C3B0 * param0)
 {
     if (param0->unk_00 != NULL) {
-        sub_0200DA58(param0->unk_00);
+        SysTask_Done(param0->unk_00);
         param0->unk_00 = NULL;
         param0->unk_04 = 0;
     }
@@ -99,7 +99,7 @@ static inline void inline_ov61_0222C3B0_sub_1 (UnkStruct_ov61_0222C3B0 * param0)
     DC_FlushRange(param0->unk_88, (((16 << 8) / 0x300 + 2) * (4 - 1)) * 16 * sizeof(u16));
 }
 
-static inline void inline_ov61_0222C3B0_sub (UnkStruct_0201CD38 * param0, void * param1)
+static inline void inline_ov61_0222C3B0_sub (SysTask * param0, void * param1)
 {
     UnkStruct_ov61_0222C3B0 * v0 = param1;
 
@@ -216,7 +216,7 @@ inline u16 inline_020564D0 (const u16 param0)
         u16 v0;
         u16 v1;
         v0 = (0xffff / param0) + 1;
-        v1 = sub_0201D2E8() / v0;
+        v1 = LCRNG_Next() / v0;
 
         GF_ASSERT((v1 < param0));
         return v1;

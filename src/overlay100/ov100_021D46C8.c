@@ -1,12 +1,12 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_020985E4.h"
 #include "overlay100/struct_ov100_021D46C8.h"
@@ -16,7 +16,7 @@
 #include "overlay115/struct_ov115_0226527C.h"
 
 #include "unk_02002F38.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
 #include "unk_020170BC.h"
@@ -25,7 +25,7 @@
 #include "gx_layers.h"
 #include "unk_02020020.h"
 #include "strbuf.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020279FC.h"
 #include "overlay100/ov100_021D44C0.h"
 #include "overlay100/ov100_021D46C8.h"
@@ -33,16 +33,16 @@
 int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * param1, int param2)
 {
     int v0;
-    UnkStruct_0200B144 * v1;
+    MessageLoader * v1;
     Strbuf* v2;
     Strbuf* v3 = Strbuf_Init(511, 111);
     u8 v4 = 0;
 
     v1 = param0->unk_2C;
-    v2 = sub_0200B1EC(v1, param2);
+    v2 = MessageLoader_GetNewStrbuf(v1, param2);
 
     if (param2 == 22) {
-        Strbuf* v5 = sub_02025F04(param1->unk_08, 111);
+        Strbuf* v5 = TrainerInfo_NameNewStrbuf(param1->unk_08, 111);
         UnkStruct_0200B358 * v6 = sub_0200B358(111);
 
         sub_0200B48C(v6, 0, v5, 0, 1, GAME_LANGUAGE);
@@ -54,7 +54,7 @@ int ov100_021D46C8 (UnkStruct_ov100_021D46C8 * param0, UnkStruct_020985E4 * para
     }
 
     v4 = sub_02027AC0(param1->unk_04);
-    sub_0201ADA4(&param0->unk_30, 0xFF);
+    BGL_FillWindow(&param0->unk_30, 0xFF);
 
     v0 = sub_0201D738(&param0->unk_30, 1, v3, 0, 0, v4, NULL);
     sub_0201A954(&param0->unk_30);
@@ -335,7 +335,7 @@ void ov100_021D4C94 (UnkStruct_ov100_021D46C8 * param0, int param1)
 
 void ov100_021D4DC8 (int param0)
 {
-    Unk_021BF67C.unk_65 = param0;
+    gCoreSys.unk_65 = param0;
     GXLayers_SwapDisplay();
 }
 

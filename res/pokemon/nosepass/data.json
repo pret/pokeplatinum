@@ -1,0 +1,105 @@
+{
+    "name": "Nosepass",
+    "base_stats": {
+        "hp": 30,
+        "attack": 45,
+        "defense": 135,
+        "speed": 30,
+        "special_attack": 45,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 108,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_HARD_STONE"
+    },
+    "gender_ratio": "FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_FAST",
+    "egg_groups": [
+        "MINERAL",
+        "MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_STURDY",
+        "ABILITY_MAGNET_PULL"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_GRAY",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM21",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM27",
+            "TM32",
+            "TM34",
+            "TM37",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM64",
+            "TM69",
+            "TM71",
+            "TM73",
+            "TM76",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "level_up": {
+            "1": "MOVE_TACKLE",
+            "7": "MOVE_HARDEN",
+            "13": "MOVE_ROCK_THROW",
+            "19": "MOVE_BLOCK",
+            "25": "MOVE_THUNDER_WAVE",
+            "31": "MOVE_ROCK_SLIDE",
+            "37": "MOVE_SANDSTORM",
+            "43": "MOVE_REST",
+            "49": "MOVE_POWER_GEM",
+            "55": "MOVE_DISCHARGE",
+            "61": "MOVE_STONE_EDGE",
+            "67": "MOVE_ZAP_CANNON",
+            "73": "MOVE_LOCK_ON",
+            "79": "MOVE_EARTH_POWER"
+        }
+    },
+    "evolutions": [
+        [
+            "ELECTRIC_FIELD",
+            "SPECIES_PROBOPASS"
+        ]
+    ]
+}

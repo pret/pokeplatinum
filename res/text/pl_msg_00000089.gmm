@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="11027" />
+	<row id="pl_msg_00000089_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">When a Pokémon faints, it just means\nit doesn’t have the power to battle.\rBut it can still use hidden moves\noutside of battle!</language>
+	</row>
+	<row id="pl_msg_00000089_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic took my Pokémon away.\nThey took other people’s, too.\rSomething should be done, but Team\nGalactic creeps everyone out...\rWhat are they doing to my Pokémon?</language>
+	</row>
+	<row id="pl_msg_00000089_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I got my Pokémon back!\rI’m so happy, I feel like riding my Bike\ndown Cycling Road together with it!</language>
+	</row>
+	<row id="pl_msg_00000089_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">BUNEARY: Bunbun!</language>
+	</row>
+	<row id="pl_msg_00000089_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, you cute little Trainer!\nWhat kinds of Pokémon are with you?\rThis Pokétch app will show how\nclose your Pokémon feel to you.\r</language>
+	</row>
+	<row id="pl_msg_00000089_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you spend enough time with them,\nall Pokémon will open up to you.</language>
+	</row>
+	<row id="pl_msg_00000089_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hi, you cute little Trainer!\nWhat kinds of Pokémon are with you?\rOh, your {STRVAR_1 0, 0, 0}...\r</language>
+	</row>
+	<row id="pl_msg_00000089_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It seems to like you.\nIt must be happy being with you.</language>
+	</row>
+	<row id="pl_msg_00000089_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s becoming comfortable around\nyou, I think.</language>
+	</row>
+	<row id="pl_msg_00000089_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hmm...\nIt needs to get used to you more.</language>
+	</row>
+	<row id="pl_msg_00000089_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Two Pokémon!\nThat’s what we need.\rWe’re looking for a Trainer who’s\ntraveling with at least two Pokémon.</language>
+	</row>
+	<row id="pl_msg_00000089_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh! Would you like to battle against the\nboth of us?</language>
+	</row>
+	<row id="pl_msg_00000089_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re live on camera, but try to act\nnatural, OK?\r</language>
+	</row>
+	<row id="pl_msg_00000089_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">OK, that’s how it is, huh.\nCan’t do anything about that.</language>
+	</row>
+	<row id="pl_msg_00000089_00014" index="14">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whee!\nWasn’t that battle smoking hot?\rYou should make a Battle Video of it and\nshare it with the world!</language>
+	</row>
+	<row id="pl_msg_00000089_00015" index="15">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh, dear!\nYou only have one Pokémon with you?\rThat’s very commendable, but we can’t\nbattle with you that way.</language>
+	</row>
+	<row id="pl_msg_00000089_00016" index="16">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Giggle!\nCould you win against both of us?\n</language>
+	</row>
+	<row id="pl_msg_00000089_00017" index="17">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We’ll thoroughly check out your\nabilities as a Trainer!\r</language>
+	</row>
+	<row id="pl_msg_00000089_00018" index="18">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Oh? You haven’t healed your Pokémon,\nmaybe?</language>
+	</row>
+	<row id="pl_msg_00000089_00019" index="19">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That was a good match.\rIt adds flair and drama when many\neager Pokémon get involved.</language>
+	</row>
+</body>

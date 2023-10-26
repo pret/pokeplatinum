@@ -7,7 +7,7 @@ static u32 Unk_02100D94 = 75;
 static u32 Unk_02100D90 = 707;
 static u32 Unk_02100D98 = 709;
 
-void sub_02098988 (u32 param0)
+void Pokedex_SetupGiratina (u32 param0)
 {
     if (param0 == 0) {
         Unk_02100D94 = 194;

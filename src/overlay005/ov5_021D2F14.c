@@ -334,15 +334,15 @@ static void ov5_021D3518 (UnkStruct_ov5_021D30A8 * param0, NARC * param1, int pa
     GF_ASSERT(0);
 }
 
-UnkStruct_0200D0F4 * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov104_0223F9E0 * param1)
+CellActorData * ov5_021D3584 (UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov104_0223F9E0 * param1)
 {
     int v0;
     int v1;
-    UnkStruct_0200D0F4 * v2 = NULL;
+    CellActorData * v2 = NULL;
     UnkStruct_ov115_02261520 v3;
     int v4[6];
 
-    v2 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(UnkStruct_0200D0F4));
+    v2 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(CellActorData));
 
     v2->unk_08 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(UnkStruct_02009508));
     v2->unk_08->unk_00 = Heap_AllocFromHeap(param0->unk_1C6, sizeof(UnkStruct_ov19_021DA864));

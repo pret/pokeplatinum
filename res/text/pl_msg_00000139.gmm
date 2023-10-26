@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="46098" />
+	<row id="pl_msg_00000139_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Pokémon COMBEE is quite\ninteresting.\rOnly the female evolves and grows\nstrong. The male does not.\rCome to think of it, my wife was\nawfully strong, too.\rShe evolved from my bride to the\nmother of our kids.</language>
+	</row>
+	<row id="pl_msg_00000139_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Hey, have you caught both the female\nand male forms of COMBEE?\rIf you have, I want to see both of\nthem together.\rI’ll give you a Macho Brace if you do\nthat for me. Deal?</language>
+	</row>
+	<row id="pl_msg_00000139_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Aww, you don’t even have a single\nCOMBEE?\rIt’s so cute how they’re attracted\nby the aroma of Honey.\rLet me see a male and female COMBEE\ntogether, OK?\rI’ll give you a Macho Brace if you do\nthat for me.</language>
+	</row>
+	<row id="pl_msg_00000139_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">That’s it! A COMBEE!\nIt’s sooooo cute!\rIt’d be even cooler if you had the\nother gender COMBEE as well, though.\rBy the way, a female COMBEE’s kind of\nrare, so they’re popular.\rStill, it’d be great to see a male and\nfemale at the same time.\rI’ll give you a Macho Brace if you do\nthat for me.</language>
+	</row>
+	<row id="pl_msg_00000139_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cool! A female and a male COMBEE.\nI feel giddy!\rHere’s your reward like I promised.\nGo ahead, take it!\r</language>
+	</row>
+	<row id="pl_msg_00000139_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Whoops, your Bag is crammed full!\nI’ll give this to you later.</language>
+	</row>
+	<row id="pl_msg_00000139_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re good!\nYou’d make an awesome Bug Maniac!</language>
+	</row>
+</body>

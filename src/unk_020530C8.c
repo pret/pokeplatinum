@@ -2,12 +2,12 @@
 #include <string.h>
 
 #include "inlines.h"
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_02001AF4_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "message.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0203A790_decl.h"
 #include "struct_decls/struct_020507E4_decl.h"
 #include "struct_decls/struct_020508D4_decl.h"
@@ -27,7 +27,7 @@
 #include "unk_02005474.h"
 #include "game_overlay.h"
 #include "unk_0200A9DC.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200DA60.h"
 #include "unk_0200F174.h"
 #include "heap.h"
@@ -35,7 +35,7 @@
 #include "strbuf.h"
 #include "unk_020244AC.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_020277A4.h"
 #include "unk_02027F50.h"
 #include "unk_0202854C.h"
@@ -92,7 +92,7 @@ typedef struct {
 
 typedef struct {
     int unk_00;
-    UnkStruct_0201CD38 * unk_04;
+    SysTask * unk_04;
     UnkStruct_02049FA8 unk_08;
     UnkStruct_ov5_021D432C * unk_1C;
 } UnkStruct_02053AB4;
@@ -105,7 +105,7 @@ typedef struct {
 typedef struct {
     int unk_00;
     int unk_04;
-    UnkStruct_0201CD38 * unk_08;
+    SysTask * unk_08;
     UnkStruct_02049FA8 unk_0C;
 } UnkStruct_02053CD4;
 
@@ -125,7 +125,7 @@ typedef struct {
     BOOL unk_18;
     u16 unk_1C;
     void * unk_20;
-    UnkStruct_0205AA50 unk_24;
+    Window unk_24;
     Strbuf* unk_34;
     u8 unk_38;
     UnkStruct_02001AF4 * unk_3C;
@@ -238,7 +238,7 @@ static void sub_0205311C (UnkStruct_0203CDB0 * param0, const UnkStruct_02049FA8 
 void sub_020531A0 (UnkStruct_0203CDB0 * param0)
 {
     GF_ASSERT(param0->unk_70 < 5);
-    Unk_021BF67C.unk_65 = param0->unk_74->unk_00_12;
+    gCoreSys.unk_65 = param0->unk_74->unk_00_12;
 }
 
 void sub_020531C0 (UnkStruct_0203CDB0 * param0, BOOL param1)
@@ -348,7 +348,7 @@ static void sub_02053320 (UnkStruct_0203CDB0 * param0)
 
     param0->unk_38 = sub_02061804(param0, 64, 5);
 
-    v0 = sub_02025F30(sub_02025E38(param0->unk_0C));
+    v0 = TrainerInfo_Gender(sub_02025E38(param0->unk_0C));
     v2 = sub_0203A790(param0->unk_0C);
     v3 = sub_0203A780(v2);
 
@@ -373,7 +373,7 @@ static void sub_0205338C (UnkStruct_0203CDB0 * param0)
     {
         UnkStruct_0203A790 * v0 = sub_0203A790(param0->unk_0C);
         UnkStruct_0205EC34 * v1 = sub_0203A780(v0);
-        int v2 = sub_02025F30(sub_02025E38(param0->unk_0C));
+        int v2 = TrainerInfo_Gender(sub_02025E38(param0->unk_0C));
 
         param0->unk_3C = sub_0205E820(param0->unk_38, v1, v2);
     }
@@ -643,7 +643,7 @@ static BOOL sub_02053878 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         sub_02055644(v0, v2->unk_00);
         sub_02055974(param0);
         (v1->unk_00)++;
@@ -1172,10 +1172,10 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
     switch (v1->unk_00) {
     case 0:
     {
-        UnkStruct_0200B144 * v2 = sub_0200B144(1, 26, 221, 11);
+        MessageLoader * v2 = MessageLoader_Init(1, 26, 221, 11);
 
-        v1->unk_34 = sub_0200B1EC(v2, 124);
-        sub_0200B190(v2);
+        v1->unk_34 = MessageLoader_GetNewStrbuf(v2, 124);
+        MessageLoader_Free(v2);
     }
         sub_0205D8F4(v0->unk_08, &v1->unk_24, 3);
         sub_0205D944(&v1->unk_24, sub_02025E44(v0->unk_0C));
@@ -1194,12 +1194,12 @@ BOOL sub_02054084 (UnkStruct_020508D4 * param0)
         switch (sub_02002114(v1->unk_3C, 11)) {
         case 0:
             sub_0200E084(&v1->unk_24, 0);
-            sub_0201A8FC(&v1->unk_24);
+            BGL_DeleteWindow(&v1->unk_24);
             v1->unk_00 = 3;
             break;
         case 0xfffffffe:
             sub_0200E084(&v1->unk_24, 0);
-            sub_0201A8FC(&v1->unk_24);
+            BGL_DeleteWindow(&v1->unk_24);
             v1->unk_00 = 5;
         }
         break;
@@ -1559,7 +1559,7 @@ static BOOL sub_02054778 (UnkStruct_020508D4 * param0)
 
     switch (v1->unk_00) {
     case 0:
-        sub_02005748(1539);
+        Sound_PlayEffect(1539);
         sub_02055644(v0, v2->unk_00);
         sub_02055974(param0);
         (v1->unk_00)++;

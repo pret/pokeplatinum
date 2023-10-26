@@ -185,7 +185,7 @@ void sub_0209621C (int param0, int param1, void * param2, void * param3)
     ov59_021D2204(v0, 25, param0);
 
     sub_020388F4(1, 1);
-    sub_02005748(1624);
+    Sound_PlayEffect(1624);
 }
 
 void sub_02096264 (int param0, int param1, void * param2, void * param3)
@@ -302,7 +302,7 @@ static void sub_020963C0 (UnkStruct_020961E8 * param0, int param1)
         param0->unk_418.unk_BB8 = v2;
     }
 
-    param0->unk_418.unk_BBC = sub_0201D2E8();
+    param0->unk_418.unk_BBC = LCRNG_Next();
     sub_0203597C(116, &param0->unk_418, sizeof(UnkStruct_ov59_021D30E0));
 }
 

@@ -3,16 +3,16 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_02022550_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 #include "struct_decls/struct_0202442C_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02026324_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
@@ -36,7 +36,7 @@
 #include "unk_02005474.h"
 #include "unk_020067E8.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B29C.h"
 #include "unk_0200B358.h"
 #include "unk_0200DA60.h"
@@ -47,9 +47,9 @@
 #include "gx_layers.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_0202440C.h"
+#include "savedata/save_table.h"
 #include "unk_02025E08.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_0202631C.h"
 #include "unk_020279FC.h"
 #include "unk_0202DAB4.h"
@@ -362,14 +362,14 @@ UnkStruct_ov97_0223E0B0 Unk_ov97_0223E0B0[] = {
 
 typedef struct {
     int unk_00;
-    UnkStruct_02018340 * unk_04;
-    UnkStruct_021C0794 * unk_08;
+    BGL * unk_04;
+    SaveData * unk_08;
     UnkStruct_02026324 * unk_0C;
-    UnkStruct_02025E6C * unk_10;
+    TrainerInfo * unk_10;
     UnkStruct_020279FC * unk_14;
-    UnkStruct_0205AA50 unk_18;
-    UnkStruct_0205AA50 unk_28;
-    UnkStruct_0205AA50 unk_38;
+    Window unk_18;
+    Window unk_28;
+    Window unk_38;
     UnkStruct_ov97_02237808 unk_48;
     UnkStruct_ov97_02237808 unk_9C;
     UnkStruct_ov97_02237808 unk_F0;
@@ -386,7 +386,7 @@ typedef struct {
     u8 unk_16C[12288];
     UnkStruct_020067E8 * unk_316C;
     UnkStruct_02022550 * unk_3170;
-    UnkStruct_0202442C * unk_3174;
+    MysteryGift * unk_3174;
     int unk_3178;
     int unk_317C;
     UnkStruct_0202DBAC unk_3180;
@@ -448,8 +448,8 @@ enum {
 
 static void ov97_0222C388(UnkStruct_ov97_0222C388 * param0);
 int ov97_0222CB10(UnkStruct_ov97_0222C388 * param0);
-UnkStruct_0202442C * sub_0202442C(UnkStruct_021C0794 * param0);
-void ov97_02231FFC(UnkStruct_02018340 * param0, void *, int param2);
+MysteryGift * SaveData_MysteryGift(SaveData * param0);
+void ov97_02231FFC(BGL * param0, void *, int param2);
 
 static u16 ov97_0222C174 (u16 param0)
 {
@@ -513,13 +513,13 @@ static void ov97_0222C210 (UnkStruct_ov97_0222C388 * param0)
     u32 v1;
     const u16 * v2;
 
-    v2 = sub_02025EF0(param0->unk_10);
+    v2 = TrainerInfo_Name(param0->unk_10);
 
     for (v0 = 0; v0 < 7 + 1; v0++) {
         Unk_ov97_0223F180[v0] = ov97_0222C174(v2[v0]);
     }
 
-    v1 = sub_02025F24(param0->unk_10);
+    v1 = TrainerInfo_ID_LowHalf(param0->unk_10);
     ov97_0222C1A4(&Unk_ov97_0223F190[0], v1);
     Unk_ov97_0223F190[5] = 0;
 }
@@ -589,9 +589,9 @@ static BOOL ov97_0222C404 (UnkStruct_ov97_0222C388 * param0)
         ov97_0223795C(param0->unk_04, &v0, 5, 4, 2);
         return 1;
     } else {
-        if (Unk_021BF67C.unk_48 & (PAD_BUTTON_A | PAD_BUTTON_B)) {
-            sub_0200DC9C(&param0->unk_18, 0);
-            sub_0201A8FC(&param0->unk_18);
+        if (gCoreSys.padInput & (PAD_BUTTON_A | PAD_BUTTON_B)) {
+            Window_Clear(&param0->unk_18, 0);
+            BGL_DeleteWindow(&param0->unk_18);
             return 0;
         }
     }
@@ -642,7 +642,7 @@ static void ov97_0222C578 (UnkStruct_ov97_0222C388 * param0)
     param0->unk_F0.unk_14 = v6;
 
     sub_0200B498(v6, 0, param0->unk_10);
-    sub_0200B60C(v6, 1, sub_02025F24(param0->unk_10), 5, 2, 1);
+    sub_0200B60C(v6, 1, TrainerInfo_ID_LowHalf(param0->unk_10), 5, 2, 1);
 
     ov97_0223795C(param0->unk_04, &param0->unk_F0, 3, 13, 66);
     param0->unk_F0.unk_08 = 0;
@@ -671,9 +671,9 @@ static void ov97_0222C688 (UnkStruct_020067E8 * param0)
     ov97_02237DA0();
 
     if (sub_0201A7CC(&v1->unk_18) == 1) {
-        sub_0201ACF4(&v1->unk_18); sub_0201A8FC(&v1->unk_18);
-        sub_0201ACF4(&v1->unk_28); sub_0201A8FC(&v1->unk_28);
-        sub_0201ACF4(&v1->unk_38); sub_0201A8FC(&v1->unk_38);
+        sub_0201ACF4(&v1->unk_18); BGL_DeleteWindow(&v1->unk_18);
+        sub_0201ACF4(&v1->unk_28); BGL_DeleteWindow(&v1->unk_28);
+        sub_0201ACF4(&v1->unk_38); BGL_DeleteWindow(&v1->unk_38);
     }
 
     sub_02019044(v1->unk_04, 0);
@@ -698,7 +698,7 @@ static int ov97_0222C6F8 (UnkStruct_020067E8 * param0, int * param1)
 
     ov97_02237694(v0->unk_00);
 
-    v0->unk_3174 = sub_0202442C(v0->unk_08);
+    v0->unk_3174 = SaveData_MysteryGift(v0->unk_08);
     v0->unk_14C = UnkEnum_ov97_0222C78C_09;
     v0->unk_144 = ((1 + 9) + (18 + 12));
     v0->unk_154 = 0;
@@ -744,7 +744,7 @@ static int ov97_0222C78C (UnkStruct_020067E8 * param0, int * param1)
         }
         break;
     case UnkEnum_ov97_0222C78C_03:
-        if ((sub_0201D724(v0->unk_317C) == 0) && Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+        if ((Message_Printing(v0->unk_317C) == 0) && gCoreSys.padInput & PAD_BUTTON_A) {
             ov97_02237784(1);
             ov97_02237790(0, UnkEnum_ov97_0222C78C_12, param1, UnkEnum_ov97_0222C78C_13);
         }
@@ -771,7 +771,7 @@ static int ov97_0222C78C (UnkStruct_020067E8 * param0, int * param1)
         v0->unk_3180.unk_104.unk_4E_2 = 0;
         break;
     case UnkEnum_ov97_0222C78C_06:
-        if (Unk_021BF67C.unk_48) {
+        if (gCoreSys.padInput) {
             ov97_02237790(0, UnkEnum_ov97_0222C78C_11, param1, UnkEnum_ov97_0222C78C_13);
         }
         break;
@@ -808,12 +808,12 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     RTCDate v0;
     Strbuf* v1;
     UnkStruct_0200B358 * v2;
-    UnkStruct_0200B144 * v3;
+    MessageLoader * v3;
     UnkStruct_0202DBAC * v4 = &param0->unk_3180;
 
     MI_CpuClear8(v4, sizeof(UnkStruct_0202DBAC));
 
-    v3 = sub_0200B144(1, 26, 421, param0->unk_00);
+    v3 = MessageLoader_Init(1, 26, 421, param0->unk_00);
     v2 = sub_0200B358(param0->unk_00);
 
     v4->unk_00 = 7;
@@ -844,7 +844,7 @@ static void ov97_0222C974 (UnkStruct_ov97_0222C388 * param0)
     v4->unk_354 = RTC_ConvertDateToDay(&v0);
 
     sub_0200B3F0(v2);
-    sub_0200B190(v3);
+    MessageLoader_Free(v3);
     sub_0202DB2C(param0->unk_3174, &v4->unk_00, 3);
     GXLayers_EngineBToggleLayers(GX_PLANEMASK_BG0, 0);
 
@@ -872,7 +872,7 @@ static int ov97_0222CAB4 (UnkStruct_ov97_0222C388 * param0, int * param1, int pa
         }
     }
 
-    if (param3 && Unk_021BF67C.unk_48 & param3) {
+    if (param3 && gCoreSys.padInput & param3) {
         ov97_022333BC();
         *param1 = UnkEnum_ov97_0222C6F8_26;
         return 1;
@@ -947,12 +947,12 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
         sub_02021CAC(param0->unk_3170, 0);
         sub_0200EBA0(param0->unk_34D8);
         param0->unk_34D8 = NULL;
-        sub_02005748(1500);
+        Sound_PlayEffect(1500);
         param0->unk_160 = 1800;
         *v3 = UnkEnum_ov97_0222C6F8_30;
         break;
     case UnkEnum_ov97_0222C6F8_30:
-        if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+        if (gCoreSys.padInput & PAD_BUTTON_A) {
             *v3 = UnkEnum_ov97_0222C6F8_08;
         }
 
@@ -970,7 +970,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
             *v3 = UnkEnum_ov97_0222C6F8_10;
             param0->unk_160 = 3200;
             ov97_0223795C(param0->unk_04, &param0->unk_48, 2, 19, 34);
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
             param0->unk_34D8 = NULL;
 
             return 1;
@@ -1077,7 +1077,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
 
             sub_02021CAC(param0->unk_3170, 0);
             sub_0200EBA0(param0->unk_34D8);
-            sub_02005748(1500);
+            Sound_PlayEffect(1500);
 
             param0->unk_34D8 = NULL;
         }
@@ -1090,7 +1090,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
                 param0->unk_148 = 0;
             }
 
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 *v3 = UnkEnum_ov97_0222C6F8_27;
                 return 4;
             }
@@ -1117,7 +1117,7 @@ int ov97_0222CB10 (UnkStruct_ov97_0222C388 * param0)
                 param0->unk_148 = 0;
             }
 
-            if (Unk_021BF67C.unk_48 & PAD_BUTTON_A) {
+            if (gCoreSys.padInput & PAD_BUTTON_A) {
                 OS_ResetSystem(0);
             }
         }

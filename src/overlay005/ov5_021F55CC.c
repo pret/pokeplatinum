@@ -86,7 +86,7 @@ void ov5_021F5634 (UnkStruct_0203CDB0 * param0, int param1, int param2, int para
     v1 = 0;
 
     ov5_021DF72C(v2.unk_00, &Unk_ov5_02200B1C, &v3, v1, &v2, 0xff);
-    sub_02005748(1545);
+    Sound_PlayEffect(1545);
 }
 
 static int ov5_021F5684 (UnkStruct_ov101_021D5D90 * param0, void * param1)

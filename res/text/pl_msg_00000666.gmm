@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="36006" />
+	<row id="pl_msg_00000666_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buongiorno.</language>
+	</row>
+	<row id="pl_msg_00000666_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buongiorno.</language>
+	</row>
+	<row id="pl_msg_00000666_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Buona sera.</language>
+	</row>
+</body>

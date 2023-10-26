@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_0200B358_decl.h"
-#include "struct_defs/pokemon.h"
+#include "pokemon.h"
 #include "struct_decls/struct_02098700_decl.h"
 
 #include "struct_defs/struct_0203CDB0.h"
@@ -12,7 +12,7 @@
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "party.h"
 #include "unk_02098700.h"
 #include "overlay005/ov5_021EE7D4.h"
@@ -50,13 +50,13 @@ static int ov5_021EE7D4 (Pokemon * param0)
     u16 v4, v5, v6;
     u16 v7, v8;
 
-    v0 = GetMonData(param0, MON_DATA_PERSONALITY, NULL) & 0xffff;
-    v1 = GetMonData(param0, MON_DATA_HP_IV, NULL) & 0xf;
-    v2 = GetMonData(param0, MON_DATA_ATK_IV, NULL) & 0xf;
-    v3 = GetMonData(param0, MON_DATA_DEF_IV, NULL) & 0xf;
-    v4 = GetMonData(param0, MON_DATA_SPEED_IV, NULL) & 0xf;
-    v5 = GetMonData(param0, MON_DATA_SPATK_IV, NULL) & 0xf;
-    v6 = GetMonData(param0, MON_DATA_SPDEF_IV, NULL) & 0xf;
+    v0 = Pokemon_GetValue(param0, MON_DATA_PERSONALITY, NULL) & 0xffff;
+    v1 = Pokemon_GetValue(param0, MON_DATA_HP_IV, NULL) & 0xf;
+    v2 = Pokemon_GetValue(param0, MON_DATA_ATK_IV, NULL) & 0xf;
+    v3 = Pokemon_GetValue(param0, MON_DATA_DEF_IV, NULL) & 0xf;
+    v4 = Pokemon_GetValue(param0, MON_DATA_SPEED_IV, NULL) & 0xf;
+    v5 = Pokemon_GetValue(param0, MON_DATA_SPATK_IV, NULL) & 0xf;
+    v6 = Pokemon_GetValue(param0, MON_DATA_SPDEF_IV, NULL) & 0xf;
     v7 = ((v2 ^ v3) * v1) ^ (v0 & 0xff);
     v8 = ((v5 ^ v6) * v4) ^ (v0 >> 8);
 
@@ -82,14 +82,14 @@ static u32 ov5_021EE8A8 (u16 param0, u16 param1)
     u32 v3;
     u64 v4;
     u8 v5;
-    UnkStruct_02098700 * v6;
+    HeightWeightData * v6;
 
-    v6 = sub_02098700(4);
-    sub_0209872C(v6, 0, 4);
+    v6 = Pokedex_HeightWeightData(4);
+    Pokedex_HeightWeightData_Load(v6, 0, 4);
 
-    v3 = sub_02098808((const UnkStruct_02098700 *)v6, param0);
-    sub_020987BC(v6);
-    sub_02098718(v6);
+    v3 = sub_02098808((const HeightWeightData *)v6, param0);
+    Pokedex_HeightWeightData_Release(v6);
+    Pokedex_HeightWeightData_Free(v6);
 
     v5 = ov5_021EE880(param1);
     v0 = Unk_ov5_021FF508[v5].unk_00;
@@ -109,7 +109,7 @@ u8 ov5_021EE920 (UnkStruct_0203CDB0 * param0, u16 param1)
     u32 v5;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param1);
-    v3 = GetMonData(v0, MON_DATA_SPECIES, NULL);
+    v3 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v1 = ov5_021EE7D4(v0);
     v4 = ov5_021EE8A8(v3, v1);
     v2 = sub_0206B0B4(sub_020507E4(param0->unk_0C));
@@ -174,7 +174,7 @@ void ov5_021EEA84 (UnkStruct_0203CDB0 * param0, u8 param1, u8 param2, u16 param3
     vu16 v2;
 
     v0 = Party_GetPokemonBySlotIndex(Party_GetFromSavedata(param0->unk_0C), param3);
-    v1 = GetMonData(v0, MON_DATA_SPECIES, NULL);
+    v1 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
     v2 = ov5_021EE7D4(v0);
 
     ov5_021EE9E8(param0, param1, param2, v1, v2);

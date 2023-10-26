@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54359" />
+	<row id="pl_msg_00000285_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: ...So, you’ve come.\nYou heard my speech, I take it.\rSnicker...\nA big lie, of course.\rIt’s true insofar as my intention is to\ncreate a new world.\rBut that world isn’t for the likes of\nTeam Galactic.\rI seek an entirely new world solely for\nmyself.\rIf not, it could never be the complete\nand perfect world.\rYou’ve seen my minions of Team Galactic.\rYou yourself must know that they are\nuniformly useless and incomplete.\r</language>
+	</row>
+	<row id="pl_msg_00000285_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I know why you’re here. I can sense\nit in you.\rIt’s about UXIE, MESPRIT, and AZELF,\ncorrect? You want to save them...\rI no longer have any need for them.\nI am finished with them.\rIf your heart aches to save them,\ngo right ahead. I couldn’t care less.\rIt will save me the trouble of\ndisposing of them.\rBut, I must say...\nYou are a remarkable specimen.\rThose Pokémon have nothing to do\nwith you, do they?\rBut still you came to rescue them\nout of pity?\rSuch pitifully useless emotions...\nIt’s illogical and irrational.\rPity and compassion are products of\nthe weak and faulty human heart.\rYou were compelled to come here by\nsuch vacuous sentimentality!\rI will make you regret paying\nheed to your heart!\r</language>
+	</row>
+	<row id="pl_msg_00000285_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: I see.\nYou are indeed strong.\rAnd the basis of your power is your\ncompassion toward Pokémon.\r...How wasteful...\nSuch emotions are but mere illusions.\rAnd, like all illusions, they fade over\ntime until death banishes them forever.\rThat is why I have abandoned all\nemotions as useless sentimentality.\r...But that doesn’t matter. I doubt\nyou will ever understand my position.\rThat said, I recognize that you are\nstrong and courageous to come alone.\rThis is your reward.\r</language>
+	</row>
+	<row id="pl_msg_00000285_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cyrus: The Master Ball is the ultimate\nPoké Ball.\rIt will unfailingly catch any Pokémon\nin the wild.\rBut it is not anything that I require.\rUnlike you Trainers, I do not make\nPokémon my friends or partners.\rUnlike other Team Galactic members,\nI don’t use Pokémon as tools.\rInstead, I make the power of Pokémon\nmy own.\r</language>
+	</row>
+	<row id="pl_msg_00000285_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you wish to save the Pokémon from\nthe lakes, take the warp panel ahead.\rI am off to Mt. Coronet.\rI will ascend the mountain to its peak\nwhere destiny awaits me.\rIt is there that I will create my new\nworld...\r</language>
+	</row>
+	<row id="pl_msg_00000285_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is locked.\nA special key is needed.</language>
+	</row>
+	<row id="pl_msg_00000285_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door is locked.\nA special key is needed.\rUse the Galactic Key?</language>
+	</row>
+	<row id="pl_msg_00000285_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The door opened.</language>
+	</row>
+	<row id="pl_msg_00000285_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic Warp Panels!\rThe green warp panel returns you\nto the ground floor.\rOnward to a new universe!\n-Team Galactic</language>
+	</row>
+	<row id="pl_msg_00000285_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Team Galactic Report\r</language>
+	</row>
+	<row id="pl_msg_00000285_00010" index="10">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Which report would you like to read?</language>
+	</row>
+	<row id="pl_msg_00000285_00011" index="11">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Some say the universe originated\nfrom a massive explosion.\rSimilarly, Sinnoh is thought to have\nbeen formed by an explosion in\fancient times.\rNeedless to say, the explosion came\nfrom the power of a Pokémon.\rThe Pokémon must have been the\nmythical creature considered\fa deity by the ancients.\rOur aim is not to capture the mythical\nPokémon, but to obtain its power...\rThe PC entry ends there...\r</language>
+	</row>
+	<row id="pl_msg_00000285_00012" index="12">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The mythical Pokémon...\rAccording to myths, the Pokémon\ncreated Sinnoh with its power.\rHowever, capturing the Pokémon with\na Poké Ball prevents it from using\fits full power...\rBut with the Red Chain, the Pokémon\ncan be shackled, and its power can\fbe used without restraint...\rThe PC entry ends there...\r</language>
+	</row>
+	<row id="pl_msg_00000285_00013" index="13">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The Red Chain...\rThe Pokémon of the three lakes and\nMt. Coronet are somehow connected.\rCapturing the Pokémon of the lakes\nwill free the Pokémon of Mt. Coronet.\rFrom the Pokémon of the lakes,\ncrystals can be extracted to create\fa Red Chain.\rUsing that Red Chain, the mythical\nPokémon can be summoned and shackled\fto do as we command...\rThe PC entry ends there...\r</language>
+	</row>
+</body>

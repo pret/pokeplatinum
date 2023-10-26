@@ -1,0 +1,102 @@
+{
+    "name": "Mudkip",
+    "base_stats": {
+        "hp": 50,
+        "attack": 70,
+        "defense": 50,
+        "speed": 40,
+        "special_attack": 50,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 65,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "MEDIUM_SLOW",
+    "egg_groups": [
+        "MONSTER",
+        "WATER_1"
+    ],
+    "abilities": [
+        "ABILITY_TORRENT",
+        "ABILITY_NONE"
+    ],
+    "great_marsh_flee_rate": 0,
+    "sprite": {
+        "color": "MON_COLOR_BLUE",
+        "flip_sprite": false
+    },
+    "learnset": {
+        "tms": [
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM13",
+            "TM14",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM28",
+            "TM32",
+            "TM39",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM04",
+            "HM06",
+            "HM07"
+        ],
+        "level_up": {
+            "1": [
+                "MOVE_TACKLE",
+                "MOVE_GROWL"
+            ],
+            "6": "MOVE_MUD_SLAP",
+            "10": "MOVE_WATER_GUN",
+            "15": "MOVE_BIDE",
+            "19": "MOVE_FORESIGHT",
+            "24": "MOVE_MUD_SPORT",
+            "28": "MOVE_TAKE_DOWN",
+            "33": "MOVE_WHIRLPOOL",
+            "37": "MOVE_PROTECT",
+            "42": "MOVE_HYDRO_PUMP",
+            "46": "MOVE_ENDEAVOR"
+        }
+    },
+    "evolutions": [
+        [
+            "LEVEL_UP",
+            16,
+            "SPECIES_MARSHTOMP"
+        ]
+    ]
+}

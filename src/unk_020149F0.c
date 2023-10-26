@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "struct_decls/struct_020149F0_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_0205AA50.h"
 
@@ -56,7 +56,7 @@ void sub_02014A40 (UnkStruct_020149F0 * param0, u32 param1)
     }
 }
 
-void sub_02014A58 (const UnkStruct_020149F0 * param0, UnkStruct_0205AA50 * param1, u32 param2, u32 param3)
+void sub_02014A58 (const UnkStruct_020149F0 * param0, Window * param1, u32 param2, u32 param3)
 {
     sub_0201D78C(param1, 0, param0->unk_04, param2, param3, 0xff, param0->unk_00, NULL);
     sub_0201ACCC(param1);

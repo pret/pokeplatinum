@@ -1,0 +1,19 @@
+{
+    "name": "Spikes",
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GROUND",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "MOVE_EFFECT_SET_SPIKES",
+        "chance": 0
+    },
+    "range": "RANGE_OPPONENT_SIDE",
+    "priority": 0,
+    "flags": [],
+    "contest": {
+        "effect": 13,
+        "type": "CONTEST_TYPE_SMART"
+    }
+}

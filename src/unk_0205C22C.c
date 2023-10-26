@@ -1,8 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/sys_task.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02027F8C_decl.h"
 #include "struct_decls/struct_0205B43C_decl.h"
 #include "struct_decls/struct_02061830_decl.h"
@@ -24,7 +24,7 @@
 #include "heap.h"
 #include "strbuf.h"
 #include "unk_020244AC.h"
-#include "unk_02025E68.h"
+#include "trainer_info.h"
 #include "unk_02027F84.h"
 #include "unk_020366A0.h"
 #include "unk_020508D4.h"
@@ -37,7 +37,7 @@
 #include "overlay005/ov5_021F134C.h"
 #include "overlay005/ov5_021F600C.h"
 
-static void sub_0205C304(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_0205C304(SysTask * param0, void * param1);
 static void sub_0205C44C(UnkStruct_0205C22C * param0, UnkStruct_0205B43C * param1, UnkStruct_02061830 * param2, UnkStruct_02027F8C * param3);
 static int sub_0205C340(UnkStruct_0205C22C * param0, int param1, WMBssDesc * param2, UnkStruct_02027F8C * param3);
 static void sub_0205C51C(UnkStruct_0205C22C * param0, UnkStruct_02061830 * param1);
@@ -65,9 +65,9 @@ UnkStruct_0205C22C * sub_0205C22C (UnkStruct_0205B43C * param0)
 
     v0->unk_00 = param0;
     v0->unk_47C = 1;
-    v0->unk_04 = sub_0200D9E8(sub_0205C304, v0, 11);
+    v0->unk_04 = SysTask_Start(sub_0205C304, v0, 11);
     v0->unk_470 = sub_0205B770(param0);
-    v0->unk_474 = sub_020245BC(v0->unk_470->unk_0C, 9);
+    v0->unk_474 = SaveData_Get(v0->unk_470->unk_0C, 9);
     v0->unk_08 = v0->unk_470->unk_3C;
 
     Heap_CreateAtEnd(11, 89, 10000);
@@ -102,13 +102,13 @@ void sub_0205C2C8 (UnkStruct_0205C22C * param0)
 
 void sub_0205C2E0 (UnkStruct_0205C22C * param0)
 {
-    sub_0200DA58(param0->unk_04);
+    SysTask_Done(param0->unk_04);
     sub_0205C970(param0->unk_478);
     Heap_Destroy(89);
     Heap_FreeToHeap(param0);
 }
 
-static void sub_0205C304 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_0205C304 (SysTask * param0, void * param1)
 {
     UnkStruct_0205C22C * v0 = (UnkStruct_0205C22C *)param1;
     UnkStruct_0205B43C * v1 = v0->unk_00;
@@ -195,14 +195,14 @@ static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * para
     WMBssDesc * v0;
     int v1;
     UnkStruct_0203330C * v2;
-    UnkStruct_02025E6C * v3;
+    TrainerInfo * v3;
 
     for (v1 = 0; v1 < 10; v1++) {
         v0 = sub_0205B774(param1, v1);
 
         if (v0 != NULL) {
             v2 = (UnkStruct_0203330C *)v0->gameInfo.userGameInfo;
-            v3 = (UnkStruct_02025E6C *)v2->unk_10;
+            v3 = (TrainerInfo *)v2->unk_10;
         } else {
             v2 = NULL;
             v3 = NULL;
@@ -211,8 +211,8 @@ static void sub_0205C44C (UnkStruct_0205C22C * param0, UnkStruct_0205B43C * para
         switch (param0->unk_0C[v1].unk_01) {
         case 0:
             if (v0 != NULL) {
-                param0->unk_0C[v1].unk_08 = sub_02025F8C(v3);
-                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, sub_02025F20(v3));
+                param0->unk_0C[v1].unk_08 = TrainerInfo_Appearance(v3);
+                param0->unk_0C[v1].unk_02 = sub_020280E0(param3, TrainerInfo_ID(v3));
                 param0->unk_0C[v1].unk_0C = v2->unk_00;
 
                 if (sub_0205C340(param0, v1, v0, param3)) {
@@ -372,7 +372,7 @@ static void sub_0205C6E0 (UnkStruct_0205C680 * param0, UnkStruct_02061AB4 * para
         return;
     }
 
-    sub_02005748(1615);
+    Sound_PlayEffect(1615);
     sub_02061AD4(param1, param0->unk_08);
     sub_0205C680(param0, 0);
     sub_02063340(param1, v0, v1, v2, 1);

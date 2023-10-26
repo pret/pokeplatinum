@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="3454" />
+	<row id="pl_msg_00000471_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Help, help, Trainer!\nPlease, I want to see my papa.\rMy papa and I lived at the Valley\nWindworks.\rBut then a whole bunch of people\ndressed like spacemen came...\rThey kicked me out, and they’re making\nmy papa do something.\rPlease, Trainer!\nI miss my papa!</language>
+	</row>
+	<row id="pl_msg_00000471_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Please, Trainer! I want to see my papa.\nHe’s at the Valley Windworks...</language>
+	</row>
+	<row id="pl_msg_00000471_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We, Team Galactic, are conducting\nresearch in the Eterna Forest!\rThis is as far as you will go!\r</language>
+	</row>
+	<row id="pl_msg_00000471_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Our research involves catching Pokémon\nin the flowery meadows of Floaroma.\rWe are also covertly stealing the\nenergy of the Valley Windworks.\rBut that is of no concern to you!\r</language>
+	</row>
+	<row id="pl_msg_00000471_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Our research involves catching Pokémon\nin the flowery meadows of Floaroma.\rWe are also covertly stealing the\nenergy of the Valley Windworks.\rBut that is of no concern to you!</language>
+	</row>
+	<row id="pl_msg_00000471_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Many Poison-type Pokémon make the\nEterna Forest their home.\rBut I didn’t buy any Antidotes.\nWhat should I do?\fDo I press on, or do I go back?</language>
+	</row>
+	<row id="pl_msg_00000471_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">If you slather sweet Honey on\na sweet-smelling tree...\rPokémon may be attracted by that\nsweet scent.</language>
+	</row>
+	<row id="pl_msg_00000471_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 205\nFloaroma Town</language>
+	</row>
+	<row id="pl_msg_00000471_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Rt. 205\nEterna Forest</language>
+	</row>
+	<row id="pl_msg_00000471_00009" index="9">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Trainer Tips!\rThe items placed in your Bag are\nautomatically sorted to the\fappropriate pockets.\rIt’s very convenient!\nIt’s a Trainer’s best friend!</language>
+	</row>
+</body>

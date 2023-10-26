@@ -3,7 +3,7 @@
 
 #include "inlines.h"
 
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
 #include "struct_defs/struct_02014A84.h"
@@ -23,7 +23,7 @@
 #include "overlay104/struct_ov104_0223A348_sub1.h"
 #include "overlay104/struct_ov104_0223A348_sub2.h"
 
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_02014A84.h"
 #include "heap.h"
 #include "unk_020244AC.h"
@@ -374,15 +374,15 @@ u32 sub_0202D474 (UnkStruct_0202D750 * param0)
     return param0->unk_04;
 }
 
-void sub_0202D478 (UnkStruct_021C0794 * param0, int param1, UnkStruct_02014A84 * param2)
+void sub_0202D478 (SaveData * param0, int param1, UnkStruct_02014A84 * param2)
 {
-    UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
     sub_02014CC0(&(v0->unk_950.unk_168.unk_00[param1]), param2);
 }
 
-UnkStruct_02014A84 * sub_0202D498 (UnkStruct_021C0794 * param0, int param1)
+UnkStruct_02014A84 * sub_0202D498 (SaveData * param0, int param1)
 {
-    UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
 
     return &(v0->unk_950.unk_168.unk_00[param1]);
 }
@@ -495,7 +495,7 @@ void sub_0202D63C (UnkStruct_0202D764 * param0, UnkStruct_ov104_0223A348 * param
     UnkStruct_ov104_0223A348_sub1 * v0;
     UnkStruct_ov104_0223A348_sub2 * v1;
     UnkStruct_0202D63C * v2;
-    UnkStruct_0200B144 * v3;
+    MessageLoader * v3;
 
     v0 = &(param1->unk_00);
     v1 = param1->unk_30;
@@ -505,10 +505,10 @@ void sub_0202D63C (UnkStruct_0202D764 * param0, UnkStruct_ov104_0223A348 * param
     v0->unk_04 = v2->unk_C9;
 
     if (v2->unk_C8_val1_unk_00_0) {
-        v3 = sub_0200B144(0, 26, 22, 11);
+        v3 = MessageLoader_Init(0, 26, 22, 11);
 
-        sub_0200B240(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->unk_08);
-        sub_0200B190(v3);
+        MessageLoader_Get(v3, 22 + v2->unk_C8_val1_unk_00_1, v0->unk_08);
+        MessageLoader_Free(v3);
     } else {
         MI_CpuCopy8(v2->unk_A8, v0->unk_08, 16);
     }
@@ -544,20 +544,20 @@ UnkStruct_ov90_021D1750 * sub_0202D71C (UnkStruct_0202D764 * param0, int param1)
     return v0;
 }
 
-UnkStruct_0202D060 * sub_0202D740 (UnkStruct_021C0794 * param0)
+UnkStruct_0202D060 * sub_0202D740 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
     return &v0->unk_8E0_val1;
 }
 
-UnkStruct_0202D750 * sub_0202D750 (UnkStruct_021C0794 * param0)
+UnkStruct_0202D750 * sub_0202D750 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
     return &v0->unk_950.unk_00;
 }
 
-UnkStruct_0202D764 * sub_0202D764 (UnkStruct_021C0794 * param0)
+UnkStruct_0202D764 * sub_0202D764 (SaveData * param0)
 {
-    UnkStruct_0203068C * v0 = sub_020245BC(param0, 23);
+    UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
     return &v0->unk_950.unk_188;
 }

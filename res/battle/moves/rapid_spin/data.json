@@ -1,0 +1,24 @@
+{
+    "name": "Rapid Spin",
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_NORMAL",
+    "power": 20,
+    "accuracy": 100,
+    "pp": 40,
+    "effect": {
+        "type": "MOVE_EFFECT_REMOVE_HAZARDS_AND_BINDING",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CONTACT",
+        "MOVE_FLAG_PROTECT",
+        "MOVE_FLAG_MIRROR_MOVE",
+        "MOVE_FLAG_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": 17,
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

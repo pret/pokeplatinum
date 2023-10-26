@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_02039A58.h"
 
@@ -25,7 +25,7 @@ typedef struct {
     const UnkStruct_02039A58 * unk_190;
     int unk_194;
     void * unk_198;
-    UnkStruct_0201CD38 * unk_19C;
+    SysTask * unk_19C;
 } UnkStruct_ov83_0223D584;
 
 typedef struct UnkStruct_ov83_0223D4CC_t {
@@ -34,7 +34,7 @@ typedef struct UnkStruct_ov83_0223D4CC_t {
 } UnkStruct_ov83_0223D4CC;
 
 static UnkStruct_ov83_0223D584 * ov83_0223D584(const UnkStruct_02039A58 * param0, int param1, void * param2, int param3);
-static void ov83_0223D5CC(UnkStruct_0201CD38 * param0, void * param1);
+static void ov83_0223D5CC(SysTask * param0, void * param1);
 static void ov83_0223D620(UnkStruct_ov83_0223D584 * param0);
 static BOOL ov83_0223D638(UnkStruct_ov83_0223D584 * param0, int param1, const void * param2, int param3);
 
@@ -113,7 +113,7 @@ static UnkStruct_ov83_0223D584 * ov83_0223D584 (const UnkStruct_02039A58 * param
     return v0;
 }
 
-static void ov83_0223D5CC (UnkStruct_0201CD38 * param0, void * param1)
+static void ov83_0223D5CC (SysTask * param0, void * param1)
 {
     UnkStruct_ov83_0223D584 * v0 = param1;
     int v1;
@@ -130,7 +130,7 @@ static void ov83_0223D5CC (UnkStruct_0201CD38 * param0, void * param1)
 
 static void ov83_0223D620 (UnkStruct_ov83_0223D584 * param0)
 {
-    sub_0200DA58(param0->unk_19C);
+    SysTask_Done(param0->unk_19C);
     Heap_FreeToHeap(param0);
 }
 

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="21176" />
+	<row id="pl_msg_00000491_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You know how you can catch Pokémon\nin the trophy garden?\rIf you put this on a caught Pokémon,\nit warms up to you faster.\rI’ll share one with you, so give it\na try.\r</language>
+	</row>
+	<row id="pl_msg_00000491_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I hope you become a Trainer that\nPokémon can love and trust.</language>
+	</row>
+	<row id="pl_msg_00000491_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I’m not loafing.\nI’m just taking a personal break.\rIt’s my official policy to sleep in a bed\nwhen I’m officially loafing.</language>
+	</row>
+	<row id="pl_msg_00000491_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">It’s a bed...\nWant to take a rest?</language>
+	</row>
+	<row id="pl_msg_00000491_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} quickly fell asleep in\nthe bed...\r</language>
+	</row>
+	<row id="pl_msg_00000491_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} and the Pokémon became\nfully healed from the nap!</language>
+	</row>
+</body>

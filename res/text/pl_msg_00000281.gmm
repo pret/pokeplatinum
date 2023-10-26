@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="58463" />
+	<row id="pl_msg_00000281_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">The TV has an oddly malevolent feel...\nIt’s as if it is staring...</language>
+	</row>
+	<row id="pl_msg_00000281_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Inside the TV...\nThere appears to be a Pokémon?...\rThe Pokémon appears as if it will come\nout. Want to thump the TV?</language>
+	</row>
+	<row id="pl_msg_00000281_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} thumped the TV set!\r</language>
+	</row>
+	<row id="pl_msg_00000281_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">ROTOM disappeared into the TV set...</language>
+	</row>
+</body>

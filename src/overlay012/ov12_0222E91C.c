@@ -4,7 +4,7 @@
 #include "struct_decls/struct_02007C7C_decl.h"
 #include "struct_decls/struct_0200C6E4_decl.h"
 #include "struct_decls/struct_0200C704_decl.h"
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 #include "overlay012/struct_ov12_0221FCDC_decl.h"
 #include "overlay012/struct_ov12_022267D4_decl.h"
 
@@ -23,7 +23,7 @@
 #include "unk_02018340.h"
 #include "unk_0201F834.h"
 #include "unk_020218BC.h"
-#include "unk_02073C2C.h"
+#include "pokemon.h"
 #include "overlay012/ov12_0221FC20.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay012/ov12_0222D6B0.h"
@@ -34,7 +34,7 @@
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     UnkStruct_ov12_02235998 unk_1C;
-    UnkStruct_0200D0F4 * unk_30;
+    CellActorData * unk_30;
     UnkStruct_ov12_02225F6C unk_34;
     UnkStruct_ov12_02225F6C unk_58;
     UnkStruct_ov12_02225F6C unk_7C;
@@ -49,13 +49,13 @@ typedef struct {
     UnkStruct_ov12_0223595C unk_00;
     s16 unk_1C;
     s16 unk_1E[8];
-    UnkStruct_0200D0F4 * unk_30[8];
+    CellActorData * unk_30[8];
     UnkStruct_ov12_02225F6C unk_50;
 } UnkStruct_ov12_0222EC18;
 
 typedef struct {
     UnkStruct_ov12_0223595C unk_00;
-    UnkStruct_0200D0F4 * unk_1C[3];
+    CellActorData * unk_1C[3];
     int unk_28;
     f32 unk_2C;
     f32 unk_30;
@@ -92,7 +92,7 @@ typedef struct {
     UnkStruct_ov12_02235998 unk_3C;
 } UnkStruct_ov12_0222F464;
 
-static void ov12_0222E91C (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222E91C (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222E91C * v0 = (UnkStruct_ov12_0222E91C *)param1;
 
@@ -168,7 +168,7 @@ void ov12_0222EAA0 (UnkStruct_ov12_0221FCDC * param0)
     v0->unk_A4 = -sub_020080C0(v0->unk_1C.unk_08, 41);
 
     {
-        UnkStruct_0200D0F4 * v1;
+        CellActorData * v1;
         int v2;
         int v3 = ov12_02223334(v0->unk_00.unk_04, ov12_02220240(v0->unk_00.unk_04));
         int v4 = ov12_02223344(v0->unk_00.unk_04, ov12_02220240(v0->unk_00.unk_04));
@@ -191,7 +191,7 @@ void ov12_0222EAA0 (UnkStruct_ov12_0221FCDC * param0)
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222E91C, v0);
 }
 
-static void ov12_0222EC18 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222EC18 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222EC18 * v0 = (UnkStruct_ov12_0222EC18 *)param1;
 
@@ -228,7 +228,7 @@ static void ov12_0222EC18 (UnkStruct_0201CD38 * param0, void * param1)
     sub_0200C7EC(v0->unk_00.unk_10);
 }
 
-void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, UnkStruct_0200D0F4 * param3)
+void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param1, UnkStruct_0200C704 * param2, CellActorData * param3)
 {
     UnkStruct_ov12_0222EC18 * v0 = NULL;
 
@@ -332,7 +332,7 @@ void ov12_0222EC90 (UnkStruct_ov12_0221FCDC * param0, UnkStruct_0200C6E4 * param
     ov12_022201E8(v0->unk_00.unk_04, ov12_0222EC18, v0);
 }
 
-static void ov12_0222EE50 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222EE50 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222EE50 * v0 = param1;
 
@@ -475,14 +475,14 @@ void ov12_0222EFB0 (UnkStruct_ov12_0221FCDC * param0)
     G2_ChangeBlendAlpha(v0->unk_34, v0->unk_35);
 
     {
-        UnkStruct_0201CD38 * v14;
+        SysTask * v14;
 
         v14 = ov12_022201E8(v0->unk_00.unk_04, ov12_0222EE50, v0);
         ov12_0222EE50(v14, v0);
     }
 }
 
-static void ov12_0222F208 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222F208 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222F208 * v0 = (UnkStruct_ov12_0222F208 *)param1;
 
@@ -601,7 +601,7 @@ static void ov12_0222F44C (UnkStruct_02007C7C * param0, int param1, int param2, 
     sub_020086D4(param0, param1, 80 - param3, param2, param4);
 }
 
-static void ov12_0222F464 (UnkStruct_0201CD38 * param0, void * param1)
+static void ov12_0222F464 (SysTask * param0, void * param1)
 {
     UnkStruct_ov12_0222F464 * v0 = param1;
 
@@ -673,7 +673,7 @@ void ov12_0222F5EC (UnkStruct_ov12_0221FCDC * param0)
         switch (v1) {
         case 3:
         case 4:
-            sub_02019060(2, (ov12_0222339C(param0) - 1));
+            BGL_SetPriority(2, (ov12_0222339C(param0) - 1));
             break;
         }
     }

@@ -1,9 +1,9 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
-#include "struct_decls/struct_02023790_decl.h"
+#include "strbuf.h"
 
 #include "struct_defs/struct_02089688.h"
 
@@ -289,7 +289,7 @@ BOOL sub_020898DC (UnkStruct_02089688 * param0)
         param0->unk_29C++;
         break;
     case 1:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_29C++;
         }
         break;
@@ -304,7 +304,7 @@ BOOL sub_02089938 (UnkStruct_02089688 * param0)
 {
     switch (param0->unk_29C) {
     case 0:
-        if (sub_0200F2AC() == 1) {
+        if (ScreenWipe_Done() == 1) {
             param0->unk_29C++;
         }
         break;
@@ -492,7 +492,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     ldr r0, [r4, r0]
     cmp r0, #1
     bne _02089CBC
-    ldr r0, = Unk_021BF67C
+    ldr r0, = gCoreSys
               ldr r0, [r0, #0x48]
     cmp r0, #0
     beq _02089C80
@@ -532,7 +532,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     str r1, [r4, r0]
     pop {r3, r4, r5, r6, r7, pc}
  _02089CBC:
-    ldr r0, = Unk_021BF67C
+    ldr r0, = gCoreSys
               mov r1, #0x40
     ldr r0, [r0, #0x4c]
     tst r1, r0
@@ -620,7 +620,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     mov r6, #1
     b _02089F2A
  _02089D56:
-    ldr r1, = Unk_021BF67C
+    ldr r1, = gCoreSys
               ldr r7, [r1, #0x48]
     mov r1, #1
     tst r1, r7
@@ -630,7 +630,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     add r0, r4, #0
     bl sub_02089FFC
     ldr r0, = 0x5E5
-              bl sub_02005748
+              bl Sound_PlayEffect
               b _02089F2A
  _02089D72:
               cmp r5, #0xb
@@ -638,7 +638,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     add r0, r4, #0
     bl sub_02089F80
     ldr r0, = 0x5E2
-              bl sub_02005748
+              bl Sound_PlayEffect
               b _02089F2A
  _02089D84:
               sub r2, #0xd8
@@ -729,7 +729,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     str r2, [r4, r0]
  _02089E34:
     ldr r0, = 0x5E5
-              bl sub_02005748
+              bl Sound_PlayEffect
               b _02089F2A
  _02089E3C:
               mov r1, #2
@@ -739,7 +739,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
     add r0, r4, #0
     bl sub_02089FFC
     ldr r0, = 0x5E5
-              bl sub_02005748
+              bl Sound_PlayEffect
               b _02089F2A
  _02089E52:
               lsl r5, r1, #8
@@ -793,7 +793,7 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
  _02089EAC:
     mov r0, #0x5e
     lsl r0, r0, #4
-    bl sub_02005748
+    bl Sound_PlayEffect
     b _02089F2A
  _02089EB6:
     add r1, #0xfe
@@ -846,13 +846,13 @@ asm void sub_02089C20 (UnkStruct_02089688 * param0)
  _02089F22:
     mov r0, #0x5e
     lsl r0, r0, #4
-    bl sub_02005748
+    bl Sound_PlayEffect
  _02089F2A:
     cmp r6, #1
     bne _02089F78
     mov r0, #0x5e
     lsl r0, r0, #4
-    bl sub_02005748
+    bl Sound_PlayEffect
     ldr r1, = 0x246
               mov r0, #0x14
     ldrsh r2, [r4, r1]
@@ -1019,20 +1019,20 @@ void sub_0208A180 (u32 param0, u32 param1, void * param2)
                 v0->unk_380.unk_04 = v0->unk_00[param0].unk_04;
             }
 
-            sub_02005748(1509);
+            Sound_PlayEffect(1509);
         } else {
             if (param0 == 26) {
                 v0->unk_1F0[1].unk_14.unk_00 = 0;
                 v0->unk_1F0[1].unk_14.unk_02 = 2;
-                sub_02005748(1509);
+                Sound_PlayEffect(1509);
             } else if (param0 == 27) {
                 v0->unk_1F0[1].unk_14.unk_00 = 3;
                 v0->unk_1F0[1].unk_14.unk_02 = 2;
-                sub_02005748(1506);
+                Sound_PlayEffect(1506);
             } else {
                 v0->unk_1F0[1].unk_14.unk_00 = (param0 - 16) % 5;
                 v0->unk_1F0[1].unk_14.unk_02 = (param0 - 16) / 5;
-                sub_02005748(1509);
+                Sound_PlayEffect(1509);
             }
 
             if ((param0 >= 16) && (param0 <= 25)) {

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="29794" />
+	<row id="pl_msg_00000314_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: This place...\r</language>
+	</row>
+	<row id="pl_msg_00000314_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Can you feel it?\nThere are no Pokémon here at all.\rTime isn’t flowing.\nAnd space isn’t stable.\fA world where the rules are broken.\rA space one might call the Distortion\nWorld...\r</language>
+	</row>
+	<row id="pl_msg_00000314_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Let’s find GIRATINA.\rWe need it to stop the spreading\ndistortion at the Spear Pillar...\r</language>
+	</row>
+	<row id="pl_msg_00000314_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: That was...\rGIRATINA...!</language>
+	</row>
+	<row id="pl_msg_00000314_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">We have to hurry!\rIf something’s not done, the distortion\nwill swallow not only our world, it will\foverwhelm the Distortion World...\r</language>
+	</row>
+	<row id="pl_msg_00000314_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: This rock slab...\rIt appears to move if you step on a\ncertain spot.</language>
+	</row>
+	<row id="pl_msg_00000314_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Cynthia: On the ground here...\nWhy is it colored differently?</language>
+	</row>
+	<row id="pl_msg_00000314_00007" index="7">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">There is the portal leading back to\nthe Spear Pillar.\rLeap into the portal and return to\nthe Spear Pillar?</language>
+	</row>
+	<row id="pl_msg_00000314_00008" index="8">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">{STRVAR_1 3, 0, 0} headed for the Spear\nPillar!\r</language>
+	</row>
+</body>

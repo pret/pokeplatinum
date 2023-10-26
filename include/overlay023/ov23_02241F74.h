@@ -1,9 +1,9 @@
 #ifndef POKEPLATINUM_OV23_02241F74_H
 #define POKEPLATINUM_OV23_02241F74_H
 
-#include "struct_decls/struct_0201CD38_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_02025E6C_decl.h"
+#include "struct_decls/sys_task.h"
+#include "strbuf.h"
+#include "trainer_info.h"
 #include "struct_decls/struct_02029894_decl.h"
 #include "struct_decls/struct_0203CDB0_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -18,8 +18,8 @@ UnkStruct_ov23_02253E2C * ov23_022421BC(void);
 UnkStruct_ov23_02253E2C * ov23_022421CC(void);
 UnkStruct_ov23_02253E2C * ov23_022421DC(void);
 void ov23_022421EC(void);
-BOOL ov23_0224223C(UnkStruct_02025E6C * param0, UnkStruct_02025E6C * param1, int param2, Strbuf *param3);
-BOOL ov23_022422A8(UnkStruct_02025E6C * param0, int param1, int param2, Strbuf *param3);
+BOOL ov23_0224223C(TrainerInfo * param0, TrainerInfo * param1, int param2, Strbuf *param3);
+BOOL ov23_022422A8(TrainerInfo * param0, int param1, int param2, Strbuf *param3);
 BOOL ov23_0224240C(int param0, int param1);
 BOOL ov23_02242458(void);
 void ov23_022425F8(int param0, int param1, void * param2, void * param3);
@@ -40,7 +40,7 @@ void ov23_02242CB4(void);
 void ov23_02242D08(void);
 void ov23_02242D44(UnkStruct_0203CDB0 * param0);
 BOOL ov23_02242D60(Strbuf *param0);
-UnkStruct_02029894 * ov23_02242E10(UnkStruct_021C0794 * param0);
+UnkStruct_02029894 * ov23_02242E10(SaveData * param0);
 int ov23_02242E28(void);
 int ov23_02242E40(void);
 BOOL ov23_02242E58(int param0, int param1);
@@ -61,7 +61,7 @@ void ov23_022430E0(u16 param0, u16 param1, u16 param2);
 u16 ov23_02243154(u16 param0);
 u16 ov23_0224318C(u16 param0);
 void ov23_022431C4(int param0, int param1, void * param2, void * param3);
-void ov23_022431EC(void * param0, UnkStruct_0201CD38 * param1, UnkFuncPtr_ov23_022431EC param2);
+void ov23_022431EC(void * param0, SysTask * param1, UnkFuncPtr_ov23_022431EC param2);
 void ov23_02243204(void);
 BOOL ov23_0224321C(void);
 BOOL ov23_02243298(int param0);

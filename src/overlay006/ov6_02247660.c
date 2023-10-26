@@ -47,7 +47,7 @@ BOOL ov6_02247660 (UnkStruct_0203CDB0 * param0)
     v8[2] = (v13 >> 8) & 0xff;
     v8[3] = v13 & 0xff;
 
-    v5 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 1, 4);
+    v5 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 1, 4);
     v7 = ((int *)v5)[0];
     v1 = 0;
 
@@ -97,7 +97,7 @@ void ov6_022477A0 (int * param0)
 {
     int * v0;
 
-    v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(106, 0, 4);
+    v0 = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, 0, 4);
     (*param0) = (*v0);
 
     Heap_FreeToHeap(v0);

@@ -1,7 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "struct_decls/struct_0201CD38_decl.h"
+#include "struct_decls/sys_task.h"
 
 #include "struct_defs/struct_02010658.h"
 #include "struct_defs/struct_02012634.h"
@@ -12,10 +12,10 @@
 #include "unk_0200D9E8.h"
 #include "unk_02012480.h"
 
-static void sub_020126CC(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_020126E0(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_020126FC(UnkStruct_0201CD38 * param0, void * param1);
-static void sub_02012714(UnkStruct_0201CD38 * param0, void * param1);
+static void sub_020126CC(SysTask * param0, void * param1);
+static void sub_020126E0(SysTask * param0, void * param1);
+static void sub_020126FC(SysTask * param0, void * param1);
+static void sub_02012714(SysTask * param0, void * param1);
 
 void sub_02012480 (int param0, int param1)
 {
@@ -124,34 +124,34 @@ void sub_02012698 (UnkStruct_02010658 * param0, int param1, int param2, int para
     sub_0200DA3C(sub_02012714, v0, 1);
 }
 
-static void sub_020126CC (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020126CC (SysTask * param0, void * param1)
 {
     UnkStruct_02012634 * v0 = (UnkStruct_02012634 *)param1;
 
     sub_02012480(v0->unk_00, v0->unk_04);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void sub_020126E0 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020126E0 (SysTask * param0, void * param1)
 {
     UnkStruct_02012650 * v0 = (UnkStruct_02012650 *)param1;
 
     sub_020124AC(v0->unk_00, v0->unk_04, v0->unk_08, v0->unk_0C);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void sub_020126FC (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_020126FC (SysTask * param0, void * param1)
 {
     UnkStruct_02012678 * v0 = (UnkStruct_02012678 *)param1;
 
     sub_02012534(v0->unk_00, v0->unk_04, v0->unk_08);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }
 
-static void sub_02012714 (UnkStruct_0201CD38 * param0, void * param1)
+static void sub_02012714 (SysTask * param0, void * param1)
 {
     UnkStruct_02012698 * v0 = (UnkStruct_02012698 *)param1;
 
     sub_02012574(v0->unk_00, v0->unk_02, v0->unk_04, v0->unk_06, v0->unk_08, v0->unk_0C);
-    sub_0200DA58(param0);
+    SysTask_Done(param0);
 }

@@ -1,17 +1,17 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "data_021BF67C.h"
+#include "core_sys.h"
 
 #include "struct_decls/struct_020067E8_decl.h"
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200B144_decl.h"
+#include "message.h"
 #include "struct_decls/struct_0200B358_decl.h"
 #include "struct_decls/struct_0200C440_decl.h"
 #include "struct_decls/struct_02018340_decl.h"
 #include "struct_decls/struct_020203AC_decl.h"
-#include "struct_decls/struct_02023790_decl.h"
-#include "struct_decls/struct_020973A8_decl.h"
+#include "strbuf.h"
+#include "struct_decls/struct_berry_data_decl.h"
 
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_020972FC.h"
@@ -25,7 +25,7 @@
 #include "unk_020067E8.h"
 #include "narc.h"
 #include "unk_02006E3C.h"
-#include "unk_0200AC5C.h"
+#include "message.h"
 #include "unk_0200B358.h"
 #include "unk_0200C440.h"
 #include "unk_0200F174.h"
@@ -41,7 +41,7 @@
 #include "unk_020393C8.h"
 #include "unk_0208C098.h"
 #include "unk_020972FC.h"
-#include "unk_0209739C.h"
+#include "berry_data.h"
 #include "overlay085/ov85_02241440.h"
 
 typedef struct {
@@ -52,9 +52,9 @@ typedef struct {
 } UnkStruct_ov85_022420A8;
 
 typedef struct {
-    UnkStruct_02018340 * unk_00;
-    UnkStruct_0205AA50 unk_04[12];
-    UnkStruct_0200B144 * unk_C4;
+    BGL * unk_00;
+    Window unk_04[12];
+    MessageLoader * unk_C4;
     UnkStruct_0200B358 * unk_C8;
     UnkStruct_0200C440 * unk_CC;
     UnkStruct_020203AC * unk_D0;
@@ -63,7 +63,7 @@ typedef struct {
     UnkStruct_ov85_022420A8 unk_194[4];
     u32 unk_1F4;
     UnkStruct_020972FC * unk_1F8;
-    UnkStruct_020973A8 * unk_1FC;
+    BerryData * unk_1FC;
     u8 unk_200;
     u8 unk_201;
 } UnkStruct_ov85_022417E4;
@@ -78,14 +78,14 @@ typedef struct {
 
 static void ov85_022415F4(void * param0);
 static void ov85_02241614(void);
-static void ov85_02241634(UnkStruct_02018340 * param0);
-static void ov85_022416E8(UnkStruct_02018340 * param0);
+static void ov85_02241634(BGL * param0);
+static void ov85_022416E8(BGL * param0);
 static void ov85_02241718(UnkStruct_ov85_022417E4 * param0, NARC * param1);
 static void ov85_022417CC(void);
 static void ov85_022417E4(UnkStruct_ov85_022417E4 * param0);
 static void ov85_0224181C(UnkStruct_ov85_022417E4 * param0);
 static void ov85_0224183C(UnkStruct_ov85_022417E4 * param0);
-static void ov85_02241860(UnkStruct_0205AA50 * param0);
+static void ov85_02241860(Window * param0);
 static void ov85_02241E60(UnkStruct_ov85_022417E4 * param0, NARC * param1);
 static void ov85_02241C64(UnkStruct_ov85_022417E4 * param0, u8 param1);
 static void ov85_02241CD0(UnkStruct_ov85_022417E4 * param0);
@@ -234,11 +234,11 @@ int ov85_02241440 (UnkStruct_020067E8 * param0, int * param1)
     memset(v0, 0, sizeof(UnkStruct_ov85_022417E4));
     v0->unk_1F8 = sub_02006840(param0);
     v0->unk_00 = sub_02018340(36);
-    v0->unk_1FC = sub_020973B8(v0->unk_1F8->unk_08, 36);
+    v0->unk_1FC = BerryData_LoadDataByNarcMemberIndex(v0->unk_1F8->unk_08, 36);
 
     sub_0208C120(0, 36);
 
-    v1 = NARC_ctor(53, 36);
+    v1 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, 36);
 
     ov85_02241614();
     ov85_02241634(v0->unk_00);
@@ -339,7 +339,7 @@ static void ov85_02241614 (void)
     GXLayers_SetBanks(&v0);
 }
 
-static void ov85_02241634 (UnkStruct_02018340 * param0)
+static void ov85_02241634 (BGL * param0)
 {
     {
         UnkStruct_ov84_0223BA5C v0 = {
@@ -419,7 +419,7 @@ static void ov85_02241634 (UnkStruct_02018340 * param0)
     sub_02019690(1, 32, 0, 36);
 }
 
-static void ov85_022416E8 (UnkStruct_02018340 * param0)
+static void ov85_022416E8 (BGL * param0)
 {
     GXLayers_EngineAToggleLayers(GX_PLANEMASK_BG0 | GX_PLANEMASK_BG1 | GX_PLANEMASK_BG2 | GX_PLANEMASK_BG3, 0);
     sub_02019044(param0, 3);
@@ -460,14 +460,14 @@ static void ov85_022417CC (void)
 
 static void ov85_022417E4 (UnkStruct_ov85_022417E4 * param0)
 {
-    param0->unk_C4 = sub_0200B144(0, 26, 398, 36);
+    param0->unk_C4 = MessageLoader_Init(0, 26, 398, 36);
     param0->unk_CC = sub_0200C440(15, 2, 0, 36);
     param0->unk_C8 = sub_0200B358(36);
 }
 
 static void ov85_0224181C (UnkStruct_ov85_022417E4 * param0)
 {
-    sub_0200B190(param0->unk_C4);
+    MessageLoader_Free(param0->unk_C4);
     sub_0200C560(param0->unk_CC);
     sub_0200B3F0(param0->unk_C8);
 }
@@ -481,23 +481,23 @@ static void ov85_0224183C (UnkStruct_ov85_022417E4 * param0)
     }
 }
 
-static void ov85_02241860 (UnkStruct_0205AA50 * param0)
+static void ov85_02241860 (Window * param0)
 {
     u32 v0;
 
     for (v0 = 0; v0 < 12; v0++) {
-        sub_0201A8FC(&param0[v0]);
+        BGL_DeleteWindow(&param0[v0]);
     }
 }
 
 static void ov85_02241878 (UnkStruct_ov85_022417E4 * param0, u32 param1, u32 param2, u32 param3)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
     u32 v2;
 
     v0 = &param0->unk_04[param1];
-    v1 = sub_0200B1EC(param0->unk_C4, param2);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, param2);
     v2 = sub_02002D7C(0, v1, 0);
 
     sub_0201D78C(v0, 0, v1, (sub_0201C294(v0) * 8 - v2) / 2, 0, 0xff, param3, NULL);
@@ -507,52 +507,52 @@ static void ov85_02241878 (UnkStruct_ov85_022417E4 * param0, u32 param1, u32 par
 
 static void ov85_022418CC (UnkStruct_ov85_022417E4 * param0)
 {
-    sub_0201ADA4(&param0->unk_04[0], 4);
+    BGL_FillWindow(&param0->unk_04[0], 4);
     ov85_02241878(param0, 0, 0, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | (((4 & 0xff) << 0)))));
 }
 
 static void ov85_022418EC (UnkStruct_ov85_022417E4 * param0)
 {
-    sub_0201ADA4(&param0->unk_04[2], 0);
+    BGL_FillWindow(&param0->unk_04[2], 0);
     ov85_02241878(param0, 2, 1, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
 static void ov85_0224190C (UnkStruct_ov85_022417E4 * param0)
 {
-    sub_0201ADA4(&param0->unk_04[3], 0);
+    BGL_FillWindow(&param0->unk_04[3], 0);
     ov85_02241878(param0, 3, 2, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
 static void ov85_0224192C (UnkStruct_ov85_022417E4 * param0)
 {
-    sub_0201ADA4(&param0->unk_04[4], 0);
+    BGL_FillWindow(&param0->unk_04[4], 0);
     ov85_02241878(param0, 4, 3, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
 static void ov85_0224194C (UnkStruct_ov85_022417E4 * param0)
 {
-    sub_0201ADA4(&param0->unk_04[5], 0);
+    BGL_FillWindow(&param0->unk_04[5], 0);
     ov85_02241878(param0, 5, 4, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
 static void ov85_0224196C (UnkStruct_ov85_022417E4 * param0)
 {
-    sub_0201ADA4(&param0->unk_04[6], 0);
+    BGL_FillWindow(&param0->unk_04[6], 0);
     ov85_02241878(param0, 6, 5, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))));
 }
 
 static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
     Strbuf* v2;
 
     v0 = &param0->unk_04[1];
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
     sub_0200C578(param0->unk_CC, 2, v0, 0, 5);
 
-    v1 = sub_0200B1EC(param0->unk_C4, 6);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 6);
     v2 = Strbuf_Init((2 + 1) * 2, 36);
 
     sub_0200B60C(param0->unk_C8, 0, param0->unk_1F8->unk_08 + 1, 2, 2, 1);
@@ -561,7 +561,7 @@ static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
     Strbuf_Free(v1);
     Strbuf_Free(v2);
 
-    v1 = sub_0209742C(param0->unk_1F8->unk_08, 36);
+    v1 = BerryData_AllocAndGetName(param0->unk_1F8->unk_08, 36);
 
     sub_0201D78C(v0, 0, v1, 40, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -570,14 +570,14 @@ static void ov85_0224198C (UnkStruct_ov85_022417E4 * param0)
 
 static void ov85_02241A58 (UnkStruct_ov85_022417E4 * param0)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = &param0->unk_04[11];
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
 
-    v1 = sub_02097454(param0->unk_1F8->unk_08, 36);
+    v1 = BerryData_AllocAndGetDescription(param0->unk_1F8->unk_08, 36);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((1 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -586,12 +586,12 @@ static void ov85_02241A58 (UnkStruct_ov85_022417E4 * param0)
 
 static void ov85_02241AA8 (UnkStruct_ov85_022417E4 * param0)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = &param0->unk_04[9];
-    sub_0201ADA4(v0, 0);
-    v1 = sub_0200B1EC(param0->unk_C4, 10);
+    BGL_FillWindow(v0, 0);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 10);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -600,21 +600,21 @@ static void ov85_02241AA8 (UnkStruct_ov85_022417E4 * param0)
 
 static void ov85_02241AF4 (UnkStruct_ov85_022417E4 * param0)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
     u32 v2;
 
     v0 = &param0->unk_04[10];
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
 
-    v2 = sub_020973D4(param0->unk_1FC, 1);
+    v2 = BerryData_GetAttribute(param0->unk_1FC, 1);
 
     if (v2 != 0) {
         v2--;
     }
 
-    v1 = sub_0200B1EC(param0->unk_C4, 11 + v2);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 11 + v2);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -623,12 +623,12 @@ static void ov85_02241AF4 (UnkStruct_ov85_022417E4 * param0)
 
 static void ov85_02241B50 (UnkStruct_ov85_022417E4 * param0)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
 
     v0 = &param0->unk_04[7];
-    sub_0201ADA4(v0, 0);
-    v1 = sub_0200B1EC(param0->unk_C4, 8);
+    BGL_FillWindow(v0, 0);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 8);
 
     sub_0201D78C(v0, 0, v1, 0, 0, 0xff, ((u32)(((15 & 0xff) << 16) | ((2 & 0xff) << 8) | ((0 & 0xff) << 0))), NULL);
     Strbuf_Free(v1);
@@ -637,18 +637,18 @@ static void ov85_02241B50 (UnkStruct_ov85_022417E4 * param0)
 
 static void ov85_02241B9C (UnkStruct_ov85_022417E4 * param0)
 {
-    UnkStruct_0205AA50 * v0;
+    Window * v0;
     Strbuf* v1;
     Strbuf* v2;
     u32 v3;
 
     v0 = &param0->unk_04[8];
 
-    sub_0201ADA4(v0, 0);
+    BGL_FillWindow(v0, 0);
 
-    v3 = sub_020973D4(param0->unk_1FC, 0);
+    v3 = BerryData_GetAttribute(param0->unk_1FC, 0);
     v3 = (((v3 * 1000) / 254 + 5) / 10);
-    v1 = sub_0200B1EC(param0->unk_C4, 9);
+    v1 = MessageLoader_GetNewStrbuf(param0->unk_C4, 9);
     v2 = Strbuf_Init(32, 36);
 
     sub_0200B60C(param0->unk_C8, 0, v3 / 10, 2, 0, 1);
@@ -705,7 +705,7 @@ static void ov85_02241CD0 (UnkStruct_ov85_022417E4 * param0)
 
 static int ov85_02241CE8 (UnkStruct_ov85_022417E4 * param0)
 {
-    if (sub_0200F2AC() == 1) {
+    if (ScreenWipe_Done() == 1) {
         G2_SetBlendAlpha(GX_BLEND_PLANEMASK_BG1, GX_BLEND_PLANEMASK_BG2, 16, 0);
         return 1;
     }
@@ -717,7 +717,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
 {
     u32 v0;
 
-    if (Unk_021BF67C.unk_44 & PAD_KEY_UP) {
+    if (gCoreSys.unk_44 & PAD_KEY_UP) {
         v0 = ov85_02241EB8(param0->unk_1F8->unk_00, param0->unk_1F8->unk_08, -1);
 
         if (param0->unk_1F8->unk_08 != v0) {
@@ -737,7 +737,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
         return 1;
     }
 
-    if (Unk_021BF67C.unk_44 & PAD_KEY_DOWN) {
+    if (gCoreSys.unk_44 & PAD_KEY_DOWN) {
         v0 = ov85_02241EB8(param0->unk_1F8->unk_00, param0->unk_1F8->unk_08, 1);
 
         if (param0->unk_1F8->unk_08 != v0) {
@@ -757,7 +757,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
         return 1;
     }
 
-    if ((Unk_021BF67C.unk_48 & PAD_BUTTON_B) || (Unk_021BF67C.unk_60)) {
+    if ((gCoreSys.padInput & PAD_BUTTON_B) || (gCoreSys.touchInput)) {
         sub_0208C120(1, 36);
         return 3;
     }
@@ -767,7 +767,7 @@ static int ov85_02241D10 (UnkStruct_ov85_022417E4 * param0)
 
 static u8 ov85_02241DEC (UnkStruct_ov85_022417E4 * param0)
 {
-    return sub_0200F2AC();
+    return ScreenWipe_Done();
 }
 
 static int ov85_02241DF8 (UnkStruct_ov85_022417E4 * param0)
@@ -865,10 +865,10 @@ static void ov85_02241F0C (UnkStruct_ov85_022417E4 * param0)
     NARC * v0;
 
     Heap_FreeToHeap(param0->unk_1FC);
-    param0->unk_1FC = sub_020973B8(param0->unk_1F8->unk_08, 36);
+    param0->unk_1FC = BerryData_LoadDataByNarcMemberIndex(param0->unk_1F8->unk_08, 36);
     ov85_02241CD0(param0);
 
-    v0 = NARC_ctor(53, 36);
+    v0 = NARC_ctor(NARC_INDEX_GRAPHIC__NTAG_GRA, 36);
     ov85_02241E60(param0, v0);
     NARC_dtor(v0);
     ov85_02242578(param0);
@@ -1035,25 +1035,25 @@ static void ov85_02242578 (UnkStruct_ov85_022417E4 * param0)
 {
     u32 v0;
 
-    ov85_022423A0(&Unk_ov85_02242938[0][0], &param0->unk_194[0].unk_00, sub_020973D4(param0->unk_1FC, 5));
-    ov85_022423A0(&Unk_ov85_02242938[0][1], &param0->unk_194[0].unk_06, sub_020973D4(param0->unk_1FC, 6));
-    ov85_022423A0(&Unk_ov85_02242938[0][2], &param0->unk_194[0].unk_12, sub_020973D4(param0->unk_1FC, 7));
+    ov85_022423A0(&Unk_ov85_02242938[0][0], &param0->unk_194[0].unk_00, BerryData_GetAttribute(param0->unk_1FC, 5));
+    ov85_022423A0(&Unk_ov85_02242938[0][1], &param0->unk_194[0].unk_06, BerryData_GetAttribute(param0->unk_1FC, 6));
+    ov85_022423A0(&Unk_ov85_02242938[0][2], &param0->unk_194[0].unk_12, BerryData_GetAttribute(param0->unk_1FC, 7));
     ov85_022423A0(&Unk_ov85_02242938[0][3], &param0->unk_194[0].unk_0C, 0);
 
-    ov85_022423A0(&Unk_ov85_02242938[1][0], &param0->unk_194[1].unk_00, sub_020973D4(param0->unk_1FC, 9));
-    ov85_022423A0(&Unk_ov85_02242938[1][1], &param0->unk_194[1].unk_06, sub_020973D4(param0->unk_1FC, 5));
+    ov85_022423A0(&Unk_ov85_02242938[1][0], &param0->unk_194[1].unk_00, BerryData_GetAttribute(param0->unk_1FC, 9));
+    ov85_022423A0(&Unk_ov85_02242938[1][1], &param0->unk_194[1].unk_06, BerryData_GetAttribute(param0->unk_1FC, 5));
     ov85_022423A0(&Unk_ov85_02242938[1][2], &param0->unk_194[1].unk_12, 0);
-    ov85_022423A0(&Unk_ov85_02242938[1][3], &param0->unk_194[1].unk_0C, sub_020973D4(param0->unk_1FC, 8));
+    ov85_022423A0(&Unk_ov85_02242938[1][3], &param0->unk_194[1].unk_0C, BerryData_GetAttribute(param0->unk_1FC, 8));
 
-    ov85_022423A0(&Unk_ov85_02242938[2][0], &param0->unk_194[2].unk_00, sub_020973D4(param0->unk_1FC, 9));
+    ov85_022423A0(&Unk_ov85_02242938[2][0], &param0->unk_194[2].unk_00, BerryData_GetAttribute(param0->unk_1FC, 9));
     ov85_022423A0(&Unk_ov85_02242938[2][1], &param0->unk_194[2].unk_06, 0);
-    ov85_022423A0(&Unk_ov85_02242938[2][2], &param0->unk_194[2].unk_12, sub_020973D4(param0->unk_1FC, 7));
-    ov85_022423A0(&Unk_ov85_02242938[2][3], &param0->unk_194[2].unk_0C, sub_020973D4(param0->unk_1FC, 8));
+    ov85_022423A0(&Unk_ov85_02242938[2][2], &param0->unk_194[2].unk_12, BerryData_GetAttribute(param0->unk_1FC, 7));
+    ov85_022423A0(&Unk_ov85_02242938[2][3], &param0->unk_194[2].unk_0C, BerryData_GetAttribute(param0->unk_1FC, 8));
 
     ov85_022423A0(&Unk_ov85_02242938[3][0], &param0->unk_194[3].unk_00, 0);
-    ov85_022423A0(&Unk_ov85_02242938[3][1], &param0->unk_194[3].unk_06, sub_020973D4(param0->unk_1FC, 6));
-    ov85_022423A0(&Unk_ov85_02242938[3][2], &param0->unk_194[3].unk_12, sub_020973D4(param0->unk_1FC, 7));
-    ov85_022423A0(&Unk_ov85_02242938[3][3], &param0->unk_194[3].unk_0C, sub_020973D4(param0->unk_1FC, 8));
+    ov85_022423A0(&Unk_ov85_02242938[3][1], &param0->unk_194[3].unk_06, BerryData_GetAttribute(param0->unk_1FC, 6));
+    ov85_022423A0(&Unk_ov85_02242938[3][2], &param0->unk_194[3].unk_12, BerryData_GetAttribute(param0->unk_1FC, 7));
+    ov85_022423A0(&Unk_ov85_02242938[3][3], &param0->unk_194[3].unk_0C, BerryData_GetAttribute(param0->unk_1FC, 8));
 
     for (v0 = 0; v0 < 4; v0++) {
         ov85_022423FC(&param0->unk_D4[v0].unk_00, &param0->unk_194[v0].unk_00, &param0->unk_134[v0].unk_00);

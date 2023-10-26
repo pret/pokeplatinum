@@ -2,7 +2,7 @@
 #define POKEPLATINUM_OV5_021D2F14_H
 
 #include "struct_decls/struct_02006C24_decl.h"
-#include "struct_decls/struct_0200D0F4_decl.h"
+#include "struct_decls/cell_actor_data.h"
 #include "struct_decls/struct_02022550_decl.h"
 #include "overlay005/struct_ov5_021D30A8.h"
 #include "overlay007/struct_ov7_0224F2EC.h"
@@ -22,7 +22,7 @@ void ov5_021D3388(UnkStruct_ov5_021D30A8 * param0, int param1, int param2, int p
 void ov5_021D339C(UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, int param3, int param4);
 void ov5_021D33B0(UnkStruct_ov5_021D30A8 * param0, int param1, int param2, BOOL param3, int param4, int param5);
 void ov5_021D3414(UnkStruct_ov5_021D30A8 * param0, NARC * param1, int param2, BOOL param3, int param4, int param5);
-UnkStruct_0200D0F4 * ov5_021D3584(UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov104_0223F9E0 * param1);
+CellActorData * ov5_021D3584(UnkStruct_ov5_021D30A8 * param0, const UnkStruct_ov104_0223F9E0 * param1);
 void ov5_021D375C(UnkStruct_ov5_021D30A8 * param0);
 
 #endif // POKEPLATINUM_OV5_021D2F14_H

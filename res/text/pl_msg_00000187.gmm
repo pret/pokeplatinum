@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<body language="English">
+	<key value="54330" />
+	<row id="pl_msg_00000187_00000" index="0">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">Yo, Trainer!\rYou had me counting the days on my\nfingers waiting for you to come.\rI heard from Volkner what you \ndid in Sunyshore.\rYou managed to light a fire in that\nguy’s heart again.\rHow could you not expect me to look\nforward to seeing you in battle?\r</language>
+	</row>
+	<row id="pl_msg_00000187_00001" index="1">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">You’re facing a Fire-type Pokémon\nuser with me.\rLet Flint see how hot your spirit\nburns!\r</language>
+	</row>
+	<row id="pl_msg_00000187_00002" index="2">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\n...\r...\n...\r...\n...\r...Whew...\n...Burnt right down to cinders...</language>
+	</row>
+	<row id="pl_msg_00000187_00003" index="3">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\n...\r...\n...\r...\n...\r...Keep going...</language>
+	</row>
+	<row id="pl_msg_00000187_00004" index="4">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">I was waiting for you, challenger!\rFlint, the master of the Fire type,\nis up next!\rBattles are clashes of the burning\nspirit of Pokémon.\rBattles aren’t about appearances\nor what’s weak or strong.\rIt all comes down to whether the\ncombatants can burn hot or not.\r</language>
+	</row>
+	<row id="pl_msg_00000187_00005" index="5">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\n...\r...Whew...\n...Burnt right down to cinders...</language>
+	</row>
+	<row id="pl_msg_00000187_00006" index="6">
+		<attribute name="window_context_name">used</attribute>
+		<language name="English">...\n...\r...Keep going...\rI know your spirit burns hot.\nYour whole team does.</language>
+	</row>
+</body>
