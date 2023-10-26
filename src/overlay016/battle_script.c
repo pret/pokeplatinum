@@ -175,14 +175,14 @@ static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *batt
 static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022432B4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243334(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243398(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243424(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243494(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022434CC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243504(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243530(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224355C(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_PlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayStatusEffectFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintRecallMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_0224358C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02243708(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022437D4(BattleSystem * param0, BattleContext * param1);
@@ -435,14 +435,14 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_SetStatusIcon,
     BtlCmd_TrainerMessage,
     ov16_022432B4,
-    ov16_02243334,
-    ov16_02243398,
-    ov16_02243424,
-    ov16_02243494,
-    ov16_022434CC,
-    ov16_02243504,
-    ov16_02243530,
-    ov16_0224355C,
+    BtlCmd_PlayStatusEffect,
+    BtlCmd_PlayStatusEffectAToD,
+    BtlCmd_PlayStatusEffectFromVar,
+    BtlCmd_PrintRecallMessage,
+    BtlCmd_PrintSendOutMessage,
+    BtlCmd_PrintBattleStartMessage,
+    BtlCmd_PrintLeadMonMessage,
+    BtlCmd_PreparedTrainerMessage,
     ov16_0224358C,
     ov16_02243708,
     ov16_022437D4,
@@ -4063,149 +4063,217 @@ static BOOL ov16_022432B4 (BattleSystem * param0, BattleContext * param1)
     return 0;
 }
 
-static BOOL ov16_02243334 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a status effect on the given battler.
+ * 
+ * This is responsible for playing the basic animations for status effects
+ * like end-of-turn Burn and Poison damage, full-Paralysis, Sleep, etc. It also
+ * handles animations for generic battle state updates, such as Substitute,
+ * weather, transformations, etc.
+ * 
+ * Inputs:
+ * 1. The battler on whom the animation should be centered.
+ * 2. The effect to be played.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int effect = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-
-    if ((BattleSystem_AnimationsOn(param0) == 1) || (v2 == 15) || (v2 == 16) || (v2 == 26) || (v2 == 25)) {
-        v0 = BattleScript_Battler(param0, param1, v1);
-
-        if (BattleSystem_ShouldShowStatusEffect(param1, v0, v2) == 1) {
-            BattleIO_PlayStatusEffect(param0, param1, v0, v2);
+    if (BattleSystem_AnimationsOn(battleSys) == TRUE
+            || effect == STATUS_EFFECT_CHANGE_FORM_OUT
+            || effect == STATUS_EFFECT_CHANGE_FORM_IN
+            || effect == STATUS_EFFECT_SUBSTITUTE_OFF
+            || effect == STATUS_EFFECT_SUBSTITUTE_ON) {
+        int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+        if (BattleSystem_ShouldShowStatusEffect(battleCtx, battler, effect) == TRUE) {
+            BattleIO_PlayStatusEffect(battleSys, battleCtx, battler, effect);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243398 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a status effect on the given battler.
+ * 
+ * This is responsible for animations that have an attacker and a defender.
+ * In vanilla Gen4, this only applies to the Leech Seed damage+drain effect.
+ * 
+ * Inputs:
+ * 1. The attacker for the animation.
+ * 2. The defender for the animation.
+ * 3. The effect to be played.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
-    int v2;
-    int v3;
-    int v4;
+    BattleScript_Iter(battleCtx, 1);
+    int inAttacker = BattleScript_Read(battleCtx);
+    int inDefender = BattleScript_Read(battleCtx);
+    int effect = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    if (BattleSystem_AnimationsOn(battleSys) == TRUE
+            || effect == STATUS_EFFECT_CHANGE_FORM_OUT
+            || effect == STATUS_EFFECT_CHANGE_FORM_IN
+            || effect == STATUS_EFFECT_SUBSTITUTE_OFF
+            || effect == STATUS_EFFECT_SUBSTITUTE_ON) {
+        int attacker = BattleScript_Battler(battleSys, battleCtx, inAttacker);
+        int defender = BattleScript_Battler(battleSys, battleCtx, inDefender);
 
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_Read(param1);
-
-    if ((BattleSystem_AnimationsOn(param0) == 1) || (v4 == 15) || (v4 == 16) || (v4 == 26) || (v4 == 25)) {
-        v0 = BattleScript_Battler(param0, param1, v2);
-        v1 = BattleScript_Battler(param0, param1, v3);
-
-        if ((BattleSystem_ShouldShowStatusEffect(param1, v0, v4) == 1) && (BattleSystem_ShouldShowStatusEffect(param1, v1, v4) == 1)) {
-            ov16_02266028(param0, param1, v0, v1, v4);
+        if (BattleSystem_ShouldShowStatusEffect(battleCtx, attacker, effect) == TRUE
+                && BattleSystem_ShouldShowStatusEffect(battleCtx, defender, effect) == TRUE) {
+            BattleIO_PlayStatusEffectAToD(battleSys, battleCtx, attacker, defender, effect);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243424 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Play a status effect from the value stored in a variable.
+ * 
+ * Inputs:
+ * 1. The battler on whom the animation should be centered.
+ * 2. The variable to consult for the effect to be played.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PlayStatusEffectFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int * v3;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int var = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int *effect = BattleScript_VarAddress(battleSys, battleCtx, var);
 
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v0 = BattleScript_Battler(param0, param1, v1);
-    v3 = BattleScript_VarAddress(param0, param1, v2);
-
-    if ((BattleSystem_AnimationsOn(param0) == 1) || (v2 == 15) || (v2 == 16) || (v3[0] == 26) || (v3[0] == 25)) {
-        if (BattleSystem_ShouldShowStatusEffect(param1, v0, v3[0]) == 1) {
-            BattleIO_PlayStatusEffect(param0, param1, v0, v3[0]);
-        }
+    if ((BattleSystem_AnimationsOn(battleSys) == TRUE
+            || var == STATUS_EFFECT_CHANGE_FORM_OUT // bug: this should be *effect, not var
+            || var == STATUS_EFFECT_CHANGE_FORM_IN // bug: this should be *effect, not var
+            || *effect == STATUS_EFFECT_SUBSTITUTE_OFF
+            || *effect == STATUS_EFFECT_SUBSTITUTE_ON)
+            && BattleSystem_ShouldShowStatusEffect(battleCtx, battler, *effect) == TRUE) {
+        BattleIO_PlayStatusEffect(battleSys, battleCtx, battler, *effect);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243494 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the message for recalling a Pokemon back to its ball.
+ * 
+ * Inputs:
+ * 1. The battler to be recalled.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PrintRecallMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_PrintRecallMessage(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
 
-    v1 = BattleScript_Read(param1);
-    v0 = BattleScript_Battler(param0, param1, v1);
-
-    ov16_02266058(param0, param1, v0, param1->selectedPartySlot[v0]);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022434CC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the message for sending a Pokemon out mid-battle.
+ * 
+ * Inputs:
+ * 1. The battler to be sent out.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_PrintSendOutMessage(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
 
-    BattleScript_Iter(param1, 1);
-
-    v1 = BattleScript_Read(param1);
-    v0 = BattleScript_Battler(param0, param1, v1);
-
-    ov16_0226609C(param0, param1, v0, param1->selectedPartySlot[v0]);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243504 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the message for starting an encounter (e.g., "A wild Rattata
+ * appeared!" or "Youngster Joey wants to battle!")
+ * 
+ * Inputs:
+ * 1. The battler appearing on the opposite side of the field.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_PrintBattleStartMessage(battleSys, battleCtx, battler);
 
-    BattleScript_Iter(param1, 1);
-
-    v1 = BattleScript_Read(param1);
-    v0 = BattleScript_Battler(param0, param1, v1);
-
-    ov16_022660E8(param0, param1, v0);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243530 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the message for sending out a leading Pokemon.
+ * 
+ * Inputs:
+ * 1. The battler being sent out.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_PrintLeadMonMessage(battleSys, battleCtx, battler);
 
-    BattleScript_Iter(param1, 1);
-
-    v1 = BattleScript_Read(param1);
-    v0 = BattleScript_Battler(param0, param1, v1);
-
-    ov16_02266100(param0, param1, v0);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224355C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Print the prepared message as a trainer message for the given battler.
+ * 
+ * Inputs:
+ * 1. The battler for whom the message should be shown as a trainer message.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_TrainerMessage(battleSys, battler, battleCtx->msgTemp);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    BattleIO_TrainerMessage(param0, v1, param1->msgTemp);
-
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_0224358C (BattleSystem * param0, BattleContext * param1)
