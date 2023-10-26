@@ -583,7 +583,20 @@ BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
 s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID);
 int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * param1);
-BOOL ov16_0225B1DC(BattleContext * param0, int param1, int param2);
+
+/**
+ * @brief Determine if a status effect should be shown for the given battler.
+ * 
+ * This handles the determination of if a given status effect animation should
+ * be played if the battler is behind a substitute or is in an invulnerable
+ * state.
+ * 
+ * @param battleCtx 
+ * @param battler   The battler for whom the status effect should be shown.
+ * @param status    The status effect attempting to be shown.
+ * @return TRUE if the status effect should be shown, FALSE otherwise.
+ */
+BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status);
 BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);

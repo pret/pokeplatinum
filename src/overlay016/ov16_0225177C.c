@@ -24,6 +24,7 @@
 #include "battle/battle_controller.h"
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
+#include "battle/btlcmd.h"
 #include "battle/common.h"
 
 #include "unk_020021B0.h"
@@ -158,7 +159,7 @@ BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
 s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID);
 int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * param1);
-BOOL ov16_0225B1DC(BattleContext * param0, int param1, int param2);
+BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status);
 BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
@@ -7224,36 +7225,36 @@ void BattleSystem_SortMonsInTrickRoom (BattleSystem * param0, BattleContext * pa
     }
 }
 
-static const int Unk_ov16_0226EC34[] = {
-    0xF,
-    0x10,
-    0x11,
-    0x12,
-    0x13,
-    0x14,
-    0x15,
-    0x16,
-    0x19,
-    0x1A
+static const enum StatusEffect sEffectsAlwaysShown[] = {
+    STATUS_EFFECT_CHANGE_FORM_OUT,
+    STATUS_EFFECT_CHANGE_FORM_IN,
+    STATUS_EFFECT_ITEM_ESCAPE,
+    STATUS_EFFECT_WEATHER_FOG,
+    STATUS_EFFECT_WEATHER_RAIN,
+    STATUS_EFFECT_WEATHER_HAIL,
+    STATUS_EFFECT_WEATHER_SAND,
+    STATUS_EFFECT_WEATHER_SUN,
+    STATUS_EFFECT_SUBSTITUTE_ON,
+    STATUS_EFFECT_SUBSTITUTE_OFF,
 };
 
-BOOL ov16_0225B1DC (BattleContext * param0, int param1, int param2)
+BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status)
 {
-    int v0;
-    BOOL v1 = 0;
+    BOOL result = FALSE;
 
-    if ((param0->battleMons[param1].statusVolatile & 0x1000000) || (param0->battleMons[param1].moveEffectsMask & (0x40 | 0x80 | 0x40000 | 0x20000000))) {
-        for (v0 = 0; v0 < NELEMS(Unk_ov16_0226EC34); v0++) {
-            if (Unk_ov16_0226EC34[v0] == param2) {
-                v1 = 1;
+    if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+            || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE)) {
+        for (int i = 0; i < NELEMS(sEffectsAlwaysShown); i++) {
+            if (sEffectsAlwaysShown[i] == status) {
+                result = TRUE;
                 break;
             }
         }
     } else {
-        v1 = 1;
+        result = TRUE;
     }
 
-    return v1;
+    return result;
 }
 
 BOOL ov16_0225B228 (BattleSystem * param0, BattleContext * param1, int * param2)

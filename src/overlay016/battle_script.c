@@ -4077,7 +4077,7 @@ static BOOL ov16_02243334 (BattleSystem * param0, BattleContext * param1)
     if ((BattleSystem_AnimationsOn(param0) == 1) || (v2 == 15) || (v2 == 16) || (v2 == 26) || (v2 == 25)) {
         v0 = BattleScript_Battler(param0, param1, v1);
 
-        if (ov16_0225B1DC(param1, v0, v2) == 1) {
+        if (BattleSystem_ShouldShowStatusEffect(param1, v0, v2) == 1) {
             BattleIO_PlayStatusEffect(param0, param1, v0, v2);
         }
     }
@@ -4102,7 +4102,7 @@ static BOOL ov16_02243398 (BattleSystem * param0, BattleContext * param1)
         v0 = BattleScript_Battler(param0, param1, v2);
         v1 = BattleScript_Battler(param0, param1, v3);
 
-        if ((ov16_0225B1DC(param1, v0, v4) == 1) && (ov16_0225B1DC(param1, v1, v4) == 1)) {
+        if ((BattleSystem_ShouldShowStatusEffect(param1, v0, v4) == 1) && (BattleSystem_ShouldShowStatusEffect(param1, v1, v4) == 1)) {
             ov16_02266028(param0, param1, v0, v1, v4);
         }
     }
@@ -4125,7 +4125,7 @@ static BOOL ov16_02243424 (BattleSystem * param0, BattleContext * param1)
     v3 = BattleScript_VarAddress(param0, param1, v2);
 
     if ((BattleSystem_AnimationsOn(param0) == 1) || (v2 == 15) || (v2 == 16) || (v3[0] == 26) || (v3[0] == 25)) {
-        if (ov16_0225B1DC(param1, v0, v3[0]) == 1) {
+        if (BattleSystem_ShouldShowStatusEffect(param1, v0, v3[0]) == 1) {
             BattleIO_PlayStatusEffect(param0, param1, v0, v3[0]);
         }
     }
