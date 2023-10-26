@@ -9,6 +9,7 @@
 #include "constants/sdat.h"
 #include "constants/battle/condition.h"
 #include "constants/battle/message_tags.h"
+#include "constants/battle/moves.h"
 #include "constants/battle/side_effects.h"
 #include "constants/battle/system_control.h"
 #include "constants/battle/terrain.h"
@@ -152,27 +153,27 @@ static BOOL BtlCmd_ShowPartyList(BattleSystem *battleSys, BattleContext *battleC
 static BOOL BtlCmd_WaitPartyList(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_Switch(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_0224221C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224226C(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_StartCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetupMultiHit(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetVarValue(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02242A14(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242B38(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242B74(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242BAC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242C6C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242CA4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242DBC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242F1C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242F3C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242F5C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02242F8C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022430A4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022430F4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243120(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224314C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243184(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_SetMonDataValue(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ClearVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ToggleVanish(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckAbility(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Random(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Jump(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CallSub(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CallSubFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ResetStatChanges(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022432B4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02243334(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02243398(BattleSystem * param0, BattleContext * param1);
@@ -362,7 +363,7 @@ static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext
 static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
 static void BattleScript_GetExpTask(SysTask * param0, void * param1);
-static void ov16_02249B80(SysTask * param0, void * param1);
+static void BattleScript_CatchMonTask(SysTask * param0, void * param1);
 
 static const BtlCmd sBattleCommands[] = {
     BtlCmd_SetupBattleUI,
@@ -412,27 +413,27 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_WaitPartyList,
     BtlCmd_Switch,
     BtlCmd_JumpIfAnySwitches,
-    ov16_0224221C,
-    ov16_0224226C,
+    BtlCmd_StartCatchMonTask,
+    BtlCmd_WaitCatchMonTask,
     BtlCmd_SetupMultiHit,
     BtlCmd_SetVarValue,
     BtlCmd_ChangeStatStage,
-    ov16_02242A14,
-    ov16_02242B38,
-    ov16_02242B74,
-    ov16_02242BAC,
-    ov16_02242C6C,
-    ov16_02242CA4,
-    ov16_02242DBC,
-    ov16_02242F1C,
-    ov16_02242F3C,
-    ov16_02242F5C,
-    ov16_02242F8C,
-    ov16_022430A4,
-    ov16_022430F4,
-    ov16_02243120,
-    ov16_0224314C,
-    ov16_02243184,
+    BtlCmd_SetMonDataValue,
+    BtlCmd_ClearVolatileStatus,
+    BtlCmd_ToggleVanish,
+    BtlCmd_CheckAbility,
+    BtlCmd_Random,
+    BtlCmd_SetVarFromVar,
+    BtlCmd_SetMonDataFromVar,
+    BtlCmd_Jump,
+    BtlCmd_CallSub,
+    BtlCmd_CallSubFromVar,
+    BtlCmd_SetMirrorMove,
+    BtlCmd_ResetStatChanges,
+    BtlCmd_LockMoveChoice,
+    BtlCmd_UnlockMoveChoice,
+    BtlCmd_SetStatusIcon,
+    BtlCmd_TrainerMessage,
     ov16_022432B4,
     ov16_02243334,
     ov16_02243398,
@@ -2782,35 +2783,53 @@ static BOOL BtlCmd_JumpIfAnySwitches(BattleSystem *battleSys, BattleContext *bat
     return FALSE;
 }
 
-static BOOL ov16_0224221C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Start the Pokemon capture state machine.
+ * 
+ * The kicked-off state machine is responsible for controlling the flow of
+ * events in the capture UX. It will calculate the capture rate, show the
+ * correct number of shakes, etc.
+ * 
+ * Inputs:
+ * 1. Whether or not the capture is in the Great Marsh.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_StartCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    BOOL safariCapture = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    battleCtx->taskData = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(BattleScriptTaskData));
+    battleCtx->taskData->battleSys = battleSys;
+    battleCtx->taskData->battleCtx = battleCtx;
+    battleCtx->taskData->seqNum = 0;
+    battleCtx->taskData->flag = safariCapture;
+    battleCtx->taskData->ball = battleCtx->msgItemTemp;
 
-    v0 = BattleScript_Read(param1);
+    SysTask_Start(BattleScript_CatchMonTask, battleCtx->taskData, NULL);
 
-    param1->taskData = (BattleScriptTaskData *)Heap_AllocFromHeap(5, sizeof(BattleScriptTaskData));
-    param1->taskData->battleSys = param0;
-    param1->taskData->battleCtx = param1;
-    param1->taskData->seqNum = 0;
-    param1->taskData->flag = v0;
-    param1->taskData->ball = param1->msgItemTemp;
-
-    SysTask_Start(ov16_02249B80, param1->taskData, NULL);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224226C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Waits until the Pokemon capture task has completed.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_WaitCatchMonTask(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    if (param1->taskData == NULL) {
-        BattleScript_Iter(param1, 1);
+    if (battleCtx->taskData == NULL) {
+        BattleScript_Iter(battleCtx, 1);
     }
 
-    param1->battleProgressFlag = 1;
+    battleCtx->battleProgressFlag = TRUE;
 
-    return 0;
+    return FALSE;
 }
 
 /**
@@ -3180,518 +3199,670 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
     return FALSE;
 }
 
-static BOOL ov16_02242A14 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the value of a battler's data field using an operation applied
+ * to itself and a static source value.
+ * 
+ * Inputs:
+ * 1. The operation to apply; see enum OpCode for possible values.
+ * 2. ID of the battler to target as a source operand and the destination.
+ * 3. ID of the battler's data field to target as a source operand and
+ * the destination.
+ * 4. A static source value to use as the second operand.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_SetMonDataValue(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    u32 v6;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int inBattler = BattleScript_Read(battleCtx);
+    int paramID = BattleScript_Read(battleCtx);
+    int srcVal = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int monData = BattleMon_Get(battleCtx, battler, paramID, NULL);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_Battler(param0, param1, v1);
-    v5 = BattleMon_Get(param1, v4, v2, NULL);
+    switch (op) {
+    case VALOP_SET:
+        monData = srcVal;
+        break;
 
-    switch (v0) {
-    case ((6 + 1) + 0):
-        v5 = v3;
+    case VALOP_ADD:
+        monData += srcVal;
         break;
-    case ((6 + 1) + 1):
-        v5 += v3;
-        break;
-    case ((6 + 1) + 2):
-        v5 -= v3;
-        break;
-    case ((6 + 1) + 3):
-        v5 |= v3;
-        break;
-    case ((6 + 1) + 4):
-        v5 &= (v3 ^ 0xffffffff);
-        break;
-    case ((6 + 1) + 5):
-        v5 *= v3;
-        break;
-    case ((6 + 1) + 6):
-        v5 /= v3;
-        break;
-    case ((6 + 1) + 7):
-        v5 = v5 << v3;
-        break;
-    case ((6 + 1) + 8):
-        v6 = v5;
-        v6 = v6 >> v3;
-        v5 = v6;
-        break;
-    case ((6 + 1) + 9):
-        v5 = FlagIndex(v3);
-        break;
-    case ((6 + 1) + 10):
-        GF_ASSERT(0);
-        break;
-    case ((6 + 1) + 11):
-        v5 -= v3;
 
-        if (v5 < 0) {
-            v5 = 0;
+    case VALOP_SUB:
+        monData -= srcVal;
+        break;
+
+    case VALOP_FLAG_ON:
+        monData |= srcVal;
+        break;
+
+    case VALOP_FLAG_OFF:
+        monData &= FLAG_NEGATE(srcVal);
+        break;
+
+    case VALOP_MUL:
+        monData *= srcVal;
+        break;
+
+    case VALOP_DIV:
+        monData /= srcVal;
+        break;
+
+    case VALOP_LSH:
+        monData = monData << srcVal;
+        break;
+
+    case VALOP_RSH:
+        u32 mask = monData;
+        mask = mask >> srcVal;
+        monData = mask;
+        break;
+
+    case VALOP_FLAG_INDEX:
+        monData = FlagIndex(srcVal);
+        break;
+
+    case VALOP_GET:
+        GF_ASSERT(FALSE);
+        break;
+
+    case VALOP_SUB_TO_ZERO:
+        monData -= srcVal;
+
+        if (monData < 0) {
+            monData = 0;
         }
         break;
-    case ((6 + 1) + 12):
-        v5 ^= v3;
+
+    case VALOP_XOR:
+        monData ^= srcVal;
         break;
-    case ((6 + 1) + 13):
-        v5 &= v3;
+
+    case VALOP_AND:
+        monData &= srcVal;
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    if (v2 == 26) {
-        BattleAI_SetAbility(param1, v4, v5);
+    if (paramID == BATTLEMON_ABILITY) {
+        BattleAI_SetAbility(battleCtx, battler, monData);
     }
 
-    ov16_022523E8(param1, v4, v2, (u8 *)&v5);
-    BattleMon_CopyToParty(param0, param1, v4);
+    BattleMon_Set(battleCtx, battler, paramID, &monData);
+    BattleMon_CopyToParty(battleSys, battleCtx, battler);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242B38 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Clear a particular volatile status for a battler.
+ * 
+ * Inputs:
+ * 1. The battler whose volatile status should be cleared.
+ * 2. Bitmask of the volatile status condition(s) to be cleared.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_ClearVolatileStatus(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int volStatus = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    battleCtx->clearVolatileStatus[battler] |= volStatus;
 
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v0 = BattleScript_Battler(param0, param1, v1);
-
-    param1->clearVolatileStatus[v0] |= v2;
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242B74 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Toggle the "vanished" flag for a battler.
+ * 
+ * This flag controls whether or not the battler's sprite is visible, e.g.,
+ * during a multi-turn move like Bounce or Dig.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_ToggleVanish(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int toggle = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_ToggleVanish(battleSys, battler, toggle);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02265EE8(param0, v2, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242BAC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Check the ability of a battler or set of battlers.
+ * 
+ * Inputs:
+ * 1. Op-code which controls the behavior. See enum CheckAbilityOp
+ * 2. Input battler (or set of battlers) whose ability should be checked
+ * 3. The ability to check for any battler to have (or not have)
+ * 4. Jump distance if a battler in the input set meets the criteria
+ * 
+ * Side effects:
+ * - If any battler matches the criteria, battleCtx->abilityMon will be set
+ * to their identifier.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CheckAbility(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int inBattler = BattleScript_Read(battleCtx);
+    int ability = BattleScript_Read(battleCtx);
+    int jump = BattleScript_Read(battleCtx);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
+    int battler;
+    if (inBattler == BTLSCR_ALL_BATTLERS) {
+        int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    if (v1 == 0x0) {
-        {
-            int v5;
-
-            v5 = BattleSystem_MaxBattlers(param0);
-
-            for (v4 = 0; v4 < v5; v4++) {
-                if (v0 == 0) {
-                    if (Battler_Ability(param1, v4) == v2) {
-                        BattleScript_Iter(param1, v3);
-                        param1->abilityMon = v4;
-                        break;
-                    }
-                } else {
-                    if (Battler_Ability(param1, v4) == v2) {
-                        break;
-                    }
+        for (battler = 0; battler < maxBattlers; battler++) {
+            if (op == CHECK_ABILITY_HAVE) {
+                if (Battler_Ability(battleCtx, battler) == ability) {
+                    BattleScript_Iter(battleCtx, jump);
+                    battleCtx->abilityMon = battler;
+                    break;
                 }
+            } else if (Battler_Ability(battleCtx, battler) == ability) {
+                break;
             }
         }
     } else {
-        v4 = BattleScript_Battler(param0, param1, v1);
+        battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-        if (v0 == 0) {
-            if (Battler_Ability(param1, v4) == v2) {
-                BattleScript_Iter(param1, v3);
-                param1->abilityMon = v4;
+        if (op == CHECK_ABILITY_HAVE) {
+            if (Battler_Ability(battleCtx, battler) == ability) {
+                BattleScript_Iter(battleCtx, jump);
+                battleCtx->abilityMon = battler;
             }
-        } else {
-            if (Battler_Ability(param1, v4) != v2) {
-                BattleScript_Iter(param1, v3);
-                param1->abilityMon = v4;
-            }
+        } else if (Battler_Ability(battleCtx, battler) != ability) {
+            BattleScript_Iter(battleCtx, jump);
+            battleCtx->abilityMon = battler;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242C6C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Generate a random value in the specified range, inclusive on both
+ * ends, and offseting the result by a static value.
+ * 
+ * Inputs:
+ * 1. The maximum value R of the range [0, R]
+ * 2. The value by which to offset the generated random value
+ * 
+ * Side effects:
+ * - battleCtx->calcTemp will be set to the result value
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_Random(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int range = BattleScript_Read(battleCtx);
+    range += 1;
+    int offset = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    battleCtx->calcTemp = (BattleSystem_RandNext(battleSys) % range) + offset;
 
-    v0 = BattleScript_Read(param1);
-    v0 += 1;
-    v1 = BattleScript_Read(param1);
-
-    param1->calcTemp = (BattleSystem_RandNext(param0) % v0) + v1;
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242CA4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the value of a variable using an operation applied to itself
+ * and the value of another variable.
+ * 
+ * Inputs:
+ * 1. The operation to apply; see enum OpCode for possible values.
+ * 2. ID of the variable to target as a source operand and the destination.
+ * 3. ID of the variable to use as the second operand.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetVarFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int * v3;
-    int * v4;
-    u32 v5;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int dstVar = BattleScript_Read(battleCtx);
+    int srcVar = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *dstData = BattleScript_VarAddress(battleSys, battleCtx, dstVar);
+    int *srcData = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_VarAddress(param0, param1, v1);
-    v4 = BattleScript_VarAddress(param0, param1, v2);
+    switch (op) {
+    case VALOP_SET:
+        *dstData = *srcData;
+        break;
 
-    switch (v0) {
-    case ((6 + 1) + 0):
-        v3[0] = v4[0];
+    case VALOP_ADD:
+        *dstData += *srcData;
         break;
-    case ((6 + 1) + 1):
-        v3[0] += v4[0];
-        break;
-    case ((6 + 1) + 2):
-        v3[0] -= v4[0];
-        break;
-    case ((6 + 1) + 3):
-        v3[0] |= v4[0];
-        break;
-    case ((6 + 1) + 4):
-        v3[0] &= (v4[0] ^ 0xffffffff);
-        break;
-    case ((6 + 1) + 5):
-        v3[0] *= v4[0];
-        break;
-    case ((6 + 1) + 6):
-        v3[0] /= v4[0];
-        break;
-    case ((6 + 1) + 7):
-        v3[0] = v3[0] << v4[0];
-        break;
-    case ((6 + 1) + 8):
-        v5 = v3[0];
-        v5 = v5 >> v4[0];
-        v3[0] = v5;
-        break;
-    case ((6 + 1) + 9):
-        v3[0] = FlagIndex(v4[0]);
-        break;
-    case ((6 + 1) + 10):
-        v4[0] = v3[0];
-        break;
-    case ((6 + 1) + 11):
-        v3[0] -= v4[0];
 
-        if (v3[0] < 0) {
-            v3[0] = 0;
+    case VALOP_SUB:
+        *dstData -= *srcData;
+        break;
+
+    case VALOP_FLAG_ON:
+        *dstData |= *srcData;
+        break;
+
+    case VALOP_FLAG_OFF:
+        *dstData &= FLAG_NEGATE(*srcData);
+        break;
+
+    case VALOP_MUL:
+        *dstData *= *srcData;
+        break;
+
+    case VALOP_DIV:
+        *dstData /= *srcData;
+        break;
+
+    case VALOP_LSH:
+        *dstData = *dstData << *srcData;
+        break;
+
+    case VALOP_RSH:
+        u32 tmp = *dstData;
+        tmp = tmp >> *srcData;
+        *dstData = tmp;
+        break;
+
+    case VALOP_FLAG_INDEX:
+        *dstData = FlagIndex(*srcData);
+        break;
+
+    case VALOP_GET:
+        *srcData = *dstData;
+        break;
+
+    case VALOP_SUB_TO_ZERO:
+        *dstData -= *srcData;
+
+        if (*dstData < 0) {
+            *dstData = 0;
         }
         break;
-    case ((6 + 1) + 12):
-        v3[0] ^= v4[0];
+
+    case VALOP_XOR:
+        *dstData ^= *srcData;
         break;
-    case ((6 + 1) + 13):
-        v3[0] &= v4[0];
+
+    case VALOP_AND:
+        *dstData &= *srcData;
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242DBC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Update the value of a battler's data field using an operation applied
+ * to itself and the value of a variable.
+ * 
+ * Inputs:
+ * 1. The operation to apply; see enum OpCode for possible values.
+ * 2. ID of the battler to target as a source operand and the destination.
+ * 3. ID of the battler's data field to target as a source operand and
+ * the destination.
+ * 4. ID of the variable to use as the second operand.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetMonDataFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    int * v6;
-    u32 v7;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int inBattler = BattleScript_Read(battleCtx);
+    int paramID = BattleScript_Read(battleCtx);
+    int var = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int monData = BattleMon_Get(battleCtx, battler, paramID, NULL);
+    int *varData = BattleScript_VarAddress(battleSys, battleCtx, var);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_Battler(param0, param1, v1);
-    v5 = BattleMon_Get(param1, v4, v2, NULL);
-    v6 = BattleScript_VarAddress(param0, param1, v3);
+    switch (op) {
+    case VALOP_SET:
+        monData = *varData;
+        break;
 
-    switch (v0) {
-    case ((6 + 1) + 0):
-        v5 = v6[0];
+    case VALOP_ADD:
+        monData += *varData;
         break;
-    case ((6 + 1) + 1):
-        v5 += v6[0];
-        break;
-    case ((6 + 1) + 2):
-        v5 -= v6[0];
-        break;
-    case ((6 + 1) + 3):
-        v5 |= v6[0];
-        break;
-    case ((6 + 1) + 4):
-        v5 &= (v6[0] ^ 0xffffffff);
-        break;
-    case ((6 + 1) + 5):
-        v5 *= v6[0];
-        break;
-    case ((6 + 1) + 6):
-        v5 /= v6[0];
-        break;
-    case ((6 + 1) + 7):
-        v5 = v5 << v6[0];
-        break;
-    case ((6 + 1) + 8):
-        v7 = v5;
-        v7 = v7 >> v6[0];
-        v5 = v7;
-        break;
-    case ((6 + 1) + 9):
-        v5 = FlagIndex(v6[0]);
-        break;
-    case ((6 + 1) + 10):
-        v6[0] = v5;
-        break;
-    case ((6 + 1) + 11):
-        v5 -= v6[0];
 
-        if (v5 < 0) {
-            v5 = 0;
+    case VALOP_SUB:
+        monData -= *varData;
+        break;
+
+    case VALOP_FLAG_ON:
+        monData |= *varData;
+        break;
+
+    case VALOP_FLAG_OFF:
+        monData &= FLAG_NEGATE(*varData);
+        break;
+
+    case VALOP_MUL:
+        monData *= *varData;
+        break;
+
+    case VALOP_DIV:
+        monData /= *varData;
+        break;
+
+    case VALOP_LSH:
+        monData = monData << *varData;
+        break;
+
+    case VALOP_RSH:
+        u32 mask = monData;
+        mask = mask >> *varData;
+        monData = mask;
+        break;
+
+    case VALOP_FLAG_INDEX:
+        monData = FlagIndex(*varData);
+        break;
+
+    case VALOP_GET:
+        *varData = monData;
+        break;
+
+    case VALOP_SUB_TO_ZERO:
+        monData -= *varData;
+
+        if (monData < 0) {
+            monData = 0;
         }
         break;
-    case ((6 + 1) + 12):
-        v5 ^= v6[0];
+
+    case VALOP_XOR:
+        monData ^= *varData;
         break;
-    case ((6 + 1) + 13):
-        v5 &= v6[0];
+
+    case VALOP_AND:
+        monData &= *varData;
         break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 
-    if (v0 != ((6 + 1) + 10)) {
-        if (v2 == 26) {
-            BattleAI_SetAbility(param1, v4, v5);
+    if (op != VALOP_GET) {
+        if (paramID == BATTLEMON_ABILITY) {
+            BattleAI_SetAbility(battleCtx, battler, monData);
         }
 
-        ov16_022523E8(param1, v4, v2, (u8 *)&v5);
-        BattleMon_CopyToParty(param0, param1, v4);
+        BattleMon_Set(battleCtx, battler, paramID, &monData);
+        BattleMon_CopyToParty(battleSys, battleCtx, battler);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242F1C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump ahead a certain distance.
+ * 
+ * Inputs:
+ * 1. The distance to jump forward in words.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_Jump(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
-    BattleScript_Iter(param1, v0);
+    BattleScript_Iter(battleCtx, jump);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242F3C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Call a given subroutine sequence, returning to the current routine
+ * point finished.
+ * 
+ * Inputs:
+ * 1. ID of the subroutine sequence to call.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CallSub(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int subseq = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
-    BattleScript_Call(param1, 1, v0);
+    BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subseq);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242F5C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Call a given subroutine sequence from the value of a variable,
+ * returning to the current routine point finished.
+ * 
+ * Inputs:
+ * 1. Variable containing the ID of the subroutine sequence to call.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CallSubFromVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int * v1;
+    BattleScript_Iter(battleCtx, 1);
+    int var = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *subseq = BattleScript_VarAddress(battleSys, battleCtx, var);
+    BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, *subseq);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_VarAddress(param0, param1, v0);
-
-    BattleScript_Call(param1, 1, v1[0]);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02242F8C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Set the move to be copied by Mirror Move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    int move = MOVE_NONE;
+    int battleType = BattleSystem_BattleType(battleSys);
 
-    v1 = 0;
-    v0 = BattleSystem_BattleType(param0);
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    if (battleCtx->moveCopied[battleCtx->attacker]) {
+        move = battleCtx->moveCopied[battleCtx->attacker];
+    } else if (battleType & BATTLE_TYPE_DOUBLES) {
+        // In double battles, choose randomly.
+        move = battleCtx->moveCopiedHit[battleCtx->attacker][0]
+            + battleCtx->moveCopiedHit[battleCtx->attacker][1]
+            + battleCtx->moveCopiedHit[battleCtx->attacker][2]
+            + battleCtx->moveCopiedHit[battleCtx->attacker][3];
 
-    if (param1->moveCopied[param1->attacker]) {
-        v1 = param1->moveCopied[param1->attacker];
-    } else {
-        if (v0 & 0x2) {
-            v1 = param1->moveCopiedHit[param1->attacker][0] + param1->moveCopiedHit[param1->attacker][1] + param1->moveCopiedHit[param1->attacker][2] + param1->moveCopiedHit[param1->attacker][3];
-
-            if (v1) {
-                do {
-                    v1 = param1->moveCopiedHit[param1->attacker][BattleSystem_RandNext(param0) % 4];
-                } while (v1 == 0);
-            }
+        if (move) {
+            do {
+                move = battleCtx->moveCopiedHit[battleCtx->attacker][BattleSystem_RandNext(battleSys) % 4];
+            } while (move == MOVE_NONE);
         }
     }
 
-    if ((v1) && (ov16_0225B084(param1, v1) == 1)) {
-        param1->battleStatusMask &= (0x1 ^ 0xffffffff);
-        param1->battleStatusMask &= (0x4000 ^ 0xffffffff);
-        param1->moveCur = v1;
-        param1->defender = BattleSystem_Defender(param0, param1, param1->attacker, v1, 1, 0);
+    if (move && BattleSystem_CanEncoreMove(battleCtx, move) == TRUE) {
+        battleCtx->battleStatusMask &= ~SYSCTL_SKIP_ATTACK_MESSAGE;
+        battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION;
+        battleCtx->moveCur = move;
+        battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, move, TRUE, RANGE_SINGLE_TARGET);
 
-        if (param1->defender == 0xff) {
-            param1->commandNext = 38;
-            BattleScript_Jump(param1, 1, (0 + 281));
+        if (battleCtx->defender == BATTLER_NONE) {
+            battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+            BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
         } else {
-            param1->battlerActions[param1->attacker][1] = param1->defender;
-            BattleScript_Jump(param1, 0, v1);
+            battleCtx->battlerActions[battleCtx->attacker][1] = battleCtx->defender;
+            BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, move);
         }
     } else {
-        param1->selfTurnFlags[param1->attacker].skipPressureCheck = 1;
+        battleCtx->selfTurnFlags[battleCtx->attacker].skipPressureCheck = TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022430A4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Reset all stat changes for all active battlers.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_ResetStatChanges(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-
-    v2 = BattleSystem_MaxBattlers(param0);
-
-    for (v1 = 0; v1 < v2; v1++) {
-        for (v0 = 0x0; v0 < 0x8; v0++) {
-            param1->battleMons[v1].statBoosts[v0] = 6;
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
+    for (int i = 0; i < maxBattlers; i++) {
+        for (int j = BATTLE_STAT_HP; j < BATTLE_STAT_MAX; j++) {
+            battleCtx->battleMons[i].statBoosts[j] = 6;
         }
 
-        param1->battleMons[v1].statusVolatile &= (0x100000 ^ 0xffffffff);
+        battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_FOCUS_ENERGY;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022430F4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Locks the given battler into their current move.
+ * 
+ * This is used by moves such as Thrash and Outrage to force the user to keep
+ * using them over multiple turns.
+ * 
+ * Inputs:
+ * 1. The battler whose move choice should be locked.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    Battler_LockMoveChoice(battleSys, battleCtx, battler);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02253EF0(param0, param1, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243120 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Unlocks the given battler's move choices.
+ * 
+ * This is invoked at the end of moves such as Thrash and Outrage to permit the
+ * user to choose a different move after their effect ends.
+ * 
+ * Inputs:
+ * 1. The battler whose move choice should be unlocked.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    Battler_UnlockMoveChoice(battleSys, battleCtx, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    BattleSystem_BreakMultiTurn(param0, param1, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224314C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Set the status icon on a battler's HP gauge.
+ * 
+ * Inputs:
+ * 1. The battler whose HP gauge should be updated.
+ * 2. The status icon to apply to the HP gauge.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int status = BattleScript_Read(battleCtx);
+    
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_SetStatusIcon(battleSys, battler, status);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02265FB8(param0, v2, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243184 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Shows a trainer message of a particular type.
+ * 
+ * Inputs:
+ * 1. The battler whose trainer message should be shown.
+ * 2. The type of trainer message to display.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int msgType = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_TrainerMessage(battleSys, battler, msgType);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02265FD8(param0, v2, v1);
-
-    return 0;
+    return FALSE;
 }
 
 static u8 Unk_ov16_02270B20[] = {
@@ -4032,7 +4203,7 @@ static BOOL ov16_0224355C (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
     v1 = BattleScript_Battler(param0, param1, v0);
 
-    ov16_02265FD8(param0, v1, param1->msgTemp);
+    BattleIO_TrainerMessage(param0, v1, param1->msgTemp);
 
     return 0;
 }
@@ -4631,7 +4802,7 @@ static BOOL ov16_02244208 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
     v1 = Battler_SlotForMove(&param1->battleMons[param1->defender], param1->movePrevByBattler[param1->defender]);
 
-    if (ov16_0225B084(param1, param1->movePrevByBattler[param1->defender]) == 0) {
+    if (BattleSystem_CanEncoreMove(param1, param1->movePrevByBattler[param1->defender]) == 0) {
         v1 = 4;
     }
 
@@ -5093,7 +5264,7 @@ static BOOL ov16_02244D60 (BattleSystem * param0, BattleContext * param1)
     param1->battleMons[param1->attacker].statusVolatile |= 0x200000;
     param1->battleMons[param1->attacker].moveEffectsData.disabledMove = 0;
     param1->battleMons[param1->attacker].moveEffectsData.disabledTurns = 0;
-    param1->battleMons[param1->attacker].moveEffectsData.transformedPID = param1->battleMons[param1->defender].pid;
+    param1->battleMons[param1->attacker].moveEffectsData.transformedPID = param1->battleMons[param1->defender].personality;
     param1->battleMons[param1->attacker].moveEffectsData.transformedGender = param1->battleMons[param1->defender].gender;
     param1->battleMons[param1->attacker].moveEffectsData.mimickedMoveSlot = 0;
     param1->battleMons[param1->attacker].moveEffectsData.lastResortCount = 0;
@@ -5332,12 +5503,12 @@ static BOOL ov16_0224544C (BattleSystem * param0, BattleContext * param1)
     param1->selfTurnFlags[param1->attacker].repeatedMoveCount = param1->battleMons[param1->attacker].moveEffectsData.rolloutCount;
 
     if ((param1->battleMons[param1->attacker].statusVolatile & 0x1000) == 0) {
-        ov16_02253EF0(param0, param1, param1->attacker);
+        Battler_LockMoveChoice(param0, param1, param1->attacker);
         param1->battleMons[param1->attacker].moveEffectsData.rolloutCount = 5;
     }
 
     if (--param1->battleMons[param1->attacker].moveEffectsData.rolloutCount == 0) {
-        BattleSystem_BreakMultiTurn(param0, param1, param1->attacker);
+        Battler_UnlockMoveChoice(param0, param1, param1->attacker);
     }
 
     param1->movePower = param1->aiContext.moveTable[param1->moveCur].power;
@@ -9036,7 +9207,7 @@ static void BattleScript_CalcEffortValues(Party *party, int slot, int species, i
     PokemonPersonalData_Free(personal);
 }
 
-static void ov16_02249B80 (SysTask * param0, void * param1)
+static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
 {
     int v0;
     int v1;

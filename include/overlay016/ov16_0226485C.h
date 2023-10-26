@@ -42,9 +42,9 @@ void BattleIO_UpdateExpGauge(BattleSystem * param0, BattleContext * param1, int 
 void BattleIO_PlayFaintingSequence(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleIO_PlaySound(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleIO_FadeOut(BattleSystem * param0, BattleContext * param1);
-void ov16_02265EE8(BattleSystem * param0, int param1, int param2);
-void ov16_02265FB8(BattleSystem * param0, int param1, int param2);
-void ov16_02265FD8(BattleSystem * param0, int param1, int param2);
+void BattleIO_ToggleVanish(BattleSystem * param0, int param1, int param2);
+void BattleIO_SetStatusIcon(BattleSystem * param0, int param1, int param2);
+void BattleIO_TrainerMessage(BattleSystem * param0, int param1, int param2);
 void BattleIO_PlayStatusEffect(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02266028(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 void ov16_02266058(BattleSystem * param0, BattleContext * param1, int param2, int param3);

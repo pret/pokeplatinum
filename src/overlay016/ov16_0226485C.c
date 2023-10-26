@@ -103,9 +103,9 @@ void BattleIO_UpdateExpGauge(BattleSystem * param0, BattleContext * param1, int 
 void BattleIO_PlayFaintingSequence(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleIO_PlaySound(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleIO_FadeOut(BattleSystem * param0, BattleContext * param1);
-void ov16_02265EE8(BattleSystem * param0, int param1, int param2);
-void ov16_02265FB8(BattleSystem * param0, int param1, int param2);
-void ov16_02265FD8(BattleSystem * param0, int param1, int param2);
+void BattleIO_ToggleVanish(BattleSystem * param0, int param1, int param2);
+void BattleIO_SetStatusIcon(BattleSystem * param0, int param1, int param2);
+void BattleIO_TrainerMessage(BattleSystem * param0, int param1, int param2);
 void BattleIO_PlayStatusEffect(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void ov16_02266028(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 void ov16_02266058(BattleSystem * param0, BattleContext * param1, int param2, int param3);
@@ -325,7 +325,7 @@ void BattleIO_SetEncounter (BattleSystem * param0, int param1)
     v0.unk_01_0 = param0->battleCtx->battleMons[param1].gender;
     v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
     v0.unk_02 = param0->battleCtx->battleMons[param1].species;
-    v0.unk_04 = param0->battleCtx->battleMons[param1].pid;
+    v0.unk_04 = param0->battleCtx->battleMons[param1].personality;
     v0.unk_08 = ov16_022599D0(param0->battleCtx, param1, BattleSystem_BattlerSlot(param0, param1), 1);
     v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
 
@@ -348,7 +348,7 @@ void BattleIO_ShowEncounter (BattleSystem * param0, int param1)
     v0.unk_01_0 = param0->battleCtx->battleMons[param1].gender;
     v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
     v0.unk_02 = param0->battleCtx->battleMons[param1].species;
-    v0.unk_04 = param0->battleCtx->battleMons[param1].pid;
+    v0.unk_04 = param0->battleCtx->battleMons[param1].personality;
     v0.unk_08 = ov16_022599D0(param0->battleCtx, param1, BattleSystem_BattlerSlot(param0, param1), 1);
     v0.unk_0C = param0->battleCtx->selectedPartySlot[param1];
     v0.unk_01_3 = param0->battleCtx->battleMons[param1].formNum;
@@ -379,7 +379,7 @@ void BattleIO_ShowPokemon (BattleSystem * param0, int param1, int param2, int pa
         v0.unk_04 = param0->battleCtx->battleMons[param1].moveEffectsData.transformedPID;
     } else {
         v0.unk_01_0 = param0->battleCtx->battleMons[param1].gender;
-        v0.unk_04 = param0->battleCtx->battleMons[param1].pid;
+        v0.unk_04 = param0->battleCtx->battleMons[param1].personality;
     }
 
     v0.unk_01_2 = param0->battleCtx->battleMons[param1].isShiny;
@@ -417,7 +417,7 @@ void BattleIO_ShowPokemon (BattleSystem * param0, int param1, int param2, int pa
             v0.unk_64[v1] = param0->battleCtx->battleMons[v1].moveEffectsData.transformedPID;
         } else {
             v0.unk_58[v1] = param0->battleCtx->battleMons[v1].gender;
-            v0.unk_64[v1] = param0->battleCtx->battleMons[v1].pid;
+            v0.unk_64[v1] = param0->battleCtx->battleMons[v1].personality;
         }
     }
 
@@ -443,7 +443,7 @@ void BattleIO_ReturnPokemon (BattleSystem * param0, BattleContext * param1, int 
     if (param0->battleCtx->battleMons[param2].statusVolatile & 0x200000) {
         v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].moveEffectsData.transformedGender, v1, v2, param0->battleCtx->battleMons[param2].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].gender, v1, v2, param0->battleCtx->battleMons[param2].pid);
+        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param2].species, param0->battleCtx->battleMons[param2].gender, v1, v2, param0->battleCtx->battleMons[param2].personality);
     }
 
     v0.unk_02 = param0->battleCtx->battleMons[param2].capturedBall;
@@ -459,7 +459,7 @@ void BattleIO_ReturnPokemon (BattleSystem * param0, BattleContext * param1, int 
             v0.unk_1C[v3] = param1->battleMons[v3].moveEffectsData.transformedPID;
         } else {
             v0.unk_10[v3] = param1->battleMons[v3].gender;
-            v0.unk_1C[v3] = param1->battleMons[v3].pid;
+            v0.unk_1C[v3] = param1->battleMons[v3].personality;
         }
     }
 
@@ -484,7 +484,7 @@ void ov16_02265050 (BattleSystem * param0, int param1, int param2)
     if (param0->battleCtx->battleMons[param1].statusVolatile & 0x200000) {
         v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].moveEffectsData.transformedGender, v1, v2, param0->battleCtx->battleMons[param1].moveEffectsData.transformedPID);
     } else {
-        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].gender, v1, v2, param0->battleCtx->battleMons[param1].pid);
+        v0.unk_01 = sub_02076648(param0->battleCtx->battleMons[param1].species, param0->battleCtx->battleMons[param1].gender, v1, v2, param0->battleCtx->battleMons[param1].personality);
     }
 
     v0.unk_02 = param2;
@@ -1051,7 +1051,7 @@ void BattleIO_PlayFaintingSequence (BattleSystem * param0, BattleContext * param
         v0.unk_04 = param1->battleMons[param2].moveEffectsData.transformedPID;
     } else {
         v0.unk_01 = param1->battleMons[param2].gender;
-        v0.unk_04 = param1->battleMons[param2].pid;
+        v0.unk_04 = param1->battleMons[param2].personality;
     }
 
     for (v1 = 0; v1 < 4; v1++) {
@@ -1064,7 +1064,7 @@ void BattleIO_PlayFaintingSequence (BattleSystem * param0, BattleContext * param
             v0.unk_20[v1] = param1->battleMons[v1].moveEffectsData.transformedPID;
         } else {
             v0.unk_14[v1] = param1->battleMons[v1].gender;
-            v0.unk_20[v1] = param1->battleMons[v1].pid;
+            v0.unk_20[v1] = param1->battleMons[v1].personality;
         }
     }
 
@@ -1088,7 +1088,7 @@ void BattleIO_FadeOut (BattleSystem * param0, BattleContext * param1)
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_02265EE8 (BattleSystem * param0, int param1, int param2)
+void BattleIO_ToggleVanish (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_0225C3BC v0;
     int v1;
@@ -1107,14 +1107,14 @@ void ov16_02265EE8 (BattleSystem * param0, int param1, int param2)
             v0.unk_18[v1] = param0->battleCtx->battleMons[v1].moveEffectsData.transformedPID;
         } else {
             v0.unk_0C[v1] = param0->battleCtx->battleMons[v1].gender;
-            v0.unk_18[v1] = param0->battleCtx->battleMons[v1].pid;
+            v0.unk_18[v1] = param0->battleCtx->battleMons[v1].personality;
         }
     }
 
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3BC));
 }
 
-void ov16_02265FB8 (BattleSystem * param0, int param1, int param2)
+void BattleIO_SetStatusIcon (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_0225C3D0 v0;
 
@@ -1124,7 +1124,7 @@ void ov16_02265FB8 (BattleSystem * param0, int param1, int param2)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C3D0));
 }
 
-void ov16_02265FD8 (BattleSystem * param0, int param1, int param2)
+void BattleIO_TrainerMessage (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_0225C3E4 v0;
 
@@ -1362,7 +1362,7 @@ void ov16_0226651C (BattleSystem * param0, int param1)
         v0.unk_08 = param0->battleCtx->battleMons[param1].moveEffectsData.transformedPID;
     } else {
         v0.unk_04 = param0->battleCtx->battleMons[param1].gender;
-        v0.unk_08 = param0->battleCtx->battleMons[param1].pid;
+        v0.unk_08 = param0->battleCtx->battleMons[param1].personality;
     }
 
     v0.unk_01 = param0->battleCtx->battleMons[param1].formNum;
@@ -1469,7 +1469,7 @@ void ov16_0226673C (BattleSystem * param0, BattleContext * param1, int param2)
             v1.unk_2C[v0] = param1->battleMons[v0].moveEffectsData.transformedPID;
         } else {
             v1.unk_20[v0] = param1->battleMons[v0].gender;
-            v1.unk_2C[v0] = param1->battleMons[v0].pid;
+            v1.unk_2C[v0] = param1->battleMons[v0].personality;
         }
     }
 
@@ -1551,7 +1551,7 @@ void ov16_0226692C (BattleSystem * param0, BattleContext * param1, int param2)
             v1.unk_2C[v0] = param1->battleMons[v0].moveEffectsData.transformedPID;
         } else {
             v1.unk_20[v0] = param1->battleMons[v0].gender;
-            v1.unk_2C[v0] = param1->battleMons[v0].pid;
+            v1.unk_2C[v0] = param1->battleMons[v0].personality;
         }
     }
 
@@ -1710,7 +1710,7 @@ void ov16_02266B78 (BattleSystem * param0, BattleContext * param1, UnkStruct_ov1
                 param2->unk_2C[v0] = param1->battleMons[v0].moveEffectsData.transformedPID;
             } else {
                 param2->unk_20[v0] = param1->battleMons[v0].gender;
-                param2->unk_2C[v0] = param1->battleMons[v0].pid;
+                param2->unk_2C[v0] = param1->battleMons[v0].personality;
             }
         }
     }

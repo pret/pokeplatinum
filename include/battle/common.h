@@ -43,7 +43,7 @@
 #define NO_TARGET_MULTI_TURN    (battleCtx->defender == BATTLER_NONE \
                                 && BattleMove_IsMultiTurn(battleCtx, battleCtx->moveCur) == TRUE \
                                 && ( \
-                                    (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_CHARGE_TURN) \
+                                    (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED) \
                                     || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN) \
                                 ))
 #define NO_TARGET               (NO_TARGET_SINGLE_TURN || NO_TARGET_MULTI_TURN)
