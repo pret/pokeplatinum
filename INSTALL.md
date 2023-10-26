@@ -108,7 +108,7 @@ These can be installed using Homebrew; if you do not have Homebrew installed, re
 
 ```
 brew update
-brew install meson 
+brew install meson
 brew install --cask wine-stable
 ```
 
@@ -153,3 +153,13 @@ To build the rom, run:
 
 If everything works, then the following ROM should be built:
 - [build/pokeplatinum.us.nds](https://datomatic.no-intro.org/index.php?page=show_record&s=28&n=3541) `sha1: ce81046eda7d232513069519cb2085349896dec7`
+
+# 4. Docker
+
+A Dockerfile is provided for your convenience. To begin, setup docker on your local machine following the instructions at https://docs.docker.com/desktop/. Then, run
+
+    ./clean.sh  # because we are switching environments
+    docker build . -t pret/pokeplatinum
+    docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum ./config.sh  # first time only
+    docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum ./build.sh
+    docker run -u $USER -w /rom -v .:/rom pret/pokeplatinum ./clean.sh  # before switching environments
