@@ -105,7 +105,15 @@ UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 u16 ov16_0223E0D8(BattleSystem * param0, int param1);
 TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
-TrainerInfo * BattleSystem_TrainerInfo(BattleSystem * param0, int param1);
+
+/**
+ * @brief Get the trainer info for a particular battler.
+ * 
+ * @param battleSys 
+ * @param battler 
+ * @return The trainer info for the requested battler.
+ */
+TrainerInfo* BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
 UnkStruct_0207D3C0 * BattleSystem_Bag(BattleSystem * param0);
 UnkStruct_0207D99C * BattleSystem_BagCursor(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);

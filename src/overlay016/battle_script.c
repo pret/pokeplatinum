@@ -4050,7 +4050,7 @@ static BOOL ov16_022432B4 (BattleSystem * param0, BattleContext * param1)
 
         TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(param0, 0), v0);
     } else {
-        v0 = ov16_0223F904(param0->parties[0], param0->unk_48[0]);
+        v0 = ov16_0223F904(param0->parties[0], param0->trainerInfo[0]);
         TrainerInfo_TakeMoney(BattleSystem_TrainerInfo(param0, 0), v0);
     }
 
