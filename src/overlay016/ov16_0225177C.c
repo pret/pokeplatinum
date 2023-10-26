@@ -85,7 +85,7 @@ int Battler_SlotForMove(BattleMon * param0, u16 param1);
 int BattleSystem_CheckTypeChart(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4, int param5, int param6, u32 * param7);
 void ov16_022552D4(BattleContext * param0, int param1, int param2, int param3, int param4, int param5, int param6, int param7, u32 * param8);
 BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
-u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL enemyOnly, int defender);
+u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL sameSide, int defender);
 int BattleSystem_NicknameTag(BattleContext *battleSys, int battler);
 u16 Battler_SelectedMove(BattleContext * param0, int param1);
 int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability);
@@ -2857,13 +2857,13 @@ BOOL BattleContext_MoveFailed (BattleContext * param0, int param1)
     }
 }
 
-u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL enemyOnly, int defender)
+u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL sameSide, int defender)
 {
     u8 count = 0;
     int maxBattlers = BattleSystem_MaxBattlers(battleSys);
     
     // no clue why they used a switch statement for this, but changing it to an if-else doesn't match
-    switch (enemyOnly) {
+    switch (sameSide) {
     case FALSE:
         for (int i = 0; i < maxBattlers; i++) {
             if (i != defender && battleCtx->battleMons[i].curHP) {

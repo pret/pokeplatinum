@@ -186,10 +186,10 @@ static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext
 static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_022438A8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022438F8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022439D8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243AB8(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_GivePayDayMoney(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02243B38(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02243D2C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02243D64(BattleSystem * param0, BattleContext * param1);
@@ -446,10 +446,10 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_TryConversion,
     BtlCmd_IfVar,
     BtlCmd_IfMonDataVar,
-    ov16_022438A8,
-    ov16_022438F8,
-    ov16_022439D8,
-    ov16_02243AB8,
+    BtlCmd_GivePayDayMoney,
+    BtlCmd_TryLightScreen,
+    BtlCmd_TryReflect,
+    BtlCmd_TryMist,
     ov16_02243B38,
     ov16_02243D2C,
     ov16_02243D64,
@@ -4514,113 +4514,140 @@ static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCt
     return FALSE;
 }
 
-static BOOL ov16_022438A8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Gives the money accrued from Pay Day to the player.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_GivePayDayMoney(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->msgTemp = param1->payDayCount * param1->prizeMoneyMul;
-
-    if (param1->msgTemp > 0xffff) {
-        param1->msgTemp = 0xffff;
+    battleCtx->msgTemp = battleCtx->payDayCount * battleCtx->prizeMoneyMul;
+    if (battleCtx->msgTemp > PAYDAY_MAX) {
+        battleCtx->msgTemp = PAYDAY_MAX;
     }
 
-    TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(param0, 0), param1->msgTemp);
+    TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), battleCtx->msgTemp);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022438F8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to set Light Screen for the user's side.
+ * 
+ * Inputs:
+ * 1. The jump-distance if Light Screen is already set for the user's side.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int side = Battler_Side(battleSys, battleCtx->attacker);
 
-    v0 = BattleScript_Read(param1);
-    v1 = Battler_Side(param0, param1->attacker);
-
-    if (param1->sideConditionsMask[v1] & 0x2) {
-        BattleScript_Iter(param1, v0);
-        param1->moveStatusFlags |= 0x40;
+    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_LIGHT_SCREEN) {
+        BattleScript_Iter(battleCtx, jump);
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     } else {
-        param1->sideConditionsMask[v1] |= 0x2;
-        param1->sideConditions[v1].lightScreenTurns = 5;
-        param1->sideConditions[v1].lightScreenUser = param1->attacker;
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_LIGHT_SCREEN;
+        battleCtx->sideConditions[side].lightScreenTurns = NUM_SCREEN_TURNS;
+        battleCtx->sideConditions[side].lightScreenUser = battleCtx->attacker;
 
-        if (Battler_HeldItemEffect(param1, param1->attacker) == 97) {
-            param1->sideConditions[v1].lightScreenTurns += Battler_HeldItemPower(param1, param1->attacker, 0);
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_EXTEND_SCREENS) {
+            battleCtx->sideConditions[side].lightScreenTurns += Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
         }
 
-        param1->msgBuffer.tags = 20;
-        param1->msgBuffer.params[0] = param1->moveCur;
-        param1->msgBuffer.params[1] = param1->attacker;
+        battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[1] = battleCtx->attacker;
 
-        if (BattleSystem_CountAliveBattlers(param0, param1, 1, param1->attacker) == 2) {
-            param1->msgBuffer.id = 192;
+        if (BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, battleCtx->attacker) == 2) {
+            battleCtx->msgBuffer.id = 192; // "{0} raised [your/its] team's Special Defense slightly!"
         } else {
-            param1->msgBuffer.id = 190;
+            battleCtx->msgBuffer.id = 190; // "{0} raised [your/its] team's Special Defense!"
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022439D8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to set Reflect for the user's side.
+ * 
+ * Inputs:
+ * 1. The jump-distance if Reflect is already set for the user's side.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int side = Battler_Side(battleSys, battleCtx->attacker);
 
-    v0 = BattleScript_Read(param1);
-    v1 = Battler_Side(param0, param1->attacker);
-
-    if (param1->sideConditionsMask[v1] & 0x1) {
-        BattleScript_Iter(param1, v0);
-        param1->moveStatusFlags |= 0x40;
+    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_REFLECT) {
+        BattleScript_Iter(battleCtx, jump);
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     } else {
-        param1->sideConditionsMask[v1] |= 0x1;
-        param1->sideConditions[v1].reflectTurns = 5;
-        param1->sideConditions[v1].reflectUser = param1->attacker;
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_REFLECT;
+        battleCtx->sideConditions[side].reflectTurns = NUM_SCREEN_TURNS;
+        battleCtx->sideConditions[side].reflectUser = battleCtx->attacker;
 
-        if (Battler_HeldItemEffect(param1, param1->attacker) == 97) {
-            param1->sideConditions[v1].reflectTurns += Battler_HeldItemPower(param1, param1->attacker, 0);
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_EXTEND_SCREENS) {
+            battleCtx->sideConditions[side].reflectTurns += Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
         }
 
-        param1->msgBuffer.tags = 20;
-        param1->msgBuffer.params[0] = param1->moveCur;
-        param1->msgBuffer.params[1] = param1->attacker;
+        battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[1] = battleCtx->attacker;
 
-        if (BattleSystem_CountAliveBattlers(param0, param1, 1, param1->attacker) == 2) {
-            param1->msgBuffer.id = 196;
+        if (BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, battleCtx->attacker) == 2) {
+            battleCtx->msgBuffer.id = 196; // "{0} raised [your/its] team's Defense slightly!"
         } else {
-            param1->msgBuffer.id = 194;
+            battleCtx->msgBuffer.id = 194; // "{0} raised [your/its] team's Defense!"
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243AB8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to set Mist for the user's side.
+ * 
+ * Inputs:
+ * 1. The jump-distance if Mist is already set for the user's side.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int side = Battler_Side(battleSys, battleCtx->attacker);
 
-    v0 = BattleScript_Read(param1);
-    v1 = Battler_Side(param0, param1->attacker);
-
-    if (param1->sideConditionsMask[v1] & 0x40) {
-        BattleScript_Iter(param1, v0);
-        param1->moveStatusFlags |= 0x40;
+    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_MIST) {
+        BattleScript_Iter(battleCtx, jump);
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     } else {
-        param1->sideConditionsMask[v1] |= 0x40;
-        param1->sideConditions[v1].mistTurns = 5;
-        param1->sideConditions[v1].mistUser = param1->attacker;
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_MIST;
+        battleCtx->sideConditions[side].mistTurns = NUM_SCREEN_TURNS;
+        battleCtx->sideConditions[side].mistUser = battleCtx->attacker;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02243B38 (BattleSystem * param0, BattleContext * param1)
