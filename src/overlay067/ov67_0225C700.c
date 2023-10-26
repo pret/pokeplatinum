@@ -729,43 +729,12 @@ static void ov67_0225D330 (UnkStruct_ov67_0225D210 * param0)
     sub_0200B3F0(param0->unk_00);
 }
 
-asm static void ov67_0225D37C (UnkStruct_ov67_0225D210 * param0, u32 param1)
+static void ov67_0225D37C (UnkStruct_ov67_0225D210 * param0, u32 param1)
 {
-    push {r3, r4, r5, lr}
-    sub sp, #0x10
-    add r4, r0, #0
-    add r5, r1, #0
-    add r0, #8
-    mov r1, #0
-    bl BGL_FillWindow
-    ldr r0, [r4, #4]
-    ldr r2, [r4, #0x1c]
-    add r1, r5, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [r4, #0]
-    ldr r1, [r4, #0x18]
-    ldr r2, [r4, #0x1c]
-    bl sub_0200C388
-    mov r0, #0
-    ldr r1, [r4, #0x18]
-    add r2, r0, #0
-    mov r3, #0xb0
-    bl sub_02002EEC
-    mov r1, #0
-    add r3, r0, #0
-    str r1, [sp]
-    ldr r0, = 0xF0E00
-    str r1, [sp, #4]
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    add r0, r4, #0
-    ldr r2, [r4, #0x18]
-    add r0, #8
-    mov r1, #1
-    bl sub_0201D78C
-    add sp, #0x10
-    pop {r3, r4, r5, pc}
-    nop
+    BGL_FillWindow(&param0->unk_08, 0);
+    MessageLoader_GetStrbuf(param0->unk_04, param1, param0->unk_1C);
+    sub_0200C388(param0->unk_00, param0->unk_18, param0->unk_1C);
+    sub_0201D78C(&param0->unk_08, 1, param0->unk_18, sub_02002EEC(0, param0->unk_18, 0, 0xB0), 0, 0, 0xF0E00, 0);
 }
 
 static void ov67_0225D3D0 (UnkStruct_ov67_0225D210 * param0, u32 param1)

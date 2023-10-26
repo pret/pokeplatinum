@@ -9,6 +9,7 @@
 
 #include "struct_defs/struct_0203CC84.h"
 #include "struct_defs/struct_0208BE5C.h"
+#include "struct_defs/struct_02089438.h"
 #include "overlay098/struct_ov98_02246E88.h"
 #include "overlay098/struct_ov98_02247168.h"
 
@@ -344,215 +345,83 @@ static void ov98_02246FC0 (UnkStruct_ov98_02246E88 * param0)
     return;
 }
 
-asm void * ov98_02246FC4 (UnkStruct_ov98_02246E88 * param0)
-{
-    push {r4, lr}
-    sub sp, #0x18
-    add r4, r0, #0
-    mov r0, #4
-    str r0, [sp, #8]
-    str r0, [sp, #0xc]
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    ldr r0, [r4, #4]
-    bl sub_02025E44
-    add r3, r0, #0
-    mov r0, #4
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    mov r0, #0x6c
-    mov r1, #0x10
-    add r2, sp, #8
-    bl sub_02089400
-    add r1, r4, #0
-    add r1, #0x94
-    add r4, #0x94
-    str r0, [r1, #0]
-    ldr r0, [r4, #0]
-    add sp, #0x18
-    pop {r4, pc}
+void * ov98_02246FC4 (UnkStruct_ov98_02246E88 * param0)
+{    
+    int v0[4];
+    
+    v0[0] = 4;
+    v0[1] = 4;
+    v0[2] = 4;
+    v0[3] = 4;
+    
+    param0->unk_98 = sub_02089400(108, 16, v0, sub_02025E44(param0->unk_04), 4, 0);
+    return param0->unk_98;
 }
 
-asm void ov98_02246FFC (UnkStruct_ov98_02246E88 * param0)
-{
-    push {r3, r4, r5, lr}
-    add r5, r0, #0
-    add r0, #0x94
-    ldr r4, [r0, #0]
-    mov r1, #0x6c
-    ldr r0, [r4, #0x1c]
-    bl ov98_02249A80
-    cmp r0, #0
-    beq _0224701A
-    add r0, r5, #0
-    mov r1, #1
-    bl ov98_02246FAC
-    b _0224705C
- _0224701A:
-    add r0, r5, #0
-    bl ov98_02246FB4
-    cmp r0, #2
-    bne _02247048
-    mov r0, #0x11
-    lsl r0, r0, #4
-    ldr r0, [r5, r0]
-    ldr r1, [r4, #0x1c]
-    bl Strbuf_Compare
-    cmp r0, #0
-    beq _0224703E
-    add r0, r5, #0
-    mov r1, #3
-    bl ov98_02246FAC
-    b _0224705C
- _0224703E:
-    add r0, r5, #0
-    mov r1, #0
-    bl ov98_02246FAC
-    b _0224705C
- _02247048:
-    mov r0, #0x11
-    lsl r0, r0, #4
-    ldr r0, [r5, r0]
-    ldr r1, [r4, #0x1c]
-    bl Strbuf_Copy
-    add r0, r5, #0
-    mov r1, #2
-    bl ov98_02246FAC
- _0224705C:
-    add r0, r4, #0
-    bl sub_02089438
-    mov r1, #0
-    add r0, r5, #0
-    add r2, r1, #0
-    bl ov98_02246E88
-        pop {r3, r4, r5, pc}
+void ov98_02246FFC (UnkStruct_ov98_02246E88 * param0)
+{    
+    UnkStruct_02089438 * v0 = param0->unk_98;
+    if (ov98_02249A80(v0->unk_1C, 108)) {
+        ov98_02246FAC(param0, 1);
+    } else if (ov98_02246FB4(param0) == 2) {
+        if (Strbuf_Compare(param0->unk_114, v0->unk_1C) != 0) {
+            ov98_02246FAC(param0, 3);
+        } else {
+            ov98_02246FAC(param0, 0);
+        }
+    } else {
+        Strbuf_Copy(param0->unk_114, v0->unk_1C);
+        ov98_02246FAC(param0, 2);
+    }
+    
+    sub_02089438(v0);
+    ov98_02246E88(param0, 0, 0);
 }
 
-asm void * ov98_02247070 (UnkStruct_ov98_02246E88 * param0)
-{
-    push {r4, lr}
-    sub sp, #0x20
-    add r4, r0, #0
-    mov r0, #3
-    str r0, [sp, #0x10]
-    mov r0, #4
-    str r0, [sp, #0x14]
-    mov r0, #0
-    str r0, [sp, #0x18]
-    str r0, [sp, #0x1c]
-    ldr r0, [r4, #4]
-    bl sub_02025E44
-    add r3, r0, #0
-    mov r0, #5
-    str r0, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    str r0, [sp, #8]
-    add r0, r4, #0
-    add r0, #0x78
-    ldrh r0, [r0]
-    mov r1, #7
-    add r2, sp, #0x10
-    str r0, [sp, #0xc]
-    mov r0, #0x6c
-    bl sub_0208941C
-    add r1, r4, #0
-    add r1, #0x94
-    add r4, #0x94
-    str r0, [r1, #0]
-    ldr r0, [r4, #0]
-    add sp, #0x20
-    pop {r4, pc}
+void * ov98_02247070 (UnkStruct_ov98_02246E88 * param0)
+{    
+    int v0[4];
+    
+    v0[0] = 3;
+    v0[1] = 4;
+    v0[2] = 0;
+    v0[3] = 0;
+    
+    param0->unk_98 = sub_0208941C(108, 7, v0, sub_02025E44(param0->unk_04), 5, 1, 1, param0->unk_7C);
+    return param0->unk_98;
 }
 
-extern void _ull_mod(void);
-
-asm void ov98_022470B8 (UnkStruct_ov98_02246E88 * param0)
+void ov98_022470B8 (UnkStruct_ov98_02246E88 * param0)
 {
-    push {r3, r4, r5, lr}
-    add r5, r0, #0
-    add r0, #0x94
-    ldr r4, [r0, #0]
-    add r1, sp, #0
-    ldr r0, [r4, #0x1c]
-    bl Strbuf_AtoI
-    ldr r2, = 0x2710
-              mov r3, #0
-    bl _ull_mod
-    mov r1, #0x42
-    lsl r1, r1, #2
-    str r0, [r5, r1]
-    ldr r0, [sp]
-    cmp r0, #0
-    bne _022470E0
-    bl ErrorHandling_AssertFail
- _022470E0:
-    add r0, r4, #0
-    bl sub_02089438
-    mov r1, #0
-    add r0, r5, #0
-    add r2, r1, #0
-    bl ov98_02246E88
-        pop {r3, r4, r5, pc}
-    nop
+    UnkStruct_02089438 * v0 = param0->unk_98;
+    BOOL v1;
+    param0->unk_10C = Strbuf_AtoI(v0->unk_1C, &v1) % 10000;
+    GF_ASSERT(v1);
+    sub_02089438(v0);
+    ov98_02246E88(param0, 0, 0);
 }
 
-asm void * ov98_022470F8 (UnkStruct_ov98_02246E88 * param0)
-{
-    push {r4, lr}
-    sub sp, #0x18
-    add r4, r0, #0
-    mov r0, #4
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    ldr r0, [r4, #4]
-    bl sub_02025E44
-    add r3, r0, #0
-    mov r0, #6
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    mov r0, #0x6c
-    mov r1, #4
-    add r2, sp, #8
-    bl sub_02089400
-    add r1, r4, #0
-    add r1, #0x94
-    add r4, #0x94
-    str r0, [r1, #0]
-    ldr r0, [r4, #0]
-    add sp, #0x18
-    pop {r4, pc}
+void * ov98_022470F8 (UnkStruct_ov98_02246E88 * param0)
+{    
+    int v0[4];
+    
+    v0[0] = 4;
+    v0[1] = 0;
+    v0[2] = 0;
+    v0[3] = 0;
+    
+    param0->unk_98 = sub_02089400(108, 4, v0, sub_02025E44(param0->unk_04), 6, 0);
+    return param0->unk_98;
 }
 
-asm void ov98_02247134 (UnkStruct_ov98_02246E88 * param0)
+void ov98_02247134 (UnkStruct_ov98_02246E88 * param0)
 {
-    push {r3, r4, r5, lr}
-    add r5, r0, #0
-    add r0, #0x94
-    ldr r4, [r0, #0]
-    add r1, sp, #0
-    ldr r0, [r4, #0x1c]
-    bl Strbuf_AtoI
-    mov r1, #0x41
-    lsl r1, r1, #2
-    str r0, [r5, r1]
-    ldr r0, [sp]
-    cmp r0, #0
-    bne _02247154
-    bl ErrorHandling_AssertFail
- _02247154:
-    add r0, r4, #0
-    bl sub_02089438
-    mov r1, #0
-    add r0, r5, #0
-    add r2, r1, #0
-    bl ov98_02246E88
-        pop {r3, r4, r5, pc}
+    UnkStruct_02089438 * v0 = param0->unk_98;
+    BOOL v1;
+    param0->unk_108 = Strbuf_AtoI(v0->unk_1C, &v1);
+    GF_ASSERT(v1);
+    sub_02089438(v0);
+    ov98_02246E88(param0, 0, 0);
 }
 
 static void * ov98_02247168 (UnkStruct_ov98_02246E88 * param0)

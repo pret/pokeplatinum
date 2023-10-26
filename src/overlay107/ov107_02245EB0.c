@@ -1480,199 +1480,57 @@ static void ov107_022475F0 (UnkStruct_ov107_02246170 * param0, u32 param1)
     return;
 }
 
-asm static u8 ov107_02247650 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static u8 ov107_02247650 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
-    push {r4, r5, lr}
-    sub sp, #0x1c
-    ldr r4, [sp, #0x28]
-    str r4, [sp]
-    ldr r4, [sp, #0x2c]
-    str r4, [sp, #4]
-    add r4, sp, #0x18
-    ldrb r5, [r4, #0x18]
-    str r5, [sp, #8]
-    ldrb r4, [r4, #0x1c]
-    str r4, [sp, #0xc]
-    add r4, sp, #0x38
-    ldrb r4, [r4]
-    str r4, [sp, #0x10]
-    add r4, sp, #0x3c
-    ldrb r4, [r4]
-    str r4, [sp, #0x14]
-    mov r4, #0
-    str r4, [sp, #0x18]
-    bl ov107_02247680
-    add sp, #0x1c
-    pop {r4, r5, pc}
+    return ov107_02247680(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
 }
 
-asm static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
+static u8 ov107_02247680 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x10
-    add r6, r1, #0
-    add r1, sp, #0x38
-    ldrb r1, [r1]
-    add r5, r0, #0
-    add r0, r6, #0
-    add r7, r2, #0
-    add r4, r3, #0
-    bl BGL_FillWindow
-    ldr r0, [r5, #0x20]
-    ldr r2, [r5, #0x2c]
-    add r1, r7, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [r5, #0x24]
-    ldr r1, [r5, #0x28]
-    ldr r2, [r5, #0x2c]
-    bl sub_0200C388
-    ldr r0, [sp, #0x40]
-    cmp r0, #1
-    beq _022476B6
-    cmp r0, #2
-    beq _022476C8
-    b _022476D4
- _022476B6:
-    mov r0, #0
-    ldr r1, [r5, #0x28]
-    add r2, r0, #0
-    bl sub_02002D7C
-    add r0, r0, #1
-    lsr r0, r0, #1
-    sub r4, r4, r0
-    b _022476D4
- _022476C8:
-    mov r0, #0
-    ldr r1, [r5, #0x28]
-    add r2, r0, #0
-    bl sub_02002D7C
-    sub r4, r4, r0
- _022476D4:
-    ldr r0, [sp, #0x28]
-    add r2, sp, #0x18
-    str r0, [sp]
-    ldr r0, [sp, #0x2c]
-    add r3, r4, #0
-    str r0, [sp, #4]
-    add r0, sp, #0x38
-    ldrb r1, [r0]
-    ldrb r0, [r2, #0x18]
-    ldrb r2, [r2, #0x1c]
-    lsl r0, r0, #0x18
-    lsl r2, r2, #0x18
-    lsr r0, r0, #8
-    lsr r2, r2, #0x10
-    orr r0, r2
-    orr r0, r1
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    add r1, sp, #0x3c
-    ldrb r1, [r1]
-    ldr r2, [r5, #0x28]
-    add r0, r6, #0
-    bl sub_0201D78C
-    add r4, r0, #0
-    add r0, r6, #0
-    bl sub_0201A9A4
-    add r0, r4, #0
-    add sp, #0x10
-    pop {r3, r4, r5, r6, r7, pc}
+    u8 v0;
+    BGL_FillWindow(param1, param8);
+    MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
+    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    
+    switch (param10) {
+    case 1:
+        param3 -= (sub_02002D7C(0, param0->unk_28, 0) + 1) / 2;
+        break;
+    case 2:
+        param3 -= sub_02002D7C(0, param0->unk_28, 0);
+        break;
+    }
+    
+    v0 = sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
+    sub_0201A9A4(param1);
+    
+    return v0;
 }
 
-asm static u8 ov107_02247714 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static u8 ov107_02247714 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9)
 {
-    push {r4, r5, lr}
-    sub sp, #0x1c
-    ldr r4, [sp, #0x28]
-    str r4, [sp]
-    ldr r4, [sp, #0x2c]
-    str r4, [sp, #4]
-    add r4, sp, #0x18
-    ldrb r5, [r4, #0x18]
-    str r5, [sp, #8]
-    ldrb r4, [r4, #0x1c]
-    str r4, [sp, #0xc]
-    add r4, sp, #0x38
-    ldrb r4, [r4]
-    str r4, [sp, #0x10]
-    add r4, sp, #0x3c
-    ldrb r4, [r4]
-    str r4, [sp, #0x14]
-    mov r4, #0
-    str r4, [sp, #0x18]
-    bl ov107_02247744
-    add sp, #0x1c
-    pop {r4, r5, pc}
+    ov107_02247744(param0, param1, param2, param3, param4, param5, param6, param7, param8, param9, 0);
 }
 
-asm static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
+static u8 ov107_02247744 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u32 param3, u32 param4, u32 param5, u8 param6, u8 param7, u8 param8, u8 param9, u32 param10)
 {
-    push {r4, r5, r6, lr}
-    sub sp, #0x10
-    add r5, r0, #0
-    add r6, r1, #0
-    add r1, r2, #0
-    ldr r0, [r5, #0x20]
-    ldr r2, [r5, #0x2c]
-    add r4, r3, #0
-    bl MessageLoader_GetStrbuf
-    ldr r0, [r5, #0x24]
-    ldr r1, [r5, #0x28]
-    ldr r2, [r5, #0x2c]
-    bl sub_0200C388
-    ldr r0, [sp, #0x38]
-    cmp r0, #1
-    beq _0224776E
-    cmp r0, #2
-    beq _02247780
-    b _0224778C
- _0224776E:
-    mov r0, #0
-    ldr r1, [r5, #0x28]
-    add r2, r0, #0
-    bl sub_02002D7C
-    add r0, r0, #1
-    lsr r0, r0, #1
-    sub r4, r4, r0
-    b _0224778C
- _02247780:
-    mov r0, #0
-    ldr r1, [r5, #0x28]
-    add r2, r0, #0
-    bl sub_02002D7C
-    sub r4, r4, r0
- _0224778C:
-    ldr r0, [sp, #0x20]
-    add r2, sp, #0x10
-    str r0, [sp]
-    ldr r0, [sp, #0x24]
-    add r3, r4, #0
-    str r0, [sp, #4]
-    add r0, sp, #0x30
-    ldrb r1, [r0]
-    ldrb r0, [r2, #0x18]
-    ldrb r2, [r2, #0x1c]
-    lsl r0, r0, #0x18
-    lsl r2, r2, #0x18
-    lsr r0, r0, #8
-    lsr r2, r2, #0x10
-    orr r0, r2
-    orr r0, r1
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    add r1, sp, #0x34
-    ldrb r1, [r1]
-    ldr r2, [r5, #0x28]
-    add r0, r6, #0
-    bl sub_0201D78C
-    add r4, r0, #0
-    add r0, r6, #0
-    bl sub_0201A9A4
-    add r0, r4, #0
-    add sp, #0x10
-    pop {r4, r5, r6, pc}
+    u8 v0;
+    MessageLoader_GetStrbuf(param0->unk_20, param2, param0->unk_2C);
+    sub_0200C388(param0->unk_24, param0->unk_28, param0->unk_2C);
+    
+    switch (param10) {
+    case 1:
+        param3 -= (sub_02002D7C(0, param0->unk_28, 0) + 1) / 2;
+        break;
+    case 2:
+        param3 -= sub_02002D7C(0, param0->unk_28, 0);
+        break;
+    }
+    
+    v0 = sub_0201D78C(param1, param9, param0->unk_28, param3, param4, param5, (u32)((((param6) & 0xFF) << 16) | (((param7) & 0xFF) << 8) | ((param8) & 0xFF)), NULL);
+    sub_0201A9A4(param1);
+    
+    return v0;
 }
 
 static u8 ov107_022477CC (UnkStruct_ov107_02246170 * param0, int param1, u8 param2)
@@ -1922,7 +1780,6 @@ asm static void ov107_02247804 (UnkStruct_ov107_02246170 * param0, Window * para
 static void ov107_02247A14 (UnkStruct_ov107_02246170 * param0, Window * param1, int param2, u16 param3, u16 param4, u32 param5)
 {
     ov107_02247744(param0, param1, param2, param3, param4, 0xff, 1, 2, 0, 0, param5);
-    return;
 }
 
 static void ov107_02247A3C (UnkStruct_ov107_02246170 * param0, Window * param1, Pokemon * param2)
@@ -1938,84 +1795,19 @@ static void ov107_02247A3C (UnkStruct_ov107_02246170 * param0, Window * param1, 
     return;
 }
 
-asm static void ov107_02247AD0 (UnkStruct_ov107_02246170 * param0, Window * param1, u8 param2, u32 param3, u32 param4, Pokemon * param5, u32 param6, u32 param7, u32 param8)
+static void ov107_02247AD0 (UnkStruct_ov107_02246170 * param0, Window * param1, u8 param2, u32 param3, u32 param4, Pokemon * param5, u32 param6, u32 param7, u32 param8)
 {
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x1c
-    add r4, r0, #0
-    add r6, r1, #0
-    add r5, r2, #0
-    ldr r0, [sp, #0x34]
-    ldr r1, [sp, #0x38]
-    mov r2, #0
-    add r7, r3, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    ldr r0, [r4, #0x24]
-    add r1, r5, #0
-    bl sub_0200B630
-    mov r0, #0x18
-    mul r0, r5
-    add r0, #0xc
-    lsl r0, r0, #0x10
-    lsr r5, r0, #0x10
-    str r5, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #1
-    str r0, [sp, #8]
-    mov r0, #2
-    str r0, [sp, #0xc]
-    mov r0, #0
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    add r0, r4, #0
-    add r1, r6, #0
-    add r2, r7, #0
-    mov r3, #0x20
-    bl ov107_02247714
-    strb r0, [r4, #0xa]
-    ldr r0, [sp, #0x34]
-    ldr r1, [sp, #0x3c]
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    mov r0, #0
-    str r0, [sp]
-    add r0, r4, #0
-    mov r1, #4
-    mov r3, #3
-    bl ov107_022480EC
-    ldr r0, [sp, #0x34]
-    ldr r1, [sp, #0x40]
-    mov r2, #0
-    bl Pokemon_GetValue
-    add r2, r0, #0
-    mov r0, #0
-    str r0, [sp]
-    add r0, r4, #0
-    mov r1, #5
-    mov r3, #3
-    bl ov107_022480EC
-    str r5, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r1, #1
-    str r1, [sp, #8]
-    mov r0, #2
-    str r0, [sp, #0xc]
-    mov r0, #0
-    str r0, [sp, #0x10]
-    str r0, [sp, #0x14]
-    str r1, [sp, #0x18]
-    ldr r2, [sp, #0x30]
-    add r0, r4, #0
-    add r1, r6, #0
-    mov r3, #0x91
-    bl ov107_02247744
-    strb r0, [r4, #0xa]
-    add sp, #0x1c
-    pop {r4, r5, r6, r7, pc}
+    u16 v0, v1, v2, v3;
+
+    v0 = 4 * 8;
+    v1 = (2 * 8 - 4) + param2 * 24;
+    v2 = 18 * 8 + 1;
+    v3 = (2 * 8 - 4) + param2 * 24;
+    sub_0200B630(param0->unk_24, param2, Pokemon_GetValue(param5, param6, NULL));
+    param0->unk_0A = ov107_02247714(param0, param1, param3, v0, v1, 0xFF, 1, 2, 0, 0);
+    ov107_022480EC(param0, 4, Pokemon_GetValue(param5, param7, NULL), 3, 0);
+    ov107_022480EC(param0, 5, Pokemon_GetValue(param5, param8, NULL), 3, 0);
+    param0->unk_0A = ov107_02247744(param0, param1, param4, v2, v3, 0xFF, 1, 2, 0, 0, 1);
 }
 
 static void ov107_02247B78 (UnkStruct_ov107_02246170 * param0, Window * param1)
@@ -2417,54 +2209,11 @@ static void ov107_022481FC (UnkStruct_ov107_02246170 * param0, Window * param1, 
     return;
 }
 
-asm static void ov107_02248240 (UnkStruct_ov107_02246170 * param0)
+static void ov107_02248240 (UnkStruct_ov107_02246170 * param0)
 {
-    push {r3, r4, lr}
-    sub sp, #0x1c
-    mov r2, #5
-    str r2, [sp]
-    mov r1, #0xff
-    str r1, [sp, #4]
-    mov r3, #1
-    str r3, [sp, #8]
-    mov r1, #2
-    str r1, [sp, #0xc]
-    mov r1, #0
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    add r4, r0, #0
-    add r1, r4, #0
-    str r3, [sp, #0x18]
-    add r1, #0x60
-    mov r3, #0x10
-    bl ov107_02247680
-    strb r0, [r4, #0xa]
-    mov r0, #0x52
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    bl sub_02027B50
-    add r1, r0, #0
-    add r0, r4, #0
-    add r0, #0xd0
-    bl ov107_02249DBC
-    mov r3, #1
-    add r1, r4, #0
-    str r3, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    str r3, [sp, #8]
-    mov r0, #2
-    str r0, [sp, #0xc]
-    mov r0, #0xf
-    str r0, [sp, #0x10]
-    add r0, r4, #0
-    add r1, #0xd0
-    mov r2, #4
-    str r3, [sp, #0x14]
-    bl ov107_02247650
-    strb r0, [r4, #0xa]
-    add sp, #0x1c
-    pop {r3, r4, pc}
+    param0->unk_0A = ov107_02247680(param0, &param0->unk_50[1], 5, 16, 1 + 4, 0xFF, 1, 2, 0, 0, 1);
+    ov107_02249DBC(&param0->unk_50[8], sub_02027B50(param0->unk_148));
+    param0->unk_0A = ov107_02247650(param0, &param0->unk_50[8], 4, 1, 1, 0xFF, 1, 2, 15, 1);
 }
 
 static void ov107_022482A4 (UnkStruct_ov107_02246170 * param0)

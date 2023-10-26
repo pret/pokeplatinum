@@ -83,7 +83,7 @@ static u8 ov110_021D1208(u8 param0);
 static void ov110_021D123C(UnkStruct_ov110_021D0F78 * param0, u32 param1);
 static void ov110_021D128C(void);
 static void ov110_021D12C0(UnkStruct_ov110_021D0F78 * param0, u32 param1);
-static u8 ov110_021D1324(UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9);
+static u8 ov110_021D1324(UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10);
 static u8 ov110_021D13CC(UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3);
 static void ov110_021D13F0(UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2);
 static void ov110_021D140C(UnkStruct_ov110_021D0F78 * param0);
@@ -482,110 +482,28 @@ static void ov110_021D12C0 (UnkStruct_ov110_021D0F78 * param0, u32 param1)
     return;
 }
 
-asm static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9)
+static u8 ov110_021D1324 (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u32 param3, u32 param4, u8 param5, u8 param6, u8 param7, u8 param8, u8 param9, int param10)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x10
-    add r5, r0, #0
-    add r0, sp, #0x3c
-    ldrb r0, [r0]
-    add r6, r1, #0
-    add r7, r2, #0
-    add r4, r3, #0
-    cmp r0, #0
-    beq _021D1342
-    add r1, sp, #0x18
-    ldrb r1, [r1, #0x1c]
-    add r0, r6, #0
-    bl BGL_FillWindow
- _021D1342:
-    mov r2, #0x11
-    lsl r2, r2, #4
-    ldr r0, [r5, r2]
-    add r2, #0xc
-    ldr r2, [r5, r2]
-    add r1, r7, #0
-    bl MessageLoader_GetStrbuf
-    mov r2, #0x45
-    lsl r2, r2, #2
-    add r1, r2, #4
-    ldr r0, [r5, r2]
-    add r2, #8
-    ldr r1, [r5, r1]
-    ldr r2, [r5, r2]
-    bl sub_0200C388
-    ldr r0, [sp, #0x40]
-    cmp r0, #1
-    beq _021D1370
-    cmp r0, #2
-    beq _021D1386
-    b _021D1396
- _021D1370:
-    mov r1, #0x46
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl sub_02002D7C
-    add r0, r0, #1
-    lsr r0, r0, #1
-    sub r4, r4, r0
-    b _021D1396
- _021D1386:
-    mov r1, #0x46
-    lsl r1, r1, #2
-    mov r0, #0
-    ldr r1, [r5, r1]
-    add r2, r0, #0
-    bl sub_02002D7C
-    sub r4, r4, r0
- _021D1396:
-    ldr r0, [sp, #0x28]
-    mov r2, #0
-    str r0, [sp]
-    str r2, [sp, #4]
-    add r3, sp, #0x18
-    ldrb r0, [r3, #0x14]
-    ldrb r1, [r3, #0x1c]
-    ldrb r3, [r3, #0x18]
-    lsl r0, r0, #0x18
-    lsr r0, r0, #8
-    lsl r3, r3, #0x18
-    lsr r3, r3, #0x10
-    orr r0, r3
-    orr r0, r1
-    str r0, [sp, #8]
-    str r2, [sp, #0xc]
-    add r1, sp, #0x38
-    mov r2, #0x46
-    lsl r2, r2, #2
-    ldrb r1, [r1]
-    ldr r2, [r5, r2]
-    add r0, r6, #0
-    add r3, r4, #0
-    bl sub_0201D78C
-    add sp, #0x10
-    pop {r3, r4, r5, r6, r7, pc}
+    if (param9)
+        BGL_FillWindow(param1, param7);
+    MessageLoader_GetStrbuf(param0->unk_110, param2, param0->unk_11C);
+    sub_0200C388(param0->unk_114, param0->unk_118, param0->unk_11C);
+    
+    switch(param10) {
+    case 1:
+        param3 -= (sub_02002D7C(0, param0->unk_118, 0) + 1) / 2;
+        break;
+    case 2:
+        param3 -= sub_02002D7C(0, param0->unk_118, 0);
+        break;
+    }
+    
+    sub_0201D78C(param1, param8, param0->unk_118, param3, param4, 0, ((((u32)(param5) & 0xFF) << 16) | (((param6) & 0xFF) << 8) | (((param7) & 0xFF))), NULL);
 }
 
-asm static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3)
+static u8 ov110_021D13CC (UnkStruct_ov110_021D0F78 * param0, Window * param1, int param2, u8 param3)
 {
-    push {r4, r5, lr}
-    sub sp, #0x1c
-    mov r5, #0
-    str r5, [sp]
-    mov r4, #1
-    str r4, [sp, #4]
-    mov r4, #2
-    str r4, [sp, #8]
-    str r5, [sp, #0xc]
-    str r5, [sp, #0x10]
-    str r3, [sp, #0x14]
-    add r3, r5, #0
-    str r5, [sp, #0x18]
-    bl ov110_021D1324
-    add sp, #0x1c
-    pop {r4, r5, pc}
+    return ov110_021D1324 (param0, param1, param2, 0, 0, 1, 2, 0, 0, param3, 0);
 }
 
 static void ov110_021D13F0 (UnkStruct_ov110_021D0F78 * param0, u32 param1, s32 param2)
@@ -628,227 +546,47 @@ static void ov110_021D140C (UnkStruct_ov110_021D0F78 * param0)
     return;
 }
 
-asm static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
+static void ov110_021D1468 (UnkStruct_ov110_021D0F78 * param0)
 {
-    push {r3, r4, lr}
-    sub sp, #0x1c
-    add r4, r0, #0
-    add r0, #0x10
-    mov r1, #0
-    bl BGL_FillWindow
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    str r1, [sp, #0x18]
-    add r1, r4, #0
-    add r0, r4, #0
-    add r1, #0x10
-    mov r2, #0x16
-    mov r3, #8
-    bl ov110_021D1324
-    ldrb r0, [r4, #5]
-    cmp r0, #0
-    bne _021D14A4
-    mov r2, #0x1a
-    mov r3, #0xd8
-    b _021D14B2
- _021D14A4:
-    cmp r0, #1
-    bne _021D14AE
-    mov r2, #0x1b
-    mov r3, #0xd8
-    b _021D14B2
- _021D14AE:
-    mov r2, #0x1c
-    mov r3, #0xd8
- _021D14B2:
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    add r1, r4, #0
-    str r0, [sp, #0x18]
-    add r0, r4, #0
-    add r1, #0x10
-    bl ov110_021D1324
-    add r0, r4, #0
-    add r0, #0x10
-    bl sub_0201A9A4
-    add r1, r4, #0
-    add r0, r4, #0
-    add r1, #0x20
-    mov r2, #0x22
-    mov r3, #1
-    bl ov110_021D13CC
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    add r1, r4, #0
-    str r0, [sp, #0x18]
-    add r0, r4, #0
-    add r1, #0x20
-    mov r2, #0x24
-    mov r3, #0xe0
-    bl ov110_021D1324
-    add r0, r4, #0
-    add r0, #0x20
-    bl sub_0201A9A4
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D17AC
-    add r1, r4, #0
-    add r2, r0, #0
-    add r0, r4, #0
-    add r1, #0x30
-    mov r3, #1
-    bl ov110_021D13CC
-    ldrb r1, [r4, #5]
-    mov r0, #0
-    bl sub_0205E430
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r2, #0
-    str r2, [sp]
-    mov r1, #1
-    str r1, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r2, [sp, #0xc]
-    str r2, [sp, #0x10]
-    str r2, [sp, #0x14]
-    str r1, [sp, #0x18]
-    add r1, r4, #0
-    add r0, r4, #0
-    add r1, #0x30
-    mov r2, #0x26
-    mov r3, #0x70
-    bl ov110_021D1324
-    ldrb r1, [r4, #5]
-    mov r0, #0
-    bl sub_0205E488
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    add r1, r4, #0
-    str r0, [sp, #0x18]
-    add r0, r4, #0
-    add r1, #0x30
-    mov r2, #0x28
-    mov r3, #0xe0
-    bl ov110_021D1324
-    add r0, r4, #0
-    add r0, #0x30
-    bl sub_0201A9A4
-    add r1, r4, #0
-    add r0, r4, #0
-    add r1, #0x40
-    mov r2, #0x1f
-    mov r3, #1
-    bl ov110_021D13CC
-    ldrb r1, [r4, #5]
-    mov r0, #0
-    bl sub_0205E45C
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r2, #0
-    str r2, [sp]
-    mov r1, #1
-    str r1, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r2, [sp, #0xc]
-    str r2, [sp, #0x10]
-    str r2, [sp, #0x14]
-    str r1, [sp, #0x18]
-    add r1, r4, #0
-    add r0, r4, #0
-    add r1, #0x40
-    mov r2, #0x26
-    mov r3, #0x70
-    bl ov110_021D1324
-    ldrb r1, [r4, #5]
-    mov r0, #0
-    bl sub_0205E4B4
-    add r1, r0, #0
-    mov r0, #0x4b
-    lsl r0, r0, #2
-    ldr r0, [r4, r0]
-    mov r2, #0xff
-    bl sub_02030698
-    add r2, r0, #0
-    add r0, r4, #0
-    mov r1, #0
-    bl ov110_021D13F0
-    mov r1, #0
-    str r1, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    mov r0, #2
-    str r0, [sp, #8]
-    str r1, [sp, #0xc]
-    str r1, [sp, #0x10]
-    str r1, [sp, #0x14]
-    add r1, r4, #0
-    str r0, [sp, #0x18]
-    add r0, r4, #0
-    add r1, #0x40
-    mov r2, #0x28
-    mov r3, #0xe0
-    bl ov110_021D1324
-    add r4, #0x40
-    add r0, r4, #0
-    bl sub_0201A9A4
-    add sp, #0x1c
-    pop {r3, r4, pc}
+    u8 v0, v1;
+    int v2;
+    u32 v3;
+    
+    v0 = 0;
+    BGL_FillWindow(&param0->unk_10[v0], 0);
+    ov110_021D1324(param0, &param0->unk_10[v0], 22, 8, 0, 1, 2, 0, 0, 0, 0);
+    
+    if (param0->unk_05 == 0) {
+        v2 = 26;
+        v3 = 216;
+    } else if (param0->unk_05 == 1) {
+        v2 = 27;
+        v3 = 216;
+    } else {
+        v2 = 28;
+        v3 = 216;
+    }
+    
+    ov110_021D1324(param0, &param0->unk_10[v0], v2, v3, 0, 1, 2, 0, 0, 0, 2);
+    sub_0201A9A4(&param0->unk_10[v0]);
+    v0 = 1;
+    ov110_021D13CC(param0, &param0->unk_10[v0], 34, 1);
+    ov110_021D1324(param0, &param0->unk_10[v0], 36, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    sub_0201A9A4(&param0->unk_10[v0]);
+    v0 = 2;
+    ov110_021D13CC(param0, &param0->unk_10[v0], ov110_021D17AC(param0, 0), 1);
+    ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E430(0, param0->unk_05), 0xFF));
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, 0, 0, 1);
+    ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E488(0, param0->unk_05), 0xFF));
+    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    sub_0201A9A4(&param0->unk_10[v0]);
+    v0 = 3;
+    ov110_021D13CC(param0, &param0->unk_10[v0], 31, 1);
+    ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E45C(0, param0->unk_05), 0xFF));
+    ov110_021D1324(param0, &param0->unk_10[v0], 38, 14 * 8, 0, 1, 2, 0, 0, 0, 1);
+    ov110_021D13F0(param0, 0, sub_02030698(param0->unk_12C, sub_0205E4B4(0, param0->unk_05), 0xFF));
+    ov110_021D1324(param0, &param0->unk_10[v0], 40, 28 * 8, 0, 1, 2, 0, 0, 0, 2);
+    sub_0201A9A4(&param0->unk_10[v0]);
 }
 
 asm static void ov110_021D1650 (UnkStruct_ov110_021D0F78 * param0)

@@ -250,27 +250,14 @@ UnkEnum_ov66_0223287C ov66_022325D8 (void)
     return ov66_0223287C();
 }
 
-asm PPW_LOBBY_ERROR ov66_022326DC (void)
-{
-    push {r3, lr}
-    ldr r0, = Unk_ov66_0225B6C0
-    ldr r0, [r0, #0]
-    cmp r0, #0
-    bne _022326EA
-    bl ErrorHandling_AssertFail
- _022326EA:
-    ldr r0, = Unk_ov66_0225B6C0
-    ldr r1, [r0, #0]
-    ldr r0, = 0x984
-    ldr r0, [r1, r0]
-    cmp r0, #0
-    bne _022326FC
-    bl PPW_LobbyGetLastError
-    pop {r3, pc}
- _022326FC:
-    bl ov66_02237134
-    pop {r3, pc}
-    nop
+PPW_LOBBY_ERROR ov66_022326DC (void)
+{    
+    GF_ASSERT(Unk_ov66_0225B6C0 != NULL);
+    
+    if (Unk_ov66_0225B6C0->unk_984 == 0)
+        return PPW_LobbyGetLastError();
+    else
+        return ov66_02237134(Unk_ov66_0225B6C0->unk_984);
 }
 
 s32 ov66_0223270C (PPW_LOBBY_ERROR param0)

@@ -2239,91 +2239,21 @@ CellActorData * ov117_02266130 (UnkStruct_ov117_02261280 * param0)
     return v0;
 }
 
-extern void _u32_div_f(void);
-
-asm void ov117_02266150 (UnkStruct_ov117_02261280 * param0)
+void ov117_02266150 (UnkStruct_ov117_02261280 * param0)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x40
-    add r7, r0, #0
-    ldr r0, = 0x3848
-    add r6, r7, #0
-    ldr r0, [r7, r0]
-    add r4, r7, #0
-    str r0, [sp, #0x2c]
-    mov r0, #5
-    str r0, [sp, #0x30]
-    ldr r0, = 0x16B0
-    add r6, #0x64
-    add r5, r7, r0
-    add r4, #0xc8
-    add r5, #0x64
- _0226616E:
-    ldr r0, = 0x16B0
-    ldr r0, [r6, r0]
-    cmp r0, #0
-    beq _0226617A
-    bl ErrorHandling_AssertFail
- _0226617A:
-    ldr r0, [sp, #0x2c]
-    mov r1, #0xa
-    bl _u32_div_f
-    add r0, r7, #0
-    add r0, #0x80
-    ldr r0, [r0, #0]
-    add r1, r1, #4
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0x34]
-    ldr r0, [sp, #0x2c]
-    mov r1, #0xa
-    bl _u32_div_f
-    str r0, [sp, #0x2c]
-    ldr r0, = 0x15AC
-    add r1, sp, #0x3c
-    ldr r0, [r4, r0]
-    add r2, sp, #0x38
-    bl sub_020129A4
-    ldr r0, [sp, #0x34]
-    add r2, r7, #0
-    str r0, [sp]
-    mov r0, #0
-    str r0, [sp, #4]
-    ldr r0, = 0xE0F00
-    add r2, #0x90
-    str r0, [sp, #8]
-    mov r0, #0
-    str r0, [sp, #0xc]
-    ldr r0, = 0x2713
-    add r3, r5, #0
-    str r0, [sp, #0x10]
-    ldr r0, [sp, #0x3c]
-    str r0, [sp, #0x14]
-    mov r0, #0xa8
-    str r0, [sp, #0x18]
-    mov r0, #0
-    str r0, [sp, #0x1c]
-    mov r0, #1
-    str r0, [sp, #0x20]
-    mov r0, #0xc
-    str r0, [sp, #0x24]
-    mov r0, #2
-    str r0, [sp, #0x28]
-    ldr r0, [r7, #0x2c]
-    ldr r1, [r7, #0x28]
-    ldr r2, [r2, #0]
-    bl ov117_02265DB8
-    ldr r0, [sp, #0x34]
-    bl Strbuf_Free
-    ldr r0, [sp, #0x30]
-    sub r6, #0x14
-    sub r4, #0x28
-    sub r5, #0x14
-    sub r0, r0, #1
-    str r0, [sp, #0x30]
-    bpl _0226616E
-    add sp, #0x40
-    pop {r3, r4, r5, r6, r7, pc}
-    nop
+    Strbuf * v0;
+    int v1, v2, v3;
+    u32 v4;
+    
+    v4 = param0->unk_3D4C;
+    for (v1 = 6 - 1; v1 >= 0; v1--) {
+        GF_ASSERT(param0->unk_15A8.unk_108[v1].unk_00 == NULL);
+        v0 = MessageLoader_GetNewStrbuf(param0->unk_80, 4 + (v4 % 10));
+        v4 /= 10;
+        sub_020129A4(param0->unk_15A8.unk_04[v1][0].unk_00, &v2, &v3);
+        ov117_02265DB8(param0->unk_2C, param0->unk_28, param0->unk_90, &param0->unk_15A8.unk_108[v1], v0, 0, (u32)(((0xE & 0xFF) << 0x10) | ((0xF & 0xFF) << 0x8) | ((0x0 & 0xFF) << 0x0)), 0, 10003, v2, 168, 0, 1, 12, 2 * 1);
+        Strbuf_Free(v0);
+    }
 }
 
 void ov117_02266210 (UnkStruct_ov117_02261280 * param0)

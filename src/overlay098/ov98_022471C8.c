@@ -985,66 +985,24 @@ static void ov98_02247FBC (UnkStruct_ov98_02247704 * param0)
     }
 }
 
-asm static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
+static void ov98_022482CC (UnkStruct_ov98_02247704 * param0)
 {
-    push {r4, r5, r6, r7, lr}
-    sub sp, #0x14
-    add r7, r0, #0
-    add r0, #0xc4
-    mov r1, #0xf
-    bl BGL_FillWindow
-    ldr r0, [r7, #0x34]
-    mov r1, #0x2c
-    bl MessageLoader_GetNewStrbuf
-    str r0, [sp, #0xc]
-    bl Strbuf_Length
-    mov r1, #0x6d
-    bl Strbuf_Init
-    add r6, r0, #0
-    add r0, r7, #0
-    add r0, #0xac
-    ldr r4, [r0, #0]
-    add r0, r4, #6
-    cmp r4, r0
-    bge _02248336
-    add r0, r7, #0
-    str r0, [sp, #0x10]
-    add r0, #0xc4
-    mov r5, #0
-    str r0, [sp, #0x10]
- _02248306:
-    ldr r1, [sp, #0xc]
-    add r0, r6, #0
-    add r2, r4, #0
-    bl Strbuf_CopyLineNum
-    str r5, [sp]
-    mov r0, #0xff
-    str r0, [sp, #4]
-    mov r0, #0
-    str r0, [sp, #8]
-    ldr r0, [sp, #0x10]
-    mov r1, #0
-    add r2, r6, #0
-    mov r3, #4
-    bl sub_0201D738
-    add r0, r7, #0
-    add r0, #0xac
-    ldr r0, [r0, #0]
-    add r4, r4, #1
-    add r0, r0, #6
-    add r5, #0x10
-    cmp r4, r0
-    blt _02248306
- _02248336:
-    ldr r0, [sp, #0xc]
-    bl Strbuf_Free
-    add r0, r6, #0
-    bl Strbuf_Free
-    add r7, #0xc4
-    add r0, r7, #0
-    bl sub_0201A954
-    add sp, #0x14
-    pop {r4, r5, r6, r7, pc}
+    int v0;
+    int v1 = 0;
+    Strbuf* v2;
+    Strbuf* v3;
+    
+    BGL_FillWindow(&param0->unk_C4, 0x0f0f);
+    v2 = MessageLoader_GetNewStrbuf(param0->unk_34, 44);
+    v3 = Strbuf_Init(Strbuf_Length(v2), 109);
+    for (v0 = param0->unk_AC; v0 < param0->unk_AC + 6; v0++) {
+        Strbuf_CopyLineNum(v3, v2, v0);
+        sub_0201D738(&param0->unk_C4, 0, v3, 4, v1 * 16, 0xFF, NULL);
+        v1++;
+    }
+    Strbuf_Free(v2);
+    Strbuf_Free(v3);
+    sub_0201A954(&param0->unk_C4);
 }
 
 asm static int ov98_02248350 (UnkStruct_ov98_02247704 * param0)
@@ -1500,39 +1458,23 @@ static int ov98_022487AC (UnkStruct_ov98_02247704 * param0)
     return 0;
 }
 
-asm static int ov98_022487CC (UnkStruct_ov98_02247704 * param0)
+static int ov98_022487CC (UnkStruct_ov98_02247704 * param0)
 {
-    push {r4, lr}
-    add r4, r0, #0
-    ldr r0, [r4, #0]
-    bl ov98_02246FB4
-    cmp r0, #1
-    beq _022487E4
-    cmp r0, #2
-    beq _022487EA
-    cmp r0, #3
-    beq _022487EA
-    b _022487F2
- _022487E4:
-    mov r0, #0
-    str r0, [r4, #8]
-    pop {r4, pc}
- _022487EA:
-    mov r0, #0x25
-    str r0, [r4, #8]
-    mov r0, #0
-    pop {r4, pc}
- _022487F2:
-    add r0, r4, #0
-    add r0, #0x94
-    ldr r0, [r0, #0]
-    cmp r0, #0
-    bne _02248800
-    mov r0, #7
-    str r0, [r4, #8]
- _02248800:
-    mov r0, #0
-    pop {r4, pc}
+    charcode_t * v0;
+    switch (ov98_02246FB4(param0->unk_00)) {
+    case 1:
+        param0->unk_08 = 0;
+        return 0;
+    case 2:
+    case 3:
+        param0->unk_08 = 37;
+        return 0;
+    }
+    
+    if (param0->unk_94 == 0)
+        param0->unk_08 = 7;
+    
+    return 0;
 }
 
 static int ov98_02248804 (UnkStruct_ov98_02247704 * param0)
@@ -2487,137 +2429,53 @@ static int ov98_0224977C (int param0)
     return 1;
 }
 
-asm static int ov98_02249798 (UnkStruct_ov98_02247704 * param0)
+static int ov98_02249798 (UnkStruct_ov98_02247704 * param0)
 {
-    push {r3, r4, lr}
-    sub sp, #4
-    add r4, r0, #0
-    ldr r0, [r4, #0x44]
-    bl ov98_0224977C
-    cmp r0, #1
-    bne _022497AE
-    add sp, #4
-    mov r0, #0
-    pop {r3, r4, pc}
- _022497AE:
-    add r0, r4, #0
-    add r0, #0x94
-    ldr r0, [r0, #0]
-    cmp r0, #0
-    beq _022497BE
-    cmp r0, #1
-    beq _022497EA
-    b _022497EE
- _022497BE:
-    ldr r0, [r4, #0]
-    bl ov98_02246FB4
-    cmp r0, #2
-    bne _022497CC
-    mov r2, #0x26
-    b _022497CE
- _022497CC:
-    mov r2, #0x27
- _022497CE:
-    ldr r0, = 0xF0F
-              mov r3, #1
-    str r0, [sp]
-    ldr r1, [r4, #0x34]
-    add r0, r4, #0
-    bl ov98_02249714
-    add r0, r4, #0
-    add r0, #0x94
-    ldr r0, [r0, #0]
-    add r4, #0x94
-    add r0, r0, #1
-    str r0, [r4, #0]
-    b _022497EE
- _022497EA:
-    mov r0, #5
-    str r0, [r4, #8]
- _022497EE:
-    mov r0, #0
-    add sp, #4
-    pop {r3, r4, pc}
+    if (ov98_0224977C(param0->unk_44) == 1)
+        return 0;
+    
+    switch (param0->unk_94) {
+    case 0:
+        ov98_02249714(param0, param0->unk_34, ov98_02246FB4(param0->unk_00) == 2 ? 0x26 : 0x27, 1, 0x0F0F);
+        param0->unk_94++;
+        break;
+    case 1:
+        param0->unk_08 = 5;
+        break;
+    }
+    
+    return 0;
 }
 
-asm static int ov98_022497F8 (UnkStruct_ov98_02247704 * param0)
+static int ov98_022497F8 (UnkStruct_ov98_02247704 * param0)
 {
-    push {r3, r4, r5, r6, r7, lr}
-    sub sp, #0x18
-    add r6, r0, #0
-    ldr r0, [r6, #0x44]
-    ldr r4, [r6, #0]
-    bl ov98_0224977C
-    cmp r0, #1
-    bne _02249810
-    add sp, #0x18
-    mov r0, #0
-    pop {r3, r4, r5, r6, r7, pc}
- _02249810:
-    add r0, r6, #0
-    add r0, #0x94
-    ldr r0, [r0, #0]
-    cmp r0, #0
-    beq _02249820
-    cmp r0, #1
-    beq _02249884
-    b _02249888
- _02249820:
-    add r0, r4, #0
-    bl ov98_02246FA4
-    add r5, r0, #0
-    ldr r0, [r4, #4]
-    mov r1, #3
-    bl sub_02030D98
-    cmp r5, r0
-    bne _02249866
-    ldr r0, [r4, #4]
-    bl sub_02030D50
-    add r1, sp, #8
-    mov r2, #0x6c
-    bl ov98_02249ACC
-    mov r4, #0
-    add r5, sp, #8
-    mov r7, #2
- _02249848:
-    str r7, [sp]
-    mov r0, #1
-    str r0, [sp, #4]
-    ldr r0, [r6, #0x20]
-    ldr r2, [r5, #0]
-    add r1, r4, #0
-    mov r3, #4
-    bl sub_0200B60C
-    add r4, r4, #1
-    add r5, r5, #4
-    cmp r4, #4
-    blo _02249848
-    mov r2, #0x29
-    b _02249868
- _02249866:
-    mov r2, #0x28
- _02249868:
-    ldr r0, = 0xF0F
-              mov r3, #1
-    str r0, [sp]
-    ldr r1, [r6, #0x34]
-    add r0, r6, #0
-    bl ov98_02249714
-    add r0, r6, #0
-    add r0, #0x94
-    ldr r0, [r0, #0]
-    add r6, #0x94
-    add r0, r0, #1
-    str r0, [r6, #0]
-    b _02249888
- _02249884:
-    mov r0, #0
-    str r0, [r6, #8]
- _02249888:
-    mov r0, #0
-    add sp, #0x18
-    pop {r3, r4, r5, r6, r7, pc}
-    nop
+    UnkStruct_ov98_02246E88 * v0 = param0->unk_00;
+    int v1;
+    u32 v2[4];
+    u32 v3;
+    
+    if (ov98_0224977C(param0->unk_44) == 1)
+        return 0;
+    
+    switch (param0->unk_94) {
+    case 0:
+        if (ov98_02246FA4(v0) == sub_02030D98(v0->unk_04, 3)) {
+            ov98_02249ACC(sub_02030D50(v0->unk_04), v2, 108);
+            for (v3 = 0; v3 < 4; v3++)
+                sub_0200B60C(param0->unk_20, v3, v2[v3], 4, 2, 1);
+            v1 = 41;
+        } else {
+            v1 = 40;
+        }
+        ov98_02249714(param0, param0->unk_34, v1, 1, 0x0F0F);
+        param0->unk_94++;
+        break;
+    case 1:
+        param0->unk_08 = 0;
+        break;
+    }
+    
+    return 0;
 }
 
 static int ov98_02249894 (Window * param0, Strbuf *param1, int param2, int param3, u32 param4, int param5)
