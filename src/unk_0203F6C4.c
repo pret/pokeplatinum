@@ -6903,7 +6903,7 @@ static void sub_020451B4 (UnkStruct_0203CDB0 * param0, u16 param1)
     Pokemon * v1 = Pokemon_New(32);
 
     Pokemon_Init(v1);
-    sub_02073D80(v1, param1, 50, 32, 0, 0, 0, 0);
+    Pokemon_InitWith(v1, param1, 50, 32, 0, 0, 0, 0);
     sub_020272A4(v0, v1);
     Heap_FreeToHeap(v1);
 

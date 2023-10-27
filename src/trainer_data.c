@@ -23,7 +23,7 @@
 #include "trainer_data.h"
 #include "party.h"
 
-static void sub_020793B8(BattleParams * param0, int param1, int param2);
+static void TrainerData_BuildParty(BattleParams * param0, int param1, int param2);
 
 void TrainerData_Encounter (BattleParams * param0, const SaveData * param1, int param2)
 {
@@ -31,7 +31,7 @@ void TrainerData_Encounter (BattleParams * param0, const SaveData * param1, int 
     int v1;
     MessageLoader * v2 = MessageLoader_Init(1, 26, 618, param2);
     Strbuf *v3;
-    const u16 * v4 = sub_02027870(sub_02027848(param1));
+    const u16 * v4 = MiscSave_RivalName(Save_MiscRO(param1));
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param0->unk_18[v1]) {
@@ -46,7 +46,7 @@ void TrainerData_Encounter (BattleParams * param0, const SaveData * param1, int 
                 Strbuf_Free(v3);
             }
 
-            sub_020793B8(param0, v1, param2);
+            TrainerData_BuildParty(param0, v1, param2);
         }
     }
 
@@ -170,7 +170,7 @@ u8 TrainerClass_Gender (int param0)
     return sTrainerClassGender[param0];
 }
 
-static void sub_020793B8 (BattleParams * param0, int param1, int param2)
+static void TrainerData_BuildParty (BattleParams * param0, int param1, int param2)
 {
     void * v0;
     int v1, v2;
@@ -217,8 +217,8 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v4 = (v4 << 8) + v3;
             v6 = v8[v1].dv * 31 / 255;
 
-            sub_02073D80(v7, v9, v8[v1].level, v6, 1, v4, 2, 0);
-            sub_02078AEC(v8[v1].cbSeal, v7, param2);
+            Pokemon_InitWith(v7, v9, v8[v1].level, v6, 1, v4, 2, 0);
+            Pokemon_SetBallSeal(v8[v1].cbSeal, v7, param2);
             Pokemon_SetValue(v7, 112, &v10);
             Party_AddPokemon(param0->parties[param1], v7);
         }
@@ -246,13 +246,13 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v4 = (v4 << 8) + v3;
             v6 = v11[v1].dv * 31 / 255;
 
-            sub_02073D80(v7, v12, v11[v1].level, v6, 1, v4, 2, 0);
+            Pokemon_InitWith(v7, v12, v11[v1].level, v6, 1, v4, 2, 0);
 
             for (v2 = 0; v2 < 4; v2++) {
                 Pokemon_SetMoveSlot(v7, v11[v1].moves[v2], v2);
             }
 
-            sub_02078AEC(v11[v1].cbSeal, v7, param2);
+            Pokemon_SetBallSeal(v11[v1].cbSeal, v7, param2);
             Pokemon_SetValue(v7, 112, &v13);
             Party_AddPokemon(param0->parties[param1], v7);
         }
@@ -280,9 +280,9 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v4 = (v4 << 8) + v3;
             v6 = v14[v1].dv * 31 / 255;
 
-            sub_02073D80(v7, v15, v14[v1].level, v6, 1, v4, 2, 0);
+            Pokemon_InitWith(v7, v15, v14[v1].level, v6, 1, v4, 2, 0);
             Pokemon_SetValue(v7, 6, (u8 *)&v14[v1].item);
-            sub_02078AEC(v14[v1].cbSeal, v7, param2);
+            Pokemon_SetBallSeal(v14[v1].cbSeal, v7, param2);
             Pokemon_SetValue(v7, 112, &v16);
             Party_AddPokemon(param0->parties[param1], v7);
         }
@@ -310,14 +310,14 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             v4 = (v4 << 8) + v3;
             v6 = v17[v1].dv * 31 / 255;
 
-            sub_02073D80(v7, v18, v17[v1].level, v6, 1, v4, 2, 0);
+            Pokemon_InitWith(v7, v18, v17[v1].level, v6, 1, v4, 2, 0);
             Pokemon_SetValue(v7, 6, (u8 *)&v17[v1].item);
 
             for (v2 = 0; v2 < 4; v2++) {
                 Pokemon_SetMoveSlot(v7, v17[v1].moves[v2], v2);
             }
 
-            sub_02078AEC(v17[v1].cbSeal, v7, param2);
+            Pokemon_SetBallSeal(v17[v1].cbSeal, v7, param2);
             Pokemon_SetValue(v7, 112, &v19);
             Party_AddPokemon(param0->parties[param1], v7);
         }

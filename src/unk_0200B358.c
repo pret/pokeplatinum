@@ -180,7 +180,7 @@ void sub_0200B498 (UnkStruct_0200B358 * param0, u32 param1, const TrainerInfo * 
 
 void sub_0200B4BC (UnkStruct_0200B358 * param0, u32 param1, const SaveData * param2)
 {
-    const u16 * v0 = sub_02027870(sub_02027848(param2));
+    const u16 * v0 = MiscSave_RivalName(Save_MiscRO(param2));
 
     Strbuf_CopyChars(param0->unk_0C, v0);
     sub_0200B448(param0, param1, param0->unk_0C, NULL);

@@ -40,7 +40,7 @@ BOOL sub_020548B0 (int param0, SaveData * param1, u16 param2, u8 param3, u16 par
     v1 = Pokemon_New(param0);
 
     Pokemon_Init(v1);
-    sub_02073D80(v1, param2, param3, 32, 0, 0, 0, 0);
+    Pokemon_InitWith(v1, param2, param3, 32, 0, 0, 0, 0);
     sub_02077E64(v1, v4, 4, param5, param6, param0);
 
     v2 = param4;

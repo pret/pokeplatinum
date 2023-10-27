@@ -48,7 +48,7 @@ void sub_02030AA0 (UnkStruct_02030A80 * param0, SaveData * param1)
     TrainerInfo * v0 = sub_02025E38(param1);
     UnkStruct_0202C878 * v1 = sub_0202C878(param1);
     UnkStruct_02025CCC * v2 = sub_02025CCC(param1);
-    const UnkStruct_0202783C * v3 = sub_02027848(param1);
+    const UnkStruct_0202783C * v3 = Save_MiscRO(param1);
     int v4, v5, v6;
     int v7;
     OSOwnerInfo v8;

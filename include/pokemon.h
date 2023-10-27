@@ -256,7 +256,7 @@ BOOL BoxPokemon_EnterDecryptionContext(BoxPokemon *boxMon);
  */
 BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt);
 
-void sub_02073D80(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
+void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID);
 void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNature);
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6);
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2);
@@ -862,7 +862,7 @@ void sub_02078A4C(NARC *narc, u8 *param1, u16 param2, u16 param3);
 void sub_02078A80(NARC *narc, s8 *param1, u16 param2);
 void sub_02078AA4(NARC *narc, s8 *param1, u16 param2);
 void sub_02078AC8(NARC *narc, u8 *param1, u16 param2);
-BOOL sub_02078AEC(int param0, Pokemon *mon, int heapID);
+BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID);
 void sub_02078B40(Pokemon *mon, UnkStruct_02078B40 *param1);
 void sub_02078E0C(UnkStruct_02078B40 *param0, Pokemon *mon);
 

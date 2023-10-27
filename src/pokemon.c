@@ -228,7 +228,7 @@ BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt)
     return wasEncrypted;
 }
 
-void sub_02073D80(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
+void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
 {
     Pokemon_Init(mon);
 
@@ -351,7 +351,7 @@ void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNa
     } while (monNature != Pokemon_GetNatureOf(monPersonality));
 
     // TODO monOTIDSource probably an enum?
-    sub_02073D80(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
 }
 
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6)
@@ -370,7 +370,7 @@ void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param
     }
 
     // TODO monOTIDSource probably an enum?
-    sub_02073D80(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
 }
 
 static enum PokemonGenderRatio {
@@ -407,7 +407,7 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 void sub_02074158(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
 {
     // TODO monOTIDSource probably an enum?
-    sub_02073D80(mon, monSpecies, monLevel, 0, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, 0, 0);
     Pokemon_SetValue(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);
     Pokemon_CalcLevelAndStats(mon);
 }
@@ -4691,7 +4691,7 @@ void sub_02078AC8(NARC *narc, u8 *param1, u16 param2)
     *param1 = v0.unk_58;
 }
 
-BOOL sub_02078AEC(int param0, Pokemon *mon, int heapID)
+BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)
 {
     int v0 = param0;
 

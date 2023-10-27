@@ -11,10 +11,10 @@
 int MiscSaveBlock_SaveSize(void);
 void MiscSaveBlock_Init(UnkStruct_0202783C * param0);
 UnkStruct_0202783C * sub_0202783C(SaveData * param0);
-const UnkStruct_0202783C * sub_02027848(const SaveData * param0);
+const UnkStruct_0202783C * Save_MiscRO(const SaveData * param0);
 UnkStruct_02027854 * sub_02027854(SaveData * param0);
 UnkStruct_02027860 * sub_02027860(SaveData * param0);
-const u16 * sub_02027870(const UnkStruct_0202783C * param0);
+const u16 * MiscSave_RivalName(const UnkStruct_0202783C * param0);
 void sub_0202787C(UnkStruct_0202783C * param0, Strbuf *param1);
 const u16 * sub_02027894(const UnkStruct_0202783C * param0);
 void sub_020278A0(UnkStruct_0202783C * param0, Strbuf *param1);

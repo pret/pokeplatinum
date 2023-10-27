@@ -1188,7 +1188,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
         } while (TRUE);
     }
 
-    sub_02073D80(v5, param0, param1, 32, 1, v1, 1, param4->unk_00);
+    Pokemon_InitWith(v5, param0, param1, 32, 1, v1, 1, param4->unk_00);
     v0 = ov6_02242514(param2, param4, v5, param6);
 
     GF_ASSERT(v0);

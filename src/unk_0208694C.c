@@ -1142,7 +1142,7 @@ static int sub_02086F3C (UnkStruct_020067E8 * param0, int * param1)
         Pokemon * v4;
 
         v4 = Pokemon_New(18);
-        sub_02073D80(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
+        Pokemon_InitWith(v4, v0->unk_04, 5, 10, 10, 10, 10, 10);
         Heap_FreeToHeap(v4);
     }
 
@@ -1420,7 +1420,7 @@ static void sub_0208737C (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
         Pokemon * v1;
 
         v1 = Pokemon_New(18);
-        sub_02073D80(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
+        Pokemon_InitWith(v1, param0->unk_04, 5, 10, 10, 10, 10, 10);
         sub_0200B538(param0->unk_168, 0, Pokemon_GetBoxPokemon(v1));
         Heap_FreeToHeap(v1);
     }
@@ -1487,7 +1487,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
         if ((param0->unk_158 == 0) || sub_02086F14(param0->unk_D8)) {
             Pokemon * v4 = Pokemon_New(18);
 
-            sub_02073D80(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
+            Pokemon_InitWith(v4, param0->unk_04, 1, 0, 0, 0, 0, 0);
             sub_0200B538(param0->unk_168, 0, Pokemon_GetBoxPokemon(v4));
             Heap_FreeToHeap(v4);
         } else {
