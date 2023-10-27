@@ -12,7 +12,7 @@
 
 #include "constdata/const_020ED570.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0205B4F8.h"
@@ -80,7 +80,7 @@ struct UnkStruct_0205B43C_t {
     int unk_170;
     u16 unk_174;
     u8 unk_176[2];
-    UnkStruct_02014A84 unk_178;
+    Sentence unk_178;
     BOOL unk_180;
     UnkStruct_02072014 * unk_184;
     UnkStruct_02072014 * unk_188[2];
@@ -173,7 +173,7 @@ static UnkStruct_0205B43C * sub_0205B3A0 (UnkStruct_0203CDB0 * param0)
 
 static void sub_0205B408 (UnkStruct_0205B43C * param0)
 {
-    UnkStruct_02014A84 v0;
+    Sentence v0;
 
     if (sub_02033E1C()) {
         sub_02014AB4(&v0);
@@ -1254,13 +1254,13 @@ static void sub_0205BFF0 (UnkStruct_0205B4F8 * param0)
     }
 }
 
-void sub_0205C010 (UnkStruct_0205B43C * param0, UnkStruct_02014A84 * param1)
+void sub_0205C010 (UnkStruct_0205B43C * param0, Sentence * param1)
 {
     sub_02014CC0(&param0->unk_178, param1);
     param0->unk_180 = 1;
 }
 
-UnkStruct_02014A84 * sub_0205C028 (UnkStruct_0205B43C * param0)
+Sentence * sub_0205C028 (UnkStruct_0205B43C * param0)
 {
     if (param0->unk_180 == 0) {
         return NULL;
@@ -1336,7 +1336,7 @@ void sub_0205C040 (UnkStruct_0200B358 * param0, int param1, int param2, TrainerI
     MessageLoader_Free(v2);
 }
 
-void sub_0205C12C (UnkStruct_02014A84 * param0)
+void sub_0205C12C (Sentence * param0)
 {
     UnkStruct_0205B4F8 v0;
 

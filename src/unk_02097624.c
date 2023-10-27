@@ -6,7 +6,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/struct_0208BE5C.h"
 #include "struct_defs/struct_02097728.h"
@@ -35,7 +35,7 @@ typedef struct {
     void * unk_08;
     UnkStruct_020067E8 * unk_0C;
     UnkStruct_020978D8 * unk_10;
-    UnkStruct_02014A84 unk_14;
+    Sentence unk_14;
 } UnkStruct_02097944;
 
 static int sub_02097944(UnkStruct_020067E8 * param0, int * param1);

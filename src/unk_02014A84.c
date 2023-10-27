@@ -5,7 +5,7 @@
 #include "struct_decls/struct_0200B358_decl.h"
 #include "strbuf.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 
 #include "message.h"
 #include "unk_0200B29C.h"
@@ -25,36 +25,36 @@ static const u16 Unk_020E5498[] = {
     0x1C1
 };
 
-void sub_02014A84 (UnkStruct_02014A84 * param0)
+void sub_02014A84 (Sentence * param0)
 {
     int v0;
 
-    param0->unk_00 = 0xffff;
+    param0->type = 0xffff;
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_04[v0] = 0xffff;
+        param0->words[v0] = 0xffff;
     }
 }
 
-void sub_02014A9C (UnkStruct_02014A84 * param0, u32 param1)
+void sub_02014A9C (Sentence * param0, u32 param1)
 {
     int v0;
 
-    param0->unk_00 = param1;
-    param0->unk_02 = 0;
+    param0->type = param1;
+    param0->id = 0;
 
     for (v0 = 0; v0 < 2; v0++) {
-        param0->unk_04[v0] = 0xffff;
+        param0->words[v0] = 0xffff;
     }
 }
 
-void sub_02014AB4 (UnkStruct_02014A84 * param0)
+void sub_02014AB4 (Sentence * param0)
 {
     sub_02014A9C(param0, 4);
-    param0->unk_02 = 5;
+    param0->id = 5;
 }
 
-void sub_02014AC4 (UnkStruct_02014A84 * param0, int param1)
+void sub_02014AC4 (Sentence * param0, int param1)
 {
     static const struct {
         u8 unk_00;
@@ -74,21 +74,21 @@ void sub_02014AC4 (UnkStruct_02014A84 * param0, int param1)
 
     if (param1 < NELEMS(v0)) {
         sub_02014A9C(param0, v0[param1].unk_00);
-        param0->unk_02 = v0[param1].unk_01;
+        param0->id = v0[param1].unk_01;
 
         if (v0[param1].unk_02 != -1) {
-            param0->unk_04[0] = sub_02014DFC(
+            param0->words[0] = sub_02014DFC(
                 v0[param1].unk_02, v0[param1].unk_04);
         }
 
         if (v0[param1].unk_06 != -1) {
-            param0->unk_04[1] = sub_02014DFC(
+            param0->words[1] = sub_02014DFC(
                 v0[param1].unk_06, v0[param1].unk_08);
         }
     }
 }
 
-Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
+Strbuf* sub_02014B34 (const Sentence * param0, u32 param1)
 {
     Strbuf* v0;
     UnkStruct_0200B358 * v1;
@@ -98,15 +98,15 @@ Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
     v1 = sub_0200B358(param1);
 
     for (v3 = 0; v3 < 2; v3++) {
-        if (param0->unk_04[v3] != 0xffff) {
-            sub_0200BE48(v1, v3, param0->unk_04[v3]);
+        if (param0->words[v3] != 0xffff) {
+            sub_0200BE48(v1, v3, param0->words[v3]);
         } else {
             break;
         }
     }
 
-    v2 = MessageLoader_Init(1, 26, Unk_020E5498[param0->unk_00], param1);
-    v0 = sub_0200B29C(v1, v2, param0->unk_02, param1);
+    v2 = MessageLoader_Init(1, 26, Unk_020E5498[param0->type], param1);
+    v0 = sub_0200B29C(v1, v2, param0->id, param1);
 
     MessageLoader_Free(v2);
     sub_0200B3F0(v1);
@@ -114,24 +114,24 @@ Strbuf* sub_02014B34 (const UnkStruct_02014A84 * param0, u32 param1)
     return v0;
 }
 
-Strbuf* sub_02014BA0 (const UnkStruct_02014A84 * param0, u32 param1)
+Strbuf* sub_02014BA0 (const Sentence * param0, u32 param1)
 {
-    return MessageBank_GetNewStrbufFromNARC(26, Unk_020E5498[param0->unk_00], param0->unk_02, param1);
+    return MessageBank_GetNewStrbufFromNARC(26, Unk_020E5498[param0->type], param0->id, param1);
 }
 
-BOOL sub_02014BBC (const UnkStruct_02014A84 * param0)
+BOOL sub_02014BBC (const Sentence * param0)
 {
-    return param0->unk_00 != 0xffff;
+    return param0->type != 0xffff;
 }
 
-BOOL sub_02014BD0 (const UnkStruct_02014A84 * param0)
+BOOL sub_02014BD0 (const Sentence * param0)
 {
     u32 v0, v1;
 
-    v0 = sub_02014C00(param0->unk_00, param0->unk_02);
+    v0 = sub_02014C00(param0->type, param0->id);
 
     for (v1 = 0; v1 < v0; v1++) {
-        if (param0->unk_04[v1] == 0xffff) {
+        if (param0->words[v1] == 0xffff) {
             return 0;
         }
     }
@@ -168,31 +168,31 @@ static u32 sub_02014C00 (u32 param0, u32 param1)
     return v2;
 }
 
-u16 sub_02014C78 (const UnkStruct_02014A84 * param0, int param1)
+u16 sub_02014C78 (const Sentence * param0, int param1)
 {
-    return param0->unk_04[param1];
+    return param0->words[param1];
 }
 
-u32 sub_02014C80 (const UnkStruct_02014A84 * param0)
+u32 sub_02014C80 (const Sentence * param0)
 {
-    return param0->unk_00;
+    return param0->type;
 }
 
-u32 sub_02014C84 (const UnkStruct_02014A84 * param0)
+u32 sub_02014C84 (const Sentence * param0)
 {
-    return param0->unk_02;
+    return param0->id;
 }
 
-BOOL sub_02014C88 (const UnkStruct_02014A84 * param0, const UnkStruct_02014A84 * param1)
+BOOL sub_02014C88 (const Sentence * param0, const Sentence * param1)
 {
     int v0;
 
-    if ((param0->unk_00 != param1->unk_00) || (param0->unk_02 != param1->unk_02)) {
+    if ((param0->type != param1->type) || (param0->id != param1->id)) {
         return 0;
     }
 
     for (v0 = 0; v0 < 2; v0++) {
-        if (param0->unk_04[v0] != param1->unk_04[v0]) {
+        if (param0->words[v0] != param1->words[v0]) {
             return 0;
         }
     }
@@ -200,7 +200,7 @@ BOOL sub_02014C88 (const UnkStruct_02014A84 * param0, const UnkStruct_02014A84 *
     return 1;
 }
 
-void sub_02014CC0 (UnkStruct_02014A84 * param0, const UnkStruct_02014A84 * param1)
+void sub_02014CC0 (Sentence * param0, const Sentence * param1)
 {
     *param0 = *param1;
 }
@@ -214,27 +214,27 @@ u32 sub_02014CD4 (u32 param0)
     return 0;
 }
 
-void sub_02014CE0 (UnkStruct_02014A84 * param0, u32 param1, u32 param2)
+void sub_02014CE0 (Sentence * param0, u32 param1, u32 param2)
 {
     GF_ASSERT(param1 < 5);
 
-    param0->unk_00 = param1;
-    param0->unk_02 = param2;
+    param0->type = param1;
+    param0->id = param2;
 }
 
-void sub_02014CF8 (UnkStruct_02014A84 * param0, u32 param1, u16 param2)
+void sub_02014CF8 (Sentence * param0, u32 param1, u16 param2)
 {
     GF_ASSERT(param1 < 2);
-    param0->unk_04[param1] = param2;
+    param0->words[param1] = param2;
 }
 
-void sub_02014D10 (UnkStruct_02014A84 * param0)
+void sub_02014D10 (Sentence * param0)
 {
     u32 v0, v1;
 
-    v0 = sub_02014C00(param0->unk_00, param0->unk_02);
+    v0 = sub_02014C00(param0->type, param0->id);
 
     for (v1 = v0; v1 < 2; v1++) {
-        param0->unk_04[v1] = 0xffff;
+        param0->words[v1] = 0xffff;
     }
 }

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_0209747C_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 
 #include "unk_02014A84.h"
 #include "unk_02014D38.h"
@@ -28,7 +28,7 @@ struct UnkStruct_0209747C_t {
     int unk_08;
     const UnkStruct_02026324 * unk_0C;
     const UnkStruct_02014EC4 * unk_10;
-    UnkStruct_02014A84 unk_14;
+    Sentence unk_14;
     u16 unk_1C[2];
     u16 unk_20[2];
 };
@@ -76,7 +76,7 @@ void sub_020974F8 (UnkStruct_0209747C * param0, u16 param1, u16 param2)
     param0->unk_1C[1] = param2;
 }
 
-void sub_02097500 (UnkStruct_0209747C * param0, const UnkStruct_02014A84 * param1)
+void sub_02097500 (UnkStruct_0209747C * param0, const Sentence * param1)
 {
     param0->unk_14 = *param1;
 }
@@ -113,7 +113,7 @@ void sub_02097534 (const UnkStruct_0209747C * param0, u16 * param1)
     param1[1] = param0->unk_1C[1];
 }
 
-void sub_02097540 (const UnkStruct_0209747C * param0, UnkStruct_02014A84 * param1)
+void sub_02097540 (const UnkStruct_0209747C * param0, Sentence * param1)
 {
     sub_02014CC0(param1, &(param0->unk_14));
 }
@@ -153,7 +153,7 @@ BOOL sub_02097568 (const UnkStruct_0209747C * param0)
     return param0->unk_05;
 }
 
-void sub_0209756C (const UnkStruct_0209747C * param0, u16 * param1, UnkStruct_02014A84 * param2)
+void sub_0209756C (const UnkStruct_0209747C * param0, u16 * param1, Sentence * param2)
 {
     switch (param0->unk_00) {
     case 0:
@@ -169,7 +169,7 @@ void sub_0209756C (const UnkStruct_0209747C * param0, u16 * param1, UnkStruct_02
     }
 }
 
-BOOL sub_020975A0 (const UnkStruct_0209747C * param0, const u16 * param1, const UnkStruct_02014A84 * param2)
+BOOL sub_020975A0 (const UnkStruct_0209747C * param0, const u16 * param1, const Sentence * param2)
 {
     switch (param0->unk_00) {
     case 0:
@@ -182,7 +182,7 @@ BOOL sub_020975A0 (const UnkStruct_0209747C * param0, const u16 * param1, const 
     }
 }
 
-void sub_020975E4 (UnkStruct_0209747C * param0, const u16 * param1, const UnkStruct_02014A84 * param2)
+void sub_020975E4 (UnkStruct_0209747C * param0, const u16 * param1, const Sentence * param2)
 {
     int v0;
 

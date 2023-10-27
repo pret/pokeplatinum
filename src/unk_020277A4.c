@@ -4,7 +4,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_02027854.h"
 #include "struct_defs/struct_02027860.h"
 
@@ -35,7 +35,7 @@ typedef struct UnkStruct_0202783C_t {
     u8 unk_6CD_1 : 4;
     u8 : 3;
     u32 unk_6D0;
-    UnkStruct_02014A84 unk_6D4;
+    Sentence unk_6D4;
     UnkStruct_0202783C_sub1 unk_6DC;
 } UnkStruct_0202783C;
 
@@ -56,9 +56,9 @@ void MiscSaveBlock_Init (UnkStruct_0202783C * param0)
 
     sub_02014A9C(&param0->unk_6D4, 4);
 
-    param0->unk_6D4.unk_02 = 0;
-    param0->unk_6D4.unk_04[0] = sub_02014DFC(441, 99);
-    param0->unk_6D4.unk_04[1] = 0xffff;
+    param0->unk_6D4.id = 0;
+    param0->unk_6D4.words[0] = sub_02014DFC(441, 99);
+    param0->unk_6D4.words[1] = 0xffff;
 
     {
         int v0;
@@ -140,12 +140,12 @@ void sub_02027914 (const UnkStruct_0202783C * param0, int * param1, int * param2
     *param3 = param0->unk_6CC_7;
 }
 
-void sub_02027938 (const UnkStruct_0202783C * param0, UnkStruct_02014A84 * param1)
+void sub_02027938 (const UnkStruct_0202783C * param0, Sentence * param1)
 {
     *param1 = param0->unk_6D4;
 }
 
-void sub_02027958 (UnkStruct_0202783C * param0, const UnkStruct_02014A84 * param1)
+void sub_02027958 (UnkStruct_0202783C * param0, const Sentence * param1)
 {
     param0->unk_6D4 = *param1;
 }

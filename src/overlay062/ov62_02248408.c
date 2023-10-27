@@ -44,23 +44,23 @@ void ov62_02248408 (BattleRecording * param0, BattleParams * param1, int param2)
 
     for (v4 = 0; v4 < v2; v4++) {
         for (v10 = 8 - 1; v10 > -1; v10--) {
-            if (param1->trainerData[v4].unk_14[v10] == 0xffff) {
+            if (param1->trainerData[v4].name[v10] == 0xffff) {
                 break;
             }
         }
 
         if (v10 == -1) {
             ov62_0224856C(v7, param2);
-            Strbuf_ToChars(v7, param1->trainerData[v4].unk_14, 8);
+            Strbuf_ToChars(v7, param1->trainerData[v4].name, 8);
             continue;
         }
 
         Strbuf_Clear(v6);
-        Strbuf_CopyChars(v6, param1->trainerData[v4].unk_14);
+        Strbuf_CopyChars(v6, param1->trainerData[v4].name);
 
         if (sub_02002DB4(0, v6, v7) == 0) {
             ov62_0224856C(v7, param2);
-            Strbuf_ToChars(v7, param1->trainerData[v4].unk_14, 8);
+            Strbuf_ToChars(v7, param1->trainerData[v4].name, 8);
             continue;
         }
     }

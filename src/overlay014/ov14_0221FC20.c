@@ -340,7 +340,7 @@ void ov14_0221FC20 (BattleSystem * param0, BattleContext * param1, u8 param2, u8
     if (param0->battleType & 0x100) {
         param1->aiContext.thinkingMask = 0x20000000;
     } else {
-        param1->aiContext.thinkingMask = param0->trainers[param2].unk_0C;
+        param1->aiContext.thinkingMask = param0->trainers[param2].aiMask;
     }
 
     if (param0->battleType & 0x2) {

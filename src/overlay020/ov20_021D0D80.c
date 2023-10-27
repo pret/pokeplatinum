@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020998EC_decl.h"
 #include "overlay020/struct_ov20_021D2128_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/union_02022594_020225E0.h"
 
 #include "unk_020041CC.h"
@@ -51,7 +51,7 @@ typedef struct {
 typedef struct UnkStruct_ov20_021D16E8_t {
     UnkStruct_0209747C * unk_00;
     u32 unk_04;
-    UnkStruct_02014A84 unk_08;
+    Sentence unk_08;
     u16 unk_10[2];
     UnkStruct_ov20_021D2128 * unk_14;
     UnkStruct_020998EC * unk_18;
@@ -81,9 +81,9 @@ typedef struct UnkStruct_ov20_021D16E8_t {
 
 static void ov20_021D0E38(u32 param0, u32 param1, void * param2);
 static UnkStruct_ov20_021D16E8 * ov20_021D0EC8(UnkStruct_020067E8 * param0);
-static void ov20_021D0F64(UnkStruct_ov20_021D0F64 * param0, UnkStruct_02014A84 * param1);
-static void ov20_021D0F88(UnkStruct_ov20_021D0F64 * param0, UnkStruct_02014A84 * param1);
-static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 * param0, UnkStruct_02014A84 * param1);
+static void ov20_021D0F64(UnkStruct_ov20_021D0F64 * param0, Sentence * param1);
+static void ov20_021D0F88(UnkStruct_ov20_021D0F64 * param0, Sentence * param1);
+static void ov20_021D0FCC(UnkStruct_ov20_021D0F64 * param0, Sentence * param1);
 static void ov20_021D1014(UnkStruct_ov20_021D16E8 * param0, UnkStruct_020067E8 * param1);
 static void ov20_021D1034(UnkStruct_ov20_021D16E8 * param0, UnkFuncPtr_ov20_021D1034 param1);
 static int ov20_021D103C(UnkStruct_ov20_021D16E8 * param0, int * param1);
@@ -262,14 +262,14 @@ static UnkStruct_ov20_021D16E8 * ov20_021D0EC8 (UnkStruct_020067E8 * param0)
     return v1;
 }
 
-static void ov20_021D0F64 (UnkStruct_ov20_021D0F64 * param0, UnkStruct_02014A84 * param1)
+static void ov20_021D0F64 (UnkStruct_ov20_021D0F64 * param0, Sentence * param1)
 {
     param0->unk_00 = sub_02014C80(param1);
     param0->unk_03 = sub_02014CD4(param0->unk_00);
     param0->unk_02 = sub_02014C84(param1);
 }
 
-static void ov20_021D0F88 (UnkStruct_ov20_021D0F64 * param0, UnkStruct_02014A84 * param1)
+static void ov20_021D0F88 (UnkStruct_ov20_021D0F64 * param0, Sentence * param1)
 {
     param0->unk_02++;
 
@@ -287,7 +287,7 @@ static void ov20_021D0F88 (UnkStruct_ov20_021D0F64 * param0, UnkStruct_02014A84 
     sub_02014CE0(param1, param0->unk_00, param0->unk_02);
 }
 
-static void ov20_021D0FCC (UnkStruct_ov20_021D0F64 * param0, UnkStruct_02014A84 * param1)
+static void ov20_021D0FCC (UnkStruct_ov20_021D0F64 * param0, Sentence * param1)
 {
     param0->unk_02--;
 

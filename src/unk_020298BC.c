@@ -7,7 +7,7 @@
 #include "pokemon.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_020298D8.h"
 #include "overlay022/struct_ov22_02255040.h"
 #include "overlay061/struct_ov61_0222AE80.h"
@@ -47,7 +47,7 @@ typedef struct UnkStruct_02029C68_t {
     u32 unk_00;
     UnkStruct_0202A138 unk_04;
     u32 unk_3C;
-    UnkStruct_02014A84 unk_40;
+    Sentence unk_40;
     UnkStruct_0202A150 unk_48[10];
     u8 unk_70;
     u8 unk_71;
@@ -1052,7 +1052,7 @@ void sub_0202A824 (const UnkStruct_ov61_0222AE80 * param0, UnkStruct_02029C68 * 
     }
 
     param1->unk_3C = param0->unk_24;
-    param1->unk_40 = *((UnkStruct_02014A84 *)(&param0->unk_28));
+    param1->unk_40 = *((Sentence *)(&param0->unk_28));
 
     for (v1 = 0; v1 < (11 - 1); v1++) {
         param1->unk_48[v1] = *((UnkStruct_0202A150 *)(&param0->unk_30[v1]));

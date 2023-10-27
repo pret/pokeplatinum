@@ -9,10 +9,6 @@
 
 #include "struct_defs/trainer_data.h"
 #include "overlay006/battle_params.h"
-#include "overlay016/struct_ov16_022431BC.h"
-#include "overlay016/struct_ov16_022431BC_1.h"
-#include "overlay016/struct_ov16_022431BC_2.h"
-#include "overlay016/struct_ov16_022431BC_3.h"
 
 #include "unk_020021B0.h"
 #include "narc.h"
@@ -157,10 +153,10 @@ void sub_02079170 (BattleParams * param0, const SaveData * param1, int param2)
             param0->trainerData[v1] = v0;
 
             if (v0.class == TRAINER_CLASS_RIVAL) {
-                GF_strcpy(&param0->trainerData[v1].unk_14[0], v4);
+                GF_strcpy(&param0->trainerData[v1].name[0], v4);
             } else {
                 v3 = MessageLoader_GetNewStrbuf(v2, param0->unk_18[v1]);
-                Strbuf_ToChars(v3, &param0->trainerData[v1].unk_14[0], 8);
+                Strbuf_ToChars(v3, &param0->trainerData[v1].name[0], 8);
                 Strbuf_Free(v3);
             }
 
@@ -168,7 +164,7 @@ void sub_02079170 (BattleParams * param0, const SaveData * param1, int param2)
         }
     }
 
-    param0->battleType |= v0.unk_10;
+    param0->battleType |= v0.battleType;
 
     MessageLoader_Free(v2);
 }
@@ -182,28 +178,28 @@ u32 sub_02079220 (int param0, int param1)
 
     switch (param1) {
     case 0:
-        v0 = v1.unk_00;
+        v0 = v1.type;
         break;
     case 1:
         v0 = v1.class;
         break;
     case 2:
-        v0 = v1.unk_02;
+        v0 = v1.sprite;
         break;
     case 3:
-        v0 = v1.unk_03;
+        v0 = v1.partySize;
         break;
     case 4:
     case 5:
     case 6:
     case 7:
-        v0 = v1.unk_04[param1 - 4];
+        v0 = v1.items[param1 - 4];
         break;
     case 8:
-        v0 = v1.unk_0C;
+        v0 = v1.aiMask;
         break;
     case 9:
-        v0 = v1.unk_10;
+        v0 = v1.battleType;
         break;
     }
 
@@ -301,7 +297,7 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
 
     Party_InitWithCapacity(param0->parties[param1], 6);
 
-    v0 = Heap_AllocFromHeap(param2, sizeof(UnkStruct_ov16_022431BC_3) * 6);
+    v0 = Heap_AllocFromHeap(param2, sizeof(TrainerMonWithMovesAndItem) * 6);
     v7 = Pokemon_New(param2);
 
     sub_0207939C(param0->unk_18[param1], v0);
@@ -312,19 +308,19 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
         v3 = 136;
     }
 
-    switch (param0->trainerData[param1].unk_00) {
+    switch (param0->trainerData[param1].type) {
     case 0:
     {
-        UnkStruct_ov16_022431BC * v8;
+        TrainerMonBase * v8;
         u16 v9;
         u8 v10;
 
-        v8 = (UnkStruct_ov16_022431BC *)v0;
+        v8 = (TrainerMonBase *)v0;
 
-        for (v1 = 0; v1 < param0->trainerData[param1].unk_03; v1++) {
-            v9 = v8[v1].unk_04 & 0x3ff;
-            v10 = (v8[v1].unk_04 & 0xfc00) >> 10;
-            v4 = v8[v1].unk_00 + v8[v1].unk_02 + v9 + param0->unk_18[param1];
+        for (v1 = 0; v1 < param0->trainerData[param1].partySize; v1++) {
+            v9 = v8[v1].species & 0x3ff;
+            v10 = (v8[v1].species & 0xfc00) >> 10;
+            v4 = v8[v1].dv + v8[v1].level + v9 + param0->unk_18[param1];
 
             LCRNG_SetSeed(v4);
 
@@ -333,10 +329,10 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             }
 
             v4 = (v4 << 8) + v3;
-            v6 = v8[v1].unk_00 * 31 / 255;
+            v6 = v8[v1].dv * 31 / 255;
 
-            sub_02073D80(v7, v9, v8[v1].unk_02, v6, 1, v4, 2, 0);
-            sub_02078AEC(v8[v1].unk_06, v7, param2);
+            sub_02073D80(v7, v9, v8[v1].level, v6, 1, v4, 2, 0);
+            sub_02078AEC(v8[v1].cbSeal, v7, param2);
             Pokemon_SetValue(v7, 112, &v10);
             Party_AddPokemon(param0->parties[param1], v7);
         }
@@ -344,16 +340,16 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
     break;
     case 1:
     {
-        UnkStruct_ov16_022431BC_1 * v11;
+        TrainerMonWithMoves * v11;
         u16 v12;
         u8 v13;
 
-        v11 = (UnkStruct_ov16_022431BC_1 *)v0;
+        v11 = (TrainerMonWithMoves *)v0;
 
-        for (v1 = 0; v1 < param0->trainerData[param1].unk_03; v1++) {
-            v12 = v11[v1].unk_04 & 0x3ff;
-            v13 = (v11[v1].unk_04 & 0xfc00) >> 10;
-            v4 = v11[v1].unk_00 + v11[v1].unk_02 + v12 + param0->unk_18[param1];
+        for (v1 = 0; v1 < param0->trainerData[param1].partySize; v1++) {
+            v12 = v11[v1].species & 0x3ff;
+            v13 = (v11[v1].species & 0xfc00) >> 10;
+            v4 = v11[v1].dv + v11[v1].level + v12 + param0->unk_18[param1];
 
             LCRNG_SetSeed(v4);
 
@@ -362,15 +358,15 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             }
 
             v4 = (v4 << 8) + v3;
-            v6 = v11[v1].unk_00 * 31 / 255;
+            v6 = v11[v1].dv * 31 / 255;
 
-            sub_02073D80(v7, v12, v11[v1].unk_02, v6, 1, v4, 2, 0);
+            sub_02073D80(v7, v12, v11[v1].level, v6, 1, v4, 2, 0);
 
             for (v2 = 0; v2 < 4; v2++) {
-                Pokemon_SetMoveSlot(v7, v11[v1].unk_06[v2], v2);
+                Pokemon_SetMoveSlot(v7, v11[v1].moves[v2], v2);
             }
 
-            sub_02078AEC(v11[v1].unk_0E, v7, param2);
+            sub_02078AEC(v11[v1].cbSeal, v7, param2);
             Pokemon_SetValue(v7, 112, &v13);
             Party_AddPokemon(param0->parties[param1], v7);
         }
@@ -378,17 +374,17 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
     break;
     case 2:
     {
-        UnkStruct_ov16_022431BC_2 * v14;
+        TrainerMonWithItem * v14;
         u16 v15;
         u8 v16;
 
-        v14 = (UnkStruct_ov16_022431BC_2 *)v0;
+        v14 = (TrainerMonWithItem *)v0;
 
-        for (v1 = 0; v1 < param0->trainerData[param1].unk_03; v1++) {
-            v15 = v14[v1].unk_04 & 0x3ff;
-            v16 = (v14[v1].unk_04 & 0xfc00) >> 10;
+        for (v1 = 0; v1 < param0->trainerData[param1].partySize; v1++) {
+            v15 = v14[v1].species & 0x3ff;
+            v16 = (v14[v1].species & 0xfc00) >> 10;
 
-            v4 = v14[v1].unk_00 + v14[v1].unk_02 + v15 + param0->unk_18[param1];
+            v4 = v14[v1].dv + v14[v1].level + v15 + param0->unk_18[param1];
             LCRNG_SetSeed(v4);
 
             for (v2 = 0; v2 < param0->trainerData[param1].class; v2++) {
@@ -396,11 +392,11 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             }
 
             v4 = (v4 << 8) + v3;
-            v6 = v14[v1].unk_00 * 31 / 255;
+            v6 = v14[v1].dv * 31 / 255;
 
-            sub_02073D80(v7, v15, v14[v1].unk_02, v6, 1, v4, 2, 0);
-            Pokemon_SetValue(v7, 6, (u8 *)&v14[v1].unk_06);
-            sub_02078AEC(v14[v1].unk_08, v7, param2);
+            sub_02073D80(v7, v15, v14[v1].level, v6, 1, v4, 2, 0);
+            Pokemon_SetValue(v7, 6, (u8 *)&v14[v1].item);
+            sub_02078AEC(v14[v1].cbSeal, v7, param2);
             Pokemon_SetValue(v7, 112, &v16);
             Party_AddPokemon(param0->parties[param1], v7);
         }
@@ -408,16 +404,16 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
     break;
     case 3:
     {
-        UnkStruct_ov16_022431BC_3 * v17;
+        TrainerMonWithMovesAndItem * v17;
         u16 v18;
         u8 v19;
 
-        v17 = (UnkStruct_ov16_022431BC_3 *)v0;
+        v17 = (TrainerMonWithMovesAndItem *)v0;
 
-        for (v1 = 0; v1 < param0->trainerData[param1].unk_03; v1++) {
-            v18 = v17[v1].unk_04 & 0x3ff;
-            v19 = (v17[v1].unk_04 & 0xfc00) >> 10;
-            v4 = v17[v1].unk_00 + v17[v1].unk_02 + v18 + param0->unk_18[param1];
+        for (v1 = 0; v1 < param0->trainerData[param1].partySize; v1++) {
+            v18 = v17[v1].species & 0x3ff;
+            v19 = (v17[v1].species & 0xfc00) >> 10;
+            v4 = v17[v1].dv + v17[v1].level + v18 + param0->unk_18[param1];
 
             LCRNG_SetSeed(v4);
 
@@ -426,16 +422,16 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
             }
 
             v4 = (v4 << 8) + v3;
-            v6 = v17[v1].unk_00 * 31 / 255;
+            v6 = v17[v1].dv * 31 / 255;
 
-            sub_02073D80(v7, v18, v17[v1].unk_02, v6, 1, v4, 2, 0);
-            Pokemon_SetValue(v7, 6, (u8 *)&v17[v1].unk_06);
+            sub_02073D80(v7, v18, v17[v1].level, v6, 1, v4, 2, 0);
+            Pokemon_SetValue(v7, 6, (u8 *)&v17[v1].item);
 
             for (v2 = 0; v2 < 4; v2++) {
-                Pokemon_SetMoveSlot(v7, v17[v1].unk_08[v2], v2);
+                Pokemon_SetMoveSlot(v7, v17[v1].moves[v2], v2);
             }
 
-            sub_02078AEC(v17[v1].unk_10, v7, param2);
+            sub_02078AEC(v17[v1].cbSeal, v7, param2);
             Pokemon_SetValue(v7, 112, &v19);
             Party_AddPokemon(param0->parties[param1], v7);
         }

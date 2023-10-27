@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_0203330C_H
 #define POKEPLATINUM_STRUCT_0203330C_H
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 
 typedef struct {
     u32 unk_00;
@@ -9,7 +9,7 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     u8 unk_07;
-    UnkStruct_02014A84 unk_08;
+    Sentence unk_08;
     u8 unk_10[32];
     u8 unk_30[32];
     u32 padding_50;

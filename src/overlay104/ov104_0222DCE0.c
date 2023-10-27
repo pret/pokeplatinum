@@ -11,7 +11,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0204B184.h"
 #include "struct_defs/struct_0204B1E8.h"
 #include "overlay006/battle_params.h"
@@ -445,19 +445,19 @@ void ov104_0222E278 (UnkStruct_ov104_0223A348 * param0, u16 param1, int param2, 
 
 void ov104_0222E284 (BattleParams * param0, UnkStruct_ov104_0223A348_sub1 * param1, int param2, int param3, int param4)
 {
-    UnkStruct_02014A84 * v0;
+    Sentence * v0;
     Pokemon * v1;
 
     param0->unk_18[param3] = param1->unk_00;
     param0->trainerData[param3].class = param1->unk_04;
 
-    GF_strcpy(&param0->trainerData[param3].unk_14[0], &param1->unk_08[0]);
+    GF_strcpy(&param0->trainerData[param3].name[0], &param1->unk_08[0]);
 
-    v0 = (UnkStruct_02014A84 *)&param1->unk_20[0];
-    param0->trainerData[param3].unk_24 = *v0;
+    v0 = (Sentence *)&param1->unk_20[0];
+    param0->trainerData[param3].winMsg = *v0;
 
-    v0 = (UnkStruct_02014A84 *)&param1->unk_28[0];
-    param0->trainerData[param3].unk_2C = *v0;
+    v0 = (Sentence *)&param1->unk_28[0];
+    param0->trainerData[param3].loseMsg = *v0;
 
     return;
 }

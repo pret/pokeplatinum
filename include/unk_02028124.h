@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_02028124_H
 #define POKEPLATINUM_UNK_02028124_H
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_decls/struct_02028430_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
@@ -20,8 +20,8 @@ u8 sub_02028320(const UnkStruct_0202818C * param0);
 u8 sub_02028324(const UnkStruct_0202818C * param0);
 u16 sub_02028328(const UnkStruct_0202818C * param0, u8 param1, u8 param2, u16 param3);
 u16 sub_02028408(const UnkStruct_0202818C * param0);
-UnkStruct_02014A84 * sub_0202840C(UnkStruct_0202818C * param0, u8 param1);
-void sub_0202841C(UnkStruct_0202818C * param0, UnkStruct_02014A84 * param1, u8 param2);
+Sentence * sub_0202840C(UnkStruct_0202818C * param0, u8 param1);
+void sub_0202841C(UnkStruct_0202818C * param0, Sentence * param1, u8 param2);
 UnkStruct_02028430 * sub_02028430(SaveData * param0);
 int Mail_SaveSize(void);
 void Mail_Init(UnkStruct_02028430 * param0);
