@@ -681,9 +681,9 @@ void sub_02051480 (UnkStruct_020508D4 * param0, int param1, int param2, int * pa
     sub_02052314(v1, v2);
 
     v1->unk_164 = 0x1;
-    v1->unk_18[1] = param1;
-    v1->unk_18[3] = 0;
-    v1->unk_18[2] = 0;
+    v1->trainerIDs[1] = param1;
+    v1->trainerIDs[3] = 0;
+    v1->trainerIDs[2] = 0;
 
     TrainerData_Encounter(v1, v2->unk_0C, param2);
     sub_0202CF28(sub_0202CD88(v2->unk_0C), (1 + 7));
@@ -772,9 +772,9 @@ void sub_020515CC (UnkStruct_020508D4 * param0, int param1, int param2, int para
         v2->unk_164 |= 0x80;
     }
 
-    v2->unk_18[1] = param1;
-    v2->unk_18[3] = param2;
-    v2->unk_18[2] = param3;
+    v2->trainerIDs[1] = param1;
+    v2->trainerIDs[3] = param2;
+    v2->trainerIDs[2] = param3;
 
     TrainerData_Encounter(v2, v3->unk_0C, param4);
     sub_0202CF28(sub_0202CD88(v3->unk_0C), (1 + 7));
@@ -835,8 +835,8 @@ void sub_020516F4 (UnkStruct_020508D4 * param0, int param1, int param2, int para
         v4 = ((((0x4 | 0x1) | 0x2) | 0x8) | 0x80);
         v2 = sub_02051D8C(11, ((((0x4 | 0x1) | 0x2) | 0x8) | 0x80));
 
-        v2->unk_18[1] = 1;
-        v2->unk_18[3] = 2;
+        v2->trainerIDs[1] = 1;
+        v2->trainerIDs[3] = 2;
 
         TrainerData_Encounter(v2, v0->unk_0C, 11);
 
@@ -999,7 +999,7 @@ static void sub_02051988 (UnkStruct_0203CDB0 * param0, BattleParams * param1)
         }
     } else if ((v1 & BATTLE_TYPE_TRAINER) || (v1 & BATTLE_TYPE_TAG)) {
         if (v2 == 0x1) {
-            sub_0202C720(param0->unk_9C, param0->unk_1C->unk_00, param1->unk_18[1], 11);
+            sub_0202C720(param0->unk_9C, param0->unk_1C->unk_00, param1->trainerIDs[1], 11);
         }
     }
 }

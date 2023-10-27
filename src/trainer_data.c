@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/battle.h"
 #include "constants/trainer.h"
 
 #include "data/trainer_class_genders.h"
@@ -25,149 +26,147 @@
 
 static void TrainerData_BuildParty(BattleParams * param0, int param1, int param2);
 
-void TrainerData_Encounter (BattleParams * param0, const SaveData * param1, int param2)
+void TrainerData_Encounter(BattleParams *battleParams, const SaveData *save, int heapID)
 {
-    TrainerData v0;
-    int v1;
-    MessageLoader * v2 = MessageLoader_Init(1, 26, 618, param2);
-    Strbuf *v3;
-    const u16 * v4 = MiscSave_RivalName(Save_MiscRO(param1));
+    TrainerData trdata;
+    MessageLoader *msgLoader = MessageLoader_Init(MESSAGE_LOADER_NARC_HANDLE, NARC_INDEX_MSGDATA__PL_MSG, 618, heapID);
+    const charcode_t *rivalName = MiscSave_RivalName(Save_MiscRO(save));
 
-    for (v1 = 0; v1 < 4; v1++) {
-        if (param0->unk_18[v1]) {
-            TrainerData_Load(param0->unk_18[v1], &v0);
-            param0->trainerData[v1] = v0;
-
-            if (v0.class == TRAINER_CLASS_RIVAL) {
-                GF_strcpy(&param0->trainerData[v1].name[0], v4);
-            } else {
-                v3 = MessageLoader_GetNewStrbuf(v2, param0->unk_18[v1]);
-                Strbuf_ToChars(v3, &param0->trainerData[v1].name[0], 8);
-                Strbuf_Free(v3);
-            }
-
-            TrainerData_BuildParty(param0, v1, param2);
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        if (!battleParams->trainerIDs[i]) {
+            continue;
         }
+            
+        TrainerData_Load(battleParams->trainerIDs[i], &trdata);
+        battleParams->trainerData[i] = trdata;
+
+        if (trdata.class == TRAINER_CLASS_RIVAL) {
+            GF_strcpy(battleParams->trainerData[i].name, rivalName);
+        } else {
+            Strbuf *trainerName = MessageLoader_GetNewStrbuf(msgLoader, battleParams->trainerIDs[i]);
+            Strbuf_ToChars(trainerName, battleParams->trainerData[i].name, TRAINER_NAME_LEN + 1);
+            Strbuf_Free(trainerName);
+        }
+
+        TrainerData_BuildParty(battleParams, i, heapID);
     }
 
-    param0->battleType |= v0.battleType;
-
-    MessageLoader_Free(v2);
+    battleParams->battleType |= trdata.battleType;
+    MessageLoader_Free(msgLoader);
 }
 
-u32 TrainerData_LoadParam (int param0, int param1)
+u32 TrainerData_LoadParam(int trainerID, enum TrainerDataParam paramID)
 {
-    u32 v0;
-    TrainerData v1;
+    u32 result;
+    TrainerData trdata;
 
-    TrainerData_Load(param0, &v1);
+    TrainerData_Load(trainerID, &trdata);
 
-    switch (param1) {
-    case 0:
-        v0 = v1.type;
+    switch (paramID) {
+    case TRDATA_TYPE:
+        result = trdata.type;
         break;
-    case 1:
-        v0 = v1.class;
+
+    case TRDATA_CLASS:
+        result = trdata.class;
         break;
-    case 2:
-        v0 = v1.sprite;
+
+    case TRDATA_SPRITE:
+        result = trdata.sprite;
         break;
-    case 3:
-        v0 = v1.partySize;
+
+    case TRDATA_PARTY_SIZE:
+        result = trdata.partySize;
         break;
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-        v0 = v1.items[param1 - 4];
+
+    case TRDATA_ITEM_1:
+    case TRDATA_ITEM_2:
+    case TRDATA_ITEM_3:
+    case TRDATA_ITEM_4:
+        result = trdata.items[paramID - TRDATA_ITEM_1];
         break;
-    case 8:
-        v0 = v1.aiMask;
+
+    case TRDATA_AI_MASK:
+        result = trdata.aiMask;
         break;
-    case 9:
-        v0 = v1.battleType;
+
+    case TRDATA_BATTLE_TYPE:
+        result = trdata.battleType;
         break;
     }
 
-    return v0;
+    return result;
 }
 
-BOOL TrainerData_HasMessageType (int param0, int param1, int param2)
+BOOL TrainerData_HasMessageType(int trainerID, int msgType, int heapID)
 {
-    NARC * v0;
-    int v1;
-    u16 v2;
-    u16 v3[2];
-    BOOL v4;
+    NARC *narc; // must declare up here to match
+    u16 offset, data[2];
 
-    v4 = 0;
+    BOOL result = FALSE;
+    int size = NARC_GetMemberSizeByIndexPair(NARC_INDEX_POKETOOL__TRMSG__TRTBL, 0);
+    NARC_ReadFromMemberByIndexPair(&offset, NARC_INDEX_POKETOOL__TRMSG__TRTBLOFS, 0, trainerID * 2, 2);
+    narc = NARC_ctor(NARC_INDEX_POKETOOL__TRMSG__TRTBL, heapID);
 
-    v1 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_POKETOOL__TRMSG__TRTBL, 0);
-    NARC_ReadFromMemberByIndexPair(&v2, NARC_INDEX_POKETOOL__TRMSG__TRTBLOFS, 0, param0 * 2, 2);
-    v0 = NARC_ctor(NARC_INDEX_POKETOOL__TRMSG__TRTBL, param2);
+    while (offset != size) {
+        NARC_ReadFromMember(narc, 0, offset, 4, data);
 
-    while (v2 != v1) {
-        NARC_ReadFromMember(v0, 0, v2, 4, &v3[0]);
-
-        if ((v3[0] == param0) && (v3[1] == param1)) {
-            v4 = 1;
+        if (data[0] == trainerID && data[1] == msgType) {
+            result = TRUE;
             break;
         }
 
-        if (v3[0] != param0) {
+        if (data[0] != trainerID) {
             break;
         }
 
-        v2 += 4;
+        offset += 4;
     }
 
-    NARC_dtor(v0);
-
-    return v4;
+    NARC_dtor(narc);
+    return result;
 }
 
-void TrainerData_LoadMessage (int param0, int param1, Strbuf *param2, int param3)
+void TrainerData_LoadMessage(int trainerID, int msgType, Strbuf *strbuf, int heapID)
 {
-    NARC * v0;
-    int v1;
-    u16 v2;
-    u16 v3[2];
+    NARC *narc; // must declare up here to match
+    u16 offset, data[2];
 
-    v1 = NARC_GetMemberSizeByIndexPair(NARC_INDEX_POKETOOL__TRMSG__TRTBL, 0);
-    NARC_ReadFromMemberByIndexPair(&v2, NARC_INDEX_POKETOOL__TRMSG__TRTBLOFS, 0, param0 * 2, 2);
-    v0 = NARC_ctor(NARC_INDEX_POKETOOL__TRMSG__TRTBL, param3);
+    int size = NARC_GetMemberSizeByIndexPair(NARC_INDEX_POKETOOL__TRMSG__TRTBL, 0);
+    NARC_ReadFromMemberByIndexPair(&offset, NARC_INDEX_POKETOOL__TRMSG__TRTBLOFS, 0, trainerID * 2, 2);
+    narc = NARC_ctor(NARC_INDEX_POKETOOL__TRMSG__TRTBL, heapID);
 
-    while (v2 != v1) {
-        NARC_ReadFromMember(v0, 0, v2, 4, &v3[0]);
+    while (offset != size) {
+        NARC_ReadFromMember(narc, 0, offset, 4, data);
 
-        if ((v3[0] == param0) && (v3[1] == param1)) {
-            MessageBank_GetStrbufFromNARC(26, 617, v2 / 4, param3, param2);
+        if (data[0] == trainerID && data[1] == msgType) {
+            MessageBank_GetStrbufFromNARC(NARC_INDEX_MSGDATA__PL_MSG, 617, offset / 4, heapID, strbuf);
             break;
         }
 
-        v2 += 4;
+        offset += 4;
     }
 
-    NARC_dtor(v0);
+    NARC_dtor(narc);
 
-    if (v2 == v1) {
-        Strbuf_Clear(param2);
+    if (offset == size) {
+        Strbuf_Clear(strbuf);
     }
 }
 
-void TrainerData_Load (int param0, TrainerData * param1)
+void TrainerData_Load(int trainerID, TrainerData *trdata)
 {
-    NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__TRAINER__TRDATA, param0);
+    NARC_ReadWholeMemberByIndexPair(trdata, NARC_INDEX_POKETOOL__TRAINER__TRDATA, trainerID);
 }
 
-void TrainerData_LoadParty (int param0, void * param1)
+void TrainerData_LoadParty(int trainerID, void *trparty)
 {
-    NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__TRAINER__TRPOKE, param0);
+    NARC_ReadWholeMemberByIndexPair(trparty, NARC_INDEX_POKETOOL__TRAINER__TRPOKE, trainerID);
 }
 
-u8 TrainerClass_Gender (int param0)
+u8 TrainerClass_Gender(int trclass)
 {
-    return sTrainerClassGender[param0];
+    return sTrainerClassGender[trclass];
 }
 
 static void TrainerData_BuildParty (BattleParams * param0, int param1, int param2)
@@ -186,7 +185,7 @@ static void TrainerData_BuildParty (BattleParams * param0, int param1, int param
     v0 = Heap_AllocFromHeap(param2, sizeof(TrainerMonWithMovesAndItem) * 6);
     v7 = Pokemon_New(param2);
 
-    TrainerData_LoadParty(param0->unk_18[param1], v0);
+    TrainerData_LoadParty(param0->trainerIDs[param1], v0);
 
     if (TrainerClass_Gender(param0->trainerData[param1].class) == 1) {
         v3 = 120;
@@ -206,7 +205,7 @@ static void TrainerData_BuildParty (BattleParams * param0, int param1, int param
         for (v1 = 0; v1 < param0->trainerData[param1].partySize; v1++) {
             v9 = v8[v1].species & 0x3ff;
             v10 = (v8[v1].species & 0xfc00) >> 10;
-            v4 = v8[v1].dv + v8[v1].level + v9 + param0->unk_18[param1];
+            v4 = v8[v1].dv + v8[v1].level + v9 + param0->trainerIDs[param1];
 
             LCRNG_SetSeed(v4);
 
@@ -235,7 +234,7 @@ static void TrainerData_BuildParty (BattleParams * param0, int param1, int param
         for (v1 = 0; v1 < param0->trainerData[param1].partySize; v1++) {
             v12 = v11[v1].species & 0x3ff;
             v13 = (v11[v1].species & 0xfc00) >> 10;
-            v4 = v11[v1].dv + v11[v1].level + v12 + param0->unk_18[param1];
+            v4 = v11[v1].dv + v11[v1].level + v12 + param0->trainerIDs[param1];
 
             LCRNG_SetSeed(v4);
 
@@ -270,7 +269,7 @@ static void TrainerData_BuildParty (BattleParams * param0, int param1, int param
             v15 = v14[v1].species & 0x3ff;
             v16 = (v14[v1].species & 0xfc00) >> 10;
 
-            v4 = v14[v1].dv + v14[v1].level + v15 + param0->unk_18[param1];
+            v4 = v14[v1].dv + v14[v1].level + v15 + param0->trainerIDs[param1];
             LCRNG_SetSeed(v4);
 
             for (v2 = 0; v2 < param0->trainerData[param1].class; v2++) {
@@ -299,7 +298,7 @@ static void TrainerData_BuildParty (BattleParams * param0, int param1, int param
         for (v1 = 0; v1 < param0->trainerData[param1].partySize; v1++) {
             v18 = v17[v1].species & 0x3ff;
             v19 = (v17[v1].species & 0xfc00) >> 10;
-            v4 = v17[v1].dv + v17[v1].level + v18 + param0->unk_18[param1];
+            v4 = v17[v1].dv + v17[v1].level + v18 + param0->trainerIDs[param1];
 
             LCRNG_SetSeed(v4);
 

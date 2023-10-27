@@ -355,7 +355,7 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
             v7 = ov6_02241674(param0, v1, v0, v12, v13, &v14, &v10);
         } else {
             {
-                v0->unk_18[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                v0->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
                 TrainerData_Encounter(v0, param0->unk_0C, 11);
             }
             v7 = ov6_0224174C(param0, v1, v0, v13, &v14);
@@ -575,7 +575,7 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
             v8 = ov6_02241674(param0, v1, v0, v11, v12, &v13, &v9);
         } else {
             {
-                v0->unk_18[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                v0->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
                 TrainerData_Encounter(v0, param0->unk_0C, 11);
             }
             v8 = ov6_0224174C(param0, v1, v0, v12, &v13);
@@ -723,7 +723,7 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, BattleParams ** param1)
             v6 = ov6_02241674(param0, v0, *param1, v11, v12, &v13, &v9);
         } else {
             {
-                (*param1)->unk_18[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                (*param1)->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
                 TrainerData_Encounter(*param1, param0->unk_0C, 11);
             }
             v6 = ov6_0224174C(param0, v0, *param1, v12, &v13);

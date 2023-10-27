@@ -24,7 +24,7 @@ typedef struct {
     u32 battleType;
     Party *parties[4];
     int unk_14;
-    int unk_18[4];
+    int trainerIDs[4];
     TrainerData trainerData[4];
     TrainerInfo * unk_D0[4];
     UnkStruct_0207D3C0 * unk_E0;

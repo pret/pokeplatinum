@@ -78,7 +78,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
     v1->unk_14 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_18[v0] = 0;
+        v1->trainerIDs[v0] = 0;
         MI_CpuClear32(&v1->trainerData[v0], sizeof(TrainerData));
     }
 
