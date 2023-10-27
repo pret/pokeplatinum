@@ -111,7 +111,7 @@ UnkStruct_0200B358 * ov16_0223E0D0(BattleSystem * param0);
 Strbuf* ov16_0223E0D4(BattleSystem * param0);
 u16 ov16_0223E0D8(BattleSystem * param0, int param1);
 TrainerData * BattleSystem_TrainerData(BattleSystem * param0, int param1);
-TrainerInfo * BattleSystem_TrainerInfo(BattleSystem * param0, int param1);
+TrainerInfo* BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler);
 UnkStruct_0207D3C0 * BattleSystem_Bag(BattleSystem * param0);
 UnkStruct_0207D99C * BattleSystem_BagCursor(BattleSystem * param0);
 u32 ov16_0223E1B4(BattleSystem * param0, int param1);
@@ -446,15 +446,19 @@ TrainerData * BattleSystem_TrainerData (BattleSystem * param0, int param1)
     }
 }
 
-TrainerInfo * BattleSystem_TrainerInfo (BattleSystem * param0, int param1)
+TrainerInfo* BattleSystem_TrainerInfo(BattleSystem *battleSys, int battler)
 {
-    if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
-        return param0->unk_48[param1];
-    } else if (param0->battleType & 0x2) {
-        return param0->unk_48[param1 & 1];
-    } else {
-        return param0->unk_48[param1];
+    if ((battleSys->battleType & BATTLE_TYPE_2vs2)
+            || ((battleSys->battleType & BATTLE_TYPE_TAG)
+                && (BattleSystem_BattlerSlot(battleSys, battler) & BATTLER_TYPE_SOLO_ENEMY))) {
+        return battleSys->trainerInfo[battler];
     }
+    
+    if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
+        return battleSys->trainerInfo[battler & 1];
+    }
+    
+    return battleSys->trainerInfo[battler];
 }
 
 UnkStruct_0207D3C0 * BattleSystem_Bag (BattleSystem * param0)
@@ -469,7 +473,7 @@ UnkStruct_0207D99C * BattleSystem_BagCursor (BattleSystem * param0)
 
 u32 ov16_0223E1B4 (BattleSystem * param0, int param1)
 {
-    return TrainerInfo_Gender(param0->unk_48[param1]);
+    return TrainerInfo_Gender(param0->trainerInfo[param1]);
 }
 
 int BattleSystem_BattlerOfType(BattleSystem *battleSys, int type)
@@ -1781,7 +1785,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
                 }
 
                 for (v7 = 0; v7 < 4; v7++) {
-                    if (TrainerInfo_GameCode(param0->unk_48[v7]) == 0) {
+                    if (TrainerInfo_GameCode(param0->trainerInfo[v7]) == 0) {
                         break;
                     }
                 }

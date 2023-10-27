@@ -115,6 +115,9 @@
 #define LINK_BATTLE_TIMEOUT         (60 * 30)
 #define LINK_BATTLE_RESET_SAVEPOINT 1
 
+#define PAYDAY_MAX          0xFFFF
+#define NUM_SCREEN_TURNS    5
+
 enum BattleActions {
     BATTLE_ACTION_PICK_COMMAND = 0,
     BATTLE_ACTION_CHOOSE_TARGET,

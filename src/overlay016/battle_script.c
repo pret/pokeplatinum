@@ -183,13 +183,13 @@ static BOOL BtlCmd_PrintSendOutMessage(BattleSystem *battleSys, BattleContext *b
 static BOOL BtlCmd_PrintBattleStartMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintLeadMonMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_0224358C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243708(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022437D4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022438A8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022438F8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022439D8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243AB8(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GivePayDayMoney(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02243B38(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02243D2C(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02243D64(BattleSystem * param0, BattleContext * param1);
@@ -443,13 +443,13 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_PrintBattleStartMessage,
     BtlCmd_PrintLeadMonMessage,
     BtlCmd_PreparedTrainerMessage,
-    ov16_0224358C,
-    ov16_02243708,
-    ov16_022437D4,
-    ov16_022438A8,
-    ov16_022438F8,
-    ov16_022439D8,
-    ov16_02243AB8,
+    BtlCmd_TryConversion,
+    BtlCmd_IfVar,
+    BtlCmd_IfMonDataVar,
+    BtlCmd_GivePayDayMoney,
+    BtlCmd_TryLightScreen,
+    BtlCmd_TryReflect,
+    BtlCmd_TryMist,
     ov16_02243B38,
     ov16_02243D2C,
     ov16_02243D64,
@@ -2147,13 +2147,13 @@ static BOOL BtlCmd_If(BattleSystem *battleSys, BattleContext *battleCtx)
         }
         break;
 
-    case IFOP_LTE:
+    case IFOP_GT:
         if (*data <= compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case IFOP_LTE:
         if (*data > compareTo) {
             jump = 0;
         }
@@ -2228,13 +2228,13 @@ static BOOL BtlCmd_IfMonData(BattleSystem *battleSys, BattleContext *battleCtx)
         }
         break;
 
-    case IFOP_LTE:
+    case IFOP_GT:
         if (data <= compareTo) {
             jump = 0;
         }
         break;
 
-    case IFOP_GT:
+    case IFOP_LTE:
         if (data > compareTo) {
             jump = 0;
         }
@@ -4050,7 +4050,7 @@ static BOOL ov16_022432B4 (BattleSystem * param0, BattleContext * param1)
 
         TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(param0, 0), v0);
     } else {
-        v0 = ov16_0223F904(param0->parties[0], param0->unk_48[0]);
+        v0 = ov16_0223F904(param0->parties[0], param0->trainerInfo[0]);
         TrainerInfo_TakeMoney(BattleSystem_TrainerInfo(param0, 0), v0);
     }
 
@@ -4276,315 +4276,378 @@ static BOOL BtlCmd_PreparedTrainerMessage(BattleSystem *battleSys, BattleContext
     return FALSE;
 }
 
-static BOOL ov16_0224358C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to execute the Conversion effect.
+ * 
+ * Inputs:
+ * 1. The jump-distance if the process fails for whatever reason.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
-    int v2;
-    int v3;
+    int numMoves, i, moveType; // must declare these here to match
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    v2 = BattleScript_Read(param1);
-
-    if (Battler_Ability(param1, param1->attacker) == 121) {
-        BattleScript_Iter(param1, v2);
-        return 0;
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MULTITYPE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        return FALSE;
     }
 
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param1->battleMons[param1->attacker].moves[v0] == 0) {
+    for (numMoves = 0; numMoves < 4; numMoves++) {
+        if (ATTACKING_MON.moves[numMoves] == MOVE_NONE) {
             break;
         }
     }
 
-    for (v1 = 0; v1 < v0; v1++) {
-        if (param1->battleMons[param1->attacker].moves[v1] != 160) {
-            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].type;
+    // First, check if there are any non-Conversion moves which have a type different from the
+    // source Pokemon's types.
+    for (i = 0; i < numMoves; i++) {
+        if (ATTACKING_MON.moves[i] == MOVE_CONVERSION) {
+            continue;
+        }
 
-            if (v3 == 9) {
-                if ((BattleMon_Get(param1, param1->attacker, 27, NULL) == 7) || (BattleMon_Get(param1, param1->attacker, 28, NULL) == 7)) {
-                    v3 = 7;
-                } else {
-                    v3 = 0;
-                }
+        moveType = MOVE_DATA(ATTACKING_MON.moves[i]).type;
+        if (moveType == TYPE_MYSTERY) {
+            if (MON_HAS_TYPE(battleCtx->attacker, TYPE_GHOST)) {
+                moveType = TYPE_GHOST;
+            } else {
+                moveType = TYPE_NORMAL;
             }
+        }
 
-            if ((v3 != BattleMon_Get(param1, param1->attacker, 27, NULL)) && (v3 != BattleMon_Get(param1, param1->attacker, 28, NULL))) {
-                break;
-            }
+        if (MON_IS_NOT_TYPE(battleCtx->attacker, moveType)) {
+            break;
         }
     }
 
-    if (v1 == v0) {
-        BattleScript_Iter(param1, v2);
+    if (i == numMoves) { // no such moves
+        BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
         do {
+            // Get a random non-Conversion move
             do {
-                v1 = BattleSystem_RandNext(param0) % v0;
-            } while (param1->battleMons[param1->attacker].moves[v1] == 160);
+                i = BattleSystem_RandNext(battleSys) % numMoves;
+            } while (ATTACKING_MON.moves[i] == MOVE_CONVERSION);
 
-            v3 = param1->aiContext.moveTable[param1->battleMons[param1->attacker].moves[v1]].type;
+            moveType = MOVE_DATA(ATTACKING_MON.moves[i]).type;
 
-            if (v3 == 9) {
-                if ((BattleMon_Get(param1, param1->attacker, 27, NULL) == 7) || (BattleMon_Get(param1, param1->attacker, 28, NULL) == 7)) {
-                    v3 = 7;
+            // Handle Curse as a Ghost-type move for Ghost-type Pokemon
+            if (moveType == TYPE_MYSTERY) {
+                if (MON_HAS_TYPE(battleCtx->attacker, TYPE_GHOST)) {
+                    moveType = TYPE_GHOST;
                 } else {
-                    v3 = 0;
+                    moveType = TYPE_NORMAL;
                 }
             }
-        } while ((v3 == BattleMon_Get(param1, param1->attacker, 27, NULL)) || (v3 == BattleMon_Get(param1, param1->attacker, 28, NULL)));
+        } while (MON_HAS_TYPE(battleCtx->attacker, moveType));
 
-        param1->battleMons[param1->attacker].type1 = v3;
-        param1->battleMons[param1->attacker].type2 = v3;
-        param1->msgTemp = v3;
+        ATTACKING_MON.type1 = moveType;
+        ATTACKING_MON.type2 = moveType;
+        battleCtx->msgTemp = moveType;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243708 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Compare a given data-value from a variable to a target variable's value.
+ * 
+ * Inputs:
+ * 1. The operation mode. See enum OpCode for possible values.
+ * 3. The variable whose data will be used on the left-hand side of the comparison.
+ * 3. The variable whose data will be used on the right-hand side of the comparison.
+ * 4. The jump-ahead value if the comparison yields TRUE.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_IfVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    u32 * v4;
-    u32 * v5;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int lhsVar = BattleScript_Read(battleCtx);
+    int rhsVar = BattleScript_Read(battleCtx);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    u32 *lhs = BattleScript_VarAddress(battleSys, battleCtx, lhsVar);
+    u32 *rhs = BattleScript_VarAddress(battleSys, battleCtx, rhsVar);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_VarAddress(param0, param1, v1);
-    v5 = BattleScript_VarAddress(param0, param1, v2);
+    switch (op) {
+    case IFOP_EQU:
+        if (*lhs != *rhs) {
+            jump = 0;
+        }
+        break;
 
-    switch (v0) {
-    case 0:
-        if (v4[0] != v5[0]) {
-            v3 = 0;
+    case IFOP_NEQ:
+        if (*lhs == *rhs) {
+            jump = 0;
         }
         break;
-    case 1:
-        if (v4[0] == v5[0]) {
-            v3 = 0;
+
+    case IFOP_GT:
+        if (*lhs <= *rhs) {
+            jump = 0;
         }
         break;
-    case 2:
-        if (v4[0] <= v5[0]) {
-            v3 = 0;
+
+    case IFOP_LTE:
+        if (*lhs > *rhs) {
+            jump = 0;
         }
         break;
-    case 3:
-        if (v4[0] > v5[0]) {
-            v3 = 0;
+
+    case IFOP_FLAG_SET:
+        if ((*lhs & *rhs) == FALSE) {
+            jump = 0;
         }
         break;
-    case 4:
-        if ((v4[0] & v5[0]) == 0) {
-            v3 = 0;
+
+    case IFOP_FLAG_NOT:
+        if (*lhs & *rhs) {
+            jump = 0;
         }
         break;
-    case 5:
-        if (v4[0] & v5[0]) {
-            v3 = 0;
+
+    case IFOP_AND:
+        if ((*lhs & *rhs) != *rhs) {
+            jump = 0;
         }
         break;
-    case 6:
-        if ((v4[0] & v5[0]) != v5[0]) {
-            v3 = 0;
-        }
-        break;
+
     default:
-        GF_ASSERT(1);
+        GF_ASSERT(TRUE);
         break;
     }
 
-    if (v3) {
-        BattleScript_Iter(param1, v3);
+    if (jump) {
+        BattleScript_Iter(battleCtx, jump);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022437D4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Compare a given data-value from a battler to a target variable's value.
+ * 
+ * Inputs:
+ * 1. The operation mode. See enum OpCode for possible values.
+ * 2. The battler whose data should be retrieved for the left-hand side of the comparison.
+ * 3. The parameter to use for the left-hand side of the comparison.
+ * 4. The variable whose data will be used on the right-hand side of the comparison.
+ * 5. The jump-ahead value if the comparison yields TRUE.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_IfMonDataVar(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    u32 v5;
-    u32 * v6;
-    int v7;
+    BattleScript_Iter(battleCtx, 1);
+    int op = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Read(battleCtx);
+    int paramID = BattleScript_Read(battleCtx);
+    int rhsVar = BattleScript_Read(battleCtx);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    u32 lhs = BattleMon_Get(battleCtx, BattleScript_Battler(battleSys, battleCtx, battler), paramID, NULL);
+    u32 *rhs = BattleScript_VarAddress(battleSys, battleCtx, rhsVar);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Read(param1);
-    v4 = BattleScript_Read(param1);
-    v7 = BattleScript_Battler(param0, param1, v1);
-    v5 = BattleMon_Get(param1, v7, v2, NULL);
-    v6 = BattleScript_VarAddress(param0, param1, v3);
+    switch (op) {
+    case IFOP_EQU:
+        if (lhs != *rhs) {
+            jump = 0;
+        }
+        break;
+        
+    case IFOP_NEQ:
+        if (lhs == *rhs) {
+            jump = 0;
+        }
+        break;
 
-    switch (v0) {
-    case 0:
-        if (v5 != v6[0]) {
-            v4 = 0;
+    case IFOP_GT:
+        if (lhs <= *rhs) {
+            jump = 0;
         }
         break;
-    case 1:
-        if (v5 == v6[0]) {
-            v4 = 0;
+
+    case IFOP_LTE:
+        if (lhs > *rhs) {
+            jump = 0;
         }
         break;
-    case 2:
-        if (v5 <= v6[0]) {
-            v4 = 0;
+
+    case IFOP_FLAG_SET:
+        if ((lhs & *rhs) == FALSE) {
+            jump = 0;
         }
         break;
-    case 3:
-        if (v5 > v6[0]) {
-            v4 = 0;
+
+    case IFOP_FLAG_NOT:
+        if (lhs & *rhs) {
+            jump = 0;
         }
         break;
-    case 4:
-        if ((v5 & v6[0]) == 0) {
-            v4 = 0;
+
+    case IFOP_AND:
+        if ((lhs & *rhs) != *rhs) {
+            jump = 0;
         }
         break;
-    case 5:
-        if (v5 & v6[0]) {
-            v4 = 0;
-        }
-        break;
-    case 6:
-        if ((v5 & v6[0]) != v6[0]) {
-            v4 = 0;
-        }
-        break;
+
     default:
-        GF_ASSERT(1);
+        GF_ASSERT(TRUE);
         break;
     }
 
-    if (v4) {
-        BattleScript_Iter(param1, v4);
+    if (jump) {
+        BattleScript_Iter(battleCtx, jump);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022438A8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Gives the money accrued from Pay Day to the player.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_GivePayDayMoney(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    param1->msgTemp = param1->payDayCount * param1->prizeMoneyMul;
-
-    if (param1->msgTemp > 0xffff) {
-        param1->msgTemp = 0xffff;
+    battleCtx->msgTemp = battleCtx->payDayCount * battleCtx->prizeMoneyMul;
+    if (battleCtx->msgTemp > PAYDAY_MAX) {
+        battleCtx->msgTemp = PAYDAY_MAX;
     }
 
-    TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(param0, 0), param1->msgTemp);
+    TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), battleCtx->msgTemp);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022438F8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to set Light Screen for the user's side.
+ * 
+ * Inputs:
+ * 1. The jump-distance if Light Screen is already set for the user's side.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int side = Battler_Side(battleSys, battleCtx->attacker);
 
-    v0 = BattleScript_Read(param1);
-    v1 = Battler_Side(param0, param1->attacker);
-
-    if (param1->sideConditionsMask[v1] & 0x2) {
-        BattleScript_Iter(param1, v0);
-        param1->moveStatusFlags |= 0x40;
+    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_LIGHT_SCREEN) {
+        BattleScript_Iter(battleCtx, jump);
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     } else {
-        param1->sideConditionsMask[v1] |= 0x2;
-        param1->sideConditions[v1].lightScreenTurns = 5;
-        param1->sideConditions[v1].lightScreenUser = param1->attacker;
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_LIGHT_SCREEN;
+        battleCtx->sideConditions[side].lightScreenTurns = NUM_SCREEN_TURNS;
+        battleCtx->sideConditions[side].lightScreenUser = battleCtx->attacker;
 
-        if (Battler_HeldItemEffect(param1, param1->attacker) == 97) {
-            param1->sideConditions[v1].lightScreenTurns += Battler_HeldItemPower(param1, param1->attacker, 0);
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_EXTEND_SCREENS) {
+            battleCtx->sideConditions[side].lightScreenTurns += Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
         }
 
-        param1->msgBuffer.tags = 20;
-        param1->msgBuffer.params[0] = param1->moveCur;
-        param1->msgBuffer.params[1] = param1->attacker;
+        battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[1] = battleCtx->attacker;
 
-        if (BattleSystem_CountAliveBattlers(param0, param1, 1, param1->attacker) == 2) {
-            param1->msgBuffer.id = 192;
+        if (BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, battleCtx->attacker) == 2) {
+            battleCtx->msgBuffer.id = 192; // "{0} raised [your/its] team's Special Defense slightly!"
         } else {
-            param1->msgBuffer.id = 190;
+            battleCtx->msgBuffer.id = 190; // "{0} raised [your/its] team's Special Defense!"
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022439D8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to set Reflect for the user's side.
+ * 
+ * Inputs:
+ * 1. The jump-distance if Reflect is already set for the user's side.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int side = Battler_Side(battleSys, battleCtx->attacker);
 
-    v0 = BattleScript_Read(param1);
-    v1 = Battler_Side(param0, param1->attacker);
-
-    if (param1->sideConditionsMask[v1] & 0x1) {
-        BattleScript_Iter(param1, v0);
-        param1->moveStatusFlags |= 0x40;
+    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_REFLECT) {
+        BattleScript_Iter(battleCtx, jump);
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     } else {
-        param1->sideConditionsMask[v1] |= 0x1;
-        param1->sideConditions[v1].reflectTurns = 5;
-        param1->sideConditions[v1].reflectUser = param1->attacker;
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_REFLECT;
+        battleCtx->sideConditions[side].reflectTurns = NUM_SCREEN_TURNS;
+        battleCtx->sideConditions[side].reflectUser = battleCtx->attacker;
 
-        if (Battler_HeldItemEffect(param1, param1->attacker) == 97) {
-            param1->sideConditions[v1].reflectTurns += Battler_HeldItemPower(param1, param1->attacker, 0);
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_EXTEND_SCREENS) {
+            battleCtx->sideConditions[side].reflectTurns += Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
         }
 
-        param1->msgBuffer.tags = 20;
-        param1->msgBuffer.params[0] = param1->moveCur;
-        param1->msgBuffer.params[1] = param1->attacker;
+        battleCtx->msgBuffer.tags = TAG_MOVE_SIDE;
+        battleCtx->msgBuffer.params[0] = battleCtx->moveCur;
+        battleCtx->msgBuffer.params[1] = battleCtx->attacker;
 
-        if (BattleSystem_CountAliveBattlers(param0, param1, 1, param1->attacker) == 2) {
-            param1->msgBuffer.id = 196;
+        if (BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, battleCtx->attacker) == 2) {
+            battleCtx->msgBuffer.id = 196; // "{0} raised [your/its] team's Defense slightly!"
         } else {
-            param1->msgBuffer.id = 194;
+            battleCtx->msgBuffer.id = 194; // "{0} raised [your/its] team's Defense!"
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243AB8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to set Mist for the user's side.
+ * 
+ * Inputs:
+ * 1. The jump-distance if Mist is already set for the user's side.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jump = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int side = Battler_Side(battleSys, battleCtx->attacker);
 
-    v0 = BattleScript_Read(param1);
-    v1 = Battler_Side(param0, param1->attacker);
-
-    if (param1->sideConditionsMask[v1] & 0x40) {
-        BattleScript_Iter(param1, v0);
-        param1->moveStatusFlags |= 0x40;
+    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_MIST) {
+        BattleScript_Iter(battleCtx, jump);
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     } else {
-        param1->sideConditionsMask[v1] |= 0x40;
-        param1->sideConditions[v1].mistTurns = 5;
-        param1->sideConditions[v1].mistUser = param1->attacker;
+        battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_MIST;
+        battleCtx->sideConditions[side].mistTurns = NUM_SCREEN_TURNS;
+        battleCtx->sideConditions[side].mistUser = battleCtx->attacker;
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02243B38 (BattleSystem * param0, BattleContext * param1)

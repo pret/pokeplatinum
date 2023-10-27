@@ -336,13 +336,13 @@ BOOL BattleContext_MoveFailed(BattleContext * param0, int param1);
  * 
  * @param battleSys 
  * @param battleCtx 
- * @param enemyOnly If TRUE, only the battlers on the same side of the field as
+ * @param sameSide  If TRUE, only the battlers on the same side of the field as
  *                  the defender will be counted. If FALSE, all battlers will
  *                  be counted.
  * @param defender
  * @return The number of battlers hit by the move.
  */
-u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL enemyOnly, int defender);
+u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battleCtx, BOOL sameSide, int defender);
 int BattleSystem_NicknameTag(BattleContext *battleSys, int battler);
 u16 Battler_SelectedMove(BattleContext * param0, int param1);
 
