@@ -34,6 +34,8 @@ typedef struct TrainerData {
     Sentence loseMsg; //< The message to display if the trainer loses.
 } TrainerData;
 
+#define MAX_DV  255
+
 /**
  * @brief The most basic Trainer Pokemon structure. No item is held, and moves are populated from the learnset. 
  */

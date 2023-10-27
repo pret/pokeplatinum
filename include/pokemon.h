@@ -18,6 +18,10 @@
 
 #include <nitro/rtc.h>
 
+#define OTID_NOT_SET    0
+#define OTID_SET        1
+#define OTID_NOT_SHINY  2
+
 /**
  * @brief Pokemon Personal data structure. This contains data that is the same across all pokemon of the same species/form
  */

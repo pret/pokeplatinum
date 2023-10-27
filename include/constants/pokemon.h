@@ -45,6 +45,7 @@ enum {
 #define MAX_PARTY_SIZE  6
 #define NUM_BOOSTABLE_STATS 8
 
+#define MAX_IVS_SINGLE_STAT 31
 #define MAX_EVS_SINGLE_STAT 255
 #define MAX_EVS_ALL_STATS   510
 
