@@ -52,6 +52,7 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "constants/items.h"
+#include "constants/gender.h"
 #include "constants/moves.h"
 
 // Columns: Spicy, Dry, Sweet, Bitter, Sour
@@ -375,7 +376,7 @@ void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param
 static enum PokemonGenderRatio {
     GENDER_ALWAYS_MALE = 0,
     GENDER_ALWAYS_FEMALE = 254,
-    GENDER_NONE = 255
+    GENDER_UNKNOWN = 255
 };
 
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
@@ -386,7 +387,7 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
     switch (monGenderChance) {
     case GENDER_ALWAYS_MALE:
     case GENDER_ALWAYS_FEMALE:
-    case GENDER_NONE:
+    case GENDER_UNKNOWN:
         result = param2;
         break;
     default:
@@ -2280,17 +2281,17 @@ u8 PokemonPersonalData_GetGenderOf(PokemonPersonalData *monPersonalData, u16 unu
 
     switch (monGender) {
     case GENDER_ALWAYS_MALE:
-        return MON_GENDER_MALE;
+        return GENDER_MALE;
     case GENDER_ALWAYS_FEMALE:
-        return MON_GENDER_FEMALE;
-    case GENDER_NONE:
-        return MON_GENDER_NONE;
+        return GENDER_FEMALE;
+    case GENDER_UNKNOWN:
+        return GENDER_NONE;
     }
 
     if (monGender > (monPersonality & 0xff)) {
-        return MON_GENDER_FEMALE;
+        return GENDER_FEMALE;
     } else {
-        return MON_GENDER_MALE;
+        return GENDER_MALE;
     }
 }
 

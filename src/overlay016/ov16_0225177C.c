@@ -3,6 +3,7 @@
 
 #include "constants/abilities.h"
 #include "constants/battle.h"
+#include "constants/gender.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/species.h"
@@ -6820,14 +6821,14 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
     if (attackerParams.ability == ABILITY_RIVALRY
             && attackerParams.gender == defenderParams.gender
-            && attackerParams.gender != MON_GENDER_NONE
-            && defenderParams.gender != MON_GENDER_NONE) {
+            && attackerParams.gender != GENDER_NONE
+            && defenderParams.gender != GENDER_NONE) {
         movePower = movePower * 125 / 100;
     }
     if (attackerParams.ability == ABILITY_RIVALRY
             && attackerParams.gender != defenderParams.gender
-            && attackerParams.gender != MON_GENDER_NONE
-            && defenderParams.gender != MON_GENDER_NONE) {
+            && attackerParams.gender != GENDER_NONE
+            && defenderParams.gender != GENDER_NONE) {
         movePower = movePower * 75 / 100;
     }
 

@@ -52,12 +52,6 @@ enum {
 #define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
 #define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
 
-enum PokemonGender {
-    MON_GENDER_MALE,
-    MON_GENDER_FEMALE,
-    MON_GENDER_NONE
-};
-
 /**
  * @brief Pokemon Data Parameters
  */

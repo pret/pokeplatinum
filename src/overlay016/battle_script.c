@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/abilities.h"
+#include "constants/gender.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/narc.h"
@@ -6068,8 +6069,8 @@ static BOOL BtlCmd_TryAttract(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (battleCtx->battleMons[battleCtx->msgBattlerTemp].gender == battleCtx->battleMons[battleCtx->sideEffectMon].gender
             || battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile & VOLATILE_CONDITION_ATTRACT
-            || battleCtx->battleMons[battleCtx->msgBattlerTemp].gender == MON_GENDER_NONE
-            || battleCtx->battleMons[battleCtx->sideEffectMon].gender == MON_GENDER_NONE) {
+            || battleCtx->battleMons[battleCtx->msgBattlerTemp].gender == GENDER_NONE
+            || battleCtx->battleMons[battleCtx->sideEffectMon].gender == GENDER_NONE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
         battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile |= FlagIndex(battleCtx->msgBattlerTemp) << VOLATILE_CONDITION_ATTRACT_SHIFT;
