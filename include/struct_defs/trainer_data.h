@@ -1,5 +1,5 @@
-#ifndef POKEPLATINUM_TRAINER_DATA_H
-#define POKEPLATINUM_TRAINER_DATA_H
+#ifndef POKEPLATINUM_STRUCT_TRAINER_DATA_H
+#define POKEPLATINUM_STRUCT_TRAINER_DATA_H
 
 #include "constants/string.h"
 #include "strbuf.h"
@@ -78,4 +78,4 @@ typedef struct TrainerMonWithMovesAndItem {
     u16 cbSeal; //< Ball seal applied to the Pokemon.
 } TrainerMonWithMovesAndItem;
 
-#endif // POKEPLATINUM_TRAINER_DATA_H
+#endif // POKEPLATINUM_STRUCT_TRAINER_DATA_H

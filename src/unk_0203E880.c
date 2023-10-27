@@ -38,7 +38,7 @@
 #include "unk_020508D4.h"
 #include "unk_0205E7D0.h"
 #include "unk_02061804.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 
 typedef void (* UnkFuncPtr_0203E950)(UnkStruct_0203CDB0 *);
 
@@ -963,7 +963,7 @@ BOOL sub_0203F278 (u16 param0)
 
 BOOL sub_0203F28C (u16 param0)
 {
-    if (sub_02079220(param0, 9) == 0x0) {
+    if (TrainerData_LoadParam(param0, 9) == 0x0) {
         return 0;
     }
 

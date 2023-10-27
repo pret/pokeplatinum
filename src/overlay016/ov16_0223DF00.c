@@ -65,7 +65,7 @@
 #include "unk_02056720.h"
 #include "unk_0206CCB0.h"
 #include "pokemon.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "party.h"
 #include "item.h"
 #include "flags.h"
@@ -1807,7 +1807,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
             }
         }
     } else {
-        sub_020792F8(param1, param3, param0->msgBuffer, 5);
+        TrainerData_LoadMessage(param1, param3, param0->msgBuffer, 5);
         BGL_FillWindow(v0, 0xff);
         v1 = sub_0201D738(v0, 1, param0->msgBuffer, 0, 0, param4, ov16_022405A4);
     }

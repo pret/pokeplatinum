@@ -80,7 +80,7 @@
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "unk_0207A274.h"
@@ -3981,8 +3981,8 @@ static u32 ov16_022431BC (BattleSystem * param0, BattleContext * param1, int par
 
     v1 = Heap_AllocFromHeap(5, sizeof(TrainerMonWithMovesAndItem) * 6);
 
-    sub_0207938C(param0->unk_A0[param2], &v4);
-    sub_0207939C(param0->unk_A0[param2], v1);
+    TrainerData_Load(param0->unk_A0[param2], &v4);
+    TrainerData_LoadParty(param0->unk_A0[param2], v1);
 
     switch (v4.type) {
     default:

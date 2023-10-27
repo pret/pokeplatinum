@@ -36,7 +36,7 @@
 #include "unk_020366A0.h"
 #include "pokemon.h"
 #include "move_table.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "party.h"
 #include "item.h"
 #include "unk_0208C098.h"
@@ -1978,7 +1978,7 @@ BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * pa
         switch (v2) {
         case 0:
             if ((param1->battleMons[1].timesDamaged == 1) && ((param1->battleStatusMask2 & 0x20) == 0)) {
-                if (sub_02079280(v1, 13, 5)) {
+                if (TrainerData_HasMessageType(v1, 13, 5)) {
                     param1->battleStatusMask2 |= 0x20;
                     param1->msgTemp = 13;
                     return 1;
@@ -1990,7 +1990,7 @@ BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * pa
         case 1:
             if ((param1->battleMons[1].trainerMessageFlags & 0x2) == 0) {
                 if (param1->battleMons[1].curHP <= (param1->battleMons[1].maxHP / 2)) {
-                    if (sub_02079280(v1, 14, 5)) {
+                    if (TrainerData_HasMessageType(v1, 14, 5)) {
                         param1->battleMons[1].trainerMessageFlags |= 0x2;
                         param1->msgTemp = 14;
                         return 1;
@@ -2020,7 +2020,7 @@ BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * pa
                     }
 
                     if (v4 == 1) {
-                        if (sub_02079280(v1, 15, 5)) {
+                        if (TrainerData_HasMessageType(v1, 15, 5)) {
                             param1->battleMons[1].trainerMessageFlags |= 0x3;
                             param1->msgTemp = 15;
                             return 1;
@@ -2051,7 +2051,7 @@ BOOL BattleSystem_CheckTrainerMessage (BattleSystem * param0, BattleContext * pa
                     }
 
                     if ((v8 == 1) && (param1->battleMons[1].curHP <= (param1->battleMons[1].maxHP / 2))) {
-                        if (sub_02079280(v1, 16, 5)) {
+                        if (TrainerData_HasMessageType(v1, 16, 5)) {
                             param1->battleMons[1].trainerMessageFlags |= 0x4;
                             param1->msgTemp = 16;
                             return 1;

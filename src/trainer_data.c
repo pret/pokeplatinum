@@ -18,17 +18,9 @@
 #include "strbuf.h"
 #include "unk_020277A4.h"
 #include "pokemon.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "party.h"
 
-
-void sub_02079170(BattleParams * param0, const SaveData * param1, int param2);
-u32 sub_02079220(int param0, int param1);
-BOOL sub_02079280(int param0, int param1, int param2);
-void sub_020792F8(int param0, int param1, Strbuf *param2, int param3);
-void sub_0207938C(int param0, TrainerData * param1);
-void sub_0207939C(int param0, void * param1);
-u8 sub_020793AC(int param0);
 static void sub_020793B8(BattleParams * param0, int param1, int param2);
 
 static const u8 Unk_020F0714[] = {
@@ -139,7 +131,7 @@ static const u8 Unk_020F0714[] = {
 	0x1
 };
 
-void sub_02079170 (BattleParams * param0, const SaveData * param1, int param2)
+void TrainerData_Encounter (BattleParams * param0, const SaveData * param1, int param2)
 {
     TrainerData v0;
     int v1;
@@ -149,7 +141,7 @@ void sub_02079170 (BattleParams * param0, const SaveData * param1, int param2)
 
     for (v1 = 0; v1 < 4; v1++) {
         if (param0->unk_18[v1]) {
-            sub_0207938C(param0->unk_18[v1], &v0);
+            TrainerData_Load(param0->unk_18[v1], &v0);
             param0->trainerData[v1] = v0;
 
             if (v0.class == TRAINER_CLASS_RIVAL) {
@@ -169,12 +161,12 @@ void sub_02079170 (BattleParams * param0, const SaveData * param1, int param2)
     MessageLoader_Free(v2);
 }
 
-u32 sub_02079220 (int param0, int param1)
+u32 TrainerData_LoadParam (int param0, int param1)
 {
     u32 v0;
     TrainerData v1;
 
-    sub_0207938C(param0, &v1);
+    TrainerData_Load(param0, &v1);
 
     switch (param1) {
     case 0:
@@ -206,7 +198,7 @@ u32 sub_02079220 (int param0, int param1)
     return v0;
 }
 
-BOOL sub_02079280 (int param0, int param1, int param2)
+BOOL TrainerData_HasMessageType (int param0, int param1, int param2)
 {
     NARC * v0;
     int v1;
@@ -240,7 +232,7 @@ BOOL sub_02079280 (int param0, int param1, int param2)
     return v4;
 }
 
-void sub_020792F8 (int param0, int param1, Strbuf *param2, int param3)
+void TrainerData_LoadMessage (int param0, int param1, Strbuf *param2, int param3)
 {
     NARC * v0;
     int v1;
@@ -269,17 +261,17 @@ void sub_020792F8 (int param0, int param1, Strbuf *param2, int param3)
     }
 }
 
-void sub_0207938C (int param0, TrainerData * param1)
+void TrainerData_Load (int param0, TrainerData * param1)
 {
     NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__TRAINER__TRDATA, param0);
 }
 
-void sub_0207939C (int param0, void * param1)
+void TrainerData_LoadParty (int param0, void * param1)
 {
     NARC_ReadWholeMemberByIndexPair(param1, NARC_INDEX_POKETOOL__TRAINER__TRPOKE, param0);
 }
 
-u8 sub_020793AC (int param0)
+u8 TrainerClass_Gender (int param0)
 {
     return Unk_020F0714[param0];
 }
@@ -300,9 +292,9 @@ static void sub_020793B8 (BattleParams * param0, int param1, int param2)
     v0 = Heap_AllocFromHeap(param2, sizeof(TrainerMonWithMovesAndItem) * 6);
     v7 = Pokemon_New(param2);
 
-    sub_0207939C(param0->unk_18[param1], v0);
+    TrainerData_LoadParty(param0->unk_18[param1], v0);
 
-    if (sub_020793AC(param0->trainerData[param1].class) == 1) {
+    if (TrainerClass_Gender(param0->trainerData[param1].class) == 1) {
         v3 = 120;
     } else {
         v3 = 136;

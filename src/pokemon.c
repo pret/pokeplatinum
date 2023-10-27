@@ -43,7 +43,7 @@
 #include "unk_0202C9F4.h"
 #include "pokemon.h"
 #include "move_table.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "party.h"
 #include "item.h"
 #include "unk_02092494.h"
@@ -4589,7 +4589,7 @@ int sub_020788D0(int param0)
         param0 = 8 + (param0 - 103);
         break;
     default:
-        if (sub_020793AC(param0) == 1) {
+        if (TrainerClass_Gender(param0) == 1) {
             param0 = 1;
         } else {
             param0 = 0;

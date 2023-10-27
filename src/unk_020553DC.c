@@ -17,7 +17,7 @@
 #include "unk_0205E7D0.h"
 #include "unk_0206940C.h"
 #include "unk_0206A8DC.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 
 const static u16 Unk_020EC3E0[][2] = {
     { 0x7, 0x450 },
@@ -293,7 +293,7 @@ u16 sub_0205560C (int param0)
     u8 v0;
     u16 v1, v2;
 
-    v0 = (u8)sub_02079220(param0, 1);
+    v0 = (u8)TrainerData_LoadParam(param0, 1);
     v1 = 1101;
 
     for (v2 = 0; v2 < 79; v2++) {

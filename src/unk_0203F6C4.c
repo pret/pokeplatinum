@@ -185,7 +185,7 @@
 #include "unk_02071D40.h"
 #include "unk_020722AC.h"
 #include "pokemon.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "unk_0207D3B8.h"
@@ -4949,7 +4949,7 @@ static BOOL sub_02042E64 (UnkStruct_0203E724 * param0)
     u16 v5 = inline_02049538(param0);
     u16 v6 = inline_02049538(param0);
 
-    sub_020792F8(v5, v6, *v2, 11);
+    TrainerData_LoadMessage(v5, v6, *v2, 11);
     BGL_FillWindow(sub_0203F098(v0, 1), 15);
 
     *v4 = sub_0205D994(sub_0203F098(v0, 1), *v2, sub_02025E44(param0->unk_34->unk_0C), 1);

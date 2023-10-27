@@ -47,7 +47,7 @@
 #include "unk_0206AFE0.h"
 #include "unk_0206CCB0.h"
 #include "pokemon.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "unk_020797C8.h"
 #include "party.h"
 #include "unk_0207A274.h"
@@ -685,7 +685,7 @@ void sub_02051480 (UnkStruct_020508D4 * param0, int param1, int param2, int * pa
     v1->unk_18[3] = 0;
     v1->unk_18[2] = 0;
 
-    sub_02079170(v1, v2->unk_0C, param2);
+    TrainerData_Encounter(v1, v2->unk_0C, param2);
     sub_0202CF28(sub_0202CD88(v2->unk_0C), (1 + 7));
     sub_02050C4C(param0, v1, EncEffects_CutInEffect(v1), EncEffects_BGM(v1), param3);
 }
@@ -776,7 +776,7 @@ void sub_020515CC (UnkStruct_020508D4 * param0, int param1, int param2, int para
     v2->unk_18[3] = param2;
     v2->unk_18[2] = param3;
 
-    sub_02079170(v2, v3->unk_0C, param4);
+    TrainerData_Encounter(v2, v3->unk_0C, param4);
     sub_0202CF28(sub_0202CD88(v3->unk_0C), (1 + 7));
     sub_02050C4C(param0, v2, EncEffects_CutInEffect(v2), EncEffects_BGM(v2), param5);
 }
@@ -838,7 +838,7 @@ void sub_020516F4 (UnkStruct_020508D4 * param0, int param1, int param2, int para
         v2->unk_18[1] = 1;
         v2->unk_18[3] = 2;
 
-        sub_02079170(v2, v0->unk_0C, 11);
+        TrainerData_Encounter(v2, v0->unk_0C, 11);
 
         v5 = (UnkEnum_0202F510_14);
     }
