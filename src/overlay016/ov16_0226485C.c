@@ -116,7 +116,7 @@ void BattleIO_PlayLevelUpAnimation(BattleSystem * param0, int param1);
 void BattleIO_SetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg);
 void ov16_022661B0(BattleSystem * param0, int param1);
 void BattleIO_RefreshHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_022662FC(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_UpdatePartyMon(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02266460(BattleSystem * param0, int param1);
 void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler);
 void ov16_02266498(BattleSystem * param0, BattleContext * param1, int param2, int param3);
@@ -1257,7 +1257,7 @@ void BattleIO_RefreshHPGauge (BattleSystem * param0, BattleContext * param1, int
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225C468));
 }
 
-void ov16_022662FC (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleIO_UpdatePartyMon (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_022662FC v0;
     int v1;

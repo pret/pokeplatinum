@@ -55,7 +55,7 @@ void BattleIO_PlayLevelUpAnimation(BattleSystem * param0, int param1);
 void BattleIO_SetAlertMessage(BattleSystem *battleSys, int battler, BattleMessage msg);
 void ov16_022661B0(BattleSystem * param0, int param1);
 void BattleIO_RefreshHPGauge(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_022662FC(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_UpdatePartyMon(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02266460(BattleSystem * param0, int param1);
 void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler);
 void ov16_02266498(BattleSystem * param0, BattleContext * param1, int param2, int param3);

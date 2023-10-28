@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/abilities.h"
+#include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/species.h"
@@ -92,7 +93,7 @@ int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx,
 BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
 int ov16_022558CC(u8 param0, u8 param1, u8 param2);
-BOOL ov16_02255918(u16 param0);
+BOOL Move_IsInvoker(u16 move);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
 BOOL ov16_02255980(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL ov16_022559DC(BattleContext * param0, int param1);
@@ -1913,7 +1914,7 @@ void BattleMon_CopyToParty (BattleSystem * param0, BattleContext * param1, int p
         BattleAI_ClearKnownItem(param1, param2);
     }
 
-    ov16_022662FC(param0, param1, param2);
+    BattleIO_UpdatePartyMon(param0, param1, param2);
 }
 
 void Battler_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -2481,10 +2482,6 @@ int Battler_SlotForMove (BattleMon * param0, u16 param1)
 
     return v0;
 }
-
-#define TYPE_MULTI_IMMUNE       0
-#define TYPE_MULTI_NOT_VERY_EFF 5
-#define TYPE_MULTI_SUPER_EFF    20
 
 /**
  * @brief The type matchup table. This lists the matchups which are deemed to
@@ -3087,13 +3084,20 @@ int ov16_022558CC (u8 param0, u8 param1, u8 param2)
     return v1;
 }
 
-BOOL ov16_02255918 (u16 param0)
+BOOL Move_IsInvoker(u16 move)
 {
-    if ((param0 == 0) || (param0 == 214) || (param0 == 383) || (param0 == 274) || (param0 == 382) || (param0 == 119) || (param0 == 118)) {
-        return 1;
+    // declaring this as a single return didn't match
+    if (move == MOVE_NONE
+            || move == MOVE_SLEEP_TALK
+            || move == MOVE_COPYCAT
+            || move == MOVE_ASSIST
+            || move == MOVE_ME_FIRST
+            || move == MOVE_MIRROR_MOVE
+            || move == MOVE_METRONOME) {
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 BOOL BattleSystem_IsGhostCurse (BattleContext * param0, u16 param1, int param2)
@@ -6365,7 +6369,7 @@ BOOL BattleSystem_UpdateWeatherForms (BattleSystem * param0, BattleContext * par
                     param1->battleMons[param1->msgBattlerTemp].formNum = 0;
                     param1->battleStatusMask2 |= 0x4000000;
 
-                    ov16_022662FC(param0, param1, param1->msgBattlerTemp);
+                    BattleIO_UpdatePartyMon(param0, param1, param1->msgBattlerTemp);
                     Heap_FreeToHeap(v3);
 
                     *param2 = (0 + 262);

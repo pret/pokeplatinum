@@ -198,9 +198,9 @@ static BOOL BtlCmd_TryDisable(BattleSystem *battleSys, BattleContext *battleCtx)
 static BOOL BtlCmd_Counter(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_MirrorCoat(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryEncore(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_022442F0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022444B0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022445D4(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_TryConversion2(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySketch(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySleepTalk(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022446A0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022446F4(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02244798(BattleSystem * param0, BattleContext * param1);
@@ -458,9 +458,9 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_Counter,
     BtlCmd_MirrorCoat,
     BtlCmd_TryEncore,
-    ov16_022442F0,
-    ov16_022444B0,
-    ov16_022445D4,
+    BtlCmd_TryConversion2,
+    BtlCmd_TrySketch,
+    BtlCmd_TrySleepTalk,
     ov16_022446A0,
     ov16_022446F4,
     ov16_02244798,
@@ -5083,133 +5083,194 @@ static BOOL BtlCmd_TryEncore(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static BOOL ov16_022442F0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Tries to execute the Conversion 2 effect.
+ * 
+ * Conversion 2 considers the type of the move that the user was last hit by,
+ * then picks a random type which would resist that move and assigns the user
+ * to be that type.
+ * 
+ * Inputs:
+ * 1. The distance to jump if the effect fails to execute.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_TryConversion2(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
-    int v2;
-    int v3;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v2 = BattleScript_Read(param1);
-
-    if (Battler_Ability(param1, param1->attacker) == 121) {
-        BattleScript_Iter(param1, v2);
-        return 0;
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MULTITYPE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        return FALSE;
     }
 
-    if ((param1->conversion2Move[param1->attacker]) && (param1->conversion2Battler[param1->attacker] != 0xff)) {
-        if ((BattleMove_IsMultiTurn(param1, param1->conversion2Move[param1->attacker])) && (param1->battleMons[param1->conversion2Battler[param1->attacker]].statusVolatile & 0x1000)) {
-            BattleScript_Iter(param1, v2);
-            return 0;
-        } else {
-            {
-                u8 v4, v5, v6;
+    if (battleCtx->conversion2Move[battleCtx->attacker]
+            && battleCtx->conversion2Battler[battleCtx->attacker] != BATTLER_NONE) {
+        // Fail to execute if the source move's owner is locked into the first turn of a multi-turn move
+        if (BattleMove_IsMultiTurn(battleCtx, battleCtx->conversion2Move[battleCtx->attacker])
+                && (battleCtx->battleMons[battleCtx->conversion2Battler[battleCtx->attacker]].statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED)) {
+            BattleScript_Iter(battleCtx, jumpOnFail);
+            return FALSE;
+        }
 
-                v3 = param1->conversion2Type[param1->attacker];
+        u8 atkType, defType, typeMulti;
+        int i, moveType = battleCtx->conversion2Type[battleCtx->attacker];
+        for (i = 0; i < 1000; i++) {
+            // Get a random entry from the type m atchup table
+            BattleSystem_TypeMatchup(battleSys, 0xFFFF, &atkType, &defType, &typeMulti);
 
-                for (v0 = 0; v0 < 1000; v0++) {
-                    BattleSystem_TypeMatchup(param0, 0xffff, &v4, &v5, &v6);
-
-                    if ((v4 == v3) && (v6 <= 5) && (BattleMon_Get(param1, param1->attacker, 27, NULL) != v5) && (BattleMon_Get(param1, param1->attacker, 28, NULL) != v5)) {
-                        param1->battleMons[param1->attacker].type1 = v5;
-                        param1->battleMons[param1->attacker].type2 = v5;
-                        param1->msgTemp = v5;
-                        return 0;
-                    }
-                }
-
-                v0 = 0;
-
-                while (BattleSystem_TypeMatchup(param0, v0, &v4, &v5, &v6) == 1) {
-                    if ((v4 == v3) && (v6 <= 5) && (BattleMon_Get(param1, param1->attacker, 27, NULL) != v5) && (BattleMon_Get(param1, param1->attacker, 28, NULL) != v5)) {
-                        param1->battleMons[param1->attacker].type1 = v5;
-                        param1->battleMons[param1->attacker].type2 = v5;
-                        param1->msgTemp = v5;
-                        return 0;
-                    }
-
-                    v0++;
-                }
+            // Check if the accessed entry has an attacking type which matches the source move
+            // and a defending type which results in a favorable matchup
+            if (atkType == moveType
+                    && typeMulti <= TYPE_MULTI_NOT_VERY_EFF
+                    && MON_IS_NOT_TYPE(battleCtx->attacker, defType)) {
+                ATTACKING_MON.type1 = defType;
+                ATTACKING_MON.type2 = defType;
+                battleCtx->msgTemp = defType;
+                return FALSE;
             }
+        }
+
+        // Fallback to a linear search through the table for the first entry which matches the criteria
+        i = 0;
+        while (BattleSystem_TypeMatchup(battleSys, i, &atkType, &defType, &typeMulti) == TRUE) {
+            if (atkType == moveType
+                    && typeMulti <= TYPE_MULTI_NOT_VERY_EFF
+                    && MON_IS_NOT_TYPE(battleCtx->attacker, defType)) {
+                ATTACKING_MON.type1 = defType;
+                ATTACKING_MON.type2 = defType;
+                battleCtx->msgTemp = defType;
+                return FALSE;
+            }
+
+            i++;
         }
     }
 
-    BattleScript_Iter(param1, v2);
-
-    return 0;
+    BattleScript_Iter(battleCtx, jumpOnFail);
+    return FALSE;
 }
 
-static BOOL ov16_022444B0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to execute the Sketch effect.
+ * 
+ * Sketch will attempt to teach the attacking battler the move which was most-
+ * recently used by its target, overwriting Sketch's current move slot. The
+ * following moves may not be Sketched:
+ * - Struggle
+ * - Sketch
+ * - Chatter
+ * 
+ * Inputs:
+ * 1. The distance to jump if the effect fails to execute.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_TrySketch(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1 = -1;
-    int v2;
+    int moveSlot = -1;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    v2 = BattleScript_Read(param1);
-
-    if ((param1->battleMons[param1->attacker].statusVolatile & 0x200000) || (param1->moveSketched[param1->defender] == 165) || (param1->moveSketched[param1->defender] == 166) || (param1->moveSketched[param1->defender] == 448) || (param1->moveSketched[param1->defender] == 0)) {
-        BattleScript_Iter(param1, v2);
+    // Don't allow Sketch while Transformed or against any of Struggle, Chatter, or Sketch itself
+    if ((ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM)
+            || battleCtx->moveSketched[battleCtx->defender] == MOVE_STRUGGLE
+            || battleCtx->moveSketched[battleCtx->defender] == MOVE_SKETCH
+            || battleCtx->moveSketched[battleCtx->defender] == MOVE_CHATTER
+            || battleCtx->moveSketched[battleCtx->defender] == MOVE_NONE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
-        for (v0 = 0; v0 < 4; v0++) {
-            if ((param1->battleMons[param1->attacker].moves[v0] != 166) && (param1->battleMons[param1->attacker].moves[v0] == param1->moveSketched[param1->defender])) {
+        int i;
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            // Don't allow Sketching a move that we already know
+            if (ATTACKING_MON.moves[i] != MOVE_SKETCH
+                    && ATTACKING_MON.moves[i] == battleCtx->moveSketched[battleCtx->defender]) {
                 break;
             }
 
-            if ((param1->battleMons[param1->attacker].moves[v0] == 166) && (v1 == -1)) {
-                v1 = v0;
+            // Replace the first instance of Sketch only (there should only be one)
+            if (ATTACKING_MON.moves[i] == MOVE_SKETCH && moveSlot == -1) {
+                moveSlot = i;
             }
         }
 
-        if (v0 == 4) {
-            param1->battleMons[param1->attacker].moves[v1] = param1->moveSketched[param1->defender];
-            param1->battleMons[param1->attacker].ppCur[v1] = param1->aiContext.moveTable[param1->moveSketched[param1->defender]].pp;
-            ov16_022662FC(param0, param1, param1->attacker);
-            param1->msgMoveTemp = param1->moveSketched[param1->defender];
+        if (i == LEARNED_MOVES_MAX) {
+            // Teach the attacker the Sketched move with default PP
+            ATTACKING_MON.moves[moveSlot] = battleCtx->moveSketched[battleCtx->defender];
+            ATTACKING_MON.ppCur[moveSlot] = MOVE_DATA(battleCtx->moveSketched[battleCtx->defender]).pp;
 
-            if (param1->msgMoveTemp == 387) {
-                param1->battleMons[param1->attacker].moveEffectsData.lastResortCount = 0;
+            BattleIO_UpdatePartyMon(battleSys, battleCtx, battleCtx->attacker);
+            battleCtx->msgMoveTemp = battleCtx->moveSketched[battleCtx->defender];
+
+            if (battleCtx->msgMoveTemp == MOVE_LAST_RESORT) {
+                ATTACKING_MON.moveEffectsData.lastResortCount = 0;
             }
         } else {
-            BattleScript_Iter(param1, v2);
+            BattleScript_Iter(battleCtx, jumpOnFail);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022445D4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to execute the Sleep Talk effect.
+ * 
+ * Sleep Talk will try to invoke another move that the attacker knows, barring:
+ * - other invoker-class moves (see Move_IsInvoker)
+ * - Focus Punch
+ * - Uproar
+ * - Chatter
+ * - Multi-turn moves
+ * 
+ * It will permit invocation of any other move, including those which have had
+ * their PP wholly depleted.
+ * 
+ * Inputs:
+ * 1. The distance to jump if the effect fails to execute. 
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_TrySleepTalk(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+    int invalidMovesMask = 0;
+    int i;
 
-    v2 = BattleScript_Read(param1);
-    v1 = 0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if ((ov16_02255918(param1->battleMons[param1->attacker].moves[v0])) || (param1->battleMons[param1->attacker].moves[v0] == 264) || (param1->battleMons[param1->attacker].moves[v0] == 253) || (param1->battleMons[param1->attacker].moves[v0] == 448) || (BattleMove_IsMultiTurn(param1, param1->battleMons[param1->attacker].moves[v0]))) {
-            v1 |= FlagIndex(v0);
+    // Check for invalid moves for the random selection
+    for (i = 0; i < 4; i++) {
+        if (Move_IsInvoker(ATTACKING_MON.moves[i])
+                || ATTACKING_MON.moves[i] == MOVE_FOCUS_PUNCH
+                || ATTACKING_MON.moves[i] == MOVE_UPROAR
+                || ATTACKING_MON.moves[i] == MOVE_CHATTER
+                || BattleMove_IsMultiTurn(battleCtx, ATTACKING_MON.moves[i])) {
+            invalidMovesMask |= FlagIndex(i);
         }
     }
 
-    v1 = BattleSystem_CheckStruggling(param0, param1, param1->attacker, v1, (0x2 ^ 0xffffffff));
-
-    if (v1 == 0xf) {
-        BattleScript_Iter(param1, v2);
+    // Check for other invalid moves (only skip the PP check)
+    invalidMovesMask = BattleSystem_CheckStruggling(battleSys, battleCtx, battleCtx->attacker, invalidMovesMask, ~STRUGGLE_CHECK_NO_PP);
+    if (invalidMovesMask == STRUGGLING_ALL) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
         do {
-            v0 = BattleSystem_RandNext(param0) % 4;
-        } while ((v1 & FlagIndex(v0)));
+            i = BattleSystem_RandNext(battleSys) % LEARNED_MOVES_MAX;
+        } while (invalidMovesMask & FlagIndex(i));
 
-        param1->msgMoveTemp = param1->battleMons[param1->attacker].moves[v0];
+        battleCtx->msgMoveTemp = ATTACKING_MON.moves[i];
     }
 
-    return 0;
+    return FALSE;
 }
 
 static const u8 Unk_ov16_0226E584[][2] = {
@@ -6297,7 +6358,7 @@ static BOOL ov16_022461F4 (BattleSystem * param0, BattleContext * param1)
                 for (v4 = 0; v4 < 4; v4++) {
                     v2 = Pokemon_GetValue(v7, MON_DATA_MOVE1 + v4, NULL);
 
-                    if ((ov16_02255918(v2) == 0) && (Move_CanBeMetronomed(param0, param1, param1->attacker, v2) == 1)) {
+                    if ((Move_IsInvoker(v2) == 0) && (Move_CanBeMetronomed(param0, param1, param1->attacker, v2) == 1)) {
                         v1[v6] = v2;
                         v6++;
                     }
@@ -6954,7 +7015,7 @@ static BOOL ov16_02247064 (BattleSystem * param0, BattleContext * param1)
 
     v0 = BattleScript_Read(param1);
 
-    if ((ov16_02255918(param1->movePrev) == 0) && (param1->movePrev) && (Move_CanBeMetronomed(param0, param1, param1->attacker, param1->movePrev) == 1)) {
+    if ((Move_IsInvoker(param1->movePrev) == 0) && (param1->movePrev) && (Move_CanBeMetronomed(param0, param1, param1->attacker, param1->movePrev) == 1)) {
         param1->msgMoveTemp = param1->movePrev;
     } else {
         BattleScript_Iter(param1, v0);

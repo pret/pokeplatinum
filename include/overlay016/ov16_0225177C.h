@@ -377,7 +377,17 @@ BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
  */
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
 int ov16_022558CC(u8 param0, u8 param1, u8 param2);
-BOOL ov16_02255918(u16 param0);
+
+/**
+ * @brief Determines if a move is an invoker-class move.
+ * 
+ * Invoker-class moves are those which call other moves and have no outward
+ * effect of their own.
+ * 
+ * @param move 
+ * @return TRUE if the move is invoker-class, FALSE if not.
+ */
+BOOL Move_IsInvoker(u16 move);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
 BOOL ov16_02255980(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL ov16_022559DC(BattleContext * param0, int param1);
