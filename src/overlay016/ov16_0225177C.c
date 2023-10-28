@@ -113,7 +113,7 @@ void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1
 int ov16_02256128(BattleSystem * param0, BattleContext * param1, int param2);
 int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
-int BattleSystem_Divide(int param0, int param1);
+int BattleSystem_Divide(int dividend, int divisor);
 int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
@@ -3654,27 +3654,26 @@ BOOL BattleSystem_TriggerTurnEndAbility (BattleSystem * param0, BattleContext * 
     return v0;
 }
 
-int BattleSystem_Divide (int param0, int param1)
+int BattleSystem_Divide(int dividend, int divisor)
 {
-    int v0;
-
-    if (param0 == 0) {
-        return param0;
+    if (dividend == 0) {
+        return dividend;
     }
 
-    if (param0 < 0) {
-        v0 = -1;
+    int signedFloor;
+    if (dividend < 0) {
+        signedFloor = -1;
     } else {
-        v0 = 1;
+        signedFloor = 1;
     }
 
-    param0 /= param1;
+    dividend /= divisor;
 
-    if (param0 == 0) {
-        param0 = v0;
+    if (dividend == 0) {
+        dividend = signedFloor;
     }
 
-    return param0;
+    return dividend;
 }
 
 int BattleSystem_ShowMonChecks (BattleSystem * param0, BattleContext * param1)

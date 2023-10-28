@@ -31,7 +31,6 @@
 #include "battle/battle_message.h"
 #include "battle/battle_mon.h"
 #include "battle/btlcmd.h"
-
 #include "battle/common.h"
 #include "battle/battle_controller.h"
 
@@ -190,15 +189,15 @@ static BOOL BtlCmd_GivePayDayMoney(BattleSystem *battleSys, BattleContext *battl
 static BOOL BtlCmd_TryLightScreen(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryReflect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02243B38(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243D2C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243D64(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243DBC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243EF4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02243F54(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02244010(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224410C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02244208(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_TryOHKOMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Divide(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_DivideByVar(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryMimic(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Metronome(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryDisable(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_Counter(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_MirrorCoat(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryEncore(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_022442F0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022444B0(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_022445D4(BattleSystem * param0, BattleContext * param1);
@@ -450,15 +449,15 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_TryLightScreen,
     BtlCmd_TryReflect,
     BtlCmd_TryMist,
-    ov16_02243B38,
-    ov16_02243D2C,
-    ov16_02243D64,
-    ov16_02243DBC,
-    ov16_02243EF4,
-    ov16_02243F54,
-    ov16_02244010,
-    ov16_0224410C,
-    ov16_02244208,
+    BtlCmd_TryOHKOMove,
+    BtlCmd_Divide,
+    BtlCmd_DivideByVar,
+    BtlCmd_TryMimic,
+    BtlCmd_Metronome,
+    BtlCmd_TryDisable,
+    BtlCmd_Counter,
+    BtlCmd_MirrorCoat,
+    BtlCmd_TryEncore,
     ov16_022442F0,
     ov16_022444B0,
     ov16_022445D4,
@@ -3727,6 +3726,7 @@ static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleC
         }
     }
 
+    // Mirror Move shares a legality table with Encore
     if (move && Move_CanBeEncored(battleCtx, move) == TRUE) {
         battleCtx->battleStatusMask &= ~SYSCTL_SKIP_ATTACK_MESSAGE;
         battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION;
@@ -4650,305 +4650,437 @@ static BOOL BtlCmd_TryMist(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static BOOL ov16_02243B38 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to execute a one-hit KO move (e.g., Guillotine, Sheer Cold).
+ * 
+ * These moves do not follow the standard accuracy formula. If the defender is
+ * a higher level than the attacker, then the move will always fail to hit, even
+ * if the attacker is under the effect of No Guard or Lock On. Accuracy for
+ * these moves scales linearly from their base accuracy according to the
+ * difference of the attacker and defender's levels. That is:
+ * 
+ *     accuracy = baseAccuracy + (attackerLevel - defenderLevel)
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_TryOHKOMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u16 v0;
+    u16 hit;
+    BattleScript_Iter(battleCtx, 1);
+    battleCtx->battleStatusMask |= SYSCTL_NONSTANDARD_ACC_CHECK;
 
-    BattleScript_Iter(param1, 1);
-
-    param1->battleStatusMask |= 0x400;
-
-    if (Battler_IgnorableAbility(param1, param1->attacker, param1->defender, 5) == 1) {
-        param1->moveStatusFlags |= 0x80000;
+    if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STURDY) == TRUE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_STURDY;
     } else {
-        if (((param1->battleMons[param1->defender].moveEffectsMask & 0x18) == 0) && (Battler_Ability(param1, param1->attacker) != 99) && (Battler_Ability(param1, param1->defender) != 99)) {
-            v0 = param1->aiContext.moveTable[param1->moveCur].accuracy + (param1->battleMons[param1->attacker].level - param1->battleMons[param1->defender].level);
+        if ((DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_LOCK_ON) == FALSE
+                && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_NO_GUARD
+                && Battler_Ability(battleCtx, battleCtx->defender) != ABILITY_NO_GUARD) {
+            // Use the usual OHKO accuracy check: scale upwards with the difference between the attacker and
+            // defender's levels.
+            hit = CURRENT_MOVE_DATA.accuracy + (ATTACKING_MON.level - DEFENDING_MON.level);
 
-            if (((BattleSystem_RandNext(param0) % 100) < v0) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
-                v0 = 1;
+            if ((BattleSystem_RandNext(battleSys) % 100) < hit && ATTACKING_MON.level >= DEFENDING_MON.level) {
+                hit = TRUE;
             } else {
-                v0 = 0;
+                hit = FALSE;
             }
         } else {
-            if ((((param1->battleMons[param1->defender].moveEffectsData.lockOnTarget == param1->attacker) && (param1->battleMons[param1->defender].moveEffectsMask & 0x18)) || (Battler_Ability(param1, param1->attacker) == 99) || (Battler_Ability(param1, param1->defender) == 99)) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
-                v0 = 1;
+            if (((DEFENDING_MON.moveEffectsData.lockOnTarget == battleCtx->attacker
+                            && (DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_LOCK_ON))
+                        || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NO_GUARD
+                        || Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_NO_GUARD)
+                    && ATTACKING_MON.level >= DEFENDING_MON.level) {
+                // Bypass the accuracy check: always hit.
+                hit = TRUE;
             } else {
-                v0 = param1->aiContext.moveTable[param1->moveCur].accuracy + (param1->battleMons[param1->attacker].level - param1->battleMons[param1->defender].level);
+                // Fallback to the usual OHKO accuracy check, for some reason.
+                hit = CURRENT_MOVE_DATA.accuracy + (ATTACKING_MON.level - DEFENDING_MON.level);
 
-                if (((BattleSystem_RandNext(param0) % 100) < v0) && (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level)) {
-                    v0 = 1;
+                if ((BattleSystem_RandNext(battleSys) % 100) < hit && ATTACKING_MON.level >= DEFENDING_MON.level) {
+                    hit = TRUE;
                 } else {
-                    v0 = 0;
+                    hit = FALSE;
                 }
             }
 
-            param1->moveStatusFlags |= 0x400;
+            battleCtx->moveStatusFlags |= MOVE_STATUS_BYPASSED_ACCURACY;
         }
 
-        if (v0) {
-            param1->damage = param1->battleMons[param1->defender].curHP * -1;
-            param1->moveStatusFlags |= 0x20;
+        if (hit) {
+            battleCtx->damage = DEFENDING_MON.curHP * -1;
+            battleCtx->moveStatusFlags |= MOVE_STATUS_ONE_HIT_KO;
+        } else if (ATTACKING_MON.level >= DEFENDING_MON.level) {
+            battleCtx->moveStatusFlags |= MOVE_STATUS_MISSED;
         } else {
-            if (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level) {
-                param1->moveStatusFlags |= 0x1;
-            } else {
-                param1->moveStatusFlags |= 0x1000;
-            }
+            battleCtx->moveStatusFlags |= MOVE_STATUS_ONE_HIT_KO_FAILED;
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243D2C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Divide the value of a variable by another static value, storing the
+ * result back into the source variable.
+ * 
+ * This operation will not permit quotients of 0. If the variable's value is
+ * positive, then the minimum permissible quotient will be 1. Likewise, a
+ * negative value will permit a maximum quotient of -1.
+ * 
+ * Inputs:
+ * 1. ID of the source variable for the dividend and where to store the result.
+ * 2. Static value for the divisor.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_Divide(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int * v2;
+    BattleScript_Iter(battleCtx, 1);
+    int srcVar = BattleScript_Read(battleCtx);
+    int divBy = BattleScript_Read(battleCtx);
+    
+    int *var = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
+    *var = BattleSystem_Divide(*var, divBy);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_VarAddress(param0, param1, v0);
-    v2[0] = BattleSystem_Divide(v2[0], v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243D64 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Divide the value of a variable by the value of another variable,
+ * storing the result back into the former.
+ * 
+ * This operation will not permit quotients of 0. If the variable's value is
+ * positive, then the minimum permissible quotient will be 1. Likewise, a
+ * negative value will permit a maximum quotient of -1.
+ * 
+ * Inputs:
+ * 1. ID of the variable for the dividend and where to store the result.
+ * 2. ID of the variable for the divisor.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_DivideByVar (BattleSystem * battleSys, BattleContext * battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int * v3;
-    int * v4;
+    BattleScript_Iter(battleCtx, 1);
+    int srcVar = BattleScript_Read(battleCtx);
+    int divVar = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *src = BattleScript_VarAddress(battleSys, battleCtx, srcVar);
+    int *div = BattleScript_VarAddress(battleSys, battleCtx, divVar);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v3 = BattleScript_VarAddress(param0, param1, v0);
-    v4 = BattleScript_VarAddress(param0, param1, v1);
-
-    if (v3[0] < 0) {
-        v2 = -1;
+    int signedFloor;
+    if (*src < 0) {
+        signedFloor = -1;
     } else {
-        v2 = 1;
+        signedFloor = 1;
     }
 
-    v3[0] /= v4[0];
+    *src /= *div;
 
-    if (v3[0] == 0) {
-        v3[0] = v2;
+    if (*src == 0) {
+        *src = signedFloor;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243DBC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to execute the Mimic effect.
+ * 
+ * This command will fail if any of the following are true:
+ * - The move attempting to be Mimicked is not permitted (see Move_CanBeMimicked)
+ * - The attacker has Transformed
+ * - The defender is behind a Substitute
+ * - The defender has yet to use a move
+ * - The attacker knows the move that the defender last used
+ * 
+ * Inputs:
+ * 1. Distance to jump ahead if the effect fails
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_TryMimic(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if ((Move_CanBeMimicked(param1->movePrevByBattler[param1->defender]) == 0) || (param1->battleMons[param1->attacker].statusVolatile & 0x200000) || (param1->battleMons[param1->defender].statusVolatile & 0x1000000) || (param1->movePrevByBattler[param1->defender] == 0)) {
-        BattleScript_Iter(param1, v0);
+    if (Move_CanBeMimicked(DEFENDER_LAST_MOVE) == FALSE
+            || (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM)
+            || (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+            || DEFENDER_LAST_MOVE == MOVE_NONE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
-        {
-            int v1;
-            int v2 = -1;
-
-            for (v1 = 0; v1 < 4; v1++) {
-                if (param1->battleMons[param1->attacker].moves[v1] == param1->movePrevByBattler[param1->defender]) {
-                    break;
-                }
-
-                if ((param1->battleMons[param1->attacker].moves[v1] == 102) && (v2 == -1)) {
-                    v2 = v1;
-                }
+        int i, j = -1;
+        for (i = 0; i < 4; i++) {
+            // Don't try to copy a move that we already know
+            if (ATTACKING_MON.moves[i] == DEFENDER_LAST_MOVE) {
+                break;
             }
 
-            if (v1 == 4) {
-                param1->msgMoveTemp = param1->movePrevByBattler[param1->defender];
-                param1->battleMons[param1->attacker].moves[v2] = param1->msgMoveTemp;
+            // Only replace the first instance of Mimic
+            if (ATTACKING_MON.moves[i] == MOVE_MIMIC && j == -1) {
+                j = i;
+            }
+        }
 
-                if (param1->aiContext.moveTable[param1->msgMoveTemp].pp < 5) {
-                    param1->battleMons[param1->attacker].ppCur[v2] = param1->aiContext.moveTable[param1->msgMoveTemp].pp;
-                } else {
-                    param1->battleMons[param1->attacker].ppCur[v2] = 5;
-                }
+        if (i == 4) {
+            // Copying a move we do not already know
+            battleCtx->msgMoveTemp = DEFENDER_LAST_MOVE;
+            ATTACKING_MON.moves[j] = battleCtx->msgMoveTemp;
 
-                param1->battleMons[param1->attacker].moveEffectsData.mimickedMoveSlot |= FlagIndex(v2);
-
-                if (param1->msgMoveTemp == 387) {
-                    param1->battleMons[param1->attacker].moveEffectsData.lastResortCount = 0;
-                }
+            // Max out the current PP at 5
+            if (MOVE_DATA(battleCtx->msgMoveTemp).pp < 5) {
+                ATTACKING_MON.ppCur[j] = MOVE_DATA(battleCtx->msgMoveTemp).pp;
             } else {
-                BattleScript_Iter(param1, v0);
+                ATTACKING_MON.ppCur[j] = 5;
             }
+
+            ATTACKING_MON.moveEffectsData.mimickedMoveSlot |= FlagIndex(j);
+
+            if (battleCtx->msgMoveTemp == MOVE_LAST_RESORT) {
+                ATTACKING_MON.moveEffectsData.lastResortCount = 0;
+            }
+        } else {
+            // We tried to copy a move that we already know
+            BattleScript_Iter(battleCtx, jumpOnFail);
         }
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243EF4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Pick a random move permitted by Metronome.
+ * 
+ * This command will skip over any moves already known by the attacker.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_Metronome(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u16 v1;
-
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
     while (TRUE) {
-        v1 = (BattleSystem_RandNext(param0) % 467) + 1;
+        int i;
+        u16 move = (BattleSystem_RandNext(battleSys) % NUM_MOVES) + 1;
 
-        for (v0 = 0; v0 < 4; v0++) {
-            if (param1->battleMons[param1->attacker].moves[v0] == v1) {
+        // Do not try to invoke a move that we already know.
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (ATTACKING_MON.moves[i] == move) {
                 break;
             }
         }
-
-        if (v0 != 4) {
+        if (i != LEARNED_MOVES_MAX) {
             continue;
         }
 
-        if (Move_CanBeMetronomed(param0, param1, param1->attacker, v1) == 0) {
+        // Check if the move is allowed to be Metronomed globally
+        if (Move_CanBeMetronomed(battleSys, battleCtx, battleCtx->attacker, move) == FALSE) {
             continue;
         }
 
-        param1->msgMoveTemp = v1;
+        battleCtx->msgMoveTemp = move;
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02243F54 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to disable the defender's most recently used move.
+ * 
+ * This command will fail if any of the following are true:
+ * - The defender already has another move disabled.
+ * - The defender does not know the move attempting to be disabled.
+ * - The defender does not have PP remaining for the move to be disabled.
+ * - The defender has yet to use a move.
+ * 
+ * Inputs:
+ * 1. Distance to jump ahead if the effect fails
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryDisable(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    v0 = BattleScript_Read(param1);
-    v1 = Battler_SlotForMove(&param1->battleMons[param1->defender], param1->movePrevByBattler[param1->defender]);
+    int moveSlot = Battler_SlotForMove(&DEFENDING_MON, DEFENDER_LAST_MOVE);
 
-    if ((param1->battleMons[param1->defender].moveEffectsData.disabledMove == 0) && (v1 != 4) && (param1->battleMons[param1->defender].ppCur[v1]) && (param1->movePrevByBattler[param1->defender])) {
-        param1->msgMoveTemp = param1->movePrevByBattler[param1->defender];
-        param1->battleMons[param1->defender].moveEffectsData.disabledMove = param1->msgMoveTemp;
-        param1->battleMons[param1->defender].moveEffectsData.disabledTurns = BattleSystem_RandNext(param0) % 4 + 3;
+    if (DEFENDING_MON.moveEffectsData.disabledMove == MOVE_NONE
+            && moveSlot != LEARNED_MOVES_MAX
+            && DEFENDING_MON.ppCur[moveSlot]
+            && DEFENDER_LAST_MOVE) {
+        battleCtx->msgMoveTemp = DEFENDER_LAST_MOVE;
+        DEFENDING_MON.moveEffectsData.disabledMove = battleCtx->msgMoveTemp;
+        DEFENDING_MON.moveEffectsData.disabledTurns = BattleSystem_RandNext(battleSys) % 4 + 3; // range: [3-6]
     } else {
-        BattleScript_Iter(param1, v0);
+        BattleScript_Iter(battleCtx, jumpOnFail);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02244010 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Execute the Counter effect.
+ * 
+ * This command will fail if any of the following are true:
+ * - The attacker did not receive physical damage this turn
+ * - The last battler to attack this one is their teammate
+ * - The last battler to attack this one is no longer active 
+ * - Both opponents have fainted by other means
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_Counter(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    int lastAttacker = ATTACKER_TURN_FLAGS.physicalDamageLastAttacker;
+    int attackingSide = Battler_Side(battleSys, battleCtx->attacker);
+    int defendingSide = Battler_Side(battleSys, lastAttacker);
 
-    v2 = param1->turnFlags[param1->attacker].physicalDamageLastAttacker;
-    v0 = Battler_Side(param0, param1->attacker);
-    v1 = Battler_Side(param0, v2);
+    if (ATTACKER_TURN_FLAGS.physicalDamageTakenFrom[lastAttacker]
+            && attackingSide != defendingSide
+            && battleCtx->battleMons[lastAttacker].curHP) {
+        battleCtx->damage = ATTACKER_TURN_FLAGS.physicalDamageTakenFrom[lastAttacker] * 2;
 
-    if ((param1->turnFlags[param1->attacker].physicalDamageTakenFrom[v2]) && (v0 != v1) && (param1->battleMons[v2].curHP)) {
-        param1->damage = param1->turnFlags[param1->attacker].physicalDamageTakenFrom[v2] * 2;
-
-        if ((param1->sideConditions[v1].followMe) && (param1->battleMons[param1->sideConditions[v1].followMeUser].curHP)) {
-            param1->defender = param1->sideConditions[v1].followMeUser;
+        if (battleCtx->sideConditions[defendingSide].followMe && FOLLOW_ME_MON(defendingSide).curHP) {
+            battleCtx->defender = FOLLOW_ME_USER(defendingSide);
         } else {
-            param1->defender = v2;
+            battleCtx->defender = lastAttacker;
         }
 
-        if (param1->battleMons[param1->defender].curHP == 0) {
-            param1->defender = BattleSystem_RandomOpponent(param0, param1, param1->attacker);
+        // If the target is no longer active, pick a random opponent
+        // This should always give us an active opponent, unless both have fainted
+        if (DEFENDING_MON.curHP == 0) {
+            battleCtx->defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battleCtx->attacker);
 
-            if (param1->battleMons[param1->defender].curHP == 0) {
-                param1->commandNext = 38;
-                BattleScript_Jump(param1, 1, (0 + 281));
+            // If there are no possible targets, fail
+            if (DEFENDING_MON.curHP == 0) {
+                battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
             }
         }
 
-        BattleSystem_DecPPForPressure(param1, param1->attacker, param1->defender);
+        BattleSystem_DecPPForPressure(battleCtx, battleCtx->attacker, battleCtx->defender);
     } else {
-        param1->selfTurnFlags[param1->attacker].skipPressureCheck = 1;
-        param1->moveStatusFlags |= 0x40;
+        ATTACKER_SELF_TURN_FLAGS.skipPressureCheck = TRUE;
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224410C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Execute the Mirror Coat effect.
+ * 
+ * This command will fail if any of the following are true:
+ * - The attacker did not receive special damage this turn
+ * - The last battler to attack this one is their teammate
+ * - The last battler to attack this one is no longer active 
+ * - Both opponents have fainted by other means
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_MirrorCoat(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0, v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    int lastAttacker = ATTACKER_TURN_FLAGS.specialDamageLastAttacker;
+    int attackingSide = Battler_Side(battleSys, battleCtx->attacker);
+    int defendingSide = Battler_Side(battleSys, lastAttacker);
 
-    v2 = param1->turnFlags[param1->attacker].specialDamageLastAttacker;
-    v0 = Battler_Side(param0, param1->attacker);
-    v1 = Battler_Side(param0, v2);
+    if (ATTACKER_TURN_FLAGS.specialDamageTakenFrom[lastAttacker]
+            && attackingSide != defendingSide
+            && battleCtx->battleMons[lastAttacker].curHP) {
+        battleCtx->damage = ATTACKER_TURN_FLAGS.specialDamageTakenFrom[lastAttacker] * 2;
 
-    if ((param1->turnFlags[param1->attacker].specialDamageTakenFrom[v2]) && (v0 != v1) && (param1->battleMons[v2].curHP)) {
-        param1->damage = param1->turnFlags[param1->attacker].specialDamageTakenFrom[v2] * 2;
-
-        if ((param1->sideConditions[v1].followMe) && (param1->battleMons[param1->sideConditions[v1].followMeUser].curHP)) {
-            param1->defender = param1->sideConditions[v1].followMeUser;
+        if (battleCtx->sideConditions[defendingSide].followMe && FOLLOW_ME_MON(defendingSide).curHP) {
+            battleCtx->defender = FOLLOW_ME_USER(defendingSide);
         } else {
-            param1->defender = v2;
+            battleCtx->defender = lastAttacker;
         }
 
-        if (param1->battleMons[param1->defender].curHP == 0) {
-            param1->defender = BattleSystem_RandomOpponent(param0, param1, param1->attacker);
+        // If the target is no longer active, pick a random opponent
+        // This should always give us an active opponent, unless both have fainted
+        if (DEFENDING_MON.curHP == 0) {
+            battleCtx->defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battleCtx->attacker);
 
-            if (param1->battleMons[param1->defender].curHP == 0) {
-                param1->commandNext = 38;
-                BattleScript_Jump(param1, 1, (0 + 281));
+            // If there are no possible targets, fail
+            if (DEFENDING_MON.curHP == 0) {
+                battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+                BattleScript_Jump(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, BATTLE_SUBSEQ_NO_TARGET);
             }
         }
 
-        BattleSystem_DecPPForPressure(param1, param1->attacker, param1->defender);
+        BattleSystem_DecPPForPressure(battleCtx, battleCtx->attacker, battleCtx->defender);
     } else {
-        param1->selfTurnFlags[param1->attacker].skipPressureCheck = 1;
-        param1->moveStatusFlags |= 0x40;
+        ATTACKER_SELF_TURN_FLAGS.skipPressureCheck = TRUE;
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02244208 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to execute Encore on the defender's most recently used move.
+ * 
+ * This command will fail if any of the following are true:
+ * - The defender already has another move encored.
+ * - The defender does not know the move attempting to be encored.
+ * - The move last used is one which cannot be encored. (see: Move_CanBeEncored)
+ * - The defender does not have PP remaining for the move to be disabled.
+ * - The defender has yet to use a move.
+ * 
+ * Inputs:
+ * 1. Distance to jump ahead if the effect fails
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryEncore(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = Battler_SlotForMove(&param1->battleMons[param1->defender], param1->movePrevByBattler[param1->defender]);
-
-    if (Move_CanBeEncored(param1, param1->movePrevByBattler[param1->defender]) == 0) {
-        v1 = 4;
+    int moveSlot = Battler_SlotForMove(&DEFENDING_MON, DEFENDER_LAST_MOVE);
+    if (Move_CanBeEncored(battleCtx, DEFENDER_LAST_MOVE) == FALSE) {
+        moveSlot = LEARNED_MOVES_MAX;
     }
 
-    if ((param1->battleMons[param1->defender].moveEffectsData.encoredMove == 0) && (v1 != 4) && (param1->battleMons[param1->defender].ppCur[v1]) && (param1->movePrevByBattler[param1->defender])) {
-        param1->msgMoveTemp = param1->movePrevByBattler[param1->defender];
-        param1->battleMons[param1->defender].moveEffectsData.encoredMove = param1->msgMoveTemp;
-        param1->battleMons[param1->defender].moveEffectsData.encoredMoveSlot = v1;
-
-        param1->battleMons[param1->defender].moveEffectsData.encoredTurns = BattleSystem_RandNext(param0) % 5 + 3;
+    if (DEFENDING_MON.moveEffectsData.encoredMove == MOVE_NONE
+            && moveSlot != LEARNED_MOVES_MAX
+            && DEFENDING_MON.ppCur[moveSlot]
+            && DEFENDER_LAST_MOVE) {
+        battleCtx->msgMoveTemp = DEFENDER_LAST_MOVE;
+        DEFENDING_MON.moveEffectsData.encoredMove = battleCtx->msgMoveTemp;
+        DEFENDING_MON.moveEffectsData.encoredMoveSlot = moveSlot;
+        DEFENDING_MON.moveEffectsData.encoredTurns = BattleSystem_RandNext(battleSys) % 5 + 3; // range: [3-7]
     } else {
-        param1->moveStatusFlags |= 0x40;
-        BattleScript_Iter(param1, v0);
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+        BattleScript_Iter(battleCtx, jumpOnFail);
     }
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_022442F0 (BattleSystem * param0, BattleContext * param1)

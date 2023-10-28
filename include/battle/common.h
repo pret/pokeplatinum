@@ -12,6 +12,12 @@
 #define ATTACKER_SELF_TURN_FLAGS    (battleCtx->selfTurnFlags[battleCtx->attacker])
 #define DEFENDER_SELF_TURN_FLAGS    (battleCtx->selfTurnFlags[battleCtx->defender])
 
+#define ATTACKER_LAST_MOVE  (battleCtx->movePrevByBattler[battleCtx->attacker])
+#define DEFENDER_LAST_MOVE  (battleCtx->movePrevByBattler[battleCtx->defender])
+
+#define FOLLOW_ME_USER(side)    (battleCtx->sideConditions[side].followMeUser)
+#define FOLLOW_ME_MON(side)     (battleCtx->battleMons[FOLLOW_ME_USER(side)])
+
 #define CURRENT_MOVE_DATA   (battleCtx->aiContext.moveTable[battleCtx->moveCur])
 #define MOVE_DATA(move)     (battleCtx->aiContext.moveTable[move])
 

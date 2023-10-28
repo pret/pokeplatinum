@@ -422,7 +422,18 @@ void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1
 int ov16_02256128(BattleSystem * param0, BattleContext * param1, int param2);
 int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
-int BattleSystem_Divide(int param0, int param1);
+
+/**
+ * @brief Perform a division, setting any zero-result to 1 or -1, matching the
+ * sign of the dividend.
+ * 
+ * @param dividend  The division's dividend. If positive, quotients of 0 will
+ *                  be set to 1; if negative, quotients of 0 will be set to -1.
+ * @param divisor   The dividend's divisor.
+ * @return The result of the division, not permitted to be lesser in magnitude
+ * than 1.
+ */
+int BattleSystem_Divide(int dividend, int divisor);
 int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
 
 /**
