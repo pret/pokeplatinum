@@ -5109,7 +5109,7 @@ static BOOL ov16_022442F0 (BattleSystem * param0, BattleContext * param1)
                 v3 = param1->conversion2Type[param1->attacker];
 
                 for (v0 = 0; v0 < 1000; v0++) {
-                    ov16_0225588C(param0, 0xffff, &v4, &v5, &v6);
+                    BattleSystem_TypeMatchup(param0, 0xffff, &v4, &v5, &v6);
 
                     if ((v4 == v3) && (v6 <= 5) && (BattleMon_Get(param1, param1->attacker, 27, NULL) != v5) && (BattleMon_Get(param1, param1->attacker, 28, NULL) != v5)) {
                         param1->battleMons[param1->attacker].type1 = v5;
@@ -5121,7 +5121,7 @@ static BOOL ov16_022442F0 (BattleSystem * param0, BattleContext * param1)
 
                 v0 = 0;
 
-                while (ov16_0225588C(param0, v0, &v4, &v5, &v6) == 1) {
+                while (BattleSystem_TypeMatchup(param0, v0, &v4, &v5, &v6) == 1) {
                     if ((v4 == v3) && (v6 <= 5) && (BattleMon_Get(param1, param1->attacker, 27, NULL) != v5) && (BattleMon_Get(param1, param1->attacker, 28, NULL) != v5)) {
                         param1->battleMons[param1->attacker].type1 = v5;
                         param1->battleMons[param1->attacker].type2 = v5;

@@ -360,7 +360,22 @@ u16 Battler_SelectedMove(BattleContext * param0, int param1);
  */
 int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability);
 BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
-BOOL ov16_0225588C(BattleSystem * param0, int param1, u8 * param2, u8 * param3, u8 * param4);
+
+/**
+ * @brief Access a particular entry in the type-matchup table.
+ * 
+ * If the requested entry falls outside the bounds of the table, then a
+ * random entry's data will instead be accessed.
+ * 
+ * @param battleSys 
+ * @param idx           The index of table entry to access.
+ * @param[out] atkType  Attacking type of the table entry.
+ * @param[out] defType  Defending type of the table entry.
+ * @param[out] multi    Multiplier for the type matchup.
+ * @return TRUE if the requested entry was accessed; FALSE if the requested
+ * entry falls outside the bounds of the table.
+ */
+BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
 int ov16_022558CC(u8 param0, u8 param1, u8 param2);
 BOOL ov16_02255918(u16 param0);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);

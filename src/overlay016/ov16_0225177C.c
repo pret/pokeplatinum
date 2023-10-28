@@ -90,7 +90,7 @@ int BattleSystem_NicknameTag(BattleContext *battleSys, int battler);
 u16 Battler_SelectedMove(BattleContext * param0, int param1);
 int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability);
 BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
-BOOL ov16_0225588C(BattleSystem * param0, int param1, u8 * param2, u8 * param3, u8 * param4);
+BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
 int ov16_022558CC(u8 param0, u8 param1, u8 param2);
 BOOL ov16_02255918(u16 param0);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
@@ -2482,119 +2482,138 @@ int Battler_SlotForMove (BattleMon * param0, u16 param1)
     return v0;
 }
 
-static const u8 Unk_ov16_0226ECD4[][3] = {
-    {0x0, 0x5, 0x5},
-    {0x0, 0x8, 0x5},
-    {0xA, 0xA, 0x5},
-    {0xA, 0xB, 0x5},
-    {0xA, 0xC, 0x14},
-    {0xA, 0xF, 0x14},
-    {0xA, 0x6, 0x14},
-    {0xA, 0x5, 0x5},
-    {0xA, 0x10, 0x5},
-    {0xA, 0x8, 0x14},
-    {0xB, 0xA, 0x14},
-    {0xB, 0xB, 0x5},
-    {0xB, 0xC, 0x5},
-    {0xB, 0x4, 0x14},
-    {0xB, 0x5, 0x14},
-    {0xB, 0x10, 0x5},
-    {0xD, 0xB, 0x14},
-    {0xD, 0xD, 0x5},
-    {0xD, 0xC, 0x5},
-    {0xD, 0x4, 0x0},
-    {0xD, 0x2, 0x14},
-    {0xD, 0x10, 0x5},
-    {0xC, 0xA, 0x5},
-    {0xC, 0xB, 0x14},
-    {0xC, 0xC, 0x5},
-    {0xC, 0x3, 0x5},
-    {0xC, 0x4, 0x14},
-    {0xC, 0x2, 0x5},
-    {0xC, 0x6, 0x5},
-    {0xC, 0x5, 0x14},
-    {0xC, 0x10, 0x5},
-    {0xC, 0x8, 0x5},
-    {0xF, 0xB, 0x5},
-    {0xF, 0xC, 0x14},
-    {0xF, 0xF, 0x5},
-    {0xF, 0x4, 0x14},
-    {0xF, 0x2, 0x14},
-    {0xF, 0x10, 0x14},
-    {0xF, 0x8, 0x5},
-    {0xF, 0xA, 0x5},
-    {0x1, 0x0, 0x14},
-    {0x1, 0xF, 0x14},
-    {0x1, 0x3, 0x5},
-    {0x1, 0x2, 0x5},
-    {0x1, 0xE, 0x5},
-    {0x1, 0x6, 0x5},
-    {0x1, 0x5, 0x14},
-    {0x1, 0x11, 0x14},
-    {0x1, 0x8, 0x14},
-    {0x3, 0xC, 0x14},
-    {0x3, 0x3, 0x5},
-    {0x3, 0x4, 0x5},
-    {0x3, 0x5, 0x5},
-    {0x3, 0x7, 0x5},
-    {0x3, 0x8, 0x0},
-    {0x4, 0xA, 0x14},
-    {0x4, 0xD, 0x14},
-    {0x4, 0xC, 0x5},
-    {0x4, 0x3, 0x14},
-    {0x4, 0x2, 0x0},
-    {0x4, 0x6, 0x5},
-    {0x4, 0x5, 0x14},
-    {0x4, 0x8, 0x14},
-    {0x2, 0xD, 0x5},
-    {0x2, 0xC, 0x14},
-    {0x2, 0x1, 0x14},
-    {0x2, 0x6, 0x14},
-    {0x2, 0x5, 0x5},
-    {0x2, 0x8, 0x5},
-    {0xE, 0x1, 0x14},
-    {0xE, 0x3, 0x14},
-    {0xE, 0xE, 0x5},
-    {0xE, 0x11, 0x0},
-    {0xE, 0x8, 0x5},
-    {0x6, 0xA, 0x5},
-    {0x6, 0xC, 0x14},
-    {0x6, 0x1, 0x5},
-    {0x6, 0x3, 0x5},
-    {0x6, 0x2, 0x5},
-    {0x6, 0xE, 0x14},
-    {0x6, 0x7, 0x5},
-    {0x6, 0x11, 0x14},
-    {0x6, 0x8, 0x5},
-    {0x5, 0xA, 0x14},
-    {0x5, 0xF, 0x14},
-    {0x5, 0x1, 0x5},
-    {0x5, 0x4, 0x5},
-    {0x5, 0x2, 0x14},
-    {0x5, 0x6, 0x14},
-    {0x5, 0x8, 0x5},
-    {0x7, 0x0, 0x0},
-    {0x7, 0xE, 0x14},
-    {0x7, 0x11, 0x5},
-    {0x7, 0x8, 0x5},
-    {0x7, 0x7, 0x14},
-    {0x10, 0x10, 0x14},
-    {0x10, 0x8, 0x5},
-    {0x11, 0x1, 0x5},
-    {0x11, 0xE, 0x14},
-    {0x11, 0x7, 0x14},
-    {0x11, 0x11, 0x5},
-    {0x11, 0x8, 0x5},
-    {0x8, 0xA, 0x5},
-    {0x8, 0xB, 0x5},
-    {0x8, 0xD, 0x5},
-    {0x8, 0xF, 0x14},
-    {0x8, 0x5, 0x14},
-    {0x8, 0x8, 0x5},
-    {0xFE, 0xFE, 0x0},
-    {0x0, 0x7, 0x0},
-    {0x1, 0x7, 0x0},
-    {0xFF, 0xFF, 0x0}
+#define TYPE_MULTI_IMMUNE       0
+#define TYPE_MULTI_NOT_VERY_EFF 5
+#define TYPE_MULTI_SUPER_EFF    20
+
+/**
+ * @brief The type matchup table. This lists the matchups which are deemed to
+ * have a Super Effective, Not Very Effective, or Immune result. The table can
+ * be read as such:
+ * 
+ *   attacking type, defending type, matchup multiplier
+ * 
+ * The matchup multiplier is assumed to be divided by 10 at a later stage for
+ * any computations which make use of it (hence the values 5 and 20).
+ */
+static const u8 sTypeMatchupMultipliers[][3] = {
+    { TYPE_NORMAL,   TYPE_ROCK,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_NORMAL,   TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIRE,     TYPE_FIRE,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIRE,     TYPE_WATER,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIRE,     TYPE_GRASS,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FIRE,     TYPE_ICE,       TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FIRE,     TYPE_BUG,       TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FIRE,     TYPE_ROCK,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIRE,     TYPE_DRAGON,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIRE,     TYPE_STEEL,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_WATER,    TYPE_FIRE,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_WATER,    TYPE_WATER,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_WATER,    TYPE_GRASS,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_WATER,    TYPE_GROUND,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_WATER,    TYPE_ROCK,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_WATER,    TYPE_DRAGON,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ELECTRIC, TYPE_WATER,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ELECTRIC, TYPE_ELECTRIC,  TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ELECTRIC, TYPE_GRASS,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ELECTRIC, TYPE_GROUND,    TYPE_MULTI_IMMUNE       },
+    { TYPE_ELECTRIC, TYPE_FLYING,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ELECTRIC, TYPE_DRAGON,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GRASS,    TYPE_FIRE,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GRASS,    TYPE_WATER,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_GRASS,    TYPE_GRASS,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GRASS,    TYPE_POISON,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GRASS,    TYPE_GROUND,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_GRASS,    TYPE_FLYING,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GRASS,    TYPE_BUG,       TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GRASS,    TYPE_ROCK,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_GRASS,    TYPE_DRAGON,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GRASS,    TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ICE,      TYPE_WATER,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ICE,      TYPE_GRASS,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ICE,      TYPE_ICE,       TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ICE,      TYPE_GROUND,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ICE,      TYPE_FLYING,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ICE,      TYPE_DRAGON,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ICE,      TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ICE,      TYPE_FIRE,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIGHTING, TYPE_NORMAL,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FIGHTING, TYPE_ICE,       TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FIGHTING, TYPE_POISON,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIGHTING, TYPE_FLYING,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIGHTING, TYPE_PSYCHIC,   TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIGHTING, TYPE_BUG,       TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FIGHTING, TYPE_ROCK,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FIGHTING, TYPE_DARK,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FIGHTING, TYPE_STEEL,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_POISON,   TYPE_GRASS,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_POISON,   TYPE_POISON,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_POISON,   TYPE_GROUND,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_POISON,   TYPE_ROCK,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_POISON,   TYPE_GHOST,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_POISON,   TYPE_STEEL,     TYPE_MULTI_IMMUNE       },
+    { TYPE_GROUND,   TYPE_FIRE,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_GROUND,   TYPE_ELECTRIC,  TYPE_MULTI_SUPER_EFF    },
+    { TYPE_GROUND,   TYPE_GRASS,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GROUND,   TYPE_POISON,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_GROUND,   TYPE_FLYING,    TYPE_MULTI_IMMUNE       },
+    { TYPE_GROUND,   TYPE_BUG,       TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GROUND,   TYPE_ROCK,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_GROUND,   TYPE_STEEL,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FLYING,   TYPE_ELECTRIC,  TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FLYING,   TYPE_GRASS,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FLYING,   TYPE_FIGHTING,  TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FLYING,   TYPE_BUG,       TYPE_MULTI_SUPER_EFF    },
+    { TYPE_FLYING,   TYPE_ROCK,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_FLYING,   TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_PSYCHIC,  TYPE_FIGHTING,  TYPE_MULTI_SUPER_EFF    },
+    { TYPE_PSYCHIC,  TYPE_POISON,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_PSYCHIC,  TYPE_PSYCHIC,   TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_PSYCHIC,  TYPE_DARK,      TYPE_MULTI_IMMUNE       },
+    { TYPE_PSYCHIC,  TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_BUG,      TYPE_FIRE,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_BUG,      TYPE_GRASS,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_BUG,      TYPE_FIGHTING,  TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_BUG,      TYPE_POISON,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_BUG,      TYPE_FLYING,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_BUG,      TYPE_PSYCHIC,   TYPE_MULTI_SUPER_EFF    },
+    { TYPE_BUG,      TYPE_GHOST,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_BUG,      TYPE_DARK,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_BUG,      TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ROCK,     TYPE_FIRE,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ROCK,     TYPE_ICE,       TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ROCK,     TYPE_FIGHTING,  TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ROCK,     TYPE_GROUND,    TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_ROCK,     TYPE_FLYING,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ROCK,     TYPE_BUG,       TYPE_MULTI_SUPER_EFF    },
+    { TYPE_ROCK,     TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GHOST,    TYPE_NORMAL,    TYPE_MULTI_IMMUNE       },
+    { TYPE_GHOST,    TYPE_PSYCHIC,   TYPE_MULTI_SUPER_EFF    },
+    { TYPE_GHOST,    TYPE_DARK,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GHOST,    TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_GHOST,    TYPE_GHOST,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_DRAGON,   TYPE_DRAGON,    TYPE_MULTI_SUPER_EFF    },
+    { TYPE_DRAGON,   TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_DARK,     TYPE_FIGHTING,  TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_DARK,     TYPE_PSYCHIC,   TYPE_MULTI_SUPER_EFF    },
+    { TYPE_DARK,     TYPE_GHOST,     TYPE_MULTI_SUPER_EFF    },
+    { TYPE_DARK,     TYPE_DARK,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_DARK,     TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_STEEL,    TYPE_FIRE,      TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_STEEL,    TYPE_WATER,     TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_STEEL,    TYPE_ELECTRIC,  TYPE_MULTI_NOT_VERY_EFF },
+    { TYPE_STEEL,    TYPE_ICE,       TYPE_MULTI_SUPER_EFF    },
+    { TYPE_STEEL,    TYPE_ROCK,      TYPE_MULTI_SUPER_EFF    },
+    { TYPE_STEEL,    TYPE_STEEL,     TYPE_MULTI_NOT_VERY_EFF },
+
+    { 0xFE, 0xFE, TYPE_MULTI_IMMUNE },
+
+    // These values are separated from the remainder of the table to support
+    // the Foresight effect, which removes these immunities from consideration.
+    { TYPE_NORMAL,   TYPE_GHOST,    TYPE_MULTI_IMMUNE        },
+    { TYPE_FIGHTING, TYPE_GHOST,    TYPE_MULTI_IMMUNE        },
+
+    { 0xFF, 0xFF, TYPE_MULTI_IMMUNE },
 };
 
 static BOOL ov16_02254EF4 (BattleContext * param0, int param1, int param2, int param3)
@@ -2606,25 +2625,25 @@ static BOOL ov16_02254EF4 (BattleContext * param0, int param1, int param2, int p
     v0 = 1;
 
     if ((v1 == 106) || (param0->battleMons[param2].moveEffectsMask & 0x400)) {
-        if ((Unk_ov16_0226ECD4[param3][1] == 2) && (Unk_ov16_0226ECD4[param3][2] == 0)) {
+        if ((sTypeMatchupMultipliers[param3][1] == 2) && (sTypeMatchupMultipliers[param3][2] == 0)) {
             v0 = 0;
         }
     }
 
     if (param0->turnFlags[param2].roosting) {
-        if (Unk_ov16_0226ECD4[param3][1] == 2) {
+        if (sTypeMatchupMultipliers[param3][1] == 2) {
             v0 = 0;
         }
     }
 
     if (param0->fieldConditionsMask & 0x7000) {
-        if ((Unk_ov16_0226ECD4[param3][1] == 2) && (Unk_ov16_0226ECD4[param3][2] == 0)) {
+        if ((sTypeMatchupMultipliers[param3][1] == 2) && (sTypeMatchupMultipliers[param3][2] == 0)) {
             v0 = 0;
         }
     }
 
     if (param0->battleMons[param2].moveEffectsMask & 0x400000) {
-        if ((Unk_ov16_0226ECD4[param3][1] == 17) && (Unk_ov16_0226ECD4[param3][2] == 0)) {
+        if ((sTypeMatchupMultipliers[param3][1] == 17) && (sTypeMatchupMultipliers[param3][2] == 0)) {
             v0 = 0;
         }
     }
@@ -2679,8 +2698,8 @@ int BattleSystem_CheckTypeChart (BattleSystem * param0, BattleContext * param1, 
     } else {
         v0 = 0;
 
-        while (Unk_ov16_0226ECD4[v0][0] != 0xff) {
-            if (Unk_ov16_0226ECD4[v0][0] == 0xfe) {
+        while (sTypeMatchupMultipliers[v0][0] != 0xff) {
+            if (sTypeMatchupMultipliers[v0][0] == 0xfe) {
                 if ((param1->battleMons[param5].statusVolatile & 0x20000000) || (Battler_Ability(param1, param4) == 113)) {
                     break;
                 } else {
@@ -2689,22 +2708,22 @@ int BattleSystem_CheckTypeChart (BattleSystem * param0, BattleContext * param1, 
                 }
             }
 
-            if (Unk_ov16_0226ECD4[v0][0] == v2) {
-                if (Unk_ov16_0226ECD4[v0][1] == BattleMon_Get(param1, param5, 27, NULL)) {
+            if (sTypeMatchupMultipliers[v0][0] == v2) {
+                if (sTypeMatchupMultipliers[v0][1] == BattleMon_Get(param1, param5, 27, NULL)) {
                     if (ov16_02254EF4(param1, param4, param5, v0) == 1) {
-                        param6 = ov16_0225B63C(param1, param4, Unk_ov16_0226ECD4[v0][2], param6, v3, param7);
+                        param6 = ov16_0225B63C(param1, param4, sTypeMatchupMultipliers[v0][2], param6, v3, param7);
 
-                        if (Unk_ov16_0226ECD4[v0][2] == 20) {
+                        if (sTypeMatchupMultipliers[v0][2] == 20) {
                             v1 *= 2;
                         }
                     }
                 }
 
-                if ((Unk_ov16_0226ECD4[v0][1] == BattleMon_Get(param1, param5, 28, NULL)) && (BattleMon_Get(param1, param5, 27, NULL) != BattleMon_Get(param1, param5, 28, NULL))) {
+                if ((sTypeMatchupMultipliers[v0][1] == BattleMon_Get(param1, param5, 28, NULL)) && (BattleMon_Get(param1, param5, 27, NULL) != BattleMon_Get(param1, param5, 28, NULL))) {
                     if (ov16_02254EF4(param1, param4, param5, v0) == 1) {
-                        param6 = ov16_0225B63C(param1, param4, Unk_ov16_0226ECD4[v0][2], param6, v3, param7);
+                        param6 = ov16_0225B63C(param1, param4, sTypeMatchupMultipliers[v0][2], param6, v3, param7);
 
-                        if (Unk_ov16_0226ECD4[v0][2] == 20) {
+                        if (sTypeMatchupMultipliers[v0][2] == 20) {
                             v1 *= 2;
                         }
                     }
@@ -2765,8 +2784,8 @@ void ov16_022552D4 (BattleContext * param0, int param1, int param2, int param3, 
     } else {
         v0 = 0;
 
-        while (Unk_ov16_0226ECD4[v0][0] != 0xff) {
-            if (Unk_ov16_0226ECD4[v0][0] == 0xfe) {
+        while (sTypeMatchupMultipliers[v0][0] != 0xff) {
+            if (sTypeMatchupMultipliers[v0][0] == 0xfe) {
                 if (param3 == 113) {
                     break;
                 } else {
@@ -2775,16 +2794,16 @@ void ov16_022552D4 (BattleContext * param0, int param1, int param2, int param3, 
                 }
             }
 
-            if (Unk_ov16_0226ECD4[v0][0] == v1) {
-                if (Unk_ov16_0226ECD4[v0][1] == param6) {
+            if (sTypeMatchupMultipliers[v0][0] == v1) {
+                if (sTypeMatchupMultipliers[v0][1] == param6) {
                     if (ov16_022553F8(param0, param5, v0) == 1) {
-                        ov16_02255448(Unk_ov16_0226ECD4[v0][2], param8);
+                        ov16_02255448(sTypeMatchupMultipliers[v0][2], param8);
                     }
                 }
 
-                if ((Unk_ov16_0226ECD4[v0][1] == param7) && (param6 != param7)) {
+                if ((sTypeMatchupMultipliers[v0][1] == param7) && (param6 != param7)) {
                     if (ov16_022553F8(param0, param5, v0) == 1) {
-                        ov16_02255448(Unk_ov16_0226ECD4[v0][2], param8);
+                        ov16_02255448(sTypeMatchupMultipliers[v0][2], param8);
                     }
                 }
             }
@@ -2807,13 +2826,13 @@ static BOOL ov16_022553F8 (BattleContext * param0, int param1, int param2)
     v0 = 1;
 
     if (param1 == 106) {
-        if ((Unk_ov16_0226ECD4[param2][1] == 2) && (Unk_ov16_0226ECD4[param2][2] == 0)) {
+        if ((sTypeMatchupMultipliers[param2][1] == 2) && (sTypeMatchupMultipliers[param2][2] == 0)) {
             v0 = 0;
         }
     }
 
     if (param0->fieldConditionsMask & 0x7000) {
-        if ((Unk_ov16_0226ECD4[param2][1] == 2) && (Unk_ov16_0226ECD4[param2][2] == 0)) {
+        if ((sTypeMatchupMultipliers[param2][1] == 2) && (sTypeMatchupMultipliers[param2][2] == 0)) {
             v0 = 0;
         }
     }
@@ -3028,22 +3047,19 @@ BOOL BattleMove_IsMultiTurn (BattleContext * param0, int param1)
     return 0;
 }
 
-BOOL ov16_0225588C (BattleSystem * param0, int param1, u8 * param2, u8 * param3, u8 * param4)
+BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi)
 {
-    BOOL v0;
-
-    v0 = 1;
-
-    if (param1 >= NELEMS(Unk_ov16_0226ECD4)) {
-        param1 = BattleSystem_RandNext(param0) % (NELEMS(Unk_ov16_0226ECD4));
-        v0 = 0;
+    BOOL result = TRUE;
+    if (idx >= NELEMS(sTypeMatchupMultipliers)) {
+        idx = BattleSystem_RandNext(battleSys) % NELEMS(sTypeMatchupMultipliers);
+        result = FALSE;
     }
 
-    param2[0] = Unk_ov16_0226ECD4[param1][0];
-    param3[0] = Unk_ov16_0226ECD4[param1][1];
-    param4[0] = Unk_ov16_0226ECD4[param1][2];
+    *moveType = sTypeMatchupMultipliers[idx][0];
+    *vsType = sTypeMatchupMultipliers[idx][1];
+    *multi = sTypeMatchupMultipliers[idx][2];
 
-    return v0;
+    return result;
 }
 
 int ov16_022558CC (u8 param0, u8 param1, u8 param2)
@@ -3054,14 +3070,14 @@ int ov16_022558CC (u8 param0, u8 param1, u8 param2)
     v0 = 0;
     v1 = 40;
 
-    while (Unk_ov16_0226ECD4[v0][0] != 0xff) {
-        if (Unk_ov16_0226ECD4[v0][0] == param0) {
-            if (Unk_ov16_0226ECD4[v0][1] == param1) {
-                v1 = v1 * Unk_ov16_0226ECD4[v0][2] / 10;
+    while (sTypeMatchupMultipliers[v0][0] != 0xff) {
+        if (sTypeMatchupMultipliers[v0][0] == param0) {
+            if (sTypeMatchupMultipliers[v0][1] == param1) {
+                v1 = v1 * sTypeMatchupMultipliers[v0][2] / 10;
             }
 
-            if ((Unk_ov16_0226ECD4[v0][1] == param2) && (param1 != param2)) {
-                v1 = v1 * Unk_ov16_0226ECD4[v0][2] / 10;
+            if ((sTypeMatchupMultipliers[v0][1] == param2) && (param1 != param2)) {
+                v1 = v1 * sTypeMatchupMultipliers[v0][2] / 10;
             }
         }
 
