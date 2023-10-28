@@ -3727,7 +3727,7 @@ static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleC
         }
     }
 
-    if (move && BattleSystem_CanEncoreMove(battleCtx, move) == TRUE) {
+    if (move && Move_CanBeEncored(battleCtx, move) == TRUE) {
         battleCtx->battleStatusMask &= ~SYSCTL_SKIP_ATTACK_MESSAGE;
         battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION;
         battleCtx->moveCur = move;
@@ -4754,7 +4754,7 @@ static BOOL ov16_02243DBC (BattleSystem * param0, BattleContext * param1)
 
     v0 = BattleScript_Read(param1);
 
-    if ((ov16_0225AFF4(param1->movePrevByBattler[param1->defender]) == 0) || (param1->battleMons[param1->attacker].statusVolatile & 0x200000) || (param1->battleMons[param1->defender].statusVolatile & 0x1000000) || (param1->movePrevByBattler[param1->defender] == 0)) {
+    if ((Move_CanBeMimicked(param1->movePrevByBattler[param1->defender]) == 0) || (param1->battleMons[param1->attacker].statusVolatile & 0x200000) || (param1->battleMons[param1->defender].statusVolatile & 0x1000000) || (param1->movePrevByBattler[param1->defender] == 0)) {
         BattleScript_Iter(param1, v0);
     } else {
         {
@@ -4815,7 +4815,7 @@ static BOOL ov16_02243EF4 (BattleSystem * param0, BattleContext * param1)
             continue;
         }
 
-        if (ov16_0225B02C(param0, param1, param1->attacker, v1) == 0) {
+        if (Move_CanBeMetronomed(param0, param1, param1->attacker, v1) == 0) {
             continue;
         }
 
@@ -4933,7 +4933,7 @@ static BOOL ov16_02244208 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
     v1 = Battler_SlotForMove(&param1->battleMons[param1->defender], param1->movePrevByBattler[param1->defender]);
 
-    if (BattleSystem_CanEncoreMove(param1, param1->movePrevByBattler[param1->defender]) == 0) {
+    if (Move_CanBeEncored(param1, param1->movePrevByBattler[param1->defender]) == 0) {
         v1 = 4;
     }
 
@@ -6165,7 +6165,7 @@ static BOOL ov16_022461F4 (BattleSystem * param0, BattleContext * param1)
                 for (v4 = 0; v4 < 4; v4++) {
                     v2 = Pokemon_GetValue(v7, MON_DATA_MOVE1 + v4, NULL);
 
-                    if ((ov16_02255918(v2) == 0) && (ov16_0225B02C(param0, param1, param1->attacker, v2) == 1)) {
+                    if ((ov16_02255918(v2) == 0) && (Move_CanBeMetronomed(param0, param1, param1->attacker, v2) == 1)) {
                         v1[v6] = v2;
                         v6++;
                     }
@@ -6803,7 +6803,7 @@ static BOOL ov16_02246FA8 (BattleSystem * param0, BattleContext * param1)
         v1 = Battler_SelectedMove(param1, param1->defender);
     }
 
-    if ((param1->battlerActions[param1->defender][0] != 39) && (param1->turnFlags[param1->defender].struggling == 0) && (ov16_0225B0C0(param1, v1) == 1) && (param1->aiContext.moveTable[v1].power)) {
+    if ((param1->battlerActions[param1->defender][0] != 39) && (param1->turnFlags[param1->defender].struggling == 0) && (Move_MeFirstCanCopy(param1, v1) == 1) && (param1->aiContext.moveTable[v1].power)) {
         param1->battleMons[param1->attacker].moveEffectsData.meFirst = 1;
         param1->battleMons[param1->attacker].moveEffectsData.meFirstTurnNumber = param1->meFirstTurnOrder;
         param1->msgMoveTemp = v1;
@@ -6822,7 +6822,7 @@ static BOOL ov16_02247064 (BattleSystem * param0, BattleContext * param1)
 
     v0 = BattleScript_Read(param1);
 
-    if ((ov16_02255918(param1->movePrev) == 0) && (param1->movePrev) && (ov16_0225B02C(param0, param1, param1->attacker, param1->movePrev) == 1)) {
+    if ((ov16_02255918(param1->movePrev) == 0) && (param1->movePrev) && (Move_CanBeMetronomed(param0, param1, param1->attacker, param1->movePrev) == 1)) {
         param1->msgMoveTemp = param1->movePrev;
     } else {
         BattleScript_Iter(param1, v0);

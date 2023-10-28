@@ -152,10 +152,10 @@ void BattleSystem_SwitchSlots(BattleSystem *battleSys, BattleContext *battleCtx,
 int BattleSystem_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx, int move, u32 sideConditions, u32 fieldConditions, u16 inPower, u8 inType, u8 attacker, u8 defender, u8 criticalMul);
 int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *battleCtx, int damage);
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
-BOOL ov16_0225AFF4(u16 param0);
-BOOL ov16_0225B02C(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
-BOOL BattleSystem_CanEncoreMove(BattleContext *battleCtx, u16 move);
-BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
+BOOL Move_CanBeMimicked(u16 move);
+BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u16 move);
+BOOL Move_CanBeEncored(BattleContext *battleCtx, u16 move);
+BOOL Move_MeFirstCanCopy(BattleContext *battleCtx, u16 move);
 s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID);
 int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * param1);
@@ -7055,72 +7055,67 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
     return criticalMul;
 }
 
-static const u16 Unk_ov16_0226EC5C[] = {
-    0x76,
-    0xA5,
-    0xA6,
-    0x66,
-    0x1C0,
-    0xFFFE,
-    0xD6,
-    0x112,
-    0x77,
-    0x44,
-    0xF3,
-    0xB6,
-    0xC5,
-    0xCB,
-    0xC2,
-    0xA8,
-    0x10A,
-    0x121,
-    0x10E,
-    0x157,
-    0x10F,
-    0x108,
-    0x16C,
-    0x17F,
-    0x17E,
-    0x19F,
-    0xFFFF
+#define FORBIDDEN_BY_MIMIC_DELIM        0xFFFE
+#define FORBIDDEN_BY_METRONOME_DELIM    0xFFFF
+
+static const u16 sCannotMetronomeMoves[] = {
+    MOVE_METRONOME,
+    MOVE_STRUGGLE,
+    MOVE_SKETCH,
+    MOVE_MIMIC,
+    MOVE_CHATTER,
+    FORBIDDEN_BY_MIMIC_DELIM,
+    MOVE_SLEEP_TALK,
+    MOVE_ASSIST,
+    MOVE_MIRROR_MOVE,
+    MOVE_COUNTER,
+    MOVE_MIRROR_COAT,
+    MOVE_PROTECT,
+    MOVE_DETECT,
+    MOVE_ENDURE,
+    MOVE_DESTINY_BOND,
+    MOVE_THIEF,
+    MOVE_FOLLOW_ME,
+    MOVE_SNATCH,
+    MOVE_HELPING_HAND,
+    MOVE_COVET,
+    MOVE_TRICK,
+    MOVE_FOCUS_PUNCH,
+    MOVE_FEINT,
+    MOVE_COPYCAT,
+    MOVE_ME_FIRST,
+    MOVE_SWITCHEROO,
+    FORBIDDEN_BY_METRONOME_DELIM,
 };
 
-BOOL ov16_0225AFF4 (u16 param0)
+BOOL Move_CanBeMimicked(u16 move)
 {
-    int v0;
-
-    v0 = 0;
-
-    while (Unk_ov16_0226EC5C[v0] != 0xfffe) {
-        if (Unk_ov16_0226EC5C[v0] == param0) {
+    int i;
+    for (i = 0; sCannotMetronomeMoves[i] != FORBIDDEN_BY_MIMIC_DELIM; i++) {
+        if (sCannotMetronomeMoves[i] == move) {
             break;
         }
-
-        v0++;
     }
 
-    return Unk_ov16_0226EC5C[v0] == 0xfffe;
+    return sCannotMetronomeMoves[i] == FORBIDDEN_BY_MIMIC_DELIM;
 }
 
-BOOL ov16_0225B02C (BattleSystem * param0, BattleContext * param1, int param2, u16 param3)
+BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u16 move)
 {
-    int v0;
+    int i = 0;
 
-    v0 = 0;
-
-    if ((BattleSystem_FailsInHighGravity(param0, param1, param2, param3) == 1) || (BattleSystem_HealBlocked(param0, param1, param2, param3) == 1)) {
-        return 0;
+    if (BattleSystem_FailsInHighGravity(battleSys, battleCtx, battler, move) == TRUE
+            || BattleSystem_HealBlocked(battleSys, battleCtx, battler, move) == TRUE) {
+        return FALSE;
     }
 
-    while (Unk_ov16_0226EC5C[v0] != 0xffff) {
-        if (Unk_ov16_0226EC5C[v0] == param3) {
+    for (; sCannotMetronomeMoves[i] != FORBIDDEN_BY_METRONOME_DELIM; i++) {
+        if (sCannotMetronomeMoves[i] == move) {
             break;
         }
-
-        v0++;
     }
 
-    return Unk_ov16_0226EC5C[v0] == 0xffff;
+    return sCannotMetronomeMoves[i] == FORBIDDEN_BY_METRONOME_DELIM;
 }
 
 static const u16 sCannotEncoreMoves[] = {
@@ -7129,10 +7124,10 @@ static const u16 sCannotEncoreMoves[] = {
     MOVE_SKETCH,
     MOVE_MIRROR_MOVE,
     MOVE_ENCORE,
-    MOVE_STRUGGLE
+    MOVE_STRUGGLE,
 };
 
-BOOL BattleSystem_CanEncoreMove(BattleContext *battleCtx, u16 move)
+BOOL Move_CanBeEncored(BattleContext *battleCtx, u16 move)
 {
     int i;
     for (i = 0; i < NELEMS(sCannotEncoreMoves); i++) {
@@ -7144,30 +7139,25 @@ BOOL BattleSystem_CanEncoreMove(BattleContext *battleCtx, u16 move)
     return i == NELEMS(sCannotEncoreMoves);
 }
 
-static const u16 Unk_ov16_0226EBC8[] = {
-    0x44,
-    0xF3,
-    0xA8,
-    0x157,
-    0x108,
-    0x1C0
+static const u16 sCannotMeFirstMoves[] = {
+    MOVE_COUNTER,
+    MOVE_MIRROR_COAT,
+    MOVE_THIEF,
+    MOVE_COVET,
+    MOVE_FOCUS_PUNCH,
+    MOVE_CHATTER,
 };
 
-BOOL ov16_0225B0C0 (BattleContext * param0, u16 param1)
+BOOL Move_MeFirstCanCopy(BattleContext *battleCtx, u16 move)
 {
-    int v0;
-
-    v0 = 0;
-
-    while (v0 < NELEMS(Unk_ov16_0226EBC8)) {
-        if (param0->aiContext.moveTable[Unk_ov16_0226EBC8[v0]].effect == param0->aiContext.moveTable[param1].effect) {
+    int i;
+    for (i = 0; i < NELEMS(sCannotMeFirstMoves); i++) {
+        if (MOVE_DATA(sCannotMeFirstMoves[i]).effect == MOVE_DATA(move).effect) {
             break;
         }
-
-        v0++;
     }
 
-    return v0 == NELEMS(Unk_ov16_0226EBC8);
+    return i == NELEMS(sCannotMeFirstMoves);
 }
 
 s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID)

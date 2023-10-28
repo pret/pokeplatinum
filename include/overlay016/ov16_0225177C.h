@@ -557,18 +557,43 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
  * occurs and the attacker also has the ability Sniper 
  */
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
-BOOL ov16_0225AFF4(u16 param0);
-BOOL ov16_0225B02C(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 
 /**
- * @brief Check if a given move can be Encored.
+ * @brief Check if a move can be copied by Mimic.
+ * 
+ * @param move 
+ * @return TRUE if the move can be copied by Mimic, FALSE if not.
+ */
+BOOL Move_CanBeMimicked(u16 move);
+
+/**
+ * @brief Check if a move can be invoked by Metronome.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler using Metronome.
+ * @param move
+ * @return TRUE if the move can be invoked by Metronome, FALSE if not. 
+ */
+BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u16 move);
+
+/**
+ * @brief Check if a move can be Encored.
  * 
  * @param battleCtx 
  * @param move 
- * @return TRUE if the move can be Encored, FALSE otherwise.
+ * @return TRUE if the move can be Encored, FALSE if not.
  */
-BOOL BattleSystem_CanEncoreMove(BattleContext *battleCtx, u16 move);
-BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
+BOOL Move_CanBeEncored(BattleContext *battleCtx, u16 move);
+
+/**
+ * @brief Check if a move can be copied by Me First.
+ * 
+ * @param battleCtx 
+ * @param move 
+ * @return TRUE if the move can be copied by Me First, FALSE if not.
+ */
+BOOL Move_MeFirstCanCopy(BattleContext *battleCtx, u16 move);
 
 /**
  * @brief Get a data element out of the given item's data structure.
