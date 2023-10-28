@@ -2337,7 +2337,7 @@ static void ov10_02222594 (UnkStruct_ov10_0221FB28 * param0, u32 param1)
         break;
     }
 
-    v1 = sub_0208C0BC(param0->unk_214[param1].unk_06, param0->unk_214[param1].unk_08, 48);
+    v1 = App_PixelCount(param0->unk_214[param1].unk_06, param0->unk_214[param1].unk_08, 48);
 
     BGL_WindowColor(v0, 10, 0, 2, v1, 1);
     BGL_WindowColor(v0, 9, 0, 3, v1, 2);

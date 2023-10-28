@@ -1383,7 +1383,7 @@ static void sub_0208D9D0 (UnkStruct_0208D7BC * param0)
         break;
     }
 
-    v2 = sub_0208C0BC(param0->unk_250.unk_24, param0->unk_250.unk_26, 48);
+    v2 = App_PixelCount(param0->unk_250.unk_24, param0->unk_250.unk_26, 48);
 
     for (v3 = 0; v3 < 6; v3++) {
         if (v2 >= 8) {
@@ -1420,7 +1420,7 @@ static void sub_0208DA84 (UnkStruct_0208D7BC * param0)
         v1 = 0;
     }
 
-    v3 = sub_0208C0BC(v1, v0, 56);
+    v3 = App_PixelCount(v1, v0, 56);
 
     for (v4 = 0; v4 < 7; v4++) {
         if (v3 >= 8) {

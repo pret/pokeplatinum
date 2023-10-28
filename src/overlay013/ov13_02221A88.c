@@ -385,7 +385,7 @@ static void ov13_02221ED0 (UnkStruct_ov13_022213F0 * param0, u32 param1, u16 par
 
     v0 = &param0->unk_04[param2];
     v1 = 1;
-    v2 = sub_0208C0BC(v0->unk_10, v0->unk_12, 48);
+    v2 = App_PixelCount(v0->unk_10, v0->unk_12, 48);
 
     switch (sub_0208C104(v0->unk_10, v0->unk_12, 48)) {
     case 0:

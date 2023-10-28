@@ -5288,7 +5288,7 @@ static BOOL ov16_022446A0 (BattleSystem * param0, BattleContext * param1)
     int v1;
 
     BattleScript_Iter(param1, 1);
-    v1 = sub_0208C0BC(param1->battleMons[param1->attacker].curHP, param1->battleMons[param1->attacker].maxHP, 64);
+    v1 = App_PixelCount(param1->battleMons[param1->attacker].curHP, param1->battleMons[param1->attacker].maxHP, 64);
 
     for (v0 = 0; v0 < NELEMS(Unk_ov16_0226E584); v0++) {
         if (v1 <= Unk_ov16_0226E584[v0][0]) {
@@ -5418,7 +5418,7 @@ static BOOL ov16_022448E8 (BattleSystem * param0, BattleContext * param1)
     } else {
         if ((param1->battleMons[param1->defender].heldItem) && (Battler_IgnorableAbility(param1, param1->attacker, param1->defender, 60) == 1)) {
             BattleScript_Iter(param1, v1);
-        } else if ((param1->battleMons[param1->attacker].heldItem) || (ov16_02255980(param0, param1, param1->defender) == 0)) {
+        } else if ((param1->battleMons[param1->attacker].heldItem) || (BattleSystem_CanStealItem(param0, param1, param1->defender) == 0)) {
             BattleScript_Iter(param1, v0);
         }
     }
@@ -5553,7 +5553,7 @@ static BOOL ov16_02244BC4 (BattleSystem * param0, BattleContext * param1)
             if (v5 <= v6) {
                 BattleScript_Iter(param1, v0);
             } else {
-                if (ov16_022559FC(param0, param1)) {
+                if (BattleSystem_CanWhirlwind(param0, param1)) {
                     do {
                         do {
                             v7 = BattleSystem_RandNext(param0) % v10;
@@ -5570,7 +5570,7 @@ static BOOL ov16_02244BC4 (BattleSystem * param0, BattleContext * param1)
             }
         }
     } else {
-        if (ov16_022559FC(param0, param1) == 0) {
+        if (BattleSystem_CanWhirlwind(param0, param1) == 0) {
             BattleScript_Iter(param1, v0);
         }
     }

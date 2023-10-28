@@ -95,9 +95,9 @@ BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8
 int ov16_022558CC(u8 param0, u8 param1, u8 param2);
 BOOL Move_IsInvoker(u16 move);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
-BOOL ov16_02255980(BattleSystem * param0, BattleContext * param1, int param2);
+BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 BOOL ov16_022559DC(BattleContext * param0, int param1);
-BOOL ov16_022559FC(BattleSystem * param0, BattleContext * param1);
+BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx);
 u8 Battler_Ability(BattleContext * param0, int param1);
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability);
 BOOL BattleSystem_AnyReplacementMons(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
@@ -3105,19 +3105,18 @@ BOOL BattleSystem_IsGhostCurse (BattleContext * param0, u16 param1, int param2)
     return (param1 == 174) && ((BattleMon_Get(param0, param2, 27, NULL) == 7) || (BattleMon_Get(param0, param2, 28, NULL) == 7));
 }
 
-BOOL ov16_02255980 (BattleSystem * param0, BattleContext * param1, int param2)
+BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    BOOL v0;
-    int v1;
+    BOOL result = FALSE;
+    int side = Battler_Side(battleSys, battler);
 
-    v0 = 0;
-    v1 = Battler_Side(param0, param2);
-
-    if ((param1->battleMons[param2].heldItem) && ((param1->sideConditions[v1].knockedOffItemsMask & FlagIndex(param1->selectedPartySlot[param2])) == 0) && (Item_IsMail(param1->battleMons[param2].heldItem) == 0)) {
-        v0 = 1;
+    if (battleCtx->battleMons[battler].heldItem
+            && (battleCtx->sideConditions[side].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battler])) == FALSE
+            && Item_IsMail(battleCtx->battleMons[battler].heldItem) == FALSE) {
+        result = TRUE;
     }
 
-    return v0;
+    return result;
 }
 
 BOOL ov16_022559DC (BattleContext * param0, int param1)
@@ -3125,27 +3124,20 @@ BOOL ov16_022559DC (BattleContext * param0, int param1)
     return Item_IsMail(param0->battleMons[param1].heldItem) == 0;
 }
 
-BOOL ov16_022559FC (BattleSystem * param0, BattleContext * param1)
+BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL v0;
+    BOOL result = FALSE;
 
-    v0 = 0;
-
-    if (param1->battleMons[param1->attacker].level >= param1->battleMons[param1->defender].level) {
-        v0 = 1;
+    if (ATTACKING_MON.level >= DEFENDING_MON.level) {
+        result = TRUE;
     } else {
-        {
-            int v1;
-
-            v1 = (((BattleSystem_RandNext(param0) & 0xff) * (param1->battleMons[param1->attacker].level + param1->battleMons[param1->defender].level)) >> 8) + 1;
-
-            if (v1 > (param1->battleMons[param1->defender].level / 4)) {
-                v0 = 1;
-            }
+        int tmp = (((BattleSystem_RandNext(battleSys) & 0xFF) * (ATTACKING_MON.level + DEFENDING_MON.level)) >> 8) + 1;
+        if (tmp > battleCtx->battleMons[battleCtx->defender].level / 4) {
+            result = TRUE;
         }
     }
 
-    return v0;
+    return result;
 }
 
 u8 Battler_Ability (BattleContext * param0, int param1)
