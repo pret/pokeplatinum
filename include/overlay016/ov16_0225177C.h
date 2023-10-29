@@ -360,9 +360,34 @@ u16 Battler_SelectedMove(BattleContext * param0, int param1);
  */
 int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability);
 BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
-BOOL ov16_0225588C(BattleSystem * param0, int param1, u8 * param2, u8 * param3, u8 * param4);
+
+/**
+ * @brief Access a particular entry in the type-matchup table.
+ * 
+ * If the requested entry falls outside the bounds of the table, then a
+ * random entry's data will instead be accessed.
+ * 
+ * @param battleSys 
+ * @param idx           The index of table entry to access.
+ * @param[out] atkType  Attacking type of the table entry.
+ * @param[out] defType  Defending type of the table entry.
+ * @param[out] multi    Multiplier for the type matchup.
+ * @return TRUE if the requested entry was accessed; FALSE if the requested
+ * entry falls outside the bounds of the table.
+ */
+BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
 int ov16_022558CC(u8 param0, u8 param1, u8 param2);
-BOOL ov16_02255918(u16 param0);
+
+/**
+ * @brief Determines if a move is an invoker-class move.
+ * 
+ * Invoker-class moves are those which call other moves and have no outward
+ * effect of their own.
+ * 
+ * @param move 
+ * @return TRUE if the move is invoker-class, FALSE if not.
+ */
+BOOL Move_IsInvoker(u16 move);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
 BOOL ov16_02255980(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL ov16_022559DC(BattleContext * param0, int param1);
@@ -422,7 +447,18 @@ void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1
 int ov16_02256128(BattleSystem * param0, BattleContext * param1, int param2);
 int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
-int BattleSystem_Divide(int param0, int param1);
+
+/**
+ * @brief Perform a division, setting any zero-result to 1 or -1, matching the
+ * sign of the dividend.
+ * 
+ * @param dividend  The division's dividend. If positive, quotients of 0 will
+ *                  be set to 1; if negative, quotients of 0 will be set to -1.
+ * @param divisor   The dividend's divisor.
+ * @return The result of the division, not permitted to be lesser in magnitude
+ * than 1.
+ */
+int BattleSystem_Divide(int dividend, int divisor);
 int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
 
 /**
@@ -557,18 +593,43 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
  * occurs and the attacker also has the ability Sniper 
  */
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
-BOOL ov16_0225AFF4(u16 param0);
-BOOL ov16_0225B02C(BattleSystem * param0, BattleContext * param1, int param2, u16 param3);
 
 /**
- * @brief Check if a given move can be Encored.
+ * @brief Check if a move can be copied by Mimic.
+ * 
+ * @param move 
+ * @return TRUE if the move can be copied by Mimic, FALSE if not.
+ */
+BOOL Move_CanBeMimicked(u16 move);
+
+/**
+ * @brief Check if a move can be invoked by Metronome.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler using Metronome.
+ * @param move
+ * @return TRUE if the move can be invoked by Metronome, FALSE if not. 
+ */
+BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u16 move);
+
+/**
+ * @brief Check if a move can be Encored.
  * 
  * @param battleCtx 
  * @param move 
- * @return TRUE if the move can be Encored, FALSE otherwise.
+ * @return TRUE if the move can be Encored, FALSE if not.
  */
-BOOL BattleSystem_CanEncoreMove(BattleContext *battleCtx, u16 move);
-BOOL ov16_0225B0C0(BattleContext * param0, u16 param1);
+BOOL Move_CanBeEncored(BattleContext *battleCtx, u16 move);
+
+/**
+ * @brief Check if a move can be copied by Me First.
+ * 
+ * @param battleCtx 
+ * @param move 
+ * @return TRUE if the move can be copied by Me First, FALSE if not.
+ */
+BOOL Move_MeFirstCanCopy(BattleContext *battleCtx, u16 move);
 
 /**
  * @brief Get a data element out of the given item's data structure.

@@ -118,6 +118,10 @@
 #define PAYDAY_MAX          0xFFFF
 #define NUM_SCREEN_TURNS    5
 
+#define TYPE_MULTI_IMMUNE       0
+#define TYPE_MULTI_NOT_VERY_EFF 5
+#define TYPE_MULTI_SUPER_EFF    20
+
 enum BattleActions {
     BATTLE_ACTION_PICK_COMMAND = 0,
     BATTLE_ACTION_CHOOSE_TARGET,
