@@ -7,6 +7,7 @@
 
 #define ATTACKER_MOVE_SLOT  (battleCtx->moveSlot[battleCtx->attacker])
 #define ATTACKER_ACTION     (battleCtx->battlerActions[battleCtx->attacker])
+#define DEFENDER_ACTION     (battleCtx->battlerActions[battleCtx->defender])
 
 #define ATTACKER_TURN_FLAGS (battleCtx->turnFlags[battleCtx->attacker])
 #define DEFENDER_TURN_FLAGS (battleCtx->turnFlags[battleCtx->defender])

@@ -2307,7 +2307,7 @@ static void ov14_02221F1C (BattleSystem * param0, BattleContext * param1)
     v1 = ov14_02222CF0(param1);
     v2 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
-    v3 = ov16_02256128(param0, param1, v0);
+    v3 = Battler_CountMoves(param0, param1, v0);
 
     if ((param1->battleMons[v0].moveEffectsData.lastResortCount >= (v3 - 1)) && (v3 > 1)) {
         ov14_02222D24(param1, v2);

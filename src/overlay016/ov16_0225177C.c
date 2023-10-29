@@ -112,7 +112,7 @@ void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1)
 BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL BattleSystem_HealBlocked(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1);
-int ov16_02256128(BattleSystem * param0, BattleContext * param1, int param2);
+int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
 int BattleSystem_Divide(int dividend, int divisor);
@@ -3525,17 +3525,16 @@ void BattleSystem_UpdateLastResort (BattleSystem * param0, BattleContext * param
     param1->battleMons[param1->attacker].moveEffectsData.lastResortCount++;
 }
 
-int ov16_02256128 (BattleSystem * param0, BattleContext * param1, int param2)
+int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    int v0;
-
-    for (v0 = 0; v0 < 4; v0++) {
-        if (param1->battleMons[param2].moves[v0] == 0) {
+    int i;
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (battleCtx->battleMons[battler].moves[i] == MOVE_NONE) {
             break;
         }
     }
 
-    return v0;
+    return i;
 }
 
 static u16 Unk_ov16_02270B8C[] = {
@@ -3994,7 +3993,7 @@ int BattleSystem_ShowMonChecks (BattleSystem * param0, BattleContext * param1)
                             v3 = 1;
                         } else if (v20) {
                             v15 = BattleSystem_RandomOpponent(param0, param1, v4);
-                            v16 = ov16_02256128(param0, param1, v15);
+                            v16 = Battler_CountMoves(param0, param1, v15);
 
                             param1->msgMoveTemp = param1->battleMons[v15].moves[BattleSystem_RandNext(param0) % v16];
                             param1->msgBattlerTemp = v4;

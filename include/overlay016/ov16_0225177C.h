@@ -469,7 +469,16 @@ void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1)
 BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL BattleSystem_HealBlocked(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1);
-int ov16_02256128(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Count the number of moves known by a battler.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return The number of moves known.
+ */
+int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
 
