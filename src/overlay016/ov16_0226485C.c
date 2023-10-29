@@ -119,7 +119,7 @@ void BattleIO_RefreshHPGauge(BattleSystem * param0, BattleContext * param1, int 
 void BattleIO_UpdatePartyMon(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02266460(BattleSystem * param0, int param1);
 void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler);
-void ov16_02266498(BattleSystem * param0, BattleContext * param1, int param2, int param3);
+void BattleIO_RefreshPartyStatus(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleIO_ForgetMove(BattleSystem * param0, int param1, int param2, int param3);
 void ov16_022664F8(BattleSystem * param0, int param1, int param2, int param3);
 void ov16_0226651C(BattleSystem * param0, int param1);
@@ -1314,7 +1314,7 @@ void BattleIO_StopGaugeAnimation (BattleSystem *battleSys, int battler)
     ov16_02264A04(battleSys, 1, battler, &v0, 4);
 }
 
-void ov16_02266498 (BattleSystem * param0, BattleContext * param1, int param2, int param3)
+void BattleIO_RefreshPartyStatus (BattleSystem * param0, BattleContext * param1, int param2, int param3)
 {
     UnkStruct_ov16_02266498 v0;
 

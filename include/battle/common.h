@@ -3,8 +3,10 @@
 
 #define ATTACKING_MON   (battleCtx->battleMons[battleCtx->attacker])
 #define DEFENDING_MON   (battleCtx->battleMons[battleCtx->defender])
-#define ATTACKING_MOVE  (battleCtx->moveSlot[battleCtx->attacker])
-#define ATTACKER_ACTION (battleCtx->battlerActions[battleCtx->attacker])
+#define FAINTED_MON     (battleCtx->battleMons[battleCtx->faintedMon])
+
+#define ATTACKER_MOVE_SLOT  (battleCtx->moveSlot[battleCtx->attacker])
+#define ATTACKER_ACTION     (battleCtx->battlerActions[battleCtx->attacker])
 
 #define ATTACKER_TURN_FLAGS (battleCtx->turnFlags[battleCtx->attacker])
 #define DEFENDER_TURN_FLAGS (battleCtx->turnFlags[battleCtx->defender])
@@ -59,6 +61,9 @@
 
 #define NO_CLOUD_NINE   (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_CLOUD_NINE) == FALSE \
                         && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_AIR_LOCK) == FALSE)
+#define NO_WEATHER      ((battleCtx->fieldConditionsMask & FIELD_CONDITION_WEATHER) == FALSE \
+                        || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_CLOUD_NINE) \
+                        || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_AIR_LOCK))
 #define WEATHER_IS_RAIN (battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING)
 #define WEATHER_IS_SAND (battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM)
 #define WEATHER_IS_SUN  (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY)

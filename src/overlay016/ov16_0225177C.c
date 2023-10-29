@@ -96,7 +96,7 @@ int ov16_022558CC(u8 param0, u8 param1, u8 param2);
 BOOL Move_IsInvoker(u16 move);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
 BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL ov16_022559DC(BattleContext * param0, int param1);
+BOOL BattleSystem_NotHoldingMail(BattleContext * param0, int param1);
 BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx);
 u8 Battler_Ability(BattleContext * param0, int param1);
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability);
@@ -3119,7 +3119,7 @@ BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx
     return result;
 }
 
-BOOL ov16_022559DC (BattleContext * param0, int param1)
+BOOL BattleSystem_NotHoldingMail (BattleContext * param0, int param1)
 {
     return Item_IsMail(param0->battleMons[param1].heldItem) == 0;
 }

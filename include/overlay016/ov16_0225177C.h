@@ -399,7 +399,7 @@ BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
  * @return FALSE
  */
 BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL ov16_022559DC(BattleContext * param0, int param1);
+BOOL BattleSystem_NotHoldingMail(BattleContext * param0, int param1);
 
 /**
  * @brief Determine if a target can be Whirlwinded away by an attacker.

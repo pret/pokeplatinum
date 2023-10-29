@@ -99,6 +99,9 @@ enum BattleScriptVars {
 #define BTLSCR_SWITCHED_MON_AFTER   22
 #define BTLSCR_MSG_TEMP             (0xFF)
 
+#define WEATHER_EFFECT_HYDRATION    1
+#define WEATHER_EFFECT_SOLAR_POWER  2
+
 enum OpCode {
     IFOP_EQU = 0,
     IFOP_NEQ,
@@ -146,6 +149,16 @@ enum StatusEffect {
     
     STATUS_EFFECT_SUBSTITUTE_ON = 25,
     STATUS_EFFECT_SUBSTITUTE_OFF,
+};
+
+enum MessageStatusCondition {
+    MSGCOND_SLEEP = 0,
+    MSGCOND_POISON,
+    MSGCOND_BURN,
+    MSGCOND_PARALYSIS,
+    MSGCOND_FREEZE,
+    MSGCOND_CONFUSION,
+    MSGCOND_INFATUATION,
 };
 
 #endif // POKEPLATINUM_BATTLE_BTLCMD_H

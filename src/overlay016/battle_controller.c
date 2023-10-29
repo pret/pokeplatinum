@@ -2211,7 +2211,7 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
 
     rand1 = ((BattleSystem_RandNext(battleSys) & 0xFF) * (ATTACKING_MON.level + maxLevel)) >> 8;
     if (rand1 < maxLevel) {
-        rand1 = BattleSystem_CheckStruggling(battleSys, battleCtx, battleCtx->attacker, FlagIndex(ATTACKING_MOVE), STRUGGLE_CHECK_ALL);
+        rand1 = BattleSystem_CheckStruggling(battleSys, battleCtx, battleCtx->attacker, FlagIndex(ATTACKER_MOVE_SLOT), STRUGGLE_CHECK_ALL);
 
         if (rand1 == 0xF) {
             *nextSeq = BATTLE_SUBSEQ_DISOBEY_DO_NOTHING;
@@ -2222,8 +2222,8 @@ static int BattleController_CheckObedience(BattleSystem *battleSys, BattleContex
             rand2 = BattleSystem_RandNext(battleSys) & 3;
         } while (rand1 & FlagIndex(rand2));
 
-        ATTACKING_MOVE = rand2;
-        battleCtx->moveTemp = ATTACKING_MON.moves[ATTACKING_MOVE];
+        ATTACKER_MOVE_SLOT = rand2;
+        battleCtx->moveTemp = ATTACKING_MON.moves[ATTACKER_MOVE_SLOT];
         battleCtx->moveCur = battleCtx->moveTemp;
         battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveTemp, TRUE, 0);
 
