@@ -43,17 +43,14 @@ u32 sub_0208C0A4 (u32 param0, u32 param1)
     return v0 >> 2;
 }
 
-u8 sub_0208C0BC (u32 param0, u32 param1, u8 param2)
+u8 App_PixelCount(u32 cur, u32 max, u8 maxPixels)
 {
-    u8 v0;
-
-    v0 = param0 * param2 / param1;
-
-    if ((v0 == 0) && (param0 > 0)) {
-        v0 = 1;
+    u8 pixels = cur * maxPixels / max;
+    if (pixels == 0 && cur > 0) {
+        pixels = 1;
     }
 
-    return v0;
+    return pixels;
 }
 
 u8 sub_0208C0D4 (u32 param0, u32 param1)
@@ -80,7 +77,7 @@ u8 sub_0208C104 (u16 param0, u16 param1, u32 param2)
         return 4;
     }
 
-    v0 = sub_0208C0BC(param0, param1, param2);
+    v0 = App_PixelCount(param0, param1, param2);
 
     return sub_0208C0D4(v0, param2);
 }

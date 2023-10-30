@@ -46,6 +46,14 @@
 #define SYSCTL_SKIP_STOLEN_CHECK        (1 << 7)
 
 #define SYSCTL_HIT_MULTIPLE_TARGETS     (SYSCTL_SKIP_OBEDIENCE_CHECK | SYSCTL_SKIP_STATUS_CHECK | SYSCTL_SKIP_PP_DECREMENT)
+#define SYSCTL_TWO_HITS                 (SYSCTL_SKIP_OBEDIENCE_CHECK | SYSCTL_SKIP_STATUS_CHECK | SYSCTL_SKIP_PP_DECREMENT)
+#define SYSCTL_MULTI_HIT_MOVE           (SYSCTL_SKIP_OBEDIENCE_CHECK \
+                                        | SYSCTL_SKIP_STATUS_CHECK \
+                                        | SYSCTL_SKIP_PP_DECREMENT \
+                                        | SYSCTL_SKIP_IMMUNITY_TRIGGERS \
+                                        | SYSCTL_SKIP_ACCURACY_CHECK \
+                                        | SYSCTL_SKIP_ACCURACY_OVERRIDES \
+                                        | SYSCTL_SKIP_STOLEN_CHECK)
 
 #define BATTLER_STATUS_SWITCHING        1
 

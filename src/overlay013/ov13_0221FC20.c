@@ -1476,7 +1476,7 @@ static void ov13_022214E0 (UnkStruct_ov13_022213F0 * param0, u8 param1)
         v2 = 0;
     }
 
-    v6 = sub_0208C0BC(v2, v1, 64);
+    v6 = App_PixelCount(v2, v1, 64);
 
     for (v7 = 0; v7 < 8; v7++) {
         if (v6 >= 8) {

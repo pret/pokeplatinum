@@ -389,9 +389,34 @@ int ov16_022558CC(u8 param0, u8 param1, u8 param2);
  */
 BOOL Move_IsInvoker(u16 move);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
-BOOL ov16_02255980(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL ov16_022559DC(BattleContext * param0, int param1);
-BOOL ov16_022559FC(BattleSystem * param0, BattleContext * param1);
+
+/**
+ * @brief Determine if a battler's item can be stolen.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return FALSE
+ */
+BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+BOOL BattleSystem_NotHoldingMail(BattleContext * param0, int param1);
+
+/**
+ * @brief Determine if a target can be Whirlwinded away by an attacker.
+ * 
+ * If the attacker is of a lesser level than the target, then this routine has
+ * a random chance to return FALSE. Given a random integer R between 0 and 255,
+ * Whirlwind will fail if the following condition holds:
+ * 
+ *     R * (attackerLevel + defenderLevel)       defenderLevel
+ *     ----------------------------------- + 1 ≤ -------------
+ *                   256                               4
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return TRUE if Whirlwind should succeed, FALSE if it should fail.
+ */
+BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx);
 u8 Battler_Ability(BattleContext * param0, int param1);
 
 /**

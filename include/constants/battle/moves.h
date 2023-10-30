@@ -49,6 +49,7 @@
                                             | MOVE_EFFECT_EMBARGO \
                                             | MOVE_EFFECT_HEAL_BLOCK \
                                             | MOVE_EFFECT_MAGNET_RISE)
+#define MOVE_EFFECT_NO_WEATHER_DAMAGE       (MOVE_EFFECT_UNDERGROUND | MOVE_EFFECT_UNDERWATER)
 
 #define MOVE_EFFECT_LOCK_ON_SHIFT   3
 #define MOVE_EFFECT_YAWN_SHIFT      11
