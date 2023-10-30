@@ -2286,7 +2286,7 @@ static void ov14_02221EBC (BattleSystem * param0, BattleContext * param1)
     v1 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
 
-    param1->aiContext.calcTemp = ov16_02258B80(param1, v0);
+    param1->aiContext.calcTemp = Battler_ItemFlingPower(param1, v0);
 }
 
 static void ov14_02221EEC (BattleSystem * param0, BattleContext * param1)

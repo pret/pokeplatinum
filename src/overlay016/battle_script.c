@@ -8518,7 +8518,7 @@ static BOOL ov16_02247B28 (BattleSystem * param0, BattleContext * param1)
 
     if ((param1->battleMons[param1->defender].heldItem) && (Battler_IgnorableAbility(param1, param1->attacker, param1->defender, 60) == 1)) {
         BattleScript_Iter(param1, v0);
-    } else if (((param1->battleMons[param1->defender].heldItem) && (param1->battleMons[param1->defender].moveEffectsData.custapBerry)) || (ov16_02258CB4(param0, param1, param1->defender) != 1)) {
+    } else if (((param1->battleMons[param1->defender].heldItem) && (param1->battleMons[param1->defender].moveEffectsData.custapBerry)) || (BattleSystem_PluckBerry(param0, param1, param1->defender) != 1)) {
         BattleScript_Iter(param1, v1);
     }
 
@@ -8533,7 +8533,7 @@ static BOOL ov16_02247BA4 (BattleSystem * param0, BattleContext * param1)
 
     v0 = BattleScript_Read(param1);
 
-    if (ov16_02259204(param0, param1, param1->attacker) != 1) {
+    if (BattleSystem_FlingItem(param0, param1, param1->attacker) != 1) {
         BattleScript_Iter(param1, v0);
     }
 
