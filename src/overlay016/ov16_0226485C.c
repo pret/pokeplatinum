@@ -121,9 +121,9 @@ void ov16_02266460(BattleSystem * param0, int param1);
 void BattleIO_StopGaugeAnimation(BattleSystem *battleSys, int battler);
 void BattleIO_RefreshPartyStatus(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleIO_ForgetMove(BattleSystem * param0, int param1, int param2, int param3);
-void ov16_022664F8(BattleSystem * param0, int param1, int param2, int param3);
-void ov16_0226651C(BattleSystem * param0, int param1);
-void ov16_022665AC(BattleSystem * param0, int param1);
+void BattleIO_SetMosaic(BattleSystem * param0, int param1, int param2, int param3);
+void BattleIO_ChangeWeatherForm(BattleSystem * param0, int param1);
+void BattleIO_UpdateBG(BattleSystem * param0, int param1);
 void BattleIO_ClearTouchScreen(BattleSystem * param0, int param1);
 void ov16_022665E4(BattleSystem * param0, int param1);
 void ov16_0226660C(BattleSystem * param0, int param1);
@@ -142,7 +142,7 @@ void ov16_022668D0(BattleSystem * param0);
 void ov16_0226692C(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_022669D8(BattleSystem * param0, BattleContext * param1, int param2);
 void ov16_02266A18(BattleSystem * param0, int param1, int param2);
-void ov16_02266A38(BattleSystem * param0);
+void BattleIO_SubmitResult(BattleSystem * param0);
 void ov16_02266ABC(BattleSystem * param0, int param1, int param2);
 BOOL ov16_02266AE4(BattleSystem * param0, void * param1);
 void ov16_02266B78(BattleSystem * param0, BattleContext * param1, UnkStruct_ov16_02265BBC * param2, int param3, int param4, int param5, int param6, u16 param7);
@@ -1338,7 +1338,7 @@ void BattleIO_ForgetMove (BattleSystem * param0, int param1, int param2, int par
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_02266498));
 }
 
-void ov16_022664F8 (BattleSystem * param0, int param1, int param2, int param3)
+void BattleIO_SetMosaic (BattleSystem * param0, int param1, int param2, int param3)
 {
     UnkStruct_ov16_022664F8 v0;
 
@@ -1349,7 +1349,7 @@ void ov16_022664F8 (BattleSystem * param0, int param1, int param2, int param3)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_022664F8));
 }
 
-void ov16_0226651C (BattleSystem * param0, int param1)
+void BattleIO_ChangeWeatherForm (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C684 v0;
 
@@ -1370,7 +1370,7 @@ void ov16_0226651C (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C684));
 }
 
-void ov16_022665AC (BattleSystem * param0, int param1)
+void BattleIO_UpdateBG (BattleSystem * param0, int param1)
 {
     int v0 = 46;
     ov16_02264A04(param0, 1, param1, &v0, 4);
@@ -1585,7 +1585,7 @@ void ov16_02266A18 (BattleSystem * param0, int param1, int param2)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225CA60));
 }
 
-void ov16_02266A38 (BattleSystem * param0)
+void BattleIO_SubmitResult (BattleSystem * param0)
 {
     UnkStruct_ov16_02266A38 v0;
     u32 v1 = BattleSystem_BattleType(param0);

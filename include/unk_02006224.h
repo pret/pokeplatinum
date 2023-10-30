@@ -15,7 +15,7 @@ void sub_020063C0(UnkStruct_0202CC84 * param0);
 void sub_020063D4(u8 param0);
 BOOL sub_020063E4(UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3);
 BOOL sub_02006438(UnkStruct_0202CC84 * param0, u32 param1, int param2, int param3, u8 param4);
-int sub_02006494(UnkStruct_0202CC84 * param0);
+int Sound_Chatter(UnkStruct_0202CC84 * param0);
 BOOL sub_020064C8(int param0);
 
 #endif // POKEPLATINUM_UNK_02006224_H

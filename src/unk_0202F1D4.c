@@ -490,7 +490,7 @@ void sub_0202F8AC (BattleParams * param0)
         sub_0202FCE8(param0->parties[v0], &v1->unk_1150[v0]);
         TrainerInfo_Copy(param0->unk_D0[v0], &v1->unk_1B68[v0]);
 
-        v2->unk_14C[v0] = sub_02006494(param0->unk_F0[v0]);
+        v2->unk_14C[v0] = Sound_Chatter(param0->unk_F0[v0]);
     }
 
     sub_02027A10(param0->unk_108, &v1->unk_1BE8);

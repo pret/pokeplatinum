@@ -3290,7 +3290,7 @@ static int ov14_0222327C (BattleSystem * param0, BattleContext * param1, int par
 
     switch (param3) {
     case 363:
-        v0 = ov16_02258B2C(param1, param2);
+        v0 = Battler_NaturalGiftType(param1, param2);
         break;
     case 449:
         switch (Battler_HeldItemEffect(param1, param2)) {

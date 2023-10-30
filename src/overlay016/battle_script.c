@@ -223,7 +223,7 @@ static BOOL BtlCmd_CalcMagnitudePower(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_TryReplaceBattler(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_WeatherHPRecovery(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_CalcHiddenPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcHiddenPowerParams(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CopyStatStages(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySetupFutureSight(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckMoveHit(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -248,49 +248,49 @@ static BOOL BtlCmd_CalcWeightBasedPower(BattleSystem *battleSys, BattleContext *
 static BOOL BtlCmd_CalcWeatherBallPower(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckForPursuit(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ApplyTypeMatchup(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL BtlCmd_IfTurnFlag(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_SetTurnFlag(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CalcGyroBallPower(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_TryMetalBurst(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CalcPaybackPower(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CalcTrumpCardPower(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CalcWringOutPower(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_TryMeFirst(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_TryCopycat(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CalcPunishmentPower(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_TrySuckerPunch(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CheckSideCondition(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CheckDefenderProtecting(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CheckCanShareStatus(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_TryLastResort(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_TryToxicSpikes(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CheckToxicSpikes(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_CheckIgnorableAbility(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_IfSameSide(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_SetTrickRoom(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_IfMovedThisTurn(BattleSystem * param0, BattleContext * param1);
-static BOOL BtlCmd_IfItemEffect(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247950(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224799C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022479E8(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247A80(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247AB0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247AE0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247B28(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247BA4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247BD4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247C04(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247C64(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247C94(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247CE0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247D04(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247E10(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247E98(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247F44(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247F7C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247FBC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02247FE8(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_IfTurnFlag(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetTurnFlag(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcGyroBallPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryMetalBurst(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcPaybackPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcTrumpCardPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcWringOutPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryMeFirst(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryCopycat(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcPunishmentPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TrySuckerPunch(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckSideCondition(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckDefenderProtecting(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckCanShareStatus(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryLastResort(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryToxicSpikes(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckToxicSpikes(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckIgnorableAbility(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IfSameSide(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetTrickRoom(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IfMovedThisTurn(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IfItemEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GetItemEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GetItemEffectPower(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryCamouflage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GetTerrainMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GetTerrainSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CalcNaturalGiftParams(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryPluckBerry(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryFlingItem(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitYesNoResult(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitPartyScreenResult(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SubmitResult(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckStealthRock(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckActivateSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckActivateChatterEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_GetCurrentMoveData(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetMosaic(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ChangeWeatherForm(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_UpdateBG(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL ov16_02248000(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02248040(BattleSystem * param0, BattleContext * param1);
 static BOOL ov16_02248084(BattleSystem * param0, BattleContext * param1);
@@ -483,7 +483,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_TryReplaceBattler,
     BtlCmd_RapidSpin,
     BtlCmd_WeatherHPRecovery,
-    BtlCmd_CalcHiddenPower,
+    BtlCmd_CalcHiddenPowerParams,
     BtlCmd_CopyStatStages,
     BtlCmd_TrySetupFutureSight,
     BtlCmd_CheckMoveHit,
@@ -531,26 +531,26 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_SetTrickRoom,
     BtlCmd_IfMovedThisTurn,
     BtlCmd_IfItemEffect,
-    ov16_02247950,
-    ov16_0224799C,
-    ov16_022479E8,
-    ov16_02247A80,
-    ov16_02247AB0,
-    ov16_02247AE0,
-    ov16_02247B28,
-    ov16_02247BA4,
-    ov16_02247BD4,
-    ov16_02247C04,
-    ov16_02247C64,
-    ov16_02247C94,
-    ov16_02247CE0,
-    ov16_02247D04,
-    ov16_02247E10,
-    ov16_02247E98,
-    ov16_02247F44,
-    ov16_02247F7C,
-    ov16_02247FBC,
-    ov16_02247FE8,
+    BtlCmd_GetItemEffect,
+    BtlCmd_GetItemEffectPower,
+    BtlCmd_TryCamouflage,
+    BtlCmd_GetTerrainMove,
+    BtlCmd_GetTerrainSecondaryEffect,
+    BtlCmd_CalcNaturalGiftParams,
+    BtlCmd_TryPluckBerry,
+    BtlCmd_TryFlingItem,
+    BtlCmd_ShowYesNoScreen,
+    BtlCmd_WaitYesNoResult,
+    BtlCmd_ShowPartyScreen,
+    BtlCmd_WaitPartyScreenResult,
+    BtlCmd_SubmitResult,
+    BtlCmd_CheckStealthRock,
+    BtlCmd_CheckActivateSecondaryEffect,
+    BtlCmd_CheckActivateChatterEffect,
+    BtlCmd_GetCurrentMoveData,
+    BtlCmd_SetMosaic,
+    BtlCmd_ChangeWeatherForm,
+    BtlCmd_UpdateBG,
     ov16_02248000,
     ov16_02248040,
     ov16_02248084,
@@ -6342,7 +6342,7 @@ static BOOL BtlCmd_WeatherHPRecovery(BattleSystem *battleSys, BattleContext *bat
  * @param battleCtx 
  * @return FALSE
  */
-static BOOL BtlCmd_CalcHiddenPower(BattleSystem *battleSys, BattleContext *battleCtx)
+static BOOL BtlCmd_CalcHiddenPowerParams(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
 
@@ -8329,475 +8329,633 @@ static BOOL BtlCmd_IfItemEffect(BattleSystem *battleSys, BattleContext *battleCt
     return FALSE;
 }
 
-static BOOL ov16_02247950 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Get a battler's held item and store its effect into the
+ * specified variable.
+ * 
+ * Inputs:
+ * 1. The battler whose item is to be accessed.
+ * 2. The variable in which to store the item effect.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_GetItemEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int * v3;
-    u16 v4;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int dstVar = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *var = BattleScript_VarAddress(battleSys, battleCtx, dstVar);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    u16 item = Battler_HeldItem(battleCtx, battler);
 
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_VarAddress(param0, param1, v2);
-    v0 = BattleScript_Battler(param0, param1, v1);
-    v4 = Battler_HeldItem(param1, v0);
+    *var = BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HOLD_EFFECT);
 
-    v3[0] = BattleSystem_GetItemData(param1, v4, 1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224799C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Get a battler's held item and store its effect power into the
+ * specified variable.
+ * 
+ * Inputs:
+ * 1. The battler whose item is to be accessed.
+ * 2. The variable in which to store the item effect power.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_GetItemEffectPower(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int * v3;
-    u16 v4;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int dstVar = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *var = BattleScript_VarAddress(battleSys, battleCtx, dstVar);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    u16 item = Battler_HeldItem(battleCtx, battler);
 
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_VarAddress(param0, param1, v2);
-    v0 = BattleScript_Battler(param0, param1, v1);
-    v4 = Battler_HeldItem(param1, v0);
+    *var = BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HOLD_EFFECT_PARAM);
 
-    v3[0] = BattleSystem_GetItemData(param1, v4, 2);
-
-    return 0;
+    return FALSE;
 }
 
-static const u8 Unk_ov16_0226EAC0[] = {
-    0x4,
-    0x4,
-    0xC,
-    0xC,
-    0x5,
-    0x5,
-    0xF,
-    0xB,
-    0xF,
-    0x0,
-    0x4,
-    0x2,
-    0x0
+static const u8 sTerrainCamouflageType[] = {
+    [TERRAIN_PLAIN]       = TYPE_GROUND,
+    [TERRAIN_SAND]        = TYPE_GROUND,
+    [TERRAIN_GRASS]       = TYPE_GRASS,
+    [TERRAIN_PUDDLE]      = TYPE_GRASS,
+    [TERRAIN_MOUNTAIN]    = TYPE_ROCK,
+    [TERRAIN_CAVE]        = TYPE_ROCK,
+    [TERRAIN_SNOW]        = TYPE_ICE,
+    [TERRAIN_WATER]       = TYPE_WATER,
+    [TERRAIN_ICE]         = TYPE_ICE,
+    [TERRAIN_BUILDING]    = TYPE_NORMAL,
+    [TERRAIN_GREAT_MARSH] = TYPE_GROUND,
+    [TERRAIN_BRIDGE]      = TYPE_FLYING,
+    [TERRAIN_SPECIAL]     = TYPE_NORMAL,
 };
 
-static BOOL ov16_022479E8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to change the battler's type to one according to the battle
+ * terrain.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_TryCamouflage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (Battler_Ability(param1, param1->attacker) == 121) {
-        BattleScript_Iter(param1, v0);
-        return 0;
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MULTITYPE) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        return FALSE;
     }
 
-    v1 = BattleSystem_Terrain(param0);
-
-    if (v1 > 12) {
-        v1 = 12;
+    int terrain = BattleSystem_Terrain(battleSys);
+    if (terrain > TERRAIN_SPECIAL) {
+        terrain = TERRAIN_SPECIAL;
     }
 
-    v2 = Unk_ov16_0226EAC0[v1];
-
-    if ((BattleMon_Get(param1, param1->attacker, 27, NULL) != v2) && (BattleMon_Get(param1, param1->attacker, 28, NULL) != v2)) {
-        param1->battleMons[param1->attacker].type1 = v2;
-        param1->battleMons[param1->attacker].type2 = v2;
-        param1->msgTemp = v2;
+    int type = sTerrainCamouflageType[terrain];
+    if (MON_IS_NOT_TYPE(battleCtx->attacker, type)) {
+        ATTACKING_MON.type1 = type;
+        ATTACKING_MON.type2 = type;
+        battleCtx->msgTemp = type;
     } else {
-        BattleScript_Iter(param1, v0);
+        BattleScript_Iter(battleCtx, jumpOnFail);
     }
 
     return 0;
 }
 
-static const u16 Unk_ov16_0226E652[] = {
-    0x59,
-    0x59,
-    0x192,
-    0x192,
-    0x9D,
-    0x9D,
-    0x3B,
-    0x38,
-    0x3A,
-    0xA1,
-    0x1AA,
-    0x193,
-    0xA1
+static const u16 sTerrainMove[] = {
+    [TERRAIN_PLAIN]       = MOVE_EARTHQUAKE,
+    [TERRAIN_SAND]        = MOVE_EARTHQUAKE,
+    [TERRAIN_GRASS]       = MOVE_SEED_BOMB,
+    [TERRAIN_PUDDLE]      = MOVE_SEED_BOMB,
+    [TERRAIN_MOUNTAIN]    = MOVE_ROCK_SLIDE,
+    [TERRAIN_CAVE]        = MOVE_ROCK_SLIDE,
+    [TERRAIN_SNOW]        = MOVE_BLIZZARD,
+    [TERRAIN_WATER]       = MOVE_HYDRO_PUMP,
+    [TERRAIN_ICE]         = MOVE_ICE_BEAM,
+    [TERRAIN_BUILDING]    = MOVE_TRI_ATTACK,
+    [TERRAIN_GREAT_MARSH] = MOVE_MUD_BOMB,
+    [TERRAIN_BRIDGE]      = MOVE_AIR_SLASH,
+    [TERRAIN_SPECIAL]     = MOVE_TRI_ATTACK,
 };
 
-static BOOL ov16_02247A80 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Get the move which corresponding to this battle's terrain.
+ * 
+ * Side effects:
+ * - battleCtx->msgMoveTemp will be set to the terrain's corresponding move.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_GetTerrainMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleSystem_Terrain(param0);
+    BattleScript_Iter(battleCtx, 1);
 
-    if (v0 > 12) {
-        v0 = 12;
+    int terrain = BattleSystem_Terrain(battleSys);
+    if (terrain > TERRAIN_SPECIAL) {
+        terrain = TERRAIN_SPECIAL;
     }
 
-    param1->msgMoveTemp = Unk_ov16_0226E652[v0];
+    battleCtx->msgMoveTemp = sTerrainMove[terrain];
 
-    return 0;
+    return FALSE;
 }
 
-static const u32 Unk_ov16_0226E690[] = {
-    0x8000001B,
-    0x8000001B,
-    0x80000001,
-    0x80000001,
-    0x80000008,
-    0x80000008,
-    0x80000004,
-    0x80000016,
-    0x80000004,
-    0x80000005,
-    0x80000018,
-    0x8000001C,
-    0x80000005
+static const u32 sTerrainSideEffect[] = {
+    [TERRAIN_PLAIN]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ACCURACY_DOWN_1_STAGE,
+    [TERRAIN_SAND]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ACCURACY_DOWN_1_STAGE,
+    [TERRAIN_GRASS]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SLEEP,
+    [TERRAIN_PUDDLE]      = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SLEEP,
+    [TERRAIN_MOUNTAIN]    = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FLINCH,
+    [TERRAIN_CAVE]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FLINCH,
+    [TERRAIN_SNOW]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FREEZE,
+    [TERRAIN_WATER]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ATTACK_DOWN_1_STAGE,
+    [TERRAIN_ICE]         = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FREEZE,
+    [TERRAIN_BUILDING]    = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_PARALYZE,
+    [TERRAIN_GREAT_MARSH] = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SPEED_DOWN_1_STAGE,
+    [TERRAIN_BRIDGE]      = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_EVASION_DOWN_1_STAGE,
+    [TERRAIN_SPECIAL]     = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_PARALYZE,
 };
 
-static BOOL ov16_02247AB0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Get the secondary effect corresponding to this battle's terrain.
+ * 
+ * Side effects:
+ * - battleCtx->sideEffectIndirectFlags will be set to the terrain's
+ * corresponding secondary effect flags.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_GetTerrainSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleSystem_Terrain(param0);
-
-    if (v0 > 12) {
-        v0 = 12;
+    int terrain = BattleSystem_Terrain(battleSys);
+    if (terrain > TERRAIN_SPECIAL) {
+        terrain = TERRAIN_SPECIAL;
     }
 
-    param1->sideEffectIndirectFlags = Unk_ov16_0226E690[v0];
+    battleCtx->sideEffectIndirectFlags = sTerrainSideEffect[terrain];
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247AE0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Calculate the type and base power of Natural Gift.
+ * 
+ * Inputs:
+ * 1. The distance to jump if the attacker's item cannot be used with Natural
+ * Gift.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CalcNaturalGiftParams(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpInvalidItem = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = ov16_02258B18(param1, param1->attacker);
-
-    if (v1) {
-        param1->movePower = v1;
-        param1->moveType = ov16_02258B2C(param1, param1->attacker);
+    int power = Battler_NaturalGiftPower(battleCtx, battleCtx->attacker);
+    if (power) {
+        battleCtx->movePower = power;
+        battleCtx->moveType = Battler_NaturalGiftType(battleCtx, battleCtx->attacker);
     } else {
-        BattleScript_Iter(param1, v0);
+        BattleScript_Iter(battleCtx, jumpInvalidItem);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247B28 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to Pluck the defender's berry and grant its effect to the attacker.
+ * 
+ * Inputs:
+ * 1. The distance to jump if the defender has Sticky Hold.
+ * 2. The distance to jump if the defender's berry does not have a Pluckable
+ * effect, or if the defender used their Custap Berry this turn.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_TryPluckBerry(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpStickyHold = BattleScript_Read(battleCtx);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-
-    if ((param1->battleMons[param1->defender].heldItem) && (Battler_IgnorableAbility(param1, param1->attacker, param1->defender, 60) == 1)) {
-        BattleScript_Iter(param1, v0);
-    } else if (((param1->battleMons[param1->defender].heldItem) && (param1->battleMons[param1->defender].moveEffectsData.custapBerry)) || (BattleSystem_PluckBerry(param0, param1, param1->defender) != 1)) {
-        BattleScript_Iter(param1, v1);
+    if (DEFENDING_MON.heldItem
+            && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STICKY_HOLD) == TRUE) {
+        BattleScript_Iter(battleCtx, jumpStickyHold);
+    } else if ((DEFENDING_MON.heldItem && DEFENDING_MON.moveEffectsData.custapBerry)
+            || BattleSystem_PluckBerry(battleSys, battleCtx, battleCtx->defender) != TRUE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247BA4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to Fling the attacker's item and enact its effect on the defender.
+ * 
+ * Inputs:
+ * 1. The distance to jump if the attacker's item does not have a Flingable
+ * effect.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_TryFlingItem(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (BattleSystem_FlingItem(param0, param1, param1->attacker) != 1) {
-        BattleScript_Iter(param1, v0);
+    if (BattleSystem_FlingItem(battleSys, battleCtx, battleCtx->attacker) != TRUE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247BD4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Show a Yes/No option-select on the bottom screen.
+ * 
+ * Inputs:
+ * 1. The type of Yes/No option-select to be shown.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int type = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
-    BattleIO_ShowYesNoScreen(param0, param1, 0, NULL, v0, NULL, NULL);
+    BattleIO_ShowYesNoScreen(battleSys, battleCtx, BATTLER_US, NULL, type, NULL, NULL);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247C04 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Wait for a result from a displayed Yes/No option-select.
+ * 
+ * This command will NOT modify the sequence cursor until an input is made.
+ * 
+ * Inputs:
+ * 1. The distance to jump if the player selected Yes.
+ * 2. The distance to jump if the player selected No.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_WaitYesNoResult(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
-    int v2;
+    u8 input = BattleContext_IOBufferVal(battleCtx, 0);
 
-    v0 = BattleContext_IOBufferVal(param1, 0);
+    if (input) {
+        BattleScript_Iter(battleCtx, 1);
+        int jumpIfYes = BattleScript_Read(battleCtx);
+        int jumpIfNo = BattleScript_Read(battleCtx);
 
-    if (v0) {
-        BattleScript_Iter(param1, 1);
-
-        v1 = BattleScript_Read(param1);
-        v2 = BattleScript_Read(param1);
-
-        if (v0 == 0xff) {
-            BattleScript_Iter(param1, v2);
+        if (input == 0xFF) {
+            BattleScript_Iter(battleCtx, jumpIfNo);
         } else {
-            BattleScript_Iter(param1, v1);
+            BattleScript_Iter(battleCtx, jumpIfYes);
         }
 
-        BattleSystem_Record(param0, 0, v0);
+        BattleSystem_Record(battleSys, 0, input);
     }
 
-    param1->battleProgressFlag = 1;
-
-    return 0;
+    battleCtx->battleProgressFlag = TRUE;
+    return FALSE;
 }
 
-static BOOL ov16_02247C64 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Show the Party menu on the bottom screen.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1 = BattleSystem_MaxBattlers(param0);
+    BattleSystem_MaxBattlers(battleSys); // must stay to match
+    BattleScript_Iter(battleCtx, 1);
+    
+    BattleIO_ShowPartyScreen(battleSys, battleCtx, BATTLER_US, 0, 0, 6);
+    battleCtx->switchedMon = BATTLER_US;
 
-    BattleScript_Iter(param1, 1);
-    BattleIO_ShowPartyScreen(param0, param1, 0, 0, 0, 6);
-
-    param1->switchedMon = 0;
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247C94 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Wait for a result from a displayed Party menu.
+ * 
+ * This command will NOT modify the sequence cursor until an input is made.
+ * 
+ * Inputs:
+ * 1. The distance to jump if the player selected Cancel.
+ * 
+ * Side effects:
+ * - battleCtx->switchedPartySlot will be updated to reflect the chosen
+ * party slot for a switch.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_WaitPartyScreenResult(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 v0;
-    int v1;
+    u8 input = BattleContext_IOBufferVal(battleCtx, 0);
 
-    v0 = BattleContext_IOBufferVal(param1, 0);
+    if (input) {
+        BattleScript_Iter(battleCtx, 1);
+        int jumpIfCancel = BattleScript_Read(battleCtx);
 
-    if (v0) {
-        BattleScript_Iter(param1, 1);
-
-        v1 = BattleScript_Read(param1);
-
-        if (v0 == 0xff) {
-            BattleScript_Iter(param1, v1);
+        if (input == 0xFF) {
+            BattleScript_Iter(battleCtx, jumpIfCancel);
         } else {
-            param1->switchedPartySlot[0] = v0 - 1;
+            battleCtx->switchedPartySlot[BATTLER_US] = input - 1;
         }
     }
 
-    param1->battleProgressFlag = 1;
-
-    return 0;
+    battleCtx->battleProgressFlag = TRUE;
+    return FALSE;
 }
 
-static BOOL ov16_02247CE0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Submit the battle result flag to other Wi-fi battlers, if this is
+ * a Wi-fi battle.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_SubmitResult(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    if (BattleSystem_BattleType(param0) & 0x4) {
-        ov16_02266A38(param0);
+    if (BattleSystem_BattleType(battleSys) & BATTLE_TYPE_LINK) {
+        BattleIO_SubmitResult(battleSys);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247D04 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Check for Stealth Rock on a battler's side of the field.
+ * 
+ * Inputs:
+ * 1. The battler for whom Stealth Rock should be checked.
+ * 2. The distance to jump if there is no effect to apply.
+ * 
+ * Side effects:
+ * - battleCtx->hpCalcTemp will be set to the HP deduction to apply to the
+ * input battler from Stealth Rock.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckStealthRock(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int side = Battler_Side(battleSys, battler);
+    int type1 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_1, NULL);
+    int type2 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_2, NULL);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Battler(param0, param1, v0);
-    v3 = Battler_Side(param0, v2);
-    v4 = BattleMon_Get(param1, v2, 27, NULL);
-    v5 = BattleMon_Get(param1, v2, 28, NULL);
+    if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_STEALTH_ROCK)
+            && battleCtx->battleMons[battler].curHP) {
+        switch (BattleSystem_TypeMatchupMultiplier(TYPE_ROCK, type1, type2)) {
+        case TYPE_MULTI_QUADRUPLE_DAMAGE:
+            battleCtx->hpCalcTemp = 2;
+            break;
 
-    if ((param1->sideConditionsMask[v3] & 0x80) && (param1->battleMons[v2].curHP)) {
-        switch (ov16_022558CC(5, v4, v5)) {
-        case 160:
-            param1->hpCalcTemp = 2;
+        case TYPE_MULTI_DOUBLE_DAMAGE:
+            battleCtx->hpCalcTemp = 4;
             break;
-        case 80:
-            param1->hpCalcTemp = 4;
+
+        case TYPE_MULTI_BASE_DAMAGE:
+            battleCtx->hpCalcTemp = 8;
             break;
-        case 40:
-            param1->hpCalcTemp = 8;
+
+        case TYPE_MULTI_HALF_DAMAGE:
+            battleCtx->hpCalcTemp = 16;
             break;
-        case 20:
-            param1->hpCalcTemp = 16;
+
+        case TYPE_MULTI_QUARTER_DAMAGE:
+            battleCtx->hpCalcTemp = 32;
             break;
-        case 10:
-            param1->hpCalcTemp = 32;
-            break;
-        case 0:
-            BattleScript_Iter(param1, v1);
-            return 0;
+
+        case TYPE_MULTI_IMMUNE:
+            BattleScript_Iter(battleCtx, jumpNoEffect);
+            return FALSE;
+
         default:
-            GF_ASSERT(0);
+            GF_ASSERT(FALSE);
             break;
         }
 
-        param1->hpCalcTemp = BattleSystem_Divide(param1->battleMons[v2].maxHP * -1, param1->hpCalcTemp);
+        battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, battleCtx->hpCalcTemp);
     } else {
-        BattleScript_Iter(param1, v1);
+        BattleScript_Iter(battleCtx, jumpNoEffect);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247E10 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Check if a secondary effect should activate.
+ * 
+ * Inputs:
+ * 1. The distance to jump ahead if the secondary effect should NOT activate.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE  
+ */
+static BOOL BtlCmd_CheckActivateSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u16 v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-    v0 = BattleScript_Read(param1);
-
-    if (Battler_Ability(param1, param1->attacker) == 32) {
-        v1 = param1->aiContext.moveTable[param1->moveCur].effectChance * 2;
+    u16 effectChance;
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SERENE_GRACE) {
+        effectChance = CURRENT_MOVE_DATA.effectChance * 2;
     } else {
-        v1 = param1->aiContext.moveTable[param1->moveCur].effectChance;
+        effectChance = CURRENT_MOVE_DATA.effectChance;
     }
 
-    GF_ASSERT(v1 != 0);
+    GF_ASSERT(effectChance != 0);
 
-    if (((BattleSystem_RandNext(param0) % 100) < v1) && (param1->battleMons[param1->sideEffectMon].curHP)) {
-        return 0;
+    if (BattleSystem_RandNext(battleSys) % 100 < effectChance
+            && battleCtx->battleMons[battleCtx->sideEffectMon].curHP) {
+        return FALSE;
     }
 
-    BattleScript_Iter(param1, v0);
-
-    return 0;
+    BattleScript_Iter(battleCtx, jumpNoEffect);
+    return FALSE;
 }
 
-static BOOL ov16_02247E98 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Check if Chatter's secondary effect should activate based on Chatot's
+ * sound data.
+ * 
+ * Inputs:
+ * 1. The distance to jump ahead if the secondary effect should NOT activate.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CheckActivateChatterEffect(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    u16 v1;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    {
-        int v2;
-
-        if ((param1->battleMons[param1->attacker].species == 441) && (param1->battleMons[param1->defender].curHP) && ((param1->battleMons[param1->attacker].statusVolatile & 0x200000) == 0)) {
-            if ((BattleSystem_BattleStatus(param0) & 0x10) == 0) {
-                v2 = sub_02006494(ov16_0223EE30(param0, param1->attacker));
-            } else {
-                v2 = ov16_0223F810(param0, param1->attacker);
-            }
-
-            switch (v2) {
-            default:
-            case 0:
-                v1 = 0;
-                break;
-            case 1:
-                v1 = 10;
-                break;
-            case 2:
-                v1 = 30;
-                break;
-            }
-
-            if ((BattleSystem_RandNext(param0) % 100) > v1) {
-                BattleScript_Iter(param1, v0);
-            }
+    if (ATTACKING_MON.species == SPECIES_CHATOT
+            && DEFENDING_MON.curHP
+            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+        int chatter;
+        if ((BattleSystem_BattleStatus(battleSys) & BATTLE_STATUS_RECORDING) == FALSE) {
+            chatter = Sound_Chatter(BattleSystem_ChatotVoice(battleSys, battleCtx->attacker));
         } else {
-            BattleScript_Iter(param1, v0);
+            chatter = BattleSystem_RecordedChatter(battleSys, battleCtx->attacker);
         }
+
+        u16 effectChance;
+        switch (chatter) {
+        default:
+        case 0:
+            effectChance = 0;
+            break;
+
+        case 1:
+            effectChance = 10;
+            break;
+
+        case 2:
+            effectChance = 30;
+            break;
+        }
+
+        if (BattleSystem_RandNext(battleSys) % 100 > effectChance) {
+            BattleScript_Iter(battleCtx, jumpNoEffect);
+        }
+    } else {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247F44 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Gets a parameter from the current move's data table entry.
+ * 
+ * Inputs:
+ * 1. The parameter to be retrieved from the current move.
+ * 
+ * Side effects:
+ * - battleCtx->calcTemp will be set to the value of the requested parameter.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_GetCurrentMoveData(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int param = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    battleCtx->calcTemp = MoveTable_Get(&CURRENT_MOVE_DATA, param);
 
-    v0 = BattleScript_Read(param1);
-    param1->calcTemp = MoveTable_Get(&param1->aiContext.moveTable[param1->moveCur], v0);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247F7C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Sets the mosaic effect on a battler's sprite.
+ * 
+ * Inputs:
+ * 1. The battler on which to apply the effect.
+ * 2. The target distortion level to be applied.
+ * 3. The time to wait between individual distortion levels.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetMosaic(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int param = BattleScript_Read(battleCtx);
+    int wait = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_SetMosaic(battleSys, battler, param, wait);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_022664F8(param0, v3, v1, v2);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247FBC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Signals that a form change should occur due to the field's weather.
+ * 
+ * Inputs:
+ * 1. The battler whose form should be changed.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_ChangeWeatherForm(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_ChangeWeatherForm(battleSys, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_0226651C(param0, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02247FE8 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Issue a signal to shift all terrain graphics into the BG.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_UpdateBG(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_022665AC(param0, 0);
+    BattleScript_Iter(battleCtx, 1);
+    
+    BattleIO_UpdateBG(battleSys, BATTLER_US);
 
-    return 0;
+    return FALSE;
 }
 
 static BOOL ov16_02248000 (BattleSystem * param0, BattleContext * param1)

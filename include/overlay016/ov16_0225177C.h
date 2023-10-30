@@ -384,7 +384,26 @@ BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
  * entry falls outside the bounds of the table.
  */
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
-int ov16_022558CC(u8 param0, u8 param1, u8 param2);
+
+/**
+ * @brief Determine the total multiplier classification to use for an attacking
+ * type against a pair of defending types.
+ * 
+ * This routine centers 1x damage as a return value of 40. From there, the
+ * multiplier varies by powers of 2:
+ * - 1/4x ->  10
+ * - 1/2x ->  20
+ * -   1x ->  40
+ * -   2x ->  80
+ * -   4x -> 160
+ * 
+ * @param attackingType 
+ * @param defendingType1 
+ * @param defendingType2 
+ * @return The total multiplier of the attacking type against a defender with
+ * the pair of types. 
+ */
+int BattleSystem_TypeMatchupMultiplier(u8 attackingType, u8 defendingType1, u8 defendingType2);
 
 /**
  * @brief Determines if a move is an invoker-class move.
@@ -556,8 +575,24 @@ enum HeldItemPowerOp {
  * @return The power of the battler's held item.
  */
 s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPowerOp opcode);
-s32 ov16_02258B18(BattleContext * param0, int param1);
-s32 ov16_02258B2C(BattleContext * param0, int param1);
+
+/**
+ * @brief Get the Natural Gift base power for a battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Base power for Natural Gift.
+ */
+s32 Battler_NaturalGiftPower(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Get the Natural Gift type for a battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Type for Natural Gift.
+ */
+s32 Battler_NaturalGiftType(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Get the Pluck effect of the battler's held item.

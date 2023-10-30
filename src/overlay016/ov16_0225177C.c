@@ -94,7 +94,7 @@ u16 Battler_SelectedMove(BattleContext * param0, int param1);
 int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx, enum CountAbilityMode mode, int battler, int ability);
 BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
-int ov16_022558CC(u8 param0, u8 param1, u8 param2);
+int BattleSystem_TypeMatchupMultiplier(u8 attackingType, u8 defendingType1, u8 defendingType2);
 BOOL Move_IsInvoker(u16 move);
 BOOL BattleSystem_IsGhostCurse(BattleContext * param0, u16 param1, int param2);
 BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
@@ -132,8 +132,8 @@ BOOL Battler_MovedThisTurn(BattleContext * param0, int param1);
 BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem * param0, BattleContext * param1, int * param2);
 s32 Battler_HeldItemEffect(BattleContext * param0, int param1);
 s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPowerOp opcode);
-s32 ov16_02258B18(BattleContext * param0, int param1);
-s32 ov16_02258B2C(BattleContext * param0, int param1);
+s32 Battler_NaturalGiftPower(BattleContext *battleCtx, int battler);
+s32 Battler_NaturalGiftType(BattleContext *battleCtx, int battler);
 s32 Battler_ItemPluckEffect(BattleContext *battleCtx, int battler);
 s32 Battler_ItemFlingEffect(BattleContext *battleCtx, int battler);
 s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler);
@@ -3092,29 +3092,27 @@ BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8
     return result;
 }
 
-int ov16_022558CC (u8 param0, u8 param1, u8 param2)
+int BattleSystem_TypeMatchupMultiplier(u8 attackingType, u8 defendingType1, u8 defendingType2)
 {
-    int v0;
-    int v1;
+    int i = 0;
+    int mul = 40;
 
-    v0 = 0;
-    v1 = 40;
-
-    while (sTypeMatchupMultipliers[v0][0] != 0xff) {
-        if (sTypeMatchupMultipliers[v0][0] == param0) {
-            if (sTypeMatchupMultipliers[v0][1] == param1) {
-                v1 = v1 * sTypeMatchupMultipliers[v0][2] / 10;
+    while (sTypeMatchupMultipliers[i][0] != 0xFF) {
+        if (sTypeMatchupMultipliers[i][0] == attackingType) {
+            if (sTypeMatchupMultipliers[i][1] == defendingType1) {
+                mul = mul * sTypeMatchupMultipliers[i][2] / 10;
             }
 
-            if ((sTypeMatchupMultipliers[v0][1] == param2) && (param1 != param2)) {
-                v1 = v1 * sTypeMatchupMultipliers[v0][2] / 10;
+            if (sTypeMatchupMultipliers[i][1] == defendingType2
+                    && defendingType1 != defendingType2) {
+                mul = mul * sTypeMatchupMultipliers[i][2] / 10;
             }
         }
 
-        v0++;
+        i++;
     }
 
-    return v1;
+    return mul;
 }
 
 BOOL Move_IsInvoker(u16 move)
@@ -5459,20 +5457,16 @@ s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPo
     return BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HOLD_EFFECT_PARAM);
 }
 
-s32 ov16_02258B18 (BattleContext * param0, int param1)
+s32 Battler_NaturalGiftPower(BattleContext *battleCtx, int battler)
 {
-    u16 v0;
-
-    v0 = Battler_HeldItem(param0, param1);
-    return BattleSystem_GetItemData(param0, v0, 11);
+    u16 item = Battler_HeldItem(battleCtx, battler);
+    return BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_NATURAL_GIFT_POWER);
 }
 
-s32 ov16_02258B2C (BattleContext * param0, int param1)
+s32 Battler_NaturalGiftType(BattleContext *battleCtx, int battler)
 {
-    u16 v0;
-
-    v0 = Battler_HeldItem(param0, param1);
-    return BattleSystem_GetItemData(param0, v0, 12);
+    u16 item = Battler_HeldItem(battleCtx, battler);
+    return BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_NATURAL_GIFT_TYPE);
 }
 
 s32 Battler_ItemPluckEffect(BattleContext *battleCtx, int battler)
@@ -7873,7 +7867,7 @@ static int BattleMove_Type (BattleSystem * param0, BattleContext * param1, int p
 
     switch (param3) {
     case 363:
-        v0 = ov16_02258B2C(param1, param2);
+        v0 = Battler_NaturalGiftType(param1, param2);
         break;
     case 449:
         switch (Battler_HeldItemEffect(param1, param2)) {
@@ -8015,8 +8009,8 @@ int ov16_0225BA88 (BattleSystem * param0, int param1)
                 v4 = BattleMon_Get(v20, v2, 28, NULL);
                 v5 = Pokemon_GetValue(v19, MON_DATA_TYPE_1, NULL);
                 v6 = Pokemon_GetValue(v19, MON_DATA_TYPE_2, NULL);
-                v11 = ov16_022558CC(v5, v3, v4);
-                v11 += ov16_022558CC(v6, v3, v4);
+                v11 = BattleSystem_TypeMatchupMultiplier(v5, v3, v4);
+                v11 += BattleSystem_TypeMatchupMultiplier(v6, v3, v4);
 
                 if (v12 < v11) {
                     v12 = v11;
