@@ -259,7 +259,17 @@ void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
 void BattleSystem_SetGaugePriority(BattleSystem * param0, int param1);
-u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
+
+/**
+ * @brief Calculate the money penalty for losing a battle.
+ * 
+ * @param party         The player's party; used to scale the penalty with the
+ *                      highest-level member
+ * @param trainerInfo   The player's state; used to scale the penalty with the
+ *                      number of badges obtained
+ * @return The total amount of money to be deducted from the player
+ */
+u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
 void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
 

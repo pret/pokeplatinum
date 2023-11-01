@@ -9,6 +9,7 @@
 #include "constants/pokemon.h"
 #include "constants/sdat.h"
 #include "constants/species.h"
+#include "constants/trainer.h"
 #include "constants/battle/battle_effects.h"
 #include "constants/battle/condition.h"
 #include "constants/battle/message_tags.h"
@@ -173,7 +174,7 @@ static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_022432B4(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_PayPrizeMoney(BattleSystem * param0, BattleContext * param1);
 static BOOL BtlCmd_PlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayStatusEffectFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -353,16 +354,16 @@ static int BattleMessage_FlavorTag(BattleContext *battleCtx, int battlerIn);
 static int BattleMessage_TrainerClassTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 
-static u32 ov16_022431BC(BattleSystem * param0, BattleContext * param1, int param2);
+static u32 BattleScript_CalcPrizeMoney(BattleSystem * param0, BattleContext * param1, int param2);
 static void BattleScript_CalcEffortValues(Party *party, int slot, int species, int form);
 static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleScript_LoadPartyLevelUpIcon(BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2);
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem * param0, BattleScriptTaskData * param1);
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
-static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
+static void BattleAI_SetAbility(BattleContext *battleCtx, u8 battler, u8 ability);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
-static void BattleScript_GetExpTask(SysTask * param0, void * param1);
-static void BattleScript_CatchMonTask(SysTask * param0, void * param1);
+static void BattleScript_GetExpTask(SysTask *task, void *data);
+static void BattleScript_CatchMonTask(SysTask *task, void *data);
 
 static const BtlCmd sBattleCommands[] = {
     BtlCmd_SetupBattleUI,
@@ -433,7 +434,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_UnlockMoveChoice,
     BtlCmd_SetStatusIcon,
     BtlCmd_TrainerMessage,
-    ov16_022432B4,
+    BtlCmd_PayPrizeMoney,
     BtlCmd_PlayStatusEffect,
     BtlCmd_PlayStatusEffectAToD,
     BtlCmd_PlayStatusEffectFromVar,
@@ -3883,202 +3884,92 @@ static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battle
     return FALSE;
 }
 
-static u8 Unk_ov16_02270B20[] = {
-    0x0,
-    0x0,
-    0x4,
-    0x4,
-    0x4,
-    0x4,
-    0x4,
-    0x8,
-    0x4,
-    0x8,
-    0x4,
-    0x8,
-    0x8,
-    0x8,
-    0x6,
-    0xC,
-    0xC,
-    0xC,
-    0x4,
-    0x8,
-    0x10,
-    0x10,
-    0x2,
-    0x10,
-    0xF,
-    0xF,
-    0x8,
-    0x14,
-    0x2,
-    0x8,
-    0x8,
-    0x1E,
-    0x28,
-    0x28,
-    0x32,
-    0x32,
-    0xE,
-    0x10,
-    0xA,
-    0xF,
-    0xF,
-    0xC,
-    0x4,
-    0x4,
-    0x1,
-    0x1,
-    0x8,
-    0x5,
-    0xC,
-    0x8,
-    0x8,
-    0x1E,
-    0x6,
-    0xF,
-    0xF,
-    0x8,
-    0x8,
-    0x6,
-    0x6,
-    0xA,
-    0x5,
-    0x5,
-    0x1E,
-    0x19,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x32,
-    0xE,
-    0xA,
-    0x14,
-    0xA,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x8,
-    0x8,
-    0x12,
-    0x8,
-    0xA,
-    0x12,
-    0x2D,
-    0x14,
-    0x14,
-    0xA,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x19,
-    0x19,
-    0x0,
-    0xA,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0
-};
+#include "data/trainer_class_prize_mul.h"
 
-static u32 ov16_022431BC (BattleSystem * param0, BattleContext * param1, int param2)
+static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    int jumpIfNoTrigger = 0;
-    void * v1;
-    u32 v2;
-    u8 v3 = 0;
-    TrainerData v4;
+    u8 lastLevel = 0;
+    void *rawParty = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(TrainerMonWithMovesAndItem) * MAX_PARTY_SIZE);
 
-    v1 = Heap_AllocFromHeap(5, sizeof(TrainerMonWithMovesAndItem) * 6);
+    TrainerData trdata;
+    TrainerData_Load(battleSys->trainerIDs[battler], &trdata);
+    TrainerData_LoadParty(battleSys->trainerIDs[battler], rawParty);
 
-    TrainerData_Load(param0->unk_A0[param2], &v4);
-    TrainerData_LoadParty(param0->unk_A0[param2], v1);
-
-    switch (v4.type) {
+    switch (trdata.type) {
     default:
-    case 0:
-    {
-        TrainerMonBase * v5;
-
-        v5 = (TrainerMonBase *)v1;
-        v3 = v5[v4.partySize - 1].level;
-    }
-    break;
-    case 1:
-    {
-        TrainerMonWithMoves * v6;
-
-        v6 = (TrainerMonWithMoves *)v1;
-        v3 = v6[v4.partySize - 1].level;
-    }
-    break;
-    case 2:
-    {
-        TrainerMonWithItem * v7;
-
-        v7 = (TrainerMonWithItem *)v1;
-        v3 = v7[v4.partySize - 1].level;
-    }
-    break;
-    case 3:
-    {
-        TrainerMonWithMovesAndItem * v8;
-
-        v8 = (TrainerMonWithMovesAndItem *)v1;
-        v3 = v8[v4.partySize - 1].level;
-    }
-    break;
+    case TRDATATYPE_BASE: {
+        TrainerMonBase *party = (TrainerMonBase *)rawParty;
+        lastLevel = party[trdata.partySize - 1].level;
+        break;
     }
 
-    if ((param0->battleType & 0x10) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-        v2 = v3 * 4 * param1->prizeMoneyMul * Unk_ov16_02270B20[v4.class];
-    } else if (param0->battleType & 0x2) {
-        v2 = v3 * 4 * param1->prizeMoneyMul * 2 * Unk_ov16_02270B20[v4.class];
+    case TRDATATYPE_WITH_MOVES: {
+        TrainerMonWithMoves *party = (TrainerMonWithMoves *)rawParty;
+        lastLevel = party[trdata.partySize - 1].level;
+        break;
+    }
+
+    case TRDATATYPE_WITH_ITEM: {
+        TrainerMonWithItem *party = (TrainerMonWithItem *)rawParty;
+        lastLevel = party[trdata.partySize - 1].level;
+        break;
+    }
+
+    case TRDATATYPE_WITH_MOVES_AND_ITEM: {
+        TrainerMonWithMovesAndItem *party = (TrainerMonWithMovesAndItem *)rawParty;
+        lastLevel = party[trdata.partySize - 1].level;
+        break;
+    }
+    }
+
+    u32 prize;
+    if ((battleSys->battleType & BATTLE_TYPE_TAG) || battleSys->battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trdata.class];
+    } else if (battleSys->battleType & 0x2) {
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * 2 * sTrainerClassPrizeMul[trdata.class];
     } else {
-        v2 = v3 * 4 * param1->prizeMoneyMul * Unk_ov16_02270B20[v4.class];
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trdata.class];
     }
 
-    Heap_FreeToHeap(v1);
-
-    return v2;
+    Heap_FreeToHeap(rawParty);
+    return prize;
 }
 
-static BOOL ov16_022432B4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Payout the prize money for the battle (or deduct a penalty for losing).
+ * 
+ * Side effects:
+ * - battleCtx->msgTemp will be updated with the amount of money paid out
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u32 jumpIfNoTrigger;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    u32 money;
+    if (battleSys->resultMask == BATTLE_RESULT_WIN) {
+        money = BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
 
-    if (param0->resultMask == 0x1) {
-        jumpIfNoTrigger = ov16_022431BC(param0, param1, 1);
-
-        if ((param0->battleType & 0x10) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-            jumpIfNoTrigger += ov16_022431BC(param0, param1, 3);
+        if ((battleSys->battleType & BATTLE_TYPE_TAG) || battleSys->battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
+            money += BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         }
 
-        TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(param0, 0), jumpIfNoTrigger);
+        TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), money);
     } else {
-        jumpIfNoTrigger = ov16_0223F904(param0->parties[0], param0->trainerInfo[0]);
-        TrainerInfo_TakeMoney(BattleSystem_TrainerInfo(param0, 0), jumpIfNoTrigger);
+        money = BattleSystem_CalcMoneyPenalty(battleSys->parties[BATTLER_US], battleSys->trainerInfo[BATTLER_US]);
+        TrainerInfo_TakeMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), money);
     }
 
-    if (jumpIfNoTrigger) {
-        param1->msgTemp = jumpIfNoTrigger;
+    if (money) {
+        battleCtx->msgTemp = money;
     } else {
-        param1->msgTemp = 0;
+        battleCtx->msgTemp = 0;
     }
 
-    return 0;
+    return FALSE;
 }
 
 /**

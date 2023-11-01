@@ -72,7 +72,7 @@ struct BattleSystem {
     UnkStruct_0200C704 * unk_94;
     UnkStruct_02056B24 * unk_98;
     UnkStruct_0206D140 * unk_9C;
-    u16 unk_A0[4];
+    u16 trainerIDs[4];
     u8 unk_A8[4];
     TrainerData trainers[4];
     UnkStruct_ov16_02268520 unk_17C[2];

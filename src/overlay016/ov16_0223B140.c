@@ -1119,7 +1119,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     GF_ASSERT(param1->unk_11C != NULL);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_A0[v0] = param1->trainerIDs[v0];
+        param0->trainerIDs[v0] = param1->trainerIDs[v0];
         param0->trainers[v0] = param1->trainerData[v0];
     }
 

@@ -205,7 +205,7 @@ void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
 void BattleSystem_SetGaugePriority(BattleSystem * param0, int param1);
-u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
+u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
 void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
 BOOL BattleSystem_CaughtSpecies(BattleSystem *battleSys, int species);
@@ -430,11 +430,11 @@ Strbuf* ov16_0223E0D4 (BattleSystem * param0)
 u16 ov16_0223E0D8 (BattleSystem * param0, int param1)
 {
     if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
-        return param0->unk_A0[param1];
+        return param0->trainerIDs[param1];
     } else if (param0->battleType & 0x2) {
-        return param0->unk_A0[param1 & 1];
+        return param0->trainerIDs[param1 & 1];
     } else {
-        return param0->unk_A0[param1];
+        return param0->trainerIDs[param1];
     }
 }
 
@@ -1659,23 +1659,21 @@ void BattleSystem_SetGaugePriority (BattleSystem * param0, int param1)
     }
 }
 
-u32 ov16_0223F904 (Party * param0, TrainerInfo * param1)
+u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo)
 {
-    static const u8 v0[] = {
+    static const u8 badgeMul[] = {
         2, 4, 6, 9, 12, 16, 20, 25, 30,
     };
-    u32 v1, v2;
-    u8 v3;
 
-    v3 = TrainerInfo_BadgeCount(param1);
-    v1 = Party_GetMaxLevel(param0) * 4 * v0[v3];
-    v2 = TrainerInfo_Money(param1);
+    u8 badges = TrainerInfo_BadgeCount(trainerInfo);
+    u32 penalty = Party_GetMaxLevel(party) * 4 * badgeMul[badges];
+    u32 curMoney = TrainerInfo_Money(trainerInfo);
 
-    if (v1 > v2) {
-        v1 = v2;
+    if (penalty > curMoney) {
+        penalty = curMoney;
     }
 
-    return v1;
+    return penalty;
 }
 
 void BattleSystem_DexFlagSeen (BattleSystem * param0, int param1)
