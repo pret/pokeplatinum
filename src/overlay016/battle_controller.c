@@ -11,13 +11,6 @@
 #include "constants/sdat.h"
 #include "constants/species.h"
 #include "constants/trainer.h"
-#include "constants/battle/battle_effects.h"
-#include "constants/battle/condition.h"
-#include "constants/battle/message_tags.h"
-#include "constants/battle/moves.h"
-#include "constants/battle/scripts.h"
-#include "constants/battle/system_control.h"
-#include "constants/battle/turn_flags.h"
 #include "constants/narc_files/battle_skill_subseq.h"
 #include "constants/savedata/record.h"
 

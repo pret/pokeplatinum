@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 #define POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 
-#include "constants/battle/terrain.h"
+#include "constants/battle.h"
 #include "constants/time.h"
 
 #include "struct_decls/struct_02002F38_decl.h"

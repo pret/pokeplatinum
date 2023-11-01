@@ -7,7 +7,6 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/items.h"
-#include "constants/battle/condition.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
 #include "struct_decls/struct_02007768_decl.h"
