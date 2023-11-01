@@ -426,7 +426,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             return 9;
         }
 
-        if (ov16_0223E30C(v0->unk_00, v0->unk_10, v1, 0, v0->unk_1C) == 1) {
+        if (BattleSystem_UseBagItem(v0->unk_00, v0->unk_10, v1, 0, v0->unk_1C) == 1) {
             ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
             return 13;
         } else if (v2 == 3) {
@@ -479,7 +479,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             Party * v7 = BattleSystem_Party(v0->unk_00, v0->unk_10);
             PCBoxes * v8 = ov16_0223E228(v0->unk_00);
 
-            if ((Party_GetCurrentCount(v7) == 6) && (sub_020799A0(v8) == 18)) {
+            if ((Party_GetCurrentCount(v7) == 6) && (PCBoxes_FirstEmptyBox(v8) == 18)) {
                 MessageLoader_GetStrbuf(param0->unk_10, 45, param0->unk_18);
                 ov13_022279F4(param0);
                 param0->unk_114B = 8;

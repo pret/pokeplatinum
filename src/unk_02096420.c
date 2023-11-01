@@ -732,7 +732,7 @@ static u8 sub_020971D0 (Pokemon * param0, s32 param1, s32 param2, u16 param3, u3
             param2++;
         }
 
-        if (Pokemon_GetValue(param0, MON_DATA_152, NULL) == param3) {
+        if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == param3) {
             param2++;
         }
     }

@@ -340,7 +340,7 @@ static void sub_020928A0 (UnkStruct_02090800 * param0, int param1)
     sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
     sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_147, NULL));
     sub_0200B60C(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
-    sub_0200BECC(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_152, NULL));
+    sub_0200BECC(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LOCATION, NULL));
     sub_0200C388(param0->unk_08, param0->unk_1C.unk_04, v0);
     Strbuf_Free(v0);
 }
@@ -400,7 +400,7 @@ static void sub_02092B1C (UnkStruct_02090800 * param0, int param1, int param2)
         sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_146, NULL), 2, 2, 1);
         sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_147, NULL));
         sub_0200B60C(param0->unk_08, 7, Pokemon_GetValue(param0->unk_0C, MON_DATA_148, NULL), 2, 0, 1);
-        sub_0200BECC(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_152, NULL));
+        sub_0200BECC(param0->unk_08, 8, Pokemon_GetValue(param0->unk_0C, MON_DATA_MET_LOCATION, NULL));
     } else {
         sub_0200B60C(param0->unk_08, 5, Pokemon_GetValue(param0->unk_0C, MON_DATA_149, NULL), 2, 2, 1);
         sub_0200C2E0(param0->unk_08, 6, Pokemon_GetValue(param0->unk_0C, MON_DATA_150, NULL));
@@ -638,7 +638,7 @@ static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
     int v0 = 0;
 
     if (Pokemon_GetValue(param0, MON_DATA_IS_EGG, NULL) == 0) {
-        if ((Pokemon_GetValue(param0, MON_DATA_152, NULL) == 0)) {
+        if ((Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == 0)) {
             if (Pokemon_GetValue(param0, MON_DATA_153, NULL) == (sub_02017070(0, 55))) {
                 v0 = 15;
             } else if ((Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1)) {
@@ -658,13 +658,13 @@ static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
             }
         } else {
             if ((Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1)) {
-                if (Pokemon_GetValue(param0, MON_DATA_152, NULL) == sub_02017070(1, 2)) {
+                if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 2)) {
                     if (param1 == 1) {
                         v0 = 13;
                     } else {
                         v0 = 14;
                     }
-                } else if (Pokemon_GetValue(param0, MON_DATA_152, NULL) == sub_02017070(2, 1)) {
+                } else if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(2, 1)) {
                     if (param1 == 1) {
                         v0 = 11;
                     } else {
@@ -678,7 +678,7 @@ static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
                     }
                 }
             } else {
-                if ((Pokemon_GetValue(param0, MON_DATA_152, NULL) == sub_02017070(1, 1)) || (Pokemon_GetValue(param0, MON_DATA_152, NULL) == sub_02017070(1, 0)) || (Pokemon_GetValue(param0, MON_DATA_152, NULL) == sub_02017070(1, 9)) || (Pokemon_GetValue(param0, MON_DATA_152, NULL) == sub_02017070(1, 10)) || (Pokemon_GetValue(param0, MON_DATA_152, NULL) == sub_02017070(1, 11))) {
+                if ((Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 1)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 0)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 9)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 10)) || (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == sub_02017070(1, 11))) {
                     if (param1 == 1) {
                         v0 = 5;
                     } else {
@@ -696,7 +696,7 @@ static int sub_02092E8C (Pokemon * param0, BOOL param1, int param2)
     } else {
         if (param1 == 1) {
             if ((Pokemon_GetValue(param0, MON_DATA_FATEFUL_ENCOUNTER, NULL) == 1)) {
-                if (Pokemon_GetValue(param0, MON_DATA_152, NULL) == (sub_02017070(2, 1))) {
+                if (Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL) == (sub_02017070(2, 1))) {
                     v0 = 20;
                 } else {
                     v0 = 18;

@@ -155,7 +155,18 @@ int BattleSystem_Partner(BattleSystem * param0, int param1);
  * @return Battler who is an enemy and in the given slot on the enemy team.
  */
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
-BOOL ov16_0223E30C(BattleSystem * param0, int param1, int param2, int param3, int param4);
+
+/**
+ * @brief Use an item from the bag on the given battler.
+ * 
+ * @param battleSys 
+ * @param battler   The battler who is using the item
+ * @param partySlot The party slot the battler is targeting with the item
+ * @param moveSlot  Optional parameter for PP-restoring items
+ * @param item      The item being used
+ * @return TRUE if the item has an effect; FALSE otherwise
+ */
+BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot, int moveSlot, int item);
 u32 BattleSystem_BattleStatus(BattleSystem * param0);
 
 /**
@@ -248,7 +259,17 @@ void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
 void BattleSystem_SetGaugePriority(BattleSystem * param0, int param1);
-u32 ov16_0223F904(Party * param0, TrainerInfo * param1);
+
+/**
+ * @brief Calculate the money penalty for losing a battle.
+ * 
+ * @param party         The player's party; used to scale the penalty with the
+ *                      highest-level member
+ * @param trainerInfo   The player's state; used to scale the penalty with the
+ *                      number of badges obtained
+ * @return The total amount of money to be deducted from the player
+ */
+u32 BattleSystem_CalcMoneyPenalty(Party *party, TrainerInfo *trainerInfo);
 void BattleSystem_DexFlagSeen(BattleSystem * param0, int param1);
 void ov16_0223F9A0(BattleSystem * param0, int param1);
 

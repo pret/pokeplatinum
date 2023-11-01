@@ -950,7 +950,7 @@ static u32 BoxPokemon_GetDataInternal (BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_151:
         result = monDataBlockD->unk_15;
         break;
-    case MON_DATA_152:
+    case MON_DATA_MET_LOCATION:
     case MON_DATA_115:
         // TODO enum value?
         if (monDataBlockD->unk_16 == 3002 && monDataBlockB->unk_1C) {
@@ -1430,7 +1430,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_151:
         monDataBlockD->unk_15 = u8Value[0];
         break;
-    case MON_DATA_152:
+    case MON_DATA_MET_LOCATION:
     case MON_DATA_115:
         if (u16Value[0] == 0 || sub_0201708C(u16Value[0]) == 1) {
             monDataBlockD->unk_16 = u16Value[0];
@@ -1821,7 +1821,7 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_149:
     case MON_DATA_150:
     case MON_DATA_151:
-    case MON_DATA_152:
+    case MON_DATA_MET_LOCATION:
     case MON_DATA_153:
     case MON_DATA_POKERUS:
     case MON_DATA_POKEBALL:
@@ -2226,7 +2226,7 @@ void Pokemon_UpdateFriendship(Pokemon *mon, u8 param1, u16 param2)
         v3++;
     }
 
-    if (v3 > 0 && Pokemon_GetValue(mon, MON_DATA_152, NULL) == param2) {
+    if (v3 > 0 && Pokemon_GetValue(mon, MON_DATA_MET_LOCATION, NULL) == param2) {
         v3++;
     }
 

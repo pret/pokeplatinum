@@ -144,7 +144,7 @@ u32 sub_0207999C (const PCBoxes * param0)
     return param0->unk_00;
 }
 
-u32 sub_020799A0 (const PCBoxes * param0)
+u32 PCBoxes_FirstEmptyBox (const PCBoxes * param0)
 {
     int v0, v1;
 

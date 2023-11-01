@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/abilities.h"
+#include "constants/battle.h"
 #include "constants/gender.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -9,13 +10,7 @@
 #include "constants/pokemon.h"
 #include "constants/sdat.h"
 #include "constants/species.h"
-#include "constants/battle/battle_effects.h"
-#include "constants/battle/condition.h"
-#include "constants/battle/message_tags.h"
-#include "constants/battle/moves.h"
-#include "constants/battle/side_effects.h"
-#include "constants/battle/system_control.h"
-#include "constants/battle/terrain.h"
+#include "constants/trainer.h"
 #include "constants/narc_files/battle_skill_subseq.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -62,6 +57,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "strbuf.h"
+#include "trainer_data.h"
 #include "trainer_info.h"
 
 #include "unk_02002F38.h"
@@ -81,7 +77,6 @@
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "trainer_data.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "unk_0207A274.h"
@@ -172,7 +167,7 @@ static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_022432B4(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_PayPrizeMoney(BattleSystem * param0, BattleContext * param1);
 static BOOL BtlCmd_PlayStatusEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayStatusEffectAToD(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayStatusEffectFromVar(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -291,42 +286,42 @@ static BOOL BtlCmd_GetCurrentMoveData(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_SetMosaic(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_ChangeWeatherForm(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_UpdateBG(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL ov16_02248000(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248040(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248084(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022480B0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022480DC(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248108(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248134(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224814C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248164(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022481A4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022481D0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248204(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248294(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248324(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022484D0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248550(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224859C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022485E0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248614(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224862C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248648(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248660(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248708(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022487A4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248800(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248850(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248880(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022488B4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022488E0(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_0224890C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248944(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248988(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_022489F4(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248A34(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248A7C(BattleSystem * param0, BattleContext * param1);
-static BOOL ov16_02248AB4(BattleSystem * param0, BattleContext * param1);
+static BOOL BtlCmd_UseBagItem(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryEscape(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_HideBattleStartPartyGauge(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ShowPartyGauge(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_HidePartyGauge(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_LoadPartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_FreePartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_IncrementRecord(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_RestoreSprite(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckWhiteOut(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_BoostRandomStatBy2(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryRecycle(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ResultMesage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_EscapeMesage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ForfeitMesage(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckLeaveWith1HP(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckSubstitute(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckWeatherNegated(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SetRandomTarget(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_RefreshSprite(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_PlayMusic(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckSafariContinues(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_WaitFramesNoSkip(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckMoveIsType(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_LoadPersonalFormData(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
@@ -352,16 +347,16 @@ static int BattleMessage_FlavorTag(BattleContext *battleCtx, int battlerIn);
 static int BattleMessage_TrainerClassTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 static int BattleMessage_TrainerNameTag(BattleSystem *battleSys, BattleContext *battleCtx, int battlerIn);
 
-static u32 ov16_022431BC(BattleSystem * param0, BattleContext * param1, int param2);
+static u32 BattleScript_CalcPrizeMoney(BattleSystem * param0, BattleContext * param1, int param2);
 static void BattleScript_CalcEffortValues(Party *party, int slot, int species, int form);
 static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleScript_LoadPartyLevelUpIcon(BattleSystem * param0, BattleScriptTaskData * param1, Pokemon * param2);
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem * param0, BattleScriptTaskData * param1);
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
-static void BattleAI_SetAbility(BattleContext * param0, u8 param1, u8 param2);
+static void BattleAI_SetAbility(BattleContext *battleCtx, u8 battler, u8 ability);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
-static void BattleScript_GetExpTask(SysTask * param0, void * param1);
-static void BattleScript_CatchMonTask(SysTask * param0, void * param1);
+static void BattleScript_GetExpTask(SysTask *task, void *data);
+static void BattleScript_CatchMonTask(SysTask *task, void *data);
 
 static const BtlCmd sBattleCommands[] = {
     BtlCmd_SetupBattleUI,
@@ -432,7 +427,7 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_UnlockMoveChoice,
     BtlCmd_SetStatusIcon,
     BtlCmd_TrainerMessage,
-    ov16_022432B4,
+    BtlCmd_PayPrizeMoney,
     BtlCmd_PlayStatusEffect,
     BtlCmd_PlayStatusEffectAToD,
     BtlCmd_PlayStatusEffectFromVar,
@@ -551,42 +546,42 @@ static const BtlCmd sBattleCommands[] = {
     BtlCmd_SetMosaic,
     BtlCmd_ChangeWeatherForm,
     BtlCmd_UpdateBG,
-    ov16_02248000,
-    ov16_02248040,
-    ov16_02248084,
-    ov16_022480B0,
-    ov16_022480DC,
-    ov16_02248108,
-    ov16_02248134,
-    ov16_0224814C,
-    ov16_02248164,
-    ov16_022481A4,
-    ov16_022481D0,
-    ov16_02248204,
-    ov16_02248294,
-    ov16_02248324,
-    ov16_022484D0,
-    ov16_02248550,
-    ov16_0224859C,
-    ov16_022485E0,
-    ov16_02248614,
-    ov16_0224862C,
-    ov16_02248648,
-    ov16_02248660,
-    ov16_02248708,
-    ov16_022487A4,
-    ov16_02248800,
-    ov16_02248850,
-    ov16_02248880,
-    ov16_022488B4,
-    ov16_022488E0,
-    ov16_0224890C,
-    ov16_02248944,
-    ov16_02248988,
-    ov16_022489F4,
-    ov16_02248A34,
-    ov16_02248A7C,
-    ov16_02248AB4
+    BtlCmd_UseBagItem,
+    BtlCmd_TryEscape,
+    BtlCmd_ShowBattleStartPartyGauge,
+    BtlCmd_HideBattleStartPartyGauge,
+    BtlCmd_ShowPartyGauge,
+    BtlCmd_HidePartyGauge,
+    BtlCmd_LoadPartyGaugeGraphics,
+    BtlCmd_FreePartyGaugeGraphics,
+    BtlCmd_IncrementRecord,
+    BtlCmd_RestoreSprite,
+    BtlCmd_TriggerAbilityOnHit,
+    BtlCmd_SpriteToOAM,
+    BtlCmd_OAMToSprite,
+    BtlCmd_CheckWhiteOut,
+    BtlCmd_BoostRandomStatBy2,
+    BtlCmd_RemoveItem,
+    BtlCmd_TryRecycle,
+    BtlCmd_TriggerHeldItemOnHit,
+    BtlCmd_ResultMesage,
+    BtlCmd_EscapeMesage,
+    BtlCmd_ForfeitMesage,
+    BtlCmd_CheckLeaveWith1HP,
+    BtlCmd_TryRestoreStatusOnSwitch,
+    BtlCmd_CheckSubstitute,
+    BtlCmd_CheckWeatherNegated,
+    BtlCmd_SetRandomTarget,
+    BtlCmd_TriggerHeldItemOnPivotMove,
+    BtlCmd_RefreshSprite,
+    BtlCmd_PlayMoveHitSoundEffect,
+    BtlCmd_PlayMusic,
+    BtlCmd_CheckSafariContinues,
+    BtlCmd_WaitFramesNoSkip,
+    BtlCmd_CheckMoveIsType,
+    BtlCmd_LoadPersonalFormData,
+    BtlCmd_ReloadPokemon,
+    BtlCmd_End
 };
 
 BOOL BattleScript_Exec(BattleSystem *battleSys, BattleContext *battleCtx)
@@ -1038,6 +1033,9 @@ static BOOL BtlCmd_SetTrainerEncounter(BattleSystem *battleSys, BattleContext *b
  * Inputs:
  * 1. the battler whose ball is to be thrown
  * 2. the type of ball that the battler will throw
+ * 
+ * Side effects:
+ * - battleCtx->battleProgressFlag will be set to TRUE.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -1527,6 +1525,9 @@ static BOOL BtlCmd_SlideHPGaugeOut(BattleSystem *battleSys, BattleContext *battl
  * state of the battle after a given action. If any linked battler hangs in
  * this state for 1800 frames (~30 seconds), then the link status will be set
  * to an error state, forcing the battle to end.
+ * 
+ * Side effects:
+ * - battleCtx->battleProgressFlag will be set to TRUE.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -2050,6 +2051,9 @@ static BOOL BtlCmd_PlayFaintingSequence(BattleSystem *battleSys, BattleContext *
  * Inputs:
  * 1. The number of frames to wait at this instruction
  * 
+ * Side effects:
+ * - battleCtx->battleProgressFlag will be set to TRUE.
+ * 
  * @param battleSys 
  * @param battleCtx 
  * @return FALSE
@@ -2564,6 +2568,9 @@ static BOOL BtlCmd_StartGetExpTask(BattleSystem *battleSys, BattleContext *battl
 /**
  * @brief Waits until the experience-distribution task has completed.
  * 
+ * Side effects:
+ * - battleCtx->battleProgressFlag will be set to TRUE.
+ * 
  * @param battleSys 
  * @param battleCtx 
  * @return FALSE
@@ -2649,6 +2656,9 @@ static BOOL BtlCmd_ShowPartyList(BattleSystem *battleSys, BattleContext *battleC
 /**
  * @brief Wait for all battlers in the midst of selecting replacement battlers
  * to finish selecting their replacements.
+ * 
+ * Side effects:
+ * - battleCtx->battleProgressFlag will be set to TRUE.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -2814,6 +2824,9 @@ static BOOL BtlCmd_StartCatchMonTask(BattleSystem *battleSys, BattleContext *bat
 
 /**
  * @brief Waits until the Pokemon capture task has completed.
+ * 
+ * Side effects:
+ * - battleCtx->battleProgressFlag will be set to TRUE.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -3864,202 +3877,92 @@ static BOOL BtlCmd_TrainerMessage(BattleSystem *battleSys, BattleContext *battle
     return FALSE;
 }
 
-static u8 Unk_ov16_02270B20[] = {
-    0x0,
-    0x0,
-    0x4,
-    0x4,
-    0x4,
-    0x4,
-    0x4,
-    0x8,
-    0x4,
-    0x8,
-    0x4,
-    0x8,
-    0x8,
-    0x8,
-    0x6,
-    0xC,
-    0xC,
-    0xC,
-    0x4,
-    0x8,
-    0x10,
-    0x10,
-    0x2,
-    0x10,
-    0xF,
-    0xF,
-    0x8,
-    0x14,
-    0x2,
-    0x8,
-    0x8,
-    0x1E,
-    0x28,
-    0x28,
-    0x32,
-    0x32,
-    0xE,
-    0x10,
-    0xA,
-    0xF,
-    0xF,
-    0xC,
-    0x4,
-    0x4,
-    0x1,
-    0x1,
-    0x8,
-    0x5,
-    0xC,
-    0x8,
-    0x8,
-    0x1E,
-    0x6,
-    0xF,
-    0xF,
-    0x8,
-    0x8,
-    0x6,
-    0x6,
-    0xA,
-    0x5,
-    0x5,
-    0x1E,
-    0x19,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x32,
-    0xE,
-    0xA,
-    0x14,
-    0xA,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x8,
-    0x8,
-    0x12,
-    0x8,
-    0xA,
-    0x12,
-    0x2D,
-    0x14,
-    0x14,
-    0xA,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x1E,
-    0x19,
-    0x19,
-    0x0,
-    0xA,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0,
-    0x0
-};
+#include "data/trainer_class_prize_mul.h"
 
-static u32 ov16_022431BC (BattleSystem * param0, BattleContext * param1, int param2)
+static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
-    int jumpIfNoTrigger = 0;
-    void * v1;
-    u32 v2;
-    u8 v3 = 0;
-    TrainerData v4;
+    u8 lastLevel = 0;
+    void *rawParty = Heap_AllocFromHeap(HEAP_ID_BATTLE, sizeof(TrainerMonWithMovesAndItem) * MAX_PARTY_SIZE);
 
-    v1 = Heap_AllocFromHeap(5, sizeof(TrainerMonWithMovesAndItem) * 6);
+    TrainerData trdata;
+    TrainerData_Load(battleSys->trainerIDs[battler], &trdata);
+    TrainerData_LoadParty(battleSys->trainerIDs[battler], rawParty);
 
-    TrainerData_Load(param0->unk_A0[param2], &v4);
-    TrainerData_LoadParty(param0->unk_A0[param2], v1);
-
-    switch (v4.type) {
+    switch (trdata.type) {
     default:
-    case 0:
-    {
-        TrainerMonBase * v5;
-
-        v5 = (TrainerMonBase *)v1;
-        v3 = v5[v4.partySize - 1].level;
-    }
-    break;
-    case 1:
-    {
-        TrainerMonWithMoves * v6;
-
-        v6 = (TrainerMonWithMoves *)v1;
-        v3 = v6[v4.partySize - 1].level;
-    }
-    break;
-    case 2:
-    {
-        TrainerMonWithItem * v7;
-
-        v7 = (TrainerMonWithItem *)v1;
-        v3 = v7[v4.partySize - 1].level;
-    }
-    break;
-    case 3:
-    {
-        TrainerMonWithMovesAndItem * v8;
-
-        v8 = (TrainerMonWithMovesAndItem *)v1;
-        v3 = v8[v4.partySize - 1].level;
-    }
-    break;
+    case TRDATATYPE_BASE: {
+        TrainerMonBase *party = (TrainerMonBase *)rawParty;
+        lastLevel = party[trdata.partySize - 1].level;
+        break;
     }
 
-    if ((param0->battleType & 0x10) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-        v2 = v3 * 4 * param1->prizeMoneyMul * Unk_ov16_02270B20[v4.class];
-    } else if (param0->battleType & 0x2) {
-        v2 = v3 * 4 * param1->prizeMoneyMul * 2 * Unk_ov16_02270B20[v4.class];
+    case TRDATATYPE_WITH_MOVES: {
+        TrainerMonWithMoves *party = (TrainerMonWithMoves *)rawParty;
+        lastLevel = party[trdata.partySize - 1].level;
+        break;
+    }
+
+    case TRDATATYPE_WITH_ITEM: {
+        TrainerMonWithItem *party = (TrainerMonWithItem *)rawParty;
+        lastLevel = party[trdata.partySize - 1].level;
+        break;
+    }
+
+    case TRDATATYPE_WITH_MOVES_AND_ITEM: {
+        TrainerMonWithMovesAndItem *party = (TrainerMonWithMovesAndItem *)rawParty;
+        lastLevel = party[trdata.partySize - 1].level;
+        break;
+    }
+    }
+
+    u32 prize;
+    if ((battleSys->battleType & BATTLE_TYPE_TAG) || battleSys->battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trdata.class];
+    } else if (battleSys->battleType & 0x2) {
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * 2 * sTrainerClassPrizeMul[trdata.class];
     } else {
-        v2 = v3 * 4 * param1->prizeMoneyMul * Unk_ov16_02270B20[v4.class];
+        prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trdata.class];
     }
 
-    Heap_FreeToHeap(v1);
-
-    return v2;
+    Heap_FreeToHeap(rawParty);
+    return prize;
 }
 
-static BOOL ov16_022432B4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Payout the prize money for the battle (or deduct a penalty for losing).
+ * 
+ * Side effects:
+ * - battleCtx->msgTemp will be updated with the amount of money paid out
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u32 jumpIfNoTrigger;
+    BattleScript_Iter(battleCtx, 1);
 
-    BattleScript_Iter(param1, 1);
+    u32 money;
+    if (battleSys->resultMask == BATTLE_RESULT_WIN) {
+        money = BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_SLOT_1);
 
-    if (param0->resultMask == 0x1) {
-        jumpIfNoTrigger = ov16_022431BC(param0, param1, 1);
-
-        if ((param0->battleType & 0x10) || (param0->battleType == ((0x2 | 0x1) | 0x8 | 0x40))) {
-            jumpIfNoTrigger += ov16_022431BC(param0, param1, 3);
+        if ((battleSys->battleType & BATTLE_TYPE_TAG) || battleSys->battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
+            money += BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_SLOT_2);
         }
 
-        TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(param0, 0), jumpIfNoTrigger);
+        TrainerInfo_GiveMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), money);
     } else {
-        jumpIfNoTrigger = ov16_0223F904(param0->parties[0], param0->trainerInfo[0]);
-        TrainerInfo_TakeMoney(BattleSystem_TrainerInfo(param0, 0), jumpIfNoTrigger);
+        money = BattleSystem_CalcMoneyPenalty(battleSys->parties[BATTLER_US], battleSys->trainerInfo[BATTLER_US]);
+        TrainerInfo_TakeMoney(BattleSystem_TrainerInfo(battleSys, BATTLER_US), money);
     }
 
-    if (jumpIfNoTrigger) {
-        param1->msgTemp = jumpIfNoTrigger;
+    if (money) {
+        battleCtx->msgTemp = money;
     } else {
-        param1->msgTemp = 0;
+        battleCtx->msgTemp = 0;
     }
 
-    return 0;
+    return FALSE;
 }
 
 /**
@@ -8091,67 +7994,7 @@ static BOOL BtlCmd_IfSameSide(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static const u16 sCommonPickupItems[] = {
-    ITEM_POTION,
-    ITEM_ANTIDOTE,
-    ITEM_SUPER_POTION,
-    ITEM_GREAT_BALL,
-    ITEM_REPEL,
-    ITEM_ESCAPE_ROPE,
-    ITEM_FULL_HEAL,
-    ITEM_HYPER_POTION,
-    ITEM_ULTRA_BALL,
-    ITEM_REVIVE,
-    ITEM_RARE_CANDY,
-    ITEM_DUSK_STONE,
-    ITEM_SHINY_STONE,
-    ITEM_DAWN_STONE,
-    ITEM_FULL_RESTORE,
-    ITEM_MAX_REVIVE,
-    ITEM_PP_UP,
-    ITEM_MAX_ELIXIR,
-};
-
-static const u16 sRarePickupItems[] = {
-    ITEM_HYPER_POTION,
-    ITEM_NUGGET,
-    ITEM_KINGS_ROCK,
-    ITEM_FULL_RESTORE,
-    ITEM_ETHER,
-    ITEM_WHITE_HERB,
-    ITEM_TM44,
-    ITEM_ELIXIR,
-    ITEM_TM01,
-    ITEM_LEFTOVERS,
-    ITEM_TM26,
-};
-
-#define COMMON_PICKUP_ENTRIES 9
-
-static const u8 sCommonPickupRate[] = {
-    30,
-    40,
-    50,
-    60,
-    70,
-    80,
-    90,
-    94,
-    98,
-};
-
-static const u8 sHoneyGatherRate[] = {
-     5,
-    10,
-    15,
-    20,
-    25,
-    30,
-    35,
-    40,
-    45,
-    50,
-};
+#include "data/pickup.h"
 
 /**
  * @brief Generates an end-of-battle item, if applicable.
@@ -8383,21 +8226,7 @@ static BOOL BtlCmd_GetItemEffectPower(BattleSystem *battleSys, BattleContext *ba
     return FALSE;
 }
 
-static const u8 sTerrainCamouflageType[] = {
-    [TERRAIN_PLAIN]       = TYPE_GROUND,
-    [TERRAIN_SAND]        = TYPE_GROUND,
-    [TERRAIN_GRASS]       = TYPE_GRASS,
-    [TERRAIN_PUDDLE]      = TYPE_GRASS,
-    [TERRAIN_MOUNTAIN]    = TYPE_ROCK,
-    [TERRAIN_CAVE]        = TYPE_ROCK,
-    [TERRAIN_SNOW]        = TYPE_ICE,
-    [TERRAIN_WATER]       = TYPE_WATER,
-    [TERRAIN_ICE]         = TYPE_ICE,
-    [TERRAIN_BUILDING]    = TYPE_NORMAL,
-    [TERRAIN_GREAT_MARSH] = TYPE_GROUND,
-    [TERRAIN_BRIDGE]      = TYPE_FLYING,
-    [TERRAIN_SPECIAL]     = TYPE_NORMAL,
-};
+#include "data/terrain/to_type.h"
 
 /**
  * @brief Try to change the battler's type to one according to the battle
@@ -8434,21 +8263,7 @@ static BOOL BtlCmd_TryCamouflage(BattleSystem *battleSys, BattleContext *battleC
     return 0;
 }
 
-static const u16 sTerrainMove[] = {
-    [TERRAIN_PLAIN]       = MOVE_EARTHQUAKE,
-    [TERRAIN_SAND]        = MOVE_EARTHQUAKE,
-    [TERRAIN_GRASS]       = MOVE_SEED_BOMB,
-    [TERRAIN_PUDDLE]      = MOVE_SEED_BOMB,
-    [TERRAIN_MOUNTAIN]    = MOVE_ROCK_SLIDE,
-    [TERRAIN_CAVE]        = MOVE_ROCK_SLIDE,
-    [TERRAIN_SNOW]        = MOVE_BLIZZARD,
-    [TERRAIN_WATER]       = MOVE_HYDRO_PUMP,
-    [TERRAIN_ICE]         = MOVE_ICE_BEAM,
-    [TERRAIN_BUILDING]    = MOVE_TRI_ATTACK,
-    [TERRAIN_GREAT_MARSH] = MOVE_MUD_BOMB,
-    [TERRAIN_BRIDGE]      = MOVE_AIR_SLASH,
-    [TERRAIN_SPECIAL]     = MOVE_TRI_ATTACK,
-};
+#include "data/terrain/to_move.h"
 
 /**
  * @brief Get the move which corresponding to this battle's terrain.
@@ -8475,21 +8290,7 @@ static BOOL BtlCmd_GetTerrainMove(BattleSystem *battleSys, BattleContext *battle
     return FALSE;
 }
 
-static const u32 sTerrainSideEffect[] = {
-    [TERRAIN_PLAIN]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ACCURACY_DOWN_1_STAGE,
-    [TERRAIN_SAND]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ACCURACY_DOWN_1_STAGE,
-    [TERRAIN_GRASS]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SLEEP,
-    [TERRAIN_PUDDLE]      = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SLEEP,
-    [TERRAIN_MOUNTAIN]    = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FLINCH,
-    [TERRAIN_CAVE]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FLINCH,
-    [TERRAIN_SNOW]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FREEZE,
-    [TERRAIN_WATER]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ATTACK_DOWN_1_STAGE,
-    [TERRAIN_ICE]         = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FREEZE,
-    [TERRAIN_BUILDING]    = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_PARALYZE,
-    [TERRAIN_GREAT_MARSH] = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SPEED_DOWN_1_STAGE,
-    [TERRAIN_BRIDGE]      = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_EVASION_DOWN_1_STAGE,
-    [TERRAIN_SPECIAL]     = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_PARALYZE,
-};
+#include "data/terrain/to_secondary_effect.h"
 
 /**
  * @brief Get the secondary effect corresponding to this battle's terrain.
@@ -8624,6 +8425,9 @@ static BOOL BtlCmd_ShowYesNoScreen(BattleSystem *battleSys, BattleContext *battl
  * 1. The distance to jump if the player selected Yes.
  * 2. The distance to jump if the player selected No.
  * 
+ * Side effects:
+ * - battleCtx->battleProgressFlag will be set to TRUE.
+ * 
  * @param battleSys 
  * @param battleCtx 
  * @return FALSE
@@ -8679,6 +8483,7 @@ static BOOL BtlCmd_ShowPartyScreen(BattleSystem *battleSys, BattleContext *battl
  * Side effects:
  * - battleCtx->switchedPartySlot will be updated to reflect the chosen
  * party slot for a switch.
+ * - battleCtx->battleProgressFlag will be set to TRUE.
  * 
  * @param battleSys 
  * @param battleCtx 
@@ -8958,695 +8763,946 @@ static BOOL BtlCmd_UpdateBG(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static BOOL ov16_02248000 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Use an item from the bag for a battler.
+ * 
+ * Inputs:
+ * 1. Which battler is using the item.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_UseBagItem(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleSystem_UseBagItem(battleSys, battler, battleCtx->selectedPartySlot[battler], NULL, battleCtx->msgItemTemp);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_0223E30C(param0, v1, param1->selectedPartySlot[v1], NULL, param1->msgItemTemp);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248040 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Try to escape the battle from the given slot.
+ * 
+ * Inputs:
+ * 1. The battler trying to escape
+ * 2. The distance to jump if escape fails
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryEscape(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpOnFail = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    v0 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    if (BattleSystem_TryEscape(param0, param1, v1)) {
-        BattleScript_Iter(param1, v2);
+    if (BattleSystem_TryEscape(battleSys, battleCtx, battler)) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248084 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Show the start-of-battle party gauge.
+ * 
+ * Inputs:
+ * 1. The battler whose party gauge should be shown.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_ShowBattleStartPartyGauge(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_ShowBattleStartPartyGauge(battleSys, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_022665E4(param0, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022480B0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Hide the start-of-battle party gauge.
+ * 
+ * Inputs:
+ * 1. The battler whose party gauge should be hidden.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_HideBattleStartPartyGauge(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_HideBattleStartPartyGauge(battleSys, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_0226660C(param0, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022480DC (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Show the mid-battle party gauge.
+ * 
+ * Inputs:
+ * 1. The battler whose party gauge should be shown.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_ShowPartyGauge(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_ShowPartyGauge(battleSys, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02266634(param0, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248108 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Hide the mid-battle party gauge.
+ * 
+ * Inputs:
+ * 1. The battler whose party gauge should be hidden.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_HidePartyGauge(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_HidePartyGauge(battleSys, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_0226665C(param0, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248134 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Show the party gauge graphics resources.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_LoadPartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_02266684(param0);
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_LoadPartyGaugeGraphics(battleSys);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_0224814C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Hide the party gauge graphics resources.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_FreePartyGaugeGraphics(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BattleScript_Iter(param1, 1);
-    ov16_022666A0(param0);
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_FreePartyGaugeGraphics(battleSys);
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248164 (BattleSystem * param0, BattleContext * param1)
+static BOOL BtlCmd_IncrementRecord(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int battlerType = BattleScript_Read(battleCtx);
+    int record = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_IncrementRecord(battleSys, battler, battlerType, record);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_Battler(param0, param1, v0);
-
-    BattleIO_IncrementRecord(param0, v3, v1, v2);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022481A4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Restore a given battler's sprite, e.g., one that has been hidden
+ * behind a Substitute.
+ * 
+ * Inputs:
+ * 1. The battler to be restored.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_RestoreSprite(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_RestoreSprite(battleSys, battleCtx, battler);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_0226673C(param0, param1, v1);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022481D0 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Triggers any abilities when a move hits its target.
+ * 
+ * Inputs:
+ * 1. The distance to jump if there are no effects to trigger.
+ * 
+ * Side effects:
+ * - battleCtx->scriptTemp will be set to the subroutine sequence to execute
+ * for any triggered effect.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffect = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (BattleSystem_TriggerAbilityOnHit(param0, param1, &param1->scriptTemp) == 0) {
-        BattleScript_Iter(param1, v0);
+    if (BattleSystem_TriggerAbilityOnHit(battleSys, battleCtx, &battleCtx->scriptTemp) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248204 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Convert a sprite into OAM form.
+ * 
+ * This is used at the start of the battle for moving sprites across the screen,
+ * fading them in/out, etc.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SpriteToOAM(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    BattlerData * v2;
-    int v3 = BattleSystem_MaxBattlers(param0);
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    int battler = BattleScript_Read(battleCtx);
 
-    v0 = BattleScript_Read(param1);
-
-    switch (v0) {
-    case 0x3:
-        for (v1 = 0; v1 < v3; v1++) {
-            v2 = BattleSystem_BattlerData(param0, v1);
-
-            if ((v2->battlerType & 0x1) == 0) {
-                ov16_022667E8(param0, v1);
+    switch (battler) {
+    case BTLSCR_PLAYER:
+        for (int i = 0; i < maxBattlers; i++) {
+            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            if ((battlerData->battlerType & BATTLER_THEM) == FALSE) {
+                BattleIO_SpriteToOAM(battleSys, i);
             }
         }
         break;
-    case 0x4:
-        for (v1 = 0; v1 < v3; v1++) {
-            v2 = BattleSystem_BattlerData(param0, v1);
 
-            if (v2->battlerType & 0x1) {
-                ov16_022667E8(param0, v1);
+    case BTLSCR_ENEMY:
+        for (int i = 0; i < maxBattlers; i++) {
+            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            if (battlerData->battlerType & BATTLER_THEM) {
+                BattleIO_SpriteToOAM(battleSys, i);
             }
         }
         break;
+
     default:
-        v1 = BattleScript_Battler(param0, param1, v0);
-        ov16_022667E8(param0, v1);
+        int i = BattleScript_Battler(battleSys, battleCtx, battler);
+        BattleIO_SpriteToOAM(battleSys, i);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248294 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Convert back from OAM to a sprite.
+ * 
+ * This is used at the start of the battle for moving sprites across the screen,
+ * fading them in/out, etc.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_OAMToSprite(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    BattlerData * v2;
-    int v3 = BattleSystem_MaxBattlers(param0);
+    int maxBattlers = BattleSystem_MaxBattlers(battleSys);
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    int battler = BattleScript_Read(battleCtx);
 
-    v0 = BattleScript_Read(param1);
-
-    switch (v0) {
-    case 0x3:
-        for (v1 = 0; v1 < v3; v1++) {
-            v2 = BattleSystem_BattlerData(param0, v1);
-
-            if ((v2->battlerType & 0x1) == 0) {
-                ov16_02266804(param0, v1);
+    switch (battler) {
+    case BTLSCR_PLAYER:
+        for (int i = 0; i < maxBattlers; i++) {
+            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            if ((battlerData->battlerType & BATTLER_THEM) == FALSE) {
+                BattleIO_OAMToSprite(battleSys, i);
             }
         }
         break;
-    case 0x4:
-        for (v1 = 0; v1 < v3; v1++) {
-            v2 = BattleSystem_BattlerData(param0, v1);
 
-            if (v2->battlerType & 0x1) {
-                ov16_02266804(param0, v1);
+    case BTLSCR_ENEMY:
+        for (int i = 0; i < maxBattlers; i++) {
+            BattlerData *battlerData = BattleSystem_BattlerData(battleSys, i);
+            if (battlerData->battlerType & BATTLER_THEM) {
+                BattleIO_OAMToSprite(battleSys, i);
             }
         }
         break;
+
     default:
-        v1 = BattleScript_Battler(param0, param1, v0);
-        ov16_02266804(param0, v1);
+        int i = BattleScript_Battler(battleSys, battleCtx, battler);
+        BattleIO_OAMToSprite(battleSys, i);
         break;
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248324 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump ahead a certain distance if the battler is out of Pokemon.
+ * 
+ * Inputs:
+ * 1. The battler to be checked
+ * 2. The distance to jump if the battler is out of Pokemon
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CheckWhiteOut(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4 = 0;
-    u32 v5;
-    Pokemon * v6;
-    BattlerData * v7;
+    int inBattler;
+    int jumpIfWhiteOut;
+    int battler;
+    int i;
+    int aliveMons = 0;
+    u32 battleType;
+    Pokemon *mon;
+    BattlerData *battlerData;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v5 = BattleSystem_BattleType(param0);
-    v2 = BattleScript_Battler(param0, param1, v0);
+    inBattler = BattleScript_Read(battleCtx);
+    jumpIfWhiteOut = BattleScript_Read(battleCtx);
+    battleType = BattleSystem_BattleType(battleSys);
+    battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    if ((v5 & 0x8) || ((v5 & 0x10) && (Battler_Side(param0, v2)))) {
-        {
-            Party * v8;
-            Party * v9;
+    if ((battleType & BATTLE_TYPE_2vs2)
+            || ((battleType & BATTLE_TYPE_TAG) && Battler_Side(battleSys, battler))) {
+        Party *party1 = BattleSystem_Party(battleSys, battler);
+        Party *party2 = BattleSystem_Party(battleSys, BattleSystem_Partner(battleSys, battler));
+        battlerData = BattleSystem_BattlerData(battleSys, battler);
 
-            v8 = BattleSystem_Party(param0, v2);
-            v9 = BattleSystem_Party(param0, BattleSystem_Partner(param0, v2));
-            v7 = BattleSystem_BattlerData(param0, v2);
+        for (i = 0; i < Party_GetCurrentCount(party1); i++) {
+            mon = Party_GetPokemonBySlotIndex(party1, i);
 
-            for (v3 = 0; v3 < Party_GetCurrentCount(v8); v3++) {
-                v6 = Party_GetPokemonBySlotIndex(v8, v3);
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                        && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                aliveMons += Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
+            }
+        }
 
-                if ((Pokemon_GetValue(v6, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v6, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                    v4 += Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL);
+        // Don't consider the second slot if we have a partner
+        // first condition here does not match as an AND of NEQs, must be a NOT of an OR of EQs
+        if (!(battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER || battleType == BATTLE_TYPE_2vs2_AI_DOUBLES)
+                || Battler_Side(battleSys, battler) != BATTLER_US
+                || BattleSystem_BattlerSlot(battleSys, battler) != BATTLER_PLAYER_SLOT_2) {
+            for (i = 0; i < Party_GetCurrentCount(party2); i++) {
+                mon = Party_GetPokemonBySlotIndex(party2, i);
+
+                if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                        && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                    aliveMons += Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
                 }
             }
+        }
 
-            if (((v5 == ((0x2 | 0x1) | 0x8 | 0x40)) || (v5 == (0x2 | 0x8 | 0x40))) && (Battler_Side(param0, v2) == 0) && (BattleSystem_BattlerSlot(param0, v2) == 2)) {
-                (void)0;
-            } else {
-                for (v3 = 0; v3 < Party_GetCurrentCount(v9); v3++) {
-                    v6 = Party_GetPokemonBySlotIndex(v9, v3);
-
-                    if ((Pokemon_GetValue(v6, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v6, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                        v4 += Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL);
-                    }
-                }
-            }
-
-            if (v4 == 0) {
-                BattleScript_Iter(param1, v1);
-            }
+        if (aliveMons == 0) {
+            BattleScript_Iter(battleCtx, jumpIfWhiteOut);
         }
     } else {
-        {
-            Party * v10;
+        Party *party = BattleSystem_Party(battleSys, battler);
+        battlerData = BattleSystem_BattlerData(battleSys, battler);
 
-            v10 = BattleSystem_Party(param0, v2);
-            v7 = BattleSystem_BattlerData(param0, v2);
+        for (i = 0; i < Party_GetCurrentCount(party); i++) {
+            mon = Party_GetPokemonBySlotIndex(party, i);
 
-            for (v3 = 0; v3 < Party_GetCurrentCount(v10); v3++) {
-                v6 = Party_GetPokemonBySlotIndex(v10, v3);
-
-                if ((Pokemon_GetValue(v6, MON_DATA_SPECIES_EGG, NULL) != 0) && (Pokemon_GetValue(v6, MON_DATA_SPECIES_EGG, NULL) != 494)) {
-                    v4 += Pokemon_GetValue(v6, MON_DATA_CURRENT_HP, NULL);
-                }
-            }
-
-            if (v4 == 0) {
-                BattleScript_Iter(param1, v1);
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_NONE
+                    && Pokemon_GetValue(mon, MON_DATA_SPECIES_EGG, NULL) != SPECIES_EGG) {
+                aliveMons += Pokemon_GetValue(mon, MON_DATA_CURRENT_HP, NULL);
             }
         }
-    }
 
-    return 0;
-}
-
-static BOOL ov16_022484D0 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0, v1;
-    int v2[0x8];
-    int v3;
-
-    BattleScript_Iter(param1, 1);
-
-    v3 = BattleScript_Read(param1);
-    v1 = 0;
-
-    for (v0 = 0x1; v0 < 0x8; v0++) {
-        if (param1->battleMons[param1->defender].statBoosts[v0] < 12) {
-            v2[v1++] = v0 - 1;
+        if (aliveMons == 0) {
+            BattleScript_Iter(battleCtx, jumpIfWhiteOut);
         }
     }
 
-    if (v1) {
-        param1->sideEffectDirectFlags = 0x27 + v2[BattleSystem_RandNext(param0) % v1];
-        param1->sideEffectDirectFlags |= 0x80000000;
-    } else {
-        BattleScript_Iter(param1, v3);
-    }
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248550 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Boost a random stat by 2 stages.
+ * 
+ * Inputs:
+ * 1. The distance to jump if there are no valid stats to boost.
+ * 
+ * Side effects:
+ * - battleCtx->sideEffectDirectFlags will be set to the random stat to be
+ * boosted.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_BoostRandomStatBy2(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    // must maintain this declaration order to match
+    int i, validStats;
+    int stats[BATTLE_STAT_MAX];
+    int jumpNoValidBoosts;
 
-    BattleScript_Iter(param1, 1);
+    BattleScript_Iter(battleCtx, 1);
+    jumpNoValidBoosts = BattleScript_Read(battleCtx);
+    validStats = 0;
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    param1->recycleItem[v1] = param1->battleMons[v1].heldItem;
-    param1->battleMons[v1].heldItem = 0;
-
-    BattleMon_CopyToParty(param0, param1, v1);
-
-    return 0;
-}
-
-static BOOL ov16_0224859C (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (param1->recycleItem[param1->attacker]) {
-        param1->msgItemTemp = param1->recycleItem[param1->attacker];
-        param1->recycleItem[param1->attacker] = 0;
-    } else {
-        BattleScript_Iter(param1, v0);
-    }
-
-    return 0;
-}
-
-static BOOL ov16_022485E0 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (BattleSystem_TriggerHeldItemOnHit(param0, param1, &param1->scriptTemp) == 0) {
-        BattleScript_Iter(param1, v0);
-    }
-
-    return 0;
-}
-
-static BOOL ov16_02248614 (BattleSystem * param0, BattleContext * param1)
-{
-    BattleScript_Iter(param1, 1);
-    ov16_02266820(param0);
-
-    return 0;
-}
-
-static BOOL ov16_0224862C (BattleSystem * param0, BattleContext * param1)
-{
-    BattleScript_Iter(param1, 1);
-    ov16_0226683C(param0, param1);
-
-    return 0;
-}
-
-static BOOL ov16_02248648 (BattleSystem * param0, BattleContext * param1)
-{
-    BattleScript_Iter(param1, 1);
-    ov16_022668D0(param0);
-
-    return 0;
-}
-
-static BOOL ov16_02248660 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-    int v1;
-    int v2;
-    int v3;
-    int v4 = 0;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-    v2 = Battler_HeldItemEffect(param1, v1);
-    v3 = Battler_HeldItemPower(param1, v1, 0);
-
-    if ((v2 == 65) && ((BattleSystem_RandNext(param0) % 100) < v3)) {
-        v4 = 1;
-    }
-
-    if ((v2 == 103) && (param1->battleMons[v1].curHP == param1->battleMons[v1].maxHP)) {
-        v4 = 1;
-    }
-
-    if (v4) {
-        if ((param1->battleMons[v1].curHP + param1->hpCalcTemp) <= 0) {
-            param1->hpCalcTemp = (param1->battleMons[v1].curHP - 1) * -1;
-            param1->moveStatusFlags |= 0x100;
+    for (i = BATTLE_STAT_ATTACK; i < BATTLE_STAT_MAX; i++) {
+        if (battleCtx->battleMons[battleCtx->defender].statBoosts[i] < 12) {
+            stats[validStats++] = i - 1;
         }
     }
 
-    return 0;
+    if (validStats) {
+        battleCtx->sideEffectDirectFlags = MOVE_SIDE_EFFECT_ATTACK_UP_2_STAGES + stats[BattleSystem_RandNext(battleSys) % validStats];
+        battleCtx->sideEffectDirectFlags |= MOVE_SIDE_EFFECT_TO_DEFENDER;
+    } else {
+        BattleScript_Iter(battleCtx, jumpNoValidBoosts);
+    }
+
+    return FALSE;
 }
 
-static BOOL ov16_02248708 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Remove a battler's held item.
+ * 
+ * Inputs:
+ * 1. The battler whose item should be removed.
+ * 
+ * Side effects:
+ * - battleCtx->recycleItem will be updated to the battler's old held item.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    Pokemon * v3;
-    int v4;
-    int v5;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    battleCtx->recycleItem[battler] = battleCtx->battleMons[battler].heldItem;
+    battleCtx->battleMons[battler].heldItem = ITEM_NONE;
 
-    v0 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
+    BattleMon_CopyToParty(battleSys, battleCtx, battler);
 
-    if ((param1->battleMons[v1].curHP) && (param1->selectedPartySlot[v1] != 6)) {
-        v3 = BattleSystem_PartyPokemon(param0, v1, param1->selectedPartySlot[v1]);
-        v4 = Pokemon_GetValue(v3, MON_DATA_ABILITY, NULL);
-        v5 = Pokemon_GetValue(v3, MON_DATA_STATUS_CONDITION, NULL);
+    return FALSE;
+}
 
-        if ((param1->battleMons[v1].ability != 30) && (ov16_022577A4(param1, v4, v5) == 0)) {
-            BattleScript_Iter(param1, v2);
+/**
+ * @brief Check for an item in the Recycle buffer.
+ * 
+ * Inputs:
+ * 1. The distance to jump if there is no item in the Recycle buffer.
+ * 
+ * Side effects:
+ * - battleCtx->msgItemTemp will be set to the item from the Recycle buffer.
+ * - battleCtx->recycleItem will be cleared for the attacker.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryRecycle(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoRecyclableItem = BattleScript_Read(battleCtx);
+
+    if (battleCtx->recycleItem[battleCtx->attacker]) {
+        battleCtx->msgItemTemp = battleCtx->recycleItem[battleCtx->attacker];
+        battleCtx->recycleItem[battleCtx->attacker] = ITEM_NONE;
+    } else {
+        BattleScript_Iter(battleCtx, jumpNoRecyclableItem);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Triggers any held items when a move hits its target.
+ * 
+ * Inputs:
+ * 1. The distance to jump if there are no items to be triggered.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffects = BattleScript_Read(battleCtx);
+
+    if (BattleSystem_TriggerHeldItemOnHit(battleSys, battleCtx, &battleCtx->scriptTemp) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoEffects);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Display the result message for a battle.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_ResultMesage(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_ResultMessage(battleSys);
+
+    return FALSE;
+}
+
+/**
+ * @brief Display the message for escaping a battle.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_EscapeMesage(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_EscapeMessage(battleSys, battleCtx);
+
+    return FALSE;
+}
+
+/**
+ * @brief Display the message for forfeiting a battle.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_ForfeitMesage(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    BattleIO_ForfeitMessage(battleSys);
+
+    return FALSE;
+}
+
+/**
+ * @brief Check if a battler should be left with 1 HP after a move hits.
+ * 
+ * Inputs:
+ * 1. The battler to be checked.
+ * 
+ * Side effects:
+ * - If the battler should endure the hit, battleCtx->hpCalcTemp will be updated
+ * with the correct amount of damage to leave them at 1 HP, and
+ * battleCtx->moveStatusFlags will be updated with the MOVE_STATUS_ENDURED_ITEM
+ * flag.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CheckLeaveWith1HP(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BOOL endure = FALSE;
+
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
+    int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
+
+    if (itemEffect == HOLD_EFFECT_MAYBE_ENDURE
+            && BattleSystem_RandNext(battleSys) % 100 < itemPower) {
+        endure = TRUE;
+    }
+
+    if (itemEffect == HOLD_EFFECT_ENDURE
+            && battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP) {
+        endure = TRUE;
+    }
+
+    if (endure && battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
+        battleCtx->hpCalcTemp = (battleCtx->battleMons[battler].curHP - 1) * -1;
+        battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED_ITEM;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Try to restore the battler's status on switch-out.
+ * 
+ * Inputs:
+ * 1. The battler whose status should be restored.
+ * 2. The distance to jump if the battler has fainted, or the battler has no
+ * ability which would restore its status on switch-out.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpNoStatusRestore = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    if (battleCtx->battleMons[battler].curHP && battleCtx->selectedPartySlot[battler] != 6) {
+        Pokemon *mon = BattleSystem_PartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+        int ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+        int status = Pokemon_GetValue(mon, MON_DATA_STATUS_CONDITION, NULL);
+
+        if (battleCtx->battleMons[battler].ability != ABILITY_NATURAL_CURE
+                && Ability_ForbidsStatus(battleCtx, ability, status) == FALSE) {
+            BattleScript_Iter(battleCtx, jumpNoStatusRestore);
         }
     } else {
-        BattleScript_Iter(param1, v2);
+        BattleScript_Iter(battleCtx, jumpNoStatusRestore);
     }
 
     return 0;
 }
 
-static BOOL ov16_022487A4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Check if a battler has an active Substitute.
+ * 
+ * Inputs:
+ * 1. The battler to be checked
+ * 2. The distance to jump if Substitute is not active
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckSubstitute(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpSubActive = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    if ((param1->battleMons[v1].statusVolatile & 0x1000000) || (param1->selfTurnFlags[v1].statusFlags & 0x8)) {
-        BattleScript_Iter(param1, v2);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+            || (battleCtx->selfTurnFlags[battler].statusFlags & SELF_TURN_FLAG_SUBSTITUTE_HIT)) {
+        BattleScript_Iter(battleCtx, jumpSubActive);
     }
 
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248800 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Jump ahead a certain distance if a weather-negation effect is active.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_CheckWeatherNegated(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
+    BattleScript_Iter(battleCtx, 1);
+    int jumpIfActive = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    if (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_CLOUD_NINE)
+            || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS, 0, ABILITY_AIR_LOCK)) {
+        BattleScript_Iter(battleCtx, jumpIfActive);
+    }
 
-    v2 = BattleScript_Read(param1);
+    return FALSE;
+}
 
-    if ((BattleSystem_CountAbility(param0, param1, 8, 0, 13) == 0) && (BattleSystem_CountAbility(param0, param1, 8, 0, 76) == 0)) {
-        (void)0;
+/**
+ * @brief Set the target of the next move to be a random opponent.
+ * 
+ * Inputs:
+ * 1. The battler used to determine who is an opponent.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_SetRandomTarget(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    battleCtx->defender = BattleSystem_RandomOpponent(battleSys, battleCtx, battler);
+
+    return FALSE;
+}
+
+/**
+ * @brief Triggers any held items when a pivot move hits its target.
+ * 
+ * Inputs:
+ * 1. The distance to jump if there are no items to be triggered.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoEffects = BattleScript_Read(battleCtx);
+
+    if (BattleSystem_TriggerHeldItemOnPivotMove(battleSys, battleCtx, &battleCtx->scriptTemp) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoEffects);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Refresh a battler's sprite according to new parameters, e.g., during
+ * a mid-battle form change.
+ * 
+ * Inputs:
+ * 1. The battler whose sprite should be refreshed.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_RefreshSprite(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_RefreshSprite(battleSys, battleCtx, battler);
+
+    return FALSE;
+}
+
+/**
+ * @brief Play the "move hit" sound effect.
+ * 
+ * Inputs:
+ * 1. The battler who should hear the effect.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_PlayMoveHitSoundEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_PlayMoveHitSoundEffect(battleSys, battleCtx, battler);
+
+    return FALSE;
+}
+
+/**
+ * @brief Play a given music track.
+ * 
+ * Inputs:
+ * 1. The battler who should hear the music.
+ * 2. The track to be played.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_PlayMusic(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int bgmID = BattleScript_Read(battleCtx);
+    
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleIO_PlayMusic(battleSys, battler, bgmID);
+
+    return FALSE;
+}
+
+/**
+ * @brief Check if the Safari Zone game should continue.
+ * 
+ * Inputs:
+ * 1. The distance to jump if the Safari Zone game is not yet over
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_CheckSafariContinues(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNotOver = BattleScript_Read(battleCtx);
+
+    if ((BattleSystem_PartyCount(battleSys, BATTLER_US) != MAX_PARTY_SIZE || PCBoxes_FirstEmptyBox(battleSys->pcBoxes) != 18)
+            && battleSys->safariBalls) {
+        BattleScript_Iter(battleCtx, jumpNotOver);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Wait a certain number of frames, disabling the skip functionality.
+ * 
+ * Inputs:
+ * 1. The number of frames to wait.
+ * 
+ * Side effects:
+ * - battleCtx->battleProgressFlag will be set to TRUE.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return BOOL 
+ */
+static BOOL BtlCmd_WaitFramesNoSkip(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int wait = BattleScript_Read(battleCtx);
+
+    int inc;
+    if ((battleSys->battleType & BATTLE_TYPE_LINK)
+            && (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) == FALSE) {
+        inc = 2;
     } else {
-        BattleScript_Iter(param1, v2);
+        inc = 1;
     }
 
-    return 0;
-}
-
-static BOOL ov16_02248850 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-    int v1;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    param1->defender = BattleSystem_RandomOpponent(param0, param1, v1);
-
-    return 0;
-}
-
-static BOOL ov16_02248880 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (ov16_0225B228(param0, param1, &param1->scriptTemp) == 0) {
-        BattleScript_Iter(param1, v0);
-    }
-
-    return 0;
-}
-
-static BOOL ov16_022488B4 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-    int v1;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_0226692C(param0, param1, v1);
-
-    return 0;
-}
-
-static BOOL ov16_022488E0 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-    int v1;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_022669D8(param0, param1, v1);
-
-    return 0;
-}
-
-static BOOL ov16_0224890C (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-    int v1;
-    int v2;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Battler(param0, param1, v0);
-
-    ov16_02266A18(param0, v2, v1);
-
-    return 0;
-}
-
-static BOOL ov16_02248944 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if (((BattleSystem_PartyCount(param0, 0) != 6) || (sub_020799A0(param0->unk_64) != 18)) && (param0->safariBalls)) {
-        BattleScript_Iter(param1, v0);
-    }
-
-    return 0;
-}
-
-static BOOL ov16_02248988 (BattleSystem * param0, BattleContext * param1)
-{
-    int v0;
-    int v1;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-
-    if ((param0->battleType & 0x4) && ((param0->battleStatusMask & 0x10) == 0)) {
-        v1 = 2;
+    if (wait > battleCtx->waitCounter) {
+        BattleScript_Iter(battleCtx, -2);
+        battleCtx->waitCounter += inc;
     } else {
-        v1 = 1;
+        battleCtx->waitCounter = 0;
     }
 
-    if (v0 > param1->waitCounter) {
-        BattleScript_Iter(param1, -2);
-        param1->waitCounter += v1;
-    } else {
-        param1->waitCounter = 0;
+    battleCtx->battleProgressFlag = TRUE;
+    return FALSE;
+}
+
+/**
+ * @brief Check if the current move is of the given type.
+ * 
+ * Inputs:
+ * 1. The type to check for.
+ * 2. The distance to jump if the current move is of the given type.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckMoveIsType(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int type = BattleScript_Read(battleCtx);
+    int jumpIfType = BattleScript_Read(battleCtx);
+
+    if (CURRENT_MOVE_DATA.type == type) {
+        BattleScript_Iter(battleCtx, jumpIfType);
     }
 
-    param1->battleProgressFlag = 1;
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_022489F4 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Loads a data value from the personal NARC for the given species, using
+ * a form specified in a variable.
+ * 
+ * Inputs:
+ * 1. The target species.
+ * 2. A variable which contains the form to be loaded.
+ * 3. The target data value from the personal NARC.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_LoadPersonalFormData(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
+    BattleScript_Iter(battleCtx, 1);
+    int species = BattleScript_Read(battleCtx);
+    int formVar = BattleScript_Read(battleCtx);
+    int personalParam = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int *form = BattleScript_VarAddress(battleSys, battleCtx, formVar);
+    battleCtx->calcTemp = PokemonPersonalData_GetFormValue(species, *form, personalParam);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-
-    if (param1->aiContext.moveTable[param1->moveCur].type == v0) {
-        BattleScript_Iter(param1, v1);
-    }
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248A34 (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief Reload a Pokemon, refreshing all of its underlying data, e.g., stats,
+ * ability, etc.
+ * 
+ * Inputs:
+ * 1. The battler which should be reloaded.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE
+ */
+static BOOL BtlCmd_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-    int v2;
-    int * v3;
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
 
-    BattleScript_Iter(param1, 1);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+    BattleSystem_ReloadPokemon(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
 
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Read(param1);
-    v2 = BattleScript_Read(param1);
-    v3 = BattleScript_VarAddress(param0, param1, v1);
-
-    param1->calcTemp = PokemonPersonalData_GetFormValue(v0, v3[0], v2);
-
-    return 0;
+    return FALSE;
 }
 
-static BOOL ov16_02248A7C (BattleSystem * param0, BattleContext * param1)
+/**
+ * @brief End the sequence.
+ * 
+ * Side effects:
+ * battleCtx->battleProgressFlag will be set to TRUE.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @return FALSE 
+ */
+static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int v0;
-    int v1;
-
-    BattleScript_Iter(param1, 1);
-
-    v0 = BattleScript_Read(param1);
-    v1 = BattleScript_Battler(param0, param1, v0);
-
-    BattleSystem_ReloadPokemon(param0, param1, v1, param1->selectedPartySlot[v1]);
-
-    return 0;
-}
-
-static BOOL ov16_02248AB4 (BattleSystem * param0, BattleContext * param1)
-{
-    param1->battleProgressFlag = 1;
-    return ov16_02251EF4(param1);
+    battleCtx->battleProgressFlag = TRUE;
+    return BattleSystem_PopScript(battleCtx);
 }
 
 /**
@@ -10931,7 +10987,7 @@ static void BattleScript_CatchMonTask (SysTask * param0, void * param1)
 
                         v24 = ov16_0223E228(v2->battleSys);
                         v25 = sub_0207999C(v24);
-                        v26 = sub_020799A0(v24);
+                        v26 = PCBoxes_FirstEmptyBox(v24);
 
                         sub_02079A94(v24, v26);
 

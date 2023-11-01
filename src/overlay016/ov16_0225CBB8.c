@@ -3413,7 +3413,7 @@ static void ov16_02260DB0 (SysTask * param0, void * param1)
             v2 = v5[BattleSystem_RandNext(v0->unk_00) % v6];
         }
 
-        ov16_0225B540(v0->unk_00, v1, 11, v0->unk_1D, BattleSystem_Defender(v0->unk_00, v1, v0->unk_1D, v0->unk_0C[v2 - 1], 1, NULL));
+        BattleContext_Set(v0->unk_00, v1, 11, v0->unk_1D, BattleSystem_Defender(v0->unk_00, v1, v0->unk_1D, v0->unk_0C[v2 - 1], 1, NULL));
     }
 
     ov16_02265790(v0->unk_00, v0->unk_1D, v2);
