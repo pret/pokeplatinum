@@ -22,7 +22,7 @@
 #include "struct_defs/struct_02008A90.h"
 #include "struct_defs/struct_0200D0F4.h"
 #include "struct_defs/struct_02013A04_t.h"
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0205AA50.h"
 #include "struct_defs/struct_02081CF4.h"
 #include "overlay063/struct_ov63_0222CCB8.h"
@@ -211,7 +211,7 @@ void ov104_02232088 (UnkStruct_ov104_022320B4 * param0)
 
 void ov104_022320B4 (UnkStruct_ov104_022320B4 * param0, u8 param1, u16 param2, u16 param3, u16 param4, s16 param5, u8 param6)
 {
-    UnkStruct_02014A84 v0;
+    Sentence v0;
 
     ov104_02231FC4(param0);
 
@@ -226,7 +226,7 @@ void ov104_022320B4 (UnkStruct_ov104_022320B4 * param0, u8 param1, u16 param2, u
 
 static void ov104_022320FC (Strbuf *param0, u16 param1, u16 param2, u16 param3, u16 param4)
 {
-    UnkStruct_02014A84 v0;
+    Sentence v0;
     Strbuf* v1;
 
     sub_02014A84(&v0);

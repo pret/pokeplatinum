@@ -6,7 +6,7 @@
 #include "strbuf.h"
 #include "struct_decls/struct_0203E724_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0203E724_t.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -86,7 +86,7 @@ void ov5_021DD498 (UnkStruct_0203E724 * param0, const MessageLoader * param1, in
 void ov5_021DD4CC (UnkStruct_0203E724 * param0, u16 param1, u16 param2, u16 param3, s16 param4, u8 param5)
 {
     UnkStruct_ov5_021DD648 v0;
-    UnkStruct_02014A84 v1;
+    Sentence v1;
 
     ov5_021DD588(param0->unk_34, &v0);
     ov5_021DD610(param0->unk_34, &v0);
@@ -153,7 +153,7 @@ static void ov5_021DD648 (UnkStruct_ov5_021DD648 * param0, const MessageLoader *
 
 static void ov5_021DD664 (UnkStruct_ov5_021DD648 * param0, u16 param1, u16 param2, u16 param3, u16 param4)
 {
-    UnkStruct_02014A84 v0;
+    Sentence v0;
     Strbuf* v1;
 
     sub_02014A84(&v0);

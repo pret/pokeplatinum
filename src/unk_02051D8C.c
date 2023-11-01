@@ -78,7 +78,7 @@ BattleParams * sub_02051D8C (int param0, u32 param1)
     v1->unk_14 = 0;
 
     for (v0 = 0; v0 < 4; v0++) {
-        v1->unk_18[v0] = 0;
+        v1->trainerIDs[v0] = 0;
         MI_CpuClear32(&v1->trainerData[v0], sizeof(TrainerData));
     }
 
@@ -180,9 +180,9 @@ BattleParams * sub_02051F4C (int param0, const UnkStruct_0203CDB0 * param1)
     sub_0207D570(v4->unk_E0, 4, 20, param0);
     v5 = Pokemon_New(param0);
 
-    sub_02073D80(v5, sub_0206B08C(sub_020507E4(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, sub_0206B08C(sub_020507E4(param1->unk_0C)), 5, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[0], v5);
-    sub_02073D80(v5, 399, 2, 32, 0, 0, 2, 0);
+    Pokemon_InitWith(v5, 399, 2, 32, 0, 0, 2, 0);
     Party_AddPokemon(v4->parties[1], v5);
     Heap_FreeToHeap(v5);
 
@@ -427,7 +427,7 @@ void sub_020524E4 (BattleParams * param0, const UnkStruct_0203CDB0 * param1, con
         int v12 = TrainerInfo_Gender(v0);
 
         param0->trainerData[0].class = sub_0205CA14(v12, v11, 1);
-        GF_strcpy(&param0->trainerData[0].unk_14[0], TrainerInfo_Name(param0->unk_D0[0]));
+        GF_strcpy(&param0->trainerData[0].name[0], TrainerInfo_Name(param0->unk_D0[0]));
         param0->trainerData[2] = param0->trainerData[0];
     } else {
         sub_02052894(param0);
@@ -574,6 +574,6 @@ BOOL sub_02052888 (u32 param0)
 void sub_02052894 (BattleParams * param0)
 {
     param0->trainerData[0].class = TrainerInfo_Gender(param0->unk_D0[0]);
-    GF_strcpy(&param0->trainerData[0].unk_14[0], TrainerInfo_Name(param0->unk_D0[0]));
+    GF_strcpy(&param0->trainerData[0].name[0], TrainerInfo_Name(param0->unk_D0[0]));
     param0->trainerData[2] = param0->trainerData[0];
 }

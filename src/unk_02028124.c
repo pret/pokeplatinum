@@ -4,7 +4,7 @@
 #include "struct_decls/struct_party_decl.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202818C.h"
 #include "struct_defs/union_02028328.h"
 #include "struct_defs/struct_02028430.h"
@@ -216,7 +216,7 @@ u16 sub_02028408 (const UnkStruct_0202818C * param0)
     return param0->unk_1E;
 }
 
-UnkStruct_02014A84 * sub_0202840C (UnkStruct_0202818C * param0, u8 param1)
+Sentence * sub_0202840C (UnkStruct_0202818C * param0, u8 param1)
 {
     if (param1 < 3) {
         return &(param0->unk_20[param1]);
@@ -225,7 +225,7 @@ UnkStruct_02014A84 * sub_0202840C (UnkStruct_0202818C * param0, u8 param1)
     }
 }
 
-void sub_0202841C (UnkStruct_0202818C * param0, UnkStruct_02014A84 * param1, u8 param2)
+void sub_0202841C (UnkStruct_0202818C * param0, Sentence * param1, u8 param2)
 {
     if (param2 >= 3) {
         return;

@@ -6,7 +6,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203CDB0.h"
 
 #include "unk_0200B358.h"
@@ -23,7 +23,7 @@
 typedef struct {
     UnkStruct_0203CDB0 * unk_00;
     UnkStruct_0200B358 * unk_04;
-    UnkStruct_02014A84 unk_08;
+    Sentence unk_08;
     UnkStruct_0209747C * unk_10;
     UnkStruct_0202783C * unk_14;
     int unk_18;

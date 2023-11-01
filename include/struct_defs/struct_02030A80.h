@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_02030A80_H
 #define POKEPLATINUM_STRUCT_02030A80_H
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202F298_sub1.h"
 
 typedef struct UnkStruct_02030A80_t {
@@ -20,7 +20,7 @@ typedef struct UnkStruct_02030A80_t {
     u8 unk_1E;
     u8 unk_1F;
     union {
-        UnkStruct_02014A84 unk_20_val1;
+        Sentence unk_20_val1;
         u16 unk_20_val2[40];
     };
     u8 unk_70[12];

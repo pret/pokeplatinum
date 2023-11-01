@@ -6,7 +6,7 @@
 #include "message.h"
 #include "struct_decls/struct_021C0794_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202D060.h"
 #include "struct_defs/struct_0202D080.h"
 #include "struct_defs/struct_0202D314.h"
@@ -374,13 +374,13 @@ u32 sub_0202D474 (UnkStruct_0202D750 * param0)
     return param0->unk_04;
 }
 
-void sub_0202D478 (SaveData * param0, int param1, UnkStruct_02014A84 * param2)
+void sub_0202D478 (SaveData * param0, int param1, Sentence * param2)
 {
     UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
     sub_02014CC0(&(v0->unk_950.unk_168.unk_00[param1]), param2);
 }
 
-UnkStruct_02014A84 * sub_0202D498 (SaveData * param0, int param1)
+Sentence * sub_0202D498 (SaveData * param0, int param1)
 {
     UnkStruct_0203068C * v0 = SaveData_Get(param0, 23);
 

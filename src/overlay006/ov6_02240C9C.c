@@ -41,7 +41,7 @@
 #include "unk_0206AFE0.h"
 #include "roaming_pokemon.h"
 #include "pokemon.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "party.h"
 #include "overlay005/ov5_021EFB0C.h"
 #include "overlay006/ov6_02240C9C.h"
@@ -355,8 +355,8 @@ BOOL ov6_02240D5C (UnkStruct_0203CDB0 * param0)
             v7 = ov6_02241674(param0, v1, v0, v12, v13, &v14, &v10);
         } else {
             {
-                v0->unk_18[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
-                sub_02079170(v0, param0->unk_0C, 11);
+                v0->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                TrainerData_Encounter(v0, param0->unk_0C, 11);
             }
             v7 = ov6_0224174C(param0, v1, v0, v13, &v14);
         }
@@ -575,8 +575,8 @@ BOOL ov6_022411C8 (UnkStruct_0203CDB0 * param0, UnkStruct_020508D4 * param1)
             v8 = ov6_02241674(param0, v1, v0, v11, v12, &v13, &v9);
         } else {
             {
-                v0->unk_18[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
-                sub_02079170(v0, param0->unk_0C, 11);
+                v0->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                TrainerData_Encounter(v0, param0->unk_0C, 11);
             }
             v8 = ov6_0224174C(param0, v1, v0, v12, &v13);
         }
@@ -723,8 +723,8 @@ BOOL ov6_022413E4 (UnkStruct_0203CDB0 * param0, BattleParams ** param1)
             v6 = ov6_02241674(param0, v0, *param1, v11, v12, &v13, &v9);
         } else {
             {
-                (*param1)->unk_18[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
-                sub_02079170(*param1, param0->unk_0C, 11);
+                (*param1)->trainerIDs[2] = sub_0206B034(sub_020507E4(param0->unk_0C));
+                TrainerData_Encounter(*param1, param0->unk_0C, 11);
             }
             v6 = ov6_0224174C(param0, v0, *param1, v12, &v13);
         }
@@ -1188,7 +1188,7 @@ static void ov6_02241BAC (const u16 param0, const u8 param1, const int param2, c
         } while (TRUE);
     }
 
-    sub_02073D80(v5, param0, param1, 32, 1, v1, 1, param4->unk_00);
+    Pokemon_InitWith(v5, param0, param1, 32, 1, v1, 1, param4->unk_00);
     v0 = ov6_02242514(param2, param4, v5, param6);
 
     GF_ASSERT(v0);

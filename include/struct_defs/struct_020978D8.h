@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_020978D8_H
 #define POKEPLATINUM_STRUCT_020978D8_H
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "strbuf.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/union_02028328.h"
@@ -18,7 +18,7 @@ typedef struct {
     u8 unk_0F;
     Strbuf* unk_10;
     UnkUnion_02028328 unk_14[3];
-    UnkStruct_02014A84 unk_1A[3];
+    Sentence unk_1A[3];
 } UnkStruct_020978D8;
 
 #endif // POKEPLATINUM_STRUCT_020978D8_H

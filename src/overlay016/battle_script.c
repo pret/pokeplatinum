@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "constants/abilities.h"
+#include "constants/gender.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/narc.h"
@@ -48,10 +49,6 @@
 #include "struct_defs/struct_0208737C.h"
 #include "struct_defs/fraction.h"
 #include "overlay012/struct_ov12_02237728.h"
-#include "overlay016/struct_ov16_022431BC.h"
-#include "overlay016/struct_ov16_022431BC_1.h"
-#include "overlay016/struct_ov16_022431BC_2.h"
-#include "overlay016/struct_ov16_022431BC_3.h"
 #include "overlay016/struct_ov16_0225BFFC_t.h"
 #include "overlay021/struct_ov21_021E8E0C.h"
 #include "overlay104/struct_ov104_0223F9E0.h"
@@ -84,7 +81,7 @@
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "unk_0207A274.h"
@@ -3983,43 +3980,43 @@ static u32 ov16_022431BC (BattleSystem * param0, BattleContext * param1, int par
     u8 v3 = 0;
     TrainerData v4;
 
-    v1 = Heap_AllocFromHeap(5, sizeof(UnkStruct_ov16_022431BC_3) * 6);
+    v1 = Heap_AllocFromHeap(5, sizeof(TrainerMonWithMovesAndItem) * 6);
 
-    sub_0207938C(param0->unk_A0[param2], &v4);
-    sub_0207939C(param0->unk_A0[param2], v1);
+    TrainerData_Load(param0->unk_A0[param2], &v4);
+    TrainerData_LoadParty(param0->unk_A0[param2], v1);
 
-    switch (v4.unk_00) {
+    switch (v4.type) {
     default:
     case 0:
     {
-        UnkStruct_ov16_022431BC * v5;
+        TrainerMonBase * v5;
 
-        v5 = (UnkStruct_ov16_022431BC *)v1;
-        v3 = v5[v4.unk_03 - 1].unk_02;
+        v5 = (TrainerMonBase *)v1;
+        v3 = v5[v4.partySize - 1].level;
     }
     break;
     case 1:
     {
-        UnkStruct_ov16_022431BC_1 * v6;
+        TrainerMonWithMoves * v6;
 
-        v6 = (UnkStruct_ov16_022431BC_1 *)v1;
-        v3 = v6[v4.unk_03 - 1].unk_02;
+        v6 = (TrainerMonWithMoves *)v1;
+        v3 = v6[v4.partySize - 1].level;
     }
     break;
     case 2:
     {
-        UnkStruct_ov16_022431BC_2 * v7;
+        TrainerMonWithItem * v7;
 
-        v7 = (UnkStruct_ov16_022431BC_2 *)v1;
-        v3 = v7[v4.unk_03 - 1].unk_02;
+        v7 = (TrainerMonWithItem *)v1;
+        v3 = v7[v4.partySize - 1].level;
     }
     break;
     case 3:
     {
-        UnkStruct_ov16_022431BC_3 * v8;
+        TrainerMonWithMovesAndItem * v8;
 
-        v8 = (UnkStruct_ov16_022431BC_3 *)v1;
-        v3 = v8[v4.unk_03 - 1].unk_02;
+        v8 = (TrainerMonWithMovesAndItem *)v1;
+        v3 = v8[v4.partySize - 1].level;
     }
     break;
     }
@@ -6072,8 +6069,8 @@ static BOOL BtlCmd_TryAttract(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (battleCtx->battleMons[battleCtx->msgBattlerTemp].gender == battleCtx->battleMons[battleCtx->sideEffectMon].gender
             || battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile & VOLATILE_CONDITION_ATTRACT
-            || battleCtx->battleMons[battleCtx->msgBattlerTemp].gender == MON_GENDER_NONE
-            || battleCtx->battleMons[battleCtx->sideEffectMon].gender == MON_GENDER_NONE) {
+            || battleCtx->battleMons[battleCtx->msgBattlerTemp].gender == GENDER_NONE
+            || battleCtx->battleMons[battleCtx->sideEffectMon].gender == GENDER_NONE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
         battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile |= FlagIndex(battleCtx->msgBattlerTemp) << VOLATILE_CONDITION_ATTRACT_SHIFT;

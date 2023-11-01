@@ -17,7 +17,7 @@
 #include "struct_decls/struct_0202D764_decl.h"
 #include "struct_decls/struct_0203068C_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_020279FC.h"
 #include "struct_defs/struct_02049A68.h"
 #include "struct_defs/struct_0205AA50.h"
@@ -76,7 +76,7 @@ typedef struct {
     u8 unk_05;
     u8 unk_06;
     u8 unk_07;
-    UnkStruct_02014A84 unk_08;
+    Sentence unk_08;
 } UnkStruct_ov90_021D17F8;
 
 typedef struct {

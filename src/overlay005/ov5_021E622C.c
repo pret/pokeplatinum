@@ -2604,7 +2604,7 @@ void ov5_021E6CF0 (Pokemon * param0, u16 param1, u8 param2, TrainerInfo * param3
     u8 v4 = PokemonPersonalData_GetSpeciesValue(param1, 19);
     Strbuf* v5;
 
-    sub_02073D80(param0, param1, 1, 32, 0, 0, 0, 0);
+    Pokemon_InitWith(param0, param1, 1, 32, 0, 0, 0, 0);
 
     v0 = 0;
     v3 = 4;
@@ -2664,7 +2664,7 @@ void ov5_021E6DE8 (Pokemon * param0, u16 param1, UnkStruct_02026310 * param2, u3
         }
     }
 
-    sub_02073D80(param0, param1, 1, 32, 1, v2, 0, 0);
+    Pokemon_InitWith(param0, param1, 1, 32, 1, v2, 0, 0);
 
     v0 = 0;
     v1 = 4;
@@ -3072,7 +3072,7 @@ static void ov5_021E742C (Pokemon * param0, int param1)
         }
     }
 
-    sub_02073D80(v16, v0, 1, 32, 1, v3, 0, 0);
+    Pokemon_InitWith(v16, v0, 1, 32, 1, v3, 0, 0);
 
     for (v7 = 0; v7 < 4; v7++) {
         Pokemon_SetValue(v16, 54 + v7, &(v1[v7]));

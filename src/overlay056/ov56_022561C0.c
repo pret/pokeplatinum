@@ -18,7 +18,7 @@
 #include "overlay056/struct_ov56_02256468_decl.h"
 
 #include "struct_defs/struct_0200C738.h"
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_0203CDB0.h"
@@ -125,14 +125,14 @@ static void ov56_02256D04(UnkStruct_ov56_02256468 * param0);
 static void ov56_022569E0(UnkStruct_ov56_02256468 * param0);
 static void ov56_02256994(UnkStruct_02022550 * param0, int param1);
 static void ov56_02257098(UnkStruct_ov56_02256468 * param0);
-static void ov56_02256EE8(UnkStruct_ov56_02256468 * param0, u32 param1, UnkStruct_02014A84 * param2, TrainerInfo * param3);
-static int ov56_02256FC8(UnkStruct_ov56_02256468 * param0, UnkStruct_02014A84 * param1, int param2);
+static void ov56_02256EE8(UnkStruct_ov56_02256468 * param0, u32 param1, Sentence * param2, TrainerInfo * param3);
+static int ov56_02256FC8(UnkStruct_ov56_02256468 * param0, Sentence * param1, int param2);
 static int ov56_022567E4(UnkStruct_0205C95C * param0, int param1);
 static int ov56_022567F0(int param0, int param1);
 static int ov56_02256A68(UnkStruct_ov56_02256468 * param0);
 static int ov56_02256BC0(UnkStruct_ov56_02256468 * param0);
 static void ov56_02257100(UnkStruct_ov56_02256468 * param0);
-static void ov56_02257048(UnkStruct_ov56_02256468 * param0, TrainerInfo * param1, UnkStruct_02014A84 * param2, u32 param3);
+static void ov56_02257048(UnkStruct_ov56_02256468 * param0, TrainerInfo * param1, Sentence * param2, u32 param3);
 static Strbuf* ov56_02256E5C(UnkStruct_02027F8C * param0, u32 param1, UnkStruct_0200B358 * param2, MessageLoader * param3, TrainerInfo * param4);
 static void ov56_02256D64(BGL * param0, NNSG2dScreenData * param1, UnkStruct_ov56_022562EC * param2, int param3, int param4, int * param5);
 static void ov56_0225710C(UnkStruct_ov56_02256468 * param0);
@@ -803,7 +803,7 @@ static Strbuf* ov56_02256E5C (UnkStruct_02027F8C * param0, u32 param1, UnkStruct
     return v0;
 }
 
-static void ov56_02256EE8 (UnkStruct_ov56_02256468 * param0, u32 param1, UnkStruct_02014A84 * param2, TrainerInfo * param3)
+static void ov56_02256EE8 (UnkStruct_ov56_02256468 * param0, u32 param1, Sentence * param2, TrainerInfo * param3)
 {
     UnkStruct_0205C95C * v0 = param0->unk_2D4;
     UnkStruct_02027F8C * v1 = param0->unk_04->unk_474;
@@ -838,7 +838,7 @@ static void ov56_02256EE8 (UnkStruct_ov56_02256468 * param0, u32 param1, UnkStru
     }
 }
 
-static int ov56_02256FC8 (UnkStruct_ov56_02256468 * param0, UnkStruct_02014A84 * param1, int param2)
+static int ov56_02256FC8 (UnkStruct_ov56_02256468 * param0, Sentence * param1, int param2)
 {
     int v0, v1;
 
@@ -867,7 +867,7 @@ static int ov56_02256FC8 (UnkStruct_ov56_02256468 * param0, UnkStruct_02014A84 *
     return 1;
 }
 
-static void ov56_02257048 (UnkStruct_ov56_02256468 * param0, TrainerInfo * param1, UnkStruct_02014A84 * param2, u32 param3)
+static void ov56_02257048 (UnkStruct_ov56_02256468 * param0, TrainerInfo * param1, Sentence * param2, u32 param3)
 {
     int v0 = 0;
 
@@ -891,9 +891,9 @@ static void ov56_02257098 (UnkStruct_ov56_02256468 * param0)
     int v0, v1;
     WMBssDesc * v2;
     UnkStruct_0203330C * v3;
-    UnkStruct_02014A84 * v4;
+    Sentence * v4;
     TrainerInfo * v5;
-    UnkStruct_02014A84 v6;
+    Sentence v6;
 
     if (sub_020509A4(param0->unk_0C)) {
         return;
@@ -904,7 +904,7 @@ static void ov56_02257098 (UnkStruct_ov56_02256468 * param0)
 
         if (v2 != NULL) {
             v3 = (UnkStruct_0203330C *)&v2->gameInfo.userGameInfo;
-            v4 = (UnkStruct_02014A84 *)&v3->unk_08;
+            v4 = (Sentence *)&v3->unk_08;
 
             if (ov56_02256FC8(param0, v4, v3->unk_00)) {
                 ov56_02257048(param0, sub_02033FB0(v0), v4, v3->unk_00);

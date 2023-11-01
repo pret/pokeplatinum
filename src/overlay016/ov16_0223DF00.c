@@ -65,7 +65,7 @@
 #include "unk_02056720.h"
 #include "unk_0206CCB0.h"
 #include "pokemon.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "party.h"
 #include "item.h"
 #include "flags.h"
@@ -1578,7 +1578,7 @@ int ov16_0223F6F0 (BattleSystem * param0, u16 param1)
 
 u16 BattleSystem_TrainerItems (BattleSystem * param0, int param1, int param2)
 {
-    return param0->trainers[param1].unk_04[param2];
+    return param0->trainers[param1].items[param2];
 }
 
 u32 ov16_0223F710 (BattleSystem * param0)
@@ -1761,9 +1761,9 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
                 Strbuf* v2;
 
                 if (param3 == 100) {
-                    v2 = sub_02014B34(&param0->trainers[param2].unk_24, 5);
+                    v2 = sub_02014B34(&param0->trainers[param2].winMsg, 5);
                 } else {
-                    v2 = sub_02014B34(&param0->trainers[param2].unk_2C, 5);
+                    v2 = sub_02014B34(&param0->trainers[param2].loseMsg, 5);
                 }
 
                 BGL_FillWindow(v0, 0xff);
@@ -1807,7 +1807,7 @@ u8 ov16_0223F9FC (BattleSystem * param0, int param1, int param2, int param3, int
             }
         }
     } else {
-        sub_020792F8(param1, param3, param0->msgBuffer, 5);
+        TrainerData_LoadMessage(param1, param3, param0->msgBuffer, 5);
         BGL_FillWindow(v0, 0xff);
         v1 = sub_0201D738(v0, 1, param0->msgBuffer, 0, 0, param4, ov16_022405A4);
     }

@@ -1119,7 +1119,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     GF_ASSERT(param1->unk_11C != NULL);
 
     for (v0 = 0; v0 < 4; v0++) {
-        param0->unk_A0[v0] = param1->unk_18[v0];
+        param0->unk_A0[v0] = param1->trainerIDs[v0];
         param0->trainers[v0] = param1->trainerData[v0];
     }
 
@@ -1393,7 +1393,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
 
     if (param0->battleType & 0x200) {
         v3 = Party_GetPokemonBySlotIndex(param0->parties[1], 0);
-        Pokemon_GetValue(v3, MON_DATA_OTNAME, (u8 *)&param0->trainers[1].unk_14);
+        Pokemon_GetValue(v3, MON_DATA_OTNAME, (u8 *)&param0->trainers[1].name);
     }
 
     if (param0->battleType & 0x1) {

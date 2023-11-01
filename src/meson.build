@@ -275,7 +275,7 @@ pokeplatinum_c = files(
     'unk_02073700.c',
     'unk_02073838.c',
     'pokemon.c',
-    'unk_02079170.c',
+    'trainer_data.c',
     'unk_020797C8.c',
     'unk_02079D40.c',
     'unk_0207A274.c',

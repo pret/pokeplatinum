@@ -23,7 +23,7 @@
 #include "unk_0202B604.h"
 #include "map_header.h"
 #include "pokemon.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "overlay081/ov81_021D1610.h"
 
 static u8 ov81_021D16B0(UnkStruct_ov81_021D1610 * param0, Window * param1, Window * param2);
@@ -342,7 +342,7 @@ static void ov81_021D1AD4 (UnkStruct_ov81_021D1610 * param0, Window * param1)
         v2 = Strbuf_Length(v3);
         Strbuf_Free(v3);
 
-        if (sub_02079220(v0.unk_00_1, 1) == 63) {
+        if (TrainerData_LoadParam(v0.unk_00_1, 1) == 63) {
             v3 = MessageLoader_GetNewStrbuf(param0->unk_50, 61);
             sub_0200B4BC(param0->unk_54, 1, param0->unk_4C);
             sub_0200C388(param0->unk_54, param0->unk_58, v3);

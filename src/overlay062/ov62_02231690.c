@@ -20,7 +20,7 @@
 #include "struct_decls/struct_0202F41C_decl.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/union_02022594_020225E0.h"
 #include "struct_defs/struct_02030A80.h"
 #include "struct_defs/struct_0205AA50.h"

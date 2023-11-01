@@ -43,7 +43,7 @@
 #include "unk_0202C9F4.h"
 #include "pokemon.h"
 #include "move_table.h"
-#include "unk_02079170.h"
+#include "trainer_data.h"
 #include "party.h"
 #include "item.h"
 #include "unk_02092494.h"
@@ -52,6 +52,7 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "constants/items.h"
+#include "constants/gender.h"
 #include "constants/moves.h"
 
 // Columns: Spicy, Dry, Sweet, Bitter, Sour
@@ -227,7 +228,7 @@ BOOL BoxPokemon_ExitDecryptionContext(BoxPokemon *boxMon, BOOL encrypt)
     return wasEncrypted;
 }
 
-void sub_02073D80(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
+void Pokemon_InitWith(Pokemon *mon, int monSpecies, int monLevel, int monIVs, BOOL useMonPersonalityParam, u32 monPersonality, int monOTIDSource, u32 monOTID)
 {
     Pokemon_Init(mon);
 
@@ -350,7 +351,7 @@ void sub_02074044(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 monNa
     } while (monNature != Pokemon_GetNatureOf(monPersonality));
 
     // TODO monOTIDSource probably an enum?
-    sub_02073D80(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
 }
 
 void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param4, u8 param5, u8 param6)
@@ -369,13 +370,13 @@ void sub_02074088(Pokemon *mon, u16 monSpecies, u8 monLevel, u8 monIVs, u8 param
     }
 
     // TODO monOTIDSource probably an enum?
-    sub_02073D80(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, monIVs, TRUE, monPersonality, 0, 0);
 }
 
 static enum PokemonGenderRatio {
     GENDER_ALWAYS_MALE = 0,
     GENDER_ALWAYS_FEMALE = 254,
-    GENDER_NONE = 255
+    GENDER_UNKNOWN = 255
 };
 
 u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
@@ -386,7 +387,7 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
     switch (monGenderChance) {
     case GENDER_ALWAYS_MALE:
     case GENDER_ALWAYS_FEMALE:
-    case GENDER_NONE:
+    case GENDER_UNKNOWN:
         result = param2;
         break;
     default:
@@ -406,7 +407,7 @@ u32 sub_02074128(u16 monSpecies, u8 param1, u8 param2)
 void sub_02074158(Pokemon *mon, u16 monSpecies, u8 monLevel, u32 monCombinedIVs, u32 monPersonality)
 {
     // TODO monOTIDSource probably an enum?
-    sub_02073D80(mon, monSpecies, monLevel, 0, TRUE, monPersonality, 0, 0);
+    Pokemon_InitWith(mon, monSpecies, monLevel, 0, TRUE, monPersonality, 0, 0);
     Pokemon_SetValue(mon, MON_DATA_COMBINED_IVS, &monCombinedIVs);
     Pokemon_CalcLevelAndStats(mon);
 }
@@ -2280,17 +2281,17 @@ u8 PokemonPersonalData_GetGenderOf(PokemonPersonalData *monPersonalData, u16 unu
 
     switch (monGender) {
     case GENDER_ALWAYS_MALE:
-        return MON_GENDER_MALE;
+        return GENDER_MALE;
     case GENDER_ALWAYS_FEMALE:
-        return MON_GENDER_FEMALE;
-    case GENDER_NONE:
-        return MON_GENDER_NONE;
+        return GENDER_FEMALE;
+    case GENDER_UNKNOWN:
+        return GENDER_NONE;
     }
 
     if (monGender > (monPersonality & 0xff)) {
-        return MON_GENDER_FEMALE;
+        return GENDER_FEMALE;
     } else {
-        return MON_GENDER_MALE;
+        return GENDER_MALE;
     }
 }
 
@@ -4589,7 +4590,7 @@ int sub_020788D0(int param0)
         param0 = 8 + (param0 - 103);
         break;
     default:
-        if (sub_020793AC(param0) == 1) {
+        if (TrainerClass_Gender(param0) == 1) {
             param0 = 1;
         } else {
             param0 = 0;
@@ -4690,7 +4691,7 @@ void sub_02078AC8(NARC *narc, u8 *param1, u16 param2)
     *param1 = v0.unk_58;
 }
 
-BOOL sub_02078AEC(int param0, Pokemon *mon, int heapID)
+BOOL Pokemon_SetBallSeal(int param0, Pokemon *mon, int heapID)
 {
     int v0 = param0;
 

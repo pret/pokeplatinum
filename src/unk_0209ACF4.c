@@ -10,7 +10,7 @@
 #include "struct_decls/struct_020508D4_decl.h"
 #include "struct_decls/struct_0209747C_decl.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0203CDB0.h"
 #include "struct_defs/struct_0205AA50.h"
 
@@ -44,7 +44,7 @@ typedef struct {
     Window unk_18;
     Window unk_28;
     Window unk_38;
-    UnkStruct_02014A84 unk_48;
+    Sentence unk_48;
     UnkStruct_0209747C * unk_50;
     int unk_54;
     int unk_58;

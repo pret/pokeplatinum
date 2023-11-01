@@ -4,7 +4,7 @@
 
 #include "trainer_info.h"
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_defs/struct_0202610C.h"
 #include "struct_defs/struct_0203330C.h"
 #include "struct_defs/struct_02034168.h"
@@ -28,7 +28,7 @@ typedef struct {
     u8 unk_1498[8][6];
     u16 unk_14C8[16];
     void * unk_14E8;
-    UnkStruct_02014A84 unk_14EC;
+    Sentence unk_14EC;
     int unk_14F4;
     u8 unk_14F8;
     u8 unk_14F9;
@@ -91,7 +91,7 @@ void sub_02033200 (TrainerInfo * param0, BOOL param1)
     Unk_021C07C0->unk_1504 = 0x333;
     Unk_021C07C0->unk_14FC = param0;
 
-    sub_02014A84((UnkStruct_02014A84 *)&Unk_021C07C0->unk_14EC);
+    sub_02014A84((Sentence *)&Unk_021C07C0->unk_14EC);
     sub_020334DC(param1);
 }
 
@@ -623,7 +623,7 @@ static void sub_02033AA8 (void)
         v2->unk_04 = sub_0203895C();
         v2->unk_05 = sub_02038974();
 
-        MI_CpuCopy8(&Unk_021C07C0->unk_14EC, &v2->unk_08, sizeof(UnkStruct_02014A84));
+        MI_CpuCopy8(&Unk_021C07C0->unk_14EC, &v2->unk_08, sizeof(Sentence));
 
         v2->unk_54 = sub_0203214C();
     } else {
@@ -942,9 +942,9 @@ void sub_0203408C (void)
     }
 }
 
-void sub_020340A8 (UnkStruct_02014A84 * param0)
+void sub_020340A8 (Sentence * param0)
 {
-    MI_CpuCopy8(param0, &Unk_021C07C0->unk_14EC, sizeof(UnkStruct_02014A84));
+    MI_CpuCopy8(param0, &Unk_021C07C0->unk_14EC, sizeof(Sentence));
 }
 
 void sub_020340C4 (void * param0)

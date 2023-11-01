@@ -380,7 +380,7 @@ BattleParams * ov104_0223ABA0 (UnkStruct_ov104_0223ADA0 * param0, UnkStruct_ov10
     Party_InitWithCapacity(v4->parties[1], ov104_0223AA74(param0->unk_04, 0));
 
     for (v0 = 0; v0 < 4; v0++) {
-        v4->trainerData[v0].unk_0C = ov104_0223AEE4(param0);
+        v4->trainerData[v0].aiMask = ov104_0223AEE4(param0);
     }
 
     v5 = Pokemon_New(11);

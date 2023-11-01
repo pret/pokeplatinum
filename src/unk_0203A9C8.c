@@ -21,7 +21,7 @@
 #include "constdata/const_020F1E88.h"
 
 #include "struct_defs/struct_0200D0F4.h"
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "functypes/funcptr_0203B7C0.h"
 #include "functypes/funcptr_0203BC5C.h"
 #include "struct_defs/struct_0203CDB0.h"
@@ -1551,7 +1551,7 @@ static BOOL sub_0203C0A0 (UnkStruct_020508D4 * param0)
 {
     UnkStruct_0203CDB0 * v0;
     UnkStruct_020708E0 * v1;
-    UnkStruct_02014A84 v2;
+    Sentence v2;
 
     v0 = sub_02050A60(param0);
     v1 = sub_02050A64(param0);
@@ -1569,7 +1569,7 @@ static BOOL sub_0203C0A0 (UnkStruct_020508D4 * param0)
 
 static BOOL sub_0203C0F8 (UnkStruct_020508D4 * param0)
 {
-    UnkStruct_02014A84 v0;
+    Sentence v0;
     UnkStruct_0203CDB0 * v1;
     UnkStruct_020708E0 * v2;
 

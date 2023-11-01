@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_UNK_0202D05C_H
 #define POKEPLATINUM_UNK_0202D05C_H
 
-#include "struct_defs/struct_02014A84.h"
+#include "struct_defs/sentence.h"
 #include "struct_decls/struct_0202D060_decl.h"
 #include "struct_decls/struct_0202D080_decl.h"
 #include "struct_defs/struct_0202D314.h"
@@ -40,8 +40,8 @@ u16 sub_0202D3FC(UnkStruct_0202D750 * param0, u16 param1, u16 param2);
 BOOL sub_0202D414(UnkStruct_0202D750 * param0, u16 param1, int param2);
 void sub_0202D470(UnkStruct_0202D750 * param0, u32 param1);
 u32 sub_0202D474(UnkStruct_0202D750 * param0);
-void sub_0202D478(SaveData * param0, int param1, UnkStruct_02014A84 * param2);
-UnkStruct_02014A84 * sub_0202D498(SaveData * param0, int param1);
+void sub_0202D478(SaveData * param0, int param1, Sentence * param2);
+Sentence * sub_0202D498(SaveData * param0, int param1);
 void sub_0202D4B0(UnkStruct_0202D764 * param0, u8 param1, u8 param2, RTCDate * param3);
 void sub_0202D514(UnkStruct_0202D764 * param0);
 BOOL sub_0202D558(UnkStruct_0202D764 * param0, u8 param1, u8 param2, RTCDate * param3);

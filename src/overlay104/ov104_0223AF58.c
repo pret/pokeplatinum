@@ -1620,7 +1620,7 @@ BattleParams * ov104_0223B250 (UnkStruct_ov104_0223B5C0 * param0, UnkStruct_ov10
     v2 = ov104_0223B604(param0, v6, v7);
 
     for (v1 = 0; v1 < 4; v1++) {
-        v8->trainerData[v1].unk_0C = v2;
+        v8->trainerData[v1].aiMask = v2;
     }
 
     ov104_0223B518(&param0->unk_290[v6], v7, param0->unk_18[v6], &param0->unk_268[v6], v5, 11, 180);

@@ -45,18 +45,13 @@ enum {
 #define MAX_PARTY_SIZE  6
 #define NUM_BOOSTABLE_STATS 8
 
+#define MAX_IVS_SINGLE_STAT 31
 #define MAX_EVS_SINGLE_STAT 255
 #define MAX_EVS_ALL_STATS   510
 
 #define LEARNSET_NO_MOVE_TO_LEARN   0
 #define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
 #define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
-
-enum PokemonGender {
-    MON_GENDER_MALE,
-    MON_GENDER_FEMALE,
-    MON_GENDER_NONE
-};
 
 /**
  * @brief Pokemon Data Parameters
