@@ -1172,7 +1172,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                         }
                     }
 
-                    ov16_0225B540(param0, param0->battleCtx, 2, v0, v1);
+                    BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
                 }
 
                 ov16_0225A1B0(param0, param0->battleCtx);
@@ -1199,7 +1199,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                         }
                     }
 
-                    ov16_0225B540(param0, param0->battleCtx, 2, v0, v1);
+                    BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
                 }
 
                 ov16_0225A1B0(param0, param0->battleCtx);
@@ -1232,7 +1232,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                         }
                     }
 
-                    ov16_0225B540(param0, param0->battleCtx, 2, v0, v1);
+                    BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
                 }
             } else {
                 for (v0 = 0; v0 < 2; v0++) {
@@ -1255,7 +1255,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                         }
                     }
 
-                    ov16_0225B540(param0, param0->battleCtx, 2, v0, v1);
+                    BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
                 }
             }
         }
@@ -1292,7 +1292,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                     }
                 }
 
-                ov16_0225B540(param0, param0->battleCtx, 2, v0, v1);
+                BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
 
                 if (v0 == 0) {
                     v8 = v1;
@@ -1324,7 +1324,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                 }
             }
 
-            ov16_0225B540(param0, param0->battleCtx, 2, v0, v1);
+            BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
         }
 
         ov16_0225A1B0(param0, param0->battleCtx);
@@ -1358,7 +1358,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                 }
             }
 
-            ov16_0225B540(param0, param0->battleCtx, 2, v0, v1);
+            BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
         }
 
         ov16_0225A1B0(param0, param0->battleCtx);
@@ -1384,7 +1384,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
                 }
             }
 
-            ov16_0225B540(param0, param0->battleCtx, 2, v0, v1);
+            BattleContext_Set(param0, param0->battleCtx, 2, v0, v1);
         }
 
         ov16_0225A1B0(param0, param0->battleCtx);

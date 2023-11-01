@@ -62,7 +62,7 @@ void BattleIO_UpdateTimeout(BattleContext *battleCtx);
 void BattleIO_ClearBuffer(BattleContext *battleCtx, int battler);
 int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, void *buf);
 void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam param, const void *buf);
-void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
+void Battler_AddVal(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, int val);
 void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val);
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 void BattleSystem_NoExpGain(BattleContext * param0, int param1);
@@ -167,7 +167,7 @@ BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
 int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler);
-void ov16_0225B540(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler, int val);
 static BOOL ov16_02254EF4(BattleContext * param0, int param1, int param2, int param3);
 static int BattleContext_SideEffect(BattleContext * param0, int param1, u32 param2);
 static int ov16_0225B63C(BattleContext * param0, int param1, int param2, int param3, int param4, u32 * param5);
@@ -1060,9 +1060,9 @@ void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam pa
     }
 }
 
-void ov16_02252A14 (BattleContext * param0, int param1, int param2, int param3)
+void Battler_AddVal(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, int val)
 {
-    BattleMon_AddVal(&param0->battleMons[param1], param2, param3);
+    BattleMon_AddVal(&battleCtx->battleMons[battler], paramID, val);
 }
 
 void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val)
@@ -7433,33 +7433,38 @@ int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum Ba
     return 0;
 }
 
-void ov16_0225B540 (BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4)
+void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler, int val)
 {
-    int v0;
+    int side;
+    switch (paramID) {
+    case BATTLECTX_SIDE_CONDITIONS_MASK:
+        side = Battler_Side(battleSys, battler);
+        battleCtx->sideConditionsMask[side] = val;
+        break;
 
-    switch (param2) {
-    case 0:
-        v0 = Battler_Side(param0, param3);
-        param1->sideConditionsMask[v0] = param4;
+    case BATTLECTX_SIDE_MIST_TURNS:
+        side = Battler_Side(battleSys, battler);
+        battleCtx->sideConditions[side].mistTurns = val;
         break;
-    case 1:
-        v0 = Battler_Side(param0, param3);
-        param1->sideConditions[v0].mistTurns = param4;
+
+    case BATTLECTX_SELECTED_PARTY_SLOT:
+        battleCtx->selectedPartySlot[battler] = val;
         break;
-    case 2:
-        param1->selectedPartySlot[param3] = param4;
+
+    case BATTLECTX_TOTAL_TURNS:
+        battleCtx->totalTurns = val;
         break;
-    case 3:
-        param1->totalTurns = param4;
+
+    case BATTLECTX_AICTX_DEFENDER:
+        battleCtx->aiContext.defender = val;
         break;
-    case 9:
-        param1->aiContext.defender = param4;
+
+    case BATTLECTX_AICTX_SELECTED_TARGET:
+        battleCtx->aiContext.selectedTarget[battler] = val;
         break;
-    case 11:
-        param1->aiContext.selectedTarget[param3] = param4;
-        break;
+
     default:
-        GF_ASSERT(0);
+        GF_ASSERT(FALSE);
         break;
     }
 }

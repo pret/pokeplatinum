@@ -426,7 +426,7 @@ static u8 ov13_02226A5C (UnkStruct_ov13_02227244 * param0)
             return 9;
         }
 
-        if (ov16_0223E30C(v0->unk_00, v0->unk_10, v1, 0, v0->unk_1C) == 1) {
+        if (BattleSystem_UseBagItem(v0->unk_00, v0->unk_10, v1, 0, v0->unk_1C) == 1) {
             ov13_02227260(v0->unk_00, v0->unk_1C, param0->unk_114D, v0->unk_0C);
             return 13;
         } else if (v2 == 3) {

@@ -202,7 +202,7 @@ static void sub_0204BAAC (UnkStruct_0203CDB0 * param0, void * param1)
 
     v4 = (Pokemon *)&v0->val1.unk_04;
     v14 = (u8 *)&v0->val1.unk_F0;
-    v12 = Pokemon_GetValue(v4, MON_DATA_152, NULL);
+    v12 = Pokemon_GetValue(v4, MON_DATA_MET_LOCATION, NULL);
     v8 = Pokemon_GetValue(v4, MON_DATA_PERSONALITY, NULL);
     v7 = Pokemon_GetValue(v4, MON_DATA_OT_ID, NULL);
     v9 = ARNG_Next((u32)OS_GetTick());

@@ -155,7 +155,18 @@ int BattleSystem_Partner(BattleSystem * param0, int param1);
  * @return Battler who is an enemy and in the given slot on the enemy team.
  */
 int BattleSystem_EnemyInSlot(BattleSystem *battleSys, int attacker, int slot);
-BOOL ov16_0223E30C(BattleSystem * param0, int param1, int param2, int param3, int param4);
+
+/**
+ * @brief Use an item from the bag on the given battler.
+ * 
+ * @param battleSys 
+ * @param battler   The battler who is using the item
+ * @param partySlot The party slot the battler is targeting with the item
+ * @param moveSlot  Optional parameter for PP-restoring items
+ * @param item      The item being used
+ * @return TRUE if the item has an effect; FALSE otherwise
+ */
+BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot, int moveSlot, int item);
 u32 BattleSystem_BattleStatus(BattleSystem * param0);
 
 /**

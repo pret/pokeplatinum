@@ -237,7 +237,18 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
  * @param buf           Buffer input for the value to be set
  */
 void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, const void *buf);
-void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
+
+/**
+ * @brief Add a value to a battler's data field.
+ * 
+ * This is just a convenience wrapper around BattleMon_AddVal.
+ * 
+ * @param battleCtx 
+ * @param battler   The battler whose data should be modified
+ * @param paramID   ID of the field which should be modified
+ * @param val       Value to be added to the battler's data field
+ */
+void Battler_AddVal(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, int val);
 
 /**
  * @brief Add a value to a Pokemon's data field.
@@ -831,7 +842,27 @@ BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1
  * @return Value of the field, or 0 if unrecognized.
  */
 int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler);
-void ov16_0225B540(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+
+/**
+ * @brief Set the value of an accessible field in the BattleContext struct.
+ * 
+ * See: enum BattleContextParam
+ * 
+ * The following values may be modified:
+ * - The full side conditions mask for a particular side
+ * - The number of turns of Mist for a particular side
+ * - The selected party slot for a battler
+ * - The total number of turns that have elapsed
+ * - The AI's chosen target for the turn
+ * - The AI's chosen target from a particular battler for the turn
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param paramID   ID of the field to retrieve
+ * @param battler   Battler for accessing the correct field, if applicable
+ * @param val       Value to which the field should be set
+ */
+void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler, int val);
 int ov16_0225BA88(BattleSystem * param0, int param1);
 int ov16_0225BE28(BattleSystem * param0, int param1);
 int ov16_0225BE3C(BattleSystem * param0, BattleContext * param1, Pokemon * param2, int param3);

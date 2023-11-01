@@ -8968,7 +8968,7 @@ static BOOL ov16_02248000 (BattleSystem * param0, BattleContext * param1)
     v0 = BattleScript_Read(param1);
     v1 = BattleScript_Battler(param0, param1, v0);
 
-    ov16_0223E30C(param0, v1, param1->selectedPartySlot[v1], NULL, param1->msgItemTemp);
+    BattleSystem_UseBagItem(param0, v1, param1->selectedPartySlot[v1], NULL, param1->msgItemTemp);
 
     return 0;
 }
