@@ -238,7 +238,15 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
  */
 void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, const void *buf);
 void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
-void ov16_02252A2C(BattleMon * param0, int param1, int param2);
+
+/**
+ * @brief Add a value to a Pokemon's data field.
+ * 
+ * @param mon 
+ * @param paramID   ID of the field which should be modified
+ * @param val       Value to be added to the Pokemon's data field
+ */
+void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val);
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
 void BattleSystem_NoExpGain(BattleContext * param0, int param1);
 void BattleSystem_FlagExpGain(BattleSystem * param0, BattleContext * param1, int param2);
@@ -376,7 +384,26 @@ BOOL BattleMove_IsMultiTurn(BattleContext * param0, int param1);
  * entry falls outside the bounds of the table.
  */
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi);
-int ov16_022558CC(u8 param0, u8 param1, u8 param2);
+
+/**
+ * @brief Determine the total multiplier classification to use for an attacking
+ * type against a pair of defending types.
+ * 
+ * This routine centers 1x damage as a return value of 40. From there, the
+ * multiplier varies by powers of 2:
+ * - 1/4x ->  10
+ * - 1/2x ->  20
+ * -   1x ->  40
+ * -   2x ->  80
+ * -   4x -> 160
+ * 
+ * @param attackingType 
+ * @param defendingType1 
+ * @param defendingType2 
+ * @return The total multiplier of the attacking type against a defender with
+ * the pair of types. 
+ */
+int BattleSystem_TypeMatchupMultiplier(u8 attackingType, u8 defendingType1, u8 defendingType2);
 
 /**
  * @brief Determines if a move is an invoker-class move.
@@ -469,7 +496,16 @@ void BattleSystem_SortMonsBySpeed(BattleSystem * param0, BattleContext * param1)
 BOOL BattleSystem_FailsInHighGravity(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 BOOL BattleSystem_HealBlocked(BattleSystem * param0, BattleContext * param1, int param2, int param3);
 void BattleSystem_UpdateLastResort(BattleSystem * param0, BattleContext * param1);
-int ov16_02256128(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Count the number of moves known by a battler.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler 
+ * @return The number of moves known.
+ */
+int Battler_CountMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 int BattleSystem_CheckImmunityAbilities(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem * param0, BattleContext * param1, int param2);
 
@@ -520,22 +556,118 @@ u16 Battler_HeldItem(BattleContext *battleCtx, int battler);
 BOOL Battler_MovedThisTurn(BattleContext * param0, int param1);
 BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem * param0, BattleContext * param1, int * param2);
 s32 Battler_HeldItemEffect(BattleContext * param0, int param1);
-s32 Battler_HeldItemPower(BattleContext * param0, int param1, int param2);
-s32 ov16_02258B18(BattleContext * param0, int param1);
-s32 ov16_02258B2C(BattleContext * param0, int param1);
-s32 ov16_02258B40(BattleContext * param0, int param1);
-s32 ov16_02258B58(BattleContext * param0, int param1);
-s32 ov16_02258B80(BattleContext * param0, int param1);
+
+enum HeldItemPowerOp {
+    ITEM_POWER_CHECK_ALL = 0, //< Check all possible effects which would suppress a battler's held item.
+    ITEM_POWER_CHECK_NONE, //< Perform no suppression checks; always return the item's power.
+    ITEM_POWER_CHECK_EMBARGO, //< Check if Embargo is active; if so, return 0 power.
+};
+
+/**
+ * @brief Get the power of the battler's held item.
+ * 
+ * This routine optionally can perform a series of checks for effects which
+ * would suppress the held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @param opcode    Opcode controlling the behavior of this subroutine.
+ * @return The power of the battler's held item.
+ */
+s32 Battler_HeldItemPower(BattleContext *battleCtx, int battler, enum HeldItemPowerOp opcode);
+
+/**
+ * @brief Get the Natural Gift base power for a battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Base power for Natural Gift.
+ */
+s32 Battler_NaturalGiftPower(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Get the Natural Gift type for a battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Type for Natural Gift.
+ */
+s32 Battler_NaturalGiftType(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Get the Pluck effect of the battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Pluck effect of the battler's held item.
+ */
+s32 Battler_ItemPluckEffect(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Get the Fling effect of the battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Fling effect of the battler's held item.
+ */
+s32 Battler_ItemFlingEffect(BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Get the Fling power of the battler's held item.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return Fling power of the battler's held item.
+ */
+s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler);
 int BattleSystem_CanSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
-BOOL ov16_02258CB4(BattleSystem * param0, BattleContext * param1, int param2);
-BOOL ov16_02259204(BattleSystem * param0, BattleContext * param1, int param2);
+
+/**
+ * @brief Try to Pluck the given battler's berry.
+ * 
+ * This routine will determine what subsequence should be run as the stolen
+ * effect (if any) and store it in battleCtx->scriptTemp. It will also update
+ * the attacker's self-turn status flags to denote that the attacker has
+ * Plucked a berry.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The battler whose berry is to be Plucked.
+ * @return TRUE if a follow-up subsequence should be run to apply the berry's
+ * Pluck effect; FALSE if no such follow-up is needed.
+ */
+BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+/**
+ * @brief Try to Fling the attacker's item at the given battler.
+ * 
+ * This routine will determine what subsequence should be run as the flung
+ * effect (if any) and store it in battleCtx->flingScript. It will also
+ * determine the base power of Fling, as specified in the item data, and
+ * store it in battleCtx->movePower.
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param battler   The target of the flung item.
+ * @return TRUE if a follow-up subsequence should be run to apply the item's
+ * Fling effect; FALSE if no such follow-up is needed.
+ */
+BOOL BattleSystem_FlingItem(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_UpdateMetronomeCount(BattleSystem * param0, BattleContext * param1);
 void BattleSystem_VerifyMetronomeCount(BattleSystem * param0, BattleContext * param1);
 int ov16_022599D0(BattleContext * param0, int param1, int param2, int param3);
 BOOL BattleSystem_CanPickCommand(BattleContext *battleSys, int battler);
 void ov16_02259A5C(BattleSystem * param0, BattleContext * param1, Pokemon * param2);
 u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler);
-BOOL Battler_BehindSubstitute(BattleContext * param0, int param1);
+
+/**
+ * @brief Check if a battler's substitute was hit.
+ * 
+ * @param battleCtx 
+ * @param battler 
+ * @return TRUE if the battler's substitute was hit, FALSE if not.
+ */
+BOOL Battler_SubstituteWasHit(BattleContext *battleCtx, int battler);
 BOOL BattleSystem_TrainerIsOT(BattleSystem * param0, BattleContext * param1);
 BOOL BattleSystem_PokemonIsOT(BattleSystem * param0, Pokemon * param1);
 BOOL BattleSystem_UpdateWeatherForms(BattleSystem * param0, BattleContext * param1, int * param2);

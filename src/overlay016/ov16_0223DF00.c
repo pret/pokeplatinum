@@ -141,7 +141,7 @@ int ov16_0223EDE0(BattleSystem * param0);
 u8 BattleSystem_TextSpeed(BattleSystem * param0);
 int BattleSystem_Ruleset(BattleSystem * param0);
 UnkStruct_02015F84 * ov16_0223EE28(BattleSystem * param0);
-UnkStruct_0202CC84 * ov16_0223EE30(BattleSystem * param0, int param1);
+UnkStruct_0202CC84 * BattleSystem_ChatotVoice(BattleSystem * param0, int param1);
 void ov16_0223EE70(BattleSystem * param0);
 void ov16_0223EF2C(BattleSystem * param0, int param1, int param2);
 void ov16_0223EF48(BattleSystem * param0, Pokemon * param1);
@@ -197,7 +197,7 @@ u32 ov16_0223F710(BattleSystem * param0);
 void BattleSystem_SetStopRecording(BattleSystem *battleSys, int flag);
 BOOL ov16_0223F7A4(BattleSystem * param0);
 void BattleSystem_ShowStopPlaybackButton(BattleSystem * param0);
-u8 ov16_0223F810(BattleSystem * param0, int param1);
+u8 BattleSystem_RecordedChatter(BattleSystem * param0, int param1);
 void ov16_0223F858(BattleSystem * param0, u8 * param1);
 void ov16_0223F87C(BattleSystem * param0, u8 * param1);
 void ov16_0223F8AC(BattleSystem * param0, UnkStruct_02007C7C ** param1);
@@ -1074,7 +1074,7 @@ UnkStruct_02015F84 * ov16_0223EE28 (BattleSystem * param0)
     return param0->unk_1C4;
 }
 
-UnkStruct_0202CC84 * ov16_0223EE30 (BattleSystem * param0, int param1)
+UnkStruct_0202CC84 * BattleSystem_ChatotVoice (BattleSystem * param0, int param1)
 {
     if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
         return param0->unk_78[param1];
@@ -1622,7 +1622,7 @@ void BattleSystem_ShowStopPlaybackButton (BattleSystem *battleSys)
     battleSys->playbackStopButton = ov16_0226E148(battleSys);
 }
 
-u8 ov16_0223F810 (BattleSystem * param0, int param1)
+u8 BattleSystem_RecordedChatter (BattleSystem * param0, int param1)
 {
     if ((param0->battleType & 0x8) || ((param0->battleType & 0x10) && (BattleSystem_BattlerSlot(param0, param1) & 0x1))) {
         return param0->unk_247C[param1];

@@ -2286,7 +2286,7 @@ static void ov14_02221EBC (BattleSystem * param0, BattleContext * param1)
     v1 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
 
-    param1->aiContext.calcTemp = ov16_02258B80(param1, v0);
+    param1->aiContext.calcTemp = Battler_ItemFlingPower(param1, v0);
 }
 
 static void ov14_02221EEC (BattleSystem * param0, BattleContext * param1)
@@ -2307,7 +2307,7 @@ static void ov14_02221F1C (BattleSystem * param0, BattleContext * param1)
     v1 = ov14_02222CF0(param1);
     v2 = ov14_02222CF0(param1);
     v0 = ov14_02222D34(param1, v1);
-    v3 = ov16_02256128(param0, param1, v0);
+    v3 = Battler_CountMoves(param0, param1, v0);
 
     if ((param1->battleMons[v0].moveEffectsData.lastResortCount >= (v3 - 1)) && (v3 > 1)) {
         ov14_02222D24(param1, v2);
@@ -3290,7 +3290,7 @@ static int ov14_0222327C (BattleSystem * param0, BattleContext * param1, int par
 
     switch (param3) {
     case 363:
-        v0 = ov16_02258B2C(param1, param2);
+        v0 = Battler_NaturalGiftType(param1, param2);
         break;
     case 449:
         switch (Battler_HeldItemEffect(param1, param2)) {
