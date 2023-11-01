@@ -64,6 +64,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "strbuf.h"
+#include "trainer_data.h"
 #include "trainer_info.h"
 
 #include "unk_02002F38.h"
@@ -83,7 +84,6 @@
 #include "unk_0201E86C.h"
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
-#include "trainer_data.h"
 #include "unk_020797C8.h"
 #include "unk_02079D40.h"
 #include "unk_0207A274.h"
@@ -8001,67 +8001,7 @@ static BOOL BtlCmd_IfSameSide(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
-static const u16 sCommonPickupItems[] = {
-    ITEM_POTION,
-    ITEM_ANTIDOTE,
-    ITEM_SUPER_POTION,
-    ITEM_GREAT_BALL,
-    ITEM_REPEL,
-    ITEM_ESCAPE_ROPE,
-    ITEM_FULL_HEAL,
-    ITEM_HYPER_POTION,
-    ITEM_ULTRA_BALL,
-    ITEM_REVIVE,
-    ITEM_RARE_CANDY,
-    ITEM_DUSK_STONE,
-    ITEM_SHINY_STONE,
-    ITEM_DAWN_STONE,
-    ITEM_FULL_RESTORE,
-    ITEM_MAX_REVIVE,
-    ITEM_PP_UP,
-    ITEM_MAX_ELIXIR,
-};
-
-static const u16 sRarePickupItems[] = {
-    ITEM_HYPER_POTION,
-    ITEM_NUGGET,
-    ITEM_KINGS_ROCK,
-    ITEM_FULL_RESTORE,
-    ITEM_ETHER,
-    ITEM_WHITE_HERB,
-    ITEM_TM44,
-    ITEM_ELIXIR,
-    ITEM_TM01,
-    ITEM_LEFTOVERS,
-    ITEM_TM26,
-};
-
-#define COMMON_PICKUP_ENTRIES 9
-
-static const u8 sCommonPickupRate[] = {
-    30,
-    40,
-    50,
-    60,
-    70,
-    80,
-    90,
-    94,
-    98,
-};
-
-static const u8 sHoneyGatherRate[] = {
-     5,
-    10,
-    15,
-    20,
-    25,
-    30,
-    35,
-    40,
-    45,
-    50,
-};
+#include "data/pickup.h"
 
 /**
  * @brief Generates an end-of-battle item, if applicable.
@@ -8293,21 +8233,7 @@ static BOOL BtlCmd_GetItemEffectPower(BattleSystem *battleSys, BattleContext *ba
     return FALSE;
 }
 
-static const u8 sTerrainCamouflageType[] = {
-    [TERRAIN_PLAIN]       = TYPE_GROUND,
-    [TERRAIN_SAND]        = TYPE_GROUND,
-    [TERRAIN_GRASS]       = TYPE_GRASS,
-    [TERRAIN_PUDDLE]      = TYPE_GRASS,
-    [TERRAIN_MOUNTAIN]    = TYPE_ROCK,
-    [TERRAIN_CAVE]        = TYPE_ROCK,
-    [TERRAIN_SNOW]        = TYPE_ICE,
-    [TERRAIN_WATER]       = TYPE_WATER,
-    [TERRAIN_ICE]         = TYPE_ICE,
-    [TERRAIN_BUILDING]    = TYPE_NORMAL,
-    [TERRAIN_GREAT_MARSH] = TYPE_GROUND,
-    [TERRAIN_BRIDGE]      = TYPE_FLYING,
-    [TERRAIN_SPECIAL]     = TYPE_NORMAL,
-};
+#include "data/terrain/to_type.h"
 
 /**
  * @brief Try to change the battler's type to one according to the battle
@@ -8344,21 +8270,7 @@ static BOOL BtlCmd_TryCamouflage(BattleSystem *battleSys, BattleContext *battleC
     return 0;
 }
 
-static const u16 sTerrainMove[] = {
-    [TERRAIN_PLAIN]       = MOVE_EARTHQUAKE,
-    [TERRAIN_SAND]        = MOVE_EARTHQUAKE,
-    [TERRAIN_GRASS]       = MOVE_SEED_BOMB,
-    [TERRAIN_PUDDLE]      = MOVE_SEED_BOMB,
-    [TERRAIN_MOUNTAIN]    = MOVE_ROCK_SLIDE,
-    [TERRAIN_CAVE]        = MOVE_ROCK_SLIDE,
-    [TERRAIN_SNOW]        = MOVE_BLIZZARD,
-    [TERRAIN_WATER]       = MOVE_HYDRO_PUMP,
-    [TERRAIN_ICE]         = MOVE_ICE_BEAM,
-    [TERRAIN_BUILDING]    = MOVE_TRI_ATTACK,
-    [TERRAIN_GREAT_MARSH] = MOVE_MUD_BOMB,
-    [TERRAIN_BRIDGE]      = MOVE_AIR_SLASH,
-    [TERRAIN_SPECIAL]     = MOVE_TRI_ATTACK,
-};
+#include "data/terrain/to_move.h"
 
 /**
  * @brief Get the move which corresponding to this battle's terrain.
@@ -8385,21 +8297,7 @@ static BOOL BtlCmd_GetTerrainMove(BattleSystem *battleSys, BattleContext *battle
     return FALSE;
 }
 
-static const u32 sTerrainSideEffect[] = {
-    [TERRAIN_PLAIN]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ACCURACY_DOWN_1_STAGE,
-    [TERRAIN_SAND]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ACCURACY_DOWN_1_STAGE,
-    [TERRAIN_GRASS]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SLEEP,
-    [TERRAIN_PUDDLE]      = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SLEEP,
-    [TERRAIN_MOUNTAIN]    = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FLINCH,
-    [TERRAIN_CAVE]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FLINCH,
-    [TERRAIN_SNOW]        = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FREEZE,
-    [TERRAIN_WATER]       = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_ATTACK_DOWN_1_STAGE,
-    [TERRAIN_ICE]         = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_FREEZE,
-    [TERRAIN_BUILDING]    = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_PARALYZE,
-    [TERRAIN_GREAT_MARSH] = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_SPEED_DOWN_1_STAGE,
-    [TERRAIN_BRIDGE]      = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_EVASION_DOWN_1_STAGE,
-    [TERRAIN_SPECIAL]     = MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SIDE_EFFECT_PARALYZE,
-};
+#include "data/terrain/to_secondary_effect.h"
 
 /**
  * @brief Get the secondary effect corresponding to this battle's terrain.
