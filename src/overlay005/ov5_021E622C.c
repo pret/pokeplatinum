@@ -3063,7 +3063,7 @@ static void ov5_021E742C (Pokemon * param0, int param1)
     v13 = Pokemon_GetValue(param0, MON_DATA_FORM, NULL);
 
     if (v0 == 490) {
-        int v17 = Pokemon_GetValue(param0, MON_DATA_152, NULL);
+        int v17 = Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL);
 
         if (v17 == sub_02017070(2, 1)) {
             while (Pokemon_IsPersonalityShiny(v4, v3)) {
@@ -3101,7 +3101,7 @@ static void ov5_021E742C (Pokemon * param0, int param1)
         u16 v18;
         u8 v19, v20, v21;
 
-        v18 = Pokemon_GetValue(param0, MON_DATA_152, NULL);
+        v18 = Pokemon_GetValue(param0, MON_DATA_MET_LOCATION, NULL);
         v19 = Pokemon_GetValue(param0, MON_DATA_146, NULL);
         v20 = Pokemon_GetValue(param0, MON_DATA_147, NULL);
         v21 = Pokemon_GetValue(param0, MON_DATA_148, NULL);

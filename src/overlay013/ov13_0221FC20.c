@@ -387,7 +387,7 @@ static u8 ov13_0221FFDC (UnkStruct_ov13_022213F0 * param0)
         return 22;
     }
 
-    if (ov16_0223E30C(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11], 0, v0->unk_22) == 1) {
+    if (BattleSystem_UseBagItem(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11], 0, v0->unk_22) == 1) {
         if (Item_LoadParam(v0->unk_22, 37, v0->unk_0C) != 0) {
             param0->unk_2075 = 13;
         } else {
@@ -736,7 +736,7 @@ static u8 ov13_02220628 (UnkStruct_ov13_022213F0 * param0)
         Sound_PlayEffect(1501);
         ov13_02225FCC(param0, 19 + v1);
 
-        if (ov16_0223E30C(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11], v1, v0->unk_22) == 1) {
+        if (BattleSystem_UseBagItem(v0->unk_08, v0->unk_28, v0->unk_2C[v0->unk_11], v1, v0->unk_22) == 1) {
             param0->unk_2078 = 0;
             param0->unk_2075 = 23;
             return 22;

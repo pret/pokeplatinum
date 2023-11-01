@@ -321,7 +321,7 @@ BOOL sub_0204D614 (UnkStruct_0203E724 * param0)
             v2++;
         }
 
-        if (Pokemon_GetValue(v1, MON_DATA_152, NULL) == v5) {
+        if (Pokemon_GetValue(v1, MON_DATA_MET_LOCATION, NULL) == v5) {
             v2++;
         }
     }

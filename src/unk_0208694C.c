@@ -1473,7 +1473,7 @@ static void sub_02087544 (UnkStruct_02087A10 * param0, UnkStruct_020067E8 * para
         v0 = Strbuf_Init(200, 18);
         param0->unk_180 = NULL;
         v2 = sub_0207999C(v1->unk_48);
-        v3 = sub_020799A0(v1->unk_48);
+        v3 = PCBoxes_FirstEmptyBox(v1->unk_48);
 
         sub_0200BD40(param0->unk_168, 1, v1->unk_48, v2);
 

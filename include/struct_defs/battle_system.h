@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 #define POKEPLATINUM_STRUCT_BATTLE_SYSTEM_T_H
 
-#include "constants/battle/terrain.h"
+#include "constants/battle.h"
 #include "constants/time.h"
 
 #include "struct_decls/struct_02002F38_decl.h"
@@ -63,7 +63,7 @@ struct BattleSystem {
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
     UnkStruct_02026324 *pokedex;
-    PCBoxes * unk_64;
+    PCBoxes *pcBoxes;
     Party *parties[4];
     UnkStruct_0202CC84 * unk_78[4];
     UnkStruct_02007768 * unk_88;
@@ -72,7 +72,7 @@ struct BattleSystem {
     UnkStruct_0200C704 * unk_94;
     UnkStruct_02056B24 * unk_98;
     UnkStruct_0206D140 * unk_9C;
-    u16 unk_A0[4];
+    u16 trainerIDs[4];
     u8 unk_A8[4];
     TrainerData trainers[4];
     UnkStruct_ov16_02268520 unk_17C[2];

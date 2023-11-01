@@ -189,7 +189,19 @@ void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
  * @param file          Which file in the NARC to load
  */
 void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
-BOOL ov16_02251EF4(BattleContext * param0);
+
+/**
+ * @brief Pop a script from the stack, if one is present, and load it for
+ * execution.
+ * 
+ * If a script is loaded, then this will also pop a value from the script cursor
+ * stack and set the internal script cursor to that value.
+ * 
+ * @param battleCtx 
+ * @return TRUE if there are no contents in the stack to be loaded; FALSE if
+ * a stack was popped and should be executed.
+ */
+BOOL BattleSystem_PopScript(BattleContext *battleCtx);
 void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
 
@@ -237,7 +249,18 @@ int BattleMon_Get(BattleContext *battleCtx, int battler, enum BattleMonParam par
  * @param buf           Buffer input for the value to be set
  */
 void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, const void *buf);
-void ov16_02252A14(BattleContext * param0, int param1, int param2, int param3);
+
+/**
+ * @brief Add a value to a battler's data field.
+ * 
+ * This is just a convenience wrapper around BattleMon_AddVal.
+ * 
+ * @param battleCtx 
+ * @param battler   The battler whose data should be modified
+ * @param paramID   ID of the field which should be modified
+ * @param val       Value to be added to the battler's data field
+ */
+void Battler_AddVal(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, int val);
 
 /**
  * @brief Add a value to a Pokemon's data field.
@@ -538,7 +561,17 @@ int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL ov16_022577A4(BattleContext * param0, int param1, int param2);
+
+/**
+ * @brief Check if an ability forbids a value in the given status mask.
+ * 
+ * @param battleSys 
+ * @param ability   The ability to check
+ * @param status    A mask of status values
+ * @return TRUE if the given ability forbids some status in the given mask;
+ * FALSE if not
+ */
+BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status);
 BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
 BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1, int param2);
@@ -815,7 +848,7 @@ void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * par
  * @return TRUE if the status effect should be shown, FALSE otherwise.
  */
 BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status);
-BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
+BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem * param0, BattleContext * param1, int * param2);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
 
@@ -831,7 +864,27 @@ BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1
  * @return Value of the field, or 0 if unrecognized.
  */
 int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler);
-void ov16_0225B540(BattleSystem * param0, BattleContext * param1, int param2, int param3, int param4);
+
+/**
+ * @brief Set the value of an accessible field in the BattleContext struct.
+ * 
+ * See: enum BattleContextParam
+ * 
+ * The following values may be modified:
+ * - The full side conditions mask for a particular side
+ * - The number of turns of Mist for a particular side
+ * - The selected party slot for a battler
+ * - The total number of turns that have elapsed
+ * - The AI's chosen target for the turn
+ * - The AI's chosen target from a particular battler for the turn
+ * 
+ * @param battleSys 
+ * @param battleCtx 
+ * @param paramID   ID of the field to retrieve
+ * @param battler   Battler for accessing the correct field, if applicable
+ * @param val       Value to which the field should be set
+ */
+void BattleContext_Set(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler, int val);
 int ov16_0225BA88(BattleSystem * param0, int param1);
 int ov16_0225BE28(BattleSystem * param0, int param1);
 int ov16_0225BE3C(BattleSystem * param0, BattleContext * param1, Pokemon * param2, int param3);

@@ -12,7 +12,7 @@ BOOL sub_020798A0(PCBoxes * param0, u32 param1, BoxPokemon * param2);
 BOOL sub_02079914(PCBoxes * param0, u32 param1, u32 param2, BoxPokemon * param3);
 void sub_02079968(PCBoxes * param0, u32 param1, u32 param2);
 u32 sub_0207999C(const PCBoxes * param0);
-u32 sub_020799A0(const PCBoxes * param0);
+u32 PCBoxes_FirstEmptyBox(const PCBoxes * param0);
 BOOL sub_020799F0(const PCBoxes * param0, int * param1, int * param2);
 u32 sub_02079A50(const PCBoxes * param0);
 void sub_02079A94(PCBoxes * param0, u32 param1);

@@ -1,6 +1,16 @@
 #ifndef POKEPLATINUM_CONSTANTS_BATTLE_H
 #define POKEPLATINUM_CONSTANTS_BATTLE_H
 
+#include "constants/battle/battle_effects.h"
+#include "constants/battle/condition.h"
+#include "constants/battle/message_tags.h"
+#include "constants/battle/moves.h"
+#include "constants/battle/scripts.h"
+#include "constants/battle/side_effects.h"
+#include "constants/battle/system_control.h"
+#include "constants/battle/terrain.h"
+#include "constants/battle/turn_flags.h"
+
 #define BATTLE_TYPE_SINGLES         (0 << 0)
 #define BATTLE_TYPE_WILD_MON        (0 << 0)
 #define BATTLE_TYPE_TRAINER         (1 << 0)
@@ -33,6 +43,7 @@
 #define BATTLE_TYPE_2vs2_TAG                (BATTLE_TYPE_2vs2 | BATTLE_TYPE_TAG)
 #define BATTLE_TYPE_ALWAYS_CATCH            (BATTLE_TYPE_PAL_PARK | BATTLE_TYPE_CATCH_TUTORIAL)
 #define BATTLE_TYPE_RESTORE_ITEMS_AFTER     (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)
+#define BATTLE_TYPE_2vs2_AI_DOUBLES         (BATTLE_TYPE_DOUBLES | BATTLE_TYPE_2vs2 | BATTLE_TYPE_AI)
 
 #define MAX_LINK_BATTLERS       4
 #define MAX_BATTLERS            4
