@@ -509,7 +509,7 @@ void * ov16_0223E220 (BattleSystem * param0)
 
 PCBoxes * ov16_0223E228 (BattleSystem * param0)
 {
-    return param0->unk_64;
+    return param0->pcBoxes;
 }
 
 enum Terrain BattleSystem_Terrain(BattleSystem *battleSys)
@@ -2347,7 +2347,7 @@ static void ov16_0224055C (BattleSystem * param0, u32 param1, int param2)
 
 static void ov16_02240574 (BattleSystem * param0, u32 param1, int param2)
 {
-    sub_0200BD40(param0->unk_14, param1, param0->unk_64, param2);
+    sub_0200BD40(param0->unk_14, param1, param0->pcBoxes, param2);
 }
 
 static void ov16_02240584 (BattleSystem * param0, MessageLoader * param1, BattleMessage * param2)

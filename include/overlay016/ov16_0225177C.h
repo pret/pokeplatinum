@@ -189,7 +189,19 @@ void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
  * @param file          Which file in the NARC to load
  */
 void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
-BOOL ov16_02251EF4(BattleContext * param0);
+
+/**
+ * @brief Pop a script from the stack, if one is present, and load it for
+ * execution.
+ * 
+ * If a script is loaded, then this will also pop a value from the script cursor
+ * stack and set the internal script cursor to that value.
+ * 
+ * @param battleCtx 
+ * @return TRUE if there are no contents in the stack to be loaded; FALSE if
+ * a stack was popped and should be executed.
+ */
+BOOL BattleSystem_PopScript(BattleContext *battleCtx);
 void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
 
@@ -549,7 +561,17 @@ int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL ov16_022577A4(BattleContext * param0, int param1, int param2);
+
+/**
+ * @brief Check if an ability forbids a value in the given status mask.
+ * 
+ * @param battleSys 
+ * @param ability   The ability to check
+ * @param status    A mask of status values
+ * @return TRUE if the given ability forbids some status in the given mask;
+ * FALSE if not
+ */
+BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status);
 BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
 BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1, int param2);
@@ -826,7 +848,7 @@ void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * par
  * @return TRUE if the status effect should be shown, FALSE otherwise.
  */
 BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status);
-BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
+BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem * param0, BattleContext * param1, int * param2);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
 

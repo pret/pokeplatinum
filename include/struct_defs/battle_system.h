@@ -63,7 +63,7 @@ struct BattleSystem {
     UnkStruct_0207D3C0 * unk_58;
     UnkStruct_0207D99C * unk_5C;
     UnkStruct_02026324 *pokedex;
-    PCBoxes * unk_64;
+    PCBoxes *pcBoxes;
     Party *parties[4];
     UnkStruct_0202CC84 * unk_78[4];
     UnkStruct_02007768 * unk_88;

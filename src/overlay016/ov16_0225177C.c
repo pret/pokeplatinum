@@ -54,7 +54,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
 void BattleSystem_ReloadPokemon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot);
 void BattleSystem_LoadScript(BattleContext *battleCtx, int narc, int file);
 void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file);
-BOOL ov16_02251EF4(BattleContext * param0);
+BOOL BattleSystem_PopScript(BattleContext *battleCtx);
 void ov16_02251F44(BattleContext * param0, int param1, int param2, int param3);
 void ov16_02251F80(BattleContext * param0, int param1, int param2, int param3);
 BOOL BattleIO_QueueIsEmpty(BattleContext *battleCtx);
@@ -121,7 +121,7 @@ int BattleSystem_ShowMonChecks(BattleSystem * param0, BattleContext * param1);
 int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCtx, int attacker);
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *nextSeq);
 BOOL BattleSystem_RecoverStatusByAbility(BattleSystem * param0, BattleContext * param1, int param2, int param3);
-BOOL ov16_022577A4(BattleContext * param0, int param1, int param2);
+BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status);
 BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand);
 BOOL BattleSystem_TriggerHeldItem(BattleSystem * param0, BattleContext * param1, int param2);
 BOOL BattleSystem_TriggerLeftovers(BattleSystem * param0, BattleContext * param1, int param2);
@@ -163,7 +163,7 @@ s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataPa
 int BattleSystem_SideToBattler(BattleSystem * param0, BattleContext * param1, int param2);
 void BattleSystem_SortMonsInTrickRoom(BattleSystem * param0, BattleContext * param1);
 BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, int status);
-BOOL ov16_0225B228(BattleSystem * param0, BattleContext * param1, int * param2);
+BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem * param0, BattleContext * param1, int * param2);
 void BattleSystem_DecPPForPressure(BattleContext * param0, int param1, int param2);
 BOOL BattleSystem_RecordingStopped(BattleSystem * param0, BattleContext * param1);
 int BattleContext_Get(BattleSystem *battleSys, BattleContext *battleCtx, enum BattleContextParam paramID, int battler);
@@ -340,16 +340,17 @@ void BattleSystem_CallScript(BattleContext *battleCtx, int narc, int file)
     NARC_ReadWholeMemberByIndexPair(&battleCtx->battleScript, narc, file);
 }
 
-BOOL ov16_02251EF4 (BattleContext * param0)
+BOOL BattleSystem_PopScript(BattleContext *battleCtx)
 {
-    if (param0->scriptStackPointer) {
-        param0->scriptStackPointer--;
-        BattleSystem_LoadScript(param0, param0->scriptStackNarc[param0->scriptStackPointer], param0->scriptStackFile[param0->scriptStackPointer]);
-        param0->scriptCursor = param0->scriptStackCursor[param0->scriptStackPointer];
-        return 0;
-    } else {
-        return 1;
+    if (battleCtx->scriptStackPointer) {
+        battleCtx->scriptStackPointer--;
+        BattleSystem_LoadScript(battleCtx, battleCtx->scriptStackNarc[battleCtx->scriptStackPointer], battleCtx->scriptStackFile[battleCtx->scriptStackPointer]);
+
+        battleCtx->scriptCursor = battleCtx->scriptStackCursor[battleCtx->scriptStackPointer];
+        return FALSE;
     }
+    
+    return TRUE;
 }
 
 void ov16_02251F44 (BattleContext * param0, int param1, int param2, int param3)
@@ -4476,42 +4477,44 @@ BOOL BattleSystem_RecoverStatusByAbility (BattleSystem * param0, BattleContext *
     return v0;
 }
 
-BOOL ov16_022577A4 (BattleContext * param0, int param1, int param2)
+BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
 {
-    BOOL v0;
+    BOOL result = FALSE;
 
-    v0 = 0;
+    switch (ability) {
+    case ABILITY_IMMUNITY:
+        if (status & MON_CONDITION_ANY_POISON) {
+            result = TRUE;
+        }
+        break;
 
-    switch (param1) {
-    case 17:
-        if (param2 & 0xf88) {
-            v0 = 1;
+    case ABILITY_LIMBER:
+        if (status & MON_CONDITION_PARALYSIS) {
+            result = TRUE;
         }
         break;
-    case 7:
-        if (param2 & 0x40) {
-            v0 = 1;
+
+    case ABILITY_INSOMNIA:
+    case ABILITY_VITAL_SPIRIT:
+        if (status & MON_CONDITION_SLEEP) {
+            result = TRUE;
         }
         break;
-    case 15:
-    case 72:
-        if (param2 & 0x7) {
-            v0 = 1;
+
+    case ABILITY_WATER_VEIL:
+        if (status & MON_CONDITION_BURN) {
+            result = TRUE;
         }
         break;
-    case 41:
-        if (param2 & 0x10) {
-            v0 = 1;
-        }
-        break;
-    case 40:
-        if (param2 & 0x20) {
-            v0 = 1;
+        
+    case ABILITY_MAGMA_ARMOR:
+        if (status & MON_CONDITION_FREEZE) {
+            result = TRUE;
         }
         break;
     }
 
-    return v0;
+    return result;
 }
 
 BOOL BattleSystem_SynchronizeStatus(BattleSystem * battleSys, BattleContext * battleCtx, int controllerCommand)
@@ -7315,7 +7318,7 @@ BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, 
     return result;
 }
 
-BOOL ov16_0225B228 (BattleSystem * param0, BattleContext * param1, int * param2)
+BOOL BattleSystem_TriggerHeldItemOnPivotMove (BattleSystem * param0, BattleContext * param1, int * param2)
 {
     BOOL v0;
     int v1;

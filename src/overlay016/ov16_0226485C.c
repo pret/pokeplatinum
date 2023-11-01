@@ -125,23 +125,23 @@ void BattleIO_SetMosaic(BattleSystem * param0, int param1, int param2, int param
 void BattleIO_ChangeWeatherForm(BattleSystem * param0, int param1);
 void BattleIO_UpdateBG(BattleSystem * param0, int param1);
 void BattleIO_ClearTouchScreen(BattleSystem * param0, int param1);
-void ov16_022665E4(BattleSystem * param0, int param1);
-void ov16_0226660C(BattleSystem * param0, int param1);
-void ov16_02266634(BattleSystem * param0, int param1);
-void ov16_0226665C(BattleSystem * param0, int param1);
-void ov16_02266684(BattleSystem * param0);
-void ov16_022666A0(BattleSystem * param0);
+void BattleIO_ShowBattleStartPartyGauge(BattleSystem * param0, int param1);
+void BattleIO_HideBattleStartPartyGauge(BattleSystem * param0, int param1);
+void BattleIO_ShowPartyGauge(BattleSystem * param0, int param1);
+void BattleIO_HidePartyGauge(BattleSystem * param0, int param1);
+void BattleIO_LoadPartyGaugeGraphics(BattleSystem * param0);
+void BattleIO_FreePartyGaugeGraphics(BattleSystem * param0);
 void BattleIO_IncrementRecord(BattleSystem * param0, int param1, int param2, int param3);
 void BattleIO_LinkWaitMessage(BattleSystem *battleSys, int battler);
-void ov16_0226673C(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_022667E8(BattleSystem * param0, int param1);
-void ov16_02266804(BattleSystem * param0, int param1);
-void ov16_02266820(BattleSystem * param0);
-void ov16_0226683C(BattleSystem * param0, BattleContext * param1);
-void ov16_022668D0(BattleSystem * param0);
-void ov16_0226692C(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_022669D8(BattleSystem * param0, BattleContext * param1, int param2);
-void ov16_02266A18(BattleSystem * param0, int param1, int param2);
+void BattleIO_RestoreSprite(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_SpriteToOAM(BattleSystem * param0, int param1);
+void BattleIO_OAMToSprite(BattleSystem * param0, int param1);
+void BattleIO_ResultMessage(BattleSystem * param0);
+void BattleIO_EscapeMessage(BattleSystem * param0, BattleContext * param1);
+void BattleIO_ForfeitMessage(BattleSystem * param0);
+void BattleIO_RefreshSprite(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_PlayMoveHitSoundEffect(BattleSystem * param0, BattleContext * param1, int param2);
+void BattleIO_PlayMusic(BattleSystem * param0, int param1, int param2);
 void BattleIO_SubmitResult(BattleSystem * param0);
 void ov16_02266ABC(BattleSystem * param0, int param1, int param2);
 BOOL ov16_02266AE4(BattleSystem * param0, void * param1);
@@ -1382,7 +1382,7 @@ void BattleIO_ClearTouchScreen (BattleSystem *battleSys, int battler)
     ov16_02264A04(battleSys, 1, battler, &v0, 4);
 }
 
-void ov16_022665E4 (BattleSystem * param0, int param1)
+void BattleIO_ShowBattleStartPartyGauge (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C840 v0;
 
@@ -1390,7 +1390,7 @@ void ov16_022665E4 (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
 }
 
-void ov16_0226660C (BattleSystem * param0, int param1)
+void BattleIO_HideBattleStartPartyGauge (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C840 v0;
 
@@ -1398,7 +1398,7 @@ void ov16_0226660C (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
 }
 
-void ov16_02266634 (BattleSystem * param0, int param1)
+void BattleIO_ShowPartyGauge (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C840 v0;
 
@@ -1406,7 +1406,7 @@ void ov16_02266634 (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
 }
 
-void ov16_0226665C (BattleSystem * param0, int param1)
+void BattleIO_HidePartyGauge (BattleSystem * param0, int param1)
 {
     UnkStruct_ov16_0225C840 v0;
 
@@ -1414,13 +1414,13 @@ void ov16_0226665C (BattleSystem * param0, int param1)
     ov16_02264A04(param0, 1, param1, &v0, sizeof(UnkStruct_ov16_0225C840));
 }
 
-void ov16_02266684 (BattleSystem * param0)
+void BattleIO_LoadPartyGaugeGraphics (BattleSystem * param0)
 {
     int v0 = 52;
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_022666A0 (BattleSystem * param0)
+void BattleIO_FreePartyGaugeGraphics (BattleSystem * param0)
 {
     int v0 = 53;
     ov16_02264A04(param0, 1, 0, &v0, 4);
@@ -1452,7 +1452,7 @@ void BattleIO_LinkWaitMessage (BattleSystem *battleSys, int battler)
     }
 }
 
-void ov16_0226673C (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleIO_RestoreSprite (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0;
     UnkStruct_ov16_02265BBC v1;
@@ -1476,25 +1476,25 @@ void ov16_0226673C (BattleSystem * param0, BattleContext * param1, int param2)
     ov16_02264A04(param0, 1, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_022667E8 (BattleSystem * param0, int param1)
+void BattleIO_SpriteToOAM (BattleSystem * param0, int param1)
 {
     int v0 = 57;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02266804 (BattleSystem * param0, int param1)
+void BattleIO_OAMToSprite (BattleSystem * param0, int param1)
 {
     int v0 = 58;
     ov16_02264A04(param0, 1, param1, &v0, 4);
 }
 
-void ov16_02266820 (BattleSystem * param0)
+void BattleIO_ResultMessage (BattleSystem * param0)
 {
     int v0 = 59;
     ov16_02264A04(param0, 1, 0, &v0, 4);
 }
 
-void ov16_0226683C (BattleSystem * param0, BattleContext * param1)
+void BattleIO_EscapeMessage (BattleSystem * param0, BattleContext * param1)
 {
     UnkStruct_ov16_0225C9F0 v0;
     int v1;
@@ -1518,7 +1518,7 @@ void ov16_0226683C (BattleSystem * param0, BattleContext * param1)
     ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_0225C9F0));
 }
 
-void ov16_022668D0 (BattleSystem * param0)
+void BattleIO_ForfeitMessage (BattleSystem * param0)
 {
     UnkStruct_ov16_0225CA14 v0;
     u32 v1 = BattleSystem_BattleType(param0);
@@ -1534,7 +1534,7 @@ void ov16_022668D0 (BattleSystem * param0)
     ov16_02264A04(param0, 1, 0, &v0, sizeof(UnkStruct_ov16_0225CA14));
 }
 
-void ov16_0226692C (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleIO_RefreshSprite (BattleSystem * param0, BattleContext * param1, int param2)
 {
     int v0;
     UnkStruct_ov16_02265BBC v1;
@@ -1558,7 +1558,7 @@ void ov16_0226692C (BattleSystem * param0, BattleContext * param1, int param2)
     ov16_02264A04(param0, 1, param2, &v1, sizeof(UnkStruct_ov16_02265BBC));
 }
 
-void ov16_022669D8 (BattleSystem * param0, BattleContext * param1, int param2)
+void BattleIO_PlayMoveHitSoundEffect (BattleSystem * param0, BattleContext * param1, int param2)
 {
     UnkStruct_ov16_0225CA4C v0;
 
@@ -1575,7 +1575,7 @@ void ov16_022669D8 (BattleSystem * param0, BattleContext * param1, int param2)
     ov16_02264A04(param0, 1, param2, &v0, sizeof(UnkStruct_ov16_0225CA4C));
 }
 
-void ov16_02266A18 (BattleSystem * param0, int param1, int param2)
+void BattleIO_PlayMusic (BattleSystem * param0, int param1, int param2)
 {
     UnkStruct_ov16_0225CA60 v0;
 

@@ -744,7 +744,7 @@ static void ov16_0223BCB4 (UnkStruct_020067E8 * param0)
     sub_02026338(v0->pokedex, v1->unk_E8);
     Heap_FreeToHeap(v0->pokedex);
 
-    v1->unk_EC = v0->unk_64;
+    v1->unk_EC = v0->pcBoxes;
     v1->unk_E4 = v0->unk_5C;
     v1->unk_190 = v0->unk_1BC;
     v1->unk_100 = v0->unk_98;
@@ -1097,7 +1097,7 @@ static void ov16_0223C2C0 (BattleSystem * param0, BattleParams * param1)
     param0->pokedex = sub_02026324(5);
     sub_02026338(param1->unk_E8, param0->pokedex);
 
-    param0->unk_64 = param1->unk_EC;
+    param0->pcBoxes = param1->unk_EC;
     param0->unk_1B0 = param1->unk_108;
     param0->unk_1B4 = param1->unk_124;
     param0->unk_5C = param1->unk_E4;
