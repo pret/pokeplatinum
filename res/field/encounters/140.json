@@ -3,23 +3,23 @@
     "land_encounters": [
         {
             "level": 2,
-            "species": "SPECIES_CYNDAQUIL"
+            "species": "SPECIES_STARLY"
         },
         {
             "level": 2,
-            "species": "SPECIES_CYNDAQUIL"
+            "species": "SPECIES_BIDOOF"
         },
         {
             "level": 3,
-            "species": "SPECIES_CYNDAQUIL"
+            "species": "SPECIES_STARLY"
         },
         {
             "level": 3,
-            "species": "SPECIES_CYNDAQUIL"
+            "species": "SPECIES_KRICKETOT"
         },
         {
             "level": 3,
-            "species": "SPECIES_CYNDAQUIL"
+            "species": "SPECIES_STARLY"
         },
         {
             "level": 3,
