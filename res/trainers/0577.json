@@ -1,0 +1,41 @@
+{
+    "name": "Meagan",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DELCATTY",
+            "form": 0,
+            "level": 57,
+            "item": null,
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_CAPTIVATE",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_DOUBLE_EDGE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ABOMASNOW",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_AVALANCHE",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_WATER_PULSE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

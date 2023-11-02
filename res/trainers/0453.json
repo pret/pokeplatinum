@@ -1,0 +1,30 @@
+{
+    "name": "Maurice",
+    "class": "TRAINER_CLASS_HIKER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_DAMAGE_PRIORITY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GRAVELER",
+            "form": 0,
+            "level": 35,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RHYHORN",
+            "form": 0,
+            "level": 35,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

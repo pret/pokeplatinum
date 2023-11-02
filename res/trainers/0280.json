@@ -1,0 +1,55 @@
+{
+    "name": "Allen",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GASTLY",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": [
+                "MOVE_NIGHT_SHADE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_CURSE",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GASTLY",
+            "form": 0,
+            "level": 22,
+            "item": null,
+            "moves": [
+                "MOVE_NIGHT_SHADE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_HYPNOSIS",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HAUNTER",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_CURSE",
+                "MOVE_MEAN_LOOK"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

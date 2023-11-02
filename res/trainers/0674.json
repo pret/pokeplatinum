@@ -1,0 +1,39 @@
+{
+    "name": "Mitchell",
+    "class": "TRAINER_CLASS_PSYCHIC_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GRUMPIG",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ALAKAZAM",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DUSKNOIR",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

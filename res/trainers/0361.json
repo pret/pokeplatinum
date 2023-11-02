@@ -1,0 +1,20 @@
+{
+    "name": "Holly",
+    "class": "TRAINER_CLASS_TUBER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_REMORAID",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

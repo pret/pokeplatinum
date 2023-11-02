@@ -1,0 +1,40 @@
+{
+    "name": "Ray",
+    "class": "TRAINER_CLASS_BLACK_BELT",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_DAMAGE_PRIORITY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BRELOOM",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_MACH_PUNCH",
+                "MOVE_SKY_UPPERCUT",
+                "MOVE_SPORE"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOXICROAK",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_NASTY_PLOT",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_DARK_PULSE"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

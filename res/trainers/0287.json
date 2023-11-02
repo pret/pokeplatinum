@@ -1,0 +1,54 @@
+{
+    "name": "Maya",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ROSELIA",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": [
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_LEECH_SEED"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RALTS",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_CALM_MIND",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LICKITUNG",
+            "form": 0,
+            "level": 25,
+            "item": null,
+            "moves": [
+                "MOVE_SUPERSONIC",
+                "MOVE_STOMP",
+                "MOVE_ROLLOUT",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

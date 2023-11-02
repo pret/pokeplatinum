@@ -1,0 +1,27 @@
+{
+    "name": "Karina",
+    "class": "TRAINER_CLASS_PICNICKER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PRINPLUP",
+            "form": 0,
+            "level": 35,
+            "item": null,
+            "moves": [
+                "MOVE_BUBBLE_BEAM",
+                "MOVE_METAL_CLAW",
+                "MOVE_FURY_ATTACK",
+                "MOVE_GROWL"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

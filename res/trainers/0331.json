@@ -1,0 +1,47 @@
+{
+    "name": "Meghan",
+    "class": "TRAINER_CLASS_POKE_KID",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PIKACHU",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": null,
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PIKACHU",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": null,
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PIKACHU",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": null,
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PIKACHU",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": null,
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,65 @@
+{
+    "name": "Brady",
+    "class": "TRAINER_CLASS_COLLECTOR",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SKORUPI",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TANGELA",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_YANMA",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CARNIVINE",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CROAGUNK",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TROPIUS",
+            "form": 0,
+            "level": 21,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "name": "Cesar",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_METAL_CLAW",
+                "MOVE_X_SCISSOR",
+                "MOVE_SLASH",
+                "MOVE_PURSUIT"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

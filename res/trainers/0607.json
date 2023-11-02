@@ -1,0 +1,97 @@
+{
+    "name": "Cedric",
+    "class": "TRAINER_CLASS_RIVAL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MUNCHLAX",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_BODY_SLAM",
+                "MOVE_STOCKPILE",
+                "MOVE_SWALLOW",
+                "MOVE_SCREECH"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_AERIAL_ACE",
+                "MOVE_TAKE_DOWN",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLOATZEL",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_PURSUIT",
+                "MOVE_BRICK_BREAK",
+                "MOVE_IRON_TAIL"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HERACROSS",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_BRICK_BREAK",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AERIAL_ACE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_WILL_O_WISP",
+                "MOVE_STOMP",
+                "MOVE_TAKE_DOWN"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TORTERRA",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": [
+                "MOVE_GIGA_DRAIN",
+                "MOVE_BITE",
+                "MOVE_LEECH_SEED",
+                "MOVE_SYNTHESIS"
+            ],
+            "power": 200,
+            "ball_seal": 10
+        }
+    ]
+}

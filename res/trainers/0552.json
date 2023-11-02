@@ -1,0 +1,39 @@
+{
+    "name": "Emanuel",
+    "class": "TRAINER_CLASS_VETERAN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MACHOKE",
+            "form": 0,
+            "level": 28,
+            "item": null,
+            "moves": [
+                "MOVE_SEISMIC_TOSS",
+                "MOVE_LOW_KICK",
+                "MOVE_FORESIGHT"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BRONZOR",
+            "form": 0,
+            "level": 28,
+            "item": null,
+            "moves": [
+                "MOVE_EXTRASENSORY",
+                "MOVE_TACKLE",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Jeremy",
+    "class": "TRAINER_CLASS_GENTLEMAN",
+    "items": [
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHATOT",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 22
+        }
+    ]
+}

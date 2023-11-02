@@ -1,0 +1,38 @@
+{
+    "name": "Lee",
+    "class": "TRAINER_CLASS_CLOWN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MR_MIME",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 3
+        },
+        {
+            "species": "SPECIES_ALAKAZAM",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 3
+        },
+        {
+            "species": "SPECIES_AMBIPOM",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 3
+        }
+    ]
+}

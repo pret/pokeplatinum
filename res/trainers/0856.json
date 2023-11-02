@@ -1,0 +1,86 @@
+{
+    "name": "Byron",
+    "class": "TRAINER_CLASS_LEADER_BYRON",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SKARMORY",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_NIGHT_SLASH",
+                "MOVE_DRILL_PECK",
+                "MOVE_ROCK_TOMB",
+                "MOVE_STEALTH_ROCK"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_STEELIX",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_ICE_FANG",
+                "MOVE_DRAGON_BREATH",
+                "MOVE_SANDSTORM"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FLASH_CANNON",
+                "MOVE_THUNDERBOLT",
+                "MOVE_SUPERSONIC",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BASTIODON",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_METAL_BURST",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_IRON_DEFENSE",
+                "MOVE_REST"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AGGRON",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_METAL_BURST",
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_AVALANCHE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        }
+    ]
+}

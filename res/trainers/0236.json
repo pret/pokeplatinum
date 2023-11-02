@@ -1,0 +1,39 @@
+{
+    "name": "Jo & Pat",
+    "class": "TRAINER_CLASS_DOUBLE_TEAM",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_LUMINEON",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_AQUA_RING",
+                "MOVE_CAPTIVATE",
+                "MOVE_SILVER_WIND"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_STOMP",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_IRON_TAIL"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

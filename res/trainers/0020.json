@@ -1,0 +1,21 @@
+{
+    "name": "Kelsey",
+    "class": "TRAINER_CLASS_BATTLE_GIRL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_DAMAGE_PRIORITY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MACHOP",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": null,
+            "power": 20,
+            "ball_seal": 0
+        }
+    ]
+}

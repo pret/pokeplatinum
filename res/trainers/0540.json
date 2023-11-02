@@ -1,0 +1,29 @@
+{
+    "name": "Meredith",
+    "class": "TRAINER_CLASS_POKEFAN_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PICHU",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "name": "Natasha",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WIGGLYTUFF",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_HYPER_VOICE",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_SHADOW_BALL"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GARDEVOIR",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_CALM_MIND",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MEDICHAM",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_RECOVER",
+                "MOVE_FORCE_PALM",
+                "MOVE_PSYCHIC",
+                "MOVE_ROCK_SLIDE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

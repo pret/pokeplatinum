@@ -1,0 +1,86 @@
+{
+    "name": "Mira",
+    "class": "TRAINER_CLASS_TRAINER_MIRA",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PORYGON_Z",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_TRI_ATTACK",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_DARK_PULSE"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GENGAR",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_PSYCHIC",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_ENERGY_BALL"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_THUNDER",
+                "MOVE_FLASH_CANNON",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_HYPER_BEAM"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOGEKISS",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_EXTREME_SPEED",
+                "MOVE_AIR_SLASH",
+                "MOVE_AURA_SPHERE",
+                "MOVE_PSYCHIC"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ALAKAZAM",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_CALM_MIND",
+                "MOVE_HYPER_BEAM"
+            ],
+            "power": 200,
+            "ball_seal": 0
+        }
+    ]
+}

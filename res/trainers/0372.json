@@ -1,0 +1,21 @@
+{
+    "name": "Tyler",
+    "class": "TRAINER_CLASS_BATTLE_GIRL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_DAMAGE_PRIORITY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MEDICHAM",
+            "form": 0,
+            "level": 38,
+            "item": null,
+            "moves": null,
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

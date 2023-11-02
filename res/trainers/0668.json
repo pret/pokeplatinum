@@ -1,0 +1,55 @@
+{
+    "name": "Shannon",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHERRIM",
+            "form": 0,
+            "level": 52,
+            "item": null,
+            "moves": [
+                "MOVE_SOLAR_BEAM",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_PETAL_DANCE",
+                "MOVE_SUNNY_DAY"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AZUMARILL",
+            "form": 0,
+            "level": 52,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_AQUA_TAIL",
+                "MOVE_AQUA_RING"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LOPUNNY",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_JUMP_KICK",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BOUNCE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

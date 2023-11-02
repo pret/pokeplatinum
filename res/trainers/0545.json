@@ -1,0 +1,22 @@
+{
+    "name": "Roman",
+    "class": "TRAINER_CLASS_RICH_BOY",
+    "items": [
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_LICKITUNG",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

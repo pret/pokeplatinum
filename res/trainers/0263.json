@@ -1,0 +1,86 @@
+{
+    "name": "Flint",
+    "class": "TRAINER_CLASS_ELITE_FOUR_FLINT",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_HOUNDOOM",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DARK_PULSE",
+                "MOVE_SUNNY_DAY"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLAREON",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_OVERHEAT",
+                "MOVE_GIGA_IMPACT",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_WILL_O_WISP"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_BOUNCE",
+                "MOVE_SUNNY_DAY"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_INFERNAPE",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_MACH_PUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGMORTAR",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_THUNDERBOLT",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_HYPER_BEAM"
+            ],
+            "power": 250,
+            "ball_seal": 13
+        }
+    ]
+}

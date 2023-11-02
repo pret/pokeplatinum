@@ -1,0 +1,55 @@
+{
+    "name": "Garrett",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MR_MIME",
+            "form": 0,
+            "level": 37,
+            "item": null,
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_MIMIC",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DUSCLOPS",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": [
+                "MOVE_WILL_O_WISP",
+                "MOVE_SHADOW_PUNCH",
+                "MOVE_PURSUIT",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCYTHER",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": [
+                "MOVE_SLASH",
+                "MOVE_X_SCISSOR",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_FURY_CUTTER"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

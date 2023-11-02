@@ -1,0 +1,39 @@
+{
+    "name": "Cheyenne",
+    "class": "TRAINER_CLASS_PICNICKER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DRIFLOON",
+            "form": 0,
+            "level": 28,
+            "item": null,
+            "moves": [
+                "MOVE_SPIT_UP",
+                "MOVE_SWALLOW",
+                "MOVE_STOCKPILE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MISDREAVUS",
+            "form": 0,
+            "level": 28,
+            "item": null,
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_ASTONISH",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

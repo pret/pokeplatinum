@@ -1,0 +1,55 @@
+{
+    "name": "Savannah",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SNORUNT",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_FANG",
+                "MOVE_CRUNCH",
+                "MOVE_HAIL",
+                "MOVE_PROTECT"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SNORUNT",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_FANG",
+                "MOVE_CRUNCH",
+                "MOVE_HAIL",
+                "MOVE_PROTECT"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GLALIE",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_FANG",
+                "MOVE_CRUNCH",
+                "MOVE_HAIL",
+                "MOVE_PROTECT"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

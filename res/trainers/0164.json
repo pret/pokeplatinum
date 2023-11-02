@@ -1,0 +1,53 @@
+{
+    "name": "Katelyn",
+    "class": "TRAINER_CLASS_SWIMMER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BUIZEL",
+            "form": 0,
+            "level": 32,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_SONIC_BOOM",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_ATTRACT"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MEDICHAM",
+            "form": 0,
+            "level": 32,
+            "item": null,
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_BRICK_BREAK",
+                "MOVE_MEDITATE",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SEAKING",
+            "form": 0,
+            "level": 32,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_HORN_ATTACK",
+                "MOVE_AQUA_RING",
+                "MOVE_CAPTIVATE"
+            ],
+            "power": 0,
+            "ball_seal": 15
+        }
+    ]
+}

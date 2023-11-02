@@ -1,0 +1,55 @@
+{
+    "name": "Armando",
+    "class": "TRAINER_CLASS_VETERAN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MUK",
+            "form": 0,
+            "level": 53,
+            "item": null,
+            "moves": [
+                "MOVE_ACID_ARMOR",
+                "MOVE_TOXIC",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DARK_PULSE"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MIGHTYENA",
+            "form": 0,
+            "level": 53,
+            "item": null,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_TAUNT",
+                "MOVE_ASSURANCE",
+                "MOVE_TAKE_DOWN"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LICKITUNG",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_POWER_WHIP",
+                "MOVE_GIGA_IMPACT",
+                "MOVE_SURF",
+                "MOVE_FIRE_BLAST"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        }
+    ]
+}

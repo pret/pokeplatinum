@@ -1,0 +1,24 @@
+{
+    "name": "Kendrick",
+    "class": "TRAINER_CLASS_PI",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_RISKY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_RHYHORN",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_HORN_DRILL",
+                "MOVE_REVERSAL"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "name": "Maria",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GOLDUCK",
+            "form": 0,
+            "level": 38,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_CONFUSION",
+                "MOVE_DISABLE",
+                "MOVE_SCREECH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_TAKE_DOWN",
+                "MOVE_FURY_ATTACK",
+                "MOVE_WILL_O_WISP"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SUDOWOODO",
+            "form": 0,
+            "level": 38,
+            "item": null,
+            "moves": [
+                "MOVE_ROCK_SLIDE",
+                "MOVE_LOW_KICK",
+                "MOVE_FLAIL",
+                "MOVE_ENDURE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

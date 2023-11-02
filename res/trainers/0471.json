@@ -1,0 +1,69 @@
+{
+    "name": "Cedric",
+    "class": "TRAINER_CLASS_RIVAL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARAVIA",
+            "form": 0,
+            "level": 25,
+            "item": null,
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_ENDEAVOR",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BUIZEL",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_GUN",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_PURSUIT",
+                "MOVE_GROWL"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ROSELIA",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_MEGA_DRAIN",
+                "MOVE_POISON_STING",
+                "MOVE_LEECH_SEED",
+                "MOVE_STUN_SPORE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MONFERNO",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": [
+                "MOVE_FLAME_WHEEL",
+                "MOVE_MACH_PUNCH",
+                "MOVE_FURY_SWIPES",
+                "MOVE_LEER"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "name": "Micah",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_METANG",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_PURSUIT",
+                "MOVE_METEOR_MASH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUDICOLO",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ENERGY_BALL",
+                "MOVE_FAKE_OUT"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

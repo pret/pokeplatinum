@@ -1,0 +1,38 @@
+{
+    "name": "Donny",
+    "class": "TRAINER_CLASS_YOUNGSTER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GASTLY",
+            "form": 0,
+            "level": 20,
+            "item": null,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_NIGHT_SHADE",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_CURSE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRIFLOON",
+            "form": 0,
+            "level": 22,
+            "item": null,
+            "moves": [
+                "MOVE_SPIT_UP",
+                "MOVE_SWALLOW",
+                "MOVE_STOCKPILE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

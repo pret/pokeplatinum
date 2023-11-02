@@ -1,0 +1,22 @@
+{
+    "name": "Logan",
+    "class": "TRAINER_CLASS_YOUNGSTER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BURMY",
+            "form": 0,
+            "level": 5,
+            "item": null,
+            "moves": [
+                "MOVE_TACKLE"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

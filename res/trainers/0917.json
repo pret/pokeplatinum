@@ -1,0 +1,29 @@
+{
+    "name": "Roxy & Oli",
+    "class": "TRAINER_CLASS_INTERVIEWERS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GARDEVOIR",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

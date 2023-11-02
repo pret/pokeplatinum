@@ -1,0 +1,20 @@
+{
+    "name": "Troy",
+    "class": "TRAINER_CLASS_SWIMMER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

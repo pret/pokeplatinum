@@ -1,0 +1,41 @@
+{
+    "name": "Blake",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_AMBIPOM",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": [
+                "MOVE_DOUBLE_HIT",
+                "MOVE_U_TURN",
+                "MOVE_SAND_ATTACK",
+                "MOVE_SCREECH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PORYGON2",
+            "form": 0,
+            "level": 40,
+            "item": null,
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_CONVERSION_2",
+                "MOVE_RECOVER"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

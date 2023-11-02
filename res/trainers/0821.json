@@ -1,0 +1,39 @@
+{
+    "name": "Carrie",
+    "class": "TRAINER_CLASS_LASS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHATOT",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_FURY_ATTACK",
+                "MOVE_SING",
+                "MOVE_GROWL",
+                "MOVE_PECK"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": [
+                "MOVE_SWIFT",
+                "MOVE_ENDURE",
+                "MOVE_SPARK",
+                "MOVE_CHARM"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

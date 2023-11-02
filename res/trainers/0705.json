@@ -1,0 +1,38 @@
+{
+    "name": "Samantha",
+    "class": "TRAINER_CLASS_LASS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_COMBEE",
+            "form": 0,
+            "level": 51,
+            "item": null,
+            "moves": null,
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ROSELIA",
+            "form": 0,
+            "level": 51,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BEAUTIFLY",
+            "form": 0,
+            "level": 51,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

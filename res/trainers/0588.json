@@ -1,0 +1,40 @@
+{
+    "name": "Griffin",
+    "class": "TRAINER_CLASS_BLACK_BELT",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_DAMAGE_PRIORITY"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BRELOOM",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_SPORE",
+                "MOVE_MACH_PUNCH",
+                "MOVE_SEED_BOMB",
+                "MOVE_SKY_UPPERCUT"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MEDICHAM",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_DETECT",
+                "MOVE_PSYCHIC",
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_ICE_PUNCH"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

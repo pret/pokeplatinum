@@ -1,0 +1,23 @@
+{
+    "name": "Jonathon",
+    "class": "TRAINER_CLASS_YOUNGSTER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GEODUDE",
+            "form": 0,
+            "level": 11,
+            "item": null,
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

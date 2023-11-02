@@ -1,0 +1,22 @@
+{
+    "name": "Ana",
+    "class": "TRAINER_CLASS_PICNICKER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_HOOTHOOT",
+            "form": 0,
+            "level": 22,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

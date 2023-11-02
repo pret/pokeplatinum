@@ -1,0 +1,24 @@
+{
+    "name": "Molly",
+    "class": "TRAINER_CLASS_LASS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MISDREAVUS",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_PAIN_SPLIT",
+                "MOVE_PSYBEAM",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

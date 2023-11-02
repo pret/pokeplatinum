@@ -1,0 +1,41 @@
+{
+    "name": "Felix",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DUSCLOPS",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": [
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_PAYBACK",
+                "MOVE_CURSE",
+                "MOVE_WILL_O_WISP"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SALAMENCE",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_DRAGON_CLAW",
+                "MOVE_AERIAL_ACE",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_CRUNCH"
+            ],
+            "power": 50,
+            "ball_seal": 23
+        }
+    ]
+}

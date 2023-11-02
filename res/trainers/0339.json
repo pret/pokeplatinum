@@ -1,0 +1,37 @@
+{
+    "name": "Damian",
+    "class": "TRAINER_CLASS_SAILOR",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WINGULL",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_WING_ATTACK",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PELIPPER",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_WING_ATTACK",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

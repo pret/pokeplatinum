@@ -1,0 +1,41 @@
+{
+    "name": "Catherine",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_HAUNTER",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_NIGHT_SHADE",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_CURSE"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MISDREAVUS",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_PAIN_SPLIT",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_SPITE"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

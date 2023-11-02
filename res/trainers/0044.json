@@ -1,0 +1,30 @@
+{
+    "name": "Hannah",
+    "class": "TRAINER_CLASS_AROMA_LADY",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ROSELIA",
+            "form": 0,
+            "level": 18,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 1
+        },
+        {
+            "species": "SPECIES_COMBEE",
+            "form": 0,
+            "level": 22,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

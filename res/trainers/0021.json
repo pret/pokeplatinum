@@ -1,0 +1,24 @@
+{
+    "name": "Elizabeth",
+    "class": "TRAINER_CLASS_AROMA_LADY",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ROSELIA",
+            "form": 0,
+            "level": 14,
+            "item": null,
+            "moves": [
+                "MOVE_GROWTH",
+                "MOVE_MEGA_DRAIN"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

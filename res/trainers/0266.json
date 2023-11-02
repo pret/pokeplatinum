@@ -1,0 +1,52 @@
+{
+    "name": "Drew",
+    "class": "TRAINER_CLASS_CAMPER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GASTLY",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": [
+                "MOVE_PAYBACK",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GASTLY",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": [
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_NIGHT_SHADE",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GASTLY",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": [
+                "MOVE_NIGHT_SHADE",
+                "MOVE_PAYBACK",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

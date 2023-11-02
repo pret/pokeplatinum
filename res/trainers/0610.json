@@ -1,0 +1,27 @@
+{
+    "name": "Marley",
+    "class": "TRAINER_CLASS_TRAINER_MARLEY",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ARCANINE",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_EXTREME_SPEED",
+                "MOVE_FIRE_FANG",
+                "MOVE_HELPING_HAND",
+                "MOVE_AGILITY"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

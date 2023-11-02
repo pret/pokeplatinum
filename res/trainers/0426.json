@@ -1,0 +1,52 @@
+{
+    "name": "Grunt",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GLAMEOW",
+            "form": 0,
+            "level": 33,
+            "item": null,
+            "moves": [
+                "MOVE_FURY_SWIPES",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_GROWL",
+                "MOVE_FAKE_OUT"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GOLBAT",
+            "form": 0,
+            "level": 33,
+            "item": null,
+            "moves": [
+                "MOVE_AIR_CUTTER",
+                "MOVE_WING_ATTACK",
+                "MOVE_BITE",
+                "MOVE_SUPERSONIC"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MURKROW",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": [
+                "MOVE_FAINT_ATTACK",
+                "MOVE_NIGHT_SHADE",
+                "MOVE_WING_ATTACK"
+            ],
+            "power": 30,
+            "ball_seal": 0
+        }
+    ]
+}

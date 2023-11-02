@@ -1,0 +1,39 @@
+{
+    "name": "Jake",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 35,
+            "item": null,
+            "moves": [
+                "MOVE_TAKE_DOWN",
+                "MOVE_AERIAL_ACE",
+                "MOVE_ENDEAVOR",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GIRAFARIG",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": [
+                "MOVE_DOUBLE_HIT",
+                "MOVE_PSYCHIC"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

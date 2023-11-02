@@ -1,0 +1,29 @@
+{
+    "name": "Lexie",
+    "class": "TRAINER_CLASS_SKIER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PILOSWINE",
+            "form": 0,
+            "level": 37,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GLACEON",
+            "form": 0,
+            "level": 37,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

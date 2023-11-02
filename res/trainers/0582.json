@@ -1,0 +1,55 @@
+{
+    "name": "Monique",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_LUXRAY",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_DISCHARGE",
+                "MOVE_CRUNCH",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_FACADE"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_URSARING",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_HAMMER_ARM",
+                "MOVE_STONE_EDGE",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_GIGA_IMPACT"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GLISCOR",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_AERIAL_ACE",
+                "MOVE_X_SCISSOR",
+                "MOVE_EARTHQUAKE",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

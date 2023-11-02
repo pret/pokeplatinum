@@ -1,0 +1,29 @@
+{
+    "name": "Sabrina",
+    "class": "TRAINER_CLASS_PARASOL_LADY",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WOOPER",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_QUAGSIRE",
+            "form": 0,
+            "level": 28,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

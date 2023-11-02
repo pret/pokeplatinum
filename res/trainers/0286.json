@@ -1,0 +1,27 @@
+{
+    "name": "Jamie",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_HAMMER_ARM",
+                "MOVE_PSYCHIC",
+                "MOVE_MAGNET_RISE"
+            ],
+            "power": 50,
+            "ball_seal": 11
+        }
+    ]
+}

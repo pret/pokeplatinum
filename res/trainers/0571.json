@@ -1,0 +1,55 @@
+{
+    "name": "Skylar",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_LOUDRED",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_HYPER_VOICE",
+                "MOVE_BITE",
+                "MOVE_SUPERSONIC",
+                "MOVE_SCREECH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAMPARDOS",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_HEAD_SMASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_SCREECH"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PELIPPER",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_WATER_PULSE",
+                "MOVE_ROOST",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

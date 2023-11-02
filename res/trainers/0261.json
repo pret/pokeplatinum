@@ -1,0 +1,86 @@
+{
+    "name": "Aaron",
+    "class": "TRAINER_CLASS_ELITE_FOUR_AARON",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_YANMEGA",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_BUG_BUZZ",
+                "MOVE_U_TURN",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 49,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_IRON_HEAD",
+                "MOVE_X_SCISSOR",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_VESPIQUEN",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_ATTACK_ORDER",
+                "MOVE_DEFEND_ORDER",
+                "MOVE_HEAL_ORDER",
+                "MOVE_POWER_GEM"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HERACROSS",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MEGAHORN",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_STONE_EDGE"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRAPION",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_X_SCISSOR",
+                "MOVE_CROSS_POISON",
+                "MOVE_ICE_FANG",
+                "MOVE_AERIAL_ACE"
+            ],
+            "power": 250,
+            "ball_seal": 0
+        }
+    ]
+}

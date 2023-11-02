@@ -1,0 +1,55 @@
+{
+    "name": "Brian",
+    "class": "TRAINER_CLASS_VETERAN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_TANGELA",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": [
+                "MOVE_INGRAIN",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_TOXIC"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": [
+                "MOVE_FIRE_SPIN",
+                "MOVE_STOMP",
+                "MOVE_TAKE_DOWN",
+                "MOVE_FIRE_BLAST"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLOATZEL",
+            "form": 0,
+            "level": 44,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_WHIRLPOOL",
+                "MOVE_PURSUIT",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        }
+    ]
+}

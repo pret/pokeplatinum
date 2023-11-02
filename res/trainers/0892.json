@@ -1,0 +1,22 @@
+{
+    "name": "Liam",
+    "class": "TRAINER_CLASS_RICH_BOY",
+    "items": [
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BLISSEY",
+            "form": 0,
+            "level": 35,
+            "item": "ITEM_RARE_CANDY",
+            "moves": null,
+            "power": 250,
+            "ball_seal": 26
+        }
+    ]
+}

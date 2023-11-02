@@ -1,0 +1,83 @@
+{
+    "name": "Cedric",
+    "class": "TRAINER_CLASS_RIVAL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": [
+                "MOVE_AERIAL_ACE",
+                "MOVE_TAKE_DOWN",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLOATZEL",
+            "form": 0,
+            "level": 35,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_JET",
+                "MOVE_PURSUIT",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_SWIFT"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HERACROSS",
+            "form": 0,
+            "level": 37,
+            "item": null,
+            "moves": [
+                "MOVE_BRICK_BREAK",
+                "MOVE_AERIAL_ACE",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_HORN_ATTACK"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 35,
+            "item": null,
+            "moves": [
+                "MOVE_FIRE_SPIN",
+                "MOVE_TAKE_DOWN",
+                "MOVE_STOMP",
+                "MOVE_TAIL_WHIP"
+            ],
+            "power": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TORTERRA",
+            "form": 0,
+            "level": 38,
+            "item": null,
+            "moves": [
+                "MOVE_RAZOR_LEAF",
+                "MOVE_BITE",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_LEECH_SEED"
+            ],
+            "power": 100,
+            "ball_seal": 10
+        }
+    ]
+}

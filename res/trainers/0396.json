@@ -1,0 +1,40 @@
+{
+    "name": "Landon",
+    "class": "TRAINER_CLASS_PSYCHIC_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SHUPPET",
+            "form": 0,
+            "level": 53,
+            "item": null,
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_WILL_O_WISP",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ALAKAZAM",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_RECOVER",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

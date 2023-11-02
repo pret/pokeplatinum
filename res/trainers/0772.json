@@ -1,0 +1,38 @@
+{
+    "name": "Jared",
+    "class": "TRAINER_CLASS_TUBER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GASTRODON",
+            "form": 1,
+            "level": 51,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GASTRODON",
+            "form": 1,
+            "level": 51,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GASTRODON",
+            "form": 0,
+            "level": 51,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 8
+        }
+    ]
+}

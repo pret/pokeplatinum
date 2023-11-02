@@ -1,0 +1,27 @@
+{
+    "name": "Melissa",
+    "class": "TRAINER_CLASS_LADY",
+    "items": [
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHERRIM",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": [
+                "MOVE_SOLAR_BEAM",
+                "MOVE_SUNNY_DAY",
+                "MOVE_LEECH_SEED",
+                "MOVE_MAGICAL_LEAF"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "name": "Lonnie",
+    "class": "TRAINER_CLASS_GUITARIST",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_RAICHU",
+            "form": 0,
+            "level": 47,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_SLAM",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

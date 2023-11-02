@@ -1,0 +1,31 @@
+{
+    "name": "Taylor",
+    "class": "TRAINER_CLASS_RANGER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CARNIVINE",
+            "form": 0,
+            "level": 34,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUXRAY",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

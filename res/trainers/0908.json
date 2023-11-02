@@ -1,0 +1,56 @@
+{
+    "name": "Grace",
+    "class": "TRAINER_CLASS_IDOL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CLEFAIRY",
+            "form": 0,
+            "level": 48,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 2
+        },
+        {
+            "species": "SPECIES_CLEFAIRY",
+            "form": 0,
+            "level": 48,
+            "item": null,
+            "moves": null,
+            "power": 40,
+            "ball_seal": 2
+        },
+        {
+            "species": "SPECIES_CLEFAIRY",
+            "form": 0,
+            "level": 48,
+            "item": null,
+            "moves": null,
+            "power": 80,
+            "ball_seal": 2
+        },
+        {
+            "species": "SPECIES_CLEFAIRY",
+            "form": 0,
+            "level": 48,
+            "item": null,
+            "moves": null,
+            "power": 120,
+            "ball_seal": 2
+        },
+        {
+            "species": "SPECIES_CLEFAIRY",
+            "form": 0,
+            "level": 48,
+            "item": null,
+            "moves": null,
+            "power": 160,
+            "ball_seal": 2
+        }
+    ]
+}

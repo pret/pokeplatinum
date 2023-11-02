@@ -1,0 +1,50 @@
+{
+    "name": "Jackson",
+    "class": "TRAINER_CLASS_WORKER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MAGNEMITE",
+            "form": 0,
+            "level": 34,
+            "item": null,
+            "moves": [
+                "MOVE_MAGNET_BOMB",
+                "MOVE_SPARK",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGNEMITE",
+            "form": 0,
+            "level": 34,
+            "item": null,
+            "moves": [
+                "MOVE_MAGNET_BOMB",
+                "MOVE_SPARK",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGNEMITE",
+            "form": 0,
+            "level": 34,
+            "item": null,
+            "moves": [
+                "MOVE_MAGNET_BOMB",
+                "MOVE_SPARK",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

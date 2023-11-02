@@ -1,0 +1,32 @@
+{
+    "name": "Shaun",
+    "class": "TRAINER_CLASS_SCIENTIST",
+    "items": [
+        "ITEM_X_ATTACK"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MAGNETON",
+            "form": 0,
+            "level": 46,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_KADABRA",
+            "form": 0,
+            "level": 42,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

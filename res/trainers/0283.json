@@ -1,0 +1,52 @@
+{
+    "name": "Breanna",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BRONZOR",
+            "form": 0,
+            "level": 35,
+            "item": null,
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_EXTRASENSORY",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BRONZOR",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_EXTRASENSORY",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BRONZOR",
+            "form": 0,
+            "level": 38,
+            "item": null,
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_EXTRASENSORY",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

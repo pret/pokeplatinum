@@ -1,0 +1,23 @@
+{
+    "name": "Gary",
+    "class": "TRAINER_CLASS_WORKER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_MAGNEMITE",
+            "form": 0,
+            "level": 37,
+            "item": null,
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_MAGNET_BOMB"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

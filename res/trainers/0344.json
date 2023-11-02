@@ -1,0 +1,28 @@
+{
+    "name": "Tiera",
+    "class": "TRAINER_CLASS_SCHOOL_KID_FEMALE",
+    "items": [
+        "ITEM_HYPER_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 47,
+            "item": null,
+            "moves": [
+                "MOVE_LAST_RESORT",
+                "MOVE_SUPER_FANG",
+                "MOVE_DISCHARGE",
+                "MOVE_SWEET_KISS"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "name": "Stefano",
+    "class": "TRAINER_CLASS_SCIENTIST",
+    "items": [
+        "ITEM_X_DEFENSE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_KADABRA",
+            "form": 0,
+            "level": 30,
+            "item": null,
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_DISABLE",
+                "MOVE_KINESIS",
+                "MOVE_ICE_PUNCH"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

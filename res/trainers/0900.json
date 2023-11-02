@@ -1,0 +1,25 @@
+{
+    "name": "Elena",
+    "class": "TRAINER_CLASS_MAID",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CLEFAIRY",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_METRONOME",
+                "MOVE_SWAGGER",
+                "MOVE_METEOR_MASH",
+                "MOVE_ENDURE"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

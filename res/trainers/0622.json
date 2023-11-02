@@ -1,0 +1,55 @@
+{
+    "name": "Lucas",
+    "class": "TRAINER_CLASS_DP_PLAYER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CLEFAIRY",
+            "form": 0,
+            "level": 25,
+            "item": null,
+            "moves": [
+                "MOVE_METRONOME",
+                "MOVE_GRAVITY",
+                "MOVE_WAKE_UP_SLAP",
+                "MOVE_SING"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_KADABRA",
+            "form": 0,
+            "level": 25,
+            "item": null,
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GROTLE",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": [
+                "MOVE_RAZOR_LEAF",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_BITE",
+                "MOVE_CURSE"
+            ],
+            "power": 60,
+            "ball_seal": 0
+        }
+    ]
+}

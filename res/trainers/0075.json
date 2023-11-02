@@ -1,0 +1,29 @@
+{
+    "name": "Zac & Jen",
+    "class": "TRAINER_CLASS_DOUBLE_TEAM",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAICHU",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": null,
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

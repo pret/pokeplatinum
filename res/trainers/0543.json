@@ -1,0 +1,22 @@
+{
+    "name": "Rebecca",
+    "class": "TRAINER_CLASS_SOCIALITE",
+    "items": [
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PURUGLY",
+            "form": 0,
+            "level": 27,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

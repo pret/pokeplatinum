@@ -1,0 +1,28 @@
+{
+    "name": "Esteban",
+    "class": "TRAINER_CLASS_SCHOOL_KID_MALE",
+    "items": [
+        "ITEM_X_SP__DEF"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_QUAGSIRE",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": [
+                "MOVE_MUD_BOMB",
+                "MOVE_SLAM",
+                "MOVE_WATER_GUN",
+                "MOVE_AMNESIA"
+            ],
+            "power": 0,
+            "ball_seal": 0
+        }
+    ]
+}

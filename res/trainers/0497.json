@@ -1,0 +1,25 @@
+{
+    "name": "Jacky",
+    "class": "TRAINER_CLASS_TUBER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BIBAREL",
+            "form": 0,
+            "level": 32,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_GUN",
+                "MOVE_ROLLOUT",
+                "MOVE_HYPER_FANG",
+                "MOVE_YAWN"
+            ],
+            "power": 10,
+            "ball_seal": 0
+        }
+    ]
+}

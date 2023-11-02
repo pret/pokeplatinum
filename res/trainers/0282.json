@@ -1,0 +1,41 @@
+{
+    "name": "Ruben",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_NUZLEAF",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_EXTRASENSORY",
+                "MOVE_FAKE_OUT",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_RAZOR_LEAF"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 57,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_DRAGON_DANCE",
+                "MOVE_ICE_FANG"
+            ],
+            "power": 50,
+            "ball_seal": 0
+        }
+    ]
+}

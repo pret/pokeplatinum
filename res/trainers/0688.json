@@ -1,0 +1,29 @@
+{
+    "name": "Teri & Tia",
+    "class": "TRAINER_CLASS_TWINS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_RAICHU",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 20
+        },
+        {
+            "species": "SPECIES_CLEFABLE",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": null,
+            "power": 0,
+            "ball_seal": 20
+        }
+    ]
+}
