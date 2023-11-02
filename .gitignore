@@ -68,6 +68,7 @@ cmake-build-*
 
 diff.txt
 
+.vs/
 .vscode/
 
 temp_asm/

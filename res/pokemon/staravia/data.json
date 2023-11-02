@@ -91,7 +91,7 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             34,
             "SPECIES_STARAPTOR"
         ]

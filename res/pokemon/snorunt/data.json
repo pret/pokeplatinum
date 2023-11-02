@@ -91,12 +91,12 @@
     },
     "evolutions": [
         [
-            "LEVEL_UP",
+            "EVO_LEVEL_UP",
             42,
             "SPECIES_GLALIE"
         ],
         [
-            "USE_ITEM_FEMALE",
+            "EVO_USE_ITEM_FEMALE",
             "ITEM_DAWN_STONE",
             "SPECIES_FROSLASS"
         ]

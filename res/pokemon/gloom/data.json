@@ -95,12 +95,12 @@
     },
     "evolutions": [
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_LEAF_STONE",
             "SPECIES_VILEPLUME"
         ],
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_SUN_STONE",
             "SPECIES_BELLOSSOM"
         ]

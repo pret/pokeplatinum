@@ -91,7 +91,7 @@
     },
     "evolutions": [
         [
-            "MON_IN_PARTY",
+            "EVO_MON_IN_PARTY",
             "SPECIES_REMORAID",
             "SPECIES_MANTINE"
         ]

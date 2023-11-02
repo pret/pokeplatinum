@@ -86,7 +86,7 @@
     },
     "evolutions": [
         [
-            "HAPPINESS_DAY",
+            "EVO_HAPPINESS_DAY",
             "SPECIES_ROSELIA"
         ]
     ]

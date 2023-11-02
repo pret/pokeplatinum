@@ -118,8 +118,8 @@
     },
     "evolutions": [
         [
-            "KNOW_MOVE",
-            "MIMIC",
+            "EVO_KNOW_MOVE",
+            "MOVE_MIMIC",
             "SPECIES_MR_MIME"
         ]
     ]

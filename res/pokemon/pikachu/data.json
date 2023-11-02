@@ -98,7 +98,7 @@
     },
     "evolutions": [
         [
-            "USE_ITEM",
+            "EVO_USE_ITEM",
             "ITEM_THUNDERSTONE",
             "SPECIES_RAICHU"
         ]

@@ -109,8 +109,8 @@
     },
     "evolutions": [
         [
-            "KNOW_MOVE",
-            "DOUBLE_HIT",
+            "EVO_KNOW_MOVE",
+            "MOVE_DOUBLE_HIT",
             "SPECIES_AMBIPOM"
         ]
     ]
