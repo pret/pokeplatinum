@@ -74,7 +74,7 @@ def parse_evolutions(table: list, _size: int, _enum: None) -> bytes:
     out = bytearray([])
     for j in range(min(len(table), 7)):
         evo = table[j]
-        method = evo_methods.EvoMethod[evo[0]]
+        method = evo_methods.EvoMethod['EVO_' + evo[0]]
         params = get_evo_params(method, evo)
         target = species.PokemonSpecies[evo[-1]]
         out.extend(table_line(method.value, params, target.value))
@@ -113,6 +113,30 @@ FORM_INDICES = {
     },
 }
 
+FORM_INDICES = {
+    'DEOXYS' : {
+        'ATTACK': 496,
+        'DEFENSE': 497,
+        'SPEED': 498,
+    },
+    'WORMADAM': {
+        'SANDY': 499,
+        'TRASH': 500,
+    },
+    'GIRATINA': {
+        'ORIGIN': 501,
+    },
+    'SHAYMIN': {
+        'SKY': 502,
+    },
+    'ROTOM': {
+        'HEAT': 503,
+        'WASH': 504,
+        'FROST': 505,
+        'FAN': 506,
+        'MOW': 507,
+    },
+}
 def indexer(file_path: pathlib.Path) -> int:
     name = file_path.parent.stem.upper()
     if name == '000': return 0
