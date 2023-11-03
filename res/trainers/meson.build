@@ -10,6 +10,20 @@ trdata_narc = custom_target('trdata.narc',
     input: trainer_data_files,
     command: [
         trainer_data_py,
+        '--mode', 'data',
+        '--knarc', knarc_exe,
+        '--source-dir', '@CURRENT_SOURCE_DIR@',
+        '--private-dir', '@PRIVATE_DIR@',
+        '--output-dir', '@OUTDIR@',
+    ]
+)
+
+trpoke_narc = custom_target('trpoke.narc',
+    output: 'trpoke.narc',
+    input: trainer_data_files,
+    command: [
+        trainer_data_py,
+        '--mode', 'poke',
         '--knarc', knarc_exe,
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
@@ -18,3 +32,4 @@ trdata_narc = custom_target('trdata.narc',
 )
 
 nitrofs_files += trdata_narc
+nitrofs_files += trpoke_narc
