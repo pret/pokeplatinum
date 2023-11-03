@@ -205,10 +205,10 @@ RomSpec
 	Root /poketool/personal
 	HostRoot res/pokemon
 	File pl_personal.narc
+	File evo.narc
 
 	Root /
 	HostRoot res/prebuilt
-	File poketool/personal/evo.narc
 	File poketool/personal/growtbl.narc
 	File poketool/personal/pl_growtbl.narc
 	File poketool/personal/pms.narc
