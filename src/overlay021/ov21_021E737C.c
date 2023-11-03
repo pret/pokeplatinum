@@ -562,10 +562,10 @@ static void ov21_021E7904 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
 
     v9 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param3);
     v8 = ov21_021D33D4(param2->unk_00, v5);
-    v1 = sub_02079D8C(v5, 0, v8);
-    v2 = sub_02079FD0();
-    v3 = sub_02079FD4();
-    v4 = sub_02079FE0();
+    v1 = PokeIconSpriteIndex(v5, 0, v8);
+    v2 = PokeIconPalettesFileIndex();
+    v3 = PokeIconCellsFileIndex();
+    v4 = PokeIconAnimationFileIndex();
 
     param0->unk_14[0] = sub_02009A4C(v0->unk_13C[0], v9, v1, 0, 8000, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
 
@@ -686,7 +686,7 @@ static void ov21_021E7B34 (UnkStruct_ov21_021E7714 * param0, UnkStruct_ov21_021E
     v1.unk_08.y = 64 << FX32_SHIFT;
 
     param0->unk_04 = sub_02021B90(&v1);
-    sub_02021EC4(param0->unk_04, sub_02079EDC(v6, v7, 0));
+    sub_02021EC4(param0->unk_04, PokeIconPaletteIndex(v6, v7, 0));
 }
 
 static void ov21_021E7CCC (UnkStruct_ov21_021E7714 * param0)

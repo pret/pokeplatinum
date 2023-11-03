@@ -30,9 +30,9 @@ BOOL ov19_021DA270 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021D61B0 * 
     param0->unk_48 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 10);
 
     NNS_G2dInitImagePaletteProxy(&v0);
-    sub_0200716C(param0->unk_48, sub_02079FD0(), NNS_G2D_VRAM_TYPE_2DMAIN, 2 * 0x20, 10, &v0);
+    sub_0200716C(param0->unk_48, PokeIconPalettesFileIndex(), NNS_G2D_VRAM_TYPE_2DMAIN, 2 * 0x20, 10, &v0);
 
-    v2 = sub_020071EC(param0->unk_48, sub_02079FD0(), &v1, 10);
+    v2 = sub_020071EC(param0->unk_48, PokeIconPalettesFileIndex(), &v1, 10);
 
     if (v2) {
         BOOL v3;
@@ -135,8 +135,8 @@ void ov19_021DA428 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, s32 p
     v2 = BoxPokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
     v3 = BoxPokemon_GetValue(param1, MON_DATA_IS_EGG, NULL);
     v4 = BoxPokemon_GetValue(param1, MON_DATA_FORM, NULL);
-    param7->unk_28 = sub_02079D40((BoxPokemon *)param1);
-    param7->unk_2C = sub_02079EDC(v2, v4, v3);
+    param7->unk_28 = BoxPokemon_IconSpriteIndex((BoxPokemon *)param1);
+    param7->unk_2C = PokeIconPaletteIndex(v2, v4, v3);
     param7->unk_30 = BoxPokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
     param7->unk_2E = BoxPokemon_GetValue(param1, MON_DATA_11, NULL);
 
@@ -173,7 +173,7 @@ void ov19_021DA548 (UnkStruct_ov19_021DA384 * param0, BoxPokemon * param1, u32 p
     ov19_021D783C(&v1, NULL, ov19_021D77D0(param0->unk_44), param0->unk_10, param0->unk_04, param7);
 
     param10->unk_28 = param3;
-    param10->unk_2C = sub_02079EDC(param2, v4, v3);
+    param10->unk_2C = PokeIconPaletteIndex(param2, v4, v3);
     param10->unk_30 = BoxPokemon_GetValue(param1, MON_DATA_HELD_ITEM, NULL);
     param10->unk_2E = BoxPokemon_GetValue(param1, MON_DATA_11, NULL);
 
@@ -234,12 +234,12 @@ void ov19_021DA694 (UnkStruct_ov19_021DA384 * param0, UnkStruct_ov19_021DCD18 * 
     u32 v1;
     NNSG2dCharacterData * v2;
 
-    if ((param1->unk_30 == 112) && (param1->unk_28 == sub_02079D8C(487, 0, 0))) {
-        param1->unk_28 = sub_02079D8C(487, 0, 1);
-    } else if ((param1->unk_30 != 112) && (param1->unk_28 == sub_02079D8C(487, 0, 1))) {
-        param1->unk_28 = sub_02079D8C(487, 0, 0);
-    } else if ((param2 == 1) && (param1->unk_28 == sub_02079D8C(492, 0, 1))) {
-        param1->unk_28 = sub_02079D8C(492, 0, 0);
+    if ((param1->unk_30 == 112) && (param1->unk_28 == PokeIconSpriteIndex(487, 0, 0))) {
+        param1->unk_28 = PokeIconSpriteIndex(487, 0, 1);
+    } else if ((param1->unk_30 != 112) && (param1->unk_28 == PokeIconSpriteIndex(487, 0, 1))) {
+        param1->unk_28 = PokeIconSpriteIndex(487, 0, 0);
+    } else if ((param2 == 1) && (param1->unk_28 == PokeIconSpriteIndex(492, 0, 1))) {
+        param1->unk_28 = PokeIconSpriteIndex(492, 0, 0);
     } else {
         return;
     }

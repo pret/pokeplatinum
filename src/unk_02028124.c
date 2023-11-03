@@ -113,8 +113,8 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, SaveData *
         v4 = Pokemon_GetValue(v10, MON_DATA_SPECIES, NULL);
         v6 = Pokemon_GetValue(v10, MON_DATA_IS_EGG, NULL);
         v7 = Pokemon_GetValue(v10, MON_DATA_FORM, NULL);
-        v5 = sub_02079D80(v10);
-        v2 = sub_02079EDC(v4, v7, v6);
+        v5 = Pokemon_IconSpriteIndex(v10);
+        v2 = PokeIconPaletteIndex(v4, v7, v6);
 
         param0->unk_18[v1].val1_0 = (u16)v5;
         param0->unk_18[v1].val1_12 = v2;
@@ -122,7 +122,7 @@ void sub_020281AC (UnkStruct_0202818C * param0, u8 param1, u8 param2, SaveData *
         for (v3 = 0; v3 < NELEMS(Unk_020E5B0C); v3++) {
             if ((Unk_020E5B0C[v3].unk_02 == param0->unk_18[v1].val1_0) && (Unk_020E5B0C[v3].unk_06 == v7)) {
                 param0->unk_18[v1].val1_0 = Unk_020E5B0C[v3].unk_00;
-                param0->unk_18[v1].val1_12 = sub_02079EDC(v4, 0, v6);
+                param0->unk_18[v1].val1_12 = PokeIconPaletteIndex(v4, 0, v6);
                 param0->unk_1E |= Unk_020E5B0C[v3].unk_06 << (v1 * 5);
                 break;
             }
@@ -186,7 +186,7 @@ u16 sub_02028328 (const UnkStruct_0202818C * param0, u8 param1, u8 param2, u16 p
         for (v1 = 0; v1 < NELEMS(Unk_020E5B0C); v1++) {
             if ((Unk_020E5B0C[v1].unk_00 == v0.val1_0) && (Unk_020E5B0C[v1].unk_06 == ((param3 >> (param1 * 5)) & 0x1f))) {
                 v0.val1_0 = Unk_020E5B0C[v1].unk_02;
-                v0.val1_12 = sub_02079EDC(
+                v0.val1_12 = PokeIconPaletteIndex(
                     Unk_020E5B0C[v1].unk_04, Unk_020E5B0C[v1].unk_06, 0);
                 break;
             }

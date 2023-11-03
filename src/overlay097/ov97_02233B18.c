@@ -547,7 +547,7 @@ static void ov97_02233FA4 (UnkStruct_ov97_02234A2C * param0)
 
     sub_0200A328(param0->unk_1D0[0]);
     sub_0200A5C8(param0->unk_1D0[1]);
-    sub_02006E84(19, sub_02079FD0(), 1, 8 * 0x20, 0, 78);
+    sub_02006E84(19, PokeIconPalettesFileIndex(), 1, 8 * 0x20, 0, 78);
 }
 
 static void ov97_022340B0 (UnkStruct_ov97_02234A2C * param0)
@@ -660,12 +660,12 @@ static void ov97_02234278 (int param0, int param1, u32 param2, int param3, int p
     param0 = ov97_02236DD0(param0);
 
     v1 = GBASpeciesToDSFormId(param0, param2, param3);
-    v0 = ov97_022341B4(19, sub_02079D8C(param0, param1, v1), &v2, 78);
+    v0 = ov97_022341B4(19, PokeIconSpriteIndex(param0, param1, v1), &v2, 78);
 
     DC_FlushRange(v2->pRawData, ((4 * 4) * 0x20));
     GX_LoadOBJ(v2->pRawData, (0x64 + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
-    sub_02021E90(param5, sub_02079EDC(param0, v1, param1) + 8);
+    sub_02021E90(param5, PokeIconPaletteIndex(param0, v1, param1) + 8);
     Heap_FreeToHeap(v0);
 }
 
@@ -682,14 +682,14 @@ static void ov97_022342E4 (int param0, int param1, int param2, int param3, UnkSt
             param0 = 0;
         }
 
-        v0 = sub_02079D8C(param0, param1, param2);
+        v0 = PokeIconSpriteIndex(param0, param1, param2);
 
         ov97_022341EC(v0, &v1, param5, param6);
         MI_CpuCopyFast(v1->pRawData, v2->unk_0C, ((4 * 4) * 0x20));
 
         v2->unk_00 = (0x64 + param3 * (4 * 4)) * 0x20;
         v2->unk_08 = param4;
-        v2->unk_04 = sub_02079EDC(param0, param2, param1) + 8;
+        v2->unk_04 = PokeIconPaletteIndex(param0, param2, param1) + 8;
     } else {
         v2->unk_08 = NULL;
     }

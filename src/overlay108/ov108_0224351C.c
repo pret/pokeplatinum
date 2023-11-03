@@ -98,7 +98,7 @@ void ov108_022435F4 (UnkStruct_ov108_02243594 * param0, u32 param1)
 
 void ov108_02243610 (UnkStruct_ov108_02243594 * param0, Pokemon * param1)
 {
-    sub_02021F24(param0->unk_10, sub_02079FC4(param1));
+    sub_02021F24(param0->unk_10, Pokemon_IconPaletteIndex(param1));
     return;
 }
 

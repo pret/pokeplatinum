@@ -407,20 +407,20 @@ void ov17_02250DB0 (UnkStruct_ov17_0224FCA0 * param0)
 
     v3 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 24);
 
-    sub_0200CDC4(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33003);
-    sub_0200CE24(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, sub_02079FDC(), 0, 33002);
-    sub_0200CE54(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, sub_02079FE8(), 0, 33002);
+    sub_0200CDC4(param0->unk_10.unk_C0, 2, param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 33003);
+    sub_0200CE24(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIcon64KCellsFileIndex(), 0, 33002);
+    sub_0200CE54(param0->unk_10.unk_18, param0->unk_10.unk_1C, v3, PokeIcon64KAnimationFileIndex(), 0, 33002);
 
     v0 = Unk_ov17_02254C5C;
 
     for (v2 = 0; v2 < 4; v2++) {
-        sub_0200D888(param0->unk_10.unk_18, param0->unk_10.unk_1C, 19, sub_02079D80(param0->unk_00->unk_00.unk_00[v2]), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 33002 + v2);
+        sub_0200D888(param0->unk_10.unk_18, param0->unk_10.unk_1C, 19, Pokemon_IconSpriteIndex(param0->unk_00->unk_00.unk_00[v2]), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 33002 + v2);
 
         v0.unk_14[0] = 33002 + v2;
         param0->unk_10.unk_128[v2] = sub_0200CE6C(param0->unk_10.unk_18, param0->unk_10.unk_1C, &v0);
 
         sub_0200D364(param0->unk_10.unk_128[v2], 1);
-        sub_02021F24(param0->unk_10.unk_128[v2]->unk_00, sub_02079FC4(param0->unk_00->unk_00.unk_00[v2]));
+        sub_02021F24(param0->unk_10.unk_128[v2]->unk_00, Pokemon_IconPaletteIndex(param0->unk_00->unk_00.unk_00[v2]));
         sub_0200D330(param0->unk_10.unk_128[v2]);
     }
 

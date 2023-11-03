@@ -841,15 +841,15 @@ static void ov62_022320EC (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C 
     v6 = param1->unk_14.unk_08;
     v7 = param1->unk_14.unk_14;
 
-    v4 = sub_0200CD7C(v7, 2, v5, v6, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
+    v4 = sub_0200CD7C(v7, 2, v5, v6, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
 
     {
-        int v9 = sub_02079FDC();
+        int v9 = PokeIcon64KCellsFileIndex();
         sub_0200CE0C(v5, v6, 19, v9, 0, 100000);
     }
 
     {
-        int v10 = sub_02079FE8();
+        int v10 = PokeIcon64KAnimationFileIndex();
         sub_0200CE3C(v5, v6, 19, v10, 0, 100000);
     }
 
@@ -864,7 +864,7 @@ static void ov62_022320EC (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C 
             return;
         }
 
-        v11 = sub_02079D8C(v1, v0, v3);
+        v11 = PokeIconSpriteIndex(v1, v0, v3);
 
         sub_0200D888(v5, v6, 19, v11, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
 
@@ -885,7 +885,7 @@ static void ov62_022320EC (UnkStruct_ov62_022323B8 * param0, UnkStruct_0208C06C 
         v8.unk_14[5] = 0xffffffff;
 
         param0->unk_04 = sub_0200CE6C(param1->unk_14.unk_04, param1->unk_14.unk_08, &v8);
-        v2 = sub_02079EDC(v1, v3, v0);
+        v2 = PokeIconPaletteIndex(v1, v3, v0);
 
         sub_0200D430(param0->unk_04, v4 + v2);
         sub_0200D364(param0->unk_04, 1);
@@ -2701,9 +2701,9 @@ void ov62_022339DC (UnkStruct_0208C06C * param0)
     v1 = param0->unk_14.unk_08;
     v2 = param0->unk_14.unk_14;
 
-    sub_0200CD7C(v2, 2, v0, v1, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
-    sub_0200CE0C(v0, v1, 19, sub_02079FDC(), 0, 100000);
-    sub_0200CE3C(v0, v1, 19, sub_02079FE8(), 0, 100000);
+    sub_0200CD7C(v2, 2, v0, v1, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
+    sub_0200CE0C(v0, v1, 19, PokeIcon64KCellsFileIndex(), 0, 100000);
+    sub_0200CE3C(v0, v1, 19, PokeIcon64KAnimationFileIndex(), 0, 100000);
 }
 
 void ov62_02233A44 (UnkStruct_0208C06C * param0)
@@ -2743,7 +2743,7 @@ CellActorData * ov62_02233A7C (UnkStruct_0208C06C * param0, NARC * param1, int p
         return NULL;
     }
 
-    sub_0200D8E8(v1, v2, param1, sub_02079D8C(param3, param5, param4), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + param2);
+    sub_0200D8E8(v1, v2, param1, PokeIconSpriteIndex(param3, param5, param4), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + param2);
 
     v4.unk_00 = 0;
     v4.unk_02 = -48;
@@ -2762,7 +2762,7 @@ CellActorData * ov62_02233A7C (UnkStruct_0208C06C * param0, NARC * param1, int p
     v4.unk_14[5] = 0xffffffff;
 
     v0 = sub_0200CE6C(v1, v2, &v4);
-    v5 = sub_02079EDC(param3, param4, param5);
+    v5 = PokeIconPaletteIndex(param3, param4, param5);
 
     sub_0200D430(v0, 4 + v5);
     sub_0200D364(v0, 1);
@@ -3050,15 +3050,15 @@ static void ov62_02234000 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
     v11 = param1->unk_14.unk_08;
     v12 = param1->unk_14.unk_14;
 
-    sub_0200CD7C(v12, 2, v10, v11, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
+    sub_0200CD7C(v12, 2, v10, v11, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 100000);
 
     {
-        int v14 = sub_02079FDC();
+        int v14 = PokeIcon64KCellsFileIndex();
         sub_0200CE0C(v10, v11, 19, v14, 0, 100000);
     }
 
     {
-        int v15 = sub_02079FE8();
+        int v15 = PokeIcon64KAnimationFileIndex();
         sub_0200CE3C(v10, v11, 19, v15, 0, 100000);
     }
 
@@ -3114,7 +3114,7 @@ static void ov62_02234000 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
         }
 
         v2 = v8[v0];
-        v6 = sub_02079D8C(v1, 0, v2);
+        v6 = PokeIconSpriteIndex(v1, 0, v2);
 
         sub_0200D888(v10, v11, 19, v6, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 100000 + v3);
 
@@ -3136,7 +3136,7 @@ static void ov62_02234000 (UnkStruct_ov62_02233F74 * param0, UnkStruct_0208C06C 
 
         param0->unk_0C[v3] = sub_0200CE6C(param1->unk_14.unk_04, param1->unk_14.unk_08, &v4);
 
-        v5 = sub_02079EDC(v1, v2, 0);
+        v5 = PokeIconPaletteIndex(v1, v2, 0);
         sub_0200D430(param0->unk_0C[v3], 4 + v5);
         sub_0200D364(param0->unk_0C[v3], 1);
         sub_0200D330(param0->unk_0C[v3]);

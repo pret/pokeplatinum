@@ -56,10 +56,10 @@ void ov106_02243310 (UnkStruct_ov106_02243310 * param0, Pokemon * param1)
     param0->unk_1A0[0][3] = sub_02009918(param0->unk_190[3], 151, 13, 1, 0, 3, 98);
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, 98);
 
-    param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, sub_02079D80(param1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 98);
-    param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 19, sub_02079FD0(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 98);
-    param0->unk_1A0[1][2] = sub_02009BC4(param0->unk_190[2], v1, sub_02079FD8(), 0, 1, 2, 98);
-    param0->unk_1A0[1][3] = sub_02009BC4(param0->unk_190[3], v1, sub_02079FE4(), 0, 1, 3, 98);
+    param0->unk_1A0[1][0] = sub_02009A4C(param0->unk_190[0], v1, Pokemon_IconSpriteIndex(param1), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 98);
+    param0->unk_1A0[1][1] = sub_020098B8(param0->unk_190[1], 19, PokeIconPalettesFileIndex(), 0, 1, NNS_G2D_VRAM_TYPE_2DMAIN, 3, 98);
+    param0->unk_1A0[1][2] = sub_02009BC4(param0->unk_190[2], v1, PokeIcon32KCellsFileIndex(), 0, 1, 2, 98);
+    param0->unk_1A0[1][3] = sub_02009BC4(param0->unk_190[3], v1, PokeIcon32KAnimationFileIndex(), 0, 1, 3, 98);
 
     for (v0 = 0; v0 < 2; v0++) {
         sub_0200A328(param0->unk_1A0[v0][0]);

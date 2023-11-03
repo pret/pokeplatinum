@@ -335,7 +335,7 @@ static void ov32_0225692C (UnkStruct_ov32_02256470 * param0, const UnkStruct_ov3
             if ((param1->unk_04[v3].unk_06 == 0) || param1->unk_04[v3].unk_0C) {
                 ov25_02255938(param0->unk_9C[v3], 1);
             } else {
-                u16 v4 = sub_02079EDC(param1->unk_04[v3].unk_04, param1->unk_04[v3].unk_0F, param1->unk_04[v3].unk_0E);
+                u16 v4 = PokeIconPaletteIndex(param1->unk_04[v3].unk_04, param1->unk_04[v3].unk_0F, param1->unk_04[v3].unk_0E);
                 ov25_02255938(param0->unk_9C[v3], 2 + v4);
             }
         }

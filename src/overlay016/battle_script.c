@@ -12249,14 +12249,14 @@ static void BattleScript_LoadPartyLevelUpIcon (BattleSystem * param0, BattleScri
     param1->cellActorData[0] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6C4);
 
     sub_0200D330(param1->cellActorData[0]);
-    sub_0200D888(v1, v2, 19, sub_02079D80(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
-    sub_0200CD7C(v3, 2, v1, v2, 19, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
-    sub_0200CE0C(v1, v2, 19, sub_02079FDC(), 0, 20014);
-    sub_0200CE3C(v1, v2, 19, sub_02079FE8(), 0, 20014);
+    sub_0200D888(v1, v2, 19, Pokemon_IconSpriteIndex(param2), 0, NNS_G2D_VRAM_TYPE_2DMAIN, 20022);
+    sub_0200CD7C(v3, 2, v1, v2, 19, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 20017);
+    sub_0200CE0C(v1, v2, 19, PokeIcon64KCellsFileIndex(), 0, 20014);
+    sub_0200CE3C(v1, v2, 19, PokeIcon64KAnimationFileIndex(), 0, 20014);
 
     param1->cellActorData[1] = sub_0200CE6C(v1, v2, &Unk_ov16_0226E6F8);
 
-    sub_02021F24(param1->cellActorData[1]->unk_00, sub_02079FC4(param2));
+    sub_02021F24(param1->cellActorData[1]->unk_00, Pokemon_IconPaletteIndex(param2));
     sub_0200D330(param1->cellActorData[1]);
 
     param1->tmpPtr[0] = sub_02012744(1, 5);

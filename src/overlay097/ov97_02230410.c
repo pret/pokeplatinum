@@ -802,7 +802,7 @@ static void ov97_022310FC (UnkStruct_ov97_02230868 * param0)
         ov97_02237A74();
         ov97_02237B0C(116, 26, 23, 25, 24, 0);
 
-        sub_02006E84(19, sub_02079FD0(), 1, 3 * 0x20, 0, param0->unk_00);
+        sub_02006E84(19, PokeIconPalettesFileIndex(), 1, 3 * 0x20, 0, param0->unk_00);
     }
 
     v2 = 1;
@@ -820,12 +820,12 @@ static void ov97_022310FC (UnkStruct_ov97_02230868 * param0)
         }
 
         param0->unk_2E90[v1] = ov97_02237D14(0, param0->unk_2E90[v1], v0, 16, 10 + v1);
-        v3 = sub_02006F50(19, sub_02079D8C(v2, 0, 0), 0, &v4, param0->unk_00);
+        v3 = sub_02006F50(19, PokeIconSpriteIndex(v2, 0, 0), 0, &v4, param0->unk_00);
 
         DC_FlushRange(v4->pRawData, ((4 * 4) * 0x20));
         GX_LoadOBJ(v4->pRawData, (0x64 + v1 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
 
-        sub_02021E90(param0->unk_2E90[v1], sub_02079EDC(v2, 0, 0) + 3);
+        sub_02021E90(param0->unk_2E90[v1], PokeIconPaletteIndex(v2, 0, 0) + 3);
         Heap_FreeToHeap(v3);
     }
 }

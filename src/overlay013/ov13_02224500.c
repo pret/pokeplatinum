@@ -255,15 +255,15 @@ static void ov13_02224588 (UnkStruct_ov13_022213F0 * param0)
     v2 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_0C);
     v0 = ov16_0223E010(param0->unk_00->unk_08);
 
-    sub_0200CDC4(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
-    sub_0200CE24(v0, param0->unk_1FB0, v2, sub_02079FD8(), 0, 45063);
-    sub_0200CE54(v0, param0->unk_1FB0, v2, sub_02079FE4(), 0, 45063);
+    sub_0200CDC4(param0->unk_1E4, 3, v0, param0->unk_1FB0, v2, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DSUB, 45063);
+    sub_0200CE24(v0, param0->unk_1FB0, v2, PokeIcon32KCellsFileIndex(), 0, 45063);
+    sub_0200CE54(v0, param0->unk_1FB0, v2, PokeIcon32KAnimationFileIndex(), 0, 45063);
 
     for (v1 = 0; v1 < 6; v1++) {
         if (param0->unk_04[v1].unk_04 != 0) {
-            sub_0200CC3C(v0, param0->unk_1FB0, v2, sub_02079D80(param0->unk_04[v1].unk_00), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
+            sub_0200CC3C(v0, param0->unk_1FB0, v2, Pokemon_IconSpriteIndex(param0->unk_04[v1].unk_00), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
         } else {
-            sub_0200CC3C(v0, param0->unk_1FB0, v2, sub_02079D8C(0, 0, 0), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
+            sub_0200CC3C(v0, param0->unk_1FB0, v2, PokeIconSpriteIndex(0, 0, 0), 0, NNS_G2D_VRAM_TYPE_2DSUB, 45063 + v1);
         }
     }
 
@@ -392,7 +392,7 @@ static void ov13_022249CC (UnkStruct_ov13_022213F0 * param0)
             continue;
         }
 
-        sub_0200D41C(param0->unk_1FB4[7 + v0], sub_02079EDC(param0->unk_04[v0].unk_04, param0->unk_04[v0].unk_2E, param0->unk_04[v0].unk_17_7));
+        sub_0200D41C(param0->unk_1FB4[7 + v0], PokeIconPaletteIndex(param0->unk_04[v0].unk_04, param0->unk_04[v0].unk_2E, param0->unk_04[v0].unk_17_7));
     }
 }
 

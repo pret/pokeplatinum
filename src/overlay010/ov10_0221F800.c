@@ -2033,13 +2033,13 @@ static void ov10_02221D14 (UnkStruct_ov10_0221FB28 * param0, Party * param1, u8 
 
     for (v1 = 0; v1 < 3; v1++) {
         if (v2 <= v1) {
-            param0->unk_214[v1 + param2].unk_00 = sub_02079D8C(0, 0, 0);
+            param0->unk_214[v1 + param2].unk_00 = PokeIconSpriteIndex(0, 0, 0);
             continue;
         }
 
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
 
-        param0->unk_214[v1 + param2].unk_00 = sub_02079D80(v0);
+        param0->unk_214[v1 + param2].unk_00 = Pokemon_IconSpriteIndex(v0);
         param0->unk_214[v1 + param2].unk_04 = (u16)Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
 
         if (param0->unk_214[v1 + param2].unk_04 == 0) {
@@ -2111,7 +2111,7 @@ static void ov10_02221EEC (UnkStruct_ov10_0221FB28 * param0, u32 param1)
             sub_0200D3F4(param0->unk_198[param1 * 5 + v0], 0);
         }
     } else {
-        sub_0200D41C(param0->unk_198[param1 * 5 + 0], sub_02079EDC(param0->unk_214[param1].unk_04, param0->unk_214[param1].unk_11, param0->unk_214[param1].unk_0F));
+        sub_0200D41C(param0->unk_198[param1 * 5 + 0], PokeIconPaletteIndex(param0->unk_214[param1].unk_04, param0->unk_214[param1].unk_11, param0->unk_214[param1].unk_0F));
         sub_0200D364(param0->unk_198[param1 * 5 + 0], ov10_02221E84(param0, param1));
 
         if (param0->unk_214[param1].unk_0A == 0) {
@@ -2165,9 +2165,9 @@ static void ov10_022220B4 (UnkStruct_ov10_0221FB28 * param0)
 
     v1 = NARC_ctor(NARC_INDEX_POKETOOL__ICONGRA__PL_POKE_ICON, param0->unk_00->unk_24);
 
-    sub_0200CD0C(param0->unk_190, param0->unk_194, v1, sub_02079FD0(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
-    sub_0200CE24(param0->unk_190, param0->unk_194, v1, sub_02079FD8(), 0, 47113);
-    sub_0200CE54(param0->unk_190, param0->unk_194, v1, sub_02079FE4(), 0, 47113);
+    sub_0200CD0C(param0->unk_190, param0->unk_194, v1, PokeIconPalettesFileIndex(), 0, 3, NNS_G2D_VRAM_TYPE_2DMAIN, 47112);
+    sub_0200CE24(param0->unk_190, param0->unk_194, v1, PokeIcon32KCellsFileIndex(), 0, 47113);
+    sub_0200CE54(param0->unk_190, param0->unk_194, v1, PokeIcon32KAnimationFileIndex(), 0, 47113);
 
     for (v0 = 0; v0 < 6; v0++) {
         sub_0200CC3C(param0->unk_190, param0->unk_194, v1, param0->unk_214[v0].unk_00, 0, NNS_G2D_VRAM_TYPE_2DMAIN, 47113 + v0);

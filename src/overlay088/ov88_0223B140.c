@@ -354,7 +354,7 @@ static void ov88_0223B2F0 (NNSG2dCharacterData * param0, int param1, int param2,
     u8 * v0;
 
     GX_LoadOBJ(param0->pRawData, ((4 * 32 + 18) + param4 * (4 * 4)) * 0x20, ((4 * 4) * 0x20));
-    sub_02021EF0(param5, sub_02079EDC(param1, param2, param3) + 10);
+    sub_02021EF0(param5, PokeIconPaletteIndex(param1, param2, param3) + 10);
 }
 
 static void ov88_0223B320 (UnkStruct_02095E80 * param0)
@@ -540,7 +540,7 @@ static void ov88_0223B7A0 (Party * param0, int param1, UnkStruct_02095E80 * para
     for (v0 = 0; v0 < Party_GetCurrentCount(param0); v0++) {
         v1 = v0 + param1;
 
-        param2->unk_7E8[v1] = sub_02006F50(19, sub_02079D8C(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], 26);
+        param2->unk_7E8[v1] = sub_02006F50(19, PokeIconSpriteIndex(param2->unk_6F4[v1].unk_00, param2->unk_6F4[v1].unk_05, param2->unk_6F4[v1].unk_06), 0, &param2->unk_818[v1], 26);
 
         DC_FlushRange(param2->unk_818[v1]->pRawData, 0x20 * 4 * 4);
 
@@ -1277,7 +1277,7 @@ static void ov88_0223C66C (UnkStruct_02095E80 * param0, NARC * param1)
     sub_0200A328(param0->unk_334[1][0]);
     sub_0200A5C8(param0->unk_334[0][1]);
     sub_0200A5C8(param0->unk_334[1][1]);
-    sub_02006E84(19, sub_02079FD0(), 1, 10 * 0x20, 0x20 * 4, 26);
+    sub_02006E84(19, PokeIconPalettesFileIndex(), 1, 10 * 0x20, 0x20 * 4, 26);
 }
 
 static int ov88_0223C800 (int param0, Pokemon * param1, u8 * param2, UnkStruct_02008A90 * param3)

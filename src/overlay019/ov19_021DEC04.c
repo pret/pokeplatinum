@@ -141,7 +141,7 @@ void ov19_021DECE8 (UnkStruct_ov19_021DEC04 * param0, NARC * param1)
         sub_0200710C(param1, 130, param0->unk_0C, 6, 0, 0, 1, 10);
         sub_0200710C(param1, 131, param0->unk_0C, 7, 0, 0, 1, 10);
         sub_02007130(param1, 133, 4, 0, 0x20 * 4, 10);
-        sub_02006E84(19, sub_02079FD0(), 5, 4 * 0x20, 4 * 0x20, 10);
+        sub_02006E84(19, PokeIconPalettesFileIndex(), 5, 4 * 0x20, 4 * 0x20, 10);
         sub_02019690(4, 0x20, 0, 10);
         sub_02019CB8(param0->unk_0C, 4, 0x0, 0, 0, 32, 32, 17);
 
@@ -682,9 +682,9 @@ static void ov19_021DF834 (UnkStruct_ov19_021DEC04 * param0)
     NNSG2dCharacterData * v4;
 
     if (ov19_021D5E34(param0->unk_08)) {
-        u32 v5 = 4 + sub_02079EDC(v1->unk_04, v1->unk_07, v1->unk_06);
+        u32 v5 = 4 + PokeIconPaletteIndex(v1->unk_04, v1->unk_07, v1->unk_06);
 
-        ov19_021DA744(param0->unk_14, param0->unk_E8, sub_02079D40(v3), sizeof(param0->unk_E8));
+        ov19_021DA744(param0->unk_14, param0->unk_E8, BoxPokemon_IconSpriteIndex(v3), sizeof(param0->unk_E8));
 
         NNS_G2dGetUnpackedCharacterData(param0->unk_E8, &v4);
         DC_FlushRange(v4->pRawData, (4 * 4) * 0x20);

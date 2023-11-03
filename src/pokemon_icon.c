@@ -8,7 +8,7 @@
 
 #include "data/pokeicon_palettes.h"
 
-u32 sub_02079D40 (const BoxPokemon * param0)
+u32 BoxPokemon_IconSpriteIndex (const BoxPokemon * param0)
 {
     u32 v0;
     u32 v1;
@@ -19,19 +19,19 @@ u32 sub_02079D40 (const BoxPokemon * param0)
     v2 = BoxPokemon_EnterDecryptionContext((BoxPokemon *)param0);
     v0 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_SPECIES, NULL);
     v4 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_IS_EGG, NULL);
-    v3 = sub_02079E44((BoxPokemon *)param0);
-    v1 = sub_02079D8C(v0, v4, v3);
+    v3 = BoxPokemon_IconFormOffset((BoxPokemon *)param0);
+    v1 = PokeIconSpriteIndex(v0, v4, v3);
 
     BoxPokemon_ExitDecryptionContext((BoxPokemon *)param0, v2);
     return v1;
 }
 
-u32 sub_02079D80 (Pokemon * param0)
+u32 Pokemon_IconSpriteIndex (Pokemon * param0)
 {
-    return sub_02079D40((const BoxPokemon *)Pokemon_GetBoxPokemon(param0));
+    return BoxPokemon_IconSpriteIndex((const BoxPokemon *)Pokemon_GetBoxPokemon(param0));
 }
 
-u32 sub_02079D8C (u32 param0, u32 param1, u32 param2)
+u32 PokeIconSpriteIndex (u32 param0, u32 param1, u32 param2)
 {
     if (param1 == 1) {
         if (param0 == 490) {
@@ -88,7 +88,7 @@ u32 sub_02079D8C (u32 param0, u32 param1, u32 param2)
     return 7 + param0;
 }
 
-u16 sub_02079E44 (const BoxPokemon * param0)
+u16 BoxPokemon_IconFormOffset (const BoxPokemon * param0)
 {
     u32 v0;
 
@@ -113,7 +113,7 @@ u16 sub_02079E44 (const BoxPokemon * param0)
     return 0;
 }
 
-const u8 sub_02079EDC (u32 param0, u32 param1, u32 param2)
+const u8 PokeIconPaletteIndex (u32 param0, u32 param1, u32 param2)
 {
     if (param2 == 1) {
         if (param0 == 490) {
@@ -148,7 +148,7 @@ const u8 sub_02079EDC (u32 param0, u32 param1, u32 param2)
     return sPokemonIconPaletteIndex[param0];
 }
 
-const u8 sub_02079F84 (const BoxPokemon * param0)
+const u8 BoxPokemon_IconPaletteIndex (const BoxPokemon * param0)
 {
     BOOL v0;
     u32 v1;
@@ -156,51 +156,51 @@ const u8 sub_02079F84 (const BoxPokemon * param0)
     u32 v3;
 
     v0 = BoxPokemon_EnterDecryptionContext((BoxPokemon *)param0);
-    v2 = sub_02079E44(param0);
+    v2 = BoxPokemon_IconFormOffset(param0);
     v1 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_SPECIES, NULL);
     v3 = BoxPokemon_GetValue((BoxPokemon *)param0, MON_DATA_IS_EGG, NULL);
 
     BoxPokemon_ExitDecryptionContext((BoxPokemon *)param0, v0);
 
-    return sub_02079EDC(v1, v2, v3);
+    return PokeIconPaletteIndex(v1, v2, v3);
 }
 
-const u8 sub_02079FC4 (Pokemon * param0)
+const u8 Pokemon_IconPaletteIndex (Pokemon * param0)
 {
-    return sub_02079F84((const BoxPokemon *)Pokemon_GetBoxPokemon(param0));
+    return BoxPokemon_IconPaletteIndex((const BoxPokemon *)Pokemon_GetBoxPokemon(param0));
 }
 
-u32 sub_02079FD0 (void)
+u32 PokeIconPalettesFileIndex (void)
 {
     return 0;
 }
 
-u32 sub_02079FD4 (void)
+u32 PokeIconCellsFileIndex (void)
 {
     return 2;
 }
 
-u32 sub_02079FD8 (void)
+u32 PokeIcon32KCellsFileIndex (void)
 {
     return 4;
 }
 
-u32 sub_02079FDC (void)
+u32 PokeIcon64KCellsFileIndex (void)
 {
     return 6;
 }
 
-u32 sub_02079FE0 (void)
+u32 PokeIconAnimationFileIndex (void)
 {
     return 1;
 }
 
-u32 sub_02079FE4 (void)
+u32 PokeIcon32KAnimationFileIndex (void)
 {
     return 3;
 }
 
-u32 sub_02079FE8 (void)
+u32 PokeIcon64KAnimationFileIndex (void)
 {
     return 5;
 }

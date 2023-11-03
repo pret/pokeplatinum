@@ -303,7 +303,7 @@ void sub_02056A48 (UnkStruct_02056B24 * param0, const BoxPokemon * param1)
     }
 
     param0->unk_B8[v0].unk_00 = BoxPokemon_GetValue((BoxPokemon *)param1, MON_DATA_SPECIES, NULL);
-    param0->unk_B8[v0].unk_02 = sub_02079E44(param1);
+    param0->unk_B8[v0].unk_02 = BoxPokemon_IconFormOffset(param1);
     param0->unk_B8[v0].unk_04 = BoxPokemon_GetValue((BoxPokemon *)param1, MON_DATA_FORM, NULL);
 }
 

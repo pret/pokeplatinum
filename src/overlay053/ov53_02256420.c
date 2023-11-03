@@ -154,10 +154,10 @@ static void ov53_02256568 (SysTask * param0, void * param1)
     const UnkStruct_ov53_02256420_1 * v1 = ov25_02255240(param1);
 
     if (v1->unk_00) {
-        u32 v2 = sub_02079D8C(v1->unk_00, 0, 0);
+        u32 v2 = PokeIconSpriteIndex(v1->unk_00, 0, 0);
 
         ov25_022553A0(v0->unk_AC, &v2, 1, 1);
-        ov25_02255938(v0->unk_24[0], 1 + sub_02079EDC(v1->unk_00, 0, 0));
+        ov25_02255938(v0->unk_24[0], 1 + PokeIconPaletteIndex(v1->unk_00, 0, 0));
         ov53_02256874(&(v0->unk_24[4]), v1->unk_04);
     } else {
         int v3;
@@ -362,7 +362,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
     }
 
     for (v3 = 0; v3 < 4; v3++) {
-        param0->unk_8C[v3] = sub_02079D8C(((v2[v3]) ? v2[v3] : 1), 0, 0);
+        param0->unk_8C[v3] = PokeIconSpriteIndex(((v2[v3]) ? v2[v3] : 1), 0, 0);
     }
 
     ov25_022553A0(v1, param0->unk_8C, NELEMS(param0->unk_8C), 1);
@@ -389,7 +389,7 @@ static void ov53_022566AC (UnkStruct_ov53_02256420 * param0, const UnkStruct_ov5
                 ov25_02255914(param0->unk_24[v5], 1);
             }
         } else {
-            ov25_02255938(param0->unk_24[0 + v3], 1 + sub_02079EDC(v2[v3], 0, 0));
+            ov25_02255938(param0->unk_24[0 + v3], 1 + PokeIconPaletteIndex(v2[v3], 0, 0));
             ov53_02256874(&(param0->unk_24[4 + v3 * 3]), (v3 == 0) ? param1->unk_04 : param1->unk_14[v3 - 1]);
         }
     }

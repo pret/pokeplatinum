@@ -208,7 +208,7 @@ static void ov32_022563C8 (UnkStruct_ov32_02256470_1 * param0, Party * param1)
         v0 = Party_GetPokemonBySlotIndex(param1, v1);
         v2 = Pokemon_EnterDecryptionContext(v0);
 
-        param0->unk_04[v1].unk_00 = sub_02079D40((const BoxPokemon *)v0);
+        param0->unk_04[v1].unk_00 = BoxPokemon_IconSpriteIndex((const BoxPokemon *)v0);
         param0->unk_04[v1].unk_04 = Pokemon_GetValue(v0, MON_DATA_SPECIES, NULL);
         param0->unk_04[v1].unk_06 = Pokemon_GetValue(v0, MON_DATA_CURRENT_HP, NULL);
         param0->unk_04[v1].unk_08 = Pokemon_GetValue(v0, MON_DATA_MAX_HP, NULL);
