@@ -1,5 +1,4 @@
 prebuilt_files = [
-    'trdata.narc',
     'trpoke.narc'
 ]
 

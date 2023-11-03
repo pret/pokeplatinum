@@ -216,10 +216,13 @@ RomSpec
 	Root /poketool/personal
 	HostRoot res/pokemon
 	File wotbl.narc
+
+	Root /poketool/trainer
+	HostRoot res/trainers
+	File trdata.narc
 	
 	Root /
 	HostRoot res/prebuilt
-	File poketool/trainer/trdata.narc
 	File poketool/trainer/trpoke.narc
 	File poketool/trmsg/trtbl.narc
 	File poketool/trmsg/trtblofs.narc
