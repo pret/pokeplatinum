@@ -2,7 +2,7 @@ from enum import Enum, Flag, auto
 
 
 class EvoMethod(Flag):
-    NONE                    = 0
+    EVO_NONE                = 0
     EVO_HAPPINESS           = auto()
     EVO_HAPPINESS_DAY       = auto()
     EVO_HAPPINESS_NIGHT     = auto()

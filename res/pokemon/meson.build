@@ -691,6 +691,7 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
 )
 
 nitrofs_files += pl_personal_narc
+nitrofs_files += evo_narc
 nitrofs_files += pl_poke_icon_narc
 nitrofs_files += pl_pokegra_narc
 nitrofs_files += pl_otherpoke_narc
