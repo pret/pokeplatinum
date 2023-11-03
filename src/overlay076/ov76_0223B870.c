@@ -52,7 +52,7 @@
 #include "unk_02024220.h"
 #include "unk_0202C9F4.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_02097B18.h"
 #include "overlay012/ov12_02225864.h"
 #include "overlay076/ov76_0223B870.h"

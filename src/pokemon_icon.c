@@ -4,7 +4,7 @@
 #include "constants/pokemon.h"
 
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 
 #include "data/pokeicon_palettes.h"
 

@@ -51,7 +51,7 @@
 #include "strbuf.h"
 #include "unk_020279FC.h"
 #include "unk_020393C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay075/ov75_021D0D80.h"
 
 enum {

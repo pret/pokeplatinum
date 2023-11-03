@@ -61,7 +61,7 @@
 #include "unk_02025E08.h"
 #include "unk_020279FC.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_0207E0B8.h"
 #include "unk_0209B6F8.h"
 #include "overlay063/ov63_0222BE18.h"

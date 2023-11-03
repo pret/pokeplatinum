@@ -44,7 +44,7 @@
 #include "unk_020279FC.h"
 #include "unk_02033200.h"
 #include "unk_020797C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_02099550.h"
 #include "overlay094/ov94_0223B140.h"
 #include "overlay094/ov94_0223BCB0.h"

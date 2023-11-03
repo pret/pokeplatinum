@@ -17,7 +17,7 @@
 #include "trainer_info.h"
 #include "unk_02028124.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "party.h"
 
 static int sub_020284E8(UnkStruct_0202818C * param0, int param1);

@@ -65,7 +65,7 @@
 #include "unk_020279FC.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_0208694C.h"
 
 typedef struct {

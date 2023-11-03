@@ -92,7 +92,7 @@
 #include "unk_020507CC.h"
 #include "unk_0206AFE0.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "party.h"
 #include "item.h"
 #include "unk_0207D3B8.h"

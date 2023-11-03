@@ -40,7 +40,7 @@
 #include "unk_0201DBEC.h"
 #include "unk_020218BC.h"
 #include "strbuf.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_02098700.h"
 #include "unk_02098988.h"
 #include "overlay021/ov21_021D0D80.h"

@@ -7,7 +7,7 @@
 #include "unk_020244AC.h"
 #include "unk_02056720.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 
 typedef struct UnkStruct_02056B24_t {
     u8 unk_00_0 : 1;

@@ -9,7 +9,7 @@
 
 #include "heap.h"
 #include "unk_020218BC.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay108/ov108_02243030.h"
 #include "overlay108/ov108_0224351C.h"
 

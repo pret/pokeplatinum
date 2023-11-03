@@ -78,7 +78,7 @@
 #include "unk_020218BC.h"
 #include "unk_02022594.h"
 #include "unk_020797C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_0207A274.h"
 #include "unk_0208694C.h"
 #include "unk_0208C098.h"

@@ -43,7 +43,7 @@
 #include "unk_020393C8.h"
 #include "pokemon.h"
 #include "unk_020797C8.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "party.h"
 #include "item.h"
 #include "overlay094/ov94_0223BCB0.h"

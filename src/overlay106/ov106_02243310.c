@@ -19,7 +19,7 @@
 #include "unk_0201F834.h"
 #include "gx_layers.h"
 #include "unk_020218BC.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay106/ov106_02243310.h"
 
 void ov106_02243310(UnkStruct_ov106_02243310 * param0, Pokemon * param1);

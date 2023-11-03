@@ -62,7 +62,7 @@
 #include "strbuf.h"
 #include "pokemon.h"
 #include "move_table.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_0207C908.h"
 #include "unk_0208C098.h"
 #include "overlay011/ov11_0221F800.h"

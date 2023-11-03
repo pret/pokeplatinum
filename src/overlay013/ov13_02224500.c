@@ -16,7 +16,7 @@
 #include "unk_0200C6E4.h"
 #include "gx_layers.h"
 #include "move_table.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "party.h"
 #include "unk_0207C908.h"
 #include "item.h"

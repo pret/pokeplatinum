@@ -291,7 +291,7 @@ Static main
 	Object main.nef.p/src_move_table.c.o
 	Object main.nef.p/src_trainer_data.c.o
 	Object main.nef.p/src_unk_020797C8.c.o
-	Object main.nef.p/src_unk_02079D40.c.o
+	Object main.nef.p/src_pokemon_icon.c.o
 	Object main.nef.p/src_party.c.o
 	Object main.nef.p/src_unk_0207A274.c.o
 	Object main.nef.p/src_unk_0207A2A8.c.o

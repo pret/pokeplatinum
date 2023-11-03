@@ -17,7 +17,7 @@
 #include "unk_02022594.h"
 #include "unk_020261E4.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "overlay005/ov5_021E622C.h"
 #include "overlay025/ov25_02253CE0.h"
 #include "overlay040/ov40_0225645C.h"

@@ -35,7 +35,7 @@
 #include "strbuf.h"
 #include "unk_020279FC.h"
 #include "pokemon.h"
-#include "unk_02079D40.h"
+#include "pokemon_icon.h"
 #include "unk_020933F8.h"
 #include "unk_02094EDC.h"
 #include "overlay017/ov17_0223F118.h"
